@@ -24,6 +24,26 @@ func (c *SWF) CountClosedWorkflowExecutionsRequest(input *CountClosedWorkflowExe
 	return
 }
 
+// Returns the number of closed workflow executions within the given domain
+// that meet the specified filtering criteria.
+//
+// This operation is eventually consistent. The results are best effort and
+// may not exactly reflect recent updates and changes. Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. Constrain the following parameters by using a Condition element
+// with the appropriate keys.  tagFilter.tag: String constraint. The key is
+// swf:tagFilter.tag. typeFilter.name: String constraint. The key is swf:typeFilter.name.
+// typeFilter.version: String constraint. The key is swf:typeFilter.version.
+//    If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) CountClosedWorkflowExecutions(input *CountClosedWorkflowExecutionsInput) (output *WorkflowExecutionCount, err error) {
 	req, out := c.CountClosedWorkflowExecutionsRequest(input)
 	output = out
@@ -49,6 +69,26 @@ func (c *SWF) CountOpenWorkflowExecutionsRequest(input *CountOpenWorkflowExecuti
 	return
 }
 
+// Returns the number of open workflow executions within the given domain that
+// meet the specified filtering criteria.
+//
+// This operation is eventually consistent. The results are best effort and
+// may not exactly reflect recent updates and changes. Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. Constrain the following parameters by using a Condition element
+// with the appropriate keys.  tagFilter.tag: String constraint. The key is
+// swf:tagFilter.tag. typeFilter.name: String constraint. The key is swf:typeFilter.name.
+// typeFilter.version: String constraint. The key is swf:typeFilter.version.
+//    If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) CountOpenWorkflowExecutions(input *CountOpenWorkflowExecutionsInput) (output *WorkflowExecutionCount, err error) {
 	req, out := c.CountOpenWorkflowExecutionsRequest(input)
 	output = out
@@ -74,6 +114,25 @@ func (c *SWF) CountPendingActivityTasksRequest(input *CountPendingActivityTasksI
 	return
 }
 
+// Returns the estimated number of activity tasks in the specified task list.
+// The count returned is an approximation and is not guaranteed to be exact.
+// If you specify a task list that no activity task was ever scheduled in then
+// 0 will be returned.
+//
+// Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. Constrain the taskList.name parameter by using a Condition element
+// with the swf:taskList.name key to allow the action to access only certain
+// task lists.  If the caller does not have sufficient permissions to invoke
+// the action, or the parameter values fall outside the specified constraints,
+// the action fails. The associated event attribute's cause parameter will be
+// set to OPERATION_NOT_PERMITTED. For details and example IAM policies, see
+// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) CountPendingActivityTasks(input *CountPendingActivityTasksInput) (output *PendingTaskCount, err error) {
 	req, out := c.CountPendingActivityTasksRequest(input)
 	output = out
@@ -99,6 +158,25 @@ func (c *SWF) CountPendingDecisionTasksRequest(input *CountPendingDecisionTasksI
 	return
 }
 
+// Returns the estimated number of decision tasks in the specified task list.
+// The count returned is an approximation and is not guaranteed to be exact.
+// If you specify a task list that no decision task was ever scheduled in then
+// 0 will be returned.
+//
+// Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. Constrain the taskList.name parameter by using a Condition element
+// with the swf:taskList.name key to allow the action to access only certain
+// task lists.  If the caller does not have sufficient permissions to invoke
+// the action, or the parameter values fall outside the specified constraints,
+// the action fails. The associated event attribute's cause parameter will be
+// set to OPERATION_NOT_PERMITTED. For details and example IAM policies, see
+// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) CountPendingDecisionTasks(input *CountPendingDecisionTasksInput) (output *PendingTaskCount, err error) {
 	req, out := c.CountPendingDecisionTasksRequest(input)
 	output = out
@@ -124,6 +202,26 @@ func (c *SWF) DeprecateActivityTypeRequest(input *DeprecateActivityTypeInput) (r
 	return
 }
 
+// Deprecates the specified activity type. After an activity type has been deprecated,
+// you cannot create new tasks of that activity type. Tasks of this type that
+// were scheduled before the type was deprecated will continue to run.
+//
+// This operation is eventually consistent. The results are best effort and
+// may not exactly reflect recent updates and changes. Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. Constrain the following parameters by using a Condition element
+// with the appropriate keys.  activityType.name: String constraint. The key
+// is swf:activityType.name. activityType.version: String constraint. The key
+// is swf:activityType.version.    If the caller does not have sufficient permissions
+// to invoke the action, or the parameter values fall outside the specified
+// constraints, the action fails. The associated event attribute's cause parameter
+// will be set to OPERATION_NOT_PERMITTED. For details and example IAM policies,
+// see Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) DeprecateActivityType(input *DeprecateActivityTypeInput) (output *DeprecateActivityTypeOutput, err error) {
 	req, out := c.DeprecateActivityTypeRequest(input)
 	output = out
@@ -149,6 +247,27 @@ func (c *SWF) DeprecateDomainRequest(input *DeprecateDomainInput) (req *aws.Requ
 	return
 }
 
+// Deprecates the specified domain. After a domain has been deprecated it cannot
+// be used to create new workflow executions or register new types. However,
+// you can still use visibility actions on this domain. Deprecating a domain
+// also deprecates all activity and workflow types registered in the domain.
+// Executions that were started before the domain was deprecated will continue
+// to run.
+//
+// This operation is eventually consistent. The results are best effort and
+// may not exactly reflect recent updates and changes. Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. You cannot use an IAM policy to constrain this action's parameters.
+//  If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) DeprecateDomain(input *DeprecateDomainInput) (output *DeprecateDomainOutput, err error) {
 	req, out := c.DeprecateDomainRequest(input)
 	output = out
@@ -174,6 +293,27 @@ func (c *SWF) DeprecateWorkflowTypeRequest(input *DeprecateWorkflowTypeInput) (r
 	return
 }
 
+// Deprecates the specified workflow type. After a workflow type has been deprecated,
+// you cannot create new executions of that type. Executions that were started
+// before the type was deprecated will continue to run. A deprecated workflow
+// type may still be used when calling visibility actions.
+//
+// This operation is eventually consistent. The results are best effort and
+// may not exactly reflect recent updates and changes. Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. Constrain the following parameters by using a Condition element
+// with the appropriate keys.  workflowType.name: String constraint. The key
+// is swf:workflowType.name. workflowType.version: String constraint. The key
+// is swf:workflowType.version.    If the caller does not have sufficient permissions
+// to invoke the action, or the parameter values fall outside the specified
+// constraints, the action fails. The associated event attribute's cause parameter
+// will be set to OPERATION_NOT_PERMITTED. For details and example IAM policies,
+// see Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) DeprecateWorkflowType(input *DeprecateWorkflowTypeInput) (output *DeprecateWorkflowTypeOutput, err error) {
 	req, out := c.DeprecateWorkflowTypeRequest(input)
 	output = out
@@ -199,6 +339,25 @@ func (c *SWF) DescribeActivityTypeRequest(input *DescribeActivityTypeInput) (req
 	return
 }
 
+// Returns information about the specified activity type. This includes configuration
+// settings provided when the type was registered and other general information
+// about the type.
+//
+// Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. Constrain the following parameters by using a Condition element
+// with the appropriate keys.  activityType.name: String constraint. The key
+// is swf:activityType.name. activityType.version: String constraint. The key
+// is swf:activityType.version.    If the caller does not have sufficient permissions
+// to invoke the action, or the parameter values fall outside the specified
+// constraints, the action fails. The associated event attribute's cause parameter
+// will be set to OPERATION_NOT_PERMITTED. For details and example IAM policies,
+// see Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) DescribeActivityType(input *DescribeActivityTypeInput) (output *DescribeActivityTypeOutput, err error) {
 	req, out := c.DescribeActivityTypeRequest(input)
 	output = out
@@ -224,6 +383,22 @@ func (c *SWF) DescribeDomainRequest(input *DescribeDomainInput) (req *aws.Reques
 	return
 }
 
+// Returns information about the specified domain, including description and
+// status.
+//
+// Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. You cannot use an IAM policy to constrain this action's parameters.
+//  If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) DescribeDomain(input *DescribeDomainInput) (output *DescribeDomainOutput, err error) {
 	req, out := c.DescribeDomainRequest(input)
 	output = out
@@ -249,6 +424,23 @@ func (c *SWF) DescribeWorkflowExecutionRequest(input *DescribeWorkflowExecutionI
 	return
 }
 
+// Returns information about the specified workflow execution including its
+// type and some statistics.
+//
+// This operation is eventually consistent. The results are best effort and
+// may not exactly reflect recent updates and changes. Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. You cannot use an IAM policy to constrain this action's parameters.
+//  If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) DescribeWorkflowExecution(input *DescribeWorkflowExecutionInput) (output *DescribeWorkflowExecutionOutput, err error) {
 	req, out := c.DescribeWorkflowExecutionRequest(input)
 	output = out
@@ -274,6 +466,25 @@ func (c *SWF) DescribeWorkflowTypeRequest(input *DescribeWorkflowTypeInput) (req
 	return
 }
 
+// Returns information about the specified workflow type. This includes configuration
+// settings specified when the type was registered and other information such
+// as creation date, current status, etc.
+//
+// Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. Constrain the following parameters by using a Condition element
+// with the appropriate keys.  workflowType.name: String constraint. The key
+// is swf:workflowType.name. workflowType.version: String constraint. The key
+// is swf:workflowType.version.    If the caller does not have sufficient permissions
+// to invoke the action, or the parameter values fall outside the specified
+// constraints, the action fails. The associated event attribute's cause parameter
+// will be set to OPERATION_NOT_PERMITTED. For details and example IAM policies,
+// see Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) DescribeWorkflowType(input *DescribeWorkflowTypeInput) (output *DescribeWorkflowTypeOutput, err error) {
 	req, out := c.DescribeWorkflowTypeRequest(input)
 	output = out
@@ -299,6 +510,24 @@ func (c *SWF) GetWorkflowExecutionHistoryRequest(input *GetWorkflowExecutionHist
 	return
 }
 
+// Returns the history of the specified workflow execution. The results may
+// be split into multiple pages. To retrieve subsequent pages, make the call
+// again using the nextPageToken returned by the initial call.
+//
+// This operation is eventually consistent. The results are best effort and
+// may not exactly reflect recent updates and changes. Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. You cannot use an IAM policy to constrain this action's parameters.
+//  If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) GetWorkflowExecutionHistory(input *GetWorkflowExecutionHistoryInput) (output *GetWorkflowExecutionHistoryOutput, err error) {
 	req, out := c.GetWorkflowExecutionHistoryRequest(input)
 	output = out
@@ -324,6 +553,25 @@ func (c *SWF) ListActivityTypesRequest(input *ListActivityTypesInput) (req *aws.
 	return
 }
 
+// Returns information about all activities registered in the specified domain
+// that match the specified name and registration status. The result includes
+// information like creation date, current status of the activity, etc. The
+// results may be split into multiple pages. To retrieve subsequent pages, make
+// the call again using the nextPageToken returned by the initial call.
+//
+// Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. You cannot use an IAM policy to constrain this action's parameters.
+//  If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) ListActivityTypes(input *ListActivityTypesInput) (output *ListActivityTypesOutput, err error) {
 	req, out := c.ListActivityTypesRequest(input)
 	output = out
@@ -349,6 +597,28 @@ func (c *SWF) ListClosedWorkflowExecutionsRequest(input *ListClosedWorkflowExecu
 	return
 }
 
+// Returns a list of closed workflow executions in the specified domain that
+// meet the filtering criteria. The results may be split into multiple pages.
+// To retrieve subsequent pages, make the call again using the nextPageToken
+// returned by the initial call.
+//
+// This operation is eventually consistent. The results are best effort and
+// may not exactly reflect recent updates and changes. Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. Constrain the following parameters by using a Condition element
+// with the appropriate keys.  tagFilter.tag: String constraint. The key is
+// swf:tagFilter.tag. typeFilter.name: String constraint. The key is swf:typeFilter.name.
+// typeFilter.version: String constraint. The key is swf:typeFilter.version.
+//    If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) ListClosedWorkflowExecutions(input *ListClosedWorkflowExecutionsInput) (output *WorkflowExecutionInfos, err error) {
 	req, out := c.ListClosedWorkflowExecutionsRequest(input)
 	output = out
@@ -374,6 +644,25 @@ func (c *SWF) ListDomainsRequest(input *ListDomainsInput) (req *aws.Request, out
 	return
 }
 
+// Returns the list of domains registered in the account. The results may be
+// split into multiple pages. To retrieve subsequent pages, make the call again
+// using the nextPageToken returned by the initial call.
+//
+//  This operation is eventually consistent. The results are best effort and
+// may not exactly reflect recent updates and changes. Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. The element must be set to arn:aws:swf::AccountID:domain/*,
+// where AccountID is the account ID, with no dashes. Use an Action element
+// to allow or deny permission to call this action. You cannot use an IAM policy
+// to constrain this action's parameters.  If the caller does not have sufficient
+// permissions to invoke the action, or the parameter values fall outside the
+// specified constraints, the action fails. The associated event attribute's
+// cause parameter will be set to OPERATION_NOT_PERMITTED. For details and example
+// IAM policies, see Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) ListDomains(input *ListDomainsInput) (output *ListDomainsOutput, err error) {
 	req, out := c.ListDomainsRequest(input)
 	output = out
@@ -399,6 +688,28 @@ func (c *SWF) ListOpenWorkflowExecutionsRequest(input *ListOpenWorkflowExecution
 	return
 }
 
+// Returns a list of open workflow executions in the specified domain that meet
+// the filtering criteria. The results may be split into multiple pages. To
+// retrieve subsequent pages, make the call again using the nextPageToken returned
+// by the initial call.
+//
+//  This operation is eventually consistent. The results are best effort and
+// may not exactly reflect recent updates and changes. Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. Constrain the following parameters by using a Condition element
+// with the appropriate keys.  tagFilter.tag: String constraint. The key is
+// swf:tagFilter.tag. typeFilter.name: String constraint. The key is swf:typeFilter.name.
+// typeFilter.version: String constraint. The key is swf:typeFilter.version.
+//    If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) ListOpenWorkflowExecutions(input *ListOpenWorkflowExecutionsInput) (output *WorkflowExecutionInfos, err error) {
 	req, out := c.ListOpenWorkflowExecutionsRequest(input)
 	output = out
@@ -424,6 +735,23 @@ func (c *SWF) ListWorkflowTypesRequest(input *ListWorkflowTypesInput) (req *aws.
 	return
 }
 
+// Returns information about workflow types in the specified domain. The results
+// may be split into multiple pages that can be retrieved by making the call
+// repeatedly.
+//
+// Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. You cannot use an IAM policy to constrain this action's parameters.
+//  If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) ListWorkflowTypes(input *ListWorkflowTypesInput) (output *ListWorkflowTypesOutput, err error) {
 	req, out := c.ListWorkflowTypesRequest(input)
 	output = out
@@ -449,6 +777,31 @@ func (c *SWF) PollForActivityTaskRequest(input *PollForActivityTaskInput) (req *
 	return
 }
 
+// Used by workers to get an ActivityTask from the specified activity taskList.
+// This initiates a long poll, where the service holds the HTTP connection open
+// and responds as soon as a task becomes available. The maximum time the service
+// holds on to the request before responding is 60 seconds. If no task is available
+// within 60 seconds, the poll will return an empty result. An empty result,
+// in this context, means that an ActivityTask is returned, but that the value
+// of taskToken is an empty string. If a task is returned, the worker should
+// use its type to identify and process it correctly.
+//
+// Workers should set their client side socket timeout to at least 70 seconds
+// (10 seconds higher than the maximum time service may hold the poll request).
+// Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. Constrain the taskList.name parameter by using a Condition element
+// with the swf:taskList.name key to allow the action to access only certain
+// task lists.  If the caller does not have sufficient permissions to invoke
+// the action, or the parameter values fall outside the specified constraints,
+// the action fails. The associated event attribute's cause parameter will be
+// set to OPERATION_NOT_PERMITTED. For details and example IAM policies, see
+// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) PollForActivityTask(input *PollForActivityTaskInput) (output *PollForActivityTaskOutput, err error) {
 	req, out := c.PollForActivityTaskRequest(input)
 	output = out
@@ -474,6 +827,39 @@ func (c *SWF) PollForDecisionTaskRequest(input *PollForDecisionTaskInput) (req *
 	return
 }
 
+// Used by deciders to get a DecisionTask from the specified decision taskList.
+// A decision task may be returned for any open workflow execution that is using
+// the specified task list. The task includes a paginated view of the history
+// of the workflow execution. The decider should use the workflow type and the
+// history to determine how to properly handle the task.
+//
+// This action initiates a long poll, where the service holds the HTTP connection
+// open and responds as soon a task becomes available. If no decision task is
+// available in the specified task list before the timeout of 60 seconds expires,
+// an empty result is returned. An empty result, in this context, means that
+// a DecisionTask is returned, but that the value of taskToken is an empty string.
+//
+// Deciders should set their client side socket timeout to at least 70 seconds
+// (10 seconds higher than the timeout). Because the number of workflow history
+// events for a single workflow execution might be very large, the result returned
+// might be split up across a number of pages. To retrieve subsequent pages,
+// make additional calls to PollForDecisionTask using the nextPageToken returned
+// by the initial call. Note that you do not call GetWorkflowExecutionHistory
+// with this nextPageToken. Instead, call PollForDecisionTask again. Access
+// Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. Constrain the taskList.name parameter by using a Condition element
+// with the swf:taskList.name key to allow the action to access only certain
+// task lists.  If the caller does not have sufficient permissions to invoke
+// the action, or the parameter values fall outside the specified constraints,
+// the action fails. The associated event attribute's cause parameter will be
+// set to OPERATION_NOT_PERMITTED. For details and example IAM policies, see
+// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) PollForDecisionTask(input *PollForDecisionTaskInput) (output *PollForDecisionTaskOutput, err error) {
 	req, out := c.PollForDecisionTaskRequest(input)
 	output = out
@@ -499,6 +885,42 @@ func (c *SWF) RecordActivityTaskHeartbeatRequest(input *RecordActivityTaskHeartb
 	return
 }
 
+// Used by activity workers to report to the service that the ActivityTask represented
+// by the specified taskToken is still making progress. The worker can also
+// (optionally) specify details of the progress, for example percent complete,
+// using the details parameter. This action can also be used by the worker as
+// a mechanism to check if cancellation is being requested for the activity
+// task. If a cancellation is being attempted for the specified task, then the
+// boolean cancelRequested flag returned by the service is set to true.
+//
+// This action resets the taskHeartbeatTimeout clock. The taskHeartbeatTimeout
+// is specified in RegisterActivityType.
+//
+// This action does not in itself create an event in the workflow execution
+// history. However, if the task times out, the workflow execution history will
+// contain a ActivityTaskTimedOut event that contains the information from the
+// last heartbeat generated by the activity worker.
+//
+// The taskStartToCloseTimeout of an activity type is the maximum duration
+// of an activity task, regardless of the number of RecordActivityTaskHeartbeat
+// requests received. The taskStartToCloseTimeout is also specified in RegisterActivityType.
+// This operation is only useful for long-lived activities to report liveliness
+// of the task and to determine if a cancellation is being attempted.  If the
+// cancelRequested flag returns true, a cancellation is being attempted. If
+// the worker can cancel the activity, it should respond with RespondActivityTaskCanceled.
+// Otherwise, it should ignore the cancellation request. Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. You cannot use an IAM policy to constrain this action's parameters.
+//  If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) RecordActivityTaskHeartbeat(input *RecordActivityTaskHeartbeatInput) (output *RecordActivityTaskHeartbeatOutput, err error) {
 	req, out := c.RecordActivityTaskHeartbeatRequest(input)
 	output = out
@@ -524,6 +946,27 @@ func (c *SWF) RegisterActivityTypeRequest(input *RegisterActivityTypeInput) (req
 	return
 }
 
+// Registers a new activity type along with its configuration settings in the
+// specified domain.
+//
+// A TypeAlreadyExists fault is returned if the type already exists in the
+// domain. You cannot change any configuration settings of the type after its
+// registration, and it must be registered as a new version. Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. Constrain the following parameters by using a Condition element
+// with the appropriate keys.   defaultTaskList.name: String constraint. The
+// key is swf:defaultTaskList.name.  name: String constraint. The key is swf:name.
+//  version: String constraint. The key is swf:version.    If the caller does
+// not have sufficient permissions to invoke the action, or the parameter values
+// fall outside the specified constraints, the action fails. The associated
+// event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) RegisterActivityType(input *RegisterActivityTypeInput) (output *RegisterActivityTypeOutput, err error) {
 	req, out := c.RegisterActivityTypeRequest(input)
 	output = out
@@ -549,6 +992,22 @@ func (c *SWF) RegisterDomainRequest(input *RegisterDomainInput) (req *aws.Reques
 	return
 }
 
+// Registers a new domain.
+//
+// Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  You cannot use an IAM policy to control domain access for this action.
+// The name of the domain being registered is available as the resource of this
+// action. Use an Action element to allow or deny permission to call this action.
+// You cannot use an IAM policy to constrain this action's parameters.  If the
+// caller does not have sufficient permissions to invoke the action, or the
+// parameter values fall outside the specified constraints, the action fails.
+// The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) RegisterDomain(input *RegisterDomainInput) (output *RegisterDomainOutput, err error) {
 	req, out := c.RegisterDomainRequest(input)
 	output = out
@@ -574,6 +1033,30 @@ func (c *SWF) RegisterWorkflowTypeRequest(input *RegisterWorkflowTypeInput) (req
 	return
 }
 
+// Registers a new workflow type and its configuration settings in the specified
+// domain.
+//
+// The retention period for the workflow history is set by the RegisterDomain
+// action.
+//
+// If the type already exists, then a TypeAlreadyExists fault is returned.
+// You cannot change the configuration settings of a workflow type once it is
+// registered and it must be registered as a new version. Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. Constrain the following parameters by using a Condition element
+// with the appropriate keys.   defaultTaskList.name: String constraint. The
+// key is swf:defaultTaskList.name.  name: String constraint. The key is swf:name.
+//  version: String constraint. The key is swf:version.    If the caller does
+// not have sufficient permissions to invoke the action, or the parameter values
+// fall outside the specified constraints, the action fails. The associated
+// event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) RegisterWorkflowType(input *RegisterWorkflowTypeInput) (output *RegisterWorkflowTypeOutput, err error) {
 	req, out := c.RegisterWorkflowTypeRequest(input)
 	output = out
@@ -599,6 +1082,29 @@ func (c *SWF) RequestCancelWorkflowExecutionRequest(input *RequestCancelWorkflow
 	return
 }
 
+// Records a WorkflowExecutionCancelRequested event in the currently running
+// workflow execution identified by the given domain, workflowId, and runId.
+// This logically requests the cancellation of the workflow execution as a whole.
+// It is up to the decider to take appropriate actions when it receives an execution
+// history with this event.
+//
+// If the runId is not specified, the WorkflowExecutionCancelRequested event
+// is recorded in the history of the current open workflow execution with the
+// specified workflowId in the domain. Because this action allows the workflow
+// to properly clean up and gracefully close, it should be used instead of TerminateWorkflowExecution
+// when possible. Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. You cannot use an IAM policy to constrain this action's parameters.
+//  If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) RequestCancelWorkflowExecution(input *RequestCancelWorkflowExecutionInput) (output *RequestCancelWorkflowExecutionOutput, err error) {
 	req, out := c.RequestCancelWorkflowExecutionRequest(input)
 	output = out
@@ -624,6 +1130,34 @@ func (c *SWF) RespondActivityTaskCanceledRequest(input *RespondActivityTaskCance
 	return
 }
 
+// Used by workers to tell the service that the ActivityTask identified by the
+// taskToken was successfully canceled. Additional details can be optionally
+// provided using the details argument.
+//
+// These details (if provided) appear in the ActivityTaskCanceled event added
+// to the workflow history.
+//
+// Only use this operation if the canceled flag of a RecordActivityTaskHeartbeat
+// request returns true and if the activity can be safely undone or abandoned.
+// A task is considered open from the time that it is scheduled until it is
+// closed. Therefore a task is reported as open while a worker is processing
+// it. A task is closed after it has been specified in a call to RespondActivityTaskCompleted,
+// RespondActivityTaskCanceled, RespondActivityTaskFailed, or the task has timed
+// out (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dg-basic.html#swf-dev-timeout-types).
+//
+// Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. You cannot use an IAM policy to constrain this action's parameters.
+//  If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) RespondActivityTaskCanceled(input *RespondActivityTaskCanceledInput) (output *RespondActivityTaskCanceledOutput, err error) {
 	req, out := c.RespondActivityTaskCanceledRequest(input)
 	output = out
@@ -649,6 +1183,32 @@ func (c *SWF) RespondActivityTaskCompletedRequest(input *RespondActivityTaskComp
 	return
 }
 
+// Used by workers to tell the service that the ActivityTask identified by the
+// taskToken completed successfully with a result (if provided). The result
+// appears in the ActivityTaskCompleted event in the workflow history.
+//
+//  If the requested task does not complete successfully, use RespondActivityTaskFailed
+// instead. If the worker finds that the task is canceled through the canceled
+// flag returned by RecordActivityTaskHeartbeat, it should cancel the task,
+// clean up and then call RespondActivityTaskCanceled. A task is considered
+// open from the time that it is scheduled until it is closed. Therefore a task
+// is reported as open while a worker is processing it. A task is closed after
+// it has been specified in a call to RespondActivityTaskCompleted, RespondActivityTaskCanceled,
+// RespondActivityTaskFailed, or the task has timed out (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dg-basic.html#swf-dev-timeout-types).
+//
+// Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. You cannot use an IAM policy to constrain this action's parameters.
+//  If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) RespondActivityTaskCompleted(input *RespondActivityTaskCompletedInput) (output *RespondActivityTaskCompletedOutput, err error) {
 	req, out := c.RespondActivityTaskCompletedRequest(input)
 	output = out
@@ -674,6 +1234,29 @@ func (c *SWF) RespondActivityTaskFailedRequest(input *RespondActivityTaskFailedI
 	return
 }
 
+// Used by workers to tell the service that the ActivityTask identified by the
+// taskToken has failed with reason (if specified). The reason and details appear
+// in the ActivityTaskFailed event added to the workflow history.
+//
+// A task is considered open from the time that it is scheduled until it is
+// closed. Therefore a task is reported as open while a worker is processing
+// it. A task is closed after it has been specified in a call to RespondActivityTaskCompleted,
+// RespondActivityTaskCanceled, RespondActivityTaskFailed, or the task has timed
+// out (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dg-basic.html#swf-dev-timeout-types).
+//
+// Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. You cannot use an IAM policy to constrain this action's parameters.
+//  If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) RespondActivityTaskFailed(input *RespondActivityTaskFailedInput) (output *RespondActivityTaskFailedOutput, err error) {
 	req, out := c.RespondActivityTaskFailedRequest(input)
 	output = out
@@ -699,6 +1282,22 @@ func (c *SWF) RespondDecisionTaskCompletedRequest(input *RespondDecisionTaskComp
 	return
 }
 
+// Used by deciders to tell the service that the DecisionTask identified by
+// the taskToken has successfully completed. The decisions argument specifies
+// the list of decisions made while processing the task.
+//
+// A DecisionTaskCompleted event is added to the workflow history. The executionContext
+// specified is attached to the event in the workflow execution history.
+//
+// Access Control
+//
+// If an IAM policy grants permission to use RespondDecisionTaskCompleted,
+// it can express permissions for the list of decisions in the decisions parameter.
+// Each of the decisions has one or more parameters, much like a regular API
+// call. To allow for policies to be as readable as possible, you can express
+// permissions on decisions as if they were actual API calls, including applying
+// conditions to some parameters. For more information, see Using IAM to Manage
+// Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) RespondDecisionTaskCompleted(input *RespondDecisionTaskCompletedInput) (output *RespondDecisionTaskCompletedOutput, err error) {
 	req, out := c.RespondDecisionTaskCompletedRequest(input)
 	output = out
@@ -724,6 +1323,27 @@ func (c *SWF) SignalWorkflowExecutionRequest(input *SignalWorkflowExecutionInput
 	return
 }
 
+// Records a WorkflowExecutionSignaled event in the workflow execution history
+// and creates a decision task for the workflow execution identified by the
+// given domain, workflowId and runId. The event is recorded with the specified
+// user defined signalName and input (if provided).
+//
+//  If a runId is not specified, then the WorkflowExecutionSignaled event is
+// recorded in the history of the current open workflow with the matching workflowId
+// in the domain.  If the specified workflow execution is not open, this method
+// fails with UnknownResource. Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. You cannot use an IAM policy to constrain this action's parameters.
+//  If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) SignalWorkflowExecution(input *SignalWorkflowExecutionInput) (output *SignalWorkflowExecutionOutput, err error) {
 	req, out := c.SignalWorkflowExecutionRequest(input)
 	output = out
@@ -749,6 +1369,30 @@ func (c *SWF) StartWorkflowExecutionRequest(input *StartWorkflowExecutionInput) 
 	return
 }
 
+// Starts an execution of the workflow type in the specified domain using the
+// provided workflowId and input data.
+//
+// This action returns the newly started workflow execution.
+//
+// Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. Constrain the following parameters by using a Condition element
+// with the appropriate keys.   tagList.member.0: The key is swf:tagList.member.0.
+//  tagList.member.1: The key is swf:tagList.member.1.  tagList.member.2: The
+// key is swf:tagList.member.2.  tagList.member.3: The key is swf:tagList.member.3.
+//  tagList.member.4: The key is swf:tagList.member.4. taskList: String constraint.
+// The key is swf:taskList.name. workflowType.name: String constraint. The key
+// is swf:workflowType.name. workflowType.version: String constraint. The key
+// is swf:workflowType.version.    If the caller does not have sufficient permissions
+// to invoke the action, or the parameter values fall outside the specified
+// constraints, the action fails. The associated event attribute's cause parameter
+// will be set to OPERATION_NOT_PERMITTED. For details and example IAM policies,
+// see Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) StartWorkflowExecution(input *StartWorkflowExecutionInput) (output *StartWorkflowExecutionOutput, err error) {
 	req, out := c.StartWorkflowExecutionRequest(input)
 	output = out
@@ -774,6 +1418,30 @@ func (c *SWF) TerminateWorkflowExecutionRequest(input *TerminateWorkflowExecutio
 	return
 }
 
+// Records a WorkflowExecutionTerminated event and forces closure of the workflow
+// execution identified by the given domain, runId, and workflowId. The child
+// policy, registered with the workflow type or specified when starting this
+// execution, is applied to any open child workflow executions of this workflow
+// execution.
+//
+//  If the identified workflow execution was in progress, it is terminated
+// immediately.  If a runId is not specified, then the WorkflowExecutionTerminated
+// event is recorded in the history of the current open workflow with the matching
+// workflowId in the domain.  You should consider using RequestCancelWorkflowExecution
+// action instead because it allows the workflow to gracefully close while TerminateWorkflowExecution
+// does not. Access Control
+//
+// You can use IAM policies to control this action's access to Amazon SWF resources
+// as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. You cannot use an IAM policy to constrain this action's parameters.
+//  If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 func (c *SWF) TerminateWorkflowExecution(input *TerminateWorkflowExecutionInput) (output *TerminateWorkflowExecutionOutput, err error) {
 	req, out := c.TerminateWorkflowExecutionRequest(input)
 	output = out
@@ -783,9 +1451,16 @@ func (c *SWF) TerminateWorkflowExecution(input *TerminateWorkflowExecutionInput)
 
 var opTerminateWorkflowExecution *aws.Operation
 
+// Provides details of the ActivityTaskCancelRequested event.
 type ActivityTaskCancelRequestedEventAttributes struct {
-	ActivityID                   *string `locationName:"activityId" type:"string" required:"true"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	// The unique ID of the task.
+	ActivityID *string `locationName:"activityId" type:"string" required:"true"`
+
+	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// that resulted in the RequestCancelActivityTask decision for this cancellation
+	// request. This information can be useful for diagnosing problems by tracing
+	// back the chain of events leading up to this event.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	metadataActivityTaskCancelRequestedEventAttributes `json:"-", xml:"-"`
 }
@@ -794,11 +1469,25 @@ type metadataActivityTaskCancelRequestedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the ActivityTaskCanceled event.
 type ActivityTaskCanceledEventAttributes struct {
-	Details                      *string `locationName:"details" type:"string"`
-	LatestCancelRequestedEventID *int64  `locationName:"latestCancelRequestedEventId" type:"long"`
-	ScheduledEventID             *int64  `locationName:"scheduledEventId" type:"long" required:"true"`
-	StartedEventID               *int64  `locationName:"startedEventId" type:"long" required:"true"`
+	// Details of the cancellation (if any).
+	Details *string `locationName:"details" type:"string"`
+
+	// If set, contains the Id of the last ActivityTaskCancelRequested event recorded
+	// for this activity task. This information can be useful for diagnosing problems
+	// by tracing back the chain of events leading up to this event.
+	LatestCancelRequestedEventID *int64 `locationName:"latestCancelRequestedEventId" type:"long"`
+
+	// The id of the ActivityTaskScheduled event that was recorded when this activity
+	// task was scheduled. This information can be useful for diagnosing problems
+	// by tracing back the chain of events leading up to this event.
+	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
+
+	// The Id of the ActivityTaskStarted event recorded when this activity task
+	// was started. This information can be useful for diagnosing problems by tracing
+	// back the chain of events leading up to this event.
+	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	metadataActivityTaskCanceledEventAttributes `json:"-", xml:"-"`
 }
@@ -807,10 +1496,20 @@ type metadataActivityTaskCanceledEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the ActivityTaskCompleted event.
 type ActivityTaskCompletedEventAttributes struct {
-	Result           *string `locationName:"result" type:"string"`
-	ScheduledEventID *int64  `locationName:"scheduledEventId" type:"long" required:"true"`
-	StartedEventID   *int64  `locationName:"startedEventId" type:"long" required:"true"`
+	// The results of the activity task (if any).
+	Result *string `locationName:"result" type:"string"`
+
+	// The id of the ActivityTaskScheduled event that was recorded when this activity
+	// task was scheduled. This information can be useful for diagnosing problems
+	// by tracing back the chain of events leading up to this event.
+	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
+
+	// The Id of the ActivityTaskStarted event recorded when this activity task
+	// was started. This information can be useful for diagnosing problems by tracing
+	// back the chain of events leading up to this event.
+	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	metadataActivityTaskCompletedEventAttributes `json:"-", xml:"-"`
 }
@@ -819,11 +1518,23 @@ type metadataActivityTaskCompletedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the ActivityTaskFailed event.
 type ActivityTaskFailedEventAttributes struct {
-	Details          *string `locationName:"details" type:"string"`
-	Reason           *string `locationName:"reason" type:"string"`
-	ScheduledEventID *int64  `locationName:"scheduledEventId" type:"long" required:"true"`
-	StartedEventID   *int64  `locationName:"startedEventId" type:"long" required:"true"`
+	// The details of the failure (if any).
+	Details *string `locationName:"details" type:"string"`
+
+	// The reason provided for the failure (if any).
+	Reason *string `locationName:"reason" type:"string"`
+
+	// The id of the ActivityTaskScheduled event that was recorded when this activity
+	// task was scheduled. This information can be useful for diagnosing problems
+	// by tracing back the chain of events leading up to this event.
+	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
+
+	// The Id of the ActivityTaskStarted event recorded when this activity task
+	// was started. This information can be useful for diagnosing problems by tracing
+	// back the chain of events leading up to this event.
+	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	metadataActivityTaskFailedEventAttributes `json:"-", xml:"-"`
 }
@@ -832,18 +1543,58 @@ type metadataActivityTaskFailedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the ActivityTaskScheduled event.
 type ActivityTaskScheduledEventAttributes struct {
-	ActivityID                   *string       `locationName:"activityId" type:"string" required:"true"`
-	ActivityType                 *ActivityType `locationName:"activityType" type:"structure" required:"true"`
-	Control                      *string       `locationName:"control" type:"string"`
-	DecisionTaskCompletedEventID *int64        `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
-	HeartbeatTimeout             *string       `locationName:"heartbeatTimeout" type:"string"`
-	Input                        *string       `locationName:"input" type:"string"`
-	ScheduleToCloseTimeout       *string       `locationName:"scheduleToCloseTimeout" type:"string"`
-	ScheduleToStartTimeout       *string       `locationName:"scheduleToStartTimeout" type:"string"`
-	StartToCloseTimeout          *string       `locationName:"startToCloseTimeout" type:"string"`
-	TaskList                     *TaskList     `locationName:"taskList" type:"structure" required:"true"`
-	TaskPriority                 *string       `locationName:"taskPriority" type:"string"`
+	// The unique id of the activity task.
+	ActivityID *string `locationName:"activityId" type:"string" required:"true"`
+
+	// The type of the activity task.
+	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"`
+
+	// Optional. Data attached to the event that can be used by the decider in subsequent
+	// workflow tasks. This data is not sent to the activity.
+	Control *string `locationName:"control" type:"string"`
+
+	// The id of the DecisionTaskCompleted event corresponding to the decision that
+	// resulted in the scheduling of this activity task. This information can be
+	// useful for diagnosing problems by tracing back the chain of events leading
+	// up to this event.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+
+	// The maximum time before which the worker processing this task must report
+	// progress by calling RecordActivityTaskHeartbeat. If the timeout is exceeded,
+	// the activity task is automatically timed out. If the worker subsequently
+	// attempts to record a heartbeat or return a result, it will be ignored.
+	HeartbeatTimeout *string `locationName:"heartbeatTimeout" type:"string"`
+
+	// The input provided to the activity task.
+	Input *string `locationName:"input" type:"string"`
+
+	// The maximum amount of time for this activity task.
+	ScheduleToCloseTimeout *string `locationName:"scheduleToCloseTimeout" type:"string"`
+
+	// The maximum amount of time the activity task can wait to be assigned to a
+	// worker.
+	ScheduleToStartTimeout *string `locationName:"scheduleToStartTimeout" type:"string"`
+
+	// The maximum amount of time a worker may take to process the activity task.
+	StartToCloseTimeout *string `locationName:"startToCloseTimeout" type:"string"`
+
+	// The task list in which the activity task has been scheduled.
+	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
+
+	// Optional. The priority to assign to the scheduled activity task. This will
+	// override any default priority that was assigned when the activity type was
+	// registered. If not set, then the priority set on the activity type is used
+	// as the task priority.
+	//
+	// Valid values are integers that range from Java's Integer.MIN_VALUE (-2147483648)
+	// to Integer.MAX_VALUE (2147483647). Higher numbers indicate higher priority.
+	//
+	// For more information about setting task priority, see Setting Task Priority
+	// (http://docs.aws.amazon.com/amazonswf/latest/developerguide/programming-priority.html)
+	// in the Amazon Simple Workflow Developer Guide.
+	TaskPriority *string `locationName:"taskPriority" type:"string"`
 
 	metadataActivityTaskScheduledEventAttributes `json:"-", xml:"-"`
 }
@@ -852,9 +1603,16 @@ type metadataActivityTaskScheduledEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the ActivityTaskStarted event.
 type ActivityTaskStartedEventAttributes struct {
-	Identity         *string `locationName:"identity" type:"string"`
-	ScheduledEventID *int64  `locationName:"scheduledEventId" type:"long" required:"true"`
+	// Identity of the worker that was assigned this task. This aids diagnostics
+	// when problems arise. The form of this identity is user defined.
+	Identity *string `locationName:"identity" type:"string"`
+
+	// The id of the ActivityTaskScheduled event that was recorded when this activity
+	// task was scheduled. This information can be useful for diagnosing problems
+	// by tracing back the chain of events leading up to this event.
+	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
 	metadataActivityTaskStartedEventAttributes `json:"-", xml:"-"`
 }
@@ -863,11 +1621,24 @@ type metadataActivityTaskStartedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the ActivityTaskTimedOut event.
 type ActivityTaskTimedOutEventAttributes struct {
-	Details          *string `locationName:"details" type:"string"`
-	ScheduledEventID *int64  `locationName:"scheduledEventId" type:"long" required:"true"`
-	StartedEventID   *int64  `locationName:"startedEventId" type:"long" required:"true"`
-	TimeoutType      *string `locationName:"timeoutType" type:"string" required:"true"`
+	// Contains the content of the details parameter for the last call made by the
+	// activity to RecordActivityTaskHeartbeat.
+	Details *string `locationName:"details" type:"string"`
+
+	// The id of the ActivityTaskScheduled event that was recorded when this activity
+	// task was scheduled. This information can be useful for diagnosing problems
+	// by tracing back the chain of events leading up to this event.
+	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
+
+	// The Id of the ActivityTaskStarted event recorded when this activity task
+	// was started. This information can be useful for diagnosing problems by tracing
+	// back the chain of events leading up to this event.
+	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+
+	// The type of the timeout that caused this event.
+	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true"`
 
 	metadataActivityTaskTimedOutEventAttributes `json:"-", xml:"-"`
 }
@@ -876,8 +1647,18 @@ type metadataActivityTaskTimedOutEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents an activity type.
 type ActivityType struct {
-	Name    *string `locationName:"name" type:"string" required:"true"`
+	// The name of this activity.
+	//
+	// The combination of activity type name and version must be unique within
+	// a domain.
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The version of this activity.
+	//
+	// The combination of activity type name and version must be unique with in
+	// a domain.
 	Version *string `locationName:"version" type:"string" required:"true"`
 
 	metadataActivityType `json:"-", xml:"-"`
@@ -887,13 +1668,64 @@ type metadataActivityType struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Configuration settings registered with the activity type.
 type ActivityTypeConfiguration struct {
-	DefaultTaskHeartbeatTimeout       *string   `locationName:"defaultTaskHeartbeatTimeout" type:"string"`
-	DefaultTaskList                   *TaskList `locationName:"defaultTaskList" type:"structure"`
-	DefaultTaskPriority               *string   `locationName:"defaultTaskPriority" type:"string"`
-	DefaultTaskScheduleToCloseTimeout *string   `locationName:"defaultTaskScheduleToCloseTimeout" type:"string"`
-	DefaultTaskScheduleToStartTimeout *string   `locationName:"defaultTaskScheduleToStartTimeout" type:"string"`
-	DefaultTaskStartToCloseTimeout    *string   `locationName:"defaultTaskStartToCloseTimeout" type:"string"`
+	// Optional. The default maximum time, in seconds, before which a worker processing
+	// a task must report progress by calling RecordActivityTaskHeartbeat.
+	//
+	// You can specify this value only when registering an activity type. The registered
+	// default value can be overridden when you schedule a task through the ScheduleActivityTask
+	// Decision. If the activity worker subsequently attempts to record a heartbeat
+	// or returns a result, the activity worker receives an UnknownResource fault.
+	// In this case, Amazon SWF no longer considers the activity task to be valid;
+	// the activity worker should clean up the activity task.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	DefaultTaskHeartbeatTimeout *string `locationName:"defaultTaskHeartbeatTimeout" type:"string"`
+
+	// Optional. The default task list specified for this activity type at registration.
+	// This default is used if a task list is not provided when a task is scheduled
+	// through the ScheduleActivityTask Decision. You can override the default registered
+	// task list when scheduling a task through the ScheduleActivityTask Decision.
+	DefaultTaskList *TaskList `locationName:"defaultTaskList" type:"structure"`
+
+	// Optional. The default task priority for tasks of this activity type, specified
+	// at registration. If not set, then "0" will be used as the default priority.
+	// This default can be overridden when scheduling an activity task.
+	//
+	// Valid values are integers that range from Java's Integer.MIN_VALUE (-2147483648)
+	// to Integer.MAX_VALUE (2147483647). Higher numbers indicate higher priority.
+	//
+	// For more information about setting task priority, see Setting Task Priority
+	// (http://docs.aws.amazon.com/amazonswf/latest/developerguide/programming-priority.html)
+	// in the Amazon Simple Workflow Developer Guide.
+	DefaultTaskPriority *string `locationName:"defaultTaskPriority" type:"string"`
+
+	// Optional. The default maximum duration, specified when registering the activity
+	// type, for tasks of this activity type. You can override this default when
+	// scheduling a task through the ScheduleActivityTask Decision.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	DefaultTaskScheduleToCloseTimeout *string `locationName:"defaultTaskScheduleToCloseTimeout" type:"string"`
+
+	// Optional. The default maximum duration, specified when registering the activity
+	// type, that a task of an activity type can wait before being assigned to a
+	// worker. You can override this default when scheduling a task through the
+	// ScheduleActivityTask Decision.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	DefaultTaskScheduleToStartTimeout *string `locationName:"defaultTaskScheduleToStartTimeout" type:"string"`
+
+	// Optional. The default maximum duration for tasks of an activity type specified
+	// when registering the activity type. You can override this default when scheduling
+	// a task through the ScheduleActivityTask Decision.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	DefaultTaskStartToCloseTimeout *string `locationName:"defaultTaskStartToCloseTimeout" type:"string"`
 
 	metadataActivityTypeConfiguration `json:"-", xml:"-"`
 }
@@ -902,12 +1734,22 @@ type metadataActivityTypeConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Detailed information about an activity type.
 type ActivityTypeInfo struct {
-	ActivityType    *ActivityType `locationName:"activityType" type:"structure" required:"true"`
-	CreationDate    *time.Time    `locationName:"creationDate" type:"timestamp" timestampFormat:"unix" required:"true"`
-	DeprecationDate *time.Time    `locationName:"deprecationDate" type:"timestamp" timestampFormat:"unix"`
-	Description     *string       `locationName:"description" type:"string"`
-	Status          *string       `locationName:"status" type:"string" required:"true"`
+	// The ActivityType type structure representing the activity type.
+	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"`
+
+	// The date and time this activity type was created through RegisterActivityType.
+	CreationDate *time.Time `locationName:"creationDate" type:"timestamp" timestampFormat:"unix" required:"true"`
+
+	// If DEPRECATED, the date and time DeprecateActivityType was called.
+	DeprecationDate *time.Time `locationName:"deprecationDate" type:"timestamp" timestampFormat:"unix"`
+
+	// The description of the activity type provided in RegisterActivityType.
+	Description *string `locationName:"description" type:"string"`
+
+	// The current status of the activity type.
+	Status *string `locationName:"status" type:"string" required:"true"`
 
 	metadataActivityTypeInfo `json:"-", xml:"-"`
 }
@@ -916,7 +1758,23 @@ type metadataActivityTypeInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the CancelTimer decision.
+//
+// Access Control
+//
+// You can use IAM policies to control this decision's access to Amazon SWF
+// resources as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. You cannot use an IAM policy to constrain this action's parameters.
+//  If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type CancelTimerDecisionAttributes struct {
+	// Required. The unique Id of the timer to cancel.
 	TimerID *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataCancelTimerDecisionAttributes `json:"-", xml:"-"`
@@ -926,10 +1784,24 @@ type metadataCancelTimerDecisionAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the CancelTimerFailed event.
 type CancelTimerFailedEventAttributes struct {
-	Cause                        *string `locationName:"cause" type:"string" required:"true"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
-	TimerID                      *string `locationName:"timerId" type:"string" required:"true"`
+	// The cause of the failure. This information is generated by the system and
+	// can be useful for diagnostic purposes.
+	//
+	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
+	// it lacked sufficient permissions. For details and example IAM policies, see
+	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+	Cause *string `locationName:"cause" type:"string" required:"true"`
+
+	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// that resulted in the CancelTimer decision to cancel this timer. This information
+	// can be useful for diagnosing problems by tracing back the chain of events
+	// leading up to this event.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+
+	// The timerId provided in the CancelTimer decision that failed.
+	TimerID *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataCancelTimerFailedEventAttributes `json:"-", xml:"-"`
 }
@@ -938,7 +1810,23 @@ type metadataCancelTimerFailedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the CancelWorkflowExecution decision.
+//
+// Access Control
+//
+// You can use IAM policies to control this decision's access to Amazon SWF
+// resources as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. You cannot use an IAM policy to constrain this action's parameters.
+//  If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type CancelWorkflowExecutionDecisionAttributes struct {
+	// Optional. details of the cancellation.
 	Details *string `locationName:"details" type:"string"`
 
 	metadataCancelWorkflowExecutionDecisionAttributes `json:"-", xml:"-"`
@@ -948,9 +1836,21 @@ type metadataCancelWorkflowExecutionDecisionAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the CancelWorkflowExecutionFailed event.
 type CancelWorkflowExecutionFailedEventAttributes struct {
-	Cause                        *string `locationName:"cause" type:"string" required:"true"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	// The cause of the failure. This information is generated by the system and
+	// can be useful for diagnostic purposes.
+	//
+	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
+	// it lacked sufficient permissions. For details and example IAM policies, see
+	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+	Cause *string `locationName:"cause" type:"string" required:"true"`
+
+	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// that resulted in the CancelWorkflowExecution decision for this cancellation
+	// request. This information can be useful for diagnosing problems by tracing
+	// back the chain of events leading up to this event.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	metadataCancelWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
 }
@@ -959,12 +1859,27 @@ type metadataCancelWorkflowExecutionFailedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provide details of the ChildWorkflowExecutionCanceled event.
 type ChildWorkflowExecutionCanceledEventAttributes struct {
-	Details           *string            `locationName:"details" type:"string"`
-	InitiatedEventID  *int64             `locationName:"initiatedEventId" type:"long" required:"true"`
-	StartedEventID    *int64             `locationName:"startedEventId" type:"long" required:"true"`
+	// Details of the cancellation (if provided).
+	Details *string `locationName:"details" type:"string"`
+
+	// The id of the StartChildWorkflowExecutionInitiated event corresponding to
+	// the StartChildWorkflowExecution Decision to start this child workflow execution.
+	// This information can be useful for diagnosing problems by tracing back the
+	// chain of events leading up to this event.
+	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
+
+	// The Id of the ChildWorkflowExecutionStarted event recorded when this child
+	// workflow execution was started. This information can be useful for diagnosing
+	// problems by tracing back the chain of events leading up to this event.
+	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+
+	// The child workflow execution that was canceled.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
-	WorkflowType      *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"`
+
+	// The type of the child workflow execution.
+	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataChildWorkflowExecutionCanceledEventAttributes `json:"-", xml:"-"`
 }
@@ -973,12 +1888,27 @@ type metadataChildWorkflowExecutionCanceledEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the ChildWorkflowExecutionCompleted event.
 type ChildWorkflowExecutionCompletedEventAttributes struct {
-	InitiatedEventID  *int64             `locationName:"initiatedEventId" type:"long" required:"true"`
-	Result            *string            `locationName:"result" type:"string"`
-	StartedEventID    *int64             `locationName:"startedEventId" type:"long" required:"true"`
+	// The id of the StartChildWorkflowExecutionInitiated event corresponding to
+	// the StartChildWorkflowExecution Decision to start this child workflow execution.
+	// This information can be useful for diagnosing problems by tracing back the
+	// chain of events leading up to this event.
+	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
+
+	// The result of the child workflow execution (if any).
+	Result *string `locationName:"result" type:"string"`
+
+	// The Id of the ChildWorkflowExecutionStarted event recorded when this child
+	// workflow execution was started. This information can be useful for diagnosing
+	// problems by tracing back the chain of events leading up to this event.
+	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+
+	// The child workflow execution that was completed.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
-	WorkflowType      *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"`
+
+	// The type of the child workflow execution.
+	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataChildWorkflowExecutionCompletedEventAttributes `json:"-", xml:"-"`
 }
@@ -987,13 +1917,30 @@ type metadataChildWorkflowExecutionCompletedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the ChildWorkflowExecutionFailed event.
 type ChildWorkflowExecutionFailedEventAttributes struct {
-	Details           *string            `locationName:"details" type:"string"`
-	InitiatedEventID  *int64             `locationName:"initiatedEventId" type:"long" required:"true"`
-	Reason            *string            `locationName:"reason" type:"string"`
-	StartedEventID    *int64             `locationName:"startedEventId" type:"long" required:"true"`
+	// The details of the failure (if provided).
+	Details *string `locationName:"details" type:"string"`
+
+	// The id of the StartChildWorkflowExecutionInitiated event corresponding to
+	// the StartChildWorkflowExecution Decision to start this child workflow execution.
+	// This information can be useful for diagnosing problems by tracing back the
+	// chain of events leading up to this event.
+	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
+
+	// The reason for the failure (if provided).
+	Reason *string `locationName:"reason" type:"string"`
+
+	// The Id of the ChildWorkflowExecutionStarted event recorded when this child
+	// workflow execution was started. This information can be useful for diagnosing
+	// problems by tracing back the chain of events leading up to this event.
+	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+
+	// The child workflow execution that failed.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
-	WorkflowType      *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"`
+
+	// The type of the child workflow execution.
+	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataChildWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
 }
@@ -1002,10 +1949,19 @@ type metadataChildWorkflowExecutionFailedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the ChildWorkflowExecutionStarted event.
 type ChildWorkflowExecutionStartedEventAttributes struct {
-	InitiatedEventID  *int64             `locationName:"initiatedEventId" type:"long" required:"true"`
+	// The id of the StartChildWorkflowExecutionInitiated event corresponding to
+	// the StartChildWorkflowExecution Decision to start this child workflow execution.
+	// This information can be useful for diagnosing problems by tracing back the
+	// chain of events leading up to this event.
+	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
+
+	// The child workflow execution that was started.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
-	WorkflowType      *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"`
+
+	// The type of the child workflow execution.
+	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataChildWorkflowExecutionStartedEventAttributes `json:"-", xml:"-"`
 }
@@ -1014,11 +1970,24 @@ type metadataChildWorkflowExecutionStartedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the ChildWorkflowExecutionTerminated event.
 type ChildWorkflowExecutionTerminatedEventAttributes struct {
-	InitiatedEventID  *int64             `locationName:"initiatedEventId" type:"long" required:"true"`
-	StartedEventID    *int64             `locationName:"startedEventId" type:"long" required:"true"`
+	// The id of the StartChildWorkflowExecutionInitiated event corresponding to
+	// the StartChildWorkflowExecution Decision to start this child workflow execution.
+	// This information can be useful for diagnosing problems by tracing back the
+	// chain of events leading up to this event.
+	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
+
+	// The Id of the ChildWorkflowExecutionStarted event recorded when this child
+	// workflow execution was started. This information can be useful for diagnosing
+	// problems by tracing back the chain of events leading up to this event.
+	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+
+	// The child workflow execution that was terminated.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
-	WorkflowType      *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"`
+
+	// The type of the child workflow execution.
+	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataChildWorkflowExecutionTerminatedEventAttributes `json:"-", xml:"-"`
 }
@@ -1027,12 +1996,28 @@ type metadataChildWorkflowExecutionTerminatedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the ChildWorkflowExecutionTimedOut event.
 type ChildWorkflowExecutionTimedOutEventAttributes struct {
-	InitiatedEventID  *int64             `locationName:"initiatedEventId" type:"long" required:"true"`
-	StartedEventID    *int64             `locationName:"startedEventId" type:"long" required:"true"`
-	TimeoutType       *string            `locationName:"timeoutType" type:"string" required:"true"`
+	// The id of the StartChildWorkflowExecutionInitiated event corresponding to
+	// the StartChildWorkflowExecution Decision to start this child workflow execution.
+	// This information can be useful for diagnosing problems by tracing back the
+	// chain of events leading up to this event.
+	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
+
+	// The Id of the ChildWorkflowExecutionStarted event recorded when this child
+	// workflow execution was started. This information can be useful for diagnosing
+	// problems by tracing back the chain of events leading up to this event.
+	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+
+	// The type of the timeout that caused the child workflow execution to time
+	// out.
+	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true"`
+
+	// The child workflow execution that timed out.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
-	WorkflowType      *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"`
+
+	// The type of the child workflow execution.
+	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataChildWorkflowExecutionTimedOutEventAttributes `json:"-", xml:"-"`
 }
@@ -1041,7 +2026,11 @@ type metadataChildWorkflowExecutionTimedOutEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Used to filter the closed workflow executions in visibility APIs by their
+// close status.
 type CloseStatusFilter struct {
+	// Required. The close status that must match the close status of an execution
+	// for it to meet the criteria of this filter.
 	Status *string `locationName:"status" type:"string" required:"true"`
 
 	metadataCloseStatusFilter `json:"-", xml:"-"`
@@ -1051,7 +2040,24 @@ type metadataCloseStatusFilter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the CompleteWorkflowExecution decision.
+//
+// Access Control
+//
+// You can use IAM policies to control this decision's access to Amazon SWF
+// resources as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. You cannot use an IAM policy to constrain this action's parameters.
+//  If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type CompleteWorkflowExecutionDecisionAttributes struct {
+	// The result of the workflow execution. The form of the result is implementation
+	// defined.
 	Result *string `locationName:"result" type:"string"`
 
 	metadataCompleteWorkflowExecutionDecisionAttributes `json:"-", xml:"-"`
@@ -1061,9 +2067,21 @@ type metadataCompleteWorkflowExecutionDecisionAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the CompleteWorkflowExecutionFailed event.
 type CompleteWorkflowExecutionFailedEventAttributes struct {
-	Cause                        *string `locationName:"cause" type:"string" required:"true"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	// The cause of the failure. This information is generated by the system and
+	// can be useful for diagnostic purposes.
+	//
+	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
+	// it lacked sufficient permissions. For details and example IAM policies, see
+	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+	Cause *string `locationName:"cause" type:"string" required:"true"`
+
+	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// that resulted in the CompleteWorkflowExecution decision to complete this
+	// execution. This information can be useful for diagnosing problems by tracing
+	// back the chain of events leading up to this event.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	metadataCompleteWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
 }
@@ -1072,15 +2090,93 @@ type metadataCompleteWorkflowExecutionFailedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the ContinueAsNewWorkflowExecution decision.
+//
+// Access Control
+//
+// You can use IAM policies to control this decision's access to Amazon SWF
+// resources as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. Constrain the following parameters by using a Condition element
+// with the appropriate keys.   tag: Optional.. A tag used to identify the workflow
+// execution taskList: String constraint. The key is swf:taskList.name. workflowType.version:
+// String constraint. The key is swf:workflowType.version.    If the caller
+// does not have sufficient permissions to invoke the action, or the parameter
+// values fall outside the specified constraints, the action fails. The associated
+// event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type ContinueAsNewWorkflowExecutionDecisionAttributes struct {
-	ChildPolicy                  *string   `locationName:"childPolicy" type:"string"`
-	ExecutionStartToCloseTimeout *string   `locationName:"executionStartToCloseTimeout" type:"string"`
-	Input                        *string   `locationName:"input" type:"string"`
-	TagList                      []*string `locationName:"tagList" type:"list"`
-	TaskList                     *TaskList `locationName:"taskList" type:"structure"`
-	TaskPriority                 *string   `locationName:"taskPriority" type:"string"`
-	TaskStartToCloseTimeout      *string   `locationName:"taskStartToCloseTimeout" type:"string"`
-	WorkflowTypeVersion          *string   `locationName:"workflowTypeVersion" type:"string"`
+	// If set, specifies the policy to use for the child workflow executions of
+	// the new execution if it is terminated by calling the TerminateWorkflowExecution
+	// action explicitly or due to an expired timeout. This policy overrides the
+	// default child policy specified when registering the workflow type using RegisterWorkflowType.
+	//
+	// The supported child policies are:
+	//
+	//  TERMINATE: the child executions will be terminated. REQUEST_CANCEL: a request
+	// to cancel will be attempted for each child execution by recording a WorkflowExecutionCancelRequested
+	// event in its history. It is up to the decider to take appropriate actions
+	// when it receives an execution history with this event. ABANDON: no action
+	// will be taken. The child executions will continue to run.  A child policy
+	// for this workflow execution must be specified either as a default for the
+	// workflow type or through this parameter. If neither this parameter is set
+	// nor a default child policy was specified at registration time then a fault
+	// will be returned.
+	ChildPolicy *string `locationName:"childPolicy" type:"string"`
+
+	// If set, specifies the total duration for this workflow execution. This overrides
+	// the defaultExecutionStartToCloseTimeout specified when registering the workflow
+	// type.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	//
+	// An execution start-to-close timeout for this workflow execution must be
+	// specified either as a default for the workflow type or through this field.
+	// If neither this field is set nor a default execution start-to-close timeout
+	// was specified at registration time then a fault will be returned.
+	ExecutionStartToCloseTimeout *string `locationName:"executionStartToCloseTimeout" type:"string"`
+
+	// The input provided to the new workflow execution.
+	Input *string `locationName:"input" type:"string"`
+
+	// The list of tags to associate with the new workflow execution. A maximum
+	// of 5 tags can be specified. You can list workflow executions with a specific
+	// tag by calling ListOpenWorkflowExecutions or ListClosedWorkflowExecutions
+	// and specifying a TagFilter.
+	TagList []*string `locationName:"tagList" type:"list"`
+
+	// Represents a task list.
+	TaskList *TaskList `locationName:"taskList" type:"structure"`
+
+	// Optional. The task priority that, if set, specifies the priority for the
+	// decision tasks for this workflow execution. This overrides the defaultTaskPriority
+	// specified when registering the workflow type. Valid values are integers that
+	// range from Java's Integer.MIN_VALUE (-2147483648) to Integer.MAX_VALUE (2147483647).
+	// Higher numbers indicate higher priority.
+	//
+	// For more information about setting task priority, see Setting Task Priority
+	// (http://docs.aws.amazon.com/amazonswf/latest/developerguide/programming-priority.html)
+	// in the Amazon Simple Workflow Developer Guide.
+	TaskPriority *string `locationName:"taskPriority" type:"string"`
+
+	// Specifies the maximum duration of decision tasks for the new workflow execution.
+	// This parameter overrides the defaultTaskStartToCloseTimout specified when
+	// registering the workflow type using RegisterWorkflowType.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	//
+	// A task start-to-close timeout for the new workflow execution must be specified
+	// either as a default for the workflow type or through this parameter. If neither
+	// this parameter is set nor a default task start-to-close timeout was specified
+	// at registration time then a fault will be returned.
+	TaskStartToCloseTimeout *string `locationName:"taskStartToCloseTimeout" type:"string"`
+
+	WorkflowTypeVersion *string `locationName:"workflowTypeVersion" type:"string"`
 
 	metadataContinueAsNewWorkflowExecutionDecisionAttributes `json:"-", xml:"-"`
 }
@@ -1089,9 +2185,21 @@ type metadataContinueAsNewWorkflowExecutionDecisionAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the ContinueAsNewWorkflowExecutionFailed event.
 type ContinueAsNewWorkflowExecutionFailedEventAttributes struct {
-	Cause                        *string `locationName:"cause" type:"string" required:"true"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	// The cause of the failure. This information is generated by the system and
+	// can be useful for diagnostic purposes.
+	//
+	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
+	// it lacked sufficient permissions. For details and example IAM policies, see
+	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+	Cause *string `locationName:"cause" type:"string" required:"true"`
+
+	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// that resulted in the ContinueAsNewWorkflowExecution decision that started
+	// this execution. This information can be useful for diagnosing problems by
+	// tracing back the chain of events leading up to this event.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	metadataContinueAsNewWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
 }
@@ -1101,13 +2209,49 @@ type metadataContinueAsNewWorkflowExecutionFailedEventAttributes struct {
 }
 
 type CountClosedWorkflowExecutionsInput struct {
-	CloseStatusFilter *CloseStatusFilter       `locationName:"closeStatusFilter" type:"structure"`
-	CloseTimeFilter   *ExecutionTimeFilter     `locationName:"closeTimeFilter" type:"structure"`
-	Domain            *string                  `locationName:"domain" type:"string" required:"true"`
-	ExecutionFilter   *WorkflowExecutionFilter `locationName:"executionFilter" type:"structure"`
-	StartTimeFilter   *ExecutionTimeFilter     `locationName:"startTimeFilter" type:"structure"`
-	TagFilter         *TagFilter               `locationName:"tagFilter" type:"structure"`
-	TypeFilter        *WorkflowTypeFilter      `locationName:"typeFilter" type:"structure"`
+	// If specified, only workflow executions that match this close status are counted.
+	// This filter has an affect only if executionStatus is specified as CLOSED.
+	//
+	// closeStatusFilter, executionFilter, typeFilter and tagFilter are mutually
+	// exclusive. You can specify at most one of these in a request.
+	CloseStatusFilter *CloseStatusFilter `locationName:"closeStatusFilter" type:"structure"`
+
+	// If specified, only workflow executions that meet the close time criteria
+	// of the filter are counted.
+	//
+	// startTimeFilter and closeTimeFilter are mutually exclusive. You must specify
+	// one of these in a request but not both.
+	CloseTimeFilter *ExecutionTimeFilter `locationName:"closeTimeFilter" type:"structure"`
+
+	// The name of the domain containing the workflow executions to count.
+	Domain *string `locationName:"domain" type:"string" required:"true"`
+
+	// If specified, only workflow executions matching the WorkflowId in the filter
+	// are counted.
+	//
+	// closeStatusFilter, executionFilter, typeFilter and tagFilter are mutually
+	// exclusive. You can specify at most one of these in a request.
+	ExecutionFilter *WorkflowExecutionFilter `locationName:"executionFilter" type:"structure"`
+
+	// If specified, only workflow executions that meet the start time criteria
+	// of the filter are counted.
+	//
+	// startTimeFilter and closeTimeFilter are mutually exclusive. You must specify
+	// one of these in a request but not both.
+	StartTimeFilter *ExecutionTimeFilter `locationName:"startTimeFilter" type:"structure"`
+
+	// If specified, only executions that have a tag that matches the filter are
+	// counted.
+	//
+	// closeStatusFilter, executionFilter, typeFilter and tagFilter are mutually
+	// exclusive. You can specify at most one of these in a request.
+	TagFilter *TagFilter `locationName:"tagFilter" type:"structure"`
+
+	// If specified, indicates the type of the workflow executions to be counted.
+	//
+	// closeStatusFilter, executionFilter, typeFilter and tagFilter are mutually
+	// exclusive. You can specify at most one of these in a request.
+	TypeFilter *WorkflowTypeFilter `locationName:"typeFilter" type:"structure"`
 
 	metadataCountClosedWorkflowExecutionsInput `json:"-", xml:"-"`
 }
@@ -1117,11 +2261,32 @@ type metadataCountClosedWorkflowExecutionsInput struct {
 }
 
 type CountOpenWorkflowExecutionsInput struct {
-	Domain          *string                  `locationName:"domain" type:"string" required:"true"`
+	// The name of the domain containing the workflow executions to count.
+	Domain *string `locationName:"domain" type:"string" required:"true"`
+
+	// If specified, only workflow executions matching the WorkflowId in the filter
+	// are counted.
+	//
+	// executionFilter, typeFilter and tagFilter are mutually exclusive. You can
+	// specify at most one of these in a request.
 	ExecutionFilter *WorkflowExecutionFilter `locationName:"executionFilter" type:"structure"`
-	StartTimeFilter *ExecutionTimeFilter     `locationName:"startTimeFilter" type:"structure" required:"true"`
-	TagFilter       *TagFilter               `locationName:"tagFilter" type:"structure"`
-	TypeFilter      *WorkflowTypeFilter      `locationName:"typeFilter" type:"structure"`
+
+	// Specifies the start time criteria that workflow executions must meet in order
+	// to be counted.
+	StartTimeFilter *ExecutionTimeFilter `locationName:"startTimeFilter" type:"structure" required:"true"`
+
+	// If specified, only executions that have a tag that matches the filter are
+	// counted.
+	//
+	// executionFilter, typeFilter and tagFilter are mutually exclusive. You can
+	// specify at most one of these in a request.
+	TagFilter *TagFilter `locationName:"tagFilter" type:"structure"`
+
+	// Specifies the type of the workflow executions to be counted.
+	//
+	// executionFilter, typeFilter and tagFilter are mutually exclusive. You can
+	// specify at most one of these in a request.
+	TypeFilter *WorkflowTypeFilter `locationName:"typeFilter" type:"structure"`
 
 	metadataCountOpenWorkflowExecutionsInput `json:"-", xml:"-"`
 }
@@ -1131,7 +2296,10 @@ type metadataCountOpenWorkflowExecutionsInput struct {
 }
 
 type CountPendingActivityTasksInput struct {
-	Domain   *string   `locationName:"domain" type:"string" required:"true"`
+	// The name of the domain that contains the task list.
+	Domain *string `locationName:"domain" type:"string" required:"true"`
+
+	// The name of the task list.
 	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
 
 	metadataCountPendingActivityTasksInput `json:"-", xml:"-"`
@@ -1142,7 +2310,10 @@ type metadataCountPendingActivityTasksInput struct {
 }
 
 type CountPendingDecisionTasksInput struct {
-	Domain   *string   `locationName:"domain" type:"string" required:"true"`
+	// The name of the domain that contains the task list.
+	Domain *string `locationName:"domain" type:"string" required:"true"`
+
+	// The name of the task list.
 	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
 
 	metadataCountPendingDecisionTasksInput `json:"-", xml:"-"`
@@ -1152,20 +2323,160 @@ type metadataCountPendingDecisionTasksInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Specifies a decision made by the decider. A decision can be one of these
+// types:
+//
+//   CancelTimer: cancels a previously started timer and records a TimerCanceled
+// event in the history.  CancelWorkflowExecution: closes the workflow execution
+// and records a WorkflowExecutionCanceled event in the history.  CompleteWorkflowExecution:
+// closes the workflow execution and records a WorkflowExecutionCompleted event
+// in the history .  ContinueAsNewWorkflowExecution: closes the workflow execution
+// and starts a new workflow execution of the same type using the same workflow
+// id and a unique run Id. A WorkflowExecutionContinuedAsNew event is recorded
+// in the history.  FailWorkflowExecution: closes the workflow execution and
+// records a WorkflowExecutionFailed event in the history.  RecordMarker: records
+// a MarkerRecorded event in the history. Markers can be used for adding custom
+// information in the history for instance to let deciders know that they do
+// not need to look at the history beyond the marker event.  RequestCancelActivityTask:
+// attempts to cancel a previously scheduled activity task. If the activity
+// task was scheduled but has not been assigned to a worker, then it will be
+// canceled. If the activity task was already assigned to a worker, then the
+// worker will be informed that cancellation has been requested in the response
+// to RecordActivityTaskHeartbeat.  RequestCancelExternalWorkflowExecution:
+// requests that a request be made to cancel the specified external workflow
+// execution and records a RequestCancelExternalWorkflowExecutionInitiated event
+// in the history.  ScheduleActivityTask: schedules an activity task.  SignalExternalWorkflowExecution:
+// requests a signal to be delivered to the specified external workflow execution
+// and records a SignalExternalWorkflowExecutionInitiated event in the history.
+//  StartChildWorkflowExecution: requests that a child workflow execution be
+// started and records a StartChildWorkflowExecutionInitiated event in the history.
+// The child workflow execution is a separate workflow execution with its own
+// history.  StartTimer: starts a timer for this workflow execution and records
+// a TimerStarted event in the history. This timer will fire after the specified
+// delay and record a TimerFired event.  Access Control
+//
+// If you grant permission to use RespondDecisionTaskCompleted, you can use
+// IAM policies to express permissions for the list of decisions returned by
+// this action as if they were members of the API. Treating decisions as a pseudo
+// API maintains a uniform conceptual model and helps keep policies readable.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Decision Failure
+//
+// Decisions can fail for several reasons
+//
+//  The ordering of decisions should follow a logical flow. Some decisions
+// might not make sense in the current context of the workflow execution and
+// will therefore fail. A limit on your account was reached. The decision lacks
+// sufficient permissions.  One of the following events might be added to the
+// history to indicate an error. The event attribute's cause parameter indicates
+// the cause. If cause is set to OPERATION_NOT_PERMITTED, the decision failed
+// because it lacked sufficient permissions. For details and example IAM policies,
+// see Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+//   ScheduleActivityTaskFailed: a ScheduleActivityTask decision failed. This
+// could happen if the activity type specified in the decision is not registered,
+// is in a deprecated state, or the decision is not properly configured.  RequestCancelActivityTaskFailed:
+// a RequestCancelActivityTask decision failed. This could happen if there is
+// no open activity task with the specified activityId.  StartTimerFailed: a
+// StartTimer decision failed. This could happen if there is another open timer
+// with the same timerId.  CancelTimerFailed: a CancelTimer decision failed.
+// This could happen if there is no open timer with the specified timerId.
+// StartChildWorkflowExecutionFailed: a StartChildWorkflowExecution decision
+// failed. This could happen if the workflow type specified is not registered,
+// is deprecated, or the decision is not properly configured.  SignalExternalWorkflowExecutionFailed:
+// a SignalExternalWorkflowExecution decision failed. This could happen if the
+// workflowID specified in the decision was incorrect.  RequestCancelExternalWorkflowExecutionFailed:
+// a RequestCancelExternalWorkflowExecution decision failed. This could happen
+// if the workflowID specified in the decision was incorrect.  CancelWorkflowExecutionFailed:
+// a CancelWorkflowExecution decision failed. This could happen if there is
+// an unhandled decision task pending in the workflow execution.  CompleteWorkflowExecutionFailed:
+// a CompleteWorkflowExecution decision failed. This could happen if there is
+// an unhandled decision task pending in the workflow execution.  ContinueAsNewWorkflowExecutionFailed:
+// a ContinueAsNewWorkflowExecution decision failed. This could happen if there
+// is an unhandled decision task pending in the workflow execution or the ContinueAsNewWorkflowExecution
+// decision was not configured correctly.  FailWorkflowExecutionFailed: a FailWorkflowExecution
+// decision failed. This could happen if there is an unhandled decision task
+// pending in the workflow execution.  The preceding error events might occur
+// due to an error in the decider logic, which might put the workflow execution
+// in an unstable state The cause field in the event structure for the error
+// event indicates the cause of the error.
+//
+// A workflow execution may be closed by the decider by returning one of the
+// following decisions when completing a decision task: CompleteWorkflowExecution,
+// FailWorkflowExecution, CancelWorkflowExecution and ContinueAsNewWorkflowExecution.
+// An UnhandledDecision fault will be returned if a workflow closing decision
+// is specified and a signal or activity event had been added to the history
+// while the decision task was being performed by the decider. Unlike the above
+// situations which are logic issues, this fault is always possible because
+// of race conditions in a distributed system. The right action here is to call
+// RespondDecisionTaskCompleted without any decisions. This would result in
+// another decision task with these new events included in the history. The
+// decider should handle the new events and may decide to close the workflow
+// execution. How to Code a Decision
+//
+// You code a decision by first setting the decision type field to one of the
+// above decision values, and then set the corresponding attributes field shown
+// below:
+//
+//   ScheduleActivityTaskDecisionAttributes   RequestCancelActivityTaskDecisionAttributes
+//   CompleteWorkflowExecutionDecisionAttributes   FailWorkflowExecutionDecisionAttributes
+//   CancelWorkflowExecutionDecisionAttributes   ContinueAsNewWorkflowExecutionDecisionAttributes
+//   RecordMarkerDecisionAttributes   StartTimerDecisionAttributes   CancelTimerDecisionAttributes
+//   SignalExternalWorkflowExecutionDecisionAttributes   RequestCancelExternalWorkflowExecutionDecisionAttributes
+//   StartChildWorkflowExecutionDecisionAttributes
 type Decision struct {
-	CancelTimerDecisionAttributes                            *CancelTimerDecisionAttributes                            `locationName:"cancelTimerDecisionAttributes" type:"structure"`
-	CancelWorkflowExecutionDecisionAttributes                *CancelWorkflowExecutionDecisionAttributes                `locationName:"cancelWorkflowExecutionDecisionAttributes" type:"structure"`
-	CompleteWorkflowExecutionDecisionAttributes              *CompleteWorkflowExecutionDecisionAttributes              `locationName:"completeWorkflowExecutionDecisionAttributes" type:"structure"`
-	ContinueAsNewWorkflowExecutionDecisionAttributes         *ContinueAsNewWorkflowExecutionDecisionAttributes         `locationName:"continueAsNewWorkflowExecutionDecisionAttributes" type:"structure"`
-	DecisionType                                             *string                                                   `locationName:"decisionType" type:"string" required:"true"`
-	FailWorkflowExecutionDecisionAttributes                  *FailWorkflowExecutionDecisionAttributes                  `locationName:"failWorkflowExecutionDecisionAttributes" type:"structure"`
-	RecordMarkerDecisionAttributes                           *RecordMarkerDecisionAttributes                           `locationName:"recordMarkerDecisionAttributes" type:"structure"`
-	RequestCancelActivityTaskDecisionAttributes              *RequestCancelActivityTaskDecisionAttributes              `locationName:"requestCancelActivityTaskDecisionAttributes" type:"structure"`
+	// Provides details of the CancelTimer decision. It is not set for other decision
+	// types.
+	CancelTimerDecisionAttributes *CancelTimerDecisionAttributes `locationName:"cancelTimerDecisionAttributes" type:"structure"`
+
+	// Provides details of the CancelWorkflowExecution decision. It is not set for
+	// other decision types.
+	CancelWorkflowExecutionDecisionAttributes *CancelWorkflowExecutionDecisionAttributes `locationName:"cancelWorkflowExecutionDecisionAttributes" type:"structure"`
+
+	// Provides details of the CompleteWorkflowExecution decision. It is not set
+	// for other decision types.
+	CompleteWorkflowExecutionDecisionAttributes *CompleteWorkflowExecutionDecisionAttributes `locationName:"completeWorkflowExecutionDecisionAttributes" type:"structure"`
+
+	// Provides details of the ContinueAsNewWorkflowExecution decision. It is not
+	// set for other decision types.
+	ContinueAsNewWorkflowExecutionDecisionAttributes *ContinueAsNewWorkflowExecutionDecisionAttributes `locationName:"continueAsNewWorkflowExecutionDecisionAttributes" type:"structure"`
+
+	// Specifies the type of the decision.
+	DecisionType *string `locationName:"decisionType" type:"string" required:"true"`
+
+	// Provides details of the FailWorkflowExecution decision. It is not set for
+	// other decision types.
+	FailWorkflowExecutionDecisionAttributes *FailWorkflowExecutionDecisionAttributes `locationName:"failWorkflowExecutionDecisionAttributes" type:"structure"`
+
+	// Provides details of the RecordMarker decision. It is not set for other decision
+	// types.
+	RecordMarkerDecisionAttributes *RecordMarkerDecisionAttributes `locationName:"recordMarkerDecisionAttributes" type:"structure"`
+
+	// Provides details of the RequestCancelActivityTask decision. It is not set
+	// for other decision types.
+	RequestCancelActivityTaskDecisionAttributes *RequestCancelActivityTaskDecisionAttributes `locationName:"requestCancelActivityTaskDecisionAttributes" type:"structure"`
+
+	// Provides details of the RequestCancelExternalWorkflowExecution decision.
+	// It is not set for other decision types.
 	RequestCancelExternalWorkflowExecutionDecisionAttributes *RequestCancelExternalWorkflowExecutionDecisionAttributes `locationName:"requestCancelExternalWorkflowExecutionDecisionAttributes" type:"structure"`
-	ScheduleActivityTaskDecisionAttributes                   *ScheduleActivityTaskDecisionAttributes                   `locationName:"scheduleActivityTaskDecisionAttributes" type:"structure"`
-	SignalExternalWorkflowExecutionDecisionAttributes        *SignalExternalWorkflowExecutionDecisionAttributes        `locationName:"signalExternalWorkflowExecutionDecisionAttributes" type:"structure"`
-	StartChildWorkflowExecutionDecisionAttributes            *StartChildWorkflowExecutionDecisionAttributes            `locationName:"startChildWorkflowExecutionDecisionAttributes" type:"structure"`
-	StartTimerDecisionAttributes                             *StartTimerDecisionAttributes                             `locationName:"startTimerDecisionAttributes" type:"structure"`
+
+	// Provides details of the ScheduleActivityTask decision. It is not set for
+	// other decision types.
+	ScheduleActivityTaskDecisionAttributes *ScheduleActivityTaskDecisionAttributes `locationName:"scheduleActivityTaskDecisionAttributes" type:"structure"`
+
+	// Provides details of the SignalExternalWorkflowExecution decision. It is not
+	// set for other decision types.
+	SignalExternalWorkflowExecutionDecisionAttributes *SignalExternalWorkflowExecutionDecisionAttributes `locationName:"signalExternalWorkflowExecutionDecisionAttributes" type:"structure"`
+
+	// Provides details of the StartChildWorkflowExecution decision. It is not set
+	// for other decision types.
+	StartChildWorkflowExecutionDecisionAttributes *StartChildWorkflowExecutionDecisionAttributes `locationName:"startChildWorkflowExecutionDecisionAttributes" type:"structure"`
+
+	// Provides details of the StartTimer decision. It is not set for other decision
+	// types.
+	StartTimerDecisionAttributes *StartTimerDecisionAttributes `locationName:"startTimerDecisionAttributes" type:"structure"`
 
 	metadataDecision `json:"-", xml:"-"`
 }
@@ -1174,10 +2485,20 @@ type metadataDecision struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the DecisionTaskCompleted event.
 type DecisionTaskCompletedEventAttributes struct {
+	// User defined context for the workflow execution.
 	ExecutionContext *string `locationName:"executionContext" type:"string"`
-	ScheduledEventID *int64  `locationName:"scheduledEventId" type:"long" required:"true"`
-	StartedEventID   *int64  `locationName:"startedEventId" type:"long" required:"true"`
+
+	// The id of the DecisionTaskScheduled event that was recorded when this decision
+	// task was scheduled. This information can be useful for diagnosing problems
+	// by tracing back the chain of events leading up to this event.
+	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
+
+	// The Id of the DecisionTaskStarted event recorded when this decision task
+	// was started. This information can be useful for diagnosing problems by tracing
+	// back the chain of events leading up to this event.
+	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	metadataDecisionTaskCompletedEventAttributes `json:"-", xml:"-"`
 }
@@ -1186,10 +2507,27 @@ type metadataDecisionTaskCompletedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details about the DecisionTaskScheduled event.
 type DecisionTaskScheduledEventAttributes struct {
-	StartToCloseTimeout *string   `locationName:"startToCloseTimeout" type:"string"`
-	TaskList            *TaskList `locationName:"taskList" type:"structure" required:"true"`
-	TaskPriority        *string   `locationName:"taskPriority" type:"string"`
+	// The maximum duration for this decision task. The task is considered timed
+	// out if it does not completed within this duration.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	StartToCloseTimeout *string `locationName:"startToCloseTimeout" type:"string"`
+
+	// The name of the task list in which the decision task was scheduled.
+	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
+
+	// Optional. A task priority that, if set, specifies the priority for this decision
+	// task. Valid values are integers that range from Java's Integer.MIN_VALUE
+	// (-2147483648) to Integer.MAX_VALUE (2147483647). Higher numbers indicate
+	// higher priority.
+	//
+	// For more information about setting task priority, see Setting Task Priority
+	// (http://docs.aws.amazon.com/amazonswf/latest/developerguide/programming-priority.html)
+	// in the Amazon Simple Workflow Developer Guide.
+	TaskPriority *string `locationName:"taskPriority" type:"string"`
 
 	metadataDecisionTaskScheduledEventAttributes `json:"-", xml:"-"`
 }
@@ -1198,9 +2536,16 @@ type metadataDecisionTaskScheduledEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the DecisionTaskStarted event.
 type DecisionTaskStartedEventAttributes struct {
-	Identity         *string `locationName:"identity" type:"string"`
-	ScheduledEventID *int64  `locationName:"scheduledEventId" type:"long" required:"true"`
+	// Identity of the decider making the request. This enables diagnostic tracing
+	// when problems arise. The form of this identity is user defined.
+	Identity *string `locationName:"identity" type:"string"`
+
+	// The id of the DecisionTaskScheduled event that was recorded when this decision
+	// task was scheduled. This information can be useful for diagnosing problems
+	// by tracing back the chain of events leading up to this event.
+	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
 	metadataDecisionTaskStartedEventAttributes `json:"-", xml:"-"`
 }
@@ -1209,10 +2554,20 @@ type metadataDecisionTaskStartedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the DecisionTaskTimedOut event.
 type DecisionTaskTimedOutEventAttributes struct {
-	ScheduledEventID *int64  `locationName:"scheduledEventId" type:"long" required:"true"`
-	StartedEventID   *int64  `locationName:"startedEventId" type:"long" required:"true"`
-	TimeoutType      *string `locationName:"timeoutType" type:"string" required:"true"`
+	// The id of the DecisionTaskScheduled event that was recorded when this decision
+	// task was scheduled. This information can be useful for diagnosing problems
+	// by tracing back the chain of events leading up to this event.
+	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
+
+	// The Id of the DecisionTaskStarted event recorded when this decision task
+	// was started. This information can be useful for diagnosing problems by tracing
+	// back the chain of events leading up to this event.
+	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+
+	// The type of timeout that expired before the decision task could be completed.
+	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true"`
 
 	metadataDecisionTaskTimedOutEventAttributes `json:"-", xml:"-"`
 }
@@ -1222,8 +2577,11 @@ type metadataDecisionTaskTimedOutEventAttributes struct {
 }
 
 type DeprecateActivityTypeInput struct {
+	// The activity type to deprecate.
 	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"`
-	Domain       *string       `locationName:"domain" type:"string" required:"true"`
+
+	// The name of the domain in which the activity type is registered.
+	Domain *string `locationName:"domain" type:"string" required:"true"`
 
 	metadataDeprecateActivityTypeInput `json:"-", xml:"-"`
 }
@@ -1241,6 +2599,7 @@ type metadataDeprecateActivityTypeOutput struct {
 }
 
 type DeprecateDomainInput struct {
+	// The name of the domain to deprecate.
 	Name *string `locationName:"name" type:"string" required:"true"`
 
 	metadataDeprecateDomainInput `json:"-", xml:"-"`
@@ -1259,7 +2618,10 @@ type metadataDeprecateDomainOutput struct {
 }
 
 type DeprecateWorkflowTypeInput struct {
-	Domain       *string       `locationName:"domain" type:"string" required:"true"`
+	// The name of the domain in which the workflow type is registered.
+	Domain *string `locationName:"domain" type:"string" required:"true"`
+
+	// The workflow type to deprecate.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataDeprecateWorkflowTypeInput `json:"-", xml:"-"`
@@ -1278,8 +2640,12 @@ type metadataDeprecateWorkflowTypeOutput struct {
 }
 
 type DescribeActivityTypeInput struct {
+	// The activity type to get information about. Activity types are identified
+	// by the name and version that were supplied when the activity was registered.
 	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"`
-	Domain       *string       `locationName:"domain" type:"string" required:"true"`
+
+	// The name of the domain in which the activity type is registered.
+	Domain *string `locationName:"domain" type:"string" required:"true"`
 
 	metadataDescribeActivityTypeInput `json:"-", xml:"-"`
 }
@@ -1288,9 +2654,21 @@ type metadataDescribeActivityTypeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Detailed information about an activity type.
 type DescribeActivityTypeOutput struct {
+	// The configuration settings registered with the activity type.
 	Configuration *ActivityTypeConfiguration `locationName:"configuration" type:"structure" required:"true"`
-	TypeInfo      *ActivityTypeInfo          `locationName:"typeInfo" type:"structure" required:"true"`
+
+	// General information about the activity type.
+	//
+	// The status of activity type (returned in the ActivityTypeInfo structure)
+	// can be one of the following.
+	//
+	//   REGISTERED: The type is registered and available. Workers supporting this
+	// type should be running.   DEPRECATED: The type was deprecated using DeprecateActivityType,
+	// but is still in use. You should keep workers supporting this type running.
+	// You cannot create new tasks of this type.
+	TypeInfo *ActivityTypeInfo `locationName:"typeInfo" type:"structure" required:"true"`
 
 	metadataDescribeActivityTypeOutput `json:"-", xml:"-"`
 }
@@ -1300,6 +2678,7 @@ type metadataDescribeActivityTypeOutput struct {
 }
 
 type DescribeDomainInput struct {
+	// The name of the domain to describe.
 	Name *string `locationName:"name" type:"string" required:"true"`
 
 	metadataDescribeDomainInput `json:"-", xml:"-"`
@@ -1309,9 +2688,13 @@ type metadataDescribeDomainInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains details of a domain.
 type DescribeDomainOutput struct {
+	// Contains the configuration settings of a domain.
 	Configuration *DomainConfiguration `locationName:"configuration" type:"structure" required:"true"`
-	DomainInfo    *DomainInfo          `locationName:"domainInfo" type:"structure" required:"true"`
+
+	// Contains general information about a domain.
+	DomainInfo *DomainInfo `locationName:"domainInfo" type:"structure" required:"true"`
 
 	metadataDescribeDomainOutput `json:"-", xml:"-"`
 }
@@ -1321,7 +2704,10 @@ type metadataDescribeDomainOutput struct {
 }
 
 type DescribeWorkflowExecutionInput struct {
-	Domain    *string            `locationName:"domain" type:"string" required:"true"`
+	// The name of the domain containing the workflow execution.
+	Domain *string `locationName:"domain" type:"string" required:"true"`
+
+	// The workflow execution to describe.
 	Execution *WorkflowExecution `locationName:"execution" type:"structure" required:"true"`
 
 	metadataDescribeWorkflowExecutionInput `json:"-", xml:"-"`
@@ -1331,12 +2717,28 @@ type metadataDescribeWorkflowExecutionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains details about a workflow execution.
 type DescribeWorkflowExecutionOutput struct {
-	ExecutionConfiguration      *WorkflowExecutionConfiguration `locationName:"executionConfiguration" type:"structure" required:"true"`
-	ExecutionInfo               *WorkflowExecutionInfo          `locationName:"executionInfo" type:"structure" required:"true"`
-	LatestActivityTaskTimestamp *time.Time                      `locationName:"latestActivityTaskTimestamp" type:"timestamp" timestampFormat:"unix"`
-	LatestExecutionContext      *string                         `locationName:"latestExecutionContext" type:"string"`
-	OpenCounts                  *WorkflowExecutionOpenCounts    `locationName:"openCounts" type:"structure" required:"true"`
+	// The configuration settings for this workflow execution including timeout
+	// values, tasklist etc.
+	ExecutionConfiguration *WorkflowExecutionConfiguration `locationName:"executionConfiguration" type:"structure" required:"true"`
+
+	// Information about the workflow execution.
+	ExecutionInfo *WorkflowExecutionInfo `locationName:"executionInfo" type:"structure" required:"true"`
+
+	// The time when the last activity task was scheduled for this workflow execution.
+	// You can use this information to determine if the workflow has not made progress
+	// for an unusually long period of time and might require a corrective action.
+	LatestActivityTaskTimestamp *time.Time `locationName:"latestActivityTaskTimestamp" type:"timestamp" timestampFormat:"unix"`
+
+	// The latest executionContext provided by the decider for this workflow execution.
+	// A decider can provide an executionContext (a free-form string) when closing
+	// a decision task using RespondDecisionTaskCompleted.
+	LatestExecutionContext *string `locationName:"latestExecutionContext" type:"string"`
+
+	// The number of tasks for this workflow execution. This includes open and closed
+	// tasks of all types.
+	OpenCounts *WorkflowExecutionOpenCounts `locationName:"openCounts" type:"structure" required:"true"`
 
 	metadataDescribeWorkflowExecutionOutput `json:"-", xml:"-"`
 }
@@ -1346,7 +2748,10 @@ type metadataDescribeWorkflowExecutionOutput struct {
 }
 
 type DescribeWorkflowTypeInput struct {
-	Domain       *string       `locationName:"domain" type:"string" required:"true"`
+	// The name of the domain in which this workflow type is registered.
+	Domain *string `locationName:"domain" type:"string" required:"true"`
+
+	// The workflow type to describe.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataDescribeWorkflowTypeInput `json:"-", xml:"-"`
@@ -1356,9 +2761,21 @@ type metadataDescribeWorkflowTypeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains details about a workflow type.
 type DescribeWorkflowTypeOutput struct {
+	// Configuration settings of the workflow type registered through RegisterWorkflowType
 	Configuration *WorkflowTypeConfiguration `locationName:"configuration" type:"structure" required:"true"`
-	TypeInfo      *WorkflowTypeInfo          `locationName:"typeInfo" type:"structure" required:"true"`
+
+	// General information about the workflow type.
+	//
+	// The status of the workflow type (returned in the WorkflowTypeInfo structure)
+	// can be one of the following.
+	//
+	//   REGISTERED: The type is registered and available. Workers supporting this
+	// type should be running.  DEPRECATED: The type was deprecated using DeprecateWorkflowType,
+	// but is still in use. You should keep workers supporting this type running.
+	// You cannot create new workflow executions of this type.
+	TypeInfo *WorkflowTypeInfo `locationName:"typeInfo" type:"structure" required:"true"`
 
 	metadataDescribeWorkflowTypeOutput `json:"-", xml:"-"`
 }
@@ -1367,7 +2784,9 @@ type metadataDescribeWorkflowTypeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the configuration settings of a domain.
 type DomainConfiguration struct {
+	// The retention period for workflow executions in this domain.
 	WorkflowExecutionRetentionPeriodInDays *string `locationName:"workflowExecutionRetentionPeriodInDays" type:"string" required:"true"`
 
 	metadataDomainConfiguration `json:"-", xml:"-"`
@@ -1377,10 +2796,21 @@ type metadataDomainConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains general information about a domain.
 type DomainInfo struct {
+	// The description of the domain provided through RegisterDomain.
 	Description *string `locationName:"description" type:"string"`
-	Name        *string `locationName:"name" type:"string" required:"true"`
-	Status      *string `locationName:"status" type:"string" required:"true"`
+
+	// The name of the domain. This name is unique within the account.
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The status of the domain:
+	//
+	//   REGISTERED: The domain is properly registered and available. You can use
+	// this domain for registering types and creating new workflow executions.
+	//  DEPRECATED: The domain was deprecated using DeprecateDomain, but is still
+	// in use. You should not create new workflow executions in this domain.
+	Status *string `locationName:"status" type:"string" required:"true"`
 
 	metadataDomainInfo `json:"-", xml:"-"`
 }
@@ -1389,8 +2819,16 @@ type metadataDomainInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Used to filter the workflow executions in visibility APIs by various time-based
+// rules. Each parameter, if specified, defines a rule that must be satisfied
+// by each returned query result. The parameter values are in the Unix Time
+// format (https://en.wikipedia.org/wiki/Unix_time). For example: "oldestDate":
+// 1325376070.
 type ExecutionTimeFilter struct {
+	// Specifies the latest start or close date and time to return.
 	LatestDate *time.Time `locationName:"latestDate" type:"timestamp" timestampFormat:"unix"`
+
+	// Specifies the oldest start or close date and time to return.
 	OldestDate *time.Time `locationName:"oldestDate" type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	metadataExecutionTimeFilter `json:"-", xml:"-"`
@@ -1400,8 +2838,15 @@ type metadataExecutionTimeFilter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the ExternalWorkflowExecutionCancelRequested event.
 type ExternalWorkflowExecutionCancelRequestedEventAttributes struct {
-	InitiatedEventID  *int64             `locationName:"initiatedEventId" type:"long" required:"true"`
+	// The id of the RequestCancelExternalWorkflowExecutionInitiated event corresponding
+	// to the RequestCancelExternalWorkflowExecution decision to cancel this external
+	// workflow execution. This information can be useful for diagnosing problems
+	// by tracing back the chain of events leading up to this event.
+	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
+
+	// The external workflow execution to which the cancellation request was delivered.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
 
 	metadataExternalWorkflowExecutionCancelRequestedEventAttributes `json:"-", xml:"-"`
@@ -1411,8 +2856,15 @@ type metadataExternalWorkflowExecutionCancelRequestedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the ExternalWorkflowExecutionSignaled event.
 type ExternalWorkflowExecutionSignaledEventAttributes struct {
-	InitiatedEventID  *int64             `locationName:"initiatedEventId" type:"long" required:"true"`
+	// The id of the SignalExternalWorkflowExecutionInitiated event corresponding
+	// to the SignalExternalWorkflowExecution decision to request this signal. This
+	// information can be useful for diagnosing problems by tracing back the chain
+	// of events leading up to this event.
+	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
+
+	// The external workflow execution that the signal was delivered to.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
 
 	metadataExternalWorkflowExecutionSignaledEventAttributes `json:"-", xml:"-"`
@@ -1422,9 +2874,27 @@ type metadataExternalWorkflowExecutionSignaledEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the FailWorkflowExecution decision.
+//
+// Access Control
+//
+// You can use IAM policies to control this decision's access to Amazon SWF
+// resources as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. You cannot use an IAM policy to constrain this action's parameters.
+//  If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type FailWorkflowExecutionDecisionAttributes struct {
+	// Optional. Details of the failure.
 	Details *string `locationName:"details" type:"string"`
-	Reason  *string `locationName:"reason" type:"string"`
+
+	// A descriptive reason for the failure that may help in diagnostics.
+	Reason *string `locationName:"reason" type:"string"`
 
 	metadataFailWorkflowExecutionDecisionAttributes `json:"-", xml:"-"`
 }
@@ -1433,9 +2903,21 @@ type metadataFailWorkflowExecutionDecisionAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the FailWorkflowExecutionFailed event.
 type FailWorkflowExecutionFailedEventAttributes struct {
-	Cause                        *string `locationName:"cause" type:"string" required:"true"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	// The cause of the failure. This information is generated by the system and
+	// can be useful for diagnostic purposes.
+	//
+	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
+	// it lacked sufficient permissions. For details and example IAM policies, see
+	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+	Cause *string `locationName:"cause" type:"string" required:"true"`
+
+	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// that resulted in the FailWorkflowExecution decision to fail this execution.
+	// This information can be useful for diagnosing problems by tracing back the
+	// chain of events leading up to this event.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	metadataFailWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
 }
@@ -1445,11 +2927,32 @@ type metadataFailWorkflowExecutionFailedEventAttributes struct {
 }
 
 type GetWorkflowExecutionHistoryInput struct {
-	Domain          *string            `locationName:"domain" type:"string" required:"true"`
-	Execution       *WorkflowExecution `locationName:"execution" type:"structure" required:"true"`
-	MaximumPageSize *int64             `locationName:"maximumPageSize" type:"integer"`
-	NextPageToken   *string            `locationName:"nextPageToken" type:"string"`
-	ReverseOrder    *bool              `locationName:"reverseOrder" type:"boolean"`
+	// The name of the domain containing the workflow execution.
+	Domain *string `locationName:"domain" type:"string" required:"true"`
+
+	// Specifies the workflow execution for which to return the history.
+	Execution *WorkflowExecution `locationName:"execution" type:"structure" required:"true"`
+
+	// The maximum number of results that will be returned per call. nextPageToken
+	// can be used to obtain futher pages of results. The default is 100, which
+	// is the maximum allowed page size. You can, however, specify a page size smaller
+	// than 100.
+	//
+	// This is an upper limit only; the actual number of results returned per call
+	// may be fewer than the specified maximum.
+	MaximumPageSize *int64 `locationName:"maximumPageSize" type:"integer"`
+
+	// If a NextPageToken was returned by a previous call, there are more results
+	// available. To retrieve the next page of results, make the call again using
+	// the returned token in nextPageToken. Keep all other arguments unchanged.
+	//
+	// The configured maximumPageSize determines how many results can be returned
+	// in a single call.
+	NextPageToken *string `locationName:"nextPageToken" type:"string"`
+
+	// When set to true, returns the events in reverse order. By default the results
+	// are returned in ascending order of the eventTimeStamp of the events.
+	ReverseOrder *bool `locationName:"reverseOrder" type:"boolean"`
 
 	metadataGetWorkflowExecutionHistoryInput `json:"-", xml:"-"`
 }
@@ -1458,9 +2961,20 @@ type metadataGetWorkflowExecutionHistoryInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Paginated representation of a workflow history for a workflow execution.
+// This is the up to date, complete and authoritative record of the events related
+// to all tasks and events in the life of the workflow execution.
 type GetWorkflowExecutionHistoryOutput struct {
-	Events        []*HistoryEvent `locationName:"events" type:"list" required:"true"`
-	NextPageToken *string         `locationName:"nextPageToken" type:"string"`
+	// The list of history events.
+	Events []*HistoryEvent `locationName:"events" type:"list" required:"true"`
+
+	// If a NextPageToken was returned by a previous call, there are more results
+	// available. To retrieve the next page of results, make the call again using
+	// the returned token in nextPageToken. Keep all other arguments unchanged.
+	//
+	// The configured maximumPageSize determines how many results can be returned
+	// in a single call.
+	NextPageToken *string `locationName:"nextPageToken" type:"string"`
 
 	metadataGetWorkflowExecutionHistoryOutput `json:"-", xml:"-"`
 }
@@ -1469,57 +2983,300 @@ type metadataGetWorkflowExecutionHistoryOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Event within a workflow execution. A history event can be one of these types:
+//
+//   WorkflowExecutionStarted: The workflow execution was started.  WorkflowExecutionCompleted:
+// The workflow execution was closed due to successful completion.  WorkflowExecutionFailed:
+// The workflow execution closed due to a failure.  WorkflowExecutionTimedOut:
+// The workflow execution was closed because a time out was exceeded.  WorkflowExecutionCanceled:
+// The workflow execution was successfully canceled and closed.  WorkflowExecutionTerminated:
+// The workflow execution was terminated.  WorkflowExecutionContinuedAsNew:
+// The workflow execution was closed and a new execution of the same type was
+// created with the same workflowId.  WorkflowExecutionCancelRequested: A request
+// to cancel this workflow execution was made.  DecisionTaskScheduled: A decision
+// task was scheduled for the workflow execution.  DecisionTaskStarted: The
+// decision task was dispatched to a decider.  DecisionTaskCompleted: The decider
+// successfully completed a decision task by calling RespondDecisionTaskCompleted.
+//  DecisionTaskTimedOut: The decision task timed out.  ActivityTaskScheduled:
+// An activity task was scheduled for execution.  ScheduleActivityTaskFailed:
+// Failed to process ScheduleActivityTask decision. This happens when the decision
+// is not configured properly, for example the activity type specified is not
+// registered.  ActivityTaskStarted: The scheduled activity task was dispatched
+// to a worker.  ActivityTaskCompleted: An activity worker successfully completed
+// an activity task by calling RespondActivityTaskCompleted.  ActivityTaskFailed:
+// An activity worker failed an activity task by calling RespondActivityTaskFailed.
+//  ActivityTaskTimedOut: The activity task timed out.  ActivityTaskCanceled:
+// The activity task was successfully canceled.  ActivityTaskCancelRequested:
+// A RequestCancelActivityTask decision was received by the system.  RequestCancelActivityTaskFailed:
+// Failed to process RequestCancelActivityTask decision. This happens when the
+// decision is not configured properly.  WorkflowExecutionSignaled: An external
+// signal was received for the workflow execution.  MarkerRecorded: A marker
+// was recorded in the workflow history as the result of a RecordMarker decision.
+//  TimerStarted: A timer was started for the workflow execution due to a StartTimer
+// decision.  StartTimerFailed: Failed to process StartTimer decision. This
+// happens when the decision is not configured properly, for example a timer
+// already exists with the specified timer Id.  TimerFired: A timer, previously
+// started for this workflow execution, fired.  TimerCanceled: A timer, previously
+// started for this workflow execution, was successfully canceled.  CancelTimerFailed:
+// Failed to process CancelTimer decision. This happens when the decision is
+// not configured properly, for example no timer exists with the specified timer
+// Id.  StartChildWorkflowExecutionInitiated: A request was made to start a
+// child workflow execution.  StartChildWorkflowExecutionFailed: Failed to process
+// StartChildWorkflowExecution decision. This happens when the decision is not
+// configured properly, for example the workflow type specified is not registered.
+//  ChildWorkflowExecutionStarted: A child workflow execution was successfully
+// started.  ChildWorkflowExecutionCompleted: A child workflow execution, started
+// by this workflow execution, completed successfully and was closed.  ChildWorkflowExecutionFailed:
+// A child workflow execution, started by this workflow execution, failed to
+// complete successfully and was closed.  ChildWorkflowExecutionTimedOut: A
+// child workflow execution, started by this workflow execution, timed out and
+// was closed.  ChildWorkflowExecutionCanceled: A child workflow execution,
+// started by this workflow execution, was canceled and closed.  ChildWorkflowExecutionTerminated:
+// A child workflow execution, started by this workflow execution, was terminated.
+//  SignalExternalWorkflowExecutionInitiated: A request to signal an external
+// workflow was made.  ExternalWorkflowExecutionSignaled: A signal, requested
+// by this workflow execution, was successfully delivered to the target external
+// workflow execution.  SignalExternalWorkflowExecutionFailed: The request to
+// signal an external workflow execution failed.  RequestCancelExternalWorkflowExecutionInitiated:
+// A request was made to request the cancellation of an external workflow execution.
+//  ExternalWorkflowExecutionCancelRequested: Request to cancel an external
+// workflow execution was successfully delivered to the target execution.  RequestCancelExternalWorkflowExecutionFailed:
+// Request to cancel an external workflow execution failed.
 type HistoryEvent struct {
-	ActivityTaskCancelRequestedEventAttributes                     *ActivityTaskCancelRequestedEventAttributes                     `locationName:"activityTaskCancelRequestedEventAttributes" type:"structure"`
-	ActivityTaskCanceledEventAttributes                            *ActivityTaskCanceledEventAttributes                            `locationName:"activityTaskCanceledEventAttributes" type:"structure"`
-	ActivityTaskCompletedEventAttributes                           *ActivityTaskCompletedEventAttributes                           `locationName:"activityTaskCompletedEventAttributes" type:"structure"`
-	ActivityTaskFailedEventAttributes                              *ActivityTaskFailedEventAttributes                              `locationName:"activityTaskFailedEventAttributes" type:"structure"`
-	ActivityTaskScheduledEventAttributes                           *ActivityTaskScheduledEventAttributes                           `locationName:"activityTaskScheduledEventAttributes" type:"structure"`
-	ActivityTaskStartedEventAttributes                             *ActivityTaskStartedEventAttributes                             `locationName:"activityTaskStartedEventAttributes" type:"structure"`
-	ActivityTaskTimedOutEventAttributes                            *ActivityTaskTimedOutEventAttributes                            `locationName:"activityTaskTimedOutEventAttributes" type:"structure"`
-	CancelTimerFailedEventAttributes                               *CancelTimerFailedEventAttributes                               `locationName:"cancelTimerFailedEventAttributes" type:"structure"`
-	CancelWorkflowExecutionFailedEventAttributes                   *CancelWorkflowExecutionFailedEventAttributes                   `locationName:"cancelWorkflowExecutionFailedEventAttributes" type:"structure"`
-	ChildWorkflowExecutionCanceledEventAttributes                  *ChildWorkflowExecutionCanceledEventAttributes                  `locationName:"childWorkflowExecutionCanceledEventAttributes" type:"structure"`
-	ChildWorkflowExecutionCompletedEventAttributes                 *ChildWorkflowExecutionCompletedEventAttributes                 `locationName:"childWorkflowExecutionCompletedEventAttributes" type:"structure"`
-	ChildWorkflowExecutionFailedEventAttributes                    *ChildWorkflowExecutionFailedEventAttributes                    `locationName:"childWorkflowExecutionFailedEventAttributes" type:"structure"`
-	ChildWorkflowExecutionStartedEventAttributes                   *ChildWorkflowExecutionStartedEventAttributes                   `locationName:"childWorkflowExecutionStartedEventAttributes" type:"structure"`
-	ChildWorkflowExecutionTerminatedEventAttributes                *ChildWorkflowExecutionTerminatedEventAttributes                `locationName:"childWorkflowExecutionTerminatedEventAttributes" type:"structure"`
-	ChildWorkflowExecutionTimedOutEventAttributes                  *ChildWorkflowExecutionTimedOutEventAttributes                  `locationName:"childWorkflowExecutionTimedOutEventAttributes" type:"structure"`
-	CompleteWorkflowExecutionFailedEventAttributes                 *CompleteWorkflowExecutionFailedEventAttributes                 `locationName:"completeWorkflowExecutionFailedEventAttributes" type:"structure"`
-	ContinueAsNewWorkflowExecutionFailedEventAttributes            *ContinueAsNewWorkflowExecutionFailedEventAttributes            `locationName:"continueAsNewWorkflowExecutionFailedEventAttributes" type:"structure"`
-	DecisionTaskCompletedEventAttributes                           *DecisionTaskCompletedEventAttributes                           `locationName:"decisionTaskCompletedEventAttributes" type:"structure"`
-	DecisionTaskScheduledEventAttributes                           *DecisionTaskScheduledEventAttributes                           `locationName:"decisionTaskScheduledEventAttributes" type:"structure"`
-	DecisionTaskStartedEventAttributes                             *DecisionTaskStartedEventAttributes                             `locationName:"decisionTaskStartedEventAttributes" type:"structure"`
-	DecisionTaskTimedOutEventAttributes                            *DecisionTaskTimedOutEventAttributes                            `locationName:"decisionTaskTimedOutEventAttributes" type:"structure"`
-	EventID                                                        *int64                                                          `locationName:"eventId" type:"long" required:"true"`
-	EventTimestamp                                                 *time.Time                                                      `locationName:"eventTimestamp" type:"timestamp" timestampFormat:"unix" required:"true"`
-	EventType                                                      *string                                                         `locationName:"eventType" type:"string" required:"true"`
-	ExternalWorkflowExecutionCancelRequestedEventAttributes        *ExternalWorkflowExecutionCancelRequestedEventAttributes        `locationName:"externalWorkflowExecutionCancelRequestedEventAttributes" type:"structure"`
-	ExternalWorkflowExecutionSignaledEventAttributes               *ExternalWorkflowExecutionSignaledEventAttributes               `locationName:"externalWorkflowExecutionSignaledEventAttributes" type:"structure"`
-	FailWorkflowExecutionFailedEventAttributes                     *FailWorkflowExecutionFailedEventAttributes                     `locationName:"failWorkflowExecutionFailedEventAttributes" type:"structure"`
-	MarkerRecordedEventAttributes                                  *MarkerRecordedEventAttributes                                  `locationName:"markerRecordedEventAttributes" type:"structure"`
-	RecordMarkerFailedEventAttributes                              *RecordMarkerFailedEventAttributes                              `locationName:"recordMarkerFailedEventAttributes" type:"structure"`
-	RequestCancelActivityTaskFailedEventAttributes                 *RequestCancelActivityTaskFailedEventAttributes                 `locationName:"requestCancelActivityTaskFailedEventAttributes" type:"structure"`
-	RequestCancelExternalWorkflowExecutionFailedEventAttributes    *RequestCancelExternalWorkflowExecutionFailedEventAttributes    `locationName:"requestCancelExternalWorkflowExecutionFailedEventAttributes" type:"structure"`
+	// If the event is of type ActivityTaskcancelRequested then this member is set
+	// and provides detailed information about the event. It is not set for other
+	// event types.
+	ActivityTaskCancelRequestedEventAttributes *ActivityTaskCancelRequestedEventAttributes `locationName:"activityTaskCancelRequestedEventAttributes" type:"structure"`
+
+	// If the event is of type ActivityTaskCanceled then this member is set and
+	// provides detailed information about the event. It is not set for other event
+	// types.
+	ActivityTaskCanceledEventAttributes *ActivityTaskCanceledEventAttributes `locationName:"activityTaskCanceledEventAttributes" type:"structure"`
+
+	// If the event is of type ActivityTaskCompleted then this member is set and
+	// provides detailed information about the event. It is not set for other event
+	// types.
+	ActivityTaskCompletedEventAttributes *ActivityTaskCompletedEventAttributes `locationName:"activityTaskCompletedEventAttributes" type:"structure"`
+
+	// If the event is of type ActivityTaskFailed then this member is set and provides
+	// detailed information about the event. It is not set for other event types.
+	ActivityTaskFailedEventAttributes *ActivityTaskFailedEventAttributes `locationName:"activityTaskFailedEventAttributes" type:"structure"`
+
+	// If the event is of type ActivityTaskScheduled then this member is set and
+	// provides detailed information about the event. It is not set for other event
+	// types.
+	ActivityTaskScheduledEventAttributes *ActivityTaskScheduledEventAttributes `locationName:"activityTaskScheduledEventAttributes" type:"structure"`
+
+	// If the event is of type ActivityTaskStarted then this member is set and provides
+	// detailed information about the event. It is not set for other event types.
+	ActivityTaskStartedEventAttributes *ActivityTaskStartedEventAttributes `locationName:"activityTaskStartedEventAttributes" type:"structure"`
+
+	// If the event is of type ActivityTaskTimedOut then this member is set and
+	// provides detailed information about the event. It is not set for other event
+	// types.
+	ActivityTaskTimedOutEventAttributes *ActivityTaskTimedOutEventAttributes `locationName:"activityTaskTimedOutEventAttributes" type:"structure"`
+
+	// If the event is of type CancelTimerFailed then this member is set and provides
+	// detailed information about the event. It is not set for other event types.
+	CancelTimerFailedEventAttributes *CancelTimerFailedEventAttributes `locationName:"cancelTimerFailedEventAttributes" type:"structure"`
+
+	// If the event is of type CancelWorkflowExecutionFailed then this member is
+	// set and provides detailed information about the event. It is not set for
+	// other event types.
+	CancelWorkflowExecutionFailedEventAttributes *CancelWorkflowExecutionFailedEventAttributes `locationName:"cancelWorkflowExecutionFailedEventAttributes" type:"structure"`
+
+	// If the event is of type ChildWorkflowExecutionCanceled then this member is
+	// set and provides detailed information about the event. It is not set for
+	// other event types.
+	ChildWorkflowExecutionCanceledEventAttributes *ChildWorkflowExecutionCanceledEventAttributes `locationName:"childWorkflowExecutionCanceledEventAttributes" type:"structure"`
+
+	// If the event is of type ChildWorkflowExecutionCompleted then this member
+	// is set and provides detailed information about the event. It is not set for
+	// other event types.
+	ChildWorkflowExecutionCompletedEventAttributes *ChildWorkflowExecutionCompletedEventAttributes `locationName:"childWorkflowExecutionCompletedEventAttributes" type:"structure"`
+
+	// If the event is of type ChildWorkflowExecutionFailed then this member is
+	// set and provides detailed information about the event. It is not set for
+	// other event types.
+	ChildWorkflowExecutionFailedEventAttributes *ChildWorkflowExecutionFailedEventAttributes `locationName:"childWorkflowExecutionFailedEventAttributes" type:"structure"`
+
+	// If the event is of type ChildWorkflowExecutionStarted then this member is
+	// set and provides detailed information about the event. It is not set for
+	// other event types.
+	ChildWorkflowExecutionStartedEventAttributes *ChildWorkflowExecutionStartedEventAttributes `locationName:"childWorkflowExecutionStartedEventAttributes" type:"structure"`
+
+	// If the event is of type ChildWorkflowExecutionTerminated then this member
+	// is set and provides detailed information about the event. It is not set for
+	// other event types.
+	ChildWorkflowExecutionTerminatedEventAttributes *ChildWorkflowExecutionTerminatedEventAttributes `locationName:"childWorkflowExecutionTerminatedEventAttributes" type:"structure"`
+
+	// If the event is of type ChildWorkflowExecutionTimedOut then this member is
+	// set and provides detailed information about the event. It is not set for
+	// other event types.
+	ChildWorkflowExecutionTimedOutEventAttributes *ChildWorkflowExecutionTimedOutEventAttributes `locationName:"childWorkflowExecutionTimedOutEventAttributes" type:"structure"`
+
+	// If the event is of type CompleteWorkflowExecutionFailed then this member
+	// is set and provides detailed information about the event. It is not set for
+	// other event types.
+	CompleteWorkflowExecutionFailedEventAttributes *CompleteWorkflowExecutionFailedEventAttributes `locationName:"completeWorkflowExecutionFailedEventAttributes" type:"structure"`
+
+	// If the event is of type ContinueAsNewWorkflowExecutionFailed then this member
+	// is set and provides detailed information about the event. It is not set for
+	// other event types.
+	ContinueAsNewWorkflowExecutionFailedEventAttributes *ContinueAsNewWorkflowExecutionFailedEventAttributes `locationName:"continueAsNewWorkflowExecutionFailedEventAttributes" type:"structure"`
+
+	// If the event is of type DecisionTaskCompleted then this member is set and
+	// provides detailed information about the event. It is not set for other event
+	// types.
+	DecisionTaskCompletedEventAttributes *DecisionTaskCompletedEventAttributes `locationName:"decisionTaskCompletedEventAttributes" type:"structure"`
+
+	// If the event is of type DecisionTaskScheduled then this member is set and
+	// provides detailed information about the event. It is not set for other event
+	// types.
+	DecisionTaskScheduledEventAttributes *DecisionTaskScheduledEventAttributes `locationName:"decisionTaskScheduledEventAttributes" type:"structure"`
+
+	// If the event is of type DecisionTaskStarted then this member is set and provides
+	// detailed information about the event. It is not set for other event types.
+	DecisionTaskStartedEventAttributes *DecisionTaskStartedEventAttributes `locationName:"decisionTaskStartedEventAttributes" type:"structure"`
+
+	// If the event is of type DecisionTaskTimedOut then this member is set and
+	// provides detailed information about the event. It is not set for other event
+	// types.
+	DecisionTaskTimedOutEventAttributes *DecisionTaskTimedOutEventAttributes `locationName:"decisionTaskTimedOutEventAttributes" type:"structure"`
+
+	// The system generated id of the event. This id uniquely identifies the event
+	// with in the workflow execution history.
+	EventID *int64 `locationName:"eventId" type:"long" required:"true"`
+
+	// The date and time when the event occurred.
+	EventTimestamp *time.Time `locationName:"eventTimestamp" type:"timestamp" timestampFormat:"unix" required:"true"`
+
+	// The type of the history event.
+	EventType *string `locationName:"eventType" type:"string" required:"true"`
+
+	// If the event is of type ExternalWorkflowExecutionCancelRequested then this
+	// member is set and provides detailed information about the event. It is not
+	// set for other event types.
+	ExternalWorkflowExecutionCancelRequestedEventAttributes *ExternalWorkflowExecutionCancelRequestedEventAttributes `locationName:"externalWorkflowExecutionCancelRequestedEventAttributes" type:"structure"`
+
+	// If the event is of type ExternalWorkflowExecutionSignaled then this member
+	// is set and provides detailed information about the event. It is not set for
+	// other event types.
+	ExternalWorkflowExecutionSignaledEventAttributes *ExternalWorkflowExecutionSignaledEventAttributes `locationName:"externalWorkflowExecutionSignaledEventAttributes" type:"structure"`
+
+	// If the event is of type FailWorkflowExecutionFailed then this member is set
+	// and provides detailed information about the event. It is not set for other
+	// event types.
+	FailWorkflowExecutionFailedEventAttributes *FailWorkflowExecutionFailedEventAttributes `locationName:"failWorkflowExecutionFailedEventAttributes" type:"structure"`
+
+	// If the event is of type MarkerRecorded then this member is set and provides
+	// detailed information about the event. It is not set for other event types.
+	MarkerRecordedEventAttributes *MarkerRecordedEventAttributes `locationName:"markerRecordedEventAttributes" type:"structure"`
+
+	// If the event is of type DecisionTaskFailed then this member is set and provides
+	// detailed information about the event. It is not set for other event types.
+	RecordMarkerFailedEventAttributes *RecordMarkerFailedEventAttributes `locationName:"recordMarkerFailedEventAttributes" type:"structure"`
+
+	// If the event is of type RequestCancelActivityTaskFailed then this member
+	// is set and provides detailed information about the event. It is not set for
+	// other event types.
+	RequestCancelActivityTaskFailedEventAttributes *RequestCancelActivityTaskFailedEventAttributes `locationName:"requestCancelActivityTaskFailedEventAttributes" type:"structure"`
+
+	// If the event is of type RequestCancelExternalWorkflowExecutionFailed then
+	// this member is set and provides detailed information about the event. It
+	// is not set for other event types.
+	RequestCancelExternalWorkflowExecutionFailedEventAttributes *RequestCancelExternalWorkflowExecutionFailedEventAttributes `locationName:"requestCancelExternalWorkflowExecutionFailedEventAttributes" type:"structure"`
+
+	// If the event is of type RequestCancelExternalWorkflowExecutionInitiated then
+	// this member is set and provides detailed information about the event. It
+	// is not set for other event types.
 	RequestCancelExternalWorkflowExecutionInitiatedEventAttributes *RequestCancelExternalWorkflowExecutionInitiatedEventAttributes `locationName:"requestCancelExternalWorkflowExecutionInitiatedEventAttributes" type:"structure"`
-	ScheduleActivityTaskFailedEventAttributes                      *ScheduleActivityTaskFailedEventAttributes                      `locationName:"scheduleActivityTaskFailedEventAttributes" type:"structure"`
-	SignalExternalWorkflowExecutionFailedEventAttributes           *SignalExternalWorkflowExecutionFailedEventAttributes           `locationName:"signalExternalWorkflowExecutionFailedEventAttributes" type:"structure"`
-	SignalExternalWorkflowExecutionInitiatedEventAttributes        *SignalExternalWorkflowExecutionInitiatedEventAttributes        `locationName:"signalExternalWorkflowExecutionInitiatedEventAttributes" type:"structure"`
-	StartChildWorkflowExecutionFailedEventAttributes               *StartChildWorkflowExecutionFailedEventAttributes               `locationName:"startChildWorkflowExecutionFailedEventAttributes" type:"structure"`
-	StartChildWorkflowExecutionInitiatedEventAttributes            *StartChildWorkflowExecutionInitiatedEventAttributes            `locationName:"startChildWorkflowExecutionInitiatedEventAttributes" type:"structure"`
-	StartTimerFailedEventAttributes                                *StartTimerFailedEventAttributes                                `locationName:"startTimerFailedEventAttributes" type:"structure"`
-	TimerCanceledEventAttributes                                   *TimerCanceledEventAttributes                                   `locationName:"timerCanceledEventAttributes" type:"structure"`
-	TimerFiredEventAttributes                                      *TimerFiredEventAttributes                                      `locationName:"timerFiredEventAttributes" type:"structure"`
-	TimerStartedEventAttributes                                    *TimerStartedEventAttributes                                    `locationName:"timerStartedEventAttributes" type:"structure"`
-	WorkflowExecutionCancelRequestedEventAttributes                *WorkflowExecutionCancelRequestedEventAttributes                `locationName:"workflowExecutionCancelRequestedEventAttributes" type:"structure"`
-	WorkflowExecutionCanceledEventAttributes                       *WorkflowExecutionCanceledEventAttributes                       `locationName:"workflowExecutionCanceledEventAttributes" type:"structure"`
-	WorkflowExecutionCompletedEventAttributes                      *WorkflowExecutionCompletedEventAttributes                      `locationName:"workflowExecutionCompletedEventAttributes" type:"structure"`
-	WorkflowExecutionContinuedAsNewEventAttributes                 *WorkflowExecutionContinuedAsNewEventAttributes                 `locationName:"workflowExecutionContinuedAsNewEventAttributes" type:"structure"`
-	WorkflowExecutionFailedEventAttributes                         *WorkflowExecutionFailedEventAttributes                         `locationName:"workflowExecutionFailedEventAttributes" type:"structure"`
-	WorkflowExecutionSignaledEventAttributes                       *WorkflowExecutionSignaledEventAttributes                       `locationName:"workflowExecutionSignaledEventAttributes" type:"structure"`
-	WorkflowExecutionStartedEventAttributes                        *WorkflowExecutionStartedEventAttributes                        `locationName:"workflowExecutionStartedEventAttributes" type:"structure"`
-	WorkflowExecutionTerminatedEventAttributes                     *WorkflowExecutionTerminatedEventAttributes                     `locationName:"workflowExecutionTerminatedEventAttributes" type:"structure"`
-	WorkflowExecutionTimedOutEventAttributes                       *WorkflowExecutionTimedOutEventAttributes                       `locationName:"workflowExecutionTimedOutEventAttributes" type:"structure"`
+
+	// If the event is of type ScheduleActivityTaskFailed then this member is set
+	// and provides detailed information about the event. It is not set for other
+	// event types.
+	ScheduleActivityTaskFailedEventAttributes *ScheduleActivityTaskFailedEventAttributes `locationName:"scheduleActivityTaskFailedEventAttributes" type:"structure"`
+
+	// If the event is of type SignalExternalWorkflowExecutionFailed then this member
+	// is set and provides detailed information about the event. It is not set for
+	// other event types.
+	SignalExternalWorkflowExecutionFailedEventAttributes *SignalExternalWorkflowExecutionFailedEventAttributes `locationName:"signalExternalWorkflowExecutionFailedEventAttributes" type:"structure"`
+
+	// If the event is of type SignalExternalWorkflowExecutionInitiated then this
+	// member is set and provides detailed information about the event. It is not
+	// set for other event types.
+	SignalExternalWorkflowExecutionInitiatedEventAttributes *SignalExternalWorkflowExecutionInitiatedEventAttributes `locationName:"signalExternalWorkflowExecutionInitiatedEventAttributes" type:"structure"`
+
+	// If the event is of type StartChildWorkflowExecutionFailed then this member
+	// is set and provides detailed information about the event. It is not set for
+	// other event types.
+	StartChildWorkflowExecutionFailedEventAttributes *StartChildWorkflowExecutionFailedEventAttributes `locationName:"startChildWorkflowExecutionFailedEventAttributes" type:"structure"`
+
+	// If the event is of type StartChildWorkflowExecutionInitiated then this member
+	// is set and provides detailed information about the event. It is not set for
+	// other event types.
+	StartChildWorkflowExecutionInitiatedEventAttributes *StartChildWorkflowExecutionInitiatedEventAttributes `locationName:"startChildWorkflowExecutionInitiatedEventAttributes" type:"structure"`
+
+	// If the event is of type StartTimerFailed then this member is set and provides
+	// detailed information about the event. It is not set for other event types.
+	StartTimerFailedEventAttributes *StartTimerFailedEventAttributes `locationName:"startTimerFailedEventAttributes" type:"structure"`
+
+	// If the event is of type TimerCanceled then this member is set and provides
+	// detailed information about the event. It is not set for other event types.
+	TimerCanceledEventAttributes *TimerCanceledEventAttributes `locationName:"timerCanceledEventAttributes" type:"structure"`
+
+	// If the event is of type TimerFired then this member is set and provides detailed
+	// information about the event. It is not set for other event types.
+	TimerFiredEventAttributes *TimerFiredEventAttributes `locationName:"timerFiredEventAttributes" type:"structure"`
+
+	// If the event is of type TimerStarted then this member is set and provides
+	// detailed information about the event. It is not set for other event types.
+	TimerStartedEventAttributes *TimerStartedEventAttributes `locationName:"timerStartedEventAttributes" type:"structure"`
+
+	// If the event is of type WorkflowExecutionCancelRequested then this member
+	// is set and provides detailed information about the event. It is not set for
+	// other event types.
+	WorkflowExecutionCancelRequestedEventAttributes *WorkflowExecutionCancelRequestedEventAttributes `locationName:"workflowExecutionCancelRequestedEventAttributes" type:"structure"`
+
+	// If the event is of type WorkflowExecutionCanceled then this member is set
+	// and provides detailed information about the event. It is not set for other
+	// event types.
+	WorkflowExecutionCanceledEventAttributes *WorkflowExecutionCanceledEventAttributes `locationName:"workflowExecutionCanceledEventAttributes" type:"structure"`
+
+	// If the event is of type WorkflowExecutionCompleted then this member is set
+	// and provides detailed information about the event. It is not set for other
+	// event types.
+	WorkflowExecutionCompletedEventAttributes *WorkflowExecutionCompletedEventAttributes `locationName:"workflowExecutionCompletedEventAttributes" type:"structure"`
+
+	// If the event is of type WorkflowExecutionContinuedAsNew then this member
+	// is set and provides detailed information about the event. It is not set for
+	// other event types.
+	WorkflowExecutionContinuedAsNewEventAttributes *WorkflowExecutionContinuedAsNewEventAttributes `locationName:"workflowExecutionContinuedAsNewEventAttributes" type:"structure"`
+
+	// If the event is of type WorkflowExecutionFailed then this member is set and
+	// provides detailed information about the event. It is not set for other event
+	// types.
+	WorkflowExecutionFailedEventAttributes *WorkflowExecutionFailedEventAttributes `locationName:"workflowExecutionFailedEventAttributes" type:"structure"`
+
+	// If the event is of type WorkflowExecutionSignaled then this member is set
+	// and provides detailed information about the event. It is not set for other
+	// event types.
+	WorkflowExecutionSignaledEventAttributes *WorkflowExecutionSignaledEventAttributes `locationName:"workflowExecutionSignaledEventAttributes" type:"structure"`
+
+	// If the event is of type WorkflowExecutionStarted then this member is set
+	// and provides detailed information about the event. It is not set for other
+	// event types.
+	WorkflowExecutionStartedEventAttributes *WorkflowExecutionStartedEventAttributes `locationName:"workflowExecutionStartedEventAttributes" type:"structure"`
+
+	// If the event is of type WorkflowExecutionTerminated then this member is set
+	// and provides detailed information about the event. It is not set for other
+	// event types.
+	WorkflowExecutionTerminatedEventAttributes *WorkflowExecutionTerminatedEventAttributes `locationName:"workflowExecutionTerminatedEventAttributes" type:"structure"`
+
+	// If the event is of type WorkflowExecutionTimedOut then this member is set
+	// and provides detailed information about the event. It is not set for other
+	// event types.
+	WorkflowExecutionTimedOutEventAttributes *WorkflowExecutionTimedOutEventAttributes `locationName:"workflowExecutionTimedOutEventAttributes" type:"structure"`
 
 	metadataHistoryEvent `json:"-", xml:"-"`
 }
@@ -1529,12 +3286,35 @@ type metadataHistoryEvent struct {
 }
 
 type ListActivityTypesInput struct {
-	Domain             *string `locationName:"domain" type:"string" required:"true"`
-	MaximumPageSize    *int64  `locationName:"maximumPageSize" type:"integer"`
-	Name               *string `locationName:"name" type:"string"`
-	NextPageToken      *string `locationName:"nextPageToken" type:"string"`
+	// The name of the domain in which the activity types have been registered.
+	Domain *string `locationName:"domain" type:"string" required:"true"`
+
+	// The maximum number of results that will be returned per call. nextPageToken
+	// can be used to obtain futher pages of results. The default is 100, which
+	// is the maximum allowed page size. You can, however, specify a page size smaller
+	// than 100.
+	//
+	// This is an upper limit only; the actual number of results returned per call
+	// may be fewer than the specified maximum.
+	MaximumPageSize *int64 `locationName:"maximumPageSize" type:"integer"`
+
+	// If specified, only lists the activity types that have this name.
+	Name *string `locationName:"name" type:"string"`
+
+	// If a NextPageToken was returned by a previous call, there are more results
+	// available. To retrieve the next page of results, make the call again using
+	// the returned token in nextPageToken. Keep all other arguments unchanged.
+	//
+	// The configured maximumPageSize determines how many results can be returned
+	// in a single call.
+	NextPageToken *string `locationName:"nextPageToken" type:"string"`
+
+	// Specifies the registration status of the activity types to list.
 	RegistrationStatus *string `locationName:"registrationStatus" type:"string" required:"true"`
-	ReverseOrder       *bool   `locationName:"reverseOrder" type:"boolean"`
+
+	// When set to true, returns the results in reverse order. By default, the results
+	// are returned in ascending alphabetical order by name of the activity types.
+	ReverseOrder *bool `locationName:"reverseOrder" type:"boolean"`
 
 	metadataListActivityTypesInput `json:"-", xml:"-"`
 }
@@ -1543,9 +3323,18 @@ type metadataListActivityTypesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains a paginated list of activity type information structures.
 type ListActivityTypesOutput struct {
-	NextPageToken *string             `locationName:"nextPageToken" type:"string"`
-	TypeInfos     []*ActivityTypeInfo `locationName:"typeInfos" type:"list" required:"true"`
+	// If a NextPageToken was returned by a previous call, there are more results
+	// available. To retrieve the next page of results, make the call again using
+	// the returned token in nextPageToken. Keep all other arguments unchanged.
+	//
+	// The configured maximumPageSize determines how many results can be returned
+	// in a single call.
+	NextPageToken *string `locationName:"nextPageToken" type:"string"`
+
+	// List of activity type information.
+	TypeInfos []*ActivityTypeInfo `locationName:"typeInfos" type:"list" required:"true"`
 
 	metadataListActivityTypesOutput `json:"-", xml:"-"`
 }
@@ -1555,16 +3344,74 @@ type metadataListActivityTypesOutput struct {
 }
 
 type ListClosedWorkflowExecutionsInput struct {
-	CloseStatusFilter *CloseStatusFilter       `locationName:"closeStatusFilter" type:"structure"`
-	CloseTimeFilter   *ExecutionTimeFilter     `locationName:"closeTimeFilter" type:"structure"`
-	Domain            *string                  `locationName:"domain" type:"string" required:"true"`
-	ExecutionFilter   *WorkflowExecutionFilter `locationName:"executionFilter" type:"structure"`
-	MaximumPageSize   *int64                   `locationName:"maximumPageSize" type:"integer"`
-	NextPageToken     *string                  `locationName:"nextPageToken" type:"string"`
-	ReverseOrder      *bool                    `locationName:"reverseOrder" type:"boolean"`
-	StartTimeFilter   *ExecutionTimeFilter     `locationName:"startTimeFilter" type:"structure"`
-	TagFilter         *TagFilter               `locationName:"tagFilter" type:"structure"`
-	TypeFilter        *WorkflowTypeFilter      `locationName:"typeFilter" type:"structure"`
+	// If specified, only workflow executions that match this close status are listed.
+	// For example, if TERMINATED is specified, then only TERMINATED workflow executions
+	// are listed.
+	//
+	// closeStatusFilter, executionFilter, typeFilter and tagFilter are mutually
+	// exclusive. You can specify at most one of these in a request.
+	CloseStatusFilter *CloseStatusFilter `locationName:"closeStatusFilter" type:"structure"`
+
+	// If specified, the workflow executions are included in the returned results
+	// based on whether their close times are within the range specified by this
+	// filter. Also, if this parameter is specified, the returned results are ordered
+	// by their close times.
+	//
+	// startTimeFilter and closeTimeFilter are mutually exclusive. You must specify
+	// one of these in a request but not both.
+	CloseTimeFilter *ExecutionTimeFilter `locationName:"closeTimeFilter" type:"structure"`
+
+	// The name of the domain that contains the workflow executions to list.
+	Domain *string `locationName:"domain" type:"string" required:"true"`
+
+	// If specified, only workflow executions matching the workflow id specified
+	// in the filter are returned.
+	//
+	// closeStatusFilter, executionFilter, typeFilter and tagFilter are mutually
+	// exclusive. You can specify at most one of these in a request.
+	ExecutionFilter *WorkflowExecutionFilter `locationName:"executionFilter" type:"structure"`
+
+	// The maximum number of results that will be returned per call. nextPageToken
+	// can be used to obtain futher pages of results. The default is 100, which
+	// is the maximum allowed page size. You can, however, specify a page size smaller
+	// than 100.
+	//
+	// This is an upper limit only; the actual number of results returned per call
+	// may be fewer than the specified maximum.
+	MaximumPageSize *int64 `locationName:"maximumPageSize" type:"integer"`
+
+	// If a NextPageToken was returned by a previous call, there are more results
+	// available. To retrieve the next page of results, make the call again using
+	// the returned token in nextPageToken. Keep all other arguments unchanged.
+	//
+	// The configured maximumPageSize determines how many results can be returned
+	// in a single call.
+	NextPageToken *string `locationName:"nextPageToken" type:"string"`
+
+	// When set to true, returns the results in reverse order. By default the results
+	// are returned in descending order of the start or the close time of the executions.
+	ReverseOrder *bool `locationName:"reverseOrder" type:"boolean"`
+
+	// If specified, the workflow executions are included in the returned results
+	// based on whether their start times are within the range specified by this
+	// filter. Also, if this parameter is specified, the returned results are ordered
+	// by their start times.
+	//
+	// startTimeFilter and closeTimeFilter are mutually exclusive. You must specify
+	// one of these in a request but not both.
+	StartTimeFilter *ExecutionTimeFilter `locationName:"startTimeFilter" type:"structure"`
+
+	// If specified, only executions that have the matching tag are listed.
+	//
+	// closeStatusFilter, executionFilter, typeFilter and tagFilter are mutually
+	// exclusive. You can specify at most one of these in a request.
+	TagFilter *TagFilter `locationName:"tagFilter" type:"structure"`
+
+	// If specified, only executions of the type specified in the filter are returned.
+	//
+	// closeStatusFilter, executionFilter, typeFilter and tagFilter are mutually
+	// exclusive. You can specify at most one of these in a request.
+	TypeFilter *WorkflowTypeFilter `locationName:"typeFilter" type:"structure"`
 
 	metadataListClosedWorkflowExecutionsInput `json:"-", xml:"-"`
 }
@@ -1574,10 +3421,29 @@ type metadataListClosedWorkflowExecutionsInput struct {
 }
 
 type ListDomainsInput struct {
-	MaximumPageSize    *int64  `locationName:"maximumPageSize" type:"integer"`
-	NextPageToken      *string `locationName:"nextPageToken" type:"string"`
+	// The maximum number of results that will be returned per call. nextPageToken
+	// can be used to obtain futher pages of results. The default is 100, which
+	// is the maximum allowed page size. You can, however, specify a page size smaller
+	// than 100.
+	//
+	// This is an upper limit only; the actual number of results returned per call
+	// may be fewer than the specified maximum.
+	MaximumPageSize *int64 `locationName:"maximumPageSize" type:"integer"`
+
+	// If a NextPageToken was returned by a previous call, there are more results
+	// available. To retrieve the next page of results, make the call again using
+	// the returned token in nextPageToken. Keep all other arguments unchanged.
+	//
+	// The configured maximumPageSize determines how many results can be returned
+	// in a single call.
+	NextPageToken *string `locationName:"nextPageToken" type:"string"`
+
+	// Specifies the registration status of the domains to list.
 	RegistrationStatus *string `locationName:"registrationStatus" type:"string" required:"true"`
-	ReverseOrder       *bool   `locationName:"reverseOrder" type:"boolean"`
+
+	// When set to true, returns the results in reverse order. By default, the results
+	// are returned in ascending alphabetical order by name of the domains.
+	ReverseOrder *bool `locationName:"reverseOrder" type:"boolean"`
 
 	metadataListDomainsInput `json:"-", xml:"-"`
 }
@@ -1586,9 +3452,18 @@ type metadataListDomainsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains a paginated collection of DomainInfo structures.
 type ListDomainsOutput struct {
-	DomainInfos   []*DomainInfo `locationName:"domainInfos" type:"list" required:"true"`
-	NextPageToken *string       `locationName:"nextPageToken" type:"string"`
+	// A list of DomainInfo structures.
+	DomainInfos []*DomainInfo `locationName:"domainInfos" type:"list" required:"true"`
+
+	// If a NextPageToken was returned by a previous call, there are more results
+	// available. To retrieve the next page of results, make the call again using
+	// the returned token in nextPageToken. Keep all other arguments unchanged.
+	//
+	// The configured maximumPageSize determines how many results can be returned
+	// in a single call.
+	NextPageToken *string `locationName:"nextPageToken" type:"string"`
 
 	metadataListDomainsOutput `json:"-", xml:"-"`
 }
@@ -1598,14 +3473,52 @@ type metadataListDomainsOutput struct {
 }
 
 type ListOpenWorkflowExecutionsInput struct {
-	Domain          *string                  `locationName:"domain" type:"string" required:"true"`
+	// The name of the domain that contains the workflow executions to list.
+	Domain *string `locationName:"domain" type:"string" required:"true"`
+
+	// If specified, only workflow executions matching the workflow id specified
+	// in the filter are returned.
+	//
+	// executionFilter, typeFilter and tagFilter are mutually exclusive. You can
+	// specify at most one of these in a request.
 	ExecutionFilter *WorkflowExecutionFilter `locationName:"executionFilter" type:"structure"`
-	MaximumPageSize *int64                   `locationName:"maximumPageSize" type:"integer"`
-	NextPageToken   *string                  `locationName:"nextPageToken" type:"string"`
-	ReverseOrder    *bool                    `locationName:"reverseOrder" type:"boolean"`
-	StartTimeFilter *ExecutionTimeFilter     `locationName:"startTimeFilter" type:"structure" required:"true"`
-	TagFilter       *TagFilter               `locationName:"tagFilter" type:"structure"`
-	TypeFilter      *WorkflowTypeFilter      `locationName:"typeFilter" type:"structure"`
+
+	// The maximum number of results that will be returned per call. nextPageToken
+	// can be used to obtain futher pages of results. The default is 100, which
+	// is the maximum allowed page size. You can, however, specify a page size smaller
+	// than 100.
+	//
+	// This is an upper limit only; the actual number of results returned per call
+	// may be fewer than the specified maximum.
+	MaximumPageSize *int64 `locationName:"maximumPageSize" type:"integer"`
+
+	// If a NextPageToken was returned by a previous call, there are more results
+	// available. To retrieve the next page of results, make the call again using
+	// the returned token in nextPageToken. Keep all other arguments unchanged.
+	//
+	// The configured maximumPageSize determines how many results can be returned
+	// in a single call.
+	NextPageToken *string `locationName:"nextPageToken" type:"string"`
+
+	// When set to true, returns the results in reverse order. By default the results
+	// are returned in descending order of the start time of the executions.
+	ReverseOrder *bool `locationName:"reverseOrder" type:"boolean"`
+
+	// Workflow executions are included in the returned results based on whether
+	// their start times are within the range specified by this filter.
+	StartTimeFilter *ExecutionTimeFilter `locationName:"startTimeFilter" type:"structure" required:"true"`
+
+	// If specified, only executions that have the matching tag are listed.
+	//
+	// executionFilter, typeFilter and tagFilter are mutually exclusive. You can
+	// specify at most one of these in a request.
+	TagFilter *TagFilter `locationName:"tagFilter" type:"structure"`
+
+	// If specified, only executions of the type specified in the filter are returned.
+	//
+	// executionFilter, typeFilter and tagFilter are mutually exclusive. You can
+	// specify at most one of these in a request.
+	TypeFilter *WorkflowTypeFilter `locationName:"typeFilter" type:"structure"`
 
 	metadataListOpenWorkflowExecutionsInput `json:"-", xml:"-"`
 }
@@ -1615,12 +3528,36 @@ type metadataListOpenWorkflowExecutionsInput struct {
 }
 
 type ListWorkflowTypesInput struct {
-	Domain             *string `locationName:"domain" type:"string" required:"true"`
-	MaximumPageSize    *int64  `locationName:"maximumPageSize" type:"integer"`
-	Name               *string `locationName:"name" type:"string"`
-	NextPageToken      *string `locationName:"nextPageToken" type:"string"`
+	// The name of the domain in which the workflow types have been registered.
+	Domain *string `locationName:"domain" type:"string" required:"true"`
+
+	// The maximum number of results that will be returned per call. nextPageToken
+	// can be used to obtain futher pages of results. The default is 100, which
+	// is the maximum allowed page size. You can, however, specify a page size smaller
+	// than 100.
+	//
+	// This is an upper limit only; the actual number of results returned per call
+	// may be fewer than the specified maximum.
+	MaximumPageSize *int64 `locationName:"maximumPageSize" type:"integer"`
+
+	// If specified, lists the workflow type with this name.
+	Name *string `locationName:"name" type:"string"`
+
+	// If a NextPageToken was returned by a previous call, there are more results
+	// available. To retrieve the next page of results, make the call again using
+	// the returned token in nextPageToken. Keep all other arguments unchanged.
+	//
+	// The configured maximumPageSize determines how many results can be returned
+	// in a single call.
+	NextPageToken *string `locationName:"nextPageToken" type:"string"`
+
+	// Specifies the registration status of the workflow types to list.
 	RegistrationStatus *string `locationName:"registrationStatus" type:"string" required:"true"`
-	ReverseOrder       *bool   `locationName:"reverseOrder" type:"boolean"`
+
+	// When set to true, returns the results in reverse order. By default the results
+	// are returned in ascending alphabetical order of the name of the workflow
+	// types.
+	ReverseOrder *bool `locationName:"reverseOrder" type:"boolean"`
 
 	metadataListWorkflowTypesInput `json:"-", xml:"-"`
 }
@@ -1629,9 +3566,18 @@ type metadataListWorkflowTypesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains a paginated list of information structures about workflow types.
 type ListWorkflowTypesOutput struct {
-	NextPageToken *string             `locationName:"nextPageToken" type:"string"`
-	TypeInfos     []*WorkflowTypeInfo `locationName:"typeInfos" type:"list" required:"true"`
+	// If a NextPageToken was returned by a previous call, there are more results
+	// available. To retrieve the next page of results, make the call again using
+	// the returned token in nextPageToken. Keep all other arguments unchanged.
+	//
+	// The configured maximumPageSize determines how many results can be returned
+	// in a single call.
+	NextPageToken *string `locationName:"nextPageToken" type:"string"`
+
+	// The list of workflow type information.
+	TypeInfos []*WorkflowTypeInfo `locationName:"typeInfos" type:"list" required:"true"`
 
 	metadataListWorkflowTypesOutput `json:"-", xml:"-"`
 }
@@ -1640,10 +3586,19 @@ type metadataListWorkflowTypesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the MarkerRecorded event.
 type MarkerRecordedEventAttributes struct {
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
-	Details                      *string `locationName:"details" type:"string"`
-	MarkerName                   *string `locationName:"markerName" type:"string" required:"true"`
+	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// that resulted in the RecordMarker decision that requested this marker. This
+	// information can be useful for diagnosing problems by tracing back the chain
+	// of events leading up to this event.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+
+	// Details of the marker (if any).
+	Details *string `locationName:"details" type:"string"`
+
+	// The name of the marker.
+	MarkerName *string `locationName:"markerName" type:"string" required:"true"`
 
 	metadataMarkerRecordedEventAttributes `json:"-", xml:"-"`
 }
@@ -1652,9 +3607,14 @@ type metadataMarkerRecordedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the count of tasks in a task list.
 type PendingTaskCount struct {
-	Count     *int64 `locationName:"count" type:"integer" required:"true"`
-	Truncated *bool  `locationName:"truncated" type:"boolean"`
+	// The number of tasks in the task list.
+	Count *int64 `locationName:"count" type:"integer" required:"true"`
+
+	// If set to true, indicates that the actual count was more than the maximum
+	// supported by this API and the count returned is the truncated value.
+	Truncated *bool `locationName:"truncated" type:"boolean"`
 
 	metadataPendingTaskCount `json:"-", xml:"-"`
 }
@@ -1664,8 +3624,20 @@ type metadataPendingTaskCount struct {
 }
 
 type PollForActivityTaskInput struct {
-	Domain   *string   `locationName:"domain" type:"string" required:"true"`
-	Identity *string   `locationName:"identity" type:"string"`
+	// The name of the domain that contains the task lists being polled.
+	Domain *string `locationName:"domain" type:"string" required:"true"`
+
+	// Identity of the worker making the request, recorded in the ActivityTaskStarted
+	// event in the workflow history. This enables diagnostic tracing when problems
+	// arise. The form of this identity is user defined.
+	Identity *string `locationName:"identity" type:"string"`
+
+	// Specifies the task list to poll for activity tasks.
+	//
+	// The specified string must not start or end with whitespace. It must not
+	// contain a : (colon), / (slash), | (vertical bar), or any control characters
+	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
+	// string quotarnquot.
 	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
 
 	metadataPollForActivityTaskInput `json:"-", xml:"-"`
@@ -1675,12 +3647,27 @@ type metadataPollForActivityTaskInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Unit of work sent to an activity worker.
 type PollForActivityTaskOutput struct {
-	ActivityID        *string            `locationName:"activityId" type:"string" required:"true"`
-	ActivityType      *ActivityType      `locationName:"activityType" type:"structure" required:"true"`
-	Input             *string            `locationName:"input" type:"string"`
-	StartedEventID    *int64             `locationName:"startedEventId" type:"long" required:"true"`
-	TaskToken         *string            `locationName:"taskToken" type:"string" required:"true"`
+	// The unique ID of the task.
+	ActivityID *string `locationName:"activityId" type:"string" required:"true"`
+
+	// The type of this activity task.
+	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"`
+
+	// The inputs provided when the activity task was scheduled. The form of the
+	// input is user defined and should be meaningful to the activity implementation.
+	Input *string `locationName:"input" type:"string"`
+
+	// The id of the ActivityTaskStarted event recorded in the history.
+	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+
+	// The opaque string used as a handle on the task. This token is used by workers
+	// to communicate progress and response information back to the system about
+	// the task.
+	TaskToken *string `locationName:"taskToken" type:"string" required:"true"`
+
+	// The workflow execution that started this activity task.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
 
 	metadataPollForActivityTaskOutput `json:"-", xml:"-"`
@@ -1691,12 +3678,47 @@ type metadataPollForActivityTaskOutput struct {
 }
 
 type PollForDecisionTaskInput struct {
-	Domain          *string   `locationName:"domain" type:"string" required:"true"`
-	Identity        *string   `locationName:"identity" type:"string"`
-	MaximumPageSize *int64    `locationName:"maximumPageSize" type:"integer"`
-	NextPageToken   *string   `locationName:"nextPageToken" type:"string"`
-	ReverseOrder    *bool     `locationName:"reverseOrder" type:"boolean"`
-	TaskList        *TaskList `locationName:"taskList" type:"structure" required:"true"`
+	// The name of the domain containing the task lists to poll.
+	Domain *string `locationName:"domain" type:"string" required:"true"`
+
+	// Identity of the decider making the request, which is recorded in the DecisionTaskStarted
+	// event in the workflow history. This enables diagnostic tracing when problems
+	// arise. The form of this identity is user defined.
+	Identity *string `locationName:"identity" type:"string"`
+
+	// The maximum number of results that will be returned per call. nextPageToken
+	// can be used to obtain futher pages of results. The default is 100, which
+	// is the maximum allowed page size. You can, however, specify a page size smaller
+	// than 100.
+	//
+	// This is an upper limit only; the actual number of results returned per call
+	// may be fewer than the specified maximum.
+	MaximumPageSize *int64 `locationName:"maximumPageSize" type:"integer"`
+
+	// If a NextPageToken was returned by a previous call, there are more results
+	// available. To retrieve the next page of results, make the call again using
+	// the returned token in nextPageToken. Keep all other arguments unchanged.
+	//
+	// The configured maximumPageSize determines how many results can be returned
+	// in a single call.
+	//
+	// The nextPageToken returned by this action cannot be used with GetWorkflowExecutionHistory
+	// to get the next page. You must call PollForDecisionTask again (with the nextPageToken)
+	// to retrieve the next page of history records. Calling PollForDecisionTask
+	// with a nextPageToken will not return a new decision task..
+	NextPageToken *string `locationName:"nextPageToken" type:"string"`
+
+	// When set to true, returns the events in reverse order. By default the results
+	// are returned in ascending order of the eventTimestamp of the events.
+	ReverseOrder *bool `locationName:"reverseOrder" type:"boolean"`
+
+	// Specifies the task list to poll for decision tasks.
+	//
+	// The specified string must not start or end with whitespace. It must not
+	// contain a : (colon), / (slash), | (vertical bar), or any control characters
+	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
+	// string quotarnquot.
+	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
 
 	metadataPollForDecisionTaskInput `json:"-", xml:"-"`
 }
@@ -1705,14 +3727,40 @@ type metadataPollForDecisionTaskInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A structure that represents a decision task. Decision tasks are sent to deciders
+// in order for them to make decisions.
 type PollForDecisionTaskOutput struct {
-	Events                 []*HistoryEvent    `locationName:"events" type:"list" required:"true"`
-	NextPageToken          *string            `locationName:"nextPageToken" type:"string"`
-	PreviousStartedEventID *int64             `locationName:"previousStartedEventId" type:"long"`
-	StartedEventID         *int64             `locationName:"startedEventId" type:"long" required:"true"`
-	TaskToken              *string            `locationName:"taskToken" type:"string" required:"true"`
-	WorkflowExecution      *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
-	WorkflowType           *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"`
+	// A paginated list of history events of the workflow execution. The decider
+	// uses this during the processing of the decision task.
+	Events []*HistoryEvent `locationName:"events" type:"list" required:"true"`
+
+	// If a NextPageToken was returned by a previous call, there are more results
+	// available. To retrieve the next page of results, make the call again using
+	// the returned token in nextPageToken. Keep all other arguments unchanged.
+	//
+	// The configured maximumPageSize determines how many results can be returned
+	// in a single call.
+	NextPageToken *string `locationName:"nextPageToken" type:"string"`
+
+	// The id of the DecisionTaskStarted event of the previous decision task of
+	// this workflow execution that was processed by the decider. This can be used
+	// to determine the events in the history new since the last decision task received
+	// by the decider.
+	PreviousStartedEventID *int64 `locationName:"previousStartedEventId" type:"long"`
+
+	// The id of the DecisionTaskStarted event recorded in the history.
+	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+
+	// The opaque string used as a handle on the task. This token is used by workers
+	// to communicate progress and response information back to the system about
+	// the task.
+	TaskToken *string `locationName:"taskToken" type:"string" required:"true"`
+
+	// The workflow execution for which this decision task was created.
+	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
+
+	// The type of the workflow execution for which this decision task was created.
+	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataPollForDecisionTaskOutput `json:"-", xml:"-"`
 }
@@ -1722,7 +3770,14 @@ type metadataPollForDecisionTaskOutput struct {
 }
 
 type RecordActivityTaskHeartbeatInput struct {
-	Details   *string `locationName:"details" type:"string"`
+	// If specified, contains details about the progress of the task.
+	Details *string `locationName:"details" type:"string"`
+
+	// The taskToken of the ActivityTask.
+	//
+	//  taskToken is generated by the service and should be treated as an opaque
+	// value. If the task is passed to another process, its taskToken must also
+	// be passed. This enables it to provide its progress and respond with results.
 	TaskToken *string `locationName:"taskToken" type:"string" required:"true"`
 
 	metadataRecordActivityTaskHeartbeatInput `json:"-", xml:"-"`
@@ -1732,7 +3787,9 @@ type metadataRecordActivityTaskHeartbeatInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Status information about an activity task.
 type RecordActivityTaskHeartbeatOutput struct {
+	// Set to true if cancellation of the task is requested.
 	CancelRequested *bool `locationName:"cancelRequested" type:"boolean" required:"true"`
 
 	metadataRecordActivityTaskHeartbeatOutput `json:"-", xml:"-"`
@@ -1742,8 +3799,26 @@ type metadataRecordActivityTaskHeartbeatOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the RecordMarker decision.
+//
+// Access Control
+//
+// You can use IAM policies to control this decision's access to Amazon SWF
+// resources as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. You cannot use an IAM policy to constrain this action's parameters.
+//  If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type RecordMarkerDecisionAttributes struct {
-	Details    *string `locationName:"details" type:"string"`
+	// Optional. details of the marker.
+	Details *string `locationName:"details" type:"string"`
+
+	// Required. The name of the marker.
 	MarkerName *string `locationName:"markerName" type:"string" required:"true"`
 
 	metadataRecordMarkerDecisionAttributes `json:"-", xml:"-"`
@@ -1753,10 +3828,24 @@ type metadataRecordMarkerDecisionAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the RecordMarkerFailed event.
 type RecordMarkerFailedEventAttributes struct {
-	Cause                        *string `locationName:"cause" type:"string" required:"true"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
-	MarkerName                   *string `locationName:"markerName" type:"string" required:"true"`
+	// The cause of the failure. This information is generated by the system and
+	// can be useful for diagnostic purposes.
+	//
+	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
+	// it lacked sufficient permissions. For details and example IAM policies, see
+	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+	Cause *string `locationName:"cause" type:"string" required:"true"`
+
+	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// that resulted in the RecordMarkerFailed decision for this cancellation request.
+	// This information can be useful for diagnosing problems by tracing back the
+	// chain of events leading up to this event.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+
+	// The marker's name.
+	MarkerName *string `locationName:"markerName" type:"string" required:"true"`
 
 	metadataRecordMarkerFailedEventAttributes `json:"-", xml:"-"`
 }
@@ -1766,16 +3855,80 @@ type metadataRecordMarkerFailedEventAttributes struct {
 }
 
 type RegisterActivityTypeInput struct {
-	DefaultTaskHeartbeatTimeout       *string   `locationName:"defaultTaskHeartbeatTimeout" type:"string"`
-	DefaultTaskList                   *TaskList `locationName:"defaultTaskList" type:"structure"`
-	DefaultTaskPriority               *string   `locationName:"defaultTaskPriority" type:"string"`
-	DefaultTaskScheduleToCloseTimeout *string   `locationName:"defaultTaskScheduleToCloseTimeout" type:"string"`
-	DefaultTaskScheduleToStartTimeout *string   `locationName:"defaultTaskScheduleToStartTimeout" type:"string"`
-	DefaultTaskStartToCloseTimeout    *string   `locationName:"defaultTaskStartToCloseTimeout" type:"string"`
-	Description                       *string   `locationName:"description" type:"string"`
-	Domain                            *string   `locationName:"domain" type:"string" required:"true"`
-	Name                              *string   `locationName:"name" type:"string" required:"true"`
-	Version                           *string   `locationName:"version" type:"string" required:"true"`
+	// If set, specifies the default maximum time before which a worker processing
+	// a task of this type must report progress by calling RecordActivityTaskHeartbeat.
+	// If the timeout is exceeded, the activity task is automatically timed out.
+	// This default can be overridden when scheduling an activity task using the
+	// ScheduleActivityTask Decision. If the activity worker subsequently attempts
+	// to record a heartbeat or returns a result, the activity worker receives an
+	// UnknownResource fault. In this case, Amazon SWF no longer considers the activity
+	// task to be valid; the activity worker should clean up the activity task.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	DefaultTaskHeartbeatTimeout *string `locationName:"defaultTaskHeartbeatTimeout" type:"string"`
+
+	// If set, specifies the default task list to use for scheduling tasks of this
+	// activity type. This default task list is used if a task list is not provided
+	// when a task is scheduled through the ScheduleActivityTask Decision.
+	DefaultTaskList *TaskList `locationName:"defaultTaskList" type:"structure"`
+
+	// The default task priority to assign to the activity type. If not assigned,
+	// then "0" will be used. Valid values are integers that range from Java's Integer.MIN_VALUE
+	// (-2147483648) to Integer.MAX_VALUE (2147483647). Higher numbers indicate
+	// higher priority.
+	//
+	// For more information about setting task priority, see Setting Task Priority
+	// (http://docs.aws.amazon.com/amazonswf/latest/developerguide/programming-priority.html)
+	// in the Amazon Simple Workflow Developer Guide.
+	DefaultTaskPriority *string `locationName:"defaultTaskPriority" type:"string"`
+
+	// If set, specifies the default maximum duration for a task of this activity
+	// type. This default can be overridden when scheduling an activity task using
+	// the ScheduleActivityTask Decision.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	DefaultTaskScheduleToCloseTimeout *string `locationName:"defaultTaskScheduleToCloseTimeout" type:"string"`
+
+	// If set, specifies the default maximum duration that a task of this activity
+	// type can wait before being assigned to a worker. This default can be overridden
+	// when scheduling an activity task using the ScheduleActivityTask Decision.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	DefaultTaskScheduleToStartTimeout *string `locationName:"defaultTaskScheduleToStartTimeout" type:"string"`
+
+	// If set, specifies the default maximum duration that a worker can take to
+	// process tasks of this activity type. This default can be overridden when
+	// scheduling an activity task using the ScheduleActivityTask Decision.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	DefaultTaskStartToCloseTimeout *string `locationName:"defaultTaskStartToCloseTimeout" type:"string"`
+
+	// A textual description of the activity type.
+	Description *string `locationName:"description" type:"string"`
+
+	// The name of the domain in which this activity is to be registered.
+	Domain *string `locationName:"domain" type:"string" required:"true"`
+
+	// The name of the activity type within the domain.
+	//
+	// The specified string must not start or end with whitespace. It must not
+	// contain a : (colon), / (slash), | (vertical bar), or any control characters
+	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
+	// string quotarnquot.
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The version of the activity type.
+	//
+	// The activity type consists of the name and version, the combination of which
+	// must be unique within the domain. The specified string must not start or
+	// end with whitespace. It must not contain a : (colon), / (slash), | (vertical
+	// bar), or any control characters (\u0000-\u001f | \u007f - \u009f). Also,
+	// it must not contain the literal string quotarnquot.
+	Version *string `locationName:"version" type:"string" required:"true"`
 
 	metadataRegisterActivityTypeInput `json:"-", xml:"-"`
 }
@@ -1793,8 +3946,29 @@ type metadataRegisterActivityTypeOutput struct {
 }
 
 type RegisterDomainInput struct {
-	Description                            *string `locationName:"description" type:"string"`
-	Name                                   *string `locationName:"name" type:"string" required:"true"`
+	// A text description of the domain.
+	Description *string `locationName:"description" type:"string"`
+
+	// Name of the domain to register. The name must be unique in the region that
+	// the domain is registered in.
+	//
+	// The specified string must not start or end with whitespace. It must not
+	// contain a : (colon), / (slash), | (vertical bar), or any control characters
+	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
+	// string quotarnquot.
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The duration (in days) that records and histories of workflow executions
+	// on the domain should be kept by the service. After the retention period,
+	// the workflow execution is not available in the results of visibility calls.
+	//
+	// If you pass the value NONE or 0 (zero), then the workflow execution history
+	// will not be retained. As soon as the workflow execution completes, the execution
+	// record and its history are deleted.
+	//
+	// The maximum workflow execution retention period is 90 days. For more information
+	// about Amazon SWF service limits, see: Amazon SWF Service Limits (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dg-limits.html)
+	// in the Amazon SWF Developer Guide.
 	WorkflowExecutionRetentionPeriodInDays *string `locationName:"workflowExecutionRetentionPeriodInDays" type:"string" required:"true"`
 
 	metadataRegisterDomainInput `json:"-", xml:"-"`
@@ -1813,15 +3987,80 @@ type metadataRegisterDomainOutput struct {
 }
 
 type RegisterWorkflowTypeInput struct {
-	DefaultChildPolicy                  *string   `locationName:"defaultChildPolicy" type:"string"`
-	DefaultExecutionStartToCloseTimeout *string   `locationName:"defaultExecutionStartToCloseTimeout" type:"string"`
-	DefaultTaskList                     *TaskList `locationName:"defaultTaskList" type:"structure"`
-	DefaultTaskPriority                 *string   `locationName:"defaultTaskPriority" type:"string"`
-	DefaultTaskStartToCloseTimeout      *string   `locationName:"defaultTaskStartToCloseTimeout" type:"string"`
-	Description                         *string   `locationName:"description" type:"string"`
-	Domain                              *string   `locationName:"domain" type:"string" required:"true"`
-	Name                                *string   `locationName:"name" type:"string" required:"true"`
-	Version                             *string   `locationName:"version" type:"string" required:"true"`
+	// If set, specifies the default policy to use for the child workflow executions
+	// when a workflow execution of this type is terminated, by calling the TerminateWorkflowExecution
+	// action explicitly or due to an expired timeout. This default can be overridden
+	// when starting a workflow execution using the StartWorkflowExecution action
+	// or the StartChildWorkflowExecution Decision.
+	//
+	// The supported child policies are:
+	//
+	//  TERMINATE: the child executions will be terminated. REQUEST_CANCEL: a request
+	// to cancel will be attempted for each child execution by recording a WorkflowExecutionCancelRequested
+	// event in its history. It is up to the decider to take appropriate actions
+	// when it receives an execution history with this event. ABANDON: no action
+	// will be taken. The child executions will continue to run.
+	DefaultChildPolicy *string `locationName:"defaultChildPolicy" type:"string"`
+
+	// If set, specifies the default maximum duration for executions of this workflow
+	// type. You can override this default when starting an execution through the
+	// StartWorkflowExecution Action or StartChildWorkflowExecution Decision.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. Unlike some of the other timeout parameters in Amazon SWF, you cannot
+	// specify a value of "NONE" for defaultExecutionStartToCloseTimeout; there
+	// is a one-year max limit on the time that a workflow execution can run. Exceeding
+	// this limit will always cause the workflow execution to time out.
+	DefaultExecutionStartToCloseTimeout *string `locationName:"defaultExecutionStartToCloseTimeout" type:"string"`
+
+	// If set, specifies the default task list to use for scheduling decision tasks
+	// for executions of this workflow type. This default is used only if a task
+	// list is not provided when starting the execution through the StartWorkflowExecution
+	// Action or StartChildWorkflowExecution Decision.
+	DefaultTaskList *TaskList `locationName:"defaultTaskList" type:"structure"`
+
+	// The default task priority to assign to the workflow type. If not assigned,
+	// then "0" will be used. Valid values are integers that range from Java's Integer.MIN_VALUE
+	// (-2147483648) to Integer.MAX_VALUE (2147483647). Higher numbers indicate
+	// higher priority.
+	//
+	// For more information about setting task priority, see Setting Task Priority
+	// (http://docs.aws.amazon.com/amazonswf/latest/developerguide/programming-priority.html)
+	// in the Amazon Simple Workflow Developer Guide.
+	DefaultTaskPriority *string `locationName:"defaultTaskPriority" type:"string"`
+
+	// If set, specifies the default maximum duration of decision tasks for this
+	// workflow type. This default can be overridden when starting a workflow execution
+	// using the StartWorkflowExecution action or the StartChildWorkflowExecution
+	// Decision.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	DefaultTaskStartToCloseTimeout *string `locationName:"defaultTaskStartToCloseTimeout" type:"string"`
+
+	// Textual description of the workflow type.
+	Description *string `locationName:"description" type:"string"`
+
+	// The name of the domain in which to register the workflow type.
+	Domain *string `locationName:"domain" type:"string" required:"true"`
+
+	// The name of the workflow type.
+	//
+	// The specified string must not start or end with whitespace. It must not
+	// contain a : (colon), / (slash), | (vertical bar), or any control characters
+	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
+	// string quotarnquot.
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The version of the workflow type.
+	//
+	// The workflow type consists of the name and version, the combination of which
+	// must be unique within the domain. To get a list of all currently registered
+	// workflow types, use the ListWorkflowTypes action. The specified string must
+	// not start or end with whitespace. It must not contain a : (colon), / (slash),
+	// | (vertical bar), or any control characters (\u0000-\u001f | \u007f - \u009f).
+	// Also, it must not contain the literal string quotarnquot.
+	Version *string `locationName:"version" type:"string" required:"true"`
 
 	metadataRegisterWorkflowTypeInput `json:"-", xml:"-"`
 }
@@ -1838,7 +4077,23 @@ type metadataRegisterWorkflowTypeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the RequestCancelActivityTask decision.
+//
+// Access Control
+//
+// You can use IAM policies to control this decision's access to Amazon SWF
+// resources as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. You cannot use an IAM policy to constrain this action's parameters.
+//  If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type RequestCancelActivityTaskDecisionAttributes struct {
+	// The activityId of the activity task to be canceled.
 	ActivityID *string `locationName:"activityId" type:"string" required:"true"`
 
 	metadataRequestCancelActivityTaskDecisionAttributes `json:"-", xml:"-"`
@@ -1848,10 +4103,24 @@ type metadataRequestCancelActivityTaskDecisionAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the RequestCancelActivityTaskFailed event.
 type RequestCancelActivityTaskFailedEventAttributes struct {
-	ActivityID                   *string `locationName:"activityId" type:"string" required:"true"`
-	Cause                        *string `locationName:"cause" type:"string" required:"true"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	// The activityId provided in the RequestCancelActivityTask decision that failed.
+	ActivityID *string `locationName:"activityId" type:"string" required:"true"`
+
+	// The cause of the failure. This information is generated by the system and
+	// can be useful for diagnostic purposes.
+	//
+	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
+	// it lacked sufficient permissions. For details and example IAM policies, see
+	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+	Cause *string `locationName:"cause" type:"string" required:"true"`
+
+	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// that resulted in the RequestCancelActivityTask decision for this cancellation
+	// request. This information can be useful for diagnosing problems by tracing
+	// back the chain of events leading up to this event.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	metadataRequestCancelActivityTaskFailedEventAttributes `json:"-", xml:"-"`
 }
@@ -1860,9 +4129,30 @@ type metadataRequestCancelActivityTaskFailedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the RequestCancelExternalWorkflowExecution decision.
+//
+// Access Control
+//
+// You can use IAM policies to control this decision's access to Amazon SWF
+// resources as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. You cannot use an IAM policy to constrain this action's parameters.
+//  If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type RequestCancelExternalWorkflowExecutionDecisionAttributes struct {
-	Control    *string `locationName:"control" type:"string"`
-	RunID      *string `locationName:"runId" type:"string"`
+	// Optional. Data attached to the event that can be used by the decider in subsequent
+	// workflow tasks.
+	Control *string `locationName:"control" type:"string"`
+
+	// The runId of the external workflow execution to cancel.
+	RunID *string `locationName:"runId" type:"string"`
+
+	// Required. The workflowId of the external workflow execution to cancel.
 	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataRequestCancelExternalWorkflowExecutionDecisionAttributes `json:"-", xml:"-"`
@@ -1872,13 +4162,36 @@ type metadataRequestCancelExternalWorkflowExecutionDecisionAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the RequestCancelExternalWorkflowExecutionFailed event.
 type RequestCancelExternalWorkflowExecutionFailedEventAttributes struct {
-	Cause                        *string `locationName:"cause" type:"string" required:"true"`
-	Control                      *string `locationName:"control" type:"string"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
-	InitiatedEventID             *int64  `locationName:"initiatedEventId" type:"long" required:"true"`
-	RunID                        *string `locationName:"runId" type:"string"`
-	WorkflowID                   *string `locationName:"workflowId" type:"string" required:"true"`
+	// The cause of the failure. This information is generated by the system and
+	// can be useful for diagnostic purposes.
+	//
+	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
+	// it lacked sufficient permissions. For details and example IAM policies, see
+	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+	Cause *string `locationName:"cause" type:"string" required:"true"`
+
+	Control *string `locationName:"control" type:"string"`
+
+	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// that resulted in the RequestCancelExternalWorkflowExecution decision for
+	// this cancellation request. This information can be useful for diagnosing
+	// problems by tracing back the chain of events leading up to this event.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+
+	// The id of the RequestCancelExternalWorkflowExecutionInitiated event corresponding
+	// to the RequestCancelExternalWorkflowExecution decision to cancel this external
+	// workflow execution. This information can be useful for diagnosing problems
+	// by tracing back the chain of events leading up to this event.
+	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
+
+	// The runId of the external workflow execution.
+	RunID *string `locationName:"runId" type:"string"`
+
+	// The workflowId of the external workflow to which the cancel request was to
+	// be delivered.
+	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataRequestCancelExternalWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
 }
@@ -1887,11 +4200,23 @@ type metadataRequestCancelExternalWorkflowExecutionFailedEventAttributes struct 
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the RequestCancelExternalWorkflowExecutionInitiated event.
 type RequestCancelExternalWorkflowExecutionInitiatedEventAttributes struct {
-	Control                      *string `locationName:"control" type:"string"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
-	RunID                        *string `locationName:"runId" type:"string"`
-	WorkflowID                   *string `locationName:"workflowId" type:"string" required:"true"`
+	// Optional. Data attached to the event that can be used by the decider in subsequent
+	// workflow tasks.
+	Control *string `locationName:"control" type:"string"`
+
+	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// that resulted in the RequestCancelExternalWorkflowExecution decision for
+	// this cancellation request. This information can be useful for diagnosing
+	// problems by tracing back the chain of events leading up to this event.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+
+	// The runId of the external workflow execution to be canceled.
+	RunID *string `locationName:"runId" type:"string"`
+
+	// The workflowId of the external workflow execution to be canceled.
+	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataRequestCancelExternalWorkflowExecutionInitiatedEventAttributes `json:"-", xml:"-"`
 }
@@ -1901,8 +4226,13 @@ type metadataRequestCancelExternalWorkflowExecutionInitiatedEventAttributes stru
 }
 
 type RequestCancelWorkflowExecutionInput struct {
-	Domain     *string `locationName:"domain" type:"string" required:"true"`
-	RunID      *string `locationName:"runId" type:"string"`
+	// The name of the domain containing the workflow execution to cancel.
+	Domain *string `locationName:"domain" type:"string" required:"true"`
+
+	// The runId of the workflow execution to cancel.
+	RunID *string `locationName:"runId" type:"string"`
+
+	// The workflowId of the workflow execution to cancel.
 	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataRequestCancelWorkflowExecutionInput `json:"-", xml:"-"`
@@ -1921,7 +4251,14 @@ type metadataRequestCancelWorkflowExecutionOutput struct {
 }
 
 type RespondActivityTaskCanceledInput struct {
-	Details   *string `locationName:"details" type:"string"`
+	// Optional. Information about the cancellation.
+	Details *string `locationName:"details" type:"string"`
+
+	// The taskToken of the ActivityTask.
+	//
+	// taskToken is generated by the service and should be treated as an opaque
+	// value. If the task is passed to another process, its taskToken must also
+	// be passed. This enables it to provide its progress and respond with results.
 	TaskToken *string `locationName:"taskToken" type:"string" required:"true"`
 
 	metadataRespondActivityTaskCanceledInput `json:"-", xml:"-"`
@@ -1940,7 +4277,15 @@ type metadataRespondActivityTaskCanceledOutput struct {
 }
 
 type RespondActivityTaskCompletedInput struct {
-	Result    *string `locationName:"result" type:"string"`
+	// The result of the activity task. It is a free form string that is implementation
+	// specific.
+	Result *string `locationName:"result" type:"string"`
+
+	// The taskToken of the ActivityTask.
+	//
+	//  taskToken is generated by the service and should be treated as an opaque
+	// value. If the task is passed to another process, its taskToken must also
+	// be passed. This enables it to provide its progress and respond with results.
 	TaskToken *string `locationName:"taskToken" type:"string" required:"true"`
 
 	metadataRespondActivityTaskCompletedInput `json:"-", xml:"-"`
@@ -1959,8 +4304,17 @@ type metadataRespondActivityTaskCompletedOutput struct {
 }
 
 type RespondActivityTaskFailedInput struct {
-	Details   *string `locationName:"details" type:"string"`
-	Reason    *string `locationName:"reason" type:"string"`
+	// Optional. Detailed information about the failure.
+	Details *string `locationName:"details" type:"string"`
+
+	// Description of the error that may assist in diagnostics.
+	Reason *string `locationName:"reason" type:"string"`
+
+	// The taskToken of the ActivityTask.
+	//
+	//  taskToken is generated by the service and should be treated as an opaque
+	// value. If the task is passed to another process, its taskToken must also
+	// be passed. This enables it to provide its progress and respond with results.
 	TaskToken *string `locationName:"taskToken" type:"string" required:"true"`
 
 	metadataRespondActivityTaskFailedInput `json:"-", xml:"-"`
@@ -1979,9 +4333,19 @@ type metadataRespondActivityTaskFailedOutput struct {
 }
 
 type RespondDecisionTaskCompletedInput struct {
-	Decisions        []*Decision `locationName:"decisions" type:"list"`
-	ExecutionContext *string     `locationName:"executionContext" type:"string"`
-	TaskToken        *string     `locationName:"taskToken" type:"string" required:"true"`
+	// The list of decisions (possibly empty) made by the decider while processing
+	// this decision task. See the docs for the Decision structure for details.
+	Decisions []*Decision `locationName:"decisions" type:"list"`
+
+	// User defined context to add to workflow execution.
+	ExecutionContext *string `locationName:"executionContext" type:"string"`
+
+	// The taskToken from the DecisionTask.
+	//
+	// taskToken is generated by the service and should be treated as an opaque
+	// value. If the task is passed to another process, its taskToken must also
+	// be passed. This enables it to provide its progress and respond with results.
+	TaskToken *string `locationName:"taskToken" type:"string" required:"true"`
 
 	metadataRespondDecisionTaskCompletedInput `json:"-", xml:"-"`
 }
@@ -1998,17 +4362,114 @@ type metadataRespondDecisionTaskCompletedOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the ScheduleActivityTask decision.
+//
+// Access Control
+//
+// You can use IAM policies to control this decision's access to Amazon SWF
+// resources as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. Constrain the following parameters by using a Condition element
+// with the appropriate keys.  activityType.name: String constraint. The key
+// is swf:activityType.name. activityType.version: String constraint. The key
+// is swf:activityType.version. taskList: String constraint. The key is swf:taskList.name.
+//    If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type ScheduleActivityTaskDecisionAttributes struct {
-	ActivityID             *string       `locationName:"activityId" type:"string" required:"true"`
-	ActivityType           *ActivityType `locationName:"activityType" type:"structure" required:"true"`
-	Control                *string       `locationName:"control" type:"string"`
-	HeartbeatTimeout       *string       `locationName:"heartbeatTimeout" type:"string"`
-	Input                  *string       `locationName:"input" type:"string"`
-	ScheduleToCloseTimeout *string       `locationName:"scheduleToCloseTimeout" type:"string"`
-	ScheduleToStartTimeout *string       `locationName:"scheduleToStartTimeout" type:"string"`
-	StartToCloseTimeout    *string       `locationName:"startToCloseTimeout" type:"string"`
-	TaskList               *TaskList     `locationName:"taskList" type:"structure"`
-	TaskPriority           *string       `locationName:"taskPriority" type:"string"`
+	// Required. The activityId of the activity task.
+	//
+	// The specified string must not start or end with whitespace. It must not
+	// contain a : (colon), / (slash), | (vertical bar), or any control characters
+	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
+	// string quotarnquot.
+	ActivityID *string `locationName:"activityId" type:"string" required:"true"`
+
+	// Required. The type of the activity task to schedule.
+	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"`
+
+	// Optional. Data attached to the event that can be used by the decider in subsequent
+	// workflow tasks. This data is not sent to the activity.
+	Control *string `locationName:"control" type:"string"`
+
+	// If set, specifies the maximum time before which a worker processing a task
+	// of this type must report progress by calling RecordActivityTaskHeartbeat.
+	// If the timeout is exceeded, the activity task is automatically timed out.
+	// If the worker subsequently attempts to record a heartbeat or returns a result,
+	// it will be ignored. This overrides the default heartbeat timeout specified
+	// when registering the activity type using RegisterActivityType.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	HeartbeatTimeout *string `locationName:"heartbeatTimeout" type:"string"`
+
+	// The input provided to the activity task.
+	Input *string `locationName:"input" type:"string"`
+
+	// The maximum duration for this activity task.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	//
+	// A schedule-to-close timeout for this activity task must be specified either
+	// as a default for the activity type or through this field. If neither this
+	// field is set nor a default schedule-to-close timeout was specified at registration
+	// time then a fault will be returned.
+	ScheduleToCloseTimeout *string `locationName:"scheduleToCloseTimeout" type:"string"`
+
+	// Optional. If set, specifies the maximum duration the activity task can wait
+	// to be assigned to a worker. This overrides the default schedule-to-start
+	// timeout specified when registering the activity type using RegisterActivityType.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	//
+	// A schedule-to-start timeout for this activity task must be specified either
+	// as a default for the activity type or through this field. If neither this
+	// field is set nor a default schedule-to-start timeout was specified at registration
+	// time then a fault will be returned.
+	ScheduleToStartTimeout *string `locationName:"scheduleToStartTimeout" type:"string"`
+
+	// If set, specifies the maximum duration a worker may take to process this
+	// activity task. This overrides the default start-to-close timeout specified
+	// when registering the activity type using RegisterActivityType.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	//
+	// A start-to-close timeout for this activity task must be specified either
+	// as a default for the activity type or through this field. If neither this
+	// field is set nor a default start-to-close timeout was specified at registration
+	// time then a fault will be returned.
+	StartToCloseTimeout *string `locationName:"startToCloseTimeout" type:"string"`
+
+	// If set, specifies the name of the task list in which to schedule the activity
+	// task. If not specified, the defaultTaskList registered with the activity
+	// type will be used.
+	//
+	// A task list for this activity task must be specified either as a default
+	// for the activity type or through this field. If neither this field is set
+	// nor a default task list was specified at registration time then a fault will
+	// be returned. The specified string must not start or end with whitespace.
+	// It must not contain a : (colon), / (slash), | (vertical bar), or any control
+	// characters (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the
+	// literal string quotarnquot.
+	TaskList *TaskList `locationName:"taskList" type:"structure"`
+
+	// Optional. If set, specifies the priority with which the activity task is
+	// to be assigned to a worker. This overrides the defaultTaskPriority specified
+	// when registering the activity type using RegisterActivityType. Valid values
+	// are integers that range from Java's Integer.MIN_VALUE (-2147483648) to Integer.MAX_VALUE
+	// (2147483647). Higher numbers indicate higher priority.
+	//
+	// For more information about setting task priority, see Setting Task Priority
+	// (http://docs.aws.amazon.com/amazonswf/latest/developerguide/programming-priority.html)
+	// in the Amazon Simple Workflow Developer Guide.
+	TaskPriority *string `locationName:"taskPriority" type:"string"`
 
 	metadataScheduleActivityTaskDecisionAttributes `json:"-", xml:"-"`
 }
@@ -2017,11 +4478,27 @@ type metadataScheduleActivityTaskDecisionAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the ScheduleActivityTaskFailed event.
 type ScheduleActivityTaskFailedEventAttributes struct {
-	ActivityID                   *string       `locationName:"activityId" type:"string" required:"true"`
-	ActivityType                 *ActivityType `locationName:"activityType" type:"structure" required:"true"`
-	Cause                        *string       `locationName:"cause" type:"string" required:"true"`
-	DecisionTaskCompletedEventID *int64        `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	// The activityId provided in the ScheduleActivityTask decision that failed.
+	ActivityID *string `locationName:"activityId" type:"string" required:"true"`
+
+	// The activity type provided in the ScheduleActivityTask decision that failed.
+	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"`
+
+	// The cause of the failure. This information is generated by the system and
+	// can be useful for diagnostic purposes.
+	//
+	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
+	// it lacked sufficient permissions. For details and example IAM policies, see
+	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+	Cause *string `locationName:"cause" type:"string" required:"true"`
+
+	// The id of the DecisionTaskCompleted event corresponding to the decision that
+	// resulted in the scheduling of this activity task. This information can be
+	// useful for diagnosing problems by tracing back the chain of events leading
+	// up to this event.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	metadataScheduleActivityTaskFailedEventAttributes `json:"-", xml:"-"`
 }
@@ -2030,11 +4507,38 @@ type metadataScheduleActivityTaskFailedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the SignalExternalWorkflowExecution decision.
+//
+// Access Control
+//
+// You can use IAM policies to control this decision's access to Amazon SWF
+// resources as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. You cannot use an IAM policy to constrain this action's parameters.
+//  If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type SignalExternalWorkflowExecutionDecisionAttributes struct {
-	Control    *string `locationName:"control" type:"string"`
-	Input      *string `locationName:"input" type:"string"`
-	RunID      *string `locationName:"runId" type:"string"`
+	// Optional. Data attached to the event that can be used by the decider in subsequent
+	// decision tasks.
+	Control *string `locationName:"control" type:"string"`
+
+	// Optional. Input data to be provided with the signal. The target workflow
+	// execution will use the signal name and input data to process the signal.
+	Input *string `locationName:"input" type:"string"`
+
+	// The runId of the workflow execution to be signaled.
+	RunID *string `locationName:"runId" type:"string"`
+
+	// Required. The name of the signal.The target workflow execution will use the
+	// signal name and input to process the signal.
 	SignalName *string `locationName:"signalName" type:"string" required:"true"`
+
+	// Required. The workflowId of the workflow execution to be signaled.
 	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataSignalExternalWorkflowExecutionDecisionAttributes `json:"-", xml:"-"`
@@ -2044,13 +4548,37 @@ type metadataSignalExternalWorkflowExecutionDecisionAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the SignalExternalWorkflowExecutionFailed event.
 type SignalExternalWorkflowExecutionFailedEventAttributes struct {
-	Cause                        *string `locationName:"cause" type:"string" required:"true"`
-	Control                      *string `locationName:"control" type:"string"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
-	InitiatedEventID             *int64  `locationName:"initiatedEventId" type:"long" required:"true"`
-	RunID                        *string `locationName:"runId" type:"string"`
-	WorkflowID                   *string `locationName:"workflowId" type:"string" required:"true"`
+	// The cause of the failure. This information is generated by the system and
+	// can be useful for diagnostic purposes.
+	//
+	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
+	// it lacked sufficient permissions. For details and example IAM policies, see
+	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+	Cause *string `locationName:"cause" type:"string" required:"true"`
+
+	Control *string `locationName:"control" type:"string"`
+
+	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// that resulted in the SignalExternalWorkflowExecution decision for this signal.
+	// This information can be useful for diagnosing problems by tracing back the
+	// chain of events leading up to this event.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+
+	// The id of the SignalExternalWorkflowExecutionInitiated event corresponding
+	// to the SignalExternalWorkflowExecution decision to request this signal. This
+	// information can be useful for diagnosing problems by tracing back the chain
+	// of events leading up to this event.
+	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
+
+	// The runId of the external workflow execution that the signal was being delivered
+	// to.
+	RunID *string `locationName:"runId" type:"string"`
+
+	// The workflowId of the external workflow execution that the signal was being
+	// delivered to.
+	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataSignalExternalWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
 }
@@ -2059,13 +4587,29 @@ type metadataSignalExternalWorkflowExecutionFailedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the SignalExternalWorkflowExecutionInitiated event.
 type SignalExternalWorkflowExecutionInitiatedEventAttributes struct {
-	Control                      *string `locationName:"control" type:"string"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
-	Input                        *string `locationName:"input" type:"string"`
-	RunID                        *string `locationName:"runId" type:"string"`
-	SignalName                   *string `locationName:"signalName" type:"string" required:"true"`
-	WorkflowID                   *string `locationName:"workflowId" type:"string" required:"true"`
+	// Optional. data attached to the event that can be used by the decider in subsequent
+	// decision tasks.
+	Control *string `locationName:"control" type:"string"`
+
+	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// that resulted in the SignalExternalWorkflowExecution decision for this signal.
+	// This information can be useful for diagnosing problems by tracing back the
+	// chain of events leading up to this event.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+
+	// Input provided to the signal (if any).
+	Input *string `locationName:"input" type:"string"`
+
+	// The runId of the external workflow execution to send the signal to.
+	RunID *string `locationName:"runId" type:"string"`
+
+	// The name of the signal.
+	SignalName *string `locationName:"signalName" type:"string" required:"true"`
+
+	// The workflowId of the external workflow execution.
+	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataSignalExternalWorkflowExecutionInitiatedEventAttributes `json:"-", xml:"-"`
 }
@@ -2075,10 +4619,20 @@ type metadataSignalExternalWorkflowExecutionInitiatedEventAttributes struct {
 }
 
 type SignalWorkflowExecutionInput struct {
-	Domain     *string `locationName:"domain" type:"string" required:"true"`
-	Input      *string `locationName:"input" type:"string"`
-	RunID      *string `locationName:"runId" type:"string"`
+	// The name of the domain containing the workflow execution to signal.
+	Domain *string `locationName:"domain" type:"string" required:"true"`
+
+	// Data to attach to the WorkflowExecutionSignaled event in the target workflow
+	// execution's history.
+	Input *string `locationName:"input" type:"string"`
+
+	// The runId of the workflow execution to signal.
+	RunID *string `locationName:"runId" type:"string"`
+
+	// The name of the signal. This name must be meaningful to the target workflow.
 	SignalName *string `locationName:"signalName" type:"string" required:"true"`
+
+	// The workflowId of the workflow execution to signal.
 	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataSignalWorkflowExecutionInput `json:"-", xml:"-"`
@@ -2096,17 +4650,115 @@ type metadataSignalWorkflowExecutionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the StartChildWorkflowExecution decision.
+//
+// Access Control
+//
+// You can use IAM policies to control this decision's access to Amazon SWF
+// resources as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. Constrain the following parameters by using a Condition element
+// with the appropriate keys.   tagList.member.N: The key is "swf:tagList.N"
+// where N is the tag number from 0 to 4, inclusive. taskList: String constraint.
+// The key is swf:taskList.name. workflowType.name: String constraint. The key
+// is swf:workflowType.name. workflowType.version: String constraint. The key
+// is swf:workflowType.version.    If the caller does not have sufficient permissions
+// to invoke the action, or the parameter values fall outside the specified
+// constraints, the action fails. The associated event attribute's cause parameter
+// will be set to OPERATION_NOT_PERMITTED. For details and example IAM policies,
+// see Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type StartChildWorkflowExecutionDecisionAttributes struct {
-	ChildPolicy                  *string       `locationName:"childPolicy" type:"string"`
-	Control                      *string       `locationName:"control" type:"string"`
-	ExecutionStartToCloseTimeout *string       `locationName:"executionStartToCloseTimeout" type:"string"`
-	Input                        *string       `locationName:"input" type:"string"`
-	TagList                      []*string     `locationName:"tagList" type:"list"`
-	TaskList                     *TaskList     `locationName:"taskList" type:"structure"`
-	TaskPriority                 *string       `locationName:"taskPriority" type:"string"`
-	TaskStartToCloseTimeout      *string       `locationName:"taskStartToCloseTimeout" type:"string"`
-	WorkflowID                   *string       `locationName:"workflowId" type:"string" required:"true"`
-	WorkflowType                 *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
+	// Optional. If set, specifies the policy to use for the child workflow executions
+	// if the workflow execution being started is terminated by calling the TerminateWorkflowExecution
+	// action explicitly or due to an expired timeout. This policy overrides the
+	// default child policy specified when registering the workflow type using RegisterWorkflowType.
+	//
+	// The supported child policies are:
+	//
+	//  TERMINATE: the child executions will be terminated. REQUEST_CANCEL: a request
+	// to cancel will be attempted for each child execution by recording a WorkflowExecutionCancelRequested
+	// event in its history. It is up to the decider to take appropriate actions
+	// when it receives an execution history with this event. ABANDON: no action
+	// will be taken. The child executions will continue to run.  A child policy
+	// for this workflow execution must be specified either as a default for the
+	// workflow type or through this parameter. If neither this parameter is set
+	// nor a default child policy was specified at registration time then a fault
+	// will be returned.
+	ChildPolicy *string `locationName:"childPolicy" type:"string"`
+
+	// Optional. Data attached to the event that can be used by the decider in subsequent
+	// workflow tasks. This data is not sent to the child workflow execution.
+	Control *string `locationName:"control" type:"string"`
+
+	// The total duration for this workflow execution. This overrides the defaultExecutionStartToCloseTimeout
+	// specified when registering the workflow type.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	//
+	// An execution start-to-close timeout for this workflow execution must be
+	// specified either as a default for the workflow type or through this parameter.
+	// If neither this parameter is set nor a default execution start-to-close timeout
+	// was specified at registration time then a fault will be returned.
+	ExecutionStartToCloseTimeout *string `locationName:"executionStartToCloseTimeout" type:"string"`
+
+	// The input to be provided to the workflow execution.
+	Input *string `locationName:"input" type:"string"`
+
+	// The list of tags to associate with the child workflow execution. A maximum
+	// of 5 tags can be specified. You can list workflow executions with a specific
+	// tag by calling ListOpenWorkflowExecutions or ListClosedWorkflowExecutions
+	// and specifying a TagFilter.
+	TagList []*string `locationName:"tagList" type:"list"`
+
+	// The name of the task list to be used for decision tasks of the child workflow
+	// execution.
+	//
+	// A task list for this workflow execution must be specified either as a default
+	// for the workflow type or through this parameter. If neither this parameter
+	// is set nor a default task list was specified at registration time then a
+	// fault will be returned. The specified string must not start or end with whitespace.
+	// It must not contain a : (colon), / (slash), | (vertical bar), or any control
+	// characters (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the
+	// literal string quotarnquot.
+	TaskList *TaskList `locationName:"taskList" type:"structure"`
+
+	// Optional. A task priority that, if set, specifies the priority for a decision
+	// task of this workflow execution. This overrides the defaultTaskPriority specified
+	// when registering the workflow type. Valid values are integers that range
+	// from Java's Integer.MIN_VALUE (-2147483648) to Integer.MAX_VALUE (2147483647).
+	// Higher numbers indicate higher priority.
+	//
+	// For more information about setting task priority, see Setting Task Priority
+	// (http://docs.aws.amazon.com/amazonswf/latest/developerguide/programming-priority.html)
+	// in the Amazon Simple Workflow Developer Guide.
+	TaskPriority *string `locationName:"taskPriority" type:"string"`
+
+	// Specifies the maximum duration of decision tasks for this workflow execution.
+	// This parameter overrides the defaultTaskStartToCloseTimout specified when
+	// registering the workflow type using RegisterWorkflowType.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	//
+	// A task start-to-close timeout for this workflow execution must be specified
+	// either as a default for the workflow type or through this parameter. If neither
+	// this parameter is set nor a default task start-to-close timeout was specified
+	// at registration time then a fault will be returned.
+	TaskStartToCloseTimeout *string `locationName:"taskStartToCloseTimeout" type:"string"`
+
+	// Required. The workflowId of the workflow execution.
+	//
+	// The specified string must not start or end with whitespace. It must not
+	// contain a : (colon), / (slash), | (vertical bar), or any control characters
+	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
+	// string quotarnquot.
+	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
+
+	// Required. The type of the workflow execution to be started.
+	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataStartChildWorkflowExecutionDecisionAttributes `json:"-", xml:"-"`
 }
@@ -2115,13 +4767,36 @@ type metadataStartChildWorkflowExecutionDecisionAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the StartChildWorkflowExecutionFailed event.
 type StartChildWorkflowExecutionFailedEventAttributes struct {
-	Cause                        *string       `locationName:"cause" type:"string" required:"true"`
-	Control                      *string       `locationName:"control" type:"string"`
-	DecisionTaskCompletedEventID *int64        `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
-	InitiatedEventID             *int64        `locationName:"initiatedEventId" type:"long" required:"true"`
-	WorkflowID                   *string       `locationName:"workflowId" type:"string" required:"true"`
-	WorkflowType                 *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
+	// The cause of the failure. This information is generated by the system and
+	// can be useful for diagnostic purposes.
+	//
+	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
+	// it lacked sufficient permissions. For details and example IAM policies, see
+	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+	Cause *string `locationName:"cause" type:"string" required:"true"`
+
+	Control *string `locationName:"control" type:"string"`
+
+	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// that resulted in the StartChildWorkflowExecution Decision to request this
+	// child workflow execution. This information can be useful for diagnosing problems
+	// by tracing back the cause of events.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+
+	// The id of the StartChildWorkflowExecutionInitiated event corresponding to
+	// the StartChildWorkflowExecution Decision to start this child workflow execution.
+	// This information can be useful for diagnosing problems by tracing back the
+	// chain of events leading up to this event.
+	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
+
+	// The workflowId of the child workflow execution.
+	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
+
+	// The workflow type provided in the StartChildWorkflowExecution Decision that
+	// failed.
+	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataStartChildWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
 }
@@ -2130,18 +4805,69 @@ type metadataStartChildWorkflowExecutionFailedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the StartChildWorkflowExecutionInitiated event.
 type StartChildWorkflowExecutionInitiatedEventAttributes struct {
-	ChildPolicy                  *string       `locationName:"childPolicy" type:"string" required:"true"`
-	Control                      *string       `locationName:"control" type:"string"`
-	DecisionTaskCompletedEventID *int64        `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
-	ExecutionStartToCloseTimeout *string       `locationName:"executionStartToCloseTimeout" type:"string"`
-	Input                        *string       `locationName:"input" type:"string"`
-	TagList                      []*string     `locationName:"tagList" type:"list"`
-	TaskList                     *TaskList     `locationName:"taskList" type:"structure" required:"true"`
-	TaskPriority                 *string       `locationName:"taskPriority" type:"string"`
-	TaskStartToCloseTimeout      *string       `locationName:"taskStartToCloseTimeout" type:"string"`
-	WorkflowID                   *string       `locationName:"workflowId" type:"string" required:"true"`
-	WorkflowType                 *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
+	// The policy to use for the child workflow executions if this execution gets
+	// terminated by explicitly calling the TerminateWorkflowExecution action or
+	// due to an expired timeout.
+	//
+	// The supported child policies are:
+	//
+	//  TERMINATE: the child executions will be terminated. REQUEST_CANCEL: a request
+	// to cancel will be attempted for each child execution by recording a WorkflowExecutionCancelRequested
+	// event in its history. It is up to the decider to take appropriate actions
+	// when it receives an execution history with this event. ABANDON: no action
+	// will be taken. The child executions will continue to run.
+	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true"`
+
+	// Optional. Data attached to the event that can be used by the decider in subsequent
+	// decision tasks. This data is not sent to the activity.
+	Control *string `locationName:"control" type:"string"`
+
+	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// that resulted in the StartChildWorkflowExecution Decision to request this
+	// child workflow execution. This information can be useful for diagnosing problems
+	// by tracing back the cause of events.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+
+	// The maximum duration for the child workflow execution. If the workflow execution
+	// is not closed within this duration, it will be timed out and force terminated.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	ExecutionStartToCloseTimeout *string `locationName:"executionStartToCloseTimeout" type:"string"`
+
+	// The inputs provided to the child workflow execution (if any).
+	Input *string `locationName:"input" type:"string"`
+
+	// The list of tags to associated with the child workflow execution.
+	TagList []*string `locationName:"tagList" type:"list"`
+
+	// The name of the task list used for the decision tasks of the child workflow
+	// execution.
+	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
+
+	// Optional. The priority assigned for the decision tasks for this workflow
+	// execution. Valid values are integers that range from Java's Integer.MIN_VALUE
+	// (-2147483648) to Integer.MAX_VALUE (2147483647). Higher numbers indicate
+	// higher priority.
+	//
+	// For more information about setting task priority, see Setting Task Priority
+	// (http://docs.aws.amazon.com/amazonswf/latest/developerguide/programming-priority.html)
+	// in the Amazon Simple Workflow Developer Guide.
+	TaskPriority *string `locationName:"taskPriority" type:"string"`
+
+	// The maximum duration allowed for the decision tasks for this workflow execution.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	TaskStartToCloseTimeout *string `locationName:"taskStartToCloseTimeout" type:"string"`
+
+	// The workflowId of the child workflow execution.
+	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
+
+	// The type of the child workflow execution.
+	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataStartChildWorkflowExecutionInitiatedEventAttributes `json:"-", xml:"-"`
 }
@@ -2150,10 +4876,39 @@ type metadataStartChildWorkflowExecutionInitiatedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the StartTimer decision.
+//
+// Access Control
+//
+// You can use IAM policies to control this decision's access to Amazon SWF
+// resources as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. You cannot use an IAM policy to constrain this action's parameters.
+//  If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type StartTimerDecisionAttributes struct {
-	Control            *string `locationName:"control" type:"string"`
+	// Optional. Data attached to the event that can be used by the decider in subsequent
+	// workflow tasks.
+	Control *string `locationName:"control" type:"string"`
+
+	// Required. The duration to wait before firing the timer.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0.
 	StartToFireTimeout *string `locationName:"startToFireTimeout" type:"string" required:"true"`
-	TimerID            *string `locationName:"timerId" type:"string" required:"true"`
+
+	// Required. The unique Id of the timer.
+	//
+	// The specified string must not start or end with whitespace. It must not
+	// contain a : (colon), / (slash), | (vertical bar), or any control characters
+	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
+	// string quotarnquot.
+	TimerID *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataStartTimerDecisionAttributes `json:"-", xml:"-"`
 }
@@ -2162,10 +4917,24 @@ type metadataStartTimerDecisionAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the StartTimerFailed event.
 type StartTimerFailedEventAttributes struct {
-	Cause                        *string `locationName:"cause" type:"string" required:"true"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
-	TimerID                      *string `locationName:"timerId" type:"string" required:"true"`
+	// The cause of the failure. This information is generated by the system and
+	// can be useful for diagnostic purposes.
+	//
+	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
+	// it lacked sufficient permissions. For details and example IAM policies, see
+	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+	Cause *string `locationName:"cause" type:"string" required:"true"`
+
+	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// that resulted in the StartTimer decision for this activity task. This information
+	// can be useful for diagnosing problems by tracing back the chain of events
+	// leading up to this event.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+
+	// The timerId provided in the StartTimer decision that failed.
+	TimerID *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataStartTimerFailedEventAttributes `json:"-", xml:"-"`
 }
@@ -2175,16 +4944,105 @@ type metadataStartTimerFailedEventAttributes struct {
 }
 
 type StartWorkflowExecutionInput struct {
-	ChildPolicy                  *string       `locationName:"childPolicy" type:"string"`
-	Domain                       *string       `locationName:"domain" type:"string" required:"true"`
-	ExecutionStartToCloseTimeout *string       `locationName:"executionStartToCloseTimeout" type:"string"`
-	Input                        *string       `locationName:"input" type:"string"`
-	TagList                      []*string     `locationName:"tagList" type:"list"`
-	TaskList                     *TaskList     `locationName:"taskList" type:"structure"`
-	TaskPriority                 *string       `locationName:"taskPriority" type:"string"`
-	TaskStartToCloseTimeout      *string       `locationName:"taskStartToCloseTimeout" type:"string"`
-	WorkflowID                   *string       `locationName:"workflowId" type:"string" required:"true"`
-	WorkflowType                 *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
+	// If set, specifies the policy to use for the child workflow executions of
+	// this workflow execution if it is terminated, by calling the TerminateWorkflowExecution
+	// action explicitly or due to an expired timeout. This policy overrides the
+	// default child policy specified when registering the workflow type using RegisterWorkflowType.
+	//
+	// The supported child policies are:
+	//
+	//  TERMINATE: the child executions will be terminated. REQUEST_CANCEL: a request
+	// to cancel will be attempted for each child execution by recording a WorkflowExecutionCancelRequested
+	// event in its history. It is up to the decider to take appropriate actions
+	// when it receives an execution history with this event. ABANDON: no action
+	// will be taken. The child executions will continue to run.  A child policy
+	// for this workflow execution must be specified either as a default for the
+	// workflow type or through this parameter. If neither this parameter is set
+	// nor a default child policy was specified at registration time then a fault
+	// will be returned.
+	ChildPolicy *string `locationName:"childPolicy" type:"string"`
+
+	// The name of the domain in which the workflow execution is created.
+	Domain *string `locationName:"domain" type:"string" required:"true"`
+
+	// The total duration for this workflow execution. This overrides the defaultExecutionStartToCloseTimeout
+	// specified when registering the workflow type.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. Exceeding this limit will cause the workflow execution to time out. Unlike
+	// some of the other timeout parameters in Amazon SWF, you cannot specify a
+	// value of "NONE" for this timeout; there is a one-year max limit on the time
+	// that a workflow execution can run.
+	//
+	//  An execution start-to-close timeout must be specified either through this
+	// parameter or as a default when the workflow type is registered. If neither
+	// this parameter nor a default execution start-to-close timeout is specified,
+	// a fault is returned.
+	ExecutionStartToCloseTimeout *string `locationName:"executionStartToCloseTimeout" type:"string"`
+
+	// The input for the workflow execution. This is a free form string which should
+	// be meaningful to the workflow you are starting. This input is made available
+	// to the new workflow execution in the WorkflowExecutionStarted history event.
+	Input *string `locationName:"input" type:"string"`
+
+	// The list of tags to associate with the workflow execution. You can specify
+	// a maximum of 5 tags. You can list workflow executions with a specific tag
+	// by calling ListOpenWorkflowExecutions or ListClosedWorkflowExecutions and
+	// specifying a TagFilter.
+	TagList []*string `locationName:"tagList" type:"list"`
+
+	// The task list to use for the decision tasks generated for this workflow execution.
+	// This overrides the defaultTaskList specified when registering the workflow
+	// type.
+	//
+	// A task list for this workflow execution must be specified either as a default
+	// for the workflow type or through this parameter. If neither this parameter
+	// is set nor a default task list was specified at registration time then a
+	// fault will be returned. The specified string must not start or end with whitespace.
+	// It must not contain a : (colon), / (slash), | (vertical bar), or any control
+	// characters (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the
+	// literal string quotarnquot.
+	TaskList *TaskList `locationName:"taskList" type:"structure"`
+
+	// The task priority to use for this workflow execution. This will override
+	// any default priority that was assigned when the workflow type was registered.
+	// If not set, then the default task priority for the workflow type will be
+	// used. Valid values are integers that range from Java's Integer.MIN_VALUE
+	// (-2147483648) to Integer.MAX_VALUE (2147483647). Higher numbers indicate
+	// higher priority.
+	//
+	// For more information about setting task priority, see Setting Task Priority
+	// (http://docs.aws.amazon.com/amazonswf/latest/developerguide/programming-priority.html)
+	// in the Amazon Simple Workflow Developer Guide.
+	TaskPriority *string `locationName:"taskPriority" type:"string"`
+
+	// Specifies the maximum duration of decision tasks for this workflow execution.
+	// This parameter overrides the defaultTaskStartToCloseTimout specified when
+	// registering the workflow type using RegisterWorkflowType.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	//
+	// A task start-to-close timeout for this workflow execution must be specified
+	// either as a default for the workflow type or through this parameter. If neither
+	// this parameter is set nor a default task start-to-close timeout was specified
+	// at registration time then a fault will be returned.
+	TaskStartToCloseTimeout *string `locationName:"taskStartToCloseTimeout" type:"string"`
+
+	// The user defined identifier associated with the workflow execution. You can
+	// use this to associate a custom identifier with the workflow execution. You
+	// may specify the same identifier if a workflow execution is logically a restart
+	// of a previous execution. You cannot have two open workflow executions with
+	// the same workflowId at the same time.
+	//
+	// The specified string must not start or end with whitespace. It must not
+	// contain a : (colon), / (slash), | (vertical bar), or any control characters
+	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
+	// string quotarnquot.
+	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
+
+	// The type of the workflow to start.
+	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataStartWorkflowExecutionInput `json:"-", xml:"-"`
 }
@@ -2193,7 +5051,10 @@ type metadataStartWorkflowExecutionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Specifies the runId of a workflow execution.
 type StartWorkflowExecutionOutput struct {
+	// The runId of a workflow execution. This Id is generated by the service and
+	// can be used to uniquely identify the workflow execution within a domain.
 	RunID *string `locationName:"runId" type:"string"`
 
 	metadataStartWorkflowExecutionOutput `json:"-", xml:"-"`
@@ -2203,7 +5064,10 @@ type metadataStartWorkflowExecutionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Used to filter the workflow executions in visibility APIs based on a tag.
 type TagFilter struct {
+	// Required. Specifies the tag that must be associated with the execution for
+	// it to meet the filter criteria.
 	Tag *string `locationName:"tag" type:"string" required:"true"`
 
 	metadataTagFilter `json:"-", xml:"-"`
@@ -2213,7 +5077,9 @@ type metadataTagFilter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents a task list.
 type TaskList struct {
+	// The name of the task list.
 	Name *string `locationName:"name" type:"string" required:"true"`
 
 	metadataTaskList `json:"-", xml:"-"`
@@ -2224,12 +5090,38 @@ type metadataTaskList struct {
 }
 
 type TerminateWorkflowExecutionInput struct {
+	// If set, specifies the policy to use for the child workflow executions of
+	// the workflow execution being terminated. This policy overrides the child
+	// policy specified for the workflow execution at registration time or when
+	// starting the execution.
+	//
+	// The supported child policies are:
+	//
+	//  TERMINATE: the child executions will be terminated. REQUEST_CANCEL: a request
+	// to cancel will be attempted for each child execution by recording a WorkflowExecutionCancelRequested
+	// event in its history. It is up to the decider to take appropriate actions
+	// when it receives an execution history with this event. ABANDON: no action
+	// will be taken. The child executions will continue to run.  A child policy
+	// for this workflow execution must be specified either as a default for the
+	// workflow type or through this parameter. If neither this parameter is set
+	// nor a default child policy was specified at registration time then a fault
+	// will be returned.
 	ChildPolicy *string `locationName:"childPolicy" type:"string"`
-	Details     *string `locationName:"details" type:"string"`
-	Domain      *string `locationName:"domain" type:"string" required:"true"`
-	Reason      *string `locationName:"reason" type:"string"`
-	RunID       *string `locationName:"runId" type:"string"`
-	WorkflowID  *string `locationName:"workflowId" type:"string" required:"true"`
+
+	// Optional. Details for terminating the workflow execution.
+	Details *string `locationName:"details" type:"string"`
+
+	// The domain of the workflow execution to terminate.
+	Domain *string `locationName:"domain" type:"string" required:"true"`
+
+	// Optional. A descriptive reason for terminating the workflow execution.
+	Reason *string `locationName:"reason" type:"string"`
+
+	// The runId of the workflow execution to terminate.
+	RunID *string `locationName:"runId" type:"string"`
+
+	// The workflowId of the workflow execution to terminate.
+	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataTerminateWorkflowExecutionInput `json:"-", xml:"-"`
 }
@@ -2246,10 +5138,21 @@ type metadataTerminateWorkflowExecutionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the TimerCanceled event.
 type TimerCanceledEventAttributes struct {
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
-	StartedEventID               *int64  `locationName:"startedEventId" type:"long" required:"true"`
-	TimerID                      *string `locationName:"timerId" type:"string" required:"true"`
+	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// that resulted in the CancelTimer decision to cancel this timer. This information
+	// can be useful for diagnosing problems by tracing back the chain of events
+	// leading up to this event.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+
+	// The id of the TimerStarted event that was recorded when this timer was started.
+	// This information can be useful for diagnosing problems by tracing back the
+	// chain of events leading up to this event.
+	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+
+	// The unique Id of the timer that was canceled.
+	TimerID *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataTimerCanceledEventAttributes `json:"-", xml:"-"`
 }
@@ -2258,9 +5161,15 @@ type metadataTimerCanceledEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the TimerFired event.
 type TimerFiredEventAttributes struct {
-	StartedEventID *int64  `locationName:"startedEventId" type:"long" required:"true"`
-	TimerID        *string `locationName:"timerId" type:"string" required:"true"`
+	// The id of the TimerStarted event that was recorded when this timer was started.
+	// This information can be useful for diagnosing problems by tracing back the
+	// chain of events leading up to this event.
+	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+
+	// The unique Id of the timer that fired.
+	TimerID *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataTimerFiredEventAttributes `json:"-", xml:"-"`
 }
@@ -2269,11 +5178,26 @@ type metadataTimerFiredEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the TimerStarted event.
 type TimerStartedEventAttributes struct {
-	Control                      *string `locationName:"control" type:"string"`
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
-	StartToFireTimeout           *string `locationName:"startToFireTimeout" type:"string" required:"true"`
-	TimerID                      *string `locationName:"timerId" type:"string" required:"true"`
+	// Optional. Data attached to the event that can be used by the decider in subsequent
+	// workflow tasks.
+	Control *string `locationName:"control" type:"string"`
+
+	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// that resulted in the StartTimer decision for this activity task. This information
+	// can be useful for diagnosing problems by tracing back the chain of events
+	// leading up to this event.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+
+	// The duration of time after which the timer will fire.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0.
+	StartToFireTimeout *string `locationName:"startToFireTimeout" type:"string" required:"true"`
+
+	// The unique Id of the timer that was started.
+	TimerID *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataTimerStartedEventAttributes `json:"-", xml:"-"`
 }
@@ -2282,8 +5206,12 @@ type metadataTimerStartedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents a workflow execution.
 type WorkflowExecution struct {
-	RunID      *string `locationName:"runId" type:"string" required:"true"`
+	// A system-generated unique identifier for the workflow execution.
+	RunID *string `locationName:"runId" type:"string" required:"true"`
+
+	// The user defined identifier associated with the workflow execution.
 	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataWorkflowExecution `json:"-", xml:"-"`
@@ -2293,9 +5221,21 @@ type metadataWorkflowExecution struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the WorkflowExecutionCancelRequested event.
 type WorkflowExecutionCancelRequestedEventAttributes struct {
-	Cause                     *string            `locationName:"cause" type:"string"`
-	ExternalInitiatedEventID  *int64             `locationName:"externalInitiatedEventId" type:"long"`
+	// If set, indicates that the request to cancel the workflow execution was automatically
+	// generated, and specifies the cause. This happens if the parent workflow execution
+	// times out or is terminated, and the child policy is set to cancel child executions.
+	Cause *string `locationName:"cause" type:"string"`
+
+	// The id of the RequestCancelExternalWorkflowExecutionInitiated event corresponding
+	// to the RequestCancelExternalWorkflowExecution decision to cancel this workflow
+	// execution.The source event with this Id can be found in the history of the
+	// source workflow execution. This information can be useful for diagnosing
+	// problems by tracing back the chain of events leading up to this event.
+	ExternalInitiatedEventID *int64 `locationName:"externalInitiatedEventId" type:"long"`
+
+	// The external workflow execution for which the cancellation was requested.
 	ExternalWorkflowExecution *WorkflowExecution `locationName:"externalWorkflowExecution" type:"structure"`
 
 	metadataWorkflowExecutionCancelRequestedEventAttributes `json:"-", xml:"-"`
@@ -2305,9 +5245,16 @@ type metadataWorkflowExecutionCancelRequestedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the WorkflowExecutionCanceled event.
 type WorkflowExecutionCanceledEventAttributes struct {
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
-	Details                      *string `locationName:"details" type:"string"`
+	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// that resulted in the CancelWorkflowExecution decision for this cancellation
+	// request. This information can be useful for diagnosing problems by tracing
+	// back the chain of events leading up to this event.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+
+	// Details for the cancellation (if any).
+	Details *string `locationName:"details" type:"string"`
 
 	metadataWorkflowExecutionCanceledEventAttributes `json:"-", xml:"-"`
 }
@@ -2316,9 +5263,16 @@ type metadataWorkflowExecutionCanceledEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the WorkflowExecutionCompleted event.
 type WorkflowExecutionCompletedEventAttributes struct {
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
-	Result                       *string `locationName:"result" type:"string"`
+	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// that resulted in the CompleteWorkflowExecution decision to complete this
+	// execution. This information can be useful for diagnosing problems by tracing
+	// back the chain of events leading up to this event.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+
+	// The result produced by the workflow execution upon successful completion.
+	Result *string `locationName:"result" type:"string"`
 
 	metadataWorkflowExecutionCompletedEventAttributes `json:"-", xml:"-"`
 }
@@ -2327,12 +5281,47 @@ type metadataWorkflowExecutionCompletedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The configuration settings for a workflow execution including timeout values,
+// tasklist etc. These configuration settings are determined from the defaults
+// specified when registering the workflow type and those specified when starting
+// the workflow execution.
 type WorkflowExecutionConfiguration struct {
-	ChildPolicy                  *string   `locationName:"childPolicy" type:"string" required:"true"`
-	ExecutionStartToCloseTimeout *string   `locationName:"executionStartToCloseTimeout" type:"string" required:"true"`
-	TaskList                     *TaskList `locationName:"taskList" type:"structure" required:"true"`
-	TaskPriority                 *string   `locationName:"taskPriority" type:"string"`
-	TaskStartToCloseTimeout      *string   `locationName:"taskStartToCloseTimeout" type:"string" required:"true"`
+	// The policy to use for the child workflow executions if this workflow execution
+	// is terminated, by calling the TerminateWorkflowExecution action explicitly
+	// or due to an expired timeout.
+	//
+	// The supported child policies are:
+	//
+	//  TERMINATE: the child executions will be terminated. REQUEST_CANCEL: a request
+	// to cancel will be attempted for each child execution by recording a WorkflowExecutionCancelRequested
+	// event in its history. It is up to the decider to take appropriate actions
+	// when it receives an execution history with this event. ABANDON: no action
+	// will be taken. The child executions will continue to run.
+	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true"`
+
+	// The total duration for this workflow execution.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	ExecutionStartToCloseTimeout *string `locationName:"executionStartToCloseTimeout" type:"string" required:"true"`
+
+	// The task list used for the decision tasks generated for this workflow execution.
+	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
+
+	// The priority assigned to decision tasks for this workflow execution. Valid
+	// values are integers that range from Java's Integer.MIN_VALUE (-2147483648)
+	// to Integer.MAX_VALUE (2147483647). Higher numbers indicate higher priority.
+	//
+	// For more information about setting task priority, see Setting Task Priority
+	// (http://docs.aws.amazon.com/amazonswf/latest/developerguide/programming-priority.html)
+	// in the Amazon Simple Workflow Developer Guide.
+	TaskPriority *string `locationName:"taskPriority" type:"string"`
+
+	// The maximum duration allowed for decision tasks for this workflow execution.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	TaskStartToCloseTimeout *string `locationName:"taskStartToCloseTimeout" type:"string" required:"true"`
 
 	metadataWorkflowExecutionConfiguration `json:"-", xml:"-"`
 }
@@ -2341,17 +5330,55 @@ type metadataWorkflowExecutionConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the WorkflowExecutionContinuedAsNew event.
 type WorkflowExecutionContinuedAsNewEventAttributes struct {
-	ChildPolicy                  *string       `locationName:"childPolicy" type:"string" required:"true"`
-	DecisionTaskCompletedEventID *int64        `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
-	ExecutionStartToCloseTimeout *string       `locationName:"executionStartToCloseTimeout" type:"string"`
-	Input                        *string       `locationName:"input" type:"string"`
-	NewExecutionRunID            *string       `locationName:"newExecutionRunId" type:"string" required:"true"`
-	TagList                      []*string     `locationName:"tagList" type:"list"`
-	TaskList                     *TaskList     `locationName:"taskList" type:"structure" required:"true"`
-	TaskPriority                 *string       `locationName:"taskPriority" type:"string"`
-	TaskStartToCloseTimeout      *string       `locationName:"taskStartToCloseTimeout" type:"string"`
-	WorkflowType                 *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
+	// The policy to use for the child workflow executions of the new execution
+	// if it is terminated by calling the TerminateWorkflowExecution action explicitly
+	// or due to an expired timeout.
+	//
+	// The supported child policies are:
+	//
+	//  TERMINATE: the child executions will be terminated. REQUEST_CANCEL: a request
+	// to cancel will be attempted for each child execution by recording a WorkflowExecutionCancelRequested
+	// event in its history. It is up to the decider to take appropriate actions
+	// when it receives an execution history with this event. ABANDON: no action
+	// will be taken. The child executions will continue to run.
+	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true"`
+
+	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// that resulted in the ContinueAsNewWorkflowExecution decision that started
+	// this execution. This information can be useful for diagnosing problems by
+	// tracing back the chain of events leading up to this event.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+
+	// The total duration allowed for the new workflow execution.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	ExecutionStartToCloseTimeout *string `locationName:"executionStartToCloseTimeout" type:"string"`
+
+	// The input provided to the new workflow execution.
+	Input *string `locationName:"input" type:"string"`
+
+	// The runId of the new workflow execution.
+	NewExecutionRunID *string `locationName:"newExecutionRunId" type:"string" required:"true"`
+
+	// The list of tags associated with the new workflow execution.
+	TagList []*string `locationName:"tagList" type:"list"`
+
+	// Represents a task list.
+	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
+
+	TaskPriority *string `locationName:"taskPriority" type:"string"`
+
+	// The maximum duration of decision tasks for the new workflow execution.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	TaskStartToCloseTimeout *string `locationName:"taskStartToCloseTimeout" type:"string"`
+
+	// Represents a workflow type.
+	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataWorkflowExecutionContinuedAsNewEventAttributes `json:"-", xml:"-"`
 }
@@ -2360,9 +5387,15 @@ type metadataWorkflowExecutionContinuedAsNewEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the count of workflow executions returned from CountOpenWorkflowExecutions
+// or CountClosedWorkflowExecutions
 type WorkflowExecutionCount struct {
-	Count     *int64 `locationName:"count" type:"integer" required:"true"`
-	Truncated *bool  `locationName:"truncated" type:"boolean"`
+	// The number of workflow executions.
+	Count *int64 `locationName:"count" type:"integer" required:"true"`
+
+	// If set to true, indicates that the actual count was more than the maximum
+	// supported by this API and the count returned is the truncated value.
+	Truncated *bool `locationName:"truncated" type:"boolean"`
 
 	metadataWorkflowExecutionCount `json:"-", xml:"-"`
 }
@@ -2371,10 +5404,19 @@ type metadataWorkflowExecutionCount struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the WorkflowExecutionFailed event.
 type WorkflowExecutionFailedEventAttributes struct {
-	DecisionTaskCompletedEventID *int64  `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
-	Details                      *string `locationName:"details" type:"string"`
-	Reason                       *string `locationName:"reason" type:"string"`
+	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// that resulted in the FailWorkflowExecution decision to fail this execution.
+	// This information can be useful for diagnosing problems by tracing back the
+	// chain of events leading up to this event.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+
+	// The details of the failure (if any).
+	Details *string `locationName:"details" type:"string"`
+
+	// The descriptive reason provided for the failure (if any).
+	Reason *string `locationName:"reason" type:"string"`
 
 	metadataWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
 }
@@ -2383,7 +5425,9 @@ type metadataWorkflowExecutionFailedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Used to filter the workflow executions in visibility APIs by their workflowId.
 type WorkflowExecutionFilter struct {
+	// The workflowId to pass of match the criteria of this filter.
 	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataWorkflowExecutionFilter `json:"-", xml:"-"`
@@ -2393,16 +5437,47 @@ type metadataWorkflowExecutionFilter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains information about a workflow execution.
 type WorkflowExecutionInfo struct {
-	CancelRequested *bool              `locationName:"cancelRequested" type:"boolean"`
-	CloseStatus     *string            `locationName:"closeStatus" type:"string"`
-	CloseTimestamp  *time.Time         `locationName:"closeTimestamp" type:"timestamp" timestampFormat:"unix"`
-	Execution       *WorkflowExecution `locationName:"execution" type:"structure" required:"true"`
-	ExecutionStatus *string            `locationName:"executionStatus" type:"string" required:"true"`
-	Parent          *WorkflowExecution `locationName:"parent" type:"structure"`
-	StartTimestamp  *time.Time         `locationName:"startTimestamp" type:"timestamp" timestampFormat:"unix" required:"true"`
-	TagList         []*string          `locationName:"tagList" type:"list"`
-	WorkflowType    *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"`
+	// Set to true if a cancellation is requested for this workflow execution.
+	CancelRequested *bool `locationName:"cancelRequested" type:"boolean"`
+
+	// If the execution status is closed then this specifies how the execution was
+	// closed:
+	//
+	//   COMPLETED: the execution was successfully completed.  CANCELED: the execution
+	// was canceled.Cancellation allows the implementation to gracefully clean up
+	// before the execution is closed.  TERMINATED: the execution was force terminated.
+	//  FAILED: the execution failed to complete.  TIMED_OUT: the execution did
+	// not complete in the alloted time and was automatically timed out.  CONTINUED_AS_NEW:
+	// the execution is logically continued. This means the current execution was
+	// completed and a new execution was started to carry on the workflow.
+	CloseStatus *string `locationName:"closeStatus" type:"string"`
+
+	// The time when the workflow execution was closed. Set only if the execution
+	// status is CLOSED.
+	CloseTimestamp *time.Time `locationName:"closeTimestamp" type:"timestamp" timestampFormat:"unix"`
+
+	// The workflow execution this information is about.
+	Execution *WorkflowExecution `locationName:"execution" type:"structure" required:"true"`
+
+	// The current status of the execution.
+	ExecutionStatus *string `locationName:"executionStatus" type:"string" required:"true"`
+
+	// If this workflow execution is a child of another execution then contains
+	// the workflow execution that started this execution.
+	Parent *WorkflowExecution `locationName:"parent" type:"structure"`
+
+	// The time when the execution was started.
+	StartTimestamp *time.Time `locationName:"startTimestamp" type:"timestamp" timestampFormat:"unix" required:"true"`
+
+	// The list of tags associated with the workflow execution. Tags can be used
+	// to identify and list workflow executions of interest through the visibility
+	// APIs. A workflow execution can have a maximum of 5 tags.
+	TagList []*string `locationName:"tagList" type:"list"`
+
+	// The type of the workflow execution.
+	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataWorkflowExecutionInfo `json:"-", xml:"-"`
 }
@@ -2411,9 +5486,18 @@ type metadataWorkflowExecutionInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains a paginated list of information about workflow executions.
 type WorkflowExecutionInfos struct {
+	// The list of workflow information structures.
 	ExecutionInfos []*WorkflowExecutionInfo `locationName:"executionInfos" type:"list" required:"true"`
-	NextPageToken  *string                  `locationName:"nextPageToken" type:"string"`
+
+	// If a NextPageToken was returned by a previous call, there are more results
+	// available. To retrieve the next page of results, make the call again using
+	// the returned token in nextPageToken. Keep all other arguments unchanged.
+	//
+	// The configured maximumPageSize determines how many results can be returned
+	// in a single call.
+	NextPageToken *string `locationName:"nextPageToken" type:"string"`
 
 	metadataWorkflowExecutionInfos `json:"-", xml:"-"`
 }
@@ -2422,11 +5506,22 @@ type metadataWorkflowExecutionInfos struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the counts of open tasks, child workflow executions and timers for
+// a workflow execution.
 type WorkflowExecutionOpenCounts struct {
-	OpenActivityTasks           *int64 `locationName:"openActivityTasks" type:"integer" required:"true"`
+	// The count of activity tasks whose status is OPEN.
+	OpenActivityTasks *int64 `locationName:"openActivityTasks" type:"integer" required:"true"`
+
+	// The count of child workflow executions whose status is OPEN.
 	OpenChildWorkflowExecutions *int64 `locationName:"openChildWorkflowExecutions" type:"integer" required:"true"`
-	OpenDecisionTasks           *int64 `locationName:"openDecisionTasks" type:"integer" required:"true"`
-	OpenTimers                  *int64 `locationName:"openTimers" type:"integer" required:"true"`
+
+	// The count of decision tasks whose status is OPEN. A workflow execution can
+	// have at most one open decision task.
+	OpenDecisionTasks *int64 `locationName:"openDecisionTasks" type:"integer" required:"true"`
+
+	// The count of timers started by this workflow execution that have not fired
+	// yet.
+	OpenTimers *int64 `locationName:"openTimers" type:"integer" required:"true"`
 
 	metadataWorkflowExecutionOpenCounts `json:"-", xml:"-"`
 }
@@ -2435,11 +5530,27 @@ type metadataWorkflowExecutionOpenCounts struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the WorkflowExecutionSignaled event.
 type WorkflowExecutionSignaledEventAttributes struct {
-	ExternalInitiatedEventID  *int64             `locationName:"externalInitiatedEventId" type:"long"`
+	// The id of the SignalExternalWorkflowExecutionInitiated event corresponding
+	// to the SignalExternalWorkflow decision to signal this workflow execution.The
+	// source event with this Id can be found in the history of the source workflow
+	// execution. This information can be useful for diagnosing problems by tracing
+	// back the chain of events leading up to this event. This field is set only
+	// if the signal was initiated by another workflow execution.
+	ExternalInitiatedEventID *int64 `locationName:"externalInitiatedEventId" type:"long"`
+
+	// The workflow execution that sent the signal. This is set only of the signal
+	// was sent by another workflow execution.
 	ExternalWorkflowExecution *WorkflowExecution `locationName:"externalWorkflowExecution" type:"structure"`
-	Input                     *string            `locationName:"input" type:"string"`
-	SignalName                *string            `locationName:"signalName" type:"string" required:"true"`
+
+	// Inputs provided with the signal (if any). The decider can use the signal
+	// name and inputs to determine how to process the signal.
+	Input *string `locationName:"input" type:"string"`
+
+	// The name of the signal received. The decider can use the signal name and
+	// inputs to determine how to the process the signal.
+	SignalName *string `locationName:"signalName" type:"string" required:"true"`
 
 	metadataWorkflowExecutionSignaledEventAttributes `json:"-", xml:"-"`
 }
@@ -2448,18 +5559,64 @@ type metadataWorkflowExecutionSignaledEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of WorkflowExecutionStarted event.
 type WorkflowExecutionStartedEventAttributes struct {
-	ChildPolicy                  *string            `locationName:"childPolicy" type:"string" required:"true"`
-	ContinuedExecutionRunID      *string            `locationName:"continuedExecutionRunId" type:"string"`
-	ExecutionStartToCloseTimeout *string            `locationName:"executionStartToCloseTimeout" type:"string"`
-	Input                        *string            `locationName:"input" type:"string"`
-	ParentInitiatedEventID       *int64             `locationName:"parentInitiatedEventId" type:"long"`
-	ParentWorkflowExecution      *WorkflowExecution `locationName:"parentWorkflowExecution" type:"structure"`
-	TagList                      []*string          `locationName:"tagList" type:"list"`
-	TaskList                     *TaskList          `locationName:"taskList" type:"structure" required:"true"`
-	TaskPriority                 *string            `locationName:"taskPriority" type:"string"`
-	TaskStartToCloseTimeout      *string            `locationName:"taskStartToCloseTimeout" type:"string"`
-	WorkflowType                 *WorkflowType      `locationName:"workflowType" type:"structure" required:"true"`
+	// The policy to use for the child workflow executions if this workflow execution
+	// is terminated, by calling the TerminateWorkflowExecution action explicitly
+	// or due to an expired timeout.
+	//
+	// The supported child policies are:
+	//
+	//  TERMINATE: the child executions will be terminated. REQUEST_CANCEL: a request
+	// to cancel will be attempted for each child execution by recording a WorkflowExecutionCancelRequested
+	// event in its history. It is up to the decider to take appropriate actions
+	// when it receives an execution history with this event. ABANDON: no action
+	// will be taken. The child executions will continue to run.
+	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true"`
+
+	// If this workflow execution was started due to a ContinueAsNewWorkflowExecution
+	// decision, then it contains the runId of the previous workflow execution that
+	// was closed and continued as this execution.
+	ContinuedExecutionRunID *string `locationName:"continuedExecutionRunId" type:"string"`
+
+	// The maximum duration for this workflow execution.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	ExecutionStartToCloseTimeout *string `locationName:"executionStartToCloseTimeout" type:"string"`
+
+	// The input provided to the workflow execution (if any).
+	Input *string `locationName:"input" type:"string"`
+
+	// The id of the StartChildWorkflowExecutionInitiated event corresponding to
+	// the StartChildWorkflowExecution Decision to start this workflow execution.
+	// The source event with this Id can be found in the history of the source workflow
+	// execution. This information can be useful for diagnosing problems by tracing
+	// back the chain of events leading up to this event.
+	ParentInitiatedEventID *int64 `locationName:"parentInitiatedEventId" type:"long"`
+
+	// The source workflow execution that started this workflow execution. The member
+	// is not set if the workflow execution was not started by a workflow.
+	ParentWorkflowExecution *WorkflowExecution `locationName:"parentWorkflowExecution" type:"structure"`
+
+	// The list of tags associated with this workflow execution. An execution can
+	// have up to 5 tags.
+	TagList []*string `locationName:"tagList" type:"list"`
+
+	// The name of the task list for scheduling the decision tasks for this workflow
+	// execution.
+	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
+
+	TaskPriority *string `locationName:"taskPriority" type:"string"`
+
+	// The maximum duration of decision tasks for this workflow type.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	TaskStartToCloseTimeout *string `locationName:"taskStartToCloseTimeout" type:"string"`
+
+	// The workflow type of this execution.
+	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataWorkflowExecutionStartedEventAttributes `json:"-", xml:"-"`
 }
@@ -2468,11 +5625,29 @@ type metadataWorkflowExecutionStartedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the WorkflowExecutionTerminated event.
 type WorkflowExecutionTerminatedEventAttributes struct {
-	Cause       *string `locationName:"cause" type:"string"`
+	// If set, indicates that the workflow execution was automatically terminated,
+	// and specifies the cause. This happens if the parent workflow execution times
+	// out or is terminated and the child policy is set to terminate child executions.
+	Cause *string `locationName:"cause" type:"string"`
+
+	// The policy used for the child workflow executions of this workflow execution.
+	//
+	// The supported child policies are:
+	//
+	//  TERMINATE: the child executions will be terminated. REQUEST_CANCEL: a request
+	// to cancel will be attempted for each child execution by recording a WorkflowExecutionCancelRequested
+	// event in its history. It is up to the decider to take appropriate actions
+	// when it receives an execution history with this event. ABANDON: no action
+	// will be taken. The child executions will continue to run.
 	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true"`
-	Details     *string `locationName:"details" type:"string"`
-	Reason      *string `locationName:"reason" type:"string"`
+
+	// The details provided for the termination (if any).
+	Details *string `locationName:"details" type:"string"`
+
+	// The reason provided for the termination (if any).
+	Reason *string `locationName:"reason" type:"string"`
 
 	metadataWorkflowExecutionTerminatedEventAttributes `json:"-", xml:"-"`
 }
@@ -2481,8 +5656,20 @@ type metadataWorkflowExecutionTerminatedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides details of the WorkflowExecutionTimedOut event.
 type WorkflowExecutionTimedOutEventAttributes struct {
+	// The policy used for the child workflow executions of this workflow execution.
+	//
+	// The supported child policies are:
+	//
+	//  TERMINATE: the child executions will be terminated. REQUEST_CANCEL: a request
+	// to cancel will be attempted for each child execution by recording a WorkflowExecutionCancelRequested
+	// event in its history. It is up to the decider to take appropriate actions
+	// when it receives an execution history with this event. ABANDON: no action
+	// will be taken. The child executions will continue to run.
 	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true"`
+
+	// The type of timeout that caused this event.
 	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true"`
 
 	metadataWorkflowExecutionTimedOutEventAttributes `json:"-", xml:"-"`
@@ -2492,8 +5679,18 @@ type metadataWorkflowExecutionTimedOutEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents a workflow type.
 type WorkflowType struct {
-	Name    *string `locationName:"name" type:"string" required:"true"`
+	// Required. The name of the workflow type.
+	//
+	// The combination of workflow type name and version must be unique with in
+	// a domain.
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// Required. The version of the workflow type.
+	//
+	// The combination of workflow type name and version must be unique with in
+	// a domain.
 	Version *string `locationName:"version" type:"string" required:"true"`
 
 	metadataWorkflowType `json:"-", xml:"-"`
@@ -2503,12 +5700,62 @@ type metadataWorkflowType struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The configuration settings of a workflow type.
 type WorkflowTypeConfiguration struct {
-	DefaultChildPolicy                  *string   `locationName:"defaultChildPolicy" type:"string"`
-	DefaultExecutionStartToCloseTimeout *string   `locationName:"defaultExecutionStartToCloseTimeout" type:"string"`
-	DefaultTaskList                     *TaskList `locationName:"defaultTaskList" type:"structure"`
-	DefaultTaskPriority                 *string   `locationName:"defaultTaskPriority" type:"string"`
-	DefaultTaskStartToCloseTimeout      *string   `locationName:"defaultTaskStartToCloseTimeout" type:"string"`
+	// Optional. The default policy to use for the child workflow executions when
+	// a workflow execution of this type is terminated, by calling the TerminateWorkflowExecution
+	// action explicitly or due to an expired timeout. This default can be overridden
+	// when starting a workflow execution using the StartWorkflowExecution action
+	// or the StartChildWorkflowExecution Decision.
+	//
+	// The supported child policies are:
+	//
+	//  TERMINATE: the child executions will be terminated. REQUEST_CANCEL: a request
+	// to cancel will be attempted for each child execution by recording a WorkflowExecutionCancelRequested
+	// event in its history. It is up to the decider to take appropriate actions
+	// when it receives an execution history with this event. ABANDON: no action
+	// will be taken. The child executions will continue to run.
+	DefaultChildPolicy *string `locationName:"defaultChildPolicy" type:"string"`
+
+	// Optional. The default maximum duration, specified when registering the workflow
+	// type, for executions of this workflow type. This default can be overridden
+	// when starting a workflow execution using the StartWorkflowExecution action
+	// or the StartChildWorkflowExecution Decision.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	DefaultExecutionStartToCloseTimeout *string `locationName:"defaultExecutionStartToCloseTimeout" type:"string"`
+
+	// Optional. The default task list, specified when registering the workflow
+	// type, for decisions tasks scheduled for workflow executions of this type.
+	// This default can be overridden when starting a workflow execution using the
+	// StartWorkflowExecution action or the StartChildWorkflowExecution Decision.
+	DefaultTaskList *TaskList `locationName:"defaultTaskList" type:"structure"`
+
+	// Optional. The default task priority, specified when registering the workflow
+	// type, for all decision tasks of this workflow type. This default can be overridden
+	// when starting a workflow execution using the StartWorkflowExecution action
+	// or the StartChildWorkflowExecution decision.
+	//
+	// Valid values are integers that range from Java's Integer.MIN_VALUE (-2147483648)
+	// to Integer.MAX_VALUE (2147483647). Higher numbers indicate higher priority.
+	//
+	// For more information about setting task priority, see Setting Task Priority
+	// (http://docs.aws.amazon.com/amazonswf/latest/developerguide/programming-priority.html)
+	// in the Amazon Simple Workflow Developer Guide.
+	DefaultTaskPriority *string `locationName:"defaultTaskPriority" type:"string"`
+
+	// Optional. The default maximum duration, specified when registering the workflow
+	// type, that a decision task for executions of this workflow type might take
+	// before returning completion or failure. If the task does not close in the
+	// specified time then the task is automatically timed out and rescheduled.
+	// If the decider eventually reports a completion or failure, it is ignored.
+	// This default can be overridden when starting a workflow execution using the
+	// StartWorkflowExecution action or the StartChildWorkflowExecution Decision.
+	//
+	// The duration is specified in seconds; an integer greater than or equal to
+	// 0. The value "NONE" can be used to specify unlimited duration.
+	DefaultTaskStartToCloseTimeout *string `locationName:"defaultTaskStartToCloseTimeout" type:"string"`
 
 	metadataWorkflowTypeConfiguration `json:"-", xml:"-"`
 }
@@ -2517,8 +5764,13 @@ type metadataWorkflowTypeConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Used to filter workflow execution query results by type. Each parameter,
+// if specified, defines a rule that must be satisfied by each returned result.
 type WorkflowTypeFilter struct {
-	Name    *string `locationName:"name" type:"string" required:"true"`
+	// Required. Name of the workflow type.
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// Version of the workflow type.
 	Version *string `locationName:"version" type:"string"`
 
 	metadataWorkflowTypeFilter `json:"-", xml:"-"`
@@ -2528,12 +5780,23 @@ type metadataWorkflowTypeFilter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains information about a workflow type.
 type WorkflowTypeInfo struct {
-	CreationDate    *time.Time    `locationName:"creationDate" type:"timestamp" timestampFormat:"unix" required:"true"`
-	DeprecationDate *time.Time    `locationName:"deprecationDate" type:"timestamp" timestampFormat:"unix"`
-	Description     *string       `locationName:"description" type:"string"`
-	Status          *string       `locationName:"status" type:"string" required:"true"`
-	WorkflowType    *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
+	// The date when this type was registered.
+	CreationDate *time.Time `locationName:"creationDate" type:"timestamp" timestampFormat:"unix" required:"true"`
+
+	// If the type is in deprecated state, then it is set to the date when the type
+	// was deprecated.
+	DeprecationDate *time.Time `locationName:"deprecationDate" type:"timestamp" timestampFormat:"unix"`
+
+	// The description of the type registered through RegisterWorkflowType.
+	Description *string `locationName:"description" type:"string"`
+
+	// The current status of the workflow type.
+	Status *string `locationName:"status" type:"string" required:"true"`
+
+	// The workflow type this information is about.
+	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
 	metadataWorkflowTypeInfo `json:"-", xml:"-"`
 }

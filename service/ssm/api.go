@@ -24,6 +24,15 @@ func (c *SSM) CreateAssociationRequest(input *CreateAssociationInput) (req *aws.
 	return
 }
 
+// Associates the specified configuration document with the specified instance.
+//
+// When you associate a configuration document with an instance, the configuration
+// agent on the instance processes the configuration document and configures
+// the instance as specified.
+//
+// If you associate a configuration document with an instance that already
+// has an associated configuration document, we replace the current configuration
+// document with the new configuration document.
 func (c *SSM) CreateAssociation(input *CreateAssociationInput) (output *CreateAssociationOutput, err error) {
 	req, out := c.CreateAssociationRequest(input)
 	output = out
@@ -49,6 +58,15 @@ func (c *SSM) CreateAssociationBatchRequest(input *CreateAssociationBatchInput) 
 	return
 }
 
+// Associates the specified configuration documents with the specified instances.
+//
+// When you associate a configuration document with an instance, the configuration
+// agent on the instance processes the configuration document and configures
+// the instance as specified.
+//
+// If you associate a configuration document with an instance that already
+// has an associated configuration document, we replace the current configuration
+// document with the new configuration document.
 func (c *SSM) CreateAssociationBatch(input *CreateAssociationBatchInput) (output *CreateAssociationBatchOutput, err error) {
 	req, out := c.CreateAssociationBatchRequest(input)
 	output = out
@@ -74,6 +92,10 @@ func (c *SSM) CreateDocumentRequest(input *CreateDocumentInput) (req *aws.Reques
 	return
 }
 
+// Creates a configuration document.
+//
+// After you create a configuration document, you can use CreateAssociation
+// to associate it with one or more running instances.
 func (c *SSM) CreateDocument(input *CreateDocumentInput) (output *CreateDocumentOutput, err error) {
 	req, out := c.CreateDocumentRequest(input)
 	output = out
@@ -99,6 +121,13 @@ func (c *SSM) DeleteAssociationRequest(input *DeleteAssociationInput) (req *aws.
 	return
 }
 
+// Disassociates the specified configuration document from the specified instance.
+//
+// When you disassociate a configuration document from an instance, it does
+// not change the configuration of the instance. To change the configuration
+// state of an instance after you disassociate a configuration document, you
+// must create a new configuration document with the desired configuration and
+// associate it with the instance.
 func (c *SSM) DeleteAssociation(input *DeleteAssociationInput) (output *DeleteAssociationOutput, err error) {
 	req, out := c.DeleteAssociationRequest(input)
 	output = out
@@ -124,6 +153,10 @@ func (c *SSM) DeleteDocumentRequest(input *DeleteDocumentInput) (req *aws.Reques
 	return
 }
 
+// Deletes the specified configuration document.
+//
+// You must use DeleteAssociation to disassociate all instances that are associated
+// with the configuration document before you can delete it.
 func (c *SSM) DeleteDocument(input *DeleteDocumentInput) (output *DeleteDocumentOutput, err error) {
 	req, out := c.DeleteDocumentRequest(input)
 	output = out
@@ -149,6 +182,7 @@ func (c *SSM) DescribeAssociationRequest(input *DescribeAssociationInput) (req *
 	return
 }
 
+// Describes the associations for the specified configuration document or instance.
 func (c *SSM) DescribeAssociation(input *DescribeAssociationInput) (output *DescribeAssociationOutput, err error) {
 	req, out := c.DescribeAssociationRequest(input)
 	output = out
@@ -174,6 +208,7 @@ func (c *SSM) DescribeDocumentRequest(input *DescribeDocumentInput) (req *aws.Re
 	return
 }
 
+// Describes the specified configuration document.
 func (c *SSM) DescribeDocument(input *DescribeDocumentInput) (output *DescribeDocumentOutput, err error) {
 	req, out := c.DescribeDocumentRequest(input)
 	output = out
@@ -199,6 +234,7 @@ func (c *SSM) GetDocumentRequest(input *GetDocumentInput) (req *aws.Request, out
 	return
 }
 
+// Gets the contents of the specified configuration document.
 func (c *SSM) GetDocument(input *GetDocumentInput) (output *GetDocumentOutput, err error) {
 	req, out := c.GetDocumentRequest(input)
 	output = out
@@ -224,6 +260,7 @@ func (c *SSM) ListAssociationsRequest(input *ListAssociationsInput) (req *aws.Re
 	return
 }
 
+// Lists the associations for the specified configuration document or instance.
 func (c *SSM) ListAssociations(input *ListAssociationsInput) (output *ListAssociationsOutput, err error) {
 	req, out := c.ListAssociationsRequest(input)
 	output = out
@@ -249,6 +286,7 @@ func (c *SSM) ListDocumentsRequest(input *ListDocumentsInput) (req *aws.Request,
 	return
 }
 
+// Describes one or more of your configuration documents.
 func (c *SSM) ListDocuments(input *ListDocumentsInput) (output *ListDocumentsOutput, err error) {
 	req, out := c.ListDocumentsRequest(input)
 	output = out
@@ -274,6 +312,8 @@ func (c *SSM) UpdateAssociationStatusRequest(input *UpdateAssociationStatusInput
 	return
 }
 
+// Updates the status of the configuration document associated with the specified
+// instance.
 func (c *SSM) UpdateAssociationStatus(input *UpdateAssociationStatusInput) (output *UpdateAssociationStatusOutput, err error) {
 	req, out := c.UpdateAssociationStatusRequest(input)
 	output = out
@@ -283,9 +323,13 @@ func (c *SSM) UpdateAssociationStatus(input *UpdateAssociationStatusInput) (outp
 
 var opUpdateAssociationStatus *aws.Operation
 
+// Describes an association of a configuration document and an instance.
 type Association struct {
+	// The ID of the instance.
 	InstanceID *string `locationName:"InstanceId" type:"string"`
-	Name       *string `type:"string"`
+
+	// The name of the configuration document.
+	Name *string `type:"string"`
 
 	metadataAssociation `json:"-", xml:"-"`
 }
@@ -294,11 +338,19 @@ type metadataAssociation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an association.
 type AssociationDescription struct {
-	Date       *time.Time         `type:"timestamp" timestampFormat:"unix"`
-	InstanceID *string            `locationName:"InstanceId" type:"string"`
-	Name       *string            `type:"string"`
-	Status     *AssociationStatus `type:"structure"`
+	// The date when the association was made.
+	Date *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The ID of the instance.
+	InstanceID *string `locationName:"InstanceId" type:"string"`
+
+	// The name of the configuration document.
+	Name *string `type:"string"`
+
+	// The association status.
+	Status *AssociationStatus `type:"structure"`
 
 	metadataAssociationDescription `json:"-", xml:"-"`
 }
@@ -307,8 +359,12 @@ type metadataAssociationDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a filter.
 type AssociationFilter struct {
-	Key   *string `locationName:"key" type:"string" required:"true"`
+	// The name of the filter.
+	Key *string `locationName:"key" type:"string" required:"true"`
+
+	// The filter value.
 	Value *string `locationName:"value" type:"string" required:"true"`
 
 	metadataAssociationFilter `json:"-", xml:"-"`
@@ -318,11 +374,19 @@ type metadataAssociationFilter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an association status.
 type AssociationStatus struct {
-	AdditionalInfo *string    `type:"string"`
-	Date           *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
-	Message        *string    `type:"string" required:"true"`
-	Name           *string    `type:"string" required:"true"`
+	// A user-defined string.
+	AdditionalInfo *string `type:"string"`
+
+	// The date when the status changed.
+	Date *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+
+	// The reason for the status.
+	Message *string `type:"string" required:"true"`
+
+	// The status.
+	Name *string `type:"string" required:"true"`
 
 	metadataAssociationStatus `json:"-", xml:"-"`
 }
@@ -332,6 +396,7 @@ type metadataAssociationStatus struct {
 }
 
 type CreateAssociationBatchInput struct {
+	// One or more associations.
 	Entries []*CreateAssociationBatchRequestEntry `locationNameList:"entries" type:"list" required:"true"`
 
 	metadataCreateAssociationBatchInput `json:"-", xml:"-"`
@@ -342,8 +407,11 @@ type metadataCreateAssociationBatchInput struct {
 }
 
 type CreateAssociationBatchOutput struct {
-	Failed     []*FailedCreateAssociation `locationNameList:"FailedCreateAssociationEntry" type:"list"`
-	Successful []*AssociationDescription  `locationNameList:"AssociationDescription" type:"list"`
+	// Information about the associations that failed.
+	Failed []*FailedCreateAssociation `locationNameList:"FailedCreateAssociationEntry" type:"list"`
+
+	// Information about the associations that succeeded.
+	Successful []*AssociationDescription `locationNameList:"AssociationDescription" type:"list"`
 
 	metadataCreateAssociationBatchOutput `json:"-", xml:"-"`
 }
@@ -352,9 +420,13 @@ type metadataCreateAssociationBatchOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the association of a configuration document and an instance.
 type CreateAssociationBatchRequestEntry struct {
+	// The ID of the instance.
 	InstanceID *string `locationName:"InstanceId" type:"string"`
-	Name       *string `type:"string"`
+
+	// The name of the configuration document.
+	Name *string `type:"string"`
 
 	metadataCreateAssociationBatchRequestEntry `json:"-", xml:"-"`
 }
@@ -364,8 +436,11 @@ type metadataCreateAssociationBatchRequestEntry struct {
 }
 
 type CreateAssociationInput struct {
+	// The ID of the instance.
 	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
-	Name       *string `type:"string" required:"true"`
+
+	// The name of the configuration document.
+	Name *string `type:"string" required:"true"`
 
 	metadataCreateAssociationInput `json:"-", xml:"-"`
 }
@@ -375,6 +450,7 @@ type metadataCreateAssociationInput struct {
 }
 
 type CreateAssociationOutput struct {
+	// Information about the association.
 	AssociationDescription *AssociationDescription `type:"structure"`
 
 	metadataCreateAssociationOutput `json:"-", xml:"-"`
@@ -385,8 +461,12 @@ type metadataCreateAssociationOutput struct {
 }
 
 type CreateDocumentInput struct {
+	// A valid JSON file. For more information about the contents of this file,
+	// see Configuration Document (http://docs.aws.amazon.com/ssm/latest/APIReference/aws-ssm-document.html).
 	Content *string `type:"string" required:"true"`
-	Name    *string `type:"string" required:"true"`
+
+	// A name for the configuration document.
+	Name *string `type:"string" required:"true"`
 
 	metadataCreateDocumentInput `json:"-", xml:"-"`
 }
@@ -396,6 +476,7 @@ type metadataCreateDocumentInput struct {
 }
 
 type CreateDocumentOutput struct {
+	// Information about the configuration document.
 	DocumentDescription *DocumentDescription `type:"structure"`
 
 	metadataCreateDocumentOutput `json:"-", xml:"-"`
@@ -406,8 +487,11 @@ type metadataCreateDocumentOutput struct {
 }
 
 type DeleteAssociationInput struct {
+	// The ID of the instance.
 	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
-	Name       *string `type:"string" required:"true"`
+
+	// The name of the configuration document.
+	Name *string `type:"string" required:"true"`
 
 	metadataDeleteAssociationInput `json:"-", xml:"-"`
 }
@@ -425,6 +509,7 @@ type metadataDeleteAssociationOutput struct {
 }
 
 type DeleteDocumentInput struct {
+	// The name of the configuration document.
 	Name *string `type:"string" required:"true"`
 
 	metadataDeleteDocumentInput `json:"-", xml:"-"`
@@ -443,8 +528,11 @@ type metadataDeleteDocumentOutput struct {
 }
 
 type DescribeAssociationInput struct {
+	// The ID of the instance.
 	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
-	Name       *string `type:"string" required:"true"`
+
+	// The name of the configuration document.
+	Name *string `type:"string" required:"true"`
 
 	metadataDescribeAssociationInput `json:"-", xml:"-"`
 }
@@ -454,6 +542,7 @@ type metadataDescribeAssociationInput struct {
 }
 
 type DescribeAssociationOutput struct {
+	// Information about the association.
 	AssociationDescription *AssociationDescription `type:"structure"`
 
 	metadataDescribeAssociationOutput `json:"-", xml:"-"`
@@ -464,6 +553,7 @@ type metadataDescribeAssociationOutput struct {
 }
 
 type DescribeDocumentInput struct {
+	// The name of the configuration document.
 	Name *string `type:"string" required:"true"`
 
 	metadataDescribeDocumentInput `json:"-", xml:"-"`
@@ -474,6 +564,7 @@ type metadataDescribeDocumentInput struct {
 }
 
 type DescribeDocumentOutput struct {
+	// Information about the configuration document.
 	Document *DocumentDescription `type:"structure"`
 
 	metadataDescribeDocumentOutput `json:"-", xml:"-"`
@@ -483,11 +574,19 @@ type metadataDescribeDocumentOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a configuration document.
 type DocumentDescription struct {
+	// The date when the configuration document was created.
 	CreatedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
-	Name        *string    `type:"string"`
-	SHA1        *string    `locationName:"Sha1" type:"string"`
-	Status      *string    `type:"string"`
+
+	// The name of the configuration document.
+	Name *string `type:"string"`
+
+	// The SHA1 hash of the document, which you can use for verification purposes.
+	SHA1 *string `locationName:"Sha1" type:"string"`
+
+	// The status of the configuration document.
+	Status *string `type:"string"`
 
 	metadataDocumentDescription `json:"-", xml:"-"`
 }
@@ -496,8 +595,12 @@ type metadataDocumentDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a filter.
 type DocumentFilter struct {
-	Key   *string `locationName:"key" type:"string" required:"true"`
+	// The name of the filter.
+	Key *string `locationName:"key" type:"string" required:"true"`
+
+	// The value of the filter.
 	Value *string `locationName:"value" type:"string" required:"true"`
 
 	metadataDocumentFilter `json:"-", xml:"-"`
@@ -507,7 +610,9 @@ type metadataDocumentFilter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the name of a configuration document.
 type DocumentIdentifier struct {
+	// The name of the configuration document.
 	Name *string `type:"string"`
 
 	metadataDocumentIdentifier `json:"-", xml:"-"`
@@ -517,10 +622,16 @@ type metadataDocumentIdentifier struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a failed association.
 type FailedCreateAssociation struct {
-	Entry   *CreateAssociationBatchRequestEntry `type:"structure"`
-	Fault   *string                             `type:"string"`
-	Message *string                             `type:"string"`
+	// The association.
+	Entry *CreateAssociationBatchRequestEntry `type:"structure"`
+
+	// The source of the failure.
+	Fault *string `type:"string"`
+
+	// A description of the failure.
+	Message *string `type:"string"`
 
 	metadataFailedCreateAssociation `json:"-", xml:"-"`
 }
@@ -530,6 +641,7 @@ type metadataFailedCreateAssociation struct {
 }
 
 type GetDocumentInput struct {
+	// The name of the configuration document.
 	Name *string `type:"string" required:"true"`
 
 	metadataGetDocumentInput `json:"-", xml:"-"`
@@ -540,8 +652,11 @@ type metadataGetDocumentInput struct {
 }
 
 type GetDocumentOutput struct {
+	// The contents of the configuration document.
 	Content *string `type:"string"`
-	Name    *string `type:"string"`
+
+	// The name of the configuration document.
+	Name *string `type:"string"`
 
 	metadataGetDocumentOutput `json:"-", xml:"-"`
 }
@@ -551,9 +666,17 @@ type metadataGetDocumentOutput struct {
 }
 
 type ListAssociationsInput struct {
+	// One or more filters. Use a filter to return a more specific list of results.
 	AssociationFilterList []*AssociationFilter `locationNameList:"AssociationFilter" type:"list" required:"true"`
-	MaxResults            *int64               `type:"integer"`
-	NextToken             *string              `type:"string"`
+
+	// The maximum number of items to return for this call. The call also returns
+	// a token that you can specify in a subsequent call to get the next set of
+	// results.
+	MaxResults *int64 `type:"integer"`
+
+	// The token for the next set of items to return. (You received this token from
+	// a previous call.)
+	NextToken *string `type:"string"`
 
 	metadataListAssociationsInput `json:"-", xml:"-"`
 }
@@ -563,8 +686,12 @@ type metadataListAssociationsInput struct {
 }
 
 type ListAssociationsOutput struct {
+	// The associations.
 	Associations []*Association `locationNameList:"Association" type:"list"`
-	NextToken    *string        `type:"string"`
+
+	// The token to use when requesting the next set of items. If there are no additional
+	// items to return, the string is empty.
+	NextToken *string `type:"string"`
 
 	metadataListAssociationsOutput `json:"-", xml:"-"`
 }
@@ -574,9 +701,17 @@ type metadataListAssociationsOutput struct {
 }
 
 type ListDocumentsInput struct {
+	// One or more filters. Use a filter to return a more specific list of results.
 	DocumentFilterList []*DocumentFilter `locationNameList:"DocumentFilter" type:"list"`
-	MaxResults         *int64            `type:"integer"`
-	NextToken          *string           `type:"string"`
+
+	// The maximum number of items to return for this call. The call also returns
+	// a token that you can specify in a subsequent call to get the next set of
+	// results.
+	MaxResults *int64 `type:"integer"`
+
+	// The token for the next set of items to return. (You received this token from
+	// a previous call.)
+	NextToken *string `type:"string"`
 
 	metadataListDocumentsInput `json:"-", xml:"-"`
 }
@@ -586,8 +721,12 @@ type metadataListDocumentsInput struct {
 }
 
 type ListDocumentsOutput struct {
+	// The names of the configuration documents.
 	DocumentIdentifiers []*DocumentIdentifier `locationNameList:"DocumentIdentifier" type:"list"`
-	NextToken           *string               `type:"string"`
+
+	// The token to use when requesting the next set of items. If there are no additional
+	// items to return, the string is empty.
+	NextToken *string `type:"string"`
 
 	metadataListDocumentsOutput `json:"-", xml:"-"`
 }
@@ -597,9 +736,14 @@ type metadataListDocumentsOutput struct {
 }
 
 type UpdateAssociationStatusInput struct {
+	// The association status.
 	AssociationStatus *AssociationStatus `type:"structure" required:"true"`
-	InstanceID        *string            `locationName:"InstanceId" type:"string" required:"true"`
-	Name              *string            `type:"string" required:"true"`
+
+	// The ID of the instance.
+	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
+
+	// The name of the configuration document.
+	Name *string `type:"string" required:"true"`
 
 	metadataUpdateAssociationStatusInput `json:"-", xml:"-"`
 }
@@ -609,6 +753,7 @@ type metadataUpdateAssociationStatusInput struct {
 }
 
 type UpdateAssociationStatusOutput struct {
+	// Information about the association.
 	AssociationDescription *AssociationDescription `type:"structure"`
 
 	metadataUpdateAssociationStatusOutput `json:"-", xml:"-"`

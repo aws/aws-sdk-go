@@ -22,6 +22,13 @@ func (c *OpsWorks) AssignInstanceRequest(input *AssignInstanceInput) (req *aws.R
 	return
 }
 
+// Assign a registered instance to a custom layer. You cannot use this action
+// with instances that were created with AWS OpsWorks.
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) AssignInstance(input *AssignInstanceInput) (output *AssignInstanceOutput, err error) {
 	req, out := c.AssignInstanceRequest(input)
 	output = out
@@ -47,6 +54,14 @@ func (c *OpsWorks) AssignVolumeRequest(input *AssignVolumeInput) (req *aws.Reque
 	return
 }
 
+// Assigns one of the stack's registered Amazon EBS volumes to a specified instance.
+// The volume must first be registered with the stack by calling RegisterVolume.
+// For more information, see Resource Management (http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html).
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) AssignVolume(input *AssignVolumeInput) (output *AssignVolumeOutput, err error) {
 	req, out := c.AssignVolumeRequest(input)
 	output = out
@@ -72,6 +87,14 @@ func (c *OpsWorks) AssociateElasticIPRequest(input *AssociateElasticIPInput) (re
 	return
 }
 
+// Associates one of the stack's registered Elastic IP addresses with a specified
+// instance. The address must first be registered with the stack by calling
+// RegisterElasticIp. For more information, see Resource Management (http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html).
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) AssociateElasticIP(input *AssociateElasticIPInput) (output *AssociateElasticIPOutput, err error) {
 	req, out := c.AssociateElasticIPRequest(input)
 	output = out
@@ -97,6 +120,17 @@ func (c *OpsWorks) AttachElasticLoadBalancerRequest(input *AttachElasticLoadBala
 	return
 }
 
+// Attaches an Elastic Load Balancing load balancer to a specified layer. For
+// more information, see Elastic Load Balancing (http://docs.aws.amazon.com/opsworks/latest/userguide/load-balancer-elb.html).
+//
+//  You must create the Elastic Load Balancing instance separately, by using
+// the Elastic Load Balancing console, API, or CLI. For more information, see
+//  Elastic Load Balancing Developer Guide (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/Welcome.html).
+//
+//  Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) AttachElasticLoadBalancer(input *AttachElasticLoadBalancerInput) (output *AttachElasticLoadBalancerOutput, err error) {
 	req, out := c.AttachElasticLoadBalancerRequest(input)
 	output = out
@@ -122,6 +156,12 @@ func (c *OpsWorks) CloneStackRequest(input *CloneStackInput) (req *aws.Request, 
 	return
 }
 
+// Creates a clone of a specified stack. For more information, see Clone a Stack
+// (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-cloning.html).
+//
+// Required Permissions: To use this action, an IAM user must have an attached
+// policy that explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) CloneStack(input *CloneStackInput) (output *CloneStackOutput, err error) {
 	req, out := c.CloneStackRequest(input)
 	output = out
@@ -147,6 +187,13 @@ func (c *OpsWorks) CreateAppRequest(input *CreateAppInput) (req *aws.Request, ou
 	return
 }
 
+// Creates an app for a specified stack. For more information, see Creating
+// Apps (http://docs.aws.amazon.com/opsworks/latest/userguide/workingapps-creating.html).
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) CreateApp(input *CreateAppInput) (output *CreateAppOutput, err error) {
 	req, out := c.CreateAppRequest(input)
 	output = out
@@ -172,6 +219,14 @@ func (c *OpsWorks) CreateDeploymentRequest(input *CreateDeploymentInput) (req *a
 	return
 }
 
+// Runs deployment or stack commands. For more information, see Deploying Apps
+// (http://docs.aws.amazon.com/opsworks/latest/userguide/workingapps-deploying.html)
+// and Run Stack Commands (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-commands.html).
+//
+// Required Permissions: To use this action, an IAM user must have a Deploy
+// or Manage permissions level for the stack, or an attached policy that explicitly
+// grants permissions. For more information on user permissions, see Managing
+// User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) CreateDeployment(input *CreateDeploymentInput) (output *CreateDeploymentOutput, err error) {
 	req, out := c.CreateDeploymentRequest(input)
 	output = out
@@ -197,6 +252,13 @@ func (c *OpsWorks) CreateInstanceRequest(input *CreateInstanceInput) (req *aws.R
 	return
 }
 
+// Creates an instance in a specified stack. For more information, see Adding
+// an Instance to a Layer (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-add.html).
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) CreateInstance(input *CreateInstanceInput) (output *CreateInstanceOutput, err error) {
 	req, out := c.CreateInstanceRequest(input)
 	output = out
@@ -222,6 +284,19 @@ func (c *OpsWorks) CreateLayerRequest(input *CreateLayerInput) (req *aws.Request
 	return
 }
 
+// Creates a layer. For more information, see How to Create a Layer (http://docs.aws.amazon.com/opsworks/latest/userguide/workinglayers-basics-create.html).
+//
+//  You should use CreateLayer for noncustom layer types such as PHP App Server
+// only if the stack does not have an existing layer of that type. A stack can
+// have at most one instance of each noncustom layer; if you attempt to create
+// a second instance, CreateLayer fails. A stack can have an arbitrary number
+// of custom layers, so you can call CreateLayer as many times as you like for
+// that layer type.
+//
+//  Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) CreateLayer(input *CreateLayerInput) (output *CreateLayerOutput, err error) {
 	req, out := c.CreateLayerRequest(input)
 	output = out
@@ -247,6 +322,11 @@ func (c *OpsWorks) CreateStackRequest(input *CreateStackInput) (req *aws.Request
 	return
 }
 
+// Creates a new stack. For more information, see Create a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-edit.html).
+//
+// Required Permissions: To use this action, an IAM user must have an attached
+// policy that explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) CreateStack(input *CreateStackInput) (output *CreateStackOutput, err error) {
 	req, out := c.CreateStackRequest(input)
 	output = out
@@ -272,6 +352,11 @@ func (c *OpsWorks) CreateUserProfileRequest(input *CreateUserProfileInput) (req 
 	return
 }
 
+// Creates a new user profile.
+//
+// Required Permissions: To use this action, an IAM user must have an attached
+// policy that explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) CreateUserProfile(input *CreateUserProfileInput) (output *CreateUserProfileOutput, err error) {
 	req, out := c.CreateUserProfileRequest(input)
 	output = out
@@ -297,6 +382,12 @@ func (c *OpsWorks) DeleteAppRequest(input *DeleteAppInput) (req *aws.Request, ou
 	return
 }
 
+// Deletes a specified app.
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DeleteApp(input *DeleteAppInput) (output *DeleteAppOutput, err error) {
 	req, out := c.DeleteAppRequest(input)
 	output = out
@@ -322,6 +413,15 @@ func (c *OpsWorks) DeleteInstanceRequest(input *DeleteInstanceInput) (req *aws.R
 	return
 }
 
+// Deletes a specified instance, which terminates the associated Amazon EC2
+// instance. You must stop an instance before you can delete it.
+//
+// For more information, see Deleting Instances (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-delete.html).
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DeleteInstance(input *DeleteInstanceInput) (output *DeleteInstanceOutput, err error) {
 	req, out := c.DeleteInstanceRequest(input)
 	output = out
@@ -347,6 +447,14 @@ func (c *OpsWorks) DeleteLayerRequest(input *DeleteLayerInput) (req *aws.Request
 	return
 }
 
+// Deletes a specified layer. You must first stop and then delete all associated
+// instances or unassign registered instances. For more information, see How
+// to Delete a Layer (http://docs.aws.amazon.com/opsworks/latest/userguide/workinglayers-basics-delete.html).
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DeleteLayer(input *DeleteLayerInput) (output *DeleteLayerOutput, err error) {
 	req, out := c.DeleteLayerRequest(input)
 	output = out
@@ -372,6 +480,14 @@ func (c *OpsWorks) DeleteStackRequest(input *DeleteStackInput) (req *aws.Request
 	return
 }
 
+// Deletes a specified stack. You must first delete all instances, layers, and
+// apps or deregister registered instances. For more information, see Shut Down
+// a Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-shutting.html).
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DeleteStack(input *DeleteStackInput) (output *DeleteStackOutput, err error) {
 	req, out := c.DeleteStackRequest(input)
 	output = out
@@ -397,6 +513,11 @@ func (c *OpsWorks) DeleteUserProfileRequest(input *DeleteUserProfileInput) (req 
 	return
 }
 
+// Deletes a user profile.
+//
+// Required Permissions: To use this action, an IAM user must have an attached
+// policy that explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DeleteUserProfile(input *DeleteUserProfileInput) (output *DeleteUserProfileOutput, err error) {
 	req, out := c.DeleteUserProfileRequest(input)
 	output = out
@@ -422,6 +543,13 @@ func (c *OpsWorks) DeregisterElasticIPRequest(input *DeregisterElasticIPInput) (
 	return
 }
 
+// Deregisters a specified Elastic IP address. The address can then be registered
+// by another stack. For more information, see Resource Management (http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html).
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DeregisterElasticIP(input *DeregisterElasticIPInput) (output *DeregisterElasticIPOutput, err error) {
 	req, out := c.DeregisterElasticIPRequest(input)
 	output = out
@@ -447,6 +575,14 @@ func (c *OpsWorks) DeregisterInstanceRequest(input *DeregisterInstanceInput) (re
 	return
 }
 
+// Deregister a registered Amazon EC2 or on-premises instance. This action removes
+// the instance from the stack and returns it to your control. This action can
+// not be used with instances that were created with AWS OpsWorks.
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DeregisterInstance(input *DeregisterInstanceInput) (output *DeregisterInstanceOutput, err error) {
 	req, out := c.DeregisterInstanceRequest(input)
 	output = out
@@ -472,6 +608,12 @@ func (c *OpsWorks) DeregisterRDSDBInstanceRequest(input *DeregisterRDSDBInstance
 	return
 }
 
+// Deregisters an Amazon RDS instance.
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DeregisterRDSDBInstance(input *DeregisterRDSDBInstanceInput) (output *DeregisterRDSDBInstanceOutput, err error) {
 	req, out := c.DeregisterRDSDBInstanceRequest(input)
 	output = out
@@ -497,6 +639,13 @@ func (c *OpsWorks) DeregisterVolumeRequest(input *DeregisterVolumeInput) (req *a
 	return
 }
 
+// Deregisters an Amazon EBS volume. The volume can then be registered by another
+// stack. For more information, see Resource Management (http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html).
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DeregisterVolume(input *DeregisterVolumeInput) (output *DeregisterVolumeOutput, err error) {
 	req, out := c.DeregisterVolumeRequest(input)
 	output = out
@@ -522,6 +671,14 @@ func (c *OpsWorks) DescribeAppsRequest(input *DescribeAppsInput) (req *aws.Reque
 	return
 }
 
+// Requests a description of a specified set of apps.
+//
+//  You must specify at least one of the parameters.
+//
+//  Required Permissions: To use this action, an IAM user must have a Show,
+// Deploy, or Manage permissions level for the stack, or an attached policy
+// that explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DescribeApps(input *DescribeAppsInput) (output *DescribeAppsOutput, err error) {
 	req, out := c.DescribeAppsRequest(input)
 	output = out
@@ -547,6 +704,14 @@ func (c *OpsWorks) DescribeCommandsRequest(input *DescribeCommandsInput) (req *a
 	return
 }
 
+// Describes the results of specified commands.
+//
+//  You must specify at least one of the parameters.
+//
+//  Required Permissions: To use this action, an IAM user must have a Show,
+// Deploy, or Manage permissions level for the stack, or an attached policy
+// that explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DescribeCommands(input *DescribeCommandsInput) (output *DescribeCommandsOutput, err error) {
 	req, out := c.DescribeCommandsRequest(input)
 	output = out
@@ -572,6 +737,14 @@ func (c *OpsWorks) DescribeDeploymentsRequest(input *DescribeDeploymentsInput) (
 	return
 }
 
+// Requests a description of a specified set of deployments.
+//
+//  You must specify at least one of the parameters.
+//
+//  Required Permissions: To use this action, an IAM user must have a Show,
+// Deploy, or Manage permissions level for the stack, or an attached policy
+// that explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DescribeDeployments(input *DescribeDeploymentsInput) (output *DescribeDeploymentsOutput, err error) {
 	req, out := c.DescribeDeploymentsRequest(input)
 	output = out
@@ -597,6 +770,14 @@ func (c *OpsWorks) DescribeElasticIPsRequest(input *DescribeElasticIPsInput) (re
 	return
 }
 
+// Describes Elastic IP addresses (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html).
+//
+//  You must specify at least one of the parameters.
+//
+//  Required Permissions: To use this action, an IAM user must have a Show,
+// Deploy, or Manage permissions level for the stack, or an attached policy
+// that explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DescribeElasticIPs(input *DescribeElasticIPsInput) (output *DescribeElasticIPsOutput, err error) {
 	req, out := c.DescribeElasticIPsRequest(input)
 	output = out
@@ -622,6 +803,14 @@ func (c *OpsWorks) DescribeElasticLoadBalancersRequest(input *DescribeElasticLoa
 	return
 }
 
+// Describes a stack's Elastic Load Balancing instances.
+//
+//  You must specify at least one of the parameters.
+//
+//  Required Permissions: To use this action, an IAM user must have a Show,
+// Deploy, or Manage permissions level for the stack, or an attached policy
+// that explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DescribeElasticLoadBalancers(input *DescribeElasticLoadBalancersInput) (output *DescribeElasticLoadBalancersOutput, err error) {
 	req, out := c.DescribeElasticLoadBalancersRequest(input)
 	output = out
@@ -647,6 +836,14 @@ func (c *OpsWorks) DescribeInstancesRequest(input *DescribeInstancesInput) (req 
 	return
 }
 
+// Requests a description of a set of instances.
+//
+//  You must specify at least one of the parameters.
+//
+//  Required Permissions: To use this action, an IAM user must have a Show,
+// Deploy, or Manage permissions level for the stack, or an attached policy
+// that explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DescribeInstances(input *DescribeInstancesInput) (output *DescribeInstancesOutput, err error) {
 	req, out := c.DescribeInstancesRequest(input)
 	output = out
@@ -672,6 +869,14 @@ func (c *OpsWorks) DescribeLayersRequest(input *DescribeLayersInput) (req *aws.R
 	return
 }
 
+// Requests a description of one or more layers in a specified stack.
+//
+//  You must specify at least one of the parameters.
+//
+//  Required Permissions: To use this action, an IAM user must have a Show,
+// Deploy, or Manage permissions level for the stack, or an attached policy
+// that explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DescribeLayers(input *DescribeLayersInput) (output *DescribeLayersOutput, err error) {
 	req, out := c.DescribeLayersRequest(input)
 	output = out
@@ -697,6 +902,14 @@ func (c *OpsWorks) DescribeLoadBasedAutoScalingRequest(input *DescribeLoadBasedA
 	return
 }
 
+// Describes load-based auto scaling configurations for specified layers.
+//
+//  You must specify at least one of the parameters.
+//
+//  Required Permissions: To use this action, an IAM user must have a Show,
+// Deploy, or Manage permissions level for the stack, or an attached policy
+// that explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DescribeLoadBasedAutoScaling(input *DescribeLoadBasedAutoScalingInput) (output *DescribeLoadBasedAutoScalingOutput, err error) {
 	req, out := c.DescribeLoadBasedAutoScalingRequest(input)
 	output = out
@@ -722,6 +935,11 @@ func (c *OpsWorks) DescribeMyUserProfileRequest(input *DescribeMyUserProfileInpu
 	return
 }
 
+// Describes a user's SSH information.
+//
+// Required Permissions: To use this action, an IAM user must have self-management
+// enabled or an attached policy that explicitly grants permissions. For more
+// information on user permissions, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DescribeMyUserProfile(input *DescribeMyUserProfileInput) (output *DescribeMyUserProfileOutput, err error) {
 	req, out := c.DescribeMyUserProfileRequest(input)
 	output = out
@@ -747,6 +965,12 @@ func (c *OpsWorks) DescribePermissionsRequest(input *DescribePermissionsInput) (
 	return
 }
 
+// Describes the permissions for a specified stack.
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DescribePermissions(input *DescribePermissionsInput) (output *DescribePermissionsOutput, err error) {
 	req, out := c.DescribePermissionsRequest(input)
 	output = out
@@ -772,6 +996,14 @@ func (c *OpsWorks) DescribeRAIDArraysRequest(input *DescribeRAIDArraysInput) (re
 	return
 }
 
+// Describe an instance's RAID arrays.
+//
+//  You must specify at least one of the parameters.
+//
+//  Required Permissions: To use this action, an IAM user must have a Show,
+// Deploy, or Manage permissions level for the stack, or an attached policy
+// that explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DescribeRAIDArrays(input *DescribeRAIDArraysInput) (output *DescribeRAIDArraysOutput, err error) {
 	req, out := c.DescribeRAIDArraysRequest(input)
 	output = out
@@ -797,6 +1029,12 @@ func (c *OpsWorks) DescribeRDSDBInstancesRequest(input *DescribeRDSDBInstancesIn
 	return
 }
 
+// Describes Amazon RDS instances.
+//
+// Required Permissions: To use this action, an IAM user must have a Show,
+// Deploy, or Manage permissions level for the stack, or an attached policy
+// that explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DescribeRDSDBInstances(input *DescribeRDSDBInstancesInput) (output *DescribeRDSDBInstancesOutput, err error) {
 	req, out := c.DescribeRDSDBInstancesRequest(input)
 	output = out
@@ -822,6 +1060,12 @@ func (c *OpsWorks) DescribeServiceErrorsRequest(input *DescribeServiceErrorsInpu
 	return
 }
 
+// Describes AWS OpsWorks service errors.
+//
+// Required Permissions: To use this action, an IAM user must have a Show,
+// Deploy, or Manage permissions level for the stack, or an attached policy
+// that explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DescribeServiceErrors(input *DescribeServiceErrorsInput) (output *DescribeServiceErrorsOutput, err error) {
 	req, out := c.DescribeServiceErrorsRequest(input)
 	output = out
@@ -847,6 +1091,12 @@ func (c *OpsWorks) DescribeStackProvisioningParametersRequest(input *DescribeSta
 	return
 }
 
+// Requests a description of a stack's provisioning parameters.
+//
+// Required Permissions: To use this action, an IAM user must have a Show,
+// Deploy, or Manage permissions level for the stack or an attached policy that
+// explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DescribeStackProvisioningParameters(input *DescribeStackProvisioningParametersInput) (output *DescribeStackProvisioningParametersOutput, err error) {
 	req, out := c.DescribeStackProvisioningParametersRequest(input)
 	output = out
@@ -872,6 +1122,13 @@ func (c *OpsWorks) DescribeStackSummaryRequest(input *DescribeStackSummaryInput)
 	return
 }
 
+// Describes the number of layers and apps in a specified stack, and the number
+// of instances in each state, such as running_setup or online.
+//
+// Required Permissions: To use this action, an IAM user must have a Show,
+// Deploy, or Manage permissions level for the stack, or an attached policy
+// that explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DescribeStackSummary(input *DescribeStackSummaryInput) (output *DescribeStackSummaryOutput, err error) {
 	req, out := c.DescribeStackSummaryRequest(input)
 	output = out
@@ -897,6 +1154,12 @@ func (c *OpsWorks) DescribeStacksRequest(input *DescribeStacksInput) (req *aws.R
 	return
 }
 
+// Requests a description of one or more stacks.
+//
+// Required Permissions: To use this action, an IAM user must have a Show,
+// Deploy, or Manage permissions level for the stack, or an attached policy
+// that explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DescribeStacks(input *DescribeStacksInput) (output *DescribeStacksOutput, err error) {
 	req, out := c.DescribeStacksRequest(input)
 	output = out
@@ -922,6 +1185,14 @@ func (c *OpsWorks) DescribeTimeBasedAutoScalingRequest(input *DescribeTimeBasedA
 	return
 }
 
+// Describes time-based auto scaling configurations for specified instances.
+//
+//  You must specify at least one of the parameters.
+//
+//  Required Permissions: To use this action, an IAM user must have a Show,
+// Deploy, or Manage permissions level for the stack, or an attached policy
+// that explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DescribeTimeBasedAutoScaling(input *DescribeTimeBasedAutoScalingInput) (output *DescribeTimeBasedAutoScalingOutput, err error) {
 	req, out := c.DescribeTimeBasedAutoScalingRequest(input)
 	output = out
@@ -947,6 +1218,11 @@ func (c *OpsWorks) DescribeUserProfilesRequest(input *DescribeUserProfilesInput)
 	return
 }
 
+// Describe specified users.
+//
+// Required Permissions: To use this action, an IAM user must have an attached
+// policy that explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DescribeUserProfiles(input *DescribeUserProfilesInput) (output *DescribeUserProfilesOutput, err error) {
 	req, out := c.DescribeUserProfilesRequest(input)
 	output = out
@@ -972,6 +1248,14 @@ func (c *OpsWorks) DescribeVolumesRequest(input *DescribeVolumesInput) (req *aws
 	return
 }
 
+// Describes an instance's Amazon EBS volumes.
+//
+//  You must specify at least one of the parameters.
+//
+//  Required Permissions: To use this action, an IAM user must have a Show,
+// Deploy, or Manage permissions level for the stack, or an attached policy
+// that explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DescribeVolumes(input *DescribeVolumesInput) (output *DescribeVolumesOutput, err error) {
 	req, out := c.DescribeVolumesRequest(input)
 	output = out
@@ -997,6 +1281,12 @@ func (c *OpsWorks) DetachElasticLoadBalancerRequest(input *DetachElasticLoadBala
 	return
 }
 
+// Detaches a specified Elastic Load Balancing instance from its layer.
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DetachElasticLoadBalancer(input *DetachElasticLoadBalancerInput) (output *DetachElasticLoadBalancerOutput, err error) {
 	req, out := c.DetachElasticLoadBalancerRequest(input)
 	output = out
@@ -1022,6 +1312,14 @@ func (c *OpsWorks) DisassociateElasticIPRequest(input *DisassociateElasticIPInpu
 	return
 }
 
+// Disassociates an Elastic IP address from its instance. The address remains
+// registered with the stack. For more information, see Resource Management
+// (http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html).
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DisassociateElasticIP(input *DisassociateElasticIPInput) (output *DisassociateElasticIPOutput, err error) {
 	req, out := c.DisassociateElasticIPRequest(input)
 	output = out
@@ -1047,6 +1345,13 @@ func (c *OpsWorks) GetHostnameSuggestionRequest(input *GetHostnameSuggestionInpu
 	return
 }
 
+// Gets a generated host name for the specified layer, based on the current
+// host name theme.
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) GetHostnameSuggestion(input *GetHostnameSuggestionInput) (output *GetHostnameSuggestionOutput, err error) {
 	req, out := c.GetHostnameSuggestionRequest(input)
 	output = out
@@ -1072,6 +1377,13 @@ func (c *OpsWorks) RebootInstanceRequest(input *RebootInstanceInput) (req *aws.R
 	return
 }
 
+// Reboots a specified instance. For more information, see Starting, Stopping,
+// and Rebooting Instances (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-starting.html).
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) RebootInstance(input *RebootInstanceInput) (output *RebootInstanceOutput, err error) {
 	req, out := c.RebootInstanceRequest(input)
 	output = out
@@ -1097,6 +1409,15 @@ func (c *OpsWorks) RegisterElasticIPRequest(input *RegisterElasticIPInput) (req 
 	return
 }
 
+// Registers an Elastic IP address with a specified stack. An address can be
+// registered with only one stack at a time. If the address is already registered,
+// you must first deregister it by calling DeregisterElasticIp. For more information,
+// see Resource Management (http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html).
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) RegisterElasticIP(input *RegisterElasticIPInput) (output *RegisterElasticIPOutput, err error) {
 	req, out := c.RegisterElasticIPRequest(input)
 	output = out
@@ -1122,6 +1443,17 @@ func (c *OpsWorks) RegisterInstanceRequest(input *RegisterInstanceInput) (req *a
 	return
 }
 
+// Registers instances with a specified stack that were created outside of AWS
+// OpsWorks.
+//
+// We do not recommend using this action to register instances. The complete
+// registration operation has two primary steps, installing the AWS OpsWorks
+// agent on the instance and registering the instance with the stack. RegisterInstance
+// handles only the second step. You should instead use the AWS CLI register
+// command, which performs the entire registration operation. Required Permissions:
+// To use this action, an IAM user must have a Manage permissions level for
+// the stack or an attached policy that explicitly grants permissions. For more
+// information on user permissions, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) RegisterInstance(input *RegisterInstanceInput) (output *RegisterInstanceOutput, err error) {
 	req, out := c.RegisterInstanceRequest(input)
 	output = out
@@ -1147,6 +1479,12 @@ func (c *OpsWorks) RegisterRDSDBInstanceRequest(input *RegisterRDSDBInstanceInpu
 	return
 }
 
+// Registers an Amazon RDS instance with a stack.
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) RegisterRDSDBInstance(input *RegisterRDSDBInstanceInput) (output *RegisterRDSDBInstanceOutput, err error) {
 	req, out := c.RegisterRDSDBInstanceRequest(input)
 	output = out
@@ -1172,6 +1510,15 @@ func (c *OpsWorks) RegisterVolumeRequest(input *RegisterVolumeInput) (req *aws.R
 	return
 }
 
+// Registers an Amazon EBS volume with a specified stack. A volume can be registered
+// with only one stack at a time. If the volume is already registered, you must
+// first deregister it by calling DeregisterVolume. For more information, see
+// Resource Management (http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html).
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) RegisterVolume(input *RegisterVolumeInput) (output *RegisterVolumeOutput, err error) {
 	req, out := c.RegisterVolumeRequest(input)
 	output = out
@@ -1197,6 +1544,19 @@ func (c *OpsWorks) SetLoadBasedAutoScalingRequest(input *SetLoadBasedAutoScaling
 	return
 }
 
+// Specify the load-based auto scaling configuration for a specified layer.
+// For more information, see Managing Load with Time-based and Load-based Instances
+// (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-autoscaling.html).
+//
+//  To use load-based auto scaling, you must create a set of load-based auto
+// scaling instances. Load-based auto scaling operates only on the instances
+// from that set, so you must ensure that you have created enough instances
+// to handle the maximum anticipated load.
+//
+//  Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) SetLoadBasedAutoScaling(input *SetLoadBasedAutoScalingInput) (output *SetLoadBasedAutoScalingOutput, err error) {
 	req, out := c.SetLoadBasedAutoScalingRequest(input)
 	output = out
@@ -1222,6 +1582,13 @@ func (c *OpsWorks) SetPermissionRequest(input *SetPermissionInput) (req *aws.Req
 	return
 }
 
+// Specifies a user's permissions. For more information, see Security and Permissions
+// (http://docs.aws.amazon.com/opsworks/latest/userguide/workingsecurity.html).
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) SetPermission(input *SetPermissionInput) (output *SetPermissionOutput, err error) {
 	req, out := c.SetPermissionRequest(input)
 	output = out
@@ -1247,6 +1614,14 @@ func (c *OpsWorks) SetTimeBasedAutoScalingRequest(input *SetTimeBasedAutoScaling
 	return
 }
 
+// Specify the time-based auto scaling configuration for a specified instance.
+// For more information, see Managing Load with Time-based and Load-based Instances
+// (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-autoscaling.html).
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) SetTimeBasedAutoScaling(input *SetTimeBasedAutoScalingInput) (output *SetTimeBasedAutoScalingOutput, err error) {
 	req, out := c.SetTimeBasedAutoScalingRequest(input)
 	output = out
@@ -1272,6 +1647,13 @@ func (c *OpsWorks) StartInstanceRequest(input *StartInstanceInput) (req *aws.Req
 	return
 }
 
+// Starts a specified instance. For more information, see Starting, Stopping,
+// and Rebooting Instances (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-starting.html).
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) StartInstance(input *StartInstanceInput) (output *StartInstanceOutput, err error) {
 	req, out := c.StartInstanceRequest(input)
 	output = out
@@ -1297,6 +1679,12 @@ func (c *OpsWorks) StartStackRequest(input *StartStackInput) (req *aws.Request, 
 	return
 }
 
+// Starts a stack's instances.
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) StartStack(input *StartStackInput) (output *StartStackOutput, err error) {
 	req, out := c.StartStackRequest(input)
 	output = out
@@ -1322,6 +1710,15 @@ func (c *OpsWorks) StopInstanceRequest(input *StopInstanceInput) (req *aws.Reque
 	return
 }
 
+// Stops a specified instance. When you stop a standard instance, the data disappears
+// and must be reinstalled when you restart the instance. You can stop an Amazon
+// EBS-backed instance without losing data. For more information, see Starting,
+// Stopping, and Rebooting Instances (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-starting.html).
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) StopInstance(input *StopInstanceInput) (output *StopInstanceOutput, err error) {
 	req, out := c.StopInstanceRequest(input)
 	output = out
@@ -1347,6 +1744,12 @@ func (c *OpsWorks) StopStackRequest(input *StopStackInput) (req *aws.Request, ou
 	return
 }
 
+// Stops a specified stack.
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) StopStack(input *StopStackInput) (output *StopStackOutput, err error) {
 	req, out := c.StopStackRequest(input)
 	output = out
@@ -1372,6 +1775,15 @@ func (c *OpsWorks) UnassignInstanceRequest(input *UnassignInstanceInput) (req *a
 	return
 }
 
+// Unassigns a registered instance from all of it's layers. The instance remains
+// in the stack as an unassigned instance and can be assigned to another layer,
+// as needed. You cannot use this action with instances that were created with
+// AWS OpsWorks.
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) UnassignInstance(input *UnassignInstanceInput) (output *UnassignInstanceOutput, err error) {
 	req, out := c.UnassignInstanceRequest(input)
 	output = out
@@ -1397,6 +1809,13 @@ func (c *OpsWorks) UnassignVolumeRequest(input *UnassignVolumeInput) (req *aws.R
 	return
 }
 
+// Unassigns an assigned Amazon EBS volume. The volume remains registered with
+// the stack. For more information, see Resource Management (http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html).
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) UnassignVolume(input *UnassignVolumeInput) (output *UnassignVolumeOutput, err error) {
 	req, out := c.UnassignVolumeRequest(input)
 	output = out
@@ -1422,6 +1841,12 @@ func (c *OpsWorks) UpdateAppRequest(input *UpdateAppInput) (req *aws.Request, ou
 	return
 }
 
+// Updates a specified app.
+//
+// Required Permissions: To use this action, an IAM user must have a Deploy
+// or Manage permissions level for the stack, or an attached policy that explicitly
+// grants permissions. For more information on user permissions, see Managing
+// User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) UpdateApp(input *UpdateAppInput) (output *UpdateAppOutput, err error) {
 	req, out := c.UpdateAppRequest(input)
 	output = out
@@ -1447,6 +1872,13 @@ func (c *OpsWorks) UpdateElasticIPRequest(input *UpdateElasticIPInput) (req *aws
 	return
 }
 
+// Updates a registered Elastic IP address's name. For more information, see
+// Resource Management (http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html).
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) UpdateElasticIP(input *UpdateElasticIPInput) (output *UpdateElasticIPOutput, err error) {
 	req, out := c.UpdateElasticIPRequest(input)
 	output = out
@@ -1472,6 +1904,12 @@ func (c *OpsWorks) UpdateInstanceRequest(input *UpdateInstanceInput) (req *aws.R
 	return
 }
 
+// Updates a specified instance.
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) UpdateInstance(input *UpdateInstanceInput) (output *UpdateInstanceOutput, err error) {
 	req, out := c.UpdateInstanceRequest(input)
 	output = out
@@ -1497,6 +1935,12 @@ func (c *OpsWorks) UpdateLayerRequest(input *UpdateLayerInput) (req *aws.Request
 	return
 }
 
+// Updates a specified layer.
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) UpdateLayer(input *UpdateLayerInput) (output *UpdateLayerOutput, err error) {
 	req, out := c.UpdateLayerRequest(input)
 	output = out
@@ -1522,6 +1966,11 @@ func (c *OpsWorks) UpdateMyUserProfileRequest(input *UpdateMyUserProfileInput) (
 	return
 }
 
+// Updates a user's SSH public key.
+//
+// Required Permissions: To use this action, an IAM user must have self-management
+// enabled or an attached policy that explicitly grants permissions. For more
+// information on user permissions, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) UpdateMyUserProfile(input *UpdateMyUserProfileInput) (output *UpdateMyUserProfileOutput, err error) {
 	req, out := c.UpdateMyUserProfileRequest(input)
 	output = out
@@ -1547,6 +1996,12 @@ func (c *OpsWorks) UpdateRDSDBInstanceRequest(input *UpdateRDSDBInstanceInput) (
 	return
 }
 
+// Updates an Amazon RDS instance.
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) UpdateRDSDBInstance(input *UpdateRDSDBInstanceInput) (output *UpdateRDSDBInstanceOutput, err error) {
 	req, out := c.UpdateRDSDBInstanceRequest(input)
 	output = out
@@ -1572,6 +2027,12 @@ func (c *OpsWorks) UpdateStackRequest(input *UpdateStackInput) (req *aws.Request
 	return
 }
 
+// Updates a specified stack.
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) UpdateStack(input *UpdateStackInput) (output *UpdateStackOutput, err error) {
 	req, out := c.UpdateStackRequest(input)
 	output = out
@@ -1597,6 +2058,11 @@ func (c *OpsWorks) UpdateUserProfileRequest(input *UpdateUserProfileInput) (req 
 	return
 }
 
+// Updates a specified user profile.
+//
+// Required Permissions: To use this action, an IAM user must have an attached
+// policy that explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) UpdateUserProfile(input *UpdateUserProfileInput) (output *UpdateUserProfileOutput, err error) {
 	req, out := c.UpdateUserProfileRequest(input)
 	output = out
@@ -1622,6 +2088,13 @@ func (c *OpsWorks) UpdateVolumeRequest(input *UpdateVolumeInput) (req *aws.Reque
 	return
 }
 
+// Updates an Amazon EBS volume's name or mount point. For more information,
+// see Resource Management (http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html).
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack, or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) UpdateVolume(input *UpdateVolumeInput) (output *UpdateVolumeOutput, err error) {
 	req, out := c.UpdateVolumeRequest(input)
 	output = out
@@ -1631,21 +2104,53 @@ func (c *OpsWorks) UpdateVolume(input *UpdateVolumeInput) (output *UpdateVolumeO
 
 var opUpdateVolume *aws.Operation
 
+// A description of the app.
 type App struct {
-	AppID            *string                `locationName:"AppId" type:"string"`
-	AppSource        *Source                `type:"structure"`
-	Attributes       *map[string]*string    `type:"map"`
-	CreatedAt        *string                `type:"string"`
-	DataSources      []*DataSource          `type:"list"`
-	Description      *string                `type:"string"`
-	Domains          []*string              `type:"list"`
-	EnableSSL        *bool                  `locationName:"EnableSsl" type:"boolean"`
-	Environment      []*EnvironmentVariable `type:"list"`
-	Name             *string                `type:"string"`
-	SSLConfiguration *SSLConfiguration      `locationName:"SslConfiguration" type:"structure"`
-	Shortname        *string                `type:"string"`
-	StackID          *string                `locationName:"StackId" type:"string"`
-	Type             *string                `type:"string"`
+	// The app ID.
+	AppID *string `locationName:"AppId" type:"string"`
+
+	// A Source object that describes the app repository.
+	AppSource *Source `type:"structure"`
+
+	// The stack attributes.
+	Attributes *map[string]*string `type:"map"`
+
+	// When the app was created.
+	CreatedAt *string `type:"string"`
+
+	// The app's data sources.
+	DataSources []*DataSource `type:"list"`
+
+	// A description of the app.
+	Description *string `type:"string"`
+
+	// The app vhost settings with multiple domains separated by commas. For example:
+	// 'www.example.com, example.com'
+	Domains []*string `type:"list"`
+
+	// Whether to enable SSL for the app.
+	EnableSSL *bool `locationName:"EnableSsl" type:"boolean"`
+
+	// An array of EnvironmentVariable objects that specify environment variables
+	// to be associated with the app. You can specify up to ten environment variables.
+	// After you deploy the app, these variables are defined on the associated app
+	// server instances.
+	Environment []*EnvironmentVariable `type:"list"`
+
+	// The app name.
+	Name *string `type:"string"`
+
+	// An SslConfiguration object with the SSL configuration.
+	SSLConfiguration *SSLConfiguration `locationName:"SslConfiguration" type:"structure"`
+
+	// The app's short name.
+	Shortname *string `type:"string"`
+
+	// The app stack ID.
+	StackID *string `locationName:"StackId" type:"string"`
+
+	// The app type.
+	Type *string `type:"string"`
 
 	metadataApp `json:"-", xml:"-"`
 }
@@ -1655,8 +2160,12 @@ type metadataApp struct {
 }
 
 type AssignInstanceInput struct {
-	InstanceID *string   `locationName:"InstanceId" type:"string" required:"true"`
-	LayerIDs   []*string `locationName:"LayerIds" type:"list" required:"true"`
+	// The instance ID.
+	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
+
+	// The layer ID, which must correspond to a custom layer. You cannot assign
+	// a registered instance to a built-in layer.
+	LayerIDs []*string `locationName:"LayerIds" type:"list" required:"true"`
 
 	metadataAssignInstanceInput `json:"-", xml:"-"`
 }
@@ -1674,8 +2183,11 @@ type metadataAssignInstanceOutput struct {
 }
 
 type AssignVolumeInput struct {
+	// The instance ID.
 	InstanceID *string `locationName:"InstanceId" type:"string"`
-	VolumeID   *string `locationName:"VolumeId" type:"string" required:"true"`
+
+	// The volume ID.
+	VolumeID *string `locationName:"VolumeId" type:"string" required:"true"`
 
 	metadataAssignVolumeInput `json:"-", xml:"-"`
 }
@@ -1693,7 +2205,10 @@ type metadataAssignVolumeOutput struct {
 }
 
 type AssociateElasticIPInput struct {
-	ElasticIP  *string `locationName:"ElasticIp" type:"string" required:"true"`
+	// The Elastic IP address.
+	ElasticIP *string `locationName:"ElasticIp" type:"string" required:"true"`
+
+	// The instance ID.
 	InstanceID *string `locationName:"InstanceId" type:"string"`
 
 	metadataAssociateElasticIPInput `json:"-", xml:"-"`
@@ -1712,8 +2227,12 @@ type metadataAssociateElasticIPOutput struct {
 }
 
 type AttachElasticLoadBalancerInput struct {
+	// The Elastic Load Balancing instance's name.
 	ElasticLoadBalancerName *string `type:"string" required:"true"`
-	LayerID                 *string `locationName:"LayerId" type:"string" required:"true"`
+
+	// The ID of the layer that the Elastic Load Balancing instance is to be attached
+	// to.
+	LayerID *string `locationName:"LayerId" type:"string" required:"true"`
 
 	metadataAttachElasticLoadBalancerInput `json:"-", xml:"-"`
 }
@@ -1730,13 +2249,35 @@ type metadataAttachElasticLoadBalancerOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a load-based auto scaling upscaling or downscaling threshold configuration,
+// which specifies when AWS OpsWorks starts or stops load-based instances.
 type AutoScalingThresholds struct {
-	CPUThreshold       *float64 `locationName:"CpuThreshold" type:"double"`
-	IgnoreMetricsTime  *int64   `type:"integer"`
-	InstanceCount      *int64   `type:"integer"`
-	LoadThreshold      *float64 `type:"double"`
-	MemoryThreshold    *float64 `type:"double"`
-	ThresholdsWaitTime *int64   `type:"integer"`
+	// The CPU utilization threshold, as a percent of the available CPU.
+	CPUThreshold *float64 `locationName:"CpuThreshold" type:"double"`
+
+	// The amount of time (in minutes) after a scaling event occurs that AWS OpsWorks
+	// should ignore metrics and not raise any additional scaling events. For example,
+	// AWS OpsWorks adds new instances following an upscaling event but the instances
+	// won't start reducing the load until they have been booted and configured.
+	// There is no point in raising additional scaling events during that operation,
+	// which typically takes several minutes. IgnoreMetricsTime allows you to direct
+	// AWS OpsWorks to not raise any scaling events long enough to get the new instances
+	// online.
+	IgnoreMetricsTime *int64 `type:"integer"`
+
+	// The number of instances to add or remove when the load exceeds a threshold.
+	InstanceCount *int64 `type:"integer"`
+
+	// The load threshold. For more information about how load is computed, see
+	// Load (computing) (http://en.wikipedia.org/wiki/Load_%28computing%29).
+	LoadThreshold *float64 `type:"double"`
+
+	// The memory utilization threshold, as a percent of the available memory.
+	MemoryThreshold *float64 `type:"double"`
+
+	// The amount of time, in minutes, that the load must exceed a threshold before
+	// more instances are added or removed.
+	ThresholdsWaitTime *int64 `type:"integer"`
 
 	metadataAutoScalingThresholds `json:"-", xml:"-"`
 }
@@ -1745,9 +2286,13 @@ type metadataAutoScalingThresholds struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the Chef configuration.
 type ChefConfiguration struct {
+	// The Berkshelf version.
 	BerkshelfVersion *string `type:"string"`
-	ManageBerkshelf  *bool   `type:"boolean"`
+
+	// Whether to enable Berkshelf.
+	ManageBerkshelf *bool `type:"boolean"`
 
 	metadataChefConfiguration `json:"-", xml:"-"`
 }
@@ -1757,27 +2302,153 @@ type metadataChefConfiguration struct {
 }
 
 type CloneStackInput struct {
-	Attributes                *map[string]*string        `type:"map"`
-	ChefConfiguration         *ChefConfiguration         `type:"structure"`
-	CloneAppIDs               []*string                  `locationName:"CloneAppIds" type:"list"`
-	ClonePermissions          *bool                      `type:"boolean"`
-	ConfigurationManager      *StackConfigurationManager `type:"structure"`
-	CustomCookbooksSource     *Source                    `type:"structure"`
-	CustomJSON                *string                    `locationName:"CustomJson" type:"string"`
-	DefaultAvailabilityZone   *string                    `type:"string"`
-	DefaultInstanceProfileARN *string                    `locationName:"DefaultInstanceProfileArn" type:"string"`
-	DefaultOs                 *string                    `type:"string"`
-	DefaultRootDeviceType     *string                    `type:"string"`
-	DefaultSSHKeyName         *string                    `locationName:"DefaultSshKeyName" type:"string"`
-	DefaultSubnetID           *string                    `locationName:"DefaultSubnetId" type:"string"`
-	HostnameTheme             *string                    `type:"string"`
-	Name                      *string                    `type:"string"`
-	Region                    *string                    `type:"string"`
-	ServiceRoleARN            *string                    `locationName:"ServiceRoleArn" type:"string" required:"true"`
-	SourceStackID             *string                    `locationName:"SourceStackId" type:"string" required:"true"`
-	UseCustomCookbooks        *bool                      `type:"boolean"`
-	UseOpsWorksSecurityGroups *bool                      `locationName:"UseOpsworksSecurityGroups" type:"boolean"`
-	VPCID                     *string                    `locationName:"VpcId" type:"string"`
+	// A list of stack attributes and values as key/value pairs to be added to the
+	// cloned stack.
+	Attributes *map[string]*string `type:"map"`
+
+	// A ChefConfiguration object that specifies whether to enable Berkshelf and
+	// the Berkshelf version on Chef 11.10 stacks. For more information, see Create
+	// a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
+	ChefConfiguration *ChefConfiguration `type:"structure"`
+
+	// A list of source stack app IDs to be included in the cloned stack.
+	CloneAppIDs []*string `locationName:"CloneAppIds" type:"list"`
+
+	// Whether to clone the source stack's permissions.
+	ClonePermissions *bool `type:"boolean"`
+
+	// The configuration manager. When you clone a stack we recommend that you use
+	// the configuration manager to specify the Chef version, 0.9, 11.4, or 11.10.
+	// The default value is currently 11.4.
+	ConfigurationManager *StackConfigurationManager `type:"structure"`
+
+	// Contains the information required to retrieve an app or cookbook from a repository.
+	// For more information, see Creating Apps (http://docs.aws.amazon.com/opsworks/latest/userguide/workingapps-creating.html)
+	// or Custom Recipes and Cookbooks (http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook.html).
+	CustomCookbooksSource *Source `type:"structure"`
+
+	// A string that contains user-defined, custom JSON. It is used to override
+	// the corresponding default stack configuration JSON values. The string should
+	// be in the following format and must escape characters such as '"'.:
+	//
+	// "{\"key1\": \"value1\", \"key2\": \"value2\",...}"
+	//
+	// For more information on custom JSON, see Use Custom JSON to Modify the Stack
+	// Configuration JSON (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html)
+	CustomJSON *string `locationName:"CustomJson" type:"string"`
+
+	// The cloned stack's default Availability Zone, which must be in the specified
+	// region. For more information, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html).
+	// If you also specify a value for DefaultSubnetId, the subnet must be in the
+	// same zone. For more information, see the VpcId parameter description.
+	DefaultAvailabilityZone *string `type:"string"`
+
+	// The ARN of an IAM profile that is the default profile for all of the stack's
+	// EC2 instances. For more information about IAM ARNs, see Using Identifiers
+	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
+	DefaultInstanceProfileARN *string `locationName:"DefaultInstanceProfileArn" type:"string"`
+
+	// The stacks's operating system, which must be set to one of the following.
+	//
+	//  Standard operating systems: an Amazon Linux version such as Amazon Linux
+	// 2014.09, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS. Custom AMIs: Custom. You
+	// specify the custom AMI you want to use when you create instances.   The default
+	// option is the current Amazon Linux version.
+	DefaultOs *string `type:"string"`
+
+	// The default root device type. This value is used by default for all instances
+	// in the cloned stack, but you can override it when you create an instance.
+	// For more information, see Storage for the Root Device (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device).
+	DefaultRootDeviceType *string `type:"string"`
+
+	// A default SSH key for the stack instances. You can override this value when
+	// you create or update an instance.
+	DefaultSSHKeyName *string `locationName:"DefaultSshKeyName" type:"string"`
+
+	// The stack's default VPC subnet ID. This parameter is required if you specify
+	// a value for the VpcId parameter. All instances are launched into this subnet
+	// unless you specify otherwise when you create the instance. If you also specify
+	// a value for DefaultAvailabilityZone, the subnet must be in that zone. For
+	// information on default values and when this parameter is required, see the
+	// VpcId parameter description.
+	DefaultSubnetID *string `locationName:"DefaultSubnetId" type:"string"`
+
+	// The stack's host name theme, with spaces are replaced by underscores. The
+	// theme is used to generate host names for the stack's instances. By default,
+	// HostnameTheme is set to Layer_Dependent, which creates host names by appending
+	// integers to the layer's short name. The other themes are:
+	//
+	//  Baked_Goods Clouds European_Cities Fruits Greek_Deities Legendary_Creatures_from_Japan
+	// Planets_and_Moons Roman_Deities Scottish_Islands US_Cities Wild_Cats  To
+	// obtain a generated host name, call GetHostNameSuggestion, which returns a
+	// host name based on the current theme.
+	HostnameTheme *string `type:"string"`
+
+	// The cloned stack name.
+	Name *string `type:"string"`
+
+	// The cloned stack AWS region, such as "us-east-1". For more information about
+	// AWS regions, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html).
+	Region *string `type:"string"`
+
+	// The stack AWS Identity and Access Management (IAM) role, which allows AWS
+	// OpsWorks to work with AWS resources on your behalf. You must set this parameter
+	// to the Amazon Resource Name (ARN) for an existing IAM role. If you create
+	// a stack by using the AWS OpsWorks console, it creates the role for you. You
+	// can obtain an existing stack's IAM ARN programmatically by calling DescribePermissions.
+	// For more information about IAM ARNs, see Using Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
+	//
+	//  You must set this parameter to a valid service role ARN or the action will
+	// fail; there is no default value. You can specify the source stack's service
+	// role ARN, if you prefer, but you must do so explicitly.
+	ServiceRoleARN *string `locationName:"ServiceRoleArn" type:"string" required:"true"`
+
+	// The source stack ID.
+	SourceStackID *string `locationName:"SourceStackId" type:"string" required:"true"`
+
+	// Whether to use custom cookbooks.
+	UseCustomCookbooks *bool `type:"boolean"`
+
+	// Whether to associate the AWS OpsWorks built-in security groups with the stack's
+	// layers.
+	//
+	// AWS OpsWorks provides a standard set of built-in security groups, one for
+	// each layer, which are associated with layers by default. With UseOpsworksSecurityGroups
+	// you can instead provide your own custom security groups. UseOpsworksSecurityGroups
+	// has the following settings:
+	//
+	//  True - AWS OpsWorks automatically associates the appropriate built-in security
+	// group with each layer (default setting). You can associate additional security
+	// groups with a layer after you create it but you cannot delete the built-in
+	// security group.  False - AWS OpsWorks does not associate built-in security
+	// groups with layers. You must create appropriate EC2 security groups and associate
+	// a security group with each layer that you create. However, you can still
+	// manually associate a built-in security group with a layer on creation; custom
+	// security groups are required only for those layers that need custom settings.
+	//   For more information, see Create a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
+	UseOpsWorksSecurityGroups *bool `locationName:"UseOpsworksSecurityGroups" type:"boolean"`
+
+	// The ID of the VPC that the cloned stack is to be launched into. It must be
+	// in the specified region. All instances are launched into this VPC, and you
+	// cannot change the ID later.
+	//
+	//  If your account supports EC2 Classic, the default value is no VPC. If your
+	// account does not support EC2 Classic, the default value is the default VPC
+	// for the specified region.  If the VPC ID corresponds to a default VPC and
+	// you have specified either the DefaultAvailabilityZone or the DefaultSubnetId
+	// parameter only, AWS OpsWorks infers the value of the other parameter. If
+	// you specify neither parameter, AWS OpsWorks sets these parameters to the
+	// first valid Availability Zone for the specified region and the corresponding
+	// default VPC subnet ID, respectively.
+	//
+	// If you specify a nondefault VPC ID, note the following:
+	//
+	//  It must belong to a VPC in your account that is in the specified region.
+	// You must specify a value for DefaultSubnetId.  For more information on how
+	// to use AWS OpsWorks with a VPC, see Running a Stack in a VPC (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-vpc.html).
+	// For more information on default VPC and EC2 Classic, see Supported Platforms
+	// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html).
+	VPCID *string `locationName:"VpcId" type:"string"`
 
 	metadataCloneStackInput `json:"-", xml:"-"`
 }
@@ -1786,7 +2457,9 @@ type metadataCloneStackInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a CloneStack request.
 type CloneStackOutput struct {
+	// The cloned stack ID.
 	StackID *string `locationName:"StackId" type:"string"`
 
 	metadataCloneStackOutput `json:"-", xml:"-"`
@@ -1796,17 +2469,42 @@ type metadataCloneStackOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a command.
 type Command struct {
+	// Date and time when the command was acknowledged.
 	AcknowledgedAt *string `type:"string"`
-	CommandID      *string `locationName:"CommandId" type:"string"`
-	CompletedAt    *string `type:"string"`
-	CreatedAt      *string `type:"string"`
-	DeploymentID   *string `locationName:"DeploymentId" type:"string"`
-	ExitCode       *int64  `type:"integer"`
-	InstanceID     *string `locationName:"InstanceId" type:"string"`
-	LogURL         *string `locationName:"LogUrl" type:"string"`
-	Status         *string `type:"string"`
-	Type           *string `type:"string"`
+
+	// The command ID.
+	CommandID *string `locationName:"CommandId" type:"string"`
+
+	// Date when the command completed.
+	CompletedAt *string `type:"string"`
+
+	// Date and time when the command was run.
+	CreatedAt *string `type:"string"`
+
+	// The command deployment ID.
+	DeploymentID *string `locationName:"DeploymentId" type:"string"`
+
+	// The command exit code.
+	ExitCode *int64 `type:"integer"`
+
+	// The ID of the instance where the command was executed.
+	InstanceID *string `locationName:"InstanceId" type:"string"`
+
+	// The URL of the command log.
+	LogURL *string `locationName:"LogUrl" type:"string"`
+
+	// The command status:
+	//
+	//  failed successful skipped pending
+	Status *string `type:"string"`
+
+	// The command type:
+	//
+	//  deploy rollback start stop restart undeploy update_dependencies install_dependencies
+	// update_custom_cookbooks execute_recipes
+	Type *string `type:"string"`
 
 	metadataCommand `json:"-", xml:"-"`
 }
@@ -1816,18 +2514,51 @@ type metadataCommand struct {
 }
 
 type CreateAppInput struct {
-	AppSource        *Source                `type:"structure"`
-	Attributes       *map[string]*string    `type:"map"`
-	DataSources      []*DataSource          `type:"list"`
-	Description      *string                `type:"string"`
-	Domains          []*string              `type:"list"`
-	EnableSSL        *bool                  `locationName:"EnableSsl" type:"boolean"`
-	Environment      []*EnvironmentVariable `type:"list"`
-	Name             *string                `type:"string" required:"true"`
-	SSLConfiguration *SSLConfiguration      `locationName:"SslConfiguration" type:"structure"`
-	Shortname        *string                `type:"string"`
-	StackID          *string                `locationName:"StackId" type:"string" required:"true"`
-	Type             *string                `type:"string" required:"true"`
+	// A Source object that specifies the app repository.
+	AppSource *Source `type:"structure"`
+
+	// One or more user-defined key/value pairs to be added to the stack attributes.
+	Attributes *map[string]*string `type:"map"`
+
+	// The app's data source.
+	DataSources []*DataSource `type:"list"`
+
+	// A description of the app.
+	Description *string `type:"string"`
+
+	// The app virtual host settings, with multiple domains separated by commas.
+	// For example: 'www.example.com, example.com'
+	Domains []*string `type:"list"`
+
+	// Whether to enable SSL for the app.
+	EnableSSL *bool `locationName:"EnableSsl" type:"boolean"`
+
+	// An array of EnvironmentVariable objects that specify environment variables
+	// to be associated with the app. You can specify up to ten environment variables.
+	// After you deploy the app, these variables are defined on the associated app
+	// server instance.
+	//
+	// This parameter is supported only by Chef 11.10 stacks. If you have specified
+	// one or more environment variables, you cannot modify the stack's Chef version.
+	Environment []*EnvironmentVariable `type:"list"`
+
+	// The app name.
+	Name *string `type:"string" required:"true"`
+
+	// An SslConfiguration object with the SSL configuration.
+	SSLConfiguration *SSLConfiguration `locationName:"SslConfiguration" type:"structure"`
+
+	// The app's short name.
+	Shortname *string `type:"string"`
+
+	// The stack ID.
+	StackID *string `locationName:"StackId" type:"string" required:"true"`
+
+	// The app type. Each supported type is associated with a particular layer.
+	// For example, PHP applications are associated with a PHP layer. AWS OpsWorks
+	// deploys an application to those instances that are members of the corresponding
+	// layer.
+	Type *string `type:"string" required:"true"`
 
 	metadataCreateAppInput `json:"-", xml:"-"`
 }
@@ -1836,7 +2567,9 @@ type metadataCreateAppInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a CreateApp request.
 type CreateAppOutput struct {
+	// The app ID.
 	AppID *string `locationName:"AppId" type:"string"`
 
 	metadataCreateAppOutput `json:"-", xml:"-"`
@@ -1847,12 +2580,32 @@ type metadataCreateAppOutput struct {
 }
 
 type CreateDeploymentInput struct {
-	AppID       *string            `locationName:"AppId" type:"string"`
-	Command     *DeploymentCommand `type:"structure" required:"true"`
-	Comment     *string            `type:"string"`
-	CustomJSON  *string            `locationName:"CustomJson" type:"string"`
-	InstanceIDs []*string          `locationName:"InstanceIds" type:"list"`
-	StackID     *string            `locationName:"StackId" type:"string" required:"true"`
+	// The app ID. This parameter is required for app deployments, but not for other
+	// deployment commands.
+	AppID *string `locationName:"AppId" type:"string"`
+
+	// A DeploymentCommand object that specifies the deployment command and any
+	// associated arguments.
+	Command *DeploymentCommand `type:"structure" required:"true"`
+
+	// A user-defined comment.
+	Comment *string `type:"string"`
+
+	// A string that contains user-defined, custom JSON. It is used to override
+	// the corresponding default stack configuration JSON values. The string should
+	// be in the following format and must escape characters such as '"'.:
+	//
+	// "{\"key1\": \"value1\", \"key2\": \"value2\",...}"
+	//
+	// For more information on custom JSON, see Use Custom JSON to Modify the Stack
+	// Configuration JSON (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html).
+	CustomJSON *string `locationName:"CustomJson" type:"string"`
+
+	// The instance IDs for the deployment targets.
+	InstanceIDs []*string `locationName:"InstanceIds" type:"list"`
+
+	// The stack ID.
+	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
 	metadataCreateDeploymentInput `json:"-", xml:"-"`
 }
@@ -1861,7 +2614,10 @@ type metadataCreateDeploymentInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a CreateDeployment request.
 type CreateDeploymentOutput struct {
+	// The deployment ID, which can be used with other requests to identify the
+	// deployment.
 	DeploymentID *string `locationName:"DeploymentId" type:"string"`
 
 	metadataCreateDeploymentOutput `json:"-", xml:"-"`
@@ -1872,21 +2628,81 @@ type metadataCreateDeploymentOutput struct {
 }
 
 type CreateInstanceInput struct {
-	AMIID                *string   `locationName:"AmiId" type:"string"`
-	Architecture         *string   `type:"string"`
-	AutoScalingType      *string   `type:"string"`
-	AvailabilityZone     *string   `type:"string"`
-	EBSOptimized         *bool     `locationName:"EbsOptimized" type:"boolean"`
-	Hostname             *string   `type:"string"`
-	InstallUpdatesOnBoot *bool     `type:"boolean"`
-	InstanceType         *string   `type:"string" required:"true"`
-	LayerIDs             []*string `locationName:"LayerIds" type:"list" required:"true"`
-	Os                   *string   `type:"string"`
-	RootDeviceType       *string   `type:"string"`
-	SSHKeyName           *string   `locationName:"SshKeyName" type:"string"`
-	StackID              *string   `locationName:"StackId" type:"string" required:"true"`
-	SubnetID             *string   `locationName:"SubnetId" type:"string"`
-	VirtualizationType   *string   `type:"string"`
+	// A custom AMI ID to be used to create the instance. The AMI should be based
+	// on one of the standard AWS OpsWorks AMIs: Amazon Linux, Ubuntu 12.04 LTS,
+	// or Ubuntu 14.04 LTS. For more information, see Instances (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances.html).
+	//
+	// If you specify a custom AMI, you must set Os to Custom.
+	AMIID *string `locationName:"AmiId" type:"string"`
+
+	// The instance architecture. The default option is x86_64. Instance types do
+	// not necessarily support both architectures. For a list of the architectures
+	// that are supported by the different instance types, see Instance Families
+	// and Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html).
+	Architecture *string `type:"string"`
+
+	// For load-based or time-based instances, the type.
+	AutoScalingType *string `type:"string"`
+
+	// The instance Availability Zone. For more information, see Regions and Endpoints
+	// (http://docs.aws.amazon.com/general/latest/gr/rande.html).
+	AvailabilityZone *string `type:"string"`
+
+	// Whether to create an Amazon EBS-optimized instance.
+	EBSOptimized *bool `locationName:"EbsOptimized" type:"boolean"`
+
+	// The instance host name.
+	Hostname *string `type:"string"`
+
+	// Whether to install operating system and package updates when the instance
+	// boots. The default value is true. To control when updates are installed,
+	// set this value to false. You must then update your instances manually by
+	// using CreateDeployment to run the update_dependencies stack command or manually
+	// running yum (Amazon Linux) or apt-get (Ubuntu) on the instances.
+	//
+	//  We strongly recommend using the default value of true to ensure that your
+	// instances have the latest security updates.
+	InstallUpdatesOnBoot *bool `type:"boolean"`
+
+	// The instance type. AWS OpsWorks supports all instance types except Cluster
+	// Compute, Cluster GPU, and High Memory Cluster. For more information, see
+	// Instance Families and Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html).
+	// The parameter values that you use to specify the various types are in the
+	// API Name column of the Available Instance Types table.
+	InstanceType *string `type:"string" required:"true"`
+
+	// An array that contains the instance layer IDs.
+	LayerIDs []*string `locationName:"LayerIds" type:"list" required:"true"`
+
+	// The instance's operating system, which must be set to one of the following.
+	//
+	//  Standard operating systems: an Amazon Linux version such as Amazon Linux
+	// 2014.09, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS. Custom AMIs: Custom   The
+	// default option is the current Amazon Linux version. If you set this parameter
+	// to Custom, you must use the CreateInstance action's AmiId parameter to specify
+	// the custom AMI that you want to use. For more information on the standard
+	// operating systems, see Operating Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html)For
+	// more information on how to use custom AMIs with OpsWorks, see Using Custom
+	// AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
+	Os *string `type:"string"`
+
+	// The instance root device type. For more information, see Storage for the
+	// Root Device (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device).
+	RootDeviceType *string `type:"string"`
+
+	// The instance SSH key name.
+	SSHKeyName *string `locationName:"SshKeyName" type:"string"`
+
+	// The stack ID.
+	StackID *string `locationName:"StackId" type:"string" required:"true"`
+
+	// The ID of the instance's subnet. If the stack is running in a VPC, you can
+	// use this parameter to override the stack's default subnet ID value and direct
+	// AWS OpsWorks to launch the instance in a different subnet.
+	SubnetID *string `locationName:"SubnetId" type:"string"`
+
+	// The instance's virtualization type, paravirtual or hvm.
+	VirtualizationType *string `type:"string"`
 
 	metadataCreateInstanceInput `json:"-", xml:"-"`
 }
@@ -1895,7 +2711,9 @@ type metadataCreateInstanceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a CreateInstance request.
 type CreateInstanceOutput struct {
+	// The instance ID.
 	InstanceID *string `locationName:"InstanceId" type:"string"`
 
 	metadataCreateInstanceOutput `json:"-", xml:"-"`
@@ -1906,22 +2724,70 @@ type metadataCreateInstanceOutput struct {
 }
 
 type CreateLayerInput struct {
-	Attributes                  *map[string]*string          `type:"map"`
-	AutoAssignElasticIPs        *bool                        `locationName:"AutoAssignElasticIps" type:"boolean"`
-	AutoAssignPublicIPs         *bool                        `locationName:"AutoAssignPublicIps" type:"boolean"`
-	CustomInstanceProfileARN    *string                      `locationName:"CustomInstanceProfileArn" type:"string"`
-	CustomRecipes               *Recipes                     `type:"structure"`
-	CustomSecurityGroupIDs      []*string                    `locationName:"CustomSecurityGroupIds" type:"list"`
-	EnableAutoHealing           *bool                        `type:"boolean"`
-	InstallUpdatesOnBoot        *bool                        `type:"boolean"`
+	// One or more user-defined key/value pairs to be added to the stack attributes.
+	Attributes *map[string]*string `type:"map"`
+
+	// Whether to automatically assign an Elastic IP address (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
+	// to the layer's instances. For more information, see How to Edit a Layer (http://docs.aws.amazon.com/opsworks/latest/userguide/workinglayers-basics-edit.html).
+	AutoAssignElasticIPs *bool `locationName:"AutoAssignElasticIps" type:"boolean"`
+
+	// For stacks that are running in a VPC, whether to automatically assign a public
+	// IP address to the layer's instances. For more information, see How to Edit
+	// a Layer (http://docs.aws.amazon.com/opsworks/latest/userguide/workinglayers-basics-edit.html).
+	AutoAssignPublicIPs *bool `locationName:"AutoAssignPublicIps" type:"boolean"`
+
+	// The ARN of an IAM profile that to be used for the layer's EC2 instances.
+	// For more information about IAM ARNs, see Using Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
+	CustomInstanceProfileARN *string `locationName:"CustomInstanceProfileArn" type:"string"`
+
+	// A LayerCustomRecipes object that specifies the layer custom recipes.
+	CustomRecipes *Recipes `type:"structure"`
+
+	// An array containing the layer custom security group IDs.
+	CustomSecurityGroupIDs []*string `locationName:"CustomSecurityGroupIds" type:"list"`
+
+	// Whether to disable auto healing for the layer.
+	EnableAutoHealing *bool `type:"boolean"`
+
+	// Whether to install operating system and package updates when the instance
+	// boots. The default value is true. To control when updates are installed,
+	// set this value to false. You must then update your instances manually by
+	// using CreateDeployment to run the update_dependencies stack command or manually
+	// running yum (Amazon Linux) or apt-get (Ubuntu) on the instances.
+	//
+	//  We strongly recommend using the default value of true, to ensure that your
+	// instances have the latest security updates.
+	InstallUpdatesOnBoot *bool `type:"boolean"`
+
+	// A LifeCycleEventConfiguration object that you can use to configure the Shutdown
+	// event to specify an execution timeout and enable or disable Elastic Load
+	// Balancer connection draining.
 	LifecycleEventConfiguration *LifecycleEventConfiguration `type:"structure"`
-	Name                        *string                      `type:"string" required:"true"`
-	Packages                    []*string                    `type:"list"`
-	Shortname                   *string                      `type:"string" required:"true"`
-	StackID                     *string                      `locationName:"StackId" type:"string" required:"true"`
-	Type                        *string                      `type:"string" required:"true"`
-	UseEBSOptimizedInstances    *bool                        `locationName:"UseEbsOptimizedInstances" type:"boolean"`
-	VolumeConfigurations        []*VolumeConfiguration       `type:"list"`
+
+	// The layer name, which is used by the console.
+	Name *string `type:"string" required:"true"`
+
+	// An array of Package objects that describe the layer packages.
+	Packages []*string `type:"list"`
+
+	// The layer short name, which is used internally by AWS OpsWorks and by Chef
+	// recipes. The short name is also used as the name for the directory where
+	// your app files are installed. It can have a maximum of 200 characters, which
+	// are limited to the alphanumeric characters, '-', '_', and '.'.
+	Shortname *string `type:"string" required:"true"`
+
+	// The layer stack ID.
+	StackID *string `locationName:"StackId" type:"string" required:"true"`
+
+	// The layer type. A stack cannot have more than one built-in layer of the same
+	// type. It can have any number of custom layers.
+	Type *string `type:"string" required:"true"`
+
+	// Whether to use Amazon EBS-optimized instances.
+	UseEBSOptimizedInstances *bool `locationName:"UseEbsOptimizedInstances" type:"boolean"`
+
+	// A VolumeConfigurations object that describes the layer's Amazon EBS volumes.
+	VolumeConfigurations []*VolumeConfiguration `type:"list"`
 
 	metadataCreateLayerInput `json:"-", xml:"-"`
 }
@@ -1930,7 +2796,9 @@ type metadataCreateLayerInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a CreateLayer request.
 type CreateLayerOutput struct {
+	// The layer ID.
 	LayerID *string `locationName:"LayerId" type:"string"`
 
 	metadataCreateLayerOutput `json:"-", xml:"-"`
@@ -1941,24 +2809,138 @@ type metadataCreateLayerOutput struct {
 }
 
 type CreateStackInput struct {
-	Attributes                *map[string]*string        `type:"map"`
-	ChefConfiguration         *ChefConfiguration         `type:"structure"`
-	ConfigurationManager      *StackConfigurationManager `type:"structure"`
-	CustomCookbooksSource     *Source                    `type:"structure"`
-	CustomJSON                *string                    `locationName:"CustomJson" type:"string"`
-	DefaultAvailabilityZone   *string                    `type:"string"`
-	DefaultInstanceProfileARN *string                    `locationName:"DefaultInstanceProfileArn" type:"string" required:"true"`
-	DefaultOs                 *string                    `type:"string"`
-	DefaultRootDeviceType     *string                    `type:"string"`
-	DefaultSSHKeyName         *string                    `locationName:"DefaultSshKeyName" type:"string"`
-	DefaultSubnetID           *string                    `locationName:"DefaultSubnetId" type:"string"`
-	HostnameTheme             *string                    `type:"string"`
-	Name                      *string                    `type:"string" required:"true"`
-	Region                    *string                    `type:"string" required:"true"`
-	ServiceRoleARN            *string                    `locationName:"ServiceRoleArn" type:"string" required:"true"`
-	UseCustomCookbooks        *bool                      `type:"boolean"`
-	UseOpsWorksSecurityGroups *bool                      `locationName:"UseOpsworksSecurityGroups" type:"boolean"`
-	VPCID                     *string                    `locationName:"VpcId" type:"string"`
+	// One or more user-defined key/value pairs to be added to the stack attributes.
+	Attributes *map[string]*string `type:"map"`
+
+	// A ChefConfiguration object that specifies whether to enable Berkshelf and
+	// the Berkshelf version on Chef 11.10 stacks. For more information, see Create
+	// a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
+	ChefConfiguration *ChefConfiguration `type:"structure"`
+
+	// The configuration manager. When you clone a stack we recommend that you use
+	// the configuration manager to specify the Chef version, 0.9, 11.4, or 11.10.
+	// The default value is currently 11.4.
+	ConfigurationManager *StackConfigurationManager `type:"structure"`
+
+	// Contains the information required to retrieve an app or cookbook from a repository.
+	// For more information, see Creating Apps (http://docs.aws.amazon.com/opsworks/latest/userguide/workingapps-creating.html)
+	// or Custom Recipes and Cookbooks (http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook.html).
+	CustomCookbooksSource *Source `type:"structure"`
+
+	// A string that contains user-defined, custom JSON. It is used to override
+	// the corresponding default stack configuration JSON values. The string should
+	// be in the following format and must escape characters such as '"'.:
+	//
+	// "{\"key1\": \"value1\", \"key2\": \"value2\",...}"
+	//
+	// For more information on custom JSON, see Use Custom JSON to Modify the Stack
+	// Configuration JSON (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html).
+	CustomJSON *string `locationName:"CustomJson" type:"string"`
+
+	// The stack's default Availability Zone, which must be in the specified region.
+	// For more information, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html).
+	// If you also specify a value for DefaultSubnetId, the subnet must be in the
+	// same zone. For more information, see the VpcId parameter description.
+	DefaultAvailabilityZone *string `type:"string"`
+
+	// The ARN of an IAM profile that is the default profile for all of the stack's
+	// EC2 instances. For more information about IAM ARNs, see Using Identifiers
+	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
+	DefaultInstanceProfileARN *string `locationName:"DefaultInstanceProfileArn" type:"string" required:"true"`
+
+	// The stack's operating system, which must be set to one of the following.
+	//
+	//  Standard operating systems: an Amazon Linux version such as Amazon Linux
+	// 2014.09, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS. Custom AMIs: Custom. You
+	// specify the custom AMI you want to use when you create instances.   The default
+	// option is the current Amazon Linux version.
+	DefaultOs *string `type:"string"`
+
+	// The default root device type. This value is used by default for all instances
+	// in the stack, but you can override it when you create an instance. The default
+	// option is instance-store. For more information, see Storage for the Root
+	// Device (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device).
+	DefaultRootDeviceType *string `type:"string"`
+
+	// A default SSH key for the stack instances. You can override this value when
+	// you create or update an instance.
+	DefaultSSHKeyName *string `locationName:"DefaultSshKeyName" type:"string"`
+
+	// The stack's default VPC subnet ID. This parameter is required if you specify
+	// a value for the VpcId parameter. All instances are launched into this subnet
+	// unless you specify otherwise when you create the instance. If you also specify
+	// a value for DefaultAvailabilityZone, the subnet must be in that zone. For
+	// information on default values and when this parameter is required, see the
+	// VpcId parameter description.
+	DefaultSubnetID *string `locationName:"DefaultSubnetId" type:"string"`
+
+	// The stack's host name theme, with spaces are replaced by underscores. The
+	// theme is used to generate host names for the stack's instances. By default,
+	// HostnameTheme is set to Layer_Dependent, which creates host names by appending
+	// integers to the layer's short name. The other themes are:
+	//
+	//  Baked_Goods Clouds European_Cities Fruits Greek_Deities Legendary_Creatures_from_Japan
+	// Planets_and_Moons Roman_Deities Scottish_Islands US_Cities Wild_Cats  To
+	// obtain a generated host name, call GetHostNameSuggestion, which returns a
+	// host name based on the current theme.
+	HostnameTheme *string `type:"string"`
+
+	// The stack name.
+	Name *string `type:"string" required:"true"`
+
+	// The stack AWS region, such as "us-east-1". For more information about Amazon
+	// regions, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html).
+	Region *string `type:"string" required:"true"`
+
+	// The stack AWS Identity and Access Management (IAM) role, which allows AWS
+	// OpsWorks to work with AWS resources on your behalf. You must set this parameter
+	// to the Amazon Resource Name (ARN) for an existing IAM role. For more information
+	// about IAM ARNs, see Using Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
+	ServiceRoleARN *string `locationName:"ServiceRoleArn" type:"string" required:"true"`
+
+	// Whether the stack uses custom cookbooks.
+	UseCustomCookbooks *bool `type:"boolean"`
+
+	// Whether to associate the AWS OpsWorks built-in security groups with the stack's
+	// layers.
+	//
+	// AWS OpsWorks provides a standard set of built-in security groups, one for
+	// each layer, which are associated with layers by default. With UseOpsworksSecurityGroups
+	// you can instead provide your own custom security groups. UseOpsworksSecurityGroups
+	// has the following settings:
+	//
+	//  True - AWS OpsWorks automatically associates the appropriate built-in security
+	// group with each layer (default setting). You can associate additional security
+	// groups with a layer after you create it but you cannot delete the built-in
+	// security group.  False - AWS OpsWorks does not associate built-in security
+	// groups with layers. You must create appropriate EC2 security groups and associate
+	// a security group with each layer that you create. However, you can still
+	// manually associate a built-in security group with a layer on creation; custom
+	// security groups are required only for those layers that need custom settings.
+	//   For more information, see Create a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
+	UseOpsWorksSecurityGroups *bool `locationName:"UseOpsworksSecurityGroups" type:"boolean"`
+
+	// The ID of the VPC that the stack is to be launched into. It must be in the
+	// specified region. All instances are launched into this VPC, and you cannot
+	// change the ID later.
+	//
+	//  If your account supports EC2 Classic, the default value is no VPC. If your
+	// account does not support EC2 Classic, the default value is the default VPC
+	// for the specified region.  If the VPC ID corresponds to a default VPC and
+	// you have specified either the DefaultAvailabilityZone or the DefaultSubnetId
+	// parameter only, AWS OpsWorks infers the value of the other parameter. If
+	// you specify neither parameter, AWS OpsWorks sets these parameters to the
+	// first valid Availability Zone for the specified region and the corresponding
+	// default VPC subnet ID, respectively.
+	//
+	// If you specify a nondefault VPC ID, note the following:
+	//
+	//  It must belong to a VPC in your account that is in the specified region.
+	// You must specify a value for DefaultSubnetId.  For more information on how
+	// to use AWS OpsWorks with a VPC, see Running a Stack in a VPC (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-vpc.html).
+	// For more information on default VPC and EC2 Classic, see Supported Platforms
+	// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html).
+	VPCID *string `locationName:"VpcId" type:"string"`
 
 	metadataCreateStackInput `json:"-", xml:"-"`
 }
@@ -1967,7 +2949,10 @@ type metadataCreateStackInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a CreateStack request.
 type CreateStackOutput struct {
+	// The stack ID, which is an opaque string that you use to identify the stack
+	// when performing actions such as DescribeStacks.
 	StackID *string `locationName:"StackId" type:"string"`
 
 	metadataCreateStackOutput `json:"-", xml:"-"`
@@ -1978,10 +2963,22 @@ type metadataCreateStackOutput struct {
 }
 
 type CreateUserProfileInput struct {
-	AllowSelfManagement *bool   `type:"boolean"`
-	IAMUserARN          *string `locationName:"IamUserArn" type:"string" required:"true"`
-	SSHPublicKey        *string `locationName:"SshPublicKey" type:"string"`
-	SSHUsername         *string `locationName:"SshUsername" type:"string"`
+	// Whether users can specify their own SSH public key through the My Settings
+	// page. For more information, see Setting an IAM User's Public SSH Key (http://docs.aws.amazon.com/opsworks/latest/userguide/security-settingsshkey.html).
+	AllowSelfManagement *bool `type:"boolean"`
+
+	// The user's IAM ARN.
+	IAMUserARN *string `locationName:"IamUserArn" type:"string" required:"true"`
+
+	// The user's public SSH key.
+	SSHPublicKey *string `locationName:"SshPublicKey" type:"string"`
+
+	// The user's SSH user name. The allowable characters are [a-z], [A-Z], [0-9],
+	// '-', and '_'. If the specified name includes other punctuation marks, AWS
+	// OpsWorks removes them. For example, my.name will be changed to myname. If
+	// you do not specify an SSH user name, AWS OpsWorks generates one from the
+	// IAM user name.
+	SSHUsername *string `locationName:"SshUsername" type:"string"`
 
 	metadataCreateUserProfileInput `json:"-", xml:"-"`
 }
@@ -1990,7 +2987,9 @@ type metadataCreateUserProfileInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a CreateUserProfile request.
 type CreateUserProfileOutput struct {
+	// The user's IAM ARN.
 	IAMUserARN *string `locationName:"IamUserArn" type:"string"`
 
 	metadataCreateUserProfileOutput `json:"-", xml:"-"`
@@ -2000,10 +2999,17 @@ type metadataCreateUserProfileOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an app's data source.
 type DataSource struct {
-	ARN          *string `locationName:"Arn" type:"string"`
+	// The data source's ARN.
+	ARN *string `locationName:"Arn" type:"string"`
+
+	// The database name.
 	DatabaseName *string `type:"string"`
-	Type         *string `type:"string"`
+
+	// The data source's type, AutoSelectOpsworksMysqlInstance, OpsworksMysqlInstance,
+	// or RdsDbInstance.
+	Type *string `type:"string"`
 
 	metadataDataSource `json:"-", xml:"-"`
 }
@@ -2013,6 +3019,7 @@ type metadataDataSource struct {
 }
 
 type DeleteAppInput struct {
+	// The app ID.
 	AppID *string `locationName:"AppId" type:"string" required:"true"`
 
 	metadataDeleteAppInput `json:"-", xml:"-"`
@@ -2031,9 +3038,14 @@ type metadataDeleteAppOutput struct {
 }
 
 type DeleteInstanceInput struct {
-	DeleteElasticIP *bool   `locationName:"DeleteElasticIp" type:"boolean"`
-	DeleteVolumes   *bool   `type:"boolean"`
-	InstanceID      *string `locationName:"InstanceId" type:"string" required:"true"`
+	// Whether to delete the instance Elastic IP address.
+	DeleteElasticIP *bool `locationName:"DeleteElasticIp" type:"boolean"`
+
+	// Whether to delete the instance's Amazon EBS volumes.
+	DeleteVolumes *bool `type:"boolean"`
+
+	// The instance ID.
+	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
 
 	metadataDeleteInstanceInput `json:"-", xml:"-"`
 }
@@ -2051,6 +3063,7 @@ type metadataDeleteInstanceOutput struct {
 }
 
 type DeleteLayerInput struct {
+	// The layer ID.
 	LayerID *string `locationName:"LayerId" type:"string" required:"true"`
 
 	metadataDeleteLayerInput `json:"-", xml:"-"`
@@ -2069,6 +3082,7 @@ type metadataDeleteLayerOutput struct {
 }
 
 type DeleteStackInput struct {
+	// The stack ID.
 	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
 	metadataDeleteStackInput `json:"-", xml:"-"`
@@ -2087,6 +3101,7 @@ type metadataDeleteStackOutput struct {
 }
 
 type DeleteUserProfileInput struct {
+	// The user's IAM ARN.
 	IAMUserARN *string `locationName:"IamUserArn" type:"string" required:"true"`
 
 	metadataDeleteUserProfileInput `json:"-", xml:"-"`
@@ -2104,19 +3119,52 @@ type metadataDeleteUserProfileOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a deployment of a stack or app.
 type Deployment struct {
-	AppID        *string            `locationName:"AppId" type:"string"`
-	Command      *DeploymentCommand `type:"structure"`
-	Comment      *string            `type:"string"`
-	CompletedAt  *string            `type:"string"`
-	CreatedAt    *string            `type:"string"`
-	CustomJSON   *string            `locationName:"CustomJson" type:"string"`
-	DeploymentID *string            `locationName:"DeploymentId" type:"string"`
-	Duration     *int64             `type:"integer"`
-	IAMUserARN   *string            `locationName:"IamUserArn" type:"string"`
-	InstanceIDs  []*string          `locationName:"InstanceIds" type:"list"`
-	StackID      *string            `locationName:"StackId" type:"string"`
-	Status       *string            `type:"string"`
+	// The app ID.
+	AppID *string `locationName:"AppId" type:"string"`
+
+	// Used to specify a stack or deployment command.
+	Command *DeploymentCommand `type:"structure"`
+
+	// A user-defined comment.
+	Comment *string `type:"string"`
+
+	// Date when the deployment completed.
+	CompletedAt *string `type:"string"`
+
+	// Date when the deployment was created.
+	CreatedAt *string `type:"string"`
+
+	// A string that contains user-defined custom JSON. It is used to override the
+	// corresponding default stack configuration JSON values for stack. The string
+	// should be in the following format and must escape characters such as '"'.:
+	//
+	// "{\"key1\": \"value1\", \"key2\": \"value2\",...}"
+	//
+	// For more information on custom JSON, see Use Custom JSON to Modify the Stack
+	// Configuration JSON (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html).
+	CustomJSON *string `locationName:"CustomJson" type:"string"`
+
+	// The deployment ID.
+	DeploymentID *string `locationName:"DeploymentId" type:"string"`
+
+	// The deployment duration.
+	Duration *int64 `type:"integer"`
+
+	// The user's IAM ARN.
+	IAMUserARN *string `locationName:"IamUserArn" type:"string"`
+
+	// The IDs of the target instances.
+	InstanceIDs []*string `locationName:"InstanceIds" type:"list"`
+
+	// The stack ID.
+	StackID *string `locationName:"StackId" type:"string"`
+
+	// The deployment status:
+	//
+	//  running successful failed
+	Status *string `type:"string"`
 
 	metadataDeployment `json:"-", xml:"-"`
 }
@@ -2125,9 +3173,47 @@ type metadataDeployment struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Used to specify a stack or deployment command.
 type DeploymentCommand struct {
+	// The arguments of those commands that take arguments. It should be set to
+	// a JSON object with the following format:
+	//
+	// {"arg_name1" : ["value1", "value2", ...], "arg_name2" : ["value1", "value2",
+	// ...], ...}
+	//
+	// The update_dependencies command takes two arguments:
+	//
+	//   upgrade_os_to - Specifies the desired Amazon Linux version for instances
+	// whose OS you want to upgrade, such as Amazon Linux 2014.09. You must also
+	// set the allow_reboot argument to true.  allow_reboot - Specifies whether
+	// to allow AWS OpsWorks to reboot the instances if necessary, after installing
+	// the updates. This argument can be set to either true or false. The default
+	// value is false.  For example, to upgrade an instance to Amazon Linux 2014.09,
+	// set Args to the following.
+	//
+	//  { "upgrade_os_to":["Amazon Linux 2014.09"], "allow_reboot":["true"] }
 	Args *map[string][]*string `type:"map"`
-	Name *string               `type:"string" required:"true"`
+
+	// Specifies the operation. You can specify only one command.
+	//
+	// For stacks, the following commands are available:
+	//
+	//   execute_recipes: Execute one or more recipes. To specify the recipes,
+	// set an Args parameter named recipes to the list of recipes to be executed.
+	// For example, to execute phpapp::appsetup, set Args to {"recipes":["phpapp::appsetup"]}.
+	//  install_dependencies: Install the stack's dependencies.  update_custom_cookbooks:
+	// Update the stack's custom cookbooks.  update_dependencies: Update the stack's
+	// dependencies.  For apps, the following commands are available:
+	//
+	//   deploy: Deploy an app. Rails apps have an optional Args parameter named
+	// migrate. Set Args to {"migrate":["true"]} to migrate the database. The default
+	// setting is {"migrate":["false"]}.  rollback Roll the app back to the previous
+	// version. When you update an app, AWS OpsWorks stores the previous version,
+	// up to a maximum of five versions. You can use this command to roll an app
+	// back as many as four versions.  start: Start the app's web or application
+	// server.  stop: Stop the app's web or application server.  restart: Restart
+	// the app's web or application server.  undeploy: Undeploy the app.
+	Name *string `type:"string" required:"true"`
 
 	metadataDeploymentCommand `json:"-", xml:"-"`
 }
@@ -2137,6 +3223,7 @@ type metadataDeploymentCommand struct {
 }
 
 type DeregisterElasticIPInput struct {
+	// The Elastic IP address.
 	ElasticIP *string `locationName:"ElasticIp" type:"string" required:"true"`
 
 	metadataDeregisterElasticIPInput `json:"-", xml:"-"`
@@ -2155,6 +3242,7 @@ type metadataDeregisterElasticIPOutput struct {
 }
 
 type DeregisterInstanceInput struct {
+	// The instance ID.
 	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
 
 	metadataDeregisterInstanceInput `json:"-", xml:"-"`
@@ -2173,6 +3261,7 @@ type metadataDeregisterInstanceOutput struct {
 }
 
 type DeregisterRDSDBInstanceInput struct {
+	// The Amazon RDS instance's ARN.
 	RDSDBInstanceARN *string `locationName:"RdsDbInstanceArn" type:"string" required:"true"`
 
 	metadataDeregisterRDSDBInstanceInput `json:"-", xml:"-"`
@@ -2191,6 +3280,7 @@ type metadataDeregisterRDSDBInstanceOutput struct {
 }
 
 type DeregisterVolumeInput struct {
+	// The volume ID.
 	VolumeID *string `locationName:"VolumeId" type:"string" required:"true"`
 
 	metadataDeregisterVolumeInput `json:"-", xml:"-"`
@@ -2209,8 +3299,14 @@ type metadataDeregisterVolumeOutput struct {
 }
 
 type DescribeAppsInput struct {
-	AppIDs  []*string `locationName:"AppIds" type:"list"`
-	StackID *string   `locationName:"StackId" type:"string"`
+	// An array of app IDs for the apps to be described. If you use this parameter,
+	// DescribeApps returns a description of the specified apps. Otherwise, it returns
+	// a description of every app.
+	AppIDs []*string `locationName:"AppIds" type:"list"`
+
+	// The app stack ID. If you use this parameter, DescribeApps returns a description
+	// of the apps in the specified stack.
+	StackID *string `locationName:"StackId" type:"string"`
 
 	metadataDescribeAppsInput `json:"-", xml:"-"`
 }
@@ -2219,7 +3315,9 @@ type metadataDescribeAppsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a DescribeApps request.
 type DescribeAppsOutput struct {
+	// An array of App objects that describe the specified apps.
 	Apps []*App `type:"list"`
 
 	metadataDescribeAppsOutput `json:"-", xml:"-"`
@@ -2230,9 +3328,18 @@ type metadataDescribeAppsOutput struct {
 }
 
 type DescribeCommandsInput struct {
-	CommandIDs   []*string `locationName:"CommandIds" type:"list"`
-	DeploymentID *string   `locationName:"DeploymentId" type:"string"`
-	InstanceID   *string   `locationName:"InstanceId" type:"string"`
+	// An array of command IDs. If you include this parameter, DescribeCommands
+	// returns a description of the specified commands. Otherwise, it returns a
+	// description of every command.
+	CommandIDs []*string `locationName:"CommandIds" type:"list"`
+
+	// The deployment ID. If you include this parameter, DescribeCommands returns
+	// a description of the commands associated with the specified deployment.
+	DeploymentID *string `locationName:"DeploymentId" type:"string"`
+
+	// The instance ID. If you include this parameter, DescribeCommands returns
+	// a description of the commands associated with the specified instance.
+	InstanceID *string `locationName:"InstanceId" type:"string"`
 
 	metadataDescribeCommandsInput `json:"-", xml:"-"`
 }
@@ -2241,7 +3348,9 @@ type metadataDescribeCommandsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a DescribeCommands request.
 type DescribeCommandsOutput struct {
+	// An array of Command objects that describe each of the specified commands.
 	Commands []*Command `type:"list"`
 
 	metadataDescribeCommandsOutput `json:"-", xml:"-"`
@@ -2252,9 +3361,18 @@ type metadataDescribeCommandsOutput struct {
 }
 
 type DescribeDeploymentsInput struct {
-	AppID         *string   `locationName:"AppId" type:"string"`
+	// The app ID. If you include this parameter, DescribeDeployments returns a
+	// description of the commands associated with the specified app.
+	AppID *string `locationName:"AppId" type:"string"`
+
+	// An array of deployment IDs to be described. If you include this parameter,
+	// DescribeDeployments returns a description of the specified deployments. Otherwise,
+	// it returns a description of every deployment.
 	DeploymentIDs []*string `locationName:"DeploymentIds" type:"list"`
-	StackID       *string   `locationName:"StackId" type:"string"`
+
+	// The stack ID. If you include this parameter, DescribeDeployments returns
+	// a description of the commands associated with the specified stack.
+	StackID *string `locationName:"StackId" type:"string"`
 
 	metadataDescribeDeploymentsInput `json:"-", xml:"-"`
 }
@@ -2263,7 +3381,9 @@ type metadataDescribeDeploymentsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a DescribeDeployments request.
 type DescribeDeploymentsOutput struct {
+	// An array of Deployment objects that describe the deployments.
 	Deployments []*Deployment `type:"list"`
 
 	metadataDescribeDeploymentsOutput `json:"-", xml:"-"`
@@ -2274,9 +3394,18 @@ type metadataDescribeDeploymentsOutput struct {
 }
 
 type DescribeElasticIPsInput struct {
-	IPs        []*string `locationName:"Ips" type:"list"`
-	InstanceID *string   `locationName:"InstanceId" type:"string"`
-	StackID    *string   `locationName:"StackId" type:"string"`
+	// An array of Elastic IP addresses to be described. If you include this parameter,
+	// DescribeElasticIps returns a description of the specified Elastic IP addresses.
+	// Otherwise, it returns a description of every Elastic IP address.
+	IPs []*string `locationName:"Ips" type:"list"`
+
+	// The instance ID. If you include this parameter, DescribeElasticIps returns
+	// a description of the Elastic IP addresses associated with the specified instance.
+	InstanceID *string `locationName:"InstanceId" type:"string"`
+
+	// A stack ID. If you include this parameter, DescribeElasticIps returns a description
+	// of the Elastic IP addresses that are registered with the specified stack.
+	StackID *string `locationName:"StackId" type:"string"`
 
 	metadataDescribeElasticIPsInput `json:"-", xml:"-"`
 }
@@ -2285,7 +3414,9 @@ type metadataDescribeElasticIPsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a DescribeElasticIps request.
 type DescribeElasticIPsOutput struct {
+	// An ElasticIps object that describes the specified Elastic IP addresses.
 	ElasticIPs []*ElasticIP `locationName:"ElasticIps" type:"list"`
 
 	metadataDescribeElasticIPsOutput `json:"-", xml:"-"`
@@ -2296,8 +3427,12 @@ type metadataDescribeElasticIPsOutput struct {
 }
 
 type DescribeElasticLoadBalancersInput struct {
+	// A list of layer IDs. The action describes the Elastic Load Balancing instances
+	// for the specified layers.
 	LayerIDs []*string `locationName:"LayerIds" type:"list"`
-	StackID  *string   `locationName:"StackId" type:"string"`
+
+	// A stack ID. The action describes the stack's Elastic Load Balancing instances.
+	StackID *string `locationName:"StackId" type:"string"`
 
 	metadataDescribeElasticLoadBalancersInput `json:"-", xml:"-"`
 }
@@ -2306,7 +3441,10 @@ type metadataDescribeElasticLoadBalancersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a DescribeElasticLoadBalancers request.
 type DescribeElasticLoadBalancersOutput struct {
+	// A list of ElasticLoadBalancer objects that describe the specified Elastic
+	// Load Balancing instances.
 	ElasticLoadBalancers []*ElasticLoadBalancer `type:"list"`
 
 	metadataDescribeElasticLoadBalancersOutput `json:"-", xml:"-"`
@@ -2317,9 +3455,18 @@ type metadataDescribeElasticLoadBalancersOutput struct {
 }
 
 type DescribeInstancesInput struct {
+	// An array of instance IDs to be described. If you use this parameter, DescribeInstances
+	// returns a description of the specified instances. Otherwise, it returns a
+	// description of every instance.
 	InstanceIDs []*string `locationName:"InstanceIds" type:"list"`
-	LayerID     *string   `locationName:"LayerId" type:"string"`
-	StackID     *string   `locationName:"StackId" type:"string"`
+
+	// A layer ID. If you use this parameter, DescribeInstances returns descriptions
+	// of the instances associated with the specified layer.
+	LayerID *string `locationName:"LayerId" type:"string"`
+
+	// A stack ID. If you use this parameter, DescribeInstances returns descriptions
+	// of the instances associated with the specified stack.
+	StackID *string `locationName:"StackId" type:"string"`
 
 	metadataDescribeInstancesInput `json:"-", xml:"-"`
 }
@@ -2328,7 +3475,9 @@ type metadataDescribeInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a DescribeInstances request.
 type DescribeInstancesOutput struct {
+	// An array of Instance objects that describe the instances.
 	Instances []*Instance `type:"list"`
 
 	metadataDescribeInstancesOutput `json:"-", xml:"-"`
@@ -2339,8 +3488,13 @@ type metadataDescribeInstancesOutput struct {
 }
 
 type DescribeLayersInput struct {
+	// An array of layer IDs that specify the layers to be described. If you omit
+	// this parameter, DescribeLayers returns a description of every layer in the
+	// specified stack.
 	LayerIDs []*string `locationName:"LayerIds" type:"list"`
-	StackID  *string   `locationName:"StackId" type:"string"`
+
+	// The stack ID.
+	StackID *string `locationName:"StackId" type:"string"`
 
 	metadataDescribeLayersInput `json:"-", xml:"-"`
 }
@@ -2349,7 +3503,9 @@ type metadataDescribeLayersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a DescribeLayers request.
 type DescribeLayersOutput struct {
+	// An array of Layer objects that describe the layers.
 	Layers []*Layer `type:"list"`
 
 	metadataDescribeLayersOutput `json:"-", xml:"-"`
@@ -2360,6 +3516,7 @@ type metadataDescribeLayersOutput struct {
 }
 
 type DescribeLoadBasedAutoScalingInput struct {
+	// An array of layer IDs.
 	LayerIDs []*string `locationName:"LayerIds" type:"list" required:"true"`
 
 	metadataDescribeLoadBasedAutoScalingInput `json:"-", xml:"-"`
@@ -2369,7 +3526,10 @@ type metadataDescribeLoadBasedAutoScalingInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a DescribeLoadBasedAutoScaling request.
 type DescribeLoadBasedAutoScalingOutput struct {
+	// An array of LoadBasedAutoScalingConfiguration objects that describe each
+	// layer's configuration.
 	LoadBasedAutoScalingConfigurations []*LoadBasedAutoScalingConfiguration `type:"list"`
 
 	metadataDescribeLoadBasedAutoScalingOutput `json:"-", xml:"-"`
@@ -2387,7 +3547,9 @@ type metadataDescribeMyUserProfileInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a DescribeMyUserProfile request.
 type DescribeMyUserProfileOutput struct {
+	// A UserProfile object that describes the user's SSH information.
 	UserProfile *SelfUserProfile `type:"structure"`
 
 	metadataDescribeMyUserProfileOutput `json:"-", xml:"-"`
@@ -2398,8 +3560,12 @@ type metadataDescribeMyUserProfileOutput struct {
 }
 
 type DescribePermissionsInput struct {
+	// The user's IAM ARN. For more information about IAM ARNs, see Using Identifiers
+	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
 	IAMUserARN *string `locationName:"IamUserArn" type:"string"`
-	StackID    *string `locationName:"StackId" type:"string"`
+
+	// The stack ID.
+	StackID *string `locationName:"StackId" type:"string"`
 
 	metadataDescribePermissionsInput `json:"-", xml:"-"`
 }
@@ -2408,7 +3574,16 @@ type metadataDescribePermissionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a DescribePermissions request.
 type DescribePermissionsOutput struct {
+	// An array of Permission objects that describe the stack permissions.
+	//
+	//  If the request object contains only a stack ID, the array contains a Permission
+	// object with permissions for each of the stack IAM ARNs. If the request object
+	// contains only an IAM ARN, the array contains a Permission object with permissions
+	// for each of the user's stack IDs. If the request contains a stack ID and
+	// an IAM ARN, the array contains a single Permission object with permissions
+	// for the specified stack and IAM ARN.
 	Permissions []*Permission `type:"list"`
 
 	metadataDescribePermissionsOutput `json:"-", xml:"-"`
@@ -2419,9 +3594,17 @@ type metadataDescribePermissionsOutput struct {
 }
 
 type DescribeRAIDArraysInput struct {
-	InstanceID   *string   `locationName:"InstanceId" type:"string"`
+	// The instance ID. If you use this parameter, DescribeRaidArrays returns descriptions
+	// of the RAID arrays associated with the specified instance.
+	InstanceID *string `locationName:"InstanceId" type:"string"`
+
+	// An array of RAID array IDs. If you use this parameter, DescribeRaidArrays
+	// returns descriptions of the specified arrays. Otherwise, it returns a description
+	// of every array.
 	RAIDArrayIDs []*string `locationName:"RaidArrayIds" type:"list"`
-	StackID      *string   `locationName:"StackId" type:"string"`
+
+	// The stack ID.
+	StackID *string `locationName:"StackId" type:"string"`
 
 	metadataDescribeRAIDArraysInput `json:"-", xml:"-"`
 }
@@ -2430,7 +3613,9 @@ type metadataDescribeRAIDArraysInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a DescribeRaidArrays request.
 type DescribeRAIDArraysOutput struct {
+	// A RaidArrays object that describes the specified RAID arrays.
 	RAIDArrays []*RAIDArray `locationName:"RaidArrays" type:"list"`
 
 	metadataDescribeRAIDArraysOutput `json:"-", xml:"-"`
@@ -2441,8 +3626,12 @@ type metadataDescribeRAIDArraysOutput struct {
 }
 
 type DescribeRDSDBInstancesInput struct {
+	// An array containing the ARNs of the instances to be described.
 	RDSDBInstanceARNs []*string `locationName:"RdsDbInstanceArns" type:"list"`
-	StackID           *string   `locationName:"StackId" type:"string" required:"true"`
+
+	// The stack ID that the instances are registered with. The operation returns
+	// descriptions of all registered Amazon RDS instances.
+	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
 	metadataDescribeRDSDBInstancesInput `json:"-", xml:"-"`
 }
@@ -2451,7 +3640,9 @@ type metadataDescribeRDSDBInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a DescribeRdsDbInstances request.
 type DescribeRDSDBInstancesOutput struct {
+	// An a array of RdsDbInstance objects that describe the instances.
 	RDSDBInstances []*RDSDBInstance `locationName:"RdsDbInstances" type:"list"`
 
 	metadataDescribeRDSDBInstancesOutput `json:"-", xml:"-"`
@@ -2462,9 +3653,18 @@ type metadataDescribeRDSDBInstancesOutput struct {
 }
 
 type DescribeServiceErrorsInput struct {
-	InstanceID      *string   `locationName:"InstanceId" type:"string"`
+	// The instance ID. If you use this parameter, DescribeServiceErrors returns
+	// descriptions of the errors associated with the specified instance.
+	InstanceID *string `locationName:"InstanceId" type:"string"`
+
+	// An array of service error IDs. If you use this parameter, DescribeServiceErrors
+	// returns descriptions of the specified errors. Otherwise, it returns a description
+	// of every error.
 	ServiceErrorIDs []*string `locationName:"ServiceErrorIds" type:"list"`
-	StackID         *string   `locationName:"StackId" type:"string"`
+
+	// The stack ID. If you use this parameter, DescribeServiceErrors returns descriptions
+	// of the errors associated with the specified stack.
+	StackID *string `locationName:"StackId" type:"string"`
 
 	metadataDescribeServiceErrorsInput `json:"-", xml:"-"`
 }
@@ -2473,7 +3673,9 @@ type metadataDescribeServiceErrorsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a DescribeServiceErrors request.
 type DescribeServiceErrorsOutput struct {
+	// An array of ServiceError objects that describe the specified service errors.
 	ServiceErrors []*ServiceError `type:"list"`
 
 	metadataDescribeServiceErrorsOutput `json:"-", xml:"-"`
@@ -2484,6 +3686,7 @@ type metadataDescribeServiceErrorsOutput struct {
 }
 
 type DescribeStackProvisioningParametersInput struct {
+	// The stack ID
 	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
 	metadataDescribeStackProvisioningParametersInput `json:"-", xml:"-"`
@@ -2493,9 +3696,13 @@ type metadataDescribeStackProvisioningParametersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a DescribeStackProvisioningParameters request.
 type DescribeStackProvisioningParametersOutput struct {
-	AgentInstallerURL *string             `locationName:"AgentInstallerUrl" type:"string"`
-	Parameters        *map[string]*string `type:"map"`
+	// The AWS OpsWorks agent installer's URL.
+	AgentInstallerURL *string `locationName:"AgentInstallerUrl" type:"string"`
+
+	// An embedded object that contains the provisioning parameters.
+	Parameters *map[string]*string `type:"map"`
 
 	metadataDescribeStackProvisioningParametersOutput `json:"-", xml:"-"`
 }
@@ -2505,6 +3712,7 @@ type metadataDescribeStackProvisioningParametersOutput struct {
 }
 
 type DescribeStackSummaryInput struct {
+	// The stack ID.
 	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
 	metadataDescribeStackSummaryInput `json:"-", xml:"-"`
@@ -2514,7 +3722,9 @@ type metadataDescribeStackSummaryInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a DescribeStackSummary request.
 type DescribeStackSummaryOutput struct {
+	// A StackSummary object that contains the results.
 	StackSummary *StackSummary `type:"structure"`
 
 	metadataDescribeStackSummaryOutput `json:"-", xml:"-"`
@@ -2525,6 +3735,8 @@ type metadataDescribeStackSummaryOutput struct {
 }
 
 type DescribeStacksInput struct {
+	// An array of stack IDs that specify the stacks to be described. If you omit
+	// this parameter, DescribeStacks returns a description of every stack.
 	StackIDs []*string `locationName:"StackIds" type:"list"`
 
 	metadataDescribeStacksInput `json:"-", xml:"-"`
@@ -2534,7 +3746,9 @@ type metadataDescribeStacksInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a DescribeStacks request.
 type DescribeStacksOutput struct {
+	// An array of Stack objects that describe the stacks.
 	Stacks []*Stack `type:"list"`
 
 	metadataDescribeStacksOutput `json:"-", xml:"-"`
@@ -2545,6 +3759,7 @@ type metadataDescribeStacksOutput struct {
 }
 
 type DescribeTimeBasedAutoScalingInput struct {
+	// An array of instance IDs.
 	InstanceIDs []*string `locationName:"InstanceIds" type:"list" required:"true"`
 
 	metadataDescribeTimeBasedAutoScalingInput `json:"-", xml:"-"`
@@ -2554,7 +3769,10 @@ type metadataDescribeTimeBasedAutoScalingInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a DescribeTimeBasedAutoScaling request.
 type DescribeTimeBasedAutoScalingOutput struct {
+	// An array of TimeBasedAutoScalingConfiguration objects that describe the configuration
+	// for the specified instances.
 	TimeBasedAutoScalingConfigurations []*TimeBasedAutoScalingConfiguration `type:"list"`
 
 	metadataDescribeTimeBasedAutoScalingOutput `json:"-", xml:"-"`
@@ -2565,6 +3783,7 @@ type metadataDescribeTimeBasedAutoScalingOutput struct {
 }
 
 type DescribeUserProfilesInput struct {
+	// An array of IAM user ARNs that identify the users to be described.
 	IAMUserARNs []*string `locationName:"IamUserArns" type:"list"`
 
 	metadataDescribeUserProfilesInput `json:"-", xml:"-"`
@@ -2574,7 +3793,9 @@ type metadataDescribeUserProfilesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a DescribeUserProfiles request.
 type DescribeUserProfilesOutput struct {
+	// A Users object that describes the specified users.
 	UserProfiles []*UserProfile `type:"list"`
 
 	metadataDescribeUserProfilesOutput `json:"-", xml:"-"`
@@ -2585,10 +3806,21 @@ type metadataDescribeUserProfilesOutput struct {
 }
 
 type DescribeVolumesInput struct {
-	InstanceID  *string   `locationName:"InstanceId" type:"string"`
-	RAIDArrayID *string   `locationName:"RaidArrayId" type:"string"`
-	StackID     *string   `locationName:"StackId" type:"string"`
-	VolumeIDs   []*string `locationName:"VolumeIds" type:"list"`
+	// The instance ID. If you use this parameter, DescribeVolumes returns descriptions
+	// of the volumes associated with the specified instance.
+	InstanceID *string `locationName:"InstanceId" type:"string"`
+
+	// The RAID array ID. If you use this parameter, DescribeVolumes returns descriptions
+	// of the volumes associated with the specified RAID array.
+	RAIDArrayID *string `locationName:"RaidArrayId" type:"string"`
+
+	// A stack ID. The action describes the stack's registered Amazon EBS volumes.
+	StackID *string `locationName:"StackId" type:"string"`
+
+	// Am array of volume IDs. If you use this parameter, DescribeVolumes returns
+	// descriptions of the specified volumes. Otherwise, it returns a description
+	// of every volume.
+	VolumeIDs []*string `locationName:"VolumeIds" type:"list"`
 
 	metadataDescribeVolumesInput `json:"-", xml:"-"`
 }
@@ -2597,7 +3829,9 @@ type metadataDescribeVolumesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a DescribeVolumes request.
 type DescribeVolumesOutput struct {
+	// An array of volume IDs.
 	Volumes []*Volume `type:"list"`
 
 	metadataDescribeVolumesOutput `json:"-", xml:"-"`
@@ -2608,8 +3842,12 @@ type metadataDescribeVolumesOutput struct {
 }
 
 type DetachElasticLoadBalancerInput struct {
+	// The Elastic Load Balancing instance's name.
 	ElasticLoadBalancerName *string `type:"string" required:"true"`
-	LayerID                 *string `locationName:"LayerId" type:"string" required:"true"`
+
+	// The ID of the layer that the Elastic Load Balancing instance is attached
+	// to.
+	LayerID *string `locationName:"LayerId" type:"string" required:"true"`
 
 	metadataDetachElasticLoadBalancerInput `json:"-", xml:"-"`
 }
@@ -2627,6 +3865,7 @@ type metadataDetachElasticLoadBalancerOutput struct {
 }
 
 type DisassociateElasticIPInput struct {
+	// The Elastic IP address.
 	ElasticIP *string `locationName:"ElasticIp" type:"string" required:"true"`
 
 	metadataDisassociateElasticIPInput `json:"-", xml:"-"`
@@ -2644,12 +3883,22 @@ type metadataDisassociateElasticIPOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an Elastic IP address.
 type ElasticIP struct {
-	Domain     *string `type:"string"`
-	IP         *string `locationName:"Ip" type:"string"`
+	// The domain.
+	Domain *string `type:"string"`
+
+	// The IP address.
+	IP *string `locationName:"Ip" type:"string"`
+
+	// The ID of the instance that the address is attached to.
 	InstanceID *string `locationName:"InstanceId" type:"string"`
-	Name       *string `type:"string"`
-	Region     *string `type:"string"`
+
+	// The name.
+	Name *string `type:"string"`
+
+	// The AWS region. For more information, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html).
+	Region *string `type:"string"`
 
 	metadataElasticIP `json:"-", xml:"-"`
 }
@@ -2658,16 +3907,35 @@ type metadataElasticIP struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an Elastic Load Balancing instance.
 type ElasticLoadBalancer struct {
-	AvailabilityZones       []*string `type:"list"`
-	DNSName                 *string   `locationName:"DnsName" type:"string"`
-	EC2InstanceIDs          []*string `locationName:"Ec2InstanceIds" type:"list"`
-	ElasticLoadBalancerName *string   `type:"string"`
-	LayerID                 *string   `locationName:"LayerId" type:"string"`
-	Region                  *string   `type:"string"`
-	StackID                 *string   `locationName:"StackId" type:"string"`
-	SubnetIDs               []*string `locationName:"SubnetIds" type:"list"`
-	VPCID                   *string   `locationName:"VpcId" type:"string"`
+	// A list of Availability Zones.
+	AvailabilityZones []*string `type:"list"`
+
+	// The instance's public DNS name.
+	DNSName *string `locationName:"DnsName" type:"string"`
+
+	// A list of the EC2 instances that the Elastic Load Balancing instance is managing
+	// traffic for.
+	EC2InstanceIDs []*string `locationName:"Ec2InstanceIds" type:"list"`
+
+	// The Elastic Load Balancing instance's name.
+	ElasticLoadBalancerName *string `type:"string"`
+
+	// The ID of the layer that the instance is attached to.
+	LayerID *string `locationName:"LayerId" type:"string"`
+
+	// The instance's AWS region.
+	Region *string `type:"string"`
+
+	// The ID of the stack that the instance is associated with.
+	StackID *string `locationName:"StackId" type:"string"`
+
+	// A list of subnet IDs, if the stack is running in a VPC.
+	SubnetIDs []*string `locationName:"SubnetIds" type:"list"`
+
+	// The VPC ID.
+	VPCID *string `locationName:"VpcId" type:"string"`
 
 	metadataElasticLoadBalancer `json:"-", xml:"-"`
 }
@@ -2676,10 +3944,24 @@ type metadataElasticLoadBalancer struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents an app's environment variable.
 type EnvironmentVariable struct {
-	Key    *string `type:"string" required:"true"`
-	Secure *bool   `type:"boolean"`
-	Value  *string `type:"string" required:"true"`
+	// (Required) The environment variable's name, which can consist of up to 64
+	// characters and must be specified. The name can contain upper- and lowercase
+	// letters, numbers, and underscores (_), but it must start with a letter or
+	// underscore.
+	Key *string `type:"string" required:"true"`
+
+	// (Optional) Whether the variable's value will be returned by the DescribeApps
+	// action. To conceal an environment variable's value, set Secure to true. DescribeApps
+	// then returns **Filtered** instead of the actual value. The default value
+	// for Secure is false.
+	Secure *bool `type:"boolean"`
+
+	// (Optional) The environment variable's value, which can be left empty. If
+	// you specify a value, it can contain up to 256 characters, which must all
+	// be printable.
+	Value *string `type:"string" required:"true"`
 
 	metadataEnvironmentVariable `json:"-", xml:"-"`
 }
@@ -2689,6 +3971,7 @@ type metadataEnvironmentVariable struct {
 }
 
 type GetHostnameSuggestionInput struct {
+	// The layer ID.
 	LayerID *string `locationName:"LayerId" type:"string" required:"true"`
 
 	metadataGetHostnameSuggestionInput `json:"-", xml:"-"`
@@ -2698,9 +3981,13 @@ type metadataGetHostnameSuggestionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a GetHostnameSuggestion request.
 type GetHostnameSuggestionOutput struct {
+	// The generated host name.
 	Hostname *string `type:"string"`
-	LayerID  *string `locationName:"LayerId" type:"string"`
+
+	// The layer ID.
+	LayerID *string `locationName:"LayerId" type:"string"`
 
 	metadataGetHostnameSuggestionOutput `json:"-", xml:"-"`
 }
@@ -2709,40 +3996,125 @@ type metadataGetHostnameSuggestionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an instance.
 type Instance struct {
-	AMIID                    *string     `locationName:"AmiId" type:"string"`
-	Architecture             *string     `type:"string"`
-	AutoScalingType          *string     `type:"string"`
-	AvailabilityZone         *string     `type:"string"`
-	CreatedAt                *string     `type:"string"`
-	EBSOptimized             *bool       `locationName:"EbsOptimized" type:"boolean"`
-	EC2InstanceID            *string     `locationName:"Ec2InstanceId" type:"string"`
-	ElasticIP                *string     `locationName:"ElasticIp" type:"string"`
-	Hostname                 *string     `type:"string"`
-	InfrastructureClass      *string     `type:"string"`
-	InstallUpdatesOnBoot     *bool       `type:"boolean"`
-	InstanceID               *string     `locationName:"InstanceId" type:"string"`
-	InstanceProfileARN       *string     `locationName:"InstanceProfileArn" type:"string"`
-	InstanceType             *string     `type:"string"`
-	LastServiceErrorID       *string     `locationName:"LastServiceErrorId" type:"string"`
-	LayerIDs                 []*string   `locationName:"LayerIds" type:"list"`
-	Os                       *string     `type:"string"`
-	PrivateDNS               *string     `locationName:"PrivateDns" type:"string"`
-	PrivateIP                *string     `locationName:"PrivateIp" type:"string"`
-	PublicDNS                *string     `locationName:"PublicDns" type:"string"`
-	PublicIP                 *string     `locationName:"PublicIp" type:"string"`
-	RegisteredBy             *string     `type:"string"`
-	ReportedOs               *ReportedOs `type:"structure"`
-	RootDeviceType           *string     `type:"string"`
-	RootDeviceVolumeID       *string     `locationName:"RootDeviceVolumeId" type:"string"`
-	SSHHostDSAKeyFingerprint *string     `locationName:"SshHostDsaKeyFingerprint" type:"string"`
-	SSHHostRSAKeyFingerprint *string     `locationName:"SshHostRsaKeyFingerprint" type:"string"`
-	SSHKeyName               *string     `locationName:"SshKeyName" type:"string"`
-	SecurityGroupIDs         []*string   `locationName:"SecurityGroupIds" type:"list"`
-	StackID                  *string     `locationName:"StackId" type:"string"`
-	Status                   *string     `type:"string"`
-	SubnetID                 *string     `locationName:"SubnetId" type:"string"`
-	VirtualizationType       *string     `type:"string"`
+	// A custom AMI ID to be used to create the instance. The AMI should be based
+	// on one of the standard AWS OpsWorks APIs: Amazon Linux, Ubuntu 12.04 LTS,
+	// or Ubuntu 14.04 LTS. For more information, see Instances (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances.html)
+	AMIID *string `locationName:"AmiId" type:"string"`
+
+	// The instance architecture, "i386" or "x86_64".
+	Architecture *string `type:"string"`
+
+	// For load-based or time-based instances, the type.
+	AutoScalingType *string `type:"string"`
+
+	// The instance Availability Zone. For more information, see Regions and Endpoints
+	// (http://docs.aws.amazon.com/general/latest/gr/rande.html).
+	AvailabilityZone *string `type:"string"`
+
+	// The time that the instance was created.
+	CreatedAt *string `type:"string"`
+
+	// Whether this is an Amazon EBS-optimized instance.
+	EBSOptimized *bool `locationName:"EbsOptimized" type:"boolean"`
+
+	// The ID of the associated Amazon EC2 instance.
+	EC2InstanceID *string `locationName:"Ec2InstanceId" type:"string"`
+
+	// The instance Elastic IP address  (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html).
+	ElasticIP *string `locationName:"ElasticIp" type:"string"`
+
+	// The instance host name.
+	Hostname *string `type:"string"`
+
+	// For registered instances, the infrastructure class: ec2 or on-premises
+	InfrastructureClass *string `type:"string"`
+
+	// Whether to install operating system and package updates when the instance
+	// boots. The default value is true. If this value is set to false, you must
+	// then update your instances manually by using CreateDeployment to run the
+	// update_dependencies stack command or manually running yum (Amazon Linux)
+	// or apt-get (Ubuntu) on the instances.
+	//
+	//  We strongly recommend using the default value of true, to ensure that your
+	// instances have the latest security updates.
+	InstallUpdatesOnBoot *bool `type:"boolean"`
+
+	// The instance ID.
+	InstanceID *string `locationName:"InstanceId" type:"string"`
+
+	// The ARN of the instance's IAM profile. For more information about IAM ARNs,
+	// see Using Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
+	InstanceProfileARN *string `locationName:"InstanceProfileArn" type:"string"`
+
+	// The instance type. AWS OpsWorks supports all instance types except Cluster
+	// Compute, Cluster GPU, and High Memory Cluster. For more information, see
+	// Instance Families and Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html).
+	// The parameter values that specify the various types are in the API Name column
+	// of the Available Instance Types table.
+	InstanceType *string `type:"string"`
+
+	// The ID of the last service error. For more information, call DescribeServiceErrors.
+	LastServiceErrorID *string `locationName:"LastServiceErrorId" type:"string"`
+
+	// An array containing the instance layer IDs.
+	LayerIDs []*string `locationName:"LayerIds" type:"list"`
+
+	// The instance's operating system.
+	Os *string `type:"string"`
+
+	// The instance private DNS name.
+	PrivateDNS *string `locationName:"PrivateDns" type:"string"`
+
+	// The instance private IP address.
+	PrivateIP *string `locationName:"PrivateIp" type:"string"`
+
+	// The instance public DNS name.
+	PublicDNS *string `locationName:"PublicDns" type:"string"`
+
+	// The instance public IP address.
+	PublicIP *string `locationName:"PublicIp" type:"string"`
+
+	// For registered instances, who performed the registration.
+	RegisteredBy *string `type:"string"`
+
+	// For registered instances, the reported operating system.
+	ReportedOs *ReportedOs `type:"structure"`
+
+	// The instance root device type. For more information, see Storage for the
+	// Root Device (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device).
+	RootDeviceType *string `type:"string"`
+
+	// The root device volume ID.
+	RootDeviceVolumeID *string `locationName:"RootDeviceVolumeId" type:"string"`
+
+	// The SSH key's DSA fingerprint.
+	SSHHostDSAKeyFingerprint *string `locationName:"SshHostDsaKeyFingerprint" type:"string"`
+
+	// The SSH key's RSA fingerprint.
+	SSHHostRSAKeyFingerprint *string `locationName:"SshHostRsaKeyFingerprint" type:"string"`
+
+	// The instance SSH key name.
+	SSHKeyName *string `locationName:"SshKeyName" type:"string"`
+
+	// An array containing the instance security group IDs.
+	SecurityGroupIDs []*string `locationName:"SecurityGroupIds" type:"list"`
+
+	// The stack ID.
+	StackID *string `locationName:"StackId" type:"string"`
+
+	// The instance status:
+	//
+	//  booting connection_lost online pending rebooting requested running_setup
+	// setup_failed shutting_down start_failed stopped stopping terminated terminating
+	Status *string `type:"string"`
+
+	// The instance's subnet ID, if the stack is running in a VPC.
+	SubnetID *string `locationName:"SubnetId" type:"string"`
+
+	// The instance's virtualization type, paravirtual or hvm.
+	VirtualizationType *string `type:"string"`
 
 	metadataInstance `json:"-", xml:"-"`
 }
@@ -2751,8 +4123,13 @@ type metadataInstance struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains a description of an Amazon EC2 instance from the Amazon EC2 metadata
+// service. For more information, see Instance Metadata and User Data (http://docs.aws.amazon.com/sdkfornet/latest/apidocs/Index.html).
 type InstanceIdentity struct {
-	Document  *string `type:"string"`
+	// A JSON document that contains the metadata.
+	Document *string `type:"string"`
+
+	// A signature that can be used to verify the document's accuracy and authenticity.
 	Signature *string `type:"string"`
 
 	metadataInstanceIdentity `json:"-", xml:"-"`
@@ -2762,26 +4139,64 @@ type metadataInstanceIdentity struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes how many instances a stack has for each status.
 type InstancesCount struct {
-	Assigning      *int64 `type:"integer"`
-	Booting        *int64 `type:"integer"`
+	// The number of instances in the Assigning state.
+	Assigning *int64 `type:"integer"`
+
+	// The number of instances with booting status.
+	Booting *int64 `type:"integer"`
+
+	// The number of instances with connection_lost status.
 	ConnectionLost *int64 `type:"integer"`
-	Deregistering  *int64 `type:"integer"`
-	Online         *int64 `type:"integer"`
-	Pending        *int64 `type:"integer"`
-	Rebooting      *int64 `type:"integer"`
-	Registered     *int64 `type:"integer"`
-	Registering    *int64 `type:"integer"`
-	Requested      *int64 `type:"integer"`
-	RunningSetup   *int64 `type:"integer"`
-	SetupFailed    *int64 `type:"integer"`
-	ShuttingDown   *int64 `type:"integer"`
-	StartFailed    *int64 `type:"integer"`
-	Stopped        *int64 `type:"integer"`
-	Stopping       *int64 `type:"integer"`
-	Terminated     *int64 `type:"integer"`
-	Terminating    *int64 `type:"integer"`
-	Unassigning    *int64 `type:"integer"`
+
+	// The number of instances in the Deregistering state.
+	Deregistering *int64 `type:"integer"`
+
+	// The number of instances with online status.
+	Online *int64 `type:"integer"`
+
+	// The number of instances with pending status.
+	Pending *int64 `type:"integer"`
+
+	// The number of instances with rebooting status.
+	Rebooting *int64 `type:"integer"`
+
+	// The number of instances in the Registered state.
+	Registered *int64 `type:"integer"`
+
+	// The number of instances in the Registering state.
+	Registering *int64 `type:"integer"`
+
+	// The number of instances with requested status.
+	Requested *int64 `type:"integer"`
+
+	// The number of instances with running_setup status.
+	RunningSetup *int64 `type:"integer"`
+
+	// The number of instances with setup_failed status.
+	SetupFailed *int64 `type:"integer"`
+
+	// The number of instances with shutting_down status.
+	ShuttingDown *int64 `type:"integer"`
+
+	// The number of instances with start_failed status.
+	StartFailed *int64 `type:"integer"`
+
+	// The number of instances with stopped status.
+	Stopped *int64 `type:"integer"`
+
+	// The number of instances with stopping status.
+	Stopping *int64 `type:"integer"`
+
+	// The number of instances with terminated status.
+	Terminated *int64 `type:"integer"`
+
+	// The number of instances with terminating status.
+	Terminating *int64 `type:"integer"`
+
+	// The number of instances in the Unassigning state.
+	Unassigning *int64 `type:"integer"`
 
 	metadataInstancesCount `json:"-", xml:"-"`
 }
@@ -2790,27 +4205,88 @@ type metadataInstancesCount struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a layer.
 type Layer struct {
-	Attributes                  *map[string]*string          `type:"map"`
-	AutoAssignElasticIPs        *bool                        `locationName:"AutoAssignElasticIps" type:"boolean"`
-	AutoAssignPublicIPs         *bool                        `locationName:"AutoAssignPublicIps" type:"boolean"`
-	CreatedAt                   *string                      `type:"string"`
-	CustomInstanceProfileARN    *string                      `locationName:"CustomInstanceProfileArn" type:"string"`
-	CustomRecipes               *Recipes                     `type:"structure"`
-	CustomSecurityGroupIDs      []*string                    `locationName:"CustomSecurityGroupIds" type:"list"`
-	DefaultRecipes              *Recipes                     `type:"structure"`
-	DefaultSecurityGroupNames   []*string                    `type:"list"`
-	EnableAutoHealing           *bool                        `type:"boolean"`
-	InstallUpdatesOnBoot        *bool                        `type:"boolean"`
-	LayerID                     *string                      `locationName:"LayerId" type:"string"`
+	// The layer attributes.
+	Attributes *map[string]*string `type:"map"`
+
+	// Whether to automatically assign an Elastic IP address (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
+	// to the layer's instances. For more information, see How to Edit a Layer (http://docs.aws.amazon.com/opsworks/latest/userguide/workinglayers-basics-edit.html).
+	AutoAssignElasticIPs *bool `locationName:"AutoAssignElasticIps" type:"boolean"`
+
+	// For stacks that are running in a VPC, whether to automatically assign a public
+	// IP address to the layer's instances. For more information, see How to Edit
+	// a Layer (http://docs.aws.amazon.com/opsworks/latest/userguide/workinglayers-basics-edit.html).
+	AutoAssignPublicIPs *bool `locationName:"AutoAssignPublicIps" type:"boolean"`
+
+	// Date when the layer was created.
+	CreatedAt *string `type:"string"`
+
+	// The ARN of the default IAM profile to be used for the layer's EC2 instances.
+	// For more information about IAM ARNs, see Using Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
+	CustomInstanceProfileARN *string `locationName:"CustomInstanceProfileArn" type:"string"`
+
+	// A LayerCustomRecipes object that specifies the layer's custom recipes.
+	CustomRecipes *Recipes `type:"structure"`
+
+	// An array containing the layer's custom security group IDs.
+	CustomSecurityGroupIDs []*string `locationName:"CustomSecurityGroupIds" type:"list"`
+
+	// AWS OpsWorks supports five lifecycle events, setup, configuration, deploy,
+	// undeploy, and shutdown. For each layer, AWS OpsWorks runs a set of standard
+	// recipes for each event. In addition, you can provide custom recipes for any
+	// or all layers and events. AWS OpsWorks runs custom event recipes after the
+	// standard recipes. LayerCustomRecipes specifies the custom recipes for a particular
+	// layer to be run in response to each of the five events.
+	//
+	// To specify a recipe, use the cookbook's directory name in the repository
+	// followed by two colons and the recipe name, which is the recipe's file name
+	// without the .rb extension. For example: phpapp2::dbsetup specifies the dbsetup.rb
+	// recipe in the repository's phpapp2 folder.
+	DefaultRecipes *Recipes `type:"structure"`
+
+	// An array containing the layer's security group names.
+	DefaultSecurityGroupNames []*string `type:"list"`
+
+	// Whether auto healing is disabled for the layer.
+	EnableAutoHealing *bool `type:"boolean"`
+
+	// Whether to install operating system and package updates when the instance
+	// boots. The default value is true. If this value is set to false, you must
+	// then update your instances manually by using CreateDeployment to run the
+	// update_dependencies stack command or manually running yum (Amazon Linux)
+	// or apt-get (Ubuntu) on the instances.
+	//
+	//  We strongly recommend using the default value of true, to ensure that your
+	// instances have the latest security updates.
+	InstallUpdatesOnBoot *bool `type:"boolean"`
+
+	// The layer ID.
+	LayerID *string `locationName:"LayerId" type:"string"`
+
+	// A LifeCycleEventConfiguration object that specifies the Shutdown event configuration.
 	LifecycleEventConfiguration *LifecycleEventConfiguration `type:"structure"`
-	Name                        *string                      `type:"string"`
-	Packages                    []*string                    `type:"list"`
-	Shortname                   *string                      `type:"string"`
-	StackID                     *string                      `locationName:"StackId" type:"string"`
-	Type                        *string                      `type:"string"`
-	UseEBSOptimizedInstances    *bool                        `locationName:"UseEbsOptimizedInstances" type:"boolean"`
-	VolumeConfigurations        []*VolumeConfiguration       `type:"list"`
+
+	// The layer name.
+	Name *string `type:"string"`
+
+	// An array of Package objects that describe the layer's packages.
+	Packages []*string `type:"list"`
+
+	// The layer short name.
+	Shortname *string `type:"string"`
+
+	// The layer stack ID.
+	StackID *string `locationName:"StackId" type:"string"`
+
+	// The layer type.
+	Type *string `type:"string"`
+
+	// Whether the layer uses Amazon EBS-optimized instances.
+	UseEBSOptimizedInstances *bool `locationName:"UseEbsOptimizedInstances" type:"boolean"`
+
+	// A VolumeConfigurations object that describes the layer's Amazon EBS volumes.
+	VolumeConfigurations []*VolumeConfiguration `type:"list"`
 
 	metadataLayer `json:"-", xml:"-"`
 }
@@ -2819,7 +4295,9 @@ type metadataLayer struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Specifies the lifecycle event configuration
 type LifecycleEventConfiguration struct {
+	// A ShutdownEventConfiguration object that specifies the Shutdown event configuration.
 	Shutdown *ShutdownEventConfiguration `type:"structure"`
 
 	metadataLifecycleEventConfiguration `json:"-", xml:"-"`
@@ -2829,11 +4307,21 @@ type metadataLifecycleEventConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a layer's load-based auto scaling configuration.
 type LoadBasedAutoScalingConfiguration struct {
+	// An AutoScalingThresholds object that describes the downscaling configuration,
+	// which defines how and when AWS OpsWorks reduces the number of instances.
 	DownScaling *AutoScalingThresholds `type:"structure"`
-	Enable      *bool                  `type:"boolean"`
-	LayerID     *string                `locationName:"LayerId" type:"string"`
-	UpScaling   *AutoScalingThresholds `type:"structure"`
+
+	// Whether load-based auto scaling is enabled for the layer.
+	Enable *bool `type:"boolean"`
+
+	// The layer ID.
+	LayerID *string `locationName:"LayerId" type:"string"`
+
+	// An AutoScalingThresholds object that describes the upscaling configuration,
+	// which defines how and when AWS OpsWorks increases the number of instances.
+	UpScaling *AutoScalingThresholds `type:"structure"`
 
 	metadataLoadBasedAutoScalingConfiguration `json:"-", xml:"-"`
 }
@@ -2842,12 +4330,26 @@ type metadataLoadBasedAutoScalingConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes stack or user permissions.
 type Permission struct {
-	AllowSSH   *bool   `locationName:"AllowSsh" type:"boolean"`
-	AllowSudo  *bool   `type:"boolean"`
+	// Whether the user can use SSH.
+	AllowSSH *bool `locationName:"AllowSsh" type:"boolean"`
+
+	// Whether the user can use sudo.
+	AllowSudo *bool `type:"boolean"`
+
+	// The Amazon Resource Name (ARN) for an AWS Identity and Access Management
+	// (IAM) role. For more information about IAM ARNs, see Using Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
 	IAMUserARN *string `locationName:"IamUserArn" type:"string"`
-	Level      *string `type:"string"`
-	StackID    *string `locationName:"StackId" type:"string"`
+
+	// The user's permission level, which must be the following:
+	//
+	//  deny show deploy manage iam_only  For more information on the permissions
+	// associated with these levels, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html)
+	Level *string `type:"string"`
+
+	// A stack ID.
+	StackID *string `locationName:"StackId" type:"string"`
 
 	metadataPermission `json:"-", xml:"-"`
 }
@@ -2856,20 +4358,47 @@ type metadataPermission struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an instance's RAID array.
 type RAIDArray struct {
+	// The array's Availability Zone. For more information, see Regions and Endpoints
+	// (http://docs.aws.amazon.com/general/latest/gr/rande.html).
 	AvailabilityZone *string `type:"string"`
-	CreatedAt        *string `type:"string"`
-	Device           *string `type:"string"`
-	IOPS             *int64  `locationName:"Iops" type:"integer"`
-	InstanceID       *string `locationName:"InstanceId" type:"string"`
-	MountPoint       *string `type:"string"`
-	Name             *string `type:"string"`
-	NumberOfDisks    *int64  `type:"integer"`
-	RAIDArrayID      *string `locationName:"RaidArrayId" type:"string"`
-	RAIDLevel        *int64  `locationName:"RaidLevel" type:"integer"`
-	Size             *int64  `type:"integer"`
-	StackID          *string `locationName:"StackId" type:"string"`
-	VolumeType       *string `type:"string"`
+
+	// When the RAID array was created.
+	CreatedAt *string `type:"string"`
+
+	// The array's Linux device. For example /dev/mdadm0.
+	Device *string `type:"string"`
+
+	// For PIOPS volumes, the IOPS per disk.
+	IOPS *int64 `locationName:"Iops" type:"integer"`
+
+	// The instance ID.
+	InstanceID *string `locationName:"InstanceId" type:"string"`
+
+	// The array's mount point.
+	MountPoint *string `type:"string"`
+
+	// The array name.
+	Name *string `type:"string"`
+
+	// The number of disks in the array.
+	NumberOfDisks *int64 `type:"integer"`
+
+	// The array ID.
+	RAIDArrayID *string `locationName:"RaidArrayId" type:"string"`
+
+	// The RAID level (http://en.wikipedia.org/wiki/Standard_RAID_levels).
+	RAIDLevel *int64 `locationName:"RaidLevel" type:"integer"`
+
+	// The array's size.
+	Size *int64 `type:"integer"`
+
+	// The stack ID.
+	StackID *string `locationName:"StackId" type:"string"`
+
+	// The volume type, standard or PIOPS.
+	VolumeType *string `type:"string"`
 
 	metadataRAIDArray `json:"-", xml:"-"`
 }
@@ -2878,16 +4407,36 @@ type metadataRAIDArray struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an Amazon RDS instance.
 type RDSDBInstance struct {
-	Address              *string `type:"string"`
+	// The instance's address.
+	Address *string `type:"string"`
+
+	// The DB instance identifier.
 	DBInstanceIdentifier *string `locationName:"DbInstanceIdentifier" type:"string"`
-	DBPassword           *string `locationName:"DbPassword" type:"string"`
-	DBUser               *string `locationName:"DbUser" type:"string"`
-	Engine               *string `type:"string"`
-	MissingOnRDS         *bool   `locationName:"MissingOnRds" type:"boolean"`
-	RDSDBInstanceARN     *string `locationName:"RdsDbInstanceArn" type:"string"`
-	Region               *string `type:"string"`
-	StackID              *string `locationName:"StackId" type:"string"`
+
+	// The database password.
+	DBPassword *string `locationName:"DbPassword" type:"string"`
+
+	// The master user name.
+	DBUser *string `locationName:"DbUser" type:"string"`
+
+	// The instance's database engine.
+	Engine *string `type:"string"`
+
+	// Set to true if AWS OpsWorks was unable to discover the Amazon RDS instance.
+	// AWS OpsWorks attempts to discover the instance only once. If this value is
+	// set to true, you must deregister the instance and then register it again.
+	MissingOnRDS *bool `locationName:"MissingOnRds" type:"boolean"`
+
+	// The instance's ARN.
+	RDSDBInstanceARN *string `locationName:"RdsDbInstanceArn" type:"string"`
+
+	// The instance's AWS region.
+	Region *string `type:"string"`
+
+	// The ID of the stack that the instance is registered with.
+	StackID *string `locationName:"StackId" type:"string"`
 
 	metadataRDSDBInstance `json:"-", xml:"-"`
 }
@@ -2897,6 +4446,7 @@ type metadataRDSDBInstance struct {
 }
 
 type RebootInstanceInput struct {
+	// The instance ID.
 	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
 
 	metadataRebootInstanceInput `json:"-", xml:"-"`
@@ -2914,12 +4464,32 @@ type metadataRebootInstanceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// AWS OpsWorks supports five lifecycle events, setup, configuration, deploy,
+// undeploy, and shutdown. For each layer, AWS OpsWorks runs a set of standard
+// recipes for each event. In addition, you can provide custom recipes for any
+// or all layers and events. AWS OpsWorks runs custom event recipes after the
+// standard recipes. LayerCustomRecipes specifies the custom recipes for a particular
+// layer to be run in response to each of the five events.
+//
+// To specify a recipe, use the cookbook's directory name in the repository
+// followed by two colons and the recipe name, which is the recipe's file name
+// without the .rb extension. For example: phpapp2::dbsetup specifies the dbsetup.rb
+// recipe in the repository's phpapp2 folder.
 type Recipes struct {
+	// An array of custom recipe names to be run following a configure event.
 	Configure []*string `type:"list"`
-	Deploy    []*string `type:"list"`
-	Setup     []*string `type:"list"`
-	Shutdown  []*string `type:"list"`
-	Undeploy  []*string `type:"list"`
+
+	// An array of custom recipe names to be run following a deploy event.
+	Deploy []*string `type:"list"`
+
+	// An array of custom recipe names to be run following a setup event.
+	Setup []*string `type:"list"`
+
+	// An array of custom recipe names to be run following a shutdown event.
+	Shutdown []*string `type:"list"`
+
+	// An array of custom recipe names to be run following a undeploy event.
+	Undeploy []*string `type:"list"`
 
 	metadataRecipes `json:"-", xml:"-"`
 }
@@ -2929,8 +4499,11 @@ type metadataRecipes struct {
 }
 
 type RegisterElasticIPInput struct {
+	// The Elastic IP address.
 	ElasticIP *string `locationName:"ElasticIp" type:"string" required:"true"`
-	StackID   *string `locationName:"StackId" type:"string" required:"true"`
+
+	// The stack ID.
+	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
 	metadataRegisterElasticIPInput `json:"-", xml:"-"`
 }
@@ -2939,7 +4512,9 @@ type metadataRegisterElasticIPInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a RegisterElasticIp request.
 type RegisterElasticIPOutput struct {
+	// The Elastic IP address.
 	ElasticIP *string `locationName:"ElasticIp" type:"string"`
 
 	metadataRegisterElasticIPOutput `json:"-", xml:"-"`
@@ -2950,13 +4525,27 @@ type metadataRegisterElasticIPOutput struct {
 }
 
 type RegisterInstanceInput struct {
-	Hostname                *string           `type:"string"`
-	InstanceIdentity        *InstanceIdentity `type:"structure"`
-	PrivateIP               *string           `locationName:"PrivateIp" type:"string"`
-	PublicIP                *string           `locationName:"PublicIp" type:"string"`
-	RSAPublicKey            *string           `locationName:"RsaPublicKey" type:"string"`
-	RSAPublicKeyFingerprint *string           `locationName:"RsaPublicKeyFingerprint" type:"string"`
-	StackID                 *string           `locationName:"StackId" type:"string" required:"true"`
+	// The instance's hostname.
+	Hostname *string `type:"string"`
+
+	// An InstanceIdentity object that contains the instance's identity.
+	InstanceIdentity *InstanceIdentity `type:"structure"`
+
+	// The instance's private IP address.
+	PrivateIP *string `locationName:"PrivateIp" type:"string"`
+
+	// The instance's public IP address.
+	PublicIP *string `locationName:"PublicIp" type:"string"`
+
+	// The instances public RSA key. This key is used to encrypt communication between
+	// the instance and the service.
+	RSAPublicKey *string `locationName:"RsaPublicKey" type:"string"`
+
+	// The instances public RSA key fingerprint.
+	RSAPublicKeyFingerprint *string `locationName:"RsaPublicKeyFingerprint" type:"string"`
+
+	// The ID of the stack that the instance is to be registered with.
+	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
 	metadataRegisterInstanceInput `json:"-", xml:"-"`
 }
@@ -2965,7 +4554,9 @@ type metadataRegisterInstanceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a RegisterInstanceResult request.
 type RegisterInstanceOutput struct {
+	// The registered instance's AWS OpsWorks ID.
 	InstanceID *string `locationName:"InstanceId" type:"string"`
 
 	metadataRegisterInstanceOutput `json:"-", xml:"-"`
@@ -2976,10 +4567,17 @@ type metadataRegisterInstanceOutput struct {
 }
 
 type RegisterRDSDBInstanceInput struct {
-	DBPassword       *string `locationName:"DbPassword" type:"string" required:"true"`
-	DBUser           *string `locationName:"DbUser" type:"string" required:"true"`
+	// The database password.
+	DBPassword *string `locationName:"DbPassword" type:"string" required:"true"`
+
+	// The database's master user name.
+	DBUser *string `locationName:"DbUser" type:"string" required:"true"`
+
+	// The Amazon RDS instance's ARN.
 	RDSDBInstanceARN *string `locationName:"RdsDbInstanceArn" type:"string" required:"true"`
-	StackID          *string `locationName:"StackId" type:"string" required:"true"`
+
+	// The stack ID.
+	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
 	metadataRegisterRDSDBInstanceInput `json:"-", xml:"-"`
 }
@@ -2997,8 +4595,11 @@ type metadataRegisterRDSDBInstanceOutput struct {
 }
 
 type RegisterVolumeInput struct {
+	// The Amazon EBS volume ID.
 	EC2VolumeID *string `locationName:"Ec2VolumeId" type:"string"`
-	StackID     *string `locationName:"StackId" type:"string" required:"true"`
+
+	// The stack ID.
+	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
 	metadataRegisterVolumeInput `json:"-", xml:"-"`
 }
@@ -3007,7 +4608,9 @@ type metadataRegisterVolumeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the response to a RegisterVolume request.
 type RegisterVolumeOutput struct {
+	// The volume ID.
 	VolumeID *string `locationName:"VolumeId" type:"string"`
 
 	metadataRegisterVolumeOutput `json:"-", xml:"-"`
@@ -3017,9 +4620,15 @@ type metadataRegisterVolumeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A registered instance's reported operating system.
 type ReportedOs struct {
-	Family  *string `type:"string"`
-	Name    *string `type:"string"`
+	// The operating system family.
+	Family *string `type:"string"`
+
+	// The operating system name.
+	Name *string `type:"string"`
+
+	// The operating system version.
 	Version *string `type:"string"`
 
 	metadataReportedOs `json:"-", xml:"-"`
@@ -3029,10 +4638,17 @@ type metadataReportedOs struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an app's SSL configuration.
 type SSLConfiguration struct {
+	// The contents of the certificate's domain.crt file.
 	Certificate *string `type:"string" required:"true"`
-	Chain       *string `type:"string"`
-	PrivateKey  *string `type:"string" required:"true"`
+
+	// Optional. Can be used to specify an intermediate certificate authority key
+	// or client authentication.
+	Chain *string `type:"string"`
+
+	// The private key; the contents of the certificate's domain.kex file.
+	PrivateKey *string `type:"string" required:"true"`
 
 	metadataSSLConfiguration `json:"-", xml:"-"`
 }
@@ -3041,11 +4657,19 @@ type metadataSSLConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a user's SSH information.
 type SelfUserProfile struct {
-	IAMUserARN   *string `locationName:"IamUserArn" type:"string"`
-	Name         *string `type:"string"`
+	// The user's IAM ARN.
+	IAMUserARN *string `locationName:"IamUserArn" type:"string"`
+
+	// The user's name.
+	Name *string `type:"string"`
+
+	// The user's SSH public key.
 	SSHPublicKey *string `locationName:"SshPublicKey" type:"string"`
-	SSHUsername  *string `locationName:"SshUsername" type:"string"`
+
+	// The user's SSH user name.
+	SSHUsername *string `locationName:"SshUsername" type:"string"`
 
 	metadataSelfUserProfile `json:"-", xml:"-"`
 }
@@ -3054,13 +4678,25 @@ type metadataSelfUserProfile struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an AWS OpsWorks service error.
 type ServiceError struct {
-	CreatedAt      *string `type:"string"`
-	InstanceID     *string `locationName:"InstanceId" type:"string"`
-	Message        *string `type:"string"`
+	// When the error occurred.
+	CreatedAt *string `type:"string"`
+
+	// The instance ID.
+	InstanceID *string `locationName:"InstanceId" type:"string"`
+
+	// A message that describes the error.
+	Message *string `type:"string"`
+
+	// The error ID.
 	ServiceErrorID *string `locationName:"ServiceErrorId" type:"string"`
-	StackID        *string `locationName:"StackId" type:"string"`
-	Type           *string `type:"string"`
+
+	// The stack ID.
+	StackID *string `locationName:"StackId" type:"string"`
+
+	// The error type.
+	Type *string `type:"string"`
 
 	metadataServiceError `json:"-", xml:"-"`
 }
@@ -3070,10 +4706,21 @@ type metadataServiceError struct {
 }
 
 type SetLoadBasedAutoScalingInput struct {
+	// An AutoScalingThresholds object with the downscaling threshold configuration.
+	// If the load falls below these thresholds for a specified amount of time,
+	// AWS OpsWorks stops a specified number of instances.
 	DownScaling *AutoScalingThresholds `type:"structure"`
-	Enable      *bool                  `type:"boolean"`
-	LayerID     *string                `locationName:"LayerId" type:"string" required:"true"`
-	UpScaling   *AutoScalingThresholds `type:"structure"`
+
+	// Enables load-based auto scaling for the layer.
+	Enable *bool `type:"boolean"`
+
+	// The layer ID.
+	LayerID *string `locationName:"LayerId" type:"string" required:"true"`
+
+	// An AutoScalingThresholds object with the upscaling threshold configuration.
+	// If the load exceeds these thresholds for a specified amount of time, AWS
+	// OpsWorks starts a specified number of instances.
+	UpScaling *AutoScalingThresholds `type:"structure"`
 
 	metadataSetLoadBasedAutoScalingInput `json:"-", xml:"-"`
 }
@@ -3091,11 +4738,24 @@ type metadataSetLoadBasedAutoScalingOutput struct {
 }
 
 type SetPermissionInput struct {
-	AllowSSH   *bool   `locationName:"AllowSsh" type:"boolean"`
-	AllowSudo  *bool   `type:"boolean"`
+	// The user is allowed to use SSH to communicate with the instance.
+	AllowSSH *bool `locationName:"AllowSsh" type:"boolean"`
+
+	// The user is allowed to use sudo to elevate privileges.
+	AllowSudo *bool `type:"boolean"`
+
+	// The user's IAM ARN.
 	IAMUserARN *string `locationName:"IamUserArn" type:"string" required:"true"`
-	Level      *string `type:"string"`
-	StackID    *string `locationName:"StackId" type:"string" required:"true"`
+
+	// The user's permission level, which must be set to one of the following strings.
+	// You cannot set your own permissions level.
+	//
+	//  deny show deploy manage iam_only  For more information on the permissions
+	// associated with these levels, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html)
+	Level *string `type:"string"`
+
+	// The stack ID.
+	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
 	metadataSetPermissionInput `json:"-", xml:"-"`
 }
@@ -3113,8 +4773,11 @@ type metadataSetPermissionOutput struct {
 }
 
 type SetTimeBasedAutoScalingInput struct {
+	// An AutoScalingSchedule with the instance schedule.
 	AutoScalingSchedule *WeeklyAutoScalingSchedule `type:"structure"`
-	InstanceID          *string                    `locationName:"InstanceId" type:"string" required:"true"`
+
+	// The instance ID.
+	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
 
 	metadataSetTimeBasedAutoScalingInput `json:"-", xml:"-"`
 }
@@ -3131,9 +4794,15 @@ type metadataSetTimeBasedAutoScalingOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The Shutdown event configuration.
 type ShutdownEventConfiguration struct {
-	DelayUntilELBConnectionsDrained *bool  `locationName:"DelayUntilElbConnectionsDrained" type:"boolean"`
-	ExecutionTimeout                *int64 `type:"integer"`
+	// Whether to enable Elastic Load Balancing connection draining. For more information,
+	// see Connection Draining (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#conn-drain)
+	DelayUntilELBConnectionsDrained *bool `locationName:"DelayUntilElbConnectionsDrained" type:"boolean"`
+
+	// The time, in seconds, that AWS OpsWorks will wait after triggering a Shutdown
+	// event before shutting down an instance.
+	ExecutionTimeout *int64 `type:"integer"`
 
 	metadataShutdownEventConfiguration `json:"-", xml:"-"`
 }
@@ -3142,12 +4811,37 @@ type metadataShutdownEventConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the information required to retrieve an app or cookbook from a repository.
+// For more information, see Creating Apps (http://docs.aws.amazon.com/opsworks/latest/userguide/workingapps-creating.html)
+// or Custom Recipes and Cookbooks (http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook.html).
 type Source struct {
+	// This parameter depends on the repository type.
+	//
+	//  For Amazon S3 bundles, set Password to the appropriate IAM secret access
+	// key. For HTTP bundles and Subversion repositories, set Password to the password.
+	//  For more information on how to safely handle IAM credentials, see .
 	Password *string `type:"string"`
+
+	// The application's version. AWS OpsWorks enables you to easily deploy new
+	// versions of an application. One of the simplest approaches is to have branches
+	// or revisions in your repository that represent different versions that can
+	// potentially be deployed.
 	Revision *string `type:"string"`
-	SSHKey   *string `locationName:"SshKey" type:"string"`
-	Type     *string `type:"string"`
-	URL      *string `locationName:"Url" type:"string"`
+
+	// The repository's SSH key.
+	SSHKey *string `locationName:"SshKey" type:"string"`
+
+	// The repository type.
+	Type *string `type:"string"`
+
+	// The source URL.
+	URL *string `locationName:"Url" type:"string"`
+
+	// This parameter depends on the repository type.
+	//
+	//  For Amazon S3 bundles, set Username to the appropriate IAM access key ID.
+	// For HTTP bundles, Git repositories, and Subversion repositories, set Username
+	// to the user name.
 	Username *string `type:"string"`
 
 	metadataSource `json:"-", xml:"-"`
@@ -3157,28 +4851,88 @@ type metadataSource struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a stack.
 type Stack struct {
-	ARN                       *string                    `locationName:"Arn" type:"string"`
-	Attributes                *map[string]*string        `type:"map"`
-	ChefConfiguration         *ChefConfiguration         `type:"structure"`
-	ConfigurationManager      *StackConfigurationManager `type:"structure"`
-	CreatedAt                 *string                    `type:"string"`
-	CustomCookbooksSource     *Source                    `type:"structure"`
-	CustomJSON                *string                    `locationName:"CustomJson" type:"string"`
-	DefaultAvailabilityZone   *string                    `type:"string"`
-	DefaultInstanceProfileARN *string                    `locationName:"DefaultInstanceProfileArn" type:"string"`
-	DefaultOs                 *string                    `type:"string"`
-	DefaultRootDeviceType     *string                    `type:"string"`
-	DefaultSSHKeyName         *string                    `locationName:"DefaultSshKeyName" type:"string"`
-	DefaultSubnetID           *string                    `locationName:"DefaultSubnetId" type:"string"`
-	HostnameTheme             *string                    `type:"string"`
-	Name                      *string                    `type:"string"`
-	Region                    *string                    `type:"string"`
-	ServiceRoleARN            *string                    `locationName:"ServiceRoleArn" type:"string"`
-	StackID                   *string                    `locationName:"StackId" type:"string"`
-	UseCustomCookbooks        *bool                      `type:"boolean"`
-	UseOpsWorksSecurityGroups *bool                      `locationName:"UseOpsworksSecurityGroups" type:"boolean"`
-	VPCID                     *string                    `locationName:"VpcId" type:"string"`
+	// The stack's ARN.
+	ARN *string `locationName:"Arn" type:"string"`
+
+	// The stack's attributes.
+	Attributes *map[string]*string `type:"map"`
+
+	// A ChefConfiguration object that specifies whether to enable Berkshelf and
+	// the Berkshelf version. For more information, see Create a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
+	ChefConfiguration *ChefConfiguration `type:"structure"`
+
+	// The configuration manager.
+	ConfigurationManager *StackConfigurationManager `type:"structure"`
+
+	// Date when the stack was created.
+	CreatedAt *string `type:"string"`
+
+	// Contains the information required to retrieve an app or cookbook from a repository.
+	// For more information, see Creating Apps (http://docs.aws.amazon.com/opsworks/latest/userguide/workingapps-creating.html)
+	// or Custom Recipes and Cookbooks (http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook.html).
+	CustomCookbooksSource *Source `type:"structure"`
+
+	// A string that contains user-defined, custom JSON. It is used to override
+	// the corresponding default stack configuration JSON values. The string should
+	// be in the following format and must escape characters such as '"'.:
+	//
+	// "{\"key1\": \"value1\", \"key2\": \"value2\",...}"
+	//
+	// For more information on custom JSON, see Use Custom JSON to Modify the Stack
+	// Configuration JSON (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html).
+	CustomJSON *string `locationName:"CustomJson" type:"string"`
+
+	// The stack's default Availability Zone. For more information, see Regions
+	// and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html).
+	DefaultAvailabilityZone *string `type:"string"`
+
+	// The ARN of an IAM profile that is the default profile for all of the stack's
+	// EC2 instances. For more information about IAM ARNs, see Using Identifiers
+	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
+	DefaultInstanceProfileARN *string `locationName:"DefaultInstanceProfileArn" type:"string"`
+
+	// The stack's default operating system.
+	DefaultOs *string `type:"string"`
+
+	// The default root device type. This value is used by default for all instances
+	// in the stack, but you can override it when you create an instance. For more
+	// information, see Storage for the Root Device (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device).
+	DefaultRootDeviceType *string `type:"string"`
+
+	// A default SSH key for the stack's instances. You can override this value
+	// when you create or update an instance.
+	DefaultSSHKeyName *string `locationName:"DefaultSshKeyName" type:"string"`
+
+	// The default subnet ID, if the stack is running in a VPC.
+	DefaultSubnetID *string `locationName:"DefaultSubnetId" type:"string"`
+
+	// The stack host name theme, with spaces replaced by underscores.
+	HostnameTheme *string `type:"string"`
+
+	// The stack name.
+	Name *string `type:"string"`
+
+	// The stack AWS region, such as "us-east-1". For more information about AWS
+	// regions, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html).
+	Region *string `type:"string"`
+
+	// The stack AWS Identity and Access Management (IAM) role.
+	ServiceRoleARN *string `locationName:"ServiceRoleArn" type:"string"`
+
+	// The stack ID.
+	StackID *string `locationName:"StackId" type:"string"`
+
+	// Whether the stack uses custom cookbooks.
+	UseCustomCookbooks *bool `type:"boolean"`
+
+	// Whether the stack automatically associates the AWS OpsWorks built-in security
+	// groups with the stack's layers.
+	UseOpsWorksSecurityGroups *bool `locationName:"UseOpsworksSecurityGroups" type:"boolean"`
+
+	// The VPC ID, if the stack is running in a VPC.
+	VPCID *string `locationName:"VpcId" type:"string"`
 
 	metadataStack `json:"-", xml:"-"`
 }
@@ -3187,8 +4941,13 @@ type metadataStack struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the configuration manager.
 type StackConfigurationManager struct {
-	Name    *string `type:"string"`
+	// The name. This parameter must be set to "Chef".
+	Name *string `type:"string"`
+
+	// The Chef version. This parameter must be set to 0.9, 11.4, or 11.10. The
+	// default value is 11.4.
 	Version *string `type:"string"`
 
 	metadataStackConfigurationManager `json:"-", xml:"-"`
@@ -3198,13 +4957,25 @@ type metadataStackConfigurationManager struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Summarizes the number of layers, instances, and apps in a stack.
 type StackSummary struct {
-	ARN            *string         `locationName:"Arn" type:"string"`
-	AppsCount      *int64          `type:"integer"`
+	// The stack's ARN.
+	ARN *string `locationName:"Arn" type:"string"`
+
+	// The number of apps.
+	AppsCount *int64 `type:"integer"`
+
+	// An InstancesCount object with the number of instances in each status.
 	InstancesCount *InstancesCount `type:"structure"`
-	LayersCount    *int64          `type:"integer"`
-	Name           *string         `type:"string"`
-	StackID        *string         `locationName:"StackId" type:"string"`
+
+	// The number of layers.
+	LayersCount *int64 `type:"integer"`
+
+	// The stack name.
+	Name *string `type:"string"`
+
+	// The stack ID.
+	StackID *string `locationName:"StackId" type:"string"`
 
 	metadataStackSummary `json:"-", xml:"-"`
 }
@@ -3214,6 +4985,7 @@ type metadataStackSummary struct {
 }
 
 type StartInstanceInput struct {
+	// The instance ID.
 	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
 
 	metadataStartInstanceInput `json:"-", xml:"-"`
@@ -3232,6 +5004,7 @@ type metadataStartInstanceOutput struct {
 }
 
 type StartStackInput struct {
+	// The stack ID.
 	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
 	metadataStartStackInput `json:"-", xml:"-"`
@@ -3250,6 +5023,7 @@ type metadataStartStackOutput struct {
 }
 
 type StopInstanceInput struct {
+	// The instance ID.
 	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
 
 	metadataStopInstanceInput `json:"-", xml:"-"`
@@ -3268,6 +5042,7 @@ type metadataStopInstanceOutput struct {
 }
 
 type StopStackInput struct {
+	// The stack ID.
 	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
 	metadataStopStackInput `json:"-", xml:"-"`
@@ -3285,9 +5060,13 @@ type metadataStopStackOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an instance's time-based auto scaling configuration.
 type TimeBasedAutoScalingConfiguration struct {
+	// A WeeklyAutoScalingSchedule object with the instance schedule.
 	AutoScalingSchedule *WeeklyAutoScalingSchedule `type:"structure"`
-	InstanceID          *string                    `locationName:"InstanceId" type:"string"`
+
+	// The instance ID.
+	InstanceID *string `locationName:"InstanceId" type:"string"`
 
 	metadataTimeBasedAutoScalingConfiguration `json:"-", xml:"-"`
 }
@@ -3297,6 +5076,7 @@ type metadataTimeBasedAutoScalingConfiguration struct {
 }
 
 type UnassignInstanceInput struct {
+	// The instance ID.
 	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
 
 	metadataUnassignInstanceInput `json:"-", xml:"-"`
@@ -3315,6 +5095,7 @@ type metadataUnassignInstanceOutput struct {
 }
 
 type UnassignVolumeInput struct {
+	// The volume ID.
 	VolumeID *string `locationName:"VolumeId" type:"string" required:"true"`
 
 	metadataUnassignVolumeInput `json:"-", xml:"-"`
@@ -3333,17 +5114,45 @@ type metadataUnassignVolumeOutput struct {
 }
 
 type UpdateAppInput struct {
-	AppID            *string                `locationName:"AppId" type:"string" required:"true"`
-	AppSource        *Source                `type:"structure"`
-	Attributes       *map[string]*string    `type:"map"`
-	DataSources      []*DataSource          `type:"list"`
-	Description      *string                `type:"string"`
-	Domains          []*string              `type:"list"`
-	EnableSSL        *bool                  `locationName:"EnableSsl" type:"boolean"`
-	Environment      []*EnvironmentVariable `type:"list"`
-	Name             *string                `type:"string"`
-	SSLConfiguration *SSLConfiguration      `locationName:"SslConfiguration" type:"structure"`
-	Type             *string                `type:"string"`
+	// The app ID.
+	AppID *string `locationName:"AppId" type:"string" required:"true"`
+
+	// A Source object that specifies the app repository.
+	AppSource *Source `type:"structure"`
+
+	// One or more user-defined key/value pairs to be added to the stack attributes.
+	Attributes *map[string]*string `type:"map"`
+
+	// The app's data sources.
+	DataSources []*DataSource `type:"list"`
+
+	// A description of the app.
+	Description *string `type:"string"`
+
+	// The app's virtual host settings, with multiple domains separated by commas.
+	// For example: 'www.example.com, example.com'
+	Domains []*string `type:"list"`
+
+	// Whether SSL is enabled for the app.
+	EnableSSL *bool `locationName:"EnableSsl" type:"boolean"`
+
+	// An array of EnvironmentVariable objects that specify environment variables
+	// to be associated with the app. You can specify up to ten environment variables.
+	// After you deploy the app, these variables are defined on the associated app
+	// server instances.
+	//
+	// This parameter is supported only by Chef 11.10 stacks. If you have specified
+	// one or more environment variables, you cannot modify the stack's Chef version.
+	Environment []*EnvironmentVariable `type:"list"`
+
+	// The app name.
+	Name *string `type:"string"`
+
+	// An SslConfiguration object with the SSL configuration.
+	SSLConfiguration *SSLConfiguration `locationName:"SslConfiguration" type:"structure"`
+
+	// The app type.
+	Type *string `type:"string"`
 
 	metadataUpdateAppInput `json:"-", xml:"-"`
 }
@@ -3361,8 +5170,11 @@ type metadataUpdateAppOutput struct {
 }
 
 type UpdateElasticIPInput struct {
+	// The address.
 	ElasticIP *string `locationName:"ElasticIp" type:"string" required:"true"`
-	Name      *string `type:"string"`
+
+	// The new name.
+	Name *string `type:"string"`
 
 	metadataUpdateElasticIPInput `json:"-", xml:"-"`
 }
@@ -3380,17 +5192,65 @@ type metadataUpdateElasticIPOutput struct {
 }
 
 type UpdateInstanceInput struct {
-	AMIID                *string   `locationName:"AmiId" type:"string"`
-	Architecture         *string   `type:"string"`
-	AutoScalingType      *string   `type:"string"`
-	EBSOptimized         *bool     `locationName:"EbsOptimized" type:"boolean"`
-	Hostname             *string   `type:"string"`
-	InstallUpdatesOnBoot *bool     `type:"boolean"`
-	InstanceID           *string   `locationName:"InstanceId" type:"string" required:"true"`
-	InstanceType         *string   `type:"string"`
-	LayerIDs             []*string `locationName:"LayerIds" type:"list"`
-	Os                   *string   `type:"string"`
-	SSHKeyName           *string   `locationName:"SshKeyName" type:"string"`
+	// A custom AMI ID to be used to create the instance. The AMI should be based
+	// on one of the standard AWS OpsWorks AMIs: Amazon Linux, Ubuntu 12.04 LTS,
+	// or Ubuntu 14.04 LTS. For more information, see Instances (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances.html)
+	//
+	// If you specify a custom AMI, you must set Os to Custom.
+	AMIID *string `locationName:"AmiId" type:"string"`
+
+	// The instance architecture. Instance types do not necessarily support both
+	// architectures. For a list of the architectures that are supported by the
+	// different instance types, see Instance Families and Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html).
+	Architecture *string `type:"string"`
+
+	// For load-based or time-based instances, the type.
+	AutoScalingType *string `type:"string"`
+
+	// Whether this is an Amazon EBS-optimized instance.
+	EBSOptimized *bool `locationName:"EbsOptimized" type:"boolean"`
+
+	// The instance host name.
+	Hostname *string `type:"string"`
+
+	// Whether to install operating system and package updates when the instance
+	// boots. The default value is true. To control when updates are installed,
+	// set this value to false. You must then update your instances manually by
+	// using CreateDeployment to run the update_dependencies stack command or manually
+	// running yum (Amazon Linux) or apt-get (Ubuntu) on the instances.
+	//
+	//  We strongly recommend using the default value of true, to ensure that your
+	// instances have the latest security updates.
+	InstallUpdatesOnBoot *bool `type:"boolean"`
+
+	// The instance ID.
+	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
+
+	// The instance type. AWS OpsWorks supports all instance types except Cluster
+	// Compute, Cluster GPU, and High Memory Cluster. For more information, see
+	// Instance Families and Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html).
+	// The parameter values that you use to specify the various types are in the
+	// API Name column of the Available Instance Types table.
+	InstanceType *string `type:"string"`
+
+	// The instance's layer IDs.
+	LayerIDs []*string `locationName:"LayerIds" type:"list"`
+
+	// The instance's operating system, which must be set to one of the following.
+	//
+	//  Standard operating systems: An Amazon Linux version such as Amazon Linux
+	// 2014.09, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS. Custom AMIs: Custom   The
+	// default option is the current Amazon Linux version, such as Amazon Linux
+	// 2014.09. If you set this parameter to Custom, you must use the CreateInstance
+	// action's AmiId parameter to specify the custom AMI that you want to use.
+	// For more information on the standard operating systems, see Operating Systems
+	// (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html)For
+	// more information on how to use custom AMIs with OpsWorks, see Using Custom
+	// AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
+	Os *string `type:"string"`
+
+	// The instance SSH key name.
+	SSHKeyName *string `locationName:"SshKeyName" type:"string"`
 
 	metadataUpdateInstanceInput `json:"-", xml:"-"`
 }
@@ -3408,21 +5268,63 @@ type metadataUpdateInstanceOutput struct {
 }
 
 type UpdateLayerInput struct {
-	Attributes                  *map[string]*string          `type:"map"`
-	AutoAssignElasticIPs        *bool                        `locationName:"AutoAssignElasticIps" type:"boolean"`
-	AutoAssignPublicIPs         *bool                        `locationName:"AutoAssignPublicIps" type:"boolean"`
-	CustomInstanceProfileARN    *string                      `locationName:"CustomInstanceProfileArn" type:"string"`
-	CustomRecipes               *Recipes                     `type:"structure"`
-	CustomSecurityGroupIDs      []*string                    `locationName:"CustomSecurityGroupIds" type:"list"`
-	EnableAutoHealing           *bool                        `type:"boolean"`
-	InstallUpdatesOnBoot        *bool                        `type:"boolean"`
-	LayerID                     *string                      `locationName:"LayerId" type:"string" required:"true"`
+	// One or more user-defined key/value pairs to be added to the stack attributes.
+	Attributes *map[string]*string `type:"map"`
+
+	// Whether to automatically assign an Elastic IP address (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
+	// to the layer's instances. For more information, see How to Edit a Layer (http://docs.aws.amazon.com/opsworks/latest/userguide/workinglayers-basics-edit.html).
+	AutoAssignElasticIPs *bool `locationName:"AutoAssignElasticIps" type:"boolean"`
+
+	// For stacks that are running in a VPC, whether to automatically assign a public
+	// IP address to the layer's instances. For more information, see How to Edit
+	// a Layer (http://docs.aws.amazon.com/opsworks/latest/userguide/workinglayers-basics-edit.html).
+	AutoAssignPublicIPs *bool `locationName:"AutoAssignPublicIps" type:"boolean"`
+
+	// The ARN of an IAM profile to be used for all of the layer's EC2 instances.
+	// For more information about IAM ARNs, see Using Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
+	CustomInstanceProfileARN *string `locationName:"CustomInstanceProfileArn" type:"string"`
+
+	// A LayerCustomRecipes object that specifies the layer's custom recipes.
+	CustomRecipes *Recipes `type:"structure"`
+
+	// An array containing the layer's custom security group IDs.
+	CustomSecurityGroupIDs []*string `locationName:"CustomSecurityGroupIds" type:"list"`
+
+	// Whether to disable auto healing for the layer.
+	EnableAutoHealing *bool `type:"boolean"`
+
+	// Whether to install operating system and package updates when the instance
+	// boots. The default value is true. To control when updates are installed,
+	// set this value to false. You must then update your instances manually by
+	// using CreateDeployment to run the update_dependencies stack command or manually
+	// running yum (Amazon Linux) or apt-get (Ubuntu) on the instances.
+	//
+	//  We strongly recommend using the default value of true, to ensure that your
+	// instances have the latest security updates.
+	InstallUpdatesOnBoot *bool `type:"boolean"`
+
+	// The layer ID.
+	LayerID *string `locationName:"LayerId" type:"string" required:"true"`
+
 	LifecycleEventConfiguration *LifecycleEventConfiguration `type:"structure"`
-	Name                        *string                      `type:"string"`
-	Packages                    []*string                    `type:"list"`
-	Shortname                   *string                      `type:"string"`
-	UseEBSOptimizedInstances    *bool                        `locationName:"UseEbsOptimizedInstances" type:"boolean"`
-	VolumeConfigurations        []*VolumeConfiguration       `type:"list"`
+
+	// The layer name, which is used by the console.
+	Name *string `type:"string"`
+
+	// An array of Package objects that describe the layer's packages.
+	Packages []*string `type:"list"`
+
+	// The layer short name, which is used internally by AWS OpsWorksand by Chef.
+	// The short name is also used as the name for the directory where your app
+	// files are installed. It can have a maximum of 200 characters and must be
+	// in the following format: /\A[a-z0-9\-\_\.]+\Z/.
+	Shortname *string `type:"string"`
+
+	// Whether to use Amazon EBS-optimized instances.
+	UseEBSOptimizedInstances *bool `locationName:"UseEbsOptimizedInstances" type:"boolean"`
+
+	// A VolumeConfigurations object that describes the layer's Amazon EBS volumes.
+	VolumeConfigurations []*VolumeConfiguration `type:"list"`
 
 	metadataUpdateLayerInput `json:"-", xml:"-"`
 }
@@ -3440,6 +5342,7 @@ type metadataUpdateLayerOutput struct {
 }
 
 type UpdateMyUserProfileInput struct {
+	// The user's SSH public key.
 	SSHPublicKey *string `locationName:"SshPublicKey" type:"string"`
 
 	metadataUpdateMyUserProfileInput `json:"-", xml:"-"`
@@ -3458,8 +5361,13 @@ type metadataUpdateMyUserProfileOutput struct {
 }
 
 type UpdateRDSDBInstanceInput struct {
-	DBPassword       *string `locationName:"DbPassword" type:"string"`
-	DBUser           *string `locationName:"DbUser" type:"string"`
+	// The database password.
+	DBPassword *string `locationName:"DbPassword" type:"string"`
+
+	// The master user name.
+	DBUser *string `locationName:"DbUser" type:"string"`
+
+	// The Amazon RDS instance's ARN.
 	RDSDBInstanceARN *string `locationName:"RdsDbInstanceArn" type:"string" required:"true"`
 
 	metadataUpdateRDSDBInstanceInput `json:"-", xml:"-"`
@@ -3478,23 +5386,118 @@ type metadataUpdateRDSDBInstanceOutput struct {
 }
 
 type UpdateStackInput struct {
-	Attributes                *map[string]*string        `type:"map"`
-	ChefConfiguration         *ChefConfiguration         `type:"structure"`
-	ConfigurationManager      *StackConfigurationManager `type:"structure"`
-	CustomCookbooksSource     *Source                    `type:"structure"`
-	CustomJSON                *string                    `locationName:"CustomJson" type:"string"`
-	DefaultAvailabilityZone   *string                    `type:"string"`
-	DefaultInstanceProfileARN *string                    `locationName:"DefaultInstanceProfileArn" type:"string"`
-	DefaultOs                 *string                    `type:"string"`
-	DefaultRootDeviceType     *string                    `type:"string"`
-	DefaultSSHKeyName         *string                    `locationName:"DefaultSshKeyName" type:"string"`
-	DefaultSubnetID           *string                    `locationName:"DefaultSubnetId" type:"string"`
-	HostnameTheme             *string                    `type:"string"`
-	Name                      *string                    `type:"string"`
-	ServiceRoleARN            *string                    `locationName:"ServiceRoleArn" type:"string"`
-	StackID                   *string                    `locationName:"StackId" type:"string" required:"true"`
-	UseCustomCookbooks        *bool                      `type:"boolean"`
-	UseOpsWorksSecurityGroups *bool                      `locationName:"UseOpsworksSecurityGroups" type:"boolean"`
+	// One or more user-defined key/value pairs to be added to the stack attributes.
+	Attributes *map[string]*string `type:"map"`
+
+	// A ChefConfiguration object that specifies whether to enable Berkshelf and
+	// the Berkshelf version on Chef 11.10 stacks. For more information, see Create
+	// a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
+	ChefConfiguration *ChefConfiguration `type:"structure"`
+
+	// The configuration manager. When you clone a stack we recommend that you use
+	// the configuration manager to specify the Chef version, 0.9, 11.4, or 11.10.
+	// The default value is currently 11.4.
+	ConfigurationManager *StackConfigurationManager `type:"structure"`
+
+	// Contains the information required to retrieve an app or cookbook from a repository.
+	// For more information, see Creating Apps (http://docs.aws.amazon.com/opsworks/latest/userguide/workingapps-creating.html)
+	// or Custom Recipes and Cookbooks (http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook.html).
+	CustomCookbooksSource *Source `type:"structure"`
+
+	// A string that contains user-defined, custom JSON. It is used to override
+	// the corresponding default stack configuration JSON values. The string should
+	// be in the following format and must escape characters such as '"'.:
+	//
+	// "{\"key1\": \"value1\", \"key2\": \"value2\",...}"
+	//
+	// For more information on custom JSON, see Use Custom JSON to Modify the Stack
+	// Configuration JSON (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html).
+	CustomJSON *string `locationName:"CustomJson" type:"string"`
+
+	// The stack's default Availability Zone, which must be in the specified region.
+	// For more information, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html).
+	// If you also specify a value for DefaultSubnetId, the subnet must be in the
+	// same zone. For more information, see CreateStack.
+	DefaultAvailabilityZone *string `type:"string"`
+
+	// The ARN of an IAM profile that is the default profile for all of the stack's
+	// EC2 instances. For more information about IAM ARNs, see Using Identifiers
+	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
+	DefaultInstanceProfileARN *string `locationName:"DefaultInstanceProfileArn" type:"string"`
+
+	// The stack's operating system, which must be set to one of the following.
+	//
+	//  Standard operating systems: an Amazon Linux version such as Amazon Linux
+	// 2014.09, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS. Custom AMIs: Custom. You
+	// specify the custom AMI you want to use when you create instances.   The default
+	// option is the current Amazon Linux version.
+	DefaultOs *string `type:"string"`
+
+	// The default root device type. This value is used by default for all instances
+	// in the stack, but you can override it when you create an instance. For more
+	// information, see Storage for the Root Device (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device).
+	DefaultRootDeviceType *string `type:"string"`
+
+	// A default SSH key for the stack instances. You can override this value when
+	// you create or update an instance.
+	DefaultSSHKeyName *string `locationName:"DefaultSshKeyName" type:"string"`
+
+	// The stack's default VPC subnet ID. This parameter is required if you specify
+	// a value for the VpcId parameter. All instances are launched into this subnet
+	// unless you specify otherwise when you create the instance. If you also specify
+	// a value for DefaultAvailabilityZone, the subnet must be in that zone. For
+	// information on default values and when this parameter is required, see the
+	// VpcId parameter description.
+	DefaultSubnetID *string `locationName:"DefaultSubnetId" type:"string"`
+
+	// The stack's new host name theme, with spaces are replaced by underscores.
+	// The theme is used to generate host names for the stack's instances. By default,
+	// HostnameTheme is set to Layer_Dependent, which creates host names by appending
+	// integers to the layer's short name. The other themes are:
+	//
+	//  Baked_Goods Clouds European_Cities Fruits Greek_Deities Legendary_Creatures_from_Japan
+	// Planets_and_Moons Roman_Deities Scottish_Islands US_Cities Wild_Cats  To
+	// obtain a generated host name, call GetHostNameSuggestion, which returns a
+	// host name based on the current theme.
+	HostnameTheme *string `type:"string"`
+
+	// The stack's new name.
+	Name *string `type:"string"`
+
+	// The stack AWS Identity and Access Management (IAM) role, which allows AWS
+	// OpsWorks to work with AWS resources on your behalf. You must set this parameter
+	// to the Amazon Resource Name (ARN) for an existing IAM role. For more information
+	// about IAM ARNs, see Using Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
+	//
+	//  You must set this parameter to a valid service role ARN or the action will
+	// fail; there is no default value. You can specify the stack's current service
+	// role ARN, if you prefer, but you must do so explicitly.
+	ServiceRoleARN *string `locationName:"ServiceRoleArn" type:"string"`
+
+	// The stack ID.
+	StackID *string `locationName:"StackId" type:"string" required:"true"`
+
+	// Whether the stack uses custom cookbooks.
+	UseCustomCookbooks *bool `type:"boolean"`
+
+	// Whether to associate the AWS OpsWorks built-in security groups with the stack's
+	// layers.
+	//
+	// AWS OpsWorks provides a standard set of built-in security groups, one for
+	// each layer, which are associated with layers by default. UseOpsworksSecurityGroups
+	// allows you to instead provide your own custom security groups. UseOpsworksSecurityGroups
+	// has the following settings:
+	//
+	//  True - AWS OpsWorks automatically associates the appropriate built-in security
+	// group with each layer (default setting). You can associate additional security
+	// groups with a layer after you create it but you cannot delete the built-in
+	// security group.  False - AWS OpsWorks does not associate built-in security
+	// groups with layers. You must create appropriate EC2 security groups and associate
+	// a security group with each layer that you create. However, you can still
+	// manually associate a built-in security group with a layer on creation; custom
+	// security groups are required only for those layers that need custom settings.
+	//   For more information, see Create a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
+	UseOpsWorksSecurityGroups *bool `locationName:"UseOpsworksSecurityGroups" type:"boolean"`
 
 	metadataUpdateStackInput `json:"-", xml:"-"`
 }
@@ -3512,10 +5515,22 @@ type metadataUpdateStackOutput struct {
 }
 
 type UpdateUserProfileInput struct {
-	AllowSelfManagement *bool   `type:"boolean"`
-	IAMUserARN          *string `locationName:"IamUserArn" type:"string" required:"true"`
-	SSHPublicKey        *string `locationName:"SshPublicKey" type:"string"`
-	SSHUsername         *string `locationName:"SshUsername" type:"string"`
+	// Whether users can specify their own SSH public key through the My Settings
+	// page. For more information, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/security-settingsshkey.html).
+	AllowSelfManagement *bool `type:"boolean"`
+
+	// The user IAM ARN.
+	IAMUserARN *string `locationName:"IamUserArn" type:"string" required:"true"`
+
+	// The user's new SSH public key.
+	SSHPublicKey *string `locationName:"SshPublicKey" type:"string"`
+
+	// The user's SSH user name. The allowable characters are [a-z], [A-Z], [0-9],
+	// '-', and '_'. If the specified name includes other punctuation marks, AWS
+	// OpsWorks removes them. For example, my.name will be changed to myname. If
+	// you do not specify an SSH user name, AWS OpsWorks generates one from the
+	// IAM user name.
+	SSHUsername *string `locationName:"SshUsername" type:"string"`
 
 	metadataUpdateUserProfileInput `json:"-", xml:"-"`
 }
@@ -3533,9 +5548,14 @@ type metadataUpdateUserProfileOutput struct {
 }
 
 type UpdateVolumeInput struct {
+	// The new mount point.
 	MountPoint *string `type:"string"`
-	Name       *string `type:"string"`
-	VolumeID   *string `locationName:"VolumeId" type:"string" required:"true"`
+
+	// The new name.
+	Name *string `type:"string"`
+
+	// The volume ID.
+	VolumeID *string `locationName:"VolumeId" type:"string" required:"true"`
 
 	metadataUpdateVolumeInput `json:"-", xml:"-"`
 }
@@ -3552,12 +5572,23 @@ type metadataUpdateVolumeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a user's SSH information.
 type UserProfile struct {
-	AllowSelfManagement *bool   `type:"boolean"`
-	IAMUserARN          *string `locationName:"IamUserArn" type:"string"`
-	Name                *string `type:"string"`
-	SSHPublicKey        *string `locationName:"SshPublicKey" type:"string"`
-	SSHUsername         *string `locationName:"SshUsername" type:"string"`
+	// Whether users can specify their own SSH public key through the My Settings
+	// page. For more information, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/security-settingsshkey.html).
+	AllowSelfManagement *bool `type:"boolean"`
+
+	// The user's IAM ARN.
+	IAMUserARN *string `locationName:"IamUserArn" type:"string"`
+
+	// The user's name.
+	Name *string `type:"string"`
+
+	// The user's SSH public key.
+	SSHPublicKey *string `locationName:"SshPublicKey" type:"string"`
+
+	// The user's SSH user name.
+	SSHUsername *string `locationName:"SshUsername" type:"string"`
 
 	metadataUserProfile `json:"-", xml:"-"`
 }
@@ -3566,20 +5597,48 @@ type metadataUserProfile struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an instance's Amazon EBS volume.
 type Volume struct {
+	// The volume Availability Zone. For more information, see Regions and Endpoints
+	// (http://docs.aws.amazon.com/general/latest/gr/rande.html).
 	AvailabilityZone *string `type:"string"`
-	Device           *string `type:"string"`
-	EC2VolumeID      *string `locationName:"Ec2VolumeId" type:"string"`
-	IOPS             *int64  `locationName:"Iops" type:"integer"`
-	InstanceID       *string `locationName:"InstanceId" type:"string"`
-	MountPoint       *string `type:"string"`
-	Name             *string `type:"string"`
-	RAIDArrayID      *string `locationName:"RaidArrayId" type:"string"`
-	Region           *string `type:"string"`
-	Size             *int64  `type:"integer"`
-	Status           *string `type:"string"`
-	VolumeID         *string `locationName:"VolumeId" type:"string"`
-	VolumeType       *string `type:"string"`
+
+	// The device name.
+	Device *string `type:"string"`
+
+	// The Amazon EC2 volume ID.
+	EC2VolumeID *string `locationName:"Ec2VolumeId" type:"string"`
+
+	// For PIOPS volumes, the IOPS per disk.
+	IOPS *int64 `locationName:"Iops" type:"integer"`
+
+	// The instance ID.
+	InstanceID *string `locationName:"InstanceId" type:"string"`
+
+	// The volume mount point. For example "/dev/sdh".
+	MountPoint *string `type:"string"`
+
+	// The volume name.
+	Name *string `type:"string"`
+
+	// The RAID array ID.
+	RAIDArrayID *string `locationName:"RaidArrayId" type:"string"`
+
+	// The AWS region. For more information about AWS regions, see Regions and Endpoints
+	// (http://docs.aws.amazon.com/general/latest/gr/rande.html).
+	Region *string `type:"string"`
+
+	// The volume size.
+	Size *int64 `type:"integer"`
+
+	// The value returned by DescribeVolumes (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeVolumes.html).
+	Status *string `type:"string"`
+
+	// The volume ID.
+	VolumeID *string `locationName:"VolumeId" type:"string"`
+
+	// The volume type, standard or PIOPS.
+	VolumeType *string `type:"string"`
 
 	metadataVolume `json:"-", xml:"-"`
 }
@@ -3588,13 +5647,28 @@ type metadataVolume struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an Amazon EBS volume configuration.
 type VolumeConfiguration struct {
-	IOPS          *int64  `locationName:"Iops" type:"integer"`
-	MountPoint    *string `type:"string" required:"true"`
-	NumberOfDisks *int64  `type:"integer" required:"true"`
-	RAIDLevel     *int64  `locationName:"RaidLevel" type:"integer"`
-	Size          *int64  `type:"integer" required:"true"`
-	VolumeType    *string `type:"string"`
+	// For PIOPS volumes, the IOPS per disk.
+	IOPS *int64 `locationName:"Iops" type:"integer"`
+
+	// The volume mount point. For example "/dev/sdh".
+	MountPoint *string `type:"string" required:"true"`
+
+	// The number of disks in the volume.
+	NumberOfDisks *int64 `type:"integer" required:"true"`
+
+	// The volume RAID level (http://en.wikipedia.org/wiki/Standard_RAID_levels).
+	RAIDLevel *int64 `locationName:"RaidLevel" type:"integer"`
+
+	// The volume size.
+	Size *int64 `type:"integer" required:"true"`
+
+	// The volume type:
+	//
+	//   standard - Magnetic  io1 - Provisioned IOPS (SSD)  gp2 - General Purpose
+	// (SSD)
+	VolumeType *string `type:"string"`
 
 	metadataVolumeConfiguration `json:"-", xml:"-"`
 }
@@ -3603,13 +5677,40 @@ type metadataVolumeConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a time-based instance's auto scaling schedule. The schedule consists
+// of a set of key-value pairs.
+//
+//  The key is the time period (a UTC hour) and must be an integer from 0 -
+// 23. The value indicates whether the instance should be online or offline
+// for the specified period, and must be set to "on" or "off"  The default setting
+// for all time periods is off, so you use the following parameters primarily
+// to specify the online periods. You don't have to explicitly specify offline
+// periods unless you want to change an online period to an offline period.
+//
+// The following example specifies that the instance should be online for four
+// hours, from UTC 1200 - 1600. It will be off for the remainder of the day.
+//
+//  { "12":"on", "13":"on", "14":"on", "15":"on" }
 type WeeklyAutoScalingSchedule struct {
-	Friday    *map[string]*string `type:"map"`
-	Monday    *map[string]*string `type:"map"`
-	Saturday  *map[string]*string `type:"map"`
-	Sunday    *map[string]*string `type:"map"`
-	Thursday  *map[string]*string `type:"map"`
-	Tuesday   *map[string]*string `type:"map"`
+	// The schedule for Friday.
+	Friday *map[string]*string `type:"map"`
+
+	// The schedule for Monday.
+	Monday *map[string]*string `type:"map"`
+
+	// The schedule for Saturday.
+	Saturday *map[string]*string `type:"map"`
+
+	// The schedule for Sunday.
+	Sunday *map[string]*string `type:"map"`
+
+	// The schedule for Thursday.
+	Thursday *map[string]*string `type:"map"`
+
+	// The schedule for Tuesday.
+	Tuesday *map[string]*string `type:"map"`
+
+	// The schedule for Wednesday.
 	Wednesday *map[string]*string `type:"map"`
 
 	metadataWeeklyAutoScalingSchedule `json:"-", xml:"-"`

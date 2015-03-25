@@ -24,6 +24,7 @@ func (c *ElasticBeanstalk) CheckDNSAvailabilityRequest(input *CheckDNSAvailabili
 	return
 }
 
+// Checks if the specified CNAME is available.
 func (c *ElasticBeanstalk) CheckDNSAvailability(input *CheckDNSAvailabilityInput) (output *CheckDNSAvailabilityOutput, err error) {
 	req, out := c.CheckDNSAvailabilityRequest(input)
 	output = out
@@ -49,6 +50,8 @@ func (c *ElasticBeanstalk) CreateApplicationRequest(input *CreateApplicationInpu
 	return
 }
 
+// Creates an application that has one configuration template named default
+// and no application versions.
 func (c *ElasticBeanstalk) CreateApplication(input *CreateApplicationInput) (output *ApplicationDescriptionMessage, err error) {
 	req, out := c.CreateApplicationRequest(input)
 	output = out
@@ -74,6 +77,12 @@ func (c *ElasticBeanstalk) CreateApplicationVersionRequest(input *CreateApplicat
 	return
 }
 
+// Creates an application version for the specified application.
+//
+// Once you create an application version with a specified Amazon S3 bucket
+// and key location, you cannot change that Amazon S3 location. If you change
+// the Amazon S3 location, you receive an exception when you attempt to launch
+// an environment from the application version.
 func (c *ElasticBeanstalk) CreateApplicationVersion(input *CreateApplicationVersionInput) (output *ApplicationVersionDescriptionMessage, err error) {
 	req, out := c.CreateApplicationVersionRequest(input)
 	output = out
@@ -99,6 +108,13 @@ func (c *ElasticBeanstalk) CreateConfigurationTemplateRequest(input *CreateConfi
 	return
 }
 
+// Creates a configuration template. Templates are associated with a specific
+// application and are used to deploy different versions of the application
+// with the same configuration settings.
+//
+// Related Topics
+//
+//   DescribeConfigurationOptions   DescribeConfigurationSettings   ListAvailableSolutionStacks
 func (c *ElasticBeanstalk) CreateConfigurationTemplate(input *CreateConfigurationTemplateInput) (output *ConfigurationSettingsDescription, err error) {
 	req, out := c.CreateConfigurationTemplateRequest(input)
 	output = out
@@ -124,6 +140,8 @@ func (c *ElasticBeanstalk) CreateEnvironmentRequest(input *CreateEnvironmentInpu
 	return
 }
 
+// Launches an environment for the specified application using the specified
+// configuration.
 func (c *ElasticBeanstalk) CreateEnvironment(input *CreateEnvironmentInput) (output *EnvironmentDescription, err error) {
 	req, out := c.CreateEnvironmentRequest(input)
 	output = out
@@ -149,6 +167,9 @@ func (c *ElasticBeanstalk) CreateStorageLocationRequest(input *CreateStorageLoca
 	return
 }
 
+// Creates the Amazon S3 storage location for the account.
+//
+//  This location is used to store user log files.
 func (c *ElasticBeanstalk) CreateStorageLocation(input *CreateStorageLocationInput) (output *CreateStorageLocationOutput, err error) {
 	req, out := c.CreateStorageLocationRequest(input)
 	output = out
@@ -174,6 +195,11 @@ func (c *ElasticBeanstalk) DeleteApplicationRequest(input *DeleteApplicationInpu
 	return
 }
 
+// Deletes the specified application along with all associated versions and
+// configurations. The application versions will not be deleted from your Amazon
+// S3 bucket.
+//
+// You cannot delete an application that has a running environment.
 func (c *ElasticBeanstalk) DeleteApplication(input *DeleteApplicationInput) (output *DeleteApplicationOutput, err error) {
 	req, out := c.DeleteApplicationRequest(input)
 	output = out
@@ -199,6 +225,10 @@ func (c *ElasticBeanstalk) DeleteApplicationVersionRequest(input *DeleteApplicat
 	return
 }
 
+// Deletes the specified version from the specified application.
+//
+// You cannot delete an application version that is associated with a running
+// environment.
 func (c *ElasticBeanstalk) DeleteApplicationVersion(input *DeleteApplicationVersionInput) (output *DeleteApplicationVersionOutput, err error) {
 	req, out := c.DeleteApplicationVersionRequest(input)
 	output = out
@@ -224,6 +254,11 @@ func (c *ElasticBeanstalk) DeleteConfigurationTemplateRequest(input *DeleteConfi
 	return
 }
 
+// Deletes the specified configuration template.
+//
+// When you launch an environment using a configuration template, the environment
+// gets a copy of the template. You can delete or modify the environment's copy
+// of the template without affecting the running environment.
 func (c *ElasticBeanstalk) DeleteConfigurationTemplate(input *DeleteConfigurationTemplateInput) (output *DeleteConfigurationTemplateOutput, err error) {
 	req, out := c.DeleteConfigurationTemplateRequest(input)
 	output = out
@@ -249,6 +284,14 @@ func (c *ElasticBeanstalk) DeleteEnvironmentConfigurationRequest(input *DeleteEn
 	return
 }
 
+// Deletes the draft configuration associated with the running environment.
+//
+//  Updating a running environment with any configuration changes creates a
+// draft configuration set. You can get the draft configuration using DescribeConfigurationSettings
+// while the update is in progress or if the update fails. The DeploymentStatus
+// for the draft configuration indicates whether the deployment is in process
+// or has failed. The draft configuration remains in existence until it is deleted
+// with this action.
 func (c *ElasticBeanstalk) DeleteEnvironmentConfiguration(input *DeleteEnvironmentConfigurationInput) (output *DeleteEnvironmentConfigurationOutput, err error) {
 	req, out := c.DeleteEnvironmentConfigurationRequest(input)
 	output = out
@@ -274,6 +317,7 @@ func (c *ElasticBeanstalk) DescribeApplicationVersionsRequest(input *DescribeApp
 	return
 }
 
+// Returns descriptions for existing application versions.
 func (c *ElasticBeanstalk) DescribeApplicationVersions(input *DescribeApplicationVersionsInput) (output *DescribeApplicationVersionsOutput, err error) {
 	req, out := c.DescribeApplicationVersionsRequest(input)
 	output = out
@@ -299,6 +343,7 @@ func (c *ElasticBeanstalk) DescribeApplicationsRequest(input *DescribeApplicatio
 	return
 }
 
+// Returns the descriptions of existing applications.
 func (c *ElasticBeanstalk) DescribeApplications(input *DescribeApplicationsInput) (output *DescribeApplicationsOutput, err error) {
 	req, out := c.DescribeApplicationsRequest(input)
 	output = out
@@ -324,6 +369,11 @@ func (c *ElasticBeanstalk) DescribeConfigurationOptionsRequest(input *DescribeCo
 	return
 }
 
+// Describes the configuration options that are used in a particular configuration
+// template or environment, or that a specified solution stack defines. The
+// description includes the values the options, their default values, and an
+// indication of the required action on a running environment if an option value
+// is changed.
 func (c *ElasticBeanstalk) DescribeConfigurationOptions(input *DescribeConfigurationOptionsInput) (output *DescribeConfigurationOptionsOutput, err error) {
 	req, out := c.DescribeConfigurationOptionsRequest(input)
 	output = out
@@ -349,6 +399,19 @@ func (c *ElasticBeanstalk) DescribeConfigurationSettingsRequest(input *DescribeC
 	return
 }
 
+// Returns a description of the settings for the specified configuration set,
+// that is, either a configuration template or the configuration set associated
+// with a running environment.
+//
+//  When describing the settings for the configuration set associated with
+// a running environment, it is possible to receive two sets of setting descriptions.
+// One is the deployed configuration set, and the other is a draft configuration
+// of an environment that is either in the process of deployment or that failed
+// to deploy.
+//
+// Related Topics
+//
+//   DeleteEnvironmentConfiguration
 func (c *ElasticBeanstalk) DescribeConfigurationSettings(input *DescribeConfigurationSettingsInput) (output *DescribeConfigurationSettingsOutput, err error) {
 	req, out := c.DescribeConfigurationSettingsRequest(input)
 	output = out
@@ -374,6 +437,7 @@ func (c *ElasticBeanstalk) DescribeEnvironmentResourcesRequest(input *DescribeEn
 	return
 }
 
+// Returns AWS resources for this environment.
 func (c *ElasticBeanstalk) DescribeEnvironmentResources(input *DescribeEnvironmentResourcesInput) (output *DescribeEnvironmentResourcesOutput, err error) {
 	req, out := c.DescribeEnvironmentResourcesRequest(input)
 	output = out
@@ -399,6 +463,7 @@ func (c *ElasticBeanstalk) DescribeEnvironmentsRequest(input *DescribeEnvironmen
 	return
 }
 
+// Returns descriptions for existing environments.
 func (c *ElasticBeanstalk) DescribeEnvironments(input *DescribeEnvironmentsInput) (output *DescribeEnvironmentsOutput, err error) {
 	req, out := c.DescribeEnvironmentsRequest(input)
 	output = out
@@ -424,6 +489,9 @@ func (c *ElasticBeanstalk) DescribeEventsRequest(input *DescribeEventsInput) (re
 	return
 }
 
+// Returns list of event descriptions matching criteria up to the last 6 weeks.
+//
+//  This action returns the most recent 1,000 events from the specified NextToken.
 func (c *ElasticBeanstalk) DescribeEvents(input *DescribeEventsInput) (output *DescribeEventsOutput, err error) {
 	req, out := c.DescribeEventsRequest(input)
 	output = out
@@ -449,6 +517,7 @@ func (c *ElasticBeanstalk) ListAvailableSolutionStacksRequest(input *ListAvailab
 	return
 }
 
+// Returns a list of the available solution stack names.
 func (c *ElasticBeanstalk) ListAvailableSolutionStacks(input *ListAvailableSolutionStacksInput) (output *ListAvailableSolutionStacksOutput, err error) {
 	req, out := c.ListAvailableSolutionStacksRequest(input)
 	output = out
@@ -474,6 +543,8 @@ func (c *ElasticBeanstalk) RebuildEnvironmentRequest(input *RebuildEnvironmentIn
 	return
 }
 
+// Deletes and recreates all of the AWS resources (for example: the Auto Scaling
+// group, load balancer, etc.) for a specified environment and forces a restart.
 func (c *ElasticBeanstalk) RebuildEnvironment(input *RebuildEnvironmentInput) (output *RebuildEnvironmentOutput, err error) {
 	req, out := c.RebuildEnvironmentRequest(input)
 	output = out
@@ -499,6 +570,16 @@ func (c *ElasticBeanstalk) RequestEnvironmentInfoRequest(input *RequestEnvironme
 	return
 }
 
+// Initiates a request to compile the specified type of information of the deployed
+// environment.
+//
+//  Setting the InfoType to tail compiles the last lines from the application
+// server log files of every Amazon EC2 instance in your environment. Use RetrieveEnvironmentInfo
+// to access the compiled information.
+//
+// Related Topics
+//
+//   RetrieveEnvironmentInfo
 func (c *ElasticBeanstalk) RequestEnvironmentInfo(input *RequestEnvironmentInfoInput) (output *RequestEnvironmentInfoOutput, err error) {
 	req, out := c.RequestEnvironmentInfoRequest(input)
 	output = out
@@ -524,6 +605,8 @@ func (c *ElasticBeanstalk) RestartAppServerRequest(input *RestartAppServerInput)
 	return
 }
 
+// Causes the environment to restart the application container server running
+// on each Amazon EC2 instance.
 func (c *ElasticBeanstalk) RestartAppServer(input *RestartAppServerInput) (output *RestartAppServerOutput, err error) {
 	req, out := c.RestartAppServerRequest(input)
 	output = out
@@ -549,6 +632,11 @@ func (c *ElasticBeanstalk) RetrieveEnvironmentInfoRequest(input *RetrieveEnviron
 	return
 }
 
+// Retrieves the compiled information from a RequestEnvironmentInfo request.
+//
+// Related Topics
+//
+//   RequestEnvironmentInfo
 func (c *ElasticBeanstalk) RetrieveEnvironmentInfo(input *RetrieveEnvironmentInfoInput) (output *RetrieveEnvironmentInfoOutput, err error) {
 	req, out := c.RetrieveEnvironmentInfoRequest(input)
 	output = out
@@ -574,6 +662,7 @@ func (c *ElasticBeanstalk) SwapEnvironmentCNAMEsRequest(input *SwapEnvironmentCN
 	return
 }
 
+// Swaps the CNAMEs of two environments.
 func (c *ElasticBeanstalk) SwapEnvironmentCNAMEs(input *SwapEnvironmentCNAMEsInput) (output *SwapEnvironmentCNAMEsOutput, err error) {
 	req, out := c.SwapEnvironmentCNAMEsRequest(input)
 	output = out
@@ -599,6 +688,7 @@ func (c *ElasticBeanstalk) TerminateEnvironmentRequest(input *TerminateEnvironme
 	return
 }
 
+// Terminates the specified environment.
 func (c *ElasticBeanstalk) TerminateEnvironment(input *TerminateEnvironmentInput) (output *EnvironmentDescription, err error) {
 	req, out := c.TerminateEnvironmentRequest(input)
 	output = out
@@ -624,6 +714,10 @@ func (c *ElasticBeanstalk) UpdateApplicationRequest(input *UpdateApplicationInpu
 	return
 }
 
+// Updates the specified application to have the specified properties.
+//
+//  If a property (for example, description) is not provided, the value remains
+// unchanged. To clear these properties, specify an empty string.
 func (c *ElasticBeanstalk) UpdateApplication(input *UpdateApplicationInput) (output *ApplicationDescriptionMessage, err error) {
 	req, out := c.UpdateApplicationRequest(input)
 	output = out
@@ -649,6 +743,10 @@ func (c *ElasticBeanstalk) UpdateApplicationVersionRequest(input *UpdateApplicat
 	return
 }
 
+// Updates the specified application version to have the specified properties.
+//
+//  If a property (for example, description) is not provided, the value remains
+// unchanged. To clear properties, specify an empty string.
 func (c *ElasticBeanstalk) UpdateApplicationVersion(input *UpdateApplicationVersionInput) (output *ApplicationVersionDescriptionMessage, err error) {
 	req, out := c.UpdateApplicationVersionRequest(input)
 	output = out
@@ -674,6 +772,14 @@ func (c *ElasticBeanstalk) UpdateConfigurationTemplateRequest(input *UpdateConfi
 	return
 }
 
+// Updates the specified configuration template to have the specified properties
+// or configuration option values.
+//
+//  If a property (for example, ApplicationName) is not provided, its value
+// remains unchanged. To clear such properties, specify an empty string.  Related
+// Topics
+//
+//   DescribeConfigurationOptions
 func (c *ElasticBeanstalk) UpdateConfigurationTemplate(input *UpdateConfigurationTemplateInput) (output *ConfigurationSettingsDescription, err error) {
 	req, out := c.UpdateConfigurationTemplateRequest(input)
 	output = out
@@ -699,6 +805,17 @@ func (c *ElasticBeanstalk) UpdateEnvironmentRequest(input *UpdateEnvironmentInpu
 	return
 }
 
+// Updates the environment description, deploys a new application version, updates
+// the configuration settings to an entirely new configuration template, or
+// updates select configuration option values in the running environment.
+//
+//  Attempting to update both the release and configuration is not allowed
+// and AWS Elastic Beanstalk returns an InvalidParameterCombination error.
+//
+//  When updating the configuration settings to a new template or individual
+// settings, a draft configuration is created and DescribeConfigurationSettings
+// for this environment returns two setting descriptions with different DeploymentStatus
+// values.
 func (c *ElasticBeanstalk) UpdateEnvironment(input *UpdateEnvironmentInput) (output *EnvironmentDescription, err error) {
 	req, out := c.UpdateEnvironmentRequest(input)
 	output = out
@@ -724,6 +841,11 @@ func (c *ElasticBeanstalk) ValidateConfigurationSettingsRequest(input *ValidateC
 	return
 }
 
+// Takes a set of configuration settings and either a configuration template
+// or environment, and determines whether those values are valid.
+//
+//  This action returns a list of messages indicating any errors or warnings
+// associated with the selection of option values.
 func (c *ElasticBeanstalk) ValidateConfigurationSettings(input *ValidateConfigurationSettingsInput) (output *ValidateConfigurationSettingsOutput, err error) {
 	req, out := c.ValidateConfigurationSettingsRequest(input)
 	output = out
@@ -733,13 +855,25 @@ func (c *ElasticBeanstalk) ValidateConfigurationSettings(input *ValidateConfigur
 
 var opValidateConfigurationSettings *aws.Operation
 
+// Describes the properties of an application.
 type ApplicationDescription struct {
-	ApplicationName        *string    `type:"string"`
-	ConfigurationTemplates []*string  `type:"list"`
-	DateCreated            *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	DateUpdated            *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	Description            *string    `type:"string"`
-	Versions               []*string  `type:"list"`
+	// The name of the application.
+	ApplicationName *string `type:"string"`
+
+	// The names of the configuration templates associated with this application.
+	ConfigurationTemplates []*string `type:"list"`
+
+	// The date when the application was created.
+	DateCreated *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The date when the application was last modified.
+	DateUpdated *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// User-defined description of the application.
+	Description *string `type:"string"`
+
+	// The names of the versions for this application.
+	Versions []*string `type:"list"`
 
 	metadataApplicationDescription `json:"-", xml:"-"`
 }
@@ -748,7 +882,9 @@ type metadataApplicationDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Result message containing a single description of an application.
 type ApplicationDescriptionMessage struct {
+	// The ApplicationDescription of the application.
 	Application *ApplicationDescription `type:"structure"`
 
 	metadataApplicationDescriptionMessage `json:"-", xml:"-"`
@@ -758,13 +894,25 @@ type metadataApplicationDescriptionMessage struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the properties of an application version.
 type ApplicationVersionDescription struct {
-	ApplicationName *string     `type:"string"`
-	DateCreated     *time.Time  `type:"timestamp" timestampFormat:"iso8601"`
-	DateUpdated     *time.Time  `type:"timestamp" timestampFormat:"iso8601"`
-	Description     *string     `type:"string"`
-	SourceBundle    *S3Location `type:"structure"`
-	VersionLabel    *string     `type:"string"`
+	// The name of the application associated with this release.
+	ApplicationName *string `type:"string"`
+
+	// The creation date of the application version.
+	DateCreated *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The last modified date of the application version.
+	DateUpdated *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The description of this application version.
+	Description *string `type:"string"`
+
+	// The location where the source bundle is located for this version.
+	SourceBundle *S3Location `type:"structure"`
+
+	// A label uniquely identifying the version for the associated application.
+	VersionLabel *string `type:"string"`
 
 	metadataApplicationVersionDescription `json:"-", xml:"-"`
 }
@@ -773,7 +921,9 @@ type metadataApplicationVersionDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Result message wrapping a single description of an application version.
 type ApplicationVersionDescriptionMessage struct {
+	// The ApplicationVersionDescription of the application version.
 	ApplicationVersion *ApplicationVersionDescription `type:"structure"`
 
 	metadataApplicationVersionDescriptionMessage `json:"-", xml:"-"`
@@ -783,7 +933,9 @@ type metadataApplicationVersionDescriptionMessage struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an Auto Scaling launch configuration.
 type AutoScalingGroup struct {
+	// The name of the AutoScalingGroup .
 	Name *string `type:"string"`
 
 	metadataAutoScalingGroup `json:"-", xml:"-"`
@@ -793,7 +945,9 @@ type metadataAutoScalingGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Results message indicating whether a CNAME is available.
 type CheckDNSAvailabilityInput struct {
+	// The prefix used when this CNAME is reserved.
 	CNAMEPrefix *string `type:"string" required:"true"`
 
 	metadataCheckDNSAvailabilityInput `json:"-", xml:"-"`
@@ -803,8 +957,19 @@ type metadataCheckDNSAvailabilityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Indicates if the specified CNAME is available.
 type CheckDNSAvailabilityOutput struct {
-	Available           *bool   `type:"boolean"`
+	// Indicates if the specified CNAME is available:
+	//
+	//    true : The CNAME is available.
+	//
+	//    true : The CNAME is not available.
+	//
+	//      true : The CNAME is available.   false : The CNAME is not available.
+	Available *bool `type:"boolean"`
+
+	// The fully qualified CNAME to reserve when CreateEnvironment is called with
+	// the provided prefix.
 	FullyQualifiedCNAME *string `type:"string"`
 
 	metadataCheckDNSAvailabilityOutput `json:"-", xml:"-"`
@@ -814,18 +979,95 @@ type metadataCheckDNSAvailabilityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the possible values for a configuration option.
 type ConfigurationOptionDescription struct {
-	ChangeSeverity *string                 `type:"string"`
-	DefaultValue   *string                 `type:"string"`
-	MaxLength      *int64                  `type:"integer"`
-	MaxValue       *int64                  `type:"integer"`
-	MinValue       *int64                  `type:"integer"`
-	Name           *string                 `type:"string"`
-	Namespace      *string                 `type:"string"`
-	Regex          *OptionRestrictionRegex `type:"structure"`
-	UserDefined    *bool                   `type:"boolean"`
-	ValueOptions   []*string               `type:"list"`
-	ValueType      *string                 `type:"string"`
+	// An indication of which action is required if the value for this configuration
+	// option changes:
+	//
+	//    NoInterruption - There is no interruption to the environment or application
+	// availability.
+	//
+	//    RestartEnvironment - The environment is restarted, all AWS resources
+	// are deleted and recreated, and the environment is unavailable during the
+	// process.
+	//
+	//    RestartApplicationServer - The environment is available the entire time.
+	// However, a short application outage occurs when the application servers on
+	// the running Amazon EC2 instances are restarted.
+	//
+	//     NoInterruption : There is no interruption to the environment or application
+	// availability.   RestartEnvironment : The environment is entirely restarted,
+	// all AWS resources are deleted and recreated, and the environment is unavailable
+	// during the process.   RestartApplicationServer : The environment is available
+	// the entire time. However, a short application outage occurs when the application
+	// servers on the running Amazon EC2 instances are restarted.
+	ChangeSeverity *string `type:"string"`
+
+	// The default value for this configuration option.
+	DefaultValue *string `type:"string"`
+
+	// If specified, the configuration option must be a string value no longer than
+	// this value.
+	MaxLength *int64 `type:"integer"`
+
+	// If specified, the configuration option must be a numeric value less than
+	// this value.
+	MaxValue *int64 `type:"integer"`
+
+	// If specified, the configuration option must be a numeric value greater than
+	// this value.
+	MinValue *int64 `type:"integer"`
+
+	// The name of the configuration option.
+	Name *string `type:"string"`
+
+	// A unique namespace identifying the option's associated AWS resource.
+	Namespace *string `type:"string"`
+
+	// If specified, the configuration option must be a string value that satisfies
+	// this regular expression.
+	Regex *OptionRestrictionRegex `type:"structure"`
+
+	// An indication of whether the user defined this configuration option:
+	//
+	//    true : This configuration option was defined by the user. It is a valid
+	// choice for specifying this as an Option to Remove when updating configuration
+	// settings.
+	//
+	//    false : This configuration was not defined by the user.
+	//
+	//      true : This configuration option was defined by the user. It is a valid
+	// choice for specifying if this as an Option to Remove when updating configuration
+	// settings.
+	//
+	//   false : This configuration was not defined by the user.    Constraint:
+	// You can remove only UserDefined options from a configuration.
+	//
+	//  Valid Values: true | false
+	UserDefined *bool `type:"boolean"`
+
+	// If specified, values for the configuration option are selected from this
+	// list.
+	ValueOptions []*string `type:"list"`
+
+	// An indication of which type of values this option has and whether it is allowable
+	// to select one or more than one of the possible values:
+	//
+	//    Scalar : Values for this option are a single selection from the possible
+	// values, or a unformatted string or numeric value governed by the MIN/MAX/Regex
+	// constraints:
+	//
+	//    List : Values for this option are multiple selections of the possible
+	// values.
+	//
+	//    Boolean : Values for this option are either true or false .
+	//
+	//      Scalar : Values for this option are a single selection from the possible
+	// values, or an unformatted string, or numeric value governed by the MIN/MAX/Regex
+	// constraints.   List : Values for this option are multiple selections from
+	// the possible values.   Boolean : Values for this option are either true or
+	// false .
+	ValueType *string `type:"string"`
 
 	metadataConfigurationOptionDescription `json:"-", xml:"-"`
 }
@@ -834,10 +1076,19 @@ type metadataConfigurationOptionDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A specification identifying an individual configuration option along with
+// its current value. For a list of possible option values, go to Option Values
+// (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options.html)
+// in the AWS Elastic Beanstalk Developer Guide.
 type ConfigurationOptionSetting struct {
-	Namespace  *string `type:"string"`
+	// A unique namespace identifying the option's associated AWS resource.
+	Namespace *string `type:"string"`
+
+	// The name of the configuration option.
 	OptionName *string `type:"string"`
-	Value      *string `type:"string"`
+
+	// The current value for the configuration option.
+	Value *string `type:"string"`
 
 	metadataConfigurationOptionSetting `json:"-", xml:"-"`
 }
@@ -846,16 +1097,53 @@ type metadataConfigurationOptionSetting struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the settings for a configuration set.
 type ConfigurationSettingsDescription struct {
-	ApplicationName   *string                       `type:"string"`
-	DateCreated       *time.Time                    `type:"timestamp" timestampFormat:"iso8601"`
-	DateUpdated       *time.Time                    `type:"timestamp" timestampFormat:"iso8601"`
-	DeploymentStatus  *string                       `type:"string"`
-	Description       *string                       `type:"string"`
-	EnvironmentName   *string                       `type:"string"`
-	OptionSettings    []*ConfigurationOptionSetting `type:"list"`
-	SolutionStackName *string                       `type:"string"`
-	TemplateName      *string                       `type:"string"`
+	// The name of the application associated with this configuration set.
+	ApplicationName *string `type:"string"`
+
+	// The date (in UTC time) when this configuration set was created.
+	DateCreated *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The date (in UTC time) when this configuration set was last modified.
+	DateUpdated *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// If this configuration set is associated with an environment, the DeploymentStatus
+	// parameter indicates the deployment status of this configuration set:
+	//
+	//    null: This configuration is not associated with a running environment.
+	//
+	//    pending: This is a draft configuration that is not deployed to the associated
+	// environment but is in the process of deploying.
+	//
+	//    deployed: This is the configuration that is currently deployed to the
+	// associated running environment.
+	//
+	//    failed: This is a draft configuration, that failed to successfully deploy.
+	//
+	//     null: This configuration is not associated with a running environment.
+	//   pending: This is a draft configuration that is not deployed to the associated
+	// environment but is in the process of deploying.   deployed: This is the configuration
+	// that is currently deployed to the associated running environment.   failed:
+	// This is a draft configuration that failed to successfully deploy.
+	DeploymentStatus *string `type:"string"`
+
+	// Describes this configuration set.
+	Description *string `type:"string"`
+
+	// If not null, the name of the environment for this configuration set.
+	EnvironmentName *string `type:"string"`
+
+	// A list of the configuration options and their values in this configuration
+	// set.
+	OptionSettings []*ConfigurationOptionSetting `type:"list"`
+
+	// The name of the solution stack this configuration set uses.
+	SolutionStackName *string `type:"string"`
+
+	// If not null, the name of the configuration template for this configuration
+	// set.
+	TemplateName *string `type:"string"`
 
 	metadataConfigurationSettingsDescription `json:"-", xml:"-"`
 }
@@ -864,9 +1152,16 @@ type metadataConfigurationSettingsDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This documentation target is not reported in the API reference.
 type CreateApplicationInput struct {
+	// The name of the application.
+	//
+	//  Constraint: This name must be unique within your account. If the specified
+	// name already exists, the action returns an InvalidParameterValue error.
 	ApplicationName *string `type:"string" required:"true"`
-	Description     *string `type:"string"`
+
+	// Describes the application.
+	Description *string `type:"string"`
 
 	metadataCreateApplicationInput `json:"-", xml:"-"`
 }
@@ -876,11 +1171,49 @@ type metadataCreateApplicationInput struct {
 }
 
 type CreateApplicationVersionInput struct {
-	ApplicationName       *string     `type:"string" required:"true"`
-	AutoCreateApplication *bool       `type:"boolean"`
-	Description           *string     `type:"string"`
-	SourceBundle          *S3Location `type:"structure"`
-	VersionLabel          *string     `type:"string" required:"true"`
+	// The name of the application. If no application is found with this name, and
+	// AutoCreateApplication is false, returns an InvalidParameterValue error.
+	ApplicationName *string `type:"string" required:"true"`
+
+	// Determines how the system behaves if the specified application for this version
+	// does not already exist:
+	//
+	//    true: Automatically creates the specified application for this version
+	// if it does not already exist.
+	//
+	//    false: Returns an InvalidParameterValue if the specified application
+	// for this version does not already exist.
+	//
+	//     true : Automatically creates the specified application for this release
+	// if it does not already exist.   false : Throws an InvalidParameterValue if
+	// the specified application for this release does not already exist.    Default:
+	// false
+	//
+	//  Valid Values: true | false
+	AutoCreateApplication *bool `type:"boolean"`
+
+	// Describes this version.
+	Description *string `type:"string"`
+
+	// The Amazon S3 bucket and key that identify the location of the source bundle
+	// for this version.
+	//
+	//  If data found at the Amazon S3 location exceeds the maximum allowed source
+	// bundle size, AWS Elastic Beanstalk returns an InvalidParameterValue error.
+	// The maximum size allowed is 512 MB.
+	//
+	// Default: If not specified, AWS Elastic Beanstalk uses a sample application.
+	// If only partially specified (for example, a bucket is provided but not the
+	// key) or if no data is found at the Amazon S3 location, AWS Elastic Beanstalk
+	// returns an InvalidParameterCombination error.
+	SourceBundle *S3Location `type:"structure"`
+
+	// A label identifying this version.
+	//
+	// Constraint: Must be unique per application. If an application version already
+	// exists with this label for the specified application, AWS Elastic Beanstalk
+	// returns an InvalidParameterValue error.
+	VersionLabel *string `type:"string" required:"true"`
 
 	metadataCreateApplicationVersionInput `json:"-", xml:"-"`
 }
@@ -889,14 +1222,62 @@ type metadataCreateApplicationVersionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This documentation target is not reported in the API reference.
 type CreateConfigurationTemplateInput struct {
-	ApplicationName     *string                       `type:"string" required:"true"`
-	Description         *string                       `type:"string"`
-	EnvironmentID       *string                       `locationName:"EnvironmentId" type:"string"`
-	OptionSettings      []*ConfigurationOptionSetting `type:"list"`
-	SolutionStackName   *string                       `type:"string"`
-	SourceConfiguration *SourceConfiguration          `type:"structure"`
-	TemplateName        *string                       `type:"string" required:"true"`
+	// The name of the application to associate with this configuration template.
+	// If no application is found with this name, AWS Elastic Beanstalk returns
+	// an InvalidParameterValue error.
+	ApplicationName *string `type:"string" required:"true"`
+
+	// Describes this configuration.
+	Description *string `type:"string"`
+
+	// The ID of the environment used with this configuration template.
+	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+
+	// If specified, AWS Elastic Beanstalk sets the specified configuration option
+	// to the requested value. The new value overrides the value obtained from the
+	// solution stack or the source configuration template.
+	OptionSettings []*ConfigurationOptionSetting `type:"list"`
+
+	// The name of the solution stack used by this configuration. The solution stack
+	// specifies the operating system, architecture, and application server for
+	// a configuration template. It determines the set of configuration options
+	// as well as the possible and default values.
+	//
+	//  Use ListAvailableSolutionStacks to obtain a list of available solution
+	// stacks.
+	//
+	//  A solution stack name or a source configuration parameter must be specified,
+	// otherwise AWS Elastic Beanstalk returns an InvalidParameterValue error.
+	//
+	//  If a solution stack name is not specified and the source configuration
+	// parameter is specified, AWS Elastic Beanstalk uses the same solution stack
+	// as the source configuration template.
+	SolutionStackName *string `type:"string"`
+
+	// If specified, AWS Elastic Beanstalk uses the configuration values from the
+	// specified configuration template to create a new configuration.
+	//
+	//  Values specified in the OptionSettings parameter of this call overrides
+	// any values obtained from the SourceConfiguration.
+	//
+	//  If no configuration template is found, returns an InvalidParameterValue
+	// error.
+	//
+	//  Constraint: If both the solution stack name parameter and the source configuration
+	// parameters are specified, the solution stack of the source configuration
+	// template must match the specified solution stack name or else AWS Elastic
+	// Beanstalk returns an InvalidParameterCombination error.
+	SourceConfiguration *SourceConfiguration `type:"structure"`
+
+	// The name of the configuration template.
+	//
+	// Constraint: This name must be unique per application.
+	//
+	// Default: If a configuration template already exists with this name, AWS
+	// Elastic Beanstalk returns an InvalidParameterValue error.
+	TemplateName *string `type:"string" required:"true"`
 
 	metadataCreateConfigurationTemplateInput `json:"-", xml:"-"`
 }
@@ -906,17 +1287,75 @@ type metadataCreateConfigurationTemplateInput struct {
 }
 
 type CreateEnvironmentInput struct {
-	ApplicationName   *string                       `type:"string" required:"true"`
-	CNAMEPrefix       *string                       `type:"string"`
-	Description       *string                       `type:"string"`
-	EnvironmentName   *string                       `type:"string" required:"true"`
-	OptionSettings    []*ConfigurationOptionSetting `type:"list"`
-	OptionsToRemove   []*OptionSpecification        `type:"list"`
-	SolutionStackName *string                       `type:"string"`
-	Tags              []*Tag                        `type:"list"`
-	TemplateName      *string                       `type:"string"`
-	Tier              *EnvironmentTier              `type:"structure"`
-	VersionLabel      *string                       `type:"string"`
+	// The name of the application that contains the version to be deployed.
+	//
+	//  If no application is found with this name, CreateEnvironment returns an
+	// InvalidParameterValue error.
+	ApplicationName *string `type:"string" required:"true"`
+
+	// If specified, the environment attempts to use this value as the prefix for
+	// the CNAME. If not specified, the CNAME is generated automatically by appending
+	// a random alphanumeric string to the environment name.
+	CNAMEPrefix *string `type:"string"`
+
+	// Describes this environment.
+	Description *string `type:"string"`
+
+	// A unique name for the deployment environment. Used in the application URL.
+	//
+	// Constraint: Must be from 4 to 23 characters in length. The name can contain
+	// only letters, numbers, and hyphens. It cannot start or end with a hyphen.
+	// This name must be unique in your account. If the specified name already exists,
+	// AWS Elastic Beanstalk returns an InvalidParameterValue error.
+	//
+	// Default: If the CNAME parameter is not specified, the environment name becomes
+	// part of the CNAME, and therefore part of the visible URL for your application.
+	EnvironmentName *string `type:"string" required:"true"`
+
+	// If specified, AWS Elastic Beanstalk sets the specified configuration options
+	// to the requested value in the configuration set for the new environment.
+	// These override the values obtained from the solution stack or the configuration
+	// template.
+	OptionSettings []*ConfigurationOptionSetting `type:"list"`
+
+	// A list of custom user-defined configuration options to remove from the configuration
+	// set for this new environment.
+	OptionsToRemove []*OptionSpecification `type:"list"`
+
+	// This is an alternative to specifying a configuration name. If specified,
+	// AWS Elastic Beanstalk sets the configuration values to the default values
+	// associated with the specified solution stack.
+	//
+	//  Condition: You must specify either this or a TemplateName, but not both.
+	// If you specify both, AWS Elastic Beanstalk returns an InvalidParameterCombination
+	// error. If you do not specify either, AWS Elastic Beanstalk returns a MissingRequiredParameter
+	// error.
+	SolutionStackName *string `type:"string"`
+
+	// This specifies the tags applied to resources in the environment.
+	Tags []*Tag `type:"list"`
+
+	// The name of the configuration template to use in deployment. If no configuration
+	// template is found with this name, AWS Elastic Beanstalk returns an InvalidParameterValue
+	// error.
+	//
+	//  Condition: You must specify either this parameter or a SolutionStackName,
+	// but not both. If you specify both, AWS Elastic Beanstalk returns an InvalidParameterCombination
+	// error. If you do not specify either, AWS Elastic Beanstalk returns a MissingRequiredParameter
+	// error.
+	TemplateName *string `type:"string"`
+
+	// This specifies the tier to use for creating this environment.
+	Tier *EnvironmentTier `type:"structure"`
+
+	// The name of the application version to deploy.
+	//
+	//  If the specified application has no associated application versions, AWS
+	// Elastic Beanstalk UpdateEnvironment returns an InvalidParameterValue error.
+	//
+	//  Default: If not specified, AWS Elastic Beanstalk attempts to launch the
+	// sample application in the container.
+	VersionLabel *string `type:"string"`
 
 	metadataCreateEnvironmentInput `json:"-", xml:"-"`
 }
@@ -933,7 +1372,9 @@ type metadataCreateStorageLocationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Results of a CreateStorageLocationResult call.
 type CreateStorageLocationOutput struct {
+	// The name of the Amazon S3 bucket created.
 	S3Bucket *string `type:"string"`
 
 	metadataCreateStorageLocationOutput `json:"-", xml:"-"`
@@ -943,9 +1384,14 @@ type metadataCreateStorageLocationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This documentation target is not reported in the API reference.
 type DeleteApplicationInput struct {
-	ApplicationName     *string `type:"string" required:"true"`
-	TerminateEnvByForce *bool   `type:"boolean"`
+	// The name of the application to delete.
+	ApplicationName *string `type:"string" required:"true"`
+
+	// When set to true, running environments will be terminated before deleting
+	// the application.
+	TerminateEnvByForce *bool `type:"boolean"`
 
 	metadataDeleteApplicationInput `json:"-", xml:"-"`
 }
@@ -962,10 +1408,20 @@ type metadataDeleteApplicationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This documentation target is not reported in the API reference.
 type DeleteApplicationVersionInput struct {
-	ApplicationName    *string `type:"string" required:"true"`
-	DeleteSourceBundle *bool   `type:"boolean"`
-	VersionLabel       *string `type:"string" required:"true"`
+	// The name of the application to delete releases from.
+	ApplicationName *string `type:"string" required:"true"`
+
+	// Indicates whether to delete the associated source bundle from Amazon S3:
+	//
+	//   true: An attempt is made to delete the associated Amazon S3 source bundle
+	// specified at time of creation.   false: No action is taken on the Amazon
+	// S3 source bundle specified at time of creation.    Valid Values: true | false
+	DeleteSourceBundle *bool `type:"boolean"`
+
+	// The label of the version to delete.
+	VersionLabel *string `type:"string" required:"true"`
 
 	metadataDeleteApplicationVersionInput `json:"-", xml:"-"`
 }
@@ -982,9 +1438,13 @@ type metadataDeleteApplicationVersionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This documentation target is not reported in the API reference.
 type DeleteConfigurationTemplateInput struct {
+	// The name of the application to delete the configuration template from.
 	ApplicationName *string `type:"string" required:"true"`
-	TemplateName    *string `type:"string" required:"true"`
+
+	// The name of the configuration template to delete.
+	TemplateName *string `type:"string" required:"true"`
 
 	metadataDeleteConfigurationTemplateInput `json:"-", xml:"-"`
 }
@@ -1001,8 +1461,12 @@ type metadataDeleteConfigurationTemplateOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This documentation target is not reported in the API reference.
 type DeleteEnvironmentConfigurationInput struct {
+	// The name of the application the environment is associated with.
 	ApplicationName *string `type:"string" required:"true"`
+
+	// The name of the environment to delete the draft configuration from.
 	EnvironmentName *string `type:"string" required:"true"`
 
 	metadataDeleteEnvironmentConfigurationInput `json:"-", xml:"-"`
@@ -1020,9 +1484,15 @@ type metadataDeleteEnvironmentConfigurationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Result message containing a list of configuration descriptions.
 type DescribeApplicationVersionsInput struct {
-	ApplicationName *string   `type:"string"`
-	VersionLabels   []*string `type:"list"`
+	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
+	// only include ones that are associated with the specified application.
+	ApplicationName *string `type:"string"`
+
+	// If specified, restricts the returned descriptions to only include ones that
+	// have the specified version labels.
+	VersionLabels []*string `type:"list"`
 
 	metadataDescribeApplicationVersionsInput `json:"-", xml:"-"`
 }
@@ -1031,7 +1501,9 @@ type metadataDescribeApplicationVersionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Result message wrapping a list of application version descriptions.
 type DescribeApplicationVersionsOutput struct {
+	// A list of ApplicationVersionDescription .
 	ApplicationVersions []*ApplicationVersionDescription `type:"list"`
 
 	metadataDescribeApplicationVersionsOutput `json:"-", xml:"-"`
@@ -1041,7 +1513,10 @@ type metadataDescribeApplicationVersionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This documentation target is not reported in the API reference.
 type DescribeApplicationsInput struct {
+	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
+	// only include those with the specified names.
 	ApplicationNames []*string `type:"list"`
 
 	metadataDescribeApplicationsInput `json:"-", xml:"-"`
@@ -1051,7 +1526,9 @@ type metadataDescribeApplicationsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Result message containing a list of application descriptions.
 type DescribeApplicationsOutput struct {
+	// This parameter contains a list of ApplicationDescription.
 	Applications []*ApplicationDescription `type:"list"`
 
 	metadataDescribeApplicationsOutput `json:"-", xml:"-"`
@@ -1061,12 +1538,25 @@ type metadataDescribeApplicationsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Result message containig a list of application version descriptions.
 type DescribeConfigurationOptionsInput struct {
-	ApplicationName   *string                `type:"string"`
-	EnvironmentName   *string                `type:"string"`
-	Options           []*OptionSpecification `type:"list"`
-	SolutionStackName *string                `type:"string"`
-	TemplateName      *string                `type:"string"`
+	// The name of the application associated with the configuration template or
+	// environment. Only needed if you want to describe the configuration options
+	// associated with either the configuration template or environment.
+	ApplicationName *string `type:"string"`
+
+	// The name of the environment whose configuration options you want to describe.
+	EnvironmentName *string `type:"string"`
+
+	// If specified, restricts the descriptions to only the specified options.
+	Options []*OptionSpecification `type:"list"`
+
+	// The name of the solution stack whose configuration options you want to describe.
+	SolutionStackName *string `type:"string"`
+
+	// The name of the configuration template whose configuration options you want
+	// to describe.
+	TemplateName *string `type:"string"`
 
 	metadataDescribeConfigurationOptionsInput `json:"-", xml:"-"`
 }
@@ -1075,9 +1565,13 @@ type metadataDescribeConfigurationOptionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the settings for a specified configuration set.
 type DescribeConfigurationOptionsOutput struct {
-	Options           []*ConfigurationOptionDescription `type:"list"`
-	SolutionStackName *string                           `type:"string"`
+	// A list of ConfigurationOptionDescription.
+	Options []*ConfigurationOptionDescription `type:"list"`
+
+	// The name of the solution stack these configuration options belong to.
+	SolutionStackName *string `type:"string"`
 
 	metadataDescribeConfigurationOptionsOutput `json:"-", xml:"-"`
 }
@@ -1086,10 +1580,27 @@ type metadataDescribeConfigurationOptionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Result message containing all of the configuration settings for a specified
+// solution stack or configuration template.
 type DescribeConfigurationSettingsInput struct {
+	// The application for the environment or configuration template.
 	ApplicationName *string `type:"string" required:"true"`
+
+	// The name of the environment to describe.
+	//
+	//  Condition: You must specify either this or a TemplateName, but not both.
+	// If you specify both, AWS Elastic Beanstalk returns an InvalidParameterCombination
+	// error. If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
+	// error.
 	EnvironmentName *string `type:"string"`
-	TemplateName    *string `type:"string"`
+
+	// The name of the configuration template to describe.
+	//
+	//  Conditional: You must specify either this parameter or an EnvironmentName,
+	// but not both. If you specify both, AWS Elastic Beanstalk returns an InvalidParameterCombination
+	// error. If you do not specify either, AWS Elastic Beanstalk returns a MissingRequiredParameter
+	// error.
+	TemplateName *string `type:"string"`
 
 	metadataDescribeConfigurationSettingsInput `json:"-", xml:"-"`
 }
@@ -1098,7 +1609,9 @@ type metadataDescribeConfigurationSettingsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The results from a request to change the configuration settings of an environment.
 type DescribeConfigurationSettingsOutput struct {
+	// A list of ConfigurationSettingsDescription.
 	ConfigurationSettings []*ConfigurationSettingsDescription `type:"list"`
 
 	metadataDescribeConfigurationSettingsOutput `json:"-", xml:"-"`
@@ -1108,8 +1621,20 @@ type metadataDescribeConfigurationSettingsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This documentation target is not reported in the API reference.
 type DescribeEnvironmentResourcesInput struct {
-	EnvironmentID   *string `locationName:"EnvironmentId" type:"string"`
+	// The ID of the environment to retrieve AWS resource usage data.
+	//
+	//  Condition: You must specify either this or an EnvironmentName, or both.
+	// If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
+	// error.
+	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+
+	// The name of the environment to retrieve AWS resource usage data.
+	//
+	//  Condition: You must specify either this or an EnvironmentId, or both. If
+	// you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
+	// error.
 	EnvironmentName *string `type:"string"`
 
 	metadataDescribeEnvironmentResourcesInput `json:"-", xml:"-"`
@@ -1119,7 +1644,9 @@ type metadataDescribeEnvironmentResourcesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Result message containing a list of environment resource descriptions.
 type DescribeEnvironmentResourcesOutput struct {
+	// A list of EnvironmentResourceDescription.
 	EnvironmentResources *EnvironmentResourceDescription `type:"structure"`
 
 	metadataDescribeEnvironmentResourcesOutput `json:"-", xml:"-"`
@@ -1129,13 +1656,35 @@ type metadataDescribeEnvironmentResourcesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This documentation target is not reported in the API reference.
 type DescribeEnvironmentsInput struct {
-	ApplicationName       *string    `type:"string"`
-	EnvironmentIDs        []*string  `locationName:"EnvironmentIds" type:"list"`
-	EnvironmentNames      []*string  `type:"list"`
-	IncludeDeleted        *bool      `type:"boolean"`
+	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
+	// include only those that are associated with this application.
+	ApplicationName *string `type:"string"`
+
+	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
+	// include only those that have the specified IDs.
+	EnvironmentIDs []*string `locationName:"EnvironmentIds" type:"list"`
+
+	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
+	// include only those that have the specified names.
+	EnvironmentNames []*string `type:"list"`
+
+	// Indicates whether to include deleted environments:
+	//
+	//  true: Environments that have been deleted after IncludedDeletedBackTo are
+	// displayed.
+	//
+	//  false: Do not include deleted environments.
+	IncludeDeleted *bool `type:"boolean"`
+
+	// If specified when IncludeDeleted is set to true, then environments deleted
+	// after this date are displayed.
 	IncludedDeletedBackTo *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	VersionLabel          *string    `type:"string"`
+
+	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
+	// include only those that are associated with this application version.
+	VersionLabel *string `type:"string"`
 
 	metadataDescribeEnvironmentsInput `json:"-", xml:"-"`
 }
@@ -1144,7 +1693,9 @@ type metadataDescribeEnvironmentsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Result message containing a list of environment descriptions.
 type DescribeEnvironmentsOutput struct {
+	// Returns an EnvironmentDescription list.
 	Environments []*EnvironmentDescription `type:"list"`
 
 	metadataDescribeEnvironmentsOutput `json:"-", xml:"-"`
@@ -1154,18 +1705,50 @@ type metadataDescribeEnvironmentsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This documentation target is not reported in the API reference.
 type DescribeEventsInput struct {
-	ApplicationName *string    `type:"string"`
-	EndTime         *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	EnvironmentID   *string    `locationName:"EnvironmentId" type:"string"`
-	EnvironmentName *string    `type:"string"`
-	MaxRecords      *int64     `type:"integer"`
-	NextToken       *string    `type:"string"`
-	RequestID       *string    `locationName:"RequestId" type:"string"`
-	Severity        *string    `type:"string"`
-	StartTime       *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	TemplateName    *string    `type:"string"`
-	VersionLabel    *string    `type:"string"`
+	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
+	// include only those associated with this application.
+	ApplicationName *string `type:"string"`
+
+	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
+	// those that occur up to, but not including, the EndTime.
+	EndTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
+	// those associated with this environment.
+	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+
+	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
+	// those associated with this environment.
+	EnvironmentName *string `type:"string"`
+
+	// Specifies the maximum number of events that can be returned, beginning with
+	// the most recent event.
+	MaxRecords *int64 `type:"integer"`
+
+	// Pagination token. If specified, the events return the next batch of results.
+	NextToken *string `type:"string"`
+
+	// If specified, AWS Elastic Beanstalk restricts the described events to include
+	// only those associated with this request ID.
+	RequestID *string `locationName:"RequestId" type:"string"`
+
+	// If specified, limits the events returned from this call to include only those
+	// with the specified severity or higher.
+	Severity *string `type:"string"`
+
+	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
+	// those that occur on or after this time.
+	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
+	// those that are associated with this environment configuration.
+	TemplateName *string `type:"string"`
+
+	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
+	// those associated with this application version.
+	VersionLabel *string `type:"string"`
 
 	metadataDescribeEventsInput `json:"-", xml:"-"`
 }
@@ -1174,9 +1757,14 @@ type metadataDescribeEventsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Result message wrapping a list of event descriptions.
 type DescribeEventsOutput struct {
-	Events    []*EventDescription `type:"list"`
-	NextToken *string             `type:"string"`
+	// A list of EventDescription.
+	Events []*EventDescription `type:"list"`
+
+	// If returned, this indicates that there are more results to obtain. Use this
+	// token in the next DescribeEvents call to get the next batch of events.
+	NextToken *string `type:"string"`
 
 	metadataDescribeEventsOutput `json:"-", xml:"-"`
 }
@@ -1185,22 +1773,75 @@ type metadataDescribeEventsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the properties of an environment.
 type EnvironmentDescription struct {
-	ApplicationName   *string                          `type:"string"`
-	CNAME             *string                          `type:"string"`
-	DateCreated       *time.Time                       `type:"timestamp" timestampFormat:"iso8601"`
-	DateUpdated       *time.Time                       `type:"timestamp" timestampFormat:"iso8601"`
-	Description       *string                          `type:"string"`
-	EndpointURL       *string                          `type:"string"`
-	EnvironmentID     *string                          `locationName:"EnvironmentId" type:"string"`
-	EnvironmentName   *string                          `type:"string"`
-	Health            *string                          `type:"string"`
-	Resources         *EnvironmentResourcesDescription `type:"structure"`
-	SolutionStackName *string                          `type:"string"`
-	Status            *string                          `type:"string"`
-	TemplateName      *string                          `type:"string"`
-	Tier              *EnvironmentTier                 `type:"structure"`
-	VersionLabel      *string                          `type:"string"`
+	// The name of the application associated with this environment.
+	ApplicationName *string `type:"string"`
+
+	// The URL to the CNAME for this environment.
+	CNAME *string `type:"string"`
+
+	// The creation date for this environment.
+	DateCreated *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The last modified date for this environment.
+	DateUpdated *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// Describes this environment.
+	Description *string `type:"string"`
+
+	// For load-balanced, autoscaling environments, the URL to the LoadBalancer.
+	// For single-instance environments, the IP address of the instance.
+	EndpointURL *string `type:"string"`
+
+	// The ID of this environment.
+	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+
+	// The name of this environment.
+	EnvironmentName *string `type:"string"`
+
+	// Describes the health status of the environment. AWS Elastic Beanstalk indicates
+	// the failure levels for a running environment:
+	//
+	//    Red : Indicates the environment is not working.
+	//
+	//    Yellow: Indicates that something is wrong, the application might not
+	// be available, but the instances appear running.
+	//
+	//    Green: Indicates the environment is healthy and fully functional.
+	//
+	//     Red: Indicates the environment is not responsive. Occurs when three
+	// or more consecutive failures occur for an environment.   Yellow: Indicates
+	// that something is wrong. Occurs when two consecutive failures occur for an
+	// environment.   Green: Indicates the environment is healthy and fully functional.
+	//   Grey: Default health for a new environment. The environment is not fully
+	// launched and health checks have not started or health checks are suspended
+	// during an UpdateEnvironment or RestartEnvironement request.    Default: Grey
+	Health *string `type:"string"`
+
+	// The description of the AWS resources used by this environment.
+	Resources *EnvironmentResourcesDescription `type:"structure"`
+
+	// The name of the SolutionStack deployed with this environment.
+	SolutionStackName *string `type:"string"`
+
+	// The current operational status of the environment:
+	//
+	//   Launching: Environment is in the process of initial deployment.   Updating:
+	// Environment is in the process of updating its configuration settings or application
+	// version.   Ready: Environment is available to have an action performed on
+	// it, such as update or terminate.   Terminating: Environment is in the shut-down
+	// process.   Terminated: Environment is not running.
+	Status *string `type:"string"`
+
+	// The name of the configuration template used to originally launch this environment.
+	TemplateName *string `type:"string"`
+
+	// Describes the current tier of this environment.
+	Tier *EnvironmentTier `type:"structure"`
+
+	// The application version deployed in this environment.
+	VersionLabel *string `type:"string"`
 
 	metadataEnvironmentDescription `json:"-", xml:"-"`
 }
@@ -1209,10 +1850,18 @@ type metadataEnvironmentDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The information retrieved from the Amazon EC2 instances.
 type EnvironmentInfoDescription struct {
-	EC2InstanceID   *string    `locationName:"Ec2InstanceId" type:"string"`
-	InfoType        *string    `type:"string"`
-	Message         *string    `type:"string"`
+	// The Amazon EC2 Instance ID for this information.
+	EC2InstanceID *string `locationName:"Ec2InstanceId" type:"string"`
+
+	// The type of information retrieved.
+	InfoType *string `type:"string"`
+
+	// The retrieved information.
+	Message *string `type:"string"`
+
+	// The time stamp when this information was retrieved.
 	SampleTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	metadataEnvironmentInfoDescription `json:"-", xml:"-"`
@@ -1222,14 +1871,28 @@ type metadataEnvironmentInfoDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the AWS resources in use by this environment. This data is live.
 type EnvironmentResourceDescription struct {
-	AutoScalingGroups    []*AutoScalingGroup    `type:"list"`
-	EnvironmentName      *string                `type:"string"`
-	Instances            []*Instance            `type:"list"`
+	// The AutoScalingGroups used by this environment.
+	AutoScalingGroups []*AutoScalingGroup `type:"list"`
+
+	// The name of the environment.
+	EnvironmentName *string `type:"string"`
+
+	// The Amazon EC2 instances used by this environment.
+	Instances []*Instance `type:"list"`
+
+	// The Auto Scaling launch configurations in use by this environment.
 	LaunchConfigurations []*LaunchConfiguration `type:"list"`
-	LoadBalancers        []*LoadBalancer        `type:"list"`
-	Queues               []*Queue               `type:"list"`
-	Triggers             []*Trigger             `type:"list"`
+
+	// The LoadBalancers in use by this environment.
+	LoadBalancers []*LoadBalancer `type:"list"`
+
+	// The queues used by this environment.
+	Queues []*Queue `type:"list"`
+
+	// The AutoScaling triggers in use by this environment.
+	Triggers []*Trigger `type:"list"`
 
 	metadataEnvironmentResourceDescription `json:"-", xml:"-"`
 }
@@ -1238,7 +1901,10 @@ type metadataEnvironmentResourceDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the AWS resources in use by this environment. This data is not
+// live data.
 type EnvironmentResourcesDescription struct {
+	// Describes the LoadBalancer.
 	LoadBalancer *LoadBalancerDescription `type:"structure"`
 
 	metadataEnvironmentResourcesDescription `json:"-", xml:"-"`
@@ -1248,9 +1914,15 @@ type metadataEnvironmentResourcesDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the properties of an environment tier
 type EnvironmentTier struct {
-	Name    *string `type:"string"`
-	Type    *string `type:"string"`
+	// The name of this environment tier.
+	Name *string `type:"string"`
+
+	// The type of this environment tier.
+	Type *string `type:"string"`
+
+	// The version of this environment tier.
 	Version *string `type:"string"`
 
 	metadataEnvironmentTier `json:"-", xml:"-"`
@@ -1260,15 +1932,31 @@ type metadataEnvironmentTier struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an event.
 type EventDescription struct {
-	ApplicationName *string    `type:"string"`
-	EnvironmentName *string    `type:"string"`
-	EventDate       *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	Message         *string    `type:"string"`
-	RequestID       *string    `locationName:"RequestId" type:"string"`
-	Severity        *string    `type:"string"`
-	TemplateName    *string    `type:"string"`
-	VersionLabel    *string    `type:"string"`
+	// The application associated with the event.
+	ApplicationName *string `type:"string"`
+
+	// The name of the environment associated with this event.
+	EnvironmentName *string `type:"string"`
+
+	// The date when the event occurred.
+	EventDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The event message.
+	Message *string `type:"string"`
+
+	// The web service request ID for the activity of this event.
+	RequestID *string `locationName:"RequestId" type:"string"`
+
+	// The severity level of this event.
+	Severity *string `type:"string"`
+
+	// The name of the configuration associated with this event.
+	TemplateName *string `type:"string"`
+
+	// The release label for the application version associated with this event.
+	VersionLabel *string `type:"string"`
 
 	metadataEventDescription `json:"-", xml:"-"`
 }
@@ -1277,7 +1965,9 @@ type metadataEventDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The description of an Amazon EC2 instance.
 type Instance struct {
+	// The ID of the Amazon EC2 instance.
 	ID *string `locationName:"Id" type:"string"`
 
 	metadataInstance `json:"-", xml:"-"`
@@ -1287,7 +1977,9 @@ type metadataInstance struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an Auto Scaling launch configuration.
 type LaunchConfiguration struct {
+	// The name of the launch configuration.
 	Name *string `type:"string"`
 
 	metadataLaunchConfiguration `json:"-", xml:"-"`
@@ -1305,9 +1997,13 @@ type metadataListAvailableSolutionStacksInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A list of available AWS Elastic Beanstalk solution stacks.
 type ListAvailableSolutionStacksOutput struct {
+	// A list of available solution stacks and their SolutionStackDescription.
 	SolutionStackDetails []*SolutionStackDescription `type:"list"`
-	SolutionStacks       []*string                   `type:"list"`
+
+	// A list of available solution stacks.
+	SolutionStacks []*string `type:"list"`
 
 	metadataListAvailableSolutionStacksOutput `json:"-", xml:"-"`
 }
@@ -1316,8 +2012,12 @@ type metadataListAvailableSolutionStacksOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the properties of a Listener for the LoadBalancer.
 type Listener struct {
-	Port     *int64  `type:"integer"`
+	// The port that is used by the Listener.
+	Port *int64 `type:"integer"`
+
+	// The protocol that is used by the Listener.
 	Protocol *string `type:"string"`
 
 	metadataListener `json:"-", xml:"-"`
@@ -1327,7 +2027,9 @@ type metadataListener struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a LoadBalancer.
 type LoadBalancer struct {
+	// The name of the LoadBalancer.
 	Name *string `type:"string"`
 
 	metadataLoadBalancer `json:"-", xml:"-"`
@@ -1337,10 +2039,16 @@ type metadataLoadBalancer struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the details of a LoadBalancer.
 type LoadBalancerDescription struct {
-	Domain           *string     `type:"string"`
-	Listeners        []*Listener `type:"list"`
-	LoadBalancerName *string     `type:"string"`
+	// The domain name of the LoadBalancer.
+	Domain *string `type:"string"`
+
+	// A list of Listeners used by the LoadBalancer.
+	Listeners []*Listener `type:"list"`
+
+	// The name of the LoadBalancer.
+	LoadBalancerName *string `type:"string"`
 
 	metadataLoadBalancerDescription `json:"-", xml:"-"`
 }
@@ -1349,8 +2057,14 @@ type metadataLoadBalancerDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A regular expression representing a restriction on a string configuration
+// option value.
 type OptionRestrictionRegex struct {
-	Label   *string `type:"string"`
+	// A unique name representing this regular expression.
+	Label *string `type:"string"`
+
+	// The regular expression pattern that a string configuration option value with
+	// this restriction must match.
 	Pattern *string `type:"string"`
 
 	metadataOptionRestrictionRegex `json:"-", xml:"-"`
@@ -1360,8 +2074,12 @@ type metadataOptionRestrictionRegex struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A specification identifying an individual configuration option.
 type OptionSpecification struct {
-	Namespace  *string `type:"string"`
+	// A unique namespace identifying the option's associated AWS resource.
+	Namespace *string `type:"string"`
+
+	// The name of the configuration option.
 	OptionName *string `type:"string"`
 
 	metadataOptionSpecification `json:"-", xml:"-"`
@@ -1371,9 +2089,13 @@ type metadataOptionSpecification struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a queue.
 type Queue struct {
+	// The name of the queue.
 	Name *string `type:"string"`
-	URL  *string `type:"string"`
+
+	// The URL of the queue.
+	URL *string `type:"string"`
 
 	metadataQueue `json:"-", xml:"-"`
 }
@@ -1383,7 +2105,18 @@ type metadataQueue struct {
 }
 
 type RebuildEnvironmentInput struct {
-	EnvironmentID   *string `locationName:"EnvironmentId" type:"string"`
+	// The ID of the environment to rebuild.
+	//
+	//  Condition: You must specify either this or an EnvironmentName, or both.
+	// If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
+	// error.
+	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+
+	// The name of the environment to rebuild.
+	//
+	//  Condition: You must specify either this or an EnvironmentId, or both. If
+	// you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
+	// error.
 	EnvironmentName *string `type:"string"`
 
 	metadataRebuildEnvironmentInput `json:"-", xml:"-"`
@@ -1401,10 +2134,30 @@ type metadataRebuildEnvironmentOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This documentation target is not reported in the API reference.
 type RequestEnvironmentInfoInput struct {
-	EnvironmentID   *string `locationName:"EnvironmentId" type:"string"`
+	// The ID of the environment of the requested data.
+	//
+	//  If no such environment is found, RequestEnvironmentInfo returns an InvalidParameterValue
+	// error.
+	//
+	//  Condition: You must specify either this or an EnvironmentName, or both.
+	// If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
+	// error.
+	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+
+	// The name of the environment of the requested data.
+	//
+	//  If no such environment is found, RequestEnvironmentInfo returns an InvalidParameterValue
+	// error.
+	//
+	//  Condition: You must specify either this or an EnvironmentId, or both. If
+	// you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
+	// error.
 	EnvironmentName *string `type:"string"`
-	InfoType        *string `type:"string" required:"true"`
+
+	// The type of information to request.
+	InfoType *string `type:"string" required:"true"`
 
 	metadataRequestEnvironmentInfoInput `json:"-", xml:"-"`
 }
@@ -1422,7 +2175,18 @@ type metadataRequestEnvironmentInfoOutput struct {
 }
 
 type RestartAppServerInput struct {
-	EnvironmentID   *string `locationName:"EnvironmentId" type:"string"`
+	// The ID of the environment to restart the server for.
+	//
+	//  Condition: You must specify either this or an EnvironmentName, or both.
+	// If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
+	// error.
+	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+
+	// The name of the environment to restart the server for.
+	//
+	//  Condition: You must specify either this or an EnvironmentId, or both. If
+	// you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
+	// error.
 	EnvironmentName *string `type:"string"`
 
 	metadataRestartAppServerInput `json:"-", xml:"-"`
@@ -1440,10 +2204,28 @@ type metadataRestartAppServerOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This documentation target is not reported in the API reference.
 type RetrieveEnvironmentInfoInput struct {
-	EnvironmentID   *string `locationName:"EnvironmentId" type:"string"`
+	// The ID of the data's environment.
+	//
+	//  If no such environment is found, returns an InvalidParameterValue error.
+	//
+	//  Condition: You must specify either this or an EnvironmentName, or both.
+	// If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
+	// error.
+	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+
+	// The name of the data's environment.
+	//
+	//  If no such environment is found, returns an InvalidParameterValue error.
+	//
+	//  Condition: You must specify either this or an EnvironmentId, or both. If
+	// you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
+	// error.
 	EnvironmentName *string `type:"string"`
-	InfoType        *string `type:"string" required:"true"`
+
+	// The type of information to retrieve.
+	InfoType *string `type:"string" required:"true"`
 
 	metadataRetrieveEnvironmentInfoInput `json:"-", xml:"-"`
 }
@@ -1452,7 +2234,9 @@ type metadataRetrieveEnvironmentInfoInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Result message containing a description of the requested environment info.
 type RetrieveEnvironmentInfoOutput struct {
+	// The EnvironmentInfoDescription of the environment.
 	EnvironmentInfo []*EnvironmentInfoDescription `type:"list"`
 
 	metadataRetrieveEnvironmentInfoOutput `json:"-", xml:"-"`
@@ -1462,9 +2246,13 @@ type metadataRetrieveEnvironmentInfoOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A specification of a location in Amazon S3.
 type S3Location struct {
+	// The Amazon S3 bucket where the data is located.
 	S3Bucket *string `type:"string"`
-	S3Key    *string `type:"string"`
+
+	// The Amazon S3 key where the data is located.
+	S3Key *string `type:"string"`
 
 	metadataS3Location `json:"-", xml:"-"`
 }
@@ -1473,9 +2261,13 @@ type metadataS3Location struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the solution stack.
 type SolutionStackDescription struct {
+	// The permitted file types allowed for a solution stack.
 	PermittedFileTypes []*string `type:"list"`
-	SolutionStackName  *string   `type:"string"`
+
+	// The name of the solution stack.
+	SolutionStackName *string `type:"string"`
 
 	metadataSolutionStackDescription `json:"-", xml:"-"`
 }
@@ -1484,9 +2276,13 @@ type metadataSolutionStackDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A specification for an environment configuration
 type SourceConfiguration struct {
+	// The name of the application associated with the configuration.
 	ApplicationName *string `type:"string"`
-	TemplateName    *string `type:"string"`
+
+	// The name of the configuration template.
+	TemplateName *string `type:"string"`
 
 	metadataSourceConfiguration `json:"-", xml:"-"`
 }
@@ -1496,10 +2292,33 @@ type metadataSourceConfiguration struct {
 }
 
 type SwapEnvironmentCNAMEsInput struct {
-	DestinationEnvironmentID   *string `locationName:"DestinationEnvironmentId" type:"string"`
+	// The ID of the destination environment.
+	//
+	//  Condition: You must specify at least the DestinationEnvironmentID or the
+	// DestinationEnvironmentName. You may also specify both. You must specify the
+	// SourceEnvironmentId with the DestinationEnvironmentId.
+	DestinationEnvironmentID *string `locationName:"DestinationEnvironmentId" type:"string"`
+
+	// The name of the destination environment.
+	//
+	//  Condition: You must specify at least the DestinationEnvironmentID or the
+	// DestinationEnvironmentName. You may also specify both. You must specify the
+	// SourceEnvironmentName with the DestinationEnvironmentName.
 	DestinationEnvironmentName *string `type:"string"`
-	SourceEnvironmentID        *string `locationName:"SourceEnvironmentId" type:"string"`
-	SourceEnvironmentName      *string `type:"string"`
+
+	// The ID of the source environment.
+	//
+	//  Condition: You must specify at least the SourceEnvironmentID or the SourceEnvironmentName.
+	// You may also specify both. If you specify the SourceEnvironmentId, you must
+	// specify the DestinationEnvironmentId.
+	SourceEnvironmentID *string `locationName:"SourceEnvironmentId" type:"string"`
+
+	// The name of the source environment.
+	//
+	//  Condition: You must specify at least the SourceEnvironmentID or the SourceEnvironmentName.
+	// You may also specify both. If you specify the SourceEnvironmentName, you
+	// must specify the DestinationEnvironmentName.
+	SourceEnvironmentName *string `type:"string"`
 
 	metadataSwapEnvironmentCNAMEsInput `json:"-", xml:"-"`
 }
@@ -1516,8 +2335,12 @@ type metadataSwapEnvironmentCNAMEsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a tag applied to a resource in an environment.
 type Tag struct {
-	Key   *string `type:"string"`
+	// The key of the tag.
+	Key *string `type:"string"`
+
+	// The value of the tag.
 	Value *string `type:"string"`
 
 	metadataTag `json:"-", xml:"-"`
@@ -1527,10 +2350,41 @@ type metadataTag struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This documentation target is not reported in the API reference.
 type TerminateEnvironmentInput struct {
-	EnvironmentID      *string `locationName:"EnvironmentId" type:"string"`
-	EnvironmentName    *string `type:"string"`
-	TerminateResources *bool   `type:"boolean"`
+	// The ID of the environment to terminate.
+	//
+	//  Condition: You must specify either this or an EnvironmentName, or both.
+	// If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
+	// error.
+	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+
+	// The name of the environment to terminate.
+	//
+	//  Condition: You must specify either this or an EnvironmentId, or both. If
+	// you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
+	// error.
+	EnvironmentName *string `type:"string"`
+
+	// Indicates whether the associated AWS resources should shut down when the
+	// environment is terminated:
+	//
+	//    true: (default) The user AWS resources (for example, the Auto Scaling
+	// group, LoadBalancer, etc.) are terminated along with the environment.
+	//
+	//    false: The environment is removed from the AWS Elastic Beanstalk but
+	// the AWS resources continue to operate.
+	//
+	//     true: The specified environment as well as the associated AWS resources,
+	// such as Auto Scaling group and LoadBalancer, are terminated.   false: AWS
+	// Elastic Beanstalk resource management is removed from the environment, but
+	// the AWS resources continue to operate.    For more information, see the
+	// AWS Elastic Beanstalk User Guide.  (http://docs.aws.amazon.com/elasticbeanstalk/latest/ug/)
+	//
+	//  Default: true
+	//
+	//  Valid Values: true | false
+	TerminateResources *bool `type:"boolean"`
 
 	metadataTerminateEnvironmentInput `json:"-", xml:"-"`
 }
@@ -1539,7 +2393,9 @@ type metadataTerminateEnvironmentInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a trigger.
 type Trigger struct {
+	// The name of the trigger.
 	Name *string `type:"string"`
 
 	metadataTrigger `json:"-", xml:"-"`
@@ -1549,9 +2405,16 @@ type metadataTrigger struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This documentation target is not reported in the API reference.
 type UpdateApplicationInput struct {
+	// The name of the application to update. If no such application is found, UpdateApplication
+	// returns an InvalidParameterValue error.
 	ApplicationName *string `type:"string" required:"true"`
-	Description     *string `type:"string"`
+
+	// A new description for the application.
+	//
+	// Default: If not specified, AWS Elastic Beanstalk does not update the description.
+	Description *string `type:"string"`
 
 	metadataUpdateApplicationInput `json:"-", xml:"-"`
 }
@@ -1561,9 +2424,20 @@ type metadataUpdateApplicationInput struct {
 }
 
 type UpdateApplicationVersionInput struct {
+	// The name of the application associated with this version.
+	//
+	//  If no application is found with this name, UpdateApplication returns an
+	// InvalidParameterValue error.
 	ApplicationName *string `type:"string" required:"true"`
-	Description     *string `type:"string"`
-	VersionLabel    *string `type:"string" required:"true"`
+
+	// A new description for this release.
+	Description *string `type:"string"`
+
+	// The name of the version to update.
+	//
+	//  If no application version is found with this label, UpdateApplication returns
+	// an InvalidParameterValue error.
+	VersionLabel *string `type:"string" required:"true"`
 
 	metadataUpdateApplicationVersionInput `json:"-", xml:"-"`
 }
@@ -1572,12 +2446,32 @@ type metadataUpdateApplicationVersionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result message containing the options for the specified solution stack.
 type UpdateConfigurationTemplateInput struct {
-	ApplicationName *string                       `type:"string" required:"true"`
-	Description     *string                       `type:"string"`
-	OptionSettings  []*ConfigurationOptionSetting `type:"list"`
-	OptionsToRemove []*OptionSpecification        `type:"list"`
-	TemplateName    *string                       `type:"string" required:"true"`
+	// The name of the application associated with the configuration template to
+	// update.
+	//
+	//  If no application is found with this name, UpdateConfigurationTemplate
+	// returns an InvalidParameterValue error.
+	ApplicationName *string `type:"string" required:"true"`
+
+	// A new description for the configuration.
+	Description *string `type:"string"`
+
+	// A list of configuration option settings to update with the new specified
+	// option value.
+	OptionSettings []*ConfigurationOptionSetting `type:"list"`
+
+	// A list of configuration options to remove from the configuration set.
+	//
+	//  Constraint: You can remove only UserDefined configuration options.
+	OptionsToRemove []*OptionSpecification `type:"list"`
+
+	// The name of the configuration template to update.
+	//
+	//  If no configuration template is found with this name, UpdateConfigurationTemplate
+	// returns an InvalidParameterValue error.
+	TemplateName *string `type:"string" required:"true"`
 
 	metadataUpdateConfigurationTemplateInput `json:"-", xml:"-"`
 }
@@ -1586,15 +2480,55 @@ type metadataUpdateConfigurationTemplateInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This documentation target is not reported in the API reference.
 type UpdateEnvironmentInput struct {
-	Description     *string                       `type:"string"`
-	EnvironmentID   *string                       `locationName:"EnvironmentId" type:"string"`
-	EnvironmentName *string                       `type:"string"`
-	OptionSettings  []*ConfigurationOptionSetting `type:"list"`
-	OptionsToRemove []*OptionSpecification        `type:"list"`
-	TemplateName    *string                       `type:"string"`
-	Tier            *EnvironmentTier              `type:"structure"`
-	VersionLabel    *string                       `type:"string"`
+	// If this parameter is specified, AWS Elastic Beanstalk updates the description
+	// of this environment.
+	Description *string `type:"string"`
+
+	// The ID of the environment to update.
+	//
+	//  If no environment with this ID exists, AWS Elastic Beanstalk returns an
+	// InvalidParameterValue error.
+	//
+	//  Condition: You must specify either this or an EnvironmentName, or both.
+	// If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
+	// error.
+	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+
+	// The name of the environment to update. If no environment with this name exists,
+	// AWS Elastic Beanstalk returns an InvalidParameterValue error.
+	//
+	//  Condition: You must specify either this or an EnvironmentId, or both. If
+	// you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
+	// error.
+	EnvironmentName *string `type:"string"`
+
+	// If specified, AWS Elastic Beanstalk updates the configuration set associated
+	// with the running environment and sets the specified configuration options
+	// to the requested value.
+	OptionSettings []*ConfigurationOptionSetting `type:"list"`
+
+	// A list of custom user-defined configuration options to remove from the configuration
+	// set for this environment.
+	OptionsToRemove []*OptionSpecification `type:"list"`
+
+	// If this parameter is specified, AWS Elastic Beanstalk deploys this configuration
+	// template to the environment. If no such configuration template is found,
+	// AWS Elastic Beanstalk returns an InvalidParameterValue error.
+	TemplateName *string `type:"string"`
+
+	// This specifies the tier to use to update the environment.
+	//
+	//  Condition: You can only update the tier version for an environment. If
+	// you change the name of the type, AWS Elastic Beanstalk returns InvalidParameterValue
+	// error.
+	Tier *EnvironmentTier `type:"structure"`
+
+	// If this parameter is specified, AWS Elastic Beanstalk deploys the named application
+	// version to the environment. If no such application version is found, returns
+	// an InvalidParameterValue error.
+	VersionLabel *string `type:"string"`
 
 	metadataUpdateEnvironmentInput `json:"-", xml:"-"`
 }
@@ -1603,11 +2537,24 @@ type metadataUpdateEnvironmentInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A list of validation messages for a specified configuration template.
 type ValidateConfigurationSettingsInput struct {
-	ApplicationName *string                       `type:"string" required:"true"`
-	EnvironmentName *string                       `type:"string"`
-	OptionSettings  []*ConfigurationOptionSetting `type:"list" required:"true"`
-	TemplateName    *string                       `type:"string"`
+	// The name of the application that the configuration template or environment
+	// belongs to.
+	ApplicationName *string `type:"string" required:"true"`
+
+	// The name of the environment to validate the settings against.
+	//
+	//  Condition: You cannot specify both this and a configuration template name.
+	EnvironmentName *string `type:"string"`
+
+	// A list of the options and desired values to evaluate.
+	OptionSettings []*ConfigurationOptionSetting `type:"list" required:"true"`
+
+	// The name of the configuration template to validate the settings against.
+	//
+	//  Condition: You cannot specify both this and an environment name.
+	TemplateName *string `type:"string"`
 
 	metadataValidateConfigurationSettingsInput `json:"-", xml:"-"`
 }
@@ -1616,7 +2563,9 @@ type metadataValidateConfigurationSettingsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides a list of validation messages.
 type ValidateConfigurationSettingsOutput struct {
+	// A list of ValidationMessage.
 	Messages []*ValidationMessage `type:"list"`
 
 	metadataValidateConfigurationSettingsOutput `json:"-", xml:"-"`
@@ -1626,11 +2575,26 @@ type metadataValidateConfigurationSettingsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// An error or warning for a desired configuration option value.
 type ValidationMessage struct {
-	Message    *string `type:"string"`
-	Namespace  *string `type:"string"`
+	// A message describing the error or warning.
+	Message *string `type:"string"`
+
+	Namespace *string `type:"string"`
+
 	OptionName *string `type:"string"`
-	Severity   *string `type:"string"`
+
+	// An indication of the severity of this message:
+	//
+	//    error: This message indicates that this is not a valid setting for an
+	// option.
+	//
+	//    warning: This message is providing information you should take into account.
+	//
+	//     error: This message indicates that this is not a valid setting for an
+	// option.   warning: This message is providing information you should take
+	// into account.
+	Severity *string `type:"string"`
 
 	metadataValidationMessage `json:"-", xml:"-"`
 }

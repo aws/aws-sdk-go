@@ -24,6 +24,10 @@ func (c *SES) DeleteIdentityRequest(input *DeleteIdentityInput) (req *aws.Reques
 	return
 }
 
+// Deletes the specified identity (email address or domain) from the list of
+// verified identities.
+//
+// This action is throttled at one request per second.
 func (c *SES) DeleteIdentity(input *DeleteIdentityInput) (output *DeleteIdentityOutput, err error) {
 	req, out := c.DeleteIdentityRequest(input)
 	output = out
@@ -49,6 +53,11 @@ func (c *SES) DeleteVerifiedEmailAddressRequest(input *DeleteVerifiedEmailAddres
 	return
 }
 
+// Deletes the specified email address from the list of verified addresses.
+//
+// The DeleteVerifiedEmailAddress action is deprecated as of the May 15, 2012
+// release of Domain Verification. The DeleteIdentity action is now preferred.
+// This action is throttled at one request per second.
 func (c *SES) DeleteVerifiedEmailAddress(input *DeleteVerifiedEmailAddressInput) (output *DeleteVerifiedEmailAddressOutput, err error) {
 	req, out := c.DeleteVerifiedEmailAddressRequest(input)
 	output = out
@@ -74,6 +83,23 @@ func (c *SES) GetIdentityDKIMAttributesRequest(input *GetIdentityDKIMAttributesI
 	return
 }
 
+// Returns the current status of Easy DKIM signing for an entity. For domain
+// name identities, this action also returns the DKIM tokens that are required
+// for Easy DKIM signing, and whether Amazon SES has successfully verified that
+// these tokens have been published.
+//
+// This action takes a list of identities as input and returns the following
+// information for each:
+//
+//  Whether Easy DKIM signing is enabled or disabled. A set of DKIM tokens
+// that represent the identity. If the identity is an email address, the tokens
+// represent the domain of that address. Whether Amazon SES has successfully
+// verified the DKIM tokens published in the domain's DNS. This information
+// is only returned for domain name identities, not for email addresses.  This
+// action is throttled at one request per second.
+//
+// For more information about creating DNS records using DKIM tokens, go to
+// the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html).
 func (c *SES) GetIdentityDKIMAttributes(input *GetIdentityDKIMAttributesInput) (output *GetIdentityDKIMAttributesOutput, err error) {
 	req, out := c.GetIdentityDKIMAttributesRequest(input)
 	output = out
@@ -99,6 +125,13 @@ func (c *SES) GetIdentityNotificationAttributesRequest(input *GetIdentityNotific
 	return
 }
 
+// Given a list of verified identities (email addresses and/or domains), returns
+// a structure describing identity notification attributes.
+//
+// This action is throttled at one request per second.
+//
+// For more information about using notifications with Amazon SES, see the
+// Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html).
 func (c *SES) GetIdentityNotificationAttributes(input *GetIdentityNotificationAttributesInput) (output *GetIdentityNotificationAttributesOutput, err error) {
 	req, out := c.GetIdentityNotificationAttributesRequest(input)
 	output = out
@@ -124,6 +157,11 @@ func (c *SES) GetIdentityVerificationAttributesRequest(input *GetIdentityVerific
 	return
 }
 
+// Given a list of identities (email addresses and/or domains), returns the
+// verification status and (for domain identities) the verification token for
+// each identity.
+//
+// This action is throttled at one request per second.
 func (c *SES) GetIdentityVerificationAttributes(input *GetIdentityVerificationAttributesInput) (output *GetIdentityVerificationAttributesOutput, err error) {
 	req, out := c.GetIdentityVerificationAttributesRequest(input)
 	output = out
@@ -149,6 +187,9 @@ func (c *SES) GetSendQuotaRequest(input *GetSendQuotaInput) (req *aws.Request, o
 	return
 }
 
+// Returns the user's current sending limits.
+//
+// This action is throttled at one request per second.
 func (c *SES) GetSendQuota(input *GetSendQuotaInput) (output *GetSendQuotaOutput, err error) {
 	req, out := c.GetSendQuotaRequest(input)
 	output = out
@@ -174,6 +215,12 @@ func (c *SES) GetSendStatisticsRequest(input *GetSendStatisticsInput) (req *aws.
 	return
 }
 
+// Returns the user's sending statistics. The result is a list of data points,
+// representing the last two weeks of sending activity.
+//
+// Each data point in the list contains statistics for a 15-minute interval.
+//
+// This action is throttled at one request per second.
 func (c *SES) GetSendStatistics(input *GetSendStatisticsInput) (output *GetSendStatisticsOutput, err error) {
 	req, out := c.GetSendStatisticsRequest(input)
 	output = out
@@ -199,6 +246,10 @@ func (c *SES) ListIdentitiesRequest(input *ListIdentitiesInput) (req *aws.Reques
 	return
 }
 
+// Returns a list containing all of the identities (email addresses and domains)
+// for a specific AWS Account, regardless of verification status.
+//
+// This action is throttled at one request per second.
 func (c *SES) ListIdentities(input *ListIdentitiesInput) (output *ListIdentitiesOutput, err error) {
 	req, out := c.ListIdentitiesRequest(input)
 	output = out
@@ -224,6 +275,11 @@ func (c *SES) ListVerifiedEmailAddressesRequest(input *ListVerifiedEmailAddresse
 	return
 }
 
+// Returns a list containing all of the email addresses that have been verified.
+//
+// The ListVerifiedEmailAddresses action is deprecated as of the May 15, 2012
+// release of Domain Verification. The ListIdentities action is now preferred.
+// This action is throttled at one request per second.
 func (c *SES) ListVerifiedEmailAddresses(input *ListVerifiedEmailAddressesInput) (output *ListVerifiedEmailAddressesOutput, err error) {
 	req, out := c.ListVerifiedEmailAddressesRequest(input)
 	output = out
@@ -249,6 +305,26 @@ func (c *SES) SendEmailRequest(input *SendEmailInput) (req *aws.Request, output 
 	return
 }
 
+// Composes an email message based on input data, and then immediately queues
+// the message for sending.
+//
+//  You can only send email from verified email addresses and domains. If you
+// have not requested production access to Amazon SES, you must also verify
+// every recipient email address except for the recipients provided by the Amazon
+// SES mailbox simulator. For more information, go to the Amazon SES Developer
+// Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html).
+//  The total size of the message cannot exceed 10 MB.
+//
+// Amazon SES has a limit on the total number of recipients per message: The
+// combined number of To:, CC: and BCC: email addresses cannot exceed 50. If
+// you need to send an email message to a larger audience, you can divide your
+// recipient list into groups of 50 or fewer, and then call Amazon SES repeatedly
+// to send the message to each group.
+//
+// For every message that you send, the total number of recipients (To:, CC:
+// and BCC:) is counted against your sending quota - the maximum number of emails
+// you can send in a 24-hour period. For information about your sending quota,
+// go to the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html).
 func (c *SES) SendEmail(input *SendEmailInput) (output *SendEmailOutput, err error) {
 	req, out := c.SendEmailRequest(input)
 	output = out
@@ -274,6 +350,33 @@ func (c *SES) SendRawEmailRequest(input *SendRawEmailInput) (req *aws.Request, o
 	return
 }
 
+// Sends an email message, with header and content specified by the client.
+// The SendRawEmail action is useful for sending multipart MIME emails. The
+// raw text of the message must comply with Internet email standards; otherwise,
+// the message cannot be sent.
+//
+//  You can only send email from verified email addresses and domains. If you
+// have not requested production access to Amazon SES, you must also verify
+// every recipient email address except for the recipients provided by the Amazon
+// SES mailbox simulator. For more information, go to the Amazon SES Developer
+// Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html).
+//  The total size of the message cannot exceed 10 MB. This includes any attachments
+// that are part of the message.
+//
+// Amazon SES has a limit on the total number of recipients per message: The
+// combined number of To:, CC: and BCC: email addresses cannot exceed 50. If
+// you need to send an email message to a larger audience, you can divide your
+// recipient list into groups of 50 or fewer, and then call Amazon SES repeatedly
+// to send the message to each group.
+//
+// The To:, CC:, and BCC: headers in the raw message can contain a group list.
+// Note that each recipient in a group list counts towards the 50-recipient
+// limit.
+//
+// For every message that you send, the total number of recipients (To:, CC:
+// and BCC:) is counted against your sending quota - the maximum number of emails
+// you can send in a 24-hour period. For information about your sending quota,
+// go to the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html).
 func (c *SES) SendRawEmail(input *SendRawEmailInput) (output *SendRawEmailOutput, err error) {
 	req, out := c.SendRawEmailRequest(input)
 	output = out
@@ -299,6 +402,20 @@ func (c *SES) SetIdentityDKIMEnabledRequest(input *SetIdentityDKIMEnabledInput) 
 	return
 }
 
+// Enables or disables Easy DKIM signing of email sent from an identity:
+//
+//  If Easy DKIM signing is enabled for a domain name identity (e.g., example.com),
+// then Amazon SES will DKIM-sign all email sent by addresses under that domain
+// name (e.g., user@example.com). If Easy DKIM signing is enabled for an email
+// address, then Amazon SES will DKIM-sign all email sent by that email address.
+//  For email addresses (e.g., user@example.com), you can only enable Easy DKIM
+// signing if the corresponding domain (e.g., example.com) has been set up for
+// Easy DKIM using the AWS Console or the VerifyDomainDkim action.
+//
+// This action is throttled at one request per second.
+//
+// For more information about Easy DKIM signing, go to the Amazon SES Developer
+// Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html).
 func (c *SES) SetIdentityDKIMEnabled(input *SetIdentityDKIMEnabledInput) (output *SetIdentityDKIMEnabledOutput, err error) {
 	req, out := c.SetIdentityDKIMEnabledRequest(input)
 	output = out
@@ -324,6 +441,17 @@ func (c *SES) SetIdentityFeedbackForwardingEnabledRequest(input *SetIdentityFeed
 	return
 }
 
+// Given an identity (email address or domain), enables or disables whether
+// Amazon SES forwards bounce and complaint notifications as email. Feedback
+// forwarding can only be disabled when Amazon Simple Notification Service (Amazon
+// SNS) topics are specified for both bounces and complaints.
+//
+// Feedback forwarding does not apply to delivery notifications. Delivery notifications
+// are only available through Amazon SNS. This action is throttled at one request
+// per second.
+//
+// For more information about using notifications with Amazon SES, see the
+// Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html).
 func (c *SES) SetIdentityFeedbackForwardingEnabled(input *SetIdentityFeedbackForwardingEnabledInput) (output *SetIdentityFeedbackForwardingEnabledOutput, err error) {
 	req, out := c.SetIdentityFeedbackForwardingEnabledRequest(input)
 	output = out
@@ -349,6 +477,16 @@ func (c *SES) SetIdentityNotificationTopicRequest(input *SetIdentityNotification
 	return
 }
 
+// Given an identity (email address or domain), sets the Amazon Simple Notification
+// Service (Amazon SNS) topic to which Amazon SES will publish bounce, complaint,
+// and/or delivery notifications for emails sent with that identity as the Source.
+//
+// Unless feedback forwarding is enabled, you must specify Amazon SNS topics
+// for bounce and complaint notifications. For more information, see SetIdentityFeedbackForwardingEnabled.
+//  This action is throttled at one request per second.
+//
+// For more information about feedback notification, see the Amazon SES Developer
+// Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html).
 func (c *SES) SetIdentityNotificationTopic(input *SetIdentityNotificationTopicInput) (output *SetIdentityNotificationTopicOutput, err error) {
 	req, out := c.SetIdentityNotificationTopicRequest(input)
 	output = out
@@ -374,6 +512,21 @@ func (c *SES) VerifyDomainDKIMRequest(input *VerifyDomainDKIMInput) (req *aws.Re
 	return
 }
 
+// Returns a set of DKIM tokens for a domain. DKIM tokens are character strings
+// that represent your domain's identity. Using these tokens, you will need
+// to create DNS CNAME records that point to DKIM public keys hosted by Amazon
+// SES. Amazon Web Services will eventually detect that you have updated your
+// DNS records; this detection process may take up to 72 hours. Upon successful
+// detection, Amazon SES will be able to DKIM-sign email originating from that
+// domain.
+//
+// This action is throttled at one request per second.
+//
+// To enable or disable Easy DKIM signing for a domain, use the SetIdentityDkimEnabled
+// action.
+//
+// For more information about creating DNS records using DKIM tokens, go to
+// the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html).
 func (c *SES) VerifyDomainDKIM(input *VerifyDomainDKIMInput) (output *VerifyDomainDKIMOutput, err error) {
 	req, out := c.VerifyDomainDKIMRequest(input)
 	output = out
@@ -399,6 +552,9 @@ func (c *SES) VerifyDomainIdentityRequest(input *VerifyDomainIdentityInput) (req
 	return
 }
 
+// Verifies a domain.
+//
+// This action is throttled at one request per second.
 func (c *SES) VerifyDomainIdentity(input *VerifyDomainIdentityInput) (output *VerifyDomainIdentityOutput, err error) {
 	req, out := c.VerifyDomainIdentityRequest(input)
 	output = out
@@ -424,6 +580,12 @@ func (c *SES) VerifyEmailAddressRequest(input *VerifyEmailAddressInput) (req *aw
 	return
 }
 
+// Verifies an email address. This action causes a confirmation email message
+// to be sent to the specified address.
+//
+// The VerifyEmailAddress action is deprecated as of the May 15, 2012 release
+// of Domain Verification. The VerifyEmailIdentity action is now preferred.
+// This action is throttled at one request per second.
 func (c *SES) VerifyEmailAddress(input *VerifyEmailAddressInput) (output *VerifyEmailAddressOutput, err error) {
 	req, out := c.VerifyEmailAddressRequest(input)
 	output = out
@@ -449,6 +611,10 @@ func (c *SES) VerifyEmailIdentityRequest(input *VerifyEmailIdentityInput) (req *
 	return
 }
 
+// Verifies an email address. This action causes a confirmation email message
+// to be sent to the specified address.
+//
+// This action is throttled at one request per second.
 func (c *SES) VerifyEmailIdentity(input *VerifyEmailIdentityInput) (output *VerifyEmailIdentityOutput, err error) {
 	req, out := c.VerifyEmailIdentityRequest(input)
 	output = out
@@ -458,8 +624,17 @@ func (c *SES) VerifyEmailIdentity(input *VerifyEmailIdentityInput) (output *Veri
 
 var opVerifyEmailIdentity *aws.Operation
 
+// Represents the body of the message. You can specify text, HTML, or both.
+// If you use both, then the message should display correctly in the widest
+// variety of email clients.
 type Body struct {
+	// The content of the message, in HTML format. Use this for email clients that
+	// can process HTML. You can include clickable links, formatted text, and much
+	// more in an HTML message.
 	HTML *Content `locationName:"Html" type:"structure"`
+
+	// The content of the message, in text format. Use this for text-based email
+	// clients, or clients on high-latency networks (such as mobile devices).
 	Text *Content `type:"structure"`
 
 	metadataBody `json:"-", xml:"-"`
@@ -469,9 +644,17 @@ type metadataBody struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents textual data, plus an optional character set specification.
+//
+// By default, the text must be 7-bit ASCII, due to the constraints of the
+// SMTP protocol. If the text must contain any other characters, then you must
+// also specify a character set. Examples include UTF-8, ISO-8859-1, and Shift_JIS.
 type Content struct {
+	// The character set of the content.
 	Charset *string `type:"string"`
-	Data    *string `type:"string" required:"true"`
+
+	// The textual data of the content.
+	Data *string `type:"string" required:"true"`
 
 	metadataContent `json:"-", xml:"-"`
 }
@@ -480,7 +663,10 @@ type metadataContent struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents a request instructing the service to delete an identity from the
+// list of identities for the AWS Account.
 type DeleteIdentityInput struct {
+	// The identity to be removed from the list of identities for the AWS Account.
 	Identity *string `type:"string" required:"true"`
 
 	metadataDeleteIdentityInput `json:"-", xml:"-"`
@@ -490,6 +676,8 @@ type metadataDeleteIdentityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// An empty element. Receiving this element indicates that the request completed
+// successfully.
 type DeleteIdentityOutput struct {
 	metadataDeleteIdentityOutput `json:"-", xml:"-"`
 }
@@ -498,7 +686,10 @@ type metadataDeleteIdentityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents a request instructing the service to delete an address from the
+// list of verified email addresses.
 type DeleteVerifiedEmailAddressInput struct {
+	// An email address to be removed from the list of verified addresses.
 	EmailAddress *string `type:"string" required:"true"`
 
 	metadataDeleteVerifiedEmailAddressInput `json:"-", xml:"-"`
@@ -516,10 +707,22 @@ type metadataDeleteVerifiedEmailAddressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the destination of the message, consisting of To:, CC:, and BCC:
+// fields.
+//
+//  By default, the string must be 7-bit ASCII. If the text must contain any
+// other characters, then you must use MIME encoded-word syntax (RFC 2047) instead
+// of a literal string. MIME encoded-word syntax uses the following form: =?charset?encoding?encoded-text?=.
+// For more information, see RFC 2047 (http://tools.ietf.org/html/rfc2047).
 type Destination struct {
+	// The BCC: field(s) of the message.
 	BCCAddresses []*string `locationName:"BccAddresses" type:"list"`
-	CCAddresses  []*string `locationName:"CcAddresses" type:"list"`
-	ToAddresses  []*string `type:"list"`
+
+	// The CC: field(s) of the message.
+	CCAddresses []*string `locationName:"CcAddresses" type:"list"`
+
+	// The To: field(s) of the message.
+	ToAddresses []*string `type:"list"`
 
 	metadataDestination `json:"-", xml:"-"`
 }
@@ -528,7 +731,15 @@ type metadataDestination struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Given a list of verified identities, describes their DKIM attributes. The
+// DKIM attributes of an email address identity includes whether DKIM signing
+// is individually enabled or disabled for that address. The DKIM attributes
+// of a domain name identity includes whether DKIM signing is enabled, as well
+// as the DNS records (tokens) that must remain published in the domain name's
+// DNS.
 type GetIdentityDKIMAttributesInput struct {
+	// A list of one or more verified identities - email addresses, domains, or
+	// both.
 	Identities []*string `type:"list" required:"true"`
 
 	metadataGetIdentityDKIMAttributesInput `json:"-", xml:"-"`
@@ -538,7 +749,9 @@ type metadataGetIdentityDKIMAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents a list of all the DKIM attributes for the specified identity.
 type GetIdentityDKIMAttributesOutput struct {
+	// The DKIM attributes for an email address or a domain.
 	DKIMAttributes *map[string]*IdentityDKIMAttributes `locationName:"DkimAttributes" type:"map" required:"true"`
 
 	metadataGetIdentityDKIMAttributesOutput `json:"-", xml:"-"`
@@ -549,6 +762,7 @@ type metadataGetIdentityDKIMAttributesOutput struct {
 }
 
 type GetIdentityNotificationAttributesInput struct {
+	// A list of one or more identities.
 	Identities []*string `type:"list" required:"true"`
 
 	metadataGetIdentityNotificationAttributesInput `json:"-", xml:"-"`
@@ -558,7 +772,12 @@ type metadataGetIdentityNotificationAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes whether an identity has Amazon Simple Notification Service (Amazon
+// SNS) topics set for bounce, complaint, and/or delivery notifications, and
+// specifies whether feedback forwarding is enabled for bounce and complaint
+// notifications.
 type GetIdentityNotificationAttributesOutput struct {
+	// A map of Identity to IdentityNotificationAttributes.
 	NotificationAttributes *map[string]*IdentityNotificationAttributes `type:"map" required:"true"`
 
 	metadataGetIdentityNotificationAttributesOutput `json:"-", xml:"-"`
@@ -568,7 +787,10 @@ type metadataGetIdentityNotificationAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents a request instructing the service to provide the verification
+// attributes for a list of identities.
 type GetIdentityVerificationAttributesInput struct {
+	// A list of identities.
 	Identities []*string `type:"list" required:"true"`
 
 	metadataGetIdentityVerificationAttributesInput `json:"-", xml:"-"`
@@ -578,7 +800,9 @@ type metadataGetIdentityVerificationAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the verification attributes for a list of identities.
 type GetIdentityVerificationAttributesOutput struct {
+	// A map of Identities to IdentityVerificationAttributes objects.
 	VerificationAttributes *map[string]*IdentityVerificationAttributes `type:"map" required:"true"`
 
 	metadataGetIdentityVerificationAttributesOutput `json:"-", xml:"-"`
@@ -596,9 +820,16 @@ type metadataGetSendQuotaInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the user's current activity limits returned from a successful
+// GetSendQuota request.
 type GetSendQuotaOutput struct {
-	Max24HourSend   *float64 `type:"double"`
-	MaxSendRate     *float64 `type:"double"`
+	// The maximum number of emails the user is allowed to send in a 24-hour interval.
+	Max24HourSend *float64 `type:"double"`
+
+	// The maximum number of emails the user is allowed to send per second.
+	MaxSendRate *float64 `type:"double"`
+
+	// The number of emails sent during the previous 24 hours.
 	SentLast24Hours *float64 `type:"double"`
 
 	metadataGetSendQuotaOutput `json:"-", xml:"-"`
@@ -616,7 +847,11 @@ type metadataGetSendStatisticsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents a list of SendDataPoint items returned from a successful GetSendStatistics
+// request. This list contains aggregated data from the previous two weeks of
+// sending activity.
 type GetSendStatisticsOutput struct {
+	// A list of data points, each of which represents 15 minutes of activity.
 	SendDataPoints []*SendDataPoint `type:"list"`
 
 	metadataGetSendStatisticsOutput `json:"-", xml:"-"`
@@ -626,10 +861,27 @@ type metadataGetSendStatisticsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the DKIM attributes of a verified email address or a domain.
 type IdentityDKIMAttributes struct {
-	DKIMEnabled            *bool     `locationName:"DkimEnabled" type:"boolean" required:"true"`
-	DKIMTokens             []*string `locationName:"DkimTokens" type:"list"`
-	DKIMVerificationStatus *string   `locationName:"DkimVerificationStatus" type:"string" required:"true"`
+	// True if DKIM signing is enabled for email sent from the identity; false otherwise.
+	DKIMEnabled *bool `locationName:"DkimEnabled" type:"boolean" required:"true"`
+
+	// A set of character strings that represent the domain's identity. Using these
+	// tokens, you will need to create DNS CNAME records that point to DKIM public
+	// keys hosted by Amazon SES. Amazon Web Services will eventually detect that
+	// you have updated your DNS records; this detection process may take up to
+	// 72 hours. Upon successful detection, Amazon SES will be able to DKIM-sign
+	// email originating from that domain. (This only applies to domain identities,
+	// not email address identities.)
+	//
+	// For more information about creating DNS records using DKIM tokens, go to
+	// the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html).
+	DKIMTokens []*string `locationName:"DkimTokens" type:"list"`
+
+	// Describes whether Amazon SES has successfully verified the DKIM DNS records
+	// (tokens) published in the domain name's DNS. (This only applies to domain
+	// identities, not email address identities.)
+	DKIMVerificationStatus *string `locationName:"DkimVerificationStatus" type:"string" required:"true"`
 
 	metadataIdentityDKIMAttributes `json:"-", xml:"-"`
 }
@@ -638,11 +890,28 @@ type metadataIdentityDKIMAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the notification attributes of an identity, including whether
+// an identity has Amazon Simple Notification Service (Amazon SNS) topics set
+// for bounce, complaint, and/or delivery notifications, and whether feedback
+// forwarding is enabled for bounce and complaint notifications.
 type IdentityNotificationAttributes struct {
-	BounceTopic       *string `type:"string" required:"true"`
-	ComplaintTopic    *string `type:"string" required:"true"`
-	DeliveryTopic     *string `type:"string" required:"true"`
-	ForwardingEnabled *bool   `type:"boolean" required:"true"`
+	// The Amazon Resource Name (ARN) of the Amazon SNS topic where Amazon SES will
+	// publish bounce notifications.
+	BounceTopic *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the Amazon SNS topic where Amazon SES will
+	// publish complaint notifications.
+	ComplaintTopic *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the Amazon SNS topic where Amazon SES will
+	// publish delivery notifications.
+	DeliveryTopic *string `type:"string" required:"true"`
+
+	// Describes whether Amazon SES will forward bounce and complaint notifications
+	// as email. true indicates that Amazon SES will forward bounce and complaint
+	// notifications as email, while false indicates that bounce and complaint notifications
+	// will be published only to the specified bounce and complaint Amazon SNS topics.
+	ForwardingEnabled *bool `type:"boolean" required:"true"`
 
 	metadataIdentityNotificationAttributes `json:"-", xml:"-"`
 }
@@ -651,9 +920,14 @@ type metadataIdentityNotificationAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the verification attributes of a single identity.
 type IdentityVerificationAttributes struct {
+	// The verification status of the identity: "Pending", "Success", "Failed",
+	// or "TemporaryFailure".
 	VerificationStatus *string `type:"string" required:"true"`
-	VerificationToken  *string `type:"string"`
+
+	// The verification token for a domain identity. Null for email address identities.
+	VerificationToken *string `type:"string"`
 
 	metadataIdentityVerificationAttributes `json:"-", xml:"-"`
 }
@@ -662,10 +936,18 @@ type metadataIdentityVerificationAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents a request instructing the service to list all identities for the
+// AWS Account.
 type ListIdentitiesInput struct {
+	// The type of the identities to list. Possible values are "EmailAddress" and
+	// "Domain". If this parameter is omitted, then all identities will be listed.
 	IdentityType *string `type:"string"`
-	MaxItems     *int64  `type:"integer"`
-	NextToken    *string `type:"string"`
+
+	// The maximum number of identities per page. Possible values are 1-100 inclusive.
+	MaxItems *int64 `type:"integer"`
+
+	// The token to use for pagination.
+	NextToken *string `type:"string"`
 
 	metadataListIdentitiesInput `json:"-", xml:"-"`
 }
@@ -674,9 +956,13 @@ type metadataListIdentitiesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents a list of all verified identities for the AWS Account.
 type ListIdentitiesOutput struct {
+	// A list of identities.
 	Identities []*string `type:"list" required:"true"`
-	NextToken  *string   `type:"string"`
+
+	// The token used for pagination.
+	NextToken *string `type:"string"`
 
 	metadataListIdentitiesOutput `json:"-", xml:"-"`
 }
@@ -693,7 +979,9 @@ type metadataListVerifiedEmailAddressesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents a list of all the email addresses verified for the current user.
 type ListVerifiedEmailAddressesOutput struct {
+	// A list of email addresses that have been verified.
 	VerifiedEmailAddresses []*string `type:"list"`
 
 	metadataListVerifiedEmailAddressesOutput `json:"-", xml:"-"`
@@ -703,8 +991,13 @@ type metadataListVerifiedEmailAddressesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the message to be sent, composed of a subject and a body.
 type Message struct {
-	Body    *Body    `type:"structure" required:"true"`
+	// The message body.
+	Body *Body `type:"structure" required:"true"`
+
+	// The subject of the message: A short summary of the content, which will appear
+	// in the recipient's inbox.
 	Subject *Content `type:"structure" required:"true"`
 
 	metadataMessage `json:"-", xml:"-"`
@@ -714,7 +1007,15 @@ type metadataMessage struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the raw data of the message.
 type RawMessage struct {
+	// The raw data of the message. The client must ensure that the message format
+	// complies with Internet email standards regarding email header fields, MIME
+	// types, MIME encoding, and base64 encoding (if necessary).
+	//
+	// The To:, CC:, and BCC: headers in the raw message can contain a group list.
+	//
+	// For more information, go to the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html).
 	Data []byte `type:"blob" required:"true"`
 
 	metadataRawMessage `json:"-", xml:"-"`
@@ -724,12 +1025,23 @@ type metadataRawMessage struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents sending statistics data. Each SendDataPoint contains statistics
+// for a 15-minute period of sending activity.
 type SendDataPoint struct {
-	Bounces          *int64     `type:"long"`
-	Complaints       *int64     `type:"long"`
-	DeliveryAttempts *int64     `type:"long"`
-	Rejects          *int64     `type:"long"`
-	Timestamp        *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	// Number of emails that have bounced.
+	Bounces *int64 `type:"long"`
+
+	// Number of unwanted emails that were rejected by recipients.
+	Complaints *int64 `type:"long"`
+
+	// Number of emails that have been enqueued for sending.
+	DeliveryAttempts *int64 `type:"long"`
+
+	// Number of emails rejected by Amazon SES.
+	Rejects *int64 `type:"long"`
+
+	// Time of the data point.
+	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	metadataSendDataPoint `json:"-", xml:"-"`
 }
@@ -738,12 +1050,36 @@ type metadataSendDataPoint struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents a request instructing the service to send a single email message.
+//
+// This datatype can be used in application code to compose a message consisting
+// of source, destination, message, reply-to, and return-path parts. This object
+// can then be sent using the SendEmail action.
 type SendEmailInput struct {
-	Destination      *Destination `type:"structure" required:"true"`
-	Message          *Message     `type:"structure" required:"true"`
-	ReplyToAddresses []*string    `type:"list"`
-	ReturnPath       *string      `type:"string"`
-	Source           *string      `type:"string" required:"true"`
+	// The destination for this email, composed of To:, CC:, and BCC: fields.
+	Destination *Destination `type:"structure" required:"true"`
+
+	// The message to be sent.
+	Message *Message `type:"structure" required:"true"`
+
+	// The reply-to email address(es) for the message. If the recipient replies
+	// to the message, each reply-to address will receive the reply.
+	ReplyToAddresses []*string `type:"list"`
+
+	// The email address to which bounces and complaints are to be forwarded when
+	// feedback forwarding is enabled. If the message cannot be delivered to the
+	// recipient, then an error message will be returned from the recipient's ISP;
+	// this message will then be forwarded to the email address specified by the
+	// ReturnPath parameter.
+	ReturnPath *string `type:"string"`
+
+	// The identity's email address.
+	//
+	//  By default, the string must be 7-bit ASCII. If the text must contain any
+	// other characters, then you must use MIME encoded-word syntax (RFC 2047) instead
+	// of a literal string. MIME encoded-word syntax uses the following form: =?charset?encoding?encoded-text?=.
+	// For more information, see RFC 2047 (http://tools.ietf.org/html/rfc2047).
+	Source *string `type:"string" required:"true"`
 
 	metadataSendEmailInput `json:"-", xml:"-"`
 }
@@ -752,7 +1088,9 @@ type metadataSendEmailInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents a unique message ID returned from a successful SendEmail request.
 type SendEmailOutput struct {
+	// The unique message identifier returned from the SendEmail action.
 	MessageID *string `locationName:"MessageId" type:"string" required:"true"`
 
 	metadataSendEmailOutput `json:"-", xml:"-"`
@@ -762,10 +1100,38 @@ type metadataSendEmailOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents a request instructing the service to send a raw email message.
+//
+// This datatype can be used in application code to compose a message consisting
+// of source, destination, and raw message text. This object can then be sent
+// using the SendRawEmail action.
 type SendRawEmailInput struct {
-	Destinations []*string   `type:"list"`
-	RawMessage   *RawMessage `type:"structure" required:"true"`
-	Source       *string     `type:"string"`
+	// A list of destinations for the message, consisting of To:, CC:, and BCC:
+	// addresses.
+	Destinations []*string `type:"list"`
+
+	// The raw text of the message. The client is responsible for ensuring the following:
+	//
+	//   Message must contain a header and a body, separated by a blank line. All
+	// required header fields must be present. Each part of a multipart MIME message
+	// must be formatted properly. MIME content types must be among those supported
+	// by Amazon SES. For more information, go to the Amazon SES Developer Guide
+	// (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mime-types.html).
+	// Content must be base64-encoded, if MIME requires it.
+	RawMessage *RawMessage `type:"structure" required:"true"`
+
+	// The identity's email address.
+	//
+	//  By default, the string must be 7-bit ASCII. If the text must contain any
+	// other characters, then you must use MIME encoded-word syntax (RFC 2047) instead
+	// of a literal string. MIME encoded-word syntax uses the following form: =?charset?encoding?encoded-text?=.
+	// For more information, see RFC 2047 (http://tools.ietf.org/html/rfc2047).
+	//
+	// If you specify the Source parameter and have feedback forwarding enabled,
+	// then bounces and complaints will be sent to this email address. This takes
+	// precedence over any Return-Path header that you might include in the raw
+	// text of the message.
+	Source *string `type:"string"`
 
 	metadataSendRawEmailInput `json:"-", xml:"-"`
 }
@@ -774,7 +1140,9 @@ type metadataSendRawEmailInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents a unique message ID returned from a successful SendRawEmail request.
 type SendRawEmailOutput struct {
+	// The unique message identifier returned from the SendRawEmail action.
 	MessageID *string `locationName:"MessageId" type:"string" required:"true"`
 
 	metadataSendRawEmailOutput `json:"-", xml:"-"`
@@ -784,9 +1152,15 @@ type metadataSendRawEmailOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents a request instructing the service to enable or disable DKIM signing
+// for an identity.
 type SetIdentityDKIMEnabledInput struct {
-	DKIMEnabled *bool   `locationName:"DkimEnabled" type:"boolean" required:"true"`
-	Identity    *string `type:"string" required:"true"`
+	// Sets whether DKIM signing is enabled for an identity. Set to true to enable
+	// DKIM signing for this identity; false to disable it.
+	DKIMEnabled *bool `locationName:"DkimEnabled" type:"boolean" required:"true"`
+
+	// The identity for which DKIM signing should be enabled or disabled.
+	Identity *string `type:"string" required:"true"`
 
 	metadataSetIdentityDKIMEnabledInput `json:"-", xml:"-"`
 }
@@ -795,6 +1169,8 @@ type metadataSetIdentityDKIMEnabledInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// An empty element. Receiving this element indicates that the request completed
+// successfully.
 type SetIdentityDKIMEnabledOutput struct {
 	metadataSetIdentityDKIMEnabledOutput `json:"-", xml:"-"`
 }
@@ -804,8 +1180,17 @@ type metadataSetIdentityDKIMEnabledOutput struct {
 }
 
 type SetIdentityFeedbackForwardingEnabledInput struct {
-	ForwardingEnabled *bool   `type:"boolean" required:"true"`
-	Identity          *string `type:"string" required:"true"`
+	// Sets whether Amazon SES will forward bounce and complaint notifications as
+	// email. true specifies that Amazon SES will forward bounce and complaint notifications
+	// as email, in addition to any Amazon SNS topic publishing otherwise specified.
+	// false specifies that Amazon SES will publish bounce and complaint notifications
+	// only through Amazon SNS. This value can only be set to false when Amazon
+	// SNS topics are set for both Bounce and Complaint notification types.
+	ForwardingEnabled *bool `type:"boolean" required:"true"`
+
+	// The identity for which to set bounce and complaint notification forwarding.
+	// Examples: user@example.com, example.com.
+	Identity *string `type:"string" required:"true"`
 
 	metadataSetIdentityFeedbackForwardingEnabledInput `json:"-", xml:"-"`
 }
@@ -814,6 +1199,8 @@ type metadataSetIdentityFeedbackForwardingEnabledInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// An empty element. Receiving this element indicates that the request completed
+// successfully.
 type SetIdentityFeedbackForwardingEnabledOutput struct {
 	metadataSetIdentityFeedbackForwardingEnabledOutput `json:"-", xml:"-"`
 }
@@ -822,10 +1209,20 @@ type metadataSetIdentityFeedbackForwardingEnabledOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents a request to set or clear an identity's notification topic.
 type SetIdentityNotificationTopicInput struct {
-	Identity         *string `type:"string" required:"true"`
+	// The identity for which the Amazon SNS topic will be set. Examples: user@example.com,
+	// example.com.
+	Identity *string `type:"string" required:"true"`
+
+	// The type of notifications that will be published to the specified Amazon
+	// SNS topic.
 	NotificationType *string `type:"string" required:"true"`
-	SNSTopic         *string `locationName:"SnsTopic" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the Amazon SNS topic. If the parameter
+	// is omitted from the request or a null value is passed, SnsTopic is cleared
+	// and publishing is disabled.
+	SNSTopic *string `locationName:"SnsTopic" type:"string"`
 
 	metadataSetIdentityNotificationTopicInput `json:"-", xml:"-"`
 }
@@ -834,6 +1231,8 @@ type metadataSetIdentityNotificationTopicInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// An empty element. Receiving this element indicates that the request completed
+// successfully.
 type SetIdentityNotificationTopicOutput struct {
 	metadataSetIdentityNotificationTopicOutput `json:"-", xml:"-"`
 }
@@ -842,7 +1241,10 @@ type metadataSetIdentityNotificationTopicOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents a request instructing the service to begin DKIM verification for
+// a domain.
 type VerifyDomainDKIMInput struct {
+	// The name of the domain to be verified for Easy DKIM signing.
 	Domain *string `type:"string" required:"true"`
 
 	metadataVerifyDomainDKIMInput `json:"-", xml:"-"`
@@ -852,7 +1254,20 @@ type metadataVerifyDomainDKIMInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the DNS records that must be published in the domain name's DNS
+// to complete DKIM setup.
 type VerifyDomainDKIMOutput struct {
+	// A set of character strings that represent the domain's identity. If the identity
+	// is an email address, the tokens represent the domain of that address.
+	//
+	// Using these tokens, you will need to create DNS CNAME records that point
+	// to DKIM public keys hosted by Amazon SES. Amazon Web Services will eventually
+	// detect that you have updated your DNS records; this detection process may
+	// take up to 72 hours. Upon successful detection, Amazon SES will be able to
+	// DKIM-sign emails originating from that domain.
+	//
+	// For more information about creating DNS records using DKIM tokens, go to
+	// the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html).
 	DKIMTokens []*string `locationName:"DkimTokens" type:"list" required:"true"`
 
 	metadataVerifyDomainDKIMOutput `json:"-", xml:"-"`
@@ -862,7 +1277,9 @@ type metadataVerifyDomainDKIMOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents a request instructing the service to begin domain verification.
 type VerifyDomainIdentityInput struct {
+	// The domain to be verified.
 	Domain *string `type:"string" required:"true"`
 
 	metadataVerifyDomainIdentityInput `json:"-", xml:"-"`
@@ -872,7 +1289,10 @@ type metadataVerifyDomainIdentityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents a token used for domain ownership verification.
 type VerifyDomainIdentityOutput struct {
+	// A TXT record that must be placed in the DNS settings for the domain, in order
+	// to complete domain verification.
 	VerificationToken *string `type:"string" required:"true"`
 
 	metadataVerifyDomainIdentityOutput `json:"-", xml:"-"`
@@ -882,7 +1302,9 @@ type metadataVerifyDomainIdentityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents a request instructing the service to begin email address verification.
 type VerifyEmailAddressInput struct {
+	// The email address to be verified.
 	EmailAddress *string `type:"string" required:"true"`
 
 	metadataVerifyEmailAddressInput `json:"-", xml:"-"`
@@ -900,7 +1322,9 @@ type metadataVerifyEmailAddressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents a request instructing the service to begin email address verification.
 type VerifyEmailIdentityInput struct {
+	// The email address to be verified.
 	EmailAddress *string `type:"string" required:"true"`
 
 	metadataVerifyEmailIdentityInput `json:"-", xml:"-"`
@@ -910,6 +1334,8 @@ type metadataVerifyEmailIdentityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// An empty element. Receiving this element indicates that the request completed
+// successfully.
 type VerifyEmailIdentityOutput struct {
 	metadataVerifyEmailIdentityOutput `json:"-", xml:"-"`
 }

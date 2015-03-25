@@ -22,6 +22,13 @@ func (c *DataPipeline) ActivatePipelineRequest(input *ActivatePipelineInput) (re
 	return
 }
 
+// Validates a pipeline and initiates processing. If the pipeline does not pass
+// validation, activation fails. You cannot perform this operation on FINISHED
+// pipelines and attempting to do so will return an InvalidRequestException.
+//
+//  Call this action to start processing pipeline tasks of a pipeline you've
+// created using the CreatePipeline and PutPipelineDefinition actions. A pipeline
+// cannot be modified after it has been successfully activated.
 func (c *DataPipeline) ActivatePipeline(input *ActivatePipelineInput) (output *ActivatePipelineOutput, err error) {
 	req, out := c.ActivatePipelineRequest(input)
 	output = out
@@ -47,6 +54,8 @@ func (c *DataPipeline) CreatePipelineRequest(input *CreatePipelineInput) (req *a
 	return
 }
 
+// Creates a new empty pipeline. When this action succeeds, you can then use
+// the PutPipelineDefinition action to populate the pipeline.
 func (c *DataPipeline) CreatePipeline(input *CreatePipelineInput) (output *CreatePipelineOutput, err error) {
 	req, out := c.CreatePipelineRequest(input)
 	output = out
@@ -72,6 +81,14 @@ func (c *DataPipeline) DeletePipelineRequest(input *DeletePipelineInput) (req *a
 	return
 }
 
+// Permanently deletes a pipeline, its pipeline definition and its run history.
+// You cannot query or restore a deleted pipeline. AWS Data Pipeline will attempt
+// to cancel instances associated with the pipeline that are currently being
+// processed by task runners. Deleting a pipeline cannot be undone.
+//
+//  To temporarily pause a pipeline instead of deleting it, call SetStatus
+// with the status set to Pause on individual components. Components that are
+// paused by SetStatus can be resumed.
 func (c *DataPipeline) DeletePipeline(input *DeletePipelineInput) (output *DeletePipelineOutput, err error) {
 	req, out := c.DeletePipelineRequest(input)
 	output = out
@@ -97,6 +114,9 @@ func (c *DataPipeline) DescribeObjectsRequest(input *DescribeObjectsInput) (req 
 	return
 }
 
+// Returns the object definitions for a set of objects associated with the pipeline.
+// Object definitions are composed of a set of fields that define the properties
+// of the object.
 func (c *DataPipeline) DescribeObjects(input *DescribeObjectsInput) (output *DescribeObjectsOutput, err error) {
 	req, out := c.DescribeObjectsRequest(input)
 	output = out
@@ -122,6 +142,15 @@ func (c *DataPipeline) DescribePipelinesRequest(input *DescribePipelinesInput) (
 	return
 }
 
+// Retrieve metadata about one or more pipelines. The information retrieved
+// includes the name of the pipeline, the pipeline identifier, its current state,
+// and the user account that owns the pipeline. Using account credentials, you
+// can retrieve metadata about pipelines that you or your IAM users have created.
+// If you are using an IAM user account, you can retrieve metadata about only
+// those pipelines you have read permission for.
+//
+//  To retrieve the full pipeline definition instead of metadata about the
+// pipeline, call the GetPipelineDefinition action.
 func (c *DataPipeline) DescribePipelines(input *DescribePipelinesInput) (output *DescribePipelinesOutput, err error) {
 	req, out := c.DescribePipelinesRequest(input)
 	output = out
@@ -147,6 +176,8 @@ func (c *DataPipeline) EvaluateExpressionRequest(input *EvaluateExpressionInput)
 	return
 }
 
+// Evaluates a string in the context of a specified object. A task runner can
+// use this action to evaluate SQL queries stored in Amazon S3.
 func (c *DataPipeline) EvaluateExpression(input *EvaluateExpressionInput) (output *EvaluateExpressionOutput, err error) {
 	req, out := c.EvaluateExpressionRequest(input)
 	output = out
@@ -172,6 +203,8 @@ func (c *DataPipeline) GetPipelineDefinitionRequest(input *GetPipelineDefinition
 	return
 }
 
+// Returns the definition of the specified pipeline. You can call GetPipelineDefinition
+// to retrieve the pipeline definition you provided using PutPipelineDefinition.
 func (c *DataPipeline) GetPipelineDefinition(input *GetPipelineDefinitionInput) (output *GetPipelineDefinitionOutput, err error) {
 	req, out := c.GetPipelineDefinitionRequest(input)
 	output = out
@@ -197,6 +230,8 @@ func (c *DataPipeline) ListPipelinesRequest(input *ListPipelinesInput) (req *aws
 	return
 }
 
+// Returns a list of pipeline identifiers for all active pipelines. Identifiers
+// are returned only for pipelines you have permission to access.
 func (c *DataPipeline) ListPipelines(input *ListPipelinesInput) (output *ListPipelinesOutput, err error) {
 	req, out := c.ListPipelinesRequest(input)
 	output = out
@@ -222,6 +257,20 @@ func (c *DataPipeline) PollForTaskRequest(input *PollForTaskInput) (req *aws.Req
 	return
 }
 
+// Task runners call this action to receive a task to perform from AWS Data
+// Pipeline. The task runner specifies which tasks it can perform by setting
+// a value for the workerGroup parameter of the PollForTask call. The task returned
+// by PollForTask may come from any of the pipelines that match the workerGroup
+// value passed in by the task runner and that was launched using the IAM user
+// credentials specified by the task runner.
+//
+//  If tasks are ready in the work queue, PollForTask returns a response immediately.
+// If no tasks are available in the queue, PollForTask uses long-polling and
+// holds on to a poll connection for up to a 90 seconds during which time the
+// first newly scheduled task is handed to the task runner. To accomodate this,
+// set the socket timeout in your task runner to 90 seconds. The task runner
+// should not call PollForTask again on the same workerGroup until it receives
+// a response, and this may take up to 90 seconds.
 func (c *DataPipeline) PollForTask(input *PollForTaskInput) (output *PollForTaskOutput, err error) {
 	req, out := c.PollForTaskRequest(input)
 	output = out
@@ -247,6 +296,18 @@ func (c *DataPipeline) PutPipelineDefinitionRequest(input *PutPipelineDefinition
 	return
 }
 
+// Adds tasks, schedules, and preconditions that control the behavior of the
+// pipeline. You can use PutPipelineDefinition to populate a new pipeline.
+//
+//  PutPipelineDefinition also validates the configuration as it adds it to
+// the pipeline. Changes to the pipeline are saved unless one of the following
+// three validation errors exists in the pipeline.  An object is missing a name
+// or identifier field. A string or reference field is empty. The number of
+// objects in the pipeline exceeds the maximum allowed objects. The pipeline
+// is in a FINISHED state.
+//
+//  Pipeline object definitions are passed to the PutPipelineDefinition action
+// and returned by the GetPipelineDefinition action.
 func (c *DataPipeline) PutPipelineDefinition(input *PutPipelineDefinitionInput) (output *PutPipelineDefinitionOutput, err error) {
 	req, out := c.PutPipelineDefinitionRequest(input)
 	output = out
@@ -272,6 +333,14 @@ func (c *DataPipeline) QueryObjectsRequest(input *QueryObjectsInput) (req *aws.R
 	return
 }
 
+// Queries a pipeline for the names of objects that match a specified set of
+// conditions.
+//
+// The objects returned by QueryObjects are paginated and then filtered by
+// the value you set for query. This means the action may return an empty result
+// set with a value set for marker. If HasMoreResults is set to True, you should
+// continue to call QueryObjects, passing in the returned value for marker,
+// until HasMoreResults returns False.
 func (c *DataPipeline) QueryObjects(input *QueryObjectsInput) (output *QueryObjectsOutput, err error) {
 	req, out := c.QueryObjectsRequest(input)
 	output = out
@@ -297,6 +366,18 @@ func (c *DataPipeline) ReportTaskProgressRequest(input *ReportTaskProgressInput)
 	return
 }
 
+// Updates the AWS Data Pipeline service on the progress of the calling task
+// runner. When the task runner is assigned a task, it should call ReportTaskProgress
+// to acknowledge that it has the task within 2 minutes. If the web service
+// does not recieve this acknowledgement within the 2 minute window, it will
+// assign the task in a subsequent PollForTask call. After this initial acknowledgement,
+// the task runner only needs to report progress every 15 minutes to maintain
+// its ownership of the task. You can change this reporting time from 15 minutes
+// by specifying a reportProgressTimeout field in your pipeline. If a task runner
+// does not report its status after 5 minutes, AWS Data Pipeline will assume
+// that the task runner is unable to process the task and will reassign the
+// task in a subsequent response to PollForTask. task runners should call ReportTaskProgress
+// every 60 seconds.
 func (c *DataPipeline) ReportTaskProgress(input *ReportTaskProgressInput) (output *ReportTaskProgressOutput, err error) {
 	req, out := c.ReportTaskProgressRequest(input)
 	output = out
@@ -322,6 +403,11 @@ func (c *DataPipeline) ReportTaskRunnerHeartbeatRequest(input *ReportTaskRunnerH
 	return
 }
 
+// Task runners call ReportTaskRunnerHeartbeat every 15 minutes to indicate
+// that they are operational. In the case of AWS Data Pipeline Task Runner launched
+// on a resource managed by AWS Data Pipeline, the web service can use this
+// call to detect when the task runner application has failed and restart a
+// new instance.
 func (c *DataPipeline) ReportTaskRunnerHeartbeat(input *ReportTaskRunnerHeartbeatInput) (output *ReportTaskRunnerHeartbeatOutput, err error) {
 	req, out := c.ReportTaskRunnerHeartbeatRequest(input)
 	output = out
@@ -347,6 +433,11 @@ func (c *DataPipeline) SetStatusRequest(input *SetStatusInput) (req *aws.Request
 	return
 }
 
+// Requests that the status of an array of physical or logical pipeline objects
+// be updated in the pipeline. This update may not occur immediately, but is
+// eventually consistent. The status that can be set depends on the type of
+// object, e.g. DataNode or Activity. You cannot perform this operation on FINISHED
+// pipelines and attempting to do so will return an InvalidRequestException.
 func (c *DataPipeline) SetStatus(input *SetStatusInput) (output *SetStatusOutput, err error) {
 	req, out := c.SetStatusRequest(input)
 	output = out
@@ -372,6 +463,10 @@ func (c *DataPipeline) SetTaskStatusRequest(input *SetTaskStatusInput) (req *aws
 	return
 }
 
+// Notifies AWS Data Pipeline that a task is completed and provides information
+// about the final status. The task runner calls this action regardless of whether
+// the task was sucessful. The task runner does not need to call SetTaskStatus
+// for tasks that are canceled by the web service during a call to ReportTaskProgress.
 func (c *DataPipeline) SetTaskStatus(input *SetTaskStatusInput) (output *SetTaskStatusOutput, err error) {
 	req, out := c.SetTaskStatusRequest(input)
 	output = out
@@ -397,6 +492,8 @@ func (c *DataPipeline) ValidatePipelineDefinitionRequest(input *ValidatePipeline
 	return
 }
 
+// Tests the pipeline definition with a set of validation checks to ensure that
+// it is well formed and can run without error.
 func (c *DataPipeline) ValidatePipelineDefinition(input *ValidatePipelineDefinitionInput) (output *ValidatePipelineDefinitionOutput, err error) {
 	req, out := c.ValidatePipelineDefinitionRequest(input)
 	output = out
@@ -406,9 +503,13 @@ func (c *DataPipeline) ValidatePipelineDefinition(input *ValidatePipelineDefinit
 
 var opValidatePipelineDefinition *aws.Operation
 
+// The input of the ActivatePipeline action.
 type ActivatePipelineInput struct {
+	// Returns a list of parameter values to pass to the pipeline at activation.
 	ParameterValues []*ParameterValue `locationName:"parameterValues" type:"list"`
-	PipelineID      *string           `locationName:"pipelineId" type:"string" required:"true"`
+
+	// The identifier of the pipeline to activate.
+	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
 
 	metadataActivatePipelineInput `json:"-", xml:"-"`
 }
@@ -417,6 +518,7 @@ type metadataActivatePipelineInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the output from the ActivatePipeline action.
 type ActivatePipelineOutput struct {
 	metadataActivatePipelineOutput `json:"-", xml:"-"`
 }
@@ -425,10 +527,28 @@ type metadataActivatePipelineOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input for the CreatePipeline action.
 type CreatePipelineInput struct {
+	// The description of the new pipeline.
 	Description *string `locationName:"description" type:"string"`
-	Name        *string `locationName:"name" type:"string" required:"true"`
-	UniqueID    *string `locationName:"uniqueId" type:"string" required:"true"`
+
+	// The name of the new pipeline. You can use the same name for multiple pipelines
+	// associated with your AWS account, because AWS Data Pipeline assigns each
+	// new pipeline a unique pipeline identifier.
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// A unique identifier that you specify. This identifier is not the same as
+	// the pipeline identifier assigned by AWS Data Pipeline. You are responsible
+	// for defining the format and ensuring the uniqueness of this identifier. You
+	// use this parameter to ensure idempotency during repeated calls to CreatePipeline.
+	// For example, if the first call to CreatePipeline does not return a clear
+	// success, you can pass in the same unique identifier and pipeline name combination
+	// on a subsequent call to CreatePipeline. CreatePipeline ensures that if a
+	// pipeline already exists with the same name and unique identifier, a new pipeline
+	// will not be created. Instead, you'll receive the pipeline identifier from
+	// the previous attempt. The uniqueness of the name and unique identifier combination
+	// is scoped to the AWS account or IAM user credentials.
+	UniqueID *string `locationName:"uniqueId" type:"string" required:"true"`
 
 	metadataCreatePipelineInput `json:"-", xml:"-"`
 }
@@ -437,7 +557,10 @@ type metadataCreatePipelineInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the output from the CreatePipeline action.
 type CreatePipelineOutput struct {
+	// The ID that AWS Data Pipeline assigns the newly created pipeline. The ID
+	// is a string of the form: df-06372391ZG65EXAMPLE.
 	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
 
 	metadataCreatePipelineOutput `json:"-", xml:"-"`
@@ -447,7 +570,9 @@ type metadataCreatePipelineOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input for the DeletePipeline action.
 type DeletePipelineInput struct {
+	// The identifier of the pipeline to be deleted.
 	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
 
 	metadataDeletePipelineInput `json:"-", xml:"-"`
@@ -465,11 +590,26 @@ type metadataDeletePipelineOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The DescribeObjects action returns the object definitions for a specified
+// set of object identifiers. You can filter the results to named fields and
+// used markers to page through the results.
 type DescribeObjectsInput struct {
-	EvaluateExpressions *bool     `locationName:"evaluateExpressions" type:"boolean"`
-	Marker              *string   `locationName:"marker" type:"string"`
-	ObjectIDs           []*string `locationName:"objectIds" type:"list" required:"true"`
-	PipelineID          *string   `locationName:"pipelineId" type:"string" required:"true"`
+	// Indicates whether any expressions in the object should be evaluated when
+	// the object descriptions are returned.
+	EvaluateExpressions *bool `locationName:"evaluateExpressions" type:"boolean"`
+
+	// The starting point for the results to be returned. The first time you call
+	// DescribeObjects, this value should be empty. As long as the action returns
+	// HasMoreResults as True, you can call DescribeObjects again and pass the marker
+	// value from the response to retrieve the next set of results.
+	Marker *string `locationName:"marker" type:"string"`
+
+	// Identifiers of the pipeline objects that contain the definitions to be described.
+	// You can pass as many as 25 identifiers in a single call to DescribeObjects.
+	ObjectIDs []*string `locationName:"objectIds" type:"list" required:"true"`
+
+	// Identifier of the pipeline that contains the object definitions.
+	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
 
 	metadataDescribeObjectsInput `json:"-", xml:"-"`
 }
@@ -478,9 +618,16 @@ type metadataDescribeObjectsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// If True, there are more results that can be returned in another call to DescribeObjects.
 type DescribeObjectsOutput struct {
-	HasMoreResults  *bool             `locationName:"hasMoreResults" type:"boolean"`
-	Marker          *string           `locationName:"marker" type:"string"`
+	// If True, there are more pages of results to return.
+	HasMoreResults *bool `locationName:"hasMoreResults" type:"boolean"`
+
+	// The starting point for the next page of results. To view the next page of
+	// results, call DescribeObjects again with this marker value.
+	Marker *string `locationName:"marker" type:"string"`
+
+	// An array of object definitions that are returned by the call to DescribeObjects.
 	PipelineObjects []*PipelineObject `locationName:"pipelineObjects" type:"list" required:"true"`
 
 	metadataDescribeObjectsOutput `json:"-", xml:"-"`
@@ -490,7 +637,11 @@ type metadataDescribeObjectsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input to the DescribePipelines action.
 type DescribePipelinesInput struct {
+	// Identifiers of the pipelines to describe. You can pass as many as 25 identifiers
+	// in a single call to DescribePipelines. You can obtain pipeline identifiers
+	// by calling ListPipelines.
 	PipelineIDs []*string `locationName:"pipelineIds" type:"list" required:"true"`
 
 	metadataDescribePipelinesInput `json:"-", xml:"-"`
@@ -500,7 +651,9 @@ type metadataDescribePipelinesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the output from the DescribePipelines action.
 type DescribePipelinesOutput struct {
+	// An array of descriptions returned for the specified pipelines.
 	PipelineDescriptionList []*PipelineDescription `locationName:"pipelineDescriptionList" type:"list" required:"true"`
 
 	metadataDescribePipelinesOutput `json:"-", xml:"-"`
@@ -510,9 +663,15 @@ type metadataDescribePipelinesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input for the EvaluateExpression action.
 type EvaluateExpressionInput struct {
+	// The expression to evaluate.
 	Expression *string `locationName:"expression" type:"string" required:"true"`
-	ObjectID   *string `locationName:"objectId" type:"string" required:"true"`
+
+	// The identifier of the object.
+	ObjectID *string `locationName:"objectId" type:"string" required:"true"`
+
+	// The identifier of the pipeline.
 	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
 
 	metadataEvaluateExpressionInput `json:"-", xml:"-"`
@@ -522,7 +681,9 @@ type metadataEvaluateExpressionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the output from the EvaluateExpression action.
 type EvaluateExpressionOutput struct {
+	// The evaluated expression.
 	EvaluatedExpression *string `locationName:"evaluatedExpression" type:"string" required:"true"`
 
 	metadataEvaluateExpressionOutput `json:"-", xml:"-"`
@@ -532,9 +693,17 @@ type metadataEvaluateExpressionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A key-value pair that describes a property of a pipeline object. The value
+// is specified as either a string value (StringValue) or a reference to another
+// object (RefValue) but not as both.
 type Field struct {
-	Key         *string `locationName:"key" type:"string" required:"true"`
-	RefValue    *string `locationName:"refValue" type:"string"`
+	// The field identifier.
+	Key *string `locationName:"key" type:"string" required:"true"`
+
+	// The field value, expressed as the identifier of another object.
+	RefValue *string `locationName:"refValue" type:"string"`
+
+	// The field value, expressed as a String.
 	StringValue *string `locationName:"stringValue" type:"string"`
 
 	metadataField `json:"-", xml:"-"`
@@ -544,9 +713,16 @@ type metadataField struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input for the GetPipelineDefinition action.
 type GetPipelineDefinitionInput struct {
+	// The identifier of the pipeline.
 	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
-	Version    *string `locationName:"version" type:"string"`
+
+	// The version of the pipeline definition to retrieve. This parameter accepts
+	// the values latest (default) and active. Where latest indicates the last definition
+	// saved to the pipeline and active indicates the last definition of the pipeline
+	// that was activated.
+	Version *string `locationName:"version" type:"string"`
 
 	metadataGetPipelineDefinitionInput `json:"-", xml:"-"`
 }
@@ -555,10 +731,16 @@ type metadataGetPipelineDefinitionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the output from the GetPipelineDefinition action.
 type GetPipelineDefinitionOutput struct {
+	// Returns a list of parameter objects used in the pipeline definition.
 	ParameterObjects []*ParameterObject `locationName:"parameterObjects" type:"list"`
-	ParameterValues  []*ParameterValue  `locationName:"parameterValues" type:"list"`
-	PipelineObjects  []*PipelineObject  `locationName:"pipelineObjects" type:"list"`
+
+	// Returns a list of parameter values used in the pipeline definition.
+	ParameterValues []*ParameterValue `locationName:"parameterValues" type:"list"`
+
+	// An array of objects defined in the pipeline.
+	PipelineObjects []*PipelineObject `locationName:"pipelineObjects" type:"list"`
 
 	metadataGetPipelineDefinitionOutput `json:"-", xml:"-"`
 }
@@ -567,8 +749,20 @@ type metadataGetPipelineDefinitionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Identity information for the Amazon EC2 instance that is hosting the task
+// runner. You can get this value by calling a metadata URI from the EC2 instance.
+// For more information, go to Instance Metadata (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AESDG-chapter-instancedata.html)
+// in the Amazon Elastic Compute Cloud User Guide. Passing in this value proves
+// that your task runner is running on an EC2 instance, and ensures the proper
+// AWS Data Pipeline service charges are applied to your pipeline.
 type InstanceIdentity struct {
-	Document  *string `locationName:"document" type:"string"`
+	// A description of an Amazon EC2 instance that is generated when the instance
+	// is launched and exposed to the instance via the instance metadata service
+	// in the form of a JSON representation of an object.
+	Document *string `locationName:"document" type:"string"`
+
+	// A signature which can be used to verify the accuracy and authenticity of
+	// the information provided in the instance identity document.
 	Signature *string `locationName:"signature" type:"string"`
 
 	metadataInstanceIdentity `json:"-", xml:"-"`
@@ -578,7 +772,12 @@ type metadataInstanceIdentity struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input to the ListPipelines action.
 type ListPipelinesInput struct {
+	// The starting point for the results to be returned. The first time you call
+	// ListPipelines, this value should be empty. As long as the action returns
+	// HasMoreResults as True, you can call ListPipelines again and pass the marker
+	// value from the response to retrieve the next set of results.
 	Marker *string `locationName:"marker" type:"string"`
 
 	metadataListPipelinesInput `json:"-", xml:"-"`
@@ -588,9 +787,20 @@ type metadataListPipelinesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the output from the ListPipelines action.
 type ListPipelinesOutput struct {
-	HasMoreResults *bool             `locationName:"hasMoreResults" type:"boolean"`
-	Marker         *string           `locationName:"marker" type:"string"`
+	// If True, there are more results that can be obtained by a subsequent call
+	// to ListPipelines.
+	HasMoreResults *bool `locationName:"hasMoreResults" type:"boolean"`
+
+	// If not null, indicates the starting point for the set of pipeline identifiers
+	// that the next call to ListPipelines will retrieve. If null, there are no
+	// more pipeline identifiers.
+	Marker *string `locationName:"marker" type:"string"`
+
+	// A list of all the pipeline identifiers that your account has permission to
+	// access. If you require additional information about the pipelines, you can
+	// use these identifiers to call DescribePipelines and GetPipelineDefinition.
 	PipelineIDList []*PipelineIDName `locationName:"pipelineIdList" type:"list" required:"true"`
 
 	metadataListPipelinesOutput `json:"-", xml:"-"`
@@ -600,8 +810,30 @@ type metadataListPipelinesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains a logical operation for comparing the value of a field with a specified
+// value.
 type Operator struct {
-	Type   *string   `locationName:"type" type:"string"`
+	// The logical operation to be performed: equal (EQ), equal reference (REF_EQ),
+	// less than or equal (LE), greater than or equal (GE), or between (BETWEEN).
+	// Equal reference (REF_EQ) can be used only with reference fields. The other
+	// comparison types can be used only with String fields. The comparison types
+	// you can use apply only to certain object fields, as detailed below.
+	//
+	//  The comparison operators EQ and REF_EQ act on the following fields:
+	//
+	//  name @sphere parent @componentParent @instanceParent @status @scheduledStartTime
+	// @scheduledEndTime @actualStartTime @actualEndTime   The comparison operators
+	// GE, LE, and BETWEEN act on the following fields:
+	//
+	//  @scheduledStartTime @scheduledEndTime @actualStartTime @actualEndTime
+	// Note that fields beginning with the at sign (@) are read-only and set by
+	// the web service. When you name fields, you should choose names containing
+	// only alpha-numeric values, as symbols may be reserved by AWS Data Pipeline.
+	// User-defined fields that you add to a pipeline should prefix their name with
+	// the string "my".
+	Type *string `locationName:"type" type:"string"`
+
+	// The value that the actual field value will be compared with.
 	Values []*string `locationName:"values" type:"list"`
 
 	metadataOperator `json:"-", xml:"-"`
@@ -611,8 +843,12 @@ type metadataOperator struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The attributes allowed or specified with a parameter object.
 type ParameterAttribute struct {
-	Key         *string `locationName:"key" type:"string" required:"true"`
+	// The field identifier.
+	Key *string `locationName:"key" type:"string" required:"true"`
+
+	// The field value, expressed as a String.
 	StringValue *string `locationName:"stringValue" type:"string" required:"true"`
 
 	metadataParameterAttribute `json:"-", xml:"-"`
@@ -622,9 +858,13 @@ type metadataParameterAttribute struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains information about a parameter object.
 type ParameterObject struct {
+	// The attributes of the parameter object.
 	Attributes []*ParameterAttribute `locationName:"attributes" type:"list" required:"true"`
-	ID         *string               `locationName:"id" type:"string" required:"true"`
+
+	// Identifier of the parameter object.
+	ID *string `locationName:"id" type:"string" required:"true"`
 
 	metadataParameterObject `json:"-", xml:"-"`
 }
@@ -633,8 +873,12 @@ type metadataParameterObject struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A value or list of parameter values.
 type ParameterValue struct {
-	ID          *string `locationName:"id" type:"string" required:"true"`
+	// Identifier of the parameter value.
+	ID *string `locationName:"id" type:"string" required:"true"`
+
+	// The field value, expressed as a String.
 	StringValue *string `locationName:"stringValue" type:"string" required:"true"`
 
 	metadataParameterValue `json:"-", xml:"-"`
@@ -644,11 +888,21 @@ type metadataParameterValue struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains pipeline metadata.
 type PipelineDescription struct {
-	Description *string  `locationName:"description" type:"string"`
-	Fields      []*Field `locationName:"fields" type:"list" required:"true"`
-	Name        *string  `locationName:"name" type:"string" required:"true"`
-	PipelineID  *string  `locationName:"pipelineId" type:"string" required:"true"`
+	// Description of the pipeline.
+	Description *string `locationName:"description" type:"string"`
+
+	// A list of read-only fields that contain metadata about the pipeline: @userId,
+	// @accountId, and @pipelineState.
+	Fields []*Field `locationName:"fields" type:"list" required:"true"`
+
+	// Name of the pipeline.
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The pipeline identifier that was assigned by AWS Data Pipeline. This is a
+	// string of the form df-297EG78HU43EEXAMPLE.
+	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
 
 	metadataPipelineDescription `json:"-", xml:"-"`
 }
@@ -657,8 +911,13 @@ type metadataPipelineDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the name and identifier of a pipeline.
 type PipelineIDName struct {
-	ID   *string `locationName:"id" type:"string"`
+	// Identifier of the pipeline that was assigned by AWS Data Pipeline. This is
+	// a string of the form df-297EG78HU43EEXAMPLE.
+	ID *string `locationName:"id" type:"string"`
+
+	// Name of the pipeline.
 	Name *string `locationName:"name" type:"string"`
 
 	metadataPipelineIDName `json:"-", xml:"-"`
@@ -668,10 +927,18 @@ type metadataPipelineIDName struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains information about a pipeline object. This can be a logical, physical,
+// or physical attempt pipeline object. The complete set of components of a
+// pipeline defines the pipeline.
 type PipelineObject struct {
+	// Key-value pairs that define the properties of the object.
 	Fields []*Field `locationName:"fields" type:"list" required:"true"`
-	ID     *string  `locationName:"id" type:"string" required:"true"`
-	Name   *string  `locationName:"name" type:"string" required:"true"`
+
+	// Identifier of the object.
+	ID *string `locationName:"id" type:"string" required:"true"`
+
+	// Name of the object.
+	Name *string `locationName:"name" type:"string" required:"true"`
 
 	metadataPipelineObject `json:"-", xml:"-"`
 }
@@ -680,10 +947,25 @@ type metadataPipelineObject struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The data type passed in as input to the PollForTask action.
 type PollForTaskInput struct {
-	Hostname         *string           `locationName:"hostname" type:"string"`
+	// The public DNS name of the calling task runner.
+	Hostname *string `locationName:"hostname" type:"string"`
+
+	// Identity information for the Amazon EC2 instance that is hosting the task
+	// runner. You can get this value by calling the URI, http://169.254.169.254/latest/meta-data/instance-id,
+	// from the EC2 instance. For more information, go to Instance Metadata (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AESDG-chapter-instancedata.html)
+	// in the Amazon Elastic Compute Cloud User Guide. Passing in this value proves
+	// that your task runner is running on an EC2 instance, and ensures the proper
+	// AWS Data Pipeline service charges are applied to your pipeline.
 	InstanceIdentity *InstanceIdentity `locationName:"instanceIdentity" type:"structure"`
-	WorkerGroup      *string           `locationName:"workerGroup" type:"string" required:"true"`
+
+	// Indicates the type of task the task runner is configured to accept and process.
+	// The worker group is set as a field on objects in the pipeline when they are
+	// created. You can only specify a single value for workerGroup in the call
+	// to PollForTask. There are no wildcard values permitted in workerGroup, the
+	// string must be an exact, case-sensitive, match.
+	WorkerGroup *string `locationName:"workerGroup" type:"string" required:"true"`
 
 	metadataPollForTaskInput `json:"-", xml:"-"`
 }
@@ -692,7 +974,13 @@ type metadataPollForTaskInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the output from the PollForTask action.
 type PollForTaskOutput struct {
+	// An instance of TaskObject. The returned object contains all the information
+	// needed to complete the task that is being assigned to the task runner. One
+	// of the fields returned in this object is taskId, which contains an identifier
+	// for the task being assigned. The calling task runner uses taskId in subsequent
+	// calls to ReportTaskProgress and SetTaskStatus.
 	TaskObject *TaskObject `locationName:"taskObject" type:"structure"`
 
 	metadataPollForTaskOutput `json:"-", xml:"-"`
@@ -702,11 +990,20 @@ type metadataPollForTaskOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input of the PutPipelineDefinition action.
 type PutPipelineDefinitionInput struct {
+	// A list of parameter objects used with the pipeline.
 	ParameterObjects []*ParameterObject `locationName:"parameterObjects" type:"list"`
-	ParameterValues  []*ParameterValue  `locationName:"parameterValues" type:"list"`
-	PipelineID       *string            `locationName:"pipelineId" type:"string" required:"true"`
-	PipelineObjects  []*PipelineObject  `locationName:"pipelineObjects" type:"list" required:"true"`
+
+	// A list of parameter values used with the pipeline.
+	ParameterValues []*ParameterValue `locationName:"parameterValues" type:"list"`
+
+	// The identifier of the pipeline to be configured.
+	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+
+	// The objects that define the pipeline. These will overwrite the existing pipeline
+	// definition.
+	PipelineObjects []*PipelineObject `locationName:"pipelineObjects" type:"list" required:"true"`
 
 	metadataPutPipelineDefinitionInput `json:"-", xml:"-"`
 }
@@ -715,9 +1012,19 @@ type metadataPutPipelineDefinitionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the output of the PutPipelineDefinition action.
 type PutPipelineDefinitionOutput struct {
-	Errored            *bool                `locationName:"errored" type:"boolean" required:"true"`
-	ValidationErrors   []*ValidationError   `locationName:"validationErrors" type:"list"`
+	// If True, there were validation errors. If errored is True, the pipeline definition
+	// is stored but cannot be activated until you correct the pipeline and call
+	// PutPipelineDefinition to commit the corrected pipeline.
+	Errored *bool `locationName:"errored" type:"boolean" required:"true"`
+
+	// A list of the validation errors that are associated with the objects defined
+	// in pipelineObjects.
+	ValidationErrors []*ValidationError `locationName:"validationErrors" type:"list"`
+
+	// A list of the validation warnings that are associated with the objects defined
+	// in pipelineObjects.
 	ValidationWarnings []*ValidationWarning `locationName:"validationWarnings" type:"list"`
 
 	metadataPutPipelineDefinitionOutput `json:"-", xml:"-"`
@@ -727,7 +1034,10 @@ type metadataPutPipelineDefinitionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Defines the query to run against an object.
 type Query struct {
+	// List of selectors that define the query. An object must satisfy all of the
+	// selectors to match the query.
 	Selectors []*Selector `locationName:"selectors" type:"list"`
 
 	metadataQuery `json:"-", xml:"-"`
@@ -737,12 +1047,30 @@ type metadataQuery struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input for the QueryObjects action.
 type QueryObjectsInput struct {
-	Limit      *int64  `locationName:"limit" type:"integer"`
-	Marker     *string `locationName:"marker" type:"string"`
+	// Specifies the maximum number of object names that QueryObjects will return
+	// in a single call. The default value is 100.
+	Limit *int64 `locationName:"limit" type:"integer"`
+
+	// The starting point for the results to be returned. The first time you call
+	// QueryObjects, this value should be empty. As long as the action returns HasMoreResults
+	// as True, you can call QueryObjects again and pass the marker value from the
+	// response to retrieve the next set of results.
+	Marker *string `locationName:"marker" type:"string"`
+
+	// Identifier of the pipeline to be queried for object names.
 	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
-	Query      *Query  `locationName:"query" type:"structure"`
-	Sphere     *string `locationName:"sphere" type:"string" required:"true"`
+
+	// Query that defines the objects to be returned. The Query object can contain
+	// a maximum of ten selectors. The conditions in the query are limited to top-level
+	// String fields in the object. These filters can be applied to components,
+	// instances, and attempts.
+	Query *Query `locationName:"query" type:"structure"`
+
+	// Specifies whether the query applies to components or instances. Allowable
+	// values: COMPONENT, INSTANCE, ATTEMPT.
+	Sphere *string `locationName:"sphere" type:"string" required:"true"`
 
 	metadataQueryObjectsInput `json:"-", xml:"-"`
 }
@@ -751,10 +1079,19 @@ type metadataQueryObjectsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the output from the QueryObjects action.
 type QueryObjectsOutput struct {
-	HasMoreResults *bool     `locationName:"hasMoreResults" type:"boolean"`
-	IDs            []*string `locationName:"ids" type:"list"`
-	Marker         *string   `locationName:"marker" type:"string"`
+	// If True, there are more results that can be obtained by a subsequent call
+	// to QueryObjects.
+	HasMoreResults *bool `locationName:"hasMoreResults" type:"boolean"`
+
+	// A list of identifiers that match the query selectors.
+	IDs []*string `locationName:"ids" type:"list"`
+
+	// The starting point for the results to be returned. As long as the action
+	// returns HasMoreResults as True, you can call QueryObjects again and pass
+	// the marker value from the response to retrieve the next set of results.
+	Marker *string `locationName:"marker" type:"string"`
 
 	metadataQueryObjectsOutput `json:"-", xml:"-"`
 }
@@ -763,9 +1100,16 @@ type metadataQueryObjectsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input for the ReportTaskProgress action.
 type ReportTaskProgressInput struct {
+	// Key-value pairs that define the properties of the ReportTaskProgressInput
+	// object.
 	Fields []*Field `locationName:"fields" type:"list"`
-	TaskID *string  `locationName:"taskId" type:"string" required:"true"`
+
+	// Identifier of the task assigned to the task runner. This value is provided
+	// in the TaskObject that the service returns with the response for the PollForTask
+	// action.
+	TaskID *string `locationName:"taskId" type:"string" required:"true"`
 
 	metadataReportTaskProgressInput `json:"-", xml:"-"`
 }
@@ -774,7 +1118,10 @@ type metadataReportTaskProgressInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the output from the ReportTaskProgress action.
 type ReportTaskProgressOutput struct {
+	// If True, the calling task runner should cancel processing of the task. The
+	// task runner does not need to call SetTaskStatus for canceled tasks.
 	Canceled *bool `locationName:"canceled" type:"boolean" required:"true"`
 
 	metadataReportTaskProgressOutput `json:"-", xml:"-"`
@@ -784,10 +1131,24 @@ type metadataReportTaskProgressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input for the ReportTaskRunnerHeartbeat action.
 type ReportTaskRunnerHeartbeatInput struct {
-	Hostname     *string `locationName:"hostname" type:"string"`
+	// The public DNS name of the calling task runner.
+	Hostname *string `locationName:"hostname" type:"string"`
+
+	// The identifier of the task runner. This value should be unique across your
+	// AWS account. In the case of AWS Data Pipeline Task Runner launched on a resource
+	// managed by AWS Data Pipeline, the web service provides a unique identifier
+	// when it launches the application. If you have written a custom task runner,
+	// you should assign a unique identifier for the task runner.
 	TaskRunnerID *string `locationName:"taskrunnerId" type:"string" required:"true"`
-	WorkerGroup  *string `locationName:"workerGroup" type:"string"`
+
+	// Indicates the type of task the task runner is configured to accept and process.
+	// The worker group is set as a field on objects in the pipeline when they are
+	// created. You can only specify a single value for workerGroup in the call
+	// to ReportTaskRunnerHeartbeat. There are no wildcard values permitted in workerGroup,
+	// the string must be an exact, case-sensitive, match.
+	WorkerGroup *string `locationName:"workerGroup" type:"string"`
 
 	metadataReportTaskRunnerHeartbeatInput `json:"-", xml:"-"`
 }
@@ -796,7 +1157,10 @@ type metadataReportTaskRunnerHeartbeatInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the output from the ReportTaskRunnerHeartbeat action.
 type ReportTaskRunnerHeartbeatOutput struct {
+	// Indicates whether the calling task runner should terminate. If True, the
+	// task runner that called ReportTaskRunnerHeartbeat should terminate.
 	Terminate *bool `locationName:"terminate" type:"boolean" required:"true"`
 
 	metadataReportTaskRunnerHeartbeatOutput `json:"-", xml:"-"`
@@ -806,9 +1170,18 @@ type metadataReportTaskRunnerHeartbeatOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A comparision that is used to determine whether a query should return this
+// object.
 type Selector struct {
-	FieldName *string   `locationName:"fieldName" type:"string"`
-	Operator  *Operator `locationName:"operator" type:"structure"`
+	// The name of the field that the operator will be applied to. The field name
+	// is the "key" portion of the field definition in the pipeline definition syntax
+	// that is used by the AWS Data Pipeline API. If the field is not set on the
+	// object, the condition fails.
+	FieldName *string `locationName:"fieldName" type:"string"`
+
+	// Contains a logical operation for comparing the value of a field with a specified
+	// value.
+	Operator *Operator `locationName:"operator" type:"structure"`
 
 	metadataSelector `json:"-", xml:"-"`
 }
@@ -817,10 +1190,19 @@ type metadataSelector struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input to the SetStatus action.
 type SetStatusInput struct {
-	ObjectIDs  []*string `locationName:"objectIds" type:"list" required:"true"`
-	PipelineID *string   `locationName:"pipelineId" type:"string" required:"true"`
-	Status     *string   `locationName:"status" type:"string" required:"true"`
+	// Identifies an array of objects. The corresponding objects can be either physical
+	// or components, but not a mix of both types.
+	ObjectIDs []*string `locationName:"objectIds" type:"list" required:"true"`
+
+	// Identifies the pipeline that contains the objects.
+	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+
+	// Specifies the status to be set on all the objects in objectIds. For components,
+	// this can be either PAUSE or RESUME. For instances, this can be either CANCEL,
+	// RERUN, or MARK_FINISHED.
+	Status *string `locationName:"status" type:"string" required:"true"`
 
 	metadataSetStatusInput `json:"-", xml:"-"`
 }
@@ -837,12 +1219,33 @@ type metadataSetStatusOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input of the SetTaskStatus action.
 type SetTaskStatusInput struct {
-	ErrorID         *string `locationName:"errorId" type:"string"`
-	ErrorMessage    *string `locationName:"errorMessage" type:"string"`
+	// If an error occurred during the task, this value specifies an id value that
+	// represents the error. This value is set on the physical attempt object. It
+	// is used to display error information to the user. It should not start with
+	// string "Service_" which is reserved by the system.
+	ErrorID *string `locationName:"errorId" type:"string"`
+
+	// If an error occurred during the task, this value specifies a text description
+	// of the error. This value is set on the physical attempt object. It is used
+	// to display error information to the user. The web service does not parse
+	// this value.
+	ErrorMessage *string `locationName:"errorMessage" type:"string"`
+
+	// If an error occurred during the task, this value specifies the stack trace
+	// associated with the error. This value is set on the physical attempt object.
+	// It is used to display error information to the user. The web service does
+	// not parse this value.
 	ErrorStackTrace *string `locationName:"errorStackTrace" type:"string"`
-	TaskID          *string `locationName:"taskId" type:"string" required:"true"`
-	TaskStatus      *string `locationName:"taskStatus" type:"string" required:"true"`
+
+	// Identifies the task assigned to the task runner. This value is set in the
+	// TaskObject that is returned by the PollForTask action.
+	TaskID *string `locationName:"taskId" type:"string" required:"true"`
+
+	// If FINISHED, the task successfully completed. If FAILED the task ended unsuccessfully.
+	// The FALSE value is used by preconditions.
+	TaskStatus *string `locationName:"taskStatus" type:"string" required:"true"`
 
 	metadataSetTaskStatusInput `json:"-", xml:"-"`
 }
@@ -851,6 +1254,7 @@ type metadataSetTaskStatusInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The output from the SetTaskStatus action.
 type SetTaskStatusOutput struct {
 	metadataSetTaskStatusOutput `json:"-", xml:"-"`
 }
@@ -859,11 +1263,22 @@ type metadataSetTaskStatusOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains information about a pipeline task that is assigned to a task runner.
 type TaskObject struct {
-	AttemptID  *string                     `locationName:"attemptId" type:"string"`
-	Objects    *map[string]*PipelineObject `locationName:"objects" type:"map"`
-	PipelineID *string                     `locationName:"pipelineId" type:"string"`
-	TaskID     *string                     `locationName:"taskId" type:"string"`
+	// Identifier of the pipeline task attempt object. AWS Data Pipeline uses this
+	// value to track how many times a task is attempted.
+	AttemptID *string `locationName:"attemptId" type:"string"`
+
+	// Connection information for the location where the task runner will publish
+	// the output of the task.
+	Objects *map[string]*PipelineObject `locationName:"objects" type:"map"`
+
+	// Identifier of the pipeline that provided the task.
+	PipelineID *string `locationName:"pipelineId" type:"string"`
+
+	// An internal identifier for the task. This ID is passed to the SetTaskStatus
+	// and ReportTaskProgress actions.
+	TaskID *string `locationName:"taskId" type:"string"`
 
 	metadataTaskObject `json:"-", xml:"-"`
 }
@@ -872,11 +1287,20 @@ type metadataTaskObject struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input of the ValidatePipelineDefinition action.
 type ValidatePipelineDefinitionInput struct {
+	// A list of parameter objects used with the pipeline.
 	ParameterObjects []*ParameterObject `locationName:"parameterObjects" type:"list"`
-	ParameterValues  []*ParameterValue  `locationName:"parameterValues" type:"list"`
-	PipelineID       *string            `locationName:"pipelineId" type:"string" required:"true"`
-	PipelineObjects  []*PipelineObject  `locationName:"pipelineObjects" type:"list" required:"true"`
+
+	// A list of parameter values used with the pipeline.
+	ParameterValues []*ParameterValue `locationName:"parameterValues" type:"list"`
+
+	// Identifies the pipeline whose definition is to be validated.
+	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+
+	// A list of objects that define the pipeline changes to validate against the
+	// pipeline.
+	PipelineObjects []*PipelineObject `locationName:"pipelineObjects" type:"list" required:"true"`
 
 	metadataValidatePipelineDefinitionInput `json:"-", xml:"-"`
 }
@@ -885,9 +1309,15 @@ type metadataValidatePipelineDefinitionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the output from the ValidatePipelineDefinition action.
 type ValidatePipelineDefinitionOutput struct {
-	Errored            *bool                `locationName:"errored" type:"boolean" required:"true"`
-	ValidationErrors   []*ValidationError   `locationName:"validationErrors" type:"list"`
+	// If True, there were validation errors.
+	Errored *bool `locationName:"errored" type:"boolean" required:"true"`
+
+	// Lists the validation errors that were found by ValidatePipelineDefinition.
+	ValidationErrors []*ValidationError `locationName:"validationErrors" type:"list"`
+
+	// Lists the validation warnings that were found by ValidatePipelineDefinition.
 	ValidationWarnings []*ValidationWarning `locationName:"validationWarnings" type:"list"`
 
 	metadataValidatePipelineDefinitionOutput `json:"-", xml:"-"`
@@ -897,9 +1327,15 @@ type metadataValidatePipelineDefinitionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Defines a validation error returned by PutPipelineDefinition or ValidatePipelineDefinition.
+// Validation errors prevent pipeline activation. The set of validation errors
+// that can be returned are defined by AWS Data Pipeline.
 type ValidationError struct {
+	// A description of the validation error.
 	Errors []*string `locationName:"errors" type:"list"`
-	ID     *string   `locationName:"id" type:"string"`
+
+	// The identifier of the object that contains the validation error.
+	ID *string `locationName:"id" type:"string"`
 
 	metadataValidationError `json:"-", xml:"-"`
 }
@@ -908,8 +1344,14 @@ type metadataValidationError struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Defines a validation warning returned by PutPipelineDefinition or ValidatePipelineDefinition.
+// Validation warnings do not prevent pipeline activation. The set of validation
+// warnings that can be returned are defined by AWS Data Pipeline.
 type ValidationWarning struct {
-	ID       *string   `locationName:"id" type:"string"`
+	// The identifier of the object that contains the validation warning.
+	ID *string `locationName:"id" type:"string"`
+
+	// A description of the validation warning.
 	Warnings []*string `locationName:"warnings" type:"list"`
 
 	metadataValidationWarning `json:"-", xml:"-"`

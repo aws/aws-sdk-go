@@ -24,6 +24,10 @@ func (c *KMS) CreateAliasRequest(input *CreateAliasInput) (req *aws.Request, out
 	return
 }
 
+// Creates a display name for a customer master key. An alias can be used to
+// identify a key and should be unique. The console enforces a one-to-one mapping
+// between the alias and a key. An alias name can contain only alphanumeric
+// characters, forward slashes (/), underscores (_), and dashes (-).
 func (c *KMS) CreateAlias(input *CreateAliasInput) (output *CreateAliasOutput, err error) {
 	req, out := c.CreateAliasRequest(input)
 	output = out
@@ -49,6 +53,14 @@ func (c *KMS) CreateGrantRequest(input *CreateGrantInput) (req *aws.Request, out
 	return
 }
 
+// Adds a grant to a key to specify who can access the key and under what conditions.
+// Grants are alternate permission mechanisms to key policies. If absent, access
+// to the key is evaluated based on IAM policies attached to the user. By default,
+// grants do not expire. Grants can be listed, retired, or revoked as indicated
+// by the following APIs. Typically, when you are finished using a grant, you
+// retire it. When you want to end a grant immediately, revoke it. For more
+// information about grants, see Grants (http://docs.aws.amazon.com/kms/latest/developerguide/grants.html).
+//  ListGrants RetireGrant RevokeGrant
 func (c *KMS) CreateGrant(input *CreateGrantInput) (output *CreateGrantOutput, err error) {
 	req, out := c.CreateGrantRequest(input)
 	output = out
@@ -74,6 +86,10 @@ func (c *KMS) CreateKeyRequest(input *CreateKeyInput) (req *aws.Request, output 
 	return
 }
 
+// Creates a customer master key. Customer master keys can be used to encrypt
+// small amounts of data (less than 4K) directly, but they are most commonly
+// used to encrypt or envelope data keys that are then used to encrypt customer
+// data. For more information about data keys, see GenerateDataKey and GenerateDataKeyWithoutPlaintext.
 func (c *KMS) CreateKey(input *CreateKeyInput) (output *CreateKeyOutput, err error) {
 	req, out := c.CreateKeyRequest(input)
 	output = out
@@ -99,6 +115,8 @@ func (c *KMS) DecryptRequest(input *DecryptInput) (req *aws.Request, output *Dec
 	return
 }
 
+// Decrypts ciphertext. Ciphertext is plaintext that has been previously encrypted
+// by using the Encrypt function.
 func (c *KMS) Decrypt(input *DecryptInput) (output *DecryptOutput, err error) {
 	req, out := c.DecryptRequest(input)
 	output = out
@@ -124,6 +142,7 @@ func (c *KMS) DeleteAliasRequest(input *DeleteAliasInput) (req *aws.Request, out
 	return
 }
 
+// Deletes the specified alias.
 func (c *KMS) DeleteAlias(input *DeleteAliasInput) (output *DeleteAliasOutput, err error) {
 	req, out := c.DeleteAliasRequest(input)
 	output = out
@@ -149,6 +168,7 @@ func (c *KMS) DescribeKeyRequest(input *DescribeKeyInput) (req *aws.Request, out
 	return
 }
 
+// Provides detailed information about the specified customer master key.
 func (c *KMS) DescribeKey(input *DescribeKeyInput) (output *DescribeKeyOutput, err error) {
 	req, out := c.DescribeKeyRequest(input)
 	output = out
@@ -174,6 +194,7 @@ func (c *KMS) DisableKeyRequest(input *DisableKeyInput) (req *aws.Request, outpu
 	return
 }
 
+// Marks a key as disabled, thereby preventing its use.
 func (c *KMS) DisableKey(input *DisableKeyInput) (output *DisableKeyOutput, err error) {
 	req, out := c.DisableKeyRequest(input)
 	output = out
@@ -199,6 +220,7 @@ func (c *KMS) DisableKeyRotationRequest(input *DisableKeyRotationInput) (req *aw
 	return
 }
 
+// Disables rotation of the specified key.
 func (c *KMS) DisableKeyRotation(input *DisableKeyRotationInput) (output *DisableKeyRotationOutput, err error) {
 	req, out := c.DisableKeyRotationRequest(input)
 	output = out
@@ -224,6 +246,8 @@ func (c *KMS) EnableKeyRequest(input *EnableKeyInput) (req *aws.Request, output 
 	return
 }
 
+// Marks a key as enabled, thereby permitting its use. You can have up to 25
+// enabled keys at one time.
 func (c *KMS) EnableKey(input *EnableKeyInput) (output *EnableKeyOutput, err error) {
 	req, out := c.EnableKeyRequest(input)
 	output = out
@@ -249,6 +273,7 @@ func (c *KMS) EnableKeyRotationRequest(input *EnableKeyRotationInput) (req *aws.
 	return
 }
 
+// Enables rotation of the specified customer master key.
 func (c *KMS) EnableKeyRotation(input *EnableKeyRotationInput) (output *EnableKeyRotationOutput, err error) {
 	req, out := c.EnableKeyRotationRequest(input)
 	output = out
@@ -274,6 +299,7 @@ func (c *KMS) EncryptRequest(input *EncryptInput) (req *aws.Request, output *Enc
 	return
 }
 
+// Encrypts plaintext into ciphertext by using a customer master key.
 func (c *KMS) Encrypt(input *EncryptInput) (output *EncryptOutput, err error) {
 	req, out := c.EncryptRequest(input)
 	output = out
@@ -299,6 +325,8 @@ func (c *KMS) GenerateDataKeyRequest(input *GenerateDataKeyInput) (req *aws.Requ
 	return
 }
 
+// Generates a secure data key. Data keys are used to encrypt and decrypt data.
+// They are wrapped by customer master keys.
 func (c *KMS) GenerateDataKey(input *GenerateDataKeyInput) (output *GenerateDataKeyOutput, err error) {
 	req, out := c.GenerateDataKeyRequest(input)
 	output = out
@@ -324,6 +352,8 @@ func (c *KMS) GenerateDataKeyWithoutPlaintextRequest(input *GenerateDataKeyWitho
 	return
 }
 
+// Returns a key wrapped by a customer master key without the plaintext copy
+// of that key. To retrieve the plaintext, see GenerateDataKey.
 func (c *KMS) GenerateDataKeyWithoutPlaintext(input *GenerateDataKeyWithoutPlaintextInput) (output *GenerateDataKeyWithoutPlaintextOutput, err error) {
 	req, out := c.GenerateDataKeyWithoutPlaintextRequest(input)
 	output = out
@@ -349,6 +379,7 @@ func (c *KMS) GenerateRandomRequest(input *GenerateRandomInput) (req *aws.Reques
 	return
 }
 
+// Generates an unpredictable byte string.
 func (c *KMS) GenerateRandom(input *GenerateRandomInput) (output *GenerateRandomOutput, err error) {
 	req, out := c.GenerateRandomRequest(input)
 	output = out
@@ -374,6 +405,7 @@ func (c *KMS) GetKeyPolicyRequest(input *GetKeyPolicyInput) (req *aws.Request, o
 	return
 }
 
+// Retrieves a policy attached to the specified key.
 func (c *KMS) GetKeyPolicy(input *GetKeyPolicyInput) (output *GetKeyPolicyOutput, err error) {
 	req, out := c.GetKeyPolicyRequest(input)
 	output = out
@@ -399,6 +431,8 @@ func (c *KMS) GetKeyRotationStatusRequest(input *GetKeyRotationStatusInput) (req
 	return
 }
 
+// Retrieves a Boolean value that indicates whether key rotation is enabled
+// for the specified key.
 func (c *KMS) GetKeyRotationStatus(input *GetKeyRotationStatusInput) (output *GetKeyRotationStatusOutput, err error) {
 	req, out := c.GetKeyRotationStatusRequest(input)
 	output = out
@@ -424,6 +458,7 @@ func (c *KMS) ListAliasesRequest(input *ListAliasesInput) (req *aws.Request, out
 	return
 }
 
+// Lists all of the key aliases in the account.
 func (c *KMS) ListAliases(input *ListAliasesInput) (output *ListAliasesOutput, err error) {
 	req, out := c.ListAliasesRequest(input)
 	output = out
@@ -449,6 +484,7 @@ func (c *KMS) ListGrantsRequest(input *ListGrantsInput) (req *aws.Request, outpu
 	return
 }
 
+// List the grants for a specified key.
 func (c *KMS) ListGrants(input *ListGrantsInput) (output *ListGrantsOutput, err error) {
 	req, out := c.ListGrantsRequest(input)
 	output = out
@@ -474,6 +510,7 @@ func (c *KMS) ListKeyPoliciesRequest(input *ListKeyPoliciesInput) (req *aws.Requ
 	return
 }
 
+// Retrieves a list of policies attached to a key.
 func (c *KMS) ListKeyPolicies(input *ListKeyPoliciesInput) (output *ListKeyPoliciesOutput, err error) {
 	req, out := c.ListKeyPoliciesRequest(input)
 	output = out
@@ -499,6 +536,7 @@ func (c *KMS) ListKeysRequest(input *ListKeysInput) (req *aws.Request, output *L
 	return
 }
 
+// Lists the customer master keys.
 func (c *KMS) ListKeys(input *ListKeysInput) (output *ListKeysOutput, err error) {
 	req, out := c.ListKeysRequest(input)
 	output = out
@@ -524,6 +562,7 @@ func (c *KMS) PutKeyPolicyRequest(input *PutKeyPolicyInput) (req *aws.Request, o
 	return
 }
 
+// Attaches a policy to the specified key.
 func (c *KMS) PutKeyPolicy(input *PutKeyPolicyInput) (output *PutKeyPolicyOutput, err error) {
 	req, out := c.PutKeyPolicyRequest(input)
 	output = out
@@ -549,6 +588,10 @@ func (c *KMS) ReEncryptRequest(input *ReEncryptInput) (req *aws.Request, output 
 	return
 }
 
+// Encrypts data on the server side with a new customer master key without exposing
+// the plaintext of the data on the client side. The data is first decrypted
+// and then encrypted. This operation can also be used to change the encryption
+// context of a ciphertext.
 func (c *KMS) ReEncrypt(input *ReEncryptInput) (output *ReEncryptOutput, err error) {
 	req, out := c.ReEncryptRequest(input)
 	output = out
@@ -574,6 +617,9 @@ func (c *KMS) RetireGrantRequest(input *RetireGrantInput) (req *aws.Request, out
 	return
 }
 
+// Retires a grant. You can retire a grant when you're done using it to clean
+// up. You should revoke a grant when you intend to actively deny operations
+// that depend on it.
 func (c *KMS) RetireGrant(input *RetireGrantInput) (output *RetireGrantOutput, err error) {
 	req, out := c.RetireGrantRequest(input)
 	output = out
@@ -599,6 +645,8 @@ func (c *KMS) RevokeGrantRequest(input *RevokeGrantInput) (req *aws.Request, out
 	return
 }
 
+// Revokes a grant. You can revoke a grant to actively deny operations that
+// depend on it.
 func (c *KMS) RevokeGrant(input *RevokeGrantInput) (output *RevokeGrantOutput, err error) {
 	req, out := c.RevokeGrantRequest(input)
 	output = out
@@ -633,9 +681,15 @@ func (c *KMS) UpdateKeyDescription(input *UpdateKeyDescriptionInput) (output *Up
 
 var opUpdateKeyDescription *aws.Operation
 
+// Contains information about an alias.
 type AliasListEntry struct {
-	AliasARN    *string `locationName:"AliasArn" type:"string"`
-	AliasName   *string `type:"string"`
+	// String that contains the key ARN.
+	AliasARN *string `locationName:"AliasArn" type:"string"`
+
+	// String that contains the alias.
+	AliasName *string `type:"string"`
+
+	// String that contains the key identifier pointed to by the alias.
 	TargetKeyID *string `locationName:"TargetKeyId" type:"string"`
 
 	metadataAliasListEntry `json:"-", xml:"-"`
@@ -646,7 +700,11 @@ type metadataAliasListEntry struct {
 }
 
 type CreateAliasInput struct {
-	AliasName   *string `type:"string" required:"true"`
+	// String that contains the display name. Aliases that begin with AWS are reserved.
+	AliasName *string `type:"string" required:"true"`
+
+	// An identifier of the key for which you are creating the alias. This value
+	// cannot be another alias.
 	TargetKeyID *string `locationName:"TargetKeyId" type:"string" required:"true"`
 
 	metadataCreateAliasInput `json:"-", xml:"-"`
@@ -665,12 +723,29 @@ type metadataCreateAliasOutput struct {
 }
 
 type CreateGrantInput struct {
-	Constraints       *GrantConstraints `type:"structure"`
-	GrantTokens       []*string         `type:"list"`
-	GranteePrincipal  *string           `type:"string" required:"true"`
-	KeyID             *string           `locationName:"KeyId" type:"string" required:"true"`
-	Operations        []*string         `type:"list"`
-	RetiringPrincipal *string           `type:"string"`
+	// Specifies the conditions under which the actions specified by the Operations
+	// parameter are allowed.
+	Constraints *GrantConstraints `type:"structure"`
+
+	// List of grant tokens.
+	GrantTokens []*string `type:"list"`
+
+	// Principal given permission by the grant to use the key identified by the
+	// keyId parameter.
+	GranteePrincipal *string `type:"string" required:"true"`
+
+	// A unique key identifier for a customer master key. This value can be a globally
+	// unique identifier, an ARN, or an alias.
+	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
+
+	// List of operations permitted by the grant. This can be any combination of
+	// one or more of the following values:  Decrypt Encrypt GenerateDataKey GenerateDataKeyWithoutPlaintext
+	// ReEncryptFrom ReEncryptTo CreateGrant
+	Operations []*string `type:"list"`
+
+	// Principal given permission to retire the grant. For more information, see
+	// RetireGrant.
+	RetiringPrincipal *string `type:"string"`
 
 	metadataCreateGrantInput `json:"-", xml:"-"`
 }
@@ -680,7 +755,12 @@ type metadataCreateGrantInput struct {
 }
 
 type CreateGrantOutput struct {
-	GrantID    *string `locationName:"GrantId" type:"string"`
+	// Unique grant identifier. You can use the GrantId value to revoke a grant.
+	GrantID *string `locationName:"GrantId" type:"string"`
+
+	// The grant token. A grant token is a string that identifies a grant and which
+	// can be used to make a grant take effect immediately. A token contains all
+	// of the information necessary to create a grant.
 	GrantToken *string `type:"string"`
 
 	metadataCreateGrantOutput `json:"-", xml:"-"`
@@ -691,9 +771,17 @@ type metadataCreateGrantOutput struct {
 }
 
 type CreateKeyInput struct {
+	// Description of the key. We recommend that you choose a description that helps
+	// your customer decide whether the key is appropriate for a task.
 	Description *string `type:"string"`
-	KeyUsage    *string `type:"string"`
-	Policy      *string `type:"string"`
+
+	// Specifies the intended use of the key. Currently this defaults to ENCRYPT/DECRYPT,
+	// and only symmetric encryption and decryption are supported.
+	KeyUsage *string `type:"string"`
+
+	// Policy to be attached to the key. This is required and delegates back to
+	// the account. The key is the root of trust.
+	Policy *string `type:"string"`
 
 	metadataCreateKeyInput `json:"-", xml:"-"`
 }
@@ -703,6 +791,7 @@ type metadataCreateKeyInput struct {
 }
 
 type CreateKeyOutput struct {
+	// Metadata associated with the key.
 	KeyMetadata *KeyMetadata `type:"structure"`
 
 	metadataCreateKeyOutput `json:"-", xml:"-"`
@@ -713,9 +802,17 @@ type metadataCreateKeyOutput struct {
 }
 
 type DecryptInput struct {
-	CiphertextBlob    []byte              `type:"blob" required:"true"`
+	// Ciphertext including metadata.
+	CiphertextBlob []byte `type:"blob" required:"true"`
+
+	// The encryption context. If this was specified in the Encrypt function, it
+	// must be specified here or the decryption operation will fail. For more information,
+	// see Encryption Context (http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html).
 	EncryptionContext *map[string]*string `type:"map"`
-	GrantTokens       []*string           `type:"list"`
+
+	// A list of grant tokens that represent grants which can be used to provide
+	// long term permissions to perform decryption.
+	GrantTokens []*string `type:"list"`
 
 	metadataDecryptInput `json:"-", xml:"-"`
 }
@@ -725,8 +822,13 @@ type metadataDecryptInput struct {
 }
 
 type DecryptOutput struct {
-	KeyID     *string `locationName:"KeyId" type:"string"`
-	Plaintext []byte  `type:"blob"`
+	// Unique identifier created by the system for the key. This value is always
+	// returned as long as no errors are encountered during the operation.
+	KeyID *string `locationName:"KeyId" type:"string"`
+
+	// Decrypted plaintext data. This value may not be returned if the customer
+	// master key is not available or if you didn't have permission to use it.
+	Plaintext []byte `type:"blob"`
 
 	metadataDecryptOutput `json:"-", xml:"-"`
 }
@@ -736,6 +838,7 @@ type metadataDecryptOutput struct {
 }
 
 type DeleteAliasInput struct {
+	// The alias to be deleted.
 	AliasName *string `type:"string" required:"true"`
 
 	metadataDeleteAliasInput `json:"-", xml:"-"`
@@ -754,6 +857,8 @@ type metadataDeleteAliasOutput struct {
 }
 
 type DescribeKeyInput struct {
+	// Unique identifier of the customer master key to be described. This can be
+	// an ARN, an alias, or a globally unique identifier.
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataDescribeKeyInput `json:"-", xml:"-"`
@@ -764,6 +869,7 @@ type metadataDescribeKeyInput struct {
 }
 
 type DescribeKeyOutput struct {
+	// Metadata associated with the key.
 	KeyMetadata *KeyMetadata `type:"structure"`
 
 	metadataDescribeKeyOutput `json:"-", xml:"-"`
@@ -774,6 +880,8 @@ type metadataDescribeKeyOutput struct {
 }
 
 type DisableKeyInput struct {
+	// Unique identifier of the customer master key to be disabled. This can be
+	// an ARN, an alias, or a globally unique identifier.
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataDisableKeyInput `json:"-", xml:"-"`
@@ -792,6 +900,8 @@ type metadataDisableKeyOutput struct {
 }
 
 type DisableKeyRotationInput struct {
+	// Unique identifier of the customer master key for which rotation is to be
+	// disabled. This can be an ARN, an alias, or a globally unique identifier.
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataDisableKeyRotationInput `json:"-", xml:"-"`
@@ -810,6 +920,8 @@ type metadataDisableKeyRotationOutput struct {
 }
 
 type EnableKeyInput struct {
+	// Unique identifier of the customer master key to be enabled. This can be an
+	// ARN, an alias, or a globally unique identifier.
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataEnableKeyInput `json:"-", xml:"-"`
@@ -828,6 +940,8 @@ type metadataEnableKeyOutput struct {
 }
 
 type EnableKeyRotationInput struct {
+	// Unique identifier of the customer master key for which rotation is to be
+	// enabled. This can be an ARN, an alias, or a globally unique identifier.
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataEnableKeyRotationInput `json:"-", xml:"-"`
@@ -846,10 +960,20 @@ type metadataEnableKeyRotationOutput struct {
 }
 
 type EncryptInput struct {
+	// Name:value pair that specifies the encryption context to be used for authenticated
+	// encryption. For more information, see Authenticated Encryption (http://docs.aws.amazon.com/kms/latest/developerguide/crypto_authen.html).
 	EncryptionContext *map[string]*string `type:"map"`
-	GrantTokens       []*string           `type:"list"`
-	KeyID             *string             `locationName:"KeyId" type:"string" required:"true"`
-	Plaintext         []byte              `type:"blob" required:"true"`
+
+	// A list of grant tokens that represent grants which can be used to provide
+	// long term permissions to perform encryption.
+	GrantTokens []*string `type:"list"`
+
+	// Unique identifier of the customer master. This can be an ARN, an alias, or
+	// the Key ID.
+	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
+
+	// Data to be encrypted.
+	Plaintext []byte `type:"blob" required:"true"`
 
 	metadataEncryptInput `json:"-", xml:"-"`
 }
@@ -859,8 +983,11 @@ type metadataEncryptInput struct {
 }
 
 type EncryptOutput struct {
-	CiphertextBlob []byte  `type:"blob"`
-	KeyID          *string `locationName:"KeyId" type:"string"`
+	// The encrypted plaintext.
+	CiphertextBlob []byte `type:"blob"`
+
+	// The ID of the key used during encryption.
+	KeyID *string `locationName:"KeyId" type:"string"`
 
 	metadataEncryptOutput `json:"-", xml:"-"`
 }
@@ -870,11 +997,26 @@ type metadataEncryptOutput struct {
 }
 
 type GenerateDataKeyInput struct {
+	// Name/value pair that contains additional data to be authenticated during
+	// the encryption and decryption processes that use the key. This value is logged
+	// by AWS CloudTrail to provide context around the data encrypted by the key.
 	EncryptionContext *map[string]*string `type:"map"`
-	GrantTokens       []*string           `type:"list"`
-	KeyID             *string             `locationName:"KeyId" type:"string" required:"true"`
-	KeySpec           *string             `type:"string"`
-	NumberOfBytes     *int64              `type:"integer"`
+
+	// A list of grant tokens that represent grants which can be used to provide
+	// long term permissions to generate a key.
+	GrantTokens []*string `type:"list"`
+
+	// Unique identifier of the key. This can be an ARN, an alias, or a globally
+	// unique identifier.
+	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
+
+	// Value that identifies the encryption algorithm and key size to generate a
+	// data key for. Currently this can be AES_128 or AES_256.
+	KeySpec *string `type:"string"`
+
+	// Integer that contains the number of bytes to generate. Common values are
+	// 128, 256, 512, 1024 and so on. 1024 is the current limit.
+	NumberOfBytes *int64 `type:"integer"`
 
 	metadataGenerateDataKeyInput `json:"-", xml:"-"`
 }
@@ -884,9 +1026,17 @@ type metadataGenerateDataKeyInput struct {
 }
 
 type GenerateDataKeyOutput struct {
-	CiphertextBlob []byte  `type:"blob"`
-	KeyID          *string `locationName:"KeyId" type:"string"`
-	Plaintext      []byte  `type:"blob"`
+	// Ciphertext that contains the wrapped key. You must store the blob and encryption
+	// context so that the ciphertext can be decrypted. You must provide both the
+	// ciphertext blob and the encryption context.
+	CiphertextBlob []byte `type:"blob"`
+
+	// System generated unique identifier for the key.
+	KeyID *string `locationName:"KeyId" type:"string"`
+
+	// Plaintext that contains the unwrapped key. Use this for encryption and decryption
+	// and then remove it from memory as soon as possible.
+	Plaintext []byte `type:"blob"`
 
 	metadataGenerateDataKeyOutput `json:"-", xml:"-"`
 }
@@ -896,11 +1046,25 @@ type metadataGenerateDataKeyOutput struct {
 }
 
 type GenerateDataKeyWithoutPlaintextInput struct {
+	// Name:value pair that contains additional data to be authenticated during
+	// the encryption and decryption processes.
 	EncryptionContext *map[string]*string `type:"map"`
-	GrantTokens       []*string           `type:"list"`
-	KeyID             *string             `locationName:"KeyId" type:"string" required:"true"`
-	KeySpec           *string             `type:"string"`
-	NumberOfBytes     *int64              `type:"integer"`
+
+	// A list of grant tokens that represent grants which can be used to provide
+	// long term permissions to generate a key.
+	GrantTokens []*string `type:"list"`
+
+	// Unique identifier of the key. This can be an ARN, an alias, or a globally
+	// unique identifier.
+	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
+
+	// Value that identifies the encryption algorithm and key size. Currently this
+	// can be AES_128 or AES_256.
+	KeySpec *string `type:"string"`
+
+	// Integer that contains the number of bytes to generate. Common values are
+	// 128, 256, 512, 1024 and so on.
+	NumberOfBytes *int64 `type:"integer"`
 
 	metadataGenerateDataKeyWithoutPlaintextInput `json:"-", xml:"-"`
 }
@@ -910,8 +1074,12 @@ type metadataGenerateDataKeyWithoutPlaintextInput struct {
 }
 
 type GenerateDataKeyWithoutPlaintextOutput struct {
-	CiphertextBlob []byte  `type:"blob"`
-	KeyID          *string `locationName:"KeyId" type:"string"`
+	// Ciphertext that contains the wrapped key. You must store the blob and encryption
+	// context so that the key can be used in a future operation.
+	CiphertextBlob []byte `type:"blob"`
+
+	// System generated unique identifier for the key.
+	KeyID *string `locationName:"KeyId" type:"string"`
 
 	metadataGenerateDataKeyWithoutPlaintextOutput `json:"-", xml:"-"`
 }
@@ -921,6 +1089,8 @@ type metadataGenerateDataKeyWithoutPlaintextOutput struct {
 }
 
 type GenerateRandomInput struct {
+	// Integer that contains the number of bytes to generate. Common values are
+	// 128, 256, 512, 1024 and so on. The current limit is 1024 bytes.
 	NumberOfBytes *int64 `type:"integer"`
 
 	metadataGenerateRandomInput `json:"-", xml:"-"`
@@ -931,6 +1101,7 @@ type metadataGenerateRandomInput struct {
 }
 
 type GenerateRandomOutput struct {
+	// Plaintext that contains the unpredictable byte string.
 	Plaintext []byte `type:"blob"`
 
 	metadataGenerateRandomOutput `json:"-", xml:"-"`
@@ -941,7 +1112,12 @@ type metadataGenerateRandomOutput struct {
 }
 
 type GetKeyPolicyInput struct {
-	KeyID      *string `locationName:"KeyId" type:"string" required:"true"`
+	// Unique identifier of the key. This can be an ARN, an alias, or a globally
+	// unique identifier.
+	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
+
+	// String that contains the name of the policy. Currently, this must be "default".
+	// Policy names can be discovered by calling ListKeyPolicies.
 	PolicyName *string `type:"string" required:"true"`
 
 	metadataGetKeyPolicyInput `json:"-", xml:"-"`
@@ -952,6 +1128,7 @@ type metadataGetKeyPolicyInput struct {
 }
 
 type GetKeyPolicyOutput struct {
+	// A policy document in JSON format.
 	Policy *string `type:"string"`
 
 	metadataGetKeyPolicyOutput `json:"-", xml:"-"`
@@ -962,6 +1139,8 @@ type metadataGetKeyPolicyOutput struct {
 }
 
 type GetKeyRotationStatusInput struct {
+	// Unique identifier of the key. This can be an ARN, an alias, or a globally
+	// unique identifier.
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataGetKeyRotationStatusInput `json:"-", xml:"-"`
@@ -972,6 +1151,7 @@ type metadataGetKeyRotationStatusInput struct {
 }
 
 type GetKeyRotationStatusOutput struct {
+	// A Boolean value that specifies whether key rotation is enabled.
 	KeyRotationEnabled *bool `type:"boolean"`
 
 	metadataGetKeyRotationStatusOutput `json:"-", xml:"-"`
@@ -981,8 +1161,13 @@ type metadataGetKeyRotationStatusOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains constraints on the grant.
 type GrantConstraints struct {
+	// The constraint contains additional key/value pairs that serve to further
+	// limit the grant.
 	EncryptionContextEquals *map[string]*string `type:"map"`
+
+	// The constraint equals the full encryption context.
 	EncryptionContextSubset *map[string]*string `type:"map"`
 
 	metadataGrantConstraints `json:"-", xml:"-"`
@@ -992,13 +1177,28 @@ type metadataGrantConstraints struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains information about each entry in the grant list.
 type GrantListEntry struct {
-	Constraints       *GrantConstraints `type:"structure"`
-	GrantID           *string           `locationName:"GrantId" type:"string"`
-	GranteePrincipal  *string           `type:"string"`
-	IssuingAccount    *string           `type:"string"`
-	Operations        []*string         `type:"list"`
-	RetiringPrincipal *string           `type:"string"`
+	// Specifies the conditions under which the actions specified by the Operations
+	// parameter are allowed.
+	Constraints *GrantConstraints `type:"structure"`
+
+	// Unique grant identifier.
+	GrantID *string `locationName:"GrantId" type:"string"`
+
+	// The principal that receives the grant permission.
+	GranteePrincipal *string `type:"string"`
+
+	// The account under which the grant was issued.
+	IssuingAccount *string `type:"string"`
+
+	// List of operations permitted by the grant. This can be any combination of
+	// one or more of the following values:  Decrypt Encrypt GenerateDataKey GenerateDataKeyWithoutPlaintext
+	// ReEncryptFrom ReEncryptTo CreateGrant
+	Operations []*string `type:"list"`
+
+	// The principal that can retire the account.
+	RetiringPrincipal *string `type:"string"`
 
 	metadataGrantListEntry `json:"-", xml:"-"`
 }
@@ -1007,9 +1207,13 @@ type metadataGrantListEntry struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains information about each entry in the key list.
 type KeyListEntry struct {
+	// ARN of the key.
 	KeyARN *string `locationName:"KeyArn" type:"string"`
-	KeyID  *string `locationName:"KeyId" type:"string"`
+
+	// Unique identifier of the key.
+	KeyID *string `locationName:"KeyId" type:"string"`
 
 	metadataKeyListEntry `json:"-", xml:"-"`
 }
@@ -1018,14 +1222,28 @@ type metadataKeyListEntry struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains metadata associated with a specific key.
 type KeyMetadata struct {
-	ARN          *string    `locationName:"Arn" type:"string"`
-	AWSAccountID *string    `locationName:"AWSAccountId" type:"string"`
+	// Key ARN (Amazon Resource Name).
+	ARN *string `locationName:"Arn" type:"string"`
+
+	// Account ID number.
+	AWSAccountID *string `locationName:"AWSAccountId" type:"string"`
+
+	// Date the key was created.
 	CreationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
-	Description  *string    `type:"string"`
-	Enabled      *bool      `type:"boolean"`
-	KeyID        *string    `locationName:"KeyId" type:"string" required:"true"`
-	KeyUsage     *string    `type:"string"`
+
+	// The description of the key.
+	Description *string `type:"string"`
+
+	// Value that specifies whether the key is enabled.
+	Enabled *bool `type:"boolean"`
+
+	// Unique identifier for the key.
+	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
+
+	// A value that specifies what operation(s) the key can perform.
+	KeyUsage *string `type:"string"`
 
 	metadataKeyMetadata `json:"-", xml:"-"`
 }
@@ -1035,7 +1253,14 @@ type metadataKeyMetadata struct {
 }
 
 type ListAliasesInput struct {
-	Limit  *int64  `type:"integer"`
+	// Specify this parameter when paginating results to indicate the maximum number
+	// of aliases you want in each response. If there are additional aliases beyond
+	// the maximum you specify, the Truncated response element will be set to true.
+	Limit *int64 `type:"integer"`
+
+	// Use this parameter when paginating results, and only in a subsequent request
+	// after you've received a response where the results are truncated. Set it
+	// to the value of the NextMarker element in the response you just received.
 	Marker *string `type:"string"`
 
 	metadataListAliasesInput `json:"-", xml:"-"`
@@ -1046,9 +1271,17 @@ type metadataListAliasesInput struct {
 }
 
 type ListAliasesOutput struct {
-	Aliases    []*AliasListEntry `type:"list"`
-	NextMarker *string           `type:"string"`
-	Truncated  *bool             `type:"boolean"`
+	// A list of key aliases in the user's account.
+	Aliases []*AliasListEntry `type:"list"`
+
+	// If Truncated is true, this value is present and contains the value to use
+	// for the Marker request parameter in a subsequent pagination request.
+	NextMarker *string `type:"string"`
+
+	// A flag that indicates whether there are more items in the list. If your results
+	// were truncated, you can make a subsequent pagination request using the Marker
+	// request parameter to retrieve more aliases in the list.
+	Truncated *bool `type:"boolean"`
 
 	metadataListAliasesOutput `json:"-", xml:"-"`
 }
@@ -1058,8 +1291,19 @@ type metadataListAliasesOutput struct {
 }
 
 type ListGrantsInput struct {
-	KeyID  *string `locationName:"KeyId" type:"string" required:"true"`
-	Limit  *int64  `type:"integer"`
+	// Unique identifier of the key. This can be an ARN, an alias, or a globally
+	// unique identifier.
+	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
+
+	// Specify this parameter only when paginating results to indicate the maximum
+	// number of grants you want listed in the response. If there are additional
+	// grants beyond the maximum you specify, the Truncated response element will
+	// be set to true.
+	Limit *int64 `type:"integer"`
+
+	// Use this parameter only when paginating results, and only in a subsequent
+	// request after you've received a response where the results are truncated.
+	// Set it to the value of the NextMarker in the response you just received.
 	Marker *string `type:"string"`
 
 	metadataListGrantsInput `json:"-", xml:"-"`
@@ -1070,9 +1314,17 @@ type metadataListGrantsInput struct {
 }
 
 type ListGrantsOutput struct {
-	Grants     []*GrantListEntry `type:"list"`
-	NextMarker *string           `type:"string"`
-	Truncated  *bool             `type:"boolean"`
+	// A list of grants.
+	Grants []*GrantListEntry `type:"list"`
+
+	// If Truncated is true, this value is present and contains the value to use
+	// for the Marker request parameter in a subsequent pagination request.
+	NextMarker *string `type:"string"`
+
+	// A flag that indicates whether there are more items in the list. If your results
+	// were truncated, you can make a subsequent pagination request using the Marker
+	// request parameter to retrieve more grants in the list.
+	Truncated *bool `type:"boolean"`
 
 	metadataListGrantsOutput `json:"-", xml:"-"`
 }
@@ -1082,8 +1334,19 @@ type metadataListGrantsOutput struct {
 }
 
 type ListKeyPoliciesInput struct {
-	KeyID  *string `locationName:"KeyId" type:"string" required:"true"`
-	Limit  *int64  `type:"integer"`
+	// Unique identifier of the key. This can be an ARN, an alias, or a globally
+	// unique identifier.
+	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
+
+	// Specify this parameter only when paginating results to indicate the maximum
+	// number of policies you want listed in the response. If there are additional
+	// policies beyond the maximum you specify, the Truncated response element will
+	// be set to true.
+	Limit *int64 `type:"integer"`
+
+	// Use this parameter only when paginating results, and only in a subsequent
+	// request after you've received a response where the results are truncated.
+	// Set it to the value of the NextMarker in the response you just received.
 	Marker *string `type:"string"`
 
 	metadataListKeyPoliciesInput `json:"-", xml:"-"`
@@ -1094,9 +1357,18 @@ type metadataListKeyPoliciesInput struct {
 }
 
 type ListKeyPoliciesOutput struct {
-	NextMarker  *string   `type:"string"`
+	// If Truncated is true, this value is present and contains the value to use
+	// for the Marker request parameter in a subsequent pagination request.
+	NextMarker *string `type:"string"`
+
+	// A list of policy names. Currently, there is only one policy and it is named
+	// "Default".
 	PolicyNames []*string `type:"list"`
-	Truncated   *bool     `type:"boolean"`
+
+	// A flag that indicates whether there are more items in the list. If your results
+	// were truncated, you can make a subsequent pagination request using the Marker
+	// request parameter to retrieve more policies in the list.
+	Truncated *bool `type:"boolean"`
 
 	metadataListKeyPoliciesOutput `json:"-", xml:"-"`
 }
@@ -1106,7 +1378,15 @@ type metadataListKeyPoliciesOutput struct {
 }
 
 type ListKeysInput struct {
-	Limit  *int64  `type:"integer"`
+	// Specify this parameter only when paginating results to indicate the maximum
+	// number of keys you want listed in the response. If there are additional keys
+	// beyond the maximum you specify, the Truncated response element will be set
+	// to true.
+	Limit *int64 `type:"integer"`
+
+	// Use this parameter only when paginating results, and only in a subsequent
+	// request after you've received a response where the results are truncated.
+	// Set it to the value of the NextMarker in the response you just received.
 	Marker *string `type:"string"`
 
 	metadataListKeysInput `json:"-", xml:"-"`
@@ -1117,9 +1397,17 @@ type metadataListKeysInput struct {
 }
 
 type ListKeysOutput struct {
-	Keys       []*KeyListEntry `type:"list"`
-	NextMarker *string         `type:"string"`
-	Truncated  *bool           `type:"boolean"`
+	// A list of keys.
+	Keys []*KeyListEntry `type:"list"`
+
+	// If Truncated is true, this value is present and contains the value to use
+	// for the Marker request parameter in a subsequent pagination request.
+	NextMarker *string `type:"string"`
+
+	// A flag that indicates whether there are more items in the list. If your results
+	// were truncated, you can make a subsequent pagination request using the Marker
+	// request parameter to retrieve more keys in the list.
+	Truncated *bool `type:"boolean"`
 
 	metadataListKeysOutput `json:"-", xml:"-"`
 }
@@ -1129,8 +1417,15 @@ type metadataListKeysOutput struct {
 }
 
 type PutKeyPolicyInput struct {
-	KeyID      *string `locationName:"KeyId" type:"string" required:"true"`
-	Policy     *string `type:"string" required:"true"`
+	// Unique identifier of the key. This can be an ARN, an alias, or a globally
+	// unique identifier.
+	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
+
+	// The policy, in JSON format, to be attached to the key.
+	Policy *string `type:"string" required:"true"`
+
+	// Name of the policy to be attached. Currently, the only supported name is
+	// "default".
 	PolicyName *string `type:"string" required:"true"`
 
 	metadataPutKeyPolicyInput `json:"-", xml:"-"`
@@ -1149,11 +1444,22 @@ type metadataPutKeyPolicyOutput struct {
 }
 
 type ReEncryptInput struct {
-	CiphertextBlob               []byte              `type:"blob" required:"true"`
+	// Ciphertext of the data to re-encrypt.
+	CiphertextBlob []byte `type:"blob" required:"true"`
+
+	// Encryption context to be used when the data is re-encrypted.
 	DestinationEncryptionContext *map[string]*string `type:"map"`
-	DestinationKeyID             *string             `locationName:"DestinationKeyId" type:"string" required:"true"`
-	GrantTokens                  []*string           `type:"list"`
-	SourceEncryptionContext      *map[string]*string `type:"map"`
+
+	// Key identifier of the key used to re-encrypt the data.
+	DestinationKeyID *string `locationName:"DestinationKeyId" type:"string" required:"true"`
+
+	// Grant tokens that identify the grants that have permissions for the encryption
+	// and decryption process.
+	GrantTokens []*string `type:"list"`
+
+	// Encryption context used to encrypt and decrypt the data specified in the
+	// CiphertextBlob parameter.
+	SourceEncryptionContext *map[string]*string `type:"map"`
 
 	metadataReEncryptInput `json:"-", xml:"-"`
 }
@@ -1163,9 +1469,14 @@ type metadataReEncryptInput struct {
 }
 
 type ReEncryptOutput struct {
-	CiphertextBlob []byte  `type:"blob"`
-	KeyID          *string `locationName:"KeyId" type:"string"`
-	SourceKeyID    *string `locationName:"SourceKeyId" type:"string"`
+	// The re-encrypted data.
+	CiphertextBlob []byte `type:"blob"`
+
+	// Unique identifier of the key used to re-encrypt the data.
+	KeyID *string `locationName:"KeyId" type:"string"`
+
+	// Unique identifier of the key used to originally encrypt the data.
+	SourceKeyID *string `locationName:"SourceKeyId" type:"string"`
 
 	metadataReEncryptOutput `json:"-", xml:"-"`
 }
@@ -1175,6 +1486,7 @@ type metadataReEncryptOutput struct {
 }
 
 type RetireGrantInput struct {
+	// Token that identifies the grant to be retired.
 	GrantToken *string `type:"string" required:"true"`
 
 	metadataRetireGrantInput `json:"-", xml:"-"`
@@ -1193,8 +1505,11 @@ type metadataRetireGrantOutput struct {
 }
 
 type RevokeGrantInput struct {
+	// Identifier of the grant to be revoked.
 	GrantID *string `locationName:"GrantId" type:"string" required:"true"`
-	KeyID   *string `locationName:"KeyId" type:"string" required:"true"`
+
+	// Unique identifier of the key associated with the grant.
+	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataRevokeGrantInput `json:"-", xml:"-"`
 }
@@ -1213,7 +1528,8 @@ type metadataRevokeGrantOutput struct {
 
 type UpdateKeyDescriptionInput struct {
 	Description *string `type:"string" required:"true"`
-	KeyID       *string `locationName:"KeyId" type:"string" required:"true"`
+
+	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataUpdateKeyDescriptionInput `json:"-", xml:"-"`
 }

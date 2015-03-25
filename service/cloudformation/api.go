@@ -24,6 +24,10 @@ func (c *CloudFormation) CancelUpdateStackRequest(input *CancelUpdateStackInput)
 	return
 }
 
+// Cancels an update on the specified stack. If the call completes successfully,
+// the stack will roll back the update and revert to the previous stack configuration.
+//
+// Only stacks that are in the UPDATE_IN_PROGRESS state can be canceled.
 func (c *CloudFormation) CancelUpdateStack(input *CancelUpdateStackInput) (output *CancelUpdateStackOutput, err error) {
 	req, out := c.CancelUpdateStackRequest(input)
 	output = out
@@ -49,6 +53,9 @@ func (c *CloudFormation) CreateStackRequest(input *CreateStackInput) (req *aws.R
 	return
 }
 
+// Creates a stack as specified in the template. After the call completes successfully,
+// the stack creation starts. You can check the status of the stack via the
+// DescribeStacks API.
 func (c *CloudFormation) CreateStack(input *CreateStackInput) (output *CreateStackOutput, err error) {
 	req, out := c.CreateStackRequest(input)
 	output = out
@@ -74,6 +81,9 @@ func (c *CloudFormation) DeleteStackRequest(input *DeleteStackInput) (req *aws.R
 	return
 }
 
+// Deletes a specified stack. Once the call completes successfully, stack deletion
+// starts. Deleted stacks do not show up in the DescribeStacks API if the deletion
+// has been completed successfully.
 func (c *CloudFormation) DeleteStack(input *DeleteStackInput) (output *DeleteStackOutput, err error) {
 	req, out := c.DeleteStackRequest(input)
 	output = out
@@ -99,6 +109,12 @@ func (c *CloudFormation) DescribeStackEventsRequest(input *DescribeStackEventsIn
 	return
 }
 
+// Returns all stack related events for a specified stack. For more information
+// about a stack's event history, go to Stacks (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/concept-stack.html)
+// in the AWS CloudFormation User Guide.
+//
+// You can list events for stacks that have failed to create or have been deleted
+// by specifying the unique stack identifier (stack ID).
 func (c *CloudFormation) DescribeStackEvents(input *DescribeStackEventsInput) (output *DescribeStackEventsOutput, err error) {
 	req, out := c.DescribeStackEventsRequest(input)
 	output = out
@@ -124,6 +140,10 @@ func (c *CloudFormation) DescribeStackResourceRequest(input *DescribeStackResour
 	return
 }
 
+// Returns a description of the specified resource in the specified stack.
+//
+// For deleted stacks, DescribeStackResource returns resource information for
+// up to 90 days after the stack has been deleted.
 func (c *CloudFormation) DescribeStackResource(input *DescribeStackResourceInput) (output *DescribeStackResourceOutput, err error) {
 	req, out := c.DescribeStackResourceRequest(input)
 	output = out
@@ -149,6 +169,23 @@ func (c *CloudFormation) DescribeStackResourcesRequest(input *DescribeStackResou
 	return
 }
 
+// Returns AWS resource descriptions for running and deleted stacks. If StackName
+// is specified, all the associated resources that are part of the stack are
+// returned. If PhysicalResourceId is specified, the associated resources of
+// the stack that the resource belongs to are returned.
+//
+// Only the first 100 resources will be returned. If your stack has more resources
+// than this, you should use ListStackResources instead. For deleted stacks,
+// DescribeStackResources returns resource information for up to 90 days after
+// the stack has been deleted.
+//
+// You must specify either StackName or PhysicalResourceId, but not both. In
+// addition, you can specify LogicalResourceId to filter the returned result.
+// For more information about resources, the LogicalResourceId and PhysicalResourceId,
+// go to the AWS CloudFormation User Guide (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide).
+//
+// A ValidationError is returned if you specify both StackName and PhysicalResourceId
+// in the same request.
 func (c *CloudFormation) DescribeStackResources(input *DescribeStackResourcesInput) (output *DescribeStackResourcesOutput, err error) {
 	req, out := c.DescribeStackResourcesRequest(input)
 	output = out
@@ -174,6 +211,8 @@ func (c *CloudFormation) DescribeStacksRequest(input *DescribeStacksInput) (req 
 	return
 }
 
+// Returns the description for the specified stack; if no stack name was specified,
+// then it returns the description for all the stacks created.
 func (c *CloudFormation) DescribeStacks(input *DescribeStacksInput) (output *DescribeStacksOutput, err error) {
 	req, out := c.DescribeStacksRequest(input)
 	output = out
@@ -199,6 +238,9 @@ func (c *CloudFormation) EstimateTemplateCostRequest(input *EstimateTemplateCost
 	return
 }
 
+// Returns the estimated monthly cost of a template. The return value is an
+// AWS Simple Monthly Calculator URL with a query string that describes the
+// resources required to run the template.
 func (c *CloudFormation) EstimateTemplateCost(input *EstimateTemplateCostInput) (output *EstimateTemplateCostOutput, err error) {
 	req, out := c.EstimateTemplateCostRequest(input)
 	output = out
@@ -224,6 +266,8 @@ func (c *CloudFormation) GetStackPolicyRequest(input *GetStackPolicyInput) (req 
 	return
 }
 
+// Returns the stack policy for a specified stack. If a stack doesn't have a
+// policy, a null value is returned.
 func (c *CloudFormation) GetStackPolicy(input *GetStackPolicyInput) (output *GetStackPolicyOutput, err error) {
 	req, out := c.GetStackPolicyRequest(input)
 	output = out
@@ -249,6 +293,13 @@ func (c *CloudFormation) GetTemplateRequest(input *GetTemplateInput) (req *aws.R
 	return
 }
 
+// Returns the template body for a specified stack. You can get the template
+// for running or deleted stacks.
+//
+// For deleted stacks, GetTemplate returns the template for up to 90 days after
+// the stack has been deleted.
+//
+//  If the template does not exist, a ValidationError is returned.
 func (c *CloudFormation) GetTemplate(input *GetTemplateInput) (output *GetTemplateOutput, err error) {
 	req, out := c.GetTemplateRequest(input)
 	output = out
@@ -274,6 +325,16 @@ func (c *CloudFormation) GetTemplateSummaryRequest(input *GetTemplateSummaryInpu
 	return
 }
 
+// Returns information about a new or existing template. The GetTemplateSummary
+// action is useful for viewing parameter information, such as default parameter
+// values and parameter types, before you create or update a stack.
+//
+// You can use the GetTemplateSummary action when you submit a template, or
+// you can get template information for a running or deleted stack.
+//
+// For deleted stacks, GetTemplateSummary returns the template information
+// for up to 90 days after the stack has been deleted. If the template does
+// not exist, a ValidationError is returned.
 func (c *CloudFormation) GetTemplateSummary(input *GetTemplateSummaryInput) (output *GetTemplateSummaryOutput, err error) {
 	req, out := c.GetTemplateSummaryRequest(input)
 	output = out
@@ -299,6 +360,10 @@ func (c *CloudFormation) ListStackResourcesRequest(input *ListStackResourcesInpu
 	return
 }
 
+// Returns descriptions of all resources of the specified stack.
+//
+// For deleted stacks, ListStackResources returns resource information for
+// up to 90 days after the stack has been deleted.
 func (c *CloudFormation) ListStackResources(input *ListStackResourcesInput) (output *ListStackResourcesOutput, err error) {
 	req, out := c.ListStackResourcesRequest(input)
 	output = out
@@ -324,6 +389,11 @@ func (c *CloudFormation) ListStacksRequest(input *ListStacksInput) (req *aws.Req
 	return
 }
 
+// Returns the summary information for stacks whose status matches the specified
+// StackStatusFilter. Summary information for stacks that have been deleted
+// is kept for 90 days after the stack is deleted. If no StackStatusFilter is
+// specified, summary information for all stacks is returned (including existing
+// stacks and stacks that have been deleted).
 func (c *CloudFormation) ListStacks(input *ListStacksInput) (output *ListStacksOutput, err error) {
 	req, out := c.ListStacksRequest(input)
 	output = out
@@ -349,6 +419,7 @@ func (c *CloudFormation) SetStackPolicyRequest(input *SetStackPolicyInput) (req 
 	return
 }
 
+// Sets a stack policy for a specified stack.
 func (c *CloudFormation) SetStackPolicy(input *SetStackPolicyInput) (output *SetStackPolicyOutput, err error) {
 	req, out := c.SetStackPolicyRequest(input)
 	output = out
@@ -374,6 +445,12 @@ func (c *CloudFormation) SignalResourceRequest(input *SignalResourceInput) (req 
 	return
 }
 
+// Sends a signal to the specified resource with a success or failure status.
+// You can use the SignalResource API in conjunction with a creation policy
+// or update policy. AWS CloudFormation doesn't proceed with a stack creation
+// or update until resources receive the required number of signals or the timeout
+// period is exceeded. The SignalResource API is useful in cases where you want
+// to send signals from anywhere other than an Amazon EC2 instance.
 func (c *CloudFormation) SignalResource(input *SignalResourceInput) (output *SignalResourceOutput, err error) {
 	req, out := c.SignalResourceRequest(input)
 	output = out
@@ -399,6 +476,18 @@ func (c *CloudFormation) UpdateStackRequest(input *UpdateStackInput) (req *aws.R
 	return
 }
 
+// Updates a stack as specified in the template. After the call completes successfully,
+// the stack update starts. You can check the status of the stack via the DescribeStacks
+// action.
+//
+// To get a copy of the template for an existing stack, you can use the GetTemplate
+// action.
+//
+// Tags that were associated with this stack during creation time will still
+// be associated with the stack after an UpdateStack operation.
+//
+// For more information about creating an update template, updating a stack,
+// and monitoring the progress of the update, see Updating a Stack (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks.html).
 func (c *CloudFormation) UpdateStack(input *UpdateStackInput) (output *UpdateStackOutput, err error) {
 	req, out := c.UpdateStackRequest(input)
 	output = out
@@ -424,6 +513,7 @@ func (c *CloudFormation) ValidateTemplateRequest(input *ValidateTemplateInput) (
 	return
 }
 
+// Validates a specified template.
 func (c *CloudFormation) ValidateTemplate(input *ValidateTemplateInput) (output *ValidateTemplateOutput, err error) {
 	req, out := c.ValidateTemplateRequest(input)
 	output = out
@@ -433,7 +523,9 @@ func (c *CloudFormation) ValidateTemplate(input *ValidateTemplateInput) (output 
 
 var opValidateTemplate *aws.Operation
 
+// The input for CancelUpdateStack action.
 type CancelUpdateStackInput struct {
+	// The name or the unique identifier associated with the stack.
 	StackName *string `type:"string" required:"true"`
 
 	metadataCancelUpdateStackInput `json:"-", xml:"-"`
@@ -451,19 +543,94 @@ type metadataCancelUpdateStackOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input for CreateStack action.
 type CreateStackInput struct {
-	Capabilities     []*string    `type:"list"`
-	DisableRollback  *bool        `type:"boolean"`
-	NotificationARNs []*string    `type:"list"`
-	OnFailure        *string      `type:"string"`
-	Parameters       []*Parameter `type:"list"`
-	StackName        *string      `type:"string" required:"true"`
-	StackPolicyBody  *string      `type:"string"`
-	StackPolicyURL   *string      `type:"string"`
-	Tags             []*Tag       `type:"list"`
-	TemplateBody     *string      `type:"string"`
-	TemplateURL      *string      `type:"string"`
-	TimeoutInMinutes *int64       `type:"integer"`
+	// A list of capabilities that you must specify before AWS CloudFormation can
+	// create or update certain stacks. Some stack templates might include resources
+	// that can affect permissions in your AWS account. For those stacks, you must
+	// explicitly acknowledge their capabilities by specifying this parameter.
+	//
+	// Currently, the only valid value is CAPABILITY_IAM, which is required for
+	// the following resources:  AWS::CloudFormation::Stack (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html),
+	//  AWS::IAM::AccessKey (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html),
+	//  AWS::IAM::Group (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html),
+	//  AWS::IAM::InstanceProfile (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html),
+	//  AWS::IAM::Policy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html),
+	//  AWS::IAM::Role (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html),
+	//  AWS::IAM::User (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html),
+	// and  AWS::IAM::UserToGroupAddition (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-addusertogroup.html).
+	// If your stack template contains these resources, we recommend that you review
+	// any permissions associated with them. If you don't specify this parameter,
+	// this action returns an InsufficientCapabilities error.
+	Capabilities []*string `type:"list"`
+
+	// Set to true to disable rollback of the stack if stack creation failed. You
+	// can specify either DisableRollback or OnFailure, but not both.
+	//
+	// Default: false
+	DisableRollback *bool `type:"boolean"`
+
+	// The Simple Notification Service (SNS) topic ARNs to publish stack related
+	// events. You can find your SNS topic ARNs using the SNS console (http://console.aws.amazon.com/sns)
+	// or your Command Line Interface (CLI).
+	NotificationARNs []*string `type:"list"`
+
+	// Determines what action will be taken if stack creation fails. This must be
+	// one of: DO_NOTHING, ROLLBACK, or DELETE. You can specify either OnFailure
+	// or DisableRollback, but not both.
+	//
+	// Default: ROLLBACK
+	OnFailure *string `type:"string"`
+
+	// A list of Parameter structures that specify input parameters for the stack.
+	Parameters []*Parameter `type:"list"`
+
+	// The name associated with the stack. The name must be unique within your AWS
+	// account.
+	//
+	// Must contain only alphanumeric characters (case sensitive) and start with
+	// an alpha character. Maximum length of the name is 255 characters.
+	StackName *string `type:"string" required:"true"`
+
+	// Structure containing the stack policy body. For more information, go to
+	// Prevent Updates to Stack Resources (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html)
+	// in the AWS CloudFormation User Guide. You can specify either the StackPolicyBody
+	// or the StackPolicyURL parameter, but not both.
+	StackPolicyBody *string `type:"string"`
+
+	// Location of a file containing the stack policy. The URL must point to a policy
+	// (max size: 16KB) located in an S3 bucket in the same region as the stack.
+	// You can specify either the StackPolicyBody or the StackPolicyURL parameter,
+	// but not both.
+	StackPolicyURL *string `type:"string"`
+
+	// A set of user-defined Tags to associate with this stack, represented by key/value
+	// pairs. Tags defined for the stack are propagated to EC2 resources that are
+	// created as part of the stack. A maximum number of 10 tags can be specified.
+	Tags []*Tag `type:"list"`
+
+	// Structure containing the template body with a minimum length of 1 byte and
+	// a maximum length of 51,200 bytes. For more information, go to Template Anatomy
+	// (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
+	// in the AWS CloudFormation User Guide.
+	//
+	// Conditional: You must specify either the TemplateBody or the TemplateURL
+	// parameter, but not both.
+	TemplateBody *string `type:"string"`
+
+	// Location of file containing the template body. The URL must point to a template
+	// (max size: 307,200 bytes) located in an S3 bucket in the same region as the
+	// stack. For more information, go to the Template Anatomy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
+	// in the AWS CloudFormation User Guide.
+	//
+	// Conditional: You must specify either the TemplateBody or the TemplateURL
+	// parameter, but not both.
+	TemplateURL *string `type:"string"`
+
+	// The amount of time that can pass before the stack status becomes CREATE_FAILED;
+	// if DisableRollback is not set or is set to false, the stack will be rolled
+	// back.
+	TimeoutInMinutes *int64 `type:"integer"`
 
 	metadataCreateStackInput `json:"-", xml:"-"`
 }
@@ -472,7 +639,9 @@ type metadataCreateStackInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The output for a CreateStack action.
 type CreateStackOutput struct {
+	// Unique identifier of the stack.
 	StackID *string `locationName:"StackId" type:"string"`
 
 	metadataCreateStackOutput `json:"-", xml:"-"`
@@ -482,7 +651,9 @@ type metadataCreateStackOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input for DeleteStack action.
 type DeleteStackInput struct {
+	// The name or the unique identifier associated with the stack.
 	StackName *string `type:"string" required:"true"`
 
 	metadataDeleteStackInput `json:"-", xml:"-"`
@@ -500,8 +671,20 @@ type metadataDeleteStackOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input for DescribeStackEvents action.
 type DescribeStackEventsInput struct {
+	// String that identifies the start of the next list of events, if there is
+	// one.
+	//
+	// Default: There is no default value.
 	NextToken *string `type:"string"`
+
+	// The name or the unique identifier associated with the stack, which are not
+	// always interchangeable:
+	//
+	//  Running stacks: You can specify either the stack's name or its unique stack
+	// ID. Deleted stacks: You must specify the unique stack ID.  Default: There
+	// is no default value.
 	StackName *string `type:"string"`
 
 	metadataDescribeStackEventsInput `json:"-", xml:"-"`
@@ -511,8 +694,13 @@ type metadataDescribeStackEventsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The output for a DescribeStackEvents action.
 type DescribeStackEventsOutput struct {
-	NextToken   *string       `type:"string"`
+	// String that identifies the start of the next list of events, if there is
+	// one.
+	NextToken *string `type:"string"`
+
+	// A list of StackEvents structures.
 	StackEvents []*StackEvent `type:"list"`
 
 	metadataDescribeStackEventsOutput `json:"-", xml:"-"`
@@ -522,9 +710,20 @@ type metadataDescribeStackEventsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input for DescribeStackResource action.
 type DescribeStackResourceInput struct {
+	// The logical name of the resource as specified in the template.
+	//
+	// Default: There is no default value.
 	LogicalResourceID *string `locationName:"LogicalResourceId" type:"string" required:"true"`
-	StackName         *string `type:"string" required:"true"`
+
+	// The name or the unique identifier associated with the stack, which are not
+	// always interchangeable:
+	//
+	//  Running stacks: You can specify either the stack's name or its unique stack
+	// ID. Deleted stacks: You must specify the unique stack ID.  Default: There
+	// is no default value.
+	StackName *string `type:"string" required:"true"`
 
 	metadataDescribeStackResourceInput `json:"-", xml:"-"`
 }
@@ -533,7 +732,10 @@ type metadataDescribeStackResourceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The output for a DescribeStackResource action.
 type DescribeStackResourceOutput struct {
+	// A StackResourceDetail structure containing the description of the specified
+	// resource in the specified stack.
 	StackResourceDetail *StackResourceDetail `type:"structure"`
 
 	metadataDescribeStackResourceOutput `json:"-", xml:"-"`
@@ -543,10 +745,37 @@ type metadataDescribeStackResourceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input for DescribeStackResources action.
 type DescribeStackResourcesInput struct {
-	LogicalResourceID  *string `locationName:"LogicalResourceId" type:"string"`
+	// The logical name of the resource as specified in the template.
+	//
+	// Default: There is no default value.
+	LogicalResourceID *string `locationName:"LogicalResourceId" type:"string"`
+
+	// The name or unique identifier that corresponds to a physical instance ID
+	// of a resource supported by AWS CloudFormation.
+	//
+	// For example, for an Amazon Elastic Compute Cloud (EC2) instance, PhysicalResourceId
+	// corresponds to the InstanceId. You can pass the EC2 InstanceId to DescribeStackResources
+	// to find which stack the instance belongs to and what other resources are
+	// part of the stack.
+	//
+	// Required: Conditional. If you do not specify PhysicalResourceId, you must
+	// specify StackName.
+	//
+	// Default: There is no default value.
 	PhysicalResourceID *string `locationName:"PhysicalResourceId" type:"string"`
-	StackName          *string `type:"string"`
+
+	// The name or the unique identifier associated with the stack, which are not
+	// always interchangeable:
+	//
+	//  Running stacks: You can specify either the stack's name or its unique stack
+	// ID. Deleted stacks: You must specify the unique stack ID.  Default: There
+	// is no default value.
+	//
+	// Required: Conditional. If you do not specify StackName, you must specify
+	// PhysicalResourceId.
+	StackName *string `type:"string"`
 
 	metadataDescribeStackResourcesInput `json:"-", xml:"-"`
 }
@@ -555,7 +784,9 @@ type metadataDescribeStackResourcesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The output for a DescribeStackResources action.
 type DescribeStackResourcesOutput struct {
+	// A list of StackResource structures.
 	StackResources []*StackResource `type:"list"`
 
 	metadataDescribeStackResourcesOutput `json:"-", xml:"-"`
@@ -565,8 +796,18 @@ type metadataDescribeStackResourcesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input for DescribeStacks action.
 type DescribeStacksInput struct {
+	// String that identifies the start of the next list of stacks, if there is
+	// one.
 	NextToken *string `type:"string"`
+
+	// The name or the unique identifier associated with the stack, which are not
+	// always interchangeable:
+	//
+	//  Running stacks: You can specify either the stack's name or its unique stack
+	// ID. Deleted stacks: You must specify the unique stack ID.  Default: There
+	// is no default value.
 	StackName *string `type:"string"`
 
 	metadataDescribeStacksInput `json:"-", xml:"-"`
@@ -576,9 +817,14 @@ type metadataDescribeStacksInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The output for a DescribeStacks action.
 type DescribeStacksOutput struct {
-	NextToken *string  `type:"string"`
-	Stacks    []*Stack `type:"list"`
+	// String that identifies the start of the next list of stacks, if there is
+	// one.
+	NextToken *string `type:"string"`
+
+	// A list of stack structures.
+	Stacks []*Stack `type:"list"`
 
 	metadataDescribeStacksOutput `json:"-", xml:"-"`
 }
@@ -588,9 +834,26 @@ type metadataDescribeStacksOutput struct {
 }
 
 type EstimateTemplateCostInput struct {
-	Parameters   []*Parameter `type:"list"`
-	TemplateBody *string      `type:"string"`
-	TemplateURL  *string      `type:"string"`
+	// A list of Parameter structures that specify input parameters.
+	Parameters []*Parameter `type:"list"`
+
+	// Structure containing the template body with a minimum length of 1 byte and
+	// a maximum length of 51,200 bytes. (For more information, go to Template Anatomy
+	// (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
+	// in the AWS CloudFormation User Guide.)
+	//
+	// Conditional: You must pass TemplateBody or TemplateURL. If both are passed,
+	// only TemplateBody is used.
+	TemplateBody *string `type:"string"`
+
+	// Location of file containing the template body. The URL must point to a template
+	// located in an S3 bucket in the same region as the stack. For more information,
+	// go to Template Anatomy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
+	// in the AWS CloudFormation User Guide.
+	//
+	// Conditional: You must pass TemplateURL or TemplateBody. If both are passed,
+	// only TemplateBody is used.
+	TemplateURL *string `type:"string"`
 
 	metadataEstimateTemplateCostInput `json:"-", xml:"-"`
 }
@@ -599,7 +862,10 @@ type metadataEstimateTemplateCostInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The output for a EstimateTemplateCost action.
 type EstimateTemplateCostOutput struct {
+	// An AWS Simple Monthly Calculator URL with a query string that describes the
+	// resources required to run the template.
 	URL *string `locationName:"Url" type:"string"`
 
 	metadataEstimateTemplateCostOutput `json:"-", xml:"-"`
@@ -609,7 +875,10 @@ type metadataEstimateTemplateCostOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input for the GetStackPolicy action.
 type GetStackPolicyInput struct {
+	// The name or stack ID that is associated with the stack whose policy you want
+	// to get.
 	StackName *string `type:"string" required:"true"`
 
 	metadataGetStackPolicyInput `json:"-", xml:"-"`
@@ -619,7 +888,11 @@ type metadataGetStackPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The output for the GetStackPolicy action.
 type GetStackPolicyOutput struct {
+	// Structure containing the stack policy body. (For more information, go to
+	//  Prevent Updates to Stack Resources (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html)
+	// in the AWS CloudFormation User Guide.)
 	StackPolicyBody *string `type:"string"`
 
 	metadataGetStackPolicyOutput `json:"-", xml:"-"`
@@ -629,7 +902,14 @@ type metadataGetStackPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input for a GetTemplate action.
 type GetTemplateInput struct {
+	// The name or the unique identifier associated with the stack, which are not
+	// always interchangeable:
+	//
+	//  Running stacks: You can specify either the stack's name or its unique stack
+	// ID. Deleted stacks: You must specify the unique stack ID.  Default: There
+	// is no default value.
 	StackName *string `type:"string" required:"true"`
 
 	metadataGetTemplateInput `json:"-", xml:"-"`
@@ -639,7 +919,11 @@ type metadataGetTemplateInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The output for GetTemplate action.
 type GetTemplateOutput struct {
+	// Structure containing the template body. (For more information, go to Template
+	// Anatomy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
+	// in the AWS CloudFormation User Guide.)
 	TemplateBody *string `type:"string"`
 
 	metadataGetTemplateOutput `json:"-", xml:"-"`
@@ -649,10 +933,34 @@ type metadataGetTemplateOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input for the GetTemplateSummary action.
 type GetTemplateSummaryInput struct {
-	StackName    *string `type:"string"`
+	// The name or the unique identifier associated with the stack, which are not
+	// always interchangeable. For running stacks, you can specify either the stack's
+	// name or its unique stack ID. For deleted stack, you must specify the unique
+	// stack ID.
+	//
+	// Conditional: You must specify only one of the following parameters: StackName,
+	// TemplateBody, or TemplateURL.
+	StackName *string `type:"string"`
+
+	// Structure containing the template body with a minimum length of 1 byte and
+	// a maximum length of 51,200 bytes. For more information about templates, see
+	// Template Anatomy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
+	// in the AWS CloudFormation User Guide.
+	//
+	// Conditional: You must specify only one of the following parameters: StackName,
+	// TemplateBody, or TemplateURL.
 	TemplateBody *string `type:"string"`
-	TemplateURL  *string `type:"string"`
+
+	// Location of file containing the template body. The URL must point to a template
+	// (max size: 307,200 bytes) located in an Amazon S3 bucket. For more information
+	// about templates, see Template Anatomy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
+	// in the AWS CloudFormation User Guide.
+	//
+	// Conditional: You must specify only one of the following parameters: StackName,
+	// TemplateBody, or TemplateURL.
+	TemplateURL *string `type:"string"`
 
 	metadataGetTemplateSummaryInput `json:"-", xml:"-"`
 }
@@ -661,12 +969,28 @@ type metadataGetTemplateSummaryInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The output for the GetTemplateSummary action.
 type GetTemplateSummaryOutput struct {
-	Capabilities       []*string               `type:"list"`
-	CapabilitiesReason *string                 `type:"string"`
-	Description        *string                 `type:"string"`
-	Parameters         []*ParameterDeclaration `type:"list"`
-	Version            *string                 `type:"string"`
+	// The capabilities found within the template. Currently, AWS CloudFormation
+	// supports only the CAPABILITY_IAM capability. If your template contains IAM
+	// resources, you must specify the CAPABILITY_IAM value for this parameter when
+	// you use the CreateStack or UpdateStack actions with your template; otherwise,
+	// those actions return an InsufficientCapabilities error.
+	Capabilities []*string `type:"list"`
+
+	// The capabilities reason found within the template.
+	CapabilitiesReason *string `type:"string"`
+
+	// The value that is defined in the Description property of the template.
+	Description *string `type:"string"`
+
+	// A list of parameter declarations that describe various properties for each
+	// parameter.
+	Parameters []*ParameterDeclaration `type:"list"`
+
+	// The AWS template format version, which identifies the capabilities of the
+	// template.
+	Version *string `type:"string"`
 
 	metadataGetTemplateSummaryOutput `json:"-", xml:"-"`
 }
@@ -675,8 +999,20 @@ type metadataGetTemplateSummaryOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input for the ListStackResource action.
 type ListStackResourcesInput struct {
+	// String that identifies the start of the next list of stack resource summaries,
+	// if there is one.
+	//
+	// Default: There is no default value.
 	NextToken *string `type:"string"`
+
+	// The name or the unique identifier associated with the stack, which are not
+	// always interchangeable:
+	//
+	//  Running stacks: You can specify either the stack's name or its unique stack
+	// ID. Deleted stacks: You must specify the unique stack ID.  Default: There
+	// is no default value.
 	StackName *string `type:"string" required:"true"`
 
 	metadataListStackResourcesInput `json:"-", xml:"-"`
@@ -686,8 +1022,13 @@ type metadataListStackResourcesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The output for a ListStackResources action.
 type ListStackResourcesOutput struct {
-	NextToken              *string                 `type:"string"`
+	// String that identifies the start of the next list of stack resources, if
+	// there is one.
+	NextToken *string `type:"string"`
+
+	// A list of StackResourceSummary structures.
 	StackResourceSummaries []*StackResourceSummary `type:"list"`
 
 	metadataListStackResourcesOutput `json:"-", xml:"-"`
@@ -697,8 +1038,17 @@ type metadataListStackResourcesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input for ListStacks action.
 type ListStacksInput struct {
-	NextToken         *string   `type:"string"`
+	// String that identifies the start of the next list of stacks, if there is
+	// one.
+	//
+	// Default: There is no default value.
+	NextToken *string `type:"string"`
+
+	// Stack status to use as a filter. Specify one or more stack status codes to
+	// list only stacks with the specified status codes. For a complete list of
+	// stack status codes, see the StackStatus parameter of the Stack data type.
 	StackStatusFilter []*string `type:"list"`
 
 	metadataListStacksInput `json:"-", xml:"-"`
@@ -708,8 +1058,14 @@ type metadataListStacksInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The output for ListStacks action.
 type ListStacksOutput struct {
-	NextToken      *string         `type:"string"`
+	// String that identifies the start of the next list of stacks, if there is
+	// one.
+	NextToken *string `type:"string"`
+
+	// A list of StackSummary structures containing information about the specified
+	// stacks.
 	StackSummaries []*StackSummary `type:"list"`
 
 	metadataListStacksOutput `json:"-", xml:"-"`
@@ -719,9 +1075,15 @@ type metadataListStacksOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The Output data type.
 type Output struct {
+	// User defined description associated with the output.
 	Description *string `type:"string"`
-	OutputKey   *string `type:"string"`
+
+	// The key associated with the output.
+	OutputKey *string `type:"string"`
+
+	// The value associated with the output.
 	OutputValue *string `type:"string"`
 
 	metadataOutput `json:"-", xml:"-"`
@@ -731,10 +1093,17 @@ type metadataOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The Parameter data type.
 type Parameter struct {
-	ParameterKey     *string `type:"string"`
-	ParameterValue   *string `type:"string"`
-	UsePreviousValue *bool   `type:"boolean"`
+	// The key associated with the parameter.
+	ParameterKey *string `type:"string"`
+
+	// The value associated with the parameter.
+	ParameterValue *string `type:"string"`
+
+	// During a stack update, use the existing parameter value that is being used
+	// for the stack.
+	UsePreviousValue *bool `type:"boolean"`
 
 	metadataParameter `json:"-", xml:"-"`
 }
@@ -743,11 +1112,22 @@ type metadataParameter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The ParameterDeclaration data type.
 type ParameterDeclaration struct {
-	DefaultValue  *string `type:"string"`
-	Description   *string `type:"string"`
-	NoEcho        *bool   `type:"boolean"`
-	ParameterKey  *string `type:"string"`
+	// The default value of the parameter.
+	DefaultValue *string `type:"string"`
+
+	// The description that is associate with the parameter.
+	Description *string `type:"string"`
+
+	// Flag that indicates whether the parameter value is shown as plain text in
+	// logs and in the AWS Management Console.
+	NoEcho *bool `type:"boolean"`
+
+	// The name that is associated with the parameter.
+	ParameterKey *string `type:"string"`
+
+	// The type of parameter.
 	ParameterType *string `type:"string"`
 
 	metadataParameterDeclaration `json:"-", xml:"-"`
@@ -757,10 +1137,22 @@ type metadataParameterDeclaration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input for the SetStackPolicy action.
 type SetStackPolicyInput struct {
-	StackName       *string `type:"string" required:"true"`
+	// The name or stack ID that you want to associate a policy with.
+	StackName *string `type:"string" required:"true"`
+
+	// Structure containing the stack policy body. For more information, go to
+	// Prevent Updates to Stack Resources (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html)
+	// in the AWS CloudFormation User Guide. You can specify either the StackPolicyBody
+	// or the StackPolicyURL parameter, but not both.
 	StackPolicyBody *string `type:"string"`
-	StackPolicyURL  *string `type:"string"`
+
+	// Location of a file containing the stack policy. The URL must point to a policy
+	// (max size: 16KB) located in an S3 bucket in the same region as the stack.
+	// You can specify either the StackPolicyBody or the StackPolicyURL parameter,
+	// but not both.
+	StackPolicyURL *string `type:"string"`
 
 	metadataSetStackPolicyInput `json:"-", xml:"-"`
 }
@@ -777,11 +1169,24 @@ type metadataSetStackPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input for the SignalResource action.
 type SignalResourceInput struct {
+	// The logical ID of the resource that you want to signal. The logical ID is
+	// the name of the resource that given in the template.
 	LogicalResourceID *string `locationName:"LogicalResourceId" type:"string" required:"true"`
-	StackName         *string `type:"string" required:"true"`
-	Status            *string `type:"string" required:"true"`
-	UniqueID          *string `locationName:"UniqueId" type:"string" required:"true"`
+
+	// The stack name or ID that includes the resource that you want to signal.
+	StackName *string `type:"string" required:"true"`
+
+	// The status of the signal, which is either success or failure. A failure signal
+	// causes AWS CloudFormation to immediately fail the stack creation or update.
+	Status *string `type:"string" required:"true"`
+
+	// A unique ID of the signal. When you signal Amazon EC2 instances or Auto Scaling
+	// groups, specify the instance ID that you are signaling as the unique ID.
+	// If you send multiple signals to a single resource (such as signaling a wait
+	// condition), each signal requires a different unique ID.
+	UniqueID *string `locationName:"UniqueId" type:"string" required:"true"`
 
 	metadataSignalResourceInput `json:"-", xml:"-"`
 }
@@ -798,21 +1203,52 @@ type metadataSignalResourceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The Stack data type.
 type Stack struct {
-	Capabilities      []*string    `type:"list"`
-	CreationTime      *time.Time   `type:"timestamp" timestampFormat:"iso8601" required:"true"`
-	Description       *string      `type:"string"`
-	DisableRollback   *bool        `type:"boolean"`
-	LastUpdatedTime   *time.Time   `type:"timestamp" timestampFormat:"iso8601"`
-	NotificationARNs  []*string    `type:"list"`
-	Outputs           []*Output    `type:"list"`
-	Parameters        []*Parameter `type:"list"`
-	StackID           *string      `locationName:"StackId" type:"string"`
-	StackName         *string      `type:"string" required:"true"`
-	StackStatus       *string      `type:"string" required:"true"`
-	StackStatusReason *string      `type:"string"`
-	Tags              []*Tag       `type:"list"`
-	TimeoutInMinutes  *int64       `type:"integer"`
+	// The capabilities allowed in the stack.
+	Capabilities []*string `type:"list"`
+
+	// Time at which the stack was created.
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// User defined description associated with the stack.
+	Description *string `type:"string"`
+
+	// Boolean to enable or disable rollback on stack creation failures:
+	//
+	//    true: disable rollback  false: enable rollback
+	DisableRollback *bool `type:"boolean"`
+
+	// The time the stack was last updated. This field will only be returned if
+	// the stack has been updated at least once.
+	LastUpdatedTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// SNS topic ARNs to which stack related events are published.
+	NotificationARNs []*string `type:"list"`
+
+	// A list of output structures.
+	Outputs []*Output `type:"list"`
+
+	// A list of Parameter structures.
+	Parameters []*Parameter `type:"list"`
+
+	// Unique identifier of the stack.
+	StackID *string `locationName:"StackId" type:"string"`
+
+	// The name associated with the stack.
+	StackName *string `type:"string" required:"true"`
+
+	// Current status of the stack.
+	StackStatus *string `type:"string" required:"true"`
+
+	// Success/failure message associated with the stack status.
+	StackStatusReason *string `type:"string"`
+
+	// A list of Tags that specify cost allocation information for the stack.
+	Tags []*Tag `type:"list"`
+
+	// The amount of time within which stack creation should complete.
+	TimeoutInMinutes *int64 `type:"integer"`
 
 	metadataStack `json:"-", xml:"-"`
 }
@@ -821,17 +1257,40 @@ type metadataStack struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The StackEvent data type.
 type StackEvent struct {
-	EventID              *string    `locationName:"EventId" type:"string" required:"true"`
-	LogicalResourceID    *string    `locationName:"LogicalResourceId" type:"string"`
-	PhysicalResourceID   *string    `locationName:"PhysicalResourceId" type:"string"`
-	ResourceProperties   *string    `type:"string"`
-	ResourceStatus       *string    `type:"string"`
-	ResourceStatusReason *string    `type:"string"`
-	ResourceType         *string    `type:"string"`
-	StackID              *string    `locationName:"StackId" type:"string" required:"true"`
-	StackName            *string    `type:"string" required:"true"`
-	Timestamp            *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	// The unique ID of this event.
+	EventID *string `locationName:"EventId" type:"string" required:"true"`
+
+	// The logical name of the resource specified in the template.
+	LogicalResourceID *string `locationName:"LogicalResourceId" type:"string"`
+
+	// The name or unique identifier associated with the physical instance of the
+	// resource.
+	PhysicalResourceID *string `locationName:"PhysicalResourceId" type:"string"`
+
+	// BLOB of the properties used to create the resource.
+	ResourceProperties *string `type:"string"`
+
+	// Current status of the resource.
+	ResourceStatus *string `type:"string"`
+
+	// Success/failure message associated with the resource.
+	ResourceStatusReason *string `type:"string"`
+
+	// Type of resource. (For more information, go to  AWS Resource Types Reference
+	// (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
+	// in the AWS CloudFormation User Guide.)
+	ResourceType *string `type:"string"`
+
+	// The unique ID name of the instance of the stack.
+	StackID *string `locationName:"StackId" type:"string" required:"true"`
+
+	// The name associated with a stack.
+	StackName *string `type:"string" required:"true"`
+
+	// Time the status was updated.
+	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	metadataStackEvent `json:"-", xml:"-"`
 }
@@ -840,16 +1299,37 @@ type metadataStackEvent struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The StackResource data type.
 type StackResource struct {
-	Description          *string    `type:"string"`
-	LogicalResourceID    *string    `locationName:"LogicalResourceId" type:"string" required:"true"`
-	PhysicalResourceID   *string    `locationName:"PhysicalResourceId" type:"string"`
-	ResourceStatus       *string    `type:"string" required:"true"`
-	ResourceStatusReason *string    `type:"string"`
-	ResourceType         *string    `type:"string" required:"true"`
-	StackID              *string    `locationName:"StackId" type:"string"`
-	StackName            *string    `type:"string"`
-	Timestamp            *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+	// User defined description associated with the resource.
+	Description *string `type:"string"`
+
+	// The logical name of the resource specified in the template.
+	LogicalResourceID *string `locationName:"LogicalResourceId" type:"string" required:"true"`
+
+	// The name or unique identifier that corresponds to a physical instance ID
+	// of a resource supported by AWS CloudFormation.
+	PhysicalResourceID *string `locationName:"PhysicalResourceId" type:"string"`
+
+	// Current status of the resource.
+	ResourceStatus *string `type:"string" required:"true"`
+
+	// Success/failure message associated with the resource.
+	ResourceStatusReason *string `type:"string"`
+
+	// Type of resource. (For more information, go to  AWS Resource Types Reference
+	// (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
+	// in the AWS CloudFormation User Guide.)
+	ResourceType *string `type:"string" required:"true"`
+
+	// Unique identifier of the stack.
+	StackID *string `locationName:"StackId" type:"string"`
+
+	// The name associated with the stack.
+	StackName *string `type:"string"`
+
+	// Time the status was updated.
+	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	metadataStackResource `json:"-", xml:"-"`
 }
@@ -858,17 +1338,42 @@ type metadataStackResource struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains detailed information about the specified stack resource.
 type StackResourceDetail struct {
-	Description          *string    `type:"string"`
+	// User defined description associated with the resource.
+	Description *string `type:"string"`
+
+	// Time the status was updated.
 	LastUpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
-	LogicalResourceID    *string    `locationName:"LogicalResourceId" type:"string" required:"true"`
-	Metadata             *string    `type:"string"`
-	PhysicalResourceID   *string    `locationName:"PhysicalResourceId" type:"string"`
-	ResourceStatus       *string    `type:"string" required:"true"`
-	ResourceStatusReason *string    `type:"string"`
-	ResourceType         *string    `type:"string" required:"true"`
-	StackID              *string    `locationName:"StackId" type:"string"`
-	StackName            *string    `type:"string"`
+
+	// The logical name of the resource specified in the template.
+	LogicalResourceID *string `locationName:"LogicalResourceId" type:"string" required:"true"`
+
+	// The JSON format content of the Metadata attribute declared for the resource.
+	// For more information, see Metadata Attribute (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-metadata.html)
+	// in the AWS CloudFormation User Guide.
+	Metadata *string `type:"string"`
+
+	// The name or unique identifier that corresponds to a physical instance ID
+	// of a resource supported by AWS CloudFormation.
+	PhysicalResourceID *string `locationName:"PhysicalResourceId" type:"string"`
+
+	// Current status of the resource.
+	ResourceStatus *string `type:"string" required:"true"`
+
+	// Success/failure message associated with the resource.
+	ResourceStatusReason *string `type:"string"`
+
+	// Type of resource. ((For more information, go to  AWS Resource Types Reference
+	// (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
+	// in the AWS CloudFormation User Guide.)
+	ResourceType *string `type:"string" required:"true"`
+
+	// Unique identifier of the stack.
+	StackID *string `locationName:"StackId" type:"string"`
+
+	// The name associated with the stack.
+	StackName *string `type:"string"`
 
 	metadataStackResourceDetail `json:"-", xml:"-"`
 }
@@ -877,13 +1382,28 @@ type metadataStackResourceDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains high-level information about the specified stack resource.
 type StackResourceSummary struct {
+	// Time the status was updated.
 	LastUpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
-	LogicalResourceID    *string    `locationName:"LogicalResourceId" type:"string" required:"true"`
-	PhysicalResourceID   *string    `locationName:"PhysicalResourceId" type:"string"`
-	ResourceStatus       *string    `type:"string" required:"true"`
-	ResourceStatusReason *string    `type:"string"`
-	ResourceType         *string    `type:"string" required:"true"`
+
+	// The logical name of the resource specified in the template.
+	LogicalResourceID *string `locationName:"LogicalResourceId" type:"string" required:"true"`
+
+	// The name or unique identifier that corresponds to a physical instance ID
+	// of the resource.
+	PhysicalResourceID *string `locationName:"PhysicalResourceId" type:"string"`
+
+	// Current status of the resource.
+	ResourceStatus *string `type:"string" required:"true"`
+
+	// Success/failure message associated with the resource.
+	ResourceStatusReason *string `type:"string"`
+
+	// Type of resource. (For more information, go to  AWS Resource Types Reference
+	// (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
+	// in the AWS CloudFormation User Guide.)
+	ResourceType *string `type:"string" required:"true"`
 
 	metadataStackResourceSummary `json:"-", xml:"-"`
 }
@@ -892,15 +1412,32 @@ type metadataStackResourceSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The StackSummary Data Type
 type StackSummary struct {
-	CreationTime        *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
-	DeletionTime        *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	LastUpdatedTime     *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	StackID             *string    `locationName:"StackId" type:"string"`
-	StackName           *string    `type:"string" required:"true"`
-	StackStatus         *string    `type:"string" required:"true"`
-	StackStatusReason   *string    `type:"string"`
-	TemplateDescription *string    `type:"string"`
+	// The time the stack was created.
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The time the stack was deleted.
+	DeletionTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The time the stack was last updated. This field will only be returned if
+	// the stack has been updated at least once.
+	LastUpdatedTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// Unique stack identifier.
+	StackID *string `locationName:"StackId" type:"string"`
+
+	// The name associated with the stack.
+	StackName *string `type:"string" required:"true"`
+
+	// The current status of the stack.
+	StackStatus *string `type:"string" required:"true"`
+
+	// Success/Failure message associated with the stack status.
+	StackStatusReason *string `type:"string"`
+
+	// The template description of the template used to create the stack.
+	TemplateDescription *string `type:"string"`
 
 	metadataStackSummary `json:"-", xml:"-"`
 }
@@ -909,8 +1446,17 @@ type metadataStackSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The Tag type is used by CreateStack in the Tags parameter. It allows you
+// to specify a key/value pair that can be used to store information related
+// to cost allocation for an AWS CloudFormation stack.
 type Tag struct {
-	Key   *string `type:"string"`
+	// Required. A string used to identify this tag. You can specify a maximum of
+	// 128 characters for a tag key. Tags owned by Amazon Web Services (AWS) have
+	// the reserved prefix: aws:.
+	Key *string `type:"string"`
+
+	// Required. A string containing the value for this tag. You can specify a maximum
+	// of 256 characters for a tag value.
 	Value *string `type:"string"`
 
 	metadataTag `json:"-", xml:"-"`
@@ -920,10 +1466,19 @@ type metadataTag struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The TemplateParameter data type.
 type TemplateParameter struct {
+	// The default value associated with the parameter.
 	DefaultValue *string `type:"string"`
-	Description  *string `type:"string"`
-	NoEcho       *bool   `type:"boolean"`
+
+	// User defined description associated with the parameter.
+	Description *string `type:"string"`
+
+	// Flag indicating whether the parameter should be displayed as plain text in
+	// logs and UIs.
+	NoEcho *bool `type:"boolean"`
+
+	// The name associated with the parameter.
 	ParameterKey *string `type:"string"`
 
 	metadataTemplateParameter `json:"-", xml:"-"`
@@ -933,18 +1488,96 @@ type metadataTemplateParameter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input for UpdateStack action.
 type UpdateStackInput struct {
-	Capabilities                []*string    `type:"list"`
-	NotificationARNs            []*string    `type:"list"`
-	Parameters                  []*Parameter `type:"list"`
-	StackName                   *string      `type:"string" required:"true"`
-	StackPolicyBody             *string      `type:"string"`
-	StackPolicyDuringUpdateBody *string      `type:"string"`
-	StackPolicyDuringUpdateURL  *string      `type:"string"`
-	StackPolicyURL              *string      `type:"string"`
-	TemplateBody                *string      `type:"string"`
-	TemplateURL                 *string      `type:"string"`
-	UsePreviousTemplate         *bool        `type:"boolean"`
+	// A list of capabilities that you must specify before AWS CloudFormation can
+	// create or update certain stacks. Some stack templates might include resources
+	// that can affect permissions in your AWS account. For those stacks, you must
+	// explicitly acknowledge their capabilities by specifying this parameter. Currently,
+	// the only valid value is CAPABILITY_IAM, which is required for the following
+	// resources:  AWS::CloudFormation::Stack (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html),
+	//  AWS::IAM::AccessKey (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html),
+	//  AWS::IAM::Group (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html),
+	//  AWS::IAM::InstanceProfile (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html),
+	//  AWS::IAM::Policy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html),
+	//  AWS::IAM::Role (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html),
+	//  AWS::IAM::User (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html),
+	// and  AWS::IAM::UserToGroupAddition (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-addusertogroup.html).
+	// If your stack template contains these resources, we recommend that you review
+	// any permissions associated with them. If you don't specify this parameter,
+	// this action returns an InsufficientCapabilities error.
+	Capabilities []*string `type:"list"`
+
+	// Update the ARNs for the Amazon SNS topics that are associated with the stack.
+	NotificationARNs []*string `type:"list"`
+
+	// A list of Parameter structures that specify input parameters for the stack.
+	Parameters []*Parameter `type:"list"`
+
+	// The name or stack ID of the stack to update.
+	//
+	//  Must contain only alphanumeric characters (case sensitive) and start with
+	// an alpha character. Maximum length of the name is 255 characters.
+	StackName *string `type:"string" required:"true"`
+
+	// Structure containing a new stack policy body. You can specify either the
+	// StackPolicyBody or the StackPolicyURL parameter, but not both.
+	//
+	// You might update the stack policy, for example, in order to protect a new
+	// resource that you created during a stack update. If you do not specify a
+	// stack policy, the current policy that is associated with the stack is unchanged.
+	StackPolicyBody *string `type:"string"`
+
+	// Structure containing the temporary overriding stack policy body. You can
+	// specify either the StackPolicyDuringUpdateBody or the StackPolicyDuringUpdateURL
+	// parameter, but not both.
+	//
+	// If you want to update protected resources, specify a temporary overriding
+	// stack policy during this update. If you do not specify a stack policy, the
+	// current policy that is associated with the stack will be used.
+	StackPolicyDuringUpdateBody *string `type:"string"`
+
+	// Location of a file containing the temporary overriding stack policy. The
+	// URL must point to a policy (max size: 16KB) located in an S3 bucket in the
+	// same region as the stack. You can specify either the StackPolicyDuringUpdateBody
+	// or the StackPolicyDuringUpdateURL parameter, but not both.
+	//
+	// If you want to update protected resources, specify a temporary overriding
+	// stack policy during this update. If you do not specify a stack policy, the
+	// current policy that is associated with the stack will be used.
+	StackPolicyDuringUpdateURL *string `type:"string"`
+
+	// Location of a file containing the updated stack policy. The URL must point
+	// to a policy (max size: 16KB) located in an S3 bucket in the same region as
+	// the stack. You can specify either the StackPolicyBody or the StackPolicyURL
+	// parameter, but not both.
+	//
+	// You might update the stack policy, for example, in order to protect a new
+	// resource that you created during a stack update. If you do not specify a
+	// stack policy, the current policy that is associated with the stack is unchanged.
+	StackPolicyURL *string `type:"string"`
+
+	// Structure containing the template body with a minimum length of 1 byte and
+	// a maximum length of 51,200 bytes. (For more information, go to Template Anatomy
+	// (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
+	// in the AWS CloudFormation User Guide.)
+	//
+	// Conditional: You must specify either the TemplateBody or the TemplateURL
+	// parameter, but not both.
+	TemplateBody *string `type:"string"`
+
+	// Location of file containing the template body. The URL must point to a template
+	// located in an S3 bucket in the same region as the stack. For more information,
+	// go to Template Anatomy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
+	// in the AWS CloudFormation User Guide.
+	//
+	// Conditional: You must specify either the TemplateBody or the TemplateURL
+	// parameter, but not both.
+	TemplateURL *string `type:"string"`
+
+	// Reuse the existing template that is associated with the stack that you are
+	// updating.
+	UsePreviousTemplate *bool `type:"boolean"`
 
 	metadataUpdateStackInput `json:"-", xml:"-"`
 }
@@ -953,7 +1586,9 @@ type metadataUpdateStackInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The output for a UpdateStack action.
 type UpdateStackOutput struct {
+	// Unique identifier of the stack.
 	StackID *string `locationName:"StackId" type:"string"`
 
 	metadataUpdateStackOutput `json:"-", xml:"-"`
@@ -963,9 +1598,25 @@ type metadataUpdateStackOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input for ValidateTemplate action.
 type ValidateTemplateInput struct {
+	// Structure containing the template body with a minimum length of 1 byte and
+	// a maximum length of 51,200 bytes. For more information, go to Template Anatomy
+	// (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
+	// in the AWS CloudFormation User Guide.
+	//
+	// Conditional: You must pass TemplateURL or TemplateBody. If both are passed,
+	// only TemplateBody is used.
 	TemplateBody *string `type:"string"`
-	TemplateURL  *string `type:"string"`
+
+	// Location of file containing the template body. The URL must point to a template
+	// (max size: 307,200 bytes) located in an S3 bucket in the same region as the
+	// stack. For more information, go to Template Anatomy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
+	// in the AWS CloudFormation User Guide.
+	//
+	// Conditional: You must pass TemplateURL or TemplateBody. If both are passed,
+	// only TemplateBody is used.
+	TemplateURL *string `type:"string"`
 
 	metadataValidateTemplateInput `json:"-", xml:"-"`
 }
@@ -974,11 +1625,23 @@ type metadataValidateTemplateInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The output for ValidateTemplate action.
 type ValidateTemplateOutput struct {
-	Capabilities       []*string            `type:"list"`
-	CapabilitiesReason *string              `type:"string"`
-	Description        *string              `type:"string"`
-	Parameters         []*TemplateParameter `type:"list"`
+	// The capabilities found within the template. Currently, AWS CloudFormation
+	// supports only the CAPABILITY_IAM capability. If your template contains IAM
+	// resources, you must specify the CAPABILITY_IAM value for this parameter when
+	// you use the CreateStack or UpdateStack actions with your template; otherwise,
+	// those actions return an InsufficientCapabilities error.
+	Capabilities []*string `type:"list"`
+
+	// The capabilities reason found within the template.
+	CapabilitiesReason *string `type:"string"`
+
+	// The description found within the template.
+	Description *string `type:"string"`
+
+	// A list of TemplateParameter structures.
+	Parameters []*TemplateParameter `type:"list"`
 
 	metadataValidateTemplateOutput `json:"-", xml:"-"`
 }

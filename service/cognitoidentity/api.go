@@ -24,6 +24,9 @@ func (c *CognitoIdentity) CreateIdentityPoolRequest(input *CreateIdentityPoolInp
 	return
 }
 
+// Creates a new identity pool. The identity pool is a store of user identity
+// information that is specific to your AWS account. The limit on identity pools
+// is 60 per account.
 func (c *CognitoIdentity) CreateIdentityPool(input *CreateIdentityPoolInput) (output *IdentityPool, err error) {
 	req, out := c.CreateIdentityPoolRequest(input)
 	output = out
@@ -49,6 +52,8 @@ func (c *CognitoIdentity) DeleteIdentityPoolRequest(input *DeleteIdentityPoolInp
 	return
 }
 
+// Deletes a user pool. Once a pool is deleted, users will not be able to authenticate
+// with the pool.
 func (c *CognitoIdentity) DeleteIdentityPool(input *DeleteIdentityPoolInput) (output *DeleteIdentityPoolOutput, err error) {
 	req, out := c.DeleteIdentityPoolRequest(input)
 	output = out
@@ -74,6 +79,8 @@ func (c *CognitoIdentity) DescribeIdentityRequest(input *DescribeIdentityInput) 
 	return
 }
 
+// Returns metadata related to the given identity, including when the identity
+// was created and any associated linked logins.
 func (c *CognitoIdentity) DescribeIdentity(input *DescribeIdentityInput) (output *IdentityDescription, err error) {
 	req, out := c.DescribeIdentityRequest(input)
 	output = out
@@ -99,6 +106,8 @@ func (c *CognitoIdentity) DescribeIdentityPoolRequest(input *DescribeIdentityPoo
 	return
 }
 
+// Gets details about a particular identity pool, including the pool name, ID
+// description, creation date, and current number of users.
 func (c *CognitoIdentity) DescribeIdentityPool(input *DescribeIdentityPoolInput) (output *IdentityPool, err error) {
 	req, out := c.DescribeIdentityPoolRequest(input)
 	output = out
@@ -124,6 +133,10 @@ func (c *CognitoIdentity) GetCredentialsForIdentityRequest(input *GetCredentials
 	return
 }
 
+// Returns credentials for the the provided identity ID. Any provided logins
+// will be validated against supported login providers. If the token is for
+// cognito-identity.amazonaws.com, it will be passed through to AWS Security
+// Token Service with the appropriate role for the token.
 func (c *CognitoIdentity) GetCredentialsForIdentity(input *GetCredentialsForIdentityInput) (output *GetCredentialsForIdentityOutput, err error) {
 	req, out := c.GetCredentialsForIdentityRequest(input)
 	output = out
@@ -149,6 +162,8 @@ func (c *CognitoIdentity) GetIDRequest(input *GetIDInput) (req *aws.Request, out
 	return
 }
 
+// Generates (or retrieves) a Cognito ID. Supplying multiple logins will create
+// an implicit linked account.
 func (c *CognitoIdentity) GetID(input *GetIDInput) (output *GetIDOutput, err error) {
 	req, out := c.GetIDRequest(input)
 	output = out
@@ -174,6 +189,7 @@ func (c *CognitoIdentity) GetIdentityPoolRolesRequest(input *GetIdentityPoolRole
 	return
 }
 
+// Gets the roles for an identity pool.
 func (c *CognitoIdentity) GetIdentityPoolRoles(input *GetIdentityPoolRolesInput) (output *GetIdentityPoolRolesOutput, err error) {
 	req, out := c.GetIdentityPoolRolesRequest(input)
 	output = out
@@ -199,6 +215,11 @@ func (c *CognitoIdentity) GetOpenIDTokenRequest(input *GetOpenIDTokenInput) (req
 	return
 }
 
+// Gets an OpenID token, using a known Cognito ID. This known Cognito ID is
+// returned by GetId. You can optionally add additional logins for the identity.
+// Supplying multiple logins creates an implicit link.
+//
+// The OpenId token is valid for 15 minutes.
 func (c *CognitoIdentity) GetOpenIDToken(input *GetOpenIDTokenInput) (output *GetOpenIDTokenOutput, err error) {
 	req, out := c.GetOpenIDTokenRequest(input)
 	output = out
@@ -224,6 +245,20 @@ func (c *CognitoIdentity) GetOpenIDTokenForDeveloperIdentityRequest(input *GetOp
 	return
 }
 
+// Registers (or retrieves) a Cognito IdentityId and an OpenID Connect token
+// for a user authenticated by your backend authentication process. Supplying
+// multiple logins will create an implicit linked account. You can only specify
+// one developer provider as part of the Logins map, which is linked to the
+// identity pool. The developer provider is the "domain" by which Cognito will
+// refer to your users.
+//
+// You can use GetOpenIdTokenForDeveloperIdentity to create a new identity
+// and to link new logins (that is, user credentials issued by a public provider
+// or developer provider) to an existing identity. When you want to create a
+// new identity, the IdentityId should be null. When you want to associate a
+// new login with an existing authenticated/unauthenticated identity, you can
+// do so by providing the existing IdentityId. This API will create the identity
+// in the specified IdentityPoolId.
 func (c *CognitoIdentity) GetOpenIDTokenForDeveloperIdentity(input *GetOpenIDTokenForDeveloperIdentityInput) (output *GetOpenIDTokenForDeveloperIdentityOutput, err error) {
 	req, out := c.GetOpenIDTokenForDeveloperIdentityRequest(input)
 	output = out
@@ -249,6 +284,7 @@ func (c *CognitoIdentity) ListIdentitiesRequest(input *ListIdentitiesInput) (req
 	return
 }
 
+// Lists the identities in a pool.
 func (c *CognitoIdentity) ListIdentities(input *ListIdentitiesInput) (output *ListIdentitiesOutput, err error) {
 	req, out := c.ListIdentitiesRequest(input)
 	output = out
@@ -274,6 +310,7 @@ func (c *CognitoIdentity) ListIdentityPoolsRequest(input *ListIdentityPoolsInput
 	return
 }
 
+// Lists all of the Cognito identity pools registered for your account.
 func (c *CognitoIdentity) ListIdentityPools(input *ListIdentityPoolsInput) (output *ListIdentityPoolsOutput, err error) {
 	req, out := c.ListIdentityPoolsRequest(input)
 	output = out
@@ -299,6 +336,14 @@ func (c *CognitoIdentity) LookupDeveloperIdentityRequest(input *LookupDeveloperI
 	return
 }
 
+// Retrieves the IdentityID associated with a DeveloperUserIdentifier or the
+// list of DeveloperUserIdentifiers associated with an IdentityId for an existing
+// identity. Either IdentityID or DeveloperUserIdentifier must not be null.
+// If you supply only one of these values, the other value will be searched
+// in the database and returned as a part of the response. If you supply both,
+// DeveloperUserIdentifier will be matched against IdentityID. If the values
+// are verified against the database, the response returns both values and is
+// the same as the request. Otherwise a ResourceConflictException is thrown.
 func (c *CognitoIdentity) LookupDeveloperIdentity(input *LookupDeveloperIdentityInput) (output *LookupDeveloperIdentityOutput, err error) {
 	req, out := c.LookupDeveloperIdentityRequest(input)
 	output = out
@@ -324,6 +369,13 @@ func (c *CognitoIdentity) MergeDeveloperIdentitiesRequest(input *MergeDeveloperI
 	return
 }
 
+// Merges two users having different IdentityIds, existing in the same identity
+// pool, and identified by the same developer provider. You can use this action
+// to request that discrete users be merged and identified as a single user
+// in the Cognito environment. Cognito associates the given source user (SourceUserIdentifier)
+// with the IdentityId of the DestinationUserIdentifier. Only developer-authenticated
+// users can be merged. If the users to be merged are associated with the same
+// public provider, but as two different users, an exception will be thrown.
 func (c *CognitoIdentity) MergeDeveloperIdentities(input *MergeDeveloperIdentitiesInput) (output *MergeDeveloperIdentitiesOutput, err error) {
 	req, out := c.MergeDeveloperIdentitiesRequest(input)
 	output = out
@@ -349,6 +401,8 @@ func (c *CognitoIdentity) SetIdentityPoolRolesRequest(input *SetIdentityPoolRole
 	return
 }
 
+// Sets the roles for an identity pool. These roles are used when making calls
+// to GetCredentialsForIdentity action.
 func (c *CognitoIdentity) SetIdentityPoolRoles(input *SetIdentityPoolRolesInput) (output *SetIdentityPoolRolesOutput, err error) {
 	req, out := c.SetIdentityPoolRolesRequest(input)
 	output = out
@@ -374,6 +428,10 @@ func (c *CognitoIdentity) UnlinkDeveloperIdentityRequest(input *UnlinkDeveloperI
 	return
 }
 
+// Unlinks a DeveloperUserIdentifier from an existing identity. Unlinked developer
+// users will be considered new identities next time they are seen. If, for
+// a given Cognito identity, you remove all federated identities as well as
+// the developer user identifier, the Cognito identity becomes inaccessible.
 func (c *CognitoIdentity) UnlinkDeveloperIdentity(input *UnlinkDeveloperIdentityInput) (output *UnlinkDeveloperIdentityOutput, err error) {
 	req, out := c.UnlinkDeveloperIdentityRequest(input)
 	output = out
@@ -399,6 +457,9 @@ func (c *CognitoIdentity) UnlinkIdentityRequest(input *UnlinkIdentityInput) (req
 	return
 }
 
+// Unlinks a federated identity from an existing account. Unlinked logins will
+// be considered new identities next time they are seen. Removing the last linked
+// login will make this identity inaccessible.
 func (c *CognitoIdentity) UnlinkIdentity(input *UnlinkIdentityInput) (output *UnlinkIdentityOutput, err error) {
 	req, out := c.UnlinkIdentityRequest(input)
 	output = out
@@ -424,6 +485,7 @@ func (c *CognitoIdentity) UpdateIdentityPoolRequest(input *IdentityPool) (req *a
 	return
 }
 
+// Updates a user pool.
 func (c *CognitoIdentity) UpdateIdentityPool(input *IdentityPool) (output *IdentityPool, err error) {
 	req, out := c.UpdateIdentityPoolRequest(input)
 	output = out
@@ -433,12 +495,28 @@ func (c *CognitoIdentity) UpdateIdentityPool(input *IdentityPool) (output *Ident
 
 var opUpdateIdentityPool *aws.Operation
 
+// Input to the CreateIdentityPool action.
 type CreateIdentityPoolInput struct {
-	AllowUnauthenticatedIdentities *bool               `type:"boolean" required:"true"`
-	DeveloperProviderName          *string             `type:"string"`
-	IdentityPoolName               *string             `type:"string" required:"true"`
-	OpenIDConnectProviderARNs      []*string           `locationName:"OpenIdConnectProviderARNs" type:"list"`
-	SupportedLoginProviders        *map[string]*string `type:"map"`
+	// TRUE if the identity pool supports unauthenticated logins.
+	AllowUnauthenticatedIdentities *bool `type:"boolean" required:"true"`
+
+	// The "domain" by which Cognito will refer to your users. This name acts as
+	// a placeholder that allows your backend and the Cognito service to communicate
+	// about the developer provider. For the DeveloperProviderName, you can use
+	// letters as well as period (.), underscore (_), and dash (-).
+	//
+	// Once you have set a developer provider name, you cannot change it. Please
+	// take care in setting this parameter.
+	DeveloperProviderName *string `type:"string"`
+
+	// A string that you provide.
+	IdentityPoolName *string `type:"string" required:"true"`
+
+	// A list of OpendID Connect provider ARNs.
+	OpenIDConnectProviderARNs []*string `locationName:"OpenIdConnectProviderARNs" type:"list"`
+
+	// Optional key:value pairs mapping provider names to provider app IDs.
+	SupportedLoginProviders *map[string]*string `type:"map"`
 
 	metadataCreateIdentityPoolInput `json:"-", xml:"-"`
 }
@@ -447,11 +525,19 @@ type metadataCreateIdentityPoolInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Credentials for the the provided identity ID.
 type Credentials struct {
-	AccessKeyID  *string    `locationName:"AccessKeyId" type:"string"`
-	Expiration   *time.Time `type:"timestamp" timestampFormat:"unix"`
-	SecretKey    *string    `type:"string"`
-	SessionToken *string    `type:"string"`
+	// The Access Key portion of the credentials.
+	AccessKeyID *string `locationName:"AccessKeyId" type:"string"`
+
+	// The date at which these credentials will expire.
+	Expiration *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The Secret Access Key portion of the credentials
+	SecretKey *string `type:"string"`
+
+	// The Session Token portion of the credentials
+	SessionToken *string `type:"string"`
 
 	metadataCredentials `json:"-", xml:"-"`
 }
@@ -460,7 +546,9 @@ type metadataCredentials struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input to the DeleteIdentityPool action.
 type DeleteIdentityPoolInput struct {
+	// An identity pool ID in the format REGION:GUID.
 	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
 
 	metadataDeleteIdentityPoolInput `json:"-", xml:"-"`
@@ -478,7 +566,9 @@ type metadataDeleteIdentityPoolOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input to the DescribeIdentity action.
 type DescribeIdentityInput struct {
+	// A unique identifier in the format REGION:GUID.
 	IdentityID *string `locationName:"IdentityId" type:"string" required:"true"`
 
 	metadataDescribeIdentityInput `json:"-", xml:"-"`
@@ -488,7 +578,9 @@ type metadataDescribeIdentityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input to the DescribeIdentityPool action.
 type DescribeIdentityPoolInput struct {
+	// An identity pool ID in the format REGION:GUID.
 	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
 
 	metadataDescribeIdentityPoolInput `json:"-", xml:"-"`
@@ -498,9 +590,13 @@ type metadataDescribeIdentityPoolInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input to the GetCredentialsForIdentity action.
 type GetCredentialsForIdentityInput struct {
-	IdentityID *string             `locationName:"IdentityId" type:"string" required:"true"`
-	Logins     *map[string]*string `type:"map"`
+	// A unique identifier in the format REGION:GUID.
+	IdentityID *string `locationName:"IdentityId" type:"string" required:"true"`
+
+	// A set of optional name-value pairs that map provider names to provider tokens.
+	Logins *map[string]*string `type:"map"`
 
 	metadataGetCredentialsForIdentityInput `json:"-", xml:"-"`
 }
@@ -509,9 +605,13 @@ type metadataGetCredentialsForIdentityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Returned in response to a successful GetCredentialsForIdentity operation.
 type GetCredentialsForIdentityOutput struct {
+	// Credentials for the the provided identity ID.
 	Credentials *Credentials `type:"structure"`
-	IdentityID  *string      `locationName:"IdentityId" type:"string"`
+
+	// A unique identifier in the format REGION:GUID.
+	IdentityID *string `locationName:"IdentityId" type:"string"`
 
 	metadataGetCredentialsForIdentityOutput `json:"-", xml:"-"`
 }
@@ -520,10 +620,19 @@ type metadataGetCredentialsForIdentityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input to the GetId action.
 type GetIDInput struct {
-	AccountID      *string             `locationName:"AccountId" type:"string"`
-	IdentityPoolID *string             `locationName:"IdentityPoolId" type:"string" required:"true"`
-	Logins         *map[string]*string `type:"map"`
+	// A standard AWS account ID (9+ digits).
+	AccountID *string `locationName:"AccountId" type:"string"`
+
+	// An identity pool ID in the format REGION:GUID.
+	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
+
+	// A set of optional name-value pairs that map provider names to provider tokens.
+	//
+	// The available provider names for Logins are as follows:  Facebook: graph.facebook.com
+	//  Google: accounts.google.com  Amazon: www.amazon.com
+	Logins *map[string]*string `type:"map"`
 
 	metadataGetIDInput `json:"-", xml:"-"`
 }
@@ -532,7 +641,9 @@ type metadataGetIDInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Returned in response to a GetId request.
 type GetIDOutput struct {
+	// A unique identifier in the format REGION:GUID.
 	IdentityID *string `locationName:"IdentityId" type:"string"`
 
 	metadataGetIDOutput `json:"-", xml:"-"`
@@ -542,7 +653,9 @@ type metadataGetIDOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input to the GetIdentityPoolRoles action.
 type GetIdentityPoolRolesInput struct {
+	// An identity pool ID in the format REGION:GUID.
 	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string"`
 
 	metadataGetIdentityPoolRolesInput `json:"-", xml:"-"`
@@ -552,9 +665,14 @@ type metadataGetIdentityPoolRolesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Returned in response to a successful GetIdentityPoolRoles operation.
 type GetIdentityPoolRolesOutput struct {
-	IdentityPoolID *string             `locationName:"IdentityPoolId" type:"string"`
-	Roles          *map[string]*string `type:"map"`
+	// An identity pool ID in the format REGION:GUID.
+	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string"`
+
+	// The map of roles associated with this pool. Currently only authenticated
+	// and unauthenticated roles are supported.
+	Roles *map[string]*string `type:"map"`
 
 	metadataGetIdentityPoolRolesOutput `json:"-", xml:"-"`
 }
@@ -563,11 +681,34 @@ type metadataGetIdentityPoolRolesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input to the GetOpenIdTokenForDeveloperIdentity action.
 type GetOpenIDTokenForDeveloperIdentityInput struct {
-	IdentityID     *string             `locationName:"IdentityId" type:"string"`
-	IdentityPoolID *string             `locationName:"IdentityPoolId" type:"string" required:"true"`
-	Logins         *map[string]*string `type:"map" required:"true"`
-	TokenDuration  *int64              `type:"long"`
+	// A unique identifier in the format REGION:GUID.
+	IdentityID *string `locationName:"IdentityId" type:"string"`
+
+	// An identity pool ID in the format REGION:GUID.
+	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
+
+	// A set of optional name-value pairs that map provider names to provider tokens.
+	// Each name-value pair represents a user from a public provider or developer
+	// provider. If the user is from a developer provider, the name-value pair will
+	// follow the syntax "developer_provider_name": "developer_user_identifier".
+	// The developer provider is the "domain" by which Cognito will refer to your
+	// users; you provided this domain while creating/updating the identity pool.
+	// The developer user identifier is an identifier from your backend that uniquely
+	// identifies a user. When you create an identity pool, you can specify the
+	// supported logins.
+	Logins *map[string]*string `type:"map" required:"true"`
+
+	// The expiration time of the token, in seconds. You can specify a custom expiration
+	// time for the token so that you can cache it. If you don't provide an expiration
+	// time, the token is valid for 15 minutes. You can exchange the token with
+	// Amazon STS for temporary AWS credentials, which are valid for a maximum of
+	// one hour. The maximum token duration you can set is 24 hours. You should
+	// take care in setting the expiration time for a token, as there are significant
+	// security implications: an attacker could use a leaked token to access your
+	// AWS resources for the token's duration.
+	TokenDuration *int64 `type:"long"`
 
 	metadataGetOpenIDTokenForDeveloperIdentityInput `json:"-", xml:"-"`
 }
@@ -576,9 +717,13 @@ type metadataGetOpenIDTokenForDeveloperIdentityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Returned in response to a successful GetOpenIdTokenForDeveloperIdentity request.
 type GetOpenIDTokenForDeveloperIdentityOutput struct {
+	// A unique identifier in the format REGION:GUID.
 	IdentityID *string `locationName:"IdentityId" type:"string"`
-	Token      *string `type:"string"`
+
+	// An OpenID token.
+	Token *string `type:"string"`
 
 	metadataGetOpenIDTokenForDeveloperIdentityOutput `json:"-", xml:"-"`
 }
@@ -587,9 +732,13 @@ type metadataGetOpenIDTokenForDeveloperIdentityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input to the GetOpenIdToken action.
 type GetOpenIDTokenInput struct {
-	IdentityID *string             `locationName:"IdentityId" type:"string" required:"true"`
-	Logins     *map[string]*string `type:"map"`
+	// A unique identifier in the format REGION:GUID.
+	IdentityID *string `locationName:"IdentityId" type:"string" required:"true"`
+
+	// A set of optional name-value pairs that map provider names to provider tokens.
+	Logins *map[string]*string `type:"map"`
 
 	metadataGetOpenIDTokenInput `json:"-", xml:"-"`
 }
@@ -598,9 +747,14 @@ type metadataGetOpenIDTokenInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Returned in response to a successful GetOpenIdToken request.
 type GetOpenIDTokenOutput struct {
+	// A unique identifier in the format REGION:GUID. Note that the IdentityId returned
+	// may not match the one passed on input.
 	IdentityID *string `locationName:"IdentityId" type:"string"`
-	Token      *string `type:"string"`
+
+	// An OpenID token, valid for 15 minutes.
+	Token *string `type:"string"`
 
 	metadataGetOpenIDTokenOutput `json:"-", xml:"-"`
 }
@@ -609,11 +763,19 @@ type metadataGetOpenIDTokenOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A description of the identity.
 type IdentityDescription struct {
-	CreationDate     *time.Time `type:"timestamp" timestampFormat:"unix"`
-	IdentityID       *string    `locationName:"IdentityId" type:"string"`
+	// Date on which the identity was created.
+	CreationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// A unique identifier in the format REGION:GUID.
+	IdentityID *string `locationName:"IdentityId" type:"string"`
+
+	// Date on which the identity was last modified.
 	LastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
-	Logins           []*string  `type:"list"`
+
+	// A set of optional name-value pairs that map provider names to provider tokens.
+	Logins []*string `type:"list"`
 
 	metadataIdentityDescription `json:"-", xml:"-"`
 }
@@ -622,13 +784,25 @@ type metadataIdentityDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// An object representing a Cognito identity pool.
 type IdentityPool struct {
-	AllowUnauthenticatedIdentities *bool               `type:"boolean" required:"true"`
-	DeveloperProviderName          *string             `type:"string"`
-	IdentityPoolID                 *string             `locationName:"IdentityPoolId" type:"string" required:"true"`
-	IdentityPoolName               *string             `type:"string" required:"true"`
-	OpenIDConnectProviderARNs      []*string           `locationName:"OpenIdConnectProviderARNs" type:"list"`
-	SupportedLoginProviders        *map[string]*string `type:"map"`
+	// TRUE if the identity pool supports unauthenticated logins.
+	AllowUnauthenticatedIdentities *bool `type:"boolean" required:"true"`
+
+	// The "domain" by which Cognito will refer to your users.
+	DeveloperProviderName *string `type:"string"`
+
+	// An identity pool ID in the format REGION:GUID.
+	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
+
+	// A string that you provide.
+	IdentityPoolName *string `type:"string" required:"true"`
+
+	// A list of OpendID Connect provider ARNs.
+	OpenIDConnectProviderARNs []*string `locationName:"OpenIdConnectProviderARNs" type:"list"`
+
+	// Optional key:value pairs mapping provider names to provider app IDs.
+	SupportedLoginProviders *map[string]*string `type:"map"`
 
 	metadataIdentityPool `json:"-", xml:"-"`
 }
@@ -637,8 +811,12 @@ type metadataIdentityPool struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A description of the identity pool.
 type IdentityPoolShortDescription struct {
-	IdentityPoolID   *string `locationName:"IdentityPoolId" type:"string"`
+	// An identity pool ID in the format REGION:GUID.
+	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string"`
+
+	// A string that you provide.
 	IdentityPoolName *string `type:"string"`
 
 	metadataIdentityPoolShortDescription `json:"-", xml:"-"`
@@ -648,10 +826,16 @@ type metadataIdentityPoolShortDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input to the ListIdentities action.
 type ListIdentitiesInput struct {
+	// An identity pool ID in the format REGION:GUID.
 	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
-	MaxResults     *int64  `type:"integer" required:"true"`
-	NextToken      *string `type:"string"`
+
+	// The maximum number of identities to return.
+	MaxResults *int64 `type:"integer" required:"true"`
+
+	// A pagination token.
+	NextToken *string `type:"string"`
 
 	metadataListIdentitiesInput `json:"-", xml:"-"`
 }
@@ -660,10 +844,16 @@ type metadataListIdentitiesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The response to a ListIdentities request.
 type ListIdentitiesOutput struct {
-	Identities     []*IdentityDescription `type:"list"`
-	IdentityPoolID *string                `locationName:"IdentityPoolId" type:"string"`
-	NextToken      *string                `type:"string"`
+	// An object containing a set of identities and associated mappings.
+	Identities []*IdentityDescription `type:"list"`
+
+	// An identity pool ID in the format REGION:GUID.
+	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string"`
+
+	// A pagination token.
+	NextToken *string `type:"string"`
 
 	metadataListIdentitiesOutput `json:"-", xml:"-"`
 }
@@ -672,9 +862,13 @@ type metadataListIdentitiesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input to the ListIdentityPools action.
 type ListIdentityPoolsInput struct {
-	MaxResults *int64  `type:"integer" required:"true"`
-	NextToken  *string `type:"string"`
+	// The maximum number of identities to return.
+	MaxResults *int64 `type:"integer" required:"true"`
+
+	// A pagination token.
+	NextToken *string `type:"string"`
 
 	metadataListIdentityPoolsInput `json:"-", xml:"-"`
 }
@@ -683,9 +877,13 @@ type metadataListIdentityPoolsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of a successful ListIdentityPools action.
 type ListIdentityPoolsOutput struct {
+	// The identity pools returned by the ListIdentityPools action.
 	IdentityPools []*IdentityPoolShortDescription `type:"list"`
-	NextToken     *string                         `type:"string"`
+
+	// A pagination token.
+	NextToken *string `type:"string"`
 
 	metadataListIdentityPoolsOutput `json:"-", xml:"-"`
 }
@@ -694,12 +892,29 @@ type metadataListIdentityPoolsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input to the LookupDeveloperIdentityInput action.
 type LookupDeveloperIdentityInput struct {
+	// A unique ID used by your backend authentication process to identify a user.
+	// Typically, a developer identity provider would issue many developer user
+	// identifiers, in keeping with the number of users.
 	DeveloperUserIdentifier *string `type:"string"`
-	IdentityID              *string `locationName:"IdentityId" type:"string"`
-	IdentityPoolID          *string `locationName:"IdentityPoolId" type:"string" required:"true"`
-	MaxResults              *int64  `type:"integer"`
-	NextToken               *string `type:"string"`
+
+	// A unique identifier in the format REGION:GUID.
+	IdentityID *string `locationName:"IdentityId" type:"string"`
+
+	// An identity pool ID in the format REGION:GUID.
+	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
+
+	// The maximum number of identities to return.
+	MaxResults *int64 `type:"integer"`
+
+	// A pagination token. The first call you make will have NextToken set to null.
+	// After that the service will return NextToken values as needed. For example,
+	// let's say you make a request with MaxResults set to 10, and there are 20
+	// matches in the database. The service will return a pagination token as a
+	// part of the response. This token can be used to call the API again and get
+	// results starting from the 11th match.
+	NextToken *string `type:"string"`
 
 	metadataLookupDeveloperIdentityInput `json:"-", xml:"-"`
 }
@@ -708,10 +923,23 @@ type metadataLookupDeveloperIdentityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Returned in response to a successful LookupDeveloperIdentity action.
 type LookupDeveloperIdentityOutput struct {
+	// This is the list of developer user identifiers associated with an identity
+	// ID. Cognito supports the association of multiple developer user identifiers
+	// with an identity ID.
 	DeveloperUserIdentifierList []*string `type:"list"`
-	IdentityID                  *string   `locationName:"IdentityId" type:"string"`
-	NextToken                   *string   `type:"string"`
+
+	// A unique identifier in the format REGION:GUID.
+	IdentityID *string `locationName:"IdentityId" type:"string"`
+
+	// A pagination token. The first call you make will have NextToken set to null.
+	// After that the service will return NextToken values as needed. For example,
+	// let's say you make a request with MaxResults set to 10, and there are 20
+	// matches in the database. The service will return a pagination token as a
+	// part of the response. This token can be used to call the API again and get
+	// results starting from the 11th match.
+	NextToken *string `type:"string"`
 
 	metadataLookupDeveloperIdentityOutput `json:"-", xml:"-"`
 }
@@ -720,11 +948,23 @@ type metadataLookupDeveloperIdentityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input to the MergeDeveloperIdentities action.
 type MergeDeveloperIdentitiesInput struct {
+	// User identifier for the destination user. The value should be a DeveloperUserIdentifier.
 	DestinationUserIdentifier *string `type:"string" required:"true"`
-	DeveloperProviderName     *string `type:"string" required:"true"`
-	IdentityPoolID            *string `locationName:"IdentityPoolId" type:"string" required:"true"`
-	SourceUserIdentifier      *string `type:"string" required:"true"`
+
+	// The "domain" by which Cognito will refer to your users. This is a (pseudo)
+	// domain name that you provide while creating an identity pool. This name acts
+	// as a placeholder that allows your backend and the Cognito service to communicate
+	// about the developer provider. For the DeveloperProviderName, you can use
+	// letters as well as period (.), underscore (_), and dash (-).
+	DeveloperProviderName *string `type:"string" required:"true"`
+
+	// An identity pool ID in the format REGION:GUID.
+	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
+
+	// User identifier for the source user. The value should be a DeveloperUserIdentifier.
+	SourceUserIdentifier *string `type:"string" required:"true"`
 
 	metadataMergeDeveloperIdentitiesInput `json:"-", xml:"-"`
 }
@@ -733,7 +973,9 @@ type metadataMergeDeveloperIdentitiesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Returned in response to a successful MergeDeveloperIdentities action.
 type MergeDeveloperIdentitiesOutput struct {
+	// A unique identifier in the format REGION:GUID.
 	IdentityID *string `locationName:"IdentityId" type:"string"`
 
 	metadataMergeDeveloperIdentitiesOutput `json:"-", xml:"-"`
@@ -743,9 +985,14 @@ type metadataMergeDeveloperIdentitiesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input to the SetIdentityPoolRoles action.
 type SetIdentityPoolRolesInput struct {
-	IdentityPoolID *string             `locationName:"IdentityPoolId" type:"string" required:"true"`
-	Roles          *map[string]*string `type:"map" required:"true"`
+	// An identity pool ID in the format REGION:GUID.
+	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
+
+	// The map of roles associated with this pool. Currently only authenticated
+	// and unauthenticated roles are supported.
+	Roles *map[string]*string `type:"map" required:"true"`
 
 	metadataSetIdentityPoolRolesInput `json:"-", xml:"-"`
 }
@@ -762,11 +1009,19 @@ type metadataSetIdentityPoolRolesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input to the UnlinkDeveloperIdentity action.
 type UnlinkDeveloperIdentityInput struct {
-	DeveloperProviderName   *string `type:"string" required:"true"`
+	// The "domain" by which Cognito will refer to your users.
+	DeveloperProviderName *string `type:"string" required:"true"`
+
+	// A unique ID used by your backend authentication process to identify a user.
 	DeveloperUserIdentifier *string `type:"string" required:"true"`
-	IdentityID              *string `locationName:"IdentityId" type:"string" required:"true"`
-	IdentityPoolID          *string `locationName:"IdentityPoolId" type:"string" required:"true"`
+
+	// A unique identifier in the format REGION:GUID.
+	IdentityID *string `locationName:"IdentityId" type:"string" required:"true"`
+
+	// An identity pool ID in the format REGION:GUID.
+	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
 
 	metadataUnlinkDeveloperIdentityInput `json:"-", xml:"-"`
 }
@@ -783,10 +1038,16 @@ type metadataUnlinkDeveloperIdentityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input to the UnlinkIdentity action.
 type UnlinkIdentityInput struct {
-	IdentityID     *string             `locationName:"IdentityId" type:"string" required:"true"`
-	Logins         *map[string]*string `type:"map" required:"true"`
-	LoginsToRemove []*string           `type:"list" required:"true"`
+	// A unique identifier in the format REGION:GUID.
+	IdentityID *string `locationName:"IdentityId" type:"string" required:"true"`
+
+	// A set of optional name-value pairs that map provider names to provider tokens.
+	Logins *map[string]*string `type:"map" required:"true"`
+
+	// Provider names to unlink from this identity.
+	LoginsToRemove []*string `type:"list" required:"true"`
 
 	metadataUnlinkIdentityInput `json:"-", xml:"-"`
 }

@@ -194,18 +194,30 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 	return strings.TrimSpace(code) + "`"
 }
 
+func (ref *ShapeRef) Docstring() string {
+	if ref.Documentation != "" {
+		return docstring(ref.Documentation)
+	}
+	return ref.Shape.Docstring()
+}
+
+func (s *Shape) Docstring() string {
+	return docstring(s.Documentation)
+}
+
 func (s *Shape) GoCode() string {
-	code := "type " + s.ShapeName + " "
+	code := s.Docstring() + "type " + s.ShapeName + " "
 	switch s.Type {
 	case "structure":
 		code += "struct {\n"
 		for _, n := range s.MemberNames() {
 			m := s.MemberRefs[n]
+			code += m.Docstring()
 			if (m.Streaming || s.Streaming) && s.Payload == n {
 				s.API.imports["io"] = true
-				code += n + " io.ReadSeeker " + m.GoTags(false, s.IsRequired(n)) + "\n"
+				code += n + " io.ReadSeeker " + m.GoTags(false, s.IsRequired(n)) + "\n\n"
 			} else {
-				code += n + " " + m.GoType() + " " + m.GoTags(false, s.IsRequired(n)) + "\n"
+				code += n + " " + m.GoType() + " " + m.GoTags(false, s.IsRequired(n)) + "\n\n"
 			}
 		}
 		metaStruct := "metadata" + s.ShapeName

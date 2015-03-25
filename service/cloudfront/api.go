@@ -24,6 +24,7 @@ func (c *CloudFront) CreateCloudFrontOriginAccessIdentityRequest(input *CreateCl
 	return
 }
 
+// Create a new origin access identity.
 func (c *CloudFront) CreateCloudFrontOriginAccessIdentity(input *CreateCloudFrontOriginAccessIdentityInput) (output *CreateCloudFrontOriginAccessIdentityOutput, err error) {
 	req, out := c.CreateCloudFrontOriginAccessIdentityRequest(input)
 	output = out
@@ -49,6 +50,7 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 	return
 }
 
+// Create a new distribution.
 func (c *CloudFront) CreateDistribution(input *CreateDistributionInput) (output *CreateDistributionOutput, err error) {
 	req, out := c.CreateDistributionRequest(input)
 	output = out
@@ -74,6 +76,7 @@ func (c *CloudFront) CreateInvalidationRequest(input *CreateInvalidationInput) (
 	return
 }
 
+// Create a new invalidation.
 func (c *CloudFront) CreateInvalidation(input *CreateInvalidationInput) (output *CreateInvalidationOutput, err error) {
 	req, out := c.CreateInvalidationRequest(input)
 	output = out
@@ -99,6 +102,7 @@ func (c *CloudFront) CreateStreamingDistributionRequest(input *CreateStreamingDi
 	return
 }
 
+// Create a new streaming distribution.
 func (c *CloudFront) CreateStreamingDistribution(input *CreateStreamingDistributionInput) (output *CreateStreamingDistributionOutput, err error) {
 	req, out := c.CreateStreamingDistributionRequest(input)
 	output = out
@@ -124,6 +128,7 @@ func (c *CloudFront) DeleteCloudFrontOriginAccessIdentityRequest(input *DeleteCl
 	return
 }
 
+// Delete an origin access identity.
 func (c *CloudFront) DeleteCloudFrontOriginAccessIdentity(input *DeleteCloudFrontOriginAccessIdentityInput) (output *DeleteCloudFrontOriginAccessIdentityOutput, err error) {
 	req, out := c.DeleteCloudFrontOriginAccessIdentityRequest(input)
 	output = out
@@ -149,6 +154,7 @@ func (c *CloudFront) DeleteDistributionRequest(input *DeleteDistributionInput) (
 	return
 }
 
+// Delete a distribution.
 func (c *CloudFront) DeleteDistribution(input *DeleteDistributionInput) (output *DeleteDistributionOutput, err error) {
 	req, out := c.DeleteDistributionRequest(input)
 	output = out
@@ -174,6 +180,7 @@ func (c *CloudFront) DeleteStreamingDistributionRequest(input *DeleteStreamingDi
 	return
 }
 
+// Delete a streaming distribution.
 func (c *CloudFront) DeleteStreamingDistribution(input *DeleteStreamingDistributionInput) (output *DeleteStreamingDistributionOutput, err error) {
 	req, out := c.DeleteStreamingDistributionRequest(input)
 	output = out
@@ -199,6 +206,7 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentityRequest(input *GetCloudFro
 	return
 }
 
+// Get the information about an origin access identity.
 func (c *CloudFront) GetCloudFrontOriginAccessIdentity(input *GetCloudFrontOriginAccessIdentityInput) (output *GetCloudFrontOriginAccessIdentityOutput, err error) {
 	req, out := c.GetCloudFrontOriginAccessIdentityRequest(input)
 	output = out
@@ -224,6 +232,7 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfigRequest(input *GetCl
 	return
 }
 
+// Get the configuration information about an origin access identity.
 func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfig(input *GetCloudFrontOriginAccessIdentityConfigInput) (output *GetCloudFrontOriginAccessIdentityConfigOutput, err error) {
 	req, out := c.GetCloudFrontOriginAccessIdentityConfigRequest(input)
 	output = out
@@ -249,6 +258,7 @@ func (c *CloudFront) GetDistributionRequest(input *GetDistributionInput) (req *a
 	return
 }
 
+// Get the information about a distribution.
 func (c *CloudFront) GetDistribution(input *GetDistributionInput) (output *GetDistributionOutput, err error) {
 	req, out := c.GetDistributionRequest(input)
 	output = out
@@ -274,6 +284,7 @@ func (c *CloudFront) GetDistributionConfigRequest(input *GetDistributionConfigIn
 	return
 }
 
+// Get the configuration information about a distribution.
 func (c *CloudFront) GetDistributionConfig(input *GetDistributionConfigInput) (output *GetDistributionConfigOutput, err error) {
 	req, out := c.GetDistributionConfigRequest(input)
 	output = out
@@ -299,6 +310,7 @@ func (c *CloudFront) GetInvalidationRequest(input *GetInvalidationInput) (req *a
 	return
 }
 
+// Get the information about an invalidation.
 func (c *CloudFront) GetInvalidation(input *GetInvalidationInput) (output *GetInvalidationOutput, err error) {
 	req, out := c.GetInvalidationRequest(input)
 	output = out
@@ -324,6 +336,7 @@ func (c *CloudFront) GetStreamingDistributionRequest(input *GetStreamingDistribu
 	return
 }
 
+// Get the information about a streaming distribution.
 func (c *CloudFront) GetStreamingDistribution(input *GetStreamingDistributionInput) (output *GetStreamingDistributionOutput, err error) {
 	req, out := c.GetStreamingDistributionRequest(input)
 	output = out
@@ -349,6 +362,7 @@ func (c *CloudFront) GetStreamingDistributionConfigRequest(input *GetStreamingDi
 	return
 }
 
+// Get the configuration information about a streaming distribution.
 func (c *CloudFront) GetStreamingDistributionConfig(input *GetStreamingDistributionConfigInput) (output *GetStreamingDistributionConfigOutput, err error) {
 	req, out := c.GetStreamingDistributionConfigRequest(input)
 	output = out
@@ -374,6 +388,7 @@ func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesRequest(input *ListClou
 	return
 }
 
+// List origin access identities.
 func (c *CloudFront) ListCloudFrontOriginAccessIdentities(input *ListCloudFrontOriginAccessIdentitiesInput) (output *ListCloudFrontOriginAccessIdentitiesOutput, err error) {
 	req, out := c.ListCloudFrontOriginAccessIdentitiesRequest(input)
 	output = out
@@ -399,6 +414,7 @@ func (c *CloudFront) ListDistributionsRequest(input *ListDistributionsInput) (re
 	return
 }
 
+// List distributions.
 func (c *CloudFront) ListDistributions(input *ListDistributionsInput) (output *ListDistributionsOutput, err error) {
 	req, out := c.ListDistributionsRequest(input)
 	output = out
@@ -424,6 +440,7 @@ func (c *CloudFront) ListInvalidationsRequest(input *ListInvalidationsInput) (re
 	return
 }
 
+// List invalidation batches.
 func (c *CloudFront) ListInvalidations(input *ListInvalidationsInput) (output *ListInvalidationsOutput, err error) {
 	req, out := c.ListInvalidationsRequest(input)
 	output = out
@@ -449,6 +466,7 @@ func (c *CloudFront) ListStreamingDistributionsRequest(input *ListStreamingDistr
 	return
 }
 
+// List streaming distributions.
 func (c *CloudFront) ListStreamingDistributions(input *ListStreamingDistributionsInput) (output *ListStreamingDistributionsOutput, err error) {
 	req, out := c.ListStreamingDistributionsRequest(input)
 	output = out
@@ -474,6 +492,7 @@ func (c *CloudFront) UpdateCloudFrontOriginAccessIdentityRequest(input *UpdateCl
 	return
 }
 
+// Update an origin access identity.
 func (c *CloudFront) UpdateCloudFrontOriginAccessIdentity(input *UpdateCloudFrontOriginAccessIdentityInput) (output *UpdateCloudFrontOriginAccessIdentityOutput, err error) {
 	req, out := c.UpdateCloudFrontOriginAccessIdentityRequest(input)
 	output = out
@@ -499,6 +518,7 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 	return
 }
 
+// Update a distribution.
 func (c *CloudFront) UpdateDistribution(input *UpdateDistributionInput) (output *UpdateDistributionOutput, err error) {
 	req, out := c.UpdateDistributionRequest(input)
 	output = out
@@ -524,6 +544,7 @@ func (c *CloudFront) UpdateStreamingDistributionRequest(input *UpdateStreamingDi
 	return
 }
 
+// Update a streaming distribution.
 func (c *CloudFront) UpdateStreamingDistribution(input *UpdateStreamingDistributionInput) (output *UpdateStreamingDistributionOutput, err error) {
 	req, out := c.UpdateStreamingDistributionRequest(input)
 	output = out
@@ -533,10 +554,23 @@ func (c *CloudFront) UpdateStreamingDistribution(input *UpdateStreamingDistribut
 
 var opUpdateStreamingDistribution *aws.Operation
 
+// A complex type that lists the AWS accounts, if any, that you included in
+// the TrustedSigners complex type for the default cache behavior or for any
+// of the other cache behaviors for this distribution. These are accounts that
+// you want to allow to create signed URLs for private content.
 type ActiveTrustedSigners struct {
-	Enabled  *bool     `type:"boolean" required:"true"`
-	Items    []*Signer `locationNameList:"Signer" type:"list"`
-	Quantity *int64    `type:"integer" required:"true"`
+	// Each active trusted signer.
+	Enabled *bool `type:"boolean" required:"true"`
+
+	// A complex type that contains one Signer complex type for each unique trusted
+	// signer that is specified in the TrustedSigners complex type, including trusted
+	// signers in the default cache behavior and in all of the other cache behaviors.
+	Items []*Signer `locationNameList:"Signer" type:"list"`
+
+	// The number of unique trusted signers included in all cache behaviors. For
+	// example, if three cache behaviors all list the same three AWS accounts, the
+	// value of Quantity for ActiveTrustedSigners will be 3.
+	Quantity *int64 `type:"integer" required:"true"`
 
 	metadataActiveTrustedSigners `json:"-", xml:"-"`
 }
@@ -545,9 +579,15 @@ type metadataActiveTrustedSigners struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A complex type that contains information about CNAMEs (alternate domain names),
+// if any, for this distribution.
 type Aliases struct {
-	Items    []*string `locationNameList:"CNAME" type:"list"`
-	Quantity *int64    `type:"integer" required:"true"`
+	// Optional: A complex type that contains CNAME elements, if any, for this distribution.
+	// If Quantity is 0, you can omit Items.
+	Items []*string `locationNameList:"CNAME" type:"list"`
+
+	// The number of CNAMEs, if any, for this distribution.
+	Quantity *int64 `type:"integer" required:"true"`
 
 	metadataAliases `json:"-", xml:"-"`
 }
@@ -556,10 +596,31 @@ type metadataAliases struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A complex type that controls which HTTP methods CloudFront processes and
+// forwards to your Amazon S3 bucket or your custom origin. There are three
+// choices: - CloudFront forwards only GET and HEAD requests. - CloudFront forwards
+// only GET, HEAD and OPTIONS requests. - CloudFront forwards GET, HEAD, OPTIONS,
+// PUT, PATCH, POST, and DELETE requests. If you pick the third choice, you
+// may need to restrict access to your Amazon S3 bucket or to your custom origin
+// so users can't perform operations that you don't want them to. For example,
+// you may not want users to have permission to delete objects from your origin.
 type AllowedMethods struct {
+	// A complex type that controls whether CloudFront caches the response to requests
+	// using the specified HTTP methods. There are two choices: - CloudFront caches
+	// responses to GET and HEAD requests. - CloudFront caches responses to GET,
+	// HEAD, and OPTIONS requests. If you pick the second choice for your S3 Origin,
+	// you may need to forward Access-Control-Request-Method, Access-Control-Request-Headers
+	// and Origin headers for the responses to be cached correctly.
 	CachedMethods *CachedMethods `type:"structure"`
-	Items         []*string      `locationNameList:"Method" type:"list" required:"true"`
-	Quantity      *int64         `type:"integer" required:"true"`
+
+	// A complex type that contains the HTTP methods that you want CloudFront to
+	// process and forward to your origin.
+	Items []*string `locationNameList:"Method" type:"list" required:"true"`
+
+	// The number of HTTP methods that you want CloudFront to forward to your origin.
+	// Valid values are 2 (for GET and HEAD requests), 3 (for GET, HEAD and OPTIONS
+	// requests) and 7 (for GET, HEAD, OPTIONS, PUT, PATCH, POST, and DELETE requests).
+	Quantity *int64 `type:"integer" required:"true"`
 
 	metadataAllowedMethods `json:"-", xml:"-"`
 }
@@ -568,15 +629,81 @@ type metadataAllowedMethods struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A complex type that describes how CloudFront processes requests. You can
+// create up to 10 cache behaviors.You must create at least as many cache behaviors
+// (including the default cache behavior) as you have origins if you want CloudFront
+// to distribute objects from all of the origins. Each cache behavior specifies
+// the one origin from which you want CloudFront to get objects. If you have
+// two origins and only the default cache behavior, the default cache behavior
+// will cause CloudFront to get objects from one of the origins, but the other
+// origin will never be used. If you don't want to specify any cache behaviors,
+// include only an empty CacheBehaviors element. Don't include an empty CacheBehavior
+// element, or CloudFront returns a MalformedXML error. To delete all cache
+// behaviors in an existing distribution, update the distribution configuration
+// and include only an empty CacheBehaviors element. To add, change, or remove
+// one or more cache behaviors, update the distribution configuration and specify
+// all of the cache behaviors that you want to include in the updated distribution.
 type CacheBehavior struct {
-	AllowedMethods       *AllowedMethods  `type:"structure"`
-	ForwardedValues      *ForwardedValues `type:"structure" required:"true"`
-	MinTTL               *int64           `type:"long" required:"true"`
-	PathPattern          *string          `type:"string" required:"true"`
-	SmoothStreaming      *bool            `type:"boolean"`
-	TargetOriginID       *string          `locationName:"TargetOriginId" type:"string" required:"true"`
-	TrustedSigners       *TrustedSigners  `type:"structure" required:"true"`
-	ViewerProtocolPolicy *string          `type:"string" required:"true"`
+	// A complex type that controls which HTTP methods CloudFront processes and
+	// forwards to your Amazon S3 bucket or your custom origin. There are three
+	// choices: - CloudFront forwards only GET and HEAD requests. - CloudFront forwards
+	// only GET, HEAD and OPTIONS requests. - CloudFront forwards GET, HEAD, OPTIONS,
+	// PUT, PATCH, POST, and DELETE requests. If you pick the third choice, you
+	// may need to restrict access to your Amazon S3 bucket or to your custom origin
+	// so users can't perform operations that you don't want them to. For example,
+	// you may not want users to have permission to delete objects from your origin.
+	AllowedMethods *AllowedMethods `type:"structure"`
+
+	// A complex type that specifies how CloudFront handles query strings, cookies
+	// and headers.
+	ForwardedValues *ForwardedValues `type:"structure" required:"true"`
+
+	// The minimum amount of time that you want objects to stay in CloudFront caches
+	// before CloudFront queries your origin to see whether the object has been
+	// updated.You can specify a value from 0 to 3,153,600,000 seconds (100 years).
+	MinTTL *int64 `type:"long" required:"true"`
+
+	// The pattern (for example, images/*.jpg) that specifies which requests you
+	// want this cache behavior to apply to. When CloudFront receives an end-user
+	// request, the requested path is compared with path patterns in the order in
+	// which cache behaviors are listed in the distribution. The path pattern for
+	// the default cache behavior is * and cannot be changed. If the request for
+	// an object does not match the path pattern for any cache behaviors, CloudFront
+	// applies the behavior in the default cache behavior.
+	PathPattern *string `type:"string" required:"true"`
+
+	// Indicates whether you want to distribute media files in Microsoft Smooth
+	// Streaming format using the origin that is associated with this cache behavior.
+	// If so, specify true; if not, specify false.
+	SmoothStreaming *bool `type:"boolean"`
+
+	// The value of ID for the origin that you want CloudFront to route requests
+	// to when a request matches the path pattern either for a cache behavior or
+	// for the default cache behavior.
+	TargetOriginID *string `locationName:"TargetOriginId" type:"string" required:"true"`
+
+	// A complex type that specifies the AWS accounts, if any, that you want to
+	// allow to create signed URLs for private content. If you want to require signed
+	// URLs in requests for objects in the target origin that match the PathPattern
+	// for this cache behavior, specify true for Enabled, and specify the applicable
+	// values for Quantity and Items. For more information, go to Using a Signed
+	// URL to Serve Private Content in the Amazon CloudFront Developer Guide. If
+	// you don't want to require signed URLs in requests for objects that match
+	// PathPattern, specify false for Enabled and 0 for Quantity. Omit Items. To
+	// add, change, or remove one or more trusted signers, change Enabled to true
+	// (if it's currently false), change Quantity as applicable, and specify all
+	// of the trusted signers that you want to include in the updated distribution.
+	TrustedSigners *TrustedSigners `type:"structure" required:"true"`
+
+	// Use this element to specify the protocol that users can use to access the
+	// files in the origin specified by TargetOriginId when a request matches the
+	// path pattern in PathPattern. If you want CloudFront to allow end users to
+	// use any available protocol, specify allow-all. If you want CloudFront to
+	// require HTTPS, specify https. If you want CloudFront to respond to an HTTP
+	// request with an HTTP status code of 301 (Moved Permanently) and the HTTPS
+	// URL, specify redirect-to-https. The viewer then resubmits the request using
+	// the HTTPS URL.
+	ViewerProtocolPolicy *string `type:"string" required:"true"`
 
 	metadataCacheBehavior `json:"-", xml:"-"`
 }
@@ -585,9 +712,14 @@ type metadataCacheBehavior struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A complex type that contains zero or more CacheBehavior elements.
 type CacheBehaviors struct {
-	Items    []*CacheBehavior `locationNameList:"CacheBehavior" type:"list"`
-	Quantity *int64           `type:"integer" required:"true"`
+	// Optional: A complex type that contains cache behaviors for this distribution.
+	// If Quantity is 0, you can omit Items.
+	Items []*CacheBehavior `locationNameList:"CacheBehavior" type:"list"`
+
+	// The number of cache behaviors for this distribution.
+	Quantity *int64 `type:"integer" required:"true"`
 
 	metadataCacheBehaviors `json:"-", xml:"-"`
 }
@@ -596,9 +728,21 @@ type metadataCacheBehaviors struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A complex type that controls whether CloudFront caches the response to requests
+// using the specified HTTP methods. There are two choices: - CloudFront caches
+// responses to GET and HEAD requests. - CloudFront caches responses to GET,
+// HEAD, and OPTIONS requests. If you pick the second choice for your S3 Origin,
+// you may need to forward Access-Control-Request-Method, Access-Control-Request-Headers
+// and Origin headers for the responses to be cached correctly.
 type CachedMethods struct {
-	Items    []*string `locationNameList:"Method" type:"list" required:"true"`
-	Quantity *int64    `type:"integer" required:"true"`
+	// A complex type that contains the HTTP methods that you want CloudFront to
+	// cache responses to.
+	Items []*string `locationNameList:"Method" type:"list" required:"true"`
+
+	// The number of HTTP methods for which you want CloudFront to cache responses.
+	// Valid values are 2 (for caching responses to GET and HEAD requests) and 3
+	// (for caching responses to GET, HEAD, and OPTIONS requests).
+	Quantity *int64 `type:"integer" required:"true"`
 
 	metadataCachedMethods `json:"-", xml:"-"`
 }
@@ -607,10 +751,18 @@ type metadataCachedMethods struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// CloudFront origin access identity.
 type CloudFrontOriginAccessIdentity struct {
+	// The current configuration information for the identity.
 	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `type:"structure"`
-	ID                                   *string                               `locationName:"Id" type:"string" required:"true"`
-	S3CanonicalUserID                    *string                               `locationName:"S3CanonicalUserId" type:"string" required:"true"`
+
+	// The ID for the origin access identity. For example: E74FTE3AJFJ256A.
+	ID *string `locationName:"Id" type:"string" required:"true"`
+
+	// The Amazon S3 canonical user ID for the origin access identity, which you
+	// use when giving the origin access identity read permission to an object in
+	// Amazon S3.
+	S3CanonicalUserID *string `locationName:"S3CanonicalUserId" type:"string" required:"true"`
 
 	metadataCloudFrontOriginAccessIdentity `json:"-", xml:"-"`
 }
@@ -619,9 +771,23 @@ type metadataCloudFrontOriginAccessIdentity struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Origin access identity configuration.
 type CloudFrontOriginAccessIdentityConfig struct {
+	// A unique number that ensures the request can't be replayed. If the CallerReference
+	// is new (no matter the content of the CloudFrontOriginAccessIdentityConfig
+	// object), a new origin access identity is created. If the CallerReference
+	// is a value you already sent in a previous request to create an identity,
+	// and the content of the CloudFrontOriginAccessIdentityConfig is identical
+	// to the original request (ignoring white space), the response includes the
+	// same information returned to the original request. If the CallerReference
+	// is a value you already sent in a previous request to create an identity but
+	// the content of the CloudFrontOriginAccessIdentityConfig is different from
+	// the original request, CloudFront returns a CloudFrontOriginAccessIdentityAlreadyExists
+	// error.
 	CallerReference *string `type:"string" required:"true"`
-	Comment         *string `type:"string" required:"true"`
+
+	// Any comments you want to include about the origin access identity.
+	Comment *string `type:"string" required:"true"`
 
 	metadataCloudFrontOriginAccessIdentityConfig `json:"-", xml:"-"`
 }
@@ -630,13 +796,32 @@ type metadataCloudFrontOriginAccessIdentityConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The CloudFrontOriginAccessIdentityList type.
 type CloudFrontOriginAccessIdentityList struct {
-	IsTruncated *bool                                    `type:"boolean" required:"true"`
-	Items       []*CloudFrontOriginAccessIdentitySummary `locationNameList:"CloudFrontOriginAccessIdentitySummary" type:"list"`
-	Marker      *string                                  `type:"string" required:"true"`
-	MaxItems    *int64                                   `type:"integer" required:"true"`
-	NextMarker  *string                                  `type:"string"`
-	Quantity    *int64                                   `type:"integer" required:"true"`
+	// A flag that indicates whether more origin access identities remain to be
+	// listed. If your results were truncated, you can make a follow-up pagination
+	// request using the Marker request parameter to retrieve more items in the
+	// list.
+	IsTruncated *bool `type:"boolean" required:"true"`
+
+	// A complex type that contains one CloudFrontOriginAccessIdentitySummary element
+	// for each origin access identity that was created by the current AWS account.
+	Items []*CloudFrontOriginAccessIdentitySummary `locationNameList:"CloudFrontOriginAccessIdentitySummary" type:"list"`
+
+	// The value you provided for the Marker request parameter.
+	Marker *string `type:"string" required:"true"`
+
+	// The value you provided for the MaxItems request parameter.
+	MaxItems *int64 `type:"integer" required:"true"`
+
+	// If IsTruncated is true, this element is present and contains the value you
+	// can use for the Marker request parameter to continue listing your origin
+	// access identities where they left off.
+	NextMarker *string `type:"string"`
+
+	// The number of CloudFront origin access identities that were created by the
+	// current AWS account.
+	Quantity *int64 `type:"integer" required:"true"`
 
 	metadataCloudFrontOriginAccessIdentityList `json:"-", xml:"-"`
 }
@@ -645,9 +830,18 @@ type metadataCloudFrontOriginAccessIdentityList struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Summary of the information about a CloudFront origin access identity.
 type CloudFrontOriginAccessIdentitySummary struct {
-	Comment           *string `type:"string" required:"true"`
-	ID                *string `locationName:"Id" type:"string" required:"true"`
+	// The comment for this origin access identity, as originally specified when
+	// created.
+	Comment *string `type:"string" required:"true"`
+
+	// The ID for the origin access identity. For example: E74FTE3AJFJ256A.
+	ID *string `locationName:"Id" type:"string" required:"true"`
+
+	// The Amazon S3 canonical user ID for the origin access identity, which you
+	// use when giving the origin access identity read permission to an object in
+	// Amazon S3.
 	S3CanonicalUserID *string `locationName:"S3CanonicalUserId" type:"string" required:"true"`
 
 	metadataCloudFrontOriginAccessIdentitySummary `json:"-", xml:"-"`
@@ -657,9 +851,15 @@ type metadataCloudFrontOriginAccessIdentitySummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A complex type that specifies the whitelisted cookies, if any, that you want
+// CloudFront to forward to your origin that is associated with this cache behavior.
 type CookieNames struct {
-	Items    []*string `locationNameList:"Name" type:"list"`
-	Quantity *int64    `type:"integer" required:"true"`
+	// Optional: A complex type that contains whitelisted cookies for this cache
+	// behavior. If Quantity is 0, you can omit Items.
+	Items []*string `locationNameList:"Name" type:"list"`
+
+	// The number of whitelisted cookies for this cache behavior.
+	Quantity *int64 `type:"integer" required:"true"`
 
 	metadataCookieNames `json:"-", xml:"-"`
 }
@@ -668,8 +868,17 @@ type metadataCookieNames struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A complex type that specifies the cookie preferences associated with this
+// cache behavior.
 type CookiePreference struct {
-	Forward          *string      `type:"string" required:"true"`
+	// Use this element to specify whether you want CloudFront to forward cookies
+	// to the origin that is associated with this cache behavior. You can specify
+	// all, none or whitelist. If you choose All, CloudFront forwards all cookies
+	// regardless of how many your application uses.
+	Forward *string `type:"string" required:"true"`
+
+	// A complex type that specifies the whitelisted cookies, if any, that you want
+	// CloudFront to forward to your origin that is associated with this cache behavior.
 	WhitelistedNames *CookieNames `type:"structure"`
 
 	metadataCookiePreference `json:"-", xml:"-"`
@@ -679,7 +888,9 @@ type metadataCookiePreference struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The request to create a new origin access identity.
 type CreateCloudFrontOriginAccessIdentityInput struct {
+	// The origin access identity's configuration information.
 	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `locationName:"CloudFrontOriginAccessIdentityConfig" type:"structure" required:"true"`
 
 	metadataCreateCloudFrontOriginAccessIdentityInput `json:"-", xml:"-"`
@@ -689,10 +900,17 @@ type metadataCreateCloudFrontOriginAccessIdentityInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentityConfig"`
 }
 
+// The returned result of the corresponding request.
 type CreateCloudFrontOriginAccessIdentityOutput struct {
+	// The origin access identity's information.
 	CloudFrontOriginAccessIdentity *CloudFrontOriginAccessIdentity `type:"structure"`
-	ETag                           *string                         `location:"header" locationName:"ETag" type:"string"`
-	Location                       *string                         `location:"header" locationName:"Location" type:"string"`
+
+	// The current version of the origin access identity created.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// The fully qualified URI of the new origin access identity just created. For
+	// example: https://cloudfront.amazonaws.com/2010-11-01/origin-access-identity/cloudfront/E74FTE3AJFJ256A.
+	Location *string `location:"header" locationName:"Location" type:"string"`
 
 	metadataCreateCloudFrontOriginAccessIdentityOutput `json:"-", xml:"-"`
 }
@@ -701,7 +919,9 @@ type metadataCreateCloudFrontOriginAccessIdentityOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentity"`
 }
 
+// The request to create a new distribution.
 type CreateDistributionInput struct {
+	// The distribution's configuration information.
 	DistributionConfig *DistributionConfig `locationName:"DistributionConfig" type:"structure" required:"true"`
 
 	metadataCreateDistributionInput `json:"-", xml:"-"`
@@ -711,10 +931,17 @@ type metadataCreateDistributionInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"DistributionConfig"`
 }
 
+// The returned result of the corresponding request.
 type CreateDistributionOutput struct {
+	// The distribution's information.
 	Distribution *Distribution `type:"structure"`
-	ETag         *string       `location:"header" locationName:"ETag" type:"string"`
-	Location     *string       `location:"header" locationName:"Location" type:"string"`
+
+	// The current version of the distribution created.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// The fully qualified URI of the new distribution resource just created. For
+	// example: https://cloudfront.amazonaws.com/2010-11-01/distribution/EDFDVBD632BHDS5.
+	Location *string `location:"header" locationName:"Location" type:"string"`
 
 	metadataCreateDistributionOutput `json:"-", xml:"-"`
 }
@@ -723,8 +950,12 @@ type metadataCreateDistributionOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"Distribution"`
 }
 
+// The request to create an invalidation.
 type CreateInvalidationInput struct {
-	DistributionID    *string            `location:"uri" locationName:"DistributionId" type:"string" required:"true"`
+	// The distribution's id.
+	DistributionID *string `location:"uri" locationName:"DistributionId" type:"string" required:"true"`
+
+	// The batch information for the invalidation.
 	InvalidationBatch *InvalidationBatch `locationName:"InvalidationBatch" type:"structure" required:"true"`
 
 	metadataCreateInvalidationInput `json:"-", xml:"-"`
@@ -734,9 +965,14 @@ type metadataCreateInvalidationInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"InvalidationBatch"`
 }
 
+// The returned result of the corresponding request.
 type CreateInvalidationOutput struct {
+	// The invalidation's information.
 	Invalidation *Invalidation `type:"structure"`
-	Location     *string       `location:"header" locationName:"Location" type:"string"`
+
+	// The fully qualified URI of the distribution and invalidation batch request,
+	// including the Invalidation ID.
+	Location *string `location:"header" locationName:"Location" type:"string"`
 
 	metadataCreateInvalidationOutput `json:"-", xml:"-"`
 }
@@ -745,7 +981,9 @@ type metadataCreateInvalidationOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"Invalidation"`
 }
 
+// The request to create a new streaming distribution.
 type CreateStreamingDistributionInput struct {
+	// The streaming distribution's configuration information.
 	StreamingDistributionConfig *StreamingDistributionConfig `locationName:"StreamingDistributionConfig" type:"structure" required:"true"`
 
 	metadataCreateStreamingDistributionInput `json:"-", xml:"-"`
@@ -755,9 +993,16 @@ type metadataCreateStreamingDistributionInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"StreamingDistributionConfig"`
 }
 
+// The returned result of the corresponding request.
 type CreateStreamingDistributionOutput struct {
-	ETag                  *string                `location:"header" locationName:"ETag" type:"string"`
-	Location              *string                `location:"header" locationName:"Location" type:"string"`
+	// The current version of the streaming distribution created.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// The fully qualified URI of the new streaming distribution resource just created.
+	// For example: https://cloudfront.amazonaws.com/2010-11-01/streaming-distribution/EGTXBD79H29TRA8.
+	Location *string `location:"header" locationName:"Location" type:"string"`
+
+	// The streaming distribution's information.
 	StreamingDistribution *StreamingDistribution `type:"structure"`
 
 	metadataCreateStreamingDistributionOutput `json:"-", xml:"-"`
@@ -767,11 +1012,39 @@ type metadataCreateStreamingDistributionOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"StreamingDistribution"`
 }
 
+// A complex type that describes how you'd prefer CloudFront to respond to requests
+// that result in either a 4xx or 5xx response. You can control whether a custom
+// error page should be displayed, what the desired response code should be
+// for this error page and how long should the error response be cached by CloudFront.
+// If you don't want to specify any custom error responses, include only an
+// empty CustomErrorResponses element. To delete all custom error responses
+// in an existing distribution, update the distribution configuration and include
+// only an empty CustomErrorResponses element. To add, change, or remove one
+// or more custom error responses, update the distribution configuration and
+// specify all of the custom error responses that you want to include in the
+// updated distribution.
 type CustomErrorResponse struct {
-	ErrorCachingMinTTL *int64  `type:"long"`
-	ErrorCode          *int64  `type:"integer" required:"true"`
-	ResponseCode       *string `type:"string"`
-	ResponsePagePath   *string `type:"string"`
+	// The minimum amount of time you want HTTP error codes to stay in CloudFront
+	// caches before CloudFront queries your origin to see whether the object has
+	// been updated. You can specify a value from 0 to 31,536,000.
+	ErrorCachingMinTTL *int64 `type:"long"`
+
+	// The 4xx or 5xx HTTP status code that you want to customize. For a list of
+	// HTTP status codes that you can customize, see CloudFront documentation.
+	ErrorCode *int64 `type:"integer" required:"true"`
+
+	// The HTTP status code that you want CloudFront to return with the custom error
+	// page to the viewer. For a list of HTTP status codes that you can replace,
+	// see CloudFront Documentation.
+	ResponseCode *string `type:"string"`
+
+	// The path of the custom error page (for example, /custom_404.html). The path
+	// is relative to the distribution and must begin with a slash (/). If the path
+	// includes any non-ASCII characters or unsafe characters as defined in RFC
+	// 1783 (http://www.ietf.org/rfc/rfc1738.txt), URL encode those characters.
+	// Do not URL encode any other characters in the path, or CloudFront will not
+	// return the custom error page to the viewer.
+	ResponsePagePath *string `type:"string"`
 
 	metadataCustomErrorResponse `json:"-", xml:"-"`
 }
@@ -780,9 +1053,14 @@ type metadataCustomErrorResponse struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A complex type that contains zero or more CustomErrorResponse elements.
 type CustomErrorResponses struct {
-	Items    []*CustomErrorResponse `locationNameList:"CustomErrorResponse" type:"list"`
-	Quantity *int64                 `type:"integer" required:"true"`
+	// Optional: A complex type that contains custom error responses for this distribution.
+	// If Quantity is 0, you can omit Items.
+	Items []*CustomErrorResponse `locationNameList:"CustomErrorResponse" type:"list"`
+
+	// The number of custom error responses for this distribution.
+	Quantity *int64 `type:"integer" required:"true"`
 
 	metadataCustomErrorResponses `json:"-", xml:"-"`
 }
@@ -791,9 +1069,15 @@ type metadataCustomErrorResponses struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A customer origin.
 type CustomOriginConfig struct {
-	HTTPPort             *int64  `type:"integer" required:"true"`
-	HTTPSPort            *int64  `type:"integer" required:"true"`
+	// The HTTP port the custom origin listens on.
+	HTTPPort *int64 `type:"integer" required:"true"`
+
+	// The HTTPS port the custom origin listens on.
+	HTTPSPort *int64 `type:"integer" required:"true"`
+
+	// The origin protocol policy to apply to your origin.
 	OriginProtocolPolicy *string `type:"string" required:"true"`
 
 	metadataCustomOriginConfig `json:"-", xml:"-"`
@@ -803,14 +1087,61 @@ type metadataCustomOriginConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A complex type that describes the default cache behavior if you do not specify
+// a CacheBehavior element or if files don't match any of the values of PathPattern
+// in CacheBehavior elements.You must create exactly one default cache behavior.
 type DefaultCacheBehavior struct {
-	AllowedMethods       *AllowedMethods  `type:"structure"`
-	ForwardedValues      *ForwardedValues `type:"structure" required:"true"`
-	MinTTL               *int64           `type:"long" required:"true"`
-	SmoothStreaming      *bool            `type:"boolean"`
-	TargetOriginID       *string          `locationName:"TargetOriginId" type:"string" required:"true"`
-	TrustedSigners       *TrustedSigners  `type:"structure" required:"true"`
-	ViewerProtocolPolicy *string          `type:"string" required:"true"`
+	// A complex type that controls which HTTP methods CloudFront processes and
+	// forwards to your Amazon S3 bucket or your custom origin. There are three
+	// choices: - CloudFront forwards only GET and HEAD requests. - CloudFront forwards
+	// only GET, HEAD and OPTIONS requests. - CloudFront forwards GET, HEAD, OPTIONS,
+	// PUT, PATCH, POST, and DELETE requests. If you pick the third choice, you
+	// may need to restrict access to your Amazon S3 bucket or to your custom origin
+	// so users can't perform operations that you don't want them to. For example,
+	// you may not want users to have permission to delete objects from your origin.
+	AllowedMethods *AllowedMethods `type:"structure"`
+
+	// A complex type that specifies how CloudFront handles query strings, cookies
+	// and headers.
+	ForwardedValues *ForwardedValues `type:"structure" required:"true"`
+
+	// The minimum amount of time that you want objects to stay in CloudFront caches
+	// before CloudFront queries your origin to see whether the object has been
+	// updated.You can specify a value from 0 to 3,153,600,000 seconds (100 years).
+	MinTTL *int64 `type:"long" required:"true"`
+
+	// Indicates whether you want to distribute media files in Microsoft Smooth
+	// Streaming format using the origin that is associated with this cache behavior.
+	// If so, specify true; if not, specify false.
+	SmoothStreaming *bool `type:"boolean"`
+
+	// The value of ID for the origin that you want CloudFront to route requests
+	// to when a request matches the path pattern either for a cache behavior or
+	// for the default cache behavior.
+	TargetOriginID *string `locationName:"TargetOriginId" type:"string" required:"true"`
+
+	// A complex type that specifies the AWS accounts, if any, that you want to
+	// allow to create signed URLs for private content. If you want to require signed
+	// URLs in requests for objects in the target origin that match the PathPattern
+	// for this cache behavior, specify true for Enabled, and specify the applicable
+	// values for Quantity and Items. For more information, go to Using a Signed
+	// URL to Serve Private Content in the Amazon CloudFront Developer Guide. If
+	// you don't want to require signed URLs in requests for objects that match
+	// PathPattern, specify false for Enabled and 0 for Quantity. Omit Items. To
+	// add, change, or remove one or more trusted signers, change Enabled to true
+	// (if it's currently false), change Quantity as applicable, and specify all
+	// of the trusted signers that you want to include in the updated distribution.
+	TrustedSigners *TrustedSigners `type:"structure" required:"true"`
+
+	// Use this element to specify the protocol that users can use to access the
+	// files in the origin specified by TargetOriginId when a request matches the
+	// path pattern in PathPattern. If you want CloudFront to allow end users to
+	// use any available protocol, specify allow-all. If you want CloudFront to
+	// require HTTPS, specify https. If you want CloudFront to respond to an HTTP
+	// request with an HTTP status code of 301 (Moved Permanently) and the HTTPS
+	// URL, specify redirect-to-https. The viewer then resubmits the request using
+	// the HTTPS URL.
+	ViewerProtocolPolicy *string `type:"string" required:"true"`
 
 	metadataDefaultCacheBehavior `json:"-", xml:"-"`
 }
@@ -819,8 +1150,13 @@ type metadataDefaultCacheBehavior struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The request to delete a origin access identity.
 type DeleteCloudFrontOriginAccessIdentityInput struct {
-	ID      *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	// The origin access identity's id.
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The value of the ETag header you received from a previous GET or PUT request.
+	// For example: E2QWRUHAPOMQZL.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
 	metadataDeleteCloudFrontOriginAccessIdentityInput `json:"-", xml:"-"`
@@ -838,8 +1174,13 @@ type metadataDeleteCloudFrontOriginAccessIdentityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The request to delete a distribution.
 type DeleteDistributionInput struct {
-	ID      *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	// The distribution id.
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The value of the ETag header you received when you disabled the distribution.
+	// For example: E2QWRUHAPOMQZL.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
 	metadataDeleteDistributionInput `json:"-", xml:"-"`
@@ -857,8 +1198,13 @@ type metadataDeleteDistributionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The request to delete a streaming distribution.
 type DeleteStreamingDistributionInput struct {
-	ID      *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	// The distribution id.
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The value of the ETag header you received when you disabled the streaming
+	// distribution. For example: E2QWRUHAPOMQZL.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
 	metadataDeleteStreamingDistributionInput `json:"-", xml:"-"`
@@ -876,14 +1222,37 @@ type metadataDeleteStreamingDistributionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A distribution.
 type Distribution struct {
-	ActiveTrustedSigners          *ActiveTrustedSigners `type:"structure" required:"true"`
-	DistributionConfig            *DistributionConfig   `type:"structure" required:"true"`
-	DomainName                    *string               `type:"string" required:"true"`
-	ID                            *string               `locationName:"Id" type:"string" required:"true"`
-	InProgressInvalidationBatches *int64                `type:"integer" required:"true"`
-	LastModifiedTime              *time.Time            `type:"timestamp" timestampFormat:"iso8601" required:"true"`
-	Status                        *string               `type:"string" required:"true"`
+	// CloudFront automatically adds this element to the response only if you've
+	// set up the distribution to serve private content with signed URLs. The element
+	// lists the key pair IDs that CloudFront is aware of for each trusted signer.
+	// The Signer child element lists the AWS account number of the trusted signer
+	// (or an empty Self element if the signer is you). The Signer element also
+	// includes the IDs of any active key pairs associated with the trusted signer's
+	// AWS account. If no KeyPairId element appears for a Signer, that signer can't
+	// create working signed URLs.
+	ActiveTrustedSigners *ActiveTrustedSigners `type:"structure" required:"true"`
+
+	// The current configuration information for the distribution.
+	DistributionConfig *DistributionConfig `type:"structure" required:"true"`
+
+	// The domain name corresponding to the distribution. For example: d604721fxaaqy9.cloudfront.net.
+	DomainName *string `type:"string" required:"true"`
+
+	// The identifier for the distribution. For example: EDFDVBD632BHDS5.
+	ID *string `locationName:"Id" type:"string" required:"true"`
+
+	// The number of invalidation batches currently in progress.
+	InProgressInvalidationBatches *int64 `type:"integer" required:"true"`
+
+	// The date and time the distribution was last modified.
+	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// This response element indicates the current status of the distribution. When
+	// the status is Deployed, the distribution's information is fully propagated
+	// throughout the Amazon CloudFront system.
+	Status *string `type:"string" required:"true"`
 
 	metadataDistribution `json:"-", xml:"-"`
 }
@@ -892,20 +1261,67 @@ type metadataDistribution struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A distribution Configuration.
 type DistributionConfig struct {
-	Aliases              *Aliases              `type:"structure"`
-	CacheBehaviors       *CacheBehaviors       `type:"structure"`
-	CallerReference      *string               `type:"string" required:"true"`
-	Comment              *string               `type:"string" required:"true"`
+	// A complex type that contains information about CNAMEs (alternate domain names),
+	// if any, for this distribution.
+	Aliases *Aliases `type:"structure"`
+
+	// A complex type that contains zero or more CacheBehavior elements.
+	CacheBehaviors *CacheBehaviors `type:"structure"`
+
+	// A unique number that ensures the request can't be replayed. If the CallerReference
+	// is new (no matter the content of the DistributionConfig object), a new distribution
+	// is created. If the CallerReference is a value you already sent in a previous
+	// request to create a distribution, and the content of the DistributionConfig
+	// is identical to the original request (ignoring white space), the response
+	// includes the same information returned to the original request. If the CallerReference
+	// is a value you already sent in a previous request to create a distribution
+	// but the content of the DistributionConfig is different from the original
+	// request, CloudFront returns a DistributionAlreadyExists error.
+	CallerReference *string `type:"string" required:"true"`
+
+	// Any comments you want to include about the distribution.
+	Comment *string `type:"string" required:"true"`
+
+	// A complex type that contains zero or more CustomErrorResponse elements.
 	CustomErrorResponses *CustomErrorResponses `type:"structure"`
+
+	// A complex type that describes the default cache behavior if you do not specify
+	// a CacheBehavior element or if files don't match any of the values of PathPattern
+	// in CacheBehavior elements.You must create exactly one default cache behavior.
 	DefaultCacheBehavior *DefaultCacheBehavior `type:"structure" required:"true"`
-	DefaultRootObject    *string               `type:"string"`
-	Enabled              *bool                 `type:"boolean" required:"true"`
-	Logging              *LoggingConfig        `type:"structure"`
-	Origins              *Origins              `type:"structure" required:"true"`
-	PriceClass           *string               `type:"string"`
-	Restrictions         *Restrictions         `type:"structure"`
-	ViewerCertificate    *ViewerCertificate    `type:"structure"`
+
+	// The object that you want CloudFront to return (for example, index.html) when
+	// an end user requests the root URL for your distribution (http://www.example.com)
+	// instead of an object in your distribution (http://www.example.com/index.html).
+	// Specifying a default root object avoids exposing the contents of your distribution.
+	// If you don't want to specify a default root object when you create a distribution,
+	// include an empty DefaultRootObject element. To delete the default root object
+	// from an existing distribution, update the distribution configuration and
+	// include an empty DefaultRootObject element. To replace the default root object,
+	// update the distribution configuration and specify the new object.
+	DefaultRootObject *string `type:"string"`
+
+	// Whether the distribution is enabled to accept end user requests for content.
+	Enabled *bool `type:"boolean" required:"true"`
+
+	// A complex type that controls whether access logs are written for the distribution.
+	Logging *LoggingConfig `type:"structure"`
+
+	// A complex type that contains information about origins for this distribution.
+	Origins *Origins `type:"structure" required:"true"`
+
+	// A complex type that contains information about price class for this distribution.
+	PriceClass *string `type:"string"`
+
+	// A complex type that identifies ways in which you want to restrict distribution
+	// of your content.
+	Restrictions *Restrictions `type:"structure"`
+
+	// A complex type that contains information about viewer certificates for this
+	// distribution.
+	ViewerCertificate *ViewerCertificate `type:"structure"`
 
 	metadataDistributionConfig `json:"-", xml:"-"`
 }
@@ -914,13 +1330,31 @@ type metadataDistributionConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A distribution list.
 type DistributionList struct {
-	IsTruncated *bool                  `type:"boolean" required:"true"`
-	Items       []*DistributionSummary `locationNameList:"DistributionSummary" type:"list"`
-	Marker      *string                `type:"string" required:"true"`
-	MaxItems    *int64                 `type:"integer" required:"true"`
-	NextMarker  *string                `type:"string"`
-	Quantity    *int64                 `type:"integer" required:"true"`
+	// A flag that indicates whether more distributions remain to be listed. If
+	// your results were truncated, you can make a follow-up pagination request
+	// using the Marker request parameter to retrieve more distributions in the
+	// list.
+	IsTruncated *bool `type:"boolean" required:"true"`
+
+	// A complex type that contains one DistributionSummary element for each distribution
+	// that was created by the current AWS account.
+	Items []*DistributionSummary `locationNameList:"DistributionSummary" type:"list"`
+
+	// The value you provided for the Marker request parameter.
+	Marker *string `type:"string" required:"true"`
+
+	// The value you provided for the MaxItems request parameter.
+	MaxItems *int64 `type:"integer" required:"true"`
+
+	// If IsTruncated is true, this element is present and contains the value you
+	// can use for the Marker request parameter to continue listing your distributions
+	// where they left off.
+	NextMarker *string `type:"string"`
+
+	// The number of distributions that were created by the current AWS account.
+	Quantity *int64 `type:"integer" required:"true"`
 
 	metadataDistributionList `json:"-", xml:"-"`
 }
@@ -929,21 +1363,55 @@ type metadataDistributionList struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A summary of the information for an Amazon CloudFront distribution.
 type DistributionSummary struct {
-	Aliases              *Aliases              `type:"structure" required:"true"`
-	CacheBehaviors       *CacheBehaviors       `type:"structure" required:"true"`
-	Comment              *string               `type:"string" required:"true"`
+	// A complex type that contains information about CNAMEs (alternate domain names),
+	// if any, for this distribution.
+	Aliases *Aliases `type:"structure" required:"true"`
+
+	// A complex type that contains zero or more CacheBehavior elements.
+	CacheBehaviors *CacheBehaviors `type:"structure" required:"true"`
+
+	// The comment originally specified when this distribution was created.
+	Comment *string `type:"string" required:"true"`
+
+	// A complex type that contains zero or more CustomErrorResponses elements.
 	CustomErrorResponses *CustomErrorResponses `type:"structure" required:"true"`
+
+	// A complex type that describes the default cache behavior if you do not specify
+	// a CacheBehavior element or if files don't match any of the values of PathPattern
+	// in CacheBehavior elements.You must create exactly one default cache behavior.
 	DefaultCacheBehavior *DefaultCacheBehavior `type:"structure" required:"true"`
-	DomainName           *string               `type:"string" required:"true"`
-	Enabled              *bool                 `type:"boolean" required:"true"`
-	ID                   *string               `locationName:"Id" type:"string" required:"true"`
-	LastModifiedTime     *time.Time            `type:"timestamp" timestampFormat:"iso8601" required:"true"`
-	Origins              *Origins              `type:"structure" required:"true"`
-	PriceClass           *string               `type:"string" required:"true"`
-	Restrictions         *Restrictions         `type:"structure" required:"true"`
-	Status               *string               `type:"string" required:"true"`
-	ViewerCertificate    *ViewerCertificate    `type:"structure" required:"true"`
+
+	// The domain name corresponding to the distribution. For example: d604721fxaaqy9.cloudfront.net.
+	DomainName *string `type:"string" required:"true"`
+
+	// Whether the distribution is enabled to accept end user requests for content.
+	Enabled *bool `type:"boolean" required:"true"`
+
+	// The identifier for the distribution. For example: EDFDVBD632BHDS5.
+	ID *string `locationName:"Id" type:"string" required:"true"`
+
+	// The date and time the distribution was last modified.
+	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// A complex type that contains information about origins for this distribution.
+	Origins *Origins `type:"structure" required:"true"`
+
+	PriceClass *string `type:"string" required:"true"`
+
+	// A complex type that identifies ways in which you want to restrict distribution
+	// of your content.
+	Restrictions *Restrictions `type:"structure" required:"true"`
+
+	// This response element indicates the current status of the distribution. When
+	// the status is Deployed, the distribution's information is fully propagated
+	// throughout the Amazon CloudFront system.
+	Status *string `type:"string" required:"true"`
+
+	// A complex type that contains information about viewer certificates for this
+	// distribution.
+	ViewerCertificate *ViewerCertificate `type:"structure" required:"true"`
 
 	metadataDistributionSummary `json:"-", xml:"-"`
 }
@@ -952,10 +1420,20 @@ type metadataDistributionSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A complex type that specifies how CloudFront handles query strings, cookies
+// and headers.
 type ForwardedValues struct {
-	Cookies     *CookiePreference `type:"structure" required:"true"`
-	Headers     *Headers          `type:"structure"`
-	QueryString *bool             `type:"boolean" required:"true"`
+	// A complex type that specifies how CloudFront handles cookies.
+	Cookies *CookiePreference `type:"structure" required:"true"`
+
+	// A complex type that specifies the Headers, if any, that you want CloudFront
+	// to vary upon for this cache behavior.
+	Headers *Headers `type:"structure"`
+
+	// Indicates whether you want CloudFront to forward query strings to the origin
+	// that is associated with this cache behavior. If so, specify true; if not,
+	// specify false.
+	QueryString *bool `type:"boolean" required:"true"`
 
 	metadataForwardedValues `json:"-", xml:"-"`
 }
@@ -964,10 +1442,36 @@ type metadataForwardedValues struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A complex type that controls the countries in which your content is distributed.
+// For more information about geo restriction, go to Customizing Error Responses
+// in the Amazon CloudFront Developer Guide. CloudFront determines the location
+// of your users using MaxMind GeoIP databases. For information about the accuracy
+// of these databases, see How accurate are your GeoIP databases? on the MaxMind
+// website.
 type GeoRestriction struct {
-	Items           []*string `locationNameList:"Location" type:"list"`
-	Quantity        *int64    `type:"integer" required:"true"`
-	RestrictionType *string   `type:"string" required:"true"`
+	// A complex type that contains a Location element for each country in which
+	// you want CloudFront either to distribute your content (whitelist) or not
+	// distribute your content (blacklist). The Location element is a two-letter,
+	// uppercase country code for a country that you want to include in your blacklist
+	// or whitelist. Include one Location element for each country. CloudFront and
+	// MaxMind both use ISO 3166 country codes. For the current list of countries
+	// and the corresponding codes, see ISO 3166-1-alpha-2 code on the International
+	// Organization for Standardization website. You can also refer to the country
+	// list in the CloudFront console, which includes both country names and codes.
+	Items []*string `locationNameList:"Location" type:"list"`
+
+	// When geo restriction is enabled, this is the number of countries in your
+	// whitelist or blacklist. Otherwise, when it is not enabled, Quantity is 0,
+	// and you can omit Items.
+	Quantity *int64 `type:"integer" required:"true"`
+
+	// The method that you want to use to restrict distribution of your content
+	// by country: - none: No geo restriction is enabled, meaning access to content
+	// is not restricted by client geo location. - blacklist: The Location elements
+	// specify the countries in which you do not want CloudFront to distribute your
+	// content. - whitelist: The Location elements specify the countries in which
+	// you want CloudFront to distribute your content.
+	RestrictionType *string `type:"string" required:"true"`
 
 	metadataGeoRestriction `json:"-", xml:"-"`
 }
@@ -976,7 +1480,9 @@ type metadataGeoRestriction struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The request to get an origin access identity's configuration.
 type GetCloudFrontOriginAccessIdentityConfigInput struct {
+	// The identity's id.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetCloudFrontOriginAccessIdentityConfigInput `json:"-", xml:"-"`
@@ -986,9 +1492,13 @@ type metadataGetCloudFrontOriginAccessIdentityConfigInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The returned result of the corresponding request.
 type GetCloudFrontOriginAccessIdentityConfigOutput struct {
+	// The origin access identity's configuration information.
 	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `type:"structure"`
-	ETag                                 *string                               `location:"header" locationName:"ETag" type:"string"`
+
+	// The current version of the configuration. For example: E2QWRUHAPOMQZL.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
 	metadataGetCloudFrontOriginAccessIdentityConfigOutput `json:"-", xml:"-"`
 }
@@ -997,7 +1507,9 @@ type metadataGetCloudFrontOriginAccessIdentityConfigOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentityConfig"`
 }
 
+// The request to get an origin access identity's information.
 type GetCloudFrontOriginAccessIdentityInput struct {
+	// The identity's id.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetCloudFrontOriginAccessIdentityInput `json:"-", xml:"-"`
@@ -1007,9 +1519,14 @@ type metadataGetCloudFrontOriginAccessIdentityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The returned result of the corresponding request.
 type GetCloudFrontOriginAccessIdentityOutput struct {
+	// The origin access identity's information.
 	CloudFrontOriginAccessIdentity *CloudFrontOriginAccessIdentity `type:"structure"`
-	ETag                           *string                         `location:"header" locationName:"ETag" type:"string"`
+
+	// The current version of the origin access identity's information. For example:
+	// E2QWRUHAPOMQZL.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
 	metadataGetCloudFrontOriginAccessIdentityOutput `json:"-", xml:"-"`
 }
@@ -1018,7 +1535,9 @@ type metadataGetCloudFrontOriginAccessIdentityOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentity"`
 }
 
+// The request to get a distribution configuration.
 type GetDistributionConfigInput struct {
+	// The distribution's id.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetDistributionConfigInput `json:"-", xml:"-"`
@@ -1028,9 +1547,13 @@ type metadataGetDistributionConfigInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The returned result of the corresponding request.
 type GetDistributionConfigOutput struct {
+	// The distribution's configuration information.
 	DistributionConfig *DistributionConfig `type:"structure"`
-	ETag               *string             `location:"header" locationName:"ETag" type:"string"`
+
+	// The current version of the configuration. For example: E2QWRUHAPOMQZL.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
 	metadataGetDistributionConfigOutput `json:"-", xml:"-"`
 }
@@ -1039,7 +1562,9 @@ type metadataGetDistributionConfigOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"DistributionConfig"`
 }
 
+// The request to get a distribution's information.
 type GetDistributionInput struct {
+	// The distribution's id.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetDistributionInput `json:"-", xml:"-"`
@@ -1049,9 +1574,13 @@ type metadataGetDistributionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The returned result of the corresponding request.
 type GetDistributionOutput struct {
+	// The distribution's information.
 	Distribution *Distribution `type:"structure"`
-	ETag         *string       `location:"header" locationName:"ETag" type:"string"`
+
+	// The current version of the distribution's information. For example: E2QWRUHAPOMQZL.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
 	metadataGetDistributionOutput `json:"-", xml:"-"`
 }
@@ -1060,9 +1589,13 @@ type metadataGetDistributionOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"Distribution"`
 }
 
+// The request to get an invalidation's information.
 type GetInvalidationInput struct {
+	// The distribution's id.
 	DistributionID *string `location:"uri" locationName:"DistributionId" type:"string" required:"true"`
-	ID             *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The invalidation's id.
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetInvalidationInput `json:"-", xml:"-"`
 }
@@ -1071,7 +1604,9 @@ type metadataGetInvalidationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The returned result of the corresponding request.
 type GetInvalidationOutput struct {
+	// The invalidation's information.
 	Invalidation *Invalidation `type:"structure"`
 
 	metadataGetInvalidationOutput `json:"-", xml:"-"`
@@ -1081,7 +1616,9 @@ type metadataGetInvalidationOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"Invalidation"`
 }
 
+// To request to get a streaming distribution configuration.
 type GetStreamingDistributionConfigInput struct {
+	// The streaming distribution's id.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetStreamingDistributionConfigInput `json:"-", xml:"-"`
@@ -1091,8 +1628,12 @@ type metadataGetStreamingDistributionConfigInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The returned result of the corresponding request.
 type GetStreamingDistributionConfigOutput struct {
-	ETag                        *string                      `location:"header" locationName:"ETag" type:"string"`
+	// The current version of the configuration. For example: E2QWRUHAPOMQZL.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// The streaming distribution's configuration information.
 	StreamingDistributionConfig *StreamingDistributionConfig `type:"structure"`
 
 	metadataGetStreamingDistributionConfigOutput `json:"-", xml:"-"`
@@ -1102,7 +1643,9 @@ type metadataGetStreamingDistributionConfigOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"StreamingDistributionConfig"`
 }
 
+// The request to get a streaming distribution's information.
 type GetStreamingDistributionInput struct {
+	// The streaming distribution's id.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetStreamingDistributionInput `json:"-", xml:"-"`
@@ -1112,8 +1655,13 @@ type metadataGetStreamingDistributionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The returned result of the corresponding request.
 type GetStreamingDistributionOutput struct {
-	ETag                  *string                `location:"header" locationName:"ETag" type:"string"`
+	// The current version of the streaming distribution's information. For example:
+	// E2QWRUHAPOMQZL.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// The streaming distribution's information.
 	StreamingDistribution *StreamingDistribution `type:"structure"`
 
 	metadataGetStreamingDistributionOutput `json:"-", xml:"-"`
@@ -1123,9 +1671,28 @@ type metadataGetStreamingDistributionOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"StreamingDistribution"`
 }
 
+// A complex type that specifies the headers that you want CloudFront to forward
+// to the origin for this cache behavior. For the headers that you specify,
+// CloudFront also caches separate versions of a given object based on the header
+// values in viewer requests; this is known as varying on headers. For example,
+// suppose viewer requests for logo.jpg contain a custom Product header that
+// has a value of either Acme or Apex, and you configure CloudFront to vary
+// on the Product header. CloudFront forwards the Product header to the origin
+// and caches the response from the origin once for each header value.
 type Headers struct {
-	Items    []*string `locationNameList:"Name" type:"list"`
-	Quantity *int64    `type:"integer" required:"true"`
+	// Optional: A complex type that contains a Name element for each header that
+	// you want CloudFront to forward to the origin and to vary on for this cache
+	// behavior. If Quantity is 0, omit Items.
+	Items []*string `locationNameList:"Name" type:"list"`
+
+	// The number of different headers that you want CloudFront to forward to the
+	// origin and to vary on for this cache behavior. The maximum number of headers
+	// that you can specify by name is 10. If you want CloudFront to forward all
+	// headers to the origin and vary on all of them, specify 1 for Quantity and
+	// * for Name. If you don't want CloudFront to forward any additional headers
+	// to the origin or to vary on any headers, specify 0 for Quantity and omit
+	// Items.
+	Quantity *int64 `type:"integer" required:"true"`
 
 	metadataHeaders `json:"-", xml:"-"`
 }
@@ -1134,11 +1701,20 @@ type metadataHeaders struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// An invalidation.
 type Invalidation struct {
-	CreateTime        *time.Time         `type:"timestamp" timestampFormat:"iso8601" required:"true"`
-	ID                *string            `locationName:"Id" type:"string" required:"true"`
+	// The date and time the invalidation request was first made.
+	CreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The identifier for the invalidation request. For example: IDFDVBD632BHDS5.
+	ID *string `locationName:"Id" type:"string" required:"true"`
+
+	// The current invalidation information for the batch request.
 	InvalidationBatch *InvalidationBatch `type:"structure" required:"true"`
-	Status            *string            `type:"string" required:"true"`
+
+	// The status of the invalidation request. When the invalidation batch is finished,
+	// the status is Completed.
+	Status *string `type:"string" required:"true"`
 
 	metadataInvalidation `json:"-", xml:"-"`
 }
@@ -1147,9 +1723,26 @@ type metadataInvalidation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// An invalidation batch.
 type InvalidationBatch struct {
+	// A unique name that ensures the request can't be replayed. If the CallerReference
+	// is new (no matter the content of the Path object), a new distribution is
+	// created. If the CallerReference is a value you already sent in a previous
+	// request to create an invalidation batch, and the content of each Path element
+	// is identical to the original request, the response includes the same information
+	// returned to the original request. If the CallerReference is a value you already
+	// sent in a previous request to create a distribution but the content of any
+	// Path is different from the original request, CloudFront returns an InvalidationBatchAlreadyExists
+	// error.
 	CallerReference *string `type:"string" required:"true"`
-	Paths           *Paths  `type:"structure" required:"true"`
+
+	// The path of the object to invalidate. The path is relative to the distribution
+	// and must begin with a slash (/). You must enclose each invalidation object
+	// with the Path element tags. If the path includes non-ASCII characters or
+	// unsafe characters as defined in RFC 1783 (http://www.ietf.org/rfc/rfc1738.txt),
+	// URL encode those characters. Do not URL encode any other characters in the
+	// path, or CloudFront will not invalidate the old version of the updated object.
+	Paths *Paths `type:"structure" required:"true"`
 
 	metadataInvalidationBatch `json:"-", xml:"-"`
 }
@@ -1158,13 +1751,31 @@ type metadataInvalidationBatch struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// An invalidation list.
 type InvalidationList struct {
-	IsTruncated *bool                  `type:"boolean" required:"true"`
-	Items       []*InvalidationSummary `locationNameList:"InvalidationSummary" type:"list"`
-	Marker      *string                `type:"string" required:"true"`
-	MaxItems    *int64                 `type:"integer" required:"true"`
-	NextMarker  *string                `type:"string"`
-	Quantity    *int64                 `type:"integer" required:"true"`
+	// A flag that indicates whether more invalidation batch requests remain to
+	// be listed. If your results were truncated, you can make a follow-up pagination
+	// request using the Marker request parameter to retrieve more invalidation
+	// batches in the list.
+	IsTruncated *bool `type:"boolean" required:"true"`
+
+	// A complex type that contains one InvalidationSummary element for each invalidation
+	// batch that was created by the current AWS account.
+	Items []*InvalidationSummary `locationNameList:"InvalidationSummary" type:"list"`
+
+	// The value you provided for the Marker request parameter.
+	Marker *string `type:"string" required:"true"`
+
+	// The value you provided for the MaxItems request parameter.
+	MaxItems *int64 `type:"integer" required:"true"`
+
+	// If IsTruncated is true, this element is present and contains the value you
+	// can use for the Marker request parameter to continue listing your invalidation
+	// batches where they left off.
+	NextMarker *string `type:"string"`
+
+	// The number of invalidation batches that were created by the current AWS account.
+	Quantity *int64 `type:"integer" required:"true"`
 
 	metadataInvalidationList `json:"-", xml:"-"`
 }
@@ -1173,10 +1784,15 @@ type metadataInvalidationList struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Summary of an invalidation request.
 type InvalidationSummary struct {
 	CreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
-	ID         *string    `locationName:"Id" type:"string" required:"true"`
-	Status     *string    `type:"string" required:"true"`
+
+	// The unique ID for an invalidation request.
+	ID *string `locationName:"Id" type:"string" required:"true"`
+
+	// The status of an invalidation request.
+	Status *string `type:"string" required:"true"`
 
 	metadataInvalidationSummary `json:"-", xml:"-"`
 }
@@ -1185,9 +1801,15 @@ type metadataInvalidationSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A complex type that lists the active CloudFront key pairs, if any, that are
+// associated with AwsAccountNumber.
 type KeyPairIDs struct {
-	Items    []*string `locationNameList:"KeyPairId" type:"list"`
-	Quantity *int64    `type:"integer" required:"true"`
+	// A complex type that lists the active CloudFront key pairs, if any, that are
+	// associated with AwsAccountNumber.
+	Items []*string `locationNameList:"KeyPairId" type:"list"`
+
+	// The number of active CloudFront key pairs for AwsAccountNumber.
+	Quantity *int64 `type:"integer" required:"true"`
 
 	metadataKeyPairIDs `json:"-", xml:"-"`
 }
@@ -1196,8 +1818,16 @@ type metadataKeyPairIDs struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The request to list origin access identities.
 type ListCloudFrontOriginAccessIdentitiesInput struct {
-	Marker   *string `location:"querystring" locationName:"Marker" type:"string"`
+	// Use this when paginating results to indicate where to begin in your list
+	// of origin access identities. The results include identities in the list that
+	// occur after the marker. To get the next page of results, set the Marker to
+	// the value of the NextMarker from the current page's response (which is also
+	// the ID of the last identity on that page).
+	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
+
+	// The maximum number of origin access identities you want in the response body.
 	MaxItems *string `location:"querystring" locationName:"MaxItems" type:"string"`
 
 	metadataListCloudFrontOriginAccessIdentitiesInput `json:"-", xml:"-"`
@@ -1207,7 +1837,9 @@ type metadataListCloudFrontOriginAccessIdentitiesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The returned result of the corresponding request.
 type ListCloudFrontOriginAccessIdentitiesOutput struct {
+	// The CloudFrontOriginAccessIdentityList type.
 	CloudFrontOriginAccessIdentityList *CloudFrontOriginAccessIdentityList `type:"structure"`
 
 	metadataListCloudFrontOriginAccessIdentitiesOutput `json:"-", xml:"-"`
@@ -1217,8 +1849,16 @@ type metadataListCloudFrontOriginAccessIdentitiesOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentityList"`
 }
 
+// The request to list your distributions.
 type ListDistributionsInput struct {
-	Marker   *string `location:"querystring" locationName:"Marker" type:"string"`
+	// Use this when paginating results to indicate where to begin in your list
+	// of distributions. The results include distributions in the list that occur
+	// after the marker. To get the next page of results, set the Marker to the
+	// value of the NextMarker from the current page's response (which is also the
+	// ID of the last distribution on that page).
+	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
+
+	// The maximum number of distributions you want in the response body.
 	MaxItems *string `location:"querystring" locationName:"MaxItems" type:"string"`
 
 	metadataListDistributionsInput `json:"-", xml:"-"`
@@ -1228,7 +1868,9 @@ type metadataListDistributionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The returned result of the corresponding request.
 type ListDistributionsOutput struct {
+	// The DistributionList type.
 	DistributionList *DistributionList `type:"structure"`
 
 	metadataListDistributionsOutput `json:"-", xml:"-"`
@@ -1238,10 +1880,22 @@ type metadataListDistributionsOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"DistributionList"`
 }
 
+// The request to list invalidations.
 type ListInvalidationsInput struct {
+	// The distribution's id.
 	DistributionID *string `location:"uri" locationName:"DistributionId" type:"string" required:"true"`
-	Marker         *string `location:"querystring" locationName:"Marker" type:"string"`
-	MaxItems       *string `location:"querystring" locationName:"MaxItems" type:"string"`
+
+	// Use this parameter when paginating results to indicate where to begin in
+	// your list of invalidation batches. Because the results are returned in decreasing
+	// order from most recent to oldest, the most recent results are on the first
+	// page, the second page will contain earlier results, and so on. To get the
+	// next page of results, set the Marker to the value of the NextMarker from
+	// the current page's response. This value is the same as the ID of the last
+	// invalidation batch on that page.
+	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
+
+	// The maximum number of invalidation batches you want in the response body.
+	MaxItems *string `location:"querystring" locationName:"MaxItems" type:"string"`
 
 	metadataListInvalidationsInput `json:"-", xml:"-"`
 }
@@ -1250,7 +1904,9 @@ type metadataListInvalidationsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The returned result of the corresponding request.
 type ListInvalidationsOutput struct {
+	// Information about invalidation batches.
 	InvalidationList *InvalidationList `type:"structure"`
 
 	metadataListInvalidationsOutput `json:"-", xml:"-"`
@@ -1260,8 +1916,16 @@ type metadataListInvalidationsOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"InvalidationList"`
 }
 
+// The request to list your streaming distributions.
 type ListStreamingDistributionsInput struct {
-	Marker   *string `location:"querystring" locationName:"Marker" type:"string"`
+	// Use this when paginating results to indicate where to begin in your list
+	// of streaming distributions. The results include distributions in the list
+	// that occur after the marker. To get the next page of results, set the Marker
+	// to the value of the NextMarker from the current page's response (which is
+	// also the ID of the last distribution on that page).
+	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
+
+	// The maximum number of streaming distributions you want in the response body.
 	MaxItems *string `location:"querystring" locationName:"MaxItems" type:"string"`
 
 	metadataListStreamingDistributionsInput `json:"-", xml:"-"`
@@ -1271,7 +1935,9 @@ type metadataListStreamingDistributionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The returned result of the corresponding request.
 type ListStreamingDistributionsOutput struct {
+	// The StreamingDistributionList type.
 	StreamingDistributionList *StreamingDistributionList `type:"structure"`
 
 	metadataListStreamingDistributionsOutput `json:"-", xml:"-"`
@@ -1281,11 +1947,32 @@ type metadataListStreamingDistributionsOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"StreamingDistributionList"`
 }
 
+// A complex type that controls whether access logs are written for the distribution.
 type LoggingConfig struct {
-	Bucket         *string `type:"string" required:"true"`
-	Enabled        *bool   `type:"boolean" required:"true"`
-	IncludeCookies *bool   `type:"boolean" required:"true"`
-	Prefix         *string `type:"string" required:"true"`
+	// The Amazon S3 bucket to store the access logs in, for example, myawslogbucket.s3.amazonaws.com.
+	Bucket *string `type:"string" required:"true"`
+
+	// Specifies whether you want CloudFront to save access logs to an Amazon S3
+	// bucket. If you do not want to enable logging when you create a distribution
+	// or if you want to disable logging for an existing distribution, specify false
+	// for Enabled, and specify empty Bucket and Prefix elements. If you specify
+	// false for Enabled but you specify values for Bucket, prefix and IncludeCookies,
+	// the values are automatically deleted.
+	Enabled *bool `type:"boolean" required:"true"`
+
+	// Specifies whether you want CloudFront to include cookies in access logs,
+	// specify true for IncludeCookies. If you choose to include cookies in logs,
+	// CloudFront logs all cookies regardless of how you configure the cache behaviors
+	// for this distribution. If you do not want to include cookies when you create
+	// a distribution or if you want to disable include cookies for an existing
+	// distribution, specify false for IncludeCookies.
+	IncludeCookies *bool `type:"boolean" required:"true"`
+
+	// An optional string that you want CloudFront to prefix to the access log filenames
+	// for this distribution, for example, myprefix/. If you want to enable logging,
+	// but you do not want to specify a prefix, you still must include an empty
+	// Prefix element in the Logging element.
+	Prefix *string `type:"string" required:"true"`
 
 	metadataLoggingConfig `json:"-", xml:"-"`
 }
@@ -1294,12 +1981,35 @@ type metadataLoggingConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A complex type that describes the Amazon S3 bucket or the HTTP server (for
+// example, a web server) from which CloudFront gets your files.You must create
+// at least one origin.
 type Origin struct {
+	// A complex type that contains information about a custom origin. If the origin
+	// is an Amazon S3 bucket, use the S3OriginConfig element instead.
 	CustomOriginConfig *CustomOriginConfig `type:"structure"`
-	DomainName         *string             `type:"string" required:"true"`
-	ID                 *string             `locationName:"Id" type:"string" required:"true"`
-	OriginPath         *string             `type:"string"`
-	S3OriginConfig     *S3OriginConfig     `type:"structure"`
+
+	// Amazon S3 origins: The DNS name of the Amazon S3 bucket from which you want
+	// CloudFront to get objects for this origin, for example, myawsbucket.s3.amazonaws.com.
+	// Custom origins: The DNS domain name for the HTTP server from which you want
+	// CloudFront to get objects for this origin, for example, www.example.com.
+	DomainName *string `type:"string" required:"true"`
+
+	// A unique identifier for the origin. The value of Id must be unique within
+	// the distribution. You use the value of Id when you create a cache behavior.
+	// The Id identifies the origin that CloudFront routes a request to when the
+	// request matches the path pattern for that cache behavior.
+	ID *string `locationName:"Id" type:"string" required:"true"`
+
+	// An optional element that causes CloudFront to request your content from a
+	// directory in your Amazon S3 bucket or your custom origin. When you include
+	// the OriginPath element, specify the directory name, beginning with a /. CloudFront
+	// appends the directory name to the value of DomainName.
+	OriginPath *string `type:"string"`
+
+	// A complex type that contains information about the Amazon S3 origin. If the
+	// origin is a custom origin, use the CustomOriginConfig element instead.
+	S3OriginConfig *S3OriginConfig `type:"structure"`
 
 	metadataOrigin `json:"-", xml:"-"`
 }
@@ -1308,9 +2018,13 @@ type metadataOrigin struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A complex type that contains information about origins for this distribution.
 type Origins struct {
-	Items    []*Origin `locationNameList:"Origin" type:"list"`
-	Quantity *int64    `type:"integer" required:"true"`
+	// A complex type that contains origins for this distribution.
+	Items []*Origin `locationNameList:"Origin" type:"list"`
+
+	// The number of origins for this distribution.
+	Quantity *int64 `type:"integer" required:"true"`
 
 	metadataOrigins `json:"-", xml:"-"`
 }
@@ -1319,9 +2033,14 @@ type metadataOrigins struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A complex type that contains information about the objects that you want
+// to invalidate.
 type Paths struct {
-	Items    []*string `locationNameList:"Path" type:"list"`
-	Quantity *int64    `type:"integer" required:"true"`
+	// A complex type that contains a list of the objects that you want to invalidate.
+	Items []*string `locationNameList:"Path" type:"list"`
+
+	// The number of objects that you want to invalidate.
+	Quantity *int64 `type:"integer" required:"true"`
 
 	metadataPaths `json:"-", xml:"-"`
 }
@@ -1330,7 +2049,15 @@ type metadataPaths struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A complex type that identifies ways in which you want to restrict distribution
+// of your content.
 type Restrictions struct {
+	// A complex type that controls the countries in which your content is distributed.
+	// For more information about geo restriction, go to Customizing Error Responses
+	// in the Amazon CloudFront Developer Guide. CloudFront determines the location
+	// of your users using MaxMind GeoIP databases. For information about the accuracy
+	// of these databases, see How accurate are your GeoIP databases? on the MaxMind
+	// website.
 	GeoRestriction *GeoRestriction `type:"structure" required:"true"`
 
 	metadataRestrictions `json:"-", xml:"-"`
@@ -1340,8 +2067,13 @@ type metadataRestrictions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A complex type that contains information about the Amazon S3 bucket from
+// which you want CloudFront to get your media files for distribution.
 type S3Origin struct {
-	DomainName           *string `type:"string" required:"true"`
+	// The DNS name of the S3 origin.
+	DomainName *string `type:"string" required:"true"`
+
+	// Your S3 origin's origin access identity.
 	OriginAccessIdentity *string `type:"string" required:"true"`
 
 	metadataS3Origin `json:"-", xml:"-"`
@@ -1351,7 +2083,20 @@ type metadataS3Origin struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A complex type that contains information about the Amazon S3 origin. If the
+// origin is a custom origin, use the CustomOriginConfig element instead.
 type S3OriginConfig struct {
+	// The CloudFront origin access identity to associate with the origin. Use an
+	// origin access identity to configure the origin so that end users can only
+	// access objects in an Amazon S3 bucket through CloudFront. If you want end
+	// users to be able to access objects using either the CloudFront URL or the
+	// Amazon S3 URL, specify an empty OriginAccessIdentity element. To delete the
+	// origin access identity from an existing distribution, update the distribution
+	// configuration and include an empty OriginAccessIdentity element. To replace
+	// the origin access identity, update the distribution configuration and specify
+	// the new origin access identity. Use the format origin-access-identity/cloudfront/Id
+	// where Id is the value that CloudFront returned in the Id element when you
+	// created the origin access identity.
 	OriginAccessIdentity *string `type:"string" required:"true"`
 
 	metadataS3OriginConfig `json:"-", xml:"-"`
@@ -1361,9 +2106,18 @@ type metadataS3OriginConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A complex type that lists the AWS accounts that were included in the TrustedSigners
+// complex type, as well as their active CloudFront key pair IDs, if any.
 type Signer struct {
-	AWSAccountNumber *string     `locationName:"AwsAccountNumber" type:"string"`
-	KeyPairIDs       *KeyPairIDs `locationName:"KeyPairIds" type:"structure"`
+	// Specifies an AWS account that can create signed URLs. Values: self, which
+	// indicates that the AWS account that was used to create the distribution can
+	// created signed URLs, or an AWS account number. Omit the dashes in the account
+	// number.
+	AWSAccountNumber *string `locationName:"AwsAccountNumber" type:"string"`
+
+	// A complex type that lists the active CloudFront key pairs, if any, that are
+	// associated with AwsAccountNumber.
+	KeyPairIDs *KeyPairIDs `locationName:"KeyPairIds" type:"structure"`
 
 	metadataSigner `json:"-", xml:"-"`
 }
@@ -1372,12 +2126,34 @@ type metadataSigner struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A streaming distribution.
 type StreamingDistribution struct {
-	ActiveTrustedSigners        *ActiveTrustedSigners        `type:"structure" required:"true"`
-	DomainName                  *string                      `type:"string" required:"true"`
-	ID                          *string                      `locationName:"Id" type:"string" required:"true"`
-	LastModifiedTime            *time.Time                   `type:"timestamp" timestampFormat:"iso8601"`
-	Status                      *string                      `type:"string" required:"true"`
+	// CloudFront automatically adds this element to the response only if you've
+	// set up the distribution to serve private content with signed URLs. The element
+	// lists the key pair IDs that CloudFront is aware of for each trusted signer.
+	// The Signer child element lists the AWS account number of the trusted signer
+	// (or an empty Self element if the signer is you). The Signer element also
+	// includes the IDs of any active key pairs associated with the trusted signer's
+	// AWS account. If no KeyPairId element appears for a Signer, that signer can't
+	// create working signed URLs.
+	ActiveTrustedSigners *ActiveTrustedSigners `type:"structure" required:"true"`
+
+	// The domain name corresponding to the streaming distribution. For example:
+	// s5c39gqb8ow64r.cloudfront.net.
+	DomainName *string `type:"string" required:"true"`
+
+	// The identifier for the streaming distribution. For example: EGTXBD79H29TRA8.
+	ID *string `locationName:"Id" type:"string" required:"true"`
+
+	// The date and time the distribution was last modified.
+	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The current status of the streaming distribution. When the status is Deployed,
+	// the distribution's information is fully propagated throughout the Amazon
+	// CloudFront system.
+	Status *string `type:"string" required:"true"`
+
+	// The current configuration information for the streaming distribution.
 	StreamingDistributionConfig *StreamingDistributionConfig `type:"structure" required:"true"`
 
 	metadataStreamingDistribution `json:"-", xml:"-"`
@@ -1387,15 +2163,55 @@ type metadataStreamingDistribution struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The configuration for the streaming distribution.
 type StreamingDistributionConfig struct {
-	Aliases         *Aliases                `type:"structure"`
-	CallerReference *string                 `type:"string" required:"true"`
-	Comment         *string                 `type:"string" required:"true"`
-	Enabled         *bool                   `type:"boolean" required:"true"`
-	Logging         *StreamingLoggingConfig `type:"structure"`
-	PriceClass      *string                 `type:"string"`
-	S3Origin        *S3Origin               `type:"structure" required:"true"`
-	TrustedSigners  *TrustedSigners         `type:"structure" required:"true"`
+	// A complex type that contains information about CNAMEs (alternate domain names),
+	// if any, for this streaming distribution.
+	Aliases *Aliases `type:"structure"`
+
+	// A unique number that ensures the request can't be replayed. If the CallerReference
+	// is new (no matter the content of the StreamingDistributionConfig object),
+	// a new streaming distribution is created. If the CallerReference is a value
+	// you already sent in a previous request to create a streaming distribution,
+	// and the content of the StreamingDistributionConfig is identical to the original
+	// request (ignoring white space), the response includes the same information
+	// returned to the original request. If the CallerReference is a value you already
+	// sent in a previous request to create a streaming distribution but the content
+	// of the StreamingDistributionConfig is different from the original request,
+	// CloudFront returns a DistributionAlreadyExists error.
+	CallerReference *string `type:"string" required:"true"`
+
+	// Any comments you want to include about the streaming distribution.
+	Comment *string `type:"string" required:"true"`
+
+	// Whether the streaming distribution is enabled to accept end user requests
+	// for content.
+	Enabled *bool `type:"boolean" required:"true"`
+
+	// A complex type that controls whether access logs are written for the streaming
+	// distribution.
+	Logging *StreamingLoggingConfig `type:"structure"`
+
+	// A complex type that contains information about price class for this streaming
+	// distribution.
+	PriceClass *string `type:"string"`
+
+	// A complex type that contains information about the Amazon S3 bucket from
+	// which you want CloudFront to get your media files for distribution.
+	S3Origin *S3Origin `type:"structure" required:"true"`
+
+	// A complex type that specifies the AWS accounts, if any, that you want to
+	// allow to create signed URLs for private content. If you want to require signed
+	// URLs in requests for objects in the target origin that match the PathPattern
+	// for this cache behavior, specify true for Enabled, and specify the applicable
+	// values for Quantity and Items. For more information, go to Using a Signed
+	// URL to Serve Private Content in the Amazon CloudFront Developer Guide. If
+	// you don't want to require signed URLs in requests for objects that match
+	// PathPattern, specify false for Enabled and 0 for Quantity. Omit Items. To
+	// add, change, or remove one or more trusted signers, change Enabled to true
+	// (if it's currently false), change Quantity as applicable, and specify all
+	// of the trusted signers that you want to include in the updated distribution.
+	TrustedSigners *TrustedSigners `type:"structure" required:"true"`
 
 	metadataStreamingDistributionConfig `json:"-", xml:"-"`
 }
@@ -1404,13 +2220,32 @@ type metadataStreamingDistributionConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A streaming distribution list.
 type StreamingDistributionList struct {
-	IsTruncated *bool                           `type:"boolean" required:"true"`
-	Items       []*StreamingDistributionSummary `locationNameList:"StreamingDistributionSummary" type:"list"`
-	Marker      *string                         `type:"string" required:"true"`
-	MaxItems    *int64                          `type:"integer" required:"true"`
-	NextMarker  *string                         `type:"string"`
-	Quantity    *int64                          `type:"integer" required:"true"`
+	// A flag that indicates whether more streaming distributions remain to be listed.
+	// If your results were truncated, you can make a follow-up pagination request
+	// using the Marker request parameter to retrieve more distributions in the
+	// list.
+	IsTruncated *bool `type:"boolean" required:"true"`
+
+	// A complex type that contains one StreamingDistributionSummary element for
+	// each distribution that was created by the current AWS account.
+	Items []*StreamingDistributionSummary `locationNameList:"StreamingDistributionSummary" type:"list"`
+
+	// The value you provided for the Marker request parameter.
+	Marker *string `type:"string" required:"true"`
+
+	// The value you provided for the MaxItems request parameter.
+	MaxItems *int64 `type:"integer" required:"true"`
+
+	// If IsTruncated is true, this element is present and contains the value you
+	// can use for the Marker request parameter to continue listing your streaming
+	// distributions where they left off.
+	NextMarker *string `type:"string"`
+
+	// The number of streaming distributions that were created by the current AWS
+	// account.
+	Quantity *int64 `type:"integer" required:"true"`
 
 	metadataStreamingDistributionList `json:"-", xml:"-"`
 }
@@ -1419,17 +2254,50 @@ type metadataStreamingDistributionList struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A summary of the information for an Amazon CloudFront streaming distribution.
 type StreamingDistributionSummary struct {
-	Aliases          *Aliases        `type:"structure" required:"true"`
-	Comment          *string         `type:"string" required:"true"`
-	DomainName       *string         `type:"string" required:"true"`
-	Enabled          *bool           `type:"boolean" required:"true"`
-	ID               *string         `locationName:"Id" type:"string" required:"true"`
-	LastModifiedTime *time.Time      `type:"timestamp" timestampFormat:"iso8601" required:"true"`
-	PriceClass       *string         `type:"string" required:"true"`
-	S3Origin         *S3Origin       `type:"structure" required:"true"`
-	Status           *string         `type:"string" required:"true"`
-	TrustedSigners   *TrustedSigners `type:"structure" required:"true"`
+	// A complex type that contains information about CNAMEs (alternate domain names),
+	// if any, for this streaming distribution.
+	Aliases *Aliases `type:"structure" required:"true"`
+
+	// The comment originally specified when this distribution was created.
+	Comment *string `type:"string" required:"true"`
+
+	// The domain name corresponding to the distribution. For example: d604721fxaaqy9.cloudfront.net.
+	DomainName *string `type:"string" required:"true"`
+
+	// Whether the distribution is enabled to accept end user requests for content.
+	Enabled *bool `type:"boolean" required:"true"`
+
+	// The identifier for the distribution. For example: EDFDVBD632BHDS5.
+	ID *string `locationName:"Id" type:"string" required:"true"`
+
+	// The date and time the distribution was last modified.
+	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	PriceClass *string `type:"string" required:"true"`
+
+	// A complex type that contains information about the Amazon S3 bucket from
+	// which you want CloudFront to get your media files for distribution.
+	S3Origin *S3Origin `type:"structure" required:"true"`
+
+	// Indicates the current status of the distribution. When the status is Deployed,
+	// the distribution's information is fully propagated throughout the Amazon
+	// CloudFront system.
+	Status *string `type:"string" required:"true"`
+
+	// A complex type that specifies the AWS accounts, if any, that you want to
+	// allow to create signed URLs for private content. If you want to require signed
+	// URLs in requests for objects in the target origin that match the PathPattern
+	// for this cache behavior, specify true for Enabled, and specify the applicable
+	// values for Quantity and Items. For more information, go to Using a Signed
+	// URL to Serve Private Content in the Amazon CloudFront Developer Guide. If
+	// you don't want to require signed URLs in requests for objects that match
+	// PathPattern, specify false for Enabled and 0 for Quantity. Omit Items. To
+	// add, change, or remove one or more trusted signers, change Enabled to true
+	// (if it's currently false), change Quantity as applicable, and specify all
+	// of the trusted signers that you want to include in the updated distribution.
+	TrustedSigners *TrustedSigners `type:"structure" required:"true"`
 
 	metadataStreamingDistributionSummary `json:"-", xml:"-"`
 }
@@ -1438,10 +2306,25 @@ type metadataStreamingDistributionSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A complex type that controls whether access logs are written for this streaming
+// distribution.
 type StreamingLoggingConfig struct {
-	Bucket  *string `type:"string" required:"true"`
-	Enabled *bool   `type:"boolean" required:"true"`
-	Prefix  *string `type:"string" required:"true"`
+	// The Amazon S3 bucket to store the access logs in, for example, myawslogbucket.s3.amazonaws.com.
+	Bucket *string `type:"string" required:"true"`
+
+	// Specifies whether you want CloudFront to save access logs to an Amazon S3
+	// bucket. If you do not want to enable logging when you create a streaming
+	// distribution or if you want to disable logging for an existing streaming
+	// distribution, specify false for Enabled, and specify empty Bucket and Prefix
+	// elements. If you specify false for Enabled but you specify values for Bucket
+	// and Prefix, the values are automatically deleted.
+	Enabled *bool `type:"boolean" required:"true"`
+
+	// An optional string that you want CloudFront to prefix to the access log filenames
+	// for this streaming distribution, for example, myprefix/. If you want to enable
+	// logging, but you do not want to specify a prefix, you still must include
+	// an empty Prefix element in the Logging element.
+	Prefix *string `type:"string" required:"true"`
 
 	metadataStreamingLoggingConfig `json:"-", xml:"-"`
 }
@@ -1450,10 +2333,28 @@ type metadataStreamingLoggingConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A complex type that specifies the AWS accounts, if any, that you want to
+// allow to create signed URLs for private content. If you want to require signed
+// URLs in requests for objects in the target origin that match the PathPattern
+// for this cache behavior, specify true for Enabled, and specify the applicable
+// values for Quantity and Items. For more information, go to Using a Signed
+// URL to Serve Private Content in the Amazon CloudFront Developer Guide. If
+// you don't want to require signed URLs in requests for objects that match
+// PathPattern, specify false for Enabled and 0 for Quantity. Omit Items. To
+// add, change, or remove one or more trusted signers, change Enabled to true
+// (if it's currently false), change Quantity as applicable, and specify all
+// of the trusted signers that you want to include in the updated distribution.
 type TrustedSigners struct {
-	Enabled  *bool     `type:"boolean" required:"true"`
-	Items    []*string `locationNameList:"AwsAccountNumber" type:"list"`
-	Quantity *int64    `type:"integer" required:"true"`
+	// Specifies whether you want to require end users to use signed URLs to access
+	// the files specified by PathPattern and TargetOriginId.
+	Enabled *bool `type:"boolean" required:"true"`
+
+	// Optional: A complex type that contains trusted signers for this cache behavior.
+	// If Quantity is 0, you can omit Items.
+	Items []*string `locationNameList:"AwsAccountNumber" type:"list"`
+
+	// The number of trusted signers for this cache behavior.
+	Quantity *int64 `type:"integer" required:"true"`
 
 	metadataTrustedSigners `json:"-", xml:"-"`
 }
@@ -1462,10 +2363,17 @@ type metadataTrustedSigners struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The request to update an origin access identity.
 type UpdateCloudFrontOriginAccessIdentityInput struct {
+	// The identity's configuration information.
 	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `locationName:"CloudFrontOriginAccessIdentityConfig" type:"structure" required:"true"`
-	ID                                   *string                               `location:"uri" locationName:"Id" type:"string" required:"true"`
-	IfMatch                              *string                               `location:"header" locationName:"If-Match" type:"string"`
+
+	// The identity's id.
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The value of the ETag header you received when retrieving the identity's
+	// configuration. For example: E2QWRUHAPOMQZL.
+	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
 	metadataUpdateCloudFrontOriginAccessIdentityInput `json:"-", xml:"-"`
 }
@@ -1474,9 +2382,13 @@ type metadataUpdateCloudFrontOriginAccessIdentityInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentityConfig"`
 }
 
+// The returned result of the corresponding request.
 type UpdateCloudFrontOriginAccessIdentityOutput struct {
+	// The origin access identity's information.
 	CloudFrontOriginAccessIdentity *CloudFrontOriginAccessIdentity `type:"structure"`
-	ETag                           *string                         `location:"header" locationName:"ETag" type:"string"`
+
+	// The current version of the configuration. For example: E2QWRUHAPOMQZL.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
 	metadataUpdateCloudFrontOriginAccessIdentityOutput `json:"-", xml:"-"`
 }
@@ -1485,10 +2397,17 @@ type metadataUpdateCloudFrontOriginAccessIdentityOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentity"`
 }
 
+// The request to update a distribution.
 type UpdateDistributionInput struct {
+	// The distribution's configuration information.
 	DistributionConfig *DistributionConfig `locationName:"DistributionConfig" type:"structure" required:"true"`
-	ID                 *string             `location:"uri" locationName:"Id" type:"string" required:"true"`
-	IfMatch            *string             `location:"header" locationName:"If-Match" type:"string"`
+
+	// The distribution's id.
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The value of the ETag header you received when retrieving the distribution's
+	// configuration. For example: E2QWRUHAPOMQZL.
+	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
 	metadataUpdateDistributionInput `json:"-", xml:"-"`
 }
@@ -1497,9 +2416,13 @@ type metadataUpdateDistributionInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"DistributionConfig"`
 }
 
+// The returned result of the corresponding request.
 type UpdateDistributionOutput struct {
+	// The distribution's information.
 	Distribution *Distribution `type:"structure"`
-	ETag         *string       `location:"header" locationName:"ETag" type:"string"`
+
+	// The current version of the configuration. For example: E2QWRUHAPOMQZL.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
 	metadataUpdateDistributionOutput `json:"-", xml:"-"`
 }
@@ -1508,9 +2431,16 @@ type metadataUpdateDistributionOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"Distribution"`
 }
 
+// The request to update a streaming distribution.
 type UpdateStreamingDistributionInput struct {
-	ID                          *string                      `location:"uri" locationName:"Id" type:"string" required:"true"`
-	IfMatch                     *string                      `location:"header" locationName:"If-Match" type:"string"`
+	// The streaming distribution's id.
+	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The value of the ETag header you received when retrieving the streaming distribution's
+	// configuration. For example: E2QWRUHAPOMQZL.
+	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
+
+	// The streaming distribution's configuration information.
 	StreamingDistributionConfig *StreamingDistributionConfig `locationName:"StreamingDistributionConfig" type:"structure" required:"true"`
 
 	metadataUpdateStreamingDistributionInput `json:"-", xml:"-"`
@@ -1520,8 +2450,12 @@ type metadataUpdateStreamingDistributionInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"StreamingDistributionConfig"`
 }
 
+// The returned result of the corresponding request.
 type UpdateStreamingDistributionOutput struct {
-	ETag                  *string                `location:"header" locationName:"ETag" type:"string"`
+	// The current version of the configuration. For example: E2QWRUHAPOMQZL.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// The streaming distribution's information.
 	StreamingDistribution *StreamingDistribution `type:"structure"`
 
 	metadataUpdateStreamingDistributionOutput `json:"-", xml:"-"`
@@ -1531,11 +2465,44 @@ type metadataUpdateStreamingDistributionOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"StreamingDistribution"`
 }
 
+// A complex type that contains information about viewer certificates for this
+// distribution.
 type ViewerCertificate struct {
-	CloudFrontDefaultCertificate *bool   `type:"boolean"`
-	IAMCertificateID             *string `locationName:"IAMCertificateId" type:"string"`
-	MinimumProtocolVersion       *string `type:"string"`
-	SSLSupportMethod             *string `type:"string"`
+	// If you want viewers to use HTTPS to request your objects and you're using
+	// the CloudFront domain name of your distribution in your object URLs (for
+	// example, https://d111111abcdef8.cloudfront.net/logo.jpg), set to true. Omit
+	// this value if you are setting an IAMCertificateId.
+	CloudFrontDefaultCertificate *bool `type:"boolean"`
+
+	// If you want viewers to use HTTPS to request your objects and you're using
+	// an alternate domain name in your object URLs (for example, https://example.com/logo.jpg),
+	// specify the IAM certificate identifier of the custom viewer certificate for
+	// this distribution. Specify either this value or CloudFrontDefaultCertificate.
+	IAMCertificateID *string `locationName:"IAMCertificateId" type:"string"`
+
+	// Specify the minimum version of the SSL protocol that you want CloudFront
+	// to use, SSLv3 or TLSv1, for HTTPS connections. CloudFront will serve your
+	// objects only to browsers or devices that support at least the SSL version
+	// that you specify. The TLSv1 protocol is more secure, so we recommend that
+	// you specify SSLv3 only if your users are using browsers or devices that don't
+	// support TLSv1. If you're using a custom certificate (if you specify a value
+	// for IAMCertificateId) and if you're using dedicated IP (if you specify vip
+	// for SSLSupportMethod), you can choose SSLv3 or TLSv1 as the MinimumProtocolVersion.
+	// If you're using a custom certificate (if you specify a value for IAMCertificateId)
+	// and if you're using SNI (if you specify sni-only for SSLSupportMethod), you
+	// must specify TLSv1 for MinimumProtocolVersion.
+	MinimumProtocolVersion *string `type:"string"`
+
+	// If you specify a value for IAMCertificateId, you must also specify how you
+	// want CloudFront to serve HTTPS requests. Valid values are vip and sni-only.
+	// If you specify vip, CloudFront uses dedicated IP addresses for your content
+	// and can respond to HTTPS requests from any viewer. However, you must request
+	// permission to use this feature, and you incur additional monthly charges.
+	// If you specify sni-only, CloudFront can only respond to HTTPS requests from
+	// viewers that support Server Name Indication (SNI). All modern browsers support
+	// SNI, but some browsers still in use don't support SNI. Do not specify a value
+	// for SSLSupportMethod if you specified true for CloudFrontDefaultCertificate.
+	SSLSupportMethod *string `type:"string"`
 
 	metadataViewerCertificate `json:"-", xml:"-"`
 }

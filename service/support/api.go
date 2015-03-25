@@ -22,6 +22,16 @@ func (c *Support) AddAttachmentsToSetRequest(input *AddAttachmentsToSetInput) (r
 	return
 }
 
+// Adds one or more attachments to an attachment set. If an AttachmentSetId
+// is not specified, a new attachment set is created, and the ID of the set
+// is returned in the response. If an AttachmentSetId is specified, the attachments
+// are added to the specified set, if it exists.
+//
+// An attachment set is a temporary container for attachments that are to be
+// added to a case or case communication. The set is available for one hour
+// after it is created; the ExpiryTime returned in the response indicates when
+// the set expires. The maximum number of attachments in a set is 3, and the
+// maximum size of any attachment in the set is 5 MB.
 func (c *Support) AddAttachmentsToSet(input *AddAttachmentsToSetInput) (output *AddAttachmentsToSetOutput, err error) {
 	req, out := c.AddAttachmentsToSetRequest(input)
 	output = out
@@ -47,6 +57,14 @@ func (c *Support) AddCommunicationToCaseRequest(input *AddCommunicationToCaseInp
 	return
 }
 
+// Adds additional customer communication to an AWS Support case. You use the
+// CaseId value to identify the case to add communication to. You can list a
+// set of email addresses to copy on the communication using the CcEmailAddresses
+// value. The CommunicationBody value contains the text of the communication.
+//
+// The response indicates the success or failure of the request.
+//
+// This operation implements a subset of the features of the AWS Support Center.
 func (c *Support) AddCommunicationToCase(input *AddCommunicationToCaseInput) (output *AddCommunicationToCaseOutput, err error) {
 	req, out := c.AddCommunicationToCaseRequest(input)
 	output = out
@@ -72,6 +90,36 @@ func (c *Support) CreateCaseRequest(input *CreateCaseInput) (req *aws.Request, o
 	return
 }
 
+// Creates a new case in the AWS Support Center. This operation is modeled on
+// the behavior of the AWS Support Center Create Case (https://console.aws.amazon.com/support/home#/case/create)
+// page. Its parameters require you to specify the following information:
+//
+//   IssueType. The type of issue for the case. You can specify either "customer-service"
+// or "technical." If you do not indicate a value, the default is "technical."
+//   ServiceCode. The code for an AWS service. You obtain the ServiceCode by
+// calling DescribeServices.   CategoryCode. The category for the service defined
+// for the ServiceCode value. You also obtain the category code for a service
+// by calling DescribeServices. Each AWS service defines its own set of category
+// codes.   SeverityCode. A value that indicates the urgency of the case, which
+// in turn determines the response time according to your service level agreement
+// with AWS Support. You obtain the SeverityCode by calling DescribeSeverityLevels.
+//  Subject. The Subject field on the AWS Support Center Create Case (https://console.aws.amazon.com/support/home#/case/create)
+// page.  CommunicationBody. The Description field on the AWS Support Center
+// Create Case (https://console.aws.amazon.com/support/home#/case/create) page.
+//  AttachmentSetId. The ID of a set of attachments that has been created by
+// using AddAttachmentsToSet.  Language. The human language in which AWS Support
+// handles the case. English and Japanese are currently supported.  CcEmailAddresses.
+// The AWS Support Center CC field on the Create Case (https://console.aws.amazon.com/support/home#/case/create)
+// page. You can list email addresses to be copied on any correspondence about
+// the case. The account that opens the case is already identified by passing
+// the AWS Credentials in the HTTP POST method or in a method or function call
+// from one of the programming languages supported by an AWS SDK (http://aws.amazon.com/tools/).
+//   To add additional communication or attachments to an existing case, use
+// AddCommunicationToCase.
+//
+//  A successful CreateCase request returns an AWS Support case number. Case
+// numbers are used by the DescribeCases operation to retrieve existing AWS
+// Support cases.
 func (c *Support) CreateCase(input *CreateCaseInput) (output *CreateCaseOutput, err error) {
 	req, out := c.CreateCaseRequest(input)
 	output = out
@@ -97,6 +145,10 @@ func (c *Support) DescribeAttachmentRequest(input *DescribeAttachmentInput) (req
 	return
 }
 
+// Returns the attachment that has the specified ID. Attachment IDs are generated
+// by the case management system when you add an attachment to a case or case
+// communication. Attachment IDs are returned in the AttachmentDetails objects
+// that are returned by the DescribeCommunications operation.
 func (c *Support) DescribeAttachment(input *DescribeAttachmentInput) (output *DescribeAttachmentOutput, err error) {
 	req, out := c.DescribeAttachmentRequest(input)
 	output = out
@@ -122,6 +174,20 @@ func (c *Support) DescribeCasesRequest(input *DescribeCasesInput) (req *aws.Requ
 	return
 }
 
+// Returns a list of cases that you specify by passing one or more case IDs.
+// In addition, you can filter the cases by date by setting values for the AfterTime
+// and BeforeTime request parameters. You can set values for the IncludeResolvedCases
+// and IncludeCommunications request parameters to control how much information
+// is returned.
+//
+// Case data is available for 12 months after creation. If a case was created
+// more than 12 months ago, a request for data might cause an error.
+//
+// The response returns the following in JSON format:
+//
+//  One or more CaseDetails data types.  One or more NextToken values, which
+// specify where to paginate the returned records represented by the CaseDetails
+// objects.
 func (c *Support) DescribeCases(input *DescribeCasesInput) (output *DescribeCasesOutput, err error) {
 	req, out := c.DescribeCasesRequest(input)
 	output = out
@@ -147,6 +213,16 @@ func (c *Support) DescribeCommunicationsRequest(input *DescribeCommunicationsInp
 	return
 }
 
+// Returns communications (and attachments) for one or more support cases. You
+// can use the AfterTime and BeforeTime parameters to filter by date. You can
+// use the CaseId parameter to restrict the results to a particular case.
+//
+// Case data is available for 12 months after creation. If a case was created
+// more than 12 months ago, a request for data might cause an error.
+//
+// You can use the MaxResults and NextToken parameters to control the pagination
+// of the result set. Set MaxResults to the number of cases you want displayed
+// on each page, and use NextToken to specify the resumption of pagination.
 func (c *Support) DescribeCommunications(input *DescribeCommunicationsInput) (output *DescribeCommunicationsOutput, err error) {
 	req, out := c.DescribeCommunicationsRequest(input)
 	output = out
@@ -172,6 +248,17 @@ func (c *Support) DescribeServicesRequest(input *DescribeServicesInput) (req *aw
 	return
 }
 
+// Returns the current list of AWS services and a list of service categories
+// that applies to each one. You then use service names and categories in your
+// CreateCase requests. Each AWS service has its own set of categories.
+//
+// The service codes and category codes correspond to the values that are displayed
+// in the Service and Category drop-down lists on the AWS Support Center Create
+// Case (https://console.aws.amazon.com/support/home#/case/create) page. The
+// values in those fields, however, do not necessarily match the service codes
+// and categories returned by the DescribeServices request. Always use the service
+// codes and categories obtained programmatically. This practice ensures that
+// you always have the most recent set of service and category codes.
 func (c *Support) DescribeServices(input *DescribeServicesInput) (output *DescribeServicesOutput, err error) {
 	req, out := c.DescribeServicesRequest(input)
 	output = out
@@ -197,6 +284,9 @@ func (c *Support) DescribeSeverityLevelsRequest(input *DescribeSeverityLevelsInp
 	return
 }
 
+// Returns the list of severity levels that you can assign to an AWS Support
+// case. The severity level for a case is also a field in the CaseDetails data
+// type included in any CreateCase request.
 func (c *Support) DescribeSeverityLevels(input *DescribeSeverityLevelsInput) (output *DescribeSeverityLevelsOutput, err error) {
 	req, out := c.DescribeSeverityLevelsRequest(input)
 	output = out
@@ -222,6 +312,8 @@ func (c *Support) DescribeTrustedAdvisorCheckRefreshStatusesRequest(input *Descr
 	return
 }
 
+// Returns the refresh status of the Trusted Advisor checks that have the specified
+// check IDs. Check IDs can be obtained by calling DescribeTrustedAdvisorChecks.
 func (c *Support) DescribeTrustedAdvisorCheckRefreshStatuses(input *DescribeTrustedAdvisorCheckRefreshStatusesInput) (output *DescribeTrustedAdvisorCheckRefreshStatusesOutput, err error) {
 	req, out := c.DescribeTrustedAdvisorCheckRefreshStatusesRequest(input)
 	output = out
@@ -247,6 +339,18 @@ func (c *Support) DescribeTrustedAdvisorCheckResultRequest(input *DescribeTruste
 	return
 }
 
+// Returns the results of the Trusted Advisor check that has the specified check
+// ID. Check IDs can be obtained by calling DescribeTrustedAdvisorChecks.
+//
+// The response contains a TrustedAdvisorCheckResult object, which contains
+// these three objects:
+//
+//  TrustedAdvisorCategorySpecificSummary TrustedAdvisorResourceDetail TrustedAdvisorResourcesSummary
+//  In addition, the response contains these fields:
+//
+//   Status. The alert status of the check: "ok" (green), "warning" (yellow),
+// "error" (red), or "not_available".  Timestamp. The time of the last refresh
+// of the check.  CheckId. The unique identifier for the check.
 func (c *Support) DescribeTrustedAdvisorCheckResult(input *DescribeTrustedAdvisorCheckResultInput) (output *DescribeTrustedAdvisorCheckResultOutput, err error) {
 	req, out := c.DescribeTrustedAdvisorCheckResultRequest(input)
 	output = out
@@ -272,6 +376,10 @@ func (c *Support) DescribeTrustedAdvisorCheckSummariesRequest(input *DescribeTru
 	return
 }
 
+// Returns the summaries of the results of the Trusted Advisor checks that have
+// the specified check IDs. Check IDs can be obtained by calling DescribeTrustedAdvisorChecks.
+//
+// The response contains an array of TrustedAdvisorCheckSummary objects.
 func (c *Support) DescribeTrustedAdvisorCheckSummaries(input *DescribeTrustedAdvisorCheckSummariesInput) (output *DescribeTrustedAdvisorCheckSummariesOutput, err error) {
 	req, out := c.DescribeTrustedAdvisorCheckSummariesRequest(input)
 	output = out
@@ -297,6 +405,10 @@ func (c *Support) DescribeTrustedAdvisorChecksRequest(input *DescribeTrustedAdvi
 	return
 }
 
+// Returns information about all available Trusted Advisor checks, including
+// name, ID, category, description, and metadata. You must specify a language
+// code; English ("en") and Japanese ("ja") are currently supported. The response
+// contains a TrustedAdvisorCheckDescription for each check.
 func (c *Support) DescribeTrustedAdvisorChecks(input *DescribeTrustedAdvisorChecksInput) (output *DescribeTrustedAdvisorChecksOutput, err error) {
 	req, out := c.DescribeTrustedAdvisorChecksRequest(input)
 	output = out
@@ -322,6 +434,16 @@ func (c *Support) RefreshTrustedAdvisorCheckRequest(input *RefreshTrustedAdvisor
 	return
 }
 
+// Requests a refresh of the Trusted Advisor check that has the specified check
+// ID. Check IDs can be obtained by calling DescribeTrustedAdvisorChecks.
+//
+// The response contains a TrustedAdvisorCheckRefreshStatus object, which contains
+// these fields:
+//
+//   Status. The refresh status of the check: "none", "enqueued", "processing",
+// "success", or "abandoned".  MillisUntilNextRefreshable. The amount of time,
+// in milliseconds, until the check is eligible for refresh.  CheckId. The unique
+// identifier for the check.
 func (c *Support) RefreshTrustedAdvisorCheck(input *RefreshTrustedAdvisorCheckInput) (output *RefreshTrustedAdvisorCheckOutput, err error) {
 	req, out := c.RefreshTrustedAdvisorCheckRequest(input)
 	output = out
@@ -347,6 +469,8 @@ func (c *Support) ResolveCaseRequest(input *ResolveCaseInput) (req *aws.Request,
 	return
 }
 
+// Takes a CaseId and returns the initial state of the case along with the state
+// of the case after the call to ResolveCase completed.
 func (c *Support) ResolveCase(input *ResolveCaseInput) (output *ResolveCaseOutput, err error) {
 	req, out := c.ResolveCaseRequest(input)
 	output = out
@@ -357,8 +481,15 @@ func (c *Support) ResolveCase(input *ResolveCaseInput) (output *ResolveCaseOutpu
 var opResolveCase *aws.Operation
 
 type AddAttachmentsToSetInput struct {
-	AttachmentSetID *string       `locationName:"attachmentSetId" type:"string"`
-	Attachments     []*Attachment `locationName:"attachments" type:"list" required:"true"`
+	// The ID of the attachment set. If an AttachmentSetId is not specified, a new
+	// attachment set is created, and the ID of the set is returned in the response.
+	// If an AttachmentSetId is specified, the attachments are added to the specified
+	// set, if it exists.
+	AttachmentSetID *string `locationName:"attachmentSetId" type:"string"`
+
+	// One or more attachments to add to the set. The limit is 3 attachments per
+	// set, and the size limit is 5 MB per attachment.
+	Attachments []*Attachment `locationName:"attachments" type:"list" required:"true"`
 
 	metadataAddAttachmentsToSetInput `json:"-", xml:"-"`
 }
@@ -367,9 +498,17 @@ type metadataAddAttachmentsToSetInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The ID and expiry time of the attachment set returned by the AddAttachmentsToSet
+// operation.
 type AddAttachmentsToSetOutput struct {
+	// The ID of the attachment set. If an AttachmentSetId was not specified, a
+	// new attachment set is created, and the ID of the set is returned in the response.
+	// If an AttachmentSetId was specified, the attachments are added to the specified
+	// set, if it exists.
 	AttachmentSetID *string `locationName:"attachmentSetId" type:"string"`
-	ExpiryTime      *string `locationName:"expiryTime" type:"string"`
+
+	// The time and date when the attachment set expires.
+	ExpiryTime *string `locationName:"expiryTime" type:"string"`
 
 	metadataAddAttachmentsToSetOutput `json:"-", xml:"-"`
 }
@@ -378,11 +517,22 @@ type metadataAddAttachmentsToSetOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// To be written.
 type AddCommunicationToCaseInput struct {
-	AttachmentSetID   *string   `locationName:"attachmentSetId" type:"string"`
-	CCEmailAddresses  []*string `locationName:"ccEmailAddresses" type:"list"`
-	CaseID            *string   `locationName:"caseId" type:"string"`
-	CommunicationBody *string   `locationName:"communicationBody" type:"string" required:"true"`
+	// The ID of a set of one or more attachments for the communication to add to
+	// the case. Create the set by calling AddAttachmentsToSet
+	AttachmentSetID *string `locationName:"attachmentSetId" type:"string"`
+
+	// The email addresses in the CC line of an email to be added to the support
+	// case.
+	CCEmailAddresses []*string `locationName:"ccEmailAddresses" type:"list"`
+
+	// The AWS Support case ID requested or returned in the call. The case ID is
+	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
+	CaseID *string `locationName:"caseId" type:"string"`
+
+	// The body of an email communication to add to the support case.
+	CommunicationBody *string `locationName:"communicationBody" type:"string" required:"true"`
 
 	metadataAddCommunicationToCaseInput `json:"-", xml:"-"`
 }
@@ -391,7 +541,9 @@ type metadataAddCommunicationToCaseInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of the AddCommunicationToCase operation.
 type AddCommunicationToCaseOutput struct {
+	// True if AddCommunicationToCase succeeds. Otherwise, returns an error.
 	Result *bool `locationName:"result" type:"boolean"`
 
 	metadataAddCommunicationToCaseOutput `json:"-", xml:"-"`
@@ -401,8 +553,13 @@ type metadataAddCommunicationToCaseOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// An attachment to a case communication. The attachment consists of the file
+// name and the content of the file.
 type Attachment struct {
-	Data     []byte  `locationName:"data" type:"blob"`
+	// The content of the attachment file.
+	Data []byte `locationName:"data" type:"blob"`
+
+	// The name of the attachment file.
 	FileName *string `locationName:"fileName" type:"string"`
 
 	metadataAttachment `json:"-", xml:"-"`
@@ -412,9 +569,14 @@ type metadataAttachment struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The file name and ID of an attachment to a case communication. You can use
+// the ID to retrieve the attachment with the DescribeAttachment operation.
 type AttachmentDetails struct {
+	// The ID of the attachment.
 	AttachmentID *string `locationName:"attachmentId" type:"string"`
-	FileName     *string `locationName:"fileName" type:"string"`
+
+	// The file name of the attachment.
+	FileName *string `locationName:"fileName" type:"string"`
 
 	metadataAttachmentDetails `json:"-", xml:"-"`
 }
@@ -423,19 +585,69 @@ type metadataAttachmentDetails struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A JSON-formatted object that contains the metadata for a support case. It
+// is contained the response from a DescribeCases request. CaseDetails contains
+// the following fields:
+//
+//   CaseID. The AWS Support case ID requested or returned in the call. The
+// case ID is an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47.
+//  CategoryCode. The category of problem for the AWS Support case. Corresponds
+// to the CategoryCode values returned by a call to DescribeServices.  DisplayId.
+// The identifier for the case on pages in the AWS Support Center.  Language.
+// The ISO 639-1 code for the language in which AWS provides support. AWS Support
+// currently supports English ("en") and Japanese ("ja"). Language parameters
+// must be passed explicitly for operations that take them.  RecentCommunications.
+// One or more Communication objects. Fields of these objects are Attachments,
+// Body, CaseId, SubmittedBy, and TimeCreated.  NextToken. A resumption point
+// for pagination.  ServiceCode. The identifier for the AWS service that corresponds
+// to the service code defined in the call to DescribeServices.  SeverityCode.
+// The severity code assigned to the case. Contains one of the values returned
+// by the call to DescribeSeverityLevels.  Status. The status of the case in
+// the AWS Support Center.  Subject. The subject line of the case.  SubmittedBy.
+// The email address of the account that submitted the case.  TimeCreated. The
+// time the case was created, in ISO-8601 format.
 type CaseDetails struct {
-	CCEmailAddresses     []*string                 `locationName:"ccEmailAddresses" type:"list"`
-	CaseID               *string                   `locationName:"caseId" type:"string"`
-	CategoryCode         *string                   `locationName:"categoryCode" type:"string"`
-	DisplayID            *string                   `locationName:"displayId" type:"string"`
-	Language             *string                   `locationName:"language" type:"string"`
+	// The email addresses that receive copies of communication about the case.
+	CCEmailAddresses []*string `locationName:"ccEmailAddresses" type:"list"`
+
+	// The AWS Support case ID requested or returned in the call. The case ID is
+	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
+	CaseID *string `locationName:"caseId" type:"string"`
+
+	// The category of problem for the AWS Support case.
+	CategoryCode *string `locationName:"categoryCode" type:"string"`
+
+	// The ID displayed for the case in the AWS Support Center. This is a numeric
+	// string.
+	DisplayID *string `locationName:"displayId" type:"string"`
+
+	// The ISO 639-1 code for the language in which AWS provides support. AWS Support
+	// currently supports English ("en") and Japanese ("ja"). Language parameters
+	// must be passed explicitly for operations that take them.
+	Language *string `locationName:"language" type:"string"`
+
+	// The five most recent communications between you and AWS Support Center, including
+	// the IDs of any attachments to the communications. Also includes a nextToken
+	// that you can use to retrieve earlier communications.
 	RecentCommunications *RecentCaseCommunications `locationName:"recentCommunications" type:"structure"`
-	ServiceCode          *string                   `locationName:"serviceCode" type:"string"`
-	SeverityCode         *string                   `locationName:"severityCode" type:"string"`
-	Status               *string                   `locationName:"status" type:"string"`
-	Subject              *string                   `locationName:"subject" type:"string"`
-	SubmittedBy          *string                   `locationName:"submittedBy" type:"string"`
-	TimeCreated          *string                   `locationName:"timeCreated" type:"string"`
+
+	// The code for the AWS service returned by the call to DescribeServices.
+	ServiceCode *string `locationName:"serviceCode" type:"string"`
+
+	// The code for the severity level returned by the call to DescribeSeverityLevels.
+	SeverityCode *string `locationName:"severityCode" type:"string"`
+
+	// The status of the case.
+	Status *string `locationName:"status" type:"string"`
+
+	// The subject line for the case in the AWS Support Center.
+	Subject *string `locationName:"subject" type:"string"`
+
+	// The email address of the account that submitted the case.
+	SubmittedBy *string `locationName:"submittedBy" type:"string"`
+
+	// The time that the case was case created in the AWS Support Center.
+	TimeCreated *string `locationName:"timeCreated" type:"string"`
 
 	metadataCaseDetails `json:"-", xml:"-"`
 }
@@ -444,8 +656,14 @@ type metadataCaseDetails struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A JSON-formatted name/value pair that represents the category name and category
+// code of the problem, selected from the DescribeServices response for each
+// AWS service.
 type Category struct {
+	// The category code for the support case.
 	Code *string `locationName:"code" type:"string"`
+
+	// The category name for the support case.
 	Name *string `locationName:"name" type:"string"`
 
 	metadataCategory `json:"-", xml:"-"`
@@ -455,12 +673,25 @@ type metadataCategory struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A communication associated with an AWS Support case. The communication consists
+// of the case ID, the message body, attachment information, the account email
+// address, and the date and time of the communication.
 type Communication struct {
+	// Information about the attachments to the case communication.
 	AttachmentSet []*AttachmentDetails `locationName:"attachmentSet" type:"list"`
-	Body          *string              `locationName:"body" type:"string"`
-	CaseID        *string              `locationName:"caseId" type:"string"`
-	SubmittedBy   *string              `locationName:"submittedBy" type:"string"`
-	TimeCreated   *string              `locationName:"timeCreated" type:"string"`
+
+	// The text of the communication between the customer and AWS Support.
+	Body *string `locationName:"body" type:"string"`
+
+	// The AWS Support case ID requested or returned in the call. The case ID is
+	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
+	CaseID *string `locationName:"caseId" type:"string"`
+
+	// The email address of the account that submitted the AWS Support case.
+	SubmittedBy *string `locationName:"submittedBy" type:"string"`
+
+	// The time the communication was created.
+	TimeCreated *string `locationName:"timeCreated" type:"string"`
 
 	metadataCommunication `json:"-", xml:"-"`
 }
@@ -470,15 +701,41 @@ type metadataCommunication struct {
 }
 
 type CreateCaseInput struct {
-	AttachmentSetID   *string   `locationName:"attachmentSetId" type:"string"`
-	CCEmailAddresses  []*string `locationName:"ccEmailAddresses" type:"list"`
-	CategoryCode      *string   `locationName:"categoryCode" type:"string"`
-	CommunicationBody *string   `locationName:"communicationBody" type:"string" required:"true"`
-	IssueType         *string   `locationName:"issueType" type:"string"`
-	Language          *string   `locationName:"language" type:"string"`
-	ServiceCode       *string   `locationName:"serviceCode" type:"string"`
-	SeverityCode      *string   `locationName:"severityCode" type:"string"`
-	Subject           *string   `locationName:"subject" type:"string" required:"true"`
+	// The ID of a set of one or more attachments for the case. Create the set by
+	// using AddAttachmentsToSet.
+	AttachmentSetID *string `locationName:"attachmentSetId" type:"string"`
+
+	// A list of email addresses that AWS Support copies on case correspondence.
+	CCEmailAddresses []*string `locationName:"ccEmailAddresses" type:"list"`
+
+	// The category of problem for the AWS Support case.
+	CategoryCode *string `locationName:"categoryCode" type:"string"`
+
+	// The communication body text when you create an AWS Support case by calling
+	// CreateCase.
+	CommunicationBody *string `locationName:"communicationBody" type:"string" required:"true"`
+
+	// The type of issue for the case. You can specify either "customer-service"
+	// or "technical." If you do not indicate a value, the default is "technical."
+	IssueType *string `locationName:"issueType" type:"string"`
+
+	// The ISO 639-1 code for the language in which AWS provides support. AWS Support
+	// currently supports English ("en") and Japanese ("ja"). Language parameters
+	// must be passed explicitly for operations that take them.
+	Language *string `locationName:"language" type:"string"`
+
+	// The code for the AWS service returned by the call to DescribeServices.
+	ServiceCode *string `locationName:"serviceCode" type:"string"`
+
+	// The code for the severity level returned by the call to DescribeSeverityLevels.
+	//
+	// The availability of severity levels depends on each customer's support subscription.
+	// In other words, your subscription may not necessarily require the urgent
+	// level of response time.
+	SeverityCode *string `locationName:"severityCode" type:"string"`
+
+	// The title of the AWS Support case.
+	Subject *string `locationName:"subject" type:"string" required:"true"`
 
 	metadataCreateCaseInput `json:"-", xml:"-"`
 }
@@ -487,7 +744,11 @@ type metadataCreateCaseInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The AWS Support case ID returned by a successful completion of the CreateCase
+// operation.
 type CreateCaseOutput struct {
+	// The AWS Support case ID requested or returned in the call. The case ID is
+	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
 	CaseID *string `locationName:"caseId" type:"string"`
 
 	metadataCreateCaseOutput `json:"-", xml:"-"`
@@ -498,6 +759,8 @@ type metadataCreateCaseOutput struct {
 }
 
 type DescribeAttachmentInput struct {
+	// The ID of the attachment to return. Attachment IDs are returned by the DescribeCommunications
+	// operation.
 	AttachmentID *string `locationName:"attachmentId" type:"string" required:"true"`
 
 	metadataDescribeAttachmentInput `json:"-", xml:"-"`
@@ -507,7 +770,10 @@ type metadataDescribeAttachmentInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The content and file name of the attachment returned by the DescribeAttachment
+// operation.
 type DescribeAttachmentOutput struct {
+	// The attachment content and file name.
 	Attachment *Attachment `locationName:"attachment" type:"structure"`
 
 	metadataDescribeAttachmentOutput `json:"-", xml:"-"`
@@ -518,15 +784,39 @@ type metadataDescribeAttachmentOutput struct {
 }
 
 type DescribeCasesInput struct {
-	AfterTime             *string   `locationName:"afterTime" type:"string"`
-	BeforeTime            *string   `locationName:"beforeTime" type:"string"`
-	CaseIDList            []*string `locationName:"caseIdList" type:"list"`
-	DisplayID             *string   `locationName:"displayId" type:"string"`
-	IncludeCommunications *bool     `locationName:"includeCommunications" type:"boolean"`
-	IncludeResolvedCases  *bool     `locationName:"includeResolvedCases" type:"boolean"`
-	Language              *string   `locationName:"language" type:"string"`
-	MaxResults            *int64    `locationName:"maxResults" type:"integer"`
-	NextToken             *string   `locationName:"nextToken" type:"string"`
+	// The start date for a filtered date search on support case communications.
+	// Case communications are available for 12 months after creation.
+	AfterTime *string `locationName:"afterTime" type:"string"`
+
+	// The end date for a filtered date search on support case communications. Case
+	// communications are available for 12 months after creation.
+	BeforeTime *string `locationName:"beforeTime" type:"string"`
+
+	// A list of ID numbers of the support cases you want returned. The maximum
+	// number of cases is 100.
+	CaseIDList []*string `locationName:"caseIdList" type:"list"`
+
+	// The ID displayed for a case in the AWS Support Center user interface.
+	DisplayID *string `locationName:"displayId" type:"string"`
+
+	// Specifies whether communications should be included in the DescribeCases
+	// results. The default is true.
+	IncludeCommunications *bool `locationName:"includeCommunications" type:"boolean"`
+
+	// Specifies whether resolved support cases should be included in the DescribeCases
+	// results. The default is false.
+	IncludeResolvedCases *bool `locationName:"includeResolvedCases" type:"boolean"`
+
+	// The ISO 639-1 code for the language in which AWS provides support. AWS Support
+	// currently supports English ("en") and Japanese ("ja"). Language parameters
+	// must be passed explicitly for operations that take them.
+	Language *string `locationName:"language" type:"string"`
+
+	// The maximum number of results to return before paginating.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// A resumption point for pagination.
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataDescribeCasesInput `json:"-", xml:"-"`
 }
@@ -535,9 +825,14 @@ type metadataDescribeCasesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Returns an array of CaseDetails objects and a NextToken that defines a point
+// for pagination in the result set.
 type DescribeCasesOutput struct {
-	Cases     []*CaseDetails `locationName:"cases" type:"list"`
-	NextToken *string        `locationName:"nextToken" type:"string"`
+	// The details for the cases that match the request.
+	Cases []*CaseDetails `locationName:"cases" type:"list"`
+
+	// A resumption point for pagination.
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataDescribeCasesOutput `json:"-", xml:"-"`
 }
@@ -547,11 +842,23 @@ type metadataDescribeCasesOutput struct {
 }
 
 type DescribeCommunicationsInput struct {
-	AfterTime  *string `locationName:"afterTime" type:"string"`
+	// The start date for a filtered date search on support case communications.
+	// Case communications are available for 12 months after creation.
+	AfterTime *string `locationName:"afterTime" type:"string"`
+
+	// The end date for a filtered date search on support case communications. Case
+	// communications are available for 12 months after creation.
 	BeforeTime *string `locationName:"beforeTime" type:"string"`
-	CaseID     *string `locationName:"caseId" type:"string" required:"true"`
-	MaxResults *int64  `locationName:"maxResults" type:"integer"`
-	NextToken  *string `locationName:"nextToken" type:"string"`
+
+	// The AWS Support case ID requested or returned in the call. The case ID is
+	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
+	CaseID *string `locationName:"caseId" type:"string" required:"true"`
+
+	// The maximum number of results to return before paginating.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// A resumption point for pagination.
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataDescribeCommunicationsInput `json:"-", xml:"-"`
 }
@@ -560,9 +867,13 @@ type metadataDescribeCommunicationsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The communications returned by the DescribeCommunications operation.
 type DescribeCommunicationsOutput struct {
+	// The communications for the case.
 	Communications []*Communication `locationName:"communications" type:"list"`
-	NextToken      *string          `locationName:"nextToken" type:"string"`
+
+	// A resumption point for pagination.
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataDescribeCommunicationsOutput `json:"-", xml:"-"`
 }
@@ -572,7 +883,12 @@ type metadataDescribeCommunicationsOutput struct {
 }
 
 type DescribeServicesInput struct {
-	Language        *string   `locationName:"language" type:"string"`
+	// The ISO 639-1 code for the language in which AWS provides support. AWS Support
+	// currently supports English ("en") and Japanese ("ja"). Language parameters
+	// must be passed explicitly for operations that take them.
+	Language *string `locationName:"language" type:"string"`
+
+	// A JSON-formatted list of service codes available for AWS services.
 	ServiceCodeList []*string `locationName:"serviceCodeList" type:"list"`
 
 	metadataDescribeServicesInput `json:"-", xml:"-"`
@@ -582,7 +898,9 @@ type metadataDescribeServicesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The list of AWS services returned by the DescribeServices operation.
 type DescribeServicesOutput struct {
+	// A JSON-formatted list of AWS services.
 	Services []*Service `locationName:"services" type:"list"`
 
 	metadataDescribeServicesOutput `json:"-", xml:"-"`
@@ -593,6 +911,9 @@ type metadataDescribeServicesOutput struct {
 }
 
 type DescribeSeverityLevelsInput struct {
+	// The ISO 639-1 code for the language in which AWS provides support. AWS Support
+	// currently supports English ("en") and Japanese ("ja"). Language parameters
+	// must be passed explicitly for operations that take them.
 	Language *string `locationName:"language" type:"string"`
 
 	metadataDescribeSeverityLevelsInput `json:"-", xml:"-"`
@@ -602,7 +923,10 @@ type metadataDescribeSeverityLevelsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The list of severity levels returned by the DescribeSeverityLevels operation.
 type DescribeSeverityLevelsOutput struct {
+	// The available severity levels for the support case. Available severity levels
+	// are defined by your service level agreement with AWS.
 	SeverityLevels []*SeverityLevel `locationName:"severityLevels" type:"list"`
 
 	metadataDescribeSeverityLevelsOutput `json:"-", xml:"-"`
@@ -613,6 +937,7 @@ type metadataDescribeSeverityLevelsOutput struct {
 }
 
 type DescribeTrustedAdvisorCheckRefreshStatusesInput struct {
+	// The IDs of the Trusted Advisor checks.
 	CheckIDs []*string `locationName:"checkIds" type:"list" required:"true"`
 
 	metadataDescribeTrustedAdvisorCheckRefreshStatusesInput `json:"-", xml:"-"`
@@ -622,7 +947,10 @@ type metadataDescribeTrustedAdvisorCheckRefreshStatusesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The statuses of the Trusted Advisor checks returned by the DescribeTrustedAdvisorCheckRefreshStatuses
+// operation.
 type DescribeTrustedAdvisorCheckRefreshStatusesOutput struct {
+	// The refresh status of the specified Trusted Advisor checks.
 	Statuses []*TrustedAdvisorCheckRefreshStatus `locationName:"statuses" type:"list" required:"true"`
 
 	metadataDescribeTrustedAdvisorCheckRefreshStatusesOutput `json:"-", xml:"-"`
@@ -633,7 +961,12 @@ type metadataDescribeTrustedAdvisorCheckRefreshStatusesOutput struct {
 }
 
 type DescribeTrustedAdvisorCheckResultInput struct {
-	CheckID  *string `locationName:"checkId" type:"string" required:"true"`
+	// The unique identifier for the Trusted Advisor check.
+	CheckID *string `locationName:"checkId" type:"string" required:"true"`
+
+	// The ISO 639-1 code for the language in which AWS provides support. AWS Support
+	// currently supports English ("en") and Japanese ("ja"). Language parameters
+	// must be passed explicitly for operations that take them.
 	Language *string `locationName:"language" type:"string"`
 
 	metadataDescribeTrustedAdvisorCheckResultInput `json:"-", xml:"-"`
@@ -643,7 +976,10 @@ type metadataDescribeTrustedAdvisorCheckResultInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of the Trusted Advisor check returned by the DescribeTrustedAdvisorCheckResult
+// operation.
 type DescribeTrustedAdvisorCheckResultOutput struct {
+	// The detailed results of the Trusted Advisor check.
 	Result *TrustedAdvisorCheckResult `locationName:"result" type:"structure"`
 
 	metadataDescribeTrustedAdvisorCheckResultOutput `json:"-", xml:"-"`
@@ -654,6 +990,7 @@ type metadataDescribeTrustedAdvisorCheckResultOutput struct {
 }
 
 type DescribeTrustedAdvisorCheckSummariesInput struct {
+	// The IDs of the Trusted Advisor checks.
 	CheckIDs []*string `locationName:"checkIds" type:"list" required:"true"`
 
 	metadataDescribeTrustedAdvisorCheckSummariesInput `json:"-", xml:"-"`
@@ -663,7 +1000,10 @@ type metadataDescribeTrustedAdvisorCheckSummariesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The summaries of the Trusted Advisor checks returned by the DescribeTrustedAdvisorCheckSummaries
+// operation.
 type DescribeTrustedAdvisorCheckSummariesOutput struct {
+	// The summary information for the requested Trusted Advisor checks.
 	Summaries []*TrustedAdvisorCheckSummary `locationName:"summaries" type:"list" required:"true"`
 
 	metadataDescribeTrustedAdvisorCheckSummariesOutput `json:"-", xml:"-"`
@@ -674,6 +1014,9 @@ type metadataDescribeTrustedAdvisorCheckSummariesOutput struct {
 }
 
 type DescribeTrustedAdvisorChecksInput struct {
+	// The ISO 639-1 code for the language in which AWS provides support. AWS Support
+	// currently supports English ("en") and Japanese ("ja"). Language parameters
+	// must be passed explicitly for operations that take them.
 	Language *string `locationName:"language" type:"string" required:"true"`
 
 	metadataDescribeTrustedAdvisorChecksInput `json:"-", xml:"-"`
@@ -683,7 +1026,10 @@ type metadataDescribeTrustedAdvisorChecksInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Information about the Trusted Advisor checks returned by the DescribeTrustedAdvisorChecks
+// operation.
 type DescribeTrustedAdvisorChecksOutput struct {
+	// Information about all available Trusted Advisor checks.
 	Checks []*TrustedAdvisorCheckDescription `locationName:"checks" type:"list" required:"true"`
 
 	metadataDescribeTrustedAdvisorChecksOutput `json:"-", xml:"-"`
@@ -693,9 +1039,13 @@ type metadataDescribeTrustedAdvisorChecksOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The five most recent communications associated with the case.
 type RecentCaseCommunications struct {
+	// The five most recent communications associated with the case.
 	Communications []*Communication `locationName:"communications" type:"list"`
-	NextToken      *string          `locationName:"nextToken" type:"string"`
+
+	// A resumption point for pagination.
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataRecentCaseCommunications `json:"-", xml:"-"`
 }
@@ -705,6 +1055,7 @@ type metadataRecentCaseCommunications struct {
 }
 
 type RefreshTrustedAdvisorCheckInput struct {
+	// The unique identifier for the Trusted Advisor check.
 	CheckID *string `locationName:"checkId" type:"string" required:"true"`
 
 	metadataRefreshTrustedAdvisorCheckInput `json:"-", xml:"-"`
@@ -714,7 +1065,10 @@ type metadataRefreshTrustedAdvisorCheckInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The current refresh status of a Trusted Advisor check.
 type RefreshTrustedAdvisorCheckOutput struct {
+	// The current refresh status for a check, including the amount of time until
+	// the check is eligible for refresh.
 	Status *TrustedAdvisorCheckRefreshStatus `locationName:"status" type:"structure" required:"true"`
 
 	metadataRefreshTrustedAdvisorCheckOutput `json:"-", xml:"-"`
@@ -725,6 +1079,8 @@ type metadataRefreshTrustedAdvisorCheckOutput struct {
 }
 
 type ResolveCaseInput struct {
+	// The AWS Support case ID requested or returned in the call. The case ID is
+	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
 	CaseID *string `locationName:"caseId" type:"string"`
 
 	metadataResolveCaseInput `json:"-", xml:"-"`
@@ -734,8 +1090,12 @@ type metadataResolveCaseInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The status of the case returned by the ResolveCase operation.
 type ResolveCaseOutput struct {
-	FinalCaseStatus   *string `locationName:"finalCaseStatus" type:"string"`
+	// The status of the case after the ResolveCase request was processed.
+	FinalCaseStatus *string `locationName:"finalCaseStatus" type:"string"`
+
+	// The status of the case when the ResolveCase request was sent.
 	InitialCaseStatus *string `locationName:"initialCaseStatus" type:"string"`
 
 	metadataResolveCaseOutput `json:"-", xml:"-"`
@@ -745,10 +1105,20 @@ type metadataResolveCaseOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Information about an AWS service returned by the DescribeServices operation.
 type Service struct {
+	// A list of categories that describe the type of support issue a case describes.
+	// Categories consist of a category name and a category code. Category names
+	// and codes are passed to AWS Support when you call CreateCase.
 	Categories []*Category `locationName:"categories" type:"list"`
-	Code       *string     `locationName:"code" type:"string"`
-	Name       *string     `locationName:"name" type:"string"`
+
+	// The code for an AWS service returned by the DescribeServices response. The
+	// Name element contains the corresponding friendly name.
+	Code *string `locationName:"code" type:"string"`
+
+	// The friendly name for an AWS service. The Code element contains the corresponding
+	// code.
+	Name *string `locationName:"name" type:"string"`
 
 	metadataService `json:"-", xml:"-"`
 }
@@ -757,8 +1127,14 @@ type metadataService struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A code and name pair that represent a severity level that can be applied
+// to a support case.
 type SeverityLevel struct {
+	// One of four values: "low," "medium," "high," and "urgent". These values correspond
+	// to response times returned to the caller in SeverityLevel.name.
 	Code *string `locationName:"code" type:"string"`
+
+	// The name of the severity level that corresponds to the severity level code.
 	Name *string `locationName:"name" type:"string"`
 
 	metadataSeverityLevel `json:"-", xml:"-"`
@@ -768,7 +1144,11 @@ type metadataSeverityLevel struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The container for summary information that relates to the category of the
+// Trusted Advisor check.
 type TrustedAdvisorCategorySpecificSummary struct {
+	// The summary information about cost savings for a Trusted Advisor check that
+	// is in the Cost Optimizing category.
 	CostOptimizing *TrustedAdvisorCostOptimizingSummary `locationName:"costOptimizing" type:"structure"`
 
 	metadataTrustedAdvisorCategorySpecificSummary `json:"-", xml:"-"`
@@ -778,12 +1158,27 @@ type metadataTrustedAdvisorCategorySpecificSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The description and metadata for a Trusted Advisor check.
 type TrustedAdvisorCheckDescription struct {
-	Category    *string   `locationName:"category" type:"string" required:"true"`
-	Description *string   `locationName:"description" type:"string" required:"true"`
-	ID          *string   `locationName:"id" type:"string" required:"true"`
-	Metadata    []*string `locationName:"metadata" type:"list" required:"true"`
-	Name        *string   `locationName:"name" type:"string" required:"true"`
+	// The category of the Trusted Advisor check.
+	Category *string `locationName:"category" type:"string" required:"true"`
+
+	// The description of the Trusted Advisor check, which includes the alert criteria
+	// and recommended actions (contains HTML markup).
+	Description *string `locationName:"description" type:"string" required:"true"`
+
+	// The unique identifier for the Trusted Advisor check.
+	ID *string `locationName:"id" type:"string" required:"true"`
+
+	// The column headings for the data returned by the Trusted Advisor check. The
+	// order of the headings corresponds to the order of the data in the Metadata
+	// element of the TrustedAdvisorResourceDetail for the check. Metadata contains
+	// all the data that is shown in the Excel download, even in those cases where
+	// the UI shows just summary data.
+	Metadata []*string `locationName:"metadata" type:"list" required:"true"`
+
+	// The display name for the Trusted Advisor check.
+	Name *string `locationName:"name" type:"string" required:"true"`
 
 	metadataTrustedAdvisorCheckDescription `json:"-", xml:"-"`
 }
@@ -792,10 +1187,18 @@ type metadataTrustedAdvisorCheckDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The refresh status of a Trusted Advisor check.
 type TrustedAdvisorCheckRefreshStatus struct {
-	CheckID                    *string `locationName:"checkId" type:"string" required:"true"`
-	MillisUntilNextRefreshable *int64  `locationName:"millisUntilNextRefreshable" type:"long" required:"true"`
-	Status                     *string `locationName:"status" type:"string" required:"true"`
+	// The unique identifier for the Trusted Advisor check.
+	CheckID *string `locationName:"checkId" type:"string" required:"true"`
+
+	// The amount of time, in milliseconds, until the Trusted Advisor check is eligible
+	// for refresh.
+	MillisUntilNextRefreshable *int64 `locationName:"millisUntilNextRefreshable" type:"long" required:"true"`
+
+	// The status of the Trusted Advisor check for which a refresh has been requested:
+	// "none", "enqueued", "processing", "success", or "abandoned".
+	Status *string `locationName:"status" type:"string" required:"true"`
 
 	metadataTrustedAdvisorCheckRefreshStatus `json:"-", xml:"-"`
 }
@@ -804,13 +1207,28 @@ type metadataTrustedAdvisorCheckRefreshStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The results of a Trusted Advisor check returned by DescribeTrustedAdvisorCheckResult.
 type TrustedAdvisorCheckResult struct {
+	// Summary information that relates to the category of the check. Cost Optimizing
+	// is the only category that is currently supported.
 	CategorySpecificSummary *TrustedAdvisorCategorySpecificSummary `locationName:"categorySpecificSummary" type:"structure" required:"true"`
-	CheckID                 *string                                `locationName:"checkId" type:"string" required:"true"`
-	FlaggedResources        []*TrustedAdvisorResourceDetail        `locationName:"flaggedResources" type:"list" required:"true"`
-	ResourcesSummary        *TrustedAdvisorResourcesSummary        `locationName:"resourcesSummary" type:"structure" required:"true"`
-	Status                  *string                                `locationName:"status" type:"string" required:"true"`
-	Timestamp               *string                                `locationName:"timestamp" type:"string" required:"true"`
+
+	// The unique identifier for the Trusted Advisor check.
+	CheckID *string `locationName:"checkId" type:"string" required:"true"`
+
+	// The details about each resource listed in the check result.
+	FlaggedResources []*TrustedAdvisorResourceDetail `locationName:"flaggedResources" type:"list" required:"true"`
+
+	// Details about AWS resources that were analyzed in a call to Trusted Advisor
+	// DescribeTrustedAdvisorCheckSummaries.
+	ResourcesSummary *TrustedAdvisorResourcesSummary `locationName:"resourcesSummary" type:"structure" required:"true"`
+
+	// The alert status of the check: "ok" (green), "warning" (yellow), "error"
+	// (red), or "not_available".
+	Status *string `locationName:"status" type:"string" required:"true"`
+
+	// The time of the last refresh of the check.
+	Timestamp *string `locationName:"timestamp" type:"string" required:"true"`
 
 	metadataTrustedAdvisorCheckResult `json:"-", xml:"-"`
 }
@@ -819,13 +1237,29 @@ type metadataTrustedAdvisorCheckResult struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A summary of a Trusted Advisor check result, including the alert status,
+// last refresh, and number of resources examined.
 type TrustedAdvisorCheckSummary struct {
+	// Summary information that relates to the category of the check. Cost Optimizing
+	// is the only category that is currently supported.
 	CategorySpecificSummary *TrustedAdvisorCategorySpecificSummary `locationName:"categorySpecificSummary" type:"structure" required:"true"`
-	CheckID                 *string                                `locationName:"checkId" type:"string" required:"true"`
-	HasFlaggedResources     *bool                                  `locationName:"hasFlaggedResources" type:"boolean"`
-	ResourcesSummary        *TrustedAdvisorResourcesSummary        `locationName:"resourcesSummary" type:"structure" required:"true"`
-	Status                  *string                                `locationName:"status" type:"string" required:"true"`
-	Timestamp               *string                                `locationName:"timestamp" type:"string" required:"true"`
+
+	// The unique identifier for the Trusted Advisor check.
+	CheckID *string `locationName:"checkId" type:"string" required:"true"`
+
+	// Specifies whether the Trusted Advisor check has flagged resources.
+	HasFlaggedResources *bool `locationName:"hasFlaggedResources" type:"boolean"`
+
+	// Details about AWS resources that were analyzed in a call to Trusted Advisor
+	// DescribeTrustedAdvisorCheckSummaries.
+	ResourcesSummary *TrustedAdvisorResourcesSummary `locationName:"resourcesSummary" type:"structure" required:"true"`
+
+	// The alert status of the check: "ok" (green), "warning" (yellow), "error"
+	// (red), or "not_available".
+	Status *string `locationName:"status" type:"string" required:"true"`
+
+	// The time of the last refresh of the check.
+	Timestamp *string `locationName:"timestamp" type:"string" required:"true"`
 
 	metadataTrustedAdvisorCheckSummary `json:"-", xml:"-"`
 }
@@ -834,8 +1268,15 @@ type metadataTrustedAdvisorCheckSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The estimated cost savings that might be realized if the recommended actions
+// are taken.
 type TrustedAdvisorCostOptimizingSummary struct {
-	EstimatedMonthlySavings        *float64 `locationName:"estimatedMonthlySavings" type:"double" required:"true"`
+	// The estimated monthly savings that might be realized if the recommended actions
+	// are taken.
+	EstimatedMonthlySavings *float64 `locationName:"estimatedMonthlySavings" type:"double" required:"true"`
+
+	// The estimated percentage of savings that might be realized if the recommended
+	// actions are taken.
 	EstimatedPercentMonthlySavings *float64 `locationName:"estimatedPercentMonthlySavings" type:"double" required:"true"`
 
 	metadataTrustedAdvisorCostOptimizingSummary `json:"-", xml:"-"`
@@ -845,12 +1286,27 @@ type metadataTrustedAdvisorCostOptimizingSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains information about a resource identified by a Trusted Advisor check.
 type TrustedAdvisorResourceDetail struct {
-	IsSuppressed *bool     `locationName:"isSuppressed" type:"boolean"`
-	Metadata     []*string `locationName:"metadata" type:"list" required:"true"`
-	Region       *string   `locationName:"region" type:"string" required:"true"`
-	ResourceID   *string   `locationName:"resourceId" type:"string" required:"true"`
-	Status       *string   `locationName:"status" type:"string" required:"true"`
+	// Specifies whether the AWS resource was ignored by Trusted Advisor because
+	// it was marked as suppressed by the user.
+	IsSuppressed *bool `locationName:"isSuppressed" type:"boolean"`
+
+	// Additional information about the identified resource. The exact metadata
+	// and its order can be obtained by inspecting the TrustedAdvisorCheckDescription
+	// object returned by the call to DescribeTrustedAdvisorChecks. Metadata contains
+	// all the data that is shown in the Excel download, even in those cases where
+	// the UI shows just summary data.
+	Metadata []*string `locationName:"metadata" type:"list" required:"true"`
+
+	// The AWS region in which the identified resource is located.
+	Region *string `locationName:"region" type:"string" required:"true"`
+
+	// The unique identifier for the identified resource.
+	ResourceID *string `locationName:"resourceId" type:"string" required:"true"`
+
+	// The status code for the resource identified in the Trusted Advisor check.
+	Status *string `locationName:"status" type:"string" required:"true"`
 
 	metadataTrustedAdvisorResourceDetail `json:"-", xml:"-"`
 }
@@ -859,10 +1315,22 @@ type metadataTrustedAdvisorResourceDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Details about AWS resources that were analyzed in a call to Trusted Advisor
+// DescribeTrustedAdvisorCheckSummaries.
 type TrustedAdvisorResourcesSummary struct {
-	ResourcesFlagged    *int64 `locationName:"resourcesFlagged" type:"long" required:"true"`
-	ResourcesIgnored    *int64 `locationName:"resourcesIgnored" type:"long" required:"true"`
-	ResourcesProcessed  *int64 `locationName:"resourcesProcessed" type:"long" required:"true"`
+	// The number of AWS resources that were flagged (listed) by the Trusted Advisor
+	// check.
+	ResourcesFlagged *int64 `locationName:"resourcesFlagged" type:"long" required:"true"`
+
+	// The number of AWS resources ignored by Trusted Advisor because information
+	// was unavailable.
+	ResourcesIgnored *int64 `locationName:"resourcesIgnored" type:"long" required:"true"`
+
+	// The number of AWS resources that were analyzed by the Trusted Advisor check.
+	ResourcesProcessed *int64 `locationName:"resourcesProcessed" type:"long" required:"true"`
+
+	// The number of AWS resources ignored by Trusted Advisor because they were
+	// marked as suppressed by the user.
 	ResourcesSuppressed *int64 `locationName:"resourcesSuppressed" type:"long" required:"true"`
 
 	metadataTrustedAdvisorResourcesSummary `json:"-", xml:"-"`

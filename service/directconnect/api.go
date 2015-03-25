@@ -22,6 +22,10 @@ func (c *DirectConnect) AllocateConnectionOnInterconnectRequest(input *AllocateC
 	return
 }
 
+// Creates a hosted connection on an interconnect.
+//
+// Allocates a VLAN number and a specified amount of bandwidth for use by a
+// hosted connection on the given interconnect.
 func (c *DirectConnect) AllocateConnectionOnInterconnect(input *AllocateConnectionOnInterconnectInput) (output *Connection, err error) {
 	req, out := c.AllocateConnectionOnInterconnectRequest(input)
 	output = out
@@ -47,6 +51,15 @@ func (c *DirectConnect) AllocatePrivateVirtualInterfaceRequest(input *AllocatePr
 	return
 }
 
+// Provisions a private virtual interface to be owned by a different customer.
+//
+// The owner of a connection calls this function to provision a private virtual
+// interface which will be owned by another AWS customer.
+//
+// Virtual interfaces created using this function must be confirmed by the
+// virtual interface owner by calling ConfirmPrivateVirtualInterface. Until
+// this step has been completed, the virtual interface will be in 'Confirming'
+// state, and will not be available for handling traffic.
 func (c *DirectConnect) AllocatePrivateVirtualInterface(input *AllocatePrivateVirtualInterfaceInput) (output *VirtualInterface, err error) {
 	req, out := c.AllocatePrivateVirtualInterfaceRequest(input)
 	output = out
@@ -72,6 +85,15 @@ func (c *DirectConnect) AllocatePublicVirtualInterfaceRequest(input *AllocatePub
 	return
 }
 
+// Provisions a public virtual interface to be owned by a different customer.
+//
+// The owner of a connection calls this function to provision a public virtual
+// interface which will be owned by another AWS customer.
+//
+// Virtual interfaces created using this function must be confirmed by the
+// virtual interface owner by calling ConfirmPublicVirtualInterface. Until this
+// step has been completed, the virtual interface will be in 'Confirming' state,
+// and will not be available for handling traffic.
 func (c *DirectConnect) AllocatePublicVirtualInterface(input *AllocatePublicVirtualInterfaceInput) (output *VirtualInterface, err error) {
 	req, out := c.AllocatePublicVirtualInterfaceRequest(input)
 	output = out
@@ -97,6 +119,11 @@ func (c *DirectConnect) ConfirmConnectionRequest(input *ConfirmConnectionInput) 
 	return
 }
 
+// Confirm the creation of a hosted connection on an interconnect.
+//
+// Upon creation, the hosted connection is initially in the 'Ordering' state,
+// and will remain in this state until the owner calls ConfirmConnection to
+// confirm creation of the hosted connection.
 func (c *DirectConnect) ConfirmConnection(input *ConfirmConnectionInput) (output *ConfirmConnectionOutput, err error) {
 	req, out := c.ConfirmConnectionRequest(input)
 	output = out
@@ -122,6 +149,11 @@ func (c *DirectConnect) ConfirmPrivateVirtualInterfaceRequest(input *ConfirmPriv
 	return
 }
 
+// Accept ownership of a private virtual interface created by another customer.
+//
+// After the virtual interface owner calls this function, the virtual interface
+// will be created and attached to the given virtual private gateway, and will
+// be available for handling traffic.
 func (c *DirectConnect) ConfirmPrivateVirtualInterface(input *ConfirmPrivateVirtualInterfaceInput) (output *ConfirmPrivateVirtualInterfaceOutput, err error) {
 	req, out := c.ConfirmPrivateVirtualInterfaceRequest(input)
 	output = out
@@ -147,6 +179,10 @@ func (c *DirectConnect) ConfirmPublicVirtualInterfaceRequest(input *ConfirmPubli
 	return
 }
 
+// Accept ownership of a public virtual interface created by another customer.
+//
+// After the virtual interface owner calls this function, the specified virtual
+// interface will be created and made available for handling traffic.
 func (c *DirectConnect) ConfirmPublicVirtualInterface(input *ConfirmPublicVirtualInterfaceInput) (output *ConfirmPublicVirtualInterfaceOutput, err error) {
 	req, out := c.ConfirmPublicVirtualInterfaceRequest(input)
 	output = out
@@ -172,6 +208,16 @@ func (c *DirectConnect) CreateConnectionRequest(input *CreateConnectionInput) (r
 	return
 }
 
+// Creates a new connection between the customer network and a specific AWS
+// Direct Connect location.
+//
+// A connection links your internal network to an AWS Direct Connect location
+// over a standard 1 gigabit or 10 gigabit Ethernet fiber-optic cable. One end
+// of the cable is connected to your router, the other to an AWS Direct Connect
+// router. An AWS Direct Connect location provides access to Amazon Web Services
+// in the region it is associated with. You can establish connections with AWS
+// Direct Connect locations in multiple regions, but a connection in one region
+// does not provide connectivity to other regions.
 func (c *DirectConnect) CreateConnection(input *CreateConnectionInput) (output *Connection, err error) {
 	req, out := c.CreateConnectionRequest(input)
 	output = out
@@ -197,6 +243,22 @@ func (c *DirectConnect) CreateInterconnectRequest(input *CreateInterconnectInput
 	return
 }
 
+// Creates a new interconnect between a AWS Direct Connect partner's network
+// and a specific AWS Direct Connect location.
+//
+// An interconnect is a connection which is capable of hosting other connections.
+// The AWS Direct Connect partner can use an interconnect to provide sub-1Gbps
+// AWS Direct Connect service to tier 2 customers who do not have their own
+// connections. Like a standard connection, an interconnect links the AWS Direct
+// Connect partner's network to an AWS Direct Connect location over a standard
+// 1 Gbps or 10 Gbps Ethernet fiber-optic cable. One end is connected to the
+// partner's router, the other to an AWS Direct Connect router.
+//
+// For each end customer, the AWS Direct Connect partner provisions a connection
+// on their interconnect by calling AllocateConnectionOnInterconnect. The end
+// customer can then connect to AWS resources by creating a virtual interface
+// on their connection, using the VLAN assigned to them by the AWS Direct Connect
+// partner.
 func (c *DirectConnect) CreateInterconnect(input *CreateInterconnectInput) (output *Interconnect, err error) {
 	req, out := c.CreateInterconnectRequest(input)
 	output = out
@@ -222,6 +284,9 @@ func (c *DirectConnect) CreatePrivateVirtualInterfaceRequest(input *CreatePrivat
 	return
 }
 
+// Creates a new private virtual interface. A virtual interface is the VLAN
+// that transports AWS Direct Connect traffic. A private virtual interface supports
+// sending traffic to a single virtual private cloud (VPC).
 func (c *DirectConnect) CreatePrivateVirtualInterface(input *CreatePrivateVirtualInterfaceInput) (output *VirtualInterface, err error) {
 	req, out := c.CreatePrivateVirtualInterfaceRequest(input)
 	output = out
@@ -247,6 +312,10 @@ func (c *DirectConnect) CreatePublicVirtualInterfaceRequest(input *CreatePublicV
 	return
 }
 
+// Creates a new public virtual interface. A virtual interface is the VLAN that
+// transports AWS Direct Connect traffic. A public virtual interface supports
+// sending traffic to public services of AWS such as Amazon Simple Storage Service
+// (Amazon S3).
 func (c *DirectConnect) CreatePublicVirtualInterface(input *CreatePublicVirtualInterfaceInput) (output *VirtualInterface, err error) {
 	req, out := c.CreatePublicVirtualInterfaceRequest(input)
 	output = out
@@ -272,6 +341,12 @@ func (c *DirectConnect) DeleteConnectionRequest(input *DeleteConnectionInput) (r
 	return
 }
 
+// Deletes the connection.
+//
+// Deleting a connection only stops the AWS Direct Connect port hour and data
+// transfer charges. You need to cancel separately with the providers any services
+// or charges for cross-connects or network circuits that connect you to the
+// AWS Direct Connect location.
 func (c *DirectConnect) DeleteConnection(input *DeleteConnectionInput) (output *Connection, err error) {
 	req, out := c.DeleteConnectionRequest(input)
 	output = out
@@ -297,6 +372,7 @@ func (c *DirectConnect) DeleteInterconnectRequest(input *DeleteInterconnectInput
 	return
 }
 
+// Deletes the specified interconnect.
 func (c *DirectConnect) DeleteInterconnect(input *DeleteInterconnectInput) (output *DeleteInterconnectOutput, err error) {
 	req, out := c.DeleteInterconnectRequest(input)
 	output = out
@@ -322,6 +398,7 @@ func (c *DirectConnect) DeleteVirtualInterfaceRequest(input *DeleteVirtualInterf
 	return
 }
 
+// Deletes a virtual interface.
 func (c *DirectConnect) DeleteVirtualInterface(input *DeleteVirtualInterfaceInput) (output *DeleteVirtualInterfaceOutput, err error) {
 	req, out := c.DeleteVirtualInterfaceRequest(input)
 	output = out
@@ -347,6 +424,9 @@ func (c *DirectConnect) DescribeConnectionsRequest(input *DescribeConnectionsInp
 	return
 }
 
+// Displays all connections in this region.
+//
+// If a connection ID is provided, the call returns only that particular connection.
 func (c *DirectConnect) DescribeConnections(input *DescribeConnectionsInput) (output *Connections, err error) {
 	req, out := c.DescribeConnectionsRequest(input)
 	output = out
@@ -372,6 +452,7 @@ func (c *DirectConnect) DescribeConnectionsOnInterconnectRequest(input *Describe
 	return
 }
 
+// Return a list of connections that have been provisioned on the given interconnect.
 func (c *DirectConnect) DescribeConnectionsOnInterconnect(input *DescribeConnectionsOnInterconnectInput) (output *Connections, err error) {
 	req, out := c.DescribeConnectionsOnInterconnectRequest(input)
 	output = out
@@ -397,6 +478,9 @@ func (c *DirectConnect) DescribeInterconnectsRequest(input *DescribeInterconnect
 	return
 }
 
+// Returns a list of interconnects owned by the AWS account.
+//
+// If an interconnect ID is provided, it will only return this particular interconnect.
 func (c *DirectConnect) DescribeInterconnects(input *DescribeInterconnectsInput) (output *DescribeInterconnectsOutput, err error) {
 	req, out := c.DescribeInterconnectsRequest(input)
 	output = out
@@ -422,6 +506,9 @@ func (c *DirectConnect) DescribeLocationsRequest(input *DescribeLocationsInput) 
 	return
 }
 
+// Returns the list of AWS Direct Connect locations in the current AWS region.
+// These are the locations that may be selected when calling CreateConnection
+// or CreateInterconnect.
 func (c *DirectConnect) DescribeLocations(input *DescribeLocationsInput) (output *DescribeLocationsOutput, err error) {
 	req, out := c.DescribeLocationsRequest(input)
 	output = out
@@ -447,6 +534,13 @@ func (c *DirectConnect) DescribeVirtualGatewaysRequest(input *DescribeVirtualGat
 	return
 }
 
+// Returns a list of virtual private gateways owned by the AWS account.
+//
+// You can create one or more AWS Direct Connect private virtual interfaces
+// linking to a virtual private gateway. A virtual private gateway can be managed
+// via Amazon Virtual Private Cloud (VPC) console or the EC2 CreateVpnGateway
+// (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-CreateVpnGateway.html)
+// action.
 func (c *DirectConnect) DescribeVirtualGateways(input *DescribeVirtualGatewaysInput) (output *DescribeVirtualGatewaysOutput, err error) {
 	req, out := c.DescribeVirtualGatewaysRequest(input)
 	output = out
@@ -472,6 +566,18 @@ func (c *DirectConnect) DescribeVirtualInterfacesRequest(input *DescribeVirtualI
 	return
 }
 
+// Displays all virtual interfaces for an AWS account. Virtual interfaces deleted
+// fewer than 15 minutes before DescribeVirtualInterfaces is called are also
+// returned. If a connection ID is included then only virtual interfaces associated
+// with this connection will be returned. If a virtual interface ID is included
+// then only a single virtual interface will be returned.
+//
+// A virtual interface (VLAN) transmits the traffic between the AWS Direct
+// Connect location and the customer.
+//
+// If a connection ID is provided, only virtual interfaces provisioned on the
+// specified connection will be returned. If a virtual interface ID is provided,
+// only this particular virtual interface will be returned.
 func (c *DirectConnect) DescribeVirtualInterfaces(input *DescribeVirtualInterfacesInput) (output *DescribeVirtualInterfacesOutput, err error) {
 	req, out := c.DescribeVirtualInterfacesRequest(input)
 	output = out
@@ -481,12 +587,42 @@ func (c *DirectConnect) DescribeVirtualInterfaces(input *DescribeVirtualInterfac
 
 var opDescribeVirtualInterfaces *aws.Operation
 
+// Container for the parameters to the AllocateConnectionOnInterconnect operation.
 type AllocateConnectionOnInterconnectInput struct {
-	Bandwidth      *string `locationName:"bandwidth" type:"string" required:"true"`
+	// Bandwidth of the connection.
+	//
+	// Example: "500Mbps"
+	//
+	// Default: None
+	Bandwidth *string `locationName:"bandwidth" type:"string" required:"true"`
+
+	// Name of the provisioned connection.
+	//
+	// Example: "500M Connection to AWS"
+	//
+	// Default: None
 	ConnectionName *string `locationName:"connectionName" type:"string" required:"true"`
+
+	// ID of the interconnect on which the connection will be provisioned.
+	//
+	// Example: dxcon-456abc78
+	//
+	// Default: None
 	InterconnectID *string `locationName:"interconnectId" type:"string" required:"true"`
-	OwnerAccount   *string `locationName:"ownerAccount" type:"string" required:"true"`
-	VLAN           *int64  `locationName:"vlan" type:"integer" required:"true"`
+
+	// Numeric account Id of the customer for whom the connection will be provisioned.
+	//
+	// Example: 123443215678
+	//
+	// Default: None
+	OwnerAccount *string `locationName:"ownerAccount" type:"string" required:"true"`
+
+	// The dedicated VLAN provisioned to the connection.
+	//
+	// Example: 101
+	//
+	// Default: None
+	VLAN *int64 `locationName:"vlan" type:"integer" required:"true"`
 
 	metadataAllocateConnectionOnInterconnectInput `json:"-", xml:"-"`
 }
@@ -495,10 +631,22 @@ type metadataAllocateConnectionOnInterconnectInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the AllocatePrivateVirtualInterface operation.
 type AllocatePrivateVirtualInterfaceInput struct {
-	ConnectionID                         *string                               `locationName:"connectionId" type:"string" required:"true"`
+	// The connection ID on which the private virtual interface is provisioned.
+	//
+	// Default: None
+	ConnectionID *string `locationName:"connectionId" type:"string" required:"true"`
+
+	// Detailed information for the private virtual interface to be provisioned.
+	//
+	// Default: None
 	NewPrivateVirtualInterfaceAllocation *NewPrivateVirtualInterfaceAllocation `locationName:"newPrivateVirtualInterfaceAllocation" type:"structure" required:"true"`
-	OwnerAccount                         *string                               `locationName:"ownerAccount" type:"string" required:"true"`
+
+	// The AWS account that will own the new private virtual interface.
+	//
+	// Default: None
+	OwnerAccount *string `locationName:"ownerAccount" type:"string" required:"true"`
 
 	metadataAllocatePrivateVirtualInterfaceInput `json:"-", xml:"-"`
 }
@@ -507,10 +655,22 @@ type metadataAllocatePrivateVirtualInterfaceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the AllocatePublicVirtualInterface operation.
 type AllocatePublicVirtualInterfaceInput struct {
-	ConnectionID                        *string                              `locationName:"connectionId" type:"string" required:"true"`
+	// The connection ID on which the public virtual interface is provisioned.
+	//
+	// Default: None
+	ConnectionID *string `locationName:"connectionId" type:"string" required:"true"`
+
+	// Detailed information for the public virtual interface to be provisioned.
+	//
+	// Default: None
 	NewPublicVirtualInterfaceAllocation *NewPublicVirtualInterfaceAllocation `locationName:"newPublicVirtualInterfaceAllocation" type:"structure" required:"true"`
-	OwnerAccount                        *string                              `locationName:"ownerAccount" type:"string" required:"true"`
+
+	// The AWS account that will own the new public virtual interface.
+	//
+	// Default: None
+	OwnerAccount *string `locationName:"ownerAccount" type:"string" required:"true"`
 
 	metadataAllocatePublicVirtualInterfaceInput `json:"-", xml:"-"`
 }
@@ -519,7 +679,13 @@ type metadataAllocatePublicVirtualInterfaceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the ConfirmConnection operation.
 type ConfirmConnectionInput struct {
+	// ID of the connection.
+	//
+	// Example: dxcon-fg5678gh
+	//
+	// Default: None
 	ConnectionID *string `locationName:"connectionId" type:"string" required:"true"`
 
 	metadataConfirmConnectionInput `json:"-", xml:"-"`
@@ -529,7 +695,18 @@ type metadataConfirmConnectionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The response received when ConfirmConnection is called.
 type ConfirmConnectionOutput struct {
+	// State of the connection.   Ordering: The initial state of a hosted connection
+	// provisioned on an interconnect. The connection stays in the ordering state
+	// until the owner of the hosted connection confirms or declines the connection
+	// order.  Requested: The initial state of a standard connection. The connection
+	// stays in the requested state until the Letter of Authorization (LOA) is sent
+	// to the customer.  Pending: The connection has been approved, and is being
+	// initialized.  Available: The network link is up, and the connection is ready
+	// for use.  Down: The network link is down.  Deleted: The connection has been
+	// deleted.  Rejected: A hosted connection in the 'Ordering' state will enter
+	// the 'Rejected' state if it is deleted by the end customer.
 	ConnectionState *string `locationName:"connectionState" type:"string"`
 
 	metadataConfirmConnectionOutput `json:"-", xml:"-"`
@@ -539,8 +716,22 @@ type metadataConfirmConnectionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the ConfirmPrivateVirtualInterface operation.
 type ConfirmPrivateVirtualInterfaceInput struct {
-	VirtualGatewayID   *string `locationName:"virtualGatewayId" type:"string" required:"true"`
+	// ID of the virtual private gateway that will be attached to the virtual interface.
+	//
+	//  A virtual private gateway can be managed via the Amazon Virtual Private
+	// Cloud (VPC) console or the EC2 CreateVpnGateway (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-CreateVpnGateway.html)
+	// action.
+	//
+	// Default: None
+	VirtualGatewayID *string `locationName:"virtualGatewayId" type:"string" required:"true"`
+
+	// ID of the virtual interface.
+	//
+	// Example: dxvif-123dfg56
+	//
+	// Default: None
 	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
 
 	metadataConfirmPrivateVirtualInterfaceInput `json:"-", xml:"-"`
@@ -550,7 +741,24 @@ type metadataConfirmPrivateVirtualInterfaceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The response received when ConfirmPrivateVirtualInterface is called.
 type ConfirmPrivateVirtualInterfaceOutput struct {
+	// State of the virtual interface.   Confirming: The creation of the virtual
+	// interface is pending confirmation from the virtual interface owner. If the
+	// owner of the virtual interface is different from the owner of the connection
+	// on which it is provisioned, then the virtual interface will remain in this
+	// state until it is confirmed by the virtual interface owner.  Verifying: This
+	// state only applies to public virtual interfaces. Each public virtual interface
+	// needs validation before the virtual interface can be created.  Pending: A
+	// virtual interface is in this state from the time that it is created until
+	// the virtual interface is ready to forward traffic.  Available: A virtual
+	// interface that is able to forward traffic.  Deleting: A virtual interface
+	// is in this state immediately after calling DeleteVirtualInterface until it
+	// can no longer forward traffic.  Deleted: A virtual interface that cannot
+	// forward traffic.  Rejected: The virtual interface owner has declined creation
+	// of the virtual interface. If a virtual interface in the 'Confirming' state
+	// is deleted by the virtual interface owner, the virtual interface will enter
+	// the 'Rejected' state.
 	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string"`
 
 	metadataConfirmPrivateVirtualInterfaceOutput `json:"-", xml:"-"`
@@ -560,7 +768,13 @@ type metadataConfirmPrivateVirtualInterfaceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the ConfirmPublicVirtualInterface operation.
 type ConfirmPublicVirtualInterfaceInput struct {
+	// ID of the virtual interface.
+	//
+	// Example: dxvif-123dfg56
+	//
+	// Default: None
 	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
 
 	metadataConfirmPublicVirtualInterfaceInput `json:"-", xml:"-"`
@@ -570,7 +784,24 @@ type metadataConfirmPublicVirtualInterfaceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The response received when ConfirmPublicVirtualInterface is called.
 type ConfirmPublicVirtualInterfaceOutput struct {
+	// State of the virtual interface.   Confirming: The creation of the virtual
+	// interface is pending confirmation from the virtual interface owner. If the
+	// owner of the virtual interface is different from the owner of the connection
+	// on which it is provisioned, then the virtual interface will remain in this
+	// state until it is confirmed by the virtual interface owner.  Verifying: This
+	// state only applies to public virtual interfaces. Each public virtual interface
+	// needs validation before the virtual interface can be created.  Pending: A
+	// virtual interface is in this state from the time that it is created until
+	// the virtual interface is ready to forward traffic.  Available: A virtual
+	// interface that is able to forward traffic.  Deleting: A virtual interface
+	// is in this state immediately after calling DeleteVirtualInterface until it
+	// can no longer forward traffic.  Deleted: A virtual interface that cannot
+	// forward traffic.  Rejected: The virtual interface owner has declined creation
+	// of the virtual interface. If a virtual interface in the 'Confirming' state
+	// is deleted by the virtual interface owner, the virtual interface will enter
+	// the 'Rejected' state.
 	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string"`
 
 	metadataConfirmPublicVirtualInterfaceOutput `json:"-", xml:"-"`
@@ -580,16 +811,64 @@ type metadataConfirmPublicVirtualInterfaceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A connection represents the physical network connection between the AWS Direct
+// Connect location and the customer.
 type Connection struct {
-	Bandwidth       *string `locationName:"bandwidth" type:"string"`
-	ConnectionID    *string `locationName:"connectionId" type:"string"`
-	ConnectionName  *string `locationName:"connectionName" type:"string"`
+	// Bandwidth of the connection.
+	//
+	// Example: 1Gbps (for regular connections), or 500Mbps (for hosted connections)
+	//
+	// Default: None
+	Bandwidth *string `locationName:"bandwidth" type:"string"`
+
+	// ID of the connection.
+	//
+	// Example: dxcon-fg5678gh
+	//
+	// Default: None
+	ConnectionID *string `locationName:"connectionId" type:"string"`
+
+	// The name of the connection.
+	//
+	// Example: "My Connection to AWS"
+	//
+	// Default: None
+	ConnectionName *string `locationName:"connectionName" type:"string"`
+
+	// State of the connection.   Ordering: The initial state of a hosted connection
+	// provisioned on an interconnect. The connection stays in the ordering state
+	// until the owner of the hosted connection confirms or declines the connection
+	// order.  Requested: The initial state of a standard connection. The connection
+	// stays in the requested state until the Letter of Authorization (LOA) is sent
+	// to the customer.  Pending: The connection has been approved, and is being
+	// initialized.  Available: The network link is up, and the connection is ready
+	// for use.  Down: The network link is down.  Deleted: The connection has been
+	// deleted.  Rejected: A hosted connection in the 'Ordering' state will enter
+	// the 'Rejected' state if it is deleted by the end customer.
 	ConnectionState *string `locationName:"connectionState" type:"string"`
-	Location        *string `locationName:"location" type:"string"`
-	OwnerAccount    *string `locationName:"ownerAccount" type:"string"`
-	PartnerName     *string `locationName:"partnerName" type:"string"`
-	Region          *string `locationName:"region" type:"string"`
-	VLAN            *int64  `locationName:"vlan" type:"integer"`
+
+	// Where the connection is located.
+	//
+	// Example: EqSV5
+	//
+	// Default: None
+	Location *string `locationName:"location" type:"string"`
+
+	OwnerAccount *string `locationName:"ownerAccount" type:"string"`
+
+	PartnerName *string `locationName:"partnerName" type:"string"`
+
+	// The AWS region where the connection is located.
+	//
+	// Example: us-east-1
+	//
+	// Default: None
+	Region *string `locationName:"region" type:"string"`
+
+	// The VLAN ID.
+	//
+	// Example: 101
+	VLAN *int64 `locationName:"vlan" type:"integer"`
 
 	metadataConnection `json:"-", xml:"-"`
 }
@@ -598,7 +877,9 @@ type metadataConnection struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A structure containing a list of connections.
 type Connections struct {
+	// A list of connections.
 	Connections []*Connection `locationName:"connections" type:"list"`
 
 	metadataConnections `json:"-", xml:"-"`
@@ -608,10 +889,28 @@ type metadataConnections struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the CreateConnection operation.
 type CreateConnectionInput struct {
-	Bandwidth      *string `locationName:"bandwidth" type:"string" required:"true"`
+	// Bandwidth of the connection.
+	//
+	// Example: 1Gbps
+	//
+	// Default: None
+	Bandwidth *string `locationName:"bandwidth" type:"string" required:"true"`
+
+	// The name of the connection.
+	//
+	// Example: "My Connection to AWS"
+	//
+	// Default: None
 	ConnectionName *string `locationName:"connectionName" type:"string" required:"true"`
-	Location       *string `locationName:"location" type:"string" required:"true"`
+
+	// Where the connection is located.
+	//
+	// Example: EqSV5
+	//
+	// Default: None
+	Location *string `locationName:"location" type:"string" required:"true"`
 
 	metadataCreateConnectionInput `json:"-", xml:"-"`
 }
@@ -620,10 +919,30 @@ type metadataCreateConnectionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the CreateInterconnect operation.
 type CreateInterconnectInput struct {
-	Bandwidth        *string `locationName:"bandwidth" type:"string" required:"true"`
+	// The port bandwidth
+	//
+	// Example: 1Gbps
+	//
+	// Default: None
+	//
+	// Available values: 1Gbps,10Gbps
+	Bandwidth *string `locationName:"bandwidth" type:"string" required:"true"`
+
+	// The name of the interconnect.
+	//
+	// Example: "1G Interconnect to AWS"
+	//
+	// Default: None
 	InterconnectName *string `locationName:"interconnectName" type:"string" required:"true"`
-	Location         *string `locationName:"location" type:"string" required:"true"`
+
+	// Where the interconnect is located
+	//
+	// Example: EqSV5
+	//
+	// Default: None
+	Location *string `locationName:"location" type:"string" required:"true"`
 
 	metadataCreateInterconnectInput `json:"-", xml:"-"`
 }
@@ -632,8 +951,18 @@ type metadataCreateInterconnectInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the CreatePrivateVirtualInterface operation.
 type CreatePrivateVirtualInterfaceInput struct {
-	ConnectionID               *string                     `locationName:"connectionId" type:"string" required:"true"`
+	// ID of the connection.
+	//
+	// Example: dxcon-fg5678gh
+	//
+	// Default: None
+	ConnectionID *string `locationName:"connectionId" type:"string" required:"true"`
+
+	// Detailed information for the private virtual interface to be created.
+	//
+	// Default: None
 	NewPrivateVirtualInterface *NewPrivateVirtualInterface `locationName:"newPrivateVirtualInterface" type:"structure" required:"true"`
 
 	metadataCreatePrivateVirtualInterfaceInput `json:"-", xml:"-"`
@@ -643,8 +972,18 @@ type metadataCreatePrivateVirtualInterfaceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the CreatePublicVirtualInterface operation.
 type CreatePublicVirtualInterfaceInput struct {
-	ConnectionID              *string                    `locationName:"connectionId" type:"string" required:"true"`
+	// ID of the connection.
+	//
+	// Example: dxcon-fg5678gh
+	//
+	// Default: None
+	ConnectionID *string `locationName:"connectionId" type:"string" required:"true"`
+
+	// Detailed information for the public virtual interface to be created.
+	//
+	// Default: None
 	NewPublicVirtualInterface *NewPublicVirtualInterface `locationName:"newPublicVirtualInterface" type:"structure" required:"true"`
 
 	metadataCreatePublicVirtualInterfaceInput `json:"-", xml:"-"`
@@ -654,7 +993,13 @@ type metadataCreatePublicVirtualInterfaceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the DeleteConnection operation.
 type DeleteConnectionInput struct {
+	// ID of the connection.
+	//
+	// Example: dxcon-fg5678gh
+	//
+	// Default: None
 	ConnectionID *string `locationName:"connectionId" type:"string" required:"true"`
 
 	metadataDeleteConnectionInput `json:"-", xml:"-"`
@@ -664,7 +1009,11 @@ type metadataDeleteConnectionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the DeleteInterconnect operation.
 type DeleteInterconnectInput struct {
+	// The ID of the interconnect.
+	//
+	// Example: dxcon-abc123
 	InterconnectID *string `locationName:"interconnectId" type:"string" required:"true"`
 
 	metadataDeleteInterconnectInput `json:"-", xml:"-"`
@@ -674,7 +1023,14 @@ type metadataDeleteInterconnectInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The response received when DeleteInterconnect is called.
 type DeleteInterconnectOutput struct {
+	// State of the interconnect.   Requested: The initial state of an interconnect.
+	// The interconnect stays in the requested state until the Letter of Authorization
+	// (LOA) is sent to the customer.  Pending: The interconnect has been approved,
+	// and is being initialized.  Available: The network link is up, and the interconnect
+	// is ready for use.  Down: The network link is down.  Deleted: The interconnect
+	// has been deleted.
 	InterconnectState *string `locationName:"interconnectState" type:"string"`
 
 	metadataDeleteInterconnectOutput `json:"-", xml:"-"`
@@ -684,7 +1040,13 @@ type metadataDeleteInterconnectOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the DeleteVirtualInterface operation.
 type DeleteVirtualInterfaceInput struct {
+	// ID of the virtual interface.
+	//
+	// Example: dxvif-123dfg56
+	//
+	// Default: None
 	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
 
 	metadataDeleteVirtualInterfaceInput `json:"-", xml:"-"`
@@ -694,7 +1056,24 @@ type metadataDeleteVirtualInterfaceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The response received when DeleteVirtualInterface is called.
 type DeleteVirtualInterfaceOutput struct {
+	// State of the virtual interface.   Confirming: The creation of the virtual
+	// interface is pending confirmation from the virtual interface owner. If the
+	// owner of the virtual interface is different from the owner of the connection
+	// on which it is provisioned, then the virtual interface will remain in this
+	// state until it is confirmed by the virtual interface owner.  Verifying: This
+	// state only applies to public virtual interfaces. Each public virtual interface
+	// needs validation before the virtual interface can be created.  Pending: A
+	// virtual interface is in this state from the time that it is created until
+	// the virtual interface is ready to forward traffic.  Available: A virtual
+	// interface that is able to forward traffic.  Deleting: A virtual interface
+	// is in this state immediately after calling DeleteVirtualInterface until it
+	// can no longer forward traffic.  Deleted: A virtual interface that cannot
+	// forward traffic.  Rejected: The virtual interface owner has declined creation
+	// of the virtual interface. If a virtual interface in the 'Confirming' state
+	// is deleted by the virtual interface owner, the virtual interface will enter
+	// the 'Rejected' state.
 	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string"`
 
 	metadataDeleteVirtualInterfaceOutput `json:"-", xml:"-"`
@@ -704,7 +1083,13 @@ type metadataDeleteVirtualInterfaceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the DescribeConnections operation.
 type DescribeConnectionsInput struct {
+	// ID of the connection.
+	//
+	// Example: dxcon-fg5678gh
+	//
+	// Default: None
 	ConnectionID *string `locationName:"connectionId" type:"string"`
 
 	metadataDescribeConnectionsInput `json:"-", xml:"-"`
@@ -714,7 +1099,13 @@ type metadataDescribeConnectionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the DescribeConnectionsOnInterconnect operation.
 type DescribeConnectionsOnInterconnectInput struct {
+	// ID of the interconnect on which a list of connection is provisioned.
+	//
+	// Example: dxcon-abc123
+	//
+	// Default: None
 	InterconnectID *string `locationName:"interconnectId" type:"string" required:"true"`
 
 	metadataDescribeConnectionsOnInterconnectInput `json:"-", xml:"-"`
@@ -724,7 +1115,11 @@ type metadataDescribeConnectionsOnInterconnectInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the DescribeInterconnects operation.
 type DescribeInterconnectsInput struct {
+	// The ID of the interconnect.
+	//
+	// Example: dxcon-abc123
 	InterconnectID *string `locationName:"interconnectId" type:"string"`
 
 	metadataDescribeInterconnectsInput `json:"-", xml:"-"`
@@ -734,7 +1129,9 @@ type metadataDescribeInterconnectsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A structure containing a list of interconnects.
 type DescribeInterconnectsOutput struct {
+	// A list of interconnects.
 	Interconnects []*Interconnect `locationName:"interconnects" type:"list"`
 
 	metadataDescribeInterconnectsOutput `json:"-", xml:"-"`
@@ -770,7 +1167,9 @@ type metadataDescribeVirtualGatewaysInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A structure containing a list of virtual private gateways.
 type DescribeVirtualGatewaysOutput struct {
+	// A list of virtual private gateways.
 	VirtualGateways []*VirtualGateway `locationName:"virtualGateways" type:"list"`
 
 	metadataDescribeVirtualGatewaysOutput `json:"-", xml:"-"`
@@ -780,8 +1179,20 @@ type metadataDescribeVirtualGatewaysOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the DescribeVirtualInterfaces operation.
 type DescribeVirtualInterfacesInput struct {
-	ConnectionID       *string `locationName:"connectionId" type:"string"`
+	// ID of the connection.
+	//
+	// Example: dxcon-fg5678gh
+	//
+	// Default: None
+	ConnectionID *string `locationName:"connectionId" type:"string"`
+
+	// ID of the virtual interface.
+	//
+	// Example: dxvif-123dfg56
+	//
+	// Default: None
 	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string"`
 
 	metadataDescribeVirtualInterfacesInput `json:"-", xml:"-"`
@@ -791,7 +1202,9 @@ type metadataDescribeVirtualInterfacesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A structure containing a list of virtual interfaces.
 type DescribeVirtualInterfacesOutput struct {
+	// A list of virtual interfaces.
 	VirtualInterfaces []*VirtualInterface `locationName:"virtualInterfaces" type:"list"`
 
 	metadataDescribeVirtualInterfacesOutput `json:"-", xml:"-"`
@@ -801,13 +1214,57 @@ type metadataDescribeVirtualInterfacesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// An interconnect is a connection that can host other connections.
+//
+// Like a standard AWS Direct Connect connection, an interconnect represents
+// the physical connection between an AWS Direct Connect partner's network and
+// a specific Direct Connect location. An AWS Direct Connect partner who owns
+// an interconnect can provision hosted connections on the interconnect for
+// their end customers, thereby providing the end customers with connectivity
+// to AWS services.
+//
+// The resources of the interconnect, including bandwidth and VLAN numbers,
+// are shared by all of the hosted connections on the interconnect, and the
+// owner of the interconnect determines how these resources are assigned.
 type Interconnect struct {
-	Bandwidth         *string `locationName:"bandwidth" type:"string"`
-	InterconnectID    *string `locationName:"interconnectId" type:"string"`
-	InterconnectName  *string `locationName:"interconnectName" type:"string"`
+	// Bandwidth of the connection.
+	//
+	// Example: 1Gbps
+	//
+	// Default: None
+	Bandwidth *string `locationName:"bandwidth" type:"string"`
+
+	// The ID of the interconnect.
+	//
+	// Example: dxcon-abc123
+	InterconnectID *string `locationName:"interconnectId" type:"string"`
+
+	// The name of the interconnect.
+	//
+	// Example: "1G Interconnect to AWS"
+	InterconnectName *string `locationName:"interconnectName" type:"string"`
+
+	// State of the interconnect.   Requested: The initial state of an interconnect.
+	// The interconnect stays in the requested state until the Letter of Authorization
+	// (LOA) is sent to the customer.  Pending: The interconnect has been approved,
+	// and is being initialized.  Available: The network link is up, and the interconnect
+	// is ready for use.  Down: The network link is down.  Deleted: The interconnect
+	// has been deleted.
 	InterconnectState *string `locationName:"interconnectState" type:"string"`
-	Location          *string `locationName:"location" type:"string"`
-	Region            *string `locationName:"region" type:"string"`
+
+	// Where the connection is located.
+	//
+	// Example: EqSV5
+	//
+	// Default: None
+	Location *string `locationName:"location" type:"string"`
+
+	// The AWS region where the connection is located.
+	//
+	// Example: us-east-1
+	//
+	// Default: None
+	Region *string `locationName:"region" type:"string"`
 
 	metadataInterconnect `json:"-", xml:"-"`
 }
@@ -816,8 +1273,14 @@ type metadataInterconnect struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// An AWS Direct Connect location where connections and interconnects can be
+// requested.
 type Location struct {
+	// The code used to indicate the AWS Direct Connect location.
 	LocationCode *string `locationName:"locationCode" type:"string"`
+
+	// The name of the AWS Direct Connect location. The name includes the colocation
+	// partner name and the physical site of the lit building.
 	LocationName *string `locationName:"locationName" type:"string"`
 
 	metadataLocation `json:"-", xml:"-"`
@@ -827,13 +1290,42 @@ type metadataLocation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A structure containing information about a new private virtual interface.
 type NewPrivateVirtualInterface struct {
-	ASN                  *int64  `locationName:"asn" type:"integer" required:"true"`
-	AmazonAddress        *string `locationName:"amazonAddress" type:"string"`
-	AuthKey              *string `locationName:"authKey" type:"string"`
-	CustomerAddress      *string `locationName:"customerAddress" type:"string"`
-	VLAN                 *int64  `locationName:"vlan" type:"integer" required:"true"`
-	VirtualGatewayID     *string `locationName:"virtualGatewayId" type:"string" required:"true"`
+	// Autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
+	//
+	// Example: 65000
+	ASN *int64 `locationName:"asn" type:"integer" required:"true"`
+
+	// IP address assigned to the Amazon interface.
+	//
+	// Example: 192.168.1.1/30
+	AmazonAddress *string `locationName:"amazonAddress" type:"string"`
+
+	// Authentication key for BGP configuration.
+	//
+	// Example: asdf34example
+	AuthKey *string `locationName:"authKey" type:"string"`
+
+	// IP address assigned to the customer interface.
+	//
+	// Example: 192.168.1.2/30
+	CustomerAddress *string `locationName:"customerAddress" type:"string"`
+
+	// The VLAN ID.
+	//
+	// Example: 101
+	VLAN *int64 `locationName:"vlan" type:"integer" required:"true"`
+
+	// The ID of the virtual private gateway to a VPC. This only applies to private
+	// virtual interfaces.
+	//
+	// Example: vgw-123er56
+	VirtualGatewayID *string `locationName:"virtualGatewayId" type:"string" required:"true"`
+
+	// The name of the virtual interface assigned by the customer.
+	//
+	// Example: "My VPC"
 	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" required:"true"`
 
 	metadataNewPrivateVirtualInterface `json:"-", xml:"-"`
@@ -843,12 +1335,37 @@ type metadataNewPrivateVirtualInterface struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A structure containing information about a private virtual interface that
+// will be provisioned on a connection.
 type NewPrivateVirtualInterfaceAllocation struct {
-	ASN                  *int64  `locationName:"asn" type:"integer" required:"true"`
-	AmazonAddress        *string `locationName:"amazonAddress" type:"string"`
-	AuthKey              *string `locationName:"authKey" type:"string"`
-	CustomerAddress      *string `locationName:"customerAddress" type:"string"`
-	VLAN                 *int64  `locationName:"vlan" type:"integer" required:"true"`
+	// Autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
+	//
+	// Example: 65000
+	ASN *int64 `locationName:"asn" type:"integer" required:"true"`
+
+	// IP address assigned to the Amazon interface.
+	//
+	// Example: 192.168.1.1/30
+	AmazonAddress *string `locationName:"amazonAddress" type:"string"`
+
+	// Authentication key for BGP configuration.
+	//
+	// Example: asdf34example
+	AuthKey *string `locationName:"authKey" type:"string"`
+
+	// IP address assigned to the customer interface.
+	//
+	// Example: 192.168.1.2/30
+	CustomerAddress *string `locationName:"customerAddress" type:"string"`
+
+	// The VLAN ID.
+	//
+	// Example: 101
+	VLAN *int64 `locationName:"vlan" type:"integer" required:"true"`
+
+	// The name of the virtual interface assigned by the customer.
+	//
+	// Example: "My VPC"
 	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" required:"true"`
 
 	metadataNewPrivateVirtualInterfaceAllocation `json:"-", xml:"-"`
@@ -858,14 +1375,41 @@ type metadataNewPrivateVirtualInterfaceAllocation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A structure containing information about a new public virtual interface.
 type NewPublicVirtualInterface struct {
-	ASN                  *int64               `locationName:"asn" type:"integer" required:"true"`
-	AmazonAddress        *string              `locationName:"amazonAddress" type:"string" required:"true"`
-	AuthKey              *string              `locationName:"authKey" type:"string"`
-	CustomerAddress      *string              `locationName:"customerAddress" type:"string" required:"true"`
-	RouteFilterPrefixes  []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list" required:"true"`
-	VLAN                 *int64               `locationName:"vlan" type:"integer" required:"true"`
-	VirtualInterfaceName *string              `locationName:"virtualInterfaceName" type:"string" required:"true"`
+	// Autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
+	//
+	// Example: 65000
+	ASN *int64 `locationName:"asn" type:"integer" required:"true"`
+
+	// IP address assigned to the Amazon interface.
+	//
+	// Example: 192.168.1.1/30
+	AmazonAddress *string `locationName:"amazonAddress" type:"string" required:"true"`
+
+	// Authentication key for BGP configuration.
+	//
+	// Example: asdf34example
+	AuthKey *string `locationName:"authKey" type:"string"`
+
+	// IP address assigned to the customer interface.
+	//
+	// Example: 192.168.1.2/30
+	CustomerAddress *string `locationName:"customerAddress" type:"string" required:"true"`
+
+	// A list of routes to be advertised to the AWS network in this region (public
+	// virtual interface) or your VPC (private virtual interface).
+	RouteFilterPrefixes []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list" required:"true"`
+
+	// The VLAN ID.
+	//
+	// Example: 101
+	VLAN *int64 `locationName:"vlan" type:"integer" required:"true"`
+
+	// The name of the virtual interface assigned by the customer.
+	//
+	// Example: "My VPC"
+	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" required:"true"`
 
 	metadataNewPublicVirtualInterface `json:"-", xml:"-"`
 }
@@ -874,14 +1418,42 @@ type metadataNewPublicVirtualInterface struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A structure containing information about a public virtual interface that
+// will be provisioned on a connection.
 type NewPublicVirtualInterfaceAllocation struct {
-	ASN                  *int64               `locationName:"asn" type:"integer" required:"true"`
-	AmazonAddress        *string              `locationName:"amazonAddress" type:"string" required:"true"`
-	AuthKey              *string              `locationName:"authKey" type:"string"`
-	CustomerAddress      *string              `locationName:"customerAddress" type:"string" required:"true"`
-	RouteFilterPrefixes  []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list" required:"true"`
-	VLAN                 *int64               `locationName:"vlan" type:"integer" required:"true"`
-	VirtualInterfaceName *string              `locationName:"virtualInterfaceName" type:"string" required:"true"`
+	// Autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
+	//
+	// Example: 65000
+	ASN *int64 `locationName:"asn" type:"integer" required:"true"`
+
+	// IP address assigned to the Amazon interface.
+	//
+	// Example: 192.168.1.1/30
+	AmazonAddress *string `locationName:"amazonAddress" type:"string" required:"true"`
+
+	// Authentication key for BGP configuration.
+	//
+	// Example: asdf34example
+	AuthKey *string `locationName:"authKey" type:"string"`
+
+	// IP address assigned to the customer interface.
+	//
+	// Example: 192.168.1.2/30
+	CustomerAddress *string `locationName:"customerAddress" type:"string" required:"true"`
+
+	// A list of routes to be advertised to the AWS network in this region (public
+	// virtual interface) or your VPC (private virtual interface).
+	RouteFilterPrefixes []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list" required:"true"`
+
+	// The VLAN ID.
+	//
+	// Example: 101
+	VLAN *int64 `locationName:"vlan" type:"integer" required:"true"`
+
+	// The name of the virtual interface assigned by the customer.
+	//
+	// Example: "My VPC"
+	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" required:"true"`
 
 	metadataNewPublicVirtualInterfaceAllocation `json:"-", xml:"-"`
 }
@@ -890,7 +1462,13 @@ type metadataNewPublicVirtualInterfaceAllocation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A route filter prefix that the customer can advertise through Border Gateway
+// Protocol (BGP) over a public virtual interface.
 type RouteFilterPrefix struct {
+	// CIDR notation for the advertised route. Multiple routes are separated by
+	// commas.
+	//
+	// Example: 10.10.10.0/24,10.10.11.0/24
 	CIDR *string `locationName:"cidr" type:"string"`
 
 	metadataRouteFilterPrefix `json:"-", xml:"-"`
@@ -900,8 +1478,23 @@ type metadataRouteFilterPrefix struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// You can create one or more AWS Direct Connect private virtual interfaces
+// linking to your virtual private gateway.
+//
+// Virtual private gateways can be managed using the Amazon Virtual Private
+// Cloud (Amazon VPC) console or the Amazon EC2 CreateVpnGateway action (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-CreateVpnGateway.html).
 type VirtualGateway struct {
-	VirtualGatewayID    *string `locationName:"virtualGatewayId" type:"string"`
+	// The ID of the virtual private gateway to a VPC. This only applies to private
+	// virtual interfaces.
+	//
+	// Example: vgw-123er56
+	VirtualGatewayID *string `locationName:"virtualGatewayId" type:"string"`
+
+	// State of the virtual private gateway.   Pending: This is the initial state
+	// after calling CreateVpnGateway.  Available: Ready for use by a private virtual
+	// interface.  Deleting: This is the initial state after calling DeleteVpnGateway.
+	//  Deleted: In this state, a private virtual interface is unable to send traffic
+	// over this gateway.
 	VirtualGatewayState *string `locationName:"virtualGatewayState" type:"string"`
 
 	metadataVirtualGateway `json:"-", xml:"-"`
@@ -911,22 +1504,98 @@ type metadataVirtualGateway struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A virtual interface (VLAN) transmits the traffic between the AWS Direct Connect
+// location and the customer.
 type VirtualInterface struct {
-	ASN                   *int64               `locationName:"asn" type:"integer"`
-	AmazonAddress         *string              `locationName:"amazonAddress" type:"string"`
-	AuthKey               *string              `locationName:"authKey" type:"string"`
-	ConnectionID          *string              `locationName:"connectionId" type:"string"`
-	CustomerAddress       *string              `locationName:"customerAddress" type:"string"`
-	CustomerRouterConfig  *string              `locationName:"customerRouterConfig" type:"string"`
-	Location              *string              `locationName:"location" type:"string"`
-	OwnerAccount          *string              `locationName:"ownerAccount" type:"string"`
-	RouteFilterPrefixes   []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list"`
-	VLAN                  *int64               `locationName:"vlan" type:"integer"`
-	VirtualGatewayID      *string              `locationName:"virtualGatewayId" type:"string"`
-	VirtualInterfaceID    *string              `locationName:"virtualInterfaceId" type:"string"`
-	VirtualInterfaceName  *string              `locationName:"virtualInterfaceName" type:"string"`
-	VirtualInterfaceState *string              `locationName:"virtualInterfaceState" type:"string"`
-	VirtualInterfaceType  *string              `locationName:"virtualInterfaceType" type:"string"`
+	// Autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
+	//
+	// Example: 65000
+	ASN *int64 `locationName:"asn" type:"integer"`
+
+	// IP address assigned to the Amazon interface.
+	//
+	// Example: 192.168.1.1/30
+	AmazonAddress *string `locationName:"amazonAddress" type:"string"`
+
+	// Authentication key for BGP configuration.
+	//
+	// Example: asdf34example
+	AuthKey *string `locationName:"authKey" type:"string"`
+
+	// ID of the connection.
+	//
+	// Example: dxcon-fg5678gh
+	//
+	// Default: None
+	ConnectionID *string `locationName:"connectionId" type:"string"`
+
+	// IP address assigned to the customer interface.
+	//
+	// Example: 192.168.1.2/30
+	CustomerAddress *string `locationName:"customerAddress" type:"string"`
+
+	// Information for generating the customer router configuration.
+	CustomerRouterConfig *string `locationName:"customerRouterConfig" type:"string"`
+
+	// Where the connection is located.
+	//
+	// Example: EqSV5
+	//
+	// Default: None
+	Location *string `locationName:"location" type:"string"`
+
+	OwnerAccount *string `locationName:"ownerAccount" type:"string"`
+
+	// A list of routes to be advertised to the AWS network in this region (public
+	// virtual interface) or your VPC (private virtual interface).
+	RouteFilterPrefixes []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list"`
+
+	// The VLAN ID.
+	//
+	// Example: 101
+	VLAN *int64 `locationName:"vlan" type:"integer"`
+
+	// The ID of the virtual private gateway to a VPC. This only applies to private
+	// virtual interfaces.
+	//
+	// Example: vgw-123er56
+	VirtualGatewayID *string `locationName:"virtualGatewayId" type:"string"`
+
+	// ID of the virtual interface.
+	//
+	// Example: dxvif-123dfg56
+	//
+	// Default: None
+	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string"`
+
+	// The name of the virtual interface assigned by the customer.
+	//
+	// Example: "My VPC"
+	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string"`
+
+	// State of the virtual interface.   Confirming: The creation of the virtual
+	// interface is pending confirmation from the virtual interface owner. If the
+	// owner of the virtual interface is different from the owner of the connection
+	// on which it is provisioned, then the virtual interface will remain in this
+	// state until it is confirmed by the virtual interface owner.  Verifying: This
+	// state only applies to public virtual interfaces. Each public virtual interface
+	// needs validation before the virtual interface can be created.  Pending: A
+	// virtual interface is in this state from the time that it is created until
+	// the virtual interface is ready to forward traffic.  Available: A virtual
+	// interface that is able to forward traffic.  Deleting: A virtual interface
+	// is in this state immediately after calling DeleteVirtualInterface until it
+	// can no longer forward traffic.  Deleted: A virtual interface that cannot
+	// forward traffic.  Rejected: The virtual interface owner has declined creation
+	// of the virtual interface. If a virtual interface in the 'Confirming' state
+	// is deleted by the virtual interface owner, the virtual interface will enter
+	// the 'Rejected' state.
+	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string"`
+
+	// The type of virtual interface.
+	//
+	// Example: private (Amazon VPC) or public (Amazon S3, Amazon DynamoDB, and
+	// so on.)
+	VirtualInterfaceType *string `locationName:"virtualInterfaceType" type:"string"`
 
 	metadataVirtualInterface `json:"-", xml:"-"`
 }

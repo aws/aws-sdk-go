@@ -22,6 +22,11 @@ func (c *Kinesis) AddTagsToStreamRequest(input *AddTagsToStreamInput) (req *aws.
 	return
 }
 
+// Adds or updates tags for the specified Amazon Kinesis stream. Each stream
+// can have up to 10 tags.
+//
+// If tags have already been assigned to the stream, AddTagsToStream overwrites
+// any existing tags that correspond to the specified tag keys.
 func (c *Kinesis) AddTagsToStream(input *AddTagsToStreamInput) (output *AddTagsToStreamOutput, err error) {
 	req, out := c.AddTagsToStreamRequest(input)
 	output = out
@@ -47,6 +52,43 @@ func (c *Kinesis) CreateStreamRequest(input *CreateStreamInput) (req *aws.Reques
 	return
 }
 
+// Creates a Amazon Kinesis stream. A stream captures and transports data records
+// that are continuously emitted from different data sources or producers. Scale-out
+// within an Amazon Kinesis stream is explicitly supported by means of shards,
+// which are uniquely identified groups of data records in an Amazon Kinesis
+// stream.
+//
+// You specify and control the number of shards that a stream is composed of.
+// Each open shard can support up to 5 read transactions per second, up to a
+// maximum total of 2 MB of data read per second. Each shard can support up
+// to 1000 records written per second, up to a maximum total of 1 MB data written
+// per second. You can add shards to a stream if the amount of data input increases
+// and you can remove shards if the amount of data input decreases.
+//
+// The stream name identifies the stream. The name is scoped to the AWS account
+// used by the application. It is also scoped by region. That is, two streams
+// in two different accounts can have the same name, and two streams in the
+// same account, but in two different regions, can have the same name.
+//
+// CreateStream is an asynchronous operation. Upon receiving a CreateStream
+// request, Amazon Kinesis immediately returns and sets the stream status to
+// CREATING. After the stream is created, Amazon Kinesis sets the stream status
+// to ACTIVE. You should perform read and write operations only on an ACTIVE
+// stream.
+//
+// You receive a LimitExceededException when making a CreateStream request
+// if you try to do one of the following:
+//
+//  Have more than five streams in the CREATING state at any point in time.
+// Create more shards than are authorized for your account.  The default limit
+// for an AWS account is 10 shards per stream. If you need to create a stream
+// with more than 10 shards, contact AWS Support (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
+// to increase the limit on your account.
+//
+// You can use DescribeStream to check the stream status, which is returned
+// in StreamStatus.
+//
+// CreateStream has a limit of 5 transactions per second per account.
 func (c *Kinesis) CreateStream(input *CreateStreamInput) (output *CreateStreamOutput, err error) {
 	req, out := c.CreateStreamRequest(input)
 	output = out
@@ -72,6 +114,25 @@ func (c *Kinesis) DeleteStreamRequest(input *DeleteStreamInput) (req *aws.Reques
 	return
 }
 
+// Deletes a stream and all its shards and data. You must shut down any applications
+// that are operating on the stream before you delete the stream. If an application
+// attempts to operate on a deleted stream, it will receive the exception ResourceNotFoundException.
+//
+// If the stream is in the ACTIVE state, you can delete it. After a DeleteStream
+// request, the specified stream is in the DELETING state until Amazon Kinesis
+// completes the deletion.
+//
+// Note: Amazon Kinesis might continue to accept data read and write operations,
+// such as PutRecord, PutRecords, and GetRecords, on a stream in the DELETING
+// state until the stream deletion is complete.
+//
+// When you delete a stream, any shards in that stream are also deleted, and
+// any tags are dissociated from the stream.
+//
+// You can use the DescribeStream operation to check the state of the stream,
+// which is returned in StreamStatus.
+//
+// DeleteStream has a limit of 5 transactions per second per account.
 func (c *Kinesis) DeleteStream(input *DeleteStreamInput) (output *DeleteStreamOutput, err error) {
 	req, out := c.DeleteStreamRequest(input)
 	output = out
@@ -97,6 +158,28 @@ func (c *Kinesis) DescribeStreamRequest(input *DescribeStreamInput) (req *aws.Re
 	return
 }
 
+// Describes the specified stream.
+//
+// The information about the stream includes its current status, its Amazon
+// Resource Name (ARN), and an array of shard objects. For each shard object,
+// there is information about the hash key and sequence number ranges that the
+// shard spans, and the IDs of any earlier shards that played in a role in creating
+// the shard. A sequence number is the identifier associated with every record
+// ingested in the Amazon Kinesis stream. The sequence number is assigned when
+// a record is put into the stream.
+//
+// You can limit the number of returned shards using the Limit parameter. The
+// number of shards in a stream may be too large to return from a single call
+// to DescribeStream. You can detect this by using the HasMoreShards flag in
+// the returned output. HasMoreShards is set to true when there is more data
+// available.
+//
+// DescribeStream is a paginated operation. If there are more shards available,
+// you can request them using the shard ID of the last shard returned. Specify
+// this ID in the ExclusiveStartShardId parameter in a subsequent request to
+// DescribeStream.
+//
+// DescribeStream has a limit of 10 transactions per second per account.
 func (c *Kinesis) DescribeStream(input *DescribeStreamInput) (output *DescribeStreamOutput, err error) {
 	req, out := c.DescribeStreamRequest(input)
 	output = out
@@ -122,6 +205,51 @@ func (c *Kinesis) GetRecordsRequest(input *GetRecordsInput) (req *aws.Request, o
 	return
 }
 
+// Gets data records from a shard.
+//
+// Specify a shard iterator using the ShardIterator parameter. The shard iterator
+// specifies the position in the shard from which you want to start reading
+// data records sequentially. If there are no records available in the portion
+// of the shard that the iterator points to, GetRecords returns an empty list.
+// Note that it might take multiple calls to get to a portion of the shard that
+// contains records.
+//
+// You can scale by provisioning multiple shards. Your application should have
+// one thread per shard, each reading continuously from its stream. To read
+// from a stream continually, call GetRecords in a loop. Use GetShardIterator
+// to get the shard iterator to specify in the first GetRecords call. GetRecords
+// returns a new shard iterator in NextShardIterator. Specify the shard iterator
+// returned in NextShardIterator in subsequent calls to GetRecords. Note that
+// if the shard has been closed, the shard iterator can't return more data and
+// GetRecords returns null in NextShardIterator. You can terminate the loop
+// when the shard is closed, or when the shard iterator reaches the record with
+// the sequence number or other attribute that marks it as the last record to
+// process.
+//
+// Each data record can be up to 50 KB in size, and each shard can read up
+// to 2 MB per second. You can ensure that your calls don't exceed the maximum
+// supported size or throughput by using the Limit parameter to specify the
+// maximum number of records that GetRecords can return. Consider your average
+// record size when determining this limit. For example, if your average record
+// size is 40 KB, you can limit the data returned to about 1 MB per call by
+// specifying 25 as the limit.
+//
+// The size of the data returned by GetRecords will vary depending on the utilization
+// of the shard. The maximum size of data that GetRecords can return is 10 MB.
+// If a call returns 10 MB of data, subsequent calls made within the next 5
+// seconds throw ProvisionedThroughputExceededException. If there is insufficient
+// provisioned throughput on the shard, subsequent calls made within the next
+// 1 second throw ProvisionedThroughputExceededException. Note that GetRecords
+// won't return any data when it throws an exception. For this reason, we recommend
+// that you wait one second between calls to GetRecords; however, it's possible
+// that the application will get exceptions for longer than 1 second.
+//
+// To detect whether the application is falling behind in processing, add a
+// timestamp to your records and note how long it takes to process them. You
+// can also monitor how much data is in a stream using the CloudWatch metrics
+// for write operations (PutRecord and PutRecords). For more information, see
+// Monitoring Amazon Kinesis with Amazon CloudWatch (http://docs.aws.amazon.com/kinesis/latest/dev/monitoring_with_cloudwatch.html)
+// in the Amazon Kinesis Developer Guide.
 func (c *Kinesis) GetRecords(input *GetRecordsInput) (output *GetRecordsOutput, err error) {
 	req, out := c.GetRecordsRequest(input)
 	output = out
@@ -147,6 +275,43 @@ func (c *Kinesis) GetShardIteratorRequest(input *GetShardIteratorInput) (req *aw
 	return
 }
 
+// Gets a shard iterator. A shard iterator expires five minutes after it is
+// returned to the requester.
+//
+// A shard iterator specifies the position in the shard from which to start
+// reading data records sequentially. A shard iterator specifies this position
+// using the sequence number of a data record in a shard. A sequence number
+// is the identifier associated with every record ingested in the Amazon Kinesis
+// stream. The sequence number is assigned when a record is put into the stream.
+//
+// You must specify the shard iterator type. For example, you can set the ShardIteratorType
+// parameter to read exactly from the position denoted by a specific sequence
+// number by using the AT_SEQUENCE_NUMBER shard iterator type, or right after
+// the sequence number by using the AFTER_SEQUENCE_NUMBER shard iterator type,
+// using sequence numbers returned by earlier calls to PutRecord, PutRecords,
+// GetRecords, or DescribeStream. You can specify the shard iterator type TRIM_HORIZON
+// in the request to cause ShardIterator to point to the last untrimmed record
+// in the shard in the system, which is the oldest data record in the shard.
+// Or you can point to just after the most recent record in the shard, by using
+// the shard iterator type LATEST, so that you always read the most recent data
+// in the shard.
+//
+// When you repeatedly read from an Amazon Kinesis stream use a GetShardIterator
+// request to get the first shard iterator to to use in your first GetRecords
+// request and then use the shard iterator returned by the GetRecords request
+// in NextShardIterator for subsequent reads. A new shard iterator is returned
+// by every GetRecords request in NextShardIterator, which you use in the ShardIterator
+// parameter of the next GetRecords request.
+//
+// If a GetShardIterator request is made too often, you receive a ProvisionedThroughputExceededException.
+// For more information about throughput limits, see GetRecords.
+//
+// If the shard is closed, the iterator can't return more data, and GetShardIterator
+// returns null for its ShardIterator. A shard can be closed using SplitShard
+// or MergeShards.
+//
+// GetShardIterator has a limit of 5 transactions per second per account per
+// open shard.
 func (c *Kinesis) GetShardIterator(input *GetShardIteratorInput) (output *GetShardIteratorOutput, err error) {
 	req, out := c.GetShardIteratorRequest(input)
 	output = out
@@ -172,6 +337,22 @@ func (c *Kinesis) ListStreamsRequest(input *ListStreamsInput) (req *aws.Request,
 	return
 }
 
+// Lists your streams.
+//
+//  The number of streams may be too large to return from a single call to
+// ListStreams. You can limit the number of returned streams using the Limit
+// parameter. If you do not specify a value for the Limit parameter, Amazon
+// Kinesis uses the default limit, which is currently 10.
+//
+//  You can detect if there are more streams available to list by using the
+// HasMoreStreams flag from the returned output. If there are more streams available,
+// you can request more streams by using the name of the last stream returned
+// by the ListStreams request in the ExclusiveStartStreamName parameter in a
+// subsequent request to ListStreams. The group of stream names returned by
+// the subsequent request is then added to the list. You can continue this process
+// until all the stream names have been collected in the list.
+//
+// ListStreams has a limit of 5 transactions per second per account.
 func (c *Kinesis) ListStreams(input *ListStreamsInput) (output *ListStreamsOutput, err error) {
 	req, out := c.ListStreamsRequest(input)
 	output = out
@@ -197,6 +378,7 @@ func (c *Kinesis) ListTagsForStreamRequest(input *ListTagsForStreamInput) (req *
 	return
 }
 
+// Lists the tags for the specified Amazon Kinesis stream.
 func (c *Kinesis) ListTagsForStream(input *ListTagsForStreamInput) (output *ListTagsForStreamOutput, err error) {
 	req, out := c.ListTagsForStreamRequest(input)
 	output = out
@@ -222,6 +404,41 @@ func (c *Kinesis) MergeShardsRequest(input *MergeShardsInput) (req *aws.Request,
 	return
 }
 
+// Merges two adjacent shards in a stream and combines them into a single shard
+// to reduce the stream's capacity to ingest and transport data. Two shards
+// are considered adjacent if the union of the hash key ranges for the two shards
+// form a contiguous set with no gaps. For example, if you have two shards,
+// one with a hash key range of 276...381 and the other with a hash key range
+// of 382...454, then you could merge these two shards into a single shard that
+// would have a hash key range of 276...454. After the merge, the single child
+// shard receives data for all hash key values covered by the two parent shards.
+//
+// MergeShards is called when there is a need to reduce the overall capacity
+// of a stream because of excess capacity that is not being used. You must specify
+// the shard to be merged and the adjacent shard for a stream. For more information
+// about merging shards, see Merge Two Shards (http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-api-java.html#kinesis-using-api-java-resharding-merge)
+// in the Amazon Kinesis Developer Guide.
+//
+// If the stream is in the ACTIVE state, you can call MergeShards. If a stream
+// is in the CREATING, UPDATING, or DELETING state, MergeShards returns a ResourceInUseException.
+// If the specified stream does not exist, MergeShards returns a ResourceNotFoundException.
+//
+// You can use DescribeStream to check the state of the stream, which is returned
+// in StreamStatus.
+//
+// MergeShards is an asynchronous operation. Upon receiving a MergeShards request,
+// Amazon Kinesis immediately returns a response and sets the StreamStatus to
+// UPDATING. After the operation is completed, Amazon Kinesis sets the StreamStatus
+// to ACTIVE. Read and write operations continue to work while the stream is
+// in the UPDATING state.
+//
+// You use DescribeStream to determine the shard IDs that are specified in
+// the MergeShards request.
+//
+// If you try to operate on too many streams in parallel using CreateStream,
+// DeleteStream, MergeShards or SplitShard, you will receive a LimitExceededException.
+//
+// MergeShards has limit of 5 transactions per second per account.
 func (c *Kinesis) MergeShards(input *MergeShardsInput) (output *MergeShardsOutput, err error) {
 	req, out := c.MergeShardsRequest(input)
 	output = out
@@ -247,6 +464,44 @@ func (c *Kinesis) PutRecordRequest(input *PutRecordInput) (req *aws.Request, out
 	return
 }
 
+// Puts (writes) a single data record from a producer into an Amazon Kinesis
+// stream. Call PutRecord to send data from the producer into the Amazon Kinesis
+// stream for real-time ingestion and subsequent processing, one record at a
+// time. Each shard can support up to 1000 records written per second, up to
+// a maximum total of 1 MB data written per second.
+//
+// You must specify the name of the stream that captures, stores, and transports
+// the data; a partition key; and the data blob itself.
+//
+// The data blob can be any type of data; for example, a segment from a log
+// file, geographic/location data, website clickstream data, and so on.
+//
+// The partition key is used by Amazon Kinesis to distribute data across shards.
+// Amazon Kinesis segregates the data records that belong to a data stream into
+// multiple shards, using the partition key associated with each data record
+// to determine which shard a given data record belongs to.
+//
+// Partition keys are Unicode strings, with a maximum length limit of 256 bytes.
+// An MD5 hash function is used to map partition keys to 128-bit integer values
+// and to map associated data records to shards using the hash key ranges of
+// the shards. You can override hashing the partition key to determine the shard
+// by explicitly specifying a hash value using the ExplicitHashKey parameter.
+// For more information, see Partition Key (http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-api-java.html#kinesis-using-api-defn-partition-key)
+// in the Amazon Kinesis Developer Guide.
+//
+// PutRecord returns the shard ID of where the data record was placed and the
+// sequence number that was assigned to the data record.
+//
+// Sequence numbers generally increase over time. To guarantee strictly increasing
+// ordering, use the SequenceNumberForOrdering parameter. For more information,
+// see Sequence Number (http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-api-java.html#kinesis-using-api-defn-sequence-number)
+// in the Amazon Kinesis Developer Guide.
+//
+// If a PutRecord request cannot be processed because of insufficient provisioned
+// throughput on the shard involved in the request, PutRecord throws ProvisionedThroughputExceededException.
+//
+// Data records are accessible for only 24 hours from the time that they are
+// added to an Amazon Kinesis stream.
 func (c *Kinesis) PutRecord(input *PutRecordInput) (output *PutRecordOutput, err error) {
 	req, out := c.PutRecordRequest(input)
 	output = out
@@ -272,6 +527,59 @@ func (c *Kinesis) PutRecordsRequest(input *PutRecordsInput) (req *aws.Request, o
 	return
 }
 
+// Puts (writes) multiple data records from a producer into an Amazon Kinesis
+// stream in a single call (also referred to as a PutRecords request). Use this
+// operation to send data from a data producer into the Amazon Kinesis stream
+// for real-time ingestion and processing. Each shard can support up to 1000
+// records written per second, up to a maximum total of 1 MB data written per
+// second.
+//
+// You must specify the name of the stream that captures, stores, and transports
+// the data; and an array of request Records, with each record in the array
+// requiring a partition key and data blob.
+//
+// The data blob can be any type of data; for example, a segment from a log
+// file, geographic/location data, website clickstream data, and so on.
+//
+// The partition key is used by Amazon Kinesis as input to a hash function
+// that maps the partition key and associated data to a specific shard. An MD5
+// hash function is used to map partition keys to 128-bit integer values and
+// to map associated data records to shards. As a result of this hashing mechanism,
+// all data records with the same partition key map to the same shard within
+// the stream. For more information, see Partition Key (http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-api-java.html#kinesis-using-api-defn-partition-key)
+// in the Amazon Kinesis Developer Guide.
+//
+// Each record in the Records array may include an optional parameter, ExplicitHashKey,
+// which overrides the partition key to shard mapping. This parameter allows
+// a data producer to determine explicitly the shard where the record is stored.
+// For more information, see Adding Multiple Records with PutRecords (http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-api-java.html#kinesis-using-api-putrecords)
+// in the Amazon Kinesis Developer Guide.
+//
+// The PutRecords response includes an array of response Records. Each record
+// in the response array directly correlates with a record in the request array
+// using natural ordering, from the top to the bottom of the request and response.
+// The response Records array always includes the same number of records as
+// the request array.
+//
+// The response Records array includes both successfully and unsuccessfully
+// processed records. Amazon Kinesis attempts to process all records in each
+// PutRecords request. A single record failure does not stop the processing
+// of subsequent records.
+//
+// A successfully-processed record includes ShardId and SequenceNumber values.
+// The ShardId parameter identifies the shard in the stream where the record
+// is stored. The SequenceNumber parameter is an identifier assigned to the
+// put record, unique to all records in the stream.
+//
+// An unsuccessfully-processed record includes ErrorCode and ErrorMessage values.
+// ErrorCode reflects the type of error and can be one of the following values:
+// ProvisionedThroughputExceededException or InternalFailure. ErrorMessage provides
+// more detailed information about the ProvisionedThroughputExceededException
+// exception including the account ID, stream name, and shard ID of the record
+// that was throttled.
+//
+// Data records are accessible for only 24 hours from the time that they are
+// added to an Amazon Kinesis stream.
 func (c *Kinesis) PutRecords(input *PutRecordsInput) (output *PutRecordsOutput, err error) {
 	req, out := c.PutRecordsRequest(input)
 	output = out
@@ -297,6 +605,9 @@ func (c *Kinesis) RemoveTagsFromStreamRequest(input *RemoveTagsFromStreamInput) 
 	return
 }
 
+// Deletes tags from the specified Amazon Kinesis stream.
+//
+// If you specify a tag that does not exist, it is ignored.
 func (c *Kinesis) RemoveTagsFromStream(input *RemoveTagsFromStreamInput) (output *RemoveTagsFromStreamOutput, err error) {
 	req, out := c.RemoveTagsFromStreamRequest(input)
 	output = out
@@ -322,6 +633,52 @@ func (c *Kinesis) SplitShardRequest(input *SplitShardInput) (req *aws.Request, o
 	return
 }
 
+// Splits a shard into two new shards in the stream, to increase the stream's
+// capacity to ingest and transport data. SplitShard is called when there is
+// a need to increase the overall capacity of stream because of an expected
+// increase in the volume of data records being ingested.
+//
+// You can also use SplitShard when a shard appears to be approaching its maximum
+// utilization, for example, when the set of producers sending data into the
+// specific shard are suddenly sending more than previously anticipated. You
+// can also call SplitShard to increase stream capacity, so that more Amazon
+// Kinesis applications can simultaneously read data from the stream for real-time
+// processing.
+//
+// You must specify the shard to be split and the new hash key, which is the
+// position in the shard where the shard gets split in two. In many cases, the
+// new hash key might simply be the average of the beginning and ending hash
+// key, but it can be any hash key value in the range being mapped into the
+// shard. For more information about splitting shards, see Split a Shard (http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-api-java.html#kinesis-using-api-java-resharding-split)
+// in the Amazon Kinesis Developer Guide.
+//
+// You can use DescribeStream to determine the shard ID and hash key values
+// for the ShardToSplit and NewStartingHashKey parameters that are specified
+// in the SplitShard request.
+//
+// SplitShard is an asynchronous operation. Upon receiving a SplitShard request,
+// Amazon Kinesis immediately returns a response and sets the stream status
+// to UPDATING. After the operation is completed, Amazon Kinesis sets the stream
+// status to ACTIVE. Read and write operations continue to work while the stream
+// is in the UPDATING state.
+//
+// You can use DescribeStream to check the status of the stream, which is returned
+// in StreamStatus. If the stream is in the ACTIVE state, you can call SplitShard.
+// If a stream is in CREATING or UPDATING or DELETING states, DescribeStream
+// returns a ResourceInUseException.
+//
+// If the specified stream does not exist, DescribeStream returns a ResourceNotFoundException.
+// If you try to create more shards than are authorized for your account, you
+// receive a LimitExceededException.
+//
+// The default limit for an AWS account is 10 shards per stream. If you need
+// to create a stream with more than 10 shards, contact AWS Support (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
+// to increase the limit on your account.
+//
+// If you try to operate on too many streams in parallel using CreateStream,
+// DeleteStream, MergeShards or SplitShard, you receive a LimitExceededException.
+//
+// SplitShard has limit of 5 transactions per second per account.
 func (c *Kinesis) SplitShard(input *SplitShardInput) (output *SplitShardOutput, err error) {
 	req, out := c.SplitShardRequest(input)
 	output = out
@@ -331,9 +688,13 @@ func (c *Kinesis) SplitShard(input *SplitShardInput) (output *SplitShardOutput, 
 
 var opSplitShard *aws.Operation
 
+// Represents the input for AddTagsToStream.
 type AddTagsToStreamInput struct {
-	StreamName *string             `type:"string" required:"true"`
-	Tags       *map[string]*string `type:"map" required:"true"`
+	// The name of the stream.
+	StreamName *string `type:"string" required:"true"`
+
+	// The set of key-value pairs to use to create the tags.
+	Tags *map[string]*string `type:"map" required:"true"`
 
 	metadataAddTagsToStreamInput `json:"-", xml:"-"`
 }
@@ -350,8 +711,22 @@ type metadataAddTagsToStreamOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input for CreateStream.
 type CreateStreamInput struct {
-	ShardCount *int64  `type:"integer" required:"true"`
+	// The number of shards that the stream will use. The throughput of the stream
+	// is a function of the number of shards; more shards are required for greater
+	// provisioned throughput.
+	//
+	// Note: The default limit for an AWS account is 10 shards per stream. If you
+	// need to create a stream with more than 10 shards, contact AWS Support (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
+	// to increase the limit on your account.
+	ShardCount *int64 `type:"integer" required:"true"`
+
+	// A name to identify the stream. The stream name is scoped to the AWS account
+	// used by the application that creates the stream. It is also scoped by region.
+	// That is, two streams in two different AWS accounts can have the same name,
+	// and two streams in the same AWS account, but in two different regions, can
+	// have the same name.
 	StreamName *string `type:"string" required:"true"`
 
 	metadataCreateStreamInput `json:"-", xml:"-"`
@@ -369,7 +744,9 @@ type metadataCreateStreamOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input for DeleteStream.
 type DeleteStreamInput struct {
+	// The name of the stream to delete.
 	StreamName *string `type:"string" required:"true"`
 
 	metadataDeleteStreamInput `json:"-", xml:"-"`
@@ -387,10 +764,16 @@ type metadataDeleteStreamOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input for DescribeStream.
 type DescribeStreamInput struct {
+	// The shard ID of the shard to start with.
 	ExclusiveStartShardID *string `locationName:"ExclusiveStartShardId" type:"string"`
-	Limit                 *int64  `type:"integer"`
-	StreamName            *string `type:"string" required:"true"`
+
+	// The maximum number of shards to return.
+	Limit *int64 `type:"integer"`
+
+	// The name of the stream to describe.
+	StreamName *string `type:"string" required:"true"`
 
 	metadataDescribeStreamInput `json:"-", xml:"-"`
 }
@@ -399,7 +782,10 @@ type metadataDescribeStreamInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output for DescribeStream.
 type DescribeStreamOutput struct {
+	// The current status of the stream, the stream ARN, an array of shard objects
+	// that comprise the stream, and states whether there are more shards available.
 	StreamDescription *StreamDescription `type:"structure" required:"true"`
 
 	metadataDescribeStreamOutput `json:"-", xml:"-"`
@@ -409,8 +795,15 @@ type metadataDescribeStreamOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input for GetRecords.
 type GetRecordsInput struct {
-	Limit         *int64  `type:"integer"`
+	// The maximum number of records to return. Specify a value of up to 10,000.
+	// If you specify a value that is greater than 10,000, GetRecords throws InvalidArgumentException.
+	Limit *int64 `type:"integer"`
+
+	// The position in the shard from which you want to start sequentially reading
+	// data records. A shard iterator specifies this position using the sequence
+	// number of a data record in the shard.
 	ShardIterator *string `type:"string" required:"true"`
 
 	metadataGetRecordsInput `json:"-", xml:"-"`
@@ -420,9 +813,15 @@ type metadataGetRecordsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output for GetRecords.
 type GetRecordsOutput struct {
-	NextShardIterator *string   `type:"string"`
-	Records           []*Record `type:"list" required:"true"`
+	// The next position in the shard from which to start sequentially reading data
+	// records. If set to null, the shard has been closed and the requested iterator
+	// will not return any more data.
+	NextShardIterator *string `type:"string"`
+
+	// The data records retrieved from the shard.
+	Records []*Record `type:"list" required:"true"`
 
 	metadataGetRecordsOutput `json:"-", xml:"-"`
 }
@@ -431,11 +830,31 @@ type metadataGetRecordsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input for GetShardIterator.
 type GetShardIteratorInput struct {
-	ShardID                *string `locationName:"ShardId" type:"string" required:"true"`
-	ShardIteratorType      *string `type:"string" required:"true"`
+	// The shard ID of the shard to get the iterator for.
+	ShardID *string `locationName:"ShardId" type:"string" required:"true"`
+
+	// Determines how the shard iterator is used to start reading data records from
+	// the shard.
+	//
+	// The following are the valid shard iterator types:
+	//
+	//  AT_SEQUENCE_NUMBER - Start reading exactly from the position denoted by
+	// a specific sequence number. AFTER_SEQUENCE_NUMBER - Start reading right after
+	// the position denoted by a specific sequence number. TRIM_HORIZON - Start
+	// reading at the last untrimmed record in the shard in the system, which is
+	// the oldest data record in the shard. LATEST - Start reading just after the
+	// most recent record in the shard, so that you always read the most recent
+	// data in the shard.
+	ShardIteratorType *string `type:"string" required:"true"`
+
+	// The sequence number of the data record in the shard from which to start reading
+	// from.
 	StartingSequenceNumber *string `type:"string"`
-	StreamName             *string `type:"string" required:"true"`
+
+	// The name of the stream.
+	StreamName *string `type:"string" required:"true"`
 
 	metadataGetShardIteratorInput `json:"-", xml:"-"`
 }
@@ -444,7 +863,11 @@ type metadataGetShardIteratorInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output for GetShardIterator.
 type GetShardIteratorOutput struct {
+	// The position in the shard from which to start reading data records sequentially.
+	// A shard iterator specifies this position using the sequence number of a data
+	// record in a shard.
 	ShardIterator *string `type:"string"`
 
 	metadataGetShardIteratorOutput `json:"-", xml:"-"`
@@ -454,8 +877,13 @@ type metadataGetShardIteratorOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The range of possible hash key values for the shard, which is a set of ordered
+// contiguous positive integers.
 type HashKeyRange struct {
-	EndingHashKey   *string `type:"string" required:"true"`
+	// The ending hash key of the hash key range.
+	EndingHashKey *string `type:"string" required:"true"`
+
+	// The starting hash key of the hash key range.
 	StartingHashKey *string `type:"string" required:"true"`
 
 	metadataHashKeyRange `json:"-", xml:"-"`
@@ -465,9 +893,13 @@ type metadataHashKeyRange struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input for ListStreams.
 type ListStreamsInput struct {
+	// The name of the stream to start the list with.
 	ExclusiveStartStreamName *string `type:"string"`
-	Limit                    *int64  `type:"integer"`
+
+	// The maximum number of streams to list.
+	Limit *int64 `type:"integer"`
 
 	metadataListStreamsInput `json:"-", xml:"-"`
 }
@@ -476,9 +908,14 @@ type metadataListStreamsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output for ListStreams.
 type ListStreamsOutput struct {
-	HasMoreStreams *bool     `type:"boolean" required:"true"`
-	StreamNames    []*string `type:"list" required:"true"`
+	// If set to true, there are more streams available to list.
+	HasMoreStreams *bool `type:"boolean" required:"true"`
+
+	// The names of the streams that are associated with the AWS account making
+	// the ListStreams request.
+	StreamNames []*string `type:"list" required:"true"`
 
 	metadataListStreamsOutput `json:"-", xml:"-"`
 }
@@ -487,10 +924,19 @@ type metadataListStreamsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input for ListTagsForStream.
 type ListTagsForStreamInput struct {
+	// The key to use as the starting point for the list of tags. If this parameter
+	// is set, ListTagsForStream gets all tags that occur after ExclusiveStartTagKey.
 	ExclusiveStartTagKey *string `type:"string"`
-	Limit                *int64  `type:"integer"`
-	StreamName           *string `type:"string" required:"true"`
+
+	// The number of tags to return. If this number is less than the total number
+	// of tags associated with the stream, HasMoreTags is set to true. To list additional
+	// tags, set ExclusiveStartTagKey to the last key in the response.
+	Limit *int64 `type:"integer"`
+
+	// The name of the stream.
+	StreamName *string `type:"string" required:"true"`
 
 	metadataListTagsForStreamInput `json:"-", xml:"-"`
 }
@@ -499,9 +945,15 @@ type metadataListTagsForStreamInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output for ListTagsForStream.
 type ListTagsForStreamOutput struct {
-	HasMoreTags *bool  `type:"boolean" required:"true"`
-	Tags        []*Tag `type:"list" required:"true"`
+	// If set to true, more tags are available. To request additional tags, set
+	// ExclusiveStartTagKey to the key of the last tag returned.
+	HasMoreTags *bool `type:"boolean" required:"true"`
+
+	// A list of tags associated with StreamName, starting with the first tag after
+	// ExclusiveStartTagKey and up to the specified Limit.
+	Tags []*Tag `type:"list" required:"true"`
 
 	metadataListTagsForStreamOutput `json:"-", xml:"-"`
 }
@@ -510,10 +962,16 @@ type metadataListTagsForStreamOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input for MergeShards.
 type MergeShardsInput struct {
+	// The shard ID of the adjacent shard for the merge.
 	AdjacentShardToMerge *string `type:"string" required:"true"`
-	ShardToMerge         *string `type:"string" required:"true"`
-	StreamName           *string `type:"string" required:"true"`
+
+	// The shard ID of the shard to combine with the adjacent shard for the merge.
+	ShardToMerge *string `type:"string" required:"true"`
+
+	// The name of the stream for the merge.
+	StreamName *string `type:"string" required:"true"`
 
 	metadataMergeShardsInput `json:"-", xml:"-"`
 }
@@ -530,12 +988,36 @@ type metadataMergeShardsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input for PutRecord.
 type PutRecordInput struct {
-	Data                      []byte  `type:"blob" required:"true"`
-	ExplicitHashKey           *string `type:"string"`
-	PartitionKey              *string `type:"string" required:"true"`
+	// The data blob to put into the record, which is base64-encoded when the blob
+	// is serialized. The maximum size of the data blob (the payload before base64-encoding)
+	// is 50 kilobytes (KB)
+	Data []byte `type:"blob" required:"true"`
+
+	// The hash value used to explicitly determine the shard the data record is
+	// assigned to by overriding the partition key hash.
+	ExplicitHashKey *string `type:"string"`
+
+	// Determines which shard in the stream the data record is assigned to. Partition
+	// keys are Unicode strings with a maximum length limit of 256 bytes. Amazon
+	// Kinesis uses the partition key as input to a hash function that maps the
+	// partition key and associated data to a specific shard. Specifically, an MD5
+	// hash function is used to map partition keys to 128-bit integer values and
+	// to map associated data records to shards. As a result of this hashing mechanism,
+	// all data records with the same partition key will map to the same shard within
+	// the stream.
+	PartitionKey *string `type:"string" required:"true"`
+
+	// Guarantees strictly increasing sequence numbers, for puts from the same client
+	// and to the same partition key. Usage: set the SequenceNumberForOrdering of
+	// record n to the sequence number of record n-1 (as returned in the PutRecordResult
+	// when putting record n-1). If this parameter is not set, records will be coarsely
+	// ordered based on arrival time.
 	SequenceNumberForOrdering *string `type:"string"`
-	StreamName                *string `type:"string" required:"true"`
+
+	// The name of the stream to put the data record into.
+	StreamName *string `type:"string" required:"true"`
 
 	metadataPutRecordInput `json:"-", xml:"-"`
 }
@@ -544,9 +1026,16 @@ type metadataPutRecordInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output for PutRecord.
 type PutRecordOutput struct {
+	// The sequence number identifier that was assigned to the put data record.
+	// The sequence number for the record is unique across all records in the stream.
+	// A sequence number is the identifier associated with every record put into
+	// the stream.
 	SequenceNumber *string `type:"string" required:"true"`
-	ShardID        *string `locationName:"ShardId" type:"string" required:"true"`
+
+	// The shard ID of the shard where the data record was placed.
+	ShardID *string `locationName:"ShardId" type:"string" required:"true"`
 
 	metadataPutRecordOutput `json:"-", xml:"-"`
 }
@@ -555,9 +1044,13 @@ type metadataPutRecordOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A PutRecords request.
 type PutRecordsInput struct {
-	Records    []*PutRecordsRequestEntry `type:"list" required:"true"`
-	StreamName *string                   `type:"string" required:"true"`
+	// The records associated with the request.
+	Records []*PutRecordsRequestEntry `type:"list" required:"true"`
+
+	// The stream name associated with the request.
+	StreamName *string `type:"string" required:"true"`
 
 	metadataPutRecordsInput `json:"-", xml:"-"`
 }
@@ -566,9 +1059,17 @@ type metadataPutRecordsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// PutRecords results.
 type PutRecordsOutput struct {
-	FailedRecordCount *int64                   `type:"integer"`
-	Records           []*PutRecordsResultEntry `type:"list" required:"true"`
+	// The number of unsuccessfully processed records in a PutRecords request.
+	FailedRecordCount *int64 `type:"integer"`
+
+	// An array of successfully and unsuccessfully processed record results, correlated
+	// with the request by natural ordering. A record that is successfully added
+	// to your Amazon Kinesis stream includes SequenceNumber and ShardId in the
+	// result. A record that fails to be added to your Amazon Kinesis stream includes
+	// ErrorCode and ErrorMessage in the result.
+	Records []*PutRecordsResultEntry `type:"list" required:"true"`
 
 	metadataPutRecordsOutput `json:"-", xml:"-"`
 }
@@ -577,10 +1078,26 @@ type metadataPutRecordsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output for PutRecords.
 type PutRecordsRequestEntry struct {
-	Data            []byte  `type:"blob" required:"true"`
+	// The data blob to put into the record, which is base64-encoded when the blob
+	// is serialized. The maximum size of the data blob (the payload before base64-encoding)
+	// is 50 kilobytes (KB)
+	Data []byte `type:"blob" required:"true"`
+
+	// The hash value used to determine explicitly the shard that the data record
+	// is assigned to by overriding the partition key hash.
 	ExplicitHashKey *string `type:"string"`
-	PartitionKey    *string `type:"string" required:"true"`
+
+	// Determines which shard in the stream the data record is assigned to. Partition
+	// keys are Unicode strings with a maximum length limit of 256 bytes. Amazon
+	// Kinesis uses the partition key as input to a hash function that maps the
+	// partition key and associated data to a specific shard. Specifically, an MD5
+	// hash function is used to map partition keys to 128-bit integer values and
+	// to map associated data records to shards. As a result of this hashing mechanism,
+	// all data records with the same partition key map to the same shard within
+	// the stream.
+	PartitionKey *string `type:"string" required:"true"`
 
 	metadataPutRecordsRequestEntry `json:"-", xml:"-"`
 }
@@ -589,11 +1106,27 @@ type metadataPutRecordsRequestEntry struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the result of an individual record from a PutRecords request.
+// A record that is successfully added to your Amazon Kinesis stream includes
+// SequenceNumber and ShardId in the result. A record that fails to be added
+// to your Amazon Kinesis stream includes ErrorCode and ErrorMessage in the
+// result.
 type PutRecordsResultEntry struct {
-	ErrorCode      *string `type:"string"`
-	ErrorMessage   *string `type:"string"`
+	// The error code for an individual record result. ErrorCodes can be either
+	// ProvisionedThroughputExceededException or InternalFailure.
+	ErrorCode *string `type:"string"`
+
+	// The error message for an individual record result. An ErrorCode value of
+	// ProvisionedThroughputExceededException has an error message that includes
+	// the account ID, stream name, and shard ID. An ErrorCode value of InternalFailure
+	// has the error message "Internal Service Failure".
+	ErrorMessage *string `type:"string"`
+
+	// The sequence number for an individual record result.
 	SequenceNumber *string `type:"string"`
-	ShardID        *string `locationName:"ShardId" type:"string"`
+
+	// The shard ID for an individual record result.
+	ShardID *string `locationName:"ShardId" type:"string"`
 
 	metadataPutRecordsResultEntry `json:"-", xml:"-"`
 }
@@ -602,9 +1135,19 @@ type metadataPutRecordsResultEntry struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The unit of data of the Amazon Kinesis stream, which is composed of a sequence
+// number, a partition key, and a data blob.
 type Record struct {
-	Data           []byte  `type:"blob" required:"true"`
-	PartitionKey   *string `type:"string" required:"true"`
+	// The data blob. The data in the blob is both opaque and immutable to the Amazon
+	// Kinesis service, which does not inspect, interpret, or change the data in
+	// the blob in any way. The maximum size of the data blob (the payload before
+	// base64-encoding) is 50 kilobytes (KB)
+	Data []byte `type:"blob" required:"true"`
+
+	// Identifies which shard in the stream the data record is assigned to.
+	PartitionKey *string `type:"string" required:"true"`
+
+	// The unique identifier for the record in the Amazon Kinesis stream.
 	SequenceNumber *string `type:"string" required:"true"`
 
 	metadataRecord `json:"-", xml:"-"`
@@ -614,9 +1157,13 @@ type metadataRecord struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input for RemoveTagsFromStream.
 type RemoveTagsFromStreamInput struct {
-	StreamName *string   `type:"string" required:"true"`
-	TagKeys    []*string `type:"list" required:"true"`
+	// The name of the stream.
+	StreamName *string `type:"string" required:"true"`
+
+	// A list of tag keys. Each corresponding tag is removed from the stream.
+	TagKeys []*string `type:"list" required:"true"`
 
 	metadataRemoveTagsFromStreamInput `json:"-", xml:"-"`
 }
@@ -633,8 +1180,13 @@ type metadataRemoveTagsFromStreamOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The range of possible sequence numbers for the shard.
 type SequenceNumberRange struct {
-	EndingSequenceNumber   *string `type:"string"`
+	// The ending sequence number for the range. Shards that are in the OPEN state
+	// have an ending sequence number of null.
+	EndingSequenceNumber *string `type:"string"`
+
+	// The starting sequence number for the range.
 	StartingSequenceNumber *string `type:"string" required:"true"`
 
 	metadataSequenceNumberRange `json:"-", xml:"-"`
@@ -644,12 +1196,23 @@ type metadataSequenceNumberRange struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A uniquely identified group of data records in an Amazon Kinesis stream.
 type Shard struct {
-	AdjacentParentShardID *string              `locationName:"AdjacentParentShardId" type:"string"`
-	HashKeyRange          *HashKeyRange        `type:"structure" required:"true"`
-	ParentShardID         *string              `locationName:"ParentShardId" type:"string"`
-	SequenceNumberRange   *SequenceNumberRange `type:"structure" required:"true"`
-	ShardID               *string              `locationName:"ShardId" type:"string" required:"true"`
+	// The shard Id of the shard adjacent to the shard's parent.
+	AdjacentParentShardID *string `locationName:"AdjacentParentShardId" type:"string"`
+
+	// The range of possible hash key values for the shard, which is a set of ordered
+	// contiguous positive integers.
+	HashKeyRange *HashKeyRange `type:"structure" required:"true"`
+
+	// The shard Id of the shard's parent.
+	ParentShardID *string `locationName:"ParentShardId" type:"string"`
+
+	// The range of possible sequence numbers for the shard.
+	SequenceNumberRange *SequenceNumberRange `type:"structure" required:"true"`
+
+	// The unique identifier of the shard within the Amazon Kinesis stream.
+	ShardID *string `locationName:"ShardId" type:"string" required:"true"`
 
 	metadataShard `json:"-", xml:"-"`
 }
@@ -658,10 +1221,22 @@ type metadataShard struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input for SplitShard.
 type SplitShardInput struct {
+	// A hash key value for the starting hash key of one of the child shards created
+	// by the split. The hash key range for a given shard constitutes a set of ordered
+	// contiguous positive integers. The value for NewStartingHashKey must be in
+	// the range of hash keys being mapped into the shard. The NewStartingHashKey
+	// hash key value and all higher hash key values in hash key range are distributed
+	// to one of the child shards. All the lower hash key values in the range are
+	// distributed to the other child shard.
 	NewStartingHashKey *string `type:"string" required:"true"`
-	ShardToSplit       *string `type:"string" required:"true"`
-	StreamName         *string `type:"string" required:"true"`
+
+	// The shard ID of the shard to split.
+	ShardToSplit *string `type:"string" required:"true"`
+
+	// The name of the stream for the shard split.
+	StreamName *string `type:"string" required:"true"`
 
 	metadataSplitShardInput `json:"-", xml:"-"`
 }
@@ -678,12 +1253,33 @@ type metadataSplitShardOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output for DescribeStream.
 type StreamDescription struct {
-	HasMoreShards *bool    `type:"boolean" required:"true"`
-	Shards        []*Shard `type:"list" required:"true"`
-	StreamARN     *string  `type:"string" required:"true"`
-	StreamName    *string  `type:"string" required:"true"`
-	StreamStatus  *string  `type:"string" required:"true"`
+	// If set to true, more shards in the stream are available to describe.
+	HasMoreShards *bool `type:"boolean" required:"true"`
+
+	// The shards that comprise the stream.
+	Shards []*Shard `type:"list" required:"true"`
+
+	// The Amazon Resource Name (ARN) for the stream being described.
+	StreamARN *string `type:"string" required:"true"`
+
+	// The name of the stream being described.
+	StreamName *string `type:"string" required:"true"`
+
+	// The current status of the stream being described.
+	//
+	// The stream status is one of the following states:
+	//
+	//   CREATING - The stream is being created. Amazon Kinesis immediately returns
+	// and sets StreamStatus to CREATING.  DELETING - The stream is being deleted.
+	// The specified stream is in the DELETING state until Amazon Kinesis completes
+	// the deletion.  ACTIVE - The stream exists and is ready for read and write
+	// operations or deletion. You should perform read and write operations only
+	// on an ACTIVE stream.  UPDATING - Shards in the stream are being merged or
+	// split. Read and write operations continue to work while the stream is in
+	// the UPDATING state.
+	StreamStatus *string `type:"string" required:"true"`
 
 	metadataStreamDescription `json:"-", xml:"-"`
 }
@@ -692,8 +1288,15 @@ type metadataStreamDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Metadata assigned to the stream, consisting of a key-value pair.
 type Tag struct {
-	Key   *string `type:"string" required:"true"`
+	// A unique identifier for the tag. Maximum length: 128 characters. Valid characters:
+	// Unicode letters, digits, white space, _ . / = + - % @
+	Key *string `type:"string" required:"true"`
+
+	// An optional string, typically used to describe or define the tag. Maximum
+	// length: 256 characters. Valid characters: Unicode letters, digits, white
+	// space, _ . / = + - % @
 	Value *string `type:"string"`
 
 	metadataTag `json:"-", xml:"-"`

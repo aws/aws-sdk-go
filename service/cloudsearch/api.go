@@ -24,6 +24,9 @@ func (c *CloudSearch) BuildSuggestersRequest(input *BuildSuggestersInput) (req *
 	return
 }
 
+// Indexes the search suggestions. For more information, see Configuring Suggesters
+// (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-suggestions.html#configuring-suggesters)
+// in the Amazon CloudSearch Developer Guide.
 func (c *CloudSearch) BuildSuggesters(input *BuildSuggestersInput) (output *BuildSuggestersOutput, err error) {
 	req, out := c.BuildSuggestersRequest(input)
 	output = out
@@ -49,6 +52,9 @@ func (c *CloudSearch) CreateDomainRequest(input *CreateDomainInput) (req *aws.Re
 	return
 }
 
+// Creates a new search domain. For more information, see Creating a Search
+// Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/creating-domains.html"
+// target="_blank) in the Amazon CloudSearch Developer Guide.
 func (c *CloudSearch) CreateDomain(input *CreateDomainInput) (output *CreateDomainOutput, err error) {
 	req, out := c.CreateDomainRequest(input)
 	output = out
@@ -74,6 +80,10 @@ func (c *CloudSearch) DefineAnalysisSchemeRequest(input *DefineAnalysisSchemeInp
 	return
 }
 
+// Configures an analysis scheme that can be applied to a text or text-array
+// field to define language-specific text processing options. For more information,
+// see Configuring Analysis Schemes (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-analysis-schemes.html"
+// target="_blank) in the Amazon CloudSearch Developer Guide.
 func (c *CloudSearch) DefineAnalysisScheme(input *DefineAnalysisSchemeInput) (output *DefineAnalysisSchemeOutput, err error) {
 	req, out := c.DefineAnalysisSchemeRequest(input)
 	output = out
@@ -99,6 +109,10 @@ func (c *CloudSearch) DefineExpressionRequest(input *DefineExpressionInput) (req
 	return
 }
 
+// Configures an Expression for the search domain. Used to create new expressions
+// and modify existing ones. If the expression exists, the new configuration
+// replaces the old one. For more information, see Configuring Expressions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html"
+// target="_blank) in the Amazon CloudSearch Developer Guide.
 func (c *CloudSearch) DefineExpression(input *DefineExpressionInput) (output *DefineExpressionOutput, err error) {
 	req, out := c.DefineExpressionRequest(input)
 	output = out
@@ -124,6 +138,14 @@ func (c *CloudSearch) DefineIndexFieldRequest(input *DefineIndexFieldInput) (req
 	return
 }
 
+// Configures an IndexField for the search domain. Used to create new fields
+// and modify existing ones. You must specify the name of the domain you are
+// configuring and an index field configuration. The index field configuration
+// specifies a unique name, the index field type, and the options you want to
+// configure for the field. The options you can specify depend on the IndexFieldType.
+// If the field exists, the new configuration replaces the old one. For more
+// information, see Configuring Index Fields (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-index-fields.html"
+// target="_blank) in the Amazon CloudSearch Developer Guide.
 func (c *CloudSearch) DefineIndexField(input *DefineIndexFieldInput) (output *DefineIndexFieldOutput, err error) {
 	req, out := c.DefineIndexFieldRequest(input)
 	output = out
@@ -149,6 +171,12 @@ func (c *CloudSearch) DefineSuggesterRequest(input *DefineSuggesterInput) (req *
 	return
 }
 
+// Configures a suggester for a domain. A suggester enables you to display possible
+// matches before users finish typing their queries. When you configure a suggester,
+// you must specify the name of the text field you want to search for possible
+// matches and a unique name for the suggester. For more information, see Getting
+// Search Suggestions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-suggestions.html"
+// target="_blank) in the Amazon CloudSearch Developer Guide.
 func (c *CloudSearch) DefineSuggester(input *DefineSuggesterInput) (output *DefineSuggesterOutput, err error) {
 	req, out := c.DefineSuggesterRequest(input)
 	output = out
@@ -174,6 +202,9 @@ func (c *CloudSearch) DeleteAnalysisSchemeRequest(input *DeleteAnalysisSchemeInp
 	return
 }
 
+// Deletes an analysis scheme. For more information, see Configuring Analysis
+// Schemes (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-analysis-schemes.html"
+// target="_blank) in the Amazon CloudSearch Developer Guide.
 func (c *CloudSearch) DeleteAnalysisScheme(input *DeleteAnalysisSchemeInput) (output *DeleteAnalysisSchemeOutput, err error) {
 	req, out := c.DeleteAnalysisSchemeRequest(input)
 	output = out
@@ -199,6 +230,10 @@ func (c *CloudSearch) DeleteDomainRequest(input *DeleteDomainInput) (req *aws.Re
 	return
 }
 
+// Permanently deletes a search domain and all of its data. Once a domain has
+// been deleted, it cannot be recovered. For more information, see Deleting
+// a Search Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/deleting-domains.html"
+// target="_blank) in the Amazon CloudSearch Developer Guide.
 func (c *CloudSearch) DeleteDomain(input *DeleteDomainInput) (output *DeleteDomainOutput, err error) {
 	req, out := c.DeleteDomainRequest(input)
 	output = out
@@ -224,6 +259,9 @@ func (c *CloudSearch) DeleteExpressionRequest(input *DeleteExpressionInput) (req
 	return
 }
 
+// Removes an Expression from the search domain. For more information, see Configuring
+// Expressions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html"
+// target="_blank) in the Amazon CloudSearch Developer Guide.
 func (c *CloudSearch) DeleteExpression(input *DeleteExpressionInput) (output *DeleteExpressionOutput, err error) {
 	req, out := c.DeleteExpressionRequest(input)
 	output = out
@@ -249,6 +287,9 @@ func (c *CloudSearch) DeleteIndexFieldRequest(input *DeleteIndexFieldInput) (req
 	return
 }
 
+// Removes an IndexField from the search domain. For more information, see Configuring
+// Index Fields (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-index-fields.html"
+// target="_blank) in the Amazon CloudSearch Developer Guide.
 func (c *CloudSearch) DeleteIndexField(input *DeleteIndexFieldInput) (output *DeleteIndexFieldOutput, err error) {
 	req, out := c.DeleteIndexFieldRequest(input)
 	output = out
@@ -274,6 +315,9 @@ func (c *CloudSearch) DeleteSuggesterRequest(input *DeleteSuggesterInput) (req *
 	return
 }
 
+// Deletes a suggester. For more information, see Getting Search Suggestions
+// (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-suggestions.html"
+// target="_blank) in the Amazon CloudSearch Developer Guide.
 func (c *CloudSearch) DeleteSuggester(input *DeleteSuggesterInput) (output *DeleteSuggesterOutput, err error) {
 	req, out := c.DeleteSuggesterRequest(input)
 	output = out
@@ -299,6 +343,13 @@ func (c *CloudSearch) DescribeAnalysisSchemesRequest(input *DescribeAnalysisSche
 	return
 }
 
+// Gets the analysis schemes configured for a domain. An analysis scheme defines
+// language-specific text processing options for a text field. Can be limited
+// to specific analysis schemes by name. By default, shows all analysis schemes
+// and includes any pending changes to the configuration. Set the Deployed option
+// to true to show the active configuration and exclude pending changes. For
+// more information, see Configuring Analysis Schemes (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-analysis-schemes.html"
+// target="_blank) in the Amazon CloudSearch Developer Guide.
 func (c *CloudSearch) DescribeAnalysisSchemes(input *DescribeAnalysisSchemesInput) (output *DescribeAnalysisSchemesOutput, err error) {
 	req, out := c.DescribeAnalysisSchemesRequest(input)
 	output = out
@@ -324,6 +375,11 @@ func (c *CloudSearch) DescribeAvailabilityOptionsRequest(input *DescribeAvailabi
 	return
 }
 
+// Gets the availability options configured for a domain. By default, shows
+// the configuration with any pending changes. Set the Deployed option to true
+// to show the active configuration and exclude pending changes. For more information,
+// see Configuring Availability Options (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-availability-options.html"
+// target="_blank) in the Amazon CloudSearch Developer Guide.
 func (c *CloudSearch) DescribeAvailabilityOptions(input *DescribeAvailabilityOptionsInput) (output *DescribeAvailabilityOptionsOutput, err error) {
 	req, out := c.DescribeAvailabilityOptionsRequest(input)
 	output = out
@@ -349,6 +405,12 @@ func (c *CloudSearch) DescribeDomainsRequest(input *DescribeDomainsInput) (req *
 	return
 }
 
+// Gets information about the search domains owned by this account. Can be limited
+// to specific domains. Shows all domains by default. To get the number of searchable
+// documents in a domain, use the console or submit a matchall request to your
+// domain's search endpoint: q=matchall&amp;q.parser=structured&amp;size=0.
+// For more information, see Getting Information about a Search Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-domain-info.html"
+// target="_blank) in the Amazon CloudSearch Developer Guide.
 func (c *CloudSearch) DescribeDomains(input *DescribeDomainsInput) (output *DescribeDomainsOutput, err error) {
 	req, out := c.DescribeDomainsRequest(input)
 	output = out
@@ -374,6 +436,12 @@ func (c *CloudSearch) DescribeExpressionsRequest(input *DescribeExpressionsInput
 	return
 }
 
+// Gets the expressions configured for the search domain. Can be limited to
+// specific expressions by name. By default, shows all expressions and includes
+// any pending changes to the configuration. Set the Deployed option to true
+// to show the active configuration and exclude pending changes. For more information,
+// see Configuring Expressions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html"
+// target="_blank) in the Amazon CloudSearch Developer Guide.
 func (c *CloudSearch) DescribeExpressions(input *DescribeExpressionsInput) (output *DescribeExpressionsOutput, err error) {
 	req, out := c.DescribeExpressionsRequest(input)
 	output = out
@@ -399,6 +467,12 @@ func (c *CloudSearch) DescribeIndexFieldsRequest(input *DescribeIndexFieldsInput
 	return
 }
 
+// Gets information about the index fields configured for the search domain.
+// Can be limited to specific fields by name. By default, shows all fields and
+// includes any pending changes to the configuration. Set the Deployed option
+// to true to show the active configuration and exclude pending changes. For
+// more information, see Getting Domain Information (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-domain-info.html"
+// target="_blank) in the Amazon CloudSearch Developer Guide.
 func (c *CloudSearch) DescribeIndexFields(input *DescribeIndexFieldsInput) (output *DescribeIndexFieldsOutput, err error) {
 	req, out := c.DescribeIndexFieldsRequest(input)
 	output = out
@@ -424,6 +498,10 @@ func (c *CloudSearch) DescribeScalingParametersRequest(input *DescribeScalingPar
 	return
 }
 
+// Gets the scaling parameters configured for a domain. A domain's scaling parameters
+// specify the desired search instance type and replication count. For more
+// information, see Configuring Scaling Options (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-scaling-options.html"
+// target="_blank) in the Amazon CloudSearch Developer Guide.
 func (c *CloudSearch) DescribeScalingParameters(input *DescribeScalingParametersInput) (output *DescribeScalingParametersOutput, err error) {
 	req, out := c.DescribeScalingParametersRequest(input)
 	output = out
@@ -449,6 +527,12 @@ func (c *CloudSearch) DescribeServiceAccessPoliciesRequest(input *DescribeServic
 	return
 }
 
+// Gets information about the access policies that control access to the domain's
+// document and search endpoints. By default, shows the configuration with any
+// pending changes. Set the Deployed option to true to show the active configuration
+// and exclude pending changes. For more information, see Configuring Access
+// for a Search Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-access.html"
+// target="_blank) in the Amazon CloudSearch Developer Guide.
 func (c *CloudSearch) DescribeServiceAccessPolicies(input *DescribeServiceAccessPoliciesInput) (output *DescribeServiceAccessPoliciesOutput, err error) {
 	req, out := c.DescribeServiceAccessPoliciesRequest(input)
 	output = out
@@ -474,6 +558,13 @@ func (c *CloudSearch) DescribeSuggestersRequest(input *DescribeSuggestersInput) 
 	return
 }
 
+// Gets the suggesters configured for a domain. A suggester enables you to display
+// possible matches before users finish typing their queries. Can be limited
+// to specific suggesters by name. By default, shows all suggesters and includes
+// any pending changes to the configuration. Set the Deployed option to true
+// to show the active configuration and exclude pending changes. For more information,
+// see Getting Search Suggestions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-suggestions.html"
+// target="_blank) in the Amazon CloudSearch Developer Guide.
 func (c *CloudSearch) DescribeSuggesters(input *DescribeSuggestersInput) (output *DescribeSuggestersOutput, err error) {
 	req, out := c.DescribeSuggestersRequest(input)
 	output = out
@@ -499,6 +590,9 @@ func (c *CloudSearch) IndexDocumentsRequest(input *IndexDocumentsInput) (req *aw
 	return
 }
 
+// Tells the search domain to start indexing its documents using the latest
+// indexing options. This operation must be invoked to activate options whose
+// OptionStatus is RequiresIndexDocuments.
 func (c *CloudSearch) IndexDocuments(input *IndexDocumentsInput) (output *IndexDocumentsOutput, err error) {
 	req, out := c.IndexDocumentsRequest(input)
 	output = out
@@ -524,6 +618,7 @@ func (c *CloudSearch) ListDomainNamesRequest(input *ListDomainNamesInput) (req *
 	return
 }
 
+// Lists all search domains owned by an account.
 func (c *CloudSearch) ListDomainNames(input *ListDomainNamesInput) (output *ListDomainNamesOutput, err error) {
 	req, out := c.ListDomainNamesRequest(input)
 	output = out
@@ -549,6 +644,12 @@ func (c *CloudSearch) UpdateAvailabilityOptionsRequest(input *UpdateAvailability
 	return
 }
 
+// Configures the availability options for a domain. Enabling the Multi-AZ option
+// expands an Amazon CloudSearch domain to an additional Availability Zone in
+// the same Region to increase fault tolerance in the event of a service disruption.
+// Changes to the Multi-AZ option can take about half an hour to become active.
+// For more information, see Configuring Availability Options (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-availability-options.html"
+// target="_blank) in the Amazon CloudSearch Developer Guide.
 func (c *CloudSearch) UpdateAvailabilityOptions(input *UpdateAvailabilityOptionsInput) (output *UpdateAvailabilityOptionsOutput, err error) {
 	req, out := c.UpdateAvailabilityOptionsRequest(input)
 	output = out
@@ -574,6 +675,14 @@ func (c *CloudSearch) UpdateScalingParametersRequest(input *UpdateScalingParamet
 	return
 }
 
+// Configures scaling parameters for a domain. A domain's scaling parameters
+// specify the desired search instance type and replication count. Amazon CloudSearch
+// will still automatically scale your domain based on the volume of data and
+// traffic, but not below the desired instance type and replication count. If
+// the Multi-AZ option is enabled, these values control the resources used per
+// Availability Zone. For more information, see Configuring Scaling Options
+// (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-scaling-options.html"
+// target="_blank) in the Amazon CloudSearch Developer Guide.
 func (c *CloudSearch) UpdateScalingParameters(input *UpdateScalingParametersInput) (output *UpdateScalingParametersOutput, err error) {
 	req, out := c.UpdateScalingParametersRequest(input)
 	output = out
@@ -599,6 +708,10 @@ func (c *CloudSearch) UpdateServiceAccessPoliciesRequest(input *UpdateServiceAcc
 	return
 }
 
+// Configures the access rules that control access to the domain's document
+// and search endpoints. For more information, see  Configuring Access for an
+// Amazon CloudSearch Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-access.html"
+// target="_blank).
 func (c *CloudSearch) UpdateServiceAccessPolicies(input *UpdateServiceAccessPoliciesInput) (output *UpdateServiceAccessPoliciesOutput, err error) {
 	req, out := c.UpdateServiceAccessPoliciesRequest(input)
 	output = out
@@ -608,9 +721,17 @@ func (c *CloudSearch) UpdateServiceAccessPolicies(input *UpdateServiceAccessPoli
 
 var opUpdateServiceAccessPolicies *aws.Operation
 
+// The configured access rules for the domain's document and search endpoints,
+// and the current status of those rules.
 type AccessPoliciesStatus struct {
-	Options *string       `type:"string" required:"true"`
-	Status  *OptionStatus `type:"structure" required:"true"`
+	// Access rules for a domain's document or search service endpoints. For more
+	// information, see Configuring Access for a Search Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-access.html"
+	// target="_blank) in the Amazon CloudSearch Developer Guide. The maximum size
+	// of a policy document is 100 KB.
+	Options *string `type:"string" required:"true"`
+
+	// The status of domain configuration option.
+	Status *OptionStatus `type:"structure" required:"true"`
 
 	metadataAccessPoliciesStatus `json:"-", xml:"-"`
 }
@@ -619,12 +740,44 @@ type metadataAccessPoliciesStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Synonyms, stopwords, and stemming options for an analysis scheme. Includes
+// tokenization dictionary for Japanese.
 type AnalysisOptions struct {
-	AlgorithmicStemming            *string `type:"string"`
+	// The level of algorithmic stemming to perform: none, minimal, light, or full.
+	// The available levels vary depending on the language. For more information,
+	// see Language Specific Text Processing Settings (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/text-processing.html#text-processing-settings"
+	// target="_blank) in the Amazon CloudSearch Developer Guide
+	AlgorithmicStemming *string `type:"string"`
+
+	// A JSON array that contains a collection of terms, tokens, readings and part
+	// of speech for Japanese Tokenizaiton. The Japanese tokenization dictionary
+	// enables you to override the default tokenization for selected terms. This
+	// is only valid for Japanese language fields.
 	JapaneseTokenizationDictionary *string `type:"string"`
-	StemmingDictionary             *string `type:"string"`
-	Stopwords                      *string `type:"string"`
-	Synonyms                       *string `type:"string"`
+
+	// A JSON object that contains a collection of string:value pairs that each
+	// map a term to its stem. For example, {"term1": "stem1", "term2": "stem2",
+	// "term3": "stem3"}. The stemming dictionary is applied in addition to any
+	// algorithmic stemming. This enables you to override the results of the algorithmic
+	// stemming to correct specific cases of overstemming or understemming. The
+	// maximum size of a stemming dictionary is 500 KB.
+	StemmingDictionary *string `type:"string"`
+
+	// A JSON array of terms to ignore during indexing and searching. For example,
+	// ["a", "an", "the", "of"]. The stopwords dictionary must explicitly list each
+	// word you want to ignore. Wildcards and regular expressions are not supported.
+	Stopwords *string `type:"string"`
+
+	// A JSON object that defines synonym groups and aliases. A synonym group is
+	// an array of arrays, where each sub-array is a group of terms where each term
+	// in the group is considered a synonym of every other term in the group. The
+	// aliases value is an object that contains a collection of string:value pairs
+	// where the string specifies a term and the array of values specifies each
+	// of the aliases for that term. An alias is considered a synonym of the specified
+	// term, but the term is not considered a synonym of the alias. For more information
+	// about specifying synonyms, see Synonyms (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-analysis-schemes.html#synonyms)
+	// in the Amazon CloudSearch Developer Guide.
+	Synonyms *string `type:"string"`
 
 	metadataAnalysisOptions `json:"-", xml:"-"`
 }
@@ -633,10 +786,22 @@ type metadataAnalysisOptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Configuration information for an analysis scheme. Each analysis scheme has
+// a unique name and specifies the language of the text to be processed. The
+// following options can be configured for an analysis scheme: Synonyms, Stopwords,
+// StemmingDictionary, JapaneseTokenizationDictionary and AlgorithmicStemming.
 type AnalysisScheme struct {
-	AnalysisOptions        *AnalysisOptions `type:"structure"`
-	AnalysisSchemeLanguage *string          `type:"string" required:"true"`
-	AnalysisSchemeName     *string          `type:"string" required:"true"`
+	// Synonyms, stopwords, and stemming options for an analysis scheme. Includes
+	// tokenization dictionary for Japanese.
+	AnalysisOptions *AnalysisOptions `type:"structure"`
+
+	// An IETF RFC 4646 (http://tools.ietf.org/html/rfc4646" target="_blank) language
+	// code or mul for multiple languages.
+	AnalysisSchemeLanguage *string `type:"string" required:"true"`
+
+	// Names must begin with a letter and can contain the following characters:
+	// a-z (lowercase), 0-9, and _ (underscore).
+	AnalysisSchemeName *string `type:"string" required:"true"`
 
 	metadataAnalysisScheme `json:"-", xml:"-"`
 }
@@ -645,9 +810,16 @@ type metadataAnalysisScheme struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The status and configuration of an AnalysisScheme.
 type AnalysisSchemeStatus struct {
+	// Configuration information for an analysis scheme. Each analysis scheme has
+	// a unique name and specifies the language of the text to be processed. The
+	// following options can be configured for an analysis scheme: Synonyms, Stopwords,
+	// StemmingDictionary, JapaneseTokenizationDictionary and AlgorithmicStemming.
 	Options *AnalysisScheme `type:"structure" required:"true"`
-	Status  *OptionStatus   `type:"structure" required:"true"`
+
+	// The status of domain configuration option.
+	Status *OptionStatus `type:"structure" required:"true"`
 
 	metadataAnalysisSchemeStatus `json:"-", xml:"-"`
 }
@@ -656,9 +828,13 @@ type metadataAnalysisSchemeStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The status and configuration of the domain's availability options.
 type AvailabilityOptionsStatus struct {
-	Options *bool         `type:"boolean" required:"true"`
-	Status  *OptionStatus `type:"structure" required:"true"`
+	// The availability options configured for the domain.
+	Options *bool `type:"boolean" required:"true"`
+
+	// The status of domain configuration option.
+	Status *OptionStatus `type:"structure" required:"true"`
 
 	metadataAvailabilityOptionsStatus `json:"-", xml:"-"`
 }
@@ -667,7 +843,13 @@ type metadataAvailabilityOptionsStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the BuildSuggester operation. Specifies the
+// name of the domain you want to update.
 type BuildSuggestersInput struct {
+	// A string that represents the name of a domain. Domain names are unique across
+	// the domains owned by an account within an AWS region. Domain names start
+	// with a letter or number and can contain the following characters: a-z (lowercase),
+	// 0-9, and - (hyphen).
 	DomainName *string `type:"string" required:"true"`
 
 	metadataBuildSuggestersInput `json:"-", xml:"-"`
@@ -677,7 +859,10 @@ type metadataBuildSuggestersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of a BuildSuggester request. Contains a list of the fields used
+// for suggestions.
 type BuildSuggestersOutput struct {
+	// A list of field names.
 	FieldNames []*string `type:"list"`
 
 	metadataBuildSuggestersOutput `json:"-", xml:"-"`
@@ -687,7 +872,12 @@ type metadataBuildSuggestersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the CreateDomain operation. Specifies a name
+// for the new search domain.
 type CreateDomainInput struct {
+	// A name for the domain you are creating. Allowed characters are a-z (lower-case
+	// letters), 0-9, and hyphen (-). Domain names must start with a letter or number
+	// and be at least 3 and no more than 28 characters long.
 	DomainName *string `type:"string" required:"true"`
 
 	metadataCreateDomainInput `json:"-", xml:"-"`
@@ -697,7 +887,10 @@ type metadataCreateDomainInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of a CreateDomainRequest. Contains the status of a newly created
+// domain.
 type CreateDomainOutput struct {
+	// The current status of the search domain.
 	DomainStatus *DomainStatus `type:"structure"`
 
 	metadataCreateDomainOutput `json:"-", xml:"-"`
@@ -707,12 +900,23 @@ type metadataCreateDomainOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Options for a field that contains an array of dates. Present if IndexFieldType
+// specifies the field is of type date-array. All options are enabled by default.
 type DateArrayOptions struct {
-	DefaultValue  *string `type:"string"`
-	FacetEnabled  *bool   `type:"boolean"`
-	ReturnEnabled *bool   `type:"boolean"`
-	SearchEnabled *bool   `type:"boolean"`
-	SourceFields  *string `type:"string"`
+	// A value to use for the field if the field isn't specified for a document.
+	DefaultValue *string `type:"string"`
+
+	// Whether facet information can be returned for the field.
+	FacetEnabled *bool `type:"boolean"`
+
+	// Whether the contents of the field can be returned in the search results.
+	ReturnEnabled *bool `type:"boolean"`
+
+	// Whether the contents of the field are searchable.
+	SearchEnabled *bool `type:"boolean"`
+
+	// A list of source fields to map to the field.
+	SourceFields *string `type:"string"`
 
 	metadataDateArrayOptions `json:"-", xml:"-"`
 }
@@ -721,13 +925,31 @@ type metadataDateArrayOptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Options for a date field. Dates and times are specified in UTC (Coordinated
+// Universal Time) according to IETF RFC3339: yyyy-mm-ddT00:00:00Z. Present
+// if IndexFieldType specifies the field is of type date. All options are enabled
+// by default.
 type DateOptions struct {
-	DefaultValue  *string `type:"string"`
-	FacetEnabled  *bool   `type:"boolean"`
-	ReturnEnabled *bool   `type:"boolean"`
-	SearchEnabled *bool   `type:"boolean"`
-	SortEnabled   *bool   `type:"boolean"`
-	SourceField   *string `type:"string"`
+	// A value to use for the field if the field isn't specified for a document.
+	DefaultValue *string `type:"string"`
+
+	// Whether facet information can be returned for the field.
+	FacetEnabled *bool `type:"boolean"`
+
+	// Whether the contents of the field can be returned in the search results.
+	ReturnEnabled *bool `type:"boolean"`
+
+	// Whether the contents of the field are searchable.
+	SearchEnabled *bool `type:"boolean"`
+
+	// Whether the field can be used to sort the search results.
+	SortEnabled *bool `type:"boolean"`
+
+	// A string that represents the name of an index field. Field names begin with
+	// a letter and can contain the following characters: a-z (lowercase), 0-9,
+	// and _ (underscore). The name "score" is reserved and cannot be used as a
+	// field name. To reference a document's ID, you can use the name _id.
+	SourceField *string `type:"string"`
 
 	metadataDateOptions `json:"-", xml:"-"`
 }
@@ -736,9 +958,20 @@ type metadataDateOptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the DefineAnalysisScheme operation. Specifies
+// the name of the domain you want to update and the analysis scheme configuration.
 type DefineAnalysisSchemeInput struct {
+	// Configuration information for an analysis scheme. Each analysis scheme has
+	// a unique name and specifies the language of the text to be processed. The
+	// following options can be configured for an analysis scheme: Synonyms, Stopwords,
+	// StemmingDictionary, JapaneseTokenizationDictionary and AlgorithmicStemming.
 	AnalysisScheme *AnalysisScheme `type:"structure" required:"true"`
-	DomainName     *string         `type:"string" required:"true"`
+
+	// A string that represents the name of a domain. Domain names are unique across
+	// the domains owned by an account within an AWS region. Domain names start
+	// with a letter or number and can contain the following characters: a-z (lowercase),
+	// 0-9, and - (hyphen).
+	DomainName *string `type:"string" required:"true"`
 
 	metadataDefineAnalysisSchemeInput `json:"-", xml:"-"`
 }
@@ -747,7 +980,10 @@ type metadataDefineAnalysisSchemeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of a DefineAnalysisScheme request. Contains the status of the
+// newly-configured analysis scheme.
 type DefineAnalysisSchemeOutput struct {
+	// The status and configuration of an AnalysisScheme.
 	AnalysisScheme *AnalysisSchemeStatus `type:"structure" required:"true"`
 
 	metadataDefineAnalysisSchemeOutput `json:"-", xml:"-"`
@@ -757,8 +993,19 @@ type metadataDefineAnalysisSchemeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the DefineExpression operation. Specifies
+// the name of the domain you want to update and the expression you want to
+// configure.
 type DefineExpressionInput struct {
-	DomainName *string     `type:"string" required:"true"`
+	// A string that represents the name of a domain. Domain names are unique across
+	// the domains owned by an account within an AWS region. Domain names start
+	// with a letter or number and can contain the following characters: a-z (lowercase),
+	// 0-9, and - (hyphen).
+	DomainName *string `type:"string" required:"true"`
+
+	// A named expression that can be evaluated at search time. Can be used to sort
+	// the search results, define other expressions, or return computed information
+	// in the search results.
 	Expression *Expression `type:"structure" required:"true"`
 
 	metadataDefineExpressionInput `json:"-", xml:"-"`
@@ -768,7 +1015,10 @@ type metadataDefineExpressionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of a DefineExpression request. Contains the status of the newly-configured
+// expression.
 type DefineExpressionOutput struct {
+	// The value of an Expression and its current status.
 	Expression *ExpressionStatus `type:"structure" required:"true"`
 
 	metadataDefineExpressionOutput `json:"-", xml:"-"`
@@ -778,8 +1028,16 @@ type metadataDefineExpressionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the DefineIndexField operation. Specifies
+// the name of the domain you want to update and the index field configuration.
 type DefineIndexFieldInput struct {
-	DomainName *string     `type:"string" required:"true"`
+	// A string that represents the name of a domain. Domain names are unique across
+	// the domains owned by an account within an AWS region. Domain names start
+	// with a letter or number and can contain the following characters: a-z (lowercase),
+	// 0-9, and - (hyphen).
+	DomainName *string `type:"string" required:"true"`
+
+	// The index field and field options you want to configure.
 	IndexField *IndexField `type:"structure" required:"true"`
 
 	metadataDefineIndexFieldInput `json:"-", xml:"-"`
@@ -789,7 +1047,10 @@ type metadataDefineIndexFieldInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of a DefineIndexField request. Contains the status of the newly-configured
+// index field.
 type DefineIndexFieldOutput struct {
+	// The value of an IndexField and its current status.
 	IndexField *IndexFieldStatus `type:"structure" required:"true"`
 
 	metadataDefineIndexFieldOutput `json:"-", xml:"-"`
@@ -799,9 +1060,19 @@ type metadataDefineIndexFieldOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the DefineSuggester operation. Specifies
+// the name of the domain you want to update and the suggester configuration.
 type DefineSuggesterInput struct {
-	DomainName *string    `type:"string" required:"true"`
-	Suggester  *Suggester `type:"structure" required:"true"`
+	// A string that represents the name of a domain. Domain names are unique across
+	// the domains owned by an account within an AWS region. Domain names start
+	// with a letter or number and can contain the following characters: a-z (lowercase),
+	// 0-9, and - (hyphen).
+	DomainName *string `type:"string" required:"true"`
+
+	// Configuration information for a search suggester. Each suggester has a unique
+	// name and specifies the text field you want to use for suggestions. The following
+	// options can be configured for a suggester: FuzzyMatching, SortExpression.
+	Suggester *Suggester `type:"structure" required:"true"`
 
 	metadataDefineSuggesterInput `json:"-", xml:"-"`
 }
@@ -810,7 +1081,10 @@ type metadataDefineSuggesterInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of a DefineSuggester request. Contains the status of the newly-configured
+// suggester.
 type DefineSuggesterOutput struct {
+	// The value of a Suggester and its current status.
 	Suggester *SuggesterStatus `type:"structure" required:"true"`
 
 	metadataDefineSuggesterOutput `json:"-", xml:"-"`
@@ -820,9 +1094,18 @@ type metadataDefineSuggesterOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the DeleteAnalysisScheme operation. Specifies
+// the name of the domain you want to update and the analysis scheme you want
+// to delete.
 type DeleteAnalysisSchemeInput struct {
+	// The name of the analysis scheme you want to delete.
 	AnalysisSchemeName *string `type:"string" required:"true"`
-	DomainName         *string `type:"string" required:"true"`
+
+	// A string that represents the name of a domain. Domain names are unique across
+	// the domains owned by an account within an AWS region. Domain names start
+	// with a letter or number and can contain the following characters: a-z (lowercase),
+	// 0-9, and - (hyphen).
+	DomainName *string `type:"string" required:"true"`
 
 	metadataDeleteAnalysisSchemeInput `json:"-", xml:"-"`
 }
@@ -831,7 +1114,10 @@ type metadataDeleteAnalysisSchemeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of a DeleteAnalysisScheme request. Contains the status of the
+// deleted analysis scheme.
 type DeleteAnalysisSchemeOutput struct {
+	// The status of the analysis scheme being deleted.
 	AnalysisScheme *AnalysisSchemeStatus `type:"structure" required:"true"`
 
 	metadataDeleteAnalysisSchemeOutput `json:"-", xml:"-"`
@@ -841,7 +1127,10 @@ type metadataDeleteAnalysisSchemeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the DeleteDomain operation. Specifies the
+// name of the domain you want to delete.
 type DeleteDomainInput struct {
+	// The name of the domain you want to permanently delete.
 	DomainName *string `type:"string" required:"true"`
 
 	metadataDeleteDomainInput `json:"-", xml:"-"`
@@ -851,7 +1140,10 @@ type metadataDeleteDomainInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of a DeleteDomain request. Contains the status of a newly deleted
+// domain, or no status if the domain has already been completely deleted.
 type DeleteDomainOutput struct {
+	// The current status of the search domain.
 	DomainStatus *DomainStatus `type:"structure"`
 
 	metadataDeleteDomainOutput `json:"-", xml:"-"`
@@ -861,8 +1153,17 @@ type metadataDeleteDomainOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the DeleteExpression operation. Specifies
+// the name of the domain you want to update and the name of the expression
+// you want to delete.
 type DeleteExpressionInput struct {
-	DomainName     *string `type:"string" required:"true"`
+	// A string that represents the name of a domain. Domain names are unique across
+	// the domains owned by an account within an AWS region. Domain names start
+	// with a letter or number and can contain the following characters: a-z (lowercase),
+	// 0-9, and - (hyphen).
+	DomainName *string `type:"string" required:"true"`
+
+	// The name of the Expression to delete.
 	ExpressionName *string `type:"string" required:"true"`
 
 	metadataDeleteExpressionInput `json:"-", xml:"-"`
@@ -872,7 +1173,10 @@ type metadataDeleteExpressionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of a DeleteExpression request. Specifies the expression being
+// deleted.
 type DeleteExpressionOutput struct {
+	// The status of the expression being deleted.
 	Expression *ExpressionStatus `type:"structure" required:"true"`
 
 	metadataDeleteExpressionOutput `json:"-", xml:"-"`
@@ -882,8 +1186,18 @@ type metadataDeleteExpressionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the DeleteIndexField operation. Specifies
+// the name of the domain you want to update and the name of the index field
+// you want to delete.
 type DeleteIndexFieldInput struct {
-	DomainName     *string `type:"string" required:"true"`
+	// A string that represents the name of a domain. Domain names are unique across
+	// the domains owned by an account within an AWS region. Domain names start
+	// with a letter or number and can contain the following characters: a-z (lowercase),
+	// 0-9, and - (hyphen).
+	DomainName *string `type:"string" required:"true"`
+
+	// The name of the index field your want to remove from the domain's indexing
+	// options.
 	IndexFieldName *string `type:"string" required:"true"`
 
 	metadataDeleteIndexFieldInput `json:"-", xml:"-"`
@@ -893,7 +1207,9 @@ type metadataDeleteIndexFieldInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of a DeleteIndexField request.
 type DeleteIndexFieldOutput struct {
+	// The status of the index field being deleted.
 	IndexField *IndexFieldStatus `type:"structure" required:"true"`
 
 	metadataDeleteIndexFieldOutput `json:"-", xml:"-"`
@@ -903,8 +1219,17 @@ type metadataDeleteIndexFieldOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the DeleteSuggester operation. Specifies
+// the name of the domain you want to update and name of the suggester you want
+// to delete.
 type DeleteSuggesterInput struct {
-	DomainName    *string `type:"string" required:"true"`
+	// A string that represents the name of a domain. Domain names are unique across
+	// the domains owned by an account within an AWS region. Domain names start
+	// with a letter or number and can contain the following characters: a-z (lowercase),
+	// 0-9, and - (hyphen).
+	DomainName *string `type:"string" required:"true"`
+
+	// Specifies the name of the suggester you want to delete.
 	SuggesterName *string `type:"string" required:"true"`
 
 	metadataDeleteSuggesterInput `json:"-", xml:"-"`
@@ -914,7 +1239,10 @@ type metadataDeleteSuggesterInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of a DeleteSuggester request. Contains the status of the deleted
+// suggester.
 type DeleteSuggesterOutput struct {
+	// The status of the suggester being deleted.
 	Suggester *SuggesterStatus `type:"structure" required:"true"`
 
 	metadataDeleteSuggesterOutput `json:"-", xml:"-"`
@@ -924,10 +1252,21 @@ type metadataDeleteSuggesterOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the DescribeAnalysisSchemes operation. Specifies
+// the name of the domain you want to describe. To limit the response to particular
+// analysis schemes, specify the names of the analysis schemes you want to describe.
+// To show the active configuration and exclude any pending changes, set the
+// Deployed option to true.
 type DescribeAnalysisSchemesInput struct {
+	// The analysis schemes you want to describe.
 	AnalysisSchemeNames []*string `type:"list"`
-	Deployed            *bool     `type:"boolean"`
-	DomainName          *string   `type:"string" required:"true"`
+
+	// Whether to display the deployed configuration (true) or include any pending
+	// changes (false). Defaults to false.
+	Deployed *bool `type:"boolean"`
+
+	// The name of the domain you want to describe.
+	DomainName *string `type:"string" required:"true"`
 
 	metadataDescribeAnalysisSchemesInput `json:"-", xml:"-"`
 }
@@ -936,7 +1275,10 @@ type metadataDescribeAnalysisSchemesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of a DescribeAnalysisSchemes request. Contains the analysis schemes
+// configured for the domain specified in the request.
 type DescribeAnalysisSchemesOutput struct {
+	// The analysis scheme descriptions.
 	AnalysisSchemes []*AnalysisSchemeStatus `type:"list" required:"true"`
 
 	metadataDescribeAnalysisSchemesOutput `json:"-", xml:"-"`
@@ -946,8 +1288,16 @@ type metadataDescribeAnalysisSchemesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the DescribeAvailabilityOptions operation.
+// Specifies the name of the domain you want to describe. To show the active
+// configuration and exclude any pending changes, set the Deployed option to
+// true.
 type DescribeAvailabilityOptionsInput struct {
-	Deployed   *bool   `type:"boolean"`
+	// Whether to display the deployed configuration (true) or include any pending
+	// changes (false). Defaults to false.
+	Deployed *bool `type:"boolean"`
+
+	// The name of the domain you want to describe.
 	DomainName *string `type:"string" required:"true"`
 
 	metadataDescribeAvailabilityOptionsInput `json:"-", xml:"-"`
@@ -957,7 +1307,11 @@ type metadataDescribeAvailabilityOptionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of a DescribeAvailabilityOptions request. Indicates whether or
+// not the Multi-AZ option is enabled for the domain specified in the request.
 type DescribeAvailabilityOptionsOutput struct {
+	// The availability options configured for the domain. Indicates whether Multi-AZ
+	// is enabled for the domain.
 	AvailabilityOptions *AvailabilityOptionsStatus `type:"structure"`
 
 	metadataDescribeAvailabilityOptionsOutput `json:"-", xml:"-"`
@@ -967,7 +1321,11 @@ type metadataDescribeAvailabilityOptionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the DescribeDomains operation. By default
+// shows the status of all domains. To restrict the response to particular domains,
+// specify the names of the domains you want to describe.
 type DescribeDomainsInput struct {
+	// The names of the domains you want to include in the response.
 	DomainNames []*string `type:"list"`
 
 	metadataDescribeDomainsInput `json:"-", xml:"-"`
@@ -977,7 +1335,10 @@ type metadataDescribeDomainsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of a DescribeDomains request. Contains the status of the domains
+// specified in the request or all domains owned by the account.
 type DescribeDomainsOutput struct {
+	// A list that contains the status of each requested domain.
 	DomainStatusList []*DomainStatus `type:"list" required:"true"`
 
 	metadataDescribeDomainsOutput `json:"-", xml:"-"`
@@ -987,9 +1348,21 @@ type metadataDescribeDomainsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the DescribeDomains operation. Specifies
+// the name of the domain you want to describe. To restrict the response to
+// particular expressions, specify the names of the expressions you want to
+// describe. To show the active configuration and exclude any pending changes,
+// set the Deployed option to true.
 type DescribeExpressionsInput struct {
-	Deployed        *bool     `type:"boolean"`
-	DomainName      *string   `type:"string" required:"true"`
+	// Whether to display the deployed configuration (true) or include any pending
+	// changes (false). Defaults to false.
+	Deployed *bool `type:"boolean"`
+
+	// The name of the domain you want to describe.
+	DomainName *string `type:"string" required:"true"`
+
+	// Limits the DescribeExpressions response to the specified expressions. If
+	// not specified, all expressions are shown.
 	ExpressionNames []*string `type:"list"`
 
 	metadataDescribeExpressionsInput `json:"-", xml:"-"`
@@ -999,7 +1372,10 @@ type metadataDescribeExpressionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of a DescribeExpressions request. Contains the expressions configured
+// for the domain specified in the request.
 type DescribeExpressionsOutput struct {
+	// The expressions configured for the domain.
 	Expressions []*ExpressionStatus `type:"list" required:"true"`
 
 	metadataDescribeExpressionsOutput `json:"-", xml:"-"`
@@ -1009,9 +1385,21 @@ type metadataDescribeExpressionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the DescribeIndexFields operation. Specifies
+// the name of the domain you want to describe. To restrict the response to
+// particular index fields, specify the names of the index fields you want to
+// describe. To show the active configuration and exclude any pending changes,
+// set the Deployed option to true.
 type DescribeIndexFieldsInput struct {
-	Deployed   *bool     `type:"boolean"`
-	DomainName *string   `type:"string" required:"true"`
+	// Whether to display the deployed configuration (true) or include any pending
+	// changes (false). Defaults to false.
+	Deployed *bool `type:"boolean"`
+
+	// The name of the domain you want to describe.
+	DomainName *string `type:"string" required:"true"`
+
+	// A list of the index fields you want to describe. If not specified, information
+	// is returned for all configured index fields.
 	FieldNames []*string `type:"list"`
 
 	metadataDescribeIndexFieldsInput `json:"-", xml:"-"`
@@ -1021,7 +1409,10 @@ type metadataDescribeIndexFieldsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of a DescribeIndexFields request. Contains the index fields configured
+// for the domain specified in the request.
 type DescribeIndexFieldsOutput struct {
+	// The index fields configured for the domain.
 	IndexFields []*IndexFieldStatus `type:"list" required:"true"`
 
 	metadataDescribeIndexFieldsOutput `json:"-", xml:"-"`
@@ -1031,7 +1422,13 @@ type metadataDescribeIndexFieldsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the DescribeScalingParameters operation.
+// Specifies the name of the domain you want to describe.
 type DescribeScalingParametersInput struct {
+	// A string that represents the name of a domain. Domain names are unique across
+	// the domains owned by an account within an AWS region. Domain names start
+	// with a letter or number and can contain the following characters: a-z (lowercase),
+	// 0-9, and - (hyphen).
 	DomainName *string `type:"string" required:"true"`
 
 	metadataDescribeScalingParametersInput `json:"-", xml:"-"`
@@ -1041,7 +1438,10 @@ type metadataDescribeScalingParametersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of a DescribeScalingParameters request. Contains the scaling parameters
+// configured for the domain specified in the request.
 type DescribeScalingParametersOutput struct {
+	// The status and configuration of a search domain's scaling parameters.
 	ScalingParameters *ScalingParametersStatus `type:"structure" required:"true"`
 
 	metadataDescribeScalingParametersOutput `json:"-", xml:"-"`
@@ -1051,8 +1451,16 @@ type metadataDescribeScalingParametersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the DescribeServiceAccessPolicies operation.
+// Specifies the name of the domain you want to describe. To show the active
+// configuration and exclude any pending changes, set the Deployed option to
+// true.
 type DescribeServiceAccessPoliciesInput struct {
-	Deployed   *bool   `type:"boolean"`
+	// Whether to display the deployed configuration (true) or include any pending
+	// changes (false). Defaults to false.
+	Deployed *bool `type:"boolean"`
+
+	// The name of the domain you want to describe.
 	DomainName *string `type:"string" required:"true"`
 
 	metadataDescribeServiceAccessPoliciesInput `json:"-", xml:"-"`
@@ -1062,7 +1470,9 @@ type metadataDescribeServiceAccessPoliciesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of a DescribeServiceAccessPolicies request.
 type DescribeServiceAccessPoliciesOutput struct {
+	// The access rules configured for the domain specified in the request.
 	AccessPolicies *AccessPoliciesStatus `type:"structure" required:"true"`
 
 	metadataDescribeServiceAccessPoliciesOutput `json:"-", xml:"-"`
@@ -1072,9 +1482,20 @@ type metadataDescribeServiceAccessPoliciesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the DescribeSuggester operation. Specifies
+// the name of the domain you want to describe. To restrict the response to
+// particular suggesters, specify the names of the suggesters you want to describe.
+// To show the active configuration and exclude any pending changes, set the
+// Deployed option to true.
 type DescribeSuggestersInput struct {
-	Deployed       *bool     `type:"boolean"`
-	DomainName     *string   `type:"string" required:"true"`
+	// Whether to display the deployed configuration (true) or include any pending
+	// changes (false). Defaults to false.
+	Deployed *bool `type:"boolean"`
+
+	// The name of the domain you want to describe.
+	DomainName *string `type:"string" required:"true"`
+
+	// The suggesters you want to describe.
 	SuggesterNames []*string `type:"list"`
 
 	metadataDescribeSuggestersInput `json:"-", xml:"-"`
@@ -1084,7 +1505,9 @@ type metadataDescribeSuggestersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of a DescribeSuggesters request.
 type DescribeSuggestersOutput struct {
+	// The suggesters configured for the domain specified in the request.
 	Suggesters []*SuggesterStatus `type:"list" required:"true"`
 
 	metadataDescribeSuggestersOutput `json:"-", xml:"-"`
@@ -1094,10 +1517,26 @@ type metadataDescribeSuggestersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Options for a search suggester.
 type DocumentSuggesterOptions struct {
-	FuzzyMatching  *string `type:"string"`
+	// The level of fuzziness allowed when suggesting matches for a string: none,
+	// low, or high. With none, the specified string is treated as an exact prefix.
+	// With low, suggestions must differ from the specified string by no more than
+	// one character. With high, suggestions can differ by up to two characters.
+	// The default is none.
+	FuzzyMatching *string `type:"string"`
+
+	// An expression that computes a score for each suggestion to control how they
+	// are sorted. The scores are rounded to the nearest integer, with a floor of
+	// 0 and a ceiling of 2^31-1. A document's relevance score is not computed for
+	// suggestions, so sort expressions cannot reference the _score value. To sort
+	// suggestions using a numeric field or existing expression, simply specify
+	// the name of the field or expression. If no expression is configured for the
+	// suggester, the suggestions are sorted with the closest matches listed first.
 	SortExpression *string `type:"string"`
-	SourceField    *string `type:"string" required:"true"`
+
+	// The name of the index field you want to use for suggestions.
+	SourceField *string `type:"string" required:"true"`
 
 	metadataDocumentSuggesterOptions `json:"-", xml:"-"`
 }
@@ -1106,20 +1545,57 @@ type metadataDocumentSuggesterOptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The current status of the search domain.
 type DomainStatus struct {
-	ARN                    *string          `type:"string"`
-	Created                *bool            `type:"boolean"`
-	Deleted                *bool            `type:"boolean"`
-	DocService             *ServiceEndpoint `type:"structure"`
-	DomainID               *string          `locationName:"DomainId" type:"string" required:"true"`
-	DomainName             *string          `type:"string" required:"true"`
-	Limits                 *Limits          `type:"structure"`
-	Processing             *bool            `type:"boolean"`
-	RequiresIndexDocuments *bool            `type:"boolean" required:"true"`
-	SearchInstanceCount    *int64           `type:"integer"`
-	SearchInstanceType     *string          `type:"string"`
-	SearchPartitionCount   *int64           `type:"integer"`
-	SearchService          *ServiceEndpoint `type:"structure"`
+	// The Amazon Resource Name (ARN) of the search domain. See Identifiers for
+	// IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/index.html?Using_Identifiers.html"
+	// target="_blank) in Using AWS Identity and Access Management for more information.
+	ARN *string `type:"string"`
+
+	// True if the search domain is created. It can take several minutes to initialize
+	// a domain when CreateDomain is called. Newly created search domains are returned
+	// from DescribeDomains with a false value for Created until domain creation
+	// is complete.
+	Created *bool `type:"boolean"`
+
+	// True if the search domain has been deleted. The system must clean up resources
+	// dedicated to the search domain when DeleteDomain is called. Newly deleted
+	// search domains are returned from DescribeDomains with a true value for IsDeleted
+	// for several minutes until resource cleanup is complete.
+	Deleted *bool `type:"boolean"`
+
+	// The service endpoint for updating documents in a search domain.
+	DocService *ServiceEndpoint `type:"structure"`
+
+	// An internally generated unique identifier for a domain.
+	DomainID *string `locationName:"DomainId" type:"string" required:"true"`
+
+	// A string that represents the name of a domain. Domain names are unique across
+	// the domains owned by an account within an AWS region. Domain names start
+	// with a letter or number and can contain the following characters: a-z (lowercase),
+	// 0-9, and - (hyphen).
+	DomainName *string `type:"string" required:"true"`
+
+	Limits *Limits `type:"structure"`
+
+	// True if processing is being done to activate the current domain configuration.
+	Processing *bool `type:"boolean"`
+
+	// True if IndexDocuments needs to be called to activate the current domain
+	// configuration.
+	RequiresIndexDocuments *bool `type:"boolean" required:"true"`
+
+	// The number of search instances that are available to process search requests.
+	SearchInstanceCount *int64 `type:"integer"`
+
+	// The instance type that is being used to process search requests.
+	SearchInstanceType *string `type:"string"`
+
+	// The number of partitions across which the search index is spread.
+	SearchPartitionCount *int64 `type:"integer"`
+
+	// The service endpoint for requesting search results from a search domain.
+	SearchService *ServiceEndpoint `type:"structure"`
 
 	metadataDomainStatus `json:"-", xml:"-"`
 }
@@ -1128,12 +1604,24 @@ type metadataDomainStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Options for a field that contains an array of double-precision 64-bit floating
+// point values. Present if IndexFieldType specifies the field is of type double-array.
+// All options are enabled by default.
 type DoubleArrayOptions struct {
-	DefaultValue  *float64 `type:"double"`
-	FacetEnabled  *bool    `type:"boolean"`
-	ReturnEnabled *bool    `type:"boolean"`
-	SearchEnabled *bool    `type:"boolean"`
-	SourceFields  *string  `type:"string"`
+	// A value to use for the field if the field isn't specified for a document.
+	DefaultValue *float64 `type:"double"`
+
+	// Whether facet information can be returned for the field.
+	FacetEnabled *bool `type:"boolean"`
+
+	// Whether the contents of the field can be returned in the search results.
+	ReturnEnabled *bool `type:"boolean"`
+
+	// Whether the contents of the field are searchable.
+	SearchEnabled *bool `type:"boolean"`
+
+	// A list of source fields to map to the field.
+	SourceFields *string `type:"string"`
 
 	metadataDoubleArrayOptions `json:"-", xml:"-"`
 }
@@ -1142,13 +1630,28 @@ type metadataDoubleArrayOptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Options for a double-precision 64-bit floating point field. Present if IndexFieldType
+// specifies the field is of type double. All options are enabled by default.
 type DoubleOptions struct {
-	DefaultValue  *float64 `type:"double"`
-	FacetEnabled  *bool    `type:"boolean"`
-	ReturnEnabled *bool    `type:"boolean"`
-	SearchEnabled *bool    `type:"boolean"`
-	SortEnabled   *bool    `type:"boolean"`
-	SourceField   *string  `type:"string"`
+	// A value to use for the field if the field isn't specified for a document.
+	// This can be important if you are using the field in an expression and that
+	// field is not present in every document.
+	DefaultValue *float64 `type:"double"`
+
+	// Whether facet information can be returned for the field.
+	FacetEnabled *bool `type:"boolean"`
+
+	// Whether the contents of the field can be returned in the search results.
+	ReturnEnabled *bool `type:"boolean"`
+
+	// Whether the contents of the field are searchable.
+	SearchEnabled *bool `type:"boolean"`
+
+	// Whether the field can be used to sort the search results.
+	SortEnabled *bool `type:"boolean"`
+
+	// The name of the source field to map to the field.
+	SourceField *string `type:"string"`
 
 	metadataDoubleOptions `json:"-", xml:"-"`
 }
@@ -1157,8 +1660,18 @@ type metadataDoubleOptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A named expression that can be evaluated at search time. Can be used to sort
+// the search results, define other expressions, or return computed information
+// in the search results.
 type Expression struct {
-	ExpressionName  *string `type:"string" required:"true"`
+	// Names must begin with a letter and can contain the following characters:
+	// a-z (lowercase), 0-9, and _ (underscore).
+	ExpressionName *string `type:"string" required:"true"`
+
+	// The expression to evaluate for sorting while processing a search request.
+	// The Expression syntax is based on JavaScript expressions. For more information,
+	// see Configuring Expressions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html"
+	// target="_blank) in the Amazon CloudSearch Developer Guide.
 	ExpressionValue *string `type:"string" required:"true"`
 
 	metadataExpression `json:"-", xml:"-"`
@@ -1168,9 +1681,13 @@ type metadataExpression struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The value of an Expression and its current status.
 type ExpressionStatus struct {
-	Options *Expression   `type:"structure" required:"true"`
-	Status  *OptionStatus `type:"structure" required:"true"`
+	// The expression that is evaluated for sorting while processing a search request.
+	Options *Expression `type:"structure" required:"true"`
+
+	// The status of domain configuration option.
+	Status *OptionStatus `type:"structure" required:"true"`
 
 	metadataExpressionStatus `json:"-", xml:"-"`
 }
@@ -1179,7 +1696,13 @@ type metadataExpressionStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the IndexDocuments operation. Specifies the
+// name of the domain you want to re-index.
 type IndexDocumentsInput struct {
+	// A string that represents the name of a domain. Domain names are unique across
+	// the domains owned by an account within an AWS region. Domain names start
+	// with a letter or number and can contain the following characters: a-z (lowercase),
+	// 0-9, and - (hyphen).
 	DomainName *string `type:"string" required:"true"`
 
 	metadataIndexDocumentsInput `json:"-", xml:"-"`
@@ -1189,7 +1712,10 @@ type metadataIndexDocumentsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of an IndexDocuments request. Contains the status of the indexing
+// operation, including the fields being indexed.
 type IndexDocumentsOutput struct {
+	// The names of the fields that are currently being indexed.
 	FieldNames []*string `type:"list"`
 
 	metadataIndexDocumentsOutput `json:"-", xml:"-"`
@@ -1199,20 +1725,72 @@ type metadataIndexDocumentsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Configuration information for a field in the index, including its name, type,
+// and options. The supported options depend on the IndexFieldType.
 type IndexField struct {
-	DateArrayOptions    *DateArrayOptions    `type:"structure"`
-	DateOptions         *DateOptions         `type:"structure"`
-	DoubleArrayOptions  *DoubleArrayOptions  `type:"structure"`
-	DoubleOptions       *DoubleOptions       `type:"structure"`
-	IndexFieldName      *string              `type:"string" required:"true"`
-	IndexFieldType      *string              `type:"string" required:"true"`
-	IntArrayOptions     *IntArrayOptions     `type:"structure"`
-	IntOptions          *IntOptions          `type:"structure"`
-	LatLonOptions       *LatLonOptions       `type:"structure"`
+	// Options for a field that contains an array of dates. Present if IndexFieldType
+	// specifies the field is of type date-array. All options are enabled by default.
+	DateArrayOptions *DateArrayOptions `type:"structure"`
+
+	// Options for a date field. Dates and times are specified in UTC (Coordinated
+	// Universal Time) according to IETF RFC3339: yyyy-mm-ddT00:00:00Z. Present
+	// if IndexFieldType specifies the field is of type date. All options are enabled
+	// by default.
+	DateOptions *DateOptions `type:"structure"`
+
+	// Options for a field that contains an array of double-precision 64-bit floating
+	// point values. Present if IndexFieldType specifies the field is of type double-array.
+	// All options are enabled by default.
+	DoubleArrayOptions *DoubleArrayOptions `type:"structure"`
+
+	// Options for a double-precision 64-bit floating point field. Present if IndexFieldType
+	// specifies the field is of type double. All options are enabled by default.
+	DoubleOptions *DoubleOptions `type:"structure"`
+
+	// The name of a field in the search index. Field names must begin with a letter
+	// and can contain the following characters: a-z (lowercase), 0-9, and _ (underscore).
+	// Uppercase letters and hyphens are not allowed. The name "score" is reserved
+	// and cannot be specified as field or expression name.
+	IndexFieldName *string `type:"string" required:"true"`
+
+	// The type of field. The valid options for a field depend on the field type.
+	// For more information about the supported field types, see Configuring Index
+	// Fields (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-index-fields.html"
+	// target="_blank) in the Amazon CloudSearch Developer Guide.
+	IndexFieldType *string `type:"string" required:"true"`
+
+	// Options for a field that contains an array of 64-bit signed integers. Present
+	// if IndexFieldType specifies the field is of type int-array. All options are
+	// enabled by default.
+	IntArrayOptions *IntArrayOptions `type:"structure"`
+
+	// Options for a 64-bit signed integer field. Present if IndexFieldType specifies
+	// the field is of type int. All options are enabled by default.
+	IntOptions *IntOptions `type:"structure"`
+
+	// Options for a latlon field. A latlon field contains a location stored as
+	// a latitude and longitude value pair. Present if IndexFieldType specifies
+	// the field is of type latlon. All options are enabled by default.
+	LatLonOptions *LatLonOptions `type:"structure"`
+
+	// Options for a field that contains an array of literal strings. Present if
+	// IndexFieldType specifies the field is of type literal-array. All options
+	// are enabled by default.
 	LiteralArrayOptions *LiteralArrayOptions `type:"structure"`
-	LiteralOptions      *LiteralOptions      `type:"structure"`
-	TextArrayOptions    *TextArrayOptions    `type:"structure"`
-	TextOptions         *TextOptions         `type:"structure"`
+
+	// Options for literal field. Present if IndexFieldType specifies the field
+	// is of type literal. All options are enabled by default.
+	LiteralOptions *LiteralOptions `type:"structure"`
+
+	// Options for a field that contains an array of text strings. Present if IndexFieldType
+	// specifies the field is of type text-array. A text-array field is always searchable.
+	// All options are enabled by default.
+	TextArrayOptions *TextArrayOptions `type:"structure"`
+
+	// Options for text field. Present if IndexFieldType specifies the field is
+	// of type text. A text field is always searchable. All options are enabled
+	// by default.
+	TextOptions *TextOptions `type:"structure"`
 
 	metadataIndexField `json:"-", xml:"-"`
 }
@@ -1221,9 +1799,14 @@ type metadataIndexField struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The value of an IndexField and its current status.
 type IndexFieldStatus struct {
-	Options *IndexField   `type:"structure" required:"true"`
-	Status  *OptionStatus `type:"structure" required:"true"`
+	// Configuration information for a field in the index, including its name, type,
+	// and options. The supported options depend on the IndexFieldType.
+	Options *IndexField `type:"structure" required:"true"`
+
+	// The status of domain configuration option.
+	Status *OptionStatus `type:"structure" required:"true"`
 
 	metadataIndexFieldStatus `json:"-", xml:"-"`
 }
@@ -1232,12 +1815,24 @@ type metadataIndexFieldStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Options for a field that contains an array of 64-bit signed integers. Present
+// if IndexFieldType specifies the field is of type int-array. All options are
+// enabled by default.
 type IntArrayOptions struct {
-	DefaultValue  *int64  `type:"long"`
-	FacetEnabled  *bool   `type:"boolean"`
-	ReturnEnabled *bool   `type:"boolean"`
-	SearchEnabled *bool   `type:"boolean"`
-	SourceFields  *string `type:"string"`
+	// A value to use for the field if the field isn't specified for a document.
+	DefaultValue *int64 `type:"long"`
+
+	// Whether facet information can be returned for the field.
+	FacetEnabled *bool `type:"boolean"`
+
+	// Whether the contents of the field can be returned in the search results.
+	ReturnEnabled *bool `type:"boolean"`
+
+	// Whether the contents of the field are searchable.
+	SearchEnabled *bool `type:"boolean"`
+
+	// A list of source fields to map to the field.
+	SourceFields *string `type:"string"`
 
 	metadataIntArrayOptions `json:"-", xml:"-"`
 }
@@ -1246,13 +1841,28 @@ type metadataIntArrayOptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Options for a 64-bit signed integer field. Present if IndexFieldType specifies
+// the field is of type int. All options are enabled by default.
 type IntOptions struct {
-	DefaultValue  *int64  `type:"long"`
-	FacetEnabled  *bool   `type:"boolean"`
-	ReturnEnabled *bool   `type:"boolean"`
-	SearchEnabled *bool   `type:"boolean"`
-	SortEnabled   *bool   `type:"boolean"`
-	SourceField   *string `type:"string"`
+	// A value to use for the field if the field isn't specified for a document.
+	// This can be important if you are using the field in an expression and that
+	// field is not present in every document.
+	DefaultValue *int64 `type:"long"`
+
+	// Whether facet information can be returned for the field.
+	FacetEnabled *bool `type:"boolean"`
+
+	// Whether the contents of the field can be returned in the search results.
+	ReturnEnabled *bool `type:"boolean"`
+
+	// Whether the contents of the field are searchable.
+	SearchEnabled *bool `type:"boolean"`
+
+	// Whether the field can be used to sort the search results.
+	SortEnabled *bool `type:"boolean"`
+
+	// The name of the source field to map to the field.
+	SourceField *string `type:"string"`
 
 	metadataIntOptions `json:"-", xml:"-"`
 }
@@ -1261,13 +1871,30 @@ type metadataIntOptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Options for a latlon field. A latlon field contains a location stored as
+// a latitude and longitude value pair. Present if IndexFieldType specifies
+// the field is of type latlon. All options are enabled by default.
 type LatLonOptions struct {
-	DefaultValue  *string `type:"string"`
-	FacetEnabled  *bool   `type:"boolean"`
-	ReturnEnabled *bool   `type:"boolean"`
-	SearchEnabled *bool   `type:"boolean"`
-	SortEnabled   *bool   `type:"boolean"`
-	SourceField   *string `type:"string"`
+	// A value to use for the field if the field isn't specified for a document.
+	DefaultValue *string `type:"string"`
+
+	// Whether facet information can be returned for the field.
+	FacetEnabled *bool `type:"boolean"`
+
+	// Whether the contents of the field can be returned in the search results.
+	ReturnEnabled *bool `type:"boolean"`
+
+	// Whether the contents of the field are searchable.
+	SearchEnabled *bool `type:"boolean"`
+
+	// Whether the field can be used to sort the search results.
+	SortEnabled *bool `type:"boolean"`
+
+	// A string that represents the name of an index field. Field names begin with
+	// a letter and can contain the following characters: a-z (lowercase), 0-9,
+	// and _ (underscore). The name "score" is reserved and cannot be used as a
+	// field name. To reference a document's ID, you can use the name _id.
+	SourceField *string `type:"string"`
 
 	metadataLatLonOptions `json:"-", xml:"-"`
 }
@@ -1277,7 +1904,8 @@ type metadataLatLonOptions struct {
 }
 
 type Limits struct {
-	MaximumPartitionCount   *int64 `type:"integer" required:"true"`
+	MaximumPartitionCount *int64 `type:"integer" required:"true"`
+
 	MaximumReplicationCount *int64 `type:"integer" required:"true"`
 
 	metadataLimits `json:"-", xml:"-"`
@@ -1295,7 +1923,10 @@ type metadataListDomainNamesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of a ListDomainNames request. Contains a list of the domains owned
+// by an account.
 type ListDomainNamesOutput struct {
+	// The names of the search domains owned by an account.
 	DomainNames *map[string]*string `type:"map"`
 
 	metadataListDomainNamesOutput `json:"-", xml:"-"`
@@ -1305,12 +1936,24 @@ type metadataListDomainNamesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Options for a field that contains an array of literal strings. Present if
+// IndexFieldType specifies the field is of type literal-array. All options
+// are enabled by default.
 type LiteralArrayOptions struct {
-	DefaultValue  *string `type:"string"`
-	FacetEnabled  *bool   `type:"boolean"`
-	ReturnEnabled *bool   `type:"boolean"`
-	SearchEnabled *bool   `type:"boolean"`
-	SourceFields  *string `type:"string"`
+	// A value to use for the field if the field isn't specified for a document.
+	DefaultValue *string `type:"string"`
+
+	// Whether facet information can be returned for the field.
+	FacetEnabled *bool `type:"boolean"`
+
+	// Whether the contents of the field can be returned in the search results.
+	ReturnEnabled *bool `type:"boolean"`
+
+	// Whether the contents of the field are searchable.
+	SearchEnabled *bool `type:"boolean"`
+
+	// A list of source fields to map to the field.
+	SourceFields *string `type:"string"`
 
 	metadataLiteralArrayOptions `json:"-", xml:"-"`
 }
@@ -1319,13 +1962,29 @@ type metadataLiteralArrayOptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Options for literal field. Present if IndexFieldType specifies the field
+// is of type literal. All options are enabled by default.
 type LiteralOptions struct {
-	DefaultValue  *string `type:"string"`
-	FacetEnabled  *bool   `type:"boolean"`
-	ReturnEnabled *bool   `type:"boolean"`
-	SearchEnabled *bool   `type:"boolean"`
-	SortEnabled   *bool   `type:"boolean"`
-	SourceField   *string `type:"string"`
+	// A value to use for the field if the field isn't specified for a document.
+	DefaultValue *string `type:"string"`
+
+	// Whether facet information can be returned for the field.
+	FacetEnabled *bool `type:"boolean"`
+
+	// Whether the contents of the field can be returned in the search results.
+	ReturnEnabled *bool `type:"boolean"`
+
+	// Whether the contents of the field are searchable.
+	SearchEnabled *bool `type:"boolean"`
+
+	// Whether the field can be used to sort the search results.
+	SortEnabled *bool `type:"boolean"`
+
+	// A string that represents the name of an index field. Field names begin with
+	// a letter and can contain the following characters: a-z (lowercase), 0-9,
+	// and _ (underscore). The name "score" is reserved and cannot be used as a
+	// field name. To reference a document's ID, you can use the name _id.
+	SourceField *string `type:"string"`
 
 	metadataLiteralOptions `json:"-", xml:"-"`
 }
@@ -1334,12 +1993,30 @@ type metadataLiteralOptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The status of domain configuration option.
 type OptionStatus struct {
-	CreationDate    *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
-	PendingDeletion *bool      `type:"boolean"`
-	State           *string    `type:"string" required:"true"`
-	UpdateDate      *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
-	UpdateVersion   *int64     `type:"integer"`
+	// A timestamp for when this option was created.
+	CreationDate *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// Indicates that the option will be deleted once processing is complete.
+	PendingDeletion *bool `type:"boolean"`
+
+	// The state of processing a change to an option. Possible values:
+	//
+	//   RequiresIndexDocuments: the option's latest value will not be deployed
+	// until IndexDocuments has been called and indexing is complete.  Processing:
+	// the option's latest value is in the process of being activated.   Active:
+	// the option's latest value is completely deployed.  FailedToValidate: the
+	// option value is not compatible with the domain's data and cannot be used
+	// to index the data. You must either modify the option value or update or remove
+	// the incompatible documents.
+	State *string `type:"string" required:"true"`
+
+	// A timestamp for when this option was last updated.
+	UpdateDate *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// A unique integer that indicates when this option was last updated.
+	UpdateVersion *int64 `type:"integer"`
 
 	metadataOptionStatus `json:"-", xml:"-"`
 }
@@ -1348,10 +2025,18 @@ type metadataOptionStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The desired instance type and desired number of replicas of each index partition.
 type ScalingParameters struct {
-	DesiredInstanceType     *string `type:"string"`
-	DesiredPartitionCount   *int64  `type:"integer"`
-	DesiredReplicationCount *int64  `type:"integer"`
+	// The instance type that you want to preconfigure for your domain. For example,
+	// search.m1.small.
+	DesiredInstanceType *string `type:"string"`
+
+	// The number of partitions you want to preconfigure for your domain. Only valid
+	// when you select m2.2xlarge as the desired instance type.
+	DesiredPartitionCount *int64 `type:"integer"`
+
+	// The number of replicas you want to preconfigure for each index partition.
+	DesiredReplicationCount *int64 `type:"integer"`
 
 	metadataScalingParameters `json:"-", xml:"-"`
 }
@@ -1360,9 +2045,13 @@ type metadataScalingParameters struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The status and configuration of a search domain's scaling parameters.
 type ScalingParametersStatus struct {
+	// The desired instance type and desired number of replicas of each index partition.
 	Options *ScalingParameters `type:"structure" required:"true"`
-	Status  *OptionStatus      `type:"structure" required:"true"`
+
+	// The status of domain configuration option.
+	Status *OptionStatus `type:"structure" required:"true"`
 
 	metadataScalingParametersStatus `json:"-", xml:"-"`
 }
@@ -1371,7 +2060,10 @@ type metadataScalingParametersStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The endpoint to which service requests can be submitted.
 type ServiceEndpoint struct {
+	// The endpoint to which service requests can be submitted. For example, search-imdb-movies-oopcnjfn6ugofer3zx5iadxxca.eu-west-1.cloudsearch.amazonaws.com
+	// or doc-imdb-movies-oopcnjfn6ugofer3zx5iadxxca.eu-west-1.cloudsearch.amazonaws.com.
 	Endpoint *string `type:"string"`
 
 	metadataServiceEndpoint `json:"-", xml:"-"`
@@ -1381,9 +2073,16 @@ type metadataServiceEndpoint struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Configuration information for a search suggester. Each suggester has a unique
+// name and specifies the text field you want to use for suggestions. The following
+// options can be configured for a suggester: FuzzyMatching, SortExpression.
 type Suggester struct {
+	// Options for a search suggester.
 	DocumentSuggesterOptions *DocumentSuggesterOptions `type:"structure" required:"true"`
-	SuggesterName            *string                   `type:"string" required:"true"`
+
+	// Names must begin with a letter and can contain the following characters:
+	// a-z (lowercase), 0-9, and _ (underscore).
+	SuggesterName *string `type:"string" required:"true"`
 
 	metadataSuggester `json:"-", xml:"-"`
 }
@@ -1392,9 +2091,15 @@ type metadataSuggester struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The value of a Suggester and its current status.
 type SuggesterStatus struct {
-	Options *Suggester    `type:"structure" required:"true"`
-	Status  *OptionStatus `type:"structure" required:"true"`
+	// Configuration information for a search suggester. Each suggester has a unique
+	// name and specifies the text field you want to use for suggestions. The following
+	// options can be configured for a suggester: FuzzyMatching, SortExpression.
+	Options *Suggester `type:"structure" required:"true"`
+
+	// The status of domain configuration option.
+	Status *OptionStatus `type:"structure" required:"true"`
 
 	metadataSuggesterStatus `json:"-", xml:"-"`
 }
@@ -1403,12 +2108,24 @@ type metadataSuggesterStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Options for a field that contains an array of text strings. Present if IndexFieldType
+// specifies the field is of type text-array. A text-array field is always searchable.
+// All options are enabled by default.
 type TextArrayOptions struct {
-	AnalysisScheme   *string `type:"string"`
-	DefaultValue     *string `type:"string"`
-	HighlightEnabled *bool   `type:"boolean"`
-	ReturnEnabled    *bool   `type:"boolean"`
-	SourceFields     *string `type:"string"`
+	// The name of an analysis scheme for a text-array field.
+	AnalysisScheme *string `type:"string"`
+
+	// A value to use for the field if the field isn't specified for a document.
+	DefaultValue *string `type:"string"`
+
+	// Whether highlights can be returned for the field.
+	HighlightEnabled *bool `type:"boolean"`
+
+	// Whether the contents of the field can be returned in the search results.
+	ReturnEnabled *bool `type:"boolean"`
+
+	// A list of source fields to map to the field.
+	SourceFields *string `type:"string"`
 
 	metadataTextArrayOptions `json:"-", xml:"-"`
 }
@@ -1417,13 +2134,30 @@ type metadataTextArrayOptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Options for text field. Present if IndexFieldType specifies the field is
+// of type text. A text field is always searchable. All options are enabled
+// by default.
 type TextOptions struct {
-	AnalysisScheme   *string `type:"string"`
-	DefaultValue     *string `type:"string"`
-	HighlightEnabled *bool   `type:"boolean"`
-	ReturnEnabled    *bool   `type:"boolean"`
-	SortEnabled      *bool   `type:"boolean"`
-	SourceField      *string `type:"string"`
+	// The name of an analysis scheme for a text field.
+	AnalysisScheme *string `type:"string"`
+
+	// A value to use for the field if the field isn't specified for a document.
+	DefaultValue *string `type:"string"`
+
+	// Whether highlights can be returned for the field.
+	HighlightEnabled *bool `type:"boolean"`
+
+	// Whether the contents of the field can be returned in the search results.
+	ReturnEnabled *bool `type:"boolean"`
+
+	// Whether the field can be used to sort the search results.
+	SortEnabled *bool `type:"boolean"`
+
+	// A string that represents the name of an index field. Field names begin with
+	// a letter and can contain the following characters: a-z (lowercase), 0-9,
+	// and _ (underscore). The name "score" is reserved and cannot be used as a
+	// field name. To reference a document's ID, you can use the name _id.
+	SourceField *string `type:"string"`
 
 	metadataTextOptions `json:"-", xml:"-"`
 }
@@ -1432,9 +2166,21 @@ type metadataTextOptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the UpdateAvailabilityOptions operation.
+// Specifies the name of the domain you want to update and the Multi-AZ availability
+// option.
 type UpdateAvailabilityOptionsInput struct {
+	// A string that represents the name of a domain. Domain names are unique across
+	// the domains owned by an account within an AWS region. Domain names start
+	// with a letter or number and can contain the following characters: a-z (lowercase),
+	// 0-9, and - (hyphen).
 	DomainName *string `type:"string" required:"true"`
-	MultiAZ    *bool   `type:"boolean" required:"true"`
+
+	// You expand an existing search domain to a second Availability Zone by setting
+	// the Multi-AZ option to true. Similarly, you can turn off the Multi-AZ option
+	// to downgrade the domain to a single Availability Zone by setting the Multi-AZ
+	// option to false.
+	MultiAZ *bool `type:"boolean" required:"true"`
 
 	metadataUpdateAvailabilityOptionsInput `json:"-", xml:"-"`
 }
@@ -1443,7 +2189,11 @@ type metadataUpdateAvailabilityOptionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of a UpdateAvailabilityOptions request. Contains the status of
+// the domain's availability options.
 type UpdateAvailabilityOptionsOutput struct {
+	// The newly-configured availability options. Indicates whether Multi-AZ is
+	// enabled for the domain.
 	AvailabilityOptions *AvailabilityOptionsStatus `type:"structure"`
 
 	metadataUpdateAvailabilityOptionsOutput `json:"-", xml:"-"`
@@ -1453,8 +2203,17 @@ type metadataUpdateAvailabilityOptionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the UpdateScalingParameters operation. Specifies
+// the name of the domain you want to update and the scaling parameters you
+// want to configure.
 type UpdateScalingParametersInput struct {
-	DomainName        *string            `type:"string" required:"true"`
+	// A string that represents the name of a domain. Domain names are unique across
+	// the domains owned by an account within an AWS region. Domain names start
+	// with a letter or number and can contain the following characters: a-z (lowercase),
+	// 0-9, and - (hyphen).
+	DomainName *string `type:"string" required:"true"`
+
+	// The desired instance type and desired number of replicas of each index partition.
 	ScalingParameters *ScalingParameters `type:"structure" required:"true"`
 
 	metadataUpdateScalingParametersInput `json:"-", xml:"-"`
@@ -1464,7 +2223,10 @@ type metadataUpdateScalingParametersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of a UpdateScalingParameters request. Contains the status of the
+// newly-configured scaling parameters.
 type UpdateScalingParametersOutput struct {
+	// The status and configuration of a search domain's scaling parameters.
 	ScalingParameters *ScalingParametersStatus `type:"structure" required:"true"`
 
 	metadataUpdateScalingParametersOutput `json:"-", xml:"-"`
@@ -1474,9 +2236,19 @@ type metadataUpdateScalingParametersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the parameters to the UpdateServiceAccessPolicies operation.
+// Specifies the name of the domain you want to update and the access rules
+// you want to configure.
 type UpdateServiceAccessPoliciesInput struct {
+	// The access rules you want to configure. These rules replace any existing
+	// rules.
 	AccessPolicies *string `type:"string" required:"true"`
-	DomainName     *string `type:"string" required:"true"`
+
+	// A string that represents the name of a domain. Domain names are unique across
+	// the domains owned by an account within an AWS region. Domain names start
+	// with a letter or number and can contain the following characters: a-z (lowercase),
+	// 0-9, and - (hyphen).
+	DomainName *string `type:"string" required:"true"`
 
 	metadataUpdateServiceAccessPoliciesInput `json:"-", xml:"-"`
 }
@@ -1485,7 +2257,10 @@ type metadataUpdateServiceAccessPoliciesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of an UpdateServiceAccessPolicies request. Contains the new access
+// policies.
 type UpdateServiceAccessPoliciesOutput struct {
+	// The access rules configured for the domain.
 	AccessPolicies *AccessPoliciesStatus `type:"structure" required:"true"`
 
 	metadataUpdateServiceAccessPoliciesOutput `json:"-", xml:"-"`

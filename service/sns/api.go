@@ -22,6 +22,8 @@ func (c *SNS) AddPermissionRequest(input *AddPermissionInput) (req *aws.Request,
 	return
 }
 
+// Adds a statement to a topic's access control policy, granting access for
+// the specified AWS accounts to the specified actions.
 func (c *SNS) AddPermission(input *AddPermissionInput) (output *AddPermissionOutput, err error) {
 	req, out := c.AddPermissionRequest(input)
 	output = out
@@ -47,6 +49,11 @@ func (c *SNS) ConfirmSubscriptionRequest(input *ConfirmSubscriptionInput) (req *
 	return
 }
 
+// Verifies an endpoint owner's intent to receive messages by validating the
+// token sent to the endpoint by an earlier Subscribe action. If the token is
+// valid, the action creates a new subscription and returns its Amazon Resource
+// Name (ARN). This call requires an AWS signature only when the AuthenticateOnUnsubscribe
+// flag is set to "true".
 func (c *SNS) ConfirmSubscription(input *ConfirmSubscriptionInput) (output *ConfirmSubscriptionOutput, err error) {
 	req, out := c.ConfirmSubscriptionRequest(input)
 	output = out
@@ -72,6 +79,19 @@ func (c *SNS) CreatePlatformApplicationRequest(input *CreatePlatformApplicationI
 	return
 }
 
+// Creates a platform application object for one of the supported push notification
+// services, such as APNS and GCM, to which devices and mobile apps may register.
+// You must specify PlatformPrincipal and PlatformCredential attributes when
+// using the CreatePlatformApplication action. The PlatformPrincipal is received
+// from the notification service. For APNS/APNS_SANDBOX, PlatformPrincipal is
+// "SSL certificate". For GCM, PlatformPrincipal is not applicable. For ADM,
+// PlatformPrincipal is "client id". The PlatformCredential is also received
+// from the notification service. For APNS/APNS_SANDBOX, PlatformCredential
+// is "private key". For GCM, PlatformCredential is "API key". For ADM, PlatformCredential
+// is "client secret". The PlatformApplicationArn that is returned when using
+// CreatePlatformApplication is then used as an attribute for the CreatePlatformEndpoint
+// action. For more information, see Using Amazon SNS Mobile Push Notifications
+// (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
 func (c *SNS) CreatePlatformApplication(input *CreatePlatformApplicationInput) (output *CreatePlatformApplicationOutput, err error) {
 	req, out := c.CreatePlatformApplicationRequest(input)
 	output = out
@@ -97,6 +117,20 @@ func (c *SNS) CreatePlatformEndpointRequest(input *CreatePlatformEndpointInput) 
 	return
 }
 
+// Creates an endpoint for a device and mobile app on one of the supported push
+// notification services, such as GCM and APNS. CreatePlatformEndpoint requires
+// the PlatformApplicationArn that is returned from CreatePlatformApplication.
+// The EndpointArn that is returned when using CreatePlatformEndpoint can then
+// be used by the Publish action to send a message to a mobile app or by the
+// Subscribe action for subscription to a topic. The CreatePlatformEndpoint
+// action is idempotent, so if the requester already owns an endpoint with the
+// same device token and attributes, that endpoint's ARN is returned without
+// creating a new endpoint. For more information, see Using Amazon SNS Mobile
+// Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
+//
+// When using CreatePlatformEndpoint with Baidu, two attributes must be provided:
+// ChannelId and UserId. The token field must also contain the ChannelId. For
+// more information, see Creating an Amazon SNS Endpoint for Baidu (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePushBaiduEndpoint.html).
 func (c *SNS) CreatePlatformEndpoint(input *CreatePlatformEndpointInput) (output *CreatePlatformEndpointOutput, err error) {
 	req, out := c.CreatePlatformEndpointRequest(input)
 	output = out
@@ -122,6 +156,11 @@ func (c *SNS) CreateTopicRequest(input *CreateTopicInput) (req *aws.Request, out
 	return
 }
 
+// Creates a topic to which notifications can be published. Users can create
+// at most 3000 topics. For more information, see http://aws.amazon.com/sns
+// (http://aws.amazon.com/sns/). This action is idempotent, so if the requester
+// already owns a topic with the specified name, that topic's ARN is returned
+// without creating a new topic.
 func (c *SNS) CreateTopic(input *CreateTopicInput) (output *CreateTopicOutput, err error) {
 	req, out := c.CreateTopicRequest(input)
 	output = out
@@ -147,6 +186,8 @@ func (c *SNS) DeleteEndpointRequest(input *DeleteEndpointInput) (req *aws.Reques
 	return
 }
 
+// Deletes the endpoint from Amazon SNS. This action is idempotent. For more
+// information, see Using Amazon SNS Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
 func (c *SNS) DeleteEndpoint(input *DeleteEndpointInput) (output *DeleteEndpointOutput, err error) {
 	req, out := c.DeleteEndpointRequest(input)
 	output = out
@@ -172,6 +213,9 @@ func (c *SNS) DeletePlatformApplicationRequest(input *DeletePlatformApplicationI
 	return
 }
 
+// Deletes a platform application object for one of the supported push notification
+// services, such as APNS and GCM. For more information, see Using Amazon SNS
+// Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
 func (c *SNS) DeletePlatformApplication(input *DeletePlatformApplicationInput) (output *DeletePlatformApplicationOutput, err error) {
 	req, out := c.DeletePlatformApplicationRequest(input)
 	output = out
@@ -197,6 +241,10 @@ func (c *SNS) DeleteTopicRequest(input *DeleteTopicInput) (req *aws.Request, out
 	return
 }
 
+// Deletes a topic and all its subscriptions. Deleting a topic might prevent
+// some messages previously sent to the topic from being delivered to subscribers.
+// This action is idempotent, so deleting a topic that does not exist does not
+// result in an error.
 func (c *SNS) DeleteTopic(input *DeleteTopicInput) (output *DeleteTopicOutput, err error) {
 	req, out := c.DeleteTopicRequest(input)
 	output = out
@@ -222,6 +270,9 @@ func (c *SNS) GetEndpointAttributesRequest(input *GetEndpointAttributesInput) (r
 	return
 }
 
+// Retrieves the endpoint attributes for a device on one of the supported push
+// notification services, such as GCM and APNS. For more information, see Using
+// Amazon SNS Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
 func (c *SNS) GetEndpointAttributes(input *GetEndpointAttributesInput) (output *GetEndpointAttributesOutput, err error) {
 	req, out := c.GetEndpointAttributesRequest(input)
 	output = out
@@ -247,6 +298,9 @@ func (c *SNS) GetPlatformApplicationAttributesRequest(input *GetPlatformApplicat
 	return
 }
 
+// Retrieves the attributes of the platform application object for the supported
+// push notification services, such as APNS and GCM. For more information, see
+// Using Amazon SNS Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
 func (c *SNS) GetPlatformApplicationAttributes(input *GetPlatformApplicationAttributesInput) (output *GetPlatformApplicationAttributesOutput, err error) {
 	req, out := c.GetPlatformApplicationAttributesRequest(input)
 	output = out
@@ -272,6 +326,7 @@ func (c *SNS) GetSubscriptionAttributesRequest(input *GetSubscriptionAttributesI
 	return
 }
 
+// Returns all of the properties of a subscription.
 func (c *SNS) GetSubscriptionAttributes(input *GetSubscriptionAttributesInput) (output *GetSubscriptionAttributesOutput, err error) {
 	req, out := c.GetSubscriptionAttributesRequest(input)
 	output = out
@@ -297,6 +352,8 @@ func (c *SNS) GetTopicAttributesRequest(input *GetTopicAttributesInput) (req *aw
 	return
 }
 
+// Returns all of the properties of a topic. Topic properties returned might
+// differ based on the authorization of the user.
 func (c *SNS) GetTopicAttributes(input *GetTopicAttributesInput) (output *GetTopicAttributesOutput, err error) {
 	req, out := c.GetTopicAttributesRequest(input)
 	output = out
@@ -322,6 +379,14 @@ func (c *SNS) ListEndpointsByPlatformApplicationRequest(input *ListEndpointsByPl
 	return
 }
 
+// Lists the endpoints and endpoint attributes for devices in a supported push
+// notification service, such as GCM and APNS. The results for ListEndpointsByPlatformApplication
+// are paginated and return a limited list of endpoints, up to 100. If additional
+// records are available after the first page results, then a NextToken string
+// will be returned. To receive the next page, you call ListEndpointsByPlatformApplication
+// again using the NextToken string received from the previous call. When there
+// are no more records to return, NextToken will be null. For more information,
+// see Using Amazon SNS Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
 func (c *SNS) ListEndpointsByPlatformApplication(input *ListEndpointsByPlatformApplicationInput) (output *ListEndpointsByPlatformApplicationOutput, err error) {
 	req, out := c.ListEndpointsByPlatformApplicationRequest(input)
 	output = out
@@ -347,6 +412,14 @@ func (c *SNS) ListPlatformApplicationsRequest(input *ListPlatformApplicationsInp
 	return
 }
 
+// Lists the platform application objects for the supported push notification
+// services, such as APNS and GCM. The results for ListPlatformApplications
+// are paginated and return a limited list of applications, up to 100. If additional
+// records are available after the first page results, then a NextToken string
+// will be returned. To receive the next page, you call ListPlatformApplications
+// using the NextToken string received from the previous call. When there are
+// no more records to return, NextToken will be null. For more information,
+// see Using Amazon SNS Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
 func (c *SNS) ListPlatformApplications(input *ListPlatformApplicationsInput) (output *ListPlatformApplicationsOutput, err error) {
 	req, out := c.ListPlatformApplicationsRequest(input)
 	output = out
@@ -372,6 +445,10 @@ func (c *SNS) ListSubscriptionsRequest(input *ListSubscriptionsInput) (req *aws.
 	return
 }
 
+// Returns a list of the requester's subscriptions. Each call returns a limited
+// list of subscriptions, up to 100. If there are more subscriptions, a NextToken
+// is also returned. Use the NextToken parameter in a new ListSubscriptions
+// call to get further results.
 func (c *SNS) ListSubscriptions(input *ListSubscriptionsInput) (output *ListSubscriptionsOutput, err error) {
 	req, out := c.ListSubscriptionsRequest(input)
 	output = out
@@ -397,6 +474,10 @@ func (c *SNS) ListSubscriptionsByTopicRequest(input *ListSubscriptionsByTopicInp
 	return
 }
 
+// Returns a list of the subscriptions to a specific topic. Each call returns
+// a limited list of subscriptions, up to 100. If there are more subscriptions,
+// a NextToken is also returned. Use the NextToken parameter in a new ListSubscriptionsByTopic
+// call to get further results.
 func (c *SNS) ListSubscriptionsByTopic(input *ListSubscriptionsByTopicInput) (output *ListSubscriptionsByTopicOutput, err error) {
 	req, out := c.ListSubscriptionsByTopicRequest(input)
 	output = out
@@ -422,6 +503,9 @@ func (c *SNS) ListTopicsRequest(input *ListTopicsInput) (req *aws.Request, outpu
 	return
 }
 
+// Returns a list of the requester's topics. Each call returns a limited list
+// of topics, up to 100. If there are more topics, a NextToken is also returned.
+// Use the NextToken parameter in a new ListTopics call to get further results.
 func (c *SNS) ListTopics(input *ListTopicsInput) (output *ListTopicsOutput, err error) {
 	req, out := c.ListTopicsRequest(input)
 	output = out
@@ -447,6 +531,16 @@ func (c *SNS) PublishRequest(input *PublishInput) (req *aws.Request, output *Pub
 	return
 }
 
+// Sends a message to all of a topic's subscribed endpoints. When a messageId
+// is returned, the message has been saved and Amazon SNS will attempt to deliver
+// it to the topic's subscribers shortly. The format of the outgoing message
+// to each subscribed endpoint depends on the notification protocol selected.
+//
+// To use the Publish action for sending a message to a mobile endpoint, such
+// as an app on a Kindle device or mobile phone, you must specify the EndpointArn.
+// The EndpointArn is returned when making a call with the CreatePlatformEndpoint
+// action. The second example below shows a request and response for publishing
+// to a mobile endpoint.
 func (c *SNS) Publish(input *PublishInput) (output *PublishOutput, err error) {
 	req, out := c.PublishRequest(input)
 	output = out
@@ -472,6 +566,7 @@ func (c *SNS) RemovePermissionRequest(input *RemovePermissionInput) (req *aws.Re
 	return
 }
 
+// Removes a statement from a topic's access control policy.
 func (c *SNS) RemovePermission(input *RemovePermissionInput) (output *RemovePermissionOutput, err error) {
 	req, out := c.RemovePermissionRequest(input)
 	output = out
@@ -497,6 +592,9 @@ func (c *SNS) SetEndpointAttributesRequest(input *SetEndpointAttributesInput) (r
 	return
 }
 
+// Sets the attributes for an endpoint for a device on one of the supported
+// push notification services, such as GCM and APNS. For more information, see
+// Using Amazon SNS Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
 func (c *SNS) SetEndpointAttributes(input *SetEndpointAttributesInput) (output *SetEndpointAttributesOutput, err error) {
 	req, out := c.SetEndpointAttributesRequest(input)
 	output = out
@@ -522,6 +620,9 @@ func (c *SNS) SetPlatformApplicationAttributesRequest(input *SetPlatformApplicat
 	return
 }
 
+// Sets the attributes of the platform application object for the supported
+// push notification services, such as APNS and GCM. For more information, see
+// Using Amazon SNS Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
 func (c *SNS) SetPlatformApplicationAttributes(input *SetPlatformApplicationAttributesInput) (output *SetPlatformApplicationAttributesOutput, err error) {
 	req, out := c.SetPlatformApplicationAttributesRequest(input)
 	output = out
@@ -547,6 +648,7 @@ func (c *SNS) SetSubscriptionAttributesRequest(input *SetSubscriptionAttributesI
 	return
 }
 
+// Allows a subscription owner to set an attribute of the topic to a new value.
 func (c *SNS) SetSubscriptionAttributes(input *SetSubscriptionAttributesInput) (output *SetSubscriptionAttributesOutput, err error) {
 	req, out := c.SetSubscriptionAttributesRequest(input)
 	output = out
@@ -572,6 +674,7 @@ func (c *SNS) SetTopicAttributesRequest(input *SetTopicAttributesInput) (req *aw
 	return
 }
 
+// Allows a topic owner to set an attribute of the topic to a new value.
 func (c *SNS) SetTopicAttributes(input *SetTopicAttributesInput) (output *SetTopicAttributesOutput, err error) {
 	req, out := c.SetTopicAttributesRequest(input)
 	output = out
@@ -597,6 +700,10 @@ func (c *SNS) SubscribeRequest(input *SubscribeInput) (req *aws.Request, output 
 	return
 }
 
+// Prepares to subscribe an endpoint by sending the endpoint a confirmation
+// message. To actually create a subscription, the endpoint owner must call
+// the ConfirmSubscription action with the token from the confirmation message.
+// Confirmation tokens are valid for three days.
 func (c *SNS) Subscribe(input *SubscribeInput) (output *SubscribeOutput, err error) {
 	req, out := c.SubscribeRequest(input)
 	output = out
@@ -622,6 +729,12 @@ func (c *SNS) UnsubscribeRequest(input *UnsubscribeInput) (req *aws.Request, out
 	return
 }
 
+// Deletes a subscription. If the subscription requires authentication for deletion,
+// only the owner of the subscription or the topic's owner can unsubscribe,
+// and an AWS signature is required. If the Unsubscribe call does not require
+// authentication and the requester is not the subscription owner, a final cancellation
+// message is delivered to the endpoint, so that the endpoint owner can easily
+// resubscribe to the topic if the Unsubscribe request was unintended.
 func (c *SNS) Unsubscribe(input *UnsubscribeInput) (output *UnsubscribeOutput, err error) {
 	req, out := c.UnsubscribeRequest(input)
 	output = out
@@ -632,10 +745,21 @@ func (c *SNS) Unsubscribe(input *UnsubscribeInput) (output *UnsubscribeOutput, e
 var opUnsubscribe *aws.Operation
 
 type AddPermissionInput struct {
+	// The AWS account IDs of the users (principals) who will be given access to
+	// the specified actions. The users must have AWS accounts, but do not need
+	// to be signed up for this service.
 	AWSAccountID []*string `locationName:"AWSAccountId" type:"list" required:"true"`
-	ActionName   []*string `type:"list" required:"true"`
-	Label        *string   `type:"string" required:"true"`
-	TopicARN     *string   `locationName:"TopicArn" type:"string" required:"true"`
+
+	// The action you want to allow for the specified principal(s).
+	//
+	// Valid values: any Amazon SNS action name.
+	ActionName []*string `type:"list" required:"true"`
+
+	// A unique identifier for the new policy statement.
+	Label *string `type:"string" required:"true"`
+
+	// The ARN of the topic whose access control policy you wish to modify.
+	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
 	metadataAddPermissionInput `json:"-", xml:"-"`
 }
@@ -652,10 +776,19 @@ type metadataAddPermissionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input for ConfirmSubscription action.
 type ConfirmSubscriptionInput struct {
+	// Disallows unauthenticated unsubscribes of the subscription. If the value
+	// of this parameter is true and the request has an AWS signature, then only
+	// the topic owner and the subscription owner can unsubscribe the endpoint.
+	// The unsubscribe action requires AWS authentication.
 	AuthenticateOnUnsubscribe *string `type:"string"`
-	Token                     *string `type:"string" required:"true"`
-	TopicARN                  *string `locationName:"TopicArn" type:"string" required:"true"`
+
+	// Short-lived token sent to an endpoint during the Subscribe action.
+	Token *string `type:"string" required:"true"`
+
+	// The ARN of the topic for which you wish to confirm a subscription.
+	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
 	metadataConfirmSubscriptionInput `json:"-", xml:"-"`
 }
@@ -664,7 +797,9 @@ type metadataConfirmSubscriptionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Response for ConfirmSubscriptions action.
 type ConfirmSubscriptionOutput struct {
+	// The ARN of the created subscription.
 	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string"`
 
 	metadataConfirmSubscriptionOutput `json:"-", xml:"-"`
@@ -674,10 +809,19 @@ type metadataConfirmSubscriptionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input for CreatePlatformApplication action.
 type CreatePlatformApplicationInput struct {
+	// For a list of attributes, see SetPlatformApplicationAttributes (http://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html)
 	Attributes *map[string]*string `type:"map" required:"true"`
-	Name       *string             `type:"string" required:"true"`
-	Platform   *string             `type:"string" required:"true"`
+
+	// Application names must be made up of only uppercase and lowercase ASCII letters,
+	// numbers, underscores, hyphens, and periods, and must be between 1 and 256
+	// characters long.
+	Name *string `type:"string" required:"true"`
+
+	// The following platforms are supported: ADM (Amazon Device Messaging), APNS
+	// (Apple Push Notification Service), APNS_SANDBOX, and GCM (Google Cloud Messaging).
+	Platform *string `type:"string" required:"true"`
 
 	metadataCreatePlatformApplicationInput `json:"-", xml:"-"`
 }
@@ -686,7 +830,9 @@ type metadataCreatePlatformApplicationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Response from CreatePlatformApplication action.
 type CreatePlatformApplicationOutput struct {
+	// PlatformApplicationArn is returned.
 	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string"`
 
 	metadataCreatePlatformApplicationOutput `json:"-", xml:"-"`
@@ -696,11 +842,25 @@ type metadataCreatePlatformApplicationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input for CreatePlatformEndpoint action.
 type CreatePlatformEndpointInput struct {
-	Attributes             *map[string]*string `type:"map"`
-	CustomUserData         *string             `type:"string"`
-	PlatformApplicationARN *string             `locationName:"PlatformApplicationArn" type:"string" required:"true"`
-	Token                  *string             `type:"string" required:"true"`
+	// For a list of attributes, see SetEndpointAttributes (http://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html).
+	Attributes *map[string]*string `type:"map"`
+
+	// Arbitrary user data to associate with the endpoint. Amazon SNS does not use
+	// this data. The data must be in UTF-8 format and less than 2KB.
+	CustomUserData *string `type:"string"`
+
+	// PlatformApplicationArn returned from CreatePlatformApplication is used to
+	// create a an endpoint.
+	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string" required:"true"`
+
+	// Unique identifier created by the notification service for an app on a device.
+	// The specific name for Token will vary, depending on which notification service
+	// is being used. For example, when using APNS as the notification service,
+	// you need the device token. Alternatively, when using GCM or ADM, the device
+	// token equivalent is called the registration ID.
+	Token *string `type:"string" required:"true"`
 
 	metadataCreatePlatformEndpointInput `json:"-", xml:"-"`
 }
@@ -709,7 +869,9 @@ type metadataCreatePlatformEndpointInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Response from CreateEndpoint action.
 type CreatePlatformEndpointOutput struct {
+	// EndpointArn returned from CreateEndpoint action.
 	EndpointARN *string `locationName:"EndpointArn" type:"string"`
 
 	metadataCreatePlatformEndpointOutput `json:"-", xml:"-"`
@@ -719,7 +881,13 @@ type metadataCreatePlatformEndpointOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input for CreateTopic action.
 type CreateTopicInput struct {
+	// The name of the topic you want to create.
+	//
+	// Constraints: Topic names must be made up of only uppercase and lowercase
+	// ASCII letters, numbers, underscores, and hyphens, and must be between 1 and
+	// 256 characters long.
 	Name *string `type:"string" required:"true"`
 
 	metadataCreateTopicInput `json:"-", xml:"-"`
@@ -729,7 +897,9 @@ type metadataCreateTopicInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Response from CreateTopic action.
 type CreateTopicOutput struct {
+	// The Amazon Resource Name (ARN) assigned to the created topic.
 	TopicARN *string `locationName:"TopicArn" type:"string"`
 
 	metadataCreateTopicOutput `json:"-", xml:"-"`
@@ -739,7 +909,9 @@ type metadataCreateTopicOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input for DeleteEndpoint action.
 type DeleteEndpointInput struct {
+	// EndpointArn of endpoint to delete.
 	EndpointARN *string `locationName:"EndpointArn" type:"string" required:"true"`
 
 	metadataDeleteEndpointInput `json:"-", xml:"-"`
@@ -757,7 +929,9 @@ type metadataDeleteEndpointOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input for DeletePlatformApplication action.
 type DeletePlatformApplicationInput struct {
+	// PlatformApplicationArn of platform application object to delete.
 	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string" required:"true"`
 
 	metadataDeletePlatformApplicationInput `json:"-", xml:"-"`
@@ -776,6 +950,7 @@ type metadataDeletePlatformApplicationOutput struct {
 }
 
 type DeleteTopicInput struct {
+	// The ARN of the topic you want to delete.
 	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
 	metadataDeleteTopicInput `json:"-", xml:"-"`
@@ -793,9 +968,13 @@ type metadataDeleteTopicOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Endpoint for mobile app and device.
 type Endpoint struct {
-	Attributes  *map[string]*string `type:"map"`
-	EndpointARN *string             `locationName:"EndpointArn" type:"string"`
+	// Attributes for endpoint.
+	Attributes *map[string]*string `type:"map"`
+
+	// EndpointArn for mobile app and device.
+	EndpointARN *string `locationName:"EndpointArn" type:"string"`
 
 	metadataEndpoint `json:"-", xml:"-"`
 }
@@ -804,7 +983,9 @@ type metadataEndpoint struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input for GetEndpointAttributes action.
 type GetEndpointAttributesInput struct {
+	// EndpointArn for GetEndpointAttributes input.
 	EndpointARN *string `locationName:"EndpointArn" type:"string" required:"true"`
 
 	metadataGetEndpointAttributesInput `json:"-", xml:"-"`
@@ -814,7 +995,19 @@ type metadataGetEndpointAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Response from GetEndpointAttributes of the EndpointArn.
 type GetEndpointAttributesOutput struct {
+	// Attributes include the following:
+	//
+	//   CustomUserData -- arbitrary user data to associate with the endpoint.
+	// Amazon SNS does not use this data. The data must be in UTF-8 format and less
+	// than 2KB.  Enabled -- flag that enables/disables delivery to the endpoint.
+	// Amazon SNS will set this to false when a notification service indicates to
+	// Amazon SNS that the endpoint is invalid. Users can set it back to true, typically
+	// after updating Token.  Token -- device token, also referred to as a registration
+	// id, for an app and mobile device. This is returned from the notification
+	// service when an app and mobile device are registered with the notification
+	// service.
 	Attributes *map[string]*string `type:"map"`
 
 	metadataGetEndpointAttributesOutput `json:"-", xml:"-"`
@@ -824,7 +1017,9 @@ type metadataGetEndpointAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input for GetPlatformApplicationAttributes action.
 type GetPlatformApplicationAttributesInput struct {
+	// PlatformApplicationArn for GetPlatformApplicationAttributesInput.
 	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string" required:"true"`
 
 	metadataGetPlatformApplicationAttributesInput `json:"-", xml:"-"`
@@ -834,7 +1029,17 @@ type metadataGetPlatformApplicationAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Response for GetPlatformApplicationAttributes action.
 type GetPlatformApplicationAttributesOutput struct {
+	// Attributes include the following:
+	//
+	//   EventEndpointCreated -- Topic ARN to which EndpointCreated event notifications
+	// should be sent.  EventEndpointDeleted -- Topic ARN to which EndpointDeleted
+	// event notifications should be sent.  EventEndpointUpdated -- Topic ARN to
+	// which EndpointUpdate event notifications should be sent.  EventDeliveryFailure
+	// -- Topic ARN to which DeliveryFailure event notifications should be sent
+	// upon Direct Publish delivery failure (permanent) to one of the application's
+	// endpoints.
 	Attributes *map[string]*string `type:"map"`
 
 	metadataGetPlatformApplicationAttributesOutput `json:"-", xml:"-"`
@@ -844,7 +1049,9 @@ type metadataGetPlatformApplicationAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input for GetSubscriptionAttributes.
 type GetSubscriptionAttributesInput struct {
+	// The ARN of the subscription whose properties you want to get.
 	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string" required:"true"`
 
 	metadataGetSubscriptionAttributesInput `json:"-", xml:"-"`
@@ -854,7 +1061,18 @@ type metadataGetSubscriptionAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Response for GetSubscriptionAttributes action.
 type GetSubscriptionAttributesOutput struct {
+	// A map of the subscription's attributes. Attributes in this map include the
+	// following:
+	//
+	//   SubscriptionArn -- the subscription's ARN  TopicArn -- the topic ARN that
+	// the subscription is associated with  Owner -- the AWS account ID of the subscription's
+	// owner  ConfirmationWasAuthenticated -- true if the subscription confirmation
+	// request was authenticated  DeliveryPolicy -- the JSON serialization of the
+	// subscription's delivery policy  EffectiveDeliveryPolicy -- the JSON serialization
+	// of the effective delivery policy that takes into account the topic delivery
+	// policy and account system defaults
 	Attributes *map[string]*string `type:"map"`
 
 	metadataGetSubscriptionAttributesOutput `json:"-", xml:"-"`
@@ -864,7 +1082,9 @@ type metadataGetSubscriptionAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input for GetTopicAttributes action.
 type GetTopicAttributesInput struct {
+	// The ARN of the topic whose properties you want to get.
 	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
 	metadataGetTopicAttributesInput `json:"-", xml:"-"`
@@ -874,7 +1094,20 @@ type metadataGetTopicAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Response for GetTopicAttributes action.
 type GetTopicAttributesOutput struct {
+	// A map of the topic's attributes. Attributes in this map include the following:
+	//
+	//   TopicArn -- the topic's ARN  Owner -- the AWS account ID of the topic's
+	// owner  Policy -- the JSON serialization of the topic's access control policy
+	//  DisplayName -- the human-readable name used in the "From" field for notifications
+	// to email and email-json endpoints  SubscriptionsPending -- the number of
+	// subscriptions pending confirmation on this topic  SubscriptionsConfirmed
+	// -- the number of confirmed subscriptions on this topic  SubscriptionsDeleted
+	// -- the number of deleted subscriptions on this topic  DeliveryPolicy -- the
+	// JSON serialization of the topic's delivery policy  EffectiveDeliveryPolicy
+	// -- the JSON serialization of the effective delivery policy that takes into
+	// account system defaults
 	Attributes *map[string]*string `type:"map"`
 
 	metadataGetTopicAttributesOutput `json:"-", xml:"-"`
@@ -884,8 +1117,14 @@ type metadataGetTopicAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input for ListEndpointsByPlatformApplication action.
 type ListEndpointsByPlatformApplicationInput struct {
-	NextToken              *string `type:"string"`
+	// NextToken string is used when calling ListEndpointsByPlatformApplication
+	// action to retrieve additional records that are available after the first
+	// page results.
+	NextToken *string `type:"string"`
+
+	// PlatformApplicationArn for ListEndpointsByPlatformApplicationInput action.
 	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string" required:"true"`
 
 	metadataListEndpointsByPlatformApplicationInput `json:"-", xml:"-"`
@@ -895,9 +1134,14 @@ type metadataListEndpointsByPlatformApplicationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Response for ListEndpointsByPlatformApplication action.
 type ListEndpointsByPlatformApplicationOutput struct {
+	// Endpoints returned for ListEndpointsByPlatformApplication action.
 	Endpoints []*Endpoint `type:"list"`
-	NextToken *string     `type:"string"`
+
+	// NextToken string is returned when calling ListEndpointsByPlatformApplication
+	// action if additional records are available after the first page results.
+	NextToken *string `type:"string"`
 
 	metadataListEndpointsByPlatformApplicationOutput `json:"-", xml:"-"`
 }
@@ -906,7 +1150,10 @@ type metadataListEndpointsByPlatformApplicationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input for ListPlatformApplications action.
 type ListPlatformApplicationsInput struct {
+	// NextToken string is used when calling ListPlatformApplications action to
+	// retrieve additional records that are available after the first page results.
 	NextToken *string `type:"string"`
 
 	metadataListPlatformApplicationsInput `json:"-", xml:"-"`
@@ -916,8 +1163,13 @@ type metadataListPlatformApplicationsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Response for ListPlatformApplications action.
 type ListPlatformApplicationsOutput struct {
-	NextToken            *string                `type:"string"`
+	// NextToken string is returned when calling ListPlatformApplications action
+	// if additional records are available after the first page results.
+	NextToken *string `type:"string"`
+
+	// Platform applications returned when calling ListPlatformApplications action.
 	PlatformApplications []*PlatformApplication `type:"list"`
 
 	metadataListPlatformApplicationsOutput `json:"-", xml:"-"`
@@ -927,9 +1179,13 @@ type metadataListPlatformApplicationsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input for ListSubscriptionsByTopic action.
 type ListSubscriptionsByTopicInput struct {
+	// Token returned by the previous ListSubscriptionsByTopic request.
 	NextToken *string `type:"string"`
-	TopicARN  *string `locationName:"TopicArn" type:"string" required:"true"`
+
+	// The ARN of the topic for which you wish to find subscriptions.
+	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
 	metadataListSubscriptionsByTopicInput `json:"-", xml:"-"`
 }
@@ -938,8 +1194,13 @@ type metadataListSubscriptionsByTopicInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Response for ListSubscriptionsByTopic action.
 type ListSubscriptionsByTopicOutput struct {
-	NextToken     *string         `type:"string"`
+	// Token to pass along to the next ListSubscriptionsByTopic request. This element
+	// is returned if there are more subscriptions to retrieve.
+	NextToken *string `type:"string"`
+
+	// A list of subscriptions.
 	Subscriptions []*Subscription `type:"list"`
 
 	metadataListSubscriptionsByTopicOutput `json:"-", xml:"-"`
@@ -949,7 +1210,9 @@ type metadataListSubscriptionsByTopicOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input for ListSubscriptions action.
 type ListSubscriptionsInput struct {
+	// Token returned by the previous ListSubscriptions request.
 	NextToken *string `type:"string"`
 
 	metadataListSubscriptionsInput `json:"-", xml:"-"`
@@ -959,8 +1222,13 @@ type metadataListSubscriptionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Response for ListSubscriptions action
 type ListSubscriptionsOutput struct {
-	NextToken     *string         `type:"string"`
+	// Token to pass along to the next ListSubscriptions request. This element is
+	// returned if there are more subscriptions to retrieve.
+	NextToken *string `type:"string"`
+
+	// A list of subscriptions.
 	Subscriptions []*Subscription `type:"list"`
 
 	metadataListSubscriptionsOutput `json:"-", xml:"-"`
@@ -971,6 +1239,7 @@ type metadataListSubscriptionsOutput struct {
 }
 
 type ListTopicsInput struct {
+	// Token returned by the previous ListTopics request.
 	NextToken *string `type:"string"`
 
 	metadataListTopicsInput `json:"-", xml:"-"`
@@ -980,9 +1249,14 @@ type metadataListTopicsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Response for ListTopics action.
 type ListTopicsOutput struct {
-	NextToken *string  `type:"string"`
-	Topics    []*Topic `type:"list"`
+	// Token to pass along to the next ListTopics request. This element is returned
+	// if there are additional topics to retrieve.
+	NextToken *string `type:"string"`
+
+	// A list of topic ARNs.
+	Topics []*Topic `type:"list"`
 
 	metadataListTopicsOutput `json:"-", xml:"-"`
 }
@@ -991,9 +1265,26 @@ type metadataListTopicsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The user-specified message attribute value. For string data types, the value
+// attribute has the same restrictions on the content as the message body. For
+// more information, see Publish (http://docs.aws.amazon.com/sns/latest/api/API_Publish.html).
+//
+// Name, type, and value must not be empty or null. In addition, the message
+// body should not be empty or null. All parts of the message attribute, including
+// name, type, and value, are included in the message size restriction, which
+// is currently 256 KB (262,144 bytes). For more information, see Using Amazon
+// SNS Message Attributes (http://docs.aws.amazon.com/sns/latest/dg/SNSMessageAttributes.html).
 type MessageAttributeValue struct {
-	BinaryValue []byte  `type:"blob"`
-	DataType    *string `type:"string" required:"true"`
+	// Binary type attributes can store any binary data, for example, compressed
+	// data, encrypted data, or images.
+	BinaryValue []byte `type:"blob"`
+
+	// Amazon SNS supports the following logical data types: String, Number, and
+	// Binary. For more information, see Message Attribute Data Types (http://docs.aws.amazon.com/sns/latest/dg/SNSMessageAttributes.html#SNSMessageAttributes.DataTypes).
+	DataType *string `type:"string" required:"true"`
+
+	// Strings are Unicode with UTF8 binary encoding. For a list of code values,
+	// see http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters (http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters).
 	StringValue *string `type:"string"`
 
 	metadataMessageAttributeValue `json:"-", xml:"-"`
@@ -1003,9 +1294,13 @@ type metadataMessageAttributeValue struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Platform application object.
 type PlatformApplication struct {
-	Attributes             *map[string]*string `type:"map"`
-	PlatformApplicationARN *string             `locationName:"PlatformApplicationArn" type:"string"`
+	// Attributes for platform application object.
+	Attributes *map[string]*string `type:"map"`
+
+	// PlatformApplicationArn for platform application object.
+	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string"`
 
 	metadataPlatformApplication `json:"-", xml:"-"`
 }
@@ -1014,13 +1309,69 @@ type metadataPlatformApplication struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input for Publish action.
 type PublishInput struct {
-	Message           *string                            `type:"string" required:"true"`
+	// The message you want to send to the topic.
+	//
+	// If you want to send the same message to all transport protocols, include
+	// the text of the message as a String value.
+	//
+	// If you want to send different messages for each transport protocol, set
+	// the value of the MessageStructure parameter to json and use a JSON object
+	// for the Message parameter. See the Examples section for the format of the
+	// JSON object.
+	//
+	// Constraints: Messages must be UTF-8 encoded strings at most 256 KB in size
+	// (262144 bytes, not 262144 characters).
+	//
+	// JSON-specific constraints:  Keys in the JSON object that correspond to supported
+	// transport protocols must have simple JSON string values.  The values will
+	// be parsed (unescaped) before they are used in outgoing messages. Outbound
+	// notifications are JSON encoded (meaning that the characters will be reescaped
+	// for sending). Values have a minimum length of 0 (the empty string, "", is
+	// allowed). Values have a maximum length bounded by the overall message size
+	// (so, including multiple protocols may limit message sizes). Non-string values
+	// will cause the key to be ignored. Keys that do not correspond to supported
+	// transport protocols are ignored. Duplicate keys are not allowed. Failure
+	// to parse or validate any key or value in the message will cause the Publish
+	// call to return an error (no partial delivery).
+	Message *string `type:"string" required:"true"`
+
+	// Message attributes for Publish action.
 	MessageAttributes *map[string]*MessageAttributeValue `locationNameKey:"Name" locationNameValue:"Value" type:"map"`
-	MessageStructure  *string                            `type:"string"`
-	Subject           *string                            `type:"string"`
-	TargetARN         *string                            `locationName:"TargetArn" type:"string"`
-	TopicARN          *string                            `locationName:"TopicArn" type:"string"`
+
+	// Set MessageStructure to json if you want to send a different message for
+	// each protocol. For example, using one publish action, you can send a short
+	// message to your SMS subscribers and a longer message to your email subscribers.
+	// If you set MessageStructure to json, the value of the Message parameter must:
+	//
+	//  be a syntactically valid JSON object; and contain at least a top-level
+	// JSON key of "default" with a value that is a string.   You can define other
+	// top-level keys that define the message you want to send to a specific transport
+	// protocol (e.g., "http").
+	//
+	// For information about sending different messages for each protocol using
+	// the AWS Management Console, go to Create Different Messages for Each Protocol
+	// (http://docs.aws.amazon.com/sns/latest/gsg/Publish.html#sns-message-formatting-by-protocol)
+	// in the Amazon Simple Notification Service Getting Started Guide.
+	//
+	// Valid value: json
+	MessageStructure *string `type:"string"`
+
+	// Optional parameter to be used as the "Subject" line when the message is delivered
+	// to email endpoints. This field will also be included, if present, in the
+	// standard JSON messages delivered to other endpoints.
+	//
+	// Constraints: Subjects must be ASCII text that begins with a letter, number,
+	// or punctuation mark; must not include line breaks or control characters;
+	// and must be less than 100 characters long.
+	Subject *string `type:"string"`
+
+	// Either TopicArn or EndpointArn, but not both.
+	TargetARN *string `locationName:"TargetArn" type:"string"`
+
+	// The topic you want to publish to.
+	TopicARN *string `locationName:"TopicArn" type:"string"`
 
 	metadataPublishInput `json:"-", xml:"-"`
 }
@@ -1029,7 +1380,11 @@ type metadataPublishInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Response for Publish action.
 type PublishOutput struct {
+	// Unique identifier assigned to the published message.
+	//
+	// Length Constraint: Maximum 100 characters
 	MessageID *string `locationName:"MessageId" type:"string"`
 
 	metadataPublishOutput `json:"-", xml:"-"`
@@ -1039,8 +1394,12 @@ type metadataPublishOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input for RemovePermission action.
 type RemovePermissionInput struct {
-	Label    *string `type:"string" required:"true"`
+	// The unique label of the statement you want to remove.
+	Label *string `type:"string" required:"true"`
+
+	// The ARN of the topic whose access control policy you wish to modify.
 	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
 	metadataRemovePermissionInput `json:"-", xml:"-"`
@@ -1058,9 +1417,23 @@ type metadataRemovePermissionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input for SetEndpointAttributes action.
 type SetEndpointAttributesInput struct {
-	Attributes  *map[string]*string `type:"map" required:"true"`
-	EndpointARN *string             `locationName:"EndpointArn" type:"string" required:"true"`
+	// A map of the endpoint attributes. Attributes in this map include the following:
+	//
+	//   CustomUserData -- arbitrary user data to associate with the endpoint.
+	// Amazon SNS does not use this data. The data must be in UTF-8 format and less
+	// than 2KB.  Enabled -- flag that enables/disables delivery to the endpoint.
+	// Amazon SNS will set this to false when a notification service indicates to
+	// Amazon SNS that the endpoint is invalid. Users can set it back to true, typically
+	// after updating Token.  Token -- device token, also referred to as a registration
+	// id, for an app and mobile device. This is returned from the notification
+	// service when an app and mobile device are registered with the notification
+	// service.
+	Attributes *map[string]*string `type:"map" required:"true"`
+
+	// EndpointArn used for SetEndpointAttributes action.
+	EndpointARN *string `locationName:"EndpointArn" type:"string" required:"true"`
 
 	metadataSetEndpointAttributesInput `json:"-", xml:"-"`
 }
@@ -1077,9 +1450,27 @@ type metadataSetEndpointAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input for SetPlatformApplicationAttributes action.
 type SetPlatformApplicationAttributesInput struct {
-	Attributes             *map[string]*string `type:"map" required:"true"`
-	PlatformApplicationARN *string             `locationName:"PlatformApplicationArn" type:"string" required:"true"`
+	// A map of the platform application attributes. Attributes in this map include
+	// the following:
+	//
+	//   PlatformCredential -- The credential received from the notification service.
+	// For APNS/APNS_SANDBOX, PlatformCredential is "private key". For GCM, PlatformCredential
+	// is "API key". For ADM, PlatformCredential is "client secret".  PlatformPrincipal
+	// -- The principal received from the notification service. For APNS/APNS_SANDBOX,
+	// PlatformPrincipal is "SSL certificate". For GCM, PlatformPrincipal is not
+	// applicable. For ADM, PlatformPrincipal is "client id".  EventEndpointCreated
+	// -- Topic ARN to which EndpointCreated event notifications should be sent.
+	//  EventEndpointDeleted -- Topic ARN to which EndpointDeleted event notifications
+	// should be sent.  EventEndpointUpdated -- Topic ARN to which EndpointUpdate
+	// event notifications should be sent.  EventDeliveryFailure -- Topic ARN to
+	// which DeliveryFailure event notifications should be sent upon Direct Publish
+	// delivery failure (permanent) to one of the application's endpoints.
+	Attributes *map[string]*string `type:"map" required:"true"`
+
+	// PlatformApplicationArn for SetPlatformApplicationAttributes action.
+	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string" required:"true"`
 
 	metadataSetPlatformApplicationAttributesInput `json:"-", xml:"-"`
 }
@@ -1096,9 +1487,18 @@ type metadataSetPlatformApplicationAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input for SetSubscriptionAttributes action.
 type SetSubscriptionAttributesInput struct {
-	AttributeName   *string `type:"string" required:"true"`
-	AttributeValue  *string `type:"string"`
+	// The name of the attribute you want to set. Only a subset of the subscriptions
+	// attributes are mutable.
+	//
+	// Valid values: DeliveryPolicy | RawMessageDelivery
+	AttributeName *string `type:"string" required:"true"`
+
+	// The new value for the attribute in JSON format.
+	AttributeValue *string `type:"string"`
+
+	// The ARN of the subscription to modify.
 	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string" required:"true"`
 
 	metadataSetSubscriptionAttributesInput `json:"-", xml:"-"`
@@ -1116,10 +1516,19 @@ type metadataSetSubscriptionAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input for SetTopicAttributes action.
 type SetTopicAttributesInput struct {
-	AttributeName  *string `type:"string" required:"true"`
+	// The name of the attribute you want to set. Only a subset of the topic's attributes
+	// are mutable.
+	//
+	// Valid values: Policy | DisplayName | DeliveryPolicy
+	AttributeName *string `type:"string" required:"true"`
+
+	// The new value for the attribute.
 	AttributeValue *string `type:"string"`
-	TopicARN       *string `locationName:"TopicArn" type:"string" required:"true"`
+
+	// The ARN of the topic to modify.
+	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
 	metadataSetTopicAttributesInput `json:"-", xml:"-"`
 }
@@ -1136,9 +1545,30 @@ type metadataSetTopicAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input for Subscribe action.
 type SubscribeInput struct {
+	// The endpoint that you want to receive notifications. Endpoints vary by protocol:
+	//
+	//  For the http protocol, the endpoint is an URL beginning with "http://"
+	// For the https protocol, the endpoint is a URL beginning with "https://" For
+	// the email protocol, the endpoint is an email address For the email-json protocol,
+	// the endpoint is an email address For the sms protocol, the endpoint is a
+	// phone number of an SMS-enabled device For the sqs protocol, the endpoint
+	// is the ARN of an Amazon SQS queue For the application protocol, the endpoint
+	// is the EndpointArn of a mobile app and device.
 	Endpoint *string `type:"string"`
+
+	// The protocol you want to use. Supported protocols include:
+	//
+	//   http -- delivery of JSON-encoded message via HTTP POST  https -- delivery
+	// of JSON-encoded message via HTTPS POST  email -- delivery of message via
+	// SMTP  email-json -- delivery of JSON-encoded message via SMTP  sms -- delivery
+	// of message via SMS  sqs -- delivery of JSON-encoded message to an Amazon
+	// SQS queue  application -- delivery of JSON-encoded message to an EndpointArn
+	// for a mobile app and device.
 	Protocol *string `type:"string" required:"true"`
+
+	// The ARN of the topic you want to subscribe to.
 	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
 	metadataSubscribeInput `json:"-", xml:"-"`
@@ -1148,7 +1578,10 @@ type metadataSubscribeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Response for Subscribe action.
 type SubscribeOutput struct {
+	// The ARN of the subscription, if the service was able to create a subscription
+	// immediately (without requiring endpoint owner confirmation).
 	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string"`
 
 	metadataSubscribeOutput `json:"-", xml:"-"`
@@ -1158,12 +1591,22 @@ type metadataSubscribeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A wrapper type for the attributes of an Amazon SNS subscription.
 type Subscription struct {
-	Endpoint        *string `type:"string"`
-	Owner           *string `type:"string"`
-	Protocol        *string `type:"string"`
+	// The subscription's endpoint (format depends on the protocol).
+	Endpoint *string `type:"string"`
+
+	// The subscription's owner.
+	Owner *string `type:"string"`
+
+	// The subscription's protocol.
+	Protocol *string `type:"string"`
+
+	// The subscription's ARN.
 	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string"`
-	TopicARN        *string `locationName:"TopicArn" type:"string"`
+
+	// The ARN of the subscription's topic.
+	TopicARN *string `locationName:"TopicArn" type:"string"`
 
 	metadataSubscription `json:"-", xml:"-"`
 }
@@ -1172,7 +1615,10 @@ type metadataSubscription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A wrapper type for the topic's Amazon Resource Name (ARN). To retrieve a
+// topic's attributes, use GetTopicAttributes.
 type Topic struct {
+	// The topic's ARN.
 	TopicARN *string `locationName:"TopicArn" type:"string"`
 
 	metadataTopic `json:"-", xml:"-"`
@@ -1182,7 +1628,9 @@ type metadataTopic struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input for Unsubscribe action.
 type UnsubscribeInput struct {
+	// The ARN of the subscription to be deleted.
 	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string" required:"true"`
 
 	metadataUnsubscribeInput `json:"-", xml:"-"`

@@ -32,6 +32,13 @@ func (o *Operation) HasOutput() bool {
 	return o.OutputRef.ShapeName != ""
 }
 
+func (o *Operation) Docstring() string {
+	if o.Documentation != "" {
+		return docstring(o.Documentation)
+	}
+	return ""
+}
+
 var tplOperation = template.Must(template.New("operation").Parse(`
 // {{ .ExportedName }}Request generates a request for the {{ .ExportedName }} operation.
 func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
@@ -51,7 +58,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	return
 }
 
-func (c *{{ .API.StructName }}) {{ .ExportedName }}(` +
+{{ .Docstring }}func (c *{{ .API.StructName }}) {{ .ExportedName }}(` +
 	`input {{ .InputRef.GoType }}) (output {{ .OutputRef.GoType }}, err error) {
 	req, out := c.{{ .ExportedName }}Request(input)
 	output = out

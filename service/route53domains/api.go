@@ -24,6 +24,10 @@ func (c *Route53Domains) CheckDomainAvailabilityRequest(input *CheckDomainAvaila
 	return
 }
 
+// This operation checks the availability of one domain name. You can access
+// this API without authenticating. Note that if the availability status of
+// a domain is pending, you must submit another request to determine the availability
+// of the domain name.
 func (c *Route53Domains) CheckDomainAvailability(input *CheckDomainAvailabilityInput) (output *CheckDomainAvailabilityOutput, err error) {
 	req, out := c.CheckDomainAvailabilityRequest(input)
 	output = out
@@ -49,6 +53,10 @@ func (c *Route53Domains) DeleteTagsForDomainRequest(input *DeleteTagsForDomainIn
 	return
 }
 
+// This operation deletes the specified tags for a domain.
+//
+// All tag operations are eventually consistent; subsequent operations may
+// not immediately represent all issued operations.
 func (c *Route53Domains) DeleteTagsForDomain(input *DeleteTagsForDomainInput) (output *DeleteTagsForDomainOutput, err error) {
 	req, out := c.DeleteTagsForDomainRequest(input)
 	output = out
@@ -74,6 +82,13 @@ func (c *Route53Domains) DisableDomainAutoRenewRequest(input *DisableDomainAutoR
 	return
 }
 
+// This operation disables automatic renewal of domain registration for the
+// specified domain.
+//
+// Caution! Amazon Route 53 doesn't have a manual renewal process, so if you
+// disable automatic renewal, registration for the domain will not be renewed
+// when the expiration date passes, and you will lose control of the domain
+// name.
 func (c *Route53Domains) DisableDomainAutoRenew(input *DisableDomainAutoRenewInput) (output *DisableDomainAutoRenewOutput, err error) {
 	req, out := c.DisableDomainAutoRenewRequest(input)
 	output = out
@@ -99,6 +114,13 @@ func (c *Route53Domains) DisableDomainTransferLockRequest(input *DisableDomainTr
 	return
 }
 
+// This operation removes the transfer lock on the domain (specifically the
+// clientTransferProhibited status) to allow domain transfers. We recommend
+// you refrain from performing this action unless you intend to transfer the
+// domain to a different registrar. Successful submission returns an operation
+// ID that you can use to track the progress and completion of the action. If
+// the request is not completed successfully, the domain registrant will be
+// notified by email.
 func (c *Route53Domains) DisableDomainTransferLock(input *DisableDomainTransferLockInput) (output *DisableDomainTransferLockOutput, err error) {
 	req, out := c.DisableDomainTransferLockRequest(input)
 	output = out
@@ -124,6 +146,16 @@ func (c *Route53Domains) EnableDomainAutoRenewRequest(input *EnableDomainAutoRen
 	return
 }
 
+// This operation configures Amazon Route 53 to automatically renew the specified
+// domain before the domain registration expires. The cost of renewing your
+// domain registration is billed to your AWS account.
+//
+// The period during which you can renew a domain name varies by TLD. For a
+// list of TLDs and their renewal policies, see "Renewal, restoration, and deletion
+// times" (http://wiki.gandi.net/en/domains/renew#renewal_restoration_and_deletion_times)
+// on the website for our registrar partner, Gandi. Route 53 requires that you
+// renew before the end of the renewal period that is listed on the Gandi website
+// so we can complete processing before the deadline.
 func (c *Route53Domains) EnableDomainAutoRenew(input *EnableDomainAutoRenewInput) (output *EnableDomainAutoRenewOutput, err error) {
 	req, out := c.EnableDomainAutoRenewRequest(input)
 	output = out
@@ -149,6 +181,11 @@ func (c *Route53Domains) EnableDomainTransferLockRequest(input *EnableDomainTran
 	return
 }
 
+// This operation sets the transfer lock on the domain (specifically the clientTransferProhibited
+// status) to prevent domain transfers. Successful submission returns an operation
+// ID that you can use to track the progress and completion of the action. If
+// the request is not completed successfully, the domain registrant will be
+// notified by email.
 func (c *Route53Domains) EnableDomainTransferLock(input *EnableDomainTransferLockInput) (output *EnableDomainTransferLockOutput, err error) {
 	req, out := c.EnableDomainTransferLockRequest(input)
 	output = out
@@ -174,6 +211,8 @@ func (c *Route53Domains) GetDomainDetailRequest(input *GetDomainDetailInput) (re
 	return
 }
 
+// This operation returns detailed information about the domain. The domain's
+// contact information is also returned as part of the output.
 func (c *Route53Domains) GetDomainDetail(input *GetDomainDetailInput) (output *GetDomainDetailOutput, err error) {
 	req, out := c.GetDomainDetailRequest(input)
 	output = out
@@ -199,6 +238,7 @@ func (c *Route53Domains) GetOperationDetailRequest(input *GetOperationDetailInpu
 	return
 }
 
+// This operation returns the current status of an operation that is not completed.
 func (c *Route53Domains) GetOperationDetail(input *GetOperationDetailInput) (output *GetOperationDetailOutput, err error) {
 	req, out := c.GetOperationDetailRequest(input)
 	output = out
@@ -224,6 +264,8 @@ func (c *Route53Domains) ListDomainsRequest(input *ListDomainsInput) (req *aws.R
 	return
 }
 
+// This operation returns all the domain names registered with Amazon Route
+// 53 for the current AWS account.
 func (c *Route53Domains) ListDomains(input *ListDomainsInput) (output *ListDomainsOutput, err error) {
 	req, out := c.ListDomainsRequest(input)
 	output = out
@@ -249,6 +291,7 @@ func (c *Route53Domains) ListOperationsRequest(input *ListOperationsInput) (req 
 	return
 }
 
+// This operation returns the operation IDs of operations that are not yet complete.
 func (c *Route53Domains) ListOperations(input *ListOperationsInput) (output *ListOperationsOutput, err error) {
 	req, out := c.ListOperationsRequest(input)
 	output = out
@@ -274,6 +317,11 @@ func (c *Route53Domains) ListTagsForDomainRequest(input *ListTagsForDomainInput)
 	return
 }
 
+// This operation returns all of the tags that are associated with the specified
+// domain.
+//
+// All tag operations are eventually consistent; subsequent operations may
+// not immediately represent all issued operations.
 func (c *Route53Domains) ListTagsForDomain(input *ListTagsForDomainInput) (output *ListTagsForDomainOutput, err error) {
 	req, out := c.ListTagsForDomainRequest(input)
 	output = out
@@ -299,6 +347,25 @@ func (c *Route53Domains) RegisterDomainRequest(input *RegisterDomainInput) (req 
 	return
 }
 
+// This operation registers a domain. Domains are registered by the AWS registrar
+// partner, Gandi. For some top-level domains (TLDs), this operation requires
+// extra parameters.
+//
+// When you register a domain, Amazon Route 53 does the following:
+//
+//  Creates a Amazon Route 53 hosted zone that has the same name as the domain.
+// Amazon Route 53 assigns four name servers to your hosted zone and automatically
+// updates your domain registration with the names of these name servers. Enables
+// autorenew, so your domain registration will renew automatically each year.
+// We'll notify you in advance of the renewal date so you can choose whether
+// to renew the registration. Optionally enables privacy protection, so WHOIS
+// queries return contact information for our registrar partner, Gandi, instead
+// of the information you entered for registrant, admin, and tech contacts.
+// If registration is successful, returns an operation ID that you can use to
+// track the progress and completion of the action. If the request is not completed
+// successfully, the domain registrant is notified by email. Charges your AWS
+// account an amount based on the top-level domain. For more information, see
+// Amazon Route 53 Pricing (http://aws.amazon.com/route53/pricing/).
 func (c *Route53Domains) RegisterDomain(input *RegisterDomainInput) (output *RegisterDomainOutput, err error) {
 	req, out := c.RegisterDomainRequest(input)
 	output = out
@@ -324,6 +391,8 @@ func (c *Route53Domains) RetrieveDomainAuthCodeRequest(input *RetrieveDomainAuth
 	return
 }
 
+// This operation returns the AuthCode for the domain. To transfer a domain
+// to another registrar, you provide this value to the new registrar.
 func (c *Route53Domains) RetrieveDomainAuthCode(input *RetrieveDomainAuthCodeInput) (output *RetrieveDomainAuthCodeOutput, err error) {
 	req, out := c.RetrieveDomainAuthCodeRequest(input)
 	output = out
@@ -349,6 +418,30 @@ func (c *Route53Domains) TransferDomainRequest(input *TransferDomainInput) (req 
 	return
 }
 
+// This operation transfers a domain from another registrar to Amazon Route
+// 53. When the transfer is complete, the domain is registered with the AWS
+// registrar partner, Gandi.
+//
+// For transfer requirements, a detailed procedure, and information about viewing
+// the status of a domain transfer, see Transferring Registration for a Domain
+// to Amazon Route 53 (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-transfer-to-route-53.html)
+// in the Amazon Route 53 Developer Guide.
+//
+// If the registrar for your domain is also the DNS service provider for the
+// domain, we highly recommend that you consider transferring your DNS service
+// to Amazon Route 53 or to another DNS service provider before you transfer
+// your registration. Some registrars provide free DNS service when you purchase
+// a domain registration. When you transfer the registration, the previous registrar
+// will not renew your domain registration and could end your DNS service at
+// any time.
+//
+// Caution! If the registrar for your domain is also the DNS service provider
+// for the domain and you don't transfer DNS service to another provider, your
+// website, email, and the web applications associated with the domain might
+// become unavailable. If the transfer is successful, this method returns an
+// operation ID that you can use to track the progress and completion of the
+// action. If the transfer doesn't complete successfully, the domain registrant
+// will be notified by email.
 func (c *Route53Domains) TransferDomain(input *TransferDomainInput) (output *TransferDomainOutput, err error) {
 	req, out := c.TransferDomainRequest(input)
 	output = out
@@ -374,6 +467,14 @@ func (c *Route53Domains) UpdateDomainContactRequest(input *UpdateDomainContactIn
 	return
 }
 
+// This operation updates the contact information for a particular domain. Information
+// for at least one contact (registrant, administrator, or technical) must be
+// supplied for update.
+//
+// If the update is successful, this method returns an operation ID that you
+// can use to track the progress and completion of the action. If the request
+// is not completed successfully, the domain registrant will be notified by
+// email.
 func (c *Route53Domains) UpdateDomainContact(input *UpdateDomainContactInput) (output *UpdateDomainContactOutput, err error) {
 	req, out := c.UpdateDomainContactRequest(input)
 	output = out
@@ -399,6 +500,17 @@ func (c *Route53Domains) UpdateDomainContactPrivacyRequest(input *UpdateDomainCo
 	return
 }
 
+// This operation updates the specified domain contact's privacy setting. When
+// the privacy option is enabled, personal information such as postal or email
+// address is hidden from the results of a public WHOIS query. The privacy services
+// are provided by the AWS registrar, Gandi. For more information, see the Gandi
+// privacy features (http://www.gandi.net/domain/whois/?currency=USD&amp;lang=en).
+//
+// This operation only affects the privacy of the specified contact type (registrant,
+// administrator, or tech). Successful acceptance returns an operation ID that
+// you can use with GetOperationDetail to track the progress and completion
+// of the action. If the request is not completed successfully, the domain registrant
+// will be notified by email.
 func (c *Route53Domains) UpdateDomainContactPrivacy(input *UpdateDomainContactPrivacyInput) (output *UpdateDomainContactPrivacyOutput, err error) {
 	req, out := c.UpdateDomainContactPrivacyRequest(input)
 	output = out
@@ -424,6 +536,14 @@ func (c *Route53Domains) UpdateDomainNameserversRequest(input *UpdateDomainNames
 	return
 }
 
+// This operation replaces the current set of name servers for the domain with
+// the specified set of name servers. If you use Amazon Route 53 as your DNS
+// service, specify the four name servers in the delegation set for the hosted
+// zone for the domain.
+//
+// If successful, this operation returns an operation ID that you can use to
+// track the progress and completion of the action. If the request is not completed
+// successfully, the domain registrant will be notified by email.
 func (c *Route53Domains) UpdateDomainNameservers(input *UpdateDomainNameserversInput) (output *UpdateDomainNameserversOutput, err error) {
 	req, out := c.UpdateDomainNameserversRequest(input)
 	output = out
@@ -449,6 +569,10 @@ func (c *Route53Domains) UpdateTagsForDomainRequest(input *UpdateTagsForDomainIn
 	return
 }
 
+// This operation adds or updates tags for a specified domain.
+//
+// All tag operations are eventually consistent; subsequent operations may
+// not immediately represent all issued operations.
 func (c *Route53Domains) UpdateTagsForDomain(input *UpdateTagsForDomainInput) (output *UpdateTagsForDomainOutput, err error) {
 	req, out := c.UpdateTagsForDomainRequest(input)
 	output = out
@@ -458,8 +582,22 @@ func (c *Route53Domains) UpdateTagsForDomain(input *UpdateTagsForDomainInput) (o
 
 var opUpdateTagsForDomain *aws.Operation
 
+// The CheckDomainAvailability request contains the following elements.
 type CheckDomainAvailabilityInput struct {
-	DomainName  *string `type:"string" required:"true"`
+	// The name of a domain.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: The domain name can contain only the letters a through z, the
+	// numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not
+	// supported.
+	//
+	// Required: Yes
+	DomainName *string `type:"string" required:"true"`
+
+	// Reserved for future use.
 	IDNLangCode *string `locationName:"IdnLangCode" type:"string"`
 
 	metadataCheckDomainAvailabilityInput `json:"-", xml:"-"`
@@ -469,7 +607,22 @@ type metadataCheckDomainAvailabilityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The CheckDomainAvailability response includes the following elements.
 type CheckDomainAvailabilityOutput struct {
+	// Whether the domain name is available for registering.
+	//
+	//  You can only register domains designated as AVAILABLE.
+	//
+	//  Type: String
+	//
+	// Valid values:
+	//
+	//   AVAILABLE – The domain name is available.  AVAILABLE_RESERVED – The domain
+	// name is reserved under specific conditions.  AVAILABLE_PREORDER – The domain
+	// name is available and can be preordered.  UNAVAILABLE – The domain name is
+	// not available.  UNAVAILABLE_PREMIUM – The domain name is not available.
+	// UNAVAILABLE_RESTRICTED – The domain name is forbidden.  RESERVED – The domain
+	// name has been reserved for another person or organization.
 	Availability *string `type:"string" required:"true"`
 
 	metadataCheckDomainAvailabilityOutput `json:"-", xml:"-"`
@@ -479,21 +632,197 @@ type metadataCheckDomainAvailabilityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// ContactDetail includes the following elements.
 type ContactDetail struct {
-	AddressLine1     *string       `type:"string"`
-	AddressLine2     *string       `type:"string"`
-	City             *string       `type:"string"`
-	ContactType      *string       `type:"string"`
-	CountryCode      *string       `type:"string"`
-	Email            *string       `type:"string"`
-	ExtraParams      []*ExtraParam `type:"list"`
-	Fax              *string       `type:"string"`
-	FirstName        *string       `type:"string"`
-	LastName         *string       `type:"string"`
-	OrganizationName *string       `type:"string"`
-	PhoneNumber      *string       `type:"string"`
-	State            *string       `type:"string"`
-	ZipCode          *string       `type:"string"`
+	// First line of the contact's address.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: Maximum 255 characters.
+	//
+	// Parents: RegistrantContact, AdminContact, TechContact
+	//
+	// Required: Yes
+	AddressLine1 *string `type:"string"`
+
+	// Second line of contact's address, if any.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: Maximum 255 characters.
+	//
+	// Parents: RegistrantContact, AdminContact, TechContact
+	//
+	// Required: No
+	AddressLine2 *string `type:"string"`
+
+	// The city of the contact's address.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: Maximum 255 characters.
+	//
+	// Parents: RegistrantContact, AdminContact, TechContact
+	//
+	// Required: Yes
+	City *string `type:"string"`
+
+	// Indicates whether the contact is a person, company, association, or public
+	// organization. If you choose an option other than PERSON, you must enter an
+	// organization name, and you can't enable privacy protection for the contact.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: Maximum 255 characters.
+	//
+	// Valid values: PERSON | COMPANY | ASSOCIATION | PUBLIC_BODY
+	//
+	// Parents: RegistrantContact, AdminContact, TechContact
+	//
+	// Required: Yes
+	ContactType *string `type:"string"`
+
+	// Code for the country of the contact's address.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: Maximum 255 characters.
+	//
+	// Parents: RegistrantContact, AdminContact, TechContact
+	//
+	// Required: Yes
+	CountryCode *string `type:"string"`
+
+	// Email address of the contact.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: Maximum 254 characters.
+	//
+	// Parents: RegistrantContact, AdminContact, TechContact
+	//
+	// Required: Yes
+	Email *string `type:"string"`
+
+	// A list of name-value pairs for parameters required by certain top-level domains.
+	//
+	// Type: Complex
+	//
+	// Default: None
+	//
+	// Parents: RegistrantContact, AdminContact, TechContact
+	//
+	// Children: Name, Value
+	//
+	// Required: No
+	ExtraParams []*ExtraParam `type:"list"`
+
+	// Fax number of the contact.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: Phone number must be specified in the format "+[country dialing
+	// code].[number including any area code]". For example, a US phone number might
+	// appear as "+1.1234567890".
+	//
+	// Parents: RegistrantContact, AdminContact, TechContact
+	//
+	// Required: No
+	Fax *string `type:"string"`
+
+	// First name of contact.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: Maximum 255 characters.
+	//
+	// Parents: RegistrantContact, AdminContact, TechContact
+	//
+	// Required: Yes
+	FirstName *string `type:"string"`
+
+	// Last name of contact.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: Maximum 255 characters.
+	//
+	// Parents: RegistrantContact, AdminContact, TechContact
+	//
+	// Required: Yes
+	LastName *string `type:"string"`
+
+	// Name of the organization for contact types other than PERSON.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: Maximum 255 characters. Contact type must not be PERSON.
+	//
+	// Parents: RegistrantContact, AdminContact, TechContact
+	//
+	// Required: No
+	OrganizationName *string `type:"string"`
+
+	// The phone number of the contact.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: Phone number must be specified in the format "+[country dialing
+	// code].[number including any area code>]". For example, a US phone number
+	// might appear as "+1.1234567890".
+	//
+	// Parents: RegistrantContact, AdminContact, TechContact
+	//
+	// Required: Yes
+	PhoneNumber *string `type:"string"`
+
+	// The state or province of the contact's city.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: Maximum 255 characters.
+	//
+	// Parents: RegistrantContact, AdminContact, TechContact
+	//
+	// Required: No
+	State *string `type:"string"`
+
+	// The zip or postal code of the contact's address.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: Maximum 255 characters.
+	//
+	// Parents: RegistrantContact, AdminContact, TechContact
+	//
+	// Required: No
+	ZipCode *string `type:"string"`
 
 	metadataContactDetail `json:"-", xml:"-"`
 }
@@ -502,8 +831,34 @@ type metadataContactDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The DeleteTagsForDomainRequest includes the following elements.
 type DeleteTagsForDomainInput struct {
-	DomainName   *string   `type:"string" required:"true"`
+	// The domain for which you want to delete one or more tags.
+	//
+	// The name of a domain.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: The domain name can contain only the letters a through z, the
+	// numbers 0 through 9, and hyphen (-). Hyphens are allowed only when theyaposre
+	// surrounded by letters, numbers, or other hyphens. You canapost specify a
+	// hyphen at the beginning or end of a label. To specify an Internationalized
+	// Domain Name, you must convert the name to Punycode.
+	//
+	// Required: Yes
+	DomainName *string `type:"string" required:"true"`
+
+	// A list of tag keys to delete.
+	//
+	// Type: A list that contains the keys of the tags that you want to delete.
+	//
+	// Default: None
+	//
+	// Required: No
+	//
+	// '>
 	TagsToDelete []*string `type:"list" required:"true"`
 
 	metadataDeleteTagsForDomainInput `json:"-", xml:"-"`
@@ -539,7 +894,19 @@ type metadataDisableDomainAutoRenewOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The DisableDomainTransferLock request includes the following element.
 type DisableDomainTransferLockInput struct {
+	// The name of a domain.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: The domain name can contain only the letters a through z, the
+	// numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not
+	// supported.
+	//
+	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
 
 	metadataDisableDomainTransferLockInput `json:"-", xml:"-"`
@@ -549,7 +916,16 @@ type metadataDisableDomainTransferLockInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The DisableDomainTransferLock response includes the following element.
 type DisableDomainTransferLockOutput struct {
+	// Identifier for tracking the progress of the request. To use this ID to query
+	// the operation status, use GetOperationDetail.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: Maximum 255 characters.
 	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
 
 	metadataDisableDomainTransferLockOutput `json:"-", xml:"-"`
@@ -560,10 +936,30 @@ type metadataDisableDomainTransferLockOutput struct {
 }
 
 type DomainSummary struct {
-	AutoRenew    *bool      `type:"boolean"`
-	DomainName   *string    `type:"string" required:"true"`
-	Expiry       *time.Time `type:"timestamp" timestampFormat:"unix"`
-	TransferLock *bool      `type:"boolean"`
+	// Indicates whether the domain is automatically renewed upon expiration.
+	//
+	// Type: Boolean
+	//
+	// Valid values: True | False
+	AutoRenew *bool `type:"boolean"`
+
+	// The name of a domain.
+	//
+	// Type: String
+	DomainName *string `type:"string" required:"true"`
+
+	// Expiration date of the domain in Coordinated Universal Time (UTC).
+	//
+	// Type: Long
+	Expiry *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// Indicates whether a domain is locked from unauthorized transfer to another
+	// party.
+	//
+	// Type: Boolean
+	//
+	// Valid values: True | False
+	TransferLock *bool `type:"boolean"`
 
 	metadataDomainSummary `json:"-", xml:"-"`
 }
@@ -590,7 +986,19 @@ type metadataEnableDomainAutoRenewOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The EnableDomainTransferLock request includes the following element.
 type EnableDomainTransferLockInput struct {
+	// The name of a domain.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: The domain name can contain only the letters a through z, the
+	// numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not
+	// supported.
+	//
+	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
 
 	metadataEnableDomainTransferLockInput `json:"-", xml:"-"`
@@ -600,7 +1008,16 @@ type metadataEnableDomainTransferLockInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The EnableDomainTransferLock response includes the following elements.
 type EnableDomainTransferLockOutput struct {
+	// Identifier for tracking the progress of the request. To use this ID to query
+	// the operation status, use GetOperationDetail.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: Maximum 255 characters.
 	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
 
 	metadataEnableDomainTransferLockOutput `json:"-", xml:"-"`
@@ -610,8 +1027,37 @@ type metadataEnableDomainTransferLockOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// ExtraParam includes the following elements.
 type ExtraParam struct {
-	Name  *string `type:"string" required:"true"`
+	// Name of the additional parameter required by the top-level domain.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Valid values: DUNS_NUMBER | BRAND_NUMBER | BIRTH_DEPARTMENT | BIRTH_DATE_IN_YYYY_MM_DD
+	// | BIRTH_COUNTRY | BIRTH_CITY | DOCUMENT_NUMBER | AU_ID_NUMBER | AU_ID_TYPE
+	// | CA_LEGAL_TYPE | ES_IDENTIFICATION | ES_IDENTIFICATION_TYPE | ES_LEGAL_FORM
+	// | FI_BUSINESS_NUMBER | FI_ID_NUMBER | IT_PIN | RU_PASSPORT_DATA | SE_ID_NUMBER
+	// | SG_ID_NUMBER | VAT_NUMBER
+	//
+	// Parent: ExtraParams
+	//
+	// Required: Yes
+	Name *string `type:"string" required:"true"`
+
+	// Values corresponding to the additional parameter names required by some top-level
+	// domains.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: Maximum 2048 characters.
+	//
+	// Parent: ExtraParams
+	//
+	// Required: Yes
 	Value *string `type:"string" required:"true"`
 
 	metadataExtraParam `json:"-", xml:"-"`
@@ -621,7 +1067,19 @@ type metadataExtraParam struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The GetDomainDetail request includes the following element.
 type GetDomainDetailInput struct {
+	// The name of a domain.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: The domain name can contain only the letters a through z, the
+	// numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not
+	// supported.
+	//
+	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
 
 	metadataGetDomainDetailInput `json:"-", xml:"-"`
@@ -631,28 +1089,144 @@ type metadataGetDomainDetailInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The GetDomainDetail response includes the following elements.
 type GetDomainDetailOutput struct {
-	AbuseContactEmail *string        `type:"string"`
-	AbuseContactPhone *string        `type:"string"`
-	AdminContact      *ContactDetail `type:"structure" required:"true"`
-	AdminPrivacy      *bool          `type:"boolean"`
-	AutoRenew         *bool          `type:"boolean"`
-	CreationDate      *time.Time     `type:"timestamp" timestampFormat:"unix"`
-	DNSSec            *string        `locationName:"DnsSec" type:"string"`
-	DomainName        *string        `type:"string" required:"true"`
-	ExpirationDate    *time.Time     `type:"timestamp" timestampFormat:"unix"`
-	Nameservers       []*Nameserver  `type:"list" required:"true"`
+	// Email address to contact to report incorrect contact information for a domain,
+	// to report that the domain is being used to send spam, to report that someone
+	// is cybersquatting on a domain name, or report some other type of abuse.
+	//
+	// Type: String
+	AbuseContactEmail *string `type:"string"`
+
+	// Phone number for reporting abuse.
+	//
+	// Type: String
+	AbuseContactPhone *string `type:"string"`
+
+	// Provides details about the domain administrative contact.
+	//
+	// Type: Complex
+	//
+	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
+	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
+	// Email, Fax, ExtraParams
+	AdminContact *ContactDetail `type:"structure" required:"true"`
+
+	// Specifies whether contact information for the admin contact is concealed
+	// from WHOIS queries. If the value is true, WHOIS ("who is") queries will return
+	// contact information for our registrar partner, Gandi, instead of the contact
+	// information that you enter.
+	//
+	// Type: Boolean
+	AdminPrivacy *bool `type:"boolean"`
+
+	// Specifies whether the domain registration is set to renew automatically.
+	//
+	// Type: Boolean
+	AutoRenew *bool `type:"boolean"`
+
+	// The date when the domain was created as found in the response to a WHOIS
+	// query. The date format is Unix time.
+	CreationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// Reserved for future use.
+	DNSSec *string `locationName:"DnsSec" type:"string"`
+
+	// The name of a domain.
+	//
+	// Type: String
+	DomainName *string `type:"string" required:"true"`
+
+	// The date when the registration for the domain is set to expire. The date
+	// format is Unix time.
+	ExpirationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The name of the domain.
+	//
+	// Type: String
+	Nameservers []*Nameserver `type:"list" required:"true"`
+
+	// Provides details about the domain registrant.
+	//
+	// Type: Complex
+	//
+	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
+	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
+	// Email, Fax, ExtraParams
 	RegistrantContact *ContactDetail `type:"structure" required:"true"`
-	RegistrantPrivacy *bool          `type:"boolean"`
-	RegistrarName     *string        `type:"string"`
-	RegistrarURL      *string        `locationName:"RegistrarUrl" type:"string"`
-	RegistryDomainID  *string        `locationName:"RegistryDomainId" type:"string"`
-	Reseller          *string        `type:"string"`
-	StatusList        []*string      `type:"list"`
-	TechContact       *ContactDetail `type:"structure" required:"true"`
-	TechPrivacy       *bool          `type:"boolean"`
-	UpdatedDate       *time.Time     `type:"timestamp" timestampFormat:"unix"`
-	WhoIsServer       *string        `type:"string"`
+
+	// Specifies whether contact information for the registrant contact is concealed
+	// from WHOIS queries. If the value is true, WHOIS ("who is") queries will return
+	// contact information for our registrar partner, Gandi, instead of the contact
+	// information that you enter.
+	//
+	// Type: Boolean
+	RegistrantPrivacy *bool `type:"boolean"`
+
+	// Name of the registrar of the domain as identified in the registry. Amazon
+	// Route 53 domains are registered by registrar Gandi. The value is "GANDI SAS".
+	//
+	// Type: String
+	RegistrarName *string `type:"string"`
+
+	// Web address of the registrar.
+	//
+	// Type: String
+	RegistrarURL *string `locationName:"RegistrarUrl" type:"string"`
+
+	// Reserved for future use.
+	RegistryDomainID *string `locationName:"RegistryDomainId" type:"string"`
+
+	// Reseller of the domain. Domains registered or transferred using Amazon Route
+	// 53 domains will have "Amazon" as the reseller.
+	//
+	// Type: String
+	Reseller *string `type:"string"`
+
+	// An array of domain name status codes, also known as Extensible Provisioning
+	// Protocol (EPP) status codes.
+	//
+	// ICANN, the organization that maintains a central database of domain names,
+	// has developed a set of domain name status codes that tell you the status
+	// of a variety of operations on a domain name, for example, registering a domain
+	// name, transferring a domain name to another registrar, renewing the registration
+	// for a domain name, and so on. All registrars use this same set of status
+	// codes.
+	//
+	// For a current list of domain name status codes and an explanation of what
+	// each code means, go to the ICANN website (https://www.icann.org/) and search
+	// for epp status codes. (Search on the ICANN website; web searches sometimes
+	// return an old version of the document.)
+	//
+	// Type: Array of String
+	StatusList []*string `type:"list"`
+
+	// Provides details about the domain technical contact.
+	//
+	// Type: Complex
+	//
+	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
+	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
+	// Email, Fax, ExtraParams
+	TechContact *ContactDetail `type:"structure" required:"true"`
+
+	// Specifies whether contact information for the tech contact is concealed from
+	// WHOIS queries. If the value is true, WHOIS ("who is") queries will return
+	// contact information for our registrar partner, Gandi, instead of the contact
+	// information that you enter.
+	//
+	// Type: Boolean
+	TechPrivacy *bool `type:"boolean"`
+
+	// The last updated date of the domain as found in the response to a WHOIS query.
+	// The date format is Unix time.
+	UpdatedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The fully qualified name of the WHOIS server that can answer the WHOIS query
+	// for the domain.
+	//
+	// Type: String
+	WhoIsServer *string `type:"string"`
 
 	metadataGetDomainDetailOutput `json:"-", xml:"-"`
 }
@@ -661,7 +1235,16 @@ type metadataGetDomainDetailOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The GetOperationDetail request includes the following element.
 type GetOperationDetailInput struct {
+	// The identifier for the operation for which you want to get the status. Amazon
+	// Route 53 returned the identifier in the response to the original request.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Required: Yes
 	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
 
 	metadataGetOperationDetailInput `json:"-", xml:"-"`
@@ -671,13 +1254,35 @@ type metadataGetOperationDetailInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The GetOperationDetail response includes the following elements.
 type GetOperationDetailOutput struct {
-	DomainName    *string    `type:"string"`
-	Message       *string    `type:"string"`
-	OperationID   *string    `locationName:"OperationId" type:"string"`
-	Status        *string    `type:"string"`
+	// The name of a domain.
+	//
+	// Type: String
+	DomainName *string `type:"string"`
+
+	// Detailed information on the status including possible errors.
+	//
+	// Type: String
+	Message *string `type:"string"`
+
+	// The identifier for the operation.
+	//
+	// Type: String
+	OperationID *string `locationName:"OperationId" type:"string"`
+
+	// The current status of the requested operation in the system.
+	//
+	// Type: String
+	Status *string `type:"string"`
+
+	// The date when the request was submitted.
 	SubmittedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
-	Type          *string    `type:"string"`
+
+	// The type of operation that was requested.
+	//
+	// Type: String
+	Type *string `type:"string"`
 
 	metadataGetOperationDetailOutput `json:"-", xml:"-"`
 }
@@ -686,9 +1291,34 @@ type metadataGetOperationDetailOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The ListDomains request includes the following elements.
 type ListDomainsInput struct {
-	Marker   *string `type:"string"`
-	MaxItems *int64  `type:"integer"`
+	// For an initial request for a list of domains, omit this element. If the number
+	// of domains that are associated with the current AWS account is greater than
+	// the value that you specified for MaxItems, you can use Marker to return additional
+	// domains. Get the value of NextPageMarker from the previous response, and
+	// submit another request that includes the value of NextPageMarker in the Marker
+	// element.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: The marker must match the value specified in the previous request.
+	//
+	// Required: No
+	Marker *string `type:"string"`
+
+	// Number of domains to be returned.
+	//
+	// Type: Integer
+	//
+	// Default: 20
+	//
+	// Constraints: A numeral between 1 and 100.
+	//
+	// Required: No
+	MaxItems *int64 `type:"integer"`
 
 	metadataListDomainsInput `json:"-", xml:"-"`
 }
@@ -697,9 +1327,23 @@ type metadataListDomainsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The ListDomains response includes the following elements.
 type ListDomainsOutput struct {
-	Domains        []*DomainSummary `type:"list" required:"true"`
-	NextPageMarker *string          `type:"string"`
+	// A summary of domains.
+	//
+	// Type: Complex type containing a list of domain summaries.
+	//
+	// Children: AutoRenew, DomainName, Expiry, TransferLock
+	Domains []*DomainSummary `type:"list" required:"true"`
+
+	// If there are more domains than you specified for MaxItems in the request,
+	// submit another request and include the value of NextPageMarker in the value
+	// of Marker.
+	//
+	// Type: String
+	//
+	// Parent: Operations
+	NextPageMarker *string `type:"string"`
 
 	metadataListDomainsOutput `json:"-", xml:"-"`
 }
@@ -708,9 +1352,32 @@ type metadataListDomainsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The ListOperations request includes the following elements.
 type ListOperationsInput struct {
-	Marker   *string `type:"string"`
-	MaxItems *int64  `type:"integer"`
+	// For an initial request for a list of operations, omit this element. If the
+	// number of operations that are not yet complete is greater than the value
+	// that you specified for MaxItems, you can use Marker to return additional
+	// operations. Get the value of NextPageMarker from the previous response, and
+	// submit another request that includes the value of NextPageMarker in the Marker
+	// element.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Required: No
+	Marker *string `type:"string"`
+
+	// Number of domains to be returned.
+	//
+	// Type: Integer
+	//
+	// Default: 20
+	//
+	// Constraints: A value between 1 and 100.
+	//
+	// Required: No
+	MaxItems *int64 `type:"integer"`
 
 	metadataListOperationsInput `json:"-", xml:"-"`
 }
@@ -719,9 +1386,23 @@ type metadataListOperationsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The ListOperations response includes the following elements.
 type ListOperationsOutput struct {
-	NextPageMarker *string             `type:"string"`
-	Operations     []*OperationSummary `type:"list" required:"true"`
+	// If there are more operations than you specified for MaxItems in the request,
+	// submit another request and include the value of NextPageMarker in the value
+	// of Marker.
+	//
+	// Type: String
+	//
+	// Parent: Operations
+	NextPageMarker *string `type:"string"`
+
+	// Lists summaries of the operations.
+	//
+	// Type: Complex type containing a list of operation summaries
+	//
+	// Children: OperationId, Status, SubmittedDate, Type
+	Operations []*OperationSummary `type:"list" required:"true"`
 
 	metadataListOperationsOutput `json:"-", xml:"-"`
 }
@@ -730,7 +1411,9 @@ type metadataListOperationsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The ListTagsForDomainRequest includes the following elements.
 type ListTagsForDomainInput struct {
+	// The domain for which you want to get a list of tags.
 	DomainName *string `type:"string" required:"true"`
 
 	metadataListTagsForDomainInput `json:"-", xml:"-"`
@@ -740,7 +1423,25 @@ type metadataListTagsForDomainInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The ListTagsForDomain response includes the following elements.
 type ListTagsForDomainOutput struct {
+	// A list of the tags that are associated with the specified domain.
+	//
+	// Type: A complex type containing a list of tags
+	//
+	// Each tag includes the following elements.
+	//
+	//   Key
+	//
+	// The key (name) of a tag.
+	//
+	// Type: String
+	//
+	//   Value
+	//
+	// The value of a tag.
+	//
+	// Type: String
 	TagList []*Tag `type:"list" required:"true"`
 
 	metadataListTagsForDomainOutput `json:"-", xml:"-"`
@@ -750,9 +1451,28 @@ type metadataListTagsForDomainOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Nameserver includes the following elements.
 type Nameserver struct {
+	// Glue IP address of a name server entry. Glue IP addresses are required only
+	// when the name of the name server is a subdomain of the domain. For example,
+	// if your domain is example.com and the name server for the domain is ns.example.com,
+	// you need to specify the IP address for ns.example.com.
+	//
+	// Type: List of IP addresses.
+	//
+	// Constraints: The list can contain only one IPv4 and one IPv6 address.
+	//
+	// Parent: Nameservers
 	GlueIPs []*string `locationName:"GlueIps" type:"list"`
-	Name    *string   `type:"string" required:"true"`
+
+	// The fully qualified host name of the name server.
+	//
+	// Type: String
+	//
+	// Constraint: Maximum 255 characterss
+	//
+	// Parent: Nameservers
+	Name *string `type:"string" required:"true"`
 
 	metadataNameserver `json:"-", xml:"-"`
 }
@@ -761,11 +1481,28 @@ type metadataNameserver struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// OperationSummary includes the following elements.
 type OperationSummary struct {
-	OperationID   *string    `locationName:"OperationId" type:"string" required:"true"`
-	Status        *string    `type:"string" required:"true"`
+	// Identifier returned to track the requested action.
+	//
+	// Type: String
+	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
+
+	// The current status of the requested operation in the system.
+	//
+	// Type: String
+	Status *string `type:"string" required:"true"`
+
+	// The date when the request was submitted.
 	SubmittedDate *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
-	Type          *string    `type:"string" required:"true"`
+
+	// Type of the action requested.
+	//
+	// Type: String
+	//
+	// Valid values: REGISTER_DOMAIN | DELETE_DOMAIN | TRANSFER_IN_DOMAIN | UPDATE_DOMAIN_CONTACT
+	// | UPDATE_NAMESERVER | CHANGE_PRIVACY_PROTECTION | DOMAIN_LOCK
+	Type *string `type:"string" required:"true"`
 
 	metadataOperationSummary `json:"-", xml:"-"`
 }
@@ -774,17 +1511,122 @@ type metadataOperationSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The RegisterDomain request includes the following elements.
 type RegisterDomainInput struct {
-	AdminContact                    *ContactDetail `type:"structure" required:"true"`
-	AutoRenew                       *bool          `type:"boolean"`
-	DomainName                      *string        `type:"string" required:"true"`
-	DurationInYears                 *int64         `type:"integer" required:"true"`
-	IDNLangCode                     *string        `locationName:"IdnLangCode" type:"string"`
-	PrivacyProtectAdminContact      *bool          `type:"boolean"`
-	PrivacyProtectRegistrantContact *bool          `type:"boolean"`
-	PrivacyProtectTechContact       *bool          `type:"boolean"`
-	RegistrantContact               *ContactDetail `type:"structure" required:"true"`
-	TechContact                     *ContactDetail `type:"structure" required:"true"`
+	// Provides detailed contact information.
+	//
+	// Type: Complex
+	//
+	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
+	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
+	// Email, Fax, ExtraParams
+	//
+	// Required: Yes
+	AdminContact *ContactDetail `type:"structure" required:"true"`
+
+	// Indicates whether the domain will be automatically renewed (true) or not
+	// (false). Autorenewal only takes effect after the account is charged.
+	//
+	// Type: Boolean
+	//
+	// Valid values: true | false
+	//
+	// Default: true
+	//
+	// Required: No
+	AutoRenew *bool `type:"boolean"`
+
+	// The name of a domain.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: The domain name can contain only the letters a through z, the
+	// numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not
+	// supported.
+	//
+	// Required: Yes
+	DomainName *string `type:"string" required:"true"`
+
+	// The number of years the domain will be registered. Domains are registered
+	// for a minimum of one year. The maximum period depends on the top-level domain.
+	//
+	// Type: Integer
+	//
+	// Default: 1
+	//
+	// Valid values: Integer from 1 to 10
+	//
+	// Required: Yes
+	DurationInYears *int64 `type:"integer" required:"true"`
+
+	// Reserved for future use.
+	IDNLangCode *string `locationName:"IdnLangCode" type:"string"`
+
+	// Whether you want to conceal contact information from WHOIS queries. If you
+	// specify true, WHOIS ("who is") queries will return contact information for
+	// our registrar partner, Gandi, instead of the contact information that you
+	// enter.
+	//
+	// Type: Boolean
+	//
+	// Default: true
+	//
+	// Valid values: true | false
+	//
+	// Required: No
+	PrivacyProtectAdminContact *bool `type:"boolean"`
+
+	// Whether you want to conceal contact information from WHOIS queries. If you
+	// specify true, WHOIS ("who is") queries will return contact information for
+	// our registrar partner, Gandi, instead of the contact information that you
+	// enter.
+	//
+	// Type: Boolean
+	//
+	// Default: true
+	//
+	// Valid values: true | false
+	//
+	// Required: No
+	PrivacyProtectRegistrantContact *bool `type:"boolean"`
+
+	// Whether you want to conceal contact information from WHOIS queries. If you
+	// specify true, WHOIS ("who is") queries will return contact information for
+	// our registrar partner, Gandi, instead of the contact information that you
+	// enter.
+	//
+	// Type: Boolean
+	//
+	// Default: true
+	//
+	// Valid values: true | false
+	//
+	// Required: No
+	PrivacyProtectTechContact *bool `type:"boolean"`
+
+	// Provides detailed contact information.
+	//
+	// Type: Complex
+	//
+	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
+	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
+	// Email, Fax, ExtraParams
+	//
+	// Required: Yes
+	RegistrantContact *ContactDetail `type:"structure" required:"true"`
+
+	// Provides detailed contact information.
+	//
+	// Type: Complex
+	//
+	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
+	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
+	// Email, Fax, ExtraParams
+	//
+	// Required: Yes
+	TechContact *ContactDetail `type:"structure" required:"true"`
 
 	metadataRegisterDomainInput `json:"-", xml:"-"`
 }
@@ -793,7 +1635,16 @@ type metadataRegisterDomainInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The RegisterDomain response includes the following element.
 type RegisterDomainOutput struct {
+	// Identifier for tracking the progress of the request. To use this ID to query
+	// the operation status, use GetOperationDetail.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: Maximum 255 characters.
 	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
 
 	metadataRegisterDomainOutput `json:"-", xml:"-"`
@@ -803,7 +1654,19 @@ type metadataRegisterDomainOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The RetrieveDomainAuthCode request includes the following element.
 type RetrieveDomainAuthCodeInput struct {
+	// The name of a domain.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: The domain name can contain only the letters a through z, the
+	// numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not
+	// supported.
+	//
+	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
 
 	metadataRetrieveDomainAuthCodeInput `json:"-", xml:"-"`
@@ -813,7 +1676,11 @@ type metadataRetrieveDomainAuthCodeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The RetrieveDomainAuthCode response includes the following element.
 type RetrieveDomainAuthCodeOutput struct {
+	// The authorization code for the domain.
+	//
+	// Type: String
 	AuthCode *string `type:"string" required:"true"`
 
 	metadataRetrieveDomainAuthCodeOutput `json:"-", xml:"-"`
@@ -823,8 +1690,32 @@ type metadataRetrieveDomainAuthCodeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Each tag includes the following elements.
 type Tag struct {
-	Key   *string `type:"string"`
+	// The key (name) of a tag.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Valid values: A-Z, a-z, 0-9, space, ".:/=+\-%@"
+	//
+	// Constraints: Each key can be 1-128 characters long.
+	//
+	// Required: Yes
+	Key *string `type:"string"`
+
+	// The value of a tag.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Valid values: A-Z, a-z, 0-9, space, ".:/=+\-%@"
+	//
+	// Constraints: Each value can be 0-256 characters long.
+	//
+	// Required: Yes
 	Value *string `type:"string"`
 
 	metadataTag `json:"-", xml:"-"`
@@ -834,19 +1725,139 @@ type metadataTag struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The TransferDomain request includes the following elements.
 type TransferDomainInput struct {
-	AdminContact                    *ContactDetail `type:"structure" required:"true"`
-	AuthCode                        *string        `type:"string"`
-	AutoRenew                       *bool          `type:"boolean"`
-	DomainName                      *string        `type:"string" required:"true"`
-	DurationInYears                 *int64         `type:"integer" required:"true"`
-	IDNLangCode                     *string        `locationName:"IdnLangCode" type:"string"`
-	Nameservers                     []*Nameserver  `type:"list"`
-	PrivacyProtectAdminContact      *bool          `type:"boolean"`
-	PrivacyProtectRegistrantContact *bool          `type:"boolean"`
-	PrivacyProtectTechContact       *bool          `type:"boolean"`
-	RegistrantContact               *ContactDetail `type:"structure" required:"true"`
-	TechContact                     *ContactDetail `type:"structure" required:"true"`
+	// Provides detailed contact information.
+	//
+	// Type: Complex
+	//
+	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
+	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
+	// Email, Fax, ExtraParams
+	//
+	// Required: Yes
+	AdminContact *ContactDetail `type:"structure" required:"true"`
+
+	// The authorization code for the domain. You get this value from the current
+	// registrar.
+	//
+	// Type: String
+	//
+	// Required: Yes
+	AuthCode *string `type:"string"`
+
+	// Indicates whether the domain will be automatically renewed (true) or not
+	// (false). Autorenewal only takes effect after the account is charged.
+	//
+	// Type: Boolean
+	//
+	// Valid values: true | false
+	//
+	// Default: true
+	//
+	// Required: No
+	AutoRenew *bool `type:"boolean"`
+
+	// The name of a domain.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: The domain name can contain only the letters a through z, the
+	// numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not
+	// supported.
+	//
+	// Required: Yes
+	DomainName *string `type:"string" required:"true"`
+
+	// The number of years the domain will be registered. Domains are registered
+	// for a minimum of one year. The maximum period depends on the top-level domain.
+	//
+	// Type: Integer
+	//
+	// Default: 1
+	//
+	// Valid values: Integer from 1 to 10
+	//
+	// Required: Yes
+	DurationInYears *int64 `type:"integer" required:"true"`
+
+	// Reserved for future use.
+	IDNLangCode *string `locationName:"IdnLangCode" type:"string"`
+
+	// Contains details for the host and glue IP addresses.
+	//
+	// Type: Complex
+	//
+	// Children: GlueIps, Name
+	//
+	// Required: No
+	Nameservers []*Nameserver `type:"list"`
+
+	// Whether you want to conceal contact information from WHOIS queries. If you
+	// specify true, WHOIS ("who is") queries will return contact information for
+	// our registrar partner, Gandi, instead of the contact information that you
+	// enter.
+	//
+	// Type: Boolean
+	//
+	// Default: true
+	//
+	// Valid values: true | false
+	//
+	// Required: No
+	PrivacyProtectAdminContact *bool `type:"boolean"`
+
+	// Whether you want to conceal contact information from WHOIS queries. If you
+	// specify true, WHOIS ("who is") queries will return contact information for
+	// our registrar partner, Gandi, instead of the contact information that you
+	// enter.
+	//
+	// Type: Boolean
+	//
+	// Default: true
+	//
+	// Valid values: true | false
+	//
+	// Required: No
+	PrivacyProtectRegistrantContact *bool `type:"boolean"`
+
+	// Whether you want to conceal contact information from WHOIS queries. If you
+	// specify true, WHOIS ("who is") queries will return contact information for
+	// our registrar partner, Gandi, instead of the contact information that you
+	// enter.
+	//
+	// Type: Boolean
+	//
+	// Default: true
+	//
+	// Valid values: true | false
+	//
+	// Required: No
+	PrivacyProtectTechContact *bool `type:"boolean"`
+
+	// Provides detailed contact information.
+	//
+	// Type: Complex
+	//
+	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
+	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
+	// Email, Fax, ExtraParams
+	//
+	// Required: Yes
+	RegistrantContact *ContactDetail `type:"structure" required:"true"`
+
+	// Provides detailed contact information.
+	//
+	// Type: Complex
+	//
+	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
+	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
+	// Email, Fax, ExtraParams
+	//
+	// Required: Yes
+	TechContact *ContactDetail `type:"structure" required:"true"`
 
 	metadataTransferDomainInput `json:"-", xml:"-"`
 }
@@ -855,7 +1866,16 @@ type metadataTransferDomainInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The TranserDomain response includes the following element.
 type TransferDomainOutput struct {
+	// Identifier for tracking the progress of the request. To use this ID to query
+	// the operation status, use GetOperationDetail.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: Maximum 255 characters.
 	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
 
 	metadataTransferDomainOutput `json:"-", xml:"-"`
@@ -865,11 +1885,53 @@ type metadataTransferDomainOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The UpdateDomainContact request includes the following elements.
 type UpdateDomainContactInput struct {
-	AdminContact      *ContactDetail `type:"structure"`
-	DomainName        *string        `type:"string" required:"true"`
+	// Provides detailed contact information.
+	//
+	// Type: Complex
+	//
+	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
+	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
+	// Email, Fax, ExtraParams
+	//
+	// Required: Yes
+	AdminContact *ContactDetail `type:"structure"`
+
+	// The name of a domain.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: The domain name can contain only the letters a through z, the
+	// numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not
+	// supported.
+	//
+	// Required: Yes
+	DomainName *string `type:"string" required:"true"`
+
+	// Provides detailed contact information.
+	//
+	// Type: Complex
+	//
+	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
+	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
+	// Email, Fax, ExtraParams
+	//
+	// Required: Yes
 	RegistrantContact *ContactDetail `type:"structure"`
-	TechContact       *ContactDetail `type:"structure"`
+
+	// Provides detailed contact information.
+	//
+	// Type: Complex
+	//
+	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
+	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
+	// Email, Fax, ExtraParams
+	//
+	// Required: Yes
+	TechContact *ContactDetail `type:"structure"`
 
 	metadataUpdateDomainContactInput `json:"-", xml:"-"`
 }
@@ -878,7 +1940,16 @@ type metadataUpdateDomainContactInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The UpdateDomainContact response includes the following element.
 type UpdateDomainContactOutput struct {
+	// Identifier for tracking the progress of the request. To use this ID to query
+	// the operation status, use GetOperationDetail.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: Maximum 255 characters.
 	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
 
 	metadataUpdateDomainContactOutput `json:"-", xml:"-"`
@@ -888,11 +1959,62 @@ type metadataUpdateDomainContactOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The UpdateDomainContactPrivacy request includes the following elements.
 type UpdateDomainContactPrivacyInput struct {
-	AdminPrivacy      *bool   `type:"boolean"`
-	DomainName        *string `type:"string" required:"true"`
-	RegistrantPrivacy *bool   `type:"boolean"`
-	TechPrivacy       *bool   `type:"boolean"`
+	// Whether you want to conceal contact information from WHOIS queries. If you
+	// specify true, WHOIS ("who is") queries will return contact information for
+	// our registrar partner, Gandi, instead of the contact information that you
+	// enter.
+	//
+	// Type: Boolean
+	//
+	// Default: None
+	//
+	// Valid values: true | false
+	//
+	// Required: No
+	AdminPrivacy *bool `type:"boolean"`
+
+	// The name of a domain.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: The domain name can contain only the letters a through z, the
+	// numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not
+	// supported.
+	//
+	// Required: Yes
+	DomainName *string `type:"string" required:"true"`
+
+	// Whether you want to conceal contact information from WHOIS queries. If you
+	// specify true, WHOIS ("who is") queries will return contact information for
+	// our registrar partner, Gandi, instead of the contact information that you
+	// enter.
+	//
+	// Type: Boolean
+	//
+	// Default: None
+	//
+	// Valid values: true | false
+	//
+	// Required: No
+	RegistrantPrivacy *bool `type:"boolean"`
+
+	// Whether you want to conceal contact information from WHOIS queries. If you
+	// specify true, WHOIS ("who is") queries will return contact information for
+	// our registrar partner, Gandi, instead of the contact information that you
+	// enter.
+	//
+	// Type: Boolean
+	//
+	// Default: None
+	//
+	// Valid values: true | false
+	//
+	// Required: No
+	TechPrivacy *bool `type:"boolean"`
 
 	metadataUpdateDomainContactPrivacyInput `json:"-", xml:"-"`
 }
@@ -901,7 +2023,16 @@ type metadataUpdateDomainContactPrivacyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The UpdateDomainContactPrivacy response includes the following element.
 type UpdateDomainContactPrivacyOutput struct {
+	// Identifier for tracking the progress of the request. To use this ID to query
+	// the operation status, use GetOperationDetail.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: Maximum 255 characters.
 	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
 
 	metadataUpdateDomainContactPrivacyOutput `json:"-", xml:"-"`
@@ -911,9 +2042,31 @@ type metadataUpdateDomainContactPrivacyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The UpdateDomainNameserver request includes the following elements.
 type UpdateDomainNameserversInput struct {
-	DomainName  *string       `type:"string" required:"true"`
-	FIAuthKey   *string       `type:"string"`
+	// The name of a domain.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: The domain name can contain only the letters a through z, the
+	// numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not
+	// supported.
+	//
+	// Required: Yes
+	DomainName *string `type:"string" required:"true"`
+
+	// The authorization key for .fi domains
+	FIAuthKey *string `type:"string"`
+
+	// A list of new name servers for the domain.
+	//
+	// Type: Complex
+	//
+	// Children: Name, GlueIps
+	//
+	// Required: Yes
 	Nameservers []*Nameserver `type:"list" required:"true"`
 
 	metadataUpdateDomainNameserversInput `json:"-", xml:"-"`
@@ -923,7 +2076,16 @@ type metadataUpdateDomainNameserversInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The UpdateDomainNameservers response includes the following element.
 type UpdateDomainNameserversOutput struct {
+	// Identifier for tracking the progress of the request. To use this ID to query
+	// the operation status, use GetOperationDetail.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: Maximum 255 characters.
 	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
 
 	metadataUpdateDomainNameserversOutput `json:"-", xml:"-"`
@@ -933,9 +2095,64 @@ type metadataUpdateDomainNameserversOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The UpdateTagsForDomainRequest includes the following elements.
 type UpdateTagsForDomainInput struct {
-	DomainName   *string `type:"string" required:"true"`
-	TagsToUpdate []*Tag  `type:"list"`
+	// The domain for which you want to add or update tags.
+	//
+	// The name of a domain.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Constraints: The domain name can contain only the letters a through z, the
+	// numbers 0 through 9, and hyphen (-). Hyphens are allowed only when theyaposre
+	// surrounded by letters, numbers, or other hyphens. You canapost specify a
+	// hyphen at the beginning or end of a label. To specify an Internationalized
+	// Domain Name, you must convert the name to Punycode.
+	//
+	// Required: Yes
+	DomainName *string `type:"string" required:"true"`
+
+	// A list of the tag keys and values that you want to add or update. If you
+	// specify a key that already exists, the corresponding value will be replaced.
+	//
+	// Type: A complex type containing a list of tags
+	//
+	// Default: None
+	//
+	// Required: No
+	//
+	// '> Each tag includes the following elements:
+	//
+	//   Key
+	//
+	// The key (name) of a tag.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Valid values: Unicode characters including alphanumeric, space, and ".:/=+\-%@"
+	//
+	// Constraints: Each key can be 1-128 characters long.
+	//
+	// Required: Yes
+	//
+	//   Value
+	//
+	// The value of a tag.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Valid values: Unicode characters including alphanumeric, space, and ".:/=+\-%@"
+	//
+	// Constraints: Each value can be 0-256 characters long.
+	//
+	// Required: Yes
+	TagsToUpdate []*Tag `type:"list"`
 
 	metadataUpdateTagsForDomainInput `json:"-", xml:"-"`
 }

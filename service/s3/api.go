@@ -25,6 +25,11 @@ func (c *S3) AbortMultipartUploadRequest(input *AbortMultipartUploadInput) (req 
 	return
 }
 
+// Aborts a multipart upload.
+//
+// To verify that all parts have been removed, so you don't get charged for
+// the part storage, you should call the List Parts operation and ensure the
+// parts list is empty.
 func (c *S3) AbortMultipartUpload(input *AbortMultipartUploadInput) (output *AbortMultipartUploadOutput, err error) {
 	req, out := c.AbortMultipartUploadRequest(input)
 	output = out
@@ -50,6 +55,7 @@ func (c *S3) CompleteMultipartUploadRequest(input *CompleteMultipartUploadInput)
 	return
 }
 
+// Completes a multipart upload by assembling previously uploaded parts.
 func (c *S3) CompleteMultipartUpload(input *CompleteMultipartUploadInput) (output *CompleteMultipartUploadOutput, err error) {
 	req, out := c.CompleteMultipartUploadRequest(input)
 	output = out
@@ -75,6 +81,7 @@ func (c *S3) CopyObjectRequest(input *CopyObjectInput) (req *aws.Request, output
 	return
 }
 
+// Creates a copy of an object that is already stored in Amazon S3.
 func (c *S3) CopyObject(input *CopyObjectInput) (output *CopyObjectOutput, err error) {
 	req, out := c.CopyObjectRequest(input)
 	output = out
@@ -100,6 +107,7 @@ func (c *S3) CreateBucketRequest(input *CreateBucketInput) (req *aws.Request, ou
 	return
 }
 
+// Creates a new bucket.
 func (c *S3) CreateBucket(input *CreateBucketInput) (output *CreateBucketOutput, err error) {
 	req, out := c.CreateBucketRequest(input)
 	output = out
@@ -125,6 +133,13 @@ func (c *S3) CreateMultipartUploadRequest(input *CreateMultipartUploadInput) (re
 	return
 }
 
+// Initiates a multipart upload and returns an upload ID.
+//
+// Note: After you initiate multipart upload and upload one or more parts,
+// you must either complete or abort multipart upload in order to stop getting
+// charged for storage of the uploaded parts. Only after you either complete
+// or abort multipart upload, Amazon S3 frees up the parts storage and stops
+// charging you for the parts storage.
 func (c *S3) CreateMultipartUpload(input *CreateMultipartUploadInput) (output *CreateMultipartUploadOutput, err error) {
 	req, out := c.CreateMultipartUploadRequest(input)
 	output = out
@@ -150,6 +165,8 @@ func (c *S3) DeleteBucketRequest(input *DeleteBucketInput) (req *aws.Request, ou
 	return
 }
 
+// Deletes the bucket. All objects (including all object versions and Delete
+// Markers) in the bucket must be deleted before the bucket itself can be deleted.
 func (c *S3) DeleteBucket(input *DeleteBucketInput) (output *DeleteBucketOutput, err error) {
 	req, out := c.DeleteBucketRequest(input)
 	output = out
@@ -175,6 +192,7 @@ func (c *S3) DeleteBucketCORSRequest(input *DeleteBucketCORSInput) (req *aws.Req
 	return
 }
 
+// Deletes the cors configuration information set for the bucket.
 func (c *S3) DeleteBucketCORS(input *DeleteBucketCORSInput) (output *DeleteBucketCORSOutput, err error) {
 	req, out := c.DeleteBucketCORSRequest(input)
 	output = out
@@ -200,6 +218,7 @@ func (c *S3) DeleteBucketLifecycleRequest(input *DeleteBucketLifecycleInput) (re
 	return
 }
 
+// Deletes the lifecycle configuration from the bucket.
 func (c *S3) DeleteBucketLifecycle(input *DeleteBucketLifecycleInput) (output *DeleteBucketLifecycleOutput, err error) {
 	req, out := c.DeleteBucketLifecycleRequest(input)
 	output = out
@@ -225,6 +244,7 @@ func (c *S3) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) (req *aws
 	return
 }
 
+// Deletes the policy from the bucket.
 func (c *S3) DeleteBucketPolicy(input *DeleteBucketPolicyInput) (output *DeleteBucketPolicyOutput, err error) {
 	req, out := c.DeleteBucketPolicyRequest(input)
 	output = out
@@ -250,6 +270,7 @@ func (c *S3) DeleteBucketTaggingRequest(input *DeleteBucketTaggingInput) (req *a
 	return
 }
 
+// Deletes the tags from the bucket.
 func (c *S3) DeleteBucketTagging(input *DeleteBucketTaggingInput) (output *DeleteBucketTaggingOutput, err error) {
 	req, out := c.DeleteBucketTaggingRequest(input)
 	output = out
@@ -275,6 +296,7 @@ func (c *S3) DeleteBucketWebsiteRequest(input *DeleteBucketWebsiteInput) (req *a
 	return
 }
 
+// This operation removes the website configuration from the bucket.
 func (c *S3) DeleteBucketWebsite(input *DeleteBucketWebsiteInput) (output *DeleteBucketWebsiteOutput, err error) {
 	req, out := c.DeleteBucketWebsiteRequest(input)
 	output = out
@@ -300,6 +322,9 @@ func (c *S3) DeleteObjectRequest(input *DeleteObjectInput) (req *aws.Request, ou
 	return
 }
 
+// Removes the null version (if there is one) of an object and inserts a delete
+// marker, which becomes the latest version of the object. If there isn't a
+// null version, Amazon S3 does not remove any objects.
 func (c *S3) DeleteObject(input *DeleteObjectInput) (output *DeleteObjectOutput, err error) {
 	req, out := c.DeleteObjectRequest(input)
 	output = out
@@ -325,6 +350,8 @@ func (c *S3) DeleteObjectsRequest(input *DeleteObjectsInput) (req *aws.Request, 
 	return
 }
 
+// This operation enables you to delete multiple objects from a bucket using
+// a single HTTP request. You may specify up to 1000 keys.
 func (c *S3) DeleteObjects(input *DeleteObjectsInput) (output *DeleteObjectsOutput, err error) {
 	req, out := c.DeleteObjectsRequest(input)
 	output = out
@@ -350,6 +377,7 @@ func (c *S3) GetBucketACLRequest(input *GetBucketACLInput) (req *aws.Request, ou
 	return
 }
 
+// Gets the access control policy for the bucket.
 func (c *S3) GetBucketACL(input *GetBucketACLInput) (output *GetBucketACLOutput, err error) {
 	req, out := c.GetBucketACLRequest(input)
 	output = out
@@ -375,6 +403,7 @@ func (c *S3) GetBucketCORSRequest(input *GetBucketCORSInput) (req *aws.Request, 
 	return
 }
 
+// Returns the cors configuration for the bucket.
 func (c *S3) GetBucketCORS(input *GetBucketCORSInput) (output *GetBucketCORSOutput, err error) {
 	req, out := c.GetBucketCORSRequest(input)
 	output = out
@@ -400,6 +429,7 @@ func (c *S3) GetBucketLifecycleRequest(input *GetBucketLifecycleInput) (req *aws
 	return
 }
 
+// Returns the lifecycle configuration information set on the bucket.
 func (c *S3) GetBucketLifecycle(input *GetBucketLifecycleInput) (output *GetBucketLifecycleOutput, err error) {
 	req, out := c.GetBucketLifecycleRequest(input)
 	output = out
@@ -425,6 +455,7 @@ func (c *S3) GetBucketLocationRequest(input *GetBucketLocationInput) (req *aws.R
 	return
 }
 
+// Returns the region the bucket resides in.
 func (c *S3) GetBucketLocation(input *GetBucketLocationInput) (output *GetBucketLocationOutput, err error) {
 	req, out := c.GetBucketLocationRequest(input)
 	output = out
@@ -450,6 +481,8 @@ func (c *S3) GetBucketLoggingRequest(input *GetBucketLoggingInput) (req *aws.Req
 	return
 }
 
+// Returns the logging status of a bucket and the permissions users have to
+// view and modify that status. To use GET, you must be the bucket owner.
 func (c *S3) GetBucketLogging(input *GetBucketLoggingInput) (output *GetBucketLoggingOutput, err error) {
 	req, out := c.GetBucketLoggingRequest(input)
 	output = out
@@ -475,6 +508,7 @@ func (c *S3) GetBucketNotificationRequest(input *GetBucketNotificationInput) (re
 	return
 }
 
+// Return the notification configuration of a bucket.
 func (c *S3) GetBucketNotification(input *GetBucketNotificationInput) (output *GetBucketNotificationOutput, err error) {
 	req, out := c.GetBucketNotificationRequest(input)
 	output = out
@@ -500,6 +534,7 @@ func (c *S3) GetBucketPolicyRequest(input *GetBucketPolicyInput) (req *aws.Reque
 	return
 }
 
+// Returns the policy of a specified bucket.
 func (c *S3) GetBucketPolicy(input *GetBucketPolicyInput) (output *GetBucketPolicyOutput, err error) {
 	req, out := c.GetBucketPolicyRequest(input)
 	output = out
@@ -525,6 +560,7 @@ func (c *S3) GetBucketRequestPaymentRequest(input *GetBucketRequestPaymentInput)
 	return
 }
 
+// Returns the request payment configuration of a bucket.
 func (c *S3) GetBucketRequestPayment(input *GetBucketRequestPaymentInput) (output *GetBucketRequestPaymentOutput, err error) {
 	req, out := c.GetBucketRequestPaymentRequest(input)
 	output = out
@@ -550,6 +586,7 @@ func (c *S3) GetBucketTaggingRequest(input *GetBucketTaggingInput) (req *aws.Req
 	return
 }
 
+// Returns the tag set associated with the bucket.
 func (c *S3) GetBucketTagging(input *GetBucketTaggingInput) (output *GetBucketTaggingOutput, err error) {
 	req, out := c.GetBucketTaggingRequest(input)
 	output = out
@@ -575,6 +612,7 @@ func (c *S3) GetBucketVersioningRequest(input *GetBucketVersioningInput) (req *a
 	return
 }
 
+// Returns the versioning state of a bucket.
 func (c *S3) GetBucketVersioning(input *GetBucketVersioningInput) (output *GetBucketVersioningOutput, err error) {
 	req, out := c.GetBucketVersioningRequest(input)
 	output = out
@@ -600,6 +638,7 @@ func (c *S3) GetBucketWebsiteRequest(input *GetBucketWebsiteInput) (req *aws.Req
 	return
 }
 
+// Returns the website configuration for a bucket.
 func (c *S3) GetBucketWebsite(input *GetBucketWebsiteInput) (output *GetBucketWebsiteOutput, err error) {
 	req, out := c.GetBucketWebsiteRequest(input)
 	output = out
@@ -625,6 +664,7 @@ func (c *S3) GetObjectRequest(input *GetObjectInput) (req *aws.Request, output *
 	return
 }
 
+// Retrieves objects from Amazon S3.
 func (c *S3) GetObject(input *GetObjectInput) (output *GetObjectOutput, err error) {
 	req, out := c.GetObjectRequest(input)
 	output = out
@@ -650,6 +690,7 @@ func (c *S3) GetObjectACLRequest(input *GetObjectACLInput) (req *aws.Request, ou
 	return
 }
 
+// Returns the access control list (ACL) of an object.
 func (c *S3) GetObjectACL(input *GetObjectACLInput) (output *GetObjectACLOutput, err error) {
 	req, out := c.GetObjectACLRequest(input)
 	output = out
@@ -675,6 +716,7 @@ func (c *S3) GetObjectTorrentRequest(input *GetObjectTorrentInput) (req *aws.Req
 	return
 }
 
+// Return torrent files from a bucket.
 func (c *S3) GetObjectTorrent(input *GetObjectTorrentInput) (output *GetObjectTorrentOutput, err error) {
 	req, out := c.GetObjectTorrentRequest(input)
 	output = out
@@ -700,6 +742,8 @@ func (c *S3) HeadBucketRequest(input *HeadBucketInput) (req *aws.Request, output
 	return
 }
 
+// This operation is useful to determine if a bucket exists and you have permission
+// to access it.
 func (c *S3) HeadBucket(input *HeadBucketInput) (output *HeadBucketOutput, err error) {
 	req, out := c.HeadBucketRequest(input)
 	output = out
@@ -725,6 +769,9 @@ func (c *S3) HeadObjectRequest(input *HeadObjectInput) (req *aws.Request, output
 	return
 }
 
+// The HEAD operation retrieves metadata from an object without returning the
+// object itself. This operation is useful if you're only interested in an object's
+// metadata. To use HEAD, you must have READ access to the object.
 func (c *S3) HeadObject(input *HeadObjectInput) (output *HeadObjectOutput, err error) {
 	req, out := c.HeadObjectRequest(input)
 	output = out
@@ -750,6 +797,7 @@ func (c *S3) ListBucketsRequest(input *ListBucketsInput) (req *aws.Request, outp
 	return
 }
 
+// Returns a list of all buckets owned by the authenticated sender of the request.
 func (c *S3) ListBuckets(input *ListBucketsInput) (output *ListBucketsOutput, err error) {
 	req, out := c.ListBucketsRequest(input)
 	output = out
@@ -775,6 +823,7 @@ func (c *S3) ListMultipartUploadsRequest(input *ListMultipartUploadsInput) (req 
 	return
 }
 
+// This operation lists in-progress multipart uploads.
 func (c *S3) ListMultipartUploads(input *ListMultipartUploadsInput) (output *ListMultipartUploadsOutput, err error) {
 	req, out := c.ListMultipartUploadsRequest(input)
 	output = out
@@ -800,6 +849,7 @@ func (c *S3) ListObjectVersionsRequest(input *ListObjectVersionsInput) (req *aws
 	return
 }
 
+// Returns metadata about all of the versions of objects in a bucket.
 func (c *S3) ListObjectVersions(input *ListObjectVersionsInput) (output *ListObjectVersionsOutput, err error) {
 	req, out := c.ListObjectVersionsRequest(input)
 	output = out
@@ -825,6 +875,9 @@ func (c *S3) ListObjectsRequest(input *ListObjectsInput) (req *aws.Request, outp
 	return
 }
 
+// Returns some or all (up to 1000) of the objects in a bucket. You can use
+// the request parameters as selection criteria to return a subset of the objects
+// in a bucket.
 func (c *S3) ListObjects(input *ListObjectsInput) (output *ListObjectsOutput, err error) {
 	req, out := c.ListObjectsRequest(input)
 	output = out
@@ -850,6 +903,7 @@ func (c *S3) ListPartsRequest(input *ListPartsInput) (req *aws.Request, output *
 	return
 }
 
+// Lists the parts that have been uploaded for a specific multipart upload.
 func (c *S3) ListParts(input *ListPartsInput) (output *ListPartsOutput, err error) {
 	req, out := c.ListPartsRequest(input)
 	output = out
@@ -875,6 +929,7 @@ func (c *S3) PutBucketACLRequest(input *PutBucketACLInput) (req *aws.Request, ou
 	return
 }
 
+// Sets the permissions on a bucket using access control lists (ACL).
 func (c *S3) PutBucketACL(input *PutBucketACLInput) (output *PutBucketACLOutput, err error) {
 	req, out := c.PutBucketACLRequest(input)
 	output = out
@@ -900,6 +955,7 @@ func (c *S3) PutBucketCORSRequest(input *PutBucketCORSInput) (req *aws.Request, 
 	return
 }
 
+// Sets the cors configuration for a bucket.
 func (c *S3) PutBucketCORS(input *PutBucketCORSInput) (output *PutBucketCORSOutput, err error) {
 	req, out := c.PutBucketCORSRequest(input)
 	output = out
@@ -925,6 +981,8 @@ func (c *S3) PutBucketLifecycleRequest(input *PutBucketLifecycleInput) (req *aws
 	return
 }
 
+// Sets lifecycle configuration for your bucket. If a lifecycle configuration
+// exists, it replaces it.
 func (c *S3) PutBucketLifecycle(input *PutBucketLifecycleInput) (output *PutBucketLifecycleOutput, err error) {
 	req, out := c.PutBucketLifecycleRequest(input)
 	output = out
@@ -950,6 +1008,9 @@ func (c *S3) PutBucketLoggingRequest(input *PutBucketLoggingInput) (req *aws.Req
 	return
 }
 
+// Set the logging parameters for a bucket and to specify permissions for who
+// can view and modify the logging parameters. To set the logging status of
+// a bucket, you must be the bucket owner.
 func (c *S3) PutBucketLogging(input *PutBucketLoggingInput) (output *PutBucketLoggingOutput, err error) {
 	req, out := c.PutBucketLoggingRequest(input)
 	output = out
@@ -975,6 +1036,7 @@ func (c *S3) PutBucketNotificationRequest(input *PutBucketNotificationInput) (re
 	return
 }
 
+// Enables notifications of specified events for a bucket.
 func (c *S3) PutBucketNotification(input *PutBucketNotificationInput) (output *PutBucketNotificationOutput, err error) {
 	req, out := c.PutBucketNotificationRequest(input)
 	output = out
@@ -1000,6 +1062,8 @@ func (c *S3) PutBucketPolicyRequest(input *PutBucketPolicyInput) (req *aws.Reque
 	return
 }
 
+// Replaces a policy on a bucket. If the bucket already has a policy, the one
+// in this request completely replaces it.
 func (c *S3) PutBucketPolicy(input *PutBucketPolicyInput) (output *PutBucketPolicyOutput, err error) {
 	req, out := c.PutBucketPolicyRequest(input)
 	output = out
@@ -1025,6 +1089,10 @@ func (c *S3) PutBucketRequestPaymentRequest(input *PutBucketRequestPaymentInput)
 	return
 }
 
+// Sets the request payment configuration for a bucket. By default, the bucket
+// owner pays for downloads from the bucket. This configuration parameter enables
+// the bucket owner (only) to specify that the person requesting the download
+// will be charged for the download.
 func (c *S3) PutBucketRequestPayment(input *PutBucketRequestPaymentInput) (output *PutBucketRequestPaymentOutput, err error) {
 	req, out := c.PutBucketRequestPaymentRequest(input)
 	output = out
@@ -1050,6 +1118,7 @@ func (c *S3) PutBucketTaggingRequest(input *PutBucketTaggingInput) (req *aws.Req
 	return
 }
 
+// Sets the tags for a bucket.
 func (c *S3) PutBucketTagging(input *PutBucketTaggingInput) (output *PutBucketTaggingOutput, err error) {
 	req, out := c.PutBucketTaggingRequest(input)
 	output = out
@@ -1075,6 +1144,8 @@ func (c *S3) PutBucketVersioningRequest(input *PutBucketVersioningInput) (req *a
 	return
 }
 
+// Sets the versioning state of an existing bucket. To set the versioning state,
+// you must be the bucket owner.
 func (c *S3) PutBucketVersioning(input *PutBucketVersioningInput) (output *PutBucketVersioningOutput, err error) {
 	req, out := c.PutBucketVersioningRequest(input)
 	output = out
@@ -1100,6 +1171,7 @@ func (c *S3) PutBucketWebsiteRequest(input *PutBucketWebsiteInput) (req *aws.Req
 	return
 }
 
+// Set the website configuration for a bucket.
 func (c *S3) PutBucketWebsite(input *PutBucketWebsiteInput) (output *PutBucketWebsiteOutput, err error) {
 	req, out := c.PutBucketWebsiteRequest(input)
 	output = out
@@ -1125,6 +1197,7 @@ func (c *S3) PutObjectRequest(input *PutObjectInput) (req *aws.Request, output *
 	return
 }
 
+// Adds an object to a bucket.
 func (c *S3) PutObject(input *PutObjectInput) (output *PutObjectOutput, err error) {
 	req, out := c.PutObjectRequest(input)
 	output = out
@@ -1150,6 +1223,8 @@ func (c *S3) PutObjectACLRequest(input *PutObjectACLInput) (req *aws.Request, ou
 	return
 }
 
+// uses the acl subresource to set the access control list (ACL) permissions
+// for an object that already exists in a bucket
 func (c *S3) PutObjectACL(input *PutObjectACLInput) (output *PutObjectACLOutput, err error) {
 	req, out := c.PutObjectACLRequest(input)
 	output = out
@@ -1175,6 +1250,7 @@ func (c *S3) RestoreObjectRequest(input *RestoreObjectInput) (req *aws.Request, 
 	return
 }
 
+// Restores an archived copy of an object back into Amazon S3
 func (c *S3) RestoreObject(input *RestoreObjectInput) (output *RestoreObjectOutput, err error) {
 	req, out := c.RestoreObjectRequest(input)
 	output = out
@@ -1200,6 +1276,13 @@ func (c *S3) UploadPartRequest(input *UploadPartInput) (req *aws.Request, output
 	return
 }
 
+// Uploads a part in a multipart upload.
+//
+// Note: After you initiate multipart upload and upload one or more parts,
+// you must either complete or abort multipart upload in order to stop getting
+// charged for storage of the uploaded parts. Only after you either complete
+// or abort multipart upload, Amazon S3 frees up the parts storage and stops
+// charging you for the parts storage.
 func (c *S3) UploadPart(input *UploadPartInput) (output *UploadPartOutput, err error) {
 	req, out := c.UploadPartRequest(input)
 	output = out
@@ -1225,6 +1308,7 @@ func (c *S3) UploadPartCopyRequest(input *UploadPartCopyInput) (req *aws.Request
 	return
 }
 
+// Uploads a part by copying data from an existing object as data source.
 func (c *S3) UploadPartCopy(input *UploadPartCopyInput) (output *UploadPartCopyOutput, err error) {
 	req, out := c.UploadPartCopyRequest(input)
 	output = out
@@ -1235,8 +1319,10 @@ func (c *S3) UploadPartCopy(input *UploadPartCopyInput) (output *UploadPartCopyO
 var opUploadPartCopy *aws.Operation
 
 type AbortMultipartUploadInput struct {
-	Bucket   *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	Key      *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+
 	UploadID *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
 	metadataAbortMultipartUploadInput `json:"-", xml:"-"`
@@ -1255,8 +1341,10 @@ type metadataAbortMultipartUploadOutput struct {
 }
 
 type AccessControlPolicy struct {
+	// A list of grants.
 	Grants []*Grant `locationName:"AccessControlList" locationNameList:"Grant" type:"list"`
-	Owner  *Owner   `type:"structure"`
+
+	Owner *Owner `type:"structure"`
 
 	metadataAccessControlPolicy `json:"-", xml:"-"`
 }
@@ -1266,8 +1354,11 @@ type metadataAccessControlPolicy struct {
 }
 
 type Bucket struct {
+	// Date the bucket was created.
 	CreationDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	Name         *string    `type:"string"`
+
+	// The name of the bucket.
+	Name *string `type:"string"`
 
 	metadataBucket `json:"-", xml:"-"`
 }
@@ -1297,11 +1388,24 @@ type metadataCORSConfiguration struct {
 }
 
 type CORSRule struct {
+	// Specifies which headers are allowed in a pre-flight OPTIONS request.
 	AllowedHeaders []*string `locationName:"AllowedHeader" type:"list" flattened:"true"`
+
+	// Identifies HTTP methods that the domain/origin specified in the rule is allowed
+	// to execute.
 	AllowedMethods []*string `locationName:"AllowedMethod" type:"list" flattened:"true"`
+
+	// One or more origins you want customers to be able to access the bucket from.
 	AllowedOrigins []*string `locationName:"AllowedOrigin" type:"list" flattened:"true"`
-	ExposeHeaders  []*string `locationName:"ExposeHeader" type:"list" flattened:"true"`
-	MaxAgeSeconds  *int64    `type:"integer"`
+
+	// One or more headers in the response that you want customers to be able to
+	// access from their applications (for example, from a JavaScript XMLHttpRequest
+	// object).
+	ExposeHeaders []*string `locationName:"ExposeHeader" type:"list" flattened:"true"`
+
+	// The time in seconds that your browser is to cache the preflight response
+	// for the specified resource.
+	MaxAgeSeconds *int64 `type:"integer"`
 
 	metadataCORSRule `json:"-", xml:"-"`
 }
@@ -1311,11 +1415,15 @@ type metadataCORSRule struct {
 }
 
 type CloudFunctionConfiguration struct {
-	CloudFunction  *string   `type:"string"`
-	Event          *string   `type:"string"`
-	Events         []*string `locationName:"Event" type:"list" flattened:"true"`
-	ID             *string   `locationName:"Id" type:"string"`
-	InvocationRole *string   `type:"string"`
+	CloudFunction *string `type:"string"`
+
+	Event *string `type:"string"`
+
+	Events []*string `locationName:"Event" type:"list" flattened:"true"`
+
+	ID *string `locationName:"Id" type:"string"`
+
+	InvocationRole *string `type:"string"`
 
 	metadataCloudFunctionConfiguration `json:"-", xml:"-"`
 }
@@ -1335,10 +1443,13 @@ type metadataCommonPrefix struct {
 }
 
 type CompleteMultipartUploadInput struct {
-	Bucket          *string                   `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	Key             *string                   `location:"uri" locationName:"Key" type:"string" required:"true"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+
 	MultipartUpload *CompletedMultipartUpload `locationName:"CompleteMultipartUpload" type:"structure"`
-	UploadID        *string                   `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
+
+	UploadID *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
 	metadataCompleteMultipartUploadInput `json:"-", xml:"-"`
 }
@@ -1348,14 +1459,29 @@ type metadataCompleteMultipartUploadInput struct {
 }
 
 type CompleteMultipartUploadOutput struct {
-	Bucket               *string    `type:"string"`
-	ETag                 *string    `type:"string"`
-	Expiration           *time.Time `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822"`
-	Key                  *string    `type:"string"`
-	Location             *string    `type:"string"`
-	SSEKMSKeyID          *string    `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
-	ServerSideEncryption *string    `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
-	VersionID            *string    `location:"header" locationName:"x-amz-version-id" type:"string"`
+	Bucket *string `type:"string"`
+
+	// Entity tag of the object.
+	ETag *string `type:"string"`
+
+	// If the object expiration is configured, this will contain the expiration
+	// date (expiry-date) and rule ID (rule-id). The value of rule-id is URL encoded.
+	Expiration *time.Time `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822"`
+
+	Key *string `type:"string"`
+
+	Location *string `type:"string"`
+
+	// If present, specifies the ID of the AWS Key Management Service (KMS) master
+	// encryption key that was used for the object.
+	SSEKMSKeyID *string `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+
+	// The Server-side encryption algorithm used when storing this object in S3
+	// (e.g., AES256, aws:kms).
+	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+
+	// Version of the object.
+	VersionID *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 
 	metadataCompleteMultipartUploadOutput `json:"-", xml:"-"`
 }
@@ -1375,8 +1501,11 @@ type metadataCompletedMultipartUpload struct {
 }
 
 type CompletedPart struct {
-	ETag       *string `type:"string"`
-	PartNumber *int64  `type:"integer"`
+	// Entity tag returned when the part was uploaded.
+	ETag *string `type:"string"`
+
+	// Part number that identifies the part.
+	PartNumber *int64 `type:"integer"`
 
 	metadataCompletedPart `json:"-", xml:"-"`
 }
@@ -1386,8 +1515,21 @@ type metadataCompletedPart struct {
 }
 
 type Condition struct {
+	// The HTTP error code when the redirect is applied. In the event of an error,
+	// if the error code equals this value, then the specified redirect is applied.
+	// Required when parent element Condition is specified and sibling KeyPrefixEquals
+	// is not specified. If both are specified, then both must be true for the redirect
+	// to be applied.
 	HTTPErrorCodeReturnedEquals *string `locationName:"HttpErrorCodeReturnedEquals" type:"string"`
-	KeyPrefixEquals             *string `type:"string"`
+
+	// The object key name prefix when the redirect is applied. For example, to
+	// redirect requests for ExamplePage.html, the key prefix will be ExamplePage.html.
+	// To redirect request for all pages with the prefix docs/, the key prefix will
+	// be /docs, which identifies all objects in the docs/ folder. Required when
+	// the parent element Condition is specified and sibling HttpErrorCodeReturnedEquals
+	// is not specified. If both conditions are specified, both must be true for
+	// the redirect to be applied.
+	KeyPrefixEquals *string `type:"string"`
 
 	metadataCondition `json:"-", xml:"-"`
 }
@@ -1397,36 +1539,115 @@ type metadataCondition struct {
 }
 
 type CopyObjectInput struct {
-	ACL                            *string             `location:"header" locationName:"x-amz-acl" type:"string"`
-	Bucket                         *string             `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	CacheControl                   *string             `location:"header" locationName:"Cache-Control" type:"string"`
-	ContentDisposition             *string             `location:"header" locationName:"Content-Disposition" type:"string"`
-	ContentEncoding                *string             `location:"header" locationName:"Content-Encoding" type:"string"`
-	ContentLanguage                *string             `location:"header" locationName:"Content-Language" type:"string"`
-	ContentType                    *string             `location:"header" locationName:"Content-Type" type:"string"`
-	CopySource                     *string             `location:"header" locationName:"x-amz-copy-source" type:"string" required:"true"`
-	CopySourceIfMatch              *string             `location:"header" locationName:"x-amz-copy-source-if-match" type:"string"`
-	CopySourceIfModifiedSince      *time.Time          `location:"header" locationName:"x-amz-copy-source-if-modified-since" type:"timestamp" timestampFormat:"rfc822"`
-	CopySourceIfNoneMatch          *string             `location:"header" locationName:"x-amz-copy-source-if-none-match" type:"string"`
-	CopySourceIfUnmodifiedSince    *time.Time          `location:"header" locationName:"x-amz-copy-source-if-unmodified-since" type:"timestamp" timestampFormat:"rfc822"`
-	CopySourceSSECustomerAlgorithm *string             `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-algorithm" type:"string"`
-	CopySourceSSECustomerKey       *string             `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-key" type:"string"`
-	CopySourceSSECustomerKeyMD5    *string             `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-key-MD5" type:"string"`
-	Expires                        *time.Time          `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822"`
-	GrantFullControl               *string             `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
-	GrantRead                      *string             `location:"header" locationName:"x-amz-grant-read" type:"string"`
-	GrantReadACP                   *string             `location:"header" locationName:"x-amz-grant-read-acp" type:"string"`
-	GrantWriteACP                  *string             `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
-	Key                            *string             `location:"uri" locationName:"Key" type:"string" required:"true"`
-	Metadata                       *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
-	MetadataDirective              *string             `location:"header" locationName:"x-amz-metadata-directive" type:"string"`
-	SSECustomerAlgorithm           *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
-	SSECustomerKey                 *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string"`
-	SSECustomerKeyMD5              *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
-	SSEKMSKeyID                    *string             `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
-	ServerSideEncryption           *string             `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
-	StorageClass                   *string             `location:"header" locationName:"x-amz-storage-class" type:"string"`
-	WebsiteRedirectLocation        *string             `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
+	// The canned ACL to apply to the object.
+	ACL *string `location:"header" locationName:"x-amz-acl" type:"string"`
+
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	// Specifies caching behavior along the request/reply chain.
+	CacheControl *string `location:"header" locationName:"Cache-Control" type:"string"`
+
+	// Specifies presentational information for the object.
+	ContentDisposition *string `location:"header" locationName:"Content-Disposition" type:"string"`
+
+	// Specifies what content encodings have been applied to the object and thus
+	// what decoding mechanisms must be applied to obtain the media-type referenced
+	// by the Content-Type header field.
+	ContentEncoding *string `location:"header" locationName:"Content-Encoding" type:"string"`
+
+	// The language the content is in.
+	ContentLanguage *string `location:"header" locationName:"Content-Language" type:"string"`
+
+	// A standard MIME type describing the format of the object data.
+	ContentType *string `location:"header" locationName:"Content-Type" type:"string"`
+
+	// The name of the source bucket and key name of the source object, separated
+	// by a slash (/). Must be URL-encoded.
+	CopySource *string `location:"header" locationName:"x-amz-copy-source" type:"string" required:"true"`
+
+	// Copies the object if its entity tag (ETag) matches the specified tag.
+	CopySourceIfMatch *string `location:"header" locationName:"x-amz-copy-source-if-match" type:"string"`
+
+	// Copies the object if it has been modified since the specified time.
+	CopySourceIfModifiedSince *time.Time `location:"header" locationName:"x-amz-copy-source-if-modified-since" type:"timestamp" timestampFormat:"rfc822"`
+
+	// Copies the object if its entity tag (ETag) is different than the specified
+	// ETag.
+	CopySourceIfNoneMatch *string `location:"header" locationName:"x-amz-copy-source-if-none-match" type:"string"`
+
+	// Copies the object if it hasn't been modified since the specified time.
+	CopySourceIfUnmodifiedSince *time.Time `location:"header" locationName:"x-amz-copy-source-if-unmodified-since" type:"timestamp" timestampFormat:"rfc822"`
+
+	// Specifies the algorithm to use when decrypting the source object (e.g., AES256).
+	CopySourceSSECustomerAlgorithm *string `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-algorithm" type:"string"`
+
+	// Specifies the customer-provided encryption key for Amazon S3 to use to decrypt
+	// the source object. The encryption key provided in this header must be one
+	// that was used when the source object was created.
+	CopySourceSSECustomerKey *string `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-key" type:"string"`
+
+	// Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.
+	// Amazon S3 uses this header for a message integrity check to ensure the encryption
+	// key was transmitted without error.
+	CopySourceSSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-key-MD5" type:"string"`
+
+	// The date and time at which the object is no longer cacheable.
+	Expires *time.Time `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822"`
+
+	// Gives the grantee READ, READ_ACP, and WRITE_ACP permissions on the object.
+	GrantFullControl *string `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
+
+	// Allows grantee to read the object data and its metadata.
+	GrantRead *string `location:"header" locationName:"x-amz-grant-read" type:"string"`
+
+	// Allows grantee to read the object ACL.
+	GrantReadACP *string `location:"header" locationName:"x-amz-grant-read-acp" type:"string"`
+
+	// Allows grantee to write the ACL for the applicable object.
+	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
+
+	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+
+	// A map of metadata to store with the object in S3.
+	Metadata *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
+
+	// Specifies whether the metadata is copied from the source object or replaced
+	// with metadata provided in the request.
+	MetadataDirective *string `location:"header" locationName:"x-amz-metadata-directive" type:"string"`
+
+	// Specifies the algorithm to use to when encrypting the object (e.g., AES256,
+	// aws:kms).
+	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+
+	// Specifies the customer-provided encryption key for Amazon S3 to use in encrypting
+	// data. This value is used to store the object and then it is discarded; Amazon
+	// does not store the encryption key. The key must be appropriate for use with
+	// the algorithm specified in the x-amz-server-side​-encryption​-customer-algorithm
+	// header.
+	SSECustomerKey *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string"`
+
+	// Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.
+	// Amazon S3 uses this header for a message integrity check to ensure the encryption
+	// key was transmitted without error.
+	SSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+
+	// Specifies the AWS KMS key ID to use for object encryption. All GET and PUT
+	// requests for an object protected by AWS KMS will fail if not made via SSL
+	// or using SigV4. Documentation on configuring any of the officially supported
+	// AWS SDKs and CLI can be found at http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#specify-signature-version
+	SSEKMSKeyID *string `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+
+	// The Server-side encryption algorithm used when storing this object in S3
+	// (e.g., AES256, aws:kms).
+	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+
+	// The type of storage to use for the object. Defaults to 'STANDARD'.
+	StorageClass *string `location:"header" locationName:"x-amz-storage-class" type:"string"`
+
+	// If the bucket is configured as a website, redirects requests for this object
+	// to another object in the same bucket or to an external URL. Amazon S3 stores
+	// the value of this header in the object metadata.
+	WebsiteRedirectLocation *string `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
 
 	metadataCopyObjectInput `json:"-", xml:"-"`
 }
@@ -1436,13 +1657,30 @@ type metadataCopyObjectInput struct {
 }
 
 type CopyObjectOutput struct {
-	CopyObjectResult     *CopyObjectResult `type:"structure"`
-	CopySourceVersionID  *string           `location:"header" locationName:"x-amz-copy-source-version-id" type:"string"`
-	Expiration           *time.Time        `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822"`
-	SSECustomerAlgorithm *string           `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
-	SSECustomerKeyMD5    *string           `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
-	SSEKMSKeyID          *string           `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
-	ServerSideEncryption *string           `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+	CopyObjectResult *CopyObjectResult `type:"structure"`
+
+	CopySourceVersionID *string `location:"header" locationName:"x-amz-copy-source-version-id" type:"string"`
+
+	// If the object expiration is configured, the response includes this header.
+	Expiration *time.Time `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822"`
+
+	// If server-side encryption with a customer-provided encryption key was requested,
+	// the response will include this header confirming the encryption algorithm
+	// used.
+	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+
+	// If server-side encryption with a customer-provided encryption key was requested,
+	// the response will include this header to provide round trip message integrity
+	// verification of the customer-provided encryption key.
+	SSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+
+	// If present, specifies the ID of the AWS Key Management Service (KMS) master
+	// encryption key that was used for the object.
+	SSEKMSKeyID *string `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+
+	// The Server-side encryption algorithm used when storing this object in S3
+	// (e.g., AES256, aws:kms).
+	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
 
 	metadataCopyObjectOutput `json:"-", xml:"-"`
 }
@@ -1452,7 +1690,8 @@ type metadataCopyObjectOutput struct {
 }
 
 type CopyObjectResult struct {
-	ETag         *string    `type:"string"`
+	ETag *string `type:"string"`
+
 	LastModified *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	metadataCopyObjectResult `json:"-", xml:"-"`
@@ -1463,7 +1702,10 @@ type metadataCopyObjectResult struct {
 }
 
 type CopyPartResult struct {
-	ETag         *string    `type:"string"`
+	// Entity tag of the object.
+	ETag *string `type:"string"`
+
+	// Date and time at which the object was uploaded.
 	LastModified *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	metadataCopyPartResult `json:"-", xml:"-"`
@@ -1474,6 +1716,7 @@ type metadataCopyPartResult struct {
 }
 
 type CreateBucketConfiguration struct {
+	// Specifies the region where the bucket will be created.
 	LocationConstraint *string `type:"string"`
 
 	metadataCreateBucketConfiguration `json:"-", xml:"-"`
@@ -1484,14 +1727,28 @@ type metadataCreateBucketConfiguration struct {
 }
 
 type CreateBucketInput struct {
-	ACL                       *string                    `location:"header" locationName:"x-amz-acl" type:"string"`
-	Bucket                    *string                    `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	// The canned ACL to apply to the bucket.
+	ACL *string `location:"header" locationName:"x-amz-acl" type:"string"`
+
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
 	CreateBucketConfiguration *CreateBucketConfiguration `locationName:"CreateBucketConfiguration" type:"structure"`
-	GrantFullControl          *string                    `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
-	GrantRead                 *string                    `location:"header" locationName:"x-amz-grant-read" type:"string"`
-	GrantReadACP              *string                    `location:"header" locationName:"x-amz-grant-read-acp" type:"string"`
-	GrantWrite                *string                    `location:"header" locationName:"x-amz-grant-write" type:"string"`
-	GrantWriteACP             *string                    `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
+
+	// Allows grantee the read, write, read ACP, and write ACP permissions on the
+	// bucket.
+	GrantFullControl *string `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
+
+	// Allows grantee to list the objects in the bucket.
+	GrantRead *string `location:"header" locationName:"x-amz-grant-read" type:"string"`
+
+	// Allows grantee to read the bucket ACL.
+	GrantReadACP *string `location:"header" locationName:"x-amz-grant-read-acp" type:"string"`
+
+	// Allows grantee to create, overwrite, and delete any object in the bucket.
+	GrantWrite *string `location:"header" locationName:"x-amz-grant-write" type:"string"`
+
+	// Allows grantee to write the ACL for the applicable bucket.
+	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
 
 	metadataCreateBucketInput `json:"-", xml:"-"`
 }
@@ -1511,27 +1768,81 @@ type metadataCreateBucketOutput struct {
 }
 
 type CreateMultipartUploadInput struct {
-	ACL                     *string             `location:"header" locationName:"x-amz-acl" type:"string"`
-	Bucket                  *string             `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	CacheControl            *string             `location:"header" locationName:"Cache-Control" type:"string"`
-	ContentDisposition      *string             `location:"header" locationName:"Content-Disposition" type:"string"`
-	ContentEncoding         *string             `location:"header" locationName:"Content-Encoding" type:"string"`
-	ContentLanguage         *string             `location:"header" locationName:"Content-Language" type:"string"`
-	ContentType             *string             `location:"header" locationName:"Content-Type" type:"string"`
-	Expires                 *time.Time          `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822"`
-	GrantFullControl        *string             `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
-	GrantRead               *string             `location:"header" locationName:"x-amz-grant-read" type:"string"`
-	GrantReadACP            *string             `location:"header" locationName:"x-amz-grant-read-acp" type:"string"`
-	GrantWriteACP           *string             `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
-	Key                     *string             `location:"uri" locationName:"Key" type:"string" required:"true"`
-	Metadata                *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
-	SSECustomerAlgorithm    *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
-	SSECustomerKey          *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string"`
-	SSECustomerKeyMD5       *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
-	SSEKMSKeyID             *string             `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
-	ServerSideEncryption    *string             `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
-	StorageClass            *string             `location:"header" locationName:"x-amz-storage-class" type:"string"`
-	WebsiteRedirectLocation *string             `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
+	// The canned ACL to apply to the object.
+	ACL *string `location:"header" locationName:"x-amz-acl" type:"string"`
+
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	// Specifies caching behavior along the request/reply chain.
+	CacheControl *string `location:"header" locationName:"Cache-Control" type:"string"`
+
+	// Specifies presentational information for the object.
+	ContentDisposition *string `location:"header" locationName:"Content-Disposition" type:"string"`
+
+	// Specifies what content encodings have been applied to the object and thus
+	// what decoding mechanisms must be applied to obtain the media-type referenced
+	// by the Content-Type header field.
+	ContentEncoding *string `location:"header" locationName:"Content-Encoding" type:"string"`
+
+	// The language the content is in.
+	ContentLanguage *string `location:"header" locationName:"Content-Language" type:"string"`
+
+	// A standard MIME type describing the format of the object data.
+	ContentType *string `location:"header" locationName:"Content-Type" type:"string"`
+
+	// The date and time at which the object is no longer cacheable.
+	Expires *time.Time `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822"`
+
+	// Gives the grantee READ, READ_ACP, and WRITE_ACP permissions on the object.
+	GrantFullControl *string `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
+
+	// Allows grantee to read the object data and its metadata.
+	GrantRead *string `location:"header" locationName:"x-amz-grant-read" type:"string"`
+
+	// Allows grantee to read the object ACL.
+	GrantReadACP *string `location:"header" locationName:"x-amz-grant-read-acp" type:"string"`
+
+	// Allows grantee to write the ACL for the applicable object.
+	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
+
+	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+
+	// A map of metadata to store with the object in S3.
+	Metadata *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
+
+	// Specifies the algorithm to use to when encrypting the object (e.g., AES256,
+	// aws:kms).
+	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+
+	// Specifies the customer-provided encryption key for Amazon S3 to use in encrypting
+	// data. This value is used to store the object and then it is discarded; Amazon
+	// does not store the encryption key. The key must be appropriate for use with
+	// the algorithm specified in the x-amz-server-side​-encryption​-customer-algorithm
+	// header.
+	SSECustomerKey *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string"`
+
+	// Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.
+	// Amazon S3 uses this header for a message integrity check to ensure the encryption
+	// key was transmitted without error.
+	SSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+
+	// Specifies the AWS KMS key ID to use for object encryption. All GET and PUT
+	// requests for an object protected by AWS KMS will fail if not made via SSL
+	// or using SigV4. Documentation on configuring any of the officially supported
+	// AWS SDKs and CLI can be found at http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#specify-signature-version
+	SSEKMSKeyID *string `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+
+	// The Server-side encryption algorithm used when storing this object in S3
+	// (e.g., AES256, aws:kms).
+	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+
+	// The type of storage to use for the object. Defaults to 'STANDARD'.
+	StorageClass *string `location:"header" locationName:"x-amz-storage-class" type:"string"`
+
+	// If the bucket is configured as a website, redirects requests for this object
+	// to another object in the same bucket or to an external URL. Amazon S3 stores
+	// the value of this header in the object metadata.
+	WebsiteRedirectLocation *string `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
 
 	metadataCreateMultipartUploadInput `json:"-", xml:"-"`
 }
@@ -1541,13 +1852,32 @@ type metadataCreateMultipartUploadInput struct {
 }
 
 type CreateMultipartUploadOutput struct {
-	Bucket               *string `locationName:"Bucket" type:"string"`
-	Key                  *string `type:"string"`
+	// Name of the bucket to which the multipart upload was initiated.
+	Bucket *string `locationName:"Bucket" type:"string"`
+
+	// Object key for which the multipart upload was initiated.
+	Key *string `type:"string"`
+
+	// If server-side encryption with a customer-provided encryption key was requested,
+	// the response will include this header confirming the encryption algorithm
+	// used.
 	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
-	SSECustomerKeyMD5    *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
-	SSEKMSKeyID          *string `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+
+	// If server-side encryption with a customer-provided encryption key was requested,
+	// the response will include this header to provide round trip message integrity
+	// verification of the customer-provided encryption key.
+	SSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+
+	// If present, specifies the ID of the AWS Key Management Service (KMS) master
+	// encryption key that was used for the object.
+	SSEKMSKeyID *string `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+
+	// The Server-side encryption algorithm used when storing this object in S3
+	// (e.g., AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
-	UploadID             *string `locationName:"UploadId" type:"string"`
+
+	// ID for the initiated multipart upload.
+	UploadID *string `locationName:"UploadId" type:"string"`
 
 	metadataCreateMultipartUploadOutput `json:"-", xml:"-"`
 }
@@ -1558,7 +1888,10 @@ type metadataCreateMultipartUploadOutput struct {
 
 type Delete struct {
 	Objects []*ObjectIdentifier `locationName:"Object" type:"list" flattened:"true" required:"true"`
-	Quiet   *bool               `type:"boolean"`
+
+	// Element to enable quiet mode for the request. When you add this element,
+	// you must set its value to true.
+	Quiet *bool `type:"boolean"`
 
 	metadataDelete `json:"-", xml:"-"`
 }
@@ -1676,11 +2009,20 @@ type metadataDeleteBucketWebsiteOutput struct {
 }
 
 type DeleteMarkerEntry struct {
-	IsLatest     *bool      `type:"boolean"`
-	Key          *string    `type:"string"`
+	// Specifies whether the object is (true) or is not (false) the latest version
+	// of an object.
+	IsLatest *bool `type:"boolean"`
+
+	// The object key.
+	Key *string `type:"string"`
+
+	// Date and time the object was last modified.
 	LastModified *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	Owner        *Owner     `type:"structure"`
-	VersionID    *string    `locationName:"VersionId" type:"string"`
+
+	Owner *Owner `type:"structure"`
+
+	// Version ID of an object.
+	VersionID *string `locationName:"VersionId" type:"string"`
 
 	metadataDeleteMarkerEntry `json:"-", xml:"-"`
 }
@@ -1690,9 +2032,15 @@ type metadataDeleteMarkerEntry struct {
 }
 
 type DeleteObjectInput struct {
-	Bucket    *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	Key       *string `location:"uri" locationName:"Key" type:"string" required:"true"`
-	MFA       *string `location:"header" locationName:"x-amz-mfa" type:"string"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+
+	// The concatenation of the authentication device's serial number, a space,
+	// and the value that is displayed on your authentication device.
+	MFA *string `location:"header" locationName:"x-amz-mfa" type:"string"`
+
+	// VersionId used to reference a specific version of the object.
 	VersionID *string `location:"querystring" locationName:"versionId" type:"string"`
 
 	metadataDeleteObjectInput `json:"-", xml:"-"`
@@ -1703,8 +2051,13 @@ type metadataDeleteObjectInput struct {
 }
 
 type DeleteObjectOutput struct {
-	DeleteMarker *bool   `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
-	VersionID    *string `location:"header" locationName:"x-amz-version-id" type:"string"`
+	// Specifies whether the versioned object that was permanently deleted was (true)
+	// or was not (false) a delete marker.
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// Returns the version ID of the delete marker created as a result of the DELETE
+	// operation.
+	VersionID *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 
 	metadataDeleteObjectOutput `json:"-", xml:"-"`
 }
@@ -1715,8 +2068,12 @@ type metadataDeleteObjectOutput struct {
 
 type DeleteObjectsInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
 	Delete *Delete `locationName:"Delete" type:"structure" required:"true"`
-	MFA    *string `location:"header" locationName:"x-amz-mfa" type:"string"`
+
+	// The concatenation of the authentication device's serial number, a space,
+	// and the value that is displayed on your authentication device.
+	MFA *string `location:"header" locationName:"x-amz-mfa" type:"string"`
 
 	metadataDeleteObjectsInput `json:"-", xml:"-"`
 }
@@ -1727,7 +2084,8 @@ type metadataDeleteObjectsInput struct {
 
 type DeleteObjectsOutput struct {
 	Deleted []*DeletedObject `type:"list" flattened:"true"`
-	Errors  []*Error         `locationName:"Error" type:"list" flattened:"true"`
+
+	Errors []*Error `locationName:"Error" type:"list" flattened:"true"`
 
 	metadataDeleteObjectsOutput `json:"-", xml:"-"`
 }
@@ -1737,10 +2095,13 @@ type metadataDeleteObjectsOutput struct {
 }
 
 type DeletedObject struct {
-	DeleteMarker          *bool   `type:"boolean"`
+	DeleteMarker *bool `type:"boolean"`
+
 	DeleteMarkerVersionID *string `locationName:"DeleteMarkerVersionId" type:"string"`
-	Key                   *string `type:"string"`
-	VersionID             *string `locationName:"VersionId" type:"string"`
+
+	Key *string `type:"string"`
+
+	VersionID *string `locationName:"VersionId" type:"string"`
 
 	metadataDeletedObject `json:"-", xml:"-"`
 }
@@ -1750,9 +2111,12 @@ type metadataDeletedObject struct {
 }
 
 type Error struct {
-	Code      *string `type:"string"`
-	Key       *string `type:"string"`
-	Message   *string `type:"string"`
+	Code *string `type:"string"`
+
+	Key *string `type:"string"`
+
+	Message *string `type:"string"`
+
 	VersionID *string `locationName:"VersionId" type:"string"`
 
 	metadataError `json:"-", xml:"-"`
@@ -1763,6 +2127,7 @@ type metadataError struct {
 }
 
 type ErrorDocument struct {
+	// The object key name to use when a 4XX class error occurs.
 	Key *string `type:"string" required:"true"`
 
 	metadataErrorDocument `json:"-", xml:"-"`
@@ -1783,8 +2148,10 @@ type metadataGetBucketACLInput struct {
 }
 
 type GetBucketACLOutput struct {
+	// A list of grants.
 	Grants []*Grant `locationName:"AccessControlList" locationNameList:"Grant" type:"list"`
-	Owner  *Owner   `type:"structure"`
+
+	Owner *Owner `type:"structure"`
 
 	metadataGetBucketACLOutput `json:"-", xml:"-"`
 }
@@ -1885,8 +2252,10 @@ type metadataGetBucketNotificationInput struct {
 
 type GetBucketNotificationOutput struct {
 	CloudFunctionConfiguration *CloudFunctionConfiguration `type:"structure"`
-	QueueConfiguration         *QueueConfiguration         `type:"structure"`
-	TopicConfiguration         *TopicConfiguration         `type:"structure"`
+
+	QueueConfiguration *QueueConfiguration `type:"structure"`
+
+	TopicConfiguration *TopicConfiguration `type:"structure"`
 
 	metadataGetBucketNotificationOutput `json:"-", xml:"-"`
 }
@@ -1906,6 +2275,7 @@ type metadataGetBucketPolicyInput struct {
 }
 
 type GetBucketPolicyOutput struct {
+	// The bucket policy as a JSON document.
 	Policy *string `type:"string"`
 
 	metadataGetBucketPolicyOutput `json:"-", xml:"-"`
@@ -1926,6 +2296,7 @@ type metadataGetBucketRequestPaymentInput struct {
 }
 
 type GetBucketRequestPaymentOutput struct {
+	// Specifies who pays for the download and request fees.
 	Payer *string `type:"string"`
 
 	metadataGetBucketRequestPaymentOutput `json:"-", xml:"-"`
@@ -1966,8 +2337,13 @@ type metadataGetBucketVersioningInput struct {
 }
 
 type GetBucketVersioningOutput struct {
+	// Specifies whether MFA delete is enabled in the bucket versioning configuration.
+	// This element is only returned if the bucket has been configured with MFA
+	// delete. If the bucket has never been so configured, this element is not returned.
 	MFADelete *string `locationName:"MfaDelete" type:"string"`
-	Status    *string `type:"string"`
+
+	// The versioning state of the bucket.
+	Status *string `type:"string"`
 
 	metadataGetBucketVersioningOutput `json:"-", xml:"-"`
 }
@@ -1987,10 +2363,13 @@ type metadataGetBucketWebsiteInput struct {
 }
 
 type GetBucketWebsiteOutput struct {
-	ErrorDocument         *ErrorDocument         `type:"structure"`
-	IndexDocument         *IndexDocument         `type:"structure"`
+	ErrorDocument *ErrorDocument `type:"structure"`
+
+	IndexDocument *IndexDocument `type:"structure"`
+
 	RedirectAllRequestsTo *RedirectAllRequestsTo `type:"structure"`
-	RoutingRules          []*RoutingRule         `locationNameList:"RoutingRule" type:"list"`
+
+	RoutingRules []*RoutingRule `locationNameList:"RoutingRule" type:"list"`
 
 	metadataGetBucketWebsiteOutput `json:"-", xml:"-"`
 }
@@ -2000,8 +2379,11 @@ type metadataGetBucketWebsiteOutput struct {
 }
 
 type GetObjectACLInput struct {
-	Bucket    *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	Key       *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+
+	// VersionId used to reference a specific version of the object.
 	VersionID *string `location:"querystring" locationName:"versionId" type:"string"`
 
 	metadataGetObjectACLInput `json:"-", xml:"-"`
@@ -2012,8 +2394,10 @@ type metadataGetObjectACLInput struct {
 }
 
 type GetObjectACLOutput struct {
+	// A list of grants.
 	Grants []*Grant `locationName:"AccessControlList" locationNameList:"Grant" type:"list"`
-	Owner  *Owner   `type:"structure"`
+
+	Owner *Owner `type:"structure"`
 
 	metadataGetObjectACLOutput `json:"-", xml:"-"`
 }
@@ -2023,23 +2407,66 @@ type metadataGetObjectACLOutput struct {
 }
 
 type GetObjectInput struct {
-	Bucket                     *string    `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	IfMatch                    *string    `location:"header" locationName:"If-Match" type:"string"`
-	IfModifiedSince            *time.Time `location:"header" locationName:"If-Modified-Since" type:"timestamp" timestampFormat:"rfc822"`
-	IfNoneMatch                *string    `location:"header" locationName:"If-None-Match" type:"string"`
-	IfUnmodifiedSince          *time.Time `location:"header" locationName:"If-Unmodified-Since" type:"timestamp" timestampFormat:"rfc822"`
-	Key                        *string    `location:"uri" locationName:"Key" type:"string" required:"true"`
-	Range                      *string    `location:"header" locationName:"Range" type:"string"`
-	ResponseCacheControl       *string    `location:"querystring" locationName:"response-cache-control" type:"string"`
-	ResponseContentDisposition *string    `location:"querystring" locationName:"response-content-disposition" type:"string"`
-	ResponseContentEncoding    *string    `location:"querystring" locationName:"response-content-encoding" type:"string"`
-	ResponseContentLanguage    *string    `location:"querystring" locationName:"response-content-language" type:"string"`
-	ResponseContentType        *string    `location:"querystring" locationName:"response-content-type" type:"string"`
-	ResponseExpires            *time.Time `location:"querystring" locationName:"response-expires" type:"timestamp" timestampFormat:"iso8601"`
-	SSECustomerAlgorithm       *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
-	SSECustomerKey             *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string"`
-	SSECustomerKeyMD5          *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
-	VersionID                  *string    `location:"querystring" locationName:"versionId" type:"string"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	// Return the object only if its entity tag (ETag) is the same as the one specified,
+	// otherwise return a 412 (precondition failed).
+	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
+
+	// Return the object only if it has been modified since the specified time,
+	// otherwise return a 304 (not modified).
+	IfModifiedSince *time.Time `location:"header" locationName:"If-Modified-Since" type:"timestamp" timestampFormat:"rfc822"`
+
+	// Return the object only if its entity tag (ETag) is different from the one
+	// specified, otherwise return a 304 (not modified).
+	IfNoneMatch *string `location:"header" locationName:"If-None-Match" type:"string"`
+
+	// Return the object only if it has not been modified since the specified time,
+	// otherwise return a 412 (precondition failed).
+	IfUnmodifiedSince *time.Time `location:"header" locationName:"If-Unmodified-Since" type:"timestamp" timestampFormat:"rfc822"`
+
+	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+
+	// Downloads the specified range bytes of an object. For more information about
+	// the HTTP Range header, go to http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35.
+	Range *string `location:"header" locationName:"Range" type:"string"`
+
+	// Sets the Cache-Control header of the response.
+	ResponseCacheControl *string `location:"querystring" locationName:"response-cache-control" type:"string"`
+
+	// Sets the Content-Disposition header of the response
+	ResponseContentDisposition *string `location:"querystring" locationName:"response-content-disposition" type:"string"`
+
+	// Sets the Content-Encoding header of the response.
+	ResponseContentEncoding *string `location:"querystring" locationName:"response-content-encoding" type:"string"`
+
+	// Sets the Content-Language header of the response.
+	ResponseContentLanguage *string `location:"querystring" locationName:"response-content-language" type:"string"`
+
+	// Sets the Content-Type header of the response.
+	ResponseContentType *string `location:"querystring" locationName:"response-content-type" type:"string"`
+
+	// Sets the Expires header of the response.
+	ResponseExpires *time.Time `location:"querystring" locationName:"response-expires" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Specifies the algorithm to use to when encrypting the object (e.g., AES256,
+	// aws:kms).
+	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+
+	// Specifies the customer-provided encryption key for Amazon S3 to use in encrypting
+	// data. This value is used to store the object and then it is discarded; Amazon
+	// does not store the encryption key. The key must be appropriate for use with
+	// the algorithm specified in the x-amz-server-side​-encryption​-customer-algorithm
+	// header.
+	SSECustomerKey *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string"`
+
+	// Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.
+	// Amazon S3 uses this header for a message integrity check to ensure the encryption
+	// key was transmitted without error.
+	SSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+
+	// VersionId used to reference a specific version of the object.
+	VersionID *string `location:"querystring" locationName:"versionId" type:"string"`
 
 	metadataGetObjectInput `json:"-", xml:"-"`
 }
@@ -2049,28 +2476,89 @@ type metadataGetObjectInput struct {
 }
 
 type GetObjectOutput struct {
-	AcceptRanges            *string             `location:"header" locationName:"accept-ranges" type:"string"`
-	Body                    io.ReadSeeker       `type:"blob"`
-	CacheControl            *string             `location:"header" locationName:"Cache-Control" type:"string"`
-	ContentDisposition      *string             `location:"header" locationName:"Content-Disposition" type:"string"`
-	ContentEncoding         *string             `location:"header" locationName:"Content-Encoding" type:"string"`
-	ContentLanguage         *string             `location:"header" locationName:"Content-Language" type:"string"`
-	ContentLength           *int64              `location:"header" locationName:"Content-Length" type:"integer"`
-	ContentType             *string             `location:"header" locationName:"Content-Type" type:"string"`
-	DeleteMarker            *bool               `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
-	ETag                    *string             `location:"header" locationName:"ETag" type:"string"`
-	Expiration              *time.Time          `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822"`
-	Expires                 *time.Time          `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822"`
-	LastModified            *time.Time          `location:"header" locationName:"Last-Modified" type:"timestamp" timestampFormat:"rfc822"`
-	Metadata                *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
-	MissingMeta             *int64              `location:"header" locationName:"x-amz-missing-meta" type:"integer"`
-	Restore                 *string             `location:"header" locationName:"x-amz-restore" type:"string"`
-	SSECustomerAlgorithm    *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
-	SSECustomerKeyMD5       *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
-	SSEKMSKeyID             *string             `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
-	ServerSideEncryption    *string             `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
-	VersionID               *string             `location:"header" locationName:"x-amz-version-id" type:"string"`
-	WebsiteRedirectLocation *string             `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
+	AcceptRanges *string `location:"header" locationName:"accept-ranges" type:"string"`
+
+	// Object data.
+	Body io.ReadSeeker `type:"blob"`
+
+	// Specifies caching behavior along the request/reply chain.
+	CacheControl *string `location:"header" locationName:"Cache-Control" type:"string"`
+
+	// Specifies presentational information for the object.
+	ContentDisposition *string `location:"header" locationName:"Content-Disposition" type:"string"`
+
+	// Specifies what content encodings have been applied to the object and thus
+	// what decoding mechanisms must be applied to obtain the media-type referenced
+	// by the Content-Type header field.
+	ContentEncoding *string `location:"header" locationName:"Content-Encoding" type:"string"`
+
+	// The language the content is in.
+	ContentLanguage *string `location:"header" locationName:"Content-Language" type:"string"`
+
+	// Size of the body in bytes.
+	ContentLength *int64 `location:"header" locationName:"Content-Length" type:"integer"`
+
+	// A standard MIME type describing the format of the object data.
+	ContentType *string `location:"header" locationName:"Content-Type" type:"string"`
+
+	// Specifies whether the object retrieved was (true) or was not (false) a Delete
+	// Marker. If false, this response header does not appear in the response.
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// An ETag is an opaque identifier assigned by a web server to a specific version
+	// of a resource found at a URL
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// If the object expiration is configured (see PUT Bucket lifecycle), the response
+	// includes this header. It includes the expiry-date and rule-id key value pairs
+	// providing object expiration information. The value of the rule-id is URL
+	// encoded.
+	Expiration *time.Time `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822"`
+
+	// The date and time at which the object is no longer cacheable.
+	Expires *time.Time `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822"`
+
+	// Last modified date of the object
+	LastModified *time.Time `location:"header" locationName:"Last-Modified" type:"timestamp" timestampFormat:"rfc822"`
+
+	// A map of metadata to store with the object in S3.
+	Metadata *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
+
+	// This is set to the number of metadata entries not returned in x-amz-meta
+	// headers. This can happen if you create metadata using an API like SOAP that
+	// supports more flexible metadata than the REST API. For example, using SOAP,
+	// you can create metadata whose values are not legal HTTP headers.
+	MissingMeta *int64 `location:"header" locationName:"x-amz-missing-meta" type:"integer"`
+
+	// Provides information about object restoration operation and expiration time
+	// of the restored object copy.
+	Restore *string `location:"header" locationName:"x-amz-restore" type:"string"`
+
+	// If server-side encryption with a customer-provided encryption key was requested,
+	// the response will include this header confirming the encryption algorithm
+	// used.
+	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+
+	// If server-side encryption with a customer-provided encryption key was requested,
+	// the response will include this header to provide round trip message integrity
+	// verification of the customer-provided encryption key.
+	SSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+
+	// If present, specifies the ID of the AWS Key Management Service (KMS) master
+	// encryption key that was used for the object.
+	SSEKMSKeyID *string `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+
+	// The Server-side encryption algorithm used when storing this object in S3
+	// (e.g., AES256, aws:kms).
+	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+
+	// Version of the object.
+	VersionID *string `location:"header" locationName:"x-amz-version-id" type:"string"`
+
+	// If the bucket is configured as a website, redirects requests for this object
+	// to another object in the same bucket or to an external URL. Amazon S3 stores
+	// the value of this header in the object metadata.
+	WebsiteRedirectLocation *string `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
 
 	metadataGetObjectOutput `json:"-", xml:"-"`
 }
@@ -2081,7 +2569,8 @@ type metadataGetObjectOutput struct {
 
 type GetObjectTorrentInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	Key    *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+
+	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
 
 	metadataGetObjectTorrentInput `json:"-", xml:"-"`
 }
@@ -2101,8 +2590,10 @@ type metadataGetObjectTorrentOutput struct {
 }
 
 type Grant struct {
-	Grantee    *Grantee `type:"structure"`
-	Permission *string  `type:"string"`
+	Grantee *Grantee `type:"structure"`
+
+	// Specifies the permission given to the grantee.
+	Permission *string `type:"string"`
 
 	metadataGrant `json:"-", xml:"-"`
 }
@@ -2112,11 +2603,20 @@ type metadataGrant struct {
 }
 
 type Grantee struct {
-	DisplayName  *string `type:"string"`
+	// Screen name of the grantee.
+	DisplayName *string `type:"string"`
+
+	// Email address of the grantee.
 	EmailAddress *string `type:"string"`
-	ID           *string `type:"string"`
-	Type         *string `locationName:"xsi:type" type:"string" required:"true"`
-	URI          *string `type:"string"`
+
+	// The canonical user ID of the grantee.
+	ID *string `type:"string"`
+
+	// Type of grantee
+	Type *string `locationName:"xsi:type" type:"string" required:"true"`
+
+	// URI of the grantee group.
+	URI *string `type:"string"`
 
 	metadataGrantee `json:"-", xml:"-"`
 }
@@ -2144,17 +2644,48 @@ type metadataHeadBucketOutput struct {
 }
 
 type HeadObjectInput struct {
-	Bucket               *string    `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	IfMatch              *string    `location:"header" locationName:"If-Match" type:"string"`
-	IfModifiedSince      *time.Time `location:"header" locationName:"If-Modified-Since" type:"timestamp" timestampFormat:"rfc822"`
-	IfNoneMatch          *string    `location:"header" locationName:"If-None-Match" type:"string"`
-	IfUnmodifiedSince    *time.Time `location:"header" locationName:"If-Unmodified-Since" type:"timestamp" timestampFormat:"rfc822"`
-	Key                  *string    `location:"uri" locationName:"Key" type:"string" required:"true"`
-	Range                *string    `location:"header" locationName:"Range" type:"string"`
-	SSECustomerAlgorithm *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
-	SSECustomerKey       *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string"`
-	SSECustomerKeyMD5    *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
-	VersionID            *string    `location:"querystring" locationName:"versionId" type:"string"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	// Return the object only if its entity tag (ETag) is the same as the one specified,
+	// otherwise return a 412 (precondition failed).
+	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
+
+	// Return the object only if it has been modified since the specified time,
+	// otherwise return a 304 (not modified).
+	IfModifiedSince *time.Time `location:"header" locationName:"If-Modified-Since" type:"timestamp" timestampFormat:"rfc822"`
+
+	// Return the object only if its entity tag (ETag) is different from the one
+	// specified, otherwise return a 304 (not modified).
+	IfNoneMatch *string `location:"header" locationName:"If-None-Match" type:"string"`
+
+	// Return the object only if it has not been modified since the specified time,
+	// otherwise return a 412 (precondition failed).
+	IfUnmodifiedSince *time.Time `location:"header" locationName:"If-Unmodified-Since" type:"timestamp" timestampFormat:"rfc822"`
+
+	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+
+	// Downloads the specified range bytes of an object. For more information about
+	// the HTTP Range header, go to http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35.
+	Range *string `location:"header" locationName:"Range" type:"string"`
+
+	// Specifies the algorithm to use to when encrypting the object (e.g., AES256,
+	// aws:kms).
+	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+
+	// Specifies the customer-provided encryption key for Amazon S3 to use in encrypting
+	// data. This value is used to store the object and then it is discarded; Amazon
+	// does not store the encryption key. The key must be appropriate for use with
+	// the algorithm specified in the x-amz-server-side​-encryption​-customer-algorithm
+	// header.
+	SSECustomerKey *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string"`
+
+	// Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.
+	// Amazon S3 uses this header for a message integrity check to ensure the encryption
+	// key was transmitted without error.
+	SSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+
+	// VersionId used to reference a specific version of the object.
+	VersionID *string `location:"querystring" locationName:"versionId" type:"string"`
 
 	metadataHeadObjectInput `json:"-", xml:"-"`
 }
@@ -2164,27 +2695,86 @@ type metadataHeadObjectInput struct {
 }
 
 type HeadObjectOutput struct {
-	AcceptRanges            *string             `location:"header" locationName:"accept-ranges" type:"string"`
-	CacheControl            *string             `location:"header" locationName:"Cache-Control" type:"string"`
-	ContentDisposition      *string             `location:"header" locationName:"Content-Disposition" type:"string"`
-	ContentEncoding         *string             `location:"header" locationName:"Content-Encoding" type:"string"`
-	ContentLanguage         *string             `location:"header" locationName:"Content-Language" type:"string"`
-	ContentLength           *int64              `location:"header" locationName:"Content-Length" type:"integer"`
-	ContentType             *string             `location:"header" locationName:"Content-Type" type:"string"`
-	DeleteMarker            *bool               `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
-	ETag                    *string             `location:"header" locationName:"ETag" type:"string"`
-	Expiration              *time.Time          `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822"`
-	Expires                 *time.Time          `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822"`
-	LastModified            *time.Time          `location:"header" locationName:"Last-Modified" type:"timestamp" timestampFormat:"rfc822"`
-	Metadata                *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
-	MissingMeta             *int64              `location:"header" locationName:"x-amz-missing-meta" type:"integer"`
-	Restore                 *string             `location:"header" locationName:"x-amz-restore" type:"string"`
-	SSECustomerAlgorithm    *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
-	SSECustomerKeyMD5       *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
-	SSEKMSKeyID             *string             `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
-	ServerSideEncryption    *string             `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
-	VersionID               *string             `location:"header" locationName:"x-amz-version-id" type:"string"`
-	WebsiteRedirectLocation *string             `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
+	AcceptRanges *string `location:"header" locationName:"accept-ranges" type:"string"`
+
+	// Specifies caching behavior along the request/reply chain.
+	CacheControl *string `location:"header" locationName:"Cache-Control" type:"string"`
+
+	// Specifies presentational information for the object.
+	ContentDisposition *string `location:"header" locationName:"Content-Disposition" type:"string"`
+
+	// Specifies what content encodings have been applied to the object and thus
+	// what decoding mechanisms must be applied to obtain the media-type referenced
+	// by the Content-Type header field.
+	ContentEncoding *string `location:"header" locationName:"Content-Encoding" type:"string"`
+
+	// The language the content is in.
+	ContentLanguage *string `location:"header" locationName:"Content-Language" type:"string"`
+
+	// Size of the body in bytes.
+	ContentLength *int64 `location:"header" locationName:"Content-Length" type:"integer"`
+
+	// A standard MIME type describing the format of the object data.
+	ContentType *string `location:"header" locationName:"Content-Type" type:"string"`
+
+	// Specifies whether the object retrieved was (true) or was not (false) a Delete
+	// Marker. If false, this response header does not appear in the response.
+	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// An ETag is an opaque identifier assigned by a web server to a specific version
+	// of a resource found at a URL
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// If the object expiration is configured (see PUT Bucket lifecycle), the response
+	// includes this header. It includes the expiry-date and rule-id key value pairs
+	// providing object expiration information. The value of the rule-id is URL
+	// encoded.
+	Expiration *time.Time `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822"`
+
+	// The date and time at which the object is no longer cacheable.
+	Expires *time.Time `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822"`
+
+	// Last modified date of the object
+	LastModified *time.Time `location:"header" locationName:"Last-Modified" type:"timestamp" timestampFormat:"rfc822"`
+
+	// A map of metadata to store with the object in S3.
+	Metadata *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
+
+	// This is set to the number of metadata entries not returned in x-amz-meta
+	// headers. This can happen if you create metadata using an API like SOAP that
+	// supports more flexible metadata than the REST API. For example, using SOAP,
+	// you can create metadata whose values are not legal HTTP headers.
+	MissingMeta *int64 `location:"header" locationName:"x-amz-missing-meta" type:"integer"`
+
+	// Provides information about object restoration operation and expiration time
+	// of the restored object copy.
+	Restore *string `location:"header" locationName:"x-amz-restore" type:"string"`
+
+	// If server-side encryption with a customer-provided encryption key was requested,
+	// the response will include this header confirming the encryption algorithm
+	// used.
+	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+
+	// If server-side encryption with a customer-provided encryption key was requested,
+	// the response will include this header to provide round trip message integrity
+	// verification of the customer-provided encryption key.
+	SSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+
+	// If present, specifies the ID of the AWS Key Management Service (KMS) master
+	// encryption key that was used for the object.
+	SSEKMSKeyID *string `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+
+	// The Server-side encryption algorithm used when storing this object in S3
+	// (e.g., AES256, aws:kms).
+	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+
+	// Version of the object.
+	VersionID *string `location:"header" locationName:"x-amz-version-id" type:"string"`
+
+	// If the bucket is configured as a website, redirects requests for this object
+	// to another object in the same bucket or to an external URL. Amazon S3 stores
+	// the value of this header in the object metadata.
+	WebsiteRedirectLocation *string `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
 
 	metadataHeadObjectOutput `json:"-", xml:"-"`
 }
@@ -2194,6 +2784,10 @@ type metadataHeadObjectOutput struct {
 }
 
 type IndexDocument struct {
+	// A suffix that is appended to a request that is for a directory on the website
+	// endpoint (e.g. if the suffix is index.html and you make a request to samplebucket/images/
+	// the data that is returned will be for the object with the key name images/index.html)
+	// The suffix must not be empty and must not include a slash character.
 	Suffix *string `type:"string" required:"true"`
 
 	metadataIndexDocument `json:"-", xml:"-"`
@@ -2204,8 +2798,12 @@ type metadataIndexDocument struct {
 }
 
 type Initiator struct {
+	// Name of the Principal.
 	DisplayName *string `type:"string"`
-	ID          *string `type:"string"`
+
+	// If the principal is an AWS account, it provides the Canonical User ID. If
+	// the principal is an IAM User, it provides a user ARN value.
+	ID *string `type:"string"`
 
 	metadataInitiator `json:"-", xml:"-"`
 }
@@ -2225,8 +2823,13 @@ type metadataLifecycleConfiguration struct {
 }
 
 type LifecycleExpiration struct {
+	// Indicates at what date the object is to be moved or deleted. Should be in
+	// GMT ISO 8601 Format.
 	Date *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	Days *int64     `type:"integer"`
+
+	// Indicates the lifetime, in days, of the objects that are subject to the rule.
+	// The value must be a non-zero positive integer.
+	Days *int64 `type:"integer"`
 
 	metadataLifecycleExpiration `json:"-", xml:"-"`
 }
@@ -2245,7 +2848,8 @@ type metadataListBucketsInput struct {
 
 type ListBucketsOutput struct {
 	Buckets []*Bucket `locationNameList:"Bucket" type:"list"`
-	Owner   *Owner    `type:"structure"`
+
+	Owner *Owner `type:"structure"`
 
 	metadataListBucketsOutput `json:"-", xml:"-"`
 }
@@ -2255,12 +2859,35 @@ type metadataListBucketsOutput struct {
 }
 
 type ListMultipartUploadsInput struct {
-	Bucket         *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	Delimiter      *string `location:"querystring" locationName:"delimiter" type:"string"`
-	EncodingType   *string `location:"querystring" locationName:"encoding-type" type:"string"`
-	KeyMarker      *string `location:"querystring" locationName:"key-marker" type:"string"`
-	MaxUploads     *int64  `location:"querystring" locationName:"max-uploads" type:"integer"`
-	Prefix         *string `location:"querystring" locationName:"prefix" type:"string"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	// Character you use to group keys.
+	Delimiter *string `location:"querystring" locationName:"delimiter" type:"string"`
+
+	// Requests Amazon S3 to encode the object keys in the response and specifies
+	// the encoding method to use. An object key may contain any Unicode character;
+	// however, XML 1.0 parser cannot parse some characters, such as characters
+	// with an ASCII value from 0 to 10. For characters that are not supported in
+	// XML 1.0, you can add this parameter to request that Amazon S3 encode the
+	// keys in the response.
+	EncodingType *string `location:"querystring" locationName:"encoding-type" type:"string"`
+
+	// Together with upload-id-marker, this parameter specifies the multipart upload
+	// after which listing should begin.
+	KeyMarker *string `location:"querystring" locationName:"key-marker" type:"string"`
+
+	// Sets the maximum number of multipart uploads, from 1 to 1,000, to return
+	// in the response body. 1,000 is the maximum number of uploads that can be
+	// returned in a response.
+	MaxUploads *int64 `location:"querystring" locationName:"max-uploads" type:"integer"`
+
+	// Lists in-progress uploads only for those keys that begin with the specified
+	// prefix.
+	Prefix *string `location:"querystring" locationName:"prefix" type:"string"`
+
+	// Together with key-marker, specifies the multipart upload after which listing
+	// should begin. If key-marker is not specified, the upload-id-marker parameter
+	// is ignored.
 	UploadIDMarker *string `location:"querystring" locationName:"upload-id-marker" type:"string"`
 
 	metadataListMultipartUploadsInput `json:"-", xml:"-"`
@@ -2271,18 +2898,45 @@ type metadataListMultipartUploadsInput struct {
 }
 
 type ListMultipartUploadsOutput struct {
-	Bucket             *string            `type:"string"`
-	CommonPrefixes     []*CommonPrefix    `type:"list" flattened:"true"`
-	Delimiter          *string            `type:"string"`
-	EncodingType       *string            `type:"string"`
-	IsTruncated        *bool              `type:"boolean"`
-	KeyMarker          *string            `type:"string"`
-	MaxUploads         *int64             `type:"integer"`
-	NextKeyMarker      *string            `type:"string"`
-	NextUploadIDMarker *string            `locationName:"NextUploadIdMarker" type:"string"`
-	Prefix             *string            `type:"string"`
-	UploadIDMarker     *string            `locationName:"UploadIdMarker" type:"string"`
-	Uploads            []*MultipartUpload `locationName:"Upload" type:"list" flattened:"true"`
+	// Name of the bucket to which the multipart upload was initiated.
+	Bucket *string `type:"string"`
+
+	CommonPrefixes []*CommonPrefix `type:"list" flattened:"true"`
+
+	Delimiter *string `type:"string"`
+
+	// Encoding type used by Amazon S3 to encode object keys in the response.
+	EncodingType *string `type:"string"`
+
+	// Indicates whether the returned list of multipart uploads is truncated. A
+	// value of true indicates that the list was truncated. The list can be truncated
+	// if the number of multipart uploads exceeds the limit allowed or specified
+	// by max uploads.
+	IsTruncated *bool `type:"boolean"`
+
+	// The key at or after which the listing began.
+	KeyMarker *string `type:"string"`
+
+	// Maximum number of multipart uploads that could have been included in the
+	// response.
+	MaxUploads *int64 `type:"integer"`
+
+	// When a list is truncated, this element specifies the value that should be
+	// used for the key-marker request parameter in a subsequent request.
+	NextKeyMarker *string `type:"string"`
+
+	// When a list is truncated, this element specifies the value that should be
+	// used for the upload-id-marker request parameter in a subsequent request.
+	NextUploadIDMarker *string `locationName:"NextUploadIdMarker" type:"string"`
+
+	// When a prefix is provided in the request, this field contains the specified
+	// prefix. The result contains only keys starting with the specified prefix.
+	Prefix *string `type:"string"`
+
+	// Upload ID after which listing began.
+	UploadIDMarker *string `locationName:"UploadIdMarker" type:"string"`
+
+	Uploads []*MultipartUpload `locationName:"Upload" type:"list" flattened:"true"`
 
 	metadataListMultipartUploadsOutput `json:"-", xml:"-"`
 }
@@ -2292,12 +2946,30 @@ type metadataListMultipartUploadsOutput struct {
 }
 
 type ListObjectVersionsInput struct {
-	Bucket          *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	Delimiter       *string `location:"querystring" locationName:"delimiter" type:"string"`
-	EncodingType    *string `location:"querystring" locationName:"encoding-type" type:"string"`
-	KeyMarker       *string `location:"querystring" locationName:"key-marker" type:"string"`
-	MaxKeys         *int64  `location:"querystring" locationName:"max-keys" type:"integer"`
-	Prefix          *string `location:"querystring" locationName:"prefix" type:"string"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	// A delimiter is a character you use to group keys.
+	Delimiter *string `location:"querystring" locationName:"delimiter" type:"string"`
+
+	// Requests Amazon S3 to encode the object keys in the response and specifies
+	// the encoding method to use. An object key may contain any Unicode character;
+	// however, XML 1.0 parser cannot parse some characters, such as characters
+	// with an ASCII value from 0 to 10. For characters that are not supported in
+	// XML 1.0, you can add this parameter to request that Amazon S3 encode the
+	// keys in the response.
+	EncodingType *string `location:"querystring" locationName:"encoding-type" type:"string"`
+
+	// Specifies the key to start with when listing objects in a bucket.
+	KeyMarker *string `location:"querystring" locationName:"key-marker" type:"string"`
+
+	// Sets the maximum number of keys returned in the response. The response might
+	// contain fewer keys but will never contain more.
+	MaxKeys *int64 `location:"querystring" locationName:"max-keys" type:"integer"`
+
+	// Limits the response to keys that begin with the specified prefix.
+	Prefix *string `location:"querystring" locationName:"prefix" type:"string"`
+
+	// Specifies the object version you want to start listing from.
 	VersionIDMarker *string `location:"querystring" locationName:"version-id-marker" type:"string"`
 
 	metadataListObjectVersionsInput `json:"-", xml:"-"`
@@ -2308,19 +2980,40 @@ type metadataListObjectVersionsInput struct {
 }
 
 type ListObjectVersionsOutput struct {
-	CommonPrefixes      []*CommonPrefix      `type:"list" flattened:"true"`
-	DeleteMarkers       []*DeleteMarkerEntry `locationName:"DeleteMarker" type:"list" flattened:"true"`
-	Delimiter           *string              `type:"string"`
-	EncodingType        *string              `type:"string"`
-	IsTruncated         *bool                `type:"boolean"`
-	KeyMarker           *string              `type:"string"`
-	MaxKeys             *int64               `type:"integer"`
-	Name                *string              `type:"string"`
-	NextKeyMarker       *string              `type:"string"`
-	NextVersionIDMarker *string              `locationName:"NextVersionIdMarker" type:"string"`
-	Prefix              *string              `type:"string"`
-	VersionIDMarker     *string              `locationName:"VersionIdMarker" type:"string"`
-	Versions            []*ObjectVersion     `locationName:"Version" type:"list" flattened:"true"`
+	CommonPrefixes []*CommonPrefix `type:"list" flattened:"true"`
+
+	DeleteMarkers []*DeleteMarkerEntry `locationName:"DeleteMarker" type:"list" flattened:"true"`
+
+	Delimiter *string `type:"string"`
+
+	// Encoding type used by Amazon S3 to encode object keys in the response.
+	EncodingType *string `type:"string"`
+
+	// A flag that indicates whether or not Amazon S3 returned all of the results
+	// that satisfied the search criteria. If your results were truncated, you can
+	// make a follow-up paginated request using the NextKeyMarker and NextVersionIdMarker
+	// response parameters as a starting place in another request to return the
+	// rest of the results.
+	IsTruncated *bool `type:"boolean"`
+
+	// Marks the last Key returned in a truncated response.
+	KeyMarker *string `type:"string"`
+
+	MaxKeys *int64 `type:"integer"`
+
+	Name *string `type:"string"`
+
+	// Use this value for the key marker request parameter in a subsequent request.
+	NextKeyMarker *string `type:"string"`
+
+	// Use this value for the next version id marker parameter in a subsequent request.
+	NextVersionIDMarker *string `locationName:"NextVersionIdMarker" type:"string"`
+
+	Prefix *string `type:"string"`
+
+	VersionIDMarker *string `locationName:"VersionIdMarker" type:"string"`
+
+	Versions []*ObjectVersion `locationName:"Version" type:"list" flattened:"true"`
 
 	metadataListObjectVersionsOutput `json:"-", xml:"-"`
 }
@@ -2330,12 +3023,28 @@ type metadataListObjectVersionsOutput struct {
 }
 
 type ListObjectsInput struct {
-	Bucket       *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	Delimiter    *string `location:"querystring" locationName:"delimiter" type:"string"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	// A delimiter is a character you use to group keys.
+	Delimiter *string `location:"querystring" locationName:"delimiter" type:"string"`
+
+	// Requests Amazon S3 to encode the object keys in the response and specifies
+	// the encoding method to use. An object key may contain any Unicode character;
+	// however, XML 1.0 parser cannot parse some characters, such as characters
+	// with an ASCII value from 0 to 10. For characters that are not supported in
+	// XML 1.0, you can add this parameter to request that Amazon S3 encode the
+	// keys in the response.
 	EncodingType *string `location:"querystring" locationName:"encoding-type" type:"string"`
-	Marker       *string `location:"querystring" locationName:"marker" type:"string"`
-	MaxKeys      *int64  `location:"querystring" locationName:"max-keys" type:"integer"`
-	Prefix       *string `location:"querystring" locationName:"prefix" type:"string"`
+
+	// Specifies the key to start with when listing objects in a bucket.
+	Marker *string `location:"querystring" locationName:"marker" type:"string"`
+
+	// Sets the maximum number of keys returned in the response. The response might
+	// contain fewer keys but will never contain more.
+	MaxKeys *int64 `location:"querystring" locationName:"max-keys" type:"integer"`
+
+	// Limits the response to keys that begin with the specified prefix.
+	Prefix *string `location:"querystring" locationName:"prefix" type:"string"`
 
 	metadataListObjectsInput `json:"-", xml:"-"`
 }
@@ -2346,15 +3055,34 @@ type metadataListObjectsInput struct {
 
 type ListObjectsOutput struct {
 	CommonPrefixes []*CommonPrefix `type:"list" flattened:"true"`
-	Contents       []*Object       `type:"list" flattened:"true"`
-	Delimiter      *string         `type:"string"`
-	EncodingType   *string         `type:"string"`
-	IsTruncated    *bool           `type:"boolean"`
-	Marker         *string         `type:"string"`
-	MaxKeys        *int64          `type:"integer"`
-	Name           *string         `type:"string"`
-	NextMarker     *string         `type:"string"`
-	Prefix         *string         `type:"string"`
+
+	Contents []*Object `type:"list" flattened:"true"`
+
+	Delimiter *string `type:"string"`
+
+	// Encoding type used by Amazon S3 to encode object keys in the response.
+	EncodingType *string `type:"string"`
+
+	// A flag that indicates whether or not Amazon S3 returned all of the results
+	// that satisfied the search criteria.
+	IsTruncated *bool `type:"boolean"`
+
+	Marker *string `type:"string"`
+
+	MaxKeys *int64 `type:"integer"`
+
+	Name *string `type:"string"`
+
+	// When response is truncated (the IsTruncated element value in the response
+	// is true), you can use the key name in this field as marker in the subsequent
+	// request to get next set of objects. Amazon S3 lists objects in alphabetical
+	// order Note: This element is returned only if you have delimiter request parameter
+	// specified. If response does not include the NextMaker and it is truncated,
+	// you can use the value of the last Key in the response as the marker in the
+	// subsequent request to get the next set of object keys.
+	NextMarker *string `type:"string"`
+
+	Prefix *string `type:"string"`
 
 	metadataListObjectsOutput `json:"-", xml:"-"`
 }
@@ -2364,11 +3092,19 @@ type metadataListObjectsOutput struct {
 }
 
 type ListPartsInput struct {
-	Bucket           *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	Key              *string `location:"uri" locationName:"Key" type:"string" required:"true"`
-	MaxParts         *int64  `location:"querystring" locationName:"max-parts" type:"integer"`
-	PartNumberMarker *int64  `location:"querystring" locationName:"part-number-marker" type:"integer"`
-	UploadID         *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+
+	// Sets the maximum number of parts to return.
+	MaxParts *int64 `location:"querystring" locationName:"max-parts" type:"integer"`
+
+	// Specifies the part after which listing should begin. Only parts with higher
+	// part numbers will be listed.
+	PartNumberMarker *int64 `location:"querystring" locationName:"part-number-marker" type:"integer"`
+
+	// Upload ID identifying the multipart upload whose parts are being listed.
+	UploadID *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
 	metadataListPartsInput `json:"-", xml:"-"`
 }
@@ -2378,17 +3114,38 @@ type metadataListPartsInput struct {
 }
 
 type ListPartsOutput struct {
-	Bucket               *string    `type:"string"`
-	Initiator            *Initiator `type:"structure"`
-	IsTruncated          *bool      `type:"boolean"`
-	Key                  *string    `type:"string"`
-	MaxParts             *int64     `type:"integer"`
-	NextPartNumberMarker *int64     `type:"integer"`
-	Owner                *Owner     `type:"structure"`
-	PartNumberMarker     *int64     `type:"integer"`
-	Parts                []*Part    `locationName:"Part" type:"list" flattened:"true"`
-	StorageClass         *string    `type:"string"`
-	UploadID             *string    `locationName:"UploadId" type:"string"`
+	// Name of the bucket to which the multipart upload was initiated.
+	Bucket *string `type:"string"`
+
+	// Identifies who initiated the multipart upload.
+	Initiator *Initiator `type:"structure"`
+
+	// Indicates whether the returned list of parts is truncated.
+	IsTruncated *bool `type:"boolean"`
+
+	// Object key for which the multipart upload was initiated.
+	Key *string `type:"string"`
+
+	// Maximum number of parts that were allowed in the response.
+	MaxParts *int64 `type:"integer"`
+
+	// When a list is truncated, this element specifies the last part in the list,
+	// as well as the value to use for the part-number-marker request parameter
+	// in a subsequent request.
+	NextPartNumberMarker *int64 `type:"integer"`
+
+	Owner *Owner `type:"structure"`
+
+	// Part number after which listing begins.
+	PartNumberMarker *int64 `type:"integer"`
+
+	Parts []*Part `locationName:"Part" type:"list" flattened:"true"`
+
+	// The class of storage used to store the object.
+	StorageClass *string `type:"string"`
+
+	// Upload ID identifying the multipart upload whose parts are being listed.
+	UploadID *string `locationName:"UploadId" type:"string"`
 
 	metadataListPartsOutput `json:"-", xml:"-"`
 }
@@ -2398,9 +3155,19 @@ type metadataListPartsOutput struct {
 }
 
 type LoggingEnabled struct {
-	TargetBucket *string        `type:"string"`
+	// Specifies the bucket where you want Amazon S3 to store server access logs.
+	// You can have your logs delivered to any bucket that you own, including the
+	// same bucket that is being logged. You can also configure multiple buckets
+	// to deliver their logs to the same target bucket. In this case you should
+	// choose a different TargetPrefix for each source bucket so that the delivered
+	// log files can be distinguished by key.
+	TargetBucket *string `type:"string"`
+
 	TargetGrants []*TargetGrant `locationNameList:"Grant" type:"list"`
-	TargetPrefix *string        `type:"string"`
+
+	// This element lets you specify a prefix for the keys that the log files will
+	// be stored under.
+	TargetPrefix *string `type:"string"`
 
 	metadataLoggingEnabled `json:"-", xml:"-"`
 }
@@ -2410,12 +3177,22 @@ type metadataLoggingEnabled struct {
 }
 
 type MultipartUpload struct {
-	Initiated    *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	Initiator    *Initiator `type:"structure"`
-	Key          *string    `type:"string"`
-	Owner        *Owner     `type:"structure"`
-	StorageClass *string    `type:"string"`
-	UploadID     *string    `locationName:"UploadId" type:"string"`
+	// Date and time at which the multipart upload was initiated.
+	Initiated *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// Identifies who initiated the multipart upload.
+	Initiator *Initiator `type:"structure"`
+
+	// Key of the object for which the multipart upload was initiated.
+	Key *string `type:"string"`
+
+	Owner *Owner `type:"structure"`
+
+	// The class of storage used to store the object.
+	StorageClass *string `type:"string"`
+
+	// Upload ID that identifies the multipart upload.
+	UploadID *string `locationName:"UploadId" type:"string"`
 
 	metadataMultipartUpload `json:"-", xml:"-"`
 }
@@ -2424,7 +3201,17 @@ type metadataMultipartUpload struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Specifies when noncurrent object versions expire. Upon expiration, Amazon
+// S3 permanently deletes the noncurrent object versions. You set this lifecycle
+// configuration action on a bucket that has versioning enabled (or suspended)
+// to request that Amazon S3 delete noncurrent object versions at a specific
+// period in the object's lifetime.
 type NoncurrentVersionExpiration struct {
+	// Specifies the number of days an object is noncurrent before Amazon S3 can
+	// perform the associated action. For information about the noncurrent days
+	// calculations, see How Amazon S3 Calculates When an Object Became Noncurrent
+	// (/AmazonS3/latest/dev/s3-access-control.html) in the Amazon Simple Storage
+	// Service Developer Guide.
 	NoncurrentDays *int64 `type:"integer"`
 
 	metadataNoncurrentVersionExpiration `json:"-", xml:"-"`
@@ -2434,9 +3221,21 @@ type metadataNoncurrentVersionExpiration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for the transition rule that describes when noncurrent objects
+// transition to the GLACIER storage class. If your bucket is versioning-enabled
+// (or versioning is suspended), you can set this action to request that Amazon
+// S3 transition noncurrent object versions to the GLACIER storage class at
+// a specific period in the object's lifetime.
 type NoncurrentVersionTransition struct {
-	NoncurrentDays *int64  `type:"integer"`
-	StorageClass   *string `type:"string"`
+	// Specifies the number of days an object is noncurrent before Amazon S3 can
+	// perform the associated action. For information about the noncurrent days
+	// calculations, see How Amazon S3 Calculates When an Object Became Noncurrent
+	// (/AmazonS3/latest/dev/s3-access-control.html) in the Amazon Simple Storage
+	// Service Developer Guide.
+	NoncurrentDays *int64 `type:"integer"`
+
+	// The class of storage used to store the object.
+	StorageClass *string `type:"string"`
 
 	metadataNoncurrentVersionTransition `json:"-", xml:"-"`
 }
@@ -2447,8 +3246,10 @@ type metadataNoncurrentVersionTransition struct {
 
 type NotificationConfiguration struct {
 	CloudFunctionConfiguration *CloudFunctionConfiguration `type:"structure"`
-	QueueConfiguration         *QueueConfiguration         `type:"structure"`
-	TopicConfiguration         *TopicConfiguration         `type:"structure"`
+
+	QueueConfiguration *QueueConfiguration `type:"structure"`
+
+	TopicConfiguration *TopicConfiguration `type:"structure"`
 
 	metadataNotificationConfiguration `json:"-", xml:"-"`
 }
@@ -2458,12 +3259,18 @@ type metadataNotificationConfiguration struct {
 }
 
 type Object struct {
-	ETag         *string    `type:"string"`
-	Key          *string    `type:"string"`
+	ETag *string `type:"string"`
+
+	Key *string `type:"string"`
+
 	LastModified *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	Owner        *Owner     `type:"structure"`
-	Size         *int64     `type:"integer"`
-	StorageClass *string    `type:"string"`
+
+	Owner *Owner `type:"structure"`
+
+	Size *int64 `type:"integer"`
+
+	// The class of storage used to store the object.
+	StorageClass *string `type:"string"`
 
 	metadataObject `json:"-", xml:"-"`
 }
@@ -2473,7 +3280,10 @@ type metadataObject struct {
 }
 
 type ObjectIdentifier struct {
-	Key       *string `type:"string" required:"true"`
+	// Key name of the object to delete.
+	Key *string `type:"string" required:"true"`
+
+	// VersionId for the specific version of the object to delete.
 	VersionID *string `locationName:"VersionId" type:"string"`
 
 	metadataObjectIdentifier `json:"-", xml:"-"`
@@ -2484,14 +3294,28 @@ type metadataObjectIdentifier struct {
 }
 
 type ObjectVersion struct {
-	ETag         *string    `type:"string"`
-	IsLatest     *bool      `type:"boolean"`
-	Key          *string    `type:"string"`
+	ETag *string `type:"string"`
+
+	// Specifies whether the object is (true) or is not (false) the latest version
+	// of an object.
+	IsLatest *bool `type:"boolean"`
+
+	// The object key.
+	Key *string `type:"string"`
+
+	// Date and time the object was last modified.
 	LastModified *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	Owner        *Owner     `type:"structure"`
-	Size         *int64     `type:"integer"`
-	StorageClass *string    `type:"string"`
-	VersionID    *string    `locationName:"VersionId" type:"string"`
+
+	Owner *Owner `type:"structure"`
+
+	// Size in bytes of the object.
+	Size *int64 `type:"integer"`
+
+	// The class of storage used to store the object.
+	StorageClass *string `type:"string"`
+
+	// Version ID of an object.
+	VersionID *string `locationName:"VersionId" type:"string"`
 
 	metadataObjectVersion `json:"-", xml:"-"`
 }
@@ -2502,7 +3326,8 @@ type metadataObjectVersion struct {
 
 type Owner struct {
 	DisplayName *string `type:"string"`
-	ID          *string `type:"string"`
+
+	ID *string `type:"string"`
 
 	metadataOwner `json:"-", xml:"-"`
 }
@@ -2512,10 +3337,17 @@ type metadataOwner struct {
 }
 
 type Part struct {
-	ETag         *string    `type:"string"`
+	// Entity tag returned when the part was uploaded.
+	ETag *string `type:"string"`
+
+	// Date and time at which the part was uploaded.
 	LastModified *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	PartNumber   *int64     `type:"integer"`
-	Size         *int64     `type:"integer"`
+
+	// Part number identifying the part.
+	PartNumber *int64 `type:"integer"`
+
+	// Size of the uploaded part data.
+	Size *int64 `type:"integer"`
 
 	metadataPart `json:"-", xml:"-"`
 }
@@ -2525,15 +3357,30 @@ type metadataPart struct {
 }
 
 type PutBucketACLInput struct {
-	ACL                 *string              `location:"header" locationName:"x-amz-acl" type:"string"`
+	// The canned ACL to apply to the bucket.
+	ACL *string `location:"header" locationName:"x-amz-acl" type:"string"`
+
 	AccessControlPolicy *AccessControlPolicy `locationName:"AccessControlPolicy" type:"structure"`
-	Bucket              *string              `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	ContentMD5          *string              `location:"header" locationName:"Content-MD5" type:"string"`
-	GrantFullControl    *string              `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
-	GrantRead           *string              `location:"header" locationName:"x-amz-grant-read" type:"string"`
-	GrantReadACP        *string              `location:"header" locationName:"x-amz-grant-read-acp" type:"string"`
-	GrantWrite          *string              `location:"header" locationName:"x-amz-grant-write" type:"string"`
-	GrantWriteACP       *string              `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
+
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
+
+	// Allows grantee the read, write, read ACP, and write ACP permissions on the
+	// bucket.
+	GrantFullControl *string `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
+
+	// Allows grantee to list the objects in the bucket.
+	GrantRead *string `location:"header" locationName:"x-amz-grant-read" type:"string"`
+
+	// Allows grantee to read the bucket ACL.
+	GrantReadACP *string `location:"header" locationName:"x-amz-grant-read-acp" type:"string"`
+
+	// Allows grantee to create, overwrite, and delete any object in the bucket.
+	GrantWrite *string `location:"header" locationName:"x-amz-grant-write" type:"string"`
+
+	// Allows grantee to write the ACL for the applicable bucket.
+	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
 
 	metadataPutBucketACLInput `json:"-", xml:"-"`
 }
@@ -2551,9 +3398,11 @@ type metadataPutBucketACLOutput struct {
 }
 
 type PutBucketCORSInput struct {
-	Bucket            *string            `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
 	CORSConfiguration *CORSConfiguration `locationName:"CORSConfiguration" type:"structure"`
-	ContentMD5        *string            `location:"header" locationName:"Content-MD5" type:"string"`
+
+	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
 
 	metadataPutBucketCORSInput `json:"-", xml:"-"`
 }
@@ -2571,8 +3420,10 @@ type metadataPutBucketCORSOutput struct {
 }
 
 type PutBucketLifecycleInput struct {
-	Bucket                 *string                 `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	ContentMD5             *string                 `location:"header" locationName:"Content-MD5" type:"string"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
+
 	LifecycleConfiguration *LifecycleConfiguration `locationName:"LifecycleConfiguration" type:"structure"`
 
 	metadataPutBucketLifecycleInput `json:"-", xml:"-"`
@@ -2591,9 +3442,11 @@ type metadataPutBucketLifecycleOutput struct {
 }
 
 type PutBucketLoggingInput struct {
-	Bucket              *string              `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
 	BucketLoggingStatus *BucketLoggingStatus `locationName:"BucketLoggingStatus" type:"structure" required:"true"`
-	ContentMD5          *string              `location:"header" locationName:"Content-MD5" type:"string"`
+
+	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
 
 	metadataPutBucketLoggingInput `json:"-", xml:"-"`
 }
@@ -2611,8 +3464,10 @@ type metadataPutBucketLoggingOutput struct {
 }
 
 type PutBucketNotificationInput struct {
-	Bucket                    *string                    `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	ContentMD5                *string                    `location:"header" locationName:"Content-MD5" type:"string"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
+
 	NotificationConfiguration *NotificationConfiguration `locationName:"NotificationConfiguration" type:"structure" required:"true"`
 
 	metadataPutBucketNotificationInput `json:"-", xml:"-"`
@@ -2631,9 +3486,12 @@ type metadataPutBucketNotificationOutput struct {
 }
 
 type PutBucketPolicyInput struct {
-	Bucket     *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
 	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
-	Policy     *string `type:"string" required:"true"`
+
+	// The bucket policy as a JSON document.
+	Policy *string `type:"string" required:"true"`
 
 	metadataPutBucketPolicyInput `json:"-", xml:"-"`
 }
@@ -2651,8 +3509,10 @@ type metadataPutBucketPolicyOutput struct {
 }
 
 type PutBucketRequestPaymentInput struct {
-	Bucket                      *string                      `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	ContentMD5                  *string                      `location:"header" locationName:"Content-MD5" type:"string"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
+
 	RequestPaymentConfiguration *RequestPaymentConfiguration `locationName:"RequestPaymentConfiguration" type:"structure" required:"true"`
 
 	metadataPutBucketRequestPaymentInput `json:"-", xml:"-"`
@@ -2671,9 +3531,11 @@ type metadataPutBucketRequestPaymentOutput struct {
 }
 
 type PutBucketTaggingInput struct {
-	Bucket     *string  `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	ContentMD5 *string  `location:"header" locationName:"Content-MD5" type:"string"`
-	Tagging    *Tagging `locationName:"Tagging" type:"structure" required:"true"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
+
+	Tagging *Tagging `locationName:"Tagging" type:"structure" required:"true"`
 
 	metadataPutBucketTaggingInput `json:"-", xml:"-"`
 }
@@ -2691,9 +3553,14 @@ type metadataPutBucketTaggingOutput struct {
 }
 
 type PutBucketVersioningInput struct {
-	Bucket                  *string                  `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	ContentMD5              *string                  `location:"header" locationName:"Content-MD5" type:"string"`
-	MFA                     *string                  `location:"header" locationName:"x-amz-mfa" type:"string"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
+
+	// The concatenation of the authentication device's serial number, a space,
+	// and the value that is displayed on your authentication device.
+	MFA *string `location:"header" locationName:"x-amz-mfa" type:"string"`
+
 	VersioningConfiguration *VersioningConfiguration `locationName:"VersioningConfiguration" type:"structure" required:"true"`
 
 	metadataPutBucketVersioningInput `json:"-", xml:"-"`
@@ -2712,8 +3579,10 @@ type metadataPutBucketVersioningOutput struct {
 }
 
 type PutBucketWebsiteInput struct {
-	Bucket               *string               `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	ContentMD5           *string               `location:"header" locationName:"Content-MD5" type:"string"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
+
 	WebsiteConfiguration *WebsiteConfiguration `locationName:"WebsiteConfiguration" type:"structure" required:"true"`
 
 	metadataPutBucketWebsiteInput `json:"-", xml:"-"`
@@ -2732,16 +3601,32 @@ type metadataPutBucketWebsiteOutput struct {
 }
 
 type PutObjectACLInput struct {
-	ACL                 *string              `location:"header" locationName:"x-amz-acl" type:"string"`
+	// The canned ACL to apply to the object.
+	ACL *string `location:"header" locationName:"x-amz-acl" type:"string"`
+
 	AccessControlPolicy *AccessControlPolicy `locationName:"AccessControlPolicy" type:"structure"`
-	Bucket              *string              `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	ContentMD5          *string              `location:"header" locationName:"Content-MD5" type:"string"`
-	GrantFullControl    *string              `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
-	GrantRead           *string              `location:"header" locationName:"x-amz-grant-read" type:"string"`
-	GrantReadACP        *string              `location:"header" locationName:"x-amz-grant-read-acp" type:"string"`
-	GrantWrite          *string              `location:"header" locationName:"x-amz-grant-write" type:"string"`
-	GrantWriteACP       *string              `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
-	Key                 *string              `location:"uri" locationName:"Key" type:"string" required:"true"`
+
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
+
+	// Allows grantee the read, write, read ACP, and write ACP permissions on the
+	// bucket.
+	GrantFullControl *string `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
+
+	// Allows grantee to list the objects in the bucket.
+	GrantRead *string `location:"header" locationName:"x-amz-grant-read" type:"string"`
+
+	// Allows grantee to read the bucket ACL.
+	GrantReadACP *string `location:"header" locationName:"x-amz-grant-read-acp" type:"string"`
+
+	// Allows grantee to create, overwrite, and delete any object in the bucket.
+	GrantWrite *string `location:"header" locationName:"x-amz-grant-write" type:"string"`
+
+	// Allows grantee to write the ACL for the applicable bucket.
+	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
+
+	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
 
 	metadataPutObjectACLInput `json:"-", xml:"-"`
 }
@@ -2759,30 +3644,90 @@ type metadataPutObjectACLOutput struct {
 }
 
 type PutObjectInput struct {
-	ACL                     *string             `location:"header" locationName:"x-amz-acl" type:"string"`
-	Body                    io.ReadSeeker       `type:"blob"`
-	Bucket                  *string             `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	CacheControl            *string             `location:"header" locationName:"Cache-Control" type:"string"`
-	ContentDisposition      *string             `location:"header" locationName:"Content-Disposition" type:"string"`
-	ContentEncoding         *string             `location:"header" locationName:"Content-Encoding" type:"string"`
-	ContentLanguage         *string             `location:"header" locationName:"Content-Language" type:"string"`
-	ContentLength           *int64              `location:"header" locationName:"Content-Length" type:"integer"`
-	ContentMD5              *string             `location:"header" locationName:"Content-MD5" type:"string"`
-	ContentType             *string             `location:"header" locationName:"Content-Type" type:"string"`
-	Expires                 *time.Time          `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822"`
-	GrantFullControl        *string             `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
-	GrantRead               *string             `location:"header" locationName:"x-amz-grant-read" type:"string"`
-	GrantReadACP            *string             `location:"header" locationName:"x-amz-grant-read-acp" type:"string"`
-	GrantWriteACP           *string             `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
-	Key                     *string             `location:"uri" locationName:"Key" type:"string" required:"true"`
-	Metadata                *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
-	SSECustomerAlgorithm    *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
-	SSECustomerKey          *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string"`
-	SSECustomerKeyMD5       *string             `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
-	SSEKMSKeyID             *string             `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
-	ServerSideEncryption    *string             `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
-	StorageClass            *string             `location:"header" locationName:"x-amz-storage-class" type:"string"`
-	WebsiteRedirectLocation *string             `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
+	// The canned ACL to apply to the object.
+	ACL *string `location:"header" locationName:"x-amz-acl" type:"string"`
+
+	// Object data.
+	Body io.ReadSeeker `type:"blob"`
+
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	// Specifies caching behavior along the request/reply chain.
+	CacheControl *string `location:"header" locationName:"Cache-Control" type:"string"`
+
+	// Specifies presentational information for the object.
+	ContentDisposition *string `location:"header" locationName:"Content-Disposition" type:"string"`
+
+	// Specifies what content encodings have been applied to the object and thus
+	// what decoding mechanisms must be applied to obtain the media-type referenced
+	// by the Content-Type header field.
+	ContentEncoding *string `location:"header" locationName:"Content-Encoding" type:"string"`
+
+	// The language the content is in.
+	ContentLanguage *string `location:"header" locationName:"Content-Language" type:"string"`
+
+	// Size of the body in bytes. This parameter is useful when the size of the
+	// body cannot be determined automatically.
+	ContentLength *int64 `location:"header" locationName:"Content-Length" type:"integer"`
+
+	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
+
+	// A standard MIME type describing the format of the object data.
+	ContentType *string `location:"header" locationName:"Content-Type" type:"string"`
+
+	// The date and time at which the object is no longer cacheable.
+	Expires *time.Time `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822"`
+
+	// Gives the grantee READ, READ_ACP, and WRITE_ACP permissions on the object.
+	GrantFullControl *string `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
+
+	// Allows grantee to read the object data and its metadata.
+	GrantRead *string `location:"header" locationName:"x-amz-grant-read" type:"string"`
+
+	// Allows grantee to read the object ACL.
+	GrantReadACP *string `location:"header" locationName:"x-amz-grant-read-acp" type:"string"`
+
+	// Allows grantee to write the ACL for the applicable object.
+	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
+
+	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+
+	// A map of metadata to store with the object in S3.
+	Metadata *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
+
+	// Specifies the algorithm to use to when encrypting the object (e.g., AES256,
+	// aws:kms).
+	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+
+	// Specifies the customer-provided encryption key for Amazon S3 to use in encrypting
+	// data. This value is used to store the object and then it is discarded; Amazon
+	// does not store the encryption key. The key must be appropriate for use with
+	// the algorithm specified in the x-amz-server-side​-encryption​-customer-algorithm
+	// header.
+	SSECustomerKey *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string"`
+
+	// Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.
+	// Amazon S3 uses this header for a message integrity check to ensure the encryption
+	// key was transmitted without error.
+	SSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+
+	// Specifies the AWS KMS key ID to use for object encryption. All GET and PUT
+	// requests for an object protected by AWS KMS will fail if not made via SSL
+	// or using SigV4. Documentation on configuring any of the officially supported
+	// AWS SDKs and CLI can be found at http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#specify-signature-version
+	SSEKMSKeyID *string `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+
+	// The Server-side encryption algorithm used when storing this object in S3
+	// (e.g., AES256, aws:kms).
+	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+
+	// The type of storage to use for the object. Defaults to 'STANDARD'.
+	StorageClass *string `location:"header" locationName:"x-amz-storage-class" type:"string"`
+
+	// If the bucket is configured as a website, redirects requests for this object
+	// to another object in the same bucket or to an external URL. Amazon S3 stores
+	// the value of this header in the object metadata.
+	WebsiteRedirectLocation *string `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
 
 	metadataPutObjectInput `json:"-", xml:"-"`
 }
@@ -2792,13 +3737,33 @@ type metadataPutObjectInput struct {
 }
 
 type PutObjectOutput struct {
-	ETag                 *string    `location:"header" locationName:"ETag" type:"string"`
-	Expiration           *time.Time `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822"`
-	SSECustomerAlgorithm *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
-	SSECustomerKeyMD5    *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
-	SSEKMSKeyID          *string    `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
-	ServerSideEncryption *string    `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
-	VersionID            *string    `location:"header" locationName:"x-amz-version-id" type:"string"`
+	// Entity tag for the uploaded object.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// If the object expiration is configured, this will contain the expiration
+	// date (expiry-date) and rule ID (rule-id). The value of rule-id is URL encoded.
+	Expiration *time.Time `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822"`
+
+	// If server-side encryption with a customer-provided encryption key was requested,
+	// the response will include this header confirming the encryption algorithm
+	// used.
+	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+
+	// If server-side encryption with a customer-provided encryption key was requested,
+	// the response will include this header to provide round trip message integrity
+	// verification of the customer-provided encryption key.
+	SSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+
+	// If present, specifies the ID of the AWS Key Management Service (KMS) master
+	// encryption key that was used for the object.
+	SSEKMSKeyID *string `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+
+	// The Server-side encryption algorithm used when storing this object in S3
+	// (e.g., AES256, aws:kms).
+	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+
+	// Version of the object.
+	VersionID *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 
 	metadataPutObjectOutput `json:"-", xml:"-"`
 }
@@ -2808,10 +3773,13 @@ type metadataPutObjectOutput struct {
 }
 
 type QueueConfiguration struct {
-	Event  *string   `type:"string"`
+	Event *string `type:"string"`
+
 	Events []*string `locationName:"Event" type:"list" flattened:"true"`
-	ID     *string   `locationName:"Id" type:"string"`
-	Queue  *string   `type:"string"`
+
+	ID *string `locationName:"Id" type:"string"`
+
+	Queue *string `type:"string"`
 
 	metadataQueueConfiguration `json:"-", xml:"-"`
 }
@@ -2821,11 +3789,29 @@ type metadataQueueConfiguration struct {
 }
 
 type Redirect struct {
-	HTTPRedirectCode     *string `locationName:"HttpRedirectCode" type:"string"`
-	HostName             *string `type:"string"`
-	Protocol             *string `type:"string"`
+	// The HTTP redirect code to use on the response. Not required if one of the
+	// siblings is present.
+	HTTPRedirectCode *string `locationName:"HttpRedirectCode" type:"string"`
+
+	// The host name to use in the redirect request.
+	HostName *string `type:"string"`
+
+	// Protocol to use (http, https) when redirecting requests. The default is the
+	// protocol that is used in the original request.
+	Protocol *string `type:"string"`
+
+	// The object key prefix to use in the redirect request. For example, to redirect
+	// requests for all pages with prefix docs/ (objects in the docs/ folder) to
+	// documents/, you can set a condition block with KeyPrefixEquals set to docs/
+	// and in the Redirect set ReplaceKeyPrefixWith to /documents. Not required
+	// if one of the siblings is present. Can be present only if ReplaceKeyWith
+	// is not provided.
 	ReplaceKeyPrefixWith *string `type:"string"`
-	ReplaceKeyWith       *string `type:"string"`
+
+	// The specific object key to use in the redirect request. For example, redirect
+	// request to error.html. Not required if one of the sibling is present. Can
+	// be present only if ReplaceKeyPrefixWith is not provided.
+	ReplaceKeyWith *string `type:"string"`
 
 	metadataRedirect `json:"-", xml:"-"`
 }
@@ -2835,7 +3821,11 @@ type metadataRedirect struct {
 }
 
 type RedirectAllRequestsTo struct {
+	// Name of the host where requests will be redirected.
 	HostName *string `type:"string" required:"true"`
+
+	// Protocol to use (http, https) when redirecting requests. The default is the
+	// protocol that is used in the original request.
 	Protocol *string `type:"string"`
 
 	metadataRedirectAllRequestsTo `json:"-", xml:"-"`
@@ -2846,6 +3836,7 @@ type metadataRedirectAllRequestsTo struct {
 }
 
 type RequestPaymentConfiguration struct {
+	// Specifies who pays for the download and request fees.
 	Payer *string `type:"string" required:"true"`
 
 	metadataRequestPaymentConfiguration `json:"-", xml:"-"`
@@ -2856,10 +3847,13 @@ type metadataRequestPaymentConfiguration struct {
 }
 
 type RestoreObjectInput struct {
-	Bucket         *string         `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	Key            *string         `location:"uri" locationName:"Key" type:"string" required:"true"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+
 	RestoreRequest *RestoreRequest `locationName:"RestoreRequest" type:"structure"`
-	VersionID      *string         `location:"querystring" locationName:"versionId" type:"string"`
+
+	VersionID *string `location:"querystring" locationName:"versionId" type:"string"`
 
 	metadataRestoreObjectInput `json:"-", xml:"-"`
 }
@@ -2877,6 +3871,7 @@ type metadataRestoreObjectOutput struct {
 }
 
 type RestoreRequest struct {
+	// Lifetime of the active copy in days
 	Days *int64 `type:"integer" required:"true"`
 
 	metadataRestoreRequest `json:"-", xml:"-"`
@@ -2887,8 +3882,16 @@ type metadataRestoreRequest struct {
 }
 
 type RoutingRule struct {
+	// A container for describing a condition that must be met for the specified
+	// redirect to apply. For example, 1. If request is for pages in the /docs folder,
+	// redirect to the /documents folder. 2. If request results in HTTP error 4xx,
+	// redirect request to another host where you might process the error.
 	Condition *Condition `type:"structure"`
-	Redirect  *Redirect  `type:"structure" required:"true"`
+
+	// Container for redirect information. You can redirect requests to another
+	// host, to another page, or with another protocol. In the event of an error,
+	// you can can specify a different error code to return.
+	Redirect *Redirect `type:"structure" required:"true"`
 
 	metadataRoutingRule `json:"-", xml:"-"`
 }
@@ -2898,13 +3901,33 @@ type metadataRoutingRule struct {
 }
 
 type Rule struct {
-	Expiration                  *LifecycleExpiration         `type:"structure"`
-	ID                          *string                      `type:"string"`
+	Expiration *LifecycleExpiration `type:"structure"`
+
+	// Unique identifier for the rule. The value cannot be longer than 255 characters.
+	ID *string `type:"string"`
+
+	// Specifies when noncurrent object versions expire. Upon expiration, Amazon
+	// S3 permanently deletes the noncurrent object versions. You set this lifecycle
+	// configuration action on a bucket that has versioning enabled (or suspended)
+	// to request that Amazon S3 delete noncurrent object versions at a specific
+	// period in the object's lifetime.
 	NoncurrentVersionExpiration *NoncurrentVersionExpiration `type:"structure"`
+
+	// Container for the transition rule that describes when noncurrent objects
+	// transition to the GLACIER storage class. If your bucket is versioning-enabled
+	// (or versioning is suspended), you can set this action to request that Amazon
+	// S3 transition noncurrent object versions to the GLACIER storage class at
+	// a specific period in the object's lifetime.
 	NoncurrentVersionTransition *NoncurrentVersionTransition `type:"structure"`
-	Prefix                      *string                      `type:"string" required:"true"`
-	Status                      *string                      `type:"string" required:"true"`
-	Transition                  *Transition                  `type:"structure"`
+
+	// Prefix identifying one or more objects to which the rule applies.
+	Prefix *string `type:"string" required:"true"`
+
+	// If 'Enabled', the rule is currently being applied. If 'Disabled', the rule
+	// is not currently being applied.
+	Status *string `type:"string" required:"true"`
+
+	Transition *Transition `type:"structure"`
 
 	metadataRule `json:"-", xml:"-"`
 }
@@ -2914,7 +3937,10 @@ type metadataRule struct {
 }
 
 type Tag struct {
-	Key   *string `type:"string" required:"true"`
+	// Name of the tag.
+	Key *string `type:"string" required:"true"`
+
+	// Value of the tag.
 	Value *string `type:"string" required:"true"`
 
 	metadataTag `json:"-", xml:"-"`
@@ -2935,8 +3961,10 @@ type metadataTagging struct {
 }
 
 type TargetGrant struct {
-	Grantee    *Grantee `type:"structure"`
-	Permission *string  `type:"string"`
+	Grantee *Grantee `type:"structure"`
+
+	// Logging permissions assigned to the Grantee for the bucket.
+	Permission *string `type:"string"`
 
 	metadataTargetGrant `json:"-", xml:"-"`
 }
@@ -2946,10 +3974,16 @@ type metadataTargetGrant struct {
 }
 
 type TopicConfiguration struct {
-	Event  *string   `type:"string"`
+	// Bucket event for which to send notifications.
+	Event *string `type:"string"`
+
 	Events []*string `locationName:"Event" type:"list" flattened:"true"`
-	ID     *string   `locationName:"Id" type:"string"`
-	Topic  *string   `type:"string"`
+
+	ID *string `locationName:"Id" type:"string"`
+
+	// Amazon SNS topic to which Amazon S3 will publish a message to report the
+	// specified events for the bucket.
+	Topic *string `type:"string"`
 
 	metadataTopicConfiguration `json:"-", xml:"-"`
 }
@@ -2959,9 +3993,16 @@ type metadataTopicConfiguration struct {
 }
 
 type Transition struct {
-	Date         *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	Days         *int64     `type:"integer"`
-	StorageClass *string    `type:"string"`
+	// Indicates at what date the object is to be moved or deleted. Should be in
+	// GMT ISO 8601 Format.
+	Date *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// Indicates the lifetime, in days, of the objects that are subject to the rule.
+	// The value must be a non-zero positive integer.
+	Days *int64 `type:"integer"`
+
+	// The class of storage used to store the object.
+	StorageClass *string `type:"string"`
 
 	metadataTransition `json:"-", xml:"-"`
 }
@@ -2971,22 +4012,69 @@ type metadataTransition struct {
 }
 
 type UploadPartCopyInput struct {
-	Bucket                         *string    `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	CopySource                     *string    `location:"header" locationName:"x-amz-copy-source" type:"string" required:"true"`
-	CopySourceIfMatch              *string    `location:"header" locationName:"x-amz-copy-source-if-match" type:"string"`
-	CopySourceIfModifiedSince      *time.Time `location:"header" locationName:"x-amz-copy-source-if-modified-since" type:"timestamp" timestampFormat:"rfc822"`
-	CopySourceIfNoneMatch          *string    `location:"header" locationName:"x-amz-copy-source-if-none-match" type:"string"`
-	CopySourceIfUnmodifiedSince    *time.Time `location:"header" locationName:"x-amz-copy-source-if-unmodified-since" type:"timestamp" timestampFormat:"rfc822"`
-	CopySourceRange                *string    `location:"header" locationName:"x-amz-copy-source-range" type:"string"`
-	CopySourceSSECustomerAlgorithm *string    `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-algorithm" type:"string"`
-	CopySourceSSECustomerKey       *string    `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-key" type:"string"`
-	CopySourceSSECustomerKeyMD5    *string    `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-key-MD5" type:"string"`
-	Key                            *string    `location:"uri" locationName:"Key" type:"string" required:"true"`
-	PartNumber                     *int64     `location:"querystring" locationName:"partNumber" type:"integer" required:"true"`
-	SSECustomerAlgorithm           *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
-	SSECustomerKey                 *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string"`
-	SSECustomerKeyMD5              *string    `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
-	UploadID                       *string    `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	// The name of the source bucket and key name of the source object, separated
+	// by a slash (/). Must be URL-encoded.
+	CopySource *string `location:"header" locationName:"x-amz-copy-source" type:"string" required:"true"`
+
+	// Copies the object if its entity tag (ETag) matches the specified tag.
+	CopySourceIfMatch *string `location:"header" locationName:"x-amz-copy-source-if-match" type:"string"`
+
+	// Copies the object if it has been modified since the specified time.
+	CopySourceIfModifiedSince *time.Time `location:"header" locationName:"x-amz-copy-source-if-modified-since" type:"timestamp" timestampFormat:"rfc822"`
+
+	// Copies the object if its entity tag (ETag) is different than the specified
+	// ETag.
+	CopySourceIfNoneMatch *string `location:"header" locationName:"x-amz-copy-source-if-none-match" type:"string"`
+
+	// Copies the object if it hasn't been modified since the specified time.
+	CopySourceIfUnmodifiedSince *time.Time `location:"header" locationName:"x-amz-copy-source-if-unmodified-since" type:"timestamp" timestampFormat:"rfc822"`
+
+	// The range of bytes to copy from the source object. The range value must use
+	// the form bytes=first-last, where the first and last are the zero-based byte
+	// offsets to copy. For example, bytes=0-9 indicates that you want to copy the
+	// first ten bytes of the source. You can copy a range only if the source object
+	// is greater than 5 GB.
+	CopySourceRange *string `location:"header" locationName:"x-amz-copy-source-range" type:"string"`
+
+	// Specifies the algorithm to use when decrypting the source object (e.g., AES256).
+	CopySourceSSECustomerAlgorithm *string `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-algorithm" type:"string"`
+
+	// Specifies the customer-provided encryption key for Amazon S3 to use to decrypt
+	// the source object. The encryption key provided in this header must be one
+	// that was used when the source object was created.
+	CopySourceSSECustomerKey *string `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-key" type:"string"`
+
+	// Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.
+	// Amazon S3 uses this header for a message integrity check to ensure the encryption
+	// key was transmitted without error.
+	CopySourceSSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-key-MD5" type:"string"`
+
+	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+
+	// Part number of part being copied.
+	PartNumber *int64 `location:"querystring" locationName:"partNumber" type:"integer" required:"true"`
+
+	// Specifies the algorithm to use to when encrypting the object (e.g., AES256,
+	// aws:kms).
+	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+
+	// Specifies the customer-provided encryption key for Amazon S3 to use in encrypting
+	// data. This value is used to store the object and then it is discarded; Amazon
+	// does not store the encryption key. The key must be appropriate for use with
+	// the algorithm specified in the x-amz-server-side​-encryption​-customer-algorithm
+	// header. This must be the same encryption key specified in the initiate multipart
+	// upload request.
+	SSECustomerKey *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string"`
+
+	// Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.
+	// Amazon S3 uses this header for a message integrity check to ensure the encryption
+	// key was transmitted without error.
+	SSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+
+	// Upload ID identifying the multipart upload whose part is being copied.
+	UploadID *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
 	metadataUploadPartCopyInput `json:"-", xml:"-"`
 }
@@ -2996,12 +4084,29 @@ type metadataUploadPartCopyInput struct {
 }
 
 type UploadPartCopyOutput struct {
-	CopyPartResult       *CopyPartResult `type:"structure"`
-	CopySourceVersionID  *string         `location:"header" locationName:"x-amz-copy-source-version-id" type:"string"`
-	SSECustomerAlgorithm *string         `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
-	SSECustomerKeyMD5    *string         `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
-	SSEKMSKeyID          *string         `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
-	ServerSideEncryption *string         `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+	CopyPartResult *CopyPartResult `type:"structure"`
+
+	// The version of the source object that was copied, if you have enabled versioning
+	// on the source bucket.
+	CopySourceVersionID *string `location:"header" locationName:"x-amz-copy-source-version-id" type:"string"`
+
+	// If server-side encryption with a customer-provided encryption key was requested,
+	// the response will include this header confirming the encryption algorithm
+	// used.
+	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+
+	// If server-side encryption with a customer-provided encryption key was requested,
+	// the response will include this header to provide round trip message integrity
+	// verification of the customer-provided encryption key.
+	SSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+
+	// If present, specifies the ID of the AWS Key Management Service (KMS) master
+	// encryption key that was used for the object.
+	SSEKMSKeyID *string `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+
+	// The Server-side encryption algorithm used when storing this object in S3
+	// (e.g., AES256, aws:kms).
+	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
 
 	metadataUploadPartCopyOutput `json:"-", xml:"-"`
 }
@@ -3011,16 +4116,40 @@ type metadataUploadPartCopyOutput struct {
 }
 
 type UploadPartInput struct {
-	Body                 io.ReadSeeker `type:"blob"`
-	Bucket               *string       `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-	ContentLength        *int64        `location:"header" locationName:"Content-Length" type:"integer"`
-	ContentMD5           *string       `location:"header" locationName:"Content-MD5" type:"string"`
-	Key                  *string       `location:"uri" locationName:"Key" type:"string" required:"true"`
-	PartNumber           *int64        `location:"querystring" locationName:"partNumber" type:"integer" required:"true"`
-	SSECustomerAlgorithm *string       `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
-	SSECustomerKey       *string       `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string"`
-	SSECustomerKeyMD5    *string       `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
-	UploadID             *string       `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
+	Body io.ReadSeeker `type:"blob"`
+
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	// Size of the body in bytes. This parameter is useful when the size of the
+	// body cannot be determined automatically.
+	ContentLength *int64 `location:"header" locationName:"Content-Length" type:"integer"`
+
+	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
+
+	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+
+	// Part number of part being uploaded.
+	PartNumber *int64 `location:"querystring" locationName:"partNumber" type:"integer" required:"true"`
+
+	// Specifies the algorithm to use to when encrypting the object (e.g., AES256,
+	// aws:kms).
+	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
+
+	// Specifies the customer-provided encryption key for Amazon S3 to use in encrypting
+	// data. This value is used to store the object and then it is discarded; Amazon
+	// does not store the encryption key. The key must be appropriate for use with
+	// the algorithm specified in the x-amz-server-side​-encryption​-customer-algorithm
+	// header. This must be the same encryption key specified in the initiate multipart
+	// upload request.
+	SSECustomerKey *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key" type:"string"`
+
+	// Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.
+	// Amazon S3 uses this header for a message integrity check to ensure the encryption
+	// key was transmitted without error.
+	SSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+
+	// Upload ID identifying the multipart upload whose part is being uploaded.
+	UploadID *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
 	metadataUploadPartInput `json:"-", xml:"-"`
 }
@@ -3030,10 +4159,25 @@ type metadataUploadPartInput struct {
 }
 
 type UploadPartOutput struct {
-	ETag                 *string `location:"header" locationName:"ETag" type:"string"`
+	// Entity tag for the uploaded object.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// If server-side encryption with a customer-provided encryption key was requested,
+	// the response will include this header confirming the encryption algorithm
+	// used.
 	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
-	SSECustomerKeyMD5    *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
-	SSEKMSKeyID          *string `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+
+	// If server-side encryption with a customer-provided encryption key was requested,
+	// the response will include this header to provide round trip message integrity
+	// verification of the customer-provided encryption key.
+	SSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
+
+	// If present, specifies the ID of the AWS Key Management Service (KMS) master
+	// encryption key that was used for the object.
+	SSEKMSKeyID *string `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string"`
+
+	// The Server-side encryption algorithm used when storing this object in S3
+	// (e.g., AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
 
 	metadataUploadPartOutput `json:"-", xml:"-"`
@@ -3044,8 +4188,13 @@ type metadataUploadPartOutput struct {
 }
 
 type VersioningConfiguration struct {
+	// Specifies whether MFA delete is enabled in the bucket versioning configuration.
+	// This element is only returned if the bucket has been configured with MFA
+	// delete. If the bucket has never been so configured, this element is not returned.
 	MFADelete *string `locationName:"MfaDelete" type:"string"`
-	Status    *string `type:"string"`
+
+	// The versioning state of the bucket.
+	Status *string `type:"string"`
 
 	metadataVersioningConfiguration `json:"-", xml:"-"`
 }
@@ -3055,10 +4204,13 @@ type metadataVersioningConfiguration struct {
 }
 
 type WebsiteConfiguration struct {
-	ErrorDocument         *ErrorDocument         `type:"structure"`
-	IndexDocument         *IndexDocument         `type:"structure"`
+	ErrorDocument *ErrorDocument `type:"structure"`
+
+	IndexDocument *IndexDocument `type:"structure"`
+
 	RedirectAllRequestsTo *RedirectAllRequestsTo `type:"structure"`
-	RoutingRules          []*RoutingRule         `locationNameList:"RoutingRule" type:"list"`
+
+	RoutingRules []*RoutingRule `locationNameList:"RoutingRule" type:"list"`
 
 	metadataWebsiteConfiguration `json:"-", xml:"-"`
 }

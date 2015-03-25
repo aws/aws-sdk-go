@@ -24,6 +24,7 @@ func (c *CodeDeploy) BatchGetApplicationsRequest(input *BatchGetApplicationsInpu
 	return
 }
 
+// Gets information about one or more applications.
 func (c *CodeDeploy) BatchGetApplications(input *BatchGetApplicationsInput) (output *BatchGetApplicationsOutput, err error) {
 	req, out := c.BatchGetApplicationsRequest(input)
 	output = out
@@ -49,6 +50,7 @@ func (c *CodeDeploy) BatchGetDeploymentsRequest(input *BatchGetDeploymentsInput)
 	return
 }
 
+// Gets information about one or more deployments.
 func (c *CodeDeploy) BatchGetDeployments(input *BatchGetDeploymentsInput) (output *BatchGetDeploymentsOutput, err error) {
 	req, out := c.BatchGetDeploymentsRequest(input)
 	output = out
@@ -74,6 +76,7 @@ func (c *CodeDeploy) CreateApplicationRequest(input *CreateApplicationInput) (re
 	return
 }
 
+// Creates a new application.
 func (c *CodeDeploy) CreateApplication(input *CreateApplicationInput) (output *CreateApplicationOutput, err error) {
 	req, out := c.CreateApplicationRequest(input)
 	output = out
@@ -99,6 +102,7 @@ func (c *CodeDeploy) CreateDeploymentRequest(input *CreateDeploymentInput) (req 
 	return
 }
 
+// Deploys an application revision to the specified deployment group.
 func (c *CodeDeploy) CreateDeployment(input *CreateDeploymentInput) (output *CreateDeploymentOutput, err error) {
 	req, out := c.CreateDeploymentRequest(input)
 	output = out
@@ -124,6 +128,7 @@ func (c *CodeDeploy) CreateDeploymentConfigRequest(input *CreateDeploymentConfig
 	return
 }
 
+// Creates a new deployment configuration.
 func (c *CodeDeploy) CreateDeploymentConfig(input *CreateDeploymentConfigInput) (output *CreateDeploymentConfigOutput, err error) {
 	req, out := c.CreateDeploymentConfigRequest(input)
 	output = out
@@ -149,6 +154,7 @@ func (c *CodeDeploy) CreateDeploymentGroupRequest(input *CreateDeploymentGroupIn
 	return
 }
 
+// Creates a new deployment group for application revisions to be deployed to.
 func (c *CodeDeploy) CreateDeploymentGroup(input *CreateDeploymentGroupInput) (output *CreateDeploymentGroupOutput, err error) {
 	req, out := c.CreateDeploymentGroupRequest(input)
 	output = out
@@ -174,6 +180,7 @@ func (c *CodeDeploy) DeleteApplicationRequest(input *DeleteApplicationInput) (re
 	return
 }
 
+// Deletes an application.
 func (c *CodeDeploy) DeleteApplication(input *DeleteApplicationInput) (output *DeleteApplicationOutput, err error) {
 	req, out := c.DeleteApplicationRequest(input)
 	output = out
@@ -199,6 +206,10 @@ func (c *CodeDeploy) DeleteDeploymentConfigRequest(input *DeleteDeploymentConfig
 	return
 }
 
+// Deletes a deployment configuration.
+//
+// A deployment configuration cannot be deleted if it is currently in use.
+// Also, predefined configurations cannot be deleted.
 func (c *CodeDeploy) DeleteDeploymentConfig(input *DeleteDeploymentConfigInput) (output *DeleteDeploymentConfigOutput, err error) {
 	req, out := c.DeleteDeploymentConfigRequest(input)
 	output = out
@@ -224,6 +235,7 @@ func (c *CodeDeploy) DeleteDeploymentGroupRequest(input *DeleteDeploymentGroupIn
 	return
 }
 
+// Deletes a deployment group.
 func (c *CodeDeploy) DeleteDeploymentGroup(input *DeleteDeploymentGroupInput) (output *DeleteDeploymentGroupOutput, err error) {
 	req, out := c.DeleteDeploymentGroupRequest(input)
 	output = out
@@ -249,6 +261,7 @@ func (c *CodeDeploy) GetApplicationRequest(input *GetApplicationInput) (req *aws
 	return
 }
 
+// Gets information about an application.
 func (c *CodeDeploy) GetApplication(input *GetApplicationInput) (output *GetApplicationOutput, err error) {
 	req, out := c.GetApplicationRequest(input)
 	output = out
@@ -274,6 +287,7 @@ func (c *CodeDeploy) GetApplicationRevisionRequest(input *GetApplicationRevision
 	return
 }
 
+// Gets information about an application revision.
 func (c *CodeDeploy) GetApplicationRevision(input *GetApplicationRevisionInput) (output *GetApplicationRevisionOutput, err error) {
 	req, out := c.GetApplicationRevisionRequest(input)
 	output = out
@@ -299,6 +313,7 @@ func (c *CodeDeploy) GetDeploymentRequest(input *GetDeploymentInput) (req *aws.R
 	return
 }
 
+// Gets information about a deployment.
 func (c *CodeDeploy) GetDeployment(input *GetDeploymentInput) (output *GetDeploymentOutput, err error) {
 	req, out := c.GetDeploymentRequest(input)
 	output = out
@@ -324,6 +339,7 @@ func (c *CodeDeploy) GetDeploymentConfigRequest(input *GetDeploymentConfigInput)
 	return
 }
 
+// Gets information about a deployment configuration.
 func (c *CodeDeploy) GetDeploymentConfig(input *GetDeploymentConfigInput) (output *GetDeploymentConfigOutput, err error) {
 	req, out := c.GetDeploymentConfigRequest(input)
 	output = out
@@ -349,6 +365,7 @@ func (c *CodeDeploy) GetDeploymentGroupRequest(input *GetDeploymentGroupInput) (
 	return
 }
 
+// Gets information about a deployment group.
 func (c *CodeDeploy) GetDeploymentGroup(input *GetDeploymentGroupInput) (output *GetDeploymentGroupOutput, err error) {
 	req, out := c.GetDeploymentGroupRequest(input)
 	output = out
@@ -374,6 +391,7 @@ func (c *CodeDeploy) GetDeploymentInstanceRequest(input *GetDeploymentInstanceIn
 	return
 }
 
+// Gets information about an Amazon EC2 instance as part of a deployment.
 func (c *CodeDeploy) GetDeploymentInstance(input *GetDeploymentInstanceInput) (output *GetDeploymentInstanceOutput, err error) {
 	req, out := c.GetDeploymentInstanceRequest(input)
 	output = out
@@ -399,6 +417,7 @@ func (c *CodeDeploy) ListApplicationRevisionsRequest(input *ListApplicationRevis
 	return
 }
 
+// Lists information about revisions for an application.
 func (c *CodeDeploy) ListApplicationRevisions(input *ListApplicationRevisionsInput) (output *ListApplicationRevisionsOutput, err error) {
 	req, out := c.ListApplicationRevisionsRequest(input)
 	output = out
@@ -424,6 +443,7 @@ func (c *CodeDeploy) ListApplicationsRequest(input *ListApplicationsInput) (req 
 	return
 }
 
+// Lists the applications registered within the AWS user account.
 func (c *CodeDeploy) ListApplications(input *ListApplicationsInput) (output *ListApplicationsOutput, err error) {
 	req, out := c.ListApplicationsRequest(input)
 	output = out
@@ -449,6 +469,7 @@ func (c *CodeDeploy) ListDeploymentConfigsRequest(input *ListDeploymentConfigsIn
 	return
 }
 
+// Lists the deployment configurations within the AWS user account.
 func (c *CodeDeploy) ListDeploymentConfigs(input *ListDeploymentConfigsInput) (output *ListDeploymentConfigsOutput, err error) {
 	req, out := c.ListDeploymentConfigsRequest(input)
 	output = out
@@ -474,6 +495,8 @@ func (c *CodeDeploy) ListDeploymentGroupsRequest(input *ListDeploymentGroupsInpu
 	return
 }
 
+// Lists the deployment groups for an application registered within the AWS
+// user account.
 func (c *CodeDeploy) ListDeploymentGroups(input *ListDeploymentGroupsInput) (output *ListDeploymentGroupsOutput, err error) {
 	req, out := c.ListDeploymentGroupsRequest(input)
 	output = out
@@ -499,6 +522,7 @@ func (c *CodeDeploy) ListDeploymentInstancesRequest(input *ListDeploymentInstanc
 	return
 }
 
+// Lists the Amazon EC2 instances for a deployment within the AWS user account.
 func (c *CodeDeploy) ListDeploymentInstances(input *ListDeploymentInstancesInput) (output *ListDeploymentInstancesOutput, err error) {
 	req, out := c.ListDeploymentInstancesRequest(input)
 	output = out
@@ -524,6 +548,8 @@ func (c *CodeDeploy) ListDeploymentsRequest(input *ListDeploymentsInput) (req *a
 	return
 }
 
+// Lists the deployments under a deployment group for an application registered
+// within the AWS user account.
 func (c *CodeDeploy) ListDeployments(input *ListDeploymentsInput) (output *ListDeploymentsOutput, err error) {
 	req, out := c.ListDeploymentsRequest(input)
 	output = out
@@ -549,6 +575,7 @@ func (c *CodeDeploy) RegisterApplicationRevisionRequest(input *RegisterApplicati
 	return
 }
 
+// Registers with AWS CodeDeploy a revision for the specified application.
 func (c *CodeDeploy) RegisterApplicationRevision(input *RegisterApplicationRevisionInput) (output *RegisterApplicationRevisionOutput, err error) {
 	req, out := c.RegisterApplicationRevisionRequest(input)
 	output = out
@@ -574,6 +601,7 @@ func (c *CodeDeploy) StopDeploymentRequest(input *StopDeploymentInput) (req *aws
 	return
 }
 
+// Attempts to stop an ongoing deployment.
 func (c *CodeDeploy) StopDeployment(input *StopDeploymentInput) (output *StopDeploymentOutput, err error) {
 	req, out := c.StopDeploymentRequest(input)
 	output = out
@@ -599,6 +627,7 @@ func (c *CodeDeploy) UpdateApplicationRequest(input *UpdateApplicationInput) (re
 	return
 }
 
+// Changes an existing application's name.
 func (c *CodeDeploy) UpdateApplication(input *UpdateApplicationInput) (output *UpdateApplicationOutput, err error) {
 	req, out := c.UpdateApplicationRequest(input)
 	output = out
@@ -624,6 +653,7 @@ func (c *CodeDeploy) UpdateDeploymentGroupRequest(input *UpdateDeploymentGroupIn
 	return
 }
 
+// Changes information about an existing deployment group.
 func (c *CodeDeploy) UpdateDeploymentGroup(input *UpdateDeploymentGroupInput) (output *UpdateDeploymentGroupOutput, err error) {
 	req, out := c.UpdateDeploymentGroupRequest(input)
 	output = out
@@ -633,11 +663,20 @@ func (c *CodeDeploy) UpdateDeploymentGroup(input *UpdateDeploymentGroupInput) (o
 
 var opUpdateDeploymentGroup *aws.Operation
 
+// Information about an application.
 type ApplicationInfo struct {
-	ApplicationID   *string    `locationName:"applicationId" type:"string"`
-	ApplicationName *string    `locationName:"applicationName" type:"string"`
-	CreateTime      *time.Time `locationName:"createTime" type:"timestamp" timestampFormat:"unix"`
-	LinkedToGitHub  *bool      `locationName:"linkedToGitHub" type:"boolean"`
+	// The application ID.
+	ApplicationID *string `locationName:"applicationId" type:"string"`
+
+	// The application name.
+	ApplicationName *string `locationName:"applicationName" type:"string"`
+
+	// The time that the application was created.
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" timestampFormat:"unix"`
+
+	// True if the user has authenticated with GitHub for the specified application;
+	// otherwise, false.
+	LinkedToGitHub *bool `locationName:"linkedToGitHub" type:"boolean"`
 
 	metadataApplicationInfo `json:"-", xml:"-"`
 }
@@ -646,8 +685,12 @@ type metadataApplicationInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Information about an Auto Scaling group.
 type AutoScalingGroup struct {
+	// An Auto Scaling lifecycle event hook name.
 	Hook *string `locationName:"hook" type:"string"`
+
+	// The Auto Scaling group name.
 	Name *string `locationName:"name" type:"string"`
 
 	metadataAutoScalingGroup `json:"-", xml:"-"`
@@ -657,7 +700,10 @@ type metadataAutoScalingGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a batch get applications operation.
 type BatchGetApplicationsInput struct {
+	// A list of application names, with multiple application names separated by
+	// spaces.
 	ApplicationNames []*string `locationName:"applicationNames" type:"list"`
 
 	metadataBatchGetApplicationsInput `json:"-", xml:"-"`
@@ -667,7 +713,9 @@ type metadataBatchGetApplicationsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output of a batch get applications operation.
 type BatchGetApplicationsOutput struct {
+	// Information about the applications.
 	ApplicationsInfo []*ApplicationInfo `locationName:"applicationsInfo" type:"list"`
 
 	metadataBatchGetApplicationsOutput `json:"-", xml:"-"`
@@ -677,7 +725,9 @@ type metadataBatchGetApplicationsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a batch get deployments operation.
 type BatchGetDeploymentsInput struct {
+	// A list of deployment IDs, with multiple deployment IDs separated by spaces.
 	DeploymentIDs []*string `locationName:"deploymentIds" type:"list"`
 
 	metadataBatchGetDeploymentsInput `json:"-", xml:"-"`
@@ -687,7 +737,9 @@ type metadataBatchGetDeploymentsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output of a batch get deployments operation.
 type BatchGetDeploymentsOutput struct {
+	// Information about the deployments.
 	DeploymentsInfo []*DeploymentInfo `locationName:"deploymentsInfo" type:"list"`
 
 	metadataBatchGetDeploymentsOutput `json:"-", xml:"-"`
@@ -697,7 +749,10 @@ type metadataBatchGetDeploymentsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a create application operation.
 type CreateApplicationInput struct {
+	// The name of the application. This name must be unique within the AWS user
+	// account.
 	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
 
 	metadataCreateApplicationInput `json:"-", xml:"-"`
@@ -707,7 +762,9 @@ type metadataCreateApplicationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output of a create application operation.
 type CreateApplicationOutput struct {
+	// A unique application ID.
 	ApplicationID *string `locationName:"applicationId" type:"string"`
 
 	metadataCreateApplicationOutput `json:"-", xml:"-"`
@@ -717,9 +774,28 @@ type metadataCreateApplicationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a create deployment configuration operation.
 type CreateDeploymentConfigInput struct {
-	DeploymentConfigName *string              `locationName:"deploymentConfigName" type:"string" required:"true"`
-	MinimumHealthyHosts  *MinimumHealthyHosts `locationName:"minimumHealthyHosts" type:"structure"`
+	// The name of the deployment configuration to create.
+	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string" required:"true"`
+
+	// The minimum number of healthy instances that should be available at any time
+	// during the deployment. There are two parameters expected in the input: type
+	// and value.
+	//
+	// The type parameter takes either of the following values:
+	//
+	//  HOST_COUNT: The value parameter represents the minimum number of healthy
+	// instances, as an absolute value. FLEET_PERCENT: The value parameter represents
+	// the minimum number of healthy instances, as a percentage of the total number
+	// of instances in the deployment. If you specify FLEET_PERCENT, then at the
+	// start of the deployment AWS CodeDeploy converts the percentage to the equivalent
+	// number of instances and rounds fractional instances up.  The value parameter
+	// takes an integer.
+	//
+	// For example, to set a minimum of 95% healthy instances, specify a type of
+	// FLEET_PERCENT and a value of 95.
+	MinimumHealthyHosts *MinimumHealthyHosts `locationName:"minimumHealthyHosts" type:"structure"`
 
 	metadataCreateDeploymentConfigInput `json:"-", xml:"-"`
 }
@@ -728,7 +804,9 @@ type metadataCreateDeploymentConfigInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output of a create deployment configuration operation.
 type CreateDeploymentConfigOutput struct {
+	// A unique deployment configuration ID.
 	DeploymentConfigID *string `locationName:"deploymentConfigId" type:"string"`
 
 	metadataCreateDeploymentConfigOutput `json:"-", xml:"-"`
@@ -738,13 +816,54 @@ type metadataCreateDeploymentConfigOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a create deployment group operation.
 type CreateDeploymentGroupInput struct {
-	ApplicationName      *string         `locationName:"applicationName" type:"string" required:"true"`
-	AutoScalingGroups    []*string       `locationName:"autoScalingGroups" type:"list"`
-	DeploymentConfigName *string         `locationName:"deploymentConfigName" type:"string"`
-	DeploymentGroupName  *string         `locationName:"deploymentGroupName" type:"string" required:"true"`
-	EC2TagFilters        []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
-	ServiceRoleARN       *string         `locationName:"serviceRoleArn" type:"string"`
+	// The name of an existing AWS CodeDeploy application within the AWS user account.
+	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+
+	// A list of associated Auto Scaling groups.
+	AutoScalingGroups []*string `locationName:"autoScalingGroups" type:"list"`
+
+	// If specified, the deployment configuration name must be one of the predefined
+	// values, or it can be a custom deployment configuration:
+	//
+	//  CodeDeployDefault.AllAtOnce deploys an application revision to up to all
+	// of the Amazon EC2 instances at once. The overall deployment succeeds if the
+	// application revision deploys to at least one of the instances. The overall
+	// deployment fails after the application revision fails to deploy to all of
+	// the instances. For example, for 9 instances, deploy to up to all 9 instances
+	// at once. The overall deployment succeeds if any of the 9 instances is successfully
+	// deployed to, and it fails if all 9 instances fail to be deployed to. CodeDeployDefault.HalfAtATime
+	// deploys to up to half of the instances at a time (with fractions rounded
+	// down). The overall deployment succeeds if the application revision deploys
+	// to at least half of the instances (with fractions rounded up); otherwise,
+	// the deployment fails. For example, for 9 instances, deploy to up to 4 instances
+	// at a time. The overall deployment succeeds if 5 or more instances are successfully
+	// deployed to; otherwise, the deployment fails. Note that the deployment may
+	// successfully deploy to some instances, even if the overall deployment fails.
+	// CodeDeployDefault.OneAtATime deploys the application revision to only one
+	// of the instances at a time. The overall deployment succeeds if the application
+	// revision deploys to all of the instances. The overall deployment fails after
+	// the application revision first fails to deploy to any one instance. For example,
+	// for 9 instances, deploy to one instance at a time. The overall deployment
+	// succeeds if all 9 instances are successfully deployed to, and it fails if
+	// any of one of the 9 instances fail to be deployed to. Note that the deployment
+	// may successfully deploy to some instances, even if the overall deployment
+	// fails. This is the default deployment configuration if a configuration isn't
+	// specified for either the deployment or the deployment group.  To create a
+	// custom deployment configuration, call the create deployment configuration
+	// operation.
+	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string"`
+
+	// The name of an existing deployment group for the specified application.
+	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string" required:"true"`
+
+	// The Amazon EC2 tags to filter on.
+	EC2TagFilters []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
+
+	// A service role ARN that allows AWS CodeDeploy to act on the user's behalf
+	// when interacting with AWS services.
+	ServiceRoleARN *string `locationName:"serviceRoleArn" type:"string"`
 
 	metadataCreateDeploymentGroupInput `json:"-", xml:"-"`
 }
@@ -753,7 +872,9 @@ type metadataCreateDeploymentGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output of a create deployment group operation.
 type CreateDeploymentGroupOutput struct {
+	// A unique deployment group ID.
 	DeploymentGroupID *string `locationName:"deploymentGroupId" type:"string"`
 
 	metadataCreateDeploymentGroupOutput `json:"-", xml:"-"`
@@ -763,13 +884,38 @@ type metadataCreateDeploymentGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a create deployment operation.
 type CreateDeploymentInput struct {
-	ApplicationName               *string           `locationName:"applicationName" type:"string" required:"true"`
-	DeploymentConfigName          *string           `locationName:"deploymentConfigName" type:"string"`
-	DeploymentGroupName           *string           `locationName:"deploymentGroupName" type:"string"`
-	Description                   *string           `locationName:"description" type:"string"`
-	IgnoreApplicationStopFailures *bool             `locationName:"ignoreApplicationStopFailures" type:"boolean"`
-	Revision                      *RevisionLocation `locationName:"revision" type:"structure"`
+	// The name of an existing AWS CodeDeploy application within the AWS user account.
+	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+
+	// The name of an existing deployment configuration within the AWS user account.
+	//
+	// If not specified, the value configured in the deployment group will be used
+	// as the default. If the deployment group does not have a deployment configuration
+	// associated with it, then CodeDeployDefault.OneAtATime will be used by default.
+	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string"`
+
+	// The deployment group's name.
+	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string"`
+
+	// A comment about the deployment.
+	Description *string `locationName:"description" type:"string"`
+
+	// If set to true, then if the deployment causes the ApplicationStop deployment
+	// lifecycle event to fail to a specific instance, the deployment will not be
+	// considered to have failed to that instance at that point and will continue
+	// on to the BeforeInstall deployment lifecycle event.
+	//
+	// If set to false or not specified, then if the deployment causes the ApplicationStop
+	// deployment lifecycle event to fail to a specific instance, the deployment
+	// will stop to that instance, and the deployment to that instance will be considered
+	// to have failed.
+	IgnoreApplicationStopFailures *bool `locationName:"ignoreApplicationStopFailures" type:"boolean"`
+
+	// The type of revision to deploy, along with information about the revision's
+	// location.
+	Revision *RevisionLocation `locationName:"revision" type:"structure"`
 
 	metadataCreateDeploymentInput `json:"-", xml:"-"`
 }
@@ -778,7 +924,9 @@ type metadataCreateDeploymentInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output of a create deployment operation.
 type CreateDeploymentOutput struct {
+	// A unique deployment ID.
 	DeploymentID *string `locationName:"deploymentId" type:"string"`
 
 	metadataCreateDeploymentOutput `json:"-", xml:"-"`
@@ -788,7 +936,9 @@ type metadataCreateDeploymentOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a delete application operation.
 type DeleteApplicationInput struct {
+	// The name of an existing AWS CodeDeploy application within the AWS user account.
 	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
 
 	metadataDeleteApplicationInput `json:"-", xml:"-"`
@@ -806,7 +956,9 @@ type metadataDeleteApplicationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a delete deployment configuration operation.
 type DeleteDeploymentConfigInput struct {
+	// The name of an existing deployment configuration within the AWS user account.
 	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string" required:"true"`
 
 	metadataDeleteDeploymentConfigInput `json:"-", xml:"-"`
@@ -824,8 +976,12 @@ type metadataDeleteDeploymentConfigOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a delete deployment group operation.
 type DeleteDeploymentGroupInput struct {
-	ApplicationName     *string `locationName:"applicationName" type:"string" required:"true"`
+	// The name of an existing AWS CodeDeploy application within the AWS user account.
+	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+
+	// The name of an existing deployment group for the specified application.
 	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string" required:"true"`
 
 	metadataDeleteDeploymentGroupInput `json:"-", xml:"-"`
@@ -835,7 +991,14 @@ type metadataDeleteDeploymentGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output of a delete deployment group operation.
 type DeleteDeploymentGroupOutput struct {
+	// If the output contains no data, and the corresponding deployment group contained
+	// at least one Auto Scaling group, AWS CodeDeploy successfully removed all
+	// corresponding Auto Scaling lifecycle event hooks from the instances in the
+	// Auto Scaling. If the output does contain data, AWS CodeDeploy could not remove
+	// some Auto Scaling lifecycle event hooks from the instances in the Auto Scaling
+	// group.
 	HooksNotCleanedUp []*AutoScalingGroup `locationName:"hooksNotCleanedUp" type:"list"`
 
 	metadataDeleteDeploymentGroupOutput `json:"-", xml:"-"`
@@ -845,11 +1008,19 @@ type metadataDeleteDeploymentGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Information about a deployment configuration.
 type DeploymentConfigInfo struct {
-	CreateTime           *time.Time           `locationName:"createTime" type:"timestamp" timestampFormat:"unix"`
-	DeploymentConfigID   *string              `locationName:"deploymentConfigId" type:"string"`
-	DeploymentConfigName *string              `locationName:"deploymentConfigName" type:"string"`
-	MinimumHealthyHosts  *MinimumHealthyHosts `locationName:"minimumHealthyHosts" type:"structure"`
+	// The time that the deployment configuration was created.
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" timestampFormat:"unix"`
+
+	// The deployment configuration ID.
+	DeploymentConfigID *string `locationName:"deploymentConfigId" type:"string"`
+
+	// The deployment configuration name.
+	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string"`
+
+	// Information about the number or percentage of minimum healthy instances.
+	MinimumHealthyHosts *MinimumHealthyHosts `locationName:"minimumHealthyHosts" type:"structure"`
 
 	metadataDeploymentConfigInfo `json:"-", xml:"-"`
 }
@@ -858,15 +1029,32 @@ type metadataDeploymentConfigInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Information about a deployment group.
 type DeploymentGroupInfo struct {
-	ApplicationName      *string             `locationName:"applicationName" type:"string"`
-	AutoScalingGroups    []*AutoScalingGroup `locationName:"autoScalingGroups" type:"list"`
-	DeploymentConfigName *string             `locationName:"deploymentConfigName" type:"string"`
-	DeploymentGroupID    *string             `locationName:"deploymentGroupId" type:"string"`
-	DeploymentGroupName  *string             `locationName:"deploymentGroupName" type:"string"`
-	EC2TagFilters        []*EC2TagFilter     `locationName:"ec2TagFilters" type:"list"`
-	ServiceRoleARN       *string             `locationName:"serviceRoleArn" type:"string"`
-	TargetRevision       *RevisionLocation   `locationName:"targetRevision" type:"structure"`
+	// The application name.
+	ApplicationName *string `locationName:"applicationName" type:"string"`
+
+	// A list of associated Auto Scaling groups.
+	AutoScalingGroups []*AutoScalingGroup `locationName:"autoScalingGroups" type:"list"`
+
+	// The deployment configuration name.
+	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string"`
+
+	// The deployment group ID.
+	DeploymentGroupID *string `locationName:"deploymentGroupId" type:"string"`
+
+	// The deployment group name.
+	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string"`
+
+	// The Amazon EC2 tags to filter on.
+	EC2TagFilters []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
+
+	// A service role ARN.
+	ServiceRoleARN *string `locationName:"serviceRoleArn" type:"string"`
+
+	// Information about the deployment group's target revision, including the revision's
+	// type and its location.
+	TargetRevision *RevisionLocation `locationName:"targetRevision" type:"structure"`
 
 	metadataDeploymentGroupInfo `json:"-", xml:"-"`
 }
@@ -875,21 +1063,66 @@ type metadataDeploymentGroupInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Information about a deployment.
 type DeploymentInfo struct {
-	ApplicationName               *string             `locationName:"applicationName" type:"string"`
-	CompleteTime                  *time.Time          `locationName:"completeTime" type:"timestamp" timestampFormat:"unix"`
-	CreateTime                    *time.Time          `locationName:"createTime" type:"timestamp" timestampFormat:"unix"`
-	Creator                       *string             `locationName:"creator" type:"string"`
-	DeploymentConfigName          *string             `locationName:"deploymentConfigName" type:"string"`
-	DeploymentGroupName           *string             `locationName:"deploymentGroupName" type:"string"`
-	DeploymentID                  *string             `locationName:"deploymentId" type:"string"`
-	DeploymentOverview            *DeploymentOverview `locationName:"deploymentOverview" type:"structure"`
-	Description                   *string             `locationName:"description" type:"string"`
-	ErrorInformation              *ErrorInformation   `locationName:"errorInformation" type:"structure"`
-	IgnoreApplicationStopFailures *bool               `locationName:"ignoreApplicationStopFailures" type:"boolean"`
-	Revision                      *RevisionLocation   `locationName:"revision" type:"structure"`
-	StartTime                     *time.Time          `locationName:"startTime" type:"timestamp" timestampFormat:"unix"`
-	Status                        *string             `locationName:"status" type:"string"`
+	// The application name.
+	ApplicationName *string `locationName:"applicationName" type:"string"`
+
+	// A timestamp indicating when the deployment was completed.
+	CompleteTime *time.Time `locationName:"completeTime" type:"timestamp" timestampFormat:"unix"`
+
+	// A timestamp indicating when the deployment was created.
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" timestampFormat:"unix"`
+
+	// How the deployment was created:
+	//
+	//  user: A user created the deployment. autoscaling: Auto Scaling created
+	// the deployment.
+	Creator *string `locationName:"creator" type:"string"`
+
+	// The deployment configuration name.
+	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string"`
+
+	// The deployment group name.
+	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string"`
+
+	// The deployment ID.
+	DeploymentID *string `locationName:"deploymentId" type:"string"`
+
+	// A summary of the deployment status of the instances in the deployment.
+	DeploymentOverview *DeploymentOverview `locationName:"deploymentOverview" type:"structure"`
+
+	// A comment about the deployment.
+	Description *string `locationName:"description" type:"string"`
+
+	// Information about any error associated with this deployment.
+	ErrorInformation *ErrorInformation `locationName:"errorInformation" type:"structure"`
+
+	// If true, then if the deployment causes the ApplicationStop deployment lifecycle
+	// event to fail to a specific instance, the deployment will not be considered
+	// to have failed to that instance at that point and will continue on to the
+	// BeforeInstall deployment lifecycle event.
+	//
+	// If false or not specified, then if the deployment causes the ApplicationStop
+	// deployment lifecycle event to fail to a specific instance, the deployment
+	// will stop to that instance, and the deployment to that instance will be considered
+	// to have failed.
+	IgnoreApplicationStopFailures *bool `locationName:"ignoreApplicationStopFailures" type:"boolean"`
+
+	// Information about the location of application artifacts that are stored and
+	// the service to retrieve them from.
+	Revision *RevisionLocation `locationName:"revision" type:"structure"`
+
+	// A timestamp indicating when the deployment began deploying to the deployment
+	// group.
+	//
+	// Note that in some cases, the reported value of the start time may be later
+	// than the complete time. This is due to differences in the clock settings
+	// of various back-end servers that participate in the overall deployment process.
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"unix"`
+
+	// The current state of the deployment as a whole.
+	Status *string `locationName:"status" type:"string"`
 
 	metadataDeploymentInfo `json:"-", xml:"-"`
 }
@@ -898,12 +1131,22 @@ type metadataDeploymentInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Information about the deployment status of the instances in the deployment.
 type DeploymentOverview struct {
-	Failed     *int64 `type:"long"`
+	// The number of instances that have failed in the deployment.
+	Failed *int64 `type:"long"`
+
+	// The number of instances that are in progress in the deployment.
 	InProgress *int64 `type:"long"`
-	Pending    *int64 `type:"long"`
-	Skipped    *int64 `type:"long"`
-	Succeeded  *int64 `type:"long"`
+
+	// The number of instances that are pending in the deployment.
+	Pending *int64 `type:"long"`
+
+	// The number of instances that have been skipped in the deployment.
+	Skipped *int64 `type:"long"`
+
+	// The number of instances that have succeeded in the deployment.
+	Succeeded *int64 `type:"long"`
 
 	metadataDeploymentOverview `json:"-", xml:"-"`
 }
@@ -912,10 +1155,25 @@ type metadataDeploymentOverview struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Diagnostic information about executable scripts that are part of a deployment.
 type Diagnostics struct {
-	ErrorCode  *string `locationName:"errorCode" type:"string"`
-	LogTail    *string `locationName:"logTail" type:"string"`
-	Message    *string `locationName:"message" type:"string"`
+	// The associated error code:
+	//
+	//  Success: The specified script ran. ScriptMissing: The specified script
+	// was not found in the specified location. ScriptNotExecutable: The specified
+	// script is not a recognized executable file type. ScriptTimedOut: The specified
+	// script did not finish running in the specified time period. ScriptFailed:
+	// The specified script failed to run as expected. UnknownError: The specified
+	// script did not run for an unknown reason.
+	ErrorCode *string `locationName:"errorCode" type:"string"`
+
+	// The last portion of the associated diagnostic log.
+	LogTail *string `locationName:"logTail" type:"string"`
+
+	// The message associated with the error.
+	Message *string `locationName:"message" type:"string"`
+
+	// The name of the script.
 	ScriptName *string `locationName:"scriptName" type:"string"`
 
 	metadataDiagnostics `json:"-", xml:"-"`
@@ -925,9 +1183,17 @@ type metadataDiagnostics struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Information about an Amazon EC2 tag filter.
 type EC2TagFilter struct {
-	Key   *string `type:"string"`
-	Type  *string `type:"string"`
+	// The Amazon EC2 tag filter key.
+	Key *string `type:"string"`
+
+	// The Amazon EC2 tag filter type:
+	//
+	//  KEY_ONLY: Key only. VALUE_ONLY: Value only. KEY_AND_VALUE: Key and value.
+	Type *string `type:"string"`
+
+	// The Amazon EC2 tag filter value.
 	Value *string `type:"string"`
 
 	metadataEC2TagFilter `json:"-", xml:"-"`
@@ -937,8 +1203,29 @@ type metadataEC2TagFilter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Information about a deployment error.
 type ErrorInformation struct {
-	Code    *string `locationName:"code" type:"string"`
+	// The error code:
+	//
+	//  APPLICATION_MISSING: The application was missing. Note that this error
+	// code will most likely be raised if the application is deleted after the deployment
+	// is created but before it starts. DEPLOYMENT_GROUP_MISSING: The deployment
+	// group was missing. Note that this error code will most likely be raised if
+	// the deployment group is deleted after the deployment is created but before
+	// it starts. REVISION_MISSING: The revision ID was missing. Note that this
+	// error code will most likely be raised if the revision is deleted after the
+	// deployment is created but before it starts. IAM_ROLE_MISSING: The service
+	// role cannot be accessed. IAM_ROLE_PERMISSIONS: The service role does not
+	// have the correct permissions. OVER_MAX_INSTANCES: The maximum number of instances
+	// was exceeded. NO_INSTANCES: No instances were specified, or no instances
+	// can be found. TIMEOUT: The deployment has timed out. HEALTH_CONSTRAINTS_INVALID:
+	// The revision can never successfully deploy under the instance health constraints
+	// as specified. HEALTH_CONSTRAINTS: The deployment failed on too many instances
+	// to be able to successfully deploy under the specified instance health constraints.
+	// INTERNAL_ERROR: There was an internal error.
+	Code *string `locationName:"code" type:"string"`
+
+	// An accompanying error message.
 	Message *string `locationName:"message" type:"string"`
 
 	metadataErrorInformation `json:"-", xml:"-"`
@@ -948,12 +1235,22 @@ type metadataErrorInformation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Information about an application revision.
 type GenericRevisionInfo struct {
-	DeploymentGroups []*string  `locationName:"deploymentGroups" type:"list"`
-	Description      *string    `locationName:"description" type:"string"`
-	FirstUsedTime    *time.Time `locationName:"firstUsedTime" type:"timestamp" timestampFormat:"unix"`
-	LastUsedTime     *time.Time `locationName:"lastUsedTime" type:"timestamp" timestampFormat:"unix"`
-	RegisterTime     *time.Time `locationName:"registerTime" type:"timestamp" timestampFormat:"unix"`
+	// A list of deployment groups that use this revision.
+	DeploymentGroups []*string `locationName:"deploymentGroups" type:"list"`
+
+	// A comment about the revision.
+	Description *string `locationName:"description" type:"string"`
+
+	// When the revision was first used by AWS CodeDeploy.
+	FirstUsedTime *time.Time `locationName:"firstUsedTime" type:"timestamp" timestampFormat:"unix"`
+
+	// When the revision was last used by AWS CodeDeploy.
+	LastUsedTime *time.Time `locationName:"lastUsedTime" type:"timestamp" timestampFormat:"unix"`
+
+	// When the revision was registered with AWS CodeDeploy.
+	RegisterTime *time.Time `locationName:"registerTime" type:"timestamp" timestampFormat:"unix"`
 
 	metadataGenericRevisionInfo `json:"-", xml:"-"`
 }
@@ -962,7 +1259,9 @@ type metadataGenericRevisionInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a get application operation.
 type GetApplicationInput struct {
+	// The name of an existing AWS CodeDeploy application within the AWS user account.
 	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
 
 	metadataGetApplicationInput `json:"-", xml:"-"`
@@ -972,7 +1271,9 @@ type metadataGetApplicationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output of a get application operation.
 type GetApplicationOutput struct {
+	// Information about the application.
 	Application *ApplicationInfo `locationName:"application" type:"structure"`
 
 	metadataGetApplicationOutput `json:"-", xml:"-"`
@@ -982,9 +1283,14 @@ type metadataGetApplicationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a get application revision operation.
 type GetApplicationRevisionInput struct {
-	ApplicationName *string           `locationName:"applicationName" type:"string" required:"true"`
-	Revision        *RevisionLocation `locationName:"revision" type:"structure" required:"true"`
+	// The name of the application that corresponds to the revision.
+	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+
+	// Information about the application revision to get, including the revision's
+	// type and its location.
+	Revision *RevisionLocation `locationName:"revision" type:"structure" required:"true"`
 
 	metadataGetApplicationRevisionInput `json:"-", xml:"-"`
 }
@@ -993,10 +1299,17 @@ type metadataGetApplicationRevisionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output of a get application revision operation.
 type GetApplicationRevisionOutput struct {
-	ApplicationName *string              `locationName:"applicationName" type:"string"`
-	Revision        *RevisionLocation    `locationName:"revision" type:"structure"`
-	RevisionInfo    *GenericRevisionInfo `locationName:"revisionInfo" type:"structure"`
+	// The name of the application that corresponds to the revision.
+	ApplicationName *string `locationName:"applicationName" type:"string"`
+
+	// Additional information about the revision, including the revision's type
+	// and its location.
+	Revision *RevisionLocation `locationName:"revision" type:"structure"`
+
+	// General information about the revision.
+	RevisionInfo *GenericRevisionInfo `locationName:"revisionInfo" type:"structure"`
 
 	metadataGetApplicationRevisionOutput `json:"-", xml:"-"`
 }
@@ -1005,7 +1318,9 @@ type metadataGetApplicationRevisionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a get deployment configuration operation.
 type GetDeploymentConfigInput struct {
+	// The name of an existing deployment configuration within the AWS user account.
 	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string" required:"true"`
 
 	metadataGetDeploymentConfigInput `json:"-", xml:"-"`
@@ -1015,7 +1330,9 @@ type metadataGetDeploymentConfigInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output of a get deployment configuration operation.
 type GetDeploymentConfigOutput struct {
+	// Information about the deployment configuration.
 	DeploymentConfigInfo *DeploymentConfigInfo `locationName:"deploymentConfigInfo" type:"structure"`
 
 	metadataGetDeploymentConfigOutput `json:"-", xml:"-"`
@@ -1025,8 +1342,12 @@ type metadataGetDeploymentConfigOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a get deployment group operation.
 type GetDeploymentGroupInput struct {
-	ApplicationName     *string `locationName:"applicationName" type:"string" required:"true"`
+	// The name of an existing AWS CodeDeploy application within the AWS user account.
+	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+
+	// The name of an existing deployment group for the specified application.
 	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string" required:"true"`
 
 	metadataGetDeploymentGroupInput `json:"-", xml:"-"`
@@ -1036,7 +1357,9 @@ type metadataGetDeploymentGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output of a get deployment group operation.
 type GetDeploymentGroupOutput struct {
+	// Information about the deployment group.
 	DeploymentGroupInfo *DeploymentGroupInfo `locationName:"deploymentGroupInfo" type:"structure"`
 
 	metadataGetDeploymentGroupOutput `json:"-", xml:"-"`
@@ -1046,7 +1369,9 @@ type metadataGetDeploymentGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a get deployment operation.
 type GetDeploymentInput struct {
+	// An existing deployment ID within the AWS user account.
 	DeploymentID *string `locationName:"deploymentId" type:"string" required:"true"`
 
 	metadataGetDeploymentInput `json:"-", xml:"-"`
@@ -1056,9 +1381,13 @@ type metadataGetDeploymentInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a get deployment instance operation.
 type GetDeploymentInstanceInput struct {
+	// The unique ID of a deployment.
 	DeploymentID *string `locationName:"deploymentId" type:"string" required:"true"`
-	InstanceID   *string `locationName:"instanceId" type:"string" required:"true"`
+
+	// The unique ID of an Amazon EC2 instance in the deployment's deployment group.
+	InstanceID *string `locationName:"instanceId" type:"string" required:"true"`
 
 	metadataGetDeploymentInstanceInput `json:"-", xml:"-"`
 }
@@ -1067,7 +1396,9 @@ type metadataGetDeploymentInstanceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output of a get deployment instance operation.
 type GetDeploymentInstanceOutput struct {
+	// Information about the instance.
 	InstanceSummary *InstanceSummary `locationName:"instanceSummary" type:"structure"`
 
 	metadataGetDeploymentInstanceOutput `json:"-", xml:"-"`
@@ -1077,7 +1408,9 @@ type metadataGetDeploymentInstanceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output of a get deployment operation.
 type GetDeploymentOutput struct {
+	// Information about the deployment.
 	DeploymentInfo *DeploymentInfo `locationName:"deploymentInfo" type:"structure"`
 
 	metadataGetDeploymentOutput `json:"-", xml:"-"`
@@ -1087,8 +1420,17 @@ type metadataGetDeploymentOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Information about the location of application artifacts that are stored in
+// GitHub.
 type GitHubLocation struct {
-	CommitID   *string `locationName:"commitId" type:"string"`
+	// The SHA1 commit ID of the GitHub commit that references the that represents
+	// the bundled artifacts for the application revision.
+	CommitID *string `locationName:"commitId" type:"string"`
+
+	// The GitHub account and repository pair that stores a reference to the commit
+	// that represents the bundled artifacts for the application revision.
+	//
+	// Specified as account/repository.
 	Repository *string `locationName:"repository" type:"string"`
 
 	metadataGitHubLocation `json:"-", xml:"-"`
@@ -1098,12 +1440,28 @@ type metadataGitHubLocation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Information about an Amazon EC2 instance in a deployment.
 type InstanceSummary struct {
-	DeploymentID    *string           `locationName:"deploymentId" type:"string"`
-	InstanceID      *string           `locationName:"instanceId" type:"string"`
-	LastUpdatedAt   *time.Time        `locationName:"lastUpdatedAt" type:"timestamp" timestampFormat:"unix"`
+	// The deployment ID.
+	DeploymentID *string `locationName:"deploymentId" type:"string"`
+
+	// The instance ID.
+	InstanceID *string `locationName:"instanceId" type:"string"`
+
+	// A timestamp indicating when the instance information was last updated.
+	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp" timestampFormat:"unix"`
+
+	// A list of lifecycle events for this instance.
 	LifecycleEvents []*LifecycleEvent `locationName:"lifecycleEvents" type:"list"`
-	Status          *string           `locationName:"status" type:"string"`
+
+	// The deployment status for this instance:
+	//
+	//  Pending: The deployment is pending for this instance. In Progress: The
+	// deployment is in progress for this instance. Succeeded: The deployment has
+	// succeeded for this instance. Failed: The deployment has failed for this instance.
+	// Skipped: The deployment has been skipped for this instance. Unknown: The
+	// deployment status is unknown for this instance.
+	Status *string `locationName:"status" type:"string"`
 
 	metadataInstanceSummary `json:"-", xml:"-"`
 }
@@ -1112,12 +1470,29 @@ type metadataInstanceSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Information about a deployment lifecycle event.
 type LifecycleEvent struct {
-	Diagnostics        *Diagnostics `locationName:"diagnostics" type:"structure"`
-	EndTime            *time.Time   `locationName:"endTime" type:"timestamp" timestampFormat:"unix"`
-	LifecycleEventName *string      `locationName:"lifecycleEventName" type:"string"`
-	StartTime          *time.Time   `locationName:"startTime" type:"timestamp" timestampFormat:"unix"`
-	Status             *string      `locationName:"status" type:"string"`
+	// Diagnostic information about the deployment lifecycle event.
+	Diagnostics *Diagnostics `locationName:"diagnostics" type:"structure"`
+
+	// A timestamp indicating when the deployment lifecycle event ended.
+	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"unix"`
+
+	// The deployment lifecycle event name, such as ApplicationStop, BeforeInstall,
+	// AfterInstall, ApplicationStart, or ValidateService.
+	LifecycleEventName *string `locationName:"lifecycleEventName" type:"string"`
+
+	// A timestamp indicating when the deployment lifecycle event started.
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"unix"`
+
+	// The deployment lifecycle event status:
+	//
+	//  Pending: The deployment lifecycle event is pending. InProgress: The deployment
+	// lifecycle event is in progress. Succeeded: The deployment lifecycle event
+	// has succeeded. Failed: The deployment lifecycle event has failed. Skipped:
+	// The deployment lifecycle event has been skipped. Unknown: The deployment
+	// lifecycle event is unknown.
+	Status *string `locationName:"status" type:"string"`
 
 	metadataLifecycleEvent `json:"-", xml:"-"`
 }
@@ -1126,14 +1501,50 @@ type metadataLifecycleEvent struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a list application revisions operation.
 type ListApplicationRevisionsInput struct {
+	// The name of an existing AWS CodeDeploy application within the AWS user account.
 	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
-	Deployed        *string `locationName:"deployed" type:"string"`
-	NextToken       *string `locationName:"nextToken" type:"string"`
-	S3Bucket        *string `locationName:"s3Bucket" type:"string"`
-	S3KeyPrefix     *string `locationName:"s3KeyPrefix" type:"string"`
-	SortBy          *string `locationName:"sortBy" type:"string"`
-	SortOrder       *string `locationName:"sortOrder" type:"string"`
+
+	// Whether to list revisions based on whether the revision is the target revision
+	// of an deployment group:
+	//
+	//  include: List revisions that are target revisions of a deployment group.
+	// exclude: Do not list revisions that are target revisions of a deployment
+	// group. ignore: List all revisions, regardless of whether they are target
+	// revisions of a deployment group.
+	Deployed *string `locationName:"deployed" type:"string"`
+
+	// An identifier that was returned from the previous list application revisions
+	// call, which can be used to return the next set of applications in the list.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// A specific Amazon S3 bucket name to limit the search for revisions.
+	//
+	// If set to null, then all of the user's buckets will be searched.
+	S3Bucket *string `locationName:"s3Bucket" type:"string"`
+
+	// A specific key prefix for the set of Amazon S3 objects to limit the search
+	// for revisions.
+	S3KeyPrefix *string `locationName:"s3KeyPrefix" type:"string"`
+
+	// The column name to sort the list results by:
+	//
+	//  registerTime: Sort the list results by when the revisions were registered
+	// with AWS CodeDeploy. firstUsedTime: Sort the list results by when the revisions
+	// were first used by in a deployment. lastUsedTime: Sort the list results by
+	// when the revisions were last used in a deployment.  If not specified or set
+	// to null, the results will be returned in an arbitrary order.
+	SortBy *string `locationName:"sortBy" type:"string"`
+
+	// The order to sort the list results by:
+	//
+	//  ascending: Sort the list results in ascending order. descending: Sort the
+	// list results in descending order.  If not specified, the results will be
+	// sorted in ascending order.
+	//
+	// If set to null, the results will be sorted in an arbitrary order.
+	SortOrder *string `locationName:"sortOrder" type:"string"`
 
 	metadataListApplicationRevisionsInput `json:"-", xml:"-"`
 }
@@ -1142,8 +1553,15 @@ type metadataListApplicationRevisionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output of a list application revisions operation.
 type ListApplicationRevisionsOutput struct {
-	NextToken *string             `locationName:"nextToken" type:"string"`
+	// If the amount of information that is returned is significantly large, an
+	// identifier will also be returned, which can be used in a subsequent list
+	// application revisions call to return the next set of application revisions
+	// in the list.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// A list of revision locations that contain the matching revisions.
 	Revisions []*RevisionLocation `locationName:"revisions" type:"list"`
 
 	metadataListApplicationRevisionsOutput `json:"-", xml:"-"`
@@ -1153,7 +1571,10 @@ type metadataListApplicationRevisionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a list applications operation.
 type ListApplicationsInput struct {
+	// An identifier that was returned from the previous list applications call,
+	// which can be used to return the next set of applications in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataListApplicationsInput `json:"-", xml:"-"`
@@ -1163,9 +1584,15 @@ type metadataListApplicationsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output of a list applications operation.
 type ListApplicationsOutput struct {
+	// A list of application names.
 	Applications []*string `locationName:"applications" type:"list"`
-	NextToken    *string   `locationName:"nextToken" type:"string"`
+
+	// If the amount of information that is returned is significantly large, an
+	// identifier will also be returned, which can be used in a subsequent list
+	// applications call to return the next set of applications in the list.
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataListApplicationsOutput `json:"-", xml:"-"`
 }
@@ -1174,7 +1601,11 @@ type metadataListApplicationsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a list deployment configurations operation.
 type ListDeploymentConfigsInput struct {
+	// An identifier that was returned from the previous list deployment configurations
+	// call, which can be used to return the next set of deployment configurations
+	// in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataListDeploymentConfigsInput `json:"-", xml:"-"`
@@ -1184,9 +1615,17 @@ type metadataListDeploymentConfigsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output of a list deployment configurations operation.
 type ListDeploymentConfigsOutput struct {
+	// A list of deployment configurations, including the built-in configurations
+	// such as CodeDeployDefault.OneAtATime.
 	DeploymentConfigsList []*string `locationName:"deploymentConfigsList" type:"list"`
-	NextToken             *string   `locationName:"nextToken" type:"string"`
+
+	// If the amount of information that is returned is significantly large, an
+	// identifier will also be returned, which can be used in a subsequent list
+	// deployment configurations call to return the next set of deployment configurations
+	// in the list.
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataListDeploymentConfigsOutput `json:"-", xml:"-"`
 }
@@ -1195,9 +1634,15 @@ type metadataListDeploymentConfigsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a list deployment groups operation.
 type ListDeploymentGroupsInput struct {
+	// The name of an existing AWS CodeDeploy application within the AWS user account.
 	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
-	NextToken       *string `locationName:"nextToken" type:"string"`
+
+	// An identifier that was returned from the previous list deployment groups
+	// call, which can be used to return the next set of deployment groups in the
+	// list.
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataListDeploymentGroupsInput `json:"-", xml:"-"`
 }
@@ -1206,10 +1651,19 @@ type metadataListDeploymentGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output of a list deployment groups operation.
 type ListDeploymentGroupsOutput struct {
-	ApplicationName  *string   `locationName:"applicationName" type:"string"`
+	// The application name.
+	ApplicationName *string `locationName:"applicationName" type:"string"`
+
+	// A list of corresponding deployment group names.
 	DeploymentGroups []*string `locationName:"deploymentGroups" type:"list"`
-	NextToken        *string   `locationName:"nextToken" type:"string"`
+
+	// If the amount of information that is returned is significantly large, an
+	// identifier will also be returned, which can be used in a subsequent list
+	// deployment groups call to return the next set of deployment groups in the
+	// list.
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataListDeploymentGroupsOutput `json:"-", xml:"-"`
 }
@@ -1218,10 +1672,26 @@ type metadataListDeploymentGroupsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a list deployment instances operation.
 type ListDeploymentInstancesInput struct {
-	DeploymentID         *string   `locationName:"deploymentId" type:"string" required:"true"`
+	// The unique ID of a deployment.
+	DeploymentID *string `locationName:"deploymentId" type:"string" required:"true"`
+
+	// A subset of instances to list, by status:
+	//
+	//  Pending: Include in the resulting list those instances with pending deployments.
+	// InProgress: Include in the resulting list those instances with in-progress
+	// deployments. Succeeded: Include in the resulting list those instances with
+	// succeeded deployments. Failed: Include in the resulting list those instances
+	// with failed deployments. Skipped: Include in the resulting list those instances
+	// with skipped deployments. Unknown: Include in the resulting list those instances
+	// with deployments in an unknown state.
 	InstanceStatusFilter []*string `locationName:"instanceStatusFilter" type:"list"`
-	NextToken            *string   `locationName:"nextToken" type:"string"`
+
+	// An identifier that was returned from the previous list deployment instances
+	// call, which can be used to return the next set of deployment instances in
+	// the list.
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataListDeploymentInstancesInput `json:"-", xml:"-"`
 }
@@ -1230,9 +1700,16 @@ type metadataListDeploymentInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output of a list deployment instances operation.
 type ListDeploymentInstancesOutput struct {
+	// A list of instance IDs.
 	InstancesList []*string `locationName:"instancesList" type:"list"`
-	NextToken     *string   `locationName:"nextToken" type:"string"`
+
+	// If the amount of information that is returned is significantly large, an
+	// identifier will also be returned, which can be used in a subsequent list
+	// deployment instances call to return the next set of deployment instances
+	// in the list.
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataListDeploymentInstancesOutput `json:"-", xml:"-"`
 }
@@ -1241,12 +1718,29 @@ type metadataListDeploymentInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a list deployments operation.
 type ListDeploymentsInput struct {
-	ApplicationName     *string    `locationName:"applicationName" type:"string"`
-	CreateTimeRange     *TimeRange `locationName:"createTimeRange" type:"structure"`
-	DeploymentGroupName *string    `locationName:"deploymentGroupName" type:"string"`
-	IncludeOnlyStatuses []*string  `locationName:"includeOnlyStatuses" type:"list"`
-	NextToken           *string    `locationName:"nextToken" type:"string"`
+	// The name of an existing AWS CodeDeploy application within the AWS user account.
+	ApplicationName *string `locationName:"applicationName" type:"string"`
+
+	// A deployment creation start- and end-time range for returning a subset of
+	// the list of deployments.
+	CreateTimeRange *TimeRange `locationName:"createTimeRange" type:"structure"`
+
+	// The name of an existing deployment group for the specified application.
+	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string"`
+
+	// A subset of deployments to list, by status:  Created: Include in the resulting
+	// list created deployments. Queued: Include in the resulting list queued deployments.
+	// In Progress: Include in the resulting list in-progress deployments. Succeeded:
+	// Include in the resulting list succeeded deployments. Failed: Include in the
+	// resulting list failed deployments. Aborted: Include in the resulting list
+	// aborted deployments.
+	IncludeOnlyStatuses []*string `locationName:"includeOnlyStatuses" type:"list"`
+
+	// An identifier that was returned from the previous list deployments call,
+	// which can be used to return the next set of deployments in the list.
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataListDeploymentsInput `json:"-", xml:"-"`
 }
@@ -1255,9 +1749,15 @@ type metadataListDeploymentsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output of a list deployments operation.
 type ListDeploymentsOutput struct {
+	// A list of deployment IDs.
 	Deployments []*string `locationName:"deployments" type:"list"`
-	NextToken   *string   `locationName:"nextToken" type:"string"`
+
+	// If the amount of information that is returned is significantly large, an
+	// identifier will also be returned, which can be used in a subsequent list
+	// deployments call to return the next set of deployments in the list.
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataListDeploymentsOutput `json:"-", xml:"-"`
 }
@@ -1266,9 +1766,28 @@ type metadataListDeploymentsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Information about minimum healthy instances.
 type MinimumHealthyHosts struct {
-	Type  *string `locationName:"type" type:"string"`
-	Value *int64  `locationName:"value" type:"integer"`
+	// The minimum healthy instances type:
+	//
+	//  HOST_COUNT: The minimum number of healthy instances, as an absolute value.
+	// FLEET_PERCENT: The minimum number of healthy instances, as a percentage of
+	// the total number of instances in the deployment.  For example, for 9 Amazon
+	// EC2 instances, if a HOST_COUNT of 6 is specified, deploy to up to 3 instances
+	// at a time. The deployment succeeds if 6 or more instances are successfully
+	// deployed to; otherwise, the deployment fails. If a FLEET_PERCENT of 40 is
+	// specified, deploy to up to 5 instances at a time. The deployment succeeds
+	// if 4 or more instances are successfully deployed to; otherwise, the deployment
+	// fails.
+	//
+	// In a call to the get deployment configuration operation, CodeDeployDefault.OneAtATime
+	// will return a minimum healthy instances type of MOST_CONCURRENCY and a value
+	// of 1. This means a deployment to only one Amazon EC2 instance at a time.
+	// (You cannot set the type to MOST_CONCURRENCY, only to HOST_COUNT or FLEET_PERCENT.)
+	Type *string `locationName:"type" type:"string"`
+
+	// The minimum healthy instances value.
+	Value *int64 `locationName:"value" type:"integer"`
 
 	metadataMinimumHealthyHosts `json:"-", xml:"-"`
 }
@@ -1277,10 +1796,17 @@ type metadataMinimumHealthyHosts struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a register application revision operation.
 type RegisterApplicationRevisionInput struct {
-	ApplicationName *string           `locationName:"applicationName" type:"string" required:"true"`
-	Description     *string           `locationName:"description" type:"string"`
-	Revision        *RevisionLocation `locationName:"revision" type:"structure" required:"true"`
+	// The name of an existing AWS CodeDeploy application within the AWS user account.
+	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+
+	// A comment about the revision.
+	Description *string `locationName:"description" type:"string"`
+
+	// Information about the application revision to register, including the revision's
+	// type and its location.
+	Revision *RevisionLocation `locationName:"revision" type:"structure" required:"true"`
 
 	metadataRegisterApplicationRevisionInput `json:"-", xml:"-"`
 }
@@ -1297,10 +1823,21 @@ type metadataRegisterApplicationRevisionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Information about an application revision's location.
 type RevisionLocation struct {
+	// Information about the location of application artifacts that are stored in
+	// GitHub.
 	GitHubLocation *GitHubLocation `locationName:"gitHubLocation" type:"structure"`
-	RevisionType   *string         `locationName:"revisionType" type:"string"`
-	S3Location     *S3Location     `locationName:"s3Location" type:"structure"`
+
+	// The application revision's type:
+	//
+	//  S3: An application revision stored in Amazon S3. GitHub: An application
+	// revision stored in GitHub.
+	RevisionType *string `locationName:"revisionType" type:"string"`
+
+	// Information about the location of application artifacts that are stored in
+	// Amazon S3.
+	S3Location *S3Location `locationName:"s3Location" type:"structure"`
 
 	metadataRevisionLocation `json:"-", xml:"-"`
 }
@@ -1309,12 +1846,35 @@ type metadataRevisionLocation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Information about the location of application artifacts that are stored in
+// Amazon S3.
 type S3Location struct {
-	Bucket     *string `locationName:"bucket" type:"string"`
+	// The name of the Amazon S3 bucket where the application revision is stored.
+	Bucket *string `locationName:"bucket" type:"string"`
+
+	// The file type of the application revision. Must be one of the following:
+	//
+	//  tar: A tar archive file. tgz: A compressed tar archive file. zip: A zip
+	// archive file.
 	BundleType *string `locationName:"bundleType" type:"string"`
-	ETag       *string `locationName:"eTag" type:"string"`
-	Key        *string `locationName:"key" type:"string"`
-	Version    *string `locationName:"version" type:"string"`
+
+	// The ETag of the Amazon S3 object that represents the bundled artifacts for
+	// the application revision.
+	//
+	// If the ETag is not specified as an input parameter, ETag validation of the
+	// object will be skipped.
+	ETag *string `locationName:"eTag" type:"string"`
+
+	// The name of the Amazon S3 object that represents the bundled artifacts for
+	// the application revision.
+	Key *string `locationName:"key" type:"string"`
+
+	// A specific version of the Amazon S3 object that represents the bundled artifacts
+	// for the application revision.
+	//
+	// If the version is not specified, the system will use the most recent version
+	// by default.
+	Version *string `locationName:"version" type:"string"`
 
 	metadataS3Location `json:"-", xml:"-"`
 }
@@ -1323,7 +1883,9 @@ type metadataS3Location struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a stop deployment operation.
 type StopDeploymentInput struct {
+	// The unique ID of a deployment.
 	DeploymentID *string `locationName:"deploymentId" type:"string" required:"true"`
 
 	metadataStopDeploymentInput `json:"-", xml:"-"`
@@ -1333,8 +1895,14 @@ type metadataStopDeploymentInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output of a stop deployment operation.
 type StopDeploymentOutput struct {
-	Status        *string `locationName:"status" type:"string"`
+	// The status of the stop deployment operation:
+	//
+	//  Pending: The stop operation is pending. Succeeded: The stop operation succeeded.
+	Status *string `locationName:"status" type:"string"`
+
+	// An accompanying status message.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
 	metadataStopDeploymentOutput `json:"-", xml:"-"`
@@ -1344,8 +1912,16 @@ type metadataStopDeploymentOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Information about a time range.
 type TimeRange struct {
-	End   *time.Time `locationName:"end" type:"timestamp" timestampFormat:"unix"`
+	// The time range's end time.
+	//
+	// Specify null to leave the time range's end time open-ended.
+	End *time.Time `locationName:"end" type:"timestamp" timestampFormat:"unix"`
+
+	// The time range's start time.
+	//
+	// Specify null to leave the time range's start time open-ended.
 	Start *time.Time `locationName:"start" type:"timestamp" timestampFormat:"unix"`
 
 	metadataTimeRange `json:"-", xml:"-"`
@@ -1355,8 +1931,12 @@ type metadataTimeRange struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of an update application operation.
 type UpdateApplicationInput struct {
-	ApplicationName    *string `locationName:"applicationName" type:"string"`
+	// The current name of the application that you want to change.
+	ApplicationName *string `locationName:"applicationName" type:"string"`
+
+	// The new name that you want to change the application to.
 	NewApplicationName *string `locationName:"newApplicationName" type:"string"`
 
 	metadataUpdateApplicationInput `json:"-", xml:"-"`
@@ -1374,14 +1954,31 @@ type metadataUpdateApplicationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of an update deployment group operation.
 type UpdateDeploymentGroupInput struct {
-	ApplicationName            *string         `locationName:"applicationName" type:"string" required:"true"`
-	AutoScalingGroups          []*string       `locationName:"autoScalingGroups" type:"list"`
-	CurrentDeploymentGroupName *string         `locationName:"currentDeploymentGroupName" type:"string" required:"true"`
-	DeploymentConfigName       *string         `locationName:"deploymentConfigName" type:"string"`
-	EC2TagFilters              []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
-	NewDeploymentGroupName     *string         `locationName:"newDeploymentGroupName" type:"string"`
-	ServiceRoleARN             *string         `locationName:"serviceRoleArn" type:"string"`
+	// The application name corresponding to the deployment group to update.
+	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+
+	// The replacement list of Auto Scaling groups to be included in the deployment
+	// group, if you want to change them.
+	AutoScalingGroups []*string `locationName:"autoScalingGroups" type:"list"`
+
+	// The current name of the existing deployment group.
+	CurrentDeploymentGroupName *string `locationName:"currentDeploymentGroupName" type:"string" required:"true"`
+
+	// The replacement deployment configuration name to use, if you want to change
+	// it.
+	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string"`
+
+	// The replacement set of Amazon EC2 tags to filter on, if you want to change
+	// them.
+	EC2TagFilters []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
+
+	// The new name of the deployment group, if you want to change it.
+	NewDeploymentGroupName *string `locationName:"newDeploymentGroupName" type:"string"`
+
+	// A replacement service role's ARN, if you want to change it.
+	ServiceRoleARN *string `locationName:"serviceRoleArn" type:"string"`
 
 	metadataUpdateDeploymentGroupInput `json:"-", xml:"-"`
 }
@@ -1390,7 +1987,13 @@ type metadataUpdateDeploymentGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the output of an update deployment group operation.
 type UpdateDeploymentGroupOutput struct {
+	// If the output contains no data, and the corresponding deployment group contained
+	// at least one Auto Scaling group, AWS CodeDeploy successfully removed all
+	// corresponding Auto Scaling lifecycle event hooks from the AWS user account.
+	// If the output does contain data, AWS CodeDeploy could not remove some Auto
+	// Scaling lifecycle event hooks from the AWS user account.
 	HooksNotCleanedUp []*AutoScalingGroup `locationName:"hooksNotCleanedUp" type:"list"`
 
 	metadataUpdateDeploymentGroupOutput `json:"-", xml:"-"`

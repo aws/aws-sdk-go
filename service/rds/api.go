@@ -24,6 +24,7 @@ func (c *RDS) AddSourceIdentifierToSubscriptionRequest(input *AddSourceIdentifie
 	return
 }
 
+// Adds a source identifier to an existing RDS event notification subscription.
 func (c *RDS) AddSourceIdentifierToSubscription(input *AddSourceIdentifierToSubscriptionInput) (output *AddSourceIdentifierToSubscriptionOutput, err error) {
 	req, out := c.AddSourceIdentifierToSubscriptionRequest(input)
 	output = out
@@ -49,6 +50,12 @@ func (c *RDS) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *aws.
 	return
 }
 
+// Adds metadata tags to an Amazon RDS resource. These tags can also be used
+// with cost allocation reporting to track cost associated with Amazon RDS resources,
+// or used in Condition statement in IAM policy for Amazon RDS.
+//
+// For an overview on tagging Amazon RDS resources, see Tagging Amazon RDS
+// Resources (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Tagging.html).
 func (c *RDS) AddTagsToResource(input *AddTagsToResourceInput) (output *AddTagsToResourceOutput, err error) {
 	req, out := c.AddTagsToResourceRequest(input)
 	output = out
@@ -74,6 +81,7 @@ func (c *RDS) ApplyPendingMaintenanceActionRequest(input *ApplyPendingMaintenanc
 	return
 }
 
+// Applies a pending maintenance action to a resource.
 func (c *RDS) ApplyPendingMaintenanceAction(input *ApplyPendingMaintenanceActionInput) (output *ApplyPendingMaintenanceActionOutput, err error) {
 	req, out := c.ApplyPendingMaintenanceActionRequest(input)
 	output = out
@@ -99,6 +107,18 @@ func (c *RDS) AuthorizeDBSecurityGroupIngressRequest(input *AuthorizeDBSecurityG
 	return
 }
 
+// Enables ingress to a DBSecurityGroup using one of two forms of authorization.
+// First, EC2 or VPC security groups can be added to the DBSecurityGroup if
+// the application using the database is running on EC2 or VPC instances. Second,
+// IP ranges are available if the application accessing your database is running
+// on the Internet. Required parameters for this API are one of CIDR range,
+// EC2SecurityGroupId for VPC, or (EC2SecurityGroupOwnerId and either EC2SecurityGroupName
+// or EC2SecurityGroupId for non-VPC).
+//
+//  You cannot authorize ingress from an EC2 security group in one Region to
+// an Amazon RDS DB instance in another. You cannot authorize ingress from a
+// VPC security group in one VPC to an Amazon RDS DB instance in another.  For
+// an overview of CIDR ranges, go to the Wikipedia Tutorial (http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
 func (c *RDS) AuthorizeDBSecurityGroupIngress(input *AuthorizeDBSecurityGroupIngressInput) (output *AuthorizeDBSecurityGroupIngressOutput, err error) {
 	req, out := c.AuthorizeDBSecurityGroupIngressRequest(input)
 	output = out
@@ -124,6 +144,7 @@ func (c *RDS) CopyDBParameterGroupRequest(input *CopyDBParameterGroupInput) (req
 	return
 }
 
+// Copies the specified DB parameter group.
 func (c *RDS) CopyDBParameterGroup(input *CopyDBParameterGroupInput) (output *CopyDBParameterGroupOutput, err error) {
 	req, out := c.CopyDBParameterGroupRequest(input)
 	output = out
@@ -149,6 +170,8 @@ func (c *RDS) CopyDBSnapshotRequest(input *CopyDBSnapshotInput) (req *aws.Reques
 	return
 }
 
+// Copies the specified DBSnapshot. The source DBSnapshot must be in the "available"
+// state.
 func (c *RDS) CopyDBSnapshot(input *CopyDBSnapshotInput) (output *CopyDBSnapshotOutput, err error) {
 	req, out := c.CopyDBSnapshotRequest(input)
 	output = out
@@ -174,6 +197,7 @@ func (c *RDS) CopyOptionGroupRequest(input *CopyOptionGroupInput) (req *aws.Requ
 	return
 }
 
+// Copies the specified option group.
 func (c *RDS) CopyOptionGroup(input *CopyOptionGroupInput) (output *CopyOptionGroupOutput, err error) {
 	req, out := c.CopyOptionGroupRequest(input)
 	output = out
@@ -199,6 +223,7 @@ func (c *RDS) CreateDBInstanceRequest(input *CreateDBInstanceInput) (req *aws.Re
 	return
 }
 
+// Creates a new DB instance.
 func (c *RDS) CreateDBInstance(input *CreateDBInstanceInput) (output *CreateDBInstanceOutput, err error) {
 	req, out := c.CreateDBInstanceRequest(input)
 	output = out
@@ -224,6 +249,14 @@ func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadRepl
 	return
 }
 
+// Creates a DB instance that acts as a Read Replica of a source DB instance.
+//
+//  All Read Replica DB instances are created as Single-AZ deployments with
+// backups disabled. All other DB instance attributes (including DB security
+// groups and DB parameter groups) are inherited from the source DB instance,
+// except as specified below.
+//
+//   The source DB instance must have backup retention enabled.
 func (c *RDS) CreateDBInstanceReadReplica(input *CreateDBInstanceReadReplicaInput) (output *CreateDBInstanceReadReplicaOutput, err error) {
 	req, out := c.CreateDBInstanceReadReplicaRequest(input)
 	output = out
@@ -249,6 +282,27 @@ func (c *RDS) CreateDBParameterGroupRequest(input *CreateDBParameterGroupInput) 
 	return
 }
 
+// Creates a new DB parameter group.
+//
+//  A DB parameter group is initially created with the default parameters for
+// the database engine used by the DB instance. To provide custom values for
+// any of the parameters, you must modify the group after creating it using
+// ModifyDBParameterGroup. Once you've created a DB parameter group, you need
+// to associate it with your DB instance using ModifyDBInstance. When you associate
+// a new DB parameter group with a running DB instance, you need to reboot the
+// DB instance without failover for the new DB parameter group and associated
+// settings to take effect.
+//
+//  After you create a DB parameter group, you should wait at least 5 minutes
+// before creating your first DB instance that uses that DB parameter group
+// as the default parameter group. This allows Amazon RDS to fully complete
+// the create action before the parameter group is used as the default for a
+// new DB instance. This is especially important for parameters that are critical
+// when creating the default database for a DB instance, such as the character
+// set for the default database defined by the character_set_database parameter.
+// You can use the Parameter Groups option of the Amazon RDS console (https://console.aws.amazon.com/rds/)
+// or the DescribeDBParameters command to verify that your DB parameter group
+// has been created or modified.
 func (c *RDS) CreateDBParameterGroup(input *CreateDBParameterGroupInput) (output *CreateDBParameterGroupOutput, err error) {
 	req, out := c.CreateDBParameterGroupRequest(input)
 	output = out
@@ -274,6 +328,8 @@ func (c *RDS) CreateDBSecurityGroupRequest(input *CreateDBSecurityGroupInput) (r
 	return
 }
 
+// Creates a new DB security group. DB security groups control access to a DB
+// instance.
 func (c *RDS) CreateDBSecurityGroup(input *CreateDBSecurityGroupInput) (output *CreateDBSecurityGroupOutput, err error) {
 	req, out := c.CreateDBSecurityGroupRequest(input)
 	output = out
@@ -299,6 +355,7 @@ func (c *RDS) CreateDBSnapshotRequest(input *CreateDBSnapshotInput) (req *aws.Re
 	return
 }
 
+// Creates a DBSnapshot. The source DBInstance must be in "available" state.
 func (c *RDS) CreateDBSnapshot(input *CreateDBSnapshotInput) (output *CreateDBSnapshotOutput, err error) {
 	req, out := c.CreateDBSnapshotRequest(input)
 	output = out
@@ -324,6 +381,8 @@ func (c *RDS) CreateDBSubnetGroupRequest(input *CreateDBSubnetGroupInput) (req *
 	return
 }
 
+// Creates a new DB subnet group. DB subnet groups must contain at least one
+// subnet in at least two AZs in the region.
 func (c *RDS) CreateDBSubnetGroup(input *CreateDBSubnetGroupInput) (output *CreateDBSubnetGroupOutput, err error) {
 	req, out := c.CreateDBSubnetGroupRequest(input)
 	output = out
@@ -349,6 +408,25 @@ func (c *RDS) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput
 	return
 }
 
+// Creates an RDS event notification subscription. This action requires a topic
+// ARN (Amazon Resource Name) created by either the RDS console, the SNS console,
+// or the SNS API. To obtain an ARN with SNS, you must create a topic in Amazon
+// SNS and subscribe to the topic. The ARN is displayed in the SNS console.
+//
+// You can specify the type of source (SourceType) you want to be notified
+// of, provide a list of RDS sources (SourceIds) that triggers the events, and
+// provide a list of event categories (EventCategories) for events you want
+// to be notified of. For example, you can specify SourceType = db-instance,
+// SourceIds = mydbinstance1, mydbinstance2 and EventCategories = Availability,
+// Backup.
+//
+// If you specify both the SourceType and SourceIds, such as SourceType = db-instance
+// and SourceIdentifier = myDBInstance1, you will be notified of all the db-instance
+// events for the specified source. If you specify a SourceType but do not specify
+// a SourceIdentifier, you will receive notice of the events for that source
+// type for all your RDS sources. If you do not specify either the SourceType
+// nor the SourceIdentifier, you will be notified of events generated from all
+// RDS sources belonging to your customer account.
 func (c *RDS) CreateEventSubscription(input *CreateEventSubscriptionInput) (output *CreateEventSubscriptionOutput, err error) {
 	req, out := c.CreateEventSubscriptionRequest(input)
 	output = out
@@ -374,6 +452,7 @@ func (c *RDS) CreateOptionGroupRequest(input *CreateOptionGroupInput) (req *aws.
 	return
 }
 
+// Creates a new option group. You can create up to 20 option groups.
 func (c *RDS) CreateOptionGroup(input *CreateOptionGroupInput) (output *CreateOptionGroupOutput, err error) {
 	req, out := c.CreateOptionGroupRequest(input)
 	output = out
@@ -399,6 +478,16 @@ func (c *RDS) DeleteDBInstanceRequest(input *DeleteDBInstanceInput) (req *aws.Re
 	return
 }
 
+// The DeleteDBInstance action deletes a previously provisioned DB instance.
+// A successful response from the web service indicates the request was received
+// correctly. When you delete a DB instance, all automated backups for that
+// instance are deleted and cannot be recovered. Manual DB snapshots of the
+// DB instance to be deleted are not deleted.
+//
+//  If a final DB snapshot is requested the status of the RDS instance will
+// be "deleting" until the DB snapshot is created. The API action DescribeDBInstance
+// is used to monitor the status of this operation. The action cannot be canceled
+// or reverted once submitted.
 func (c *RDS) DeleteDBInstance(input *DeleteDBInstanceInput) (output *DeleteDBInstanceOutput, err error) {
 	req, out := c.DeleteDBInstanceRequest(input)
 	output = out
@@ -424,6 +513,10 @@ func (c *RDS) DeleteDBParameterGroupRequest(input *DeleteDBParameterGroupInput) 
 	return
 }
 
+// Deletes a specified DBParameterGroup. The DBParameterGroup to be deleted
+// cannot be associated with any DB instances.
+//
+//  The specified DB parameter group cannot be associated with any DB instances.
 func (c *RDS) DeleteDBParameterGroup(input *DeleteDBParameterGroupInput) (output *DeleteDBParameterGroupOutput, err error) {
 	req, out := c.DeleteDBParameterGroupRequest(input)
 	output = out
@@ -449,6 +542,9 @@ func (c *RDS) DeleteDBSecurityGroupRequest(input *DeleteDBSecurityGroupInput) (r
 	return
 }
 
+// Deletes a DB security group.
+//
+// The specified DB security group must not be associated with any DB instances.
 func (c *RDS) DeleteDBSecurityGroup(input *DeleteDBSecurityGroupInput) (output *DeleteDBSecurityGroupOutput, err error) {
 	req, out := c.DeleteDBSecurityGroupRequest(input)
 	output = out
@@ -474,6 +570,10 @@ func (c *RDS) DeleteDBSnapshotRequest(input *DeleteDBSnapshotInput) (req *aws.Re
 	return
 }
 
+// Deletes a DBSnapshot. If the snapshot is being copied, the copy operation
+// is terminated.
+//
+// The DBSnapshot must be in the available state to be deleted.
 func (c *RDS) DeleteDBSnapshot(input *DeleteDBSnapshotInput) (output *DeleteDBSnapshotOutput, err error) {
 	req, out := c.DeleteDBSnapshotRequest(input)
 	output = out
@@ -499,6 +599,9 @@ func (c *RDS) DeleteDBSubnetGroupRequest(input *DeleteDBSubnetGroupInput) (req *
 	return
 }
 
+// Deletes a DB subnet group.
+//
+// The specified database subnet group must not be associated with any DB instances.
 func (c *RDS) DeleteDBSubnetGroup(input *DeleteDBSubnetGroupInput) (output *DeleteDBSubnetGroupOutput, err error) {
 	req, out := c.DeleteDBSubnetGroupRequest(input)
 	output = out
@@ -524,6 +627,7 @@ func (c *RDS) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionInput
 	return
 }
 
+// Deletes an RDS event notification subscription.
 func (c *RDS) DeleteEventSubscription(input *DeleteEventSubscriptionInput) (output *DeleteEventSubscriptionOutput, err error) {
 	req, out := c.DeleteEventSubscriptionRequest(input)
 	output = out
@@ -549,6 +653,7 @@ func (c *RDS) DeleteOptionGroupRequest(input *DeleteOptionGroupInput) (req *aws.
 	return
 }
 
+// Deletes an existing option group.
 func (c *RDS) DeleteOptionGroup(input *DeleteOptionGroupInput) (output *DeleteOptionGroupOutput, err error) {
 	req, out := c.DeleteOptionGroupRequest(input)
 	output = out
@@ -574,6 +679,7 @@ func (c *RDS) DescribeDBEngineVersionsRequest(input *DescribeDBEngineVersionsInp
 	return
 }
 
+// Returns a list of the available DB engines.
 func (c *RDS) DescribeDBEngineVersions(input *DescribeDBEngineVersionsInput) (output *DescribeDBEngineVersionsOutput, err error) {
 	req, out := c.DescribeDBEngineVersionsRequest(input)
 	output = out
@@ -599,6 +705,7 @@ func (c *RDS) DescribeDBInstancesRequest(input *DescribeDBInstancesInput) (req *
 	return
 }
 
+// Returns information about provisioned RDS instances. This API supports pagination.
 func (c *RDS) DescribeDBInstances(input *DescribeDBInstancesInput) (output *DescribeDBInstancesOutput, err error) {
 	req, out := c.DescribeDBInstancesRequest(input)
 	output = out
@@ -624,6 +731,7 @@ func (c *RDS) DescribeDBLogFilesRequest(input *DescribeDBLogFilesInput) (req *aw
 	return
 }
 
+// Returns a list of DB log files for the DB instance.
 func (c *RDS) DescribeDBLogFiles(input *DescribeDBLogFilesInput) (output *DescribeDBLogFilesOutput, err error) {
 	req, out := c.DescribeDBLogFilesRequest(input)
 	output = out
@@ -649,6 +757,9 @@ func (c *RDS) DescribeDBParameterGroupsRequest(input *DescribeDBParameterGroupsI
 	return
 }
 
+// Returns a list of DBParameterGroup descriptions. If a DBParameterGroupName
+// is specified, the list will contain only the description of the specified
+// DB parameter group.
 func (c *RDS) DescribeDBParameterGroups(input *DescribeDBParameterGroupsInput) (output *DescribeDBParameterGroupsOutput, err error) {
 	req, out := c.DescribeDBParameterGroupsRequest(input)
 	output = out
@@ -674,6 +785,7 @@ func (c *RDS) DescribeDBParametersRequest(input *DescribeDBParametersInput) (req
 	return
 }
 
+// Returns the detailed parameter list for a particular DB parameter group.
 func (c *RDS) DescribeDBParameters(input *DescribeDBParametersInput) (output *DescribeDBParametersOutput, err error) {
 	req, out := c.DescribeDBParametersRequest(input)
 	output = out
@@ -699,6 +811,9 @@ func (c *RDS) DescribeDBSecurityGroupsRequest(input *DescribeDBSecurityGroupsInp
 	return
 }
 
+// Returns a list of DBSecurityGroup descriptions. If a DBSecurityGroupName
+// is specified, the list will contain only the descriptions of the specified
+// DB security group.
 func (c *RDS) DescribeDBSecurityGroups(input *DescribeDBSecurityGroupsInput) (output *DescribeDBSecurityGroupsOutput, err error) {
 	req, out := c.DescribeDBSecurityGroupsRequest(input)
 	output = out
@@ -724,6 +839,7 @@ func (c *RDS) DescribeDBSnapshotsRequest(input *DescribeDBSnapshotsInput) (req *
 	return
 }
 
+// Returns information about DB snapshots. This API supports pagination.
 func (c *RDS) DescribeDBSnapshots(input *DescribeDBSnapshotsInput) (output *DescribeDBSnapshotsOutput, err error) {
 	req, out := c.DescribeDBSnapshotsRequest(input)
 	output = out
@@ -749,6 +865,10 @@ func (c *RDS) DescribeDBSubnetGroupsRequest(input *DescribeDBSubnetGroupsInput) 
 	return
 }
 
+// Returns a list of DBSubnetGroup descriptions. If a DBSubnetGroupName is specified,
+// the list will contain only the descriptions of the specified DBSubnetGroup.
+//
+// For an overview of CIDR ranges, go to the Wikipedia Tutorial (http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
 func (c *RDS) DescribeDBSubnetGroups(input *DescribeDBSubnetGroupsInput) (output *DescribeDBSubnetGroupsOutput, err error) {
 	req, out := c.DescribeDBSubnetGroupsRequest(input)
 	output = out
@@ -774,6 +894,8 @@ func (c *RDS) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaul
 	return
 }
 
+// Returns the default engine and system parameter information for the specified
+// database engine.
 func (c *RDS) DescribeEngineDefaultParameters(input *DescribeEngineDefaultParametersInput) (output *DescribeEngineDefaultParametersOutput, err error) {
 	req, out := c.DescribeEngineDefaultParametersRequest(input)
 	output = out
@@ -799,6 +921,10 @@ func (c *RDS) DescribeEventCategoriesRequest(input *DescribeEventCategoriesInput
 	return
 }
 
+// Displays a list of categories for all event source types, or, if specified,
+// for a specified source type. You can see a list of the event categories and
+// source types in the  Events (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.html)
+// topic in the Amazon RDS User Guide.
 func (c *RDS) DescribeEventCategories(input *DescribeEventCategoriesInput) (output *DescribeEventCategoriesOutput, err error) {
 	req, out := c.DescribeEventCategoriesRequest(input)
 	output = out
@@ -824,6 +950,11 @@ func (c *RDS) DescribeEventSubscriptionsRequest(input *DescribeEventSubscription
 	return
 }
 
+// Lists all the subscription descriptions for a customer account. The description
+// for a subscription includes SubscriptionName, SNSTopicARN, CustomerID, SourceType,
+// SourceID, CreationTime, and Status.
+//
+// If you specify a SubscriptionName, lists the description for that subscription.
 func (c *RDS) DescribeEventSubscriptions(input *DescribeEventSubscriptionsInput) (output *DescribeEventSubscriptionsOutput, err error) {
 	req, out := c.DescribeEventSubscriptionsRequest(input)
 	output = out
@@ -849,6 +980,11 @@ func (c *RDS) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Reques
 	return
 }
 
+// Returns events related to DB instances, DB security groups, DB snapshots,
+// and DB parameter groups for the past 14 days. Events specific to a particular
+// DB instance, DB security group, database snapshot, or DB parameter group
+// can be obtained by providing the name as a parameter. By default, the past
+// hour of events are returned.
 func (c *RDS) DescribeEvents(input *DescribeEventsInput) (output *DescribeEventsOutput, err error) {
 	req, out := c.DescribeEventsRequest(input)
 	output = out
@@ -874,6 +1010,7 @@ func (c *RDS) DescribeOptionGroupOptionsRequest(input *DescribeOptionGroupOption
 	return
 }
 
+// Describes all available options.
 func (c *RDS) DescribeOptionGroupOptions(input *DescribeOptionGroupOptionsInput) (output *DescribeOptionGroupOptionsOutput, err error) {
 	req, out := c.DescribeOptionGroupOptionsRequest(input)
 	output = out
@@ -899,6 +1036,7 @@ func (c *RDS) DescribeOptionGroupsRequest(input *DescribeOptionGroupsInput) (req
 	return
 }
 
+// Describes the available option groups.
 func (c *RDS) DescribeOptionGroups(input *DescribeOptionGroupsInput) (output *DescribeOptionGroupsOutput, err error) {
 	req, out := c.DescribeOptionGroupsRequest(input)
 	output = out
@@ -924,6 +1062,7 @@ func (c *RDS) DescribeOrderableDBInstanceOptionsRequest(input *DescribeOrderable
 	return
 }
 
+// Returns a list of orderable DB instance options for the specified engine.
 func (c *RDS) DescribeOrderableDBInstanceOptions(input *DescribeOrderableDBInstanceOptionsInput) (output *DescribeOrderableDBInstanceOptionsOutput, err error) {
 	req, out := c.DescribeOrderableDBInstanceOptionsRequest(input)
 	output = out
@@ -949,6 +1088,8 @@ func (c *RDS) DescribePendingMaintenanceActionsRequest(input *DescribePendingMai
 	return
 }
 
+// Returns a list of resources (for example, DB Instances) that have at least
+// one pending maintenance action.
 func (c *RDS) DescribePendingMaintenanceActions(input *DescribePendingMaintenanceActionsInput) (output *DescribePendingMaintenanceActionsOutput, err error) {
 	req, out := c.DescribePendingMaintenanceActionsRequest(input)
 	output = out
@@ -974,6 +1115,8 @@ func (c *RDS) DescribeReservedDBInstancesRequest(input *DescribeReservedDBInstan
 	return
 }
 
+// Returns information about reserved DB instances for this account, or about
+// a specified reserved DB instance.
 func (c *RDS) DescribeReservedDBInstances(input *DescribeReservedDBInstancesInput) (output *DescribeReservedDBInstancesOutput, err error) {
 	req, out := c.DescribeReservedDBInstancesRequest(input)
 	output = out
@@ -999,6 +1142,7 @@ func (c *RDS) DescribeReservedDBInstancesOfferingsRequest(input *DescribeReserve
 	return
 }
 
+// Lists available reserved DB instance offerings.
 func (c *RDS) DescribeReservedDBInstancesOfferings(input *DescribeReservedDBInstancesOfferingsInput) (output *DescribeReservedDBInstancesOfferingsOutput, err error) {
 	req, out := c.DescribeReservedDBInstancesOfferingsRequest(input)
 	output = out
@@ -1024,6 +1168,7 @@ func (c *RDS) DownloadDBLogFilePortionRequest(input *DownloadDBLogFilePortionInp
 	return
 }
 
+// Downloads all or a portion of the specified log file.
 func (c *RDS) DownloadDBLogFilePortion(input *DownloadDBLogFilePortionInput) (output *DownloadDBLogFilePortionOutput, err error) {
 	req, out := c.DownloadDBLogFilePortionRequest(input)
 	output = out
@@ -1049,6 +1194,10 @@ func (c *RDS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 	return
 }
 
+// Lists all tags on an Amazon RDS resource.
+//
+// For an overview on tagging an Amazon RDS resource, see Tagging Amazon RDS
+// Resources (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Tagging.html).
 func (c *RDS) ListTagsForResource(input *ListTagsForResourceInput) (output *ListTagsForResourceOutput, err error) {
 	req, out := c.ListTagsForResourceRequest(input)
 	output = out
@@ -1074,6 +1223,8 @@ func (c *RDS) ModifyDBInstanceRequest(input *ModifyDBInstanceInput) (req *aws.Re
 	return
 }
 
+// Modify settings for a DB instance. You can change one or more database configuration
+// parameters by specifying these parameters and the new values in the request.
 func (c *RDS) ModifyDBInstance(input *ModifyDBInstanceInput) (output *ModifyDBInstanceOutput, err error) {
 	req, out := c.ModifyDBInstanceRequest(input)
 	output = out
@@ -1099,6 +1250,24 @@ func (c *RDS) ModifyDBParameterGroupRequest(input *ModifyDBParameterGroupInput) 
 	return
 }
 
+// Modifies the parameters of a DB parameter group. To modify more than one
+// parameter, submit a list of the following: ParameterName, ParameterValue,
+// and ApplyMethod. A maximum of 20 parameters can be modified in a single request.
+//
+//   Changes to dynamic parameters are applied immediately. Changes to static
+// parameters require a reboot without failover to the DB instance associated
+// with the parameter group before the change can take effect.
+//
+//   After you modify a DB parameter group, you should wait at least 5 minutes
+// before creating your first DB instance that uses that DB parameter group
+// as the default parameter group. This allows Amazon RDS to fully complete
+// the modify action before the parameter group is used as the default for a
+// new DB instance. This is especially important for parameters that are critical
+// when creating the default database for a DB instance, such as the character
+// set for the default database defined by the character_set_database parameter.
+// You can use the Parameter Groups option of the Amazon RDS console (https://console.aws.amazon.com/rds/)
+// or the DescribeDBParameters command to verify that your DB parameter group
+// has been created or modified.
 func (c *RDS) ModifyDBParameterGroup(input *ModifyDBParameterGroupInput) (output *DBParameterGroupNameMessage, err error) {
 	req, out := c.ModifyDBParameterGroupRequest(input)
 	output = out
@@ -1124,6 +1293,8 @@ func (c *RDS) ModifyDBSubnetGroupRequest(input *ModifyDBSubnetGroupInput) (req *
 	return
 }
 
+// Modifies an existing DB subnet group. DB subnet groups must contain at least
+// one subnet in at least two AZs in the region.
 func (c *RDS) ModifyDBSubnetGroup(input *ModifyDBSubnetGroupInput) (output *ModifyDBSubnetGroupOutput, err error) {
 	req, out := c.ModifyDBSubnetGroupRequest(input)
 	output = out
@@ -1149,6 +1320,15 @@ func (c *RDS) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionInput
 	return
 }
 
+// Modifies an existing RDS event notification subscription. Note that you cannot
+// modify the source identifiers using this call; to change source identifiers
+// for a subscription, use the AddSourceIdentifierToSubscription and RemoveSourceIdentifierFromSubscription
+// calls.
+//
+// You can see a list of the event categories for a given SourceType in the
+// Events (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.html)
+// topic in the Amazon RDS User Guide or by using the DescribeEventCategories
+// action.
 func (c *RDS) ModifyEventSubscription(input *ModifyEventSubscriptionInput) (output *ModifyEventSubscriptionOutput, err error) {
 	req, out := c.ModifyEventSubscriptionRequest(input)
 	output = out
@@ -1174,6 +1354,7 @@ func (c *RDS) ModifyOptionGroupRequest(input *ModifyOptionGroupInput) (req *aws.
 	return
 }
 
+// Modifies an existing option group.
 func (c *RDS) ModifyOptionGroup(input *ModifyOptionGroupInput) (output *ModifyOptionGroupOutput, err error) {
 	req, out := c.ModifyOptionGroupRequest(input)
 	output = out
@@ -1199,6 +1380,12 @@ func (c *RDS) PromoteReadReplicaRequest(input *PromoteReadReplicaInput) (req *aw
 	return
 }
 
+// Promotes a Read Replica DB instance to a standalone DB instance.
+//
+// We recommend that you enable automated backups on your Read Replica before
+// promoting the Read Replica. This ensures that no backup is taken during the
+// promotion process. Once the instance is promoted to a primary instance, backups
+// are taken based on your backup settings.
 func (c *RDS) PromoteReadReplica(input *PromoteReadReplicaInput) (output *PromoteReadReplicaOutput, err error) {
 	req, out := c.PromoteReadReplicaRequest(input)
 	output = out
@@ -1224,6 +1411,7 @@ func (c *RDS) PurchaseReservedDBInstancesOfferingRequest(input *PurchaseReserved
 	return
 }
 
+// Purchases a reserved DB instance offering.
 func (c *RDS) PurchaseReservedDBInstancesOffering(input *PurchaseReservedDBInstancesOfferingInput) (output *PurchaseReservedDBInstancesOfferingOutput, err error) {
 	req, out := c.PurchaseReservedDBInstancesOfferingRequest(input)
 	output = out
@@ -1249,6 +1437,23 @@ func (c *RDS) RebootDBInstanceRequest(input *RebootDBInstanceInput) (req *aws.Re
 	return
 }
 
+// Rebooting a DB instance restarts the database engine service. A reboot also
+// applies to the DB instance any modifications to the associated DB parameter
+// group that were pending. Rebooting a DB instance results in a momentary outage
+// of the instance, during which the DB instance status is set to rebooting.
+// If the RDS instance is configured for MultiAZ, it is possible that the reboot
+// will be conducted through a failover. An Amazon RDS event is created when
+// the reboot is completed.
+//
+//  If your DB instance is deployed in multiple Availability Zones, you can
+// force a failover from one AZ to the other during the reboot. You might force
+// a failover to test the availability of your DB instance deployment or to
+// restore operations to the original AZ after a failover occurs.
+//
+//  The time required to reboot is a function of the specific database engine's
+// crash recovery process. To improve the reboot time, we recommend that you
+// reduce database activities as much as possible during the reboot process
+// to reduce rollback activity for in-transit transactions.
 func (c *RDS) RebootDBInstance(input *RebootDBInstanceInput) (output *RebootDBInstanceOutput, err error) {
 	req, out := c.RebootDBInstanceRequest(input)
 	output = out
@@ -1274,6 +1479,7 @@ func (c *RDS) RemoveSourceIdentifierFromSubscriptionRequest(input *RemoveSourceI
 	return
 }
 
+// Removes a source identifier from an existing RDS event notification subscription.
 func (c *RDS) RemoveSourceIdentifierFromSubscription(input *RemoveSourceIdentifierFromSubscriptionInput) (output *RemoveSourceIdentifierFromSubscriptionOutput, err error) {
 	req, out := c.RemoveSourceIdentifierFromSubscriptionRequest(input)
 	output = out
@@ -1299,6 +1505,10 @@ func (c *RDS) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) 
 	return
 }
 
+// Removes metadata tags from an Amazon RDS resource.
+//
+// For an overview on tagging an Amazon RDS resource, see Tagging Amazon RDS
+// Resources (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Tagging.html).
 func (c *RDS) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (output *RemoveTagsFromResourceOutput, err error) {
 	req, out := c.RemoveTagsFromResourceRequest(input)
 	output = out
@@ -1324,6 +1534,13 @@ func (c *RDS) ResetDBParameterGroupRequest(input *ResetDBParameterGroupInput) (r
 	return
 }
 
+// Modifies the parameters of a DB parameter group to the engine/system default
+// value. To reset specific parameters submit a list of the following: ParameterName
+// and ApplyMethod. To reset the entire DB parameter group, specify the DBParameterGroup
+// name and ResetAllParameters parameters. When resetting the entire group,
+// dynamic parameters are updated immediately and static parameters are set
+// to pending-reboot to take effect on the next DB instance restart or RebootDBInstance
+// request.
 func (c *RDS) ResetDBParameterGroup(input *ResetDBParameterGroupInput) (output *DBParameterGroupNameMessage, err error) {
 	req, out := c.ResetDBParameterGroupRequest(input)
 	output = out
@@ -1349,6 +1566,19 @@ func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFro
 	return
 }
 
+// Creates a new DB instance from a DB snapshot. The target database is created
+// from the source database restore point with the same configuration as the
+// original source database, except that the new RDS instance is created with
+// the default security group.
+//
+// If your intent is to replace your original DB instance with the new, restored
+// DB instance, then rename your original DB instance before you call the RestoreDBInstanceFromDBSnapshot
+// action. RDS does not allow two DB instances with the same name. Once you
+// have renamed your original DB instance with a different identifier, then
+// you can pass the original name of the DB instance as the DBInstanceIdentifier
+// in the call to the RestoreDBInstanceFromDBSnapshot action. The result is
+// that you will replace the original DB instance with the DB instance created
+// from the snapshot.
 func (c *RDS) RestoreDBInstanceFromDBSnapshot(input *RestoreDBInstanceFromDBSnapshotInput) (output *RestoreDBInstanceFromDBSnapshotOutput, err error) {
 	req, out := c.RestoreDBInstanceFromDBSnapshotRequest(input)
 	output = out
@@ -1374,6 +1604,11 @@ func (c *RDS) RestoreDBInstanceToPointInTimeRequest(input *RestoreDBInstanceToPo
 	return
 }
 
+// Restores a DB instance to an arbitrary point-in-time. Users can restore to
+// any point in time before the LatestRestorableTime for up to BackupRetentionPeriod
+// days. The target database is created from the source database with the same
+// configuration as the original database except that the DB instance is created
+// with the default DB security group.
 func (c *RDS) RestoreDBInstanceToPointInTime(input *RestoreDBInstanceToPointInTimeInput) (output *RestoreDBInstanceToPointInTimeOutput, err error) {
 	req, out := c.RestoreDBInstanceToPointInTimeRequest(input)
 	output = out
@@ -1399,6 +1634,10 @@ func (c *RDS) RevokeDBSecurityGroupIngressRequest(input *RevokeDBSecurityGroupIn
 	return
 }
 
+// Revokes ingress from a DBSecurityGroup for previously authorized IP ranges
+// or EC2 or VPC Security Groups. Required parameters for this API are one of
+// CIDRIP, EC2SecurityGroupId for VPC, or (EC2SecurityGroupOwnerId and either
+// EC2SecurityGroupName or EC2SecurityGroupId).
 func (c *RDS) RevokeDBSecurityGroupIngress(input *RevokeDBSecurityGroupIngressInput) (output *RevokeDBSecurityGroupIngressOutput, err error) {
 	req, out := c.RevokeDBSecurityGroupIngressRequest(input)
 	output = out
@@ -1409,7 +1648,21 @@ func (c *RDS) RevokeDBSecurityGroupIngress(input *RevokeDBSecurityGroupIngressIn
 var opRevokeDBSecurityGroupIngress *aws.Operation
 
 type AddSourceIdentifierToSubscriptionInput struct {
+	// The identifier of the event source to be added. An identifier must begin
+	// with a letter and must contain only ASCII letters, digits, and hyphens; it
+	// cannot end with a hyphen or contain two consecutive hyphens.
+	//
+	// Constraints:
+	//
+	//  If the source type is a DB instance, then a DBInstanceIdentifier must be
+	// supplied. If the source type is a DB security group, a DBSecurityGroupName
+	// must be supplied. If the source type is a DB parameter group, a DBParameterGroupName
+	// must be supplied. If the source type is a DB snapshot, a DBSnapshotIdentifier
+	// must be supplied.
 	SourceIdentifier *string `type:"string" required:"true"`
+
+	// The name of the RDS event notification subscription you want to add a source
+	// identifier to.
 	SubscriptionName *string `type:"string" required:"true"`
 
 	metadataAddSourceIdentifierToSubscriptionInput `json:"-", xml:"-"`
@@ -1420,6 +1673,8 @@ type metadataAddSourceIdentifierToSubscriptionInput struct {
 }
 
 type AddSourceIdentifierToSubscriptionOutput struct {
+	// Contains the results of a successful invocation of the DescribeEventSubscriptions
+	// action.
 	EventSubscription *EventSubscription `type:"structure"`
 
 	metadataAddSourceIdentifierToSubscriptionOutput `json:"-", xml:"-"`
@@ -1430,8 +1685,13 @@ type metadataAddSourceIdentifierToSubscriptionOutput struct {
 }
 
 type AddTagsToResourceInput struct {
+	// The Amazon RDS resource the tags will be added to. This value is an Amazon
+	// Resource Name (ARN). For information about creating an ARN, see  Constructing
+	// an RDS Amazon Resource Name (ARN) (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html#USER_Tagging.ARN).
 	ResourceName *string `type:"string" required:"true"`
-	Tags         []*Tag  `locationNameList:"Tag" type:"list" required:"true"`
+
+	// The tags to be assigned to the Amazon RDS resource.
+	Tags []*Tag `locationNameList:"Tag" type:"list" required:"true"`
 
 	metadataAddTagsToResourceInput `json:"-", xml:"-"`
 }
@@ -1449,8 +1709,21 @@ type metadataAddTagsToResourceOutput struct {
 }
 
 type ApplyPendingMaintenanceActionInput struct {
-	ApplyAction        *string `type:"string" required:"true"`
-	OptInType          *string `type:"string" required:"true"`
+	// The pending maintenance action to apply to this resource.
+	ApplyAction *string `type:"string" required:"true"`
+
+	// Specify an opt-in request, or undo an opt-in request. An opt-in request of
+	// type immediate cannot be undone.
+	//
+	// Valid values:
+	//
+	//   immediate - Apply the maintenance action immediately.  next-maintenance
+	// - Apply the maintenance action during the next maintenance window for the
+	// resource.  undo-opt-in - Cancel any existing next-maintenance opt-in requests.
+	OptInType *string `type:"string" required:"true"`
+
+	// The ARN of the resource (for example, a DB Instance) that the pending maintenance
+	// action applies to.
 	ResourceIdentifier *string `type:"string" required:"true"`
 
 	metadataApplyPendingMaintenanceActionInput `json:"-", xml:"-"`
@@ -1461,6 +1734,7 @@ type metadataApplyPendingMaintenanceActionInput struct {
 }
 
 type ApplyPendingMaintenanceActionOutput struct {
+	// Describes the pending maintenance actions for a resource.
 	ResourcePendingMaintenanceActions *ResourcePendingMaintenanceActions `type:"structure"`
 
 	metadataApplyPendingMaintenanceActionOutput `json:"-", xml:"-"`
@@ -1471,10 +1745,27 @@ type metadataApplyPendingMaintenanceActionOutput struct {
 }
 
 type AuthorizeDBSecurityGroupIngressInput struct {
-	CIDRIP                  *string `type:"string"`
-	DBSecurityGroupName     *string `type:"string" required:"true"`
-	EC2SecurityGroupID      *string `locationName:"EC2SecurityGroupId" type:"string"`
-	EC2SecurityGroupName    *string `type:"string"`
+	// The IP range to authorize.
+	CIDRIP *string `type:"string"`
+
+	// The name of the DB security group to add authorization to.
+	DBSecurityGroupName *string `type:"string" required:"true"`
+
+	// Id of the EC2 security group to authorize. For VPC DB security groups, EC2SecurityGroupId
+	// must be provided. Otherwise, EC2SecurityGroupOwnerId and either EC2SecurityGroupName
+	// or EC2SecurityGroupId must be provided.
+	EC2SecurityGroupID *string `locationName:"EC2SecurityGroupId" type:"string"`
+
+	// Name of the EC2 security group to authorize. For VPC DB security groups,
+	// EC2SecurityGroupId must be provided. Otherwise, EC2SecurityGroupOwnerId and
+	// either EC2SecurityGroupName or EC2SecurityGroupId must be provided.
+	EC2SecurityGroupName *string `type:"string"`
+
+	// AWS Account Number of the owner of the EC2 security group specified in the
+	// EC2SecurityGroupName parameter. The AWS Access Key ID is not an acceptable
+	// value. For VPC DB security groups, EC2SecurityGroupId must be provided. Otherwise,
+	// EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId
+	// must be provided.
 	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
 
 	metadataAuthorizeDBSecurityGroupIngressInput `json:"-", xml:"-"`
@@ -1485,6 +1776,11 @@ type metadataAuthorizeDBSecurityGroupIngressInput struct {
 }
 
 type AuthorizeDBSecurityGroupIngressOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//  DescribeDBSecurityGroups AuthorizeDBSecurityGroupIngress CreateDBSecurityGroup
+	// RevokeDBSecurityGroupIngress  This data type is used as a response element
+	// in the DescribeDBSecurityGroups action.
 	DBSecurityGroup *DBSecurityGroup `type:"structure"`
 
 	metadataAuthorizeDBSecurityGroupIngressOutput `json:"-", xml:"-"`
@@ -1494,7 +1790,11 @@ type metadataAuthorizeDBSecurityGroupIngressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains Availability Zone information.
+//
+//  This data type is used as an element in the following data type:  OrderableDBInstanceOption
 type AvailabilityZone struct {
+	// The name of the availability zone.
 	Name *string `type:"string"`
 
 	metadataAvailabilityZone `json:"-", xml:"-"`
@@ -1504,9 +1804,13 @@ type metadataAvailabilityZone struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This data type is used as a response element in the action DescribeDBEngineVersions.
 type CharacterSet struct {
+	// The description of the character set.
 	CharacterSetDescription *string `type:"string"`
-	CharacterSetName        *string `type:"string"`
+
+	// The name of the character set.
+	CharacterSetName *string `type:"string"`
 
 	metadataCharacterSet `json:"-", xml:"-"`
 }
@@ -1516,10 +1820,31 @@ type metadataCharacterSet struct {
 }
 
 type CopyDBParameterGroupInput struct {
-	SourceDBParameterGroupIdentifier  *string `type:"string" required:"true"`
-	Tags                              []*Tag  `locationNameList:"Tag" type:"list"`
+	// The identifier or ARN for the source DB parameter group.
+	//
+	// Constraints:
+	//
+	//  Must specify a valid DB parameter group. If the source DB parameter group
+	// is in the same region as the copy, specify a valid DB parameter group identifier,
+	// for example my-db-param-group, or a valid ARN. If the source DB parameter
+	// group is in a different region than the copy, specify a valid DB parameter
+	// group ARN, for example arn:aws:rds:us-west-2:123456789012:pg:special-parameters.
+	SourceDBParameterGroupIdentifier *string `type:"string" required:"true"`
+
+	// A list of tags.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
+	// A description for the copied DB parameter group.
 	TargetDBParameterGroupDescription *string `type:"string" required:"true"`
-	TargetDBParameterGroupIdentifier  *string `type:"string" required:"true"`
+
+	// The identifier for the copied DB parameter group.
+	//
+	// Constraints:
+	//
+	//  Cannot be null, empty, or blank Must contain from 1 to 255 alphanumeric
+	// characters or hyphens First character must be a letter Cannot end with a
+	// hyphen or contain two consecutive hyphens  Example: my-db-parameter-group
+	TargetDBParameterGroupIdentifier *string `type:"string" required:"true"`
 
 	metadataCopyDBParameterGroupInput `json:"-", xml:"-"`
 }
@@ -1529,6 +1854,11 @@ type metadataCopyDBParameterGroupInput struct {
 }
 
 type CopyDBParameterGroupOutput struct {
+	// Contains the result of a successful invocation of the CreateDBParameterGroup
+	// action.
+	//
+	// This data type is used as a request parameter in the DeleteDBParameterGroup
+	// action, and as a response element in the DescribeDBParameterGroups action.
 	DBParameterGroup *DBParameterGroup `type:"structure"`
 
 	metadataCopyDBParameterGroupOutput `json:"-", xml:"-"`
@@ -1539,8 +1869,30 @@ type metadataCopyDBParameterGroupOutput struct {
 }
 
 type CopyDBSnapshotInput struct {
+	// The identifier for the source DB snapshot.
+	//
+	// Constraints:
+	//
+	//  Must specify a valid system snapshot in the "available" state. If the source
+	// snapshot is in the same region as the copy, specify a valid DB snapshot identifier.
+	// If the source snapshot is in a different region than the copy, specify a
+	// valid DB snapshot ARN. For more information, go to  Copying a DB Snapshot
+	// (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CopySnapshot.html).
+	//  Example: rds:mydb-2012-04-02-00-01
+	//
+	// Example: arn:aws:rds:rr-regn-1:123456789012:snapshot:mysql-instance1-snapshot-20130805
 	SourceDBSnapshotIdentifier *string `type:"string" required:"true"`
-	Tags                       []*Tag  `locationNameList:"Tag" type:"list"`
+
+	// A list of tags.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
+	// The identifier for the copied snapshot.
+	//
+	// Constraints:
+	//
+	//  Cannot be null, empty, or blank Must contain from 1 to 255 alphanumeric
+	// characters or hyphens First character must be a letter Cannot end with a
+	// hyphen or contain two consecutive hyphens  Example: my-db-snapshot
 	TargetDBSnapshotIdentifier *string `type:"string" required:"true"`
 
 	metadataCopyDBSnapshotInput `json:"-", xml:"-"`
@@ -1551,6 +1903,10 @@ type metadataCopyDBSnapshotInput struct {
 }
 
 type CopyDBSnapshotOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//  CreateDBSnapshot DeleteDBSnapshot  This data type is used as a response
+	// element in the DescribeDBSnapshots action.
 	DBSnapshot *DBSnapshot `type:"structure"`
 
 	metadataCopyDBSnapshotOutput `json:"-", xml:"-"`
@@ -1561,10 +1917,30 @@ type metadataCopyDBSnapshotOutput struct {
 }
 
 type CopyOptionGroupInput struct {
-	SourceOptionGroupIdentifier  *string `type:"string" required:"true"`
-	Tags                         []*Tag  `locationNameList:"Tag" type:"list"`
+	// The identifier or ARN for the source option group.
+	//
+	// Constraints:
+	//
+	//  Must specify a valid option group. If the source option group is in the
+	// same region as the copy, specify a valid option group identifier, for example
+	// my-option-group, or a valid ARN. If the source option group is in a different
+	// region than the copy, specify a valid option group ARN, for example arn:aws:rds:us-west-2:123456789012:og:special-options.
+	SourceOptionGroupIdentifier *string `type:"string" required:"true"`
+
+	// A list of tags.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
+	// The description for the copied option group.
 	TargetOptionGroupDescription *string `type:"string" required:"true"`
-	TargetOptionGroupIdentifier  *string `type:"string" required:"true"`
+
+	// The identifier for the copied option group.
+	//
+	// Constraints:
+	//
+	//  Cannot be null, empty, or blank Must contain from 1 to 255 alphanumeric
+	// characters or hyphens First character must be a letter Cannot end with a
+	// hyphen or contain two consecutive hyphens  Example: my-option-group
+	TargetOptionGroupIdentifier *string `type:"string" required:"true"`
 
 	metadataCopyOptionGroupInput `json:"-", xml:"-"`
 }
@@ -1584,36 +1960,364 @@ type metadataCopyOptionGroupOutput struct {
 }
 
 type CreateDBInstanceInput struct {
-	AllocatedStorage           *int64    `type:"integer" required:"true"`
-	AutoMinorVersionUpgrade    *bool     `type:"boolean"`
-	AvailabilityZone           *string   `type:"string"`
-	BackupRetentionPeriod      *int64    `type:"integer"`
-	CharacterSetName           *string   `type:"string"`
-	DBInstanceClass            *string   `type:"string" required:"true"`
-	DBInstanceIdentifier       *string   `type:"string" required:"true"`
-	DBName                     *string   `type:"string"`
-	DBParameterGroupName       *string   `type:"string"`
-	DBSecurityGroups           []*string `locationNameList:"DBSecurityGroupName" type:"list"`
-	DBSubnetGroupName          *string   `type:"string"`
-	Engine                     *string   `type:"string" required:"true"`
-	EngineVersion              *string   `type:"string"`
-	IOPS                       *int64    `locationName:"Iops" type:"integer"`
-	KMSKeyID                   *string   `locationName:"KmsKeyId" type:"string"`
-	LicenseModel               *string   `type:"string"`
-	MasterUserPassword         *string   `type:"string" required:"true"`
-	MasterUsername             *string   `type:"string" required:"true"`
-	MultiAZ                    *bool     `type:"boolean"`
-	OptionGroupName            *string   `type:"string"`
-	Port                       *int64    `type:"integer"`
-	PreferredBackupWindow      *string   `type:"string"`
-	PreferredMaintenanceWindow *string   `type:"string"`
-	PubliclyAccessible         *bool     `type:"boolean"`
-	StorageEncrypted           *bool     `type:"boolean"`
-	StorageType                *string   `type:"string"`
-	TDECredentialARN           *string   `locationName:"TdeCredentialArn" type:"string"`
-	TDECredentialPassword      *string   `locationName:"TdeCredentialPassword" type:"string"`
-	Tags                       []*Tag    `locationNameList:"Tag" type:"list"`
-	VPCSecurityGroupIDs        []*string `locationName:"VpcSecurityGroupIds" locationNameList:"VpcSecurityGroupId" type:"list"`
+	// The amount of storage (in gigabytes) to be initially allocated for the database
+	// instance.
+	//
+	//  Type: Integer
+	//
+	// MySQL
+	//
+	//  Constraints: Must be an integer from 5 to 3072.
+	//
+	// PostgreSQL
+	//
+	//  Constraints: Must be an integer from 5 to 3072.
+	//
+	// Oracle
+	//
+	//  Constraints: Must be an integer from 10 to 3072.
+	//
+	// SQL Server
+	//
+	//  Constraints: Must be an integer from 200 to 1024 (Standard Edition and
+	// Enterprise Edition) or from 20 to 1024 (Express Edition and Web Edition)
+	AllocatedStorage *int64 `type:"integer" required:"true"`
+
+	// Indicates that minor engine upgrades will be applied automatically to the
+	// DB instance during the maintenance window.
+	//
+	// Default: true
+	AutoMinorVersionUpgrade *bool `type:"boolean"`
+
+	// The EC2 Availability Zone that the database instance will be created in.
+	// For information on regions and Availability Zones, see Regions and Availability
+	// Zones (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html).
+	//
+	//  Default: A random, system-chosen Availability Zone in the endpoint's region.
+	//
+	//  Example: us-east-1d
+	//
+	//  Constraint: The AvailabilityZone parameter cannot be specified if the MultiAZ
+	// parameter is set to true. The specified Availability Zone must be in the
+	// same region as the current endpoint.
+	AvailabilityZone *string `type:"string"`
+
+	// The number of days for which automated backups are retained. Setting this
+	// parameter to a positive number enables backups. Setting this parameter to
+	// 0 disables automated backups.
+	//
+	//  Default: 1
+	//
+	// Constraints:
+	//
+	//  Must be a value from 0 to 35 Cannot be set to 0 if the DB instance is a
+	// source to Read Replicas
+	BackupRetentionPeriod *int64 `type:"integer"`
+
+	// For supported engines, indicates that the DB instance should be associated
+	// with the specified CharacterSet.
+	CharacterSetName *string `type:"string"`
+
+	// The compute and memory capacity of the DB instance.
+	//
+	//  Valid Values: db.t1.micro | db.m1.small | db.m1.medium | db.m1.large |
+	// db.m1.xlarge | db.m2.xlarge |db.m2.2xlarge | db.m2.4xlarge | db.m3.medium
+	// | db.m3.large | db.m3.xlarge | db.m3.2xlarge | db.r3.large | db.r3.xlarge
+	// | db.r3.2xlarge | db.r3.4xlarge | db.r3.8xlarge | db.t2.micro | db.t2.small
+	// | db.t2.medium
+	DBInstanceClass *string `type:"string" required:"true"`
+
+	// The DB instance identifier. This parameter is stored as a lowercase string.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens (1 to 15 for
+	// SQL Server). First character must be a letter. Cannot end with a hyphen or
+	// contain two consecutive hyphens.  Example: mydbinstance
+	DBInstanceIdentifier *string `type:"string" required:"true"`
+
+	// The meaning of this parameter differs according to the database engine you
+	// use.
+	//
+	// Type: String
+	//
+	// MySQL
+	//
+	// The name of the database to create when the DB instance is created. If this
+	// parameter is not specified, no database is created in the DB instance.
+	//
+	// Constraints:
+	//
+	//  Must contain 1 to 64 alphanumeric characters Cannot be a word reserved
+	// by the specified database engine  PostgreSQL
+	//
+	// The name of the database to create when the DB instance is created. If this
+	// parameter is not specified, no database is created in the DB instance.
+	//
+	// Constraints:
+	//
+	//  Must contain 1 to 63 alphanumeric characters Must begin with a letter or
+	// an underscore. Subsequent characters can be letters, underscores, or digits
+	// (0-9). Cannot be a word reserved by the specified database engine  Oracle
+	//
+	//  The Oracle System ID (SID) of the created DB instance.
+	//
+	// Default: ORCL
+	//
+	// Constraints:
+	//
+	//  Cannot be longer than 8 characters  SQL Server
+	//
+	// Not applicable. Must be null.
+	DBName *string `type:"string"`
+
+	// The name of the DB parameter group to associate with this DB instance. If
+	// this argument is omitted, the default DBParameterGroup for the specified
+	// engine will be used.
+	//
+	//  Constraints:
+	//
+	//  Must be 1 to 255 alphanumeric characters First character must be a letter
+	// Cannot end with a hyphen or contain two consecutive hyphens
+	DBParameterGroupName *string `type:"string"`
+
+	// A list of DB security groups to associate with this DB instance.
+	//
+	//  Default: The default DB security group for the database engine.
+	DBSecurityGroups []*string `locationNameList:"DBSecurityGroupName" type:"list"`
+
+	// A DB subnet group to associate with this DB instance.
+	//
+	//  If there is no DB subnet group, then it is a non-VPC DB instance.
+	DBSubnetGroupName *string `type:"string"`
+
+	// The name of the database engine to be used for this instance.
+	//
+	//  Valid Values: MySQL | oracle-se1 | oracle-se | oracle-ee | sqlserver-ee
+	// | sqlserver-se | sqlserver-ex | sqlserver-web | postgres
+	//
+	//  Not every database engine is available for every AWS region.
+	Engine *string `type:"string" required:"true"`
+
+	// The version number of the database engine to use.
+	//
+	//  The following are the database engines and major and minor versions that
+	// are available with Amazon RDS. Not every database engine is available for
+	// every AWS region.
+	//
+	// MySQL
+	//
+	//   Version 5.1:  5.1.45 | 5.1.49 | 5.1.50 | 5.1.57 | 5.1.61 | 5.1.62 | 5.1.63
+	// | 5.1.69 | 5.1.71 | 5.1.73   Version 5.5:  5.5.12 | 5.5.20 | 5.5.23 | 5.5.25a
+	// | 5.5.27 | 5.5.31 | 5.5.33 | 5.5.37 | 5.5.38 | 5.5.8   Version 5.6:  5.6.12
+	// | 5.6.13 | 5.6.17 | 5.6.19 | 5.6.21   Oracle Database Enterprise Edition
+	// (oracle-ee)
+	//
+	//   Version 11.2:  11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 |
+	// 11.2.0.2.v7 | 11.2.0.3.v1 | 11.2.0.4.v1   Oracle Database Standard Edition
+	// (oracle-se)
+	//
+	//   Version 11.2:  11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 |
+	// 11.2.0.2.v7 | 11.2.0.3.v1 | 11.2.0.4.v1   Oracle Database Standard Edition
+	// One (oracle-se1)
+	//
+	//   Version 11.2:  11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 |
+	// 11.2.0.2.v7 | 11.2.0.3.v1 | 11.2.0.4.v1   PostgreSQL
+	//
+	//   Version 9.3:  9.3.1 | 9.3.2 | 9.3.3   Microsoft SQL Server Enterprise
+	// Edition (sqlserver-ee)
+	//
+	//   Version 10.5:  10.50.2789.0.v1   Version 11.0:  11.00.2100.60.v1   Microsoft
+	// SQL Server Express Edition (sqlserver-ex)
+	//
+	//   Version 10.5:  10.50.2789.0.v1   Version 11.0:  11.00.2100.60.v1   Microsoft
+	// SQL Server Standard Edition (sqlserver-se)
+	//
+	//   Version 10.5:  10.50.2789.0.v1   Version 11.0:  11.00.2100.60.v1   Microsoft
+	// SQL Server Web Edition (sqlserver-web)
+	//
+	//   Version 10.5:  10.50.2789.0.v1   Version 11.0:  11.00.2100.60.v1
+	EngineVersion *string `type:"string"`
+
+	// The amount of Provisioned IOPS (input/output operations per second) to be
+	// initially allocated for the DB instance.
+	//
+	//  Constraints: To use PIOPS, this value must be an integer greater than 1000.
+	IOPS *int64 `locationName:"Iops" type:"integer"`
+
+	// The KMS key identifier for an encrypted DB instance.
+	//
+	// The KMS key identifier is the Amazon Resoure Name (ARN) for the KMS encryption
+	// key. If you are creating a DB instance with the same AWS account that owns
+	// the KMS encryption key used to encrypt the new DB instance, then you can
+	// use the KMS key alias instead of the ARN for the KM encryption key.
+	//
+	// If the StorageEncrypted parameter is true, and you do not specify a value
+	// for the KmsKeyId parameter, then Amazon RDS will use your default encryption
+	// key. AWS KMS creates the default encryption key for your AWS account. Your
+	// AWS account has a different default encryption key for each AWS region.
+	KMSKeyID *string `locationName:"KmsKeyId" type:"string"`
+
+	// License model information for this DB instance.
+	//
+	//  Valid values: license-included | bring-your-own-license | general-public-license
+	LicenseModel *string `type:"string"`
+
+	// The password for the master database user. Can be any printable ASCII character
+	// except "/", """, or "@".
+	//
+	// Type: String
+	//
+	// MySQL
+	//
+	//  Constraints: Must contain from 8 to 41 characters.
+	//
+	// Oracle
+	//
+	//  Constraints: Must contain from 8 to 30 characters.
+	//
+	// SQL Server
+	//
+	//  Constraints: Must contain from 8 to 128 characters.
+	MasterUserPassword *string `type:"string" required:"true"`
+
+	// The name of master user for the client DB instance.
+	//
+	// MySQL
+	//
+	// Constraints:
+	//
+	//  Must be 1 to 16 alphanumeric characters. First character must be a letter.
+	// Cannot be a reserved word for the chosen database engine.  Type: String
+	//
+	// Oracle
+	//
+	// Constraints:
+	//
+	//  Must be 1 to 30 alphanumeric characters. First character must be a letter.
+	// Cannot be a reserved word for the chosen database engine.  SQL Server
+	//
+	// Constraints:
+	//
+	//  Must be 1 to 128 alphanumeric characters. First character must be a letter.
+	// Cannot be a reserved word for the chosen database engine.
+	MasterUsername *string `type:"string" required:"true"`
+
+	// Specifies if the DB instance is a Multi-AZ deployment. You cannot set the
+	// AvailabilityZone parameter if the MultiAZ parameter is set to true.
+	MultiAZ *bool `type:"boolean"`
+
+	// Indicates that the DB instance should be associated with the specified option
+	// group.
+	//
+	//  Permanent options, such as the TDE option for Oracle Advanced Security
+	// TDE, cannot be removed from an option group, and that option group cannot
+	// be removed from a DB instance once it is associated with a DB instance
+	OptionGroupName *string `type:"string"`
+
+	// The port number on which the database accepts connections.
+	//
+	// MySQL
+	//
+	//  Default: 3306
+	//
+	//  Valid Values: 1150-65535
+	//
+	// Type: Integer
+	//
+	// PostgreSQL
+	//
+	//  Default: 5432
+	//
+	//  Valid Values: 1150-65535
+	//
+	// Type: Integer
+	//
+	// Oracle
+	//
+	//  Default: 1521
+	//
+	//  Valid Values: 1150-65535
+	//
+	// SQL Server
+	//
+	//  Default: 1433
+	//
+	//  Valid Values: 1150-65535 except for 1434, 3389, 47001, 49152, and 49152
+	// through 49156.
+	Port *int64 `type:"integer"`
+
+	// The daily time range during which automated backups are created if automated
+	// backups are enabled, using the BackupRetentionPeriod parameter. For more
+	// information, see DB Instance Backups (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.BackingUpAndRestoringAmazonRDSInstances.html).
+	//
+	//  Default: A 30-minute window selected at random from an 8-hour block of
+	// time per region. See the Amazon RDS User Guide for the time blocks for each
+	// region from which the default backup windows are assigned.
+	//
+	//  Constraints: Must be in the format hh24:mi-hh24:mi. Times should be Universal
+	// Time Coordinated (UTC). Must not conflict with the preferred maintenance
+	// window. Must be at least 30 minutes.
+	PreferredBackupWindow *string `type:"string"`
+
+	// The weekly time range (in UTC) during which system maintenance can occur.
+	// For more information, see DB Instance Maintenance (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBMaintenance.html).
+	//
+	//  Format: ddd:hh24:mi-ddd:hh24:mi
+	//
+	//  Default: A 30-minute window selected at random from an 8-hour block of
+	// time per region, occurring on a random day of the week. To see the time blocks
+	// available, see  Adjusting the Preferred Maintenance Window (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AdjustingTheMaintenanceWindow.html)
+	// in the Amazon RDS User Guide.
+	//
+	// Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun
+	//
+	// Constraints: Minimum 30-minute window.
+	PreferredMaintenanceWindow *string `type:"string"`
+
+	// Specifies the accessibility options for the DB instance. A value of true
+	// specifies an Internet-facing instance with a publicly resolvable DNS name,
+	// which resolves to a public IP address. A value of false specifies an internal
+	// instance with a DNS name that resolves to a private IP address.
+	//
+	//  Default: The default behavior varies depending on whether a VPC has been
+	// requested or not. The following list shows the default behavior in each case.
+	//
+	//   Default VPC: true  VPC: false   If no DB subnet group has been specified
+	// as part of the request and the PubliclyAccessible value has not been set,
+	// the DB instance will be publicly accessible. If a specific DB subnet group
+	// has been specified as part of the request and the PubliclyAccessible value
+	// has not been set, the DB instance will be private.
+	PubliclyAccessible *bool `type:"boolean"`
+
+	// Specifies whether the DB instance is encrypted.
+	//
+	//  Default: false
+	StorageEncrypted *bool `type:"boolean"`
+
+	// Specifies the storage type to be associated with the DB instance.
+	//
+	//  Valid values: standard | gp2 | io1
+	//
+	//  If you specify io1, you must also include a value for the Iops parameter.
+	//
+	//  Default: io1 if the Iops parameter is specified; otherwise standard
+	StorageType *string `type:"string"`
+
+	// The ARN from the Key Store with which to associate the instance for TDE encryption.
+	TDECredentialARN *string `locationName:"TdeCredentialArn" type:"string"`
+
+	// The password for the given ARN from the Key Store in order to access the
+	// device.
+	TDECredentialPassword *string `locationName:"TdeCredentialPassword" type:"string"`
+
+	// A list of tags.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
+	// A list of EC2 VPC security groups to associate with this DB instance.
+	//
+	//  Default: The default EC2 VPC security group for the DB subnet group's VPC.
+	VPCSecurityGroupIDs []*string `locationName:"VpcSecurityGroupIds" locationNameList:"VpcSecurityGroupId" type:"list"`
 
 	metadataCreateDBInstanceInput `json:"-", xml:"-"`
 }
@@ -1623,6 +2327,10 @@ type metadataCreateDBInstanceInput struct {
 }
 
 type CreateDBInstanceOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//  CreateDBInstance DeleteDBInstance ModifyDBInstance  This data type is used
+	// as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 
 	metadataCreateDBInstanceOutput `json:"-", xml:"-"`
@@ -1633,18 +2341,105 @@ type metadataCreateDBInstanceOutput struct {
 }
 
 type CreateDBInstanceReadReplicaInput struct {
-	AutoMinorVersionUpgrade    *bool   `type:"boolean"`
-	AvailabilityZone           *string `type:"string"`
-	DBInstanceClass            *string `type:"string"`
-	DBInstanceIdentifier       *string `type:"string" required:"true"`
-	DBSubnetGroupName          *string `type:"string"`
-	IOPS                       *int64  `locationName:"Iops" type:"integer"`
-	OptionGroupName            *string `type:"string"`
-	Port                       *int64  `type:"integer"`
-	PubliclyAccessible         *bool   `type:"boolean"`
+	// Indicates that minor engine upgrades will be applied automatically to the
+	// Read Replica during the maintenance window.
+	//
+	// Default: Inherits from the source DB instance
+	AutoMinorVersionUpgrade *bool `type:"boolean"`
+
+	// The Amazon EC2 Availability Zone that the Read Replica will be created in.
+	//
+	//  Default: A random, system-chosen Availability Zone in the endpoint's region.
+	//
+	//  Example: us-east-1d
+	AvailabilityZone *string `type:"string"`
+
+	// The compute and memory capacity of the Read Replica.
+	//
+	//  Valid Values: db.m1.small | db.m1.medium | db.m1.large | db.m1.xlarge |
+	// db.m2.xlarge |db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large
+	// | db.m3.xlarge | db.m3.2xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge
+	// | db.r3.4xlarge | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium
+	//
+	// Default: Inherits from the source DB instance.
+	DBInstanceClass *string `type:"string"`
+
+	// The DB instance identifier of the Read Replica. This is the unique key that
+	// identifies a DB instance. This parameter is stored as a lowercase string.
+	DBInstanceIdentifier *string `type:"string" required:"true"`
+
+	// Specifies a DB subnet group for the DB instance. The new DB instance will
+	// be created in the VPC associated with the DB subnet group. If no DB subnet
+	// group is specified, then the new DB instance is not created in a VPC.
+	//
+	// Constraints:
+	//
+	//  Can only be specified if the source DB instance identifier specifies a
+	// DB instance in another region. The specified DB subnet group must be in the
+	// same region in which the operation is running.  All Read Replicas in one
+	// region that are created from the same source DB instance must either:  Specify
+	// DB subnet groups from the same VPC. All these Read Replicas will be created
+	// in the same VPC. Not specify a DB subnet group. All these Read Replicas will
+	// be created outside of any VPC.
+	DBSubnetGroupName *string `type:"string"`
+
+	// The amount of Provisioned IOPS (input/output operations per second) to be
+	// initially allocated for the DB instance.
+	IOPS *int64 `locationName:"Iops" type:"integer"`
+
+	// The option group the DB instance will be associated with. If omitted, the
+	// default option group for the engine specified will be used.
+	OptionGroupName *string `type:"string"`
+
+	// The port number that the DB instance uses for connections.
+	//
+	// Default: Inherits from the source DB instance
+	//
+	// Valid Values: 1150-65535
+	Port *int64 `type:"integer"`
+
+	// Specifies the accessibility options for the DB instance. A value of true
+	// specifies an Internet-facing instance with a publicly resolvable DNS name,
+	// which resolves to a public IP address. A value of false specifies an internal
+	// instance with a DNS name that resolves to a private IP address.
+	//
+	//  Default: The default behavior varies depending on whether a VPC has been
+	// requested or not. The following list shows the default behavior in each case.
+	//
+	//   Default VPC:true  VPC:false   If no DB subnet group has been specified
+	// as part of the request and the PubliclyAccessible value has not been set,
+	// the DB instance will be publicly accessible. If a specific DB subnet group
+	// has been specified as part of the request and the PubliclyAccessible value
+	// has not been set, the DB instance will be private.
+	PubliclyAccessible *bool `type:"boolean"`
+
+	// The identifier of the DB instance that will act as the source for the Read
+	// Replica. Each DB instance can have up to five Read Replicas.
+	//
+	// Constraints:
+	//
+	//  Must be the identifier of an existing DB instance. Can specify a DB instance
+	// that is a MySQL Read Replica only if the source is running MySQL 5.6. Can
+	// specify a DB instance that is a PostgreSQL Read Replica only if the source
+	// is running PostgreSQL 9.3.5. The specified DB instance must have automatic
+	// backups enabled, its backup retention period must be greater than 0. If the
+	// source DB instance is in the same region as the Read Replica, specify a valid
+	// DB instance identifier. If the source DB instance is in a different region
+	// than the Read Replica, specify a valid DB instance ARN. For more information,
+	// go to  Constructing a Amazon RDS Amazon Resource Name (ARN) (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html#USER_Tagging.ARN).
 	SourceDBInstanceIdentifier *string `type:"string" required:"true"`
-	StorageType                *string `type:"string"`
-	Tags                       []*Tag  `locationNameList:"Tag" type:"list"`
+
+	// Specifies the storage type to be associated with the Read Replica.
+	//
+	//  Valid values: standard | gp2 | io1
+	//
+	//  If you specify io1, you must also include a value for the Iops parameter.
+	//
+	//  Default: io1 if the Iops parameter is specified; otherwise standard
+	StorageType *string `type:"string"`
+
+	// A list of tags.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	metadataCreateDBInstanceReadReplicaInput `json:"-", xml:"-"`
 }
@@ -1654,6 +2449,10 @@ type metadataCreateDBInstanceReadReplicaInput struct {
 }
 
 type CreateDBInstanceReadReplicaOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//  CreateDBInstance DeleteDBInstance ModifyDBInstance  This data type is used
+	// as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 
 	metadataCreateDBInstanceReadReplicaOutput `json:"-", xml:"-"`
@@ -1664,10 +2463,26 @@ type metadataCreateDBInstanceReadReplicaOutput struct {
 }
 
 type CreateDBParameterGroupInput struct {
+	// The DB parameter group family name. A DB parameter group can be associated
+	// with one and only one DB parameter group family, and can be applied only
+	// to a DB instance running a database engine and engine version compatible
+	// with that DB parameter group family.
 	DBParameterGroupFamily *string `type:"string" required:"true"`
-	DBParameterGroupName   *string `type:"string" required:"true"`
-	Description            *string `type:"string" required:"true"`
-	Tags                   []*Tag  `locationNameList:"Tag" type:"list"`
+
+	// The name of the DB parameter group.
+	//
+	//  Constraints:
+	//
+	//  Must be 1 to 255 alphanumeric characters First character must be a letter
+	// Cannot end with a hyphen or contain two consecutive hyphens  This value is
+	// stored as a lower-case string.
+	DBParameterGroupName *string `type:"string" required:"true"`
+
+	// The description for the DB parameter group.
+	Description *string `type:"string" required:"true"`
+
+	// A list of tags.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	metadataCreateDBParameterGroupInput `json:"-", xml:"-"`
 }
@@ -1677,6 +2492,11 @@ type metadataCreateDBParameterGroupInput struct {
 }
 
 type CreateDBParameterGroupOutput struct {
+	// Contains the result of a successful invocation of the CreateDBParameterGroup
+	// action.
+	//
+	// This data type is used as a request parameter in the DeleteDBParameterGroup
+	// action, and as a response element in the DescribeDBParameterGroups action.
 	DBParameterGroup *DBParameterGroup `type:"structure"`
 
 	metadataCreateDBParameterGroupOutput `json:"-", xml:"-"`
@@ -1687,9 +2507,20 @@ type metadataCreateDBParameterGroupOutput struct {
 }
 
 type CreateDBSecurityGroupInput struct {
+	// The description for the DB security group.
 	DBSecurityGroupDescription *string `type:"string" required:"true"`
-	DBSecurityGroupName        *string `type:"string" required:"true"`
-	Tags                       []*Tag  `locationNameList:"Tag" type:"list"`
+
+	// The name for the DB security group. This value is stored as a lowercase string.
+	//
+	// Constraints:
+	//
+	//  Must be 1 to 255 alphanumeric characters First character must be a letter
+	// Cannot end with a hyphen or contain two consecutive hyphens Must not be "Default"
+	// May not contain spaces  Example: mysecuritygroup
+	DBSecurityGroupName *string `type:"string" required:"true"`
+
+	// A list of tags.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	metadataCreateDBSecurityGroupInput `json:"-", xml:"-"`
 }
@@ -1699,6 +2530,11 @@ type metadataCreateDBSecurityGroupInput struct {
 }
 
 type CreateDBSecurityGroupOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//  DescribeDBSecurityGroups AuthorizeDBSecurityGroupIngress CreateDBSecurityGroup
+	// RevokeDBSecurityGroupIngress  This data type is used as a response element
+	// in the DescribeDBSecurityGroups action.
 	DBSecurityGroup *DBSecurityGroup `type:"structure"`
 
 	metadataCreateDBSecurityGroupOutput `json:"-", xml:"-"`
@@ -1709,9 +2545,25 @@ type metadataCreateDBSecurityGroupOutput struct {
 }
 
 type CreateDBSnapshotInput struct {
+	// The DB instance identifier. This is the unique key that identifies a DB instance.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens First character
+	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
 	DBInstanceIdentifier *string `type:"string" required:"true"`
+
+	// The identifier for the DB snapshot.
+	//
+	// Constraints:
+	//
+	//  Cannot be null, empty, or blank Must contain from 1 to 255 alphanumeric
+	// characters or hyphens First character must be a letter Cannot end with a
+	// hyphen or contain two consecutive hyphens  Example: my-snapshot-id
 	DBSnapshotIdentifier *string `type:"string" required:"true"`
-	Tags                 []*Tag  `locationNameList:"Tag" type:"list"`
+
+	// A list of tags.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	metadataCreateDBSnapshotInput `json:"-", xml:"-"`
 }
@@ -1721,6 +2573,10 @@ type metadataCreateDBSnapshotInput struct {
 }
 
 type CreateDBSnapshotOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//  CreateDBSnapshot DeleteDBSnapshot  This data type is used as a response
+	// element in the DescribeDBSnapshots action.
 	DBSnapshot *DBSnapshot `type:"structure"`
 
 	metadataCreateDBSnapshotOutput `json:"-", xml:"-"`
@@ -1731,10 +2587,22 @@ type metadataCreateDBSnapshotOutput struct {
 }
 
 type CreateDBSubnetGroupInput struct {
-	DBSubnetGroupDescription *string   `type:"string" required:"true"`
-	DBSubnetGroupName        *string   `type:"string" required:"true"`
-	SubnetIDs                []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list" required:"true"`
-	Tags                     []*Tag    `locationNameList:"Tag" type:"list"`
+	// The description for the DB subnet group.
+	DBSubnetGroupDescription *string `type:"string" required:"true"`
+
+	// The name for the DB subnet group. This value is stored as a lowercase string.
+	//
+	// Constraints: Must contain no more than 255 alphanumeric characters or hyphens.
+	// Must not be "Default".
+	//
+	// Example: mySubnetgroup
+	DBSubnetGroupName *string `type:"string" required:"true"`
+
+	// The EC2 Subnet IDs for the DB subnet group.
+	SubnetIDs []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list" required:"true"`
+
+	// A list of tags.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	metadataCreateDBSubnetGroupInput `json:"-", xml:"-"`
 }
@@ -1744,6 +2612,11 @@ type metadataCreateDBSubnetGroupInput struct {
 }
 
 type CreateDBSubnetGroupOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//  CreateDBSubnetGroup ModifyDBSubnetGroup DescribeDBSubnetGroups DeleteDBSubnetGroup
+	//  This data type is used as a response element in the DescribeDBSubnetGroups
+	// action.
 	DBSubnetGroup *DBSubnetGroup `type:"structure"`
 
 	metadataCreateDBSubnetGroupOutput `json:"-", xml:"-"`
@@ -1754,13 +2627,52 @@ type metadataCreateDBSubnetGroupOutput struct {
 }
 
 type CreateEventSubscriptionInput struct {
-	Enabled          *bool     `type:"boolean"`
-	EventCategories  []*string `locationNameList:"EventCategory" type:"list"`
-	SNSTopicARN      *string   `locationName:"SnsTopicArn" type:"string" required:"true"`
-	SourceIDs        []*string `locationName:"SourceIds" locationNameList:"SourceId" type:"list"`
-	SourceType       *string   `type:"string"`
-	SubscriptionName *string   `type:"string" required:"true"`
-	Tags             []*Tag    `locationNameList:"Tag" type:"list"`
+	// A Boolean value; set to true to activate the subscription, set to false to
+	// create the subscription but not active it.
+	Enabled *bool `type:"boolean"`
+
+	// A list of event categories for a SourceType that you want to subscribe to.
+	// You can see a list of the categories for a given SourceType in the Events
+	// (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.html)
+	// topic in the Amazon RDS User Guide or by using the DescribeEventCategories
+	// action.
+	EventCategories []*string `locationNameList:"EventCategory" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the SNS topic created for event notification.
+	// The ARN is created by Amazon SNS when you create a topic and subscribe to
+	// it.
+	SNSTopicARN *string `locationName:"SnsTopicArn" type:"string" required:"true"`
+
+	// The list of identifiers of the event sources for which events will be returned.
+	// If not specified, then all sources are included in the response. An identifier
+	// must begin with a letter and must contain only ASCII letters, digits, and
+	// hyphens; it cannot end with a hyphen or contain two consecutive hyphens.
+	//
+	// Constraints:
+	//
+	//  If SourceIds are supplied, SourceType must also be provided. If the source
+	// type is a DB instance, then a DBInstanceIdentifier must be supplied. If the
+	// source type is a DB security group, a DBSecurityGroupName must be supplied.
+	// If the source type is a DB parameter group, a DBParameterGroupName must be
+	// supplied. If the source type is a DB snapshot, a DBSnapshotIdentifier must
+	// be supplied.
+	SourceIDs []*string `locationName:"SourceIds" locationNameList:"SourceId" type:"list"`
+
+	// The type of source that will be generating the events. For example, if you
+	// want to be notified of events generated by a DB instance, you would set this
+	// parameter to db-instance. if this value is not specified, all events are
+	// returned.
+	//
+	// Valid values: db-instance | db-parameter-group | db-security-group | db-snapshot
+	SourceType *string `type:"string"`
+
+	// The name of the subscription.
+	//
+	// Constraints: The name must be less than 255 characters.
+	SubscriptionName *string `type:"string" required:"true"`
+
+	// A list of tags.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	metadataCreateEventSubscriptionInput `json:"-", xml:"-"`
 }
@@ -1770,6 +2682,8 @@ type metadataCreateEventSubscriptionInput struct {
 }
 
 type CreateEventSubscriptionOutput struct {
+	// Contains the results of a successful invocation of the DescribeEventSubscriptions
+	// action.
 	EventSubscription *EventSubscription `type:"structure"`
 
 	metadataCreateEventSubscriptionOutput `json:"-", xml:"-"`
@@ -1780,11 +2694,28 @@ type metadataCreateEventSubscriptionOutput struct {
 }
 
 type CreateOptionGroupInput struct {
-	EngineName             *string `type:"string" required:"true"`
-	MajorEngineVersion     *string `type:"string" required:"true"`
+	// Specifies the name of the engine that this option group should be associated
+	// with.
+	EngineName *string `type:"string" required:"true"`
+
+	// Specifies the major version of the engine that this option group should be
+	// associated with.
+	MajorEngineVersion *string `type:"string" required:"true"`
+
+	// The description of the option group.
 	OptionGroupDescription *string `type:"string" required:"true"`
-	OptionGroupName        *string `type:"string" required:"true"`
-	Tags                   []*Tag  `locationNameList:"Tag" type:"list"`
+
+	// Specifies the name of the option group to be created.
+	//
+	//  Constraints:
+	//
+	//  Must be 1 to 255 alphanumeric characters or hyphens First character must
+	// be a letter Cannot end with a hyphen or contain two consecutive hyphens
+	// Example: myoptiongroup
+	OptionGroupName *string `type:"string" required:"true"`
+
+	// A list of tags.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	metadataCreateOptionGroupInput `json:"-", xml:"-"`
 }
@@ -1803,14 +2734,30 @@ type metadataCreateOptionGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This data type is used as a response element in the action DescribeDBEngineVersions.
 type DBEngineVersion struct {
-	DBEngineDescription        *string         `type:"string"`
-	DBEngineVersionDescription *string         `type:"string"`
-	DBParameterGroupFamily     *string         `type:"string"`
-	DefaultCharacterSet        *CharacterSet   `type:"structure"`
-	Engine                     *string         `type:"string"`
-	EngineVersion              *string         `type:"string"`
-	SupportedCharacterSets     []*CharacterSet `locationNameList:"CharacterSet" type:"list"`
+	// The description of the database engine.
+	DBEngineDescription *string `type:"string"`
+
+	// The description of the database engine version.
+	DBEngineVersionDescription *string `type:"string"`
+
+	// The name of the DB parameter group family for the database engine.
+	DBParameterGroupFamily *string `type:"string"`
+
+	// The default character set for new instances of this engine version, if the
+	// CharacterSetName parameter of the CreateDBInstance API is not specified.
+	DefaultCharacterSet *CharacterSet `type:"structure"`
+
+	// The name of the database engine.
+	Engine *string `type:"string"`
+
+	// The version number of the database engine.
+	EngineVersion *string `type:"string"`
+
+	// A list of the character sets supported by this engine for the CharacterSetName
+	// parameter of the CreateDBInstance API.
+	SupportedCharacterSets []*CharacterSet `locationNameList:"CharacterSet" type:"list"`
 
 	metadataDBEngineVersion `json:"-", xml:"-"`
 }
@@ -1819,43 +2766,163 @@ type metadataDBEngineVersion struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the result of a successful invocation of the following actions:
+//
+//  CreateDBInstance DeleteDBInstance ModifyDBInstance  This data type is used
+// as a response element in the DescribeDBInstances action.
 type DBInstance struct {
-	AllocatedStorage                      *int64                        `type:"integer"`
-	AutoMinorVersionUpgrade               *bool                         `type:"boolean"`
-	AvailabilityZone                      *string                       `type:"string"`
-	BackupRetentionPeriod                 *int64                        `type:"integer"`
-	CharacterSetName                      *string                       `type:"string"`
-	DBInstanceClass                       *string                       `type:"string"`
-	DBInstanceIdentifier                  *string                       `type:"string"`
-	DBInstanceStatus                      *string                       `type:"string"`
-	DBName                                *string                       `type:"string"`
-	DBParameterGroups                     []*DBParameterGroupStatus     `locationNameList:"DBParameterGroup" type:"list"`
-	DBSecurityGroups                      []*DBSecurityGroupMembership  `locationNameList:"DBSecurityGroup" type:"list"`
-	DBSubnetGroup                         *DBSubnetGroup                `type:"structure"`
-	DBiResourceID                         *string                       `locationName:"DbiResourceId" type:"string"`
-	Endpoint                              *Endpoint                     `type:"structure"`
-	Engine                                *string                       `type:"string"`
-	EngineVersion                         *string                       `type:"string"`
-	IOPS                                  *int64                        `locationName:"Iops" type:"integer"`
-	InstanceCreateTime                    *time.Time                    `type:"timestamp" timestampFormat:"iso8601"`
-	KMSKeyID                              *string                       `locationName:"KmsKeyId" type:"string"`
-	LatestRestorableTime                  *time.Time                    `type:"timestamp" timestampFormat:"iso8601"`
-	LicenseModel                          *string                       `type:"string"`
-	MasterUsername                        *string                       `type:"string"`
-	MultiAZ                               *bool                         `type:"boolean"`
-	OptionGroupMemberships                []*OptionGroupMembership      `locationNameList:"OptionGroupMembership" type:"list"`
-	PendingModifiedValues                 *PendingModifiedValues        `type:"structure"`
-	PreferredBackupWindow                 *string                       `type:"string"`
-	PreferredMaintenanceWindow            *string                       `type:"string"`
-	PubliclyAccessible                    *bool                         `type:"boolean"`
-	ReadReplicaDBInstanceIdentifiers      []*string                     `locationNameList:"ReadReplicaDBInstanceIdentifier" type:"list"`
-	ReadReplicaSourceDBInstanceIdentifier *string                       `type:"string"`
-	SecondaryAvailabilityZone             *string                       `type:"string"`
-	StatusInfos                           []*DBInstanceStatusInfo       `locationNameList:"DBInstanceStatusInfo" type:"list"`
-	StorageEncrypted                      *bool                         `type:"boolean"`
-	StorageType                           *string                       `type:"string"`
-	TDECredentialARN                      *string                       `locationName:"TdeCredentialArn" type:"string"`
-	VPCSecurityGroups                     []*VPCSecurityGroupMembership `locationName:"VpcSecurityGroups" locationNameList:"VpcSecurityGroupMembership" type:"list"`
+	// Specifies the allocated storage size specified in gigabytes.
+	AllocatedStorage *int64 `type:"integer"`
+
+	// Indicates that minor version patches are applied automatically.
+	AutoMinorVersionUpgrade *bool `type:"boolean"`
+
+	// Specifies the name of the Availability Zone the DB instance is located in.
+	AvailabilityZone *string `type:"string"`
+
+	// Specifies the number of days for which automatic DB snapshots are retained.
+	BackupRetentionPeriod *int64 `type:"integer"`
+
+	// If present, specifies the name of the character set that this instance is
+	// associated with.
+	CharacterSetName *string `type:"string"`
+
+	// Contains the name of the compute and memory capacity class of the DB instance.
+	DBInstanceClass *string `type:"string"`
+
+	// Contains a user-supplied database identifier. This is the unique key that
+	// identifies a DB instance.
+	DBInstanceIdentifier *string `type:"string"`
+
+	// Specifies the current state of this database.
+	DBInstanceStatus *string `type:"string"`
+
+	// The meaning of this parameter differs according to the database engine you
+	// use. For example, this value returns either MySQL or PostgreSQL information
+	// when returning values from CreateDBInstanceReadReplica since Read Replicas
+	// are only supported for MySQL and PostgreSQL.
+	//
+	// MySQL, SQL Server, PostgreSQL
+	//
+	//  Contains the name of the initial database of this instance that was provided
+	// at create time, if one was specified when the DB instance was created. This
+	// same name is returned for the life of the DB instance.
+	//
+	// Type: String
+	//
+	// Oracle
+	//
+	//  Contains the Oracle System ID (SID) of the created DB instance. Not shown
+	// when the returned parameters do not apply to an Oracle DB instance.
+	DBName *string `type:"string"`
+
+	// Provides the list of DB parameter groups applied to this DB instance.
+	DBParameterGroups []*DBParameterGroupStatus `locationNameList:"DBParameterGroup" type:"list"`
+
+	// Provides List of DB security group elements containing only DBSecurityGroup.Name
+	// and DBSecurityGroup.Status subelements.
+	DBSecurityGroups []*DBSecurityGroupMembership `locationNameList:"DBSecurityGroup" type:"list"`
+
+	// Specifies information on the subnet group associated with the DB instance,
+	// including the name, description, and subnets in the subnet group.
+	DBSubnetGroup *DBSubnetGroup `type:"structure"`
+
+	// If StorageEncrypted is true, the region-unique, immutable identifier for
+	// the encrypted DB instance. This identifier is found in AWS CloudTrail log
+	// entries whenever the KMS key for the DB instance is accessed.
+	DBiResourceID *string `locationName:"DbiResourceId" type:"string"`
+
+	// Specifies the connection endpoint.
+	Endpoint *Endpoint `type:"structure"`
+
+	// Provides the name of the database engine to be used for this DB instance.
+	Engine *string `type:"string"`
+
+	// Indicates the database engine version.
+	EngineVersion *string `type:"string"`
+
+	// Specifies the Provisioned IOPS (I/O operations per second) value.
+	IOPS *int64 `locationName:"Iops" type:"integer"`
+
+	// Provides the date and time the DB instance was created.
+	InstanceCreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// If StorageEncrypted is true, the KMS key identifier for the encrypted DB
+	// instance.
+	KMSKeyID *string `locationName:"KmsKeyId" type:"string"`
+
+	// Specifies the latest time to which a database can be restored with point-in-time
+	// restore.
+	LatestRestorableTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// License model information for this DB instance.
+	LicenseModel *string `type:"string"`
+
+	// Contains the master username for the DB instance.
+	MasterUsername *string `type:"string"`
+
+	// Specifies if the DB instance is a Multi-AZ deployment.
+	MultiAZ *bool `type:"boolean"`
+
+	// Provides the list of option group memberships for this DB instance.
+	OptionGroupMemberships []*OptionGroupMembership `locationNameList:"OptionGroupMembership" type:"list"`
+
+	// Specifies that changes to the DB instance are pending. This element is only
+	// included when changes are pending. Specific changes are identified by subelements.
+	PendingModifiedValues *PendingModifiedValues `type:"structure"`
+
+	// Specifies the daily time range during which automated backups are created
+	// if automated backups are enabled, as determined by the BackupRetentionPeriod.
+	PreferredBackupWindow *string `type:"string"`
+
+	// Specifies the weekly time range (in UTC) during which system maintenance
+	// can occur.
+	PreferredMaintenanceWindow *string `type:"string"`
+
+	// Specifies the accessibility options for the DB instance. A value of true
+	// specifies an Internet-facing instance with a publicly resolvable DNS name,
+	// which resolves to a public IP address. A value of false specifies an internal
+	// instance with a DNS name that resolves to a private IP address.
+	//
+	//  Default: The default behavior varies depending on whether a VPC has been
+	// requested or not. The following list shows the default behavior in each case.
+	//
+	//   Default VPC:true  VPC:false   If no DB subnet group has been specified
+	// as part of the request and the PubliclyAccessible value has not been set,
+	// the DB instance will be publicly accessible. If a specific DB subnet group
+	// has been specified as part of the request and the PubliclyAccessible value
+	// has not been set, the DB instance will be private.
+	PubliclyAccessible *bool `type:"boolean"`
+
+	// Contains one or more identifiers of the Read Replicas associated with this
+	// DB instance.
+	ReadReplicaDBInstanceIdentifiers []*string `locationNameList:"ReadReplicaDBInstanceIdentifier" type:"list"`
+
+	// Contains the identifier of the source DB instance if this DB instance is
+	// a Read Replica.
+	ReadReplicaSourceDBInstanceIdentifier *string `type:"string"`
+
+	// If present, specifies the name of the secondary Availability Zone for a DB
+	// instance with multi-AZ support.
+	SecondaryAvailabilityZone *string `type:"string"`
+
+	// The status of a Read Replica. If the instance is not a Read Replica, this
+	// will be blank.
+	StatusInfos []*DBInstanceStatusInfo `locationNameList:"DBInstanceStatusInfo" type:"list"`
+
+	// Specifies whether the DB instance is encrypted.
+	StorageEncrypted *bool `type:"boolean"`
+
+	// Specifies the storage type associated with DB instance.
+	StorageType *string `type:"string"`
+
+	// The ARN from the Key Store with which the instance is associated for TDE
+	// encryption.
+	TDECredentialARN *string `locationName:"TdeCredentialArn" type:"string"`
+
+	// Provides List of VPC security group elements that the DB instance belongs
+	// to.
+	VPCSecurityGroups []*VPCSecurityGroupMembership `locationName:"VpcSecurityGroups" locationNameList:"VpcSecurityGroupMembership" type:"list"`
 
 	metadataDBInstance `json:"-", xml:"-"`
 }
@@ -1864,10 +2931,21 @@ type metadataDBInstance struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides a list of status information for a DB instance.
 type DBInstanceStatusInfo struct {
-	Message    *string `type:"string"`
-	Normal     *bool   `type:"boolean"`
-	Status     *string `type:"string"`
+	// Details of the error if there is an error for the instance. If the instance
+	// is not in an error state, this value is blank.
+	Message *string `type:"string"`
+
+	// Boolean value that is true if the instance is operating normally, or false
+	// if the instance is in an error state.
+	Normal *bool `type:"boolean"`
+
+	// Status of the DB instance. For a StatusType of read replica, the values can
+	// be replicating, error, stopped, or terminated.
+	Status *string `type:"string"`
+
+	// This value is currently "read replication."
 	StatusType *string `type:"string"`
 
 	metadataDBInstanceStatusInfo `json:"-", xml:"-"`
@@ -1877,10 +2955,21 @@ type metadataDBInstanceStatusInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the result of a successful invocation of the CreateDBParameterGroup
+// action.
+//
+// This data type is used as a request parameter in the DeleteDBParameterGroup
+// action, and as a response element in the DescribeDBParameterGroups action.
 type DBParameterGroup struct {
+	// Provides the name of the DB parameter group family that this DB parameter
+	// group is compatible with.
 	DBParameterGroupFamily *string `type:"string"`
-	DBParameterGroupName   *string `type:"string"`
-	Description            *string `type:"string"`
+
+	// Provides the name of the DB parameter group.
+	DBParameterGroupName *string `type:"string"`
+
+	// Provides the customer-specified description for this DB parameter group.
+	Description *string `type:"string"`
 
 	metadataDBParameterGroup `json:"-", xml:"-"`
 }
@@ -1889,7 +2978,10 @@ type metadataDBParameterGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the result of a successful invocation of the ModifyDBParameterGroup
+// or ResetDBParameterGroup action.
 type DBParameterGroupNameMessage struct {
+	// The name of the DB parameter group.
 	DBParameterGroupName *string `type:"string"`
 
 	metadataDBParameterGroupNameMessage `json:"-", xml:"-"`
@@ -1899,8 +2991,17 @@ type metadataDBParameterGroupNameMessage struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The status of the DB parameter group.
+//
+// This data type is used as a response element in the following actions:
+//
+//  CreateDBInstance CreateDBInstanceReadReplica DeleteDBInstance ModifyDBInstance
+// RebootDBInstance RestoreDBInstanceFromDBSnapshot
 type DBParameterGroupStatus struct {
+	// The name of the DP parameter group.
 	DBParameterGroupName *string `type:"string"`
+
+	// The status of parameter updates.
 	ParameterApplyStatus *string `type:"string"`
 
 	metadataDBParameterGroupStatus `json:"-", xml:"-"`
@@ -1910,13 +3011,29 @@ type metadataDBParameterGroupStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the result of a successful invocation of the following actions:
+//
+//  DescribeDBSecurityGroups AuthorizeDBSecurityGroupIngress CreateDBSecurityGroup
+// RevokeDBSecurityGroupIngress  This data type is used as a response element
+// in the DescribeDBSecurityGroups action.
 type DBSecurityGroup struct {
-	DBSecurityGroupDescription *string             `type:"string"`
-	DBSecurityGroupName        *string             `type:"string"`
-	EC2SecurityGroups          []*EC2SecurityGroup `locationNameList:"EC2SecurityGroup" type:"list"`
-	IPRanges                   []*IPRange          `locationNameList:"IPRange" type:"list"`
-	OwnerID                    *string             `locationName:"OwnerId" type:"string"`
-	VPCID                      *string             `locationName:"VpcId" type:"string"`
+	// Provides the description of the DB security group.
+	DBSecurityGroupDescription *string `type:"string"`
+
+	// Specifies the name of the DB security group.
+	DBSecurityGroupName *string `type:"string"`
+
+	// Contains a list of EC2SecurityGroup elements.
+	EC2SecurityGroups []*EC2SecurityGroup `locationNameList:"EC2SecurityGroup" type:"list"`
+
+	// Contains a list of IPRange elements.
+	IPRanges []*IPRange `locationNameList:"IPRange" type:"list"`
+
+	// Provides the AWS ID of the owner of a specific DB security group.
+	OwnerID *string `locationName:"OwnerId" type:"string"`
+
+	// Provides the VpcId of the DB security group.
+	VPCID *string `locationName:"VpcId" type:"string"`
 
 	metadataDBSecurityGroup `json:"-", xml:"-"`
 }
@@ -1925,9 +3042,15 @@ type metadataDBSecurityGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This data type is used as a response element in the following actions:
+//
+//  ModifyDBInstance RebootDBInstance RestoreDBInstanceFromDBSnapshot RestoreDBInstanceToPointInTime
 type DBSecurityGroupMembership struct {
+	// The name of the DB security group.
 	DBSecurityGroupName *string `type:"string"`
-	Status              *string `type:"string"`
+
+	// The status of the DB security group.
+	Status *string `type:"string"`
 
 	metadataDBSecurityGroupMembership `json:"-", xml:"-"`
 }
@@ -1936,29 +3059,80 @@ type metadataDBSecurityGroupMembership struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the result of a successful invocation of the following actions:
+//
+//  CreateDBSnapshot DeleteDBSnapshot  This data type is used as a response
+// element in the DescribeDBSnapshots action.
 type DBSnapshot struct {
-	AllocatedStorage     *int64     `type:"integer"`
-	AvailabilityZone     *string    `type:"string"`
-	DBInstanceIdentifier *string    `type:"string"`
-	DBSnapshotIdentifier *string    `type:"string"`
-	Encrypted            *bool      `type:"boolean"`
-	Engine               *string    `type:"string"`
-	EngineVersion        *string    `type:"string"`
-	IOPS                 *int64     `locationName:"Iops" type:"integer"`
-	InstanceCreateTime   *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	KMSKeyID             *string    `locationName:"KmsKeyId" type:"string"`
-	LicenseModel         *string    `type:"string"`
-	MasterUsername       *string    `type:"string"`
-	OptionGroupName      *string    `type:"string"`
-	PercentProgress      *int64     `type:"integer"`
-	Port                 *int64     `type:"integer"`
-	SnapshotCreateTime   *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	SnapshotType         *string    `type:"string"`
-	SourceRegion         *string    `type:"string"`
-	Status               *string    `type:"string"`
-	StorageType          *string    `type:"string"`
-	TDECredentialARN     *string    `locationName:"TdeCredentialArn" type:"string"`
-	VPCID                *string    `locationName:"VpcId" type:"string"`
+	// Specifies the allocated storage size in gigabytes (GB).
+	AllocatedStorage *int64 `type:"integer"`
+
+	// Specifies the name of the Availability Zone the DB instance was located in
+	// at the time of the DB snapshot.
+	AvailabilityZone *string `type:"string"`
+
+	// Specifies the DB instance identifier of the DB instance this DB snapshot
+	// was created from.
+	DBInstanceIdentifier *string `type:"string"`
+
+	// Specifies the identifier for the DB snapshot.
+	DBSnapshotIdentifier *string `type:"string"`
+
+	// Specifies whether the DB snapshot is encrypted.
+	Encrypted *bool `type:"boolean"`
+
+	// Specifies the name of the database engine.
+	Engine *string `type:"string"`
+
+	// Specifies the version of the database engine.
+	EngineVersion *string `type:"string"`
+
+	// Specifies the Provisioned IOPS (I/O operations per second) value of the DB
+	// instance at the time of the snapshot.
+	IOPS *int64 `locationName:"Iops" type:"integer"`
+
+	// Specifies the time (UTC) when the snapshot was taken.
+	InstanceCreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// If Encrypted is true, the KMS key identifier for the encrypted DB snapshot.
+	KMSKeyID *string `locationName:"KmsKeyId" type:"string"`
+
+	// License model information for the restored DB instance.
+	LicenseModel *string `type:"string"`
+
+	// Provides the master username for the DB snapshot.
+	MasterUsername *string `type:"string"`
+
+	// Provides the option group name for the DB snapshot.
+	OptionGroupName *string `type:"string"`
+
+	// The percentage of the estimated data that has been transferred.
+	PercentProgress *int64 `type:"integer"`
+
+	// Specifies the port that the database engine was listening on at the time
+	// of the snapshot.
+	Port *int64 `type:"integer"`
+
+	// Provides the time (UTC) when the snapshot was taken.
+	SnapshotCreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// Provides the type of the DB snapshot.
+	SnapshotType *string `type:"string"`
+
+	// The region that the DB snapshot was created in or copied from.
+	SourceRegion *string `type:"string"`
+
+	// Specifies the status of this DB snapshot.
+	Status *string `type:"string"`
+
+	// Specifies the storage type associated with DB Snapshot.
+	StorageType *string `type:"string"`
+
+	// The ARN from the Key Store with which to associate the instance for TDE encryption.
+	TDECredentialARN *string `locationName:"TdeCredentialArn" type:"string"`
+
+	// Provides the Vpc Id associated with the DB snapshot.
+	VPCID *string `locationName:"VpcId" type:"string"`
 
 	metadataDBSnapshot `json:"-", xml:"-"`
 }
@@ -1967,12 +3141,26 @@ type metadataDBSnapshot struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the result of a successful invocation of the following actions:
+//
+//  CreateDBSubnetGroup ModifyDBSubnetGroup DescribeDBSubnetGroups DeleteDBSubnetGroup
+//  This data type is used as a response element in the DescribeDBSubnetGroups
+// action.
 type DBSubnetGroup struct {
-	DBSubnetGroupDescription *string   `type:"string"`
-	DBSubnetGroupName        *string   `type:"string"`
-	SubnetGroupStatus        *string   `type:"string"`
-	Subnets                  []*Subnet `locationNameList:"Subnet" type:"list"`
-	VPCID                    *string   `locationName:"VpcId" type:"string"`
+	// Provides the description of the DB subnet group.
+	DBSubnetGroupDescription *string `type:"string"`
+
+	// Specifies the name of the DB subnet group.
+	DBSubnetGroupName *string `type:"string"`
+
+	// Provides the status of the DB subnet group.
+	SubnetGroupStatus *string `type:"string"`
+
+	// Contains a list of Subnet elements.
+	Subnets []*Subnet `locationNameList:"Subnet" type:"list"`
+
+	// Provides the VpcId of the DB subnet group.
+	VPCID *string `locationName:"VpcId" type:"string"`
 
 	metadataDBSubnetGroup `json:"-", xml:"-"`
 }
@@ -1982,9 +3170,35 @@ type metadataDBSubnetGroup struct {
 }
 
 type DeleteDBInstanceInput struct {
-	DBInstanceIdentifier      *string `type:"string" required:"true"`
+	// The DB instance identifier for the DB instance to be deleted. This parameter
+	// isn't case sensitive.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens First character
+	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
+	DBInstanceIdentifier *string `type:"string" required:"true"`
+
+	// The DBSnapshotIdentifier of the new DBSnapshot created when SkipFinalSnapshot
+	// is set to false.
+	//
+	//  Specifying this parameter and also setting the SkipFinalShapshot parameter
+	// to true results in an error.  Constraints:
+	//
+	//  Must be 1 to 255 alphanumeric characters First character must be a letter
+	// Cannot end with a hyphen or contain two consecutive hyphens Cannot be specified
+	// when deleting a Read Replica.
 	FinalDBSnapshotIdentifier *string `type:"string"`
-	SkipFinalSnapshot         *bool   `type:"boolean"`
+
+	// Determines whether a final DB snapshot is created before the DB instance
+	// is deleted. If true is specified, no DBSnapshot is created. If false is specified,
+	// a DB snapshot is created before the DB instance is deleted.
+	//
+	// Specify true when deleting a Read Replica.
+	//
+	// The FinalDBSnapshotIdentifier parameter must be specified if SkipFinalSnapshot
+	// is false. Default: false
+	SkipFinalSnapshot *bool `type:"boolean"`
 
 	metadataDeleteDBInstanceInput `json:"-", xml:"-"`
 }
@@ -1994,6 +3208,10 @@ type metadataDeleteDBInstanceInput struct {
 }
 
 type DeleteDBInstanceOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//  CreateDBInstance DeleteDBInstance ModifyDBInstance  This data type is used
+	// as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 
 	metadataDeleteDBInstanceOutput `json:"-", xml:"-"`
@@ -2004,6 +3222,12 @@ type metadataDeleteDBInstanceOutput struct {
 }
 
 type DeleteDBParameterGroupInput struct {
+	// The name of the DB parameter group.
+	//
+	// Constraints:
+	//
+	//  Must be the name of an existing DB parameter group You cannot delete a
+	// default DB parameter group Cannot be associated with any DB instances
 	DBParameterGroupName *string `type:"string" required:"true"`
 
 	metadataDeleteDBParameterGroupInput `json:"-", xml:"-"`
@@ -2022,6 +3246,13 @@ type metadataDeleteDBParameterGroupOutput struct {
 }
 
 type DeleteDBSecurityGroupInput struct {
+	// The name of the DB security group to delete.
+	//
+	// You cannot delete the default DB security group.  Constraints:
+	//
+	//  Must be 1 to 255 alphanumeric characters First character must be a letter
+	// Cannot end with a hyphen or contain two consecutive hyphens Must not be "Default"
+	// May not contain spaces
 	DBSecurityGroupName *string `type:"string" required:"true"`
 
 	metadataDeleteDBSecurityGroupInput `json:"-", xml:"-"`
@@ -2040,6 +3271,10 @@ type metadataDeleteDBSecurityGroupOutput struct {
 }
 
 type DeleteDBSnapshotInput struct {
+	// The DBSnapshot identifier.
+	//
+	// Constraints: Must be the name of an existing DB snapshot in the available
+	// state.
 	DBSnapshotIdentifier *string `type:"string" required:"true"`
 
 	metadataDeleteDBSnapshotInput `json:"-", xml:"-"`
@@ -2050,6 +3285,10 @@ type metadataDeleteDBSnapshotInput struct {
 }
 
 type DeleteDBSnapshotOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//  CreateDBSnapshot DeleteDBSnapshot  This data type is used as a response
+	// element in the DescribeDBSnapshots action.
 	DBSnapshot *DBSnapshot `type:"structure"`
 
 	metadataDeleteDBSnapshotOutput `json:"-", xml:"-"`
@@ -2060,6 +3299,12 @@ type metadataDeleteDBSnapshotOutput struct {
 }
 
 type DeleteDBSubnetGroupInput struct {
+	// The name of the database subnet group to delete.
+	//
+	// You cannot delete the default subnet group.  Constraints:
+	//
+	//  Must be 1 to 255 alphanumeric characters First character must be a letter
+	// Cannot end with a hyphen or contain two consecutive hyphens
 	DBSubnetGroupName *string `type:"string" required:"true"`
 
 	metadataDeleteDBSubnetGroupInput `json:"-", xml:"-"`
@@ -2078,6 +3323,7 @@ type metadataDeleteDBSubnetGroupOutput struct {
 }
 
 type DeleteEventSubscriptionInput struct {
+	// The name of the RDS event notification subscription you want to delete.
 	SubscriptionName *string `type:"string" required:"true"`
 
 	metadataDeleteEventSubscriptionInput `json:"-", xml:"-"`
@@ -2088,6 +3334,8 @@ type metadataDeleteEventSubscriptionInput struct {
 }
 
 type DeleteEventSubscriptionOutput struct {
+	// Contains the results of a successful invocation of the DescribeEventSubscriptions
+	// action.
 	EventSubscription *EventSubscription `type:"structure"`
 
 	metadataDeleteEventSubscriptionOutput `json:"-", xml:"-"`
@@ -2098,6 +3346,9 @@ type metadataDeleteEventSubscriptionOutput struct {
 }
 
 type DeleteOptionGroupInput struct {
+	// The name of the option group to be deleted.
+	//
+	// You cannot delete default option groups.
 	OptionGroupName *string `type:"string" required:"true"`
 
 	metadataDeleteOptionGroupInput `json:"-", xml:"-"`
@@ -2116,14 +3367,47 @@ type metadataDeleteOptionGroupOutput struct {
 }
 
 type DescribeDBEngineVersionsInput struct {
-	DBParameterGroupFamily     *string   `type:"string"`
-	DefaultOnly                *bool     `type:"boolean"`
-	Engine                     *string   `type:"string"`
-	EngineVersion              *string   `type:"string"`
-	Filters                    []*Filter `locationNameList:"Filter" type:"list"`
-	ListSupportedCharacterSets *bool     `type:"boolean"`
-	Marker                     *string   `type:"string"`
-	MaxRecords                 *int64    `type:"integer"`
+	// The name of a specific DB parameter group family to return details for.
+	//
+	// Constraints:
+	//
+	//  Must be 1 to 255 alphanumeric characters First character must be a letter
+	// Cannot end with a hyphen or contain two consecutive hyphens
+	DBParameterGroupFamily *string `type:"string"`
+
+	// Indicates that only the default version of the specified engine or engine
+	// and major version combination is returned.
+	DefaultOnly *bool `type:"boolean"`
+
+	// The database engine to return.
+	Engine *string `type:"string"`
+
+	// The database engine version to return.
+	//
+	// Example: 5.1.49
+	EngineVersion *string `type:"string"`
+
+	// Not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// If this parameter is specified, and if the requested engine supports the
+	// CharacterSetName parameter for CreateDBInstance, the response includes a
+	// list of supported character sets for each engine version.
+	ListSupportedCharacterSets *bool `type:"boolean"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more than the
+	// MaxRecords value is available, a pagination token called a marker is included
+	// in the response so that the following results can be retrieved.
+	//
+	// Default: 100
+	//
+	// Constraints: minimum 20, maximum 100
+	MaxRecords *int64 `type:"integer"`
 
 	metadataDescribeDBEngineVersionsInput `json:"-", xml:"-"`
 }
@@ -2132,9 +3416,16 @@ type metadataDescribeDBEngineVersionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the result of a successful invocation of the DescribeDBEngineVersions
+// action.
 type DescribeDBEngineVersionsOutput struct {
+	// A list of DBEngineVersion elements.
 	DBEngineVersions []*DBEngineVersion `locationNameList:"DBEngineVersion" type:"list"`
-	Marker           *string            `type:"string"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
 
 	metadataDescribeDBEngineVersionsOutput `json:"-", xml:"-"`
 }
@@ -2144,10 +3435,32 @@ type metadataDescribeDBEngineVersionsOutput struct {
 }
 
 type DescribeDBInstancesInput struct {
-	DBInstanceIdentifier *string   `type:"string"`
-	Filters              []*Filter `locationNameList:"Filter" type:"list"`
-	Marker               *string   `type:"string"`
-	MaxRecords           *int64    `type:"integer"`
+	// The user-supplied instance identifier. If this parameter is specified, information
+	// from only the specific DB instance is returned. This parameter isn't case
+	// sensitive.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens First character
+	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
+	DBInstanceIdentifier *string `type:"string"`
+
+	// This parameter is not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// An optional pagination token provided by a previous DescribeDBInstances request.
+	// If this parameter is specified, the response includes only records beyond
+	// the marker, up to the value specified by MaxRecords .
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results may be retrieved.
+	//
+	// Default: 100
+	//
+	// Constraints: minimum 20, maximum 100
+	MaxRecords *int64 `type:"integer"`
 
 	metadataDescribeDBInstancesInput `json:"-", xml:"-"`
 }
@@ -2156,9 +3469,16 @@ type metadataDescribeDBInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the result of a successful invocation of the DescribeDBInstances
+// action.
 type DescribeDBInstancesOutput struct {
+	// A list of DBInstance instances.
 	DBInstances []*DBInstance `locationNameList:"DBInstance" type:"list"`
-	Marker      *string       `type:"string"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords .
+	Marker *string `type:"string"`
 
 	metadataDescribeDBInstancesOutput `json:"-", xml:"-"`
 }
@@ -2167,10 +3487,16 @@ type metadataDescribeDBInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This data type is used as a response element to DescribeDBLogFiles.
 type DescribeDBLogFilesDetails struct {
-	LastWritten *int64  `type:"long"`
+	// A POSIX timestamp when the last log entry was written.
+	LastWritten *int64 `type:"long"`
+
+	// The name of the log file for the specified DB instance.
 	LogFileName *string `type:"string"`
-	Size        *int64  `type:"long"`
+
+	// The size, in bytes, of the log file for the specified DB instance.
+	Size *int64 `type:"long"`
 
 	metadataDescribeDBLogFilesDetails `json:"-", xml:"-"`
 }
@@ -2180,13 +3506,38 @@ type metadataDescribeDBLogFilesDetails struct {
 }
 
 type DescribeDBLogFilesInput struct {
-	DBInstanceIdentifier *string   `type:"string" required:"true"`
-	FileLastWritten      *int64    `type:"long"`
-	FileSize             *int64    `type:"long"`
-	FilenameContains     *string   `type:"string"`
-	Filters              []*Filter `locationNameList:"Filter" type:"list"`
-	Marker               *string   `type:"string"`
-	MaxRecords           *int64    `type:"integer"`
+	// The customer-assigned name of the DB instance that contains the log files
+	// you want to list.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens First character
+	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
+	DBInstanceIdentifier *string `type:"string" required:"true"`
+
+	// Filters the available log files for files written since the specified date,
+	// in POSIX timestamp format.
+	FileLastWritten *int64 `type:"long"`
+
+	// Filters the available log files for files larger than the specified size.
+	FileSize *int64 `type:"long"`
+
+	// Filters the available log files for log file names that contain the specified
+	// string.
+	FilenameContains *string `type:"string"`
+
+	// This parameter is not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// The pagination token provided in the previous request. If this parameter
+	// is specified the response includes only records beyond the marker, up to
+	// MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results can be retrieved.
+	MaxRecords *int64 `type:"integer"`
 
 	metadataDescribeDBLogFilesInput `json:"-", xml:"-"`
 }
@@ -2195,9 +3546,13 @@ type metadataDescribeDBLogFilesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The response from a call to DescribeDBLogFiles.
 type DescribeDBLogFilesOutput struct {
+	// The DB log files returned.
 	DescribeDBLogFiles []*DescribeDBLogFilesDetails `locationNameList:"DescribeDBLogFilesDetails" type:"list"`
-	Marker             *string                      `type:"string"`
+
+	// A pagination token that can be used in a subsequent DescribeDBLogFiles request.
+	Marker *string `type:"string"`
 
 	metadataDescribeDBLogFilesOutput `json:"-", xml:"-"`
 }
@@ -2207,10 +3562,30 @@ type metadataDescribeDBLogFilesOutput struct {
 }
 
 type DescribeDBParameterGroupsInput struct {
-	DBParameterGroupName *string   `type:"string"`
-	Filters              []*Filter `locationNameList:"Filter" type:"list"`
-	Marker               *string   `type:"string"`
-	MaxRecords           *int64    `type:"integer"`
+	// The name of a specific DB parameter group to return details for.
+	//
+	// Constraints:
+	//
+	//  Must be 1 to 255 alphanumeric characters First character must be a letter
+	// Cannot end with a hyphen or contain two consecutive hyphens
+	DBParameterGroupName *string `type:"string"`
+
+	// This parameter is not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// An optional pagination token provided by a previous DescribeDBParameterGroups
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results may be retrieved.
+	//
+	// Default: 100
+	//
+	// Constraints: minimum 20, maximum 100
+	MaxRecords *int64 `type:"integer"`
 
 	metadataDescribeDBParameterGroupsInput `json:"-", xml:"-"`
 }
@@ -2219,9 +3594,16 @@ type metadataDescribeDBParameterGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the result of a successful invocation of the DescribeDBParameterGroups
+// action.
 type DescribeDBParameterGroupsOutput struct {
+	// A list of DBParameterGroup instances.
 	DBParameterGroups []*DBParameterGroup `locationNameList:"DBParameterGroup" type:"list"`
-	Marker            *string             `type:"string"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
 
 	metadataDescribeDBParameterGroupsOutput `json:"-", xml:"-"`
 }
@@ -2231,11 +3613,37 @@ type metadataDescribeDBParameterGroupsOutput struct {
 }
 
 type DescribeDBParametersInput struct {
-	DBParameterGroupName *string   `type:"string" required:"true"`
-	Filters              []*Filter `locationNameList:"Filter" type:"list"`
-	Marker               *string   `type:"string"`
-	MaxRecords           *int64    `type:"integer"`
-	Source               *string   `type:"string"`
+	// The name of a specific DB parameter group to return details for.
+	//
+	// Constraints:
+	//
+	//  Must be 1 to 255 alphanumeric characters First character must be a letter
+	// Cannot end with a hyphen or contain two consecutive hyphens
+	DBParameterGroupName *string `type:"string" required:"true"`
+
+	// This parameter is not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// An optional pagination token provided by a previous DescribeDBParameters
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results may be retrieved.
+	//
+	// Default: 100
+	//
+	// Constraints: minimum 20, maximum 100
+	MaxRecords *int64 `type:"integer"`
+
+	// The parameter types to return.
+	//
+	// Default: All parameter types returned
+	//
+	// Valid Values: user | system | engine-default
+	Source *string `type:"string"`
 
 	metadataDescribeDBParametersInput `json:"-", xml:"-"`
 }
@@ -2244,8 +3652,15 @@ type metadataDescribeDBParametersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the result of a successful invocation of the DescribeDBParameters
+// action.
 type DescribeDBParametersOutput struct {
-	Marker     *string      `type:"string"`
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// A list of Parameter values.
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
 
 	metadataDescribeDBParametersOutput `json:"-", xml:"-"`
@@ -2256,10 +3671,25 @@ type metadataDescribeDBParametersOutput struct {
 }
 
 type DescribeDBSecurityGroupsInput struct {
-	DBSecurityGroupName *string   `type:"string"`
-	Filters             []*Filter `locationNameList:"Filter" type:"list"`
-	Marker              *string   `type:"string"`
-	MaxRecords          *int64    `type:"integer"`
+	// The name of the DB security group to return details for.
+	DBSecurityGroupName *string `type:"string"`
+
+	// This parameter is not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// An optional pagination token provided by a previous DescribeDBSecurityGroups
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results may be retrieved.
+	//
+	// Default: 100
+	//
+	// Constraints: minimum 20, maximum 100
+	MaxRecords *int64 `type:"integer"`
 
 	metadataDescribeDBSecurityGroupsInput `json:"-", xml:"-"`
 }
@@ -2268,9 +3698,16 @@ type metadataDescribeDBSecurityGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the result of a successful invocation of the DescribeDBSecurityGroups
+// action.
 type DescribeDBSecurityGroupsOutput struct {
+	// A list of DBSecurityGroup instances.
 	DBSecurityGroups []*DBSecurityGroup `locationNameList:"DBSecurityGroup" type:"list"`
-	Marker           *string            `type:"string"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
 
 	metadataDescribeDBSecurityGroupsOutput `json:"-", xml:"-"`
 }
@@ -2280,12 +3717,48 @@ type metadataDescribeDBSecurityGroupsOutput struct {
 }
 
 type DescribeDBSnapshotsInput struct {
-	DBInstanceIdentifier *string   `type:"string"`
-	DBSnapshotIdentifier *string   `type:"string"`
-	Filters              []*Filter `locationNameList:"Filter" type:"list"`
-	Marker               *string   `type:"string"`
-	MaxRecords           *int64    `type:"integer"`
-	SnapshotType         *string   `type:"string"`
+	// A DB instance identifier to retrieve the list of DB snapshots for. Cannot
+	// be used in conjunction with DBSnapshotIdentifier. This parameter is not case
+	// sensitive.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens First character
+	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
+	DBInstanceIdentifier *string `type:"string"`
+
+	// A specific DB snapshot identifier to describe. Cannot be used in conjunction
+	// with DBInstanceIdentifier. This value is stored as a lowercase string.
+	//
+	// Constraints:
+	//
+	//  Must be 1 to 255 alphanumeric characters First character must be a letter
+	// Cannot end with a hyphen or contain two consecutive hyphens If this is the
+	// identifier of an automated snapshot, the SnapshotType parameter must also
+	// be specified.
+	DBSnapshotIdentifier *string `type:"string"`
+
+	// This parameter is not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// An optional pagination token provided by a previous DescribeDBSnapshots request.
+	// If this parameter is specified, the response includes only records beyond
+	// the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results may be retrieved.
+	//
+	// Default: 100
+	//
+	// Constraints: minimum 20, maximum 100
+	MaxRecords *int64 `type:"integer"`
+
+	// The type of snapshots that will be returned. Values can be "automated" or
+	// "manual." If not specified, the returned results will include all snapshots
+	// types.
+	SnapshotType *string `type:"string"`
 
 	metadataDescribeDBSnapshotsInput `json:"-", xml:"-"`
 }
@@ -2294,9 +3767,16 @@ type metadataDescribeDBSnapshotsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the result of a successful invocation of the DescribeDBSnapshots
+// action.
 type DescribeDBSnapshotsOutput struct {
+	// A list of DBSnapshot instances.
 	DBSnapshots []*DBSnapshot `locationNameList:"DBSnapshot" type:"list"`
-	Marker      *string       `type:"string"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
 
 	metadataDescribeDBSnapshotsOutput `json:"-", xml:"-"`
 }
@@ -2306,10 +3786,25 @@ type metadataDescribeDBSnapshotsOutput struct {
 }
 
 type DescribeDBSubnetGroupsInput struct {
-	DBSubnetGroupName *string   `type:"string"`
-	Filters           []*Filter `locationNameList:"Filter" type:"list"`
-	Marker            *string   `type:"string"`
-	MaxRecords        *int64    `type:"integer"`
+	// The name of the DB subnet group to return details for.
+	DBSubnetGroupName *string `type:"string"`
+
+	// This parameter is not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// An optional pagination token provided by a previous DescribeDBSubnetGroups
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results may be retrieved.
+	//
+	// Default: 100
+	//
+	// Constraints: minimum 20, maximum 100
+	MaxRecords *int64 `type:"integer"`
 
 	metadataDescribeDBSubnetGroupsInput `json:"-", xml:"-"`
 }
@@ -2318,9 +3813,16 @@ type metadataDescribeDBSubnetGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the result of a successful invocation of the DescribeDBSubnetGroups
+// action.
 type DescribeDBSubnetGroupsOutput struct {
+	// A list of DBSubnetGroup instances.
 	DBSubnetGroups []*DBSubnetGroup `locationNameList:"DBSubnetGroup" type:"list"`
-	Marker         *string          `type:"string"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
 
 	metadataDescribeDBSubnetGroupsOutput `json:"-", xml:"-"`
 }
@@ -2330,10 +3832,25 @@ type metadataDescribeDBSubnetGroupsOutput struct {
 }
 
 type DescribeEngineDefaultParametersInput struct {
-	DBParameterGroupFamily *string   `type:"string" required:"true"`
-	Filters                []*Filter `locationNameList:"Filter" type:"list"`
-	Marker                 *string   `type:"string"`
-	MaxRecords             *int64    `type:"integer"`
+	// The name of the DB parameter group family.
+	DBParameterGroupFamily *string `type:"string" required:"true"`
+
+	// Not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// An optional pagination token provided by a previous DescribeEngineDefaultParameters
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results may be retrieved.
+	//
+	// Default: 100
+	//
+	// Constraints: minimum 20, maximum 100
+	MaxRecords *int64 `type:"integer"`
 
 	metadataDescribeEngineDefaultParametersInput `json:"-", xml:"-"`
 }
@@ -2343,6 +3860,8 @@ type metadataDescribeEngineDefaultParametersInput struct {
 }
 
 type DescribeEngineDefaultParametersOutput struct {
+	// Contains the result of a successful invocation of the DescribeEngineDefaultParameters
+	// action.
 	EngineDefaults *EngineDefaults `type:"structure"`
 
 	metadataDescribeEngineDefaultParametersOutput `json:"-", xml:"-"`
@@ -2353,8 +3872,13 @@ type metadataDescribeEngineDefaultParametersOutput struct {
 }
 
 type DescribeEventCategoriesInput struct {
-	Filters    []*Filter `locationNameList:"Filter" type:"list"`
-	SourceType *string   `type:"string"`
+	// This parameter is not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// The type of source that will be generating the events.
+	//
+	// Valid values: db-instance | db-parameter-group | db-security-group | db-snapshot
+	SourceType *string `type:"string"`
 
 	metadataDescribeEventCategoriesInput `json:"-", xml:"-"`
 }
@@ -2363,7 +3887,9 @@ type metadataDescribeEventCategoriesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Data returned from the DescribeEventCategories action.
 type DescribeEventCategoriesOutput struct {
+	// A list of EventCategoriesMap data types.
 	EventCategoriesMapList []*EventCategoriesMap `locationNameList:"EventCategoriesMap" type:"list"`
 
 	metadataDescribeEventCategoriesOutput `json:"-", xml:"-"`
@@ -2374,10 +3900,25 @@ type metadataDescribeEventCategoriesOutput struct {
 }
 
 type DescribeEventSubscriptionsInput struct {
-	Filters          []*Filter `locationNameList:"Filter" type:"list"`
-	Marker           *string   `type:"string"`
-	MaxRecords       *int64    `type:"integer"`
-	SubscriptionName *string   `type:"string"`
+	// This parameter is not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// An optional pagination token provided by a previous DescribeOrderableDBInstanceOptions
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords .
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results can be retrieved.
+	//
+	// Default: 100
+	//
+	// Constraints: minimum 20, maximum 100
+	MaxRecords *int64 `type:"integer"`
+
+	// The name of the RDS event notification subscription you want to describe.
+	SubscriptionName *string `type:"string"`
 
 	metadataDescribeEventSubscriptionsInput `json:"-", xml:"-"`
 }
@@ -2386,9 +3927,15 @@ type metadataDescribeEventSubscriptionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Data returned by the DescribeEventSubscriptions action.
 type DescribeEventSubscriptionsOutput struct {
+	// A list of EventSubscriptions data types.
 	EventSubscriptionsList []*EventSubscription `locationNameList:"EventSubscription" type:"list"`
-	Marker                 *string              `type:"string"`
+
+	// An optional pagination token provided by a previous DescribeOrderableDBInstanceOptions
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
 
 	metadataDescribeEventSubscriptionsOutput `json:"-", xml:"-"`
 }
@@ -2398,15 +3945,62 @@ type metadataDescribeEventSubscriptionsOutput struct {
 }
 
 type DescribeEventsInput struct {
-	Duration         *int64     `type:"integer"`
-	EndTime          *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	EventCategories  []*string  `locationNameList:"EventCategory" type:"list"`
-	Filters          []*Filter  `locationNameList:"Filter" type:"list"`
-	Marker           *string    `type:"string"`
-	MaxRecords       *int64     `type:"integer"`
-	SourceIdentifier *string    `type:"string"`
-	SourceType       *string    `type:"string"`
-	StartTime        *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	// The number of minutes to retrieve events for.
+	//
+	// Default: 60
+	Duration *int64 `type:"integer"`
+
+	// The end of the time interval for which to retrieve events, specified in ISO
+	// 8601 format. For more information about ISO 8601, go to the ISO8601 Wikipedia
+	// page. (http://en.wikipedia.org/wiki/ISO_8601)
+	//
+	// Example: 2009-07-08T18:00Z
+	EndTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// A list of event categories that trigger notifications for a event notification
+	// subscription.
+	EventCategories []*string `locationNameList:"EventCategory" type:"list"`
+
+	// This parameter is not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// An optional pagination token provided by a previous DescribeEvents request.
+	// If this parameter is specified, the response includes only records beyond
+	// the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results may be retrieved.
+	//
+	// Default: 100
+	//
+	// Constraints: minimum 20, maximum 100
+	MaxRecords *int64 `type:"integer"`
+
+	// The identifier of the event source for which events will be returned. If
+	// not specified, then all sources are included in the response.
+	//
+	// Constraints:
+	//
+	//  If SourceIdentifier is supplied, SourceType must also be provided. If the
+	// source type is DBInstance, then a DBInstanceIdentifier must be supplied.
+	// If the source type is DBSecurityGroup, a DBSecurityGroupName must be supplied.
+	// If the source type is DBParameterGroup, a DBParameterGroupName must be supplied.
+	// If the source type is DBSnapshot, a DBSnapshotIdentifier must be supplied.
+	// Cannot end with a hyphen or contain two consecutive hyphens.
+	SourceIdentifier *string `type:"string"`
+
+	// The event source to retrieve events for. If no value is specified, all events
+	// are returned.
+	SourceType *string `type:"string"`
+
+	// The beginning of the time interval to retrieve events for, specified in ISO
+	// 8601 format. For more information about ISO 8601, go to the ISO8601 Wikipedia
+	// page. (http://en.wikipedia.org/wiki/ISO_8601)
+	//
+	// Example: 2009-07-08T18:00Z
+	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	metadataDescribeEventsInput `json:"-", xml:"-"`
 }
@@ -2415,9 +4009,15 @@ type metadataDescribeEventsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the result of a successful invocation of the DescribeEvents action.
 type DescribeEventsOutput struct {
+	// A list of Event instances.
 	Events []*Event `locationNameList:"Event" type:"list"`
-	Marker *string  `type:"string"`
+
+	// An optional pagination token provided by a previous Events request. If this
+	// parameter is specified, the response includes only records beyond the marker,
+	// up to the value specified by MaxRecords .
+	Marker *string `type:"string"`
 
 	metadataDescribeEventsOutput `json:"-", xml:"-"`
 }
@@ -2427,11 +4027,30 @@ type metadataDescribeEventsOutput struct {
 }
 
 type DescribeOptionGroupOptionsInput struct {
-	EngineName         *string   `type:"string" required:"true"`
-	Filters            []*Filter `locationNameList:"Filter" type:"list"`
-	MajorEngineVersion *string   `type:"string"`
-	Marker             *string   `type:"string"`
-	MaxRecords         *int64    `type:"integer"`
+	// A required parameter. Options available for the given Engine name will be
+	// described.
+	EngineName *string `type:"string" required:"true"`
+
+	// This parameter is not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// If specified, filters the results to include only options for the specified
+	// major engine version.
+	MajorEngineVersion *string `type:"string"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results can be retrieved.
+	//
+	// Default: 100
+	//
+	// Constraints: minimum 20, maximum 100
+	MaxRecords *int64 `type:"integer"`
 
 	metadataDescribeOptionGroupOptionsInput `json:"-", xml:"-"`
 }
@@ -2441,7 +4060,12 @@ type metadataDescribeOptionGroupOptionsInput struct {
 }
 
 type DescribeOptionGroupOptionsOutput struct {
-	Marker             *string              `type:"string"`
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// List of available option group options.
 	OptionGroupOptions []*OptionGroupOption `locationNameList:"OptionGroupOption" type:"list"`
 
 	metadataDescribeOptionGroupOptionsOutput `json:"-", xml:"-"`
@@ -2452,12 +4076,35 @@ type metadataDescribeOptionGroupOptionsOutput struct {
 }
 
 type DescribeOptionGroupsInput struct {
-	EngineName         *string   `type:"string"`
-	Filters            []*Filter `locationNameList:"Filter" type:"list"`
-	MajorEngineVersion *string   `type:"string"`
-	Marker             *string   `type:"string"`
-	MaxRecords         *int64    `type:"integer"`
-	OptionGroupName    *string   `type:"string"`
+	// Filters the list of option groups to only include groups associated with
+	// a specific database engine.
+	EngineName *string `type:"string"`
+
+	// This parameter is not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// Filters the list of option groups to only include groups associated with
+	// a specific database engine version. If specified, then EngineName must also
+	// be specified.
+	MajorEngineVersion *string `type:"string"`
+
+	// An optional pagination token provided by a previous DescribeOptionGroups
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results can be retrieved.
+	//
+	// Default: 100
+	//
+	// Constraints: minimum 20, maximum 100
+	MaxRecords *int64 `type:"integer"`
+
+	// The name of the option group to describe. Cannot be supplied together with
+	// EngineName or MajorEngineVersion.
+	OptionGroupName *string `type:"string"`
 
 	metadataDescribeOptionGroupsInput `json:"-", xml:"-"`
 }
@@ -2466,8 +4113,14 @@ type metadataDescribeOptionGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// List of option groups.
 type DescribeOptionGroupsOutput struct {
-	Marker           *string        `type:"string"`
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// List of option groups.
 	OptionGroupsList []*OptionGroup `locationNameList:"OptionGroup" type:"list"`
 
 	metadataDescribeOptionGroupsOutput `json:"-", xml:"-"`
@@ -2478,14 +4131,41 @@ type metadataDescribeOptionGroupsOutput struct {
 }
 
 type DescribeOrderableDBInstanceOptionsInput struct {
-	DBInstanceClass *string   `type:"string"`
-	Engine          *string   `type:"string" required:"true"`
-	EngineVersion   *string   `type:"string"`
-	Filters         []*Filter `locationNameList:"Filter" type:"list"`
-	LicenseModel    *string   `type:"string"`
-	Marker          *string   `type:"string"`
-	MaxRecords      *int64    `type:"integer"`
-	VPC             *bool     `locationName:"Vpc" type:"boolean"`
+	// The DB instance class filter value. Specify this parameter to show only the
+	// available offerings matching the specified DB instance class.
+	DBInstanceClass *string `type:"string"`
+
+	// The name of the engine to retrieve DB instance options for.
+	Engine *string `type:"string" required:"true"`
+
+	// The engine version filter value. Specify this parameter to show only the
+	// available offerings matching the specified engine version.
+	EngineVersion *string `type:"string"`
+
+	// This parameter is not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// The license model filter value. Specify this parameter to show only the available
+	// offerings matching the specified license model.
+	LicenseModel *string `type:"string"`
+
+	// An optional pagination token provided by a previous DescribeOrderableDBInstanceOptions
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords .
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results can be retrieved.
+	//
+	// Default: 100
+	//
+	// Constraints: minimum 20, maximum 100
+	MaxRecords *int64 `type:"integer"`
+
+	// The VPC filter value. Specify this parameter to show only the available VPC
+	// or non-VPC offerings.
+	VPC *bool `locationName:"Vpc" type:"boolean"`
 
 	metadataDescribeOrderableDBInstanceOptionsInput `json:"-", xml:"-"`
 }
@@ -2494,8 +4174,16 @@ type metadataDescribeOrderableDBInstanceOptionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the result of a successful invocation of the DescribeOrderableDBInstanceOptions
+// action.
 type DescribeOrderableDBInstanceOptionsOutput struct {
-	Marker                     *string                      `type:"string"`
+	// An optional pagination token provided by a previous OrderableDBInstanceOptions
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords .
+	Marker *string `type:"string"`
+
+	// An OrderableDBInstanceOption structure containing information about orderable
+	// options for the DB instance.
 	OrderableDBInstanceOptions []*OrderableDBInstanceOption `locationNameList:"OrderableDBInstanceOption" type:"list"`
 
 	metadataDescribeOrderableDBInstanceOptionsOutput `json:"-", xml:"-"`
@@ -2506,10 +4194,29 @@ type metadataDescribeOrderableDBInstanceOptionsOutput struct {
 }
 
 type DescribePendingMaintenanceActionsInput struct {
-	Filters            []*Filter `locationNameList:"Filter" type:"list"`
-	Marker             *string   `type:"string"`
-	MaxRecords         *int64    `type:"integer"`
-	ResourceIdentifier *string   `type:"string"`
+	// Supported filters:
+	//
+	//  db-instance-id - Accepts DB instance identifiers and DB instance ARNs.
+	// The result list will only include maintenance actions for the specified DB
+	// Instances.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// An optional pagination token provided by a previous DescribePendingMaintenanceActions
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to a number of records specified by MaxRecords .
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results can be retrieved.
+	//
+	// Default: 100
+	//
+	// Constraints: minimum 20, maximum 100
+	MaxRecords *int64 `type:"integer"`
+
+	// The ARN of the resource to return pending maintenance actions for.
+	ResourceIdentifier *string `type:"string"`
 
 	metadataDescribePendingMaintenanceActionsInput `json:"-", xml:"-"`
 }
@@ -2518,8 +4225,14 @@ type metadataDescribePendingMaintenanceActionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Data returned from the DescribePendingMaintenanceActions action.
 type DescribePendingMaintenanceActionsOutput struct {
-	Marker                    *string                              `type:"string"`
+	// An optional pagination token provided by a previous DescribePendingMaintenanceActions
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to a number of records specified by MaxRecords .
+	Marker *string `type:"string"`
+
+	// Provides a list of the pending maintenance actions for the resource.
 	PendingMaintenanceActions []*ResourcePendingMaintenanceActions `locationNameList:"ResourcePendingMaintenanceActions" type:"list"`
 
 	metadataDescribePendingMaintenanceActionsOutput `json:"-", xml:"-"`
@@ -2530,16 +4243,54 @@ type metadataDescribePendingMaintenanceActionsOutput struct {
 }
 
 type DescribeReservedDBInstancesInput struct {
-	DBInstanceClass               *string   `type:"string"`
-	Duration                      *string   `type:"string"`
-	Filters                       []*Filter `locationNameList:"Filter" type:"list"`
-	Marker                        *string   `type:"string"`
-	MaxRecords                    *int64    `type:"integer"`
-	MultiAZ                       *bool     `type:"boolean"`
-	OfferingType                  *string   `type:"string"`
-	ProductDescription            *string   `type:"string"`
-	ReservedDBInstanceID          *string   `locationName:"ReservedDBInstanceId" type:"string"`
-	ReservedDBInstancesOfferingID *string   `locationName:"ReservedDBInstancesOfferingId" type:"string"`
+	// The DB instance class filter value. Specify this parameter to show only those
+	// reservations matching the specified DB instances class.
+	DBInstanceClass *string `type:"string"`
+
+	// The duration filter value, specified in years or seconds. Specify this parameter
+	// to show only reservations for this duration.
+	//
+	// Valid Values: 1 | 3 | 31536000 | 94608000
+	Duration *string `type:"string"`
+
+	// This parameter is not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more than the
+	// MaxRecords value is available, a pagination token called a marker is included
+	// in the response so that the following results can be retrieved.
+	//
+	// Default: 100
+	//
+	// Constraints: minimum 20, maximum 100
+	MaxRecords *int64 `type:"integer"`
+
+	// The Multi-AZ filter value. Specify this parameter to show only those reservations
+	// matching the specified Multi-AZ parameter.
+	MultiAZ *bool `type:"boolean"`
+
+	// The offering type filter value. Specify this parameter to show only the available
+	// offerings matching the specified offering type.
+	//
+	// Valid Values: "Light Utilization" | "Medium Utilization" | "Heavy Utilization"
+	OfferingType *string `type:"string"`
+
+	// The product description filter value. Specify this parameter to show only
+	// those reservations matching the specified product description.
+	ProductDescription *string `type:"string"`
+
+	// The reserved DB instance identifier filter value. Specify this parameter
+	// to show only the reservation that matches the specified reservation ID.
+	ReservedDBInstanceID *string `locationName:"ReservedDBInstanceId" type:"string"`
+
+	// The offering identifier filter value. Specify this parameter to show only
+	// purchased reservations matching the specified offering identifier.
+	ReservedDBInstancesOfferingID *string `locationName:"ReservedDBInstancesOfferingId" type:"string"`
 
 	metadataDescribeReservedDBInstancesInput `json:"-", xml:"-"`
 }
@@ -2549,15 +4300,52 @@ type metadataDescribeReservedDBInstancesInput struct {
 }
 
 type DescribeReservedDBInstancesOfferingsInput struct {
-	DBInstanceClass               *string   `type:"string"`
-	Duration                      *string   `type:"string"`
-	Filters                       []*Filter `locationNameList:"Filter" type:"list"`
-	Marker                        *string   `type:"string"`
-	MaxRecords                    *int64    `type:"integer"`
-	MultiAZ                       *bool     `type:"boolean"`
-	OfferingType                  *string   `type:"string"`
-	ProductDescription            *string   `type:"string"`
-	ReservedDBInstancesOfferingID *string   `locationName:"ReservedDBInstancesOfferingId" type:"string"`
+	// The DB instance class filter value. Specify this parameter to show only the
+	// available offerings matching the specified DB instance class.
+	DBInstanceClass *string `type:"string"`
+
+	// Duration filter value, specified in years or seconds. Specify this parameter
+	// to show only reservations for this duration.
+	//
+	// Valid Values: 1 | 3 | 31536000 | 94608000
+	Duration *string `type:"string"`
+
+	// This parameter is not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more than the
+	// MaxRecords value is available, a pagination token called a marker is included
+	// in the response so that the following results can be retrieved.
+	//
+	// Default: 100
+	//
+	// Constraints: minimum 20, maximum 100
+	MaxRecords *int64 `type:"integer"`
+
+	// The Multi-AZ filter value. Specify this parameter to show only the available
+	// offerings matching the specified Multi-AZ parameter.
+	MultiAZ *bool `type:"boolean"`
+
+	// The offering type filter value. Specify this parameter to show only the available
+	// offerings matching the specified offering type.
+	//
+	// Valid Values: "Light Utilization" | "Medium Utilization" | "Heavy Utilization"
+	OfferingType *string `type:"string"`
+
+	// Product description filter value. Specify this parameter to show only the
+	// available offerings matching the specified product description.
+	ProductDescription *string `type:"string"`
+
+	// The offering identifier filter value. Specify this parameter to show only
+	// the available offering that matches the specified reservation identifier.
+	//
+	// Example: 438012d3-4052-4cc7-b2e3-8d3372e0e706
+	ReservedDBInstancesOfferingID *string `locationName:"ReservedDBInstancesOfferingId" type:"string"`
 
 	metadataDescribeReservedDBInstancesOfferingsInput `json:"-", xml:"-"`
 }
@@ -2566,8 +4354,15 @@ type metadataDescribeReservedDBInstancesOfferingsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the result of a successful invocation of the DescribeReservedDBInstancesOfferings
+// action.
 type DescribeReservedDBInstancesOfferingsOutput struct {
-	Marker                       *string                        `type:"string"`
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// A list of reserved DB instance offerings.
 	ReservedDBInstancesOfferings []*ReservedDBInstancesOffering `locationNameList:"ReservedDBInstancesOffering" type:"list"`
 
 	metadataDescribeReservedDBInstancesOfferingsOutput `json:"-", xml:"-"`
@@ -2577,8 +4372,15 @@ type metadataDescribeReservedDBInstancesOfferingsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the result of a successful invocation of the DescribeReservedDBInstances
+// action.
 type DescribeReservedDBInstancesOutput struct {
-	Marker              *string               `type:"string"`
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// A list of reserved DB instances.
 	ReservedDBInstances []*ReservedDBInstance `locationNameList:"ReservedDBInstance" type:"list"`
 
 	metadataDescribeReservedDBInstancesOutput `json:"-", xml:"-"`
@@ -2589,10 +4391,42 @@ type metadataDescribeReservedDBInstancesOutput struct {
 }
 
 type DownloadDBLogFilePortionInput struct {
+	// The customer-assigned name of the DB instance that contains the log files
+	// you want to list.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens First character
+	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
 	DBInstanceIdentifier *string `type:"string" required:"true"`
-	LogFileName          *string `type:"string" required:"true"`
-	Marker               *string `type:"string"`
-	NumberOfLines        *int64  `type:"integer"`
+
+	// The name of the log file to be downloaded.
+	LogFileName *string `type:"string" required:"true"`
+
+	// The pagination token provided in the previous request or "0". If the Marker
+	// parameter is specified the response includes only records beyond the marker
+	// until the end of the file or up to NumberOfLines.
+	Marker *string `type:"string"`
+
+	// The number of lines to download.
+	//
+	// If the NumberOfLines parameter is specified, then the block of lines returned
+	// can be from the beginning or the end of the log file, depending on the value
+	// of the Marker parameter.  If neither Marker or NumberOfLines are specified,
+	// the entire log file is returned.
+	//
+	// If NumberOfLines is specified and Marker is not specified, then the most
+	// recent lines from the end of the log file are returned.
+	//
+	// If Marker is specified as "0", then the specified number of lines from the
+	// beginning of the log file are returned.
+	//
+	// You can download the log file in blocks of lines by specifying the size
+	// of the block using the NumberOfLines parameter, and by specifying a value
+	// of "0" for the Marker parameter in your first request. Include the Marker
+	// value returned in the response as the Marker value for the next request,
+	// continuing until the AdditionalDataPending response element returns false.
+	NumberOfLines *int64 `type:"integer"`
 
 	metadataDownloadDBLogFilePortionInput `json:"-", xml:"-"`
 }
@@ -2601,10 +4435,17 @@ type metadataDownloadDBLogFilePortionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This data type is used as a response element to DownloadDBLogFilePortion.
 type DownloadDBLogFilePortionOutput struct {
-	AdditionalDataPending *bool   `type:"boolean"`
-	LogFileData           *string `type:"string"`
-	Marker                *string `type:"string"`
+	// Boolean value that if true, indicates there is more data to be downloaded.
+	AdditionalDataPending *bool `type:"boolean"`
+
+	// Entries from the specified log file.
+	LogFileData *string `type:"string"`
+
+	// A pagination token that can be used in a subsequent DownloadDBLogFilePortion
+	// request.
+	Marker *string `type:"string"`
 
 	metadataDownloadDBLogFilePortionOutput `json:"-", xml:"-"`
 }
@@ -2613,11 +4454,23 @@ type metadataDownloadDBLogFilePortionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This data type is used as a response element in the following actions:
+//
+//  AuthorizeDBSecurityGroupIngress DescribeDBSecurityGroups RevokeDBSecurityGroupIngress
 type EC2SecurityGroup struct {
-	EC2SecurityGroupID      *string `locationName:"EC2SecurityGroupId" type:"string"`
-	EC2SecurityGroupName    *string `type:"string"`
+	// Specifies the id of the EC2 security group.
+	EC2SecurityGroupID *string `locationName:"EC2SecurityGroupId" type:"string"`
+
+	// Specifies the name of the EC2 security group.
+	EC2SecurityGroupName *string `type:"string"`
+
+	// Specifies the AWS ID of the owner of the EC2 security group specified in
+	// the EC2SecurityGroupName field.
 	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
-	Status                  *string `type:"string"`
+
+	// Provides the status of the EC2 security group. Status can be "authorizing",
+	// "authorized", "revoking", and "revoked".
+	Status *string `type:"string"`
 
 	metadataEC2SecurityGroup `json:"-", xml:"-"`
 }
@@ -2626,9 +4479,15 @@ type metadataEC2SecurityGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This data type is used as a response element in the following actions:
+//
+//  CreateDBInstance DescribeDBInstances DeleteDBInstance
 type Endpoint struct {
+	// Specifies the DNS address of the DB instance.
 	Address *string `type:"string"`
-	Port    *int64  `type:"integer"`
+
+	// Specifies the port that the database engine is listening on.
+	Port *int64 `type:"integer"`
 
 	metadataEndpoint `json:"-", xml:"-"`
 }
@@ -2637,10 +4496,20 @@ type metadataEndpoint struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the result of a successful invocation of the DescribeEngineDefaultParameters
+// action.
 type EngineDefaults struct {
-	DBParameterGroupFamily *string      `type:"string"`
-	Marker                 *string      `type:"string"`
-	Parameters             []*Parameter `locationNameList:"Parameter" type:"list"`
+	// Specifies the name of the DB parameter group family which the engine default
+	// parameters apply to.
+	DBParameterGroupFamily *string `type:"string"`
+
+	// An optional pagination token provided by a previous EngineDefaults request.
+	// If this parameter is specified, the response includes only records beyond
+	// the marker, up to the value specified by MaxRecords .
+	Marker *string `type:"string"`
+
+	// Contains a list of engine default parameters.
+	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
 
 	metadataEngineDefaults `json:"-", xml:"-"`
 }
@@ -2649,12 +4518,22 @@ type metadataEngineDefaults struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This data type is used as a response element in the DescribeEvents action.
 type Event struct {
-	Date             *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	EventCategories  []*string  `locationNameList:"EventCategory" type:"list"`
-	Message          *string    `type:"string"`
-	SourceIdentifier *string    `type:"string"`
-	SourceType       *string    `type:"string"`
+	// Specifies the date and time of the event.
+	Date *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// Specifies the category for the event.
+	EventCategories []*string `locationNameList:"EventCategory" type:"list"`
+
+	// Provides the text of this event.
+	Message *string `type:"string"`
+
+	// Provides the identifier for the source of the event.
+	SourceIdentifier *string `type:"string"`
+
+	// Specifies the source type for this event.
+	SourceType *string `type:"string"`
 
 	metadataEvent `json:"-", xml:"-"`
 }
@@ -2663,9 +4542,14 @@ type metadataEvent struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the results of a successful invocation of the DescribeEventCategories
+// action.
 type EventCategoriesMap struct {
+	// The event categories for the specified source type
 	EventCategories []*string `locationNameList:"EventCategory" type:"list"`
-	SourceType      *string   `type:"string"`
+
+	// The source type that the returned categories belong to
+	SourceType *string `type:"string"`
 
 	metadataEventCategoriesMap `json:"-", xml:"-"`
 }
@@ -2674,16 +4558,45 @@ type metadataEventCategoriesMap struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the results of a successful invocation of the DescribeEventSubscriptions
+// action.
 type EventSubscription struct {
-	CustSubscriptionID       *string   `locationName:"CustSubscriptionId" type:"string"`
-	CustomerAWSID            *string   `locationName:"CustomerAwsId" type:"string"`
-	Enabled                  *bool     `type:"boolean"`
-	EventCategoriesList      []*string `locationNameList:"EventCategory" type:"list"`
-	SNSTopicARN              *string   `locationName:"SnsTopicArn" type:"string"`
-	SourceIDsList            []*string `locationName:"SourceIdsList" locationNameList:"SourceId" type:"list"`
-	SourceType               *string   `type:"string"`
-	Status                   *string   `type:"string"`
-	SubscriptionCreationTime *string   `type:"string"`
+	// The RDS event notification subscription Id.
+	CustSubscriptionID *string `locationName:"CustSubscriptionId" type:"string"`
+
+	// The AWS customer account associated with the RDS event notification subscription.
+	CustomerAWSID *string `locationName:"CustomerAwsId" type:"string"`
+
+	// A Boolean value indicating if the subscription is enabled. True indicates
+	// the subscription is enabled.
+	Enabled *bool `type:"boolean"`
+
+	// A list of event categories for the RDS event notification subscription.
+	EventCategoriesList []*string `locationNameList:"EventCategory" type:"list"`
+
+	// The topic ARN of the RDS event notification subscription.
+	SNSTopicARN *string `locationName:"SnsTopicArn" type:"string"`
+
+	// A list of source IDs for the RDS event notification subscription.
+	SourceIDsList []*string `locationName:"SourceIdsList" locationNameList:"SourceId" type:"list"`
+
+	// The source type for the RDS event notification subscription.
+	SourceType *string `type:"string"`
+
+	// The status of the RDS event notification subscription.
+	//
+	// Constraints:
+	//
+	// Can be one of the following: creating | modifying | deleting | active |
+	// no-permission | topic-not-exist
+	//
+	// The status "no-permission" indicates that RDS no longer has permission to
+	// post to the SNS topic. The status "topic-not-exist" indicates that the topic
+	// was deleted after the subscription was created.
+	Status *string `type:"string"`
+
+	// The time the RDS event notification subscription was created.
+	SubscriptionCreationTime *string `type:"string"`
 
 	metadataEventSubscription `json:"-", xml:"-"`
 }
@@ -2693,7 +4606,10 @@ type metadataEventSubscription struct {
 }
 
 type Filter struct {
-	Name   *string   `type:"string" required:"true"`
+	// This parameter is not currently supported.
+	Name *string `type:"string" required:"true"`
+
+	// This parameter is not currently supported.
 	Values []*string `locationNameList:"Value" type:"list" required:"true"`
 
 	metadataFilter `json:"-", xml:"-"`
@@ -2703,8 +4619,14 @@ type metadataFilter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This data type is used as a response element in the DescribeDBSecurityGroups
+// action.
 type IPRange struct {
+	// Specifies the IP range.
 	CIDRIP *string `type:"string"`
+
+	// Specifies the status of the IP range. Status can be "authorizing", "authorized",
+	// "revoking", and "revoked".
 	Status *string `type:"string"`
 
 	metadataIPRange `json:"-", xml:"-"`
@@ -2715,8 +4637,13 @@ type metadataIPRange struct {
 }
 
 type ListTagsForResourceInput struct {
-	Filters      []*Filter `locationNameList:"Filter" type:"list"`
-	ResourceName *string   `type:"string" required:"true"`
+	// This parameter is not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// The Amazon RDS resource with tags to be listed. This value is an Amazon Resource
+	// Name (ARN). For information about creating an ARN, see  Constructing an RDS
+	// Amazon Resource Name (ARN) (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html#USER_Tagging.ARN).
+	ResourceName *string `type:"string" required:"true"`
 
 	metadataListTagsForResourceInput `json:"-", xml:"-"`
 }
@@ -2726,6 +4653,7 @@ type metadataListTagsForResourceInput struct {
 }
 
 type ListTagsForResourceOutput struct {
+	// List of tags returned by the ListTagsForResource operation.
 	TagList []*Tag `locationNameList:"Tag" type:"list"`
 
 	metadataListTagsForResourceOutput `json:"-", xml:"-"`
@@ -2736,27 +4664,315 @@ type metadataListTagsForResourceOutput struct {
 }
 
 type ModifyDBInstanceInput struct {
-	AllocatedStorage           *int64    `type:"integer"`
-	AllowMajorVersionUpgrade   *bool     `type:"boolean"`
-	ApplyImmediately           *bool     `type:"boolean"`
-	AutoMinorVersionUpgrade    *bool     `type:"boolean"`
-	BackupRetentionPeriod      *int64    `type:"integer"`
-	DBInstanceClass            *string   `type:"string"`
-	DBInstanceIdentifier       *string   `type:"string" required:"true"`
-	DBParameterGroupName       *string   `type:"string"`
-	DBSecurityGroups           []*string `locationNameList:"DBSecurityGroupName" type:"list"`
-	EngineVersion              *string   `type:"string"`
-	IOPS                       *int64    `locationName:"Iops" type:"integer"`
-	MasterUserPassword         *string   `type:"string"`
-	MultiAZ                    *bool     `type:"boolean"`
-	NewDBInstanceIdentifier    *string   `type:"string"`
-	OptionGroupName            *string   `type:"string"`
-	PreferredBackupWindow      *string   `type:"string"`
-	PreferredMaintenanceWindow *string   `type:"string"`
-	StorageType                *string   `type:"string"`
-	TDECredentialARN           *string   `locationName:"TdeCredentialArn" type:"string"`
-	TDECredentialPassword      *string   `locationName:"TdeCredentialPassword" type:"string"`
-	VPCSecurityGroupIDs        []*string `locationName:"VpcSecurityGroupIds" locationNameList:"VpcSecurityGroupId" type:"list"`
+	// The new storage capacity of the RDS instance. Changing this setting does
+	// not result in an outage and the change is applied during the next maintenance
+	// window unless ApplyImmediately is set to true for this request.
+	//
+	// MySQL
+	//
+	// Default: Uses existing setting
+	//
+	// Valid Values: 5-3072
+	//
+	// Constraints: Value supplied must be at least 10% greater than the current
+	// value. Values that are not at least 10% greater than the existing value are
+	// rounded up so that they are 10% greater than the current value.
+	//
+	// Type: Integer
+	//
+	// PostgreSQL
+	//
+	// Default: Uses existing setting
+	//
+	// Valid Values: 5-3072
+	//
+	// Constraints: Value supplied must be at least 10% greater than the current
+	// value. Values that are not at least 10% greater than the existing value are
+	// rounded up so that they are 10% greater than the current value.
+	//
+	// Type: Integer
+	//
+	// Oracle
+	//
+	// Default: Uses existing setting
+	//
+	// Valid Values: 10-3072
+	//
+	// Constraints: Value supplied must be at least 10% greater than the current
+	// value. Values that are not at least 10% greater than the existing value are
+	// rounded up so that they are 10% greater than the current value.
+	//
+	// SQL Server
+	//
+	// Cannot be modified.
+	//
+	//  If you choose to migrate your DB instance from using standard storage to
+	// using Provisioned IOPS, or from using Provisioned IOPS to using standard
+	// storage, the process can take time. The duration of the migration depends
+	// on several factors such as database load, storage size, storage type (standard
+	// or Provisioned IOPS), amount of IOPS provisioned (if any), and the number
+	// of prior scale storage operations. Typical migration times are under 24 hours,
+	// but the process can take up to several days in some cases. During the migration,
+	// the DB instance will be available for use, but may experience performance
+	// degradation. While the migration takes place, nightly backups for the instance
+	// will be suspended. No other Amazon RDS operations can take place for the
+	// instance, including modifying the instance, rebooting the instance, deleting
+	// the instance, creating a Read Replica for the instance, and creating a DB
+	// snapshot of the instance.
+	AllocatedStorage *int64 `type:"integer"`
+
+	// Indicates that major version upgrades are allowed. Changing this parameter
+	// does not result in an outage and the change is asynchronously applied as
+	// soon as possible.
+	//
+	// Constraints: This parameter must be set to true when specifying a value
+	// for the EngineVersion parameter that is a different major version than the
+	// DB instance's current version.
+	AllowMajorVersionUpgrade *bool `type:"boolean"`
+
+	// Specifies whether the modifications in this request and any pending modifications
+	// are asynchronously applied as soon as possible, regardless of the PreferredMaintenanceWindow
+	// setting for the DB instance.
+	//
+	//  If this parameter is set to false, changes to the DB instance are applied
+	// during the next maintenance window. Some parameter changes can cause an outage
+	// and will be applied on the next call to RebootDBInstance, or the next failure
+	// reboot. Review the table of parameters in Modifying a DB Instance and Using
+	// the Apply Immediately Parameter (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.DBInstance.html#Overview.DBInstance.Modifying)
+	// to see the impact that setting ApplyImmediately to true or false has for
+	// each modified parameter and to determine when the changes will be applied.
+	//
+	// Default: false
+	ApplyImmediately *bool `type:"boolean"`
+
+	// Indicates that minor version upgrades will be applied automatically to the
+	// DB instance during the maintenance window. Changing this parameter does not
+	// result in an outage except in the following case and the change is asynchronously
+	// applied as soon as possible. An outage will result if this parameter is set
+	// to true during the maintenance window, and a newer minor version is available,
+	// and RDS has enabled auto patching for that engine version.
+	AutoMinorVersionUpgrade *bool `type:"boolean"`
+
+	// The number of days to retain automated backups. Setting this parameter to
+	// a positive number enables backups. Setting this parameter to 0 disables automated
+	// backups.
+	//
+	// Changing this parameter can result in an outage if you change from 0 to
+	// a non-zero value or from a non-zero value to 0. These changes are applied
+	// during the next maintenance window unless the ApplyImmediately parameter
+	// is set to true for this request. If you change the parameter from one non-zero
+	// value to another non-zero value, the change is asynchronously applied as
+	// soon as possible.
+	//
+	// Default: Uses existing setting
+	//
+	// Constraints:
+	//
+	//  Must be a value from 0 to 35 Can be specified for a MySQL Read Replica
+	// only if the source is running MySQL 5.6 Can be specified for a PostgreSQL
+	// Read Replica only if the source is running PostgreSQL 9.3.5 Cannot be set
+	// to 0 if the DB instance is a source to Read Replicas
+	BackupRetentionPeriod *int64 `type:"integer"`
+
+	// The new compute and memory capacity of the DB instance. To determine the
+	// instance classes that are available for a particular DB engine, use the DescribeOrderableDBInstanceOptions
+	// action.
+	//
+	//  Passing a value for this setting causes an outage during the change and
+	// is applied during the next maintenance window, unless ApplyImmediately is
+	// specified as true for this request.
+	//
+	// Default: Uses existing setting
+	//
+	// Valid Values: db.t1.micro | db.m1.small | db.m1.medium | db.m1.large | db.m1.xlarge
+	// | db.m2.xlarge | db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large
+	// | db.m3.xlarge | db.m3.2xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge
+	// | db.r3.4xlarge | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium
+	DBInstanceClass *string `type:"string"`
+
+	// The DB instance identifier. This value is stored as a lowercase string.
+	//
+	// Constraints:
+	//
+	//  Must be the identifier for an existing DB instance Must contain from 1
+	// to 63 alphanumeric characters or hyphens First character must be a letter
+	// Cannot end with a hyphen or contain two consecutive hyphens
+	DBInstanceIdentifier *string `type:"string" required:"true"`
+
+	// The name of the DB parameter group to apply to the DB instance. Changing
+	// this setting does not result in an outage. The parameter group name itself
+	// is changed immediately, but the actual parameter changes are not applied
+	// until you reboot the instance without failover. The db instance will NOT
+	// be rebooted automatically and the parameter changes will NOT be applied during
+	// the next maintenance window.
+	//
+	// Default: Uses existing setting
+	//
+	// Constraints: The DB parameter group must be in the same DB parameter group
+	// family as this DB instance.
+	DBParameterGroupName *string `type:"string"`
+
+	// A list of DB security groups to authorize on this DB instance. Changing this
+	// setting does not result in an outage and the change is asynchronously applied
+	// as soon as possible.
+	//
+	// Constraints:
+	//
+	//  Must be 1 to 255 alphanumeric characters First character must be a letter
+	// Cannot end with a hyphen or contain two consecutive hyphens
+	DBSecurityGroups []*string `locationNameList:"DBSecurityGroupName" type:"list"`
+
+	// The version number of the database engine to upgrade to. Changing this parameter
+	// results in an outage and the change is applied during the next maintenance
+	// window unless the ApplyImmediately parameter is set to true for this request.
+	//
+	//  For major version upgrades, if a non-default DB parameter group is currently
+	// in use, a new DB parameter group in the DB parameter group family for the
+	// new engine version must be specified. The new DB parameter group can be the
+	// default for that DB parameter group family.
+	//
+	// For a list of valid engine versions, see CreateDBInstance.
+	EngineVersion *string `type:"string"`
+
+	// The new Provisioned IOPS (I/O operations per second) value for the RDS instance.
+	// Changing this setting does not result in an outage and the change is applied
+	// during the next maintenance window unless the ApplyImmediately parameter
+	// is set to true for this request.
+	//
+	// Default: Uses existing setting
+	//
+	// Constraints: Value supplied must be at least 10% greater than the current
+	// value. Values that are not at least 10% greater than the existing value are
+	// rounded up so that they are 10% greater than the current value. If you are
+	// migrating from Provisioned IOPS to standard storage, set this value to 0.
+	// The DB instance will require a reboot for the change in storage type to take
+	// effect.
+	//
+	// SQL Server
+	//
+	// Setting the IOPS value for the SQL Server database engine is not supported.
+	//
+	// Type: Integer
+	//
+	//  If you choose to migrate your DB instance from using standard storage to
+	// using Provisioned IOPS, or from using Provisioned IOPS to using standard
+	// storage, the process can take time. The duration of the migration depends
+	// on several factors such as database load, storage size, storage type (standard
+	// or Provisioned IOPS), amount of IOPS provisioned (if any), and the number
+	// of prior scale storage operations. Typical migration times are under 24 hours,
+	// but the process can take up to several days in some cases. During the migration,
+	// the DB instance will be available for use, but may experience performance
+	// degradation. While the migration takes place, nightly backups for the instance
+	// will be suspended. No other Amazon RDS operations can take place for the
+	// instance, including modifying the instance, rebooting the instance, deleting
+	// the instance, creating a Read Replica for the instance, and creating a DB
+	// snapshot of the instance.
+	IOPS *int64 `locationName:"Iops" type:"integer"`
+
+	// The new password for the DB instance master user. Can be any printable ASCII
+	// character except "/", """, or "@".
+	//
+	//  Changing this parameter does not result in an outage and the change is
+	// asynchronously applied as soon as possible. Between the time of the request
+	// and the completion of the request, the MasterUserPassword element exists
+	// in the PendingModifiedValues element of the operation response.
+	//
+	// Default: Uses existing setting
+	//
+	// Constraints: Must be 8 to 41 alphanumeric characters (MySQL), 8 to 30 alphanumeric
+	// characters (Oracle), or 8 to 128 alphanumeric characters (SQL Server).
+	//
+	//  Amazon RDS API actions never return the password, so this action provides
+	// a way to regain access to a master instance user if the password is lost.
+	// This includes restoring privileges that may have been accidentally revoked.
+	MasterUserPassword *string `type:"string"`
+
+	// Specifies if the DB instance is a Multi-AZ deployment. Changing this parameter
+	// does not result in an outage and the change is applied during the next maintenance
+	// window unless the ApplyImmediately parameter is set to true for this request.
+	//
+	// Constraints: Cannot be specified if the DB instance is a Read Replica.
+	MultiAZ *bool `type:"boolean"`
+
+	// The new DB instance identifier for the DB instance when renaming a DB instance.
+	// When you change the DB instance identifier, an instance reboot will occur
+	// immediately if you set Apply Immediately to true, or will occur during the
+	// next maintenance window if Apply Immediately to false. This value is stored
+	// as a lowercase string.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens First character
+	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
+	NewDBInstanceIdentifier *string `type:"string"`
+
+	// Indicates that the DB instance should be associated with the specified option
+	// group. Changing this parameter does not result in an outage except in the
+	// following case and the change is applied during the next maintenance window
+	// unless the ApplyImmediately parameter is set to true for this request. If
+	// the parameter change results in an option group that enables OEM, this change
+	// can cause a brief (sub-second) period during which new connections are rejected
+	// but existing connections are not interrupted.
+	//
+	//  Permanent options, such as the TDE option for Oracle Advanced Security
+	// TDE, cannot be removed from an option group, and that option group cannot
+	// be removed from a DB instance once it is associated with a DB instance
+	OptionGroupName *string `type:"string"`
+
+	// The daily time range during which automated backups are created if automated
+	// backups are enabled, as determined by the BackupRetentionPeriod. Changing
+	// this parameter does not result in an outage and the change is asynchronously
+	// applied as soon as possible.
+	//
+	// Constraints:
+	//
+	//  Must be in the format hh24:mi-hh24:mi Times should be Universal Time Coordinated
+	// (UTC) Must not conflict with the preferred maintenance window Must be at
+	// least 30 minutes
+	PreferredBackupWindow *string `type:"string"`
+
+	// The weekly time range (in UTC) during which system maintenance can occur,
+	// which may result in an outage. Changing this parameter does not result in
+	// an outage, except in the following situation, and the change is asynchronously
+	// applied as soon as possible. If there are pending actions that cause a reboot,
+	// and the maintenance window is changed to include the current time, then changing
+	// this parameter will cause a reboot of the DB instance. If moving this window
+	// to the current time, there must be at least 30 minutes between the current
+	// time and end of the window to ensure pending changes are applied.
+	//
+	// Default: Uses existing setting
+	//
+	// Format: ddd:hh24:mi-ddd:hh24:mi
+	//
+	// Valid Days: Mon | Tue | Wed | Thu | Fri | Sat | Sun
+	//
+	// Constraints: Must be at least 30 minutes
+	PreferredMaintenanceWindow *string `type:"string"`
+
+	// Specifies the storage type to be associated with the DB instance.
+	//
+	//  Valid values: standard | gp2 | io1
+	//
+	//  If you specify io1, you must also include a value for the Iops parameter.
+	//
+	//  Default: io1 if the Iops parameter is specified; otherwise standard
+	StorageType *string `type:"string"`
+
+	// The ARN from the Key Store with which to associate the instance for TDE encryption.
+	TDECredentialARN *string `locationName:"TdeCredentialArn" type:"string"`
+
+	// The password for the given ARN from the Key Store in order to access the
+	// device.
+	TDECredentialPassword *string `locationName:"TdeCredentialPassword" type:"string"`
+
+	// A list of EC2 VPC security groups to authorize on this DB instance. This
+	// change is asynchronously applied as soon as possible.
+	//
+	// Constraints:
+	//
+	//  Must be 1 to 255 alphanumeric characters First character must be a letter
+	// Cannot end with a hyphen or contain two consecutive hyphens
+	VPCSecurityGroupIDs []*string `locationName:"VpcSecurityGroupIds" locationNameList:"VpcSecurityGroupId" type:"list"`
 
 	metadataModifyDBInstanceInput `json:"-", xml:"-"`
 }
@@ -2766,6 +4982,10 @@ type metadataModifyDBInstanceInput struct {
 }
 
 type ModifyDBInstanceOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//  CreateDBInstance DeleteDBInstance ModifyDBInstance  This data type is used
+	// as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 
 	metadataModifyDBInstanceOutput `json:"-", xml:"-"`
@@ -2776,8 +4996,26 @@ type metadataModifyDBInstanceOutput struct {
 }
 
 type ModifyDBParameterGroupInput struct {
-	DBParameterGroupName *string      `type:"string" required:"true"`
-	Parameters           []*Parameter `locationNameList:"Parameter" type:"list" required:"true"`
+	// The name of the DB parameter group.
+	//
+	// Constraints:
+	//
+	//  Must be the name of an existing DB parameter group Must be 1 to 255 alphanumeric
+	// characters First character must be a letter Cannot end with a hyphen or contain
+	// two consecutive hyphens
+	DBParameterGroupName *string `type:"string" required:"true"`
+
+	// An array of parameter names, values, and the apply method for the parameter
+	// update. At least one parameter name, value, and apply method must be supplied;
+	// subsequent arguments are optional. A maximum of 20 parameters may be modified
+	// in a single request.
+	//
+	// Valid Values (for the application method): immediate | pending-reboot
+	//
+	// You can use the immediate value with dynamic parameters only. You can use
+	// the pending-reboot value for both dynamic and static parameters, and changes
+	// are applied when you reboot the DB instance without failover.
+	Parameters []*Parameter `locationNameList:"Parameter" type:"list" required:"true"`
 
 	metadataModifyDBParameterGroupInput `json:"-", xml:"-"`
 }
@@ -2787,9 +5025,19 @@ type metadataModifyDBParameterGroupInput struct {
 }
 
 type ModifyDBSubnetGroupInput struct {
-	DBSubnetGroupDescription *string   `type:"string"`
-	DBSubnetGroupName        *string   `type:"string" required:"true"`
-	SubnetIDs                []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list" required:"true"`
+	// The description for the DB subnet group.
+	DBSubnetGroupDescription *string `type:"string"`
+
+	// The name for the DB subnet group. This value is stored as a lowercase string.
+	//
+	// Constraints: Must contain no more than 255 alphanumeric characters or hyphens.
+	// Must not be "Default".
+	//
+	// Example: mySubnetgroup
+	DBSubnetGroupName *string `type:"string" required:"true"`
+
+	// The EC2 subnet IDs for the DB subnet group.
+	SubnetIDs []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list" required:"true"`
 
 	metadataModifyDBSubnetGroupInput `json:"-", xml:"-"`
 }
@@ -2799,6 +5047,11 @@ type metadataModifyDBSubnetGroupInput struct {
 }
 
 type ModifyDBSubnetGroupOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//  CreateDBSubnetGroup ModifyDBSubnetGroup DescribeDBSubnetGroups DeleteDBSubnetGroup
+	//  This data type is used as a response element in the DescribeDBSubnetGroups
+	// action.
 	DBSubnetGroup *DBSubnetGroup `type:"structure"`
 
 	metadataModifyDBSubnetGroupOutput `json:"-", xml:"-"`
@@ -2809,11 +5062,31 @@ type metadataModifyDBSubnetGroupOutput struct {
 }
 
 type ModifyEventSubscriptionInput struct {
-	Enabled          *bool     `type:"boolean"`
-	EventCategories  []*string `locationNameList:"EventCategory" type:"list"`
-	SNSTopicARN      *string   `locationName:"SnsTopicArn" type:"string"`
-	SourceType       *string   `type:"string"`
-	SubscriptionName *string   `type:"string" required:"true"`
+	// A Boolean value; set to true to activate the subscription.
+	Enabled *bool `type:"boolean"`
+
+	// A list of event categories for a SourceType that you want to subscribe to.
+	// You can see a list of the categories for a given SourceType in the Events
+	// (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.html)
+	// topic in the Amazon RDS User Guide or by using the DescribeEventCategories
+	// action.
+	EventCategories []*string `locationNameList:"EventCategory" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the SNS topic created for event notification.
+	// The ARN is created by Amazon SNS when you create a topic and subscribe to
+	// it.
+	SNSTopicARN *string `locationName:"SnsTopicArn" type:"string"`
+
+	// The type of source that will be generating the events. For example, if you
+	// want to be notified of events generated by a DB instance, you would set this
+	// parameter to db-instance. if this value is not specified, all events are
+	// returned.
+	//
+	// Valid values: db-instance | db-parameter-group | db-security-group | db-snapshot
+	SourceType *string `type:"string"`
+
+	// The name of the RDS event notification subscription.
+	SubscriptionName *string `type:"string" required:"true"`
 
 	metadataModifyEventSubscriptionInput `json:"-", xml:"-"`
 }
@@ -2823,6 +5096,8 @@ type metadataModifyEventSubscriptionInput struct {
 }
 
 type ModifyEventSubscriptionOutput struct {
+	// Contains the results of a successful invocation of the DescribeEventSubscriptions
+	// action.
 	EventSubscription *EventSubscription `type:"structure"`
 
 	metadataModifyEventSubscriptionOutput `json:"-", xml:"-"`
@@ -2833,10 +5108,23 @@ type metadataModifyEventSubscriptionOutput struct {
 }
 
 type ModifyOptionGroupInput struct {
-	ApplyImmediately *bool                  `type:"boolean"`
-	OptionGroupName  *string                `type:"string" required:"true"`
+	// Indicates whether the changes should be applied immediately, or during the
+	// next maintenance window for each instance associated with the option group.
+	ApplyImmediately *bool `type:"boolean"`
+
+	// The name of the option group to be modified.
+	//
+	//  Permanent options, such as the TDE option for Oracle Advanced Security
+	// TDE, cannot be removed from an option group, and that option group cannot
+	// be removed from a DB instance once it is associated with a DB instance
+	OptionGroupName *string `type:"string" required:"true"`
+
+	// Options in this list are added to the option group or, if already present,
+	// the specified configuration is used to update the existing configuration.
 	OptionsToInclude []*OptionConfiguration `locationNameList:"OptionConfiguration" type:"list"`
-	OptionsToRemove  []*string              `type:"list"`
+
+	// Options in this list are removed from the option group.
+	OptionsToRemove []*string `type:"list"`
 
 	metadataModifyOptionGroupInput `json:"-", xml:"-"`
 }
@@ -2855,14 +5143,32 @@ type metadataModifyOptionGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Option details.
 type Option struct {
-	DBSecurityGroupMemberships  []*DBSecurityGroupMembership  `locationNameList:"DBSecurityGroup" type:"list"`
-	OptionDescription           *string                       `type:"string"`
-	OptionName                  *string                       `type:"string"`
-	OptionSettings              []*OptionSetting              `locationNameList:"OptionSetting" type:"list"`
-	Permanent                   *bool                         `type:"boolean"`
-	Persistent                  *bool                         `type:"boolean"`
-	Port                        *int64                        `type:"integer"`
+	// If the option requires access to a port, then this DB security group allows
+	// access to the port.
+	DBSecurityGroupMemberships []*DBSecurityGroupMembership `locationNameList:"DBSecurityGroup" type:"list"`
+
+	// The description of the option.
+	OptionDescription *string `type:"string"`
+
+	// The name of the option.
+	OptionName *string `type:"string"`
+
+	// The option settings for this option.
+	OptionSettings []*OptionSetting `locationNameList:"OptionSetting" type:"list"`
+
+	// Indicate if this option is permanent.
+	Permanent *bool `type:"boolean"`
+
+	// Indicate if this option is persistent.
+	Persistent *bool `type:"boolean"`
+
+	// If required, the port configured for this option to use.
+	Port *int64 `type:"integer"`
+
+	// If the option requires access to a port, then this VPC security group allows
+	// access to the port.
 	VPCSecurityGroupMemberships []*VPCSecurityGroupMembership `locationName:"VpcSecurityGroupMemberships" locationNameList:"VpcSecurityGroupMembership" type:"list"`
 
 	metadataOption `json:"-", xml:"-"`
@@ -2872,12 +5178,22 @@ type metadataOption struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A list of all available options
 type OptionConfiguration struct {
-	DBSecurityGroupMemberships  []*string        `locationNameList:"DBSecurityGroupName" type:"list"`
-	OptionName                  *string          `type:"string" required:"true"`
-	OptionSettings              []*OptionSetting `locationNameList:"OptionSetting" type:"list"`
-	Port                        *int64           `type:"integer"`
-	VPCSecurityGroupMemberships []*string        `locationName:"VpcSecurityGroupMemberships" locationNameList:"VpcSecurityGroupId" type:"list"`
+	// A list of DBSecurityGroupMemebrship name strings used for this option.
+	DBSecurityGroupMemberships []*string `locationNameList:"DBSecurityGroupName" type:"list"`
+
+	// The configuration of options to include in a group.
+	OptionName *string `type:"string" required:"true"`
+
+	// The option settings to include in an option group.
+	OptionSettings []*OptionSetting `locationNameList:"OptionSetting" type:"list"`
+
+	// The optional port for the option.
+	Port *int64 `type:"integer"`
+
+	// A list of VpcSecurityGroupMemebrship name strings used for this option.
+	VPCSecurityGroupMemberships []*string `locationName:"VpcSecurityGroupMemberships" locationNameList:"VpcSecurityGroupId" type:"list"`
 
 	metadataOptionConfiguration `json:"-", xml:"-"`
 }
@@ -2887,13 +5203,32 @@ type metadataOptionConfiguration struct {
 }
 
 type OptionGroup struct {
-	AllowsVPCAndNonVPCInstanceMemberships *bool     `locationName:"AllowsVpcAndNonVpcInstanceMemberships" type:"boolean"`
-	EngineName                            *string   `type:"string"`
-	MajorEngineVersion                    *string   `type:"string"`
-	OptionGroupDescription                *string   `type:"string"`
-	OptionGroupName                       *string   `type:"string"`
-	Options                               []*Option `locationNameList:"Option" type:"list"`
-	VPCID                                 *string   `locationName:"VpcId" type:"string"`
+	// Indicates whether this option group can be applied to both VPC and non-VPC
+	// instances. The value true indicates the option group can be applied to both
+	// VPC and non-VPC instances.
+	AllowsVPCAndNonVPCInstanceMemberships *bool `locationName:"AllowsVpcAndNonVpcInstanceMemberships" type:"boolean"`
+
+	// Engine name that this option group can be applied to.
+	EngineName *string `type:"string"`
+
+	// Indicates the major engine version associated with this option group.
+	MajorEngineVersion *string `type:"string"`
+
+	// Provides a description of the option group.
+	OptionGroupDescription *string `type:"string"`
+
+	// Specifies the name of the option group.
+	OptionGroupName *string `type:"string"`
+
+	// Indicates what options are available in the option group.
+	Options []*Option `locationNameList:"Option" type:"list"`
+
+	// If AllowsVpcAndNonVpcInstanceMemberships is false, this field is blank. If
+	// AllowsVpcAndNonVpcInstanceMemberships is true and this field is blank, then
+	// this option group can be applied to both VPC and non-VPC instances. If this
+	// field contains a value, then this option group can only be applied to instances
+	// that are in the VPC indicated by this field.
+	VPCID *string `locationName:"VpcId" type:"string"`
 
 	metadataOptionGroup `json:"-", xml:"-"`
 }
@@ -2902,9 +5237,14 @@ type metadataOptionGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides information on the option groups the DB instance is a member of.
 type OptionGroupMembership struct {
+	// The name of the option group that the instance belongs to.
 	OptionGroupName *string `type:"string"`
-	Status          *string `type:"string"`
+
+	// The status of the DB instance's option group membership (e.g. in-sync, pending,
+	// pending-maintenance, applying).
+	Status *string `type:"string"`
 
 	metadataOptionGroupMembership `json:"-", xml:"-"`
 }
@@ -2913,18 +5253,46 @@ type metadataOptionGroupMembership struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Available option.
 type OptionGroupOption struct {
-	DefaultPort                       *int64                      `type:"integer"`
-	Description                       *string                     `type:"string"`
-	EngineName                        *string                     `type:"string"`
-	MajorEngineVersion                *string                     `type:"string"`
-	MinimumRequiredMinorEngineVersion *string                     `type:"string"`
-	Name                              *string                     `type:"string"`
-	OptionGroupOptionSettings         []*OptionGroupOptionSetting `locationNameList:"OptionGroupOptionSetting" type:"list"`
-	OptionsDependedOn                 []*string                   `locationNameList:"OptionName" type:"list"`
-	Permanent                         *bool                       `type:"boolean"`
-	Persistent                        *bool                       `type:"boolean"`
-	PortRequired                      *bool                       `type:"boolean"`
+	// If the option requires a port, specifies the default port for the option.
+	DefaultPort *int64 `type:"integer"`
+
+	// The description of the option.
+	Description *string `type:"string"`
+
+	// The name of the engine that this option can be applied to.
+	EngineName *string `type:"string"`
+
+	// Indicates the major engine version that the option is available for.
+	MajorEngineVersion *string `type:"string"`
+
+	// The minimum required engine version for the option to be applied.
+	MinimumRequiredMinorEngineVersion *string `type:"string"`
+
+	// The name of the option.
+	Name *string `type:"string"`
+
+	// Specifies the option settings that are available (and the default value)
+	// for each option in an option group.
+	OptionGroupOptionSettings []*OptionGroupOptionSetting `locationNameList:"OptionGroupOptionSetting" type:"list"`
+
+	// List of all options that are prerequisites for this option.
+	OptionsDependedOn []*string `locationNameList:"OptionName" type:"list"`
+
+	// A permanent option cannot be removed from the option group once the option
+	// group is used, and it cannot be removed from the db instance after assigning
+	// an option group with this permanent option.
+	Permanent *bool `type:"boolean"`
+
+	// A persistent option cannot be removed from the option group once the option
+	// group is used, but this option can be removed from the db instance while
+	// modifying the related data and assigning another option group without this
+	// option.
+	Persistent *bool `type:"boolean"`
+
+	// Specifies whether the option requires a port.
+	PortRequired *bool `type:"boolean"`
 
 	metadataOptionGroupOption `json:"-", xml:"-"`
 }
@@ -2933,13 +5301,28 @@ type metadataOptionGroupOption struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Option group option settings are used to display settings available for each
+// option with their default values and other information. These values are
+// used with the DescribeOptionGroupOptions action.
 type OptionGroupOptionSetting struct {
-	AllowedValues      *string `type:"string"`
-	ApplyType          *string `type:"string"`
-	DefaultValue       *string `type:"string"`
-	IsModifiable       *bool   `type:"boolean"`
+	// Indicates the acceptable values for the option group option.
+	AllowedValues *string `type:"string"`
+
+	// The DB engine specific parameter type for the option group option.
+	ApplyType *string `type:"string"`
+
+	// The default value for the option group option.
+	DefaultValue *string `type:"string"`
+
+	// Boolean value where true indicates that this option group option can be changed
+	// from the default value.
+	IsModifiable *bool `type:"boolean"`
+
+	// The description of the option group option.
 	SettingDescription *string `type:"string"`
-	SettingName        *string `type:"string"`
+
+	// The name of the option group option.
+	SettingName *string `type:"string"`
 
 	metadataOptionGroupOptionSetting `json:"-", xml:"-"`
 }
@@ -2948,16 +5331,38 @@ type metadataOptionGroupOptionSetting struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Option settings are the actual settings being applied or configured for that
+// option. It is used when you modify an option group or describe option groups.
+// For example, the NATIVE_NETWORK_ENCRYPTION option has a setting called SQLNET.ENCRYPTION_SERVER
+// that can have several different values.
 type OptionSetting struct {
+	// The allowed values of the option setting.
 	AllowedValues *string `type:"string"`
-	ApplyType     *string `type:"string"`
-	DataType      *string `type:"string"`
-	DefaultValue  *string `type:"string"`
-	Description   *string `type:"string"`
-	IsCollection  *bool   `type:"boolean"`
-	IsModifiable  *bool   `type:"boolean"`
-	Name          *string `type:"string"`
-	Value         *string `type:"string"`
+
+	// The DB engine specific parameter type.
+	ApplyType *string `type:"string"`
+
+	// The data type of the option setting.
+	DataType *string `type:"string"`
+
+	// The default value of the option setting.
+	DefaultValue *string `type:"string"`
+
+	// The description of the option setting.
+	Description *string `type:"string"`
+
+	// Indicates if the option setting is part of a collection.
+	IsCollection *bool `type:"boolean"`
+
+	// A Boolean value that, when true, indicates the option setting can be modified
+	// from the default.
+	IsModifiable *bool `type:"boolean"`
+
+	// The name of the option that has settings that you can set.
+	Name *string `type:"string"`
+
+	// The current value of the option setting.
+	Value *string `type:"string"`
 
 	metadataOptionSetting `json:"-", xml:"-"`
 }
@@ -2966,18 +5371,43 @@ type metadataOptionSetting struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains a list of available options for a DB instance
+//
+//  This data type is used as a response element in the DescribeOrderableDBInstanceOptions
+// action.
 type OrderableDBInstanceOption struct {
-	AvailabilityZones         []*AvailabilityZone `locationNameList:"AvailabilityZone" type:"list"`
-	DBInstanceClass           *string             `type:"string"`
-	Engine                    *string             `type:"string"`
-	EngineVersion             *string             `type:"string"`
-	LicenseModel              *string             `type:"string"`
-	MultiAZCapable            *bool               `type:"boolean"`
-	ReadReplicaCapable        *bool               `type:"boolean"`
-	StorageType               *string             `type:"string"`
-	SupportsIOPS              *bool               `locationName:"SupportsIops" type:"boolean"`
-	SupportsStorageEncryption *bool               `type:"boolean"`
-	VPC                       *bool               `locationName:"Vpc" type:"boolean"`
+	// A list of availability zones for the orderable DB instance.
+	AvailabilityZones []*AvailabilityZone `locationNameList:"AvailabilityZone" type:"list"`
+
+	// The DB instance Class for the orderable DB instance
+	DBInstanceClass *string `type:"string"`
+
+	// The engine type of the orderable DB instance.
+	Engine *string `type:"string"`
+
+	// The engine version of the orderable DB instance.
+	EngineVersion *string `type:"string"`
+
+	// The license model for the orderable DB instance.
+	LicenseModel *string `type:"string"`
+
+	// Indicates whether this orderable DB instance is multi-AZ capable.
+	MultiAZCapable *bool `type:"boolean"`
+
+	// Indicates whether this orderable DB instance can have a Read Replica.
+	ReadReplicaCapable *bool `type:"boolean"`
+
+	// The storage type for this orderable DB instance.
+	StorageType *string `type:"string"`
+
+	// Indicates whether this orderable DB instance supports provisioned IOPS.
+	SupportsIOPS *bool `locationName:"SupportsIops" type:"boolean"`
+
+	// Indicates whether this orderable DB instance supports encrypted storage.
+	SupportsStorageEncryption *bool `type:"boolean"`
+
+	// Indicates whether this is a VPC orderable DB instance.
+	VPC *bool `locationName:"Vpc" type:"boolean"`
 
 	metadataOrderableDBInstanceOption `json:"-", xml:"-"`
 }
@@ -2986,17 +5416,43 @@ type metadataOrderableDBInstanceOption struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This data type is used as a request parameter in the ModifyDBParameterGroup
+// and ResetDBParameterGroup actions.
+//
+// This data type is used as a response element in the DescribeEngineDefaultParameters
+// and DescribeDBParameters actions.
 type Parameter struct {
-	AllowedValues        *string `type:"string"`
-	ApplyMethod          *string `type:"string"`
-	ApplyType            *string `type:"string"`
-	DataType             *string `type:"string"`
-	Description          *string `type:"string"`
-	IsModifiable         *bool   `type:"boolean"`
+	// Specifies the valid range of values for the parameter.
+	AllowedValues *string `type:"string"`
+
+	// Indicates when to apply parameter updates.
+	ApplyMethod *string `type:"string"`
+
+	// Specifies the engine specific parameters type.
+	ApplyType *string `type:"string"`
+
+	// Specifies the valid data type for the parameter.
+	DataType *string `type:"string"`
+
+	// Provides a description of the parameter.
+	Description *string `type:"string"`
+
+	// Indicates whether (true) or not (false) the parameter can be modified. Some
+	// parameters have security or operational implications that prevent them from
+	// being changed.
+	IsModifiable *bool `type:"boolean"`
+
+	// The earliest engine version to which the parameter can apply.
 	MinimumEngineVersion *string `type:"string"`
-	ParameterName        *string `type:"string"`
-	ParameterValue       *string `type:"string"`
-	Source               *string `type:"string"`
+
+	// Specifies the name of the parameter.
+	ParameterName *string `type:"string"`
+
+	// Specifies the value of the parameter.
+	ParameterValue *string `type:"string"`
+
+	// Indicates the source of the parameter value.
+	Source *string `type:"string"`
 
 	metadataParameter `json:"-", xml:"-"`
 }
@@ -3005,12 +5461,32 @@ type metadataParameter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides information about a pending maintenance action for a resource.
 type PendingMaintenanceAction struct {
-	Action               *string    `type:"string"`
+	// The type of pending maintenance action that is available for the resource.
+	Action *string `type:"string"`
+
+	// The date of the maintenance window when the action will be applied. The maintenance
+	// action will be applied to the resource during its first maintenance window
+	// after this date. If this date is specified, any next-maintenance opt-in requests
+	// are ignored.
 	AutoAppliedAfterDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	CurrentApplyDate     *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	ForcedApplyDate      *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	OptInStatus          *string    `type:"string"`
+
+	// The effective date when the pending maintenance action will be applied to
+	// the resource. This takes into account opt-in requests received from the ApplyPendingMaintenanceAction
+	// API, the AutoAppliedAfterDate, and the ForcedApplyDate. This value is blank
+	// if an opt-in request has not been received and no value has been specified
+	// for the AutoAppliedAfterDate or ForcedApplyDate.
+	CurrentApplyDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The date when the maintenance action will be automatically applied. The maintenance
+	// action will be applied to the resource on this date regardless of the maintenance
+	// window for the resource. If this date is specified, any immediate opt-in
+	// requests are ignored.
+	ForcedApplyDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// Indicates the type of opt-in request that has been received for the resource.
+	OptInStatus *string `type:"string"`
 
 	metadataPendingMaintenanceAction `json:"-", xml:"-"`
 }
@@ -3019,17 +5495,42 @@ type metadataPendingMaintenanceAction struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This data type is used as a response element in the ModifyDBInstance action.
 type PendingModifiedValues struct {
-	AllocatedStorage      *int64  `type:"integer"`
-	BackupRetentionPeriod *int64  `type:"integer"`
-	DBInstanceClass       *string `type:"string"`
-	DBInstanceIdentifier  *string `type:"string"`
-	EngineVersion         *string `type:"string"`
-	IOPS                  *int64  `locationName:"Iops" type:"integer"`
-	MasterUserPassword    *string `type:"string"`
-	MultiAZ               *bool   `type:"boolean"`
-	Port                  *int64  `type:"integer"`
-	StorageType           *string `type:"string"`
+	// Contains the new AllocatedStorage size for the DB instance that will be applied
+	// or is in progress.
+	AllocatedStorage *int64 `type:"integer"`
+
+	// Specifies the pending number of days for which automated backups are retained.
+	BackupRetentionPeriod *int64 `type:"integer"`
+
+	// Contains the new DBInstanceClass for the DB instance that will be applied
+	// or is in progress.
+	DBInstanceClass *string `type:"string"`
+
+	// Contains the new DBInstanceIdentifier for the DB instance that will be applied
+	// or is in progress.
+	DBInstanceIdentifier *string `type:"string"`
+
+	// Indicates the database engine version.
+	EngineVersion *string `type:"string"`
+
+	// Specifies the new Provisioned IOPS value for the DB instance that will be
+	// applied or is being applied.
+	IOPS *int64 `locationName:"Iops" type:"integer"`
+
+	// Contains the pending or in-progress change of the master credentials for
+	// the DB instance.
+	MasterUserPassword *string `type:"string"`
+
+	// Indicates that the Single-AZ DB instance is to change to a Multi-AZ deployment.
+	MultiAZ *bool `type:"boolean"`
+
+	// Specifies the pending port for the DB instance.
+	Port *int64 `type:"integer"`
+
+	// Specifies the storage type to be associated with the DB instance.
+	StorageType *string `type:"string"`
 
 	metadataPendingModifiedValues `json:"-", xml:"-"`
 }
@@ -3039,8 +5540,37 @@ type metadataPendingModifiedValues struct {
 }
 
 type PromoteReadReplicaInput struct {
-	BackupRetentionPeriod *int64  `type:"integer"`
-	DBInstanceIdentifier  *string `type:"string" required:"true"`
+	// The number of days to retain automated backups. Setting this parameter to
+	// a positive number enables backups. Setting this parameter to 0 disables automated
+	// backups.
+	//
+	//  Default: 1
+	//
+	// Constraints:
+	//
+	//  Must be a value from 0 to 8
+	BackupRetentionPeriod *int64 `type:"integer"`
+
+	// The DB instance identifier. This value is stored as a lowercase string.
+	//
+	// Constraints:
+	//
+	//  Must be the identifier for an existing Read Replica DB instance Must contain
+	// from 1 to 63 alphanumeric characters or hyphens First character must be a
+	// letter Cannot end with a hyphen or contain two consecutive hyphens  Example:
+	// mydbinstance
+	DBInstanceIdentifier *string `type:"string" required:"true"`
+
+	// The daily time range during which automated backups are created if automated
+	// backups are enabled, using the BackupRetentionPeriod parameter.
+	//
+	//  Default: A 30-minute window selected at random from an 8-hour block of
+	// time per region. See the Amazon RDS User Guide for the time blocks for each
+	// region from which the default backup windows are assigned.
+	//
+	//  Constraints: Must be in the format hh24:mi-hh24:mi. Times should be Universal
+	// Time Coordinated (UTC). Must not conflict with the preferred maintenance
+	// window. Must be at least 30 minutes.
 	PreferredBackupWindow *string `type:"string"`
 
 	metadataPromoteReadReplicaInput `json:"-", xml:"-"`
@@ -3051,6 +5581,10 @@ type metadataPromoteReadReplicaInput struct {
 }
 
 type PromoteReadReplicaOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//  CreateDBInstance DeleteDBInstance ModifyDBInstance  This data type is used
+	// as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 
 	metadataPromoteReadReplicaOutput `json:"-", xml:"-"`
@@ -3061,10 +5595,23 @@ type metadataPromoteReadReplicaOutput struct {
 }
 
 type PurchaseReservedDBInstancesOfferingInput struct {
-	DBInstanceCount               *int64  `type:"integer"`
-	ReservedDBInstanceID          *string `locationName:"ReservedDBInstanceId" type:"string"`
+	// The number of instances to reserve.
+	//
+	// Default: 1
+	DBInstanceCount *int64 `type:"integer"`
+
+	// Customer-specified identifier to track this reservation.
+	//
+	// Example: myreservationID
+	ReservedDBInstanceID *string `locationName:"ReservedDBInstanceId" type:"string"`
+
+	// The ID of the Reserved DB instance offering to purchase.
+	//
+	// Example: 438012d3-4052-4cc7-b2e3-8d3372e0e706
 	ReservedDBInstancesOfferingID *string `locationName:"ReservedDBInstancesOfferingId" type:"string" required:"true"`
-	Tags                          []*Tag  `locationNameList:"Tag" type:"list"`
+
+	// A list of tags.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	metadataPurchaseReservedDBInstancesOfferingInput `json:"-", xml:"-"`
 }
@@ -3074,6 +5621,8 @@ type metadataPurchaseReservedDBInstancesOfferingInput struct {
 }
 
 type PurchaseReservedDBInstancesOfferingOutput struct {
+	// This data type is used as a response element in the DescribeReservedDBInstances
+	// and PurchaseReservedDBInstancesOffering actions.
 	ReservedDBInstance *ReservedDBInstance `type:"structure"`
 
 	metadataPurchaseReservedDBInstancesOfferingOutput `json:"-", xml:"-"`
@@ -3084,8 +5633,19 @@ type metadataPurchaseReservedDBInstancesOfferingOutput struct {
 }
 
 type RebootDBInstanceInput struct {
+	// The DB instance identifier. This parameter is stored as a lowercase string.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens First character
+	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
 	DBInstanceIdentifier *string `type:"string" required:"true"`
-	ForceFailover        *bool   `type:"boolean"`
+
+	// When true, the reboot will be conducted through a MultiAZ failover.
+	//
+	// Constraint: You cannot specify true if the instance is not configured for
+	// MultiAZ.
+	ForceFailover *bool `type:"boolean"`
 
 	metadataRebootDBInstanceInput `json:"-", xml:"-"`
 }
@@ -3095,6 +5655,10 @@ type metadataRebootDBInstanceInput struct {
 }
 
 type RebootDBInstanceOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//  CreateDBInstance DeleteDBInstance ModifyDBInstance  This data type is used
+	// as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 
 	metadataRebootDBInstanceOutput `json:"-", xml:"-"`
@@ -3104,9 +5668,14 @@ type metadataRebootDBInstanceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This data type is used as a response element in the DescribeReservedDBInstances
+// and DescribeReservedDBInstancesOfferings actions.
 type RecurringCharge struct {
-	RecurringChargeAmount    *float64 `type:"double"`
-	RecurringChargeFrequency *string  `type:"string"`
+	// The amount of the recurring charge.
+	RecurringChargeAmount *float64 `type:"double"`
+
+	// The frequency of the recurring charge.
+	RecurringChargeFrequency *string `type:"string"`
 
 	metadataRecurringCharge `json:"-", xml:"-"`
 }
@@ -3116,7 +5685,12 @@ type metadataRecurringCharge struct {
 }
 
 type RemoveSourceIdentifierFromSubscriptionInput struct {
+	// The source identifier to be removed from the subscription, such as the DB
+	// instance identifier for a DB instance or the name of a security group.
 	SourceIdentifier *string `type:"string" required:"true"`
+
+	// The name of the RDS event notification subscription you want to remove a
+	// source identifier from.
 	SubscriptionName *string `type:"string" required:"true"`
 
 	metadataRemoveSourceIdentifierFromSubscriptionInput `json:"-", xml:"-"`
@@ -3127,6 +5701,8 @@ type metadataRemoveSourceIdentifierFromSubscriptionInput struct {
 }
 
 type RemoveSourceIdentifierFromSubscriptionOutput struct {
+	// Contains the results of a successful invocation of the DescribeEventSubscriptions
+	// action.
 	EventSubscription *EventSubscription `type:"structure"`
 
 	metadataRemoveSourceIdentifierFromSubscriptionOutput `json:"-", xml:"-"`
@@ -3137,8 +5713,13 @@ type metadataRemoveSourceIdentifierFromSubscriptionOutput struct {
 }
 
 type RemoveTagsFromResourceInput struct {
-	ResourceName *string   `type:"string" required:"true"`
-	TagKeys      []*string `type:"list" required:"true"`
+	// The Amazon RDS resource the tags will be removed from. This value is an Amazon
+	// Resource Name (ARN). For information about creating an ARN, see  Constructing
+	// an RDS Amazon Resource Name (ARN) (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html#USER_Tagging.ARN).
+	ResourceName *string `type:"string" required:"true"`
+
+	// The tag key (name) of the tag to be removed.
+	TagKeys []*string `type:"list" required:"true"`
 
 	metadataRemoveTagsFromResourceInput `json:"-", xml:"-"`
 }
@@ -3155,21 +5736,50 @@ type metadataRemoveTagsFromResourceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This data type is used as a response element in the DescribeReservedDBInstances
+// and PurchaseReservedDBInstancesOffering actions.
 type ReservedDBInstance struct {
-	CurrencyCode                  *string            `type:"string"`
-	DBInstanceClass               *string            `type:"string"`
-	DBInstanceCount               *int64             `type:"integer"`
-	Duration                      *int64             `type:"integer"`
-	FixedPrice                    *float64           `type:"double"`
-	MultiAZ                       *bool              `type:"boolean"`
-	OfferingType                  *string            `type:"string"`
-	ProductDescription            *string            `type:"string"`
-	RecurringCharges              []*RecurringCharge `locationNameList:"RecurringCharge" type:"list"`
-	ReservedDBInstanceID          *string            `locationName:"ReservedDBInstanceId" type:"string"`
-	ReservedDBInstancesOfferingID *string            `locationName:"ReservedDBInstancesOfferingId" type:"string"`
-	StartTime                     *time.Time         `type:"timestamp" timestampFormat:"iso8601"`
-	State                         *string            `type:"string"`
-	UsagePrice                    *float64           `type:"double"`
+	// The currency code for the reserved DB instance.
+	CurrencyCode *string `type:"string"`
+
+	// The DB instance class for the reserved DB instance.
+	DBInstanceClass *string `type:"string"`
+
+	// The number of reserved DB instances.
+	DBInstanceCount *int64 `type:"integer"`
+
+	// The duration of the reservation in seconds.
+	Duration *int64 `type:"integer"`
+
+	// The fixed price charged for this reserved DB instance.
+	FixedPrice *float64 `type:"double"`
+
+	// Indicates if the reservation applies to Multi-AZ deployments.
+	MultiAZ *bool `type:"boolean"`
+
+	// The offering type of this reserved DB instance.
+	OfferingType *string `type:"string"`
+
+	// The description of the reserved DB instance.
+	ProductDescription *string `type:"string"`
+
+	// The recurring price charged to run this reserved DB instance.
+	RecurringCharges []*RecurringCharge `locationNameList:"RecurringCharge" type:"list"`
+
+	// The unique identifier for the reservation.
+	ReservedDBInstanceID *string `locationName:"ReservedDBInstanceId" type:"string"`
+
+	// The offering identifier.
+	ReservedDBInstancesOfferingID *string `locationName:"ReservedDBInstancesOfferingId" type:"string"`
+
+	// The time the reservation started.
+	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The state of the reserved DB instance.
+	State *string `type:"string"`
+
+	// The hourly price charged for this reserved DB instance.
+	UsagePrice *float64 `type:"double"`
 
 	metadataReservedDBInstance `json:"-", xml:"-"`
 }
@@ -3178,17 +5788,38 @@ type metadataReservedDBInstance struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This data type is used as a response element in the DescribeReservedDBInstancesOfferings
+// action.
 type ReservedDBInstancesOffering struct {
-	CurrencyCode                  *string            `type:"string"`
-	DBInstanceClass               *string            `type:"string"`
-	Duration                      *int64             `type:"integer"`
-	FixedPrice                    *float64           `type:"double"`
-	MultiAZ                       *bool              `type:"boolean"`
-	OfferingType                  *string            `type:"string"`
-	ProductDescription            *string            `type:"string"`
-	RecurringCharges              []*RecurringCharge `locationNameList:"RecurringCharge" type:"list"`
-	ReservedDBInstancesOfferingID *string            `locationName:"ReservedDBInstancesOfferingId" type:"string"`
-	UsagePrice                    *float64           `type:"double"`
+	// The currency code for the reserved DB instance offering.
+	CurrencyCode *string `type:"string"`
+
+	// The DB instance class for the reserved DB instance.
+	DBInstanceClass *string `type:"string"`
+
+	// The duration of the offering in seconds.
+	Duration *int64 `type:"integer"`
+
+	// The fixed price charged for this offering.
+	FixedPrice *float64 `type:"double"`
+
+	// Indicates if the offering applies to Multi-AZ deployments.
+	MultiAZ *bool `type:"boolean"`
+
+	// The offering type.
+	OfferingType *string `type:"string"`
+
+	// The database engine used by the offering.
+	ProductDescription *string `type:"string"`
+
+	// The recurring price charged to run this reserved DB instance.
+	RecurringCharges []*RecurringCharge `locationNameList:"RecurringCharge" type:"list"`
+
+	// The offering identifier.
+	ReservedDBInstancesOfferingID *string `locationName:"ReservedDBInstancesOfferingId" type:"string"`
+
+	// The hourly price charged for this offering.
+	UsagePrice *float64 `type:"double"`
 
 	metadataReservedDBInstancesOffering `json:"-", xml:"-"`
 }
@@ -3198,9 +5829,37 @@ type metadataReservedDBInstancesOffering struct {
 }
 
 type ResetDBParameterGroupInput struct {
-	DBParameterGroupName *string      `type:"string" required:"true"`
-	Parameters           []*Parameter `locationNameList:"Parameter" type:"list"`
-	ResetAllParameters   *bool        `type:"boolean"`
+	// The name of the DB parameter group.
+	//
+	// Constraints:
+	//
+	//  Must be 1 to 255 alphanumeric characters First character must be a letter
+	// Cannot end with a hyphen or contain two consecutive hyphens
+	DBParameterGroupName *string `type:"string" required:"true"`
+
+	// An array of parameter names, values, and the apply method for the parameter
+	// update. At least one parameter name, value, and apply method must be supplied;
+	// subsequent arguments are optional. A maximum of 20 parameters may be modified
+	// in a single request.
+	//
+	// MySQL
+	//
+	// Valid Values (for Apply method): immediate | pending-reboot
+	//
+	// You can use the immediate value with dynamic parameters only. You can use
+	// the pending-reboot value for both dynamic and static parameters, and changes
+	// are applied when DB instance reboots.
+	//
+	// Oracle
+	//
+	// Valid Values (for Apply method): pending-reboot
+	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
+
+	// Specifies whether (true) or not (false) to reset all parameters in the DB
+	// parameter group to default values.
+	//
+	// Default: true
+	ResetAllParameters *bool `type:"boolean"`
 
 	metadataResetDBParameterGroupInput `json:"-", xml:"-"`
 }
@@ -3209,9 +5868,13 @@ type metadataResetDBParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the pending maintenance actions for a resource.
 type ResourcePendingMaintenanceActions struct {
+	// Provides details about the pending maintenance actions for the resource.
 	PendingMaintenanceActionDetails []*PendingMaintenanceAction `locationNameList:"PendingMaintenanceAction" type:"list"`
-	ResourceIdentifier              *string                     `type:"string"`
+
+	// The ARN of this resource that has pending maintenance actions.
+	ResourceIdentifier *string `type:"string"`
 
 	metadataResourcePendingMaintenanceActions `json:"-", xml:"-"`
 }
@@ -3221,24 +5884,138 @@ type metadataResourcePendingMaintenanceActions struct {
 }
 
 type RestoreDBInstanceFromDBSnapshotInput struct {
-	AutoMinorVersionUpgrade *bool   `type:"boolean"`
-	AvailabilityZone        *string `type:"string"`
-	DBInstanceClass         *string `type:"string"`
-	DBInstanceIdentifier    *string `type:"string" required:"true"`
-	DBName                  *string `type:"string"`
-	DBSnapshotIdentifier    *string `type:"string" required:"true"`
-	DBSubnetGroupName       *string `type:"string"`
-	Engine                  *string `type:"string"`
-	IOPS                    *int64  `locationName:"Iops" type:"integer"`
-	LicenseModel            *string `type:"string"`
-	MultiAZ                 *bool   `type:"boolean"`
-	OptionGroupName         *string `type:"string"`
-	Port                    *int64  `type:"integer"`
-	PubliclyAccessible      *bool   `type:"boolean"`
-	StorageType             *string `type:"string"`
-	TDECredentialARN        *string `locationName:"TdeCredentialArn" type:"string"`
-	TDECredentialPassword   *string `locationName:"TdeCredentialPassword" type:"string"`
-	Tags                    []*Tag  `locationNameList:"Tag" type:"list"`
+	// Indicates that minor version upgrades will be applied automatically to the
+	// DB instance during the maintenance window.
+	AutoMinorVersionUpgrade *bool `type:"boolean"`
+
+	// The EC2 Availability Zone that the database instance will be created in.
+	//
+	// Default: A random, system-chosen Availability Zone.
+	//
+	// Constraint: You cannot specify the AvailabilityZone parameter if the MultiAZ
+	// parameter is set to true.
+	//
+	// Example: us-east-1a
+	AvailabilityZone *string `type:"string"`
+
+	// The compute and memory capacity of the Amazon RDS DB instance.
+	//
+	// Valid Values: db.t1.micro | db.m1.small | db.m1.medium | db.m1.large | db.m1.xlarge
+	// | db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large | db.m3.xlarge
+	// | db.m3.2xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge | db.r3.4xlarge
+	// | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium
+	DBInstanceClass *string `type:"string"`
+
+	// Name of the DB instance to create from the DB snapshot. This parameter isn't
+	// case sensitive.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 255 alphanumeric characters or hyphens First character
+	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
+	//  Example: my-snapshot-id
+	DBInstanceIdentifier *string `type:"string" required:"true"`
+
+	// The database name for the restored DB instance.
+	//
+	//  This parameter doesn't apply to the MySQL engine.
+	DBName *string `type:"string"`
+
+	// The identifier for the DB snapshot to restore from.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens First character
+	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
+	DBSnapshotIdentifier *string `type:"string" required:"true"`
+
+	// The DB subnet group name to use for the new instance.
+	DBSubnetGroupName *string `type:"string"`
+
+	// The database engine to use for the new instance.
+	//
+	// Default: The same as source
+	//
+	// Constraint: Must be compatible with the engine of the source
+	//
+	//  Valid Values: MySQL | oracle-se1 | oracle-se | oracle-ee | sqlserver-ee
+	// | sqlserver-se | sqlserver-ex | sqlserver-web | postgres
+	Engine *string `type:"string"`
+
+	// Specifies the amount of provisioned IOPS for the DB instance, expressed in
+	// I/O operations per second. If this parameter is not specified, the IOPS value
+	// will be taken from the backup. If this parameter is set to 0, the new instance
+	// will be converted to a non-PIOPS instance, which will take additional time,
+	// though your DB instance will be available for connections before the conversion
+	// starts.
+	//
+	//  Constraints: Must be an integer greater than 1000.
+	//
+	// SQL Server
+	//
+	// Setting the IOPS value for the SQL Server database engine is not supported.
+	IOPS *int64 `locationName:"Iops" type:"integer"`
+
+	// License model information for the restored DB instance.
+	//
+	//  Default: Same as source.
+	//
+	//  Valid values: license-included | bring-your-own-license | general-public-license
+	LicenseModel *string `type:"string"`
+
+	// Specifies if the DB instance is a Multi-AZ deployment.
+	//
+	// Constraint: You cannot specify the AvailabilityZone parameter if the MultiAZ
+	// parameter is set to true.
+	MultiAZ *bool `type:"boolean"`
+
+	// The name of the option group to be used for the restored DB instance.
+	//
+	// Permanent options, such as the TDE option for Oracle Advanced Security TDE,
+	// cannot be removed from an option group, and that option group cannot be removed
+	// from a DB instance once it is associated with a DB instance
+	OptionGroupName *string `type:"string"`
+
+	// The port number on which the database accepts connections.
+	//
+	// Default: The same port as the original DB instance
+	//
+	// Constraints: Value must be 1150-65535
+	Port *int64 `type:"integer"`
+
+	// Specifies the accessibility options for the DB instance. A value of true
+	// specifies an Internet-facing instance with a publicly resolvable DNS name,
+	// which resolves to a public IP address. A value of false specifies an internal
+	// instance with a DNS name that resolves to a private IP address.
+	//
+	//  Default: The default behavior varies depending on whether a VPC has been
+	// requested or not. The following list shows the default behavior in each case.
+	//
+	//   Default VPC: true  VPC: false   If no DB subnet group has been specified
+	// as part of the request and the PubliclyAccessible value has not been set,
+	// the DB instance will be publicly accessible. If a specific DB subnet group
+	// has been specified as part of the request and the PubliclyAccessible value
+	// has not been set, the DB instance will be private.
+	PubliclyAccessible *bool `type:"boolean"`
+
+	// Specifies the storage type to be associated with the DB instance.
+	//
+	//  Valid values: standard | gp2 | io1
+	//
+	//  If you specify io1, you must also include a value for the Iops parameter.
+	//
+	//  Default: io1 if the Iops parameter is specified; otherwise standard
+	StorageType *string `type:"string"`
+
+	// The ARN from the Key Store with which to associate the instance for TDE encryption.
+	TDECredentialARN *string `locationName:"TdeCredentialArn" type:"string"`
+
+	// The password for the given ARN from the Key Store in order to access the
+	// device.
+	TDECredentialPassword *string `locationName:"TdeCredentialPassword" type:"string"`
+
+	// A list of tags.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	metadataRestoreDBInstanceFromDBSnapshotInput `json:"-", xml:"-"`
 }
@@ -3248,6 +6025,10 @@ type metadataRestoreDBInstanceFromDBSnapshotInput struct {
 }
 
 type RestoreDBInstanceFromDBSnapshotOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//  CreateDBInstance DeleteDBInstance ModifyDBInstance  This data type is used
+	// as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 
 	metadataRestoreDBInstanceFromDBSnapshotOutput `json:"-", xml:"-"`
@@ -3258,26 +6039,153 @@ type metadataRestoreDBInstanceFromDBSnapshotOutput struct {
 }
 
 type RestoreDBInstanceToPointInTimeInput struct {
-	AutoMinorVersionUpgrade    *bool      `type:"boolean"`
-	AvailabilityZone           *string    `type:"string"`
-	DBInstanceClass            *string    `type:"string"`
-	DBName                     *string    `type:"string"`
-	DBSubnetGroupName          *string    `type:"string"`
-	Engine                     *string    `type:"string"`
-	IOPS                       *int64     `locationName:"Iops" type:"integer"`
-	LicenseModel               *string    `type:"string"`
-	MultiAZ                    *bool      `type:"boolean"`
-	OptionGroupName            *string    `type:"string"`
-	Port                       *int64     `type:"integer"`
-	PubliclyAccessible         *bool      `type:"boolean"`
-	RestoreTime                *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	SourceDBInstanceIdentifier *string    `type:"string" required:"true"`
-	StorageType                *string    `type:"string"`
-	TDECredentialARN           *string    `locationName:"TdeCredentialArn" type:"string"`
-	TDECredentialPassword      *string    `locationName:"TdeCredentialPassword" type:"string"`
-	Tags                       []*Tag     `locationNameList:"Tag" type:"list"`
-	TargetDBInstanceIdentifier *string    `type:"string" required:"true"`
-	UseLatestRestorableTime    *bool      `type:"boolean"`
+	// Indicates that minor version upgrades will be applied automatically to the
+	// DB instance during the maintenance window.
+	AutoMinorVersionUpgrade *bool `type:"boolean"`
+
+	// The EC2 Availability Zone that the database instance will be created in.
+	//
+	// Default: A random, system-chosen Availability Zone.
+	//
+	// Constraint: You cannot specify the AvailabilityZone parameter if the MultiAZ
+	// parameter is set to true.
+	//
+	// Example: us-east-1a
+	AvailabilityZone *string `type:"string"`
+
+	// The compute and memory capacity of the Amazon RDS DB instance.
+	//
+	// Valid Values: db.t1.micro | db.m1.small | db.m1.medium | db.m1.large | db.m1.xlarge
+	// | db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large | db.m3.xlarge
+	// | db.m3.2xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge | db.r3.4xlarge
+	// | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium
+	//
+	// Default: The same DBInstanceClass as the original DB instance.
+	DBInstanceClass *string `type:"string"`
+
+	// The database name for the restored DB instance.
+	//
+	//  This parameter is not used for the MySQL engine.
+	DBName *string `type:"string"`
+
+	// The DB subnet group name to use for the new instance.
+	DBSubnetGroupName *string `type:"string"`
+
+	// The database engine to use for the new instance.
+	//
+	// Default: The same as source
+	//
+	// Constraint: Must be compatible with the engine of the source
+	//
+	//  Valid Values: MySQL | oracle-se1 | oracle-se | oracle-ee | sqlserver-ee
+	// | sqlserver-se | sqlserver-ex | sqlserver-web | postgres
+	Engine *string `type:"string"`
+
+	// The amount of Provisioned IOPS (input/output operations per second) to be
+	// initially allocated for the DB instance.
+	//
+	//  Constraints: Must be an integer greater than 1000.
+	//
+	// SQL Server
+	//
+	// Setting the IOPS value for the SQL Server database engine is not supported.
+	IOPS *int64 `locationName:"Iops" type:"integer"`
+
+	// License model information for the restored DB instance.
+	//
+	//  Default: Same as source.
+	//
+	//  Valid values: license-included | bring-your-own-license | general-public-license
+	LicenseModel *string `type:"string"`
+
+	// Specifies if the DB instance is a Multi-AZ deployment.
+	//
+	// Constraint: You cannot specify the AvailabilityZone parameter if the MultiAZ
+	// parameter is set to true.
+	MultiAZ *bool `type:"boolean"`
+
+	// The name of the option group to be used for the restored DB instance.
+	//
+	// Permanent options, such as the TDE option for Oracle Advanced Security TDE,
+	// cannot be removed from an option group, and that option group cannot be removed
+	// from a DB instance once it is associated with a DB instance
+	OptionGroupName *string `type:"string"`
+
+	// The port number on which the database accepts connections.
+	//
+	// Constraints: Value must be 1150-65535
+	//
+	// Default: The same port as the original DB instance.
+	Port *int64 `type:"integer"`
+
+	// Specifies the accessibility options for the DB instance. A value of true
+	// specifies an Internet-facing instance with a publicly resolvable DNS name,
+	// which resolves to a public IP address. A value of false specifies an internal
+	// instance with a DNS name that resolves to a private IP address.
+	//
+	//  Default: The default behavior varies depending on whether a VPC has been
+	// requested or not. The following list shows the default behavior in each case.
+	//
+	//   Default VPC:true  VPC:false   If no DB subnet group has been specified
+	// as part of the request and the PubliclyAccessible value has not been set,
+	// the DB instance will be publicly accessible. If a specific DB subnet group
+	// has been specified as part of the request and the PubliclyAccessible value
+	// has not been set, the DB instance will be private.
+	PubliclyAccessible *bool `type:"boolean"`
+
+	// The date and time to restore from.
+	//
+	// Valid Values: Value must be a UTC time
+	//
+	// Constraints:
+	//
+	//  Must be before the latest restorable time for the DB instance Cannot be
+	// specified if UseLatestRestorableTime parameter is true  Example: 2009-09-07T23:45:00Z
+	RestoreTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The identifier of the source DB instance from which to restore.
+	//
+	// Constraints:
+	//
+	//  Must be the identifier of an existing database instance Must contain from
+	// 1 to 63 alphanumeric characters or hyphens First character must be a letter
+	// Cannot end with a hyphen or contain two consecutive hyphens
+	SourceDBInstanceIdentifier *string `type:"string" required:"true"`
+
+	// Specifies the storage type to be associated with the DB instance.
+	//
+	//  Valid values: standard | gp2 | io1
+	//
+	//  If you specify io1, you must also include a value for the Iops parameter.
+	//
+	//  Default: io1 if the Iops parameter is specified; otherwise standard
+	StorageType *string `type:"string"`
+
+	// The ARN from the Key Store with which to associate the instance for TDE encryption.
+	TDECredentialARN *string `locationName:"TdeCredentialArn" type:"string"`
+
+	// The password for the given ARN from the Key Store in order to access the
+	// device.
+	TDECredentialPassword *string `locationName:"TdeCredentialPassword" type:"string"`
+
+	// A list of tags.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
+	// The name of the new database instance to be created.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens First character
+	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
+	TargetDBInstanceIdentifier *string `type:"string" required:"true"`
+
+	// Specifies whether (true) or not (false) the DB instance is restored from
+	// the latest backup time.
+	//
+	// Default: false
+	//
+	// Constraints: Cannot be specified if RestoreTime parameter is provided.
+	UseLatestRestorableTime *bool `type:"boolean"`
 
 	metadataRestoreDBInstanceToPointInTimeInput `json:"-", xml:"-"`
 }
@@ -3287,6 +6195,10 @@ type metadataRestoreDBInstanceToPointInTimeInput struct {
 }
 
 type RestoreDBInstanceToPointInTimeOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//  CreateDBInstance DeleteDBInstance ModifyDBInstance  This data type is used
+	// as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 
 	metadataRestoreDBInstanceToPointInTimeOutput `json:"-", xml:"-"`
@@ -3297,10 +6209,29 @@ type metadataRestoreDBInstanceToPointInTimeOutput struct {
 }
 
 type RevokeDBSecurityGroupIngressInput struct {
-	CIDRIP                  *string `type:"string"`
-	DBSecurityGroupName     *string `type:"string" required:"true"`
-	EC2SecurityGroupID      *string `locationName:"EC2SecurityGroupId" type:"string"`
-	EC2SecurityGroupName    *string `type:"string"`
+	// The IP range to revoke access from. Must be a valid CIDR range. If CIDRIP
+	// is specified, EC2SecurityGroupName, EC2SecurityGroupId and EC2SecurityGroupOwnerId
+	// cannot be provided.
+	CIDRIP *string `type:"string"`
+
+	// The name of the DB security group to revoke ingress from.
+	DBSecurityGroupName *string `type:"string" required:"true"`
+
+	// The id of the EC2 security group to revoke access from. For VPC DB security
+	// groups, EC2SecurityGroupId must be provided. Otherwise, EC2SecurityGroupOwnerId
+	// and either EC2SecurityGroupName or EC2SecurityGroupId must be provided.
+	EC2SecurityGroupID *string `locationName:"EC2SecurityGroupId" type:"string"`
+
+	// The name of the EC2 security group to revoke access from. For VPC DB security
+	// groups, EC2SecurityGroupId must be provided. Otherwise, EC2SecurityGroupOwnerId
+	// and either EC2SecurityGroupName or EC2SecurityGroupId must be provided.
+	EC2SecurityGroupName *string `type:"string"`
+
+	// The AWS Account Number of the owner of the EC2 security group specified in
+	// the EC2SecurityGroupName parameter. The AWS Access Key ID is not an acceptable
+	// value. For VPC DB security groups, EC2SecurityGroupId must be provided. Otherwise,
+	// EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId
+	// must be provided.
 	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
 
 	metadataRevokeDBSecurityGroupIngressInput `json:"-", xml:"-"`
@@ -3311,6 +6242,11 @@ type metadataRevokeDBSecurityGroupIngressInput struct {
 }
 
 type RevokeDBSecurityGroupIngressOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//  DescribeDBSecurityGroups AuthorizeDBSecurityGroupIngress CreateDBSecurityGroup
+	// RevokeDBSecurityGroupIngress  This data type is used as a response element
+	// in the DescribeDBSecurityGroups action.
 	DBSecurityGroup *DBSecurityGroup `type:"structure"`
 
 	metadataRevokeDBSecurityGroupIngressOutput `json:"-", xml:"-"`
@@ -3320,10 +6256,19 @@ type metadataRevokeDBSecurityGroupIngressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This data type is used as a response element in the DescribeDBSubnetGroups
+// action.
 type Subnet struct {
+	// Contains Availability Zone information.
+	//
+	//  This data type is used as an element in the following data type:  OrderableDBInstanceOption
 	SubnetAvailabilityZone *AvailabilityZone `type:"structure"`
-	SubnetIdentifier       *string           `type:"string"`
-	SubnetStatus           *string           `type:"string"`
+
+	// Specifies the identifier of the subnet.
+	SubnetIdentifier *string `type:"string"`
+
+	// Specifies the status of the subnet.
+	SubnetStatus *string `type:"string"`
 
 	metadataSubnet `json:"-", xml:"-"`
 }
@@ -3332,8 +6277,18 @@ type metadataSubnet struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Metadata assigned to an Amazon RDS resource consisting of a key-value pair.
 type Tag struct {
-	Key   *string `type:"string"`
+	// A key is the required name of the tag. The string value can be from 1 to
+	// 128 Unicode characters in length and cannot be prefixed with "aws:" or "rds:".
+	// The string may only contain only the set of Unicode letters, digits, white-space,
+	// '_', '.', '/', '=', '+', '-' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$").
+	Key *string `type:"string"`
+
+	// A value is the optional value of the tag. The string value can be from 1
+	// to 256 Unicode characters in length and cannot be prefixed with "aws:" or
+	// "rds:". The string may only contain only the set of Unicode letters, digits,
+	// white-space, '_', '.', '/', '=', '+', '-' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$").
 	Value *string `type:"string"`
 
 	metadataTag `json:"-", xml:"-"`
@@ -3343,8 +6298,13 @@ type metadataTag struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This data type is used as a response element for queries on VPC security
+// group membership.
 type VPCSecurityGroupMembership struct {
-	Status             *string `type:"string"`
+	// The status of the VPC security group.
+	Status *string `type:"string"`
+
+	// The name of the VPC security group.
 	VPCSecurityGroupID *string `locationName:"VpcSecurityGroupId" type:"string"`
 
 	metadataVPCSecurityGroupMembership `json:"-", xml:"-"`

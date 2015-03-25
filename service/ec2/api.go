@@ -24,6 +24,10 @@ func (c *EC2) AcceptVPCPeeringConnectionRequest(input *AcceptVPCPeeringConnectio
 	return
 }
 
+// Accept a VPC peering connection request. To accept a request, the VPC peering
+// connection must be in the pending-acceptance state, and you must be the owner
+// of the peer VPC. Use the DescribeVpcPeeringConnections request to view your
+// outstanding VPC peering connection requests.
 func (c *EC2) AcceptVPCPeeringConnection(input *AcceptVPCPeeringConnectionInput) (output *AcceptVPCPeeringConnectionOutput, err error) {
 	req, out := c.AcceptVPCPeeringConnectionRequest(input)
 	output = out
@@ -49,6 +53,11 @@ func (c *EC2) AllocateAddressRequest(input *AllocateAddressInput) (req *aws.Requ
 	return
 }
 
+// Acquires an Elastic IP address.
+//
+// An Elastic IP address is for use either in the EC2-Classic platform or in
+// a VPC. For more information, see Elastic IP Addresses (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) AllocateAddress(input *AllocateAddressInput) (output *AllocateAddressOutput, err error) {
 	req, out := c.AllocateAddressRequest(input)
 	output = out
@@ -74,6 +83,17 @@ func (c *EC2) AssignPrivateIPAddressesRequest(input *AssignPrivateIPAddressesInp
 	return
 }
 
+// Assigns one or more secondary private IP addresses to the specified network
+// interface. You can specify one or more specific secondary IP addresses, or
+// you can specify the number of secondary IP addresses to be automatically
+// assigned within the subnet's CIDR block range. The number of secondary IP
+// addresses that you can assign to an instance varies by instance type. For
+// information about instance types, see Instance Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html)
+// in the Amazon Elastic Compute Cloud User Guide. For more information about
+// Elastic IP addresses, see Elastic IP Addresses (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+//
+// AssignPrivateIpAddresses is available only in EC2-VPC.
 func (c *EC2) AssignPrivateIPAddresses(input *AssignPrivateIPAddressesInput) (output *AssignPrivateIPAddressesOutput, err error) {
 	req, out := c.AssignPrivateIPAddressesRequest(input)
 	output = out
@@ -99,6 +119,23 @@ func (c *EC2) AssociateAddressRequest(input *AssociateAddressInput) (req *aws.Re
 	return
 }
 
+// Associates an Elastic IP address with an instance or a network interface.
+//
+// An Elastic IP address is for use in either the EC2-Classic platform or in
+// a VPC. For more information, see Elastic IP Addresses (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+//
+// [EC2-Classic, VPC in an EC2-VPC-only account] If the Elastic IP address
+// is already associated with a different instance, it is disassociated from
+// that instance and associated with the specified instance.
+//
+// [VPC in an EC2-Classic account] If you don't specify a private IP address,
+// the Elastic IP address is associated with the primary IP address. If the
+// Elastic IP address is already associated with a different instance or a network
+// interface, you get an error unless you allow reassociation.
+//
+// This is an idempotent operation. If you perform the operation more than
+// once, Amazon EC2 doesn't return an error.
 func (c *EC2) AssociateAddress(input *AssociateAddressInput) (output *AssociateAddressOutput, err error) {
 	req, out := c.AssociateAddressRequest(input)
 	output = out
@@ -124,6 +161,18 @@ func (c *EC2) AssociateDHCPOptionsRequest(input *AssociateDHCPOptionsInput) (req
 	return
 }
 
+// Associates a set of DHCP options (that you've previously created) with the
+// specified VPC, or associates no DHCP options with the VPC.
+//
+// After you associate the options with the VPC, any existing instances and
+// all new instances that you launch in that VPC use the options. You don't
+// need to restart or relaunch the instances. They automatically pick up the
+// changes within a few hours, depending on how frequently the instance renews
+// its DHCP lease. You can explicitly renew the lease using the operating system
+// on the instance.
+//
+// For more information, see DHCP Options Sets (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) AssociateDHCPOptions(input *AssociateDHCPOptionsInput) (output *AssociateDHCPOptionsOutput, err error) {
 	req, out := c.AssociateDHCPOptionsRequest(input)
 	output = out
@@ -149,6 +198,14 @@ func (c *EC2) AssociateRouteTableRequest(input *AssociateRouteTableInput) (req *
 	return
 }
 
+// Associates a subnet with a route table. The subnet and route table must be
+// in the same VPC. This association causes traffic originating from the subnet
+// to be routed according to the routes in the route table. The action returns
+// an association ID, which you need in order to disassociate the route table
+// from the subnet later. A route table can be associated with multiple subnets.
+//
+// For more information about route tables, see Route Tables (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) AssociateRouteTable(input *AssociateRouteTableInput) (output *AssociateRouteTableOutput, err error) {
 	req, out := c.AssociateRouteTableRequest(input)
 	output = out
@@ -174,6 +231,18 @@ func (c *EC2) AttachClassicLinkVPCRequest(input *AttachClassicLinkVPCInput) (req
 	return
 }
 
+// Links an EC2-Classic instance to a ClassicLink-enabled VPC through one or
+// more of the VPC's security groups. You cannot link an EC2-Classic instance
+// to more than one VPC at a time. You can only link an instance that's in the
+// running state. An instance is automatically unlinked from a VPC when it's
+// stopped - you can link it to the VPC again when you restart it.
+//
+// After you've linked an instance, you cannot change the VPC security groups
+// that are associated with it. To change the security groups, you must first
+// unlink the instance, and then link it again.
+//
+// Linking your instance to a VPC is sometimes referred to as attaching your
+// instance.
 func (c *EC2) AttachClassicLinkVPC(input *AttachClassicLinkVPCInput) (output *AttachClassicLinkVPCOutput, err error) {
 	req, out := c.AttachClassicLinkVPCRequest(input)
 	output = out
@@ -199,6 +268,9 @@ func (c *EC2) AttachInternetGatewayRequest(input *AttachInternetGatewayInput) (r
 	return
 }
 
+// Attaches an Internet gateway to a VPC, enabling connectivity between the
+// Internet and the VPC. For more information about your VPC and Internet gateway,
+// see the Amazon Virtual Private Cloud User Guide (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/).
 func (c *EC2) AttachInternetGateway(input *AttachInternetGatewayInput) (output *AttachInternetGatewayOutput, err error) {
 	req, out := c.AttachInternetGatewayRequest(input)
 	output = out
@@ -224,6 +296,7 @@ func (c *EC2) AttachNetworkInterfaceRequest(input *AttachNetworkInterfaceInput) 
 	return
 }
 
+// Attaches a network interface to an instance.
 func (c *EC2) AttachNetworkInterface(input *AttachNetworkInterfaceInput) (output *AttachNetworkInterfaceOutput, err error) {
 	req, out := c.AttachNetworkInterfaceRequest(input)
 	output = out
@@ -249,6 +322,9 @@ func (c *EC2) AttachVPNGatewayRequest(input *AttachVPNGatewayInput) (req *aws.Re
 	return
 }
 
+// Attaches a virtual private gateway to a VPC. For more information, see Adding
+// a Hardware Virtual Private Gateway to Your VPC (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) AttachVPNGateway(input *AttachVPNGatewayInput) (output *AttachVPNGatewayOutput, err error) {
 	req, out := c.AttachVPNGatewayRequest(input)
 	output = out
@@ -274,6 +350,32 @@ func (c *EC2) AttachVolumeRequest(input *AttachVolumeInput) (req *aws.Request, o
 	return
 }
 
+// Attaches an Amazon EBS volume to a running or stopped instance and exposes
+// it to the instance with the specified device name.
+//
+// Encrypted Amazon EBS volumes may only be attached to instances that support
+// Amazon EBS encryption. For more information, see Amazon EBS Encryption (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+//
+// For a list of supported device names, see Attaching an Amazon EBS Volume
+// to an Instance (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html).
+// Any device names that aren't reserved for instance store volumes can be used
+// for Amazon EBS volumes. For more information, see Amazon EC2 Instance Store
+// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+//
+// If a volume has an AWS Marketplace product code:
+//
+//  The volume can be attached only to a stopped instance. AWS Marketplace
+// product codes are copied from the volume to the instance. You must be subscribed
+// to the product. The instance type and operating system of the instance must
+// support the product. For example, you can't detach a volume from a Windows
+// instance and attach it to a Linux instance.  For an overview of the AWS Marketplace,
+// see Introducing AWS Marketplace (https://aws.amazon.com/marketplace/help/200900000).
+//
+// For more information about Amazon EBS volumes, see Attaching Amazon EBS
+// Volumes (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) AttachVolume(input *AttachVolumeInput) (output *VolumeAttachment, err error) {
 	req, out := c.AttachVolumeRequest(input)
 	output = out
@@ -299,6 +401,27 @@ func (c *EC2) AuthorizeSecurityGroupEgressRequest(input *AuthorizeSecurityGroupE
 	return
 }
 
+// Adds one or more egress rules to a security group for use with a VPC. Specifically,
+// this action permits instances to send traffic to one or more destination
+// CIDR IP address ranges, or to one or more destination security groups for
+// the same VPC.
+//
+//  You can have up to 50 rules per security group (covering both ingress and
+// egress rules).
+//
+//  A security group is for use with instances either in the EC2-Classic platform
+// or in a specific VPC. This action doesn't apply to security groups for use
+// in EC2-Classic. For more information, see Security Groups for Your VPC (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html)
+// in the Amazon Virtual Private Cloud User Guide.
+//
+// Each rule consists of the protocol (for example, TCP), plus either a CIDR
+// range or a source group. For the TCP and UDP protocols, you must also specify
+// the destination port or port range. For the ICMP protocol, you must also
+// specify the ICMP type and code. You can use -1 for the type or code to mean
+// all types or all codes.
+//
+// Rule changes are propagated to affected instances as quickly as possible.
+// However, a small delay might occur.
 func (c *EC2) AuthorizeSecurityGroupEgress(input *AuthorizeSecurityGroupEgressInput) (output *AuthorizeSecurityGroupEgressOutput, err error) {
 	req, out := c.AuthorizeSecurityGroupEgressRequest(input)
 	output = out
@@ -324,6 +447,25 @@ func (c *EC2) AuthorizeSecurityGroupIngressRequest(input *AuthorizeSecurityGroup
 	return
 }
 
+// Adds one or more ingress rules to a security group.
+//
+//  EC2-Classic: You can have up to 100 rules per group.
+//
+// EC2-VPC: You can have up to 50 rules per group (covering both ingress and
+// egress rules).
+//
+//  Rule changes are propagated to instances within the security group as quickly
+// as possible. However, a small delay might occur.
+//
+// [EC2-Classic] This action gives one or more CIDR IP address ranges permission
+// to access a security group in your account, or gives one or more security
+// groups (called the source groups) permission to access a security group for
+// your account. A source group can be for your own AWS account, or another.
+//
+// [EC2-VPC] This action gives one or more CIDR IP address ranges permission
+// to access a security group in your VPC, or gives one or more other security
+// groups (called the source groups) permission to access a security group for
+// your VPC. The security groups must all be for the same VPC.
 func (c *EC2) AuthorizeSecurityGroupIngress(input *AuthorizeSecurityGroupIngressInput) (output *AuthorizeSecurityGroupIngressOutput, err error) {
 	req, out := c.AuthorizeSecurityGroupIngressRequest(input)
 	output = out
@@ -349,6 +491,16 @@ func (c *EC2) BundleInstanceRequest(input *BundleInstanceInput) (req *aws.Reques
 	return
 }
 
+// Bundles an Amazon instance store-backed Windows instance.
+//
+// During bundling, only the root device volume (C:\) is bundled. Data on other
+// instance store volumes is not preserved.
+//
+//  This action is not applicable for Linux/Unix instances or Windows instances
+// that are backed by Amazon EBS.
+//
+//  For more information, see Creating an Instance Store-Backed Windows AMI
+// (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_InstanceStoreBacked_WinAMI.html).
 func (c *EC2) BundleInstance(input *BundleInstanceInput) (output *BundleInstanceOutput, err error) {
 	req, out := c.BundleInstanceRequest(input)
 	output = out
@@ -374,6 +526,7 @@ func (c *EC2) CancelBundleTaskRequest(input *CancelBundleTaskInput) (req *aws.Re
 	return
 }
 
+// Cancels a bundling operation for an instance store-backed Windows instance.
 func (c *EC2) CancelBundleTask(input *CancelBundleTaskInput) (output *CancelBundleTaskOutput, err error) {
 	req, out := c.CancelBundleTaskRequest(input)
 	output = out
@@ -399,6 +552,15 @@ func (c *EC2) CancelConversionTaskRequest(input *CancelConversionTaskInput) (req
 	return
 }
 
+// Cancels an active conversion task. The task can be the import of an instance
+// or volume. The action removes all artifacts of the conversion, including
+// a partially uploaded volume or instance. If the conversion is complete or
+// is in the process of transferring the final disk image, the command fails
+// and returns an exception.
+//
+// For more information, see Using the Command Line Tools to Import Your Virtual
+// Machine to Amazon EC2 (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UploadingYourInstancesandVolumes.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) CancelConversionTask(input *CancelConversionTaskInput) (output *CancelConversionTaskOutput, err error) {
 	req, out := c.CancelConversionTaskRequest(input)
 	output = out
@@ -424,6 +586,10 @@ func (c *EC2) CancelExportTaskRequest(input *CancelExportTaskInput) (req *aws.Re
 	return
 }
 
+// Cancels an active export task. The request removes all artifacts of the export,
+// including any partially-created Amazon S3 objects. If the export task is
+// complete or is in the process of transferring the final disk image, the command
+// fails and returns an error.
 func (c *EC2) CancelExportTask(input *CancelExportTaskInput) (output *CancelExportTaskOutput, err error) {
 	req, out := c.CancelExportTaskRequest(input)
 	output = out
@@ -449,6 +615,11 @@ func (c *EC2) CancelReservedInstancesListingRequest(input *CancelReservedInstanc
 	return
 }
 
+// Cancels the specified Reserved Instance listing in the Reserved Instance
+// Marketplace.
+//
+// For more information, see Reserved Instance Marketplace (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) CancelReservedInstancesListing(input *CancelReservedInstancesListingInput) (output *CancelReservedInstancesListingOutput, err error) {
 	req, out := c.CancelReservedInstancesListingRequest(input)
 	output = out
@@ -474,6 +645,15 @@ func (c *EC2) CancelSpotInstanceRequestsRequest(input *CancelSpotInstanceRequest
 	return
 }
 
+// Cancels one or more Spot Instance requests. Spot Instances are instances
+// that Amazon EC2 starts on your behalf when the bid price that you specify
+// exceeds the current Spot Price. Amazon EC2 periodically sets the Spot Price
+// based on available Spot Instance capacity and current Spot Instance requests.
+// For more information, see Spot Instance Requests (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+//
+//  Canceling a Spot Instance request does not terminate running Spot Instances
+// associated with the request.
 func (c *EC2) CancelSpotInstanceRequests(input *CancelSpotInstanceRequestsInput) (output *CancelSpotInstanceRequestsOutput, err error) {
 	req, out := c.CancelSpotInstanceRequestsRequest(input)
 	output = out
@@ -499,6 +679,10 @@ func (c *EC2) ConfirmProductInstanceRequest(input *ConfirmProductInstanceInput) 
 	return
 }
 
+// Determines whether a product code is associated with an instance. This action
+// can only be used by the owner of the product code. It is useful when a product
+// code owner needs to verify whether another user's instance is eligible for
+// support.
 func (c *EC2) ConfirmProductInstance(input *ConfirmProductInstanceInput) (output *ConfirmProductInstanceOutput, err error) {
 	req, out := c.ConfirmProductInstanceRequest(input)
 	output = out
@@ -524,6 +708,13 @@ func (c *EC2) CopyImageRequest(input *CopyImageInput) (req *aws.Request, output 
 	return
 }
 
+// Initiates the copy of an AMI from the specified source region to the current
+// region. You specify the destination region by using its endpoint when making
+// the request. AMIs that use encrypted Amazon EBS snapshots cannot be copied
+// with this method.
+//
+// For more information, see Copying AMIs (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) CopyImage(input *CopyImageInput) (output *CopyImageOutput, err error) {
 	req, out := c.CopyImageRequest(input)
 	output = out
@@ -549,6 +740,20 @@ func (c *EC2) CopySnapshotRequest(input *CopySnapshotInput) (req *aws.Request, o
 	return
 }
 
+// Copies a point-in-time snapshot of an Amazon EBS volume and stores it in
+// Amazon S3. You can copy the snapshot within the same region or from one region
+// to another. You can use the snapshot to create Amazon EBS volumes or Amazon
+// Machine Images (AMIs). The snapshot is copied to the regional endpoint that
+// you send the HTTP request to.
+//
+// Copies of encrypted Amazon EBS snapshots remain encrypted. Copies of unencrypted
+// snapshots remain unencrypted.
+//
+//  Copying snapshots that were encrypted with non-default AWS Key Management
+// Service (KMS) master keys is not supported at this time.
+//
+//  For more information, see Copying an Amazon EBS Snapshot (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) CopySnapshot(input *CopySnapshotInput) (output *CopySnapshotOutput, err error) {
 	req, out := c.CopySnapshotRequest(input)
 	output = out
@@ -574,6 +779,25 @@ func (c *EC2) CreateCustomerGatewayRequest(input *CreateCustomerGatewayInput) (r
 	return
 }
 
+// Provides information to AWS about your VPN customer gateway device. The customer
+// gateway is the appliance at your end of the VPN connection. (The device on
+// the AWS side of the VPN connection is the virtual private gateway.) You must
+// provide the Internet-routable IP address of the customer gateway's external
+// interface. The IP address must be static and can't be behind a device performing
+// network address translation (NAT).
+//
+// For devices that use Border Gateway Protocol (BGP), you can also provide
+// the device's BGP Autonomous System Number (ASN). You can use an existing
+// ASN assigned to your network. If you don't have an ASN already, you can use
+// a private ASN (in the 64512 - 65534 range).
+//
+//  Amazon EC2 supports all 2-byte ASN numbers in the range of 1 - 65534, with
+// the exception of 7224, which is reserved in the us-east-1 region, and 9059,
+// which is reserved in the eu-west-1 region.
+//
+//  For more information about VPN customer gateways, see Adding a Hardware
+// Virtual Private Gateway to Your VPC (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) CreateCustomerGateway(input *CreateCustomerGatewayInput) (output *CreateCustomerGatewayOutput, err error) {
 	req, out := c.CreateCustomerGatewayRequest(input)
 	output = out
@@ -599,6 +823,35 @@ func (c *EC2) CreateDHCPOptionsRequest(input *CreateDHCPOptionsInput) (req *aws.
 	return
 }
 
+// Creates a set of DHCP options for your VPC. After creating the set, you must
+// associate it with the VPC, causing all existing and new instances that you
+// launch in the VPC to use this set of DHCP options. The following are the
+// individual DHCP options you can specify. For more information about the options,
+// see RFC 2132 (http://www.ietf.org/rfc/rfc2132.txt).
+//
+//   domain-name-servers - The IP addresses of up to four domain name servers,
+// or AmazonProvidedDNS. The default DHCP option set specifies AmazonProvidedDNS.
+// If specifying more than one domain name server, specify the IP addresses
+// in a single parameter, separated by commas.  domain-name - If you're using
+// AmazonProvidedDNS in us-east-1, specify ec2.internal. If you're using AmazonProvidedDNS
+// in another region, specify region.compute.internal (for example, ap-northeast-1.compute.internal).
+// Otherwise, specify a domain name (for example, MyCompany.com). Important:
+// Some Linux operating systems accept multiple domain names separated by spaces.
+// However, Windows and other Linux operating systems treat the value as a single
+// domain, which results in unexpected behavior. If your DHCP options set is
+// associated with a VPC that has instances with multiple operating systems,
+// specify only one domain name.  ntp-servers - The IP addresses of up to four
+// Network Time Protocol (NTP) servers.  netbios-name-servers - The IP addresses
+// of up to four NetBIOS name servers.  netbios-node-type - The NetBIOS node
+// type (1, 2, 4, or 8). We recommend that you specify 2 (broadcast and multicast
+// are not currently supported). For more information about these node types,
+// see RFC 2132 (http://www.ietf.org/rfc/rfc2132.txt).   Your VPC automatically
+// starts out with a set of DHCP options that includes only a DNS server that
+// we provide (AmazonProvidedDNS). If you create a set of options, and if your
+// VPC has an Internet gateway, make sure to set the domain-name-servers option
+// either to AmazonProvidedDNS or to a domain name server of your choice. For
+// more information about DHCP options, see DHCP Options Sets (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) CreateDHCPOptions(input *CreateDHCPOptionsInput) (output *CreateDHCPOptionsOutput, err error) {
 	req, out := c.CreateDHCPOptionsRequest(input)
 	output = out
@@ -624,6 +877,16 @@ func (c *EC2) CreateImageRequest(input *CreateImageInput) (req *aws.Request, out
 	return
 }
 
+// Creates an Amazon EBS-backed AMI from an Amazon EBS-backed instance that
+// is either running or stopped.
+//
+// If you customized your instance with instance store volumes or EBS volumes
+// in addition to the root device volume, the new AMI contains block device
+// mapping information for those volumes. When you launch an instance from this
+// new AMI, the instance automatically launches with those additional volumes.
+//
+// For more information, see Creating Amazon EBS-Backed Linux AMIs (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) CreateImage(input *CreateImageInput) (output *CreateImageOutput, err error) {
 	req, out := c.CreateImageRequest(input)
 	output = out
@@ -649,6 +912,12 @@ func (c *EC2) CreateInstanceExportTaskRequest(input *CreateInstanceExportTaskInp
 	return
 }
 
+// Exports a running or stopped instance to an Amazon S3 bucket.
+//
+// For information about the supported operating systems, image formats, and
+// known limitations for the types of instances you can export, see Exporting
+// EC2 Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ExportingEC2Instances.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) CreateInstanceExportTask(input *CreateInstanceExportTaskInput) (output *CreateInstanceExportTaskOutput, err error) {
 	req, out := c.CreateInstanceExportTaskRequest(input)
 	output = out
@@ -674,6 +943,11 @@ func (c *EC2) CreateInternetGatewayRequest(input *CreateInternetGatewayInput) (r
 	return
 }
 
+// Creates an Internet gateway for use with a VPC. After creating the Internet
+// gateway, you attach it to a VPC using AttachInternetGateway.
+//
+// For more information about your VPC and Internet gateway, see the Amazon
+// Virtual Private Cloud User Guide (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/).
 func (c *EC2) CreateInternetGateway(input *CreateInternetGatewayInput) (output *CreateInternetGatewayOutput, err error) {
 	req, out := c.CreateInternetGatewayRequest(input)
 	output = out
@@ -699,6 +973,18 @@ func (c *EC2) CreateKeyPairRequest(input *CreateKeyPairInput) (req *aws.Request,
 	return
 }
 
+// Creates a 2048-bit RSA key pair with the specified name. Amazon EC2 stores
+// the public key and displays the private key for you to save to a file. The
+// private key is returned as an unencrypted PEM encoded PKCS#8 private key.
+// If a key with the specified name already exists, Amazon EC2 returns an error.
+//
+// You can have up to five thousand key pairs per region.
+//
+// The key pair returned to you is available only in the region in which you
+// create it. To create a key pair that is available in all regions, use ImportKeyPair.
+//
+// For more information about key pairs, see Key Pairs (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) CreateKeyPair(input *CreateKeyPairInput) (output *CreateKeyPairOutput, err error) {
 	req, out := c.CreateKeyPairRequest(input)
 	output = out
@@ -724,6 +1010,11 @@ func (c *EC2) CreateNetworkACLRequest(input *CreateNetworkACLInput) (req *aws.Re
 	return
 }
 
+// Creates a network ACL in a VPC. Network ACLs provide an optional layer of
+// security (in addition to security groups) for the instances in your VPC.
+//
+// For more information about network ACLs, see Network ACLs (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) CreateNetworkACL(input *CreateNetworkACLInput) (output *CreateNetworkACLOutput, err error) {
 	req, out := c.CreateNetworkACLRequest(input)
 	output = out
@@ -749,6 +1040,23 @@ func (c *EC2) CreateNetworkACLEntryRequest(input *CreateNetworkACLEntryInput) (r
 	return
 }
 
+// Creates an entry (a rule) in a network ACL with the specified rule number.
+// Each network ACL has a set of numbered ingress rules and a separate set of
+// numbered egress rules. When determining whether a packet should be allowed
+// in or out of a subnet associated with the ACL, we process the entries in
+// the ACL according to the rule numbers, in ascending order. Each network ACL
+// has a set of ingress rules and a separate set of egress rules.
+//
+// We recommend that you leave room between the rule numbers (for example,
+// 100, 110, 120, ...), and not number them one right after the other (for example,
+// 101, 102, 103, ...). This makes it easier to add a rule between existing
+// ones without having to renumber the rules.
+//
+// After you add an entry, you can't modify it; you must either replace it,
+// or create an entry and delete the old one.
+//
+// For more information about network ACLs, see Network ACLs (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) CreateNetworkACLEntry(input *CreateNetworkACLEntryInput) (output *CreateNetworkACLEntryOutput, err error) {
 	req, out := c.CreateNetworkACLEntryRequest(input)
 	output = out
@@ -774,6 +1082,11 @@ func (c *EC2) CreateNetworkInterfaceRequest(input *CreateNetworkInterfaceInput) 
 	return
 }
 
+// Creates a network interface in the specified subnet.
+//
+// For more information about network interfaces, see Elastic Network Interfaces
+// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html) in the
+// Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) CreateNetworkInterface(input *CreateNetworkInterfaceInput) (output *CreateNetworkInterfaceOutput, err error) {
 	req, out := c.CreateNetworkInterfaceRequest(input)
 	output = out
@@ -799,6 +1112,12 @@ func (c *EC2) CreatePlacementGroupRequest(input *CreatePlacementGroupInput) (req
 	return
 }
 
+// Creates a placement group that you launch cluster instances into. You must
+// give the group a name that's unique within the scope of your account.
+//
+// For more information about placement groups and cluster instances, see Cluster
+// Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cluster_computing.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) CreatePlacementGroup(input *CreatePlacementGroupInput) (output *CreatePlacementGroupOutput, err error) {
 	req, out := c.CreatePlacementGroupRequest(input)
 	output = out
@@ -824,6 +1143,26 @@ func (c *EC2) CreateReservedInstancesListingRequest(input *CreateReservedInstanc
 	return
 }
 
+// Creates a listing for Amazon EC2 Reserved Instances to be sold in the Reserved
+// Instance Marketplace. You can submit one Reserved Instance listing at a time.
+// To get a list of your Reserved Instances, you can use the DescribeReservedInstances
+// operation.
+//
+// The Reserved Instance Marketplace matches sellers who want to resell Reserved
+// Instance capacity that they no longer need with buyers who want to purchase
+// additional capacity. Reserved Instances bought and sold through the Reserved
+// Instance Marketplace work like any other Reserved Instances.
+//
+// To sell your Reserved Instances, you must first register as a Seller in
+// the Reserved Instance Marketplace. After completing the registration process,
+// you can create a Reserved Instance Marketplace listing of some or all of
+// your Reserved Instances, and specify the upfront price to receive for them.
+// Your Reserved Instance listings then become available for purchase. To view
+// the details of your Reserved Instance listing, you can use the DescribeReservedInstancesListings
+// operation.
+//
+// For more information, see Reserved Instance Marketplace (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) CreateReservedInstancesListing(input *CreateReservedInstancesListingInput) (output *CreateReservedInstancesListingOutput, err error) {
 	req, out := c.CreateReservedInstancesListingRequest(input)
 	output = out
@@ -849,6 +1188,25 @@ func (c *EC2) CreateRouteRequest(input *CreateRouteInput) (req *aws.Request, out
 	return
 }
 
+// Creates a route in a route table within a VPC.
+//
+// You must specify one of the following targets: Internet gateway or virtual
+// private gateway, NAT instance, VPC peering connection, or network interface.
+//
+// When determining how to route traffic, we use the route with the most specific
+// match. For example, let's say the traffic is destined for 192.0.2.3, and
+// the route table includes the following two routes:
+//
+//   192.0.2.0/24 (goes to some target A)
+//
+//   192.0.2.0/28 (goes to some target B)
+//
+//   Both routes apply to the traffic destined for 192.0.2.3. However, the
+// second route in the list covers a smaller number of IP addresses and is therefore
+// more specific, so we use that route to determine where to target the traffic.
+//
+// For more information about route tables, see Route Tables (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) CreateRoute(input *CreateRouteInput) (output *CreateRouteOutput, err error) {
 	req, out := c.CreateRouteRequest(input)
 	output = out
@@ -874,6 +1232,11 @@ func (c *EC2) CreateRouteTableRequest(input *CreateRouteTableInput) (req *aws.Re
 	return
 }
 
+// Creates a route table for the specified VPC. After you create a route table,
+// you can add routes and associate the table with a subnet.
+//
+// For more information about route tables, see Route Tables (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) CreateRouteTable(input *CreateRouteTableInput) (output *CreateRouteTableOutput, err error) {
 	req, out := c.CreateRouteTableRequest(input)
 	output = out
@@ -899,6 +1262,33 @@ func (c *EC2) CreateSecurityGroupRequest(input *CreateSecurityGroupInput) (req *
 	return
 }
 
+// Creates a security group.
+//
+// A security group is for use with instances either in the EC2-Classic platform
+// or in a specific VPC. For more information, see Amazon EC2 Security Groups
+// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html)
+// in the Amazon Elastic Compute Cloud User Guide and Security Groups for Your
+// VPC (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html)
+// in the Amazon Virtual Private Cloud User Guide.
+//
+//  EC2-Classic: You can have up to 500 security groups.
+//
+// EC2-VPC: You can create up to 100 security groups per VPC.
+//
+//  When you create a security group, you specify a friendly name of your choice.
+// You can have a security group for use in EC2-Classic with the same name as
+// a security group for use in a VPC. However, you can't have two security groups
+// for use in EC2-Classic with the same name or two security groups for use
+// in a VPC with the same name.
+//
+// You have a default security group for use in EC2-Classic and a default security
+// group for use in your VPC. If you don't specify a security group when you
+// launch an instance, the instance is launched into the appropriate default
+// security group. A default security group includes a default rule that grants
+// instances unrestricted network access to each other.
+//
+// You can add or remove rules from your security groups using AuthorizeSecurityGroupIngress,
+// AuthorizeSecurityGroupEgress, RevokeSecurityGroupIngress, and RevokeSecurityGroupEgress.
 func (c *EC2) CreateSecurityGroup(input *CreateSecurityGroupInput) (output *CreateSecurityGroupOutput, err error) {
 	req, out := c.CreateSecurityGroupRequest(input)
 	output = out
@@ -924,6 +1314,35 @@ func (c *EC2) CreateSnapshotRequest(input *CreateSnapshotInput) (req *aws.Reques
 	return
 }
 
+// Creates a snapshot of an Amazon EBS volume and stores it in Amazon S3. You
+// can use snapshots for backups, to make copies of Amazon EBS volumes, and
+// to save data before shutting down an instance.
+//
+// When a snapshot is created, any AWS Marketplace product codes that are associated
+// with the source volume are propagated to the snapshot.
+//
+// You can take a snapshot of an attached volume that is in use. However, snapshots
+// only capture data that has been written to your Amazon EBS volume at the
+// time the snapshot command is issued; this may exclude any data that has been
+// cached by any applications or the operating system. If you can pause any
+// file systems on the volume long enough to take a snapshot, your snapshot
+// should be complete. However, if you cannot pause all file writes to the volume,
+// you should unmount the volume from within the instance, issue the snapshot
+// command, and then remount the volume to ensure a consistent and complete
+// snapshot. You may remount and use your volume while the snapshot status is
+// pending.
+//
+// To create a snapshot for Amazon EBS volumes that serve as root devices,
+// you should stop the instance before taking the snapshot.
+//
+// Snapshots that are taken from encrypted volumes are automatically encrypted.
+// Volumes that are created from encrypted snapshots are also automatically
+// encrypted. Your encrypted volumes and any associated snapshots always remain
+// protected.
+//
+// For more information, see Amazon Elastic Block Store (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html)
+// and Amazon EBS Encryption (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) CreateSnapshot(input *CreateSnapshotInput) (output *Snapshot, err error) {
 	req, out := c.CreateSnapshotRequest(input)
 	output = out
@@ -949,6 +1368,10 @@ func (c *EC2) CreateSpotDatafeedSubscriptionRequest(input *CreateSpotDatafeedSub
 	return
 }
 
+// Creates a data feed for Spot Instances, enabling you to view Spot Instance
+// usage logs. You can create one data feed per AWS account. For more information,
+// see Spot Instance Data Feed (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) CreateSpotDatafeedSubscription(input *CreateSpotDatafeedSubscriptionInput) (output *CreateSpotDatafeedSubscriptionOutput, err error) {
 	req, out := c.CreateSpotDatafeedSubscriptionRequest(input)
 	output = out
@@ -974,6 +1397,31 @@ func (c *EC2) CreateSubnetRequest(input *CreateSubnetInput) (req *aws.Request, o
 	return
 }
 
+// Creates a subnet in an existing VPC.
+//
+// When you create each subnet, you provide the VPC ID and the CIDR block you
+// want for the subnet. After you create a subnet, you can't change its CIDR
+// block. The subnet's CIDR block can be the same as the VPC's CIDR block (assuming
+// you want only a single subnet in the VPC), or a subset of the VPC's CIDR
+// block. If you create more than one subnet in a VPC, the subnets' CIDR blocks
+// must not overlap. The smallest subnet (and VPC) you can create uses a /28
+// netmask (16 IP addresses), and the largest uses a /16 netmask (65,536 IP
+// addresses).
+//
+//  AWS reserves both the first four and the last IP address in each subnet's
+// CIDR block. They're not available for use.
+//
+//  If you add more than one subnet to a VPC, they're set up in a star topology
+// with a logical router in the middle.
+//
+// If you launch an instance in a VPC using an Amazon EBS-backed AMI, the IP
+// address doesn't change if you stop and restart the instance (unlike a similar
+// instance launched outside a VPC, which gets a new IP address when restarted).
+// It's therefore possible to have a subnet with no running instances (they're
+// all stopped), but no remaining IP addresses available.
+//
+// For more information about subnets, see Your VPC and Subnets (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) CreateSubnet(input *CreateSubnetInput) (output *CreateSubnetOutput, err error) {
 	req, out := c.CreateSubnetRequest(input)
 	output = out
@@ -999,6 +1447,12 @@ func (c *EC2) CreateTagsRequest(input *CreateTagsInput) (req *aws.Request, outpu
 	return
 }
 
+// Adds or overwrites one or more tags for the specified Amazon EC2 resource
+// or resources. Each resource can have a maximum of 10 tags. Each tag consists
+// of a key and optional value. Tag keys must be unique per resource.
+//
+// For more information about tags, see Tagging Your Resources (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) CreateTags(input *CreateTagsInput) (output *CreateTagsOutput, err error) {
 	req, out := c.CreateTagsRequest(input)
 	output = out
@@ -1024,6 +1478,17 @@ func (c *EC2) CreateVPCRequest(input *CreateVPCInput) (req *aws.Request, output 
 	return
 }
 
+// Creates a VPC with the specified CIDR block.
+//
+// The smallest VPC you can create uses a /28 netmask (16 IP addresses), and
+// the largest uses a /16 netmask (65,536 IP addresses). To help you decide
+// how big to make your VPC, see Your VPC and Subnets (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html)
+// in the Amazon Virtual Private Cloud User Guide.
+//
+// By default, each instance you launch in the VPC has the default DHCP options,
+// which includes only a default DNS server that we provide (AmazonProvidedDNS).
+// For more information about DHCP options, see DHCP Options Sets (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) CreateVPC(input *CreateVPCInput) (output *CreateVPCOutput, err error) {
 	req, out := c.CreateVPCRequest(input)
 	output = out
@@ -1049,6 +1514,17 @@ func (c *EC2) CreateVPCPeeringConnectionRequest(input *CreateVPCPeeringConnectio
 	return
 }
 
+// Requests a VPC peering connection between two VPCs: a requester VPC that
+// you own and a peer VPC with which to create the connection. The peer VPC
+// can belong to another AWS account. The requester VPC and peer VPC cannot
+// have overlapping CIDR blocks.
+//
+// The owner of the peer VPC must accept the peering request to activate the
+// peering connection. The VPC peering connection request expires after 7 days,
+// after which it cannot be accepted or rejected.
+//
+// A CreateVpcPeeringConnection request between VPCs with overlapping CIDR
+// blocks results in the VPC peering connection having a status of failed.
 func (c *EC2) CreateVPCPeeringConnection(input *CreateVPCPeeringConnectionInput) (output *CreateVPCPeeringConnectionOutput, err error) {
 	req, out := c.CreateVPCPeeringConnectionRequest(input)
 	output = out
@@ -1074,6 +1550,23 @@ func (c *EC2) CreateVPNConnectionRequest(input *CreateVPNConnectionInput) (req *
 	return
 }
 
+// Creates a VPN connection between an existing virtual private gateway and
+// a VPN customer gateway. The only supported connection type is ipsec.1.
+//
+// The response includes information that you need to give to your network
+// administrator to configure your customer gateway.
+//
+//  We strongly recommend that you use HTTPS when calling this operation because
+// the response contains sensitive cryptographic information for configuring
+// your customer gateway.
+//
+//  If you decide to shut down your VPN connection for any reason and later
+// create a new VPN connection, you must reconfigure your customer gateway with
+// the new information returned from this call.
+//
+// For more information about VPN connections, see Adding a Hardware Virtual
+// Private Gateway to Your VPC (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) CreateVPNConnection(input *CreateVPNConnectionInput) (output *CreateVPNConnectionOutput, err error) {
 	req, out := c.CreateVPNConnectionRequest(input)
 	output = out
@@ -1099,6 +1592,14 @@ func (c *EC2) CreateVPNConnectionRouteRequest(input *CreateVPNConnectionRouteInp
 	return
 }
 
+// Creates a static route associated with a VPN connection between an existing
+// virtual private gateway and a VPN customer gateway. The static route allows
+// traffic to be routed from the virtual private gateway to the VPN customer
+// gateway.
+//
+// For more information about VPN connections, see Adding a Hardware Virtual
+// Private Gateway to Your VPC (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) CreateVPNConnectionRoute(input *CreateVPNConnectionRouteInput) (output *CreateVPNConnectionRouteOutput, err error) {
 	req, out := c.CreateVPNConnectionRouteRequest(input)
 	output = out
@@ -1124,6 +1625,13 @@ func (c *EC2) CreateVPNGatewayRequest(input *CreateVPNGatewayInput) (req *aws.Re
 	return
 }
 
+// Creates a virtual private gateway. A virtual private gateway is the endpoint
+// on the VPC side of your VPN connection. You can create a virtual private
+// gateway before creating the VPC itself.
+//
+// For more information about virtual private gateways, see Adding a Hardware
+// Virtual Private Gateway to Your VPC (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) CreateVPNGateway(input *CreateVPNGatewayInput) (output *CreateVPNGatewayOutput, err error) {
 	req, out := c.CreateVPNGatewayRequest(input)
 	output = out
@@ -1149,6 +1657,23 @@ func (c *EC2) CreateVolumeRequest(input *CreateVolumeInput) (req *aws.Request, o
 	return
 }
 
+// Creates an Amazon EBS volume that can be attached to an instance in the same
+// Availability Zone. The volume is created in the regional endpoint that you
+// send the HTTP request to. For more information see Regions and Endpoints
+// (http://docs.aws.amazon.com/general/latest/gr/rande.html).
+//
+// You can create a new empty volume or restore a volume from an Amazon EBS
+// snapshot. Any AWS Marketplace product codes from the snapshot are propagated
+// to the volume.
+//
+// You can create encrypted volumes with the Encrypted parameter. Encrypted
+// volumes may only be attached to instances that support Amazon EBS encryption.
+// Volumes that are created from encrypted snapshots are also automatically
+// encrypted. For more information, see Amazon EBS Encryption (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+//
+// For more information, see Creating or Restoring an Amazon EBS Volume (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-creating-volume.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) CreateVolume(input *CreateVolumeInput) (output *Volume, err error) {
 	req, out := c.CreateVolumeRequest(input)
 	output = out
@@ -1174,6 +1699,8 @@ func (c *EC2) DeleteCustomerGatewayRequest(input *DeleteCustomerGatewayInput) (r
 	return
 }
 
+// Deletes the specified customer gateway. You must delete the VPN connection
+// before you can delete the customer gateway.
 func (c *EC2) DeleteCustomerGateway(input *DeleteCustomerGatewayInput) (output *DeleteCustomerGatewayOutput, err error) {
 	req, out := c.DeleteCustomerGatewayRequest(input)
 	output = out
@@ -1199,6 +1726,10 @@ func (c *EC2) DeleteDHCPOptionsRequest(input *DeleteDHCPOptionsInput) (req *aws.
 	return
 }
 
+// Deletes the specified set of DHCP options. You must disassociate the set
+// of DHCP options before you can delete it. You can disassociate the set of
+// DHCP options by associating either a new set of options or the default set
+// of options with the VPC.
 func (c *EC2) DeleteDHCPOptions(input *DeleteDHCPOptionsInput) (output *DeleteDHCPOptionsOutput, err error) {
 	req, out := c.DeleteDHCPOptionsRequest(input)
 	output = out
@@ -1224,6 +1755,8 @@ func (c *EC2) DeleteInternetGatewayRequest(input *DeleteInternetGatewayInput) (r
 	return
 }
 
+// Deletes the specified Internet gateway. You must detach the Internet gateway
+// from the VPC before you can delete it.
 func (c *EC2) DeleteInternetGateway(input *DeleteInternetGatewayInput) (output *DeleteInternetGatewayOutput, err error) {
 	req, out := c.DeleteInternetGatewayRequest(input)
 	output = out
@@ -1249,6 +1782,7 @@ func (c *EC2) DeleteKeyPairRequest(input *DeleteKeyPairInput) (req *aws.Request,
 	return
 }
 
+// Deletes the specified key pair, by removing the public key from Amazon EC2.
 func (c *EC2) DeleteKeyPair(input *DeleteKeyPairInput) (output *DeleteKeyPairOutput, err error) {
 	req, out := c.DeleteKeyPairRequest(input)
 	output = out
@@ -1274,6 +1808,8 @@ func (c *EC2) DeleteNetworkACLRequest(input *DeleteNetworkACLInput) (req *aws.Re
 	return
 }
 
+// Deletes the specified network ACL. You can't delete the ACL if it's associated
+// with any subnets. You can't delete the default network ACL.
 func (c *EC2) DeleteNetworkACL(input *DeleteNetworkACLInput) (output *DeleteNetworkACLOutput, err error) {
 	req, out := c.DeleteNetworkACLRequest(input)
 	output = out
@@ -1299,6 +1835,8 @@ func (c *EC2) DeleteNetworkACLEntryRequest(input *DeleteNetworkACLEntryInput) (r
 	return
 }
 
+// Deletes the specified ingress or egress entry (rule) from the specified network
+// ACL.
 func (c *EC2) DeleteNetworkACLEntry(input *DeleteNetworkACLEntryInput) (output *DeleteNetworkACLEntryOutput, err error) {
 	req, out := c.DeleteNetworkACLEntryRequest(input)
 	output = out
@@ -1324,6 +1862,8 @@ func (c *EC2) DeleteNetworkInterfaceRequest(input *DeleteNetworkInterfaceInput) 
 	return
 }
 
+// Deletes the specified network interface. You must detach the network interface
+// before you can delete it.
 func (c *EC2) DeleteNetworkInterface(input *DeleteNetworkInterfaceInput) (output *DeleteNetworkInterfaceOutput, err error) {
 	req, out := c.DeleteNetworkInterfaceRequest(input)
 	output = out
@@ -1349,6 +1889,10 @@ func (c *EC2) DeletePlacementGroupRequest(input *DeletePlacementGroupInput) (req
 	return
 }
 
+// Deletes the specified placement group. You must terminate all instances in
+// the placement group before you can delete the placement group. For more information
+// about placement groups and cluster instances, see Cluster Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cluster_computing.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) DeletePlacementGroup(input *DeletePlacementGroupInput) (output *DeletePlacementGroupOutput, err error) {
 	req, out := c.DeletePlacementGroupRequest(input)
 	output = out
@@ -1374,6 +1918,7 @@ func (c *EC2) DeleteRouteRequest(input *DeleteRouteInput) (req *aws.Request, out
 	return
 }
 
+// Deletes the specified route from the specified route table.
 func (c *EC2) DeleteRoute(input *DeleteRouteInput) (output *DeleteRouteOutput, err error) {
 	req, out := c.DeleteRouteRequest(input)
 	output = out
@@ -1399,6 +1944,9 @@ func (c *EC2) DeleteRouteTableRequest(input *DeleteRouteTableInput) (req *aws.Re
 	return
 }
 
+// Deletes the specified route table. You must disassociate the route table
+// from any subnets before you can delete it. You can't delete the main route
+// table.
 func (c *EC2) DeleteRouteTable(input *DeleteRouteTableInput) (output *DeleteRouteTableOutput, err error) {
 	req, out := c.DeleteRouteTableRequest(input)
 	output = out
@@ -1424,6 +1972,11 @@ func (c *EC2) DeleteSecurityGroupRequest(input *DeleteSecurityGroupInput) (req *
 	return
 }
 
+// Deletes a security group.
+//
+// If you attempt to delete a security group that is associated with an instance,
+// or is referenced by another security group, the operation fails with InvalidGroup.InUse
+// in EC2-Classic or DependencyViolation in EC2-VPC.
 func (c *EC2) DeleteSecurityGroup(input *DeleteSecurityGroupInput) (output *DeleteSecurityGroupOutput, err error) {
 	req, out := c.DeleteSecurityGroupRequest(input)
 	output = out
@@ -1449,6 +2002,21 @@ func (c *EC2) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *aws.Reques
 	return
 }
 
+// Deletes the specified snapshot.
+//
+// When you make periodic snapshots of a volume, the snapshots are incremental,
+// and only the blocks on the device that have changed since your last snapshot
+// are saved in the new snapshot. When you delete a snapshot, only the data
+// not needed for any other snapshot is removed. So regardless of which prior
+// snapshots have been deleted, all active snapshots will have access to all
+// the information needed to restore the volume.
+//
+// You cannot delete a snapshot of the root device of an Amazon EBS volume
+// used by a registered AMI. You must first de-register the AMI before you can
+// delete the snapshot.
+//
+// For more information, see Deleting an Amazon EBS Snapshot (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-deleting-snapshot.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) DeleteSnapshot(input *DeleteSnapshotInput) (output *DeleteSnapshotOutput, err error) {
 	req, out := c.DeleteSnapshotRequest(input)
 	output = out
@@ -1474,6 +2042,9 @@ func (c *EC2) DeleteSpotDatafeedSubscriptionRequest(input *DeleteSpotDatafeedSub
 	return
 }
 
+// Deletes the data feed for Spot Instances. For more information, see Spot
+// Instance Data Feed (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) DeleteSpotDatafeedSubscription(input *DeleteSpotDatafeedSubscriptionInput) (output *DeleteSpotDatafeedSubscriptionOutput, err error) {
 	req, out := c.DeleteSpotDatafeedSubscriptionRequest(input)
 	output = out
@@ -1499,6 +2070,8 @@ func (c *EC2) DeleteSubnetRequest(input *DeleteSubnetInput) (req *aws.Request, o
 	return
 }
 
+// Deletes the specified subnet. You must terminate all running instances in
+// the subnet before you can delete the subnet.
 func (c *EC2) DeleteSubnet(input *DeleteSubnetInput) (output *DeleteSubnetOutput, err error) {
 	req, out := c.DeleteSubnetRequest(input)
 	output = out
@@ -1524,6 +2097,11 @@ func (c *EC2) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Request, outpu
 	return
 }
 
+// Deletes the specified set of tags from the specified set of resources. This
+// call is designed to follow a DescribeTags request.
+//
+// For more information about tags, see Tagging Your Resources (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) DeleteTags(input *DeleteTagsInput) (output *DeleteTagsOutput, err error) {
 	req, out := c.DeleteTagsRequest(input)
 	output = out
@@ -1549,6 +2127,11 @@ func (c *EC2) DeleteVPCRequest(input *DeleteVPCInput) (req *aws.Request, output 
 	return
 }
 
+// Deletes the specified VPC. You must detach or delete all gateways and resources
+// that are associated with the VPC before you can delete it. For example, you
+// must terminate all instances running in the VPC, delete all security groups
+// associated with the VPC (except the default one), delete all route tables
+// associated with the VPC (except the default one), and so on.
 func (c *EC2) DeleteVPC(input *DeleteVPCInput) (output *DeleteVPCOutput, err error) {
 	req, out := c.DeleteVPCRequest(input)
 	output = out
@@ -1574,6 +2157,10 @@ func (c *EC2) DeleteVPCPeeringConnectionRequest(input *DeleteVPCPeeringConnectio
 	return
 }
 
+// Deletes a VPC peering connection. Either the owner of the requester VPC or
+// the owner of the peer VPC can delete the VPC peering connection if it's in
+// the active state. The owner of the requester VPC can delete a VPC peering
+// connection in the pending-acceptance state.
 func (c *EC2) DeleteVPCPeeringConnection(input *DeleteVPCPeeringConnectionInput) (output *DeleteVPCPeeringConnectionOutput, err error) {
 	req, out := c.DeleteVPCPeeringConnectionRequest(input)
 	output = out
@@ -1599,6 +2186,16 @@ func (c *EC2) DeleteVPNConnectionRequest(input *DeleteVPNConnectionInput) (req *
 	return
 }
 
+// Deletes the specified VPN connection.
+//
+// If you're deleting the VPC and its associated components, we recommend that
+// you detach the virtual private gateway from the VPC and delete the VPC before
+// deleting the VPN connection. If you believe that the tunnel credentials for
+// your VPN connection have been compromised, you can delete the VPN connection
+// and create a new one that has new keys, without needing to delete the VPC
+// or virtual private gateway. If you create a new VPN connection, you must
+// reconfigure the customer gateway using the new configuration information
+// returned with the new VPN connection ID.
 func (c *EC2) DeleteVPNConnection(input *DeleteVPNConnectionInput) (output *DeleteVPNConnectionOutput, err error) {
 	req, out := c.DeleteVPNConnectionRequest(input)
 	output = out
@@ -1624,6 +2221,10 @@ func (c *EC2) DeleteVPNConnectionRouteRequest(input *DeleteVPNConnectionRouteInp
 	return
 }
 
+// Deletes the specified static route associated with a VPN connection between
+// an existing virtual private gateway and a VPN customer gateway. The static
+// route allows traffic to be routed from the virtual private gateway to the
+// VPN customer gateway.
 func (c *EC2) DeleteVPNConnectionRoute(input *DeleteVPNConnectionRouteInput) (output *DeleteVPNConnectionRouteOutput, err error) {
 	req, out := c.DeleteVPNConnectionRouteRequest(input)
 	output = out
@@ -1649,6 +2250,11 @@ func (c *EC2) DeleteVPNGatewayRequest(input *DeleteVPNGatewayInput) (req *aws.Re
 	return
 }
 
+// Deletes the specified virtual private gateway. We recommend that before you
+// delete a virtual private gateway, you detach it from the VPC and delete the
+// VPN connection. Note that you don't need to delete the virtual private gateway
+// if you plan to delete and recreate the VPN connection between your VPC and
+// your network.
 func (c *EC2) DeleteVPNGateway(input *DeleteVPNGatewayInput) (output *DeleteVPNGatewayOutput, err error) {
 	req, out := c.DeleteVPNGatewayRequest(input)
 	output = out
@@ -1674,6 +2280,13 @@ func (c *EC2) DeleteVolumeRequest(input *DeleteVolumeInput) (req *aws.Request, o
 	return
 }
 
+// Deletes the specified Amazon EBS volume. The volume must be in the available
+// state (not attached to an instance).
+//
+//  The volume may remain in the deleting state for several minutes.
+//
+//  For more information, see Deleting an Amazon EBS Volume (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-deleting-volume.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) DeleteVolume(input *DeleteVolumeInput) (output *DeleteVolumeOutput, err error) {
 	req, out := c.DeleteVolumeRequest(input)
 	output = out
@@ -1699,6 +2312,10 @@ func (c *EC2) DeregisterImageRequest(input *DeregisterImageInput) (req *aws.Requ
 	return
 }
 
+// Deregisters the specified AMI. After you deregister an AMI, it can't be used
+// to launch new instances.
+//
+// This command does not delete the AMI.
 func (c *EC2) DeregisterImage(input *DeregisterImageInput) (output *DeregisterImageOutput, err error) {
 	req, out := c.DeregisterImageRequest(input)
 	output = out
@@ -1724,6 +2341,25 @@ func (c *EC2) DescribeAccountAttributesRequest(input *DescribeAccountAttributesI
 	return
 }
 
+// Describes attributes of your AWS account. The following are the supported
+// account attributes:
+//
+//   supported-platforms: Indicates whether your account can launch instances
+// into EC2-Classic and EC2-VPC, or only into EC2-VPC.
+//
+//   default-vpc: The ID of the default VPC for your account, or none.
+//
+//   max-instances: The maximum number of On-Demand instances that you can
+// run.
+//
+//   vpc-max-security-groups-per-interface: The maximum number of security
+// groups that you can assign to a network interface.
+//
+//   max-elastic-ips: The maximum number of Elastic IP addresses that you can
+// allocate for use with EC2-Classic.
+//
+//   vpc-max-elastic-ips: The maximum number of Elastic IP addresses that you
+// can allocate for use with EC2-VPC.
 func (c *EC2) DescribeAccountAttributes(input *DescribeAccountAttributesInput) (output *DescribeAccountAttributesOutput, err error) {
 	req, out := c.DescribeAccountAttributesRequest(input)
 	output = out
@@ -1749,6 +2385,11 @@ func (c *EC2) DescribeAddressesRequest(input *DescribeAddressesInput) (req *aws.
 	return
 }
 
+// Describes one or more of your Elastic IP addresses.
+//
+// An Elastic IP address is for use in either the EC2-Classic platform or in
+// a VPC. For more information, see Elastic IP Addresses (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) DescribeAddresses(input *DescribeAddressesInput) (output *DescribeAddressesOutput, err error) {
 	req, out := c.DescribeAddressesRequest(input)
 	output = out
@@ -1774,6 +2415,13 @@ func (c *EC2) DescribeAvailabilityZonesRequest(input *DescribeAvailabilityZonesI
 	return
 }
 
+// Describes one or more of the Availability Zones that are available to you.
+// The results include zones only for the region you're currently using. If
+// there is an event impacting an Availability Zone, you can use this request
+// to view the state and any provided message for that Availability Zone.
+//
+// For more information, see Regions and Availability Zones (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) DescribeAvailabilityZones(input *DescribeAvailabilityZonesInput) (output *DescribeAvailabilityZonesOutput, err error) {
 	req, out := c.DescribeAvailabilityZonesRequest(input)
 	output = out
@@ -1799,6 +2447,12 @@ func (c *EC2) DescribeBundleTasksRequest(input *DescribeBundleTasksInput) (req *
 	return
 }
 
+// Describes one or more of your bundling tasks.
+//
+// Completed bundle tasks are listed for only a limited time. If your bundle
+// task is no longer in the list, you can still register an AMI from it. Just
+// use RegisterImage with the Amazon S3 bucket name and image manifest name
+// you provided to the bundle task.
 func (c *EC2) DescribeBundleTasks(input *DescribeBundleTasksInput) (output *DescribeBundleTasksOutput, err error) {
 	req, out := c.DescribeBundleTasksRequest(input)
 	output = out
@@ -1824,6 +2478,10 @@ func (c *EC2) DescribeClassicLinkInstancesRequest(input *DescribeClassicLinkInst
 	return
 }
 
+// Describes one or more of your linked EC2-Classic instances. This request
+// only returns information about EC2-Classic instances linked to a VPC through
+// ClassicLink; you cannot use this request to return information about other
+// instances.
 func (c *EC2) DescribeClassicLinkInstances(input *DescribeClassicLinkInstancesInput) (output *DescribeClassicLinkInstancesOutput, err error) {
 	req, out := c.DescribeClassicLinkInstancesRequest(input)
 	output = out
@@ -1849,6 +2507,10 @@ func (c *EC2) DescribeConversionTasksRequest(input *DescribeConversionTasksInput
 	return
 }
 
+// Describes one or more of your conversion tasks. For more information, see
+// Using the Command Line Tools to Import Your Virtual Machine to Amazon EC2
+// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UploadingYourInstancesandVolumes.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) DescribeConversionTasks(input *DescribeConversionTasksInput) (output *DescribeConversionTasksOutput, err error) {
 	req, out := c.DescribeConversionTasksRequest(input)
 	output = out
@@ -1874,6 +2536,11 @@ func (c *EC2) DescribeCustomerGatewaysRequest(input *DescribeCustomerGatewaysInp
 	return
 }
 
+// Describes one or more of your VPN customer gateways.
+//
+// For more information about VPN customer gateways, see Adding a Hardware
+// Virtual Private Gateway to Your VPC (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) DescribeCustomerGateways(input *DescribeCustomerGatewaysInput) (output *DescribeCustomerGatewaysOutput, err error) {
 	req, out := c.DescribeCustomerGatewaysRequest(input)
 	output = out
@@ -1899,6 +2566,10 @@ func (c *EC2) DescribeDHCPOptionsRequest(input *DescribeDHCPOptionsInput) (req *
 	return
 }
 
+// Describes one or more of your DHCP options sets.
+//
+// For more information about DHCP options sets, see DHCP Options Sets (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) DescribeDHCPOptions(input *DescribeDHCPOptionsInput) (output *DescribeDHCPOptionsOutput, err error) {
 	req, out := c.DescribeDHCPOptionsRequest(input)
 	output = out
@@ -1924,6 +2595,7 @@ func (c *EC2) DescribeExportTasksRequest(input *DescribeExportTasksInput) (req *
 	return
 }
 
+// Describes one or more of your export tasks.
 func (c *EC2) DescribeExportTasks(input *DescribeExportTasksInput) (output *DescribeExportTasksOutput, err error) {
 	req, out := c.DescribeExportTasksRequest(input)
 	output = out
@@ -1949,6 +2621,8 @@ func (c *EC2) DescribeImageAttributeRequest(input *DescribeImageAttributeInput) 
 	return
 }
 
+// Describes the specified attribute of the specified AMI. You can specify only
+// one attribute at a time.
 func (c *EC2) DescribeImageAttribute(input *DescribeImageAttributeInput) (output *DescribeImageAttributeOutput, err error) {
 	req, out := c.DescribeImageAttributeRequest(input)
 	output = out
@@ -1974,6 +2648,13 @@ func (c *EC2) DescribeImagesRequest(input *DescribeImagesInput) (req *aws.Reques
 	return
 }
 
+// Describes one or more of the images (AMIs, AKIs, and ARIs) available to you.
+// Images available to you include public images, private images that you own,
+// and private images owned by other AWS accounts but for which you have explicit
+// launch permissions.
+//
+// Deregistered images are included in the returned results for an unspecified
+// interval after deregistration.
 func (c *EC2) DescribeImages(input *DescribeImagesInput) (output *DescribeImagesOutput, err error) {
 	req, out := c.DescribeImagesRequest(input)
 	output = out
@@ -1999,6 +2680,11 @@ func (c *EC2) DescribeInstanceAttributeRequest(input *DescribeInstanceAttributeI
 	return
 }
 
+// Describes the specified attribute of the specified instance. You can specify
+// only one attribute at a time. Valid attribute values are: instanceType |
+// kernel | ramdisk | userData | disableApiTermination | instanceInitiatedShutdownBehavior
+// | rootDeviceName | blockDeviceMapping | productCodes | sourceDestCheck |
+// groupSet | ebsOptimized | sriovNetSupport
 func (c *EC2) DescribeInstanceAttribute(input *DescribeInstanceAttributeInput) (output *DescribeInstanceAttributeOutput, err error) {
 	req, out := c.DescribeInstanceAttributeRequest(input)
 	output = out
@@ -2024,6 +2710,65 @@ func (c *EC2) DescribeInstanceStatusRequest(input *DescribeInstanceStatusInput) 
 	return
 }
 
+// Describes the status of one or more instances, including any scheduled events.
+//
+// Instance status has two main components:
+//
+//   System Status reports impaired functionality that stems from issues related
+// to the systems that support an instance, such as such as hardware failures
+// and network connectivity problems. This call reports such problems as impaired
+// reachability.
+//
+//   Instance Status reports impaired functionality that arises from problems
+// internal to the instance. This call reports such problems as impaired reachability.
+//
+//   Instance status provides information about four types of scheduled events
+// for an instance that may require your attention:
+//
+//   Scheduled Reboot: When Amazon EC2 determines that an instance must be
+// rebooted, the instances status returns one of two event codes: system-reboot
+// or instance-reboot. System reboot commonly occurs if certain maintenance
+// or upgrade operations require a reboot of the underlying host that supports
+// an instance. Instance reboot commonly occurs if the instance must be rebooted,
+// rather than the underlying host. Rebooting events include a scheduled start
+// and end time.
+//
+//   System Maintenance: When Amazon EC2 determines that an instance requires
+// maintenance that requires power or network impact, the instance status is
+// the event code system-maintenance. System maintenance is either power maintenance
+// or network maintenance. For power maintenance, your instance will be unavailable
+// for a brief period of time and then rebooted. For network maintenance, your
+// instance will experience a brief loss of network connectivity. System maintenance
+// events include a scheduled start and end time. You will also be notified
+// by email if one of your instances is set for system maintenance. The email
+// message indicates when your instance is scheduled for maintenance.
+//
+//   Scheduled Retirement: When Amazon EC2 determines that an instance must
+// be shut down, the instance status is the event code instance-retirement.
+// Retirement commonly occurs when the underlying host is degraded and must
+// be replaced. Retirement events include a scheduled start and end time. You
+// will also be notified by email if one of your instances is set to retiring.
+// The email message indicates when your instance will be permanently retired.
+//
+//   Scheduled Stop: When Amazon EC2 determines that an instance must be shut
+// down, the instances status returns an event code called instance-stop. Stop
+// events include a scheduled start and end time. You will also be notified
+// by email if one of your instances is set to stop. The email message indicates
+// when your instance will be stopped.
+//
+//   When your instance is retired, it will either be terminated (if its root
+// device type is the instance-store) or stopped (if its root device type is
+// an EBS volume). Instances stopped due to retirement will not be restarted,
+// but you can do so manually. You can also avoid retirement of EBS-backed instances
+// by manually restarting your instance when its event code is instance-retirement.
+// This ensures that your instance is started on a different underlying host.
+//
+// For more information about failed status checks, see Troubleshooting Instances
+// with Failed Status Checks (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html)
+// in the Amazon Elastic Compute Cloud User Guide. For more information about
+// working with scheduled events, see Working with an Instance That Has a Scheduled
+// Event (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-instances-status-check_sched.html#schedevents_actions)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) DescribeInstanceStatus(input *DescribeInstanceStatusInput) (output *DescribeInstanceStatusOutput, err error) {
 	req, out := c.DescribeInstanceStatusRequest(input)
 	output = out
@@ -2049,6 +2794,16 @@ func (c *EC2) DescribeInstancesRequest(input *DescribeInstancesInput) (req *aws.
 	return
 }
 
+// Describes one or more of your instances.
+//
+// If you specify one or more instance IDs, Amazon EC2 returns information
+// for those instances. If you do not specify instance IDs, Amazon EC2 returns
+// information for all relevant instances. If you specify an instance ID that
+// is not valid, an error is returned. If you specify an instance that you do
+// not own, it is not included in the returned results.
+//
+// Recently terminated instances might appear in the returned results. This
+// interval is usually less than one hour.
 func (c *EC2) DescribeInstances(input *DescribeInstancesInput) (output *DescribeInstancesOutput, err error) {
 	req, out := c.DescribeInstancesRequest(input)
 	output = out
@@ -2074,6 +2829,7 @@ func (c *EC2) DescribeInternetGatewaysRequest(input *DescribeInternetGatewaysInp
 	return
 }
 
+// Describes one or more of your Internet gateways.
 func (c *EC2) DescribeInternetGateways(input *DescribeInternetGatewaysInput) (output *DescribeInternetGatewaysOutput, err error) {
 	req, out := c.DescribeInternetGatewaysRequest(input)
 	output = out
@@ -2099,6 +2855,10 @@ func (c *EC2) DescribeKeyPairsRequest(input *DescribeKeyPairsInput) (req *aws.Re
 	return
 }
 
+// Describes one or more of your key pairs.
+//
+// For more information about key pairs, see Key Pairs (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) DescribeKeyPairs(input *DescribeKeyPairsInput) (output *DescribeKeyPairsOutput, err error) {
 	req, out := c.DescribeKeyPairsRequest(input)
 	output = out
@@ -2124,6 +2884,10 @@ func (c *EC2) DescribeNetworkACLsRequest(input *DescribeNetworkACLsInput) (req *
 	return
 }
 
+// Describes one or more of your network ACLs.
+//
+// For more information about network ACLs, see Network ACLs (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) DescribeNetworkACLs(input *DescribeNetworkACLsInput) (output *DescribeNetworkACLsOutput, err error) {
 	req, out := c.DescribeNetworkACLsRequest(input)
 	output = out
@@ -2149,6 +2913,8 @@ func (c *EC2) DescribeNetworkInterfaceAttributeRequest(input *DescribeNetworkInt
 	return
 }
 
+// Describes a network interface attribute. You can specify only one attribute
+// at a time.
 func (c *EC2) DescribeNetworkInterfaceAttribute(input *DescribeNetworkInterfaceAttributeInput) (output *DescribeNetworkInterfaceAttributeOutput, err error) {
 	req, out := c.DescribeNetworkInterfaceAttributeRequest(input)
 	output = out
@@ -2174,6 +2940,7 @@ func (c *EC2) DescribeNetworkInterfacesRequest(input *DescribeNetworkInterfacesI
 	return
 }
 
+// Describes one or more of your network interfaces.
 func (c *EC2) DescribeNetworkInterfaces(input *DescribeNetworkInterfacesInput) (output *DescribeNetworkInterfacesOutput, err error) {
 	req, out := c.DescribeNetworkInterfacesRequest(input)
 	output = out
@@ -2199,6 +2966,9 @@ func (c *EC2) DescribePlacementGroupsRequest(input *DescribePlacementGroupsInput
 	return
 }
 
+// Describes one or more of your placement groups. For more information about
+// placement groups and cluster instances, see Cluster Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cluster_computing.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) DescribePlacementGroups(input *DescribePlacementGroupsInput) (output *DescribePlacementGroupsOutput, err error) {
 	req, out := c.DescribePlacementGroupsRequest(input)
 	output = out
@@ -2224,6 +2994,10 @@ func (c *EC2) DescribeRegionsRequest(input *DescribeRegionsInput) (req *aws.Requ
 	return
 }
 
+// Describes one or more regions that are currently available to you.
+//
+// For a list of the regions supported by Amazon EC2, see Regions and Endpoints
+// (http://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region).
 func (c *EC2) DescribeRegions(input *DescribeRegionsInput) (output *DescribeRegionsOutput, err error) {
 	req, out := c.DescribeRegionsRequest(input)
 	output = out
@@ -2249,6 +3023,10 @@ func (c *EC2) DescribeReservedInstancesRequest(input *DescribeReservedInstancesI
 	return
 }
 
+// Describes one or more of the Reserved Instances that you purchased.
+//
+// For more information about Reserved Instances, see Reserved Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts-on-demand-reserved-instances.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) DescribeReservedInstances(input *DescribeReservedInstancesInput) (output *DescribeReservedInstancesOutput, err error) {
 	req, out := c.DescribeReservedInstancesRequest(input)
 	output = out
@@ -2274,6 +3052,28 @@ func (c *EC2) DescribeReservedInstancesListingsRequest(input *DescribeReservedIn
 	return
 }
 
+// Describes your account's Reserved Instance listings in the Reserved Instance
+// Marketplace.
+//
+// The Reserved Instance Marketplace matches sellers who want to resell Reserved
+// Instance capacity that they no longer need with buyers who want to purchase
+// additional capacity. Reserved Instances bought and sold through the Reserved
+// Instance Marketplace work like any other Reserved Instances.
+//
+// As a seller, you choose to list some or all of your Reserved Instances,
+// and you specify the upfront price to receive for them. Your Reserved Instances
+// are then listed in the Reserved Instance Marketplace and are available for
+// purchase.
+//
+// As a buyer, you specify the configuration of the Reserved Instance to purchase,
+// and the Marketplace matches what you're searching for with what's available.
+// The Marketplace first sells the lowest priced Reserved Instances to you,
+// and continues to sell available Reserved Instance listings to you until your
+// demand is met. You are charged based on the total price of all of the listings
+// that you purchase.
+//
+// For more information, see Reserved Instance Marketplace (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) DescribeReservedInstancesListings(input *DescribeReservedInstancesListingsInput) (output *DescribeReservedInstancesListingsOutput, err error) {
 	req, out := c.DescribeReservedInstancesListingsRequest(input)
 	output = out
@@ -2299,6 +3099,13 @@ func (c *EC2) DescribeReservedInstancesModificationsRequest(input *DescribeReser
 	return
 }
 
+// Describes the modifications made to your Reserved Instances. If no parameter
+// is specified, information about all your Reserved Instances modification
+// requests is returned. If a modification ID is specified, only information
+// about the specific modification is returned.
+//
+// For more information, see Modifying Reserved Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) DescribeReservedInstancesModifications(input *DescribeReservedInstancesModificationsInput) (output *DescribeReservedInstancesModificationsOutput, err error) {
 	req, out := c.DescribeReservedInstancesModificationsRequest(input)
 	output = out
@@ -2324,6 +3131,14 @@ func (c *EC2) DescribeReservedInstancesOfferingsRequest(input *DescribeReservedI
 	return
 }
 
+// Describes Reserved Instance offerings that are available for purchase. With
+// Reserved Instances, you purchase the right to launch instances for a period
+// of time. During that time period, you do not receive insufficient capacity
+// errors, and you pay a lower usage rate than the rate charged for On-Demand
+// instances for the actual time used.
+//
+// For more information, see Reserved Instance Marketplace (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) DescribeReservedInstancesOfferings(input *DescribeReservedInstancesOfferingsInput) (output *DescribeReservedInstancesOfferingsOutput, err error) {
 	req, out := c.DescribeReservedInstancesOfferingsRequest(input)
 	output = out
@@ -2349,6 +3164,10 @@ func (c *EC2) DescribeRouteTablesRequest(input *DescribeRouteTablesInput) (req *
 	return
 }
 
+// Describes one or more of your route tables.
+//
+// For more information about route tables, see Route Tables (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) DescribeRouteTables(input *DescribeRouteTablesInput) (output *DescribeRouteTablesOutput, err error) {
 	req, out := c.DescribeRouteTablesRequest(input)
 	output = out
@@ -2374,6 +3193,14 @@ func (c *EC2) DescribeSecurityGroupsRequest(input *DescribeSecurityGroupsInput) 
 	return
 }
 
+// Describes one or more of your security groups.
+//
+// A security group is for use with instances either in the EC2-Classic platform
+// or in a specific VPC. For more information, see Amazon EC2 Security Groups
+// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html)
+// in the Amazon Elastic Compute Cloud User Guide and Security Groups for Your
+// VPC (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) DescribeSecurityGroups(input *DescribeSecurityGroupsInput) (output *DescribeSecurityGroupsOutput, err error) {
 	req, out := c.DescribeSecurityGroupsRequest(input)
 	output = out
@@ -2399,6 +3226,11 @@ func (c *EC2) DescribeSnapshotAttributeRequest(input *DescribeSnapshotAttributeI
 	return
 }
 
+// Describes the specified attribute of the specified snapshot. You can specify
+// only one attribute at a time.
+//
+// For more information about Amazon EBS snapshots, see Amazon EBS Snapshots
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) DescribeSnapshotAttribute(input *DescribeSnapshotAttributeInput) (output *DescribeSnapshotAttributeOutput, err error) {
 	req, out := c.DescribeSnapshotAttributeRequest(input)
 	output = out
@@ -2424,6 +3256,39 @@ func (c *EC2) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *aws.
 	return
 }
 
+// Describes one or more of the Amazon EBS snapshots available to you. Available
+// snapshots include public snapshots available for any AWS account to launch,
+// private snapshots that you own, and private snapshots owned by another AWS
+// account but for which you've been given explicit create volume permissions.
+//
+// The create volume permissions fall into the following categories:
+//
+//   public: The owner of the snapshot granted create volume permissions for
+// the snapshot to the all group. All AWS accounts have create volume permissions
+// for these snapshots.  explicit: The owner of the snapshot granted create
+// volume permissions to a specific AWS account.  implicit: An AWS account has
+// implicit create volume permissions for all snapshots it owns.  The list of
+// snapshots returned can be modified by specifying snapshot IDs, snapshot owners,
+// or AWS accounts with create volume permissions. If no options are specified,
+// Amazon EC2 returns all snapshots for which you have create volume permissions.
+//
+// If you specify one or more snapshot IDs, only snapshots that have the specified
+// IDs are returned. If you specify an invalid snapshot ID, an error is returned.
+// If you specify a snapshot ID for which you do not have access, it is not
+// included in the returned results.
+//
+// If you specify one or more snapshot owners, only snapshots from the specified
+// owners and for which you have access are returned. The results can include
+// the AWS account IDs of the specified owners, amazon for snapshots owned by
+// Amazon, or self for snapshots that you own.
+//
+// If you specify a list of restorable users, only snapshots with create snapshot
+// permissions for those users are returned. You can specify AWS account IDs
+// (if you own the snapshots), self for snapshots for which you own or have
+// explicit permissions, or all for public snapshots.
+//
+// For more information about Amazon EBS snapshots, see Amazon EBS Snapshots
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) DescribeSnapshots(input *DescribeSnapshotsInput) (output *DescribeSnapshotsOutput, err error) {
 	req, out := c.DescribeSnapshotsRequest(input)
 	output = out
@@ -2449,6 +3314,9 @@ func (c *EC2) DescribeSpotDatafeedSubscriptionRequest(input *DescribeSpotDatafee
 	return
 }
 
+// Describes the data feed for Spot Instances. For more information, see Spot
+// Instance Data Feed (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) DescribeSpotDatafeedSubscription(input *DescribeSpotDatafeedSubscriptionInput) (output *DescribeSpotDatafeedSubscriptionOutput, err error) {
 	req, out := c.DescribeSpotDatafeedSubscriptionRequest(input)
 	output = out
@@ -2474,6 +3342,18 @@ func (c *EC2) DescribeSpotInstanceRequestsRequest(input *DescribeSpotInstanceReq
 	return
 }
 
+// Describes the Spot Instance requests that belong to your account. Spot Instances
+// are instances that Amazon EC2 launches when the bid price that you specify
+// exceeds the current Spot Price. Amazon EC2 periodically sets the Spot Price
+// based on available Spot Instance capacity and current Spot Instance requests.
+// For more information, see Spot Instance Requests (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+//
+// You can use DescribeSpotInstanceRequests to find a running Spot Instance
+// by examining the response. If the status of the Spot Instance is fulfilled,
+// the instance ID appears in the response and contains the identifier of the
+// instance. Alternatively, you can use DescribeInstances with a filter to look
+// for instances where the instance lifecycle is spot.
 func (c *EC2) DescribeSpotInstanceRequests(input *DescribeSpotInstanceRequestsInput) (output *DescribeSpotInstanceRequestsOutput, err error) {
 	req, out := c.DescribeSpotInstanceRequestsRequest(input)
 	output = out
@@ -2499,6 +3379,15 @@ func (c *EC2) DescribeSpotPriceHistoryRequest(input *DescribeSpotPriceHistoryInp
 	return
 }
 
+// Describes the Spot Price history. The prices returned are listed in chronological
+// order, from the oldest to the most recent, for up to the past 90 days. For
+// more information, see Spot Instance Pricing History (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances-history.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+//
+// When you specify a start and end time, this operation returns the prices
+// of the instance types within the time range that you specified and the time
+// when the price changed. The price is valid within the time period that you
+// specified; the response merely indicates the last time that the price changed.
 func (c *EC2) DescribeSpotPriceHistory(input *DescribeSpotPriceHistoryInput) (output *DescribeSpotPriceHistoryOutput, err error) {
 	req, out := c.DescribeSpotPriceHistoryRequest(input)
 	output = out
@@ -2524,6 +3413,10 @@ func (c *EC2) DescribeSubnetsRequest(input *DescribeSubnetsInput) (req *aws.Requ
 	return
 }
 
+// Describes one or more of your subnets.
+//
+// For more information about subnets, see Your VPC and Subnets (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) DescribeSubnets(input *DescribeSubnetsInput) (output *DescribeSubnetsOutput, err error) {
 	req, out := c.DescribeSubnetsRequest(input)
 	output = out
@@ -2549,6 +3442,10 @@ func (c *EC2) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, o
 	return
 }
 
+// Describes one or more of the tags for your EC2 resources.
+//
+// For more information about tags, see Tagging Your Resources (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) DescribeTags(input *DescribeTagsInput) (output *DescribeTagsOutput, err error) {
 	req, out := c.DescribeTagsRequest(input)
 	output = out
@@ -2574,6 +3471,8 @@ func (c *EC2) DescribeVPCAttributeRequest(input *DescribeVPCAttributeInput) (req
 	return
 }
 
+// Describes the specified attribute of the specified VPC. You can specify only
+// one attribute at a time.
 func (c *EC2) DescribeVPCAttribute(input *DescribeVPCAttributeInput) (output *DescribeVPCAttributeOutput, err error) {
 	req, out := c.DescribeVPCAttributeRequest(input)
 	output = out
@@ -2599,6 +3498,7 @@ func (c *EC2) DescribeVPCClassicLinkRequest(input *DescribeVPCClassicLinkInput) 
 	return
 }
 
+// Describes the ClassicLink status of one or more VPCs.
 func (c *EC2) DescribeVPCClassicLink(input *DescribeVPCClassicLinkInput) (output *DescribeVPCClassicLinkOutput, err error) {
 	req, out := c.DescribeVPCClassicLinkRequest(input)
 	output = out
@@ -2624,6 +3524,7 @@ func (c *EC2) DescribeVPCPeeringConnectionsRequest(input *DescribeVPCPeeringConn
 	return
 }
 
+// Describes one or more of your VPC peering connections.
 func (c *EC2) DescribeVPCPeeringConnections(input *DescribeVPCPeeringConnectionsInput) (output *DescribeVPCPeeringConnectionsOutput, err error) {
 	req, out := c.DescribeVPCPeeringConnectionsRequest(input)
 	output = out
@@ -2649,6 +3550,7 @@ func (c *EC2) DescribeVPCsRequest(input *DescribeVPCsInput) (req *aws.Request, o
 	return
 }
 
+// Describes one or more of your VPCs.
 func (c *EC2) DescribeVPCs(input *DescribeVPCsInput) (output *DescribeVPCsOutput, err error) {
 	req, out := c.DescribeVPCsRequest(input)
 	output = out
@@ -2674,6 +3576,11 @@ func (c *EC2) DescribeVPNConnectionsRequest(input *DescribeVPNConnectionsInput) 
 	return
 }
 
+// Describes one or more of your VPN connections.
+//
+// For more information about VPN connections, see Adding a Hardware Virtual
+// Private Gateway to Your VPC (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) DescribeVPNConnections(input *DescribeVPNConnectionsInput) (output *DescribeVPNConnectionsOutput, err error) {
 	req, out := c.DescribeVPNConnectionsRequest(input)
 	output = out
@@ -2699,6 +3606,11 @@ func (c *EC2) DescribeVPNGatewaysRequest(input *DescribeVPNGatewaysInput) (req *
 	return
 }
 
+// Describes one or more of your virtual private gateways.
+//
+// For more information about virtual private gateways, see Adding an IPsec
+// Hardware VPN to Your VPC (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) DescribeVPNGateways(input *DescribeVPNGatewaysInput) (output *DescribeVPNGatewaysOutput, err error) {
 	req, out := c.DescribeVPNGatewaysRequest(input)
 	output = out
@@ -2724,6 +3636,11 @@ func (c *EC2) DescribeVolumeAttributeRequest(input *DescribeVolumeAttributeInput
 	return
 }
 
+// Describes the specified attribute of the specified volume. You can specify
+// only one attribute at a time.
+//
+// For more information about Amazon EBS volumes, see Amazon EBS Volumes in
+// the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) DescribeVolumeAttribute(input *DescribeVolumeAttributeInput) (output *DescribeVolumeAttributeOutput, err error) {
 	req, out := c.DescribeVolumeAttributeRequest(input)
 	output = out
@@ -2749,6 +3666,41 @@ func (c *EC2) DescribeVolumeStatusRequest(input *DescribeVolumeStatusInput) (req
 	return
 }
 
+// Describes the status of the specified volumes. Volume status provides the
+// result of the checks performed on your volumes to determine events that can
+// impair the performance of your volumes. The performance of a volume can be
+// affected if an issue occurs on the volume's underlying host. If the volume's
+// underlying host experiences a power outage or system issue, after the system
+// is restored, there could be data inconsistencies on the volume. Volume events
+// notify you if this occurs. Volume actions notify you if any action needs
+// to be taken in response to the event.
+//
+// The DescribeVolumeStatus operation provides the following information about
+// the specified volumes:
+//
+// Status: Reflects the current status of the volume. The possible values are
+// ok, impaired , warning, or insufficient-data. If all checks pass, the overall
+// status of the volume is ok. If the check fails, the overall status is impaired.
+// If the status is insufficient-data, then the checks may still be taking place
+// on your volume at the time. We recommend that you retry the request. For
+// more information on volume status, see Monitoring the Status of Your Volumes
+// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-volume-status.html).
+//
+// Events: Reflect the cause of a volume status and may require you to take
+// action. For example, if your volume returns an impaired status, then the
+// volume event might be potential-data-inconsistency. This means that your
+// volume has been affected by an issue with the underlying host, has all I/O
+// operations disabled, and may have inconsistent data.
+//
+// Actions: Reflect the actions you may have to take in response to an event.
+// For example, if the status of the volume is impaired and the volume event
+// shows potential-data-inconsistency, then the action shows enable-volume-io.
+// This means that you may want to enable the I/O operations for the volume
+// by calling the EnableVolumeIO action and then check the volume for data consistency.
+//
+//  Volume status is based on the volume status checks, and does not reflect
+// the volume state. Therefore, volume status does not indicate volumes in the
+// error state (for example, when a volume is incapable of accepting I/O.)
 func (c *EC2) DescribeVolumeStatus(input *DescribeVolumeStatusInput) (output *DescribeVolumeStatusOutput, err error) {
 	req, out := c.DescribeVolumeStatusRequest(input)
 	output = out
@@ -2774,6 +3726,17 @@ func (c *EC2) DescribeVolumesRequest(input *DescribeVolumesInput) (req *aws.Requ
 	return
 }
 
+// Describes the specified Amazon EBS volumes.
+//
+// If you are describing a long list of volumes, you can paginate the output
+// to make the list more manageable. The MaxResults parameter sets the maximum
+// number of results returned in a single page. If the list of results exceeds
+// your MaxResults value, then that number of results is returned along with
+// a NextToken value that can be passed to a subsequent DescribeVolumes request
+// to retrieve the remaining results.
+//
+// For more information about Amazon EBS volumes, see Amazon EBS Volumes in
+// the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) DescribeVolumes(input *DescribeVolumesInput) (output *DescribeVolumesOutput, err error) {
 	req, out := c.DescribeVolumesRequest(input)
 	output = out
@@ -2799,6 +3762,9 @@ func (c *EC2) DetachClassicLinkVPCRequest(input *DetachClassicLinkVPCInput) (req
 	return
 }
 
+// Unlinks (detaches) a linked EC2-Classic instance from a VPC. After the instance
+// has been unlinked, the VPC security groups are no longer associated with
+// it. An instance is automatically unlinked from a VPC when it's stopped.
 func (c *EC2) DetachClassicLinkVPC(input *DetachClassicLinkVPCInput) (output *DetachClassicLinkVPCOutput, err error) {
 	req, out := c.DetachClassicLinkVPCRequest(input)
 	output = out
@@ -2824,6 +3790,9 @@ func (c *EC2) DetachInternetGatewayRequest(input *DetachInternetGatewayInput) (r
 	return
 }
 
+// Detaches an Internet gateway from a VPC, disabling connectivity between the
+// Internet and the VPC. The VPC must not contain any running instances with
+// Elastic IP addresses.
 func (c *EC2) DetachInternetGateway(input *DetachInternetGatewayInput) (output *DetachInternetGatewayOutput, err error) {
 	req, out := c.DetachInternetGatewayRequest(input)
 	output = out
@@ -2849,6 +3818,7 @@ func (c *EC2) DetachNetworkInterfaceRequest(input *DetachNetworkInterfaceInput) 
 	return
 }
 
+// Detaches a network interface from an instance.
 func (c *EC2) DetachNetworkInterface(input *DetachNetworkInterfaceInput) (output *DetachNetworkInterfaceOutput, err error) {
 	req, out := c.DetachNetworkInterfaceRequest(input)
 	output = out
@@ -2874,6 +3844,14 @@ func (c *EC2) DetachVPNGatewayRequest(input *DetachVPNGatewayInput) (req *aws.Re
 	return
 }
 
+// Detaches a virtual private gateway from a VPC. You do this if you're planning
+// to turn off the VPC and not use it anymore. You can confirm a virtual private
+// gateway has been completely detached from a VPC by describing the virtual
+// private gateway (any attachments to the virtual private gateway are also
+// described).
+//
+// You must wait for the attachment's state to switch to detached before you
+// can delete the VPC or attach a different VPC to the virtual private gateway.
 func (c *EC2) DetachVPNGateway(input *DetachVPNGatewayInput) (output *DetachVPNGatewayOutput, err error) {
 	req, out := c.DetachVPNGatewayRequest(input)
 	output = out
@@ -2899,6 +3877,20 @@ func (c *EC2) DetachVolumeRequest(input *DetachVolumeInput) (req *aws.Request, o
 	return
 }
 
+// Detaches an Amazon EBS volume from an instance. Make sure to unmount any
+// file systems on the device within your operating system before detaching
+// the volume. Failure to do so results in the volume being stuck in a busy
+// state while detaching.
+//
+// If an Amazon EBS volume is the root device of an instance, it can't be detached
+// while the instance is running. To detach the root volume, stop the instance
+// first.
+//
+// When a volume with an AWS Marketplace product code is detached from an instance,
+// the product code is no longer associated with the instance.
+//
+// For more information, see Detaching an Amazon EBS Volume (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-detaching-volume.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) DetachVolume(input *DetachVolumeInput) (output *VolumeAttachment, err error) {
 	req, out := c.DetachVolumeRequest(input)
 	output = out
@@ -2924,6 +3916,8 @@ func (c *EC2) DisableVGWRoutePropagationRequest(input *DisableVGWRoutePropagatio
 	return
 }
 
+// Disables a virtual private gateway (VGW) from propagating routes to a specified
+// route table of a VPC.
 func (c *EC2) DisableVGWRoutePropagation(input *DisableVGWRoutePropagationInput) (output *DisableVGWRoutePropagationOutput, err error) {
 	req, out := c.DisableVGWRoutePropagationRequest(input)
 	output = out
@@ -2949,6 +3943,8 @@ func (c *EC2) DisableVPCClassicLinkRequest(input *DisableVPCClassicLinkInput) (r
 	return
 }
 
+// Disables ClassicLink for a VPC. You cannot disable ClassicLink for a VPC
+// that has EC2-Classic instances linked to it.
 func (c *EC2) DisableVPCClassicLink(input *DisableVPCClassicLinkInput) (output *DisableVPCClassicLinkOutput, err error) {
 	req, out := c.DisableVPCClassicLinkRequest(input)
 	output = out
@@ -2974,6 +3970,15 @@ func (c *EC2) DisassociateAddressRequest(input *DisassociateAddressInput) (req *
 	return
 }
 
+// Disassociates an Elastic IP address from the instance or network interface
+// it's associated with.
+//
+// An Elastic IP address is for use in either the EC2-Classic platform or in
+// a VPC. For more information, see Elastic IP Addresses (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+//
+// This is an idempotent operation. If you perform the operation more than
+// once, Amazon EC2 doesn't return an error.
 func (c *EC2) DisassociateAddress(input *DisassociateAddressInput) (output *DisassociateAddressOutput, err error) {
 	req, out := c.DisassociateAddressRequest(input)
 	output = out
@@ -2999,6 +4004,12 @@ func (c *EC2) DisassociateRouteTableRequest(input *DisassociateRouteTableInput) 
 	return
 }
 
+// Disassociates a subnet from a route table.
+//
+// After you perform this action, the subnet no longer uses the routes in the
+// route table. Instead, it uses the routes in the VPC's main route table. For
+// more information about route tables, see Route Tables (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) DisassociateRouteTable(input *DisassociateRouteTableInput) (output *DisassociateRouteTableOutput, err error) {
 	req, out := c.DisassociateRouteTableRequest(input)
 	output = out
@@ -3024,6 +4035,8 @@ func (c *EC2) EnableVGWRoutePropagationRequest(input *EnableVGWRoutePropagationI
 	return
 }
 
+// Enables a virtual private gateway (VGW) to propagate routes to the specified
+// route table of a VPC.
 func (c *EC2) EnableVGWRoutePropagation(input *EnableVGWRoutePropagationInput) (output *EnableVGWRoutePropagationOutput, err error) {
 	req, out := c.EnableVGWRoutePropagationRequest(input)
 	output = out
@@ -3049,6 +4062,13 @@ func (c *EC2) EnableVPCClassicLinkRequest(input *EnableVPCClassicLinkInput) (req
 	return
 }
 
+// Enables a VPC for ClassicLink. You can then link EC2-Classic instances to
+// your ClassicLink-enabled VPC to allow communication over private IP addresses.
+// You cannot enable your VPC for ClassicLink if any of your VPC's route tables
+// have existing routes for address ranges within the 10.0.0.0/8 IP address
+// range, excluding local routes for VPCs in the 10.0.0.0/16 and 10.1.0.0/16
+// IP address ranges. For more information, see ClassicLink (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) EnableVPCClassicLink(input *EnableVPCClassicLinkInput) (output *EnableVPCClassicLinkOutput, err error) {
 	req, out := c.EnableVPCClassicLinkRequest(input)
 	output = out
@@ -3074,6 +4094,8 @@ func (c *EC2) EnableVolumeIORequest(input *EnableVolumeIOInput) (req *aws.Reques
 	return
 }
 
+// Enables I/O operations for a volume that had I/O operations disabled because
+// the data on the volume was potentially inconsistent.
 func (c *EC2) EnableVolumeIO(input *EnableVolumeIOInput) (output *EnableVolumeIOOutput, err error) {
 	req, out := c.EnableVolumeIORequest(input)
 	output = out
@@ -3099,6 +4121,24 @@ func (c *EC2) GetConsoleOutputRequest(input *GetConsoleOutputInput) (req *aws.Re
 	return
 }
 
+// Gets the console output for the specified instance.
+//
+// Instances do not have a physical monitor through which you can view their
+// console output. They also lack physical controls that allow you to power
+// up, reboot, or shut them down. To allow these actions, we provide them through
+// the Amazon EC2 API and command line interface.
+//
+// Instance console output is buffered and posted shortly after instance boot,
+// reboot, and termination. Amazon EC2 preserves the most recent 64 KB output
+// which is available for at least one hour after the most recent post.
+//
+// For Linux/Unix instances, the instance console output displays the exact
+// console output that would normally be displayed on a physical monitor attached
+// to a machine. This output is buffered because the instance produces it and
+// then posts it to a store where the instance's owner can retrieve it.
+//
+// For Windows instances, the instance console output displays the last three
+// system event log errors.
 func (c *EC2) GetConsoleOutput(input *GetConsoleOutputInput) (output *GetConsoleOutputOutput, err error) {
 	req, out := c.GetConsoleOutputRequest(input)
 	output = out
@@ -3124,6 +4164,20 @@ func (c *EC2) GetPasswordDataRequest(input *GetPasswordDataInput) (req *aws.Requ
 	return
 }
 
+// Retrieves the encrypted administrator password for an instance running Windows.
+//
+// The Windows password is generated at boot if the EC2Config service plugin,
+// Ec2SetPassword, is enabled. This usually only happens the first time an AMI
+// is launched, and then Ec2SetPassword is automatically disabled. The password
+// is not generated for rebundled AMIs unless Ec2SetPassword is enabled before
+// bundling.
+//
+// The password is encrypted using the key pair that you specified when you
+// launched the instance. You must provide the corresponding key pair file.
+//
+// Password generation and encryption takes a few moments. We recommend that
+// you wait up to 15 minutes after launching an instance before trying to retrieve
+// the generated password.
 func (c *EC2) GetPasswordData(input *GetPasswordDataInput) (output *GetPasswordDataOutput, err error) {
 	req, out := c.GetPasswordDataRequest(input)
 	output = out
@@ -3149,6 +4203,11 @@ func (c *EC2) ImportInstanceRequest(input *ImportInstanceInput) (req *aws.Reques
 	return
 }
 
+// Creates an import instance task using metadata from the specified disk image.
+// After importing the image, you then upload it using the ec2-import-volume
+// command in the EC2 command line tools. For more information, see Using the
+// Command Line Tools to Import Your Virtual Machine to Amazon EC2 in the Amazon
+// Elastic Compute Cloud User Guide.
 func (c *EC2) ImportInstance(input *ImportInstanceInput) (output *ImportInstanceOutput, err error) {
 	req, out := c.ImportInstanceRequest(input)
 	output = out
@@ -3174,6 +4233,14 @@ func (c *EC2) ImportKeyPairRequest(input *ImportKeyPairInput) (req *aws.Request,
 	return
 }
 
+// Imports the public key from an RSA key pair that you created with a third-party
+// tool. Compare this with CreateKeyPair, in which AWS creates the key pair
+// and gives the keys to you (AWS keeps a copy of the public key). With ImportKeyPair,
+// you create the key pair and give AWS just the public key. The private key
+// is never transferred between you and AWS.
+//
+// For more information about key pairs, see Key Pairs (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) ImportKeyPair(input *ImportKeyPairInput) (output *ImportKeyPairOutput, err error) {
 	req, out := c.ImportKeyPairRequest(input)
 	output = out
@@ -3199,6 +4266,12 @@ func (c *EC2) ImportVolumeRequest(input *ImportVolumeInput) (req *aws.Request, o
 	return
 }
 
+// Creates an import volume task using metadata from the specified disk image.
+// After importing the image, you then upload it using the ec2-import-volume
+// command in the Amazon EC2 command-line interface (CLI) tools. For more information,
+// see Using the Command Line Tools to Import Your Virtual Machine to Amazon
+// EC2 (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UploadingYourInstancesandVolumes.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) ImportVolume(input *ImportVolumeInput) (output *ImportVolumeOutput, err error) {
 	req, out := c.ImportVolumeRequest(input)
 	output = out
@@ -3224,6 +4297,11 @@ func (c *EC2) ModifyImageAttributeRequest(input *ModifyImageAttributeInput) (req
 	return
 }
 
+// Modifies the specified attribute of the specified AMI. You can specify only
+// one attribute at a time.
+//
+// AWS Marketplace product codes cannot be modified. Images with an AWS Marketplace
+// product code cannot be made public.
 func (c *EC2) ModifyImageAttribute(input *ModifyImageAttributeInput) (output *ModifyImageAttributeOutput, err error) {
 	req, out := c.ModifyImageAttributeRequest(input)
 	output = out
@@ -3249,6 +4327,12 @@ func (c *EC2) ModifyInstanceAttributeRequest(input *ModifyInstanceAttributeInput
 	return
 }
 
+// Modifies the specified attribute of the specified instance. You can specify
+// only one attribute at a time.
+//
+// To modify some attributes, the instance must be stopped. For more information,
+// see Modifying Attributes of a Stopped Instance (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_ChangingAttributesWhileInstanceStopped.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) ModifyInstanceAttribute(input *ModifyInstanceAttributeInput) (output *ModifyInstanceAttributeOutput, err error) {
 	req, out := c.ModifyInstanceAttributeRequest(input)
 	output = out
@@ -3274,6 +4358,8 @@ func (c *EC2) ModifyNetworkInterfaceAttributeRequest(input *ModifyNetworkInterfa
 	return
 }
 
+// Modifies the specified network interface attribute. You can specify only
+// one attribute at a time.
 func (c *EC2) ModifyNetworkInterfaceAttribute(input *ModifyNetworkInterfaceAttributeInput) (output *ModifyNetworkInterfaceAttributeOutput, err error) {
 	req, out := c.ModifyNetworkInterfaceAttributeRequest(input)
 	output = out
@@ -3299,6 +4385,13 @@ func (c *EC2) ModifyReservedInstancesRequest(input *ModifyReservedInstancesInput
 	return
 }
 
+// Modifies the Availability Zone, instance count, instance type, or network
+// platform (EC2-Classic or EC2-VPC) of your Reserved Instances. The Reserved
+// Instances to be modified must be identical, except for Availability Zone,
+// network platform, and instance type.
+//
+// For more information, see Modifying Reserved Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) ModifyReservedInstances(input *ModifyReservedInstancesInput) (output *ModifyReservedInstancesOutput, err error) {
 	req, out := c.ModifyReservedInstancesRequest(input)
 	output = out
@@ -3324,6 +4417,17 @@ func (c *EC2) ModifySnapshotAttributeRequest(input *ModifySnapshotAttributeInput
 	return
 }
 
+// Adds or removes permission settings for the specified snapshot. You may add
+// or remove specified AWS account IDs from a snapshot's list of create volume
+// permissions, but you cannot do both in a single API call. If you need to
+// both add and remove account IDs for a snapshot, you must use multiple API
+// calls.
+//
+// For more information on modifying snapshot permissions, see Sharing Snapshots
+// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modifying-snapshot-permissions.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+//
+//  Snapshots with AWS Marketplace product codes cannot be made public.
 func (c *EC2) ModifySnapshotAttribute(input *ModifySnapshotAttributeInput) (output *ModifySnapshotAttributeOutput, err error) {
 	req, out := c.ModifySnapshotAttributeRequest(input)
 	output = out
@@ -3349,6 +4453,7 @@ func (c *EC2) ModifySubnetAttributeRequest(input *ModifySubnetAttributeInput) (r
 	return
 }
 
+// Modifies a subnet attribute.
 func (c *EC2) ModifySubnetAttribute(input *ModifySubnetAttributeInput) (output *ModifySubnetAttributeOutput, err error) {
 	req, out := c.ModifySubnetAttributeRequest(input)
 	output = out
@@ -3374,6 +4479,7 @@ func (c *EC2) ModifyVPCAttributeRequest(input *ModifyVPCAttributeInput) (req *aw
 	return
 }
 
+// Modifies the specified attribute of the specified VPC.
 func (c *EC2) ModifyVPCAttribute(input *ModifyVPCAttributeInput) (output *ModifyVPCAttributeOutput, err error) {
 	req, out := c.ModifyVPCAttributeRequest(input)
 	output = out
@@ -3399,6 +4505,16 @@ func (c *EC2) ModifyVolumeAttributeRequest(input *ModifyVolumeAttributeInput) (r
 	return
 }
 
+// Modifies a volume attribute.
+//
+// By default, all I/O operations for the volume are suspended when the data
+// on the volume is determined to be potentially inconsistent, to prevent undetectable,
+// latent data corruption. The I/O access to the volume can be resumed by first
+// enabling I/O access and then checking the data consistency on your volume.
+//
+// You can change the default behavior to resume I/O operations. We recommend
+// that you change this only for boot volumes or for volumes that are stateless
+// or disposable.
 func (c *EC2) ModifyVolumeAttribute(input *ModifyVolumeAttributeInput) (output *ModifyVolumeAttributeOutput, err error) {
 	req, out := c.ModifyVolumeAttributeRequest(input)
 	output = out
@@ -3424,6 +4540,9 @@ func (c *EC2) MonitorInstancesRequest(input *MonitorInstancesInput) (req *aws.Re
 	return
 }
 
+// Enables monitoring for a running instance. For more information about monitoring
+// instances, see Monitoring Your Instances and Volumes (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) MonitorInstances(input *MonitorInstancesInput) (output *MonitorInstancesOutput, err error) {
 	req, out := c.MonitorInstancesRequest(input)
 	output = out
@@ -3449,6 +4568,19 @@ func (c *EC2) PurchaseReservedInstancesOfferingRequest(input *PurchaseReservedIn
 	return
 }
 
+// Purchases a Reserved Instance for use with your account. With Amazon EC2
+// Reserved Instances, you obtain a capacity reservation for a certain instance
+// configuration over a specified period of time. You pay a lower usage rate
+// than with On-Demand instances for the time that you actually use the capacity
+// reservation.
+//
+// Use DescribeReservedInstancesOfferings to get a list of Reserved Instance
+// offerings that match your specifications. After you've purchased a Reserved
+// Instance, you can check for your new Reserved Instance with DescribeReservedInstances.
+//
+// For more information, see Reserved Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts-on-demand-reserved-instances.html)
+// and Reserved Instance Marketplace (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) PurchaseReservedInstancesOffering(input *PurchaseReservedInstancesOfferingInput) (output *PurchaseReservedInstancesOfferingOutput, err error) {
 	req, out := c.PurchaseReservedInstancesOfferingRequest(input)
 	output = out
@@ -3474,6 +4606,17 @@ func (c *EC2) RebootInstancesRequest(input *RebootInstancesInput) (req *aws.Requ
 	return
 }
 
+// Requests a reboot of one or more instances. This operation is asynchronous;
+// it only queues a request to reboot the specified instances. The operation
+// succeeds if the instances are valid and belong to you. Requests to reboot
+// terminated instances are ignored.
+//
+// If a Linux/Unix instance does not cleanly shut down within four minutes,
+// Amazon EC2 performs a hard reboot.
+//
+// For more information about troubleshooting, see Getting Console Output and
+// Rebooting Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-console.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) RebootInstances(input *RebootInstancesInput) (output *RebootInstancesOutput, err error) {
 	req, out := c.RebootInstancesRequest(input)
 	output = out
@@ -3499,6 +4642,26 @@ func (c *EC2) RegisterImageRequest(input *RegisterImageInput) (req *aws.Request,
 	return
 }
 
+// Registers an AMI. When you're creating an AMI, this is the final step you
+// must complete before you can launch an instance from the AMI. For more information
+// about creating AMIs, see Creating Your Own AMIs (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+//
+// For Amazon EBS-backed instances, CreateImage creates and registers the AMI
+// in a single request, so you don't have to register the AMI yourself.
+//
+// You can also use RegisterImage to create an Amazon EBS-backed AMI from a
+// snapshot of a root device volume. For more information, see Launching an
+// Instance from a Snapshot (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_LaunchingInstanceFromSnapshot.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+//
+// If needed, you can deregister an AMI at any time. Any modifications you
+// make to an AMI backed by an instance store volume invalidates its registration.
+// If you make changes to an image, deregister the previous image and register
+// the new image.
+//
+// You can't register an image where a secondary (non-root) snapshot has AWS
+// Marketplace product codes.
 func (c *EC2) RegisterImage(input *RegisterImageInput) (output *RegisterImageOutput, err error) {
 	req, out := c.RegisterImageRequest(input)
 	output = out
@@ -3524,6 +4687,11 @@ func (c *EC2) RejectVPCPeeringConnectionRequest(input *RejectVPCPeeringConnectio
 	return
 }
 
+// Rejects a VPC peering connection request. The VPC peering connection must
+// be in the pending-acceptance state. Use the DescribeVpcPeeringConnections
+// request to view your outstanding VPC peering connection requests. To delete
+// an active VPC peering connection, or to delete a VPC peering connection request
+// that you initiated, use DeleteVpcPeeringConnection.
 func (c *EC2) RejectVPCPeeringConnection(input *RejectVPCPeeringConnectionInput) (output *RejectVPCPeeringConnectionOutput, err error) {
 	req, out := c.RejectVPCPeeringConnectionRequest(input)
 	output = out
@@ -3549,6 +4717,21 @@ func (c *EC2) ReleaseAddressRequest(input *ReleaseAddressInput) (req *aws.Reques
 	return
 }
 
+// Releases the specified Elastic IP address.
+//
+// After releasing an Elastic IP address, it is released to the IP address
+// pool and might be unavailable to you. Be sure to update your DNS records
+// and any servers or devices that communicate with the address. If you attempt
+// to release an Elastic IP address that you already released, you'll get an
+// AuthFailure error if the address is already allocated to another AWS account.
+//
+// [EC2-Classic, default VPC] Releasing an Elastic IP address automatically
+// disassociates it from any instance that it's associated with. To disassociate
+// an Elastic IP address without releasing it, use DisassociateAddress.
+//
+// [Nondefault VPC] You must use DisassociateAddress to disassociate the Elastic
+// IP address before you try to release it. Otherwise, Amazon EC2 returns an
+// error (InvalidIPAddress.InUse).
 func (c *EC2) ReleaseAddress(input *ReleaseAddressInput) (output *ReleaseAddressOutput, err error) {
 	req, out := c.ReleaseAddressRequest(input)
 	output = out
@@ -3574,6 +4757,10 @@ func (c *EC2) ReplaceNetworkACLAssociationRequest(input *ReplaceNetworkACLAssoci
 	return
 }
 
+// Changes which network ACL a subnet is associated with. By default when you
+// create a subnet, it's automatically associated with the default network ACL.
+// For more information about network ACLs, see Network ACLs (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) ReplaceNetworkACLAssociation(input *ReplaceNetworkACLAssociationInput) (output *ReplaceNetworkACLAssociationOutput, err error) {
 	req, out := c.ReplaceNetworkACLAssociationRequest(input)
 	output = out
@@ -3599,6 +4786,9 @@ func (c *EC2) ReplaceNetworkACLEntryRequest(input *ReplaceNetworkACLEntryInput) 
 	return
 }
 
+// Replaces an entry (rule) in a network ACL. For more information about network
+// ACLs, see Network ACLs (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) ReplaceNetworkACLEntry(input *ReplaceNetworkACLEntryInput) (output *ReplaceNetworkACLEntryOutput, err error) {
 	req, out := c.ReplaceNetworkACLEntryRequest(input)
 	output = out
@@ -3624,6 +4814,12 @@ func (c *EC2) ReplaceRouteRequest(input *ReplaceRouteInput) (req *aws.Request, o
 	return
 }
 
+// Replaces an existing route within a route table in a VPC. You must provide
+// only one of the following: Internet gateway or virtual private gateway, NAT
+// instance, VPC peering connection, or network interface.
+//
+// For more information about route tables, see Route Tables (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) ReplaceRoute(input *ReplaceRouteInput) (output *ReplaceRouteOutput, err error) {
 	req, out := c.ReplaceRouteRequest(input)
 	output = out
@@ -3649,6 +4845,15 @@ func (c *EC2) ReplaceRouteTableAssociationRequest(input *ReplaceRouteTableAssoci
 	return
 }
 
+// Changes the route table associated with a given subnet in a VPC. After the
+// operation completes, the subnet uses the routes in the new route table it's
+// associated with. For more information about route tables, see Route Tables
+// (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html)
+// in the Amazon Virtual Private Cloud User Guide.
+//
+// You can also use ReplaceRouteTableAssociation to change which table is the
+// main route table in the VPC. You just specify the main route table's association
+// ID and the route table to be the new main route table.
 func (c *EC2) ReplaceRouteTableAssociation(input *ReplaceRouteTableAssociationInput) (output *ReplaceRouteTableAssociationOutput, err error) {
 	req, out := c.ReplaceRouteTableAssociationRequest(input)
 	output = out
@@ -3674,6 +4879,13 @@ func (c *EC2) ReportInstanceStatusRequest(input *ReportInstanceStatusInput) (req
 	return
 }
 
+// Submits feedback about the status of an instance. The instance must be in
+// the running state. If your experience with the instance differs from the
+// instance status returned by DescribeInstanceStatus, use ReportInstanceStatus
+// to report your experience with the instance. Amazon EC2 collects this information
+// to improve the accuracy of status checks.
+//
+// Use of this action does not change the value returned by DescribeInstanceStatus.
 func (c *EC2) ReportInstanceStatus(input *ReportInstanceStatusInput) (output *ReportInstanceStatusOutput, err error) {
 	req, out := c.ReportInstanceStatusRequest(input)
 	output = out
@@ -3699,6 +4911,12 @@ func (c *EC2) RequestSpotInstancesRequest(input *RequestSpotInstancesInput) (req
 	return
 }
 
+// Creates a Spot Instance request. Spot Instances are instances that Amazon
+// EC2 launches when the bid price that you specify exceeds the current Spot
+// Price. Amazon EC2 periodically sets the Spot Price based on available Spot
+// Instance capacity and current Spot Instance requests. For more information,
+// see Spot Instance Requests (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) RequestSpotInstances(input *RequestSpotInstancesInput) (output *RequestSpotInstancesOutput, err error) {
 	req, out := c.RequestSpotInstancesRequest(input)
 	output = out
@@ -3724,6 +4942,9 @@ func (c *EC2) ResetImageAttributeRequest(input *ResetImageAttributeInput) (req *
 	return
 }
 
+// Resets an attribute of an AMI to its default value.
+//
+//  The productCodes attribute can't be reset.
 func (c *EC2) ResetImageAttribute(input *ResetImageAttributeInput) (output *ResetImageAttributeOutput, err error) {
 	req, out := c.ResetImageAttributeRequest(input)
 	output = out
@@ -3749,6 +4970,15 @@ func (c *EC2) ResetInstanceAttributeRequest(input *ResetInstanceAttributeInput) 
 	return
 }
 
+// Resets an attribute of an instance to its default value. To reset the kernel
+// or ramdisk, the instance must be in a stopped state. To reset the SourceDestCheck,
+// the instance can be either running or stopped.
+//
+// The SourceDestCheck attribute controls whether source/destination checking
+// is enabled. The default value is true, which means checking is enabled. This
+// value must be false for a NAT instance to perform NAT. For more information,
+// see NAT Instances (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_NAT_Instance.html)
+// in the Amazon Virtual Private Cloud User Guide.
 func (c *EC2) ResetInstanceAttribute(input *ResetInstanceAttributeInput) (output *ResetInstanceAttributeOutput, err error) {
 	req, out := c.ResetInstanceAttributeRequest(input)
 	output = out
@@ -3774,6 +5004,8 @@ func (c *EC2) ResetNetworkInterfaceAttributeRequest(input *ResetNetworkInterface
 	return
 }
 
+// Resets a network interface attribute. You can specify only one attribute
+// at a time.
 func (c *EC2) ResetNetworkInterfaceAttribute(input *ResetNetworkInterfaceAttributeInput) (output *ResetNetworkInterfaceAttributeOutput, err error) {
 	req, out := c.ResetNetworkInterfaceAttributeRequest(input)
 	output = out
@@ -3799,6 +5031,11 @@ func (c *EC2) ResetSnapshotAttributeRequest(input *ResetSnapshotAttributeInput) 
 	return
 }
 
+// Resets permission settings for the specified snapshot.
+//
+// For more information on modifying snapshot permissions, see Sharing Snapshots
+// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modifying-snapshot-permissions.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) ResetSnapshotAttribute(input *ResetSnapshotAttributeInput) (output *ResetSnapshotAttributeOutput, err error) {
 	req, out := c.ResetSnapshotAttributeRequest(input)
 	output = out
@@ -3824,6 +5061,17 @@ func (c *EC2) RevokeSecurityGroupEgressRequest(input *RevokeSecurityGroupEgressI
 	return
 }
 
+// Removes one or more egress rules from a security group for EC2-VPC. The values
+// that you specify in the revoke request (for example, ports) must match the
+// existing rule's values for the rule to be revoked.
+//
+// Each rule consists of the protocol and the CIDR range or source security
+// group. For the TCP and UDP protocols, you must also specify the destination
+// port or range of ports. For the ICMP protocol, you must also specify the
+// ICMP type and code.
+//
+// Rule changes are propagated to instances within the security group as quickly
+// as possible. However, a small delay might occur.
 func (c *EC2) RevokeSecurityGroupEgress(input *RevokeSecurityGroupEgressInput) (output *RevokeSecurityGroupEgressOutput, err error) {
 	req, out := c.RevokeSecurityGroupEgressRequest(input)
 	output = out
@@ -3849,6 +5097,17 @@ func (c *EC2) RevokeSecurityGroupIngressRequest(input *RevokeSecurityGroupIngres
 	return
 }
 
+// Removes one or more ingress rules from a security group. The values that
+// you specify in the revoke request (for example, ports) must match the existing
+// rule's values for the rule to be removed.
+//
+// Each rule consists of the protocol and the CIDR range or source security
+// group. For the TCP and UDP protocols, you must also specify the destination
+// port or range of ports. For the ICMP protocol, you must also specify the
+// ICMP type and code.
+//
+// Rule changes are propagated to instances within the security group as quickly
+// as possible. However, a small delay might occur.
 func (c *EC2) RevokeSecurityGroupIngress(input *RevokeSecurityGroupIngressInput) (output *RevokeSecurityGroupIngressOutput, err error) {
 	req, out := c.RevokeSecurityGroupIngressRequest(input)
 	output = out
@@ -3874,6 +5133,39 @@ func (c *EC2) RunInstancesRequest(input *RunInstancesInput) (req *aws.Request, o
 	return
 }
 
+// Launches the specified number of instances using an AMI for which you have
+// permissions.
+//
+// When you launch an instance, it enters the pending state. After the instance
+// is ready for you, it enters the running state. To check the state of your
+// instance, call DescribeInstances.
+//
+// If you don't specify a security group when launching an instance, Amazon
+// EC2 uses the default security group. For more information, see Security Groups
+// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+//
+// Linux instances have access to the public key of the key pair at boot. You
+// can use this key to provide secure access to the instance. Amazon EC2 public
+// images use this feature to provide secure access without passwords. For more
+// information, see Key Pairs (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+//
+// You can provide optional user data when launching an instance. For more
+// information, see Instance Metadata (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AESDG-chapter-instancedata.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+//
+// If any of the AMIs have a product code attached for which the user has not
+// subscribed, RunInstances fails.
+//
+// T2 instance types can only be launched into a VPC. If you do not have a
+// default VPC, or if you do not specify a subnet ID in the request, RunInstances
+// fails.
+//
+// For more information about troubleshooting, see What To Do If An Instance
+// Immediately Terminates (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_InstanceStraightToTerminated.html),
+// and Troubleshooting Connecting to Your Instance (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) RunInstances(input *RunInstancesInput) (output *Reservation, err error) {
 	req, out := c.RunInstancesRequest(input)
 	output = out
@@ -3899,6 +5191,25 @@ func (c *EC2) StartInstancesRequest(input *StartInstancesInput) (req *aws.Reques
 	return
 }
 
+// Starts an Amazon EBS-backed AMI that you've previously stopped.
+//
+// Instances that use Amazon EBS volumes as their root devices can be quickly
+// stopped and started. When an instance is stopped, the compute resources are
+// released and you are not billed for hourly instance usage. However, your
+// root partition Amazon EBS volume remains, continues to persist your data,
+// and you are charged for Amazon EBS volume usage. You can restart your instance
+// at any time. Each time you transition an instance from stopped to started,
+// Amazon EC2 charges a full instance hour, even if transitions happen multiple
+// times within a single hour.
+//
+// Before stopping an instance, make sure it is in a state from which it can
+// be restarted. Stopping an instance does not preserve data stored in RAM.
+//
+// Performing this operation on an instance that uses an instance store as
+// its root device returns an error.
+//
+// For more information, see Stopping Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) StartInstances(input *StartInstancesInput) (output *StartInstancesOutput, err error) {
 	req, out := c.StartInstancesRequest(input)
 	output = out
@@ -3924,6 +5235,37 @@ func (c *EC2) StopInstancesRequest(input *StopInstancesInput) (req *aws.Request,
 	return
 }
 
+// Stops an Amazon EBS-backed instance. Each time you transition an instance
+// from stopped to started, Amazon EC2 charges a full instance hour, even if
+// transitions happen multiple times within a single hour.
+//
+// You can't start or stop Spot Instances.
+//
+// Instances that use Amazon EBS volumes as their root devices can be quickly
+// stopped and started. When an instance is stopped, the compute resources are
+// released and you are not billed for hourly instance usage. However, your
+// root partition Amazon EBS volume remains, continues to persist your data,
+// and you are charged for Amazon EBS volume usage. You can restart your instance
+// at any time.
+//
+// Before stopping an instance, make sure it is in a state from which it can
+// be restarted. Stopping an instance does not preserve data stored in RAM.
+//
+// Performing this operation on an instance that uses an instance store as
+// its root device returns an error.
+//
+// You can stop, start, and terminate EBS-backed instances. You can only terminate
+// instance store-backed instances. What happens to an instance differs if you
+// stop it or terminate it. For example, when you stop an instance, the root
+// device and any other devices attached to the instance persist. When you terminate
+// an instance, the root device and any other devices attached during the instance
+// launch are automatically deleted. For more information about the differences
+// between stopping and terminating instances, see Instance Lifecycle (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+//
+// For more information about troubleshooting, see Troubleshooting Stopping
+// Your Instance (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesStopping.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) StopInstances(input *StopInstancesInput) (output *StopInstancesOutput, err error) {
 	req, out := c.StopInstancesRequest(input)
 	output = out
@@ -3949,6 +5291,28 @@ func (c *EC2) TerminateInstancesRequest(input *TerminateInstancesInput) (req *aw
 	return
 }
 
+// Shuts down one or more instances. This operation is idempotent; if you terminate
+// an instance more than once, each call succeeds.
+//
+// Terminated instances remain visible after termination (for approximately
+// one hour).
+//
+// By default, Amazon EC2 deletes all Amazon EBS volumes that were attached
+// when the instance launched. Volumes attached after instance launch continue
+// running.
+//
+// You can stop, start, and terminate EBS-backed instances. You can only terminate
+// instance store-backed instances. What happens to an instance differs if you
+// stop it or terminate it. For example, when you stop an instance, the root
+// device and any other devices attached to the instance persist. When you terminate
+// an instance, the root device and any other devices attached during the instance
+// launch are automatically deleted. For more information about the differences
+// between stopping and terminating instances, see Instance Lifecycle (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+//
+// For more information about troubleshooting, see Troubleshooting Terminating
+// Your Instance (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesShuttingDown.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) TerminateInstances(input *TerminateInstancesInput) (output *TerminateInstancesOutput, err error) {
 	req, out := c.TerminateInstancesRequest(input)
 	output = out
@@ -3974,6 +5338,7 @@ func (c *EC2) UnassignPrivateIPAddressesRequest(input *UnassignPrivateIPAddresse
 	return
 }
 
+// Unassigns one or more secondary private IP addresses from a network interface.
 func (c *EC2) UnassignPrivateIPAddresses(input *UnassignPrivateIPAddressesInput) (output *UnassignPrivateIPAddressesOutput, err error) {
 	req, out := c.UnassignPrivateIPAddressesRequest(input)
 	output = out
@@ -3999,6 +5364,9 @@ func (c *EC2) UnmonitorInstancesRequest(input *UnmonitorInstancesInput) (req *aw
 	return
 }
 
+// Disables monitoring for a running instance. For more information about monitoring
+// instances, see Monitoring Your Instances and Volumes (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) UnmonitorInstances(input *UnmonitorInstancesInput) (output *UnmonitorInstancesOutput, err error) {
 	req, out := c.UnmonitorInstancesRequest(input)
 	output = out
@@ -4009,7 +5377,9 @@ func (c *EC2) UnmonitorInstances(input *UnmonitorInstancesInput) (output *Unmoni
 var opUnmonitorInstances *aws.Operation
 
 type AcceptVPCPeeringConnectionInput struct {
-	DryRun                 *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the VPC peering connection.
 	VPCPeeringConnectionID *string `locationName:"vpcPeeringConnectionId" type:"string"`
 
 	metadataAcceptVPCPeeringConnectionInput `json:"-", xml:"-"`
@@ -4020,6 +5390,7 @@ type metadataAcceptVPCPeeringConnectionInput struct {
 }
 
 type AcceptVPCPeeringConnectionOutput struct {
+	// Information about the VPC peering connection.
 	VPCPeeringConnection *VPCPeeringConnection `locationName:"vpcPeeringConnection" type:"structure"`
 
 	metadataAcceptVPCPeeringConnectionOutput `json:"-", xml:"-"`
@@ -4029,8 +5400,12 @@ type metadataAcceptVPCPeeringConnectionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an account attribute.
 type AccountAttribute struct {
-	AttributeName   *string                  `locationName:"attributeName" type:"string"`
+	// The name of the account attribute.
+	AttributeName *string `locationName:"attributeName" type:"string"`
+
+	// One or more values for the account attribute.
 	AttributeValues []*AccountAttributeValue `locationName:"attributeValueSet" locationNameList:"item" type:"list"`
 
 	metadataAccountAttribute `json:"-", xml:"-"`
@@ -4040,7 +5415,9 @@ type metadataAccountAttribute struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a value of an account attribute.
 type AccountAttributeValue struct {
+	// The value of the attribute.
 	AttributeValue *string `locationName:"attributeValue" type:"string"`
 
 	metadataAccountAttributeValue `json:"-", xml:"-"`
@@ -4050,15 +5427,33 @@ type metadataAccountAttributeValue struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an Elastic IP address.
 type Address struct {
-	AllocationID            *string `locationName:"allocationId" type:"string"`
-	AssociationID           *string `locationName:"associationId" type:"string"`
-	Domain                  *string `locationName:"domain" type:"string"`
-	InstanceID              *string `locationName:"instanceId" type:"string"`
-	NetworkInterfaceID      *string `locationName:"networkInterfaceId" type:"string"`
+	// The ID representing the allocation of the address for use with EC2-VPC.
+	AllocationID *string `locationName:"allocationId" type:"string"`
+
+	// The ID representing the association of the address with an instance in a
+	// VPC.
+	AssociationID *string `locationName:"associationId" type:"string"`
+
+	// Indicates whether this Elastic IP address is for use with instances in EC2-Classic
+	// (standard) or instances in a VPC (vpc).
+	Domain *string `locationName:"domain" type:"string"`
+
+	// The ID of the instance the address is associated with (if any).
+	InstanceID *string `locationName:"instanceId" type:"string"`
+
+	// The ID of the network interface.
+	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string"`
+
+	// The ID of the AWS account that owns the network interface.
 	NetworkInterfaceOwnerID *string `locationName:"networkInterfaceOwnerId" type:"string"`
-	PrivateIPAddress        *string `locationName:"privateIpAddress" type:"string"`
-	PublicIP                *string `locationName:"publicIp" type:"string"`
+
+	// The private IP address associated with the Elastic IP address.
+	PrivateIPAddress *string `locationName:"privateIpAddress" type:"string"`
+
+	// The Elastic IP address.
+	PublicIP *string `locationName:"publicIp" type:"string"`
 
 	metadataAddress `json:"-", xml:"-"`
 }
@@ -4068,8 +5463,12 @@ type metadataAddress struct {
 }
 
 type AllocateAddressInput struct {
+	// Set to vpc to allocate the address for use with instances in a VPC.
+	//
+	// Default: The address is for use with instances in EC2-Classic.
 	Domain *string `type:"string"`
-	DryRun *bool   `locationName:"dryRun" type:"boolean"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	metadataAllocateAddressInput `json:"-", xml:"-"`
 }
@@ -4079,9 +5478,16 @@ type metadataAllocateAddressInput struct {
 }
 
 type AllocateAddressOutput struct {
+	// [EC2-VPC] The ID that AWS assigns to represent the allocation of the Elastic
+	// IP address for use with instances in a VPC.
 	AllocationID *string `locationName:"allocationId" type:"string"`
-	Domain       *string `locationName:"domain" type:"string"`
-	PublicIP     *string `locationName:"publicIp" type:"string"`
+
+	// Indicates whether this Elastic IP address is for use with instances in EC2-Classic
+	// (standard) or instances in a VPC (vpc).
+	Domain *string `locationName:"domain" type:"string"`
+
+	// The Elastic IP address.
+	PublicIP *string `locationName:"publicIp" type:"string"`
 
 	metadataAllocateAddressOutput `json:"-", xml:"-"`
 }
@@ -4091,10 +5497,24 @@ type metadataAllocateAddressOutput struct {
 }
 
 type AssignPrivateIPAddressesInput struct {
-	AllowReassignment              *bool     `locationName:"allowReassignment" type:"boolean"`
-	NetworkInterfaceID             *string   `locationName:"networkInterfaceId" type:"string" required:"true"`
-	PrivateIPAddresses             []*string `locationName:"privateIpAddress" locationNameList:"PrivateIpAddress" type:"list"`
-	SecondaryPrivateIPAddressCount *int64    `locationName:"secondaryPrivateIpAddressCount" type:"integer"`
+	// Indicates whether to allow an IP address that is already assigned to another
+	// network interface or instance to be reassigned to the specified network interface.
+	AllowReassignment *bool `locationName:"allowReassignment" type:"boolean"`
+
+	// The ID of the network interface.
+	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string" required:"true"`
+
+	// One or more IP addresses to be assigned as a secondary private IP address
+	// to the network interface. You can't specify this parameter when also specifying
+	// a number of secondary IP addresses.
+	//
+	// If you don't specify an IP address, Amazon EC2 automatically selects an
+	// IP address within the subnet range.
+	PrivateIPAddresses []*string `locationName:"privateIpAddress" locationNameList:"PrivateIpAddress" type:"list"`
+
+	// The number of secondary IP addresses to assign to the network interface.
+	// You can't specify this parameter when also specifying private IP addresses.
+	SecondaryPrivateIPAddressCount *int64 `locationName:"secondaryPrivateIpAddressCount" type:"integer"`
 
 	metadataAssignPrivateIPAddressesInput `json:"-", xml:"-"`
 }
@@ -4112,13 +5532,35 @@ type metadataAssignPrivateIPAddressesOutput struct {
 }
 
 type AssociateAddressInput struct {
-	AllocationID       *string `locationName:"AllocationId" type:"string"`
-	AllowReassociation *bool   `locationName:"allowReassociation" type:"boolean"`
-	DryRun             *bool   `locationName:"dryRun" type:"boolean"`
-	InstanceID         *string `locationName:"InstanceId" type:"string"`
+	// [EC2-VPC] The allocation ID. This is required for EC2-VPC.
+	AllocationID *string `locationName:"AllocationId" type:"string"`
+
+	// [EC2-VPC] Allows an Elastic IP address that is already associated with an
+	// instance or network interface to be re-associated with the specified instance
+	// or network interface. Otherwise, the operation fails.
+	//
+	// Default: false
+	AllowReassociation *bool `locationName:"allowReassociation" type:"boolean"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the instance. This is required for EC2-Classic. For EC2-VPC, you
+	// can specify either the instance ID or the network interface ID, but not both.
+	// The operation fails if you specify an instance ID unless exactly one network
+	// interface is attached.
+	InstanceID *string `locationName:"InstanceId" type:"string"`
+
+	// [EC2-VPC] The ID of the network interface. If the instance has more than
+	// one network interface, you must specify a network interface ID.
 	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string"`
-	PrivateIPAddress   *string `locationName:"privateIpAddress" type:"string"`
-	PublicIP           *string `locationName:"PublicIp" type:"string"`
+
+	// [EC2-VPC] The primary or secondary private IP address to associate with the
+	// Elastic IP address. If no private IP address is specified, the Elastic IP
+	// address is associated with the primary private IP address.
+	PrivateIPAddress *string `locationName:"privateIpAddress" type:"string"`
+
+	// The Elastic IP address. This is required for EC2-Classic.
+	PublicIP *string `locationName:"PublicIp" type:"string"`
 
 	metadataAssociateAddressInput `json:"-", xml:"-"`
 }
@@ -4128,6 +5570,8 @@ type metadataAssociateAddressInput struct {
 }
 
 type AssociateAddressOutput struct {
+	// [EC2-VPC] The ID that represents the association of the Elastic IP address
+	// with an instance.
 	AssociationID *string `locationName:"associationId" type:"string"`
 
 	metadataAssociateAddressOutput `json:"-", xml:"-"`
@@ -4138,9 +5582,14 @@ type metadataAssociateAddressOutput struct {
 }
 
 type AssociateDHCPOptionsInput struct {
+	// The ID of the DHCP options set, or default to associate no DHCP options with
+	// the VPC.
 	DHCPOptionsID *string `locationName:"DhcpOptionsId" type:"string" required:"true"`
-	DryRun        *bool   `locationName:"dryRun" type:"boolean"`
-	VPCID         *string `locationName:"VpcId" type:"string" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the VPC.
+	VPCID *string `locationName:"VpcId" type:"string" required:"true"`
 
 	metadataAssociateDHCPOptionsInput `json:"-", xml:"-"`
 }
@@ -4158,9 +5607,13 @@ type metadataAssociateDHCPOptionsOutput struct {
 }
 
 type AssociateRouteTableInput struct {
-	DryRun       *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the route table.
 	RouteTableID *string `locationName:"routeTableId" type:"string" required:"true"`
-	SubnetID     *string `locationName:"subnetId" type:"string" required:"true"`
+
+	// The ID of the subnet.
+	SubnetID *string `locationName:"subnetId" type:"string" required:"true"`
 
 	metadataAssociateRouteTableInput `json:"-", xml:"-"`
 }
@@ -4170,6 +5623,7 @@ type metadataAssociateRouteTableInput struct {
 }
 
 type AssociateRouteTableOutput struct {
+	// The route table association ID (needed to disassociate the route table).
 	AssociationID *string `locationName:"associationId" type:"string"`
 
 	metadataAssociateRouteTableOutput `json:"-", xml:"-"`
@@ -4180,10 +5634,17 @@ type metadataAssociateRouteTableOutput struct {
 }
 
 type AttachClassicLinkVPCInput struct {
-	DryRun     *bool     `locationName:"dryRun" type:"boolean"`
-	Groups     []*string `locationName:"SecurityGroupId" locationNameList:"groupId" type:"list" required:"true"`
-	InstanceID *string   `locationName:"instanceId" type:"string" required:"true"`
-	VPCID      *string   `locationName:"vpcId" type:"string" required:"true"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of one or more of the VPC's security groups. You cannot specify security
+	// groups from a different VPC.
+	Groups []*string `locationName:"SecurityGroupId" locationNameList:"groupId" type:"list" required:"true"`
+
+	// The ID of an EC2-Classic instance to link to the ClassicLink-enabled VPC.
+	InstanceID *string `locationName:"instanceId" type:"string" required:"true"`
+
+	// The ID of a ClassicLink-enabled VPC.
+	VPCID *string `locationName:"vpcId" type:"string" required:"true"`
 
 	metadataAttachClassicLinkVPCInput `json:"-", xml:"-"`
 }
@@ -4193,6 +5654,7 @@ type metadataAttachClassicLinkVPCInput struct {
 }
 
 type AttachClassicLinkVPCOutput struct {
+	// Returns true if the request succeeds; otherwise, it returns an error.
 	Return *bool `locationName:"return" type:"boolean"`
 
 	metadataAttachClassicLinkVPCOutput `json:"-", xml:"-"`
@@ -4203,9 +5665,13 @@ type metadataAttachClassicLinkVPCOutput struct {
 }
 
 type AttachInternetGatewayInput struct {
-	DryRun            *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the Internet gateway.
 	InternetGatewayID *string `locationName:"internetGatewayId" type:"string" required:"true"`
-	VPCID             *string `locationName:"vpcId" type:"string" required:"true"`
+
+	// The ID of the VPC.
+	VPCID *string `locationName:"vpcId" type:"string" required:"true"`
 
 	metadataAttachInternetGatewayInput `json:"-", xml:"-"`
 }
@@ -4223,9 +5689,15 @@ type metadataAttachInternetGatewayOutput struct {
 }
 
 type AttachNetworkInterfaceInput struct {
-	DeviceIndex        *int64  `locationName:"deviceIndex" type:"integer" required:"true"`
-	DryRun             *bool   `locationName:"dryRun" type:"boolean"`
-	InstanceID         *string `locationName:"instanceId" type:"string" required:"true"`
+	// The index of the device for the network interface attachment.
+	DeviceIndex *int64 `locationName:"deviceIndex" type:"integer" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the instance.
+	InstanceID *string `locationName:"instanceId" type:"string" required:"true"`
+
+	// The ID of the network interface.
 	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string" required:"true"`
 
 	metadataAttachNetworkInterfaceInput `json:"-", xml:"-"`
@@ -4236,6 +5708,7 @@ type metadataAttachNetworkInterfaceInput struct {
 }
 
 type AttachNetworkInterfaceOutput struct {
+	// The ID of the network interface attachment.
 	AttachmentID *string `locationName:"attachmentId" type:"string"`
 
 	metadataAttachNetworkInterfaceOutput `json:"-", xml:"-"`
@@ -4246,8 +5719,12 @@ type metadataAttachNetworkInterfaceOutput struct {
 }
 
 type AttachVPNGatewayInput struct {
-	DryRun       *bool   `locationName:"dryRun" type:"boolean"`
-	VPCID        *string `locationName:"VpcId" type:"string" required:"true"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the VPC.
+	VPCID *string `locationName:"VpcId" type:"string" required:"true"`
+
+	// The ID of the virtual private gateway.
 	VPNGatewayID *string `locationName:"VpnGatewayId" type:"string" required:"true"`
 
 	metadataAttachVPNGatewayInput `json:"-", xml:"-"`
@@ -4258,6 +5735,7 @@ type metadataAttachVPNGatewayInput struct {
 }
 
 type AttachVPNGatewayOutput struct {
+	// Information about the attachment.
 	VPCAttachment *VPCAttachment `locationName:"attachment" type:"structure"`
 
 	metadataAttachVPNGatewayOutput `json:"-", xml:"-"`
@@ -4268,10 +5746,17 @@ type metadataAttachVPNGatewayOutput struct {
 }
 
 type AttachVolumeInput struct {
-	Device     *string `type:"string" required:"true"`
-	DryRun     *bool   `locationName:"dryRun" type:"boolean"`
+	// The device name to expose to the instance (for example, /dev/sdh or xvdh).
+	Device *string `type:"string" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the instance.
 	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
-	VolumeID   *string `locationName:"VolumeId" type:"string" required:"true"`
+
+	// The ID of the Amazon EBS volume. The volume and instance must be within the
+	// same Availability Zone.
+	VolumeID *string `locationName:"VolumeId" type:"string" required:"true"`
 
 	metadataAttachVolumeInput `json:"-", xml:"-"`
 }
@@ -4280,7 +5765,9 @@ type metadataAttachVolumeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The value to use when a resource attribute accepts a Boolean value.
 type AttributeBooleanValue struct {
+	// Valid values are true or false.
 	Value *bool `locationName:"value" type:"boolean"`
 
 	metadataAttributeBooleanValue `json:"-", xml:"-"`
@@ -4290,7 +5777,9 @@ type metadataAttributeBooleanValue struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The value to use for a resource attribute.
 type AttributeValue struct {
+	// Valid values are case-sensitive and vary by action.
 	Value *string `locationName:"value" type:"string"`
 
 	metadataAttributeValue `json:"-", xml:"-"`
@@ -4301,15 +5790,38 @@ type metadataAttributeValue struct {
 }
 
 type AuthorizeSecurityGroupEgressInput struct {
-	CIDRIP                     *string         `locationName:"cidrIp" type:"string"`
-	DryRun                     *bool           `locationName:"dryRun" type:"boolean"`
-	FromPort                   *int64          `locationName:"fromPort" type:"integer"`
-	GroupID                    *string         `locationName:"groupId" type:"string" required:"true"`
-	IPPermissions              []*IPPermission `locationName:"ipPermissions" locationNameList:"item" type:"list"`
-	IPProtocol                 *string         `locationName:"ipProtocol" type:"string"`
-	SourceSecurityGroupName    *string         `locationName:"sourceSecurityGroupName" type:"string"`
-	SourceSecurityGroupOwnerID *string         `locationName:"sourceSecurityGroupOwnerId" type:"string"`
-	ToPort                     *int64          `locationName:"toPort" type:"integer"`
+	// The CIDR IP address range. You can't specify this parameter when specifying
+	// a source security group.
+	CIDRIP *string `locationName:"cidrIp" type:"string"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The start of port range for the TCP and UDP protocols, or an ICMP type number.
+	// For the ICMP type number, use -1 to specify all ICMP types.
+	FromPort *int64 `locationName:"fromPort" type:"integer"`
+
+	// The ID of the security group.
+	GroupID *string `locationName:"groupId" type:"string" required:"true"`
+
+	// A set of IP permissions. You can't specify a destination security group and
+	// a CIDR IP address range.
+	IPPermissions []*IPPermission `locationName:"ipPermissions" locationNameList:"item" type:"list"`
+
+	// The IP protocol name (tcp, udp, icmp) or number (see Protocol Numbers (http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)).
+	// Use -1 to specify all.
+	IPProtocol *string `locationName:"ipProtocol" type:"string"`
+
+	// [EC2-Classic, default VPC] The name of the destination security group. You
+	// can't specify a destination security group and a CIDR IP address range.
+	SourceSecurityGroupName *string `locationName:"sourceSecurityGroupName" type:"string"`
+
+	// The ID of the destination security group. You can't specify a destination
+	// security group and a CIDR IP address range.
+	SourceSecurityGroupOwnerID *string `locationName:"sourceSecurityGroupOwnerId" type:"string"`
+
+	// The end of port range for the TCP and UDP protocols, or an ICMP code number.
+	// For the ICMP code number, use -1 to specify all ICMP codes for the ICMP type.
+	ToPort *int64 `locationName:"toPort" type:"integer"`
 
 	metadataAuthorizeSecurityGroupEgressInput `json:"-", xml:"-"`
 }
@@ -4327,16 +5839,41 @@ type metadataAuthorizeSecurityGroupEgressOutput struct {
 }
 
 type AuthorizeSecurityGroupIngressInput struct {
-	CIDRIP                     *string         `locationName:"CidrIp" type:"string"`
-	DryRun                     *bool           `locationName:"dryRun" type:"boolean"`
-	FromPort                   *int64          `type:"integer"`
-	GroupID                    *string         `locationName:"GroupId" type:"string"`
-	GroupName                  *string         `type:"string"`
-	IPPermissions              []*IPPermission `locationName:"IpPermissions" locationNameList:"item" type:"list"`
-	IPProtocol                 *string         `locationName:"IpProtocol" type:"string"`
-	SourceSecurityGroupName    *string         `type:"string"`
-	SourceSecurityGroupOwnerID *string         `locationName:"SourceSecurityGroupOwnerId" type:"string"`
-	ToPort                     *int64          `type:"integer"`
+	// The CIDR IP address range. You can't specify this parameter when specifying
+	// a source security group.
+	CIDRIP *string `locationName:"CidrIp" type:"string"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The start of port range for the TCP and UDP protocols, or an ICMP type number.
+	// For the ICMP type number, use -1 to specify all ICMP types.
+	FromPort *int64 `type:"integer"`
+
+	// The ID of the security group.
+	GroupID *string `locationName:"GroupId" type:"string"`
+
+	// [EC2-Classic, default VPC] The name of the security group.
+	GroupName *string `type:"string"`
+
+	// A set of IP permissions. You can't specify a source security group and a
+	// CIDR IP address range.
+	IPPermissions []*IPPermission `locationName:"IpPermissions" locationNameList:"item" type:"list"`
+
+	// The IP protocol name (tcp, udp, icmp) or number (see Protocol Numbers (http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)).
+	// (VPC only) Use -1 to specify all.
+	IPProtocol *string `locationName:"IpProtocol" type:"string"`
+
+	// [EC2-Classic, default VPC] The name of the source security group. You can't
+	// specify a source security group and a CIDR IP address range.
+	SourceSecurityGroupName *string `type:"string"`
+
+	// The ID of the source security group. You can't specify a source security
+	// group and a CIDR IP address range.
+	SourceSecurityGroupOwnerID *string `locationName:"SourceSecurityGroupOwnerId" type:"string"`
+
+	// The end of port range for the TCP and UDP protocols, or an ICMP code number.
+	// For the ICMP code number, use -1 to specify all ICMP codes for the ICMP type.
+	ToPort *int64 `type:"integer"`
 
 	metadataAuthorizeSecurityGroupIngressInput `json:"-", xml:"-"`
 }
@@ -4353,11 +5890,19 @@ type metadataAuthorizeSecurityGroupIngressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an Availability Zone.
 type AvailabilityZone struct {
-	Messages   []*AvailabilityZoneMessage `locationName:"messageSet" locationNameList:"item" type:"list"`
-	RegionName *string                    `locationName:"regionName" type:"string"`
-	State      *string                    `locationName:"zoneState" type:"string"`
-	ZoneName   *string                    `locationName:"zoneName" type:"string"`
+	// Any messages about the Availability Zone.
+	Messages []*AvailabilityZoneMessage `locationName:"messageSet" locationNameList:"item" type:"list"`
+
+	// The name of the region.
+	RegionName *string `locationName:"regionName" type:"string"`
+
+	// The state of the Availability Zone (available | impaired | unavailable).
+	State *string `locationName:"zoneState" type:"string"`
+
+	// The name of the Availability Zone.
+	ZoneName *string `locationName:"zoneName" type:"string"`
 
 	metadataAvailabilityZone `json:"-", xml:"-"`
 }
@@ -4366,7 +5911,9 @@ type metadataAvailabilityZone struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a message about an Availability Zone.
 type AvailabilityZoneMessage struct {
+	// The message about the Availability Zone.
 	Message *string `locationName:"message" type:"string"`
 
 	metadataAvailabilityZoneMessage `json:"-", xml:"-"`
@@ -4386,11 +5933,30 @@ type metadataBlobAttributeValue struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a block device mapping.
 type BlockDeviceMapping struct {
-	DeviceName  *string         `locationName:"deviceName" type:"string"`
-	EBS         *EBSBlockDevice `locationName:"ebs" type:"structure"`
-	NoDevice    *string         `locationName:"noDevice" type:"string"`
-	VirtualName *string         `locationName:"virtualName" type:"string"`
+	// The device name exposed to the instance (for example, /dev/sdh).
+	DeviceName *string `locationName:"deviceName" type:"string"`
+
+	// Parameters used to automatically set up Amazon EBS volumes when the instance
+	// is launched.
+	EBS *EBSBlockDevice `locationName:"ebs" type:"structure"`
+
+	// Suppresses the specified device included in the block device mapping of the
+	// AMI.
+	NoDevice *string `locationName:"noDevice" type:"string"`
+
+	// The virtual device name (ephemeralN). Instance store volumes are numbered
+	// starting from 0. An instance type with 2 available instance store volumes
+	// can specify mappings for ephemeral0 and ephemeral1.The number of available
+	// instance store volumes depends on the instance type. After you connect to
+	// the instance, you must mount the volume.
+	//
+	// Constraints: For M3 instances, you must specify instance store volumes in
+	// the block device mapping for the instance. When you launch an M3 instance,
+	// we ignore any instance store volumes specified in the block device mapping
+	// for the AMI.
+	VirtualName *string `locationName:"virtualName" type:"string"`
 
 	metadataBlockDeviceMapping `json:"-", xml:"-"`
 }
@@ -4400,9 +5966,21 @@ type metadataBlockDeviceMapping struct {
 }
 
 type BundleInstanceInput struct {
-	DryRun     *bool    `locationName:"dryRun" type:"boolean"`
-	InstanceID *string  `locationName:"InstanceId" type:"string" required:"true"`
-	Storage    *Storage `type:"structure" required:"true"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the instance to bundle.
+	//
+	// Type: String
+	//
+	// Default: None
+	//
+	// Required: Yes
+	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
+
+	// The bucket in which to store the AMI. You can specify a bucket that you already
+	// own or a new bucket that Amazon EC2 creates on your behalf. If you specify
+	// a bucket that belongs to someone else, Amazon EC2 returns an error.
+	Storage *Storage `type:"structure" required:"true"`
 
 	metadataBundleInstanceInput `json:"-", xml:"-"`
 }
@@ -4412,6 +5990,7 @@ type metadataBundleInstanceInput struct {
 }
 
 type BundleInstanceOutput struct {
+	// Information about the bundle task.
 	BundleTask *BundleTask `locationName:"bundleInstanceTask" type:"structure"`
 
 	metadataBundleInstanceOutput `json:"-", xml:"-"`
@@ -4421,15 +6000,31 @@ type metadataBundleInstanceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a bundle task.
 type BundleTask struct {
-	BundleID        *string          `locationName:"bundleId" type:"string"`
+	// The ID of the bundle task.
+	BundleID *string `locationName:"bundleId" type:"string"`
+
+	// If the task fails, a description of the error.
 	BundleTaskError *BundleTaskError `locationName:"error" type:"structure"`
-	InstanceID      *string          `locationName:"instanceId" type:"string"`
-	Progress        *string          `locationName:"progress" type:"string"`
-	StartTime       *time.Time       `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
-	State           *string          `locationName:"state" type:"string"`
-	Storage         *Storage         `locationName:"storage" type:"structure"`
-	UpdateTime      *time.Time       `locationName:"updateTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The ID of the instance associated with this bundle task.
+	InstanceID *string `locationName:"instanceId" type:"string"`
+
+	// The level of task completion, as a percent (for example, 20%).
+	Progress *string `locationName:"progress" type:"string"`
+
+	// The time this task started.
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The state of the task.
+	State *string `locationName:"state" type:"string"`
+
+	// The Amazon S3 storage locations.
+	Storage *Storage `locationName:"storage" type:"structure"`
+
+	// The time of the most recent update for the task.
+	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	metadataBundleTask `json:"-", xml:"-"`
 }
@@ -4438,8 +6033,12 @@ type metadataBundleTask struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an error for BundleInstance.
 type BundleTaskError struct {
-	Code    *string `locationName:"code" type:"string"`
+	// The error code.
+	Code *string `locationName:"code" type:"string"`
+
+	// The error message.
 	Message *string `locationName:"message" type:"string"`
 
 	metadataBundleTaskError `json:"-", xml:"-"`
@@ -4450,8 +6049,10 @@ type metadataBundleTaskError struct {
 }
 
 type CancelBundleTaskInput struct {
+	// The ID of the bundle task.
 	BundleID *string `locationName:"BundleId" type:"string" required:"true"`
-	DryRun   *bool   `locationName:"dryRun" type:"boolean"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	metadataCancelBundleTaskInput `json:"-", xml:"-"`
 }
@@ -4461,6 +6062,7 @@ type metadataCancelBundleTaskInput struct {
 }
 
 type CancelBundleTaskOutput struct {
+	// The bundle task.
 	BundleTask *BundleTask `locationName:"bundleInstanceTask" type:"structure"`
 
 	metadataCancelBundleTaskOutput `json:"-", xml:"-"`
@@ -4471,9 +6073,12 @@ type metadataCancelBundleTaskOutput struct {
 }
 
 type CancelConversionTaskInput struct {
+	// The ID of the conversion task.
 	ConversionTaskID *string `locationName:"conversionTaskId" type:"string" required:"true"`
-	DryRun           *bool   `locationName:"dryRun" type:"boolean"`
-	ReasonMessage    *string `locationName:"reasonMessage" type:"string"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	ReasonMessage *string `locationName:"reasonMessage" type:"string"`
 
 	metadataCancelConversionTaskInput `json:"-", xml:"-"`
 }
@@ -4491,6 +6096,7 @@ type metadataCancelConversionTaskOutput struct {
 }
 
 type CancelExportTaskInput struct {
+	// The ID of the export task. This is the ID returned by CreateInstanceExportTask.
 	ExportTaskID *string `locationName:"exportTaskId" type:"string" required:"true"`
 
 	metadataCancelExportTaskInput `json:"-", xml:"-"`
@@ -4509,6 +6115,7 @@ type metadataCancelExportTaskOutput struct {
 }
 
 type CancelReservedInstancesListingInput struct {
+	// The ID of the Reserved Instance listing.
 	ReservedInstancesListingID *string `locationName:"reservedInstancesListingId" type:"string" required:"true"`
 
 	metadataCancelReservedInstancesListingInput `json:"-", xml:"-"`
@@ -4519,6 +6126,7 @@ type metadataCancelReservedInstancesListingInput struct {
 }
 
 type CancelReservedInstancesListingOutput struct {
+	// The Reserved Instance listing.
 	ReservedInstancesListings []*ReservedInstancesListing `locationName:"reservedInstancesListingsSet" locationNameList:"item" type:"list"`
 
 	metadataCancelReservedInstancesListingOutput `json:"-", xml:"-"`
@@ -4529,7 +6137,9 @@ type metadataCancelReservedInstancesListingOutput struct {
 }
 
 type CancelSpotInstanceRequestsInput struct {
-	DryRun                 *bool     `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more Spot Instance request IDs.
 	SpotInstanceRequestIDs []*string `locationName:"SpotInstanceRequestId" locationNameList:"SpotInstanceRequestId" type:"list" required:"true"`
 
 	metadataCancelSpotInstanceRequestsInput `json:"-", xml:"-"`
@@ -4540,6 +6150,7 @@ type metadataCancelSpotInstanceRequestsInput struct {
 }
 
 type CancelSpotInstanceRequestsOutput struct {
+	// One or more Spot Instance requests.
 	CancelledSpotInstanceRequests []*CancelledSpotInstanceRequest `locationName:"spotInstanceRequestSet" locationNameList:"item" type:"list"`
 
 	metadataCancelSpotInstanceRequestsOutput `json:"-", xml:"-"`
@@ -4549,9 +6160,13 @@ type metadataCancelSpotInstanceRequestsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a request to cancel a Spot Instance.
 type CancelledSpotInstanceRequest struct {
+	// The ID of the Spot Instance request.
 	SpotInstanceRequestID *string `locationName:"spotInstanceRequestId" type:"string"`
-	State                 *string `locationName:"state" type:"string"`
+
+	// The state of the Spot Instance request.
+	State *string `locationName:"state" type:"string"`
 
 	metadataCancelledSpotInstanceRequest `json:"-", xml:"-"`
 }
@@ -4560,11 +6175,19 @@ type metadataCancelledSpotInstanceRequest struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a linked EC2-Classic instance.
 type ClassicLinkInstance struct {
-	Groups     []*GroupIdentifier `locationName:"groupSet" locationNameList:"item" type:"list"`
-	InstanceID *string            `locationName:"instanceId" type:"string"`
-	Tags       []*Tag             `locationName:"tagSet" locationNameList:"item" type:"list"`
-	VPCID      *string            `locationName:"vpcId" type:"string"`
+	// A list of security groups.
+	Groups []*GroupIdentifier `locationName:"groupSet" locationNameList:"item" type:"list"`
+
+	// The ID of the instance.
+	InstanceID *string `locationName:"instanceId" type:"string"`
+
+	// Any tags assigned to the instance.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
+
+	// The ID of the VPC.
+	VPCID *string `locationName:"vpcId" type:"string"`
 
 	metadataClassicLinkInstance `json:"-", xml:"-"`
 }
@@ -4574,8 +6197,12 @@ type metadataClassicLinkInstance struct {
 }
 
 type ConfirmProductInstanceInput struct {
-	DryRun      *bool   `locationName:"dryRun" type:"boolean"`
-	InstanceID  *string `locationName:"InstanceId" type:"string" required:"true"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the instance.
+	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
+
+	// The product code. This must be a product code that you own.
 	ProductCode *string `type:"string" required:"true"`
 
 	metadataConfirmProductInstanceInput `json:"-", xml:"-"`
@@ -4586,6 +6213,8 @@ type metadataConfirmProductInstanceInput struct {
 }
 
 type ConfirmProductInstanceOutput struct {
+	// The AWS account ID of the instance owner. This is only present if the product
+	// code is attached to the instance.
 	OwnerID *string `locationName:"ownerId" type:"string"`
 
 	metadataConfirmProductInstanceOutput `json:"-", xml:"-"`
@@ -4595,14 +6224,30 @@ type metadataConfirmProductInstanceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a conversion task.
 type ConversionTask struct {
-	ConversionTaskID *string                    `locationName:"conversionTaskId" type:"string" required:"true"`
-	ExpirationTime   *string                    `locationName:"expirationTime" type:"string"`
-	ImportInstance   *ImportInstanceTaskDetails `locationName:"importInstance" type:"structure"`
-	ImportVolume     *ImportVolumeTaskDetails   `locationName:"importVolume" type:"structure"`
-	State            *string                    `locationName:"state" type:"string" required:"true"`
-	StatusMessage    *string                    `locationName:"statusMessage" type:"string"`
-	Tags             []*Tag                     `locationName:"tagSet" locationNameList:"item" type:"list"`
+	// The ID of the conversion task.
+	ConversionTaskID *string `locationName:"conversionTaskId" type:"string" required:"true"`
+
+	// The time when the task expires. If the upload isn't complete before the expiration
+	// time, we automatically cancel the task.
+	ExpirationTime *string `locationName:"expirationTime" type:"string"`
+
+	// If the task is for importing an instance, this contains information about
+	// the import instance task.
+	ImportInstance *ImportInstanceTaskDetails `locationName:"importInstance" type:"structure"`
+
+	// If the task is for importing a volume, this contains information about the
+	// import volume task.
+	ImportVolume *ImportVolumeTaskDetails `locationName:"importVolume" type:"structure"`
+
+	// The state of the conversion task.
+	State *string `locationName:"state" type:"string" required:"true"`
+
+	// The status message related to the conversion task.
+	StatusMessage *string `locationName:"statusMessage" type:"string"`
+
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 
 	metadataConversionTask `json:"-", xml:"-"`
 }
@@ -4612,12 +6257,24 @@ type metadataConversionTask struct {
 }
 
 type CopyImageInput struct {
-	ClientToken   *string `type:"string"`
-	Description   *string `type:"string"`
-	DryRun        *bool   `locationName:"dryRun" type:"boolean"`
-	Name          *string `type:"string" required:"true"`
+	// Unique, case-sensitive identifier you provide to ensure idempotency of the
+	// request. For more information, see How to Ensure Idempotency (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	ClientToken *string `type:"string"`
+
+	// A description for the new AMI in the destination region.
+	Description *string `type:"string"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The name of the new AMI in the destination region.
+	Name *string `type:"string" required:"true"`
+
+	// The ID of the AMI to copy.
 	SourceImageID *string `locationName:"SourceImageId" type:"string" required:"true"`
-	SourceRegion  *string `type:"string" required:"true"`
+
+	// The name of the region that contains the AMI to copy.
+	SourceRegion *string `type:"string" required:"true"`
 
 	metadataCopyImageInput `json:"-", xml:"-"`
 }
@@ -4627,6 +6284,7 @@ type metadataCopyImageInput struct {
 }
 
 type CopyImageOutput struct {
+	// The ID of the new AMI.
 	ImageID *string `locationName:"imageId" type:"string"`
 
 	metadataCopyImageOutput `json:"-", xml:"-"`
@@ -4637,12 +6295,34 @@ type metadataCopyImageOutput struct {
 }
 
 type CopySnapshotInput struct {
-	Description       *string `type:"string"`
+	// A description for the new Amazon EBS snapshot.
+	Description *string `type:"string"`
+
+	// The destination region of the snapshot copy operation. This parameter is
+	// required in the PresignedUrl.
 	DestinationRegion *string `locationName:"destinationRegion" type:"string"`
-	DryRun            *bool   `locationName:"dryRun" type:"boolean"`
-	PresignedURL      *string `locationName:"presignedUrl" type:"string"`
-	SourceRegion      *string `type:"string" required:"true"`
-	SourceSnapshotID  *string `locationName:"SourceSnapshotId" type:"string" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The pre-signed URL that facilitates copying an encrypted snapshot. This parameter
+	// is only required when copying an encrypted snapshot with the Amazon EC2 Query
+	// API; it is available as an optional parameter in all other cases. The PresignedUrl
+	// should use the snapshot source endpoint, the CopySnapshot action, and include
+	// the SourceRegion, SourceSnapshotId, and DestinationRegion parameters. The
+	// PresignedUrl must be signed using AWS Signature Version 4. Because Amazon
+	// EBS snapshots are stored in Amazon S3, the signing algorithm for this parameter
+	// uses the same logic that is described in Authenticating Requests by Using
+	// Query Parameters (AWS Signature Version 4) (http://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html)
+	// in the Amazon Simple Storage Service API Reference. An invalid or improperly
+	// signed PresignedUrl will cause the copy operation to fail asynchronously,
+	// and the snapshot will move to an error state.
+	PresignedURL *string `locationName:"presignedUrl" type:"string"`
+
+	// The ID of the region that contains the snapshot to be copied.
+	SourceRegion *string `type:"string" required:"true"`
+
+	// The ID of the Amazon EBS snapshot to copy.
+	SourceSnapshotID *string `locationName:"SourceSnapshotId" type:"string" required:"true"`
 
 	metadataCopySnapshotInput `json:"-", xml:"-"`
 }
@@ -4652,6 +6332,7 @@ type metadataCopySnapshotInput struct {
 }
 
 type CopySnapshotOutput struct {
+	// The ID of the new snapshot.
 	SnapshotID *string `locationName:"snapshotId" type:"string"`
 
 	metadataCopySnapshotOutput `json:"-", xml:"-"`
@@ -4662,10 +6343,19 @@ type metadataCopySnapshotOutput struct {
 }
 
 type CreateCustomerGatewayInput struct {
-	BGPASN   *int64  `locationName:"BgpAsn" type:"integer" required:"true"`
-	DryRun   *bool   `locationName:"dryRun" type:"boolean"`
+	// For devices that support BGP, the customer gateway's BGP ASN.
+	//
+	// Default: 65000
+	BGPASN *int64 `locationName:"BgpAsn" type:"integer" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The Internet-routable IP address for the customer gateway's outside interface.
+	// The address must be static.
 	PublicIP *string `locationName:"IpAddress" type:"string" required:"true"`
-	Type     *string `type:"string" required:"true"`
+
+	// The type of VPN connection that this customer gateway supports (ipsec.1).
+	Type *string `type:"string" required:"true"`
 
 	metadataCreateCustomerGatewayInput `json:"-", xml:"-"`
 }
@@ -4675,6 +6365,7 @@ type metadataCreateCustomerGatewayInput struct {
 }
 
 type CreateCustomerGatewayOutput struct {
+	// Information about the customer gateway.
 	CustomerGateway *CustomerGateway `locationName:"customerGateway" type:"structure"`
 
 	metadataCreateCustomerGatewayOutput `json:"-", xml:"-"`
@@ -4685,8 +6376,10 @@ type metadataCreateCustomerGatewayOutput struct {
 }
 
 type CreateDHCPOptionsInput struct {
+	// A DHCP configuration option.
 	DHCPConfigurations []*NewDHCPConfiguration `locationName:"dhcpConfiguration" locationNameList:"item" type:"list" required:"true"`
-	DryRun             *bool                   `locationName:"dryRun" type:"boolean"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	metadataCreateDHCPOptionsInput `json:"-", xml:"-"`
 }
@@ -4696,6 +6389,7 @@ type metadataCreateDHCPOptionsInput struct {
 }
 
 type CreateDHCPOptionsOutput struct {
+	// A set of DHCP options.
 	DHCPOptions *DHCPOptions `locationName:"dhcpOptions" type:"structure"`
 
 	metadataCreateDHCPOptionsOutput `json:"-", xml:"-"`
@@ -4706,12 +6400,30 @@ type metadataCreateDHCPOptionsOutput struct {
 }
 
 type CreateImageInput struct {
+	// Information about one or more block device mappings.
 	BlockDeviceMappings []*BlockDeviceMapping `locationName:"blockDeviceMapping" locationNameList:"BlockDeviceMapping" type:"list"`
-	Description         *string               `locationName:"description" type:"string"`
-	DryRun              *bool                 `locationName:"dryRun" type:"boolean"`
-	InstanceID          *string               `locationName:"instanceId" type:"string" required:"true"`
-	Name                *string               `locationName:"name" type:"string" required:"true"`
-	NoReboot            *bool                 `locationName:"noReboot" type:"boolean"`
+
+	// A description for the new image.
+	Description *string `locationName:"description" type:"string"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the instance.
+	InstanceID *string `locationName:"instanceId" type:"string" required:"true"`
+
+	// A name for the new image.
+	//
+	// Constraints: 3-128 alphanumeric characters, parentheses (()), square brackets
+	// ([]), spaces ( ), periods (.), slashes (/), dashes (-), single quotes ('),
+	// at-signs (@), or underscores(_)
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// By default, this parameter is set to false, which means Amazon EC2 attempts
+	// to shut down the instance cleanly before image creation and then reboots
+	// the instance. When the parameter is set to true, Amazon EC2 doesn't shut
+	// down the instance before creating the image. When this option is used, file
+	// system integrity on the created image can't be guaranteed.
+	NoReboot *bool `locationName:"noReboot" type:"boolean"`
 
 	metadataCreateImageInput `json:"-", xml:"-"`
 }
@@ -4721,6 +6433,7 @@ type metadataCreateImageInput struct {
 }
 
 type CreateImageOutput struct {
+	// The ID of the new AMI.
 	ImageID *string `locationName:"imageId" type:"string"`
 
 	metadataCreateImageOutput `json:"-", xml:"-"`
@@ -4731,10 +6444,17 @@ type metadataCreateImageOutput struct {
 }
 
 type CreateInstanceExportTaskInput struct {
-	Description       *string                      `locationName:"description" type:"string"`
-	ExportToS3Task    *ExportToS3TaskSpecification `locationName:"exportToS3" type:"structure"`
-	InstanceID        *string                      `locationName:"instanceId" type:"string" required:"true"`
-	TargetEnvironment *string                      `locationName:"targetEnvironment" type:"string"`
+	// A description for the conversion task or the resource being exported. The
+	// maximum length is 255 bytes.
+	Description *string `locationName:"description" type:"string"`
+
+	ExportToS3Task *ExportToS3TaskSpecification `locationName:"exportToS3" type:"structure"`
+
+	// The ID of the instance.
+	InstanceID *string `locationName:"instanceId" type:"string" required:"true"`
+
+	// The target virtualization environment.
+	TargetEnvironment *string `locationName:"targetEnvironment" type:"string"`
 
 	metadataCreateInstanceExportTaskInput `json:"-", xml:"-"`
 }
@@ -4744,6 +6464,7 @@ type metadataCreateInstanceExportTaskInput struct {
 }
 
 type CreateInstanceExportTaskOutput struct {
+	// Describes an export task.
 	ExportTask *ExportTask `locationName:"exportTask" type:"structure"`
 
 	metadataCreateInstanceExportTaskOutput `json:"-", xml:"-"`
@@ -4764,6 +6485,7 @@ type metadataCreateInternetGatewayInput struct {
 }
 
 type CreateInternetGatewayOutput struct {
+	// Information about the Internet gateway.
 	InternetGateway *InternetGateway `locationName:"internetGateway" type:"structure"`
 
 	metadataCreateInternetGatewayOutput `json:"-", xml:"-"`
@@ -4774,7 +6496,11 @@ type metadataCreateInternetGatewayOutput struct {
 }
 
 type CreateKeyPairInput struct {
-	DryRun  *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// A unique name for the key pair.
+	//
+	// Constraints: Up to 255 ASCII characters
 	KeyName *string `type:"string" required:"true"`
 
 	metadataCreateKeyPairInput `json:"-", xml:"-"`
@@ -4784,10 +6510,16 @@ type metadataCreateKeyPairInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a key pair.
 type CreateKeyPairOutput struct {
+	// The SHA-1 digest of the DER encoded private key.
 	KeyFingerprint *string `locationName:"keyFingerprint" type:"string"`
-	KeyMaterial    *string `locationName:"keyMaterial" type:"string"`
-	KeyName        *string `locationName:"keyName" type:"string"`
+
+	// An unencrypted PEM encoded RSA private key.
+	KeyMaterial *string `locationName:"keyMaterial" type:"string"`
+
+	// The name of the key pair.
+	KeyName *string `locationName:"keyName" type:"string"`
 
 	metadataCreateKeyPairOutput `json:"-", xml:"-"`
 }
@@ -4797,15 +6529,36 @@ type metadataCreateKeyPairOutput struct {
 }
 
 type CreateNetworkACLEntryInput struct {
-	CIDRBlock    *string       `locationName:"cidrBlock" type:"string" required:"true"`
-	DryRun       *bool         `locationName:"dryRun" type:"boolean"`
-	Egress       *bool         `locationName:"egress" type:"boolean" required:"true"`
+	// The network range to allow or deny, in CIDR notation (for example 172.16.0.0/24).
+	CIDRBlock *string `locationName:"cidrBlock" type:"string" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// Indicates whether this is an egress rule (rule is applied to traffic leaving
+	// the subnet).
+	Egress *bool `locationName:"egress" type:"boolean" required:"true"`
+
+	// ICMP protocol: The ICMP type and code. Required if specifying ICMP for the
+	// protocol.
 	ICMPTypeCode *ICMPTypeCode `locationName:"Icmp" type:"structure"`
-	NetworkACLID *string       `locationName:"networkAclId" type:"string" required:"true"`
-	PortRange    *PortRange    `locationName:"portRange" type:"structure"`
-	Protocol     *string       `locationName:"protocol" type:"string" required:"true"`
-	RuleAction   *string       `locationName:"ruleAction" type:"string" required:"true"`
-	RuleNumber   *int64        `locationName:"ruleNumber" type:"integer" required:"true"`
+
+	// The ID of the network ACL.
+	NetworkACLID *string `locationName:"networkAclId" type:"string" required:"true"`
+
+	// TCP or UDP protocols: The range of ports the rule applies to.
+	PortRange *PortRange `locationName:"portRange" type:"structure"`
+
+	// The protocol. A value of -1 means all protocols.
+	Protocol *string `locationName:"protocol" type:"string" required:"true"`
+
+	// Indicates whether to allow or deny the traffic that matches the rule.
+	RuleAction *string `locationName:"ruleAction" type:"string" required:"true"`
+
+	// The rule number for the entry (for example, 100). ACL entries are processed
+	// in ascending order by rule number.
+	//
+	// Constraints: Positive integer from 1 to 32766
+	RuleNumber *int64 `locationName:"ruleNumber" type:"integer" required:"true"`
 
 	metadataCreateNetworkACLEntryInput `json:"-", xml:"-"`
 }
@@ -4823,8 +6576,10 @@ type metadataCreateNetworkACLEntryOutput struct {
 }
 
 type CreateNetworkACLInput struct {
-	DryRun *bool   `locationName:"dryRun" type:"boolean"`
-	VPCID  *string `locationName:"vpcId" type:"string" required:"true"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the VPC.
+	VPCID *string `locationName:"vpcId" type:"string" required:"true"`
 
 	metadataCreateNetworkACLInput `json:"-", xml:"-"`
 }
@@ -4834,6 +6589,7 @@ type metadataCreateNetworkACLInput struct {
 }
 
 type CreateNetworkACLOutput struct {
+	// Information about the network ACL.
 	NetworkACL *NetworkACL `locationName:"networkAcl" type:"structure"`
 
 	metadataCreateNetworkACLOutput `json:"-", xml:"-"`
@@ -4844,13 +6600,36 @@ type metadataCreateNetworkACLOutput struct {
 }
 
 type CreateNetworkInterfaceInput struct {
-	Description                    *string                          `locationName:"description" type:"string"`
-	DryRun                         *bool                            `locationName:"dryRun" type:"boolean"`
-	Groups                         []*string                        `locationName:"SecurityGroupId" locationNameList:"SecurityGroupId" type:"list"`
-	PrivateIPAddress               *string                          `locationName:"privateIpAddress" type:"string"`
-	PrivateIPAddresses             []*PrivateIPAddressSpecification `locationName:"privateIpAddresses" locationNameList:"item" type:"list"`
-	SecondaryPrivateIPAddressCount *int64                           `locationName:"secondaryPrivateIpAddressCount" type:"integer"`
-	SubnetID                       *string                          `locationName:"subnetId" type:"string" required:"true"`
+	// A description for the network interface.
+	Description *string `locationName:"description" type:"string"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The IDs of one or more security groups.
+	Groups []*string `locationName:"SecurityGroupId" locationNameList:"SecurityGroupId" type:"list"`
+
+	// The primary private IP address of the network interface. If you don't specify
+	// an IP address, Amazon EC2 selects one for you from the subnet range. If you
+	// specify an IP address, you cannot indicate any IP addresses specified in
+	// privateIpAddresses as primary (only one IP address can be designated as primary).
+	PrivateIPAddress *string `locationName:"privateIpAddress" type:"string"`
+
+	// One or more private IP addresses.
+	PrivateIPAddresses []*PrivateIPAddressSpecification `locationName:"privateIpAddresses" locationNameList:"item" type:"list"`
+
+	// The number of secondary private IP addresses to assign to a network interface.
+	// When you specify a number of secondary IP addresses, Amazon EC2 selects these
+	// IP addresses within the subnet range. You can't specify this option and specify
+	// more than one private IP address using privateIpAddresses.
+	//
+	// The number of IP addresses you can assign to a network interface varies
+	// by instance type. For more information, see Private IP Addresses Per ENI
+	// Per Instance Type (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	SecondaryPrivateIPAddressCount *int64 `locationName:"secondaryPrivateIpAddressCount" type:"integer"`
+
+	// The ID of the subnet to associate with the network interface.
+	SubnetID *string `locationName:"subnetId" type:"string" required:"true"`
 
 	metadataCreateNetworkInterfaceInput `json:"-", xml:"-"`
 }
@@ -4860,6 +6639,7 @@ type metadataCreateNetworkInterfaceInput struct {
 }
 
 type CreateNetworkInterfaceOutput struct {
+	// Information about the network interface.
 	NetworkInterface *NetworkInterface `locationName:"networkInterface" type:"structure"`
 
 	metadataCreateNetworkInterfaceOutput `json:"-", xml:"-"`
@@ -4870,9 +6650,15 @@ type metadataCreateNetworkInterfaceOutput struct {
 }
 
 type CreatePlacementGroupInput struct {
-	DryRun    *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// A name for the placement group.
+	//
+	// Constraints: Up to 255 ASCII characters
 	GroupName *string `locationName:"groupName" type:"string" required:"true"`
-	Strategy  *string `locationName:"strategy" type:"string" required:"true"`
+
+	// The placement strategy.
+	Strategy *string `locationName:"strategy" type:"string" required:"true"`
 
 	metadataCreatePlacementGroupInput `json:"-", xml:"-"`
 }
@@ -4890,10 +6676,24 @@ type metadataCreatePlacementGroupOutput struct {
 }
 
 type CreateReservedInstancesListingInput struct {
-	ClientToken         *string                       `locationName:"clientToken" type:"string" required:"true"`
-	InstanceCount       *int64                        `locationName:"instanceCount" type:"integer" required:"true"`
-	PriceSchedules      []*PriceScheduleSpecification `locationName:"priceSchedules" locationNameList:"item" type:"list" required:"true"`
-	ReservedInstancesID *string                       `locationName:"reservedInstancesId" type:"string" required:"true"`
+	// Unique, case-sensitive identifier you provide to ensure idempotency of your
+	// listings. This helps avoid duplicate listings. For more information, see
+	// Ensuring Idempotency (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	ClientToken *string `locationName:"clientToken" type:"string" required:"true"`
+
+	// The number of instances that are a part of a Reserved Instance account to
+	// be listed in the Reserved Instance Marketplace. This number should be less
+	// than or equal to the instance count associated with the Reserved Instance
+	// ID specified in this call.
+	InstanceCount *int64 `locationName:"instanceCount" type:"integer" required:"true"`
+
+	// A list specifying the price of the Reserved Instance for each month remaining
+	// in the Reserved Instance term.
+	PriceSchedules []*PriceScheduleSpecification `locationName:"priceSchedules" locationNameList:"item" type:"list" required:"true"`
+
+	// The ID of the active Reserved Instance.
+	ReservedInstancesID *string `locationName:"reservedInstancesId" type:"string" required:"true"`
 
 	metadataCreateReservedInstancesListingInput `json:"-", xml:"-"`
 }
@@ -4903,6 +6703,7 @@ type metadataCreateReservedInstancesListingInput struct {
 }
 
 type CreateReservedInstancesListingOutput struct {
+	// Information about the Reserved Instances listing.
 	ReservedInstancesListings []*ReservedInstancesListing `locationName:"reservedInstancesListingsSet" locationNameList:"item" type:"list"`
 
 	metadataCreateReservedInstancesListingOutput `json:"-", xml:"-"`
@@ -4913,12 +6714,27 @@ type metadataCreateReservedInstancesListingOutput struct {
 }
 
 type CreateRouteInput struct {
-	DestinationCIDRBlock   *string `locationName:"destinationCidrBlock" type:"string" required:"true"`
-	DryRun                 *bool   `locationName:"dryRun" type:"boolean"`
-	GatewayID              *string `locationName:"gatewayId" type:"string"`
-	InstanceID             *string `locationName:"instanceId" type:"string"`
-	NetworkInterfaceID     *string `locationName:"networkInterfaceId" type:"string"`
-	RouteTableID           *string `locationName:"routeTableId" type:"string" required:"true"`
+	// The CIDR address block used for the destination match. Routing decisions
+	// are based on the most specific match.
+	DestinationCIDRBlock *string `locationName:"destinationCidrBlock" type:"string" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of an Internet gateway or virtual private gateway attached to your
+	// VPC.
+	GatewayID *string `locationName:"gatewayId" type:"string"`
+
+	// The ID of a NAT instance in your VPC. The operation fails if you specify
+	// an instance ID unless exactly one network interface is attached.
+	InstanceID *string `locationName:"instanceId" type:"string"`
+
+	// The ID of a network interface.
+	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string"`
+
+	// The ID of the route table for the route.
+	RouteTableID *string `locationName:"routeTableId" type:"string" required:"true"`
+
+	// The ID of a VPC peering connection.
 	VPCPeeringConnectionID *string `locationName:"vpcPeeringConnectionId" type:"string"`
 
 	metadataCreateRouteInput `json:"-", xml:"-"`
@@ -4937,8 +6753,10 @@ type metadataCreateRouteOutput struct {
 }
 
 type CreateRouteTableInput struct {
-	DryRun *bool   `locationName:"dryRun" type:"boolean"`
-	VPCID  *string `locationName:"vpcId" type:"string" required:"true"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the VPC.
+	VPCID *string `locationName:"vpcId" type:"string" required:"true"`
 
 	metadataCreateRouteTableInput `json:"-", xml:"-"`
 }
@@ -4948,6 +6766,7 @@ type metadataCreateRouteTableInput struct {
 }
 
 type CreateRouteTableOutput struct {
+	// Information about the route table.
 	RouteTable *RouteTable `locationName:"routeTable" type:"structure"`
 
 	metadataCreateRouteTableOutput `json:"-", xml:"-"`
@@ -4958,10 +6777,28 @@ type metadataCreateRouteTableOutput struct {
 }
 
 type CreateSecurityGroupInput struct {
+	// A description for the security group. This is informational only.
+	//
+	// Constraints: Up to 255 characters in length
+	//
+	// Constraints for EC2-Classic: ASCII characters
+	//
+	// Constraints for EC2-VPC: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&;{}!$*
 	Description *string `locationName:"GroupDescription" type:"string" required:"true"`
-	DryRun      *bool   `locationName:"dryRun" type:"boolean"`
-	GroupName   *string `type:"string" required:"true"`
-	VPCID       *string `locationName:"VpcId" type:"string"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The name of the security group.
+	//
+	// Constraints: Up to 255 characters in length
+	//
+	// Constraints for EC2-Classic: ASCII characters
+	//
+	// Constraints for EC2-VPC: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&;{}!$*
+	GroupName *string `type:"string" required:"true"`
+
+	// [EC2-VPC] The ID of the VPC. Required for EC2-VPC.
+	VPCID *string `locationName:"VpcId" type:"string"`
 
 	metadataCreateSecurityGroupInput `json:"-", xml:"-"`
 }
@@ -4971,6 +6808,7 @@ type metadataCreateSecurityGroupInput struct {
 }
 
 type CreateSecurityGroupOutput struct {
+	// The ID of the security group.
 	GroupID *string `locationName:"groupId" type:"string"`
 
 	metadataCreateSecurityGroupOutput `json:"-", xml:"-"`
@@ -4981,9 +6819,13 @@ type metadataCreateSecurityGroupOutput struct {
 }
 
 type CreateSnapshotInput struct {
+	// A description for the snapshot.
 	Description *string `type:"string"`
-	DryRun      *bool   `locationName:"dryRun" type:"boolean"`
-	VolumeID    *string `locationName:"VolumeId" type:"string" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the Amazon EBS volume.
+	VolumeID *string `locationName:"VolumeId" type:"string" required:"true"`
 
 	metadataCreateSnapshotInput `json:"-", xml:"-"`
 }
@@ -4993,8 +6835,12 @@ type metadataCreateSnapshotInput struct {
 }
 
 type CreateSpotDatafeedSubscriptionInput struct {
+	// The Amazon S3 bucket in which to store the Spot Instance data feed.
 	Bucket *string `locationName:"bucket" type:"string" required:"true"`
-	DryRun *bool   `locationName:"dryRun" type:"boolean"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// A prefix for the data feed file names.
 	Prefix *string `locationName:"prefix" type:"string"`
 
 	metadataCreateSpotDatafeedSubscriptionInput `json:"-", xml:"-"`
@@ -5005,6 +6851,7 @@ type metadataCreateSpotDatafeedSubscriptionInput struct {
 }
 
 type CreateSpotDatafeedSubscriptionOutput struct {
+	// The Spot Instance data feed subscription.
 	SpotDatafeedSubscription *SpotDatafeedSubscription `locationName:"spotDatafeedSubscription" type:"structure"`
 
 	metadataCreateSpotDatafeedSubscriptionOutput `json:"-", xml:"-"`
@@ -5015,10 +6862,18 @@ type metadataCreateSpotDatafeedSubscriptionOutput struct {
 }
 
 type CreateSubnetInput struct {
+	// The Availability Zone for the subnet.
+	//
+	// Default: Amazon EC2 selects one for you (recommended).
 	AvailabilityZone *string `type:"string"`
-	CIDRBlock        *string `locationName:"CidrBlock" type:"string" required:"true"`
-	DryRun           *bool   `locationName:"dryRun" type:"boolean"`
-	VPCID            *string `locationName:"VpcId" type:"string" required:"true"`
+
+	// The network range for the subnet, in CIDR notation. For example, 10.0.0.0/24.
+	CIDRBlock *string `locationName:"CidrBlock" type:"string" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the VPC.
+	VPCID *string `locationName:"VpcId" type:"string" required:"true"`
 
 	metadataCreateSubnetInput `json:"-", xml:"-"`
 }
@@ -5028,6 +6883,7 @@ type metadataCreateSubnetInput struct {
 }
 
 type CreateSubnetOutput struct {
+	// Information about the subnet.
 	Subnet *Subnet `locationName:"subnet" type:"structure"`
 
 	metadataCreateSubnetOutput `json:"-", xml:"-"`
@@ -5038,9 +6894,15 @@ type metadataCreateSubnetOutput struct {
 }
 
 type CreateTagsInput struct {
-	DryRun    *bool     `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The IDs of one or more resources to tag. For example, ami-1a2b3c4d.
 	Resources []*string `locationName:"ResourceId" type:"list" required:"true"`
-	Tags      []*Tag    `locationName:"Tag" locationNameList:"item" type:"list" required:"true"`
+
+	// One or more tags. The value parameter is required, but if you don't want
+	// the tag to have a value, specify the parameter with no value, and we set
+	// the value to an empty string.
+	Tags []*Tag `locationName:"Tag" locationNameList:"item" type:"list" required:"true"`
 
 	metadataCreateTagsInput `json:"-", xml:"-"`
 }
@@ -5058,8 +6920,18 @@ type metadataCreateTagsOutput struct {
 }
 
 type CreateVPCInput struct {
-	CIDRBlock       *string `locationName:"CidrBlock" type:"string" required:"true"`
-	DryRun          *bool   `locationName:"dryRun" type:"boolean"`
+	// The network range for the VPC, in CIDR notation. For example, 10.0.0.0/16.
+	CIDRBlock *string `locationName:"CidrBlock" type:"string" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The supported tenancy options for instances launched into the VPC. A value
+	// of default means that instances can be launched with any tenancy; a value
+	// of dedicated means all instances launched into the VPC are launched as dedicated
+	// tenancy instances regardless of the tenancy assigned to the instance at launch.
+	// Dedicated tenancy instances run on single-tenant hardware.
+	//
+	// Default: default
 	InstanceTenancy *string `locationName:"instanceTenancy" type:"string"`
 
 	metadataCreateVPCInput `json:"-", xml:"-"`
@@ -5070,6 +6942,7 @@ type metadataCreateVPCInput struct {
 }
 
 type CreateVPCOutput struct {
+	// Information about the VPC.
 	VPC *VPC `locationName:"vpc" type:"structure"`
 
 	metadataCreateVPCOutput `json:"-", xml:"-"`
@@ -5080,10 +6953,18 @@ type metadataCreateVPCOutput struct {
 }
 
 type CreateVPCPeeringConnectionInput struct {
-	DryRun      *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The AWS account ID of the owner of the peer VPC.
+	//
+	// Default: Your AWS account ID
 	PeerOwnerID *string `locationName:"peerOwnerId" type:"string"`
-	PeerVPCID   *string `locationName:"peerVpcId" type:"string"`
-	VPCID       *string `locationName:"vpcId" type:"string"`
+
+	// The ID of the VPC with which you are creating the VPC peering connection.
+	PeerVPCID *string `locationName:"peerVpcId" type:"string"`
+
+	// The ID of the requester VPC.
+	VPCID *string `locationName:"vpcId" type:"string"`
 
 	metadataCreateVPCPeeringConnectionInput `json:"-", xml:"-"`
 }
@@ -5093,6 +6974,7 @@ type metadataCreateVPCPeeringConnectionInput struct {
 }
 
 type CreateVPCPeeringConnectionOutput struct {
+	// Information about the VPC peering connection.
 	VPCPeeringConnection *VPCPeeringConnection `locationName:"vpcPeeringConnection" type:"structure"`
 
 	metadataCreateVPCPeeringConnectionOutput `json:"-", xml:"-"`
@@ -5103,11 +6985,23 @@ type metadataCreateVPCPeeringConnectionOutput struct {
 }
 
 type CreateVPNConnectionInput struct {
-	CustomerGatewayID *string                            `locationName:"CustomerGatewayId" type:"string" required:"true"`
-	DryRun            *bool                              `locationName:"dryRun" type:"boolean"`
-	Options           *VPNConnectionOptionsSpecification `locationName:"options" type:"structure"`
-	Type              *string                            `type:"string" required:"true"`
-	VPNGatewayID      *string                            `locationName:"VpnGatewayId" type:"string" required:"true"`
+	// The ID of the customer gateway.
+	CustomerGatewayID *string `locationName:"CustomerGatewayId" type:"string" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// Indicates whether the VPN connection requires static routes. If you are creating
+	// a VPN connection for a device that does not support BGP, you must specify
+	// true.
+	//
+	// Default: false
+	Options *VPNConnectionOptionsSpecification `locationName:"options" type:"structure"`
+
+	// The type of VPN connection (ipsec.1).
+	Type *string `type:"string" required:"true"`
+
+	// The ID of the virtual private gateway.
+	VPNGatewayID *string `locationName:"VpnGatewayId" type:"string" required:"true"`
 
 	metadataCreateVPNConnectionInput `json:"-", xml:"-"`
 }
@@ -5117,6 +7011,7 @@ type metadataCreateVPNConnectionInput struct {
 }
 
 type CreateVPNConnectionOutput struct {
+	// Information about the VPN connection.
 	VPNConnection *VPNConnection `locationName:"vpnConnection" type:"structure"`
 
 	metadataCreateVPNConnectionOutput `json:"-", xml:"-"`
@@ -5127,8 +7022,11 @@ type metadataCreateVPNConnectionOutput struct {
 }
 
 type CreateVPNConnectionRouteInput struct {
+	// The CIDR block associated with the local subnet of the customer network.
 	DestinationCIDRBlock *string `locationName:"DestinationCidrBlock" type:"string" required:"true"`
-	VPNConnectionID      *string `locationName:"VpnConnectionId" type:"string" required:"true"`
+
+	// The ID of the VPN connection.
+	VPNConnectionID *string `locationName:"VpnConnectionId" type:"string" required:"true"`
 
 	metadataCreateVPNConnectionRouteInput `json:"-", xml:"-"`
 }
@@ -5146,9 +7044,13 @@ type metadataCreateVPNConnectionRouteOutput struct {
 }
 
 type CreateVPNGatewayInput struct {
+	// The Availability Zone for the virtual private gateway.
 	AvailabilityZone *string `type:"string"`
-	DryRun           *bool   `locationName:"dryRun" type:"boolean"`
-	Type             *string `type:"string" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The type of VPN connection this virtual private gateway supports.
+	Type *string `type:"string" required:"true"`
 
 	metadataCreateVPNGatewayInput `json:"-", xml:"-"`
 }
@@ -5158,6 +7060,7 @@ type metadataCreateVPNGatewayInput struct {
 }
 
 type CreateVPNGatewayOutput struct {
+	// Information about the virtual private gateway.
 	VPNGateway *VPNGateway `locationName:"vpnGateway" type:"structure"`
 
 	metadataCreateVPNGatewayOutput `json:"-", xml:"-"`
@@ -5168,14 +7071,52 @@ type metadataCreateVPNGatewayOutput struct {
 }
 
 type CreateVolumeInput struct {
+	// The Availability Zone in which to create the volume. Use DescribeAvailabilityZones
+	// to list the Availability Zones that are currently available to you.
 	AvailabilityZone *string `type:"string" required:"true"`
-	DryRun           *bool   `locationName:"dryRun" type:"boolean"`
-	Encrypted        *bool   `locationName:"encrypted" type:"boolean"`
-	IOPS             *int64  `locationName:"Iops" type:"integer"`
-	KMSKeyID         *string `locationName:"KmsKeyId" type:"string"`
-	Size             *int64  `type:"integer"`
-	SnapshotID       *string `locationName:"SnapshotId" type:"string"`
-	VolumeType       *string `type:"string"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// Specifies whether the volume should be encrypted. Encrypted Amazon EBS volumes
+	// may only be attached to instances that support Amazon EBS encryption. Volumes
+	// that are created from encrypted snapshots are automatically encrypted. There
+	// is no way to create an encrypted volume from an unencrypted snapshot or vice
+	// versa. If your AMI uses encrypted volumes, you can only launch it on supported
+	// instance types. For more information, see Amazon EBS Encryption (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	Encrypted *bool `locationName:"encrypted" type:"boolean"`
+
+	// Only valid for Provisioned IOPS (SSD) volumes. The number of I/O operations
+	// per second (IOPS) to provision for the volume.
+	IOPS *int64 `locationName:"Iops" type:"integer"`
+
+	// The full ARN of the AWS Key Management Service (KMS) master key to use when
+	// creating the encrypted volume. This parameter is only required if you want
+	// to use a non-default master key; if this parameter is not specified, the
+	// default master key is used. The ARN contains the arn:aws:kms namespace, followed
+	// by the region of the master key, the AWS account ID of the master key owner,
+	// the key namespace, and then the master key ID. For example, arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.
+	KMSKeyID *string `locationName:"KmsKeyId" type:"string"`
+
+	// The size of the volume, in GiBs.
+	//
+	// Constraints: If the volume type is io1, the minimum size of the volume is
+	// 4 GiB; otherwise, the minimum size is 1 GiB. The maximum volume size is 1024
+	// GiB. If you specify a snapshot, the volume size must be equal to or larger
+	// than the snapshot size.
+	//
+	// Default: If you're creating the volume from a snapshot and don't specify
+	// a volume size, the default is the snapshot size.
+	Size *int64 `type:"integer"`
+
+	// The snapshot from which to create the volume.
+	SnapshotID *string `locationName:"SnapshotId" type:"string"`
+
+	// The volume type. This can be gp2 for General Purpose (SSD) volumes, io1 for
+	// Provisioned IOPS (SSD) volumes, or standard for Magnetic volumes.
+	//
+	// Default: standard
+	VolumeType *string `type:"string"`
 
 	metadataCreateVolumeInput `json:"-", xml:"-"`
 }
@@ -5185,7 +7126,12 @@ type metadataCreateVolumeInput struct {
 }
 
 type CreateVolumePermission struct {
-	Group  *string `locationName:"group" type:"string"`
+	// The specific group that is to be added or removed from a volume's list of
+	// create volume permissions.
+	Group *string `locationName:"group" type:"string"`
+
+	// The specific AWS account ID that is to be added or removed from a volume's
+	// list of create volume permissions.
 	UserID *string `locationName:"userId" type:"string"`
 
 	metadataCreateVolumePermission `json:"-", xml:"-"`
@@ -5196,7 +7142,12 @@ type metadataCreateVolumePermission struct {
 }
 
 type CreateVolumePermissionModifications struct {
-	Add    []*CreateVolumePermission `locationNameList:"item" type:"list"`
+	// Adds a specific AWS account ID or group to a volume's list of create volume
+	// permissions.
+	Add []*CreateVolumePermission `locationNameList:"item" type:"list"`
+
+	// Removes a specific AWS account ID or group from a volume's list of create
+	// volume permissions.
 	Remove []*CreateVolumePermission `locationNameList:"item" type:"list"`
 
 	metadataCreateVolumePermissionModifications `json:"-", xml:"-"`
@@ -5206,13 +7157,27 @@ type metadataCreateVolumePermissionModifications struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a customer gateway.
 type CustomerGateway struct {
-	BGPASN            *string `locationName:"bgpAsn" type:"string"`
+	// The customer gateway's Border Gateway Protocol (BGP) Autonomous System Number
+	// (ASN).
+	BGPASN *string `locationName:"bgpAsn" type:"string"`
+
+	// The ID of the customer gateway.
 	CustomerGatewayID *string `locationName:"customerGatewayId" type:"string"`
-	IPAddress         *string `locationName:"ipAddress" type:"string"`
-	State             *string `locationName:"state" type:"string"`
-	Tags              []*Tag  `locationName:"tagSet" locationNameList:"item" type:"list"`
-	Type              *string `locationName:"type" type:"string"`
+
+	// The Internet-routable IP address of the customer gateway's outside interface.
+	IPAddress *string `locationName:"ipAddress" type:"string"`
+
+	// The current state of the customer gateway (pending | available | deleting
+	// | deleted).
+	State *string `locationName:"state" type:"string"`
+
+	// Any tags assigned to the customer gateway.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
+
+	// The type of VPN connection the customer gateway supports (ipsec.1).
+	Type *string `locationName:"type" type:"string"`
 
 	metadataCustomerGateway `json:"-", xml:"-"`
 }
@@ -5221,8 +7186,12 @@ type metadataCustomerGateway struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a DHCP configuration option.
 type DHCPConfiguration struct {
-	Key    *string           `locationName:"key" type:"string"`
+	// The name of a DHCP option.
+	Key *string `locationName:"key" type:"string"`
+
+	// One or more values for the DHCP option.
 	Values []*AttributeValue `locationName:"valueSet" locationNameList:"item" type:"list"`
 
 	metadataDHCPConfiguration `json:"-", xml:"-"`
@@ -5232,10 +7201,16 @@ type metadataDHCPConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a set of DHCP options.
 type DHCPOptions struct {
+	// One or more DHCP options in the set.
 	DHCPConfigurations []*DHCPConfiguration `locationName:"dhcpConfigurationSet" locationNameList:"item" type:"list"`
-	DHCPOptionsID      *string              `locationName:"dhcpOptionsId" type:"string"`
-	Tags               []*Tag               `locationName:"tagSet" locationNameList:"item" type:"list"`
+
+	// The ID of the set of DHCP options.
+	DHCPOptionsID *string `locationName:"dhcpOptionsId" type:"string"`
+
+	// Any tags assigned to the DHCP options set.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 
 	metadataDHCPOptions `json:"-", xml:"-"`
 }
@@ -5245,8 +7220,10 @@ type metadataDHCPOptions struct {
 }
 
 type DeleteCustomerGatewayInput struct {
+	// The ID of the customer gateway.
 	CustomerGatewayID *string `locationName:"CustomerGatewayId" type:"string" required:"true"`
-	DryRun            *bool   `locationName:"dryRun" type:"boolean"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	metadataDeleteCustomerGatewayInput `json:"-", xml:"-"`
 }
@@ -5264,8 +7241,10 @@ type metadataDeleteCustomerGatewayOutput struct {
 }
 
 type DeleteDHCPOptionsInput struct {
+	// The ID of the DHCP options set.
 	DHCPOptionsID *string `locationName:"DhcpOptionsId" type:"string" required:"true"`
-	DryRun        *bool   `locationName:"dryRun" type:"boolean"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	metadataDeleteDHCPOptionsInput `json:"-", xml:"-"`
 }
@@ -5283,7 +7262,9 @@ type metadataDeleteDHCPOptionsOutput struct {
 }
 
 type DeleteInternetGatewayInput struct {
-	DryRun            *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the Internet gateway.
 	InternetGatewayID *string `locationName:"internetGatewayId" type:"string" required:"true"`
 
 	metadataDeleteInternetGatewayInput `json:"-", xml:"-"`
@@ -5302,7 +7283,9 @@ type metadataDeleteInternetGatewayOutput struct {
 }
 
 type DeleteKeyPairInput struct {
-	DryRun  *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The name of the key pair.
 	KeyName *string `type:"string" required:"true"`
 
 	metadataDeleteKeyPairInput `json:"-", xml:"-"`
@@ -5321,10 +7304,16 @@ type metadataDeleteKeyPairOutput struct {
 }
 
 type DeleteNetworkACLEntryInput struct {
-	DryRun       *bool   `locationName:"dryRun" type:"boolean"`
-	Egress       *bool   `locationName:"egress" type:"boolean" required:"true"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// Indicates whether the rule is an egress rule.
+	Egress *bool `locationName:"egress" type:"boolean" required:"true"`
+
+	// The ID of the network ACL.
 	NetworkACLID *string `locationName:"networkAclId" type:"string" required:"true"`
-	RuleNumber   *int64  `locationName:"ruleNumber" type:"integer" required:"true"`
+
+	// The rule number of the entry to delete.
+	RuleNumber *int64 `locationName:"ruleNumber" type:"integer" required:"true"`
 
 	metadataDeleteNetworkACLEntryInput `json:"-", xml:"-"`
 }
@@ -5342,7 +7331,9 @@ type metadataDeleteNetworkACLEntryOutput struct {
 }
 
 type DeleteNetworkACLInput struct {
-	DryRun       *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the network ACL.
 	NetworkACLID *string `locationName:"networkAclId" type:"string" required:"true"`
 
 	metadataDeleteNetworkACLInput `json:"-", xml:"-"`
@@ -5361,7 +7352,9 @@ type metadataDeleteNetworkACLOutput struct {
 }
 
 type DeleteNetworkInterfaceInput struct {
-	DryRun             *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the network interface.
 	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string" required:"true"`
 
 	metadataDeleteNetworkInterfaceInput `json:"-", xml:"-"`
@@ -5380,7 +7373,9 @@ type metadataDeleteNetworkInterfaceOutput struct {
 }
 
 type DeletePlacementGroupInput struct {
-	DryRun    *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The name of the placement group.
 	GroupName *string `locationName:"groupName" type:"string" required:"true"`
 
 	metadataDeletePlacementGroupInput `json:"-", xml:"-"`
@@ -5399,9 +7394,14 @@ type metadataDeletePlacementGroupOutput struct {
 }
 
 type DeleteRouteInput struct {
+	// The CIDR range for the route. The value you specify must match the CIDR for
+	// the route exactly.
 	DestinationCIDRBlock *string `locationName:"destinationCidrBlock" type:"string" required:"true"`
-	DryRun               *bool   `locationName:"dryRun" type:"boolean"`
-	RouteTableID         *string `locationName:"routeTableId" type:"string" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the route table.
+	RouteTableID *string `locationName:"routeTableId" type:"string" required:"true"`
 
 	metadataDeleteRouteInput `json:"-", xml:"-"`
 }
@@ -5419,7 +7419,9 @@ type metadataDeleteRouteOutput struct {
 }
 
 type DeleteRouteTableInput struct {
-	DryRun       *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the route table.
 	RouteTableID *string `locationName:"routeTableId" type:"string" required:"true"`
 
 	metadataDeleteRouteTableInput `json:"-", xml:"-"`
@@ -5438,8 +7440,13 @@ type metadataDeleteRouteTableOutput struct {
 }
 
 type DeleteSecurityGroupInput struct {
-	DryRun    *bool   `locationName:"dryRun" type:"boolean"`
-	GroupID   *string `locationName:"GroupId" type:"string"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the security group. Required for a nondefault VPC.
+	GroupID *string `locationName:"GroupId" type:"string"`
+
+	// [EC2-Classic, default VPC] The name of the security group. You can specify
+	// either the security group name or the security group ID.
 	GroupName *string `type:"string"`
 
 	metadataDeleteSecurityGroupInput `json:"-", xml:"-"`
@@ -5458,7 +7465,9 @@ type metadataDeleteSecurityGroupOutput struct {
 }
 
 type DeleteSnapshotInput struct {
-	DryRun     *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the Amazon EBS snapshot.
 	SnapshotID *string `locationName:"SnapshotId" type:"string" required:"true"`
 
 	metadataDeleteSnapshotInput `json:"-", xml:"-"`
@@ -5495,7 +7504,9 @@ type metadataDeleteSpotDatafeedSubscriptionOutput struct {
 }
 
 type DeleteSubnetInput struct {
-	DryRun   *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the subnet.
 	SubnetID *string `locationName:"SubnetId" type:"string" required:"true"`
 
 	metadataDeleteSubnetInput `json:"-", xml:"-"`
@@ -5514,9 +7525,16 @@ type metadataDeleteSubnetOutput struct {
 }
 
 type DeleteTagsInput struct {
-	DryRun    *bool     `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the resource. For example, ami-1a2b3c4d. You can specify more than
+	// one resource ID.
 	Resources []*string `locationName:"resourceId" type:"list" required:"true"`
-	Tags      []*Tag    `locationName:"tag" locationNameList:"item" type:"list"`
+
+	// One or more tags to delete. If you omit the value parameter, we delete the
+	// tag regardless of its value. If you specify this parameter with an empty
+	// string as the value, we delete the key only if its value is an empty string.
+	Tags []*Tag `locationName:"tag" locationNameList:"item" type:"list"`
 
 	metadataDeleteTagsInput `json:"-", xml:"-"`
 }
@@ -5534,8 +7552,10 @@ type metadataDeleteTagsOutput struct {
 }
 
 type DeleteVPCInput struct {
-	DryRun *bool   `locationName:"dryRun" type:"boolean"`
-	VPCID  *string `locationName:"VpcId" type:"string" required:"true"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the VPC.
+	VPCID *string `locationName:"VpcId" type:"string" required:"true"`
 
 	metadataDeleteVPCInput `json:"-", xml:"-"`
 }
@@ -5553,7 +7573,9 @@ type metadataDeleteVPCOutput struct {
 }
 
 type DeleteVPCPeeringConnectionInput struct {
-	DryRun                 *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the VPC peering connection.
 	VPCPeeringConnectionID *string `locationName:"vpcPeeringConnectionId" type:"string" required:"true"`
 
 	metadataDeleteVPCPeeringConnectionInput `json:"-", xml:"-"`
@@ -5564,6 +7586,7 @@ type metadataDeleteVPCPeeringConnectionInput struct {
 }
 
 type DeleteVPCPeeringConnectionOutput struct {
+	// Returns true if the request succeeds; otherwise, it returns an error.
 	Return *bool `locationName:"return" type:"boolean"`
 
 	metadataDeleteVPCPeeringConnectionOutput `json:"-", xml:"-"`
@@ -5574,7 +7597,9 @@ type metadataDeleteVPCPeeringConnectionOutput struct {
 }
 
 type DeleteVPNConnectionInput struct {
-	DryRun          *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the VPN connection.
 	VPNConnectionID *string `locationName:"VpnConnectionId" type:"string" required:"true"`
 
 	metadataDeleteVPNConnectionInput `json:"-", xml:"-"`
@@ -5593,8 +7618,11 @@ type metadataDeleteVPNConnectionOutput struct {
 }
 
 type DeleteVPNConnectionRouteInput struct {
+	// The CIDR block associated with the local subnet of the customer network.
 	DestinationCIDRBlock *string `locationName:"DestinationCidrBlock" type:"string" required:"true"`
-	VPNConnectionID      *string `locationName:"VpnConnectionId" type:"string" required:"true"`
+
+	// The ID of the VPN connection.
+	VPNConnectionID *string `locationName:"VpnConnectionId" type:"string" required:"true"`
 
 	metadataDeleteVPNConnectionRouteInput `json:"-", xml:"-"`
 }
@@ -5612,7 +7640,9 @@ type metadataDeleteVPNConnectionRouteOutput struct {
 }
 
 type DeleteVPNGatewayInput struct {
-	DryRun       *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the virtual private gateway.
 	VPNGatewayID *string `locationName:"VpnGatewayId" type:"string" required:"true"`
 
 	metadataDeleteVPNGatewayInput `json:"-", xml:"-"`
@@ -5631,7 +7661,9 @@ type metadataDeleteVPNGatewayOutput struct {
 }
 
 type DeleteVolumeInput struct {
-	DryRun   *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the volume.
 	VolumeID *string `locationName:"VolumeId" type:"string" required:"true"`
 
 	metadataDeleteVolumeInput `json:"-", xml:"-"`
@@ -5650,7 +7682,9 @@ type metadataDeleteVolumeOutput struct {
 }
 
 type DeregisterImageInput struct {
-	DryRun  *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the AMI.
 	ImageID *string `locationName:"ImageId" type:"string" required:"true"`
 
 	metadataDeregisterImageInput `json:"-", xml:"-"`
@@ -5669,8 +7703,10 @@ type metadataDeregisterImageOutput struct {
 }
 
 type DescribeAccountAttributesInput struct {
+	// One or more account attribute names.
 	AttributeNames []*string `locationName:"attributeName" locationNameList:"attributeName" type:"list"`
-	DryRun         *bool     `locationName:"dryRun" type:"boolean"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	metadataDescribeAccountAttributesInput `json:"-", xml:"-"`
 }
@@ -5680,6 +7716,7 @@ type metadataDescribeAccountAttributesInput struct {
 }
 
 type DescribeAccountAttributesOutput struct {
+	// Information about one or more account attributes.
 	AccountAttributes []*AccountAttribute `locationName:"accountAttributeSet" locationNameList:"item" type:"list"`
 
 	metadataDescribeAccountAttributesOutput `json:"-", xml:"-"`
@@ -5690,10 +7727,40 @@ type metadataDescribeAccountAttributesOutput struct {
 }
 
 type DescribeAddressesInput struct {
+	// [EC2-VPC] One or more allocation IDs.
+	//
+	// Default: Describes all your Elastic IP addresses.
 	AllocationIDs []*string `locationName:"AllocationId" locationNameList:"AllocationId" type:"list"`
-	DryRun        *bool     `locationName:"dryRun" type:"boolean"`
-	Filters       []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
-	PublicIPs     []*string `locationName:"PublicIp" locationNameList:"PublicIp" type:"list"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters. Filter names and values are case-sensitive.
+	//
+	//   allocation-id - [EC2-VPC] The allocation ID for the address.
+	//
+	//   association-id - [EC2-VPC] The association ID for the address.
+	//
+	//   domain - Indicates whether the address is for use in EC2-Classic (standard)
+	// or in a VPC (vpc).
+	//
+	//   instance-id - The ID of the instance the address is associated with, if
+	// any.
+	//
+	//   network-interface-id - [EC2-VPC] The ID of the network interface that
+	// the address is associated with, if any.
+	//
+	//   network-interface-owner-id - The AWS account ID of the owner.
+	//
+	//   private-ip-address - [EC2-VPC] The private IP address associated with
+	// the Elastic IP address.
+	//
+	//   public-ip - The Elastic IP address.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// [EC2-Classic] One or more Elastic IP addresses.
+	//
+	// Default: Describes all your Elastic IP addresses.
+	PublicIPs []*string `locationName:"PublicIp" locationNameList:"PublicIp" type:"list"`
 
 	metadataDescribeAddressesInput `json:"-", xml:"-"`
 }
@@ -5703,6 +7770,7 @@ type metadataDescribeAddressesInput struct {
 }
 
 type DescribeAddressesOutput struct {
+	// Information about one or more Elastic IP addresses.
 	Addresses []*Address `locationName:"addressesSet" locationNameList:"item" type:"list"`
 
 	metadataDescribeAddressesOutput `json:"-", xml:"-"`
@@ -5713,8 +7781,21 @@ type metadataDescribeAddressesOutput struct {
 }
 
 type DescribeAvailabilityZonesInput struct {
-	DryRun    *bool     `locationName:"dryRun" type:"boolean"`
-	Filters   []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   message - Information about the Availability Zone.
+	//
+	//   region-name - The name of the region for the Availability Zone (for example,
+	// us-east-1).
+	//
+	//   state - The state of the Availability Zone (available | impaired | unavailable).
+	//
+	//   zone-name - The name of the Availability Zone (for example, us-east-1a).
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// The names of one or more Availability Zones.
 	ZoneNames []*string `locationName:"ZoneName" locationNameList:"ZoneName" type:"list"`
 
 	metadataDescribeAvailabilityZonesInput `json:"-", xml:"-"`
@@ -5725,6 +7806,7 @@ type metadataDescribeAvailabilityZonesInput struct {
 }
 
 type DescribeAvailabilityZonesOutput struct {
+	// Information about one or more Availability Zones.
 	AvailabilityZones []*AvailabilityZone `locationName:"availabilityZoneInfo" locationNameList:"item" type:"list"`
 
 	metadataDescribeAvailabilityZonesOutput `json:"-", xml:"-"`
@@ -5735,9 +7817,37 @@ type metadataDescribeAvailabilityZonesOutput struct {
 }
 
 type DescribeBundleTasksInput struct {
+	// One or more bundle task IDs.
+	//
+	// Default: Describes all your bundle tasks.
 	BundleIDs []*string `locationName:"BundleId" locationNameList:"BundleId" type:"list"`
-	DryRun    *bool     `locationName:"dryRun" type:"boolean"`
-	Filters   []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   bundle-id - The ID of the bundle task.
+	//
+	//   error-code - If the task failed, the error code returned.
+	//
+	//   error-message - If the task failed, the error message returned.
+	//
+	//   instance-id - The ID of the instance.
+	//
+	//   progress - The level of task completion, as a percentage (for example,
+	// 20%).
+	//
+	//   s3-bucket - The Amazon S3 bucket to store the AMI.
+	//
+	//   s3-prefix - The beginning of the AMI name.
+	//
+	//   start-time - The time the task started (for example, 2013-09-15T17:15:20.000Z).
+	//
+	//   state - The state of the task (pending | waiting-for-shutdown | bundling
+	// | storing | cancelling | complete | failed).
+	//
+	//   update-time - The time of the most recent update for the task.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	metadataDescribeBundleTasksInput `json:"-", xml:"-"`
 }
@@ -5747,6 +7857,7 @@ type metadataDescribeBundleTasksInput struct {
 }
 
 type DescribeBundleTasksOutput struct {
+	// Information about one or more bundle tasks.
 	BundleTasks []*BundleTask `locationName:"bundleInstanceTasksSet" locationNameList:"item" type:"list"`
 
 	metadataDescribeBundleTasksOutput `json:"-", xml:"-"`
@@ -5757,11 +7868,42 @@ type metadataDescribeBundleTasksOutput struct {
 }
 
 type DescribeClassicLinkInstancesInput struct {
-	DryRun      *bool     `locationName:"dryRun" type:"boolean"`
-	Filters     []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//  group-id - The ID of a VPC security group that's associated with the instance.
+	//
+	//  instance-id - The ID of the instance.
+	//
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
+	//
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
+	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
+	// and the filter "tag-value=X", you get any resources assigned both the tag
+	// key Purpose (regardless of what the tag's value is), and the tag value X
+	// (regardless of what the tag's key is). If you want to list only resources
+	// where Purpose is X, see the tag:key=value filter.
+	//
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
+	//
+	//   vpc-id - The ID of the VPC that the instance is linked to.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// One or more instance IDs. Must be instances linked to a VPC through ClassicLink.
 	InstanceIDs []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list"`
-	MaxResults  *int64    `locationName:"maxResults" type:"integer"`
-	NextToken   *string   `locationName:"nextToken" type:"string"`
+
+	// The maximum number of items to return for this request. The request returns
+	// a token that you can specify in a subsequent call to get the next set of
+	// results.
+	//
+	// Constraint: If the value is greater than 1000, we return only 1000 items.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// The token for the next set of items to return. (You received this token from
+	// a prior call.)
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataDescribeClassicLinkInstancesInput `json:"-", xml:"-"`
 }
@@ -5771,8 +7913,12 @@ type metadataDescribeClassicLinkInstancesInput struct {
 }
 
 type DescribeClassicLinkInstancesOutput struct {
+	// Information about one or more linked EC2-Classic instances.
 	Instances []*ClassicLinkInstance `locationName:"instancesSet" locationNameList:"item" type:"list"`
-	NextToken *string                `locationName:"nextToken" type:"string"`
+
+	// The token to use when requesting the next set of items. If there are no additional
+	// items to return, the string is empty.
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataDescribeClassicLinkInstancesOutput `json:"-", xml:"-"`
 }
@@ -5782,9 +7928,12 @@ type metadataDescribeClassicLinkInstancesOutput struct {
 }
 
 type DescribeConversionTasksInput struct {
+	// One or more conversion task IDs.
 	ConversionTaskIDs []*string `locationName:"conversionTaskId" locationNameList:"item" type:"list"`
-	DryRun            *bool     `locationName:"dryRun" type:"boolean"`
-	Filters           []*Filter `locationName:"filter" locationNameList:"Filter" type:"list"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	Filters []*Filter `locationName:"filter" locationNameList:"Filter" type:"list"`
 
 	metadataDescribeConversionTasksInput `json:"-", xml:"-"`
 }
@@ -5804,9 +7953,41 @@ type metadataDescribeConversionTasksOutput struct {
 }
 
 type DescribeCustomerGatewaysInput struct {
+	// One or more customer gateway IDs.
+	//
+	// Default: Describes all your customer gateways.
 	CustomerGatewayIDs []*string `locationName:"CustomerGatewayId" locationNameList:"CustomerGatewayId" type:"list"`
-	DryRun             *bool     `locationName:"dryRun" type:"boolean"`
-	Filters            []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   bgp-asn - The customer gateway's Border Gateway Protocol (BGP) Autonomous
+	// System Number (ASN).
+	//
+	//   customer-gateway-id - The ID of the customer gateway.
+	//
+	//   ip-address - The IP address of the customer gateway's Internet-routable
+	// external interface.
+	//
+	//   state - The state of the customer gateway (pending | available | deleting
+	// | deleted).
+	//
+	//   type - The type of customer gateway. Currently, the only supported type
+	// is ipsec.1.
+	//
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
+	//
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
+	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
+	// and the filter "tag-value=X", you get any resources assigned both the tag
+	// key Purpose (regardless of what the tag's value is), and the tag value X
+	// (regardless of what the tag's key is). If you want to list only resources
+	// where Purpose is X, see the tag:key=value filter.
+	//
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	metadataDescribeCustomerGatewaysInput `json:"-", xml:"-"`
 }
@@ -5816,6 +7997,7 @@ type metadataDescribeCustomerGatewaysInput struct {
 }
 
 type DescribeCustomerGatewaysOutput struct {
+	// Information about one or more customer gateways.
 	CustomerGateways []*CustomerGateway `locationName:"customerGatewaySet" locationNameList:"item" type:"list"`
 
 	metadataDescribeCustomerGatewaysOutput `json:"-", xml:"-"`
@@ -5826,9 +8008,33 @@ type metadataDescribeCustomerGatewaysOutput struct {
 }
 
 type DescribeDHCPOptionsInput struct {
+	// The IDs of one or more DHCP options sets.
+	//
+	// Default: Describes all your DHCP options sets.
 	DHCPOptionsIDs []*string `locationName:"DhcpOptionsId" locationNameList:"DhcpOptionsId" type:"list"`
-	DryRun         *bool     `locationName:"dryRun" type:"boolean"`
-	Filters        []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   dhcp-options-id - The ID of a set of DHCP options.
+	//
+	//   key - The key for one of the options (for example, domain-name).
+	//
+	//   value - The value for one of the options.
+	//
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
+	//
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
+	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
+	// and the filter "tag-value=X", you get any resources assigned both the tag
+	// key Purpose (regardless of what the tag's value is), and the tag value X
+	// (regardless of what the tag's key is). If you want to list only resources
+	// where Purpose is X, see the tag:key=value filter.
+	//
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	metadataDescribeDHCPOptionsInput `json:"-", xml:"-"`
 }
@@ -5838,6 +8044,7 @@ type metadataDescribeDHCPOptionsInput struct {
 }
 
 type DescribeDHCPOptionsOutput struct {
+	// Information about one or more DHCP options sets.
 	DHCPOptions []*DHCPOptions `locationName:"dhcpOptionsSet" locationNameList:"item" type:"list"`
 
 	metadataDescribeDHCPOptionsOutput `json:"-", xml:"-"`
@@ -5848,6 +8055,7 @@ type metadataDescribeDHCPOptionsOutput struct {
 }
 
 type DescribeExportTasksInput struct {
+	// One or more export task IDs.
 	ExportTaskIDs []*string `locationName:"exportTaskId" locationNameList:"ExportTaskId" type:"list"`
 
 	metadataDescribeExportTasksInput `json:"-", xml:"-"`
@@ -5868,9 +8076,13 @@ type metadataDescribeExportTasksOutput struct {
 }
 
 type DescribeImageAttributeInput struct {
+	// The AMI attribute.
 	Attribute *string `type:"string" required:"true"`
-	DryRun    *bool   `locationName:"dryRun" type:"boolean"`
-	ImageID   *string `locationName:"ImageId" type:"string" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the AMI.
+	ImageID *string `locationName:"ImageId" type:"string" required:"true"`
 
 	metadataDescribeImageAttributeInput `json:"-", xml:"-"`
 }
@@ -5879,15 +8091,31 @@ type metadataDescribeImageAttributeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an image attribute.
 type DescribeImageAttributeOutput struct {
+	// One or more block device mapping entries.
 	BlockDeviceMappings []*BlockDeviceMapping `locationName:"blockDeviceMapping" locationNameList:"item" type:"list"`
-	Description         *AttributeValue       `locationName:"description" type:"structure"`
-	ImageID             *string               `locationName:"imageId" type:"string"`
-	KernelID            *AttributeValue       `locationName:"kernel" type:"structure"`
-	LaunchPermissions   []*LaunchPermission   `locationName:"launchPermission" locationNameList:"item" type:"list"`
-	ProductCodes        []*ProductCode        `locationName:"productCodes" locationNameList:"item" type:"list"`
-	RAMDiskID           *AttributeValue       `locationName:"ramdisk" type:"structure"`
-	SRIOVNetSupport     *AttributeValue       `locationName:"sriovNetSupport" type:"structure"`
+
+	// A description for the AMI.
+	Description *AttributeValue `locationName:"description" type:"structure"`
+
+	// The ID of the AMI.
+	ImageID *string `locationName:"imageId" type:"string"`
+
+	// The kernel ID.
+	KernelID *AttributeValue `locationName:"kernel" type:"structure"`
+
+	// One or more launch permissions.
+	LaunchPermissions []*LaunchPermission `locationName:"launchPermission" locationNameList:"item" type:"list"`
+
+	// One or more product codes.
+	ProductCodes []*ProductCode `locationName:"productCodes" locationNameList:"item" type:"list"`
+
+	// The RAM disk ID.
+	RAMDiskID *AttributeValue `locationName:"ramdisk" type:"structure"`
+
+	// The value to use for a resource attribute.
+	SRIOVNetSupport *AttributeValue `locationName:"sriovNetSupport" type:"structure"`
 
 	metadataDescribeImageAttributeOutput `json:"-", xml:"-"`
 }
@@ -5897,11 +8125,94 @@ type metadataDescribeImageAttributeOutput struct {
 }
 
 type DescribeImagesInput struct {
-	DryRun          *bool     `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// Scopes the images by users with explicit launch permissions. Specify an AWS
+	// account ID, self (the sender of the request), or all (public AMIs).
 	ExecutableUsers []*string `locationName:"ExecutableBy" locationNameList:"ExecutableBy" type:"list"`
-	Filters         []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
-	ImageIDs        []*string `locationName:"ImageId" locationNameList:"ImageId" type:"list"`
-	Owners          []*string `locationName:"Owner" locationNameList:"Owner" type:"list"`
+
+	// One or more filters.
+	//
+	//   architecture - The image architecture (i386 | x86_64).
+	//
+	//   block-device-mapping.delete-on-termination - A Boolean value that indicates
+	// whether the Amazon EBS volume is deleted on instance termination.
+	//
+	//   block-device-mapping.device-name - The device name for the Amazon EBS
+	// volume (for example, /dev/sdh).
+	//
+	//   block-device-mapping.snapshot-id - The ID of the snapshot used for the
+	// Amazon EBS volume.
+	//
+	//   block-device-mapping.volume-size - The volume size of the Amazon EBS volume,
+	// in GiB.
+	//
+	//   block-device-mapping.volume-type - The volume type of the Amazon EBS volume
+	// (gp2 | standard | io1).
+	//
+	//   description - The description of the image (provided during image creation).
+	//
+	//   hypervisor - The hypervisor type (ovm | xen).
+	//
+	//   image-id - The ID of the image.
+	//
+	//   image-type - The image type (machine | kernel | ramdisk).
+	//
+	//   is-public - A Boolean that indicates whether the image is public.
+	//
+	//   kernel-id - The kernel ID.
+	//
+	//   manifest-location - The location of the image manifest.
+	//
+	//   name - The name of the AMI (provided during image creation).
+	//
+	//   owner-alias - The AWS account alias (for example, amazon).
+	//
+	//   owner-id - The AWS account ID of the image owner.
+	//
+	//   platform - The platform. To only list Windows-based AMIs, use windows.
+	//
+	//   product-code - The product code.
+	//
+	//   product-code.type - The type of the product code (devpay | marketplace).
+	//
+	//   ramdisk-id - The RAM disk ID.
+	//
+	//   root-device-name - The name of the root device volume (for example, /dev/sda1).
+	//
+	//   root-device-type - The type of the root device volume (ebs | instance-store).
+	//
+	//   state - The state of the image (available | pending | failed).
+	//
+	//   state-reason-code - The reason code for the state change.
+	//
+	//   state-reason-message - The message for the state change.
+	//
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
+	//
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
+	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
+	// and the filter "tag-value=X", you get any resources assigned both the tag
+	// key Purpose (regardless of what the tag's value is), and the tag value X
+	// (regardless of what the tag's key is). If you want to list only resources
+	// where Purpose is X, see the tag:key=value filter.
+	//
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
+	//
+	//   virtualization-type - The virtualization type (paravirtual | hvm).
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// One or more image IDs.
+	//
+	// Default: Describes all images available to you.
+	ImageIDs []*string `locationName:"ImageId" locationNameList:"ImageId" type:"list"`
+
+	// Filters the images by the owner. Specify an AWS account ID, amazon (owner
+	// is Amazon), aws-marketplace (owner is AWS Marketplace), self (owner is the
+	// sender of the request). Omitting this option returns all images for which
+	// you have launch permissions, regardless of ownership.
+	Owners []*string `locationName:"Owner" locationNameList:"Owner" type:"list"`
 
 	metadataDescribeImagesInput `json:"-", xml:"-"`
 }
@@ -5911,6 +8222,7 @@ type metadataDescribeImagesInput struct {
 }
 
 type DescribeImagesOutput struct {
+	// Information about one or more images.
 	Images []*Image `locationName:"imagesSet" locationNameList:"item" type:"list"`
 
 	metadataDescribeImagesOutput `json:"-", xml:"-"`
@@ -5921,8 +8233,12 @@ type metadataDescribeImagesOutput struct {
 }
 
 type DescribeInstanceAttributeInput struct {
-	Attribute  *string `locationName:"attribute" type:"string" required:"true"`
-	DryRun     *bool   `locationName:"dryRun" type:"boolean"`
+	// The instance attribute.
+	Attribute *string `locationName:"attribute" type:"string" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the instance.
 	InstanceID *string `locationName:"instanceId" type:"string" required:"true"`
 
 	metadataDescribeInstanceAttributeInput `json:"-", xml:"-"`
@@ -5932,21 +8248,53 @@ type metadataDescribeInstanceAttributeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an instance attribute.
 type DescribeInstanceAttributeOutput struct {
-	BlockDeviceMappings               []*InstanceBlockDeviceMapping `locationName:"blockDeviceMapping" locationNameList:"item" type:"list"`
-	DisableAPITermination             *AttributeBooleanValue        `locationName:"disableApiTermination" type:"structure"`
-	EBSOptimized                      *AttributeBooleanValue        `locationName:"ebsOptimized" type:"structure"`
-	Groups                            []*GroupIdentifier            `locationName:"groupSet" locationNameList:"item" type:"list"`
-	InstanceID                        *string                       `locationName:"instanceId" type:"string"`
-	InstanceInitiatedShutdownBehavior *AttributeValue               `locationName:"instanceInitiatedShutdownBehavior" type:"structure"`
-	InstanceType                      *AttributeValue               `locationName:"instanceType" type:"structure"`
-	KernelID                          *AttributeValue               `locationName:"kernel" type:"structure"`
-	ProductCodes                      []*ProductCode                `locationName:"productCodes" locationNameList:"item" type:"list"`
-	RAMDiskID                         *AttributeValue               `locationName:"ramdisk" type:"structure"`
-	RootDeviceName                    *AttributeValue               `locationName:"rootDeviceName" type:"structure"`
-	SRIOVNetSupport                   *AttributeValue               `locationName:"sriovNetSupport" type:"structure"`
-	SourceDestCheck                   *AttributeBooleanValue        `locationName:"sourceDestCheck" type:"structure"`
-	UserData                          *AttributeValue               `locationName:"userData" type:"structure"`
+	// The block device mapping of the instance.
+	BlockDeviceMappings []*InstanceBlockDeviceMapping `locationName:"blockDeviceMapping" locationNameList:"item" type:"list"`
+
+	// If the value is true, you can't terminate the instance through the Amazon
+	// EC2 console, CLI, or API; otherwise, you can.
+	DisableAPITermination *AttributeBooleanValue `locationName:"disableApiTermination" type:"structure"`
+
+	// Indicates whether the instance is optimized for EBS I/O.
+	EBSOptimized *AttributeBooleanValue `locationName:"ebsOptimized" type:"structure"`
+
+	// The security groups associated with the instance.
+	Groups []*GroupIdentifier `locationName:"groupSet" locationNameList:"item" type:"list"`
+
+	// The ID of the instance.
+	InstanceID *string `locationName:"instanceId" type:"string"`
+
+	// Indicates whether an instance stops or terminates when you initiate shutdown
+	// from the instance (using the operating system command for system shutdown).
+	InstanceInitiatedShutdownBehavior *AttributeValue `locationName:"instanceInitiatedShutdownBehavior" type:"structure"`
+
+	// The instance type.
+	InstanceType *AttributeValue `locationName:"instanceType" type:"structure"`
+
+	// The kernel ID.
+	KernelID *AttributeValue `locationName:"kernel" type:"structure"`
+
+	// A list of product codes.
+	ProductCodes []*ProductCode `locationName:"productCodes" locationNameList:"item" type:"list"`
+
+	// The RAM disk ID.
+	RAMDiskID *AttributeValue `locationName:"ramdisk" type:"structure"`
+
+	// The name of the root device (for example, /dev/sda1).
+	RootDeviceName *AttributeValue `locationName:"rootDeviceName" type:"structure"`
+
+	// The value to use for a resource attribute.
+	SRIOVNetSupport *AttributeValue `locationName:"sriovNetSupport" type:"structure"`
+
+	// Indicates whether source/destination checking is enabled. A value of true
+	// means checking is enabled, and false means checking is disabled. This value
+	// must be false for a NAT instance to perform NAT.
+	SourceDestCheck *AttributeBooleanValue `locationName:"sourceDestCheck" type:"structure"`
+
+	// The Base64-encoded MIME user data.
+	UserData *AttributeValue `locationName:"userData" type:"structure"`
 
 	metadataDescribeInstanceAttributeOutput `json:"-", xml:"-"`
 }
@@ -5956,12 +8304,68 @@ type metadataDescribeInstanceAttributeOutput struct {
 }
 
 type DescribeInstanceStatusInput struct {
-	DryRun              *bool     `locationName:"dryRun" type:"boolean"`
-	Filters             []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
-	IncludeAllInstances *bool     `locationName:"includeAllInstances" type:"boolean"`
-	InstanceIDs         []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list"`
-	MaxResults          *int64    `type:"integer"`
-	NextToken           *string   `type:"string"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   availability-zone - The Availability Zone of the instance.
+	//
+	//   event.code - The code identifying the type of event (instance-reboot |
+	// system-reboot | system-maintenance | instance-retirement | instance-stop).
+	//
+	//   event.description - A description of the event.
+	//
+	//   event.not-after - The latest end time for the scheduled event, for example:
+	// 2010-09-15T17:15:20.000Z.
+	//
+	//   event.not-before - The earliest start time for the scheduled event, for
+	// example: 2010-09-15T17:15:20.000Z.
+	//
+	//   instance-state-code - A code representing the state of the instance, as
+	// a 16-bit unsigned integer. The high byte is an opaque internal value and
+	// should be ignored. The low byte is set based on the state represented. The
+	// valid values are 0 (pending), 16 (running), 32 (shutting-down), 48 (terminated),
+	// 64 (stopping), and 80 (stopped).
+	//
+	//   instance-state-name - The state of the instance (pending | running | shutting-down
+	// | terminated | stopping | stopped).
+	//
+	//   instance-status.reachability - Filters on instance status where the name
+	// is reachability (passed | failed | initializing | insufficient-data).
+	//
+	//   instance-status.status - The status of the instance (ok | impaired | initializing
+	// | insufficient-data | not-applicable).
+	//
+	//   system-status.reachability - Filters on system status where the name is
+	// reachability (passed | failed | initializing | insufficient-data).
+	//
+	//   system-status.status - The system status of the instance (ok | impaired
+	// | initializing | insufficient-data | not-applicable).
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// When true, includes the health status for all instances. When false, includes
+	// the health status for running instances only.
+	//
+	// Default: false
+	IncludeAllInstances *bool `locationName:"includeAllInstances" type:"boolean"`
+
+	// One or more instance IDs.
+	//
+	// Default: Describes all your instances.
+	//
+	// Constraints: Maximum 100 explicitly specified instance IDs.
+	InstanceIDs []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list"`
+
+	// The maximum number of paginated instance items per response. The call also
+	// returns a token that you can specify in a subsequent call to get the next
+	// set of results. If the value is greater than 1000, we return only 1000 items.
+	//
+	// Default: 1000
+	MaxResults *int64 `type:"integer"`
+
+	// The next paginated set of results to return. (You received this token from
+	// a prior call.)
+	NextToken *string `type:"string"`
 
 	metadataDescribeInstanceStatusInput `json:"-", xml:"-"`
 }
@@ -5971,8 +8375,11 @@ type metadataDescribeInstanceStatusInput struct {
 }
 
 type DescribeInstanceStatusOutput struct {
+	// One or more instance status descriptions.
 	InstanceStatuses []*InstanceStatus `locationName:"instanceStatusSet" locationNameList:"item" type:"list"`
-	NextToken        *string           `locationName:"nextToken" type:"string"`
+
+	// The next paginated set of results to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataDescribeInstanceStatusOutput `json:"-", xml:"-"`
 }
@@ -5982,11 +8389,246 @@ type metadataDescribeInstanceStatusOutput struct {
 }
 
 type DescribeInstancesInput struct {
-	DryRun      *bool     `locationName:"dryRun" type:"boolean"`
-	Filters     []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   architecture - The instance architecture (i386 | x86_64).
+	//
+	//   availability-zone - The Availability Zone of the instance.
+	//
+	//   block-device-mapping.attach-time - The attach time for an Amazon EBS volume
+	// mapped to the instance, for example, 2010-09-15T17:15:20.000Z.
+	//
+	//   block-device-mapping.delete-on-termination - A Boolean that indicates
+	// whether the Amazon EBS volume is deleted on instance termination.
+	//
+	//   block-device-mapping.device-name - The device name for the Amazon EBS
+	// volume (for example, /dev/sdh).
+	//
+	//   block-device-mapping.status - The status for the Amazon EBS volume (attaching
+	// | attached | detaching | detached).
+	//
+	//   block-device-mapping.volume-id - The volume ID of the Amazon EBS volume.
+	//
+	//   client-token - The idempotency token you provided when you launched the
+	// instance.
+	//
+	//   dns-name - The public DNS name of the instance.
+	//
+	//   group-id - The ID of the security group for the instance. EC2-Classic
+	// only.
+	//
+	//   group-name - The name of the security group for the instance. EC2-Classic
+	// only.
+	//
+	//   hypervisor - The hypervisor type of the instance (ovm | xen).
+	//
+	//   iam-instance-profile.arn - The instance profile associated with the instance.
+	// Specified as an ARN.
+	//
+	//   image-id - The ID of the image used to launch the instance.
+	//
+	//   instance-id - The ID of the instance.
+	//
+	//   instance-lifecycle - Indicates whether this is a Spot Instance (spot).
+	//
+	//   instance-state-code - The state of the instance, as a 16-bit unsigned
+	// integer. The high byte is an opaque internal value and should be ignored.
+	// The low byte is set based on the state represented. The valid values are:
+	// 0 (pending), 16 (running), 32 (shutting-down), 48 (terminated), 64 (stopping),
+	// and 80 (stopped).
+	//
+	//   instance-state-name - The state of the instance (pending | running | shutting-down
+	// | terminated | stopping | stopped).
+	//
+	//   instance-type - The type of instance (for example, m1.small).
+	//
+	//   instance.group-id - The ID of the security group for the instance.
+	//
+	//   instance.group-name - The name of the security group for the instance.
+	//
+	//   ip-address - The public IP address of the instance.
+	//
+	//   kernel-id - The kernel ID.
+	//
+	//   key-name - The name of the key pair used when the instance was launched.
+	//
+	//   launch-index - When launching multiple instances, this is the index for
+	// the instance in the launch group (for example, 0, 1, 2, and so on).
+	//
+	//   launch-time - The time when the instance was launched.
+	//
+	//   monitoring-state - Indicates whether monitoring is enabled for the instance
+	// (disabled | enabled).
+	//
+	//   owner-id - The AWS account ID of the instance owner.
+	//
+	//   placement-group-name - The name of the placement group for the instance.
+	//
+	//   platform - The platform. Use windows if you have Windows instances; otherwise,
+	// leave blank.
+	//
+	//   private-dns-name - The private DNS name of the instance.
+	//
+	//   private-ip-address - The private IP address of the instance.
+	//
+	//   product-code - The product code associated with the AMI used to launch
+	// the instance.
+	//
+	//   product-code.type - The type of product code (devpay | marketplace).
+	//
+	//   ramdisk-id - The RAM disk ID.
+	//
+	//   reason - The reason for the current state of the instance (for example,
+	// shows "User Initiated [date]" when you stop or terminate the instance). Similar
+	// to the state-reason-code filter.
+	//
+	//   requester-id - The ID of the entity that launched the instance on your
+	// behalf (for example, AWS Management Console, Auto Scaling, and so on).
+	//
+	//   reservation-id - The ID of the instance's reservation. A reservation ID
+	// is created any time you launch an instance. A reservation ID has a one-to-one
+	// relationship with an instance launch request, but can be associated with
+	// more than one instance if you launch multiple instances using the same launch
+	// request. For example, if you launch one instance, you'll get one reservation
+	// ID. If you launch ten instances using the same launch request, you'll also
+	// get one reservation ID.
+	//
+	//   root-device-name - The name of the root device for the instance (for example,
+	// /dev/sda1).
+	//
+	//   root-device-type - The type of root device that the instance uses (ebs
+	// | instance-store).
+	//
+	//   source-dest-check - Indicates whether the instance performs source/destination
+	// checking. A value of true means that checking is enabled, and false means
+	// checking is disabled. The value must be false for the instance to perform
+	// network address translation (NAT) in your VPC.
+	//
+	//   spot-instance-request-id - The ID of the Spot Instance request.
+	//
+	//   state-reason-code - The reason code for the state change.
+	//
+	//   state-reason-message - A message that describes the state change.
+	//
+	//   subnet-id - The ID of the subnet for the instance.
+	//
+	//   tag:key=value - The key/value combination of a tag assigned to the resource,
+	// where tag:key is the tag's key.
+	//
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
+	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
+	// and the filter "tag-value=X", you get any resources assigned both the tag
+	// key Purpose (regardless of what the tag's value is), and the tag value X
+	// (regardless of what the tag's key is). If you want to list only resources
+	// where Purpose is X, see the tag:key=value filter.
+	//
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
+	//
+	//   tenancy - The tenancy of an instance (dedicated | default).
+	//
+	//   virtualization-type - The virtualization type of the instance (paravirtual
+	// | hvm).
+	//
+	//   vpc-id - The ID of the VPC that the instance is running in.
+	//
+	//   network-interface.description - The description of the network interface.
+	//
+	//   network-interface.subnet-id - The ID of the subnet for the network interface.
+	//
+	//   network-interface.vpc-id - The ID of the VPC for the network interface.
+	//
+	//   network-interface.network-interface.id - The ID of the network interface.
+	//
+	//   network-interface.owner-id - The ID of the owner of the network interface.
+	//
+	//   network-interface.availability-zone - The Availability Zone for the network
+	// interface.
+	//
+	//   network-interface.requester-id - The requester ID for the network interface.
+	//
+	//   network-interface.requester-managed - Indicates whether the network interface
+	// is being managed by AWS.
+	//
+	//   network-interface.status - The status of the network interface (available)
+	// | in-use).
+	//
+	//   network-interface.mac-address - The MAC address of the network interface.
+	//
+	//   network-interface-private-dns-name - The private DNS name of the network
+	// interface.
+	//
+	//   network-interface.source-destination-check - Whether the network interface
+	// performs source/destination checking. A value of true means checking is enabled,
+	// and false means checking is disabled. The value must be false for the network
+	// interface to perform network address translation (NAT) in your VPC.
+	//
+	//   network-interface.group-id - The ID of a security group associated with
+	// the network interface.
+	//
+	//   network-interface.group-name - The name of a security group associated
+	// with the network interface.
+	//
+	//   network-interface.attachment.attachment-id - The ID of the interface attachment.
+	//
+	//   network-interface.attachment.instance-id - The ID of the instance to which
+	// the network interface is attached.
+	//
+	//   network-interface.attachment.instance-owner-id - The owner ID of the instance
+	// to which the network interface is attached.
+	//
+	//   network-interface.addresses.private-ip-address - The private IP address
+	// associated with the network interface.
+	//
+	//   network-interface.attachment.device-index - The device index to which
+	// the network interface is attached.
+	//
+	//   network-interface.attachment.status - The status of the attachment (attaching
+	// | attached | detaching | detached).
+	//
+	//   network-interface.attachment.attach-time - The time that the network interface
+	// was attached to an instance.
+	//
+	//   network-interface.attachment.delete-on-termination - Specifies whether
+	// the attachment is deleted when an instance is terminated.
+	//
+	//   network-interface.addresses.primary - Specifies whether the IP address
+	// of the network interface is the primary private IP address.
+	//
+	//   network-interface.addresses.association.public-ip - The ID of the association
+	// of an Elastic IP address with a network interface.
+	//
+	//   network-interface.addresses.association.ip-owner-id - The owner ID of
+	// the private IP address associated with the network interface.
+	//
+	//   association.public-ip - The address of the Elastic IP address bound to
+	// the network interface.
+	//
+	//   association.ip-owner-id - The owner of the Elastic IP address associated
+	// with the network interface.
+	//
+	//   association.allocation-id - The allocation ID returned when you allocated
+	// the Elastic IP address for your network interface.
+	//
+	//   association.association-id - The association ID returned when the network
+	// interface was associated with an IP address.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// One or more instance IDs.
+	//
+	// Default: Describes all your instances.
 	InstanceIDs []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list"`
-	MaxResults  *int64    `locationName:"maxResults" type:"integer"`
-	NextToken   *string   `locationName:"nextToken" type:"string"`
+
+	// The maximum number of items to return for this call. The call also returns
+	// a token that you can specify in a subsequent call to get the next set of
+	// results. If the value is greater than 1000, we return only 1000 items.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// The token for the next set of items to return. (You received this token from
+	// a prior call.)
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataDescribeInstancesInput `json:"-", xml:"-"`
 }
@@ -5996,7 +8638,11 @@ type metadataDescribeInstancesInput struct {
 }
 
 type DescribeInstancesOutput struct {
-	NextToken    *string        `locationName:"nextToken" type:"string"`
+	// The token to use when requesting the next set of items. If there are no additional
+	// items to return, the string is empty.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// One or more reservations.
 	Reservations []*Reservation `locationName:"reservationSet" locationNameList:"item" type:"list"`
 
 	metadataDescribeInstancesOutput `json:"-", xml:"-"`
@@ -6007,8 +8653,33 @@ type metadataDescribeInstancesOutput struct {
 }
 
 type DescribeInternetGatewaysInput struct {
-	DryRun             *bool     `locationName:"dryRun" type:"boolean"`
-	Filters            []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   attachment.state - The current state of the attachment between the gateway
+	// and the VPC (available). Present only if a VPC is attached.
+	//
+	//   attachment.vpc-id - The ID of an attached VPC.
+	//
+	//   internet-gateway-id - The ID of the Internet gateway.
+	//
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
+	//
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
+	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
+	// and the filter "tag-value=X", you get any resources assigned both the tag
+	// key Purpose (regardless of what the tag's value is), and the tag value X
+	// (regardless of what the tag's key is). If you want to list only resources
+	// where Purpose is X, see the tag:key=value filter.
+	//
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// One or more Internet gateway IDs.
+	//
+	// Default: Describes all your Internet gateways.
 	InternetGatewayIDs []*string `locationName:"internetGatewayId" locationNameList:"item" type:"list"`
 
 	metadataDescribeInternetGatewaysInput `json:"-", xml:"-"`
@@ -6019,6 +8690,7 @@ type metadataDescribeInternetGatewaysInput struct {
 }
 
 type DescribeInternetGatewaysOutput struct {
+	// Information about one or more Internet gateways.
 	InternetGateways []*InternetGateway `locationName:"internetGatewaySet" locationNameList:"item" type:"list"`
 
 	metadataDescribeInternetGatewaysOutput `json:"-", xml:"-"`
@@ -6029,8 +8701,18 @@ type metadataDescribeInternetGatewaysOutput struct {
 }
 
 type DescribeKeyPairsInput struct {
-	DryRun   *bool     `locationName:"dryRun" type:"boolean"`
-	Filters  []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   fingerprint - The fingerprint of the key pair.
+	//
+	//   key-name - The name of the key pair.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// One or more key pair names.
+	//
+	// Default: Describes all your key pairs.
 	KeyNames []*string `locationName:"KeyName" locationNameList:"KeyName" type:"list"`
 
 	metadataDescribeKeyPairsInput `json:"-", xml:"-"`
@@ -6041,6 +8723,7 @@ type metadataDescribeKeyPairsInput struct {
 }
 
 type DescribeKeyPairsOutput struct {
+	// Information about one or more key pairs.
 	KeyPairs []*KeyPairInfo `locationName:"keySet" locationNameList:"item" type:"list"`
 
 	metadataDescribeKeyPairsOutput `json:"-", xml:"-"`
@@ -6051,8 +8734,60 @@ type metadataDescribeKeyPairsOutput struct {
 }
 
 type DescribeNetworkACLsInput struct {
-	DryRun        *bool     `locationName:"dryRun" type:"boolean"`
-	Filters       []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   association.association-id - The ID of an association ID for the ACL.
+	//
+	//   association.network-acl-id - The ID of the network ACL involved in the
+	// association.
+	//
+	//   association.subnet-id - The ID of the subnet involved in the association.
+	//
+	//   default - Indicates whether the ACL is the default network ACL for the
+	// VPC.
+	//
+	//   entry.cidr - The CIDR range specified in the entry.
+	//
+	//   entry.egress - Indicates whether the entry applies to egress traffic.
+	//
+	//   entry.icmp.code - The ICMP code specified in the entry, if any.
+	//
+	//   entry.icmp.type - The ICMP type specified in the entry, if any.
+	//
+	//   entry.port-range.from - The start of the port range specified in the entry.
+	//
+	//   entry.port-range.to - The end of the port range specified in the entry.
+	//
+	//   entry.protocol - The protocol specified in the entry (tcp | udp | icmp
+	// or a protocol number).
+	//
+	//   entry.rule-action - Allows or denies the matching traffic (allow | deny).
+	//
+	//   entry.rule-number - The number of an entry (in other words, rule) in the
+	// ACL's set of entries.
+	//
+	//   network-acl-id - The ID of the network ACL.
+	//
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
+	//
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
+	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
+	// and the filter "tag-value=X", you get any resources assigned both the tag
+	// key Purpose (regardless of what the tag's value is), and the tag value X
+	// (regardless of what the tag's key is). If you want to list only resources
+	// where Purpose is X, see the tag:key=value filter.
+	//
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
+	//
+	//   vpc-id - The ID of the VPC for the network ACL.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// One or more network ACL IDs.
+	//
+	// Default: Describes all your network ACLs.
 	NetworkACLIDs []*string `locationName:"NetworkAclId" locationNameList:"item" type:"list"`
 
 	metadataDescribeNetworkACLsInput `json:"-", xml:"-"`
@@ -6063,6 +8798,7 @@ type metadataDescribeNetworkACLsInput struct {
 }
 
 type DescribeNetworkACLsOutput struct {
+	// Information about one or more network ACLs.
 	NetworkACLs []*NetworkACL `locationName:"networkAclSet" locationNameList:"item" type:"list"`
 
 	metadataDescribeNetworkACLsOutput `json:"-", xml:"-"`
@@ -6073,8 +8809,12 @@ type metadataDescribeNetworkACLsOutput struct {
 }
 
 type DescribeNetworkInterfaceAttributeInput struct {
-	Attribute          *string `locationName:"attribute" type:"string"`
-	DryRun             *bool   `locationName:"dryRun" type:"boolean"`
+	// The attribute of the network interface.
+	Attribute *string `locationName:"attribute" type:"string"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the network interface.
 	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string" required:"true"`
 
 	metadataDescribeNetworkInterfaceAttributeInput `json:"-", xml:"-"`
@@ -6085,11 +8825,20 @@ type metadataDescribeNetworkInterfaceAttributeInput struct {
 }
 
 type DescribeNetworkInterfaceAttributeOutput struct {
-	Attachment         *NetworkInterfaceAttachment `locationName:"attachment" type:"structure"`
-	Description        *AttributeValue             `locationName:"description" type:"structure"`
-	Groups             []*GroupIdentifier          `locationName:"groupSet" locationNameList:"item" type:"list"`
-	NetworkInterfaceID *string                     `locationName:"networkInterfaceId" type:"string"`
-	SourceDestCheck    *AttributeBooleanValue      `locationName:"sourceDestCheck" type:"structure"`
+	// The attachment (if any) of the network interface.
+	Attachment *NetworkInterfaceAttachment `locationName:"attachment" type:"structure"`
+
+	// The description of the network interface.
+	Description *AttributeValue `locationName:"description" type:"structure"`
+
+	// The security groups associated with the network interface.
+	Groups []*GroupIdentifier `locationName:"groupSet" locationNameList:"item" type:"list"`
+
+	// The ID of the network interface.
+	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string"`
+
+	// Indicates whether source/destination checking is enabled.
+	SourceDestCheck *AttributeBooleanValue `locationName:"sourceDestCheck" type:"structure"`
 
 	metadataDescribeNetworkInterfaceAttributeOutput `json:"-", xml:"-"`
 }
@@ -6099,8 +8848,112 @@ type metadataDescribeNetworkInterfaceAttributeOutput struct {
 }
 
 type DescribeNetworkInterfacesInput struct {
-	DryRun              *bool     `locationName:"dryRun" type:"boolean"`
-	Filters             []*Filter `locationName:"filter" locationNameList:"Filter" type:"list"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   addresses.private-ip-address - The private IP addresses associated with
+	// the network interface.
+	//
+	//   addresses.primary - Whether the private IP address is the primary IP address
+	// associated with the network interface.
+	//
+	//   addresses.association.public-ip - The association ID returned when the
+	// network interface was associated with the Elastic IP address.
+	//
+	//   addresses.association.owner-id - The owner ID of the addresses associated
+	// with the network interface.
+	//
+	//   association.association-id - The association ID returned when the network
+	// interface was associated with an IP address.
+	//
+	//   association.allocation-id - The allocation ID returned when you allocated
+	// the Elastic IP address for your network interface.
+	//
+	//   association.ip-owner-id - The owner of the Elastic IP address associated
+	// with the network interface.
+	//
+	//   association.public-ip - The address of the Elastic IP address bound to
+	// the network interface.
+	//
+	//   association.public-dns-name - The public DNS name for the network interface.
+	//
+	//   attachment.attachment-id - The ID of the interface attachment.
+	//
+	//   attachment.instance-id - The ID of the instance to which the network interface
+	// is attached.
+	//
+	//   attachment.instance-owner-id - The owner ID of the instance to which the
+	// network interface is attached.
+	//
+	//   attachment.device-index - The device index to which the network interface
+	// is attached.
+	//
+	//   attachment.status - The status of the attachment (attaching | attached
+	// | detaching | detached).
+	//
+	//   attachment.attach.time - The time that the network interface was attached
+	// to an instance.
+	//
+	//   attachment.delete-on-termination - Indicates whether the attachment is
+	// deleted when an instance is terminated.
+	//
+	//   availability-zone - The Availability Zone of the network interface.
+	//
+	//   description - The description of the network interface.
+	//
+	//   group-id - The ID of a security group associated with the network interface.
+	//
+	//   group-name - The name of a security group associated with the network
+	// interface.
+	//
+	//   mac-address - The MAC address of the network interface.
+	//
+	//   network-interface-id - The ID of the network interface.
+	//
+	//   owner-id - The AWS account ID of the network interface owner.
+	//
+	//   private-ip-address - The private IP address or addresses of the network
+	// interface.
+	//
+	//   private-dns-name - The private DNS name of the network interface.
+	//
+	//   requester-id - The ID of the entity that launched the instance on your
+	// behalf (for example, AWS Management Console, Auto Scaling, and so on).
+	//
+	//   requester-managed - Indicates whether the network interface is being managed
+	// by an AWS service (for example, AWS Management Console, Auto Scaling, and
+	// so on).
+	//
+	//   source-desk-check - Indicates whether the network interface performs source/destination
+	// checking. A value of true means checking is enabled, and false means checking
+	// is disabled. The value must be false for the network interface to perform
+	// Network Address Translation (NAT) in your VPC.
+	//
+	//   status - The status of the network interface. If the network interface
+	// is not attached to an instance, the status is available; if a network interface
+	// is attached to an instance the status is in-use.
+	//
+	//   subnet-id - The ID of the subnet for the network interface.
+	//
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
+	//
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
+	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
+	// and the filter "tag-value=X", you get any resources assigned both the tag
+	// key Purpose (regardless of what the tag's value is), and the tag value X
+	// (regardless of what the tag's key is). If you want to list only resources
+	// where Purpose is X, see the tag:key=value filter.
+	//
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
+	//
+	//   vpc-id - The ID of the VPC for the network interface.
+	Filters []*Filter `locationName:"filter" locationNameList:"Filter" type:"list"`
+
+	// One or more network interface IDs.
+	//
+	// Default: Describes all your network interfaces.
 	NetworkInterfaceIDs []*string `locationName:"NetworkInterfaceId" locationNameList:"item" type:"list"`
 
 	metadataDescribeNetworkInterfacesInput `json:"-", xml:"-"`
@@ -6111,6 +8964,7 @@ type metadataDescribeNetworkInterfacesInput struct {
 }
 
 type DescribeNetworkInterfacesOutput struct {
+	// Information about one or more network interfaces.
 	NetworkInterfaces []*NetworkInterface `locationName:"networkInterfaceSet" locationNameList:"item" type:"list"`
 
 	metadataDescribeNetworkInterfacesOutput `json:"-", xml:"-"`
@@ -6121,8 +8975,21 @@ type metadataDescribeNetworkInterfacesOutput struct {
 }
 
 type DescribePlacementGroupsInput struct {
-	DryRun     *bool     `locationName:"dryRun" type:"boolean"`
-	Filters    []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   group-name - The name of the placement group.
+	//
+	//   state - The state of the placement group (pending | available | deleting
+	// | deleted).
+	//
+	//   strategy - The strategy of the placement group (cluster).
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// One or more placement group names.
+	//
+	// Default: Describes all your placement groups, or only those otherwise specified.
 	GroupNames []*string `locationName:"groupName" type:"list"`
 
 	metadataDescribePlacementGroupsInput `json:"-", xml:"-"`
@@ -6133,6 +9000,7 @@ type metadataDescribePlacementGroupsInput struct {
 }
 
 type DescribePlacementGroupsOutput struct {
+	// One or more placement groups.
 	PlacementGroups []*PlacementGroup `locationName:"placementGroupSet" locationNameList:"item" type:"list"`
 
 	metadataDescribePlacementGroupsOutput `json:"-", xml:"-"`
@@ -6143,8 +9011,16 @@ type metadataDescribePlacementGroupsOutput struct {
 }
 
 type DescribeRegionsInput struct {
-	DryRun      *bool     `locationName:"dryRun" type:"boolean"`
-	Filters     []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   endpoint - The endpoint of the region (for example, ec2.us-east-1.amazonaws.com).
+	//
+	//   region-name - The name of the region (for example, us-east-1).
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// The names of one or more regions.
 	RegionNames []*string `locationName:"RegionName" locationNameList:"RegionName" type:"list"`
 
 	metadataDescribeRegionsInput `json:"-", xml:"-"`
@@ -6155,6 +9031,7 @@ type metadataDescribeRegionsInput struct {
 }
 
 type DescribeRegionsOutput struct {
+	// Information about one or more regions.
 	Regions []*Region `locationName:"regionInfo" locationNameList:"item" type:"list"`
 
 	metadataDescribeRegionsOutput `json:"-", xml:"-"`
@@ -6165,9 +9042,60 @@ type metadataDescribeRegionsOutput struct {
 }
 
 type DescribeReservedInstancesInput struct {
-	DryRun               *bool     `locationName:"dryRun" type:"boolean"`
-	Filters              []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
-	OfferingType         *string   `locationName:"offeringType" type:"string"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   availability-zone - The Availability Zone where the Reserved Instance
+	// can be used.
+	//
+	//   duration - The duration of the Reserved Instance (one year or three years),
+	// in seconds (31536000 | 94608000).
+	//
+	//   end - The time when the Reserved Instance expires (for example, 2014-08-07T11:54:42.000Z).
+	//
+	//   fixed-price - The purchase price of the Reserved Instance (for example,
+	// 9800.0).
+	//
+	//   instance-type - The instance type on which the Reserved Instance can be
+	// used.
+	//
+	//   product-description - The product description of the Reserved Instance
+	// (Linux/UNIX | Linux/UNIX (Amazon VPC) | Windows | Windows (Amazon VPC)).
+	//
+	//   reserved-instances-id - The ID of the Reserved Instance.
+	//
+	//   start - The time at which the Reserved Instance purchase request was placed
+	// (for example, 2014-08-07T11:54:42.000Z).
+	//
+	//   state - The state of the Reserved Instance (pending-payment | active |
+	// payment-failed | retired).
+	//
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
+	//
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
+	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
+	// and the filter "tag-value=X", you get any resources assigned both the tag
+	// key Purpose (regardless of what the tag's value is), and the tag value X
+	// (regardless of what the tag's key is). If you want to list only resources
+	// where Purpose is X, see the tag:key=value filter.
+	//
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
+	//
+	//   usage-price - The usage price of the Reserved Instance, per hour (for
+	// example, 0.84).
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// The Reserved Instance offering type. If you are using tools that predate
+	// the 2011-11-01 API version, you only have access to the Medium Utilization
+	// Reserved Instance offering type.
+	OfferingType *string `locationName:"offeringType" type:"string"`
+
+	// One or more Reserved Instance IDs.
+	//
+	// Default: Describes all your Reserved Instances, or only those otherwise
+	// specified.
 	ReservedInstancesIDs []*string `locationName:"ReservedInstancesId" locationNameList:"ReservedInstancesId" type:"list"`
 
 	metadataDescribeReservedInstancesInput `json:"-", xml:"-"`
@@ -6178,9 +9106,23 @@ type metadataDescribeReservedInstancesInput struct {
 }
 
 type DescribeReservedInstancesListingsInput struct {
-	Filters                    []*Filter `locationName:"filters" locationNameList:"Filter" type:"list"`
-	ReservedInstancesID        *string   `locationName:"reservedInstancesId" type:"string"`
-	ReservedInstancesListingID *string   `locationName:"reservedInstancesListingId" type:"string"`
+	// One or more filters.
+	//
+	//   reserved-instances-id - The ID of the Reserved Instances.
+	//
+	//   reserved-instances-listing-id - The ID of the Reserved Instances listing.
+	//
+	//   status - The status of the Reserved Instance listing (pending | active
+	// | cancelled | closed).
+	//
+	//   status-message - The reason for the status.
+	Filters []*Filter `locationName:"filters" locationNameList:"Filter" type:"list"`
+
+	// One or more Reserved Instance IDs.
+	ReservedInstancesID *string `locationName:"reservedInstancesId" type:"string"`
+
+	// One or more Reserved Instance Listing IDs.
+	ReservedInstancesListingID *string `locationName:"reservedInstancesListingId" type:"string"`
 
 	metadataDescribeReservedInstancesListingsInput `json:"-", xml:"-"`
 }
@@ -6190,6 +9132,7 @@ type metadataDescribeReservedInstancesListingsInput struct {
 }
 
 type DescribeReservedInstancesListingsOutput struct {
+	// Information about the Reserved Instance listing.
 	ReservedInstancesListings []*ReservedInstancesListing `locationName:"reservedInstancesListingsSet" locationNameList:"item" type:"list"`
 
 	metadataDescribeReservedInstancesListingsOutput `json:"-", xml:"-"`
@@ -6200,8 +9143,46 @@ type metadataDescribeReservedInstancesListingsOutput struct {
 }
 
 type DescribeReservedInstancesModificationsInput struct {
-	Filters                          []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
-	NextToken                        *string   `locationName:"nextToken" type:"string"`
+	// One or more filters.
+	//
+	//   client-token - The idempotency token for the modification request.
+	//
+	//   create-date - The time when the modification request was created.
+	//
+	//   effective-date - The time when the modification becomes effective.
+	//
+	//   modification-result.reserved-instances-id - The ID for the Reserved Instances
+	// created as part of the modification request. This ID is only available when
+	// the status of the modification is fulfilled.
+	//
+	//   modification-result.target-configuration.availability-zone - The Availability
+	// Zone for the new Reserved Instances.
+	//
+	//   modification-result.target-configuration.instance-count  - The number
+	// of new Reserved Instances.
+	//
+	//   modification-result.target-configuration.instance-type - The instance
+	// type of the new Reserved Instances.
+	//
+	//   modification-result.target-configuration.platform - The network platform
+	// of the new Reserved Instances (EC2-Classic | EC2-VPC).
+	//
+	//   reserved-instances-id - The ID of the Reserved Instances modified.
+	//
+	//   reserved-instances-modification-id - The ID of the modification request.
+	//
+	//   status - The status of the Reserved Instances modification request (processing
+	// | fulfilled | failed).
+	//
+	//   status-message - The reason for the status.
+	//
+	//   update-date - The time when the modification request was last updated.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// The token for the next page of data.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// IDs for the submitted modification request.
 	ReservedInstancesModificationIDs []*string `locationName:"ReservedInstancesModificationId" locationNameList:"ReservedInstancesModificationId" type:"list"`
 
 	metadataDescribeReservedInstancesModificationsInput `json:"-", xml:"-"`
@@ -6212,7 +9193,10 @@ type metadataDescribeReservedInstancesModificationsInput struct {
 }
 
 type DescribeReservedInstancesModificationsOutput struct {
-	NextToken                      *string                          `locationName:"nextToken" type:"string"`
+	// The token for the next page of data.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The Reserved Instance modification information.
 	ReservedInstancesModifications []*ReservedInstancesModification `locationName:"reservedInstancesModificationsSet" locationNameList:"item" type:"list"`
 
 	metadataDescribeReservedInstancesModificationsOutput `json:"-", xml:"-"`
@@ -6223,19 +9207,86 @@ type metadataDescribeReservedInstancesModificationsOutput struct {
 }
 
 type DescribeReservedInstancesOfferingsInput struct {
-	AvailabilityZone             *string   `type:"string"`
-	DryRun                       *bool     `locationName:"dryRun" type:"boolean"`
-	Filters                      []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
-	IncludeMarketplace           *bool     `type:"boolean"`
-	InstanceTenancy              *string   `locationName:"instanceTenancy" type:"string"`
-	InstanceType                 *string   `type:"string"`
-	MaxDuration                  *int64    `type:"long"`
-	MaxInstanceCount             *int64    `type:"integer"`
-	MaxResults                   *int64    `locationName:"maxResults" type:"integer"`
-	MinDuration                  *int64    `type:"long"`
-	NextToken                    *string   `locationName:"nextToken" type:"string"`
-	OfferingType                 *string   `locationName:"offeringType" type:"string"`
-	ProductDescription           *string   `type:"string"`
+	// The Availability Zone in which the Reserved Instance can be used.
+	AvailabilityZone *string `type:"string"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   availability-zone - The Availability Zone where the Reserved Instance
+	// can be used.
+	//
+	//   duration - The duration of the Reserved Instance (for example, one year
+	// or three years), in seconds (31536000 | 94608000).
+	//
+	//   fixed-price - The purchase price of the Reserved Instance (for example,
+	// 9800.0).
+	//
+	//   instance-type - The instance type on which the Reserved Instance can be
+	// used.
+	//
+	//   marketplace - Set to true to show only Reserved Instance Marketplace offerings.
+	// When this filter is not used, which is the default behavior, all offerings
+	// from AWS and Reserved Instance Marketplace are listed.
+	//
+	//   product-description - The description of the Reserved Instance (Linux/UNIX
+	// | Linux/UNIX (Amazon VPC) | Windows | Windows (Amazon VPC)).
+	//
+	//   reserved-instances-offering-id - The Reserved Instances offering ID.
+	//
+	//   usage-price - The usage price of the Reserved Instance, per hour (for
+	// example, 0.84).
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// Include Marketplace offerings in the response.
+	IncludeMarketplace *bool `type:"boolean"`
+
+	// The tenancy of the Reserved Instance offering. A Reserved Instance with dedicated
+	// tenancy runs on single-tenant hardware and can only be launched within a
+	// VPC.
+	//
+	// Default: default
+	InstanceTenancy *string `locationName:"instanceTenancy" type:"string"`
+
+	// The instance type on which the Reserved Instance can be used. For more information,
+	// see Instance Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	InstanceType *string `type:"string"`
+
+	// The maximum duration (in seconds) to filter when searching for offerings.
+	//
+	// Default: 94608000 (3 years)
+	MaxDuration *int64 `type:"long"`
+
+	// The maximum number of instances to filter when searching for offerings.
+	//
+	// Default: 20
+	MaxInstanceCount *int64 `type:"integer"`
+
+	// The maximum number of offerings to return. The maximum is 100.
+	//
+	// Default: 100
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// The minimum duration (in seconds) to filter when searching for offerings.
+	//
+	// Default: 2592000 (1 month)
+	MinDuration *int64 `type:"long"`
+
+	// The token to use when requesting the next paginated set of offerings.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The Reserved Instance offering type. If you are using tools that predate
+	// the 2011-11-01 API version, you only have access to the Medium Utilization
+	// Reserved Instance offering type.
+	OfferingType *string `locationName:"offeringType" type:"string"`
+
+	// The Reserved Instance description. Instances that include (Amazon VPC) in
+	// the description are for use with Amazon VPC.
+	ProductDescription *string `type:"string"`
+
+	// One or more Reserved Instances offering IDs.
 	ReservedInstancesOfferingIDs []*string `locationName:"ReservedInstancesOfferingId" type:"list"`
 
 	metadataDescribeReservedInstancesOfferingsInput `json:"-", xml:"-"`
@@ -6246,7 +9297,10 @@ type metadataDescribeReservedInstancesOfferingsInput struct {
 }
 
 type DescribeReservedInstancesOfferingsOutput struct {
-	NextToken                  *string                      `locationName:"nextToken" type:"string"`
+	// The next paginated set of results to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// A list of Reserved Instances offerings.
 	ReservedInstancesOfferings []*ReservedInstancesOffering `locationName:"reservedInstancesOfferingsSet" locationNameList:"item" type:"list"`
 
 	metadataDescribeReservedInstancesOfferingsOutput `json:"-", xml:"-"`
@@ -6257,6 +9311,7 @@ type metadataDescribeReservedInstancesOfferingsOutput struct {
 }
 
 type DescribeReservedInstancesOutput struct {
+	// A list of Reserved Instances.
 	ReservedInstances []*ReservedInstances `locationName:"reservedInstancesSet" locationNameList:"item" type:"list"`
 
 	metadataDescribeReservedInstancesOutput `json:"-", xml:"-"`
@@ -6267,8 +9322,63 @@ type metadataDescribeReservedInstancesOutput struct {
 }
 
 type DescribeRouteTablesInput struct {
-	DryRun        *bool     `locationName:"dryRun" type:"boolean"`
-	Filters       []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   association.route-table-association-id - The ID of an association ID for
+	// the route table.
+	//
+	//   association.route-table-id - The ID of the route table involved in the
+	// association.
+	//
+	//   association.subnet-id - The ID of the subnet involved in the association.
+	//
+	//   association.main - Indicates whether the route table is the main route
+	// table for the VPC.
+	//
+	//   route-table-id - The ID of the route table.
+	//
+	//   route.destination-cidr-block - The CIDR range specified in a route in
+	// the table.
+	//
+	//   route.gateway-id - The ID of a gateway specified in a route in the table.
+	//
+	//   route.instance-id - The ID of an instance specified in a route in the
+	// table.
+	//
+	//   route.origin - Describes how the route was created. CreateRouteTable indicates
+	// that the route was automatically created when the route table was created;
+	// CreateRoute indicates that the route was manually added to the route table;
+	// EnableVgwRoutePropagation indicates that the route was propagated by route
+	// propagation.
+	//
+	//   route.state - The state of a route in the route table (active | blackhole).
+	// The blackhole state indicates that the route's target isn't available (for
+	// example, the specified gateway isn't attached to the VPC, the specified NAT
+	// instance has been terminated, and so on).
+	//
+	//   route.vpc-peering-connection-id - The ID of a VPC peering connection specified
+	// in a route in the table.
+	//
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
+	//
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
+	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
+	// and the filter "tag-value=X", you get any resources assigned both the tag
+	// key Purpose (regardless of what the tag's value is), and the tag value X
+	// (regardless of what the tag's key is). If you want to list only resources
+	// where Purpose is X, see the tag:key=value filter.
+	//
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
+	//
+	//   vpc-id - The ID of the VPC for the route table.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// One or more route table IDs.
+	//
+	// Default: Describes all your route tables.
 	RouteTableIDs []*string `locationName:"RouteTableId" locationNameList:"item" type:"list"`
 
 	metadataDescribeRouteTablesInput `json:"-", xml:"-"`
@@ -6279,6 +9389,7 @@ type metadataDescribeRouteTablesInput struct {
 }
 
 type DescribeRouteTablesOutput struct {
+	// Information about one or more route tables.
 	RouteTables []*RouteTable `locationName:"routeTableSet" locationNameList:"item" type:"list"`
 
 	metadataDescribeRouteTablesOutput `json:"-", xml:"-"`
@@ -6289,9 +9400,54 @@ type metadataDescribeRouteTablesOutput struct {
 }
 
 type DescribeSecurityGroupsInput struct {
-	DryRun     *bool     `locationName:"dryRun" type:"boolean"`
-	Filters    []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
-	GroupIDs   []*string `locationName:"GroupId" locationNameList:"groupId" type:"list"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   description - The description of the security group.
+	//
+	//   group-id - The ID of the security group.
+	//
+	//   group-name - The name of the security group.
+	//
+	//   ip-permission.cidr - A CIDR range that has been granted permission.
+	//
+	//   ip-permission.from-port - The start of port range for the TCP and UDP
+	// protocols, or an ICMP type number.
+	//
+	//   ip-permission.group-id - The ID of a security group that has been granted
+	// permission.
+	//
+	//   ip-permission.group-name - The name of a security group that has been
+	// granted permission.
+	//
+	//   ip-permission.protocol - The IP protocol for the permission (tcp | udp
+	// | icmp or a protocol number).
+	//
+	//   ip-permission.to-port - The end of port range for the TCP and UDP protocols,
+	// or an ICMP code.
+	//
+	//   ip-permission.user-id - The ID of an AWS account that has been granted
+	// permission.
+	//
+	//   owner-id - The AWS account ID of the owner of the security group.
+	//
+	//   tag-key - The key of a tag assigned to the security group.
+	//
+	//   tag-value - The value of a tag assigned to the security group.
+	//
+	//   vpc-id - The ID of the VPC specified when the security group was created.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// One or more security group IDs. Required for nondefault VPCs.
+	//
+	// Default: Describes all your security groups.
+	GroupIDs []*string `locationName:"GroupId" locationNameList:"groupId" type:"list"`
+
+	// [EC2-Classic, default VPC] One or more security group names. You can specify
+	// either the security group name or the security group ID.
+	//
+	// Default: Describes all your security groups.
 	GroupNames []*string `locationName:"GroupName" locationNameList:"GroupName" type:"list"`
 
 	metadataDescribeSecurityGroupsInput `json:"-", xml:"-"`
@@ -6302,6 +9458,7 @@ type metadataDescribeSecurityGroupsInput struct {
 }
 
 type DescribeSecurityGroupsOutput struct {
+	// Information about one or more security groups.
 	SecurityGroups []*SecurityGroup `locationName:"securityGroupInfo" locationNameList:"item" type:"list"`
 
 	metadataDescribeSecurityGroupsOutput `json:"-", xml:"-"`
@@ -6312,8 +9469,12 @@ type metadataDescribeSecurityGroupsOutput struct {
 }
 
 type DescribeSnapshotAttributeInput struct {
-	Attribute  *string `type:"string" required:"true"`
-	DryRun     *bool   `locationName:"dryRun" type:"boolean"`
+	// The snapshot attribute you would like to view.
+	Attribute *string `type:"string" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the Amazon EBS snapshot.
 	SnapshotID *string `locationName:"SnapshotId" type:"string" required:"true"`
 
 	metadataDescribeSnapshotAttributeInput `json:"-", xml:"-"`
@@ -6324,9 +9485,14 @@ type metadataDescribeSnapshotAttributeInput struct {
 }
 
 type DescribeSnapshotAttributeOutput struct {
+	// A list of permissions for creating volumes from the snapshot.
 	CreateVolumePermissions []*CreateVolumePermission `locationName:"createVolumePermission" locationNameList:"item" type:"list"`
-	ProductCodes            []*ProductCode            `locationName:"productCodes" locationNameList:"item" type:"list"`
-	SnapshotID              *string                   `locationName:"snapshotId" type:"string"`
+
+	// A list of product codes.
+	ProductCodes []*ProductCode `locationName:"productCodes" locationNameList:"item" type:"list"`
+
+	// The ID of the Amazon EBS snapshot.
+	SnapshotID *string `locationName:"snapshotId" type:"string"`
 
 	metadataDescribeSnapshotAttributeOutput `json:"-", xml:"-"`
 }
@@ -6336,11 +9502,54 @@ type metadataDescribeSnapshotAttributeOutput struct {
 }
 
 type DescribeSnapshotsInput struct {
-	DryRun              *bool     `locationName:"dryRun" type:"boolean"`
-	Filters             []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
-	OwnerIDs            []*string `locationName:"Owner" locationNameList:"Owner" type:"list"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   description - A description of the snapshot.
+	//
+	//   owner-alias - The AWS account alias (for example, amazon) that owns the
+	// snapshot.
+	//
+	//   owner-id - The ID of the AWS account that owns the snapshot.
+	//
+	//   progress - The progress of the snapshot, as a percentage (for example,
+	// 80%).
+	//
+	//   snapshot-id - The snapshot ID.
+	//
+	//   start-time - The time stamp when the snapshot was initiated.
+	//
+	//   status - The status of the snapshot (pending | completed | error).
+	//
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
+	//
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
+	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
+	// and the filter "tag-value=X", you get any resources assigned both the tag
+	// key Purpose (regardless of what the tag's value is), and the tag value X
+	// (regardless of what the tag's key is). If you want to list only resources
+	// where Purpose is X, see the tag:key=value filter.
+	//
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
+	//
+	//   volume-id - The ID of the volume the snapshot is for.
+	//
+	//   volume-size - The size of the volume, in GiB.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// Returns the snapshots owned by the specified owner. Multiple owners can be
+	// specified.
+	OwnerIDs []*string `locationName:"Owner" locationNameList:"Owner" type:"list"`
+
+	// One or more AWS accounts IDs that can create volumes from the snapshot.
 	RestorableByUserIDs []*string `locationName:"RestorableBy" type:"list"`
-	SnapshotIDs         []*string `locationName:"SnapshotId" locationNameList:"SnapshotId" type:"list"`
+
+	// One or more snapshot IDs.
+	//
+	// Default: Describes snapshots for which you have launch permissions.
+	SnapshotIDs []*string `locationName:"SnapshotId" locationNameList:"SnapshotId" type:"list"`
 
 	metadataDescribeSnapshotsInput `json:"-", xml:"-"`
 }
@@ -6370,6 +9579,7 @@ type metadataDescribeSpotDatafeedSubscriptionInput struct {
 }
 
 type DescribeSpotDatafeedSubscriptionOutput struct {
+	// The Spot Instance data feed subscription.
 	SpotDatafeedSubscription *SpotDatafeedSubscription `locationName:"spotDatafeedSubscription" type:"structure"`
 
 	metadataDescribeSpotDatafeedSubscriptionOutput `json:"-", xml:"-"`
@@ -6380,8 +9590,119 @@ type metadataDescribeSpotDatafeedSubscriptionOutput struct {
 }
 
 type DescribeSpotInstanceRequestsInput struct {
-	DryRun                 *bool     `locationName:"dryRun" type:"boolean"`
-	Filters                []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   availability-zone-group - The Availability Zone group.
+	//
+	//   create-time - The time stamp when the Spot Instance request was created.
+	//
+	//   fault-code - The fault code related to the request.
+	//
+	//   fault-message - The fault message related to the request.
+	//
+	//   instance-id - The ID of the instance that fulfilled the request.
+	//
+	//   launch-group - The Spot Instance launch group.
+	//
+	//   launch.block-device-mapping.delete-on-termination - Indicates whether
+	// the Amazon EBS volume is deleted on instance termination.
+	//
+	//   launch.block-device-mapping.device-name - The device name for the Amazon
+	// EBS volume (for example, /dev/sdh).
+	//
+	//   launch.block-device-mapping.snapshot-id - The ID of the snapshot used
+	// for the Amazon EBS volume.
+	//
+	//   launch.block-device-mapping.volume-size - The size of the Amazon EBS volume,
+	// in GiB.
+	//
+	//   launch.block-device-mapping.volume-type - The type of the Amazon EBS volume
+	// (gp2 | standard | io1).
+	//
+	//   launch.group-id - The security group for the instance.
+	//
+	//   launch.image-id - The ID of the AMI.
+	//
+	//   launch.instance-type - The type of instance (for example, m1.small).
+	//
+	//   launch.kernel-id - The kernel ID.
+	//
+	//   launch.key-name - The name of the key pair the instance launched with.
+	//
+	//   launch.monitoring-enabled - Whether monitoring is enabled for the Spot
+	// Instance.
+	//
+	//   launch.ramdisk-id - The RAM disk ID.
+	//
+	//   network-interface.network-interface-id - The ID of the network interface.
+	//
+	//   network-interface.device-index - The index of the device for the network
+	// interface attachment on the instance.
+	//
+	//   network-interface.subnet-id - The ID of the subnet for the instance.
+	//
+	//   network-interface.description - A description of the network interface.
+	//
+	//   network-interface.private-ip-address - The primary private IP address
+	// of the network interface.
+	//
+	//   network-interface.delete-on-termination - Indicates whether the network
+	// interface is deleted when the instance is terminated.
+	//
+	//   network-interface.group-id - The ID of the security group associated with
+	// the network interface.
+	//
+	//   network-interface.group-name - The name of the security group associated
+	// with the network interface.
+	//
+	//   network-interface.addresses.primary - Indicates whether the IP address
+	// is the primary private IP address.
+	//
+	//   product-description - The product description associated with the instance
+	// (Linux/UNIX | Windows).
+	//
+	//   spot-instance-request-id - The Spot Instance request ID.
+	//
+	//   spot-price - The maximum hourly price for any Spot Instance launched to
+	// fulfill the request.
+	//
+	//   state - The state of the Spot Instance request (open | active | closed
+	// | cancelled | failed). Spot bid status information can help you track your
+	// Amazon EC2 Spot Instance requests. For more information, see Spot Bid Status
+	// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-bid-status.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	//
+	//   status-code - The short code describing the most recent evaluation of
+	// your Spot Instance request.
+	//
+	//   status-message - The message explaining the status of the Spot Instance
+	// request.
+	//
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
+	//
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
+	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
+	// and the filter "tag-value=X", you get any resources assigned both the tag
+	// key Purpose (regardless of what the tag's value is), and the tag value X
+	// (regardless of what the tag's key is). If you want to list only resources
+	// where Purpose is X, see the tag:key=value filter.
+	//
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
+	//
+	//   type - The type of Spot Instance request (one-time | persistent).
+	//
+	//   launched-availability-zone - The Availability Zone in which the bid is
+	// launched.
+	//
+	//   valid-from - The start date of the request.
+	//
+	//   valid-until - The end date of the request.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// One or more Spot Instance request IDs.
 	SpotInstanceRequestIDs []*string `locationName:"SpotInstanceRequestId" locationNameList:"SpotInstanceRequestId" type:"list"`
 
 	metadataDescribeSpotInstanceRequestsInput `json:"-", xml:"-"`
@@ -6392,6 +9713,7 @@ type metadataDescribeSpotInstanceRequestsInput struct {
 }
 
 type DescribeSpotInstanceRequestsOutput struct {
+	// One or more Spot Instance requests.
 	SpotInstanceRequests []*SpotInstanceRequest `locationName:"spotInstanceRequestSet" locationNameList:"item" type:"list"`
 
 	metadataDescribeSpotInstanceRequestsOutput `json:"-", xml:"-"`
@@ -6402,15 +9724,51 @@ type metadataDescribeSpotInstanceRequestsOutput struct {
 }
 
 type DescribeSpotPriceHistoryInput struct {
-	AvailabilityZone    *string    `locationName:"availabilityZone" type:"string"`
-	DryRun              *bool      `locationName:"dryRun" type:"boolean"`
-	EndTime             *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
-	Filters             []*Filter  `locationName:"Filter" locationNameList:"Filter" type:"list"`
-	InstanceTypes       []*string  `locationName:"InstanceType" type:"list"`
-	MaxResults          *int64     `locationName:"maxResults" type:"integer"`
-	NextToken           *string    `locationName:"nextToken" type:"string"`
-	ProductDescriptions []*string  `locationName:"ProductDescription" type:"list"`
-	StartTime           *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
+	// Filters the results by the specified Availability Zone.
+	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The date and time, up to the current date, from which to stop retrieving
+	// the price history data.
+	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// One or more filters.
+	//
+	//   availability-zone - The Availability Zone for which prices should be returned.
+	//
+	//   instance-type - The type of instance (for example, m1.small).
+	//
+	//   product-description - The product description for the Spot Price (Linux/UNIX
+	// | SUSE Linux | Windows | Linux/UNIX (Amazon VPC) | SUSE Linux (Amazon VPC)
+	// | Windows (Amazon VPC)).
+	//
+	//   spot-price - The Spot Price. The value must match exactly (or use wildcards;
+	// greater than or less than comparison is not supported).
+	//
+	//   timestamp - The timestamp of the Spot Price history (for example, 2010-08-16T05:06:11.000Z).
+	// You can use wildcards (* and ?). Greater than or less than comparison is
+	// not supported.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// Filters the results by the specified instance types.
+	InstanceTypes []*string `locationName:"InstanceType" type:"list"`
+
+	// The maximum number of items to return for this call. The call also returns
+	// a token that you can specify in a subsequent call to get the next set of
+	// results.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// The token for the next set of items. (You received this token from a prior
+	// call.)
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// Filters the results by the specified basic product descriptions.
+	ProductDescriptions []*string `locationName:"ProductDescription" type:"list"`
+
+	// The date and time, up to the past 90 days, from which to start retrieving
+	// the price history data.
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	metadataDescribeSpotPriceHistoryInput `json:"-", xml:"-"`
 }
@@ -6420,7 +9778,11 @@ type metadataDescribeSpotPriceHistoryInput struct {
 }
 
 type DescribeSpotPriceHistoryOutput struct {
-	NextToken        *string      `locationName:"nextToken" type:"string"`
+	// The token to use when requesting the next set of items. If there are no additional
+	// items to return, the string is empty.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The historical Spot Prices.
 	SpotPriceHistory []*SpotPrice `locationName:"spotPriceHistorySet" locationNameList:"item" type:"list"`
 
 	metadataDescribeSpotPriceHistoryOutput `json:"-", xml:"-"`
@@ -6431,8 +9793,45 @@ type metadataDescribeSpotPriceHistoryOutput struct {
 }
 
 type DescribeSubnetsInput struct {
-	DryRun    *bool     `locationName:"dryRun" type:"boolean"`
-	Filters   []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   availabilityZone - The Availability Zone for the subnet. You can also
+	// use availability-zone as the filter name.
+	//
+	//   available-ip-address-count - The number of IP addresses in the subnet
+	// that are available.
+	//
+	//   cidrBlock - The CIDR block of the subnet. The CIDR block you specify must
+	// exactly match the subnet's CIDR block for information to be returned for
+	// the subnet. You can also use cidr or cidr-block as the filter names.
+	//
+	//   defaultForAz - Indicates whether this is the default subnet for the Availability
+	// Zone. You can also use default-for-az as the filter name.
+	//
+	//   state - The state of the subnet (pending | available).
+	//
+	//   subnet-id - The ID of the subnet.
+	//
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
+	//
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
+	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
+	// and the filter "tag-value=X", you get any resources assigned both the tag
+	// key Purpose (regardless of what the tag's value is), and the tag value X
+	// (regardless of what the tag's key is). If you want to list only resources
+	// where Purpose is X, see the tag:key=value filter.
+	//
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
+	//
+	//   vpc-id - The ID of the VPC for the subnet.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// One or more subnet IDs.
+	//
+	// Default: Describes all your subnets.
 	SubnetIDs []*string `locationName:"SubnetId" locationNameList:"SubnetId" type:"list"`
 
 	metadataDescribeSubnetsInput `json:"-", xml:"-"`
@@ -6443,6 +9842,7 @@ type metadataDescribeSubnetsInput struct {
 }
 
 type DescribeSubnetsOutput struct {
+	// Information about one or more subnets.
 	Subnets []*Subnet `locationName:"subnetSet" locationNameList:"item" type:"list"`
 
 	metadataDescribeSubnetsOutput `json:"-", xml:"-"`
@@ -6453,10 +9853,30 @@ type metadataDescribeSubnetsOutput struct {
 }
 
 type DescribeTagsInput struct {
-	DryRun     *bool     `locationName:"dryRun" type:"boolean"`
-	Filters    []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
-	MaxResults *int64    `locationName:"maxResults" type:"integer"`
-	NextToken  *string   `locationName:"nextToken" type:"string"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   key - The tag key.
+	//
+	//   resource-id - The resource ID.
+	//
+	//   resource-type - The resource type (customer-gateway | dhcp-options | image
+	// | instance | internet-gateway | network-acl | network-interface | reserved-instances
+	// | route-table | security-group | snapshot | spot-instances-request | subnet
+	// | volume | vpc | vpn-connection | vpn-gateway).
+	//
+	//   value - The tag value.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// The maximum number of items to return for this call. The call also returns
+	// a token that you can specify in a subsequent call to get the next set of
+	// results. If the value is greater than 1000, we return only 1000 items.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// The token for the next set of items to return. (You received this token from
+	// a prior call.)
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataDescribeTagsInput `json:"-", xml:"-"`
 }
@@ -6466,8 +9886,12 @@ type metadataDescribeTagsInput struct {
 }
 
 type DescribeTagsOutput struct {
-	NextToken *string           `locationName:"nextToken" type:"string"`
-	Tags      []*TagDescription `locationName:"tagSet" locationNameList:"item" type:"list"`
+	// The token to use when requesting the next set of items. If there are no additional
+	// items to return, the string is empty.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// A list of tags.
+	Tags []*TagDescription `locationName:"tagSet" locationNameList:"item" type:"list"`
 
 	metadataDescribeTagsOutput `json:"-", xml:"-"`
 }
@@ -6477,9 +9901,13 @@ type metadataDescribeTagsOutput struct {
 }
 
 type DescribeVPCAttributeInput struct {
+	// The VPC attribute.
 	Attribute *string `type:"string"`
-	DryRun    *bool   `locationName:"dryRun" type:"boolean"`
-	VPCID     *string `locationName:"VpcId" type:"string" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the VPC.
+	VPCID *string `locationName:"VpcId" type:"string" required:"true"`
 
 	metadataDescribeVPCAttributeInput `json:"-", xml:"-"`
 }
@@ -6489,9 +9917,18 @@ type metadataDescribeVPCAttributeInput struct {
 }
 
 type DescribeVPCAttributeOutput struct {
+	// Indicates whether the instances launched in the VPC get DNS hostnames. If
+	// this attribute is true, instances in the VPC get DNS hostnames; otherwise,
+	// they do not.
 	EnableDNSHostnames *AttributeBooleanValue `locationName:"enableDnsHostnames" type:"structure"`
-	EnableDNSSupport   *AttributeBooleanValue `locationName:"enableDnsSupport" type:"structure"`
-	VPCID              *string                `locationName:"vpcId" type:"string"`
+
+	// Indicates whether DNS resolution is enabled for the VPC. If this attribute
+	// is true, the Amazon DNS server resolves DNS hostnames for your instances
+	// to their corresponding IP addresses; otherwise, it does not.
+	EnableDNSSupport *AttributeBooleanValue `locationName:"enableDnsSupport" type:"structure"`
+
+	// The ID of the VPC.
+	VPCID *string `locationName:"vpcId" type:"string"`
 
 	metadataDescribeVPCAttributeOutput `json:"-", xml:"-"`
 }
@@ -6501,9 +9938,28 @@ type metadataDescribeVPCAttributeOutput struct {
 }
 
 type DescribeVPCClassicLinkInput struct {
-	DryRun  *bool     `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   is-classic-link-enabled - Whether the VPC is enabled for ClassicLink (true
+	// | false).
+	//
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
+	//
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
+	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
+	// and the filter "tag-value=X", you get any resources assigned both the tag
+	// key Purpose (regardless of what the tag's value is), and the tag value X
+	// (regardless of what the tag's key is). If you want to list only resources
+	// where Purpose is X, see the tag:key=value filter.
+	//
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
-	VPCIDs  []*string `locationName:"VpcId" locationNameList:"VpcId" type:"list"`
+
+	// One or more VPCs for which you want to describe the ClassicLink status.
+	VPCIDs []*string `locationName:"VpcId" locationNameList:"VpcId" type:"list"`
 
 	metadataDescribeVPCClassicLinkInput `json:"-", xml:"-"`
 }
@@ -6513,6 +9969,7 @@ type metadataDescribeVPCClassicLinkInput struct {
 }
 
 type DescribeVPCClassicLinkOutput struct {
+	// The ClassicLink status of one or more VPCs.
 	VPCs []*VPCClassicLink `locationName:"vpcSet" locationNameList:"item" type:"list"`
 
 	metadataDescribeVPCClassicLinkOutput `json:"-", xml:"-"`
@@ -6523,8 +9980,50 @@ type metadataDescribeVPCClassicLinkOutput struct {
 }
 
 type DescribeVPCPeeringConnectionsInput struct {
-	DryRun                  *bool     `locationName:"dryRun" type:"boolean"`
-	Filters                 []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   accepter-vpc-info.cidr-block - The CIDR block of the peer VPC.
+	//
+	//   accepter-vpc-info.owner-id - The AWS account ID of the owner of the peer
+	// VPC.
+	//
+	//   accepter-vpc-info.vpc-id - The ID of the peer VPC.
+	//
+	//   expiration-time - The expiration date and time for the VPC peering connection.
+	//
+	//   requester-vpc-info.cidr-block - The CIDR block of the requester's VPC.
+	//
+	//   requester-vpc-info.owner-id - The AWS account ID of the owner of the requester
+	// VPC.
+	//
+	//   requester-vpc-info.vpc-id - The ID of the requester VPC.
+	//
+	//   status-code - The status of the VPC peering connection (pending-acceptance
+	// | failed | expired | provisioning | active | deleted | rejected).
+	//
+	//   status-message - A message that provides more information about the status
+	// of the VPC peering connection, if applicable.
+	//
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
+	//
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
+	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
+	// and the filter "tag-value=X", you get any resources assigned both the tag
+	// key Purpose (regardless of what the tag's value is), and the tag value X
+	// (regardless of what the tag's key is). If you want to list only resources
+	// where Purpose is X, see the tag:key=value filter.
+	//
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
+	//
+	//   vpc-peering-connection-id - The ID of the VPC peering connection.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// One or more VPC peering connection IDs.
+	//
+	// Default: Describes all your VPC peering connections.
 	VPCPeeringConnectionIDs []*string `locationName:"VpcPeeringConnectionId" locationNameList:"item" type:"list"`
 
 	metadataDescribeVPCPeeringConnectionsInput `json:"-", xml:"-"`
@@ -6535,6 +10034,7 @@ type metadataDescribeVPCPeeringConnectionsInput struct {
 }
 
 type DescribeVPCPeeringConnectionsOutput struct {
+	// Information about the VPC peering connections.
 	VPCPeeringConnections []*VPCPeeringConnection `locationName:"vpcPeeringConnectionSet" locationNameList:"item" type:"list"`
 
 	metadataDescribeVPCPeeringConnectionsOutput `json:"-", xml:"-"`
@@ -6545,9 +10045,39 @@ type metadataDescribeVPCPeeringConnectionsOutput struct {
 }
 
 type DescribeVPCsInput struct {
-	DryRun  *bool     `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   cidr - The CIDR block of the VPC. The CIDR block you specify must exactly
+	// match the VPC's CIDR block for information to be returned for the VPC. Must
+	// contain the slash followed by one or two digits (for example, /28).
+	//
+	//   dhcp-options-id - The ID of a set of DHCP options.
+	//
+	//   isDefault - Indicates whether the VPC is the default VPC.
+	//
+	//   state - The state of the VPC (pending | available).
+	//
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
+	//
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
+	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
+	// and the filter "tag-value=X", you get any resources assigned both the tag
+	// key Purpose (regardless of what the tag's value is), and the tag value X
+	// (regardless of what the tag's key is). If you want to list only resources
+	// where Purpose is X, see the tag:key=value filter.
+	//
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
+	//
+	//   vpc-id - The ID of the VPC.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
-	VPCIDs  []*string `locationName:"VpcId" locationNameList:"VpcId" type:"list"`
+
+	// One or more VPC IDs.
+	//
+	// Default: Describes all your VPCs.
+	VPCIDs []*string `locationName:"VpcId" locationNameList:"VpcId" type:"list"`
 
 	metadataDescribeVPCsInput `json:"-", xml:"-"`
 }
@@ -6557,6 +10087,7 @@ type metadataDescribeVPCsInput struct {
 }
 
 type DescribeVPCsOutput struct {
+	// Information about one or more VPCs.
 	VPCs []*VPC `locationName:"vpcSet" locationNameList:"item" type:"list"`
 
 	metadataDescribeVPCsOutput `json:"-", xml:"-"`
@@ -6567,8 +10098,53 @@ type metadataDescribeVPCsOutput struct {
 }
 
 type DescribeVPNConnectionsInput struct {
-	DryRun           *bool     `locationName:"dryRun" type:"boolean"`
-	Filters          []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   customer-gateway-configuration - The configuration information for the
+	// customer gateway.
+	//
+	//   customer-gateway-id - The ID of a customer gateway associated with the
+	// VPN connection.
+	//
+	//   state - The state of the VPN connection (pending | available | deleting
+	// | deleted).
+	//
+	//   option.static-routes-only - Indicates whether the connection has static
+	// routes only. Used for devices that do not support Border Gateway Protocol
+	// (BGP).
+	//
+	//   route.destination-cidr-block - The destination CIDR block. This corresponds
+	// to the subnet used in a customer data center.
+	//
+	//   bgp-asn - The BGP Autonomous System Number (ASN) associated with a BGP
+	// device.
+	//
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
+	//
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
+	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
+	// and the filter "tag-value=X", you get any resources assigned both the tag
+	// key Purpose (regardless of what the tag's value is), and the tag value X
+	// (regardless of what the tag's key is). If you want to list only resources
+	// where Purpose is X, see the tag:key=value filter.
+	//
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
+	//
+	//   type - The type of VPN connection. Currently the only supported type is
+	// ipsec.1.
+	//
+	//   vpn-connection-id - The ID of the VPN connection.
+	//
+	//   vpn-gateway-id - The ID of a virtual private gateway associated with the
+	// VPN connection.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// One or more VPN connection IDs.
+	//
+	// Default: Describes your VPN connections.
 	VPNConnectionIDs []*string `locationName:"VpnConnectionId" locationNameList:"VpnConnectionId" type:"list"`
 
 	metadataDescribeVPNConnectionsInput `json:"-", xml:"-"`
@@ -6579,6 +10155,7 @@ type metadataDescribeVPNConnectionsInput struct {
 }
 
 type DescribeVPNConnectionsOutput struct {
+	// Information about one or more VPN connections.
 	VPNConnections []*VPNConnection `locationName:"vpnConnectionSet" locationNameList:"item" type:"list"`
 
 	metadataDescribeVPNConnectionsOutput `json:"-", xml:"-"`
@@ -6589,8 +10166,41 @@ type metadataDescribeVPNConnectionsOutput struct {
 }
 
 type DescribeVPNGatewaysInput struct {
-	DryRun        *bool     `locationName:"dryRun" type:"boolean"`
-	Filters       []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   attachment.state - The current state of the attachment between the gateway
+	// and the VPC (attaching | attached | detaching | detached).
+	//
+	//   attachment.vpc-id - The ID of an attached VPC.
+	//
+	//   availability-zone - The Availability Zone for the virtual private gateway.
+	//
+	//   state - The state of the virtual private gateway (pending | available
+	// | deleting | deleted).
+	//
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
+	//
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
+	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
+	// and the filter "tag-value=X", you get any resources assigned both the tag
+	// key Purpose (regardless of what the tag's value is), and the tag value X
+	// (regardless of what the tag's key is). If you want to list only resources
+	// where Purpose is X, see the tag:key=value filter.
+	//
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
+	//
+	//   type - The type of virtual private gateway. Currently the only supported
+	// type is ipsec.1.
+	//
+	//   vpn-gateway-id - The ID of the virtual private gateway.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// One or more virtual private gateway IDs.
+	//
+	// Default: Describes all your virtual private gateways.
 	VPNGatewayIDs []*string `locationName:"VpnGatewayId" locationNameList:"VpnGatewayId" type:"list"`
 
 	metadataDescribeVPNGatewaysInput `json:"-", xml:"-"`
@@ -6601,6 +10211,7 @@ type metadataDescribeVPNGatewaysInput struct {
 }
 
 type DescribeVPNGatewaysOutput struct {
+	// Information about one or more virtual private gateways.
 	VPNGateways []*VPNGateway `locationName:"vpnGatewaySet" locationNameList:"item" type:"list"`
 
 	metadataDescribeVPNGatewaysOutput `json:"-", xml:"-"`
@@ -6611,9 +10222,13 @@ type metadataDescribeVPNGatewaysOutput struct {
 }
 
 type DescribeVolumeAttributeInput struct {
+	// The instance attribute.
 	Attribute *string `type:"string"`
-	DryRun    *bool   `locationName:"dryRun" type:"boolean"`
-	VolumeID  *string `locationName:"VolumeId" type:"string" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the volume.
+	VolumeID *string `locationName:"VolumeId" type:"string" required:"true"`
 
 	metadataDescribeVolumeAttributeInput `json:"-", xml:"-"`
 }
@@ -6623,9 +10238,14 @@ type metadataDescribeVolumeAttributeInput struct {
 }
 
 type DescribeVolumeAttributeOutput struct {
+	// The state of autoEnableIO attribute.
 	AutoEnableIO *AttributeBooleanValue `locationName:"autoEnableIO" type:"structure"`
-	ProductCodes []*ProductCode         `locationName:"productCodes" locationNameList:"item" type:"list"`
-	VolumeID     *string                `locationName:"volumeId" type:"string"`
+
+	// A list of product codes.
+	ProductCodes []*ProductCode `locationName:"productCodes" locationNameList:"item" type:"list"`
+
+	// The ID of the volume.
+	VolumeID *string `locationName:"volumeId" type:"string"`
 
 	metadataDescribeVolumeAttributeOutput `json:"-", xml:"-"`
 }
@@ -6635,11 +10255,52 @@ type metadataDescribeVolumeAttributeOutput struct {
 }
 
 type DescribeVolumeStatusInput struct {
-	DryRun     *bool     `locationName:"dryRun" type:"boolean"`
-	Filters    []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
-	MaxResults *int64    `type:"integer"`
-	NextToken  *string   `type:"string"`
-	VolumeIDs  []*string `locationName:"VolumeId" locationNameList:"VolumeId" type:"list"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   action.code - The action code for the event (for example, enable-volume-io).
+	//
+	//   action.description - A description of the action.
+	//
+	//   action.event-id - The event ID associated with the action.
+	//
+	//   availability-zone - The Availability Zone of the instance.
+	//
+	//   event.description - A description of the event.
+	//
+	//   event.event-id - The event ID.
+	//
+	//   event.event-type - The event type (for io-enabled: passed | failed; for
+	// io-performance: io-performance:degraded | io-performance:severely-degraded
+	// | io-performance:stalled).
+	//
+	//   event.not-after - The latest end time for the event.
+	//
+	//   event.not-before - The earliest start time for the event.
+	//
+	//   volume-status.details-name - The cause for volume-status.status (io-enabled
+	// | io-performance).
+	//
+	//   volume-status.details-status - The status of volume-status.details-name
+	// (for io-enabled: passed | failed; for io-performance: normal | degraded |
+	// severely-degraded | stalled).
+	//
+	//   volume-status.status - The status of the volume (ok | impaired | warning
+	// | insufficient-data).
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// The maximum number of paginated volume items per response.
+	MaxResults *int64 `type:"integer"`
+
+	// The next paginated set of results to return using the pagination token returned
+	// by a previous call.
+	NextToken *string `type:"string"`
+
+	// One or more volume IDs.
+	//
+	// Default: Describes all your volumes.
+	VolumeIDs []*string `locationName:"VolumeId" locationNameList:"VolumeId" type:"list"`
 
 	metadataDescribeVolumeStatusInput `json:"-", xml:"-"`
 }
@@ -6649,7 +10310,10 @@ type metadataDescribeVolumeStatusInput struct {
 }
 
 type DescribeVolumeStatusOutput struct {
-	NextToken      *string             `locationName:"nextToken" type:"string"`
+	// The next paginated set of results to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// A list of volumes.
 	VolumeStatuses []*VolumeStatusItem `locationName:"volumeStatusSet" locationNameList:"item" type:"list"`
 
 	metadataDescribeVolumeStatusOutput `json:"-", xml:"-"`
@@ -6660,11 +10324,74 @@ type metadataDescribeVolumeStatusOutput struct {
 }
 
 type DescribeVolumesInput struct {
-	DryRun     *bool     `locationName:"dryRun" type:"boolean"`
-	Filters    []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
-	MaxResults *int64    `locationName:"maxResults" type:"integer"`
-	NextToken  *string   `locationName:"nextToken" type:"string"`
-	VolumeIDs  []*string `locationName:"VolumeId" locationNameList:"VolumeId" type:"list"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more filters.
+	//
+	//   attachment.attach-time - The time stamp when the attachment initiated.
+	//
+	//   attachment.delete-on-termination - Whether the volume is deleted on instance
+	// termination.
+	//
+	//   attachment.device - The device name that is exposed to the instance (for
+	// example, /dev/sda1).
+	//
+	//   attachment.instance-id - The ID of the instance the volume is attached
+	// to.
+	//
+	//   attachment.status - The attachment state (attaching | attached | detaching
+	// | detached).
+	//
+	//   availability-zone - The Availability Zone in which the volume was created.
+	//
+	//   create-time - The time stamp when the volume was created.
+	//
+	//   encrypted - The encryption status of the volume.
+	//
+	//   size - The size of the volume, in GiB.
+	//
+	//   snapshot-id - The snapshot from which the volume was created.
+	//
+	//   status - The status of the volume (creating | available | in-use | deleting
+	// | deleted | error).
+	//
+	//   tag:key=value - The key/value combination of a tag assigned to the resource.
+	//
+	//   tag-key - The key of a tag assigned to the resource. This filter is independent
+	// of the tag-value filter. For example, if you use both the filter "tag-key=Purpose"
+	// and the filter "tag-value=X", you get any resources assigned both the tag
+	// key Purpose (regardless of what the tag's value is), and the tag value X
+	// (regardless of what the tag's key is). If you want to list only resources
+	// where Purpose is X, see the tag:key=value filter.
+	//
+	//   tag-value - The value of a tag assigned to the resource. This filter is
+	// independent of the tag-key filter.
+	//
+	//   volume-id - The volume ID.
+	//
+	//   volume-type - The Amazon EBS volume type. This can be gp2 for General
+	// Purpose (SSD) volumes, io1 for Provisioned IOPS (SSD) volumes, or standard
+	// for Magnetic volumes.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// The maximum number of volume results returned by DescribeVolumes in paginated
+	// output. When this parameter is used, DescribeVolumes only returns MaxResults
+	// results in a single page along with a NextToken response element. The remaining
+	// results of the initial request can be seen by sending another DescribeVolumes
+	// request with the returned NextToken value. This value can be between 5 and
+	// 1000; if MaxResults is given a value larger than 1000, only 1000 results
+	// are returned. If this parameter is not used, then DescribeVolumes returns
+	// all results.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// The NextToken value returned from a previous paginated DescribeVolumes request
+	// where MaxResults was used and the results exceeded the value of that parameter.
+	// Pagination continues from the end of the previous results that returned the
+	// NextToken value. This value is null when there are no more results to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// One or more volume IDs.
+	VolumeIDs []*string `locationName:"VolumeId" locationNameList:"VolumeId" type:"list"`
 
 	metadataDescribeVolumesInput `json:"-", xml:"-"`
 }
@@ -6674,8 +10401,13 @@ type metadataDescribeVolumesInput struct {
 }
 
 type DescribeVolumesOutput struct {
-	NextToken *string   `locationName:"nextToken" type:"string"`
-	Volumes   []*Volume `locationName:"volumeSet" locationNameList:"item" type:"list"`
+	// The NextToken value to include in a future DescribeVolumes request. When
+	// the results of a DescribeVolumes request exceed MaxResults, this value can
+	// be used to retrieve the next page of results. This value is null when there
+	// are no more results to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	Volumes []*Volume `locationName:"volumeSet" locationNameList:"item" type:"list"`
 
 	metadataDescribeVolumesOutput `json:"-", xml:"-"`
 }
@@ -6685,9 +10417,13 @@ type metadataDescribeVolumesOutput struct {
 }
 
 type DetachClassicLinkVPCInput struct {
-	DryRun     *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the instance to unlink from the VPC.
 	InstanceID *string `locationName:"instanceId" type:"string" required:"true"`
-	VPCID      *string `locationName:"vpcId" type:"string" required:"true"`
+
+	// The ID of the VPC to which the instance is linked.
+	VPCID *string `locationName:"vpcId" type:"string" required:"true"`
 
 	metadataDetachClassicLinkVPCInput `json:"-", xml:"-"`
 }
@@ -6697,6 +10433,7 @@ type metadataDetachClassicLinkVPCInput struct {
 }
 
 type DetachClassicLinkVPCOutput struct {
+	// Returns true if the request succeeds; otherwise, it returns an error.
 	Return *bool `locationName:"return" type:"boolean"`
 
 	metadataDetachClassicLinkVPCOutput `json:"-", xml:"-"`
@@ -6707,9 +10444,13 @@ type metadataDetachClassicLinkVPCOutput struct {
 }
 
 type DetachInternetGatewayInput struct {
-	DryRun            *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the Internet gateway.
 	InternetGatewayID *string `locationName:"internetGatewayId" type:"string" required:"true"`
-	VPCID             *string `locationName:"vpcId" type:"string" required:"true"`
+
+	// The ID of the VPC.
+	VPCID *string `locationName:"vpcId" type:"string" required:"true"`
 
 	metadataDetachInternetGatewayInput `json:"-", xml:"-"`
 }
@@ -6727,9 +10468,13 @@ type metadataDetachInternetGatewayOutput struct {
 }
 
 type DetachNetworkInterfaceInput struct {
+	// The ID of the attachment.
 	AttachmentID *string `locationName:"attachmentId" type:"string" required:"true"`
-	DryRun       *bool   `locationName:"dryRun" type:"boolean"`
-	Force        *bool   `locationName:"force" type:"boolean"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// Specifies whether to force a detachment.
+	Force *bool `locationName:"force" type:"boolean"`
 
 	metadataDetachNetworkInterfaceInput `json:"-", xml:"-"`
 }
@@ -6747,8 +10492,12 @@ type metadataDetachNetworkInterfaceOutput struct {
 }
 
 type DetachVPNGatewayInput struct {
-	DryRun       *bool   `locationName:"dryRun" type:"boolean"`
-	VPCID        *string `locationName:"VpcId" type:"string" required:"true"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the VPC.
+	VPCID *string `locationName:"VpcId" type:"string" required:"true"`
+
+	// The ID of the virtual private gateway.
 	VPNGatewayID *string `locationName:"VpnGatewayId" type:"string" required:"true"`
 
 	metadataDetachVPNGatewayInput `json:"-", xml:"-"`
@@ -6767,11 +10516,25 @@ type metadataDetachVPNGatewayOutput struct {
 }
 
 type DetachVolumeInput struct {
-	Device     *string `type:"string"`
-	DryRun     *bool   `locationName:"dryRun" type:"boolean"`
-	Force      *bool   `type:"boolean"`
+	// The device name.
+	Device *string `type:"string"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// Forces detachment if the previous detachment attempt did not occur cleanly
+	// (for example, logging into an instance, unmounting the volume, and detaching
+	// normally). This option can lead to data loss or a corrupted file system.
+	// Use this option only as a last resort to detach a volume from a failed instance.
+	// The instance won't have an opportunity to flush file system caches or file
+	// system metadata. If you use this option, you must perform file system check
+	// and repair procedures.
+	Force *bool `type:"boolean"`
+
+	// The ID of the instance.
 	InstanceID *string `locationName:"InstanceId" type:"string"`
-	VolumeID   *string `locationName:"VolumeId" type:"string" required:"true"`
+
+	// The ID of the volume.
+	VolumeID *string `locationName:"VolumeId" type:"string" required:"true"`
 
 	metadataDetachVolumeInput `json:"-", xml:"-"`
 }
@@ -6781,7 +10544,10 @@ type metadataDetachVolumeInput struct {
 }
 
 type DisableVGWRoutePropagationInput struct {
-	GatewayID    *string `locationName:"GatewayId" type:"string" required:"true"`
+	// The ID of the virtual private gateway.
+	GatewayID *string `locationName:"GatewayId" type:"string" required:"true"`
+
+	// The ID of the route table.
 	RouteTableID *string `locationName:"RouteTableId" type:"string" required:"true"`
 
 	metadataDisableVGWRoutePropagationInput `json:"-", xml:"-"`
@@ -6800,8 +10566,10 @@ type metadataDisableVGWRoutePropagationOutput struct {
 }
 
 type DisableVPCClassicLinkInput struct {
-	DryRun *bool   `locationName:"dryRun" type:"boolean"`
-	VPCID  *string `locationName:"vpcId" type:"string" required:"true"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the VPC.
+	VPCID *string `locationName:"vpcId" type:"string" required:"true"`
 
 	metadataDisableVPCClassicLinkInput `json:"-", xml:"-"`
 }
@@ -6811,6 +10579,7 @@ type metadataDisableVPCClassicLinkInput struct {
 }
 
 type DisableVPCClassicLinkOutput struct {
+	// Returns true if the request succeeds; otherwise, it returns an error.
 	Return *bool `locationName:"return" type:"boolean"`
 
 	metadataDisableVPCClassicLinkOutput `json:"-", xml:"-"`
@@ -6821,9 +10590,13 @@ type metadataDisableVPCClassicLinkOutput struct {
 }
 
 type DisassociateAddressInput struct {
+	// [EC2-VPC] The association ID. Required for EC2-VPC.
 	AssociationID *string `locationName:"AssociationId" type:"string"`
-	DryRun        *bool   `locationName:"dryRun" type:"boolean"`
-	PublicIP      *string `locationName:"PublicIp" type:"string"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// [EC2-Classic] The Elastic IP address. Required for EC2-Classic.
+	PublicIP *string `locationName:"PublicIp" type:"string"`
 
 	metadataDisassociateAddressInput `json:"-", xml:"-"`
 }
@@ -6841,8 +10614,11 @@ type metadataDisassociateAddressOutput struct {
 }
 
 type DisassociateRouteTableInput struct {
+	// The association ID representing the current association between the route
+	// table and subnet.
 	AssociationID *string `locationName:"associationId" type:"string" required:"true"`
-	DryRun        *bool   `locationName:"dryRun" type:"boolean"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	metadataDisassociateRouteTableInput `json:"-", xml:"-"`
 }
@@ -6859,10 +10635,14 @@ type metadataDisassociateRouteTableOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a disk image.
 type DiskImage struct {
-	Description *string          `type:"string"`
-	Image       *DiskImageDetail `type:"structure"`
-	Volume      *VolumeDetail    `type:"structure"`
+	Description *string `type:"string"`
+
+	Image *DiskImageDetail `type:"structure"`
+
+	// Describes an Amazon EBS volume.
+	Volume *VolumeDetail `type:"structure"`
 
 	metadataDiskImage `json:"-", xml:"-"`
 }
@@ -6872,10 +10652,21 @@ type metadataDiskImage struct {
 }
 
 type DiskImageDescription struct {
-	Checksum          *string `locationName:"checksum" type:"string"`
-	Format            *string `locationName:"format" type:"string" required:"true"`
+	// The checksum computed for the disk image.
+	Checksum *string `locationName:"checksum" type:"string"`
+
+	// The disk image format.
+	Format *string `locationName:"format" type:"string" required:"true"`
+
+	// A presigned URL for the import manifest stored in Amazon S3. For information
+	// about creating a presigned URL for an Amazon S3 object, read the "Query String
+	// Request Authentication Alternative" section of the Authenticating REST Requests
+	// (http://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html)
+	// topic in the Amazon Simple Storage Service Developer Guide.
 	ImportManifestURL *string `locationName:"importManifestUrl" type:"string" required:"true"`
-	Size              *int64  `locationName:"size" type:"long" required:"true"`
+
+	// The size of the disk image.
+	Size *int64 `locationName:"size" type:"long" required:"true"`
 
 	metadataDiskImageDescription `json:"-", xml:"-"`
 }
@@ -6885,8 +10676,16 @@ type metadataDiskImageDescription struct {
 }
 
 type DiskImageDetail struct {
-	Bytes             *int64  `locationName:"bytes" type:"long" required:"true"`
-	Format            *string `locationName:"format" type:"string" required:"true"`
+	Bytes *int64 `locationName:"bytes" type:"long" required:"true"`
+
+	// The disk image format.
+	Format *string `locationName:"format" type:"string" required:"true"`
+
+	// A presigned URL for the import manifest stored in Amazon S3 and presented
+	// here as an Amazon S3 presigned URL. For information about creating a presigned
+	// URL for an Amazon S3 object, read the "Query String Request Authentication
+	// Alternative" section of the Authenticating REST Requests (http://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html)
+	// topic in the Amazon Simple Storage Service Developer Guide.
 	ImportManifestURL *string `locationName:"importManifestUrl" type:"string" required:"true"`
 
 	metadataDiskImageDetail `json:"-", xml:"-"`
@@ -6897,8 +10696,11 @@ type metadataDiskImageDetail struct {
 }
 
 type DiskImageVolumeDescription struct {
-	ID   *string `locationName:"id" type:"string" required:"true"`
-	Size *int64  `locationName:"size" type:"long"`
+	// The volume identifier.
+	ID *string `locationName:"id" type:"string" required:"true"`
+
+	// The size of the volume.
+	Size *int64 `locationName:"size" type:"long"`
 
 	metadataDiskImageVolumeDescription `json:"-", xml:"-"`
 }
@@ -6907,13 +10709,49 @@ type metadataDiskImageVolumeDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an Amazon EBS block device.
 type EBSBlockDevice struct {
-	DeleteOnTermination *bool   `locationName:"deleteOnTermination" type:"boolean"`
-	Encrypted           *bool   `locationName:"encrypted" type:"boolean"`
-	IOPS                *int64  `locationName:"iops" type:"integer"`
-	SnapshotID          *string `locationName:"snapshotId" type:"string"`
-	VolumeSize          *int64  `locationName:"volumeSize" type:"integer"`
-	VolumeType          *string `locationName:"volumeType" type:"string"`
+	// Indicates whether the Amazon EBS volume is deleted on instance termination.
+	DeleteOnTermination *bool `locationName:"deleteOnTermination" type:"boolean"`
+
+	// Indicates whether the Amazon EBS volume is encrypted. Encrypted Amazon EBS
+	// volumes may only be attached to instances that support Amazon EBS encryption.
+	Encrypted *bool `locationName:"encrypted" type:"boolean"`
+
+	// The number of I/O operations per second (IOPS) that the volume supports.
+	// For Provisioned IOPS (SSD) volumes, this represents the number of IOPS that
+	// are provisioned for the volume. For General Purpose (SSD) volumes, this represents
+	// the baseline performance of the volume and the rate at which the volume accumulates
+	// I/O credits for bursting. For more information on General Purpose (SSD) baseline
+	// performance, I/O credits, and bursting, see Amazon EBS Volume Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	//
+	// Constraint: Range is 100 to 4000 for Provisioned IOPS (SSD) volumes and
+	// 3 to 3072 for General Purpose (SSD) volumes.
+	//
+	// Condition: This parameter is required for requests to create io1 volumes;
+	// it is not used in requests to create standard or gp2 volumes.
+	IOPS *int64 `locationName:"iops" type:"integer"`
+
+	// The ID of the snapshot.
+	SnapshotID *string `locationName:"snapshotId" type:"string"`
+
+	// The size of the volume, in GiB.
+	//
+	// Constraints: If the volume type is io1, the minimum size of the volume is
+	// 4 GiB; otherwise, the minimum size is 1 GiB. The maximum volume size is 1024
+	// GiB. If you specify a snapshot, the volume size must be equal to or larger
+	// than the snapshot size.
+	//
+	// Default: If you're creating the volume from a snapshot and don't specify
+	// a volume size, the default is the snapshot size.
+	VolumeSize *int64 `locationName:"volumeSize" type:"integer"`
+
+	// The volume type. gp2 for General Purpose (SSD) volumes, io1 for Provisioned
+	// IOPS (SSD) volumes, and standard for Magnetic volumes.
+	//
+	// Default: standard
+	VolumeType *string `locationName:"volumeType" type:"string"`
 
 	metadataEBSBlockDevice `json:"-", xml:"-"`
 }
@@ -6922,11 +10760,20 @@ type metadataEBSBlockDevice struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a parameter used to set up an Amazon EBS volume in a block device
+// mapping.
 type EBSInstanceBlockDevice struct {
-	AttachTime          *time.Time `locationName:"attachTime" type:"timestamp" timestampFormat:"iso8601"`
-	DeleteOnTermination *bool      `locationName:"deleteOnTermination" type:"boolean"`
-	Status              *string    `locationName:"status" type:"string"`
-	VolumeID            *string    `locationName:"volumeId" type:"string"`
+	// The time stamp when the attachment initiated.
+	AttachTime *time.Time `locationName:"attachTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Indicates whether the volume is deleted on instance termination.
+	DeleteOnTermination *bool `locationName:"deleteOnTermination" type:"boolean"`
+
+	// The attachment state.
+	Status *string `locationName:"status" type:"string"`
+
+	// The ID of the Amazon EBS volume.
+	VolumeID *string `locationName:"volumeId" type:"string"`
 
 	metadataEBSInstanceBlockDevice `json:"-", xml:"-"`
 }
@@ -6936,8 +10783,11 @@ type metadataEBSInstanceBlockDevice struct {
 }
 
 type EBSInstanceBlockDeviceSpecification struct {
-	DeleteOnTermination *bool   `locationName:"deleteOnTermination" type:"boolean"`
-	VolumeID            *string `locationName:"volumeId" type:"string"`
+	// Indicates whether the volume is deleted on instance termination.
+	DeleteOnTermination *bool `locationName:"deleteOnTermination" type:"boolean"`
+
+	// The ID of the Amazon EBS volume.
+	VolumeID *string `locationName:"volumeId" type:"string"`
 
 	metadataEBSInstanceBlockDeviceSpecification `json:"-", xml:"-"`
 }
@@ -6947,7 +10797,10 @@ type metadataEBSInstanceBlockDeviceSpecification struct {
 }
 
 type EnableVGWRoutePropagationInput struct {
-	GatewayID    *string `locationName:"GatewayId" type:"string" required:"true"`
+	// The ID of the virtual private gateway.
+	GatewayID *string `locationName:"GatewayId" type:"string" required:"true"`
+
+	// The ID of the route table.
 	RouteTableID *string `locationName:"RouteTableId" type:"string" required:"true"`
 
 	metadataEnableVGWRoutePropagationInput `json:"-", xml:"-"`
@@ -6966,8 +10819,10 @@ type metadataEnableVGWRoutePropagationOutput struct {
 }
 
 type EnableVPCClassicLinkInput struct {
-	DryRun *bool   `locationName:"dryRun" type:"boolean"`
-	VPCID  *string `locationName:"vpcId" type:"string" required:"true"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the VPC.
+	VPCID *string `locationName:"vpcId" type:"string" required:"true"`
 
 	metadataEnableVPCClassicLinkInput `json:"-", xml:"-"`
 }
@@ -6977,6 +10832,7 @@ type metadataEnableVPCClassicLinkInput struct {
 }
 
 type EnableVPCClassicLinkOutput struct {
+	// Returns true if the request succeeds; otherwise, it returns an error.
 	Return *bool `locationName:"return" type:"boolean"`
 
 	metadataEnableVPCClassicLinkOutput `json:"-", xml:"-"`
@@ -6987,7 +10843,9 @@ type metadataEnableVPCClassicLinkOutput struct {
 }
 
 type EnableVolumeIOInput struct {
-	DryRun   *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the volume.
 	VolumeID *string `locationName:"volumeId" type:"string" required:"true"`
 
 	metadataEnableVolumeIOInput `json:"-", xml:"-"`
@@ -7005,13 +10863,24 @@ type metadataEnableVolumeIOOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an export task.
 type ExportTask struct {
-	Description           *string                `locationName:"description" type:"string"`
-	ExportTaskID          *string                `locationName:"exportTaskId" type:"string"`
-	ExportToS3Task        *ExportToS3Task        `locationName:"exportToS3" type:"structure"`
+	// A description of the resource being exported.
+	Description *string `locationName:"description" type:"string"`
+
+	// The ID of the export task.
+	ExportTaskID *string `locationName:"exportTaskId" type:"string"`
+
+	ExportToS3Task *ExportToS3Task `locationName:"exportToS3" type:"structure"`
+
+	// The instance being exported.
 	InstanceExportDetails *InstanceExportDetails `locationName:"instanceExport" type:"structure"`
-	State                 *string                `locationName:"state" type:"string"`
-	StatusMessage         *string                `locationName:"statusMessage" type:"string"`
+
+	// The state of the conversion task.
+	State *string `locationName:"state" type:"string"`
+
+	// The status message related to the export task.
+	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
 	metadataExportTask `json:"-", xml:"-"`
 }
@@ -7021,10 +10890,18 @@ type metadataExportTask struct {
 }
 
 type ExportToS3Task struct {
+	// The container format used to combine disk images with metadata (such as OVF).
+	// If absent, only the disk image is exported.
 	ContainerFormat *string `locationName:"containerFormat" type:"string"`
+
+	// The format for the exported image.
 	DiskImageFormat *string `locationName:"diskImageFormat" type:"string"`
-	S3Bucket        *string `locationName:"s3Bucket" type:"string"`
-	S3Key           *string `locationName:"s3Key" type:"string"`
+
+	// The Amazon S3 bucket for the destination image. The destination bucket must
+	// exist and grant WRITE and READ_ACL permissions to the AWS account vm-import-export@amazon.com.
+	S3Bucket *string `locationName:"s3Bucket" type:"string"`
+
+	S3Key *string `locationName:"s3Key" type:"string"`
 
 	metadataExportToS3Task `json:"-", xml:"-"`
 }
@@ -7035,9 +10912,14 @@ type metadataExportToS3Task struct {
 
 type ExportToS3TaskSpecification struct {
 	ContainerFormat *string `locationName:"containerFormat" type:"string"`
+
 	DiskImageFormat *string `locationName:"diskImageFormat" type:"string"`
-	S3Bucket        *string `locationName:"s3Bucket" type:"string"`
-	S3Prefix        *string `locationName:"s3Prefix" type:"string"`
+
+	S3Bucket *string `locationName:"s3Bucket" type:"string"`
+
+	// The image is written to a single object in the Amazon S3 bucket at the S3
+	// key s3prefix + exportTaskId + '.' + diskImageFormat.
+	S3Prefix *string `locationName:"s3Prefix" type:"string"`
 
 	metadataExportToS3TaskSpecification `json:"-", xml:"-"`
 }
@@ -7046,8 +10928,14 @@ type metadataExportToS3TaskSpecification struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A filter name and value pair that is used to return a more specific list
+// of results. Filters can be used to match a set of resources by various criteria,
+// such as tags, attributes, or IDs.
 type Filter struct {
-	Name   *string   `type:"string"`
+	// The name of the filter. Filter names are case-sensitive.
+	Name *string `type:"string"`
+
+	// One or more filter values. Filter values are case-sensitive.
 	Values []*string `locationName:"Value" locationNameList:"item" type:"list"`
 
 	metadataFilter `json:"-", xml:"-"`
@@ -7058,7 +10946,9 @@ type metadataFilter struct {
 }
 
 type GetConsoleOutputInput struct {
-	DryRun     *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the instance.
 	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
 
 	metadataGetConsoleOutputInput `json:"-", xml:"-"`
@@ -7069,9 +10959,14 @@ type metadataGetConsoleOutputInput struct {
 }
 
 type GetConsoleOutputOutput struct {
-	InstanceID *string    `locationName:"instanceId" type:"string"`
-	Output     *string    `locationName:"output" type:"string"`
-	Timestamp  *time.Time `locationName:"timestamp" type:"timestamp" timestampFormat:"iso8601"`
+	// The ID of the instance.
+	InstanceID *string `locationName:"instanceId" type:"string"`
+
+	// The console output, Base64 encoded.
+	Output *string `locationName:"output" type:"string"`
+
+	// The time the output was last updated.
+	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" timestampFormat:"iso8601"`
 
 	metadataGetConsoleOutputOutput `json:"-", xml:"-"`
 }
@@ -7081,7 +10976,9 @@ type metadataGetConsoleOutputOutput struct {
 }
 
 type GetPasswordDataInput struct {
-	DryRun     *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the Windows instance.
 	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
 
 	metadataGetPasswordDataInput `json:"-", xml:"-"`
@@ -7092,9 +10989,14 @@ type metadataGetPasswordDataInput struct {
 }
 
 type GetPasswordDataOutput struct {
-	InstanceID   *string    `locationName:"instanceId" type:"string"`
-	PasswordData *string    `locationName:"passwordData" type:"string"`
-	Timestamp    *time.Time `locationName:"timestamp" type:"timestamp" timestampFormat:"iso8601"`
+	// The ID of the Windows instance.
+	InstanceID *string `locationName:"instanceId" type:"string"`
+
+	// The password of the instance.
+	PasswordData *string `locationName:"passwordData" type:"string"`
+
+	// The time the data was last updated.
+	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" timestampFormat:"iso8601"`
 
 	metadataGetPasswordDataOutput `json:"-", xml:"-"`
 }
@@ -7103,8 +11005,12 @@ type metadataGetPasswordDataOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a security group.
 type GroupIdentifier struct {
-	GroupID   *string `locationName:"groupId" type:"string"`
+	// The ID of the security group.
+	GroupID *string `locationName:"groupId" type:"string"`
+
+	// The name of the security group.
 	GroupName *string `locationName:"groupName" type:"string"`
 
 	metadataGroupIdentifier `json:"-", xml:"-"`
@@ -7114,9 +11020,13 @@ type metadataGroupIdentifier struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an IAM instance profile.
 type IAMInstanceProfile struct {
+	// The Amazon Resource Name (ARN) of the instance profile.
 	ARN *string `locationName:"arn" type:"string"`
-	ID  *string `locationName:"id" type:"string"`
+
+	// The ID of the instance profile.
+	ID *string `locationName:"id" type:"string"`
 
 	metadataIAMInstanceProfile `json:"-", xml:"-"`
 }
@@ -7125,8 +11035,12 @@ type metadataIAMInstanceProfile struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an IAM instance profile.
 type IAMInstanceProfileSpecification struct {
-	ARN  *string `locationName:"arn" type:"string"`
+	// The Amazon Resource Name (ARN) of the instance profile.
+	ARN *string `locationName:"arn" type:"string"`
+
+	// The name of the instance profile.
 	Name *string `locationName:"name" type:"string"`
 
 	metadataIAMInstanceProfileSpecification `json:"-", xml:"-"`
@@ -7136,8 +11050,12 @@ type metadataIAMInstanceProfileSpecification struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the ICMP type and code.
 type ICMPTypeCode struct {
+	// The ICMP type. A value of -1 means all types.
 	Code *int64 `locationName:"code" type:"integer"`
+
+	// The ICMP code. A value of -1 means all codes for the specified ICMP type.
 	Type *int64 `locationName:"type" type:"integer"`
 
 	metadataICMPTypeCode `json:"-", xml:"-"`
@@ -7147,11 +11065,28 @@ type metadataICMPTypeCode struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a security group rule.
 type IPPermission struct {
-	FromPort         *int64             `locationName:"fromPort" type:"integer"`
-	IPProtocol       *string            `locationName:"ipProtocol" type:"string"`
-	IPRanges         []*IPRange         `locationName:"ipRanges" locationNameList:"item" type:"list"`
-	ToPort           *int64             `locationName:"toPort" type:"integer"`
+	// The start of port range for the TCP and UDP protocols, or an ICMP type number.
+	// A value of -1 indicates all ICMP types.
+	FromPort *int64 `locationName:"fromPort" type:"integer"`
+
+	// The protocol.
+	//
+	// When you call DescribeSecurityGroups, the protocol value returned is the
+	// number. Exception: For TCP, UDP, and ICMP, the value returned is the name
+	// (for example, tcp, udp, or icmp). For a list of protocol numbers, see Protocol
+	// Numbers (http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).
+	IPProtocol *string `locationName:"ipProtocol" type:"string"`
+
+	// One or more IP ranges.
+	IPRanges []*IPRange `locationName:"ipRanges" locationNameList:"item" type:"list"`
+
+	// The end of port range for the TCP and UDP protocols, or an ICMP code. A value
+	// of -1 indicates all ICMP codes for the specified ICMP type.
+	ToPort *int64 `locationName:"toPort" type:"integer"`
+
+	// One or more security group and AWS account ID pairs.
 	UserIDGroupPairs []*UserIDGroupPair `locationName:"groups" locationNameList:"item" type:"list"`
 
 	metadataIPPermission `json:"-", xml:"-"`
@@ -7161,7 +11096,10 @@ type metadataIPPermission struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an IP range.
 type IPRange struct {
+	// The CIDR range. You can either specify a CIDR range or a source security
+	// group, not both.
 	CIDRIP *string `locationName:"cidrIp" type:"string"`
 
 	metadataIPRange `json:"-", xml:"-"`
@@ -7171,30 +11109,83 @@ type metadataIPRange struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an image.
 type Image struct {
-	Architecture        *string               `locationName:"architecture" type:"string"`
+	// The architecture of the image.
+	Architecture *string `locationName:"architecture" type:"string"`
+
+	// Any block device mapping entries.
 	BlockDeviceMappings []*BlockDeviceMapping `locationName:"blockDeviceMapping" locationNameList:"item" type:"list"`
-	CreationDate        *string               `locationName:"creationDate" type:"string"`
-	Description         *string               `locationName:"description" type:"string"`
-	Hypervisor          *string               `locationName:"hypervisor" type:"string"`
-	ImageID             *string               `locationName:"imageId" type:"string"`
-	ImageLocation       *string               `locationName:"imageLocation" type:"string"`
-	ImageOwnerAlias     *string               `locationName:"imageOwnerAlias" type:"string"`
-	ImageType           *string               `locationName:"imageType" type:"string"`
-	KernelID            *string               `locationName:"kernelId" type:"string"`
-	Name                *string               `locationName:"name" type:"string"`
-	OwnerID             *string               `locationName:"imageOwnerId" type:"string"`
-	Platform            *string               `locationName:"platform" type:"string"`
-	ProductCodes        []*ProductCode        `locationName:"productCodes" locationNameList:"item" type:"list"`
-	Public              *bool                 `locationName:"isPublic" type:"boolean"`
-	RAMDiskID           *string               `locationName:"ramdiskId" type:"string"`
-	RootDeviceName      *string               `locationName:"rootDeviceName" type:"string"`
-	RootDeviceType      *string               `locationName:"rootDeviceType" type:"string"`
-	SRIOVNetSupport     *string               `locationName:"sriovNetSupport" type:"string"`
-	State               *string               `locationName:"imageState" type:"string"`
-	StateReason         *StateReason          `locationName:"stateReason" type:"structure"`
-	Tags                []*Tag                `locationName:"tagSet" locationNameList:"item" type:"list"`
-	VirtualizationType  *string               `locationName:"virtualizationType" type:"string"`
+
+	// The date and time the image was created.
+	CreationDate *string `locationName:"creationDate" type:"string"`
+
+	// The description of the AMI that was provided during image creation.
+	Description *string `locationName:"description" type:"string"`
+
+	// The hypervisor type of the image.
+	Hypervisor *string `locationName:"hypervisor" type:"string"`
+
+	// The ID of the AMI.
+	ImageID *string `locationName:"imageId" type:"string"`
+
+	// The location of the AMI.
+	ImageLocation *string `locationName:"imageLocation" type:"string"`
+
+	// The AWS account alias (for example, amazon, self) or the AWS account ID of
+	// the AMI owner.
+	ImageOwnerAlias *string `locationName:"imageOwnerAlias" type:"string"`
+
+	// The type of image.
+	ImageType *string `locationName:"imageType" type:"string"`
+
+	// The kernel associated with the image, if any. Only applicable for machine
+	// images.
+	KernelID *string `locationName:"kernelId" type:"string"`
+
+	// The name of the AMI that was provided during image creation.
+	Name *string `locationName:"name" type:"string"`
+
+	// The AWS account ID of the image owner.
+	OwnerID *string `locationName:"imageOwnerId" type:"string"`
+
+	// The value is Windows for Windows AMIs; otherwise blank.
+	Platform *string `locationName:"platform" type:"string"`
+
+	// Any product codes associated with the AMI.
+	ProductCodes []*ProductCode `locationName:"productCodes" locationNameList:"item" type:"list"`
+
+	// Indicates whether the image has public launch permissions. The value is true
+	// if this image has public launch permissions or false if it has only implicit
+	// and explicit launch permissions.
+	Public *bool `locationName:"isPublic" type:"boolean"`
+
+	// The RAM disk associated with the image, if any. Only applicable for machine
+	// images.
+	RAMDiskID *string `locationName:"ramdiskId" type:"string"`
+
+	// The device name of the root device (for example, /dev/sda1 or xvda).
+	RootDeviceName *string `locationName:"rootDeviceName" type:"string"`
+
+	// The type of root device used by the AMI. The AMI can use an Amazon EBS volume
+	// or an instance store volume.
+	RootDeviceType *string `locationName:"rootDeviceType" type:"string"`
+
+	// Specifies whether enhanced networking is enabled.
+	SRIOVNetSupport *string `locationName:"sriovNetSupport" type:"string"`
+
+	// The current state of the AMI. If the state is available, the image is successfully
+	// registered and can be used to launch an instance.
+	State *string `locationName:"imageState" type:"string"`
+
+	// The reason for the state change.
+	StateReason *StateReason `locationName:"stateReason" type:"structure"`
+
+	// Any tags assigned to the image.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
+
+	// The type of virtualization of the AMI.
+	VirtualizationType *string `locationName:"virtualizationType" type:"string"`
 
 	metadataImage `json:"-", xml:"-"`
 }
@@ -7204,11 +11195,17 @@ type metadataImage struct {
 }
 
 type ImportInstanceInput struct {
-	Description         *string                            `locationName:"description" type:"string"`
-	DiskImages          []*DiskImage                       `locationName:"diskImage" type:"list"`
-	DryRun              *bool                              `locationName:"dryRun" type:"boolean"`
+	// A description for the instance being imported.
+	Description *string `locationName:"description" type:"string"`
+
+	DiskImages []*DiskImage `locationName:"diskImage" type:"list"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
 	LaunchSpecification *ImportInstanceLaunchSpecification `locationName:"launchSpecification" type:"structure"`
-	Platform            *string                            `locationName:"platform" type:"string" required:"true"`
+
+	// The instance operating system.
+	Platform *string `locationName:"platform" type:"string" required:"true"`
 
 	metadataImportInstanceInput `json:"-", xml:"-"`
 }
@@ -7218,17 +11215,44 @@ type metadataImportInstanceInput struct {
 }
 
 type ImportInstanceLaunchSpecification struct {
-	AdditionalInfo                    *string    `locationName:"additionalInfo" type:"string"`
-	Architecture                      *string    `locationName:"architecture" type:"string"`
-	GroupIDs                          []*string  `locationName:"GroupId" locationNameList:"SecurityGroupId" type:"list"`
-	GroupNames                        []*string  `locationName:"GroupName" locationNameList:"SecurityGroup" type:"list"`
-	InstanceInitiatedShutdownBehavior *string    `locationName:"instanceInitiatedShutdownBehavior" type:"string"`
-	InstanceType                      *string    `locationName:"instanceType" type:"string"`
-	Monitoring                        *bool      `locationName:"monitoring" type:"boolean"`
-	Placement                         *Placement `locationName:"placement" type:"structure"`
-	PrivateIPAddress                  *string    `locationName:"privateIpAddress" type:"string"`
-	SubnetID                          *string    `locationName:"subnetId" type:"string"`
-	UserData                          *UserData  `locationName:"userData" type:"structure"`
+	AdditionalInfo *string `locationName:"additionalInfo" type:"string"`
+
+	// The architecture of the instance.
+	Architecture *string `locationName:"architecture" type:"string"`
+
+	// One or more security group IDs.
+	GroupIDs []*string `locationName:"GroupId" locationNameList:"SecurityGroupId" type:"list"`
+
+	// One or more security group names.
+	GroupNames []*string `locationName:"GroupName" locationNameList:"SecurityGroup" type:"list"`
+
+	// Indicates whether an instance stops or terminates when you initiate shutdown
+	// from the instance (using the operating system command for system shutdown).
+	InstanceInitiatedShutdownBehavior *string `locationName:"instanceInitiatedShutdownBehavior" type:"string"`
+
+	// The instance type. This is not supported for VMs imported into a VPC, which
+	// are assigned the default security group. After a VM is imported into a VPC,
+	// you can specify another security group using the AWS Management Console.
+	// For more information, see Instance Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html)
+	// in the Amazon Elastic Compute Cloud User Guide. For more information about
+	// the Linux instance types you can import, see Before You Get Started (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/VMImportPrerequisites.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	InstanceType *string `locationName:"instanceType" type:"string"`
+
+	Monitoring *bool `locationName:"monitoring" type:"boolean"`
+
+	// Describes the placement for the instance.
+	Placement *Placement `locationName:"placement" type:"structure"`
+
+	// [EC2-VPC] Optionally, you can use this parameter to assign the instance a
+	// specific available IP address from the IP address range of the subnet.
+	PrivateIPAddress *string `locationName:"privateIpAddress" type:"string"`
+
+	// [EC2-VPC] The ID of the subnet to launch the instance into.
+	SubnetID *string `locationName:"subnetId" type:"string"`
+
+	// User data to be made available to the instance.
+	UserData *UserData `locationName:"userData" type:"structure"`
 
 	metadataImportInstanceLaunchSpecification `json:"-", xml:"-"`
 }
@@ -7238,6 +11262,7 @@ type metadataImportInstanceLaunchSpecification struct {
 }
 
 type ImportInstanceOutput struct {
+	// Describes a conversion task.
 	ConversionTask *ConversionTask `locationName:"conversionTask" type:"structure"`
 
 	metadataImportInstanceOutput `json:"-", xml:"-"`
@@ -7248,10 +11273,14 @@ type metadataImportInstanceOutput struct {
 }
 
 type ImportInstanceTaskDetails struct {
-	Description *string                           `locationName:"description" type:"string"`
-	InstanceID  *string                           `locationName:"instanceId" type:"string"`
-	Platform    *string                           `locationName:"platform" type:"string"`
-	Volumes     []*ImportInstanceVolumeDetailItem `locationName:"volumes" locationNameList:"item" type:"list" required:"true"`
+	Description *string `locationName:"description" type:"string"`
+
+	InstanceID *string `locationName:"instanceId" type:"string"`
+
+	// The instance operating system.
+	Platform *string `locationName:"platform" type:"string"`
+
+	Volumes []*ImportInstanceVolumeDetailItem `locationName:"volumes" locationNameList:"item" type:"list" required:"true"`
 
 	metadataImportInstanceTaskDetails `json:"-", xml:"-"`
 }
@@ -7260,14 +11289,27 @@ type metadataImportInstanceTaskDetails struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an import volume task.
 type ImportInstanceVolumeDetailItem struct {
-	AvailabilityZone *string                     `locationName:"availabilityZone" type:"string" required:"true"`
-	BytesConverted   *int64                      `locationName:"bytesConverted" type:"long" required:"true"`
-	Description      *string                     `locationName:"description" type:"string"`
-	Image            *DiskImageDescription       `locationName:"image" type:"structure" required:"true"`
-	Status           *string                     `locationName:"status" type:"string" required:"true"`
-	StatusMessage    *string                     `locationName:"statusMessage" type:"string"`
-	Volume           *DiskImageVolumeDescription `locationName:"volume" type:"structure" required:"true"`
+	// The Availability Zone where the resulting instance will reside.
+	AvailabilityZone *string `locationName:"availabilityZone" type:"string" required:"true"`
+
+	// The number of bytes converted so far.
+	BytesConverted *int64 `locationName:"bytesConverted" type:"long" required:"true"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	// The image.
+	Image *DiskImageDescription `locationName:"image" type:"structure" required:"true"`
+
+	// The status of the import of this particular disk image.
+	Status *string `locationName:"status" type:"string" required:"true"`
+
+	// The status information or errors related to the disk image.
+	StatusMessage *string `locationName:"statusMessage" type:"string"`
+
+	// The volume.
+	Volume *DiskImageVolumeDescription `locationName:"volume" type:"structure" required:"true"`
 
 	metadataImportInstanceVolumeDetailItem `json:"-", xml:"-"`
 }
@@ -7277,9 +11319,14 @@ type metadataImportInstanceVolumeDetailItem struct {
 }
 
 type ImportKeyPairInput struct {
-	DryRun            *bool   `locationName:"dryRun" type:"boolean"`
-	KeyName           *string `locationName:"keyName" type:"string" required:"true"`
-	PublicKeyMaterial []byte  `locationName:"publicKeyMaterial" type:"blob" required:"true"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// A unique name for the key pair.
+	KeyName *string `locationName:"keyName" type:"string" required:"true"`
+
+	// The public key. You must base64 encode the public key material before sending
+	// it to AWS.
+	PublicKeyMaterial []byte `locationName:"publicKeyMaterial" type:"blob" required:"true"`
 
 	metadataImportKeyPairInput `json:"-", xml:"-"`
 }
@@ -7289,8 +11336,11 @@ type metadataImportKeyPairInput struct {
 }
 
 type ImportKeyPairOutput struct {
+	// The MD5 public key fingerprint as specified in section 4 of RFC 4716.
 	KeyFingerprint *string `locationName:"keyFingerprint" type:"string"`
-	KeyName        *string `locationName:"keyName" type:"string"`
+
+	// The key pair name you provided.
+	KeyName *string `locationName:"keyName" type:"string"`
 
 	metadataImportKeyPairOutput `json:"-", xml:"-"`
 }
@@ -7300,11 +11350,18 @@ type metadataImportKeyPairOutput struct {
 }
 
 type ImportVolumeInput struct {
-	AvailabilityZone *string          `locationName:"availabilityZone" type:"string" required:"true"`
-	Description      *string          `locationName:"description" type:"string"`
-	DryRun           *bool            `locationName:"dryRun" type:"boolean"`
-	Image            *DiskImageDetail `locationName:"image" type:"structure" required:"true"`
-	Volume           *VolumeDetail    `locationName:"volume" type:"structure" required:"true"`
+	// The Availability Zone for the resulting Amazon EBS volume.
+	AvailabilityZone *string `locationName:"availabilityZone" type:"string" required:"true"`
+
+	// An optional description for the volume being imported.
+	Description *string `locationName:"description" type:"string"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	Image *DiskImageDetail `locationName:"image" type:"structure" required:"true"`
+
+	// Describes an Amazon EBS volume.
+	Volume *VolumeDetail `locationName:"volume" type:"structure" required:"true"`
 
 	metadataImportVolumeInput `json:"-", xml:"-"`
 }
@@ -7314,6 +11371,7 @@ type metadataImportVolumeInput struct {
 }
 
 type ImportVolumeOutput struct {
+	// Describes a conversion task.
 	ConversionTask *ConversionTask `locationName:"conversionTask" type:"structure"`
 
 	metadataImportVolumeOutput `json:"-", xml:"-"`
@@ -7323,12 +11381,22 @@ type metadataImportVolumeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an import volume task.
 type ImportVolumeTaskDetails struct {
-	AvailabilityZone *string                     `locationName:"availabilityZone" type:"string" required:"true"`
-	BytesConverted   *int64                      `locationName:"bytesConverted" type:"long" required:"true"`
-	Description      *string                     `locationName:"description" type:"string"`
-	Image            *DiskImageDescription       `locationName:"image" type:"structure" required:"true"`
-	Volume           *DiskImageVolumeDescription `locationName:"volume" type:"structure" required:"true"`
+	// The Availability Zone where the resulting volume will reside.
+	AvailabilityZone *string `locationName:"availabilityZone" type:"string" required:"true"`
+
+	// The number of bytes converted so far.
+	BytesConverted *int64 `locationName:"bytesConverted" type:"long" required:"true"`
+
+	// The description you provided when starting the import volume task.
+	Description *string `locationName:"description" type:"string"`
+
+	// The image.
+	Image *DiskImageDescription `locationName:"image" type:"structure" required:"true"`
+
+	// The volume.
+	Volume *DiskImageVolumeDescription `locationName:"volume" type:"structure" required:"true"`
 
 	metadataImportVolumeTaskDetails `json:"-", xml:"-"`
 }
@@ -7337,44 +11405,133 @@ type metadataImportVolumeTaskDetails struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an instance.
 type Instance struct {
-	AMILaunchIndex        *int64                        `locationName:"amiLaunchIndex" type:"integer"`
-	Architecture          *string                       `locationName:"architecture" type:"string"`
-	BlockDeviceMappings   []*InstanceBlockDeviceMapping `locationName:"blockDeviceMapping" locationNameList:"item" type:"list"`
-	ClientToken           *string                       `locationName:"clientToken" type:"string"`
-	EBSOptimized          *bool                         `locationName:"ebsOptimized" type:"boolean"`
-	Hypervisor            *string                       `locationName:"hypervisor" type:"string"`
-	IAMInstanceProfile    *IAMInstanceProfile           `locationName:"iamInstanceProfile" type:"structure"`
-	ImageID               *string                       `locationName:"imageId" type:"string"`
-	InstanceID            *string                       `locationName:"instanceId" type:"string"`
-	InstanceLifecycle     *string                       `locationName:"instanceLifecycle" type:"string"`
-	InstanceType          *string                       `locationName:"instanceType" type:"string"`
-	KernelID              *string                       `locationName:"kernelId" type:"string"`
-	KeyName               *string                       `locationName:"keyName" type:"string"`
-	LaunchTime            *time.Time                    `locationName:"launchTime" type:"timestamp" timestampFormat:"iso8601"`
-	Monitoring            *Monitoring                   `locationName:"monitoring" type:"structure"`
-	NetworkInterfaces     []*InstanceNetworkInterface   `locationName:"networkInterfaceSet" locationNameList:"item" type:"list"`
-	Placement             *Placement                    `locationName:"placement" type:"structure"`
-	Platform              *string                       `locationName:"platform" type:"string"`
-	PrivateDNSName        *string                       `locationName:"privateDnsName" type:"string"`
-	PrivateIPAddress      *string                       `locationName:"privateIpAddress" type:"string"`
-	ProductCodes          []*ProductCode                `locationName:"productCodes" locationNameList:"item" type:"list"`
-	PublicDNSName         *string                       `locationName:"dnsName" type:"string"`
-	PublicIPAddress       *string                       `locationName:"ipAddress" type:"string"`
-	RAMDiskID             *string                       `locationName:"ramdiskId" type:"string"`
-	RootDeviceName        *string                       `locationName:"rootDeviceName" type:"string"`
-	RootDeviceType        *string                       `locationName:"rootDeviceType" type:"string"`
-	SRIOVNetSupport       *string                       `locationName:"sriovNetSupport" type:"string"`
-	SecurityGroups        []*GroupIdentifier            `locationName:"groupSet" locationNameList:"item" type:"list"`
-	SourceDestCheck       *bool                         `locationName:"sourceDestCheck" type:"boolean"`
-	SpotInstanceRequestID *string                       `locationName:"spotInstanceRequestId" type:"string"`
-	State                 *InstanceState                `locationName:"instanceState" type:"structure"`
-	StateReason           *StateReason                  `locationName:"stateReason" type:"structure"`
-	StateTransitionReason *string                       `locationName:"reason" type:"string"`
-	SubnetID              *string                       `locationName:"subnetId" type:"string"`
-	Tags                  []*Tag                        `locationName:"tagSet" locationNameList:"item" type:"list"`
-	VPCID                 *string                       `locationName:"vpcId" type:"string"`
-	VirtualizationType    *string                       `locationName:"virtualizationType" type:"string"`
+	// The AMI launch index, which can be used to find this instance in the launch
+	// group.
+	AMILaunchIndex *int64 `locationName:"amiLaunchIndex" type:"integer"`
+
+	// The architecture of the image.
+	Architecture *string `locationName:"architecture" type:"string"`
+
+	// Any block device mapping entries for the instance.
+	BlockDeviceMappings []*InstanceBlockDeviceMapping `locationName:"blockDeviceMapping" locationNameList:"item" type:"list"`
+
+	// The idempotency token you provided when you launched the instance.
+	ClientToken *string `locationName:"clientToken" type:"string"`
+
+	// Indicates whether the instance is optimized for EBS I/O. This optimization
+	// provides dedicated throughput to Amazon EBS and an optimized configuration
+	// stack to provide optimal I/O performance. This optimization isn't available
+	// with all instance types. Additional usage charges apply when using an EBS
+	// Optimized instance.
+	EBSOptimized *bool `locationName:"ebsOptimized" type:"boolean"`
+
+	// The hypervisor type of the instance.
+	Hypervisor *string `locationName:"hypervisor" type:"string"`
+
+	// The IAM instance profile associated with the instance.
+	IAMInstanceProfile *IAMInstanceProfile `locationName:"iamInstanceProfile" type:"structure"`
+
+	// The ID of the AMI used to launch the instance.
+	ImageID *string `locationName:"imageId" type:"string"`
+
+	// The ID of the instance.
+	InstanceID *string `locationName:"instanceId" type:"string"`
+
+	// Indicates whether this is a Spot Instance.
+	InstanceLifecycle *string `locationName:"instanceLifecycle" type:"string"`
+
+	// The instance type.
+	InstanceType *string `locationName:"instanceType" type:"string"`
+
+	// The kernel associated with this instance.
+	KernelID *string `locationName:"kernelId" type:"string"`
+
+	// The name of the key pair, if this instance was launched with an associated
+	// key pair.
+	KeyName *string `locationName:"keyName" type:"string"`
+
+	// The time the instance was launched.
+	LaunchTime *time.Time `locationName:"launchTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The monitoring information for the instance.
+	Monitoring *Monitoring `locationName:"monitoring" type:"structure"`
+
+	// [EC2-VPC] One or more network interfaces for the instance.
+	NetworkInterfaces []*InstanceNetworkInterface `locationName:"networkInterfaceSet" locationNameList:"item" type:"list"`
+
+	// The location where the instance launched.
+	Placement *Placement `locationName:"placement" type:"structure"`
+
+	// The value is Windows for Windows instances; otherwise blank.
+	Platform *string `locationName:"platform" type:"string"`
+
+	// The private DNS name assigned to the instance. This DNS name can only be
+	// used inside the Amazon EC2 network. This name is not available until the
+	// instance enters the running state.
+	PrivateDNSName *string `locationName:"privateDnsName" type:"string"`
+
+	// The private IP address assigned to the instance.
+	PrivateIPAddress *string `locationName:"privateIpAddress" type:"string"`
+
+	// The product codes attached to this instance.
+	ProductCodes []*ProductCode `locationName:"productCodes" locationNameList:"item" type:"list"`
+
+	// The public DNS name assigned to the instance. This name is not available
+	// until the instance enters the running state.
+	PublicDNSName *string `locationName:"dnsName" type:"string"`
+
+	// The public IP address assigned to the instance.
+	PublicIPAddress *string `locationName:"ipAddress" type:"string"`
+
+	// The RAM disk associated with this instance.
+	RAMDiskID *string `locationName:"ramdiskId" type:"string"`
+
+	// The root device name (for example, /dev/sda1).
+	RootDeviceName *string `locationName:"rootDeviceName" type:"string"`
+
+	// The root device type used by the AMI. The AMI can use an Amazon EBS volume
+	// or an instance store volume.
+	RootDeviceType *string `locationName:"rootDeviceType" type:"string"`
+
+	// Specifies whether enhanced networking is enabled.
+	SRIOVNetSupport *string `locationName:"sriovNetSupport" type:"string"`
+
+	// One or more security groups for the instance.
+	SecurityGroups []*GroupIdentifier `locationName:"groupSet" locationNameList:"item" type:"list"`
+
+	// Specifies whether to enable an instance launched in a VPC to perform NAT.
+	// This controls whether source/destination checking is enabled on the instance.
+	// A value of true means checking is enabled, and false means checking is disabled.
+	// The value must be false for the instance to perform NAT. For more information,
+	// see NAT Instances (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_NAT_Instance.html)
+	// in the Amazon Virtual Private Cloud User Guide.
+	SourceDestCheck *bool `locationName:"sourceDestCheck" type:"boolean"`
+
+	// The ID of the Spot Instance request.
+	SpotInstanceRequestID *string `locationName:"spotInstanceRequestId" type:"string"`
+
+	// The current state of the instance.
+	State *InstanceState `locationName:"instanceState" type:"structure"`
+
+	// The reason for the most recent state transition.
+	StateReason *StateReason `locationName:"stateReason" type:"structure"`
+
+	// The reason for the most recent state transition. This might be an empty string.
+	StateTransitionReason *string `locationName:"reason" type:"string"`
+
+	// The ID of the subnet in which the instance is running.
+	SubnetID *string `locationName:"subnetId" type:"string"`
+
+	// Any tags assigned to the instance.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
+
+	// The ID of the VPC in which the instance is running.
+	VPCID *string `locationName:"vpcId" type:"string"`
+
+	// The virtualization type of the instance.
+	VirtualizationType *string `locationName:"virtualizationType" type:"string"`
 
 	metadataInstance `json:"-", xml:"-"`
 }
@@ -7383,9 +11540,14 @@ type metadataInstance struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a block device mapping.
 type InstanceBlockDeviceMapping struct {
-	DeviceName *string                 `locationName:"deviceName" type:"string"`
-	EBS        *EBSInstanceBlockDevice `locationName:"ebs" type:"structure"`
+	// The device name exposed to the instance (for example, /dev/sdh).
+	DeviceName *string `locationName:"deviceName" type:"string"`
+
+	// Parameters used to automatically set up Amazon EBS volumes when the instance
+	// is launched.
+	EBS *EBSInstanceBlockDevice `locationName:"ebs" type:"structure"`
 
 	metadataInstanceBlockDeviceMapping `json:"-", xml:"-"`
 }
@@ -7394,11 +11556,20 @@ type metadataInstanceBlockDeviceMapping struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a block device mapping entry.
 type InstanceBlockDeviceMappingSpecification struct {
-	DeviceName  *string                              `locationName:"deviceName" type:"string"`
-	EBS         *EBSInstanceBlockDeviceSpecification `locationName:"ebs" type:"structure"`
-	NoDevice    *string                              `locationName:"noDevice" type:"string"`
-	VirtualName *string                              `locationName:"virtualName" type:"string"`
+	// The device name exposed to the instance (for example, /dev/sdh).
+	DeviceName *string `locationName:"deviceName" type:"string"`
+
+	// Parameters used to automatically set up Amazon EBS volumes when the instance
+	// is launched.
+	EBS *EBSInstanceBlockDeviceSpecification `locationName:"ebs" type:"structure"`
+
+	// suppress the specified device included in the block device mapping.
+	NoDevice *string `locationName:"noDevice" type:"string"`
+
+	// The virtual device name.
+	VirtualName *string `locationName:"virtualName" type:"string"`
 
 	metadataInstanceBlockDeviceMappingSpecification `json:"-", xml:"-"`
 }
@@ -7407,9 +11578,13 @@ type metadataInstanceBlockDeviceMappingSpecification struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a Reserved Instance listing state.
 type InstanceCount struct {
-	InstanceCount *int64  `locationName:"instanceCount" type:"integer"`
-	State         *string `locationName:"state" type:"string"`
+	// he number of listed Reserved Instances in the state specified by the state.
+	InstanceCount *int64 `locationName:"instanceCount" type:"integer"`
+
+	// The states of the listed Reserved Instances.
+	State *string `locationName:"state" type:"string"`
 
 	metadataInstanceCount `json:"-", xml:"-"`
 }
@@ -7418,8 +11593,12 @@ type metadataInstanceCount struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an instance export task.
 type InstanceExportDetails struct {
-	InstanceID        *string `locationName:"instanceId" type:"string"`
+	// The ID of the resource being exported.
+	InstanceID *string `locationName:"instanceId" type:"string"`
+
+	// The target virtualization environment.
 	TargetEnvironment *string `locationName:"targetEnvironment" type:"string"`
 
 	metadataInstanceExportDetails `json:"-", xml:"-"`
@@ -7429,8 +11608,12 @@ type metadataInstanceExportDetails struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the monitoring information of the instance.
 type InstanceMonitoring struct {
-	InstanceID *string     `locationName:"instanceId" type:"string"`
+	// The ID of the instance.
+	InstanceID *string `locationName:"instanceId" type:"string"`
+
+	// The monitoring information.
 	Monitoring *Monitoring `locationName:"monitoring" type:"structure"`
 
 	metadataInstanceMonitoring `json:"-", xml:"-"`
@@ -7440,21 +11623,50 @@ type metadataInstanceMonitoring struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a network interface.
 type InstanceNetworkInterface struct {
-	Association        *InstanceNetworkInterfaceAssociation `locationName:"association" type:"structure"`
-	Attachment         *InstanceNetworkInterfaceAttachment  `locationName:"attachment" type:"structure"`
-	Description        *string                              `locationName:"description" type:"string"`
-	Groups             []*GroupIdentifier                   `locationName:"groupSet" locationNameList:"item" type:"list"`
-	MACAddress         *string                              `locationName:"macAddress" type:"string"`
-	NetworkInterfaceID *string                              `locationName:"networkInterfaceId" type:"string"`
-	OwnerID            *string                              `locationName:"ownerId" type:"string"`
-	PrivateDNSName     *string                              `locationName:"privateDnsName" type:"string"`
-	PrivateIPAddress   *string                              `locationName:"privateIpAddress" type:"string"`
-	PrivateIPAddresses []*InstancePrivateIPAddress          `locationName:"privateIpAddressesSet" locationNameList:"item" type:"list"`
-	SourceDestCheck    *bool                                `locationName:"sourceDestCheck" type:"boolean"`
-	Status             *string                              `locationName:"status" type:"string"`
-	SubnetID           *string                              `locationName:"subnetId" type:"string"`
-	VPCID              *string                              `locationName:"vpcId" type:"string"`
+	// The association information for an Elastic IP associated with the network
+	// interface.
+	Association *InstanceNetworkInterfaceAssociation `locationName:"association" type:"structure"`
+
+	// The network interface attachment.
+	Attachment *InstanceNetworkInterfaceAttachment `locationName:"attachment" type:"structure"`
+
+	// The description.
+	Description *string `locationName:"description" type:"string"`
+
+	// One or more security groups.
+	Groups []*GroupIdentifier `locationName:"groupSet" locationNameList:"item" type:"list"`
+
+	// The MAC address.
+	MACAddress *string `locationName:"macAddress" type:"string"`
+
+	// The ID of the network interface.
+	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string"`
+
+	// The ID of the AWS account that created the network interface.
+	OwnerID *string `locationName:"ownerId" type:"string"`
+
+	// The private DNS name.
+	PrivateDNSName *string `locationName:"privateDnsName" type:"string"`
+
+	// The IP address of the network interface within the subnet.
+	PrivateIPAddress *string `locationName:"privateIpAddress" type:"string"`
+
+	// The private IP addresses associated with the network interface.
+	PrivateIPAddresses []*InstancePrivateIPAddress `locationName:"privateIpAddressesSet" locationNameList:"item" type:"list"`
+
+	// Indicates whether to validate network traffic to or from this network interface.
+	SourceDestCheck *bool `locationName:"sourceDestCheck" type:"boolean"`
+
+	// The status of the network interface.
+	Status *string `locationName:"status" type:"string"`
+
+	// The ID of the subnet.
+	SubnetID *string `locationName:"subnetId" type:"string"`
+
+	// The ID of the VPC.
+	VPCID *string `locationName:"vpcId" type:"string"`
 
 	metadataInstanceNetworkInterface `json:"-", xml:"-"`
 }
@@ -7463,10 +11675,16 @@ type metadataInstanceNetworkInterface struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes association information for an Elastic IP address.
 type InstanceNetworkInterfaceAssociation struct {
-	IPOwnerID     *string `locationName:"ipOwnerId" type:"string"`
+	// The ID of the owner of the Elastic IP address.
+	IPOwnerID *string `locationName:"ipOwnerId" type:"string"`
+
+	// The public DNS name.
 	PublicDNSName *string `locationName:"publicDnsName" type:"string"`
-	PublicIP      *string `locationName:"publicIp" type:"string"`
+
+	// The public IP address or Elastic IP address bound to the network interface.
+	PublicIP *string `locationName:"publicIp" type:"string"`
 
 	metadataInstanceNetworkInterfaceAssociation `json:"-", xml:"-"`
 }
@@ -7475,12 +11693,22 @@ type metadataInstanceNetworkInterfaceAssociation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a network interface attachment.
 type InstanceNetworkInterfaceAttachment struct {
-	AttachTime          *time.Time `locationName:"attachTime" type:"timestamp" timestampFormat:"iso8601"`
-	AttachmentID        *string    `locationName:"attachmentId" type:"string"`
-	DeleteOnTermination *bool      `locationName:"deleteOnTermination" type:"boolean"`
-	DeviceIndex         *int64     `locationName:"deviceIndex" type:"integer"`
-	Status              *string    `locationName:"status" type:"string"`
+	// The time stamp when the attachment initiated.
+	AttachTime *time.Time `locationName:"attachTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The ID of the network interface attachment.
+	AttachmentID *string `locationName:"attachmentId" type:"string"`
+
+	// Indicates whether the network interface is deleted when the instance is terminated.
+	DeleteOnTermination *bool `locationName:"deleteOnTermination" type:"boolean"`
+
+	// The index of the device on the instance for the network interface attachment.
+	DeviceIndex *int64 `locationName:"deviceIndex" type:"integer"`
+
+	// The attachment state.
+	Status *string `locationName:"status" type:"string"`
 
 	metadataInstanceNetworkInterfaceAttachment `json:"-", xml:"-"`
 }
@@ -7489,17 +11717,52 @@ type metadataInstanceNetworkInterfaceAttachment struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a network interface.
 type InstanceNetworkInterfaceSpecification struct {
-	AssociatePublicIPAddress       *bool                            `locationName:"associatePublicIpAddress" type:"boolean"`
-	DeleteOnTermination            *bool                            `locationName:"deleteOnTermination" type:"boolean"`
-	Description                    *string                          `locationName:"description" type:"string"`
-	DeviceIndex                    *int64                           `locationName:"deviceIndex" type:"integer"`
-	Groups                         []*string                        `locationName:"SecurityGroupId" locationNameList:"SecurityGroupId" type:"list"`
-	NetworkInterfaceID             *string                          `locationName:"networkInterfaceId" type:"string"`
-	PrivateIPAddress               *string                          `locationName:"privateIpAddress" type:"string"`
-	PrivateIPAddresses             []*PrivateIPAddressSpecification `locationName:"privateIpAddressesSet" queryName:"PrivateIpAddresses" locationNameList:"item" type:"list"`
-	SecondaryPrivateIPAddressCount *int64                           `locationName:"secondaryPrivateIpAddressCount" type:"integer"`
-	SubnetID                       *string                          `locationName:"subnetId" type:"string"`
+	// Indicates whether to assign a public IP address to an instance you launch
+	// in a VPC. The public IP address can only be assigned to a network interface
+	// for eth0, and can only be assigned to a new network interface, not an existing
+	// one. You cannot specify more than one network interface in the request. If
+	// luanching into a default subnet, the default value is true.
+	AssociatePublicIPAddress *bool `locationName:"associatePublicIpAddress" type:"boolean"`
+
+	// If set to true, the interface is deleted when the instance is terminated.
+	// You can specify true only if creating a new network interface when launching
+	// an instance.
+	DeleteOnTermination *bool `locationName:"deleteOnTermination" type:"boolean"`
+
+	// The description of the network interface. Applies only if creating a network
+	// interface when launching an instance.
+	Description *string `locationName:"description" type:"string"`
+
+	// The index of the device on the instance for the network interface attachment.
+	// If you are specifying a network interface in a RunInstances request, you
+	// must provide the device index.
+	DeviceIndex *int64 `locationName:"deviceIndex" type:"integer"`
+
+	// The IDs of the security groups for the network interface. Applies only if
+	// creating a network interface when launching an instance.
+	Groups []*string `locationName:"SecurityGroupId" locationNameList:"SecurityGroupId" type:"list"`
+
+	// The ID of the network interface.
+	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string"`
+
+	// The private IP address of the network interface. Applies only if creating
+	// a network interface when launching an instance.
+	PrivateIPAddress *string `locationName:"privateIpAddress" type:"string"`
+
+	// One or more private IP addresses to assign to the network interface. Only
+	// one private IP address can be designated as primary.
+	PrivateIPAddresses []*PrivateIPAddressSpecification `locationName:"privateIpAddressesSet" queryName:"PrivateIpAddresses" locationNameList:"item" type:"list"`
+
+	// The number of secondary private IP addresses. You can't specify this option
+	// and specify more than one private IP address using the private IP addresses
+	// option.
+	SecondaryPrivateIPAddressCount *int64 `locationName:"secondaryPrivateIpAddressCount" type:"integer"`
+
+	// The ID of the subnet associated with the network string. Applies only if
+	// creating a network interface when launching an instance.
+	SubnetID *string `locationName:"subnetId" type:"string"`
 
 	metadataInstanceNetworkInterfaceSpecification `json:"-", xml:"-"`
 }
@@ -7508,11 +11771,20 @@ type metadataInstanceNetworkInterfaceSpecification struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a private IP address.
 type InstancePrivateIPAddress struct {
-	Association      *InstanceNetworkInterfaceAssociation `locationName:"association" type:"structure"`
-	Primary          *bool                                `locationName:"primary" type:"boolean"`
-	PrivateDNSName   *string                              `locationName:"privateDnsName" type:"string"`
-	PrivateIPAddress *string                              `locationName:"privateIpAddress" type:"string"`
+	// The association information for an Elastic IP address for the network interface.
+	Association *InstanceNetworkInterfaceAssociation `locationName:"association" type:"structure"`
+
+	// Indicates whether this IP address is the primary private IP address of the
+	// network interface.
+	Primary *bool `locationName:"primary" type:"boolean"`
+
+	// The private DNS name.
+	PrivateDNSName *string `locationName:"privateDnsName" type:"string"`
+
+	// The private IP address of the network interface.
+	PrivateIPAddress *string `locationName:"privateIpAddress" type:"string"`
 
 	metadataInstancePrivateIPAddress `json:"-", xml:"-"`
 }
@@ -7521,8 +11793,25 @@ type metadataInstancePrivateIPAddress struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the current state of the instance.
 type InstanceState struct {
-	Code *int64  `locationName:"code" type:"integer"`
+	// The low byte represents the state. The high byte is an opaque internal value
+	// and should be ignored.
+	//
+	//  0 : pending
+	//
+	// 16 : running
+	//
+	// 32 : shutting-down
+	//
+	// 48 : terminated
+	//
+	// 64 : stopping
+	//
+	// 80 : stopped
+	Code *int64 `locationName:"code" type:"integer"`
+
+	// The current state of the instance.
 	Name *string `locationName:"name" type:"string"`
 
 	metadataInstanceState `json:"-", xml:"-"`
@@ -7532,9 +11821,15 @@ type metadataInstanceState struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an instance state change.
 type InstanceStateChange struct {
-	CurrentState  *InstanceState `locationName:"currentState" type:"structure"`
-	InstanceID    *string        `locationName:"instanceId" type:"string"`
+	// The current state of the instance.
+	CurrentState *InstanceState `locationName:"currentState" type:"structure"`
+
+	// The ID of the instance.
+	InstanceID *string `locationName:"instanceId" type:"string"`
+
+	// The previous state of the instance.
 	PreviousState *InstanceState `locationName:"previousState" type:"structure"`
 
 	metadataInstanceStateChange `json:"-", xml:"-"`
@@ -7544,13 +11839,29 @@ type metadataInstanceStateChange struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the status of an instance.
 type InstanceStatus struct {
-	AvailabilityZone *string                `locationName:"availabilityZone" type:"string"`
-	Events           []*InstanceStatusEvent `locationName:"eventsSet" locationNameList:"item" type:"list"`
-	InstanceID       *string                `locationName:"instanceId" type:"string"`
-	InstanceState    *InstanceState         `locationName:"instanceState" type:"structure"`
-	InstanceStatus   *InstanceStatusSummary `locationName:"instanceStatus" type:"structure"`
-	SystemStatus     *InstanceStatusSummary `locationName:"systemStatus" type:"structure"`
+	// The Availability Zone of the instance.
+	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
+
+	// Extra information regarding events associated with the instance.
+	Events []*InstanceStatusEvent `locationName:"eventsSet" locationNameList:"item" type:"list"`
+
+	// The ID of the instance.
+	InstanceID *string `locationName:"instanceId" type:"string"`
+
+	// The intended state of the instance. DescribeInstanceStatus requires that
+	// an instance be in the running state.
+	InstanceState *InstanceState `locationName:"instanceState" type:"structure"`
+
+	// Reports impaired functionality that stems from issues internal to the instance,
+	// such as impaired reachability.
+	InstanceStatus *InstanceStatusSummary `locationName:"instanceStatus" type:"structure"`
+
+	// Reports impaired functionality that stems from issues related to the systems
+	// that support an instance, such as hardware failures and network connectivity
+	// problems.
+	SystemStatus *InstanceStatusSummary `locationName:"systemStatus" type:"structure"`
 
 	metadataInstanceStatus `json:"-", xml:"-"`
 }
@@ -7559,10 +11870,17 @@ type metadataInstanceStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the instance status.
 type InstanceStatusDetails struct {
+	// The time when a status check failed. For an instance that was launched and
+	// impaired, this is the time when the instance was launched.
 	ImpairedSince *time.Time `locationName:"impairedSince" type:"timestamp" timestampFormat:"iso8601"`
-	Name          *string    `locationName:"name" type:"string"`
-	Status        *string    `locationName:"status" type:"string"`
+
+	// The type of instance status.
+	Name *string `locationName:"name" type:"string"`
+
+	// The status.
+	Status *string `locationName:"status" type:"string"`
 
 	metadataInstanceStatusDetails `json:"-", xml:"-"`
 }
@@ -7571,11 +11889,19 @@ type metadataInstanceStatusDetails struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an instance event.
 type InstanceStatusEvent struct {
-	Code        *string    `locationName:"code" type:"string"`
-	Description *string    `locationName:"description" type:"string"`
-	NotAfter    *time.Time `locationName:"notAfter" type:"timestamp" timestampFormat:"iso8601"`
-	NotBefore   *time.Time `locationName:"notBefore" type:"timestamp" timestampFormat:"iso8601"`
+	// The associated code of the event.
+	Code *string `locationName:"code" type:"string"`
+
+	// A description of the event.
+	Description *string `locationName:"description" type:"string"`
+
+	// The latest scheduled end time for the event.
+	NotAfter *time.Time `locationName:"notAfter" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The earliest scheduled start time for the event.
+	NotBefore *time.Time `locationName:"notBefore" type:"timestamp" timestampFormat:"iso8601"`
 
 	metadataInstanceStatusEvent `json:"-", xml:"-"`
 }
@@ -7584,9 +11910,13 @@ type metadataInstanceStatusEvent struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the status of an instance.
 type InstanceStatusSummary struct {
+	// The system instance health or application instance health.
 	Details []*InstanceStatusDetails `locationName:"details" locationNameList:"item" type:"list"`
-	Status  *string                  `locationName:"status" type:"string"`
+
+	// The status.
+	Status *string `locationName:"status" type:"string"`
 
 	metadataInstanceStatusSummary `json:"-", xml:"-"`
 }
@@ -7595,10 +11925,16 @@ type metadataInstanceStatusSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an Internet gateway.
 type InternetGateway struct {
-	Attachments       []*InternetGatewayAttachment `locationName:"attachmentSet" locationNameList:"item" type:"list"`
-	InternetGatewayID *string                      `locationName:"internetGatewayId" type:"string"`
-	Tags              []*Tag                       `locationName:"tagSet" locationNameList:"item" type:"list"`
+	// Any VPCs attached to the Internet gateway.
+	Attachments []*InternetGatewayAttachment `locationName:"attachmentSet" locationNameList:"item" type:"list"`
+
+	// The ID of the Internet gateway.
+	InternetGatewayID *string `locationName:"internetGatewayId" type:"string"`
+
+	// Any tags assigned to the Internet gateway.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 
 	metadataInternetGateway `json:"-", xml:"-"`
 }
@@ -7607,8 +11943,12 @@ type metadataInternetGateway struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the attachment of a VPC to an Internet gateway.
 type InternetGatewayAttachment struct {
+	// The current state of the attachment.
 	State *string `locationName:"state" type:"string"`
+
+	// The ID of the VPC.
 	VPCID *string `locationName:"vpcId" type:"string"`
 
 	metadataInternetGatewayAttachment `json:"-", xml:"-"`
@@ -7618,9 +11958,16 @@ type metadataInternetGatewayAttachment struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a key pair.
 type KeyPairInfo struct {
+	// If you used CreateKeyPair to create the key pair, this is the SHA-1 digest
+	// of the DER encoded private key. If you used ImportKeyPair to provide AWS
+	// the public key, this is the MD5 public key fingerprint as specified in section
+	// 4 of RFC4716.
 	KeyFingerprint *string `locationName:"keyFingerprint" type:"string"`
-	KeyName        *string `locationName:"keyName" type:"string"`
+
+	// The name of the key pair.
+	KeyName *string `locationName:"keyName" type:"string"`
 
 	metadataKeyPairInfo `json:"-", xml:"-"`
 }
@@ -7629,8 +11976,12 @@ type metadataKeyPairInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a launch permission.
 type LaunchPermission struct {
-	Group  *string `locationName:"group" type:"string"`
+	// The name of the group.
+	Group *string `locationName:"group" type:"string"`
+
+	// The AWS account ID.
 	UserID *string `locationName:"userId" type:"string"`
 
 	metadataLaunchPermission `json:"-", xml:"-"`
@@ -7640,8 +11991,13 @@ type metadataLaunchPermission struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a launch permission modification.
 type LaunchPermissionModifications struct {
-	Add    []*LaunchPermission `locationNameList:"item" type:"list"`
+	// The AWS account ID to add to the list of launch permissions for the AMI.
+	Add []*LaunchPermission `locationNameList:"item" type:"list"`
+
+	// The AWS account ID to remove from the list of launch permissions for the
+	// AMI.
 	Remove []*LaunchPermission `locationNameList:"item" type:"list"`
 
 	metadataLaunchPermissionModifications `json:"-", xml:"-"`
@@ -7651,22 +12007,61 @@ type metadataLaunchPermissionModifications struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the launch specification for an instance.
 type LaunchSpecification struct {
-	AddressingType      *string                                  `locationName:"addressingType" type:"string"`
-	BlockDeviceMappings []*BlockDeviceMapping                    `locationName:"blockDeviceMapping" locationNameList:"item" type:"list"`
-	EBSOptimized        *bool                                    `locationName:"ebsOptimized" type:"boolean"`
-	IAMInstanceProfile  *IAMInstanceProfileSpecification         `locationName:"iamInstanceProfile" type:"structure"`
-	ImageID             *string                                  `locationName:"imageId" type:"string"`
-	InstanceType        *string                                  `locationName:"instanceType" type:"string"`
-	KernelID            *string                                  `locationName:"kernelId" type:"string"`
-	KeyName             *string                                  `locationName:"keyName" type:"string"`
-	Monitoring          *RunInstancesMonitoringEnabled           `locationName:"monitoring" type:"structure"`
-	NetworkInterfaces   []*InstanceNetworkInterfaceSpecification `locationName:"networkInterfaceSet" locationNameList:"item" type:"list"`
-	Placement           *SpotPlacement                           `locationName:"placement" type:"structure"`
-	RAMDiskID           *string                                  `locationName:"ramdiskId" type:"string"`
-	SecurityGroups      []*GroupIdentifier                       `locationName:"groupSet" locationNameList:"item" type:"list"`
-	SubnetID            *string                                  `locationName:"subnetId" type:"string"`
-	UserData            *string                                  `locationName:"userData" type:"string"`
+	// Deprecated.
+	AddressingType *string `locationName:"addressingType" type:"string"`
+
+	// One or more block device mapping entries.
+	BlockDeviceMappings []*BlockDeviceMapping `locationName:"blockDeviceMapping" locationNameList:"item" type:"list"`
+
+	// Indicates whether the instance is optimized for EBS I/O. This optimization
+	// provides dedicated throughput to Amazon EBS and an optimized configuration
+	// stack to provide optimal EBS I/O performance. This optimization isn't available
+	// with all instance types. Additional usage charges apply when using an EBS
+	// Optimized instance.
+	//
+	// Default: false
+	EBSOptimized *bool `locationName:"ebsOptimized" type:"boolean"`
+
+	// The IAM instance profile.
+	IAMInstanceProfile *IAMInstanceProfileSpecification `locationName:"iamInstanceProfile" type:"structure"`
+
+	// The ID of the AMI.
+	ImageID *string `locationName:"imageId" type:"string"`
+
+	// The instance type.
+	InstanceType *string `locationName:"instanceType" type:"string"`
+
+	// The ID of the kernel.
+	KernelID *string `locationName:"kernelId" type:"string"`
+
+	// The name of the key pair.
+	KeyName *string `locationName:"keyName" type:"string"`
+
+	// Describes the monitoring for the instance.
+	Monitoring *RunInstancesMonitoringEnabled `locationName:"monitoring" type:"structure"`
+
+	// One or more network interfaces.
+	NetworkInterfaces []*InstanceNetworkInterfaceSpecification `locationName:"networkInterfaceSet" locationNameList:"item" type:"list"`
+
+	// The placement information for the instance.
+	Placement *SpotPlacement `locationName:"placement" type:"structure"`
+
+	// The ID of the RAM disk.
+	RAMDiskID *string `locationName:"ramdiskId" type:"string"`
+
+	// One or more security groups. To request an instance in a nondefault VPC,
+	// you must specify the ID of the security group. To request an instance in
+	// EC2-Classic or a default VPC, you can specify the name or the ID of the security
+	// group.
+	SecurityGroups []*GroupIdentifier `locationName:"groupSet" locationNameList:"item" type:"list"`
+
+	// The ID of the subnet in which to launch the instance.
+	SubnetID *string `locationName:"subnetId" type:"string"`
+
+	// The Base64-encoded MIME user data to make available to the instances.
+	UserData *string `locationName:"userData" type:"string"`
 
 	metadataLaunchSpecification `json:"-", xml:"-"`
 }
@@ -7676,16 +12071,37 @@ type metadataLaunchSpecification struct {
 }
 
 type ModifyImageAttributeInput struct {
-	Attribute        *string                        `type:"string"`
-	Description      *AttributeValue                `type:"structure"`
-	DryRun           *bool                          `locationName:"dryRun" type:"boolean"`
-	ImageID          *string                        `locationName:"ImageId" type:"string" required:"true"`
+	// The name of the attribute to modify.
+	Attribute *string `type:"string"`
+
+	// A description for the AMI.
+	Description *AttributeValue `type:"structure"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the AMI.
+	ImageID *string `locationName:"ImageId" type:"string" required:"true"`
+
 	LaunchPermission *LaunchPermissionModifications `type:"structure"`
-	OperationType    *string                        `type:"string"`
-	ProductCodes     []*string                      `locationName:"ProductCode" locationNameList:"ProductCode" type:"list"`
-	UserGroups       []*string                      `locationName:"UserGroup" locationNameList:"UserGroup" type:"list"`
-	UserIDs          []*string                      `locationName:"UserId" locationNameList:"UserId" type:"list"`
-	Value            *string                        `type:"string"`
+
+	// The operation type.
+	OperationType *string `type:"string"`
+
+	// One or more product codes. After you add a product code to an AMI, it can't
+	// be removed. This is only valid when modifying the productCodes attribute.
+	ProductCodes []*string `locationName:"ProductCode" locationNameList:"ProductCode" type:"list"`
+
+	// One or more user groups. This is only valid when modifying the launchPermission
+	// attribute.
+	UserGroups []*string `locationName:"UserGroup" locationNameList:"UserGroup" type:"list"`
+
+	// One or more AWS account IDs. This is only valid when modifying the launchPermission
+	// attribute.
+	UserIDs []*string `locationName:"UserId" locationNameList:"UserId" type:"list"`
+
+	// The value of the attribute being modified. This is only valid when modifying
+	// the description attribute.
+	Value *string `type:"string"`
 
 	metadataModifyImageAttributeInput `json:"-", xml:"-"`
 }
@@ -7703,21 +12119,82 @@ type metadataModifyImageAttributeOutput struct {
 }
 
 type ModifyInstanceAttributeInput struct {
-	Attribute                         *string                                    `locationName:"attribute" type:"string"`
-	BlockDeviceMappings               []*InstanceBlockDeviceMappingSpecification `locationName:"blockDeviceMapping" locationNameList:"item" type:"list"`
-	DisableAPITermination             *AttributeBooleanValue                     `locationName:"disableApiTermination" type:"structure"`
-	DryRun                            *bool                                      `locationName:"dryRun" type:"boolean"`
-	EBSOptimized                      *AttributeBooleanValue                     `locationName:"ebsOptimized" type:"structure"`
-	Groups                            []*string                                  `locationName:"GroupId" locationNameList:"groupId" type:"list"`
-	InstanceID                        *string                                    `locationName:"instanceId" type:"string" required:"true"`
-	InstanceInitiatedShutdownBehavior *AttributeValue                            `locationName:"instanceInitiatedShutdownBehavior" type:"structure"`
-	InstanceType                      *AttributeValue                            `locationName:"instanceType" type:"structure"`
-	Kernel                            *AttributeValue                            `locationName:"kernel" type:"structure"`
-	RAMDisk                           *AttributeValue                            `locationName:"ramdisk" type:"structure"`
-	SRIOVNetSupport                   *AttributeValue                            `locationName:"sriovNetSupport" type:"structure"`
-	SourceDestCheck                   *AttributeBooleanValue                     `type:"structure"`
-	UserData                          *BlobAttributeValue                        `locationName:"userData" type:"structure"`
-	Value                             *string                                    `locationName:"value" type:"string"`
+	// The name of the attribute.
+	Attribute *string `locationName:"attribute" type:"string"`
+
+	// Modifies the DeleteOnTermination attribute for volumes that are currently
+	// attached. The volume must be owned by the caller. If no value is specified
+	// for DeleteOnTermination, the default is true and the volume is deleted when
+	// the instance is terminated.
+	//
+	// To add instance store volumes to an Amazon EBS-backed instance, you must
+	// add them when you launch the instance. For more information, see Updating
+	// the Block Device Mapping when Launching an Instance (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html#Using_OverridingAMIBDM)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	BlockDeviceMappings []*InstanceBlockDeviceMappingSpecification `locationName:"blockDeviceMapping" locationNameList:"item" type:"list"`
+
+	// If the value is true, you can't terminate the instance using the Amazon EC2
+	// console, CLI, or API; otherwise, you can.
+	DisableAPITermination *AttributeBooleanValue `locationName:"disableApiTermination" type:"structure"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// Specifies whether the instance is optimized for EBS I/O. This optimization
+	// provides dedicated throughput to Amazon EBS and an optimized configuration
+	// stack to provide optimal EBS I/O performance. This optimization isn't available
+	// with all instance types. Additional usage charges apply when using an EBS
+	// Optimized instance.
+	EBSOptimized *AttributeBooleanValue `locationName:"ebsOptimized" type:"structure"`
+
+	// [EC2-VPC] Changes the security groups of the instance. You must specify at
+	// least one security group, even if it's just the default security group for
+	// the VPC. You must specify the security group ID, not the security group name.
+	//
+	// For example, if you want the instance to be in sg-1a1a1a1a and sg-9b9b9b9b,
+	// specify GroupId.1=sg-1a1a1a1a and GroupId.2=sg-9b9b9b9b.
+	Groups []*string `locationName:"GroupId" locationNameList:"groupId" type:"list"`
+
+	// The ID of the instance.
+	InstanceID *string `locationName:"instanceId" type:"string" required:"true"`
+
+	// Specifies whether an instance stops or terminates when you initiate shutdown
+	// from the instance (using the operating system command for system shutdown).
+	InstanceInitiatedShutdownBehavior *AttributeValue `locationName:"instanceInitiatedShutdownBehavior" type:"structure"`
+
+	// Changes the instance type to the specified value. For more information, see
+	// Instance Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html).
+	// If the instance type is not valid, the error returned is InvalidInstanceAttributeValue.
+	InstanceType *AttributeValue `locationName:"instanceType" type:"structure"`
+
+	// Changes the instance's kernel to the specified value. We recommend that you
+	// use PV-GRUB instead of kernels and RAM disks. For more information, see PV-GRUB
+	// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html).
+	Kernel *AttributeValue `locationName:"kernel" type:"structure"`
+
+	// Changes the instance's RAM disk to the specified value. We recommend that
+	// you use PV-GRUB instead of kernels and RAM disks. For more information, see
+	// PV-GRUB (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html).
+	RAMDisk *AttributeValue `locationName:"ramdisk" type:"structure"`
+
+	// Set to simple to enable enhanced networking for the instance.
+	//
+	// There is no way to disable enhanced networking at this time.
+	//
+	// This option is supported only for HVM instances. Specifying this option
+	// with a PV instance can make it unreachable.
+	SRIOVNetSupport *AttributeValue `locationName:"sriovNetSupport" type:"structure"`
+
+	// Specifies whether source/destination checking is enabled. A value of true
+	// means that checking is enabled, and false means checking is disabled. This
+	// value must be false for a NAT instance to perform NAT.
+	SourceDestCheck *AttributeBooleanValue `type:"structure"`
+
+	// Changes the instance's user data to the specified value.
+	UserData *BlobAttributeValue `locationName:"userData" type:"structure"`
+
+	// A new value for the attribute. Use only with the kernel, ramdisk, userData,
+	// disableApiTermination, or intanceInitiateShutdownBehavior attribute.
+	Value *string `locationName:"value" type:"string"`
 
 	metadataModifyInstanceAttributeInput `json:"-", xml:"-"`
 }
@@ -7735,12 +12212,30 @@ type metadataModifyInstanceAttributeOutput struct {
 }
 
 type ModifyNetworkInterfaceAttributeInput struct {
-	Attachment         *NetworkInterfaceAttachmentChanges `locationName:"attachment" type:"structure"`
-	Description        *AttributeValue                    `locationName:"description" type:"structure"`
-	DryRun             *bool                              `locationName:"dryRun" type:"boolean"`
-	Groups             []*string                          `locationName:"SecurityGroupId" locationNameList:"SecurityGroupId" type:"list"`
-	NetworkInterfaceID *string                            `locationName:"networkInterfaceId" type:"string" required:"true"`
-	SourceDestCheck    *AttributeBooleanValue             `locationName:"sourceDestCheck" type:"structure"`
+	// Information about the interface attachment. If modifying the 'delete on termination'
+	// attribute, you must specify the ID of the interface attachment.
+	Attachment *NetworkInterfaceAttachmentChanges `locationName:"attachment" type:"structure"`
+
+	// A description for the network interface.
+	Description *AttributeValue `locationName:"description" type:"structure"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// Changes the security groups for the network interface. The new set of groups
+	// you specify replaces the current set. You must specify at least one group,
+	// even if it's just the default security group in the VPC. You must specify
+	// the ID of the security group, not the name.
+	Groups []*string `locationName:"SecurityGroupId" locationNameList:"SecurityGroupId" type:"list"`
+
+	// The ID of the network interface.
+	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string" required:"true"`
+
+	// Indicates whether source/destination checking is enabled. A value of true
+	// means checking is enabled, and false means checking is disabled. This value
+	// must be false for a NAT instance to perform NAT. For more information, see
+	// NAT Instances (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_NAT_Instance.html)
+	// in the Amazon Virtual Private Cloud User Guide.
+	SourceDestCheck *AttributeBooleanValue `locationName:"sourceDestCheck" type:"structure"`
 
 	metadataModifyNetworkInterfaceAttributeInput `json:"-", xml:"-"`
 }
@@ -7758,8 +12253,14 @@ type metadataModifyNetworkInterfaceAttributeOutput struct {
 }
 
 type ModifyReservedInstancesInput struct {
-	ClientToken          *string                           `locationName:"clientToken" type:"string"`
-	ReservedInstancesIDs []*string                         `locationName:"ReservedInstancesId" locationNameList:"ReservedInstancesId" type:"list" required:"true"`
+	// A unique, case-sensitive token you provide to ensure idempotency of your
+	// modification request.
+	ClientToken *string `locationName:"clientToken" type:"string"`
+
+	// The IDs of the Reserved Instances to modify.
+	ReservedInstancesIDs []*string `locationName:"ReservedInstancesId" locationNameList:"ReservedInstancesId" type:"list" required:"true"`
+
+	// The configuration settings for the Reserved Instances to modify.
 	TargetConfigurations []*ReservedInstancesConfiguration `locationName:"ReservedInstancesConfigurationSetItemType" locationNameList:"item" type:"list" required:"true"`
 
 	metadataModifyReservedInstancesInput `json:"-", xml:"-"`
@@ -7770,6 +12271,7 @@ type metadataModifyReservedInstancesInput struct {
 }
 
 type ModifyReservedInstancesOutput struct {
+	// The ID for the modification.
 	ReservedInstancesModificationID *string `locationName:"reservedInstancesModificationId" type:"string"`
 
 	metadataModifyReservedInstancesOutput `json:"-", xml:"-"`
@@ -7780,13 +12282,25 @@ type metadataModifyReservedInstancesOutput struct {
 }
 
 type ModifySnapshotAttributeInput struct {
-	Attribute              *string                              `type:"string"`
+	// The snapshot attribute to modify.
+	Attribute *string `type:"string"`
+
+	// A JSON representation of the snapshot attribute modification.
 	CreateVolumePermission *CreateVolumePermissionModifications `type:"structure"`
-	DryRun                 *bool                                `locationName:"dryRun" type:"boolean"`
-	GroupNames             []*string                            `locationName:"UserGroup" locationNameList:"GroupName" type:"list"`
-	OperationType          *string                              `type:"string"`
-	SnapshotID             *string                              `locationName:"SnapshotId" type:"string" required:"true"`
-	UserIDs                []*string                            `locationName:"UserId" locationNameList:"UserId" type:"list"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The group to modify for the snapshot.
+	GroupNames []*string `locationName:"UserGroup" locationNameList:"GroupName" type:"list"`
+
+	// The type of operation to perform to the attribute.
+	OperationType *string `type:"string"`
+
+	// The ID of the snapshot.
+	SnapshotID *string `locationName:"SnapshotId" type:"string" required:"true"`
+
+	// The account ID to modify for the snapshot.
+	UserIDs []*string `locationName:"UserId" locationNameList:"UserId" type:"list"`
 
 	metadataModifySnapshotAttributeInput `json:"-", xml:"-"`
 }
@@ -7804,8 +12318,11 @@ type metadataModifySnapshotAttributeOutput struct {
 }
 
 type ModifySubnetAttributeInput struct {
+	// The value to use when a resource attribute accepts a Boolean value.
 	MapPublicIPOnLaunch *AttributeBooleanValue `locationName:"MapPublicIpOnLaunch" type:"structure"`
-	SubnetID            *string                `locationName:"subnetId" type:"string" required:"true"`
+
+	// The ID of the subnet.
+	SubnetID *string `locationName:"subnetId" type:"string" required:"true"`
 
 	metadataModifySubnetAttributeInput `json:"-", xml:"-"`
 }
@@ -7823,9 +12340,21 @@ type metadataModifySubnetAttributeOutput struct {
 }
 
 type ModifyVPCAttributeInput struct {
+	// Indicates whether the instances launched in the VPC get DNS hostnames. If
+	// enabled, instances in the VPC get DNS hostnames; otherwise, they do not.
+	//
+	// You can only enable DNS hostnames if you also enable DNS support.
 	EnableDNSHostnames *AttributeBooleanValue `locationName:"EnableDnsHostnames" type:"structure"`
-	EnableDNSSupport   *AttributeBooleanValue `locationName:"EnableDnsSupport" type:"structure"`
-	VPCID              *string                `locationName:"vpcId" type:"string" required:"true"`
+
+	// Indicates whether the DNS resolution is supported for the VPC. If enabled,
+	// queries to the Amazon provided DNS server at the 169.254.169.253 IP address,
+	// or the reserved IP address at the base of the VPC network range "plus two"
+	// will succeed. If disabled, the Amazon provided DNS service in the VPC that
+	// resolves public DNS hostnames to IP addresses is not enabled.
+	EnableDNSSupport *AttributeBooleanValue `locationName:"EnableDnsSupport" type:"structure"`
+
+	// The ID of the VPC.
+	VPCID *string `locationName:"vpcId" type:"string" required:"true"`
 
 	metadataModifyVPCAttributeInput `json:"-", xml:"-"`
 }
@@ -7843,9 +12372,13 @@ type metadataModifyVPCAttributeOutput struct {
 }
 
 type ModifyVolumeAttributeInput struct {
+	// Indicates whether the volume should be auto-enabled for I/O operations.
 	AutoEnableIO *AttributeBooleanValue `type:"structure"`
-	DryRun       *bool                  `locationName:"dryRun" type:"boolean"`
-	VolumeID     *string                `locationName:"VolumeId" type:"string" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the volume.
+	VolumeID *string `locationName:"VolumeId" type:"string" required:"true"`
 
 	metadataModifyVolumeAttributeInput `json:"-", xml:"-"`
 }
@@ -7863,7 +12396,9 @@ type metadataModifyVolumeAttributeOutput struct {
 }
 
 type MonitorInstancesInput struct {
-	DryRun      *bool     `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more instance IDs.
 	InstanceIDs []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 
 	metadataMonitorInstancesInput `json:"-", xml:"-"`
@@ -7874,6 +12409,7 @@ type metadataMonitorInstancesInput struct {
 }
 
 type MonitorInstancesOutput struct {
+	// Monitoring information for one or more instances.
 	InstanceMonitorings []*InstanceMonitoring `locationName:"instancesSet" locationNameList:"item" type:"list"`
 
 	metadataMonitorInstancesOutput `json:"-", xml:"-"`
@@ -7883,7 +12419,9 @@ type metadataMonitorInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the monitoring for the instance.
 type Monitoring struct {
+	// Indicates whether monitoring is enabled for the instance.
 	State *string `locationName:"state" type:"string"`
 
 	metadataMonitoring `json:"-", xml:"-"`
@@ -7893,13 +12431,25 @@ type metadataMonitoring struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a network ACL.
 type NetworkACL struct {
+	// Any associations between the network ACL and one or more subnets
 	Associations []*NetworkACLAssociation `locationName:"associationSet" locationNameList:"item" type:"list"`
-	Entries      []*NetworkACLEntry       `locationName:"entrySet" locationNameList:"item" type:"list"`
-	IsDefault    *bool                    `locationName:"default" type:"boolean"`
-	NetworkACLID *string                  `locationName:"networkAclId" type:"string"`
-	Tags         []*Tag                   `locationName:"tagSet" locationNameList:"item" type:"list"`
-	VPCID        *string                  `locationName:"vpcId" type:"string"`
+
+	// One or more entries (rules) in the network ACL.
+	Entries []*NetworkACLEntry `locationName:"entrySet" locationNameList:"item" type:"list"`
+
+	// Indicates whether this is the default network ACL for the VPC.
+	IsDefault *bool `locationName:"default" type:"boolean"`
+
+	// The ID of the network ACL.
+	NetworkACLID *string `locationName:"networkAclId" type:"string"`
+
+	// Any tags assigned to the network ACL.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
+
+	// The ID of the VPC for the network ACL.
+	VPCID *string `locationName:"vpcId" type:"string"`
 
 	metadataNetworkACL `json:"-", xml:"-"`
 }
@@ -7908,10 +12458,16 @@ type metadataNetworkACL struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an association between a network ACL and a subnet.
 type NetworkACLAssociation struct {
+	// The ID of the association between a network ACL and a subnet.
 	NetworkACLAssociationID *string `locationName:"networkAclAssociationId" type:"string"`
-	NetworkACLID            *string `locationName:"networkAclId" type:"string"`
-	SubnetID                *string `locationName:"subnetId" type:"string"`
+
+	// The ID of the network ACL.
+	NetworkACLID *string `locationName:"networkAclId" type:"string"`
+
+	// The ID of the subnet.
+	SubnetID *string `locationName:"subnetId" type:"string"`
 
 	metadataNetworkACLAssociation `json:"-", xml:"-"`
 }
@@ -7920,14 +12476,30 @@ type metadataNetworkACLAssociation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an entry in a network ACL.
 type NetworkACLEntry struct {
-	CIDRBlock    *string       `locationName:"cidrBlock" type:"string"`
-	Egress       *bool         `locationName:"egress" type:"boolean"`
+	// The network range to allow or deny, in CIDR notation.
+	CIDRBlock *string `locationName:"cidrBlock" type:"string"`
+
+	// Indicates whether the rule is an egress rule (applied to traffic leaving
+	// the subnet).
+	Egress *bool `locationName:"egress" type:"boolean"`
+
+	// ICMP protocol: The ICMP type and code.
 	ICMPTypeCode *ICMPTypeCode `locationName:"icmpTypeCode" type:"structure"`
-	PortRange    *PortRange    `locationName:"portRange" type:"structure"`
-	Protocol     *string       `locationName:"protocol" type:"string"`
-	RuleAction   *string       `locationName:"ruleAction" type:"string"`
-	RuleNumber   *int64        `locationName:"ruleNumber" type:"integer"`
+
+	// TCP or UDP protocols: The range of ports the rule applies to.
+	PortRange *PortRange `locationName:"portRange" type:"structure"`
+
+	// The protocol. A value of -1 means all protocols.
+	Protocol *string `locationName:"protocol" type:"string"`
+
+	// Indicates whether to allow or deny the traffic that matches the rule.
+	RuleAction *string `locationName:"ruleAction" type:"string"`
+
+	// The rule number for the entry. ACL entries are processed in ascending order
+	// by rule number.
+	RuleNumber *int64 `locationName:"ruleNumber" type:"integer"`
 
 	metadataNetworkACLEntry `json:"-", xml:"-"`
 }
@@ -7936,25 +12508,63 @@ type metadataNetworkACLEntry struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a network interface.
 type NetworkInterface struct {
-	Association        *NetworkInterfaceAssociation        `locationName:"association" type:"structure"`
-	Attachment         *NetworkInterfaceAttachment         `locationName:"attachment" type:"structure"`
-	AvailabilityZone   *string                             `locationName:"availabilityZone" type:"string"`
-	Description        *string                             `locationName:"description" type:"string"`
-	Groups             []*GroupIdentifier                  `locationName:"groupSet" locationNameList:"item" type:"list"`
-	MACAddress         *string                             `locationName:"macAddress" type:"string"`
-	NetworkInterfaceID *string                             `locationName:"networkInterfaceId" type:"string"`
-	OwnerID            *string                             `locationName:"ownerId" type:"string"`
-	PrivateDNSName     *string                             `locationName:"privateDnsName" type:"string"`
-	PrivateIPAddress   *string                             `locationName:"privateIpAddress" type:"string"`
+	// The association information for an Elastic IP associated with the network
+	// interface.
+	Association *NetworkInterfaceAssociation `locationName:"association" type:"structure"`
+
+	// The network interface attachment.
+	Attachment *NetworkInterfaceAttachment `locationName:"attachment" type:"structure"`
+
+	// The Availability Zone.
+	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
+
+	// A description.
+	Description *string `locationName:"description" type:"string"`
+
+	// Any security groups for the network interface.
+	Groups []*GroupIdentifier `locationName:"groupSet" locationNameList:"item" type:"list"`
+
+	// The MAC address.
+	MACAddress *string `locationName:"macAddress" type:"string"`
+
+	// The ID of the network interface.
+	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string"`
+
+	// The AWS account ID of the owner of the network interface.
+	OwnerID *string `locationName:"ownerId" type:"string"`
+
+	// The private DNS name.
+	PrivateDNSName *string `locationName:"privateDnsName" type:"string"`
+
+	// The IP address of the network interface within the subnet.
+	PrivateIPAddress *string `locationName:"privateIpAddress" type:"string"`
+
+	// The private IP addresses associated with the network interface.
 	PrivateIPAddresses []*NetworkInterfacePrivateIPAddress `locationName:"privateIpAddressesSet" locationNameList:"item" type:"list"`
-	RequesterID        *string                             `locationName:"requesterId" type:"string"`
-	RequesterManaged   *bool                               `locationName:"requesterManaged" type:"boolean"`
-	SourceDestCheck    *bool                               `locationName:"sourceDestCheck" type:"boolean"`
-	Status             *string                             `locationName:"status" type:"string"`
-	SubnetID           *string                             `locationName:"subnetId" type:"string"`
-	TagSet             []*Tag                              `locationName:"tagSet" locationNameList:"item" type:"list"`
-	VPCID              *string                             `locationName:"vpcId" type:"string"`
+
+	// The ID of the entity that launched the instance on your behalf (for example,
+	// AWS Management Console or Auto Scaling).
+	RequesterID *string `locationName:"requesterId" type:"string"`
+
+	// Indicates whether the network interface is being managed by AWS.
+	RequesterManaged *bool `locationName:"requesterManaged" type:"boolean"`
+
+	// Indicates whether traffic to or from the instance is validated.
+	SourceDestCheck *bool `locationName:"sourceDestCheck" type:"boolean"`
+
+	// The status of the network interface.
+	Status *string `locationName:"status" type:"string"`
+
+	// The ID of the subnet.
+	SubnetID *string `locationName:"subnetId" type:"string"`
+
+	// Any tags assigned to the network interface.
+	TagSet []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
+
+	// The ID of the VPC.
+	VPCID *string `locationName:"vpcId" type:"string"`
 
 	metadataNetworkInterface `json:"-", xml:"-"`
 }
@@ -7963,12 +12573,22 @@ type metadataNetworkInterface struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes association information for an Elastic IP address.
 type NetworkInterfaceAssociation struct {
-	AllocationID  *string `locationName:"allocationId" type:"string"`
+	// The allocation ID.
+	AllocationID *string `locationName:"allocationId" type:"string"`
+
+	// The association ID.
 	AssociationID *string `locationName:"associationId" type:"string"`
-	IPOwnerID     *string `locationName:"ipOwnerId" type:"string"`
+
+	// The ID of the Elastic IP address owner.
+	IPOwnerID *string `locationName:"ipOwnerId" type:"string"`
+
+	// The public DNS name.
 	PublicDNSName *string `locationName:"publicDnsName" type:"string"`
-	PublicIP      *string `locationName:"publicIp" type:"string"`
+
+	// The address of the Elastic IP address bound to the network interface.
+	PublicIP *string `locationName:"publicIp" type:"string"`
 
 	metadataNetworkInterfaceAssociation `json:"-", xml:"-"`
 }
@@ -7977,14 +12597,28 @@ type metadataNetworkInterfaceAssociation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a network interface attachment.
 type NetworkInterfaceAttachment struct {
-	AttachTime          *time.Time `locationName:"attachTime" type:"timestamp" timestampFormat:"iso8601"`
-	AttachmentID        *string    `locationName:"attachmentId" type:"string"`
-	DeleteOnTermination *bool      `locationName:"deleteOnTermination" type:"boolean"`
-	DeviceIndex         *int64     `locationName:"deviceIndex" type:"integer"`
-	InstanceID          *string    `locationName:"instanceId" type:"string"`
-	InstanceOwnerID     *string    `locationName:"instanceOwnerId" type:"string"`
-	Status              *string    `locationName:"status" type:"string"`
+	// The timestamp indicating when the attachment initiated.
+	AttachTime *time.Time `locationName:"attachTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The ID of the network interface attachment.
+	AttachmentID *string `locationName:"attachmentId" type:"string"`
+
+	// Indicates whether the network interface is deleted when the instance is terminated.
+	DeleteOnTermination *bool `locationName:"deleteOnTermination" type:"boolean"`
+
+	// The device index of the network interface attachment on the instance.
+	DeviceIndex *int64 `locationName:"deviceIndex" type:"integer"`
+
+	// The ID of the instance.
+	InstanceID *string `locationName:"instanceId" type:"string"`
+
+	// The AWS account ID of the owner of the instance.
+	InstanceOwnerID *string `locationName:"instanceOwnerId" type:"string"`
+
+	// The attachment state.
+	Status *string `locationName:"status" type:"string"`
 
 	metadataNetworkInterfaceAttachment `json:"-", xml:"-"`
 }
@@ -7993,9 +12627,13 @@ type metadataNetworkInterfaceAttachment struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an attachment change.
 type NetworkInterfaceAttachmentChanges struct {
-	AttachmentID        *string `locationName:"attachmentId" type:"string"`
-	DeleteOnTermination *bool   `locationName:"deleteOnTermination" type:"boolean"`
+	// The ID of the network interface attachment.
+	AttachmentID *string `locationName:"attachmentId" type:"string"`
+
+	// Indicates whether the network interface is deleted when the instance is terminated.
+	DeleteOnTermination *bool `locationName:"deleteOnTermination" type:"boolean"`
 
 	metadataNetworkInterfaceAttachmentChanges `json:"-", xml:"-"`
 }
@@ -8004,11 +12642,21 @@ type metadataNetworkInterfaceAttachmentChanges struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the private IP address of a network interface.
 type NetworkInterfacePrivateIPAddress struct {
-	Association      *NetworkInterfaceAssociation `locationName:"association" type:"structure"`
-	Primary          *bool                        `locationName:"primary" type:"boolean"`
-	PrivateDNSName   *string                      `locationName:"privateDnsName" type:"string"`
-	PrivateIPAddress *string                      `locationName:"privateIpAddress" type:"string"`
+	// The association information for an Elastic IP address associated with the
+	// network interface.
+	Association *NetworkInterfaceAssociation `locationName:"association" type:"structure"`
+
+	// Indicates whether this IP address is the primary private IP address of the
+	// network interface.
+	Primary *bool `locationName:"primary" type:"boolean"`
+
+	// The private DNS name.
+	PrivateDNSName *string `locationName:"privateDnsName" type:"string"`
+
+	// The private IP address.
+	PrivateIPAddress *string `locationName:"privateIpAddress" type:"string"`
 
 	metadataNetworkInterfacePrivateIPAddress `json:"-", xml:"-"`
 }
@@ -8018,7 +12666,8 @@ type metadataNetworkInterfacePrivateIPAddress struct {
 }
 
 type NewDHCPConfiguration struct {
-	Key    *string   `locationName:"key" type:"string"`
+	Key *string `locationName:"key" type:"string"`
+
 	Values []*string `locationName:"Value" locationNameList:"item" type:"list"`
 
 	metadataNewDHCPConfiguration `json:"-", xml:"-"`
@@ -8028,10 +12677,17 @@ type metadataNewDHCPConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the placement for the instance.
 type Placement struct {
+	// The Availability Zone of the instance.
 	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
-	GroupName        *string `locationName:"groupName" type:"string"`
-	Tenancy          *string `locationName:"tenancy" type:"string"`
+
+	// The name of the placement group the instance is in (for cluster compute instances).
+	GroupName *string `locationName:"groupName" type:"string"`
+
+	// The tenancy of the instance (if the instance is running in a VPC). An instance
+	// with a tenancy of dedicated runs on single-tenant hardware.
+	Tenancy *string `locationName:"tenancy" type:"string"`
 
 	metadataPlacement `json:"-", xml:"-"`
 }
@@ -8040,10 +12696,16 @@ type metadataPlacement struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a placement group.
 type PlacementGroup struct {
+	// The name of the placement group.
 	GroupName *string `locationName:"groupName" type:"string"`
-	State     *string `locationName:"state" type:"string"`
-	Strategy  *string `locationName:"strategy" type:"string"`
+
+	// The state of the placement group.
+	State *string `locationName:"state" type:"string"`
+
+	// The placement strategy.
+	Strategy *string `locationName:"strategy" type:"string"`
 
 	metadataPlacementGroup `json:"-", xml:"-"`
 }
@@ -8052,9 +12714,13 @@ type metadataPlacementGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a range of ports.
 type PortRange struct {
+	// The first port in the range.
 	From *int64 `locationName:"from" type:"integer"`
-	To   *int64 `locationName:"to" type:"integer"`
+
+	// The last port in the range.
+	To *int64 `locationName:"to" type:"integer"`
 
 	metadataPortRange `json:"-", xml:"-"`
 }
@@ -8063,11 +12729,30 @@ type metadataPortRange struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the price for a Reserved Instance.
 type PriceSchedule struct {
-	Active       *bool    `locationName:"active" type:"boolean"`
-	CurrencyCode *string  `locationName:"currencyCode" type:"string"`
-	Price        *float64 `locationName:"price" type:"double"`
-	Term         *int64   `locationName:"term" type:"long"`
+	// The current price schedule, as determined by the term remaining for the Reserved
+	// Instance in the listing.
+	//
+	// A specific price schedule is always in effect, but only one price schedule
+	// can be active at any time. Take, for example, a Reserved Instance listing
+	// that has five months remaining in its term. When you specify price schedules
+	// for five months and two months, this means that schedule 1, covering the
+	// first three months of the remaining term, will be active during months 5,
+	// 4, and 3. Then schedule 2, covering the last two months of the term, will
+	// be active for months 2 and 1.
+	Active *bool `locationName:"active" type:"boolean"`
+
+	// The currency for transacting the Reserved Instance resale. At this time,
+	// the only supported currency is USD.
+	CurrencyCode *string `locationName:"currencyCode" type:"string"`
+
+	// The fixed price for the term.
+	Price *float64 `locationName:"price" type:"double"`
+
+	// The number of months remaining in the reservation. For example, 2 is the
+	// second to the last month before the capacity reservation expires.
+	Term *int64 `locationName:"term" type:"long"`
 
 	metadataPriceSchedule `json:"-", xml:"-"`
 }
@@ -8076,10 +12761,18 @@ type metadataPriceSchedule struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the price for a Reserved Instance.
 type PriceScheduleSpecification struct {
-	CurrencyCode *string  `locationName:"currencyCode" type:"string"`
-	Price        *float64 `locationName:"price" type:"double"`
-	Term         *int64   `locationName:"term" type:"long"`
+	// The currency for transacting the Reserved Instance resale. At this time,
+	// the only supported currency is USD.
+	CurrencyCode *string `locationName:"currencyCode" type:"string"`
+
+	// The fixed price for the term.
+	Price *float64 `locationName:"price" type:"double"`
+
+	// The number of months remaining in the reservation. For example, 2 is the
+	// second to the last month before the capacity reservation expires.
+	Term *int64 `locationName:"term" type:"long"`
 
 	metadataPriceScheduleSpecification `json:"-", xml:"-"`
 }
@@ -8088,8 +12781,12 @@ type metadataPriceScheduleSpecification struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a Reserved Instance offering.
 type PricingDetail struct {
-	Count *int64   `locationName:"count" type:"integer"`
+	// The number of instances available for the price.
+	Count *int64 `locationName:"count" type:"integer"`
+
+	// The price per instance.
 	Price *float64 `locationName:"price" type:"double"`
 
 	metadataPricingDetail `json:"-", xml:"-"`
@@ -8099,8 +12796,13 @@ type metadataPricingDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a secondary private IP address for a network interface.
 type PrivateIPAddressSpecification struct {
-	Primary          *bool   `locationName:"primary" type:"boolean"`
+	// Indicates whether the private IP address is the primary private IP address.
+	// Only one IP address can be designated as primary.
+	Primary *bool `locationName:"primary" type:"boolean"`
+
+	// The private IP addresses.
 	PrivateIPAddress *string `locationName:"privateIpAddress" type:"string" required:"true"`
 
 	metadataPrivateIPAddressSpecification `json:"-", xml:"-"`
@@ -8110,8 +12812,12 @@ type metadataPrivateIPAddressSpecification struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a product code.
 type ProductCode struct {
-	ProductCodeID   *string `locationName:"productCode" type:"string"`
+	// The product code.
+	ProductCodeID *string `locationName:"productCode" type:"string"`
+
+	// The type of product code.
 	ProductCodeType *string `locationName:"type" type:"string"`
 
 	metadataProductCode `json:"-", xml:"-"`
@@ -8121,7 +12827,9 @@ type metadataProductCode struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a virtual private gateway propagating route.
 type PropagatingVGW struct {
+	// The ID of the virtual private gateway (VGW).
 	GatewayID *string `locationName:"gatewayId" type:"string"`
 
 	metadataPropagatingVGW `json:"-", xml:"-"`
@@ -8132,10 +12840,18 @@ type metadataPropagatingVGW struct {
 }
 
 type PurchaseReservedInstancesOfferingInput struct {
-	DryRun                      *bool                       `locationName:"dryRun" type:"boolean"`
-	InstanceCount               *int64                      `type:"integer" required:"true"`
-	LimitPrice                  *ReservedInstanceLimitPrice `locationName:"limitPrice" type:"structure"`
-	ReservedInstancesOfferingID *string                     `locationName:"ReservedInstancesOfferingId" type:"string" required:"true"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The number of Reserved Instances to purchase.
+	InstanceCount *int64 `type:"integer" required:"true"`
+
+	// Specified for Reserved Instance Marketplace offerings to limit the total
+	// order and ensure that the Reserved Instances are not purchased at unexpected
+	// prices.
+	LimitPrice *ReservedInstanceLimitPrice `locationName:"limitPrice" type:"structure"`
+
+	// The ID of the Reserved Instance offering to purchase.
+	ReservedInstancesOfferingID *string `locationName:"ReservedInstancesOfferingId" type:"string" required:"true"`
 
 	metadataPurchaseReservedInstancesOfferingInput `json:"-", xml:"-"`
 }
@@ -8145,6 +12861,7 @@ type metadataPurchaseReservedInstancesOfferingInput struct {
 }
 
 type PurchaseReservedInstancesOfferingOutput struct {
+	// The IDs of the purchased Reserved Instances.
 	ReservedInstancesID *string `locationName:"reservedInstancesId" type:"string"`
 
 	metadataPurchaseReservedInstancesOfferingOutput `json:"-", xml:"-"`
@@ -8155,7 +12872,9 @@ type metadataPurchaseReservedInstancesOfferingOutput struct {
 }
 
 type RebootInstancesInput struct {
-	DryRun      *bool     `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more instance IDs.
 	InstanceIDs []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 
 	metadataRebootInstancesInput `json:"-", xml:"-"`
@@ -8173,9 +12892,13 @@ type metadataRebootInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a recurring charge.
 type RecurringCharge struct {
-	Amount    *float64 `locationName:"amount" type:"double"`
-	Frequency *string  `locationName:"frequency" type:"string"`
+	// The amount of the recurring charge.
+	Amount *float64 `locationName:"amount" type:"double"`
+
+	// The frequency of the recurring charge.
+	Frequency *string `locationName:"frequency" type:"string"`
 
 	metadataRecurringCharge `json:"-", xml:"-"`
 }
@@ -8184,8 +12907,12 @@ type metadataRecurringCharge struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a region.
 type Region struct {
-	Endpoint   *string `locationName:"regionEndpoint" type:"string"`
+	// The region service endpoint.
+	Endpoint *string `locationName:"regionEndpoint" type:"string"`
+
+	// The name of the region.
 	RegionName *string `locationName:"regionName" type:"string"`
 
 	metadataRegion `json:"-", xml:"-"`
@@ -8196,17 +12923,52 @@ type metadataRegion struct {
 }
 
 type RegisterImageInput struct {
-	Architecture        *string               `locationName:"architecture" type:"string"`
+	// The architecture of the AMI.
+	//
+	// Default: For Amazon EBS-backed AMIs, i386. For instance store-backed AMIs,
+	// the architecture specified in the manifest file.
+	Architecture *string `locationName:"architecture" type:"string"`
+
+	// One or more block device mapping entries.
 	BlockDeviceMappings []*BlockDeviceMapping `locationName:"BlockDeviceMapping" locationNameList:"BlockDeviceMapping" type:"list"`
-	Description         *string               `locationName:"description" type:"string"`
-	DryRun              *bool                 `locationName:"dryRun" type:"boolean"`
-	ImageLocation       *string               `type:"string"`
-	KernelID            *string               `locationName:"kernelId" type:"string"`
-	Name                *string               `locationName:"name" type:"string" required:"true"`
-	RAMDiskID           *string               `locationName:"ramdiskId" type:"string"`
-	RootDeviceName      *string               `locationName:"rootDeviceName" type:"string"`
-	SRIOVNetSupport     *string               `locationName:"sriovNetSupport" type:"string"`
-	VirtualizationType  *string               `locationName:"virtualizationType" type:"string"`
+
+	// A description for your AMI.
+	Description *string `locationName:"description" type:"string"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The full path to your AMI manifest in Amazon S3 storage.
+	ImageLocation *string `type:"string"`
+
+	// The ID of the kernel.
+	KernelID *string `locationName:"kernelId" type:"string"`
+
+	// A name for your AMI.
+	//
+	// Constraints: 3-128 alphanumeric characters, parentheses (()), square brackets
+	// ([]), spaces ( ), periods (.), slashes (/), dashes (-), single quotes ('),
+	// at-signs (@), or underscores(_)
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The ID of the RAM disk.
+	RAMDiskID *string `locationName:"ramdiskId" type:"string"`
+
+	// The name of the root device (for example, /dev/sda1, or xvda).
+	RootDeviceName *string `locationName:"rootDeviceName" type:"string"`
+
+	// Set to simple to enable enhanced networking for the AMI and any instances
+	// that you launch from the AMI.
+	//
+	// There is no way to disable enhanced networking at this time.
+	//
+	// This option is supported only for HVM AMIs. Specifying this option with
+	// a PV AMI can make instances launched from the AMI unreachable.
+	SRIOVNetSupport *string `locationName:"sriovNetSupport" type:"string"`
+
+	// The type of virtualization.
+	//
+	// Default: paravirtual
+	VirtualizationType *string `locationName:"virtualizationType" type:"string"`
 
 	metadataRegisterImageInput `json:"-", xml:"-"`
 }
@@ -8216,6 +12978,7 @@ type metadataRegisterImageInput struct {
 }
 
 type RegisterImageOutput struct {
+	// The ID of the newly registered AMI.
 	ImageID *string `locationName:"imageId" type:"string"`
 
 	metadataRegisterImageOutput `json:"-", xml:"-"`
@@ -8226,7 +12989,9 @@ type metadataRegisterImageOutput struct {
 }
 
 type RejectVPCPeeringConnectionInput struct {
-	DryRun                 *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the VPC peering connection.
 	VPCPeeringConnectionID *string `locationName:"vpcPeeringConnectionId" type:"string" required:"true"`
 
 	metadataRejectVPCPeeringConnectionInput `json:"-", xml:"-"`
@@ -8237,6 +13002,7 @@ type metadataRejectVPCPeeringConnectionInput struct {
 }
 
 type RejectVPCPeeringConnectionOutput struct {
+	// Returns true if the request succeeds; otherwise, it returns an error.
 	Return *bool `locationName:"return" type:"boolean"`
 
 	metadataRejectVPCPeeringConnectionOutput `json:"-", xml:"-"`
@@ -8247,9 +13013,13 @@ type metadataRejectVPCPeeringConnectionOutput struct {
 }
 
 type ReleaseAddressInput struct {
+	// [EC2-VPC] The allocation ID. Required for EC2-VPC.
 	AllocationID *string `locationName:"AllocationId" type:"string"`
-	DryRun       *bool   `locationName:"dryRun" type:"boolean"`
-	PublicIP     *string `locationName:"PublicIp" type:"string"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// [EC2-Classic] The Elastic IP address. Required for EC2-Classic.
+	PublicIP *string `locationName:"PublicIp" type:"string"`
 
 	metadataReleaseAddressInput `json:"-", xml:"-"`
 }
@@ -8267,9 +13037,14 @@ type metadataReleaseAddressOutput struct {
 }
 
 type ReplaceNetworkACLAssociationInput struct {
+	// The ID of the current association between the original network ACL and the
+	// subnet.
 	AssociationID *string `locationName:"associationId" type:"string" required:"true"`
-	DryRun        *bool   `locationName:"dryRun" type:"boolean"`
-	NetworkACLID  *string `locationName:"networkAclId" type:"string" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the new network ACL to associate with the subnet.
+	NetworkACLID *string `locationName:"networkAclId" type:"string" required:"true"`
 
 	metadataReplaceNetworkACLAssociationInput `json:"-", xml:"-"`
 }
@@ -8279,6 +13054,7 @@ type metadataReplaceNetworkACLAssociationInput struct {
 }
 
 type ReplaceNetworkACLAssociationOutput struct {
+	// The ID of the new association.
 	NewAssociationID *string `locationName:"newAssociationId" type:"string"`
 
 	metadataReplaceNetworkACLAssociationOutput `json:"-", xml:"-"`
@@ -8289,15 +13065,35 @@ type metadataReplaceNetworkACLAssociationOutput struct {
 }
 
 type ReplaceNetworkACLEntryInput struct {
-	CIDRBlock    *string       `locationName:"cidrBlock" type:"string" required:"true"`
-	DryRun       *bool         `locationName:"dryRun" type:"boolean"`
-	Egress       *bool         `locationName:"egress" type:"boolean" required:"true"`
+	// The network range to allow or deny, in CIDR notation.
+	CIDRBlock *string `locationName:"cidrBlock" type:"string" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// Indicates whether to replace the egress rule.
+	//
+	// Default: If no value is specified, we replace the ingress rule.
+	Egress *bool `locationName:"egress" type:"boolean" required:"true"`
+
+	// ICMP protocol: The ICMP type and code. Required if specifying 1 (ICMP) for
+	// the protocol.
 	ICMPTypeCode *ICMPTypeCode `locationName:"Icmp" type:"structure"`
-	NetworkACLID *string       `locationName:"networkAclId" type:"string" required:"true"`
-	PortRange    *PortRange    `locationName:"portRange" type:"structure"`
-	Protocol     *string       `locationName:"protocol" type:"string" required:"true"`
-	RuleAction   *string       `locationName:"ruleAction" type:"string" required:"true"`
-	RuleNumber   *int64        `locationName:"ruleNumber" type:"integer" required:"true"`
+
+	// The ID of the ACL.
+	NetworkACLID *string `locationName:"networkAclId" type:"string" required:"true"`
+
+	// TCP or UDP protocols: The range of ports the rule applies to. Required if
+	// specifying 6 (TCP) or 17 (UDP) for the protocol.
+	PortRange *PortRange `locationName:"portRange" type:"structure"`
+
+	// The IP protocol. You can specify all or -1 to mean all protocols.
+	Protocol *string `locationName:"protocol" type:"string" required:"true"`
+
+	// Indicates whether to allow or deny the traffic that matches the rule.
+	RuleAction *string `locationName:"ruleAction" type:"string" required:"true"`
+
+	// The rule number of the entry to replace.
+	RuleNumber *int64 `locationName:"ruleNumber" type:"integer" required:"true"`
 
 	metadataReplaceNetworkACLEntryInput `json:"-", xml:"-"`
 }
@@ -8315,12 +13111,25 @@ type metadataReplaceNetworkACLEntryOutput struct {
 }
 
 type ReplaceRouteInput struct {
-	DestinationCIDRBlock   *string `locationName:"destinationCidrBlock" type:"string" required:"true"`
-	DryRun                 *bool   `locationName:"dryRun" type:"boolean"`
-	GatewayID              *string `locationName:"gatewayId" type:"string"`
-	InstanceID             *string `locationName:"instanceId" type:"string"`
-	NetworkInterfaceID     *string `locationName:"networkInterfaceId" type:"string"`
-	RouteTableID           *string `locationName:"routeTableId" type:"string" required:"true"`
+	// The CIDR address block used for the destination match. The value you provide
+	// must match the CIDR of an existing route in the table.
+	DestinationCIDRBlock *string `locationName:"destinationCidrBlock" type:"string" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of an Internet gateway or virtual private gateway.
+	GatewayID *string `locationName:"gatewayId" type:"string"`
+
+	// The ID of a NAT instance in your VPC.
+	InstanceID *string `locationName:"instanceId" type:"string"`
+
+	// The ID of a network interface.
+	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string"`
+
+	// The ID of the route table.
+	RouteTableID *string `locationName:"routeTableId" type:"string" required:"true"`
+
+	// The ID of a VPC peering connection.
 	VPCPeeringConnectionID *string `locationName:"vpcPeeringConnectionId" type:"string"`
 
 	metadataReplaceRouteInput `json:"-", xml:"-"`
@@ -8339,9 +13148,13 @@ type metadataReplaceRouteOutput struct {
 }
 
 type ReplaceRouteTableAssociationInput struct {
+	// The association ID.
 	AssociationID *string `locationName:"associationId" type:"string" required:"true"`
-	DryRun        *bool   `locationName:"dryRun" type:"boolean"`
-	RouteTableID  *string `locationName:"routeTableId" type:"string" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the new route table to associate with the subnet.
+	RouteTableID *string `locationName:"routeTableId" type:"string" required:"true"`
 
 	metadataReplaceRouteTableAssociationInput `json:"-", xml:"-"`
 }
@@ -8351,6 +13164,7 @@ type metadataReplaceRouteTableAssociationInput struct {
 }
 
 type ReplaceRouteTableAssociationOutput struct {
+	// The ID of the new association.
 	NewAssociationID *string `locationName:"newAssociationId" type:"string"`
 
 	metadataReplaceRouteTableAssociationOutput `json:"-", xml:"-"`
@@ -8361,13 +13175,46 @@ type metadataReplaceRouteTableAssociationOutput struct {
 }
 
 type ReportInstanceStatusInput struct {
-	Description *string    `locationName:"description" type:"string"`
-	DryRun      *bool      `locationName:"dryRun" type:"boolean"`
-	EndTime     *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
-	Instances   []*string  `locationName:"instanceId" locationNameList:"InstanceId" type:"list" required:"true"`
-	ReasonCodes []*string  `locationName:"reasonCode" locationNameList:"item" type:"list" required:"true"`
-	StartTime   *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
-	Status      *string    `locationName:"status" type:"string" required:"true"`
+	// Descriptive text about the health state of your instance.
+	Description *string `locationName:"description" type:"string"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The time at which the reported instance health state ended.
+	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// One or more instances.
+	Instances []*string `locationName:"instanceId" locationNameList:"InstanceId" type:"list" required:"true"`
+
+	// One or more reason codes that describes the health state of your instance.
+	//
+	//  instance-stuck-in-state: My instance is stuck in a state.
+	//
+	// unresponsive: My instance is unresponsive.
+	//
+	// not-accepting-credentials: My instance is not accepting my credentials.
+	//
+	// password-not-available: A password is not available for my instance.
+	//
+	// performance-network: My instance is experiencing performance problems which
+	// I believe are network related.
+	//
+	// performance-instance-store: My instance is experiencing performance problems
+	// which I believe are related to the instance stores.
+	//
+	// performance-ebs-volume: My instance is experiencing performance problems
+	// which I believe are related to an EBS volume.
+	//
+	// performance-other: My instance is experiencing performance problems.
+	//
+	// other: [explain using the description parameter]
+	ReasonCodes []*string `locationName:"reasonCode" locationNameList:"item" type:"list" required:"true"`
+
+	// The time at which the reported instance health state began.
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The status of all instances listed.
+	Status *string `locationName:"status" type:"string" required:"true"`
 
 	metadataReportInstanceStatusInput `json:"-", xml:"-"`
 }
@@ -8385,15 +13232,68 @@ type metadataReportInstanceStatusOutput struct {
 }
 
 type RequestSpotInstancesInput struct {
-	AvailabilityZoneGroup *string                         `locationName:"availabilityZoneGroup" type:"string"`
-	DryRun                *bool                           `locationName:"dryRun" type:"boolean"`
-	InstanceCount         *int64                          `locationName:"instanceCount" type:"integer"`
-	LaunchGroup           *string                         `locationName:"launchGroup" type:"string"`
-	LaunchSpecification   *RequestSpotLaunchSpecification `type:"structure"`
-	SpotPrice             *string                         `locationName:"spotPrice" type:"string" required:"true"`
-	Type                  *string                         `locationName:"type" type:"string"`
-	ValidFrom             *time.Time                      `locationName:"validFrom" type:"timestamp" timestampFormat:"iso8601"`
-	ValidUntil            *time.Time                      `locationName:"validUntil" type:"timestamp" timestampFormat:"iso8601"`
+	// The user-specified name for a logical grouping of bids.
+	//
+	// When you specify an Availability Zone group in a Spot Instance request,
+	// all Spot Instances in the request are launched in the same Availability Zone.
+	// Instance proximity is maintained with this parameter, but the choice of Availability
+	// Zone is not. The group applies only to bids for Spot Instances of the same
+	// instance type. Any additional Spot Instance requests that are specified with
+	// the same Availability Zone group name are launched in that same Availability
+	// Zone, as long as at least one instance from the group is still active.
+	//
+	// If there is no active instance running in the Availability Zone group that
+	// you specify for a new Spot Instance request (all instances are terminated,
+	// the bid is expired, or the bid falls below current market), then Amazon EC2
+	// launches the instance in any Availability Zone where the constraint can be
+	// met. Consequently, the subsequent set of Spot Instances could be placed in
+	// a different zone from the original request, even if you specified the same
+	// Availability Zone group.
+	//
+	// Default: Instances are launched in any available Availability Zone.
+	AvailabilityZoneGroup *string `locationName:"availabilityZoneGroup" type:"string"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The maximum number of Spot Instances to launch.
+	//
+	// Default: 1
+	InstanceCount *int64 `locationName:"instanceCount" type:"integer"`
+
+	// The instance launch group. Launch groups are Spot Instances that launch together
+	// and terminate together.
+	//
+	// Default: Instances are launched and terminated individually
+	LaunchGroup *string `locationName:"launchGroup" type:"string"`
+
+	// Describes the launch specification for an instance.
+	LaunchSpecification *RequestSpotLaunchSpecification `type:"structure"`
+
+	// The maximum hourly price (bid) for any Spot Instance launched to fulfill
+	// the request.
+	SpotPrice *string `locationName:"spotPrice" type:"string" required:"true"`
+
+	// The Spot Instance request type.
+	//
+	// Default: one-time
+	Type *string `locationName:"type" type:"string"`
+
+	// The start date of the request. If this is a one-time request, the request
+	// becomes active at this date and time and remains active until all instances
+	// launch, the request expires, or the request is canceled. If the request is
+	// persistent, the request becomes active at this date and time and remains
+	// active until it expires or is canceled.
+	//
+	// Default: The request is effective indefinitely.
+	ValidFrom *time.Time `locationName:"validFrom" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The end date of the request. If this is a one-time request, the request remains
+	// active until all instances launch, the request is canceled, or this date
+	// is reached. If the request is persistent, it remains active until it is canceled
+	// or this date and time is reached.
+	//
+	// Default: The request is effective indefinitely.
+	ValidUntil *time.Time `locationName:"validUntil" type:"timestamp" timestampFormat:"iso8601"`
 
 	metadataRequestSpotInstancesInput `json:"-", xml:"-"`
 }
@@ -8403,6 +13303,7 @@ type metadataRequestSpotInstancesInput struct {
 }
 
 type RequestSpotInstancesOutput struct {
+	// One or more Spot Instance requests.
 	SpotInstanceRequests []*SpotInstanceRequest `locationName:"spotInstanceRequestSet" locationNameList:"item" type:"list"`
 
 	metadataRequestSpotInstancesOutput `json:"-", xml:"-"`
@@ -8412,23 +13313,59 @@ type metadataRequestSpotInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the launch specification for an instance.
 type RequestSpotLaunchSpecification struct {
-	AddressingType      *string                                  `locationName:"addressingType" type:"string"`
-	BlockDeviceMappings []*BlockDeviceMapping                    `locationName:"blockDeviceMapping" locationNameList:"item" type:"list"`
-	EBSOptimized        *bool                                    `locationName:"ebsOptimized" type:"boolean"`
-	IAMInstanceProfile  *IAMInstanceProfileSpecification         `locationName:"iamInstanceProfile" type:"structure"`
-	ImageID             *string                                  `locationName:"imageId" type:"string"`
-	InstanceType        *string                                  `locationName:"instanceType" type:"string"`
-	KernelID            *string                                  `locationName:"kernelId" type:"string"`
-	KeyName             *string                                  `locationName:"keyName" type:"string"`
-	Monitoring          *RunInstancesMonitoringEnabled           `locationName:"monitoring" type:"structure"`
-	NetworkInterfaces   []*InstanceNetworkInterfaceSpecification `locationName:"NetworkInterface" locationNameList:"item" type:"list"`
-	Placement           *SpotPlacement                           `locationName:"placement" type:"structure"`
-	RAMDiskID           *string                                  `locationName:"ramdiskId" type:"string"`
-	SecurityGroupIDs    []*string                                `locationName:"SecurityGroupId" locationNameList:"item" type:"list"`
-	SecurityGroups      []*string                                `locationName:"SecurityGroup" locationNameList:"item" type:"list"`
-	SubnetID            *string                                  `locationName:"subnetId" type:"string"`
-	UserData            *string                                  `locationName:"userData" type:"string"`
+	// Deprecated.
+	AddressingType *string `locationName:"addressingType" type:"string"`
+
+	// One or more block device mapping entries.
+	BlockDeviceMappings []*BlockDeviceMapping `locationName:"blockDeviceMapping" locationNameList:"item" type:"list"`
+
+	// Indicates whether the instance is optimized for EBS I/O. This optimization
+	// provides dedicated throughput to Amazon EBS and an optimized configuration
+	// stack to provide optimal EBS I/O performance. This optimization isn't available
+	// with all instance types. Additional usage charges apply when using an EBS
+	// Optimized instance.
+	//
+	// Default: false
+	EBSOptimized *bool `locationName:"ebsOptimized" type:"boolean"`
+
+	// The IAM instance profile.
+	IAMInstanceProfile *IAMInstanceProfileSpecification `locationName:"iamInstanceProfile" type:"structure"`
+
+	// The ID of the AMI.
+	ImageID *string `locationName:"imageId" type:"string"`
+
+	// The instance type.
+	InstanceType *string `locationName:"instanceType" type:"string"`
+
+	// The ID of the kernel.
+	KernelID *string `locationName:"kernelId" type:"string"`
+
+	// The name of the key pair.
+	KeyName *string `locationName:"keyName" type:"string"`
+
+	// Describes the monitoring for the instance.
+	Monitoring *RunInstancesMonitoringEnabled `locationName:"monitoring" type:"structure"`
+
+	// One or more network interfaces.
+	NetworkInterfaces []*InstanceNetworkInterfaceSpecification `locationName:"NetworkInterface" locationNameList:"item" type:"list"`
+
+	// The placement information for the instance.
+	Placement *SpotPlacement `locationName:"placement" type:"structure"`
+
+	// The ID of the RAM disk.
+	RAMDiskID *string `locationName:"ramdiskId" type:"string"`
+
+	SecurityGroupIDs []*string `locationName:"SecurityGroupId" locationNameList:"item" type:"list"`
+
+	SecurityGroups []*string `locationName:"SecurityGroup" locationNameList:"item" type:"list"`
+
+	// The ID of the subnet in which to launch the instance.
+	SubnetID *string `locationName:"subnetId" type:"string"`
+
+	// The Base64-encoded MIME user data to make available to the instances.
+	UserData *string `locationName:"userData" type:"string"`
 
 	metadataRequestSpotLaunchSpecification `json:"-", xml:"-"`
 }
@@ -8437,12 +13374,23 @@ type metadataRequestSpotLaunchSpecification struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a reservation.
 type Reservation struct {
-	Groups        []*GroupIdentifier `locationName:"groupSet" locationNameList:"item" type:"list"`
-	Instances     []*Instance        `locationName:"instancesSet" locationNameList:"item" type:"list"`
-	OwnerID       *string            `locationName:"ownerId" type:"string"`
-	RequesterID   *string            `locationName:"requesterId" type:"string"`
-	ReservationID *string            `locationName:"reservationId" type:"string"`
+	// One or more security groups.
+	Groups []*GroupIdentifier `locationName:"groupSet" locationNameList:"item" type:"list"`
+
+	// One or more instances.
+	Instances []*Instance `locationName:"instancesSet" locationNameList:"item" type:"list"`
+
+	// The ID of the AWS account that owns the reservation.
+	OwnerID *string `locationName:"ownerId" type:"string"`
+
+	// The ID of the requester that launched the instances on your behalf (for example,
+	// AWS Management Console or Auto Scaling).
+	RequesterID *string `locationName:"requesterId" type:"string"`
+
+	// The ID of the reservation.
+	ReservationID *string `locationName:"reservationId" type:"string"`
 
 	metadataReservation `json:"-", xml:"-"`
 }
@@ -8451,9 +13399,15 @@ type metadataReservation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the limit price of a Reserved Instance offering.
 type ReservedInstanceLimitPrice struct {
-	Amount       *float64 `locationName:"amount" type:"double"`
-	CurrencyCode *string  `locationName:"currencyCode" type:"string"`
+	// Used for Reserved Instance Marketplace offerings. Specifies the limit price
+	// on the total order (instanceCount * price).
+	Amount *float64 `locationName:"amount" type:"double"`
+
+	// The currency in which the limitPrice amount is specified. At this time, the
+	// only supported currency is USD.
+	CurrencyCode *string `locationName:"currencyCode" type:"string"`
 
 	metadataReservedInstanceLimitPrice `json:"-", xml:"-"`
 }
@@ -8462,23 +13416,56 @@ type metadataReservedInstanceLimitPrice struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a Reserved Instance.
 type ReservedInstances struct {
-	AvailabilityZone    *string            `locationName:"availabilityZone" type:"string"`
-	CurrencyCode        *string            `locationName:"currencyCode" type:"string"`
-	Duration            *int64             `locationName:"duration" type:"long"`
-	End                 *time.Time         `locationName:"end" type:"timestamp" timestampFormat:"iso8601"`
-	FixedPrice          *float64           `locationName:"fixedPrice" type:"float"`
-	InstanceCount       *int64             `locationName:"instanceCount" type:"integer"`
-	InstanceTenancy     *string            `locationName:"instanceTenancy" type:"string"`
-	InstanceType        *string            `locationName:"instanceType" type:"string"`
-	OfferingType        *string            `locationName:"offeringType" type:"string"`
-	ProductDescription  *string            `locationName:"productDescription" type:"string"`
-	RecurringCharges    []*RecurringCharge `locationName:"recurringCharges" locationNameList:"item" type:"list"`
-	ReservedInstancesID *string            `locationName:"reservedInstancesId" type:"string"`
-	Start               *time.Time         `locationName:"start" type:"timestamp" timestampFormat:"iso8601"`
-	State               *string            `locationName:"state" type:"string"`
-	Tags                []*Tag             `locationName:"tagSet" locationNameList:"item" type:"list"`
-	UsagePrice          *float64           `locationName:"usagePrice" type:"float"`
+	// The Availability Zone in which the Reserved Instance can be used.
+	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
+
+	// The currency of the Reserved Instance. It's specified using ISO 4217 standard
+	// currency codes. At this time, the only supported currency is USD.
+	CurrencyCode *string `locationName:"currencyCode" type:"string"`
+
+	// The duration of the Reserved Instance, in seconds.
+	Duration *int64 `locationName:"duration" type:"long"`
+
+	// The time when the Reserved Instance expires.
+	End *time.Time `locationName:"end" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The purchase price of the Reserved Instance.
+	FixedPrice *float64 `locationName:"fixedPrice" type:"float"`
+
+	// The number of Reserved Instances purchased.
+	InstanceCount *int64 `locationName:"instanceCount" type:"integer"`
+
+	// The tenancy of the reserved instance.
+	InstanceTenancy *string `locationName:"instanceTenancy" type:"string"`
+
+	// The instance type on which the Reserved Instance can be used.
+	InstanceType *string `locationName:"instanceType" type:"string"`
+
+	// The Reserved Instance offering type.
+	OfferingType *string `locationName:"offeringType" type:"string"`
+
+	// The Reserved Instance description.
+	ProductDescription *string `locationName:"productDescription" type:"string"`
+
+	// The recurring charge tag assigned to the resource.
+	RecurringCharges []*RecurringCharge `locationName:"recurringCharges" locationNameList:"item" type:"list"`
+
+	// The ID of the Reserved Instance.
+	ReservedInstancesID *string `locationName:"reservedInstancesId" type:"string"`
+
+	// The date and time the Reserved Instance started.
+	Start *time.Time `locationName:"start" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The state of the Reserved Instance purchase.
+	State *string `locationName:"state" type:"string"`
+
+	// Any tags assigned to the resource.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
+
+	// The usage price of the Reserved Instance, per hour.
+	UsagePrice *float64 `locationName:"usagePrice" type:"float"`
 
 	metadataReservedInstances `json:"-", xml:"-"`
 }
@@ -8487,11 +13474,20 @@ type metadataReservedInstances struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the configuration settings for the modified Reserved Instances.
 type ReservedInstancesConfiguration struct {
+	// The Availability Zone for the modified Reserved Instances.
 	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
-	InstanceCount    *int64  `locationName:"instanceCount" type:"integer"`
-	InstanceType     *string `locationName:"instanceType" type:"string"`
-	Platform         *string `locationName:"platform" type:"string"`
+
+	// The number of modified Reserved Instances.
+	InstanceCount *int64 `locationName:"instanceCount" type:"integer"`
+
+	// The instance type for the modified Reserved Instances.
+	InstanceType *string `locationName:"instanceType" type:"string"`
+
+	// The network platform of the modified Reserved Instances, which is either
+	// EC2-Classic or EC2-VPC.
+	Platform *string `locationName:"platform" type:"string"`
 
 	metadataReservedInstancesConfiguration `json:"-", xml:"-"`
 }
@@ -8500,7 +13496,9 @@ type metadataReservedInstancesConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the ID of a Reserved Instance.
 type ReservedInstancesID struct {
+	// The ID of the Reserved Instance.
 	ReservedInstancesID *string `locationName:"reservedInstancesId" type:"string"`
 
 	metadataReservedInstancesID `json:"-", xml:"-"`
@@ -8510,17 +13508,38 @@ type metadataReservedInstancesID struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a Reserved Instance listing.
 type ReservedInstancesListing struct {
-	ClientToken                *string          `locationName:"clientToken" type:"string"`
-	CreateDate                 *time.Time       `locationName:"createDate" type:"timestamp" timestampFormat:"iso8601"`
-	InstanceCounts             []*InstanceCount `locationName:"instanceCounts" locationNameList:"item" type:"list"`
-	PriceSchedules             []*PriceSchedule `locationName:"priceSchedules" locationNameList:"item" type:"list"`
-	ReservedInstancesID        *string          `locationName:"reservedInstancesId" type:"string"`
-	ReservedInstancesListingID *string          `locationName:"reservedInstancesListingId" type:"string"`
-	Status                     *string          `locationName:"status" type:"string"`
-	StatusMessage              *string          `locationName:"statusMessage" type:"string"`
-	Tags                       []*Tag           `locationName:"tagSet" locationNameList:"item" type:"list"`
-	UpdateDate                 *time.Time       `locationName:"updateDate" type:"timestamp" timestampFormat:"iso8601"`
+	// The idempotency token you provided when you created the listing.
+	ClientToken *string `locationName:"clientToken" type:"string"`
+
+	// The time the listing was created.
+	CreateDate *time.Time `locationName:"createDate" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The number of instances in this state.
+	InstanceCounts []*InstanceCount `locationName:"instanceCounts" locationNameList:"item" type:"list"`
+
+	// The price of the Reserved Instance listing.
+	PriceSchedules []*PriceSchedule `locationName:"priceSchedules" locationNameList:"item" type:"list"`
+
+	// The ID of the Reserved Instance.
+	ReservedInstancesID *string `locationName:"reservedInstancesId" type:"string"`
+
+	// The ID of the Reserved Instance listing.
+	ReservedInstancesListingID *string `locationName:"reservedInstancesListingId" type:"string"`
+
+	// The status of the Reserved Instance listing.
+	Status *string `locationName:"status" type:"string"`
+
+	// The reason for the current status of the Reserved Instance listing. The response
+	// can be blank.
+	StatusMessage *string `locationName:"statusMessage" type:"string"`
+
+	// Any tags assigned to the resource.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
+
+	// The last modified timestamp of the listing.
+	UpdateDate *time.Time `locationName:"updateDate" type:"timestamp" timestampFormat:"iso8601"`
 
 	metadataReservedInstancesListing `json:"-", xml:"-"`
 }
@@ -8529,16 +13548,36 @@ type metadataReservedInstancesListing struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a Reserved Instance modification.
 type ReservedInstancesModification struct {
-	ClientToken                     *string                                `locationName:"clientToken" type:"string"`
-	CreateDate                      *time.Time                             `locationName:"createDate" type:"timestamp" timestampFormat:"iso8601"`
-	EffectiveDate                   *time.Time                             `locationName:"effectiveDate" type:"timestamp" timestampFormat:"iso8601"`
-	ModificationResults             []*ReservedInstancesModificationResult `locationName:"modificationResultSet" locationNameList:"item" type:"list"`
-	ReservedInstancesIDs            []*ReservedInstancesID                 `locationName:"reservedInstancesSet" locationNameList:"item" type:"list"`
-	ReservedInstancesModificationID *string                                `locationName:"reservedInstancesModificationId" type:"string"`
-	Status                          *string                                `locationName:"status" type:"string"`
-	StatusMessage                   *string                                `locationName:"statusMessage" type:"string"`
-	UpdateDate                      *time.Time                             `locationName:"updateDate" type:"timestamp" timestampFormat:"iso8601"`
+	// A unique, case-sensitive key supplied by the client to ensure that the modification
+	// request is idempotent.
+	ClientToken *string `locationName:"clientToken" type:"string"`
+
+	// The time when the modification request was created.
+	CreateDate *time.Time `locationName:"createDate" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The time for the modification to become effective.
+	EffectiveDate *time.Time `locationName:"effectiveDate" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Contains target configurations along with their corresponding new Reserved
+	// Instance IDs.
+	ModificationResults []*ReservedInstancesModificationResult `locationName:"modificationResultSet" locationNameList:"item" type:"list"`
+
+	// The IDs of one or more Reserved Instances.
+	ReservedInstancesIDs []*ReservedInstancesID `locationName:"reservedInstancesSet" locationNameList:"item" type:"list"`
+
+	// A unique ID for the Reserved Instance modification.
+	ReservedInstancesModificationID *string `locationName:"reservedInstancesModificationId" type:"string"`
+
+	// The status of the Reserved Instances modification request.
+	Status *string `locationName:"status" type:"string"`
+
+	// The reason for the status.
+	StatusMessage *string `locationName:"statusMessage" type:"string"`
+
+	// The time when the modification request was last updated.
+	UpdateDate *time.Time `locationName:"updateDate" type:"timestamp" timestampFormat:"iso8601"`
 
 	metadataReservedInstancesModification `json:"-", xml:"-"`
 }
@@ -8548,7 +13587,12 @@ type metadataReservedInstancesModification struct {
 }
 
 type ReservedInstancesModificationResult struct {
-	ReservedInstancesID *string                         `locationName:"reservedInstancesId" type:"string"`
+	// The ID for the Reserved Instances that were created as part of the modification
+	// request. This field is only available when the modification is fulfilled.
+	ReservedInstancesID *string `locationName:"reservedInstancesId" type:"string"`
+
+	// The target Reserved Instances configurations supplied as part of the modification
+	// request.
 	TargetConfiguration *ReservedInstancesConfiguration `locationName:"targetConfiguration" type:"structure"`
 
 	metadataReservedInstancesModificationResult `json:"-", xml:"-"`
@@ -8558,20 +13602,50 @@ type metadataReservedInstancesModificationResult struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a Reserved Instance offering.
 type ReservedInstancesOffering struct {
-	AvailabilityZone            *string            `locationName:"availabilityZone" type:"string"`
-	CurrencyCode                *string            `locationName:"currencyCode" type:"string"`
-	Duration                    *int64             `locationName:"duration" type:"long"`
-	FixedPrice                  *float64           `locationName:"fixedPrice" type:"float"`
-	InstanceTenancy             *string            `locationName:"instanceTenancy" type:"string"`
-	InstanceType                *string            `locationName:"instanceType" type:"string"`
-	Marketplace                 *bool              `locationName:"marketplace" type:"boolean"`
-	OfferingType                *string            `locationName:"offeringType" type:"string"`
-	PricingDetails              []*PricingDetail   `locationName:"pricingDetailsSet" locationNameList:"item" type:"list"`
-	ProductDescription          *string            `locationName:"productDescription" type:"string"`
-	RecurringCharges            []*RecurringCharge `locationName:"recurringCharges" locationNameList:"item" type:"list"`
-	ReservedInstancesOfferingID *string            `locationName:"reservedInstancesOfferingId" type:"string"`
-	UsagePrice                  *float64           `locationName:"usagePrice" type:"float"`
+	// The Availability Zone in which the Reserved Instance can be used.
+	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
+
+	// The currency of the Reserved Instance offering you are purchasing. It's specified
+	// using ISO 4217 standard currency codes. At this time, the only supported
+	// currency is USD.
+	CurrencyCode *string `locationName:"currencyCode" type:"string"`
+
+	// The duration of the Reserved Instance, in seconds.
+	Duration *int64 `locationName:"duration" type:"long"`
+
+	// The purchase price of the Reserved Instance.
+	FixedPrice *float64 `locationName:"fixedPrice" type:"float"`
+
+	// The tenancy of the reserved instance.
+	InstanceTenancy *string `locationName:"instanceTenancy" type:"string"`
+
+	// The instance type on which the Reserved Instance can be used.
+	InstanceType *string `locationName:"instanceType" type:"string"`
+
+	// Indicates whether the offering is available through the Reserved Instance
+	// Marketplace (resale) or AWS. If it's a Reserved Instance Marketplace offering,
+	// this is true.
+	Marketplace *bool `locationName:"marketplace" type:"boolean"`
+
+	// The Reserved Instance offering type.
+	OfferingType *string `locationName:"offeringType" type:"string"`
+
+	// The pricing details of the Reserved Instance offering.
+	PricingDetails []*PricingDetail `locationName:"pricingDetailsSet" locationNameList:"item" type:"list"`
+
+	// The Reserved Instance description.
+	ProductDescription *string `locationName:"productDescription" type:"string"`
+
+	// The recurring charge tag assigned to the resource.
+	RecurringCharges []*RecurringCharge `locationName:"recurringCharges" locationNameList:"item" type:"list"`
+
+	// The ID of the Reserved Instance offering.
+	ReservedInstancesOfferingID *string `locationName:"reservedInstancesOfferingId" type:"string"`
+
+	// The usage price of the Reserved Instance, per hour.
+	UsagePrice *float64 `locationName:"usagePrice" type:"float"`
 
 	metadataReservedInstancesOffering `json:"-", xml:"-"`
 }
@@ -8581,9 +13655,14 @@ type metadataReservedInstancesOffering struct {
 }
 
 type ResetImageAttributeInput struct {
+	// The attribute to reset (currently you can only reset the launch permission
+	// attribute).
 	Attribute *string `type:"string" required:"true"`
-	DryRun    *bool   `locationName:"dryRun" type:"boolean"`
-	ImageID   *string `locationName:"ImageId" type:"string" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the AMI.
+	ImageID *string `locationName:"ImageId" type:"string" required:"true"`
 
 	metadataResetImageAttributeInput `json:"-", xml:"-"`
 }
@@ -8601,8 +13680,12 @@ type metadataResetImageAttributeOutput struct {
 }
 
 type ResetInstanceAttributeInput struct {
-	Attribute  *string `locationName:"attribute" type:"string" required:"true"`
-	DryRun     *bool   `locationName:"dryRun" type:"boolean"`
+	// The attribute to reset.
+	Attribute *string `locationName:"attribute" type:"string" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the instance.
 	InstanceID *string `locationName:"instanceId" type:"string" required:"true"`
 
 	metadataResetInstanceAttributeInput `json:"-", xml:"-"`
@@ -8621,9 +13704,13 @@ type metadataResetInstanceAttributeOutput struct {
 }
 
 type ResetNetworkInterfaceAttributeInput struct {
-	DryRun             *bool   `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the network interface.
 	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string" required:"true"`
-	SourceDestCheck    *string `locationName:"sourceDestCheck" type:"string"`
+
+	// The source/destination checking attribute. Resets the value to true.
+	SourceDestCheck *string `locationName:"sourceDestCheck" type:"string"`
 
 	metadataResetNetworkInterfaceAttributeInput `json:"-", xml:"-"`
 }
@@ -8641,8 +13728,13 @@ type metadataResetNetworkInterfaceAttributeOutput struct {
 }
 
 type ResetSnapshotAttributeInput struct {
-	Attribute  *string `type:"string" required:"true"`
-	DryRun     *bool   `locationName:"dryRun" type:"boolean"`
+	// The attribute to reset (currently only the attribute for permission to create
+	// volumes can be reset).
+	Attribute *string `type:"string" required:"true"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The ID of the snapshot.
 	SnapshotID *string `locationName:"SnapshotId" type:"string" required:"true"`
 
 	metadataResetSnapshotAttributeInput `json:"-", xml:"-"`
@@ -8661,15 +13753,38 @@ type metadataResetSnapshotAttributeOutput struct {
 }
 
 type RevokeSecurityGroupEgressInput struct {
-	CIDRIP                     *string         `locationName:"cidrIp" type:"string"`
-	DryRun                     *bool           `locationName:"dryRun" type:"boolean"`
-	FromPort                   *int64          `locationName:"fromPort" type:"integer"`
-	GroupID                    *string         `locationName:"groupId" type:"string" required:"true"`
-	IPPermissions              []*IPPermission `locationName:"ipPermissions" locationNameList:"item" type:"list"`
-	IPProtocol                 *string         `locationName:"ipProtocol" type:"string"`
-	SourceSecurityGroupName    *string         `locationName:"sourceSecurityGroupName" type:"string"`
-	SourceSecurityGroupOwnerID *string         `locationName:"sourceSecurityGroupOwnerId" type:"string"`
-	ToPort                     *int64          `locationName:"toPort" type:"integer"`
+	// The CIDR IP address range. You can't specify this parameter when specifying
+	// a source security group.
+	CIDRIP *string `locationName:"cidrIp" type:"string"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The start of port range for the TCP and UDP protocols, or an ICMP type number.
+	// For the ICMP type number, use -1 to specify all ICMP types.
+	FromPort *int64 `locationName:"fromPort" type:"integer"`
+
+	// The ID of the security group.
+	GroupID *string `locationName:"groupId" type:"string" required:"true"`
+
+	// A set of IP permissions. You can't specify a destination security group and
+	// a CIDR IP address range.
+	IPPermissions []*IPPermission `locationName:"ipPermissions" locationNameList:"item" type:"list"`
+
+	// The IP protocol name (tcp, udp, icmp) or number (see Protocol Numbers (http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)).
+	// Use -1 to specify all.
+	IPProtocol *string `locationName:"ipProtocol" type:"string"`
+
+	// [EC2-Classic, default VPC] The name of the destination security group. You
+	// can't specify a destination security group and a CIDR IP address range.
+	SourceSecurityGroupName *string `locationName:"sourceSecurityGroupName" type:"string"`
+
+	// The ID of the destination security group. You can't specify a destination
+	// security group and a CIDR IP address range.
+	SourceSecurityGroupOwnerID *string `locationName:"sourceSecurityGroupOwnerId" type:"string"`
+
+	// The end of port range for the TCP and UDP protocols, or an ICMP code number.
+	// For the ICMP code number, use -1 to specify all ICMP codes for the ICMP type.
+	ToPort *int64 `locationName:"toPort" type:"integer"`
 
 	metadataRevokeSecurityGroupEgressInput `json:"-", xml:"-"`
 }
@@ -8687,16 +13802,41 @@ type metadataRevokeSecurityGroupEgressOutput struct {
 }
 
 type RevokeSecurityGroupIngressInput struct {
-	CIDRIP                     *string         `locationName:"CidrIp" type:"string"`
-	DryRun                     *bool           `locationName:"dryRun" type:"boolean"`
-	FromPort                   *int64          `type:"integer"`
-	GroupID                    *string         `locationName:"GroupId" type:"string"`
-	GroupName                  *string         `type:"string"`
-	IPPermissions              []*IPPermission `locationName:"IpPermissions" locationNameList:"item" type:"list"`
-	IPProtocol                 *string         `locationName:"IpProtocol" type:"string"`
-	SourceSecurityGroupName    *string         `type:"string"`
-	SourceSecurityGroupOwnerID *string         `locationName:"SourceSecurityGroupOwnerId" type:"string"`
-	ToPort                     *int64          `type:"integer"`
+	// The CIDR IP address range. You can't specify this parameter when specifying
+	// a source security group.
+	CIDRIP *string `locationName:"CidrIp" type:"string"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The start of port range for the TCP and UDP protocols, or an ICMP type number.
+	// For the ICMP type number, use -1 to specify all ICMP types.
+	FromPort *int64 `type:"integer"`
+
+	// The ID of the security group.
+	GroupID *string `locationName:"GroupId" type:"string"`
+
+	// [EC2-Classic, default VPC] The name of the security group.
+	GroupName *string `type:"string"`
+
+	// A set of IP permissions. You can't specify a source security group and a
+	// CIDR IP address range.
+	IPPermissions []*IPPermission `locationName:"IpPermissions" locationNameList:"item" type:"list"`
+
+	// The IP protocol name (tcp, udp, icmp) or number (see Protocol Numbers (http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)).
+	// Use -1 to specify all.
+	IPProtocol *string `locationName:"IpProtocol" type:"string"`
+
+	// [EC2-Classic, default VPC] The name of the source security group. You can't
+	// specify a source security group and a CIDR IP address range.
+	SourceSecurityGroupName *string `type:"string"`
+
+	// The ID of the source security group. You can't specify a source security
+	// group and a CIDR IP address range.
+	SourceSecurityGroupOwnerID *string `locationName:"SourceSecurityGroupOwnerId" type:"string"`
+
+	// The end of port range for the TCP and UDP protocols, or an ICMP code number.
+	// For the ICMP code number, use -1 to specify all ICMP codes for the ICMP type.
+	ToPort *int64 `type:"integer"`
 
 	metadataRevokeSecurityGroupIngressInput `json:"-", xml:"-"`
 }
@@ -8713,14 +13853,37 @@ type metadataRevokeSecurityGroupIngressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a route in a route table.
 type Route struct {
-	DestinationCIDRBlock   *string `locationName:"destinationCidrBlock" type:"string"`
-	GatewayID              *string `locationName:"gatewayId" type:"string"`
-	InstanceID             *string `locationName:"instanceId" type:"string"`
-	InstanceOwnerID        *string `locationName:"instanceOwnerId" type:"string"`
-	NetworkInterfaceID     *string `locationName:"networkInterfaceId" type:"string"`
-	Origin                 *string `locationName:"origin" type:"string"`
-	State                  *string `locationName:"state" type:"string"`
+	// The CIDR block used for the destination match.
+	DestinationCIDRBlock *string `locationName:"destinationCidrBlock" type:"string"`
+
+	// The ID of a gateway attached to your VPC.
+	GatewayID *string `locationName:"gatewayId" type:"string"`
+
+	// The ID of a NAT instance in your VPC.
+	InstanceID *string `locationName:"instanceId" type:"string"`
+
+	// The AWS account ID of the owner of the instance.
+	InstanceOwnerID *string `locationName:"instanceOwnerId" type:"string"`
+
+	// The ID of the network interface.
+	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string"`
+
+	// Describes how the route was created.
+	//
+	//   CreateRouteTable indicates that route was automatically created when the
+	// route table was created.  CreateRoute indicates that the route was manually
+	// added to the route table.  EnableVgwRoutePropagation indicates that the route
+	// was propagated by route propagation.
+	Origin *string `locationName:"origin" type:"string"`
+
+	// The state of the route. The blackhole state indicates that the route's target
+	// isn't available (for example, the specified gateway isn't attached to the
+	// VPC, or the specified NAT instance has been terminated).
+	State *string `locationName:"state" type:"string"`
+
+	// The ID of the VPC peering connection.
 	VPCPeeringConnectionID *string `locationName:"vpcPeeringConnectionId" type:"string"`
 
 	metadataRoute `json:"-", xml:"-"`
@@ -8730,13 +13893,25 @@ type metadataRoute struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a route table.
 type RouteTable struct {
-	Associations    []*RouteTableAssociation `locationName:"associationSet" locationNameList:"item" type:"list"`
-	PropagatingVGWs []*PropagatingVGW        `locationName:"propagatingVgwSet" locationNameList:"item" type:"list"`
-	RouteTableID    *string                  `locationName:"routeTableId" type:"string"`
-	Routes          []*Route                 `locationName:"routeSet" locationNameList:"item" type:"list"`
-	Tags            []*Tag                   `locationName:"tagSet" locationNameList:"item" type:"list"`
-	VPCID           *string                  `locationName:"vpcId" type:"string"`
+	// The associations between the route table and one or more subnets.
+	Associations []*RouteTableAssociation `locationName:"associationSet" locationNameList:"item" type:"list"`
+
+	// Any virtual private gateway (VGW) propagating routes.
+	PropagatingVGWs []*PropagatingVGW `locationName:"propagatingVgwSet" locationNameList:"item" type:"list"`
+
+	// The ID of the route table.
+	RouteTableID *string `locationName:"routeTableId" type:"string"`
+
+	// The routes in the route table.
+	Routes []*Route `locationName:"routeSet" locationNameList:"item" type:"list"`
+
+	// Any tags assigned to the route table.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
+
+	// The ID of the VPC.
+	VPCID *string `locationName:"vpcId" type:"string"`
 
 	metadataRouteTable `json:"-", xml:"-"`
 }
@@ -8745,11 +13920,19 @@ type metadataRouteTable struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an association between a route table and a subnet.
 type RouteTableAssociation struct {
-	Main                    *bool   `locationName:"main" type:"boolean"`
+	// Indicates whether this is the main route table.
+	Main *bool `locationName:"main" type:"boolean"`
+
+	// The ID of the association between a route table and a subnet.
 	RouteTableAssociationID *string `locationName:"routeTableAssociationId" type:"string"`
-	RouteTableID            *string `locationName:"routeTableId" type:"string"`
-	SubnetID                *string `locationName:"subnetId" type:"string"`
+
+	// The ID of the route table.
+	RouteTableID *string `locationName:"routeTableId" type:"string"`
+
+	// The ID of the subnet.
+	SubnetID *string `locationName:"subnetId" type:"string"`
 
 	metadataRouteTableAssociation `json:"-", xml:"-"`
 }
@@ -8759,29 +13942,135 @@ type metadataRouteTableAssociation struct {
 }
 
 type RunInstancesInput struct {
-	AdditionalInfo                    *string                                  `locationName:"additionalInfo" type:"string"`
-	BlockDeviceMappings               []*BlockDeviceMapping                    `locationName:"BlockDeviceMapping" locationNameList:"BlockDeviceMapping" type:"list"`
-	ClientToken                       *string                                  `locationName:"clientToken" type:"string"`
-	DisableAPITermination             *bool                                    `locationName:"disableApiTermination" type:"boolean"`
-	DryRun                            *bool                                    `locationName:"dryRun" type:"boolean"`
-	EBSOptimized                      *bool                                    `locationName:"ebsOptimized" type:"boolean"`
-	IAMInstanceProfile                *IAMInstanceProfileSpecification         `locationName:"iamInstanceProfile" type:"structure"`
-	ImageID                           *string                                  `locationName:"ImageId" type:"string" required:"true"`
-	InstanceInitiatedShutdownBehavior *string                                  `locationName:"instanceInitiatedShutdownBehavior" type:"string"`
-	InstanceType                      *string                                  `type:"string"`
-	KernelID                          *string                                  `locationName:"KernelId" type:"string"`
-	KeyName                           *string                                  `type:"string"`
-	MaxCount                          *int64                                   `type:"integer" required:"true"`
-	MinCount                          *int64                                   `type:"integer" required:"true"`
-	Monitoring                        *RunInstancesMonitoringEnabled           `type:"structure"`
-	NetworkInterfaces                 []*InstanceNetworkInterfaceSpecification `locationName:"networkInterface" locationNameList:"item" type:"list"`
-	Placement                         *Placement                               `type:"structure"`
-	PrivateIPAddress                  *string                                  `locationName:"privateIpAddress" type:"string"`
-	RAMDiskID                         *string                                  `locationName:"RamdiskId" type:"string"`
-	SecurityGroupIDs                  []*string                                `locationName:"SecurityGroupId" locationNameList:"SecurityGroupId" type:"list"`
-	SecurityGroups                    []*string                                `locationName:"SecurityGroup" locationNameList:"SecurityGroup" type:"list"`
-	SubnetID                          *string                                  `locationName:"SubnetId" type:"string"`
-	UserData                          *string                                  `type:"string"`
+	// Reserved.
+	AdditionalInfo *string `locationName:"additionalInfo" type:"string"`
+
+	// The block device mapping.
+	BlockDeviceMappings []*BlockDeviceMapping `locationName:"BlockDeviceMapping" locationNameList:"BlockDeviceMapping" type:"list"`
+
+	// Unique, case-sensitive identifier you provide to ensure the idempotency of
+	// the request. For more information, see How to Ensure Idempotency (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	//
+	// Constraints: Maximum 64 ASCII characters
+	ClientToken *string `locationName:"clientToken" type:"string"`
+
+	// If you set this parameter to true, you can't terminate the instance using
+	// the Amazon EC2 console, CLI, or API; otherwise, you can. If you set this
+	// parameter to true and then later want to be able to terminate the instance,
+	// you must first change the value of the disableApiTermination attribute to
+	// false using ModifyInstanceAttribute. Alternatively, if you set InstanceInitiatedShutdownBehavior
+	// to terminate, you can terminate the instance by running the shutdown command
+	// from the instance.
+	//
+	// Default: false
+	DisableAPITermination *bool `locationName:"disableApiTermination" type:"boolean"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// Indicates whether the instance is optimized for EBS I/O. This optimization
+	// provides dedicated throughput to Amazon EBS and an optimized configuration
+	// stack to provide optimal Amazon EBS I/O performance. This optimization isn't
+	// available with all instance types. Additional usage charges apply when using
+	// an EBS-optimized instance.
+	//
+	// Default: false
+	EBSOptimized *bool `locationName:"ebsOptimized" type:"boolean"`
+
+	// The IAM instance profile.
+	IAMInstanceProfile *IAMInstanceProfileSpecification `locationName:"iamInstanceProfile" type:"structure"`
+
+	// The ID of the AMI, which you can get by calling DescribeImages.
+	ImageID *string `locationName:"ImageId" type:"string" required:"true"`
+
+	// Indicates whether an instance stops or terminates when you initiate shutdown
+	// from the instance (using the operating system command for system shutdown).
+	//
+	// Default: stop
+	InstanceInitiatedShutdownBehavior *string `locationName:"instanceInitiatedShutdownBehavior" type:"string"`
+
+	// The instance type. For more information, see Instance Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	//
+	// Default: m1.small
+	InstanceType *string `type:"string"`
+
+	// The ID of the kernel.
+	//
+	//  We recommend that you use PV-GRUB instead of kernels and RAM disks. For
+	// more information, see  PV-GRUB (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	KernelID *string `locationName:"KernelId" type:"string"`
+
+	// The name of the key pair. You can create a key pair using CreateKeyPair or
+	// ImportKeyPair.
+	//
+	//  If you launch an instance without specifying a key pair, you can't connect
+	// to the instance.
+	KeyName *string `type:"string"`
+
+	// The maximum number of instances to launch. If you specify more instances
+	// than Amazon EC2 can launch in the target Availability Zone, Amazon EC2 launches
+	// the largest possible number of instances above MinCount.
+	//
+	// Constraints: Between 1 and the maximum number you're allowed for the specified
+	// instance type. For more information about the default limits, and how to
+	// request an increase, see How many instances can I run in Amazon EC2 (http://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)
+	// in the Amazon EC2 General FAQ.
+	MaxCount *int64 `type:"integer" required:"true"`
+
+	// The minimum number of instances to launch. If you specify a minimum that
+	// is more instances than Amazon EC2 can launch in the target Availability Zone,
+	// Amazon EC2 launches no instances.
+	//
+	// Constraints: Between 1 and the maximum number you're allowed for the specified
+	// instance type. For more information about the default limits, and how to
+	// request an increase, see How many instances can I run in Amazon EC2 (http://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)
+	// in the Amazon EC2 General FAQ.
+	MinCount *int64 `type:"integer" required:"true"`
+
+	// The monitoring for the instance.
+	Monitoring *RunInstancesMonitoringEnabled `type:"structure"`
+
+	// One or more network interfaces.
+	NetworkInterfaces []*InstanceNetworkInterfaceSpecification `locationName:"networkInterface" locationNameList:"item" type:"list"`
+
+	// The placement for the instance.
+	Placement *Placement `type:"structure"`
+
+	// [EC2-VPC] The primary IP address. You must specify a value from the IP address
+	// range of the subnet.
+	//
+	// Only one private IP address can be designated as primary. Therefore, you
+	// can't specify this parameter if PrivateIpAddresses.n.Primary is set to true
+	// and PrivateIpAddresses.n.PrivateIpAddress is set to an IP address.
+	//
+	// Default: We select an IP address from the IP address range of the subnet.
+	PrivateIPAddress *string `locationName:"privateIpAddress" type:"string"`
+
+	// The ID of the RAM disk.
+	//
+	//  We recommend that you use PV-GRUB instead of kernels and RAM disks. For
+	// more information, see  PV-GRUB (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedkernels.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	RAMDiskID *string `locationName:"RamdiskId" type:"string"`
+
+	// One or more security group IDs. You can create a security group using CreateSecurityGroup.
+	//
+	// Default: Amazon EC2 uses the default security group.
+	SecurityGroupIDs []*string `locationName:"SecurityGroupId" locationNameList:"SecurityGroupId" type:"list"`
+
+	// [EC2-Classic, default VPC] One or more security group names. For a nondefault
+	// VPC, you must use security group IDs instead.
+	//
+	// Default: Amazon EC2 uses the default security group.
+	SecurityGroups []*string `locationName:"SecurityGroup" locationNameList:"SecurityGroup" type:"list"`
+
+	// [EC2-VPC] The ID of the subnet to launch the instance into.
+	SubnetID *string `locationName:"SubnetId" type:"string"`
+
+	// The Base64-encoded MIME user data for the instances.
+	UserData *string `type:"string"`
 
 	metadataRunInstancesInput `json:"-", xml:"-"`
 }
@@ -8790,7 +14079,9 @@ type metadataRunInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the monitoring for the instance.
 type RunInstancesMonitoringEnabled struct {
+	// Indicates whether monitoring is enabled for the instance.
 	Enabled *bool `locationName:"enabled" type:"boolean" required:"true"`
 
 	metadataRunInstancesMonitoringEnabled `json:"-", xml:"-"`
@@ -8800,11 +14091,27 @@ type metadataRunInstancesMonitoringEnabled struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the storage parameters for S3 and S3 buckets for an instance store-backed
+// AMI.
 type S3Storage struct {
-	AWSAccessKeyID        *string `locationName:"AWSAccessKeyId" type:"string"`
-	Bucket                *string `locationName:"bucket" type:"string"`
-	Prefix                *string `locationName:"prefix" type:"string"`
-	UploadPolicy          []byte  `locationName:"uploadPolicy" type:"blob"`
+	// The access key ID of the owner of the bucket. Before you specify a value
+	// for your access key ID, review and follow the guidance in Best Practices
+	// for Managing AWS Access Keys (http://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html).
+	AWSAccessKeyID *string `locationName:"AWSAccessKeyId" type:"string"`
+
+	// The bucket in which to store the AMI. You can specify a bucket that you already
+	// own or a new bucket that Amazon EC2 creates on your behalf. If you specify
+	// a bucket that belongs to someone else, Amazon EC2 returns an error.
+	Bucket *string `locationName:"bucket" type:"string"`
+
+	// The beginning of the file name of the AMI.
+	Prefix *string `locationName:"prefix" type:"string"`
+
+	// A Base64-encoded Amazon S3 upload policy that gives Amazon EC2 permission
+	// to upload items into Amazon S3 on your behalf.
+	UploadPolicy []byte `locationName:"uploadPolicy" type:"blob"`
+
+	// The signature of the Base64 encoded JSON document.
 	UploadPolicySignature *string `locationName:"uploadPolicySignature" type:"string"`
 
 	metadataS3Storage `json:"-", xml:"-"`
@@ -8814,15 +14121,31 @@ type metadataS3Storage struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a security group
 type SecurityGroup struct {
-	Description         *string         `locationName:"groupDescription" type:"string"`
-	GroupID             *string         `locationName:"groupId" type:"string"`
-	GroupName           *string         `locationName:"groupName" type:"string"`
-	IPPermissions       []*IPPermission `locationName:"ipPermissions" locationNameList:"item" type:"list"`
+	// A description of the security group.
+	Description *string `locationName:"groupDescription" type:"string"`
+
+	// The ID of the security group.
+	GroupID *string `locationName:"groupId" type:"string"`
+
+	// The name of the security group.
+	GroupName *string `locationName:"groupName" type:"string"`
+
+	// One or more inbound rules associated with the security group.
+	IPPermissions []*IPPermission `locationName:"ipPermissions" locationNameList:"item" type:"list"`
+
+	// [EC2-VPC] One or more outbound rules associated with the security group.
 	IPPermissionsEgress []*IPPermission `locationName:"ipPermissionsEgress" locationNameList:"item" type:"list"`
-	OwnerID             *string         `locationName:"ownerId" type:"string"`
-	Tags                []*Tag          `locationName:"tagSet" locationNameList:"item" type:"list"`
-	VPCID               *string         `locationName:"vpcId" type:"string"`
+
+	// The AWS account ID of the owner of the security group.
+	OwnerID *string `locationName:"ownerId" type:"string"`
+
+	// Any tags assigned to the security group.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
+
+	// [EC2-VPC] The ID of the VPC for the security group.
+	VPCID *string `locationName:"vpcId" type:"string"`
 
 	metadataSecurityGroup `json:"-", xml:"-"`
 }
@@ -8831,19 +14154,45 @@ type metadataSecurityGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a snapshot.
 type Snapshot struct {
-	Description *string    `locationName:"description" type:"string"`
-	Encrypted   *bool      `locationName:"encrypted" type:"boolean"`
-	KMSKeyID    *string    `locationName:"kmsKeyId" type:"string"`
-	OwnerAlias  *string    `locationName:"ownerAlias" type:"string"`
-	OwnerID     *string    `locationName:"ownerId" type:"string"`
-	Progress    *string    `locationName:"progress" type:"string"`
-	SnapshotID  *string    `locationName:"snapshotId" type:"string"`
-	StartTime   *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
-	State       *string    `locationName:"status" type:"string"`
-	Tags        []*Tag     `locationName:"tagSet" locationNameList:"item" type:"list"`
-	VolumeID    *string    `locationName:"volumeId" type:"string"`
-	VolumeSize  *int64     `locationName:"volumeSize" type:"integer"`
+	// The description for the snapshot.
+	Description *string `locationName:"description" type:"string"`
+
+	// Indicates whether the snapshot is encrypted.
+	Encrypted *bool `locationName:"encrypted" type:"boolean"`
+
+	// The full ARN of the AWS Key Management Service (KMS) master key that was
+	// used to protect the volume encryption key for the parent volume.
+	KMSKeyID *string `locationName:"kmsKeyId" type:"string"`
+
+	// The AWS account alias (for example, amazon, self) or AWS account ID that
+	// owns the snapshot.
+	OwnerAlias *string `locationName:"ownerAlias" type:"string"`
+
+	// The AWS account ID of the Amazon EBS snapshot owner.
+	OwnerID *string `locationName:"ownerId" type:"string"`
+
+	// The progress of the snapshot, as a percentage.
+	Progress *string `locationName:"progress" type:"string"`
+
+	// The ID of the snapshot.
+	SnapshotID *string `locationName:"snapshotId" type:"string"`
+
+	// The time stamp when the snapshot was initiated.
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The snapshot state.
+	State *string `locationName:"status" type:"string"`
+
+	// Any tags assigned to the snapshot.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
+
+	// The ID of the volume.
+	VolumeID *string `locationName:"volumeId" type:"string"`
+
+	// The size of the volume, in GiB.
+	VolumeSize *int64 `locationName:"volumeSize" type:"integer"`
 
 	metadataSnapshot `json:"-", xml:"-"`
 }
@@ -8852,12 +14201,22 @@ type metadataSnapshot struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the data feed for a Spot Instance.
 type SpotDatafeedSubscription struct {
-	Bucket  *string                 `locationName:"bucket" type:"string"`
-	Fault   *SpotInstanceStateFault `locationName:"fault" type:"structure"`
-	OwnerID *string                 `locationName:"ownerId" type:"string"`
-	Prefix  *string                 `locationName:"prefix" type:"string"`
-	State   *string                 `locationName:"state" type:"string"`
+	// The Amazon S3 bucket where the Spot Instance data feed is located.
+	Bucket *string `locationName:"bucket" type:"string"`
+
+	// The fault codes for the Spot Instance request, if any.
+	Fault *SpotInstanceStateFault `locationName:"fault" type:"structure"`
+
+	// The AWS account ID of the account.
+	OwnerID *string `locationName:"ownerId" type:"string"`
+
+	// The prefix that is prepended to data feed files.
+	Prefix *string `locationName:"prefix" type:"string"`
+
+	// The state of the Spot Instance data feed subscription.
+	State *string `locationName:"state" type:"string"`
 
 	metadataSpotDatafeedSubscription `json:"-", xml:"-"`
 }
@@ -8866,23 +14225,70 @@ type metadataSpotDatafeedSubscription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describe a Spot Instance request.
 type SpotInstanceRequest struct {
-	AvailabilityZoneGroup    *string                 `locationName:"availabilityZoneGroup" type:"string"`
-	CreateTime               *time.Time              `locationName:"createTime" type:"timestamp" timestampFormat:"iso8601"`
-	Fault                    *SpotInstanceStateFault `locationName:"fault" type:"structure"`
-	InstanceID               *string                 `locationName:"instanceId" type:"string"`
-	LaunchGroup              *string                 `locationName:"launchGroup" type:"string"`
-	LaunchSpecification      *LaunchSpecification    `locationName:"launchSpecification" type:"structure"`
-	LaunchedAvailabilityZone *string                 `locationName:"launchedAvailabilityZone" type:"string"`
-	ProductDescription       *string                 `locationName:"productDescription" type:"string"`
-	SpotInstanceRequestID    *string                 `locationName:"spotInstanceRequestId" type:"string"`
-	SpotPrice                *string                 `locationName:"spotPrice" type:"string"`
-	State                    *string                 `locationName:"state" type:"string"`
-	Status                   *SpotInstanceStatus     `locationName:"status" type:"structure"`
-	Tags                     []*Tag                  `locationName:"tagSet" locationNameList:"item" type:"list"`
-	Type                     *string                 `locationName:"type" type:"string"`
-	ValidFrom                *time.Time              `locationName:"validFrom" type:"timestamp" timestampFormat:"iso8601"`
-	ValidUntil               *time.Time              `locationName:"validUntil" type:"timestamp" timestampFormat:"iso8601"`
+	// The Availability Zone group. If you specify the same Availability Zone group
+	// for all Spot Instance requests, all Spot Instances are launched in the same
+	// Availability Zone.
+	AvailabilityZoneGroup *string `locationName:"availabilityZoneGroup" type:"string"`
+
+	// The time stamp when the Spot Instance request was created.
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The fault codes for the Spot Instance request, if any.
+	Fault *SpotInstanceStateFault `locationName:"fault" type:"structure"`
+
+	// The instance ID, if an instance has been launched to fulfill the Spot Instance
+	// request.
+	InstanceID *string `locationName:"instanceId" type:"string"`
+
+	// The instance launch group. Launch groups are Spot Instances that launch together
+	// and terminate together.
+	LaunchGroup *string `locationName:"launchGroup" type:"string"`
+
+	// Additional information for launching instances.
+	LaunchSpecification *LaunchSpecification `locationName:"launchSpecification" type:"structure"`
+
+	// The Availability Zone in which the bid is launched.
+	LaunchedAvailabilityZone *string `locationName:"launchedAvailabilityZone" type:"string"`
+
+	// The product description associated with the Spot Instance.
+	ProductDescription *string `locationName:"productDescription" type:"string"`
+
+	// The ID of the Spot Instance request.
+	SpotInstanceRequestID *string `locationName:"spotInstanceRequestId" type:"string"`
+
+	// The maximum hourly price (bid) for any Spot Instance launched to fulfill
+	// the request.
+	SpotPrice *string `locationName:"spotPrice" type:"string"`
+
+	// The state of the Spot Instance request. Spot bid status information can help
+	// you track your Spot Instance requests. For more information, see Spot Bid
+	// Status (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-bid-status.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	State *string `locationName:"state" type:"string"`
+
+	// The status code and status message describing the Spot Instance request.
+	Status *SpotInstanceStatus `locationName:"status" type:"structure"`
+
+	// Any tags assigned to the resource.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
+
+	// The Spot Instance request type.
+	Type *string `locationName:"type" type:"string"`
+
+	// The start date of the request. If this is a one-time request, the request
+	// becomes active at this date and time and remains active until all instances
+	// launch, the request expires, or the request is canceled. If the request is
+	// persistent, the request becomes active at this date and time and remains
+	// active until it expires or is canceled.
+	ValidFrom *time.Time `locationName:"validFrom" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The end date of the request. If this is a one-time request, the request remains
+	// active until all instances launch, the request is canceled, or this date
+	// is reached. If the request is persistent, it remains active until it is canceled
+	// or this date is reached.
+	ValidUntil *time.Time `locationName:"validUntil" type:"timestamp" timestampFormat:"iso8601"`
 
 	metadataSpotInstanceRequest `json:"-", xml:"-"`
 }
@@ -8891,8 +14297,12 @@ type metadataSpotInstanceRequest struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a Spot Instance state change.
 type SpotInstanceStateFault struct {
-	Code    *string `locationName:"code" type:"string"`
+	// The reason code for the Spot Instance state change.
+	Code *string `locationName:"code" type:"string"`
+
+	// The message for the Spot Instance state change.
 	Message *string `locationName:"message" type:"string"`
 
 	metadataSpotInstanceStateFault `json:"-", xml:"-"`
@@ -8902,9 +14312,15 @@ type metadataSpotInstanceStateFault struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the status of a Spot Instance request.
 type SpotInstanceStatus struct {
-	Code       *string    `locationName:"code" type:"string"`
-	Message    *string    `locationName:"message" type:"string"`
+	// The status code.
+	Code *string `locationName:"code" type:"string"`
+
+	// The description for the status code.
+	Message *string `locationName:"message" type:"string"`
+
+	// The time of the most recent status update.
 	UpdateTime *time.Time `locationName:"updateTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	metadataSpotInstanceStatus `json:"-", xml:"-"`
@@ -8914,9 +14330,13 @@ type metadataSpotInstanceStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes Spot Instance placement.
 type SpotPlacement struct {
+	// The Availability Zone.
 	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
-	GroupName        *string `locationName:"groupName" type:"string"`
+
+	// The name of the placement group (for cluster instances).
+	GroupName *string `locationName:"groupName" type:"string"`
 
 	metadataSpotPlacement `json:"-", xml:"-"`
 }
@@ -8925,12 +14345,23 @@ type metadataSpotPlacement struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the maximum hourly price (bid) for any Spot Instance launched to
+// fulfill the request.
 type SpotPrice struct {
-	AvailabilityZone   *string    `locationName:"availabilityZone" type:"string"`
-	InstanceType       *string    `locationName:"instanceType" type:"string"`
-	ProductDescription *string    `locationName:"productDescription" type:"string"`
-	SpotPrice          *string    `locationName:"spotPrice" type:"string"`
-	Timestamp          *time.Time `locationName:"timestamp" type:"timestamp" timestampFormat:"iso8601"`
+	// The Availability Zone.
+	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
+
+	// The instance type.
+	InstanceType *string `locationName:"instanceType" type:"string"`
+
+	// A general description of the AMI.
+	ProductDescription *string `locationName:"productDescription" type:"string"`
+
+	// The maximum price (bid) that you are willing to pay for a Spot Instance.
+	SpotPrice *string `locationName:"spotPrice" type:"string"`
+
+	// The date and time the request was created.
+	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" timestampFormat:"iso8601"`
 
 	metadataSpotPrice `json:"-", xml:"-"`
 }
@@ -8940,9 +14371,13 @@ type metadataSpotPrice struct {
 }
 
 type StartInstancesInput struct {
-	AdditionalInfo *string   `locationName:"additionalInfo" type:"string"`
-	DryRun         *bool     `locationName:"dryRun" type:"boolean"`
-	InstanceIDs    []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
+	// Reserved.
+	AdditionalInfo *string `locationName:"additionalInfo" type:"string"`
+
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more instance IDs.
+	InstanceIDs []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 
 	metadataStartInstancesInput `json:"-", xml:"-"`
 }
@@ -8952,6 +14387,7 @@ type metadataStartInstancesInput struct {
 }
 
 type StartInstancesOutput struct {
+	// Information about one or more started instances.
 	StartingInstances []*InstanceStateChange `locationName:"instancesSet" locationNameList:"item" type:"list"`
 
 	metadataStartInstancesOutput `json:"-", xml:"-"`
@@ -8961,8 +14397,34 @@ type metadataStartInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a state change.
 type StateReason struct {
-	Code    *string `locationName:"code" type:"string"`
+	// The reason code for the state change.
+	Code *string `locationName:"code" type:"string"`
+
+	// The message for the state change.
+	//
+	//  Server.SpotInstanceTermination: A Spot Instance was terminated due to an
+	// increase in the market price.
+	//
+	// Server.InternalError: An internal error occurred during instance launch,
+	// resulting in termination.
+	//
+	// Server.InsufficientInstanceCapacity: There was insufficient instance capacity
+	// to satisfy the launch request.
+	//
+	// Client.InternalError: A client error caused the instance to terminate on
+	// launch.
+	//
+	// Client.InstanceInitiatedShutdown: The instance was shut down using the shutdown
+	// -h command from the instance.
+	//
+	// Client.UserInitiatedShutdown: The instance was shut down using the Amazon
+	// EC2 API.
+	//
+	// Client.VolumeLimitExceeded: The volume limit was exceeded.
+	//
+	// Client.InvalidSnapshot.NotFound: The specified snapshot was not found.
 	Message *string `locationName:"message" type:"string"`
 
 	metadataStateReason `json:"-", xml:"-"`
@@ -8973,8 +14435,17 @@ type metadataStateReason struct {
 }
 
 type StopInstancesInput struct {
-	DryRun      *bool     `locationName:"dryRun" type:"boolean"`
-	Force       *bool     `locationName:"force" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// Forces the instances to stop. The instances do not have an opportunity to
+	// flush file system caches or file system metadata. If you use this option,
+	// you must perform file system check and repair procedures. This option is
+	// not recommended for Windows instances.
+	//
+	// Default: false
+	Force *bool `locationName:"force" type:"boolean"`
+
+	// One or more instance IDs.
 	InstanceIDs []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 
 	metadataStopInstancesInput `json:"-", xml:"-"`
@@ -8985,6 +14456,7 @@ type metadataStopInstancesInput struct {
 }
 
 type StopInstancesOutput struct {
+	// Information about one or more stopped instances.
 	StoppingInstances []*InstanceStateChange `locationName:"instancesSet" locationNameList:"item" type:"list"`
 
 	metadataStopInstancesOutput `json:"-", xml:"-"`
@@ -8994,7 +14466,9 @@ type metadataStopInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the storage location for an instance store-backed AMI.
 type Storage struct {
+	// An Amazon S3 storage location.
 	S3 *S3Storage `type:"structure"`
 
 	metadataStorage `json:"-", xml:"-"`
@@ -9004,16 +14478,35 @@ type metadataStorage struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a subnet.
 type Subnet struct {
-	AvailabilityZone        *string `locationName:"availabilityZone" type:"string"`
-	AvailableIPAddressCount *int64  `locationName:"availableIpAddressCount" type:"integer"`
-	CIDRBlock               *string `locationName:"cidrBlock" type:"string"`
-	DefaultForAZ            *bool   `locationName:"defaultForAz" type:"boolean"`
-	MapPublicIPOnLaunch     *bool   `locationName:"mapPublicIpOnLaunch" type:"boolean"`
-	State                   *string `locationName:"state" type:"string"`
-	SubnetID                *string `locationName:"subnetId" type:"string"`
-	Tags                    []*Tag  `locationName:"tagSet" locationNameList:"item" type:"list"`
-	VPCID                   *string `locationName:"vpcId" type:"string"`
+	// The Availability Zone of the subnet.
+	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
+
+	// The number of unused IP addresses in the subnet. Note that the IP addresses
+	// for any stopped instances are considered unavailable.
+	AvailableIPAddressCount *int64 `locationName:"availableIpAddressCount" type:"integer"`
+
+	// The CIDR block assigned to the subnet.
+	CIDRBlock *string `locationName:"cidrBlock" type:"string"`
+
+	// Indicates whether this is the default subnet for the Availability Zone.
+	DefaultForAZ *bool `locationName:"defaultForAz" type:"boolean"`
+
+	// Indicates whether instances launched in this subnet receive a public IP address.
+	MapPublicIPOnLaunch *bool `locationName:"mapPublicIpOnLaunch" type:"boolean"`
+
+	// The current state of the subnet.
+	State *string `locationName:"state" type:"string"`
+
+	// The ID of the subnet.
+	SubnetID *string `locationName:"subnetId" type:"string"`
+
+	// Any tags assigned to the subnet.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
+
+	// The ID of the VPC the subnet is in.
+	VPCID *string `locationName:"vpcId" type:"string"`
 
 	metadataSubnet `json:"-", xml:"-"`
 }
@@ -9022,8 +14515,18 @@ type metadataSubnet struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a tag.
 type Tag struct {
-	Key   *string `locationName:"key" type:"string"`
+	// The key of the tag.
+	//
+	// Constraints: Tag keys are case-sensitive and accept a maximum of 127 Unicode
+	// characters. May not begin with aws:
+	Key *string `locationName:"key" type:"string"`
+
+	// The value of the tag.
+	//
+	// Constraints: Tag values are case-sensitive and accept a maximum of 255 Unicode
+	// characters.
 	Value *string `locationName:"value" type:"string"`
 
 	metadataTag `json:"-", xml:"-"`
@@ -9033,11 +14536,19 @@ type metadataTag struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a tag.
 type TagDescription struct {
-	Key          *string `locationName:"key" type:"string"`
-	ResourceID   *string `locationName:"resourceId" type:"string"`
+	// The tag key.
+	Key *string `locationName:"key" type:"string"`
+
+	// The ID of the resource. For example, ami-1a2b3c4d.
+	ResourceID *string `locationName:"resourceId" type:"string"`
+
+	// The resource type.
 	ResourceType *string `locationName:"resourceType" type:"string"`
-	Value        *string `locationName:"value" type:"string"`
+
+	// The tag value.
+	Value *string `locationName:"value" type:"string"`
 
 	metadataTagDescription `json:"-", xml:"-"`
 }
@@ -9047,7 +14558,9 @@ type metadataTagDescription struct {
 }
 
 type TerminateInstancesInput struct {
-	DryRun      *bool     `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more instance IDs.
 	InstanceIDs []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 
 	metadataTerminateInstancesInput `json:"-", xml:"-"`
@@ -9058,6 +14571,7 @@ type metadataTerminateInstancesInput struct {
 }
 
 type TerminateInstancesOutput struct {
+	// Information about one or more terminated instances.
 	TerminatingInstances []*InstanceStateChange `locationName:"instancesSet" locationNameList:"item" type:"list"`
 
 	metadataTerminateInstancesOutput `json:"-", xml:"-"`
@@ -9068,7 +14582,11 @@ type metadataTerminateInstancesOutput struct {
 }
 
 type UnassignPrivateIPAddressesInput struct {
-	NetworkInterfaceID *string   `locationName:"networkInterfaceId" type:"string" required:"true"`
+	// The ID of the network interface.
+	NetworkInterfaceID *string `locationName:"networkInterfaceId" type:"string" required:"true"`
+
+	// The secondary private IP addresses to unassign from the network interface.
+	// You can specify this option multiple times to unassign more than one IP address.
 	PrivateIPAddresses []*string `locationName:"privateIpAddress" locationNameList:"PrivateIpAddress" type:"list" required:"true"`
 
 	metadataUnassignPrivateIPAddressesInput `json:"-", xml:"-"`
@@ -9087,7 +14605,9 @@ type metadataUnassignPrivateIPAddressesOutput struct {
 }
 
 type UnmonitorInstancesInput struct {
-	DryRun      *bool     `locationName:"dryRun" type:"boolean"`
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// One or more instance IDs.
 	InstanceIDs []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 
 	metadataUnmonitorInstancesInput `json:"-", xml:"-"`
@@ -9098,6 +14618,7 @@ type metadataUnmonitorInstancesInput struct {
 }
 
 type UnmonitorInstancesOutput struct {
+	// Monitoring information for one or more instances.
 	InstanceMonitorings []*InstanceMonitoring `locationName:"instancesSet" locationNameList:"item" type:"list"`
 
 	metadataUnmonitorInstancesOutput `json:"-", xml:"-"`
@@ -9117,10 +14638,16 @@ type metadataUserData struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a security group and AWS account ID pair for EC2-Classic.
 type UserIDGroupPair struct {
-	GroupID   *string `locationName:"groupId" type:"string"`
+	// The name of the security group in the specified AWS account.
+	GroupID *string `locationName:"groupId" type:"string"`
+
+	// The ID of the security group owned by the specified AWS account.
 	GroupName *string `locationName:"groupName" type:"string"`
-	UserID    *string `locationName:"userId" type:"string"`
+
+	// The ID of an AWS account.
+	UserID *string `locationName:"userId" type:"string"`
 
 	metadataUserIDGroupPair `json:"-", xml:"-"`
 }
@@ -9129,12 +14656,23 @@ type metadataUserIDGroupPair struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes telemetry for a VPN tunnel.
 type VGWTelemetry struct {
-	AcceptedRouteCount *int64     `locationName:"acceptedRouteCount" type:"integer"`
-	LastStatusChange   *time.Time `locationName:"lastStatusChange" type:"timestamp" timestampFormat:"iso8601"`
-	OutsideIPAddress   *string    `locationName:"outsideIpAddress" type:"string"`
-	Status             *string    `locationName:"status" type:"string"`
-	StatusMessage      *string    `locationName:"statusMessage" type:"string"`
+	// The number of accepted routes.
+	AcceptedRouteCount *int64 `locationName:"acceptedRouteCount" type:"integer"`
+
+	// The date and time of the last change in status.
+	LastStatusChange *time.Time `locationName:"lastStatusChange" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The Internet-routable IP address of the virtual private gateway's outside
+	// interface.
+	OutsideIPAddress *string `locationName:"outsideIpAddress" type:"string"`
+
+	// The status of the VPN tunnel.
+	Status *string `locationName:"status" type:"string"`
+
+	// If an error occurs, a description of the error.
+	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
 	metadataVGWTelemetry `json:"-", xml:"-"`
 }
@@ -9143,14 +14681,29 @@ type metadataVGWTelemetry struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a VPC.
 type VPC struct {
-	CIDRBlock       *string `locationName:"cidrBlock" type:"string"`
-	DHCPOptionsID   *string `locationName:"dhcpOptionsId" type:"string"`
+	// The CIDR block for the VPC.
+	CIDRBlock *string `locationName:"cidrBlock" type:"string"`
+
+	// The ID of the set of DHCP options you've associated with the VPC (or default
+	// if the default options are associated with the VPC).
+	DHCPOptionsID *string `locationName:"dhcpOptionsId" type:"string"`
+
+	// The allowed tenancy of instances launched into the VPC.
 	InstanceTenancy *string `locationName:"instanceTenancy" type:"string"`
-	IsDefault       *bool   `locationName:"isDefault" type:"boolean"`
-	State           *string `locationName:"state" type:"string"`
-	Tags            []*Tag  `locationName:"tagSet" locationNameList:"item" type:"list"`
-	VPCID           *string `locationName:"vpcId" type:"string"`
+
+	// Indicates whether the VPC is the default VPC.
+	IsDefault *bool `locationName:"isDefault" type:"boolean"`
+
+	// The current state of the VPC.
+	State *string `locationName:"state" type:"string"`
+
+	// Any tags assigned to the VPC.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
+
+	// The ID of the VPC.
+	VPCID *string `locationName:"vpcId" type:"string"`
 
 	metadataVPC `json:"-", xml:"-"`
 }
@@ -9159,8 +14712,12 @@ type metadataVPC struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an attachment between a virtual private gateway and a VPC.
 type VPCAttachment struct {
+	// The current state of the attachment.
 	State *string `locationName:"state" type:"string"`
+
+	// The ID of the VPC.
 	VPCID *string `locationName:"vpcId" type:"string"`
 
 	metadataVPCAttachment `json:"-", xml:"-"`
@@ -9170,10 +14727,16 @@ type metadataVPCAttachment struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes whether a VPC is enabled for ClassicLink.
 type VPCClassicLink struct {
-	ClassicLinkEnabled *bool   `locationName:"classicLinkEnabled" type:"boolean"`
-	Tags               []*Tag  `locationName:"tagSet" locationNameList:"item" type:"list"`
-	VPCID              *string `locationName:"vpcId" type:"string"`
+	// Indicates whether the VPC is enabled for ClassicLink.
+	ClassicLinkEnabled *bool `locationName:"classicLinkEnabled" type:"boolean"`
+
+	// Any tags assigned to the VPC.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
+
+	// The ID of the VPC.
+	VPCID *string `locationName:"vpcId" type:"string"`
 
 	metadataVPCClassicLink `json:"-", xml:"-"`
 }
@@ -9182,13 +14745,25 @@ type metadataVPCClassicLink struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a VPC peering connection.
 type VPCPeeringConnection struct {
-	AccepterVPCInfo        *VPCPeeringConnectionVPCInfo     `locationName:"accepterVpcInfo" type:"structure"`
-	ExpirationTime         *time.Time                       `locationName:"expirationTime" type:"timestamp" timestampFormat:"iso8601"`
-	RequesterVPCInfo       *VPCPeeringConnectionVPCInfo     `locationName:"requesterVpcInfo" type:"structure"`
-	Status                 *VPCPeeringConnectionStateReason `locationName:"status" type:"structure"`
-	Tags                   []*Tag                           `locationName:"tagSet" locationNameList:"item" type:"list"`
-	VPCPeeringConnectionID *string                          `locationName:"vpcPeeringConnectionId" type:"string"`
+	// The information of the peer VPC.
+	AccepterVPCInfo *VPCPeeringConnectionVPCInfo `locationName:"accepterVpcInfo" type:"structure"`
+
+	// The time that an unaccepted VPC peering connection will expire.
+	ExpirationTime *time.Time `locationName:"expirationTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The information of the requester VPC.
+	RequesterVPCInfo *VPCPeeringConnectionVPCInfo `locationName:"requesterVpcInfo" type:"structure"`
+
+	// The status of the VPC peering connection.
+	Status *VPCPeeringConnectionStateReason `locationName:"status" type:"structure"`
+
+	// Any tags assigned to the resource.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
+
+	// The ID of the VPC peering connection.
+	VPCPeeringConnectionID *string `locationName:"vpcPeeringConnectionId" type:"string"`
 
 	metadataVPCPeeringConnection `json:"-", xml:"-"`
 }
@@ -9197,8 +14772,12 @@ type metadataVPCPeeringConnection struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the status of a VPC peering connection.
 type VPCPeeringConnectionStateReason struct {
-	Code    *string `locationName:"code" type:"string"`
+	// The status of the VPC peering connection.
+	Code *string `locationName:"code" type:"string"`
+
+	// A message that provides more information about the status, if applicable.
 	Message *string `locationName:"message" type:"string"`
 
 	metadataVPCPeeringConnectionStateReason `json:"-", xml:"-"`
@@ -9208,10 +14787,16 @@ type metadataVPCPeeringConnectionStateReason struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a VPC in a VPC peering connection.
 type VPCPeeringConnectionVPCInfo struct {
+	// The CIDR block for the VPC.
 	CIDRBlock *string `locationName:"cidrBlock" type:"string"`
-	OwnerID   *string `locationName:"ownerId" type:"string"`
-	VPCID     *string `locationName:"vpcId" type:"string"`
+
+	// The AWS account ID of the VPC owner.
+	OwnerID *string `locationName:"ownerId" type:"string"`
+
+	// The ID of the VPC.
+	VPCID *string `locationName:"vpcId" type:"string"`
 
 	metadataVPCPeeringConnectionVPCInfo `json:"-", xml:"-"`
 }
@@ -9220,17 +14805,40 @@ type metadataVPCPeeringConnectionVPCInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a VPN connection.
 type VPNConnection struct {
-	CustomerGatewayConfiguration *string               `locationName:"customerGatewayConfiguration" type:"string"`
-	CustomerGatewayID            *string               `locationName:"customerGatewayId" type:"string"`
-	Options                      *VPNConnectionOptions `locationName:"options" type:"structure"`
-	Routes                       []*VPNStaticRoute     `locationName:"routes" locationNameList:"item" type:"list"`
-	State                        *string               `locationName:"state" type:"string"`
-	Tags                         []*Tag                `locationName:"tagSet" locationNameList:"item" type:"list"`
-	Type                         *string               `locationName:"type" type:"string"`
-	VGWTelemetry                 []*VGWTelemetry       `locationName:"vgwTelemetry" locationNameList:"item" type:"list"`
-	VPNConnectionID              *string               `locationName:"vpnConnectionId" type:"string"`
-	VPNGatewayID                 *string               `locationName:"vpnGatewayId" type:"string"`
+	// The configuration information for the VPN connection's customer gateway (in
+	// the native XML format). This element is always present in the CreateVpnConnection
+	// response; however, it's present in the DescribeVpnConnections response only
+	// if the VPN connection is in the pending or available state.
+	CustomerGatewayConfiguration *string `locationName:"customerGatewayConfiguration" type:"string"`
+
+	// The ID of the customer gateway at your end of the VPN connection.
+	CustomerGatewayID *string `locationName:"customerGatewayId" type:"string"`
+
+	// The VPN connection options.
+	Options *VPNConnectionOptions `locationName:"options" type:"structure"`
+
+	// The static routes associated with the VPN connection.
+	Routes []*VPNStaticRoute `locationName:"routes" locationNameList:"item" type:"list"`
+
+	// The current state of the VPN connection.
+	State *string `locationName:"state" type:"string"`
+
+	// Any tags assigned to the VPN connection.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
+
+	// The type of VPN connection.
+	Type *string `locationName:"type" type:"string"`
+
+	// Information about the VPN tunnel.
+	VGWTelemetry []*VGWTelemetry `locationName:"vgwTelemetry" locationNameList:"item" type:"list"`
+
+	// The ID of the VPN connection.
+	VPNConnectionID *string `locationName:"vpnConnectionId" type:"string"`
+
+	// The ID of the virtual private gateway at the AWS side of the VPN connection.
+	VPNGatewayID *string `locationName:"vpnGatewayId" type:"string"`
 
 	metadataVPNConnection `json:"-", xml:"-"`
 }
@@ -9239,7 +14847,10 @@ type metadataVPNConnection struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes VPN connection options.
 type VPNConnectionOptions struct {
+	// Indicates whether the VPN connection uses static routes only. Static routes
+	// must be used for devices that don't support BGP.
 	StaticRoutesOnly *bool `locationName:"staticRoutesOnly" type:"boolean"`
 
 	metadataVPNConnectionOptions `json:"-", xml:"-"`
@@ -9249,7 +14860,10 @@ type metadataVPNConnectionOptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes VPN connection options.
 type VPNConnectionOptionsSpecification struct {
+	// Indicates whether the VPN connection uses static routes only. Static routes
+	// must be used for devices that don't support BGP.
 	StaticRoutesOnly *bool `locationName:"staticRoutesOnly" type:"boolean"`
 
 	metadataVPNConnectionOptionsSpecification `json:"-", xml:"-"`
@@ -9259,13 +14873,25 @@ type metadataVPNConnectionOptionsSpecification struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a virtual private gateway.
 type VPNGateway struct {
-	AvailabilityZone *string          `locationName:"availabilityZone" type:"string"`
-	State            *string          `locationName:"state" type:"string"`
-	Tags             []*Tag           `locationName:"tagSet" locationNameList:"item" type:"list"`
-	Type             *string          `locationName:"type" type:"string"`
-	VPCAttachments   []*VPCAttachment `locationName:"attachments" locationNameList:"item" type:"list"`
-	VPNGatewayID     *string          `locationName:"vpnGatewayId" type:"string"`
+	// The Availability Zone where the virtual private gateway was created.
+	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
+
+	// The current state of the virtual private gateway.
+	State *string `locationName:"state" type:"string"`
+
+	// Any tags assigned to the virtual private gateway.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
+
+	// The type of VPN connection the virtual private gateway supports.
+	Type *string `locationName:"type" type:"string"`
+
+	// Any VPCs attached to the virtual private gateway.
+	VPCAttachments []*VPCAttachment `locationName:"attachments" locationNameList:"item" type:"list"`
+
+	// The ID of the virtual private gateway.
+	VPNGatewayID *string `locationName:"vpnGatewayId" type:"string"`
 
 	metadataVPNGateway `json:"-", xml:"-"`
 }
@@ -9274,10 +14900,16 @@ type metadataVPNGateway struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a static route for a VPN connection.
 type VPNStaticRoute struct {
+	// The CIDR block associated with the local subnet of the customer data center.
 	DestinationCIDRBlock *string `locationName:"destinationCidrBlock" type:"string"`
-	Source               *string `locationName:"source" type:"string"`
-	State                *string `locationName:"state" type:"string"`
+
+	// Indicates how the routes were provided.
+	Source *string `locationName:"source" type:"string"`
+
+	// The current state of the static route.
+	State *string `locationName:"state" type:"string"`
 
 	metadataVPNStaticRoute `json:"-", xml:"-"`
 }
@@ -9286,19 +14918,56 @@ type metadataVPNStaticRoute struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a volume.
 type Volume struct {
-	Attachments      []*VolumeAttachment `locationName:"attachmentSet" locationNameList:"item" type:"list"`
-	AvailabilityZone *string             `locationName:"availabilityZone" type:"string"`
-	CreateTime       *time.Time          `locationName:"createTime" type:"timestamp" timestampFormat:"iso8601"`
-	Encrypted        *bool               `locationName:"encrypted" type:"boolean"`
-	IOPS             *int64              `locationName:"iops" type:"integer"`
-	KMSKeyID         *string             `locationName:"kmsKeyId" type:"string"`
-	Size             *int64              `locationName:"size" type:"integer"`
-	SnapshotID       *string             `locationName:"snapshotId" type:"string"`
-	State            *string             `locationName:"status" type:"string"`
-	Tags             []*Tag              `locationName:"tagSet" locationNameList:"item" type:"list"`
-	VolumeID         *string             `locationName:"volumeId" type:"string"`
-	VolumeType       *string             `locationName:"volumeType" type:"string"`
+	Attachments []*VolumeAttachment `locationName:"attachmentSet" locationNameList:"item" type:"list"`
+
+	// The Availability Zone for the volume.
+	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
+
+	// The time stamp when volume creation was initiated.
+	CreateTime *time.Time `locationName:"createTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Indicates whether the volume will be encrypted.
+	Encrypted *bool `locationName:"encrypted" type:"boolean"`
+
+	// The number of I/O operations per second (IOPS) that the volume supports.
+	// For Provisioned IOPS (SSD) volumes, this represents the number of IOPS that
+	// are provisioned for the volume. For General Purpose (SSD) volumes, this represents
+	// the baseline performance of the volume and the rate at which the volume accumulates
+	// I/O credits for bursting. For more information on General Purpose (SSD) baseline
+	// performance, I/O credits, and bursting, see Amazon EBS Volume Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	//
+	// Constraint: Range is 100 to 4000 for Provisioned IOPS (SSD) volumes and
+	// 3 to 3072 for General Purpose (SSD) volumes.
+	//
+	// Condition: This parameter is required for requests to create io1 volumes;
+	// it is not used in requests to create standard or gp2 volumes.
+	IOPS *int64 `locationName:"iops" type:"integer"`
+
+	// The full ARN of the AWS Key Management Service (KMS) master key that was
+	// used to protect the volume encryption key for the volume.
+	KMSKeyID *string `locationName:"kmsKeyId" type:"string"`
+
+	// The size of the volume, in GiBs.
+	Size *int64 `locationName:"size" type:"integer"`
+
+	// The snapshot from which the volume was created, if applicable.
+	SnapshotID *string `locationName:"snapshotId" type:"string"`
+
+	// The volume state.
+	State *string `locationName:"status" type:"string"`
+
+	// Any tags assigned to the volume.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
+
+	// The ID of the volume.
+	VolumeID *string `locationName:"volumeId" type:"string"`
+
+	// The volume type. This can be gp2 for General Purpose (SSD) volumes, io1 for
+	// Provisioned IOPS (SSD) volumes, or standard for Magnetic volumes.
+	VolumeType *string `locationName:"volumeType" type:"string"`
 
 	metadataVolume `json:"-", xml:"-"`
 }
@@ -9307,13 +14976,25 @@ type metadataVolume struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes volume attachment details.
 type VolumeAttachment struct {
-	AttachTime          *time.Time `locationName:"attachTime" type:"timestamp" timestampFormat:"iso8601"`
-	DeleteOnTermination *bool      `locationName:"deleteOnTermination" type:"boolean"`
-	Device              *string    `locationName:"device" type:"string"`
-	InstanceID          *string    `locationName:"instanceId" type:"string"`
-	State               *string    `locationName:"status" type:"string"`
-	VolumeID            *string    `locationName:"volumeId" type:"string"`
+	// The time stamp when the attachment initiated.
+	AttachTime *time.Time `locationName:"attachTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Indicates whether the Amazon EBS volume is deleted on instance termination.
+	DeleteOnTermination *bool `locationName:"deleteOnTermination" type:"boolean"`
+
+	// The device name.
+	Device *string `locationName:"device" type:"string"`
+
+	// The ID of the instance.
+	InstanceID *string `locationName:"instanceId" type:"string"`
+
+	// The attachment state of the volume.
+	State *string `locationName:"status" type:"string"`
+
+	// The ID of the volume.
+	VolumeID *string `locationName:"volumeId" type:"string"`
 
 	metadataVolumeAttachment `json:"-", xml:"-"`
 }
@@ -9322,7 +15003,9 @@ type metadataVolumeAttachment struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an Amazon EBS volume.
 type VolumeDetail struct {
+	// The size of the volume, in GiB.
 	Size *int64 `locationName:"size" type:"long" required:"true"`
 
 	metadataVolumeDetail `json:"-", xml:"-"`
@@ -9332,11 +15015,19 @@ type metadataVolumeDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a volume status operation code.
 type VolumeStatusAction struct {
-	Code        *string `locationName:"code" type:"string"`
+	// The code identifying the operation, for example, enable-volume-io.
+	Code *string `locationName:"code" type:"string"`
+
+	// A description of the operation.
 	Description *string `locationName:"description" type:"string"`
-	EventID     *string `locationName:"eventId" type:"string"`
-	EventType   *string `locationName:"eventType" type:"string"`
+
+	// The ID of the event associated with this operation.
+	EventID *string `locationName:"eventId" type:"string"`
+
+	// The event type associated with this operation.
+	EventType *string `locationName:"eventType" type:"string"`
 
 	metadataVolumeStatusAction `json:"-", xml:"-"`
 }
@@ -9345,8 +15036,12 @@ type metadataVolumeStatusAction struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a volume status.
 type VolumeStatusDetails struct {
-	Name   *string `locationName:"name" type:"string"`
+	// The name of the volume status.
+	Name *string `locationName:"name" type:"string"`
+
+	// The intended status of the volume status.
 	Status *string `locationName:"status" type:"string"`
 
 	metadataVolumeStatusDetails `json:"-", xml:"-"`
@@ -9356,12 +15051,22 @@ type metadataVolumeStatusDetails struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a volume status event.
 type VolumeStatusEvent struct {
-	Description *string    `locationName:"description" type:"string"`
-	EventID     *string    `locationName:"eventId" type:"string"`
-	EventType   *string    `locationName:"eventType" type:"string"`
-	NotAfter    *time.Time `locationName:"notAfter" type:"timestamp" timestampFormat:"iso8601"`
-	NotBefore   *time.Time `locationName:"notBefore" type:"timestamp" timestampFormat:"iso8601"`
+	// A description of the event.
+	Description *string `locationName:"description" type:"string"`
+
+	// The ID of this event.
+	EventID *string `locationName:"eventId" type:"string"`
+
+	// The type of this event.
+	EventType *string `locationName:"eventType" type:"string"`
+
+	// The latest end time of the event.
+	NotAfter *time.Time `locationName:"notAfter" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The earliest start time of the event.
+	NotBefore *time.Time `locationName:"notBefore" type:"timestamp" timestampFormat:"iso8601"`
 
 	metadataVolumeStatusEvent `json:"-", xml:"-"`
 }
@@ -9370,9 +15075,13 @@ type metadataVolumeStatusEvent struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the status of a volume.
 type VolumeStatusInfo struct {
+	// The details of the volume status.
 	Details []*VolumeStatusDetails `locationName:"details" locationNameList:"item" type:"list"`
-	Status  *string                `locationName:"status" type:"string"`
+
+	// The status of the volume.
+	Status *string `locationName:"status" type:"string"`
 
 	metadataVolumeStatusInfo `json:"-", xml:"-"`
 }
@@ -9381,12 +15090,22 @@ type metadataVolumeStatusInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the volume status.
 type VolumeStatusItem struct {
-	Actions          []*VolumeStatusAction `locationName:"actionsSet" locationNameList:"item" type:"list"`
-	AvailabilityZone *string               `locationName:"availabilityZone" type:"string"`
-	Events           []*VolumeStatusEvent  `locationName:"eventsSet" locationNameList:"item" type:"list"`
-	VolumeID         *string               `locationName:"volumeId" type:"string"`
-	VolumeStatus     *VolumeStatusInfo     `locationName:"volumeStatus" type:"structure"`
+	// The details of the operation.
+	Actions []*VolumeStatusAction `locationName:"actionsSet" locationNameList:"item" type:"list"`
+
+	// The Availability Zone of the volume.
+	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
+
+	// A list of events associated with the volume.
+	Events []*VolumeStatusEvent `locationName:"eventsSet" locationNameList:"item" type:"list"`
+
+	// The volume ID.
+	VolumeID *string `locationName:"volumeId" type:"string"`
+
+	// The volume status.
+	VolumeStatus *VolumeStatusInfo `locationName:"volumeStatus" type:"structure"`
 
 	metadataVolumeStatusItem `json:"-", xml:"-"`
 }

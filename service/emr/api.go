@@ -24,6 +24,7 @@ func (c *EMR) AddInstanceGroupsRequest(input *AddInstanceGroupsInput) (req *aws.
 	return
 }
 
+// AddInstanceGroups adds an instance group to a running cluster.
 func (c *EMR) AddInstanceGroups(input *AddInstanceGroupsInput) (output *AddInstanceGroupsOutput, err error) {
 	req, out := c.AddInstanceGroupsRequest(input)
 	output = out
@@ -49,6 +50,30 @@ func (c *EMR) AddJobFlowStepsRequest(input *AddJobFlowStepsInput) (req *aws.Requ
 	return
 }
 
+// AddJobFlowSteps adds new steps to a running job flow. A maximum of 256 steps
+// are allowed in each job flow.
+//
+// If your job flow is long-running (such as a Hive data warehouse) or complex,
+// you may require more than 256 steps to process your data. You can bypass
+// the 256-step limitation in various ways, including using the SSH shell to
+// connect to the master node and submitting queries directly to the software
+// running on the master node, such as Hive and Hadoop. For more information
+// on how to do this, go to Add More than 256 Steps to a Job Flow (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/AddMoreThan256Steps.html)
+// in the Amazon Elastic MapReduce Developer's Guide.
+//
+//  A step specifies the location of a JAR file stored either on the master
+// node of the job flow or in Amazon S3. Each step is performed by the main
+// function of the main class of the JAR file. The main class can be specified
+// either in the manifest of the JAR or by using the MainFunction parameter
+// of the step.
+//
+//  Elastic MapReduce executes each step in the order listed. For a step to
+// be considered complete, the main function must exit with a zero exit code
+// and all Hadoop jobs started while the step was running must have completed
+// and run successfully.
+//
+//  You can only add steps to a job flow that is in one of the following states:
+// STARTING, BOOTSTRAPPING, RUNNING, or WAITING.
 func (c *EMR) AddJobFlowSteps(input *AddJobFlowStepsInput) (output *AddJobFlowStepsOutput, err error) {
 	req, out := c.AddJobFlowStepsRequest(input)
 	output = out
@@ -74,6 +99,10 @@ func (c *EMR) AddTagsRequest(input *AddTagsInput) (req *aws.Request, output *Add
 	return
 }
 
+// Adds tags to an Amazon EMR resource. Tags make it easier to associate clusters
+// in various ways, such as grouping clusters to track your Amazon EMR resource
+// allocation costs. For more information, see Tagging Amazon EMR Resources
+// (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-tags.html).
 func (c *EMR) AddTags(input *AddTagsInput) (output *AddTagsOutput, err error) {
 	req, out := c.AddTagsRequest(input)
 	output = out
@@ -99,6 +128,8 @@ func (c *EMR) DescribeClusterRequest(input *DescribeClusterInput) (req *aws.Requ
 	return
 }
 
+// Provides cluster-level details including status, hardware and software configuration,
+// VPC settings, and so on. For information about the cluster steps, see ListSteps.
 func (c *EMR) DescribeCluster(input *DescribeClusterInput) (output *DescribeClusterOutput, err error) {
 	req, out := c.DescribeClusterRequest(input)
 	output = out
@@ -124,6 +155,24 @@ func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *aws.Re
 	return
 }
 
+// This API is deprecated and will eventually be removed. We recommend you use
+// ListClusters, DescribeCluster, ListSteps, ListInstanceGroups and ListBootstrapActions
+// instead.
+//
+//  DescribeJobFlows returns a list of job flows that match all of the supplied
+// parameters. The parameters can include a list of job flow IDs, job flow states,
+// and restrictions on job flow creation date and time.
+//
+//  Regardless of supplied parameters, only job flows created within the last
+// two months are returned.
+//
+//  If no parameters are supplied, then job flows matching either of the following
+// criteria are returned:
+//
+//  Job flows created and completed in the last two weeks  Job flows created
+// within the last two months that are in one of the following states: RUNNING,
+// WAITING, SHUTTING_DOWN, STARTING    Amazon Elastic MapReduce can return a
+// maximum of 512 job flow descriptions.
 func (c *EMR) DescribeJobFlows(input *DescribeJobFlowsInput) (output *DescribeJobFlowsOutput, err error) {
 	req, out := c.DescribeJobFlowsRequest(input)
 	output = out
@@ -149,6 +198,7 @@ func (c *EMR) DescribeStepRequest(input *DescribeStepInput) (req *aws.Request, o
 	return
 }
 
+// Provides more detail about the cluster step.
 func (c *EMR) DescribeStep(input *DescribeStepInput) (output *DescribeStepOutput, err error) {
 	req, out := c.DescribeStepRequest(input)
 	output = out
@@ -174,6 +224,7 @@ func (c *EMR) ListBootstrapActionsRequest(input *ListBootstrapActionsInput) (req
 	return
 }
 
+// Provides information about the bootstrap actions associated with a cluster.
 func (c *EMR) ListBootstrapActions(input *ListBootstrapActionsInput) (output *ListBootstrapActionsOutput, err error) {
 	req, out := c.ListBootstrapActionsRequest(input)
 	output = out
@@ -199,6 +250,11 @@ func (c *EMR) ListClustersRequest(input *ListClustersInput) (req *aws.Request, o
 	return
 }
 
+// Provides the status of all clusters visible to this AWS account. Allows you
+// to filter the list of clusters based on certain criteria; for example, filtering
+// by cluster creation date and time or by status. This call returns a maximum
+// of 50 clusters per call, but returns a marker to track the paging of the
+// cluster list across multiple ListClusters calls.
 func (c *EMR) ListClusters(input *ListClustersInput) (output *ListClustersOutput, err error) {
 	req, out := c.ListClustersRequest(input)
 	output = out
@@ -224,6 +280,7 @@ func (c *EMR) ListInstanceGroupsRequest(input *ListInstanceGroupsInput) (req *aw
 	return
 }
 
+// Provides all available details about the instance groups in a cluster.
 func (c *EMR) ListInstanceGroups(input *ListInstanceGroupsInput) (output *ListInstanceGroupsOutput, err error) {
 	req, out := c.ListInstanceGroupsRequest(input)
 	output = out
@@ -249,6 +306,11 @@ func (c *EMR) ListInstancesRequest(input *ListInstancesInput) (req *aws.Request,
 	return
 }
 
+// Provides information about the cluster instances that Amazon EMR provisions
+// on behalf of a user when it creates the cluster. For example, this operation
+// indicates when the EC2 instances reach the Ready state, when instances become
+// available to Amazon EMR to use for jobs, and the IP addresses for cluster
+// instances, etc.
 func (c *EMR) ListInstances(input *ListInstancesInput) (output *ListInstancesOutput, err error) {
 	req, out := c.ListInstancesRequest(input)
 	output = out
@@ -274,6 +336,7 @@ func (c *EMR) ListStepsRequest(input *ListStepsInput) (req *aws.Request, output 
 	return
 }
 
+// Provides a list of steps for the cluster.
 func (c *EMR) ListSteps(input *ListStepsInput) (output *ListStepsOutput, err error) {
 	req, out := c.ListStepsRequest(input)
 	output = out
@@ -299,6 +362,10 @@ func (c *EMR) ModifyInstanceGroupsRequest(input *ModifyInstanceGroupsInput) (req
 	return
 }
 
+// ModifyInstanceGroups modifies the number of nodes and configuration settings
+// of an instance group. The input parameters include the new target instance
+// count for the group and the instance group ID. The call will either succeed
+// or fail atomically.
 func (c *EMR) ModifyInstanceGroups(input *ModifyInstanceGroupsInput) (output *ModifyInstanceGroupsOutput, err error) {
 	req, out := c.ModifyInstanceGroupsRequest(input)
 	output = out
@@ -324,6 +391,12 @@ func (c *EMR) RemoveTagsRequest(input *RemoveTagsInput) (req *aws.Request, outpu
 	return
 }
 
+// Removes tags from an Amazon EMR resource. Tags make it easier to associate
+// clusters in various ways, such as grouping clusters to track your Amazon
+// EMR resource allocation costs. For more information, see Tagging Amazon EMR
+// Resources (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-tags.html).
+//
+// The following example removes the stack tag with value Prod from a cluster:
 func (c *EMR) RemoveTags(input *RemoveTagsInput) (output *RemoveTagsOutput, err error) {
 	req, out := c.RemoveTagsRequest(input)
 	output = out
@@ -349,6 +422,29 @@ func (c *EMR) RunJobFlowRequest(input *RunJobFlowInput) (req *aws.Request, outpu
 	return
 }
 
+// RunJobFlow creates and starts running a new job flow. The job flow will run
+// the steps specified. Once the job flow completes, the cluster is stopped
+// and the HDFS partition is lost. To prevent loss of data, configure the last
+// step of the job flow to store results in Amazon S3. If the JobFlowInstancesConfig
+// KeepJobFlowAliveWhenNoSteps parameter is set to TRUE, the job flow will transition
+// to the WAITING state rather than shutting down once the steps have completed.
+//
+// For additional protection, you can set the JobFlowInstancesConfig TerminationProtected
+// parameter to TRUE to lock the job flow and prevent it from being terminated
+// by API call, user intervention, or in the event of a job flow error.
+//
+// A maximum of 256 steps are allowed in each job flow.
+//
+// If your job flow is long-running (such as a Hive data warehouse) or complex,
+// you may require more than 256 steps to process your data. You can bypass
+// the 256-step limitation in various ways, including using the SSH shell to
+// connect to the master node and submitting queries directly to the software
+// running on the master node, such as Hive and Hadoop. For more information
+// on how to do this, go to Add More than 256 Steps to a Job Flow (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/AddMoreThan256Steps.html)
+// in the Amazon Elastic MapReduce Developer's Guide.
+//
+// For long running job flows, we recommend that you periodically store your
+// results.
 func (c *EMR) RunJobFlow(input *RunJobFlowInput) (output *RunJobFlowOutput, err error) {
 	req, out := c.RunJobFlowRequest(input)
 	output = out
@@ -374,6 +470,23 @@ func (c *EMR) SetTerminationProtectionRequest(input *SetTerminationProtectionInp
 	return
 }
 
+// SetTerminationProtection locks a job flow so the Amazon EC2 instances in
+// the cluster cannot be terminated by user intervention, an API call, or in
+// the event of a job-flow error. The cluster still terminates upon successful
+// completion of the job flow. Calling SetTerminationProtection on a job flow
+// is analogous to calling the Amazon EC2 DisableAPITermination API on all of
+// the EC2 instances in a cluster.
+//
+//  SetTerminationProtection is used to prevent accidental termination of a
+// job flow and to ensure that in the event of an error, the instances will
+// persist so you can recover any data stored in their ephemeral instance storage.
+//
+//  To terminate a job flow that has been locked by setting SetTerminationProtection
+// to true, you must first unlock the job flow by a subsequent call to SetTerminationProtection
+// in which you set the value to false.
+//
+//  For more information, go to Protecting a Job Flow from Termination (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/UsingEMR_TerminationProtection.html)
+// in the Amazon Elastic MapReduce Developer's Guide.
 func (c *EMR) SetTerminationProtection(input *SetTerminationProtectionInput) (output *SetTerminationProtectionOutput, err error) {
 	req, out := c.SetTerminationProtectionRequest(input)
 	output = out
@@ -399,6 +512,12 @@ func (c *EMR) SetVisibleToAllUsersRequest(input *SetVisibleToAllUsersInput) (req
 	return
 }
 
+// Sets whether all AWS Identity and Access Management (IAM) users under your
+// account can access the specified job flows. This action works on running
+// job flows. You can also set the visibility of a job flow when you launch
+// it using the VisibleToAllUsers parameter of RunJobFlow. The SetVisibleToAllUsers
+// action can be called only by an IAM user who created the job flow or the
+// AWS account that owns the job flow.
 func (c *EMR) SetVisibleToAllUsers(input *SetVisibleToAllUsersInput) (output *SetVisibleToAllUsersOutput, err error) {
 	req, out := c.SetVisibleToAllUsersRequest(input)
 	output = out
@@ -424,6 +543,15 @@ func (c *EMR) TerminateJobFlowsRequest(input *TerminateJobFlowsInput) (req *aws.
 	return
 }
 
+// TerminateJobFlows shuts a list of job flows down. When a job flow is shut
+// down, any step not yet completed is canceled and the EC2 instances on which
+// the job flow is running are stopped. Any log files not already saved are
+// uploaded to Amazon S3 if a LogUri was specified when the job flow was created.
+//
+//  The maximum number of JobFlows allowed is 10. The call to TerminateJobFlows
+// is asynchronous. Depending on the configuration of the job flow, it may take
+// up to 5-20 minutes for the job flow to completely terminate and release allocated
+// resources, such as Amazon EC2 instances.
 func (c *EMR) TerminateJobFlows(input *TerminateJobFlowsInput) (output *TerminateJobFlowsOutput, err error) {
 	req, out := c.TerminateJobFlowsRequest(input)
 	output = out
@@ -433,9 +561,13 @@ func (c *EMR) TerminateJobFlows(input *TerminateJobFlowsInput) (output *Terminat
 
 var opTerminateJobFlows *aws.Operation
 
+// Input to an AddInstanceGroups call.
 type AddInstanceGroupsInput struct {
+	// Instance Groups to add.
 	InstanceGroups []*InstanceGroupConfig `type:"list" required:"true"`
-	JobFlowID      *string                `locationName:"JobFlowId" type:"string" required:"true"`
+
+	// Job flow in which to add the instance groups.
+	JobFlowID *string `locationName:"JobFlowId" type:"string" required:"true"`
 
 	metadataAddInstanceGroupsInput `json:"-", xml:"-"`
 }
@@ -444,9 +576,13 @@ type metadataAddInstanceGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Output from an AddInstanceGroups call.
 type AddInstanceGroupsOutput struct {
+	// Instance group IDs of the newly created instance groups.
 	InstanceGroupIDs []*string `locationName:"InstanceGroupIds" type:"list"`
-	JobFlowID        *string   `locationName:"JobFlowId" type:"string"`
+
+	// The job flow ID in which the instance groups are added.
+	JobFlowID *string `locationName:"JobFlowId" type:"string"`
 
 	metadataAddInstanceGroupsOutput `json:"-", xml:"-"`
 }
@@ -455,9 +591,14 @@ type metadataAddInstanceGroupsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input argument to the AddJobFlowSteps operation.
 type AddJobFlowStepsInput struct {
-	JobFlowID *string       `locationName:"JobFlowId" type:"string" required:"true"`
-	Steps     []*StepConfig `type:"list" required:"true"`
+	// A string that uniquely identifies the job flow. This identifier is returned
+	// by RunJobFlow and can also be obtained from ListClusters.
+	JobFlowID *string `locationName:"JobFlowId" type:"string" required:"true"`
+
+	// A list of StepConfig to be executed by the job flow.
+	Steps []*StepConfig `type:"list" required:"true"`
 
 	metadataAddJobFlowStepsInput `json:"-", xml:"-"`
 }
@@ -466,7 +607,9 @@ type metadataAddJobFlowStepsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The output for the AddJobFlowSteps operation.
 type AddJobFlowStepsOutput struct {
+	// The identifiers of the list of steps added to the job flow.
 	StepIDs []*string `locationName:"StepIds" type:"list"`
 
 	metadataAddJobFlowStepsOutput `json:"-", xml:"-"`
@@ -476,9 +619,17 @@ type metadataAddJobFlowStepsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This input identifies a cluster and a list of tags to attach.
 type AddTagsInput struct {
+	// The Amazon EMR resource identifier to which tags will be added. This value
+	// must be a cluster identifier.
 	ResourceID *string `locationName:"ResourceId" type:"string" required:"true"`
-	Tags       []*Tag  `type:"list" required:"true"`
+
+	// A list of tags to associate with a cluster and propagate to Amazon EC2 instances.
+	// Tags are user-defined key/value pairs that consist of a required key string
+	// with a maximum of 128 characters, and an optional value string with a maximum
+	// of 256 characters.
+	Tags []*Tag `type:"list" required:"true"`
 
 	metadataAddTagsInput `json:"-", xml:"-"`
 }
@@ -487,6 +638,7 @@ type metadataAddTagsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This output indicates the result of adding tags to a resource.
 type AddTagsOutput struct {
 	metadataAddTagsOutput `json:"-", xml:"-"`
 }
@@ -495,11 +647,31 @@ type metadataAddTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// An application is any Amazon or third-party software that you can add to
+// the cluster. This structure contains a list of strings that indicates the
+// software to use with the cluster and accepts a user argument list. Amazon
+// EMR accepts and forwards the argument list to the corresponding installation
+// script as bootstrap action argument. For more information, see Launch a Job
+// Flow on the MapR Distribution for Hadoop (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-mapr.html).
+// Currently supported values are:
+//
+//  "mapr-m3" - launch the job flow using MapR M3 Edition. "mapr-m5" - launch
+// the job flow using MapR M5 Edition. "mapr" with the user arguments specifying
+// "--edition,m3" or "--edition,m5" - launch the job flow using MapR M3 or M5
+// Edition, respectively.
 type Application struct {
+	// This option is for advanced users only. This is meta information about third-party
+	// applications that third-party vendors use for testing purposes.
 	AdditionalInfo *map[string]*string `type:"map"`
-	Args           []*string           `type:"list"`
-	Name           *string             `type:"string"`
-	Version        *string             `type:"string"`
+
+	// Arguments for Amazon EMR to pass to the application.
+	Args []*string `type:"list"`
+
+	// The name of the application.
+	Name *string `type:"string"`
+
+	// The version of the application.
+	Version *string `type:"string"`
 
 	metadataApplication `json:"-", xml:"-"`
 }
@@ -508,8 +680,12 @@ type metadataApplication struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Configuration of a bootstrap action.
 type BootstrapActionConfig struct {
-	Name                  *string                      `type:"string" required:"true"`
+	// The name of the bootstrap action.
+	Name *string `type:"string" required:"true"`
+
+	// The script run by the bootstrap action.
 	ScriptBootstrapAction *ScriptBootstrapActionConfig `type:"structure" required:"true"`
 
 	metadataBootstrapActionConfig `json:"-", xml:"-"`
@@ -519,7 +695,9 @@ type metadataBootstrapActionConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Reports the configuration of a bootstrap action in a job flow.
 type BootstrapActionDetail struct {
+	// A description of the bootstrap action.
 	BootstrapActionConfig *BootstrapActionConfig `type:"structure"`
 
 	metadataBootstrapActionDetail `json:"-", xml:"-"`
@@ -529,22 +707,67 @@ type metadataBootstrapActionDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The detailed description of the cluster.
 type Cluster struct {
-	Applications            []*Application         `type:"list"`
-	AutoTerminate           *bool                  `type:"boolean"`
-	EC2InstanceAttributes   *EC2InstanceAttributes `locationName:"Ec2InstanceAttributes" type:"structure"`
-	ID                      *string                `locationName:"Id" type:"string"`
-	LogURI                  *string                `locationName:"LogUri" type:"string"`
-	MasterPublicDNSName     *string                `locationName:"MasterPublicDnsName" type:"string"`
-	Name                    *string                `type:"string"`
-	NormalizedInstanceHours *int64                 `type:"integer"`
-	RequestedAMIVersion     *string                `locationName:"RequestedAmiVersion" type:"string"`
-	RunningAMIVersion       *string                `locationName:"RunningAmiVersion" type:"string"`
-	ServiceRole             *string                `type:"string"`
-	Status                  *ClusterStatus         `type:"structure"`
-	Tags                    []*Tag                 `type:"list"`
-	TerminationProtected    *bool                  `type:"boolean"`
-	VisibleToAllUsers       *bool                  `type:"boolean"`
+	// The applications installed on this cluster.
+	Applications []*Application `type:"list"`
+
+	// Specifies whether the cluster should terminate after completing all steps.
+	AutoTerminate *bool `type:"boolean"`
+
+	// Provides information about the EC2 instances in a cluster grouped by category.
+	// For example, key name, subnet ID, IAM instance profile, and so on.
+	EC2InstanceAttributes *EC2InstanceAttributes `locationName:"Ec2InstanceAttributes" type:"structure"`
+
+	// The unique identifier for the cluster.
+	ID *string `locationName:"Id" type:"string"`
+
+	// The path to the Amazon S3 location where logs for this cluster are stored.
+	LogURI *string `locationName:"LogUri" type:"string"`
+
+	// The public DNS name of the master Ec2 instance.
+	MasterPublicDNSName *string `locationName:"MasterPublicDnsName" type:"string"`
+
+	// The name of the cluster.
+	Name *string `type:"string"`
+
+	// An approximation of the cost of the job flow, represented in m1.small/hours.
+	// This value is incremented one time for every hour an m1.small instance runs.
+	// Larger instances are weighted more, so an EC2 instance that is roughly four
+	// times more expensive would result in the normalized instance hours being
+	// incremented by four. This result is only an approximation and does not reflect
+	// the actual billing rate.
+	NormalizedInstanceHours *int64 `type:"integer"`
+
+	// The AMI version requested for this cluster.
+	RequestedAMIVersion *string `locationName:"RequestedAmiVersion" type:"string"`
+
+	// The AMI version running on this cluster. This differs from the requested
+	// version only if the requested version is a meta version, such as "latest".
+	RunningAMIVersion *string `locationName:"RunningAmiVersion" type:"string"`
+
+	// The IAM role that will be assumed by the Amazon EMR service to access AWS
+	// resources on your behalf.
+	ServiceRole *string `type:"string"`
+
+	// The current status details about the cluster.
+	Status *ClusterStatus `type:"structure"`
+
+	// A list of tags associated with a cluster.
+	Tags []*Tag `type:"list"`
+
+	// Indicates whether Amazon EMR will lock the cluster to prevent the EC2 instances
+	// from being terminated by an API call or user intervention, or in the event
+	// of a cluster error.
+	TerminationProtected *bool `type:"boolean"`
+
+	// Indicates whether the job flow is visible to all IAM users of the AWS account
+	// associated with the job flow. If this value is set to true, all IAM users
+	// of that AWS account can view and manage the job flow if they have the proper
+	// policy permissions set. If this value is false, only the IAM user that created
+	// the cluster can view and manage it. This value can be changed using the SetVisibleToAllUsers
+	// action.
+	VisibleToAllUsers *bool `type:"boolean"`
 
 	metadataCluster `json:"-", xml:"-"`
 }
@@ -553,8 +776,12 @@ type metadataCluster struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The reason that the cluster changed to its current state.
 type ClusterStateChangeReason struct {
-	Code    *string `type:"string"`
+	// The programmatic code for the state change reason.
+	Code *string `type:"string"`
+
+	// The descriptive message for the state change reason.
 	Message *string `type:"string"`
 
 	metadataClusterStateChangeReason `json:"-", xml:"-"`
@@ -564,10 +791,17 @@ type metadataClusterStateChangeReason struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The detailed status of the cluster.
 type ClusterStatus struct {
-	State             *string                   `type:"string"`
+	// The current state of the cluster.
+	State *string `type:"string"`
+
+	// The reason for the cluster status change.
 	StateChangeReason *ClusterStateChangeReason `type:"structure"`
-	Timeline          *ClusterTimeline          `type:"structure"`
+
+	// A timeline that represents the status of a cluster over the lifetime of the
+	// cluster.
+	Timeline *ClusterTimeline `type:"structure"`
 
 	metadataClusterStatus `json:"-", xml:"-"`
 }
@@ -576,11 +810,24 @@ type metadataClusterStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The summary description of the cluster.
 type ClusterSummary struct {
-	ID                      *string        `locationName:"Id" type:"string"`
-	Name                    *string        `type:"string"`
-	NormalizedInstanceHours *int64         `type:"integer"`
-	Status                  *ClusterStatus `type:"structure"`
+	// The unique identifier for the cluster.
+	ID *string `locationName:"Id" type:"string"`
+
+	// The name of the cluster.
+	Name *string `type:"string"`
+
+	// An approximation of the cost of the job flow, represented in m1.small/hours.
+	// This value is incremented one time for every hour an m1.small instance runs.
+	// Larger instances are weighted more, so an EC2 instance that is roughly four
+	// times more expensive would result in the normalized instance hours being
+	// incremented by four. This result is only an approximation and does not reflect
+	// the actual billing rate.
+	NormalizedInstanceHours *int64 `type:"integer"`
+
+	// The details about the current status of the cluster.
+	Status *ClusterStatus `type:"structure"`
 
 	metadataClusterSummary `json:"-", xml:"-"`
 }
@@ -589,10 +836,16 @@ type metadataClusterSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the timeline of the cluster's lifecycle.
 type ClusterTimeline struct {
+	// The creation date and time of the cluster.
 	CreationDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
-	EndDateTime      *time.Time `type:"timestamp" timestampFormat:"unix"`
-	ReadyDateTime    *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The date and time when the cluster was terminated.
+	EndDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The date and time when the cluster was ready to execute steps.
+	ReadyDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	metadataClusterTimeline `json:"-", xml:"-"`
 }
@@ -601,10 +854,16 @@ type metadataClusterTimeline struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// An entity describing an executable that runs on a cluster.
 type Command struct {
-	Args       []*string `type:"list"`
-	Name       *string   `type:"string"`
-	ScriptPath *string   `type:"string"`
+	// Arguments for Amazon EMR to pass to the command for execution.
+	Args []*string `type:"list"`
+
+	// The name of the command.
+	Name *string `type:"string"`
+
+	// The Amazon S3 location of the command script.
+	ScriptPath *string `type:"string"`
 
 	metadataCommand `json:"-", xml:"-"`
 }
@@ -613,7 +872,9 @@ type metadataCommand struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This input determines which cluster to describe.
 type DescribeClusterInput struct {
+	// The identifier of the cluster to describe.
 	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"`
 
 	metadataDescribeClusterInput `json:"-", xml:"-"`
@@ -623,7 +884,9 @@ type metadataDescribeClusterInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This output contains the description of the cluster.
 type DescribeClusterOutput struct {
+	// This output contains the details for the requested cluster.
 	Cluster *Cluster `type:"structure"`
 
 	metadataDescribeClusterOutput `json:"-", xml:"-"`
@@ -633,11 +896,19 @@ type metadataDescribeClusterOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input for the DescribeJobFlows operation.
 type DescribeJobFlowsInput struct {
-	CreatedAfter  *time.Time `type:"timestamp" timestampFormat:"unix"`
+	// Return only job flows created after this date and time.
+	CreatedAfter *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// Return only job flows created before this date and time.
 	CreatedBefore *time.Time `type:"timestamp" timestampFormat:"unix"`
-	JobFlowIDs    []*string  `locationName:"JobFlowIds" type:"list"`
-	JobFlowStates []*string  `type:"list"`
+
+	// Return only job flows whose job flow ID is contained in this list.
+	JobFlowIDs []*string `locationName:"JobFlowIds" type:"list"`
+
+	// Return only job flows whose state is contained in this list.
+	JobFlowStates []*string `type:"list"`
 
 	metadataDescribeJobFlowsInput `json:"-", xml:"-"`
 }
@@ -646,7 +917,9 @@ type metadataDescribeJobFlowsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The output for the DescribeJobFlows operation.
 type DescribeJobFlowsOutput struct {
+	// A list of job flows matching the parameters supplied.
 	JobFlows []*JobFlowDetail `type:"list"`
 
 	metadataDescribeJobFlowsOutput `json:"-", xml:"-"`
@@ -656,9 +929,13 @@ type metadataDescribeJobFlowsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This input determines which step to describe.
 type DescribeStepInput struct {
+	// The identifier of the cluster with steps to describe.
 	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"`
-	StepID    *string `locationName:"StepId" type:"string" required:"true"`
+
+	// The identifier of the step to describe.
+	StepID *string `locationName:"StepId" type:"string" required:"true"`
 
 	metadataDescribeStepInput `json:"-", xml:"-"`
 }
@@ -667,7 +944,9 @@ type metadataDescribeStepInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This output contains the description of the cluster step.
 type DescribeStepOutput struct {
+	// The step details for the requested step identifier.
 	Step *Step `type:"structure"`
 
 	metadataDescribeStepOutput `json:"-", xml:"-"`
@@ -677,15 +956,43 @@ type metadataDescribeStepOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides information about the EC2 instances in a cluster grouped by category.
+// For example, key name, subnet ID, IAM instance profile, and so on.
 type EC2InstanceAttributes struct {
+	// A list of additional Amazon EC2 security group IDs for the master node.
 	AdditionalMasterSecurityGroups []*string `type:"list"`
-	AdditionalSlaveSecurityGroups  []*string `type:"list"`
-	EC2AvailabilityZone            *string   `locationName:"Ec2AvailabilityZone" type:"string"`
-	EC2KeyName                     *string   `locationName:"Ec2KeyName" type:"string"`
-	EC2SubnetID                    *string   `locationName:"Ec2SubnetId" type:"string"`
-	EMRManagedMasterSecurityGroup  *string   `locationName:"EmrManagedMasterSecurityGroup" type:"string"`
-	EMRManagedSlaveSecurityGroup   *string   `locationName:"EmrManagedSlaveSecurityGroup" type:"string"`
-	IAMInstanceProfile             *string   `locationName:"IamInstanceProfile" type:"string"`
+
+	// A list of additional Amazon EC2 security group IDs for the slave nodes.
+	AdditionalSlaveSecurityGroups []*string `type:"list"`
+
+	// The Availability Zone in which the cluster will run.
+	EC2AvailabilityZone *string `locationName:"Ec2AvailabilityZone" type:"string"`
+
+	// The name of the Amazon EC2 key pair to use when connecting with SSH into
+	// the master node as a user named "hadoop".
+	EC2KeyName *string `locationName:"Ec2KeyName" type:"string"`
+
+	// To launch the job flow in Amazon VPC, set this parameter to the identifier
+	// of the Amazon VPC subnet where you want the job flow to launch. If you do
+	// not specify this value, the job flow is launched in the normal AWS cloud,
+	// outside of a VPC.
+	//
+	//  Amazon VPC currently does not support cluster compute quadruple extra large
+	// (cc1.4xlarge) instances. Thus, you cannot specify the cc1.4xlarge instance
+	// type for nodes of a job flow launched in a VPC.
+	EC2SubnetID *string `locationName:"Ec2SubnetId" type:"string"`
+
+	// The identifier of the Amazon EC2 security group (managed by Amazon Elastic
+	// MapReduce) for the master node.
+	EMRManagedMasterSecurityGroup *string `locationName:"EmrManagedMasterSecurityGroup" type:"string"`
+
+	// The identifier of the Amazon EC2 security group (managed by Amazon Elastic
+	// MapReduce) for the slave nodes.
+	EMRManagedSlaveSecurityGroup *string `locationName:"EmrManagedSlaveSecurityGroup" type:"string"`
+
+	// The IAM role that was specified when the job flow was launched. The EC2 instances
+	// of the job flow assume this role.
+	IAMInstanceProfile *string `locationName:"IamInstanceProfile" type:"string"`
 
 	metadataEC2InstanceAttributes `json:"-", xml:"-"`
 }
@@ -694,10 +1001,23 @@ type metadataEC2InstanceAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A job flow step consisting of a JAR file whose main function will be executed.
+// The main function submits a job for Hadoop to execute and waits for the job
+// to finish or fail.
 type HadoopJARStepConfig struct {
-	Args       []*string   `type:"list"`
-	JAR        *string     `locationName:"Jar" type:"string" required:"true"`
-	MainClass  *string     `type:"string"`
+	// A list of command line arguments passed to the JAR file's main function when
+	// executed.
+	Args []*string `type:"list"`
+
+	// A path to a JAR file run during the step.
+	JAR *string `locationName:"Jar" type:"string" required:"true"`
+
+	// The name of the main class in the specified Java file. If not specified,
+	// the JAR file should specify a Main-Class in its manifest file.
+	MainClass *string `type:"string"`
+
+	// A list of Java properties that are set when the step runs. You can use these
+	// properties to pass key value pairs to your main function.
 	Properties []*KeyValue `type:"list"`
 
 	metadataHadoopJARStepConfig `json:"-", xml:"-"`
@@ -707,10 +1027,23 @@ type metadataHadoopJARStepConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A cluster step consisting of a JAR file whose main function will be executed.
+// The main function submits a job for Hadoop to execute and waits for the job
+// to finish or fail.
 type HadoopStepConfig struct {
-	Args       []*string           `type:"list"`
-	JAR        *string             `locationName:"Jar" type:"string"`
-	MainClass  *string             `type:"string"`
+	// The list of command line arguments to pass to the JAR file's main function
+	// for execution.
+	Args []*string `type:"list"`
+
+	// The path to the JAR file that runs during the step.
+	JAR *string `locationName:"Jar" type:"string"`
+
+	// The name of the main class in the specified Java file. If not specified,
+	// the JAR file should specify a main class in its manifest file.
+	MainClass *string `type:"string"`
+
+	// The list of Java properties that are set when the step runs. You can use
+	// these properties to pass key value pairs to your main function.
 	Properties *map[string]*string `type:"map"`
 
 	metadataHadoopStepConfig `json:"-", xml:"-"`
@@ -720,14 +1053,28 @@ type metadataHadoopStepConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents an EC2 instance provisioned as part of cluster.
 type Instance struct {
-	EC2InstanceID    *string         `locationName:"Ec2InstanceId" type:"string"`
-	ID               *string         `locationName:"Id" type:"string"`
-	PrivateDNSName   *string         `locationName:"PrivateDnsName" type:"string"`
-	PrivateIPAddress *string         `locationName:"PrivateIpAddress" type:"string"`
-	PublicDNSName    *string         `locationName:"PublicDnsName" type:"string"`
-	PublicIPAddress  *string         `locationName:"PublicIpAddress" type:"string"`
-	Status           *InstanceStatus `type:"structure"`
+	// The unique identifier of the instance in Amazon EC2.
+	EC2InstanceID *string `locationName:"Ec2InstanceId" type:"string"`
+
+	// The unique identifier for the instance in Amazon EMR.
+	ID *string `locationName:"Id" type:"string"`
+
+	// The private DNS name of the instance.
+	PrivateDNSName *string `locationName:"PrivateDnsName" type:"string"`
+
+	// The private IP address of the instance.
+	PrivateIPAddress *string `locationName:"PrivateIpAddress" type:"string"`
+
+	// The public DNS name of the instance.
+	PublicDNSName *string `locationName:"PublicDnsName" type:"string"`
+
+	// The public IP address of the instance.
+	PublicIPAddress *string `locationName:"PublicIpAddress" type:"string"`
+
+	// The current status of the instance.
+	Status *InstanceStatus `type:"structure"`
 
 	metadataInstance `json:"-", xml:"-"`
 }
@@ -736,16 +1083,37 @@ type metadataInstance struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This entity represents an instance group, which is a group of instances that
+// have common purpose. For example, CORE instance group is used for HDFS.
 type InstanceGroup struct {
-	BidPrice               *string              `type:"string"`
-	ID                     *string              `locationName:"Id" type:"string"`
-	InstanceGroupType      *string              `type:"string"`
-	InstanceType           *string              `type:"string"`
-	Market                 *string              `type:"string"`
-	Name                   *string              `type:"string"`
-	RequestedInstanceCount *int64               `type:"integer"`
-	RunningInstanceCount   *int64               `type:"integer"`
-	Status                 *InstanceGroupStatus `type:"structure"`
+	// The bid price for each EC2 instance in the instance group when launching
+	// nodes as Spot Instances, expressed in USD.
+	BidPrice *string `type:"string"`
+
+	// The identifier of the instance group.
+	ID *string `locationName:"Id" type:"string"`
+
+	// The type of the instance group. Valid values are MASTER, CORE or TASK.
+	InstanceGroupType *string `type:"string"`
+
+	// The EC2 instance type for all instances in the instance group.
+	InstanceType *string `type:"string"`
+
+	// The marketplace to provision instances for this group. Valid values are ON_DEMAND
+	// or SPOT.
+	Market *string `type:"string"`
+
+	// The name of the instance group.
+	Name *string `type:"string"`
+
+	// The target number of instances for the instance group.
+	RequestedInstanceCount *int64 `type:"integer"`
+
+	// The number of instances currently running in this instance group.
+	RunningInstanceCount *int64 `type:"integer"`
+
+	// The current status of the instance group.
+	Status *InstanceGroupStatus `type:"structure"`
 
 	metadataInstanceGroup `json:"-", xml:"-"`
 }
@@ -754,13 +1122,26 @@ type metadataInstanceGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Configuration defining a new instance group.
 type InstanceGroupConfig struct {
-	BidPrice      *string `type:"string"`
-	InstanceCount *int64  `type:"integer" required:"true"`
-	InstanceRole  *string `type:"string" required:"true"`
-	InstanceType  *string `type:"string" required:"true"`
-	Market        *string `type:"string"`
-	Name          *string `type:"string"`
+	// Bid price for each Amazon EC2 instance in the instance group when launching
+	// nodes as Spot Instances, expressed in USD.
+	BidPrice *string `type:"string"`
+
+	// Target number of instances for the instance group.
+	InstanceCount *int64 `type:"integer" required:"true"`
+
+	// The role of the instance group in the cluster.
+	InstanceRole *string `type:"string" required:"true"`
+
+	// The Amazon EC2 instance type for all instances in the instance group.
+	InstanceType *string `type:"string" required:"true"`
+
+	// Market type of the Amazon EC2 instances used to create a cluster node.
+	Market *string `type:"string"`
+
+	// Friendly name given to the instance group.
+	Name *string `type:"string"`
 
 	metadataInstanceGroupConfig `json:"-", xml:"-"`
 }
@@ -769,21 +1150,51 @@ type metadataInstanceGroupConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Detailed information about an instance group.
 type InstanceGroupDetail struct {
-	BidPrice              *string    `type:"string"`
-	CreationDateTime      *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
-	EndDateTime           *time.Time `type:"timestamp" timestampFormat:"unix"`
-	InstanceGroupID       *string    `locationName:"InstanceGroupId" type:"string"`
-	InstanceRequestCount  *int64     `type:"integer" required:"true"`
-	InstanceRole          *string    `type:"string" required:"true"`
-	InstanceRunningCount  *int64     `type:"integer" required:"true"`
-	InstanceType          *string    `type:"string" required:"true"`
-	LastStateChangeReason *string    `type:"string"`
-	Market                *string    `type:"string" required:"true"`
-	Name                  *string    `type:"string"`
-	ReadyDateTime         *time.Time `type:"timestamp" timestampFormat:"unix"`
-	StartDateTime         *time.Time `type:"timestamp" timestampFormat:"unix"`
-	State                 *string    `type:"string" required:"true"`
+	// Bid price for EC2 Instances when launching nodes as Spot Instances, expressed
+	// in USD.
+	BidPrice *string `type:"string"`
+
+	// The date/time the instance group was created.
+	CreationDateTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+
+	// The date/time the instance group was terminated.
+	EndDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// Unique identifier for the instance group.
+	InstanceGroupID *string `locationName:"InstanceGroupId" type:"string"`
+
+	// Target number of instances to run in the instance group.
+	InstanceRequestCount *int64 `type:"integer" required:"true"`
+
+	// Instance group role in the cluster
+	InstanceRole *string `type:"string" required:"true"`
+
+	// Actual count of running instances.
+	InstanceRunningCount *int64 `type:"integer" required:"true"`
+
+	// Amazon EC2 Instance type.
+	InstanceType *string `type:"string" required:"true"`
+
+	// Details regarding the state of the instance group.
+	LastStateChangeReason *string `type:"string"`
+
+	// Market type of the Amazon EC2 instances used to create a cluster node.
+	Market *string `type:"string" required:"true"`
+
+	// Friendly name for the instance group.
+	Name *string `type:"string"`
+
+	// The date/time the instance group was available to the cluster.
+	ReadyDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The date/time the instance group was started.
+	StartDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// State of instance group. The following values are deprecated: STARTING, TERMINATED,
+	// and FAILED.
+	State *string `type:"string" required:"true"`
 
 	metadataInstanceGroupDetail `json:"-", xml:"-"`
 }
@@ -792,10 +1203,18 @@ type metadataInstanceGroupDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Modify an instance group size.
 type InstanceGroupModifyConfig struct {
+	// The EC2 InstanceIds to terminate. For advanced users only. Once you terminate
+	// the instances, the instance group will not return to its original requested
+	// size.
 	EC2InstanceIDsToTerminate []*string `locationName:"EC2InstanceIdsToTerminate" type:"list"`
-	InstanceCount             *int64    `type:"integer"`
-	InstanceGroupID           *string   `locationName:"InstanceGroupId" type:"string" required:"true"`
+
+	// Target size for the instance group.
+	InstanceCount *int64 `type:"integer"`
+
+	// Unique ID of the instance group to expand or shrink.
+	InstanceGroupID *string `locationName:"InstanceGroupId" type:"string" required:"true"`
 
 	metadataInstanceGroupModifyConfig `json:"-", xml:"-"`
 }
@@ -804,8 +1223,12 @@ type metadataInstanceGroupModifyConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The status change reason details for the instance group.
 type InstanceGroupStateChangeReason struct {
-	Code    *string `type:"string"`
+	// The programmable code for the state change reason.
+	Code *string `type:"string"`
+
+	// The status change reason description.
 	Message *string `type:"string"`
 
 	metadataInstanceGroupStateChangeReason `json:"-", xml:"-"`
@@ -815,10 +1238,16 @@ type metadataInstanceGroupStateChangeReason struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The details of the instance group status.
 type InstanceGroupStatus struct {
-	State             *string                         `type:"string"`
+	// The current state of the instance group.
+	State *string `type:"string"`
+
+	// The status change reason details for the instance group.
 	StateChangeReason *InstanceGroupStateChangeReason `type:"structure"`
-	Timeline          *InstanceGroupTimeline          `type:"structure"`
+
+	// The timeline of the instance group status over time.
+	Timeline *InstanceGroupTimeline `type:"structure"`
 
 	metadataInstanceGroupStatus `json:"-", xml:"-"`
 }
@@ -827,10 +1256,16 @@ type metadataInstanceGroupStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The timeline of the instance group lifecycle.
 type InstanceGroupTimeline struct {
+	// The creation date and time of the instance group.
 	CreationDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
-	EndDateTime      *time.Time `type:"timestamp" timestampFormat:"unix"`
-	ReadyDateTime    *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The date and time when the instance group terminated.
+	EndDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The date and time when the instance group became ready to perform tasks.
+	ReadyDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	metadataInstanceGroupTimeline `json:"-", xml:"-"`
 }
@@ -839,8 +1274,12 @@ type metadataInstanceGroupTimeline struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The details of the status change reason for the instance.
 type InstanceStateChangeReason struct {
-	Code    *string `type:"string"`
+	// The programmable code for the state change reason.
+	Code *string `type:"string"`
+
+	// The status change reason description.
 	Message *string `type:"string"`
 
 	metadataInstanceStateChangeReason `json:"-", xml:"-"`
@@ -850,10 +1289,16 @@ type metadataInstanceStateChangeReason struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The instance status details.
 type InstanceStatus struct {
-	State             *string                    `type:"string"`
+	// The current state of the instance.
+	State *string `type:"string"`
+
+	// The details of the status change reason for the instance.
 	StateChangeReason *InstanceStateChangeReason `type:"structure"`
-	Timeline          *InstanceTimeline          `type:"structure"`
+
+	// The timeline of the instance status over time.
+	Timeline *InstanceTimeline `type:"structure"`
 
 	metadataInstanceStatus `json:"-", xml:"-"`
 }
@@ -862,10 +1307,16 @@ type metadataInstanceStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The timeline of the instance lifecycle.
 type InstanceTimeline struct {
+	// The creation date and time of the instance.
 	CreationDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
-	EndDateTime      *time.Time `type:"timestamp" timestampFormat:"unix"`
-	ReadyDateTime    *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The date and time when the instance was terminated.
+	EndDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The date and time when the instance was ready to perform tasks.
+	ReadyDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	metadataInstanceTimeline `json:"-", xml:"-"`
 }
@@ -874,19 +1325,55 @@ type metadataInstanceTimeline struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A description of a job flow.
 type JobFlowDetail struct {
-	AMIVersion            *string                       `locationName:"AmiVersion" type:"string"`
-	BootstrapActions      []*BootstrapActionDetail      `type:"list"`
+	// The version of the AMI used to initialize Amazon EC2 instances in the job
+	// flow. For a list of AMI versions currently supported by Amazon ElasticMapReduce,
+	// go to AMI Versions Supported in Elastic MapReduce (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/EnvironmentConfig_AMIVersion.html#ami-versions-supported)
+	// in the Amazon Elastic MapReduce Developer's Guide.
+	AMIVersion *string `locationName:"AmiVersion" type:"string"`
+
+	// A list of the bootstrap actions run by the job flow.
+	BootstrapActions []*BootstrapActionDetail `type:"list"`
+
+	// Describes the execution status of the job flow.
 	ExecutionStatusDetail *JobFlowExecutionStatusDetail `type:"structure" required:"true"`
-	Instances             *JobFlowInstancesDetail       `type:"structure" required:"true"`
-	JobFlowID             *string                       `locationName:"JobFlowId" type:"string" required:"true"`
-	JobFlowRole           *string                       `type:"string"`
-	LogURI                *string                       `locationName:"LogUri" type:"string"`
-	Name                  *string                       `type:"string" required:"true"`
-	ServiceRole           *string                       `type:"string"`
-	Steps                 []*StepDetail                 `type:"list"`
-	SupportedProducts     []*string                     `type:"list"`
-	VisibleToAllUsers     *bool                         `type:"boolean"`
+
+	// Describes the Amazon EC2 instances of the job flow.
+	Instances *JobFlowInstancesDetail `type:"structure" required:"true"`
+
+	// The job flow identifier.
+	JobFlowID *string `locationName:"JobFlowId" type:"string" required:"true"`
+
+	// The IAM role that was specified when the job flow was launched. The EC2 instances
+	// of the job flow assume this role.
+	JobFlowRole *string `type:"string"`
+
+	// The location in Amazon S3 where log files for the job are stored.
+	LogURI *string `locationName:"LogUri" type:"string"`
+
+	// The name of the job flow.
+	Name *string `type:"string" required:"true"`
+
+	// The IAM role that will be assumed by the Amazon EMR service to access AWS
+	// resources on your behalf.
+	ServiceRole *string `type:"string"`
+
+	// A list of steps run by the job flow.
+	Steps []*StepDetail `type:"list"`
+
+	// A list of strings set by third party software when the job flow is launched.
+	// If you are not using third party software to manage the job flow this value
+	// is empty.
+	SupportedProducts []*string `type:"list"`
+
+	// Specifies whether the job flow is visible to all IAM users of the AWS account
+	// associated with the job flow. If this value is set to true, all IAM users
+	// of that AWS account can view and (if they have the proper policy permissions
+	// set) manage the job flow. If it is set to false, only the IAM user that created
+	// the job flow can view and manage it. This value can be changed using the
+	// SetVisibleToAllUsers action.
+	VisibleToAllUsers *bool `type:"boolean"`
 
 	metadataJobFlowDetail `json:"-", xml:"-"`
 }
@@ -895,13 +1382,26 @@ type metadataJobFlowDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes the status of the job flow.
 type JobFlowExecutionStatusDetail struct {
-	CreationDateTime      *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
-	EndDateTime           *time.Time `type:"timestamp" timestampFormat:"unix"`
-	LastStateChangeReason *string    `type:"string"`
-	ReadyDateTime         *time.Time `type:"timestamp" timestampFormat:"unix"`
-	StartDateTime         *time.Time `type:"timestamp" timestampFormat:"unix"`
-	State                 *string    `type:"string" required:"true"`
+	// The creation date and time of the job flow.
+	CreationDateTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+
+	// The completion date and time of the job flow.
+	EndDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// Description of the job flow last changed state.
+	LastStateChangeReason *string `type:"string"`
+
+	// The date and time when the job flow was ready to start running bootstrap
+	// actions.
+	ReadyDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The start date and time of the job flow.
+	StartDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The state of the job flow.
+	State *string `type:"string" required:"true"`
 
 	metadataJobFlowExecutionStatusDetail `json:"-", xml:"-"`
 }
@@ -910,21 +1410,67 @@ type metadataJobFlowExecutionStatusDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A description of the Amazon EC2 instance running the job flow. A valid JobFlowInstancesConfig
+// must contain at least InstanceGroups, which is the recommended configuration.
+// However, a valid alternative is to have MasterInstanceType, SlaveInstanceType,
+// and InstanceCount (all three must be present).
 type JobFlowInstancesConfig struct {
-	AdditionalMasterSecurityGroups []*string              `type:"list"`
-	AdditionalSlaveSecurityGroups  []*string              `type:"list"`
-	EC2KeyName                     *string                `locationName:"Ec2KeyName" type:"string"`
-	EC2SubnetID                    *string                `locationName:"Ec2SubnetId" type:"string"`
-	EMRManagedMasterSecurityGroup  *string                `locationName:"EmrManagedMasterSecurityGroup" type:"string"`
-	EMRManagedSlaveSecurityGroup   *string                `locationName:"EmrManagedSlaveSecurityGroup" type:"string"`
-	HadoopVersion                  *string                `type:"string"`
-	InstanceCount                  *int64                 `type:"integer"`
-	InstanceGroups                 []*InstanceGroupConfig `type:"list"`
-	KeepJobFlowAliveWhenNoSteps    *bool                  `type:"boolean"`
-	MasterInstanceType             *string                `type:"string"`
-	Placement                      *PlacementType         `type:"structure"`
-	SlaveInstanceType              *string                `type:"string"`
-	TerminationProtected           *bool                  `type:"boolean"`
+	// A list of additional Amazon EC2 security group IDs for the master node.
+	AdditionalMasterSecurityGroups []*string `type:"list"`
+
+	// A list of additional Amazon EC2 security group IDs for the slave nodes.
+	AdditionalSlaveSecurityGroups []*string `type:"list"`
+
+	// The name of the Amazon EC2 key pair that can be used to ssh to the master
+	// node as the user called "hadoop."
+	EC2KeyName *string `locationName:"Ec2KeyName" type:"string"`
+
+	// To launch the job flow in Amazon Virtual Private Cloud (Amazon VPC), set
+	// this parameter to the identifier of the Amazon VPC subnet where you want
+	// the job flow to launch. If you do not specify this value, the job flow is
+	// launched in the normal Amazon Web Services cloud, outside of an Amazon VPC.
+	//
+	//  Amazon VPC currently does not support cluster compute quadruple extra large
+	// (cc1.4xlarge) instances. Thus you cannot specify the cc1.4xlarge instance
+	// type for nodes of a job flow launched in a Amazon VPC.
+	EC2SubnetID *string `locationName:"Ec2SubnetId" type:"string"`
+
+	// The identifier of the Amazon EC2 security group (managed by Amazon ElasticMapReduce)
+	// for the master node.
+	EMRManagedMasterSecurityGroup *string `locationName:"EmrManagedMasterSecurityGroup" type:"string"`
+
+	// The identifier of the Amazon EC2 security group (managed by Amazon ElasticMapReduce)
+	// for the slave nodes.
+	EMRManagedSlaveSecurityGroup *string `locationName:"EmrManagedSlaveSecurityGroup" type:"string"`
+
+	// The Hadoop version for the job flow. Valid inputs are "0.18", "0.20", "0.20.205",
+	// "1.0.3", "2.2.0", or "2.4.0". If you do not set this value, the default of
+	// 0.18 is used, unless the AmiVersion parameter is set in the RunJobFlow call,
+	// in which case the default version of Hadoop for that AMI version is used.
+	HadoopVersion *string `type:"string"`
+
+	// The number of Amazon EC2 instances used to execute the job flow.
+	InstanceCount *int64 `type:"integer"`
+
+	// Configuration for the job flow's instance groups.
+	InstanceGroups []*InstanceGroupConfig `type:"list"`
+
+	// Specifies whether the job flow should terminate after completing all steps.
+	KeepJobFlowAliveWhenNoSteps *bool `type:"boolean"`
+
+	// The EC2 instance type of the master node.
+	MasterInstanceType *string `type:"string"`
+
+	// The Availability Zone the job flow will run in.
+	Placement *PlacementType `type:"structure"`
+
+	// The EC2 instance type of the slave nodes.
+	SlaveInstanceType *string `type:"string"`
+
+	// Specifies whether to lock the job flow to prevent the Amazon EC2 instances
+	// from being terminated by API call, user intervention, or in the event of
+	// a job flow error.
+	TerminationProtected *bool `type:"boolean"`
 
 	metadataJobFlowInstancesConfig `json:"-", xml:"-"`
 }
@@ -933,20 +1479,57 @@ type metadataJobFlowInstancesConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Specify the type of Amazon EC2 instances to run the job flow on.
 type JobFlowInstancesDetail struct {
-	EC2KeyName                  *string                `locationName:"Ec2KeyName" type:"string"`
-	EC2SubnetID                 *string                `locationName:"Ec2SubnetId" type:"string"`
-	HadoopVersion               *string                `type:"string"`
-	InstanceCount               *int64                 `type:"integer" required:"true"`
-	InstanceGroups              []*InstanceGroupDetail `type:"list"`
-	KeepJobFlowAliveWhenNoSteps *bool                  `type:"boolean"`
-	MasterInstanceID            *string                `locationName:"MasterInstanceId" type:"string"`
-	MasterInstanceType          *string                `type:"string" required:"true"`
-	MasterPublicDNSName         *string                `locationName:"MasterPublicDnsName" type:"string"`
-	NormalizedInstanceHours     *int64                 `type:"integer"`
-	Placement                   *PlacementType         `type:"structure"`
-	SlaveInstanceType           *string                `type:"string" required:"true"`
-	TerminationProtected        *bool                  `type:"boolean"`
+	// The name of an Amazon EC2 key pair that can be used to ssh to the master
+	// node of job flow.
+	EC2KeyName *string `locationName:"Ec2KeyName" type:"string"`
+
+	// For job flows launched within Amazon Virtual Private Cloud, this value specifies
+	// the identifier of the subnet where the job flow was launched.
+	EC2SubnetID *string `locationName:"Ec2SubnetId" type:"string"`
+
+	// The Hadoop version for the job flow.
+	HadoopVersion *string `type:"string"`
+
+	// The number of Amazon EC2 instances in the cluster. If the value is 1, the
+	// same instance serves as both the master and slave node. If the value is greater
+	// than 1, one instance is the master node and all others are slave nodes.
+	InstanceCount *int64 `type:"integer" required:"true"`
+
+	// Details about the job flow's instance groups.
+	InstanceGroups []*InstanceGroupDetail `type:"list"`
+
+	// Specifies whether the job flow should terminate after completing all steps.
+	KeepJobFlowAliveWhenNoSteps *bool `type:"boolean"`
+
+	// The Amazon EC2 instance identifier of the master node.
+	MasterInstanceID *string `locationName:"MasterInstanceId" type:"string"`
+
+	// The Amazon EC2 master node instance type.
+	MasterInstanceType *string `type:"string" required:"true"`
+
+	// The DNS name of the master node.
+	MasterPublicDNSName *string `locationName:"MasterPublicDnsName" type:"string"`
+
+	// An approximation of the cost of the job flow, represented in m1.small/hours.
+	// This value is incremented once for every hour an m1.small runs. Larger instances
+	// are weighted more, so an Amazon EC2 instance that is roughly four times more
+	// expensive would result in the normalized instance hours being incremented
+	// by four. This result is only an approximation and does not reflect the actual
+	// billing rate.
+	NormalizedInstanceHours *int64 `type:"integer"`
+
+	// The Amazon EC2 Availability Zone for the job flow.
+	Placement *PlacementType `type:"structure"`
+
+	// The Amazon EC2 slave node instance type.
+	SlaveInstanceType *string `type:"string" required:"true"`
+
+	// Specifies whether the Amazon EC2 instances in the cluster are protected from
+	// termination by API calls, user intervention, or in the event of a job flow
+	// error.
+	TerminationProtected *bool `type:"boolean"`
 
 	metadataJobFlowInstancesDetail `json:"-", xml:"-"`
 }
@@ -955,8 +1538,12 @@ type metadataJobFlowInstancesDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A key value pair.
 type KeyValue struct {
-	Key   *string `type:"string"`
+	// The unique identifier of a key value pair.
+	Key *string `type:"string"`
+
+	// The value part of the identified key.
 	Value *string `type:"string"`
 
 	metadataKeyValue `json:"-", xml:"-"`
@@ -966,9 +1553,13 @@ type metadataKeyValue struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This input determines which bootstrap actions to retrieve.
 type ListBootstrapActionsInput struct {
+	// The cluster identifier for the bootstrap actions to list .
 	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"`
-	Marker    *string `type:"string"`
+
+	// The pagination token that indicates the next set of results to retrieve .
+	Marker *string `type:"string"`
 
 	metadataListBootstrapActionsInput `json:"-", xml:"-"`
 }
@@ -977,9 +1568,13 @@ type metadataListBootstrapActionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This output contains the boostrap actions detail .
 type ListBootstrapActionsOutput struct {
+	// The bootstrap actions associated with the cluster .
 	BootstrapActions []*Command `type:"list"`
-	Marker           *string    `type:"string"`
+
+	// The pagination token that indicates the next set of results to retrieve .
+	Marker *string `type:"string"`
 
 	metadataListBootstrapActionsOutput `json:"-", xml:"-"`
 }
@@ -988,11 +1583,20 @@ type metadataListBootstrapActionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This input determines how the ListClusters action filters the list of clusters
+// that it returns.
 type ListClustersInput struct {
-	ClusterStates []*string  `type:"list"`
-	CreatedAfter  *time.Time `type:"timestamp" timestampFormat:"unix"`
+	// The cluster state filters to apply when listing clusters.
+	ClusterStates []*string `type:"list"`
+
+	// The creation date and time beginning value filter for listing clusters .
+	CreatedAfter *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The creation date and time end value filter for listing clusters .
 	CreatedBefore *time.Time `type:"timestamp" timestampFormat:"unix"`
-	Marker        *string    `type:"string"`
+
+	// The pagination token that indicates the next set of results to retrieve.
+	Marker *string `type:"string"`
 
 	metadataListClustersInput `json:"-", xml:"-"`
 }
@@ -1001,9 +1605,14 @@ type metadataListClustersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This contains a ClusterSummaryList with the cluster details; for example,
+// the cluster IDs, names, and status.
 type ListClustersOutput struct {
+	// The list of clusters for the account based on the given filters.
 	Clusters []*ClusterSummary `type:"list"`
-	Marker   *string           `type:"string"`
+
+	// The pagination token that indicates the next set of results to retrieve.
+	Marker *string `type:"string"`
 
 	metadataListClustersOutput `json:"-", xml:"-"`
 }
@@ -1012,9 +1621,13 @@ type metadataListClustersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This input determines which instance groups to retrieve.
 type ListInstanceGroupsInput struct {
+	// The identifier of the cluster for which to list the instance groups.
 	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"`
-	Marker    *string `type:"string"`
+
+	// The pagination token that indicates the next set of results to retrieve.
+	Marker *string `type:"string"`
 
 	metadataListInstanceGroupsInput `json:"-", xml:"-"`
 }
@@ -1023,9 +1636,13 @@ type metadataListInstanceGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This input determines which instance groups to retrieve.
 type ListInstanceGroupsOutput struct {
+	// The list of instance groups for the cluster and given filters.
 	InstanceGroups []*InstanceGroup `type:"list"`
-	Marker         *string          `type:"string"`
+
+	// The pagination token that indicates the next set of results to retrieve.
+	Marker *string `type:"string"`
 
 	metadataListInstanceGroupsOutput `json:"-", xml:"-"`
 }
@@ -1034,11 +1651,19 @@ type metadataListInstanceGroupsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This input determines which instances to list.
 type ListInstancesInput struct {
-	ClusterID          *string   `locationName:"ClusterId" type:"string" required:"true"`
-	InstanceGroupID    *string   `locationName:"InstanceGroupId" type:"string"`
+	// The identifier of the cluster for which to list the instances.
+	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"`
+
+	// The identifier of the instance group for which to list the instances.
+	InstanceGroupID *string `locationName:"InstanceGroupId" type:"string"`
+
+	// The type of instance group for which to list the instances.
 	InstanceGroupTypes []*string `type:"list"`
-	Marker             *string   `type:"string"`
+
+	// The pagination token that indicates the next set of results to retrieve.
+	Marker *string `type:"string"`
 
 	metadataListInstancesInput `json:"-", xml:"-"`
 }
@@ -1047,9 +1672,13 @@ type metadataListInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This output contains the list of instances.
 type ListInstancesOutput struct {
+	// The list of instances for the cluster and given filters.
 	Instances []*Instance `type:"list"`
-	Marker    *string     `type:"string"`
+
+	// The pagination token that indicates the next set of results to retrieve.
+	Marker *string `type:"string"`
 
 	metadataListInstancesOutput `json:"-", xml:"-"`
 }
@@ -1058,10 +1687,18 @@ type metadataListInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This input determines which steps to list.
 type ListStepsInput struct {
-	ClusterID  *string   `locationName:"ClusterId" type:"string" required:"true"`
-	Marker     *string   `type:"string"`
-	StepIDs    []*string `locationName:"StepIds" type:"list"`
+	// The identifier of the cluster for which to list the steps.
+	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"`
+
+	// The pagination token that indicates the next set of results to retrieve.
+	Marker *string `type:"string"`
+
+	// The filter to limit the step list based on the identifier of the steps.
+	StepIDs []*string `locationName:"StepIds" type:"list"`
+
+	// The filter to limit the step list based on certain states.
 	StepStates []*string `type:"list"`
 
 	metadataListStepsInput `json:"-", xml:"-"`
@@ -1071,9 +1708,13 @@ type metadataListStepsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This output contains the list of steps.
 type ListStepsOutput struct {
-	Marker *string        `type:"string"`
-	Steps  []*StepSummary `type:"list"`
+	// The pagination token that indicates the next set of results to retrieve.
+	Marker *string `type:"string"`
+
+	// The filtered list of steps for the cluster.
+	Steps []*StepSummary `type:"list"`
 
 	metadataListStepsOutput `json:"-", xml:"-"`
 }
@@ -1082,7 +1723,9 @@ type metadataListStepsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Change the size of some instance groups.
 type ModifyInstanceGroupsInput struct {
+	// Instance groups to change.
 	InstanceGroups []*InstanceGroupModifyConfig `type:"list"`
 
 	metadataModifyInstanceGroupsInput `json:"-", xml:"-"`
@@ -1100,7 +1743,9 @@ type metadataModifyInstanceGroupsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The Amazon EC2 location for the job flow.
 type PlacementType struct {
+	// The Amazon EC2 Availability Zone for the job flow.
 	AvailabilityZone *string `type:"string" required:"true"`
 
 	metadataPlacementType `json:"-", xml:"-"`
@@ -1110,9 +1755,14 @@ type metadataPlacementType struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This input identifies a cluster and a list of tags to remove.
 type RemoveTagsInput struct {
-	ResourceID *string   `locationName:"ResourceId" type:"string" required:"true"`
-	TagKeys    []*string `type:"list" required:"true"`
+	// The Amazon EMR resource identifier from which tags will be removed. This
+	// value must be a cluster identifier.
+	ResourceID *string `locationName:"ResourceId" type:"string" required:"true"`
+
+	// A list of tag keys to remove from a resource.
+	TagKeys []*string `type:"list" required:"true"`
 
 	metadataRemoveTagsInput `json:"-", xml:"-"`
 }
@@ -1121,6 +1771,7 @@ type metadataRemoveTagsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This output indicates the result of removing tags from a resource.
 type RemoveTagsOutput struct {
 	metadataRemoveTagsOutput `json:"-", xml:"-"`
 }
@@ -1129,20 +1780,83 @@ type metadataRemoveTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input to the RunJobFlow operation.
 type RunJobFlowInput struct {
-	AMIVersion           *string                   `locationName:"AmiVersion" type:"string"`
-	AdditionalInfo       *string                   `type:"string"`
-	BootstrapActions     []*BootstrapActionConfig  `type:"list"`
-	Instances            *JobFlowInstancesConfig   `type:"structure" required:"true"`
-	JobFlowRole          *string                   `type:"string"`
-	LogURI               *string                   `locationName:"LogUri" type:"string"`
-	Name                 *string                   `type:"string" required:"true"`
+	// The version of the Amazon Machine Image (AMI) to use when launching Amazon
+	// EC2 instances in the job flow. The following values are valid:
+	//
+	//  "latest" (uses the latest AMI) The version number of the AMI to use, for
+	// example, "2.0"  If the AMI supports multiple versions of Hadoop (for example,
+	// AMI 1.0 supports both Hadoop 0.18 and 0.20) you can use the JobFlowInstancesConfig
+	// HadoopVersion parameter to modify the version of Hadoop from the defaults
+	// shown above.
+	//
+	// For details about the AMI versions currently supported by Amazon Elastic
+	// MapReduce, go to AMI Versions Supported in Elastic MapReduce (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/EnvironmentConfig_AMIVersion.html#ami-versions-supported)
+	// in the Amazon Elastic MapReduce Developer's Guide.
+	AMIVersion *string `locationName:"AmiVersion" type:"string"`
+
+	// A JSON string for selecting additional features.
+	AdditionalInfo *string `type:"string"`
+
+	// A list of bootstrap actions that will be run before Hadoop is started on
+	// the cluster nodes.
+	BootstrapActions []*BootstrapActionConfig `type:"list"`
+
+	// A specification of the number and type of Amazon EC2 instances on which to
+	// run the job flow.
+	Instances *JobFlowInstancesConfig `type:"structure" required:"true"`
+
+	// An IAM role for the job flow. The EC2 instances of the job flow assume this
+	// role. The default role is EMRJobflowDefault. In order to use the default
+	// role, you must have already created it using the CLI.
+	JobFlowRole *string `type:"string"`
+
+	// The location in Amazon S3 to write the log files of the job flow. If a value
+	// is not provided, logs are not created.
+	LogURI *string `locationName:"LogUri" type:"string"`
+
+	// The name of the job flow.
+	Name *string `type:"string" required:"true"`
+
+	// A list of strings that indicates third-party software to use with the job
+	// flow that accepts a user argument list. EMR accepts and forwards the argument
+	// list to the corresponding installation script as bootstrap action arguments.
+	// For more information, see Launch a Job Flow on the MapR Distribution for
+	// Hadoop (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-mapr.html).
+	// Currently supported values are:
+	//
+	//  "mapr-m3" - launch the job flow using MapR M3 Edition. "mapr-m5" - launch
+	// the job flow using MapR M5 Edition. "mapr" with the user arguments specifying
+	// "--edition,m3" or "--edition,m5" - launch the job flow using MapR M3 or M5
+	// Edition respectively.
 	NewSupportedProducts []*SupportedProductConfig `type:"list"`
-	ServiceRole          *string                   `type:"string"`
-	Steps                []*StepConfig             `type:"list"`
-	SupportedProducts    []*string                 `type:"list"`
-	Tags                 []*Tag                    `type:"list"`
-	VisibleToAllUsers    *bool                     `type:"boolean"`
+
+	// The IAM role that will be assumed by the Amazon EMR service to access AWS
+	// resources on your behalf.
+	ServiceRole *string `type:"string"`
+
+	// A list of steps to be executed by the job flow.
+	Steps []*StepConfig `type:"list"`
+
+	// A list of strings that indicates third-party software to use with the job
+	// flow. For more information, go to Use Third Party Applications with Amazon
+	// EMR (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-supported-products.html).
+	// Currently supported values are:
+	//
+	//  "mapr-m3" - launch the job flow using MapR M3 Edition. "mapr-m5" - launch
+	// the job flow using MapR M5 Edition.
+	SupportedProducts []*string `type:"list"`
+
+	// A list of tags to associate with a cluster and propagate to Amazon EC2 instances.
+	Tags []*Tag `type:"list"`
+
+	// Whether the job flow is visible to all IAM users of the AWS account associated
+	// with the job flow. If this value is set to true, all IAM users of that AWS
+	// account can view and (if they have the proper policy permissions set) manage
+	// the job flow. If it is set to false, only the IAM user that created the job
+	// flow can view and manage it.
+	VisibleToAllUsers *bool `type:"boolean"`
 
 	metadataRunJobFlowInput `json:"-", xml:"-"`
 }
@@ -1151,7 +1865,9 @@ type metadataRunJobFlowInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of the RunJobFlow operation.
 type RunJobFlowOutput struct {
+	// An unique identifier for the job flow.
 	JobFlowID *string `locationName:"JobFlowId" type:"string"`
 
 	metadataRunJobFlowOutput `json:"-", xml:"-"`
@@ -1161,9 +1877,14 @@ type metadataRunJobFlowOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Configuration of the script to run during a bootstrap action.
 type ScriptBootstrapActionConfig struct {
+	// A list of command line arguments to pass to the bootstrap action script.
 	Args []*string `type:"list"`
-	Path *string   `type:"string" required:"true"`
+
+	// Location of the script to run during a bootstrap action. Can be either a
+	// location in Amazon S3 or on a local file system.
+	Path *string `type:"string" required:"true"`
 
 	metadataScriptBootstrapActionConfig `json:"-", xml:"-"`
 }
@@ -1172,9 +1893,17 @@ type metadataScriptBootstrapActionConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input argument to the TerminationProtection operation.
 type SetTerminationProtectionInput struct {
-	JobFlowIDs           []*string `locationName:"JobFlowIds" type:"list" required:"true"`
-	TerminationProtected *bool     `type:"boolean" required:"true"`
+	// A list of strings that uniquely identify the job flows to protect. This identifier
+	// is returned by RunJobFlow and can also be obtained from DescribeJobFlows
+	// .
+	JobFlowIDs []*string `locationName:"JobFlowIds" type:"list" required:"true"`
+
+	// A Boolean that indicates whether to protect the job flow and prevent the
+	// Amazon EC2 instances in the cluster from shutting down due to API calls,
+	// user intervention, or job-flow error.
+	TerminationProtected *bool `type:"boolean" required:"true"`
 
 	metadataSetTerminationProtectionInput `json:"-", xml:"-"`
 }
@@ -1191,9 +1920,17 @@ type metadataSetTerminationProtectionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input to the SetVisibleToAllUsers action.
 type SetVisibleToAllUsersInput struct {
-	JobFlowIDs        []*string `locationName:"JobFlowIds" type:"list" required:"true"`
-	VisibleToAllUsers *bool     `type:"boolean" required:"true"`
+	// Identifiers of the job flows to receive the new visibility setting.
+	JobFlowIDs []*string `locationName:"JobFlowIds" type:"list" required:"true"`
+
+	// Whether the specified job flows are visible to all IAM users of the AWS account
+	// associated with the job flow. If this value is set to True, all IAM users
+	// of that AWS account can view and, if they have the proper IAM policy permissions
+	// set, manage the job flows. If it is set to False, only the IAM user that
+	// created a job flow can view and manage it.
+	VisibleToAllUsers *bool `type:"boolean" required:"true"`
 
 	metadataSetVisibleToAllUsersInput `json:"-", xml:"-"`
 }
@@ -1210,12 +1947,23 @@ type metadataSetVisibleToAllUsersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This represents a step in a cluster.
 type Step struct {
-	ActionOnFailure *string           `type:"string"`
-	Config          *HadoopStepConfig `type:"structure"`
-	ID              *string           `locationName:"Id" type:"string"`
-	Name            *string           `type:"string"`
-	Status          *StepStatus       `type:"structure"`
+	// This specifies what action to take when the cluster step fails. Possible
+	// values are TERMINATE_CLUSTER, CANCEL_AND_WAIT, and CONTINUE.
+	ActionOnFailure *string `type:"string"`
+
+	// The Hadoop job configuration of the cluster step.
+	Config *HadoopStepConfig `type:"structure"`
+
+	// The identifier of the cluster step.
+	ID *string `locationName:"Id" type:"string"`
+
+	// The name of the cluster step.
+	Name *string `type:"string"`
+
+	// The current execution status details of the cluster step.
+	Status *StepStatus `type:"structure"`
 
 	metadataStep `json:"-", xml:"-"`
 }
@@ -1224,10 +1972,16 @@ type metadataStep struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Specification of a job flow step.
 type StepConfig struct {
-	ActionOnFailure *string              `type:"string"`
-	HadoopJARStep   *HadoopJARStepConfig `locationName:"HadoopJarStep" type:"structure" required:"true"`
-	Name            *string              `type:"string" required:"true"`
+	// The action to take if the job flow step fails.
+	ActionOnFailure *string `type:"string"`
+
+	// The JAR file used for the job flow step.
+	HadoopJARStep *HadoopJARStepConfig `locationName:"HadoopJarStep" type:"structure" required:"true"`
+
+	// The name of the job flow step.
+	Name *string `type:"string" required:"true"`
 
 	metadataStepConfig `json:"-", xml:"-"`
 }
@@ -1236,9 +1990,13 @@ type metadataStepConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Combines the execution state and configuration of a step.
 type StepDetail struct {
+	// The description of the step status.
 	ExecutionStatusDetail *StepExecutionStatusDetail `type:"structure" required:"true"`
-	StepConfig            *StepConfig                `type:"structure" required:"true"`
+
+	// The step configuration.
+	StepConfig *StepConfig `type:"structure" required:"true"`
 
 	metadataStepDetail `json:"-", xml:"-"`
 }
@@ -1247,12 +2005,22 @@ type metadataStepDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The execution state of a step.
 type StepExecutionStatusDetail struct {
-	CreationDateTime      *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
-	EndDateTime           *time.Time `type:"timestamp" timestampFormat:"unix"`
-	LastStateChangeReason *string    `type:"string"`
-	StartDateTime         *time.Time `type:"timestamp" timestampFormat:"unix"`
-	State                 *string    `type:"string" required:"true"`
+	// The creation date and time of the step.
+	CreationDateTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+
+	// The completion date and time of the step.
+	EndDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// A description of the step's current state.
+	LastStateChangeReason *string `type:"string"`
+
+	// The start date and time of the step.
+	StartDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The state of the job flow step.
+	State *string `type:"string" required:"true"`
 
 	metadataStepExecutionStatusDetail `json:"-", xml:"-"`
 }
@@ -1261,8 +2029,12 @@ type metadataStepExecutionStatusDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The details of the step state change reason.
 type StepStateChangeReason struct {
-	Code    *string `type:"string"`
+	// The programmable code for the state change reason.
+	Code *string `type:"string"`
+
+	// The descriptive message for the state change reason.
 	Message *string `type:"string"`
 
 	metadataStepStateChangeReason `json:"-", xml:"-"`
@@ -1272,10 +2044,16 @@ type metadataStepStateChangeReason struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The execution status details of the cluster step.
 type StepStatus struct {
-	State             *string                `type:"string"`
+	// The execution state of the cluster step.
+	State *string `type:"string"`
+
+	// The reason for the step execution status change.
 	StateChangeReason *StepStateChangeReason `type:"structure"`
-	Timeline          *StepTimeline          `type:"structure"`
+
+	// The timeline of the cluster step status over time.
+	Timeline *StepTimeline `type:"structure"`
 
 	metadataStepStatus `json:"-", xml:"-"`
 }
@@ -1284,12 +2062,23 @@ type metadataStepStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The summary of the cluster step.
 type StepSummary struct {
-	ActionOnFailure *string           `type:"string"`
-	Config          *HadoopStepConfig `type:"structure"`
-	ID              *string           `locationName:"Id" type:"string"`
-	Name            *string           `type:"string"`
-	Status          *StepStatus       `type:"structure"`
+	// This specifies what action to take when the cluster step fails. Possible
+	// values are TERMINATE_CLUSTER, CANCEL_AND_WAIT, and CONTINUE.
+	ActionOnFailure *string `type:"string"`
+
+	// The Hadoop job configuration of the cluster step.
+	Config *HadoopStepConfig `type:"structure"`
+
+	// The identifier of the cluster step.
+	ID *string `locationName:"Id" type:"string"`
+
+	// The name of the cluster step.
+	Name *string `type:"string"`
+
+	// The current execution status details of the cluster step.
+	Status *StepStatus `type:"structure"`
 
 	metadataStepSummary `json:"-", xml:"-"`
 }
@@ -1298,10 +2087,16 @@ type metadataStepSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The timeline of the cluster step lifecycle.
 type StepTimeline struct {
+	// The date and time when the cluster step was created.
 	CreationDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
-	EndDateTime      *time.Time `type:"timestamp" timestampFormat:"unix"`
-	StartDateTime    *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The date and time when the cluster step execution completed or failed.
+	EndDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The date and time when the cluster step execution started.
+	StartDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	metadataStepTimeline `json:"-", xml:"-"`
 }
@@ -1310,9 +2105,15 @@ type metadataStepTimeline struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The list of supported product configurations which allow user-supplied arguments.
+// EMR accepts these arguments and forwards them to the corresponding installation
+// script as bootstrap action arguments.
 type SupportedProductConfig struct {
+	// The list of user-supplied arguments.
 	Args []*string `type:"list"`
-	Name *string   `type:"string"`
+
+	// The name of the product configuration.
+	Name *string `type:"string"`
 
 	metadataSupportedProductConfig `json:"-", xml:"-"`
 }
@@ -1321,8 +2122,18 @@ type metadataSupportedProductConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A key/value pair containing user-defined metadata that you can associate
+// with an Amazon EMR resource. Tags make it easier to associate clusters in
+// various ways, such as grouping clu\ sters to track your Amazon EMR resource
+// allocation costs. For more information, see Tagging Amazon EMR Resources
+// (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-tags.html).
 type Tag struct {
-	Key   *string `type:"string"`
+	// A user-defined key, which is the minimum required information for a valid
+	// tag. For more information, see Tagging Amazon EMR Resources (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-tags.html).
+	Key *string `type:"string"`
+
+	// A user-defined value, which is optional in a tag. For more information, see
+	// Tagging Amazon EMR Resources (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-tags.html).
 	Value *string `type:"string"`
 
 	metadataTag `json:"-", xml:"-"`
@@ -1332,7 +2143,9 @@ type metadataTag struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Input to the TerminateJobFlows operation.
 type TerminateJobFlowsInput struct {
+	// A list of job flows to be shutdown.
 	JobFlowIDs []*string `locationName:"JobFlowIds" type:"list" required:"true"`
 
 	metadataTerminateJobFlowsInput `json:"-", xml:"-"`

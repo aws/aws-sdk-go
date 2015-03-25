@@ -22,6 +22,8 @@ func (c *CloudHSM) CreateHAPGRequest(input *CreateHAPGInput) (req *aws.Request, 
 	return
 }
 
+// Creates a high-availability partition group. A high-availability partition
+// group is a group of partitions that spans multiple physical HSMs.
 func (c *CloudHSM) CreateHAPG(input *CreateHAPGInput) (output *CreateHAPGOutput, err error) {
 	req, out := c.CreateHAPGRequest(input)
 	output = out
@@ -47,6 +49,8 @@ func (c *CloudHSM) CreateHSMRequest(input *CreateHSMInput) (req *aws.Request, ou
 	return
 }
 
+// Creates an uninitialized HSM instance. Running this command provisions an
+// HSM appliance and will result in charges to your AWS account for the HSM.
 func (c *CloudHSM) CreateHSM(input *CreateHSMInput) (output *CreateHSMOutput, err error) {
 	req, out := c.CreateHSMRequest(input)
 	output = out
@@ -72,6 +76,7 @@ func (c *CloudHSM) CreateLunaClientRequest(input *CreateLunaClientInput) (req *a
 	return
 }
 
+// Creates an HSM client.
 func (c *CloudHSM) CreateLunaClient(input *CreateLunaClientInput) (output *CreateLunaClientOutput, err error) {
 	req, out := c.CreateLunaClientRequest(input)
 	output = out
@@ -97,6 +102,7 @@ func (c *CloudHSM) DeleteHAPGRequest(input *DeleteHAPGInput) (req *aws.Request, 
 	return
 }
 
+// Deletes a high-availability partition group.
 func (c *CloudHSM) DeleteHAPG(input *DeleteHAPGInput) (output *DeleteHAPGOutput, err error) {
 	req, out := c.DeleteHAPGRequest(input)
 	output = out
@@ -122,6 +128,8 @@ func (c *CloudHSM) DeleteHSMRequest(input *DeleteHSMInput) (req *aws.Request, ou
 	return
 }
 
+// Deletes an HSM. Once complete, this operation cannot be undone and your key
+// material cannot be recovered.
 func (c *CloudHSM) DeleteHSM(input *DeleteHSMInput) (output *DeleteHSMOutput, err error) {
 	req, out := c.DeleteHSMRequest(input)
 	output = out
@@ -147,6 +155,7 @@ func (c *CloudHSM) DeleteLunaClientRequest(input *DeleteLunaClientInput) (req *a
 	return
 }
 
+// Deletes a client.
 func (c *CloudHSM) DeleteLunaClient(input *DeleteLunaClientInput) (output *DeleteLunaClientOutput, err error) {
 	req, out := c.DeleteLunaClientRequest(input)
 	output = out
@@ -172,6 +181,7 @@ func (c *CloudHSM) DescribeHAPGRequest(input *DescribeHAPGInput) (req *aws.Reque
 	return
 }
 
+// Retrieves information about a high-availability partition group.
 func (c *CloudHSM) DescribeHAPG(input *DescribeHAPGInput) (output *DescribeHAPGOutput, err error) {
 	req, out := c.DescribeHAPGRequest(input)
 	output = out
@@ -197,6 +207,8 @@ func (c *CloudHSM) DescribeHSMRequest(input *DescribeHSMInput) (req *aws.Request
 	return
 }
 
+// Retrieves information about an HSM. You can identify the HSM by its ARN or
+// its serial number.
 func (c *CloudHSM) DescribeHSM(input *DescribeHSMInput) (output *DescribeHSMOutput, err error) {
 	req, out := c.DescribeHSMRequest(input)
 	output = out
@@ -222,6 +234,7 @@ func (c *CloudHSM) DescribeLunaClientRequest(input *DescribeLunaClientInput) (re
 	return
 }
 
+// Retrieves information about an HSM client.
 func (c *CloudHSM) DescribeLunaClient(input *DescribeLunaClientInput) (output *DescribeLunaClientOutput, err error) {
 	req, out := c.DescribeLunaClientRequest(input)
 	output = out
@@ -247,6 +260,8 @@ func (c *CloudHSM) GetConfigRequest(input *GetConfigInput) (req *aws.Request, ou
 	return
 }
 
+// Gets the configuration files necessary to connect to all high availability
+// partition groups the client is associated with.
 func (c *CloudHSM) GetConfig(input *GetConfigInput) (output *GetConfigOutput, err error) {
 	req, out := c.GetConfigRequest(input)
 	output = out
@@ -272,6 +287,7 @@ func (c *CloudHSM) ListAvailableZonesRequest(input *ListAvailableZonesInput) (re
 	return
 }
 
+// Lists the Availability Zones that have available AWS CloudHSM capacity.
 func (c *CloudHSM) ListAvailableZones(input *ListAvailableZonesInput) (output *ListAvailableZonesOutput, err error) {
 	req, out := c.ListAvailableZonesRequest(input)
 	output = out
@@ -297,6 +313,13 @@ func (c *CloudHSM) ListHSMsRequest(input *ListHSMsInput) (req *aws.Request, outp
 	return
 }
 
+// Retrieves the identifiers of all of the HSMs provisioned for the current
+// customer.
+//
+// This operation supports pagination with the use of the NextToken member.
+// If more results are available, the NextToken member of the response contains
+// a token that you pass in the next call to ListHsms to retrieve the next set
+// of items.
 func (c *CloudHSM) ListHSMs(input *ListHSMsInput) (output *ListHSMsOutput, err error) {
 	req, out := c.ListHSMsRequest(input)
 	output = out
@@ -322,6 +345,12 @@ func (c *CloudHSM) ListHapgsRequest(input *ListHapgsInput) (req *aws.Request, ou
 	return
 }
 
+// Lists the high-availability partition groups for the account.
+//
+// This operation supports pagination with the use of the NextToken member.
+// If more results are available, the NextToken member of the response contains
+// a token that you pass in the next call to ListHapgs to retrieve the next
+// set of items.
 func (c *CloudHSM) ListHapgs(input *ListHapgsInput) (output *ListHapgsOutput, err error) {
 	req, out := c.ListHapgsRequest(input)
 	output = out
@@ -347,6 +376,12 @@ func (c *CloudHSM) ListLunaClientsRequest(input *ListLunaClientsInput) (req *aws
 	return
 }
 
+// Lists all of the clients.
+//
+// This operation supports pagination with the use of the NextToken member.
+// If more results are available, the NextToken member of the response contains
+// a token that you pass in the next call to ListLunaClients to retrieve the
+// next set of items.
 func (c *CloudHSM) ListLunaClients(input *ListLunaClientsInput) (output *ListLunaClientsOutput, err error) {
 	req, out := c.ListLunaClientsRequest(input)
 	output = out
@@ -372,6 +407,7 @@ func (c *CloudHSM) ModifyHAPGRequest(input *ModifyHAPGInput) (req *aws.Request, 
 	return
 }
 
+// Modifies an existing high-availability partition group.
 func (c *CloudHSM) ModifyHAPG(input *ModifyHAPGInput) (output *ModifyHAPGOutput, err error) {
 	req, out := c.ModifyHAPGRequest(input)
 	output = out
@@ -397,6 +433,7 @@ func (c *CloudHSM) ModifyHSMRequest(input *ModifyHSMInput) (req *aws.Request, ou
 	return
 }
 
+// Modifies an HSM.
 func (c *CloudHSM) ModifyHSM(input *ModifyHSMInput) (output *ModifyHSMOutput, err error) {
 	req, out := c.ModifyHSMRequest(input)
 	output = out
@@ -422,6 +459,10 @@ func (c *CloudHSM) ModifyLunaClientRequest(input *ModifyLunaClientInput) (req *a
 	return
 }
 
+// Modifies the certificate used by the client.
+//
+// This action can potentially start a workflow to install the new certificate
+// on the client's HSMs.
 func (c *CloudHSM) ModifyLunaClient(input *ModifyLunaClientInput) (output *ModifyLunaClientOutput, err error) {
 	req, out := c.ModifyLunaClientRequest(input)
 	output = out
@@ -431,7 +472,9 @@ func (c *CloudHSM) ModifyLunaClient(input *ModifyLunaClientInput) (output *Modif
 
 var opModifyLunaClient *aws.Operation
 
+// Contains the inputs for the CreateHapgRequest action.
 type CreateHAPGInput struct {
+	// The label of the new high-availability partition group.
 	Label *string `type:"string" required:"true"`
 
 	metadataCreateHAPGInput `json:"-", xml:"-"`
@@ -441,7 +484,9 @@ type metadataCreateHAPGInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the output of the CreateHAPartitionGroup action.
 type CreateHAPGOutput struct {
+	// The ARN of the high-availability partition group.
 	HAPGARN *string `locationName:"HapgArn" type:"string"`
 
 	metadataCreateHAPGOutput `json:"-", xml:"-"`
@@ -451,15 +496,33 @@ type metadataCreateHAPGOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the inputs for the CreateHsm action.
 type CreateHSMInput struct {
-	ClientToken      *string `locationName:"ClientToken" type:"string"`
-	ENIIP            *string `locationName:"EniIp" type:"string"`
-	ExternalID       *string `locationName:"ExternalId" type:"string"`
-	IAMRoleARN       *string `locationName:"IamRoleArn" type:"string" required:"true"`
-	SSHKey           *string `locationName:"SshKey" type:"string" required:"true"`
-	SubnetID         *string `locationName:"SubnetId" type:"string" required:"true"`
+	// A user-defined token to ensure idempotence. Subsequent calls to this action
+	// with the same token will be ignored.
+	ClientToken *string `locationName:"ClientToken" type:"string"`
+
+	// The IP address to assign to the HSM's ENI.
+	ENIIP *string `locationName:"EniIp" type:"string"`
+
+	// The external ID from IamRoleArn, if present.
+	ExternalID *string `locationName:"ExternalId" type:"string"`
+
+	// The ARN of an IAM role to enable the AWS CloudHSM service to allocate an
+	// ENI on your behalf.
+	IAMRoleARN *string `locationName:"IamRoleArn" type:"string" required:"true"`
+
+	// The SSH public key to install on the HSM.
+	SSHKey *string `locationName:"SshKey" type:"string" required:"true"`
+
+	// The identifier of the subnet in your VPC in which to place the HSM.
+	SubnetID *string `locationName:"SubnetId" type:"string" required:"true"`
+
+	// The subscription type.
 	SubscriptionType *string `locationName:"SubscriptionType" type:"string" required:"true"`
-	SyslogIP         *string `locationName:"SyslogIp" type:"string"`
+
+	// The IP address for the syslog monitoring server.
+	SyslogIP *string `locationName:"SyslogIp" type:"string"`
 
 	metadataCreateHSMInput `json:"-", xml:"-"`
 }
@@ -468,7 +531,9 @@ type metadataCreateHSMInput struct {
 	SDKShapeTraits bool `locationName:"CreateHsmRequest" type:"structure"`
 }
 
+// Contains the output of the CreateHsm action.
 type CreateHSMOutput struct {
+	// The ARN of the HSM.
 	HSMARN *string `locationName:"HsmArn" type:"string"`
 
 	metadataCreateHSMOutput `json:"-", xml:"-"`
@@ -478,9 +543,14 @@ type metadataCreateHSMOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the inputs for the CreateLunaClient action.
 type CreateLunaClientInput struct {
+	// The contents of a Base64-Encoded X.509 v3 certificate to be installed on
+	// the HSMs used by this client.
 	Certificate *string `type:"string" required:"true"`
-	Label       *string `type:"string"`
+
+	// The label for the client.
+	Label *string `type:"string"`
 
 	metadataCreateLunaClientInput `json:"-", xml:"-"`
 }
@@ -489,7 +559,9 @@ type metadataCreateLunaClientInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the output of the CreateLunaClient action.
 type CreateLunaClientOutput struct {
+	// The ARN of the client.
 	ClientARN *string `locationName:"ClientArn" type:"string"`
 
 	metadataCreateLunaClientOutput `json:"-", xml:"-"`
@@ -499,7 +571,9 @@ type metadataCreateLunaClientOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the inputs for the DeleteHapg action.
 type DeleteHAPGInput struct {
+	// The ARN of the high-availability partition group to delete.
 	HAPGARN *string `locationName:"HapgArn" type:"string" required:"true"`
 
 	metadataDeleteHAPGInput `json:"-", xml:"-"`
@@ -509,7 +583,9 @@ type metadataDeleteHAPGInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the output of the DeleteHapg action.
 type DeleteHAPGOutput struct {
+	// The status of the action.
 	Status *string `type:"string" required:"true"`
 
 	metadataDeleteHAPGOutput `json:"-", xml:"-"`
@@ -519,7 +595,9 @@ type metadataDeleteHAPGOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the inputs for the DeleteHsm action.
 type DeleteHSMInput struct {
+	// The ARN of the HSM to delete.
 	HSMARN *string `locationName:"HsmArn" type:"string" required:"true"`
 
 	metadataDeleteHSMInput `json:"-", xml:"-"`
@@ -529,7 +607,9 @@ type metadataDeleteHSMInput struct {
 	SDKShapeTraits bool `locationName:"DeleteHsmRequest" type:"structure"`
 }
 
+// Contains the output of the DeleteHsm action.
 type DeleteHSMOutput struct {
+	// The status of the action.
 	Status *string `type:"string" required:"true"`
 
 	metadataDeleteHSMOutput `json:"-", xml:"-"`
@@ -540,6 +620,7 @@ type metadataDeleteHSMOutput struct {
 }
 
 type DeleteLunaClientInput struct {
+	// The ARN of the client to delete.
 	ClientARN *string `locationName:"ClientArn" type:"string" required:"true"`
 
 	metadataDeleteLunaClientInput `json:"-", xml:"-"`
@@ -550,6 +631,7 @@ type metadataDeleteLunaClientInput struct {
 }
 
 type DeleteLunaClientOutput struct {
+	// The status of the action.
 	Status *string `type:"string" required:"true"`
 
 	metadataDeleteLunaClientOutput `json:"-", xml:"-"`
@@ -559,7 +641,9 @@ type metadataDeleteLunaClientOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the inputs for the DescribeHapg action.
 type DescribeHAPGInput struct {
+	// The ARN of the high-availability partition group to describe.
 	HAPGARN *string `locationName:"HapgArn" type:"string" required:"true"`
 
 	metadataDescribeHAPGInput `json:"-", xml:"-"`
@@ -569,16 +653,35 @@ type metadataDescribeHAPGInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the output of the DescribeHapg action.
 type DescribeHAPGOutput struct {
-	HAPGARN                 *string   `locationName:"HapgArn" type:"string"`
-	HAPGSerial              *string   `locationName:"HapgSerial" type:"string"`
-	HSMsLastActionFailed    []*string `locationName:"HsmsLastActionFailed" type:"list"`
-	HSMsPendingDeletion     []*string `locationName:"HsmsPendingDeletion" type:"list"`
+	// The ARN of the high-availability partition group.
+	HAPGARN *string `locationName:"HapgArn" type:"string"`
+
+	// The serial number of the high-availability partition group.
+	HAPGSerial *string `locationName:"HapgSerial" type:"string"`
+
+	// Contains a list of ARNs that identify the HSMs.
+	HSMsLastActionFailed []*string `locationName:"HsmsLastActionFailed" type:"list"`
+
+	// Contains a list of ARNs that identify the HSMs.
+	HSMsPendingDeletion []*string `locationName:"HsmsPendingDeletion" type:"list"`
+
+	// Contains a list of ARNs that identify the HSMs.
 	HSMsPendingRegistration []*string `locationName:"HsmsPendingRegistration" type:"list"`
-	Label                   *string   `type:"string"`
-	LastModifiedTimestamp   *string   `type:"string"`
-	PartitionSerialList     []*string `type:"list"`
-	State                   *string   `type:"string"`
+
+	// The label for the high-availability partition group.
+	Label *string `type:"string"`
+
+	// The date and time the high-availability partition group was last modified.
+	LastModifiedTimestamp *string `type:"string"`
+
+	// The list of partition serial numbers that belong to the high-availability
+	// partition group.
+	PartitionSerialList []*string `type:"list"`
+
+	// The state of the high-availability partition group.
+	State *string `type:"string"`
 
 	metadataDescribeHAPGOutput `json:"-", xml:"-"`
 }
@@ -587,8 +690,14 @@ type metadataDescribeHAPGOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the inputs for the DescribeHsm action.
 type DescribeHSMInput struct {
-	HSMARN          *string `locationName:"HsmArn" type:"string"`
+	// The ARN of the HSM. Either the HsmArn or the SerialNumber parameter must
+	// be specified.
+	HSMARN *string `locationName:"HsmArn" type:"string"`
+
+	// The serial number of the HSM. Either the HsmArn or the HsmSerialNumber parameter
+	// must be specified.
 	HSMSerialNumber *string `locationName:"HsmSerialNumber" type:"string"`
 
 	metadataDescribeHSMInput `json:"-", xml:"-"`
@@ -598,28 +707,70 @@ type metadataDescribeHSMInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the output of the DescribeHsm action.
 type DescribeHSMOutput struct {
-	AvailabilityZone      *string   `type:"string"`
-	ENIID                 *string   `locationName:"EniId" type:"string"`
-	ENIIP                 *string   `locationName:"EniIp" type:"string"`
-	HSMARN                *string   `locationName:"HsmArn" type:"string"`
-	HSMType               *string   `locationName:"HsmType" type:"string"`
-	IAMRoleARN            *string   `locationName:"IamRoleArn" type:"string"`
-	Partitions            []*string `type:"list"`
-	SSHKeyLastUpdated     *string   `locationName:"SshKeyLastUpdated" type:"string"`
-	SSHPublicKey          *string   `locationName:"SshPublicKey" type:"string"`
-	SerialNumber          *string   `type:"string"`
-	ServerCertLastUpdated *string   `type:"string"`
-	ServerCertURI         *string   `locationName:"ServerCertUri" type:"string"`
-	SoftwareVersion       *string   `type:"string"`
-	Status                *string   `type:"string"`
-	StatusDetails         *string   `type:"string"`
-	SubnetID              *string   `locationName:"SubnetId" type:"string"`
-	SubscriptionEndDate   *string   `type:"string"`
-	SubscriptionStartDate *string   `type:"string"`
-	SubscriptionType      *string   `type:"string"`
-	VPCID                 *string   `locationName:"VpcId" type:"string"`
-	VendorName            *string   `type:"string"`
+	// The Availability Zone that the HSM is in.
+	AvailabilityZone *string `type:"string"`
+
+	// The identifier of the elastic network interface (ENI) attached to the HSM.
+	ENIID *string `locationName:"EniId" type:"string"`
+
+	// The IP address assigned to the HSM's ENI.
+	ENIIP *string `locationName:"EniIp" type:"string"`
+
+	// The ARN of the HSM.
+	HSMARN *string `locationName:"HsmArn" type:"string"`
+
+	// The HSM model type.
+	HSMType *string `locationName:"HsmType" type:"string"`
+
+	// The ARN of the IAM role assigned to the HSM.
+	IAMRoleARN *string `locationName:"IamRoleArn" type:"string"`
+
+	// The list of partitions on the HSM.
+	Partitions []*string `type:"list"`
+
+	// The date and time the SSH key was last updated.
+	SSHKeyLastUpdated *string `locationName:"SshKeyLastUpdated" type:"string"`
+
+	// The public SSH key.
+	SSHPublicKey *string `locationName:"SshPublicKey" type:"string"`
+
+	// The serial number of the HSM.
+	SerialNumber *string `type:"string"`
+
+	// The date and time the server certificate was last updated.
+	ServerCertLastUpdated *string `type:"string"`
+
+	// The URI of the certificate server.
+	ServerCertURI *string `locationName:"ServerCertUri" type:"string"`
+
+	// The HSM software version.
+	SoftwareVersion *string `type:"string"`
+
+	// The status of the HSM.
+	Status *string `type:"string"`
+
+	// Contains additional information about the status of the HSM.
+	StatusDetails *string `type:"string"`
+
+	// The identifier of the subnet the HSM is in.
+	SubnetID *string `locationName:"SubnetId" type:"string"`
+
+	// The subscription end date.
+	SubscriptionEndDate *string `type:"string"`
+
+	// The subscription start date.
+	SubscriptionStartDate *string `type:"string"`
+
+	// The subscription type.
+	SubscriptionType *string `type:"string"`
+
+	// The identifier of the VPC that the HSM is in.
+	VPCID *string `locationName:"VpcId" type:"string"`
+
+	// The name of the HSM vendor.
+	VendorName *string `type:"string"`
 
 	metadataDescribeHSMOutput `json:"-", xml:"-"`
 }
@@ -629,8 +780,11 @@ type metadataDescribeHSMOutput struct {
 }
 
 type DescribeLunaClientInput struct {
+	// The certificate fingerprint.
 	CertificateFingerprint *string `type:"string"`
-	ClientARN              *string `locationName:"ClientArn" type:"string"`
+
+	// The ARN of the client.
+	ClientARN *string `locationName:"ClientArn" type:"string"`
 
 	metadataDescribeLunaClientInput `json:"-", xml:"-"`
 }
@@ -640,11 +794,20 @@ type metadataDescribeLunaClientInput struct {
 }
 
 type DescribeLunaClientOutput struct {
-	Certificate            *string `type:"string"`
+	// The certificate installed on the HSMs used by this client.
+	Certificate *string `type:"string"`
+
+	// The certificate fingerprint.
 	CertificateFingerprint *string `type:"string"`
-	ClientARN              *string `locationName:"ClientArn" type:"string"`
-	Label                  *string `type:"string"`
-	LastModifiedTimestamp  *string `type:"string"`
+
+	// The ARN of the client.
+	ClientARN *string `locationName:"ClientArn" type:"string"`
+
+	// The label of the client.
+	Label *string `type:"string"`
+
+	// The date and time the client was last modified.
+	LastModifiedTimestamp *string `type:"string"`
 
 	metadataDescribeLunaClientOutput `json:"-", xml:"-"`
 }
@@ -654,9 +817,15 @@ type metadataDescribeLunaClientOutput struct {
 }
 
 type GetConfigInput struct {
-	ClientARN     *string   `locationName:"ClientArn" type:"string" required:"true"`
-	ClientVersion *string   `type:"string" required:"true"`
-	HAPGList      []*string `locationName:"HapgList" type:"list" required:"true"`
+	// The ARN of the client.
+	ClientARN *string `locationName:"ClientArn" type:"string" required:"true"`
+
+	// The client version.
+	ClientVersion *string `type:"string" required:"true"`
+
+	// A list of ARNs that identify the high-availability partition groups that
+	// are associated with the client.
+	HAPGList []*string `locationName:"HapgList" type:"list" required:"true"`
 
 	metadataGetConfigInput `json:"-", xml:"-"`
 }
@@ -666,8 +835,13 @@ type metadataGetConfigInput struct {
 }
 
 type GetConfigOutput struct {
+	// The certificate file containing the server.pem files of the HSMs.
 	ConfigCred *string `type:"string"`
+
+	// The chrystoki.conf configuration file.
 	ConfigFile *string `type:"string"`
+
+	// The type of credentials.
 	ConfigType *string `type:"string"`
 
 	metadataGetConfigOutput `json:"-", xml:"-"`
@@ -677,6 +851,7 @@ type metadataGetConfigOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the inputs for the ListAvailableZones action.
 type ListAvailableZonesInput struct {
 	metadataListAvailableZonesInput `json:"-", xml:"-"`
 }
@@ -686,6 +861,7 @@ type metadataListAvailableZonesInput struct {
 }
 
 type ListAvailableZonesOutput struct {
+	// The list of Availability Zones that have available AWS CloudHSM capacity.
 	AZList []*string `type:"list"`
 
 	metadataListAvailableZonesOutput `json:"-", xml:"-"`
@@ -696,6 +872,8 @@ type metadataListAvailableZonesOutput struct {
 }
 
 type ListHSMsInput struct {
+	// The NextToken value from a previous call to ListHsms. Pass null if this is
+	// the first call.
 	NextToken *string `type:"string"`
 
 	metadataListHSMsInput `json:"-", xml:"-"`
@@ -705,9 +883,14 @@ type metadataListHSMsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the output of the ListHsms action.
 type ListHSMsOutput struct {
-	HSMList   []*string `locationName:"HsmList" type:"list"`
-	NextToken *string   `type:"string"`
+	// The list of ARNs that identify the HSMs.
+	HSMList []*string `locationName:"HsmList" type:"list"`
+
+	// If not null, more results are available. Pass this value to ListHsms to retrieve
+	// the next set of items.
+	NextToken *string `type:"string"`
 
 	metadataListHSMsOutput `json:"-", xml:"-"`
 }
@@ -717,6 +900,8 @@ type metadataListHSMsOutput struct {
 }
 
 type ListHapgsInput struct {
+	// The NextToken value from a previous call to ListHapgs. Pass null if this
+	// is the first call.
 	NextToken *string `type:"string"`
 
 	metadataListHapgsInput `json:"-", xml:"-"`
@@ -727,8 +912,12 @@ type metadataListHapgsInput struct {
 }
 
 type ListHapgsOutput struct {
-	HAPGList  []*string `locationName:"HapgList" type:"list" required:"true"`
-	NextToken *string   `type:"string"`
+	// The list of high-availability partition groups.
+	HAPGList []*string `locationName:"HapgList" type:"list" required:"true"`
+
+	// If not null, more results are available. Pass this value to ListHapgs to
+	// retrieve the next set of items.
+	NextToken *string `type:"string"`
 
 	metadataListHapgsOutput `json:"-", xml:"-"`
 }
@@ -738,6 +927,8 @@ type metadataListHapgsOutput struct {
 }
 
 type ListLunaClientsInput struct {
+	// The NextToken value from a previous call to ListLunaClients. Pass null if
+	// this is the first call.
 	NextToken *string `type:"string"`
 
 	metadataListLunaClientsInput `json:"-", xml:"-"`
@@ -748,8 +939,12 @@ type metadataListLunaClientsInput struct {
 }
 
 type ListLunaClientsOutput struct {
+	// The list of clients.
 	ClientList []*string `type:"list" required:"true"`
-	NextToken  *string   `type:"string"`
+
+	// If not null, more results are available. Pass this to ListLunaClients to
+	// retrieve the next set of items.
+	NextToken *string `type:"string"`
 
 	metadataListLunaClientsOutput `json:"-", xml:"-"`
 }
@@ -759,8 +954,14 @@ type metadataListLunaClientsOutput struct {
 }
 
 type ModifyHAPGInput struct {
-	HAPGARN             *string   `locationName:"HapgArn" type:"string" required:"true"`
-	Label               *string   `type:"string"`
+	// The ARN of the high-availability partition group to modify.
+	HAPGARN *string `locationName:"HapgArn" type:"string" required:"true"`
+
+	// The new label for the high-availability partition group.
+	Label *string `type:"string"`
+
+	// The list of partition serial numbers to make members of the high-availability
+	// partition group.
 	PartitionSerialList []*string `type:"list"`
 
 	metadataModifyHAPGInput `json:"-", xml:"-"`
@@ -771,6 +972,7 @@ type metadataModifyHAPGInput struct {
 }
 
 type ModifyHAPGOutput struct {
+	// The ARN of the high-availability partition group.
 	HAPGARN *string `locationName:"HapgArn" type:"string"`
 
 	metadataModifyHAPGOutput `json:"-", xml:"-"`
@@ -780,13 +982,25 @@ type metadataModifyHAPGOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the inputs for the ModifyHsm action.
 type ModifyHSMInput struct {
-	ENIIP      *string `locationName:"EniIp" type:"string"`
+	// The new IP address for the elastic network interface attached to the HSM.
+	ENIIP *string `locationName:"EniIp" type:"string"`
+
+	// The new external ID.
 	ExternalID *string `locationName:"ExternalId" type:"string"`
-	HSMARN     *string `locationName:"HsmArn" type:"string" required:"true"`
+
+	// The ARN of the HSM to modify.
+	HSMARN *string `locationName:"HsmArn" type:"string" required:"true"`
+
+	// The new IAM role ARN.
 	IAMRoleARN *string `locationName:"IamRoleArn" type:"string"`
-	SubnetID   *string `locationName:"SubnetId" type:"string"`
-	SyslogIP   *string `locationName:"SyslogIp" type:"string"`
+
+	// The new identifier of the subnet that the HSM is in.
+	SubnetID *string `locationName:"SubnetId" type:"string"`
+
+	// The new IP address for the syslog monitoring server.
+	SyslogIP *string `locationName:"SyslogIp" type:"string"`
 
 	metadataModifyHSMInput `json:"-", xml:"-"`
 }
@@ -795,7 +1009,9 @@ type metadataModifyHSMInput struct {
 	SDKShapeTraits bool `locationName:"ModifyHsmRequest" type:"structure"`
 }
 
+// Contains the output of the ModifyHsm action.
 type ModifyHSMOutput struct {
+	// The ARN of the HSM.
 	HSMARN *string `locationName:"HsmArn" type:"string"`
 
 	metadataModifyHSMOutput `json:"-", xml:"-"`
@@ -806,8 +1022,11 @@ type metadataModifyHSMOutput struct {
 }
 
 type ModifyLunaClientInput struct {
+	// The new certificate for the client.
 	Certificate *string `type:"string" required:"true"`
-	ClientARN   *string `locationName:"ClientArn" type:"string" required:"true"`
+
+	// The ARN of the client.
+	ClientARN *string `locationName:"ClientArn" type:"string" required:"true"`
 
 	metadataModifyLunaClientInput `json:"-", xml:"-"`
 }
@@ -817,6 +1036,7 @@ type metadataModifyLunaClientInput struct {
 }
 
 type ModifyLunaClientOutput struct {
+	// The ARN of the client.
 	ClientARN *string `locationName:"ClientArn" type:"string"`
 
 	metadataModifyLunaClientOutput `json:"-", xml:"-"`

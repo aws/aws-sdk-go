@@ -22,6 +22,13 @@ func (c *CloudWatchLogs) CreateLogGroupRequest(input *CreateLogGroupInput) (req 
 	return
 }
 
+// Creates a new log group with the specified name. The name of the log group
+// must be unique within a region for an AWS account. You can create up to 500
+// log groups per account.
+//
+//  You must use the following guidelines when naming a log group:  Log group
+// names can be between 1 and 512 characters long. Allowed characters are a-z,
+// A-Z, 0-9, '_' (underscore), '-' (hyphen), '/' (forward slash), and '.' (period).
 func (c *CloudWatchLogs) CreateLogGroup(input *CreateLogGroupInput) (output *CreateLogGroupOutput, err error) {
 	req, out := c.CreateLogGroupRequest(input)
 	output = out
@@ -47,6 +54,13 @@ func (c *CloudWatchLogs) CreateLogStreamRequest(input *CreateLogStreamInput) (re
 	return
 }
 
+// Creates a new log stream in the specified log group. The name of the log
+// stream must be unique within the log group. There is no limit on the number
+// of log streams that can exist in a log group.
+//
+//  You must use the following guidelines when naming a log stream:  Log stream
+// names can be between 1 and 512 characters long. The ':' colon character is
+// not allowed.
 func (c *CloudWatchLogs) CreateLogStream(input *CreateLogStreamInput) (output *CreateLogStreamOutput, err error) {
 	req, out := c.CreateLogStreamRequest(input)
 	output = out
@@ -72,6 +86,8 @@ func (c *CloudWatchLogs) DeleteLogGroupRequest(input *DeleteLogGroupInput) (req 
 	return
 }
 
+// Deletes the log group with the specified name and permanently deletes all
+// the archived log events associated with it.
 func (c *CloudWatchLogs) DeleteLogGroup(input *DeleteLogGroupInput) (output *DeleteLogGroupOutput, err error) {
 	req, out := c.DeleteLogGroupRequest(input)
 	output = out
@@ -97,6 +113,8 @@ func (c *CloudWatchLogs) DeleteLogStreamRequest(input *DeleteLogStreamInput) (re
 	return
 }
 
+// Deletes a log stream and permanently deletes all the archived log events
+// associated with it.
 func (c *CloudWatchLogs) DeleteLogStream(input *DeleteLogStreamInput) (output *DeleteLogStreamOutput, err error) {
 	req, out := c.DeleteLogStreamRequest(input)
 	output = out
@@ -122,6 +140,7 @@ func (c *CloudWatchLogs) DeleteMetricFilterRequest(input *DeleteMetricFilterInpu
 	return
 }
 
+// Deletes a metric filter associated with the specified log group.
 func (c *CloudWatchLogs) DeleteMetricFilter(input *DeleteMetricFilterInput) (output *DeleteMetricFilterOutput, err error) {
 	req, out := c.DeleteMetricFilterRequest(input)
 	output = out
@@ -147,6 +166,8 @@ func (c *CloudWatchLogs) DeleteRetentionPolicyRequest(input *DeleteRetentionPoli
 	return
 }
 
+// Deletes the retention policy of the specified log group. Log events would
+// not expire if they belong to log groups without a retention policy.
 func (c *CloudWatchLogs) DeleteRetentionPolicy(input *DeleteRetentionPolicyInput) (output *DeleteRetentionPolicyOutput, err error) {
 	req, out := c.DeleteRetentionPolicyRequest(input)
 	output = out
@@ -172,6 +193,14 @@ func (c *CloudWatchLogs) DescribeLogGroupsRequest(input *DescribeLogGroupsInput)
 	return
 }
 
+// Returns all the log groups that are associated with the AWS account making
+// the request. The list returned in the response is ASCII-sorted by log group
+// name.
+//
+//  By default, this operation returns up to 50 log groups. If there are more
+// log groups to list, the response would contain a nextToken value in the response
+// body. You can also limit the number of log groups returned in the response
+// by specifying the limit parameter in the request.
 func (c *CloudWatchLogs) DescribeLogGroups(input *DescribeLogGroupsInput) (output *DescribeLogGroupsOutput, err error) {
 	req, out := c.DescribeLogGroupsRequest(input)
 	output = out
@@ -197,6 +226,13 @@ func (c *CloudWatchLogs) DescribeLogStreamsRequest(input *DescribeLogStreamsInpu
 	return
 }
 
+// Returns all the log streams that are associated with the specified log group.
+// The list returned in the response is ASCII-sorted by log stream name.
+//
+//  By default, this operation returns up to 50 log streams. If there are more
+// log streams to list, the response would contain a nextToken value in the
+// response body. You can also limit the number of log streams returned in the
+// response by specifying the limit parameter in the request.
 func (c *CloudWatchLogs) DescribeLogStreams(input *DescribeLogStreamsInput) (output *DescribeLogStreamsOutput, err error) {
 	req, out := c.DescribeLogStreamsRequest(input)
 	output = out
@@ -222,6 +258,13 @@ func (c *CloudWatchLogs) DescribeMetricFiltersRequest(input *DescribeMetricFilte
 	return
 }
 
+// Returns all the metrics filters associated with the specified log group.
+// The list returned in the response is ASCII-sorted by filter name.
+//
+//  By default, this operation returns up to 50 metric filters. If there are
+// more metric filters to list, the response would contain a nextToken value
+// in the response body. You can also limit the number of metric filters returned
+// in the response by specifying the limit parameter in the request.
 func (c *CloudWatchLogs) DescribeMetricFilters(input *DescribeMetricFiltersInput) (output *DescribeMetricFiltersOutput, err error) {
 	req, out := c.DescribeMetricFiltersRequest(input)
 	output = out
@@ -247,6 +290,16 @@ func (c *CloudWatchLogs) GetLogEventsRequest(input *GetLogEventsInput) (req *aws
 	return
 }
 
+// Retrieves log events from the specified log stream. You can provide an optional
+// time range to filter the results on the event timestamp.
+//
+//  By default, this operation returns as much log events as can fit in a response
+// size of 1MB, up to 10,000 log events. The response will always include a
+// nextForwardToken and a nextBackwardToken in the response body. You can use
+// any of these tokens in subsequent GetLogEvents requests to paginate through
+// events in either forward or backward direction. You can also limit the number
+// of log events returned in the response by specifying the limit parameter
+// in the request.
 func (c *CloudWatchLogs) GetLogEvents(input *GetLogEventsInput) (output *GetLogEventsOutput, err error) {
 	req, out := c.GetLogEventsRequest(input)
 	output = out
@@ -272,6 +325,19 @@ func (c *CloudWatchLogs) PutLogEventsRequest(input *PutLogEventsInput) (req *aws
 	return
 }
 
+// Uploads a batch of log events to the specified log stream.
+//
+//  Every PutLogEvents request must include the sequenceToken obtained from
+// the response of the previous request. An upload in a newly created log stream
+// does not require a sequenceToken.
+//
+//  The batch of events must satisfy the following constraints:  The maximum
+// batch size is 32,768 bytes, and this size is calculated as the sum of all
+// event messages in UTF-8, plus 26 bytes for each log event. None of the log
+// events in the batch can be more than 2 hours in the future. None of the log
+// events in the batch can be older than 14 days or the retention period of
+// the log group. The log events in the batch must be in chronological ordered
+// by their timestamp. The maximum number of log events in a batch is 1,000.
 func (c *CloudWatchLogs) PutLogEvents(input *PutLogEventsInput) (output *PutLogEventsOutput, err error) {
 	req, out := c.PutLogEventsRequest(input)
 	output = out
@@ -297,6 +363,9 @@ func (c *CloudWatchLogs) PutMetricFilterRequest(input *PutMetricFilterInput) (re
 	return
 }
 
+// Creates or updates a metric filter and associates it with the specified log
+// group. Metric filters allow you to configure rules to extract metric data
+// from log events ingested through PutLogEvents requests.
 func (c *CloudWatchLogs) PutMetricFilter(input *PutMetricFilterInput) (output *PutMetricFilterOutput, err error) {
 	req, out := c.PutMetricFilterRequest(input)
 	output = out
@@ -322,6 +391,9 @@ func (c *CloudWatchLogs) PutRetentionPolicyRequest(input *PutRetentionPolicyInpu
 	return
 }
 
+// Sets the retention of the specified log group. A retention policy allows
+// you to configure the number of days you want to retain log events in the
+// specified log group.
 func (c *CloudWatchLogs) PutRetentionPolicy(input *PutRetentionPolicyInput) (output *PutRetentionPolicyOutput, err error) {
 	req, out := c.PutRetentionPolicyRequest(input)
 	output = out
@@ -347,6 +419,9 @@ func (c *CloudWatchLogs) TestMetricFilterRequest(input *TestMetricFilterInput) (
 	return
 }
 
+// Tests the filter pattern of a metric filter against a sample of log event
+// messages. You can use this operation to validate the correctness of a metric
+// filter pattern.
 func (c *CloudWatchLogs) TestMetricFilter(input *TestMetricFilterInput) (output *TestMetricFilterOutput, err error) {
 	req, out := c.TestMetricFilterRequest(input)
 	output = out
@@ -375,7 +450,8 @@ type metadataCreateLogGroupOutput struct {
 }
 
 type CreateLogStreamInput struct {
-	LogGroupName  *string `locationName:"logGroupName" type:"string" required:"true"`
+	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+
 	LogStreamName *string `locationName:"logStreamName" type:"string" required:"true"`
 
 	metadataCreateLogStreamInput `json:"-", xml:"-"`
@@ -412,7 +488,8 @@ type metadataDeleteLogGroupOutput struct {
 }
 
 type DeleteLogStreamInput struct {
-	LogGroupName  *string `locationName:"logGroupName" type:"string" required:"true"`
+	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+
 	LogStreamName *string `locationName:"logStreamName" type:"string" required:"true"`
 
 	metadataDeleteLogStreamInput `json:"-", xml:"-"`
@@ -431,7 +508,9 @@ type metadataDeleteLogStreamOutput struct {
 }
 
 type DeleteMetricFilterInput struct {
-	FilterName   *string `locationName:"filterName" type:"string" required:"true"`
+	// The name of the metric filter.
+	FilterName *string `locationName:"filterName" type:"string" required:"true"`
+
 	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
 
 	metadataDeleteMetricFilterInput `json:"-", xml:"-"`
@@ -468,9 +547,16 @@ type metadataDeleteRetentionPolicyOutput struct {
 }
 
 type DescribeLogGroupsInput struct {
-	Limit              *int64  `locationName:"limit" type:"integer"`
+	// The maximum number of items returned in the response. If you don't specify
+	// a value, the request would return up to 50 items.
+	Limit *int64 `locationName:"limit" type:"integer"`
+
 	LogGroupNamePrefix *string `locationName:"logGroupNamePrefix" type:"string"`
-	NextToken          *string `locationName:"nextToken" type:"string"`
+
+	// A string token used for pagination that points to the next page of results.
+	// It must be a value obtained from the response of the previous DescribeLogGroups
+	// request.
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataDescribeLogGroupsInput `json:"-", xml:"-"`
 }
@@ -480,8 +566,13 @@ type metadataDescribeLogGroupsInput struct {
 }
 
 type DescribeLogGroupsOutput struct {
+	// A list of log groups.
 	LogGroups []*LogGroup `locationName:"logGroups" type:"list"`
-	NextToken *string     `locationName:"nextToken" type:"string"`
+
+	// A string token used for pagination that points to the next page of results.
+	// It must be a value obtained from the response of the previous request. The
+	// token expires after 24 hours.
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataDescribeLogGroupsOutput `json:"-", xml:"-"`
 }
@@ -491,10 +582,18 @@ type metadataDescribeLogGroupsOutput struct {
 }
 
 type DescribeLogStreamsInput struct {
-	Limit               *int64  `locationName:"limit" type:"integer"`
-	LogGroupName        *string `locationName:"logGroupName" type:"string" required:"true"`
+	// The maximum number of items returned in the response. If you don't specify
+	// a value, the request would return up to 50 items.
+	Limit *int64 `locationName:"limit" type:"integer"`
+
+	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+
 	LogStreamNamePrefix *string `locationName:"logStreamNamePrefix" type:"string"`
-	NextToken           *string `locationName:"nextToken" type:"string"`
+
+	// A string token used for pagination that points to the next page of results.
+	// It must be a value obtained from the response of the previous DescribeLogStreams
+	// request.
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataDescribeLogStreamsInput `json:"-", xml:"-"`
 }
@@ -504,8 +603,13 @@ type metadataDescribeLogStreamsInput struct {
 }
 
 type DescribeLogStreamsOutput struct {
+	// A list of log streams.
 	LogStreams []*LogStream `locationName:"logStreams" type:"list"`
-	NextToken  *string      `locationName:"nextToken" type:"string"`
+
+	// A string token used for pagination that points to the next page of results.
+	// It must be a value obtained from the response of the previous request. The
+	// token expires after 24 hours.
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataDescribeLogStreamsOutput `json:"-", xml:"-"`
 }
@@ -515,10 +619,19 @@ type metadataDescribeLogStreamsOutput struct {
 }
 
 type DescribeMetricFiltersInput struct {
+	// The name of the metric filter.
 	FilterNamePrefix *string `locationName:"filterNamePrefix" type:"string"`
-	Limit            *int64  `locationName:"limit" type:"integer"`
-	LogGroupName     *string `locationName:"logGroupName" type:"string" required:"true"`
-	NextToken        *string `locationName:"nextToken" type:"string"`
+
+	// The maximum number of items returned in the response. If you don't specify
+	// a value, the request would return up to 50 items.
+	Limit *int64 `locationName:"limit" type:"integer"`
+
+	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+
+	// A string token used for pagination that points to the next page of results.
+	// It must be a value obtained from the response of the previous DescribeMetricFilters
+	// request.
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataDescribeMetricFiltersInput `json:"-", xml:"-"`
 }
@@ -529,7 +642,11 @@ type metadataDescribeMetricFiltersInput struct {
 
 type DescribeMetricFiltersOutput struct {
 	MetricFilters []*MetricFilter `locationName:"metricFilters" type:"list"`
-	NextToken     *string         `locationName:"nextToken" type:"string"`
+
+	// A string token used for pagination that points to the next page of results.
+	// It must be a value obtained from the response of the previous request. The
+	// token expires after 24 hours.
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataDescribeMetricFiltersOutput `json:"-", xml:"-"`
 }
@@ -539,13 +656,31 @@ type metadataDescribeMetricFiltersOutput struct {
 }
 
 type GetLogEventsInput struct {
-	EndTime       *int64  `locationName:"endTime" type:"long"`
-	Limit         *int64  `locationName:"limit" type:"integer"`
-	LogGroupName  *string `locationName:"logGroupName" type:"string" required:"true"`
+	// A point in time expressed as the number milliseconds since Jan 1, 1970 00:00:00
+	// UTC.
+	EndTime *int64 `locationName:"endTime" type:"long"`
+
+	// The maximum number of log events returned in the response. If you don't specify
+	// a value, the request would return as much log events as can fit in a response
+	// size of 1MB, up to 10,000 log events.
+	Limit *int64 `locationName:"limit" type:"integer"`
+
+	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+
 	LogStreamName *string `locationName:"logStreamName" type:"string" required:"true"`
-	NextToken     *string `locationName:"nextToken" type:"string"`
-	StartFromHead *bool   `locationName:"startFromHead" type:"boolean"`
-	StartTime     *int64  `locationName:"startTime" type:"long"`
+
+	// A string token used for pagination that points to the next page of results.
+	// It must be a value obtained from the nextForwardToken or nextBackwardToken
+	// fields in the response of the previous GetLogEvents request.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// If set to true, the earliest log events would be returned first. The default
+	// is false (the latest log events are returned first).
+	StartFromHead *bool `locationName:"startFromHead" type:"boolean"`
+
+	// A point in time expressed as the number milliseconds since Jan 1, 1970 00:00:00
+	// UTC.
+	StartTime *int64 `locationName:"startTime" type:"long"`
 
 	metadataGetLogEventsInput `json:"-", xml:"-"`
 }
@@ -555,9 +690,17 @@ type metadataGetLogEventsInput struct {
 }
 
 type GetLogEventsOutput struct {
-	Events            []*OutputLogEvent `locationName:"events" type:"list"`
-	NextBackwardToken *string           `locationName:"nextBackwardToken" type:"string"`
-	NextForwardToken  *string           `locationName:"nextForwardToken" type:"string"`
+	Events []*OutputLogEvent `locationName:"events" type:"list"`
+
+	// A string token used for pagination that points to the next page of results.
+	// It must be a value obtained from the response of the previous request. The
+	// token expires after 24 hours.
+	NextBackwardToken *string `locationName:"nextBackwardToken" type:"string"`
+
+	// A string token used for pagination that points to the next page of results.
+	// It must be a value obtained from the response of the previous request. The
+	// token expires after 24 hours.
+	NextForwardToken *string `locationName:"nextForwardToken" type:"string"`
 
 	metadataGetLogEventsOutput `json:"-", xml:"-"`
 }
@@ -566,9 +709,16 @@ type metadataGetLogEventsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A log event is a record of some activity that was recorded by the application
+// or resource being monitored. The log event record that Amazon CloudWatch
+// Logs understands contains two properties: the timestamp of when the event
+// occurred, and the raw event message.
 type InputLogEvent struct {
-	Message   *string `locationName:"message" type:"string" required:"true"`
-	Timestamp *int64  `locationName:"timestamp" type:"long" required:"true"`
+	Message *string `locationName:"message" type:"string" required:"true"`
+
+	// A point in time expressed as the number milliseconds since Jan 1, 1970 00:00:00
+	// UTC.
+	Timestamp *int64 `locationName:"timestamp" type:"long" required:"true"`
 
 	metadataInputLogEvent `json:"-", xml:"-"`
 }
@@ -578,12 +728,23 @@ type metadataInputLogEvent struct {
 }
 
 type LogGroup struct {
-	ARN               *string `locationName:"arn" type:"string"`
-	CreationTime      *int64  `locationName:"creationTime" type:"long"`
-	LogGroupName      *string `locationName:"logGroupName" type:"string"`
-	MetricFilterCount *int64  `locationName:"metricFilterCount" type:"integer"`
-	RetentionInDays   *int64  `locationName:"retentionInDays" type:"integer"`
-	StoredBytes       *int64  `locationName:"storedBytes" type:"long"`
+	ARN *string `locationName:"arn" type:"string"`
+
+	// A point in time expressed as the number milliseconds since Jan 1, 1970 00:00:00
+	// UTC.
+	CreationTime *int64 `locationName:"creationTime" type:"long"`
+
+	LogGroupName *string `locationName:"logGroupName" type:"string"`
+
+	// The number of metric filters associated with the log group.
+	MetricFilterCount *int64 `locationName:"metricFilterCount" type:"integer"`
+
+	// Specifies the number of days you want to retain log events in the specified
+	// log group. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180,
+	// 365, 400, 545, 731, 1827, 3653.
+	RetentionInDays *int64 `locationName:"retentionInDays" type:"integer"`
+
+	StoredBytes *int64 `locationName:"storedBytes" type:"long"`
 
 	metadataLogGroup `json:"-", xml:"-"`
 }
@@ -592,14 +753,33 @@ type metadataLogGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A log stream is sequence of log events that share the same emitter.
 type LogStream struct {
-	ARN                 *string `locationName:"arn" type:"string"`
-	CreationTime        *int64  `locationName:"creationTime" type:"long"`
-	FirstEventTimestamp *int64  `locationName:"firstEventTimestamp" type:"long"`
-	LastEventTimestamp  *int64  `locationName:"lastEventTimestamp" type:"long"`
-	LastIngestionTime   *int64  `locationName:"lastIngestionTime" type:"long"`
-	LogStreamName       *string `locationName:"logStreamName" type:"string"`
-	StoredBytes         *int64  `locationName:"storedBytes" type:"long"`
+	ARN *string `locationName:"arn" type:"string"`
+
+	// A point in time expressed as the number milliseconds since Jan 1, 1970 00:00:00
+	// UTC.
+	CreationTime *int64 `locationName:"creationTime" type:"long"`
+
+	// A point in time expressed as the number milliseconds since Jan 1, 1970 00:00:00
+	// UTC.
+	FirstEventTimestamp *int64 `locationName:"firstEventTimestamp" type:"long"`
+
+	// A point in time expressed as the number milliseconds since Jan 1, 1970 00:00:00
+	// UTC.
+	LastEventTimestamp *int64 `locationName:"lastEventTimestamp" type:"long"`
+
+	// A point in time expressed as the number milliseconds since Jan 1, 1970 00:00:00
+	// UTC.
+	LastIngestionTime *int64 `locationName:"lastIngestionTime" type:"long"`
+
+	LogStreamName *string `locationName:"logStreamName" type:"string"`
+
+	StoredBytes *int64 `locationName:"storedBytes" type:"long"`
+
+	// A string token used for making PutLogEvents requests. A sequenceToken can
+	// only be used once, and PutLogEvents requests must include the sequenceToken
+	// obtained from the response of the previous request.
 	UploadSequenceToken *string `locationName:"uploadSequenceToken" type:"string"`
 
 	metadataLogStream `json:"-", xml:"-"`
@@ -609,10 +789,23 @@ type metadataLogStream struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Metric filters can be used to express how Amazon CloudWatch Logs would extract
+// metric observations from ingested log events and transform them to metric
+// data in a CloudWatch metric.
 type MetricFilter struct {
-	CreationTime          *int64                  `locationName:"creationTime" type:"long"`
-	FilterName            *string                 `locationName:"filterName" type:"string"`
-	FilterPattern         *string                 `locationName:"filterPattern" type:"string"`
+	// A point in time expressed as the number milliseconds since Jan 1, 1970 00:00:00
+	// UTC.
+	CreationTime *int64 `locationName:"creationTime" type:"long"`
+
+	// The name of the metric filter.
+	FilterName *string `locationName:"filterName" type:"string"`
+
+	// A symbolic description of how Amazon CloudWatch Logs should interpret the
+	// data in each log entry. For example, a log entry may contain timestamps,
+	// IP addresses, strings, and so on. You use the pattern to specify what to
+	// look for in the log stream.
+	FilterPattern *string `locationName:"filterPattern" type:"string"`
+
 	MetricTransformations []*MetricTransformation `locationName:"metricTransformations" type:"list"`
 
 	metadataMetricFilter `json:"-", xml:"-"`
@@ -623,8 +816,10 @@ type metadataMetricFilter struct {
 }
 
 type MetricFilterMatchRecord struct {
-	EventMessage    *string             `locationName:"eventMessage" type:"string"`
-	EventNumber     *int64              `locationName:"eventNumber" type:"long"`
+	EventMessage *string `locationName:"eventMessage" type:"string"`
+
+	EventNumber *int64 `locationName:"eventNumber" type:"long"`
+
 	ExtractedValues *map[string]*string `locationName:"extractedValues" type:"map"`
 
 	metadataMetricFilterMatchRecord `json:"-", xml:"-"`
@@ -635,9 +830,18 @@ type metadataMetricFilterMatchRecord struct {
 }
 
 type MetricTransformation struct {
-	MetricName      *string `locationName:"metricName" type:"string" required:"true"`
+	// The name of the CloudWatch metric to which the monitored log information
+	// should be published. For example, you may publish to a metric called ErrorCount.
+	MetricName *string `locationName:"metricName" type:"string" required:"true"`
+
+	// The destination namespace of the new CloudWatch metric.
 	MetricNamespace *string `locationName:"metricNamespace" type:"string" required:"true"`
-	MetricValue     *string `locationName:"metricValue" type:"string" required:"true"`
+
+	// What to publish to the metric. For example, if you're counting the occurrences
+	// of a particular term like "Error", the value will be "1" for each occurrence.
+	// If you're counting the bytes transferred the published value will be the
+	// value in the log event.
+	MetricValue *string `locationName:"metricValue" type:"string" required:"true"`
 
 	metadataMetricTransformation `json:"-", xml:"-"`
 }
@@ -647,9 +851,15 @@ type metadataMetricTransformation struct {
 }
 
 type OutputLogEvent struct {
-	IngestionTime *int64  `locationName:"ingestionTime" type:"long"`
-	Message       *string `locationName:"message" type:"string"`
-	Timestamp     *int64  `locationName:"timestamp" type:"long"`
+	// A point in time expressed as the number milliseconds since Jan 1, 1970 00:00:00
+	// UTC.
+	IngestionTime *int64 `locationName:"ingestionTime" type:"long"`
+
+	Message *string `locationName:"message" type:"string"`
+
+	// A point in time expressed as the number milliseconds since Jan 1, 1970 00:00:00
+	// UTC.
+	Timestamp *int64 `locationName:"timestamp" type:"long"`
 
 	metadataOutputLogEvent `json:"-", xml:"-"`
 }
@@ -659,10 +869,16 @@ type metadataOutputLogEvent struct {
 }
 
 type PutLogEventsInput struct {
-	LogEvents     []*InputLogEvent `locationName:"logEvents" type:"list" required:"true"`
-	LogGroupName  *string          `locationName:"logGroupName" type:"string" required:"true"`
-	LogStreamName *string          `locationName:"logStreamName" type:"string" required:"true"`
-	SequenceToken *string          `locationName:"sequenceToken" type:"string"`
+	// A list of events belonging to a log stream.
+	LogEvents []*InputLogEvent `locationName:"logEvents" type:"list" required:"true"`
+
+	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+
+	LogStreamName *string `locationName:"logStreamName" type:"string" required:"true"`
+
+	// A string token that must be obtained from the response of the previous PutLogEvents
+	// request.
+	SequenceToken *string `locationName:"sequenceToken" type:"string"`
 
 	metadataPutLogEventsInput `json:"-", xml:"-"`
 }
@@ -672,6 +888,9 @@ type metadataPutLogEventsInput struct {
 }
 
 type PutLogEventsOutput struct {
+	// A string token used for making PutLogEvents requests. A sequenceToken can
+	// only be used once, and PutLogEvents requests must include the sequenceToken
+	// obtained from the response of the previous request.
 	NextSequenceToken *string `locationName:"nextSequenceToken" type:"string"`
 
 	metadataPutLogEventsOutput `json:"-", xml:"-"`
@@ -682,9 +901,17 @@ type metadataPutLogEventsOutput struct {
 }
 
 type PutMetricFilterInput struct {
-	FilterName            *string                 `locationName:"filterName" type:"string" required:"true"`
-	FilterPattern         *string                 `locationName:"filterPattern" type:"string" required:"true"`
-	LogGroupName          *string                 `locationName:"logGroupName" type:"string" required:"true"`
+	// The name of the metric filter.
+	FilterName *string `locationName:"filterName" type:"string" required:"true"`
+
+	// A symbolic description of how Amazon CloudWatch Logs should interpret the
+	// data in each log entry. For example, a log entry may contain timestamps,
+	// IP addresses, strings, and so on. You use the pattern to specify what to
+	// look for in the log stream.
+	FilterPattern *string `locationName:"filterPattern" type:"string" required:"true"`
+
+	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+
 	MetricTransformations []*MetricTransformation `locationName:"metricTransformations" type:"list" required:"true"`
 
 	metadataPutMetricFilterInput `json:"-", xml:"-"`
@@ -703,8 +930,12 @@ type metadataPutMetricFilterOutput struct {
 }
 
 type PutRetentionPolicyInput struct {
-	LogGroupName    *string `locationName:"logGroupName" type:"string" required:"true"`
-	RetentionInDays *int64  `locationName:"retentionInDays" type:"integer" required:"true"`
+	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+
+	// Specifies the number of days you want to retain log events in the specified
+	// log group. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180,
+	// 365, 400, 545, 731, 1827, 3653.
+	RetentionInDays *int64 `locationName:"retentionInDays" type:"integer" required:"true"`
 
 	metadataPutRetentionPolicyInput `json:"-", xml:"-"`
 }
@@ -722,7 +953,12 @@ type metadataPutRetentionPolicyOutput struct {
 }
 
 type TestMetricFilterInput struct {
-	FilterPattern    *string   `locationName:"filterPattern" type:"string" required:"true"`
+	// A symbolic description of how Amazon CloudWatch Logs should interpret the
+	// data in each log entry. For example, a log entry may contain timestamps,
+	// IP addresses, strings, and so on. You use the pattern to specify what to
+	// look for in the log stream.
+	FilterPattern *string `locationName:"filterPattern" type:"string" required:"true"`
+
 	LogEventMessages []*string `locationName:"logEventMessages" type:"list" required:"true"`
 
 	metadataTestMetricFilterInput `json:"-", xml:"-"`
