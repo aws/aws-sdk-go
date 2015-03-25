@@ -215,7 +215,9 @@ func (s *Shape) GoCode() string {
 			code += m.Docstring()
 			if (m.Streaming || s.Streaming) && s.Payload == n {
 				rtype := "io.ReadSeeker"
-				if strings.HasSuffix(s.ShapeName, "Output") {
+				if len(s.refs) > 1 {
+					rtype = "aws.ReaderSeekCloser"
+				} else if strings.HasSuffix(s.ShapeName, "Output") {
 					rtype = "io.ReadCloser"
 				}
 

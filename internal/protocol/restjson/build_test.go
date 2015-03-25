@@ -244,8 +244,10 @@ type metadataInputService3TestShapeInputService3TestCaseOperation1Output struct 
 }
 
 type InputService3TestShapeInputShape struct {
-	Ascending  *string `location:"querystring" locationName:"Ascending" type:"string"`
-	PageToken  *string `location:"querystring" locationName:"PageToken" type:"string"`
+	Ascending *string `location:"querystring" locationName:"Ascending" type:"string"`
+
+	PageToken *string `location:"querystring" locationName:"PageToken" type:"string"`
+
 	PipelineId *string `location:"uri" locationName:"PipelineId" type:"string"`
 
 	metadataInputService3TestShapeInputShape `json:"-", xml:"-"`
@@ -321,10 +323,13 @@ type metadataInputService4TestShapeInputService4TestCaseOperation1Output struct 
 }
 
 type InputService4TestShapeInputShape struct {
-	Ascending  *string                           `location:"querystring" locationName:"Ascending" type:"string"`
-	Config     *InputService4TestShapeStructType `type:"structure"`
-	PageToken  *string                           `location:"querystring" locationName:"PageToken" type:"string"`
-	PipelineId *string                           `location:"uri" locationName:"PipelineId" type:"string"`
+	Ascending *string `location:"querystring" locationName:"Ascending" type:"string"`
+
+	Config *InputService4TestShapeStructType `type:"structure"`
+
+	PageToken *string `location:"querystring" locationName:"PageToken" type:"string"`
+
+	PipelineId *string `location:"uri" locationName:"PipelineId" type:"string"`
 
 	metadataInputService4TestShapeInputShape `json:"-", xml:"-"`
 }
@@ -335,6 +340,7 @@ type metadataInputService4TestShapeInputShape struct {
 
 type InputService4TestShapeStructType struct {
 	A *string `type:"string"`
+
 	B *string `type:"string"`
 
 	metadataInputService4TestShapeStructType `json:"-", xml:"-"`
@@ -410,11 +416,15 @@ type metadataInputService5TestShapeInputService5TestCaseOperation1Output struct 
 }
 
 type InputService5TestShapeInputShape struct {
-	Ascending  *string                           `location:"querystring" locationName:"Ascending" type:"string"`
-	Checksum   *string                           `location:"header" locationName:"x-amz-checksum" type:"string"`
-	Config     *InputService5TestShapeStructType `type:"structure"`
-	PageToken  *string                           `location:"querystring" locationName:"PageToken" type:"string"`
-	PipelineId *string                           `location:"uri" locationName:"PipelineId" type:"string"`
+	Ascending *string `location:"querystring" locationName:"Ascending" type:"string"`
+
+	Checksum *string `location:"header" locationName:"x-amz-checksum" type:"string"`
+
+	Config *InputService5TestShapeStructType `type:"structure"`
+
+	PageToken *string `location:"querystring" locationName:"PageToken" type:"string"`
+
+	PipelineId *string `location:"uri" locationName:"PipelineId" type:"string"`
 
 	metadataInputService5TestShapeInputShape `json:"-", xml:"-"`
 }
@@ -425,6 +435,7 @@ type metadataInputService5TestShapeInputShape struct {
 
 type InputService5TestShapeStructType struct {
 	A *string `type:"string"`
+
 	B *string `type:"string"`
 
 	metadataInputService5TestShapeStructType `json:"-", xml:"-"`
@@ -500,8 +511,10 @@ type metadataInputService6TestShapeInputService6TestCaseOperation1Output struct 
 }
 
 type InputService6TestShapeInputShape struct {
-	Body      []byte  `locationName:"body" type:"blob"`
-	Checksum  *string `location:"header" locationName:"x-amz-sha256-tree-hash" type:"string"`
+	Body []byte `locationName:"body" type:"blob"`
+
+	Checksum *string `location:"header" locationName:"x-amz-sha256-tree-hash" type:"string"`
+
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
 	metadataInputService6TestShapeInputShape `json:"-", xml:"-"`
@@ -702,7 +715,7 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation2(input *Input
 var opInputService8TestCaseOperation2 *aws.Operation
 
 // InputService8TestCaseOperation3Request generates a request for the InputService8TestCaseOperation3 operation.
-func (c *InputService8ProtocolTest) InputService8TestCaseOperation3Request(input *InputService8TestShapeInputShape) (req *aws.Request, output *InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation3Output) {
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation3Request(input *InputService8TestShapeInputShape) (req *aws.Request, output *InputService8TestShapeInputService8TestCaseOperation3Output) {
 	if opInputService8TestCaseOperation3 == nil {
 		opInputService8TestCaseOperation3 = &aws.Operation{
 			Name:       "OperationName",
@@ -712,12 +725,12 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation3Request(input
 	}
 
 	req = aws.NewRequest(c.Service, opInputService8TestCaseOperation3, input, output)
-	output = &InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation3Output{}
+	output = &InputService8TestShapeInputService8TestCaseOperation3Output{}
 	req.Data = output
 	return
 }
 
-func (c *InputService8ProtocolTest) InputService8TestCaseOperation3(input *InputService8TestShapeInputShape) (output *InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation3Output, err error) {
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation3(input *InputService8TestShapeInputShape) (output *InputService8TestShapeInputService8TestCaseOperation3Output, err error) {
 	req, out := c.InputService8TestCaseOperation3Request(input)
 	output = out
 	err = req.Send()
@@ -752,7 +765,7 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation4(input *Input
 var opInputService8TestCaseOperation4 *aws.Operation
 
 // InputService8TestCaseOperation5Request generates a request for the InputService8TestCaseOperation5 operation.
-func (c *InputService8ProtocolTest) InputService8TestCaseOperation5Request(input *InputService8TestShapeInputShape) (req *aws.Request, output *InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation5Output) {
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation5Request(input *InputService8TestShapeInputShape) (req *aws.Request, output *InputService8TestShapeInputService8TestCaseOperation5Output) {
 	if opInputService8TestCaseOperation5 == nil {
 		opInputService8TestCaseOperation5 = &aws.Operation{
 			Name:       "OperationName",
@@ -762,12 +775,12 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation5Request(input
 	}
 
 	req = aws.NewRequest(c.Service, opInputService8TestCaseOperation5, input, output)
-	output = &InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation5Output{}
+	output = &InputService8TestShapeInputService8TestCaseOperation5Output{}
 	req.Data = output
 	return
 }
 
-func (c *InputService8ProtocolTest) InputService8TestCaseOperation5(input *InputService8TestShapeInputShape) (output *InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation5Output, err error) {
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation5(input *InputService8TestShapeInputShape) (output *InputService8TestShapeInputService8TestCaseOperation5Output, err error) {
 	req, out := c.InputService8TestCaseOperation5Request(input)
 	output = out
 	err = req.Send()
@@ -777,7 +790,7 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation5(input *Input
 var opInputService8TestCaseOperation5 *aws.Operation
 
 // InputService8TestCaseOperation6Request generates a request for the InputService8TestCaseOperation6 operation.
-func (c *InputService8ProtocolTest) InputService8TestCaseOperation6Request(input *InputService8TestShapeInputShape) (req *aws.Request, output *InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation6Output) {
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation6Request(input *InputService8TestShapeInputShape) (req *aws.Request, output *InputService8TestShapeInputService8TestCaseOperation6Output) {
 	if opInputService8TestCaseOperation6 == nil {
 		opInputService8TestCaseOperation6 = &aws.Operation{
 			Name:       "OperationName",
@@ -787,12 +800,12 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation6Request(input
 	}
 
 	req = aws.NewRequest(c.Service, opInputService8TestCaseOperation6, input, output)
-	output = &InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation6Output{}
+	output = &InputService8TestShapeInputService8TestCaseOperation6Output{}
 	req.Data = output
 	return
 }
 
-func (c *InputService8ProtocolTest) InputService8TestCaseOperation6(input *InputService8TestShapeInputShape) (output *InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation6Output, err error) {
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation6(input *InputService8TestShapeInputShape) (output *InputService8TestShapeInputService8TestCaseOperation6Output, err error) {
 	req, out := c.InputService8TestCaseOperation6Request(input)
 	output = out
 	err = req.Send()
@@ -817,6 +830,14 @@ type metadataInputService8TestShapeInputService8TestCaseOperation2Output struct 
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type InputService8TestShapeInputService8TestCaseOperation3Output struct {
+	metadataInputService8TestShapeInputService8TestCaseOperation3Output `json:"-", xml:"-"`
+}
+
+type metadataInputService8TestShapeInputService8TestCaseOperation3Output struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type InputService8TestShapeInputService8TestCaseOperation4Output struct {
 	metadataInputService8TestShapeInputService8TestCaseOperation4Output `json:"-", xml:"-"`
 }
@@ -825,27 +846,19 @@ type metadataInputService8TestShapeInputService8TestCaseOperation4Output struct 
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation3Output struct {
-	metadataInputService8TestShapeInputService8TestShapeInputService8TestCaseOperation3Output `json:"-", xml:"-"`
+type InputService8TestShapeInputService8TestCaseOperation5Output struct {
+	metadataInputService8TestShapeInputService8TestCaseOperation5Output `json:"-", xml:"-"`
 }
 
-type metadataInputService8TestShapeInputService8TestShapeInputService8TestCaseOperation3Output struct {
+type metadataInputService8TestShapeInputService8TestCaseOperation5Output struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation5Output struct {
-	metadataInputService8TestShapeInputService8TestShapeInputService8TestCaseOperation5Output `json:"-", xml:"-"`
+type InputService8TestShapeInputService8TestCaseOperation6Output struct {
+	metadataInputService8TestShapeInputService8TestCaseOperation6Output `json:"-", xml:"-"`
 }
 
-type metadataInputService8TestShapeInputService8TestShapeInputService8TestCaseOperation5Output struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation6Output struct {
-	metadataInputService8TestShapeInputService8TestShapeInputService8TestCaseOperation6Output `json:"-", xml:"-"`
-}
-
-type metadataInputService8TestShapeInputService8TestShapeInputService8TestCaseOperation6Output struct {
+type metadataInputService8TestShapeInputService8TestCaseOperation6Output struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -860,10 +873,13 @@ type metadataInputService8TestShapeInputShape struct {
 }
 
 type InputService8TestShapeRecursiveStructType struct {
-	NoRecurse       *string                                                `type:"string"`
-	RecursiveList   []*InputService8TestShapeRecursiveStructType           `type:"list"`
-	RecursiveMap    *map[string]*InputService8TestShapeRecursiveStructType `type:"map"`
-	RecursiveStruct *InputService8TestShapeRecursiveStructType             `type:"structure"`
+	NoRecurse *string `type:"string"`
+
+	RecursiveList []*InputService8TestShapeRecursiveStructType `type:"list"`
+
+	RecursiveMap *map[string]*InputService8TestShapeRecursiveStructType `type:"map"`
+
+	RecursiveStruct *InputService8TestShapeRecursiveStructType `type:"structure"`
 
 	metadataInputService8TestShapeRecursiveStructType `json:"-", xml:"-"`
 }
@@ -971,7 +987,8 @@ type metadataInputService9TestShapeInputService9TestCaseOperation2Output struct 
 }
 
 type InputService9TestShapeInputShape struct {
-	TimeArg         *time.Time `type:"timestamp" timestampFormat:"unix"`
+	TimeArg *time.Time `type:"timestamp" timestampFormat:"unix"`
+
 	TimeArgInHeader *time.Time `location:"header" locationName:"x-amz-timearg" type:"timestamp" timestampFormat:"rfc822"`
 
 	metadataInputService9TestShapeInputShape `json:"-", xml:"-"`

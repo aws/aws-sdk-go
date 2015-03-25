@@ -123,17 +123,27 @@ type metadataOutputService1TestShapeOutputService1TestCaseOperation2Input struct
 }
 
 type OutputService1TestShapeOutputShape struct {
-	Char              *string    `type:"character"`
-	Double            *float64   `type:"double"`
-	FalseBool         *bool      `type:"boolean"`
-	Float             *float64   `type:"float"`
-	ImaHeader         *string    `location:"header" type:"string"`
-	ImaHeaderLocation *string    `location:"header" locationName:"X-Foo" type:"string"`
-	Long              *int64     `type:"long"`
-	Num               *int64     `locationName:"FooNum" type:"integer"`
-	Str               *string    `type:"string"`
-	Timestamp         *time.Time `type:"timestamp" timestampFormat:"iso8601"`
-	TrueBool          *bool      `type:"boolean"`
+	Char *string `type:"character"`
+
+	Double *float64 `type:"double"`
+
+	FalseBool *bool `type:"boolean"`
+
+	Float *float64 `type:"float"`
+
+	ImaHeader *string `location:"header" type:"string"`
+
+	ImaHeaderLocation *string `location:"header" locationName:"X-Foo" type:"string"`
+
+	Long *int64 `type:"long"`
+
+	Num *int64 `locationName:"FooNum" type:"integer"`
+
+	Str *string `type:"string"`
+
+	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	TrueBool *bool `type:"boolean"`
 
 	metadataOutputService1TestShapeOutputShape `json:"-", xml:"-"`
 }
@@ -727,8 +737,9 @@ type metadataOutputService9TestShapeOutputService9TestCaseOperation1Input struct
 }
 
 type OutputService9TestShapeOutputShape struct {
-	Data   *OutputService9TestShapeSingleStructure `type:"structure"`
-	Header *string                                 `location:"header" locationName:"X-Foo" type:"string"`
+	Data *OutputService9TestShapeSingleStructure `type:"structure"`
+
+	Header *string `location:"header" locationName:"X-Foo" type:"string"`
 
 	metadataOutputService9TestShapeOutputShape `json:"-", xml:"-"`
 }
@@ -853,7 +864,7 @@ func NewOutputService11ProtocolTest(config *OutputService11ProtocolTestConfig) *
 }
 
 // OutputService11TestCaseOperation1Request generates a request for the OutputService11TestCaseOperation1 operation.
-func (c *OutputService11ProtocolTest) OutputService11TestCaseOperation1Request(input *OutputService11TestShapeOutputService11TestShapeOutputService11TestCaseOperation1Input) (req *aws.Request, output *OutputService11TestShapeOutputShape) {
+func (c *OutputService11ProtocolTest) OutputService11TestCaseOperation1Request(input *OutputService11TestShapeOutputService11TestCaseOperation1Input) (req *aws.Request, output *OutputService11TestShapeOutputShape) {
 	if opOutputService11TestCaseOperation1 == nil {
 		opOutputService11TestCaseOperation1 = &aws.Operation{
 			Name: "OperationName",
@@ -866,7 +877,7 @@ func (c *OutputService11ProtocolTest) OutputService11TestCaseOperation1Request(i
 	return
 }
 
-func (c *OutputService11ProtocolTest) OutputService11TestCaseOperation1(input *OutputService11TestShapeOutputService11TestShapeOutputService11TestCaseOperation1Input) (output *OutputService11TestShapeOutputShape, err error) {
+func (c *OutputService11ProtocolTest) OutputService11TestCaseOperation1(input *OutputService11TestShapeOutputService11TestCaseOperation1Input) (output *OutputService11TestShapeOutputShape, err error) {
 	req, out := c.OutputService11TestCaseOperation1Request(input)
 	output = out
 	err = req.Send()
@@ -875,24 +886,32 @@ func (c *OutputService11ProtocolTest) OutputService11TestCaseOperation1(input *O
 
 var opOutputService11TestCaseOperation1 *aws.Operation
 
-type OutputService11TestShapeOutputService11TestShapeOutputService11TestCaseOperation1Input struct {
-	metadataOutputService11TestShapeOutputService11TestShapeOutputService11TestCaseOperation1Input `json:"-", xml:"-"`
+type OutputService11TestShapeOutputService11TestCaseOperation1Input struct {
+	metadataOutputService11TestShapeOutputService11TestCaseOperation1Input `json:"-", xml:"-"`
 }
 
-type metadataOutputService11TestShapeOutputService11TestShapeOutputService11TestCaseOperation1Input struct {
+type metadataOutputService11TestShapeOutputService11TestCaseOperation1Input struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 type OutputService11TestShapeOutputShape struct {
-	Char      *string    `location:"header" locationName:"x-char" type:"character"`
-	Double    *float64   `location:"header" locationName:"x-double" type:"double"`
-	FalseBool *bool      `location:"header" locationName:"x-false-bool" type:"boolean"`
-	Float     *float64   `location:"header" locationName:"x-float" type:"float"`
-	Integer   *int64     `location:"header" locationName:"x-int" type:"integer"`
-	Long      *int64     `location:"header" locationName:"x-long" type:"long"`
-	Str       *string    `location:"header" locationName:"x-str" type:"string"`
+	Char *string `location:"header" locationName:"x-char" type:"character"`
+
+	Double *float64 `location:"header" locationName:"x-double" type:"double"`
+
+	FalseBool *bool `location:"header" locationName:"x-false-bool" type:"boolean"`
+
+	Float *float64 `location:"header" locationName:"x-float" type:"float"`
+
+	Integer *int64 `location:"header" locationName:"x-int" type:"integer"`
+
+	Long *int64 `location:"header" locationName:"x-long" type:"long"`
+
+	Str *string `location:"header" locationName:"x-str" type:"string"`
+
 	Timestamp *time.Time `location:"header" locationName:"x-timestamp" type:"timestamp" timestampFormat:"iso8601"`
-	TrueBool  *bool      `location:"header" locationName:"x-true-bool" type:"boolean"`
+
+	TrueBool *bool `location:"header" locationName:"x-true-bool" type:"boolean"`
 
 	metadataOutputService11TestShapeOutputShape `json:"-", xml:"-"`
 }

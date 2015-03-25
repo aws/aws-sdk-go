@@ -3,7 +3,6 @@ package rest
 import (
 	"encoding/base64"
 	"fmt"
-	"io"
 	"io/ioutil"
 	"net/http"
 	"reflect"
@@ -30,8 +29,6 @@ func unmarshalBody(r *aws.Request, v reflect.Value) {
 				payload := reflect.Indirect(v.FieldByName(payloadName))
 				if payload.IsValid() {
 					switch payload.Interface().(type) {
-					case io.ReadCloser:
-						payload.Set(reflect.ValueOf(r.HTTPResponse.Body))
 					case []byte:
 						b, err := ioutil.ReadAll(r.HTTPResponse.Body)
 						if err != nil {
@@ -47,7 +44,14 @@ func unmarshalBody(r *aws.Request, v reflect.Value) {
 							payload.Set(reflect.ValueOf(string(b)))
 						}
 					default:
-						r.Error = fmt.Errorf("unknown payload type %s", payload.Type())
+						switch payload.Type().String() {
+						case "io.ReadSeeker":
+							payload.Set(reflect.ValueOf(aws.ReadSeekCloser(r.HTTPResponse.Body)))
+						case "aws.ReadSeekCloser", "io.ReadCloser":
+							payload.Set(reflect.ValueOf(r.HTTPResponse.Body))
+						default:
+							r.Error = fmt.Errorf("unknown payload type %s", payload.Type())
+						}
 					}
 				}
 			}

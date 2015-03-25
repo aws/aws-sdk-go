@@ -92,17 +92,27 @@ type metadataOutputService1TestShapeOutputService1TestCaseOperation1Input struct
 }
 
 type OutputService1TestShapeOutputShape struct {
-	Char              *string  `type:"character"`
-	Double            *float64 `type:"double"`
-	FalseBool         *bool    `type:"boolean"`
-	Float             *float64 `type:"float"`
-	ImaHeader         *string  `location:"header" type:"string"`
-	ImaHeaderLocation *string  `location:"header" locationName:"X-Foo" type:"string"`
-	Long              *int64   `type:"long"`
-	Num               *int64   `type:"integer"`
-	Status            *int64   `location:"statusCode" type:"integer"`
-	Str               *string  `type:"string"`
-	TrueBool          *bool    `type:"boolean"`
+	Char *string `type:"character"`
+
+	Double *float64 `type:"double"`
+
+	FalseBool *bool `type:"boolean"`
+
+	Float *float64 `type:"float"`
+
+	ImaHeader *string `location:"header" type:"string"`
+
+	ImaHeaderLocation *string `location:"header" locationName:"X-Foo" type:"string"`
+
+	Long *int64 `type:"long"`
+
+	Num *int64 `type:"integer"`
+
+	Status *int64 `location:"statusCode" type:"integer"`
+
+	Str *string `type:"string"`
+
+	TrueBool *bool `type:"boolean"`
 
 	metadataOutputService1TestShapeOutputShape `json:"-", xml:"-"`
 }
@@ -185,7 +195,8 @@ type metadataOutputService2TestShapeOutputService2TestCaseOperation1Input struct
 }
 
 type OutputService2TestShapeOutputShape struct {
-	BlobMember   []byte                                `type:"blob"`
+	BlobMember []byte `type:"blob"`
+
 	StructMember *OutputService2TestShapeBlobContainer `type:"structure"`
 
 	metadataOutputService2TestShapeOutputShape `json:"-", xml:"-"`
@@ -260,7 +271,8 @@ type metadataOutputService3TestShapeOutputService3TestCaseOperation1Input struct
 
 type OutputService3TestShapeOutputShape struct {
 	StructMember *OutputService3TestShapeTimeContainer `type:"structure"`
-	TimeMember   *time.Time                            `type:"timestamp" timestampFormat:"unix"`
+
+	TimeMember *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	metadataOutputService3TestShapeOutputShape `json:"-", xml:"-"`
 }
@@ -718,7 +730,8 @@ type metadataOutputService9TestShapeOutputService9TestCaseOperation1Input struct
 }
 
 type OutputService9TestShapeOutputShape struct {
-	AllHeaders      *map[string]*string `location:"headers" type:"map"`
+	AllHeaders *map[string]*string `location:"headers" type:"map"`
+
 	PrefixedHeaders *map[string]*string `location:"headers" locationName:"X-" type:"map"`
 
 	metadataOutputService9TestShapeOutputShape `json:"-", xml:"-"`
@@ -802,8 +815,9 @@ type metadataOutputService10TestShapeOutputService10TestCaseOperation1Input stru
 }
 
 type OutputService10TestShapeOutputShape struct {
-	Data   *OutputService10TestShapeBodyStructure `type:"structure"`
-	Header *string                                `location:"header" locationName:"X-Foo" type:"string"`
+	Data *OutputService10TestShapeBodyStructure `type:"structure"`
+
+	Header *string `location:"header" locationName:"X-Foo" type:"string"`
 
 	metadataOutputService10TestShapeOutputShape `json:"-", xml:"-"`
 }

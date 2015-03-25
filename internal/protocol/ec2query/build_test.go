@@ -93,6 +93,7 @@ type metadataInputService1TestShapeInputService1TestCaseOperation1Output struct 
 
 type InputService1TestShapeInputShape struct {
 	Bar *string `type:"string"`
+
 	Foo *string `type:"string"`
 
 	metadataInputService1TestShapeInputShape `json:"-", xml:"-"`
@@ -166,8 +167,10 @@ type metadataInputService2TestShapeInputService2TestCaseOperation1Output struct 
 }
 
 type InputService2TestShapeInputShape struct {
-	Bar  *string `locationName:"barLocationName" type:"string"`
-	Foo  *string `type:"string"`
+	Bar *string `locationName:"barLocationName" type:"string"`
+
+	Foo *string `type:"string"`
+
 	Yuck *string `locationName:"yuckLocationName" queryName:"yuckQueryName" type:"string"`
 
 	metadataInputService2TestShapeInputShape `json:"-", xml:"-"`

@@ -94,14 +94,21 @@ type metadataOutputService1TestShapeOutputService1TestCaseOperation1Input struct
 }
 
 type OutputService1TestShapeOutputShape struct {
-	Char      *string  `type:"character"`
-	Double    *float64 `type:"double"`
-	FalseBool *bool    `type:"boolean"`
-	Float     *float64 `type:"float"`
-	Long      *int64   `type:"long"`
-	Num       *int64   `type:"integer"`
-	Str       *string  `type:"string"`
-	TrueBool  *bool    `type:"boolean"`
+	Char *string `type:"character"`
+
+	Double *float64 `type:"double"`
+
+	FalseBool *bool `type:"boolean"`
+
+	Float *float64 `type:"float"`
+
+	Long *int64 `type:"long"`
+
+	Num *int64 `type:"integer"`
+
+	Str *string `type:"string"`
+
+	TrueBool *bool `type:"boolean"`
 
 	metadataOutputService1TestShapeOutputShape `json:"-", xml:"-"`
 }
@@ -186,7 +193,8 @@ type metadataOutputService2TestShapeOutputService2TestCaseOperation1Input struct
 }
 
 type OutputService2TestShapeOutputShape struct {
-	BlobMember   []byte                                `type:"blob"`
+	BlobMember []byte `type:"blob"`
+
 	StructMember *OutputService2TestShapeBlobContainer `type:"structure"`
 
 	metadataOutputService2TestShapeOutputShape `json:"-", xml:"-"`
@@ -263,7 +271,8 @@ type metadataOutputService3TestShapeOutputService3TestCaseOperation1Input struct
 
 type OutputService3TestShapeOutputShape struct {
 	StructMember *OutputService3TestShapeTimeContainer `type:"structure"`
-	TimeMember   *time.Time                            `type:"timestamp" timestampFormat:"unix"`
+
+	TimeMember *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	metadataOutputService3TestShapeOutputShape `json:"-", xml:"-"`
 }

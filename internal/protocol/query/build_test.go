@@ -93,6 +93,7 @@ type metadataInputService1TestShapeInputService1TestCaseOperation1Output struct 
 
 type InputService1TestShapeInputShape struct {
 	Bar *string `type:"string"`
+
 	Foo *string `type:"string"`
 
 	metadataInputService1TestShapeInputShape `json:"-", xml:"-"`
@@ -322,8 +323,9 @@ type metadataInputService4TestShapeInputService4TestCaseOperation1Output struct 
 }
 
 type InputService4TestShapeInputShape struct {
-	ListArg   []*string `type:"list" flattened:"true"`
-	ScalarArg *string   `type:"string"`
+	ListArg []*string `type:"list" flattened:"true"`
+
+	ScalarArg *string `type:"string"`
 
 	metadataInputService4TestShapeInputShape `json:"-", xml:"-"`
 }
@@ -653,7 +655,7 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation3(input *Input
 var opInputService8TestCaseOperation3 *aws.Operation
 
 // InputService8TestCaseOperation4Request generates a request for the InputService8TestCaseOperation4 operation.
-func (c *InputService8ProtocolTest) InputService8TestCaseOperation4Request(input *InputService8TestShapeInputShape) (req *aws.Request, output *InputService8TestShapeInputService8TestCaseOperation4Output) {
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation4Request(input *InputService8TestShapeInputShape) (req *aws.Request, output *InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation4Output) {
 	if opInputService8TestCaseOperation4 == nil {
 		opInputService8TestCaseOperation4 = &aws.Operation{
 			Name: "OperationName",
@@ -661,12 +663,12 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation4Request(input
 	}
 
 	req = aws.NewRequest(c.Service, opInputService8TestCaseOperation4, input, output)
-	output = &InputService8TestShapeInputService8TestCaseOperation4Output{}
+	output = &InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation4Output{}
 	req.Data = output
 	return
 }
 
-func (c *InputService8ProtocolTest) InputService8TestCaseOperation4(input *InputService8TestShapeInputShape) (output *InputService8TestShapeInputService8TestCaseOperation4Output, err error) {
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation4(input *InputService8TestShapeInputShape) (output *InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation4Output, err error) {
 	req, out := c.InputService8TestCaseOperation4Request(input)
 	output = out
 	err = req.Send()
@@ -745,19 +747,19 @@ type metadataInputService8TestShapeInputService8TestCaseOperation3Output struct 
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type InputService8TestShapeInputService8TestCaseOperation4Output struct {
-	metadataInputService8TestShapeInputService8TestCaseOperation4Output `json:"-", xml:"-"`
-}
-
-type metadataInputService8TestShapeInputService8TestCaseOperation4Output struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type InputService8TestShapeInputService8TestCaseOperation6Output struct {
 	metadataInputService8TestShapeInputService8TestCaseOperation6Output `json:"-", xml:"-"`
 }
 
 type metadataInputService8TestShapeInputService8TestCaseOperation6Output struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation4Output struct {
+	metadataInputService8TestShapeInputService8TestShapeInputService8TestCaseOperation4Output `json:"-", xml:"-"`
+}
+
+type metadataInputService8TestShapeInputService8TestShapeInputService8TestCaseOperation4Output struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -780,10 +782,13 @@ type metadataInputService8TestShapeInputShape struct {
 }
 
 type InputService8TestShapeRecursiveStructType struct {
-	NoRecurse       *string                                                `type:"string"`
-	RecursiveList   []*InputService8TestShapeRecursiveStructType           `type:"list"`
-	RecursiveMap    *map[string]*InputService8TestShapeRecursiveStructType `type:"map"`
-	RecursiveStruct *InputService8TestShapeRecursiveStructType             `type:"structure"`
+	NoRecurse *string `type:"string"`
+
+	RecursiveList []*InputService8TestShapeRecursiveStructType `type:"list"`
+
+	RecursiveMap *map[string]*InputService8TestShapeRecursiveStructType `type:"map"`
+
+	RecursiveStruct *InputService8TestShapeRecursiveStructType `type:"structure"`
 
 	metadataInputService8TestShapeRecursiveStructType `json:"-", xml:"-"`
 }

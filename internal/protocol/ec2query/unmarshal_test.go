@@ -61,7 +61,7 @@ func NewOutputService1ProtocolTest(config *OutputService1ProtocolTestConfig) *Ou
 }
 
 // OutputService1TestCaseOperation1Request generates a request for the OutputService1TestCaseOperation1 operation.
-func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(input *OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input) (req *aws.Request, output *OutputService1TestShapeOutputService1TestShapeOutputShape) {
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (req *aws.Request, output *OutputService1TestShapeOutputShape) {
 	if opOutputService1TestCaseOperation1 == nil {
 		opOutputService1TestCaseOperation1 = &aws.Operation{
 			Name: "OperationName",
@@ -69,12 +69,12 @@ func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(inp
 	}
 
 	req = aws.NewRequest(c.Service, opOutputService1TestCaseOperation1, input, output)
-	output = &OutputService1TestShapeOutputService1TestShapeOutputShape{}
+	output = &OutputService1TestShapeOutputShape{}
 	req.Data = output
 	return
 }
 
-func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1(input *OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input) (output *OutputService1TestShapeOutputService1TestShapeOutputShape, err error) {
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (output *OutputService1TestShapeOutputShape, err error) {
 	req, out := c.OutputService1TestCaseOperation1Request(input)
 	output = out
 	err = req.Send()
@@ -83,28 +83,35 @@ func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1(input *Out
 
 var opOutputService1TestCaseOperation1 *aws.Operation
 
-type OutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input struct {
-	metadataOutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input `json:"-", xml:"-"`
+type OutputService1TestShapeOutputService1TestCaseOperation1Input struct {
+	metadataOutputService1TestShapeOutputService1TestCaseOperation1Input `json:"-", xml:"-"`
 }
 
-type metadataOutputService1TestShapeOutputService1TestShapeOutputService1TestCaseOperation1Input struct {
+type metadataOutputService1TestShapeOutputService1TestCaseOperation1Input struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type OutputService1TestShapeOutputService1TestShapeOutputShape struct {
-	Char      *string  `type:"character"`
-	Double    *float64 `type:"double"`
-	FalseBool *bool    `type:"boolean"`
-	Float     *float64 `type:"float"`
-	Long      *int64   `type:"long"`
-	Num       *int64   `locationName:"FooNum" type:"integer"`
-	Str       *string  `type:"string"`
-	TrueBool  *bool    `type:"boolean"`
+type OutputService1TestShapeOutputShape struct {
+	Char *string `type:"character"`
 
-	metadataOutputService1TestShapeOutputService1TestShapeOutputShape `json:"-", xml:"-"`
+	Double *float64 `type:"double"`
+
+	FalseBool *bool `type:"boolean"`
+
+	Float *float64 `type:"float"`
+
+	Long *int64 `type:"long"`
+
+	Num *int64 `locationName:"FooNum" type:"integer"`
+
+	Str *string `type:"string"`
+
+	TrueBool *bool `type:"boolean"`
+
+	metadataOutputService1TestShapeOutputShape `json:"-", xml:"-"`
 }
 
-type metadataOutputService1TestShapeOutputService1TestShapeOutputShape struct {
+type metadataOutputService1TestShapeOutputShape struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
