@@ -11,18 +11,14 @@ type ConfigService struct {
 	*aws.Service
 }
 
-type ConfigServiceConfig struct {
-	*aws.Config
-}
-
 // New returns a new ConfigService client.
-func New(config *ConfigServiceConfig) *ConfigService {
+func New(config *aws.Config) *ConfigService {
 	if config == nil {
-		config = &ConfigServiceConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "config",
 		APIVersion:   "2014-11-12",
 		JSONVersion:  "1.1",

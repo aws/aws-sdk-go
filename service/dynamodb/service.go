@@ -11,18 +11,14 @@ type DynamoDB struct {
 	*aws.Service
 }
 
-type DynamoDBConfig struct {
-	*aws.Config
-}
-
 // New returns a new DynamoDB client.
-func New(config *DynamoDBConfig) *DynamoDB {
+func New(config *aws.Config) *DynamoDB {
 	if config == nil {
-		config = &DynamoDBConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "dynamodb",
 		APIVersion:   "2012-08-10",
 		JSONVersion:  "1.0",

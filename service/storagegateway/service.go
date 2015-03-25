@@ -11,18 +11,14 @@ type StorageGateway struct {
 	*aws.Service
 }
 
-type StorageGatewayConfig struct {
-	*aws.Config
-}
-
 // New returns a new StorageGateway client.
-func New(config *StorageGatewayConfig) *StorageGateway {
+func New(config *aws.Config) *StorageGateway {
 	if config == nil {
-		config = &StorageGatewayConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "storagegateway",
 		APIVersion:   "2013-06-30",
 		JSONVersion:  "1.1",

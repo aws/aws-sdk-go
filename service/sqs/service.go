@@ -11,18 +11,14 @@ type SQS struct {
 	*aws.Service
 }
 
-type SQSConfig struct {
-	*aws.Config
-}
-
 // New returns a new SQS client.
-func New(config *SQSConfig) *SQS {
+func New(config *aws.Config) *SQS {
 	if config == nil {
-		config = &SQSConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "sqs",
 		APIVersion:  "2012-11-05",
 	}

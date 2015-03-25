@@ -33,18 +33,14 @@ type InputService1ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService1ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService1ProtocolTest client.
-func NewInputService1ProtocolTest(config *InputService1ProtocolTestConfig) *InputService1ProtocolTest {
+func NewInputService1ProtocolTest(config *aws.Config) *InputService1ProtocolTest {
 	if config == nil {
-		config = &InputService1ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice1protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -143,18 +139,14 @@ type InputService2ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService2ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService2ProtocolTest client.
-func NewInputService2ProtocolTest(config *InputService2ProtocolTestConfig) *InputService2ProtocolTest {
+func NewInputService2ProtocolTest(config *aws.Config) *InputService2ProtocolTest {
 	if config == nil {
-		config = &InputService2ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice2protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -224,18 +216,14 @@ type InputService3ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService3ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService3ProtocolTest client.
-func NewInputService3ProtocolTest(config *InputService3ProtocolTestConfig) *InputService3ProtocolTest {
+func NewInputService3ProtocolTest(config *aws.Config) *InputService3ProtocolTest {
 	if config == nil {
-		config = &InputService3ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice3protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -313,18 +301,14 @@ type InputService4ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService4ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService4ProtocolTest client.
-func NewInputService4ProtocolTest(config *InputService4ProtocolTestConfig) *InputService4ProtocolTest {
+func NewInputService4ProtocolTest(config *aws.Config) *InputService4ProtocolTest {
 	if config == nil {
-		config = &InputService4ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice4protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -402,18 +386,14 @@ type InputService5ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService5ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService5ProtocolTest client.
-func NewInputService5ProtocolTest(config *InputService5ProtocolTestConfig) *InputService5ProtocolTest {
+func NewInputService5ProtocolTest(config *aws.Config) *InputService5ProtocolTest {
 	if config == nil {
-		config = &InputService5ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice5protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -477,18 +457,14 @@ type InputService6ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService6ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService6ProtocolTest client.
-func NewInputService6ProtocolTest(config *InputService6ProtocolTestConfig) *InputService6ProtocolTest {
+func NewInputService6ProtocolTest(config *aws.Config) *InputService6ProtocolTest {
 	if config == nil {
-		config = &InputService6ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice6protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -552,18 +528,14 @@ type InputService7ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService7ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService7ProtocolTest client.
-func NewInputService7ProtocolTest(config *InputService7ProtocolTestConfig) *InputService7ProtocolTest {
+func NewInputService7ProtocolTest(config *aws.Config) *InputService7ProtocolTest {
 	if config == nil {
-		config = &InputService7ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice7protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -627,18 +599,14 @@ type InputService8ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService8ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService8ProtocolTest client.
-func NewInputService8ProtocolTest(config *InputService8ProtocolTestConfig) *InputService8ProtocolTest {
+func NewInputService8ProtocolTest(config *aws.Config) *InputService8ProtocolTest {
 	if config == nil {
-		config = &InputService8ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice8protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -702,18 +670,14 @@ type InputService9ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService9ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService9ProtocolTest client.
-func NewInputService9ProtocolTest(config *InputService9ProtocolTestConfig) *InputService9ProtocolTest {
+func NewInputService9ProtocolTest(config *aws.Config) *InputService9ProtocolTest {
 	if config == nil {
-		config = &InputService9ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice9protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -787,18 +751,14 @@ type InputService10ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService10ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService10ProtocolTest client.
-func NewInputService10ProtocolTest(config *InputService10ProtocolTestConfig) *InputService10ProtocolTest {
+func NewInputService10ProtocolTest(config *aws.Config) *InputService10ProtocolTest {
 	if config == nil {
-		config = &InputService10ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice10protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -874,18 +834,14 @@ type InputService11ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService11ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService11ProtocolTest client.
-func NewInputService11ProtocolTest(config *InputService11ProtocolTestConfig) *InputService11ProtocolTest {
+func NewInputService11ProtocolTest(config *aws.Config) *InputService11ProtocolTest {
 	if config == nil {
-		config = &InputService11ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice11protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -949,18 +905,14 @@ type InputService12ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService12ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService12ProtocolTest client.
-func NewInputService12ProtocolTest(config *InputService12ProtocolTestConfig) *InputService12ProtocolTest {
+func NewInputService12ProtocolTest(config *aws.Config) *InputService12ProtocolTest {
 	if config == nil {
-		config = &InputService12ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice12protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -1024,18 +976,14 @@ type InputService13ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService13ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService13ProtocolTest client.
-func NewInputService13ProtocolTest(config *InputService13ProtocolTestConfig) *InputService13ProtocolTest {
+func NewInputService13ProtocolTest(config *aws.Config) *InputService13ProtocolTest {
 	if config == nil {
-		config = &InputService13ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice13protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -1132,18 +1080,14 @@ type InputService14ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService14ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService14ProtocolTest client.
-func NewInputService14ProtocolTest(config *InputService14ProtocolTestConfig) *InputService14ProtocolTest {
+func NewInputService14ProtocolTest(config *aws.Config) *InputService14ProtocolTest {
 	if config == nil {
-		config = &InputService14ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice14protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -1250,18 +1194,14 @@ type InputService15ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService15ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService15ProtocolTest client.
-func NewInputService15ProtocolTest(config *InputService15ProtocolTestConfig) *InputService15ProtocolTest {
+func NewInputService15ProtocolTest(config *aws.Config) *InputService15ProtocolTest {
 	if config == nil {
-		config = &InputService15ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice15protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -1347,18 +1287,14 @@ type InputService16ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService16ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService16ProtocolTest client.
-func NewInputService16ProtocolTest(config *InputService16ProtocolTestConfig) *InputService16ProtocolTest {
+func NewInputService16ProtocolTest(config *aws.Config) *InputService16ProtocolTest {
 	if config == nil {
-		config = &InputService16ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice16protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -1424,18 +1360,14 @@ type InputService17ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService17ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService17ProtocolTest client.
-func NewInputService17ProtocolTest(config *InputService17ProtocolTestConfig) *InputService17ProtocolTest {
+func NewInputService17ProtocolTest(config *aws.Config) *InputService17ProtocolTest {
 	if config == nil {
-		config = &InputService17ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice17protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -1532,18 +1464,14 @@ type InputService18ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService18ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService18ProtocolTest client.
-func NewInputService18ProtocolTest(config *InputService18ProtocolTestConfig) *InputService18ProtocolTest {
+func NewInputService18ProtocolTest(config *aws.Config) *InputService18ProtocolTest {
 	if config == nil {
-		config = &InputService18ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice18protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -1560,7 +1488,7 @@ func NewInputService18ProtocolTest(config *InputService18ProtocolTestConfig) *In
 }
 
 // InputService18TestCaseOperation1Request generates a request for the InputService18TestCaseOperation1 operation.
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation1Request(input *InputService18TestShapeInputShape) (req *aws.Request, output *InputService18TestShapeInputService18TestCaseOperation1Output) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation1Request(input *InputService18TestShapeInputShape) (req *aws.Request, output *InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation1Output) {
 	if opInputService18TestCaseOperation1 == nil {
 		opInputService18TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
@@ -1570,12 +1498,12 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation1Request(inp
 	}
 
 	req = aws.NewRequest(c.Service, opInputService18TestCaseOperation1, input, output)
-	output = &InputService18TestShapeInputService18TestCaseOperation1Output{}
+	output = &InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation1Output{}
 	req.Data = output
 	return
 }
 
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation1(input *InputService18TestShapeInputShape) (output *InputService18TestShapeInputService18TestCaseOperation1Output, err error) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation1(input *InputService18TestShapeInputShape) (output *InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation1Output, err error) {
 	req, out := c.InputService18TestCaseOperation1Request(input)
 	output = out
 	err = req.Send()
@@ -1635,7 +1563,7 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation3(input *Inp
 var opInputService18TestCaseOperation3 *aws.Operation
 
 // InputService18TestCaseOperation4Request generates a request for the InputService18TestCaseOperation4 operation.
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation4Request(input *InputService18TestShapeInputShape) (req *aws.Request, output *InputService18TestShapeInputService18TestCaseOperation4Output) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation4Request(input *InputService18TestShapeInputShape) (req *aws.Request, output *InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation4Output) {
 	if opInputService18TestCaseOperation4 == nil {
 		opInputService18TestCaseOperation4 = &aws.Operation{
 			Name:       "OperationName",
@@ -1645,12 +1573,12 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation4Request(inp
 	}
 
 	req = aws.NewRequest(c.Service, opInputService18TestCaseOperation4, input, output)
-	output = &InputService18TestShapeInputService18TestCaseOperation4Output{}
+	output = &InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation4Output{}
 	req.Data = output
 	return
 }
 
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation4(input *InputService18TestShapeInputShape) (output *InputService18TestShapeInputService18TestCaseOperation4Output, err error) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation4(input *InputService18TestShapeInputShape) (output *InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation4Output, err error) {
 	req, out := c.InputService18TestCaseOperation4Request(input)
 	output = out
 	err = req.Send()
@@ -1660,7 +1588,7 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation4(input *Inp
 var opInputService18TestCaseOperation4 *aws.Operation
 
 // InputService18TestCaseOperation5Request generates a request for the InputService18TestCaseOperation5 operation.
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation5Request(input *InputService18TestShapeInputShape) (req *aws.Request, output *InputService18TestShapeInputService18TestCaseOperation5Output) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation5Request(input *InputService18TestShapeInputShape) (req *aws.Request, output *InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation5Output) {
 	if opInputService18TestCaseOperation5 == nil {
 		opInputService18TestCaseOperation5 = &aws.Operation{
 			Name:       "OperationName",
@@ -1670,12 +1598,12 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation5Request(inp
 	}
 
 	req = aws.NewRequest(c.Service, opInputService18TestCaseOperation5, input, output)
-	output = &InputService18TestShapeInputService18TestCaseOperation5Output{}
+	output = &InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation5Output{}
 	req.Data = output
 	return
 }
 
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation5(input *InputService18TestShapeInputShape) (output *InputService18TestShapeInputService18TestCaseOperation5Output, err error) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation5(input *InputService18TestShapeInputShape) (output *InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation5Output, err error) {
 	req, out := c.InputService18TestCaseOperation5Request(input)
 	output = out
 	err = req.Send()
@@ -1685,7 +1613,7 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation5(input *Inp
 var opInputService18TestCaseOperation5 *aws.Operation
 
 // InputService18TestCaseOperation6Request generates a request for the InputService18TestCaseOperation6 operation.
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation6Request(input *InputService18TestShapeInputShape) (req *aws.Request, output *InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation6Output) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation6Request(input *InputService18TestShapeInputShape) (req *aws.Request, output *InputService18TestShapeInputService18TestCaseOperation6Output) {
 	if opInputService18TestCaseOperation6 == nil {
 		opInputService18TestCaseOperation6 = &aws.Operation{
 			Name:       "OperationName",
@@ -1695,12 +1623,12 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation6Request(inp
 	}
 
 	req = aws.NewRequest(c.Service, opInputService18TestCaseOperation6, input, output)
-	output = &InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation6Output{}
+	output = &InputService18TestShapeInputService18TestCaseOperation6Output{}
 	req.Data = output
 	return
 }
 
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation6(input *InputService18TestShapeInputShape) (output *InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation6Output, err error) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation6(input *InputService18TestShapeInputShape) (output *InputService18TestShapeInputService18TestCaseOperation6Output, err error) {
 	req, out := c.InputService18TestCaseOperation6Request(input)
 	output = out
 	err = req.Send()
@@ -1708,14 +1636,6 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation6(input *Inp
 }
 
 var opInputService18TestCaseOperation6 *aws.Operation
-
-type InputService18TestShapeInputService18TestCaseOperation1Output struct {
-	metadataInputService18TestShapeInputService18TestCaseOperation1Output `json:"-", xml:"-"`
-}
-
-type metadataInputService18TestShapeInputService18TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure"`
-}
 
 type InputService18TestShapeInputService18TestCaseOperation2Output struct {
 	metadataInputService18TestShapeInputService18TestCaseOperation2Output `json:"-", xml:"-"`
@@ -1733,27 +1653,35 @@ type metadataInputService18TestShapeInputService18TestCaseOperation3Output struc
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type InputService18TestShapeInputService18TestCaseOperation4Output struct {
-	metadataInputService18TestShapeInputService18TestCaseOperation4Output `json:"-", xml:"-"`
+type InputService18TestShapeInputService18TestCaseOperation6Output struct {
+	metadataInputService18TestShapeInputService18TestCaseOperation6Output `json:"-", xml:"-"`
 }
 
-type metadataInputService18TestShapeInputService18TestCaseOperation4Output struct {
+type metadataInputService18TestShapeInputService18TestCaseOperation6Output struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type InputService18TestShapeInputService18TestCaseOperation5Output struct {
-	metadataInputService18TestShapeInputService18TestCaseOperation5Output `json:"-", xml:"-"`
+type InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation1Output struct {
+	metadataInputService18TestShapeInputService18TestShapeInputService18TestCaseOperation1Output `json:"-", xml:"-"`
 }
 
-type metadataInputService18TestShapeInputService18TestCaseOperation5Output struct {
+type metadataInputService18TestShapeInputService18TestShapeInputService18TestCaseOperation1Output struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation6Output struct {
-	metadataInputService18TestShapeInputService18TestShapeInputService18TestCaseOperation6Output `json:"-", xml:"-"`
+type InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation4Output struct {
+	metadataInputService18TestShapeInputService18TestShapeInputService18TestCaseOperation4Output `json:"-", xml:"-"`
 }
 
-type metadataInputService18TestShapeInputService18TestShapeInputService18TestCaseOperation6Output struct {
+type metadataInputService18TestShapeInputService18TestShapeInputService18TestCaseOperation4Output struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation5Output struct {
+	metadataInputService18TestShapeInputService18TestShapeInputService18TestCaseOperation5Output `json:"-", xml:"-"`
+}
+
+type metadataInputService18TestShapeInputService18TestShapeInputService18TestCaseOperation5Output struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1788,18 +1716,14 @@ type InputService19ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService19ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService19ProtocolTest client.
-func NewInputService19ProtocolTest(config *InputService19ProtocolTestConfig) *InputService19ProtocolTest {
+func NewInputService19ProtocolTest(config *aws.Config) *InputService19ProtocolTest {
 	if config == nil {
-		config = &InputService19ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice19protocoltest",
 		APIVersion:  "2014-01-01",
 	}

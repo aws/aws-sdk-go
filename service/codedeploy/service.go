@@ -11,18 +11,14 @@ type CodeDeploy struct {
 	*aws.Service
 }
 
-type CodeDeployConfig struct {
-	*aws.Config
-}
-
 // New returns a new CodeDeploy client.
-func New(config *CodeDeployConfig) *CodeDeploy {
+func New(config *aws.Config) *CodeDeploy {
 	if config == nil {
-		config = &CodeDeployConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "codedeploy",
 		APIVersion:   "2014-10-06",
 		JSONVersion:  "1.1",

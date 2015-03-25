@@ -11,18 +11,14 @@ type CloudTrail struct {
 	*aws.Service
 }
 
-type CloudTrailConfig struct {
-	*aws.Config
-}
-
 // New returns a new CloudTrail client.
-func New(config *CloudTrailConfig) *CloudTrail {
+func New(config *aws.Config) *CloudTrail {
 	if config == nil {
-		config = &CloudTrailConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "cloudtrail",
 		APIVersion:   "2013-11-01",
 		JSONVersion:  "1.1",

@@ -11,18 +11,14 @@ type ELB struct {
 	*aws.Service
 }
 
-type ELBConfig struct {
-	*aws.Config
-}
-
 // New returns a new ELB client.
-func New(config *ELBConfig) *ELB {
+func New(config *aws.Config) *ELB {
 	if config == nil {
-		config = &ELBConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "elasticloadbalancing",
 		APIVersion:  "2012-06-01",
 	}

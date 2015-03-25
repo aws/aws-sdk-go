@@ -11,18 +11,14 @@ type CognitoSync struct {
 	*aws.Service
 }
 
-type CognitoSyncConfig struct {
-	*aws.Config
-}
-
 // New returns a new CognitoSync client.
-func New(config *CognitoSyncConfig) *CognitoSync {
+func New(config *aws.Config) *CognitoSync {
 	if config == nil {
-		config = &CognitoSyncConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "cognito-sync",
 		APIVersion:  "2014-06-30",
 	}

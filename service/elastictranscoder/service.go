@@ -11,18 +11,14 @@ type ElasticTranscoder struct {
 	*aws.Service
 }
 
-type ElasticTranscoderConfig struct {
-	*aws.Config
-}
-
 // New returns a new ElasticTranscoder client.
-func New(config *ElasticTranscoderConfig) *ElasticTranscoder {
+func New(config *aws.Config) *ElasticTranscoder {
 	if config == nil {
-		config = &ElasticTranscoderConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "elastictranscoder",
 		APIVersion:  "2012-09-25",
 	}

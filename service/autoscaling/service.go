@@ -11,18 +11,14 @@ type AutoScaling struct {
 	*aws.Service
 }
 
-type AutoScalingConfig struct {
-	*aws.Config
-}
-
 // New returns a new AutoScaling client.
-func New(config *AutoScalingConfig) *AutoScaling {
+func New(config *aws.Config) *AutoScaling {
 	if config == nil {
-		config = &AutoScalingConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "autoscaling",
 		APIVersion:  "2011-01-01",
 	}

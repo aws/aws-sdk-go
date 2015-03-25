@@ -11,18 +11,14 @@ type EMR struct {
 	*aws.Service
 }
 
-type EMRConfig struct {
-	*aws.Config
-}
-
 // New returns a new EMR client.
-func New(config *EMRConfig) *EMR {
+func New(config *aws.Config) *EMR {
 	if config == nil {
-		config = &EMRConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "elasticmapreduce",
 		APIVersion:   "2009-03-31",
 		JSONVersion:  "1.1",

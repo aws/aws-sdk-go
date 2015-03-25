@@ -11,18 +11,14 @@ type Redshift struct {
 	*aws.Service
 }
 
-type RedshiftConfig struct {
-	*aws.Config
-}
-
 // New returns a new Redshift client.
-func New(config *RedshiftConfig) *Redshift {
+func New(config *aws.Config) *Redshift {
 	if config == nil {
-		config = &RedshiftConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "redshift",
 		APIVersion:  "2012-12-01",
 	}

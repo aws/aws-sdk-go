@@ -11,18 +11,14 @@ type DirectConnect struct {
 	*aws.Service
 }
 
-type DirectConnectConfig struct {
-	*aws.Config
-}
-
 // New returns a new DirectConnect client.
-func New(config *DirectConnectConfig) *DirectConnect {
+func New(config *aws.Config) *DirectConnect {
 	if config == nil {
-		config = &DirectConnectConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "directconnect",
 		APIVersion:   "2012-10-25",
 		JSONVersion:  "1.1",

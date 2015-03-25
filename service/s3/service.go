@@ -11,18 +11,14 @@ type S3 struct {
 	*aws.Service
 }
 
-type S3Config struct {
-	*aws.Config
-}
-
 // New returns a new S3 client.
-func New(config *S3Config) *S3 {
+func New(config *aws.Config) *S3 {
 	if config == nil {
-		config = &S3Config{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "s3",
 		APIVersion:  "2006-03-01",
 	}

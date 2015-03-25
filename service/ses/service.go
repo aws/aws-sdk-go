@@ -11,18 +11,14 @@ type SES struct {
 	*aws.Service
 }
 
-type SESConfig struct {
-	*aws.Config
-}
-
 // New returns a new SES client.
-func New(config *SESConfig) *SES {
+func New(config *aws.Config) *SES {
 	if config == nil {
-		config = &SESConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "email",
 		APIVersion:  "2010-12-01",
 	}

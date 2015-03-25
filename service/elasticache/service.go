@@ -11,18 +11,14 @@ type ElastiCache struct {
 	*aws.Service
 }
 
-type ElastiCacheConfig struct {
-	*aws.Config
-}
-
 // New returns a new ElastiCache client.
-func New(config *ElastiCacheConfig) *ElastiCache {
+func New(config *aws.Config) *ElastiCache {
 	if config == nil {
-		config = &ElastiCacheConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "elasticache",
 		APIVersion:  "2015-02-02",
 	}

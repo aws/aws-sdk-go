@@ -11,18 +11,14 @@ type RDS struct {
 	*aws.Service
 }
 
-type RDSConfig struct {
-	*aws.Config
-}
-
 // New returns a new RDS client.
-func New(config *RDSConfig) *RDS {
+func New(config *aws.Config) *RDS {
 	if config == nil {
-		config = &RDSConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "rds",
 		APIVersion:  "2014-10-31",
 	}

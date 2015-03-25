@@ -184,18 +184,14 @@ type {{ .StructName }} struct {
     *aws.Service
 }
 
-type {{ .StructName }}Config struct {
-    *aws.Config
-}
-
 // New returns a new {{ .StructName }} client.
-func New(config *{{ .StructName }}Config) *{{ .StructName }} {
+func New(config *aws.Config) *{{ .StructName }} {
   if config == nil {
-    config = &{{ .StructName }}Config{}
+    config = &aws.Config{}
   }
 
   service := &aws.Service{
-    Config:       aws.DefaultConfig.Merge(config.Config),
+    Config:       aws.DefaultConfig.Merge(config),
     ServiceName:  "{{ .Metadata.EndpointPrefix }}",
     APIVersion:   "{{ .Metadata.APIVersion }}",
 {{ if eq .Metadata.Protocol "json" }}JSONVersion:  "{{ .Metadata.JSONVersion }}",

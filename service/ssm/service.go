@@ -11,18 +11,14 @@ type SSM struct {
 	*aws.Service
 }
 
-type SSMConfig struct {
-	*aws.Config
-}
-
 // New returns a new SSM client.
-func New(config *SSMConfig) *SSM {
+func New(config *aws.Config) *SSM {
 	if config == nil {
-		config = &SSMConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "ssm",
 		APIVersion:   "2014-11-06",
 		JSONVersion:  "1.1",

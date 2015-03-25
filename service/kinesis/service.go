@@ -11,18 +11,14 @@ type Kinesis struct {
 	*aws.Service
 }
 
-type KinesisConfig struct {
-	*aws.Config
-}
-
 // New returns a new Kinesis client.
-func New(config *KinesisConfig) *Kinesis {
+func New(config *aws.Config) *Kinesis {
 	if config == nil {
-		config = &KinesisConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "kinesis",
 		APIVersion:   "2013-12-02",
 		JSONVersion:  "1.1",

@@ -11,18 +11,14 @@ type CloudSearch struct {
 	*aws.Service
 }
 
-type CloudSearchConfig struct {
-	*aws.Config
-}
-
 // New returns a new CloudSearch client.
-func New(config *CloudSearchConfig) *CloudSearch {
+func New(config *aws.Config) *CloudSearch {
 	if config == nil {
-		config = &CloudSearchConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "cloudsearch",
 		APIVersion:  "2013-01-01",
 	}

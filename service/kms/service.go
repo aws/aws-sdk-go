@@ -11,18 +11,14 @@ type KMS struct {
 	*aws.Service
 }
 
-type KMSConfig struct {
-	*aws.Config
-}
-
 // New returns a new KMS client.
-func New(config *KMSConfig) *KMS {
+func New(config *aws.Config) *KMS {
 	if config == nil {
-		config = &KMSConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "kms",
 		APIVersion:   "2014-11-01",
 		JSONVersion:  "1.1",

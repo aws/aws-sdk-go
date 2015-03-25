@@ -11,18 +11,14 @@ type ECS struct {
 	*aws.Service
 }
 
-type ECSConfig struct {
-	*aws.Config
-}
-
 // New returns a new ECS client.
-func New(config *ECSConfig) *ECS {
+func New(config *aws.Config) *ECS {
 	if config == nil {
-		config = &ECSConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "ecs",
 		APIVersion:   "2014-11-13",
 		JSONVersion:  "1.1",

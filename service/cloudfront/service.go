@@ -11,18 +11,14 @@ type CloudFront struct {
 	*aws.Service
 }
 
-type CloudFrontConfig struct {
-	*aws.Config
-}
-
 // New returns a new CloudFront client.
-func New(config *CloudFrontConfig) *CloudFront {
+func New(config *aws.Config) *CloudFront {
 	if config == nil {
-		config = &CloudFrontConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "cloudfront",
 		APIVersion:  "2014-11-06",
 	}

@@ -11,18 +11,14 @@ type DataPipeline struct {
 	*aws.Service
 }
 
-type DataPipelineConfig struct {
-	*aws.Config
-}
-
 // New returns a new DataPipeline client.
-func New(config *DataPipelineConfig) *DataPipeline {
+func New(config *aws.Config) *DataPipeline {
 	if config == nil {
-		config = &DataPipelineConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "datapipeline",
 		APIVersion:   "2012-10-29",
 		JSONVersion:  "1.1",

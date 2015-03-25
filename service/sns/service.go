@@ -11,18 +11,14 @@ type SNS struct {
 	*aws.Service
 }
 
-type SNSConfig struct {
-	*aws.Config
-}
-
 // New returns a new SNS client.
-func New(config *SNSConfig) *SNS {
+func New(config *aws.Config) *SNS {
 	if config == nil {
-		config = &SNSConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "sns",
 		APIVersion:  "2010-03-31",
 	}

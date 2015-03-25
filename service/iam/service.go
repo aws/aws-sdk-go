@@ -11,18 +11,14 @@ type IAM struct {
 	*aws.Service
 }
 
-type IAMConfig struct {
-	*aws.Config
-}
-
 // New returns a new IAM client.
-func New(config *IAMConfig) *IAM {
+func New(config *aws.Config) *IAM {
 	if config == nil {
-		config = &IAMConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "iam",
 		APIVersion:  "2010-05-08",
 	}

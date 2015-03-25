@@ -11,18 +11,14 @@ type Lambda struct {
 	*aws.Service
 }
 
-type LambdaConfig struct {
-	*aws.Config
-}
-
 // New returns a new Lambda client.
-func New(config *LambdaConfig) *Lambda {
+func New(config *aws.Config) *Lambda {
 	if config == nil {
-		config = &LambdaConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "lambda",
 		APIVersion:  "2014-11-11",
 	}

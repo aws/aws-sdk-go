@@ -11,18 +11,14 @@ type Route53 struct {
 	*aws.Service
 }
 
-type Route53Config struct {
-	*aws.Config
-}
-
 // New returns a new Route53 client.
-func New(config *Route53Config) *Route53 {
+func New(config *aws.Config) *Route53 {
 	if config == nil {
-		config = &Route53Config{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "route53",
 		APIVersion:  "2013-04-01",
 	}

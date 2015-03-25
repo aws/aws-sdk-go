@@ -11,18 +11,14 @@ type Route53Domains struct {
 	*aws.Service
 }
 
-type Route53DomainsConfig struct {
-	*aws.Config
-}
-
 // New returns a new Route53Domains client.
-func New(config *Route53DomainsConfig) *Route53Domains {
+func New(config *aws.Config) *Route53Domains {
 	if config == nil {
-		config = &Route53DomainsConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "route53domains",
 		APIVersion:   "2014-05-15",
 		JSONVersion:  "1.1",

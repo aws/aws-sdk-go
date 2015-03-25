@@ -11,18 +11,14 @@ type EC2 struct {
 	*aws.Service
 }
 
-type EC2Config struct {
-	*aws.Config
-}
-
 // New returns a new EC2 client.
-func New(config *EC2Config) *EC2 {
+func New(config *aws.Config) *EC2 {
 	if config == nil {
-		config = &EC2Config{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "ec2",
 		APIVersion:  "2014-10-01",
 	}

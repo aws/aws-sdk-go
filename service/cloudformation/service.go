@@ -11,18 +11,14 @@ type CloudFormation struct {
 	*aws.Service
 }
 
-type CloudFormationConfig struct {
-	*aws.Config
-}
-
 // New returns a new CloudFormation client.
-func New(config *CloudFormationConfig) *CloudFormation {
+func New(config *aws.Config) *CloudFormation {
 	if config == nil {
-		config = &CloudFormationConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "cloudformation",
 		APIVersion:  "2010-05-15",
 	}

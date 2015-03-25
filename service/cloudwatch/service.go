@@ -11,18 +11,14 @@ type CloudWatch struct {
 	*aws.Service
 }
 
-type CloudWatchConfig struct {
-	*aws.Config
-}
-
 // New returns a new CloudWatch client.
-func New(config *CloudWatchConfig) *CloudWatch {
+func New(config *aws.Config) *CloudWatch {
 	if config == nil {
-		config = &CloudWatchConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "monitoring",
 		APIVersion:  "2010-08-01",
 	}

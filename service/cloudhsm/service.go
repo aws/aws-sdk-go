@@ -11,18 +11,14 @@ type CloudHSM struct {
 	*aws.Service
 }
 
-type CloudHSMConfig struct {
-	*aws.Config
-}
-
 // New returns a new CloudHSM client.
-func New(config *CloudHSMConfig) *CloudHSM {
+func New(config *aws.Config) *CloudHSM {
 	if config == nil {
-		config = &CloudHSMConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "cloudhsm",
 		APIVersion:   "2014-05-30",
 		JSONVersion:  "1.1",

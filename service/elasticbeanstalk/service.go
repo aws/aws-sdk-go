@@ -11,18 +11,14 @@ type ElasticBeanstalk struct {
 	*aws.Service
 }
 
-type ElasticBeanstalkConfig struct {
-	*aws.Config
-}
-
 // New returns a new ElasticBeanstalk client.
-func New(config *ElasticBeanstalkConfig) *ElasticBeanstalk {
+func New(config *aws.Config) *ElasticBeanstalk {
 	if config == nil {
-		config = &ElasticBeanstalkConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "elasticbeanstalk",
 		APIVersion:  "2010-12-01",
 	}

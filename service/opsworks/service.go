@@ -11,18 +11,14 @@ type OpsWorks struct {
 	*aws.Service
 }
 
-type OpsWorksConfig struct {
-	*aws.Config
-}
-
 // New returns a new OpsWorks client.
-func New(config *OpsWorksConfig) *OpsWorks {
+func New(config *aws.Config) *OpsWorks {
 	if config == nil {
-		config = &OpsWorksConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "opsworks",
 		APIVersion:   "2013-02-18",
 		JSONVersion:  "1.1",

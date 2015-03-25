@@ -11,18 +11,14 @@ type SWF struct {
 	*aws.Service
 }
 
-type SWFConfig struct {
-	*aws.Config
-}
-
 // New returns a new SWF client.
-func New(config *SWFConfig) *SWF {
+func New(config *aws.Config) *SWF {
 	if config == nil {
-		config = &SWFConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "swf",
 		APIVersion:   "2012-01-25",
 		JSONVersion:  "1.0",

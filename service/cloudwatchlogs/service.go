@@ -11,18 +11,14 @@ type CloudWatchLogs struct {
 	*aws.Service
 }
 
-type CloudWatchLogsConfig struct {
-	*aws.Config
-}
-
 // New returns a new CloudWatchLogs client.
-func New(config *CloudWatchLogsConfig) *CloudWatchLogs {
+func New(config *aws.Config) *CloudWatchLogs {
 	if config == nil {
-		config = &CloudWatchLogsConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "logs",
 		APIVersion:   "2014-03-28",
 		JSONVersion:  "1.1",

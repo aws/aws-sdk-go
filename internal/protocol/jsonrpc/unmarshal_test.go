@@ -33,18 +33,14 @@ type OutputService1ProtocolTest struct {
 	*aws.Service
 }
 
-type OutputService1ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new OutputService1ProtocolTest client.
-func NewOutputService1ProtocolTest(config *OutputService1ProtocolTestConfig) *OutputService1ProtocolTest {
+func NewOutputService1ProtocolTest(config *aws.Config) *OutputService1ProtocolTest {
 	if config == nil {
-		config = &OutputService1ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "outputservice1protocoltest",
 		APIVersion:   "",
 		JSONVersion:  "",
@@ -122,18 +118,14 @@ type OutputService2ProtocolTest struct {
 	*aws.Service
 }
 
-type OutputService2ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new OutputService2ProtocolTest client.
-func NewOutputService2ProtocolTest(config *OutputService2ProtocolTestConfig) *OutputService2ProtocolTest {
+func NewOutputService2ProtocolTest(config *aws.Config) *OutputService2ProtocolTest {
 	if config == nil {
-		config = &OutputService2ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "outputservice2protocoltest",
 		APIVersion:   "",
 		JSONVersion:  "",
@@ -209,18 +201,14 @@ type OutputService3ProtocolTest struct {
 	*aws.Service
 }
 
-type OutputService3ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new OutputService3ProtocolTest client.
-func NewOutputService3ProtocolTest(config *OutputService3ProtocolTestConfig) *OutputService3ProtocolTest {
+func NewOutputService3ProtocolTest(config *aws.Config) *OutputService3ProtocolTest {
 	if config == nil {
-		config = &OutputService3ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "outputservice3protocoltest",
 		APIVersion:   "",
 		JSONVersion:  "",
@@ -296,18 +284,14 @@ type OutputService4ProtocolTest struct {
 	*aws.Service
 }
 
-type OutputService4ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new OutputService4ProtocolTest client.
-func NewOutputService4ProtocolTest(config *OutputService4ProtocolTestConfig) *OutputService4ProtocolTest {
+func NewOutputService4ProtocolTest(config *aws.Config) *OutputService4ProtocolTest {
 	if config == nil {
-		config = &OutputService4ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "outputservice4protocoltest",
 		APIVersion:   "",
 		JSONVersion:  "",
@@ -371,18 +355,14 @@ type OutputService5ProtocolTest struct {
 	*aws.Service
 }
 
-type OutputService5ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new OutputService5ProtocolTest client.
-func NewOutputService5ProtocolTest(config *OutputService5ProtocolTestConfig) *OutputService5ProtocolTest {
+func NewOutputService5ProtocolTest(config *aws.Config) *OutputService5ProtocolTest {
 	if config == nil {
-		config = &OutputService5ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "outputservice5protocoltest",
 		APIVersion:   "",
 		JSONVersion:  "",
@@ -446,18 +426,14 @@ type OutputService6ProtocolTest struct {
 	*aws.Service
 }
 
-type OutputService6ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new OutputService6ProtocolTest client.
-func NewOutputService6ProtocolTest(config *OutputService6ProtocolTestConfig) *OutputService6ProtocolTest {
+func NewOutputService6ProtocolTest(config *aws.Config) *OutputService6ProtocolTest {
 	if config == nil {
-		config = &OutputService6ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "outputservice6protocoltest",
 		APIVersion:   "",
 		JSONVersion:  "",

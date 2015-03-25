@@ -11,18 +11,14 @@ type CognitoIdentity struct {
 	*aws.Service
 }
 
-type CognitoIdentityConfig struct {
-	*aws.Config
-}
-
 // New returns a new CognitoIdentity client.
-func New(config *CognitoIdentityConfig) *CognitoIdentity {
+func New(config *aws.Config) *CognitoIdentity {
 	if config == nil {
-		config = &CognitoIdentityConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "cognito-identity",
 		APIVersion:   "2014-06-30",
 		JSONVersion:  "1.1",

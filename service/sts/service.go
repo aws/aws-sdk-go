@@ -11,18 +11,14 @@ type STS struct {
 	*aws.Service
 }
 
-type STSConfig struct {
-	*aws.Config
-}
-
 // New returns a new STS client.
-func New(config *STSConfig) *STS {
+func New(config *aws.Config) *STS {
 	if config == nil {
-		config = &STSConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "sts",
 		APIVersion:  "2011-06-15",
 	}

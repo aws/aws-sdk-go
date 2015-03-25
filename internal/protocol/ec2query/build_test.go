@@ -33,18 +33,14 @@ type InputService1ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService1ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService1ProtocolTest client.
-func NewInputService1ProtocolTest(config *InputService1ProtocolTestConfig) *InputService1ProtocolTest {
+func NewInputService1ProtocolTest(config *aws.Config) *InputService1ProtocolTest {
 	if config == nil {
-		config = &InputService1ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice1protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -108,18 +104,14 @@ type InputService2ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService2ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService2ProtocolTest client.
-func NewInputService2ProtocolTest(config *InputService2ProtocolTestConfig) *InputService2ProtocolTest {
+func NewInputService2ProtocolTest(config *aws.Config) *InputService2ProtocolTest {
 	if config == nil {
-		config = &InputService2ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice2protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -185,18 +177,14 @@ type InputService3ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService3ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService3ProtocolTest client.
-func NewInputService3ProtocolTest(config *InputService3ProtocolTestConfig) *InputService3ProtocolTest {
+func NewInputService3ProtocolTest(config *aws.Config) *InputService3ProtocolTest {
 	if config == nil {
-		config = &InputService3ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice3protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -268,18 +256,14 @@ type InputService4ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService4ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService4ProtocolTest client.
-func NewInputService4ProtocolTest(config *InputService4ProtocolTestConfig) *InputService4ProtocolTest {
+func NewInputService4ProtocolTest(config *aws.Config) *InputService4ProtocolTest {
 	if config == nil {
-		config = &InputService4ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice4protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -341,18 +325,14 @@ type InputService5ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService5ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService5ProtocolTest client.
-func NewInputService5ProtocolTest(config *InputService5ProtocolTestConfig) *InputService5ProtocolTest {
+func NewInputService5ProtocolTest(config *aws.Config) *InputService5ProtocolTest {
 	if config == nil {
-		config = &InputService5ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice5protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -414,18 +394,14 @@ type InputService6ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService6ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService6ProtocolTest client.
-func NewInputService6ProtocolTest(config *InputService6ProtocolTestConfig) *InputService6ProtocolTest {
+func NewInputService6ProtocolTest(config *aws.Config) *InputService6ProtocolTest {
 	if config == nil {
-		config = &InputService6ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice6protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -487,18 +463,14 @@ type InputService7ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService7ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService7ProtocolTest client.
-func NewInputService7ProtocolTest(config *InputService7ProtocolTestConfig) *InputService7ProtocolTest {
+func NewInputService7ProtocolTest(config *aws.Config) *InputService7ProtocolTest {
 	if config == nil {
-		config = &InputService7ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice7protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -560,18 +532,14 @@ type InputService8ProtocolTest struct {
 	*aws.Service
 }
 
-type InputService8ProtocolTestConfig struct {
-	*aws.Config
-}
-
 // New returns a new InputService8ProtocolTest client.
-func NewInputService8ProtocolTest(config *InputService8ProtocolTestConfig) *InputService8ProtocolTest {
+func NewInputService8ProtocolTest(config *aws.Config) *InputService8ProtocolTest {
 	if config == nil {
-		config = &InputService8ProtocolTestConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config.Config),
+		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice8protocoltest",
 		APIVersion:  "2014-01-01",
 	}

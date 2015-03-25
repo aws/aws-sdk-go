@@ -11,18 +11,14 @@ type Support struct {
 	*aws.Service
 }
 
-type SupportConfig struct {
-	*aws.Config
-}
-
 // New returns a new Support client.
-func New(config *SupportConfig) *Support {
+func New(config *aws.Config) *Support {
 	if config == nil {
-		config = &SupportConfig{}
+		config = &aws.Config{}
 	}
 
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config.Config),
+		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "support",
 		APIVersion:   "2013-04-15",
 		JSONVersion:  "1.1",
