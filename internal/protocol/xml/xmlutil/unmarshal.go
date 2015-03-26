@@ -94,12 +94,10 @@ func parseStruct(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 
 		// figure out what this field is called
 		name := field.Name
-		if locName := field.Tag.Get("locationName"); locName != "" {
+		if field.Tag.Get("flattened") != "" && field.Tag.Get("locationNameList") != "" {
+			name = field.Tag.Get("locationNameList")
+		} else if locName := field.Tag.Get("locationName"); locName != "" {
 			name = locName
-		} else if field.Tag.Get("flattened") != "" {
-			if locName := field.Tag.Get("locationNameList"); locName != "" {
-				name = locName
-			}
 		}
 
 		// try to find the field by name in elements
