@@ -255,6 +255,31 @@ func (c *S3) DeleteBucketPolicy(input *DeleteBucketPolicyInput) (output *DeleteB
 
 var opDeleteBucketPolicy *aws.Operation
 
+// DeleteBucketReplicationRequest generates a request for the DeleteBucketReplication operation.
+func (c *S3) DeleteBucketReplicationRequest(input *DeleteBucketReplicationInput) (req *aws.Request, output *DeleteBucketReplicationOutput) {
+	if opDeleteBucketReplication == nil {
+		opDeleteBucketReplication = &aws.Operation{
+			Name:       "DeleteBucketReplication",
+			HTTPMethod: "DELETE",
+			HTTPPath:   "/{Bucket}?replication",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opDeleteBucketReplication, input, output)
+	output = &DeleteBucketReplicationOutput{}
+	req.Data = output
+	return
+}
+
+func (c *S3) DeleteBucketReplication(input *DeleteBucketReplicationInput) (output *DeleteBucketReplicationOutput, err error) {
+	req, out := c.DeleteBucketReplicationRequest(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opDeleteBucketReplication *aws.Operation
+
 // DeleteBucketTaggingRequest generates a request for the DeleteBucketTagging operation.
 func (c *S3) DeleteBucketTaggingRequest(input *DeleteBucketTaggingInput) (req *aws.Request, output *DeleteBucketTaggingOutput) {
 	if opDeleteBucketTagging == nil {
@@ -544,6 +569,31 @@ func (c *S3) GetBucketPolicy(input *GetBucketPolicyInput) (output *GetBucketPoli
 }
 
 var opGetBucketPolicy *aws.Operation
+
+// GetBucketReplicationRequest generates a request for the GetBucketReplication operation.
+func (c *S3) GetBucketReplicationRequest(input *GetBucketReplicationInput) (req *aws.Request, output *GetBucketReplicationOutput) {
+	if opGetBucketReplication == nil {
+		opGetBucketReplication = &aws.Operation{
+			Name:       "GetBucketReplication",
+			HTTPMethod: "GET",
+			HTTPPath:   "/{Bucket}?replication",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opGetBucketReplication, input, output)
+	output = &GetBucketReplicationOutput{}
+	req.Data = output
+	return
+}
+
+func (c *S3) GetBucketReplication(input *GetBucketReplicationInput) (output *GetBucketReplicationOutput, err error) {
+	req, out := c.GetBucketReplicationRequest(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opGetBucketReplication *aws.Operation
 
 // GetBucketRequestPaymentRequest generates a request for the GetBucketRequestPayment operation.
 func (c *S3) GetBucketRequestPaymentRequest(input *GetBucketRequestPaymentInput) (req *aws.Request, output *GetBucketRequestPaymentOutput) {
@@ -1074,6 +1124,33 @@ func (c *S3) PutBucketPolicy(input *PutBucketPolicyInput) (output *PutBucketPoli
 
 var opPutBucketPolicy *aws.Operation
 
+// PutBucketReplicationRequest generates a request for the PutBucketReplication operation.
+func (c *S3) PutBucketReplicationRequest(input *PutBucketReplicationInput) (req *aws.Request, output *PutBucketReplicationOutput) {
+	if opPutBucketReplication == nil {
+		opPutBucketReplication = &aws.Operation{
+			Name:       "PutBucketReplication",
+			HTTPMethod: "PUT",
+			HTTPPath:   "/{Bucket}?replication",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opPutBucketReplication, input, output)
+	output = &PutBucketReplicationOutput{}
+	req.Data = output
+	return
+}
+
+// Creates a new replication configuration (or replaces an existing one, if
+// present).
+func (c *S3) PutBucketReplication(input *PutBucketReplicationInput) (output *PutBucketReplicationOutput, err error) {
+	req, out := c.PutBucketReplicationRequest(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opPutBucketReplication *aws.Operation
+
 // PutBucketRequestPaymentRequest generates a request for the PutBucketRequestPayment operation.
 func (c *S3) PutBucketRequestPaymentRequest(input *PutBucketRequestPaymentInput) (req *aws.Request, output *PutBucketRequestPaymentOutput) {
 	if opPutBucketRequestPayment == nil {
@@ -1093,7 +1170,8 @@ func (c *S3) PutBucketRequestPaymentRequest(input *PutBucketRequestPaymentInput)
 // Sets the request payment configuration for a bucket. By default, the bucket
 // owner pays for downloads from the bucket. This configuration parameter enables
 // the bucket owner (only) to specify that the person requesting the download
-// will be charged for the download.
+// will be charged for the download. Documentation on requester pays buckets
+// can be found at http://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html
 func (c *S3) PutBucketRequestPayment(input *PutBucketRequestPaymentInput) (output *PutBucketRequestPaymentOutput, err error) {
 	req, out := c.PutBucketRequestPaymentRequest(input)
 	output = out
@@ -1324,6 +1402,12 @@ type AbortMultipartUploadInput struct {
 
 	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
 
+	// Confirms that the requester knows that she or he will be charged for the
+	// request. Bucket owners need not specify this parameter in their requests.
+	// Documentation on downloading objects from requester pays buckets can be found
+	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+
 	UploadID *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
 	metadataAbortMultipartUploadInput `json:"-", xml:"-"`
@@ -1334,6 +1418,10 @@ type metadataAbortMultipartUploadInput struct {
 }
 
 type AbortMultipartUploadOutput struct {
+	// If present, indicates that the requester was successfully charged for the
+	// request.
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
+
 	metadataAbortMultipartUploadOutput `json:"-", xml:"-"`
 }
 
@@ -1450,6 +1538,12 @@ type CompleteMultipartUploadInput struct {
 
 	MultipartUpload *CompletedMultipartUpload `locationName:"CompleteMultipartUpload" type:"structure"`
 
+	// Confirms that the requester knows that she or he will be charged for the
+	// request. Bucket owners need not specify this parameter in their requests.
+	// Documentation on downloading objects from requester pays buckets can be found
+	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+
 	UploadID *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
 	metadataCompleteMultipartUploadInput `json:"-", xml:"-"`
@@ -1467,11 +1561,15 @@ type CompleteMultipartUploadOutput struct {
 
 	// If the object expiration is configured, this will contain the expiration
 	// date (expiry-date) and rule ID (rule-id). The value of rule-id is URL encoded.
-	Expiration *time.Time `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822"`
+	Expiration *string `location:"header" locationName:"x-amz-expiration" type:"string"`
 
 	Key *string `type:"string"`
 
 	Location *string `type:"string"`
+
+	// If present, indicates that the requester was successfully charged for the
+	// request.
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
 
 	// If present, specifies the ID of the AWS Key Management Service (KMS) master
 	// encryption key that was used for the object.
@@ -1616,6 +1714,12 @@ type CopyObjectInput struct {
 	// with metadata provided in the request.
 	MetadataDirective *string `location:"header" locationName:"x-amz-metadata-directive" type:"string"`
 
+	// Confirms that the requester knows that she or he will be charged for the
+	// request. Bucket owners need not specify this parameter in their requests.
+	// Documentation on downloading objects from requester pays buckets can be found
+	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+
 	// Specifies the algorithm to use to when encrypting the object (e.g., AES256,
 	// aws:kms).
 	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
@@ -1663,7 +1767,11 @@ type CopyObjectOutput struct {
 	CopySourceVersionID *string `location:"header" locationName:"x-amz-copy-source-version-id" type:"string"`
 
 	// If the object expiration is configured, the response includes this header.
-	Expiration *time.Time `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822"`
+	Expiration *string `location:"header" locationName:"x-amz-expiration" type:"string"`
+
+	// If present, indicates that the requester was successfully charged for the
+	// request.
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
 
 	// If server-side encryption with a customer-provided encryption key was requested,
 	// the response will include this header confirming the encryption algorithm
@@ -1811,6 +1919,12 @@ type CreateMultipartUploadInput struct {
 	// A map of metadata to store with the object in S3.
 	Metadata *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
 
+	// Confirms that the requester knows that she or he will be charged for the
+	// request. Bucket owners need not specify this parameter in their requests.
+	// Documentation on downloading objects from requester pays buckets can be found
+	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+
 	// Specifies the algorithm to use to when encrypting the object (e.g., AES256,
 	// aws:kms).
 	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
@@ -1858,6 +1972,10 @@ type CreateMultipartUploadOutput struct {
 
 	// Object key for which the multipart upload was initiated.
 	Key *string `type:"string"`
+
+	// If present, indicates that the requester was successfully charged for the
+	// request.
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
 
 	// If server-side encryption with a customer-provided encryption key was requested,
 	// the response will include this header confirming the encryption algorithm
@@ -1973,6 +2091,24 @@ type metadataDeleteBucketPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type DeleteBucketReplicationInput struct {
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	metadataDeleteBucketReplicationInput `json:"-", xml:"-"`
+}
+
+type metadataDeleteBucketReplicationInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DeleteBucketReplicationOutput struct {
+	metadataDeleteBucketReplicationOutput `json:"-", xml:"-"`
+}
+
+type metadataDeleteBucketReplicationOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteBucketTaggingInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
@@ -2041,6 +2177,12 @@ type DeleteObjectInput struct {
 	// and the value that is displayed on your authentication device.
 	MFA *string `location:"header" locationName:"x-amz-mfa" type:"string"`
 
+	// Confirms that the requester knows that she or he will be charged for the
+	// request. Bucket owners need not specify this parameter in their requests.
+	// Documentation on downloading objects from requester pays buckets can be found
+	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+
 	// VersionId used to reference a specific version of the object.
 	VersionID *string `location:"querystring" locationName:"versionId" type:"string"`
 
@@ -2055,6 +2197,10 @@ type DeleteObjectOutput struct {
 	// Specifies whether the versioned object that was permanently deleted was (true)
 	// or was not (false) a delete marker.
 	DeleteMarker *bool `location:"header" locationName:"x-amz-delete-marker" type:"boolean"`
+
+	// If present, indicates that the requester was successfully charged for the
+	// request.
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
 
 	// Returns the version ID of the delete marker created as a result of the DELETE
 	// operation.
@@ -2076,6 +2222,12 @@ type DeleteObjectsInput struct {
 	// and the value that is displayed on your authentication device.
 	MFA *string `location:"header" locationName:"x-amz-mfa" type:"string"`
 
+	// Confirms that the requester knows that she or he will be charged for the
+	// request. Bucket owners need not specify this parameter in their requests.
+	// Documentation on downloading objects from requester pays buckets can be found
+	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+
 	metadataDeleteObjectsInput `json:"-", xml:"-"`
 }
 
@@ -2087,6 +2239,10 @@ type DeleteObjectsOutput struct {
 	Deleted []*DeletedObject `type:"list" flattened:"true"`
 
 	Errors []*Error `locationName:"Error" type:"list" flattened:"true"`
+
+	// If present, indicates that the requester was successfully charged for the
+	// request.
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
 
 	metadataDeleteObjectsOutput `json:"-", xml:"-"`
 }
@@ -2108,6 +2264,18 @@ type DeletedObject struct {
 }
 
 type metadataDeletedObject struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type Destination struct {
+	// Amazon resource name (ARN) of the bucket where you want Amazon S3 to store
+	// replicas of the object identified by the rule.
+	Bucket *string `type:"string" required:"true"`
+
+	metadataDestination `json:"-", xml:"-"`
+}
+
+type metadataDestination struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -2286,6 +2454,28 @@ type metadataGetBucketPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"Policy"`
 }
 
+type GetBucketReplicationInput struct {
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	metadataGetBucketReplicationInput `json:"-", xml:"-"`
+}
+
+type metadataGetBucketReplicationInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type GetBucketReplicationOutput struct {
+	// Container for replication rules. You can add as many as 1,000 rules. Total
+	// replication configuration size can be up to 2 MB.
+	ReplicationConfiguration *ReplicationConfiguration `type:"structure"`
+
+	metadataGetBucketReplicationOutput `json:"-", xml:"-"`
+}
+
+type metadataGetBucketReplicationOutput struct {
+	SDKShapeTraits bool `type:"structure" payload:"ReplicationConfiguration"`
+}
+
 type GetBucketRequestPaymentInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
@@ -2384,6 +2574,12 @@ type GetObjectACLInput struct {
 
 	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
 
+	// Confirms that the requester knows that she or he will be charged for the
+	// request. Bucket owners need not specify this parameter in their requests.
+	// Documentation on downloading objects from requester pays buckets can be found
+	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+
 	// VersionId used to reference a specific version of the object.
 	VersionID *string `location:"querystring" locationName:"versionId" type:"string"`
 
@@ -2399,6 +2595,10 @@ type GetObjectACLOutput struct {
 	Grants []*Grant `locationName:"AccessControlList" locationNameList:"Grant" type:"list"`
 
 	Owner *Owner `type:"structure"`
+
+	// If present, indicates that the requester was successfully charged for the
+	// request.
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
 
 	metadataGetObjectACLOutput `json:"-", xml:"-"`
 }
@@ -2431,6 +2631,12 @@ type GetObjectInput struct {
 	// Downloads the specified range bytes of an object. For more information about
 	// the HTTP Range header, go to http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35.
 	Range *string `location:"header" locationName:"Range" type:"string"`
+
+	// Confirms that the requester knows that she or he will be charged for the
+	// request. Bucket owners need not specify this parameter in their requests.
+	// Documentation on downloading objects from requester pays buckets can be found
+	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
 
 	// Sets the Cache-Control header of the response.
 	ResponseCacheControl *string `location:"querystring" locationName:"response-cache-control" type:"string"`
@@ -2514,7 +2720,7 @@ type GetObjectOutput struct {
 	// includes this header. It includes the expiry-date and rule-id key value pairs
 	// providing object expiration information. The value of the rule-id is URL
 	// encoded.
-	Expiration *time.Time `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822"`
+	Expiration *string `location:"header" locationName:"x-amz-expiration" type:"string"`
 
 	// The date and time at which the object is no longer cacheable.
 	Expires *time.Time `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822"`
@@ -2530,6 +2736,12 @@ type GetObjectOutput struct {
 	// supports more flexible metadata than the REST API. For example, using SOAP,
 	// you can create metadata whose values are not legal HTTP headers.
 	MissingMeta *int64 `location:"header" locationName:"x-amz-missing-meta" type:"integer"`
+
+	ReplicationStatus *string `location:"header" locationName:"x-amz-replication-status" type:"string"`
+
+	// If present, indicates that the requester was successfully charged for the
+	// request.
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
 
 	// Provides information about object restoration operation and expiration time
 	// of the restored object copy.
@@ -2573,6 +2785,12 @@ type GetObjectTorrentInput struct {
 
 	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
 
+	// Confirms that the requester knows that she or he will be charged for the
+	// request. Bucket owners need not specify this parameter in their requests.
+	// Documentation on downloading objects from requester pays buckets can be found
+	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+
 	metadataGetObjectTorrentInput `json:"-", xml:"-"`
 }
 
@@ -2582,6 +2800,10 @@ type metadataGetObjectTorrentInput struct {
 
 type GetObjectTorrentOutput struct {
 	Body io.ReadCloser `type:"blob"`
+
+	// If present, indicates that the requester was successfully charged for the
+	// request.
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
 
 	metadataGetObjectTorrentOutput `json:"-", xml:"-"`
 }
@@ -2669,6 +2891,12 @@ type HeadObjectInput struct {
 	// the HTTP Range header, go to http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35.
 	Range *string `location:"header" locationName:"Range" type:"string"`
 
+	// Confirms that the requester knows that she or he will be charged for the
+	// request. Bucket owners need not specify this parameter in their requests.
+	// Documentation on downloading objects from requester pays buckets can be found
+	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+
 	// Specifies the algorithm to use to when encrypting the object (e.g., AES256,
 	// aws:kms).
 	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
@@ -2730,7 +2958,7 @@ type HeadObjectOutput struct {
 	// includes this header. It includes the expiry-date and rule-id key value pairs
 	// providing object expiration information. The value of the rule-id is URL
 	// encoded.
-	Expiration *time.Time `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822"`
+	Expiration *string `location:"header" locationName:"x-amz-expiration" type:"string"`
 
 	// The date and time at which the object is no longer cacheable.
 	Expires *time.Time `location:"header" locationName:"Expires" type:"timestamp" timestampFormat:"rfc822"`
@@ -2746,6 +2974,12 @@ type HeadObjectOutput struct {
 	// supports more flexible metadata than the REST API. For example, using SOAP,
 	// you can create metadata whose values are not legal HTTP headers.
 	MissingMeta *int64 `location:"header" locationName:"x-amz-missing-meta" type:"integer"`
+
+	ReplicationStatus *string `location:"header" locationName:"x-amz-replication-status" type:"string"`
+
+	// If present, indicates that the requester was successfully charged for the
+	// request.
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
 
 	// Provides information about object restoration operation and expiration time
 	// of the restored object copy.
@@ -3104,6 +3338,12 @@ type ListPartsInput struct {
 	// part numbers will be listed.
 	PartNumberMarker *int64 `location:"querystring" locationName:"part-number-marker" type:"integer"`
 
+	// Confirms that the requester knows that she or he will be charged for the
+	// request. Bucket owners need not specify this parameter in their requests.
+	// Documentation on downloading objects from requester pays buckets can be found
+	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+
 	// Upload ID identifying the multipart upload whose parts are being listed.
 	UploadID *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
@@ -3141,6 +3381,10 @@ type ListPartsOutput struct {
 	PartNumberMarker *int64 `type:"integer"`
 
 	Parts []*Part `locationName:"Part" type:"list" flattened:"true"`
+
+	// If present, indicates that the requester was successfully charged for the
+	// request.
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
 
 	// The class of storage used to store the object.
 	StorageClass *string `type:"string"`
@@ -3509,6 +3753,30 @@ type metadataPutBucketPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type PutBucketReplicationInput struct {
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
+
+	// Container for replication rules. You can add as many as 1,000 rules. Total
+	// replication configuration size can be up to 2 MB.
+	ReplicationConfiguration *ReplicationConfiguration `locationName:"ReplicationConfiguration" type:"structure" required:"true"`
+
+	metadataPutBucketReplicationInput `json:"-", xml:"-"`
+}
+
+type metadataPutBucketReplicationInput struct {
+	SDKShapeTraits bool `type:"structure" payload:"ReplicationConfiguration"`
+}
+
+type PutBucketReplicationOutput struct {
+	metadataPutBucketReplicationOutput `json:"-", xml:"-"`
+}
+
+type metadataPutBucketReplicationOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type PutBucketRequestPaymentInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
@@ -3629,6 +3897,12 @@ type PutObjectACLInput struct {
 
 	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
 
+	// Confirms that the requester knows that she or he will be charged for the
+	// request. Bucket owners need not specify this parameter in their requests.
+	// Documentation on downloading objects from requester pays buckets can be found
+	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+
 	metadataPutObjectACLInput `json:"-", xml:"-"`
 }
 
@@ -3637,6 +3911,10 @@ type metadataPutObjectACLInput struct {
 }
 
 type PutObjectACLOutput struct {
+	// If present, indicates that the requester was successfully charged for the
+	// request.
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
+
 	metadataPutObjectACLOutput `json:"-", xml:"-"`
 }
 
@@ -3696,6 +3974,12 @@ type PutObjectInput struct {
 	// A map of metadata to store with the object in S3.
 	Metadata *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
 
+	// Confirms that the requester knows that she or he will be charged for the
+	// request. Bucket owners need not specify this parameter in their requests.
+	// Documentation on downloading objects from requester pays buckets can be found
+	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+
 	// Specifies the algorithm to use to when encrypting the object (e.g., AES256,
 	// aws:kms).
 	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
@@ -3743,7 +4027,11 @@ type PutObjectOutput struct {
 
 	// If the object expiration is configured, this will contain the expiration
 	// date (expiry-date) and rule ID (rule-id). The value of rule-id is URL encoded.
-	Expiration *time.Time `location:"header" locationName:"x-amz-expiration" type:"timestamp" timestampFormat:"rfc822"`
+	Expiration *string `location:"header" locationName:"x-amz-expiration" type:"string"`
+
+	// If present, indicates that the requester was successfully charged for the
+	// request.
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
 
 	// If server-side encryption with a customer-provided encryption key was requested,
 	// the response will include this header confirming the encryption algorithm
@@ -3836,6 +4124,45 @@ type metadataRedirectAllRequestsTo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Container for replication rules. You can add as many as 1,000 rules. Total
+// replication configuration size can be up to 2 MB.
+type ReplicationConfiguration struct {
+	// Amazon Resource Name (ARN) of an IAM role for Amazon S3 to assume when replicating
+	// the objects.
+	Role *string `type:"string" required:"true"`
+
+	// Container for information about a particular replication rule. Replication
+	// configuration must have at least one rule and can contain up to 1,000 rules.
+	Rules []*ReplicationRule `locationName:"Rule" type:"list" flattened:"true" required:"true"`
+
+	metadataReplicationConfiguration `json:"-", xml:"-"`
+}
+
+type metadataReplicationConfiguration struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type ReplicationRule struct {
+	Destination *Destination `type:"structure" required:"true"`
+
+	// Unique identifier for the rule. The value cannot be longer than 255 characters.
+	ID *string `type:"string"`
+
+	// Object keyname prefix identifying one or more objects to which the rule applies.
+	// Maximum prefix length can be up to 1,024 characters. Overlapping prefixes
+	// are not supported.
+	Prefix *string `type:"string" required:"true"`
+
+	// The rule is ignored if status is not Enabled.
+	Status *string `type:"string" required:"true"`
+
+	metadataReplicationRule `json:"-", xml:"-"`
+}
+
+type metadataReplicationRule struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type RequestPaymentConfiguration struct {
 	// Specifies who pays for the download and request fees.
 	Payer *string `type:"string" required:"true"`
@@ -3852,6 +4179,12 @@ type RestoreObjectInput struct {
 
 	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
 
+	// Confirms that the requester knows that she or he will be charged for the
+	// request. Bucket owners need not specify this parameter in their requests.
+	// Documentation on downloading objects from requester pays buckets can be found
+	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+
 	RestoreRequest *RestoreRequest `locationName:"RestoreRequest" type:"structure"`
 
 	VersionID *string `location:"querystring" locationName:"versionId" type:"string"`
@@ -3864,6 +4197,10 @@ type metadataRestoreObjectInput struct {
 }
 
 type RestoreObjectOutput struct {
+	// If present, indicates that the requester was successfully charged for the
+	// request.
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
+
 	metadataRestoreObjectOutput `json:"-", xml:"-"`
 }
 
@@ -4057,6 +4394,12 @@ type UploadPartCopyInput struct {
 	// Part number of part being copied.
 	PartNumber *int64 `location:"querystring" locationName:"partNumber" type:"integer" required:"true"`
 
+	// Confirms that the requester knows that she or he will be charged for the
+	// request. Bucket owners need not specify this parameter in their requests.
+	// Documentation on downloading objects from requester pays buckets can be found
+	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+
 	// Specifies the algorithm to use to when encrypting the object (e.g., AES256,
 	// aws:kms).
 	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
@@ -4090,6 +4433,10 @@ type UploadPartCopyOutput struct {
 	// The version of the source object that was copied, if you have enabled versioning
 	// on the source bucket.
 	CopySourceVersionID *string `location:"header" locationName:"x-amz-copy-source-version-id" type:"string"`
+
+	// If present, indicates that the requester was successfully charged for the
+	// request.
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
 
 	// If server-side encryption with a customer-provided encryption key was requested,
 	// the response will include this header confirming the encryption algorithm
@@ -4132,6 +4479,12 @@ type UploadPartInput struct {
 	// Part number of part being uploaded.
 	PartNumber *int64 `location:"querystring" locationName:"partNumber" type:"integer" required:"true"`
 
+	// Confirms that the requester knows that she or he will be charged for the
+	// request. Bucket owners need not specify this parameter in their requests.
+	// Documentation on downloading objects from requester pays buckets can be found
+	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+
 	// Specifies the algorithm to use to when encrypting the object (e.g., AES256,
 	// aws:kms).
 	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
@@ -4162,6 +4515,10 @@ type metadataUploadPartInput struct {
 type UploadPartOutput struct {
 	// Entity tag for the uploaded object.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// If present, indicates that the requester was successfully charged for the
+	// request.
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
 
 	// If server-side encryption with a customer-provided encryption key was requested,
 	// the response will include this header confirming the encryption algorithm

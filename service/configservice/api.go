@@ -91,8 +91,6 @@ func (c *ConfigService) DescribeConfigurationRecorderStatusRequest(input *Descri
 // Returns the current status of the specified configuration recorder. If a
 // configuration recorder is not specified, this action returns the status of
 // all configuration recorder associated with the account.
-//
-// Currently, you can specify only one configuration recorder per accout.
 func (c *ConfigService) DescribeConfigurationRecorderStatus(input *DescribeConfigurationRecorderStatusInput) (output *DescribeConfigurationRecorderStatusOutput, err error) {
 	req, out := c.DescribeConfigurationRecorderStatusRequest(input)
 	output = out
@@ -121,8 +119,6 @@ func (c *ConfigService) DescribeConfigurationRecordersRequest(input *DescribeCon
 // Returns the name of one or more specified configuration recorders. If the
 // recorder name is not specified, this action returns the names of all the
 // configuration recorders associated with the account.
-//
-//  Currently, you can specify only one configuration recorder per account.
 func (c *ConfigService) DescribeConfigurationRecorders(input *DescribeConfigurationRecordersInput) (output *DescribeConfigurationRecordersOutput, err error) {
 	req, out := c.DescribeConfigurationRecordersRequest(input)
 	output = out
@@ -151,8 +147,6 @@ func (c *ConfigService) DescribeDeliveryChannelStatusRequest(input *DescribeDeli
 // Returns the current status of the specified delivery channel. If a delivery
 // channel is not specified, this action returns the current status of all delivery
 // channels associated with the account.
-//
-// Currently, you can specify only one delivery channel per account.
 func (c *ConfigService) DescribeDeliveryChannelStatus(input *DescribeDeliveryChannelStatusInput) (output *DescribeDeliveryChannelStatusOutput, err error) {
 	req, out := c.DescribeDeliveryChannelStatusRequest(input)
 	output = out
@@ -181,8 +175,6 @@ func (c *ConfigService) DescribeDeliveryChannelsRequest(input *DescribeDeliveryC
 // Returns details about the specified delivery channel. If a delivery channel
 // is not specified, this action returns the details of all delivery channels
 // associated with the account.
-//
-//  Currently, you can specify only one delivery channel per account.
 func (c *ConfigService) DescribeDeliveryChannels(input *DescribeDeliveryChannelsInput) (output *DescribeDeliveryChannelsOutput, err error) {
 	req, out := c.DescribeDeliveryChannelsRequest(input)
 	output = out
@@ -213,10 +205,6 @@ func (c *ConfigService) GetResourceConfigHistoryRequest(input *GetResourceConfig
 // interval. You can specify a limit on the number of results returned on the
 // page. If a limit is specified, a nextToken is returned as part of the result
 // that you can use to continue this request.
-//
-//  Each call to the API is limited to span a duration of seven days. It is
-// likely that the number of records returned is smaller than the specified
-// limit. In such cases, you can make another call, using the nextToken .
 func (c *ConfigService) GetResourceConfigHistory(input *GetResourceConfigHistoryInput) (output *GetResourceConfigHistoryOutput, err error) {
 	req, out := c.GetResourceConfigHistoryRequest(input)
 	output = out
@@ -247,8 +235,6 @@ func (c *ConfigService) PutConfigurationRecorderRequest(input *PutConfigurationR
 // You can use this action to change the role (roleARN) of an existing recorder.
 // To change the role, call the action on the existing configuration recorder
 // and specify a role.
-//
-//  Currently, you can specify only one configuration recorder per account.
 func (c *ConfigService) PutConfigurationRecorder(input *PutConfigurationRecorderInput) (output *PutConfigurationRecorderOutput, err error) {
 	req, out := c.PutConfigurationRecorderRequest(input)
 	output = out
@@ -283,8 +269,6 @@ func (c *ConfigService) PutDeliveryChannelRequest(input *PutDeliveryChannelInput
 // the S3 bucket and the SNS topic. If you specify a different value for either
 // the S3 bucket or the SNS topic, this action will keep the existing value
 // for the parameter that is not changed.
-//
-//  Currently, you can specify only one delivery channel per account.
 func (c *ConfigService) PutDeliveryChannel(input *PutDeliveryChannelInput) (output *PutDeliveryChannelOutput, err error) {
 	req, out := c.PutDeliveryChannelRequest(input)
 	output = out
@@ -398,9 +382,6 @@ type metadataConfigStreamDeliveryInfo struct {
 }
 
 // A list that contains detailed configurations of a specified resource.
-//
-//  Currently, the list does not contain information about non-AWS components
-// (for example, applications on your Amazon EC2 instances).
 type ConfigurationItem struct {
 	// The Amazon Resource Name (ARN) of the resource.
 	ARN *string `locationName:"arn" type:"string"`
@@ -652,8 +633,9 @@ type metadataDescribeConfigurationRecordersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The ouput for the DescribeConfigurationRecorders action.
+// The output for the DescribeConfigurationRecorders action.
 type DescribeConfigurationRecordersOutput struct {
+	// A list that contains the descriptions of the specified configuration recorders.
 	ConfigurationRecorders []*ConfigurationRecorder `type:"list"`
 
 	metadataDescribeConfigurationRecordersOutput `json:"-", xml:"-"`

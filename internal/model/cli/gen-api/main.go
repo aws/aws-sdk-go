@@ -11,7 +11,9 @@ import (
 	"os"
 	"path/filepath"
 	"runtime/debug"
+	"sort"
 	"strings"
+	"sync"
 
 	"github.com/awslabs/aws-sdk-go/internal/model/api"
 )
@@ -57,9 +59,16 @@ func main() {
 		}
 	}
 
-	for _, file := range files {
-		func() {
+	sort.Strings(files)
+	m := map[string]bool{}
+	r := sync.Mutex{}
+	w := sync.WaitGroup{}
+	for i := range files {
+		w.Add(1)
+		file := files[len(files)-1-i]
+		go func() {
 			defer func() {
+				w.Done()
 				if r := recover(); r != nil {
 					fmtStr := "Error generating %s\n%s\n%s\n"
 					fmt.Fprintf(os.Stderr, fmtStr, file, r, debug.Stack())
@@ -68,11 +77,19 @@ func main() {
 
 			g := newGenerateInfo(file, svcPath, forceService)
 
+			if m[g.API.PackageName()] {
+				return // already created a later version of this
+			}
+			r.Lock()
+			m[g.API.PackageName()] = true
+			r.Unlock()
+
 			// write api.go and service.go files
 			g.writeAPIFile()
 			g.writeServiceFile()
 		}()
 	}
+	w.Wait()
 }
 
 func (g *generateInfo) writeServiceFile() {

@@ -1107,7 +1107,7 @@ var opRevokeCacheSecurityGroupIngress *aws.Operation
 
 // Represents the input of an AddTagsToResource action.
 type AddTagsToResourceInput struct {
-	// The name of the resource to which the tags are to be added, for example myCluster01.
+	// The name of the resource to which the tags are to be added, for example arn:aws:elasticache:us-west-2:0123456789:cluster:myCluster.
 	ResourceName *string `type:"string" required:"true"`
 
 	// A list of cost allocation tags to be added to this resource. A tag is a key-value
@@ -1185,6 +1185,24 @@ type CacheCluster struct {
 	CacheClusterStatus *string `type:"string"`
 
 	// The name of the compute and memory capacity node type for the cache cluster.
+	//
+	// Valid node types are as follows:
+	//
+	//  General purpose:  Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium,
+	// cache.m3.medium, cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge Previous
+	// generation: cache.t1.micro, cache.m1.small, cache.m1.medium, cache.m1.large,
+	// cache.m1.xlarge  Compute optimized: cache.c1.xlarge Memory optimized  Current
+	// generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge, cache.r3.4xlarge,
+	// cache.r3.8xlarge Previous generation: cache.m2.xlarge, cache.m2.2xlarge,
+	// cache.m2.4xlarge   Notes:
+	//
+	//  All t2 instances are created in an Amazon Virtual Private Cloud (VPC).
+	// Redis backup/restore is not supported for t2 instances. Redis Append-only
+	// files (AOF) functionality is not supported for t1 or t2 instances.  For a
+	// complete listing of cache node types and specifications, see Amazon ElastiCache
+	// Product Features and Details (http://aws.amazon.com/elasticache/details)
+	// and Cache Node Type-Specific Parameters for Memcached (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Memcached.html#CacheParameterGroups.Memcached.NodeSpecific)
+	// or Cache Node Type-Specific Parameters for Redis (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Redis.html#CacheParameterGroups.Redis.NodeSpecific).
 	CacheNodeType *string `type:"string"`
 
 	// A list of cache nodes that are members of the cache cluster.
@@ -1222,7 +1240,7 @@ type CacheCluster struct {
 	// The number of cache nodes in the cache cluster.
 	//
 	// For clusters running Redis, this value must be 1. For clusters running Memcached,
-	// this value must be between 1 and 50.
+	// this value must be between 1 and 20.
 	NumCacheNodes *int64 `type:"integer"`
 
 	// A group of settings that will be applied to the cache cluster in the future,
@@ -1230,10 +1248,15 @@ type CacheCluster struct {
 	PendingModifiedValues *PendingModifiedValues `type:"structure"`
 
 	// The name of the Availability Zone in which the cache cluster is located or
-	// "Multiple"if the cache nodes are located in different Availability Zones.
+	// "Multiple" if the cache nodes are located in different Availability Zones.
 	PreferredAvailabilityZone *string `type:"string"`
 
-	// The time range (in UTC) during which weekly system maintenance can occur.
+	// Specifies the weekly time range during which maintenance on the cache cluster
+	// is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
+	// (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid
+	// values for ddd are:
+	//
+	//  sun mon tue wed thu fri sat  Example: sun:05:00-sun:09:00
 	PreferredMaintenanceWindow *string `type:"string"`
 
 	// The replication group to which this cache cluster belongs. If this field
@@ -1292,6 +1315,24 @@ type metadataCacheEngineVersion struct {
 // Represents an individual cache node within a cache cluster. Each cache node
 // runs its own instance of the cluster's protocol-compliant caching software
 // - either Memcached or Redis.
+//
+// Valid node types are as follows:
+//
+//  General purpose:  Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium,
+// cache.m3.medium, cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge Previous
+// generation: cache.t1.micro, cache.m1.small, cache.m1.medium, cache.m1.large,
+// cache.m1.xlarge  Compute optimized: cache.c1.xlarge Memory optimized  Current
+// generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge, cache.r3.4xlarge,
+// cache.r3.8xlarge Previous generation: cache.m2.xlarge, cache.m2.2xlarge,
+// cache.m2.4xlarge   Notes:
+//
+//  All t2 instances are created in an Amazon Virtual Private Cloud (VPC).
+// Redis backup/restore is not supported for t2 instances. Redis Append-only
+// files (AOF) functionality is not supported for t1 or t2 instances.  For a
+// complete listing of cache node types and specifications, see Amazon ElastiCache
+// Product Features and Details (http://aws.amazon.com/elasticache/details)
+// and Cache Node Type-Specific Parameters for Memcached (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Memcached.html#CacheParameterGroups.Memcached.NodeSpecific)
+// or Cache Node Type-Specific Parameters for Redis (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Redis.html#CacheParameterGroups.Redis.NodeSpecific).
 type CacheNode struct {
 	// The date and time when the cache node was created.
 	CacheNodeCreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -1604,9 +1645,9 @@ type CreateCacheClusterInput struct {
 	// The initial number of cache nodes that the cache cluster will have.
 	//
 	// For clusters running Redis, this value must be 1. For clusters running Memcached,
-	// this value must be between 1 and 50.
+	// this value must be between 1 and 20.
 	//
-	// If you need more than 50 nodes for your Memcached cluster, please fill out
+	// If you need more than 20 nodes for your Memcached cluster, please fill out
 	// the ElastiCache Limit Increase Request form at http://aws.amazon.com/contact-us/elasticache-node-limit-request/
 	// (http://aws.amazon.com/contact-us/elasticache-node-limit-request/).
 	NumCacheNodes *int64 `type:"integer"`
@@ -1645,9 +1686,12 @@ type CreateCacheClusterInput struct {
 	// Example: All three Memcached nodes in one Availability Zone: PreferredAvailabilityZones.member.1=us-west-2a&PreferredAvailabilityZones.member.2=us-west-2a&PreferredAvailabilityZones.member.3=us-west-2a
 	PreferredAvailabilityZones []*string `locationNameList:"PreferredAvailabilityZone" type:"list"`
 
-	// The weekly time range (in UTC) during which system maintenance can occur.
+	// Specifies the weekly time range during which maintenance on the cache cluster
+	// is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
+	// (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid
+	// values for ddd are:
 	//
-	// Example: sun:05:00-sun:09:00
+	//  sun mon tue wed thu fri sat  Example: sun:05:00-sun:09:00
 	PreferredMaintenanceWindow *string `type:"string"`
 
 	// The ID of the replication group to which this cache cluster should belong.
@@ -1885,8 +1929,8 @@ type CreateReplicationGroupInput struct {
 	// Default: redis
 	Engine *string `type:"string"`
 
-	// The version number of the cach engine to be used for the cache clusters in
-	// this replication group. To view the supported cache engine versions, use
+	// The version number of the cache engine to be used for the cache clusters
+	// in this replication group. To view the supported cache engine versions, use
 	// the DescribeCacheEngineVersions action.
 	EngineVersion *string `type:"string"`
 
@@ -1902,7 +1946,7 @@ type CreateReplicationGroupInput struct {
 	//
 	// The maximum permitted value for NumCacheClusters is 6 (primary plus 5 replicas).
 	// If you need to exceed this limit, please fill out the ElastiCache Limit Increase
-	// Request forrm at http://aws.amazon.com/contact-us/elasticache-node-limit-request
+	// Request form at http://aws.amazon.com/contact-us/elasticache-node-limit-request
 	// (http://aws.amazon.com/contact-us/elasticache-node-limit-request).
 	NumCacheClusters *int64 `type:"integer"`
 
@@ -1924,9 +1968,12 @@ type CreateReplicationGroupInput struct {
 	// PreferredAvailabilityZones.member.2=us-west-2c PreferredAvailabilityZones.member.3=us-west-2c
 	PreferredCacheClusterAZs []*string `locationNameList:"AvailabilityZone" type:"list"`
 
-	// The weekly time range (in UTC) during which system maintenance can occur.
+	// Specifies the weekly time range during which maintenance on the cache cluster
+	// is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
+	// (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid
+	// values for ddd are:
 	//
-	// Example: sun:05:00-sun:09:00
+	//  sun mon tue wed thu fri sat  Example: sun:05:00-sun:09:00
 	PreferredMaintenanceWindow *string `type:"string"`
 
 	// The identifier of the cache cluster that will serve as the primary for this
@@ -2629,6 +2676,24 @@ type metadataDescribeReplicationGroupsOutput struct {
 type DescribeReservedCacheNodesInput struct {
 	// The cache node type filter value. Use this parameter to show only those reservations
 	// matching the specified cache node type.
+	//
+	// Valid node types are as follows:
+	//
+	//  General purpose:  Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium,
+	// cache.m3.medium, cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge Previous
+	// generation: cache.t1.micro, cache.m1.small, cache.m1.medium, cache.m1.large,
+	// cache.m1.xlarge  Compute optimized: cache.c1.xlarge Memory optimized  Current
+	// generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge, cache.r3.4xlarge,
+	// cache.r3.8xlarge Previous generation: cache.m2.xlarge, cache.m2.2xlarge,
+	// cache.m2.4xlarge   Notes:
+	//
+	//  All t2 instances are created in an Amazon Virtual Private Cloud (VPC).
+	// Redis backup/restore is not supported for t2 instances. Redis Append-only
+	// files (AOF) functionality is not supported for t1 or t2 instances.  For a
+	// complete listing of cache node types and specifications, see Amazon ElastiCache
+	// Product Features and Details (http://aws.amazon.com/elasticache/details)
+	// and Cache Node Type-Specific Parameters for Memcached (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Memcached.html#CacheParameterGroups.Memcached.NodeSpecific)
+	// or Cache Node Type-Specific Parameters for Redis (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Redis.html#CacheParameterGroups.Redis.NodeSpecific).
 	CacheNodeType *string `type:"string"`
 
 	// The duration filter value, specified in years or seconds. Use this parameter
@@ -2680,6 +2745,24 @@ type metadataDescribeReservedCacheNodesInput struct {
 type DescribeReservedCacheNodesOfferingsInput struct {
 	// The cache node type filter value. Use this parameter to show only the available
 	// offerings matching the specified cache node type.
+	//
+	// Valid node types are as follows:
+	//
+	//  General purpose:  Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium,
+	// cache.m3.medium, cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge Previous
+	// generation: cache.t1.micro, cache.m1.small, cache.m1.medium, cache.m1.large,
+	// cache.m1.xlarge  Compute optimized: cache.c1.xlarge Memory optimized  Current
+	// generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge, cache.r3.4xlarge,
+	// cache.r3.8xlarge Previous generation: cache.m2.xlarge, cache.m2.2xlarge,
+	// cache.m2.4xlarge   Notes:
+	//
+	//  All t2 instances are created in an Amazon Virtual Private Cloud (VPC).
+	// Redis backup/restore is not supported for t2 instances. Redis Append-only
+	// files (AOF) functionality is not supported for t1 or t2 instances.  For a
+	// complete listing of cache node types and specifications, see Amazon ElastiCache
+	// Product Features and Details (http://aws.amazon.com/elasticache/details)
+	// and Cache Node Type-Specific Parameters for Memcached (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Memcached.html#CacheParameterGroups.Memcached.NodeSpecific)
+	// or Cache Node Type-Specific Parameters for Redis (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Redis.html#CacheParameterGroups.Redis.NodeSpecific).
 	CacheNodeType *string `type:"string"`
 
 	// Duration filter value, specified in years or seconds. Use this parameter
@@ -2898,7 +2981,7 @@ type metadataEvent struct {
 // The input parameters for the ListTagsForResource action.
 type ListTagsForResourceInput struct {
 	// The name of the resource for which you want the list of tags, for example
-	// myCluster01.
+	// arn:aws:elasticache:us-west-2:0123456789:cluster:myCluster.
 	ResourceName *string `type:"string" required:"true"`
 
 	metadataListTagsForResourceInput `json:"-", xml:"-"`
@@ -3040,7 +3123,7 @@ type ModifyCacheClusterInput struct {
 	// to provide the IDs of the specific cache nodes to remove.
 	//
 	// For clusters running Redis, this value must be 1. For clusters running Memcached,
-	// this value must be between 1 and 50.
+	// this value must be between 1 and 20.
 	//
 	// Note:Adding or removing Memcached cache nodes can be applied immediately
 	// or as a pending action. See ApplyImmediately. A pending action to modify
@@ -3061,11 +3144,12 @@ type ModifyCacheClusterInput struct {
 	// in the cache cluster.
 	NumCacheNodes *int64 `type:"integer"`
 
-	// The weekly time range (in UTC) during which system maintenance can occur.
-	// Note that system maintenance may result in an outage. This change is made
-	// immediately. If you are moving this window to the current time, there must
-	// be at least 120 minutes between the current time and end of the window to
-	// ensure that pending changes are applied.
+	// Specifies the weekly time range during which maintenance on the cache cluster
+	// is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
+	// (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid
+	// values for ddd are:
+	//
+	//  sun mon tue wed thu fri sat  Example: sun:05:00-sun:09:00
 	PreferredMaintenanceWindow *string `type:"string"`
 
 	// Specifies the VPC Security Groups associated with the cache cluster.
@@ -3219,11 +3303,12 @@ type ModifyReplicationGroupInput struct {
 	// Valid values: active | inactive
 	NotificationTopicStatus *string `type:"string"`
 
-	// The weekly time range (in UTC) during which replication group system maintenance
-	// can occur. Note that system maintenance may result in an outage. This change
-	// is made immediately. If you are moving this window to the current time, there
-	// must be at least 120 minutes between the current time and end of the window
-	// to ensure that pending changes are applied.
+	// Specifies the weekly time range during which maintenance on the cache cluster
+	// is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
+	// (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid
+	// values for ddd are:
+	//
+	//  sun mon tue wed thu fri sat  Example: sun:05:00-sun:09:00
 	PreferredMaintenanceWindow *string `type:"string"`
 
 	// If this parameter is specified, ElastiCache will promote each of the cache
@@ -3436,7 +3521,7 @@ type PendingModifiedValues struct {
 	// The new number of cache nodes for the cache cluster.
 	//
 	// For clusters running Redis, this value must be 1. For clusters running Memcached,
-	// this value must be between 1 and 50.
+	// this value must be between 1 and 20.
 	NumCacheNodes *int64 `type:"integer"`
 
 	metadataPendingModifiedValues `json:"-", xml:"-"`
@@ -3528,7 +3613,7 @@ type metadataRecurringCharge struct {
 // Represents the input of a RemoveTagsFromResource action.
 type RemoveTagsFromResourceInput struct {
 	// The name of the ElastiCache resource from which you want the listed tags
-	// removed, for example myCluster01.
+	// removed, for example arn:aws:elasticache:us-west-2:0123456789:cluster:myCluster.
 	ResourceName *string `type:"string" required:"true"`
 
 	// A list of TagKeys identifying the tags you want removed from the named resource.
@@ -3610,6 +3695,24 @@ type ReservedCacheNode struct {
 	CacheNodeCount *int64 `type:"integer"`
 
 	// The cache node type for the reserved cache nodes.
+	//
+	// Valid node types are as follows:
+	//
+	//  General purpose:  Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium,
+	// cache.m3.medium, cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge Previous
+	// generation: cache.t1.micro, cache.m1.small, cache.m1.medium, cache.m1.large,
+	// cache.m1.xlarge  Compute optimized: cache.c1.xlarge Memory optimized  Current
+	// generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge, cache.r3.4xlarge,
+	// cache.r3.8xlarge Previous generation: cache.m2.xlarge, cache.m2.2xlarge,
+	// cache.m2.4xlarge   Notes:
+	//
+	//  All t2 instances are created in an Amazon Virtual Private Cloud (VPC).
+	// Redis backup/restore is not supported for t2 instances. Redis Append-only
+	// files (AOF) functionality is not supported for t1 or t2 instances.  For a
+	// complete listing of cache node types and specifications, see Amazon ElastiCache
+	// Product Features and Details (http://aws.amazon.com/elasticache/details)
+	// and Cache Node Type-Specific Parameters for Memcached (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Memcached.html#CacheParameterGroups.Memcached.NodeSpecific)
+	// or Cache Node Type-Specific Parameters for Redis (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Redis.html#CacheParameterGroups.Redis.NodeSpecific).
 	CacheNodeType *string `type:"string"`
 
 	// The duration of the reservation in seconds.
@@ -3652,6 +3755,24 @@ type metadataReservedCacheNode struct {
 // Describes all of the attributes of a reserved cache node offering.
 type ReservedCacheNodesOffering struct {
 	// The cache node type for the reserved cache node.
+	//
+	// Valid node types are as follows:
+	//
+	//  General purpose:  Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium,
+	// cache.m3.medium, cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge Previous
+	// generation: cache.t1.micro, cache.m1.small, cache.m1.medium, cache.m1.large,
+	// cache.m1.xlarge  Compute optimized: cache.c1.xlarge Memory optimized  Current
+	// generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge, cache.r3.4xlarge,
+	// cache.r3.8xlarge Previous generation: cache.m2.xlarge, cache.m2.2xlarge,
+	// cache.m2.4xlarge   Notes:
+	//
+	//  All t2 instances are created in an Amazon Virtual Private Cloud (VPC).
+	// Redis backup/restore is not supported for t2 instances. Redis Append-only
+	// files (AOF) functionality is not supported for t1 or t2 instances.  For a
+	// complete listing of cache node types and specifications, see Amazon ElastiCache
+	// Product Features and Details (http://aws.amazon.com/elasticache/details)
+	// and Cache Node Type-Specific Parameters for Memcached (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Memcached.html#CacheParameterGroups.Memcached.NodeSpecific)
+	// or Cache Node Type-Specific Parameters for Redis (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Redis.html#CacheParameterGroups.Redis.NodeSpecific).
 	CacheNodeType *string `type:"string"`
 
 	// The duration of the offering. in seconds.
@@ -3737,7 +3858,7 @@ type metadataRevokeCacheSecurityGroupIngressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// Represents a single cache security group and its status..
+// Represents a single cache security group and its status.
 type SecurityGroupMembership struct {
 	// The identifier of the cache security group.
 	SecurityGroupID *string `locationName:"SecurityGroupId" type:"string"`
@@ -3768,6 +3889,24 @@ type Snapshot struct {
 
 	// The name of the compute and memory capacity node type for the source cache
 	// cluster.
+	//
+	// Valid node types are as follows:
+	//
+	//  General purpose:  Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium,
+	// cache.m3.medium, cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge Previous
+	// generation: cache.t1.micro, cache.m1.small, cache.m1.medium, cache.m1.large,
+	// cache.m1.xlarge  Compute optimized: cache.c1.xlarge Memory optimized  Current
+	// generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge, cache.r3.4xlarge,
+	// cache.r3.8xlarge Previous generation: cache.m2.xlarge, cache.m2.2xlarge,
+	// cache.m2.4xlarge   Notes:
+	//
+	//  All t2 instances are created in an Amazon Virtual Private Cloud (VPC).
+	// Redis backup/restore is not supported for t2 instances. Redis Append-only
+	// files (AOF) functionality is not supported for t1 or t2 instances.  For a
+	// complete listing of cache node types and specifications, see Amazon ElastiCache
+	// Product Features and Details (http://aws.amazon.com/elasticache/details)
+	// and Cache Node Type-Specific Parameters for Memcached (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Memcached.html#CacheParameterGroups.Memcached.NodeSpecific)
+	// or Cache Node Type-Specific Parameters for Redis (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Redis.html#CacheParameterGroups.Redis.NodeSpecific).
 	CacheNodeType *string `type:"string"`
 
 	// The cache parameter group that is associated with the source cache cluster.
@@ -3790,7 +3929,7 @@ type Snapshot struct {
 	// The number of cache nodes in the source cache cluster.
 	//
 	// For clusters running Redis, this value must be 1. For clusters running Memcached,
-	// this value must be between 1 and 50.
+	// this value must be between 1 and 20.
 	NumCacheNodes *int64 `type:"integer"`
 
 	// The port number used by each cache nodes in the source cache cluster.
@@ -3799,8 +3938,12 @@ type Snapshot struct {
 	// The name of the Availability Zone in which the source cache cluster is located.
 	PreferredAvailabilityZone *string `type:"string"`
 
-	// The time range (in UTC) during which weekly system maintenance can occur
-	// on the source cache cluster.
+	// Specifies the weekly time range during which maintenance on the cache cluster
+	// is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
+	// (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid
+	// values for ddd are:
+	//
+	//  sun mon tue wed thu fri sat  Example: sun:05:00-sun:09:00
 	PreferredMaintenanceWindow *string `type:"string"`
 
 	// The name of a snapshot. For an automatic snapshot, the name is system-generated;
@@ -3870,7 +4013,7 @@ type Tag struct {
 	// The key for the tag.
 	Key *string `type:"string"`
 
-	// The tag's value. May be null.
+	// The tag's value. May not be null.
 	Value *string `type:"string"`
 
 	metadataTag `json:"-", xml:"-"`
@@ -3883,7 +4026,7 @@ type metadataTag struct {
 // Represents the output from the AddTagsToResource, ListTagsOnResource, and
 // RemoveTagsFromResource actions.
 type TagListMessage struct {
-	// A list of cost allocation tags as a key-value pair.
+	// A list of cost allocation tags as key-value pairs.
 	TagList []*Tag `locationNameList:"Tag" type:"list"`
 
 	metadataTagListMessage `json:"-", xml:"-"`

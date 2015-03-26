@@ -4,8 +4,6 @@
 package lambda
 
 import (
-	"time"
-
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
@@ -428,7 +426,7 @@ type EventSourceConfiguration struct {
 	IsActive *bool `type:"boolean"`
 
 	// The UTC time string indicating the last time the event mapping was updated.
-	LastModified *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModified *string `type:"string"`
 
 	// The map (key-value pairs) defining the configuration for AWS Lambda to use
 	// when reading the event source.
@@ -491,7 +489,7 @@ type FunctionConfiguration struct {
 	Handler *string `type:"string"`
 
 	// The timestamp of the last time you updated the function.
-	LastModified *time.Time `type:"timestamp" timestampFormat:"unix"`
+	LastModified *string `type:"string"`
 
 	// The memory size, in MB, you configured for the function. Must be a multiple
 	// of 64 MB.

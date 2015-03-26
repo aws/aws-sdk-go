@@ -1004,12 +1004,9 @@ type metadataAddTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The AdditionalAttribute data type.
 type AdditionalAttribute struct {
-	// Reserved for future use.
 	Key *string `type:"string"`
 
-	// Reserved for future use.
 	Value *string `type:"string"`
 
 	metadataAdditionalAttribute `json:"-", xml:"-"`
@@ -1239,16 +1236,11 @@ type CreateLoadBalancerInput struct {
 
 	// A list of the following tuples: Protocol, LoadBalancerPort, InstanceProtocol,
 	// InstancePort, and SSLCertificateId.
-	//
-	// For information about the protocols and the ports supported by Elastic Load
-	// Balancing, see Listener Configurations for Elastic Load Balancing (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html).
 	Listeners []*Listener `type:"list" required:"true"`
 
-	// The name associated with the load balancer.
-	//
-	//  The name must be unique within your set of load balancers, must have a
-	// maximum of 32 characters, and must only contain alphanumeric characters or
-	// hyphens.
+	// The name associated with the load balancer. The name must be unique within
+	// your set of load balancers, must have a maximum of 32 characters, and must
+	// only contain alphanumeric characters or hyphens.
 	LoadBalancerName *string `type:"string" required:"true"`
 
 	// The type of a load balancer.
@@ -1818,13 +1810,9 @@ type metadataLBCookieStickinessPolicy struct {
 }
 
 // The Listener data type.
-//
-// For information about the protocols and the ports supported by Elastic Load
-// Balancing, see Listener Configurations for Elastic Load Balancing (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html).
 type Listener struct {
-	// Specifies the port on which the instance server is listening - 25, 80, 443,
-	// 465, 587, or 1024-65535. This property cannot be modified for the life of
-	// the load balancer.
+	// Specifies the TCP port on which the instance server is listening. This property
+	// cannot be modified for the life of the load balancer.
 	InstancePort *int64 `type:"integer" required:"true"`
 
 	// Specifies the protocol to use for routing traffic to back-end instances -
@@ -1841,9 +1829,8 @@ type Listener struct {
 	// be either HTTP or TCP.
 	InstanceProtocol *string `type:"string"`
 
-	// Specifies the port on which the load balancer is listening - 25, 80, 443,
-	// 465, 587, or 1024-65535. This property cannot be modified for the life of
-	// the load balancer.
+	// Specifies the external load balancer port number. This property cannot be
+	// modified for the life of the load balancer.
 	LoadBalancerPort *int64 `type:"integer" required:"true"`
 
 	// Specifies the load balancer transport protocol to use for routing - HTTP,
@@ -1866,9 +1853,6 @@ type metadataListener struct {
 // The ListenerDescription data type.
 type ListenerDescription struct {
 	// The Listener data type.
-	//
-	// For information about the protocols and the ports supported by Elastic Load
-	// Balancing, see Listener Configurations for Elastic Load Balancing (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html).
 	Listener *Listener `type:"structure"`
 
 	// A list of policies enabled for this listener. An empty list indicates that
@@ -1891,7 +1875,6 @@ type LoadBalancerAttributes struct {
 	// For more information, see Enable Access Logs (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/enable-access-logs.html).
 	AccessLog *AccessLog `type:"structure"`
 
-	// This parameter is reserved for future use.
 	AdditionalAttributes []*AdditionalAttribute `type:"list"`
 
 	// The name of the load balancer attribute. If enabled, the load balancer allows

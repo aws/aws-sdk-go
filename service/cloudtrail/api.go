@@ -119,6 +119,45 @@ func (c *CloudTrail) GetTrailStatus(input *GetTrailStatusInput) (output *GetTrai
 
 var opGetTrailStatus *aws.Operation
 
+// LookupEventsRequest generates a request for the LookupEvents operation.
+func (c *CloudTrail) LookupEventsRequest(input *LookupEventsInput) (req *aws.Request, output *LookupEventsOutput) {
+	if opLookupEvents == nil {
+		opLookupEvents = &aws.Operation{
+			Name:       "LookupEvents",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opLookupEvents, input, output)
+	output = &LookupEventsOutput{}
+	req.Data = output
+	return
+}
+
+// Looks up API activity events captured by CloudTrail that create, update,
+// or delete resources in your account. Events for a region can be looked up
+// for the times in which you had CloudTrail turned on in that region during
+// the last seven days. Lookup supports five different attributes: time range
+// (defined by a start time and end time), user name, event name, resource type,
+// and resource name. All attributes are optional. The maximum number of attributes
+// that can be specified in any one lookup request are time range and one other
+// attribute. The default number of results returned is 10, with a maximum of
+// 50 possible. The response includes a token that you can use to get the next
+// page of results. The rate of lookup requests is limited to one per second
+// per account.
+//
+// Events that occurred during the selected time range will not be available
+// for lookup if CloudTrail logging was not enabled when the events occurred.
+func (c *CloudTrail) LookupEvents(input *LookupEventsInput) (output *LookupEventsOutput, err error) {
+	req, out := c.LookupEventsRequest(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opLookupEvents *aws.Operation
+
 // StartLoggingRequest generates a request for the StartLogging operation.
 func (c *CloudTrail) StartLoggingRequest(input *StartLoggingInput) (req *aws.Request, output *StartLoggingOutput) {
 	if opStartLogging == nil {
@@ -326,6 +365,35 @@ type metadataDescribeTrailsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains information about an event that was returned by a lookup request.
+// The result includes a representation of a CloudTrail event.
+type Event struct {
+	// A JSON string that contains a representation of the event returned.
+	CloudTrailEvent *string `type:"string"`
+
+	// The CloudTrail ID of the event returned.
+	EventID *string `locationName:"EventId" type:"string"`
+
+	// The name of the event returned.
+	EventName *string `type:"string"`
+
+	// The date and time of the event returned.
+	EventTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// A list of resources referenced by the event returned.
+	Resources []*Resource `type:"list"`
+
+	// A user name or role name of the requester that called the API in the event
+	// returned.
+	Username *string `type:"string"`
+
+	metadataEvent `json:"-", xml:"-"`
+}
+
+type metadataEvent struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // The name of a trail about which you want the current status.
 type GetTrailStatusInput struct {
 	// The name of the trail for which you are requesting the current status.
@@ -383,6 +451,98 @@ type GetTrailStatusOutput struct {
 }
 
 type metadataGetTrailStatusOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Specifies an attribute and value that filter the events returned.
+type LookupAttribute struct {
+	// Specifies an attribute on which to filter the events returned.
+	AttributeKey *string `type:"string" required:"true"`
+
+	// Specifies a value for the specified AttributeKey.
+	AttributeValue *string `type:"string" required:"true"`
+
+	metadataLookupAttribute `json:"-", xml:"-"`
+}
+
+type metadataLookupAttribute struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Contains a request for LookupEvents.
+type LookupEventsInput struct {
+	// Specifies that only events that occur before or at the specified time are
+	// returned. If the specified end time is before the specified start time, an
+	// error is returned.
+	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// Contains a list of lookup attributes. Currently the list can contain only
+	// one item.
+	LookupAttributes []*LookupAttribute `type:"list"`
+
+	// The number of events to return. Possible values are 1 through 50. The default
+	// is 10.
+	MaxResults *int64 `type:"integer"`
+
+	// The token to use to get the next page of results after a previous API call.
+	// This token must be passed in with the same parameters that were specified
+	// in the the original call. For example, if the original call specified an
+	// AttributeKey of 'Username' with a value of 'root', the call with NextToken
+	// should include those same parameters.
+	NextToken *string `type:"string"`
+
+	// Specifies that only events that occur after or at the specified time are
+	// returned. If the specified start time is after the specified end time, an
+	// error is returned.
+	StartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	metadataLookupEventsInput `json:"-", xml:"-"`
+}
+
+type metadataLookupEventsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Contains a response to a LookupEvents action.
+type LookupEventsOutput struct {
+	// A list of events returned based on the lookup attributes specified and the
+	// CloudTrail event. The events list is sorted by time. The most recent event
+	// is listed first.
+	Events []*Event `type:"list"`
+
+	// The token to use to get the next page of results after a previous API call.
+	// If the token does not appear, there are no more results to return. The token
+	// must be passed in with the same parameters as the previous call. For example,
+	// if the original call specified an AttributeKey of 'Username' with a value
+	// of 'root', the call with NextToken should include those same parameters.
+	NextToken *string `type:"string"`
+
+	metadataLookupEventsOutput `json:"-", xml:"-"`
+}
+
+type metadataLookupEventsOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Specifies the type and name of a resource referenced by an event.
+type Resource struct {
+	// The name of the resource referenced by the event returned. These are user-created
+	// names whose values will depend on the environment. For example, the resource
+	// name might be "auto-scaling-test-group" for an Auto Scaling Group or "i-1234567"
+	// for an EC2 Instance.
+	ResourceName *string `type:"string"`
+
+	// The type of a resource referenced by the event returned. When the resource
+	// type cannot be determined, null is returned. Some examples of resource types
+	// are: Instance for EC2, Trail for CloudTrail, DBInstance for RDS, and AccessKey
+	// for IAM. For a list of resource types supported for event lookup, see Resource
+	// Types Supported for Event Lookup (http://docs.aws.amazon.com/awscloudtrail/latest/userguide/lookup_supported_resourcetypes.html).
+	ResourceType *string `type:"string"`
+
+	metadataResource `json:"-", xml:"-"`
+}
+
+type metadataResource struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 

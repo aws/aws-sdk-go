@@ -3288,6 +3288,13 @@ func (c *EC2) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *aws.
 // (if you own the snapshots), self for snapshots for which you own or have
 // explicit permissions, or all for public snapshots.
 //
+// If you are describing a long list of snapshots, you can paginate the output
+// to make the list more manageable. The MaxResults parameter sets the maximum
+// number of results returned in a single page. If the list of results exceeds
+// your MaxResults value, then that number of results is returned along with
+// a NextToken value that can be passed to a subsequent DescribeSnapshots request
+// to retrieve the remaining results.
+//
 // For more information about Amazon EBS snapshots, see Amazon EBS Snapshots
 // in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) DescribeSnapshots(input *DescribeSnapshotsInput) (output *DescribeSnapshotsOutput, err error) {
@@ -4133,13 +4140,13 @@ func (c *EC2) GetConsoleOutputRequest(input *GetConsoleOutputInput) (req *aws.Re
 // reboot, and termination. Amazon EC2 preserves the most recent 64 KB output
 // which is available for at least one hour after the most recent post.
 //
-// For Linux/Unix instances, the instance console output displays the exact
-// console output that would normally be displayed on a physical monitor attached
-// to a machine. This output is buffered because the instance produces it and
+// For Linux instances, the instance console output displays the exact console
+// output that would normally be displayed on a physical monitor attached to
+// a computer. This output is buffered because the instance produces it and
 // then posts it to a store where the instance's owner can retrieve it.
 //
-// For Windows instances, the instance console output displays the last three
-// system event log errors.
+// For Windows instances, the instance console output includes output from
+// the EC2Config service.
 func (c *EC2) GetConsoleOutput(input *GetConsoleOutputInput) (output *GetConsoleOutputOutput, err error) {
 	req, out := c.GetConsoleOutputRequest(input)
 	output = out
@@ -5850,14 +5857,14 @@ type AuthorizeSecurityGroupIngressInput struct {
 	// For the ICMP type number, use -1 to specify all ICMP types.
 	FromPort *int64 `type:"integer"`
 
-	// The ID of the security group.
+	// The ID of the security group. Required for a nondefault VPC.
 	GroupID *string `locationName:"GroupId" type:"string"`
 
 	// [EC2-Classic, default VPC] The name of the security group.
 	GroupName *string `type:"string"`
 
-	// A set of IP permissions. You can't specify a source security group and a
-	// CIDR IP address range.
+	// A set of IP permissions. Can be used to specify multiple rules in a single
+	// command.
 	IPPermissions []*IPPermission `locationName:"IpPermissions" locationNameList:"item" type:"list"`
 
 	// The IP protocol name (tcp, udp, icmp) or number (see Protocol Numbers (http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)).
@@ -7897,7 +7904,8 @@ type DescribeClassicLinkInstancesInput struct {
 
 	// The maximum number of items to return for this request. The request returns
 	// a token that you can specify in a subsequent call to get the next set of
-	// results.
+	// results. You cannot specify this parameter and the instance IDs parameter
+	// in the same request.
 	//
 	// Constraint: If the value is greater than 1000, we return only 1000 items.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
@@ -8078,6 +8086,10 @@ type metadataDescribeExportTasksOutput struct {
 
 type DescribeImageAttributeInput struct {
 	// The AMI attribute.
+	//
+	// Note: Depending on your account privileges, the blockDeviceMapping attribute
+	// may return a Client.AuthFailure error. If this happens, use DescribeImages
+	// to get information about the block device mapping for the AMI.
 	Attribute *string `type:"string" required:"true"`
 
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
@@ -8360,6 +8372,8 @@ type DescribeInstanceStatusInput struct {
 	// The maximum number of paginated instance items per response. The call also
 	// returns a token that you can specify in a subsequent call to get the next
 	// set of results. If the value is greater than 1000, we return only 1000 items.
+	// You cannot specify this parameter and the instance IDs parameter in the same
+	// request.
 	//
 	// Default: 1000
 	MaxResults *int64 `type:"integer"`
@@ -8624,7 +8638,9 @@ type DescribeInstancesInput struct {
 
 	// The maximum number of items to return for this call. The call also returns
 	// a token that you can specify in a subsequent call to get the next set of
-	// results. If the value is greater than 1000, we return only 1000 items.
+	// results. If the value is greater than 1000, we return only 1000 items. You
+	// cannot specify this parameter and the instance IDs parameter in the same
+	// request.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The token for the next set of items to return. (You received this token from
@@ -9440,13 +9456,16 @@ type DescribeSecurityGroupsInput struct {
 	//   vpc-id - The ID of the VPC specified when the security group was created.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
-	// One or more security group IDs. Required for nondefault VPCs.
+	// One or more security group IDs. Required for security groups in a nondefault
+	// VPC.
 	//
 	// Default: Describes all your security groups.
 	GroupIDs []*string `locationName:"GroupId" locationNameList:"groupId" type:"list"`
 
-	// [EC2-Classic, default VPC] One or more security group names. You can specify
-	// either the security group name or the security group ID.
+	// [EC2-Classic and default VPC only] One or more security group names. You
+	// can specify either the security group name or the security group ID. For
+	// security groups in a nondefault VPC, use the group-name filter to describe
+	// security groups by name.
 	//
 	// Default: Describes all your security groups.
 	GroupNames []*string `locationName:"GroupName" locationNameList:"GroupName" type:"list"`
@@ -9540,6 +9559,24 @@ type DescribeSnapshotsInput struct {
 	//   volume-size - The size of the volume, in GiB.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
+	// The maximum number of snapshot results returned by DescribeSnapshots in paginated
+	// output. When this parameter is used, DescribeSnapshots only returns MaxResults
+	// results in a single page along with a NextToken response element. The remaining
+	// results of the initial request can be seen by sending another DescribeSnapshots
+	// request with the returned NextToken value. This value can be between 5 and
+	// 1000; if MaxResults is given a value larger than 1000, only 1000 results
+	// are returned. If this parameter is not used, then DescribeSnapshots returns
+	// all results. You cannot specify this parameter and the snapshot IDs parameter
+	// in the same request.
+	MaxResults *int64 `type:"integer"`
+
+	// The NextToken value returned from a previous paginated DescribeSnapshots
+	// request where MaxResults was used and the results exceeded the value of that
+	// parameter. Pagination continues from the end of the previous results that
+	// returned the NextToken value. This value is null when there are no more results
+	// to return.
+	NextToken *string `type:"string"`
+
 	// Returns the snapshots owned by the specified owner. Multiple owners can be
 	// specified.
 	OwnerIDs []*string `locationName:"Owner" locationNameList:"Owner" type:"list"`
@@ -9560,6 +9597,12 @@ type metadataDescribeSnapshotsInput struct {
 }
 
 type DescribeSnapshotsOutput struct {
+	// The NextToken value to include in a future DescribeSnapshots request. When
+	// the results of a DescribeSnapshots request exceed MaxResults, this value
+	// can be used to retrieve the next page of results. This value is null when
+	// there are no more results to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
 	Snapshots []*Snapshot `locationName:"snapshotSet" locationNameList:"item" type:"list"`
 
 	metadataDescribeSnapshotsOutput `json:"-", xml:"-"`
@@ -10291,7 +10334,8 @@ type DescribeVolumeStatusInput struct {
 	// | insufficient-data).
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
-	// The maximum number of paginated volume items per response.
+	// The maximum number of paginated volume items per response. You cannot specify
+	// this parameter and the volume IDs parameter in the same request.
 	MaxResults *int64 `type:"integer"`
 
 	// The next paginated set of results to return using the pagination token returned
@@ -10382,7 +10426,8 @@ type DescribeVolumesInput struct {
 	// request with the returned NextToken value. This value can be between 5 and
 	// 1000; if MaxResults is given a value larger than 1000, only 1000 results
 	// are returned. If this parameter is not used, then DescribeVolumes returns
-	// all results.
+	// all results. You cannot specify this parameter and the volume IDs parameter
+	// in the same request.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The NextToken value returned from a previous paginated DescribeVolumes request
@@ -11078,6 +11123,8 @@ type IPPermission struct {
 	// number. Exception: For TCP, UDP, and ICMP, the value returned is the name
 	// (for example, tcp, udp, or icmp). For a list of protocol numbers, see Protocol
 	// Numbers (http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml).
+	// (VPC only) When you call AuthorizeSecurityGroupIngress, you can use -1 to
+	// specify all.
 	IPProtocol *string `locationName:"ipProtocol" type:"string"`
 
 	// One or more IP ranges.
@@ -11724,7 +11771,7 @@ type InstanceNetworkInterfaceSpecification struct {
 	// in a VPC. The public IP address can only be assigned to a network interface
 	// for eth0, and can only be assigned to a new network interface, not an existing
 	// one. You cannot specify more than one network interface in the request. If
-	// luanching into a default subnet, the default value is true.
+	// launching into a default subnet, the default value is true.
 	AssociatePublicIPAddress *bool `locationName:"associatePublicIpAddress" type:"boolean"`
 
 	// If set to true, the interface is deleted when the instance is terminated.
@@ -14639,15 +14686,17 @@ type metadataUserData struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// Describes a security group and AWS account ID pair for EC2-Classic.
+// Describes a security group and AWS account ID pair.
 type UserIDGroupPair struct {
-	// The name of the security group in the specified AWS account.
+	// The ID of the security group.
 	GroupID *string `locationName:"groupId" type:"string"`
 
-	// The ID of the security group owned by the specified AWS account.
+	// The name of the security group. In a request, use this parameter for a security
+	// group in EC2-Classic or a default VPC only. For a security group in a nondefault
+	// VPC, use GroupId.
 	GroupName *string `locationName:"groupName" type:"string"`
 
-	// The ID of an AWS account.
+	// The ID of an AWS account. EC2-Classic only.
 	UserID *string `locationName:"userId" type:"string"`
 
 	metadataUserIDGroupPair `json:"-", xml:"-"`

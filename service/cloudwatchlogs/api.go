@@ -233,7 +233,9 @@ func (c *CloudWatchLogs) DescribeLogStreamsRequest(input *DescribeLogStreamsInpu
 //  By default, this operation returns up to 50 log streams. If there are more
 // log streams to list, the response would contain a nextToken value in the
 // response body. You can also limit the number of log streams returned in the
-// response by specifying the limit parameter in the request.
+// response by specifying the limit parameter in the request. This operation
+// has a limit of five transactions per second, after which transactions are
+// throttled.
 func (c *CloudWatchLogs) DescribeLogStreams(input *DescribeLogStreamsInput) (output *DescribeLogStreamsOutput, err error) {
 	req, out := c.DescribeLogStreamsRequest(input)
 	output = out
@@ -333,12 +335,12 @@ func (c *CloudWatchLogs) PutLogEventsRequest(input *PutLogEventsInput) (req *aws
 // does not require a sequenceToken.
 //
 //  The batch of events must satisfy the following constraints:  The maximum
-// batch size is 32,768 bytes, and this size is calculated as the sum of all
-// event messages in UTF-8, plus 26 bytes for each log event. None of the log
-// events in the batch can be more than 2 hours in the future. None of the log
-// events in the batch can be older than 14 days or the retention period of
-// the log group. The log events in the batch must be in chronological ordered
-// by their timestamp. The maximum number of log events in a batch is 1,000.
+// batch size is 1,048,576 bytes, and this size is calculated as the sum of
+// all event messages in UTF-8, plus 26 bytes for each log event. None of the
+// log events in the batch can be more than 2 hours in the future. None of the
+// log events in the batch can be older than 14 days or the retention period
+// of the log group. The log events in the batch must be in chronological ordered
+// by their timestamp. The maximum number of log events in a batch is 10,000.
 func (c *CloudWatchLogs) PutLogEvents(input *PutLogEventsInput) (output *PutLogEventsOutput, err error) {
 	req, out := c.PutLogEventsRequest(input)
 	output = out
@@ -583,18 +585,30 @@ type metadataDescribeLogGroupsOutput struct {
 }
 
 type DescribeLogStreamsInput struct {
+	// If set to true, results are returned in descending order. If you don't specify
+	// a value or set it to false, results are returned in ascending order.
+	Descending *bool `locationName:"descending" type:"boolean"`
+
 	// The maximum number of items returned in the response. If you don't specify
 	// a value, the request would return up to 50 items.
 	Limit *int64 `locationName:"limit" type:"integer"`
 
 	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
 
+	// Will only return log streams that match the provided logStreamNamePrefix.
+	// If you don't specify a value, no prefix filter is applied.
 	LogStreamNamePrefix *string `locationName:"logStreamNamePrefix" type:"string"`
 
 	// A string token used for pagination that points to the next page of results.
 	// It must be a value obtained from the response of the previous DescribeLogStreams
 	// request.
 	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// Specifies what to order the returned log streams by. Valid arguments are
+	// 'LogStreamName' or 'LastEventTime'. If you don't specify a value, results
+	// are ordered by LogStreamName. If 'LastEventTime' is chosen, the request cannot
+	// also contain a logStreamNamePrefix.
+	OrderBy *string `locationName:"orderBy" type:"string"`
 
 	metadataDescribeLogStreamsInput `json:"-", xml:"-"`
 }
@@ -894,6 +908,8 @@ type PutLogEventsOutput struct {
 	// obtained from the response of the previous request.
 	NextSequenceToken *string `locationName:"nextSequenceToken" type:"string"`
 
+	RejectedLogEventsInfo *RejectedLogEventsInfo `locationName:"rejectedLogEventsInfo" type:"structure"`
+
 	metadataPutLogEventsOutput `json:"-", xml:"-"`
 }
 
@@ -950,6 +966,20 @@ type PutRetentionPolicyOutput struct {
 }
 
 type metadataPutRetentionPolicyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type RejectedLogEventsInfo struct {
+	ExpiredLogEventEndIndex *int64 `locationName:"expiredLogEventEndIndex" type:"integer"`
+
+	TooNewLogEventStartIndex *int64 `locationName:"tooNewLogEventStartIndex" type:"integer"`
+
+	TooOldLogEventEndIndex *int64 `locationName:"tooOldLogEventEndIndex" type:"integer"`
+
+	metadataRejectedLogEventsInfo `json:"-", xml:"-"`
+}
+
+type metadataRejectedLogEventsInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 

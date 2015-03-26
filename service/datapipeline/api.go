@@ -39,6 +39,32 @@ func (c *DataPipeline) ActivatePipeline(input *ActivatePipelineInput) (output *A
 
 var opActivatePipeline *aws.Operation
 
+// AddTagsRequest generates a request for the AddTags operation.
+func (c *DataPipeline) AddTagsRequest(input *AddTagsInput) (req *aws.Request, output *AddTagsOutput) {
+	if opAddTags == nil {
+		opAddTags = &aws.Operation{
+			Name:       "AddTags",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opAddTags, input, output)
+	output = &AddTagsOutput{}
+	req.Data = output
+	return
+}
+
+// Add or modify tags in an existing pipeline.
+func (c *DataPipeline) AddTags(input *AddTagsInput) (output *AddTagsOutput, err error) {
+	req, out := c.AddTagsRequest(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opAddTags *aws.Operation
+
 // CreatePipelineRequest generates a request for the CreatePipeline operation.
 func (c *DataPipeline) CreatePipelineRequest(input *CreatePipelineInput) (req *aws.Request, output *CreatePipelineOutput) {
 	if opCreatePipeline == nil {
@@ -351,6 +377,32 @@ func (c *DataPipeline) QueryObjects(input *QueryObjectsInput) (output *QueryObje
 
 var opQueryObjects *aws.Operation
 
+// RemoveTagsRequest generates a request for the RemoveTags operation.
+func (c *DataPipeline) RemoveTagsRequest(input *RemoveTagsInput) (req *aws.Request, output *RemoveTagsOutput) {
+	if opRemoveTags == nil {
+		opRemoveTags = &aws.Operation{
+			Name:       "RemoveTags",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opRemoveTags, input, output)
+	output = &RemoveTagsOutput{}
+	req.Data = output
+	return
+}
+
+// Remove existing tags from a pipeline.
+func (c *DataPipeline) RemoveTags(input *RemoveTagsInput) (output *RemoveTagsOutput, err error) {
+	req, out := c.RemoveTagsRequest(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opRemoveTags *aws.Operation
+
 // ReportTaskProgressRequest generates a request for the ReportTaskProgress operation.
 func (c *DataPipeline) ReportTaskProgressRequest(input *ReportTaskProgressInput) (req *aws.Request, output *ReportTaskProgressOutput) {
 	if opReportTaskProgress == nil {
@@ -528,6 +580,30 @@ type metadataActivatePipelineOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input to the AddTags action.
+type AddTagsInput struct {
+	// The identifier of the pipeline to which you want to add the tags.
+	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+
+	// The tags as key/value pairs to add to the pipeline.
+	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
+
+	metadataAddTagsInput `json:"-", xml:"-"`
+}
+
+type metadataAddTagsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// The response from the AddTags action.
+type AddTagsOutput struct {
+	metadataAddTagsOutput `json:"-", xml:"-"`
+}
+
+type metadataAddTagsOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // The input for the CreatePipeline action.
 type CreatePipelineInput struct {
 	// The description of the new pipeline.
@@ -537,6 +613,12 @@ type CreatePipelineInput struct {
 	// associated with your AWS account, because AWS Data Pipeline assigns each
 	// new pipeline a unique pipeline identifier.
 	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// A list of tags to associate with a pipeline at creation time. Tags let you
+	// control access to pipelines. For more information, see Controlling User Access
+	// to Pipelines (http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-control-access.html)
+	// in the AWS Data Pipeline Developer Guide.
+	Tags []*Tag `locationName:"tags" type:"list"`
 
 	// A unique identifier that you specify. This identifier is not the same as
 	// the pipeline identifier assigned by AWS Data Pipeline. You are responsible
@@ -905,6 +987,12 @@ type PipelineDescription struct {
 	// string of the form df-297EG78HU43EEXAMPLE.
 	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
 
+	// A list of tags to associated with a pipeline. Tags let you control access
+	// to pipelines. For more information, see Controlling User Access to Pipelines
+	// (http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-control-access.html)
+	// in the AWS Data Pipeline Developer Guide.
+	Tags []*Tag `locationName:"tags" type:"list"`
+
 	metadataPipelineDescription `json:"-", xml:"-"`
 }
 
@@ -1101,6 +1189,30 @@ type metadataQueryObjectsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input to the RemoveTags action.
+type RemoveTagsInput struct {
+	// The pipeline from which you want to remove tags.
+	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+
+	// The keys of the tags you wish to remove.
+	TagKeys []*string `locationName:"tagKeys" type:"list" required:"true"`
+
+	metadataRemoveTagsInput `json:"-", xml:"-"`
+}
+
+type metadataRemoveTagsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// The result of the RemoveTags action.
+type RemoveTagsOutput struct {
+	metadataRemoveTagsOutput `json:"-", xml:"-"`
+}
+
+type metadataRemoveTagsOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // The input for the ReportTaskProgress action.
 type ReportTaskProgressInput struct {
 	// Key-value pairs that define the properties of the ReportTaskProgressInput
@@ -1201,7 +1313,7 @@ type SetStatusInput struct {
 	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
 
 	// Specifies the status to be set on all the objects in objectIds. For components,
-	// this can be either PAUSE or RESUME. For instances, this can be either CANCEL,
+	// this can be either PAUSE or RESUME. For instances, this can be either TRY_CANCEL,
 	// RERUN, or MARK_FINISHED.
 	Status *string `locationName:"status" type:"string" required:"true"`
 
@@ -1261,6 +1373,29 @@ type SetTaskStatusOutput struct {
 }
 
 type metadataSetTaskStatusOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Tags are key/value pairs defined by a user and associated with a pipeline
+// to control access. AWS Data Pipeline allows you to associate ten tags per
+// pipeline. For more information, see Controlling User Access to Pipelines
+// (http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-control-access.html)
+// in the AWS Data Pipeline Developer Guide.
+type Tag struct {
+	// The key name of a tag defined by a user. For more information, see Controlling
+	// User Access to Pipelines (http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-control-access.html)
+	// in the AWS Data Pipeline Developer Guide.
+	Key *string `locationName:"key" type:"string" required:"true"`
+
+	// The optional value portion of a tag defined by a user. For more information,
+	// see Controlling User Access to Pipelines (http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-control-access.html)
+	// in the AWS Data Pipeline Developer Guide.
+	Value *string `locationName:"value" type:"string" required:"true"`
+
+	metadataTag `json:"-", xml:"-"`
+}
+
+type metadataTag struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 

@@ -603,6 +603,33 @@ func (c *Route53) GetHostedZone(input *GetHostedZoneInput) (output *GetHostedZon
 
 var opGetHostedZone *aws.Operation
 
+// GetHostedZoneCountRequest generates a request for the GetHostedZoneCount operation.
+func (c *Route53) GetHostedZoneCountRequest(input *GetHostedZoneCountInput) (req *aws.Request, output *GetHostedZoneCountOutput) {
+	if opGetHostedZoneCount == nil {
+		opGetHostedZoneCount = &aws.Operation{
+			Name:       "GetHostedZoneCount",
+			HTTPMethod: "GET",
+			HTTPPath:   "/2013-04-01/hostedzonecount",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opGetHostedZoneCount, input, output)
+	output = &GetHostedZoneCountOutput{}
+	req.Data = output
+	return
+}
+
+// To retrieve a count of all your hosted zones, send a GET request to the 2013-04-01/hostedzonecount
+// resource.
+func (c *Route53) GetHostedZoneCount(input *GetHostedZoneCountInput) (output *GetHostedZoneCountOutput, err error) {
+	req, out := c.GetHostedZoneCountRequest(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opGetHostedZoneCount *aws.Operation
+
 // GetReusableDelegationSetRequest generates a request for the GetReusableDelegationSet operation.
 func (c *Route53) GetReusableDelegationSetRequest(input *GetReusableDelegationSetInput) (req *aws.Request, output *GetReusableDelegationSetOutput) {
 	if opGetReusableDelegationSet == nil {
@@ -735,6 +762,42 @@ func (c *Route53) ListHostedZones(input *ListHostedZonesInput) (output *ListHost
 }
 
 var opListHostedZones *aws.Operation
+
+// ListHostedZonesByNameRequest generates a request for the ListHostedZonesByName operation.
+func (c *Route53) ListHostedZonesByNameRequest(input *ListHostedZonesByNameInput) (req *aws.Request, output *ListHostedZonesByNameOutput) {
+	if opListHostedZonesByName == nil {
+		opListHostedZonesByName = &aws.Operation{
+			Name:       "ListHostedZonesByName",
+			HTTPMethod: "GET",
+			HTTPPath:   "/2013-04-01/hostedzonesbyname",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opListHostedZonesByName, input, output)
+	output = &ListHostedZonesByNameOutput{}
+	req.Data = output
+	return
+}
+
+// To retrieve a list of your hosted zones in lexicographic order, send a GET
+// request to the 2013-04-01/hostedzonesbyname resource. The response to this
+// request includes a HostedZones element with zero or more HostedZone child
+// elements lexicographically ordered by DNS name. By default, the list of hosted
+// zones is displayed on a single page. You can control the length of the page
+// that is displayed by using the MaxItems parameter. You can use the DNSName
+// and HostedZoneId parameters to control the hosted zone that the list begins
+// with.
+//
+//  Amazon Route 53 returns a maximum of 100 items. If you set MaxItems to
+// a value greater than 100, Amazon Route 53 returns only the first 100.
+func (c *Route53) ListHostedZonesByName(input *ListHostedZonesByNameInput) (output *ListHostedZonesByNameOutput, err error) {
+	req, out := c.ListHostedZonesByNameRequest(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opListHostedZonesByName *aws.Operation
 
 // ListResourceRecordSetsRequest generates a request for the ListResourceRecordSets operation.
 func (c *Route53) ListResourceRecordSetsRequest(input *ListResourceRecordSetsInput) (req *aws.Request, output *ListResourceRecordSetsOutput) {
@@ -1693,6 +1756,29 @@ type metadataGetHealthCheckStatusOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// To retrieve a count of all your hosted zones, send a GET request to the 2013-04-01/hostedzonecount
+// resource.
+type GetHostedZoneCountInput struct {
+	metadataGetHostedZoneCountInput `json:"-", xml:"-"`
+}
+
+type metadataGetHostedZoneCountInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// A complex type that contains the count of hosted zones associated with the
+// current AWS account.
+type GetHostedZoneCountOutput struct {
+	// The number of hosted zones associated with the current AWS account.
+	HostedZoneCount *int64 `type:"long" required:"true"`
+
+	metadataGetHostedZoneCountOutput `json:"-", xml:"-"`
+}
+
+type metadataGetHostedZoneCountOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // The input for a GetHostedZone request.
 type GetHostedZoneInput struct {
 	// The ID of the hosted zone for which you want to get a list of the name servers
@@ -2030,6 +2116,90 @@ type ListHealthChecksOutput struct {
 }
 
 type metadataListHealthChecksOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// To retrieve a list of your hosted zones in lexicographic order, send a GET
+// request to the 2013-04-01/hostedzonesbyname resource. The response to this
+// request includes a HostedZones element with zero or more HostedZone child
+// elements lexicographically ordered by DNS name. By default, the list of hosted
+// zones is displayed on a single page. You can control the length of the page
+// that is displayed by using the MaxItems parameter. You can use the DNSName
+// and HostedZoneId parameters to control the hosted zone that the list begins
+// with.
+//
+// For more information about listing hosted zones, see Listing the Hosted
+// Zones for an AWS Account (http://docs.amazonwebservices.com/Route53/latest/DeveloperGuide/ListInfoOnHostedZone.html)
+// in the Amazon Route 53 Developer Guide.
+type ListHostedZonesByNameInput struct {
+	// The first name in the lexicographic ordering of domain names that you want
+	// the ListHostedZonesByNameRequest request to list.
+	//
+	// If the request returned more than one page of results, submit another request
+	// and specify the value of NextDNSName and NextHostedZoneId from the last response
+	// in the DNSName and HostedZoneId parameters to get the next page of results.
+	DNSName *string `location:"querystring" locationName:"dnsname" type:"string"`
+
+	// If the request returned more than one page of results, submit another request
+	// and specify the value of NextDNSName and NextHostedZoneId from the last response
+	// in the DNSName and HostedZoneId parameters to get the next page of results.
+	HostedZoneID *string `location:"querystring" locationName:"hostedzoneid" type:"string"`
+
+	// Specify the maximum number of hosted zones to return per page of results.
+	MaxItems *string `location:"querystring" locationName:"maxitems" type:"string"`
+
+	metadataListHostedZonesByNameInput `json:"-", xml:"-"`
+}
+
+type metadataListHostedZonesByNameInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// A complex type that contains the response for the request.
+type ListHostedZonesByNameOutput struct {
+	// The DNSName value sent in the request.
+	DNSName *string `type:"string"`
+
+	// The HostedZoneId value sent in the request.
+	HostedZoneID *string `locationName:"HostedZoneId" type:"string"`
+
+	// A complex type that contains information about the hosted zones associated
+	// with the current AWS account.
+	HostedZones []*HostedZone `locationNameList:"HostedZone" type:"list" required:"true"`
+
+	// A flag indicating whether there are more hosted zones to be listed. If your
+	// results were truncated, you can make a follow-up request for the next page
+	// of results by using the NextDNSName and NextHostedZoneId elements.
+	//
+	// Valid Values: true | false
+	IsTruncated *bool `type:"boolean" required:"true"`
+
+	// The maximum number of hosted zones to be included in the response body. If
+	// the number of hosted zones associated with this AWS account exceeds MaxItems,
+	// the value of ListHostedZonesByNameResponse$IsTruncated in the response is
+	// true. Call ListHostedZonesByName again and specify the value of ListHostedZonesByNameResponse$NextDNSName
+	// and ListHostedZonesByNameResponse$NextHostedZoneId elements respectively
+	// to get the next page of results.
+	MaxItems *string `type:"string" required:"true"`
+
+	// If ListHostedZonesByNameResponse$IsTruncated is true, there are more hosted
+	// zones associated with the current AWS account. To get the next page of results,
+	// make another request to ListHostedZonesByName. Specify the value of ListHostedZonesByNameResponse$NextDNSName
+	// in the ListHostedZonesByNameRequest$DNSName element and ListHostedZonesByNameResponse$NextHostedZoneId
+	// in the ListHostedZonesByNameRequest$HostedZoneId element.
+	NextDNSName *string `type:"string"`
+
+	// If ListHostedZonesByNameResponse$IsTruncated is true, there are more hosted
+	// zones associated with the current AWS account. To get the next page of results,
+	// make another request to ListHostedZonesByName. Specify the value of ListHostedZonesByNameResponse$NextDNSName
+	// in the ListHostedZonesByNameRequest$DNSName element and ListHostedZonesByNameResponse$NextHostedZoneId
+	// in the ListHostedZonesByNameRequest$HostedZoneId element.
+	NextHostedZoneID *string `locationName:"NextHostedZoneId" type:"string"`
+
+	metadataListHostedZonesByNameOutput `json:"-", xml:"-"`
+}
+
+type metadataListHostedZonesByNameOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 

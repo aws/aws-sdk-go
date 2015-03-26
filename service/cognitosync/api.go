@@ -9,6 +9,35 @@ import (
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+// BulkPublishRequest generates a request for the BulkPublish operation.
+func (c *CognitoSync) BulkPublishRequest(input *BulkPublishInput) (req *aws.Request, output *BulkPublishOutput) {
+	if opBulkPublish == nil {
+		opBulkPublish = &aws.Operation{
+			Name:       "BulkPublish",
+			HTTPMethod: "POST",
+			HTTPPath:   "/identitypools/{IdentityPoolId}/bulkpublish",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opBulkPublish, input, output)
+	output = &BulkPublishOutput{}
+	req.Data = output
+	return
+}
+
+// Initiates a bulk publish of all existing datasets for an Identity Pool to
+// the configured stream. Customers are limited to one successful bulk publish
+// per 24 hours. Bulk publish is an asynchronous request, customers can see
+// the status of the request via the GetBulkPublishDetails operation.
+func (c *CognitoSync) BulkPublish(input *BulkPublishInput) (output *BulkPublishOutput, err error) {
+	req, out := c.BulkPublishRequest(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opBulkPublish *aws.Operation
+
 // DeleteDatasetRequest generates a request for the DeleteDataset operation.
 func (c *CognitoSync) DeleteDatasetRequest(input *DeleteDatasetInput) (req *aws.Request, output *DeleteDatasetOutput) {
 	if opDeleteDataset == nil {
@@ -27,8 +56,11 @@ func (c *CognitoSync) DeleteDatasetRequest(input *DeleteDatasetInput) (req *aws.
 
 // Deletes the specific dataset. The dataset will be deleted permanently, and
 // the action can't be undone. Datasets that this dataset was merged with will
-// no longer report the merge. Any consequent operation on this dataset will
+// no longer report the merge. Any subsequent operation on this dataset will
 // result in a ResourceNotFoundException.
+//
+// DeleteDataset can be called with temporary user credentials provided by
+// Cognito Identity or with developer credentials.
 func (c *CognitoSync) DeleteDataset(input *DeleteDatasetInput) (output *DeleteDatasetOutput, err error) {
 	req, out := c.DeleteDatasetRequest(input)
 	output = out
@@ -54,11 +86,13 @@ func (c *CognitoSync) DescribeDatasetRequest(input *DescribeDatasetInput) (req *
 	return
 }
 
-// Gets metadata about a dataset by identity and dataset name. The credentials
-// used to make this API call need to have access to the identity data. With
-// Amazon Cognito Sync, each identity has access only to its own data. You should
-// use Amazon Cognito Identity service to retrieve the credentials necessary
-// to make this API call.
+// Gets meta data about a dataset by identity and dataset name. With Amazon
+// Cognito Sync, each identity has access only to its own data. Thus, the credentials
+// used to make this API call need to have access to the identity data.
+//
+// DescribeDataset can be called with temporary user credentials provided by
+// Cognito Identity or with developer credentials. You should use Cognito Identity
+// credentials to make this API call.
 func (c *CognitoSync) DescribeDataset(input *DescribeDatasetInput) (output *DescribeDatasetOutput, err error) {
 	req, out := c.DescribeDatasetRequest(input)
 	output = out
@@ -86,6 +120,10 @@ func (c *CognitoSync) DescribeIdentityPoolUsageRequest(input *DescribeIdentityPo
 
 // Gets usage details (for example, data storage) about a particular identity
 // pool.
+//
+// DescribeIdentityPoolUsage can only be called with developer credentials.
+// You cannot make this API call with the temporary user credentials provided
+// by Cognito Identity.
 func (c *CognitoSync) DescribeIdentityPoolUsage(input *DescribeIdentityPoolUsageInput) (output *DescribeIdentityPoolUsageOutput, err error) {
 	req, out := c.DescribeIdentityPoolUsageRequest(input)
 	output = out
@@ -113,6 +151,9 @@ func (c *CognitoSync) DescribeIdentityUsageRequest(input *DescribeIdentityUsageI
 
 // Gets usage information for an identity, including number of datasets and
 // data usage.
+//
+// DescribeIdentityUsage can be called with temporary user credentials provided
+// by Cognito Identity or with developer credentials.
 func (c *CognitoSync) DescribeIdentityUsage(input *DescribeIdentityUsageInput) (output *DescribeIdentityUsageOutput, err error) {
 	req, out := c.DescribeIdentityUsageRequest(input)
 	output = out
@@ -121,6 +162,32 @@ func (c *CognitoSync) DescribeIdentityUsage(input *DescribeIdentityUsageInput) (
 }
 
 var opDescribeIdentityUsage *aws.Operation
+
+// GetBulkPublishDetailsRequest generates a request for the GetBulkPublishDetails operation.
+func (c *CognitoSync) GetBulkPublishDetailsRequest(input *GetBulkPublishDetailsInput) (req *aws.Request, output *GetBulkPublishDetailsOutput) {
+	if opGetBulkPublishDetails == nil {
+		opGetBulkPublishDetails = &aws.Operation{
+			Name:       "GetBulkPublishDetails",
+			HTTPMethod: "POST",
+			HTTPPath:   "/identitypools/{IdentityPoolId}/getBulkPublishDetails",
+		}
+	}
+
+	req = aws.NewRequest(c.Service, opGetBulkPublishDetails, input, output)
+	output = &GetBulkPublishDetailsOutput{}
+	req.Data = output
+	return
+}
+
+// Get the status of the last BulkPublish operation for an identity pool.
+func (c *CognitoSync) GetBulkPublishDetails(input *GetBulkPublishDetailsInput) (output *GetBulkPublishDetailsOutput, err error) {
+	req, out := c.GetBulkPublishDetailsRequest(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opGetBulkPublishDetails *aws.Operation
 
 // GetIdentityPoolConfigurationRequest generates a request for the GetIdentityPoolConfiguration operation.
 func (c *CognitoSync) GetIdentityPoolConfigurationRequest(input *GetIdentityPoolConfigurationInput) (req *aws.Request, output *GetIdentityPoolConfigurationOutput) {
@@ -164,10 +231,13 @@ func (c *CognitoSync) ListDatasetsRequest(input *ListDatasetsInput) (req *aws.Re
 	return
 }
 
-// Lists datasets for an identity. The credentials used to make this API call
-// need to have access to the identity data. With Amazon Cognito Sync, each
-// identity has access only to its own data. You should use Amazon Cognito Identity
-// service to retrieve the credentials necessary to make this API call.
+// Lists datasets for an identity. With Amazon Cognito Sync, each identity has
+// access only to its own data. Thus, the credentials used to make this API
+// call need to have access to the identity data.
+//
+// ListDatasets can be called with temporary user credentials provided by Cognito
+// Identity or with developer credentials. You should use the Cognito Identity
+// credentials to make this API call.
 func (c *CognitoSync) ListDatasets(input *ListDatasetsInput) (output *ListDatasetsOutput, err error) {
 	req, out := c.ListDatasetsRequest(input)
 	output = out
@@ -194,6 +264,10 @@ func (c *CognitoSync) ListIdentityPoolUsageRequest(input *ListIdentityPoolUsageI
 }
 
 // Gets a list of identity pools registered with Cognito.
+//
+// ListIdentityPoolUsage can only be called with developer credentials. You
+// cannot make this API call with the temporary user credentials provided by
+// Cognito Identity.
 func (c *CognitoSync) ListIdentityPoolUsage(input *ListIdentityPoolUsageInput) (output *ListIdentityPoolUsageOutput, err error) {
 	req, out := c.ListIdentityPoolUsageRequest(input)
 	output = out
@@ -220,10 +294,13 @@ func (c *CognitoSync) ListRecordsRequest(input *ListRecordsInput) (req *aws.Requ
 }
 
 // Gets paginated records, optionally changed after a particular sync count
-// for a dataset and identity. The credentials used to make this API call need
-// to have access to the identity data. With Amazon Cognito Sync, each identity
-// has access only to its own data. You should use Amazon Cognito Identity service
-// to retrieve the credentials necessary to make this API call.
+// for a dataset and identity. With Amazon Cognito Sync, each identity has access
+// only to its own data. Thus, the credentials used to make this API call need
+// to have access to the identity data.
+//
+// ListRecords can be called with temporary user credentials provided by Cognito
+// Identity or with developer credentials. You should use Cognito Identity credentials
+// to make this API call.
 func (c *CognitoSync) ListRecords(input *ListRecordsInput) (output *ListRecordsOutput, err error) {
 	req, out := c.ListRecordsRequest(input)
 	output = out
@@ -328,7 +405,7 @@ func (c *CognitoSync) UnsubscribeFromDatasetRequest(input *UnsubscribeFromDatase
 	return
 }
 
-// Unsubscribe from receiving notifications when a dataset is modified by another
+// Unsubscribes from receiving notifications when a dataset is modified by another
 // device.
 func (c *CognitoSync) UnsubscribeFromDataset(input *UnsubscribeFromDatasetInput) (output *UnsubscribeFromDatasetOutput, err error) {
 	req, out := c.UnsubscribeFromDatasetRequest(input)
@@ -355,11 +432,10 @@ func (c *CognitoSync) UpdateRecordsRequest(input *UpdateRecordsInput) (req *aws.
 	return
 }
 
-// Posts updates to records and add and delete records for a dataset and user.
-// The credentials used to make this API call need to have access to the identity
-// data. With Amazon Cognito Sync, each identity has access only to its own
-// data. You should use Amazon Cognito Identity service to retrieve the credentials
-// necessary to make this API call.
+// Posts updates to records and adds and deletes records for a dataset and user.
+//
+// UpdateRecords can only be called with temporary user credentials provided
+// by Cognito Identity. You cannot make this API call with developer credentials.
 func (c *CognitoSync) UpdateRecords(input *UpdateRecordsInput) (output *UpdateRecordsOutput, err error) {
 	req, out := c.UpdateRecordsRequest(input)
 	output = out
@@ -368,6 +444,57 @@ func (c *CognitoSync) UpdateRecords(input *UpdateRecordsInput) (output *UpdateRe
 }
 
 var opUpdateRecords *aws.Operation
+
+// The input for the BulkPublish operation.
+type BulkPublishInput struct {
+	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
+	// created by Amazon Cognito. GUID generation is unique within a region.
+	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+
+	metadataBulkPublishInput `json:"-", xml:"-"`
+}
+
+type metadataBulkPublishInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// The output for the BulkPublish operation.
+type BulkPublishOutput struct {
+	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
+	// created by Amazon Cognito. GUID generation is unique within a region.
+	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string"`
+
+	metadataBulkPublishOutput `json:"-", xml:"-"`
+}
+
+type metadataBulkPublishOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Configuration options for configure Cognito streams.
+type CognitoStreams struct {
+	// The ARN of the role Amazon Cognito can assume in order to publish to the
+	// stream. This role must grant access to Amazon Cognito (cognito-sync) to invoke
+	// PutRecord on your Cognito stream.
+	RoleARN *string `locationName:"RoleArn" type:"string"`
+
+	// The name of the Cognito stream to receive updates. This stream must be in
+	// the developers account and in the same region as the identity pool.
+	StreamName *string `type:"string"`
+
+	// Status of the Cognito streams. Valid values are: ENABLED - Streaming of updates
+	// to identity pool is enabled.
+	//
+	// DISABLEDStreaming of updates to identity pool is disabled. Bulk publish
+	// will also fail if StreamingStatus is DISABLED.
+	StreamingStatus *string `type:"string"`
+
+	metadataCognitoStreams `json:"-", xml:"-"`
+}
+
+type metadataCognitoStreams struct {
+	SDKShapeTraits bool `type:"structure"`
+}
 
 // A collection of data for an identity pool. An identity pool can have multiple
 // datasets. A dataset is per identity and can be general or associated with
@@ -442,7 +569,7 @@ type metadataDeleteDatasetOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// A request for metadata about a dataset (creation date, number of records,
+// A request for meta data about a dataset (creation date, number of records,
 // size) by owner and dataset name.
 type DescribeDatasetInput struct {
 	// A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, '_'
@@ -466,11 +593,11 @@ type metadataDescribeDatasetInput struct {
 
 // Response to a successful DescribeDataset request.
 type DescribeDatasetOutput struct {
-	// Metadata for a collection of data for an identity. An identity can have multiple
-	// datasets. A dataset can be general or associated with a particular entity
-	// in an application (like a saved game). Datasets are automatically created
-	// if they don't exist. Data is synced by dataset, and a dataset can hold up
-	// to 1MB of key-value pairs.
+	// Meta data for a collection of data for an identity. An identity can have
+	// multiple datasets. A dataset can be general or associated with a particular
+	// entity in an application (like a saved game). Datasets are automatically
+	// created if they don't exist. Data is synced by dataset, and a dataset can
+	// hold up to 1MB of key-value pairs.
 	Dataset *Dataset `type:"structure"`
 
 	metadataDescribeDatasetOutput `json:"-", xml:"-"`
@@ -534,7 +661,56 @@ type metadataDescribeIdentityUsageOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// A request to GetIdentityPoolConfigurationRequest.
+// The input for the GetBulkPublishDetails operation.
+type GetBulkPublishDetailsInput struct {
+	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
+	// created by Amazon Cognito. GUID generation is unique within a region.
+	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+
+	metadataGetBulkPublishDetailsInput `json:"-", xml:"-"`
+}
+
+type metadataGetBulkPublishDetailsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// The output for the GetBulkPublishDetails operation.
+type GetBulkPublishDetailsOutput struct {
+	// If BulkPublishStatus is SUCCEEDED, the time the last bulk publish operation
+	// completed.
+	BulkPublishCompleteTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The date/time at which the last bulk publish was initiated.
+	BulkPublishStartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// Status of the last bulk publish operation, valid values are: NOT_STARTED
+	// - No bulk publish has been requested for this identity pool
+	//
+	// IN_PROGRESS - Data is being published to the configured stream
+	//
+	// SUCCEEDED - All data for the identity pool has been published to the configured
+	// stream
+	//
+	// FAILED - Some portion of the data has failed to publish, check FailureMessage
+	// for the cause.
+	BulkPublishStatus *string `type:"string"`
+
+	// If BulkPublishStatus is FAILED this field will contain the error message
+	// that caused the bulk publish to fail.
+	FailureMessage *string `type:"string"`
+
+	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
+	// created by Amazon Cognito. GUID generation is unique within a region.
+	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string"`
+
+	metadataGetBulkPublishDetailsOutput `json:"-", xml:"-"`
+}
+
+type metadataGetBulkPublishDetailsOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// The input for the GetIdentityPoolConfiguration operation.
 type GetIdentityPoolConfigurationInput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. This is the ID of the pool for which to return
@@ -548,13 +724,16 @@ type metadataGetIdentityPoolConfigurationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The response from GetIdentityPoolConfigurationResponse.
+// The output for the GetIdentityPoolConfiguration operation.
 type GetIdentityPoolConfigurationOutput struct {
+	// Options to apply to this identity pool for Amazon Cognito streams.
+	CognitoStreams *CognitoStreams `type:"structure"`
+
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito.
 	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string"`
 
-	// Configuration options applied to the identity pool.
+	// Options to apply to this identity pool for push synchronization.
 	PushSync *PushSync `type:"structure"`
 
 	metadataGetIdentityPoolConfigurationOutput `json:"-", xml:"-"`
@@ -859,13 +1038,16 @@ type metadataRegisterDeviceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// A request to SetIdentityPoolConfiguration.
+// The input for the SetIdentityPoolConfiguration operation.
 type SetIdentityPoolConfigurationInput struct {
+	// Options to apply to this identity pool for Amazon Cognito streams.
+	CognitoStreams *CognitoStreams `type:"structure"`
+
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. This is the ID of the pool to modify.
 	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
 
-	// Configuration options to be applied to the identity pool.
+	// Options to apply to this identity pool for push synchronization.
 	PushSync *PushSync `type:"structure"`
 
 	metadataSetIdentityPoolConfigurationInput `json:"-", xml:"-"`
@@ -875,13 +1057,16 @@ type metadataSetIdentityPoolConfigurationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// Response to a SetIdentityPoolConfiguration request.
+// The output for the SetIdentityPoolConfiguration operation
 type SetIdentityPoolConfigurationOutput struct {
+	// Options to apply to this identity pool for Amazon Cognito streams.
+	CognitoStreams *CognitoStreams `type:"structure"`
+
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito.
 	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string"`
 
-	// Configuration options applied to the identity pool.
+	// Options to apply to this identity pool for push synchronization.
 	PushSync *PushSync `type:"structure"`
 
 	metadataSetIdentityPoolConfigurationOutput `json:"-", xml:"-"`

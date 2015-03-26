@@ -623,7 +623,8 @@ type AudioParameters struct {
 	// of channels in the input file.
 	Channels *string `type:"string"`
 
-	// The audio codec for the output file. Valid values include aac, mp3, and vorbis.
+	// The audio codec for the output file. Valid values include aac, mp2, mp3,
+	// and vorbis.
 	Codec *string `type:"string"`
 
 	// If you specified AAC for Audio:Codec, this is the AAC compression profile
@@ -1134,8 +1135,8 @@ type CreatePresetInput struct {
 	// A section of the request body that specifies the audio parameters.
 	Audio *AudioParameters `type:"structure"`
 
-	// The container type for the output file. Valid values include fmp4, mp3, mp4,
-	// ogg, ts, and webm.
+	// The container type for the output file. Valid values include flv, fmp4, gif,
+	// mp3, mp4, mpg, ogg, ts, and webm.
 	Container *string `type:"string" required:"true"`
 
 	// A description of the preset.
@@ -1525,6 +1526,12 @@ type metadataJobInput struct {
 type JobOutput struct {
 	// The album art to be associated with the output file, if any.
 	AlbumArt *JobAlbumArt `type:"structure"`
+
+	// If Elastic Transcoder used a preset with a ColorSpaceConversionMode to transcode
+	// the output file, the AppliedColorSpaceConversion parameter shows the conversion
+	// used. If no ColorSpaceConversionMode was defined in the preset, this parameter
+	// will not be included in the job response.
+	AppliedColorSpaceConversion *string `type:"string"`
 
 	// You can configure Elastic Transcoder to transcode captions, or subtitles,
 	// from one format to another. All captions must be in UTF-8. Elastic Transcoder
@@ -2206,8 +2213,8 @@ type Preset struct {
 	// preset values.
 	Audio *AudioParameters `type:"structure"`
 
-	// The container type for the output file. Valid values include fmp4, mp3, mp4,
-	// ogg, ts, and webm.
+	// The container type for the output file. Valid values include flv, fmp4, gif,
+	// mp3, mp4, mpg, ogg, ts, and webm.
 	Container *string `type:"string"`
 
 	// A description of the preset.
@@ -2862,11 +2869,12 @@ type VideoParameters struct {
 	// 4 - 20000 : 25000 4.1 - 50000 : 62500
 	BitRate *string `type:"string"`
 
-	// The video codec for the output file. Valid values include H.264 and vp8.
-	// You can only specify vp8 when the container type is webm.
+	// The video codec for the output file. Valid values include gif, H.264, mpeg2,
+	// and vp8. You can only specify vp8 when the container type is webm, gif when
+	// the container type is gif, and mpeg2 when the container type is mpg.
 	Codec *string `type:"string"`
 
-	// Profile
+	// Profile (H.264/VP8 Only)
 	//
 	// The H.264 profile that you want to use for the output file. Elastic Transcoder
 	// supports the following profiles:
@@ -2898,24 +2906,84 @@ type VideoParameters struct {
 	//
 	//  1 - 396 1b - 396 1.1 - 900 1.2 - 2376 1.3 - 2376 2 - 2376 2.1 - 4752 2.2
 	// - 8100 3 - 8100 3.1 - 18000 3.2 - 20480 4 - 32768 4.1 - 32768   MaxBitRate
+	// (Optional, H.264/MPEG2/VP8 only)
 	//
 	// The maximum number of bits per second in a video buffer; the size of the
 	// buffer is specified by BufferSize. Specify a value between 16 and 62,500.
 	// You can reduce the bandwidth required to stream a video by reducing the maximum
 	// bit rate, but this also reduces the quality of the video.
 	//
-	//  BufferSize
+	//  BufferSize (Optional, H.264/MPEG2/VP8 only)
 	//
 	// The maximum number of bits in any x seconds of the output video. This window
 	// is commonly 10 seconds, the standard segment duration when you're using FMP4
 	// or MPEG-TS for the container type of the output video. Specify an integer
 	// greater than 0. If you specify MaxBitRate and omit BufferSize, Elastic Transcoder
 	// sets BufferSize to 10 times the value of MaxBitRate.
+	//
+	//  InterlacedMode (Optional, H.264/MPEG2 Only)
+	//
+	// The interlace mode for the output video.
+	//
+	// Interlaced video is used to double the perceived frame rate for a video
+	// by interlacing two fields (one field on every other line, the other field
+	// on the other lines) so that the human eye registers multiple pictures per
+	// frame. Interlacing reduces the bandwidth required for transmitting a video,
+	// but can result in blurred images and flickering.
+	//
+	// Valid values include Progressive (no interlacing, top to bottom), TopFirst
+	// (top field first), BottomFirst (bottom field first), and Auto.
+	//
+	// If InterlaceMode is not specified, Elastic Transcoder uses Progressive for
+	// the output. If Auto is specified, Elastic Transcoder interlaces the output.
+	//
+	//  ColorSpaceConversionMode (Optional, H.264/MPEG2 Only)
+	//
+	// The color space conversion Elastic Transcoder applies to the output video.
+	// Color spaces are the algorithms used by the computer to store information
+	// about how to render color. Bt.601 is the standard for standard definition
+	// video, while Bt.709 is the standard for high definition video.
+	//
+	// Valid values include None, Bt709toBt601, Bt601toBt709, and Auto.
+	//
+	// If you chose Auto for ColorSpaceConversionMode and your output is interlaced,
+	// your frame rate is one of 23.97, 24, 25, 29.97, 50, or 60, your SegmentDuration
+	// is null, and you are using one of the resolution changes from the list below,
+	// Elastic Transcoder applies the following color space conversions:
+	//
+	//   Standard to HD, 720x480 to 1920x1080 - Elastic Transcoder applies Bt601ToBt709
+	//   Standard to HD, 720x576 to 1920x1080 - Elastic Transcoder applies Bt601ToBt709
+	//   HD to Standard, 1920x1080 to 720x480 - Elastic Transcoder applies Bt709ToBt601
+	//   HD to Standard, 1920x1080 to 720x576 - Elastic Transcoder applies Bt709ToBt601
+	//   Elastic Transcoder may change the behavior of the ColorspaceConversionMode
+	// Auto mode in the future. All outputs in a playlist must use the same ColorSpaceConversionMode.
+	// If you do not specify a ColorSpaceConversionMode, Elastic Transcoder does
+	// not change the color space of a file. If you are unsure what ColorSpaceConversionMode
+	// was applied to your output file, you can check the AppliedColorSpaceConversion
+	// parameter included in your job response. If your job does not have an AppliedColorSpaceConversion
+	// in its response, no ColorSpaceConversionMode was applied.
+	//
+	//  ChromaSubsampling
+	//
+	// The sampling pattern for the chroma (color) channels of the output video.
+	// Valid values include yuv420p and yuv422p.
+	//
+	// yuv420p samples the chroma information of every other horizontal and every
+	// other vertical line, yuv422p samples the color information of every horizontal
+	// line and every other vertical line.
+	//
+	//  LoopCount (Gif Only)
+	//
+	// The number of times you want the output gif to loop. Valid values include
+	// Infinite and integers between 0 and 100, inclusive.
 	CodecOptions *map[string]*string `type:"map"`
 
 	// The value that Elastic Transcoder adds to the metadata in the output file.
 	DisplayAspectRatio *string `type:"string"`
 
+	// Applicable only when the value of Video:Codec is one of H.264, MPEG2, or
+	// VP8.
+	//
 	// Whether to use a fixed value for FixedGOP. Valid values are true and false:
 	//
 	//   true: Elastic Transcoder uses the value of KeyframesMaxDist for the distance
@@ -2950,6 +3018,9 @@ type VideoParameters struct {
 	// - 62914560 4.1 - 62914560
 	FrameRate *string `type:"string"`
 
+	// Applicable only when the value of Video:Codec is one of H.264, MPEG2, or
+	// VP8.
+	//
 	// The maximum number of frames between key frames. Key frames are fully encoded
 	// frames; the frames between key frames are encoded based, in part, on the
 	// content of the key frames. The value is an integer formatted as a string;

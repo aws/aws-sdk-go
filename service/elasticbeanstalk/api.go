@@ -79,11 +79,6 @@ func (c *ElasticBeanstalk) CreateApplicationVersionRequest(input *CreateApplicat
 }
 
 // Creates an application version for the specified application.
-//
-// Once you create an application version with a specified Amazon S3 bucket
-// and key location, you cannot change that Amazon S3 location. If you change
-// the Amazon S3 location, you receive an exception when you attempt to launch
-// an environment from the application version.
 func (c *ElasticBeanstalk) CreateApplicationVersion(input *CreateApplicationVersionInput) (output *ApplicationVersionDescriptionMessage, err error) {
 	req, out := c.CreateApplicationVersionRequest(input)
 	output = out
@@ -199,8 +194,6 @@ func (c *ElasticBeanstalk) DeleteApplicationRequest(input *DeleteApplicationInpu
 // Deletes the specified application along with all associated versions and
 // configurations. The application versions will not be deleted from your Amazon
 // S3 bucket.
-//
-// You cannot delete an application that has a running environment.
 func (c *ElasticBeanstalk) DeleteApplication(input *DeleteApplicationInput) (output *DeleteApplicationOutput, err error) {
 	req, out := c.DeleteApplicationRequest(input)
 	output = out
@@ -227,9 +220,6 @@ func (c *ElasticBeanstalk) DeleteApplicationVersionRequest(input *DeleteApplicat
 }
 
 // Deletes the specified version from the specified application.
-//
-// You cannot delete an application version that is associated with a running
-// environment.
 func (c *ElasticBeanstalk) DeleteApplicationVersion(input *DeleteApplicationVersionInput) (output *DeleteApplicationVersionOutput, err error) {
 	req, out := c.DeleteApplicationVersionRequest(input)
 	output = out
@@ -256,10 +246,6 @@ func (c *ElasticBeanstalk) DeleteConfigurationTemplateRequest(input *DeleteConfi
 }
 
 // Deletes the specified configuration template.
-//
-// When you launch an environment using a configuration template, the environment
-// gets a copy of the template. You can delete or modify the environment's copy
-// of the template without affecting the running environment.
 func (c *ElasticBeanstalk) DeleteConfigurationTemplate(input *DeleteConfigurationTemplateInput) (output *DeleteConfigurationTemplateOutput, err error) {
 	req, out := c.DeleteConfigurationTemplateRequest(input)
 	output = out
@@ -491,8 +477,6 @@ func (c *ElasticBeanstalk) DescribeEventsRequest(input *DescribeEventsInput) (re
 }
 
 // Returns list of event descriptions matching criteria up to the last 6 weeks.
-//
-//  This action returns the most recent 1,000 events from the specified NextToken.
 func (c *ElasticBeanstalk) DescribeEvents(input *DescribeEventsInput) (output *DescribeEventsOutput, err error) {
 	req, out := c.DescribeEventsRequest(input)
 	output = out
@@ -716,9 +700,6 @@ func (c *ElasticBeanstalk) UpdateApplicationRequest(input *UpdateApplicationInpu
 }
 
 // Updates the specified application to have the specified properties.
-//
-//  If a property (for example, description) is not provided, the value remains
-// unchanged. To clear these properties, specify an empty string.
 func (c *ElasticBeanstalk) UpdateApplication(input *UpdateApplicationInput) (output *ApplicationDescriptionMessage, err error) {
 	req, out := c.UpdateApplicationRequest(input)
 	output = out
@@ -745,9 +726,6 @@ func (c *ElasticBeanstalk) UpdateApplicationVersionRequest(input *UpdateApplicat
 }
 
 // Updates the specified application version to have the specified properties.
-//
-//  If a property (for example, description) is not provided, the value remains
-// unchanged. To clear properties, specify an empty string.
 func (c *ElasticBeanstalk) UpdateApplicationVersion(input *UpdateApplicationVersionInput) (output *ApplicationVersionDescriptionMessage, err error) {
 	req, out := c.UpdateApplicationVersionRequest(input)
 	output = out
@@ -776,9 +754,7 @@ func (c *ElasticBeanstalk) UpdateConfigurationTemplateRequest(input *UpdateConfi
 // Updates the specified configuration template to have the specified properties
 // or configuration option values.
 //
-//  If a property (for example, ApplicationName) is not provided, its value
-// remains unchanged. To clear such properties, specify an empty string.  Related
-// Topics
+// Related Topics
 //
 //   DescribeConfigurationOptions
 func (c *ElasticBeanstalk) UpdateConfigurationTemplate(input *UpdateConfigurationTemplateInput) (output *ConfigurationSettingsDescription, err error) {

@@ -28,7 +28,10 @@ func (c *KMS) CreateAliasRequest(input *CreateAliasInput) (req *aws.Request, out
 // Creates a display name for a customer master key. An alias can be used to
 // identify a key and should be unique. The console enforces a one-to-one mapping
 // between the alias and a key. An alias name can contain only alphanumeric
-// characters, forward slashes (/), underscores (_), and dashes (-).
+// characters, forward slashes (/), underscores (_), and dashes (-). An alias
+// must start with the word "alias" followed by a forward slash (alias/). An
+// alias that begins with "aws" after the forward slash (alias/aws...) is reserved
+// by Amazon Web Services (AWS).
 func (c *KMS) CreateAlias(input *CreateAliasInput) (output *CreateAliasOutput, err error) {
 	req, out := c.CreateAliasRequest(input)
 	output = out
@@ -55,13 +58,10 @@ func (c *KMS) CreateGrantRequest(input *CreateGrantInput) (req *aws.Request, out
 }
 
 // Adds a grant to a key to specify who can access the key and under what conditions.
-// Grants are alternate permission mechanisms to key policies. If absent, access
-// to the key is evaluated based on IAM policies attached to the user. By default,
-// grants do not expire. Grants can be listed, retired, or revoked as indicated
-// by the following APIs. Typically, when you are finished using a grant, you
-// retire it. When you want to end a grant immediately, revoke it. For more
-// information about grants, see Grants (http://docs.aws.amazon.com/kms/latest/developerguide/grants.html).
-//  ListGrants RetireGrant RevokeGrant
+// Grants are alternate permission mechanisms to key policies. For more information
+// about grants, see Grants (http://docs.aws.amazon.com/kms/latest/developerguide/grants.html)
+// in the developer guide. If a grant is absent, access to the key is evaluated
+// based on IAM policies attached to the user.  ListGrants RetireGrant RevokeGrant
 func (c *KMS) CreateGrant(input *CreateGrantInput) (output *CreateGrantOutput, err error) {
 	req, out := c.CreateGrantRequest(input)
 	output = out
@@ -117,7 +117,17 @@ func (c *KMS) DecryptRequest(input *DecryptInput) (req *aws.Request, output *Dec
 }
 
 // Decrypts ciphertext. Ciphertext is plaintext that has been previously encrypted
-// by using the Encrypt function.
+// by using any of the following functions:  GenerateDataKey GenerateDataKeyWithoutPlaintext
+// Encrypt
+//
+// Note that if a caller has been granted access permissions to all keys (through,
+// for example, IAM user policies that grant Decrypt permission on all resources),
+// then ciphertext encrypted by using keys in other accounts where the key grants
+// access to the caller can be decrypted. To remedy this, we recommend that
+// you do not grant Decrypt access in an IAM user policy. Instead grant Decrypt
+// access only in key policies. If you must grant Decrypt access in an IAM user
+// policy, you should scope the resource to specific keys or to specific trusted
+// accounts.
 func (c *KMS) Decrypt(input *DecryptInput) (output *DecryptOutput, err error) {
 	req, out := c.DecryptRequest(input)
 	output = out
@@ -300,7 +310,23 @@ func (c *KMS) EncryptRequest(input *EncryptInput) (req *aws.Request, output *Enc
 	return
 }
 
-// Encrypts plaintext into ciphertext by using a customer master key.
+// Encrypts plaintext into ciphertext by using a customer master key. The Encrypt
+// function has two primary use cases:  You can encrypt up to 4 KB of arbitrary
+// data such as an RSA key, a database password, or other sensitive customer
+// information. If you are moving encrypted data from one region to another,
+// you can use this API to encrypt in the new region the plaintext data key
+// that was used to encrypt the data in the original region. This provides you
+// with an encrypted copy of the data key that can be decrypted in the new region
+// and used there to decrypt the encrypted data.
+//
+// Unless you are moving encrypted data from one region to another, you don't
+// use this function to encrypt a generated data key within a region. You retrieve
+// data keys already encrypted by calling the GenerateDataKey or GenerateDataKeyWithoutPlaintext
+// function. Data keys don't need to be encrypted again by calling Encrypt.
+//
+// If you want to encrypt data locally in your application, you can use the
+// GenerateDataKey function to return a plaintext data encryption key and a
+// copy of the key encrypted under the customer master key (CMK) of your choosing.
 func (c *KMS) Encrypt(input *EncryptInput) (output *EncryptOutput, err error) {
 	req, out := c.EncryptRequest(input)
 	output = out
@@ -326,8 +352,36 @@ func (c *KMS) GenerateDataKeyRequest(input *GenerateDataKeyInput) (req *aws.Requ
 	return
 }
 
-// Generates a secure data key. Data keys are used to encrypt and decrypt data.
-// They are wrapped by customer master keys.
+// Generates a data key that you can use in your application to locally encrypt
+// data. This call returns a plaintext version of the key in the Plaintext field
+// of the response object and an encrypted copy of the key in the CiphertextBlob
+// field. The key is encrypted by using the master key specified by the KeyId
+// field. To decrypt the encrypted key, pass it to the Decrypt API.
+//
+// We recommend that you use the following pattern to locally encrypt data:
+// call the GenerateDataKey API, use the key returned in the Plaintext response
+// field to locally encrypt data, and then erase the plaintext data key from
+// memory. Store the encrypted data key (contained in the CiphertextBlob field)
+// alongside of the locally encrypted data.
+//
+// You should not call the Encrypt function to re-encrypt your data keys within
+// a region. GenerateDataKey always returns the data key encrypted and tied
+// to the customer master key that will be used to decrypt it. There is no need
+// to decrypt it twice.  If you decide to use the optional EncryptionContext
+// parameter, you must also store the context in full or at least store enough
+// information along with the encrypted data to be able to reconstruct the context
+// when submitting the ciphertext to the Decrypt API. It is a good practice
+// to choose a context that you can reconstruct on the fly to better secure
+// the ciphertext. For more information about how this parameter is used, see
+// Encryption Context (http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html).
+//
+// To decrypt data, pass the encrypted data key to the Decrypt API. Decrypt
+// uses the associated master key to decrypt the encrypted data key and returns
+// it as plaintext. Use the plaintext data key to locally decrypt your data
+// and then erase the key from memory. You must specify the encryption context,
+// if any, that you specified when you generated the key. The encryption context
+// is logged by CloudTrail, and you can use this log to help track the use of
+// particular data.
 func (c *KMS) GenerateDataKey(input *GenerateDataKeyInput) (output *GenerateDataKeyOutput, err error) {
 	req, out := c.GenerateDataKeyRequest(input)
 	output = out
@@ -353,8 +407,11 @@ func (c *KMS) GenerateDataKeyWithoutPlaintextRequest(input *GenerateDataKeyWitho
 	return
 }
 
-// Returns a key wrapped by a customer master key without the plaintext copy
-// of that key. To retrieve the plaintext, see GenerateDataKey.
+// Returns a data key encrypted by a customer master key without the plaintext
+// copy of that key. Otherwise, this API functions exactly like GenerateDataKey.
+// You can use this API to, for example, satisfy an audit requirement that an
+// encrypted key be made available without exposing the plaintext copy of that
+// key.
 func (c *KMS) GenerateDataKeyWithoutPlaintext(input *GenerateDataKeyWithoutPlaintextInput) (output *GenerateDataKeyWithoutPlaintextOutput, err error) {
 	req, out := c.GenerateDataKeyWithoutPlaintextRequest(input)
 	output = out
@@ -620,7 +677,9 @@ func (c *KMS) RetireGrantRequest(input *RetireGrantInput) (req *aws.Request, out
 
 // Retires a grant. You can retire a grant when you're done using it to clean
 // up. You should revoke a grant when you intend to actively deny operations
-// that depend on it.
+// that depend on it. The following are permitted to call this API:  The account
+// that created the grant The RetiringPrincipal, if present The GranteePrincipal,
+// if RetireGrant is a grantee operation
 func (c *KMS) RetireGrant(input *RetireGrantInput) (output *RetireGrantOutput, err error) {
 	req, out := c.RetireGrantRequest(input)
 	output = out
@@ -673,6 +732,7 @@ func (c *KMS) UpdateKeyDescriptionRequest(input *UpdateKeyDescriptionInput) (req
 	return
 }
 
+// Updates the description of a key.
 func (c *KMS) UpdateKeyDescription(input *UpdateKeyDescriptionInput) (output *UpdateKeyDescriptionOutput, err error) {
 	req, out := c.UpdateKeyDescriptionRequest(input)
 	output = out
@@ -705,7 +765,9 @@ type CreateAliasInput struct {
 	AliasName *string `type:"string" required:"true"`
 
 	// An identifier of the key for which you are creating the alias. This value
-	// cannot be another alias.
+	// cannot be another alias but can be a globally unique identifier or a fully
+	// specified ARN to a key.  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	TargetKeyID *string `locationName:"TargetKeyId" type:"string" required:"true"`
 
 	metadataCreateAliasInput `json:"-", xml:"-"`
@@ -728,20 +790,22 @@ type CreateGrantInput struct {
 	// parameter are allowed.
 	Constraints *GrantConstraints `type:"structure"`
 
-	// List of grant tokens.
+	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
 	GrantTokens []*string `type:"list"`
 
 	// Principal given permission by the grant to use the key identified by the
 	// keyId parameter.
 	GranteePrincipal *string `type:"string" required:"true"`
 
-	// A unique key identifier for a customer master key. This value can be a globally
-	// unique identifier, an ARN, or an alias.
+	// A unique identifier for the customer master key. This value can be a globally
+	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
+	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	// List of operations permitted by the grant. This can be any combination of
 	// one or more of the following values:  Decrypt Encrypt GenerateDataKey GenerateDataKeyWithoutPlaintext
-	// ReEncryptFrom ReEncryptTo CreateGrant
+	// ReEncryptFrom ReEncryptTo CreateGrant RetireGrant
 	Operations []*string `type:"list"`
 
 	// Principal given permission to retire the grant. For more information, see
@@ -759,9 +823,7 @@ type CreateGrantOutput struct {
 	// Unique grant identifier. You can use the GrantId value to revoke a grant.
 	GrantID *string `locationName:"GrantId" type:"string"`
 
-	// The grant token. A grant token is a string that identifies a grant and which
-	// can be used to make a grant take effect immediately. A token contains all
-	// of the information necessary to create a grant.
+	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
 	GrantToken *string `type:"string"`
 
 	metadataCreateGrantOutput `json:"-", xml:"-"`
@@ -803,7 +865,7 @@ type metadataCreateKeyOutput struct {
 }
 
 type DecryptInput struct {
-	// Ciphertext including metadata.
+	// Ciphertext to be decrypted. The blob includes metadata.
 	CiphertextBlob []byte `type:"blob" required:"true"`
 
 	// The encryption context. If this was specified in the Encrypt function, it
@@ -811,8 +873,7 @@ type DecryptInput struct {
 	// see Encryption Context (http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html).
 	EncryptionContext *map[string]*string `type:"map"`
 
-	// A list of grant tokens that represent grants which can be used to provide
-	// long term permissions to perform decryption.
+	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
 	GrantTokens []*string `type:"list"`
 
 	metadataDecryptInput `json:"-", xml:"-"`
@@ -823,8 +884,8 @@ type metadataDecryptInput struct {
 }
 
 type DecryptOutput struct {
-	// Unique identifier created by the system for the key. This value is always
-	// returned as long as no errors are encountered during the operation.
+	// ARN of the key used to perform the decryption. This value is returned if
+	// no errors are encountered during the operation.
 	KeyID *string `locationName:"KeyId" type:"string"`
 
 	// Decrypted plaintext data. This value may not be returned if the customer
@@ -858,8 +919,12 @@ type metadataDeleteAliasOutput struct {
 }
 
 type DescribeKeyInput struct {
-	// Unique identifier of the customer master key to be described. This can be
-	// an ARN, an alias, or a globally unique identifier.
+	// A unique identifier for the customer master key. This value can be a globally
+	// unique identifier, a fully specified ARN to either an alias or a key, or
+	// an alias name prefixed by "alias/".  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// Alias ARN Example - arn:aws:kms:us-east-1:123456789012:/alias/MyAliasName
+	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012 Alias Name
+	// Example - alias/MyAliasName
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataDescribeKeyInput `json:"-", xml:"-"`
@@ -881,8 +946,10 @@ type metadataDescribeKeyOutput struct {
 }
 
 type DisableKeyInput struct {
-	// Unique identifier of the customer master key to be disabled. This can be
-	// an ARN, an alias, or a globally unique identifier.
+	// A unique identifier for the customer master key. This value can be a globally
+	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
+	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataDisableKeyInput `json:"-", xml:"-"`
@@ -901,8 +968,10 @@ type metadataDisableKeyOutput struct {
 }
 
 type DisableKeyRotationInput struct {
-	// Unique identifier of the customer master key for which rotation is to be
-	// disabled. This can be an ARN, an alias, or a globally unique identifier.
+	// A unique identifier for the customer master key. This value can be a globally
+	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
+	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataDisableKeyRotationInput `json:"-", xml:"-"`
@@ -921,8 +990,10 @@ type metadataDisableKeyRotationOutput struct {
 }
 
 type EnableKeyInput struct {
-	// Unique identifier of the customer master key to be enabled. This can be an
-	// ARN, an alias, or a globally unique identifier.
+	// A unique identifier for the customer master key. This value can be a globally
+	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
+	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataEnableKeyInput `json:"-", xml:"-"`
@@ -941,8 +1012,10 @@ type metadataEnableKeyOutput struct {
 }
 
 type EnableKeyRotationInput struct {
-	// Unique identifier of the customer master key for which rotation is to be
-	// enabled. This can be an ARN, an alias, or a globally unique identifier.
+	// A unique identifier for the customer master key. This value can be a globally
+	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
+	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataEnableKeyRotationInput `json:"-", xml:"-"`
@@ -961,16 +1034,21 @@ type metadataEnableKeyRotationOutput struct {
 }
 
 type EncryptInput struct {
-	// Name:value pair that specifies the encryption context to be used for authenticated
-	// encryption. For more information, see Authenticated Encryption (http://docs.aws.amazon.com/kms/latest/developerguide/crypto_authen.html).
+	// Name/value pair that specifies the encryption context to be used for authenticated
+	// encryption. If used here, the same value must be supplied to the Decrypt
+	// API or decryption will fail. For more information, see Encryption Context
+	// (http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html).
 	EncryptionContext *map[string]*string `type:"map"`
 
-	// A list of grant tokens that represent grants which can be used to provide
-	// long term permissions to perform encryption.
+	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
 	GrantTokens []*string `type:"list"`
 
-	// Unique identifier of the customer master. This can be an ARN, an alias, or
-	// the Key ID.
+	// A unique identifier for the customer master key. This value can be a globally
+	// unique identifier, a fully specified ARN to either an alias or a key, or
+	// an alias name prefixed by "alias/".  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// Alias ARN Example - arn:aws:kms:us-east-1:123456789012:/alias/MyAliasName
+	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012 Alias Name
+	// Example - alias/MyAliasName
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	// Data to be encrypted.
@@ -984,7 +1062,8 @@ type metadataEncryptInput struct {
 }
 
 type EncryptOutput struct {
-	// The encrypted plaintext.
+	// The encrypted plaintext. If you are using the CLI, the value is Base64 encoded.
+	// Otherwise, it is not encoded.
 	CiphertextBlob []byte `type:"blob"`
 
 	// The ID of the key used during encryption.
@@ -1003,12 +1082,15 @@ type GenerateDataKeyInput struct {
 	// by AWS CloudTrail to provide context around the data encrypted by the key.
 	EncryptionContext *map[string]*string `type:"map"`
 
-	// A list of grant tokens that represent grants which can be used to provide
-	// long term permissions to generate a key.
+	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
 	GrantTokens []*string `type:"list"`
 
-	// Unique identifier of the key. This can be an ARN, an alias, or a globally
-	// unique identifier.
+	// A unique identifier for the customer master key. This value can be a globally
+	// unique identifier, a fully specified ARN to either an alias or a key, or
+	// an alias name prefixed by "alias/".  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// Alias ARN Example - arn:aws:kms:us-east-1:123456789012:/alias/MyAliasName
+	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012 Alias Name
+	// Example - alias/MyAliasName
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	// Value that identifies the encryption algorithm and key size to generate a
@@ -1016,7 +1098,8 @@ type GenerateDataKeyInput struct {
 	KeySpec *string `type:"string"`
 
 	// Integer that contains the number of bytes to generate. Common values are
-	// 128, 256, 512, 1024 and so on. 1024 is the current limit.
+	// 128, 256, 512, and 1024. 1024 is the current limit. We recommend that you
+	// use the KeySpec parameter instead.
 	NumberOfBytes *int64 `type:"integer"`
 
 	metadataGenerateDataKeyInput `json:"-", xml:"-"`
@@ -1027,15 +1110,21 @@ type metadataGenerateDataKeyInput struct {
 }
 
 type GenerateDataKeyOutput struct {
-	// Ciphertext that contains the wrapped key. You must store the blob and encryption
-	// context so that the ciphertext can be decrypted. You must provide both the
-	// ciphertext blob and the encryption context.
+	// Ciphertext that contains the encrypted data key. You must store the blob
+	// and enough information to reconstruct the encryption context so that the
+	// data encrypted by using the key can later be decrypted. You must provide
+	// both the ciphertext blob and the encryption context to the Decrypt API to
+	// recover the plaintext data key and decrypt the object.
+	//
+	// If you are using the CLI, the value is Base64 encoded. Otherwise, it is
+	// not encoded.
 	CiphertextBlob []byte `type:"blob"`
 
-	// System generated unique identifier for the key.
+	// System generated unique identifier of the key to be used to decrypt the encrypted
+	// copy of the data key.
 	KeyID *string `locationName:"KeyId" type:"string"`
 
-	// Plaintext that contains the unwrapped key. Use this for encryption and decryption
+	// Plaintext that contains the data key. Use this for encryption and decryption
 	// and then remove it from memory as soon as possible.
 	Plaintext []byte `type:"blob"`
 
@@ -1051,12 +1140,15 @@ type GenerateDataKeyWithoutPlaintextInput struct {
 	// the encryption and decryption processes.
 	EncryptionContext *map[string]*string `type:"map"`
 
-	// A list of grant tokens that represent grants which can be used to provide
-	// long term permissions to generate a key.
+	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
 	GrantTokens []*string `type:"list"`
 
-	// Unique identifier of the key. This can be an ARN, an alias, or a globally
-	// unique identifier.
+	// A unique identifier for the customer master key. This value can be a globally
+	// unique identifier, a fully specified ARN to either an alias or a key, or
+	// an alias name prefixed by "alias/".  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// Alias ARN Example - arn:aws:kms:us-east-1:123456789012:/alias/MyAliasName
+	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012 Alias Name
+	// Example - alias/MyAliasName
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	// Value that identifies the encryption algorithm and key size. Currently this
@@ -1064,7 +1156,8 @@ type GenerateDataKeyWithoutPlaintextInput struct {
 	KeySpec *string `type:"string"`
 
 	// Integer that contains the number of bytes to generate. Common values are
-	// 128, 256, 512, 1024 and so on.
+	// 128, 256, 512, 1024 and so on. We recommend that you use the KeySpec parameter
+	// instead.
 	NumberOfBytes *int64 `type:"integer"`
 
 	metadataGenerateDataKeyWithoutPlaintextInput `json:"-", xml:"-"`
@@ -1075,11 +1168,15 @@ type metadataGenerateDataKeyWithoutPlaintextInput struct {
 }
 
 type GenerateDataKeyWithoutPlaintextOutput struct {
-	// Ciphertext that contains the wrapped key. You must store the blob and encryption
-	// context so that the key can be used in a future operation.
+	// Ciphertext that contains the wrapped data key. You must store the blob and
+	// encryption context so that the key can be used in a future decrypt operation.
+	//
+	// If you are using the CLI, the value is Base64 encoded. Otherwise, it is
+	// not encoded.
 	CiphertextBlob []byte `type:"blob"`
 
-	// System generated unique identifier for the key.
+	// System generated unique identifier of the key to be used to decrypt the encrypted
+	// copy of the data key.
 	KeyID *string `locationName:"KeyId" type:"string"`
 
 	metadataGenerateDataKeyWithoutPlaintextOutput `json:"-", xml:"-"`
@@ -1113,8 +1210,10 @@ type metadataGenerateRandomOutput struct {
 }
 
 type GetKeyPolicyInput struct {
-	// Unique identifier of the key. This can be an ARN, an alias, or a globally
-	// unique identifier.
+	// A unique identifier for the customer master key. This value can be a globally
+	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
+	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	// String that contains the name of the policy. Currently, this must be "default".
@@ -1140,8 +1239,10 @@ type metadataGetKeyPolicyOutput struct {
 }
 
 type GetKeyRotationStatusInput struct {
-	// Unique identifier of the key. This can be an ARN, an alias, or a globally
-	// unique identifier.
+	// A unique identifier for the customer master key. This value can be a globally
+	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
+	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataGetKeyRotationStatusInput `json:"-", xml:"-"`
@@ -1292,8 +1393,10 @@ type metadataListAliasesOutput struct {
 }
 
 type ListGrantsInput struct {
-	// Unique identifier of the key. This can be an ARN, an alias, or a globally
-	// unique identifier.
+	// A unique identifier for the customer master key. This value can be a globally
+	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
+	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	// Specify this parameter only when paginating results to indicate the maximum
@@ -1335,8 +1438,12 @@ type metadataListGrantsOutput struct {
 }
 
 type ListKeyPoliciesInput struct {
-	// Unique identifier of the key. This can be an ARN, an alias, or a globally
-	// unique identifier.
+	// A unique identifier for the customer master key. This value can be a globally
+	// unique identifier, a fully specified ARN to either an alias or a key, or
+	// an alias name prefixed by "alias/".  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// Alias ARN Example - arn:aws:kms:us-east-1:123456789012:/alias/MyAliasName
+	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012 Alias Name
+	// Example - alias/MyAliasName
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	// Specify this parameter only when paginating results to indicate the maximum
@@ -1418,8 +1525,10 @@ type metadataListKeysOutput struct {
 }
 
 type PutKeyPolicyInput struct {
-	// Unique identifier of the key. This can be an ARN, an alias, or a globally
-	// unique identifier.
+	// A unique identifier for the customer master key. This value can be a globally
+	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
+	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	// The policy, in JSON format, to be attached to the key.
@@ -1451,11 +1560,16 @@ type ReEncryptInput struct {
 	// Encryption context to be used when the data is re-encrypted.
 	DestinationEncryptionContext *map[string]*string `type:"map"`
 
-	// Key identifier of the key used to re-encrypt the data.
+	// A unique identifier for the customer master key used to re-encrypt the data.
+	// This value can be a globally unique identifier, a fully specified ARN to
+	// either an alias or a key, or an alias name prefixed by "alias/".  Key ARN
+	// Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// Alias ARN Example - arn:aws:kms:us-east-1:123456789012:/alias/MyAliasName
+	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012 Alias Name
+	// Example - alias/MyAliasName
 	DestinationKeyID *string `locationName:"DestinationKeyId" type:"string" required:"true"`
 
-	// Grant tokens that identify the grants that have permissions for the encryption
-	// and decryption process.
+	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
 	GrantTokens []*string `type:"list"`
 
 	// Encryption context used to encrypt and decrypt the data specified in the
@@ -1470,7 +1584,8 @@ type metadataReEncryptInput struct {
 }
 
 type ReEncryptOutput struct {
-	// The re-encrypted data.
+	// The re-encrypted data. If you are using the CLI, the value is Base64 encoded.
+	// Otherwise, it is not encoded.
 	CiphertextBlob []byte `type:"blob"`
 
 	// Unique identifier of the key used to re-encrypt the data.
@@ -1509,7 +1624,10 @@ type RevokeGrantInput struct {
 	// Identifier of the grant to be revoked.
 	GrantID *string `locationName:"GrantId" type:"string" required:"true"`
 
-	// Unique identifier of the key associated with the grant.
+	// A unique identifier for the customer master key associated with the grant.
+	// This value can be a globally unique identifier or the fully specified ARN
+	// to a key.  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataRevokeGrantInput `json:"-", xml:"-"`
@@ -1528,8 +1646,13 @@ type metadataRevokeGrantOutput struct {
 }
 
 type UpdateKeyDescriptionInput struct {
+	// New description for the key.
 	Description *string `type:"string" required:"true"`
 
+	// A unique identifier for the customer master key. This value can be a globally
+	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
+	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataUpdateKeyDescriptionInput `json:"-", xml:"-"`
