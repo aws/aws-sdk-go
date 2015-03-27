@@ -79,9 +79,9 @@ func main() {
 
 	// resp has all of the response data, pull out instance IDs:
 	fmt.Println("> Number of reservation sets: ", len(resp.Reservations))
-	for _, res := range resp.Reservations {
+	for idx, res := range resp.Reservations {
 		fmt.Println("  > Number of instances: ", len(res.Instances))
-		for _, inst := range resp.Reservations[0].Instances {
+		for _, inst := range resp.Reservations[idx].Instances {
 			fmt.Println("    - Instance ID: ", *inst.InstanceID)
 		}
 	}
