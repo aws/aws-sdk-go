@@ -252,12 +252,10 @@ func (v4 *signer) buildSignature() {
 func (v4 *signer) bodyDigest() string {
 	hash := v4.Request.Header.Get("X-Amz-Content-Sha256")
 	if hash == "" {
-		if v4.Body == nil {
-			if v4.ServiceName == "s3" {
-				hash = "UNSIGNED-PAYLOAD"
-			} else {
-				hash = hex.EncodeToString(makeSha256([]byte{}))
-			}
+		if v4.isPresign && v4.ServiceName == "s3" {
+			hash = "UNSIGNED-PAYLOAD"
+		} else if v4.Body == nil {
+			hash = hex.EncodeToString(makeSha256([]byte{}))
 		} else {
 			hash = hex.EncodeToString(makeSha256Reader(v4.Body))
 		}

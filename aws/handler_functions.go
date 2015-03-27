@@ -21,6 +21,8 @@ func BuildContentLength(r *Request) {
 
 	var length int64
 	switch body := r.Body.(type) {
+	case nil:
+		length = 0
 	case lener:
 		length = int64(body.Len())
 	case io.Seeker:

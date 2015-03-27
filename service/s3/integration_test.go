@@ -6,6 +6,7 @@ import (
 	"bytes"
 	"fmt"
 	"io/ioutil"
+	"net/http"
 	"os"
 	"testing"
 	"time"
@@ -66,4 +67,41 @@ func TestWriteToObject(t *testing.T) {
 
 	b, _ := ioutil.ReadAll(resp.Body)
 	assert.Equal(t, []byte("hello world"), b)
+}
+
+func TestPresignedGetPut(t *testing.T) {
+	putreq, _ := svc.PutObjectRequest(&s3.PutObjectInput{
+		Bucket: bucketName,
+		Key:    aws.String("presigned-key"),
+	})
+
+	// Presign a PUT request
+	puturl, err := putreq.Presign(300 * time.Second)
+	assert.NoError(t, err)
+
+	// PUT to the presigned URL with a body
+	buf := bytes.NewReader([]byte("hello world"))
+	puthttpreq, err := http.NewRequest("PUT", puturl, buf)
+	assert.NoError(t, err)
+
+	putresp, err := http.DefaultClient.Do(puthttpreq)
+	assert.NoError(t, err)
+	assert.Equal(t, 200, putresp.StatusCode)
+
+	// Presign a GET on the same URL
+	getreq, _ := svc.GetObjectRequest(&s3.GetObjectInput{
+		Bucket: bucketName,
+		Key:    aws.String("presigned-key"),
+	})
+
+	geturl, err := getreq.Presign(300 * time.Second)
+	assert.NoError(t, err)
+
+	// Get the body
+	getresp, err := http.Get(geturl)
+	assert.NoError(t, err)
+
+	defer getresp.Body.Close()
+	b, err := ioutil.ReadAll(getresp.Body)
+	assert.Equal(t, "hello world", string(b))
 }
