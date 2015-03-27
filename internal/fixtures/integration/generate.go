@@ -78,7 +78,7 @@ func Test{{ .TestName }}(t *testing.T) {
 func (t *TestSuite) setup() {
 	_, d, _, _ := runtime.Caller(1)
 	file := filepath.Join(path.Dir(d), "..", "..", "..", "apis",
-		t.PackageName+"-"+t.APIVersion+".normal.json")
+		t.PackageName, t.APIVersion+".normal.json")
 
 	t.API = &api.API{}
 	t.API.Attach(file)
