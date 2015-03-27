@@ -30,7 +30,7 @@ For example, EC2 support might be installed with:
 
 You can also install the entire SDK by installing the root package:
 
-    $ go get github.com/awslabs/aws-sdk-go/service/ec2
+    $ go get github.com/awslabs/aws-sdk-go
 
 ## Configuring Credentials
 
