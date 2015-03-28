@@ -3,7 +3,7 @@
 package elasticache
 
 import (
-	"github.com/awslabs/aws-sdk-go/internal/waiter"
+	"github.com/aws/aws-sdk-go/internal/waiter"
 )
 
 var waiterCacheClusterAvailable *waiter.Config
@@ -19,31 +19,31 @@ func (c *ElastiCache) WaitUntilCacheClusterAvailable(input *DescribeCacheCluster
 					State:    "success",
 					Matcher:  "pathAll",
 					Argument: "CacheClusters[].CacheClusterStatus",
-					Expected: available,
+					Expected: "available",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "CacheClusters[].CacheClusterStatus",
-					Expected: deleted,
+					Expected: "deleted",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "CacheClusters[].CacheClusterStatus",
-					Expected: deleting,
+					Expected: "deleting",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "CacheClusters[].CacheClusterStatus",
-					Expected: incompatible - network,
+					Expected: "incompatible-network",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "CacheClusters[].CacheClusterStatus",
-					Expected: restore - failed,
+					Expected: "restore-failed",
 				},
 			},
 		}
@@ -70,25 +70,25 @@ func (c *ElastiCache) WaitUntilCacheClusterDeleted(input *DescribeCacheClustersI
 					State:    "success",
 					Matcher:  "error",
 					Argument: "",
-					Expected: CacheClusterNotFound,
+					Expected: "CacheClusterNotFound",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "CacheClusters[].CacheClusterStatus",
-					Expected: creating,
+					Expected: "creating",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "CacheClusters[].CacheClusterStatus",
-					Expected: modifying,
+					Expected: "modifying",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "CacheClusters[].CacheClusterStatus",
-					Expected: rebooting,
+					Expected: "rebooting",
 				},
 			},
 		}
@@ -115,31 +115,31 @@ func (c *ElastiCache) WaitUntilReplicationGroupAvailable(input *DescribeReplicat
 					State:    "success",
 					Matcher:  "pathAll",
 					Argument: "ReplicationGroups[].Status",
-					Expected: available,
+					Expected: "available",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "ReplicationGroups[].Status",
-					Expected: deleted,
+					Expected: "deleted",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "ReplicationGroups[].Status",
-					Expected: deleting,
+					Expected: "deleting",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "ReplicationGroups[].Status",
-					Expected: incompatible - network,
+					Expected: "incompatible-network",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "ReplicationGroups[].Status",
-					Expected: restore - failed,
+					Expected: "restore-failed",
 				},
 			},
 		}
@@ -166,25 +166,25 @@ func (c *ElastiCache) WaitUntilReplicationGroupDeleted(input *DescribeReplicatio
 					State:    "success",
 					Matcher:  "error",
 					Argument: "",
-					Expected: ReplicationGroupNotFoundFault,
+					Expected: "ReplicationGroupNotFoundFault",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "ReplicationGroups[].Status",
-					Expected: creating,
+					Expected: "creating",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "ReplicationGroups[].Status",
-					Expected: modifying,
+					Expected: "modifying",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "ReplicationGroups[].Status",
-					Expected: rebooting,
+					Expected: "rebooting",
 				},
 			},
 		}

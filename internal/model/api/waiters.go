@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"sort"
 	"text/template"
 )
 
@@ -64,6 +65,7 @@ func (p *waiterDefinitions) setup() {
 		keys[i] = k
 		i++
 	}
+	sort.Strings(keys)
 
 	for _, n := range keys {
 		e := p.Waiters[n]
@@ -75,6 +77,15 @@ func (p *waiterDefinitions) setup() {
 			panic("unknown operation " + e.OperationName + " for waiter " + n)
 		}
 		p.API.Waiters = append(p.API.Waiters, e)
+	}
+}
+
+func (a *WaitAcceptor) ExpectedString() string {
+	switch a.Expected.(type) {
+	case string:
+		return fmt.Sprintf("%q", a.Expected)
+	default:
+		return fmt.Sprintf("%v", a.Expected)
 	}
 }
 
@@ -101,7 +112,7 @@ func (c *{{ .Operation.API.StructName }}) WaitUntil{{ .Name }}(input {{ .Operati
 					State:    "{{ .State }}",
 					Matcher:  "{{ .Matcher }}",
 					Argument: "{{ .Argument }}",
-					Expected: {{ .Expected }},
+					Expected: {{ .ExpectedString }},
 				},
 				{{ end }}
 			},
