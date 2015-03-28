@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awsutil"
 )
 
 type Config struct {
@@ -38,15 +39,31 @@ func (w *Waiter) Wait() error {
 		res := method.Call([]reflect.Value{in})
 		req := res[0].Interface().(*aws.Request)
 		_ = req.Send()
-		//out := res[1].Interface()
 
 		for _, a := range w.Acceptors {
 			result := false
 			switch a.Matcher {
 			case "pathAll":
-				// TODO implement pathAll match
+				if vals := awsutil.ValuesAtPath(req.Data, a.Argument); req.Error == nil && vals != nil {
+					result = true
+					fmt.Println(awsutil.StringValue(req.Data))
+					fmt.Println(a.Argument, vals)
+					for _, val := range vals {
+						if !reflect.DeepEqual(val, a.Expected) {
+							result = false
+							break
+						}
+					}
+				}
 			case "pathAny":
-				// TODO implement pathAny match
+				if vals := awsutil.ValuesAtPath(req.Data, a.Argument); req.Error == nil && vals != nil {
+					for _, val := range vals {
+						if reflect.DeepEqual(val, a.Expected) {
+							result = true
+							break
+						}
+					}
+				}
 			case "status":
 				s := a.Expected.(int)
 				result = s == req.HTTPResponse.StatusCode

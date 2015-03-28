@@ -3,7 +3,7 @@
 package rds
 
 import (
-	"github.com/awslabs/aws-sdk-go/internal/waiter"
+	"github.com/aws/aws-sdk-go/internal/waiter"
 )
 
 var waiterDBInstanceAvailable *waiter.Config
@@ -19,49 +19,49 @@ func (c *RDS) WaitUntilDBInstanceAvailable(input *DescribeDBInstancesInput) erro
 					State:    "success",
 					Matcher:  "pathAll",
 					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: available,
+					Expected: "available",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: deleted,
+					Expected: "deleted",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: deleting,
+					Expected: "deleting",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: failed,
+					Expected: "failed",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: incompatible - restore,
+					Expected: "incompatible-restore",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: incompatible - parameters,
+					Expected: "incompatible-parameters",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: incompatible - parameters,
+					Expected: "incompatible-parameters",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: incompatible - restore,
+					Expected: "incompatible-restore",
 				},
 			},
 		}
@@ -86,39 +86,33 @@ func (c *RDS) WaitUntilDBInstanceDeleted(input *DescribeDBInstancesInput) error 
 			Acceptors: []waiter.WaitAcceptor{
 				{
 					State:    "success",
-					Matcher:  "error",
-					Argument: "",
-					Expected: DBInstanceNotFound,
-				},
-				{
-					State:    "success",
 					Matcher:  "pathAll",
 					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: deleted,
+					Expected: "deleted",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: creating,
+					Expected: "creating",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: modifying,
+					Expected: "modifying",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: rebooting,
+					Expected: "rebooting",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: resetting - master - credentials,
+					Expected: "resetting-master-credentials",
 				},
 			},
 		}

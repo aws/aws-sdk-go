@@ -19,19 +19,19 @@ func (c *ElasticTranscoder) WaitUntilJobComplete(input *ReadJobInput) error {
 					State:    "success",
 					Matcher:  "path",
 					Argument: "Job.Status",
-					Expected: Complete,
+					Expected: "Complete",
 				},
 				{
 					State:    "failure",
 					Matcher:  "path",
 					Argument: "Job.Status",
-					Expected: Canceled,
+					Expected: "Canceled",
 				},
 				{
 					State:    "failure",
 					Matcher:  "path",
 					Argument: "Job.Status",
-					Expected: Error,
+					Expected: "Error",
 				},
 			},
 		}

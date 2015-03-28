@@ -19,13 +19,13 @@ func (c *DynamoDB) WaitUntilTableExists(input *DescribeTableInput) error {
 					State:    "success",
 					Matcher:  "path",
 					Argument: "Table.TableStatus",
-					Expected: ACTIVE,
+					Expected: "ACTIVE",
 				},
 				{
 					State:    "retry",
 					Matcher:  "error",
 					Argument: "",
-					Expected: ResourceNotFoundException,
+					Expected: "ResourceNotFoundException",
 				},
 			},
 		}
@@ -52,7 +52,7 @@ func (c *DynamoDB) WaitUntilTableNotExists(input *DescribeTableInput) error {
 					State:    "success",
 					Matcher:  "error",
 					Argument: "",
-					Expected: ResourceNotFoundException,
+					Expected: "ResourceNotFoundException",
 				},
 			},
 		}
