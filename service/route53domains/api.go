@@ -337,19 +337,16 @@ func (c *Route53Domains) ListDomains(input *ListDomainsInput) (*ListDomainsOutpu
 	return out, err
 }
 
-func (c *Route53Domains) ListDomainsPages(input *ListDomainsInput) <-chan *ListDomainsOutput {
+func (c *Route53Domains) ListDomainsPages(input *ListDomainsInput, fn func(*ListDomainsOutput, error) bool) {
 	page, _ := c.ListDomainsRequest(input)
-	ch := make(chan *ListDomainsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*ListDomainsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*ListDomainsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opListDomains *aws.Operation
@@ -390,19 +387,16 @@ func (c *Route53Domains) ListOperations(input *ListOperationsInput) (*ListOperat
 	return out, err
 }
 
-func (c *Route53Domains) ListOperationsPages(input *ListOperationsInput) <-chan *ListOperationsOutput {
+func (c *Route53Domains) ListOperationsPages(input *ListOperationsInput, fn func(*ListOperationsOutput, error) bool) {
 	page, _ := c.ListOperationsRequest(input)
-	ch := make(chan *ListOperationsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*ListOperationsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*ListOperationsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opListOperations *aws.Operation

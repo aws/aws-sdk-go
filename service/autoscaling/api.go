@@ -549,19 +549,16 @@ func (c *AutoScaling) DescribeAutoScalingGroups(input *DescribeAutoScalingGroups
 	return out, err
 }
 
-func (c *AutoScaling) DescribeAutoScalingGroupsPages(input *DescribeAutoScalingGroupsInput) <-chan *DescribeAutoScalingGroupsOutput {
+func (c *AutoScaling) DescribeAutoScalingGroupsPages(input *DescribeAutoScalingGroupsInput, fn func(*DescribeAutoScalingGroupsOutput, error) bool) {
 	page, _ := c.DescribeAutoScalingGroupsRequest(input)
-	ch := make(chan *DescribeAutoScalingGroupsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeAutoScalingGroupsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeAutoScalingGroupsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeAutoScalingGroups *aws.Operation
@@ -608,19 +605,16 @@ func (c *AutoScaling) DescribeAutoScalingInstances(input *DescribeAutoScalingIns
 	return out, err
 }
 
-func (c *AutoScaling) DescribeAutoScalingInstancesPages(input *DescribeAutoScalingInstancesInput) <-chan *DescribeAutoScalingInstancesOutput {
+func (c *AutoScaling) DescribeAutoScalingInstancesPages(input *DescribeAutoScalingInstancesInput, fn func(*DescribeAutoScalingInstancesOutput, error) bool) {
 	page, _ := c.DescribeAutoScalingInstancesRequest(input)
-	ch := make(chan *DescribeAutoScalingInstancesOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeAutoScalingInstancesOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeAutoScalingInstancesOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeAutoScalingInstances *aws.Operation
@@ -698,19 +692,16 @@ func (c *AutoScaling) DescribeLaunchConfigurations(input *DescribeLaunchConfigur
 	return out, err
 }
 
-func (c *AutoScaling) DescribeLaunchConfigurationsPages(input *DescribeLaunchConfigurationsInput) <-chan *DescribeLaunchConfigurationsOutput {
+func (c *AutoScaling) DescribeLaunchConfigurationsPages(input *DescribeLaunchConfigurationsInput, fn func(*DescribeLaunchConfigurationsOutput, error) bool) {
 	page, _ := c.DescribeLaunchConfigurationsRequest(input)
-	ch := make(chan *DescribeLaunchConfigurationsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeLaunchConfigurationsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeLaunchConfigurationsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeLaunchConfigurations *aws.Operation
@@ -852,19 +843,16 @@ func (c *AutoScaling) DescribeNotificationConfigurations(input *DescribeNotifica
 	return out, err
 }
 
-func (c *AutoScaling) DescribeNotificationConfigurationsPages(input *DescribeNotificationConfigurationsInput) <-chan *DescribeNotificationConfigurationsOutput {
+func (c *AutoScaling) DescribeNotificationConfigurationsPages(input *DescribeNotificationConfigurationsInput, fn func(*DescribeNotificationConfigurationsOutput, error) bool) {
 	page, _ := c.DescribeNotificationConfigurationsRequest(input)
-	ch := make(chan *DescribeNotificationConfigurationsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeNotificationConfigurationsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeNotificationConfigurationsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeNotificationConfigurations *aws.Operation
@@ -909,19 +897,16 @@ func (c *AutoScaling) DescribePolicies(input *DescribePoliciesInput) (*DescribeP
 	return out, err
 }
 
-func (c *AutoScaling) DescribePoliciesPages(input *DescribePoliciesInput) <-chan *DescribePoliciesOutput {
+func (c *AutoScaling) DescribePoliciesPages(input *DescribePoliciesInput, fn func(*DescribePoliciesOutput, error) bool) {
 	page, _ := c.DescribePoliciesRequest(input)
-	ch := make(chan *DescribePoliciesOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribePoliciesOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribePoliciesOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribePolicies *aws.Operation
@@ -969,19 +954,16 @@ func (c *AutoScaling) DescribeScalingActivities(input *DescribeScalingActivities
 	return out, err
 }
 
-func (c *AutoScaling) DescribeScalingActivitiesPages(input *DescribeScalingActivitiesInput) <-chan *DescribeScalingActivitiesOutput {
+func (c *AutoScaling) DescribeScalingActivitiesPages(input *DescribeScalingActivitiesInput, fn func(*DescribeScalingActivitiesOutput, error) bool) {
 	page, _ := c.DescribeScalingActivitiesRequest(input)
-	ch := make(chan *DescribeScalingActivitiesOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeScalingActivitiesOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeScalingActivitiesOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeScalingActivities *aws.Operation
@@ -1056,19 +1038,16 @@ func (c *AutoScaling) DescribeScheduledActions(input *DescribeScheduledActionsIn
 	return out, err
 }
 
-func (c *AutoScaling) DescribeScheduledActionsPages(input *DescribeScheduledActionsInput) <-chan *DescribeScheduledActionsOutput {
+func (c *AutoScaling) DescribeScheduledActionsPages(input *DescribeScheduledActionsInput, fn func(*DescribeScheduledActionsOutput, error) bool) {
 	page, _ := c.DescribeScheduledActionsRequest(input)
-	ch := make(chan *DescribeScheduledActionsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeScheduledActionsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeScheduledActionsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeScheduledActions *aws.Operation
@@ -1118,19 +1097,16 @@ func (c *AutoScaling) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutpu
 	return out, err
 }
 
-func (c *AutoScaling) DescribeTagsPages(input *DescribeTagsInput) <-chan *DescribeTagsOutput {
+func (c *AutoScaling) DescribeTagsPages(input *DescribeTagsInput, fn func(*DescribeTagsOutput, error) bool) {
 	page, _ := c.DescribeTagsRequest(input)
-	ch := make(chan *DescribeTagsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeTagsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeTagsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeTags *aws.Operation

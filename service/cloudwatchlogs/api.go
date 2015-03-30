@@ -228,12 +228,6 @@ func (c *CloudWatchLogs) DescribeLogGroupsRequest(input *DescribeLogGroupsInput)
 			Name:       "DescribeLogGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "nextToken",
-				OutputToken:     "nextToken",
-				LimitToken:      "limit",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -261,21 +255,6 @@ func (c *CloudWatchLogs) DescribeLogGroups(input *DescribeLogGroupsInput) (*Desc
 	return out, err
 }
 
-func (c *CloudWatchLogs) DescribeLogGroupsPages(input *DescribeLogGroupsInput) <-chan *DescribeLogGroupsOutput {
-	page, _ := c.DescribeLogGroupsRequest(input)
-	ch := make(chan *DescribeLogGroupsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeLogGroupsOutput)
-			ch <- out
-			page = page.NextPage()
-		}
-		close(ch)
-	}()
-	return ch
-}
-
 var opDescribeLogGroups *aws.Operation
 
 // DescribeLogStreamsRequest generates a request for the DescribeLogStreams operation.
@@ -288,12 +267,6 @@ func (c *CloudWatchLogs) DescribeLogStreamsRequest(input *DescribeLogStreamsInpu
 			Name:       "DescribeLogStreams",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "nextToken",
-				OutputToken:     "nextToken",
-				LimitToken:      "limit",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -322,21 +295,6 @@ func (c *CloudWatchLogs) DescribeLogStreams(input *DescribeLogStreamsInput) (*De
 	return out, err
 }
 
-func (c *CloudWatchLogs) DescribeLogStreamsPages(input *DescribeLogStreamsInput) <-chan *DescribeLogStreamsOutput {
-	page, _ := c.DescribeLogStreamsRequest(input)
-	ch := make(chan *DescribeLogStreamsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeLogStreamsOutput)
-			ch <- out
-			page = page.NextPage()
-		}
-		close(ch)
-	}()
-	return ch
-}
-
 var opDescribeLogStreams *aws.Operation
 
 // DescribeMetricFiltersRequest generates a request for the DescribeMetricFilters operation.
@@ -349,12 +307,6 @@ func (c *CloudWatchLogs) DescribeMetricFiltersRequest(input *DescribeMetricFilte
 			Name:       "DescribeMetricFilters",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "nextToken",
-				OutputToken:     "nextToken",
-				LimitToken:      "limit",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -381,21 +333,6 @@ func (c *CloudWatchLogs) DescribeMetricFilters(input *DescribeMetricFiltersInput
 	return out, err
 }
 
-func (c *CloudWatchLogs) DescribeMetricFiltersPages(input *DescribeMetricFiltersInput) <-chan *DescribeMetricFiltersOutput {
-	page, _ := c.DescribeMetricFiltersRequest(input)
-	ch := make(chan *DescribeMetricFiltersOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeMetricFiltersOutput)
-			ch <- out
-			page = page.NextPage()
-		}
-		close(ch)
-	}()
-	return ch
-}
-
 var opDescribeMetricFilters *aws.Operation
 
 // GetLogEventsRequest generates a request for the GetLogEvents operation.
@@ -408,12 +345,6 @@ func (c *CloudWatchLogs) GetLogEventsRequest(input *GetLogEventsInput) (req *aws
 			Name:       "GetLogEvents",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "nextToken",
-				OutputToken:     "nextForwardToken",
-				LimitToken:      "limit",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -441,21 +372,6 @@ func (c *CloudWatchLogs) GetLogEvents(input *GetLogEventsInput) (*GetLogEventsOu
 	req, out := c.GetLogEventsRequest(input)
 	err := req.Send()
 	return out, err
-}
-
-func (c *CloudWatchLogs) GetLogEventsPages(input *GetLogEventsInput) <-chan *GetLogEventsOutput {
-	page, _ := c.GetLogEventsRequest(input)
-	ch := make(chan *GetLogEventsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*GetLogEventsOutput)
-			ch <- out
-			page = page.NextPage()
-		}
-		close(ch)
-	}()
-	return ch
 }
 
 var opGetLogEvents *aws.Operation

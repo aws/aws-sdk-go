@@ -538,12 +538,6 @@ func (c *ELB) DescribeInstanceHealthRequest(input *DescribeInstanceHealthInput) 
 			Name:       "DescribeInstanceHealth",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -565,21 +559,6 @@ func (c *ELB) DescribeInstanceHealth(input *DescribeInstanceHealthInput) (*Descr
 	req, out := c.DescribeInstanceHealthRequest(input)
 	err := req.Send()
 	return out, err
-}
-
-func (c *ELB) DescribeInstanceHealthPages(input *DescribeInstanceHealthInput) <-chan *DescribeInstanceHealthOutput {
-	page, _ := c.DescribeInstanceHealthRequest(input)
-	ch := make(chan *DescribeInstanceHealthOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeInstanceHealthOutput)
-			ch <- out
-			page = page.NextPage()
-		}
-		close(ch)
-	}()
-	return ch
 }
 
 var opDescribeInstanceHealth *aws.Operation
@@ -626,12 +605,6 @@ func (c *ELB) DescribeLoadBalancerPoliciesRequest(input *DescribeLoadBalancerPol
 			Name:       "DescribeLoadBalancerPolicies",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -659,21 +632,6 @@ func (c *ELB) DescribeLoadBalancerPolicies(input *DescribeLoadBalancerPoliciesIn
 	return out, err
 }
 
-func (c *ELB) DescribeLoadBalancerPoliciesPages(input *DescribeLoadBalancerPoliciesInput) <-chan *DescribeLoadBalancerPoliciesOutput {
-	page, _ := c.DescribeLoadBalancerPoliciesRequest(input)
-	ch := make(chan *DescribeLoadBalancerPoliciesOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeLoadBalancerPoliciesOutput)
-			ch <- out
-			page = page.NextPage()
-		}
-		close(ch)
-	}()
-	return ch
-}
-
 var opDescribeLoadBalancerPolicies *aws.Operation
 
 // DescribeLoadBalancerPolicyTypesRequest generates a request for the DescribeLoadBalancerPolicyTypes operation.
@@ -686,12 +644,6 @@ func (c *ELB) DescribeLoadBalancerPolicyTypesRequest(input *DescribeLoadBalancer
 			Name:       "DescribeLoadBalancerPolicyTypes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -715,21 +667,6 @@ func (c *ELB) DescribeLoadBalancerPolicyTypes(input *DescribeLoadBalancerPolicyT
 	return out, err
 }
 
-func (c *ELB) DescribeLoadBalancerPolicyTypesPages(input *DescribeLoadBalancerPolicyTypesInput) <-chan *DescribeLoadBalancerPolicyTypesOutput {
-	page, _ := c.DescribeLoadBalancerPolicyTypesRequest(input)
-	ch := make(chan *DescribeLoadBalancerPolicyTypesOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeLoadBalancerPolicyTypesOutput)
-			ch <- out
-			page = page.NextPage()
-		}
-		close(ch)
-	}()
-	return ch
-}
-
 var opDescribeLoadBalancerPolicyTypes *aws.Operation
 
 // DescribeLoadBalancersRequest generates a request for the DescribeLoadBalancers operation.
@@ -745,7 +682,7 @@ func (c *ELB) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (r
 			Paginator: &aws.Paginator{
 				InputToken:      "Marker",
 				OutputToken:     "NextMarker",
-				LimitToken:      "",
+				LimitToken:      "PageSize",
 				TruncationToken: "",
 			},
 		}
@@ -769,19 +706,16 @@ func (c *ELB) DescribeLoadBalancers(input *DescribeLoadBalancersInput) (*Describ
 	return out, err
 }
 
-func (c *ELB) DescribeLoadBalancersPages(input *DescribeLoadBalancersInput) <-chan *DescribeLoadBalancersOutput {
+func (c *ELB) DescribeLoadBalancersPages(input *DescribeLoadBalancersInput, fn func(*DescribeLoadBalancersOutput, error) bool) {
 	page, _ := c.DescribeLoadBalancersRequest(input)
-	ch := make(chan *DescribeLoadBalancersOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeLoadBalancersOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeLoadBalancersOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeLoadBalancers *aws.Operation

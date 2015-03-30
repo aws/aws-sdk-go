@@ -177,12 +177,6 @@ func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *aws.Re
 			Name:       "DescribeJobFlows",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -218,21 +212,6 @@ func (c *EMR) DescribeJobFlows(input *DescribeJobFlowsInput) (*DescribeJobFlowsO
 	req, out := c.DescribeJobFlowsRequest(input)
 	err := req.Send()
 	return out, err
-}
-
-func (c *EMR) DescribeJobFlowsPages(input *DescribeJobFlowsInput) <-chan *DescribeJobFlowsOutput {
-	page, _ := c.DescribeJobFlowsRequest(input)
-	ch := make(chan *DescribeJobFlowsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeJobFlowsOutput)
-			ch <- out
-			page = page.NextPage()
-		}
-		close(ch)
-	}()
-	return ch
 }
 
 var opDescribeJobFlows *aws.Operation
@@ -305,19 +284,16 @@ func (c *EMR) ListBootstrapActions(input *ListBootstrapActionsInput) (*ListBoots
 	return out, err
 }
 
-func (c *EMR) ListBootstrapActionsPages(input *ListBootstrapActionsInput) <-chan *ListBootstrapActionsOutput {
+func (c *EMR) ListBootstrapActionsPages(input *ListBootstrapActionsInput, fn func(*ListBootstrapActionsOutput, error) bool) {
 	page, _ := c.ListBootstrapActionsRequest(input)
-	ch := make(chan *ListBootstrapActionsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*ListBootstrapActionsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*ListBootstrapActionsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opListBootstrapActions *aws.Operation
@@ -362,19 +338,16 @@ func (c *EMR) ListClusters(input *ListClustersInput) (*ListClustersOutput, error
 	return out, err
 }
 
-func (c *EMR) ListClustersPages(input *ListClustersInput) <-chan *ListClustersOutput {
+func (c *EMR) ListClustersPages(input *ListClustersInput, fn func(*ListClustersOutput, error) bool) {
 	page, _ := c.ListClustersRequest(input)
-	ch := make(chan *ListClustersOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*ListClustersOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*ListClustersOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opListClusters *aws.Operation
@@ -415,19 +388,16 @@ func (c *EMR) ListInstanceGroups(input *ListInstanceGroupsInput) (*ListInstanceG
 	return out, err
 }
 
-func (c *EMR) ListInstanceGroupsPages(input *ListInstanceGroupsInput) <-chan *ListInstanceGroupsOutput {
+func (c *EMR) ListInstanceGroupsPages(input *ListInstanceGroupsInput, fn func(*ListInstanceGroupsOutput, error) bool) {
 	page, _ := c.ListInstanceGroupsRequest(input)
-	ch := make(chan *ListInstanceGroupsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*ListInstanceGroupsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*ListInstanceGroupsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opListInstanceGroups *aws.Operation
@@ -472,19 +442,16 @@ func (c *EMR) ListInstances(input *ListInstancesInput) (*ListInstancesOutput, er
 	return out, err
 }
 
-func (c *EMR) ListInstancesPages(input *ListInstancesInput) <-chan *ListInstancesOutput {
+func (c *EMR) ListInstancesPages(input *ListInstancesInput, fn func(*ListInstancesOutput, error) bool) {
 	page, _ := c.ListInstancesRequest(input)
-	ch := make(chan *ListInstancesOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*ListInstancesOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*ListInstancesOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opListInstances *aws.Operation
@@ -525,19 +492,16 @@ func (c *EMR) ListSteps(input *ListStepsInput) (*ListStepsOutput, error) {
 	return out, err
 }
 
-func (c *EMR) ListStepsPages(input *ListStepsInput) <-chan *ListStepsOutput {
+func (c *EMR) ListStepsPages(input *ListStepsInput, fn func(*ListStepsOutput, error) bool) {
 	page, _ := c.ListStepsRequest(input)
-	ch := make(chan *ListStepsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*ListStepsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*ListStepsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opListSteps *aws.Operation

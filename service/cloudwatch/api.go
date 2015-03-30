@@ -82,19 +82,16 @@ func (c *CloudWatch) DescribeAlarmHistory(input *DescribeAlarmHistoryInput) (*De
 	return out, err
 }
 
-func (c *CloudWatch) DescribeAlarmHistoryPages(input *DescribeAlarmHistoryInput) <-chan *DescribeAlarmHistoryOutput {
+func (c *CloudWatch) DescribeAlarmHistoryPages(input *DescribeAlarmHistoryInput, fn func(*DescribeAlarmHistoryOutput, error) bool) {
 	page, _ := c.DescribeAlarmHistoryRequest(input)
-	ch := make(chan *DescribeAlarmHistoryOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeAlarmHistoryOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeAlarmHistoryOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeAlarmHistory *aws.Operation
@@ -137,19 +134,16 @@ func (c *CloudWatch) DescribeAlarms(input *DescribeAlarmsInput) (*DescribeAlarms
 	return out, err
 }
 
-func (c *CloudWatch) DescribeAlarmsPages(input *DescribeAlarmsInput) <-chan *DescribeAlarmsOutput {
+func (c *CloudWatch) DescribeAlarmsPages(input *DescribeAlarmsInput, fn func(*DescribeAlarmsOutput, error) bool) {
 	page, _ := c.DescribeAlarmsRequest(input)
-	ch := make(chan *DescribeAlarmsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeAlarmsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeAlarmsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeAlarms *aws.Operation
@@ -164,12 +158,6 @@ func (c *CloudWatch) DescribeAlarmsForMetricRequest(input *DescribeAlarmsForMetr
 			Name:       "DescribeAlarmsForMetric",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -189,21 +177,6 @@ func (c *CloudWatch) DescribeAlarmsForMetric(input *DescribeAlarmsForMetricInput
 	req, out := c.DescribeAlarmsForMetricRequest(input)
 	err := req.Send()
 	return out, err
-}
-
-func (c *CloudWatch) DescribeAlarmsForMetricPages(input *DescribeAlarmsForMetricInput) <-chan *DescribeAlarmsForMetricOutput {
-	page, _ := c.DescribeAlarmsForMetricRequest(input)
-	ch := make(chan *DescribeAlarmsForMetricOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeAlarmsForMetricOutput)
-			ch <- out
-			page = page.NextPage()
-		}
-		close(ch)
-	}()
-	return ch
 }
 
 var opDescribeAlarmsForMetric *aws.Operation
@@ -368,19 +341,16 @@ func (c *CloudWatch) ListMetrics(input *ListMetricsInput) (*ListMetricsOutput, e
 	return out, err
 }
 
-func (c *CloudWatch) ListMetricsPages(input *ListMetricsInput) <-chan *ListMetricsOutput {
+func (c *CloudWatch) ListMetricsPages(input *ListMetricsInput, fn func(*ListMetricsOutput, error) bool) {
 	page, _ := c.ListMetricsRequest(input)
-	ch := make(chan *ListMetricsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*ListMetricsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*ListMetricsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opListMetrics *aws.Operation

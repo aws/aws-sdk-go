@@ -191,19 +191,16 @@ func (c *DataPipeline) DescribeObjects(input *DescribeObjectsInput) (*DescribeOb
 	return out, err
 }
 
-func (c *DataPipeline) DescribeObjectsPages(input *DescribeObjectsInput) <-chan *DescribeObjectsOutput {
+func (c *DataPipeline) DescribeObjectsPages(input *DescribeObjectsInput, fn func(*DescribeObjectsOutput, error) bool) {
 	page, _ := c.DescribeObjectsRequest(input)
-	ch := make(chan *DescribeObjectsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeObjectsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeObjectsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeObjects *aws.Operation
@@ -218,12 +215,6 @@ func (c *DataPipeline) DescribePipelinesRequest(input *DescribePipelinesInput) (
 			Name:       "DescribePipelines",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -250,21 +241,6 @@ func (c *DataPipeline) DescribePipelines(input *DescribePipelinesInput) (*Descri
 	req, out := c.DescribePipelinesRequest(input)
 	err := req.Send()
 	return out, err
-}
-
-func (c *DataPipeline) DescribePipelinesPages(input *DescribePipelinesInput) <-chan *DescribePipelinesOutput {
-	page, _ := c.DescribePipelinesRequest(input)
-	ch := make(chan *DescribePipelinesOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribePipelinesOutput)
-			ch <- out
-			page = page.NextPage()
-		}
-		close(ch)
-	}()
-	return ch
 }
 
 var opDescribePipelines *aws.Operation
@@ -372,19 +348,16 @@ func (c *DataPipeline) ListPipelines(input *ListPipelinesInput) (*ListPipelinesO
 	return out, err
 }
 
-func (c *DataPipeline) ListPipelinesPages(input *ListPipelinesInput) <-chan *ListPipelinesOutput {
+func (c *DataPipeline) ListPipelinesPages(input *ListPipelinesInput, fn func(*ListPipelinesOutput, error) bool) {
 	page, _ := c.ListPipelinesRequest(input)
-	ch := make(chan *ListPipelinesOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*ListPipelinesOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*ListPipelinesOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opListPipelines *aws.Operation
@@ -520,19 +493,16 @@ func (c *DataPipeline) QueryObjects(input *QueryObjectsInput) (*QueryObjectsOutp
 	return out, err
 }
 
-func (c *DataPipeline) QueryObjectsPages(input *QueryObjectsInput) <-chan *QueryObjectsOutput {
+func (c *DataPipeline) QueryObjectsPages(input *QueryObjectsInput, fn func(*QueryObjectsOutput, error) bool) {
 	page, _ := c.QueryObjectsRequest(input)
-	ch := make(chan *QueryObjectsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*QueryObjectsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*QueryObjectsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opQueryObjects *aws.Operation

@@ -156,19 +156,16 @@ func (c *CloudFormation) DescribeStackEvents(input *DescribeStackEventsInput) (*
 	return out, err
 }
 
-func (c *CloudFormation) DescribeStackEventsPages(input *DescribeStackEventsInput) <-chan *DescribeStackEventsOutput {
+func (c *CloudFormation) DescribeStackEventsPages(input *DescribeStackEventsInput, fn func(*DescribeStackEventsOutput, error) bool) {
 	page, _ := c.DescribeStackEventsRequest(input)
-	ch := make(chan *DescribeStackEventsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeStackEventsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeStackEventsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeStackEvents *aws.Operation
@@ -218,12 +215,6 @@ func (c *CloudFormation) DescribeStackResourcesRequest(input *DescribeStackResou
 			Name:       "DescribeStackResources",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -258,21 +249,6 @@ func (c *CloudFormation) DescribeStackResources(input *DescribeStackResourcesInp
 	req, out := c.DescribeStackResourcesRequest(input)
 	err := req.Send()
 	return out, err
-}
-
-func (c *CloudFormation) DescribeStackResourcesPages(input *DescribeStackResourcesInput) <-chan *DescribeStackResourcesOutput {
-	page, _ := c.DescribeStackResourcesRequest(input)
-	ch := make(chan *DescribeStackResourcesOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeStackResourcesOutput)
-			ch <- out
-			page = page.NextPage()
-		}
-		close(ch)
-	}()
-	return ch
 }
 
 var opDescribeStackResources *aws.Operation
@@ -314,19 +290,16 @@ func (c *CloudFormation) DescribeStacks(input *DescribeStacksInput) (*DescribeSt
 	return out, err
 }
 
-func (c *CloudFormation) DescribeStacksPages(input *DescribeStacksInput) <-chan *DescribeStacksOutput {
+func (c *CloudFormation) DescribeStacksPages(input *DescribeStacksInput, fn func(*DescribeStacksOutput, error) bool) {
 	page, _ := c.DescribeStacksRequest(input)
-	ch := make(chan *DescribeStacksOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeStacksOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeStacksOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeStacks *aws.Operation
@@ -516,19 +489,16 @@ func (c *CloudFormation) ListStackResources(input *ListStackResourcesInput) (*Li
 	return out, err
 }
 
-func (c *CloudFormation) ListStackResourcesPages(input *ListStackResourcesInput) <-chan *ListStackResourcesOutput {
+func (c *CloudFormation) ListStackResourcesPages(input *ListStackResourcesInput, fn func(*ListStackResourcesOutput, error) bool) {
 	page, _ := c.ListStackResourcesRequest(input)
-	ch := make(chan *ListStackResourcesOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*ListStackResourcesOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*ListStackResourcesOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opListStackResources *aws.Operation
@@ -573,19 +543,16 @@ func (c *CloudFormation) ListStacks(input *ListStacksInput) (*ListStacksOutput, 
 	return out, err
 }
 
-func (c *CloudFormation) ListStacksPages(input *ListStacksInput) <-chan *ListStacksOutput {
+func (c *CloudFormation) ListStacksPages(input *ListStacksInput, fn func(*ListStacksOutput, error) bool) {
 	page, _ := c.ListStacksRequest(input)
-	ch := make(chan *ListStacksOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*ListStacksOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*ListStacksOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opListStacks *aws.Operation

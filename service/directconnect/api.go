@@ -501,12 +501,6 @@ func (c *DirectConnect) DescribeConnectionsRequest(input *DescribeConnectionsInp
 			Name:       "DescribeConnections",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -529,21 +523,6 @@ func (c *DirectConnect) DescribeConnections(input *DescribeConnectionsInput) (*C
 	return out, err
 }
 
-func (c *DirectConnect) DescribeConnectionsPages(input *DescribeConnectionsInput) <-chan *Connections {
-	page, _ := c.DescribeConnectionsRequest(input)
-	ch := make(chan *Connections)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*Connections)
-			ch <- out
-			page = page.NextPage()
-		}
-		close(ch)
-	}()
-	return ch
-}
-
 var opDescribeConnections *aws.Operation
 
 // DescribeConnectionsOnInterconnectRequest generates a request for the DescribeConnectionsOnInterconnect operation.
@@ -556,12 +535,6 @@ func (c *DirectConnect) DescribeConnectionsOnInterconnectRequest(input *Describe
 			Name:       "DescribeConnectionsOnInterconnect",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -582,21 +555,6 @@ func (c *DirectConnect) DescribeConnectionsOnInterconnect(input *DescribeConnect
 	return out, err
 }
 
-func (c *DirectConnect) DescribeConnectionsOnInterconnectPages(input *DescribeConnectionsOnInterconnectInput) <-chan *Connections {
-	page, _ := c.DescribeConnectionsOnInterconnectRequest(input)
-	ch := make(chan *Connections)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*Connections)
-			ch <- out
-			page = page.NextPage()
-		}
-		close(ch)
-	}()
-	return ch
-}
-
 var opDescribeConnectionsOnInterconnect *aws.Operation
 
 // DescribeInterconnectsRequest generates a request for the DescribeInterconnects operation.
@@ -609,12 +567,6 @@ func (c *DirectConnect) DescribeInterconnectsRequest(input *DescribeInterconnect
 			Name:       "DescribeInterconnects",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -637,21 +589,6 @@ func (c *DirectConnect) DescribeInterconnects(input *DescribeInterconnectsInput)
 	return out, err
 }
 
-func (c *DirectConnect) DescribeInterconnectsPages(input *DescribeInterconnectsInput) <-chan *DescribeInterconnectsOutput {
-	page, _ := c.DescribeInterconnectsRequest(input)
-	ch := make(chan *DescribeInterconnectsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeInterconnectsOutput)
-			ch <- out
-			page = page.NextPage()
-		}
-		close(ch)
-	}()
-	return ch
-}
-
 var opDescribeInterconnects *aws.Operation
 
 // DescribeLocationsRequest generates a request for the DescribeLocations operation.
@@ -664,12 +601,6 @@ func (c *DirectConnect) DescribeLocationsRequest(input *DescribeLocationsInput) 
 			Name:       "DescribeLocations",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -692,21 +623,6 @@ func (c *DirectConnect) DescribeLocations(input *DescribeLocationsInput) (*Descr
 	return out, err
 }
 
-func (c *DirectConnect) DescribeLocationsPages(input *DescribeLocationsInput) <-chan *DescribeLocationsOutput {
-	page, _ := c.DescribeLocationsRequest(input)
-	ch := make(chan *DescribeLocationsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeLocationsOutput)
-			ch <- out
-			page = page.NextPage()
-		}
-		close(ch)
-	}()
-	return ch
-}
-
 var opDescribeLocations *aws.Operation
 
 // DescribeVirtualGatewaysRequest generates a request for the DescribeVirtualGateways operation.
@@ -719,12 +635,6 @@ func (c *DirectConnect) DescribeVirtualGatewaysRequest(input *DescribeVirtualGat
 			Name:       "DescribeVirtualGateways",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -751,21 +661,6 @@ func (c *DirectConnect) DescribeVirtualGateways(input *DescribeVirtualGatewaysIn
 	return out, err
 }
 
-func (c *DirectConnect) DescribeVirtualGatewaysPages(input *DescribeVirtualGatewaysInput) <-chan *DescribeVirtualGatewaysOutput {
-	page, _ := c.DescribeVirtualGatewaysRequest(input)
-	ch := make(chan *DescribeVirtualGatewaysOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeVirtualGatewaysOutput)
-			ch <- out
-			page = page.NextPage()
-		}
-		close(ch)
-	}()
-	return ch
-}
-
 var opDescribeVirtualGateways *aws.Operation
 
 // DescribeVirtualInterfacesRequest generates a request for the DescribeVirtualInterfaces operation.
@@ -778,12 +673,6 @@ func (c *DirectConnect) DescribeVirtualInterfacesRequest(input *DescribeVirtualI
 			Name:       "DescribeVirtualInterfaces",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -813,21 +702,6 @@ func (c *DirectConnect) DescribeVirtualInterfaces(input *DescribeVirtualInterfac
 	req, out := c.DescribeVirtualInterfacesRequest(input)
 	err := req.Send()
 	return out, err
-}
-
-func (c *DirectConnect) DescribeVirtualInterfacesPages(input *DescribeVirtualInterfacesInput) <-chan *DescribeVirtualInterfacesOutput {
-	page, _ := c.DescribeVirtualInterfacesRequest(input)
-	ch := make(chan *DescribeVirtualInterfacesOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeVirtualInterfacesOutput)
-			ch <- out
-			page = page.NextPage()
-		}
-		close(ch)
-	}()
-	return ch
 }
 
 var opDescribeVirtualInterfaces *aws.Operation

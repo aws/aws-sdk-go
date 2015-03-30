@@ -874,19 +874,16 @@ func (c *Redshift) DescribeClusterParameterGroups(input *DescribeClusterParamete
 	return out, err
 }
 
-func (c *Redshift) DescribeClusterParameterGroupsPages(input *DescribeClusterParameterGroupsInput) <-chan *DescribeClusterParameterGroupsOutput {
+func (c *Redshift) DescribeClusterParameterGroupsPages(input *DescribeClusterParameterGroupsInput, fn func(*DescribeClusterParameterGroupsOutput, error) bool) {
 	page, _ := c.DescribeClusterParameterGroupsRequest(input)
-	ch := make(chan *DescribeClusterParameterGroupsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeClusterParameterGroupsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeClusterParameterGroupsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeClusterParameterGroups *aws.Operation
@@ -938,19 +935,16 @@ func (c *Redshift) DescribeClusterParameters(input *DescribeClusterParametersInp
 	return out, err
 }
 
-func (c *Redshift) DescribeClusterParametersPages(input *DescribeClusterParametersInput) <-chan *DescribeClusterParametersOutput {
+func (c *Redshift) DescribeClusterParametersPages(input *DescribeClusterParametersInput, fn func(*DescribeClusterParametersOutput, error) bool) {
 	page, _ := c.DescribeClusterParametersRequest(input)
-	ch := make(chan *DescribeClusterParametersOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeClusterParametersOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeClusterParametersOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeClusterParameters *aws.Operation
@@ -1007,19 +1001,16 @@ func (c *Redshift) DescribeClusterSecurityGroups(input *DescribeClusterSecurityG
 	return out, err
 }
 
-func (c *Redshift) DescribeClusterSecurityGroupsPages(input *DescribeClusterSecurityGroupsInput) <-chan *DescribeClusterSecurityGroupsOutput {
+func (c *Redshift) DescribeClusterSecurityGroupsPages(input *DescribeClusterSecurityGroupsInput, fn func(*DescribeClusterSecurityGroupsOutput, error) bool) {
 	page, _ := c.DescribeClusterSecurityGroupsRequest(input)
-	ch := make(chan *DescribeClusterSecurityGroupsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeClusterSecurityGroupsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeClusterSecurityGroupsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeClusterSecurityGroups *aws.Operation
@@ -1075,19 +1066,16 @@ func (c *Redshift) DescribeClusterSnapshots(input *DescribeClusterSnapshotsInput
 	return out, err
 }
 
-func (c *Redshift) DescribeClusterSnapshotsPages(input *DescribeClusterSnapshotsInput) <-chan *DescribeClusterSnapshotsOutput {
+func (c *Redshift) DescribeClusterSnapshotsPages(input *DescribeClusterSnapshotsInput, fn func(*DescribeClusterSnapshotsOutput, error) bool) {
 	page, _ := c.DescribeClusterSnapshotsRequest(input)
-	ch := make(chan *DescribeClusterSnapshotsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeClusterSnapshotsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeClusterSnapshotsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeClusterSnapshots *aws.Operation
@@ -1140,19 +1128,16 @@ func (c *Redshift) DescribeClusterSubnetGroups(input *DescribeClusterSubnetGroup
 	return out, err
 }
 
-func (c *Redshift) DescribeClusterSubnetGroupsPages(input *DescribeClusterSubnetGroupsInput) <-chan *DescribeClusterSubnetGroupsOutput {
+func (c *Redshift) DescribeClusterSubnetGroupsPages(input *DescribeClusterSubnetGroupsInput, fn func(*DescribeClusterSubnetGroupsOutput, error) bool) {
 	page, _ := c.DescribeClusterSubnetGroupsRequest(input)
-	ch := make(chan *DescribeClusterSubnetGroupsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeClusterSubnetGroupsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeClusterSubnetGroupsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeClusterSubnetGroups *aws.Operation
@@ -1197,19 +1182,16 @@ func (c *Redshift) DescribeClusterVersions(input *DescribeClusterVersionsInput) 
 	return out, err
 }
 
-func (c *Redshift) DescribeClusterVersionsPages(input *DescribeClusterVersionsInput) <-chan *DescribeClusterVersionsOutput {
+func (c *Redshift) DescribeClusterVersionsPages(input *DescribeClusterVersionsInput, fn func(*DescribeClusterVersionsOutput, error) bool) {
 	page, _ := c.DescribeClusterVersionsRequest(input)
-	ch := make(chan *DescribeClusterVersionsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeClusterVersionsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeClusterVersionsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeClusterVersions *aws.Operation
@@ -1263,19 +1245,16 @@ func (c *Redshift) DescribeClusters(input *DescribeClustersInput) (*DescribeClus
 	return out, err
 }
 
-func (c *Redshift) DescribeClustersPages(input *DescribeClustersInput) <-chan *DescribeClustersOutput {
+func (c *Redshift) DescribeClustersPages(input *DescribeClustersInput, fn func(*DescribeClustersOutput, error) bool) {
 	page, _ := c.DescribeClustersRequest(input)
-	ch := make(chan *DescribeClustersOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeClustersOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeClustersOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeClusters *aws.Operation
@@ -1320,19 +1299,16 @@ func (c *Redshift) DescribeDefaultClusterParameters(input *DescribeDefaultCluste
 	return out, err
 }
 
-func (c *Redshift) DescribeDefaultClusterParametersPages(input *DescribeDefaultClusterParametersInput) <-chan *DescribeDefaultClusterParametersOutput {
+func (c *Redshift) DescribeDefaultClusterParametersPages(input *DescribeDefaultClusterParametersInput, fn func(*DescribeDefaultClusterParametersOutput, error) bool) {
 	page, _ := c.DescribeDefaultClusterParametersRequest(input)
-	ch := make(chan *DescribeDefaultClusterParametersOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeDefaultClusterParametersOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeDefaultClusterParametersOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeDefaultClusterParameters *aws.Operation
@@ -1409,19 +1385,16 @@ func (c *Redshift) DescribeEventSubscriptions(input *DescribeEventSubscriptionsI
 	return out, err
 }
 
-func (c *Redshift) DescribeEventSubscriptionsPages(input *DescribeEventSubscriptionsInput) <-chan *DescribeEventSubscriptionsOutput {
+func (c *Redshift) DescribeEventSubscriptionsPages(input *DescribeEventSubscriptionsInput, fn func(*DescribeEventSubscriptionsOutput, error) bool) {
 	page, _ := c.DescribeEventSubscriptionsRequest(input)
-	ch := make(chan *DescribeEventSubscriptionsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeEventSubscriptionsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeEventSubscriptionsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeEventSubscriptions *aws.Operation
@@ -1465,19 +1438,16 @@ func (c *Redshift) DescribeEvents(input *DescribeEventsInput) (*DescribeEventsOu
 	return out, err
 }
 
-func (c *Redshift) DescribeEventsPages(input *DescribeEventsInput) <-chan *DescribeEventsOutput {
+func (c *Redshift) DescribeEventsPages(input *DescribeEventsInput, fn func(*DescribeEventsOutput, error) bool) {
 	page, _ := c.DescribeEventsRequest(input)
-	ch := make(chan *DescribeEventsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeEventsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeEventsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeEvents *aws.Operation
@@ -1530,19 +1500,16 @@ func (c *Redshift) DescribeHSMClientCertificates(input *DescribeHSMClientCertifi
 	return out, err
 }
 
-func (c *Redshift) DescribeHSMClientCertificatesPages(input *DescribeHSMClientCertificatesInput) <-chan *DescribeHSMClientCertificatesOutput {
+func (c *Redshift) DescribeHSMClientCertificatesPages(input *DescribeHSMClientCertificatesInput, fn func(*DescribeHSMClientCertificatesOutput, error) bool) {
 	page, _ := c.DescribeHSMClientCertificatesRequest(input)
-	ch := make(chan *DescribeHSMClientCertificatesOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeHSMClientCertificatesOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeHSMClientCertificatesOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeHSMClientCertificates *aws.Operation
@@ -1595,19 +1562,16 @@ func (c *Redshift) DescribeHSMConfigurations(input *DescribeHSMConfigurationsInp
 	return out, err
 }
 
-func (c *Redshift) DescribeHSMConfigurationsPages(input *DescribeHSMConfigurationsInput) <-chan *DescribeHSMConfigurationsOutput {
+func (c *Redshift) DescribeHSMConfigurationsPages(input *DescribeHSMConfigurationsInput, fn func(*DescribeHSMConfigurationsOutput, error) bool) {
 	page, _ := c.DescribeHSMConfigurationsRequest(input)
-	ch := make(chan *DescribeHSMConfigurationsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeHSMConfigurationsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeHSMConfigurationsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeHSMConfigurations *aws.Operation
@@ -1689,19 +1653,16 @@ func (c *Redshift) DescribeOrderableClusterOptions(input *DescribeOrderableClust
 	return out, err
 }
 
-func (c *Redshift) DescribeOrderableClusterOptionsPages(input *DescribeOrderableClusterOptionsInput) <-chan *DescribeOrderableClusterOptionsOutput {
+func (c *Redshift) DescribeOrderableClusterOptionsPages(input *DescribeOrderableClusterOptionsInput, fn func(*DescribeOrderableClusterOptionsOutput, error) bool) {
 	page, _ := c.DescribeOrderableClusterOptionsRequest(input)
-	ch := make(chan *DescribeOrderableClusterOptionsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeOrderableClusterOptionsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeOrderableClusterOptionsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeOrderableClusterOptions *aws.Operation
@@ -1751,19 +1712,16 @@ func (c *Redshift) DescribeReservedNodeOfferings(input *DescribeReservedNodeOffe
 	return out, err
 }
 
-func (c *Redshift) DescribeReservedNodeOfferingsPages(input *DescribeReservedNodeOfferingsInput) <-chan *DescribeReservedNodeOfferingsOutput {
+func (c *Redshift) DescribeReservedNodeOfferingsPages(input *DescribeReservedNodeOfferingsInput, fn func(*DescribeReservedNodeOfferingsOutput, error) bool) {
 	page, _ := c.DescribeReservedNodeOfferingsRequest(input)
-	ch := make(chan *DescribeReservedNodeOfferingsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeReservedNodeOfferingsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeReservedNodeOfferingsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeReservedNodeOfferings *aws.Operation
@@ -1804,19 +1762,16 @@ func (c *Redshift) DescribeReservedNodes(input *DescribeReservedNodesInput) (*De
 	return out, err
 }
 
-func (c *Redshift) DescribeReservedNodesPages(input *DescribeReservedNodesInput) <-chan *DescribeReservedNodesOutput {
+func (c *Redshift) DescribeReservedNodesPages(input *DescribeReservedNodesInput, fn func(*DescribeReservedNodesOutput, error) bool) {
 	page, _ := c.DescribeReservedNodesRequest(input)
-	ch := make(chan *DescribeReservedNodesOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeReservedNodesOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeReservedNodesOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeReservedNodes *aws.Operation

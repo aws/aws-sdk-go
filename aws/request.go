@@ -236,7 +236,11 @@ func (r *Request) nextPageToken() interface{} {
 	if r.Operation.Paginator == nil {
 		return nil
 	}
-	return awsutil.ValueAtPath(r.Data, r.Operation.OutputToken)
+	v := awsutil.ValuesAtPath(r.Data, r.Operation.OutputToken)
+	if v != nil && len(v) > 0 {
+		return v[0]
+	}
+	return nil
 }
 
 func (r *Request) NextPage() *Request {
@@ -246,11 +250,11 @@ func (r *Request) NextPage() *Request {
 	}
 
 	if r.Operation.TruncationToken != "" {
-		tr := awsutil.ValueAtPath(r.Data, r.Operation.TruncationToken)
+		tr := awsutil.ValuesAtPath(r.Data, r.Operation.TruncationToken)
 		if tr == nil {
 			return nil
-		} else {
-			switch v := tr.(type) {
+		} else if len(tr) > 0 {
+			switch v := tr[0].(type) {
 			case bool:
 				if v == false {
 					return nil
@@ -264,18 +268,4 @@ func (r *Request) NextPage() *Request {
 
 	awsutil.SetValueAtPath(nr.Params, nr.Operation.InputToken, token)
 	return nr
-}
-
-func (r *Request) Pages() <-chan interface{} {
-	page := r
-	ch := make(chan interface{})
-	go func() {
-		for page != nil {
-			page.Send()
-			ch <- page.Data
-			page = page.NextPage()
-		}
-		close(ch)
-	}()
-	return ch
 }

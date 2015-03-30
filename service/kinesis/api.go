@@ -222,19 +222,16 @@ func (c *Kinesis) DescribeStream(input *DescribeStreamInput) (*DescribeStreamOut
 	return out, err
 }
 
-func (c *Kinesis) DescribeStreamPages(input *DescribeStreamInput) <-chan *DescribeStreamOutput {
+func (c *Kinesis) DescribeStreamPages(input *DescribeStreamInput, fn func(*DescribeStreamOutput, error) bool) {
 	page, _ := c.DescribeStreamRequest(input)
-	ch := make(chan *DescribeStreamOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeStreamOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeStreamOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeStream *aws.Operation
@@ -434,19 +431,16 @@ func (c *Kinesis) ListStreams(input *ListStreamsInput) (*ListStreamsOutput, erro
 	return out, err
 }
 
-func (c *Kinesis) ListStreamsPages(input *ListStreamsInput) <-chan *ListStreamsOutput {
+func (c *Kinesis) ListStreamsPages(input *ListStreamsInput, fn func(*ListStreamsOutput, error) bool) {
 	page, _ := c.ListStreamsRequest(input)
-	ch := make(chan *ListStreamsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*ListStreamsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*ListStreamsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opListStreams *aws.Operation
