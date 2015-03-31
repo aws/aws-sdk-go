@@ -33,6 +33,10 @@ func docstring(doc string) string {
 	doc = html.UnescapeString(doc)
 	doc = wrap(doc, 72)
 
+	return commentify(doc)
+}
+
+func commentify(doc string) string {
 	lines := strings.Split(doc, "\n")
 	out := []string{}
 	for i, line := range lines {
