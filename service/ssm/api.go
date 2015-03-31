@@ -375,6 +375,11 @@ type metadataAssociationFilter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	AssociationFilterKeyInstanceID = "InstanceId"
+	AssociationFilterKeyName       = "Name"
+)
+
 // Describes an association status.
 type AssociationStatus struct {
 	// A user-defined string.
@@ -395,6 +400,12 @@ type AssociationStatus struct {
 type metadataAssociationStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	AssociationStatusNameFailed  = "Failed"
+	AssociationStatusNamePending = "Pending"
+	AssociationStatusNameSuccess = "Success"
+)
 
 type CreateAssociationBatchInput struct {
 	// One or more associations.
@@ -611,6 +622,10 @@ type metadataDocumentFilter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	DocumentFilterKeyName = "Name"
+)
+
 // Describes the name of a configuration document.
 type DocumentIdentifier struct {
 	// The name of the configuration document.
@@ -622,6 +637,12 @@ type DocumentIdentifier struct {
 type metadataDocumentIdentifier struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	DocumentStatusActive   = "Active"
+	DocumentStatusCreating = "Creating"
+	DocumentStatusDeleting = "Deleting"
+)
 
 // Describes a failed association.
 type FailedCreateAssociation struct {
@@ -640,6 +661,12 @@ type FailedCreateAssociation struct {
 type metadataFailedCreateAssociation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	FaultClient  = "Client"
+	FaultServer  = "Server"
+	FaultUnknown = "Unknown"
+)
 
 type GetDocumentInput struct {
 	// The name of the configuration document.

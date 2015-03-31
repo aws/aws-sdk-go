@@ -469,6 +469,14 @@ type metadataLookupAttribute struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	LookupAttributeKeyEventID      = "EventId"
+	LookupAttributeKeyEventName    = "EventName"
+	LookupAttributeKeyResourceName = "ResourceName"
+	LookupAttributeKeyResourceType = "ResourceType"
+	LookupAttributeKeyUsername     = "Username"
+)
+
 // Contains a request for LookupEvents.
 type LookupEventsInput struct {
 	// Specifies that only events that occur before or at the specified time are

@@ -741,6 +741,13 @@ type metadataAccessPoliciesStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	AlgorithmicStemmingFull    = "full"
+	AlgorithmicStemmingLight   = "light"
+	AlgorithmicStemmingMinimal = "minimal"
+	AlgorithmicStemmingNone    = "none"
+)
+
 // Synonyms, stopwords, and stemming options for an analysis scheme. Includes
 // tokenization dictionary for Japanese.
 type AnalysisOptions struct {
@@ -810,6 +817,44 @@ type AnalysisScheme struct {
 type metadataAnalysisScheme struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	AnalysisSchemeLanguageAr     = "ar"
+	AnalysisSchemeLanguageBg     = "bg"
+	AnalysisSchemeLanguageCa     = "ca"
+	AnalysisSchemeLanguageCs     = "cs"
+	AnalysisSchemeLanguageDa     = "da"
+	AnalysisSchemeLanguageDe     = "de"
+	AnalysisSchemeLanguageEl     = "el"
+	AnalysisSchemeLanguageEn     = "en"
+	AnalysisSchemeLanguageEs     = "es"
+	AnalysisSchemeLanguageEu     = "eu"
+	AnalysisSchemeLanguageFa     = "fa"
+	AnalysisSchemeLanguageFi     = "fi"
+	AnalysisSchemeLanguageFr     = "fr"
+	AnalysisSchemeLanguageGa     = "ga"
+	AnalysisSchemeLanguageGl     = "gl"
+	AnalysisSchemeLanguageHe     = "he"
+	AnalysisSchemeLanguageHi     = "hi"
+	AnalysisSchemeLanguageHu     = "hu"
+	AnalysisSchemeLanguageHy     = "hy"
+	AnalysisSchemeLanguageID     = "id"
+	AnalysisSchemeLanguageIt     = "it"
+	AnalysisSchemeLanguageJa     = "ja"
+	AnalysisSchemeLanguageKo     = "ko"
+	AnalysisSchemeLanguageLv     = "lv"
+	AnalysisSchemeLanguageMul    = "mul"
+	AnalysisSchemeLanguageNl     = "nl"
+	AnalysisSchemeLanguageNo     = "no"
+	AnalysisSchemeLanguagePt     = "pt"
+	AnalysisSchemeLanguageRo     = "ro"
+	AnalysisSchemeLanguageRu     = "ru"
+	AnalysisSchemeLanguageSv     = "sv"
+	AnalysisSchemeLanguageTh     = "th"
+	AnalysisSchemeLanguageTr     = "tr"
+	AnalysisSchemeLanguageZhHans = "zh-Hans"
+	AnalysisSchemeLanguageZhHant = "zh-Hant"
+)
 
 // The status and configuration of an AnalysisScheme.
 type AnalysisSchemeStatus struct {
@@ -1836,6 +1881,20 @@ type metadataIndexFieldStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	IndexFieldTypeDate         = "date"
+	IndexFieldTypeDateArray    = "date-array"
+	IndexFieldTypeDouble       = "double"
+	IndexFieldTypeDoubleArray  = "double-array"
+	IndexFieldTypeInt          = "int"
+	IndexFieldTypeIntArray     = "int-array"
+	IndexFieldTypeLatlon       = "latlon"
+	IndexFieldTypeLiteral      = "literal"
+	IndexFieldTypeLiteralArray = "literal-array"
+	IndexFieldTypeText         = "text"
+	IndexFieldTypeTextArray    = "text-array"
+)
+
 // Options for a field that contains an array of 64-bit signed integers. Present
 // if IndexFieldType specifies the field is of type int-array. All options are
 // enabled by default.
@@ -2034,6 +2093,13 @@ type metadataLiteralOptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	OptionStateActive                 = "Active"
+	OptionStateFailedToValidate       = "FailedToValidate"
+	OptionStateProcessing             = "Processing"
+	OptionStateRequiresIndexDocuments = "RequiresIndexDocuments"
+)
+
 // The status of domain configuration option.
 type OptionStatus struct {
 	// A timestamp for when this option was created.
@@ -2065,6 +2131,17 @@ type OptionStatus struct {
 type metadataOptionStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	PartitionInstanceTypeSearchM1Large   = "search.m1.large"
+	PartitionInstanceTypeSearchM1Small   = "search.m1.small"
+	PartitionInstanceTypeSearchM22xlarge = "search.m2.2xlarge"
+	PartitionInstanceTypeSearchM2Xlarge  = "search.m2.xlarge"
+	PartitionInstanceTypeSearchM32xlarge = "search.m3.2xlarge"
+	PartitionInstanceTypeSearchM3Large   = "search.m3.large"
+	PartitionInstanceTypeSearchM3Medium  = "search.m3.medium"
+	PartitionInstanceTypeSearchM3Xlarge  = "search.m3.xlarge"
+)
 
 // The desired instance type and desired number of replicas of each index partition.
 type ScalingParameters struct {
@@ -2131,6 +2208,12 @@ type Suggester struct {
 type metadataSuggester struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	SuggesterFuzzyMatchingHigh = "high"
+	SuggesterFuzzyMatchingLow  = "low"
+	SuggesterFuzzyMatchingNone = "none"
+)
 
 // The value of a Suggester and its current status.
 type SuggesterStatus struct {

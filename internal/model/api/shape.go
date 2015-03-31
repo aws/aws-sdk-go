@@ -2,6 +2,7 @@ package api
 
 import (
 	"fmt"
+	"regexp"
 	"sort"
 	"strings"
 
@@ -41,6 +42,7 @@ type Shape struct {
 	Type          string
 	Exception     bool
 	Enum          []string
+	Enums         []Enum
 	Flattened     bool
 	Streaming     bool
 	Location      string
@@ -248,4 +250,48 @@ func (s *Shape) IsRequired(member string) bool {
 		}
 	}
 	return false
+}
+
+var enumStrip = regexp.MustCompile(`[()\s]`)
+var enumDelims = regexp.MustCompile(`[-_:\./]+`)
+var enumCamelCase = regexp.MustCompile(`([a-z])([A-Z])`)
+
+type Enum struct {
+	Name  string
+	Value string
+}
+
+type ByName []Enum
+
+func (a ByName) Len() int           { return len(a) }
+func (a ByName) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
+func (a ByName) Less(i, j int) bool { return a[i].Name < a[j].Name }
+
+// GenEnums initializes the Enums field if there are any enums in the shape
+func (s *Shape) GenEnums() {
+	if s.Enum == nil {
+		return
+	}
+
+	fix := func(st string) string {
+		st = enumStrip.ReplaceAllLiteralString(st, "")
+		st = enumCamelCase.ReplaceAllString(st, "$1-$2")
+		parts := enumDelims.Split(st, -1)
+		for i, v := range parts {
+			v = strings.ToLower(v)
+			parts[i] = s.API.ExportableName(v)
+		}
+		return strings.Join(parts, "")
+	}
+
+	enums := []Enum{}
+	name := s.API.ExportableName(s.ShapeName)
+	for _, e := range s.Enum {
+		if e != "" {
+			enum := Enum{Name: name + fix(e), Value: fmt.Sprintf("%q", e)}
+			enums = append(enums, enum)
+		}
+	}
+	sort.Sort(ByName(enums))
+	s.Enums = enums
 }

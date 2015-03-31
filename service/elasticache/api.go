@@ -1105,6 +1105,11 @@ func (c *ElastiCache) RevokeCacheSecurityGroupIngress(input *RevokeCacheSecurity
 
 var opRevokeCacheSecurityGroupIngress *aws.Operation
 
+const (
+	AZModeCrossAZ  = "cross-az"
+	AZModeSingleAZ = "single-az"
+)
+
 // Represents the input of an AddTagsToResource action.
 type AddTagsToResourceInput struct {
 	// The name of the resource to which the tags are to be added, for example arn:aws:elasticache:us-west-2:0123456789:cluster:myCluster.
@@ -1154,6 +1159,13 @@ type AuthorizeCacheSecurityGroupIngressOutput struct {
 type metadataAuthorizeCacheSecurityGroupIngressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	AutomaticFailoverStatusDisabled  = "disabled"
+	AutomaticFailoverStatusDisabling = "disabling"
+	AutomaticFailoverStatusEnabled   = "enabled"
+	AutomaticFailoverStatusEnabling  = "enabling"
+)
 
 // Describes an Availability Zone in which the cache cluster is launched.
 type AvailabilityZone struct {
@@ -3508,6 +3520,11 @@ type metadataParameterNameValue struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	PendingAutomaticFailoverStatusDisabled = "disabled"
+	PendingAutomaticFailoverStatusEnabled  = "enabled"
+)
+
 // A group of settings that will be applied to the cache cluster in the future,
 // or that are currently being applied.
 type PendingModifiedValues struct {
@@ -3988,6 +4005,13 @@ type Snapshot struct {
 type metadataSnapshot struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	SourceTypeCacheCluster        = "cache-cluster"
+	SourceTypeCacheParameterGroup = "cache-parameter-group"
+	SourceTypeCacheSecurityGroup  = "cache-security-group"
+	SourceTypeCacheSubnetGroup    = "cache-subnet-group"
+)
 
 // Represents the subnet associated with a cache cluster. This parameter refers
 // to subnets defined in Amazon Virtual Private Cloud (Amazon VPC) and used

@@ -471,6 +471,13 @@ type metadataBulkPublishOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	BulkPublishStatusFailed     = "FAILED"
+	BulkPublishStatusInProgress = "IN_PROGRESS"
+	BulkPublishStatusNotStarted = "NOT_STARTED"
+	BulkPublishStatusSucceeded  = "SUCCEEDED"
+)
+
 // Configuration options for configure Cognito streams.
 type CognitoStreams struct {
 	// The ARN of the role Amazon Cognito can assume in order to publish to the
@@ -937,6 +944,18 @@ type metadataListRecordsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	OperationRemove  = "remove"
+	OperationReplace = "replace"
+)
+
+const (
+	PlatformADM         = "ADM"
+	PlatformAPNS        = "APNS"
+	PlatformAPNSSandbox = "APNS_SANDBOX"
+	PlatformGCM         = "GCM"
+)
+
 // Configuration options to be applied to the identity pool.
 type PushSync struct {
 	// List of SNS platform application ARNs that could be used by clients.
@@ -1075,6 +1094,11 @@ type SetIdentityPoolConfigurationOutput struct {
 type metadataSetIdentityPoolConfigurationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	StreamingStatusDisabled = "DISABLED"
+	StreamingStatusEnabled  = "ENABLED"
+)
 
 // A request to SubscribeToDatasetRequest.
 type SubscribeToDatasetInput struct {

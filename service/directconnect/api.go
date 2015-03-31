@@ -878,6 +878,17 @@ type metadataConnection struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ConnectionStateAvailable = "available"
+	ConnectionStateDeleted   = "deleted"
+	ConnectionStateDeleting  = "deleting"
+	ConnectionStateDown      = "down"
+	ConnectionStateOrdering  = "ordering"
+	ConnectionStatePending   = "pending"
+	ConnectionStateRejected  = "rejected"
+	ConnectionStateRequested = "requested"
+)
+
 // A structure containing a list of connections.
 type Connections struct {
 	// A list of connections.
@@ -1274,6 +1285,15 @@ type metadataInterconnect struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	InterconnectStateAvailable = "available"
+	InterconnectStateDeleted   = "deleted"
+	InterconnectStateDeleting  = "deleting"
+	InterconnectStateDown      = "down"
+	InterconnectStatePending   = "pending"
+	InterconnectStateRequested = "requested"
+)
+
 // An AWS Direct Connect location where connections and interconnects can be
 // requested.
 type Location struct {
@@ -1604,3 +1624,13 @@ type VirtualInterface struct {
 type metadataVirtualInterface struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	VirtualInterfaceStateAvailable  = "available"
+	VirtualInterfaceStateConfirming = "confirming"
+	VirtualInterfaceStateDeleted    = "deleted"
+	VirtualInterfaceStateDeleting   = "deleting"
+	VirtualInterfaceStatePending    = "pending"
+	VirtualInterfaceStateRejected   = "rejected"
+	VirtualInterfaceStateVerifying  = "verifying"
+)

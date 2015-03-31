@@ -1456,6 +1456,26 @@ type metadataBucket struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	BucketCannedACLAuthenticatedRead = "authenticated-read"
+	BucketCannedACLPrivate           = "private"
+	BucketCannedACLPublicRead        = "public-read"
+	BucketCannedACLPublicReadWrite   = "public-read-write"
+)
+
+const (
+	BucketLocationConstraintApNortheast1 = "ap-northeast-1"
+	BucketLocationConstraintApSoutheast1 = "ap-southeast-1"
+	BucketLocationConstraintApSoutheast2 = "ap-southeast-2"
+	BucketLocationConstraintCnNorth1     = "cn-north-1"
+	BucketLocationConstraintEu           = "EU"
+	BucketLocationConstraintEuCentral1   = "eu-central-1"
+	BucketLocationConstraintEuWest1      = "eu-west-1"
+	BucketLocationConstraintSaEast1      = "sa-east-1"
+	BucketLocationConstraintUsWest1      = "us-west-1"
+	BucketLocationConstraintUsWest2      = "us-west-2"
+)
+
 type BucketLoggingStatus struct {
 	LoggingEnabled *LoggingEnabled `type:"structure"`
 
@@ -1465,6 +1485,17 @@ type BucketLoggingStatus struct {
 type metadataBucketLoggingStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	BucketLogsPermissionFullControl = "FULL_CONTROL"
+	BucketLogsPermissionRead        = "READ"
+	BucketLogsPermissionWrite       = "WRITE"
+)
+
+const (
+	BucketVersioningStatusEnabled   = "Enabled"
+	BucketVersioningStatusSuspended = "Suspended"
+)
 
 type CORSConfiguration struct {
 	CORSRules []*CORSRule `locationName:"CORSRule" type:"list" flattened:"true"`
@@ -2279,6 +2310,10 @@ type metadataDestination struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	EncodingTypeURL = "url"
+)
+
 type Error struct {
 	Code *string `type:"string"`
 
@@ -2305,6 +2340,19 @@ type ErrorDocument struct {
 type metadataErrorDocument struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	EventS3ObjectCreatedCompleteMultipartUpload = "s3:ObjectCreated:CompleteMultipartUpload"
+	EventS3ObjectCreatedCopy                    = "s3:ObjectCreated:Copy"
+	EventS3ObjectCreatedPost                    = "s3:ObjectCreated:Post"
+	EventS3ObjectCreatedPut                     = "s3:ObjectCreated:Put"
+	EventS3ReducedRedundancyLostObject          = "s3:ReducedRedundancyLostObject"
+)
+
+const (
+	ExpirationStatusDisabled = "Disabled"
+	ExpirationStatusEnabled  = "Enabled"
+)
 
 type GetBucketACLInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
@@ -3421,6 +3469,21 @@ type metadataLoggingEnabled struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	MFADeleteDisabled = "Disabled"
+	MFADeleteEnabled  = "Enabled"
+)
+
+const (
+	MFADeleteStatusDisabled = "Disabled"
+	MFADeleteStatusEnabled  = "Enabled"
+)
+
+const (
+	MetadataDirectiveCopy    = "COPY"
+	MetadataDirectiveReplace = "REPLACE"
+)
+
 type MultipartUpload struct {
 	// Date and time at which the multipart upload was initiated.
 	Initiated *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -3524,6 +3587,15 @@ type metadataObject struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ObjectCannedACLAuthenticatedRead      = "authenticated-read"
+	ObjectCannedACLBucketOwnerFullControl = "bucket-owner-full-control"
+	ObjectCannedACLBucketOwnerRead        = "bucket-owner-read"
+	ObjectCannedACLPrivate                = "private"
+	ObjectCannedACLPublicRead             = "public-read"
+	ObjectCannedACLPublicReadWrite        = "public-read-write"
+)
+
 type ObjectIdentifier struct {
 	// Key name of the object to delete.
 	Key *string `type:"string" required:"true"`
@@ -3537,6 +3609,12 @@ type ObjectIdentifier struct {
 type metadataObjectIdentifier struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	ObjectStorageClassGlacier           = "GLACIER"
+	ObjectStorageClassReducedRedundancy = "REDUCED_REDUNDANCY"
+	ObjectStorageClassStandard          = "STANDARD"
+)
 
 type ObjectVersion struct {
 	ETag *string `type:"string"`
@@ -3569,6 +3647,10 @@ type metadataObjectVersion struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ObjectVersionStorageClassStandard = "STANDARD"
+)
+
 type Owner struct {
 	DisplayName *string `type:"string"`
 
@@ -3600,6 +3682,24 @@ type Part struct {
 type metadataPart struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	PayerBucketOwner = "BucketOwner"
+	PayerRequester   = "Requester"
+)
+
+const (
+	PermissionFullControl = "FULL_CONTROL"
+	PermissionRead        = "READ"
+	PermissionReadAcp     = "READ_ACP"
+	PermissionWrite       = "WRITE"
+	PermissionWriteAcp    = "WRITE_ACP"
+)
+
+const (
+	ProtocolHTTP  = "http"
+	ProtocolHTTPS = "https"
+)
 
 type PutBucketACLInput struct {
 	// The canned ACL to apply to the bucket.
@@ -4163,6 +4263,26 @@ type metadataReplicationRule struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ReplicationRuleStatusDisabled = "Disabled"
+	ReplicationRuleStatusEnabled  = "Enabled"
+)
+
+const (
+	ReplicationStatusComplete = "COMPLETE"
+	ReplicationStatusFailed   = "FAILED"
+	ReplicationStatusPending  = "PENDING"
+	ReplicationStatusReplica  = "REPLICA"
+)
+
+const (
+	RequestChargedRequester = "requester"
+)
+
+const (
+	RequestPayerRequester = "requester"
+)
+
 type RequestPaymentConfiguration struct {
 	// Specifies who pays for the download and request fees.
 	Payer *string `type:"string" required:"true"`
@@ -4274,6 +4394,15 @@ type metadataRule struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ServerSideEncryptionAES256 = "AES256"
+)
+
+const (
+	StorageClassReducedRedundancy = "REDUCED_REDUNDANCY"
+	StorageClassStandard          = "STANDARD"
+)
+
 type Tag struct {
 	// Name of the tag.
 	Key *string `type:"string" required:"true"`
@@ -4348,6 +4477,16 @@ type Transition struct {
 type metadataTransition struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	TransitionStorageClassGlacier = "GLACIER"
+)
+
+const (
+	TypeAmazonCustomerByEmail = "AmazonCustomerByEmail"
+	TypeCanonicalUser         = "CanonicalUser"
+	TypeGroup                 = "Group"
+)
 
 type UploadPartCopyInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`

@@ -2160,6 +2160,26 @@ type metadataApp struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	AppAttributesKeysAutoBundleOnDeploy = "AutoBundleOnDeploy"
+	AppAttributesKeysDocumentRoot       = "DocumentRoot"
+	AppAttributesKeysRailsEnv           = "RailsEnv"
+)
+
+const (
+	AppTypeJava   = "java"
+	AppTypeNodejs = "nodejs"
+	AppTypeOther  = "other"
+	AppTypePHP    = "php"
+	AppTypeRails  = "rails"
+	AppTypeStatic = "static"
+)
+
+const (
+	ArchitectureI386  = "i386"
+	ArchitectureX8664 = "x86_64"
+)
+
 type AssignInstanceInput struct {
 	// The instance ID.
 	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
@@ -2286,6 +2306,11 @@ type AutoScalingThresholds struct {
 type metadataAutoScalingThresholds struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	AutoScalingTypeLoad  = "load"
+	AutoScalingTypeTimer = "timer"
+)
 
 // Describes the Chef configuration.
 type ChefConfiguration struct {
@@ -3222,6 +3247,19 @@ type DeploymentCommand struct {
 type metadataDeploymentCommand struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	DeploymentCommandNameDeploy                = "deploy"
+	DeploymentCommandNameExecuteRecipes        = "execute_recipes"
+	DeploymentCommandNameInstallDependencies   = "install_dependencies"
+	DeploymentCommandNameRestart               = "restart"
+	DeploymentCommandNameRollback              = "rollback"
+	DeploymentCommandNameStart                 = "start"
+	DeploymentCommandNameStop                  = "stop"
+	DeploymentCommandNameUndeploy              = "undeploy"
+	DeploymentCommandNameUpdateCustomCookbooks = "update_custom_cookbooks"
+	DeploymentCommandNameUpdateDependencies    = "update_dependencies"
+)
 
 type DeregisterElasticIPInput struct {
 	// The Elastic IP address.
@@ -4296,6 +4334,46 @@ type metadataLayer struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	LayerAttributesKeysBundlerVersion              = "BundlerVersion"
+	LayerAttributesKeysEnableHaproxyStats          = "EnableHaproxyStats"
+	LayerAttributesKeysGangliaPassword             = "GangliaPassword"
+	LayerAttributesKeysGangliaURL                  = "GangliaUrl"
+	LayerAttributesKeysGangliaUser                 = "GangliaUser"
+	LayerAttributesKeysHaproxyHealthCheckMethod    = "HaproxyHealthCheckMethod"
+	LayerAttributesKeysHaproxyHealthCheckURL       = "HaproxyHealthCheckUrl"
+	LayerAttributesKeysHaproxyStatsPassword        = "HaproxyStatsPassword"
+	LayerAttributesKeysHaproxyStatsURL             = "HaproxyStatsUrl"
+	LayerAttributesKeysHaproxyStatsUser            = "HaproxyStatsUser"
+	LayerAttributesKeysJVM                         = "Jvm"
+	LayerAttributesKeysJVMOptions                  = "JvmOptions"
+	LayerAttributesKeysJVMVersion                  = "JvmVersion"
+	LayerAttributesKeysJavaAppServer               = "JavaAppServer"
+	LayerAttributesKeysJavaAppServerVersion        = "JavaAppServerVersion"
+	LayerAttributesKeysManageBundler               = "ManageBundler"
+	LayerAttributesKeysMemcachedMemory             = "MemcachedMemory"
+	LayerAttributesKeysMysqlRootPassword           = "MysqlRootPassword"
+	LayerAttributesKeysMysqlRootPasswordUbiquitous = "MysqlRootPasswordUbiquitous"
+	LayerAttributesKeysNodejsVersion               = "NodejsVersion"
+	LayerAttributesKeysPassengerVersion            = "PassengerVersion"
+	LayerAttributesKeysRailsStack                  = "RailsStack"
+	LayerAttributesKeysRubyVersion                 = "RubyVersion"
+	LayerAttributesKeysRubygemsVersion             = "RubygemsVersion"
+)
+
+const (
+	LayerTypeCustom           = "custom"
+	LayerTypeDBMaster         = "db-master"
+	LayerTypeJavaApp          = "java-app"
+	LayerTypeLb               = "lb"
+	LayerTypeMemcached        = "memcached"
+	LayerTypeMonitoringMaster = "monitoring-master"
+	LayerTypeNodejsApp        = "nodejs-app"
+	LayerTypePHPApp           = "php-app"
+	LayerTypeRailsApp         = "rails-app"
+	LayerTypeWeb              = "web"
+)
+
 // Specifies the lifecycle event configuration
 type LifecycleEventConfiguration struct {
 	// A ShutdownEventConfiguration object that specifies the Shutdown event configuration.
@@ -4639,6 +4717,11 @@ type metadataReportedOs struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	RootDeviceTypeEBS           = "ebs"
+	RootDeviceTypeInstanceStore = "instance-store"
+)
+
 // Describes an app's SSL configuration.
 type SSLConfiguration struct {
 	// The contents of the certificate's domain.crt file.
@@ -4852,6 +4935,13 @@ type metadataSource struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	SourceTypeArchive = "archive"
+	SourceTypeGit     = "git"
+	SourceTypeS3      = "s3"
+	SourceTypeSVN     = "svn"
+)
+
 // Describes a stack.
 type Stack struct {
 	// The stack's ARN.
@@ -4941,6 +5031,10 @@ type Stack struct {
 type metadataStack struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	StackAttributesKeysColor = "Color"
+)
 
 // Describes the configuration manager.
 type StackConfigurationManager struct {
@@ -5597,6 +5691,11 @@ type UserProfile struct {
 type metadataUserProfile struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	VirtualizationTypeHVM         = "hvm"
+	VirtualizationTypeParavirtual = "paravirtual"
+)
 
 // Describes an instance's Amazon EBS volume.
 type Volume struct {

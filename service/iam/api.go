@@ -4566,6 +4566,12 @@ type metadataEnableMFADeviceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	EntityTypeGroup = "Group"
+	EntityTypeRole  = "Role"
+	EntityTypeUser  = "User"
+)
+
 type GenerateCredentialReportInput struct {
 	metadataGenerateCredentialReportInput `json:"-", xml:"-"`
 }
@@ -6815,6 +6821,16 @@ type metadataRemoveUserFromGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ReportFormatTypeTextCSV = "text/csv"
+)
+
+const (
+	ReportStateTypeComplete   = "COMPLETE"
+	ReportStateTypeInprogress = "INPROGRESS"
+	ReportStateTypeStarted    = "STARTED"
+)
+
 type ResyncMFADeviceInput struct {
 	// An authentication code emitted by the device.
 	AuthenticationCode1 *string `type:"string" required:"true"`
@@ -7583,3 +7599,48 @@ type VirtualMFADevice struct {
 type metadataVirtualMFADevice struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	AssignmentStatusTypeAny        = "Any"
+	AssignmentStatusTypeAssigned   = "Assigned"
+	AssignmentStatusTypeUnassigned = "Unassigned"
+)
+
+const (
+	PolicyScopeTypeAWS   = "AWS"
+	PolicyScopeTypeAll   = "All"
+	PolicyScopeTypeLocal = "Local"
+)
+
+const (
+	StatusTypeActive   = "Active"
+	StatusTypeInactive = "Inactive"
+)
+
+const (
+	SummaryKeyTypeAccessKeysPerUserQuota            = "AccessKeysPerUserQuota"
+	SummaryKeyTypeAccountAccessKeysPresent          = "AccountAccessKeysPresent"
+	SummaryKeyTypeAccountMFAEnabled                 = "AccountMFAEnabled"
+	SummaryKeyTypeAccountSigningCertificatesPresent = "AccountSigningCertificatesPresent"
+	SummaryKeyTypeAttachedPoliciesPerGroupQuota     = "AttachedPoliciesPerGroupQuota"
+	SummaryKeyTypeAttachedPoliciesPerRoleQuota      = "AttachedPoliciesPerRoleQuota"
+	SummaryKeyTypeAttachedPoliciesPerUserQuota      = "AttachedPoliciesPerUserQuota"
+	SummaryKeyTypeGroupPolicySizeQuota              = "GroupPolicySizeQuota"
+	SummaryKeyTypeGroups                            = "Groups"
+	SummaryKeyTypeGroupsPerUserQuota                = "GroupsPerUserQuota"
+	SummaryKeyTypeGroupsQuota                       = "GroupsQuota"
+	SummaryKeyTypeMFAdDvices                        = "MFADevices"
+	SummaryKeyTypeMFAdDvicesInUse                   = "MFADevicesInUse"
+	SummaryKeyTypePolicies                          = "Policies"
+	SummaryKeyTypePoliciesQuota                     = "PoliciesQuota"
+	SummaryKeyTypePolicySizeQuota                   = "PolicySizeQuota"
+	SummaryKeyTypePolicyVersionsInUse               = "PolicyVersionsInUse"
+	SummaryKeyTypePolicyVersionsInUseQuota          = "PolicyVersionsInUseQuota"
+	SummaryKeyTypeServerCertificates                = "ServerCertificates"
+	SummaryKeyTypeServerCertificatesQuota           = "ServerCertificatesQuota"
+	SummaryKeyTypeSigningCertificatesPerUserQuota   = "SigningCertificatesPerUserQuota"
+	SummaryKeyTypeUserPolicySizeQuota               = "UserPolicySizeQuota"
+	SummaryKeyTypeUsers                             = "Users"
+	SummaryKeyTypeUsersQuota                        = "UsersQuota"
+	SummaryKeyTypeVersionsPerPolicyQuota            = "VersionsPerPolicyQuota"
+)

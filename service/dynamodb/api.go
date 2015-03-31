@@ -603,6 +603,12 @@ func (c *DynamoDB) UpdateTable(input *UpdateTableInput) (output *UpdateTableOutp
 
 var opUpdateTable *aws.Operation
 
+const (
+	AttributeActionAdd    = "ADD"
+	AttributeActionDelete = "DELETE"
+	AttributeActionPut    = "PUT"
+)
+
 // Represents an attribute for describing the key schema for the table and indexes.
 type AttributeDefinition struct {
 	// A name for the attribute.
@@ -968,6 +974,22 @@ type metadataCapacity struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ComparisonOperatorBeginsWith  = "BEGINS_WITH"
+	ComparisonOperatorBetween     = "BETWEEN"
+	ComparisonOperatorContains    = "CONTAINS"
+	ComparisonOperatorEq          = "EQ"
+	ComparisonOperatorGe          = "GE"
+	ComparisonOperatorGt          = "GT"
+	ComparisonOperatorIn          = "IN"
+	ComparisonOperatorLe          = "LE"
+	ComparisonOperatorLt          = "LT"
+	ComparisonOperatorNe          = "NE"
+	ComparisonOperatorNotContains = "NOT_CONTAINS"
+	ComparisonOperatorNotNull     = "NOT_NULL"
+	ComparisonOperatorNull        = "NULL"
+)
+
 // Represents the selection criteria for a Query or Scan operation:
 //
 //   For a Query operation, Condition is used for specifying the KeyConditions
@@ -1135,6 +1157,11 @@ type Condition struct {
 type metadataCondition struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	ConditionalOperatorAnd = "AND"
+	ConditionalOperatorOr  = "OR"
+)
 
 // The capacity units consumed by an operation. The data returned includes the
 // total provisioned throughput consumed, along with statistics for the table
@@ -2208,6 +2235,13 @@ type metadataGlobalSecondaryIndexUpdate struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	IndexStatusActive   = "ACTIVE"
+	IndexStatusCreating = "CREATING"
+	IndexStatusDeleting = "DELETING"
+	IndexStatusUpdating = "UPDATING"
+)
+
 // Information about item collections, if any, that were affected by the operation.
 // ItemCollectionMetrics is only returned if the request asked for it. If the
 // table does not have any local secondary indexes, this information is not
@@ -2255,6 +2289,11 @@ type KeySchemaElement struct {
 type metadataKeySchemaElement struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	KeyTypeHash  = "HASH"
+	KeyTypeRange = "RANGE"
+)
 
 // Represents a set of primary keys and, for each key, the attributes to retrieve
 // from the table.
@@ -2455,6 +2494,12 @@ type Projection struct {
 type metadataProjection struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	ProjectionTypeAll      = "ALL"
+	ProjectionTypeInclude  = "INCLUDE"
+	ProjectionTypeKeysOnly = "KEYS_ONLY"
+)
 
 // Represents the provisioned throughput settings for a specified table or index.
 // The settings can be modified using the UpdateTable operation.
@@ -3351,6 +3396,31 @@ type metadataQueryOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ReturnConsumedCapacityIndexes = "INDEXES"
+	ReturnConsumedCapacityNone    = "NONE"
+	ReturnConsumedCapacityTotal   = "TOTAL"
+)
+
+const (
+	ReturnItemCollectionMetricsNone = "NONE"
+	ReturnItemCollectionMetricsSize = "SIZE"
+)
+
+const (
+	ReturnValueAllNew     = "ALL_NEW"
+	ReturnValueAllOld     = "ALL_OLD"
+	ReturnValueNone       = "NONE"
+	ReturnValueUpdatedNew = "UPDATED_NEW"
+	ReturnValueUpdatedOld = "UPDATED_OLD"
+)
+
+const (
+	ScalarAttributeTypeB = "B"
+	ScalarAttributeTypeN = "N"
+	ScalarAttributeTypeS = "S"
+)
+
 // Represents the input of a Scan operation.
 type ScanInput struct {
 	// There is a newer parameter available. Use ProjectionExpression instead. Note
@@ -3660,6 +3730,13 @@ type metadataScanOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	SelectAllAttributes          = "ALL_ATTRIBUTES"
+	SelectAllProjectedAttributes = "ALL_PROJECTED_ATTRIBUTES"
+	SelectCount                  = "COUNT"
+	SelectSpecificAttributes     = "SPECIFIC_ATTRIBUTES"
+)
+
 // Represents the properties of a table.
 type TableDescription struct {
 	// An array of AttributeDefinition objects. Each of these objects describes
@@ -3824,6 +3901,13 @@ type TableDescription struct {
 type metadataTableDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	TableStatusActive   = "ACTIVE"
+	TableStatusCreating = "CREATING"
+	TableStatusDeleting = "DELETING"
+	TableStatusUpdating = "UPDATING"
+)
 
 // Represents the new provisioned throughput settings to be applied to a global
 // secondary index.

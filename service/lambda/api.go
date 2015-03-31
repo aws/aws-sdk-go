@@ -663,6 +663,10 @@ type metadataListFunctionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ModeEvent = "event"
+)
+
 type RemoveEventSourceInput struct {
 	// The event source mapping ID.
 	UUID *string `location:"uri" locationName:"UUID" type:"string" required:"true"`
@@ -681,6 +685,10 @@ type RemoveEventSourceOutput struct {
 type metadataRemoveEventSourceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	RuntimeNodejs = "nodejs"
+)
 
 type UpdateFunctionConfigurationInput struct {
 	// A short user-defined function description. Lambda does not use this value.

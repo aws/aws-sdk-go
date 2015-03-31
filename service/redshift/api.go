@@ -5573,6 +5573,13 @@ type metadataSnapshot struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	SourceTypeCluster               = "cluster"
+	SourceTypeClusterParameterGroup = "cluster-parameter-group"
+	SourceTypeClusterSecurityGroup  = "cluster-security-group"
+	SourceTypeClusterSnapshot       = "cluster-snapshot"
+)
+
 // Describes a subnet.
 type Subnet struct {
 	// Describes an availability zone.

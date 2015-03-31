@@ -544,6 +544,10 @@ type metadataCancelUpdateStackOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	CapabilityCapabilityIAM = "CAPABILITY_IAM"
+)
+
 // The input for CreateStack action.
 type CreateStackInput struct {
 	// A list of capabilities that you must specify before AWS CloudFormation can
@@ -1076,6 +1080,12 @@ type metadataListStacksOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	OnFailureDelete    = "DELETE"
+	OnFailureDoNothing = "DO_NOTHING"
+	OnFailureRollback  = "ROLLBACK"
+)
+
 // The Output data type.
 type Output struct {
 	// User defined description associated with the output.
@@ -1137,6 +1147,24 @@ type ParameterDeclaration struct {
 type metadataParameterDeclaration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	ResourceSignalStatusFailure = "FAILURE"
+	ResourceSignalStatusSuccess = "SUCCESS"
+)
+
+const (
+	ResourceStatusCreateComplete   = "CREATE_COMPLETE"
+	ResourceStatusCreateFailed     = "CREATE_FAILED"
+	ResourceStatusCreateInProgress = "CREATE_IN_PROGRESS"
+	ResourceStatusDeleteComplete   = "DELETE_COMPLETE"
+	ResourceStatusDeleteFailed     = "DELETE_FAILED"
+	ResourceStatusDeleteInProgress = "DELETE_IN_PROGRESS"
+	ResourceStatusDeleteSkipped    = "DELETE_SKIPPED"
+	ResourceStatusUpdateComplete   = "UPDATE_COMPLETE"
+	ResourceStatusUpdateFailed     = "UPDATE_FAILED"
+	ResourceStatusUpdateInProgress = "UPDATE_IN_PROGRESS"
+)
 
 // The input for the SetStackPolicy action.
 type SetStackPolicyInput struct {
@@ -1412,6 +1440,25 @@ type StackResourceSummary struct {
 type metadataStackResourceSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	StackStatusCreateComplete                          = "CREATE_COMPLETE"
+	StackStatusCreateFailed                            = "CREATE_FAILED"
+	StackStatusCreateInProgress                        = "CREATE_IN_PROGRESS"
+	StackStatusDeleteComplete                          = "DELETE_COMPLETE"
+	StackStatusDeleteFailed                            = "DELETE_FAILED"
+	StackStatusDeleteInProgress                        = "DELETE_IN_PROGRESS"
+	StackStatusRollbackComplete                        = "ROLLBACK_COMPLETE"
+	StackStatusRollbackFailed                          = "ROLLBACK_FAILED"
+	StackStatusRollbackInProgress                      = "ROLLBACK_IN_PROGRESS"
+	StackStatusUpdateComplete                          = "UPDATE_COMPLETE"
+	StackStatusUpdateCompleteCleanupInProgress         = "UPDATE_COMPLETE_CLEANUP_IN_PROGRESS"
+	StackStatusUpdateInProgress                        = "UPDATE_IN_PROGRESS"
+	StackStatusUpdateRollbackComplete                  = "UPDATE_ROLLBACK_COMPLETE"
+	StackStatusUpdateRollbackCompleteCleanupInProgress = "UPDATE_ROLLBACK_COMPLETE_CLEANUP_IN_PROGRESS"
+	StackStatusUpdateRollbackFailed                    = "UPDATE_ROLLBACK_FAILED"
+	StackStatusUpdateRollbackInProgress                = "UPDATE_ROLLBACK_IN_PROGRESS"
+)
 
 // The StackSummary Data Type
 type StackSummary struct {

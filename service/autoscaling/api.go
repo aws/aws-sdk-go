@@ -3058,6 +3058,22 @@ type metadataLifecycleHook struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	LifecycleStateDetached           = "Detached"
+	LifecycleStateDetaching          = "Detaching"
+	LifecycleStateEnteringStandby    = "EnteringStandby"
+	LifecycleStateInService          = "InService"
+	LifecycleStatePending            = "Pending"
+	LifecycleStatePendingProceed     = "Pending:Proceed"
+	LifecycleStatePendingWait        = "Pending:Wait"
+	LifecycleStateQuarantined        = "Quarantined"
+	LifecycleStateStandby            = "Standby"
+	LifecycleStateTerminated         = "Terminated"
+	LifecycleStateTerminating        = "Terminating"
+	LifecycleStateTerminatingProceed = "Terminating:Proceed"
+	LifecycleStateTerminatingWait    = "Terminating:Wait"
+)
+
 // Describes a metric.
 type MetricCollectionType struct {
 	// The metric.
@@ -3433,6 +3449,19 @@ type ResumeProcessesOutput struct {
 type metadataResumeProcessesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	ScalingActivityStatusCodeCancelled                       = "Cancelled"
+	ScalingActivityStatusCodeFailed                          = "Failed"
+	ScalingActivityStatusCodeInProgress                      = "InProgress"
+	ScalingActivityStatusCodeMidLifecycleAction              = "MidLifecycleAction"
+	ScalingActivityStatusCodePreInService                    = "PreInService"
+	ScalingActivityStatusCodeSuccessful                      = "Successful"
+	ScalingActivityStatusCodeWaitingForElbconnectionDraining = "WaitingForELBConnectionDraining"
+	ScalingActivityStatusCodeWaitingForInstanceID            = "WaitingForInstanceId"
+	ScalingActivityStatusCodeWaitingForSpotInstanceID        = "WaitingForSpotInstanceId"
+	ScalingActivityStatusCodeWaitingForSpotInstanceRequestID = "WaitingForSpotInstanceRequestId"
+)
 
 // Describes a scaling policy.
 type ScalingPolicy struct {

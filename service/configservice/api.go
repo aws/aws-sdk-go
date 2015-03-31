@@ -334,6 +334,11 @@ func (c *ConfigService) StopConfigurationRecorder(input *StopConfigurationRecord
 
 var opStopConfigurationRecorder *aws.Operation
 
+const (
+	ChronologicalOrderForward = "Forward"
+	ChronologicalOrderReverse = "Reverse"
+)
+
 // A list that contains the status of the delivery of either the snapshot or
 // the configuration history to the specified Amazon S3 bucket.
 type ConfigExportDeliveryInfo struct {
@@ -445,6 +450,13 @@ type ConfigurationItem struct {
 type metadataConfigurationItem struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	ConfigurationItemStatusDeleted    = "Deleted"
+	ConfigurationItemStatusDiscovered = "Discovered"
+	ConfigurationItemStatusFailed     = "Failed"
+	ConfigurationItemStatusOK         = "Ok"
+)
 
 // An object that represents the recording of configuration changes of an AWS
 // resource.
@@ -594,6 +606,11 @@ type DeliveryChannelStatus struct {
 type metadataDeliveryChannelStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	DeliveryStatusFailure = "Failure"
+	DeliveryStatusSuccess = "Success"
+)
 
 // The input for the DescribeConfigurationRecorderStatus action.
 type DescribeConfigurationRecorderStatusInput struct {
@@ -785,6 +802,12 @@ type metadataPutDeliveryChannelOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	RecorderStatusFailure = "Failure"
+	RecorderStatusPending = "Pending"
+	RecorderStatusSuccess = "Success"
+)
+
 // The relationship of the related resource to the main resource.
 type Relationship struct {
 	// The name of the related resource.
@@ -802,6 +825,23 @@ type Relationship struct {
 type metadataRelationship struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	ResourceTypeAWSCloudTrailTrail     = "AWS::CloudTrail::Trail"
+	ResourceTypeAWSEC2CustomerGateway  = "AWS::EC2::CustomerGateway"
+	ResourceTypeAWSEC2EIP              = "AWS::EC2::EIP"
+	ResourceTypeAWSEC2Instance         = "AWS::EC2::Instance"
+	ResourceTypeAWSEC2InternetGateway  = "AWS::EC2::InternetGateway"
+	ResourceTypeAWSEC2NetworkACL       = "AWS::EC2::NetworkAcl"
+	ResourceTypeAWSEC2NetworkInterface = "AWS::EC2::NetworkInterface"
+	ResourceTypeAWSEC2RouteTable       = "AWS::EC2::RouteTable"
+	ResourceTypeAWSEC2SecurityGroup    = "AWS::EC2::SecurityGroup"
+	ResourceTypeAWSEC2Subnet           = "AWS::EC2::Subnet"
+	ResourceTypeAWSEC2VPC              = "AWS::EC2::VPC"
+	ResourceTypeAWSEC2VPNConnection    = "AWS::EC2::VPNConnection"
+	ResourceTypeAWSEC2VPNGateway       = "AWS::EC2::VPNGateway"
+	ResourceTypeAWSEC2Volume           = "AWS::EC2::Volume"
+)
 
 // The input for the StartConfigurationRecorder action.
 type StartConfigurationRecorderInput struct {

@@ -473,6 +473,17 @@ func (c *CloudHSM) ModifyLunaClient(input *ModifyLunaClientInput) (output *Modif
 
 var opModifyLunaClient *aws.Operation
 
+const (
+	ClientVersion51 = "5.1"
+	ClientVersion53 = "5.3"
+)
+
+const (
+	CloudHSMObjectStateDegraded = "DEGRADED"
+	CloudHSMObjectStateReady    = "READY"
+	CloudHSMObjectStateUpdating = "UPDATING"
+)
+
 // Contains the inputs for the CreateHapgRequest action.
 type CreateHAPGInput struct {
 	// The label of the new high-availability partition group.
@@ -852,6 +863,16 @@ type metadataGetConfigOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	HSMStatusDegraded    = "DEGRADED"
+	HSMStatusPending     = "PENDING"
+	HSMStatusRunning     = "RUNNING"
+	HSMStatusSuspended   = "SUSPENDED"
+	HSMStatusTerminated  = "TERMINATED"
+	HSMStatusTerminating = "TERMINATING"
+	HSMStatusUpdating    = "UPDATING"
+)
+
 // Contains the inputs for the ListAvailableZones action.
 type ListAvailableZonesInput struct {
 	metadataListAvailableZonesInput `json:"-", xml:"-"`
@@ -1046,3 +1067,7 @@ type ModifyLunaClientOutput struct {
 type metadataModifyLunaClientOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	SubscriptionTypeProduction = "PRODUCTION"
+)

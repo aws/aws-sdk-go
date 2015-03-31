@@ -1481,6 +1481,12 @@ type metadataGeoRestriction struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	GeoRestrictionTypeBlacklist = "blacklist"
+	GeoRestrictionTypeNone      = "none"
+	GeoRestrictionTypeWhitelist = "whitelist"
+)
+
 // The request to get an origin access identity's configuration.
 type GetCloudFrontOriginAccessIdentityConfigInput struct {
 	// The identity's id.
@@ -1802,6 +1808,12 @@ type metadataInvalidationSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ItemSelectionAll       = "all"
+	ItemSelectionNone      = "none"
+	ItemSelectionWhitelist = "whitelist"
+)
+
 // A complex type that lists the active CloudFront key pairs, if any, that are
 // associated with AwsAccountNumber.
 type KeyPairIDs struct {
@@ -1982,6 +1994,21 @@ type metadataLoggingConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	MethodDelete  = "DELETE"
+	MethodGet     = "GET"
+	MethodHead    = "HEAD"
+	MethodOptions = "OPTIONS"
+	MethodPatch   = "PATCH"
+	MethodPost    = "POST"
+	MethodPut     = "PUT"
+)
+
+const (
+	MinimumProtocolVersionSSLv3 = "SSLv3"
+	MinimumProtocolVersionTLSv1 = "TLSv1"
+)
+
 // A complex type that describes the Amazon S3 bucket or the HTTP server (for
 // example, a web server) from which CloudFront gets your files.You must create
 // at least one origin.
@@ -2019,6 +2046,11 @@ type metadataOrigin struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	OriginProtocolPolicyHTTPOnly    = "http-only"
+	OriginProtocolPolicyMatchViewer = "match-viewer"
+)
+
 // A complex type that contains information about origins for this distribution.
 type Origins struct {
 	// A complex type that contains origins for this distribution.
@@ -2049,6 +2081,12 @@ type Paths struct {
 type metadataPaths struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	PriceClassPriceClass100 = "PriceClass_100"
+	PriceClassPriceClass200 = "PriceClass_200"
+	PriceClassPriceClassAll = "PriceClass_All"
+)
 
 // A complex type that identifies ways in which you want to restrict distribution
 // of your content.
@@ -2106,6 +2144,11 @@ type S3OriginConfig struct {
 type metadataS3OriginConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	SSLSupportMethodSNIOnly = "sni-only"
+	SSLSupportMethodVIP     = "vip"
+)
 
 // A complex type that lists the AWS accounts that were included in the TrustedSigners
 // complex type, as well as their active CloudFront key pair IDs, if any.
@@ -2511,3 +2554,9 @@ type ViewerCertificate struct {
 type metadataViewerCertificate struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	ViewerProtocolPolicyAllowAll        = "allow-all"
+	ViewerProtocolPolicyHTTPSOnly       = "https-only"
+	ViewerProtocolPolicyRedirectToHTTPS = "redirect-to-https"
+)

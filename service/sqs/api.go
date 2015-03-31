@@ -1229,6 +1229,22 @@ type metadataPurgeQueueOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	QueueAttributeNameApproximateNumberOfMessages           = "ApproximateNumberOfMessages"
+	QueueAttributeNameApproximateNumberOfMessagesDelayed    = "ApproximateNumberOfMessagesDelayed"
+	QueueAttributeNameApproximateNumberOfMessagesNotVisible = "ApproximateNumberOfMessagesNotVisible"
+	QueueAttributeNameCreatedTimestamp                      = "CreatedTimestamp"
+	QueueAttributeNameDelaySeconds                          = "DelaySeconds"
+	QueueAttributeNameLastModifiedTimestamp                 = "LastModifiedTimestamp"
+	QueueAttributeNameMaximumMessageSize                    = "MaximumMessageSize"
+	QueueAttributeNameMessageRetentionPeriod                = "MessageRetentionPeriod"
+	QueueAttributeNamePolicy                                = "Policy"
+	QueueAttributeNameQueueARN                              = "QueueArn"
+	QueueAttributeNameReceiveMessageWaitTimeSeconds         = "ReceiveMessageWaitTimeSeconds"
+	QueueAttributeNameRedrivePolicy                         = "RedrivePolicy"
+	QueueAttributeNameVisibilityTimeout                     = "VisibilityTimeout"
+)
+
 type ReceiveMessageInput struct {
 	// A list of attributes that need to be returned along with each message.
 	//

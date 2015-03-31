@@ -48,6 +48,8 @@ func (a *API) Setup() {
 		a.removeUnusedShapes()
 	}
 
+	a.genEnums()
+
 	if len(a.unrecognizedNames) > 0 {
 		msg := []string{
 			"Unrecognized inflections for the following export names:",

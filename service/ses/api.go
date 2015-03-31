@@ -917,6 +917,11 @@ type metadataIdentityNotificationAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	IdentityTypeDomain       = "Domain"
+	IdentityTypeEmailAddress = "EmailAddress"
+)
+
 // Represents the verification attributes of a single identity.
 type IdentityVerificationAttributes struct {
 	// The verification status of the identity: "Pending", "Success", "Failed",
@@ -1003,6 +1008,12 @@ type Message struct {
 type metadataMessage struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	NotificationTypeBounce    = "Bounce"
+	NotificationTypeComplaint = "Complaint"
+	NotificationTypeDelivery  = "Delivery"
+)
 
 // Represents the raw data of the message.
 type RawMessage struct {
@@ -1232,6 +1243,14 @@ type SetIdentityNotificationTopicOutput struct {
 type metadataSetIdentityNotificationTopicOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	VerificationStatusFailed           = "Failed"
+	VerificationStatusNotStarted       = "NotStarted"
+	VerificationStatusPending          = "Pending"
+	VerificationStatusSuccess          = "Success"
+	VerificationStatusTemporaryFailure = "TemporaryFailure"
+)
 
 // Represents a request instructing the service to begin DKIM verification for
 // a domain.

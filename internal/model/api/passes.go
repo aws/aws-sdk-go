@@ -188,3 +188,9 @@ func (a *API) removeUnusedShapes() {
 		}
 	}
 }
+
+func (a *API) genEnums() {
+	for _, s := range a.Shapes {
+		s.GenEnums()
+	}
+}

@@ -380,6 +380,13 @@ type metadataAlarmHistoryItem struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ComparisonOperatorGreaterThanOrEqualToThreshold = "GreaterThanOrEqualToThreshold"
+	ComparisonOperatorGreaterThanThreshold          = "GreaterThanThreshold"
+	ComparisonOperatorLessThanOrEqualToThreshold    = "LessThanOrEqualToThreshold"
+	ComparisonOperatorLessThanThreshold             = "LessThanThreshold"
+)
+
 // The Datapoint data type encapsulates the statistical data that Amazon CloudWatch
 // computes from metric data.
 type Datapoint struct {
@@ -684,6 +691,12 @@ type GetMetricStatisticsOutput struct {
 type metadataGetMetricStatisticsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	HistoryItemTypeAction              = "Action"
+	HistoryItemTypeConfigurationUpdate = "ConfigurationUpdate"
+	HistoryItemTypeStateUpdate         = "StateUpdate"
+)
 
 type ListMetricsInput struct {
 	// A list of dimensions to filter against.
@@ -1004,6 +1017,50 @@ type SetAlarmStateOutput struct {
 type metadataSetAlarmStateOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	StandardUnitBits            = "Bits"
+	StandardUnitBitsSecond      = "Bits/Second"
+	StandardUnitBytes           = "Bytes"
+	StandardUnitBytesSecond     = "Bytes/Second"
+	StandardUnitCount           = "Count"
+	StandardUnitCountSecond     = "Count/Second"
+	StandardUnitGigabits        = "Gigabits"
+	StandardUnitGigabitsSecond  = "Gigabits/Second"
+	StandardUnitGigabytes       = "Gigabytes"
+	StandardUnitGigabytesSecond = "Gigabytes/Second"
+	StandardUnitKilobits        = "Kilobits"
+	StandardUnitKilobitsSecond  = "Kilobits/Second"
+	StandardUnitKilobytes       = "Kilobytes"
+	StandardUnitKilobytesSecond = "Kilobytes/Second"
+	StandardUnitMegabits        = "Megabits"
+	StandardUnitMegabitsSecond  = "Megabits/Second"
+	StandardUnitMegabytes       = "Megabytes"
+	StandardUnitMegabytesSecond = "Megabytes/Second"
+	StandardUnitMicroseconds    = "Microseconds"
+	StandardUnitMilliseconds    = "Milliseconds"
+	StandardUnitNone            = "None"
+	StandardUnitPercent         = "Percent"
+	StandardUnitSeconds         = "Seconds"
+	StandardUnitTerabits        = "Terabits"
+	StandardUnitTerabitsSecond  = "Terabits/Second"
+	StandardUnitTerabytes       = "Terabytes"
+	StandardUnitTerabytesSecond = "Terabytes/Second"
+)
+
+const (
+	StateValueAlarm            = "ALARM"
+	StateValueInsufficientData = "INSUFFICIENT_DATA"
+	StateValueOK               = "OK"
+)
+
+const (
+	StatisticAverage     = "Average"
+	StatisticMaximum     = "Maximum"
+	StatisticMinimum     = "Minimum"
+	StatisticSampleCount = "SampleCount"
+	StatisticSum         = "Sum"
+)
 
 // The StatisticSet data type describes the StatisticValues component of MetricDatum,
 // and represents a set of statistics that describes a specific metric.

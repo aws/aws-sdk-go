@@ -864,6 +864,11 @@ type metadataCreateKeyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	DataKeySpecAES128 = "AES_128"
+	DataKeySpecAES256 = "AES_256"
+)
+
 type DecryptInput struct {
 	// Ciphertext to be decrypted. The blob includes metadata.
 	CiphertextBlob []byte `type:"blob" required:"true"`
@@ -1309,6 +1314,17 @@ type metadataGrantListEntry struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	GrantOperationCreateGrant                     = "CreateGrant"
+	GrantOperationDecrypt                         = "Decrypt"
+	GrantOperationEncrypt                         = "Encrypt"
+	GrantOperationGenerateDataKey                 = "GenerateDataKey"
+	GrantOperationGenerateDataKeyWithoutPlaintext = "GenerateDataKeyWithoutPlaintext"
+	GrantOperationReEncryptFrom                   = "ReEncryptFrom"
+	GrantOperationReEncryptTo                     = "ReEncryptTo"
+	GrantOperationRetireGrant                     = "RetireGrant"
+)
+
 // Contains information about each entry in the key list.
 type KeyListEntry struct {
 	// ARN of the key.
@@ -1353,6 +1369,10 @@ type KeyMetadata struct {
 type metadataKeyMetadata struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	KeyUsageTypeEncryptDecrypt = "ENCRYPT_DECRYPT"
+)
 
 type ListAliasesInput struct {
 	// Specify this parameter when paginating results to indicate the maximum number
