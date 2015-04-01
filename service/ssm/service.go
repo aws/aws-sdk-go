@@ -11,6 +11,12 @@ type SSM struct {
 	*aws.Service
 }
 
+// Used for custom service initialization logic
+var initService func(*aws.Service)
+
+// Used for custom request initialization logic
+var initRequest func(*aws.Request)
+
 // New returns a new SSM client.
 func New(config *aws.Config) *SSM {
 	if config == nil {
@@ -33,5 +39,23 @@ func New(config *aws.Config) *SSM {
 	service.Handlers.UnmarshalMeta.PushBack(jsonrpc.UnmarshalMeta)
 	service.Handlers.UnmarshalError.PushBack(jsonrpc.UnmarshalError)
 
+	// Run custom service initialization if present
+	if initService != nil {
+		initService(service)
+	}
+
 	return &SSM{service}
+}
+
+// newRequest creates a new request for a SSM operation and runs any
+// custom request initialization.
+func (c *SSM) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
+	req := aws.NewRequest(c.Service, op, params, data)
+
+	// Run custom request initialization if present
+	if initRequest != nil {
+		initRequest(req)
+	}
+
+	return req
 }

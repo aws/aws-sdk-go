@@ -11,6 +11,12 @@ type EC2 struct {
 	*aws.Service
 }
 
+// Used for custom service initialization logic
+var initService func(*aws.Service)
+
+// Used for custom request initialization logic
+var initRequest func(*aws.Request)
+
 // New returns a new EC2 client.
 func New(config *aws.Config) *EC2 {
 	if config == nil {
@@ -31,5 +37,23 @@ func New(config *aws.Config) *EC2 {
 	service.Handlers.UnmarshalMeta.PushBack(ec2query.UnmarshalMeta)
 	service.Handlers.UnmarshalError.PushBack(ec2query.UnmarshalError)
 
+	// Run custom service initialization if present
+	if initService != nil {
+		initService(service)
+	}
+
 	return &EC2{service}
+}
+
+// newRequest creates a new request for a EC2 operation and runs any
+// custom request initialization.
+func (c *EC2) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
+	req := aws.NewRequest(c.Service, op, params, data)
+
+	// Run custom request initialization if present
+	if initRequest != nil {
+		initRequest(req)
+	}
+
+	return req
 }

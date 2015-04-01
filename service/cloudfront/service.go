@@ -11,6 +11,12 @@ type CloudFront struct {
 	*aws.Service
 }
 
+// Used for custom service initialization logic
+var initService func(*aws.Service)
+
+// Used for custom request initialization logic
+var initRequest func(*aws.Request)
+
 // New returns a new CloudFront client.
 func New(config *aws.Config) *CloudFront {
 	if config == nil {
@@ -31,5 +37,23 @@ func New(config *aws.Config) *CloudFront {
 	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
 	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
+	// Run custom service initialization if present
+	if initService != nil {
+		initService(service)
+	}
+
 	return &CloudFront{service}
+}
+
+// newRequest creates a new request for a CloudFront operation and runs any
+// custom request initialization.
+func (c *CloudFront) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
+	req := aws.NewRequest(c.Service, op, params, data)
+
+	// Run custom request initialization if present
+	if initRequest != nil {
+		initRequest(req)
+	}
+
+	return req
 }

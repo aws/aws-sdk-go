@@ -11,6 +11,12 @@ type Support struct {
 	*aws.Service
 }
 
+// Used for custom service initialization logic
+var initService func(*aws.Service)
+
+// Used for custom request initialization logic
+var initRequest func(*aws.Request)
+
 // New returns a new Support client.
 func New(config *aws.Config) *Support {
 	if config == nil {
@@ -33,5 +39,23 @@ func New(config *aws.Config) *Support {
 	service.Handlers.UnmarshalMeta.PushBack(jsonrpc.UnmarshalMeta)
 	service.Handlers.UnmarshalError.PushBack(jsonrpc.UnmarshalError)
 
+	// Run custom service initialization if present
+	if initService != nil {
+		initService(service)
+	}
+
 	return &Support{service}
+}
+
+// newRequest creates a new request for a Support operation and runs any
+// custom request initialization.
+func (c *Support) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
+	req := aws.NewRequest(c.Service, op, params, data)
+
+	// Run custom request initialization if present
+	if initRequest != nil {
+		initRequest(req)
+	}
+
+	return req
 }

@@ -11,6 +11,12 @@ type OpsWorks struct {
 	*aws.Service
 }
 
+// Used for custom service initialization logic
+var initService func(*aws.Service)
+
+// Used for custom request initialization logic
+var initRequest func(*aws.Request)
+
 // New returns a new OpsWorks client.
 func New(config *aws.Config) *OpsWorks {
 	if config == nil {
@@ -33,5 +39,23 @@ func New(config *aws.Config) *OpsWorks {
 	service.Handlers.UnmarshalMeta.PushBack(jsonrpc.UnmarshalMeta)
 	service.Handlers.UnmarshalError.PushBack(jsonrpc.UnmarshalError)
 
+	// Run custom service initialization if present
+	if initService != nil {
+		initService(service)
+	}
+
 	return &OpsWorks{service}
+}
+
+// newRequest creates a new request for a OpsWorks operation and runs any
+// custom request initialization.
+func (c *OpsWorks) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
+	req := aws.NewRequest(c.Service, op, params, data)
+
+	// Run custom request initialization if present
+	if initRequest != nil {
+		initRequest(req)
+	}
+
+	return req
 }

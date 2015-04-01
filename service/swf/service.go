@@ -11,6 +11,12 @@ type SWF struct {
 	*aws.Service
 }
 
+// Used for custom service initialization logic
+var initService func(*aws.Service)
+
+// Used for custom request initialization logic
+var initRequest func(*aws.Request)
+
 // New returns a new SWF client.
 func New(config *aws.Config) *SWF {
 	if config == nil {
@@ -33,5 +39,23 @@ func New(config *aws.Config) *SWF {
 	service.Handlers.UnmarshalMeta.PushBack(jsonrpc.UnmarshalMeta)
 	service.Handlers.UnmarshalError.PushBack(jsonrpc.UnmarshalError)
 
+	// Run custom service initialization if present
+	if initService != nil {
+		initService(service)
+	}
+
 	return &SWF{service}
+}
+
+// newRequest creates a new request for a SWF operation and runs any
+// custom request initialization.
+func (c *SWF) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
+	req := aws.NewRequest(c.Service, op, params, data)
+
+	// Run custom request initialization if present
+	if initRequest != nil {
+		initRequest(req)
+	}
+
+	return req
 }

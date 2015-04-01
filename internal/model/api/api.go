@@ -22,6 +22,9 @@ type API struct {
 	// Set to true to avoid removing unused shapes
 	NoRemoveUnusedShapes bool
 
+	// Set to true to ignore service/request init methods (for testing)
+	NoInitMethods bool
+
 	initialized       bool
 	imports           map[string]bool
 	name              string
@@ -64,6 +67,10 @@ func (a *API) StructName() string {
 		}
 	}
 	return a.name
+}
+
+func (a *API) UseInitMethods() bool {
+	return !a.NoInitMethods
 }
 
 func (a *API) NiceName() string {
@@ -181,33 +188,60 @@ func (a *API) APIGoCode() string {
 var tplService = template.Must(template.New("service").Parse(`
 // {{ .StructName }} is a client for {{ .NiceName }}.
 type {{ .StructName }} struct {
-    *aws.Service
+	*aws.Service
 }
+
+{{ if .UseInitMethods }}// Used for custom service initialization logic
+var initService func(*aws.Service)
+
+// Used for custom request initialization logic
+var initRequest func(*aws.Request)
+{{ end }}
 
 // New returns a new {{ .StructName }} client.
 func New(config *aws.Config) *{{ .StructName }} {
-  if config == nil {
-    config = &aws.Config{}
-  }
+	if config == nil {
+		config = &aws.Config{}
+	}
 
-  service := &aws.Service{
-    Config:       aws.DefaultConfig.Merge(config),
-    ServiceName:  "{{ .Metadata.EndpointPrefix }}",
-    APIVersion:   "{{ .Metadata.APIVersion }}",
+	service := &aws.Service{
+		Config:       aws.DefaultConfig.Merge(config),
+		ServiceName:  "{{ .Metadata.EndpointPrefix }}",
+		APIVersion:   "{{ .Metadata.APIVersion }}",
 {{ if eq .Metadata.Protocol "json" }}JSONVersion:  "{{ .Metadata.JSONVersion }}",
-    TargetPrefix: "{{ .Metadata.TargetPrefix }}",
+		TargetPrefix: "{{ .Metadata.TargetPrefix }}",
 {{ end }}
   }
-  service.Initialize()
+	service.Initialize()
 
-  // Handlers
-  service.Handlers.Sign.PushBack(v4.Sign)
-  service.Handlers.Build.PushBack({{ .ProtocolPackage }}.Build)
-  service.Handlers.Unmarshal.PushBack({{ .ProtocolPackage }}.Unmarshal)
-  service.Handlers.UnmarshalMeta.PushBack({{ .ProtocolPackage }}.UnmarshalMeta)
-  service.Handlers.UnmarshalError.PushBack({{ .ProtocolPackage }}.UnmarshalError)
+	// Handlers
+	service.Handlers.Sign.PushBack(v4.Sign)
+	service.Handlers.Build.PushBack({{ .ProtocolPackage }}.Build)
+	service.Handlers.Unmarshal.PushBack({{ .ProtocolPackage }}.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack({{ .ProtocolPackage }}.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack({{ .ProtocolPackage }}.UnmarshalError)
 
-  return &{{ .StructName }}{service}
+	{{ if .UseInitMethods }}// Run custom service initialization if present
+	if initService != nil {
+		initService(service)
+	}
+	{{ end  }}
+
+	return &{{ .StructName }}{service}
+}
+
+// newRequest creates a new request for a {{ .StructName }} operation and runs any
+// custom request initialization.
+func (c *{{ .StructName }}) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
+	req := aws.NewRequest(c.Service, op, params, data)
+
+	{{ if .UseInitMethods }}// Run custom request initialization if present
+	if initRequest != nil {
+		initRequest(req)
+	}
+	{{ end }}
+
+	return req
 }
 `))
 
