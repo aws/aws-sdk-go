@@ -163,7 +163,8 @@ func (e *example) traverseStruct(s *Shape, required, payload bool) string {
 	if e.visited[s.ShapeName] < 2 {
 		for _, n := range req {
 			m := s.MemberRefs[n].Shape
-			buf.WriteString(n + ": " + e.traverseAny(m, true, n == s.Payload) + ",")
+			p := n == s.Payload && (s.MemberRefs[n].Streaming || m.Streaming)
+			buf.WriteString(n + ": " + e.traverseAny(m, true, p) + ",")
 			if m.Type != "list" && m.Type != "structure" && m.Type != "map" {
 				buf.WriteString(" // Required")
 			}
@@ -175,7 +176,8 @@ func (e *example) traverseStruct(s *Shape, required, payload bool) string {
 				continue
 			}
 			m := s.MemberRefs[n].Shape
-			buf.WriteString(n + ": " + e.traverseAny(m, false, n == s.Payload) + ",\n")
+			p := n == s.Payload && (s.MemberRefs[n].Streaming || m.Streaming)
+			buf.WriteString(n + ": " + e.traverseAny(m, false, p) + ",\n")
 		}
 	} else {
 		buf.WriteString("// Recursive values...\n")

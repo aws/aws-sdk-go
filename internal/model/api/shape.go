@@ -213,7 +213,7 @@ func (s *Shape) GoCode() string {
 		for _, n := range s.MemberNames() {
 			m := s.MemberRefs[n]
 			code += m.Docstring()
-			if (m.Streaming || s.Streaming) && s.Payload == n {
+			if (m.Streaming || m.Shape.Streaming) && s.Payload == n {
 				rtype := "io.ReadSeeker"
 				if len(s.refs) > 1 {
 					rtype = "aws.ReaderSeekCloser"

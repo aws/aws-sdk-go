@@ -4,6 +4,8 @@
 package lambda
 
 import (
+	"io"
+
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
@@ -571,7 +573,7 @@ type InvokeAsyncInput struct {
 	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"`
 
 	// JSON that you want to provide to your Lambda function as input.
-	InvokeArgs []byte `type:"blob" required:"true"`
+	InvokeArgs io.ReadSeeker `type:"blob" required:"true"`
 
 	metadataInvokeAsyncInput `json:"-", xml:"-"`
 }
@@ -728,7 +730,7 @@ type UploadFunctionInput struct {
 	// A .zip file containing your packaged source code. For more information about
 	// creating a .zip file, go to AWS LambdaL How it Works (http://docs.aws.amazon.com/lambda/latest/dg/walkthrough-custom-events.html)
 	// in the AWS Lambda Developer Guide.
-	FunctionZip []byte `type:"blob" required:"true"`
+	FunctionZip io.ReadSeeker `type:"blob" required:"true"`
 
 	// The function that Lambda calls to begin execution. For Node.js, it is the
 	// module-name.export value in your function.
