@@ -11,6 +11,7 @@ import (
 	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
 	"github.com/awslabs/aws-sdk-go/internal/util"
 	"github.com/stretchr/testify/assert"
+	"io"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -27,6 +28,7 @@ var _ xml.Attr
 var _ = ioutil.Discard
 var _ = util.Trim("")
 var _ = url.Values{}
+var _ = io.EOF
 
 // InputService1ProtocolTest is a client for InputService1ProtocolTest.
 type InputService1ProtocolTest struct {
@@ -56,6 +58,14 @@ func NewInputService1ProtocolTest(config *aws.Config) *InputService1ProtocolTest
 	return &InputService1ProtocolTest{service}
 }
 
+// newRequest creates a new request for a InputService1ProtocolTest operation and runs any
+// custom request initialization.
+func (c *InputService1ProtocolTest) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
+	req := aws.NewRequest(c.Service, op, params, data)
+
+	return req
+}
+
 // InputService1TestCaseOperation1Request generates a request for the InputService1TestCaseOperation1 operation.
 func (c *InputService1ProtocolTest) InputService1TestCaseOperation1Request(input *InputService1TestShapeInputShape) (req *aws.Request, output *InputService1TestShapeInputService1TestCaseOperation1Output) {
 	if opInputService1TestCaseOperation1 == nil {
@@ -64,7 +74,7 @@ func (c *InputService1ProtocolTest) InputService1TestCaseOperation1Request(input
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opInputService1TestCaseOperation1, input, output)
+	req = c.newRequest(opInputService1TestCaseOperation1, input, output)
 	output = &InputService1TestShapeInputService1TestCaseOperation1Output{}
 	req.Data = output
 	return
@@ -127,6 +137,14 @@ func NewInputService2ProtocolTest(config *aws.Config) *InputService2ProtocolTest
 	return &InputService2ProtocolTest{service}
 }
 
+// newRequest creates a new request for a InputService2ProtocolTest operation and runs any
+// custom request initialization.
+func (c *InputService2ProtocolTest) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
+	req := aws.NewRequest(c.Service, op, params, data)
+
+	return req
+}
+
 // InputService2TestCaseOperation1Request generates a request for the InputService2TestCaseOperation1 operation.
 func (c *InputService2ProtocolTest) InputService2TestCaseOperation1Request(input *InputService2TestShapeInputShape) (req *aws.Request, output *InputService2TestShapeInputService2TestCaseOperation1Output) {
 	if opInputService2TestCaseOperation1 == nil {
@@ -135,7 +153,7 @@ func (c *InputService2ProtocolTest) InputService2TestCaseOperation1Request(input
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opInputService2TestCaseOperation1, input, output)
+	req = c.newRequest(opInputService2TestCaseOperation1, input, output)
 	output = &InputService2TestShapeInputService2TestCaseOperation1Output{}
 	req.Data = output
 	return
@@ -200,6 +218,14 @@ func NewInputService3ProtocolTest(config *aws.Config) *InputService3ProtocolTest
 	return &InputService3ProtocolTest{service}
 }
 
+// newRequest creates a new request for a InputService3ProtocolTest operation and runs any
+// custom request initialization.
+func (c *InputService3ProtocolTest) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
+	req := aws.NewRequest(c.Service, op, params, data)
+
+	return req
+}
+
 // InputService3TestCaseOperation1Request generates a request for the InputService3TestCaseOperation1 operation.
 func (c *InputService3ProtocolTest) InputService3TestCaseOperation1Request(input *InputService3TestShapeInputShape) (req *aws.Request, output *InputService3TestShapeInputService3TestCaseOperation1Output) {
 	if opInputService3TestCaseOperation1 == nil {
@@ -208,7 +234,7 @@ func (c *InputService3ProtocolTest) InputService3TestCaseOperation1Request(input
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opInputService3TestCaseOperation1, input, output)
+	req = c.newRequest(opInputService3TestCaseOperation1, input, output)
 	output = &InputService3TestShapeInputService3TestCaseOperation1Output{}
 	req.Data = output
 	return
@@ -279,6 +305,14 @@ func NewInputService4ProtocolTest(config *aws.Config) *InputService4ProtocolTest
 	return &InputService4ProtocolTest{service}
 }
 
+// newRequest creates a new request for a InputService4ProtocolTest operation and runs any
+// custom request initialization.
+func (c *InputService4ProtocolTest) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
+	req := aws.NewRequest(c.Service, op, params, data)
+
+	return req
+}
+
 // InputService4TestCaseOperation1Request generates a request for the InputService4TestCaseOperation1 operation.
 func (c *InputService4ProtocolTest) InputService4TestCaseOperation1Request(input *InputService4TestShapeInputShape) (req *aws.Request, output *InputService4TestShapeInputService4TestCaseOperation1Output) {
 	if opInputService4TestCaseOperation1 == nil {
@@ -287,7 +321,7 @@ func (c *InputService4ProtocolTest) InputService4TestCaseOperation1Request(input
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opInputService4TestCaseOperation1, input, output)
+	req = c.newRequest(opInputService4TestCaseOperation1, input, output)
 	output = &InputService4TestShapeInputService4TestCaseOperation1Output{}
 	req.Data = output
 	return
@@ -348,6 +382,14 @@ func NewInputService5ProtocolTest(config *aws.Config) *InputService5ProtocolTest
 	return &InputService5ProtocolTest{service}
 }
 
+// newRequest creates a new request for a InputService5ProtocolTest operation and runs any
+// custom request initialization.
+func (c *InputService5ProtocolTest) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
+	req := aws.NewRequest(c.Service, op, params, data)
+
+	return req
+}
+
 // InputService5TestCaseOperation1Request generates a request for the InputService5TestCaseOperation1 operation.
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation1Request(input *InputService5TestShapeInputShape) (req *aws.Request, output *InputService5TestShapeInputService5TestCaseOperation1Output) {
 	if opInputService5TestCaseOperation1 == nil {
@@ -356,7 +398,7 @@ func (c *InputService5ProtocolTest) InputService5TestCaseOperation1Request(input
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opInputService5TestCaseOperation1, input, output)
+	req = c.newRequest(opInputService5TestCaseOperation1, input, output)
 	output = &InputService5TestShapeInputService5TestCaseOperation1Output{}
 	req.Data = output
 	return
@@ -417,6 +459,14 @@ func NewInputService6ProtocolTest(config *aws.Config) *InputService6ProtocolTest
 	return &InputService6ProtocolTest{service}
 }
 
+// newRequest creates a new request for a InputService6ProtocolTest operation and runs any
+// custom request initialization.
+func (c *InputService6ProtocolTest) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
+	req := aws.NewRequest(c.Service, op, params, data)
+
+	return req
+}
+
 // InputService6TestCaseOperation1Request generates a request for the InputService6TestCaseOperation1 operation.
 func (c *InputService6ProtocolTest) InputService6TestCaseOperation1Request(input *InputService6TestShapeInputShape) (req *aws.Request, output *InputService6TestShapeInputService6TestCaseOperation1Output) {
 	if opInputService6TestCaseOperation1 == nil {
@@ -425,7 +475,7 @@ func (c *InputService6ProtocolTest) InputService6TestCaseOperation1Request(input
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opInputService6TestCaseOperation1, input, output)
+	req = c.newRequest(opInputService6TestCaseOperation1, input, output)
 	output = &InputService6TestShapeInputService6TestCaseOperation1Output{}
 	req.Data = output
 	return
@@ -486,6 +536,14 @@ func NewInputService7ProtocolTest(config *aws.Config) *InputService7ProtocolTest
 	return &InputService7ProtocolTest{service}
 }
 
+// newRequest creates a new request for a InputService7ProtocolTest operation and runs any
+// custom request initialization.
+func (c *InputService7ProtocolTest) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
+	req := aws.NewRequest(c.Service, op, params, data)
+
+	return req
+}
+
 // InputService7TestCaseOperation1Request generates a request for the InputService7TestCaseOperation1 operation.
 func (c *InputService7ProtocolTest) InputService7TestCaseOperation1Request(input *InputService7TestShapeInputShape) (req *aws.Request, output *InputService7TestShapeInputService7TestCaseOperation1Output) {
 	if opInputService7TestCaseOperation1 == nil {
@@ -494,7 +552,7 @@ func (c *InputService7ProtocolTest) InputService7TestCaseOperation1Request(input
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opInputService7TestCaseOperation1, input, output)
+	req = c.newRequest(opInputService7TestCaseOperation1, input, output)
 	output = &InputService7TestShapeInputService7TestCaseOperation1Output{}
 	req.Data = output
 	return
@@ -555,6 +613,14 @@ func NewInputService8ProtocolTest(config *aws.Config) *InputService8ProtocolTest
 	return &InputService8ProtocolTest{service}
 }
 
+// newRequest creates a new request for a InputService8ProtocolTest operation and runs any
+// custom request initialization.
+func (c *InputService8ProtocolTest) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
+	req := aws.NewRequest(c.Service, op, params, data)
+
+	return req
+}
+
 // InputService8TestCaseOperation1Request generates a request for the InputService8TestCaseOperation1 operation.
 func (c *InputService8ProtocolTest) InputService8TestCaseOperation1Request(input *InputService8TestShapeInputShape) (req *aws.Request, output *InputService8TestShapeInputService8TestCaseOperation1Output) {
 	if opInputService8TestCaseOperation1 == nil {
@@ -563,7 +629,7 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation1Request(input
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opInputService8TestCaseOperation1, input, output)
+	req = c.newRequest(opInputService8TestCaseOperation1, input, output)
 	output = &InputService8TestShapeInputService8TestCaseOperation1Output{}
 	req.Data = output
 	return

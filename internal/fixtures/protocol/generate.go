@@ -50,6 +50,7 @@ var _ xml.Attr
 var _ = ioutil.Discard
 var _ = util.Trim("")
 var _ = url.Values{}
+var _ = io.EOF
 `
 
 var reStripSpace = regexp.MustCompile(`\s(\w)`)
@@ -64,6 +65,7 @@ var extraImports = []string{
 	"bytes",
 	"encoding/json",
 	"encoding/xml",
+	"io",
 	"io/ioutil",
 	"net/http",
 	"testing",
