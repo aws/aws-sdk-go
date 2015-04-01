@@ -19,7 +19,12 @@ func Build(r *aws.Request) {
 		return
 	}
 
-	r.HTTPRequest.Method = "POST"
-	r.HTTPRequest.Header.Set("Content-Type", "application/x-www-form-urlencoded; charset=utf-8")
-	r.SetBufferBody([]byte(body.Encode()))
+	if r.ExpireTime == 0 {
+		r.HTTPRequest.Method = "POST"
+		r.HTTPRequest.Header.Set("Content-Type", "application/x-www-form-urlencoded; charset=utf-8")
+		r.SetBufferBody([]byte(body.Encode()))
+	} else { // This is a pre-signed request
+		r.HTTPRequest.Method = "GET"
+		r.HTTPRequest.URL.RawQuery = body.Encode()
+	}
 }
