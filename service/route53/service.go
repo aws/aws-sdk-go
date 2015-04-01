@@ -6,6 +6,8 @@ import (
 	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
 )
 
+var initService func(*aws.Service)
+
 // Route53 is a client for Route 53.
 type Route53 struct {
 	*aws.Service
@@ -30,6 +32,10 @@ func New(config *aws.Config) *Route53 {
 	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
 	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
 	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+
+	if initService != nil {
+		initService(service)
+	}
 
 	return &Route53{service}
 }
