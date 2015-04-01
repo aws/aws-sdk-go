@@ -78,7 +78,11 @@ func (q *queryParser) parseStruct(v url.Values, value reflect.Value, prefix stri
 			name = field.Tag.Get("queryName")
 		}
 		if name == "" {
-			name = field.Tag.Get("locationName")
+			if field.Tag.Get("flattened") != "" && field.Tag.Get("locationNameList") != "" {
+				name = field.Tag.Get("locationNameList")
+			} else if locName := field.Tag.Get("locationName"); locName != "" {
+				name = locName
+			}
 			if name != "" && q.isEC2 {
 				name = strings.ToUpper(name[0:1]) + name[1:]
 			}
