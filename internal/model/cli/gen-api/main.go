@@ -86,10 +86,16 @@ func main() {
 
 			// write api.go and service.go files
 			g.writeAPIFile()
+			g.writeExamplesFile()
 			g.writeServiceFile()
 		}()
 	}
 	w.Wait()
+}
+
+func (g *generateInfo) writeExamplesFile() {
+	file := filepath.Join(g.PackageDir, "examples_test.go")
+	ioutil.WriteFile(file, []byte("package "+g.API.PackageName()+"_test\n\n"+g.API.ExampleGoCode()), 0664)
 }
 
 func (g *generateInfo) writeServiceFile() {
