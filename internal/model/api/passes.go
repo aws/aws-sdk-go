@@ -87,14 +87,14 @@ func (a *API) renameToplevelShapes() {
 		if v.HasInput() && !a.NoInflections {
 			name := v.ExportedName + "Input"
 			switch n := len(v.InputRef.Shape.refs); {
-			case n == 1:
+			case n == 1 && a.Shapes[name] == nil:
 				v.InputRef.Shape.Rename(name)
 			}
 		}
 		if v.HasOutput() && !a.NoInflections {
 			name := v.ExportedName + "Output"
 			switch n := len(v.OutputRef.Shape.refs); {
-			case n == 1:
+			case n == 1 && a.Shapes[name] == nil:
 				v.OutputRef.Shape.Rename(name)
 			}
 		}
