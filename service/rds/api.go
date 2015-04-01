@@ -1709,6 +1709,11 @@ type metadataAddTagsToResourceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ApplyMethodImmediate     = "immediate"
+	ApplyMethodPendingReboot = "pending-reboot"
+)
+
 type ApplyPendingMaintenanceActionInput struct {
 	// The pending maintenance action to apply to this resource.
 	ApplyAction *string `type:"string" required:"true"`
@@ -2788,6 +2793,11 @@ type DBInstance struct {
 	// associated with.
 	CharacterSetName *string `type:"string"`
 
+	// If StorageEncrypted is true, the region-unique, immutable identifier for
+	// the encrypted DB instance. This identifier is found in AWS CloudTrail log
+	// entries whenever the KMS key for the DB instance is accessed.
+	DBIResourceID *string `locationName:"DbiResourceId" type:"string"`
+
 	// Contains the name of the compute and memory capacity class of the DB instance.
 	DBInstanceClass *string `type:"string"`
 
@@ -2827,11 +2837,6 @@ type DBInstance struct {
 	// Specifies information on the subnet group associated with the DB instance,
 	// including the name, description, and subnets in the subnet group.
 	DBSubnetGroup *DBSubnetGroup `type:"structure"`
-
-	// If StorageEncrypted is true, the region-unique, immutable identifier for
-	// the encrypted DB instance. This identifier is found in AWS CloudTrail log
-	// entries whenever the KMS key for the DB instance is accessed.
-	DBiResourceID *string `locationName:"DbiResourceId" type:"string"`
 
 	// Specifies the connection endpoint.
 	Endpoint *Endpoint `type:"structure"`
@@ -6256,6 +6261,13 @@ type RevokeDBSecurityGroupIngressOutput struct {
 type metadataRevokeDBSecurityGroupIngressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	SourceTypeDBInstance       = "db-instance"
+	SourceTypeDBParameterGroup = "db-parameter-group"
+	SourceTypeDBSecurityGroup  = "db-security-group"
+	SourceTypeDBSnapshot       = "db-snapshot"
+)
 
 // This data type is used as a response element in the DescribeDBSubnetGroups
 // action.
