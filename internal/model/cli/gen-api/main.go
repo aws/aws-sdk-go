@@ -68,7 +68,8 @@ func main() {
 	}
 
 	w := sync.WaitGroup{}
-	for _, file := range files {
+	for i := range files {
+		file := files[i]
 		if file == "" { // empty file
 			continue
 		}
@@ -85,10 +86,18 @@ func main() {
 
 			g := newGenerateInfo(file, svcPath)
 
-			// write api.go and service.go files
-			g.writeAPIFile()
-			g.writeExamplesFile()
-			g.writeServiceFile()
+			switch g.API.PackageName() {
+			case "simpledb", "importexport", "glacier", "cloudsearchdomain":
+				// These services are not yet supported, do nothing.
+			default:
+				fmt.Printf("Generating %s (%s)...\n",
+					g.API.PackageName(), g.API.Metadata.APIVersion)
+
+				// write api.go and service.go files
+				g.writeAPIFile()
+				g.writeExamplesFile()
+				g.writeServiceFile()
+			}
 		}()
 	}
 	w.Wait()
