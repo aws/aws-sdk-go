@@ -19,7 +19,7 @@ func (c *IAM) AddClientIDToOpenIDConnectProviderRequest(input *AddClientIDToOpen
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddClientIDToOpenIDConnectProvider, input, output)
+	req = c.newRequest(opAddClientIDToOpenIDConnectProvider, input, output)
 	output = &AddClientIDToOpenIDConnectProviderOutput{}
 	req.Data = output
 	return
@@ -49,7 +49,7 @@ func (c *IAM) AddRoleToInstanceProfileRequest(input *AddRoleToInstanceProfileInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddRoleToInstanceProfile, input, output)
+	req = c.newRequest(opAddRoleToInstanceProfile, input, output)
 	output = &AddRoleToInstanceProfileOutput{}
 	req.Data = output
 	return
@@ -78,7 +78,7 @@ func (c *IAM) AddUserToGroupRequest(input *AddUserToGroupInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddUserToGroup, input, output)
+	req = c.newRequest(opAddUserToGroup, input, output)
 	output = &AddUserToGroupOutput{}
 	req.Data = output
 	return
@@ -104,7 +104,7 @@ func (c *IAM) AttachGroupPolicyRequest(input *AttachGroupPolicyInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAttachGroupPolicy, input, output)
+	req = c.newRequest(opAttachGroupPolicy, input, output)
 	output = &AttachGroupPolicyOutput{}
 	req.Data = output
 	return
@@ -137,7 +137,7 @@ func (c *IAM) AttachRolePolicyRequest(input *AttachRolePolicyInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAttachRolePolicy, input, output)
+	req = c.newRequest(opAttachRolePolicy, input, output)
 	output = &AttachRolePolicyOutput{}
 	req.Data = output
 	return
@@ -174,7 +174,7 @@ func (c *IAM) AttachUserPolicyRequest(input *AttachUserPolicyInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAttachUserPolicy, input, output)
+	req = c.newRequest(opAttachUserPolicy, input, output)
 	output = &AttachUserPolicyOutput{}
 	req.Data = output
 	return
@@ -207,7 +207,7 @@ func (c *IAM) ChangePasswordRequest(input *ChangePasswordInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opChangePassword, input, output)
+	req = c.newRequest(opChangePassword, input, output)
 	output = &ChangePasswordOutput{}
 	req.Data = output
 	return
@@ -238,7 +238,7 @@ func (c *IAM) CreateAccessKeyRequest(input *CreateAccessKeyInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateAccessKey, input, output)
+	req = c.newRequest(opCreateAccessKey, input, output)
 	output = &CreateAccessKeyOutput{}
 	req.Data = output
 	return
@@ -280,7 +280,7 @@ func (c *IAM) CreateAccountAliasRequest(input *CreateAccountAliasInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateAccountAlias, input, output)
+	req = c.newRequest(opCreateAccountAlias, input, output)
 	output = &CreateAccountAliasOutput{}
 	req.Data = output
 	return
@@ -308,7 +308,7 @@ func (c *IAM) CreateGroupRequest(input *CreateGroupInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateGroup, input, output)
+	req = c.newRequest(opCreateGroup, input, output)
 	output = &CreateGroupOutput{}
 	req.Data = output
 	return
@@ -338,7 +338,7 @@ func (c *IAM) CreateInstanceProfileRequest(input *CreateInstanceProfileInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateInstanceProfile, input, output)
+	req = c.newRequest(opCreateInstanceProfile, input, output)
 	output = &CreateInstanceProfileOutput{}
 	req.Data = output
 	return
@@ -369,7 +369,7 @@ func (c *IAM) CreateLoginProfileRequest(input *CreateLoginProfileInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateLoginProfile, input, output)
+	req = c.newRequest(opCreateLoginProfile, input, output)
 	output = &CreateLoginProfileOutput{}
 	req.Data = output
 	return
@@ -398,7 +398,7 @@ func (c *IAM) CreateOpenIDConnectProviderRequest(input *CreateOpenIDConnectProvi
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateOpenIDConnectProvider, input, output)
+	req = c.newRequest(opCreateOpenIDConnectProvider, input, output)
 	output = &CreateOpenIDConnectProviderOutput{}
 	req.Data = output
 	return
@@ -440,7 +440,7 @@ func (c *IAM) CreatePolicyRequest(input *CreatePolicyInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreatePolicy, input, output)
+	req = c.newRequest(opCreatePolicy, input, output)
 	output = &CreatePolicyOutput{}
 	req.Data = output
 	return
@@ -475,7 +475,7 @@ func (c *IAM) CreatePolicyVersionRequest(input *CreatePolicyVersionInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreatePolicyVersion, input, output)
+	req = c.newRequest(opCreatePolicyVersion, input, output)
 	output = &CreatePolicyVersionOutput{}
 	req.Data = output
 	return
@@ -513,7 +513,7 @@ func (c *IAM) CreateRoleRequest(input *CreateRoleInput) (req *aws.Request, outpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateRole, input, output)
+	req = c.newRequest(opCreateRole, input, output)
 	output = &CreateRoleOutput{}
 	req.Data = output
 	return
@@ -547,7 +547,7 @@ func (c *IAM) CreateSAMLProviderRequest(input *CreateSAMLProviderInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateSAMLProvider, input, output)
+	req = c.newRequest(opCreateSAMLProvider, input, output)
 	output = &CreateSAMLProviderOutput{}
 	req.Data = output
 	return
@@ -592,7 +592,7 @@ func (c *IAM) CreateUserRequest(input *CreateUserInput) (req *aws.Request, outpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateUser, input, output)
+	req = c.newRequest(opCreateUser, input, output)
 	output = &CreateUserOutput{}
 	req.Data = output
 	return
@@ -622,7 +622,7 @@ func (c *IAM) CreateVirtualMFADeviceRequest(input *CreateVirtualMFADeviceInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateVirtualMFADevice, input, output)
+	req = c.newRequest(opCreateVirtualMFADevice, input, output)
 	output = &CreateVirtualMFADeviceOutput{}
 	req.Data = output
 	return
@@ -661,7 +661,7 @@ func (c *IAM) DeactivateMFADeviceRequest(input *DeactivateMFADeviceInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeactivateMFADevice, input, output)
+	req = c.newRequest(opDeactivateMFADevice, input, output)
 	output = &DeactivateMFADeviceOutput{}
 	req.Data = output
 	return
@@ -692,7 +692,7 @@ func (c *IAM) DeleteAccessKeyRequest(input *DeleteAccessKeyInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteAccessKey, input, output)
+	req = c.newRequest(opDeleteAccessKey, input, output)
 	output = &DeleteAccessKeyOutput{}
 	req.Data = output
 	return
@@ -723,7 +723,7 @@ func (c *IAM) DeleteAccountAliasRequest(input *DeleteAccountAliasInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteAccountAlias, input, output)
+	req = c.newRequest(opDeleteAccountAlias, input, output)
 	output = &DeleteAccountAliasOutput{}
 	req.Data = output
 	return
@@ -751,7 +751,7 @@ func (c *IAM) DeleteAccountPasswordPolicyRequest(input *DeleteAccountPasswordPol
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteAccountPasswordPolicy, input, output)
+	req = c.newRequest(opDeleteAccountPasswordPolicy, input, output)
 	output = &DeleteAccountPasswordPolicyOutput{}
 	req.Data = output
 	return
@@ -777,7 +777,7 @@ func (c *IAM) DeleteGroupRequest(input *DeleteGroupInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteGroup, input, output)
+	req = c.newRequest(opDeleteGroup, input, output)
 	output = &DeleteGroupOutput{}
 	req.Data = output
 	return
@@ -804,7 +804,7 @@ func (c *IAM) DeleteGroupPolicyRequest(input *DeleteGroupPolicyInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteGroupPolicy, input, output)
+	req = c.newRequest(opDeleteGroupPolicy, input, output)
 	output = &DeleteGroupPolicyOutput{}
 	req.Data = output
 	return
@@ -835,7 +835,7 @@ func (c *IAM) DeleteInstanceProfileRequest(input *DeleteInstanceProfileInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteInstanceProfile, input, output)
+	req = c.newRequest(opDeleteInstanceProfile, input, output)
 	output = &DeleteInstanceProfileOutput{}
 	req.Data = output
 	return
@@ -868,7 +868,7 @@ func (c *IAM) DeleteLoginProfileRequest(input *DeleteLoginProfileInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteLoginProfile, input, output)
+	req = c.newRequest(opDeleteLoginProfile, input, output)
 	output = &DeleteLoginProfileOutput{}
 	req.Data = output
 	return
@@ -900,7 +900,7 @@ func (c *IAM) DeleteOpenIDConnectProviderRequest(input *DeleteOpenIDConnectProvi
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteOpenIDConnectProvider, input, output)
+	req = c.newRequest(opDeleteOpenIDConnectProvider, input, output)
 	output = &DeleteOpenIDConnectProviderOutput{}
 	req.Data = output
 	return
@@ -933,7 +933,7 @@ func (c *IAM) DeletePolicyRequest(input *DeletePolicyInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeletePolicy, input, output)
+	req = c.newRequest(opDeletePolicy, input, output)
 	output = &DeletePolicyOutput{}
 	req.Data = output
 	return
@@ -976,7 +976,7 @@ func (c *IAM) DeletePolicyVersionRequest(input *DeletePolicyVersionInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeletePolicyVersion, input, output)
+	req = c.newRequest(opDeletePolicyVersion, input, output)
 	output = &DeletePolicyVersionOutput{}
 	req.Data = output
 	return
@@ -1010,7 +1010,7 @@ func (c *IAM) DeleteRoleRequest(input *DeleteRoleInput) (req *aws.Request, outpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteRole, input, output)
+	req = c.newRequest(opDeleteRole, input, output)
 	output = &DeleteRoleOutput{}
 	req.Data = output
 	return
@@ -1041,7 +1041,7 @@ func (c *IAM) DeleteRolePolicyRequest(input *DeleteRolePolicyInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteRolePolicy, input, output)
+	req = c.newRequest(opDeleteRolePolicy, input, output)
 	output = &DeleteRolePolicyOutput{}
 	req.Data = output
 	return
@@ -1072,7 +1072,7 @@ func (c *IAM) DeleteSAMLProviderRequest(input *DeleteSAMLProviderInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteSAMLProvider, input, output)
+	req = c.newRequest(opDeleteSAMLProvider, input, output)
 	output = &DeleteSAMLProviderOutput{}
 	req.Data = output
 	return
@@ -1104,7 +1104,7 @@ func (c *IAM) DeleteServerCertificateRequest(input *DeleteServerCertificateInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteServerCertificate, input, output)
+	req = c.newRequest(opDeleteServerCertificate, input, output)
 	output = &DeleteServerCertificateOutput{}
 	req.Data = output
 	return
@@ -1140,7 +1140,7 @@ func (c *IAM) DeleteSigningCertificateRequest(input *DeleteSigningCertificateInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteSigningCertificate, input, output)
+	req = c.newRequest(opDeleteSigningCertificate, input, output)
 	output = &DeleteSigningCertificateOutput{}
 	req.Data = output
 	return
@@ -1171,7 +1171,7 @@ func (c *IAM) DeleteUserRequest(input *DeleteUserInput) (req *aws.Request, outpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteUser, input, output)
+	req = c.newRequest(opDeleteUser, input, output)
 	output = &DeleteUserOutput{}
 	req.Data = output
 	return
@@ -1198,7 +1198,7 @@ func (c *IAM) DeleteUserPolicyRequest(input *DeleteUserPolicyInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteUserPolicy, input, output)
+	req = c.newRequest(opDeleteUserPolicy, input, output)
 	output = &DeleteUserPolicyOutput{}
 	req.Data = output
 	return
@@ -1229,7 +1229,7 @@ func (c *IAM) DeleteVirtualMFADeviceRequest(input *DeleteVirtualMFADeviceInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteVirtualMFADevice, input, output)
+	req = c.newRequest(opDeleteVirtualMFADevice, input, output)
 	output = &DeleteVirtualMFADeviceOutput{}
 	req.Data = output
 	return
@@ -1258,7 +1258,7 @@ func (c *IAM) DetachGroupPolicyRequest(input *DetachGroupPolicyInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDetachGroupPolicy, input, output)
+	req = c.newRequest(opDetachGroupPolicy, input, output)
 	output = &DetachGroupPolicyOutput{}
 	req.Data = output
 	return
@@ -1289,7 +1289,7 @@ func (c *IAM) DetachRolePolicyRequest(input *DetachRolePolicyInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDetachRolePolicy, input, output)
+	req = c.newRequest(opDetachRolePolicy, input, output)
 	output = &DetachRolePolicyOutput{}
 	req.Data = output
 	return
@@ -1320,7 +1320,7 @@ func (c *IAM) DetachUserPolicyRequest(input *DetachUserPolicyInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDetachUserPolicy, input, output)
+	req = c.newRequest(opDetachUserPolicy, input, output)
 	output = &DetachUserPolicyOutput{}
 	req.Data = output
 	return
@@ -1351,7 +1351,7 @@ func (c *IAM) EnableMFADeviceRequest(input *EnableMFADeviceInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opEnableMFADevice, input, output)
+	req = c.newRequest(opEnableMFADevice, input, output)
 	output = &EnableMFADeviceOutput{}
 	req.Data = output
 	return
@@ -1379,7 +1379,7 @@ func (c *IAM) GenerateCredentialReportRequest(input *GenerateCredentialReportInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGenerateCredentialReport, input, output)
+	req = c.newRequest(opGenerateCredentialReport, input, output)
 	output = &GenerateCredentialReportOutput{}
 	req.Data = output
 	return
@@ -1407,7 +1407,7 @@ func (c *IAM) GetAccountAuthorizationDetailsRequest(input *GetAccountAuthorizati
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetAccountAuthorizationDetails, input, output)
+	req = c.newRequest(opGetAccountAuthorizationDetails, input, output)
 	output = &GetAccountAuthorizationDetailsOutput{}
 	req.Data = output
 	return
@@ -1439,7 +1439,7 @@ func (c *IAM) GetAccountPasswordPolicyRequest(input *GetAccountPasswordPolicyInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetAccountPasswordPolicy, input, output)
+	req = c.newRequest(opGetAccountPasswordPolicy, input, output)
 	output = &GetAccountPasswordPolicyOutput{}
 	req.Data = output
 	return
@@ -1466,7 +1466,7 @@ func (c *IAM) GetAccountSummaryRequest(input *GetAccountSummaryInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetAccountSummary, input, output)
+	req = c.newRequest(opGetAccountSummary, input, output)
 	output = &GetAccountSummaryOutput{}
 	req.Data = output
 	return
@@ -1496,7 +1496,7 @@ func (c *IAM) GetCredentialReportRequest(input *GetCredentialReportInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetCredentialReport, input, output)
+	req = c.newRequest(opGetCredentialReport, input, output)
 	output = &GetCredentialReportOutput{}
 	req.Data = output
 	return
@@ -1524,7 +1524,7 @@ func (c *IAM) GetGroupRequest(input *GetGroupInput) (req *aws.Request, output *G
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetGroup, input, output)
+	req = c.newRequest(opGetGroup, input, output)
 	output = &GetGroupOutput{}
 	req.Data = output
 	return
@@ -1551,7 +1551,7 @@ func (c *IAM) GetGroupPolicyRequest(input *GetGroupPolicyInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetGroupPolicy, input, output)
+	req = c.newRequest(opGetGroupPolicy, input, output)
 	output = &GetGroupPolicyOutput{}
 	req.Data = output
 	return
@@ -1587,7 +1587,7 @@ func (c *IAM) GetInstanceProfileRequest(input *GetInstanceProfileInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetInstanceProfile, input, output)
+	req = c.newRequest(opGetInstanceProfile, input, output)
 	output = &GetInstanceProfileOutput{}
 	req.Data = output
 	return
@@ -1616,7 +1616,7 @@ func (c *IAM) GetLoginProfileRequest(input *GetLoginProfileInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetLoginProfile, input, output)
+	req = c.newRequest(opGetLoginProfile, input, output)
 	output = &GetLoginProfileOutput{}
 	req.Data = output
 	return
@@ -1644,7 +1644,7 @@ func (c *IAM) GetOpenIDConnectProviderRequest(input *GetOpenIDConnectProviderInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetOpenIDConnectProvider, input, output)
+	req = c.newRequest(opGetOpenIDConnectProvider, input, output)
 	output = &GetOpenIDConnectProviderOutput{}
 	req.Data = output
 	return
@@ -1670,7 +1670,7 @@ func (c *IAM) GetPolicyRequest(input *GetPolicyInput) (req *aws.Request, output 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetPolicy, input, output)
+	req = c.newRequest(opGetPolicy, input, output)
 	output = &GetPolicyOutput{}
 	req.Data = output
 	return
@@ -1709,7 +1709,7 @@ func (c *IAM) GetPolicyVersionRequest(input *GetPolicyVersionInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetPolicyVersion, input, output)
+	req = c.newRequest(opGetPolicyVersion, input, output)
 	output = &GetPolicyVersionOutput{}
 	req.Data = output
 	return
@@ -1746,7 +1746,7 @@ func (c *IAM) GetRoleRequest(input *GetRoleInput) (req *aws.Request, output *Get
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetRole, input, output)
+	req = c.newRequest(opGetRole, input, output)
 	output = &GetRoleOutput{}
 	req.Data = output
 	return
@@ -1778,7 +1778,7 @@ func (c *IAM) GetRolePolicyRequest(input *GetRolePolicyInput) (req *aws.Request,
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetRolePolicy, input, output)
+	req = c.newRequest(opGetRolePolicy, input, output)
 	output = &GetRolePolicyOutput{}
 	req.Data = output
 	return
@@ -1817,7 +1817,7 @@ func (c *IAM) GetSAMLProviderRequest(input *GetSAMLProviderInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetSAMLProvider, input, output)
+	req = c.newRequest(opGetSAMLProvider, input, output)
 	output = &GetSAMLProviderOutput{}
 	req.Data = output
 	return
@@ -1846,7 +1846,7 @@ func (c *IAM) GetServerCertificateRequest(input *GetServerCertificateInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetServerCertificate, input, output)
+	req = c.newRequest(opGetServerCertificate, input, output)
 	output = &GetServerCertificateOutput{}
 	req.Data = output
 	return
@@ -1872,7 +1872,7 @@ func (c *IAM) GetUserRequest(input *GetUserInput) (req *aws.Request, output *Get
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetUser, input, output)
+	req = c.newRequest(opGetUser, input, output)
 	output = &GetUserOutput{}
 	req.Data = output
 	return
@@ -1902,7 +1902,7 @@ func (c *IAM) GetUserPolicyRequest(input *GetUserPolicyInput) (req *aws.Request,
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetUserPolicy, input, output)
+	req = c.newRequest(opGetUserPolicy, input, output)
 	output = &GetUserPolicyOutput{}
 	req.Data = output
 	return
@@ -1938,7 +1938,7 @@ func (c *IAM) ListAccessKeysRequest(input *ListAccessKeysInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListAccessKeys, input, output)
+	req = c.newRequest(opListAccessKeys, input, output)
 	output = &ListAccessKeysOutput{}
 	req.Data = output
 	return
@@ -1976,7 +1976,7 @@ func (c *IAM) ListAccountAliasesRequest(input *ListAccountAliasesInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListAccountAliases, input, output)
+	req = c.newRequest(opListAccountAliases, input, output)
 	output = &ListAccountAliasesOutput{}
 	req.Data = output
 	return
@@ -2006,7 +2006,7 @@ func (c *IAM) ListAttachedGroupPoliciesRequest(input *ListAttachedGroupPoliciesI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListAttachedGroupPolicies, input, output)
+	req = c.newRequest(opListAttachedGroupPolicies, input, output)
 	output = &ListAttachedGroupPoliciesOutput{}
 	req.Data = output
 	return
@@ -2043,7 +2043,7 @@ func (c *IAM) ListAttachedRolePoliciesRequest(input *ListAttachedRolePoliciesInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListAttachedRolePolicies, input, output)
+	req = c.newRequest(opListAttachedRolePolicies, input, output)
 	output = &ListAttachedRolePoliciesOutput{}
 	req.Data = output
 	return
@@ -2080,7 +2080,7 @@ func (c *IAM) ListAttachedUserPoliciesRequest(input *ListAttachedUserPoliciesInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListAttachedUserPolicies, input, output)
+	req = c.newRequest(opListAttachedUserPolicies, input, output)
 	output = &ListAttachedUserPoliciesOutput{}
 	req.Data = output
 	return
@@ -2117,7 +2117,7 @@ func (c *IAM) ListEntitiesForPolicyRequest(input *ListEntitiesForPolicyInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListEntitiesForPolicy, input, output)
+	req = c.newRequest(opListEntitiesForPolicy, input, output)
 	output = &ListEntitiesForPolicyOutput{}
 	req.Data = output
 	return
@@ -2151,7 +2151,7 @@ func (c *IAM) ListGroupPoliciesRequest(input *ListGroupPoliciesInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListGroupPolicies, input, output)
+	req = c.newRequest(opListGroupPolicies, input, output)
 	output = &ListGroupPoliciesOutput{}
 	req.Data = output
 	return
@@ -2188,7 +2188,7 @@ func (c *IAM) ListGroupsRequest(input *ListGroupsInput) (req *aws.Request, outpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListGroups, input, output)
+	req = c.newRequest(opListGroups, input, output)
 	output = &ListGroupsOutput{}
 	req.Data = output
 	return
@@ -2216,7 +2216,7 @@ func (c *IAM) ListGroupsForUserRequest(input *ListGroupsForUserInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListGroupsForUser, input, output)
+	req = c.newRequest(opListGroupsForUser, input, output)
 	output = &ListGroupsForUserOutput{}
 	req.Data = output
 	return
@@ -2244,7 +2244,7 @@ func (c *IAM) ListInstanceProfilesRequest(input *ListInstanceProfilesInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListInstanceProfiles, input, output)
+	req = c.newRequest(opListInstanceProfiles, input, output)
 	output = &ListInstanceProfilesOutput{}
 	req.Data = output
 	return
@@ -2274,7 +2274,7 @@ func (c *IAM) ListInstanceProfilesForRoleRequest(input *ListInstanceProfilesForR
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListInstanceProfilesForRole, input, output)
+	req = c.newRequest(opListInstanceProfilesForRole, input, output)
 	output = &ListInstanceProfilesForRoleOutput{}
 	req.Data = output
 	return
@@ -2304,7 +2304,7 @@ func (c *IAM) ListMFADevicesRequest(input *ListMFADevicesInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListMFADevices, input, output)
+	req = c.newRequest(opListMFADevices, input, output)
 	output = &ListMFADevicesOutput{}
 	req.Data = output
 	return
@@ -2335,7 +2335,7 @@ func (c *IAM) ListOpenIDConnectProvidersRequest(input *ListOpenIDConnectProvider
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListOpenIDConnectProviders, input, output)
+	req = c.newRequest(opListOpenIDConnectProviders, input, output)
 	output = &ListOpenIDConnectProvidersOutput{}
 	req.Data = output
 	return
@@ -2361,7 +2361,7 @@ func (c *IAM) ListPoliciesRequest(input *ListPoliciesInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListPolicies, input, output)
+	req = c.newRequest(opListPolicies, input, output)
 	output = &ListPoliciesOutput{}
 	req.Data = output
 	return
@@ -2399,7 +2399,7 @@ func (c *IAM) ListPolicyVersionsRequest(input *ListPolicyVersionsInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListPolicyVersions, input, output)
+	req = c.newRequest(opListPolicyVersions, input, output)
 	output = &ListPolicyVersionsOutput{}
 	req.Data = output
 	return
@@ -2430,7 +2430,7 @@ func (c *IAM) ListRolePoliciesRequest(input *ListRolePoliciesInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListRolePolicies, input, output)
+	req = c.newRequest(opListRolePolicies, input, output)
 	output = &ListRolePoliciesOutput{}
 	req.Data = output
 	return
@@ -2467,7 +2467,7 @@ func (c *IAM) ListRolesRequest(input *ListRolesInput) (req *aws.Request, output 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListRoles, input, output)
+	req = c.newRequest(opListRoles, input, output)
 	output = &ListRolesOutput{}
 	req.Data = output
 	return
@@ -2500,7 +2500,7 @@ func (c *IAM) ListSAMLProvidersRequest(input *ListSAMLProvidersInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListSAMLProviders, input, output)
+	req = c.newRequest(opListSAMLProviders, input, output)
 	output = &ListSAMLProvidersOutput{}
 	req.Data = output
 	return
@@ -2528,7 +2528,7 @@ func (c *IAM) ListServerCertificatesRequest(input *ListServerCertificatesInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListServerCertificates, input, output)
+	req = c.newRequest(opListServerCertificates, input, output)
 	output = &ListServerCertificatesOutput{}
 	req.Data = output
 	return
@@ -2557,7 +2557,7 @@ func (c *IAM) ListSigningCertificatesRequest(input *ListSigningCertificatesInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListSigningCertificates, input, output)
+	req = c.newRequest(opListSigningCertificates, input, output)
 	output = &ListSigningCertificatesOutput{}
 	req.Data = output
 	return
@@ -2592,7 +2592,7 @@ func (c *IAM) ListUserPoliciesRequest(input *ListUserPoliciesInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListUserPolicies, input, output)
+	req = c.newRequest(opListUserPolicies, input, output)
 	output = &ListUserPoliciesOutput{}
 	req.Data = output
 	return
@@ -2628,7 +2628,7 @@ func (c *IAM) ListUsersRequest(input *ListUsersInput) (req *aws.Request, output 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListUsers, input, output)
+	req = c.newRequest(opListUsers, input, output)
 	output = &ListUsersOutput{}
 	req.Data = output
 	return
@@ -2658,7 +2658,7 @@ func (c *IAM) ListVirtualMFADevicesRequest(input *ListVirtualMFADevicesInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListVirtualMFADevices, input, output)
+	req = c.newRequest(opListVirtualMFADevices, input, output)
 	output = &ListVirtualMFADevicesOutput{}
 	req.Data = output
 	return
@@ -2689,7 +2689,7 @@ func (c *IAM) PutGroupPolicyRequest(input *PutGroupPolicyInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutGroupPolicy, input, output)
+	req = c.newRequest(opPutGroupPolicy, input, output)
 	output = &PutGroupPolicyOutput{}
 	req.Data = output
 	return
@@ -2731,7 +2731,7 @@ func (c *IAM) PutRolePolicyRequest(input *PutRolePolicyInput) (req *aws.Request,
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutRolePolicy, input, output)
+	req = c.newRequest(opPutRolePolicy, input, output)
 	output = &PutRolePolicyOutput{}
 	req.Data = output
 	return
@@ -2779,7 +2779,7 @@ func (c *IAM) PutUserPolicyRequest(input *PutUserPolicyInput) (req *aws.Request,
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutUserPolicy, input, output)
+	req = c.newRequest(opPutUserPolicy, input, output)
 	output = &PutUserPolicyOutput{}
 	req.Data = output
 	return
@@ -2821,7 +2821,7 @@ func (c *IAM) RemoveClientIDFromOpenIDConnectProviderRequest(input *RemoveClient
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRemoveClientIDFromOpenIDConnectProvider, input, output)
+	req = c.newRequest(opRemoveClientIDFromOpenIDConnectProvider, input, output)
 	output = &RemoveClientIDFromOpenIDConnectProviderOutput{}
 	req.Data = output
 	return
@@ -2851,7 +2851,7 @@ func (c *IAM) RemoveRoleFromInstanceProfileRequest(input *RemoveRoleFromInstance
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRemoveRoleFromInstanceProfile, input, output)
+	req = c.newRequest(opRemoveRoleFromInstanceProfile, input, output)
 	output = &RemoveRoleFromInstanceProfileOutput{}
 	req.Data = output
 	return
@@ -2885,7 +2885,7 @@ func (c *IAM) RemoveUserFromGroupRequest(input *RemoveUserFromGroupInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRemoveUserFromGroup, input, output)
+	req = c.newRequest(opRemoveUserFromGroup, input, output)
 	output = &RemoveUserFromGroupOutput{}
 	req.Data = output
 	return
@@ -2911,7 +2911,7 @@ func (c *IAM) ResyncMFADeviceRequest(input *ResyncMFADeviceInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opResyncMFADevice, input, output)
+	req = c.newRequest(opResyncMFADevice, input, output)
 	output = &ResyncMFADeviceOutput{}
 	req.Data = output
 	return
@@ -2941,7 +2941,7 @@ func (c *IAM) SetDefaultPolicyVersionRequest(input *SetDefaultPolicyVersionInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetDefaultPolicyVersion, input, output)
+	req = c.newRequest(opSetDefaultPolicyVersion, input, output)
 	output = &SetDefaultPolicyVersionOutput{}
 	req.Data = output
 	return
@@ -2976,7 +2976,7 @@ func (c *IAM) UpdateAccessKeyRequest(input *UpdateAccessKeyInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateAccessKey, input, output)
+	req = c.newRequest(opUpdateAccessKey, input, output)
 	output = &UpdateAccessKeyOutput{}
 	req.Data = output
 	return
@@ -3013,7 +3013,7 @@ func (c *IAM) UpdateAccountPasswordPolicyRequest(input *UpdateAccountPasswordPol
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateAccountPasswordPolicy, input, output)
+	req = c.newRequest(opUpdateAccountPasswordPolicy, input, output)
 	output = &UpdateAccountPasswordPolicyOutput{}
 	req.Data = output
 	return
@@ -3048,7 +3048,7 @@ func (c *IAM) UpdateAssumeRolePolicyRequest(input *UpdateAssumeRolePolicyInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateAssumeRolePolicy, input, output)
+	req = c.newRequest(opUpdateAssumeRolePolicy, input, output)
 	output = &UpdateAssumeRolePolicyOutput{}
 	req.Data = output
 	return
@@ -3076,7 +3076,7 @@ func (c *IAM) UpdateGroupRequest(input *UpdateGroupInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateGroup, input, output)
+	req = c.newRequest(opUpdateGroup, input, output)
 	output = &UpdateGroupOutput{}
 	req.Data = output
 	return
@@ -3111,7 +3111,7 @@ func (c *IAM) UpdateLoginProfileRequest(input *UpdateLoginProfileInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateLoginProfile, input, output)
+	req = c.newRequest(opUpdateLoginProfile, input, output)
 	output = &UpdateLoginProfileOutput{}
 	req.Data = output
 	return
@@ -3141,7 +3141,7 @@ func (c *IAM) UpdateOpenIDConnectProviderThumbprintRequest(input *UpdateOpenIDCo
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateOpenIDConnectProviderThumbprint, input, output)
+	req = c.newRequest(opUpdateOpenIDConnectProviderThumbprint, input, output)
 	output = &UpdateOpenIDConnectProviderThumbprintOutput{}
 	req.Data = output
 	return
@@ -3180,7 +3180,7 @@ func (c *IAM) UpdateSAMLProviderRequest(input *UpdateSAMLProviderInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateSAMLProvider, input, output)
+	req = c.newRequest(opUpdateSAMLProvider, input, output)
 	output = &UpdateSAMLProviderOutput{}
 	req.Data = output
 	return
@@ -3208,7 +3208,7 @@ func (c *IAM) UpdateServerCertificateRequest(input *UpdateServerCertificateInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateServerCertificate, input, output)
+	req = c.newRequest(opUpdateServerCertificate, input, output)
 	output = &UpdateServerCertificateOutput{}
 	req.Data = output
 	return
@@ -3244,7 +3244,7 @@ func (c *IAM) UpdateSigningCertificateRequest(input *UpdateSigningCertificateInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateSigningCertificate, input, output)
+	req = c.newRequest(opUpdateSigningCertificate, input, output)
 	output = &UpdateSigningCertificateOutput{}
 	req.Data = output
 	return
@@ -3281,7 +3281,7 @@ func (c *IAM) UpdateUserRequest(input *UpdateUserInput) (req *aws.Request, outpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateUser, input, output)
+	req = c.newRequest(opUpdateUser, input, output)
 	output = &UpdateUserOutput{}
 	req.Data = output
 	return
@@ -3316,7 +3316,7 @@ func (c *IAM) UploadServerCertificateRequest(input *UploadServerCertificateInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUploadServerCertificate, input, output)
+	req = c.newRequest(opUploadServerCertificate, input, output)
 	output = &UploadServerCertificateOutput{}
 	req.Data = output
 	return
@@ -3356,7 +3356,7 @@ func (c *IAM) UploadSigningCertificateRequest(input *UploadSigningCertificateInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUploadSigningCertificate, input, output)
+	req = c.newRequest(opUploadSigningCertificate, input, output)
 	output = &UploadSigningCertificateOutput{}
 	req.Data = output
 	return

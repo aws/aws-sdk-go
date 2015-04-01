@@ -19,7 +19,7 @@ func (c *CloudWatch) DeleteAlarmsRequest(input *DeleteAlarmsInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteAlarms, input, output)
+	req = c.newRequest(opDeleteAlarms, input, output)
 	output = &DeleteAlarmsOutput{}
 	req.Data = output
 	return
@@ -45,7 +45,7 @@ func (c *CloudWatch) DescribeAlarmHistoryRequest(input *DescribeAlarmHistoryInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeAlarmHistory, input, output)
+	req = c.newRequest(opDescribeAlarmHistory, input, output)
 	output = &DescribeAlarmHistoryOutput{}
 	req.Data = output
 	return
@@ -73,7 +73,7 @@ func (c *CloudWatch) DescribeAlarmsRequest(input *DescribeAlarmsInput) (req *aws
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeAlarms, input, output)
+	req = c.newRequest(opDescribeAlarms, input, output)
 	output = &DescribeAlarmsOutput{}
 	req.Data = output
 	return
@@ -101,7 +101,7 @@ func (c *CloudWatch) DescribeAlarmsForMetricRequest(input *DescribeAlarmsForMetr
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeAlarmsForMetric, input, output)
+	req = c.newRequest(opDescribeAlarmsForMetric, input, output)
 	output = &DescribeAlarmsForMetricOutput{}
 	req.Data = output
 	return
@@ -128,7 +128,7 @@ func (c *CloudWatch) DisableAlarmActionsRequest(input *DisableAlarmActionsInput)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDisableAlarmActions, input, output)
+	req = c.newRequest(opDisableAlarmActions, input, output)
 	output = &DisableAlarmActionsOutput{}
 	req.Data = output
 	return
@@ -155,7 +155,7 @@ func (c *CloudWatch) EnableAlarmActionsRequest(input *EnableAlarmActionsInput) (
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opEnableAlarmActions, input, output)
+	req = c.newRequest(opEnableAlarmActions, input, output)
 	output = &EnableAlarmActionsOutput{}
 	req.Data = output
 	return
@@ -181,7 +181,7 @@ func (c *CloudWatch) GetMetricStatisticsRequest(input *GetMetricStatisticsInput)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetMetricStatistics, input, output)
+	req = c.newRequest(opGetMetricStatistics, input, output)
 	output = &GetMetricStatisticsOutput{}
 	req.Data = output
 	return
@@ -232,7 +232,7 @@ func (c *CloudWatch) ListMetricsRequest(input *ListMetricsInput) (req *aws.Reque
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListMetrics, input, output)
+	req = c.newRequest(opListMetrics, input, output)
 	output = &ListMetricsOutput{}
 	req.Data = output
 	return
@@ -260,7 +260,7 @@ func (c *CloudWatch) PutMetricAlarmRequest(input *PutMetricAlarmInput) (req *aws
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutMetricAlarm, input, output)
+	req = c.newRequest(opPutMetricAlarm, input, output)
 	output = &PutMetricAlarmOutput{}
 	req.Data = output
 	return
@@ -292,7 +292,7 @@ func (c *CloudWatch) PutMetricDataRequest(input *PutMetricDataInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutMetricData, input, output)
+	req = c.newRequest(opPutMetricData, input, output)
 	output = &PutMetricDataOutput{}
 	req.Data = output
 	return
@@ -331,7 +331,7 @@ func (c *CloudWatch) SetAlarmStateRequest(input *SetAlarmStateInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetAlarmState, input, output)
+	req = c.newRequest(opSetAlarmState, input, output)
 	output = &SetAlarmStateOutput{}
 	req.Data = output
 	return

@@ -17,7 +17,7 @@ func (c *DataPipeline) ActivatePipelineRequest(input *ActivatePipelineInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opActivatePipeline, input, output)
+	req = c.newRequest(opActivatePipeline, input, output)
 	output = &ActivatePipelineOutput{}
 	req.Data = output
 	return
@@ -49,7 +49,7 @@ func (c *DataPipeline) AddTagsRequest(input *AddTagsInput) (req *aws.Request, ou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddTags, input, output)
+	req = c.newRequest(opAddTags, input, output)
 	output = &AddTagsOutput{}
 	req.Data = output
 	return
@@ -75,7 +75,7 @@ func (c *DataPipeline) CreatePipelineRequest(input *CreatePipelineInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreatePipeline, input, output)
+	req = c.newRequest(opCreatePipeline, input, output)
 	output = &CreatePipelineOutput{}
 	req.Data = output
 	return
@@ -102,7 +102,7 @@ func (c *DataPipeline) DeletePipelineRequest(input *DeletePipelineInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeletePipeline, input, output)
+	req = c.newRequest(opDeletePipeline, input, output)
 	output = &DeletePipelineOutput{}
 	req.Data = output
 	return
@@ -135,7 +135,7 @@ func (c *DataPipeline) DescribeObjectsRequest(input *DescribeObjectsInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeObjects, input, output)
+	req = c.newRequest(opDescribeObjects, input, output)
 	output = &DescribeObjectsOutput{}
 	req.Data = output
 	return
@@ -163,7 +163,7 @@ func (c *DataPipeline) DescribePipelinesRequest(input *DescribePipelinesInput) (
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribePipelines, input, output)
+	req = c.newRequest(opDescribePipelines, input, output)
 	output = &DescribePipelinesOutput{}
 	req.Data = output
 	return
@@ -197,7 +197,7 @@ func (c *DataPipeline) EvaluateExpressionRequest(input *EvaluateExpressionInput)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opEvaluateExpression, input, output)
+	req = c.newRequest(opEvaluateExpression, input, output)
 	output = &EvaluateExpressionOutput{}
 	req.Data = output
 	return
@@ -224,7 +224,7 @@ func (c *DataPipeline) GetPipelineDefinitionRequest(input *GetPipelineDefinition
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetPipelineDefinition, input, output)
+	req = c.newRequest(opGetPipelineDefinition, input, output)
 	output = &GetPipelineDefinitionOutput{}
 	req.Data = output
 	return
@@ -251,7 +251,7 @@ func (c *DataPipeline) ListPipelinesRequest(input *ListPipelinesInput) (req *aws
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListPipelines, input, output)
+	req = c.newRequest(opListPipelines, input, output)
 	output = &ListPipelinesOutput{}
 	req.Data = output
 	return
@@ -278,7 +278,7 @@ func (c *DataPipeline) PollForTaskRequest(input *PollForTaskInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPollForTask, input, output)
+	req = c.newRequest(opPollForTask, input, output)
 	output = &PollForTaskOutput{}
 	req.Data = output
 	return
@@ -317,7 +317,7 @@ func (c *DataPipeline) PutPipelineDefinitionRequest(input *PutPipelineDefinition
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutPipelineDefinition, input, output)
+	req = c.newRequest(opPutPipelineDefinition, input, output)
 	output = &PutPipelineDefinitionOutput{}
 	req.Data = output
 	return
@@ -354,7 +354,7 @@ func (c *DataPipeline) QueryObjectsRequest(input *QueryObjectsInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opQueryObjects, input, output)
+	req = c.newRequest(opQueryObjects, input, output)
 	output = &QueryObjectsOutput{}
 	req.Data = output
 	return
@@ -387,7 +387,7 @@ func (c *DataPipeline) RemoveTagsRequest(input *RemoveTagsInput) (req *aws.Reque
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRemoveTags, input, output)
+	req = c.newRequest(opRemoveTags, input, output)
 	output = &RemoveTagsOutput{}
 	req.Data = output
 	return
@@ -413,7 +413,7 @@ func (c *DataPipeline) ReportTaskProgressRequest(input *ReportTaskProgressInput)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opReportTaskProgress, input, output)
+	req = c.newRequest(opReportTaskProgress, input, output)
 	output = &ReportTaskProgressOutput{}
 	req.Data = output
 	return
@@ -450,7 +450,7 @@ func (c *DataPipeline) ReportTaskRunnerHeartbeatRequest(input *ReportTaskRunnerH
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opReportTaskRunnerHeartbeat, input, output)
+	req = c.newRequest(opReportTaskRunnerHeartbeat, input, output)
 	output = &ReportTaskRunnerHeartbeatOutput{}
 	req.Data = output
 	return
@@ -480,7 +480,7 @@ func (c *DataPipeline) SetStatusRequest(input *SetStatusInput) (req *aws.Request
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetStatus, input, output)
+	req = c.newRequest(opSetStatus, input, output)
 	output = &SetStatusOutput{}
 	req.Data = output
 	return
@@ -510,7 +510,7 @@ func (c *DataPipeline) SetTaskStatusRequest(input *SetTaskStatusInput) (req *aws
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetTaskStatus, input, output)
+	req = c.newRequest(opSetTaskStatus, input, output)
 	output = &SetTaskStatusOutput{}
 	req.Data = output
 	return
@@ -539,7 +539,7 @@ func (c *DataPipeline) ValidatePipelineDefinitionRequest(input *ValidatePipeline
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opValidatePipelineDefinition, input, output)
+	req = c.newRequest(opValidatePipelineDefinition, input, output)
 	output = &ValidatePipelineDefinitionOutput{}
 	req.Data = output
 	return

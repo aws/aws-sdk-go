@@ -17,7 +17,7 @@ func (c *Support) AddAttachmentsToSetRequest(input *AddAttachmentsToSetInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddAttachmentsToSet, input, output)
+	req = c.newRequest(opAddAttachmentsToSet, input, output)
 	output = &AddAttachmentsToSetOutput{}
 	req.Data = output
 	return
@@ -52,7 +52,7 @@ func (c *Support) AddCommunicationToCaseRequest(input *AddCommunicationToCaseInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddCommunicationToCase, input, output)
+	req = c.newRequest(opAddCommunicationToCase, input, output)
 	output = &AddCommunicationToCaseOutput{}
 	req.Data = output
 	return
@@ -85,7 +85,7 @@ func (c *Support) CreateCaseRequest(input *CreateCaseInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateCase, input, output)
+	req = c.newRequest(opCreateCase, input, output)
 	output = &CreateCaseOutput{}
 	req.Data = output
 	return
@@ -140,7 +140,7 @@ func (c *Support) DescribeAttachmentRequest(input *DescribeAttachmentInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeAttachment, input, output)
+	req = c.newRequest(opDescribeAttachment, input, output)
 	output = &DescribeAttachmentOutput{}
 	req.Data = output
 	return
@@ -169,7 +169,7 @@ func (c *Support) DescribeCasesRequest(input *DescribeCasesInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeCases, input, output)
+	req = c.newRequest(opDescribeCases, input, output)
 	output = &DescribeCasesOutput{}
 	req.Data = output
 	return
@@ -208,7 +208,7 @@ func (c *Support) DescribeCommunicationsRequest(input *DescribeCommunicationsInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeCommunications, input, output)
+	req = c.newRequest(opDescribeCommunications, input, output)
 	output = &DescribeCommunicationsOutput{}
 	req.Data = output
 	return
@@ -243,7 +243,7 @@ func (c *Support) DescribeServicesRequest(input *DescribeServicesInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeServices, input, output)
+	req = c.newRequest(opDescribeServices, input, output)
 	output = &DescribeServicesOutput{}
 	req.Data = output
 	return
@@ -279,7 +279,7 @@ func (c *Support) DescribeSeverityLevelsRequest(input *DescribeSeverityLevelsInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeSeverityLevels, input, output)
+	req = c.newRequest(opDescribeSeverityLevels, input, output)
 	output = &DescribeSeverityLevelsOutput{}
 	req.Data = output
 	return
@@ -307,7 +307,7 @@ func (c *Support) DescribeTrustedAdvisorCheckRefreshStatusesRequest(input *Descr
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeTrustedAdvisorCheckRefreshStatuses, input, output)
+	req = c.newRequest(opDescribeTrustedAdvisorCheckRefreshStatuses, input, output)
 	output = &DescribeTrustedAdvisorCheckRefreshStatusesOutput{}
 	req.Data = output
 	return
@@ -334,7 +334,7 @@ func (c *Support) DescribeTrustedAdvisorCheckResultRequest(input *DescribeTruste
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeTrustedAdvisorCheckResult, input, output)
+	req = c.newRequest(opDescribeTrustedAdvisorCheckResult, input, output)
 	output = &DescribeTrustedAdvisorCheckResultOutput{}
 	req.Data = output
 	return
@@ -371,7 +371,7 @@ func (c *Support) DescribeTrustedAdvisorCheckSummariesRequest(input *DescribeTru
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeTrustedAdvisorCheckSummaries, input, output)
+	req = c.newRequest(opDescribeTrustedAdvisorCheckSummaries, input, output)
 	output = &DescribeTrustedAdvisorCheckSummariesOutput{}
 	req.Data = output
 	return
@@ -400,7 +400,7 @@ func (c *Support) DescribeTrustedAdvisorChecksRequest(input *DescribeTrustedAdvi
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeTrustedAdvisorChecks, input, output)
+	req = c.newRequest(opDescribeTrustedAdvisorChecks, input, output)
 	output = &DescribeTrustedAdvisorChecksOutput{}
 	req.Data = output
 	return
@@ -429,7 +429,7 @@ func (c *Support) RefreshTrustedAdvisorCheckRequest(input *RefreshTrustedAdvisor
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRefreshTrustedAdvisorCheck, input, output)
+	req = c.newRequest(opRefreshTrustedAdvisorCheck, input, output)
 	output = &RefreshTrustedAdvisorCheckOutput{}
 	req.Data = output
 	return
@@ -464,7 +464,7 @@ func (c *Support) ResolveCaseRequest(input *ResolveCaseInput) (req *aws.Request,
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opResolveCase, input, output)
+	req = c.newRequest(opResolveCase, input, output)
 	output = &ResolveCaseOutput{}
 	req.Data = output
 	return

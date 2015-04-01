@@ -17,7 +17,7 @@ func (c *DirectConnect) AllocateConnectionOnInterconnectRequest(input *AllocateC
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAllocateConnectionOnInterconnect, input, output)
+	req = c.newRequest(opAllocateConnectionOnInterconnect, input, output)
 	output = &Connection{}
 	req.Data = output
 	return
@@ -46,7 +46,7 @@ func (c *DirectConnect) AllocatePrivateVirtualInterfaceRequest(input *AllocatePr
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAllocatePrivateVirtualInterface, input, output)
+	req = c.newRequest(opAllocatePrivateVirtualInterface, input, output)
 	output = &VirtualInterface{}
 	req.Data = output
 	return
@@ -80,7 +80,7 @@ func (c *DirectConnect) AllocatePublicVirtualInterfaceRequest(input *AllocatePub
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAllocatePublicVirtualInterface, input, output)
+	req = c.newRequest(opAllocatePublicVirtualInterface, input, output)
 	output = &VirtualInterface{}
 	req.Data = output
 	return
@@ -114,7 +114,7 @@ func (c *DirectConnect) ConfirmConnectionRequest(input *ConfirmConnectionInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opConfirmConnection, input, output)
+	req = c.newRequest(opConfirmConnection, input, output)
 	output = &ConfirmConnectionOutput{}
 	req.Data = output
 	return
@@ -144,7 +144,7 @@ func (c *DirectConnect) ConfirmPrivateVirtualInterfaceRequest(input *ConfirmPriv
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opConfirmPrivateVirtualInterface, input, output)
+	req = c.newRequest(opConfirmPrivateVirtualInterface, input, output)
 	output = &ConfirmPrivateVirtualInterfaceOutput{}
 	req.Data = output
 	return
@@ -174,7 +174,7 @@ func (c *DirectConnect) ConfirmPublicVirtualInterfaceRequest(input *ConfirmPubli
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opConfirmPublicVirtualInterface, input, output)
+	req = c.newRequest(opConfirmPublicVirtualInterface, input, output)
 	output = &ConfirmPublicVirtualInterfaceOutput{}
 	req.Data = output
 	return
@@ -203,7 +203,7 @@ func (c *DirectConnect) CreateConnectionRequest(input *CreateConnectionInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateConnection, input, output)
+	req = c.newRequest(opCreateConnection, input, output)
 	output = &Connection{}
 	req.Data = output
 	return
@@ -238,7 +238,7 @@ func (c *DirectConnect) CreateInterconnectRequest(input *CreateInterconnectInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateInterconnect, input, output)
+	req = c.newRequest(opCreateInterconnect, input, output)
 	output = &Interconnect{}
 	req.Data = output
 	return
@@ -279,7 +279,7 @@ func (c *DirectConnect) CreatePrivateVirtualInterfaceRequest(input *CreatePrivat
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreatePrivateVirtualInterface, input, output)
+	req = c.newRequest(opCreatePrivateVirtualInterface, input, output)
 	output = &VirtualInterface{}
 	req.Data = output
 	return
@@ -307,7 +307,7 @@ func (c *DirectConnect) CreatePublicVirtualInterfaceRequest(input *CreatePublicV
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreatePublicVirtualInterface, input, output)
+	req = c.newRequest(opCreatePublicVirtualInterface, input, output)
 	output = &VirtualInterface{}
 	req.Data = output
 	return
@@ -336,7 +336,7 @@ func (c *DirectConnect) DeleteConnectionRequest(input *DeleteConnectionInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteConnection, input, output)
+	req = c.newRequest(opDeleteConnection, input, output)
 	output = &Connection{}
 	req.Data = output
 	return
@@ -367,7 +367,7 @@ func (c *DirectConnect) DeleteInterconnectRequest(input *DeleteInterconnectInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteInterconnect, input, output)
+	req = c.newRequest(opDeleteInterconnect, input, output)
 	output = &DeleteInterconnectOutput{}
 	req.Data = output
 	return
@@ -393,7 +393,7 @@ func (c *DirectConnect) DeleteVirtualInterfaceRequest(input *DeleteVirtualInterf
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteVirtualInterface, input, output)
+	req = c.newRequest(opDeleteVirtualInterface, input, output)
 	output = &DeleteVirtualInterfaceOutput{}
 	req.Data = output
 	return
@@ -419,7 +419,7 @@ func (c *DirectConnect) DescribeConnectionsRequest(input *DescribeConnectionsInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeConnections, input, output)
+	req = c.newRequest(opDescribeConnections, input, output)
 	output = &Connections{}
 	req.Data = output
 	return
@@ -447,7 +447,7 @@ func (c *DirectConnect) DescribeConnectionsOnInterconnectRequest(input *Describe
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeConnectionsOnInterconnect, input, output)
+	req = c.newRequest(opDescribeConnectionsOnInterconnect, input, output)
 	output = &Connections{}
 	req.Data = output
 	return
@@ -473,7 +473,7 @@ func (c *DirectConnect) DescribeInterconnectsRequest(input *DescribeInterconnect
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeInterconnects, input, output)
+	req = c.newRequest(opDescribeInterconnects, input, output)
 	output = &DescribeInterconnectsOutput{}
 	req.Data = output
 	return
@@ -501,7 +501,7 @@ func (c *DirectConnect) DescribeLocationsRequest(input *DescribeLocationsInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeLocations, input, output)
+	req = c.newRequest(opDescribeLocations, input, output)
 	output = &DescribeLocationsOutput{}
 	req.Data = output
 	return
@@ -529,7 +529,7 @@ func (c *DirectConnect) DescribeVirtualGatewaysRequest(input *DescribeVirtualGat
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeVirtualGateways, input, output)
+	req = c.newRequest(opDescribeVirtualGateways, input, output)
 	output = &DescribeVirtualGatewaysOutput{}
 	req.Data = output
 	return
@@ -561,7 +561,7 @@ func (c *DirectConnect) DescribeVirtualInterfacesRequest(input *DescribeVirtualI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeVirtualInterfaces, input, output)
+	req = c.newRequest(opDescribeVirtualInterfaces, input, output)
 	output = &DescribeVirtualInterfacesOutput{}
 	req.Data = output
 	return

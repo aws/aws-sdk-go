@@ -19,7 +19,7 @@ func (c *Route53Domains) CheckDomainAvailabilityRequest(input *CheckDomainAvaila
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCheckDomainAvailability, input, output)
+	req = c.newRequest(opCheckDomainAvailability, input, output)
 	output = &CheckDomainAvailabilityOutput{}
 	req.Data = output
 	return
@@ -48,7 +48,7 @@ func (c *Route53Domains) DeleteTagsForDomainRequest(input *DeleteTagsForDomainIn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteTagsForDomain, input, output)
+	req = c.newRequest(opDeleteTagsForDomain, input, output)
 	output = &DeleteTagsForDomainOutput{}
 	req.Data = output
 	return
@@ -77,7 +77,7 @@ func (c *Route53Domains) DisableDomainAutoRenewRequest(input *DisableDomainAutoR
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDisableDomainAutoRenew, input, output)
+	req = c.newRequest(opDisableDomainAutoRenew, input, output)
 	output = &DisableDomainAutoRenewOutput{}
 	req.Data = output
 	return
@@ -109,7 +109,7 @@ func (c *Route53Domains) DisableDomainTransferLockRequest(input *DisableDomainTr
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDisableDomainTransferLock, input, output)
+	req = c.newRequest(opDisableDomainTransferLock, input, output)
 	output = &DisableDomainTransferLockOutput{}
 	req.Data = output
 	return
@@ -141,7 +141,7 @@ func (c *Route53Domains) EnableDomainAutoRenewRequest(input *EnableDomainAutoRen
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opEnableDomainAutoRenew, input, output)
+	req = c.newRequest(opEnableDomainAutoRenew, input, output)
 	output = &EnableDomainAutoRenewOutput{}
 	req.Data = output
 	return
@@ -176,7 +176,7 @@ func (c *Route53Domains) EnableDomainTransferLockRequest(input *EnableDomainTran
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opEnableDomainTransferLock, input, output)
+	req = c.newRequest(opEnableDomainTransferLock, input, output)
 	output = &EnableDomainTransferLockOutput{}
 	req.Data = output
 	return
@@ -206,7 +206,7 @@ func (c *Route53Domains) GetDomainDetailRequest(input *GetDomainDetailInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetDomainDetail, input, output)
+	req = c.newRequest(opGetDomainDetail, input, output)
 	output = &GetDomainDetailOutput{}
 	req.Data = output
 	return
@@ -233,7 +233,7 @@ func (c *Route53Domains) GetOperationDetailRequest(input *GetOperationDetailInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetOperationDetail, input, output)
+	req = c.newRequest(opGetOperationDetail, input, output)
 	output = &GetOperationDetailOutput{}
 	req.Data = output
 	return
@@ -259,7 +259,7 @@ func (c *Route53Domains) ListDomainsRequest(input *ListDomainsInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListDomains, input, output)
+	req = c.newRequest(opListDomains, input, output)
 	output = &ListDomainsOutput{}
 	req.Data = output
 	return
@@ -286,7 +286,7 @@ func (c *Route53Domains) ListOperationsRequest(input *ListOperationsInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListOperations, input, output)
+	req = c.newRequest(opListOperations, input, output)
 	output = &ListOperationsOutput{}
 	req.Data = output
 	return
@@ -312,7 +312,7 @@ func (c *Route53Domains) ListTagsForDomainRequest(input *ListTagsForDomainInput)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListTagsForDomain, input, output)
+	req = c.newRequest(opListTagsForDomain, input, output)
 	output = &ListTagsForDomainOutput{}
 	req.Data = output
 	return
@@ -342,7 +342,7 @@ func (c *Route53Domains) RegisterDomainRequest(input *RegisterDomainInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRegisterDomain, input, output)
+	req = c.newRequest(opRegisterDomain, input, output)
 	output = &RegisterDomainOutput{}
 	req.Data = output
 	return
@@ -386,7 +386,7 @@ func (c *Route53Domains) RetrieveDomainAuthCodeRequest(input *RetrieveDomainAuth
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRetrieveDomainAuthCode, input, output)
+	req = c.newRequest(opRetrieveDomainAuthCode, input, output)
 	output = &RetrieveDomainAuthCodeOutput{}
 	req.Data = output
 	return
@@ -413,7 +413,7 @@ func (c *Route53Domains) TransferDomainRequest(input *TransferDomainInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opTransferDomain, input, output)
+	req = c.newRequest(opTransferDomain, input, output)
 	output = &TransferDomainOutput{}
 	req.Data = output
 	return
@@ -462,7 +462,7 @@ func (c *Route53Domains) UpdateDomainContactRequest(input *UpdateDomainContactIn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateDomainContact, input, output)
+	req = c.newRequest(opUpdateDomainContact, input, output)
 	output = &UpdateDomainContactOutput{}
 	req.Data = output
 	return
@@ -495,7 +495,7 @@ func (c *Route53Domains) UpdateDomainContactPrivacyRequest(input *UpdateDomainCo
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateDomainContactPrivacy, input, output)
+	req = c.newRequest(opUpdateDomainContactPrivacy, input, output)
 	output = &UpdateDomainContactPrivacyOutput{}
 	req.Data = output
 	return
@@ -531,7 +531,7 @@ func (c *Route53Domains) UpdateDomainNameserversRequest(input *UpdateDomainNames
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateDomainNameservers, input, output)
+	req = c.newRequest(opUpdateDomainNameservers, input, output)
 	output = &UpdateDomainNameserversOutput{}
 	req.Data = output
 	return
@@ -564,7 +564,7 @@ func (c *Route53Domains) UpdateTagsForDomainRequest(input *UpdateTagsForDomainIn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateTagsForDomain, input, output)
+	req = c.newRequest(opUpdateTagsForDomain, input, output)
 	output = &UpdateTagsForDomainOutput{}
 	req.Data = output
 	return

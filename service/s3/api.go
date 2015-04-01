@@ -20,7 +20,7 @@ func (c *S3) AbortMultipartUploadRequest(input *AbortMultipartUploadInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAbortMultipartUpload, input, output)
+	req = c.newRequest(opAbortMultipartUpload, input, output)
 	output = &AbortMultipartUploadOutput{}
 	req.Data = output
 	return
@@ -50,7 +50,7 @@ func (c *S3) CompleteMultipartUploadRequest(input *CompleteMultipartUploadInput)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCompleteMultipartUpload, input, output)
+	req = c.newRequest(opCompleteMultipartUpload, input, output)
 	output = &CompleteMultipartUploadOutput{}
 	req.Data = output
 	return
@@ -76,7 +76,7 @@ func (c *S3) CopyObjectRequest(input *CopyObjectInput) (req *aws.Request, output
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCopyObject, input, output)
+	req = c.newRequest(opCopyObject, input, output)
 	output = &CopyObjectOutput{}
 	req.Data = output
 	return
@@ -102,7 +102,7 @@ func (c *S3) CreateBucketRequest(input *CreateBucketInput) (req *aws.Request, ou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateBucket, input, output)
+	req = c.newRequest(opCreateBucket, input, output)
 	output = &CreateBucketOutput{}
 	req.Data = output
 	return
@@ -128,7 +128,7 @@ func (c *S3) CreateMultipartUploadRequest(input *CreateMultipartUploadInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateMultipartUpload, input, output)
+	req = c.newRequest(opCreateMultipartUpload, input, output)
 	output = &CreateMultipartUploadOutput{}
 	req.Data = output
 	return
@@ -160,7 +160,7 @@ func (c *S3) DeleteBucketRequest(input *DeleteBucketInput) (req *aws.Request, ou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteBucket, input, output)
+	req = c.newRequest(opDeleteBucket, input, output)
 	output = &DeleteBucketOutput{}
 	req.Data = output
 	return
@@ -187,7 +187,7 @@ func (c *S3) DeleteBucketCORSRequest(input *DeleteBucketCORSInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteBucketCORS, input, output)
+	req = c.newRequest(opDeleteBucketCORS, input, output)
 	output = &DeleteBucketCORSOutput{}
 	req.Data = output
 	return
@@ -213,7 +213,7 @@ func (c *S3) DeleteBucketLifecycleRequest(input *DeleteBucketLifecycleInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteBucketLifecycle, input, output)
+	req = c.newRequest(opDeleteBucketLifecycle, input, output)
 	output = &DeleteBucketLifecycleOutput{}
 	req.Data = output
 	return
@@ -239,7 +239,7 @@ func (c *S3) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) (req *aws
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteBucketPolicy, input, output)
+	req = c.newRequest(opDeleteBucketPolicy, input, output)
 	output = &DeleteBucketPolicyOutput{}
 	req.Data = output
 	return
@@ -265,7 +265,7 @@ func (c *S3) DeleteBucketReplicationRequest(input *DeleteBucketReplicationInput)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteBucketReplication, input, output)
+	req = c.newRequest(opDeleteBucketReplication, input, output)
 	output = &DeleteBucketReplicationOutput{}
 	req.Data = output
 	return
@@ -290,7 +290,7 @@ func (c *S3) DeleteBucketTaggingRequest(input *DeleteBucketTaggingInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteBucketTagging, input, output)
+	req = c.newRequest(opDeleteBucketTagging, input, output)
 	output = &DeleteBucketTaggingOutput{}
 	req.Data = output
 	return
@@ -316,7 +316,7 @@ func (c *S3) DeleteBucketWebsiteRequest(input *DeleteBucketWebsiteInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteBucketWebsite, input, output)
+	req = c.newRequest(opDeleteBucketWebsite, input, output)
 	output = &DeleteBucketWebsiteOutput{}
 	req.Data = output
 	return
@@ -342,7 +342,7 @@ func (c *S3) DeleteObjectRequest(input *DeleteObjectInput) (req *aws.Request, ou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteObject, input, output)
+	req = c.newRequest(opDeleteObject, input, output)
 	output = &DeleteObjectOutput{}
 	req.Data = output
 	return
@@ -370,7 +370,7 @@ func (c *S3) DeleteObjectsRequest(input *DeleteObjectsInput) (req *aws.Request, 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteObjects, input, output)
+	req = c.newRequest(opDeleteObjects, input, output)
 	output = &DeleteObjectsOutput{}
 	req.Data = output
 	return
@@ -397,7 +397,7 @@ func (c *S3) GetBucketACLRequest(input *GetBucketACLInput) (req *aws.Request, ou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetBucketACL, input, output)
+	req = c.newRequest(opGetBucketACL, input, output)
 	output = &GetBucketACLOutput{}
 	req.Data = output
 	return
@@ -423,7 +423,7 @@ func (c *S3) GetBucketCORSRequest(input *GetBucketCORSInput) (req *aws.Request, 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetBucketCORS, input, output)
+	req = c.newRequest(opGetBucketCORS, input, output)
 	output = &GetBucketCORSOutput{}
 	req.Data = output
 	return
@@ -449,7 +449,7 @@ func (c *S3) GetBucketLifecycleRequest(input *GetBucketLifecycleInput) (req *aws
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetBucketLifecycle, input, output)
+	req = c.newRequest(opGetBucketLifecycle, input, output)
 	output = &GetBucketLifecycleOutput{}
 	req.Data = output
 	return
@@ -475,7 +475,7 @@ func (c *S3) GetBucketLocationRequest(input *GetBucketLocationInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetBucketLocation, input, output)
+	req = c.newRequest(opGetBucketLocation, input, output)
 	output = &GetBucketLocationOutput{}
 	req.Data = output
 	return
@@ -501,7 +501,7 @@ func (c *S3) GetBucketLoggingRequest(input *GetBucketLoggingInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetBucketLogging, input, output)
+	req = c.newRequest(opGetBucketLogging, input, output)
 	output = &GetBucketLoggingOutput{}
 	req.Data = output
 	return
@@ -528,7 +528,7 @@ func (c *S3) GetBucketNotificationRequest(input *GetBucketNotificationInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetBucketNotification, input, output)
+	req = c.newRequest(opGetBucketNotification, input, output)
 	output = &GetBucketNotificationOutput{}
 	req.Data = output
 	return
@@ -554,7 +554,7 @@ func (c *S3) GetBucketPolicyRequest(input *GetBucketPolicyInput) (req *aws.Reque
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetBucketPolicy, input, output)
+	req = c.newRequest(opGetBucketPolicy, input, output)
 	output = &GetBucketPolicyOutput{}
 	req.Data = output
 	return
@@ -580,7 +580,7 @@ func (c *S3) GetBucketReplicationRequest(input *GetBucketReplicationInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetBucketReplication, input, output)
+	req = c.newRequest(opGetBucketReplication, input, output)
 	output = &GetBucketReplicationOutput{}
 	req.Data = output
 	return
@@ -605,7 +605,7 @@ func (c *S3) GetBucketRequestPaymentRequest(input *GetBucketRequestPaymentInput)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetBucketRequestPayment, input, output)
+	req = c.newRequest(opGetBucketRequestPayment, input, output)
 	output = &GetBucketRequestPaymentOutput{}
 	req.Data = output
 	return
@@ -631,7 +631,7 @@ func (c *S3) GetBucketTaggingRequest(input *GetBucketTaggingInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetBucketTagging, input, output)
+	req = c.newRequest(opGetBucketTagging, input, output)
 	output = &GetBucketTaggingOutput{}
 	req.Data = output
 	return
@@ -657,7 +657,7 @@ func (c *S3) GetBucketVersioningRequest(input *GetBucketVersioningInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetBucketVersioning, input, output)
+	req = c.newRequest(opGetBucketVersioning, input, output)
 	output = &GetBucketVersioningOutput{}
 	req.Data = output
 	return
@@ -683,7 +683,7 @@ func (c *S3) GetBucketWebsiteRequest(input *GetBucketWebsiteInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetBucketWebsite, input, output)
+	req = c.newRequest(opGetBucketWebsite, input, output)
 	output = &GetBucketWebsiteOutput{}
 	req.Data = output
 	return
@@ -709,7 +709,7 @@ func (c *S3) GetObjectRequest(input *GetObjectInput) (req *aws.Request, output *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetObject, input, output)
+	req = c.newRequest(opGetObject, input, output)
 	output = &GetObjectOutput{}
 	req.Data = output
 	return
@@ -735,7 +735,7 @@ func (c *S3) GetObjectACLRequest(input *GetObjectACLInput) (req *aws.Request, ou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetObjectACL, input, output)
+	req = c.newRequest(opGetObjectACL, input, output)
 	output = &GetObjectACLOutput{}
 	req.Data = output
 	return
@@ -761,7 +761,7 @@ func (c *S3) GetObjectTorrentRequest(input *GetObjectTorrentInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetObjectTorrent, input, output)
+	req = c.newRequest(opGetObjectTorrent, input, output)
 	output = &GetObjectTorrentOutput{}
 	req.Data = output
 	return
@@ -787,7 +787,7 @@ func (c *S3) HeadBucketRequest(input *HeadBucketInput) (req *aws.Request, output
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opHeadBucket, input, output)
+	req = c.newRequest(opHeadBucket, input, output)
 	output = &HeadBucketOutput{}
 	req.Data = output
 	return
@@ -814,7 +814,7 @@ func (c *S3) HeadObjectRequest(input *HeadObjectInput) (req *aws.Request, output
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opHeadObject, input, output)
+	req = c.newRequest(opHeadObject, input, output)
 	output = &HeadObjectOutput{}
 	req.Data = output
 	return
@@ -842,7 +842,7 @@ func (c *S3) ListBucketsRequest(input *ListBucketsInput) (req *aws.Request, outp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListBuckets, input, output)
+	req = c.newRequest(opListBuckets, input, output)
 	output = &ListBucketsOutput{}
 	req.Data = output
 	return
@@ -868,7 +868,7 @@ func (c *S3) ListMultipartUploadsRequest(input *ListMultipartUploadsInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListMultipartUploads, input, output)
+	req = c.newRequest(opListMultipartUploads, input, output)
 	output = &ListMultipartUploadsOutput{}
 	req.Data = output
 	return
@@ -894,7 +894,7 @@ func (c *S3) ListObjectVersionsRequest(input *ListObjectVersionsInput) (req *aws
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListObjectVersions, input, output)
+	req = c.newRequest(opListObjectVersions, input, output)
 	output = &ListObjectVersionsOutput{}
 	req.Data = output
 	return
@@ -920,7 +920,7 @@ func (c *S3) ListObjectsRequest(input *ListObjectsInput) (req *aws.Request, outp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListObjects, input, output)
+	req = c.newRequest(opListObjects, input, output)
 	output = &ListObjectsOutput{}
 	req.Data = output
 	return
@@ -948,7 +948,7 @@ func (c *S3) ListPartsRequest(input *ListPartsInput) (req *aws.Request, output *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListParts, input, output)
+	req = c.newRequest(opListParts, input, output)
 	output = &ListPartsOutput{}
 	req.Data = output
 	return
@@ -974,7 +974,7 @@ func (c *S3) PutBucketACLRequest(input *PutBucketACLInput) (req *aws.Request, ou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutBucketACL, input, output)
+	req = c.newRequest(opPutBucketACL, input, output)
 	output = &PutBucketACLOutput{}
 	req.Data = output
 	return
@@ -1000,7 +1000,7 @@ func (c *S3) PutBucketCORSRequest(input *PutBucketCORSInput) (req *aws.Request, 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutBucketCORS, input, output)
+	req = c.newRequest(opPutBucketCORS, input, output)
 	output = &PutBucketCORSOutput{}
 	req.Data = output
 	return
@@ -1026,7 +1026,7 @@ func (c *S3) PutBucketLifecycleRequest(input *PutBucketLifecycleInput) (req *aws
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutBucketLifecycle, input, output)
+	req = c.newRequest(opPutBucketLifecycle, input, output)
 	output = &PutBucketLifecycleOutput{}
 	req.Data = output
 	return
@@ -1053,7 +1053,7 @@ func (c *S3) PutBucketLoggingRequest(input *PutBucketLoggingInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutBucketLogging, input, output)
+	req = c.newRequest(opPutBucketLogging, input, output)
 	output = &PutBucketLoggingOutput{}
 	req.Data = output
 	return
@@ -1081,7 +1081,7 @@ func (c *S3) PutBucketNotificationRequest(input *PutBucketNotificationInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutBucketNotification, input, output)
+	req = c.newRequest(opPutBucketNotification, input, output)
 	output = &PutBucketNotificationOutput{}
 	req.Data = output
 	return
@@ -1107,7 +1107,7 @@ func (c *S3) PutBucketPolicyRequest(input *PutBucketPolicyInput) (req *aws.Reque
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutBucketPolicy, input, output)
+	req = c.newRequest(opPutBucketPolicy, input, output)
 	output = &PutBucketPolicyOutput{}
 	req.Data = output
 	return
@@ -1134,7 +1134,7 @@ func (c *S3) PutBucketReplicationRequest(input *PutBucketReplicationInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutBucketReplication, input, output)
+	req = c.newRequest(opPutBucketReplication, input, output)
 	output = &PutBucketReplicationOutput{}
 	req.Data = output
 	return
@@ -1161,7 +1161,7 @@ func (c *S3) PutBucketRequestPaymentRequest(input *PutBucketRequestPaymentInput)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutBucketRequestPayment, input, output)
+	req = c.newRequest(opPutBucketRequestPayment, input, output)
 	output = &PutBucketRequestPaymentOutput{}
 	req.Data = output
 	return
@@ -1191,7 +1191,7 @@ func (c *S3) PutBucketTaggingRequest(input *PutBucketTaggingInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutBucketTagging, input, output)
+	req = c.newRequest(opPutBucketTagging, input, output)
 	output = &PutBucketTaggingOutput{}
 	req.Data = output
 	return
@@ -1217,7 +1217,7 @@ func (c *S3) PutBucketVersioningRequest(input *PutBucketVersioningInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutBucketVersioning, input, output)
+	req = c.newRequest(opPutBucketVersioning, input, output)
 	output = &PutBucketVersioningOutput{}
 	req.Data = output
 	return
@@ -1244,7 +1244,7 @@ func (c *S3) PutBucketWebsiteRequest(input *PutBucketWebsiteInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutBucketWebsite, input, output)
+	req = c.newRequest(opPutBucketWebsite, input, output)
 	output = &PutBucketWebsiteOutput{}
 	req.Data = output
 	return
@@ -1270,7 +1270,7 @@ func (c *S3) PutObjectRequest(input *PutObjectInput) (req *aws.Request, output *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutObject, input, output)
+	req = c.newRequest(opPutObject, input, output)
 	output = &PutObjectOutput{}
 	req.Data = output
 	return
@@ -1296,7 +1296,7 @@ func (c *S3) PutObjectACLRequest(input *PutObjectACLInput) (req *aws.Request, ou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutObjectACL, input, output)
+	req = c.newRequest(opPutObjectACL, input, output)
 	output = &PutObjectACLOutput{}
 	req.Data = output
 	return
@@ -1323,7 +1323,7 @@ func (c *S3) RestoreObjectRequest(input *RestoreObjectInput) (req *aws.Request, 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRestoreObject, input, output)
+	req = c.newRequest(opRestoreObject, input, output)
 	output = &RestoreObjectOutput{}
 	req.Data = output
 	return
@@ -1349,7 +1349,7 @@ func (c *S3) UploadPartRequest(input *UploadPartInput) (req *aws.Request, output
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUploadPart, input, output)
+	req = c.newRequest(opUploadPart, input, output)
 	output = &UploadPartOutput{}
 	req.Data = output
 	return
@@ -1381,7 +1381,7 @@ func (c *S3) UploadPartCopyRequest(input *UploadPartCopyInput) (req *aws.Request
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUploadPartCopy, input, output)
+	req = c.newRequest(opUploadPartCopy, input, output)
 	output = &UploadPartCopyOutput{}
 	req.Data = output
 	return

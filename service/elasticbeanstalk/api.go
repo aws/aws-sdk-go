@@ -19,7 +19,7 @@ func (c *ElasticBeanstalk) CheckDNSAvailabilityRequest(input *CheckDNSAvailabili
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCheckDNSAvailability, input, output)
+	req = c.newRequest(opCheckDNSAvailability, input, output)
 	output = &CheckDNSAvailabilityOutput{}
 	req.Data = output
 	return
@@ -45,7 +45,7 @@ func (c *ElasticBeanstalk) CreateApplicationRequest(input *CreateApplicationInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateApplication, input, output)
+	req = c.newRequest(opCreateApplication, input, output)
 	output = &ApplicationDescriptionMessage{}
 	req.Data = output
 	return
@@ -72,7 +72,7 @@ func (c *ElasticBeanstalk) CreateApplicationVersionRequest(input *CreateApplicat
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateApplicationVersion, input, output)
+	req = c.newRequest(opCreateApplicationVersion, input, output)
 	output = &ApplicationVersionDescriptionMessage{}
 	req.Data = output
 	return
@@ -98,7 +98,7 @@ func (c *ElasticBeanstalk) CreateConfigurationTemplateRequest(input *CreateConfi
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateConfigurationTemplate, input, output)
+	req = c.newRequest(opCreateConfigurationTemplate, input, output)
 	output = &ConfigurationSettingsDescription{}
 	req.Data = output
 	return
@@ -130,7 +130,7 @@ func (c *ElasticBeanstalk) CreateEnvironmentRequest(input *CreateEnvironmentInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateEnvironment, input, output)
+	req = c.newRequest(opCreateEnvironment, input, output)
 	output = &EnvironmentDescription{}
 	req.Data = output
 	return
@@ -157,7 +157,7 @@ func (c *ElasticBeanstalk) CreateStorageLocationRequest(input *CreateStorageLoca
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateStorageLocation, input, output)
+	req = c.newRequest(opCreateStorageLocation, input, output)
 	output = &CreateStorageLocationOutput{}
 	req.Data = output
 	return
@@ -185,7 +185,7 @@ func (c *ElasticBeanstalk) DeleteApplicationRequest(input *DeleteApplicationInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteApplication, input, output)
+	req = c.newRequest(opDeleteApplication, input, output)
 	output = &DeleteApplicationOutput{}
 	req.Data = output
 	return
@@ -213,7 +213,7 @@ func (c *ElasticBeanstalk) DeleteApplicationVersionRequest(input *DeleteApplicat
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteApplicationVersion, input, output)
+	req = c.newRequest(opDeleteApplicationVersion, input, output)
 	output = &DeleteApplicationVersionOutput{}
 	req.Data = output
 	return
@@ -239,7 +239,7 @@ func (c *ElasticBeanstalk) DeleteConfigurationTemplateRequest(input *DeleteConfi
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteConfigurationTemplate, input, output)
+	req = c.newRequest(opDeleteConfigurationTemplate, input, output)
 	output = &DeleteConfigurationTemplateOutput{}
 	req.Data = output
 	return
@@ -265,7 +265,7 @@ func (c *ElasticBeanstalk) DeleteEnvironmentConfigurationRequest(input *DeleteEn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteEnvironmentConfiguration, input, output)
+	req = c.newRequest(opDeleteEnvironmentConfiguration, input, output)
 	output = &DeleteEnvironmentConfigurationOutput{}
 	req.Data = output
 	return
@@ -298,7 +298,7 @@ func (c *ElasticBeanstalk) DescribeApplicationVersionsRequest(input *DescribeApp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeApplicationVersions, input, output)
+	req = c.newRequest(opDescribeApplicationVersions, input, output)
 	output = &DescribeApplicationVersionsOutput{}
 	req.Data = output
 	return
@@ -324,7 +324,7 @@ func (c *ElasticBeanstalk) DescribeApplicationsRequest(input *DescribeApplicatio
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeApplications, input, output)
+	req = c.newRequest(opDescribeApplications, input, output)
 	output = &DescribeApplicationsOutput{}
 	req.Data = output
 	return
@@ -350,7 +350,7 @@ func (c *ElasticBeanstalk) DescribeConfigurationOptionsRequest(input *DescribeCo
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeConfigurationOptions, input, output)
+	req = c.newRequest(opDescribeConfigurationOptions, input, output)
 	output = &DescribeConfigurationOptionsOutput{}
 	req.Data = output
 	return
@@ -380,7 +380,7 @@ func (c *ElasticBeanstalk) DescribeConfigurationSettingsRequest(input *DescribeC
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeConfigurationSettings, input, output)
+	req = c.newRequest(opDescribeConfigurationSettings, input, output)
 	output = &DescribeConfigurationSettingsOutput{}
 	req.Data = output
 	return
@@ -418,7 +418,7 @@ func (c *ElasticBeanstalk) DescribeEnvironmentResourcesRequest(input *DescribeEn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeEnvironmentResources, input, output)
+	req = c.newRequest(opDescribeEnvironmentResources, input, output)
 	output = &DescribeEnvironmentResourcesOutput{}
 	req.Data = output
 	return
@@ -444,7 +444,7 @@ func (c *ElasticBeanstalk) DescribeEnvironmentsRequest(input *DescribeEnvironmen
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeEnvironments, input, output)
+	req = c.newRequest(opDescribeEnvironments, input, output)
 	output = &DescribeEnvironmentsOutput{}
 	req.Data = output
 	return
@@ -470,7 +470,7 @@ func (c *ElasticBeanstalk) DescribeEventsRequest(input *DescribeEventsInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeEvents, input, output)
+	req = c.newRequest(opDescribeEvents, input, output)
 	output = &DescribeEventsOutput{}
 	req.Data = output
 	return
@@ -496,7 +496,7 @@ func (c *ElasticBeanstalk) ListAvailableSolutionStacksRequest(input *ListAvailab
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListAvailableSolutionStacks, input, output)
+	req = c.newRequest(opListAvailableSolutionStacks, input, output)
 	output = &ListAvailableSolutionStacksOutput{}
 	req.Data = output
 	return
@@ -522,7 +522,7 @@ func (c *ElasticBeanstalk) RebuildEnvironmentRequest(input *RebuildEnvironmentIn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRebuildEnvironment, input, output)
+	req = c.newRequest(opRebuildEnvironment, input, output)
 	output = &RebuildEnvironmentOutput{}
 	req.Data = output
 	return
@@ -549,7 +549,7 @@ func (c *ElasticBeanstalk) RequestEnvironmentInfoRequest(input *RequestEnvironme
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRequestEnvironmentInfo, input, output)
+	req = c.newRequest(opRequestEnvironmentInfo, input, output)
 	output = &RequestEnvironmentInfoOutput{}
 	req.Data = output
 	return
@@ -584,7 +584,7 @@ func (c *ElasticBeanstalk) RestartAppServerRequest(input *RestartAppServerInput)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRestartAppServer, input, output)
+	req = c.newRequest(opRestartAppServer, input, output)
 	output = &RestartAppServerOutput{}
 	req.Data = output
 	return
@@ -611,7 +611,7 @@ func (c *ElasticBeanstalk) RetrieveEnvironmentInfoRequest(input *RetrieveEnviron
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRetrieveEnvironmentInfo, input, output)
+	req = c.newRequest(opRetrieveEnvironmentInfo, input, output)
 	output = &RetrieveEnvironmentInfoOutput{}
 	req.Data = output
 	return
@@ -641,7 +641,7 @@ func (c *ElasticBeanstalk) SwapEnvironmentCNAMEsRequest(input *SwapEnvironmentCN
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSwapEnvironmentCNAMEs, input, output)
+	req = c.newRequest(opSwapEnvironmentCNAMEs, input, output)
 	output = &SwapEnvironmentCNAMEsOutput{}
 	req.Data = output
 	return
@@ -667,7 +667,7 @@ func (c *ElasticBeanstalk) TerminateEnvironmentRequest(input *TerminateEnvironme
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opTerminateEnvironment, input, output)
+	req = c.newRequest(opTerminateEnvironment, input, output)
 	output = &EnvironmentDescription{}
 	req.Data = output
 	return
@@ -693,7 +693,7 @@ func (c *ElasticBeanstalk) UpdateApplicationRequest(input *UpdateApplicationInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateApplication, input, output)
+	req = c.newRequest(opUpdateApplication, input, output)
 	output = &ApplicationDescriptionMessage{}
 	req.Data = output
 	return
@@ -719,7 +719,7 @@ func (c *ElasticBeanstalk) UpdateApplicationVersionRequest(input *UpdateApplicat
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateApplicationVersion, input, output)
+	req = c.newRequest(opUpdateApplicationVersion, input, output)
 	output = &ApplicationVersionDescriptionMessage{}
 	req.Data = output
 	return
@@ -745,7 +745,7 @@ func (c *ElasticBeanstalk) UpdateConfigurationTemplateRequest(input *UpdateConfi
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateConfigurationTemplate, input, output)
+	req = c.newRequest(opUpdateConfigurationTemplate, input, output)
 	output = &ConfigurationSettingsDescription{}
 	req.Data = output
 	return
@@ -776,7 +776,7 @@ func (c *ElasticBeanstalk) UpdateEnvironmentRequest(input *UpdateEnvironmentInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateEnvironment, input, output)
+	req = c.newRequest(opUpdateEnvironment, input, output)
 	output = &EnvironmentDescription{}
 	req.Data = output
 	return
@@ -812,7 +812,7 @@ func (c *ElasticBeanstalk) ValidateConfigurationSettingsRequest(input *ValidateC
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opValidateConfigurationSettings, input, output)
+	req = c.newRequest(opValidateConfigurationSettings, input, output)
 	output = &ValidateConfigurationSettingsOutput{}
 	req.Data = output
 	return

@@ -19,7 +19,7 @@ func (c *CloudSearch) BuildSuggestersRequest(input *BuildSuggestersInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opBuildSuggesters, input, output)
+	req = c.newRequest(opBuildSuggesters, input, output)
 	output = &BuildSuggestersOutput{}
 	req.Data = output
 	return
@@ -47,7 +47,7 @@ func (c *CloudSearch) CreateDomainRequest(input *CreateDomainInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateDomain, input, output)
+	req = c.newRequest(opCreateDomain, input, output)
 	output = &CreateDomainOutput{}
 	req.Data = output
 	return
@@ -75,7 +75,7 @@ func (c *CloudSearch) DefineAnalysisSchemeRequest(input *DefineAnalysisSchemeInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDefineAnalysisScheme, input, output)
+	req = c.newRequest(opDefineAnalysisScheme, input, output)
 	output = &DefineAnalysisSchemeOutput{}
 	req.Data = output
 	return
@@ -104,7 +104,7 @@ func (c *CloudSearch) DefineExpressionRequest(input *DefineExpressionInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDefineExpression, input, output)
+	req = c.newRequest(opDefineExpression, input, output)
 	output = &DefineExpressionOutput{}
 	req.Data = output
 	return
@@ -133,7 +133,7 @@ func (c *CloudSearch) DefineIndexFieldRequest(input *DefineIndexFieldInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDefineIndexField, input, output)
+	req = c.newRequest(opDefineIndexField, input, output)
 	output = &DefineIndexFieldOutput{}
 	req.Data = output
 	return
@@ -166,7 +166,7 @@ func (c *CloudSearch) DefineSuggesterRequest(input *DefineSuggesterInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDefineSuggester, input, output)
+	req = c.newRequest(opDefineSuggester, input, output)
 	output = &DefineSuggesterOutput{}
 	req.Data = output
 	return
@@ -197,7 +197,7 @@ func (c *CloudSearch) DeleteAnalysisSchemeRequest(input *DeleteAnalysisSchemeInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteAnalysisScheme, input, output)
+	req = c.newRequest(opDeleteAnalysisScheme, input, output)
 	output = &DeleteAnalysisSchemeOutput{}
 	req.Data = output
 	return
@@ -225,7 +225,7 @@ func (c *CloudSearch) DeleteDomainRequest(input *DeleteDomainInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteDomain, input, output)
+	req = c.newRequest(opDeleteDomain, input, output)
 	output = &DeleteDomainOutput{}
 	req.Data = output
 	return
@@ -254,7 +254,7 @@ func (c *CloudSearch) DeleteExpressionRequest(input *DeleteExpressionInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteExpression, input, output)
+	req = c.newRequest(opDeleteExpression, input, output)
 	output = &DeleteExpressionOutput{}
 	req.Data = output
 	return
@@ -282,7 +282,7 @@ func (c *CloudSearch) DeleteIndexFieldRequest(input *DeleteIndexFieldInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteIndexField, input, output)
+	req = c.newRequest(opDeleteIndexField, input, output)
 	output = &DeleteIndexFieldOutput{}
 	req.Data = output
 	return
@@ -310,7 +310,7 @@ func (c *CloudSearch) DeleteSuggesterRequest(input *DeleteSuggesterInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteSuggester, input, output)
+	req = c.newRequest(opDeleteSuggester, input, output)
 	output = &DeleteSuggesterOutput{}
 	req.Data = output
 	return
@@ -338,7 +338,7 @@ func (c *CloudSearch) DescribeAnalysisSchemesRequest(input *DescribeAnalysisSche
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeAnalysisSchemes, input, output)
+	req = c.newRequest(opDescribeAnalysisSchemes, input, output)
 	output = &DescribeAnalysisSchemesOutput{}
 	req.Data = output
 	return
@@ -370,7 +370,7 @@ func (c *CloudSearch) DescribeAvailabilityOptionsRequest(input *DescribeAvailabi
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeAvailabilityOptions, input, output)
+	req = c.newRequest(opDescribeAvailabilityOptions, input, output)
 	output = &DescribeAvailabilityOptionsOutput{}
 	req.Data = output
 	return
@@ -400,7 +400,7 @@ func (c *CloudSearch) DescribeDomainsRequest(input *DescribeDomainsInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeDomains, input, output)
+	req = c.newRequest(opDescribeDomains, input, output)
 	output = &DescribeDomainsOutput{}
 	req.Data = output
 	return
@@ -431,7 +431,7 @@ func (c *CloudSearch) DescribeExpressionsRequest(input *DescribeExpressionsInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeExpressions, input, output)
+	req = c.newRequest(opDescribeExpressions, input, output)
 	output = &DescribeExpressionsOutput{}
 	req.Data = output
 	return
@@ -462,7 +462,7 @@ func (c *CloudSearch) DescribeIndexFieldsRequest(input *DescribeIndexFieldsInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeIndexFields, input, output)
+	req = c.newRequest(opDescribeIndexFields, input, output)
 	output = &DescribeIndexFieldsOutput{}
 	req.Data = output
 	return
@@ -493,7 +493,7 @@ func (c *CloudSearch) DescribeScalingParametersRequest(input *DescribeScalingPar
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeScalingParameters, input, output)
+	req = c.newRequest(opDescribeScalingParameters, input, output)
 	output = &DescribeScalingParametersOutput{}
 	req.Data = output
 	return
@@ -522,7 +522,7 @@ func (c *CloudSearch) DescribeServiceAccessPoliciesRequest(input *DescribeServic
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeServiceAccessPolicies, input, output)
+	req = c.newRequest(opDescribeServiceAccessPolicies, input, output)
 	output = &DescribeServiceAccessPoliciesOutput{}
 	req.Data = output
 	return
@@ -553,7 +553,7 @@ func (c *CloudSearch) DescribeSuggestersRequest(input *DescribeSuggestersInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeSuggesters, input, output)
+	req = c.newRequest(opDescribeSuggesters, input, output)
 	output = &DescribeSuggestersOutput{}
 	req.Data = output
 	return
@@ -585,7 +585,7 @@ func (c *CloudSearch) IndexDocumentsRequest(input *IndexDocumentsInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opIndexDocuments, input, output)
+	req = c.newRequest(opIndexDocuments, input, output)
 	output = &IndexDocumentsOutput{}
 	req.Data = output
 	return
@@ -613,7 +613,7 @@ func (c *CloudSearch) ListDomainNamesRequest(input *ListDomainNamesInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListDomainNames, input, output)
+	req = c.newRequest(opListDomainNames, input, output)
 	output = &ListDomainNamesOutput{}
 	req.Data = output
 	return
@@ -639,7 +639,7 @@ func (c *CloudSearch) UpdateAvailabilityOptionsRequest(input *UpdateAvailability
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateAvailabilityOptions, input, output)
+	req = c.newRequest(opUpdateAvailabilityOptions, input, output)
 	output = &UpdateAvailabilityOptionsOutput{}
 	req.Data = output
 	return
@@ -670,7 +670,7 @@ func (c *CloudSearch) UpdateScalingParametersRequest(input *UpdateScalingParamet
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateScalingParameters, input, output)
+	req = c.newRequest(opUpdateScalingParameters, input, output)
 	output = &UpdateScalingParametersOutput{}
 	req.Data = output
 	return
@@ -703,7 +703,7 @@ func (c *CloudSearch) UpdateServiceAccessPoliciesRequest(input *UpdateServiceAcc
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateServiceAccessPolicies, input, output)
+	req = c.newRequest(opUpdateServiceAccessPolicies, input, output)
 	output = &UpdateServiceAccessPoliciesOutput{}
 	req.Data = output
 	return

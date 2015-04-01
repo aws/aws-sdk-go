@@ -17,7 +17,7 @@ func (c *Kinesis) AddTagsToStreamRequest(input *AddTagsToStreamInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddTagsToStream, input, output)
+	req = c.newRequest(opAddTagsToStream, input, output)
 	output = &AddTagsToStreamOutput{}
 	req.Data = output
 	return
@@ -47,7 +47,7 @@ func (c *Kinesis) CreateStreamRequest(input *CreateStreamInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateStream, input, output)
+	req = c.newRequest(opCreateStream, input, output)
 	output = &CreateStreamOutput{}
 	req.Data = output
 	return
@@ -109,7 +109,7 @@ func (c *Kinesis) DeleteStreamRequest(input *DeleteStreamInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteStream, input, output)
+	req = c.newRequest(opDeleteStream, input, output)
 	output = &DeleteStreamOutput{}
 	req.Data = output
 	return
@@ -153,7 +153,7 @@ func (c *Kinesis) DescribeStreamRequest(input *DescribeStreamInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeStream, input, output)
+	req = c.newRequest(opDescribeStream, input, output)
 	output = &DescribeStreamOutput{}
 	req.Data = output
 	return
@@ -200,7 +200,7 @@ func (c *Kinesis) GetRecordsRequest(input *GetRecordsInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetRecords, input, output)
+	req = c.newRequest(opGetRecords, input, output)
 	output = &GetRecordsOutput{}
 	req.Data = output
 	return
@@ -270,7 +270,7 @@ func (c *Kinesis) GetShardIteratorRequest(input *GetShardIteratorInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetShardIterator, input, output)
+	req = c.newRequest(opGetShardIterator, input, output)
 	output = &GetShardIteratorOutput{}
 	req.Data = output
 	return
@@ -332,7 +332,7 @@ func (c *Kinesis) ListStreamsRequest(input *ListStreamsInput) (req *aws.Request,
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListStreams, input, output)
+	req = c.newRequest(opListStreams, input, output)
 	output = &ListStreamsOutput{}
 	req.Data = output
 	return
@@ -373,7 +373,7 @@ func (c *Kinesis) ListTagsForStreamRequest(input *ListTagsForStreamInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListTagsForStream, input, output)
+	req = c.newRequest(opListTagsForStream, input, output)
 	output = &ListTagsForStreamOutput{}
 	req.Data = output
 	return
@@ -399,7 +399,7 @@ func (c *Kinesis) MergeShardsRequest(input *MergeShardsInput) (req *aws.Request,
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opMergeShards, input, output)
+	req = c.newRequest(opMergeShards, input, output)
 	output = &MergeShardsOutput{}
 	req.Data = output
 	return
@@ -459,7 +459,7 @@ func (c *Kinesis) PutRecordRequest(input *PutRecordInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutRecord, input, output)
+	req = c.newRequest(opPutRecord, input, output)
 	output = &PutRecordOutput{}
 	req.Data = output
 	return
@@ -522,7 +522,7 @@ func (c *Kinesis) PutRecordsRequest(input *PutRecordsInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutRecords, input, output)
+	req = c.newRequest(opPutRecords, input, output)
 	output = &PutRecordsOutput{}
 	req.Data = output
 	return
@@ -600,7 +600,7 @@ func (c *Kinesis) RemoveTagsFromStreamRequest(input *RemoveTagsFromStreamInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRemoveTagsFromStream, input, output)
+	req = c.newRequest(opRemoveTagsFromStream, input, output)
 	output = &RemoveTagsFromStreamOutput{}
 	req.Data = output
 	return
@@ -628,7 +628,7 @@ func (c *Kinesis) SplitShardRequest(input *SplitShardInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSplitShard, input, output)
+	req = c.newRequest(opSplitShard, input, output)
 	output = &SplitShardOutput{}
 	req.Data = output
 	return

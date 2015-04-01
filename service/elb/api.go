@@ -19,7 +19,7 @@ func (c *ELB) AddTagsRequest(input *AddTagsInput) (req *aws.Request, output *Add
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddTags, input, output)
+	req = c.newRequest(opAddTags, input, output)
 	output = &AddTagsOutput{}
 	req.Data = output
 	return
@@ -54,7 +54,7 @@ func (c *ELB) ApplySecurityGroupsToLoadBalancerRequest(input *ApplySecurityGroup
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opApplySecurityGroupsToLoadBalancer, input, output)
+	req = c.newRequest(opApplySecurityGroupsToLoadBalancer, input, output)
 	output = &ApplySecurityGroupsToLoadBalancerOutput{}
 	req.Data = output
 	return
@@ -85,7 +85,7 @@ func (c *ELB) AttachLoadBalancerToSubnetsRequest(input *AttachLoadBalancerToSubn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAttachLoadBalancerToSubnets, input, output)
+	req = c.newRequest(opAttachLoadBalancerToSubnets, input, output)
 	output = &AttachLoadBalancerToSubnetsOutput{}
 	req.Data = output
 	return
@@ -117,7 +117,7 @@ func (c *ELB) ConfigureHealthCheckRequest(input *ConfigureHealthCheckInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opConfigureHealthCheck, input, output)
+	req = c.newRequest(opConfigureHealthCheck, input, output)
 	output = &ConfigureHealthCheckOutput{}
 	req.Data = output
 	return
@@ -147,7 +147,7 @@ func (c *ELB) CreateAppCookieStickinessPolicyRequest(input *CreateAppCookieStick
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateAppCookieStickinessPolicy, input, output)
+	req = c.newRequest(opCreateAppCookieStickinessPolicy, input, output)
 	output = &CreateAppCookieStickinessPolicyOutput{}
 	req.Data = output
 	return
@@ -190,7 +190,7 @@ func (c *ELB) CreateLBCookieStickinessPolicyRequest(input *CreateLBCookieStickin
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateLBCookieStickinessPolicy, input, output)
+	req = c.newRequest(opCreateLBCookieStickinessPolicy, input, output)
 	output = &CreateLBCookieStickinessPolicyOutput{}
 	req.Data = output
 	return
@@ -232,7 +232,7 @@ func (c *ELB) CreateLoadBalancerRequest(input *CreateLoadBalancerInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateLoadBalancer, input, output)
+	req = c.newRequest(opCreateLoadBalancer, input, output)
 	output = &CreateLoadBalancerOutput{}
 	req.Data = output
 	return
@@ -279,7 +279,7 @@ func (c *ELB) CreateLoadBalancerListenersRequest(input *CreateLoadBalancerListen
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateLoadBalancerListeners, input, output)
+	req = c.newRequest(opCreateLoadBalancerListeners, input, output)
 	output = &CreateLoadBalancerListenersOutput{}
 	req.Data = output
 	return
@@ -311,7 +311,7 @@ func (c *ELB) CreateLoadBalancerPolicyRequest(input *CreateLoadBalancerPolicyInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateLoadBalancerPolicy, input, output)
+	req = c.newRequest(opCreateLoadBalancerPolicy, input, output)
 	output = &CreateLoadBalancerPolicyOutput{}
 	req.Data = output
 	return
@@ -340,7 +340,7 @@ func (c *ELB) DeleteLoadBalancerRequest(input *DeleteLoadBalancerInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteLoadBalancer, input, output)
+	req = c.newRequest(opDeleteLoadBalancer, input, output)
 	output = &DeleteLoadBalancerOutput{}
 	req.Data = output
 	return
@@ -378,7 +378,7 @@ func (c *ELB) DeleteLoadBalancerListenersRequest(input *DeleteLoadBalancerListen
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteLoadBalancerListeners, input, output)
+	req = c.newRequest(opDeleteLoadBalancerListeners, input, output)
 	output = &DeleteLoadBalancerListenersOutput{}
 	req.Data = output
 	return
@@ -404,7 +404,7 @@ func (c *ELB) DeleteLoadBalancerPolicyRequest(input *DeleteLoadBalancerPolicyInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteLoadBalancerPolicy, input, output)
+	req = c.newRequest(opDeleteLoadBalancerPolicy, input, output)
 	output = &DeleteLoadBalancerPolicyOutput{}
 	req.Data = output
 	return
@@ -431,7 +431,7 @@ func (c *ELB) DeregisterInstancesFromLoadBalancerRequest(input *DeregisterInstan
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeregisterInstancesFromLoadBalancer, input, output)
+	req = c.newRequest(opDeregisterInstancesFromLoadBalancer, input, output)
 	output = &DeregisterInstancesFromLoadBalancerOutput{}
 	req.Data = output
 	return
@@ -468,7 +468,7 @@ func (c *ELB) DescribeInstanceHealthRequest(input *DescribeInstanceHealthInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeInstanceHealth, input, output)
+	req = c.newRequest(opDescribeInstanceHealth, input, output)
 	output = &DescribeInstanceHealthOutput{}
 	req.Data = output
 	return
@@ -499,7 +499,7 @@ func (c *ELB) DescribeLoadBalancerAttributesRequest(input *DescribeLoadBalancerA
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeLoadBalancerAttributes, input, output)
+	req = c.newRequest(opDescribeLoadBalancerAttributes, input, output)
 	output = &DescribeLoadBalancerAttributesOutput{}
 	req.Data = output
 	return
@@ -526,7 +526,7 @@ func (c *ELB) DescribeLoadBalancerPoliciesRequest(input *DescribeLoadBalancerPol
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeLoadBalancerPolicies, input, output)
+	req = c.newRequest(opDescribeLoadBalancerPolicies, input, output)
 	output = &DescribeLoadBalancerPoliciesOutput{}
 	req.Data = output
 	return
@@ -558,7 +558,7 @@ func (c *ELB) DescribeLoadBalancerPolicyTypesRequest(input *DescribeLoadBalancer
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeLoadBalancerPolicyTypes, input, output)
+	req = c.newRequest(opDescribeLoadBalancerPolicyTypes, input, output)
 	output = &DescribeLoadBalancerPolicyTypesOutput{}
 	req.Data = output
 	return
@@ -587,7 +587,7 @@ func (c *ELB) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeLoadBalancers, input, output)
+	req = c.newRequest(opDescribeLoadBalancers, input, output)
 	output = &DescribeLoadBalancersOutput{}
 	req.Data = output
 	return
@@ -618,7 +618,7 @@ func (c *ELB) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeTags, input, output)
+	req = c.newRequest(opDescribeTags, input, output)
 	output = &DescribeTagsOutput{}
 	req.Data = output
 	return
@@ -644,7 +644,7 @@ func (c *ELB) DetachLoadBalancerFromSubnetsRequest(input *DetachLoadBalancerFrom
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDetachLoadBalancerFromSubnets, input, output)
+	req = c.newRequest(opDetachLoadBalancerFromSubnets, input, output)
 	output = &DetachLoadBalancerFromSubnetsOutput{}
 	req.Data = output
 	return
@@ -676,7 +676,7 @@ func (c *ELB) DisableAvailabilityZonesForLoadBalancerRequest(input *DisableAvail
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDisableAvailabilityZonesForLoadBalancer, input, output)
+	req = c.newRequest(opDisableAvailabilityZonesForLoadBalancer, input, output)
 	output = &DisableAvailabilityZonesForLoadBalancerOutput{}
 	req.Data = output
 	return
@@ -715,7 +715,7 @@ func (c *ELB) EnableAvailabilityZonesForLoadBalancerRequest(input *EnableAvailab
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opEnableAvailabilityZonesForLoadBalancer, input, output)
+	req = c.newRequest(opEnableAvailabilityZonesForLoadBalancer, input, output)
 	output = &EnableAvailabilityZonesForLoadBalancerOutput{}
 	req.Data = output
 	return
@@ -750,7 +750,7 @@ func (c *ELB) ModifyLoadBalancerAttributesRequest(input *ModifyLoadBalancerAttri
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyLoadBalancerAttributes, input, output)
+	req = c.newRequest(opModifyLoadBalancerAttributes, input, output)
 	output = &ModifyLoadBalancerAttributesOutput{}
 	req.Data = output
 	return
@@ -788,7 +788,7 @@ func (c *ELB) RegisterInstancesWithLoadBalancerRequest(input *RegisterInstancesW
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRegisterInstancesWithLoadBalancer, input, output)
+	req = c.newRequest(opRegisterInstancesWithLoadBalancer, input, output)
 	output = &RegisterInstancesWithLoadBalancerOutput{}
 	req.Data = output
 	return
@@ -839,7 +839,7 @@ func (c *ELB) RemoveTagsRequest(input *RemoveTagsInput) (req *aws.Request, outpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRemoveTags, input, output)
+	req = c.newRequest(opRemoveTags, input, output)
 	output = &RemoveTagsOutput{}
 	req.Data = output
 	return
@@ -865,7 +865,7 @@ func (c *ELB) SetLoadBalancerListenerSSLCertificateRequest(input *SetLoadBalance
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetLoadBalancerListenerSSLCertificate, input, output)
+	req = c.newRequest(opSetLoadBalancerListenerSSLCertificate, input, output)
 	output = &SetLoadBalancerListenerSSLCertificateOutput{}
 	req.Data = output
 	return
@@ -897,7 +897,7 @@ func (c *ELB) SetLoadBalancerPoliciesForBackendServerRequest(input *SetLoadBalan
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetLoadBalancerPoliciesForBackendServer, input, output)
+	req = c.newRequest(opSetLoadBalancerPoliciesForBackendServer, input, output)
 	output = &SetLoadBalancerPoliciesForBackendServerOutput{}
 	req.Data = output
 	return
@@ -936,7 +936,7 @@ func (c *ELB) SetLoadBalancerPoliciesOfListenerRequest(input *SetLoadBalancerPol
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetLoadBalancerPoliciesOfListener, input, output)
+	req = c.newRequest(opSetLoadBalancerPoliciesOfListener, input, output)
 	output = &SetLoadBalancerPoliciesOfListenerOutput{}
 	req.Data = output
 	return

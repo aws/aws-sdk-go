@@ -19,7 +19,7 @@ func (c *SWF) CountClosedWorkflowExecutionsRequest(input *CountClosedWorkflowExe
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCountClosedWorkflowExecutions, input, output)
+	req = c.newRequest(opCountClosedWorkflowExecutions, input, output)
 	output = &WorkflowExecutionCount{}
 	req.Data = output
 	return
@@ -64,7 +64,7 @@ func (c *SWF) CountOpenWorkflowExecutionsRequest(input *CountOpenWorkflowExecuti
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCountOpenWorkflowExecutions, input, output)
+	req = c.newRequest(opCountOpenWorkflowExecutions, input, output)
 	output = &WorkflowExecutionCount{}
 	req.Data = output
 	return
@@ -109,7 +109,7 @@ func (c *SWF) CountPendingActivityTasksRequest(input *CountPendingActivityTasksI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCountPendingActivityTasks, input, output)
+	req = c.newRequest(opCountPendingActivityTasks, input, output)
 	output = &PendingTaskCount{}
 	req.Data = output
 	return
@@ -153,7 +153,7 @@ func (c *SWF) CountPendingDecisionTasksRequest(input *CountPendingDecisionTasksI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCountPendingDecisionTasks, input, output)
+	req = c.newRequest(opCountPendingDecisionTasks, input, output)
 	output = &PendingTaskCount{}
 	req.Data = output
 	return
@@ -197,7 +197,7 @@ func (c *SWF) DeprecateActivityTypeRequest(input *DeprecateActivityTypeInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeprecateActivityType, input, output)
+	req = c.newRequest(opDeprecateActivityType, input, output)
 	output = &DeprecateActivityTypeOutput{}
 	req.Data = output
 	return
@@ -242,7 +242,7 @@ func (c *SWF) DeprecateDomainRequest(input *DeprecateDomainInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeprecateDomain, input, output)
+	req = c.newRequest(opDeprecateDomain, input, output)
 	output = &DeprecateDomainOutput{}
 	req.Data = output
 	return
@@ -288,7 +288,7 @@ func (c *SWF) DeprecateWorkflowTypeRequest(input *DeprecateWorkflowTypeInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeprecateWorkflowType, input, output)
+	req = c.newRequest(opDeprecateWorkflowType, input, output)
 	output = &DeprecateWorkflowTypeOutput{}
 	req.Data = output
 	return
@@ -334,7 +334,7 @@ func (c *SWF) DescribeActivityTypeRequest(input *DescribeActivityTypeInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeActivityType, input, output)
+	req = c.newRequest(opDescribeActivityType, input, output)
 	output = &DescribeActivityTypeOutput{}
 	req.Data = output
 	return
@@ -378,7 +378,7 @@ func (c *SWF) DescribeDomainRequest(input *DescribeDomainInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeDomain, input, output)
+	req = c.newRequest(opDescribeDomain, input, output)
 	output = &DescribeDomainOutput{}
 	req.Data = output
 	return
@@ -419,7 +419,7 @@ func (c *SWF) DescribeWorkflowExecutionRequest(input *DescribeWorkflowExecutionI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeWorkflowExecution, input, output)
+	req = c.newRequest(opDescribeWorkflowExecution, input, output)
 	output = &DescribeWorkflowExecutionOutput{}
 	req.Data = output
 	return
@@ -461,7 +461,7 @@ func (c *SWF) DescribeWorkflowTypeRequest(input *DescribeWorkflowTypeInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeWorkflowType, input, output)
+	req = c.newRequest(opDescribeWorkflowType, input, output)
 	output = &DescribeWorkflowTypeOutput{}
 	req.Data = output
 	return
@@ -505,7 +505,7 @@ func (c *SWF) GetWorkflowExecutionHistoryRequest(input *GetWorkflowExecutionHist
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetWorkflowExecutionHistory, input, output)
+	req = c.newRequest(opGetWorkflowExecutionHistory, input, output)
 	output = &GetWorkflowExecutionHistoryOutput{}
 	req.Data = output
 	return
@@ -548,7 +548,7 @@ func (c *SWF) ListActivityTypesRequest(input *ListActivityTypesInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListActivityTypes, input, output)
+	req = c.newRequest(opListActivityTypes, input, output)
 	output = &ListActivityTypesOutput{}
 	req.Data = output
 	return
@@ -592,7 +592,7 @@ func (c *SWF) ListClosedWorkflowExecutionsRequest(input *ListClosedWorkflowExecu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListClosedWorkflowExecutions, input, output)
+	req = c.newRequest(opListClosedWorkflowExecutions, input, output)
 	output = &WorkflowExecutionInfos{}
 	req.Data = output
 	return
@@ -639,7 +639,7 @@ func (c *SWF) ListDomainsRequest(input *ListDomainsInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListDomains, input, output)
+	req = c.newRequest(opListDomains, input, output)
 	output = &ListDomainsOutput{}
 	req.Data = output
 	return
@@ -683,7 +683,7 @@ func (c *SWF) ListOpenWorkflowExecutionsRequest(input *ListOpenWorkflowExecution
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListOpenWorkflowExecutions, input, output)
+	req = c.newRequest(opListOpenWorkflowExecutions, input, output)
 	output = &WorkflowExecutionInfos{}
 	req.Data = output
 	return
@@ -730,7 +730,7 @@ func (c *SWF) ListWorkflowTypesRequest(input *ListWorkflowTypesInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListWorkflowTypes, input, output)
+	req = c.newRequest(opListWorkflowTypes, input, output)
 	output = &ListWorkflowTypesOutput{}
 	req.Data = output
 	return
@@ -772,7 +772,7 @@ func (c *SWF) PollForActivityTaskRequest(input *PollForActivityTaskInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPollForActivityTask, input, output)
+	req = c.newRequest(opPollForActivityTask, input, output)
 	output = &PollForActivityTaskOutput{}
 	req.Data = output
 	return
@@ -822,7 +822,7 @@ func (c *SWF) PollForDecisionTaskRequest(input *PollForDecisionTaskInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPollForDecisionTask, input, output)
+	req = c.newRequest(opPollForDecisionTask, input, output)
 	output = &PollForDecisionTaskOutput{}
 	req.Data = output
 	return
@@ -880,7 +880,7 @@ func (c *SWF) RecordActivityTaskHeartbeatRequest(input *RecordActivityTaskHeartb
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRecordActivityTaskHeartbeat, input, output)
+	req = c.newRequest(opRecordActivityTaskHeartbeat, input, output)
 	output = &RecordActivityTaskHeartbeatOutput{}
 	req.Data = output
 	return
@@ -941,7 +941,7 @@ func (c *SWF) RegisterActivityTypeRequest(input *RegisterActivityTypeInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRegisterActivityType, input, output)
+	req = c.newRequest(opRegisterActivityType, input, output)
 	output = &RegisterActivityTypeOutput{}
 	req.Data = output
 	return
@@ -987,7 +987,7 @@ func (c *SWF) RegisterDomainRequest(input *RegisterDomainInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRegisterDomain, input, output)
+	req = c.newRequest(opRegisterDomain, input, output)
 	output = &RegisterDomainOutput{}
 	req.Data = output
 	return
@@ -1028,7 +1028,7 @@ func (c *SWF) RegisterWorkflowTypeRequest(input *RegisterWorkflowTypeInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRegisterWorkflowType, input, output)
+	req = c.newRequest(opRegisterWorkflowType, input, output)
 	output = &RegisterWorkflowTypeOutput{}
 	req.Data = output
 	return
@@ -1077,7 +1077,7 @@ func (c *SWF) RequestCancelWorkflowExecutionRequest(input *RequestCancelWorkflow
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRequestCancelWorkflowExecution, input, output)
+	req = c.newRequest(opRequestCancelWorkflowExecution, input, output)
 	output = &RequestCancelWorkflowExecutionOutput{}
 	req.Data = output
 	return
@@ -1125,7 +1125,7 @@ func (c *SWF) RespondActivityTaskCanceledRequest(input *RespondActivityTaskCance
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRespondActivityTaskCanceled, input, output)
+	req = c.newRequest(opRespondActivityTaskCanceled, input, output)
 	output = &RespondActivityTaskCanceledOutput{}
 	req.Data = output
 	return
@@ -1178,7 +1178,7 @@ func (c *SWF) RespondActivityTaskCompletedRequest(input *RespondActivityTaskComp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRespondActivityTaskCompleted, input, output)
+	req = c.newRequest(opRespondActivityTaskCompleted, input, output)
 	output = &RespondActivityTaskCompletedOutput{}
 	req.Data = output
 	return
@@ -1229,7 +1229,7 @@ func (c *SWF) RespondActivityTaskFailedRequest(input *RespondActivityTaskFailedI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRespondActivityTaskFailed, input, output)
+	req = c.newRequest(opRespondActivityTaskFailed, input, output)
 	output = &RespondActivityTaskFailedOutput{}
 	req.Data = output
 	return
@@ -1277,7 +1277,7 @@ func (c *SWF) RespondDecisionTaskCompletedRequest(input *RespondDecisionTaskComp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRespondDecisionTaskCompleted, input, output)
+	req = c.newRequest(opRespondDecisionTaskCompleted, input, output)
 	output = &RespondDecisionTaskCompletedOutput{}
 	req.Data = output
 	return
@@ -1318,7 +1318,7 @@ func (c *SWF) SignalWorkflowExecutionRequest(input *SignalWorkflowExecutionInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSignalWorkflowExecution, input, output)
+	req = c.newRequest(opSignalWorkflowExecution, input, output)
 	output = &SignalWorkflowExecutionOutput{}
 	req.Data = output
 	return
@@ -1364,7 +1364,7 @@ func (c *SWF) StartWorkflowExecutionRequest(input *StartWorkflowExecutionInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opStartWorkflowExecution, input, output)
+	req = c.newRequest(opStartWorkflowExecution, input, output)
 	output = &StartWorkflowExecutionOutput{}
 	req.Data = output
 	return
@@ -1413,7 +1413,7 @@ func (c *SWF) TerminateWorkflowExecutionRequest(input *TerminateWorkflowExecutio
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opTerminateWorkflowExecution, input, output)
+	req = c.newRequest(opTerminateWorkflowExecution, input, output)
 	output = &TerminateWorkflowExecutionOutput{}
 	req.Data = output
 	return

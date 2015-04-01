@@ -19,7 +19,7 @@ func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *aws.Reque
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateTrail, input, output)
+	req = c.newRequest(opCreateTrail, input, output)
 	output = &CreateTrailOutput{}
 	req.Data = output
 	return
@@ -48,7 +48,7 @@ func (c *CloudTrail) DeleteTrailRequest(input *DeleteTrailInput) (req *aws.Reque
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteTrail, input, output)
+	req = c.newRequest(opDeleteTrail, input, output)
 	output = &DeleteTrailOutput{}
 	req.Data = output
 	return
@@ -74,7 +74,7 @@ func (c *CloudTrail) DescribeTrailsRequest(input *DescribeTrailsInput) (req *aws
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeTrails, input, output)
+	req = c.newRequest(opDescribeTrails, input, output)
 	output = &DescribeTrailsOutput{}
 	req.Data = output
 	return
@@ -101,7 +101,7 @@ func (c *CloudTrail) GetTrailStatusRequest(input *GetTrailStatusInput) (req *aws
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetTrailStatus, input, output)
+	req = c.newRequest(opGetTrailStatus, input, output)
 	output = &GetTrailStatusOutput{}
 	req.Data = output
 	return
@@ -129,7 +129,7 @@ func (c *CloudTrail) LookupEventsRequest(input *LookupEventsInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opLookupEvents, input, output)
+	req = c.newRequest(opLookupEvents, input, output)
 	output = &LookupEventsOutput{}
 	req.Data = output
 	return
@@ -168,7 +168,7 @@ func (c *CloudTrail) StartLoggingRequest(input *StartLoggingInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opStartLogging, input, output)
+	req = c.newRequest(opStartLogging, input, output)
 	output = &StartLoggingOutput{}
 	req.Data = output
 	return
@@ -194,7 +194,7 @@ func (c *CloudTrail) StopLoggingRequest(input *StopLoggingInput) (req *aws.Reque
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opStopLogging, input, output)
+	req = c.newRequest(opStopLogging, input, output)
 	output = &StopLoggingOutput{}
 	req.Data = output
 	return
@@ -223,7 +223,7 @@ func (c *CloudTrail) UpdateTrailRequest(input *UpdateTrailInput) (req *aws.Reque
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateTrail, input, output)
+	req = c.newRequest(opUpdateTrail, input, output)
 	output = &UpdateTrailOutput{}
 	req.Data = output
 	return

@@ -19,7 +19,7 @@ func (c *CognitoIdentity) CreateIdentityPoolRequest(input *CreateIdentityPoolInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateIdentityPool, input, output)
+	req = c.newRequest(opCreateIdentityPool, input, output)
 	output = &IdentityPool{}
 	req.Data = output
 	return
@@ -47,7 +47,7 @@ func (c *CognitoIdentity) DeleteIdentityPoolRequest(input *DeleteIdentityPoolInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteIdentityPool, input, output)
+	req = c.newRequest(opDeleteIdentityPool, input, output)
 	output = &DeleteIdentityPoolOutput{}
 	req.Data = output
 	return
@@ -74,7 +74,7 @@ func (c *CognitoIdentity) DescribeIdentityRequest(input *DescribeIdentityInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeIdentity, input, output)
+	req = c.newRequest(opDescribeIdentity, input, output)
 	output = &IdentityDescription{}
 	req.Data = output
 	return
@@ -101,7 +101,7 @@ func (c *CognitoIdentity) DescribeIdentityPoolRequest(input *DescribeIdentityPoo
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeIdentityPool, input, output)
+	req = c.newRequest(opDescribeIdentityPool, input, output)
 	output = &IdentityPool{}
 	req.Data = output
 	return
@@ -128,7 +128,7 @@ func (c *CognitoIdentity) GetCredentialsForIdentityRequest(input *GetCredentials
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetCredentialsForIdentity, input, output)
+	req = c.newRequest(opGetCredentialsForIdentity, input, output)
 	output = &GetCredentialsForIdentityOutput{}
 	req.Data = output
 	return
@@ -157,7 +157,7 @@ func (c *CognitoIdentity) GetIDRequest(input *GetIDInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetID, input, output)
+	req = c.newRequest(opGetID, input, output)
 	output = &GetIDOutput{}
 	req.Data = output
 	return
@@ -184,7 +184,7 @@ func (c *CognitoIdentity) GetIdentityPoolRolesRequest(input *GetIdentityPoolRole
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetIdentityPoolRoles, input, output)
+	req = c.newRequest(opGetIdentityPoolRoles, input, output)
 	output = &GetIdentityPoolRolesOutput{}
 	req.Data = output
 	return
@@ -210,7 +210,7 @@ func (c *CognitoIdentity) GetOpenIDTokenRequest(input *GetOpenIDTokenInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetOpenIDToken, input, output)
+	req = c.newRequest(opGetOpenIDToken, input, output)
 	output = &GetOpenIDTokenOutput{}
 	req.Data = output
 	return
@@ -240,7 +240,7 @@ func (c *CognitoIdentity) GetOpenIDTokenForDeveloperIdentityRequest(input *GetOp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetOpenIDTokenForDeveloperIdentity, input, output)
+	req = c.newRequest(opGetOpenIDTokenForDeveloperIdentity, input, output)
 	output = &GetOpenIDTokenForDeveloperIdentityOutput{}
 	req.Data = output
 	return
@@ -279,7 +279,7 @@ func (c *CognitoIdentity) ListIdentitiesRequest(input *ListIdentitiesInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListIdentities, input, output)
+	req = c.newRequest(opListIdentities, input, output)
 	output = &ListIdentitiesOutput{}
 	req.Data = output
 	return
@@ -305,7 +305,7 @@ func (c *CognitoIdentity) ListIdentityPoolsRequest(input *ListIdentityPoolsInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListIdentityPools, input, output)
+	req = c.newRequest(opListIdentityPools, input, output)
 	output = &ListIdentityPoolsOutput{}
 	req.Data = output
 	return
@@ -331,7 +331,7 @@ func (c *CognitoIdentity) LookupDeveloperIdentityRequest(input *LookupDeveloperI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opLookupDeveloperIdentity, input, output)
+	req = c.newRequest(opLookupDeveloperIdentity, input, output)
 	output = &LookupDeveloperIdentityOutput{}
 	req.Data = output
 	return
@@ -364,7 +364,7 @@ func (c *CognitoIdentity) MergeDeveloperIdentitiesRequest(input *MergeDeveloperI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opMergeDeveloperIdentities, input, output)
+	req = c.newRequest(opMergeDeveloperIdentities, input, output)
 	output = &MergeDeveloperIdentitiesOutput{}
 	req.Data = output
 	return
@@ -396,7 +396,7 @@ func (c *CognitoIdentity) SetIdentityPoolRolesRequest(input *SetIdentityPoolRole
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetIdentityPoolRoles, input, output)
+	req = c.newRequest(opSetIdentityPoolRoles, input, output)
 	output = &SetIdentityPoolRolesOutput{}
 	req.Data = output
 	return
@@ -423,7 +423,7 @@ func (c *CognitoIdentity) UnlinkDeveloperIdentityRequest(input *UnlinkDeveloperI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUnlinkDeveloperIdentity, input, output)
+	req = c.newRequest(opUnlinkDeveloperIdentity, input, output)
 	output = &UnlinkDeveloperIdentityOutput{}
 	req.Data = output
 	return
@@ -452,7 +452,7 @@ func (c *CognitoIdentity) UnlinkIdentityRequest(input *UnlinkIdentityInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUnlinkIdentity, input, output)
+	req = c.newRequest(opUnlinkIdentity, input, output)
 	output = &UnlinkIdentityOutput{}
 	req.Data = output
 	return
@@ -480,7 +480,7 @@ func (c *CognitoIdentity) UpdateIdentityPoolRequest(input *IdentityPool) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateIdentityPool, input, output)
+	req = c.newRequest(opUpdateIdentityPool, input, output)
 	output = &IdentityPool{}
 	req.Data = output
 	return

@@ -19,7 +19,7 @@ func (c *ElastiCache) AddTagsToResourceRequest(input *AddTagsToResourceInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddTagsToResource, input, output)
+	req = c.newRequest(opAddTagsToResource, input, output)
 	output = &TagListMessage{}
 	req.Data = output
 	return
@@ -55,7 +55,7 @@ func (c *ElastiCache) AuthorizeCacheSecurityGroupIngressRequest(input *Authorize
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAuthorizeCacheSecurityGroupIngress, input, output)
+	req = c.newRequest(opAuthorizeCacheSecurityGroupIngress, input, output)
 	output = &AuthorizeCacheSecurityGroupIngressOutput{}
 	req.Data = output
 	return
@@ -86,7 +86,7 @@ func (c *ElastiCache) CopySnapshotRequest(input *CopySnapshotInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCopySnapshot, input, output)
+	req = c.newRequest(opCopySnapshot, input, output)
 	output = &CopySnapshotOutput{}
 	req.Data = output
 	return
@@ -112,7 +112,7 @@ func (c *ElastiCache) CreateCacheClusterRequest(input *CreateCacheClusterInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateCacheCluster, input, output)
+	req = c.newRequest(opCreateCacheCluster, input, output)
 	output = &CreateCacheClusterOutput{}
 	req.Data = output
 	return
@@ -140,7 +140,7 @@ func (c *ElastiCache) CreateCacheParameterGroupRequest(input *CreateCacheParamet
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateCacheParameterGroup, input, output)
+	req = c.newRequest(opCreateCacheParameterGroup, input, output)
 	output = &CreateCacheParameterGroupOutput{}
 	req.Data = output
 	return
@@ -168,7 +168,7 @@ func (c *ElastiCache) CreateCacheSecurityGroupRequest(input *CreateCacheSecurity
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateCacheSecurityGroup, input, output)
+	req = c.newRequest(opCreateCacheSecurityGroup, input, output)
 	output = &CreateCacheSecurityGroupOutput{}
 	req.Data = output
 	return
@@ -200,7 +200,7 @@ func (c *ElastiCache) CreateCacheSubnetGroupRequest(input *CreateCacheSubnetGrou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateCacheSubnetGroup, input, output)
+	req = c.newRequest(opCreateCacheSubnetGroup, input, output)
 	output = &CreateCacheSubnetGroupOutput{}
 	req.Data = output
 	return
@@ -229,7 +229,7 @@ func (c *ElastiCache) CreateReplicationGroupRequest(input *CreateReplicationGrou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateReplicationGroup, input, output)
+	req = c.newRequest(opCreateReplicationGroup, input, output)
 	output = &CreateReplicationGroupOutput{}
 	req.Data = output
 	return
@@ -265,7 +265,7 @@ func (c *ElastiCache) CreateSnapshotRequest(input *CreateSnapshotInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateSnapshot, input, output)
+	req = c.newRequest(opCreateSnapshot, input, output)
 	output = &CreateSnapshotOutput{}
 	req.Data = output
 	return
@@ -292,7 +292,7 @@ func (c *ElastiCache) DeleteCacheClusterRequest(input *DeleteCacheClusterInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteCacheCluster, input, output)
+	req = c.newRequest(opDeleteCacheCluster, input, output)
 	output = &DeleteCacheClusterOutput{}
 	req.Data = output
 	return
@@ -325,7 +325,7 @@ func (c *ElastiCache) DeleteCacheParameterGroupRequest(input *DeleteCacheParamet
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteCacheParameterGroup, input, output)
+	req = c.newRequest(opDeleteCacheParameterGroup, input, output)
 	output = &DeleteCacheParameterGroupOutput{}
 	req.Data = output
 	return
@@ -353,7 +353,7 @@ func (c *ElastiCache) DeleteCacheSecurityGroupRequest(input *DeleteCacheSecurity
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteCacheSecurityGroup, input, output)
+	req = c.newRequest(opDeleteCacheSecurityGroup, input, output)
 	output = &DeleteCacheSecurityGroupOutput{}
 	req.Data = output
 	return
@@ -382,7 +382,7 @@ func (c *ElastiCache) DeleteCacheSubnetGroupRequest(input *DeleteCacheSubnetGrou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteCacheSubnetGroup, input, output)
+	req = c.newRequest(opDeleteCacheSubnetGroup, input, output)
 	output = &DeleteCacheSubnetGroupOutput{}
 	req.Data = output
 	return
@@ -411,7 +411,7 @@ func (c *ElastiCache) DeleteReplicationGroupRequest(input *DeleteReplicationGrou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteReplicationGroup, input, output)
+	req = c.newRequest(opDeleteReplicationGroup, input, output)
 	output = &DeleteReplicationGroupOutput{}
 	req.Data = output
 	return
@@ -444,7 +444,7 @@ func (c *ElastiCache) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteSnapshot, input, output)
+	req = c.newRequest(opDeleteSnapshot, input, output)
 	output = &DeleteSnapshotOutput{}
 	req.Data = output
 	return
@@ -472,7 +472,7 @@ func (c *ElastiCache) DescribeCacheClustersRequest(input *DescribeCacheClustersI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeCacheClusters, input, output)
+	req = c.newRequest(opDescribeCacheClusters, input, output)
 	output = &DescribeCacheClustersOutput{}
 	req.Data = output
 	return
@@ -519,7 +519,7 @@ func (c *ElastiCache) DescribeCacheEngineVersionsRequest(input *DescribeCacheEng
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeCacheEngineVersions, input, output)
+	req = c.newRequest(opDescribeCacheEngineVersions, input, output)
 	output = &DescribeCacheEngineVersionsOutput{}
 	req.Data = output
 	return
@@ -546,7 +546,7 @@ func (c *ElastiCache) DescribeCacheParameterGroupsRequest(input *DescribeCachePa
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeCacheParameterGroups, input, output)
+	req = c.newRequest(opDescribeCacheParameterGroups, input, output)
 	output = &DescribeCacheParameterGroupsOutput{}
 	req.Data = output
 	return
@@ -574,7 +574,7 @@ func (c *ElastiCache) DescribeCacheParametersRequest(input *DescribeCacheParamet
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeCacheParameters, input, output)
+	req = c.newRequest(opDescribeCacheParameters, input, output)
 	output = &DescribeCacheParametersOutput{}
 	req.Data = output
 	return
@@ -601,7 +601,7 @@ func (c *ElastiCache) DescribeCacheSecurityGroupsRequest(input *DescribeCacheSec
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeCacheSecurityGroups, input, output)
+	req = c.newRequest(opDescribeCacheSecurityGroups, input, output)
 	output = &DescribeCacheSecurityGroupsOutput{}
 	req.Data = output
 	return
@@ -629,7 +629,7 @@ func (c *ElastiCache) DescribeCacheSubnetGroupsRequest(input *DescribeCacheSubne
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeCacheSubnetGroups, input, output)
+	req = c.newRequest(opDescribeCacheSubnetGroups, input, output)
 	output = &DescribeCacheSubnetGroupsOutput{}
 	req.Data = output
 	return
@@ -657,7 +657,7 @@ func (c *ElastiCache) DescribeEngineDefaultParametersRequest(input *DescribeEngi
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeEngineDefaultParameters, input, output)
+	req = c.newRequest(opDescribeEngineDefaultParameters, input, output)
 	output = &DescribeEngineDefaultParametersOutput{}
 	req.Data = output
 	return
@@ -684,7 +684,7 @@ func (c *ElastiCache) DescribeEventsRequest(input *DescribeEventsInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeEvents, input, output)
+	req = c.newRequest(opDescribeEvents, input, output)
 	output = &DescribeEventsOutput{}
 	req.Data = output
 	return
@@ -716,7 +716,7 @@ func (c *ElastiCache) DescribeReplicationGroupsRequest(input *DescribeReplicatio
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeReplicationGroups, input, output)
+	req = c.newRequest(opDescribeReplicationGroups, input, output)
 	output = &DescribeReplicationGroupsOutput{}
 	req.Data = output
 	return
@@ -744,7 +744,7 @@ func (c *ElastiCache) DescribeReservedCacheNodesRequest(input *DescribeReservedC
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeReservedCacheNodes, input, output)
+	req = c.newRequest(opDescribeReservedCacheNodes, input, output)
 	output = &DescribeReservedCacheNodesOutput{}
 	req.Data = output
 	return
@@ -771,7 +771,7 @@ func (c *ElastiCache) DescribeReservedCacheNodesOfferingsRequest(input *Describe
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeReservedCacheNodesOfferings, input, output)
+	req = c.newRequest(opDescribeReservedCacheNodesOfferings, input, output)
 	output = &DescribeReservedCacheNodesOfferingsOutput{}
 	req.Data = output
 	return
@@ -798,7 +798,7 @@ func (c *ElastiCache) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeSnapshots, input, output)
+	req = c.newRequest(opDescribeSnapshots, input, output)
 	output = &DescribeSnapshotsOutput{}
 	req.Data = output
 	return
@@ -827,7 +827,7 @@ func (c *ElastiCache) ListTagsForResourceRequest(input *ListTagsForResourceInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListTagsForResource, input, output)
+	req = c.newRequest(opListTagsForResource, input, output)
 	output = &TagListMessage{}
 	req.Data = output
 	return
@@ -860,7 +860,7 @@ func (c *ElastiCache) ModifyCacheClusterRequest(input *ModifyCacheClusterInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyCacheCluster, input, output)
+	req = c.newRequest(opModifyCacheCluster, input, output)
 	output = &ModifyCacheClusterOutput{}
 	req.Data = output
 	return
@@ -888,7 +888,7 @@ func (c *ElastiCache) ModifyCacheParameterGroupRequest(input *ModifyCacheParamet
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyCacheParameterGroup, input, output)
+	req = c.newRequest(opModifyCacheParameterGroup, input, output)
 	output = &CacheParameterGroupNameMessage{}
 	req.Data = output
 	return
@@ -916,7 +916,7 @@ func (c *ElastiCache) ModifyCacheSubnetGroupRequest(input *ModifyCacheSubnetGrou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyCacheSubnetGroup, input, output)
+	req = c.newRequest(opModifyCacheSubnetGroup, input, output)
 	output = &ModifyCacheSubnetGroupOutput{}
 	req.Data = output
 	return
@@ -942,7 +942,7 @@ func (c *ElastiCache) ModifyReplicationGroupRequest(input *ModifyReplicationGrou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyReplicationGroup, input, output)
+	req = c.newRequest(opModifyReplicationGroup, input, output)
 	output = &ModifyReplicationGroupOutput{}
 	req.Data = output
 	return
@@ -969,7 +969,7 @@ func (c *ElastiCache) PurchaseReservedCacheNodesOfferingRequest(input *PurchaseR
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPurchaseReservedCacheNodesOffering, input, output)
+	req = c.newRequest(opPurchaseReservedCacheNodesOffering, input, output)
 	output = &PurchaseReservedCacheNodesOfferingOutput{}
 	req.Data = output
 	return
@@ -996,7 +996,7 @@ func (c *ElastiCache) RebootCacheClusterRequest(input *RebootCacheClusterInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRebootCacheCluster, input, output)
+	req = c.newRequest(opRebootCacheCluster, input, output)
 	output = &RebootCacheClusterOutput{}
 	req.Data = output
 	return
@@ -1031,7 +1031,7 @@ func (c *ElastiCache) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourc
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRemoveTagsFromResource, input, output)
+	req = c.newRequest(opRemoveTagsFromResource, input, output)
 	output = &TagListMessage{}
 	req.Data = output
 	return
@@ -1058,7 +1058,7 @@ func (c *ElastiCache) ResetCacheParameterGroupRequest(input *ResetCacheParameter
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opResetCacheParameterGroup, input, output)
+	req = c.newRequest(opResetCacheParameterGroup, input, output)
 	output = &CacheParameterGroupNameMessage{}
 	req.Data = output
 	return
@@ -1087,7 +1087,7 @@ func (c *ElastiCache) RevokeCacheSecurityGroupIngressRequest(input *RevokeCacheS
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRevokeCacheSecurityGroupIngress, input, output)
+	req = c.newRequest(opRevokeCacheSecurityGroupIngress, input, output)
 	output = &RevokeCacheSecurityGroupIngressOutput{}
 	req.Data = output
 	return

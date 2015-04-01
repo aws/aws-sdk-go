@@ -17,7 +17,7 @@ func (c *OpsWorks) AssignInstanceRequest(input *AssignInstanceInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAssignInstance, input, output)
+	req = c.newRequest(opAssignInstance, input, output)
 	output = &AssignInstanceOutput{}
 	req.Data = output
 	return
@@ -49,7 +49,7 @@ func (c *OpsWorks) AssignVolumeRequest(input *AssignVolumeInput) (req *aws.Reque
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAssignVolume, input, output)
+	req = c.newRequest(opAssignVolume, input, output)
 	output = &AssignVolumeOutput{}
 	req.Data = output
 	return
@@ -82,7 +82,7 @@ func (c *OpsWorks) AssociateElasticIPRequest(input *AssociateElasticIPInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAssociateElasticIP, input, output)
+	req = c.newRequest(opAssociateElasticIP, input, output)
 	output = &AssociateElasticIPOutput{}
 	req.Data = output
 	return
@@ -115,7 +115,7 @@ func (c *OpsWorks) AttachElasticLoadBalancerRequest(input *AttachElasticLoadBala
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAttachElasticLoadBalancer, input, output)
+	req = c.newRequest(opAttachElasticLoadBalancer, input, output)
 	output = &AttachElasticLoadBalancerOutput{}
 	req.Data = output
 	return
@@ -151,7 +151,7 @@ func (c *OpsWorks) CloneStackRequest(input *CloneStackInput) (req *aws.Request, 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCloneStack, input, output)
+	req = c.newRequest(opCloneStack, input, output)
 	output = &CloneStackOutput{}
 	req.Data = output
 	return
@@ -182,7 +182,7 @@ func (c *OpsWorks) CreateAppRequest(input *CreateAppInput) (req *aws.Request, ou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateApp, input, output)
+	req = c.newRequest(opCreateApp, input, output)
 	output = &CreateAppOutput{}
 	req.Data = output
 	return
@@ -214,7 +214,7 @@ func (c *OpsWorks) CreateDeploymentRequest(input *CreateDeploymentInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateDeployment, input, output)
+	req = c.newRequest(opCreateDeployment, input, output)
 	output = &CreateDeploymentOutput{}
 	req.Data = output
 	return
@@ -247,7 +247,7 @@ func (c *OpsWorks) CreateInstanceRequest(input *CreateInstanceInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateInstance, input, output)
+	req = c.newRequest(opCreateInstance, input, output)
 	output = &CreateInstanceOutput{}
 	req.Data = output
 	return
@@ -279,7 +279,7 @@ func (c *OpsWorks) CreateLayerRequest(input *CreateLayerInput) (req *aws.Request
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateLayer, input, output)
+	req = c.newRequest(opCreateLayer, input, output)
 	output = &CreateLayerOutput{}
 	req.Data = output
 	return
@@ -317,7 +317,7 @@ func (c *OpsWorks) CreateStackRequest(input *CreateStackInput) (req *aws.Request
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateStack, input, output)
+	req = c.newRequest(opCreateStack, input, output)
 	output = &CreateStackOutput{}
 	req.Data = output
 	return
@@ -347,7 +347,7 @@ func (c *OpsWorks) CreateUserProfileRequest(input *CreateUserProfileInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateUserProfile, input, output)
+	req = c.newRequest(opCreateUserProfile, input, output)
 	output = &CreateUserProfileOutput{}
 	req.Data = output
 	return
@@ -377,7 +377,7 @@ func (c *OpsWorks) DeleteAppRequest(input *DeleteAppInput) (req *aws.Request, ou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteApp, input, output)
+	req = c.newRequest(opDeleteApp, input, output)
 	output = &DeleteAppOutput{}
 	req.Data = output
 	return
@@ -408,7 +408,7 @@ func (c *OpsWorks) DeleteInstanceRequest(input *DeleteInstanceInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteInstance, input, output)
+	req = c.newRequest(opDeleteInstance, input, output)
 	output = &DeleteInstanceOutput{}
 	req.Data = output
 	return
@@ -442,7 +442,7 @@ func (c *OpsWorks) DeleteLayerRequest(input *DeleteLayerInput) (req *aws.Request
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteLayer, input, output)
+	req = c.newRequest(opDeleteLayer, input, output)
 	output = &DeleteLayerOutput{}
 	req.Data = output
 	return
@@ -475,7 +475,7 @@ func (c *OpsWorks) DeleteStackRequest(input *DeleteStackInput) (req *aws.Request
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteStack, input, output)
+	req = c.newRequest(opDeleteStack, input, output)
 	output = &DeleteStackOutput{}
 	req.Data = output
 	return
@@ -508,7 +508,7 @@ func (c *OpsWorks) DeleteUserProfileRequest(input *DeleteUserProfileInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteUserProfile, input, output)
+	req = c.newRequest(opDeleteUserProfile, input, output)
 	output = &DeleteUserProfileOutput{}
 	req.Data = output
 	return
@@ -538,7 +538,7 @@ func (c *OpsWorks) DeregisterElasticIPRequest(input *DeregisterElasticIPInput) (
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeregisterElasticIP, input, output)
+	req = c.newRequest(opDeregisterElasticIP, input, output)
 	output = &DeregisterElasticIPOutput{}
 	req.Data = output
 	return
@@ -570,7 +570,7 @@ func (c *OpsWorks) DeregisterInstanceRequest(input *DeregisterInstanceInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeregisterInstance, input, output)
+	req = c.newRequest(opDeregisterInstance, input, output)
 	output = &DeregisterInstanceOutput{}
 	req.Data = output
 	return
@@ -603,7 +603,7 @@ func (c *OpsWorks) DeregisterRDSDBInstanceRequest(input *DeregisterRDSDBInstance
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeregisterRDSDBInstance, input, output)
+	req = c.newRequest(opDeregisterRDSDBInstance, input, output)
 	output = &DeregisterRDSDBInstanceOutput{}
 	req.Data = output
 	return
@@ -634,7 +634,7 @@ func (c *OpsWorks) DeregisterVolumeRequest(input *DeregisterVolumeInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeregisterVolume, input, output)
+	req = c.newRequest(opDeregisterVolume, input, output)
 	output = &DeregisterVolumeOutput{}
 	req.Data = output
 	return
@@ -666,7 +666,7 @@ func (c *OpsWorks) DescribeAppsRequest(input *DescribeAppsInput) (req *aws.Reque
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeApps, input, output)
+	req = c.newRequest(opDescribeApps, input, output)
 	output = &DescribeAppsOutput{}
 	req.Data = output
 	return
@@ -699,7 +699,7 @@ func (c *OpsWorks) DescribeCommandsRequest(input *DescribeCommandsInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeCommands, input, output)
+	req = c.newRequest(opDescribeCommands, input, output)
 	output = &DescribeCommandsOutput{}
 	req.Data = output
 	return
@@ -732,7 +732,7 @@ func (c *OpsWorks) DescribeDeploymentsRequest(input *DescribeDeploymentsInput) (
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeDeployments, input, output)
+	req = c.newRequest(opDescribeDeployments, input, output)
 	output = &DescribeDeploymentsOutput{}
 	req.Data = output
 	return
@@ -765,7 +765,7 @@ func (c *OpsWorks) DescribeElasticIPsRequest(input *DescribeElasticIPsInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeElasticIPs, input, output)
+	req = c.newRequest(opDescribeElasticIPs, input, output)
 	output = &DescribeElasticIPsOutput{}
 	req.Data = output
 	return
@@ -798,7 +798,7 @@ func (c *OpsWorks) DescribeElasticLoadBalancersRequest(input *DescribeElasticLoa
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeElasticLoadBalancers, input, output)
+	req = c.newRequest(opDescribeElasticLoadBalancers, input, output)
 	output = &DescribeElasticLoadBalancersOutput{}
 	req.Data = output
 	return
@@ -831,7 +831,7 @@ func (c *OpsWorks) DescribeInstancesRequest(input *DescribeInstancesInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeInstances, input, output)
+	req = c.newRequest(opDescribeInstances, input, output)
 	output = &DescribeInstancesOutput{}
 	req.Data = output
 	return
@@ -864,7 +864,7 @@ func (c *OpsWorks) DescribeLayersRequest(input *DescribeLayersInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeLayers, input, output)
+	req = c.newRequest(opDescribeLayers, input, output)
 	output = &DescribeLayersOutput{}
 	req.Data = output
 	return
@@ -897,7 +897,7 @@ func (c *OpsWorks) DescribeLoadBasedAutoScalingRequest(input *DescribeLoadBasedA
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeLoadBasedAutoScaling, input, output)
+	req = c.newRequest(opDescribeLoadBasedAutoScaling, input, output)
 	output = &DescribeLoadBasedAutoScalingOutput{}
 	req.Data = output
 	return
@@ -930,7 +930,7 @@ func (c *OpsWorks) DescribeMyUserProfileRequest(input *DescribeMyUserProfileInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeMyUserProfile, input, output)
+	req = c.newRequest(opDescribeMyUserProfile, input, output)
 	output = &DescribeMyUserProfileOutput{}
 	req.Data = output
 	return
@@ -960,7 +960,7 @@ func (c *OpsWorks) DescribePermissionsRequest(input *DescribePermissionsInput) (
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribePermissions, input, output)
+	req = c.newRequest(opDescribePermissions, input, output)
 	output = &DescribePermissionsOutput{}
 	req.Data = output
 	return
@@ -991,7 +991,7 @@ func (c *OpsWorks) DescribeRAIDArraysRequest(input *DescribeRAIDArraysInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeRAIDArrays, input, output)
+	req = c.newRequest(opDescribeRAIDArrays, input, output)
 	output = &DescribeRAIDArraysOutput{}
 	req.Data = output
 	return
@@ -1024,7 +1024,7 @@ func (c *OpsWorks) DescribeRDSDBInstancesRequest(input *DescribeRDSDBInstancesIn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeRDSDBInstances, input, output)
+	req = c.newRequest(opDescribeRDSDBInstances, input, output)
 	output = &DescribeRDSDBInstancesOutput{}
 	req.Data = output
 	return
@@ -1055,7 +1055,7 @@ func (c *OpsWorks) DescribeServiceErrorsRequest(input *DescribeServiceErrorsInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeServiceErrors, input, output)
+	req = c.newRequest(opDescribeServiceErrors, input, output)
 	output = &DescribeServiceErrorsOutput{}
 	req.Data = output
 	return
@@ -1086,7 +1086,7 @@ func (c *OpsWorks) DescribeStackProvisioningParametersRequest(input *DescribeSta
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeStackProvisioningParameters, input, output)
+	req = c.newRequest(opDescribeStackProvisioningParameters, input, output)
 	output = &DescribeStackProvisioningParametersOutput{}
 	req.Data = output
 	return
@@ -1117,7 +1117,7 @@ func (c *OpsWorks) DescribeStackSummaryRequest(input *DescribeStackSummaryInput)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeStackSummary, input, output)
+	req = c.newRequest(opDescribeStackSummary, input, output)
 	output = &DescribeStackSummaryOutput{}
 	req.Data = output
 	return
@@ -1149,7 +1149,7 @@ func (c *OpsWorks) DescribeStacksRequest(input *DescribeStacksInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeStacks, input, output)
+	req = c.newRequest(opDescribeStacks, input, output)
 	output = &DescribeStacksOutput{}
 	req.Data = output
 	return
@@ -1180,7 +1180,7 @@ func (c *OpsWorks) DescribeTimeBasedAutoScalingRequest(input *DescribeTimeBasedA
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeTimeBasedAutoScaling, input, output)
+	req = c.newRequest(opDescribeTimeBasedAutoScaling, input, output)
 	output = &DescribeTimeBasedAutoScalingOutput{}
 	req.Data = output
 	return
@@ -1213,7 +1213,7 @@ func (c *OpsWorks) DescribeUserProfilesRequest(input *DescribeUserProfilesInput)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeUserProfiles, input, output)
+	req = c.newRequest(opDescribeUserProfiles, input, output)
 	output = &DescribeUserProfilesOutput{}
 	req.Data = output
 	return
@@ -1243,7 +1243,7 @@ func (c *OpsWorks) DescribeVolumesRequest(input *DescribeVolumesInput) (req *aws
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeVolumes, input, output)
+	req = c.newRequest(opDescribeVolumes, input, output)
 	output = &DescribeVolumesOutput{}
 	req.Data = output
 	return
@@ -1276,7 +1276,7 @@ func (c *OpsWorks) DetachElasticLoadBalancerRequest(input *DetachElasticLoadBala
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDetachElasticLoadBalancer, input, output)
+	req = c.newRequest(opDetachElasticLoadBalancer, input, output)
 	output = &DetachElasticLoadBalancerOutput{}
 	req.Data = output
 	return
@@ -1307,7 +1307,7 @@ func (c *OpsWorks) DisassociateElasticIPRequest(input *DisassociateElasticIPInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDisassociateElasticIP, input, output)
+	req = c.newRequest(opDisassociateElasticIP, input, output)
 	output = &DisassociateElasticIPOutput{}
 	req.Data = output
 	return
@@ -1340,7 +1340,7 @@ func (c *OpsWorks) GetHostnameSuggestionRequest(input *GetHostnameSuggestionInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetHostnameSuggestion, input, output)
+	req = c.newRequest(opGetHostnameSuggestion, input, output)
 	output = &GetHostnameSuggestionOutput{}
 	req.Data = output
 	return
@@ -1372,7 +1372,7 @@ func (c *OpsWorks) RebootInstanceRequest(input *RebootInstanceInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRebootInstance, input, output)
+	req = c.newRequest(opRebootInstance, input, output)
 	output = &RebootInstanceOutput{}
 	req.Data = output
 	return
@@ -1404,7 +1404,7 @@ func (c *OpsWorks) RegisterElasticIPRequest(input *RegisterElasticIPInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRegisterElasticIP, input, output)
+	req = c.newRequest(opRegisterElasticIP, input, output)
 	output = &RegisterElasticIPOutput{}
 	req.Data = output
 	return
@@ -1438,7 +1438,7 @@ func (c *OpsWorks) RegisterInstanceRequest(input *RegisterInstanceInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRegisterInstance, input, output)
+	req = c.newRequest(opRegisterInstance, input, output)
 	output = &RegisterInstanceOutput{}
 	req.Data = output
 	return
@@ -1474,7 +1474,7 @@ func (c *OpsWorks) RegisterRDSDBInstanceRequest(input *RegisterRDSDBInstanceInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRegisterRDSDBInstance, input, output)
+	req = c.newRequest(opRegisterRDSDBInstance, input, output)
 	output = &RegisterRDSDBInstanceOutput{}
 	req.Data = output
 	return
@@ -1505,7 +1505,7 @@ func (c *OpsWorks) RegisterVolumeRequest(input *RegisterVolumeInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRegisterVolume, input, output)
+	req = c.newRequest(opRegisterVolume, input, output)
 	output = &RegisterVolumeOutput{}
 	req.Data = output
 	return
@@ -1539,7 +1539,7 @@ func (c *OpsWorks) SetLoadBasedAutoScalingRequest(input *SetLoadBasedAutoScaling
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetLoadBasedAutoScaling, input, output)
+	req = c.newRequest(opSetLoadBasedAutoScaling, input, output)
 	output = &SetLoadBasedAutoScalingOutput{}
 	req.Data = output
 	return
@@ -1577,7 +1577,7 @@ func (c *OpsWorks) SetPermissionRequest(input *SetPermissionInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetPermission, input, output)
+	req = c.newRequest(opSetPermission, input, output)
 	output = &SetPermissionOutput{}
 	req.Data = output
 	return
@@ -1609,7 +1609,7 @@ func (c *OpsWorks) SetTimeBasedAutoScalingRequest(input *SetTimeBasedAutoScaling
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetTimeBasedAutoScaling, input, output)
+	req = c.newRequest(opSetTimeBasedAutoScaling, input, output)
 	output = &SetTimeBasedAutoScalingOutput{}
 	req.Data = output
 	return
@@ -1642,7 +1642,7 @@ func (c *OpsWorks) StartInstanceRequest(input *StartInstanceInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opStartInstance, input, output)
+	req = c.newRequest(opStartInstance, input, output)
 	output = &StartInstanceOutput{}
 	req.Data = output
 	return
@@ -1674,7 +1674,7 @@ func (c *OpsWorks) StartStackRequest(input *StartStackInput) (req *aws.Request, 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opStartStack, input, output)
+	req = c.newRequest(opStartStack, input, output)
 	output = &StartStackOutput{}
 	req.Data = output
 	return
@@ -1705,7 +1705,7 @@ func (c *OpsWorks) StopInstanceRequest(input *StopInstanceInput) (req *aws.Reque
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opStopInstance, input, output)
+	req = c.newRequest(opStopInstance, input, output)
 	output = &StopInstanceOutput{}
 	req.Data = output
 	return
@@ -1739,7 +1739,7 @@ func (c *OpsWorks) StopStackRequest(input *StopStackInput) (req *aws.Request, ou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opStopStack, input, output)
+	req = c.newRequest(opStopStack, input, output)
 	output = &StopStackOutput{}
 	req.Data = output
 	return
@@ -1770,7 +1770,7 @@ func (c *OpsWorks) UnassignInstanceRequest(input *UnassignInstanceInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUnassignInstance, input, output)
+	req = c.newRequest(opUnassignInstance, input, output)
 	output = &UnassignInstanceOutput{}
 	req.Data = output
 	return
@@ -1804,7 +1804,7 @@ func (c *OpsWorks) UnassignVolumeRequest(input *UnassignVolumeInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUnassignVolume, input, output)
+	req = c.newRequest(opUnassignVolume, input, output)
 	output = &UnassignVolumeOutput{}
 	req.Data = output
 	return
@@ -1836,7 +1836,7 @@ func (c *OpsWorks) UpdateAppRequest(input *UpdateAppInput) (req *aws.Request, ou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateApp, input, output)
+	req = c.newRequest(opUpdateApp, input, output)
 	output = &UpdateAppOutput{}
 	req.Data = output
 	return
@@ -1867,7 +1867,7 @@ func (c *OpsWorks) UpdateElasticIPRequest(input *UpdateElasticIPInput) (req *aws
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateElasticIP, input, output)
+	req = c.newRequest(opUpdateElasticIP, input, output)
 	output = &UpdateElasticIPOutput{}
 	req.Data = output
 	return
@@ -1899,7 +1899,7 @@ func (c *OpsWorks) UpdateInstanceRequest(input *UpdateInstanceInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateInstance, input, output)
+	req = c.newRequest(opUpdateInstance, input, output)
 	output = &UpdateInstanceOutput{}
 	req.Data = output
 	return
@@ -1930,7 +1930,7 @@ func (c *OpsWorks) UpdateLayerRequest(input *UpdateLayerInput) (req *aws.Request
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateLayer, input, output)
+	req = c.newRequest(opUpdateLayer, input, output)
 	output = &UpdateLayerOutput{}
 	req.Data = output
 	return
@@ -1961,7 +1961,7 @@ func (c *OpsWorks) UpdateMyUserProfileRequest(input *UpdateMyUserProfileInput) (
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateMyUserProfile, input, output)
+	req = c.newRequest(opUpdateMyUserProfile, input, output)
 	output = &UpdateMyUserProfileOutput{}
 	req.Data = output
 	return
@@ -1991,7 +1991,7 @@ func (c *OpsWorks) UpdateRDSDBInstanceRequest(input *UpdateRDSDBInstanceInput) (
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateRDSDBInstance, input, output)
+	req = c.newRequest(opUpdateRDSDBInstance, input, output)
 	output = &UpdateRDSDBInstanceOutput{}
 	req.Data = output
 	return
@@ -2022,7 +2022,7 @@ func (c *OpsWorks) UpdateStackRequest(input *UpdateStackInput) (req *aws.Request
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateStack, input, output)
+	req = c.newRequest(opUpdateStack, input, output)
 	output = &UpdateStackOutput{}
 	req.Data = output
 	return
@@ -2053,7 +2053,7 @@ func (c *OpsWorks) UpdateUserProfileRequest(input *UpdateUserProfileInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateUserProfile, input, output)
+	req = c.newRequest(opUpdateUserProfile, input, output)
 	output = &UpdateUserProfileOutput{}
 	req.Data = output
 	return
@@ -2083,7 +2083,7 @@ func (c *OpsWorks) UpdateVolumeRequest(input *UpdateVolumeInput) (req *aws.Reque
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateVolume, input, output)
+	req = c.newRequest(opUpdateVolume, input, output)
 	output = &UpdateVolumeOutput{}
 	req.Data = output
 	return

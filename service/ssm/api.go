@@ -19,7 +19,7 @@ func (c *SSM) CreateAssociationRequest(input *CreateAssociationInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateAssociation, input, output)
+	req = c.newRequest(opCreateAssociation, input, output)
 	output = &CreateAssociationOutput{}
 	req.Data = output
 	return
@@ -53,7 +53,7 @@ func (c *SSM) CreateAssociationBatchRequest(input *CreateAssociationBatchInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateAssociationBatch, input, output)
+	req = c.newRequest(opCreateAssociationBatch, input, output)
 	output = &CreateAssociationBatchOutput{}
 	req.Data = output
 	return
@@ -87,7 +87,7 @@ func (c *SSM) CreateDocumentRequest(input *CreateDocumentInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateDocument, input, output)
+	req = c.newRequest(opCreateDocument, input, output)
 	output = &CreateDocumentOutput{}
 	req.Data = output
 	return
@@ -116,7 +116,7 @@ func (c *SSM) DeleteAssociationRequest(input *DeleteAssociationInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteAssociation, input, output)
+	req = c.newRequest(opDeleteAssociation, input, output)
 	output = &DeleteAssociationOutput{}
 	req.Data = output
 	return
@@ -148,7 +148,7 @@ func (c *SSM) DeleteDocumentRequest(input *DeleteDocumentInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteDocument, input, output)
+	req = c.newRequest(opDeleteDocument, input, output)
 	output = &DeleteDocumentOutput{}
 	req.Data = output
 	return
@@ -177,7 +177,7 @@ func (c *SSM) DescribeAssociationRequest(input *DescribeAssociationInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeAssociation, input, output)
+	req = c.newRequest(opDescribeAssociation, input, output)
 	output = &DescribeAssociationOutput{}
 	req.Data = output
 	return
@@ -203,7 +203,7 @@ func (c *SSM) DescribeDocumentRequest(input *DescribeDocumentInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeDocument, input, output)
+	req = c.newRequest(opDescribeDocument, input, output)
 	output = &DescribeDocumentOutput{}
 	req.Data = output
 	return
@@ -229,7 +229,7 @@ func (c *SSM) GetDocumentRequest(input *GetDocumentInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetDocument, input, output)
+	req = c.newRequest(opGetDocument, input, output)
 	output = &GetDocumentOutput{}
 	req.Data = output
 	return
@@ -255,7 +255,7 @@ func (c *SSM) ListAssociationsRequest(input *ListAssociationsInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListAssociations, input, output)
+	req = c.newRequest(opListAssociations, input, output)
 	output = &ListAssociationsOutput{}
 	req.Data = output
 	return
@@ -281,7 +281,7 @@ func (c *SSM) ListDocumentsRequest(input *ListDocumentsInput) (req *aws.Request,
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListDocuments, input, output)
+	req = c.newRequest(opListDocuments, input, output)
 	output = &ListDocumentsOutput{}
 	req.Data = output
 	return
@@ -307,7 +307,7 @@ func (c *SSM) UpdateAssociationStatusRequest(input *UpdateAssociationStatusInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateAssociationStatus, input, output)
+	req = c.newRequest(opUpdateAssociationStatus, input, output)
 	output = &UpdateAssociationStatusOutput{}
 	req.Data = output
 	return

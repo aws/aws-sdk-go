@@ -17,7 +17,7 @@ func (c *CloudHSM) CreateHAPGRequest(input *CreateHAPGInput) (req *aws.Request, 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateHAPG, input, output)
+	req = c.newRequest(opCreateHAPG, input, output)
 	output = &CreateHAPGOutput{}
 	req.Data = output
 	return
@@ -44,7 +44,7 @@ func (c *CloudHSM) CreateHSMRequest(input *CreateHSMInput) (req *aws.Request, ou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateHSM, input, output)
+	req = c.newRequest(opCreateHSM, input, output)
 	output = &CreateHSMOutput{}
 	req.Data = output
 	return
@@ -71,7 +71,7 @@ func (c *CloudHSM) CreateLunaClientRequest(input *CreateLunaClientInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateLunaClient, input, output)
+	req = c.newRequest(opCreateLunaClient, input, output)
 	output = &CreateLunaClientOutput{}
 	req.Data = output
 	return
@@ -97,7 +97,7 @@ func (c *CloudHSM) DeleteHAPGRequest(input *DeleteHAPGInput) (req *aws.Request, 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteHAPG, input, output)
+	req = c.newRequest(opDeleteHAPG, input, output)
 	output = &DeleteHAPGOutput{}
 	req.Data = output
 	return
@@ -123,7 +123,7 @@ func (c *CloudHSM) DeleteHSMRequest(input *DeleteHSMInput) (req *aws.Request, ou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteHSM, input, output)
+	req = c.newRequest(opDeleteHSM, input, output)
 	output = &DeleteHSMOutput{}
 	req.Data = output
 	return
@@ -150,7 +150,7 @@ func (c *CloudHSM) DeleteLunaClientRequest(input *DeleteLunaClientInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteLunaClient, input, output)
+	req = c.newRequest(opDeleteLunaClient, input, output)
 	output = &DeleteLunaClientOutput{}
 	req.Data = output
 	return
@@ -176,7 +176,7 @@ func (c *CloudHSM) DescribeHAPGRequest(input *DescribeHAPGInput) (req *aws.Reque
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeHAPG, input, output)
+	req = c.newRequest(opDescribeHAPG, input, output)
 	output = &DescribeHAPGOutput{}
 	req.Data = output
 	return
@@ -202,7 +202,7 @@ func (c *CloudHSM) DescribeHSMRequest(input *DescribeHSMInput) (req *aws.Request
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeHSM, input, output)
+	req = c.newRequest(opDescribeHSM, input, output)
 	output = &DescribeHSMOutput{}
 	req.Data = output
 	return
@@ -229,7 +229,7 @@ func (c *CloudHSM) DescribeLunaClientRequest(input *DescribeLunaClientInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeLunaClient, input, output)
+	req = c.newRequest(opDescribeLunaClient, input, output)
 	output = &DescribeLunaClientOutput{}
 	req.Data = output
 	return
@@ -255,7 +255,7 @@ func (c *CloudHSM) GetConfigRequest(input *GetConfigInput) (req *aws.Request, ou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetConfig, input, output)
+	req = c.newRequest(opGetConfig, input, output)
 	output = &GetConfigOutput{}
 	req.Data = output
 	return
@@ -282,7 +282,7 @@ func (c *CloudHSM) ListAvailableZonesRequest(input *ListAvailableZonesInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListAvailableZones, input, output)
+	req = c.newRequest(opListAvailableZones, input, output)
 	output = &ListAvailableZonesOutput{}
 	req.Data = output
 	return
@@ -308,7 +308,7 @@ func (c *CloudHSM) ListHSMsRequest(input *ListHSMsInput) (req *aws.Request, outp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListHSMs, input, output)
+	req = c.newRequest(opListHSMs, input, output)
 	output = &ListHSMsOutput{}
 	req.Data = output
 	return
@@ -340,7 +340,7 @@ func (c *CloudHSM) ListHapgsRequest(input *ListHapgsInput) (req *aws.Request, ou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListHapgs, input, output)
+	req = c.newRequest(opListHapgs, input, output)
 	output = &ListHapgsOutput{}
 	req.Data = output
 	return
@@ -371,7 +371,7 @@ func (c *CloudHSM) ListLunaClientsRequest(input *ListLunaClientsInput) (req *aws
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListLunaClients, input, output)
+	req = c.newRequest(opListLunaClients, input, output)
 	output = &ListLunaClientsOutput{}
 	req.Data = output
 	return
@@ -402,7 +402,7 @@ func (c *CloudHSM) ModifyHAPGRequest(input *ModifyHAPGInput) (req *aws.Request, 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyHAPG, input, output)
+	req = c.newRequest(opModifyHAPG, input, output)
 	output = &ModifyHAPGOutput{}
 	req.Data = output
 	return
@@ -428,7 +428,7 @@ func (c *CloudHSM) ModifyHSMRequest(input *ModifyHSMInput) (req *aws.Request, ou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyHSM, input, output)
+	req = c.newRequest(opModifyHSM, input, output)
 	output = &ModifyHSMOutput{}
 	req.Data = output
 	return
@@ -454,7 +454,7 @@ func (c *CloudHSM) ModifyLunaClientRequest(input *ModifyLunaClientInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyLunaClient, input, output)
+	req = c.newRequest(opModifyLunaClient, input, output)
 	output = &ModifyLunaClientOutput{}
 	req.Data = output
 	return

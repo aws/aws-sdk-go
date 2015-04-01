@@ -19,7 +19,7 @@ func (c *EMR) AddInstanceGroupsRequest(input *AddInstanceGroupsInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddInstanceGroups, input, output)
+	req = c.newRequest(opAddInstanceGroups, input, output)
 	output = &AddInstanceGroupsOutput{}
 	req.Data = output
 	return
@@ -45,7 +45,7 @@ func (c *EMR) AddJobFlowStepsRequest(input *AddJobFlowStepsInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddJobFlowSteps, input, output)
+	req = c.newRequest(opAddJobFlowSteps, input, output)
 	output = &AddJobFlowStepsOutput{}
 	req.Data = output
 	return
@@ -94,7 +94,7 @@ func (c *EMR) AddTagsRequest(input *AddTagsInput) (req *aws.Request, output *Add
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddTags, input, output)
+	req = c.newRequest(opAddTags, input, output)
 	output = &AddTagsOutput{}
 	req.Data = output
 	return
@@ -123,7 +123,7 @@ func (c *EMR) DescribeClusterRequest(input *DescribeClusterInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeCluster, input, output)
+	req = c.newRequest(opDescribeCluster, input, output)
 	output = &DescribeClusterOutput{}
 	req.Data = output
 	return
@@ -150,7 +150,7 @@ func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeJobFlows, input, output)
+	req = c.newRequest(opDescribeJobFlows, input, output)
 	output = &DescribeJobFlowsOutput{}
 	req.Data = output
 	return
@@ -193,7 +193,7 @@ func (c *EMR) DescribeStepRequest(input *DescribeStepInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeStep, input, output)
+	req = c.newRequest(opDescribeStep, input, output)
 	output = &DescribeStepOutput{}
 	req.Data = output
 	return
@@ -219,7 +219,7 @@ func (c *EMR) ListBootstrapActionsRequest(input *ListBootstrapActionsInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListBootstrapActions, input, output)
+	req = c.newRequest(opListBootstrapActions, input, output)
 	output = &ListBootstrapActionsOutput{}
 	req.Data = output
 	return
@@ -245,7 +245,7 @@ func (c *EMR) ListClustersRequest(input *ListClustersInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListClusters, input, output)
+	req = c.newRequest(opListClusters, input, output)
 	output = &ListClustersOutput{}
 	req.Data = output
 	return
@@ -275,7 +275,7 @@ func (c *EMR) ListInstanceGroupsRequest(input *ListInstanceGroupsInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListInstanceGroups, input, output)
+	req = c.newRequest(opListInstanceGroups, input, output)
 	output = &ListInstanceGroupsOutput{}
 	req.Data = output
 	return
@@ -301,7 +301,7 @@ func (c *EMR) ListInstancesRequest(input *ListInstancesInput) (req *aws.Request,
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListInstances, input, output)
+	req = c.newRequest(opListInstances, input, output)
 	output = &ListInstancesOutput{}
 	req.Data = output
 	return
@@ -331,7 +331,7 @@ func (c *EMR) ListStepsRequest(input *ListStepsInput) (req *aws.Request, output 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListSteps, input, output)
+	req = c.newRequest(opListSteps, input, output)
 	output = &ListStepsOutput{}
 	req.Data = output
 	return
@@ -357,7 +357,7 @@ func (c *EMR) ModifyInstanceGroupsRequest(input *ModifyInstanceGroupsInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyInstanceGroups, input, output)
+	req = c.newRequest(opModifyInstanceGroups, input, output)
 	output = &ModifyInstanceGroupsOutput{}
 	req.Data = output
 	return
@@ -386,7 +386,7 @@ func (c *EMR) RemoveTagsRequest(input *RemoveTagsInput) (req *aws.Request, outpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRemoveTags, input, output)
+	req = c.newRequest(opRemoveTags, input, output)
 	output = &RemoveTagsOutput{}
 	req.Data = output
 	return
@@ -417,7 +417,7 @@ func (c *EMR) RunJobFlowRequest(input *RunJobFlowInput) (req *aws.Request, outpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRunJobFlow, input, output)
+	req = c.newRequest(opRunJobFlow, input, output)
 	output = &RunJobFlowOutput{}
 	req.Data = output
 	return
@@ -465,7 +465,7 @@ func (c *EMR) SetTerminationProtectionRequest(input *SetTerminationProtectionInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetTerminationProtection, input, output)
+	req = c.newRequest(opSetTerminationProtection, input, output)
 	output = &SetTerminationProtectionOutput{}
 	req.Data = output
 	return
@@ -507,7 +507,7 @@ func (c *EMR) SetVisibleToAllUsersRequest(input *SetVisibleToAllUsersInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetVisibleToAllUsers, input, output)
+	req = c.newRequest(opSetVisibleToAllUsers, input, output)
 	output = &SetVisibleToAllUsersOutput{}
 	req.Data = output
 	return
@@ -538,7 +538,7 @@ func (c *EMR) TerminateJobFlowsRequest(input *TerminateJobFlowsInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opTerminateJobFlows, input, output)
+	req = c.newRequest(opTerminateJobFlows, input, output)
 	output = &TerminateJobFlowsOutput{}
 	req.Data = output
 	return

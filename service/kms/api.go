@@ -19,7 +19,7 @@ func (c *KMS) CreateAliasRequest(input *CreateAliasInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateAlias, input, output)
+	req = c.newRequest(opCreateAlias, input, output)
 	output = &CreateAliasOutput{}
 	req.Data = output
 	return
@@ -51,7 +51,7 @@ func (c *KMS) CreateGrantRequest(input *CreateGrantInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateGrant, input, output)
+	req = c.newRequest(opCreateGrant, input, output)
 	output = &CreateGrantOutput{}
 	req.Data = output
 	return
@@ -81,7 +81,7 @@ func (c *KMS) CreateKeyRequest(input *CreateKeyInput) (req *aws.Request, output 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateKey, input, output)
+	req = c.newRequest(opCreateKey, input, output)
 	output = &CreateKeyOutput{}
 	req.Data = output
 	return
@@ -110,7 +110,7 @@ func (c *KMS) DecryptRequest(input *DecryptInput) (req *aws.Request, output *Dec
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDecrypt, input, output)
+	req = c.newRequest(opDecrypt, input, output)
 	output = &DecryptOutput{}
 	req.Data = output
 	return
@@ -147,7 +147,7 @@ func (c *KMS) DeleteAliasRequest(input *DeleteAliasInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteAlias, input, output)
+	req = c.newRequest(opDeleteAlias, input, output)
 	output = &DeleteAliasOutput{}
 	req.Data = output
 	return
@@ -173,7 +173,7 @@ func (c *KMS) DescribeKeyRequest(input *DescribeKeyInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeKey, input, output)
+	req = c.newRequest(opDescribeKey, input, output)
 	output = &DescribeKeyOutput{}
 	req.Data = output
 	return
@@ -199,7 +199,7 @@ func (c *KMS) DisableKeyRequest(input *DisableKeyInput) (req *aws.Request, outpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDisableKey, input, output)
+	req = c.newRequest(opDisableKey, input, output)
 	output = &DisableKeyOutput{}
 	req.Data = output
 	return
@@ -225,7 +225,7 @@ func (c *KMS) DisableKeyRotationRequest(input *DisableKeyRotationInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDisableKeyRotation, input, output)
+	req = c.newRequest(opDisableKeyRotation, input, output)
 	output = &DisableKeyRotationOutput{}
 	req.Data = output
 	return
@@ -251,7 +251,7 @@ func (c *KMS) EnableKeyRequest(input *EnableKeyInput) (req *aws.Request, output 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opEnableKey, input, output)
+	req = c.newRequest(opEnableKey, input, output)
 	output = &EnableKeyOutput{}
 	req.Data = output
 	return
@@ -278,7 +278,7 @@ func (c *KMS) EnableKeyRotationRequest(input *EnableKeyRotationInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opEnableKeyRotation, input, output)
+	req = c.newRequest(opEnableKeyRotation, input, output)
 	output = &EnableKeyRotationOutput{}
 	req.Data = output
 	return
@@ -304,7 +304,7 @@ func (c *KMS) EncryptRequest(input *EncryptInput) (req *aws.Request, output *Enc
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opEncrypt, input, output)
+	req = c.newRequest(opEncrypt, input, output)
 	output = &EncryptOutput{}
 	req.Data = output
 	return
@@ -346,7 +346,7 @@ func (c *KMS) GenerateDataKeyRequest(input *GenerateDataKeyInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGenerateDataKey, input, output)
+	req = c.newRequest(opGenerateDataKey, input, output)
 	output = &GenerateDataKeyOutput{}
 	req.Data = output
 	return
@@ -401,7 +401,7 @@ func (c *KMS) GenerateDataKeyWithoutPlaintextRequest(input *GenerateDataKeyWitho
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGenerateDataKeyWithoutPlaintext, input, output)
+	req = c.newRequest(opGenerateDataKeyWithoutPlaintext, input, output)
 	output = &GenerateDataKeyWithoutPlaintextOutput{}
 	req.Data = output
 	return
@@ -431,7 +431,7 @@ func (c *KMS) GenerateRandomRequest(input *GenerateRandomInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGenerateRandom, input, output)
+	req = c.newRequest(opGenerateRandom, input, output)
 	output = &GenerateRandomOutput{}
 	req.Data = output
 	return
@@ -457,7 +457,7 @@ func (c *KMS) GetKeyPolicyRequest(input *GetKeyPolicyInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetKeyPolicy, input, output)
+	req = c.newRequest(opGetKeyPolicy, input, output)
 	output = &GetKeyPolicyOutput{}
 	req.Data = output
 	return
@@ -483,7 +483,7 @@ func (c *KMS) GetKeyRotationStatusRequest(input *GetKeyRotationStatusInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetKeyRotationStatus, input, output)
+	req = c.newRequest(opGetKeyRotationStatus, input, output)
 	output = &GetKeyRotationStatusOutput{}
 	req.Data = output
 	return
@@ -510,7 +510,7 @@ func (c *KMS) ListAliasesRequest(input *ListAliasesInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListAliases, input, output)
+	req = c.newRequest(opListAliases, input, output)
 	output = &ListAliasesOutput{}
 	req.Data = output
 	return
@@ -536,7 +536,7 @@ func (c *KMS) ListGrantsRequest(input *ListGrantsInput) (req *aws.Request, outpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListGrants, input, output)
+	req = c.newRequest(opListGrants, input, output)
 	output = &ListGrantsOutput{}
 	req.Data = output
 	return
@@ -562,7 +562,7 @@ func (c *KMS) ListKeyPoliciesRequest(input *ListKeyPoliciesInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListKeyPolicies, input, output)
+	req = c.newRequest(opListKeyPolicies, input, output)
 	output = &ListKeyPoliciesOutput{}
 	req.Data = output
 	return
@@ -588,7 +588,7 @@ func (c *KMS) ListKeysRequest(input *ListKeysInput) (req *aws.Request, output *L
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListKeys, input, output)
+	req = c.newRequest(opListKeys, input, output)
 	output = &ListKeysOutput{}
 	req.Data = output
 	return
@@ -614,7 +614,7 @@ func (c *KMS) PutKeyPolicyRequest(input *PutKeyPolicyInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutKeyPolicy, input, output)
+	req = c.newRequest(opPutKeyPolicy, input, output)
 	output = &PutKeyPolicyOutput{}
 	req.Data = output
 	return
@@ -640,7 +640,7 @@ func (c *KMS) ReEncryptRequest(input *ReEncryptInput) (req *aws.Request, output 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opReEncrypt, input, output)
+	req = c.newRequest(opReEncrypt, input, output)
 	output = &ReEncryptOutput{}
 	req.Data = output
 	return
@@ -669,7 +669,7 @@ func (c *KMS) RetireGrantRequest(input *RetireGrantInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRetireGrant, input, output)
+	req = c.newRequest(opRetireGrant, input, output)
 	output = &RetireGrantOutput{}
 	req.Data = output
 	return
@@ -699,7 +699,7 @@ func (c *KMS) RevokeGrantRequest(input *RevokeGrantInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRevokeGrant, input, output)
+	req = c.newRequest(opRevokeGrant, input, output)
 	output = &RevokeGrantOutput{}
 	req.Data = output
 	return
@@ -726,7 +726,7 @@ func (c *KMS) UpdateKeyDescriptionRequest(input *UpdateKeyDescriptionInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateKeyDescription, input, output)
+	req = c.newRequest(opUpdateKeyDescription, input, output)
 	output = &UpdateKeyDescriptionOutput{}
 	req.Data = output
 	return

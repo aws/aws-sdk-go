@@ -19,7 +19,7 @@ func (c *CognitoSync) BulkPublishRequest(input *BulkPublishInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opBulkPublish, input, output)
+	req = c.newRequest(opBulkPublish, input, output)
 	output = &BulkPublishOutput{}
 	req.Data = output
 	return
@@ -48,7 +48,7 @@ func (c *CognitoSync) DeleteDatasetRequest(input *DeleteDatasetInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteDataset, input, output)
+	req = c.newRequest(opDeleteDataset, input, output)
 	output = &DeleteDatasetOutput{}
 	req.Data = output
 	return
@@ -80,7 +80,7 @@ func (c *CognitoSync) DescribeDatasetRequest(input *DescribeDatasetInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeDataset, input, output)
+	req = c.newRequest(opDescribeDataset, input, output)
 	output = &DescribeDatasetOutput{}
 	req.Data = output
 	return
@@ -112,7 +112,7 @@ func (c *CognitoSync) DescribeIdentityPoolUsageRequest(input *DescribeIdentityPo
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeIdentityPoolUsage, input, output)
+	req = c.newRequest(opDescribeIdentityPoolUsage, input, output)
 	output = &DescribeIdentityPoolUsageOutput{}
 	req.Data = output
 	return
@@ -143,7 +143,7 @@ func (c *CognitoSync) DescribeIdentityUsageRequest(input *DescribeIdentityUsageI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeIdentityUsage, input, output)
+	req = c.newRequest(opDescribeIdentityUsage, input, output)
 	output = &DescribeIdentityUsageOutput{}
 	req.Data = output
 	return
@@ -173,7 +173,7 @@ func (c *CognitoSync) GetBulkPublishDetailsRequest(input *GetBulkPublishDetailsI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetBulkPublishDetails, input, output)
+	req = c.newRequest(opGetBulkPublishDetails, input, output)
 	output = &GetBulkPublishDetailsOutput{}
 	req.Data = output
 	return
@@ -199,7 +199,7 @@ func (c *CognitoSync) GetIdentityPoolConfigurationRequest(input *GetIdentityPool
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetIdentityPoolConfiguration, input, output)
+	req = c.newRequest(opGetIdentityPoolConfiguration, input, output)
 	output = &GetIdentityPoolConfigurationOutput{}
 	req.Data = output
 	return
@@ -225,7 +225,7 @@ func (c *CognitoSync) ListDatasetsRequest(input *ListDatasetsInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListDatasets, input, output)
+	req = c.newRequest(opListDatasets, input, output)
 	output = &ListDatasetsOutput{}
 	req.Data = output
 	return
@@ -257,7 +257,7 @@ func (c *CognitoSync) ListIdentityPoolUsageRequest(input *ListIdentityPoolUsageI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListIdentityPoolUsage, input, output)
+	req = c.newRequest(opListIdentityPoolUsage, input, output)
 	output = &ListIdentityPoolUsageOutput{}
 	req.Data = output
 	return
@@ -287,7 +287,7 @@ func (c *CognitoSync) ListRecordsRequest(input *ListRecordsInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListRecords, input, output)
+	req = c.newRequest(opListRecords, input, output)
 	output = &ListRecordsOutput{}
 	req.Data = output
 	return
@@ -320,7 +320,7 @@ func (c *CognitoSync) RegisterDeviceRequest(input *RegisterDeviceInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRegisterDevice, input, output)
+	req = c.newRequest(opRegisterDevice, input, output)
 	output = &RegisterDeviceOutput{}
 	req.Data = output
 	return
@@ -346,7 +346,7 @@ func (c *CognitoSync) SetIdentityPoolConfigurationRequest(input *SetIdentityPool
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetIdentityPoolConfiguration, input, output)
+	req = c.newRequest(opSetIdentityPoolConfiguration, input, output)
 	output = &SetIdentityPoolConfigurationOutput{}
 	req.Data = output
 	return
@@ -372,7 +372,7 @@ func (c *CognitoSync) SubscribeToDatasetRequest(input *SubscribeToDatasetInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSubscribeToDataset, input, output)
+	req = c.newRequest(opSubscribeToDataset, input, output)
 	output = &SubscribeToDatasetOutput{}
 	req.Data = output
 	return
@@ -399,7 +399,7 @@ func (c *CognitoSync) UnsubscribeFromDatasetRequest(input *UnsubscribeFromDatase
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUnsubscribeFromDataset, input, output)
+	req = c.newRequest(opUnsubscribeFromDataset, input, output)
 	output = &UnsubscribeFromDatasetOutput{}
 	req.Data = output
 	return
@@ -426,7 +426,7 @@ func (c *CognitoSync) UpdateRecordsRequest(input *UpdateRecordsInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateRecords, input, output)
+	req = c.newRequest(opUpdateRecords, input, output)
 	output = &UpdateRecordsOutput{}
 	req.Data = output
 	return

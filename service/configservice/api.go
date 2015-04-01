@@ -19,7 +19,7 @@ func (c *ConfigService) DeleteDeliveryChannelRequest(input *DeleteDeliveryChanne
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteDeliveryChannel, input, output)
+	req = c.newRequest(opDeleteDeliveryChannel, input, output)
 	output = &DeleteDeliveryChannelOutput{}
 	req.Data = output
 	return
@@ -50,7 +50,7 @@ func (c *ConfigService) DeliverConfigSnapshotRequest(input *DeliverConfigSnapsho
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeliverConfigSnapshot, input, output)
+	req = c.newRequest(opDeliverConfigSnapshot, input, output)
 	output = &DeliverConfigSnapshotOutput{}
 	req.Data = output
 	return
@@ -82,7 +82,7 @@ func (c *ConfigService) DescribeConfigurationRecorderStatusRequest(input *Descri
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeConfigurationRecorderStatus, input, output)
+	req = c.newRequest(opDescribeConfigurationRecorderStatus, input, output)
 	output = &DescribeConfigurationRecorderStatusOutput{}
 	req.Data = output
 	return
@@ -110,7 +110,7 @@ func (c *ConfigService) DescribeConfigurationRecordersRequest(input *DescribeCon
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeConfigurationRecorders, input, output)
+	req = c.newRequest(opDescribeConfigurationRecorders, input, output)
 	output = &DescribeConfigurationRecordersOutput{}
 	req.Data = output
 	return
@@ -138,7 +138,7 @@ func (c *ConfigService) DescribeDeliveryChannelStatusRequest(input *DescribeDeli
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeDeliveryChannelStatus, input, output)
+	req = c.newRequest(opDescribeDeliveryChannelStatus, input, output)
 	output = &DescribeDeliveryChannelStatusOutput{}
 	req.Data = output
 	return
@@ -166,7 +166,7 @@ func (c *ConfigService) DescribeDeliveryChannelsRequest(input *DescribeDeliveryC
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeDeliveryChannels, input, output)
+	req = c.newRequest(opDescribeDeliveryChannels, input, output)
 	output = &DescribeDeliveryChannelsOutput{}
 	req.Data = output
 	return
@@ -194,7 +194,7 @@ func (c *ConfigService) GetResourceConfigHistoryRequest(input *GetResourceConfig
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetResourceConfigHistory, input, output)
+	req = c.newRequest(opGetResourceConfigHistory, input, output)
 	output = &GetResourceConfigHistoryOutput{}
 	req.Data = output
 	return
@@ -224,7 +224,7 @@ func (c *ConfigService) PutConfigurationRecorderRequest(input *PutConfigurationR
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutConfigurationRecorder, input, output)
+	req = c.newRequest(opPutConfigurationRecorder, input, output)
 	output = &PutConfigurationRecorderOutput{}
 	req.Data = output
 	return
@@ -254,7 +254,7 @@ func (c *ConfigService) PutDeliveryChannelRequest(input *PutDeliveryChannelInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutDeliveryChannel, input, output)
+	req = c.newRequest(opPutDeliveryChannel, input, output)
 	output = &PutDeliveryChannelOutput{}
 	req.Data = output
 	return
@@ -288,7 +288,7 @@ func (c *ConfigService) StartConfigurationRecorderRequest(input *StartConfigurat
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opStartConfigurationRecorder, input, output)
+	req = c.newRequest(opStartConfigurationRecorder, input, output)
 	output = &StartConfigurationRecorderOutput{}
 	req.Data = output
 	return
@@ -318,7 +318,7 @@ func (c *ConfigService) StopConfigurationRecorderRequest(input *StopConfiguratio
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opStopConfigurationRecorder, input, output)
+	req = c.newRequest(opStopConfigurationRecorder, input, output)
 	output = &StopConfigurationRecorderOutput{}
 	req.Data = output
 	return

@@ -19,7 +19,7 @@ func (c *AutoScaling) AttachInstancesRequest(input *AttachInstancesInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAttachInstances, input, output)
+	req = c.newRequest(opAttachInstances, input, output)
 	output = &AttachInstancesOutput{}
 	req.Data = output
 	return
@@ -49,7 +49,7 @@ func (c *AutoScaling) CompleteLifecycleActionRequest(input *CompleteLifecycleAct
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCompleteLifecycleAction, input, output)
+	req = c.newRequest(opCompleteLifecycleAction, input, output)
 	output = &CompleteLifecycleActionOutput{}
 	req.Data = output
 	return
@@ -89,7 +89,7 @@ func (c *AutoScaling) CreateAutoScalingGroupRequest(input *CreateAutoScalingGrou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateAutoScalingGroup, input, output)
+	req = c.newRequest(opCreateAutoScalingGroup, input, output)
 	output = &CreateAutoScalingGroupOutput{}
 	req.Data = output
 	return
@@ -119,7 +119,7 @@ func (c *AutoScaling) CreateLaunchConfigurationRequest(input *CreateLaunchConfig
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateLaunchConfiguration, input, output)
+	req = c.newRequest(opCreateLaunchConfiguration, input, output)
 	output = &CreateLaunchConfigurationOutput{}
 	req.Data = output
 	return
@@ -149,7 +149,7 @@ func (c *AutoScaling) CreateOrUpdateTagsRequest(input *CreateOrUpdateTagsInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateOrUpdateTags, input, output)
+	req = c.newRequest(opCreateOrUpdateTags, input, output)
 	output = &CreateOrUpdateTagsOutput{}
 	req.Data = output
 	return
@@ -181,7 +181,7 @@ func (c *AutoScaling) DeleteAutoScalingGroupRequest(input *DeleteAutoScalingGrou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteAutoScalingGroup, input, output)
+	req = c.newRequest(opDeleteAutoScalingGroup, input, output)
 	output = &DeleteAutoScalingGroupOutput{}
 	req.Data = output
 	return
@@ -213,7 +213,7 @@ func (c *AutoScaling) DeleteLaunchConfigurationRequest(input *DeleteLaunchConfig
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteLaunchConfiguration, input, output)
+	req = c.newRequest(opDeleteLaunchConfiguration, input, output)
 	output = &DeleteLaunchConfigurationOutput{}
 	req.Data = output
 	return
@@ -243,7 +243,7 @@ func (c *AutoScaling) DeleteLifecycleHookRequest(input *DeleteLifecycleHookInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteLifecycleHook, input, output)
+	req = c.newRequest(opDeleteLifecycleHook, input, output)
 	output = &DeleteLifecycleHookOutput{}
 	req.Data = output
 	return
@@ -272,7 +272,7 @@ func (c *AutoScaling) DeleteNotificationConfigurationRequest(input *DeleteNotifi
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteNotificationConfiguration, input, output)
+	req = c.newRequest(opDeleteNotificationConfiguration, input, output)
 	output = &DeleteNotificationConfigurationOutput{}
 	req.Data = output
 	return
@@ -298,7 +298,7 @@ func (c *AutoScaling) DeletePolicyRequest(input *DeletePolicyInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeletePolicy, input, output)
+	req = c.newRequest(opDeletePolicy, input, output)
 	output = &DeletePolicyOutput{}
 	req.Data = output
 	return
@@ -324,7 +324,7 @@ func (c *AutoScaling) DeleteScheduledActionRequest(input *DeleteScheduledActionI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteScheduledAction, input, output)
+	req = c.newRequest(opDeleteScheduledAction, input, output)
 	output = &DeleteScheduledActionOutput{}
 	req.Data = output
 	return
@@ -350,7 +350,7 @@ func (c *AutoScaling) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteTags, input, output)
+	req = c.newRequest(opDeleteTags, input, output)
 	output = &DeleteTagsOutput{}
 	req.Data = output
 	return
@@ -376,7 +376,7 @@ func (c *AutoScaling) DescribeAccountLimitsRequest(input *DescribeAccountLimitsI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeAccountLimits, input, output)
+	req = c.newRequest(opDescribeAccountLimits, input, output)
 	output = &DescribeAccountLimitsOutput{}
 	req.Data = output
 	return
@@ -405,7 +405,7 @@ func (c *AutoScaling) DescribeAdjustmentTypesRequest(input *DescribeAdjustmentTy
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeAdjustmentTypes, input, output)
+	req = c.newRequest(opDescribeAdjustmentTypes, input, output)
 	output = &DescribeAdjustmentTypesOutput{}
 	req.Data = output
 	return
@@ -431,7 +431,7 @@ func (c *AutoScaling) DescribeAutoScalingGroupsRequest(input *DescribeAutoScalin
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeAutoScalingGroups, input, output)
+	req = c.newRequest(opDescribeAutoScalingGroups, input, output)
 	output = &DescribeAutoScalingGroupsOutput{}
 	req.Data = output
 	return
@@ -462,7 +462,7 @@ func (c *AutoScaling) DescribeAutoScalingInstancesRequest(input *DescribeAutoSca
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeAutoScalingInstances, input, output)
+	req = c.newRequest(opDescribeAutoScalingInstances, input, output)
 	output = &DescribeAutoScalingInstancesOutput{}
 	req.Data = output
 	return
@@ -494,7 +494,7 @@ func (c *AutoScaling) DescribeAutoScalingNotificationTypesRequest(input *Describ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeAutoScalingNotificationTypes, input, output)
+	req = c.newRequest(opDescribeAutoScalingNotificationTypes, input, output)
 	output = &DescribeAutoScalingNotificationTypesOutput{}
 	req.Data = output
 	return
@@ -520,7 +520,7 @@ func (c *AutoScaling) DescribeLaunchConfigurationsRequest(input *DescribeLaunchC
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeLaunchConfigurations, input, output)
+	req = c.newRequest(opDescribeLaunchConfigurations, input, output)
 	output = &DescribeLaunchConfigurationsOutput{}
 	req.Data = output
 	return
@@ -551,7 +551,7 @@ func (c *AutoScaling) DescribeLifecycleHookTypesRequest(input *DescribeLifecycle
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeLifecycleHookTypes, input, output)
+	req = c.newRequest(opDescribeLifecycleHookTypes, input, output)
 	output = &DescribeLifecycleHookTypesOutput{}
 	req.Data = output
 	return
@@ -577,7 +577,7 @@ func (c *AutoScaling) DescribeLifecycleHooksRequest(input *DescribeLifecycleHook
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeLifecycleHooks, input, output)
+	req = c.newRequest(opDescribeLifecycleHooks, input, output)
 	output = &DescribeLifecycleHooksOutput{}
 	req.Data = output
 	return
@@ -603,7 +603,7 @@ func (c *AutoScaling) DescribeMetricCollectionTypesRequest(input *DescribeMetric
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeMetricCollectionTypes, input, output)
+	req = c.newRequest(opDescribeMetricCollectionTypes, input, output)
 	output = &DescribeMetricCollectionTypesOutput{}
 	req.Data = output
 	return
@@ -633,7 +633,7 @@ func (c *AutoScaling) DescribeNotificationConfigurationsRequest(input *DescribeN
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeNotificationConfigurations, input, output)
+	req = c.newRequest(opDescribeNotificationConfigurations, input, output)
 	output = &DescribeNotificationConfigurationsOutput{}
 	req.Data = output
 	return
@@ -660,7 +660,7 @@ func (c *AutoScaling) DescribePoliciesRequest(input *DescribePoliciesInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribePolicies, input, output)
+	req = c.newRequest(opDescribePolicies, input, output)
 	output = &DescribePoliciesOutput{}
 	req.Data = output
 	return
@@ -690,7 +690,7 @@ func (c *AutoScaling) DescribeScalingActivitiesRequest(input *DescribeScalingAct
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeScalingActivities, input, output)
+	req = c.newRequest(opDescribeScalingActivities, input, output)
 	output = &DescribeScalingActivitiesOutput{}
 	req.Data = output
 	return
@@ -723,7 +723,7 @@ func (c *AutoScaling) DescribeScalingProcessTypesRequest(input *DescribeScalingP
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeScalingProcessTypes, input, output)
+	req = c.newRequest(opDescribeScalingProcessTypes, input, output)
 	output = &DescribeScalingProcessTypesOutput{}
 	req.Data = output
 	return
@@ -750,7 +750,7 @@ func (c *AutoScaling) DescribeScheduledActionsRequest(input *DescribeScheduledAc
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeScheduledActions, input, output)
+	req = c.newRequest(opDescribeScheduledActions, input, output)
 	output = &DescribeScheduledActionsOutput{}
 	req.Data = output
 	return
@@ -777,7 +777,7 @@ func (c *AutoScaling) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeTags, input, output)
+	req = c.newRequest(opDescribeTags, input, output)
 	output = &DescribeTagsOutput{}
 	req.Data = output
 	return
@@ -812,7 +812,7 @@ func (c *AutoScaling) DescribeTerminationPolicyTypesRequest(input *DescribeTermi
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeTerminationPolicyTypes, input, output)
+	req = c.newRequest(opDescribeTerminationPolicyTypes, input, output)
 	output = &DescribeTerminationPolicyTypesOutput{}
 	req.Data = output
 	return
@@ -838,7 +838,7 @@ func (c *AutoScaling) DetachInstancesRequest(input *DetachInstancesInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDetachInstances, input, output)
+	req = c.newRequest(opDetachInstances, input, output)
 	output = &DetachInstancesOutput{}
 	req.Data = output
 	return
@@ -870,7 +870,7 @@ func (c *AutoScaling) DisableMetricsCollectionRequest(input *DisableMetricsColle
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDisableMetricsCollection, input, output)
+	req = c.newRequest(opDisableMetricsCollection, input, output)
 	output = &DisableMetricsCollectionOutput{}
 	req.Data = output
 	return
@@ -897,7 +897,7 @@ func (c *AutoScaling) EnableMetricsCollectionRequest(input *EnableMetricsCollect
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opEnableMetricsCollection, input, output)
+	req = c.newRequest(opEnableMetricsCollection, input, output)
 	output = &EnableMetricsCollectionOutput{}
 	req.Data = output
 	return
@@ -927,7 +927,7 @@ func (c *AutoScaling) EnterStandbyRequest(input *EnterStandbyInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opEnterStandby, input, output)
+	req = c.newRequest(opEnterStandby, input, output)
 	output = &EnterStandbyOutput{}
 	req.Data = output
 	return
@@ -956,7 +956,7 @@ func (c *AutoScaling) ExecutePolicyRequest(input *ExecutePolicyInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opExecutePolicy, input, output)
+	req = c.newRequest(opExecutePolicy, input, output)
 	output = &ExecutePolicyOutput{}
 	req.Data = output
 	return
@@ -982,7 +982,7 @@ func (c *AutoScaling) ExitStandbyRequest(input *ExitStandbyInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opExitStandby, input, output)
+	req = c.newRequest(opExitStandby, input, output)
 	output = &ExitStandbyOutput{}
 	req.Data = output
 	return
@@ -1011,7 +1011,7 @@ func (c *AutoScaling) PutLifecycleHookRequest(input *PutLifecycleHookInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutLifecycleHook, input, output)
+	req = c.newRequest(opPutLifecycleHook, input, output)
 	output = &PutLifecycleHookOutput{}
 	req.Data = output
 	return
@@ -1054,7 +1054,7 @@ func (c *AutoScaling) PutNotificationConfigurationRequest(input *PutNotification
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutNotificationConfiguration, input, output)
+	req = c.newRequest(opPutNotificationConfiguration, input, output)
 	output = &PutNotificationConfigurationOutput{}
 	req.Data = output
 	return
@@ -1088,7 +1088,7 @@ func (c *AutoScaling) PutScalingPolicyRequest(input *PutScalingPolicyInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutScalingPolicy, input, output)
+	req = c.newRequest(opPutScalingPolicy, input, output)
 	output = &PutScalingPolicyOutput{}
 	req.Data = output
 	return
@@ -1117,7 +1117,7 @@ func (c *AutoScaling) PutScheduledUpdateGroupActionRequest(input *PutScheduledUp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutScheduledUpdateGroupAction, input, output)
+	req = c.newRequest(opPutScheduledUpdateGroupAction, input, output)
 	output = &PutScheduledUpdateGroupActionOutput{}
 	req.Data = output
 	return
@@ -1151,7 +1151,7 @@ func (c *AutoScaling) RecordLifecycleActionHeartbeatRequest(input *RecordLifecyc
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRecordLifecycleActionHeartbeat, input, output)
+	req = c.newRequest(opRecordLifecycleActionHeartbeat, input, output)
 	output = &RecordLifecycleActionHeartbeatOutput{}
 	req.Data = output
 	return
@@ -1192,7 +1192,7 @@ func (c *AutoScaling) ResumeProcessesRequest(input *ScalingProcessQuery) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opResumeProcesses, input, output)
+	req = c.newRequest(opResumeProcesses, input, output)
 	output = &ResumeProcessesOutput{}
 	req.Data = output
 	return
@@ -1222,7 +1222,7 @@ func (c *AutoScaling) SetDesiredCapacityRequest(input *SetDesiredCapacityInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetDesiredCapacity, input, output)
+	req = c.newRequest(opSetDesiredCapacity, input, output)
 	output = &SetDesiredCapacityOutput{}
 	req.Data = output
 	return
@@ -1248,7 +1248,7 @@ func (c *AutoScaling) SetInstanceHealthRequest(input *SetInstanceHealthInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetInstanceHealth, input, output)
+	req = c.newRequest(opSetInstanceHealth, input, output)
 	output = &SetInstanceHealthOutput{}
 	req.Data = output
 	return
@@ -1277,7 +1277,7 @@ func (c *AutoScaling) SuspendProcessesRequest(input *ScalingProcessQuery) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSuspendProcesses, input, output)
+	req = c.newRequest(opSuspendProcesses, input, output)
 	output = &SuspendProcessesOutput{}
 	req.Data = output
 	return
@@ -1313,7 +1313,7 @@ func (c *AutoScaling) TerminateInstanceInAutoScalingGroupRequest(input *Terminat
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opTerminateInstanceInAutoScalingGroup, input, output)
+	req = c.newRequest(opTerminateInstanceInAutoScalingGroup, input, output)
 	output = &TerminateInstanceInAutoScalingGroupOutput{}
 	req.Data = output
 	return
@@ -1343,7 +1343,7 @@ func (c *AutoScaling) UpdateAutoScalingGroupRequest(input *UpdateAutoScalingGrou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateAutoScalingGroup, input, output)
+	req = c.newRequest(opUpdateAutoScalingGroup, input, output)
 	output = &UpdateAutoScalingGroupOutput{}
 	req.Data = output
 	return

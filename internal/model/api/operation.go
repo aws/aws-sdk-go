@@ -55,7 +55,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 		}
 	}
 
-	req = aws.NewRequest(c.Service, op{{ .ExportedName }}, input, output)
+	req = c.newRequest(op{{ .ExportedName }}, input, output)
 	output = &{{ .OutputRef.GoTypeElem }}{}
 	req.Data = output
 	return

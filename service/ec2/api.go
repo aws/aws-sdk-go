@@ -19,7 +19,7 @@ func (c *EC2) AcceptVPCPeeringConnectionRequest(input *AcceptVPCPeeringConnectio
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAcceptVPCPeeringConnection, input, output)
+	req = c.newRequest(opAcceptVPCPeeringConnection, input, output)
 	output = &AcceptVPCPeeringConnectionOutput{}
 	req.Data = output
 	return
@@ -48,7 +48,7 @@ func (c *EC2) AllocateAddressRequest(input *AllocateAddressInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAllocateAddress, input, output)
+	req = c.newRequest(opAllocateAddress, input, output)
 	output = &AllocateAddressOutput{}
 	req.Data = output
 	return
@@ -78,7 +78,7 @@ func (c *EC2) AssignPrivateIPAddressesRequest(input *AssignPrivateIPAddressesInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAssignPrivateIPAddresses, input, output)
+	req = c.newRequest(opAssignPrivateIPAddresses, input, output)
 	output = &AssignPrivateIPAddressesOutput{}
 	req.Data = output
 	return
@@ -114,7 +114,7 @@ func (c *EC2) AssociateAddressRequest(input *AssociateAddressInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAssociateAddress, input, output)
+	req = c.newRequest(opAssociateAddress, input, output)
 	output = &AssociateAddressOutput{}
 	req.Data = output
 	return
@@ -156,7 +156,7 @@ func (c *EC2) AssociateDHCPOptionsRequest(input *AssociateDHCPOptionsInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAssociateDHCPOptions, input, output)
+	req = c.newRequest(opAssociateDHCPOptions, input, output)
 	output = &AssociateDHCPOptionsOutput{}
 	req.Data = output
 	return
@@ -193,7 +193,7 @@ func (c *EC2) AssociateRouteTableRequest(input *AssociateRouteTableInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAssociateRouteTable, input, output)
+	req = c.newRequest(opAssociateRouteTable, input, output)
 	output = &AssociateRouteTableOutput{}
 	req.Data = output
 	return
@@ -226,7 +226,7 @@ func (c *EC2) AttachClassicLinkVPCRequest(input *AttachClassicLinkVPCInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAttachClassicLinkVPC, input, output)
+	req = c.newRequest(opAttachClassicLinkVPC, input, output)
 	output = &AttachClassicLinkVPCOutput{}
 	req.Data = output
 	return
@@ -263,7 +263,7 @@ func (c *EC2) AttachInternetGatewayRequest(input *AttachInternetGatewayInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAttachInternetGateway, input, output)
+	req = c.newRequest(opAttachInternetGateway, input, output)
 	output = &AttachInternetGatewayOutput{}
 	req.Data = output
 	return
@@ -291,7 +291,7 @@ func (c *EC2) AttachNetworkInterfaceRequest(input *AttachNetworkInterfaceInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAttachNetworkInterface, input, output)
+	req = c.newRequest(opAttachNetworkInterface, input, output)
 	output = &AttachNetworkInterfaceOutput{}
 	req.Data = output
 	return
@@ -317,7 +317,7 @@ func (c *EC2) AttachVPNGatewayRequest(input *AttachVPNGatewayInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAttachVPNGateway, input, output)
+	req = c.newRequest(opAttachVPNGateway, input, output)
 	output = &AttachVPNGatewayOutput{}
 	req.Data = output
 	return
@@ -345,7 +345,7 @@ func (c *EC2) AttachVolumeRequest(input *AttachVolumeInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAttachVolume, input, output)
+	req = c.newRequest(opAttachVolume, input, output)
 	output = &VolumeAttachment{}
 	req.Data = output
 	return
@@ -396,7 +396,7 @@ func (c *EC2) AuthorizeSecurityGroupEgressRequest(input *AuthorizeSecurityGroupE
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAuthorizeSecurityGroupEgress, input, output)
+	req = c.newRequest(opAuthorizeSecurityGroupEgress, input, output)
 	output = &AuthorizeSecurityGroupEgressOutput{}
 	req.Data = output
 	return
@@ -442,7 +442,7 @@ func (c *EC2) AuthorizeSecurityGroupIngressRequest(input *AuthorizeSecurityGroup
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAuthorizeSecurityGroupIngress, input, output)
+	req = c.newRequest(opAuthorizeSecurityGroupIngress, input, output)
 	output = &AuthorizeSecurityGroupIngressOutput{}
 	req.Data = output
 	return
@@ -486,7 +486,7 @@ func (c *EC2) BundleInstanceRequest(input *BundleInstanceInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opBundleInstance, input, output)
+	req = c.newRequest(opBundleInstance, input, output)
 	output = &BundleInstanceOutput{}
 	req.Data = output
 	return
@@ -521,7 +521,7 @@ func (c *EC2) CancelBundleTaskRequest(input *CancelBundleTaskInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCancelBundleTask, input, output)
+	req = c.newRequest(opCancelBundleTask, input, output)
 	output = &CancelBundleTaskOutput{}
 	req.Data = output
 	return
@@ -547,7 +547,7 @@ func (c *EC2) CancelConversionTaskRequest(input *CancelConversionTaskInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCancelConversionTask, input, output)
+	req = c.newRequest(opCancelConversionTask, input, output)
 	output = &CancelConversionTaskOutput{}
 	req.Data = output
 	return
@@ -581,7 +581,7 @@ func (c *EC2) CancelExportTaskRequest(input *CancelExportTaskInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCancelExportTask, input, output)
+	req = c.newRequest(opCancelExportTask, input, output)
 	output = &CancelExportTaskOutput{}
 	req.Data = output
 	return
@@ -610,7 +610,7 @@ func (c *EC2) CancelReservedInstancesListingRequest(input *CancelReservedInstanc
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCancelReservedInstancesListing, input, output)
+	req = c.newRequest(opCancelReservedInstancesListing, input, output)
 	output = &CancelReservedInstancesListingOutput{}
 	req.Data = output
 	return
@@ -640,7 +640,7 @@ func (c *EC2) CancelSpotInstanceRequestsRequest(input *CancelSpotInstanceRequest
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCancelSpotInstanceRequests, input, output)
+	req = c.newRequest(opCancelSpotInstanceRequests, input, output)
 	output = &CancelSpotInstanceRequestsOutput{}
 	req.Data = output
 	return
@@ -674,7 +674,7 @@ func (c *EC2) ConfirmProductInstanceRequest(input *ConfirmProductInstanceInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opConfirmProductInstance, input, output)
+	req = c.newRequest(opConfirmProductInstance, input, output)
 	output = &ConfirmProductInstanceOutput{}
 	req.Data = output
 	return
@@ -703,7 +703,7 @@ func (c *EC2) CopyImageRequest(input *CopyImageInput) (req *aws.Request, output 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCopyImage, input, output)
+	req = c.newRequest(opCopyImage, input, output)
 	output = &CopyImageOutput{}
 	req.Data = output
 	return
@@ -735,7 +735,7 @@ func (c *EC2) CopySnapshotRequest(input *CopySnapshotInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCopySnapshot, input, output)
+	req = c.newRequest(opCopySnapshot, input, output)
 	output = &CopySnapshotOutput{}
 	req.Data = output
 	return
@@ -774,7 +774,7 @@ func (c *EC2) CreateCustomerGatewayRequest(input *CreateCustomerGatewayInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateCustomerGateway, input, output)
+	req = c.newRequest(opCreateCustomerGateway, input, output)
 	output = &CreateCustomerGatewayOutput{}
 	req.Data = output
 	return
@@ -818,7 +818,7 @@ func (c *EC2) CreateDHCPOptionsRequest(input *CreateDHCPOptionsInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateDHCPOptions, input, output)
+	req = c.newRequest(opCreateDHCPOptions, input, output)
 	output = &CreateDHCPOptionsOutput{}
 	req.Data = output
 	return
@@ -872,7 +872,7 @@ func (c *EC2) CreateImageRequest(input *CreateImageInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateImage, input, output)
+	req = c.newRequest(opCreateImage, input, output)
 	output = &CreateImageOutput{}
 	req.Data = output
 	return
@@ -907,7 +907,7 @@ func (c *EC2) CreateInstanceExportTaskRequest(input *CreateInstanceExportTaskInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateInstanceExportTask, input, output)
+	req = c.newRequest(opCreateInstanceExportTask, input, output)
 	output = &CreateInstanceExportTaskOutput{}
 	req.Data = output
 	return
@@ -938,7 +938,7 @@ func (c *EC2) CreateInternetGatewayRequest(input *CreateInternetGatewayInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateInternetGateway, input, output)
+	req = c.newRequest(opCreateInternetGateway, input, output)
 	output = &CreateInternetGatewayOutput{}
 	req.Data = output
 	return
@@ -968,7 +968,7 @@ func (c *EC2) CreateKeyPairRequest(input *CreateKeyPairInput) (req *aws.Request,
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateKeyPair, input, output)
+	req = c.newRequest(opCreateKeyPair, input, output)
 	output = &CreateKeyPairOutput{}
 	req.Data = output
 	return
@@ -1005,7 +1005,7 @@ func (c *EC2) CreateNetworkACLRequest(input *CreateNetworkACLInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateNetworkACL, input, output)
+	req = c.newRequest(opCreateNetworkACL, input, output)
 	output = &CreateNetworkACLOutput{}
 	req.Data = output
 	return
@@ -1035,7 +1035,7 @@ func (c *EC2) CreateNetworkACLEntryRequest(input *CreateNetworkACLEntryInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateNetworkACLEntry, input, output)
+	req = c.newRequest(opCreateNetworkACLEntry, input, output)
 	output = &CreateNetworkACLEntryOutput{}
 	req.Data = output
 	return
@@ -1077,7 +1077,7 @@ func (c *EC2) CreateNetworkInterfaceRequest(input *CreateNetworkInterfaceInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateNetworkInterface, input, output)
+	req = c.newRequest(opCreateNetworkInterface, input, output)
 	output = &CreateNetworkInterfaceOutput{}
 	req.Data = output
 	return
@@ -1107,7 +1107,7 @@ func (c *EC2) CreatePlacementGroupRequest(input *CreatePlacementGroupInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreatePlacementGroup, input, output)
+	req = c.newRequest(opCreatePlacementGroup, input, output)
 	output = &CreatePlacementGroupOutput{}
 	req.Data = output
 	return
@@ -1138,7 +1138,7 @@ func (c *EC2) CreateReservedInstancesListingRequest(input *CreateReservedInstanc
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateReservedInstancesListing, input, output)
+	req = c.newRequest(opCreateReservedInstancesListing, input, output)
 	output = &CreateReservedInstancesListingOutput{}
 	req.Data = output
 	return
@@ -1183,7 +1183,7 @@ func (c *EC2) CreateRouteRequest(input *CreateRouteInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateRoute, input, output)
+	req = c.newRequest(opCreateRoute, input, output)
 	output = &CreateRouteOutput{}
 	req.Data = output
 	return
@@ -1227,7 +1227,7 @@ func (c *EC2) CreateRouteTableRequest(input *CreateRouteTableInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateRouteTable, input, output)
+	req = c.newRequest(opCreateRouteTable, input, output)
 	output = &CreateRouteTableOutput{}
 	req.Data = output
 	return
@@ -1257,7 +1257,7 @@ func (c *EC2) CreateSecurityGroupRequest(input *CreateSecurityGroupInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateSecurityGroup, input, output)
+	req = c.newRequest(opCreateSecurityGroup, input, output)
 	output = &CreateSecurityGroupOutput{}
 	req.Data = output
 	return
@@ -1309,7 +1309,7 @@ func (c *EC2) CreateSnapshotRequest(input *CreateSnapshotInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateSnapshot, input, output)
+	req = c.newRequest(opCreateSnapshot, input, output)
 	output = &Snapshot{}
 	req.Data = output
 	return
@@ -1363,7 +1363,7 @@ func (c *EC2) CreateSpotDatafeedSubscriptionRequest(input *CreateSpotDatafeedSub
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateSpotDatafeedSubscription, input, output)
+	req = c.newRequest(opCreateSpotDatafeedSubscription, input, output)
 	output = &CreateSpotDatafeedSubscriptionOutput{}
 	req.Data = output
 	return
@@ -1392,7 +1392,7 @@ func (c *EC2) CreateSubnetRequest(input *CreateSubnetInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateSubnet, input, output)
+	req = c.newRequest(opCreateSubnet, input, output)
 	output = &CreateSubnetOutput{}
 	req.Data = output
 	return
@@ -1442,7 +1442,7 @@ func (c *EC2) CreateTagsRequest(input *CreateTagsInput) (req *aws.Request, outpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateTags, input, output)
+	req = c.newRequest(opCreateTags, input, output)
 	output = &CreateTagsOutput{}
 	req.Data = output
 	return
@@ -1473,7 +1473,7 @@ func (c *EC2) CreateVPCRequest(input *CreateVPCInput) (req *aws.Request, output 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateVPC, input, output)
+	req = c.newRequest(opCreateVPC, input, output)
 	output = &CreateVPCOutput{}
 	req.Data = output
 	return
@@ -1509,7 +1509,7 @@ func (c *EC2) CreateVPCPeeringConnectionRequest(input *CreateVPCPeeringConnectio
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateVPCPeeringConnection, input, output)
+	req = c.newRequest(opCreateVPCPeeringConnection, input, output)
 	output = &CreateVPCPeeringConnectionOutput{}
 	req.Data = output
 	return
@@ -1545,7 +1545,7 @@ func (c *EC2) CreateVPNConnectionRequest(input *CreateVPNConnectionInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateVPNConnection, input, output)
+	req = c.newRequest(opCreateVPNConnection, input, output)
 	output = &CreateVPNConnectionOutput{}
 	req.Data = output
 	return
@@ -1587,7 +1587,7 @@ func (c *EC2) CreateVPNConnectionRouteRequest(input *CreateVPNConnectionRouteInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateVPNConnectionRoute, input, output)
+	req = c.newRequest(opCreateVPNConnectionRoute, input, output)
 	output = &CreateVPNConnectionRouteOutput{}
 	req.Data = output
 	return
@@ -1620,7 +1620,7 @@ func (c *EC2) CreateVPNGatewayRequest(input *CreateVPNGatewayInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateVPNGateway, input, output)
+	req = c.newRequest(opCreateVPNGateway, input, output)
 	output = &CreateVPNGatewayOutput{}
 	req.Data = output
 	return
@@ -1652,7 +1652,7 @@ func (c *EC2) CreateVolumeRequest(input *CreateVolumeInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateVolume, input, output)
+	req = c.newRequest(opCreateVolume, input, output)
 	output = &Volume{}
 	req.Data = output
 	return
@@ -1694,7 +1694,7 @@ func (c *EC2) DeleteCustomerGatewayRequest(input *DeleteCustomerGatewayInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteCustomerGateway, input, output)
+	req = c.newRequest(opDeleteCustomerGateway, input, output)
 	output = &DeleteCustomerGatewayOutput{}
 	req.Data = output
 	return
@@ -1721,7 +1721,7 @@ func (c *EC2) DeleteDHCPOptionsRequest(input *DeleteDHCPOptionsInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteDHCPOptions, input, output)
+	req = c.newRequest(opDeleteDHCPOptions, input, output)
 	output = &DeleteDHCPOptionsOutput{}
 	req.Data = output
 	return
@@ -1750,7 +1750,7 @@ func (c *EC2) DeleteInternetGatewayRequest(input *DeleteInternetGatewayInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteInternetGateway, input, output)
+	req = c.newRequest(opDeleteInternetGateway, input, output)
 	output = &DeleteInternetGatewayOutput{}
 	req.Data = output
 	return
@@ -1777,7 +1777,7 @@ func (c *EC2) DeleteKeyPairRequest(input *DeleteKeyPairInput) (req *aws.Request,
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteKeyPair, input, output)
+	req = c.newRequest(opDeleteKeyPair, input, output)
 	output = &DeleteKeyPairOutput{}
 	req.Data = output
 	return
@@ -1803,7 +1803,7 @@ func (c *EC2) DeleteNetworkACLRequest(input *DeleteNetworkACLInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteNetworkACL, input, output)
+	req = c.newRequest(opDeleteNetworkACL, input, output)
 	output = &DeleteNetworkACLOutput{}
 	req.Data = output
 	return
@@ -1830,7 +1830,7 @@ func (c *EC2) DeleteNetworkACLEntryRequest(input *DeleteNetworkACLEntryInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteNetworkACLEntry, input, output)
+	req = c.newRequest(opDeleteNetworkACLEntry, input, output)
 	output = &DeleteNetworkACLEntryOutput{}
 	req.Data = output
 	return
@@ -1857,7 +1857,7 @@ func (c *EC2) DeleteNetworkInterfaceRequest(input *DeleteNetworkInterfaceInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteNetworkInterface, input, output)
+	req = c.newRequest(opDeleteNetworkInterface, input, output)
 	output = &DeleteNetworkInterfaceOutput{}
 	req.Data = output
 	return
@@ -1884,7 +1884,7 @@ func (c *EC2) DeletePlacementGroupRequest(input *DeletePlacementGroupInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeletePlacementGroup, input, output)
+	req = c.newRequest(opDeletePlacementGroup, input, output)
 	output = &DeletePlacementGroupOutput{}
 	req.Data = output
 	return
@@ -1913,7 +1913,7 @@ func (c *EC2) DeleteRouteRequest(input *DeleteRouteInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteRoute, input, output)
+	req = c.newRequest(opDeleteRoute, input, output)
 	output = &DeleteRouteOutput{}
 	req.Data = output
 	return
@@ -1939,7 +1939,7 @@ func (c *EC2) DeleteRouteTableRequest(input *DeleteRouteTableInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteRouteTable, input, output)
+	req = c.newRequest(opDeleteRouteTable, input, output)
 	output = &DeleteRouteTableOutput{}
 	req.Data = output
 	return
@@ -1967,7 +1967,7 @@ func (c *EC2) DeleteSecurityGroupRequest(input *DeleteSecurityGroupInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteSecurityGroup, input, output)
+	req = c.newRequest(opDeleteSecurityGroup, input, output)
 	output = &DeleteSecurityGroupOutput{}
 	req.Data = output
 	return
@@ -1997,7 +1997,7 @@ func (c *EC2) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteSnapshot, input, output)
+	req = c.newRequest(opDeleteSnapshot, input, output)
 	output = &DeleteSnapshotOutput{}
 	req.Data = output
 	return
@@ -2037,7 +2037,7 @@ func (c *EC2) DeleteSpotDatafeedSubscriptionRequest(input *DeleteSpotDatafeedSub
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteSpotDatafeedSubscription, input, output)
+	req = c.newRequest(opDeleteSpotDatafeedSubscription, input, output)
 	output = &DeleteSpotDatafeedSubscriptionOutput{}
 	req.Data = output
 	return
@@ -2065,7 +2065,7 @@ func (c *EC2) DeleteSubnetRequest(input *DeleteSubnetInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteSubnet, input, output)
+	req = c.newRequest(opDeleteSubnet, input, output)
 	output = &DeleteSubnetOutput{}
 	req.Data = output
 	return
@@ -2092,7 +2092,7 @@ func (c *EC2) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Request, outpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteTags, input, output)
+	req = c.newRequest(opDeleteTags, input, output)
 	output = &DeleteTagsOutput{}
 	req.Data = output
 	return
@@ -2122,7 +2122,7 @@ func (c *EC2) DeleteVPCRequest(input *DeleteVPCInput) (req *aws.Request, output 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteVPC, input, output)
+	req = c.newRequest(opDeleteVPC, input, output)
 	output = &DeleteVPCOutput{}
 	req.Data = output
 	return
@@ -2152,7 +2152,7 @@ func (c *EC2) DeleteVPCPeeringConnectionRequest(input *DeleteVPCPeeringConnectio
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteVPCPeeringConnection, input, output)
+	req = c.newRequest(opDeleteVPCPeeringConnection, input, output)
 	output = &DeleteVPCPeeringConnectionOutput{}
 	req.Data = output
 	return
@@ -2181,7 +2181,7 @@ func (c *EC2) DeleteVPNConnectionRequest(input *DeleteVPNConnectionInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteVPNConnection, input, output)
+	req = c.newRequest(opDeleteVPNConnection, input, output)
 	output = &DeleteVPNConnectionOutput{}
 	req.Data = output
 	return
@@ -2216,7 +2216,7 @@ func (c *EC2) DeleteVPNConnectionRouteRequest(input *DeleteVPNConnectionRouteInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteVPNConnectionRoute, input, output)
+	req = c.newRequest(opDeleteVPNConnectionRoute, input, output)
 	output = &DeleteVPNConnectionRouteOutput{}
 	req.Data = output
 	return
@@ -2245,7 +2245,7 @@ func (c *EC2) DeleteVPNGatewayRequest(input *DeleteVPNGatewayInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteVPNGateway, input, output)
+	req = c.newRequest(opDeleteVPNGateway, input, output)
 	output = &DeleteVPNGatewayOutput{}
 	req.Data = output
 	return
@@ -2275,7 +2275,7 @@ func (c *EC2) DeleteVolumeRequest(input *DeleteVolumeInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteVolume, input, output)
+	req = c.newRequest(opDeleteVolume, input, output)
 	output = &DeleteVolumeOutput{}
 	req.Data = output
 	return
@@ -2307,7 +2307,7 @@ func (c *EC2) DeregisterImageRequest(input *DeregisterImageInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeregisterImage, input, output)
+	req = c.newRequest(opDeregisterImage, input, output)
 	output = &DeregisterImageOutput{}
 	req.Data = output
 	return
@@ -2336,7 +2336,7 @@ func (c *EC2) DescribeAccountAttributesRequest(input *DescribeAccountAttributesI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeAccountAttributes, input, output)
+	req = c.newRequest(opDescribeAccountAttributes, input, output)
 	output = &DescribeAccountAttributesOutput{}
 	req.Data = output
 	return
@@ -2380,7 +2380,7 @@ func (c *EC2) DescribeAddressesRequest(input *DescribeAddressesInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeAddresses, input, output)
+	req = c.newRequest(opDescribeAddresses, input, output)
 	output = &DescribeAddressesOutput{}
 	req.Data = output
 	return
@@ -2410,7 +2410,7 @@ func (c *EC2) DescribeAvailabilityZonesRequest(input *DescribeAvailabilityZonesI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeAvailabilityZones, input, output)
+	req = c.newRequest(opDescribeAvailabilityZones, input, output)
 	output = &DescribeAvailabilityZonesOutput{}
 	req.Data = output
 	return
@@ -2442,7 +2442,7 @@ func (c *EC2) DescribeBundleTasksRequest(input *DescribeBundleTasksInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeBundleTasks, input, output)
+	req = c.newRequest(opDescribeBundleTasks, input, output)
 	output = &DescribeBundleTasksOutput{}
 	req.Data = output
 	return
@@ -2473,7 +2473,7 @@ func (c *EC2) DescribeClassicLinkInstancesRequest(input *DescribeClassicLinkInst
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeClassicLinkInstances, input, output)
+	req = c.newRequest(opDescribeClassicLinkInstances, input, output)
 	output = &DescribeClassicLinkInstancesOutput{}
 	req.Data = output
 	return
@@ -2502,7 +2502,7 @@ func (c *EC2) DescribeConversionTasksRequest(input *DescribeConversionTasksInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeConversionTasks, input, output)
+	req = c.newRequest(opDescribeConversionTasks, input, output)
 	output = &DescribeConversionTasksOutput{}
 	req.Data = output
 	return
@@ -2531,7 +2531,7 @@ func (c *EC2) DescribeCustomerGatewaysRequest(input *DescribeCustomerGatewaysInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeCustomerGateways, input, output)
+	req = c.newRequest(opDescribeCustomerGateways, input, output)
 	output = &DescribeCustomerGatewaysOutput{}
 	req.Data = output
 	return
@@ -2561,7 +2561,7 @@ func (c *EC2) DescribeDHCPOptionsRequest(input *DescribeDHCPOptionsInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeDHCPOptions, input, output)
+	req = c.newRequest(opDescribeDHCPOptions, input, output)
 	output = &DescribeDHCPOptionsOutput{}
 	req.Data = output
 	return
@@ -2590,7 +2590,7 @@ func (c *EC2) DescribeExportTasksRequest(input *DescribeExportTasksInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeExportTasks, input, output)
+	req = c.newRequest(opDescribeExportTasks, input, output)
 	output = &DescribeExportTasksOutput{}
 	req.Data = output
 	return
@@ -2616,7 +2616,7 @@ func (c *EC2) DescribeImageAttributeRequest(input *DescribeImageAttributeInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeImageAttribute, input, output)
+	req = c.newRequest(opDescribeImageAttribute, input, output)
 	output = &DescribeImageAttributeOutput{}
 	req.Data = output
 	return
@@ -2643,7 +2643,7 @@ func (c *EC2) DescribeImagesRequest(input *DescribeImagesInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeImages, input, output)
+	req = c.newRequest(opDescribeImages, input, output)
 	output = &DescribeImagesOutput{}
 	req.Data = output
 	return
@@ -2675,7 +2675,7 @@ func (c *EC2) DescribeInstanceAttributeRequest(input *DescribeInstanceAttributeI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeInstanceAttribute, input, output)
+	req = c.newRequest(opDescribeInstanceAttribute, input, output)
 	output = &DescribeInstanceAttributeOutput{}
 	req.Data = output
 	return
@@ -2705,7 +2705,7 @@ func (c *EC2) DescribeInstanceStatusRequest(input *DescribeInstanceStatusInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeInstanceStatus, input, output)
+	req = c.newRequest(opDescribeInstanceStatus, input, output)
 	output = &DescribeInstanceStatusOutput{}
 	req.Data = output
 	return
@@ -2789,7 +2789,7 @@ func (c *EC2) DescribeInstancesRequest(input *DescribeInstancesInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeInstances, input, output)
+	req = c.newRequest(opDescribeInstances, input, output)
 	output = &DescribeInstancesOutput{}
 	req.Data = output
 	return
@@ -2824,7 +2824,7 @@ func (c *EC2) DescribeInternetGatewaysRequest(input *DescribeInternetGatewaysInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeInternetGateways, input, output)
+	req = c.newRequest(opDescribeInternetGateways, input, output)
 	output = &DescribeInternetGatewaysOutput{}
 	req.Data = output
 	return
@@ -2850,7 +2850,7 @@ func (c *EC2) DescribeKeyPairsRequest(input *DescribeKeyPairsInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeKeyPairs, input, output)
+	req = c.newRequest(opDescribeKeyPairs, input, output)
 	output = &DescribeKeyPairsOutput{}
 	req.Data = output
 	return
@@ -2879,7 +2879,7 @@ func (c *EC2) DescribeNetworkACLsRequest(input *DescribeNetworkACLsInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeNetworkACLs, input, output)
+	req = c.newRequest(opDescribeNetworkACLs, input, output)
 	output = &DescribeNetworkACLsOutput{}
 	req.Data = output
 	return
@@ -2908,7 +2908,7 @@ func (c *EC2) DescribeNetworkInterfaceAttributeRequest(input *DescribeNetworkInt
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeNetworkInterfaceAttribute, input, output)
+	req = c.newRequest(opDescribeNetworkInterfaceAttribute, input, output)
 	output = &DescribeNetworkInterfaceAttributeOutput{}
 	req.Data = output
 	return
@@ -2935,7 +2935,7 @@ func (c *EC2) DescribeNetworkInterfacesRequest(input *DescribeNetworkInterfacesI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeNetworkInterfaces, input, output)
+	req = c.newRequest(opDescribeNetworkInterfaces, input, output)
 	output = &DescribeNetworkInterfacesOutput{}
 	req.Data = output
 	return
@@ -2961,7 +2961,7 @@ func (c *EC2) DescribePlacementGroupsRequest(input *DescribePlacementGroupsInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribePlacementGroups, input, output)
+	req = c.newRequest(opDescribePlacementGroups, input, output)
 	output = &DescribePlacementGroupsOutput{}
 	req.Data = output
 	return
@@ -2989,7 +2989,7 @@ func (c *EC2) DescribeRegionsRequest(input *DescribeRegionsInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeRegions, input, output)
+	req = c.newRequest(opDescribeRegions, input, output)
 	output = &DescribeRegionsOutput{}
 	req.Data = output
 	return
@@ -3018,7 +3018,7 @@ func (c *EC2) DescribeReservedInstancesRequest(input *DescribeReservedInstancesI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeReservedInstances, input, output)
+	req = c.newRequest(opDescribeReservedInstances, input, output)
 	output = &DescribeReservedInstancesOutput{}
 	req.Data = output
 	return
@@ -3047,7 +3047,7 @@ func (c *EC2) DescribeReservedInstancesListingsRequest(input *DescribeReservedIn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeReservedInstancesListings, input, output)
+	req = c.newRequest(opDescribeReservedInstancesListings, input, output)
 	output = &DescribeReservedInstancesListingsOutput{}
 	req.Data = output
 	return
@@ -3094,7 +3094,7 @@ func (c *EC2) DescribeReservedInstancesModificationsRequest(input *DescribeReser
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeReservedInstancesModifications, input, output)
+	req = c.newRequest(opDescribeReservedInstancesModifications, input, output)
 	output = &DescribeReservedInstancesModificationsOutput{}
 	req.Data = output
 	return
@@ -3126,7 +3126,7 @@ func (c *EC2) DescribeReservedInstancesOfferingsRequest(input *DescribeReservedI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeReservedInstancesOfferings, input, output)
+	req = c.newRequest(opDescribeReservedInstancesOfferings, input, output)
 	output = &DescribeReservedInstancesOfferingsOutput{}
 	req.Data = output
 	return
@@ -3159,7 +3159,7 @@ func (c *EC2) DescribeRouteTablesRequest(input *DescribeRouteTablesInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeRouteTables, input, output)
+	req = c.newRequest(opDescribeRouteTables, input, output)
 	output = &DescribeRouteTablesOutput{}
 	req.Data = output
 	return
@@ -3188,7 +3188,7 @@ func (c *EC2) DescribeSecurityGroupsRequest(input *DescribeSecurityGroupsInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeSecurityGroups, input, output)
+	req = c.newRequest(opDescribeSecurityGroups, input, output)
 	output = &DescribeSecurityGroupsOutput{}
 	req.Data = output
 	return
@@ -3221,7 +3221,7 @@ func (c *EC2) DescribeSnapshotAttributeRequest(input *DescribeSnapshotAttributeI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeSnapshotAttribute, input, output)
+	req = c.newRequest(opDescribeSnapshotAttribute, input, output)
 	output = &DescribeSnapshotAttributeOutput{}
 	req.Data = output
 	return
@@ -3251,7 +3251,7 @@ func (c *EC2) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeSnapshots, input, output)
+	req = c.newRequest(opDescribeSnapshots, input, output)
 	output = &DescribeSnapshotsOutput{}
 	req.Data = output
 	return
@@ -3316,7 +3316,7 @@ func (c *EC2) DescribeSpotDatafeedSubscriptionRequest(input *DescribeSpotDatafee
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeSpotDatafeedSubscription, input, output)
+	req = c.newRequest(opDescribeSpotDatafeedSubscription, input, output)
 	output = &DescribeSpotDatafeedSubscriptionOutput{}
 	req.Data = output
 	return
@@ -3344,7 +3344,7 @@ func (c *EC2) DescribeSpotInstanceRequestsRequest(input *DescribeSpotInstanceReq
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeSpotInstanceRequests, input, output)
+	req = c.newRequest(opDescribeSpotInstanceRequests, input, output)
 	output = &DescribeSpotInstanceRequestsOutput{}
 	req.Data = output
 	return
@@ -3381,7 +3381,7 @@ func (c *EC2) DescribeSpotPriceHistoryRequest(input *DescribeSpotPriceHistoryInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeSpotPriceHistory, input, output)
+	req = c.newRequest(opDescribeSpotPriceHistory, input, output)
 	output = &DescribeSpotPriceHistoryOutput{}
 	req.Data = output
 	return
@@ -3415,7 +3415,7 @@ func (c *EC2) DescribeSubnetsRequest(input *DescribeSubnetsInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeSubnets, input, output)
+	req = c.newRequest(opDescribeSubnets, input, output)
 	output = &DescribeSubnetsOutput{}
 	req.Data = output
 	return
@@ -3444,7 +3444,7 @@ func (c *EC2) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeTags, input, output)
+	req = c.newRequest(opDescribeTags, input, output)
 	output = &DescribeTagsOutput{}
 	req.Data = output
 	return
@@ -3473,7 +3473,7 @@ func (c *EC2) DescribeVPCAttributeRequest(input *DescribeVPCAttributeInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeVPCAttribute, input, output)
+	req = c.newRequest(opDescribeVPCAttribute, input, output)
 	output = &DescribeVPCAttributeOutput{}
 	req.Data = output
 	return
@@ -3500,7 +3500,7 @@ func (c *EC2) DescribeVPCClassicLinkRequest(input *DescribeVPCClassicLinkInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeVPCClassicLink, input, output)
+	req = c.newRequest(opDescribeVPCClassicLink, input, output)
 	output = &DescribeVPCClassicLinkOutput{}
 	req.Data = output
 	return
@@ -3526,7 +3526,7 @@ func (c *EC2) DescribeVPCPeeringConnectionsRequest(input *DescribeVPCPeeringConn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeVPCPeeringConnections, input, output)
+	req = c.newRequest(opDescribeVPCPeeringConnections, input, output)
 	output = &DescribeVPCPeeringConnectionsOutput{}
 	req.Data = output
 	return
@@ -3552,7 +3552,7 @@ func (c *EC2) DescribeVPCsRequest(input *DescribeVPCsInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeVPCs, input, output)
+	req = c.newRequest(opDescribeVPCs, input, output)
 	output = &DescribeVPCsOutput{}
 	req.Data = output
 	return
@@ -3578,7 +3578,7 @@ func (c *EC2) DescribeVPNConnectionsRequest(input *DescribeVPNConnectionsInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeVPNConnections, input, output)
+	req = c.newRequest(opDescribeVPNConnections, input, output)
 	output = &DescribeVPNConnectionsOutput{}
 	req.Data = output
 	return
@@ -3608,7 +3608,7 @@ func (c *EC2) DescribeVPNGatewaysRequest(input *DescribeVPNGatewaysInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeVPNGateways, input, output)
+	req = c.newRequest(opDescribeVPNGateways, input, output)
 	output = &DescribeVPNGatewaysOutput{}
 	req.Data = output
 	return
@@ -3638,7 +3638,7 @@ func (c *EC2) DescribeVolumeAttributeRequest(input *DescribeVolumeAttributeInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeVolumeAttribute, input, output)
+	req = c.newRequest(opDescribeVolumeAttribute, input, output)
 	output = &DescribeVolumeAttributeOutput{}
 	req.Data = output
 	return
@@ -3668,7 +3668,7 @@ func (c *EC2) DescribeVolumeStatusRequest(input *DescribeVolumeStatusInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeVolumeStatus, input, output)
+	req = c.newRequest(opDescribeVolumeStatus, input, output)
 	output = &DescribeVolumeStatusOutput{}
 	req.Data = output
 	return
@@ -3728,7 +3728,7 @@ func (c *EC2) DescribeVolumesRequest(input *DescribeVolumesInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeVolumes, input, output)
+	req = c.newRequest(opDescribeVolumes, input, output)
 	output = &DescribeVolumesOutput{}
 	req.Data = output
 	return
@@ -3764,7 +3764,7 @@ func (c *EC2) DetachClassicLinkVPCRequest(input *DetachClassicLinkVPCInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDetachClassicLinkVPC, input, output)
+	req = c.newRequest(opDetachClassicLinkVPC, input, output)
 	output = &DetachClassicLinkVPCOutput{}
 	req.Data = output
 	return
@@ -3792,7 +3792,7 @@ func (c *EC2) DetachInternetGatewayRequest(input *DetachInternetGatewayInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDetachInternetGateway, input, output)
+	req = c.newRequest(opDetachInternetGateway, input, output)
 	output = &DetachInternetGatewayOutput{}
 	req.Data = output
 	return
@@ -3820,7 +3820,7 @@ func (c *EC2) DetachNetworkInterfaceRequest(input *DetachNetworkInterfaceInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDetachNetworkInterface, input, output)
+	req = c.newRequest(opDetachNetworkInterface, input, output)
 	output = &DetachNetworkInterfaceOutput{}
 	req.Data = output
 	return
@@ -3846,7 +3846,7 @@ func (c *EC2) DetachVPNGatewayRequest(input *DetachVPNGatewayInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDetachVPNGateway, input, output)
+	req = c.newRequest(opDetachVPNGateway, input, output)
 	output = &DetachVPNGatewayOutput{}
 	req.Data = output
 	return
@@ -3879,7 +3879,7 @@ func (c *EC2) DetachVolumeRequest(input *DetachVolumeInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDetachVolume, input, output)
+	req = c.newRequest(opDetachVolume, input, output)
 	output = &VolumeAttachment{}
 	req.Data = output
 	return
@@ -3918,7 +3918,7 @@ func (c *EC2) DisableVGWRoutePropagationRequest(input *DisableVGWRoutePropagatio
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDisableVGWRoutePropagation, input, output)
+	req = c.newRequest(opDisableVGWRoutePropagation, input, output)
 	output = &DisableVGWRoutePropagationOutput{}
 	req.Data = output
 	return
@@ -3945,7 +3945,7 @@ func (c *EC2) DisableVPCClassicLinkRequest(input *DisableVPCClassicLinkInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDisableVPCClassicLink, input, output)
+	req = c.newRequest(opDisableVPCClassicLink, input, output)
 	output = &DisableVPCClassicLinkOutput{}
 	req.Data = output
 	return
@@ -3972,7 +3972,7 @@ func (c *EC2) DisassociateAddressRequest(input *DisassociateAddressInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDisassociateAddress, input, output)
+	req = c.newRequest(opDisassociateAddress, input, output)
 	output = &DisassociateAddressOutput{}
 	req.Data = output
 	return
@@ -4006,7 +4006,7 @@ func (c *EC2) DisassociateRouteTableRequest(input *DisassociateRouteTableInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDisassociateRouteTable, input, output)
+	req = c.newRequest(opDisassociateRouteTable, input, output)
 	output = &DisassociateRouteTableOutput{}
 	req.Data = output
 	return
@@ -4037,7 +4037,7 @@ func (c *EC2) EnableVGWRoutePropagationRequest(input *EnableVGWRoutePropagationI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opEnableVGWRoutePropagation, input, output)
+	req = c.newRequest(opEnableVGWRoutePropagation, input, output)
 	output = &EnableVGWRoutePropagationOutput{}
 	req.Data = output
 	return
@@ -4064,7 +4064,7 @@ func (c *EC2) EnableVPCClassicLinkRequest(input *EnableVPCClassicLinkInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opEnableVPCClassicLink, input, output)
+	req = c.newRequest(opEnableVPCClassicLink, input, output)
 	output = &EnableVPCClassicLinkOutput{}
 	req.Data = output
 	return
@@ -4096,7 +4096,7 @@ func (c *EC2) EnableVolumeIORequest(input *EnableVolumeIOInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opEnableVolumeIO, input, output)
+	req = c.newRequest(opEnableVolumeIO, input, output)
 	output = &EnableVolumeIOOutput{}
 	req.Data = output
 	return
@@ -4123,7 +4123,7 @@ func (c *EC2) GetConsoleOutputRequest(input *GetConsoleOutputInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetConsoleOutput, input, output)
+	req = c.newRequest(opGetConsoleOutput, input, output)
 	output = &GetConsoleOutputOutput{}
 	req.Data = output
 	return
@@ -4166,7 +4166,7 @@ func (c *EC2) GetPasswordDataRequest(input *GetPasswordDataInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetPasswordData, input, output)
+	req = c.newRequest(opGetPasswordData, input, output)
 	output = &GetPasswordDataOutput{}
 	req.Data = output
 	return
@@ -4205,7 +4205,7 @@ func (c *EC2) ImportInstanceRequest(input *ImportInstanceInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opImportInstance, input, output)
+	req = c.newRequest(opImportInstance, input, output)
 	output = &ImportInstanceOutput{}
 	req.Data = output
 	return
@@ -4235,7 +4235,7 @@ func (c *EC2) ImportKeyPairRequest(input *ImportKeyPairInput) (req *aws.Request,
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opImportKeyPair, input, output)
+	req = c.newRequest(opImportKeyPair, input, output)
 	output = &ImportKeyPairOutput{}
 	req.Data = output
 	return
@@ -4268,7 +4268,7 @@ func (c *EC2) ImportVolumeRequest(input *ImportVolumeInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opImportVolume, input, output)
+	req = c.newRequest(opImportVolume, input, output)
 	output = &ImportVolumeOutput{}
 	req.Data = output
 	return
@@ -4299,7 +4299,7 @@ func (c *EC2) ModifyImageAttributeRequest(input *ModifyImageAttributeInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyImageAttribute, input, output)
+	req = c.newRequest(opModifyImageAttribute, input, output)
 	output = &ModifyImageAttributeOutput{}
 	req.Data = output
 	return
@@ -4329,7 +4329,7 @@ func (c *EC2) ModifyInstanceAttributeRequest(input *ModifyInstanceAttributeInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyInstanceAttribute, input, output)
+	req = c.newRequest(opModifyInstanceAttribute, input, output)
 	output = &ModifyInstanceAttributeOutput{}
 	req.Data = output
 	return
@@ -4360,7 +4360,7 @@ func (c *EC2) ModifyNetworkInterfaceAttributeRequest(input *ModifyNetworkInterfa
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyNetworkInterfaceAttribute, input, output)
+	req = c.newRequest(opModifyNetworkInterfaceAttribute, input, output)
 	output = &ModifyNetworkInterfaceAttributeOutput{}
 	req.Data = output
 	return
@@ -4387,7 +4387,7 @@ func (c *EC2) ModifyReservedInstancesRequest(input *ModifyReservedInstancesInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyReservedInstances, input, output)
+	req = c.newRequest(opModifyReservedInstances, input, output)
 	output = &ModifyReservedInstancesOutput{}
 	req.Data = output
 	return
@@ -4419,7 +4419,7 @@ func (c *EC2) ModifySnapshotAttributeRequest(input *ModifySnapshotAttributeInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifySnapshotAttribute, input, output)
+	req = c.newRequest(opModifySnapshotAttribute, input, output)
 	output = &ModifySnapshotAttributeOutput{}
 	req.Data = output
 	return
@@ -4455,7 +4455,7 @@ func (c *EC2) ModifySubnetAttributeRequest(input *ModifySubnetAttributeInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifySubnetAttribute, input, output)
+	req = c.newRequest(opModifySubnetAttribute, input, output)
 	output = &ModifySubnetAttributeOutput{}
 	req.Data = output
 	return
@@ -4481,7 +4481,7 @@ func (c *EC2) ModifyVPCAttributeRequest(input *ModifyVPCAttributeInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyVPCAttribute, input, output)
+	req = c.newRequest(opModifyVPCAttribute, input, output)
 	output = &ModifyVPCAttributeOutput{}
 	req.Data = output
 	return
@@ -4507,7 +4507,7 @@ func (c *EC2) ModifyVolumeAttributeRequest(input *ModifyVolumeAttributeInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyVolumeAttribute, input, output)
+	req = c.newRequest(opModifyVolumeAttribute, input, output)
 	output = &ModifyVolumeAttributeOutput{}
 	req.Data = output
 	return
@@ -4542,7 +4542,7 @@ func (c *EC2) MonitorInstancesRequest(input *MonitorInstancesInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opMonitorInstances, input, output)
+	req = c.newRequest(opMonitorInstances, input, output)
 	output = &MonitorInstancesOutput{}
 	req.Data = output
 	return
@@ -4570,7 +4570,7 @@ func (c *EC2) PurchaseReservedInstancesOfferingRequest(input *PurchaseReservedIn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPurchaseReservedInstancesOffering, input, output)
+	req = c.newRequest(opPurchaseReservedInstancesOffering, input, output)
 	output = &PurchaseReservedInstancesOfferingOutput{}
 	req.Data = output
 	return
@@ -4608,7 +4608,7 @@ func (c *EC2) RebootInstancesRequest(input *RebootInstancesInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRebootInstances, input, output)
+	req = c.newRequest(opRebootInstances, input, output)
 	output = &RebootInstancesOutput{}
 	req.Data = output
 	return
@@ -4644,7 +4644,7 @@ func (c *EC2) RegisterImageRequest(input *RegisterImageInput) (req *aws.Request,
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRegisterImage, input, output)
+	req = c.newRequest(opRegisterImage, input, output)
 	output = &RegisterImageOutput{}
 	req.Data = output
 	return
@@ -4689,7 +4689,7 @@ func (c *EC2) RejectVPCPeeringConnectionRequest(input *RejectVPCPeeringConnectio
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRejectVPCPeeringConnection, input, output)
+	req = c.newRequest(opRejectVPCPeeringConnection, input, output)
 	output = &RejectVPCPeeringConnectionOutput{}
 	req.Data = output
 	return
@@ -4719,7 +4719,7 @@ func (c *EC2) ReleaseAddressRequest(input *ReleaseAddressInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opReleaseAddress, input, output)
+	req = c.newRequest(opReleaseAddress, input, output)
 	output = &ReleaseAddressOutput{}
 	req.Data = output
 	return
@@ -4759,7 +4759,7 @@ func (c *EC2) ReplaceNetworkACLAssociationRequest(input *ReplaceNetworkACLAssoci
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opReplaceNetworkACLAssociation, input, output)
+	req = c.newRequest(opReplaceNetworkACLAssociation, input, output)
 	output = &ReplaceNetworkACLAssociationOutput{}
 	req.Data = output
 	return
@@ -4788,7 +4788,7 @@ func (c *EC2) ReplaceNetworkACLEntryRequest(input *ReplaceNetworkACLEntryInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opReplaceNetworkACLEntry, input, output)
+	req = c.newRequest(opReplaceNetworkACLEntry, input, output)
 	output = &ReplaceNetworkACLEntryOutput{}
 	req.Data = output
 	return
@@ -4816,7 +4816,7 @@ func (c *EC2) ReplaceRouteRequest(input *ReplaceRouteInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opReplaceRoute, input, output)
+	req = c.newRequest(opReplaceRoute, input, output)
 	output = &ReplaceRouteOutput{}
 	req.Data = output
 	return
@@ -4847,7 +4847,7 @@ func (c *EC2) ReplaceRouteTableAssociationRequest(input *ReplaceRouteTableAssoci
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opReplaceRouteTableAssociation, input, output)
+	req = c.newRequest(opReplaceRouteTableAssociation, input, output)
 	output = &ReplaceRouteTableAssociationOutput{}
 	req.Data = output
 	return
@@ -4881,7 +4881,7 @@ func (c *EC2) ReportInstanceStatusRequest(input *ReportInstanceStatusInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opReportInstanceStatus, input, output)
+	req = c.newRequest(opReportInstanceStatus, input, output)
 	output = &ReportInstanceStatusOutput{}
 	req.Data = output
 	return
@@ -4913,7 +4913,7 @@ func (c *EC2) RequestSpotInstancesRequest(input *RequestSpotInstancesInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRequestSpotInstances, input, output)
+	req = c.newRequest(opRequestSpotInstances, input, output)
 	output = &RequestSpotInstancesOutput{}
 	req.Data = output
 	return
@@ -4944,7 +4944,7 @@ func (c *EC2) ResetImageAttributeRequest(input *ResetImageAttributeInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opResetImageAttribute, input, output)
+	req = c.newRequest(opResetImageAttribute, input, output)
 	output = &ResetImageAttributeOutput{}
 	req.Data = output
 	return
@@ -4972,7 +4972,7 @@ func (c *EC2) ResetInstanceAttributeRequest(input *ResetInstanceAttributeInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opResetInstanceAttribute, input, output)
+	req = c.newRequest(opResetInstanceAttribute, input, output)
 	output = &ResetInstanceAttributeOutput{}
 	req.Data = output
 	return
@@ -5006,7 +5006,7 @@ func (c *EC2) ResetNetworkInterfaceAttributeRequest(input *ResetNetworkInterface
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opResetNetworkInterfaceAttribute, input, output)
+	req = c.newRequest(opResetNetworkInterfaceAttribute, input, output)
 	output = &ResetNetworkInterfaceAttributeOutput{}
 	req.Data = output
 	return
@@ -5033,7 +5033,7 @@ func (c *EC2) ResetSnapshotAttributeRequest(input *ResetSnapshotAttributeInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opResetSnapshotAttribute, input, output)
+	req = c.newRequest(opResetSnapshotAttribute, input, output)
 	output = &ResetSnapshotAttributeOutput{}
 	req.Data = output
 	return
@@ -5063,7 +5063,7 @@ func (c *EC2) RevokeSecurityGroupEgressRequest(input *RevokeSecurityGroupEgressI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRevokeSecurityGroupEgress, input, output)
+	req = c.newRequest(opRevokeSecurityGroupEgress, input, output)
 	output = &RevokeSecurityGroupEgressOutput{}
 	req.Data = output
 	return
@@ -5099,7 +5099,7 @@ func (c *EC2) RevokeSecurityGroupIngressRequest(input *RevokeSecurityGroupIngres
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRevokeSecurityGroupIngress, input, output)
+	req = c.newRequest(opRevokeSecurityGroupIngress, input, output)
 	output = &RevokeSecurityGroupIngressOutput{}
 	req.Data = output
 	return
@@ -5135,7 +5135,7 @@ func (c *EC2) RunInstancesRequest(input *RunInstancesInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRunInstances, input, output)
+	req = c.newRequest(opRunInstances, input, output)
 	output = &Reservation{}
 	req.Data = output
 	return
@@ -5193,7 +5193,7 @@ func (c *EC2) StartInstancesRequest(input *StartInstancesInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opStartInstances, input, output)
+	req = c.newRequest(opStartInstances, input, output)
 	output = &StartInstancesOutput{}
 	req.Data = output
 	return
@@ -5237,7 +5237,7 @@ func (c *EC2) StopInstancesRequest(input *StopInstancesInput) (req *aws.Request,
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opStopInstances, input, output)
+	req = c.newRequest(opStopInstances, input, output)
 	output = &StopInstancesOutput{}
 	req.Data = output
 	return
@@ -5293,7 +5293,7 @@ func (c *EC2) TerminateInstancesRequest(input *TerminateInstancesInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opTerminateInstances, input, output)
+	req = c.newRequest(opTerminateInstances, input, output)
 	output = &TerminateInstancesOutput{}
 	req.Data = output
 	return
@@ -5340,7 +5340,7 @@ func (c *EC2) UnassignPrivateIPAddressesRequest(input *UnassignPrivateIPAddresse
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUnassignPrivateIPAddresses, input, output)
+	req = c.newRequest(opUnassignPrivateIPAddresses, input, output)
 	output = &UnassignPrivateIPAddressesOutput{}
 	req.Data = output
 	return
@@ -5366,7 +5366,7 @@ func (c *EC2) UnmonitorInstancesRequest(input *UnmonitorInstancesInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUnmonitorInstances, input, output)
+	req = c.newRequest(opUnmonitorInstances, input, output)
 	output = &UnmonitorInstancesOutput{}
 	req.Data = output
 	return

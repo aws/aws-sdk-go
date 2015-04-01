@@ -17,7 +17,7 @@ func (c *ElasticTranscoder) CancelJobRequest(input *CancelJobInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCancelJob, input, output)
+	req = c.newRequest(opCancelJob, input, output)
 	output = &CancelJobOutput{}
 	req.Data = output
 	return
@@ -47,7 +47,7 @@ func (c *ElasticTranscoder) CreateJobRequest(input *CreateJobInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateJob, input, output)
+	req = c.newRequest(opCreateJob, input, output)
 	output = &CreateJobOutput{}
 	req.Data = output
 	return
@@ -79,7 +79,7 @@ func (c *ElasticTranscoder) CreatePipelineRequest(input *CreatePipelineInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreatePipeline, input, output)
+	req = c.newRequest(opCreatePipeline, input, output)
 	output = &CreatePipelineOutput{}
 	req.Data = output
 	return
@@ -105,7 +105,7 @@ func (c *ElasticTranscoder) CreatePresetRequest(input *CreatePresetInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreatePreset, input, output)
+	req = c.newRequest(opCreatePreset, input, output)
 	output = &CreatePresetOutput{}
 	req.Data = output
 	return
@@ -145,7 +145,7 @@ func (c *ElasticTranscoder) DeletePipelineRequest(input *DeletePipelineInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeletePipeline, input, output)
+	req = c.newRequest(opDeletePipeline, input, output)
 	output = &DeletePipelineOutput{}
 	req.Data = output
 	return
@@ -175,7 +175,7 @@ func (c *ElasticTranscoder) DeletePresetRequest(input *DeletePresetInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeletePreset, input, output)
+	req = c.newRequest(opDeletePreset, input, output)
 	output = &DeletePresetOutput{}
 	req.Data = output
 	return
@@ -203,7 +203,7 @@ func (c *ElasticTranscoder) ListJobsByPipelineRequest(input *ListJobsByPipelineI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListJobsByPipeline, input, output)
+	req = c.newRequest(opListJobsByPipeline, input, output)
 	output = &ListJobsByPipelineOutput{}
 	req.Data = output
 	return
@@ -233,7 +233,7 @@ func (c *ElasticTranscoder) ListJobsByStatusRequest(input *ListJobsByStatusInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListJobsByStatus, input, output)
+	req = c.newRequest(opListJobsByStatus, input, output)
 	output = &ListJobsByStatusOutput{}
 	req.Data = output
 	return
@@ -261,7 +261,7 @@ func (c *ElasticTranscoder) ListPipelinesRequest(input *ListPipelinesInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListPipelines, input, output)
+	req = c.newRequest(opListPipelines, input, output)
 	output = &ListPipelinesOutput{}
 	req.Data = output
 	return
@@ -288,7 +288,7 @@ func (c *ElasticTranscoder) ListPresetsRequest(input *ListPresetsInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListPresets, input, output)
+	req = c.newRequest(opListPresets, input, output)
 	output = &ListPresetsOutput{}
 	req.Data = output
 	return
@@ -315,7 +315,7 @@ func (c *ElasticTranscoder) ReadJobRequest(input *ReadJobInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opReadJob, input, output)
+	req = c.newRequest(opReadJob, input, output)
 	output = &ReadJobOutput{}
 	req.Data = output
 	return
@@ -341,7 +341,7 @@ func (c *ElasticTranscoder) ReadPipelineRequest(input *ReadPipelineInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opReadPipeline, input, output)
+	req = c.newRequest(opReadPipeline, input, output)
 	output = &ReadPipelineOutput{}
 	req.Data = output
 	return
@@ -367,7 +367,7 @@ func (c *ElasticTranscoder) ReadPresetRequest(input *ReadPresetInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opReadPreset, input, output)
+	req = c.newRequest(opReadPreset, input, output)
 	output = &ReadPresetOutput{}
 	req.Data = output
 	return
@@ -393,7 +393,7 @@ func (c *ElasticTranscoder) TestRoleRequest(input *TestRoleInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opTestRole, input, output)
+	req = c.newRequest(opTestRole, input, output)
 	output = &TestRoleOutput{}
 	req.Data = output
 	return
@@ -425,7 +425,7 @@ func (c *ElasticTranscoder) UpdatePipelineRequest(input *UpdatePipelineInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdatePipeline, input, output)
+	req = c.newRequest(opUpdatePipeline, input, output)
 	output = &UpdatePipelineOutput{}
 	req.Data = output
 	return
@@ -455,7 +455,7 @@ func (c *ElasticTranscoder) UpdatePipelineNotificationsRequest(input *UpdatePipe
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdatePipelineNotifications, input, output)
+	req = c.newRequest(opUpdatePipelineNotifications, input, output)
 	output = &UpdatePipelineNotificationsOutput{}
 	req.Data = output
 	return
@@ -485,7 +485,7 @@ func (c *ElasticTranscoder) UpdatePipelineStatusRequest(input *UpdatePipelineSta
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdatePipelineStatus, input, output)
+	req = c.newRequest(opUpdatePipelineStatus, input, output)
 	output = &UpdatePipelineStatusOutput{}
 	req.Data = output
 	return

@@ -19,7 +19,7 @@ func (c *STS) AssumeRoleRequest(input *AssumeRoleInput) (req *aws.Request, outpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAssumeRole, input, output)
+	req = c.newRequest(opAssumeRole, input, output)
 	output = &AssumeRoleOutput{}
 	req.Data = output
 	return
@@ -115,7 +115,7 @@ func (c *STS) AssumeRoleWithSAMLRequest(input *AssumeRoleWithSAMLInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAssumeRoleWithSAML, input, output)
+	req = c.newRequest(opAssumeRoleWithSAML, input, output)
 	output = &AssumeRoleWithSAMLOutput{}
 	req.Data = output
 	return
@@ -183,7 +183,7 @@ func (c *STS) AssumeRoleWithWebIdentityRequest(input *AssumeRoleWithWebIdentityI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAssumeRoleWithWebIdentity, input, output)
+	req = c.newRequest(opAssumeRoleWithWebIdentity, input, output)
 	output = &AssumeRoleWithWebIdentityOutput{}
 	req.Data = output
 	return
@@ -264,7 +264,7 @@ func (c *STS) DecodeAuthorizationMessageRequest(input *DecodeAuthorizationMessag
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDecodeAuthorizationMessage, input, output)
+	req = c.newRequest(opDecodeAuthorizationMessage, input, output)
 	output = &DecodeAuthorizationMessageOutput{}
 	req.Data = output
 	return
@@ -311,7 +311,7 @@ func (c *STS) GetFederationTokenRequest(input *GetFederationTokenInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetFederationToken, input, output)
+	req = c.newRequest(opGetFederationToken, input, output)
 	output = &GetFederationTokenOutput{}
 	req.Data = output
 	return
@@ -398,7 +398,7 @@ func (c *STS) GetSessionTokenRequest(input *GetSessionTokenInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetSessionToken, input, output)
+	req = c.newRequest(opGetSessionToken, input, output)
 	output = &GetSessionTokenOutput{}
 	req.Data = output
 	return

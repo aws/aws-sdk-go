@@ -19,7 +19,7 @@ func (c *DynamoDB) BatchGetItemRequest(input *BatchGetItemInput) (req *aws.Reque
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opBatchGetItem, input, output)
+	req = c.newRequest(opBatchGetItem, input, output)
 	output = &BatchGetItemOutput{}
 	req.Data = output
 	return
@@ -90,7 +90,7 @@ func (c *DynamoDB) BatchWriteItemRequest(input *BatchWriteItemInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opBatchWriteItem, input, output)
+	req = c.newRequest(opBatchWriteItem, input, output)
 	output = &BatchWriteItemOutput{}
 	req.Data = output
 	return
@@ -184,7 +184,7 @@ func (c *DynamoDB) CreateTableRequest(input *CreateTableInput) (req *aws.Request
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateTable, input, output)
+	req = c.newRequest(opCreateTable, input, output)
 	output = &CreateTableOutput{}
 	req.Data = output
 	return
@@ -224,7 +224,7 @@ func (c *DynamoDB) DeleteItemRequest(input *DeleteItemInput) (req *aws.Request, 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteItem, input, output)
+	req = c.newRequest(opDeleteItem, input, output)
 	output = &DeleteItemOutput{}
 	req.Data = output
 	return
@@ -263,7 +263,7 @@ func (c *DynamoDB) DeleteTableRequest(input *DeleteTableInput) (req *aws.Request
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteTable, input, output)
+	req = c.newRequest(opDeleteTable, input, output)
 	output = &DeleteTableOutput{}
 	req.Data = output
 	return
@@ -302,7 +302,7 @@ func (c *DynamoDB) DescribeTableRequest(input *DescribeTableInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeTable, input, output)
+	req = c.newRequest(opDescribeTable, input, output)
 	output = &DescribeTableOutput{}
 	req.Data = output
 	return
@@ -336,7 +336,7 @@ func (c *DynamoDB) GetItemRequest(input *GetItemInput) (req *aws.Request, output
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetItem, input, output)
+	req = c.newRequest(opGetItem, input, output)
 	output = &GetItemOutput{}
 	req.Data = output
 	return
@@ -368,7 +368,7 @@ func (c *DynamoDB) ListTablesRequest(input *ListTablesInput) (req *aws.Request, 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListTables, input, output)
+	req = c.newRequest(opListTables, input, output)
 	output = &ListTablesOutput{}
 	req.Data = output
 	return
@@ -396,7 +396,7 @@ func (c *DynamoDB) PutItemRequest(input *PutItemInput) (req *aws.Request, output
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutItem, input, output)
+	req = c.newRequest(opPutItem, input, output)
 	output = &PutItemOutput{}
 	req.Data = output
 	return
@@ -446,7 +446,7 @@ func (c *DynamoDB) QueryRequest(input *QueryInput) (req *aws.Request, output *Qu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opQuery, input, output)
+	req = c.newRequest(opQuery, input, output)
 	output = &QueryOutput{}
 	req.Data = output
 	return
@@ -493,7 +493,7 @@ func (c *DynamoDB) ScanRequest(input *ScanInput) (req *aws.Request, output *Scan
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opScan, input, output)
+	req = c.newRequest(opScan, input, output)
 	output = &ScanOutput{}
 	req.Data = output
 	return
@@ -535,7 +535,7 @@ func (c *DynamoDB) UpdateItemRequest(input *UpdateItemInput) (req *aws.Request, 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateItem, input, output)
+	req = c.newRequest(opUpdateItem, input, output)
 	output = &UpdateItemOutput{}
 	req.Data = output
 	return
@@ -570,7 +570,7 @@ func (c *DynamoDB) UpdateTableRequest(input *UpdateTableInput) (req *aws.Request
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateTable, input, output)
+	req = c.newRequest(opUpdateTable, input, output)
 	output = &UpdateTableOutput{}
 	req.Data = output
 	return

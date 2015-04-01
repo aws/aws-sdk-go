@@ -19,7 +19,7 @@ func (c *Route53) AssociateVPCWithHostedZoneRequest(input *AssociateVPCWithHoste
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAssociateVPCWithHostedZone, input, output)
+	req = c.newRequest(opAssociateVPCWithHostedZone, input, output)
 	output = &AssociateVPCWithHostedZoneOutput{}
 	req.Data = output
 	return
@@ -52,7 +52,7 @@ func (c *Route53) ChangeResourceRecordSetsRequest(input *ChangeResourceRecordSet
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opChangeResourceRecordSets, input, output)
+	req = c.newRequest(opChangeResourceRecordSets, input, output)
 	output = &ChangeResourceRecordSetsOutput{}
 	req.Data = output
 	return
@@ -105,7 +105,7 @@ func (c *Route53) ChangeTagsForResourceRequest(input *ChangeTagsForResourceInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opChangeTagsForResource, input, output)
+	req = c.newRequest(opChangeTagsForResource, input, output)
 	output = &ChangeTagsForResourceOutput{}
 	req.Data = output
 	return
@@ -130,7 +130,7 @@ func (c *Route53) CreateHealthCheckRequest(input *CreateHealthCheckInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateHealthCheck, input, output)
+	req = c.newRequest(opCreateHealthCheck, input, output)
 	output = &CreateHealthCheckOutput{}
 	req.Data = output
 	return
@@ -161,7 +161,7 @@ func (c *Route53) CreateHostedZoneRequest(input *CreateHostedZoneInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateHostedZone, input, output)
+	req = c.newRequest(opCreateHostedZone, input, output)
 	output = &CreateHostedZoneOutput{}
 	req.Data = output
 	return
@@ -207,7 +207,7 @@ func (c *Route53) CreateReusableDelegationSetRequest(input *CreateReusableDelega
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateReusableDelegationSet, input, output)
+	req = c.newRequest(opCreateReusableDelegationSet, input, output)
 	output = &CreateReusableDelegationSetOutput{}
 	req.Data = output
 	return
@@ -241,7 +241,7 @@ func (c *Route53) DeleteHealthCheckRequest(input *DeleteHealthCheckInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteHealthCheck, input, output)
+	req = c.newRequest(opDeleteHealthCheck, input, output)
 	output = &DeleteHealthCheckOutput{}
 	req.Data = output
 	return
@@ -276,7 +276,7 @@ func (c *Route53) DeleteHostedZoneRequest(input *DeleteHostedZoneInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteHostedZone, input, output)
+	req = c.newRequest(opDeleteHostedZone, input, output)
 	output = &DeleteHostedZoneOutput{}
 	req.Data = output
 	return
@@ -315,7 +315,7 @@ func (c *Route53) DeleteReusableDelegationSetRequest(input *DeleteReusableDelega
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteReusableDelegationSet, input, output)
+	req = c.newRequest(opDeleteReusableDelegationSet, input, output)
 	output = &DeleteReusableDelegationSetOutput{}
 	req.Data = output
 	return
@@ -349,7 +349,7 @@ func (c *Route53) DisassociateVPCFromHostedZoneRequest(input *DisassociateVPCFro
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDisassociateVPCFromHostedZone, input, output)
+	req = c.newRequest(opDisassociateVPCFromHostedZone, input, output)
 	output = &DisassociateVPCFromHostedZoneOutput{}
 	req.Data = output
 	return
@@ -382,7 +382,7 @@ func (c *Route53) GetChangeRequest(input *GetChangeInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetChange, input, output)
+	req = c.newRequest(opGetChange, input, output)
 	output = &GetChangeOutput{}
 	req.Data = output
 	return
@@ -416,7 +416,7 @@ func (c *Route53) GetCheckerIPRangesRequest(input *GetCheckerIPRangesInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetCheckerIPRanges, input, output)
+	req = c.newRequest(opGetCheckerIPRanges, input, output)
 	output = &GetCheckerIPRangesOutput{}
 	req.Data = output
 	return
@@ -445,7 +445,7 @@ func (c *Route53) GetGeoLocationRequest(input *GetGeoLocationInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetGeoLocation, input, output)
+	req = c.newRequest(opGetGeoLocation, input, output)
 	output = &GetGeoLocationOutput{}
 	req.Data = output
 	return
@@ -473,7 +473,7 @@ func (c *Route53) GetHealthCheckRequest(input *GetHealthCheckInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetHealthCheck, input, output)
+	req = c.newRequest(opGetHealthCheck, input, output)
 	output = &GetHealthCheckOutput{}
 	req.Data = output
 	return
@@ -500,7 +500,7 @@ func (c *Route53) GetHealthCheckCountRequest(input *GetHealthCheckCountInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetHealthCheckCount, input, output)
+	req = c.newRequest(opGetHealthCheckCount, input, output)
 	output = &GetHealthCheckCountOutput{}
 	req.Data = output
 	return
@@ -527,7 +527,7 @@ func (c *Route53) GetHealthCheckLastFailureReasonRequest(input *GetHealthCheckLa
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetHealthCheckLastFailureReason, input, output)
+	req = c.newRequest(opGetHealthCheckLastFailureReason, input, output)
 	output = &GetHealthCheckLastFailureReasonOutput{}
 	req.Data = output
 	return
@@ -556,7 +556,7 @@ func (c *Route53) GetHealthCheckStatusRequest(input *GetHealthCheckStatusInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetHealthCheckStatus, input, output)
+	req = c.newRequest(opGetHealthCheckStatus, input, output)
 	output = &GetHealthCheckStatusOutput{}
 	req.Data = output
 	return
@@ -584,7 +584,7 @@ func (c *Route53) GetHostedZoneRequest(input *GetHostedZoneInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetHostedZone, input, output)
+	req = c.newRequest(opGetHostedZone, input, output)
 	output = &GetHostedZoneOutput{}
 	req.Data = output
 	return
@@ -613,7 +613,7 @@ func (c *Route53) GetHostedZoneCountRequest(input *GetHostedZoneCountInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetHostedZoneCount, input, output)
+	req = c.newRequest(opGetHostedZoneCount, input, output)
 	output = &GetHostedZoneCountOutput{}
 	req.Data = output
 	return
@@ -640,7 +640,7 @@ func (c *Route53) GetReusableDelegationSetRequest(input *GetReusableDelegationSe
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetReusableDelegationSet, input, output)
+	req = c.newRequest(opGetReusableDelegationSet, input, output)
 	output = &GetReusableDelegationSetOutput{}
 	req.Data = output
 	return
@@ -667,7 +667,7 @@ func (c *Route53) ListGeoLocationsRequest(input *ListGeoLocationsInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListGeoLocations, input, output)
+	req = c.newRequest(opListGeoLocations, input, output)
 	output = &ListGeoLocationsOutput{}
 	req.Data = output
 	return
@@ -705,7 +705,7 @@ func (c *Route53) ListHealthChecksRequest(input *ListHealthChecksInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListHealthChecks, input, output)
+	req = c.newRequest(opListHealthChecks, input, output)
 	output = &ListHealthChecksOutput{}
 	req.Data = output
 	return
@@ -739,7 +739,7 @@ func (c *Route53) ListHostedZonesRequest(input *ListHostedZonesInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListHostedZones, input, output)
+	req = c.newRequest(opListHostedZones, input, output)
 	output = &ListHostedZonesOutput{}
 	req.Data = output
 	return
@@ -773,7 +773,7 @@ func (c *Route53) ListHostedZonesByNameRequest(input *ListHostedZonesByNameInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListHostedZonesByName, input, output)
+	req = c.newRequest(opListHostedZonesByName, input, output)
 	output = &ListHostedZonesByNameOutput{}
 	req.Data = output
 	return
@@ -809,7 +809,7 @@ func (c *Route53) ListResourceRecordSetsRequest(input *ListResourceRecordSetsInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListResourceRecordSets, input, output)
+	req = c.newRequest(opListResourceRecordSets, input, output)
 	output = &ListResourceRecordSetsOutput{}
 	req.Data = output
 	return
@@ -872,7 +872,7 @@ func (c *Route53) ListReusableDelegationSetsRequest(input *ListReusableDelegatio
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListReusableDelegationSets, input, output)
+	req = c.newRequest(opListReusableDelegationSets, input, output)
 	output = &ListReusableDelegationSetsOutput{}
 	req.Data = output
 	return
@@ -907,7 +907,7 @@ func (c *Route53) ListTagsForResourceRequest(input *ListTagsForResourceInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListTagsForResource, input, output)
+	req = c.newRequest(opListTagsForResource, input, output)
 	output = &ListTagsForResourceOutput{}
 	req.Data = output
 	return
@@ -932,7 +932,7 @@ func (c *Route53) ListTagsForResourcesRequest(input *ListTagsForResourcesInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListTagsForResources, input, output)
+	req = c.newRequest(opListTagsForResources, input, output)
 	output = &ListTagsForResourcesOutput{}
 	req.Data = output
 	return
@@ -957,7 +957,7 @@ func (c *Route53) UpdateHealthCheckRequest(input *UpdateHealthCheckInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateHealthCheck, input, output)
+	req = c.newRequest(opUpdateHealthCheck, input, output)
 	output = &UpdateHealthCheckOutput{}
 	req.Data = output
 	return
@@ -988,7 +988,7 @@ func (c *Route53) UpdateHostedZoneCommentRequest(input *UpdateHostedZoneCommentI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateHostedZoneComment, input, output)
+	req = c.newRequest(opUpdateHostedZoneComment, input, output)
 	output = &UpdateHostedZoneCommentOutput{}
 	req.Data = output
 	return

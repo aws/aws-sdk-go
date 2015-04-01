@@ -17,7 +17,7 @@ func (c *Lambda) AddEventSourceRequest(input *AddEventSourceInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddEventSource, input, output)
+	req = c.newRequest(opAddEventSource, input, output)
 	output = &EventSourceConfiguration{}
 	req.Data = output
 	return
@@ -62,7 +62,7 @@ func (c *Lambda) DeleteFunctionRequest(input *DeleteFunctionInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteFunction, input, output)
+	req = c.newRequest(opDeleteFunction, input, output)
 	output = &DeleteFunctionOutput{}
 	req.Data = output
 	return
@@ -90,7 +90,7 @@ func (c *Lambda) GetEventSourceRequest(input *GetEventSourceInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetEventSource, input, output)
+	req = c.newRequest(opGetEventSource, input, output)
 	output = &EventSourceConfiguration{}
 	req.Data = output
 	return
@@ -119,7 +119,7 @@ func (c *Lambda) GetFunctionRequest(input *GetFunctionInput) (req *aws.Request, 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetFunction, input, output)
+	req = c.newRequest(opGetFunction, input, output)
 	output = &GetFunctionOutput{}
 	req.Data = output
 	return
@@ -151,7 +151,7 @@ func (c *Lambda) GetFunctionConfigurationRequest(input *GetFunctionConfiguration
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetFunctionConfiguration, input, output)
+	req = c.newRequest(opGetFunctionConfiguration, input, output)
 	output = &FunctionConfiguration{}
 	req.Data = output
 	return
@@ -182,7 +182,7 @@ func (c *Lambda) InvokeAsyncRequest(input *InvokeAsyncInput) (req *aws.Request, 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opInvokeAsync, input, output)
+	req = c.newRequest(opInvokeAsync, input, output)
 	output = &InvokeAsyncOutput{}
 	req.Data = output
 	return
@@ -212,7 +212,7 @@ func (c *Lambda) ListEventSourcesRequest(input *ListEventSourcesInput) (req *aws
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListEventSources, input, output)
+	req = c.newRequest(opListEventSources, input, output)
 	output = &ListEventSourcesOutput{}
 	req.Data = output
 	return
@@ -245,7 +245,7 @@ func (c *Lambda) ListFunctionsRequest(input *ListFunctionsInput) (req *aws.Reque
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListFunctions, input, output)
+	req = c.newRequest(opListFunctions, input, output)
 	output = &ListFunctionsOutput{}
 	req.Data = output
 	return
@@ -275,7 +275,7 @@ func (c *Lambda) RemoveEventSourceRequest(input *RemoveEventSourceInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRemoveEventSource, input, output)
+	req = c.newRequest(opRemoveEventSource, input, output)
 	output = &RemoveEventSourceOutput{}
 	req.Data = output
 	return
@@ -304,7 +304,7 @@ func (c *Lambda) UpdateFunctionConfigurationRequest(input *UpdateFunctionConfigu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateFunctionConfiguration, input, output)
+	req = c.newRequest(opUpdateFunctionConfiguration, input, output)
 	output = &FunctionConfiguration{}
 	req.Data = output
 	return
@@ -336,7 +336,7 @@ func (c *Lambda) UploadFunctionRequest(input *UploadFunctionInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUploadFunction, input, output)
+	req = c.newRequest(opUploadFunction, input, output)
 	output = &FunctionConfiguration{}
 	req.Data = output
 	return

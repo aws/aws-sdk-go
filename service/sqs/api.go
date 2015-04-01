@@ -17,7 +17,7 @@ func (c *SQS) AddPermissionRequest(input *AddPermissionInput) (req *aws.Request,
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddPermission, input, output)
+	req = c.newRequest(opAddPermission, input, output)
 	output = &AddPermissionOutput{}
 	req.Data = output
 	return
@@ -60,7 +60,7 @@ func (c *SQS) ChangeMessageVisibilityRequest(input *ChangeMessageVisibilityInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opChangeMessageVisibility, input, output)
+	req = c.newRequest(opChangeMessageVisibility, input, output)
 	output = &ChangeMessageVisibilityOutput{}
 	req.Data = output
 	return
@@ -115,7 +115,7 @@ func (c *SQS) ChangeMessageVisibilityBatchRequest(input *ChangeMessageVisibility
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opChangeMessageVisibilityBatch, input, output)
+	req = c.newRequest(opChangeMessageVisibilityBatch, input, output)
 	output = &ChangeMessageVisibilityBatchOutput{}
 	req.Data = output
 	return
@@ -153,7 +153,7 @@ func (c *SQS) CreateQueueRequest(input *CreateQueueInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateQueue, input, output)
+	req = c.newRequest(opCreateQueue, input, output)
 	output = &CreateQueueOutput{}
 	req.Data = output
 	return
@@ -203,7 +203,7 @@ func (c *SQS) DeleteMessageRequest(input *DeleteMessageInput) (req *aws.Request,
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteMessage, input, output)
+	req = c.newRequest(opDeleteMessage, input, output)
 	output = &DeleteMessageOutput{}
 	req.Data = output
 	return
@@ -248,7 +248,7 @@ func (c *SQS) DeleteMessageBatchRequest(input *DeleteMessageBatchInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteMessageBatch, input, output)
+	req = c.newRequest(opDeleteMessageBatch, input, output)
 	output = &DeleteMessageBatchOutput{}
 	req.Data = output
 	return
@@ -286,7 +286,7 @@ func (c *SQS) DeleteQueueRequest(input *DeleteQueueInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteQueue, input, output)
+	req = c.newRequest(opDeleteQueue, input, output)
 	output = &DeleteQueueOutput{}
 	req.Data = output
 	return
@@ -328,7 +328,7 @@ func (c *SQS) GetQueueAttributesRequest(input *GetQueueAttributesInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetQueueAttributes, input, output)
+	req = c.newRequest(opGetQueueAttributes, input, output)
 	output = &GetQueueAttributesOutput{}
 	req.Data = output
 	return
@@ -388,7 +388,7 @@ func (c *SQS) GetQueueURLRequest(input *GetQueueURLInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetQueueURL, input, output)
+	req = c.newRequest(opGetQueueURL, input, output)
 	output = &GetQueueURLOutput{}
 	req.Data = output
 	return
@@ -421,7 +421,7 @@ func (c *SQS) ListDeadLetterSourceQueuesRequest(input *ListDeadLetterSourceQueue
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListDeadLetterSourceQueues, input, output)
+	req = c.newRequest(opListDeadLetterSourceQueues, input, output)
 	output = &ListDeadLetterSourceQueuesOutput{}
 	req.Data = output
 	return
@@ -451,7 +451,7 @@ func (c *SQS) ListQueuesRequest(input *ListQueuesInput) (req *aws.Request, outpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListQueues, input, output)
+	req = c.newRequest(opListQueues, input, output)
 	output = &ListQueuesOutput{}
 	req.Data = output
 	return
@@ -479,7 +479,7 @@ func (c *SQS) PurgeQueueRequest(input *PurgeQueueInput) (req *aws.Request, outpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPurgeQueue, input, output)
+	req = c.newRequest(opPurgeQueue, input, output)
 	output = &PurgeQueueOutput{}
 	req.Data = output
 	return
@@ -513,7 +513,7 @@ func (c *SQS) ReceiveMessageRequest(input *ReceiveMessageInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opReceiveMessage, input, output)
+	req = c.newRequest(opReceiveMessage, input, output)
 	output = &ReceiveMessageOutput{}
 	req.Data = output
 	return
@@ -580,7 +580,7 @@ func (c *SQS) RemovePermissionRequest(input *RemovePermissionInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRemovePermission, input, output)
+	req = c.newRequest(opRemovePermission, input, output)
 	output = &RemovePermissionOutput{}
 	req.Data = output
 	return
@@ -607,7 +607,7 @@ func (c *SQS) SendMessageRequest(input *SendMessageInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSendMessage, input, output)
+	req = c.newRequest(opSendMessage, input, output)
 	output = &SendMessageOutput{}
 	req.Data = output
 	return
@@ -644,7 +644,7 @@ func (c *SQS) SendMessageBatchRequest(input *SendMessageBatchInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSendMessageBatch, input, output)
+	req = c.newRequest(opSendMessageBatch, input, output)
 	output = &SendMessageBatchOutput{}
 	req.Data = output
 	return
@@ -695,7 +695,7 @@ func (c *SQS) SetQueueAttributesRequest(input *SetQueueAttributesInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetQueueAttributes, input, output)
+	req = c.newRequest(opSetQueueAttributes, input, output)
 	output = &SetQueueAttributesOutput{}
 	req.Data = output
 	return

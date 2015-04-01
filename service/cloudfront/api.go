@@ -19,7 +19,7 @@ func (c *CloudFront) CreateCloudFrontOriginAccessIdentityRequest(input *CreateCl
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateCloudFrontOriginAccessIdentity, input, output)
+	req = c.newRequest(opCreateCloudFrontOriginAccessIdentity, input, output)
 	output = &CreateCloudFrontOriginAccessIdentityOutput{}
 	req.Data = output
 	return
@@ -45,7 +45,7 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateDistribution, input, output)
+	req = c.newRequest(opCreateDistribution, input, output)
 	output = &CreateDistributionOutput{}
 	req.Data = output
 	return
@@ -71,7 +71,7 @@ func (c *CloudFront) CreateInvalidationRequest(input *CreateInvalidationInput) (
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateInvalidation, input, output)
+	req = c.newRequest(opCreateInvalidation, input, output)
 	output = &CreateInvalidationOutput{}
 	req.Data = output
 	return
@@ -97,7 +97,7 @@ func (c *CloudFront) CreateStreamingDistributionRequest(input *CreateStreamingDi
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateStreamingDistribution, input, output)
+	req = c.newRequest(opCreateStreamingDistribution, input, output)
 	output = &CreateStreamingDistributionOutput{}
 	req.Data = output
 	return
@@ -123,7 +123,7 @@ func (c *CloudFront) DeleteCloudFrontOriginAccessIdentityRequest(input *DeleteCl
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteCloudFrontOriginAccessIdentity, input, output)
+	req = c.newRequest(opDeleteCloudFrontOriginAccessIdentity, input, output)
 	output = &DeleteCloudFrontOriginAccessIdentityOutput{}
 	req.Data = output
 	return
@@ -149,7 +149,7 @@ func (c *CloudFront) DeleteDistributionRequest(input *DeleteDistributionInput) (
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteDistribution, input, output)
+	req = c.newRequest(opDeleteDistribution, input, output)
 	output = &DeleteDistributionOutput{}
 	req.Data = output
 	return
@@ -175,7 +175,7 @@ func (c *CloudFront) DeleteStreamingDistributionRequest(input *DeleteStreamingDi
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteStreamingDistribution, input, output)
+	req = c.newRequest(opDeleteStreamingDistribution, input, output)
 	output = &DeleteStreamingDistributionOutput{}
 	req.Data = output
 	return
@@ -201,7 +201,7 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentityRequest(input *GetCloudFro
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetCloudFrontOriginAccessIdentity, input, output)
+	req = c.newRequest(opGetCloudFrontOriginAccessIdentity, input, output)
 	output = &GetCloudFrontOriginAccessIdentityOutput{}
 	req.Data = output
 	return
@@ -227,7 +227,7 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfigRequest(input *GetCl
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetCloudFrontOriginAccessIdentityConfig, input, output)
+	req = c.newRequest(opGetCloudFrontOriginAccessIdentityConfig, input, output)
 	output = &GetCloudFrontOriginAccessIdentityConfigOutput{}
 	req.Data = output
 	return
@@ -253,7 +253,7 @@ func (c *CloudFront) GetDistributionRequest(input *GetDistributionInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetDistribution, input, output)
+	req = c.newRequest(opGetDistribution, input, output)
 	output = &GetDistributionOutput{}
 	req.Data = output
 	return
@@ -279,7 +279,7 @@ func (c *CloudFront) GetDistributionConfigRequest(input *GetDistributionConfigIn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetDistributionConfig, input, output)
+	req = c.newRequest(opGetDistributionConfig, input, output)
 	output = &GetDistributionConfigOutput{}
 	req.Data = output
 	return
@@ -305,7 +305,7 @@ func (c *CloudFront) GetInvalidationRequest(input *GetInvalidationInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetInvalidation, input, output)
+	req = c.newRequest(opGetInvalidation, input, output)
 	output = &GetInvalidationOutput{}
 	req.Data = output
 	return
@@ -331,7 +331,7 @@ func (c *CloudFront) GetStreamingDistributionRequest(input *GetStreamingDistribu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetStreamingDistribution, input, output)
+	req = c.newRequest(opGetStreamingDistribution, input, output)
 	output = &GetStreamingDistributionOutput{}
 	req.Data = output
 	return
@@ -357,7 +357,7 @@ func (c *CloudFront) GetStreamingDistributionConfigRequest(input *GetStreamingDi
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetStreamingDistributionConfig, input, output)
+	req = c.newRequest(opGetStreamingDistributionConfig, input, output)
 	output = &GetStreamingDistributionConfigOutput{}
 	req.Data = output
 	return
@@ -383,7 +383,7 @@ func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesRequest(input *ListClou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListCloudFrontOriginAccessIdentities, input, output)
+	req = c.newRequest(opListCloudFrontOriginAccessIdentities, input, output)
 	output = &ListCloudFrontOriginAccessIdentitiesOutput{}
 	req.Data = output
 	return
@@ -409,7 +409,7 @@ func (c *CloudFront) ListDistributionsRequest(input *ListDistributionsInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListDistributions, input, output)
+	req = c.newRequest(opListDistributions, input, output)
 	output = &ListDistributionsOutput{}
 	req.Data = output
 	return
@@ -435,7 +435,7 @@ func (c *CloudFront) ListInvalidationsRequest(input *ListInvalidationsInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListInvalidations, input, output)
+	req = c.newRequest(opListInvalidations, input, output)
 	output = &ListInvalidationsOutput{}
 	req.Data = output
 	return
@@ -461,7 +461,7 @@ func (c *CloudFront) ListStreamingDistributionsRequest(input *ListStreamingDistr
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListStreamingDistributions, input, output)
+	req = c.newRequest(opListStreamingDistributions, input, output)
 	output = &ListStreamingDistributionsOutput{}
 	req.Data = output
 	return
@@ -487,7 +487,7 @@ func (c *CloudFront) UpdateCloudFrontOriginAccessIdentityRequest(input *UpdateCl
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateCloudFrontOriginAccessIdentity, input, output)
+	req = c.newRequest(opUpdateCloudFrontOriginAccessIdentity, input, output)
 	output = &UpdateCloudFrontOriginAccessIdentityOutput{}
 	req.Data = output
 	return
@@ -513,7 +513,7 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateDistribution, input, output)
+	req = c.newRequest(opUpdateDistribution, input, output)
 	output = &UpdateDistributionOutput{}
 	req.Data = output
 	return
@@ -539,7 +539,7 @@ func (c *CloudFront) UpdateStreamingDistributionRequest(input *UpdateStreamingDi
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateStreamingDistribution, input, output)
+	req = c.newRequest(opUpdateStreamingDistribution, input, output)
 	output = &UpdateStreamingDistributionOutput{}
 	req.Data = output
 	return

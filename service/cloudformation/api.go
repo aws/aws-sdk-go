@@ -19,7 +19,7 @@ func (c *CloudFormation) CancelUpdateStackRequest(input *CancelUpdateStackInput)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCancelUpdateStack, input, output)
+	req = c.newRequest(opCancelUpdateStack, input, output)
 	output = &CancelUpdateStackOutput{}
 	req.Data = output
 	return
@@ -48,7 +48,7 @@ func (c *CloudFormation) CreateStackRequest(input *CreateStackInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateStack, input, output)
+	req = c.newRequest(opCreateStack, input, output)
 	output = &CreateStackOutput{}
 	req.Data = output
 	return
@@ -76,7 +76,7 @@ func (c *CloudFormation) DeleteStackRequest(input *DeleteStackInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteStack, input, output)
+	req = c.newRequest(opDeleteStack, input, output)
 	output = &DeleteStackOutput{}
 	req.Data = output
 	return
@@ -104,7 +104,7 @@ func (c *CloudFormation) DescribeStackEventsRequest(input *DescribeStackEventsIn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeStackEvents, input, output)
+	req = c.newRequest(opDescribeStackEvents, input, output)
 	output = &DescribeStackEventsOutput{}
 	req.Data = output
 	return
@@ -135,7 +135,7 @@ func (c *CloudFormation) DescribeStackResourceRequest(input *DescribeStackResour
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeStackResource, input, output)
+	req = c.newRequest(opDescribeStackResource, input, output)
 	output = &DescribeStackResourceOutput{}
 	req.Data = output
 	return
@@ -164,7 +164,7 @@ func (c *CloudFormation) DescribeStackResourcesRequest(input *DescribeStackResou
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeStackResources, input, output)
+	req = c.newRequest(opDescribeStackResources, input, output)
 	output = &DescribeStackResourcesOutput{}
 	req.Data = output
 	return
@@ -206,7 +206,7 @@ func (c *CloudFormation) DescribeStacksRequest(input *DescribeStacksInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeStacks, input, output)
+	req = c.newRequest(opDescribeStacks, input, output)
 	output = &DescribeStacksOutput{}
 	req.Data = output
 	return
@@ -233,7 +233,7 @@ func (c *CloudFormation) EstimateTemplateCostRequest(input *EstimateTemplateCost
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opEstimateTemplateCost, input, output)
+	req = c.newRequest(opEstimateTemplateCost, input, output)
 	output = &EstimateTemplateCostOutput{}
 	req.Data = output
 	return
@@ -261,7 +261,7 @@ func (c *CloudFormation) GetStackPolicyRequest(input *GetStackPolicyInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetStackPolicy, input, output)
+	req = c.newRequest(opGetStackPolicy, input, output)
 	output = &GetStackPolicyOutput{}
 	req.Data = output
 	return
@@ -288,7 +288,7 @@ func (c *CloudFormation) GetTemplateRequest(input *GetTemplateInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetTemplate, input, output)
+	req = c.newRequest(opGetTemplate, input, output)
 	output = &GetTemplateOutput{}
 	req.Data = output
 	return
@@ -320,7 +320,7 @@ func (c *CloudFormation) GetTemplateSummaryRequest(input *GetTemplateSummaryInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetTemplateSummary, input, output)
+	req = c.newRequest(opGetTemplateSummary, input, output)
 	output = &GetTemplateSummaryOutput{}
 	req.Data = output
 	return
@@ -355,7 +355,7 @@ func (c *CloudFormation) ListStackResourcesRequest(input *ListStackResourcesInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListStackResources, input, output)
+	req = c.newRequest(opListStackResources, input, output)
 	output = &ListStackResourcesOutput{}
 	req.Data = output
 	return
@@ -384,7 +384,7 @@ func (c *CloudFormation) ListStacksRequest(input *ListStacksInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListStacks, input, output)
+	req = c.newRequest(opListStacks, input, output)
 	output = &ListStacksOutput{}
 	req.Data = output
 	return
@@ -414,7 +414,7 @@ func (c *CloudFormation) SetStackPolicyRequest(input *SetStackPolicyInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetStackPolicy, input, output)
+	req = c.newRequest(opSetStackPolicy, input, output)
 	output = &SetStackPolicyOutput{}
 	req.Data = output
 	return
@@ -440,7 +440,7 @@ func (c *CloudFormation) SignalResourceRequest(input *SignalResourceInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSignalResource, input, output)
+	req = c.newRequest(opSignalResource, input, output)
 	output = &SignalResourceOutput{}
 	req.Data = output
 	return
@@ -471,7 +471,7 @@ func (c *CloudFormation) UpdateStackRequest(input *UpdateStackInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateStack, input, output)
+	req = c.newRequest(opUpdateStack, input, output)
 	output = &UpdateStackOutput{}
 	req.Data = output
 	return
@@ -508,7 +508,7 @@ func (c *CloudFormation) ValidateTemplateRequest(input *ValidateTemplateInput) (
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opValidateTemplate, input, output)
+	req = c.newRequest(opValidateTemplate, input, output)
 	output = &ValidateTemplateOutput{}
 	req.Data = output
 	return

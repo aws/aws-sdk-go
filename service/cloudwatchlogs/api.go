@@ -17,7 +17,7 @@ func (c *CloudWatchLogs) CreateLogGroupRequest(input *CreateLogGroupInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateLogGroup, input, output)
+	req = c.newRequest(opCreateLogGroup, input, output)
 	output = &CreateLogGroupOutput{}
 	req.Data = output
 	return
@@ -49,7 +49,7 @@ func (c *CloudWatchLogs) CreateLogStreamRequest(input *CreateLogStreamInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateLogStream, input, output)
+	req = c.newRequest(opCreateLogStream, input, output)
 	output = &CreateLogStreamOutput{}
 	req.Data = output
 	return
@@ -81,7 +81,7 @@ func (c *CloudWatchLogs) DeleteLogGroupRequest(input *DeleteLogGroupInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteLogGroup, input, output)
+	req = c.newRequest(opDeleteLogGroup, input, output)
 	output = &DeleteLogGroupOutput{}
 	req.Data = output
 	return
@@ -108,7 +108,7 @@ func (c *CloudWatchLogs) DeleteLogStreamRequest(input *DeleteLogStreamInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteLogStream, input, output)
+	req = c.newRequest(opDeleteLogStream, input, output)
 	output = &DeleteLogStreamOutput{}
 	req.Data = output
 	return
@@ -135,7 +135,7 @@ func (c *CloudWatchLogs) DeleteMetricFilterRequest(input *DeleteMetricFilterInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteMetricFilter, input, output)
+	req = c.newRequest(opDeleteMetricFilter, input, output)
 	output = &DeleteMetricFilterOutput{}
 	req.Data = output
 	return
@@ -161,7 +161,7 @@ func (c *CloudWatchLogs) DeleteRetentionPolicyRequest(input *DeleteRetentionPoli
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteRetentionPolicy, input, output)
+	req = c.newRequest(opDeleteRetentionPolicy, input, output)
 	output = &DeleteRetentionPolicyOutput{}
 	req.Data = output
 	return
@@ -188,7 +188,7 @@ func (c *CloudWatchLogs) DescribeLogGroupsRequest(input *DescribeLogGroupsInput)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeLogGroups, input, output)
+	req = c.newRequest(opDescribeLogGroups, input, output)
 	output = &DescribeLogGroupsOutput{}
 	req.Data = output
 	return
@@ -221,7 +221,7 @@ func (c *CloudWatchLogs) DescribeLogStreamsRequest(input *DescribeLogStreamsInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeLogStreams, input, output)
+	req = c.newRequest(opDescribeLogStreams, input, output)
 	output = &DescribeLogStreamsOutput{}
 	req.Data = output
 	return
@@ -255,7 +255,7 @@ func (c *CloudWatchLogs) DescribeMetricFiltersRequest(input *DescribeMetricFilte
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeMetricFilters, input, output)
+	req = c.newRequest(opDescribeMetricFilters, input, output)
 	output = &DescribeMetricFiltersOutput{}
 	req.Data = output
 	return
@@ -287,7 +287,7 @@ func (c *CloudWatchLogs) GetLogEventsRequest(input *GetLogEventsInput) (req *aws
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetLogEvents, input, output)
+	req = c.newRequest(opGetLogEvents, input, output)
 	output = &GetLogEventsOutput{}
 	req.Data = output
 	return
@@ -322,7 +322,7 @@ func (c *CloudWatchLogs) PutLogEventsRequest(input *PutLogEventsInput) (req *aws
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutLogEvents, input, output)
+	req = c.newRequest(opPutLogEvents, input, output)
 	output = &PutLogEventsOutput{}
 	req.Data = output
 	return
@@ -360,7 +360,7 @@ func (c *CloudWatchLogs) PutMetricFilterRequest(input *PutMetricFilterInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutMetricFilter, input, output)
+	req = c.newRequest(opPutMetricFilter, input, output)
 	output = &PutMetricFilterOutput{}
 	req.Data = output
 	return
@@ -388,7 +388,7 @@ func (c *CloudWatchLogs) PutRetentionPolicyRequest(input *PutRetentionPolicyInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPutRetentionPolicy, input, output)
+	req = c.newRequest(opPutRetentionPolicy, input, output)
 	output = &PutRetentionPolicyOutput{}
 	req.Data = output
 	return
@@ -416,7 +416,7 @@ func (c *CloudWatchLogs) TestMetricFilterRequest(input *TestMetricFilterInput) (
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opTestMetricFilter, input, output)
+	req = c.newRequest(opTestMetricFilter, input, output)
 	output = &TestMetricFilterOutput{}
 	req.Data = output
 	return

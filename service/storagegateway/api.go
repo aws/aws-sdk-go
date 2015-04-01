@@ -19,7 +19,7 @@ func (c *StorageGateway) ActivateGatewayRequest(input *ActivateGatewayInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opActivateGateway, input, output)
+	req = c.newRequest(opActivateGateway, input, output)
 	output = &ActivateGatewayOutput{}
 	req.Data = output
 	return
@@ -53,7 +53,7 @@ func (c *StorageGateway) AddCacheRequest(input *AddCacheInput) (req *aws.Request
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddCache, input, output)
+	req = c.newRequest(opAddCache, input, output)
 	output = &AddCacheOutput{}
 	req.Data = output
 	return
@@ -85,7 +85,7 @@ func (c *StorageGateway) AddUploadBufferRequest(input *AddUploadBufferInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddUploadBuffer, input, output)
+	req = c.newRequest(opAddUploadBuffer, input, output)
 	output = &AddUploadBufferOutput{}
 	req.Data = output
 	return
@@ -117,7 +117,7 @@ func (c *StorageGateway) AddWorkingStorageRequest(input *AddWorkingStorageInput)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddWorkingStorage, input, output)
+	req = c.newRequest(opAddWorkingStorage, input, output)
 	output = &AddWorkingStorageOutput{}
 	req.Data = output
 	return
@@ -153,7 +153,7 @@ func (c *StorageGateway) CancelArchivalRequest(input *CancelArchivalInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCancelArchival, input, output)
+	req = c.newRequest(opCancelArchival, input, output)
 	output = &CancelArchivalOutput{}
 	req.Data = output
 	return
@@ -180,7 +180,7 @@ func (c *StorageGateway) CancelRetrievalRequest(input *CancelRetrievalInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCancelRetrieval, input, output)
+	req = c.newRequest(opCancelRetrieval, input, output)
 	output = &CancelRetrievalOutput{}
 	req.Data = output
 	return
@@ -208,7 +208,7 @@ func (c *StorageGateway) CreateCachediSCSIVolumeRequest(input *CreateCachediSCSI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateCachediSCSIVolume, input, output)
+	req = c.newRequest(opCreateCachediSCSIVolume, input, output)
 	output = &CreateCachediSCSIVolumeOutput{}
 	req.Data = output
 	return
@@ -244,7 +244,7 @@ func (c *StorageGateway) CreateSnapshotRequest(input *CreateSnapshotInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateSnapshot, input, output)
+	req = c.newRequest(opCreateSnapshot, input, output)
 	output = &CreateSnapshotOutput{}
 	req.Data = output
 	return
@@ -289,7 +289,7 @@ func (c *StorageGateway) CreateSnapshotFromVolumeRecoveryPointRequest(input *Cre
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateSnapshotFromVolumeRecoveryPoint, input, output)
+	req = c.newRequest(opCreateSnapshotFromVolumeRecoveryPoint, input, output)
 	output = &CreateSnapshotFromVolumeRecoveryPointOutput{}
 	req.Data = output
 	return
@@ -332,7 +332,7 @@ func (c *StorageGateway) CreateStorediSCSIVolumeRequest(input *CreateStorediSCSI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateStorediSCSIVolume, input, output)
+	req = c.newRequest(opCreateStorediSCSIVolume, input, output)
 	output = &CreateStorediSCSIVolumeOutput{}
 	req.Data = output
 	return
@@ -370,7 +370,7 @@ func (c *StorageGateway) CreateTapesRequest(input *CreateTapesInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateTapes, input, output)
+	req = c.newRequest(opCreateTapes, input, output)
 	output = &CreateTapesOutput{}
 	req.Data = output
 	return
@@ -400,7 +400,7 @@ func (c *StorageGateway) DeleteBandwidthRateLimitRequest(input *DeleteBandwidthR
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteBandwidthRateLimit, input, output)
+	req = c.newRequest(opDeleteBandwidthRateLimit, input, output)
 	output = &DeleteBandwidthRateLimitOutput{}
 	req.Data = output
 	return
@@ -430,7 +430,7 @@ func (c *StorageGateway) DeleteChapCredentialsRequest(input *DeleteChapCredentia
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteChapCredentials, input, output)
+	req = c.newRequest(opDeleteChapCredentials, input, output)
 	output = &DeleteChapCredentialsOutput{}
 	req.Data = output
 	return
@@ -457,7 +457,7 @@ func (c *StorageGateway) DeleteGatewayRequest(input *DeleteGatewayInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteGateway, input, output)
+	req = c.newRequest(opDeleteGateway, input, output)
 	output = &DeleteGatewayOutput{}
 	req.Data = output
 	return
@@ -498,7 +498,7 @@ func (c *StorageGateway) DeleteSnapshotScheduleRequest(input *DeleteSnapshotSche
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteSnapshotSchedule, input, output)
+	req = c.newRequest(opDeleteSnapshotSchedule, input, output)
 	output = &DeleteSnapshotScheduleOutput{}
 	req.Data = output
 	return
@@ -533,7 +533,7 @@ func (c *StorageGateway) DeleteTapeRequest(input *DeleteTapeInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteTape, input, output)
+	req = c.newRequest(opDeleteTape, input, output)
 	output = &DeleteTapeOutput{}
 	req.Data = output
 	return
@@ -559,7 +559,7 @@ func (c *StorageGateway) DeleteTapeArchiveRequest(input *DeleteTapeArchiveInput)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteTapeArchive, input, output)
+	req = c.newRequest(opDeleteTapeArchive, input, output)
 	output = &DeleteTapeArchiveOutput{}
 	req.Data = output
 	return
@@ -585,7 +585,7 @@ func (c *StorageGateway) DeleteVolumeRequest(input *DeleteVolumeInput) (req *aws
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteVolume, input, output)
+	req = c.newRequest(opDeleteVolume, input, output)
 	output = &DeleteVolumeOutput{}
 	req.Data = output
 	return
@@ -624,7 +624,7 @@ func (c *StorageGateway) DescribeBandwidthRateLimitRequest(input *DescribeBandwi
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeBandwidthRateLimit, input, output)
+	req = c.newRequest(opDescribeBandwidthRateLimit, input, output)
 	output = &DescribeBandwidthRateLimitOutput{}
 	req.Data = output
 	return
@@ -656,7 +656,7 @@ func (c *StorageGateway) DescribeCacheRequest(input *DescribeCacheInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeCache, input, output)
+	req = c.newRequest(opDescribeCache, input, output)
 	output = &DescribeCacheOutput{}
 	req.Data = output
 	return
@@ -686,7 +686,7 @@ func (c *StorageGateway) DescribeCachediSCSIVolumesRequest(input *DescribeCached
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeCachediSCSIVolumes, input, output)
+	req = c.newRequest(opDescribeCachediSCSIVolumes, input, output)
 	output = &DescribeCachediSCSIVolumesOutput{}
 	req.Data = output
 	return
@@ -718,7 +718,7 @@ func (c *StorageGateway) DescribeChapCredentialsRequest(input *DescribeChapCrede
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeChapCredentials, input, output)
+	req = c.newRequest(opDescribeChapCredentials, input, output)
 	output = &DescribeChapCredentialsOutput{}
 	req.Data = output
 	return
@@ -746,7 +746,7 @@ func (c *StorageGateway) DescribeGatewayInformationRequest(input *DescribeGatewa
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeGatewayInformation, input, output)
+	req = c.newRequest(opDescribeGatewayInformation, input, output)
 	output = &DescribeGatewayInformationOutput{}
 	req.Data = output
 	return
@@ -775,7 +775,7 @@ func (c *StorageGateway) DescribeMaintenanceStartTimeRequest(input *DescribeMain
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeMaintenanceStartTime, input, output)
+	req = c.newRequest(opDescribeMaintenanceStartTime, input, output)
 	output = &DescribeMaintenanceStartTimeOutput{}
 	req.Data = output
 	return
@@ -803,7 +803,7 @@ func (c *StorageGateway) DescribeSnapshotScheduleRequest(input *DescribeSnapshot
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeSnapshotSchedule, input, output)
+	req = c.newRequest(opDescribeSnapshotSchedule, input, output)
 	output = &DescribeSnapshotScheduleOutput{}
 	req.Data = output
 	return
@@ -831,7 +831,7 @@ func (c *StorageGateway) DescribeStorediSCSIVolumesRequest(input *DescribeStored
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeStorediSCSIVolumes, input, output)
+	req = c.newRequest(opDescribeStorediSCSIVolumes, input, output)
 	output = &DescribeStorediSCSIVolumesOutput{}
 	req.Data = output
 	return
@@ -860,7 +860,7 @@ func (c *StorageGateway) DescribeTapeArchivesRequest(input *DescribeTapeArchives
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeTapeArchives, input, output)
+	req = c.newRequest(opDescribeTapeArchives, input, output)
 	output = &DescribeTapeArchivesOutput{}
 	req.Data = output
 	return
@@ -890,7 +890,7 @@ func (c *StorageGateway) DescribeTapeRecoveryPointsRequest(input *DescribeTapeRe
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeTapeRecoveryPoints, input, output)
+	req = c.newRequest(opDescribeTapeRecoveryPoints, input, output)
 	output = &DescribeTapeRecoveryPointsOutput{}
 	req.Data = output
 	return
@@ -921,7 +921,7 @@ func (c *StorageGateway) DescribeTapesRequest(input *DescribeTapesInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeTapes, input, output)
+	req = c.newRequest(opDescribeTapes, input, output)
 	output = &DescribeTapesOutput{}
 	req.Data = output
 	return
@@ -949,7 +949,7 @@ func (c *StorageGateway) DescribeUploadBufferRequest(input *DescribeUploadBuffer
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeUploadBuffer, input, output)
+	req = c.newRequest(opDescribeUploadBuffer, input, output)
 	output = &DescribeUploadBufferOutput{}
 	req.Data = output
 	return
@@ -980,7 +980,7 @@ func (c *StorageGateway) DescribeVTLDevicesRequest(input *DescribeVTLDevicesInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeVTLDevices, input, output)
+	req = c.newRequest(opDescribeVTLDevices, input, output)
 	output = &DescribeVTLDevicesOutput{}
 	req.Data = output
 	return
@@ -1009,7 +1009,7 @@ func (c *StorageGateway) DescribeWorkingStorageRequest(input *DescribeWorkingSto
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeWorkingStorage, input, output)
+	req = c.newRequest(opDescribeWorkingStorage, input, output)
 	output = &DescribeWorkingStorageOutput{}
 	req.Data = output
 	return
@@ -1044,7 +1044,7 @@ func (c *StorageGateway) DisableGatewayRequest(input *DisableGatewayInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDisableGateway, input, output)
+	req = c.newRequest(opDisableGateway, input, output)
 	output = &DisableGatewayOutput{}
 	req.Data = output
 	return
@@ -1076,7 +1076,7 @@ func (c *StorageGateway) ListGatewaysRequest(input *ListGatewaysInput) (req *aws
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListGateways, input, output)
+	req = c.newRequest(opListGateways, input, output)
 	output = &ListGatewaysOutput{}
 	req.Data = output
 	return
@@ -1112,7 +1112,7 @@ func (c *StorageGateway) ListLocalDisksRequest(input *ListLocalDisksInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListLocalDisks, input, output)
+	req = c.newRequest(opListLocalDisks, input, output)
 	output = &ListLocalDisksOutput{}
 	req.Data = output
 	return
@@ -1147,7 +1147,7 @@ func (c *StorageGateway) ListVolumeRecoveryPointsRequest(input *ListVolumeRecove
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListVolumeRecoveryPoints, input, output)
+	req = c.newRequest(opListVolumeRecoveryPoints, input, output)
 	output = &ListVolumeRecoveryPointsOutput{}
 	req.Data = output
 	return
@@ -1179,7 +1179,7 @@ func (c *StorageGateway) ListVolumesRequest(input *ListVolumesInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListVolumes, input, output)
+	req = c.newRequest(opListVolumes, input, output)
 	output = &ListVolumesOutput{}
 	req.Data = output
 	return
@@ -1214,7 +1214,7 @@ func (c *StorageGateway) ResetCacheRequest(input *ResetCacheInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opResetCache, input, output)
+	req = c.newRequest(opResetCache, input, output)
 	output = &ResetCacheOutput{}
 	req.Data = output
 	return
@@ -1242,7 +1242,7 @@ func (c *StorageGateway) RetrieveTapeArchiveRequest(input *RetrieveTapeArchiveIn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRetrieveTapeArchive, input, output)
+	req = c.newRequest(opRetrieveTapeArchive, input, output)
 	output = &RetrieveTapeArchiveOutput{}
 	req.Data = output
 	return
@@ -1275,7 +1275,7 @@ func (c *StorageGateway) RetrieveTapeRecoveryPointRequest(input *RetrieveTapeRec
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRetrieveTapeRecoveryPoint, input, output)
+	req = c.newRequest(opRetrieveTapeRecoveryPoint, input, output)
 	output = &RetrieveTapeRecoveryPointOutput{}
 	req.Data = output
 	return
@@ -1309,7 +1309,7 @@ func (c *StorageGateway) ShutdownGatewayRequest(input *ShutdownGatewayInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opShutdownGateway, input, output)
+	req = c.newRequest(opShutdownGateway, input, output)
 	output = &ShutdownGatewayOutput{}
 	req.Data = output
 	return
@@ -1353,7 +1353,7 @@ func (c *StorageGateway) StartGatewayRequest(input *StartGatewayInput) (req *aws
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opStartGateway, input, output)
+	req = c.newRequest(opStartGateway, input, output)
 	output = &StartGatewayOutput{}
 	req.Data = output
 	return
@@ -1388,7 +1388,7 @@ func (c *StorageGateway) UpdateBandwidthRateLimitRequest(input *UpdateBandwidthR
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateBandwidthRateLimit, input, output)
+	req = c.newRequest(opUpdateBandwidthRateLimit, input, output)
 	output = &UpdateBandwidthRateLimitOutput{}
 	req.Data = output
 	return
@@ -1424,7 +1424,7 @@ func (c *StorageGateway) UpdateChapCredentialsRequest(input *UpdateChapCredentia
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateChapCredentials, input, output)
+	req = c.newRequest(opUpdateChapCredentials, input, output)
 	output = &UpdateChapCredentialsOutput{}
 	req.Data = output
 	return
@@ -1455,7 +1455,7 @@ func (c *StorageGateway) UpdateGatewayInformationRequest(input *UpdateGatewayInf
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateGatewayInformation, input, output)
+	req = c.newRequest(opUpdateGatewayInformation, input, output)
 	output = &UpdateGatewayInformationOutput{}
 	req.Data = output
 	return
@@ -1483,7 +1483,7 @@ func (c *StorageGateway) UpdateGatewaySoftwareNowRequest(input *UpdateGatewaySof
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateGatewaySoftwareNow, input, output)
+	req = c.newRequest(opUpdateGatewaySoftwareNow, input, output)
 	output = &UpdateGatewaySoftwareNowOutput{}
 	req.Data = output
 	return
@@ -1521,7 +1521,7 @@ func (c *StorageGateway) UpdateMaintenanceStartTimeRequest(input *UpdateMaintena
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateMaintenanceStartTime, input, output)
+	req = c.newRequest(opUpdateMaintenanceStartTime, input, output)
 	output = &UpdateMaintenanceStartTimeOutput{}
 	req.Data = output
 	return
@@ -1549,7 +1549,7 @@ func (c *StorageGateway) UpdateSnapshotScheduleRequest(input *UpdateSnapshotSche
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateSnapshotSchedule, input, output)
+	req = c.newRequest(opUpdateSnapshotSchedule, input, output)
 	output = &UpdateSnapshotScheduleOutput{}
 	req.Data = output
 	return
@@ -1583,7 +1583,7 @@ func (c *StorageGateway) UpdateVTLDeviceTypeRequest(input *UpdateVTLDeviceTypeIn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateVTLDeviceType, input, output)
+	req = c.newRequest(opUpdateVTLDeviceType, input, output)
 	output = &UpdateVTLDeviceTypeOutput{}
 	req.Data = output
 	return

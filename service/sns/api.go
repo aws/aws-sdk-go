@@ -17,7 +17,7 @@ func (c *SNS) AddPermissionRequest(input *AddPermissionInput) (req *aws.Request,
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddPermission, input, output)
+	req = c.newRequest(opAddPermission, input, output)
 	output = &AddPermissionOutput{}
 	req.Data = output
 	return
@@ -44,7 +44,7 @@ func (c *SNS) ConfirmSubscriptionRequest(input *ConfirmSubscriptionInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opConfirmSubscription, input, output)
+	req = c.newRequest(opConfirmSubscription, input, output)
 	output = &ConfirmSubscriptionOutput{}
 	req.Data = output
 	return
@@ -74,7 +74,7 @@ func (c *SNS) CreatePlatformApplicationRequest(input *CreatePlatformApplicationI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreatePlatformApplication, input, output)
+	req = c.newRequest(opCreatePlatformApplication, input, output)
 	output = &CreatePlatformApplicationOutput{}
 	req.Data = output
 	return
@@ -112,7 +112,7 @@ func (c *SNS) CreatePlatformEndpointRequest(input *CreatePlatformEndpointInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreatePlatformEndpoint, input, output)
+	req = c.newRequest(opCreatePlatformEndpoint, input, output)
 	output = &CreatePlatformEndpointOutput{}
 	req.Data = output
 	return
@@ -151,7 +151,7 @@ func (c *SNS) CreateTopicRequest(input *CreateTopicInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateTopic, input, output)
+	req = c.newRequest(opCreateTopic, input, output)
 	output = &CreateTopicOutput{}
 	req.Data = output
 	return
@@ -181,7 +181,7 @@ func (c *SNS) DeleteEndpointRequest(input *DeleteEndpointInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteEndpoint, input, output)
+	req = c.newRequest(opDeleteEndpoint, input, output)
 	output = &DeleteEndpointOutput{}
 	req.Data = output
 	return
@@ -208,7 +208,7 @@ func (c *SNS) DeletePlatformApplicationRequest(input *DeletePlatformApplicationI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeletePlatformApplication, input, output)
+	req = c.newRequest(opDeletePlatformApplication, input, output)
 	output = &DeletePlatformApplicationOutput{}
 	req.Data = output
 	return
@@ -236,7 +236,7 @@ func (c *SNS) DeleteTopicRequest(input *DeleteTopicInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteTopic, input, output)
+	req = c.newRequest(opDeleteTopic, input, output)
 	output = &DeleteTopicOutput{}
 	req.Data = output
 	return
@@ -265,7 +265,7 @@ func (c *SNS) GetEndpointAttributesRequest(input *GetEndpointAttributesInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetEndpointAttributes, input, output)
+	req = c.newRequest(opGetEndpointAttributes, input, output)
 	output = &GetEndpointAttributesOutput{}
 	req.Data = output
 	return
@@ -293,7 +293,7 @@ func (c *SNS) GetPlatformApplicationAttributesRequest(input *GetPlatformApplicat
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetPlatformApplicationAttributes, input, output)
+	req = c.newRequest(opGetPlatformApplicationAttributes, input, output)
 	output = &GetPlatformApplicationAttributesOutput{}
 	req.Data = output
 	return
@@ -321,7 +321,7 @@ func (c *SNS) GetSubscriptionAttributesRequest(input *GetSubscriptionAttributesI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetSubscriptionAttributes, input, output)
+	req = c.newRequest(opGetSubscriptionAttributes, input, output)
 	output = &GetSubscriptionAttributesOutput{}
 	req.Data = output
 	return
@@ -347,7 +347,7 @@ func (c *SNS) GetTopicAttributesRequest(input *GetTopicAttributesInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetTopicAttributes, input, output)
+	req = c.newRequest(opGetTopicAttributes, input, output)
 	output = &GetTopicAttributesOutput{}
 	req.Data = output
 	return
@@ -374,7 +374,7 @@ func (c *SNS) ListEndpointsByPlatformApplicationRequest(input *ListEndpointsByPl
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListEndpointsByPlatformApplication, input, output)
+	req = c.newRequest(opListEndpointsByPlatformApplication, input, output)
 	output = &ListEndpointsByPlatformApplicationOutput{}
 	req.Data = output
 	return
@@ -407,7 +407,7 @@ func (c *SNS) ListPlatformApplicationsRequest(input *ListPlatformApplicationsInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListPlatformApplications, input, output)
+	req = c.newRequest(opListPlatformApplications, input, output)
 	output = &ListPlatformApplicationsOutput{}
 	req.Data = output
 	return
@@ -440,7 +440,7 @@ func (c *SNS) ListSubscriptionsRequest(input *ListSubscriptionsInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListSubscriptions, input, output)
+	req = c.newRequest(opListSubscriptions, input, output)
 	output = &ListSubscriptionsOutput{}
 	req.Data = output
 	return
@@ -469,7 +469,7 @@ func (c *SNS) ListSubscriptionsByTopicRequest(input *ListSubscriptionsByTopicInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListSubscriptionsByTopic, input, output)
+	req = c.newRequest(opListSubscriptionsByTopic, input, output)
 	output = &ListSubscriptionsByTopicOutput{}
 	req.Data = output
 	return
@@ -498,7 +498,7 @@ func (c *SNS) ListTopicsRequest(input *ListTopicsInput) (req *aws.Request, outpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListTopics, input, output)
+	req = c.newRequest(opListTopics, input, output)
 	output = &ListTopicsOutput{}
 	req.Data = output
 	return
@@ -526,7 +526,7 @@ func (c *SNS) PublishRequest(input *PublishInput) (req *aws.Request, output *Pub
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPublish, input, output)
+	req = c.newRequest(opPublish, input, output)
 	output = &PublishOutput{}
 	req.Data = output
 	return
@@ -561,7 +561,7 @@ func (c *SNS) RemovePermissionRequest(input *RemovePermissionInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRemovePermission, input, output)
+	req = c.newRequest(opRemovePermission, input, output)
 	output = &RemovePermissionOutput{}
 	req.Data = output
 	return
@@ -587,7 +587,7 @@ func (c *SNS) SetEndpointAttributesRequest(input *SetEndpointAttributesInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetEndpointAttributes, input, output)
+	req = c.newRequest(opSetEndpointAttributes, input, output)
 	output = &SetEndpointAttributesOutput{}
 	req.Data = output
 	return
@@ -615,7 +615,7 @@ func (c *SNS) SetPlatformApplicationAttributesRequest(input *SetPlatformApplicat
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetPlatformApplicationAttributes, input, output)
+	req = c.newRequest(opSetPlatformApplicationAttributes, input, output)
 	output = &SetPlatformApplicationAttributesOutput{}
 	req.Data = output
 	return
@@ -643,7 +643,7 @@ func (c *SNS) SetSubscriptionAttributesRequest(input *SetSubscriptionAttributesI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetSubscriptionAttributes, input, output)
+	req = c.newRequest(opSetSubscriptionAttributes, input, output)
 	output = &SetSubscriptionAttributesOutput{}
 	req.Data = output
 	return
@@ -669,7 +669,7 @@ func (c *SNS) SetTopicAttributesRequest(input *SetTopicAttributesInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetTopicAttributes, input, output)
+	req = c.newRequest(opSetTopicAttributes, input, output)
 	output = &SetTopicAttributesOutput{}
 	req.Data = output
 	return
@@ -695,7 +695,7 @@ func (c *SNS) SubscribeRequest(input *SubscribeInput) (req *aws.Request, output 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSubscribe, input, output)
+	req = c.newRequest(opSubscribe, input, output)
 	output = &SubscribeOutput{}
 	req.Data = output
 	return
@@ -724,7 +724,7 @@ func (c *SNS) UnsubscribeRequest(input *UnsubscribeInput) (req *aws.Request, out
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUnsubscribe, input, output)
+	req = c.newRequest(opUnsubscribe, input, output)
 	output = &UnsubscribeOutput{}
 	req.Data = output
 	return

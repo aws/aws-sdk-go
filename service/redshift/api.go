@@ -19,7 +19,7 @@ func (c *Redshift) AuthorizeClusterSecurityGroupIngressRequest(input *AuthorizeC
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAuthorizeClusterSecurityGroupIngress, input, output)
+	req = c.newRequest(opAuthorizeClusterSecurityGroupIngress, input, output)
 	output = &AuthorizeClusterSecurityGroupIngressOutput{}
 	req.Data = output
 	return
@@ -59,7 +59,7 @@ func (c *Redshift) AuthorizeSnapshotAccessRequest(input *AuthorizeSnapshotAccess
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAuthorizeSnapshotAccess, input, output)
+	req = c.newRequest(opAuthorizeSnapshotAccess, input, output)
 	output = &AuthorizeSnapshotAccessOutput{}
 	req.Data = output
 	return
@@ -89,7 +89,7 @@ func (c *Redshift) CopyClusterSnapshotRequest(input *CopyClusterSnapshotInput) (
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCopyClusterSnapshot, input, output)
+	req = c.newRequest(opCopyClusterSnapshot, input, output)
 	output = &CopyClusterSnapshotOutput{}
 	req.Data = output
 	return
@@ -127,7 +127,7 @@ func (c *Redshift) CreateClusterRequest(input *CreateClusterInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateCluster, input, output)
+	req = c.newRequest(opCreateCluster, input, output)
 	output = &CreateClusterOutput{}
 	req.Data = output
 	return
@@ -159,7 +159,7 @@ func (c *Redshift) CreateClusterParameterGroupRequest(input *CreateClusterParame
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateClusterParameterGroup, input, output)
+	req = c.newRequest(opCreateClusterParameterGroup, input, output)
 	output = &CreateClusterParameterGroupOutput{}
 	req.Data = output
 	return
@@ -195,7 +195,7 @@ func (c *Redshift) CreateClusterSecurityGroupRequest(input *CreateClusterSecurit
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateClusterSecurityGroup, input, output)
+	req = c.newRequest(opCreateClusterSecurityGroup, input, output)
 	output = &CreateClusterSecurityGroupOutput{}
 	req.Data = output
 	return
@@ -226,7 +226,7 @@ func (c *Redshift) CreateClusterSnapshotRequest(input *CreateClusterSnapshotInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateClusterSnapshot, input, output)
+	req = c.newRequest(opCreateClusterSnapshot, input, output)
 	output = &CreateClusterSnapshotOutput{}
 	req.Data = output
 	return
@@ -257,7 +257,7 @@ func (c *Redshift) CreateClusterSubnetGroupRequest(input *CreateClusterSubnetGro
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateClusterSubnetGroup, input, output)
+	req = c.newRequest(opCreateClusterSubnetGroup, input, output)
 	output = &CreateClusterSubnetGroupOutput{}
 	req.Data = output
 	return
@@ -289,7 +289,7 @@ func (c *Redshift) CreateEventSubscriptionRequest(input *CreateEventSubscription
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateEventSubscription, input, output)
+	req = c.newRequest(opCreateEventSubscription, input, output)
 	output = &CreateEventSubscriptionOutput{}
 	req.Data = output
 	return
@@ -336,7 +336,7 @@ func (c *Redshift) CreateHSMClientCertificateRequest(input *CreateHSMClientCerti
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateHSMClientCertificate, input, output)
+	req = c.newRequest(opCreateHSMClientCertificate, input, output)
 	output = &CreateHSMClientCertificateOutput{}
 	req.Data = output
 	return
@@ -370,7 +370,7 @@ func (c *Redshift) CreateHSMConfigurationRequest(input *CreateHSMConfigurationIn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateHSMConfiguration, input, output)
+	req = c.newRequest(opCreateHSMConfiguration, input, output)
 	output = &CreateHSMConfigurationOutput{}
 	req.Data = output
 	return
@@ -405,7 +405,7 @@ func (c *Redshift) CreateTagsRequest(input *CreateTagsInput) (req *aws.Request, 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateTags, input, output)
+	req = c.newRequest(opCreateTags, input, output)
 	output = &CreateTagsOutput{}
 	req.Data = output
 	return
@@ -437,7 +437,7 @@ func (c *Redshift) DeleteClusterRequest(input *DeleteClusterInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteCluster, input, output)
+	req = c.newRequest(opDeleteCluster, input, output)
 	output = &DeleteClusterOutput{}
 	req.Data = output
 	return
@@ -479,7 +479,7 @@ func (c *Redshift) DeleteClusterParameterGroupRequest(input *DeleteClusterParame
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteClusterParameterGroup, input, output)
+	req = c.newRequest(opDeleteClusterParameterGroup, input, output)
 	output = &DeleteClusterParameterGroupOutput{}
 	req.Data = output
 	return
@@ -506,7 +506,7 @@ func (c *Redshift) DeleteClusterSecurityGroupRequest(input *DeleteClusterSecurit
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteClusterSecurityGroup, input, output)
+	req = c.newRequest(opDeleteClusterSecurityGroup, input, output)
 	output = &DeleteClusterSecurityGroupOutput{}
 	req.Data = output
 	return
@@ -537,7 +537,7 @@ func (c *Redshift) DeleteClusterSnapshotRequest(input *DeleteClusterSnapshotInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteClusterSnapshot, input, output)
+	req = c.newRequest(opDeleteClusterSnapshot, input, output)
 	output = &DeleteClusterSnapshotOutput{}
 	req.Data = output
 	return
@@ -570,7 +570,7 @@ func (c *Redshift) DeleteClusterSubnetGroupRequest(input *DeleteClusterSubnetGro
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteClusterSubnetGroup, input, output)
+	req = c.newRequest(opDeleteClusterSubnetGroup, input, output)
 	output = &DeleteClusterSubnetGroupOutput{}
 	req.Data = output
 	return
@@ -596,7 +596,7 @@ func (c *Redshift) DeleteEventSubscriptionRequest(input *DeleteEventSubscription
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteEventSubscription, input, output)
+	req = c.newRequest(opDeleteEventSubscription, input, output)
 	output = &DeleteEventSubscriptionOutput{}
 	req.Data = output
 	return
@@ -622,7 +622,7 @@ func (c *Redshift) DeleteHSMClientCertificateRequest(input *DeleteHSMClientCerti
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteHSMClientCertificate, input, output)
+	req = c.newRequest(opDeleteHSMClientCertificate, input, output)
 	output = &DeleteHSMClientCertificateOutput{}
 	req.Data = output
 	return
@@ -648,7 +648,7 @@ func (c *Redshift) DeleteHSMConfigurationRequest(input *DeleteHSMConfigurationIn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteHSMConfiguration, input, output)
+	req = c.newRequest(opDeleteHSMConfiguration, input, output)
 	output = &DeleteHSMConfigurationOutput{}
 	req.Data = output
 	return
@@ -674,7 +674,7 @@ func (c *Redshift) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Request, 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteTags, input, output)
+	req = c.newRequest(opDeleteTags, input, output)
 	output = &DeleteTagsOutput{}
 	req.Data = output
 	return
@@ -701,7 +701,7 @@ func (c *Redshift) DescribeClusterParameterGroupsRequest(input *DescribeClusterP
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeClusterParameterGroups, input, output)
+	req = c.newRequest(opDescribeClusterParameterGroups, input, output)
 	output = &DescribeClusterParameterGroupsOutput{}
 	req.Data = output
 	return
@@ -745,7 +745,7 @@ func (c *Redshift) DescribeClusterParametersRequest(input *DescribeClusterParame
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeClusterParameters, input, output)
+	req = c.newRequest(opDescribeClusterParameters, input, output)
 	output = &DescribeClusterParametersOutput{}
 	req.Data = output
 	return
@@ -782,7 +782,7 @@ func (c *Redshift) DescribeClusterSecurityGroupsRequest(input *DescribeClusterSe
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeClusterSecurityGroups, input, output)
+	req = c.newRequest(opDescribeClusterSecurityGroups, input, output)
 	output = &DescribeClusterSecurityGroupsOutput{}
 	req.Data = output
 	return
@@ -824,7 +824,7 @@ func (c *Redshift) DescribeClusterSnapshotsRequest(input *DescribeClusterSnapsho
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeClusterSnapshots, input, output)
+	req = c.newRequest(opDescribeClusterSnapshots, input, output)
 	output = &DescribeClusterSnapshotsOutput{}
 	req.Data = output
 	return
@@ -865,7 +865,7 @@ func (c *Redshift) DescribeClusterSubnetGroupsRequest(input *DescribeClusterSubn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeClusterSubnetGroups, input, output)
+	req = c.newRequest(opDescribeClusterSubnetGroups, input, output)
 	output = &DescribeClusterSubnetGroupsOutput{}
 	req.Data = output
 	return
@@ -903,7 +903,7 @@ func (c *Redshift) DescribeClusterVersionsRequest(input *DescribeClusterVersions
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeClusterVersions, input, output)
+	req = c.newRequest(opDescribeClusterVersions, input, output)
 	output = &DescribeClusterVersionsOutput{}
 	req.Data = output
 	return
@@ -933,7 +933,7 @@ func (c *Redshift) DescribeClustersRequest(input *DescribeClustersInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeClusters, input, output)
+	req = c.newRequest(opDescribeClusters, input, output)
 	output = &DescribeClustersOutput{}
 	req.Data = output
 	return
@@ -972,7 +972,7 @@ func (c *Redshift) DescribeDefaultClusterParametersRequest(input *DescribeDefaul
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeDefaultClusterParameters, input, output)
+	req = c.newRequest(opDescribeDefaultClusterParameters, input, output)
 	output = &DescribeDefaultClusterParametersOutput{}
 	req.Data = output
 	return
@@ -1002,7 +1002,7 @@ func (c *Redshift) DescribeEventCategoriesRequest(input *DescribeEventCategories
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeEventCategories, input, output)
+	req = c.newRequest(opDescribeEventCategories, input, output)
 	output = &DescribeEventCategoriesOutput{}
 	req.Data = output
 	return
@@ -1030,7 +1030,7 @@ func (c *Redshift) DescribeEventSubscriptionsRequest(input *DescribeEventSubscri
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeEventSubscriptions, input, output)
+	req = c.newRequest(opDescribeEventSubscriptions, input, output)
 	output = &DescribeEventSubscriptionsOutput{}
 	req.Data = output
 	return
@@ -1058,7 +1058,7 @@ func (c *Redshift) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeEvents, input, output)
+	req = c.newRequest(opDescribeEvents, input, output)
 	output = &DescribeEventsOutput{}
 	req.Data = output
 	return
@@ -1087,7 +1087,7 @@ func (c *Redshift) DescribeHSMClientCertificatesRequest(input *DescribeHSMClient
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeHSMClientCertificates, input, output)
+	req = c.newRequest(opDescribeHSMClientCertificates, input, output)
 	output = &DescribeHSMClientCertificatesOutput{}
 	req.Data = output
 	return
@@ -1125,7 +1125,7 @@ func (c *Redshift) DescribeHSMConfigurationsRequest(input *DescribeHSMConfigurat
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeHSMConfigurations, input, output)
+	req = c.newRequest(opDescribeHSMConfigurations, input, output)
 	output = &DescribeHSMConfigurationsOutput{}
 	req.Data = output
 	return
@@ -1163,7 +1163,7 @@ func (c *Redshift) DescribeLoggingStatusRequest(input *DescribeLoggingStatusInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeLoggingStatus, input, output)
+	req = c.newRequest(opDescribeLoggingStatus, input, output)
 	output = &LoggingStatus{}
 	req.Data = output
 	return
@@ -1190,7 +1190,7 @@ func (c *Redshift) DescribeOrderableClusterOptionsRequest(input *DescribeOrderab
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeOrderableClusterOptions, input, output)
+	req = c.newRequest(opDescribeOrderableClusterOptions, input, output)
 	output = &DescribeOrderableClusterOptionsOutput{}
 	req.Data = output
 	return
@@ -1224,7 +1224,7 @@ func (c *Redshift) DescribeReservedNodeOfferingsRequest(input *DescribeReservedN
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeReservedNodeOfferings, input, output)
+	req = c.newRequest(opDescribeReservedNodeOfferings, input, output)
 	output = &DescribeReservedNodeOfferingsOutput{}
 	req.Data = output
 	return
@@ -1259,7 +1259,7 @@ func (c *Redshift) DescribeReservedNodesRequest(input *DescribeReservedNodesInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeReservedNodes, input, output)
+	req = c.newRequest(opDescribeReservedNodes, input, output)
 	output = &DescribeReservedNodesOutput{}
 	req.Data = output
 	return
@@ -1285,7 +1285,7 @@ func (c *Redshift) DescribeResizeRequest(input *DescribeResizeInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeResize, input, output)
+	req = c.newRequest(opDescribeResize, input, output)
 	output = &DescribeResizeOutput{}
 	req.Data = output
 	return
@@ -1317,7 +1317,7 @@ func (c *Redshift) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Reque
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeTags, input, output)
+	req = c.newRequest(opDescribeTags, input, output)
 	output = &DescribeTagsOutput{}
 	req.Data = output
 	return
@@ -1361,7 +1361,7 @@ func (c *Redshift) DisableLoggingRequest(input *DisableLoggingInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDisableLogging, input, output)
+	req = c.newRequest(opDisableLogging, input, output)
 	output = &LoggingStatus{}
 	req.Data = output
 	return
@@ -1388,7 +1388,7 @@ func (c *Redshift) DisableSnapshotCopyRequest(input *DisableSnapshotCopyInput) (
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDisableSnapshotCopy, input, output)
+	req = c.newRequest(opDisableSnapshotCopy, input, output)
 	output = &DisableSnapshotCopyOutput{}
 	req.Data = output
 	return
@@ -1415,7 +1415,7 @@ func (c *Redshift) EnableLoggingRequest(input *EnableLoggingInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opEnableLogging, input, output)
+	req = c.newRequest(opEnableLogging, input, output)
 	output = &LoggingStatus{}
 	req.Data = output
 	return
@@ -1442,7 +1442,7 @@ func (c *Redshift) EnableSnapshotCopyRequest(input *EnableSnapshotCopyInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opEnableSnapshotCopy, input, output)
+	req = c.newRequest(opEnableSnapshotCopy, input, output)
 	output = &EnableSnapshotCopyOutput{}
 	req.Data = output
 	return
@@ -1469,7 +1469,7 @@ func (c *Redshift) ModifyClusterRequest(input *ModifyClusterInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyCluster, input, output)
+	req = c.newRequest(opModifyCluster, input, output)
 	output = &ModifyClusterOutput{}
 	req.Data = output
 	return
@@ -1505,7 +1505,7 @@ func (c *Redshift) ModifyClusterParameterGroupRequest(input *ModifyClusterParame
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyClusterParameterGroup, input, output)
+	req = c.newRequest(opModifyClusterParameterGroup, input, output)
 	output = &ClusterParameterGroupNameMessage{}
 	req.Data = output
 	return
@@ -1535,7 +1535,7 @@ func (c *Redshift) ModifyClusterSubnetGroupRequest(input *ModifyClusterSubnetGro
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyClusterSubnetGroup, input, output)
+	req = c.newRequest(opModifyClusterSubnetGroup, input, output)
 	output = &ModifyClusterSubnetGroupOutput{}
 	req.Data = output
 	return
@@ -1563,7 +1563,7 @@ func (c *Redshift) ModifyEventSubscriptionRequest(input *ModifyEventSubscription
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyEventSubscription, input, output)
+	req = c.newRequest(opModifyEventSubscription, input, output)
 	output = &ModifyEventSubscriptionOutput{}
 	req.Data = output
 	return
@@ -1589,7 +1589,7 @@ func (c *Redshift) ModifySnapshotCopyRetentionPeriodRequest(input *ModifySnapsho
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifySnapshotCopyRetentionPeriod, input, output)
+	req = c.newRequest(opModifySnapshotCopyRetentionPeriod, input, output)
 	output = &ModifySnapshotCopyRetentionPeriodOutput{}
 	req.Data = output
 	return
@@ -1616,7 +1616,7 @@ func (c *Redshift) PurchaseReservedNodeOfferingRequest(input *PurchaseReservedNo
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPurchaseReservedNodeOffering, input, output)
+	req = c.newRequest(opPurchaseReservedNodeOffering, input, output)
 	output = &PurchaseReservedNodeOfferingOutput{}
 	req.Data = output
 	return
@@ -1650,7 +1650,7 @@ func (c *Redshift) RebootClusterRequest(input *RebootClusterInput) (req *aws.Req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRebootCluster, input, output)
+	req = c.newRequest(opRebootCluster, input, output)
 	output = &RebootClusterOutput{}
 	req.Data = output
 	return
@@ -1682,7 +1682,7 @@ func (c *Redshift) ResetClusterParameterGroupRequest(input *ResetClusterParamete
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opResetClusterParameterGroup, input, output)
+	req = c.newRequest(opResetClusterParameterGroup, input, output)
 	output = &ClusterParameterGroupNameMessage{}
 	req.Data = output
 	return
@@ -1711,7 +1711,7 @@ func (c *Redshift) RestoreFromClusterSnapshotRequest(input *RestoreFromClusterSn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRestoreFromClusterSnapshot, input, output)
+	req = c.newRequest(opRestoreFromClusterSnapshot, input, output)
 	output = &RestoreFromClusterSnapshotOutput{}
 	req.Data = output
 	return
@@ -1749,7 +1749,7 @@ func (c *Redshift) RevokeClusterSecurityGroupIngressRequest(input *RevokeCluster
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRevokeClusterSecurityGroupIngress, input, output)
+	req = c.newRequest(opRevokeClusterSecurityGroupIngress, input, output)
 	output = &RevokeClusterSecurityGroupIngressOutput{}
 	req.Data = output
 	return
@@ -1779,7 +1779,7 @@ func (c *Redshift) RevokeSnapshotAccessRequest(input *RevokeSnapshotAccessInput)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRevokeSnapshotAccess, input, output)
+	req = c.newRequest(opRevokeSnapshotAccess, input, output)
 	output = &RevokeSnapshotAccessOutput{}
 	req.Data = output
 	return
@@ -1811,7 +1811,7 @@ func (c *Redshift) RotateEncryptionKeyRequest(input *RotateEncryptionKeyInput) (
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRotateEncryptionKey, input, output)
+	req = c.newRequest(opRotateEncryptionKey, input, output)
 	output = &RotateEncryptionKeyOutput{}
 	req.Data = output
 	return

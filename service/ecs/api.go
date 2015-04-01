@@ -17,7 +17,7 @@ func (c *ECS) CreateClusterRequest(input *CreateClusterInput) (req *aws.Request,
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateCluster, input, output)
+	req = c.newRequest(opCreateCluster, input, output)
 	output = &CreateClusterOutput{}
 	req.Data = output
 	return
@@ -47,7 +47,7 @@ func (c *ECS) DeleteClusterRequest(input *DeleteClusterInput) (req *aws.Request,
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteCluster, input, output)
+	req = c.newRequest(opDeleteCluster, input, output)
 	output = &DeleteClusterOutput{}
 	req.Data = output
 	return
@@ -75,7 +75,7 @@ func (c *ECS) DeregisterContainerInstanceRequest(input *DeregisterContainerInsta
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeregisterContainerInstance, input, output)
+	req = c.newRequest(opDeregisterContainerInstance, input, output)
 	output = &DeregisterContainerInstanceOutput{}
 	req.Data = output
 	return
@@ -102,7 +102,7 @@ func (c *ECS) DeregisterTaskDefinitionRequest(input *DeregisterTaskDefinitionInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeregisterTaskDefinition, input, output)
+	req = c.newRequest(opDeregisterTaskDefinition, input, output)
 	output = &DeregisterTaskDefinitionOutput{}
 	req.Data = output
 	return
@@ -131,7 +131,7 @@ func (c *ECS) DescribeClustersRequest(input *DescribeClustersInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeClusters, input, output)
+	req = c.newRequest(opDescribeClusters, input, output)
 	output = &DescribeClustersOutput{}
 	req.Data = output
 	return
@@ -157,7 +157,7 @@ func (c *ECS) DescribeContainerInstancesRequest(input *DescribeContainerInstance
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeContainerInstances, input, output)
+	req = c.newRequest(opDescribeContainerInstances, input, output)
 	output = &DescribeContainerInstancesOutput{}
 	req.Data = output
 	return
@@ -184,7 +184,7 @@ func (c *ECS) DescribeTaskDefinitionRequest(input *DescribeTaskDefinitionInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeTaskDefinition, input, output)
+	req = c.newRequest(opDescribeTaskDefinition, input, output)
 	output = &DescribeTaskDefinitionOutput{}
 	req.Data = output
 	return
@@ -212,7 +212,7 @@ func (c *ECS) DescribeTasksRequest(input *DescribeTasksInput) (req *aws.Request,
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeTasks, input, output)
+	req = c.newRequest(opDescribeTasks, input, output)
 	output = &DescribeTasksOutput{}
 	req.Data = output
 	return
@@ -238,7 +238,7 @@ func (c *ECS) DiscoverPollEndpointRequest(input *DiscoverPollEndpointInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDiscoverPollEndpoint, input, output)
+	req = c.newRequest(opDiscoverPollEndpoint, input, output)
 	output = &DiscoverPollEndpointOutput{}
 	req.Data = output
 	return
@@ -268,7 +268,7 @@ func (c *ECS) ListClustersRequest(input *ListClustersInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListClusters, input, output)
+	req = c.newRequest(opListClusters, input, output)
 	output = &ListClustersOutput{}
 	req.Data = output
 	return
@@ -294,7 +294,7 @@ func (c *ECS) ListContainerInstancesRequest(input *ListContainerInstancesInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListContainerInstances, input, output)
+	req = c.newRequest(opListContainerInstances, input, output)
 	output = &ListContainerInstancesOutput{}
 	req.Data = output
 	return
@@ -320,7 +320,7 @@ func (c *ECS) ListTaskDefinitionFamiliesRequest(input *ListTaskDefinitionFamilie
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListTaskDefinitionFamilies, input, output)
+	req = c.newRequest(opListTaskDefinitionFamilies, input, output)
 	output = &ListTaskDefinitionFamiliesOutput{}
 	req.Data = output
 	return
@@ -347,7 +347,7 @@ func (c *ECS) ListTaskDefinitionsRequest(input *ListTaskDefinitionsInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListTaskDefinitions, input, output)
+	req = c.newRequest(opListTaskDefinitions, input, output)
 	output = &ListTaskDefinitionsOutput{}
 	req.Data = output
 	return
@@ -374,7 +374,7 @@ func (c *ECS) ListTasksRequest(input *ListTasksInput) (req *aws.Request, output 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListTasks, input, output)
+	req = c.newRequest(opListTasks, input, output)
 	output = &ListTasksOutput{}
 	req.Data = output
 	return
@@ -402,7 +402,7 @@ func (c *ECS) RegisterContainerInstanceRequest(input *RegisterContainerInstanceI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRegisterContainerInstance, input, output)
+	req = c.newRequest(opRegisterContainerInstance, input, output)
 	output = &RegisterContainerInstanceOutput{}
 	req.Data = output
 	return
@@ -432,7 +432,7 @@ func (c *ECS) RegisterTaskDefinitionRequest(input *RegisterTaskDefinitionInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRegisterTaskDefinition, input, output)
+	req = c.newRequest(opRegisterTaskDefinition, input, output)
 	output = &RegisterTaskDefinitionOutput{}
 	req.Data = output
 	return
@@ -462,7 +462,7 @@ func (c *ECS) RunTaskRequest(input *RunTaskInput) (req *aws.Request, output *Run
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRunTask, input, output)
+	req = c.newRequest(opRunTask, input, output)
 	output = &RunTaskOutput{}
 	req.Data = output
 	return
@@ -490,7 +490,7 @@ func (c *ECS) StartTaskRequest(input *StartTaskInput) (req *aws.Request, output 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opStartTask, input, output)
+	req = c.newRequest(opStartTask, input, output)
 	output = &StartTaskOutput{}
 	req.Data = output
 	return
@@ -518,7 +518,7 @@ func (c *ECS) StopTaskRequest(input *StopTaskInput) (req *aws.Request, output *S
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opStopTask, input, output)
+	req = c.newRequest(opStopTask, input, output)
 	output = &StopTaskOutput{}
 	req.Data = output
 	return
@@ -544,7 +544,7 @@ func (c *ECS) SubmitContainerStateChangeRequest(input *SubmitContainerStateChang
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSubmitContainerStateChange, input, output)
+	req = c.newRequest(opSubmitContainerStateChange, input, output)
 	output = &SubmitContainerStateChangeOutput{}
 	req.Data = output
 	return
@@ -573,7 +573,7 @@ func (c *ECS) SubmitTaskStateChangeRequest(input *SubmitTaskStateChangeInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSubmitTaskStateChange, input, output)
+	req = c.newRequest(opSubmitTaskStateChange, input, output)
 	output = &SubmitTaskStateChangeOutput{}
 	req.Data = output
 	return

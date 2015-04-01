@@ -19,7 +19,7 @@ func (c *RDS) AddSourceIdentifierToSubscriptionRequest(input *AddSourceIdentifie
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddSourceIdentifierToSubscription, input, output)
+	req = c.newRequest(opAddSourceIdentifierToSubscription, input, output)
 	output = &AddSourceIdentifierToSubscriptionOutput{}
 	req.Data = output
 	return
@@ -45,7 +45,7 @@ func (c *RDS) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAddTagsToResource, input, output)
+	req = c.newRequest(opAddTagsToResource, input, output)
 	output = &AddTagsToResourceOutput{}
 	req.Data = output
 	return
@@ -76,7 +76,7 @@ func (c *RDS) ApplyPendingMaintenanceActionRequest(input *ApplyPendingMaintenanc
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opApplyPendingMaintenanceAction, input, output)
+	req = c.newRequest(opApplyPendingMaintenanceAction, input, output)
 	output = &ApplyPendingMaintenanceActionOutput{}
 	req.Data = output
 	return
@@ -102,7 +102,7 @@ func (c *RDS) AuthorizeDBSecurityGroupIngressRequest(input *AuthorizeDBSecurityG
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opAuthorizeDBSecurityGroupIngress, input, output)
+	req = c.newRequest(opAuthorizeDBSecurityGroupIngress, input, output)
 	output = &AuthorizeDBSecurityGroupIngressOutput{}
 	req.Data = output
 	return
@@ -139,7 +139,7 @@ func (c *RDS) CopyDBParameterGroupRequest(input *CopyDBParameterGroupInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCopyDBParameterGroup, input, output)
+	req = c.newRequest(opCopyDBParameterGroup, input, output)
 	output = &CopyDBParameterGroupOutput{}
 	req.Data = output
 	return
@@ -165,7 +165,7 @@ func (c *RDS) CopyDBSnapshotRequest(input *CopyDBSnapshotInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCopyDBSnapshot, input, output)
+	req = c.newRequest(opCopyDBSnapshot, input, output)
 	output = &CopyDBSnapshotOutput{}
 	req.Data = output
 	return
@@ -192,7 +192,7 @@ func (c *RDS) CopyOptionGroupRequest(input *CopyOptionGroupInput) (req *aws.Requ
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCopyOptionGroup, input, output)
+	req = c.newRequest(opCopyOptionGroup, input, output)
 	output = &CopyOptionGroupOutput{}
 	req.Data = output
 	return
@@ -218,7 +218,7 @@ func (c *RDS) CreateDBInstanceRequest(input *CreateDBInstanceInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateDBInstance, input, output)
+	req = c.newRequest(opCreateDBInstance, input, output)
 	output = &CreateDBInstanceOutput{}
 	req.Data = output
 	return
@@ -244,7 +244,7 @@ func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadRepl
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateDBInstanceReadReplica, input, output)
+	req = c.newRequest(opCreateDBInstanceReadReplica, input, output)
 	output = &CreateDBInstanceReadReplicaOutput{}
 	req.Data = output
 	return
@@ -277,7 +277,7 @@ func (c *RDS) CreateDBParameterGroupRequest(input *CreateDBParameterGroupInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateDBParameterGroup, input, output)
+	req = c.newRequest(opCreateDBParameterGroup, input, output)
 	output = &CreateDBParameterGroupOutput{}
 	req.Data = output
 	return
@@ -323,7 +323,7 @@ func (c *RDS) CreateDBSecurityGroupRequest(input *CreateDBSecurityGroupInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateDBSecurityGroup, input, output)
+	req = c.newRequest(opCreateDBSecurityGroup, input, output)
 	output = &CreateDBSecurityGroupOutput{}
 	req.Data = output
 	return
@@ -350,7 +350,7 @@ func (c *RDS) CreateDBSnapshotRequest(input *CreateDBSnapshotInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateDBSnapshot, input, output)
+	req = c.newRequest(opCreateDBSnapshot, input, output)
 	output = &CreateDBSnapshotOutput{}
 	req.Data = output
 	return
@@ -376,7 +376,7 @@ func (c *RDS) CreateDBSubnetGroupRequest(input *CreateDBSubnetGroupInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateDBSubnetGroup, input, output)
+	req = c.newRequest(opCreateDBSubnetGroup, input, output)
 	output = &CreateDBSubnetGroupOutput{}
 	req.Data = output
 	return
@@ -403,7 +403,7 @@ func (c *RDS) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateEventSubscription, input, output)
+	req = c.newRequest(opCreateEventSubscription, input, output)
 	output = &CreateEventSubscriptionOutput{}
 	req.Data = output
 	return
@@ -447,7 +447,7 @@ func (c *RDS) CreateOptionGroupRequest(input *CreateOptionGroupInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateOptionGroup, input, output)
+	req = c.newRequest(opCreateOptionGroup, input, output)
 	output = &CreateOptionGroupOutput{}
 	req.Data = output
 	return
@@ -473,7 +473,7 @@ func (c *RDS) DeleteDBInstanceRequest(input *DeleteDBInstanceInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteDBInstance, input, output)
+	req = c.newRequest(opDeleteDBInstance, input, output)
 	output = &DeleteDBInstanceOutput{}
 	req.Data = output
 	return
@@ -508,7 +508,7 @@ func (c *RDS) DeleteDBParameterGroupRequest(input *DeleteDBParameterGroupInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteDBParameterGroup, input, output)
+	req = c.newRequest(opDeleteDBParameterGroup, input, output)
 	output = &DeleteDBParameterGroupOutput{}
 	req.Data = output
 	return
@@ -537,7 +537,7 @@ func (c *RDS) DeleteDBSecurityGroupRequest(input *DeleteDBSecurityGroupInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteDBSecurityGroup, input, output)
+	req = c.newRequest(opDeleteDBSecurityGroup, input, output)
 	output = &DeleteDBSecurityGroupOutput{}
 	req.Data = output
 	return
@@ -565,7 +565,7 @@ func (c *RDS) DeleteDBSnapshotRequest(input *DeleteDBSnapshotInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteDBSnapshot, input, output)
+	req = c.newRequest(opDeleteDBSnapshot, input, output)
 	output = &DeleteDBSnapshotOutput{}
 	req.Data = output
 	return
@@ -594,7 +594,7 @@ func (c *RDS) DeleteDBSubnetGroupRequest(input *DeleteDBSubnetGroupInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteDBSubnetGroup, input, output)
+	req = c.newRequest(opDeleteDBSubnetGroup, input, output)
 	output = &DeleteDBSubnetGroupOutput{}
 	req.Data = output
 	return
@@ -622,7 +622,7 @@ func (c *RDS) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteEventSubscription, input, output)
+	req = c.newRequest(opDeleteEventSubscription, input, output)
 	output = &DeleteEventSubscriptionOutput{}
 	req.Data = output
 	return
@@ -648,7 +648,7 @@ func (c *RDS) DeleteOptionGroupRequest(input *DeleteOptionGroupInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteOptionGroup, input, output)
+	req = c.newRequest(opDeleteOptionGroup, input, output)
 	output = &DeleteOptionGroupOutput{}
 	req.Data = output
 	return
@@ -674,7 +674,7 @@ func (c *RDS) DescribeDBEngineVersionsRequest(input *DescribeDBEngineVersionsInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeDBEngineVersions, input, output)
+	req = c.newRequest(opDescribeDBEngineVersions, input, output)
 	output = &DescribeDBEngineVersionsOutput{}
 	req.Data = output
 	return
@@ -700,7 +700,7 @@ func (c *RDS) DescribeDBInstancesRequest(input *DescribeDBInstancesInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeDBInstances, input, output)
+	req = c.newRequest(opDescribeDBInstances, input, output)
 	output = &DescribeDBInstancesOutput{}
 	req.Data = output
 	return
@@ -726,7 +726,7 @@ func (c *RDS) DescribeDBLogFilesRequest(input *DescribeDBLogFilesInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeDBLogFiles, input, output)
+	req = c.newRequest(opDescribeDBLogFiles, input, output)
 	output = &DescribeDBLogFilesOutput{}
 	req.Data = output
 	return
@@ -752,7 +752,7 @@ func (c *RDS) DescribeDBParameterGroupsRequest(input *DescribeDBParameterGroupsI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeDBParameterGroups, input, output)
+	req = c.newRequest(opDescribeDBParameterGroups, input, output)
 	output = &DescribeDBParameterGroupsOutput{}
 	req.Data = output
 	return
@@ -780,7 +780,7 @@ func (c *RDS) DescribeDBParametersRequest(input *DescribeDBParametersInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeDBParameters, input, output)
+	req = c.newRequest(opDescribeDBParameters, input, output)
 	output = &DescribeDBParametersOutput{}
 	req.Data = output
 	return
@@ -806,7 +806,7 @@ func (c *RDS) DescribeDBSecurityGroupsRequest(input *DescribeDBSecurityGroupsInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeDBSecurityGroups, input, output)
+	req = c.newRequest(opDescribeDBSecurityGroups, input, output)
 	output = &DescribeDBSecurityGroupsOutput{}
 	req.Data = output
 	return
@@ -834,7 +834,7 @@ func (c *RDS) DescribeDBSnapshotsRequest(input *DescribeDBSnapshotsInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeDBSnapshots, input, output)
+	req = c.newRequest(opDescribeDBSnapshots, input, output)
 	output = &DescribeDBSnapshotsOutput{}
 	req.Data = output
 	return
@@ -860,7 +860,7 @@ func (c *RDS) DescribeDBSubnetGroupsRequest(input *DescribeDBSubnetGroupsInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeDBSubnetGroups, input, output)
+	req = c.newRequest(opDescribeDBSubnetGroups, input, output)
 	output = &DescribeDBSubnetGroupsOutput{}
 	req.Data = output
 	return
@@ -889,7 +889,7 @@ func (c *RDS) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaul
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeEngineDefaultParameters, input, output)
+	req = c.newRequest(opDescribeEngineDefaultParameters, input, output)
 	output = &DescribeEngineDefaultParametersOutput{}
 	req.Data = output
 	return
@@ -916,7 +916,7 @@ func (c *RDS) DescribeEventCategoriesRequest(input *DescribeEventCategoriesInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeEventCategories, input, output)
+	req = c.newRequest(opDescribeEventCategories, input, output)
 	output = &DescribeEventCategoriesOutput{}
 	req.Data = output
 	return
@@ -945,7 +945,7 @@ func (c *RDS) DescribeEventSubscriptionsRequest(input *DescribeEventSubscription
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeEventSubscriptions, input, output)
+	req = c.newRequest(opDescribeEventSubscriptions, input, output)
 	output = &DescribeEventSubscriptionsOutput{}
 	req.Data = output
 	return
@@ -975,7 +975,7 @@ func (c *RDS) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeEvents, input, output)
+	req = c.newRequest(opDescribeEvents, input, output)
 	output = &DescribeEventsOutput{}
 	req.Data = output
 	return
@@ -1005,7 +1005,7 @@ func (c *RDS) DescribeOptionGroupOptionsRequest(input *DescribeOptionGroupOption
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeOptionGroupOptions, input, output)
+	req = c.newRequest(opDescribeOptionGroupOptions, input, output)
 	output = &DescribeOptionGroupOptionsOutput{}
 	req.Data = output
 	return
@@ -1031,7 +1031,7 @@ func (c *RDS) DescribeOptionGroupsRequest(input *DescribeOptionGroupsInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeOptionGroups, input, output)
+	req = c.newRequest(opDescribeOptionGroups, input, output)
 	output = &DescribeOptionGroupsOutput{}
 	req.Data = output
 	return
@@ -1057,7 +1057,7 @@ func (c *RDS) DescribeOrderableDBInstanceOptionsRequest(input *DescribeOrderable
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeOrderableDBInstanceOptions, input, output)
+	req = c.newRequest(opDescribeOrderableDBInstanceOptions, input, output)
 	output = &DescribeOrderableDBInstanceOptionsOutput{}
 	req.Data = output
 	return
@@ -1083,7 +1083,7 @@ func (c *RDS) DescribePendingMaintenanceActionsRequest(input *DescribePendingMai
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribePendingMaintenanceActions, input, output)
+	req = c.newRequest(opDescribePendingMaintenanceActions, input, output)
 	output = &DescribePendingMaintenanceActionsOutput{}
 	req.Data = output
 	return
@@ -1110,7 +1110,7 @@ func (c *RDS) DescribeReservedDBInstancesRequest(input *DescribeReservedDBInstan
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeReservedDBInstances, input, output)
+	req = c.newRequest(opDescribeReservedDBInstances, input, output)
 	output = &DescribeReservedDBInstancesOutput{}
 	req.Data = output
 	return
@@ -1137,7 +1137,7 @@ func (c *RDS) DescribeReservedDBInstancesOfferingsRequest(input *DescribeReserve
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDescribeReservedDBInstancesOfferings, input, output)
+	req = c.newRequest(opDescribeReservedDBInstancesOfferings, input, output)
 	output = &DescribeReservedDBInstancesOfferingsOutput{}
 	req.Data = output
 	return
@@ -1163,7 +1163,7 @@ func (c *RDS) DownloadDBLogFilePortionRequest(input *DownloadDBLogFilePortionInp
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDownloadDBLogFilePortion, input, output)
+	req = c.newRequest(opDownloadDBLogFilePortion, input, output)
 	output = &DownloadDBLogFilePortionOutput{}
 	req.Data = output
 	return
@@ -1189,7 +1189,7 @@ func (c *RDS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListTagsForResource, input, output)
+	req = c.newRequest(opListTagsForResource, input, output)
 	output = &ListTagsForResourceOutput{}
 	req.Data = output
 	return
@@ -1218,7 +1218,7 @@ func (c *RDS) ModifyDBInstanceRequest(input *ModifyDBInstanceInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyDBInstance, input, output)
+	req = c.newRequest(opModifyDBInstance, input, output)
 	output = &ModifyDBInstanceOutput{}
 	req.Data = output
 	return
@@ -1245,7 +1245,7 @@ func (c *RDS) ModifyDBParameterGroupRequest(input *ModifyDBParameterGroupInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyDBParameterGroup, input, output)
+	req = c.newRequest(opModifyDBParameterGroup, input, output)
 	output = &DBParameterGroupNameMessage{}
 	req.Data = output
 	return
@@ -1288,7 +1288,7 @@ func (c *RDS) ModifyDBSubnetGroupRequest(input *ModifyDBSubnetGroupInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyDBSubnetGroup, input, output)
+	req = c.newRequest(opModifyDBSubnetGroup, input, output)
 	output = &ModifyDBSubnetGroupOutput{}
 	req.Data = output
 	return
@@ -1315,7 +1315,7 @@ func (c *RDS) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionInput
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyEventSubscription, input, output)
+	req = c.newRequest(opModifyEventSubscription, input, output)
 	output = &ModifyEventSubscriptionOutput{}
 	req.Data = output
 	return
@@ -1349,7 +1349,7 @@ func (c *RDS) ModifyOptionGroupRequest(input *ModifyOptionGroupInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opModifyOptionGroup, input, output)
+	req = c.newRequest(opModifyOptionGroup, input, output)
 	output = &ModifyOptionGroupOutput{}
 	req.Data = output
 	return
@@ -1375,7 +1375,7 @@ func (c *RDS) PromoteReadReplicaRequest(input *PromoteReadReplicaInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPromoteReadReplica, input, output)
+	req = c.newRequest(opPromoteReadReplica, input, output)
 	output = &PromoteReadReplicaOutput{}
 	req.Data = output
 	return
@@ -1406,7 +1406,7 @@ func (c *RDS) PurchaseReservedDBInstancesOfferingRequest(input *PurchaseReserved
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opPurchaseReservedDBInstancesOffering, input, output)
+	req = c.newRequest(opPurchaseReservedDBInstancesOffering, input, output)
 	output = &PurchaseReservedDBInstancesOfferingOutput{}
 	req.Data = output
 	return
@@ -1432,7 +1432,7 @@ func (c *RDS) RebootDBInstanceRequest(input *RebootDBInstanceInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRebootDBInstance, input, output)
+	req = c.newRequest(opRebootDBInstance, input, output)
 	output = &RebootDBInstanceOutput{}
 	req.Data = output
 	return
@@ -1474,7 +1474,7 @@ func (c *RDS) RemoveSourceIdentifierFromSubscriptionRequest(input *RemoveSourceI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRemoveSourceIdentifierFromSubscription, input, output)
+	req = c.newRequest(opRemoveSourceIdentifierFromSubscription, input, output)
 	output = &RemoveSourceIdentifierFromSubscriptionOutput{}
 	req.Data = output
 	return
@@ -1500,7 +1500,7 @@ func (c *RDS) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRemoveTagsFromResource, input, output)
+	req = c.newRequest(opRemoveTagsFromResource, input, output)
 	output = &RemoveTagsFromResourceOutput{}
 	req.Data = output
 	return
@@ -1529,7 +1529,7 @@ func (c *RDS) ResetDBParameterGroupRequest(input *ResetDBParameterGroupInput) (r
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opResetDBParameterGroup, input, output)
+	req = c.newRequest(opResetDBParameterGroup, input, output)
 	output = &DBParameterGroupNameMessage{}
 	req.Data = output
 	return
@@ -1561,7 +1561,7 @@ func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFro
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRestoreDBInstanceFromDBSnapshot, input, output)
+	req = c.newRequest(opRestoreDBInstanceFromDBSnapshot, input, output)
 	output = &RestoreDBInstanceFromDBSnapshotOutput{}
 	req.Data = output
 	return
@@ -1599,7 +1599,7 @@ func (c *RDS) RestoreDBInstanceToPointInTimeRequest(input *RestoreDBInstanceToPo
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRestoreDBInstanceToPointInTime, input, output)
+	req = c.newRequest(opRestoreDBInstanceToPointInTime, input, output)
 	output = &RestoreDBInstanceToPointInTimeOutput{}
 	req.Data = output
 	return
@@ -1629,7 +1629,7 @@ func (c *RDS) RevokeDBSecurityGroupIngressRequest(input *RevokeDBSecurityGroupIn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRevokeDBSecurityGroupIngress, input, output)
+	req = c.newRequest(opRevokeDBSecurityGroupIngress, input, output)
 	output = &RevokeDBSecurityGroupIngressOutput{}
 	req.Data = output
 	return

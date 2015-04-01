@@ -19,7 +19,7 @@ func (c *CodeDeploy) BatchGetApplicationsRequest(input *BatchGetApplicationsInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opBatchGetApplications, input, output)
+	req = c.newRequest(opBatchGetApplications, input, output)
 	output = &BatchGetApplicationsOutput{}
 	req.Data = output
 	return
@@ -45,7 +45,7 @@ func (c *CodeDeploy) BatchGetDeploymentsRequest(input *BatchGetDeploymentsInput)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opBatchGetDeployments, input, output)
+	req = c.newRequest(opBatchGetDeployments, input, output)
 	output = &BatchGetDeploymentsOutput{}
 	req.Data = output
 	return
@@ -71,7 +71,7 @@ func (c *CodeDeploy) CreateApplicationRequest(input *CreateApplicationInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateApplication, input, output)
+	req = c.newRequest(opCreateApplication, input, output)
 	output = &CreateApplicationOutput{}
 	req.Data = output
 	return
@@ -97,7 +97,7 @@ func (c *CodeDeploy) CreateDeploymentRequest(input *CreateDeploymentInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateDeployment, input, output)
+	req = c.newRequest(opCreateDeployment, input, output)
 	output = &CreateDeploymentOutput{}
 	req.Data = output
 	return
@@ -123,7 +123,7 @@ func (c *CodeDeploy) CreateDeploymentConfigRequest(input *CreateDeploymentConfig
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateDeploymentConfig, input, output)
+	req = c.newRequest(opCreateDeploymentConfig, input, output)
 	output = &CreateDeploymentConfigOutput{}
 	req.Data = output
 	return
@@ -149,7 +149,7 @@ func (c *CodeDeploy) CreateDeploymentGroupRequest(input *CreateDeploymentGroupIn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opCreateDeploymentGroup, input, output)
+	req = c.newRequest(opCreateDeploymentGroup, input, output)
 	output = &CreateDeploymentGroupOutput{}
 	req.Data = output
 	return
@@ -175,7 +175,7 @@ func (c *CodeDeploy) DeleteApplicationRequest(input *DeleteApplicationInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteApplication, input, output)
+	req = c.newRequest(opDeleteApplication, input, output)
 	output = &DeleteApplicationOutput{}
 	req.Data = output
 	return
@@ -201,7 +201,7 @@ func (c *CodeDeploy) DeleteDeploymentConfigRequest(input *DeleteDeploymentConfig
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteDeploymentConfig, input, output)
+	req = c.newRequest(opDeleteDeploymentConfig, input, output)
 	output = &DeleteDeploymentConfigOutput{}
 	req.Data = output
 	return
@@ -230,7 +230,7 @@ func (c *CodeDeploy) DeleteDeploymentGroupRequest(input *DeleteDeploymentGroupIn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteDeploymentGroup, input, output)
+	req = c.newRequest(opDeleteDeploymentGroup, input, output)
 	output = &DeleteDeploymentGroupOutput{}
 	req.Data = output
 	return
@@ -256,7 +256,7 @@ func (c *CodeDeploy) GetApplicationRequest(input *GetApplicationInput) (req *aws
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetApplication, input, output)
+	req = c.newRequest(opGetApplication, input, output)
 	output = &GetApplicationOutput{}
 	req.Data = output
 	return
@@ -282,7 +282,7 @@ func (c *CodeDeploy) GetApplicationRevisionRequest(input *GetApplicationRevision
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetApplicationRevision, input, output)
+	req = c.newRequest(opGetApplicationRevision, input, output)
 	output = &GetApplicationRevisionOutput{}
 	req.Data = output
 	return
@@ -308,7 +308,7 @@ func (c *CodeDeploy) GetDeploymentRequest(input *GetDeploymentInput) (req *aws.R
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetDeployment, input, output)
+	req = c.newRequest(opGetDeployment, input, output)
 	output = &GetDeploymentOutput{}
 	req.Data = output
 	return
@@ -334,7 +334,7 @@ func (c *CodeDeploy) GetDeploymentConfigRequest(input *GetDeploymentConfigInput)
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetDeploymentConfig, input, output)
+	req = c.newRequest(opGetDeploymentConfig, input, output)
 	output = &GetDeploymentConfigOutput{}
 	req.Data = output
 	return
@@ -360,7 +360,7 @@ func (c *CodeDeploy) GetDeploymentGroupRequest(input *GetDeploymentGroupInput) (
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetDeploymentGroup, input, output)
+	req = c.newRequest(opGetDeploymentGroup, input, output)
 	output = &GetDeploymentGroupOutput{}
 	req.Data = output
 	return
@@ -386,7 +386,7 @@ func (c *CodeDeploy) GetDeploymentInstanceRequest(input *GetDeploymentInstanceIn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetDeploymentInstance, input, output)
+	req = c.newRequest(opGetDeploymentInstance, input, output)
 	output = &GetDeploymentInstanceOutput{}
 	req.Data = output
 	return
@@ -412,7 +412,7 @@ func (c *CodeDeploy) ListApplicationRevisionsRequest(input *ListApplicationRevis
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListApplicationRevisions, input, output)
+	req = c.newRequest(opListApplicationRevisions, input, output)
 	output = &ListApplicationRevisionsOutput{}
 	req.Data = output
 	return
@@ -438,7 +438,7 @@ func (c *CodeDeploy) ListApplicationsRequest(input *ListApplicationsInput) (req 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListApplications, input, output)
+	req = c.newRequest(opListApplications, input, output)
 	output = &ListApplicationsOutput{}
 	req.Data = output
 	return
@@ -464,7 +464,7 @@ func (c *CodeDeploy) ListDeploymentConfigsRequest(input *ListDeploymentConfigsIn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListDeploymentConfigs, input, output)
+	req = c.newRequest(opListDeploymentConfigs, input, output)
 	output = &ListDeploymentConfigsOutput{}
 	req.Data = output
 	return
@@ -490,7 +490,7 @@ func (c *CodeDeploy) ListDeploymentGroupsRequest(input *ListDeploymentGroupsInpu
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListDeploymentGroups, input, output)
+	req = c.newRequest(opListDeploymentGroups, input, output)
 	output = &ListDeploymentGroupsOutput{}
 	req.Data = output
 	return
@@ -517,7 +517,7 @@ func (c *CodeDeploy) ListDeploymentInstancesRequest(input *ListDeploymentInstanc
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListDeploymentInstances, input, output)
+	req = c.newRequest(opListDeploymentInstances, input, output)
 	output = &ListDeploymentInstancesOutput{}
 	req.Data = output
 	return
@@ -543,7 +543,7 @@ func (c *CodeDeploy) ListDeploymentsRequest(input *ListDeploymentsInput) (req *a
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListDeployments, input, output)
+	req = c.newRequest(opListDeployments, input, output)
 	output = &ListDeploymentsOutput{}
 	req.Data = output
 	return
@@ -570,7 +570,7 @@ func (c *CodeDeploy) RegisterApplicationRevisionRequest(input *RegisterApplicati
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opRegisterApplicationRevision, input, output)
+	req = c.newRequest(opRegisterApplicationRevision, input, output)
 	output = &RegisterApplicationRevisionOutput{}
 	req.Data = output
 	return
@@ -596,7 +596,7 @@ func (c *CodeDeploy) StopDeploymentRequest(input *StopDeploymentInput) (req *aws
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opStopDeployment, input, output)
+	req = c.newRequest(opStopDeployment, input, output)
 	output = &StopDeploymentOutput{}
 	req.Data = output
 	return
@@ -622,7 +622,7 @@ func (c *CodeDeploy) UpdateApplicationRequest(input *UpdateApplicationInput) (re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateApplication, input, output)
+	req = c.newRequest(opUpdateApplication, input, output)
 	output = &UpdateApplicationOutput{}
 	req.Data = output
 	return
@@ -648,7 +648,7 @@ func (c *CodeDeploy) UpdateDeploymentGroupRequest(input *UpdateDeploymentGroupIn
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opUpdateDeploymentGroup, input, output)
+	req = c.newRequest(opUpdateDeploymentGroup, input, output)
 	output = &UpdateDeploymentGroupOutput{}
 	req.Data = output
 	return

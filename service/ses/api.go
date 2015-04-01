@@ -19,7 +19,7 @@ func (c *SES) DeleteIdentityRequest(input *DeleteIdentityInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteIdentity, input, output)
+	req = c.newRequest(opDeleteIdentity, input, output)
 	output = &DeleteIdentityOutput{}
 	req.Data = output
 	return
@@ -48,7 +48,7 @@ func (c *SES) DeleteVerifiedEmailAddressRequest(input *DeleteVerifiedEmailAddres
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opDeleteVerifiedEmailAddress, input, output)
+	req = c.newRequest(opDeleteVerifiedEmailAddress, input, output)
 	output = &DeleteVerifiedEmailAddressOutput{}
 	req.Data = output
 	return
@@ -78,7 +78,7 @@ func (c *SES) GetIdentityDKIMAttributesRequest(input *GetIdentityDKIMAttributesI
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetIdentityDKIMAttributes, input, output)
+	req = c.newRequest(opGetIdentityDKIMAttributes, input, output)
 	output = &GetIdentityDKIMAttributesOutput{}
 	req.Data = output
 	return
@@ -120,7 +120,7 @@ func (c *SES) GetIdentityNotificationAttributesRequest(input *GetIdentityNotific
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetIdentityNotificationAttributes, input, output)
+	req = c.newRequest(opGetIdentityNotificationAttributes, input, output)
 	output = &GetIdentityNotificationAttributesOutput{}
 	req.Data = output
 	return
@@ -152,7 +152,7 @@ func (c *SES) GetIdentityVerificationAttributesRequest(input *GetIdentityVerific
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetIdentityVerificationAttributes, input, output)
+	req = c.newRequest(opGetIdentityVerificationAttributes, input, output)
 	output = &GetIdentityVerificationAttributesOutput{}
 	req.Data = output
 	return
@@ -182,7 +182,7 @@ func (c *SES) GetSendQuotaRequest(input *GetSendQuotaInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetSendQuota, input, output)
+	req = c.newRequest(opGetSendQuota, input, output)
 	output = &GetSendQuotaOutput{}
 	req.Data = output
 	return
@@ -210,7 +210,7 @@ func (c *SES) GetSendStatisticsRequest(input *GetSendStatisticsInput) (req *aws.
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opGetSendStatistics, input, output)
+	req = c.newRequest(opGetSendStatistics, input, output)
 	output = &GetSendStatisticsOutput{}
 	req.Data = output
 	return
@@ -241,7 +241,7 @@ func (c *SES) ListIdentitiesRequest(input *ListIdentitiesInput) (req *aws.Reques
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListIdentities, input, output)
+	req = c.newRequest(opListIdentities, input, output)
 	output = &ListIdentitiesOutput{}
 	req.Data = output
 	return
@@ -270,7 +270,7 @@ func (c *SES) ListVerifiedEmailAddressesRequest(input *ListVerifiedEmailAddresse
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opListVerifiedEmailAddresses, input, output)
+	req = c.newRequest(opListVerifiedEmailAddresses, input, output)
 	output = &ListVerifiedEmailAddressesOutput{}
 	req.Data = output
 	return
@@ -300,7 +300,7 @@ func (c *SES) SendEmailRequest(input *SendEmailInput) (req *aws.Request, output 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSendEmail, input, output)
+	req = c.newRequest(opSendEmail, input, output)
 	output = &SendEmailOutput{}
 	req.Data = output
 	return
@@ -345,7 +345,7 @@ func (c *SES) SendRawEmailRequest(input *SendRawEmailInput) (req *aws.Request, o
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSendRawEmail, input, output)
+	req = c.newRequest(opSendRawEmail, input, output)
 	output = &SendRawEmailOutput{}
 	req.Data = output
 	return
@@ -397,7 +397,7 @@ func (c *SES) SetIdentityDKIMEnabledRequest(input *SetIdentityDKIMEnabledInput) 
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetIdentityDKIMEnabled, input, output)
+	req = c.newRequest(opSetIdentityDKIMEnabled, input, output)
 	output = &SetIdentityDKIMEnabledOutput{}
 	req.Data = output
 	return
@@ -436,7 +436,7 @@ func (c *SES) SetIdentityFeedbackForwardingEnabledRequest(input *SetIdentityFeed
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetIdentityFeedbackForwardingEnabled, input, output)
+	req = c.newRequest(opSetIdentityFeedbackForwardingEnabled, input, output)
 	output = &SetIdentityFeedbackForwardingEnabledOutput{}
 	req.Data = output
 	return
@@ -470,7 +470,7 @@ func (c *SES) SetIdentityNotificationTopicRequest(input *SetIdentityNotification
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opSetIdentityNotificationTopic, input, output)
+	req = c.newRequest(opSetIdentityNotificationTopic, input, output)
 	output = &SetIdentityNotificationTopicOutput{}
 	req.Data = output
 	return
@@ -503,7 +503,7 @@ func (c *SES) VerifyDomainDKIMRequest(input *VerifyDomainDKIMInput) (req *aws.Re
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opVerifyDomainDKIM, input, output)
+	req = c.newRequest(opVerifyDomainDKIM, input, output)
 	output = &VerifyDomainDKIMOutput{}
 	req.Data = output
 	return
@@ -543,7 +543,7 @@ func (c *SES) VerifyDomainIdentityRequest(input *VerifyDomainIdentityInput) (req
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opVerifyDomainIdentity, input, output)
+	req = c.newRequest(opVerifyDomainIdentity, input, output)
 	output = &VerifyDomainIdentityOutput{}
 	req.Data = output
 	return
@@ -571,7 +571,7 @@ func (c *SES) VerifyEmailAddressRequest(input *VerifyEmailAddressInput) (req *aw
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opVerifyEmailAddress, input, output)
+	req = c.newRequest(opVerifyEmailAddress, input, output)
 	output = &VerifyEmailAddressOutput{}
 	req.Data = output
 	return
@@ -602,7 +602,7 @@ func (c *SES) VerifyEmailIdentityRequest(input *VerifyEmailIdentityInput) (req *
 		}
 	}
 
-	req = aws.NewRequest(c.Service, opVerifyEmailIdentity, input, output)
+	req = c.newRequest(opVerifyEmailIdentity, input, output)
 	output = &VerifyEmailIdentityOutput{}
 	req.Data = output
 	return
