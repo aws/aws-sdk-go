@@ -20,6 +20,15 @@ func stringValue(v reflect.Value, indent int, buf *bytes.Buffer) {
 
 	switch v.Kind() {
 	case reflect.Struct:
+		strtype := v.Type().String()
+		if strtype == "time.Time" {
+			fmt.Fprintf(buf, "%s", v.Interface())
+			break
+		} else if strings.HasPrefix(strtype, "io.") {
+			buf.WriteString("<buffer>")
+			break
+		}
+
 		buf.WriteString("{\n")
 
 		names := []string{}
