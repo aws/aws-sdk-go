@@ -51,6 +51,8 @@ func (s *Service) Initialize() {
 	}
 
 	s.DefaultMaxRetries = 3
+	s.Handlers.Validate.PushBack(ValidateEndpointHandler)
+	s.Handlers.Validate.PushBack(ValidateCredentialsHandler)
 	s.Handlers.Build.PushBack(UserAgentHandler)
 	s.Handlers.Sign.PushBack(BuildContentLength)
 	s.Handlers.Send.PushBack(SendHandler)
