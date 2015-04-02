@@ -9,6 +9,7 @@ import (
 )
 
 var svc = cognitoidentity.New(&aws.Config{
+	Region:      "mock-region",
 	Credentials: aws.DetectCreds("AKID", "SECRET", ""),
 })
 
