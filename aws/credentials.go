@@ -156,6 +156,9 @@ func ProfileCreds(filename, profile string, expiry time.Duration) (CredentialsPr
 	}
 
 	if profile == "" {
+		profile = os.Getenv("AWS_PROFILE")
+	}
+	if profile == "" {
 		profile = "default"
 	}
 

@@ -129,6 +129,7 @@ func TestIAMCreds(t *testing.T) {
 }
 
 func TestProfileCreds(t *testing.T) {
+	os.Clearenv()
 	prov, err := ProfileCreds("example.ini", "", 10*time.Minute)
 	if err != nil {
 		t.Fatal(err)
@@ -152,7 +153,34 @@ func TestProfileCreds(t *testing.T) {
 	}
 }
 
+func TestProfileCredsWithAWS_PROFILE(t *testing.T) {
+	os.Clearenv()
+	os.Setenv("AWS_PROFILE", "no_token")
+	prov, err := ProfileCreds("example.ini", "", 10*time.Minute)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	creds, err := prov.Credentials()
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if v, want := creds.AccessKeyID, "accessKey"; v != want {
+		t.Errorf("AcccessKeyID was %v, but expected %v", v, want)
+	}
+
+	if v, want := creds.SecretAccessKey, "secret"; v != want {
+		t.Errorf("SecretAccessKey was %v, but expected %v", v, want)
+	}
+
+	if v, want := creds.SessionToken, ""; v != want {
+		t.Errorf("SessionToken was %v, but expected %v", v, want)
+	}
+}
+
 func TestProfileCredsWithoutToken(t *testing.T) {
+	os.Clearenv()
 	prov, err := ProfileCreds("example.ini", "no_token", 10*time.Minute)
 	if err != nil {
 		t.Fatal(err)
@@ -177,6 +205,7 @@ func TestProfileCredsWithoutToken(t *testing.T) {
 }
 
 func BenchmarkProfileCreds(b *testing.B) {
+	os.Clearenv()
 	prov, err := ProfileCreds("example.ini", "", 10*time.Minute)
 	if err != nil {
 		b.Fatal(err)
