@@ -39,14 +39,17 @@ type endpointStruct struct {
 }
 
 type endpointEntry struct {
-	Endpoint string
+	Endpoint      string
+	SigningRegion string
 }
 
 var endpointsMap = endpointStruct{
 	Version: {{ .Version }},
 	Endpoints: map[string]endpointEntry{
 		{{ range $key, $entry := .Endpoints }}"{{ $key }}": endpointEntry{
-			Endpoint: "{{ $entry.Endpoint }}",
+			Endpoint:      "{{ $entry.Endpoint }}",
+			{{ if ne $entry.SigningRegion "" }}SigningRegion: "{{ $entry.SigningRegion }}",
+			{{ end }}
 		},
 		{{ end }}
 	},

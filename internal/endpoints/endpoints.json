@@ -18,22 +18,28 @@
       "endpoint": "s3-{region}.amazonaws.com"
     },
     "*/cloudfront": {
-      "endpoint": "cloudfront.amazonaws.com"
+      "endpoint": "cloudfront.amazonaws.com",
+      "signingRegion": "us-east-1"
     },
     "*/iam": {
-      "endpoint": "iam.amazonaws.com"
+      "endpoint": "iam.amazonaws.com",
+      "signingRegion": "us-east-1"
     },
     "*/importexport": {
-      "endpoint": "importexport.amazonaws.com"
+      "endpoint": "importexport.amazonaws.com",
+      "signingRegion": "us-east-1"
     },
     "*/route53": {
-      "endpoint": "route53.amazonaws.com"
+      "endpoint": "route53.amazonaws.com",
+      "signingRegion": "us-east-1"
     },
     "*/sts": {
-      "endpoint": "sts.amazonaws.com"
+      "endpoint": "sts.amazonaws.com",
+      "signingRegion": "us-east-1"
     },
     "us-east-1/sdb": {
-      "endpoint": "sdb.amazonaws.com"
+      "endpoint": "sdb.amazonaws.com",
+      "signingRegion": "us-east-1"
     },
     "us-east-1/s3": {
       "endpoint": "s3.amazonaws.com"

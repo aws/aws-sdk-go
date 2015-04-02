@@ -64,6 +64,11 @@ func Sign(req *aws.Request) {
 		return
 	}
 
+	region := req.Service.SigningRegion
+	if region == "" {
+		region = req.Service.Config.Region
+	}
+
 	s := signer{
 		Request:         req.HTTPRequest,
 		Time:            req.Time,
@@ -71,7 +76,7 @@ func Sign(req *aws.Request) {
 		Query:           req.HTTPRequest.URL.Query(),
 		Body:            req.Body,
 		ServiceName:     req.Service.ServiceName,
-		Region:          req.Service.Config.Region,
+		Region:          region,
 		AccessKeyID:     creds.AccessKeyID,
 		SecretAccessKey: creds.SecretAccessKey,
 		SessionToken:    creds.SessionToken,

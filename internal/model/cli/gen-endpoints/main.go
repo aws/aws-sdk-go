@@ -21,7 +21,8 @@ func main() {
 	var endpoints struct {
 		Version   int
 		Endpoints map[string]struct {
-			Endpoint string
+			Endpoint      string
+			SigningRegion string
 		}
 	}
 	if err := json.NewDecoder(in).Decode(&endpoints); err != nil {

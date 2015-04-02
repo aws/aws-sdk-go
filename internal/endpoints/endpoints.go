@@ -4,7 +4,7 @@ package endpoints
 
 import "strings"
 
-func EndpointForRegion(svcName, region string) string {
+func EndpointForRegion(svcName, region string) (endpoint, signingRegion string) {
 	derivedKeys := []string{
 		region + "/" + svcName,
 		region + "/*",
@@ -17,8 +17,11 @@ func EndpointForRegion(svcName, region string) string {
 			ep := val.Endpoint
 			ep = strings.Replace(ep, "{region}", region, -1)
 			ep = strings.Replace(ep, "{service}", svcName, -1)
-			return ep
+
+			endpoint = ep
+			signingRegion = val.SigningRegion
+			return
 		}
 	}
-	return ""
+	return
 }
