@@ -3,6 +3,7 @@ package aws
 import (
 	"fmt"
 	"io"
+	"strconv"
 	"time"
 )
 
@@ -15,7 +16,9 @@ type lener interface {
 }
 
 func BuildContentLength(r *Request) {
-	if r.HTTPRequest.Header.Get("Content-Length") != "" {
+	if slength := r.HTTPRequest.Header.Get("Content-Length"); slength != "" {
+		length, _ := strconv.ParseInt(slength, 10, 64)
+		r.HTTPRequest.ContentLength = length
 		return
 	}
 
