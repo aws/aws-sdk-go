@@ -99,7 +99,7 @@ func (s *Service) AddDebugHandlers() {
 		fmt.Fprintf(out, "-----------------------------------------------------\n")
 	})
 	s.Handlers.Send.PushFront(func(r *Request) {
-		dumpedBody, _ := httputil.DumpRequest(r.HTTPRequest, true)
+		dumpedBody, _ := httputil.DumpRequestOut(r.HTTPRequest, true)
 
 		fmt.Fprintf(out, "---[ REQUEST POST-SIGN ]-----------------------------\n")
 		fmt.Fprintf(out, "%s\n", string(dumpedBody))
