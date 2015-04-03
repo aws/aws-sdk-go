@@ -8,4 +8,12 @@ func init() {
 		s.Handlers.UnmarshalError.Clear()
 		s.Handlers.UnmarshalError.PushBack(unmarshalError)
 	}
+
+	initRequest = func(r *aws.Request) {
+		switch r.Operation {
+		case opPutBucketCORS, opPutBucketLifecycle, opPutBucketTagging, opDeleteObjects:
+			// These S3 operations require Content-MD5 to be set
+			r.Handlers.Build.PushBack(contentMD5)
+		}
+	}
 }
