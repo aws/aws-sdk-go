@@ -144,12 +144,21 @@ func (q *queryParser) parseMap(v url.Values, value reflect.Value, prefix string,
 		mapKey := mapKeys[mapKeyName]
 		mapValue := value.MapIndex(mapKey)
 
+		kname := tag.Get("locationNameKey")
+		if kname == "" {
+			kname = "key"
+		}
+		vname := tag.Get("locationNameValue")
+		if vname == "" {
+			vname = "value"
+		}
+
 		// serialize key
 		var keyName string
 		if prefix == "" {
-			keyName = strconv.Itoa(i+1) + ".key"
+			keyName = strconv.Itoa(i+1) + "." + kname
 		} else {
-			keyName = prefix + "." + strconv.Itoa(i+1) + ".key"
+			keyName = prefix + "." + strconv.Itoa(i+1) + "." + kname
 		}
 
 		if err := q.parseValue(v, mapKey, keyName, ""); err != nil {
@@ -159,9 +168,9 @@ func (q *queryParser) parseMap(v url.Values, value reflect.Value, prefix string,
 		// serialize value
 		var valueName string
 		if prefix == "" {
-			valueName = strconv.Itoa(i+1) + ".value"
+			valueName = strconv.Itoa(i+1) + "." + vname
 		} else {
-			valueName = prefix + "." + strconv.Itoa(i+1) + ".value"
+			valueName = prefix + "." + strconv.Itoa(i+1) + "." + vname
 		}
 
 		if err := q.parseValue(v, mapValue, valueName, ""); err != nil {
