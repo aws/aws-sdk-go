@@ -1,7 +1,5 @@
 package aws
 
-import "container/list"
-
 type Handlers struct {
 	Validate         HandlerList
 	Build            HandlerList
@@ -32,34 +30,53 @@ func (h *Handlers) copy() Handlers {
 
 // Clear removes callback functions for all handlers
 func (h *Handlers) Clear() {
-	h.Validate.Init()
-	h.Build.Init()
-	h.Send.Init()
-	h.Sign.Init()
-	h.Unmarshal.Init()
-	h.UnmarshalMeta.Init()
-	h.UnmarshalError.Init()
-	h.ValidateResponse.Init()
-	h.Retry.Init()
-	h.AfterRetry.Init()
+	h.Validate.Clear()
+	h.Build.Clear()
+	h.Send.Clear()
+	h.Sign.Clear()
+	h.Unmarshal.Clear()
+	h.UnmarshalMeta.Clear()
+	h.UnmarshalError.Clear()
+	h.ValidateResponse.Clear()
+	h.Retry.Clear()
+	h.AfterRetry.Clear()
 }
 
+// A handler list manages zero or more handlers in a list.
 type HandlerList struct {
-	list.List
+	list []func(*Request)
 }
 
-func (l HandlerList) copy() HandlerList {
+// copy creates a copy of the handler list.
+func (l *HandlerList) copy() HandlerList {
 	var n HandlerList
-	for e := l.Front(); e != nil; e = e.Next() {
-		h := e.Value.(func(*Request))
-		n.PushBack(h)
-	}
+	n.list = append([]func(*Request){}, l.list...)
 	return n
 }
 
+// Clear clears the handler list.
+func (l *HandlerList) Clear() {
+	l.list = []func(*Request){}
+}
+
+// Len returns the number of handlers in the list.
+func (l *HandlerList) Len() int {
+	return len(l.list)
+}
+
+// PushBack pushes handlers f to the back of the handler list.
+func (l *HandlerList) PushBack(f ...func(*Request)) {
+	l.list = append(l.list, f...)
+}
+
+// PushFront pushes handlers f to the front of the handler list.
+func (l *HandlerList) PushFront(f ...func(*Request)) {
+	l.list = append(f, l.list...)
+}
+
+// Run executes all handlers in the list with a given request object.
 func (l *HandlerList) Run(r *Request) {
-	for e := l.Front(); e != nil; e = e.Next() {
-		h := e.Value.(func(*Request))
-		h(r)
+	for _, f := range l.list {
+		f(r)
 	}
 }

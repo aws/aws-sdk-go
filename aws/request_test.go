@@ -68,10 +68,10 @@ func TestRequestRecoverRetry(t *testing.T) {
 	}
 
 	s := NewService(&Config{MaxRetries: -1})
-	s.Handlers.Validate.Init()
+	s.Handlers.Validate.Clear()
 	s.Handlers.Unmarshal.PushBack(unmarshal)
 	s.Handlers.UnmarshalError.PushBack(unmarshalError)
-	s.Handlers.Send.Init() // mock sending
+	s.Handlers.Send.Clear() // mock sending
 	s.Handlers.Send.PushBack(func(r *Request) {
 		r.HTTPResponse = &reqs[reqNum]
 		reqNum++
@@ -99,10 +99,10 @@ func TestRequestExhaustRetries(t *testing.T) {
 	}
 
 	s := NewService(&Config{MaxRetries: -1})
-	s.Handlers.Validate.Init()
+	s.Handlers.Validate.Clear()
 	s.Handlers.Unmarshal.PushBack(unmarshal)
 	s.Handlers.UnmarshalError.PushBack(unmarshalError)
-	s.Handlers.Send.Init() // mock sending
+	s.Handlers.Send.Clear() // mock sending
 	s.Handlers.Send.PushBack(func(r *Request) {
 		r.HTTPResponse = &reqs[reqNum]
 		reqNum++
