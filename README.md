@@ -101,7 +101,6 @@ in the works:
 * #163: `cloudsearchdomain`: Add support for CloudSearchDomain client.
 * #164: DynamoDB CRC checksum validation.
 * #165: `glacier`: Add support for Glacier.
-* #154: `s3`: Compute MD5 checksums for operations that require this parameter.
 * #166: `s3`: Improve error messages for empty response payloads.
 * #167: `s3`: Validate that SSL is used when SSE keys are provided.
 * #168: `s3`: Support path-style bucket access for non-DNS-compatible bucket names.
