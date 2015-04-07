@@ -11,7 +11,10 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var svc = s3.New(&aws.Config{Region: "mock-region"})
+var svc = s3.New(&aws.Config{
+	Region:      "mock-region",
+	Credentials: aws.DetectCreds("AKID", "SECRET", ""),
+})
 
 func assertMD5(t *testing.T, req *aws.Request) {
 	err := req.Build()
