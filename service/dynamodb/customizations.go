@@ -20,6 +20,7 @@ func init() {
 			return delay * time.Millisecond
 		}
 
+		s.Handlers.Build.PushBack(disableCompression)
 		s.Handlers.Unmarshal.PushFront(validateCRC32)
 	}
 }
@@ -33,6 +34,10 @@ func drainBody(b io.ReadCloser) (out *bytes.Buffer, err error) {
 		return nil, err
 	}
 	return &buf, nil
+}
+
+func disableCompression(r *aws.Request) {
+	r.HTTPRequest.Header.Set("Accept-Encoding", "identity")
 }
 
 func validateCRC32(r *aws.Request) {
