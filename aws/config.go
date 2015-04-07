@@ -9,29 +9,31 @@ import (
 const DEFAULT_RETRIES = -1
 
 var DefaultConfig = &Config{
-	Credentials:            DefaultCreds(),
-	Endpoint:               "",
-	Region:                 os.Getenv("AWS_REGION"),
-	DisableSSL:             false,
-	ManualSend:             false,
-	HTTPClient:             http.DefaultClient,
-	LogLevel:               0,
-	Logger:                 os.Stdout,
-	MaxRetries:             DEFAULT_RETRIES,
-	DisableParamValidation: false,
+	Credentials:             DefaultCreds(),
+	Endpoint:                "",
+	Region:                  os.Getenv("AWS_REGION"),
+	DisableSSL:              false,
+	ManualSend:              false,
+	HTTPClient:              http.DefaultClient,
+	LogLevel:                0,
+	Logger:                  os.Stdout,
+	MaxRetries:              DEFAULT_RETRIES,
+	DisableParamValidation:  false,
+	DisableComputeChecksums: false,
 }
 
 type Config struct {
-	Credentials            CredentialsProvider
-	Endpoint               string
-	Region                 string
-	DisableSSL             bool
-	ManualSend             bool
-	HTTPClient             *http.Client
-	LogLevel               uint
-	Logger                 io.Writer
-	MaxRetries             int
-	DisableParamValidation bool
+	Credentials             CredentialsProvider
+	Endpoint                string
+	Region                  string
+	DisableSSL              bool
+	ManualSend              bool
+	HTTPClient              *http.Client
+	LogLevel                uint
+	Logger                  io.Writer
+	MaxRetries              int
+	DisableParamValidation  bool
+	DisableComputeChecksums bool
 }
 
 func (c Config) Merge(newcfg *Config) *Config {
@@ -95,6 +97,12 @@ func (c Config) Merge(newcfg *Config) *Config {
 		cfg.DisableParamValidation = newcfg.DisableParamValidation
 	} else {
 		cfg.DisableParamValidation = c.DisableParamValidation
+	}
+
+	if newcfg != nil && newcfg.DisableComputeChecksums {
+		cfg.DisableComputeChecksums = newcfg.DisableComputeChecksums
+	} else {
+		cfg.DisableComputeChecksums = c.DisableComputeChecksums
 	}
 
 	return &cfg

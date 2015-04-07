@@ -25,11 +25,11 @@ func TestMain(m *testing.M) {
 	os.Exit(m.Run())
 }
 
-func mockCRCResponse(status int, body, crc string) (req *aws.Request) {
+func mockCRCResponse(svc *dynamodb.DynamoDB, status int, body, crc string) (req *aws.Request) {
 	header := http.Header{}
 	header.Set("x-amz-crc32", crc)
 
-	req, _ = db.ListTablesRequest(nil)
+	req, _ = svc.ListTablesRequest(nil)
 	req.Handlers.Send.PushBack(func(*aws.Request) {
 		req.HTTPResponse = &http.Response{
 			StatusCode: status,
@@ -47,17 +47,17 @@ func TestCustomRetryRules(t *testing.T) {
 }
 
 func TestValidateCRC32NoHeaderSkip(t *testing.T) {
-	req := mockCRCResponse(200, "{}", "")
+	req := mockCRCResponse(db, 200, "{}", "")
 	assert.NoError(t, req.Error)
 }
 
 func TestValidateCRC32InvalidHeaderSkip(t *testing.T) {
-	req := mockCRCResponse(200, "{}", "ABC")
+	req := mockCRCResponse(db, 200, "{}", "ABC")
 	assert.NoError(t, req.Error)
 }
 
 func TestValidateCRC32AlreadyErrorSkip(t *testing.T) {
-	req := mockCRCResponse(400, "{}", "1234")
+	req := mockCRCResponse(db, 400, "{}", "1234")
 	assert.Error(t, req.Error)
 
 	aerr := aws.Error(req.Error)
@@ -65,7 +65,7 @@ func TestValidateCRC32AlreadyErrorSkip(t *testing.T) {
 }
 
 func TestValidateCRC32IsValid(t *testing.T) {
-	req := mockCRCResponse(200, `{"TableNames":["A"]}`, "3090163698")
+	req := mockCRCResponse(db, 200, `{"TableNames":["A"]}`, "3090163698")
 	assert.NoError(t, req.Error)
 
 	// CRC check does not affect output parsing
@@ -74,10 +74,29 @@ func TestValidateCRC32IsValid(t *testing.T) {
 }
 
 func TestValidateCRC32DoesNotMatch(t *testing.T) {
-	req := mockCRCResponse(200, "{}", "1234")
+	req := mockCRCResponse(db, 200, "{}", "1234")
 	assert.Error(t, req.Error)
 
 	aerr := aws.Error(req.Error)
 	assert.Equal(t, "CRC32CheckFailed", aerr.Code)
 	assert.Equal(t, 2, int(req.RetryCount))
+}
+
+func TestValidateCRC32DoesNotMatchNoComputeChecksum(t *testing.T) {
+	svc := dynamodb.New(&aws.Config{
+		Region:                  "mock-region",
+		Credentials:             aws.DetectCreds("AKID", "SECRET", ""),
+		MaxRetries:              2,
+		DisableComputeChecksums: true,
+	})
+	svc.Handlers.Send.Clear() // mock sending
+
+	req := mockCRCResponse(svc, 200, `{"TableNames":["A"]}`, "1234")
+	assert.NoError(t, req.Error)
+
+	assert.Equal(t, 0, int(req.RetryCount))
+
+	// CRC check disabled. Does not affect output parsing
+	out := req.Data.(*dynamodb.ListTablesOutput)
+	assert.Equal(t, "A", *out.TableNames[0])
 }

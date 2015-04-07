@@ -40,6 +40,11 @@ func validateCRC32(r *aws.Request) {
 		return // already have an error, no need to verify CRC
 	}
 
+	// Checksum validation is off, skip
+	if r.Service.Config.DisableComputeChecksums {
+		return
+	}
+
 	// Try to get CRC from response
 	header := r.HTTPResponse.Header.Get("X-Amz-Crc32")
 	if header == "" {
