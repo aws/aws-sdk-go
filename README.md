@@ -99,14 +99,11 @@ in the works:
 * #162: `sqs.SendMessage()`, `sqs.SendMessageBatch()`, `sqs.ReceiveMessage()`:
   validate MD5 checksums of message bodies in responses.
 * #163: `cloudsearchdomain`: Add support for CloudSearchDomain client.
-* #164: DynamoDB CRC checksum validation.
 * #165: `glacier`: Add support for Glacier.
 * #166: `s3`: Improve error messages for empty response payloads.
 * #167: `s3`: Validate that SSL is used when SSE keys are provided.
 * #168: `s3`: Support path-style bucket access for non-DNS-compatible bucket names.
 * #169: `s3.CreateBucket()`: Auto-populate `LocationConstraint` with `Config.Region`.
-* #170: Error if credentials cannot be resolved when sending request.
-* #171: Error if region/endpoint cannot be resolved when sending request.
 
 ## License
 
