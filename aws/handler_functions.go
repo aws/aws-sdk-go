@@ -51,32 +51,23 @@ func SendHandler(r *Request) {
 
 func ValidateResponseHandler(r *Request) {
 	if r.HTTPResponse.StatusCode == 0 || r.HTTPResponse.StatusCode >= 400 {
-		err := APIError{
+		r.Error = &APIError{
 			StatusCode: r.HTTPResponse.StatusCode,
-			RetryCount: r.RetryCount,
+			Code:       "UnknownError",
+			Message:    "unknown error",
 		}
-		r.Error = err
-		err.Retryable = r.Service.ShouldRetry(r)
-		err.RetryDelay = r.Service.RetryRules(r)
-		r.Error = err
 	}
+	r.Retryable = r.Service.ShouldRetry(r)
+	r.RetryDelay = r.Service.RetryRules(r)
 }
 
 func AfterRetryHandler(r *Request) {
-	delay := 0 * time.Second
-	willRetry := false
+	if r.WillRetry() {
+		sleepDelay(r.RetryDelay)
 
-	if err := Error(r.Error); err != nil {
-		delay = err.RetryDelay
-		if err.Retryable && r.RetryCount < r.Service.MaxRetries() {
-			r.RetryCount++
-			willRetry = true
-		}
-	}
-
-	if willRetry {
+		r.RetryCount++
+		r.Retryable = false
 		r.Error = nil
-		sleepDelay(delay)
 	}
 }
 

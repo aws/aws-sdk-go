@@ -67,7 +67,7 @@ func TestRequestRecoverRetry(t *testing.T) {
 		http.Response{StatusCode: 200, Body: body(`{"data":"valid"}`)},
 	}
 
-	s := NewService(&Config{MaxRetries: -1})
+	s := NewService(&Config{MaxRetries: 10})
 	s.Handlers.Validate.Clear()
 	s.Handlers.Unmarshal.PushBack(unmarshal)
 	s.Handlers.UnmarshalError.PushBack(unmarshalError)

@@ -24,6 +24,8 @@ type Request struct {
 	Data         interface{}
 	RequestID    string
 	RetryCount   uint
+	Retryable    bool
+	RetryDelay   time.Duration
 
 	built bool
 }
@@ -62,6 +64,10 @@ func NewRequest(service *Service, operation *Operation, params interface{}, data
 	r.SetBufferBody([]byte{})
 
 	return r
+}
+
+func (r *Request) WillRetry() bool {
+	return r.Error != nil && r.Retryable && r.RetryCount < r.Service.MaxRetries()
 }
 
 func (r *Request) ParamsFilled() bool {
@@ -141,7 +147,12 @@ func (r *Request) Send() error {
 
 		r.Handlers.Unmarshal.Run(r)
 		if r.Error != nil {
-			return r.Error
+			r.Handlers.Retry.Run(r)
+			r.Handlers.AfterRetry.Run(r)
+			if r.Error != nil {
+				return r.Error
+			}
+			continue
 		}
 
 		return nil

@@ -1,7 +1,12 @@
 package dynamodb
 
 import (
+	"bytes"
+	"hash/crc32"
+	"io"
+	"io/ioutil"
 	"math"
+	"strconv"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
@@ -13,6 +18,56 @@ func init() {
 		s.RetryRules = func(r *aws.Request) time.Duration {
 			delay := time.Duration(math.Pow(2, float64(r.RetryCount))) * 50
 			return delay * time.Millisecond
+		}
+
+		s.Handlers.Unmarshal.PushFront(validateCRC32)
+	}
+}
+
+func drainBody(b io.ReadCloser) (out *bytes.Buffer, err error) {
+	var buf bytes.Buffer
+	if _, err = buf.ReadFrom(b); err != nil {
+		return nil, err
+	}
+	if err = b.Close(); err != nil {
+		return nil, err
+	}
+	return &buf, nil
+}
+
+func validateCRC32(r *aws.Request) {
+	if r.Error != nil {
+		return // already have an error, no need to verify CRC
+	}
+
+	// Try to get CRC from response
+	header := r.HTTPResponse.Header.Get("X-Amz-Crc32")
+	if header == "" {
+		return // No header, skip
+	}
+
+	expected, err := strconv.ParseUint(header, 10, 32)
+	if err != nil {
+		return // Could not determine CRC value, skip
+	}
+
+	buf, err := drainBody(r.HTTPResponse.Body)
+	if err != nil { // failed to read the response body, skip
+		return
+	}
+
+	// Reset body for subsequent reads
+	r.HTTPResponse.Body = ioutil.NopCloser(bytes.NewReader(buf.Bytes()))
+
+	// Compute the CRC checksum
+	crc := crc32.ChecksumIEEE(buf.Bytes())
+
+	if crc != uint32(expected) {
+		// CRC does not match, set a retryable error
+		r.Retryable = true
+		r.Error = &aws.APIError{
+			Code:    "CRC32CheckFailed",
+			Message: "CRC32 integrity check failed",
 		}
 	}
 }
