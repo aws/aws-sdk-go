@@ -203,7 +203,6 @@ func (b *xmlBuilder) buildMap(value reflect.Value, current *XMLNode, tag reflect
 
 	for _, k := range keys {
 		v := value.MapIndex(reflect.ValueOf(k))
-		fmt.Println(k, v.Interface())
 
 		mapcur := current
 		if tag.Get("flattened") == "" { // add "entry" tag to non-flat maps
