@@ -232,7 +232,9 @@ func (b *xmlBuilder) buildScalar(value reflect.Value, current *XMLNode, tag refl
 	case string:
 		str = converted
 	case []byte:
-		str = base64.StdEncoding.EncodeToString(converted)
+		if !value.IsNil() {
+			str = base64.StdEncoding.EncodeToString(converted)
+		}
 	case bool:
 		str = strconv.FormatBool(converted)
 	case int64:

@@ -186,7 +186,9 @@ func (q *queryParser) parseScalar(v url.Values, r reflect.Value, name string, ta
 	case string:
 		v.Set(name, value)
 	case []byte:
-		v.Set(name, base64.StdEncoding.EncodeToString(value))
+		if !r.IsNil() {
+			v.Set(name, base64.StdEncoding.EncodeToString(value))
+		}
 	case bool:
 		v.Set(name, strconv.FormatBool(value))
 	case int64:

@@ -153,7 +153,9 @@ func buildScalar(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) 
 	case string:
 		buf.WriteString(fmt.Sprintf("%q", converted))
 	case []byte:
-		buf.WriteString(fmt.Sprintf("%q", base64.StdEncoding.EncodeToString(converted)))
+		if !value.IsNil() {
+			buf.WriteString(fmt.Sprintf("%q", base64.StdEncoding.EncodeToString(converted)))
+		}
 	case bool:
 		buf.WriteString(strconv.FormatBool(converted))
 	case int64:
