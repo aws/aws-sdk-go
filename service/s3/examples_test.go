@@ -908,7 +908,6 @@ func ExampleS3_PutBucketACL() {
 				ID:          aws.String("ID"),
 			},
 		},
-		ContentMD5:       aws.String("ContentMD5"),
 		GrantFullControl: aws.String("GrantFullControl"),
 		GrantRead:        aws.String("GrantRead"),
 		GrantReadACP:     aws.String("GrantReadACP"),
@@ -958,7 +957,6 @@ func ExampleS3_PutBucketCORS() {
 				// More values...
 			},
 		},
-		ContentMD5: aws.String("ContentMD5"),
 	}
 	resp, err := svc.PutBucketCORS(params)
 
@@ -978,8 +976,7 @@ func ExampleS3_PutBucketLifecycle() {
 	svc := s3.New(nil)
 
 	params := &s3.PutBucketLifecycleInput{
-		Bucket:     aws.String("BucketName"), // Required
-		ContentMD5: aws.String("ContentMD5"),
+		Bucket: aws.String("BucketName"), // Required
 		LifecycleConfiguration: &s3.LifecycleConfiguration{
 			Rules: []*s3.Rule{ // Required
 				&s3.Rule{ // Required
@@ -1045,7 +1042,6 @@ func ExampleS3_PutBucketLogging() {
 				TargetPrefix: aws.String("TargetPrefix"),
 			},
 		},
-		ContentMD5: aws.String("ContentMD5"),
 	}
 	resp, err := svc.PutBucketLogging(params)
 
@@ -1096,7 +1092,6 @@ func ExampleS3_PutBucketNotification() {
 				Topic: aws.String("Topic"),
 			},
 		},
-		ContentMD5: aws.String("ContentMD5"),
 	}
 	resp, err := svc.PutBucketNotification(params)
 
@@ -1116,9 +1111,8 @@ func ExampleS3_PutBucketPolicy() {
 	svc := s3.New(nil)
 
 	params := &s3.PutBucketPolicyInput{
-		Bucket:     aws.String("BucketName"), // Required
-		Policy:     aws.String("Policy"),     // Required
-		ContentMD5: aws.String("ContentMD5"),
+		Bucket: aws.String("BucketName"), // Required
+		Policy: aws.String("Policy"),     // Required
 	}
 	resp, err := svc.PutBucketPolicy(params)
 
@@ -1153,7 +1147,6 @@ func ExampleS3_PutBucketReplication() {
 				// More values...
 			},
 		},
-		ContentMD5: aws.String("ContentMD5"),
 	}
 	resp, err := svc.PutBucketReplication(params)
 
@@ -1177,7 +1170,6 @@ func ExampleS3_PutBucketRequestPayment() {
 		RequestPaymentConfiguration: &s3.RequestPaymentConfiguration{ // Required
 			Payer: aws.String("Payer"), // Required
 		},
-		ContentMD5: aws.String("ContentMD5"),
 	}
 	resp, err := svc.PutBucketRequestPayment(params)
 
@@ -1207,7 +1199,6 @@ func ExampleS3_PutBucketTagging() {
 				// More values...
 			},
 		},
-		ContentMD5: aws.String("ContentMD5"),
 	}
 	resp, err := svc.PutBucketTagging(params)
 
@@ -1232,8 +1223,7 @@ func ExampleS3_PutBucketVersioning() {
 			MFADelete: aws.String("MFADelete"),
 			Status:    aws.String("BucketVersioningStatus"),
 		},
-		ContentMD5: aws.String("ContentMD5"),
-		MFA:        aws.String("MFA"),
+		MFA: aws.String("MFA"),
 	}
 	resp, err := svc.PutBucketVersioning(params)
 
@@ -1282,7 +1272,6 @@ func ExampleS3_PutBucketWebsite() {
 				// More values...
 			},
 		},
-		ContentMD5: aws.String("ContentMD5"),
 	}
 	resp, err := svc.PutBucketWebsite(params)
 
@@ -1311,7 +1300,6 @@ func ExampleS3_PutObject() {
 		ContentEncoding:    aws.String("ContentEncoding"),
 		ContentLanguage:    aws.String("ContentLanguage"),
 		ContentLength:      aws.Long(1),
-		ContentMD5:         aws.String("ContentMD5"),
 		ContentType:        aws.String("ContentType"),
 		Expires:            aws.Time(time.Now()),
 		GrantFullControl:   aws.String("GrantFullControl"),
@@ -1371,7 +1359,6 @@ func ExampleS3_PutObjectACL() {
 				ID:          aws.String("ID"),
 			},
 		},
-		ContentMD5:       aws.String("ContentMD5"),
 		GrantFullControl: aws.String("GrantFullControl"),
 		GrantRead:        aws.String("GrantRead"),
 		GrantReadACP:     aws.String("GrantReadACP"),
@@ -1429,7 +1416,6 @@ func ExampleS3_UploadPart() {
 		UploadID:             aws.String("MultipartUploadId"), // Required
 		Body:                 bytes.NewReader([]byte("PAYLOAD")),
 		ContentLength:        aws.Long(1),
-		ContentMD5:           aws.String("ContentMD5"),
 		RequestPayer:         aws.String("RequestPayer"),
 		SSECustomerAlgorithm: aws.String("SSECustomerAlgorithm"),
 		SSECustomerKey:       aws.String("SSECustomerKey"),

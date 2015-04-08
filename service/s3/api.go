@@ -3768,8 +3768,6 @@ type PutBucketACLInput struct {
 
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
-
 	// Allows grantee the read, write, read ACP, and write ACP permissions on the
 	// bucket.
 	GrantFullControl *string `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
@@ -3806,8 +3804,6 @@ type PutBucketCORSInput struct {
 
 	CORSConfiguration *CORSConfiguration `locationName:"CORSConfiguration" type:"structure"`
 
-	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
-
 	metadataPutBucketCORSInput `json:"-", xml:"-"`
 }
 
@@ -3825,8 +3821,6 @@ type metadataPutBucketCORSOutput struct {
 
 type PutBucketLifecycleInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-
-	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
 
 	LifecycleConfiguration *LifecycleConfiguration `locationName:"LifecycleConfiguration" type:"structure"`
 
@@ -3850,8 +3844,6 @@ type PutBucketLoggingInput struct {
 
 	BucketLoggingStatus *BucketLoggingStatus `locationName:"BucketLoggingStatus" type:"structure" required:"true"`
 
-	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
-
 	metadataPutBucketLoggingInput `json:"-", xml:"-"`
 }
 
@@ -3869,8 +3861,6 @@ type metadataPutBucketLoggingOutput struct {
 
 type PutBucketNotificationInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-
-	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
 
 	NotificationConfiguration *NotificationConfiguration `locationName:"NotificationConfiguration" type:"structure" required:"true"`
 
@@ -3892,8 +3882,6 @@ type metadataPutBucketNotificationOutput struct {
 type PutBucketPolicyInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
-
 	// The bucket policy as a JSON document.
 	Policy *string `type:"string" required:"true"`
 
@@ -3914,8 +3902,6 @@ type metadataPutBucketPolicyOutput struct {
 
 type PutBucketReplicationInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-
-	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
 
 	// Container for replication rules. You can add as many as 1,000 rules. Total
 	// replication configuration size can be up to 2 MB.
@@ -3939,8 +3925,6 @@ type metadataPutBucketReplicationOutput struct {
 type PutBucketRequestPaymentInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
-
 	RequestPaymentConfiguration *RequestPaymentConfiguration `locationName:"RequestPaymentConfiguration" type:"structure" required:"true"`
 
 	metadataPutBucketRequestPaymentInput `json:"-", xml:"-"`
@@ -3961,8 +3945,6 @@ type metadataPutBucketRequestPaymentOutput struct {
 type PutBucketTaggingInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
-
 	Tagging *Tagging `locationName:"Tagging" type:"structure" required:"true"`
 
 	metadataPutBucketTaggingInput `json:"-", xml:"-"`
@@ -3982,8 +3964,6 @@ type metadataPutBucketTaggingOutput struct {
 
 type PutBucketVersioningInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-
-	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
 
 	// The concatenation of the authentication device's serial number, a space,
 	// and the value that is displayed on your authentication device.
@@ -4009,8 +3989,6 @@ type metadataPutBucketVersioningOutput struct {
 type PutBucketWebsiteInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
-
 	WebsiteConfiguration *WebsiteConfiguration `locationName:"WebsiteConfiguration" type:"structure" required:"true"`
 
 	metadataPutBucketWebsiteInput `json:"-", xml:"-"`
@@ -4035,8 +4013,6 @@ type PutObjectACLInput struct {
 	AccessControlPolicy *AccessControlPolicy `locationName:"AccessControlPolicy" type:"structure"`
 
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
-
-	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
 
 	// Allows grantee the read, write, read ACP, and write ACP permissions on the
 	// bucket.
@@ -4107,8 +4083,6 @@ type PutObjectInput struct {
 	// Size of the body in bytes. This parameter is useful when the size of the
 	// body cannot be determined automatically.
 	ContentLength *int64 `location:"header" locationName:"Content-Length" type:"integer"`
-
-	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
 
 	// A standard MIME type describing the format of the object data.
 	ContentType *string `location:"header" locationName:"Content-Type" type:"string"`
@@ -4630,8 +4604,6 @@ type UploadPartInput struct {
 	// Size of the body in bytes. This parameter is useful when the size of the
 	// body cannot be determined automatically.
 	ContentLength *int64 `location:"header" locationName:"Content-Length" type:"integer"`
-
-	ContentMD5 *string `location:"header" locationName:"Content-MD5" type:"string"`
 
 	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
 

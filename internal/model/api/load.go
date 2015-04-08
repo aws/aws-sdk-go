@@ -43,6 +43,7 @@ func (a *API) Setup() {
 	a.renameToplevelShapes()
 	a.updateTopLevelShapeReferences()
 	a.createInputOutputShapes()
+	a.customizationPasses()
 
 	if !a.NoRemoveUnusedShapes {
 		a.removeUnusedShapes()
