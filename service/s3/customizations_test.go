@@ -42,8 +42,8 @@ func TestMD5InPutBucketLifecycle(t *testing.T) {
 	req, _ := svc.PutBucketLifecycleRequest(&s3.PutBucketLifecycleInput{
 		Bucket: aws.String("bucketname"),
 		LifecycleConfiguration: &s3.LifecycleConfiguration{
-			Rules: []*s3.Rule{
-				&s3.Rule{
+			Rules: []*s3.LifecycleRule{
+				&s3.LifecycleRule{
 					ID:     aws.String("ID"),
 					Prefix: aws.String("Prefix"),
 					Status: aws.String("Enabled"),

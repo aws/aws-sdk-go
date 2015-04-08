@@ -17,4 +17,9 @@ func s3Customizations(a *API) {
 			delete(s.MemberRefs, "ContentMD5")
 		}
 	}
+
+	// Rename "Rule" to "LifecycleRule"
+	if s, ok := a.Shapes["Rule"]; ok {
+		s.Rename("LifecycleRule")
+	}
 }

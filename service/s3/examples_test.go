@@ -978,8 +978,8 @@ func ExampleS3_PutBucketLifecycle() {
 	params := &s3.PutBucketLifecycleInput{
 		Bucket: aws.String("BucketName"), // Required
 		LifecycleConfiguration: &s3.LifecycleConfiguration{
-			Rules: []*s3.Rule{ // Required
-				&s3.Rule{ // Required
+			Rules: []*s3.LifecycleRule{ // Required
+				&s3.LifecycleRule{ // Required
 					Prefix: aws.String("Prefix"),           // Required
 					Status: aws.String("ExpirationStatus"), // Required
 					Expiration: &s3.LifecycleExpiration{
