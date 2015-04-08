@@ -5,13 +5,19 @@ package s3
 
 import (
 	"io"
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // AbortMultipartUploadRequest generates a request for the AbortMultipartUpload operation.
 func (c *S3) AbortMultipartUploadRequest(input *AbortMultipartUploadInput) (req *aws.Request, output *AbortMultipartUploadOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAbortMultipartUpload == nil {
 		opAbortMultipartUpload = &aws.Operation{
 			Name:       "AbortMultipartUpload",
@@ -42,6 +48,9 @@ var opAbortMultipartUpload *aws.Operation
 
 // CompleteMultipartUploadRequest generates a request for the CompleteMultipartUpload operation.
 func (c *S3) CompleteMultipartUploadRequest(input *CompleteMultipartUploadInput) (req *aws.Request, output *CompleteMultipartUploadOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCompleteMultipartUpload == nil {
 		opCompleteMultipartUpload = &aws.Operation{
 			Name:       "CompleteMultipartUpload",
@@ -68,6 +77,9 @@ var opCompleteMultipartUpload *aws.Operation
 
 // CopyObjectRequest generates a request for the CopyObject operation.
 func (c *S3) CopyObjectRequest(input *CopyObjectInput) (req *aws.Request, output *CopyObjectOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCopyObject == nil {
 		opCopyObject = &aws.Operation{
 			Name:       "CopyObject",
@@ -94,6 +106,9 @@ var opCopyObject *aws.Operation
 
 // CreateBucketRequest generates a request for the CreateBucket operation.
 func (c *S3) CreateBucketRequest(input *CreateBucketInput) (req *aws.Request, output *CreateBucketOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateBucket == nil {
 		opCreateBucket = &aws.Operation{
 			Name:       "CreateBucket",
@@ -120,6 +135,9 @@ var opCreateBucket *aws.Operation
 
 // CreateMultipartUploadRequest generates a request for the CreateMultipartUpload operation.
 func (c *S3) CreateMultipartUploadRequest(input *CreateMultipartUploadInput) (req *aws.Request, output *CreateMultipartUploadOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateMultipartUpload == nil {
 		opCreateMultipartUpload = &aws.Operation{
 			Name:       "CreateMultipartUpload",
@@ -152,6 +170,9 @@ var opCreateMultipartUpload *aws.Operation
 
 // DeleteBucketRequest generates a request for the DeleteBucket operation.
 func (c *S3) DeleteBucketRequest(input *DeleteBucketInput) (req *aws.Request, output *DeleteBucketOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteBucket == nil {
 		opDeleteBucket = &aws.Operation{
 			Name:       "DeleteBucket",
@@ -179,6 +200,9 @@ var opDeleteBucket *aws.Operation
 
 // DeleteBucketCORSRequest generates a request for the DeleteBucketCORS operation.
 func (c *S3) DeleteBucketCORSRequest(input *DeleteBucketCORSInput) (req *aws.Request, output *DeleteBucketCORSOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteBucketCORS == nil {
 		opDeleteBucketCORS = &aws.Operation{
 			Name:       "DeleteBucketCors",
@@ -205,6 +229,9 @@ var opDeleteBucketCORS *aws.Operation
 
 // DeleteBucketLifecycleRequest generates a request for the DeleteBucketLifecycle operation.
 func (c *S3) DeleteBucketLifecycleRequest(input *DeleteBucketLifecycleInput) (req *aws.Request, output *DeleteBucketLifecycleOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteBucketLifecycle == nil {
 		opDeleteBucketLifecycle = &aws.Operation{
 			Name:       "DeleteBucketLifecycle",
@@ -231,6 +258,9 @@ var opDeleteBucketLifecycle *aws.Operation
 
 // DeleteBucketPolicyRequest generates a request for the DeleteBucketPolicy operation.
 func (c *S3) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) (req *aws.Request, output *DeleteBucketPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteBucketPolicy == nil {
 		opDeleteBucketPolicy = &aws.Operation{
 			Name:       "DeleteBucketPolicy",
@@ -257,6 +287,9 @@ var opDeleteBucketPolicy *aws.Operation
 
 // DeleteBucketReplicationRequest generates a request for the DeleteBucketReplication operation.
 func (c *S3) DeleteBucketReplicationRequest(input *DeleteBucketReplicationInput) (req *aws.Request, output *DeleteBucketReplicationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteBucketReplication == nil {
 		opDeleteBucketReplication = &aws.Operation{
 			Name:       "DeleteBucketReplication",
@@ -282,6 +315,9 @@ var opDeleteBucketReplication *aws.Operation
 
 // DeleteBucketTaggingRequest generates a request for the DeleteBucketTagging operation.
 func (c *S3) DeleteBucketTaggingRequest(input *DeleteBucketTaggingInput) (req *aws.Request, output *DeleteBucketTaggingOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteBucketTagging == nil {
 		opDeleteBucketTagging = &aws.Operation{
 			Name:       "DeleteBucketTagging",
@@ -308,6 +344,9 @@ var opDeleteBucketTagging *aws.Operation
 
 // DeleteBucketWebsiteRequest generates a request for the DeleteBucketWebsite operation.
 func (c *S3) DeleteBucketWebsiteRequest(input *DeleteBucketWebsiteInput) (req *aws.Request, output *DeleteBucketWebsiteOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteBucketWebsite == nil {
 		opDeleteBucketWebsite = &aws.Operation{
 			Name:       "DeleteBucketWebsite",
@@ -334,6 +373,9 @@ var opDeleteBucketWebsite *aws.Operation
 
 // DeleteObjectRequest generates a request for the DeleteObject operation.
 func (c *S3) DeleteObjectRequest(input *DeleteObjectInput) (req *aws.Request, output *DeleteObjectOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteObject == nil {
 		opDeleteObject = &aws.Operation{
 			Name:       "DeleteObject",
@@ -362,6 +404,9 @@ var opDeleteObject *aws.Operation
 
 // DeleteObjectsRequest generates a request for the DeleteObjects operation.
 func (c *S3) DeleteObjectsRequest(input *DeleteObjectsInput) (req *aws.Request, output *DeleteObjectsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteObjects == nil {
 		opDeleteObjects = &aws.Operation{
 			Name:       "DeleteObjects",
@@ -389,6 +434,9 @@ var opDeleteObjects *aws.Operation
 
 // GetBucketACLRequest generates a request for the GetBucketACL operation.
 func (c *S3) GetBucketACLRequest(input *GetBucketACLInput) (req *aws.Request, output *GetBucketACLOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetBucketACL == nil {
 		opGetBucketACL = &aws.Operation{
 			Name:       "GetBucketAcl",
@@ -415,6 +463,9 @@ var opGetBucketACL *aws.Operation
 
 // GetBucketCORSRequest generates a request for the GetBucketCORS operation.
 func (c *S3) GetBucketCORSRequest(input *GetBucketCORSInput) (req *aws.Request, output *GetBucketCORSOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetBucketCORS == nil {
 		opGetBucketCORS = &aws.Operation{
 			Name:       "GetBucketCors",
@@ -441,6 +492,9 @@ var opGetBucketCORS *aws.Operation
 
 // GetBucketLifecycleRequest generates a request for the GetBucketLifecycle operation.
 func (c *S3) GetBucketLifecycleRequest(input *GetBucketLifecycleInput) (req *aws.Request, output *GetBucketLifecycleOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetBucketLifecycle == nil {
 		opGetBucketLifecycle = &aws.Operation{
 			Name:       "GetBucketLifecycle",
@@ -467,6 +521,9 @@ var opGetBucketLifecycle *aws.Operation
 
 // GetBucketLocationRequest generates a request for the GetBucketLocation operation.
 func (c *S3) GetBucketLocationRequest(input *GetBucketLocationInput) (req *aws.Request, output *GetBucketLocationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetBucketLocation == nil {
 		opGetBucketLocation = &aws.Operation{
 			Name:       "GetBucketLocation",
@@ -493,6 +550,9 @@ var opGetBucketLocation *aws.Operation
 
 // GetBucketLoggingRequest generates a request for the GetBucketLogging operation.
 func (c *S3) GetBucketLoggingRequest(input *GetBucketLoggingInput) (req *aws.Request, output *GetBucketLoggingOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetBucketLogging == nil {
 		opGetBucketLogging = &aws.Operation{
 			Name:       "GetBucketLogging",
@@ -520,6 +580,9 @@ var opGetBucketLogging *aws.Operation
 
 // GetBucketNotificationRequest generates a request for the GetBucketNotification operation.
 func (c *S3) GetBucketNotificationRequest(input *GetBucketNotificationInput) (req *aws.Request, output *GetBucketNotificationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetBucketNotification == nil {
 		opGetBucketNotification = &aws.Operation{
 			Name:       "GetBucketNotification",
@@ -546,6 +609,9 @@ var opGetBucketNotification *aws.Operation
 
 // GetBucketPolicyRequest generates a request for the GetBucketPolicy operation.
 func (c *S3) GetBucketPolicyRequest(input *GetBucketPolicyInput) (req *aws.Request, output *GetBucketPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetBucketPolicy == nil {
 		opGetBucketPolicy = &aws.Operation{
 			Name:       "GetBucketPolicy",
@@ -572,6 +638,9 @@ var opGetBucketPolicy *aws.Operation
 
 // GetBucketReplicationRequest generates a request for the GetBucketReplication operation.
 func (c *S3) GetBucketReplicationRequest(input *GetBucketReplicationInput) (req *aws.Request, output *GetBucketReplicationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetBucketReplication == nil {
 		opGetBucketReplication = &aws.Operation{
 			Name:       "GetBucketReplication",
@@ -597,6 +666,9 @@ var opGetBucketReplication *aws.Operation
 
 // GetBucketRequestPaymentRequest generates a request for the GetBucketRequestPayment operation.
 func (c *S3) GetBucketRequestPaymentRequest(input *GetBucketRequestPaymentInput) (req *aws.Request, output *GetBucketRequestPaymentOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetBucketRequestPayment == nil {
 		opGetBucketRequestPayment = &aws.Operation{
 			Name:       "GetBucketRequestPayment",
@@ -623,6 +695,9 @@ var opGetBucketRequestPayment *aws.Operation
 
 // GetBucketTaggingRequest generates a request for the GetBucketTagging operation.
 func (c *S3) GetBucketTaggingRequest(input *GetBucketTaggingInput) (req *aws.Request, output *GetBucketTaggingOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetBucketTagging == nil {
 		opGetBucketTagging = &aws.Operation{
 			Name:       "GetBucketTagging",
@@ -649,6 +724,9 @@ var opGetBucketTagging *aws.Operation
 
 // GetBucketVersioningRequest generates a request for the GetBucketVersioning operation.
 func (c *S3) GetBucketVersioningRequest(input *GetBucketVersioningInput) (req *aws.Request, output *GetBucketVersioningOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetBucketVersioning == nil {
 		opGetBucketVersioning = &aws.Operation{
 			Name:       "GetBucketVersioning",
@@ -675,6 +753,9 @@ var opGetBucketVersioning *aws.Operation
 
 // GetBucketWebsiteRequest generates a request for the GetBucketWebsite operation.
 func (c *S3) GetBucketWebsiteRequest(input *GetBucketWebsiteInput) (req *aws.Request, output *GetBucketWebsiteOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetBucketWebsite == nil {
 		opGetBucketWebsite = &aws.Operation{
 			Name:       "GetBucketWebsite",
@@ -701,6 +782,9 @@ var opGetBucketWebsite *aws.Operation
 
 // GetObjectRequest generates a request for the GetObject operation.
 func (c *S3) GetObjectRequest(input *GetObjectInput) (req *aws.Request, output *GetObjectOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetObject == nil {
 		opGetObject = &aws.Operation{
 			Name:       "GetObject",
@@ -727,6 +811,9 @@ var opGetObject *aws.Operation
 
 // GetObjectACLRequest generates a request for the GetObjectACL operation.
 func (c *S3) GetObjectACLRequest(input *GetObjectACLInput) (req *aws.Request, output *GetObjectACLOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetObjectACL == nil {
 		opGetObjectACL = &aws.Operation{
 			Name:       "GetObjectAcl",
@@ -753,6 +840,9 @@ var opGetObjectACL *aws.Operation
 
 // GetObjectTorrentRequest generates a request for the GetObjectTorrent operation.
 func (c *S3) GetObjectTorrentRequest(input *GetObjectTorrentInput) (req *aws.Request, output *GetObjectTorrentOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetObjectTorrent == nil {
 		opGetObjectTorrent = &aws.Operation{
 			Name:       "GetObjectTorrent",
@@ -779,6 +869,9 @@ var opGetObjectTorrent *aws.Operation
 
 // HeadBucketRequest generates a request for the HeadBucket operation.
 func (c *S3) HeadBucketRequest(input *HeadBucketInput) (req *aws.Request, output *HeadBucketOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opHeadBucket == nil {
 		opHeadBucket = &aws.Operation{
 			Name:       "HeadBucket",
@@ -806,6 +899,9 @@ var opHeadBucket *aws.Operation
 
 // HeadObjectRequest generates a request for the HeadObject operation.
 func (c *S3) HeadObjectRequest(input *HeadObjectInput) (req *aws.Request, output *HeadObjectOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opHeadObject == nil {
 		opHeadObject = &aws.Operation{
 			Name:       "HeadObject",
@@ -834,6 +930,9 @@ var opHeadObject *aws.Operation
 
 // ListBucketsRequest generates a request for the ListBuckets operation.
 func (c *S3) ListBucketsRequest(input *ListBucketsInput) (req *aws.Request, output *ListBucketsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListBuckets == nil {
 		opListBuckets = &aws.Operation{
 			Name:       "ListBuckets",
@@ -860,6 +959,9 @@ var opListBuckets *aws.Operation
 
 // ListMultipartUploadsRequest generates a request for the ListMultipartUploads operation.
 func (c *S3) ListMultipartUploadsRequest(input *ListMultipartUploadsInput) (req *aws.Request, output *ListMultipartUploadsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListMultipartUploads == nil {
 		opListMultipartUploads = &aws.Operation{
 			Name:       "ListMultipartUploads",
@@ -886,6 +988,9 @@ var opListMultipartUploads *aws.Operation
 
 // ListObjectVersionsRequest generates a request for the ListObjectVersions operation.
 func (c *S3) ListObjectVersionsRequest(input *ListObjectVersionsInput) (req *aws.Request, output *ListObjectVersionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListObjectVersions == nil {
 		opListObjectVersions = &aws.Operation{
 			Name:       "ListObjectVersions",
@@ -912,6 +1017,9 @@ var opListObjectVersions *aws.Operation
 
 // ListObjectsRequest generates a request for the ListObjects operation.
 func (c *S3) ListObjectsRequest(input *ListObjectsInput) (req *aws.Request, output *ListObjectsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListObjects == nil {
 		opListObjects = &aws.Operation{
 			Name:       "ListObjects",
@@ -940,6 +1048,9 @@ var opListObjects *aws.Operation
 
 // ListPartsRequest generates a request for the ListParts operation.
 func (c *S3) ListPartsRequest(input *ListPartsInput) (req *aws.Request, output *ListPartsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListParts == nil {
 		opListParts = &aws.Operation{
 			Name:       "ListParts",
@@ -966,6 +1077,9 @@ var opListParts *aws.Operation
 
 // PutBucketACLRequest generates a request for the PutBucketACL operation.
 func (c *S3) PutBucketACLRequest(input *PutBucketACLInput) (req *aws.Request, output *PutBucketACLOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutBucketACL == nil {
 		opPutBucketACL = &aws.Operation{
 			Name:       "PutBucketAcl",
@@ -992,6 +1106,9 @@ var opPutBucketACL *aws.Operation
 
 // PutBucketCORSRequest generates a request for the PutBucketCORS operation.
 func (c *S3) PutBucketCORSRequest(input *PutBucketCORSInput) (req *aws.Request, output *PutBucketCORSOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutBucketCORS == nil {
 		opPutBucketCORS = &aws.Operation{
 			Name:       "PutBucketCors",
@@ -1018,6 +1135,9 @@ var opPutBucketCORS *aws.Operation
 
 // PutBucketLifecycleRequest generates a request for the PutBucketLifecycle operation.
 func (c *S3) PutBucketLifecycleRequest(input *PutBucketLifecycleInput) (req *aws.Request, output *PutBucketLifecycleOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutBucketLifecycle == nil {
 		opPutBucketLifecycle = &aws.Operation{
 			Name:       "PutBucketLifecycle",
@@ -1045,6 +1165,9 @@ var opPutBucketLifecycle *aws.Operation
 
 // PutBucketLoggingRequest generates a request for the PutBucketLogging operation.
 func (c *S3) PutBucketLoggingRequest(input *PutBucketLoggingInput) (req *aws.Request, output *PutBucketLoggingOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutBucketLogging == nil {
 		opPutBucketLogging = &aws.Operation{
 			Name:       "PutBucketLogging",
@@ -1073,6 +1196,9 @@ var opPutBucketLogging *aws.Operation
 
 // PutBucketNotificationRequest generates a request for the PutBucketNotification operation.
 func (c *S3) PutBucketNotificationRequest(input *PutBucketNotificationInput) (req *aws.Request, output *PutBucketNotificationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutBucketNotification == nil {
 		opPutBucketNotification = &aws.Operation{
 			Name:       "PutBucketNotification",
@@ -1099,6 +1225,9 @@ var opPutBucketNotification *aws.Operation
 
 // PutBucketPolicyRequest generates a request for the PutBucketPolicy operation.
 func (c *S3) PutBucketPolicyRequest(input *PutBucketPolicyInput) (req *aws.Request, output *PutBucketPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutBucketPolicy == nil {
 		opPutBucketPolicy = &aws.Operation{
 			Name:       "PutBucketPolicy",
@@ -1126,6 +1255,9 @@ var opPutBucketPolicy *aws.Operation
 
 // PutBucketReplicationRequest generates a request for the PutBucketReplication operation.
 func (c *S3) PutBucketReplicationRequest(input *PutBucketReplicationInput) (req *aws.Request, output *PutBucketReplicationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutBucketReplication == nil {
 		opPutBucketReplication = &aws.Operation{
 			Name:       "PutBucketReplication",
@@ -1153,6 +1285,9 @@ var opPutBucketReplication *aws.Operation
 
 // PutBucketRequestPaymentRequest generates a request for the PutBucketRequestPayment operation.
 func (c *S3) PutBucketRequestPaymentRequest(input *PutBucketRequestPaymentInput) (req *aws.Request, output *PutBucketRequestPaymentOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutBucketRequestPayment == nil {
 		opPutBucketRequestPayment = &aws.Operation{
 			Name:       "PutBucketRequestPayment",
@@ -1183,6 +1318,9 @@ var opPutBucketRequestPayment *aws.Operation
 
 // PutBucketTaggingRequest generates a request for the PutBucketTagging operation.
 func (c *S3) PutBucketTaggingRequest(input *PutBucketTaggingInput) (req *aws.Request, output *PutBucketTaggingOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutBucketTagging == nil {
 		opPutBucketTagging = &aws.Operation{
 			Name:       "PutBucketTagging",
@@ -1209,6 +1347,9 @@ var opPutBucketTagging *aws.Operation
 
 // PutBucketVersioningRequest generates a request for the PutBucketVersioning operation.
 func (c *S3) PutBucketVersioningRequest(input *PutBucketVersioningInput) (req *aws.Request, output *PutBucketVersioningOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutBucketVersioning == nil {
 		opPutBucketVersioning = &aws.Operation{
 			Name:       "PutBucketVersioning",
@@ -1236,6 +1377,9 @@ var opPutBucketVersioning *aws.Operation
 
 // PutBucketWebsiteRequest generates a request for the PutBucketWebsite operation.
 func (c *S3) PutBucketWebsiteRequest(input *PutBucketWebsiteInput) (req *aws.Request, output *PutBucketWebsiteOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutBucketWebsite == nil {
 		opPutBucketWebsite = &aws.Operation{
 			Name:       "PutBucketWebsite",
@@ -1262,6 +1406,9 @@ var opPutBucketWebsite *aws.Operation
 
 // PutObjectRequest generates a request for the PutObject operation.
 func (c *S3) PutObjectRequest(input *PutObjectInput) (req *aws.Request, output *PutObjectOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutObject == nil {
 		opPutObject = &aws.Operation{
 			Name:       "PutObject",
@@ -1288,6 +1435,9 @@ var opPutObject *aws.Operation
 
 // PutObjectACLRequest generates a request for the PutObjectACL operation.
 func (c *S3) PutObjectACLRequest(input *PutObjectACLInput) (req *aws.Request, output *PutObjectACLOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutObjectACL == nil {
 		opPutObjectACL = &aws.Operation{
 			Name:       "PutObjectAcl",
@@ -1315,6 +1465,9 @@ var opPutObjectACL *aws.Operation
 
 // RestoreObjectRequest generates a request for the RestoreObject operation.
 func (c *S3) RestoreObjectRequest(input *RestoreObjectInput) (req *aws.Request, output *RestoreObjectOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRestoreObject == nil {
 		opRestoreObject = &aws.Operation{
 			Name:       "RestoreObject",
@@ -1341,6 +1494,9 @@ var opRestoreObject *aws.Operation
 
 // UploadPartRequest generates a request for the UploadPart operation.
 func (c *S3) UploadPartRequest(input *UploadPartInput) (req *aws.Request, output *UploadPartOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUploadPart == nil {
 		opUploadPart = &aws.Operation{
 			Name:       "UploadPart",
@@ -1373,6 +1529,9 @@ var opUploadPart *aws.Operation
 
 // UploadPartCopyRequest generates a request for the UploadPartCopy operation.
 func (c *S3) UploadPartCopyRequest(input *UploadPartCopyInput) (req *aws.Request, output *UploadPartCopyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUploadPartCopy == nil {
 		opUploadPartCopy = &aws.Operation{
 			Name:       "UploadPartCopy",

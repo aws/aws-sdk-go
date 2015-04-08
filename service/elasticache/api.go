@@ -4,13 +4,19 @@
 package elasticache
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // AddTagsToResourceRequest generates a request for the AddTagsToResource operation.
 func (c *ElastiCache) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *aws.Request, output *TagListMessage) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAddTagsToResource == nil {
 		opAddTagsToResource = &aws.Operation{
 			Name:       "AddTagsToResource",
@@ -47,6 +53,9 @@ var opAddTagsToResource *aws.Operation
 
 // AuthorizeCacheSecurityGroupIngressRequest generates a request for the AuthorizeCacheSecurityGroupIngress operation.
 func (c *ElastiCache) AuthorizeCacheSecurityGroupIngressRequest(input *AuthorizeCacheSecurityGroupIngressInput) (req *aws.Request, output *AuthorizeCacheSecurityGroupIngressOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAuthorizeCacheSecurityGroupIngress == nil {
 		opAuthorizeCacheSecurityGroupIngress = &aws.Operation{
 			Name:       "AuthorizeCacheSecurityGroupIngress",
@@ -78,6 +87,9 @@ var opAuthorizeCacheSecurityGroupIngress *aws.Operation
 
 // CopySnapshotRequest generates a request for the CopySnapshot operation.
 func (c *ElastiCache) CopySnapshotRequest(input *CopySnapshotInput) (req *aws.Request, output *CopySnapshotOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCopySnapshot == nil {
 		opCopySnapshot = &aws.Operation{
 			Name:       "CopySnapshot",
@@ -104,6 +116,9 @@ var opCopySnapshot *aws.Operation
 
 // CreateCacheClusterRequest generates a request for the CreateCacheCluster operation.
 func (c *ElastiCache) CreateCacheClusterRequest(input *CreateCacheClusterInput) (req *aws.Request, output *CreateCacheClusterOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateCacheCluster == nil {
 		opCreateCacheCluster = &aws.Operation{
 			Name:       "CreateCacheCluster",
@@ -132,6 +147,9 @@ var opCreateCacheCluster *aws.Operation
 
 // CreateCacheParameterGroupRequest generates a request for the CreateCacheParameterGroup operation.
 func (c *ElastiCache) CreateCacheParameterGroupRequest(input *CreateCacheParameterGroupInput) (req *aws.Request, output *CreateCacheParameterGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateCacheParameterGroup == nil {
 		opCreateCacheParameterGroup = &aws.Operation{
 			Name:       "CreateCacheParameterGroup",
@@ -160,6 +178,9 @@ var opCreateCacheParameterGroup *aws.Operation
 
 // CreateCacheSecurityGroupRequest generates a request for the CreateCacheSecurityGroup operation.
 func (c *ElastiCache) CreateCacheSecurityGroupRequest(input *CreateCacheSecurityGroupInput) (req *aws.Request, output *CreateCacheSecurityGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateCacheSecurityGroup == nil {
 		opCreateCacheSecurityGroup = &aws.Operation{
 			Name:       "CreateCacheSecurityGroup",
@@ -192,6 +213,9 @@ var opCreateCacheSecurityGroup *aws.Operation
 
 // CreateCacheSubnetGroupRequest generates a request for the CreateCacheSubnetGroup operation.
 func (c *ElastiCache) CreateCacheSubnetGroupRequest(input *CreateCacheSubnetGroupInput) (req *aws.Request, output *CreateCacheSubnetGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateCacheSubnetGroup == nil {
 		opCreateCacheSubnetGroup = &aws.Operation{
 			Name:       "CreateCacheSubnetGroup",
@@ -221,6 +245,9 @@ var opCreateCacheSubnetGroup *aws.Operation
 
 // CreateReplicationGroupRequest generates a request for the CreateReplicationGroup operation.
 func (c *ElastiCache) CreateReplicationGroupRequest(input *CreateReplicationGroupInput) (req *aws.Request, output *CreateReplicationGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateReplicationGroup == nil {
 		opCreateReplicationGroup = &aws.Operation{
 			Name:       "CreateReplicationGroup",
@@ -257,6 +284,9 @@ var opCreateReplicationGroup *aws.Operation
 
 // CreateSnapshotRequest generates a request for the CreateSnapshot operation.
 func (c *ElastiCache) CreateSnapshotRequest(input *CreateSnapshotInput) (req *aws.Request, output *CreateSnapshotOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateSnapshot == nil {
 		opCreateSnapshot = &aws.Operation{
 			Name:       "CreateSnapshot",
@@ -284,6 +314,9 @@ var opCreateSnapshot *aws.Operation
 
 // DeleteCacheClusterRequest generates a request for the DeleteCacheCluster operation.
 func (c *ElastiCache) DeleteCacheClusterRequest(input *DeleteCacheClusterInput) (req *aws.Request, output *DeleteCacheClusterOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteCacheCluster == nil {
 		opDeleteCacheCluster = &aws.Operation{
 			Name:       "DeleteCacheCluster",
@@ -317,6 +350,9 @@ var opDeleteCacheCluster *aws.Operation
 
 // DeleteCacheParameterGroupRequest generates a request for the DeleteCacheParameterGroup operation.
 func (c *ElastiCache) DeleteCacheParameterGroupRequest(input *DeleteCacheParameterGroupInput) (req *aws.Request, output *DeleteCacheParameterGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteCacheParameterGroup == nil {
 		opDeleteCacheParameterGroup = &aws.Operation{
 			Name:       "DeleteCacheParameterGroup",
@@ -345,6 +381,9 @@ var opDeleteCacheParameterGroup *aws.Operation
 
 // DeleteCacheSecurityGroupRequest generates a request for the DeleteCacheSecurityGroup operation.
 func (c *ElastiCache) DeleteCacheSecurityGroupRequest(input *DeleteCacheSecurityGroupInput) (req *aws.Request, output *DeleteCacheSecurityGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteCacheSecurityGroup == nil {
 		opDeleteCacheSecurityGroup = &aws.Operation{
 			Name:       "DeleteCacheSecurityGroup",
@@ -374,6 +413,9 @@ var opDeleteCacheSecurityGroup *aws.Operation
 
 // DeleteCacheSubnetGroupRequest generates a request for the DeleteCacheSubnetGroup operation.
 func (c *ElastiCache) DeleteCacheSubnetGroupRequest(input *DeleteCacheSubnetGroupInput) (req *aws.Request, output *DeleteCacheSubnetGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteCacheSubnetGroup == nil {
 		opDeleteCacheSubnetGroup = &aws.Operation{
 			Name:       "DeleteCacheSubnetGroup",
@@ -403,6 +445,9 @@ var opDeleteCacheSubnetGroup *aws.Operation
 
 // DeleteReplicationGroupRequest generates a request for the DeleteReplicationGroup operation.
 func (c *ElastiCache) DeleteReplicationGroupRequest(input *DeleteReplicationGroupInput) (req *aws.Request, output *DeleteReplicationGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteReplicationGroup == nil {
 		opDeleteReplicationGroup = &aws.Operation{
 			Name:       "DeleteReplicationGroup",
@@ -436,6 +481,9 @@ var opDeleteReplicationGroup *aws.Operation
 
 // DeleteSnapshotRequest generates a request for the DeleteSnapshot operation.
 func (c *ElastiCache) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *aws.Request, output *DeleteSnapshotOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteSnapshot == nil {
 		opDeleteSnapshot = &aws.Operation{
 			Name:       "DeleteSnapshot",
@@ -464,6 +512,9 @@ var opDeleteSnapshot *aws.Operation
 
 // DescribeCacheClustersRequest generates a request for the DescribeCacheClusters operation.
 func (c *ElastiCache) DescribeCacheClustersRequest(input *DescribeCacheClustersInput) (req *aws.Request, output *DescribeCacheClustersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeCacheClusters == nil {
 		opDescribeCacheClusters = &aws.Operation{
 			Name:       "DescribeCacheClusters",
@@ -511,6 +562,9 @@ var opDescribeCacheClusters *aws.Operation
 
 // DescribeCacheEngineVersionsRequest generates a request for the DescribeCacheEngineVersions operation.
 func (c *ElastiCache) DescribeCacheEngineVersionsRequest(input *DescribeCacheEngineVersionsInput) (req *aws.Request, output *DescribeCacheEngineVersionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeCacheEngineVersions == nil {
 		opDescribeCacheEngineVersions = &aws.Operation{
 			Name:       "DescribeCacheEngineVersions",
@@ -538,6 +592,9 @@ var opDescribeCacheEngineVersions *aws.Operation
 
 // DescribeCacheParameterGroupsRequest generates a request for the DescribeCacheParameterGroups operation.
 func (c *ElastiCache) DescribeCacheParameterGroupsRequest(input *DescribeCacheParameterGroupsInput) (req *aws.Request, output *DescribeCacheParameterGroupsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeCacheParameterGroups == nil {
 		opDescribeCacheParameterGroups = &aws.Operation{
 			Name:       "DescribeCacheParameterGroups",
@@ -566,6 +623,9 @@ var opDescribeCacheParameterGroups *aws.Operation
 
 // DescribeCacheParametersRequest generates a request for the DescribeCacheParameters operation.
 func (c *ElastiCache) DescribeCacheParametersRequest(input *DescribeCacheParametersInput) (req *aws.Request, output *DescribeCacheParametersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeCacheParameters == nil {
 		opDescribeCacheParameters = &aws.Operation{
 			Name:       "DescribeCacheParameters",
@@ -593,6 +653,9 @@ var opDescribeCacheParameters *aws.Operation
 
 // DescribeCacheSecurityGroupsRequest generates a request for the DescribeCacheSecurityGroups operation.
 func (c *ElastiCache) DescribeCacheSecurityGroupsRequest(input *DescribeCacheSecurityGroupsInput) (req *aws.Request, output *DescribeCacheSecurityGroupsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeCacheSecurityGroups == nil {
 		opDescribeCacheSecurityGroups = &aws.Operation{
 			Name:       "DescribeCacheSecurityGroups",
@@ -621,6 +684,9 @@ var opDescribeCacheSecurityGroups *aws.Operation
 
 // DescribeCacheSubnetGroupsRequest generates a request for the DescribeCacheSubnetGroups operation.
 func (c *ElastiCache) DescribeCacheSubnetGroupsRequest(input *DescribeCacheSubnetGroupsInput) (req *aws.Request, output *DescribeCacheSubnetGroupsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeCacheSubnetGroups == nil {
 		opDescribeCacheSubnetGroups = &aws.Operation{
 			Name:       "DescribeCacheSubnetGroups",
@@ -649,6 +715,9 @@ var opDescribeCacheSubnetGroups *aws.Operation
 
 // DescribeEngineDefaultParametersRequest generates a request for the DescribeEngineDefaultParameters operation.
 func (c *ElastiCache) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaultParametersInput) (req *aws.Request, output *DescribeEngineDefaultParametersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeEngineDefaultParameters == nil {
 		opDescribeEngineDefaultParameters = &aws.Operation{
 			Name:       "DescribeEngineDefaultParameters",
@@ -676,6 +745,9 @@ var opDescribeEngineDefaultParameters *aws.Operation
 
 // DescribeEventsRequest generates a request for the DescribeEvents operation.
 func (c *ElastiCache) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Request, output *DescribeEventsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeEvents == nil {
 		opDescribeEvents = &aws.Operation{
 			Name:       "DescribeEvents",
@@ -708,6 +780,9 @@ var opDescribeEvents *aws.Operation
 
 // DescribeReplicationGroupsRequest generates a request for the DescribeReplicationGroups operation.
 func (c *ElastiCache) DescribeReplicationGroupsRequest(input *DescribeReplicationGroupsInput) (req *aws.Request, output *DescribeReplicationGroupsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeReplicationGroups == nil {
 		opDescribeReplicationGroups = &aws.Operation{
 			Name:       "DescribeReplicationGroups",
@@ -736,6 +811,9 @@ var opDescribeReplicationGroups *aws.Operation
 
 // DescribeReservedCacheNodesRequest generates a request for the DescribeReservedCacheNodes operation.
 func (c *ElastiCache) DescribeReservedCacheNodesRequest(input *DescribeReservedCacheNodesInput) (req *aws.Request, output *DescribeReservedCacheNodesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeReservedCacheNodes == nil {
 		opDescribeReservedCacheNodes = &aws.Operation{
 			Name:       "DescribeReservedCacheNodes",
@@ -763,6 +841,9 @@ var opDescribeReservedCacheNodes *aws.Operation
 
 // DescribeReservedCacheNodesOfferingsRequest generates a request for the DescribeReservedCacheNodesOfferings operation.
 func (c *ElastiCache) DescribeReservedCacheNodesOfferingsRequest(input *DescribeReservedCacheNodesOfferingsInput) (req *aws.Request, output *DescribeReservedCacheNodesOfferingsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeReservedCacheNodesOfferings == nil {
 		opDescribeReservedCacheNodesOfferings = &aws.Operation{
 			Name:       "DescribeReservedCacheNodesOfferings",
@@ -790,6 +871,9 @@ var opDescribeReservedCacheNodesOfferings *aws.Operation
 
 // DescribeSnapshotsRequest generates a request for the DescribeSnapshots operation.
 func (c *ElastiCache) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *aws.Request, output *DescribeSnapshotsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeSnapshots == nil {
 		opDescribeSnapshots = &aws.Operation{
 			Name:       "DescribeSnapshots",
@@ -819,6 +903,9 @@ var opDescribeSnapshots *aws.Operation
 
 // ListTagsForResourceRequest generates a request for the ListTagsForResource operation.
 func (c *ElastiCache) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *aws.Request, output *TagListMessage) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListTagsForResource == nil {
 		opListTagsForResource = &aws.Operation{
 			Name:       "ListTagsForResource",
@@ -852,6 +939,9 @@ var opListTagsForResource *aws.Operation
 
 // ModifyCacheClusterRequest generates a request for the ModifyCacheCluster operation.
 func (c *ElastiCache) ModifyCacheClusterRequest(input *ModifyCacheClusterInput) (req *aws.Request, output *ModifyCacheClusterOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyCacheCluster == nil {
 		opModifyCacheCluster = &aws.Operation{
 			Name:       "ModifyCacheCluster",
@@ -880,6 +970,9 @@ var opModifyCacheCluster *aws.Operation
 
 // ModifyCacheParameterGroupRequest generates a request for the ModifyCacheParameterGroup operation.
 func (c *ElastiCache) ModifyCacheParameterGroupRequest(input *ModifyCacheParameterGroupInput) (req *aws.Request, output *CacheParameterGroupNameMessage) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyCacheParameterGroup == nil {
 		opModifyCacheParameterGroup = &aws.Operation{
 			Name:       "ModifyCacheParameterGroup",
@@ -908,6 +1001,9 @@ var opModifyCacheParameterGroup *aws.Operation
 
 // ModifyCacheSubnetGroupRequest generates a request for the ModifyCacheSubnetGroup operation.
 func (c *ElastiCache) ModifyCacheSubnetGroupRequest(input *ModifyCacheSubnetGroupInput) (req *aws.Request, output *ModifyCacheSubnetGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyCacheSubnetGroup == nil {
 		opModifyCacheSubnetGroup = &aws.Operation{
 			Name:       "ModifyCacheSubnetGroup",
@@ -934,6 +1030,9 @@ var opModifyCacheSubnetGroup *aws.Operation
 
 // ModifyReplicationGroupRequest generates a request for the ModifyReplicationGroup operation.
 func (c *ElastiCache) ModifyReplicationGroupRequest(input *ModifyReplicationGroupInput) (req *aws.Request, output *ModifyReplicationGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyReplicationGroup == nil {
 		opModifyReplicationGroup = &aws.Operation{
 			Name:       "ModifyReplicationGroup",
@@ -961,6 +1060,9 @@ var opModifyReplicationGroup *aws.Operation
 
 // PurchaseReservedCacheNodesOfferingRequest generates a request for the PurchaseReservedCacheNodesOffering operation.
 func (c *ElastiCache) PurchaseReservedCacheNodesOfferingRequest(input *PurchaseReservedCacheNodesOfferingInput) (req *aws.Request, output *PurchaseReservedCacheNodesOfferingOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPurchaseReservedCacheNodesOffering == nil {
 		opPurchaseReservedCacheNodesOffering = &aws.Operation{
 			Name:       "PurchaseReservedCacheNodesOffering",
@@ -988,6 +1090,9 @@ var opPurchaseReservedCacheNodesOffering *aws.Operation
 
 // RebootCacheClusterRequest generates a request for the RebootCacheCluster operation.
 func (c *ElastiCache) RebootCacheClusterRequest(input *RebootCacheClusterInput) (req *aws.Request, output *RebootCacheClusterOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRebootCacheCluster == nil {
 		opRebootCacheCluster = &aws.Operation{
 			Name:       "RebootCacheCluster",
@@ -1023,6 +1128,9 @@ var opRebootCacheCluster *aws.Operation
 
 // RemoveTagsFromResourceRequest generates a request for the RemoveTagsFromResource operation.
 func (c *ElastiCache) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) (req *aws.Request, output *TagListMessage) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRemoveTagsFromResource == nil {
 		opRemoveTagsFromResource = &aws.Operation{
 			Name:       "RemoveTagsFromResource",
@@ -1050,6 +1158,9 @@ var opRemoveTagsFromResource *aws.Operation
 
 // ResetCacheParameterGroupRequest generates a request for the ResetCacheParameterGroup operation.
 func (c *ElastiCache) ResetCacheParameterGroupRequest(input *ResetCacheParameterGroupInput) (req *aws.Request, output *CacheParameterGroupNameMessage) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opResetCacheParameterGroup == nil {
 		opResetCacheParameterGroup = &aws.Operation{
 			Name:       "ResetCacheParameterGroup",
@@ -1079,6 +1190,9 @@ var opResetCacheParameterGroup *aws.Operation
 
 // RevokeCacheSecurityGroupIngressRequest generates a request for the RevokeCacheSecurityGroupIngress operation.
 func (c *ElastiCache) RevokeCacheSecurityGroupIngressRequest(input *RevokeCacheSecurityGroupIngressInput) (req *aws.Request, output *RevokeCacheSecurityGroupIngressOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRevokeCacheSecurityGroupIngress == nil {
 		opRevokeCacheSecurityGroupIngress = &aws.Operation{
 			Name:       "RevokeCacheSecurityGroupIngress",

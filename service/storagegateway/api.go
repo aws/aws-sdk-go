@@ -4,13 +4,19 @@
 package storagegateway
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // ActivateGatewayRequest generates a request for the ActivateGateway operation.
 func (c *StorageGateway) ActivateGatewayRequest(input *ActivateGatewayInput) (req *aws.Request, output *ActivateGatewayOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opActivateGateway == nil {
 		opActivateGateway = &aws.Operation{
 			Name:       "ActivateGateway",
@@ -45,6 +51,9 @@ var opActivateGateway *aws.Operation
 
 // AddCacheRequest generates a request for the AddCache operation.
 func (c *StorageGateway) AddCacheRequest(input *AddCacheInput) (req *aws.Request, output *AddCacheOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAddCache == nil {
 		opAddCache = &aws.Operation{
 			Name:       "AddCache",
@@ -77,6 +86,9 @@ var opAddCache *aws.Operation
 
 // AddUploadBufferRequest generates a request for the AddUploadBuffer operation.
 func (c *StorageGateway) AddUploadBufferRequest(input *AddUploadBufferInput) (req *aws.Request, output *AddUploadBufferOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAddUploadBuffer == nil {
 		opAddUploadBuffer = &aws.Operation{
 			Name:       "AddUploadBuffer",
@@ -109,6 +121,9 @@ var opAddUploadBuffer *aws.Operation
 
 // AddWorkingStorageRequest generates a request for the AddWorkingStorage operation.
 func (c *StorageGateway) AddWorkingStorageRequest(input *AddWorkingStorageInput) (req *aws.Request, output *AddWorkingStorageOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAddWorkingStorage == nil {
 		opAddWorkingStorage = &aws.Operation{
 			Name:       "AddWorkingStorage",
@@ -145,6 +160,9 @@ var opAddWorkingStorage *aws.Operation
 
 // CancelArchivalRequest generates a request for the CancelArchival operation.
 func (c *StorageGateway) CancelArchivalRequest(input *CancelArchivalInput) (req *aws.Request, output *CancelArchivalOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCancelArchival == nil {
 		opCancelArchival = &aws.Operation{
 			Name:       "CancelArchival",
@@ -172,6 +190,9 @@ var opCancelArchival *aws.Operation
 
 // CancelRetrievalRequest generates a request for the CancelRetrieval operation.
 func (c *StorageGateway) CancelRetrievalRequest(input *CancelRetrievalInput) (req *aws.Request, output *CancelRetrievalOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCancelRetrieval == nil {
 		opCancelRetrieval = &aws.Operation{
 			Name:       "CancelRetrieval",
@@ -200,6 +221,9 @@ var opCancelRetrieval *aws.Operation
 
 // CreateCachediSCSIVolumeRequest generates a request for the CreateCachediSCSIVolume operation.
 func (c *StorageGateway) CreateCachediSCSIVolumeRequest(input *CreateCachediSCSIVolumeInput) (req *aws.Request, output *CreateCachediSCSIVolumeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateCachediSCSIVolume == nil {
 		opCreateCachediSCSIVolume = &aws.Operation{
 			Name:       "CreateCachediSCSIVolume",
@@ -236,6 +260,9 @@ var opCreateCachediSCSIVolume *aws.Operation
 
 // CreateSnapshotRequest generates a request for the CreateSnapshot operation.
 func (c *StorageGateway) CreateSnapshotRequest(input *CreateSnapshotInput) (req *aws.Request, output *CreateSnapshotOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateSnapshot == nil {
 		opCreateSnapshot = &aws.Operation{
 			Name:       "CreateSnapshot",
@@ -281,6 +308,9 @@ var opCreateSnapshot *aws.Operation
 
 // CreateSnapshotFromVolumeRecoveryPointRequest generates a request for the CreateSnapshotFromVolumeRecoveryPoint operation.
 func (c *StorageGateway) CreateSnapshotFromVolumeRecoveryPointRequest(input *CreateSnapshotFromVolumeRecoveryPointInput) (req *aws.Request, output *CreateSnapshotFromVolumeRecoveryPointOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateSnapshotFromVolumeRecoveryPoint == nil {
 		opCreateSnapshotFromVolumeRecoveryPoint = &aws.Operation{
 			Name:       "CreateSnapshotFromVolumeRecoveryPoint",
@@ -324,6 +354,9 @@ var opCreateSnapshotFromVolumeRecoveryPoint *aws.Operation
 
 // CreateStorediSCSIVolumeRequest generates a request for the CreateStorediSCSIVolume operation.
 func (c *StorageGateway) CreateStorediSCSIVolumeRequest(input *CreateStorediSCSIVolumeInput) (req *aws.Request, output *CreateStorediSCSIVolumeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateStorediSCSIVolume == nil {
 		opCreateStorediSCSIVolume = &aws.Operation{
 			Name:       "CreateStorediSCSIVolume",
@@ -362,6 +395,9 @@ var opCreateStorediSCSIVolume *aws.Operation
 
 // CreateTapesRequest generates a request for the CreateTapes operation.
 func (c *StorageGateway) CreateTapesRequest(input *CreateTapesInput) (req *aws.Request, output *CreateTapesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateTapes == nil {
 		opCreateTapes = &aws.Operation{
 			Name:       "CreateTapes",
@@ -392,6 +428,9 @@ var opCreateTapes *aws.Operation
 
 // DeleteBandwidthRateLimitRequest generates a request for the DeleteBandwidthRateLimit operation.
 func (c *StorageGateway) DeleteBandwidthRateLimitRequest(input *DeleteBandwidthRateLimitInput) (req *aws.Request, output *DeleteBandwidthRateLimitOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteBandwidthRateLimit == nil {
 		opDeleteBandwidthRateLimit = &aws.Operation{
 			Name:       "DeleteBandwidthRateLimit",
@@ -422,6 +461,9 @@ var opDeleteBandwidthRateLimit *aws.Operation
 
 // DeleteChapCredentialsRequest generates a request for the DeleteChapCredentials operation.
 func (c *StorageGateway) DeleteChapCredentialsRequest(input *DeleteChapCredentialsInput) (req *aws.Request, output *DeleteChapCredentialsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteChapCredentials == nil {
 		opDeleteChapCredentials = &aws.Operation{
 			Name:       "DeleteChapCredentials",
@@ -449,6 +491,9 @@ var opDeleteChapCredentials *aws.Operation
 
 // DeleteGatewayRequest generates a request for the DeleteGateway operation.
 func (c *StorageGateway) DeleteGatewayRequest(input *DeleteGatewayInput) (req *aws.Request, output *DeleteGatewayOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteGateway == nil {
 		opDeleteGateway = &aws.Operation{
 			Name:       "DeleteGateway",
@@ -490,6 +535,9 @@ var opDeleteGateway *aws.Operation
 
 // DeleteSnapshotScheduleRequest generates a request for the DeleteSnapshotSchedule operation.
 func (c *StorageGateway) DeleteSnapshotScheduleRequest(input *DeleteSnapshotScheduleInput) (req *aws.Request, output *DeleteSnapshotScheduleOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteSnapshotSchedule == nil {
 		opDeleteSnapshotSchedule = &aws.Operation{
 			Name:       "DeleteSnapshotSchedule",
@@ -525,6 +573,9 @@ var opDeleteSnapshotSchedule *aws.Operation
 
 // DeleteTapeRequest generates a request for the DeleteTape operation.
 func (c *StorageGateway) DeleteTapeRequest(input *DeleteTapeInput) (req *aws.Request, output *DeleteTapeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteTape == nil {
 		opDeleteTape = &aws.Operation{
 			Name:       "DeleteTape",
@@ -551,6 +602,9 @@ var opDeleteTape *aws.Operation
 
 // DeleteTapeArchiveRequest generates a request for the DeleteTapeArchive operation.
 func (c *StorageGateway) DeleteTapeArchiveRequest(input *DeleteTapeArchiveInput) (req *aws.Request, output *DeleteTapeArchiveOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteTapeArchive == nil {
 		opDeleteTapeArchive = &aws.Operation{
 			Name:       "DeleteTapeArchive",
@@ -577,6 +631,9 @@ var opDeleteTapeArchive *aws.Operation
 
 // DeleteVolumeRequest generates a request for the DeleteVolume operation.
 func (c *StorageGateway) DeleteVolumeRequest(input *DeleteVolumeInput) (req *aws.Request, output *DeleteVolumeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteVolume == nil {
 		opDeleteVolume = &aws.Operation{
 			Name:       "DeleteVolume",
@@ -616,6 +673,9 @@ var opDeleteVolume *aws.Operation
 
 // DescribeBandwidthRateLimitRequest generates a request for the DescribeBandwidthRateLimit operation.
 func (c *StorageGateway) DescribeBandwidthRateLimitRequest(input *DescribeBandwidthRateLimitInput) (req *aws.Request, output *DescribeBandwidthRateLimitOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeBandwidthRateLimit == nil {
 		opDescribeBandwidthRateLimit = &aws.Operation{
 			Name:       "DescribeBandwidthRateLimit",
@@ -648,6 +708,9 @@ var opDescribeBandwidthRateLimit *aws.Operation
 
 // DescribeCacheRequest generates a request for the DescribeCache operation.
 func (c *StorageGateway) DescribeCacheRequest(input *DescribeCacheInput) (req *aws.Request, output *DescribeCacheOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeCache == nil {
 		opDescribeCache = &aws.Operation{
 			Name:       "DescribeCache",
@@ -678,6 +741,9 @@ var opDescribeCache *aws.Operation
 
 // DescribeCachediSCSIVolumesRequest generates a request for the DescribeCachediSCSIVolumes operation.
 func (c *StorageGateway) DescribeCachediSCSIVolumesRequest(input *DescribeCachediSCSIVolumesInput) (req *aws.Request, output *DescribeCachediSCSIVolumesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeCachediSCSIVolumes == nil {
 		opDescribeCachediSCSIVolumes = &aws.Operation{
 			Name:       "DescribeCachediSCSIVolumes",
@@ -710,6 +776,9 @@ var opDescribeCachediSCSIVolumes *aws.Operation
 
 // DescribeChapCredentialsRequest generates a request for the DescribeChapCredentials operation.
 func (c *StorageGateway) DescribeChapCredentialsRequest(input *DescribeChapCredentialsInput) (req *aws.Request, output *DescribeChapCredentialsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeChapCredentials == nil {
 		opDescribeChapCredentials = &aws.Operation{
 			Name:       "DescribeChapCredentials",
@@ -738,6 +807,9 @@ var opDescribeChapCredentials *aws.Operation
 
 // DescribeGatewayInformationRequest generates a request for the DescribeGatewayInformation operation.
 func (c *StorageGateway) DescribeGatewayInformationRequest(input *DescribeGatewayInformationInput) (req *aws.Request, output *DescribeGatewayInformationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeGatewayInformation == nil {
 		opDescribeGatewayInformation = &aws.Operation{
 			Name:       "DescribeGatewayInformation",
@@ -767,6 +839,9 @@ var opDescribeGatewayInformation *aws.Operation
 
 // DescribeMaintenanceStartTimeRequest generates a request for the DescribeMaintenanceStartTime operation.
 func (c *StorageGateway) DescribeMaintenanceStartTimeRequest(input *DescribeMaintenanceStartTimeInput) (req *aws.Request, output *DescribeMaintenanceStartTimeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeMaintenanceStartTime == nil {
 		opDescribeMaintenanceStartTime = &aws.Operation{
 			Name:       "DescribeMaintenanceStartTime",
@@ -795,6 +870,9 @@ var opDescribeMaintenanceStartTime *aws.Operation
 
 // DescribeSnapshotScheduleRequest generates a request for the DescribeSnapshotSchedule operation.
 func (c *StorageGateway) DescribeSnapshotScheduleRequest(input *DescribeSnapshotScheduleInput) (req *aws.Request, output *DescribeSnapshotScheduleOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeSnapshotSchedule == nil {
 		opDescribeSnapshotSchedule = &aws.Operation{
 			Name:       "DescribeSnapshotSchedule",
@@ -823,6 +901,9 @@ var opDescribeSnapshotSchedule *aws.Operation
 
 // DescribeStorediSCSIVolumesRequest generates a request for the DescribeStorediSCSIVolumes operation.
 func (c *StorageGateway) DescribeStorediSCSIVolumesRequest(input *DescribeStorediSCSIVolumesInput) (req *aws.Request, output *DescribeStorediSCSIVolumesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeStorediSCSIVolumes == nil {
 		opDescribeStorediSCSIVolumes = &aws.Operation{
 			Name:       "DescribeStorediSCSIVolumes",
@@ -852,6 +933,9 @@ var opDescribeStorediSCSIVolumes *aws.Operation
 
 // DescribeTapeArchivesRequest generates a request for the DescribeTapeArchives operation.
 func (c *StorageGateway) DescribeTapeArchivesRequest(input *DescribeTapeArchivesInput) (req *aws.Request, output *DescribeTapeArchivesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeTapeArchives == nil {
 		opDescribeTapeArchives = &aws.Operation{
 			Name:       "DescribeTapeArchives",
@@ -882,6 +966,9 @@ var opDescribeTapeArchives *aws.Operation
 
 // DescribeTapeRecoveryPointsRequest generates a request for the DescribeTapeRecoveryPoints operation.
 func (c *StorageGateway) DescribeTapeRecoveryPointsRequest(input *DescribeTapeRecoveryPointsInput) (req *aws.Request, output *DescribeTapeRecoveryPointsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeTapeRecoveryPoints == nil {
 		opDescribeTapeRecoveryPoints = &aws.Operation{
 			Name:       "DescribeTapeRecoveryPoints",
@@ -913,6 +1000,9 @@ var opDescribeTapeRecoveryPoints *aws.Operation
 
 // DescribeTapesRequest generates a request for the DescribeTapes operation.
 func (c *StorageGateway) DescribeTapesRequest(input *DescribeTapesInput) (req *aws.Request, output *DescribeTapesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeTapes == nil {
 		opDescribeTapes = &aws.Operation{
 			Name:       "DescribeTapes",
@@ -941,6 +1031,9 @@ var opDescribeTapes *aws.Operation
 
 // DescribeUploadBufferRequest generates a request for the DescribeUploadBuffer operation.
 func (c *StorageGateway) DescribeUploadBufferRequest(input *DescribeUploadBufferInput) (req *aws.Request, output *DescribeUploadBufferOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeUploadBuffer == nil {
 		opDescribeUploadBuffer = &aws.Operation{
 			Name:       "DescribeUploadBuffer",
@@ -972,6 +1065,9 @@ var opDescribeUploadBuffer *aws.Operation
 
 // DescribeVTLDevicesRequest generates a request for the DescribeVTLDevices operation.
 func (c *StorageGateway) DescribeVTLDevicesRequest(input *DescribeVTLDevicesInput) (req *aws.Request, output *DescribeVTLDevicesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeVTLDevices == nil {
 		opDescribeVTLDevices = &aws.Operation{
 			Name:       "DescribeVTLDevices",
@@ -1001,6 +1097,9 @@ var opDescribeVTLDevices *aws.Operation
 
 // DescribeWorkingStorageRequest generates a request for the DescribeWorkingStorage operation.
 func (c *StorageGateway) DescribeWorkingStorageRequest(input *DescribeWorkingStorageInput) (req *aws.Request, output *DescribeWorkingStorageOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeWorkingStorage == nil {
 		opDescribeWorkingStorage = &aws.Operation{
 			Name:       "DescribeWorkingStorage",
@@ -1036,6 +1135,9 @@ var opDescribeWorkingStorage *aws.Operation
 
 // DisableGatewayRequest generates a request for the DisableGateway operation.
 func (c *StorageGateway) DisableGatewayRequest(input *DisableGatewayInput) (req *aws.Request, output *DisableGatewayOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDisableGateway == nil {
 		opDisableGateway = &aws.Operation{
 			Name:       "DisableGateway",
@@ -1068,6 +1170,9 @@ var opDisableGateway *aws.Operation
 
 // ListGatewaysRequest generates a request for the ListGateways operation.
 func (c *StorageGateway) ListGatewaysRequest(input *ListGatewaysInput) (req *aws.Request, output *ListGatewaysOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListGateways == nil {
 		opListGateways = &aws.Operation{
 			Name:       "ListGateways",
@@ -1104,6 +1209,9 @@ var opListGateways *aws.Operation
 
 // ListLocalDisksRequest generates a request for the ListLocalDisks operation.
 func (c *StorageGateway) ListLocalDisksRequest(input *ListLocalDisksInput) (req *aws.Request, output *ListLocalDisksOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListLocalDisks == nil {
 		opListLocalDisks = &aws.Operation{
 			Name:       "ListLocalDisks",
@@ -1139,6 +1247,9 @@ var opListLocalDisks *aws.Operation
 
 // ListVolumeRecoveryPointsRequest generates a request for the ListVolumeRecoveryPoints operation.
 func (c *StorageGateway) ListVolumeRecoveryPointsRequest(input *ListVolumeRecoveryPointsInput) (req *aws.Request, output *ListVolumeRecoveryPointsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListVolumeRecoveryPoints == nil {
 		opListVolumeRecoveryPoints = &aws.Operation{
 			Name:       "ListVolumeRecoveryPoints",
@@ -1171,6 +1282,9 @@ var opListVolumeRecoveryPoints *aws.Operation
 
 // ListVolumesRequest generates a request for the ListVolumes operation.
 func (c *StorageGateway) ListVolumesRequest(input *ListVolumesInput) (req *aws.Request, output *ListVolumesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListVolumes == nil {
 		opListVolumes = &aws.Operation{
 			Name:       "ListVolumes",
@@ -1206,6 +1320,9 @@ var opListVolumes *aws.Operation
 
 // ResetCacheRequest generates a request for the ResetCache operation.
 func (c *StorageGateway) ResetCacheRequest(input *ResetCacheInput) (req *aws.Request, output *ResetCacheOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opResetCache == nil {
 		opResetCache = &aws.Operation{
 			Name:       "ResetCache",
@@ -1234,6 +1351,9 @@ var opResetCache *aws.Operation
 
 // RetrieveTapeArchiveRequest generates a request for the RetrieveTapeArchive operation.
 func (c *StorageGateway) RetrieveTapeArchiveRequest(input *RetrieveTapeArchiveInput) (req *aws.Request, output *RetrieveTapeArchiveOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRetrieveTapeArchive == nil {
 		opRetrieveTapeArchive = &aws.Operation{
 			Name:       "RetrieveTapeArchive",
@@ -1267,6 +1387,9 @@ var opRetrieveTapeArchive *aws.Operation
 
 // RetrieveTapeRecoveryPointRequest generates a request for the RetrieveTapeRecoveryPoint operation.
 func (c *StorageGateway) RetrieveTapeRecoveryPointRequest(input *RetrieveTapeRecoveryPointInput) (req *aws.Request, output *RetrieveTapeRecoveryPointOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRetrieveTapeRecoveryPoint == nil {
 		opRetrieveTapeRecoveryPoint = &aws.Operation{
 			Name:       "RetrieveTapeRecoveryPoint",
@@ -1301,6 +1424,9 @@ var opRetrieveTapeRecoveryPoint *aws.Operation
 
 // ShutdownGatewayRequest generates a request for the ShutdownGateway operation.
 func (c *StorageGateway) ShutdownGatewayRequest(input *ShutdownGatewayInput) (req *aws.Request, output *ShutdownGatewayOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opShutdownGateway == nil {
 		opShutdownGateway = &aws.Operation{
 			Name:       "ShutdownGateway",
@@ -1345,6 +1471,9 @@ var opShutdownGateway *aws.Operation
 
 // StartGatewayRequest generates a request for the StartGateway operation.
 func (c *StorageGateway) StartGatewayRequest(input *StartGatewayInput) (req *aws.Request, output *StartGatewayOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opStartGateway == nil {
 		opStartGateway = &aws.Operation{
 			Name:       "StartGateway",
@@ -1380,6 +1509,9 @@ var opStartGateway *aws.Operation
 
 // UpdateBandwidthRateLimitRequest generates a request for the UpdateBandwidthRateLimit operation.
 func (c *StorageGateway) UpdateBandwidthRateLimitRequest(input *UpdateBandwidthRateLimitInput) (req *aws.Request, output *UpdateBandwidthRateLimitOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateBandwidthRateLimit == nil {
 		opUpdateBandwidthRateLimit = &aws.Operation{
 			Name:       "UpdateBandwidthRateLimit",
@@ -1416,6 +1548,9 @@ var opUpdateBandwidthRateLimit *aws.Operation
 
 // UpdateChapCredentialsRequest generates a request for the UpdateChapCredentials operation.
 func (c *StorageGateway) UpdateChapCredentialsRequest(input *UpdateChapCredentialsInput) (req *aws.Request, output *UpdateChapCredentialsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateChapCredentials == nil {
 		opUpdateChapCredentials = &aws.Operation{
 			Name:       "UpdateChapCredentials",
@@ -1447,6 +1582,9 @@ var opUpdateChapCredentials *aws.Operation
 
 // UpdateGatewayInformationRequest generates a request for the UpdateGatewayInformation operation.
 func (c *StorageGateway) UpdateGatewayInformationRequest(input *UpdateGatewayInformationInput) (req *aws.Request, output *UpdateGatewayInformationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateGatewayInformation == nil {
 		opUpdateGatewayInformation = &aws.Operation{
 			Name:       "UpdateGatewayInformation",
@@ -1475,6 +1613,9 @@ var opUpdateGatewayInformation *aws.Operation
 
 // UpdateGatewaySoftwareNowRequest generates a request for the UpdateGatewaySoftwareNow operation.
 func (c *StorageGateway) UpdateGatewaySoftwareNowRequest(input *UpdateGatewaySoftwareNowInput) (req *aws.Request, output *UpdateGatewaySoftwareNowOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateGatewaySoftwareNow == nil {
 		opUpdateGatewaySoftwareNow = &aws.Operation{
 			Name:       "UpdateGatewaySoftwareNow",
@@ -1513,6 +1654,9 @@ var opUpdateGatewaySoftwareNow *aws.Operation
 
 // UpdateMaintenanceStartTimeRequest generates a request for the UpdateMaintenanceStartTime operation.
 func (c *StorageGateway) UpdateMaintenanceStartTimeRequest(input *UpdateMaintenanceStartTimeInput) (req *aws.Request, output *UpdateMaintenanceStartTimeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateMaintenanceStartTime == nil {
 		opUpdateMaintenanceStartTime = &aws.Operation{
 			Name:       "UpdateMaintenanceStartTime",
@@ -1541,6 +1685,9 @@ var opUpdateMaintenanceStartTime *aws.Operation
 
 // UpdateSnapshotScheduleRequest generates a request for the UpdateSnapshotSchedule operation.
 func (c *StorageGateway) UpdateSnapshotScheduleRequest(input *UpdateSnapshotScheduleInput) (req *aws.Request, output *UpdateSnapshotScheduleOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateSnapshotSchedule == nil {
 		opUpdateSnapshotSchedule = &aws.Operation{
 			Name:       "UpdateSnapshotSchedule",
@@ -1575,6 +1722,9 @@ var opUpdateSnapshotSchedule *aws.Operation
 
 // UpdateVTLDeviceTypeRequest generates a request for the UpdateVTLDeviceType operation.
 func (c *StorageGateway) UpdateVTLDeviceTypeRequest(input *UpdateVTLDeviceTypeInput) (req *aws.Request, output *UpdateVTLDeviceTypeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateVTLDeviceType == nil {
 		opUpdateVTLDeviceType = &aws.Operation{
 			Name:       "UpdateVTLDeviceType",

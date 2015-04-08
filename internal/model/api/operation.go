@@ -46,6 +46,9 @@ var tplOperation = template.Must(template.New("operation").Parse(`
 // {{ .ExportedName }}Request generates a request for the {{ .ExportedName }} operation.
 func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	`input {{ .InputRef.GoType }}) (req *aws.Request, output {{ .OutputRef.GoType }}) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if op{{ .ExportedName }} == nil {
 		op{{ .ExportedName }} = &aws.Operation{
 			Name:       "{{ .Name }}",

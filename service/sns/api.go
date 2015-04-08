@@ -4,11 +4,18 @@
 package sns
 
 import (
+	"sync"
+
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // AddPermissionRequest generates a request for the AddPermission operation.
 func (c *SNS) AddPermissionRequest(input *AddPermissionInput) (req *aws.Request, output *AddPermissionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAddPermission == nil {
 		opAddPermission = &aws.Operation{
 			Name:       "AddPermission",
@@ -36,6 +43,9 @@ var opAddPermission *aws.Operation
 
 // ConfirmSubscriptionRequest generates a request for the ConfirmSubscription operation.
 func (c *SNS) ConfirmSubscriptionRequest(input *ConfirmSubscriptionInput) (req *aws.Request, output *ConfirmSubscriptionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opConfirmSubscription == nil {
 		opConfirmSubscription = &aws.Operation{
 			Name:       "ConfirmSubscription",
@@ -66,6 +76,9 @@ var opConfirmSubscription *aws.Operation
 
 // CreatePlatformApplicationRequest generates a request for the CreatePlatformApplication operation.
 func (c *SNS) CreatePlatformApplicationRequest(input *CreatePlatformApplicationInput) (req *aws.Request, output *CreatePlatformApplicationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreatePlatformApplication == nil {
 		opCreatePlatformApplication = &aws.Operation{
 			Name:       "CreatePlatformApplication",
@@ -104,6 +117,9 @@ var opCreatePlatformApplication *aws.Operation
 
 // CreatePlatformEndpointRequest generates a request for the CreatePlatformEndpoint operation.
 func (c *SNS) CreatePlatformEndpointRequest(input *CreatePlatformEndpointInput) (req *aws.Request, output *CreatePlatformEndpointOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreatePlatformEndpoint == nil {
 		opCreatePlatformEndpoint = &aws.Operation{
 			Name:       "CreatePlatformEndpoint",
@@ -143,6 +159,9 @@ var opCreatePlatformEndpoint *aws.Operation
 
 // CreateTopicRequest generates a request for the CreateTopic operation.
 func (c *SNS) CreateTopicRequest(input *CreateTopicInput) (req *aws.Request, output *CreateTopicOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateTopic == nil {
 		opCreateTopic = &aws.Operation{
 			Name:       "CreateTopic",
@@ -173,6 +192,9 @@ var opCreateTopic *aws.Operation
 
 // DeleteEndpointRequest generates a request for the DeleteEndpoint operation.
 func (c *SNS) DeleteEndpointRequest(input *DeleteEndpointInput) (req *aws.Request, output *DeleteEndpointOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteEndpoint == nil {
 		opDeleteEndpoint = &aws.Operation{
 			Name:       "DeleteEndpoint",
@@ -200,6 +222,9 @@ var opDeleteEndpoint *aws.Operation
 
 // DeletePlatformApplicationRequest generates a request for the DeletePlatformApplication operation.
 func (c *SNS) DeletePlatformApplicationRequest(input *DeletePlatformApplicationInput) (req *aws.Request, output *DeletePlatformApplicationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeletePlatformApplication == nil {
 		opDeletePlatformApplication = &aws.Operation{
 			Name:       "DeletePlatformApplication",
@@ -228,6 +253,9 @@ var opDeletePlatformApplication *aws.Operation
 
 // DeleteTopicRequest generates a request for the DeleteTopic operation.
 func (c *SNS) DeleteTopicRequest(input *DeleteTopicInput) (req *aws.Request, output *DeleteTopicOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteTopic == nil {
 		opDeleteTopic = &aws.Operation{
 			Name:       "DeleteTopic",
@@ -257,6 +285,9 @@ var opDeleteTopic *aws.Operation
 
 // GetEndpointAttributesRequest generates a request for the GetEndpointAttributes operation.
 func (c *SNS) GetEndpointAttributesRequest(input *GetEndpointAttributesInput) (req *aws.Request, output *GetEndpointAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetEndpointAttributes == nil {
 		opGetEndpointAttributes = &aws.Operation{
 			Name:       "GetEndpointAttributes",
@@ -285,6 +316,9 @@ var opGetEndpointAttributes *aws.Operation
 
 // GetPlatformApplicationAttributesRequest generates a request for the GetPlatformApplicationAttributes operation.
 func (c *SNS) GetPlatformApplicationAttributesRequest(input *GetPlatformApplicationAttributesInput) (req *aws.Request, output *GetPlatformApplicationAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetPlatformApplicationAttributes == nil {
 		opGetPlatformApplicationAttributes = &aws.Operation{
 			Name:       "GetPlatformApplicationAttributes",
@@ -313,6 +347,9 @@ var opGetPlatformApplicationAttributes *aws.Operation
 
 // GetSubscriptionAttributesRequest generates a request for the GetSubscriptionAttributes operation.
 func (c *SNS) GetSubscriptionAttributesRequest(input *GetSubscriptionAttributesInput) (req *aws.Request, output *GetSubscriptionAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetSubscriptionAttributes == nil {
 		opGetSubscriptionAttributes = &aws.Operation{
 			Name:       "GetSubscriptionAttributes",
@@ -339,6 +376,9 @@ var opGetSubscriptionAttributes *aws.Operation
 
 // GetTopicAttributesRequest generates a request for the GetTopicAttributes operation.
 func (c *SNS) GetTopicAttributesRequest(input *GetTopicAttributesInput) (req *aws.Request, output *GetTopicAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetTopicAttributes == nil {
 		opGetTopicAttributes = &aws.Operation{
 			Name:       "GetTopicAttributes",
@@ -366,6 +406,9 @@ var opGetTopicAttributes *aws.Operation
 
 // ListEndpointsByPlatformApplicationRequest generates a request for the ListEndpointsByPlatformApplication operation.
 func (c *SNS) ListEndpointsByPlatformApplicationRequest(input *ListEndpointsByPlatformApplicationInput) (req *aws.Request, output *ListEndpointsByPlatformApplicationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListEndpointsByPlatformApplication == nil {
 		opListEndpointsByPlatformApplication = &aws.Operation{
 			Name:       "ListEndpointsByPlatformApplication",
@@ -399,6 +442,9 @@ var opListEndpointsByPlatformApplication *aws.Operation
 
 // ListPlatformApplicationsRequest generates a request for the ListPlatformApplications operation.
 func (c *SNS) ListPlatformApplicationsRequest(input *ListPlatformApplicationsInput) (req *aws.Request, output *ListPlatformApplicationsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListPlatformApplications == nil {
 		opListPlatformApplications = &aws.Operation{
 			Name:       "ListPlatformApplications",
@@ -432,6 +478,9 @@ var opListPlatformApplications *aws.Operation
 
 // ListSubscriptionsRequest generates a request for the ListSubscriptions operation.
 func (c *SNS) ListSubscriptionsRequest(input *ListSubscriptionsInput) (req *aws.Request, output *ListSubscriptionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListSubscriptions == nil {
 		opListSubscriptions = &aws.Operation{
 			Name:       "ListSubscriptions",
@@ -461,6 +510,9 @@ var opListSubscriptions *aws.Operation
 
 // ListSubscriptionsByTopicRequest generates a request for the ListSubscriptionsByTopic operation.
 func (c *SNS) ListSubscriptionsByTopicRequest(input *ListSubscriptionsByTopicInput) (req *aws.Request, output *ListSubscriptionsByTopicOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListSubscriptionsByTopic == nil {
 		opListSubscriptionsByTopic = &aws.Operation{
 			Name:       "ListSubscriptionsByTopic",
@@ -490,6 +542,9 @@ var opListSubscriptionsByTopic *aws.Operation
 
 // ListTopicsRequest generates a request for the ListTopics operation.
 func (c *SNS) ListTopicsRequest(input *ListTopicsInput) (req *aws.Request, output *ListTopicsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListTopics == nil {
 		opListTopics = &aws.Operation{
 			Name:       "ListTopics",
@@ -518,6 +573,9 @@ var opListTopics *aws.Operation
 
 // PublishRequest generates a request for the Publish operation.
 func (c *SNS) PublishRequest(input *PublishInput) (req *aws.Request, output *PublishOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPublish == nil {
 		opPublish = &aws.Operation{
 			Name:       "Publish",
@@ -553,6 +611,9 @@ var opPublish *aws.Operation
 
 // RemovePermissionRequest generates a request for the RemovePermission operation.
 func (c *SNS) RemovePermissionRequest(input *RemovePermissionInput) (req *aws.Request, output *RemovePermissionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRemovePermission == nil {
 		opRemovePermission = &aws.Operation{
 			Name:       "RemovePermission",
@@ -579,6 +640,9 @@ var opRemovePermission *aws.Operation
 
 // SetEndpointAttributesRequest generates a request for the SetEndpointAttributes operation.
 func (c *SNS) SetEndpointAttributesRequest(input *SetEndpointAttributesInput) (req *aws.Request, output *SetEndpointAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetEndpointAttributes == nil {
 		opSetEndpointAttributes = &aws.Operation{
 			Name:       "SetEndpointAttributes",
@@ -607,6 +671,9 @@ var opSetEndpointAttributes *aws.Operation
 
 // SetPlatformApplicationAttributesRequest generates a request for the SetPlatformApplicationAttributes operation.
 func (c *SNS) SetPlatformApplicationAttributesRequest(input *SetPlatformApplicationAttributesInput) (req *aws.Request, output *SetPlatformApplicationAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetPlatformApplicationAttributes == nil {
 		opSetPlatformApplicationAttributes = &aws.Operation{
 			Name:       "SetPlatformApplicationAttributes",
@@ -635,6 +702,9 @@ var opSetPlatformApplicationAttributes *aws.Operation
 
 // SetSubscriptionAttributesRequest generates a request for the SetSubscriptionAttributes operation.
 func (c *SNS) SetSubscriptionAttributesRequest(input *SetSubscriptionAttributesInput) (req *aws.Request, output *SetSubscriptionAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetSubscriptionAttributes == nil {
 		opSetSubscriptionAttributes = &aws.Operation{
 			Name:       "SetSubscriptionAttributes",
@@ -661,6 +731,9 @@ var opSetSubscriptionAttributes *aws.Operation
 
 // SetTopicAttributesRequest generates a request for the SetTopicAttributes operation.
 func (c *SNS) SetTopicAttributesRequest(input *SetTopicAttributesInput) (req *aws.Request, output *SetTopicAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetTopicAttributes == nil {
 		opSetTopicAttributes = &aws.Operation{
 			Name:       "SetTopicAttributes",
@@ -687,6 +760,9 @@ var opSetTopicAttributes *aws.Operation
 
 // SubscribeRequest generates a request for the Subscribe operation.
 func (c *SNS) SubscribeRequest(input *SubscribeInput) (req *aws.Request, output *SubscribeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSubscribe == nil {
 		opSubscribe = &aws.Operation{
 			Name:       "Subscribe",
@@ -716,6 +792,9 @@ var opSubscribe *aws.Operation
 
 // UnsubscribeRequest generates a request for the Unsubscribe operation.
 func (c *SNS) UnsubscribeRequest(input *UnsubscribeInput) (req *aws.Request, output *UnsubscribeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUnsubscribe == nil {
 		opUnsubscribe = &aws.Operation{
 			Name:       "Unsubscribe",

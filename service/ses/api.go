@@ -4,13 +4,19 @@
 package ses
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // DeleteIdentityRequest generates a request for the DeleteIdentity operation.
 func (c *SES) DeleteIdentityRequest(input *DeleteIdentityInput) (req *aws.Request, output *DeleteIdentityOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteIdentity == nil {
 		opDeleteIdentity = &aws.Operation{
 			Name:       "DeleteIdentity",
@@ -40,6 +46,9 @@ var opDeleteIdentity *aws.Operation
 
 // DeleteVerifiedEmailAddressRequest generates a request for the DeleteVerifiedEmailAddress operation.
 func (c *SES) DeleteVerifiedEmailAddressRequest(input *DeleteVerifiedEmailAddressInput) (req *aws.Request, output *DeleteVerifiedEmailAddressOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteVerifiedEmailAddress == nil {
 		opDeleteVerifiedEmailAddress = &aws.Operation{
 			Name:       "DeleteVerifiedEmailAddress",
@@ -70,6 +79,9 @@ var opDeleteVerifiedEmailAddress *aws.Operation
 
 // GetIdentityDKIMAttributesRequest generates a request for the GetIdentityDKIMAttributes operation.
 func (c *SES) GetIdentityDKIMAttributesRequest(input *GetIdentityDKIMAttributesInput) (req *aws.Request, output *GetIdentityDKIMAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetIdentityDKIMAttributes == nil {
 		opGetIdentityDKIMAttributes = &aws.Operation{
 			Name:       "GetIdentityDkimAttributes",
@@ -112,6 +124,9 @@ var opGetIdentityDKIMAttributes *aws.Operation
 
 // GetIdentityNotificationAttributesRequest generates a request for the GetIdentityNotificationAttributes operation.
 func (c *SES) GetIdentityNotificationAttributesRequest(input *GetIdentityNotificationAttributesInput) (req *aws.Request, output *GetIdentityNotificationAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetIdentityNotificationAttributes == nil {
 		opGetIdentityNotificationAttributes = &aws.Operation{
 			Name:       "GetIdentityNotificationAttributes",
@@ -144,6 +159,9 @@ var opGetIdentityNotificationAttributes *aws.Operation
 
 // GetIdentityVerificationAttributesRequest generates a request for the GetIdentityVerificationAttributes operation.
 func (c *SES) GetIdentityVerificationAttributesRequest(input *GetIdentityVerificationAttributesInput) (req *aws.Request, output *GetIdentityVerificationAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetIdentityVerificationAttributes == nil {
 		opGetIdentityVerificationAttributes = &aws.Operation{
 			Name:       "GetIdentityVerificationAttributes",
@@ -174,6 +192,9 @@ var opGetIdentityVerificationAttributes *aws.Operation
 
 // GetSendQuotaRequest generates a request for the GetSendQuota operation.
 func (c *SES) GetSendQuotaRequest(input *GetSendQuotaInput) (req *aws.Request, output *GetSendQuotaOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetSendQuota == nil {
 		opGetSendQuota = &aws.Operation{
 			Name:       "GetSendQuota",
@@ -202,6 +223,9 @@ var opGetSendQuota *aws.Operation
 
 // GetSendStatisticsRequest generates a request for the GetSendStatistics operation.
 func (c *SES) GetSendStatisticsRequest(input *GetSendStatisticsInput) (req *aws.Request, output *GetSendStatisticsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetSendStatistics == nil {
 		opGetSendStatistics = &aws.Operation{
 			Name:       "GetSendStatistics",
@@ -233,6 +257,9 @@ var opGetSendStatistics *aws.Operation
 
 // ListIdentitiesRequest generates a request for the ListIdentities operation.
 func (c *SES) ListIdentitiesRequest(input *ListIdentitiesInput) (req *aws.Request, output *ListIdentitiesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListIdentities == nil {
 		opListIdentities = &aws.Operation{
 			Name:       "ListIdentities",
@@ -262,6 +289,9 @@ var opListIdentities *aws.Operation
 
 // ListVerifiedEmailAddressesRequest generates a request for the ListVerifiedEmailAddresses operation.
 func (c *SES) ListVerifiedEmailAddressesRequest(input *ListVerifiedEmailAddressesInput) (req *aws.Request, output *ListVerifiedEmailAddressesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListVerifiedEmailAddresses == nil {
 		opListVerifiedEmailAddresses = &aws.Operation{
 			Name:       "ListVerifiedEmailAddresses",
@@ -292,6 +322,9 @@ var opListVerifiedEmailAddresses *aws.Operation
 
 // SendEmailRequest generates a request for the SendEmail operation.
 func (c *SES) SendEmailRequest(input *SendEmailInput) (req *aws.Request, output *SendEmailOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSendEmail == nil {
 		opSendEmail = &aws.Operation{
 			Name:       "SendEmail",
@@ -337,6 +370,9 @@ var opSendEmail *aws.Operation
 
 // SendRawEmailRequest generates a request for the SendRawEmail operation.
 func (c *SES) SendRawEmailRequest(input *SendRawEmailInput) (req *aws.Request, output *SendRawEmailOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSendRawEmail == nil {
 		opSendRawEmail = &aws.Operation{
 			Name:       "SendRawEmail",
@@ -389,6 +425,9 @@ var opSendRawEmail *aws.Operation
 
 // SetIdentityDKIMEnabledRequest generates a request for the SetIdentityDKIMEnabled operation.
 func (c *SES) SetIdentityDKIMEnabledRequest(input *SetIdentityDKIMEnabledInput) (req *aws.Request, output *SetIdentityDKIMEnabledOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetIdentityDKIMEnabled == nil {
 		opSetIdentityDKIMEnabled = &aws.Operation{
 			Name:       "SetIdentityDkimEnabled",
@@ -428,6 +467,9 @@ var opSetIdentityDKIMEnabled *aws.Operation
 
 // SetIdentityFeedbackForwardingEnabledRequest generates a request for the SetIdentityFeedbackForwardingEnabled operation.
 func (c *SES) SetIdentityFeedbackForwardingEnabledRequest(input *SetIdentityFeedbackForwardingEnabledInput) (req *aws.Request, output *SetIdentityFeedbackForwardingEnabledOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetIdentityFeedbackForwardingEnabled == nil {
 		opSetIdentityFeedbackForwardingEnabled = &aws.Operation{
 			Name:       "SetIdentityFeedbackForwardingEnabled",
@@ -462,6 +504,9 @@ var opSetIdentityFeedbackForwardingEnabled *aws.Operation
 
 // SetIdentityNotificationTopicRequest generates a request for the SetIdentityNotificationTopic operation.
 func (c *SES) SetIdentityNotificationTopicRequest(input *SetIdentityNotificationTopicInput) (req *aws.Request, output *SetIdentityNotificationTopicOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetIdentityNotificationTopic == nil {
 		opSetIdentityNotificationTopic = &aws.Operation{
 			Name:       "SetIdentityNotificationTopic",
@@ -495,6 +540,9 @@ var opSetIdentityNotificationTopic *aws.Operation
 
 // VerifyDomainDKIMRequest generates a request for the VerifyDomainDKIM operation.
 func (c *SES) VerifyDomainDKIMRequest(input *VerifyDomainDKIMInput) (req *aws.Request, output *VerifyDomainDKIMOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opVerifyDomainDKIM == nil {
 		opVerifyDomainDKIM = &aws.Operation{
 			Name:       "VerifyDomainDkim",
@@ -535,6 +583,9 @@ var opVerifyDomainDKIM *aws.Operation
 
 // VerifyDomainIdentityRequest generates a request for the VerifyDomainIdentity operation.
 func (c *SES) VerifyDomainIdentityRequest(input *VerifyDomainIdentityInput) (req *aws.Request, output *VerifyDomainIdentityOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opVerifyDomainIdentity == nil {
 		opVerifyDomainIdentity = &aws.Operation{
 			Name:       "VerifyDomainIdentity",
@@ -563,6 +614,9 @@ var opVerifyDomainIdentity *aws.Operation
 
 // VerifyEmailAddressRequest generates a request for the VerifyEmailAddress operation.
 func (c *SES) VerifyEmailAddressRequest(input *VerifyEmailAddressInput) (req *aws.Request, output *VerifyEmailAddressOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opVerifyEmailAddress == nil {
 		opVerifyEmailAddress = &aws.Operation{
 			Name:       "VerifyEmailAddress",
@@ -594,6 +648,9 @@ var opVerifyEmailAddress *aws.Operation
 
 // VerifyEmailIdentityRequest generates a request for the VerifyEmailIdentity operation.
 func (c *SES) VerifyEmailIdentityRequest(input *VerifyEmailIdentityInput) (req *aws.Request, output *VerifyEmailIdentityOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opVerifyEmailIdentity == nil {
 		opVerifyEmailIdentity = &aws.Operation{
 			Name:       "VerifyEmailIdentity",

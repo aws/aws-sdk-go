@@ -4,13 +4,19 @@
 package sts
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // AssumeRoleRequest generates a request for the AssumeRole operation.
 func (c *STS) AssumeRoleRequest(input *AssumeRoleInput) (req *aws.Request, output *AssumeRoleOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAssumeRole == nil {
 		opAssumeRole = &aws.Operation{
 			Name:       "AssumeRole",
@@ -107,6 +113,9 @@ var opAssumeRole *aws.Operation
 
 // AssumeRoleWithSAMLRequest generates a request for the AssumeRoleWithSAML operation.
 func (c *STS) AssumeRoleWithSAMLRequest(input *AssumeRoleWithSAMLInput) (req *aws.Request, output *AssumeRoleWithSAMLOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAssumeRoleWithSAML == nil {
 		opAssumeRoleWithSAML = &aws.Operation{
 			Name:       "AssumeRoleWithSAML",
@@ -175,6 +184,9 @@ var opAssumeRoleWithSAML *aws.Operation
 
 // AssumeRoleWithWebIdentityRequest generates a request for the AssumeRoleWithWebIdentity operation.
 func (c *STS) AssumeRoleWithWebIdentityRequest(input *AssumeRoleWithWebIdentityInput) (req *aws.Request, output *AssumeRoleWithWebIdentityOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAssumeRoleWithWebIdentity == nil {
 		opAssumeRoleWithWebIdentity = &aws.Operation{
 			Name:       "AssumeRoleWithWebIdentity",
@@ -256,6 +268,9 @@ var opAssumeRoleWithWebIdentity *aws.Operation
 
 // DecodeAuthorizationMessageRequest generates a request for the DecodeAuthorizationMessage operation.
 func (c *STS) DecodeAuthorizationMessageRequest(input *DecodeAuthorizationMessageInput) (req *aws.Request, output *DecodeAuthorizationMessageOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDecodeAuthorizationMessage == nil {
 		opDecodeAuthorizationMessage = &aws.Operation{
 			Name:       "DecodeAuthorizationMessage",
@@ -303,6 +318,9 @@ var opDecodeAuthorizationMessage *aws.Operation
 
 // GetFederationTokenRequest generates a request for the GetFederationToken operation.
 func (c *STS) GetFederationTokenRequest(input *GetFederationTokenInput) (req *aws.Request, output *GetFederationTokenOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetFederationToken == nil {
 		opGetFederationToken = &aws.Operation{
 			Name:       "GetFederationToken",
@@ -390,6 +408,9 @@ var opGetFederationToken *aws.Operation
 
 // GetSessionTokenRequest generates a request for the GetSessionToken operation.
 func (c *STS) GetSessionTokenRequest(input *GetSessionTokenInput) (req *aws.Request, output *GetSessionTokenOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetSessionToken == nil {
 		opGetSessionToken = &aws.Operation{
 			Name:       "GetSessionToken",

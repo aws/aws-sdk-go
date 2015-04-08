@@ -4,11 +4,18 @@
 package kinesis
 
 import (
+	"sync"
+
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // AddTagsToStreamRequest generates a request for the AddTagsToStream operation.
 func (c *Kinesis) AddTagsToStreamRequest(input *AddTagsToStreamInput) (req *aws.Request, output *AddTagsToStreamOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAddTagsToStream == nil {
 		opAddTagsToStream = &aws.Operation{
 			Name:       "AddTagsToStream",
@@ -39,6 +46,9 @@ var opAddTagsToStream *aws.Operation
 
 // CreateStreamRequest generates a request for the CreateStream operation.
 func (c *Kinesis) CreateStreamRequest(input *CreateStreamInput) (req *aws.Request, output *CreateStreamOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateStream == nil {
 		opCreateStream = &aws.Operation{
 			Name:       "CreateStream",
@@ -101,6 +111,9 @@ var opCreateStream *aws.Operation
 
 // DeleteStreamRequest generates a request for the DeleteStream operation.
 func (c *Kinesis) DeleteStreamRequest(input *DeleteStreamInput) (req *aws.Request, output *DeleteStreamOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteStream == nil {
 		opDeleteStream = &aws.Operation{
 			Name:       "DeleteStream",
@@ -145,6 +158,9 @@ var opDeleteStream *aws.Operation
 
 // DescribeStreamRequest generates a request for the DescribeStream operation.
 func (c *Kinesis) DescribeStreamRequest(input *DescribeStreamInput) (req *aws.Request, output *DescribeStreamOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeStream == nil {
 		opDescribeStream = &aws.Operation{
 			Name:       "DescribeStream",
@@ -192,6 +208,9 @@ var opDescribeStream *aws.Operation
 
 // GetRecordsRequest generates a request for the GetRecords operation.
 func (c *Kinesis) GetRecordsRequest(input *GetRecordsInput) (req *aws.Request, output *GetRecordsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetRecords == nil {
 		opGetRecords = &aws.Operation{
 			Name:       "GetRecords",
@@ -262,6 +281,9 @@ var opGetRecords *aws.Operation
 
 // GetShardIteratorRequest generates a request for the GetShardIterator operation.
 func (c *Kinesis) GetShardIteratorRequest(input *GetShardIteratorInput) (req *aws.Request, output *GetShardIteratorOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetShardIterator == nil {
 		opGetShardIterator = &aws.Operation{
 			Name:       "GetShardIterator",
@@ -324,6 +346,9 @@ var opGetShardIterator *aws.Operation
 
 // ListStreamsRequest generates a request for the ListStreams operation.
 func (c *Kinesis) ListStreamsRequest(input *ListStreamsInput) (req *aws.Request, output *ListStreamsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListStreams == nil {
 		opListStreams = &aws.Operation{
 			Name:       "ListStreams",
@@ -365,6 +390,9 @@ var opListStreams *aws.Operation
 
 // ListTagsForStreamRequest generates a request for the ListTagsForStream operation.
 func (c *Kinesis) ListTagsForStreamRequest(input *ListTagsForStreamInput) (req *aws.Request, output *ListTagsForStreamOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListTagsForStream == nil {
 		opListTagsForStream = &aws.Operation{
 			Name:       "ListTagsForStream",
@@ -391,6 +419,9 @@ var opListTagsForStream *aws.Operation
 
 // MergeShardsRequest generates a request for the MergeShards operation.
 func (c *Kinesis) MergeShardsRequest(input *MergeShardsInput) (req *aws.Request, output *MergeShardsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opMergeShards == nil {
 		opMergeShards = &aws.Operation{
 			Name:       "MergeShards",
@@ -451,6 +482,9 @@ var opMergeShards *aws.Operation
 
 // PutRecordRequest generates a request for the PutRecord operation.
 func (c *Kinesis) PutRecordRequest(input *PutRecordInput) (req *aws.Request, output *PutRecordOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutRecord == nil {
 		opPutRecord = &aws.Operation{
 			Name:       "PutRecord",
@@ -514,6 +548,9 @@ var opPutRecord *aws.Operation
 
 // PutRecordsRequest generates a request for the PutRecords operation.
 func (c *Kinesis) PutRecordsRequest(input *PutRecordsInput) (req *aws.Request, output *PutRecordsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutRecords == nil {
 		opPutRecords = &aws.Operation{
 			Name:       "PutRecords",
@@ -592,6 +629,9 @@ var opPutRecords *aws.Operation
 
 // RemoveTagsFromStreamRequest generates a request for the RemoveTagsFromStream operation.
 func (c *Kinesis) RemoveTagsFromStreamRequest(input *RemoveTagsFromStreamInput) (req *aws.Request, output *RemoveTagsFromStreamOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRemoveTagsFromStream == nil {
 		opRemoveTagsFromStream = &aws.Operation{
 			Name:       "RemoveTagsFromStream",
@@ -620,6 +660,9 @@ var opRemoveTagsFromStream *aws.Operation
 
 // SplitShardRequest generates a request for the SplitShard operation.
 func (c *Kinesis) SplitShardRequest(input *SplitShardInput) (req *aws.Request, output *SplitShardOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSplitShard == nil {
 		opSplitShard = &aws.Operation{
 			Name:       "SplitShard",

@@ -4,11 +4,18 @@
 package sqs
 
 import (
+	"sync"
+
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // AddPermissionRequest generates a request for the AddPermission operation.
 func (c *SQS) AddPermissionRequest(input *AddPermissionInput) (req *aws.Request, output *AddPermissionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAddPermission == nil {
 		opAddPermission = &aws.Operation{
 			Name:       "AddPermission",
@@ -52,6 +59,9 @@ var opAddPermission *aws.Operation
 
 // ChangeMessageVisibilityRequest generates a request for the ChangeMessageVisibility operation.
 func (c *SQS) ChangeMessageVisibilityRequest(input *ChangeMessageVisibilityInput) (req *aws.Request, output *ChangeMessageVisibilityOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opChangeMessageVisibility == nil {
 		opChangeMessageVisibility = &aws.Operation{
 			Name:       "ChangeMessageVisibility",
@@ -107,6 +117,9 @@ var opChangeMessageVisibility *aws.Operation
 
 // ChangeMessageVisibilityBatchRequest generates a request for the ChangeMessageVisibilityBatch operation.
 func (c *SQS) ChangeMessageVisibilityBatchRequest(input *ChangeMessageVisibilityBatchInput) (req *aws.Request, output *ChangeMessageVisibilityBatchOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opChangeMessageVisibilityBatch == nil {
 		opChangeMessageVisibilityBatch = &aws.Operation{
 			Name:       "ChangeMessageVisibilityBatch",
@@ -145,6 +158,9 @@ var opChangeMessageVisibilityBatch *aws.Operation
 
 // CreateQueueRequest generates a request for the CreateQueue operation.
 func (c *SQS) CreateQueueRequest(input *CreateQueueInput) (req *aws.Request, output *CreateQueueOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateQueue == nil {
 		opCreateQueue = &aws.Operation{
 			Name:       "CreateQueue",
@@ -195,6 +211,9 @@ var opCreateQueue *aws.Operation
 
 // DeleteMessageRequest generates a request for the DeleteMessage operation.
 func (c *SQS) DeleteMessageRequest(input *DeleteMessageInput) (req *aws.Request, output *DeleteMessageOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteMessage == nil {
 		opDeleteMessage = &aws.Operation{
 			Name:       "DeleteMessage",
@@ -240,6 +259,9 @@ var opDeleteMessage *aws.Operation
 
 // DeleteMessageBatchRequest generates a request for the DeleteMessageBatch operation.
 func (c *SQS) DeleteMessageBatchRequest(input *DeleteMessageBatchInput) (req *aws.Request, output *DeleteMessageBatchOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteMessageBatch == nil {
 		opDeleteMessageBatch = &aws.Operation{
 			Name:       "DeleteMessageBatch",
@@ -278,6 +300,9 @@ var opDeleteMessageBatch *aws.Operation
 
 // DeleteQueueRequest generates a request for the DeleteQueue operation.
 func (c *SQS) DeleteQueueRequest(input *DeleteQueueInput) (req *aws.Request, output *DeleteQueueOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteQueue == nil {
 		opDeleteQueue = &aws.Operation{
 			Name:       "DeleteQueue",
@@ -320,6 +345,9 @@ var opDeleteQueue *aws.Operation
 
 // GetQueueAttributesRequest generates a request for the GetQueueAttributes operation.
 func (c *SQS) GetQueueAttributesRequest(input *GetQueueAttributesInput) (req *aws.Request, output *GetQueueAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetQueueAttributes == nil {
 		opGetQueueAttributes = &aws.Operation{
 			Name:       "GetQueueAttributes",
@@ -380,6 +408,9 @@ var opGetQueueAttributes *aws.Operation
 
 // GetQueueURLRequest generates a request for the GetQueueURL operation.
 func (c *SQS) GetQueueURLRequest(input *GetQueueURLInput) (req *aws.Request, output *GetQueueURLOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetQueueURL == nil {
 		opGetQueueURL = &aws.Operation{
 			Name:       "GetQueueUrl",
@@ -413,6 +444,9 @@ var opGetQueueURL *aws.Operation
 
 // ListDeadLetterSourceQueuesRequest generates a request for the ListDeadLetterSourceQueues operation.
 func (c *SQS) ListDeadLetterSourceQueuesRequest(input *ListDeadLetterSourceQueuesInput) (req *aws.Request, output *ListDeadLetterSourceQueuesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListDeadLetterSourceQueues == nil {
 		opListDeadLetterSourceQueues = &aws.Operation{
 			Name:       "ListDeadLetterSourceQueues",
@@ -443,6 +477,9 @@ var opListDeadLetterSourceQueues *aws.Operation
 
 // ListQueuesRequest generates a request for the ListQueues operation.
 func (c *SQS) ListQueuesRequest(input *ListQueuesInput) (req *aws.Request, output *ListQueuesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListQueues == nil {
 		opListQueues = &aws.Operation{
 			Name:       "ListQueues",
@@ -471,6 +508,9 @@ var opListQueues *aws.Operation
 
 // PurgeQueueRequest generates a request for the PurgeQueue operation.
 func (c *SQS) PurgeQueueRequest(input *PurgeQueueInput) (req *aws.Request, output *PurgeQueueOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPurgeQueue == nil {
 		opPurgeQueue = &aws.Operation{
 			Name:       "PurgeQueue",
@@ -505,6 +545,9 @@ var opPurgeQueue *aws.Operation
 
 // ReceiveMessageRequest generates a request for the ReceiveMessage operation.
 func (c *SQS) ReceiveMessageRequest(input *ReceiveMessageInput) (req *aws.Request, output *ReceiveMessageOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opReceiveMessage == nil {
 		opReceiveMessage = &aws.Operation{
 			Name:       "ReceiveMessage",
@@ -572,6 +615,9 @@ var opReceiveMessage *aws.Operation
 
 // RemovePermissionRequest generates a request for the RemovePermission operation.
 func (c *SQS) RemovePermissionRequest(input *RemovePermissionInput) (req *aws.Request, output *RemovePermissionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRemovePermission == nil {
 		opRemovePermission = &aws.Operation{
 			Name:       "RemovePermission",
@@ -599,6 +645,9 @@ var opRemovePermission *aws.Operation
 
 // SendMessageRequest generates a request for the SendMessage operation.
 func (c *SQS) SendMessageRequest(input *SendMessageInput) (req *aws.Request, output *SendMessageOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSendMessage == nil {
 		opSendMessage = &aws.Operation{
 			Name:       "SendMessage",
@@ -636,6 +685,9 @@ var opSendMessage *aws.Operation
 
 // SendMessageBatchRequest generates a request for the SendMessageBatch operation.
 func (c *SQS) SendMessageBatchRequest(input *SendMessageBatchInput) (req *aws.Request, output *SendMessageBatchOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSendMessageBatch == nil {
 		opSendMessageBatch = &aws.Operation{
 			Name:       "SendMessageBatch",
@@ -687,6 +739,9 @@ var opSendMessageBatch *aws.Operation
 
 // SetQueueAttributesRequest generates a request for the SetQueueAttributes operation.
 func (c *SQS) SetQueueAttributesRequest(input *SetQueueAttributesInput) (req *aws.Request, output *SetQueueAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetQueueAttributes == nil {
 		opSetQueueAttributes = &aws.Operation{
 			Name:       "SetQueueAttributes",

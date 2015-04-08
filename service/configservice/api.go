@@ -4,13 +4,19 @@
 package configservice
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // DeleteDeliveryChannelRequest generates a request for the DeleteDeliveryChannel operation.
 func (c *ConfigService) DeleteDeliveryChannelRequest(input *DeleteDeliveryChannelInput) (req *aws.Request, output *DeleteDeliveryChannelOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteDeliveryChannel == nil {
 		opDeleteDeliveryChannel = &aws.Operation{
 			Name:       "DeleteDeliveryChannel",
@@ -42,6 +48,9 @@ var opDeleteDeliveryChannel *aws.Operation
 
 // DeliverConfigSnapshotRequest generates a request for the DeliverConfigSnapshot operation.
 func (c *ConfigService) DeliverConfigSnapshotRequest(input *DeliverConfigSnapshotInput) (req *aws.Request, output *DeliverConfigSnapshotOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeliverConfigSnapshot == nil {
 		opDeliverConfigSnapshot = &aws.Operation{
 			Name:       "DeliverConfigSnapshot",
@@ -74,6 +83,9 @@ var opDeliverConfigSnapshot *aws.Operation
 
 // DescribeConfigurationRecorderStatusRequest generates a request for the DescribeConfigurationRecorderStatus operation.
 func (c *ConfigService) DescribeConfigurationRecorderStatusRequest(input *DescribeConfigurationRecorderStatusInput) (req *aws.Request, output *DescribeConfigurationRecorderStatusOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeConfigurationRecorderStatus == nil {
 		opDescribeConfigurationRecorderStatus = &aws.Operation{
 			Name:       "DescribeConfigurationRecorderStatus",
@@ -102,6 +114,9 @@ var opDescribeConfigurationRecorderStatus *aws.Operation
 
 // DescribeConfigurationRecordersRequest generates a request for the DescribeConfigurationRecorders operation.
 func (c *ConfigService) DescribeConfigurationRecordersRequest(input *DescribeConfigurationRecordersInput) (req *aws.Request, output *DescribeConfigurationRecordersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeConfigurationRecorders == nil {
 		opDescribeConfigurationRecorders = &aws.Operation{
 			Name:       "DescribeConfigurationRecorders",
@@ -130,6 +145,9 @@ var opDescribeConfigurationRecorders *aws.Operation
 
 // DescribeDeliveryChannelStatusRequest generates a request for the DescribeDeliveryChannelStatus operation.
 func (c *ConfigService) DescribeDeliveryChannelStatusRequest(input *DescribeDeliveryChannelStatusInput) (req *aws.Request, output *DescribeDeliveryChannelStatusOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeDeliveryChannelStatus == nil {
 		opDescribeDeliveryChannelStatus = &aws.Operation{
 			Name:       "DescribeDeliveryChannelStatus",
@@ -158,6 +176,9 @@ var opDescribeDeliveryChannelStatus *aws.Operation
 
 // DescribeDeliveryChannelsRequest generates a request for the DescribeDeliveryChannels operation.
 func (c *ConfigService) DescribeDeliveryChannelsRequest(input *DescribeDeliveryChannelsInput) (req *aws.Request, output *DescribeDeliveryChannelsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeDeliveryChannels == nil {
 		opDescribeDeliveryChannels = &aws.Operation{
 			Name:       "DescribeDeliveryChannels",
@@ -186,6 +207,9 @@ var opDescribeDeliveryChannels *aws.Operation
 
 // GetResourceConfigHistoryRequest generates a request for the GetResourceConfigHistory operation.
 func (c *ConfigService) GetResourceConfigHistoryRequest(input *GetResourceConfigHistoryInput) (req *aws.Request, output *GetResourceConfigHistoryOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetResourceConfigHistory == nil {
 		opGetResourceConfigHistory = &aws.Operation{
 			Name:       "GetResourceConfigHistory",
@@ -216,6 +240,9 @@ var opGetResourceConfigHistory *aws.Operation
 
 // PutConfigurationRecorderRequest generates a request for the PutConfigurationRecorder operation.
 func (c *ConfigService) PutConfigurationRecorderRequest(input *PutConfigurationRecorderInput) (req *aws.Request, output *PutConfigurationRecorderOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutConfigurationRecorder == nil {
 		opPutConfigurationRecorder = &aws.Operation{
 			Name:       "PutConfigurationRecorder",
@@ -246,6 +273,9 @@ var opPutConfigurationRecorder *aws.Operation
 
 // PutDeliveryChannelRequest generates a request for the PutDeliveryChannel operation.
 func (c *ConfigService) PutDeliveryChannelRequest(input *PutDeliveryChannelInput) (req *aws.Request, output *PutDeliveryChannelOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutDeliveryChannel == nil {
 		opPutDeliveryChannel = &aws.Operation{
 			Name:       "PutDeliveryChannel",
@@ -280,6 +310,9 @@ var opPutDeliveryChannel *aws.Operation
 
 // StartConfigurationRecorderRequest generates a request for the StartConfigurationRecorder operation.
 func (c *ConfigService) StartConfigurationRecorderRequest(input *StartConfigurationRecorderInput) (req *aws.Request, output *StartConfigurationRecorderOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opStartConfigurationRecorder == nil {
 		opStartConfigurationRecorder = &aws.Operation{
 			Name:       "StartConfigurationRecorder",
@@ -310,6 +343,9 @@ var opStartConfigurationRecorder *aws.Operation
 
 // StopConfigurationRecorderRequest generates a request for the StopConfigurationRecorder operation.
 func (c *ConfigService) StopConfigurationRecorderRequest(input *StopConfigurationRecorderInput) (req *aws.Request, output *StopConfigurationRecorderOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opStopConfigurationRecorder == nil {
 		opStopConfigurationRecorder = &aws.Operation{
 			Name:       "StopConfigurationRecorder",

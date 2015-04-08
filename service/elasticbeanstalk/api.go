@@ -4,13 +4,19 @@
 package elasticbeanstalk
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // CheckDNSAvailabilityRequest generates a request for the CheckDNSAvailability operation.
 func (c *ElasticBeanstalk) CheckDNSAvailabilityRequest(input *CheckDNSAvailabilityInput) (req *aws.Request, output *CheckDNSAvailabilityOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCheckDNSAvailability == nil {
 		opCheckDNSAvailability = &aws.Operation{
 			Name:       "CheckDNSAvailability",
@@ -37,6 +43,9 @@ var opCheckDNSAvailability *aws.Operation
 
 // CreateApplicationRequest generates a request for the CreateApplication operation.
 func (c *ElasticBeanstalk) CreateApplicationRequest(input *CreateApplicationInput) (req *aws.Request, output *ApplicationDescriptionMessage) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateApplication == nil {
 		opCreateApplication = &aws.Operation{
 			Name:       "CreateApplication",
@@ -64,6 +73,9 @@ var opCreateApplication *aws.Operation
 
 // CreateApplicationVersionRequest generates a request for the CreateApplicationVersion operation.
 func (c *ElasticBeanstalk) CreateApplicationVersionRequest(input *CreateApplicationVersionInput) (req *aws.Request, output *ApplicationVersionDescriptionMessage) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateApplicationVersion == nil {
 		opCreateApplicationVersion = &aws.Operation{
 			Name:       "CreateApplicationVersion",
@@ -90,6 +102,9 @@ var opCreateApplicationVersion *aws.Operation
 
 // CreateConfigurationTemplateRequest generates a request for the CreateConfigurationTemplate operation.
 func (c *ElasticBeanstalk) CreateConfigurationTemplateRequest(input *CreateConfigurationTemplateInput) (req *aws.Request, output *ConfigurationSettingsDescription) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateConfigurationTemplate == nil {
 		opCreateConfigurationTemplate = &aws.Operation{
 			Name:       "CreateConfigurationTemplate",
@@ -122,6 +137,9 @@ var opCreateConfigurationTemplate *aws.Operation
 
 // CreateEnvironmentRequest generates a request for the CreateEnvironment operation.
 func (c *ElasticBeanstalk) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req *aws.Request, output *EnvironmentDescription) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateEnvironment == nil {
 		opCreateEnvironment = &aws.Operation{
 			Name:       "CreateEnvironment",
@@ -149,6 +167,9 @@ var opCreateEnvironment *aws.Operation
 
 // CreateStorageLocationRequest generates a request for the CreateStorageLocation operation.
 func (c *ElasticBeanstalk) CreateStorageLocationRequest(input *CreateStorageLocationInput) (req *aws.Request, output *CreateStorageLocationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateStorageLocation == nil {
 		opCreateStorageLocation = &aws.Operation{
 			Name:       "CreateStorageLocation",
@@ -177,6 +198,9 @@ var opCreateStorageLocation *aws.Operation
 
 // DeleteApplicationRequest generates a request for the DeleteApplication operation.
 func (c *ElasticBeanstalk) DeleteApplicationRequest(input *DeleteApplicationInput) (req *aws.Request, output *DeleteApplicationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteApplication == nil {
 		opDeleteApplication = &aws.Operation{
 			Name:       "DeleteApplication",
@@ -205,6 +229,9 @@ var opDeleteApplication *aws.Operation
 
 // DeleteApplicationVersionRequest generates a request for the DeleteApplicationVersion operation.
 func (c *ElasticBeanstalk) DeleteApplicationVersionRequest(input *DeleteApplicationVersionInput) (req *aws.Request, output *DeleteApplicationVersionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteApplicationVersion == nil {
 		opDeleteApplicationVersion = &aws.Operation{
 			Name:       "DeleteApplicationVersion",
@@ -231,6 +258,9 @@ var opDeleteApplicationVersion *aws.Operation
 
 // DeleteConfigurationTemplateRequest generates a request for the DeleteConfigurationTemplate operation.
 func (c *ElasticBeanstalk) DeleteConfigurationTemplateRequest(input *DeleteConfigurationTemplateInput) (req *aws.Request, output *DeleteConfigurationTemplateOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteConfigurationTemplate == nil {
 		opDeleteConfigurationTemplate = &aws.Operation{
 			Name:       "DeleteConfigurationTemplate",
@@ -257,6 +287,9 @@ var opDeleteConfigurationTemplate *aws.Operation
 
 // DeleteEnvironmentConfigurationRequest generates a request for the DeleteEnvironmentConfiguration operation.
 func (c *ElasticBeanstalk) DeleteEnvironmentConfigurationRequest(input *DeleteEnvironmentConfigurationInput) (req *aws.Request, output *DeleteEnvironmentConfigurationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteEnvironmentConfiguration == nil {
 		opDeleteEnvironmentConfiguration = &aws.Operation{
 			Name:       "DeleteEnvironmentConfiguration",
@@ -290,6 +323,9 @@ var opDeleteEnvironmentConfiguration *aws.Operation
 
 // DescribeApplicationVersionsRequest generates a request for the DescribeApplicationVersions operation.
 func (c *ElasticBeanstalk) DescribeApplicationVersionsRequest(input *DescribeApplicationVersionsInput) (req *aws.Request, output *DescribeApplicationVersionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeApplicationVersions == nil {
 		opDescribeApplicationVersions = &aws.Operation{
 			Name:       "DescribeApplicationVersions",
@@ -316,6 +352,9 @@ var opDescribeApplicationVersions *aws.Operation
 
 // DescribeApplicationsRequest generates a request for the DescribeApplications operation.
 func (c *ElasticBeanstalk) DescribeApplicationsRequest(input *DescribeApplicationsInput) (req *aws.Request, output *DescribeApplicationsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeApplications == nil {
 		opDescribeApplications = &aws.Operation{
 			Name:       "DescribeApplications",
@@ -342,6 +381,9 @@ var opDescribeApplications *aws.Operation
 
 // DescribeConfigurationOptionsRequest generates a request for the DescribeConfigurationOptions operation.
 func (c *ElasticBeanstalk) DescribeConfigurationOptionsRequest(input *DescribeConfigurationOptionsInput) (req *aws.Request, output *DescribeConfigurationOptionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeConfigurationOptions == nil {
 		opDescribeConfigurationOptions = &aws.Operation{
 			Name:       "DescribeConfigurationOptions",
@@ -372,6 +414,9 @@ var opDescribeConfigurationOptions *aws.Operation
 
 // DescribeConfigurationSettingsRequest generates a request for the DescribeConfigurationSettings operation.
 func (c *ElasticBeanstalk) DescribeConfigurationSettingsRequest(input *DescribeConfigurationSettingsInput) (req *aws.Request, output *DescribeConfigurationSettingsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeConfigurationSettings == nil {
 		opDescribeConfigurationSettings = &aws.Operation{
 			Name:       "DescribeConfigurationSettings",
@@ -410,6 +455,9 @@ var opDescribeConfigurationSettings *aws.Operation
 
 // DescribeEnvironmentResourcesRequest generates a request for the DescribeEnvironmentResources operation.
 func (c *ElasticBeanstalk) DescribeEnvironmentResourcesRequest(input *DescribeEnvironmentResourcesInput) (req *aws.Request, output *DescribeEnvironmentResourcesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeEnvironmentResources == nil {
 		opDescribeEnvironmentResources = &aws.Operation{
 			Name:       "DescribeEnvironmentResources",
@@ -436,6 +484,9 @@ var opDescribeEnvironmentResources *aws.Operation
 
 // DescribeEnvironmentsRequest generates a request for the DescribeEnvironments operation.
 func (c *ElasticBeanstalk) DescribeEnvironmentsRequest(input *DescribeEnvironmentsInput) (req *aws.Request, output *DescribeEnvironmentsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeEnvironments == nil {
 		opDescribeEnvironments = &aws.Operation{
 			Name:       "DescribeEnvironments",
@@ -462,6 +513,9 @@ var opDescribeEnvironments *aws.Operation
 
 // DescribeEventsRequest generates a request for the DescribeEvents operation.
 func (c *ElasticBeanstalk) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Request, output *DescribeEventsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeEvents == nil {
 		opDescribeEvents = &aws.Operation{
 			Name:       "DescribeEvents",
@@ -488,6 +542,9 @@ var opDescribeEvents *aws.Operation
 
 // ListAvailableSolutionStacksRequest generates a request for the ListAvailableSolutionStacks operation.
 func (c *ElasticBeanstalk) ListAvailableSolutionStacksRequest(input *ListAvailableSolutionStacksInput) (req *aws.Request, output *ListAvailableSolutionStacksOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListAvailableSolutionStacks == nil {
 		opListAvailableSolutionStacks = &aws.Operation{
 			Name:       "ListAvailableSolutionStacks",
@@ -514,6 +571,9 @@ var opListAvailableSolutionStacks *aws.Operation
 
 // RebuildEnvironmentRequest generates a request for the RebuildEnvironment operation.
 func (c *ElasticBeanstalk) RebuildEnvironmentRequest(input *RebuildEnvironmentInput) (req *aws.Request, output *RebuildEnvironmentOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRebuildEnvironment == nil {
 		opRebuildEnvironment = &aws.Operation{
 			Name:       "RebuildEnvironment",
@@ -541,6 +601,9 @@ var opRebuildEnvironment *aws.Operation
 
 // RequestEnvironmentInfoRequest generates a request for the RequestEnvironmentInfo operation.
 func (c *ElasticBeanstalk) RequestEnvironmentInfoRequest(input *RequestEnvironmentInfoInput) (req *aws.Request, output *RequestEnvironmentInfoOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRequestEnvironmentInfo == nil {
 		opRequestEnvironmentInfo = &aws.Operation{
 			Name:       "RequestEnvironmentInfo",
@@ -576,6 +639,9 @@ var opRequestEnvironmentInfo *aws.Operation
 
 // RestartAppServerRequest generates a request for the RestartAppServer operation.
 func (c *ElasticBeanstalk) RestartAppServerRequest(input *RestartAppServerInput) (req *aws.Request, output *RestartAppServerOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRestartAppServer == nil {
 		opRestartAppServer = &aws.Operation{
 			Name:       "RestartAppServer",
@@ -603,6 +669,9 @@ var opRestartAppServer *aws.Operation
 
 // RetrieveEnvironmentInfoRequest generates a request for the RetrieveEnvironmentInfo operation.
 func (c *ElasticBeanstalk) RetrieveEnvironmentInfoRequest(input *RetrieveEnvironmentInfoInput) (req *aws.Request, output *RetrieveEnvironmentInfoOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRetrieveEnvironmentInfo == nil {
 		opRetrieveEnvironmentInfo = &aws.Operation{
 			Name:       "RetrieveEnvironmentInfo",
@@ -633,6 +702,9 @@ var opRetrieveEnvironmentInfo *aws.Operation
 
 // SwapEnvironmentCNAMEsRequest generates a request for the SwapEnvironmentCNAMEs operation.
 func (c *ElasticBeanstalk) SwapEnvironmentCNAMEsRequest(input *SwapEnvironmentCNAMEsInput) (req *aws.Request, output *SwapEnvironmentCNAMEsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSwapEnvironmentCNAMEs == nil {
 		opSwapEnvironmentCNAMEs = &aws.Operation{
 			Name:       "SwapEnvironmentCNAMEs",
@@ -659,6 +731,9 @@ var opSwapEnvironmentCNAMEs *aws.Operation
 
 // TerminateEnvironmentRequest generates a request for the TerminateEnvironment operation.
 func (c *ElasticBeanstalk) TerminateEnvironmentRequest(input *TerminateEnvironmentInput) (req *aws.Request, output *EnvironmentDescription) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opTerminateEnvironment == nil {
 		opTerminateEnvironment = &aws.Operation{
 			Name:       "TerminateEnvironment",
@@ -685,6 +760,9 @@ var opTerminateEnvironment *aws.Operation
 
 // UpdateApplicationRequest generates a request for the UpdateApplication operation.
 func (c *ElasticBeanstalk) UpdateApplicationRequest(input *UpdateApplicationInput) (req *aws.Request, output *ApplicationDescriptionMessage) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateApplication == nil {
 		opUpdateApplication = &aws.Operation{
 			Name:       "UpdateApplication",
@@ -711,6 +789,9 @@ var opUpdateApplication *aws.Operation
 
 // UpdateApplicationVersionRequest generates a request for the UpdateApplicationVersion operation.
 func (c *ElasticBeanstalk) UpdateApplicationVersionRequest(input *UpdateApplicationVersionInput) (req *aws.Request, output *ApplicationVersionDescriptionMessage) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateApplicationVersion == nil {
 		opUpdateApplicationVersion = &aws.Operation{
 			Name:       "UpdateApplicationVersion",
@@ -737,6 +818,9 @@ var opUpdateApplicationVersion *aws.Operation
 
 // UpdateConfigurationTemplateRequest generates a request for the UpdateConfigurationTemplate operation.
 func (c *ElasticBeanstalk) UpdateConfigurationTemplateRequest(input *UpdateConfigurationTemplateInput) (req *aws.Request, output *ConfigurationSettingsDescription) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateConfigurationTemplate == nil {
 		opUpdateConfigurationTemplate = &aws.Operation{
 			Name:       "UpdateConfigurationTemplate",
@@ -768,6 +852,9 @@ var opUpdateConfigurationTemplate *aws.Operation
 
 // UpdateEnvironmentRequest generates a request for the UpdateEnvironment operation.
 func (c *ElasticBeanstalk) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req *aws.Request, output *EnvironmentDescription) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateEnvironment == nil {
 		opUpdateEnvironment = &aws.Operation{
 			Name:       "UpdateEnvironment",
@@ -804,6 +891,9 @@ var opUpdateEnvironment *aws.Operation
 
 // ValidateConfigurationSettingsRequest generates a request for the ValidateConfigurationSettings operation.
 func (c *ElasticBeanstalk) ValidateConfigurationSettingsRequest(input *ValidateConfigurationSettingsInput) (req *aws.Request, output *ValidateConfigurationSettingsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opValidateConfigurationSettings == nil {
 		opValidateConfigurationSettings = &aws.Operation{
 			Name:       "ValidateConfigurationSettings",

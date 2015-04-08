@@ -4,13 +4,19 @@
 package swf
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // CountClosedWorkflowExecutionsRequest generates a request for the CountClosedWorkflowExecutions operation.
 func (c *SWF) CountClosedWorkflowExecutionsRequest(input *CountClosedWorkflowExecutionsInput) (req *aws.Request, output *WorkflowExecutionCount) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCountClosedWorkflowExecutions == nil {
 		opCountClosedWorkflowExecutions = &aws.Operation{
 			Name:       "CountClosedWorkflowExecutions",
@@ -56,6 +62,9 @@ var opCountClosedWorkflowExecutions *aws.Operation
 
 // CountOpenWorkflowExecutionsRequest generates a request for the CountOpenWorkflowExecutions operation.
 func (c *SWF) CountOpenWorkflowExecutionsRequest(input *CountOpenWorkflowExecutionsInput) (req *aws.Request, output *WorkflowExecutionCount) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCountOpenWorkflowExecutions == nil {
 		opCountOpenWorkflowExecutions = &aws.Operation{
 			Name:       "CountOpenWorkflowExecutions",
@@ -101,6 +110,9 @@ var opCountOpenWorkflowExecutions *aws.Operation
 
 // CountPendingActivityTasksRequest generates a request for the CountPendingActivityTasks operation.
 func (c *SWF) CountPendingActivityTasksRequest(input *CountPendingActivityTasksInput) (req *aws.Request, output *PendingTaskCount) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCountPendingActivityTasks == nil {
 		opCountPendingActivityTasks = &aws.Operation{
 			Name:       "CountPendingActivityTasks",
@@ -145,6 +157,9 @@ var opCountPendingActivityTasks *aws.Operation
 
 // CountPendingDecisionTasksRequest generates a request for the CountPendingDecisionTasks operation.
 func (c *SWF) CountPendingDecisionTasksRequest(input *CountPendingDecisionTasksInput) (req *aws.Request, output *PendingTaskCount) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCountPendingDecisionTasks == nil {
 		opCountPendingDecisionTasks = &aws.Operation{
 			Name:       "CountPendingDecisionTasks",
@@ -189,6 +204,9 @@ var opCountPendingDecisionTasks *aws.Operation
 
 // DeprecateActivityTypeRequest generates a request for the DeprecateActivityType operation.
 func (c *SWF) DeprecateActivityTypeRequest(input *DeprecateActivityTypeInput) (req *aws.Request, output *DeprecateActivityTypeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeprecateActivityType == nil {
 		opDeprecateActivityType = &aws.Operation{
 			Name:       "DeprecateActivityType",
@@ -234,6 +252,9 @@ var opDeprecateActivityType *aws.Operation
 
 // DeprecateDomainRequest generates a request for the DeprecateDomain operation.
 func (c *SWF) DeprecateDomainRequest(input *DeprecateDomainInput) (req *aws.Request, output *DeprecateDomainOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeprecateDomain == nil {
 		opDeprecateDomain = &aws.Operation{
 			Name:       "DeprecateDomain",
@@ -280,6 +301,9 @@ var opDeprecateDomain *aws.Operation
 
 // DeprecateWorkflowTypeRequest generates a request for the DeprecateWorkflowType operation.
 func (c *SWF) DeprecateWorkflowTypeRequest(input *DeprecateWorkflowTypeInput) (req *aws.Request, output *DeprecateWorkflowTypeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeprecateWorkflowType == nil {
 		opDeprecateWorkflowType = &aws.Operation{
 			Name:       "DeprecateWorkflowType",
@@ -326,6 +350,9 @@ var opDeprecateWorkflowType *aws.Operation
 
 // DescribeActivityTypeRequest generates a request for the DescribeActivityType operation.
 func (c *SWF) DescribeActivityTypeRequest(input *DescribeActivityTypeInput) (req *aws.Request, output *DescribeActivityTypeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeActivityType == nil {
 		opDescribeActivityType = &aws.Operation{
 			Name:       "DescribeActivityType",
@@ -370,6 +397,9 @@ var opDescribeActivityType *aws.Operation
 
 // DescribeDomainRequest generates a request for the DescribeDomain operation.
 func (c *SWF) DescribeDomainRequest(input *DescribeDomainInput) (req *aws.Request, output *DescribeDomainOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeDomain == nil {
 		opDescribeDomain = &aws.Operation{
 			Name:       "DescribeDomain",
@@ -411,6 +441,9 @@ var opDescribeDomain *aws.Operation
 
 // DescribeWorkflowExecutionRequest generates a request for the DescribeWorkflowExecution operation.
 func (c *SWF) DescribeWorkflowExecutionRequest(input *DescribeWorkflowExecutionInput) (req *aws.Request, output *DescribeWorkflowExecutionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeWorkflowExecution == nil {
 		opDescribeWorkflowExecution = &aws.Operation{
 			Name:       "DescribeWorkflowExecution",
@@ -453,6 +486,9 @@ var opDescribeWorkflowExecution *aws.Operation
 
 // DescribeWorkflowTypeRequest generates a request for the DescribeWorkflowType operation.
 func (c *SWF) DescribeWorkflowTypeRequest(input *DescribeWorkflowTypeInput) (req *aws.Request, output *DescribeWorkflowTypeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeWorkflowType == nil {
 		opDescribeWorkflowType = &aws.Operation{
 			Name:       "DescribeWorkflowType",
@@ -497,6 +533,9 @@ var opDescribeWorkflowType *aws.Operation
 
 // GetWorkflowExecutionHistoryRequest generates a request for the GetWorkflowExecutionHistory operation.
 func (c *SWF) GetWorkflowExecutionHistoryRequest(input *GetWorkflowExecutionHistoryInput) (req *aws.Request, output *GetWorkflowExecutionHistoryOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetWorkflowExecutionHistory == nil {
 		opGetWorkflowExecutionHistory = &aws.Operation{
 			Name:       "GetWorkflowExecutionHistory",
@@ -540,6 +579,9 @@ var opGetWorkflowExecutionHistory *aws.Operation
 
 // ListActivityTypesRequest generates a request for the ListActivityTypes operation.
 func (c *SWF) ListActivityTypesRequest(input *ListActivityTypesInput) (req *aws.Request, output *ListActivityTypesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListActivityTypes == nil {
 		opListActivityTypes = &aws.Operation{
 			Name:       "ListActivityTypes",
@@ -584,6 +626,9 @@ var opListActivityTypes *aws.Operation
 
 // ListClosedWorkflowExecutionsRequest generates a request for the ListClosedWorkflowExecutions operation.
 func (c *SWF) ListClosedWorkflowExecutionsRequest(input *ListClosedWorkflowExecutionsInput) (req *aws.Request, output *WorkflowExecutionInfos) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListClosedWorkflowExecutions == nil {
 		opListClosedWorkflowExecutions = &aws.Operation{
 			Name:       "ListClosedWorkflowExecutions",
@@ -631,6 +676,9 @@ var opListClosedWorkflowExecutions *aws.Operation
 
 // ListDomainsRequest generates a request for the ListDomains operation.
 func (c *SWF) ListDomainsRequest(input *ListDomainsInput) (req *aws.Request, output *ListDomainsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListDomains == nil {
 		opListDomains = &aws.Operation{
 			Name:       "ListDomains",
@@ -675,6 +723,9 @@ var opListDomains *aws.Operation
 
 // ListOpenWorkflowExecutionsRequest generates a request for the ListOpenWorkflowExecutions operation.
 func (c *SWF) ListOpenWorkflowExecutionsRequest(input *ListOpenWorkflowExecutionsInput) (req *aws.Request, output *WorkflowExecutionInfos) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListOpenWorkflowExecutions == nil {
 		opListOpenWorkflowExecutions = &aws.Operation{
 			Name:       "ListOpenWorkflowExecutions",
@@ -722,6 +773,9 @@ var opListOpenWorkflowExecutions *aws.Operation
 
 // ListWorkflowTypesRequest generates a request for the ListWorkflowTypes operation.
 func (c *SWF) ListWorkflowTypesRequest(input *ListWorkflowTypesInput) (req *aws.Request, output *ListWorkflowTypesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListWorkflowTypes == nil {
 		opListWorkflowTypes = &aws.Operation{
 			Name:       "ListWorkflowTypes",
@@ -764,6 +818,9 @@ var opListWorkflowTypes *aws.Operation
 
 // PollForActivityTaskRequest generates a request for the PollForActivityTask operation.
 func (c *SWF) PollForActivityTaskRequest(input *PollForActivityTaskInput) (req *aws.Request, output *PollForActivityTaskOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPollForActivityTask == nil {
 		opPollForActivityTask = &aws.Operation{
 			Name:       "PollForActivityTask",
@@ -814,6 +871,9 @@ var opPollForActivityTask *aws.Operation
 
 // PollForDecisionTaskRequest generates a request for the PollForDecisionTask operation.
 func (c *SWF) PollForDecisionTaskRequest(input *PollForDecisionTaskInput) (req *aws.Request, output *PollForDecisionTaskOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPollForDecisionTask == nil {
 		opPollForDecisionTask = &aws.Operation{
 			Name:       "PollForDecisionTask",
@@ -872,6 +932,9 @@ var opPollForDecisionTask *aws.Operation
 
 // RecordActivityTaskHeartbeatRequest generates a request for the RecordActivityTaskHeartbeat operation.
 func (c *SWF) RecordActivityTaskHeartbeatRequest(input *RecordActivityTaskHeartbeatInput) (req *aws.Request, output *RecordActivityTaskHeartbeatOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRecordActivityTaskHeartbeat == nil {
 		opRecordActivityTaskHeartbeat = &aws.Operation{
 			Name:       "RecordActivityTaskHeartbeat",
@@ -933,6 +996,9 @@ var opRecordActivityTaskHeartbeat *aws.Operation
 
 // RegisterActivityTypeRequest generates a request for the RegisterActivityType operation.
 func (c *SWF) RegisterActivityTypeRequest(input *RegisterActivityTypeInput) (req *aws.Request, output *RegisterActivityTypeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRegisterActivityType == nil {
 		opRegisterActivityType = &aws.Operation{
 			Name:       "RegisterActivityType",
@@ -979,6 +1045,9 @@ var opRegisterActivityType *aws.Operation
 
 // RegisterDomainRequest generates a request for the RegisterDomain operation.
 func (c *SWF) RegisterDomainRequest(input *RegisterDomainInput) (req *aws.Request, output *RegisterDomainOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRegisterDomain == nil {
 		opRegisterDomain = &aws.Operation{
 			Name:       "RegisterDomain",
@@ -1020,6 +1089,9 @@ var opRegisterDomain *aws.Operation
 
 // RegisterWorkflowTypeRequest generates a request for the RegisterWorkflowType operation.
 func (c *SWF) RegisterWorkflowTypeRequest(input *RegisterWorkflowTypeInput) (req *aws.Request, output *RegisterWorkflowTypeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRegisterWorkflowType == nil {
 		opRegisterWorkflowType = &aws.Operation{
 			Name:       "RegisterWorkflowType",
@@ -1069,6 +1141,9 @@ var opRegisterWorkflowType *aws.Operation
 
 // RequestCancelWorkflowExecutionRequest generates a request for the RequestCancelWorkflowExecution operation.
 func (c *SWF) RequestCancelWorkflowExecutionRequest(input *RequestCancelWorkflowExecutionInput) (req *aws.Request, output *RequestCancelWorkflowExecutionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRequestCancelWorkflowExecution == nil {
 		opRequestCancelWorkflowExecution = &aws.Operation{
 			Name:       "RequestCancelWorkflowExecution",
@@ -1117,6 +1192,9 @@ var opRequestCancelWorkflowExecution *aws.Operation
 
 // RespondActivityTaskCanceledRequest generates a request for the RespondActivityTaskCanceled operation.
 func (c *SWF) RespondActivityTaskCanceledRequest(input *RespondActivityTaskCanceledInput) (req *aws.Request, output *RespondActivityTaskCanceledOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRespondActivityTaskCanceled == nil {
 		opRespondActivityTaskCanceled = &aws.Operation{
 			Name:       "RespondActivityTaskCanceled",
@@ -1170,6 +1248,9 @@ var opRespondActivityTaskCanceled *aws.Operation
 
 // RespondActivityTaskCompletedRequest generates a request for the RespondActivityTaskCompleted operation.
 func (c *SWF) RespondActivityTaskCompletedRequest(input *RespondActivityTaskCompletedInput) (req *aws.Request, output *RespondActivityTaskCompletedOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRespondActivityTaskCompleted == nil {
 		opRespondActivityTaskCompleted = &aws.Operation{
 			Name:       "RespondActivityTaskCompleted",
@@ -1221,6 +1302,9 @@ var opRespondActivityTaskCompleted *aws.Operation
 
 // RespondActivityTaskFailedRequest generates a request for the RespondActivityTaskFailed operation.
 func (c *SWF) RespondActivityTaskFailedRequest(input *RespondActivityTaskFailedInput) (req *aws.Request, output *RespondActivityTaskFailedOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRespondActivityTaskFailed == nil {
 		opRespondActivityTaskFailed = &aws.Operation{
 			Name:       "RespondActivityTaskFailed",
@@ -1269,6 +1353,9 @@ var opRespondActivityTaskFailed *aws.Operation
 
 // RespondDecisionTaskCompletedRequest generates a request for the RespondDecisionTaskCompleted operation.
 func (c *SWF) RespondDecisionTaskCompletedRequest(input *RespondDecisionTaskCompletedInput) (req *aws.Request, output *RespondDecisionTaskCompletedOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRespondDecisionTaskCompleted == nil {
 		opRespondDecisionTaskCompleted = &aws.Operation{
 			Name:       "RespondDecisionTaskCompleted",
@@ -1310,6 +1397,9 @@ var opRespondDecisionTaskCompleted *aws.Operation
 
 // SignalWorkflowExecutionRequest generates a request for the SignalWorkflowExecution operation.
 func (c *SWF) SignalWorkflowExecutionRequest(input *SignalWorkflowExecutionInput) (req *aws.Request, output *SignalWorkflowExecutionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSignalWorkflowExecution == nil {
 		opSignalWorkflowExecution = &aws.Operation{
 			Name:       "SignalWorkflowExecution",
@@ -1356,6 +1446,9 @@ var opSignalWorkflowExecution *aws.Operation
 
 // StartWorkflowExecutionRequest generates a request for the StartWorkflowExecution operation.
 func (c *SWF) StartWorkflowExecutionRequest(input *StartWorkflowExecutionInput) (req *aws.Request, output *StartWorkflowExecutionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opStartWorkflowExecution == nil {
 		opStartWorkflowExecution = &aws.Operation{
 			Name:       "StartWorkflowExecution",
@@ -1405,6 +1498,9 @@ var opStartWorkflowExecution *aws.Operation
 
 // TerminateWorkflowExecutionRequest generates a request for the TerminateWorkflowExecution operation.
 func (c *SWF) TerminateWorkflowExecutionRequest(input *TerminateWorkflowExecutionInput) (req *aws.Request, output *TerminateWorkflowExecutionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opTerminateWorkflowExecution == nil {
 		opTerminateWorkflowExecution = &aws.Operation{
 			Name:       "TerminateWorkflowExecution",

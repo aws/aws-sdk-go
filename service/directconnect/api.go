@@ -4,11 +4,18 @@
 package directconnect
 
 import (
+	"sync"
+
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // AllocateConnectionOnInterconnectRequest generates a request for the AllocateConnectionOnInterconnect operation.
 func (c *DirectConnect) AllocateConnectionOnInterconnectRequest(input *AllocateConnectionOnInterconnectInput) (req *aws.Request, output *Connection) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAllocateConnectionOnInterconnect == nil {
 		opAllocateConnectionOnInterconnect = &aws.Operation{
 			Name:       "AllocateConnectionOnInterconnect",
@@ -38,6 +45,9 @@ var opAllocateConnectionOnInterconnect *aws.Operation
 
 // AllocatePrivateVirtualInterfaceRequest generates a request for the AllocatePrivateVirtualInterface operation.
 func (c *DirectConnect) AllocatePrivateVirtualInterfaceRequest(input *AllocatePrivateVirtualInterfaceInput) (req *aws.Request, output *VirtualInterface) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAllocatePrivateVirtualInterface == nil {
 		opAllocatePrivateVirtualInterface = &aws.Operation{
 			Name:       "AllocatePrivateVirtualInterface",
@@ -72,6 +82,9 @@ var opAllocatePrivateVirtualInterface *aws.Operation
 
 // AllocatePublicVirtualInterfaceRequest generates a request for the AllocatePublicVirtualInterface operation.
 func (c *DirectConnect) AllocatePublicVirtualInterfaceRequest(input *AllocatePublicVirtualInterfaceInput) (req *aws.Request, output *VirtualInterface) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAllocatePublicVirtualInterface == nil {
 		opAllocatePublicVirtualInterface = &aws.Operation{
 			Name:       "AllocatePublicVirtualInterface",
@@ -106,6 +119,9 @@ var opAllocatePublicVirtualInterface *aws.Operation
 
 // ConfirmConnectionRequest generates a request for the ConfirmConnection operation.
 func (c *DirectConnect) ConfirmConnectionRequest(input *ConfirmConnectionInput) (req *aws.Request, output *ConfirmConnectionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opConfirmConnection == nil {
 		opConfirmConnection = &aws.Operation{
 			Name:       "ConfirmConnection",
@@ -136,6 +152,9 @@ var opConfirmConnection *aws.Operation
 
 // ConfirmPrivateVirtualInterfaceRequest generates a request for the ConfirmPrivateVirtualInterface operation.
 func (c *DirectConnect) ConfirmPrivateVirtualInterfaceRequest(input *ConfirmPrivateVirtualInterfaceInput) (req *aws.Request, output *ConfirmPrivateVirtualInterfaceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opConfirmPrivateVirtualInterface == nil {
 		opConfirmPrivateVirtualInterface = &aws.Operation{
 			Name:       "ConfirmPrivateVirtualInterface",
@@ -166,6 +185,9 @@ var opConfirmPrivateVirtualInterface *aws.Operation
 
 // ConfirmPublicVirtualInterfaceRequest generates a request for the ConfirmPublicVirtualInterface operation.
 func (c *DirectConnect) ConfirmPublicVirtualInterfaceRequest(input *ConfirmPublicVirtualInterfaceInput) (req *aws.Request, output *ConfirmPublicVirtualInterfaceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opConfirmPublicVirtualInterface == nil {
 		opConfirmPublicVirtualInterface = &aws.Operation{
 			Name:       "ConfirmPublicVirtualInterface",
@@ -195,6 +217,9 @@ var opConfirmPublicVirtualInterface *aws.Operation
 
 // CreateConnectionRequest generates a request for the CreateConnection operation.
 func (c *DirectConnect) CreateConnectionRequest(input *CreateConnectionInput) (req *aws.Request, output *Connection) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateConnection == nil {
 		opCreateConnection = &aws.Operation{
 			Name:       "CreateConnection",
@@ -230,6 +255,9 @@ var opCreateConnection *aws.Operation
 
 // CreateInterconnectRequest generates a request for the CreateInterconnect operation.
 func (c *DirectConnect) CreateInterconnectRequest(input *CreateInterconnectInput) (req *aws.Request, output *Interconnect) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateInterconnect == nil {
 		opCreateInterconnect = &aws.Operation{
 			Name:       "CreateInterconnect",
@@ -271,6 +299,9 @@ var opCreateInterconnect *aws.Operation
 
 // CreatePrivateVirtualInterfaceRequest generates a request for the CreatePrivateVirtualInterface operation.
 func (c *DirectConnect) CreatePrivateVirtualInterfaceRequest(input *CreatePrivateVirtualInterfaceInput) (req *aws.Request, output *VirtualInterface) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreatePrivateVirtualInterface == nil {
 		opCreatePrivateVirtualInterface = &aws.Operation{
 			Name:       "CreatePrivateVirtualInterface",
@@ -299,6 +330,9 @@ var opCreatePrivateVirtualInterface *aws.Operation
 
 // CreatePublicVirtualInterfaceRequest generates a request for the CreatePublicVirtualInterface operation.
 func (c *DirectConnect) CreatePublicVirtualInterfaceRequest(input *CreatePublicVirtualInterfaceInput) (req *aws.Request, output *VirtualInterface) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreatePublicVirtualInterface == nil {
 		opCreatePublicVirtualInterface = &aws.Operation{
 			Name:       "CreatePublicVirtualInterface",
@@ -328,6 +362,9 @@ var opCreatePublicVirtualInterface *aws.Operation
 
 // DeleteConnectionRequest generates a request for the DeleteConnection operation.
 func (c *DirectConnect) DeleteConnectionRequest(input *DeleteConnectionInput) (req *aws.Request, output *Connection) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteConnection == nil {
 		opDeleteConnection = &aws.Operation{
 			Name:       "DeleteConnection",
@@ -359,6 +396,9 @@ var opDeleteConnection *aws.Operation
 
 // DeleteInterconnectRequest generates a request for the DeleteInterconnect operation.
 func (c *DirectConnect) DeleteInterconnectRequest(input *DeleteInterconnectInput) (req *aws.Request, output *DeleteInterconnectOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteInterconnect == nil {
 		opDeleteInterconnect = &aws.Operation{
 			Name:       "DeleteInterconnect",
@@ -385,6 +425,9 @@ var opDeleteInterconnect *aws.Operation
 
 // DeleteVirtualInterfaceRequest generates a request for the DeleteVirtualInterface operation.
 func (c *DirectConnect) DeleteVirtualInterfaceRequest(input *DeleteVirtualInterfaceInput) (req *aws.Request, output *DeleteVirtualInterfaceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteVirtualInterface == nil {
 		opDeleteVirtualInterface = &aws.Operation{
 			Name:       "DeleteVirtualInterface",
@@ -411,6 +454,9 @@ var opDeleteVirtualInterface *aws.Operation
 
 // DescribeConnectionsRequest generates a request for the DescribeConnections operation.
 func (c *DirectConnect) DescribeConnectionsRequest(input *DescribeConnectionsInput) (req *aws.Request, output *Connections) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeConnections == nil {
 		opDescribeConnections = &aws.Operation{
 			Name:       "DescribeConnections",
@@ -439,6 +485,9 @@ var opDescribeConnections *aws.Operation
 
 // DescribeConnectionsOnInterconnectRequest generates a request for the DescribeConnectionsOnInterconnect operation.
 func (c *DirectConnect) DescribeConnectionsOnInterconnectRequest(input *DescribeConnectionsOnInterconnectInput) (req *aws.Request, output *Connections) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeConnectionsOnInterconnect == nil {
 		opDescribeConnectionsOnInterconnect = &aws.Operation{
 			Name:       "DescribeConnectionsOnInterconnect",
@@ -465,6 +514,9 @@ var opDescribeConnectionsOnInterconnect *aws.Operation
 
 // DescribeInterconnectsRequest generates a request for the DescribeInterconnects operation.
 func (c *DirectConnect) DescribeInterconnectsRequest(input *DescribeInterconnectsInput) (req *aws.Request, output *DescribeInterconnectsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeInterconnects == nil {
 		opDescribeInterconnects = &aws.Operation{
 			Name:       "DescribeInterconnects",
@@ -493,6 +545,9 @@ var opDescribeInterconnects *aws.Operation
 
 // DescribeLocationsRequest generates a request for the DescribeLocations operation.
 func (c *DirectConnect) DescribeLocationsRequest(input *DescribeLocationsInput) (req *aws.Request, output *DescribeLocationsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeLocations == nil {
 		opDescribeLocations = &aws.Operation{
 			Name:       "DescribeLocations",
@@ -521,6 +576,9 @@ var opDescribeLocations *aws.Operation
 
 // DescribeVirtualGatewaysRequest generates a request for the DescribeVirtualGateways operation.
 func (c *DirectConnect) DescribeVirtualGatewaysRequest(input *DescribeVirtualGatewaysInput) (req *aws.Request, output *DescribeVirtualGatewaysOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeVirtualGateways == nil {
 		opDescribeVirtualGateways = &aws.Operation{
 			Name:       "DescribeVirtualGateways",
@@ -553,6 +611,9 @@ var opDescribeVirtualGateways *aws.Operation
 
 // DescribeVirtualInterfacesRequest generates a request for the DescribeVirtualInterfaces operation.
 func (c *DirectConnect) DescribeVirtualInterfacesRequest(input *DescribeVirtualInterfacesInput) (req *aws.Request, output *DescribeVirtualInterfacesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeVirtualInterfaces == nil {
 		opDescribeVirtualInterfaces = &aws.Operation{
 			Name:       "DescribeVirtualInterfaces",

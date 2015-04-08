@@ -4,11 +4,18 @@
 package datapipeline
 
 import (
+	"sync"
+
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // ActivatePipelineRequest generates a request for the ActivatePipeline operation.
 func (c *DataPipeline) ActivatePipelineRequest(input *ActivatePipelineInput) (req *aws.Request, output *ActivatePipelineOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opActivatePipeline == nil {
 		opActivatePipeline = &aws.Operation{
 			Name:       "ActivatePipeline",
@@ -41,6 +48,9 @@ var opActivatePipeline *aws.Operation
 
 // AddTagsRequest generates a request for the AddTags operation.
 func (c *DataPipeline) AddTagsRequest(input *AddTagsInput) (req *aws.Request, output *AddTagsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAddTags == nil {
 		opAddTags = &aws.Operation{
 			Name:       "AddTags",
@@ -67,6 +77,9 @@ var opAddTags *aws.Operation
 
 // CreatePipelineRequest generates a request for the CreatePipeline operation.
 func (c *DataPipeline) CreatePipelineRequest(input *CreatePipelineInput) (req *aws.Request, output *CreatePipelineOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreatePipeline == nil {
 		opCreatePipeline = &aws.Operation{
 			Name:       "CreatePipeline",
@@ -94,6 +107,9 @@ var opCreatePipeline *aws.Operation
 
 // DeletePipelineRequest generates a request for the DeletePipeline operation.
 func (c *DataPipeline) DeletePipelineRequest(input *DeletePipelineInput) (req *aws.Request, output *DeletePipelineOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeletePipeline == nil {
 		opDeletePipeline = &aws.Operation{
 			Name:       "DeletePipeline",
@@ -127,6 +143,9 @@ var opDeletePipeline *aws.Operation
 
 // DescribeObjectsRequest generates a request for the DescribeObjects operation.
 func (c *DataPipeline) DescribeObjectsRequest(input *DescribeObjectsInput) (req *aws.Request, output *DescribeObjectsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeObjects == nil {
 		opDescribeObjects = &aws.Operation{
 			Name:       "DescribeObjects",
@@ -155,6 +174,9 @@ var opDescribeObjects *aws.Operation
 
 // DescribePipelinesRequest generates a request for the DescribePipelines operation.
 func (c *DataPipeline) DescribePipelinesRequest(input *DescribePipelinesInput) (req *aws.Request, output *DescribePipelinesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribePipelines == nil {
 		opDescribePipelines = &aws.Operation{
 			Name:       "DescribePipelines",
@@ -189,6 +211,9 @@ var opDescribePipelines *aws.Operation
 
 // EvaluateExpressionRequest generates a request for the EvaluateExpression operation.
 func (c *DataPipeline) EvaluateExpressionRequest(input *EvaluateExpressionInput) (req *aws.Request, output *EvaluateExpressionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opEvaluateExpression == nil {
 		opEvaluateExpression = &aws.Operation{
 			Name:       "EvaluateExpression",
@@ -216,6 +241,9 @@ var opEvaluateExpression *aws.Operation
 
 // GetPipelineDefinitionRequest generates a request for the GetPipelineDefinition operation.
 func (c *DataPipeline) GetPipelineDefinitionRequest(input *GetPipelineDefinitionInput) (req *aws.Request, output *GetPipelineDefinitionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetPipelineDefinition == nil {
 		opGetPipelineDefinition = &aws.Operation{
 			Name:       "GetPipelineDefinition",
@@ -243,6 +271,9 @@ var opGetPipelineDefinition *aws.Operation
 
 // ListPipelinesRequest generates a request for the ListPipelines operation.
 func (c *DataPipeline) ListPipelinesRequest(input *ListPipelinesInput) (req *aws.Request, output *ListPipelinesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListPipelines == nil {
 		opListPipelines = &aws.Operation{
 			Name:       "ListPipelines",
@@ -270,6 +301,9 @@ var opListPipelines *aws.Operation
 
 // PollForTaskRequest generates a request for the PollForTask operation.
 func (c *DataPipeline) PollForTaskRequest(input *PollForTaskInput) (req *aws.Request, output *PollForTaskOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPollForTask == nil {
 		opPollForTask = &aws.Operation{
 			Name:       "PollForTask",
@@ -309,6 +343,9 @@ var opPollForTask *aws.Operation
 
 // PutPipelineDefinitionRequest generates a request for the PutPipelineDefinition operation.
 func (c *DataPipeline) PutPipelineDefinitionRequest(input *PutPipelineDefinitionInput) (req *aws.Request, output *PutPipelineDefinitionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutPipelineDefinition == nil {
 		opPutPipelineDefinition = &aws.Operation{
 			Name:       "PutPipelineDefinition",
@@ -346,6 +383,9 @@ var opPutPipelineDefinition *aws.Operation
 
 // QueryObjectsRequest generates a request for the QueryObjects operation.
 func (c *DataPipeline) QueryObjectsRequest(input *QueryObjectsInput) (req *aws.Request, output *QueryObjectsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opQueryObjects == nil {
 		opQueryObjects = &aws.Operation{
 			Name:       "QueryObjects",
@@ -379,6 +419,9 @@ var opQueryObjects *aws.Operation
 
 // RemoveTagsRequest generates a request for the RemoveTags operation.
 func (c *DataPipeline) RemoveTagsRequest(input *RemoveTagsInput) (req *aws.Request, output *RemoveTagsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRemoveTags == nil {
 		opRemoveTags = &aws.Operation{
 			Name:       "RemoveTags",
@@ -405,6 +448,9 @@ var opRemoveTags *aws.Operation
 
 // ReportTaskProgressRequest generates a request for the ReportTaskProgress operation.
 func (c *DataPipeline) ReportTaskProgressRequest(input *ReportTaskProgressInput) (req *aws.Request, output *ReportTaskProgressOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opReportTaskProgress == nil {
 		opReportTaskProgress = &aws.Operation{
 			Name:       "ReportTaskProgress",
@@ -442,6 +488,9 @@ var opReportTaskProgress *aws.Operation
 
 // ReportTaskRunnerHeartbeatRequest generates a request for the ReportTaskRunnerHeartbeat operation.
 func (c *DataPipeline) ReportTaskRunnerHeartbeatRequest(input *ReportTaskRunnerHeartbeatInput) (req *aws.Request, output *ReportTaskRunnerHeartbeatOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opReportTaskRunnerHeartbeat == nil {
 		opReportTaskRunnerHeartbeat = &aws.Operation{
 			Name:       "ReportTaskRunnerHeartbeat",
@@ -472,6 +521,9 @@ var opReportTaskRunnerHeartbeat *aws.Operation
 
 // SetStatusRequest generates a request for the SetStatus operation.
 func (c *DataPipeline) SetStatusRequest(input *SetStatusInput) (req *aws.Request, output *SetStatusOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetStatus == nil {
 		opSetStatus = &aws.Operation{
 			Name:       "SetStatus",
@@ -502,6 +554,9 @@ var opSetStatus *aws.Operation
 
 // SetTaskStatusRequest generates a request for the SetTaskStatus operation.
 func (c *DataPipeline) SetTaskStatusRequest(input *SetTaskStatusInput) (req *aws.Request, output *SetTaskStatusOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetTaskStatus == nil {
 		opSetTaskStatus = &aws.Operation{
 			Name:       "SetTaskStatus",
@@ -531,6 +586,9 @@ var opSetTaskStatus *aws.Operation
 
 // ValidatePipelineDefinitionRequest generates a request for the ValidatePipelineDefinition operation.
 func (c *DataPipeline) ValidatePipelineDefinitionRequest(input *ValidatePipelineDefinitionInput) (req *aws.Request, output *ValidatePipelineDefinitionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opValidatePipelineDefinition == nil {
 		opValidatePipelineDefinition = &aws.Operation{
 			Name:       "ValidatePipelineDefinition",

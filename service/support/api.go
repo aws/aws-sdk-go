@@ -4,11 +4,18 @@
 package support
 
 import (
+	"sync"
+
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // AddAttachmentsToSetRequest generates a request for the AddAttachmentsToSet operation.
 func (c *Support) AddAttachmentsToSetRequest(input *AddAttachmentsToSetInput) (req *aws.Request, output *AddAttachmentsToSetOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAddAttachmentsToSet == nil {
 		opAddAttachmentsToSet = &aws.Operation{
 			Name:       "AddAttachmentsToSet",
@@ -44,6 +51,9 @@ var opAddAttachmentsToSet *aws.Operation
 
 // AddCommunicationToCaseRequest generates a request for the AddCommunicationToCase operation.
 func (c *Support) AddCommunicationToCaseRequest(input *AddCommunicationToCaseInput) (req *aws.Request, output *AddCommunicationToCaseOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAddCommunicationToCase == nil {
 		opAddCommunicationToCase = &aws.Operation{
 			Name:       "AddCommunicationToCase",
@@ -77,6 +87,9 @@ var opAddCommunicationToCase *aws.Operation
 
 // CreateCaseRequest generates a request for the CreateCase operation.
 func (c *Support) CreateCaseRequest(input *CreateCaseInput) (req *aws.Request, output *CreateCaseOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateCase == nil {
 		opCreateCase = &aws.Operation{
 			Name:       "CreateCase",
@@ -132,6 +145,9 @@ var opCreateCase *aws.Operation
 
 // DescribeAttachmentRequest generates a request for the DescribeAttachment operation.
 func (c *Support) DescribeAttachmentRequest(input *DescribeAttachmentInput) (req *aws.Request, output *DescribeAttachmentOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAttachment == nil {
 		opDescribeAttachment = &aws.Operation{
 			Name:       "DescribeAttachment",
@@ -161,6 +177,9 @@ var opDescribeAttachment *aws.Operation
 
 // DescribeCasesRequest generates a request for the DescribeCases operation.
 func (c *Support) DescribeCasesRequest(input *DescribeCasesInput) (req *aws.Request, output *DescribeCasesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeCases == nil {
 		opDescribeCases = &aws.Operation{
 			Name:       "DescribeCases",
@@ -200,6 +219,9 @@ var opDescribeCases *aws.Operation
 
 // DescribeCommunicationsRequest generates a request for the DescribeCommunications operation.
 func (c *Support) DescribeCommunicationsRequest(input *DescribeCommunicationsInput) (req *aws.Request, output *DescribeCommunicationsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeCommunications == nil {
 		opDescribeCommunications = &aws.Operation{
 			Name:       "DescribeCommunications",
@@ -235,6 +257,9 @@ var opDescribeCommunications *aws.Operation
 
 // DescribeServicesRequest generates a request for the DescribeServices operation.
 func (c *Support) DescribeServicesRequest(input *DescribeServicesInput) (req *aws.Request, output *DescribeServicesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeServices == nil {
 		opDescribeServices = &aws.Operation{
 			Name:       "DescribeServices",
@@ -271,6 +296,9 @@ var opDescribeServices *aws.Operation
 
 // DescribeSeverityLevelsRequest generates a request for the DescribeSeverityLevels operation.
 func (c *Support) DescribeSeverityLevelsRequest(input *DescribeSeverityLevelsInput) (req *aws.Request, output *DescribeSeverityLevelsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeSeverityLevels == nil {
 		opDescribeSeverityLevels = &aws.Operation{
 			Name:       "DescribeSeverityLevels",
@@ -299,6 +327,9 @@ var opDescribeSeverityLevels *aws.Operation
 
 // DescribeTrustedAdvisorCheckRefreshStatusesRequest generates a request for the DescribeTrustedAdvisorCheckRefreshStatuses operation.
 func (c *Support) DescribeTrustedAdvisorCheckRefreshStatusesRequest(input *DescribeTrustedAdvisorCheckRefreshStatusesInput) (req *aws.Request, output *DescribeTrustedAdvisorCheckRefreshStatusesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeTrustedAdvisorCheckRefreshStatuses == nil {
 		opDescribeTrustedAdvisorCheckRefreshStatuses = &aws.Operation{
 			Name:       "DescribeTrustedAdvisorCheckRefreshStatuses",
@@ -326,6 +357,9 @@ var opDescribeTrustedAdvisorCheckRefreshStatuses *aws.Operation
 
 // DescribeTrustedAdvisorCheckResultRequest generates a request for the DescribeTrustedAdvisorCheckResult operation.
 func (c *Support) DescribeTrustedAdvisorCheckResultRequest(input *DescribeTrustedAdvisorCheckResultInput) (req *aws.Request, output *DescribeTrustedAdvisorCheckResultOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeTrustedAdvisorCheckResult == nil {
 		opDescribeTrustedAdvisorCheckResult = &aws.Operation{
 			Name:       "DescribeTrustedAdvisorCheckResult",
@@ -363,6 +397,9 @@ var opDescribeTrustedAdvisorCheckResult *aws.Operation
 
 // DescribeTrustedAdvisorCheckSummariesRequest generates a request for the DescribeTrustedAdvisorCheckSummaries operation.
 func (c *Support) DescribeTrustedAdvisorCheckSummariesRequest(input *DescribeTrustedAdvisorCheckSummariesInput) (req *aws.Request, output *DescribeTrustedAdvisorCheckSummariesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeTrustedAdvisorCheckSummaries == nil {
 		opDescribeTrustedAdvisorCheckSummaries = &aws.Operation{
 			Name:       "DescribeTrustedAdvisorCheckSummaries",
@@ -392,6 +429,9 @@ var opDescribeTrustedAdvisorCheckSummaries *aws.Operation
 
 // DescribeTrustedAdvisorChecksRequest generates a request for the DescribeTrustedAdvisorChecks operation.
 func (c *Support) DescribeTrustedAdvisorChecksRequest(input *DescribeTrustedAdvisorChecksInput) (req *aws.Request, output *DescribeTrustedAdvisorChecksOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeTrustedAdvisorChecks == nil {
 		opDescribeTrustedAdvisorChecks = &aws.Operation{
 			Name:       "DescribeTrustedAdvisorChecks",
@@ -421,6 +461,9 @@ var opDescribeTrustedAdvisorChecks *aws.Operation
 
 // RefreshTrustedAdvisorCheckRequest generates a request for the RefreshTrustedAdvisorCheck operation.
 func (c *Support) RefreshTrustedAdvisorCheckRequest(input *RefreshTrustedAdvisorCheckInput) (req *aws.Request, output *RefreshTrustedAdvisorCheckOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRefreshTrustedAdvisorCheck == nil {
 		opRefreshTrustedAdvisorCheck = &aws.Operation{
 			Name:       "RefreshTrustedAdvisorCheck",
@@ -456,6 +499,9 @@ var opRefreshTrustedAdvisorCheck *aws.Operation
 
 // ResolveCaseRequest generates a request for the ResolveCase operation.
 func (c *Support) ResolveCaseRequest(input *ResolveCaseInput) (req *aws.Request, output *ResolveCaseOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opResolveCase == nil {
 		opResolveCase = &aws.Operation{
 			Name:       "ResolveCase",

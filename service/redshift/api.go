@@ -4,13 +4,19 @@
 package redshift
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // AuthorizeClusterSecurityGroupIngressRequest generates a request for the AuthorizeClusterSecurityGroupIngress operation.
 func (c *Redshift) AuthorizeClusterSecurityGroupIngressRequest(input *AuthorizeClusterSecurityGroupIngressInput) (req *aws.Request, output *AuthorizeClusterSecurityGroupIngressOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAuthorizeClusterSecurityGroupIngress == nil {
 		opAuthorizeClusterSecurityGroupIngress = &aws.Operation{
 			Name:       "AuthorizeClusterSecurityGroupIngress",
@@ -51,6 +57,9 @@ var opAuthorizeClusterSecurityGroupIngress *aws.Operation
 
 // AuthorizeSnapshotAccessRequest generates a request for the AuthorizeSnapshotAccess operation.
 func (c *Redshift) AuthorizeSnapshotAccessRequest(input *AuthorizeSnapshotAccessInput) (req *aws.Request, output *AuthorizeSnapshotAccessOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAuthorizeSnapshotAccess == nil {
 		opAuthorizeSnapshotAccess = &aws.Operation{
 			Name:       "AuthorizeSnapshotAccess",
@@ -81,6 +90,9 @@ var opAuthorizeSnapshotAccess *aws.Operation
 
 // CopyClusterSnapshotRequest generates a request for the CopyClusterSnapshot operation.
 func (c *Redshift) CopyClusterSnapshotRequest(input *CopyClusterSnapshotInput) (req *aws.Request, output *CopyClusterSnapshotOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCopyClusterSnapshot == nil {
 		opCopyClusterSnapshot = &aws.Operation{
 			Name:       "CopyClusterSnapshot",
@@ -119,6 +131,9 @@ var opCopyClusterSnapshot *aws.Operation
 
 // CreateClusterRequest generates a request for the CreateCluster operation.
 func (c *Redshift) CreateClusterRequest(input *CreateClusterInput) (req *aws.Request, output *CreateClusterOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateCluster == nil {
 		opCreateCluster = &aws.Operation{
 			Name:       "CreateCluster",
@@ -151,6 +166,9 @@ var opCreateCluster *aws.Operation
 
 // CreateClusterParameterGroupRequest generates a request for the CreateClusterParameterGroup operation.
 func (c *Redshift) CreateClusterParameterGroupRequest(input *CreateClusterParameterGroupInput) (req *aws.Request, output *CreateClusterParameterGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateClusterParameterGroup == nil {
 		opCreateClusterParameterGroup = &aws.Operation{
 			Name:       "CreateClusterParameterGroup",
@@ -187,6 +205,9 @@ var opCreateClusterParameterGroup *aws.Operation
 
 // CreateClusterSecurityGroupRequest generates a request for the CreateClusterSecurityGroup operation.
 func (c *Redshift) CreateClusterSecurityGroupRequest(input *CreateClusterSecurityGroupInput) (req *aws.Request, output *CreateClusterSecurityGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateClusterSecurityGroup == nil {
 		opCreateClusterSecurityGroup = &aws.Operation{
 			Name:       "CreateClusterSecurityGroup",
@@ -218,6 +239,9 @@ var opCreateClusterSecurityGroup *aws.Operation
 
 // CreateClusterSnapshotRequest generates a request for the CreateClusterSnapshot operation.
 func (c *Redshift) CreateClusterSnapshotRequest(input *CreateClusterSnapshotInput) (req *aws.Request, output *CreateClusterSnapshotOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateClusterSnapshot == nil {
 		opCreateClusterSnapshot = &aws.Operation{
 			Name:       "CreateClusterSnapshot",
@@ -249,6 +273,9 @@ var opCreateClusterSnapshot *aws.Operation
 
 // CreateClusterSubnetGroupRequest generates a request for the CreateClusterSubnetGroup operation.
 func (c *Redshift) CreateClusterSubnetGroupRequest(input *CreateClusterSubnetGroupInput) (req *aws.Request, output *CreateClusterSubnetGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateClusterSubnetGroup == nil {
 		opCreateClusterSubnetGroup = &aws.Operation{
 			Name:       "CreateClusterSubnetGroup",
@@ -281,6 +308,9 @@ var opCreateClusterSubnetGroup *aws.Operation
 
 // CreateEventSubscriptionRequest generates a request for the CreateEventSubscription operation.
 func (c *Redshift) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput) (req *aws.Request, output *CreateEventSubscriptionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateEventSubscription == nil {
 		opCreateEventSubscription = &aws.Operation{
 			Name:       "CreateEventSubscription",
@@ -328,6 +358,9 @@ var opCreateEventSubscription *aws.Operation
 
 // CreateHSMClientCertificateRequest generates a request for the CreateHSMClientCertificate operation.
 func (c *Redshift) CreateHSMClientCertificateRequest(input *CreateHSMClientCertificateInput) (req *aws.Request, output *CreateHSMClientCertificateOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateHSMClientCertificate == nil {
 		opCreateHSMClientCertificate = &aws.Operation{
 			Name:       "CreateHsmClientCertificate",
@@ -362,6 +395,9 @@ var opCreateHSMClientCertificate *aws.Operation
 
 // CreateHSMConfigurationRequest generates a request for the CreateHSMConfiguration operation.
 func (c *Redshift) CreateHSMConfigurationRequest(input *CreateHSMConfigurationInput) (req *aws.Request, output *CreateHSMConfigurationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateHSMConfiguration == nil {
 		opCreateHSMConfiguration = &aws.Operation{
 			Name:       "CreateHsmConfiguration",
@@ -397,6 +433,9 @@ var opCreateHSMConfiguration *aws.Operation
 
 // CreateTagsRequest generates a request for the CreateTags operation.
 func (c *Redshift) CreateTagsRequest(input *CreateTagsInput) (req *aws.Request, output *CreateTagsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateTags == nil {
 		opCreateTags = &aws.Operation{
 			Name:       "CreateTags",
@@ -429,6 +468,9 @@ var opCreateTags *aws.Operation
 
 // DeleteClusterRequest generates a request for the DeleteCluster operation.
 func (c *Redshift) DeleteClusterRequest(input *DeleteClusterInput) (req *aws.Request, output *DeleteClusterOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteCluster == nil {
 		opDeleteCluster = &aws.Operation{
 			Name:       "DeleteCluster",
@@ -471,6 +513,9 @@ var opDeleteCluster *aws.Operation
 
 // DeleteClusterParameterGroupRequest generates a request for the DeleteClusterParameterGroup operation.
 func (c *Redshift) DeleteClusterParameterGroupRequest(input *DeleteClusterParameterGroupInput) (req *aws.Request, output *DeleteClusterParameterGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteClusterParameterGroup == nil {
 		opDeleteClusterParameterGroup = &aws.Operation{
 			Name:       "DeleteClusterParameterGroup",
@@ -498,6 +543,9 @@ var opDeleteClusterParameterGroup *aws.Operation
 
 // DeleteClusterSecurityGroupRequest generates a request for the DeleteClusterSecurityGroup operation.
 func (c *Redshift) DeleteClusterSecurityGroupRequest(input *DeleteClusterSecurityGroupInput) (req *aws.Request, output *DeleteClusterSecurityGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteClusterSecurityGroup == nil {
 		opDeleteClusterSecurityGroup = &aws.Operation{
 			Name:       "DeleteClusterSecurityGroup",
@@ -529,6 +577,9 @@ var opDeleteClusterSecurityGroup *aws.Operation
 
 // DeleteClusterSnapshotRequest generates a request for the DeleteClusterSnapshot operation.
 func (c *Redshift) DeleteClusterSnapshotRequest(input *DeleteClusterSnapshotInput) (req *aws.Request, output *DeleteClusterSnapshotOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteClusterSnapshot == nil {
 		opDeleteClusterSnapshot = &aws.Operation{
 			Name:       "DeleteClusterSnapshot",
@@ -562,6 +613,9 @@ var opDeleteClusterSnapshot *aws.Operation
 
 // DeleteClusterSubnetGroupRequest generates a request for the DeleteClusterSubnetGroup operation.
 func (c *Redshift) DeleteClusterSubnetGroupRequest(input *DeleteClusterSubnetGroupInput) (req *aws.Request, output *DeleteClusterSubnetGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteClusterSubnetGroup == nil {
 		opDeleteClusterSubnetGroup = &aws.Operation{
 			Name:       "DeleteClusterSubnetGroup",
@@ -588,6 +642,9 @@ var opDeleteClusterSubnetGroup *aws.Operation
 
 // DeleteEventSubscriptionRequest generates a request for the DeleteEventSubscription operation.
 func (c *Redshift) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionInput) (req *aws.Request, output *DeleteEventSubscriptionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteEventSubscription == nil {
 		opDeleteEventSubscription = &aws.Operation{
 			Name:       "DeleteEventSubscription",
@@ -614,6 +671,9 @@ var opDeleteEventSubscription *aws.Operation
 
 // DeleteHSMClientCertificateRequest generates a request for the DeleteHSMClientCertificate operation.
 func (c *Redshift) DeleteHSMClientCertificateRequest(input *DeleteHSMClientCertificateInput) (req *aws.Request, output *DeleteHSMClientCertificateOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteHSMClientCertificate == nil {
 		opDeleteHSMClientCertificate = &aws.Operation{
 			Name:       "DeleteHsmClientCertificate",
@@ -640,6 +700,9 @@ var opDeleteHSMClientCertificate *aws.Operation
 
 // DeleteHSMConfigurationRequest generates a request for the DeleteHSMConfiguration operation.
 func (c *Redshift) DeleteHSMConfigurationRequest(input *DeleteHSMConfigurationInput) (req *aws.Request, output *DeleteHSMConfigurationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteHSMConfiguration == nil {
 		opDeleteHSMConfiguration = &aws.Operation{
 			Name:       "DeleteHsmConfiguration",
@@ -666,6 +729,9 @@ var opDeleteHSMConfiguration *aws.Operation
 
 // DeleteTagsRequest generates a request for the DeleteTags operation.
 func (c *Redshift) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Request, output *DeleteTagsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteTags == nil {
 		opDeleteTags = &aws.Operation{
 			Name:       "DeleteTags",
@@ -693,6 +759,9 @@ var opDeleteTags *aws.Operation
 
 // DescribeClusterParameterGroupsRequest generates a request for the DescribeClusterParameterGroups operation.
 func (c *Redshift) DescribeClusterParameterGroupsRequest(input *DescribeClusterParameterGroupsInput) (req *aws.Request, output *DescribeClusterParameterGroupsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeClusterParameterGroups == nil {
 		opDescribeClusterParameterGroups = &aws.Operation{
 			Name:       "DescribeClusterParameterGroups",
@@ -737,6 +806,9 @@ var opDescribeClusterParameterGroups *aws.Operation
 
 // DescribeClusterParametersRequest generates a request for the DescribeClusterParameters operation.
 func (c *Redshift) DescribeClusterParametersRequest(input *DescribeClusterParametersInput) (req *aws.Request, output *DescribeClusterParametersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeClusterParameters == nil {
 		opDescribeClusterParameters = &aws.Operation{
 			Name:       "DescribeClusterParameters",
@@ -774,6 +846,9 @@ var opDescribeClusterParameters *aws.Operation
 
 // DescribeClusterSecurityGroupsRequest generates a request for the DescribeClusterSecurityGroups operation.
 func (c *Redshift) DescribeClusterSecurityGroupsRequest(input *DescribeClusterSecurityGroupsInput) (req *aws.Request, output *DescribeClusterSecurityGroupsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeClusterSecurityGroups == nil {
 		opDescribeClusterSecurityGroups = &aws.Operation{
 			Name:       "DescribeClusterSecurityGroups",
@@ -816,6 +891,9 @@ var opDescribeClusterSecurityGroups *aws.Operation
 
 // DescribeClusterSnapshotsRequest generates a request for the DescribeClusterSnapshots operation.
 func (c *Redshift) DescribeClusterSnapshotsRequest(input *DescribeClusterSnapshotsInput) (req *aws.Request, output *DescribeClusterSnapshotsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeClusterSnapshots == nil {
 		opDescribeClusterSnapshots = &aws.Operation{
 			Name:       "DescribeClusterSnapshots",
@@ -857,6 +935,9 @@ var opDescribeClusterSnapshots *aws.Operation
 
 // DescribeClusterSubnetGroupsRequest generates a request for the DescribeClusterSubnetGroups operation.
 func (c *Redshift) DescribeClusterSubnetGroupsRequest(input *DescribeClusterSubnetGroupsInput) (req *aws.Request, output *DescribeClusterSubnetGroupsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeClusterSubnetGroups == nil {
 		opDescribeClusterSubnetGroups = &aws.Operation{
 			Name:       "DescribeClusterSubnetGroups",
@@ -895,6 +976,9 @@ var opDescribeClusterSubnetGroups *aws.Operation
 
 // DescribeClusterVersionsRequest generates a request for the DescribeClusterVersions operation.
 func (c *Redshift) DescribeClusterVersionsRequest(input *DescribeClusterVersionsInput) (req *aws.Request, output *DescribeClusterVersionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeClusterVersions == nil {
 		opDescribeClusterVersions = &aws.Operation{
 			Name:       "DescribeClusterVersions",
@@ -925,6 +1009,9 @@ var opDescribeClusterVersions *aws.Operation
 
 // DescribeClustersRequest generates a request for the DescribeClusters operation.
 func (c *Redshift) DescribeClustersRequest(input *DescribeClustersInput) (req *aws.Request, output *DescribeClustersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeClusters == nil {
 		opDescribeClusters = &aws.Operation{
 			Name:       "DescribeClusters",
@@ -964,6 +1051,9 @@ var opDescribeClusters *aws.Operation
 
 // DescribeDefaultClusterParametersRequest generates a request for the DescribeDefaultClusterParameters operation.
 func (c *Redshift) DescribeDefaultClusterParametersRequest(input *DescribeDefaultClusterParametersInput) (req *aws.Request, output *DescribeDefaultClusterParametersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeDefaultClusterParameters == nil {
 		opDescribeDefaultClusterParameters = &aws.Operation{
 			Name:       "DescribeDefaultClusterParameters",
@@ -994,6 +1084,9 @@ var opDescribeDefaultClusterParameters *aws.Operation
 
 // DescribeEventCategoriesRequest generates a request for the DescribeEventCategories operation.
 func (c *Redshift) DescribeEventCategoriesRequest(input *DescribeEventCategoriesInput) (req *aws.Request, output *DescribeEventCategoriesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeEventCategories == nil {
 		opDescribeEventCategories = &aws.Operation{
 			Name:       "DescribeEventCategories",
@@ -1022,6 +1115,9 @@ var opDescribeEventCategories *aws.Operation
 
 // DescribeEventSubscriptionsRequest generates a request for the DescribeEventSubscriptions operation.
 func (c *Redshift) DescribeEventSubscriptionsRequest(input *DescribeEventSubscriptionsInput) (req *aws.Request, output *DescribeEventSubscriptionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeEventSubscriptions == nil {
 		opDescribeEventSubscriptions = &aws.Operation{
 			Name:       "DescribeEventSubscriptions",
@@ -1050,6 +1146,9 @@ var opDescribeEventSubscriptions *aws.Operation
 
 // DescribeEventsRequest generates a request for the DescribeEvents operation.
 func (c *Redshift) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Request, output *DescribeEventsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeEvents == nil {
 		opDescribeEvents = &aws.Operation{
 			Name:       "DescribeEvents",
@@ -1079,6 +1178,9 @@ var opDescribeEvents *aws.Operation
 
 // DescribeHSMClientCertificatesRequest generates a request for the DescribeHSMClientCertificates operation.
 func (c *Redshift) DescribeHSMClientCertificatesRequest(input *DescribeHSMClientCertificatesInput) (req *aws.Request, output *DescribeHSMClientCertificatesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeHSMClientCertificates == nil {
 		opDescribeHSMClientCertificates = &aws.Operation{
 			Name:       "DescribeHsmClientCertificates",
@@ -1117,6 +1219,9 @@ var opDescribeHSMClientCertificates *aws.Operation
 
 // DescribeHSMConfigurationsRequest generates a request for the DescribeHSMConfigurations operation.
 func (c *Redshift) DescribeHSMConfigurationsRequest(input *DescribeHSMConfigurationsInput) (req *aws.Request, output *DescribeHSMConfigurationsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeHSMConfigurations == nil {
 		opDescribeHSMConfigurations = &aws.Operation{
 			Name:       "DescribeHsmConfigurations",
@@ -1155,6 +1260,9 @@ var opDescribeHSMConfigurations *aws.Operation
 
 // DescribeLoggingStatusRequest generates a request for the DescribeLoggingStatus operation.
 func (c *Redshift) DescribeLoggingStatusRequest(input *DescribeLoggingStatusInput) (req *aws.Request, output *LoggingStatus) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeLoggingStatus == nil {
 		opDescribeLoggingStatus = &aws.Operation{
 			Name:       "DescribeLoggingStatus",
@@ -1182,6 +1290,9 @@ var opDescribeLoggingStatus *aws.Operation
 
 // DescribeOrderableClusterOptionsRequest generates a request for the DescribeOrderableClusterOptions operation.
 func (c *Redshift) DescribeOrderableClusterOptionsRequest(input *DescribeOrderableClusterOptionsInput) (req *aws.Request, output *DescribeOrderableClusterOptionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeOrderableClusterOptions == nil {
 		opDescribeOrderableClusterOptions = &aws.Operation{
 			Name:       "DescribeOrderableClusterOptions",
@@ -1216,6 +1327,9 @@ var opDescribeOrderableClusterOptions *aws.Operation
 
 // DescribeReservedNodeOfferingsRequest generates a request for the DescribeReservedNodeOfferings operation.
 func (c *Redshift) DescribeReservedNodeOfferingsRequest(input *DescribeReservedNodeOfferingsInput) (req *aws.Request, output *DescribeReservedNodeOfferingsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeReservedNodeOfferings == nil {
 		opDescribeReservedNodeOfferings = &aws.Operation{
 			Name:       "DescribeReservedNodeOfferings",
@@ -1251,6 +1365,9 @@ var opDescribeReservedNodeOfferings *aws.Operation
 
 // DescribeReservedNodesRequest generates a request for the DescribeReservedNodes operation.
 func (c *Redshift) DescribeReservedNodesRequest(input *DescribeReservedNodesInput) (req *aws.Request, output *DescribeReservedNodesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeReservedNodes == nil {
 		opDescribeReservedNodes = &aws.Operation{
 			Name:       "DescribeReservedNodes",
@@ -1277,6 +1394,9 @@ var opDescribeReservedNodes *aws.Operation
 
 // DescribeResizeRequest generates a request for the DescribeResize operation.
 func (c *Redshift) DescribeResizeRequest(input *DescribeResizeInput) (req *aws.Request, output *DescribeResizeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeResize == nil {
 		opDescribeResize = &aws.Operation{
 			Name:       "DescribeResize",
@@ -1309,6 +1429,9 @@ var opDescribeResize *aws.Operation
 
 // DescribeTagsRequest generates a request for the DescribeTags operation.
 func (c *Redshift) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, output *DescribeTagsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeTags == nil {
 		opDescribeTags = &aws.Operation{
 			Name:       "DescribeTags",
@@ -1353,6 +1476,9 @@ var opDescribeTags *aws.Operation
 
 // DisableLoggingRequest generates a request for the DisableLogging operation.
 func (c *Redshift) DisableLoggingRequest(input *DisableLoggingInput) (req *aws.Request, output *LoggingStatus) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDisableLogging == nil {
 		opDisableLogging = &aws.Operation{
 			Name:       "DisableLogging",
@@ -1380,6 +1506,9 @@ var opDisableLogging *aws.Operation
 
 // DisableSnapshotCopyRequest generates a request for the DisableSnapshotCopy operation.
 func (c *Redshift) DisableSnapshotCopyRequest(input *DisableSnapshotCopyInput) (req *aws.Request, output *DisableSnapshotCopyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDisableSnapshotCopy == nil {
 		opDisableSnapshotCopy = &aws.Operation{
 			Name:       "DisableSnapshotCopy",
@@ -1407,6 +1536,9 @@ var opDisableSnapshotCopy *aws.Operation
 
 // EnableLoggingRequest generates a request for the EnableLogging operation.
 func (c *Redshift) EnableLoggingRequest(input *EnableLoggingInput) (req *aws.Request, output *LoggingStatus) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opEnableLogging == nil {
 		opEnableLogging = &aws.Operation{
 			Name:       "EnableLogging",
@@ -1434,6 +1566,9 @@ var opEnableLogging *aws.Operation
 
 // EnableSnapshotCopyRequest generates a request for the EnableSnapshotCopy operation.
 func (c *Redshift) EnableSnapshotCopyRequest(input *EnableSnapshotCopyInput) (req *aws.Request, output *EnableSnapshotCopyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opEnableSnapshotCopy == nil {
 		opEnableSnapshotCopy = &aws.Operation{
 			Name:       "EnableSnapshotCopy",
@@ -1461,6 +1596,9 @@ var opEnableSnapshotCopy *aws.Operation
 
 // ModifyClusterRequest generates a request for the ModifyCluster operation.
 func (c *Redshift) ModifyClusterRequest(input *ModifyClusterInput) (req *aws.Request, output *ModifyClusterOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyCluster == nil {
 		opModifyCluster = &aws.Operation{
 			Name:       "ModifyCluster",
@@ -1497,6 +1635,9 @@ var opModifyCluster *aws.Operation
 
 // ModifyClusterParameterGroupRequest generates a request for the ModifyClusterParameterGroup operation.
 func (c *Redshift) ModifyClusterParameterGroupRequest(input *ModifyClusterParameterGroupInput) (req *aws.Request, output *ClusterParameterGroupNameMessage) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyClusterParameterGroup == nil {
 		opModifyClusterParameterGroup = &aws.Operation{
 			Name:       "ModifyClusterParameterGroup",
@@ -1527,6 +1668,9 @@ var opModifyClusterParameterGroup *aws.Operation
 
 // ModifyClusterSubnetGroupRequest generates a request for the ModifyClusterSubnetGroup operation.
 func (c *Redshift) ModifyClusterSubnetGroupRequest(input *ModifyClusterSubnetGroupInput) (req *aws.Request, output *ModifyClusterSubnetGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyClusterSubnetGroup == nil {
 		opModifyClusterSubnetGroup = &aws.Operation{
 			Name:       "ModifyClusterSubnetGroup",
@@ -1555,6 +1699,9 @@ var opModifyClusterSubnetGroup *aws.Operation
 
 // ModifyEventSubscriptionRequest generates a request for the ModifyEventSubscription operation.
 func (c *Redshift) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionInput) (req *aws.Request, output *ModifyEventSubscriptionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyEventSubscription == nil {
 		opModifyEventSubscription = &aws.Operation{
 			Name:       "ModifyEventSubscription",
@@ -1581,6 +1728,9 @@ var opModifyEventSubscription *aws.Operation
 
 // ModifySnapshotCopyRetentionPeriodRequest generates a request for the ModifySnapshotCopyRetentionPeriod operation.
 func (c *Redshift) ModifySnapshotCopyRetentionPeriodRequest(input *ModifySnapshotCopyRetentionPeriodInput) (req *aws.Request, output *ModifySnapshotCopyRetentionPeriodOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifySnapshotCopyRetentionPeriod == nil {
 		opModifySnapshotCopyRetentionPeriod = &aws.Operation{
 			Name:       "ModifySnapshotCopyRetentionPeriod",
@@ -1608,6 +1758,9 @@ var opModifySnapshotCopyRetentionPeriod *aws.Operation
 
 // PurchaseReservedNodeOfferingRequest generates a request for the PurchaseReservedNodeOffering operation.
 func (c *Redshift) PurchaseReservedNodeOfferingRequest(input *PurchaseReservedNodeOfferingInput) (req *aws.Request, output *PurchaseReservedNodeOfferingOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPurchaseReservedNodeOffering == nil {
 		opPurchaseReservedNodeOffering = &aws.Operation{
 			Name:       "PurchaseReservedNodeOffering",
@@ -1642,6 +1795,9 @@ var opPurchaseReservedNodeOffering *aws.Operation
 
 // RebootClusterRequest generates a request for the RebootCluster operation.
 func (c *Redshift) RebootClusterRequest(input *RebootClusterInput) (req *aws.Request, output *RebootClusterOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRebootCluster == nil {
 		opRebootCluster = &aws.Operation{
 			Name:       "RebootCluster",
@@ -1674,6 +1830,9 @@ var opRebootCluster *aws.Operation
 
 // ResetClusterParameterGroupRequest generates a request for the ResetClusterParameterGroup operation.
 func (c *Redshift) ResetClusterParameterGroupRequest(input *ResetClusterParameterGroupInput) (req *aws.Request, output *ClusterParameterGroupNameMessage) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opResetClusterParameterGroup == nil {
 		opResetClusterParameterGroup = &aws.Operation{
 			Name:       "ResetClusterParameterGroup",
@@ -1703,6 +1862,9 @@ var opResetClusterParameterGroup *aws.Operation
 
 // RestoreFromClusterSnapshotRequest generates a request for the RestoreFromClusterSnapshot operation.
 func (c *Redshift) RestoreFromClusterSnapshotRequest(input *RestoreFromClusterSnapshotInput) (req *aws.Request, output *RestoreFromClusterSnapshotOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRestoreFromClusterSnapshot == nil {
 		opRestoreFromClusterSnapshot = &aws.Operation{
 			Name:       "RestoreFromClusterSnapshot",
@@ -1741,6 +1903,9 @@ var opRestoreFromClusterSnapshot *aws.Operation
 
 // RevokeClusterSecurityGroupIngressRequest generates a request for the RevokeClusterSecurityGroupIngress operation.
 func (c *Redshift) RevokeClusterSecurityGroupIngressRequest(input *RevokeClusterSecurityGroupIngressInput) (req *aws.Request, output *RevokeClusterSecurityGroupIngressOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRevokeClusterSecurityGroupIngress == nil {
 		opRevokeClusterSecurityGroupIngress = &aws.Operation{
 			Name:       "RevokeClusterSecurityGroupIngress",
@@ -1771,6 +1936,9 @@ var opRevokeClusterSecurityGroupIngress *aws.Operation
 
 // RevokeSnapshotAccessRequest generates a request for the RevokeSnapshotAccess operation.
 func (c *Redshift) RevokeSnapshotAccessRequest(input *RevokeSnapshotAccessInput) (req *aws.Request, output *RevokeSnapshotAccessOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRevokeSnapshotAccess == nil {
 		opRevokeSnapshotAccess = &aws.Operation{
 			Name:       "RevokeSnapshotAccess",
@@ -1803,6 +1971,9 @@ var opRevokeSnapshotAccess *aws.Operation
 
 // RotateEncryptionKeyRequest generates a request for the RotateEncryptionKey operation.
 func (c *Redshift) RotateEncryptionKeyRequest(input *RotateEncryptionKeyInput) (req *aws.Request, output *RotateEncryptionKeyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRotateEncryptionKey == nil {
 		opRotateEncryptionKey = &aws.Operation{
 			Name:       "RotateEncryptionKey",

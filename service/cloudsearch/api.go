@@ -4,13 +4,19 @@
 package cloudsearch
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // BuildSuggestersRequest generates a request for the BuildSuggesters operation.
 func (c *CloudSearch) BuildSuggestersRequest(input *BuildSuggestersInput) (req *aws.Request, output *BuildSuggestersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opBuildSuggesters == nil {
 		opBuildSuggesters = &aws.Operation{
 			Name:       "BuildSuggesters",
@@ -39,6 +45,9 @@ var opBuildSuggesters *aws.Operation
 
 // CreateDomainRequest generates a request for the CreateDomain operation.
 func (c *CloudSearch) CreateDomainRequest(input *CreateDomainInput) (req *aws.Request, output *CreateDomainOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateDomain == nil {
 		opCreateDomain = &aws.Operation{
 			Name:       "CreateDomain",
@@ -67,6 +76,9 @@ var opCreateDomain *aws.Operation
 
 // DefineAnalysisSchemeRequest generates a request for the DefineAnalysisScheme operation.
 func (c *CloudSearch) DefineAnalysisSchemeRequest(input *DefineAnalysisSchemeInput) (req *aws.Request, output *DefineAnalysisSchemeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDefineAnalysisScheme == nil {
 		opDefineAnalysisScheme = &aws.Operation{
 			Name:       "DefineAnalysisScheme",
@@ -96,6 +108,9 @@ var opDefineAnalysisScheme *aws.Operation
 
 // DefineExpressionRequest generates a request for the DefineExpression operation.
 func (c *CloudSearch) DefineExpressionRequest(input *DefineExpressionInput) (req *aws.Request, output *DefineExpressionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDefineExpression == nil {
 		opDefineExpression = &aws.Operation{
 			Name:       "DefineExpression",
@@ -125,6 +140,9 @@ var opDefineExpression *aws.Operation
 
 // DefineIndexFieldRequest generates a request for the DefineIndexField operation.
 func (c *CloudSearch) DefineIndexFieldRequest(input *DefineIndexFieldInput) (req *aws.Request, output *DefineIndexFieldOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDefineIndexField == nil {
 		opDefineIndexField = &aws.Operation{
 			Name:       "DefineIndexField",
@@ -158,6 +176,9 @@ var opDefineIndexField *aws.Operation
 
 // DefineSuggesterRequest generates a request for the DefineSuggester operation.
 func (c *CloudSearch) DefineSuggesterRequest(input *DefineSuggesterInput) (req *aws.Request, output *DefineSuggesterOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDefineSuggester == nil {
 		opDefineSuggester = &aws.Operation{
 			Name:       "DefineSuggester",
@@ -189,6 +210,9 @@ var opDefineSuggester *aws.Operation
 
 // DeleteAnalysisSchemeRequest generates a request for the DeleteAnalysisScheme operation.
 func (c *CloudSearch) DeleteAnalysisSchemeRequest(input *DeleteAnalysisSchemeInput) (req *aws.Request, output *DeleteAnalysisSchemeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteAnalysisScheme == nil {
 		opDeleteAnalysisScheme = &aws.Operation{
 			Name:       "DeleteAnalysisScheme",
@@ -217,6 +241,9 @@ var opDeleteAnalysisScheme *aws.Operation
 
 // DeleteDomainRequest generates a request for the DeleteDomain operation.
 func (c *CloudSearch) DeleteDomainRequest(input *DeleteDomainInput) (req *aws.Request, output *DeleteDomainOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteDomain == nil {
 		opDeleteDomain = &aws.Operation{
 			Name:       "DeleteDomain",
@@ -246,6 +273,9 @@ var opDeleteDomain *aws.Operation
 
 // DeleteExpressionRequest generates a request for the DeleteExpression operation.
 func (c *CloudSearch) DeleteExpressionRequest(input *DeleteExpressionInput) (req *aws.Request, output *DeleteExpressionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteExpression == nil {
 		opDeleteExpression = &aws.Operation{
 			Name:       "DeleteExpression",
@@ -274,6 +304,9 @@ var opDeleteExpression *aws.Operation
 
 // DeleteIndexFieldRequest generates a request for the DeleteIndexField operation.
 func (c *CloudSearch) DeleteIndexFieldRequest(input *DeleteIndexFieldInput) (req *aws.Request, output *DeleteIndexFieldOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteIndexField == nil {
 		opDeleteIndexField = &aws.Operation{
 			Name:       "DeleteIndexField",
@@ -302,6 +335,9 @@ var opDeleteIndexField *aws.Operation
 
 // DeleteSuggesterRequest generates a request for the DeleteSuggester operation.
 func (c *CloudSearch) DeleteSuggesterRequest(input *DeleteSuggesterInput) (req *aws.Request, output *DeleteSuggesterOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteSuggester == nil {
 		opDeleteSuggester = &aws.Operation{
 			Name:       "DeleteSuggester",
@@ -330,6 +366,9 @@ var opDeleteSuggester *aws.Operation
 
 // DescribeAnalysisSchemesRequest generates a request for the DescribeAnalysisSchemes operation.
 func (c *CloudSearch) DescribeAnalysisSchemesRequest(input *DescribeAnalysisSchemesInput) (req *aws.Request, output *DescribeAnalysisSchemesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAnalysisSchemes == nil {
 		opDescribeAnalysisSchemes = &aws.Operation{
 			Name:       "DescribeAnalysisSchemes",
@@ -362,6 +401,9 @@ var opDescribeAnalysisSchemes *aws.Operation
 
 // DescribeAvailabilityOptionsRequest generates a request for the DescribeAvailabilityOptions operation.
 func (c *CloudSearch) DescribeAvailabilityOptionsRequest(input *DescribeAvailabilityOptionsInput) (req *aws.Request, output *DescribeAvailabilityOptionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAvailabilityOptions == nil {
 		opDescribeAvailabilityOptions = &aws.Operation{
 			Name:       "DescribeAvailabilityOptions",
@@ -392,6 +434,9 @@ var opDescribeAvailabilityOptions *aws.Operation
 
 // DescribeDomainsRequest generates a request for the DescribeDomains operation.
 func (c *CloudSearch) DescribeDomainsRequest(input *DescribeDomainsInput) (req *aws.Request, output *DescribeDomainsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeDomains == nil {
 		opDescribeDomains = &aws.Operation{
 			Name:       "DescribeDomains",
@@ -423,6 +468,9 @@ var opDescribeDomains *aws.Operation
 
 // DescribeExpressionsRequest generates a request for the DescribeExpressions operation.
 func (c *CloudSearch) DescribeExpressionsRequest(input *DescribeExpressionsInput) (req *aws.Request, output *DescribeExpressionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeExpressions == nil {
 		opDescribeExpressions = &aws.Operation{
 			Name:       "DescribeExpressions",
@@ -454,6 +502,9 @@ var opDescribeExpressions *aws.Operation
 
 // DescribeIndexFieldsRequest generates a request for the DescribeIndexFields operation.
 func (c *CloudSearch) DescribeIndexFieldsRequest(input *DescribeIndexFieldsInput) (req *aws.Request, output *DescribeIndexFieldsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeIndexFields == nil {
 		opDescribeIndexFields = &aws.Operation{
 			Name:       "DescribeIndexFields",
@@ -485,6 +536,9 @@ var opDescribeIndexFields *aws.Operation
 
 // DescribeScalingParametersRequest generates a request for the DescribeScalingParameters operation.
 func (c *CloudSearch) DescribeScalingParametersRequest(input *DescribeScalingParametersInput) (req *aws.Request, output *DescribeScalingParametersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeScalingParameters == nil {
 		opDescribeScalingParameters = &aws.Operation{
 			Name:       "DescribeScalingParameters",
@@ -514,6 +568,9 @@ var opDescribeScalingParameters *aws.Operation
 
 // DescribeServiceAccessPoliciesRequest generates a request for the DescribeServiceAccessPolicies operation.
 func (c *CloudSearch) DescribeServiceAccessPoliciesRequest(input *DescribeServiceAccessPoliciesInput) (req *aws.Request, output *DescribeServiceAccessPoliciesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeServiceAccessPolicies == nil {
 		opDescribeServiceAccessPolicies = &aws.Operation{
 			Name:       "DescribeServiceAccessPolicies",
@@ -545,6 +602,9 @@ var opDescribeServiceAccessPolicies *aws.Operation
 
 // DescribeSuggestersRequest generates a request for the DescribeSuggesters operation.
 func (c *CloudSearch) DescribeSuggestersRequest(input *DescribeSuggestersInput) (req *aws.Request, output *DescribeSuggestersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeSuggesters == nil {
 		opDescribeSuggesters = &aws.Operation{
 			Name:       "DescribeSuggesters",
@@ -577,6 +637,9 @@ var opDescribeSuggesters *aws.Operation
 
 // IndexDocumentsRequest generates a request for the IndexDocuments operation.
 func (c *CloudSearch) IndexDocumentsRequest(input *IndexDocumentsInput) (req *aws.Request, output *IndexDocumentsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opIndexDocuments == nil {
 		opIndexDocuments = &aws.Operation{
 			Name:       "IndexDocuments",
@@ -605,6 +668,9 @@ var opIndexDocuments *aws.Operation
 
 // ListDomainNamesRequest generates a request for the ListDomainNames operation.
 func (c *CloudSearch) ListDomainNamesRequest(input *ListDomainNamesInput) (req *aws.Request, output *ListDomainNamesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListDomainNames == nil {
 		opListDomainNames = &aws.Operation{
 			Name:       "ListDomainNames",
@@ -631,6 +697,9 @@ var opListDomainNames *aws.Operation
 
 // UpdateAvailabilityOptionsRequest generates a request for the UpdateAvailabilityOptions operation.
 func (c *CloudSearch) UpdateAvailabilityOptionsRequest(input *UpdateAvailabilityOptionsInput) (req *aws.Request, output *UpdateAvailabilityOptionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateAvailabilityOptions == nil {
 		opUpdateAvailabilityOptions = &aws.Operation{
 			Name:       "UpdateAvailabilityOptions",
@@ -662,6 +731,9 @@ var opUpdateAvailabilityOptions *aws.Operation
 
 // UpdateScalingParametersRequest generates a request for the UpdateScalingParameters operation.
 func (c *CloudSearch) UpdateScalingParametersRequest(input *UpdateScalingParametersInput) (req *aws.Request, output *UpdateScalingParametersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateScalingParameters == nil {
 		opUpdateScalingParameters = &aws.Operation{
 			Name:       "UpdateScalingParameters",
@@ -695,6 +767,9 @@ var opUpdateScalingParameters *aws.Operation
 
 // UpdateServiceAccessPoliciesRequest generates a request for the UpdateServiceAccessPolicies operation.
 func (c *CloudSearch) UpdateServiceAccessPoliciesRequest(input *UpdateServiceAccessPoliciesInput) (req *aws.Request, output *UpdateServiceAccessPoliciesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateServiceAccessPolicies == nil {
 		opUpdateServiceAccessPolicies = &aws.Operation{
 			Name:       "UpdateServiceAccessPolicies",

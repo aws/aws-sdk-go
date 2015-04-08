@@ -4,13 +4,19 @@
 package route53domains
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // CheckDomainAvailabilityRequest generates a request for the CheckDomainAvailability operation.
 func (c *Route53Domains) CheckDomainAvailabilityRequest(input *CheckDomainAvailabilityInput) (req *aws.Request, output *CheckDomainAvailabilityOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCheckDomainAvailability == nil {
 		opCheckDomainAvailability = &aws.Operation{
 			Name:       "CheckDomainAvailability",
@@ -40,6 +46,9 @@ var opCheckDomainAvailability *aws.Operation
 
 // DeleteTagsForDomainRequest generates a request for the DeleteTagsForDomain operation.
 func (c *Route53Domains) DeleteTagsForDomainRequest(input *DeleteTagsForDomainInput) (req *aws.Request, output *DeleteTagsForDomainOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteTagsForDomain == nil {
 		opDeleteTagsForDomain = &aws.Operation{
 			Name:       "DeleteTagsForDomain",
@@ -69,6 +78,9 @@ var opDeleteTagsForDomain *aws.Operation
 
 // DisableDomainAutoRenewRequest generates a request for the DisableDomainAutoRenew operation.
 func (c *Route53Domains) DisableDomainAutoRenewRequest(input *DisableDomainAutoRenewInput) (req *aws.Request, output *DisableDomainAutoRenewOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDisableDomainAutoRenew == nil {
 		opDisableDomainAutoRenew = &aws.Operation{
 			Name:       "DisableDomainAutoRenew",
@@ -101,6 +113,9 @@ var opDisableDomainAutoRenew *aws.Operation
 
 // DisableDomainTransferLockRequest generates a request for the DisableDomainTransferLock operation.
 func (c *Route53Domains) DisableDomainTransferLockRequest(input *DisableDomainTransferLockInput) (req *aws.Request, output *DisableDomainTransferLockOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDisableDomainTransferLock == nil {
 		opDisableDomainTransferLock = &aws.Operation{
 			Name:       "DisableDomainTransferLock",
@@ -133,6 +148,9 @@ var opDisableDomainTransferLock *aws.Operation
 
 // EnableDomainAutoRenewRequest generates a request for the EnableDomainAutoRenew operation.
 func (c *Route53Domains) EnableDomainAutoRenewRequest(input *EnableDomainAutoRenewInput) (req *aws.Request, output *EnableDomainAutoRenewOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opEnableDomainAutoRenew == nil {
 		opEnableDomainAutoRenew = &aws.Operation{
 			Name:       "EnableDomainAutoRenew",
@@ -168,6 +186,9 @@ var opEnableDomainAutoRenew *aws.Operation
 
 // EnableDomainTransferLockRequest generates a request for the EnableDomainTransferLock operation.
 func (c *Route53Domains) EnableDomainTransferLockRequest(input *EnableDomainTransferLockInput) (req *aws.Request, output *EnableDomainTransferLockOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opEnableDomainTransferLock == nil {
 		opEnableDomainTransferLock = &aws.Operation{
 			Name:       "EnableDomainTransferLock",
@@ -198,6 +219,9 @@ var opEnableDomainTransferLock *aws.Operation
 
 // GetDomainDetailRequest generates a request for the GetDomainDetail operation.
 func (c *Route53Domains) GetDomainDetailRequest(input *GetDomainDetailInput) (req *aws.Request, output *GetDomainDetailOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetDomainDetail == nil {
 		opGetDomainDetail = &aws.Operation{
 			Name:       "GetDomainDetail",
@@ -225,6 +249,9 @@ var opGetDomainDetail *aws.Operation
 
 // GetOperationDetailRequest generates a request for the GetOperationDetail operation.
 func (c *Route53Domains) GetOperationDetailRequest(input *GetOperationDetailInput) (req *aws.Request, output *GetOperationDetailOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetOperationDetail == nil {
 		opGetOperationDetail = &aws.Operation{
 			Name:       "GetOperationDetail",
@@ -251,6 +278,9 @@ var opGetOperationDetail *aws.Operation
 
 // ListDomainsRequest generates a request for the ListDomains operation.
 func (c *Route53Domains) ListDomainsRequest(input *ListDomainsInput) (req *aws.Request, output *ListDomainsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListDomains == nil {
 		opListDomains = &aws.Operation{
 			Name:       "ListDomains",
@@ -278,6 +308,9 @@ var opListDomains *aws.Operation
 
 // ListOperationsRequest generates a request for the ListOperations operation.
 func (c *Route53Domains) ListOperationsRequest(input *ListOperationsInput) (req *aws.Request, output *ListOperationsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListOperations == nil {
 		opListOperations = &aws.Operation{
 			Name:       "ListOperations",
@@ -304,6 +337,9 @@ var opListOperations *aws.Operation
 
 // ListTagsForDomainRequest generates a request for the ListTagsForDomain operation.
 func (c *Route53Domains) ListTagsForDomainRequest(input *ListTagsForDomainInput) (req *aws.Request, output *ListTagsForDomainOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListTagsForDomain == nil {
 		opListTagsForDomain = &aws.Operation{
 			Name:       "ListTagsForDomain",
@@ -334,6 +370,9 @@ var opListTagsForDomain *aws.Operation
 
 // RegisterDomainRequest generates a request for the RegisterDomain operation.
 func (c *Route53Domains) RegisterDomainRequest(input *RegisterDomainInput) (req *aws.Request, output *RegisterDomainOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRegisterDomain == nil {
 		opRegisterDomain = &aws.Operation{
 			Name:       "RegisterDomain",
@@ -378,6 +417,9 @@ var opRegisterDomain *aws.Operation
 
 // RetrieveDomainAuthCodeRequest generates a request for the RetrieveDomainAuthCode operation.
 func (c *Route53Domains) RetrieveDomainAuthCodeRequest(input *RetrieveDomainAuthCodeInput) (req *aws.Request, output *RetrieveDomainAuthCodeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRetrieveDomainAuthCode == nil {
 		opRetrieveDomainAuthCode = &aws.Operation{
 			Name:       "RetrieveDomainAuthCode",
@@ -405,6 +447,9 @@ var opRetrieveDomainAuthCode *aws.Operation
 
 // TransferDomainRequest generates a request for the TransferDomain operation.
 func (c *Route53Domains) TransferDomainRequest(input *TransferDomainInput) (req *aws.Request, output *TransferDomainOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opTransferDomain == nil {
 		opTransferDomain = &aws.Operation{
 			Name:       "TransferDomain",
@@ -454,6 +499,9 @@ var opTransferDomain *aws.Operation
 
 // UpdateDomainContactRequest generates a request for the UpdateDomainContact operation.
 func (c *Route53Domains) UpdateDomainContactRequest(input *UpdateDomainContactInput) (req *aws.Request, output *UpdateDomainContactOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateDomainContact == nil {
 		opUpdateDomainContact = &aws.Operation{
 			Name:       "UpdateDomainContact",
@@ -487,6 +535,9 @@ var opUpdateDomainContact *aws.Operation
 
 // UpdateDomainContactPrivacyRequest generates a request for the UpdateDomainContactPrivacy operation.
 func (c *Route53Domains) UpdateDomainContactPrivacyRequest(input *UpdateDomainContactPrivacyInput) (req *aws.Request, output *UpdateDomainContactPrivacyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateDomainContactPrivacy == nil {
 		opUpdateDomainContactPrivacy = &aws.Operation{
 			Name:       "UpdateDomainContactPrivacy",
@@ -523,6 +574,9 @@ var opUpdateDomainContactPrivacy *aws.Operation
 
 // UpdateDomainNameserversRequest generates a request for the UpdateDomainNameservers operation.
 func (c *Route53Domains) UpdateDomainNameserversRequest(input *UpdateDomainNameserversInput) (req *aws.Request, output *UpdateDomainNameserversOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateDomainNameservers == nil {
 		opUpdateDomainNameservers = &aws.Operation{
 			Name:       "UpdateDomainNameservers",
@@ -556,6 +610,9 @@ var opUpdateDomainNameservers *aws.Operation
 
 // UpdateTagsForDomainRequest generates a request for the UpdateTagsForDomain operation.
 func (c *Route53Domains) UpdateTagsForDomainRequest(input *UpdateTagsForDomainInput) (req *aws.Request, output *UpdateTagsForDomainOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateTagsForDomain == nil {
 		opUpdateTagsForDomain = &aws.Operation{
 			Name:       "UpdateTagsForDomain",

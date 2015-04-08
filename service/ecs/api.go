@@ -4,11 +4,18 @@
 package ecs
 
 import (
+	"sync"
+
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // CreateClusterRequest generates a request for the CreateCluster operation.
 func (c *ECS) CreateClusterRequest(input *CreateClusterInput) (req *aws.Request, output *CreateClusterOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateCluster == nil {
 		opCreateCluster = &aws.Operation{
 			Name:       "CreateCluster",
@@ -39,6 +46,9 @@ var opCreateCluster *aws.Operation
 
 // DeleteClusterRequest generates a request for the DeleteCluster operation.
 func (c *ECS) DeleteClusterRequest(input *DeleteClusterInput) (req *aws.Request, output *DeleteClusterOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteCluster == nil {
 		opDeleteCluster = &aws.Operation{
 			Name:       "DeleteCluster",
@@ -67,6 +77,9 @@ var opDeleteCluster *aws.Operation
 
 // DeregisterContainerInstanceRequest generates a request for the DeregisterContainerInstance operation.
 func (c *ECS) DeregisterContainerInstanceRequest(input *DeregisterContainerInstanceInput) (req *aws.Request, output *DeregisterContainerInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeregisterContainerInstance == nil {
 		opDeregisterContainerInstance = &aws.Operation{
 			Name:       "DeregisterContainerInstance",
@@ -94,6 +107,9 @@ var opDeregisterContainerInstance *aws.Operation
 
 // DeregisterTaskDefinitionRequest generates a request for the DeregisterTaskDefinition operation.
 func (c *ECS) DeregisterTaskDefinitionRequest(input *DeregisterTaskDefinitionInput) (req *aws.Request, output *DeregisterTaskDefinitionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeregisterTaskDefinition == nil {
 		opDeregisterTaskDefinition = &aws.Operation{
 			Name:       "DeregisterTaskDefinition",
@@ -123,6 +139,9 @@ var opDeregisterTaskDefinition *aws.Operation
 
 // DescribeClustersRequest generates a request for the DescribeClusters operation.
 func (c *ECS) DescribeClustersRequest(input *DescribeClustersInput) (req *aws.Request, output *DescribeClustersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeClusters == nil {
 		opDescribeClusters = &aws.Operation{
 			Name:       "DescribeClusters",
@@ -149,6 +168,9 @@ var opDescribeClusters *aws.Operation
 
 // DescribeContainerInstancesRequest generates a request for the DescribeContainerInstances operation.
 func (c *ECS) DescribeContainerInstancesRequest(input *DescribeContainerInstancesInput) (req *aws.Request, output *DescribeContainerInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeContainerInstances == nil {
 		opDescribeContainerInstances = &aws.Operation{
 			Name:       "DescribeContainerInstances",
@@ -176,6 +198,9 @@ var opDescribeContainerInstances *aws.Operation
 
 // DescribeTaskDefinitionRequest generates a request for the DescribeTaskDefinition operation.
 func (c *ECS) DescribeTaskDefinitionRequest(input *DescribeTaskDefinitionInput) (req *aws.Request, output *DescribeTaskDefinitionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeTaskDefinition == nil {
 		opDescribeTaskDefinition = &aws.Operation{
 			Name:       "DescribeTaskDefinition",
@@ -204,6 +229,9 @@ var opDescribeTaskDefinition *aws.Operation
 
 // DescribeTasksRequest generates a request for the DescribeTasks operation.
 func (c *ECS) DescribeTasksRequest(input *DescribeTasksInput) (req *aws.Request, output *DescribeTasksOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeTasks == nil {
 		opDescribeTasks = &aws.Operation{
 			Name:       "DescribeTasks",
@@ -230,6 +258,9 @@ var opDescribeTasks *aws.Operation
 
 // DiscoverPollEndpointRequest generates a request for the DiscoverPollEndpoint operation.
 func (c *ECS) DiscoverPollEndpointRequest(input *DiscoverPollEndpointInput) (req *aws.Request, output *DiscoverPollEndpointOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDiscoverPollEndpoint == nil {
 		opDiscoverPollEndpoint = &aws.Operation{
 			Name:       "DiscoverPollEndpoint",
@@ -260,6 +291,9 @@ var opDiscoverPollEndpoint *aws.Operation
 
 // ListClustersRequest generates a request for the ListClusters operation.
 func (c *ECS) ListClustersRequest(input *ListClustersInput) (req *aws.Request, output *ListClustersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListClusters == nil {
 		opListClusters = &aws.Operation{
 			Name:       "ListClusters",
@@ -286,6 +320,9 @@ var opListClusters *aws.Operation
 
 // ListContainerInstancesRequest generates a request for the ListContainerInstances operation.
 func (c *ECS) ListContainerInstancesRequest(input *ListContainerInstancesInput) (req *aws.Request, output *ListContainerInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListContainerInstances == nil {
 		opListContainerInstances = &aws.Operation{
 			Name:       "ListContainerInstances",
@@ -312,6 +349,9 @@ var opListContainerInstances *aws.Operation
 
 // ListTaskDefinitionFamiliesRequest generates a request for the ListTaskDefinitionFamilies operation.
 func (c *ECS) ListTaskDefinitionFamiliesRequest(input *ListTaskDefinitionFamiliesInput) (req *aws.Request, output *ListTaskDefinitionFamiliesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListTaskDefinitionFamilies == nil {
 		opListTaskDefinitionFamilies = &aws.Operation{
 			Name:       "ListTaskDefinitionFamilies",
@@ -339,6 +379,9 @@ var opListTaskDefinitionFamilies *aws.Operation
 
 // ListTaskDefinitionsRequest generates a request for the ListTaskDefinitions operation.
 func (c *ECS) ListTaskDefinitionsRequest(input *ListTaskDefinitionsInput) (req *aws.Request, output *ListTaskDefinitionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListTaskDefinitions == nil {
 		opListTaskDefinitions = &aws.Operation{
 			Name:       "ListTaskDefinitions",
@@ -366,6 +409,9 @@ var opListTaskDefinitions *aws.Operation
 
 // ListTasksRequest generates a request for the ListTasks operation.
 func (c *ECS) ListTasksRequest(input *ListTasksInput) (req *aws.Request, output *ListTasksOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListTasks == nil {
 		opListTasks = &aws.Operation{
 			Name:       "ListTasks",
@@ -394,6 +440,9 @@ var opListTasks *aws.Operation
 
 // RegisterContainerInstanceRequest generates a request for the RegisterContainerInstance operation.
 func (c *ECS) RegisterContainerInstanceRequest(input *RegisterContainerInstanceInput) (req *aws.Request, output *RegisterContainerInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRegisterContainerInstance == nil {
 		opRegisterContainerInstance = &aws.Operation{
 			Name:       "RegisterContainerInstance",
@@ -424,6 +473,9 @@ var opRegisterContainerInstance *aws.Operation
 
 // RegisterTaskDefinitionRequest generates a request for the RegisterTaskDefinition operation.
 func (c *ECS) RegisterTaskDefinitionRequest(input *RegisterTaskDefinitionInput) (req *aws.Request, output *RegisterTaskDefinitionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRegisterTaskDefinition == nil {
 		opRegisterTaskDefinition = &aws.Operation{
 			Name:       "RegisterTaskDefinition",
@@ -454,6 +506,9 @@ var opRegisterTaskDefinition *aws.Operation
 
 // RunTaskRequest generates a request for the RunTask operation.
 func (c *ECS) RunTaskRequest(input *RunTaskInput) (req *aws.Request, output *RunTaskOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRunTask == nil {
 		opRunTask = &aws.Operation{
 			Name:       "RunTask",
@@ -482,6 +537,9 @@ var opRunTask *aws.Operation
 
 // StartTaskRequest generates a request for the StartTask operation.
 func (c *ECS) StartTaskRequest(input *StartTaskInput) (req *aws.Request, output *StartTaskOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opStartTask == nil {
 		opStartTask = &aws.Operation{
 			Name:       "StartTask",
@@ -510,6 +568,9 @@ var opStartTask *aws.Operation
 
 // StopTaskRequest generates a request for the StopTask operation.
 func (c *ECS) StopTaskRequest(input *StopTaskInput) (req *aws.Request, output *StopTaskOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opStopTask == nil {
 		opStopTask = &aws.Operation{
 			Name:       "StopTask",
@@ -536,6 +597,9 @@ var opStopTask *aws.Operation
 
 // SubmitContainerStateChangeRequest generates a request for the SubmitContainerStateChange operation.
 func (c *ECS) SubmitContainerStateChangeRequest(input *SubmitContainerStateChangeInput) (req *aws.Request, output *SubmitContainerStateChangeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSubmitContainerStateChange == nil {
 		opSubmitContainerStateChange = &aws.Operation{
 			Name:       "SubmitContainerStateChange",
@@ -565,6 +629,9 @@ var opSubmitContainerStateChange *aws.Operation
 
 // SubmitTaskStateChangeRequest generates a request for the SubmitTaskStateChange operation.
 func (c *ECS) SubmitTaskStateChangeRequest(input *SubmitTaskStateChangeInput) (req *aws.Request, output *SubmitTaskStateChangeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSubmitTaskStateChange == nil {
 		opSubmitTaskStateChange = &aws.Operation{
 			Name:       "SubmitTaskStateChange",

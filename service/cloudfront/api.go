@@ -4,13 +4,19 @@
 package cloudfront
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // CreateCloudFrontOriginAccessIdentityRequest generates a request for the CreateCloudFrontOriginAccessIdentity operation.
 func (c *CloudFront) CreateCloudFrontOriginAccessIdentityRequest(input *CreateCloudFrontOriginAccessIdentityInput) (req *aws.Request, output *CreateCloudFrontOriginAccessIdentityOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateCloudFrontOriginAccessIdentity == nil {
 		opCreateCloudFrontOriginAccessIdentity = &aws.Operation{
 			Name:       "CreateCloudFrontOriginAccessIdentity2014_11_06",
@@ -37,6 +43,9 @@ var opCreateCloudFrontOriginAccessIdentity *aws.Operation
 
 // CreateDistributionRequest generates a request for the CreateDistribution operation.
 func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (req *aws.Request, output *CreateDistributionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateDistribution == nil {
 		opCreateDistribution = &aws.Operation{
 			Name:       "CreateDistribution2014_11_06",
@@ -63,6 +72,9 @@ var opCreateDistribution *aws.Operation
 
 // CreateInvalidationRequest generates a request for the CreateInvalidation operation.
 func (c *CloudFront) CreateInvalidationRequest(input *CreateInvalidationInput) (req *aws.Request, output *CreateInvalidationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateInvalidation == nil {
 		opCreateInvalidation = &aws.Operation{
 			Name:       "CreateInvalidation2014_11_06",
@@ -89,6 +101,9 @@ var opCreateInvalidation *aws.Operation
 
 // CreateStreamingDistributionRequest generates a request for the CreateStreamingDistribution operation.
 func (c *CloudFront) CreateStreamingDistributionRequest(input *CreateStreamingDistributionInput) (req *aws.Request, output *CreateStreamingDistributionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateStreamingDistribution == nil {
 		opCreateStreamingDistribution = &aws.Operation{
 			Name:       "CreateStreamingDistribution2014_11_06",
@@ -115,6 +130,9 @@ var opCreateStreamingDistribution *aws.Operation
 
 // DeleteCloudFrontOriginAccessIdentityRequest generates a request for the DeleteCloudFrontOriginAccessIdentity operation.
 func (c *CloudFront) DeleteCloudFrontOriginAccessIdentityRequest(input *DeleteCloudFrontOriginAccessIdentityInput) (req *aws.Request, output *DeleteCloudFrontOriginAccessIdentityOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteCloudFrontOriginAccessIdentity == nil {
 		opDeleteCloudFrontOriginAccessIdentity = &aws.Operation{
 			Name:       "DeleteCloudFrontOriginAccessIdentity2014_11_06",
@@ -141,6 +159,9 @@ var opDeleteCloudFrontOriginAccessIdentity *aws.Operation
 
 // DeleteDistributionRequest generates a request for the DeleteDistribution operation.
 func (c *CloudFront) DeleteDistributionRequest(input *DeleteDistributionInput) (req *aws.Request, output *DeleteDistributionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteDistribution == nil {
 		opDeleteDistribution = &aws.Operation{
 			Name:       "DeleteDistribution2014_11_06",
@@ -167,6 +188,9 @@ var opDeleteDistribution *aws.Operation
 
 // DeleteStreamingDistributionRequest generates a request for the DeleteStreamingDistribution operation.
 func (c *CloudFront) DeleteStreamingDistributionRequest(input *DeleteStreamingDistributionInput) (req *aws.Request, output *DeleteStreamingDistributionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteStreamingDistribution == nil {
 		opDeleteStreamingDistribution = &aws.Operation{
 			Name:       "DeleteStreamingDistribution2014_11_06",
@@ -193,6 +217,9 @@ var opDeleteStreamingDistribution *aws.Operation
 
 // GetCloudFrontOriginAccessIdentityRequest generates a request for the GetCloudFrontOriginAccessIdentity operation.
 func (c *CloudFront) GetCloudFrontOriginAccessIdentityRequest(input *GetCloudFrontOriginAccessIdentityInput) (req *aws.Request, output *GetCloudFrontOriginAccessIdentityOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetCloudFrontOriginAccessIdentity == nil {
 		opGetCloudFrontOriginAccessIdentity = &aws.Operation{
 			Name:       "GetCloudFrontOriginAccessIdentity2014_11_06",
@@ -219,6 +246,9 @@ var opGetCloudFrontOriginAccessIdentity *aws.Operation
 
 // GetCloudFrontOriginAccessIdentityConfigRequest generates a request for the GetCloudFrontOriginAccessIdentityConfig operation.
 func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfigRequest(input *GetCloudFrontOriginAccessIdentityConfigInput) (req *aws.Request, output *GetCloudFrontOriginAccessIdentityConfigOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetCloudFrontOriginAccessIdentityConfig == nil {
 		opGetCloudFrontOriginAccessIdentityConfig = &aws.Operation{
 			Name:       "GetCloudFrontOriginAccessIdentityConfig2014_11_06",
@@ -245,6 +275,9 @@ var opGetCloudFrontOriginAccessIdentityConfig *aws.Operation
 
 // GetDistributionRequest generates a request for the GetDistribution operation.
 func (c *CloudFront) GetDistributionRequest(input *GetDistributionInput) (req *aws.Request, output *GetDistributionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetDistribution == nil {
 		opGetDistribution = &aws.Operation{
 			Name:       "GetDistribution2014_11_06",
@@ -271,6 +304,9 @@ var opGetDistribution *aws.Operation
 
 // GetDistributionConfigRequest generates a request for the GetDistributionConfig operation.
 func (c *CloudFront) GetDistributionConfigRequest(input *GetDistributionConfigInput) (req *aws.Request, output *GetDistributionConfigOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetDistributionConfig == nil {
 		opGetDistributionConfig = &aws.Operation{
 			Name:       "GetDistributionConfig2014_11_06",
@@ -297,6 +333,9 @@ var opGetDistributionConfig *aws.Operation
 
 // GetInvalidationRequest generates a request for the GetInvalidation operation.
 func (c *CloudFront) GetInvalidationRequest(input *GetInvalidationInput) (req *aws.Request, output *GetInvalidationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetInvalidation == nil {
 		opGetInvalidation = &aws.Operation{
 			Name:       "GetInvalidation2014_11_06",
@@ -323,6 +362,9 @@ var opGetInvalidation *aws.Operation
 
 // GetStreamingDistributionRequest generates a request for the GetStreamingDistribution operation.
 func (c *CloudFront) GetStreamingDistributionRequest(input *GetStreamingDistributionInput) (req *aws.Request, output *GetStreamingDistributionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetStreamingDistribution == nil {
 		opGetStreamingDistribution = &aws.Operation{
 			Name:       "GetStreamingDistribution2014_11_06",
@@ -349,6 +391,9 @@ var opGetStreamingDistribution *aws.Operation
 
 // GetStreamingDistributionConfigRequest generates a request for the GetStreamingDistributionConfig operation.
 func (c *CloudFront) GetStreamingDistributionConfigRequest(input *GetStreamingDistributionConfigInput) (req *aws.Request, output *GetStreamingDistributionConfigOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetStreamingDistributionConfig == nil {
 		opGetStreamingDistributionConfig = &aws.Operation{
 			Name:       "GetStreamingDistributionConfig2014_11_06",
@@ -375,6 +420,9 @@ var opGetStreamingDistributionConfig *aws.Operation
 
 // ListCloudFrontOriginAccessIdentitiesRequest generates a request for the ListCloudFrontOriginAccessIdentities operation.
 func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesRequest(input *ListCloudFrontOriginAccessIdentitiesInput) (req *aws.Request, output *ListCloudFrontOriginAccessIdentitiesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListCloudFrontOriginAccessIdentities == nil {
 		opListCloudFrontOriginAccessIdentities = &aws.Operation{
 			Name:       "ListCloudFrontOriginAccessIdentities2014_11_06",
@@ -401,6 +449,9 @@ var opListCloudFrontOriginAccessIdentities *aws.Operation
 
 // ListDistributionsRequest generates a request for the ListDistributions operation.
 func (c *CloudFront) ListDistributionsRequest(input *ListDistributionsInput) (req *aws.Request, output *ListDistributionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListDistributions == nil {
 		opListDistributions = &aws.Operation{
 			Name:       "ListDistributions2014_11_06",
@@ -427,6 +478,9 @@ var opListDistributions *aws.Operation
 
 // ListInvalidationsRequest generates a request for the ListInvalidations operation.
 func (c *CloudFront) ListInvalidationsRequest(input *ListInvalidationsInput) (req *aws.Request, output *ListInvalidationsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListInvalidations == nil {
 		opListInvalidations = &aws.Operation{
 			Name:       "ListInvalidations2014_11_06",
@@ -453,6 +507,9 @@ var opListInvalidations *aws.Operation
 
 // ListStreamingDistributionsRequest generates a request for the ListStreamingDistributions operation.
 func (c *CloudFront) ListStreamingDistributionsRequest(input *ListStreamingDistributionsInput) (req *aws.Request, output *ListStreamingDistributionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListStreamingDistributions == nil {
 		opListStreamingDistributions = &aws.Operation{
 			Name:       "ListStreamingDistributions2014_11_06",
@@ -479,6 +536,9 @@ var opListStreamingDistributions *aws.Operation
 
 // UpdateCloudFrontOriginAccessIdentityRequest generates a request for the UpdateCloudFrontOriginAccessIdentity operation.
 func (c *CloudFront) UpdateCloudFrontOriginAccessIdentityRequest(input *UpdateCloudFrontOriginAccessIdentityInput) (req *aws.Request, output *UpdateCloudFrontOriginAccessIdentityOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateCloudFrontOriginAccessIdentity == nil {
 		opUpdateCloudFrontOriginAccessIdentity = &aws.Operation{
 			Name:       "UpdateCloudFrontOriginAccessIdentity2014_11_06",
@@ -505,6 +565,9 @@ var opUpdateCloudFrontOriginAccessIdentity *aws.Operation
 
 // UpdateDistributionRequest generates a request for the UpdateDistribution operation.
 func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (req *aws.Request, output *UpdateDistributionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateDistribution == nil {
 		opUpdateDistribution = &aws.Operation{
 			Name:       "UpdateDistribution2014_11_06",
@@ -531,6 +594,9 @@ var opUpdateDistribution *aws.Operation
 
 // UpdateStreamingDistributionRequest generates a request for the UpdateStreamingDistribution operation.
 func (c *CloudFront) UpdateStreamingDistributionRequest(input *UpdateStreamingDistributionInput) (req *aws.Request, output *UpdateStreamingDistributionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateStreamingDistribution == nil {
 		opUpdateStreamingDistribution = &aws.Operation{
 			Name:       "UpdateStreamingDistribution2014_11_06",

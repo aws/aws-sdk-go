@@ -162,6 +162,8 @@ func (a *API) importsGoCode() string {
 }
 
 var tplAPI = template.Must(template.New("api").Parse(`
+var oprw sync.Mutex
+
 {{ range $_, $o := .OperationList }}
 {{ $o.GoCode }}
 
@@ -175,6 +177,7 @@ var tplAPI = template.Must(template.New("api").Parse(`
 
 func (a *API) APIGoCode() string {
 	a.resetImports()
+	a.imports["sync"] = true
 	var buf bytes.Buffer
 	err := tplAPI.Execute(&buf, a)
 	if err != nil {

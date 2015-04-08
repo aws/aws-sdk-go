@@ -4,13 +4,19 @@
 package cognitoidentity
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // CreateIdentityPoolRequest generates a request for the CreateIdentityPool operation.
 func (c *CognitoIdentity) CreateIdentityPoolRequest(input *CreateIdentityPoolInput) (req *aws.Request, output *IdentityPool) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateIdentityPool == nil {
 		opCreateIdentityPool = &aws.Operation{
 			Name:       "CreateIdentityPool",
@@ -39,6 +45,9 @@ var opCreateIdentityPool *aws.Operation
 
 // DeleteIdentityPoolRequest generates a request for the DeleteIdentityPool operation.
 func (c *CognitoIdentity) DeleteIdentityPoolRequest(input *DeleteIdentityPoolInput) (req *aws.Request, output *DeleteIdentityPoolOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteIdentityPool == nil {
 		opDeleteIdentityPool = &aws.Operation{
 			Name:       "DeleteIdentityPool",
@@ -66,6 +75,9 @@ var opDeleteIdentityPool *aws.Operation
 
 // DescribeIdentityRequest generates a request for the DescribeIdentity operation.
 func (c *CognitoIdentity) DescribeIdentityRequest(input *DescribeIdentityInput) (req *aws.Request, output *IdentityDescription) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeIdentity == nil {
 		opDescribeIdentity = &aws.Operation{
 			Name:       "DescribeIdentity",
@@ -93,6 +105,9 @@ var opDescribeIdentity *aws.Operation
 
 // DescribeIdentityPoolRequest generates a request for the DescribeIdentityPool operation.
 func (c *CognitoIdentity) DescribeIdentityPoolRequest(input *DescribeIdentityPoolInput) (req *aws.Request, output *IdentityPool) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeIdentityPool == nil {
 		opDescribeIdentityPool = &aws.Operation{
 			Name:       "DescribeIdentityPool",
@@ -120,6 +135,9 @@ var opDescribeIdentityPool *aws.Operation
 
 // GetCredentialsForIdentityRequest generates a request for the GetCredentialsForIdentity operation.
 func (c *CognitoIdentity) GetCredentialsForIdentityRequest(input *GetCredentialsForIdentityInput) (req *aws.Request, output *GetCredentialsForIdentityOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetCredentialsForIdentity == nil {
 		opGetCredentialsForIdentity = &aws.Operation{
 			Name:       "GetCredentialsForIdentity",
@@ -149,6 +167,9 @@ var opGetCredentialsForIdentity *aws.Operation
 
 // GetIDRequest generates a request for the GetID operation.
 func (c *CognitoIdentity) GetIDRequest(input *GetIDInput) (req *aws.Request, output *GetIDOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetID == nil {
 		opGetID = &aws.Operation{
 			Name:       "GetId",
@@ -176,6 +197,9 @@ var opGetID *aws.Operation
 
 // GetIdentityPoolRolesRequest generates a request for the GetIdentityPoolRoles operation.
 func (c *CognitoIdentity) GetIdentityPoolRolesRequest(input *GetIdentityPoolRolesInput) (req *aws.Request, output *GetIdentityPoolRolesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetIdentityPoolRoles == nil {
 		opGetIdentityPoolRoles = &aws.Operation{
 			Name:       "GetIdentityPoolRoles",
@@ -202,6 +226,9 @@ var opGetIdentityPoolRoles *aws.Operation
 
 // GetOpenIDTokenRequest generates a request for the GetOpenIDToken operation.
 func (c *CognitoIdentity) GetOpenIDTokenRequest(input *GetOpenIDTokenInput) (req *aws.Request, output *GetOpenIDTokenOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetOpenIDToken == nil {
 		opGetOpenIDToken = &aws.Operation{
 			Name:       "GetOpenIdToken",
@@ -232,6 +259,9 @@ var opGetOpenIDToken *aws.Operation
 
 // GetOpenIDTokenForDeveloperIdentityRequest generates a request for the GetOpenIDTokenForDeveloperIdentity operation.
 func (c *CognitoIdentity) GetOpenIDTokenForDeveloperIdentityRequest(input *GetOpenIDTokenForDeveloperIdentityInput) (req *aws.Request, output *GetOpenIDTokenForDeveloperIdentityOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetOpenIDTokenForDeveloperIdentity == nil {
 		opGetOpenIDTokenForDeveloperIdentity = &aws.Operation{
 			Name:       "GetOpenIdTokenForDeveloperIdentity",
@@ -271,6 +301,9 @@ var opGetOpenIDTokenForDeveloperIdentity *aws.Operation
 
 // ListIdentitiesRequest generates a request for the ListIdentities operation.
 func (c *CognitoIdentity) ListIdentitiesRequest(input *ListIdentitiesInput) (req *aws.Request, output *ListIdentitiesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListIdentities == nil {
 		opListIdentities = &aws.Operation{
 			Name:       "ListIdentities",
@@ -297,6 +330,9 @@ var opListIdentities *aws.Operation
 
 // ListIdentityPoolsRequest generates a request for the ListIdentityPools operation.
 func (c *CognitoIdentity) ListIdentityPoolsRequest(input *ListIdentityPoolsInput) (req *aws.Request, output *ListIdentityPoolsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListIdentityPools == nil {
 		opListIdentityPools = &aws.Operation{
 			Name:       "ListIdentityPools",
@@ -323,6 +359,9 @@ var opListIdentityPools *aws.Operation
 
 // LookupDeveloperIdentityRequest generates a request for the LookupDeveloperIdentity operation.
 func (c *CognitoIdentity) LookupDeveloperIdentityRequest(input *LookupDeveloperIdentityInput) (req *aws.Request, output *LookupDeveloperIdentityOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opLookupDeveloperIdentity == nil {
 		opLookupDeveloperIdentity = &aws.Operation{
 			Name:       "LookupDeveloperIdentity",
@@ -356,6 +395,9 @@ var opLookupDeveloperIdentity *aws.Operation
 
 // MergeDeveloperIdentitiesRequest generates a request for the MergeDeveloperIdentities operation.
 func (c *CognitoIdentity) MergeDeveloperIdentitiesRequest(input *MergeDeveloperIdentitiesInput) (req *aws.Request, output *MergeDeveloperIdentitiesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opMergeDeveloperIdentities == nil {
 		opMergeDeveloperIdentities = &aws.Operation{
 			Name:       "MergeDeveloperIdentities",
@@ -388,6 +430,9 @@ var opMergeDeveloperIdentities *aws.Operation
 
 // SetIdentityPoolRolesRequest generates a request for the SetIdentityPoolRoles operation.
 func (c *CognitoIdentity) SetIdentityPoolRolesRequest(input *SetIdentityPoolRolesInput) (req *aws.Request, output *SetIdentityPoolRolesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetIdentityPoolRoles == nil {
 		opSetIdentityPoolRoles = &aws.Operation{
 			Name:       "SetIdentityPoolRoles",
@@ -415,6 +460,9 @@ var opSetIdentityPoolRoles *aws.Operation
 
 // UnlinkDeveloperIdentityRequest generates a request for the UnlinkDeveloperIdentity operation.
 func (c *CognitoIdentity) UnlinkDeveloperIdentityRequest(input *UnlinkDeveloperIdentityInput) (req *aws.Request, output *UnlinkDeveloperIdentityOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUnlinkDeveloperIdentity == nil {
 		opUnlinkDeveloperIdentity = &aws.Operation{
 			Name:       "UnlinkDeveloperIdentity",
@@ -444,6 +492,9 @@ var opUnlinkDeveloperIdentity *aws.Operation
 
 // UnlinkIdentityRequest generates a request for the UnlinkIdentity operation.
 func (c *CognitoIdentity) UnlinkIdentityRequest(input *UnlinkIdentityInput) (req *aws.Request, output *UnlinkIdentityOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUnlinkIdentity == nil {
 		opUnlinkIdentity = &aws.Operation{
 			Name:       "UnlinkIdentity",
@@ -472,6 +523,9 @@ var opUnlinkIdentity *aws.Operation
 
 // UpdateIdentityPoolRequest generates a request for the UpdateIdentityPool operation.
 func (c *CognitoIdentity) UpdateIdentityPoolRequest(input *IdentityPool) (req *aws.Request, output *IdentityPool) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateIdentityPool == nil {
 		opUpdateIdentityPool = &aws.Operation{
 			Name:       "UpdateIdentityPool",

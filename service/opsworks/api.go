@@ -4,11 +4,18 @@
 package opsworks
 
 import (
+	"sync"
+
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // AssignInstanceRequest generates a request for the AssignInstance operation.
 func (c *OpsWorks) AssignInstanceRequest(input *AssignInstanceInput) (req *aws.Request, output *AssignInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAssignInstance == nil {
 		opAssignInstance = &aws.Operation{
 			Name:       "AssignInstance",
@@ -41,6 +48,9 @@ var opAssignInstance *aws.Operation
 
 // AssignVolumeRequest generates a request for the AssignVolume operation.
 func (c *OpsWorks) AssignVolumeRequest(input *AssignVolumeInput) (req *aws.Request, output *AssignVolumeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAssignVolume == nil {
 		opAssignVolume = &aws.Operation{
 			Name:       "AssignVolume",
@@ -74,6 +84,9 @@ var opAssignVolume *aws.Operation
 
 // AssociateElasticIPRequest generates a request for the AssociateElasticIP operation.
 func (c *OpsWorks) AssociateElasticIPRequest(input *AssociateElasticIPInput) (req *aws.Request, output *AssociateElasticIPOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAssociateElasticIP == nil {
 		opAssociateElasticIP = &aws.Operation{
 			Name:       "AssociateElasticIp",
@@ -107,6 +120,9 @@ var opAssociateElasticIP *aws.Operation
 
 // AttachElasticLoadBalancerRequest generates a request for the AttachElasticLoadBalancer operation.
 func (c *OpsWorks) AttachElasticLoadBalancerRequest(input *AttachElasticLoadBalancerInput) (req *aws.Request, output *AttachElasticLoadBalancerOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAttachElasticLoadBalancer == nil {
 		opAttachElasticLoadBalancer = &aws.Operation{
 			Name:       "AttachElasticLoadBalancer",
@@ -143,6 +159,9 @@ var opAttachElasticLoadBalancer *aws.Operation
 
 // CloneStackRequest generates a request for the CloneStack operation.
 func (c *OpsWorks) CloneStackRequest(input *CloneStackInput) (req *aws.Request, output *CloneStackOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCloneStack == nil {
 		opCloneStack = &aws.Operation{
 			Name:       "CloneStack",
@@ -174,6 +193,9 @@ var opCloneStack *aws.Operation
 
 // CreateAppRequest generates a request for the CreateApp operation.
 func (c *OpsWorks) CreateAppRequest(input *CreateAppInput) (req *aws.Request, output *CreateAppOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateApp == nil {
 		opCreateApp = &aws.Operation{
 			Name:       "CreateApp",
@@ -206,6 +228,9 @@ var opCreateApp *aws.Operation
 
 // CreateDeploymentRequest generates a request for the CreateDeployment operation.
 func (c *OpsWorks) CreateDeploymentRequest(input *CreateDeploymentInput) (req *aws.Request, output *CreateDeploymentOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateDeployment == nil {
 		opCreateDeployment = &aws.Operation{
 			Name:       "CreateDeployment",
@@ -239,6 +264,9 @@ var opCreateDeployment *aws.Operation
 
 // CreateInstanceRequest generates a request for the CreateInstance operation.
 func (c *OpsWorks) CreateInstanceRequest(input *CreateInstanceInput) (req *aws.Request, output *CreateInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateInstance == nil {
 		opCreateInstance = &aws.Operation{
 			Name:       "CreateInstance",
@@ -271,6 +299,9 @@ var opCreateInstance *aws.Operation
 
 // CreateLayerRequest generates a request for the CreateLayer operation.
 func (c *OpsWorks) CreateLayerRequest(input *CreateLayerInput) (req *aws.Request, output *CreateLayerOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateLayer == nil {
 		opCreateLayer = &aws.Operation{
 			Name:       "CreateLayer",
@@ -309,6 +340,9 @@ var opCreateLayer *aws.Operation
 
 // CreateStackRequest generates a request for the CreateStack operation.
 func (c *OpsWorks) CreateStackRequest(input *CreateStackInput) (req *aws.Request, output *CreateStackOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateStack == nil {
 		opCreateStack = &aws.Operation{
 			Name:       "CreateStack",
@@ -339,6 +373,9 @@ var opCreateStack *aws.Operation
 
 // CreateUserProfileRequest generates a request for the CreateUserProfile operation.
 func (c *OpsWorks) CreateUserProfileRequest(input *CreateUserProfileInput) (req *aws.Request, output *CreateUserProfileOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateUserProfile == nil {
 		opCreateUserProfile = &aws.Operation{
 			Name:       "CreateUserProfile",
@@ -369,6 +406,9 @@ var opCreateUserProfile *aws.Operation
 
 // DeleteAppRequest generates a request for the DeleteApp operation.
 func (c *OpsWorks) DeleteAppRequest(input *DeleteAppInput) (req *aws.Request, output *DeleteAppOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteApp == nil {
 		opDeleteApp = &aws.Operation{
 			Name:       "DeleteApp",
@@ -400,6 +440,9 @@ var opDeleteApp *aws.Operation
 
 // DeleteInstanceRequest generates a request for the DeleteInstance operation.
 func (c *OpsWorks) DeleteInstanceRequest(input *DeleteInstanceInput) (req *aws.Request, output *DeleteInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteInstance == nil {
 		opDeleteInstance = &aws.Operation{
 			Name:       "DeleteInstance",
@@ -434,6 +477,9 @@ var opDeleteInstance *aws.Operation
 
 // DeleteLayerRequest generates a request for the DeleteLayer operation.
 func (c *OpsWorks) DeleteLayerRequest(input *DeleteLayerInput) (req *aws.Request, output *DeleteLayerOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteLayer == nil {
 		opDeleteLayer = &aws.Operation{
 			Name:       "DeleteLayer",
@@ -467,6 +513,9 @@ var opDeleteLayer *aws.Operation
 
 // DeleteStackRequest generates a request for the DeleteStack operation.
 func (c *OpsWorks) DeleteStackRequest(input *DeleteStackInput) (req *aws.Request, output *DeleteStackOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteStack == nil {
 		opDeleteStack = &aws.Operation{
 			Name:       "DeleteStack",
@@ -500,6 +549,9 @@ var opDeleteStack *aws.Operation
 
 // DeleteUserProfileRequest generates a request for the DeleteUserProfile operation.
 func (c *OpsWorks) DeleteUserProfileRequest(input *DeleteUserProfileInput) (req *aws.Request, output *DeleteUserProfileOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteUserProfile == nil {
 		opDeleteUserProfile = &aws.Operation{
 			Name:       "DeleteUserProfile",
@@ -530,6 +582,9 @@ var opDeleteUserProfile *aws.Operation
 
 // DeregisterElasticIPRequest generates a request for the DeregisterElasticIP operation.
 func (c *OpsWorks) DeregisterElasticIPRequest(input *DeregisterElasticIPInput) (req *aws.Request, output *DeregisterElasticIPOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeregisterElasticIP == nil {
 		opDeregisterElasticIP = &aws.Operation{
 			Name:       "DeregisterElasticIp",
@@ -562,6 +617,9 @@ var opDeregisterElasticIP *aws.Operation
 
 // DeregisterInstanceRequest generates a request for the DeregisterInstance operation.
 func (c *OpsWorks) DeregisterInstanceRequest(input *DeregisterInstanceInput) (req *aws.Request, output *DeregisterInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeregisterInstance == nil {
 		opDeregisterInstance = &aws.Operation{
 			Name:       "DeregisterInstance",
@@ -595,6 +653,9 @@ var opDeregisterInstance *aws.Operation
 
 // DeregisterRDSDBInstanceRequest generates a request for the DeregisterRDSDBInstance operation.
 func (c *OpsWorks) DeregisterRDSDBInstanceRequest(input *DeregisterRDSDBInstanceInput) (req *aws.Request, output *DeregisterRDSDBInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeregisterRDSDBInstance == nil {
 		opDeregisterRDSDBInstance = &aws.Operation{
 			Name:       "DeregisterRdsDbInstance",
@@ -626,6 +687,9 @@ var opDeregisterRDSDBInstance *aws.Operation
 
 // DeregisterVolumeRequest generates a request for the DeregisterVolume operation.
 func (c *OpsWorks) DeregisterVolumeRequest(input *DeregisterVolumeInput) (req *aws.Request, output *DeregisterVolumeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeregisterVolume == nil {
 		opDeregisterVolume = &aws.Operation{
 			Name:       "DeregisterVolume",
@@ -658,6 +722,9 @@ var opDeregisterVolume *aws.Operation
 
 // DescribeAppsRequest generates a request for the DescribeApps operation.
 func (c *OpsWorks) DescribeAppsRequest(input *DescribeAppsInput) (req *aws.Request, output *DescribeAppsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeApps == nil {
 		opDescribeApps = &aws.Operation{
 			Name:       "DescribeApps",
@@ -691,6 +758,9 @@ var opDescribeApps *aws.Operation
 
 // DescribeCommandsRequest generates a request for the DescribeCommands operation.
 func (c *OpsWorks) DescribeCommandsRequest(input *DescribeCommandsInput) (req *aws.Request, output *DescribeCommandsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeCommands == nil {
 		opDescribeCommands = &aws.Operation{
 			Name:       "DescribeCommands",
@@ -724,6 +794,9 @@ var opDescribeCommands *aws.Operation
 
 // DescribeDeploymentsRequest generates a request for the DescribeDeployments operation.
 func (c *OpsWorks) DescribeDeploymentsRequest(input *DescribeDeploymentsInput) (req *aws.Request, output *DescribeDeploymentsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeDeployments == nil {
 		opDescribeDeployments = &aws.Operation{
 			Name:       "DescribeDeployments",
@@ -757,6 +830,9 @@ var opDescribeDeployments *aws.Operation
 
 // DescribeElasticIPsRequest generates a request for the DescribeElasticIPs operation.
 func (c *OpsWorks) DescribeElasticIPsRequest(input *DescribeElasticIPsInput) (req *aws.Request, output *DescribeElasticIPsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeElasticIPs == nil {
 		opDescribeElasticIPs = &aws.Operation{
 			Name:       "DescribeElasticIps",
@@ -790,6 +866,9 @@ var opDescribeElasticIPs *aws.Operation
 
 // DescribeElasticLoadBalancersRequest generates a request for the DescribeElasticLoadBalancers operation.
 func (c *OpsWorks) DescribeElasticLoadBalancersRequest(input *DescribeElasticLoadBalancersInput) (req *aws.Request, output *DescribeElasticLoadBalancersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeElasticLoadBalancers == nil {
 		opDescribeElasticLoadBalancers = &aws.Operation{
 			Name:       "DescribeElasticLoadBalancers",
@@ -823,6 +902,9 @@ var opDescribeElasticLoadBalancers *aws.Operation
 
 // DescribeInstancesRequest generates a request for the DescribeInstances operation.
 func (c *OpsWorks) DescribeInstancesRequest(input *DescribeInstancesInput) (req *aws.Request, output *DescribeInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeInstances == nil {
 		opDescribeInstances = &aws.Operation{
 			Name:       "DescribeInstances",
@@ -856,6 +938,9 @@ var opDescribeInstances *aws.Operation
 
 // DescribeLayersRequest generates a request for the DescribeLayers operation.
 func (c *OpsWorks) DescribeLayersRequest(input *DescribeLayersInput) (req *aws.Request, output *DescribeLayersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeLayers == nil {
 		opDescribeLayers = &aws.Operation{
 			Name:       "DescribeLayers",
@@ -889,6 +974,9 @@ var opDescribeLayers *aws.Operation
 
 // DescribeLoadBasedAutoScalingRequest generates a request for the DescribeLoadBasedAutoScaling operation.
 func (c *OpsWorks) DescribeLoadBasedAutoScalingRequest(input *DescribeLoadBasedAutoScalingInput) (req *aws.Request, output *DescribeLoadBasedAutoScalingOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeLoadBasedAutoScaling == nil {
 		opDescribeLoadBasedAutoScaling = &aws.Operation{
 			Name:       "DescribeLoadBasedAutoScaling",
@@ -922,6 +1010,9 @@ var opDescribeLoadBasedAutoScaling *aws.Operation
 
 // DescribeMyUserProfileRequest generates a request for the DescribeMyUserProfile operation.
 func (c *OpsWorks) DescribeMyUserProfileRequest(input *DescribeMyUserProfileInput) (req *aws.Request, output *DescribeMyUserProfileOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeMyUserProfile == nil {
 		opDescribeMyUserProfile = &aws.Operation{
 			Name:       "DescribeMyUserProfile",
@@ -952,6 +1043,9 @@ var opDescribeMyUserProfile *aws.Operation
 
 // DescribePermissionsRequest generates a request for the DescribePermissions operation.
 func (c *OpsWorks) DescribePermissionsRequest(input *DescribePermissionsInput) (req *aws.Request, output *DescribePermissionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribePermissions == nil {
 		opDescribePermissions = &aws.Operation{
 			Name:       "DescribePermissions",
@@ -983,6 +1077,9 @@ var opDescribePermissions *aws.Operation
 
 // DescribeRAIDArraysRequest generates a request for the DescribeRAIDArrays operation.
 func (c *OpsWorks) DescribeRAIDArraysRequest(input *DescribeRAIDArraysInput) (req *aws.Request, output *DescribeRAIDArraysOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeRAIDArrays == nil {
 		opDescribeRAIDArrays = &aws.Operation{
 			Name:       "DescribeRaidArrays",
@@ -1016,6 +1113,9 @@ var opDescribeRAIDArrays *aws.Operation
 
 // DescribeRDSDBInstancesRequest generates a request for the DescribeRDSDBInstances operation.
 func (c *OpsWorks) DescribeRDSDBInstancesRequest(input *DescribeRDSDBInstancesInput) (req *aws.Request, output *DescribeRDSDBInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeRDSDBInstances == nil {
 		opDescribeRDSDBInstances = &aws.Operation{
 			Name:       "DescribeRdsDbInstances",
@@ -1047,6 +1147,9 @@ var opDescribeRDSDBInstances *aws.Operation
 
 // DescribeServiceErrorsRequest generates a request for the DescribeServiceErrors operation.
 func (c *OpsWorks) DescribeServiceErrorsRequest(input *DescribeServiceErrorsInput) (req *aws.Request, output *DescribeServiceErrorsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeServiceErrors == nil {
 		opDescribeServiceErrors = &aws.Operation{
 			Name:       "DescribeServiceErrors",
@@ -1078,6 +1181,9 @@ var opDescribeServiceErrors *aws.Operation
 
 // DescribeStackProvisioningParametersRequest generates a request for the DescribeStackProvisioningParameters operation.
 func (c *OpsWorks) DescribeStackProvisioningParametersRequest(input *DescribeStackProvisioningParametersInput) (req *aws.Request, output *DescribeStackProvisioningParametersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeStackProvisioningParameters == nil {
 		opDescribeStackProvisioningParameters = &aws.Operation{
 			Name:       "DescribeStackProvisioningParameters",
@@ -1109,6 +1215,9 @@ var opDescribeStackProvisioningParameters *aws.Operation
 
 // DescribeStackSummaryRequest generates a request for the DescribeStackSummary operation.
 func (c *OpsWorks) DescribeStackSummaryRequest(input *DescribeStackSummaryInput) (req *aws.Request, output *DescribeStackSummaryOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeStackSummary == nil {
 		opDescribeStackSummary = &aws.Operation{
 			Name:       "DescribeStackSummary",
@@ -1141,6 +1250,9 @@ var opDescribeStackSummary *aws.Operation
 
 // DescribeStacksRequest generates a request for the DescribeStacks operation.
 func (c *OpsWorks) DescribeStacksRequest(input *DescribeStacksInput) (req *aws.Request, output *DescribeStacksOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeStacks == nil {
 		opDescribeStacks = &aws.Operation{
 			Name:       "DescribeStacks",
@@ -1172,6 +1284,9 @@ var opDescribeStacks *aws.Operation
 
 // DescribeTimeBasedAutoScalingRequest generates a request for the DescribeTimeBasedAutoScaling operation.
 func (c *OpsWorks) DescribeTimeBasedAutoScalingRequest(input *DescribeTimeBasedAutoScalingInput) (req *aws.Request, output *DescribeTimeBasedAutoScalingOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeTimeBasedAutoScaling == nil {
 		opDescribeTimeBasedAutoScaling = &aws.Operation{
 			Name:       "DescribeTimeBasedAutoScaling",
@@ -1205,6 +1320,9 @@ var opDescribeTimeBasedAutoScaling *aws.Operation
 
 // DescribeUserProfilesRequest generates a request for the DescribeUserProfiles operation.
 func (c *OpsWorks) DescribeUserProfilesRequest(input *DescribeUserProfilesInput) (req *aws.Request, output *DescribeUserProfilesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeUserProfiles == nil {
 		opDescribeUserProfiles = &aws.Operation{
 			Name:       "DescribeUserProfiles",
@@ -1235,6 +1353,9 @@ var opDescribeUserProfiles *aws.Operation
 
 // DescribeVolumesRequest generates a request for the DescribeVolumes operation.
 func (c *OpsWorks) DescribeVolumesRequest(input *DescribeVolumesInput) (req *aws.Request, output *DescribeVolumesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeVolumes == nil {
 		opDescribeVolumes = &aws.Operation{
 			Name:       "DescribeVolumes",
@@ -1268,6 +1389,9 @@ var opDescribeVolumes *aws.Operation
 
 // DetachElasticLoadBalancerRequest generates a request for the DetachElasticLoadBalancer operation.
 func (c *OpsWorks) DetachElasticLoadBalancerRequest(input *DetachElasticLoadBalancerInput) (req *aws.Request, output *DetachElasticLoadBalancerOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDetachElasticLoadBalancer == nil {
 		opDetachElasticLoadBalancer = &aws.Operation{
 			Name:       "DetachElasticLoadBalancer",
@@ -1299,6 +1423,9 @@ var opDetachElasticLoadBalancer *aws.Operation
 
 // DisassociateElasticIPRequest generates a request for the DisassociateElasticIP operation.
 func (c *OpsWorks) DisassociateElasticIPRequest(input *DisassociateElasticIPInput) (req *aws.Request, output *DisassociateElasticIPOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDisassociateElasticIP == nil {
 		opDisassociateElasticIP = &aws.Operation{
 			Name:       "DisassociateElasticIp",
@@ -1332,6 +1459,9 @@ var opDisassociateElasticIP *aws.Operation
 
 // GetHostnameSuggestionRequest generates a request for the GetHostnameSuggestion operation.
 func (c *OpsWorks) GetHostnameSuggestionRequest(input *GetHostnameSuggestionInput) (req *aws.Request, output *GetHostnameSuggestionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetHostnameSuggestion == nil {
 		opGetHostnameSuggestion = &aws.Operation{
 			Name:       "GetHostnameSuggestion",
@@ -1364,6 +1494,9 @@ var opGetHostnameSuggestion *aws.Operation
 
 // RebootInstanceRequest generates a request for the RebootInstance operation.
 func (c *OpsWorks) RebootInstanceRequest(input *RebootInstanceInput) (req *aws.Request, output *RebootInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRebootInstance == nil {
 		opRebootInstance = &aws.Operation{
 			Name:       "RebootInstance",
@@ -1396,6 +1529,9 @@ var opRebootInstance *aws.Operation
 
 // RegisterElasticIPRequest generates a request for the RegisterElasticIP operation.
 func (c *OpsWorks) RegisterElasticIPRequest(input *RegisterElasticIPInput) (req *aws.Request, output *RegisterElasticIPOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRegisterElasticIP == nil {
 		opRegisterElasticIP = &aws.Operation{
 			Name:       "RegisterElasticIp",
@@ -1430,6 +1566,9 @@ var opRegisterElasticIP *aws.Operation
 
 // RegisterInstanceRequest generates a request for the RegisterInstance operation.
 func (c *OpsWorks) RegisterInstanceRequest(input *RegisterInstanceInput) (req *aws.Request, output *RegisterInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRegisterInstance == nil {
 		opRegisterInstance = &aws.Operation{
 			Name:       "RegisterInstance",
@@ -1466,6 +1605,9 @@ var opRegisterInstance *aws.Operation
 
 // RegisterRDSDBInstanceRequest generates a request for the RegisterRDSDBInstance operation.
 func (c *OpsWorks) RegisterRDSDBInstanceRequest(input *RegisterRDSDBInstanceInput) (req *aws.Request, output *RegisterRDSDBInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRegisterRDSDBInstance == nil {
 		opRegisterRDSDBInstance = &aws.Operation{
 			Name:       "RegisterRdsDbInstance",
@@ -1497,6 +1639,9 @@ var opRegisterRDSDBInstance *aws.Operation
 
 // RegisterVolumeRequest generates a request for the RegisterVolume operation.
 func (c *OpsWorks) RegisterVolumeRequest(input *RegisterVolumeInput) (req *aws.Request, output *RegisterVolumeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRegisterVolume == nil {
 		opRegisterVolume = &aws.Operation{
 			Name:       "RegisterVolume",
@@ -1531,6 +1676,9 @@ var opRegisterVolume *aws.Operation
 
 // SetLoadBasedAutoScalingRequest generates a request for the SetLoadBasedAutoScaling operation.
 func (c *OpsWorks) SetLoadBasedAutoScalingRequest(input *SetLoadBasedAutoScalingInput) (req *aws.Request, output *SetLoadBasedAutoScalingOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetLoadBasedAutoScaling == nil {
 		opSetLoadBasedAutoScaling = &aws.Operation{
 			Name:       "SetLoadBasedAutoScaling",
@@ -1569,6 +1717,9 @@ var opSetLoadBasedAutoScaling *aws.Operation
 
 // SetPermissionRequest generates a request for the SetPermission operation.
 func (c *OpsWorks) SetPermissionRequest(input *SetPermissionInput) (req *aws.Request, output *SetPermissionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetPermission == nil {
 		opSetPermission = &aws.Operation{
 			Name:       "SetPermission",
@@ -1601,6 +1752,9 @@ var opSetPermission *aws.Operation
 
 // SetTimeBasedAutoScalingRequest generates a request for the SetTimeBasedAutoScaling operation.
 func (c *OpsWorks) SetTimeBasedAutoScalingRequest(input *SetTimeBasedAutoScalingInput) (req *aws.Request, output *SetTimeBasedAutoScalingOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetTimeBasedAutoScaling == nil {
 		opSetTimeBasedAutoScaling = &aws.Operation{
 			Name:       "SetTimeBasedAutoScaling",
@@ -1634,6 +1788,9 @@ var opSetTimeBasedAutoScaling *aws.Operation
 
 // StartInstanceRequest generates a request for the StartInstance operation.
 func (c *OpsWorks) StartInstanceRequest(input *StartInstanceInput) (req *aws.Request, output *StartInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opStartInstance == nil {
 		opStartInstance = &aws.Operation{
 			Name:       "StartInstance",
@@ -1666,6 +1823,9 @@ var opStartInstance *aws.Operation
 
 // StartStackRequest generates a request for the StartStack operation.
 func (c *OpsWorks) StartStackRequest(input *StartStackInput) (req *aws.Request, output *StartStackOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opStartStack == nil {
 		opStartStack = &aws.Operation{
 			Name:       "StartStack",
@@ -1697,6 +1857,9 @@ var opStartStack *aws.Operation
 
 // StopInstanceRequest generates a request for the StopInstance operation.
 func (c *OpsWorks) StopInstanceRequest(input *StopInstanceInput) (req *aws.Request, output *StopInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opStopInstance == nil {
 		opStopInstance = &aws.Operation{
 			Name:       "StopInstance",
@@ -1731,6 +1894,9 @@ var opStopInstance *aws.Operation
 
 // StopStackRequest generates a request for the StopStack operation.
 func (c *OpsWorks) StopStackRequest(input *StopStackInput) (req *aws.Request, output *StopStackOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opStopStack == nil {
 		opStopStack = &aws.Operation{
 			Name:       "StopStack",
@@ -1762,6 +1928,9 @@ var opStopStack *aws.Operation
 
 // UnassignInstanceRequest generates a request for the UnassignInstance operation.
 func (c *OpsWorks) UnassignInstanceRequest(input *UnassignInstanceInput) (req *aws.Request, output *UnassignInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUnassignInstance == nil {
 		opUnassignInstance = &aws.Operation{
 			Name:       "UnassignInstance",
@@ -1796,6 +1965,9 @@ var opUnassignInstance *aws.Operation
 
 // UnassignVolumeRequest generates a request for the UnassignVolume operation.
 func (c *OpsWorks) UnassignVolumeRequest(input *UnassignVolumeInput) (req *aws.Request, output *UnassignVolumeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUnassignVolume == nil {
 		opUnassignVolume = &aws.Operation{
 			Name:       "UnassignVolume",
@@ -1828,6 +2000,9 @@ var opUnassignVolume *aws.Operation
 
 // UpdateAppRequest generates a request for the UpdateApp operation.
 func (c *OpsWorks) UpdateAppRequest(input *UpdateAppInput) (req *aws.Request, output *UpdateAppOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateApp == nil {
 		opUpdateApp = &aws.Operation{
 			Name:       "UpdateApp",
@@ -1859,6 +2034,9 @@ var opUpdateApp *aws.Operation
 
 // UpdateElasticIPRequest generates a request for the UpdateElasticIP operation.
 func (c *OpsWorks) UpdateElasticIPRequest(input *UpdateElasticIPInput) (req *aws.Request, output *UpdateElasticIPOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateElasticIP == nil {
 		opUpdateElasticIP = &aws.Operation{
 			Name:       "UpdateElasticIp",
@@ -1891,6 +2069,9 @@ var opUpdateElasticIP *aws.Operation
 
 // UpdateInstanceRequest generates a request for the UpdateInstance operation.
 func (c *OpsWorks) UpdateInstanceRequest(input *UpdateInstanceInput) (req *aws.Request, output *UpdateInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateInstance == nil {
 		opUpdateInstance = &aws.Operation{
 			Name:       "UpdateInstance",
@@ -1922,6 +2103,9 @@ var opUpdateInstance *aws.Operation
 
 // UpdateLayerRequest generates a request for the UpdateLayer operation.
 func (c *OpsWorks) UpdateLayerRequest(input *UpdateLayerInput) (req *aws.Request, output *UpdateLayerOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateLayer == nil {
 		opUpdateLayer = &aws.Operation{
 			Name:       "UpdateLayer",
@@ -1953,6 +2137,9 @@ var opUpdateLayer *aws.Operation
 
 // UpdateMyUserProfileRequest generates a request for the UpdateMyUserProfile operation.
 func (c *OpsWorks) UpdateMyUserProfileRequest(input *UpdateMyUserProfileInput) (req *aws.Request, output *UpdateMyUserProfileOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateMyUserProfile == nil {
 		opUpdateMyUserProfile = &aws.Operation{
 			Name:       "UpdateMyUserProfile",
@@ -1983,6 +2170,9 @@ var opUpdateMyUserProfile *aws.Operation
 
 // UpdateRDSDBInstanceRequest generates a request for the UpdateRDSDBInstance operation.
 func (c *OpsWorks) UpdateRDSDBInstanceRequest(input *UpdateRDSDBInstanceInput) (req *aws.Request, output *UpdateRDSDBInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateRDSDBInstance == nil {
 		opUpdateRDSDBInstance = &aws.Operation{
 			Name:       "UpdateRdsDbInstance",
@@ -2014,6 +2204,9 @@ var opUpdateRDSDBInstance *aws.Operation
 
 // UpdateStackRequest generates a request for the UpdateStack operation.
 func (c *OpsWorks) UpdateStackRequest(input *UpdateStackInput) (req *aws.Request, output *UpdateStackOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateStack == nil {
 		opUpdateStack = &aws.Operation{
 			Name:       "UpdateStack",
@@ -2045,6 +2238,9 @@ var opUpdateStack *aws.Operation
 
 // UpdateUserProfileRequest generates a request for the UpdateUserProfile operation.
 func (c *OpsWorks) UpdateUserProfileRequest(input *UpdateUserProfileInput) (req *aws.Request, output *UpdateUserProfileOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateUserProfile == nil {
 		opUpdateUserProfile = &aws.Operation{
 			Name:       "UpdateUserProfile",
@@ -2075,6 +2271,9 @@ var opUpdateUserProfile *aws.Operation
 
 // UpdateVolumeRequest generates a request for the UpdateVolume operation.
 func (c *OpsWorks) UpdateVolumeRequest(input *UpdateVolumeInput) (req *aws.Request, output *UpdateVolumeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateVolume == nil {
 		opUpdateVolume = &aws.Operation{
 			Name:       "UpdateVolume",

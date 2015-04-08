@@ -4,13 +4,19 @@
 package cognitosync
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // BulkPublishRequest generates a request for the BulkPublish operation.
 func (c *CognitoSync) BulkPublishRequest(input *BulkPublishInput) (req *aws.Request, output *BulkPublishOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opBulkPublish == nil {
 		opBulkPublish = &aws.Operation{
 			Name:       "BulkPublish",
@@ -40,6 +46,9 @@ var opBulkPublish *aws.Operation
 
 // DeleteDatasetRequest generates a request for the DeleteDataset operation.
 func (c *CognitoSync) DeleteDatasetRequest(input *DeleteDatasetInput) (req *aws.Request, output *DeleteDatasetOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteDataset == nil {
 		opDeleteDataset = &aws.Operation{
 			Name:       "DeleteDataset",
@@ -72,6 +81,9 @@ var opDeleteDataset *aws.Operation
 
 // DescribeDatasetRequest generates a request for the DescribeDataset operation.
 func (c *CognitoSync) DescribeDatasetRequest(input *DescribeDatasetInput) (req *aws.Request, output *DescribeDatasetOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeDataset == nil {
 		opDescribeDataset = &aws.Operation{
 			Name:       "DescribeDataset",
@@ -104,6 +116,9 @@ var opDescribeDataset *aws.Operation
 
 // DescribeIdentityPoolUsageRequest generates a request for the DescribeIdentityPoolUsage operation.
 func (c *CognitoSync) DescribeIdentityPoolUsageRequest(input *DescribeIdentityPoolUsageInput) (req *aws.Request, output *DescribeIdentityPoolUsageOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeIdentityPoolUsage == nil {
 		opDescribeIdentityPoolUsage = &aws.Operation{
 			Name:       "DescribeIdentityPoolUsage",
@@ -135,6 +150,9 @@ var opDescribeIdentityPoolUsage *aws.Operation
 
 // DescribeIdentityUsageRequest generates a request for the DescribeIdentityUsage operation.
 func (c *CognitoSync) DescribeIdentityUsageRequest(input *DescribeIdentityUsageInput) (req *aws.Request, output *DescribeIdentityUsageOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeIdentityUsage == nil {
 		opDescribeIdentityUsage = &aws.Operation{
 			Name:       "DescribeIdentityUsage",
@@ -165,6 +183,9 @@ var opDescribeIdentityUsage *aws.Operation
 
 // GetBulkPublishDetailsRequest generates a request for the GetBulkPublishDetails operation.
 func (c *CognitoSync) GetBulkPublishDetailsRequest(input *GetBulkPublishDetailsInput) (req *aws.Request, output *GetBulkPublishDetailsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetBulkPublishDetails == nil {
 		opGetBulkPublishDetails = &aws.Operation{
 			Name:       "GetBulkPublishDetails",
@@ -191,6 +212,9 @@ var opGetBulkPublishDetails *aws.Operation
 
 // GetIdentityPoolConfigurationRequest generates a request for the GetIdentityPoolConfiguration operation.
 func (c *CognitoSync) GetIdentityPoolConfigurationRequest(input *GetIdentityPoolConfigurationInput) (req *aws.Request, output *GetIdentityPoolConfigurationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetIdentityPoolConfiguration == nil {
 		opGetIdentityPoolConfiguration = &aws.Operation{
 			Name:       "GetIdentityPoolConfiguration",
@@ -217,6 +241,9 @@ var opGetIdentityPoolConfiguration *aws.Operation
 
 // ListDatasetsRequest generates a request for the ListDatasets operation.
 func (c *CognitoSync) ListDatasetsRequest(input *ListDatasetsInput) (req *aws.Request, output *ListDatasetsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListDatasets == nil {
 		opListDatasets = &aws.Operation{
 			Name:       "ListDatasets",
@@ -249,6 +276,9 @@ var opListDatasets *aws.Operation
 
 // ListIdentityPoolUsageRequest generates a request for the ListIdentityPoolUsage operation.
 func (c *CognitoSync) ListIdentityPoolUsageRequest(input *ListIdentityPoolUsageInput) (req *aws.Request, output *ListIdentityPoolUsageOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListIdentityPoolUsage == nil {
 		opListIdentityPoolUsage = &aws.Operation{
 			Name:       "ListIdentityPoolUsage",
@@ -279,6 +309,9 @@ var opListIdentityPoolUsage *aws.Operation
 
 // ListRecordsRequest generates a request for the ListRecords operation.
 func (c *CognitoSync) ListRecordsRequest(input *ListRecordsInput) (req *aws.Request, output *ListRecordsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListRecords == nil {
 		opListRecords = &aws.Operation{
 			Name:       "ListRecords",
@@ -312,6 +345,9 @@ var opListRecords *aws.Operation
 
 // RegisterDeviceRequest generates a request for the RegisterDevice operation.
 func (c *CognitoSync) RegisterDeviceRequest(input *RegisterDeviceInput) (req *aws.Request, output *RegisterDeviceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRegisterDevice == nil {
 		opRegisterDevice = &aws.Operation{
 			Name:       "RegisterDevice",
@@ -338,6 +374,9 @@ var opRegisterDevice *aws.Operation
 
 // SetIdentityPoolConfigurationRequest generates a request for the SetIdentityPoolConfiguration operation.
 func (c *CognitoSync) SetIdentityPoolConfigurationRequest(input *SetIdentityPoolConfigurationInput) (req *aws.Request, output *SetIdentityPoolConfigurationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetIdentityPoolConfiguration == nil {
 		opSetIdentityPoolConfiguration = &aws.Operation{
 			Name:       "SetIdentityPoolConfiguration",
@@ -364,6 +403,9 @@ var opSetIdentityPoolConfiguration *aws.Operation
 
 // SubscribeToDatasetRequest generates a request for the SubscribeToDataset operation.
 func (c *CognitoSync) SubscribeToDatasetRequest(input *SubscribeToDatasetInput) (req *aws.Request, output *SubscribeToDatasetOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSubscribeToDataset == nil {
 		opSubscribeToDataset = &aws.Operation{
 			Name:       "SubscribeToDataset",
@@ -391,6 +433,9 @@ var opSubscribeToDataset *aws.Operation
 
 // UnsubscribeFromDatasetRequest generates a request for the UnsubscribeFromDataset operation.
 func (c *CognitoSync) UnsubscribeFromDatasetRequest(input *UnsubscribeFromDatasetInput) (req *aws.Request, output *UnsubscribeFromDatasetOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUnsubscribeFromDataset == nil {
 		opUnsubscribeFromDataset = &aws.Operation{
 			Name:       "UnsubscribeFromDataset",
@@ -418,6 +463,9 @@ var opUnsubscribeFromDataset *aws.Operation
 
 // UpdateRecordsRequest generates a request for the UpdateRecords operation.
 func (c *CognitoSync) UpdateRecordsRequest(input *UpdateRecordsInput) (req *aws.Request, output *UpdateRecordsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateRecords == nil {
 		opUpdateRecords = &aws.Operation{
 			Name:       "UpdateRecords",

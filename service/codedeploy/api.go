@@ -4,13 +4,19 @@
 package codedeploy
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // BatchGetApplicationsRequest generates a request for the BatchGetApplications operation.
 func (c *CodeDeploy) BatchGetApplicationsRequest(input *BatchGetApplicationsInput) (req *aws.Request, output *BatchGetApplicationsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opBatchGetApplications == nil {
 		opBatchGetApplications = &aws.Operation{
 			Name:       "BatchGetApplications",
@@ -37,6 +43,9 @@ var opBatchGetApplications *aws.Operation
 
 // BatchGetDeploymentsRequest generates a request for the BatchGetDeployments operation.
 func (c *CodeDeploy) BatchGetDeploymentsRequest(input *BatchGetDeploymentsInput) (req *aws.Request, output *BatchGetDeploymentsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opBatchGetDeployments == nil {
 		opBatchGetDeployments = &aws.Operation{
 			Name:       "BatchGetDeployments",
@@ -63,6 +72,9 @@ var opBatchGetDeployments *aws.Operation
 
 // CreateApplicationRequest generates a request for the CreateApplication operation.
 func (c *CodeDeploy) CreateApplicationRequest(input *CreateApplicationInput) (req *aws.Request, output *CreateApplicationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateApplication == nil {
 		opCreateApplication = &aws.Operation{
 			Name:       "CreateApplication",
@@ -89,6 +101,9 @@ var opCreateApplication *aws.Operation
 
 // CreateDeploymentRequest generates a request for the CreateDeployment operation.
 func (c *CodeDeploy) CreateDeploymentRequest(input *CreateDeploymentInput) (req *aws.Request, output *CreateDeploymentOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateDeployment == nil {
 		opCreateDeployment = &aws.Operation{
 			Name:       "CreateDeployment",
@@ -115,6 +130,9 @@ var opCreateDeployment *aws.Operation
 
 // CreateDeploymentConfigRequest generates a request for the CreateDeploymentConfig operation.
 func (c *CodeDeploy) CreateDeploymentConfigRequest(input *CreateDeploymentConfigInput) (req *aws.Request, output *CreateDeploymentConfigOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateDeploymentConfig == nil {
 		opCreateDeploymentConfig = &aws.Operation{
 			Name:       "CreateDeploymentConfig",
@@ -141,6 +159,9 @@ var opCreateDeploymentConfig *aws.Operation
 
 // CreateDeploymentGroupRequest generates a request for the CreateDeploymentGroup operation.
 func (c *CodeDeploy) CreateDeploymentGroupRequest(input *CreateDeploymentGroupInput) (req *aws.Request, output *CreateDeploymentGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateDeploymentGroup == nil {
 		opCreateDeploymentGroup = &aws.Operation{
 			Name:       "CreateDeploymentGroup",
@@ -167,6 +188,9 @@ var opCreateDeploymentGroup *aws.Operation
 
 // DeleteApplicationRequest generates a request for the DeleteApplication operation.
 func (c *CodeDeploy) DeleteApplicationRequest(input *DeleteApplicationInput) (req *aws.Request, output *DeleteApplicationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteApplication == nil {
 		opDeleteApplication = &aws.Operation{
 			Name:       "DeleteApplication",
@@ -193,6 +217,9 @@ var opDeleteApplication *aws.Operation
 
 // DeleteDeploymentConfigRequest generates a request for the DeleteDeploymentConfig operation.
 func (c *CodeDeploy) DeleteDeploymentConfigRequest(input *DeleteDeploymentConfigInput) (req *aws.Request, output *DeleteDeploymentConfigOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteDeploymentConfig == nil {
 		opDeleteDeploymentConfig = &aws.Operation{
 			Name:       "DeleteDeploymentConfig",
@@ -222,6 +249,9 @@ var opDeleteDeploymentConfig *aws.Operation
 
 // DeleteDeploymentGroupRequest generates a request for the DeleteDeploymentGroup operation.
 func (c *CodeDeploy) DeleteDeploymentGroupRequest(input *DeleteDeploymentGroupInput) (req *aws.Request, output *DeleteDeploymentGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteDeploymentGroup == nil {
 		opDeleteDeploymentGroup = &aws.Operation{
 			Name:       "DeleteDeploymentGroup",
@@ -248,6 +278,9 @@ var opDeleteDeploymentGroup *aws.Operation
 
 // GetApplicationRequest generates a request for the GetApplication operation.
 func (c *CodeDeploy) GetApplicationRequest(input *GetApplicationInput) (req *aws.Request, output *GetApplicationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetApplication == nil {
 		opGetApplication = &aws.Operation{
 			Name:       "GetApplication",
@@ -274,6 +307,9 @@ var opGetApplication *aws.Operation
 
 // GetApplicationRevisionRequest generates a request for the GetApplicationRevision operation.
 func (c *CodeDeploy) GetApplicationRevisionRequest(input *GetApplicationRevisionInput) (req *aws.Request, output *GetApplicationRevisionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetApplicationRevision == nil {
 		opGetApplicationRevision = &aws.Operation{
 			Name:       "GetApplicationRevision",
@@ -300,6 +336,9 @@ var opGetApplicationRevision *aws.Operation
 
 // GetDeploymentRequest generates a request for the GetDeployment operation.
 func (c *CodeDeploy) GetDeploymentRequest(input *GetDeploymentInput) (req *aws.Request, output *GetDeploymentOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetDeployment == nil {
 		opGetDeployment = &aws.Operation{
 			Name:       "GetDeployment",
@@ -326,6 +365,9 @@ var opGetDeployment *aws.Operation
 
 // GetDeploymentConfigRequest generates a request for the GetDeploymentConfig operation.
 func (c *CodeDeploy) GetDeploymentConfigRequest(input *GetDeploymentConfigInput) (req *aws.Request, output *GetDeploymentConfigOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetDeploymentConfig == nil {
 		opGetDeploymentConfig = &aws.Operation{
 			Name:       "GetDeploymentConfig",
@@ -352,6 +394,9 @@ var opGetDeploymentConfig *aws.Operation
 
 // GetDeploymentGroupRequest generates a request for the GetDeploymentGroup operation.
 func (c *CodeDeploy) GetDeploymentGroupRequest(input *GetDeploymentGroupInput) (req *aws.Request, output *GetDeploymentGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetDeploymentGroup == nil {
 		opGetDeploymentGroup = &aws.Operation{
 			Name:       "GetDeploymentGroup",
@@ -378,6 +423,9 @@ var opGetDeploymentGroup *aws.Operation
 
 // GetDeploymentInstanceRequest generates a request for the GetDeploymentInstance operation.
 func (c *CodeDeploy) GetDeploymentInstanceRequest(input *GetDeploymentInstanceInput) (req *aws.Request, output *GetDeploymentInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetDeploymentInstance == nil {
 		opGetDeploymentInstance = &aws.Operation{
 			Name:       "GetDeploymentInstance",
@@ -404,6 +452,9 @@ var opGetDeploymentInstance *aws.Operation
 
 // ListApplicationRevisionsRequest generates a request for the ListApplicationRevisions operation.
 func (c *CodeDeploy) ListApplicationRevisionsRequest(input *ListApplicationRevisionsInput) (req *aws.Request, output *ListApplicationRevisionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListApplicationRevisions == nil {
 		opListApplicationRevisions = &aws.Operation{
 			Name:       "ListApplicationRevisions",
@@ -430,6 +481,9 @@ var opListApplicationRevisions *aws.Operation
 
 // ListApplicationsRequest generates a request for the ListApplications operation.
 func (c *CodeDeploy) ListApplicationsRequest(input *ListApplicationsInput) (req *aws.Request, output *ListApplicationsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListApplications == nil {
 		opListApplications = &aws.Operation{
 			Name:       "ListApplications",
@@ -456,6 +510,9 @@ var opListApplications *aws.Operation
 
 // ListDeploymentConfigsRequest generates a request for the ListDeploymentConfigs operation.
 func (c *CodeDeploy) ListDeploymentConfigsRequest(input *ListDeploymentConfigsInput) (req *aws.Request, output *ListDeploymentConfigsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListDeploymentConfigs == nil {
 		opListDeploymentConfigs = &aws.Operation{
 			Name:       "ListDeploymentConfigs",
@@ -482,6 +539,9 @@ var opListDeploymentConfigs *aws.Operation
 
 // ListDeploymentGroupsRequest generates a request for the ListDeploymentGroups operation.
 func (c *CodeDeploy) ListDeploymentGroupsRequest(input *ListDeploymentGroupsInput) (req *aws.Request, output *ListDeploymentGroupsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListDeploymentGroups == nil {
 		opListDeploymentGroups = &aws.Operation{
 			Name:       "ListDeploymentGroups",
@@ -509,6 +569,9 @@ var opListDeploymentGroups *aws.Operation
 
 // ListDeploymentInstancesRequest generates a request for the ListDeploymentInstances operation.
 func (c *CodeDeploy) ListDeploymentInstancesRequest(input *ListDeploymentInstancesInput) (req *aws.Request, output *ListDeploymentInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListDeploymentInstances == nil {
 		opListDeploymentInstances = &aws.Operation{
 			Name:       "ListDeploymentInstances",
@@ -535,6 +598,9 @@ var opListDeploymentInstances *aws.Operation
 
 // ListDeploymentsRequest generates a request for the ListDeployments operation.
 func (c *CodeDeploy) ListDeploymentsRequest(input *ListDeploymentsInput) (req *aws.Request, output *ListDeploymentsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListDeployments == nil {
 		opListDeployments = &aws.Operation{
 			Name:       "ListDeployments",
@@ -562,6 +628,9 @@ var opListDeployments *aws.Operation
 
 // RegisterApplicationRevisionRequest generates a request for the RegisterApplicationRevision operation.
 func (c *CodeDeploy) RegisterApplicationRevisionRequest(input *RegisterApplicationRevisionInput) (req *aws.Request, output *RegisterApplicationRevisionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRegisterApplicationRevision == nil {
 		opRegisterApplicationRevision = &aws.Operation{
 			Name:       "RegisterApplicationRevision",
@@ -588,6 +657,9 @@ var opRegisterApplicationRevision *aws.Operation
 
 // StopDeploymentRequest generates a request for the StopDeployment operation.
 func (c *CodeDeploy) StopDeploymentRequest(input *StopDeploymentInput) (req *aws.Request, output *StopDeploymentOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opStopDeployment == nil {
 		opStopDeployment = &aws.Operation{
 			Name:       "StopDeployment",
@@ -614,6 +686,9 @@ var opStopDeployment *aws.Operation
 
 // UpdateApplicationRequest generates a request for the UpdateApplication operation.
 func (c *CodeDeploy) UpdateApplicationRequest(input *UpdateApplicationInput) (req *aws.Request, output *UpdateApplicationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateApplication == nil {
 		opUpdateApplication = &aws.Operation{
 			Name:       "UpdateApplication",
@@ -640,6 +715,9 @@ var opUpdateApplication *aws.Operation
 
 // UpdateDeploymentGroupRequest generates a request for the UpdateDeploymentGroup operation.
 func (c *CodeDeploy) UpdateDeploymentGroupRequest(input *UpdateDeploymentGroupInput) (req *aws.Request, output *UpdateDeploymentGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateDeploymentGroup == nil {
 		opUpdateDeploymentGroup = &aws.Operation{
 			Name:       "UpdateDeploymentGroup",

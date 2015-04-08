@@ -4,13 +4,19 @@
 package cloudformation
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // CancelUpdateStackRequest generates a request for the CancelUpdateStack operation.
 func (c *CloudFormation) CancelUpdateStackRequest(input *CancelUpdateStackInput) (req *aws.Request, output *CancelUpdateStackOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCancelUpdateStack == nil {
 		opCancelUpdateStack = &aws.Operation{
 			Name:       "CancelUpdateStack",
@@ -40,6 +46,9 @@ var opCancelUpdateStack *aws.Operation
 
 // CreateStackRequest generates a request for the CreateStack operation.
 func (c *CloudFormation) CreateStackRequest(input *CreateStackInput) (req *aws.Request, output *CreateStackOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateStack == nil {
 		opCreateStack = &aws.Operation{
 			Name:       "CreateStack",
@@ -68,6 +77,9 @@ var opCreateStack *aws.Operation
 
 // DeleteStackRequest generates a request for the DeleteStack operation.
 func (c *CloudFormation) DeleteStackRequest(input *DeleteStackInput) (req *aws.Request, output *DeleteStackOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteStack == nil {
 		opDeleteStack = &aws.Operation{
 			Name:       "DeleteStack",
@@ -96,6 +108,9 @@ var opDeleteStack *aws.Operation
 
 // DescribeStackEventsRequest generates a request for the DescribeStackEvents operation.
 func (c *CloudFormation) DescribeStackEventsRequest(input *DescribeStackEventsInput) (req *aws.Request, output *DescribeStackEventsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeStackEvents == nil {
 		opDescribeStackEvents = &aws.Operation{
 			Name:       "DescribeStackEvents",
@@ -127,6 +142,9 @@ var opDescribeStackEvents *aws.Operation
 
 // DescribeStackResourceRequest generates a request for the DescribeStackResource operation.
 func (c *CloudFormation) DescribeStackResourceRequest(input *DescribeStackResourceInput) (req *aws.Request, output *DescribeStackResourceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeStackResource == nil {
 		opDescribeStackResource = &aws.Operation{
 			Name:       "DescribeStackResource",
@@ -156,6 +174,9 @@ var opDescribeStackResource *aws.Operation
 
 // DescribeStackResourcesRequest generates a request for the DescribeStackResources operation.
 func (c *CloudFormation) DescribeStackResourcesRequest(input *DescribeStackResourcesInput) (req *aws.Request, output *DescribeStackResourcesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeStackResources == nil {
 		opDescribeStackResources = &aws.Operation{
 			Name:       "DescribeStackResources",
@@ -198,6 +219,9 @@ var opDescribeStackResources *aws.Operation
 
 // DescribeStacksRequest generates a request for the DescribeStacks operation.
 func (c *CloudFormation) DescribeStacksRequest(input *DescribeStacksInput) (req *aws.Request, output *DescribeStacksOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeStacks == nil {
 		opDescribeStacks = &aws.Operation{
 			Name:       "DescribeStacks",
@@ -225,6 +249,9 @@ var opDescribeStacks *aws.Operation
 
 // EstimateTemplateCostRequest generates a request for the EstimateTemplateCost operation.
 func (c *CloudFormation) EstimateTemplateCostRequest(input *EstimateTemplateCostInput) (req *aws.Request, output *EstimateTemplateCostOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opEstimateTemplateCost == nil {
 		opEstimateTemplateCost = &aws.Operation{
 			Name:       "EstimateTemplateCost",
@@ -253,6 +280,9 @@ var opEstimateTemplateCost *aws.Operation
 
 // GetStackPolicyRequest generates a request for the GetStackPolicy operation.
 func (c *CloudFormation) GetStackPolicyRequest(input *GetStackPolicyInput) (req *aws.Request, output *GetStackPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetStackPolicy == nil {
 		opGetStackPolicy = &aws.Operation{
 			Name:       "GetStackPolicy",
@@ -280,6 +310,9 @@ var opGetStackPolicy *aws.Operation
 
 // GetTemplateRequest generates a request for the GetTemplate operation.
 func (c *CloudFormation) GetTemplateRequest(input *GetTemplateInput) (req *aws.Request, output *GetTemplateOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetTemplate == nil {
 		opGetTemplate = &aws.Operation{
 			Name:       "GetTemplate",
@@ -312,6 +345,9 @@ var opGetTemplate *aws.Operation
 
 // GetTemplateSummaryRequest generates a request for the GetTemplateSummary operation.
 func (c *CloudFormation) GetTemplateSummaryRequest(input *GetTemplateSummaryInput) (req *aws.Request, output *GetTemplateSummaryOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetTemplateSummary == nil {
 		opGetTemplateSummary = &aws.Operation{
 			Name:       "GetTemplateSummary",
@@ -347,6 +383,9 @@ var opGetTemplateSummary *aws.Operation
 
 // ListStackResourcesRequest generates a request for the ListStackResources operation.
 func (c *CloudFormation) ListStackResourcesRequest(input *ListStackResourcesInput) (req *aws.Request, output *ListStackResourcesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListStackResources == nil {
 		opListStackResources = &aws.Operation{
 			Name:       "ListStackResources",
@@ -376,6 +415,9 @@ var opListStackResources *aws.Operation
 
 // ListStacksRequest generates a request for the ListStacks operation.
 func (c *CloudFormation) ListStacksRequest(input *ListStacksInput) (req *aws.Request, output *ListStacksOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListStacks == nil {
 		opListStacks = &aws.Operation{
 			Name:       "ListStacks",
@@ -406,6 +448,9 @@ var opListStacks *aws.Operation
 
 // SetStackPolicyRequest generates a request for the SetStackPolicy operation.
 func (c *CloudFormation) SetStackPolicyRequest(input *SetStackPolicyInput) (req *aws.Request, output *SetStackPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetStackPolicy == nil {
 		opSetStackPolicy = &aws.Operation{
 			Name:       "SetStackPolicy",
@@ -432,6 +477,9 @@ var opSetStackPolicy *aws.Operation
 
 // SignalResourceRequest generates a request for the SignalResource operation.
 func (c *CloudFormation) SignalResourceRequest(input *SignalResourceInput) (req *aws.Request, output *SignalResourceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSignalResource == nil {
 		opSignalResource = &aws.Operation{
 			Name:       "SignalResource",
@@ -463,6 +511,9 @@ var opSignalResource *aws.Operation
 
 // UpdateStackRequest generates a request for the UpdateStack operation.
 func (c *CloudFormation) UpdateStackRequest(input *UpdateStackInput) (req *aws.Request, output *UpdateStackOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateStack == nil {
 		opUpdateStack = &aws.Operation{
 			Name:       "UpdateStack",
@@ -500,6 +551,9 @@ var opUpdateStack *aws.Operation
 
 // ValidateTemplateRequest generates a request for the ValidateTemplate operation.
 func (c *CloudFormation) ValidateTemplateRequest(input *ValidateTemplateInput) (req *aws.Request, output *ValidateTemplateOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opValidateTemplate == nil {
 		opValidateTemplate = &aws.Operation{
 			Name:       "ValidateTemplate",

@@ -4,13 +4,19 @@
 package route53
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // AssociateVPCWithHostedZoneRequest generates a request for the AssociateVPCWithHostedZone operation.
 func (c *Route53) AssociateVPCWithHostedZoneRequest(input *AssociateVPCWithHostedZoneInput) (req *aws.Request, output *AssociateVPCWithHostedZoneOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAssociateVPCWithHostedZone == nil {
 		opAssociateVPCWithHostedZone = &aws.Operation{
 			Name:       "AssociateVPCWithHostedZone",
@@ -44,6 +50,9 @@ var opAssociateVPCWithHostedZone *aws.Operation
 
 // ChangeResourceRecordSetsRequest generates a request for the ChangeResourceRecordSets operation.
 func (c *Route53) ChangeResourceRecordSetsRequest(input *ChangeResourceRecordSetsInput) (req *aws.Request, output *ChangeResourceRecordSetsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opChangeResourceRecordSets == nil {
 		opChangeResourceRecordSets = &aws.Operation{
 			Name:       "ChangeResourceRecordSets",
@@ -97,6 +106,9 @@ var opChangeResourceRecordSets *aws.Operation
 
 // ChangeTagsForResourceRequest generates a request for the ChangeTagsForResource operation.
 func (c *Route53) ChangeTagsForResourceRequest(input *ChangeTagsForResourceInput) (req *aws.Request, output *ChangeTagsForResourceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opChangeTagsForResource == nil {
 		opChangeTagsForResource = &aws.Operation{
 			Name:       "ChangeTagsForResource",
@@ -122,6 +134,9 @@ var opChangeTagsForResource *aws.Operation
 
 // CreateHealthCheckRequest generates a request for the CreateHealthCheck operation.
 func (c *Route53) CreateHealthCheckRequest(input *CreateHealthCheckInput) (req *aws.Request, output *CreateHealthCheckOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateHealthCheck == nil {
 		opCreateHealthCheck = &aws.Operation{
 			Name:       "CreateHealthCheck",
@@ -153,6 +168,9 @@ var opCreateHealthCheck *aws.Operation
 
 // CreateHostedZoneRequest generates a request for the CreateHostedZone operation.
 func (c *Route53) CreateHostedZoneRequest(input *CreateHostedZoneInput) (req *aws.Request, output *CreateHostedZoneOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateHostedZone == nil {
 		opCreateHostedZone = &aws.Operation{
 			Name:       "CreateHostedZone",
@@ -199,6 +217,9 @@ var opCreateHostedZone *aws.Operation
 
 // CreateReusableDelegationSetRequest generates a request for the CreateReusableDelegationSet operation.
 func (c *Route53) CreateReusableDelegationSetRequest(input *CreateReusableDelegationSetInput) (req *aws.Request, output *CreateReusableDelegationSetOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateReusableDelegationSet == nil {
 		opCreateReusableDelegationSet = &aws.Operation{
 			Name:       "CreateReusableDelegationSet",
@@ -233,6 +254,9 @@ var opCreateReusableDelegationSet *aws.Operation
 
 // DeleteHealthCheckRequest generates a request for the DeleteHealthCheck operation.
 func (c *Route53) DeleteHealthCheckRequest(input *DeleteHealthCheckInput) (req *aws.Request, output *DeleteHealthCheckOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteHealthCheck == nil {
 		opDeleteHealthCheck = &aws.Operation{
 			Name:       "DeleteHealthCheck",
@@ -268,6 +292,9 @@ var opDeleteHealthCheck *aws.Operation
 
 // DeleteHostedZoneRequest generates a request for the DeleteHostedZone operation.
 func (c *Route53) DeleteHostedZoneRequest(input *DeleteHostedZoneInput) (req *aws.Request, output *DeleteHostedZoneOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteHostedZone == nil {
 		opDeleteHostedZone = &aws.Operation{
 			Name:       "DeleteHostedZone",
@@ -307,6 +334,9 @@ var opDeleteHostedZone *aws.Operation
 
 // DeleteReusableDelegationSetRequest generates a request for the DeleteReusableDelegationSet operation.
 func (c *Route53) DeleteReusableDelegationSetRequest(input *DeleteReusableDelegationSetInput) (req *aws.Request, output *DeleteReusableDelegationSetOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteReusableDelegationSet == nil {
 		opDeleteReusableDelegationSet = &aws.Operation{
 			Name:       "DeleteReusableDelegationSet",
@@ -341,6 +371,9 @@ var opDeleteReusableDelegationSet *aws.Operation
 
 // DisassociateVPCFromHostedZoneRequest generates a request for the DisassociateVPCFromHostedZone operation.
 func (c *Route53) DisassociateVPCFromHostedZoneRequest(input *DisassociateVPCFromHostedZoneInput) (req *aws.Request, output *DisassociateVPCFromHostedZoneOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDisassociateVPCFromHostedZone == nil {
 		opDisassociateVPCFromHostedZone = &aws.Operation{
 			Name:       "DisassociateVPCFromHostedZone",
@@ -374,6 +407,9 @@ var opDisassociateVPCFromHostedZone *aws.Operation
 
 // GetChangeRequest generates a request for the GetChange operation.
 func (c *Route53) GetChangeRequest(input *GetChangeInput) (req *aws.Request, output *GetChangeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetChange == nil {
 		opGetChange = &aws.Operation{
 			Name:       "GetChange",
@@ -408,6 +444,9 @@ var opGetChange *aws.Operation
 
 // GetCheckerIPRangesRequest generates a request for the GetCheckerIPRanges operation.
 func (c *Route53) GetCheckerIPRangesRequest(input *GetCheckerIPRangesInput) (req *aws.Request, output *GetCheckerIPRangesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetCheckerIPRanges == nil {
 		opGetCheckerIPRanges = &aws.Operation{
 			Name:       "GetCheckerIpRanges",
@@ -437,6 +476,9 @@ var opGetCheckerIPRanges *aws.Operation
 
 // GetGeoLocationRequest generates a request for the GetGeoLocation operation.
 func (c *Route53) GetGeoLocationRequest(input *GetGeoLocationInput) (req *aws.Request, output *GetGeoLocationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetGeoLocation == nil {
 		opGetGeoLocation = &aws.Operation{
 			Name:       "GetGeoLocation",
@@ -465,6 +507,9 @@ var opGetGeoLocation *aws.Operation
 
 // GetHealthCheckRequest generates a request for the GetHealthCheck operation.
 func (c *Route53) GetHealthCheckRequest(input *GetHealthCheckInput) (req *aws.Request, output *GetHealthCheckOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetHealthCheck == nil {
 		opGetHealthCheck = &aws.Operation{
 			Name:       "GetHealthCheck",
@@ -492,6 +537,9 @@ var opGetHealthCheck *aws.Operation
 
 // GetHealthCheckCountRequest generates a request for the GetHealthCheckCount operation.
 func (c *Route53) GetHealthCheckCountRequest(input *GetHealthCheckCountInput) (req *aws.Request, output *GetHealthCheckCountOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetHealthCheckCount == nil {
 		opGetHealthCheckCount = &aws.Operation{
 			Name:       "GetHealthCheckCount",
@@ -519,6 +567,9 @@ var opGetHealthCheckCount *aws.Operation
 
 // GetHealthCheckLastFailureReasonRequest generates a request for the GetHealthCheckLastFailureReason operation.
 func (c *Route53) GetHealthCheckLastFailureReasonRequest(input *GetHealthCheckLastFailureReasonInput) (req *aws.Request, output *GetHealthCheckLastFailureReasonOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetHealthCheckLastFailureReason == nil {
 		opGetHealthCheckLastFailureReason = &aws.Operation{
 			Name:       "GetHealthCheckLastFailureReason",
@@ -548,6 +599,9 @@ var opGetHealthCheckLastFailureReason *aws.Operation
 
 // GetHealthCheckStatusRequest generates a request for the GetHealthCheckStatus operation.
 func (c *Route53) GetHealthCheckStatusRequest(input *GetHealthCheckStatusInput) (req *aws.Request, output *GetHealthCheckStatusOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetHealthCheckStatus == nil {
 		opGetHealthCheckStatus = &aws.Operation{
 			Name:       "GetHealthCheckStatus",
@@ -576,6 +630,9 @@ var opGetHealthCheckStatus *aws.Operation
 
 // GetHostedZoneRequest generates a request for the GetHostedZone operation.
 func (c *Route53) GetHostedZoneRequest(input *GetHostedZoneInput) (req *aws.Request, output *GetHostedZoneOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetHostedZone == nil {
 		opGetHostedZone = &aws.Operation{
 			Name:       "GetHostedZone",
@@ -605,6 +662,9 @@ var opGetHostedZone *aws.Operation
 
 // GetHostedZoneCountRequest generates a request for the GetHostedZoneCount operation.
 func (c *Route53) GetHostedZoneCountRequest(input *GetHostedZoneCountInput) (req *aws.Request, output *GetHostedZoneCountOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetHostedZoneCount == nil {
 		opGetHostedZoneCount = &aws.Operation{
 			Name:       "GetHostedZoneCount",
@@ -632,6 +692,9 @@ var opGetHostedZoneCount *aws.Operation
 
 // GetReusableDelegationSetRequest generates a request for the GetReusableDelegationSet operation.
 func (c *Route53) GetReusableDelegationSetRequest(input *GetReusableDelegationSetInput) (req *aws.Request, output *GetReusableDelegationSetOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetReusableDelegationSet == nil {
 		opGetReusableDelegationSet = &aws.Operation{
 			Name:       "GetReusableDelegationSet",
@@ -659,6 +722,9 @@ var opGetReusableDelegationSet *aws.Operation
 
 // ListGeoLocationsRequest generates a request for the ListGeoLocations operation.
 func (c *Route53) ListGeoLocationsRequest(input *ListGeoLocationsInput) (req *aws.Request, output *ListGeoLocationsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListGeoLocations == nil {
 		opListGeoLocations = &aws.Operation{
 			Name:       "ListGeoLocations",
@@ -697,6 +763,9 @@ var opListGeoLocations *aws.Operation
 
 // ListHealthChecksRequest generates a request for the ListHealthChecks operation.
 func (c *Route53) ListHealthChecksRequest(input *ListHealthChecksInput) (req *aws.Request, output *ListHealthChecksOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListHealthChecks == nil {
 		opListHealthChecks = &aws.Operation{
 			Name:       "ListHealthChecks",
@@ -731,6 +800,9 @@ var opListHealthChecks *aws.Operation
 
 // ListHostedZonesRequest generates a request for the ListHostedZones operation.
 func (c *Route53) ListHostedZonesRequest(input *ListHostedZonesInput) (req *aws.Request, output *ListHostedZonesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListHostedZones == nil {
 		opListHostedZones = &aws.Operation{
 			Name:       "ListHostedZones",
@@ -765,6 +837,9 @@ var opListHostedZones *aws.Operation
 
 // ListHostedZonesByNameRequest generates a request for the ListHostedZonesByName operation.
 func (c *Route53) ListHostedZonesByNameRequest(input *ListHostedZonesByNameInput) (req *aws.Request, output *ListHostedZonesByNameOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListHostedZonesByName == nil {
 		opListHostedZonesByName = &aws.Operation{
 			Name:       "ListHostedZonesByName",
@@ -801,6 +876,9 @@ var opListHostedZonesByName *aws.Operation
 
 // ListResourceRecordSetsRequest generates a request for the ListResourceRecordSets operation.
 func (c *Route53) ListResourceRecordSetsRequest(input *ListResourceRecordSetsInput) (req *aws.Request, output *ListResourceRecordSetsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListResourceRecordSets == nil {
 		opListResourceRecordSets = &aws.Operation{
 			Name:       "ListResourceRecordSets",
@@ -864,6 +942,9 @@ var opListResourceRecordSets *aws.Operation
 
 // ListReusableDelegationSetsRequest generates a request for the ListReusableDelegationSets operation.
 func (c *Route53) ListReusableDelegationSetsRequest(input *ListReusableDelegationSetsInput) (req *aws.Request, output *ListReusableDelegationSetsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListReusableDelegationSets == nil {
 		opListReusableDelegationSets = &aws.Operation{
 			Name:       "ListReusableDelegationSets",
@@ -899,6 +980,9 @@ var opListReusableDelegationSets *aws.Operation
 
 // ListTagsForResourceRequest generates a request for the ListTagsForResource operation.
 func (c *Route53) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *aws.Request, output *ListTagsForResourceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListTagsForResource == nil {
 		opListTagsForResource = &aws.Operation{
 			Name:       "ListTagsForResource",
@@ -924,6 +1008,9 @@ var opListTagsForResource *aws.Operation
 
 // ListTagsForResourcesRequest generates a request for the ListTagsForResources operation.
 func (c *Route53) ListTagsForResourcesRequest(input *ListTagsForResourcesInput) (req *aws.Request, output *ListTagsForResourcesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListTagsForResources == nil {
 		opListTagsForResources = &aws.Operation{
 			Name:       "ListTagsForResources",
@@ -949,6 +1036,9 @@ var opListTagsForResources *aws.Operation
 
 // UpdateHealthCheckRequest generates a request for the UpdateHealthCheck operation.
 func (c *Route53) UpdateHealthCheckRequest(input *UpdateHealthCheckInput) (req *aws.Request, output *UpdateHealthCheckOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateHealthCheck == nil {
 		opUpdateHealthCheck = &aws.Operation{
 			Name:       "UpdateHealthCheck",
@@ -980,6 +1070,9 @@ var opUpdateHealthCheck *aws.Operation
 
 // UpdateHostedZoneCommentRequest generates a request for the UpdateHostedZoneComment operation.
 func (c *Route53) UpdateHostedZoneCommentRequest(input *UpdateHostedZoneCommentInput) (req *aws.Request, output *UpdateHostedZoneCommentOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateHostedZoneComment == nil {
 		opUpdateHostedZoneComment = &aws.Operation{
 			Name:       "UpdateHostedZoneComment",

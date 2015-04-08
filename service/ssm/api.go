@@ -4,13 +4,19 @@
 package ssm
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // CreateAssociationRequest generates a request for the CreateAssociation operation.
 func (c *SSM) CreateAssociationRequest(input *CreateAssociationInput) (req *aws.Request, output *CreateAssociationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateAssociation == nil {
 		opCreateAssociation = &aws.Operation{
 			Name:       "CreateAssociation",
@@ -45,6 +51,9 @@ var opCreateAssociation *aws.Operation
 
 // CreateAssociationBatchRequest generates a request for the CreateAssociationBatch operation.
 func (c *SSM) CreateAssociationBatchRequest(input *CreateAssociationBatchInput) (req *aws.Request, output *CreateAssociationBatchOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateAssociationBatch == nil {
 		opCreateAssociationBatch = &aws.Operation{
 			Name:       "CreateAssociationBatch",
@@ -79,6 +88,9 @@ var opCreateAssociationBatch *aws.Operation
 
 // CreateDocumentRequest generates a request for the CreateDocument operation.
 func (c *SSM) CreateDocumentRequest(input *CreateDocumentInput) (req *aws.Request, output *CreateDocumentOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateDocument == nil {
 		opCreateDocument = &aws.Operation{
 			Name:       "CreateDocument",
@@ -108,6 +120,9 @@ var opCreateDocument *aws.Operation
 
 // DeleteAssociationRequest generates a request for the DeleteAssociation operation.
 func (c *SSM) DeleteAssociationRequest(input *DeleteAssociationInput) (req *aws.Request, output *DeleteAssociationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteAssociation == nil {
 		opDeleteAssociation = &aws.Operation{
 			Name:       "DeleteAssociation",
@@ -140,6 +155,9 @@ var opDeleteAssociation *aws.Operation
 
 // DeleteDocumentRequest generates a request for the DeleteDocument operation.
 func (c *SSM) DeleteDocumentRequest(input *DeleteDocumentInput) (req *aws.Request, output *DeleteDocumentOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteDocument == nil {
 		opDeleteDocument = &aws.Operation{
 			Name:       "DeleteDocument",
@@ -169,6 +187,9 @@ var opDeleteDocument *aws.Operation
 
 // DescribeAssociationRequest generates a request for the DescribeAssociation operation.
 func (c *SSM) DescribeAssociationRequest(input *DescribeAssociationInput) (req *aws.Request, output *DescribeAssociationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAssociation == nil {
 		opDescribeAssociation = &aws.Operation{
 			Name:       "DescribeAssociation",
@@ -195,6 +216,9 @@ var opDescribeAssociation *aws.Operation
 
 // DescribeDocumentRequest generates a request for the DescribeDocument operation.
 func (c *SSM) DescribeDocumentRequest(input *DescribeDocumentInput) (req *aws.Request, output *DescribeDocumentOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeDocument == nil {
 		opDescribeDocument = &aws.Operation{
 			Name:       "DescribeDocument",
@@ -221,6 +245,9 @@ var opDescribeDocument *aws.Operation
 
 // GetDocumentRequest generates a request for the GetDocument operation.
 func (c *SSM) GetDocumentRequest(input *GetDocumentInput) (req *aws.Request, output *GetDocumentOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetDocument == nil {
 		opGetDocument = &aws.Operation{
 			Name:       "GetDocument",
@@ -247,6 +274,9 @@ var opGetDocument *aws.Operation
 
 // ListAssociationsRequest generates a request for the ListAssociations operation.
 func (c *SSM) ListAssociationsRequest(input *ListAssociationsInput) (req *aws.Request, output *ListAssociationsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListAssociations == nil {
 		opListAssociations = &aws.Operation{
 			Name:       "ListAssociations",
@@ -273,6 +303,9 @@ var opListAssociations *aws.Operation
 
 // ListDocumentsRequest generates a request for the ListDocuments operation.
 func (c *SSM) ListDocumentsRequest(input *ListDocumentsInput) (req *aws.Request, output *ListDocumentsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListDocuments == nil {
 		opListDocuments = &aws.Operation{
 			Name:       "ListDocuments",
@@ -299,6 +332,9 @@ var opListDocuments *aws.Operation
 
 // UpdateAssociationStatusRequest generates a request for the UpdateAssociationStatus operation.
 func (c *SSM) UpdateAssociationStatusRequest(input *UpdateAssociationStatusInput) (req *aws.Request, output *UpdateAssociationStatusOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateAssociationStatus == nil {
 		opUpdateAssociationStatus = &aws.Operation{
 			Name:       "UpdateAssociationStatus",

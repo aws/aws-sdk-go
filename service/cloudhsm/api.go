@@ -4,11 +4,18 @@
 package cloudhsm
 
 import (
+	"sync"
+
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // CreateHAPGRequest generates a request for the CreateHAPG operation.
 func (c *CloudHSM) CreateHAPGRequest(input *CreateHAPGInput) (req *aws.Request, output *CreateHAPGOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateHAPG == nil {
 		opCreateHAPG = &aws.Operation{
 			Name:       "CreateHapg",
@@ -36,6 +43,9 @@ var opCreateHAPG *aws.Operation
 
 // CreateHSMRequest generates a request for the CreateHSM operation.
 func (c *CloudHSM) CreateHSMRequest(input *CreateHSMInput) (req *aws.Request, output *CreateHSMOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateHSM == nil {
 		opCreateHSM = &aws.Operation{
 			Name:       "CreateHsm",
@@ -63,6 +73,9 @@ var opCreateHSM *aws.Operation
 
 // CreateLunaClientRequest generates a request for the CreateLunaClient operation.
 func (c *CloudHSM) CreateLunaClientRequest(input *CreateLunaClientInput) (req *aws.Request, output *CreateLunaClientOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateLunaClient == nil {
 		opCreateLunaClient = &aws.Operation{
 			Name:       "CreateLunaClient",
@@ -89,6 +102,9 @@ var opCreateLunaClient *aws.Operation
 
 // DeleteHAPGRequest generates a request for the DeleteHAPG operation.
 func (c *CloudHSM) DeleteHAPGRequest(input *DeleteHAPGInput) (req *aws.Request, output *DeleteHAPGOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteHAPG == nil {
 		opDeleteHAPG = &aws.Operation{
 			Name:       "DeleteHapg",
@@ -115,6 +131,9 @@ var opDeleteHAPG *aws.Operation
 
 // DeleteHSMRequest generates a request for the DeleteHSM operation.
 func (c *CloudHSM) DeleteHSMRequest(input *DeleteHSMInput) (req *aws.Request, output *DeleteHSMOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteHSM == nil {
 		opDeleteHSM = &aws.Operation{
 			Name:       "DeleteHsm",
@@ -142,6 +161,9 @@ var opDeleteHSM *aws.Operation
 
 // DeleteLunaClientRequest generates a request for the DeleteLunaClient operation.
 func (c *CloudHSM) DeleteLunaClientRequest(input *DeleteLunaClientInput) (req *aws.Request, output *DeleteLunaClientOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteLunaClient == nil {
 		opDeleteLunaClient = &aws.Operation{
 			Name:       "DeleteLunaClient",
@@ -168,6 +190,9 @@ var opDeleteLunaClient *aws.Operation
 
 // DescribeHAPGRequest generates a request for the DescribeHAPG operation.
 func (c *CloudHSM) DescribeHAPGRequest(input *DescribeHAPGInput) (req *aws.Request, output *DescribeHAPGOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeHAPG == nil {
 		opDescribeHAPG = &aws.Operation{
 			Name:       "DescribeHapg",
@@ -194,6 +219,9 @@ var opDescribeHAPG *aws.Operation
 
 // DescribeHSMRequest generates a request for the DescribeHSM operation.
 func (c *CloudHSM) DescribeHSMRequest(input *DescribeHSMInput) (req *aws.Request, output *DescribeHSMOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeHSM == nil {
 		opDescribeHSM = &aws.Operation{
 			Name:       "DescribeHsm",
@@ -221,6 +249,9 @@ var opDescribeHSM *aws.Operation
 
 // DescribeLunaClientRequest generates a request for the DescribeLunaClient operation.
 func (c *CloudHSM) DescribeLunaClientRequest(input *DescribeLunaClientInput) (req *aws.Request, output *DescribeLunaClientOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeLunaClient == nil {
 		opDescribeLunaClient = &aws.Operation{
 			Name:       "DescribeLunaClient",
@@ -247,6 +278,9 @@ var opDescribeLunaClient *aws.Operation
 
 // GetConfigRequest generates a request for the GetConfig operation.
 func (c *CloudHSM) GetConfigRequest(input *GetConfigInput) (req *aws.Request, output *GetConfigOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetConfig == nil {
 		opGetConfig = &aws.Operation{
 			Name:       "GetConfig",
@@ -274,6 +308,9 @@ var opGetConfig *aws.Operation
 
 // ListAvailableZonesRequest generates a request for the ListAvailableZones operation.
 func (c *CloudHSM) ListAvailableZonesRequest(input *ListAvailableZonesInput) (req *aws.Request, output *ListAvailableZonesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListAvailableZones == nil {
 		opListAvailableZones = &aws.Operation{
 			Name:       "ListAvailableZones",
@@ -300,6 +337,9 @@ var opListAvailableZones *aws.Operation
 
 // ListHSMsRequest generates a request for the ListHSMs operation.
 func (c *CloudHSM) ListHSMsRequest(input *ListHSMsInput) (req *aws.Request, output *ListHSMsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListHSMs == nil {
 		opListHSMs = &aws.Operation{
 			Name:       "ListHsms",
@@ -332,6 +372,9 @@ var opListHSMs *aws.Operation
 
 // ListHapgsRequest generates a request for the ListHapgs operation.
 func (c *CloudHSM) ListHapgsRequest(input *ListHapgsInput) (req *aws.Request, output *ListHapgsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListHapgs == nil {
 		opListHapgs = &aws.Operation{
 			Name:       "ListHapgs",
@@ -363,6 +406,9 @@ var opListHapgs *aws.Operation
 
 // ListLunaClientsRequest generates a request for the ListLunaClients operation.
 func (c *CloudHSM) ListLunaClientsRequest(input *ListLunaClientsInput) (req *aws.Request, output *ListLunaClientsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListLunaClients == nil {
 		opListLunaClients = &aws.Operation{
 			Name:       "ListLunaClients",
@@ -394,6 +440,9 @@ var opListLunaClients *aws.Operation
 
 // ModifyHAPGRequest generates a request for the ModifyHAPG operation.
 func (c *CloudHSM) ModifyHAPGRequest(input *ModifyHAPGInput) (req *aws.Request, output *ModifyHAPGOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyHAPG == nil {
 		opModifyHAPG = &aws.Operation{
 			Name:       "ModifyHapg",
@@ -420,6 +469,9 @@ var opModifyHAPG *aws.Operation
 
 // ModifyHSMRequest generates a request for the ModifyHSM operation.
 func (c *CloudHSM) ModifyHSMRequest(input *ModifyHSMInput) (req *aws.Request, output *ModifyHSMOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyHSM == nil {
 		opModifyHSM = &aws.Operation{
 			Name:       "ModifyHsm",
@@ -446,6 +498,9 @@ var opModifyHSM *aws.Operation
 
 // ModifyLunaClientRequest generates a request for the ModifyLunaClient operation.
 func (c *CloudHSM) ModifyLunaClientRequest(input *ModifyLunaClientInput) (req *aws.Request, output *ModifyLunaClientOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyLunaClient == nil {
 		opModifyLunaClient = &aws.Operation{
 			Name:       "ModifyLunaClient",

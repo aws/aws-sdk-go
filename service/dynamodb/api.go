@@ -4,13 +4,19 @@
 package dynamodb
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // BatchGetItemRequest generates a request for the BatchGetItem operation.
 func (c *DynamoDB) BatchGetItemRequest(input *BatchGetItemInput) (req *aws.Request, output *BatchGetItemOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opBatchGetItem == nil {
 		opBatchGetItem = &aws.Operation{
 			Name:       "BatchGetItem",
@@ -82,6 +88,9 @@ var opBatchGetItem *aws.Operation
 
 // BatchWriteItemRequest generates a request for the BatchWriteItem operation.
 func (c *DynamoDB) BatchWriteItemRequest(input *BatchWriteItemInput) (req *aws.Request, output *BatchWriteItemOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opBatchWriteItem == nil {
 		opBatchWriteItem = &aws.Operation{
 			Name:       "BatchWriteItem",
@@ -176,6 +185,9 @@ var opBatchWriteItem *aws.Operation
 
 // CreateTableRequest generates a request for the CreateTable operation.
 func (c *DynamoDB) CreateTableRequest(input *CreateTableInput) (req *aws.Request, output *CreateTableOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateTable == nil {
 		opCreateTable = &aws.Operation{
 			Name:       "CreateTable",
@@ -216,6 +228,9 @@ var opCreateTable *aws.Operation
 
 // DeleteItemRequest generates a request for the DeleteItem operation.
 func (c *DynamoDB) DeleteItemRequest(input *DeleteItemInput) (req *aws.Request, output *DeleteItemOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteItem == nil {
 		opDeleteItem = &aws.Operation{
 			Name:       "DeleteItem",
@@ -255,6 +270,9 @@ var opDeleteItem *aws.Operation
 
 // DeleteTableRequest generates a request for the DeleteTable operation.
 func (c *DynamoDB) DeleteTableRequest(input *DeleteTableInput) (req *aws.Request, output *DeleteTableOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteTable == nil {
 		opDeleteTable = &aws.Operation{
 			Name:       "DeleteTable",
@@ -294,6 +312,9 @@ var opDeleteTable *aws.Operation
 
 // DescribeTableRequest generates a request for the DescribeTable operation.
 func (c *DynamoDB) DescribeTableRequest(input *DescribeTableInput) (req *aws.Request, output *DescribeTableOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeTable == nil {
 		opDescribeTable = &aws.Operation{
 			Name:       "DescribeTable",
@@ -328,6 +349,9 @@ var opDescribeTable *aws.Operation
 
 // GetItemRequest generates a request for the GetItem operation.
 func (c *DynamoDB) GetItemRequest(input *GetItemInput) (req *aws.Request, output *GetItemOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetItem == nil {
 		opGetItem = &aws.Operation{
 			Name:       "GetItem",
@@ -360,6 +384,9 @@ var opGetItem *aws.Operation
 
 // ListTablesRequest generates a request for the ListTables operation.
 func (c *DynamoDB) ListTablesRequest(input *ListTablesInput) (req *aws.Request, output *ListTablesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListTables == nil {
 		opListTables = &aws.Operation{
 			Name:       "ListTables",
@@ -388,6 +415,9 @@ var opListTables *aws.Operation
 
 // PutItemRequest generates a request for the PutItem operation.
 func (c *DynamoDB) PutItemRequest(input *PutItemInput) (req *aws.Request, output *PutItemOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutItem == nil {
 		opPutItem = &aws.Operation{
 			Name:       "PutItem",
@@ -438,6 +468,9 @@ var opPutItem *aws.Operation
 
 // QueryRequest generates a request for the Query operation.
 func (c *DynamoDB) QueryRequest(input *QueryInput) (req *aws.Request, output *QueryOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opQuery == nil {
 		opQuery = &aws.Operation{
 			Name:       "Query",
@@ -485,6 +518,9 @@ var opQuery *aws.Operation
 
 // ScanRequest generates a request for the Scan operation.
 func (c *DynamoDB) ScanRequest(input *ScanInput) (req *aws.Request, output *ScanOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opScan == nil {
 		opScan = &aws.Operation{
 			Name:       "Scan",
@@ -527,6 +563,9 @@ var opScan *aws.Operation
 
 // UpdateItemRequest generates a request for the UpdateItem operation.
 func (c *DynamoDB) UpdateItemRequest(input *UpdateItemInput) (req *aws.Request, output *UpdateItemOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateItem == nil {
 		opUpdateItem = &aws.Operation{
 			Name:       "UpdateItem",
@@ -562,6 +601,9 @@ var opUpdateItem *aws.Operation
 
 // UpdateTableRequest generates a request for the UpdateTable operation.
 func (c *DynamoDB) UpdateTableRequest(input *UpdateTableInput) (req *aws.Request, output *UpdateTableOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateTable == nil {
 		opUpdateTable = &aws.Operation{
 			Name:       "UpdateTable",

@@ -4,13 +4,19 @@
 package cloudtrail
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // CreateTrailRequest generates a request for the CreateTrail operation.
 func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *aws.Request, output *CreateTrailOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateTrail == nil {
 		opCreateTrail = &aws.Operation{
 			Name:       "CreateTrail",
@@ -40,6 +46,9 @@ var opCreateTrail *aws.Operation
 
 // DeleteTrailRequest generates a request for the DeleteTrail operation.
 func (c *CloudTrail) DeleteTrailRequest(input *DeleteTrailInput) (req *aws.Request, output *DeleteTrailOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteTrail == nil {
 		opDeleteTrail = &aws.Operation{
 			Name:       "DeleteTrail",
@@ -66,6 +75,9 @@ var opDeleteTrail *aws.Operation
 
 // DescribeTrailsRequest generates a request for the DescribeTrails operation.
 func (c *CloudTrail) DescribeTrailsRequest(input *DescribeTrailsInput) (req *aws.Request, output *DescribeTrailsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeTrails == nil {
 		opDescribeTrails = &aws.Operation{
 			Name:       "DescribeTrails",
@@ -93,6 +105,9 @@ var opDescribeTrails *aws.Operation
 
 // GetTrailStatusRequest generates a request for the GetTrailStatus operation.
 func (c *CloudTrail) GetTrailStatusRequest(input *GetTrailStatusInput) (req *aws.Request, output *GetTrailStatusOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetTrailStatus == nil {
 		opGetTrailStatus = &aws.Operation{
 			Name:       "GetTrailStatus",
@@ -121,6 +136,9 @@ var opGetTrailStatus *aws.Operation
 
 // LookupEventsRequest generates a request for the LookupEvents operation.
 func (c *CloudTrail) LookupEventsRequest(input *LookupEventsInput) (req *aws.Request, output *LookupEventsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opLookupEvents == nil {
 		opLookupEvents = &aws.Operation{
 			Name:       "LookupEvents",
@@ -160,6 +178,9 @@ var opLookupEvents *aws.Operation
 
 // StartLoggingRequest generates a request for the StartLogging operation.
 func (c *CloudTrail) StartLoggingRequest(input *StartLoggingInput) (req *aws.Request, output *StartLoggingOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opStartLogging == nil {
 		opStartLogging = &aws.Operation{
 			Name:       "StartLogging",
@@ -186,6 +207,9 @@ var opStartLogging *aws.Operation
 
 // StopLoggingRequest generates a request for the StopLogging operation.
 func (c *CloudTrail) StopLoggingRequest(input *StopLoggingInput) (req *aws.Request, output *StopLoggingOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opStopLogging == nil {
 		opStopLogging = &aws.Operation{
 			Name:       "StopLogging",
@@ -215,6 +239,9 @@ var opStopLogging *aws.Operation
 
 // UpdateTrailRequest generates a request for the UpdateTrail operation.
 func (c *CloudTrail) UpdateTrailRequest(input *UpdateTrailInput) (req *aws.Request, output *UpdateTrailOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateTrail == nil {
 		opUpdateTrail = &aws.Operation{
 			Name:       "UpdateTrail",

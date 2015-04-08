@@ -4,13 +4,19 @@
 package autoscaling
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // AttachInstancesRequest generates a request for the AttachInstances operation.
 func (c *AutoScaling) AttachInstancesRequest(input *AttachInstancesInput) (req *aws.Request, output *AttachInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAttachInstances == nil {
 		opAttachInstances = &aws.Operation{
 			Name:       "AttachInstances",
@@ -41,6 +47,9 @@ var opAttachInstances *aws.Operation
 
 // CompleteLifecycleActionRequest generates a request for the CompleteLifecycleAction operation.
 func (c *AutoScaling) CompleteLifecycleActionRequest(input *CompleteLifecycleActionInput) (req *aws.Request, output *CompleteLifecycleActionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCompleteLifecycleAction == nil {
 		opCompleteLifecycleAction = &aws.Operation{
 			Name:       "CompleteLifecycleAction",
@@ -81,6 +90,9 @@ var opCompleteLifecycleAction *aws.Operation
 
 // CreateAutoScalingGroupRequest generates a request for the CreateAutoScalingGroup operation.
 func (c *AutoScaling) CreateAutoScalingGroupRequest(input *CreateAutoScalingGroupInput) (req *aws.Request, output *CreateAutoScalingGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateAutoScalingGroup == nil {
 		opCreateAutoScalingGroup = &aws.Operation{
 			Name:       "CreateAutoScalingGroup",
@@ -111,6 +123,9 @@ var opCreateAutoScalingGroup *aws.Operation
 
 // CreateLaunchConfigurationRequest generates a request for the CreateLaunchConfiguration operation.
 func (c *AutoScaling) CreateLaunchConfigurationRequest(input *CreateLaunchConfigurationInput) (req *aws.Request, output *CreateLaunchConfigurationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateLaunchConfiguration == nil {
 		opCreateLaunchConfiguration = &aws.Operation{
 			Name:       "CreateLaunchConfiguration",
@@ -141,6 +156,9 @@ var opCreateLaunchConfiguration *aws.Operation
 
 // CreateOrUpdateTagsRequest generates a request for the CreateOrUpdateTags operation.
 func (c *AutoScaling) CreateOrUpdateTagsRequest(input *CreateOrUpdateTagsInput) (req *aws.Request, output *CreateOrUpdateTagsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateOrUpdateTags == nil {
 		opCreateOrUpdateTags = &aws.Operation{
 			Name:       "CreateOrUpdateTags",
@@ -173,6 +191,9 @@ var opCreateOrUpdateTags *aws.Operation
 
 // DeleteAutoScalingGroupRequest generates a request for the DeleteAutoScalingGroup operation.
 func (c *AutoScaling) DeleteAutoScalingGroupRequest(input *DeleteAutoScalingGroupInput) (req *aws.Request, output *DeleteAutoScalingGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteAutoScalingGroup == nil {
 		opDeleteAutoScalingGroup = &aws.Operation{
 			Name:       "DeleteAutoScalingGroup",
@@ -205,6 +226,9 @@ var opDeleteAutoScalingGroup *aws.Operation
 
 // DeleteLaunchConfigurationRequest generates a request for the DeleteLaunchConfiguration operation.
 func (c *AutoScaling) DeleteLaunchConfigurationRequest(input *DeleteLaunchConfigurationInput) (req *aws.Request, output *DeleteLaunchConfigurationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteLaunchConfiguration == nil {
 		opDeleteLaunchConfiguration = &aws.Operation{
 			Name:       "DeleteLaunchConfiguration",
@@ -235,6 +259,9 @@ var opDeleteLaunchConfiguration *aws.Operation
 
 // DeleteLifecycleHookRequest generates a request for the DeleteLifecycleHook operation.
 func (c *AutoScaling) DeleteLifecycleHookRequest(input *DeleteLifecycleHookInput) (req *aws.Request, output *DeleteLifecycleHookOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteLifecycleHook == nil {
 		opDeleteLifecycleHook = &aws.Operation{
 			Name:       "DeleteLifecycleHook",
@@ -264,6 +291,9 @@ var opDeleteLifecycleHook *aws.Operation
 
 // DeleteNotificationConfigurationRequest generates a request for the DeleteNotificationConfiguration operation.
 func (c *AutoScaling) DeleteNotificationConfigurationRequest(input *DeleteNotificationConfigurationInput) (req *aws.Request, output *DeleteNotificationConfigurationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteNotificationConfiguration == nil {
 		opDeleteNotificationConfiguration = &aws.Operation{
 			Name:       "DeleteNotificationConfiguration",
@@ -290,6 +320,9 @@ var opDeleteNotificationConfiguration *aws.Operation
 
 // DeletePolicyRequest generates a request for the DeletePolicy operation.
 func (c *AutoScaling) DeletePolicyRequest(input *DeletePolicyInput) (req *aws.Request, output *DeletePolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeletePolicy == nil {
 		opDeletePolicy = &aws.Operation{
 			Name:       "DeletePolicy",
@@ -316,6 +349,9 @@ var opDeletePolicy *aws.Operation
 
 // DeleteScheduledActionRequest generates a request for the DeleteScheduledAction operation.
 func (c *AutoScaling) DeleteScheduledActionRequest(input *DeleteScheduledActionInput) (req *aws.Request, output *DeleteScheduledActionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteScheduledAction == nil {
 		opDeleteScheduledAction = &aws.Operation{
 			Name:       "DeleteScheduledAction",
@@ -342,6 +378,9 @@ var opDeleteScheduledAction *aws.Operation
 
 // DeleteTagsRequest generates a request for the DeleteTags operation.
 func (c *AutoScaling) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Request, output *DeleteTagsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteTags == nil {
 		opDeleteTags = &aws.Operation{
 			Name:       "DeleteTags",
@@ -368,6 +407,9 @@ var opDeleteTags *aws.Operation
 
 // DescribeAccountLimitsRequest generates a request for the DescribeAccountLimits operation.
 func (c *AutoScaling) DescribeAccountLimitsRequest(input *DescribeAccountLimitsInput) (req *aws.Request, output *DescribeAccountLimitsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAccountLimits == nil {
 		opDescribeAccountLimits = &aws.Operation{
 			Name:       "DescribeAccountLimits",
@@ -397,6 +439,9 @@ var opDescribeAccountLimits *aws.Operation
 
 // DescribeAdjustmentTypesRequest generates a request for the DescribeAdjustmentTypes operation.
 func (c *AutoScaling) DescribeAdjustmentTypesRequest(input *DescribeAdjustmentTypesInput) (req *aws.Request, output *DescribeAdjustmentTypesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAdjustmentTypes == nil {
 		opDescribeAdjustmentTypes = &aws.Operation{
 			Name:       "DescribeAdjustmentTypes",
@@ -423,6 +468,9 @@ var opDescribeAdjustmentTypes *aws.Operation
 
 // DescribeAutoScalingGroupsRequest generates a request for the DescribeAutoScalingGroups operation.
 func (c *AutoScaling) DescribeAutoScalingGroupsRequest(input *DescribeAutoScalingGroupsInput) (req *aws.Request, output *DescribeAutoScalingGroupsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAutoScalingGroups == nil {
 		opDescribeAutoScalingGroups = &aws.Operation{
 			Name:       "DescribeAutoScalingGroups",
@@ -454,6 +502,9 @@ var opDescribeAutoScalingGroups *aws.Operation
 
 // DescribeAutoScalingInstancesRequest generates a request for the DescribeAutoScalingInstances operation.
 func (c *AutoScaling) DescribeAutoScalingInstancesRequest(input *DescribeAutoScalingInstancesInput) (req *aws.Request, output *DescribeAutoScalingInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAutoScalingInstances == nil {
 		opDescribeAutoScalingInstances = &aws.Operation{
 			Name:       "DescribeAutoScalingInstances",
@@ -486,6 +537,9 @@ var opDescribeAutoScalingInstances *aws.Operation
 
 // DescribeAutoScalingNotificationTypesRequest generates a request for the DescribeAutoScalingNotificationTypes operation.
 func (c *AutoScaling) DescribeAutoScalingNotificationTypesRequest(input *DescribeAutoScalingNotificationTypesInput) (req *aws.Request, output *DescribeAutoScalingNotificationTypesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAutoScalingNotificationTypes == nil {
 		opDescribeAutoScalingNotificationTypes = &aws.Operation{
 			Name:       "DescribeAutoScalingNotificationTypes",
@@ -512,6 +566,9 @@ var opDescribeAutoScalingNotificationTypes *aws.Operation
 
 // DescribeLaunchConfigurationsRequest generates a request for the DescribeLaunchConfigurations operation.
 func (c *AutoScaling) DescribeLaunchConfigurationsRequest(input *DescribeLaunchConfigurationsInput) (req *aws.Request, output *DescribeLaunchConfigurationsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeLaunchConfigurations == nil {
 		opDescribeLaunchConfigurations = &aws.Operation{
 			Name:       "DescribeLaunchConfigurations",
@@ -543,6 +600,9 @@ var opDescribeLaunchConfigurations *aws.Operation
 
 // DescribeLifecycleHookTypesRequest generates a request for the DescribeLifecycleHookTypes operation.
 func (c *AutoScaling) DescribeLifecycleHookTypesRequest(input *DescribeLifecycleHookTypesInput) (req *aws.Request, output *DescribeLifecycleHookTypesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeLifecycleHookTypes == nil {
 		opDescribeLifecycleHookTypes = &aws.Operation{
 			Name:       "DescribeLifecycleHookTypes",
@@ -569,6 +629,9 @@ var opDescribeLifecycleHookTypes *aws.Operation
 
 // DescribeLifecycleHooksRequest generates a request for the DescribeLifecycleHooks operation.
 func (c *AutoScaling) DescribeLifecycleHooksRequest(input *DescribeLifecycleHooksInput) (req *aws.Request, output *DescribeLifecycleHooksOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeLifecycleHooks == nil {
 		opDescribeLifecycleHooks = &aws.Operation{
 			Name:       "DescribeLifecycleHooks",
@@ -595,6 +658,9 @@ var opDescribeLifecycleHooks *aws.Operation
 
 // DescribeMetricCollectionTypesRequest generates a request for the DescribeMetricCollectionTypes operation.
 func (c *AutoScaling) DescribeMetricCollectionTypesRequest(input *DescribeMetricCollectionTypesInput) (req *aws.Request, output *DescribeMetricCollectionTypesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeMetricCollectionTypes == nil {
 		opDescribeMetricCollectionTypes = &aws.Operation{
 			Name:       "DescribeMetricCollectionTypes",
@@ -625,6 +691,9 @@ var opDescribeMetricCollectionTypes *aws.Operation
 
 // DescribeNotificationConfigurationsRequest generates a request for the DescribeNotificationConfigurations operation.
 func (c *AutoScaling) DescribeNotificationConfigurationsRequest(input *DescribeNotificationConfigurationsInput) (req *aws.Request, output *DescribeNotificationConfigurationsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeNotificationConfigurations == nil {
 		opDescribeNotificationConfigurations = &aws.Operation{
 			Name:       "DescribeNotificationConfigurations",
@@ -652,6 +721,9 @@ var opDescribeNotificationConfigurations *aws.Operation
 
 // DescribePoliciesRequest generates a request for the DescribePolicies operation.
 func (c *AutoScaling) DescribePoliciesRequest(input *DescribePoliciesInput) (req *aws.Request, output *DescribePoliciesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribePolicies == nil {
 		opDescribePolicies = &aws.Operation{
 			Name:       "DescribePolicies",
@@ -682,6 +754,9 @@ var opDescribePolicies *aws.Operation
 
 // DescribeScalingActivitiesRequest generates a request for the DescribeScalingActivities operation.
 func (c *AutoScaling) DescribeScalingActivitiesRequest(input *DescribeScalingActivitiesInput) (req *aws.Request, output *DescribeScalingActivitiesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeScalingActivities == nil {
 		opDescribeScalingActivities = &aws.Operation{
 			Name:       "DescribeScalingActivities",
@@ -715,6 +790,9 @@ var opDescribeScalingActivities *aws.Operation
 
 // DescribeScalingProcessTypesRequest generates a request for the DescribeScalingProcessTypes operation.
 func (c *AutoScaling) DescribeScalingProcessTypesRequest(input *DescribeScalingProcessTypesInput) (req *aws.Request, output *DescribeScalingProcessTypesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeScalingProcessTypes == nil {
 		opDescribeScalingProcessTypes = &aws.Operation{
 			Name:       "DescribeScalingProcessTypes",
@@ -742,6 +820,9 @@ var opDescribeScalingProcessTypes *aws.Operation
 
 // DescribeScheduledActionsRequest generates a request for the DescribeScheduledActions operation.
 func (c *AutoScaling) DescribeScheduledActionsRequest(input *DescribeScheduledActionsInput) (req *aws.Request, output *DescribeScheduledActionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeScheduledActions == nil {
 		opDescribeScheduledActions = &aws.Operation{
 			Name:       "DescribeScheduledActions",
@@ -769,6 +850,9 @@ var opDescribeScheduledActions *aws.Operation
 
 // DescribeTagsRequest generates a request for the DescribeTags operation.
 func (c *AutoScaling) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, output *DescribeTagsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeTags == nil {
 		opDescribeTags = &aws.Operation{
 			Name:       "DescribeTags",
@@ -804,6 +888,9 @@ var opDescribeTags *aws.Operation
 
 // DescribeTerminationPolicyTypesRequest generates a request for the DescribeTerminationPolicyTypes operation.
 func (c *AutoScaling) DescribeTerminationPolicyTypesRequest(input *DescribeTerminationPolicyTypesInput) (req *aws.Request, output *DescribeTerminationPolicyTypesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeTerminationPolicyTypes == nil {
 		opDescribeTerminationPolicyTypes = &aws.Operation{
 			Name:       "DescribeTerminationPolicyTypes",
@@ -830,6 +917,9 @@ var opDescribeTerminationPolicyTypes *aws.Operation
 
 // DetachInstancesRequest generates a request for the DetachInstances operation.
 func (c *AutoScaling) DetachInstancesRequest(input *DetachInstancesInput) (req *aws.Request, output *DetachInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDetachInstances == nil {
 		opDetachInstances = &aws.Operation{
 			Name:       "DetachInstances",
@@ -862,6 +952,9 @@ var opDetachInstances *aws.Operation
 
 // DisableMetricsCollectionRequest generates a request for the DisableMetricsCollection operation.
 func (c *AutoScaling) DisableMetricsCollectionRequest(input *DisableMetricsCollectionInput) (req *aws.Request, output *DisableMetricsCollectionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDisableMetricsCollection == nil {
 		opDisableMetricsCollection = &aws.Operation{
 			Name:       "DisableMetricsCollection",
@@ -889,6 +982,9 @@ var opDisableMetricsCollection *aws.Operation
 
 // EnableMetricsCollectionRequest generates a request for the EnableMetricsCollection operation.
 func (c *AutoScaling) EnableMetricsCollectionRequest(input *EnableMetricsCollectionInput) (req *aws.Request, output *EnableMetricsCollectionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opEnableMetricsCollection == nil {
 		opEnableMetricsCollection = &aws.Operation{
 			Name:       "EnableMetricsCollection",
@@ -919,6 +1015,9 @@ var opEnableMetricsCollection *aws.Operation
 
 // EnterStandbyRequest generates a request for the EnterStandby operation.
 func (c *AutoScaling) EnterStandbyRequest(input *EnterStandbyInput) (req *aws.Request, output *EnterStandbyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opEnterStandby == nil {
 		opEnterStandby = &aws.Operation{
 			Name:       "EnterStandby",
@@ -948,6 +1047,9 @@ var opEnterStandby *aws.Operation
 
 // ExecutePolicyRequest generates a request for the ExecutePolicy operation.
 func (c *AutoScaling) ExecutePolicyRequest(input *ExecutePolicyInput) (req *aws.Request, output *ExecutePolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opExecutePolicy == nil {
 		opExecutePolicy = &aws.Operation{
 			Name:       "ExecutePolicy",
@@ -974,6 +1076,9 @@ var opExecutePolicy *aws.Operation
 
 // ExitStandbyRequest generates a request for the ExitStandby operation.
 func (c *AutoScaling) ExitStandbyRequest(input *ExitStandbyInput) (req *aws.Request, output *ExitStandbyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opExitStandby == nil {
 		opExitStandby = &aws.Operation{
 			Name:       "ExitStandby",
@@ -1003,6 +1108,9 @@ var opExitStandby *aws.Operation
 
 // PutLifecycleHookRequest generates a request for the PutLifecycleHook operation.
 func (c *AutoScaling) PutLifecycleHookRequest(input *PutLifecycleHookInput) (req *aws.Request, output *PutLifecycleHookOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutLifecycleHook == nil {
 		opPutLifecycleHook = &aws.Operation{
 			Name:       "PutLifecycleHook",
@@ -1046,6 +1154,9 @@ var opPutLifecycleHook *aws.Operation
 
 // PutNotificationConfigurationRequest generates a request for the PutNotificationConfiguration operation.
 func (c *AutoScaling) PutNotificationConfigurationRequest(input *PutNotificationConfigurationInput) (req *aws.Request, output *PutNotificationConfigurationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutNotificationConfiguration == nil {
 		opPutNotificationConfiguration = &aws.Operation{
 			Name:       "PutNotificationConfiguration",
@@ -1080,6 +1191,9 @@ var opPutNotificationConfiguration *aws.Operation
 
 // PutScalingPolicyRequest generates a request for the PutScalingPolicy operation.
 func (c *AutoScaling) PutScalingPolicyRequest(input *PutScalingPolicyInput) (req *aws.Request, output *PutScalingPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutScalingPolicy == nil {
 		opPutScalingPolicy = &aws.Operation{
 			Name:       "PutScalingPolicy",
@@ -1109,6 +1223,9 @@ var opPutScalingPolicy *aws.Operation
 
 // PutScheduledUpdateGroupActionRequest generates a request for the PutScheduledUpdateGroupAction operation.
 func (c *AutoScaling) PutScheduledUpdateGroupActionRequest(input *PutScheduledUpdateGroupActionInput) (req *aws.Request, output *PutScheduledUpdateGroupActionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutScheduledUpdateGroupAction == nil {
 		opPutScheduledUpdateGroupAction = &aws.Operation{
 			Name:       "PutScheduledUpdateGroupAction",
@@ -1143,6 +1260,9 @@ var opPutScheduledUpdateGroupAction *aws.Operation
 
 // RecordLifecycleActionHeartbeatRequest generates a request for the RecordLifecycleActionHeartbeat operation.
 func (c *AutoScaling) RecordLifecycleActionHeartbeatRequest(input *RecordLifecycleActionHeartbeatInput) (req *aws.Request, output *RecordLifecycleActionHeartbeatOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRecordLifecycleActionHeartbeat == nil {
 		opRecordLifecycleActionHeartbeat = &aws.Operation{
 			Name:       "RecordLifecycleActionHeartbeat",
@@ -1184,6 +1304,9 @@ var opRecordLifecycleActionHeartbeat *aws.Operation
 
 // ResumeProcessesRequest generates a request for the ResumeProcesses operation.
 func (c *AutoScaling) ResumeProcessesRequest(input *ScalingProcessQuery) (req *aws.Request, output *ResumeProcessesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opResumeProcesses == nil {
 		opResumeProcesses = &aws.Operation{
 			Name:       "ResumeProcesses",
@@ -1214,6 +1337,9 @@ var opResumeProcesses *aws.Operation
 
 // SetDesiredCapacityRequest generates a request for the SetDesiredCapacity operation.
 func (c *AutoScaling) SetDesiredCapacityRequest(input *SetDesiredCapacityInput) (req *aws.Request, output *SetDesiredCapacityOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetDesiredCapacity == nil {
 		opSetDesiredCapacity = &aws.Operation{
 			Name:       "SetDesiredCapacity",
@@ -1240,6 +1366,9 @@ var opSetDesiredCapacity *aws.Operation
 
 // SetInstanceHealthRequest generates a request for the SetInstanceHealth operation.
 func (c *AutoScaling) SetInstanceHealthRequest(input *SetInstanceHealthInput) (req *aws.Request, output *SetInstanceHealthOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetInstanceHealth == nil {
 		opSetInstanceHealth = &aws.Operation{
 			Name:       "SetInstanceHealth",
@@ -1269,6 +1398,9 @@ var opSetInstanceHealth *aws.Operation
 
 // SuspendProcessesRequest generates a request for the SuspendProcesses operation.
 func (c *AutoScaling) SuspendProcessesRequest(input *ScalingProcessQuery) (req *aws.Request, output *SuspendProcessesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSuspendProcesses == nil {
 		opSuspendProcesses = &aws.Operation{
 			Name:       "SuspendProcesses",
@@ -1305,6 +1437,9 @@ var opSuspendProcesses *aws.Operation
 
 // TerminateInstanceInAutoScalingGroupRequest generates a request for the TerminateInstanceInAutoScalingGroup operation.
 func (c *AutoScaling) TerminateInstanceInAutoScalingGroupRequest(input *TerminateInstanceInAutoScalingGroupInput) (req *aws.Request, output *TerminateInstanceInAutoScalingGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opTerminateInstanceInAutoScalingGroup == nil {
 		opTerminateInstanceInAutoScalingGroup = &aws.Operation{
 			Name:       "TerminateInstanceInAutoScalingGroup",
@@ -1335,6 +1470,9 @@ var opTerminateInstanceInAutoScalingGroup *aws.Operation
 
 // UpdateAutoScalingGroupRequest generates a request for the UpdateAutoScalingGroup operation.
 func (c *AutoScaling) UpdateAutoScalingGroupRequest(input *UpdateAutoScalingGroupInput) (req *aws.Request, output *UpdateAutoScalingGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateAutoScalingGroup == nil {
 		opUpdateAutoScalingGroup = &aws.Operation{
 			Name:       "UpdateAutoScalingGroup",

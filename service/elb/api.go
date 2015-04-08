@@ -4,13 +4,19 @@
 package elb
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // AddTagsRequest generates a request for the AddTags operation.
 func (c *ELB) AddTagsRequest(input *AddTagsInput) (req *aws.Request, output *AddTagsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAddTags == nil {
 		opAddTags = &aws.Operation{
 			Name:       "AddTags",
@@ -46,6 +52,9 @@ var opAddTags *aws.Operation
 
 // ApplySecurityGroupsToLoadBalancerRequest generates a request for the ApplySecurityGroupsToLoadBalancer operation.
 func (c *ELB) ApplySecurityGroupsToLoadBalancerRequest(input *ApplySecurityGroupsToLoadBalancerInput) (req *aws.Request, output *ApplySecurityGroupsToLoadBalancerOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opApplySecurityGroupsToLoadBalancer == nil {
 		opApplySecurityGroupsToLoadBalancer = &aws.Operation{
 			Name:       "ApplySecurityGroupsToLoadBalancer",
@@ -77,6 +86,9 @@ var opApplySecurityGroupsToLoadBalancer *aws.Operation
 
 // AttachLoadBalancerToSubnetsRequest generates a request for the AttachLoadBalancerToSubnets operation.
 func (c *ELB) AttachLoadBalancerToSubnetsRequest(input *AttachLoadBalancerToSubnetsInput) (req *aws.Request, output *AttachLoadBalancerToSubnetsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAttachLoadBalancerToSubnets == nil {
 		opAttachLoadBalancerToSubnets = &aws.Operation{
 			Name:       "AttachLoadBalancerToSubnets",
@@ -109,6 +121,9 @@ var opAttachLoadBalancerToSubnets *aws.Operation
 
 // ConfigureHealthCheckRequest generates a request for the ConfigureHealthCheck operation.
 func (c *ELB) ConfigureHealthCheckRequest(input *ConfigureHealthCheckInput) (req *aws.Request, output *ConfigureHealthCheckOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opConfigureHealthCheck == nil {
 		opConfigureHealthCheck = &aws.Operation{
 			Name:       "ConfigureHealthCheck",
@@ -139,6 +154,9 @@ var opConfigureHealthCheck *aws.Operation
 
 // CreateAppCookieStickinessPolicyRequest generates a request for the CreateAppCookieStickinessPolicy operation.
 func (c *ELB) CreateAppCookieStickinessPolicyRequest(input *CreateAppCookieStickinessPolicyInput) (req *aws.Request, output *CreateAppCookieStickinessPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateAppCookieStickinessPolicy == nil {
 		opCreateAppCookieStickinessPolicy = &aws.Operation{
 			Name:       "CreateAppCookieStickinessPolicy",
@@ -182,6 +200,9 @@ var opCreateAppCookieStickinessPolicy *aws.Operation
 
 // CreateLBCookieStickinessPolicyRequest generates a request for the CreateLBCookieStickinessPolicy operation.
 func (c *ELB) CreateLBCookieStickinessPolicyRequest(input *CreateLBCookieStickinessPolicyInput) (req *aws.Request, output *CreateLBCookieStickinessPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateLBCookieStickinessPolicy == nil {
 		opCreateLBCookieStickinessPolicy = &aws.Operation{
 			Name:       "CreateLBCookieStickinessPolicy",
@@ -224,6 +245,9 @@ var opCreateLBCookieStickinessPolicy *aws.Operation
 
 // CreateLoadBalancerRequest generates a request for the CreateLoadBalancer operation.
 func (c *ELB) CreateLoadBalancerRequest(input *CreateLoadBalancerInput) (req *aws.Request, output *CreateLoadBalancerOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateLoadBalancer == nil {
 		opCreateLoadBalancer = &aws.Operation{
 			Name:       "CreateLoadBalancer",
@@ -271,6 +295,9 @@ var opCreateLoadBalancer *aws.Operation
 
 // CreateLoadBalancerListenersRequest generates a request for the CreateLoadBalancerListeners operation.
 func (c *ELB) CreateLoadBalancerListenersRequest(input *CreateLoadBalancerListenersInput) (req *aws.Request, output *CreateLoadBalancerListenersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateLoadBalancerListeners == nil {
 		opCreateLoadBalancerListeners = &aws.Operation{
 			Name:       "CreateLoadBalancerListeners",
@@ -303,6 +330,9 @@ var opCreateLoadBalancerListeners *aws.Operation
 
 // CreateLoadBalancerPolicyRequest generates a request for the CreateLoadBalancerPolicy operation.
 func (c *ELB) CreateLoadBalancerPolicyRequest(input *CreateLoadBalancerPolicyInput) (req *aws.Request, output *CreateLoadBalancerPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateLoadBalancerPolicy == nil {
 		opCreateLoadBalancerPolicy = &aws.Operation{
 			Name:       "CreateLoadBalancerPolicy",
@@ -332,6 +362,9 @@ var opCreateLoadBalancerPolicy *aws.Operation
 
 // DeleteLoadBalancerRequest generates a request for the DeleteLoadBalancer operation.
 func (c *ELB) DeleteLoadBalancerRequest(input *DeleteLoadBalancerInput) (req *aws.Request, output *DeleteLoadBalancerOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteLoadBalancer == nil {
 		opDeleteLoadBalancer = &aws.Operation{
 			Name:       "DeleteLoadBalancer",
@@ -370,6 +403,9 @@ var opDeleteLoadBalancer *aws.Operation
 
 // DeleteLoadBalancerListenersRequest generates a request for the DeleteLoadBalancerListeners operation.
 func (c *ELB) DeleteLoadBalancerListenersRequest(input *DeleteLoadBalancerListenersInput) (req *aws.Request, output *DeleteLoadBalancerListenersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteLoadBalancerListeners == nil {
 		opDeleteLoadBalancerListeners = &aws.Operation{
 			Name:       "DeleteLoadBalancerListeners",
@@ -396,6 +432,9 @@ var opDeleteLoadBalancerListeners *aws.Operation
 
 // DeleteLoadBalancerPolicyRequest generates a request for the DeleteLoadBalancerPolicy operation.
 func (c *ELB) DeleteLoadBalancerPolicyRequest(input *DeleteLoadBalancerPolicyInput) (req *aws.Request, output *DeleteLoadBalancerPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteLoadBalancerPolicy == nil {
 		opDeleteLoadBalancerPolicy = &aws.Operation{
 			Name:       "DeleteLoadBalancerPolicy",
@@ -423,6 +462,9 @@ var opDeleteLoadBalancerPolicy *aws.Operation
 
 // DeregisterInstancesFromLoadBalancerRequest generates a request for the DeregisterInstancesFromLoadBalancer operation.
 func (c *ELB) DeregisterInstancesFromLoadBalancerRequest(input *DeregisterInstancesFromLoadBalancerInput) (req *aws.Request, output *DeregisterInstancesFromLoadBalancerOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeregisterInstancesFromLoadBalancer == nil {
 		opDeregisterInstancesFromLoadBalancer = &aws.Operation{
 			Name:       "DeregisterInstancesFromLoadBalancer",
@@ -460,6 +502,9 @@ var opDeregisterInstancesFromLoadBalancer *aws.Operation
 
 // DescribeInstanceHealthRequest generates a request for the DescribeInstanceHealth operation.
 func (c *ELB) DescribeInstanceHealthRequest(input *DescribeInstanceHealthInput) (req *aws.Request, output *DescribeInstanceHealthOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeInstanceHealth == nil {
 		opDescribeInstanceHealth = &aws.Operation{
 			Name:       "DescribeInstanceHealth",
@@ -491,6 +536,9 @@ var opDescribeInstanceHealth *aws.Operation
 
 // DescribeLoadBalancerAttributesRequest generates a request for the DescribeLoadBalancerAttributes operation.
 func (c *ELB) DescribeLoadBalancerAttributesRequest(input *DescribeLoadBalancerAttributesInput) (req *aws.Request, output *DescribeLoadBalancerAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeLoadBalancerAttributes == nil {
 		opDescribeLoadBalancerAttributes = &aws.Operation{
 			Name:       "DescribeLoadBalancerAttributes",
@@ -518,6 +566,9 @@ var opDescribeLoadBalancerAttributes *aws.Operation
 
 // DescribeLoadBalancerPoliciesRequest generates a request for the DescribeLoadBalancerPolicies operation.
 func (c *ELB) DescribeLoadBalancerPoliciesRequest(input *DescribeLoadBalancerPoliciesInput) (req *aws.Request, output *DescribeLoadBalancerPoliciesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeLoadBalancerPolicies == nil {
 		opDescribeLoadBalancerPolicies = &aws.Operation{
 			Name:       "DescribeLoadBalancerPolicies",
@@ -550,6 +601,9 @@ var opDescribeLoadBalancerPolicies *aws.Operation
 
 // DescribeLoadBalancerPolicyTypesRequest generates a request for the DescribeLoadBalancerPolicyTypes operation.
 func (c *ELB) DescribeLoadBalancerPolicyTypesRequest(input *DescribeLoadBalancerPolicyTypesInput) (req *aws.Request, output *DescribeLoadBalancerPolicyTypesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeLoadBalancerPolicyTypes == nil {
 		opDescribeLoadBalancerPolicyTypes = &aws.Operation{
 			Name:       "DescribeLoadBalancerPolicyTypes",
@@ -579,6 +633,9 @@ var opDescribeLoadBalancerPolicyTypes *aws.Operation
 
 // DescribeLoadBalancersRequest generates a request for the DescribeLoadBalancers operation.
 func (c *ELB) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (req *aws.Request, output *DescribeLoadBalancersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeLoadBalancers == nil {
 		opDescribeLoadBalancers = &aws.Operation{
 			Name:       "DescribeLoadBalancers",
@@ -610,6 +667,9 @@ var opDescribeLoadBalancers *aws.Operation
 
 // DescribeTagsRequest generates a request for the DescribeTags operation.
 func (c *ELB) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, output *DescribeTagsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeTags == nil {
 		opDescribeTags = &aws.Operation{
 			Name:       "DescribeTags",
@@ -636,6 +696,9 @@ var opDescribeTags *aws.Operation
 
 // DetachLoadBalancerFromSubnetsRequest generates a request for the DetachLoadBalancerFromSubnets operation.
 func (c *ELB) DetachLoadBalancerFromSubnetsRequest(input *DetachLoadBalancerFromSubnetsInput) (req *aws.Request, output *DetachLoadBalancerFromSubnetsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDetachLoadBalancerFromSubnets == nil {
 		opDetachLoadBalancerFromSubnets = &aws.Operation{
 			Name:       "DetachLoadBalancerFromSubnets",
@@ -668,6 +731,9 @@ var opDetachLoadBalancerFromSubnets *aws.Operation
 
 // DisableAvailabilityZonesForLoadBalancerRequest generates a request for the DisableAvailabilityZonesForLoadBalancer operation.
 func (c *ELB) DisableAvailabilityZonesForLoadBalancerRequest(input *DisableAvailabilityZonesForLoadBalancerInput) (req *aws.Request, output *DisableAvailabilityZonesForLoadBalancerOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDisableAvailabilityZonesForLoadBalancer == nil {
 		opDisableAvailabilityZonesForLoadBalancer = &aws.Operation{
 			Name:       "DisableAvailabilityZonesForLoadBalancer",
@@ -707,6 +773,9 @@ var opDisableAvailabilityZonesForLoadBalancer *aws.Operation
 
 // EnableAvailabilityZonesForLoadBalancerRequest generates a request for the EnableAvailabilityZonesForLoadBalancer operation.
 func (c *ELB) EnableAvailabilityZonesForLoadBalancerRequest(input *EnableAvailabilityZonesForLoadBalancerInput) (req *aws.Request, output *EnableAvailabilityZonesForLoadBalancerOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opEnableAvailabilityZonesForLoadBalancer == nil {
 		opEnableAvailabilityZonesForLoadBalancer = &aws.Operation{
 			Name:       "EnableAvailabilityZonesForLoadBalancer",
@@ -742,6 +811,9 @@ var opEnableAvailabilityZonesForLoadBalancer *aws.Operation
 
 // ModifyLoadBalancerAttributesRequest generates a request for the ModifyLoadBalancerAttributes operation.
 func (c *ELB) ModifyLoadBalancerAttributesRequest(input *ModifyLoadBalancerAttributesInput) (req *aws.Request, output *ModifyLoadBalancerAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyLoadBalancerAttributes == nil {
 		opModifyLoadBalancerAttributes = &aws.Operation{
 			Name:       "ModifyLoadBalancerAttributes",
@@ -780,6 +852,9 @@ var opModifyLoadBalancerAttributes *aws.Operation
 
 // RegisterInstancesWithLoadBalancerRequest generates a request for the RegisterInstancesWithLoadBalancer operation.
 func (c *ELB) RegisterInstancesWithLoadBalancerRequest(input *RegisterInstancesWithLoadBalancerInput) (req *aws.Request, output *RegisterInstancesWithLoadBalancerOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRegisterInstancesWithLoadBalancer == nil {
 		opRegisterInstancesWithLoadBalancer = &aws.Operation{
 			Name:       "RegisterInstancesWithLoadBalancer",
@@ -831,6 +906,9 @@ var opRegisterInstancesWithLoadBalancer *aws.Operation
 
 // RemoveTagsRequest generates a request for the RemoveTags operation.
 func (c *ELB) RemoveTagsRequest(input *RemoveTagsInput) (req *aws.Request, output *RemoveTagsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRemoveTags == nil {
 		opRemoveTags = &aws.Operation{
 			Name:       "RemoveTags",
@@ -857,6 +935,9 @@ var opRemoveTags *aws.Operation
 
 // SetLoadBalancerListenerSSLCertificateRequest generates a request for the SetLoadBalancerListenerSSLCertificate operation.
 func (c *ELB) SetLoadBalancerListenerSSLCertificateRequest(input *SetLoadBalancerListenerSSLCertificateInput) (req *aws.Request, output *SetLoadBalancerListenerSSLCertificateOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetLoadBalancerListenerSSLCertificate == nil {
 		opSetLoadBalancerListenerSSLCertificate = &aws.Operation{
 			Name:       "SetLoadBalancerListenerSSLCertificate",
@@ -889,6 +970,9 @@ var opSetLoadBalancerListenerSSLCertificate *aws.Operation
 
 // SetLoadBalancerPoliciesForBackendServerRequest generates a request for the SetLoadBalancerPoliciesForBackendServer operation.
 func (c *ELB) SetLoadBalancerPoliciesForBackendServerRequest(input *SetLoadBalancerPoliciesForBackendServerInput) (req *aws.Request, output *SetLoadBalancerPoliciesForBackendServerOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetLoadBalancerPoliciesForBackendServer == nil {
 		opSetLoadBalancerPoliciesForBackendServer = &aws.Operation{
 			Name:       "SetLoadBalancerPoliciesForBackendServer",
@@ -928,6 +1012,9 @@ var opSetLoadBalancerPoliciesForBackendServer *aws.Operation
 
 // SetLoadBalancerPoliciesOfListenerRequest generates a request for the SetLoadBalancerPoliciesOfListener operation.
 func (c *ELB) SetLoadBalancerPoliciesOfListenerRequest(input *SetLoadBalancerPoliciesOfListenerInput) (req *aws.Request, output *SetLoadBalancerPoliciesOfListenerOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetLoadBalancerPoliciesOfListener == nil {
 		opSetLoadBalancerPoliciesOfListener = &aws.Operation{
 			Name:       "SetLoadBalancerPoliciesOfListener",

@@ -4,13 +4,19 @@
 package ec2
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // AcceptVPCPeeringConnectionRequest generates a request for the AcceptVPCPeeringConnection operation.
 func (c *EC2) AcceptVPCPeeringConnectionRequest(input *AcceptVPCPeeringConnectionInput) (req *aws.Request, output *AcceptVPCPeeringConnectionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAcceptVPCPeeringConnection == nil {
 		opAcceptVPCPeeringConnection = &aws.Operation{
 			Name:       "AcceptVpcPeeringConnection",
@@ -40,6 +46,9 @@ var opAcceptVPCPeeringConnection *aws.Operation
 
 // AllocateAddressRequest generates a request for the AllocateAddress operation.
 func (c *EC2) AllocateAddressRequest(input *AllocateAddressInput) (req *aws.Request, output *AllocateAddressOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAllocateAddress == nil {
 		opAllocateAddress = &aws.Operation{
 			Name:       "AllocateAddress",
@@ -70,6 +79,9 @@ var opAllocateAddress *aws.Operation
 
 // AssignPrivateIPAddressesRequest generates a request for the AssignPrivateIPAddresses operation.
 func (c *EC2) AssignPrivateIPAddressesRequest(input *AssignPrivateIPAddressesInput) (req *aws.Request, output *AssignPrivateIPAddressesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAssignPrivateIPAddresses == nil {
 		opAssignPrivateIPAddresses = &aws.Operation{
 			Name:       "AssignPrivateIpAddresses",
@@ -106,6 +118,9 @@ var opAssignPrivateIPAddresses *aws.Operation
 
 // AssociateAddressRequest generates a request for the AssociateAddress operation.
 func (c *EC2) AssociateAddressRequest(input *AssociateAddressInput) (req *aws.Request, output *AssociateAddressOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAssociateAddress == nil {
 		opAssociateAddress = &aws.Operation{
 			Name:       "AssociateAddress",
@@ -148,6 +163,9 @@ var opAssociateAddress *aws.Operation
 
 // AssociateDHCPOptionsRequest generates a request for the AssociateDHCPOptions operation.
 func (c *EC2) AssociateDHCPOptionsRequest(input *AssociateDHCPOptionsInput) (req *aws.Request, output *AssociateDHCPOptionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAssociateDHCPOptions == nil {
 		opAssociateDHCPOptions = &aws.Operation{
 			Name:       "AssociateDhcpOptions",
@@ -185,6 +203,9 @@ var opAssociateDHCPOptions *aws.Operation
 
 // AssociateRouteTableRequest generates a request for the AssociateRouteTable operation.
 func (c *EC2) AssociateRouteTableRequest(input *AssociateRouteTableInput) (req *aws.Request, output *AssociateRouteTableOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAssociateRouteTable == nil {
 		opAssociateRouteTable = &aws.Operation{
 			Name:       "AssociateRouteTable",
@@ -218,6 +239,9 @@ var opAssociateRouteTable *aws.Operation
 
 // AttachClassicLinkVPCRequest generates a request for the AttachClassicLinkVPC operation.
 func (c *EC2) AttachClassicLinkVPCRequest(input *AttachClassicLinkVPCInput) (req *aws.Request, output *AttachClassicLinkVPCOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAttachClassicLinkVPC == nil {
 		opAttachClassicLinkVPC = &aws.Operation{
 			Name:       "AttachClassicLinkVpc",
@@ -255,6 +279,9 @@ var opAttachClassicLinkVPC *aws.Operation
 
 // AttachInternetGatewayRequest generates a request for the AttachInternetGateway operation.
 func (c *EC2) AttachInternetGatewayRequest(input *AttachInternetGatewayInput) (req *aws.Request, output *AttachInternetGatewayOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAttachInternetGateway == nil {
 		opAttachInternetGateway = &aws.Operation{
 			Name:       "AttachInternetGateway",
@@ -283,6 +310,9 @@ var opAttachInternetGateway *aws.Operation
 
 // AttachNetworkInterfaceRequest generates a request for the AttachNetworkInterface operation.
 func (c *EC2) AttachNetworkInterfaceRequest(input *AttachNetworkInterfaceInput) (req *aws.Request, output *AttachNetworkInterfaceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAttachNetworkInterface == nil {
 		opAttachNetworkInterface = &aws.Operation{
 			Name:       "AttachNetworkInterface",
@@ -309,6 +339,9 @@ var opAttachNetworkInterface *aws.Operation
 
 // AttachVPNGatewayRequest generates a request for the AttachVPNGateway operation.
 func (c *EC2) AttachVPNGatewayRequest(input *AttachVPNGatewayInput) (req *aws.Request, output *AttachVPNGatewayOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAttachVPNGateway == nil {
 		opAttachVPNGateway = &aws.Operation{
 			Name:       "AttachVpnGateway",
@@ -337,6 +370,9 @@ var opAttachVPNGateway *aws.Operation
 
 // AttachVolumeRequest generates a request for the AttachVolume operation.
 func (c *EC2) AttachVolumeRequest(input *AttachVolumeInput) (req *aws.Request, output *VolumeAttachment) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAttachVolume == nil {
 		opAttachVolume = &aws.Operation{
 			Name:       "AttachVolume",
@@ -388,6 +424,9 @@ var opAttachVolume *aws.Operation
 
 // AuthorizeSecurityGroupEgressRequest generates a request for the AuthorizeSecurityGroupEgress operation.
 func (c *EC2) AuthorizeSecurityGroupEgressRequest(input *AuthorizeSecurityGroupEgressInput) (req *aws.Request, output *AuthorizeSecurityGroupEgressOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAuthorizeSecurityGroupEgress == nil {
 		opAuthorizeSecurityGroupEgress = &aws.Operation{
 			Name:       "AuthorizeSecurityGroupEgress",
@@ -434,6 +473,9 @@ var opAuthorizeSecurityGroupEgress *aws.Operation
 
 // AuthorizeSecurityGroupIngressRequest generates a request for the AuthorizeSecurityGroupIngress operation.
 func (c *EC2) AuthorizeSecurityGroupIngressRequest(input *AuthorizeSecurityGroupIngressInput) (req *aws.Request, output *AuthorizeSecurityGroupIngressOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAuthorizeSecurityGroupIngress == nil {
 		opAuthorizeSecurityGroupIngress = &aws.Operation{
 			Name:       "AuthorizeSecurityGroupIngress",
@@ -478,6 +520,9 @@ var opAuthorizeSecurityGroupIngress *aws.Operation
 
 // BundleInstanceRequest generates a request for the BundleInstance operation.
 func (c *EC2) BundleInstanceRequest(input *BundleInstanceInput) (req *aws.Request, output *BundleInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opBundleInstance == nil {
 		opBundleInstance = &aws.Operation{
 			Name:       "BundleInstance",
@@ -513,6 +558,9 @@ var opBundleInstance *aws.Operation
 
 // CancelBundleTaskRequest generates a request for the CancelBundleTask operation.
 func (c *EC2) CancelBundleTaskRequest(input *CancelBundleTaskInput) (req *aws.Request, output *CancelBundleTaskOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCancelBundleTask == nil {
 		opCancelBundleTask = &aws.Operation{
 			Name:       "CancelBundleTask",
@@ -539,6 +587,9 @@ var opCancelBundleTask *aws.Operation
 
 // CancelConversionTaskRequest generates a request for the CancelConversionTask operation.
 func (c *EC2) CancelConversionTaskRequest(input *CancelConversionTaskInput) (req *aws.Request, output *CancelConversionTaskOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCancelConversionTask == nil {
 		opCancelConversionTask = &aws.Operation{
 			Name:       "CancelConversionTask",
@@ -573,6 +624,9 @@ var opCancelConversionTask *aws.Operation
 
 // CancelExportTaskRequest generates a request for the CancelExportTask operation.
 func (c *EC2) CancelExportTaskRequest(input *CancelExportTaskInput) (req *aws.Request, output *CancelExportTaskOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCancelExportTask == nil {
 		opCancelExportTask = &aws.Operation{
 			Name:       "CancelExportTask",
@@ -602,6 +656,9 @@ var opCancelExportTask *aws.Operation
 
 // CancelReservedInstancesListingRequest generates a request for the CancelReservedInstancesListing operation.
 func (c *EC2) CancelReservedInstancesListingRequest(input *CancelReservedInstancesListingInput) (req *aws.Request, output *CancelReservedInstancesListingOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCancelReservedInstancesListing == nil {
 		opCancelReservedInstancesListing = &aws.Operation{
 			Name:       "CancelReservedInstancesListing",
@@ -632,6 +689,9 @@ var opCancelReservedInstancesListing *aws.Operation
 
 // CancelSpotInstanceRequestsRequest generates a request for the CancelSpotInstanceRequests operation.
 func (c *EC2) CancelSpotInstanceRequestsRequest(input *CancelSpotInstanceRequestsInput) (req *aws.Request, output *CancelSpotInstanceRequestsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCancelSpotInstanceRequests == nil {
 		opCancelSpotInstanceRequests = &aws.Operation{
 			Name:       "CancelSpotInstanceRequests",
@@ -666,6 +726,9 @@ var opCancelSpotInstanceRequests *aws.Operation
 
 // ConfirmProductInstanceRequest generates a request for the ConfirmProductInstance operation.
 func (c *EC2) ConfirmProductInstanceRequest(input *ConfirmProductInstanceInput) (req *aws.Request, output *ConfirmProductInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opConfirmProductInstance == nil {
 		opConfirmProductInstance = &aws.Operation{
 			Name:       "ConfirmProductInstance",
@@ -695,6 +758,9 @@ var opConfirmProductInstance *aws.Operation
 
 // CopyImageRequest generates a request for the CopyImage operation.
 func (c *EC2) CopyImageRequest(input *CopyImageInput) (req *aws.Request, output *CopyImageOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCopyImage == nil {
 		opCopyImage = &aws.Operation{
 			Name:       "CopyImage",
@@ -727,6 +793,9 @@ var opCopyImage *aws.Operation
 
 // CopySnapshotRequest generates a request for the CopySnapshot operation.
 func (c *EC2) CopySnapshotRequest(input *CopySnapshotInput) (req *aws.Request, output *CopySnapshotOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCopySnapshot == nil {
 		opCopySnapshot = &aws.Operation{
 			Name:       "CopySnapshot",
@@ -766,6 +835,9 @@ var opCopySnapshot *aws.Operation
 
 // CreateCustomerGatewayRequest generates a request for the CreateCustomerGateway operation.
 func (c *EC2) CreateCustomerGatewayRequest(input *CreateCustomerGatewayInput) (req *aws.Request, output *CreateCustomerGatewayOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateCustomerGateway == nil {
 		opCreateCustomerGateway = &aws.Operation{
 			Name:       "CreateCustomerGateway",
@@ -810,6 +882,9 @@ var opCreateCustomerGateway *aws.Operation
 
 // CreateDHCPOptionsRequest generates a request for the CreateDHCPOptions operation.
 func (c *EC2) CreateDHCPOptionsRequest(input *CreateDHCPOptionsInput) (req *aws.Request, output *CreateDHCPOptionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateDHCPOptions == nil {
 		opCreateDHCPOptions = &aws.Operation{
 			Name:       "CreateDhcpOptions",
@@ -864,6 +939,9 @@ var opCreateDHCPOptions *aws.Operation
 
 // CreateImageRequest generates a request for the CreateImage operation.
 func (c *EC2) CreateImageRequest(input *CreateImageInput) (req *aws.Request, output *CreateImageOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateImage == nil {
 		opCreateImage = &aws.Operation{
 			Name:       "CreateImage",
@@ -899,6 +977,9 @@ var opCreateImage *aws.Operation
 
 // CreateInstanceExportTaskRequest generates a request for the CreateInstanceExportTask operation.
 func (c *EC2) CreateInstanceExportTaskRequest(input *CreateInstanceExportTaskInput) (req *aws.Request, output *CreateInstanceExportTaskOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateInstanceExportTask == nil {
 		opCreateInstanceExportTask = &aws.Operation{
 			Name:       "CreateInstanceExportTask",
@@ -930,6 +1011,9 @@ var opCreateInstanceExportTask *aws.Operation
 
 // CreateInternetGatewayRequest generates a request for the CreateInternetGateway operation.
 func (c *EC2) CreateInternetGatewayRequest(input *CreateInternetGatewayInput) (req *aws.Request, output *CreateInternetGatewayOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateInternetGateway == nil {
 		opCreateInternetGateway = &aws.Operation{
 			Name:       "CreateInternetGateway",
@@ -960,6 +1044,9 @@ var opCreateInternetGateway *aws.Operation
 
 // CreateKeyPairRequest generates a request for the CreateKeyPair operation.
 func (c *EC2) CreateKeyPairRequest(input *CreateKeyPairInput) (req *aws.Request, output *CreateKeyPairOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateKeyPair == nil {
 		opCreateKeyPair = &aws.Operation{
 			Name:       "CreateKeyPair",
@@ -997,6 +1084,9 @@ var opCreateKeyPair *aws.Operation
 
 // CreateNetworkACLRequest generates a request for the CreateNetworkACL operation.
 func (c *EC2) CreateNetworkACLRequest(input *CreateNetworkACLInput) (req *aws.Request, output *CreateNetworkACLOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateNetworkACL == nil {
 		opCreateNetworkACL = &aws.Operation{
 			Name:       "CreateNetworkAcl",
@@ -1027,6 +1117,9 @@ var opCreateNetworkACL *aws.Operation
 
 // CreateNetworkACLEntryRequest generates a request for the CreateNetworkACLEntry operation.
 func (c *EC2) CreateNetworkACLEntryRequest(input *CreateNetworkACLEntryInput) (req *aws.Request, output *CreateNetworkACLEntryOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateNetworkACLEntry == nil {
 		opCreateNetworkACLEntry = &aws.Operation{
 			Name:       "CreateNetworkAclEntry",
@@ -1069,6 +1162,9 @@ var opCreateNetworkACLEntry *aws.Operation
 
 // CreateNetworkInterfaceRequest generates a request for the CreateNetworkInterface operation.
 func (c *EC2) CreateNetworkInterfaceRequest(input *CreateNetworkInterfaceInput) (req *aws.Request, output *CreateNetworkInterfaceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateNetworkInterface == nil {
 		opCreateNetworkInterface = &aws.Operation{
 			Name:       "CreateNetworkInterface",
@@ -1099,6 +1195,9 @@ var opCreateNetworkInterface *aws.Operation
 
 // CreatePlacementGroupRequest generates a request for the CreatePlacementGroup operation.
 func (c *EC2) CreatePlacementGroupRequest(input *CreatePlacementGroupInput) (req *aws.Request, output *CreatePlacementGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreatePlacementGroup == nil {
 		opCreatePlacementGroup = &aws.Operation{
 			Name:       "CreatePlacementGroup",
@@ -1130,6 +1229,9 @@ var opCreatePlacementGroup *aws.Operation
 
 // CreateReservedInstancesListingRequest generates a request for the CreateReservedInstancesListing operation.
 func (c *EC2) CreateReservedInstancesListingRequest(input *CreateReservedInstancesListingInput) (req *aws.Request, output *CreateReservedInstancesListingOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateReservedInstancesListing == nil {
 		opCreateReservedInstancesListing = &aws.Operation{
 			Name:       "CreateReservedInstancesListing",
@@ -1175,6 +1277,9 @@ var opCreateReservedInstancesListing *aws.Operation
 
 // CreateRouteRequest generates a request for the CreateRoute operation.
 func (c *EC2) CreateRouteRequest(input *CreateRouteInput) (req *aws.Request, output *CreateRouteOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateRoute == nil {
 		opCreateRoute = &aws.Operation{
 			Name:       "CreateRoute",
@@ -1219,6 +1324,9 @@ var opCreateRoute *aws.Operation
 
 // CreateRouteTableRequest generates a request for the CreateRouteTable operation.
 func (c *EC2) CreateRouteTableRequest(input *CreateRouteTableInput) (req *aws.Request, output *CreateRouteTableOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateRouteTable == nil {
 		opCreateRouteTable = &aws.Operation{
 			Name:       "CreateRouteTable",
@@ -1249,6 +1357,9 @@ var opCreateRouteTable *aws.Operation
 
 // CreateSecurityGroupRequest generates a request for the CreateSecurityGroup operation.
 func (c *EC2) CreateSecurityGroupRequest(input *CreateSecurityGroupInput) (req *aws.Request, output *CreateSecurityGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateSecurityGroup == nil {
 		opCreateSecurityGroup = &aws.Operation{
 			Name:       "CreateSecurityGroup",
@@ -1301,6 +1412,9 @@ var opCreateSecurityGroup *aws.Operation
 
 // CreateSnapshotRequest generates a request for the CreateSnapshot operation.
 func (c *EC2) CreateSnapshotRequest(input *CreateSnapshotInput) (req *aws.Request, output *Snapshot) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateSnapshot == nil {
 		opCreateSnapshot = &aws.Operation{
 			Name:       "CreateSnapshot",
@@ -1355,6 +1469,9 @@ var opCreateSnapshot *aws.Operation
 
 // CreateSpotDatafeedSubscriptionRequest generates a request for the CreateSpotDatafeedSubscription operation.
 func (c *EC2) CreateSpotDatafeedSubscriptionRequest(input *CreateSpotDatafeedSubscriptionInput) (req *aws.Request, output *CreateSpotDatafeedSubscriptionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateSpotDatafeedSubscription == nil {
 		opCreateSpotDatafeedSubscription = &aws.Operation{
 			Name:       "CreateSpotDatafeedSubscription",
@@ -1384,6 +1501,9 @@ var opCreateSpotDatafeedSubscription *aws.Operation
 
 // CreateSubnetRequest generates a request for the CreateSubnet operation.
 func (c *EC2) CreateSubnetRequest(input *CreateSubnetInput) (req *aws.Request, output *CreateSubnetOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateSubnet == nil {
 		opCreateSubnet = &aws.Operation{
 			Name:       "CreateSubnet",
@@ -1434,6 +1554,9 @@ var opCreateSubnet *aws.Operation
 
 // CreateTagsRequest generates a request for the CreateTags operation.
 func (c *EC2) CreateTagsRequest(input *CreateTagsInput) (req *aws.Request, output *CreateTagsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateTags == nil {
 		opCreateTags = &aws.Operation{
 			Name:       "CreateTags",
@@ -1465,6 +1588,9 @@ var opCreateTags *aws.Operation
 
 // CreateVPCRequest generates a request for the CreateVPC operation.
 func (c *EC2) CreateVPCRequest(input *CreateVPCInput) (req *aws.Request, output *CreateVPCOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateVPC == nil {
 		opCreateVPC = &aws.Operation{
 			Name:       "CreateVpc",
@@ -1501,6 +1627,9 @@ var opCreateVPC *aws.Operation
 
 // CreateVPCPeeringConnectionRequest generates a request for the CreateVPCPeeringConnection operation.
 func (c *EC2) CreateVPCPeeringConnectionRequest(input *CreateVPCPeeringConnectionInput) (req *aws.Request, output *CreateVPCPeeringConnectionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateVPCPeeringConnection == nil {
 		opCreateVPCPeeringConnection = &aws.Operation{
 			Name:       "CreateVpcPeeringConnection",
@@ -1537,6 +1666,9 @@ var opCreateVPCPeeringConnection *aws.Operation
 
 // CreateVPNConnectionRequest generates a request for the CreateVPNConnection operation.
 func (c *EC2) CreateVPNConnectionRequest(input *CreateVPNConnectionInput) (req *aws.Request, output *CreateVPNConnectionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateVPNConnection == nil {
 		opCreateVPNConnection = &aws.Operation{
 			Name:       "CreateVpnConnection",
@@ -1579,6 +1711,9 @@ var opCreateVPNConnection *aws.Operation
 
 // CreateVPNConnectionRouteRequest generates a request for the CreateVPNConnectionRoute operation.
 func (c *EC2) CreateVPNConnectionRouteRequest(input *CreateVPNConnectionRouteInput) (req *aws.Request, output *CreateVPNConnectionRouteOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateVPNConnectionRoute == nil {
 		opCreateVPNConnectionRoute = &aws.Operation{
 			Name:       "CreateVpnConnectionRoute",
@@ -1612,6 +1747,9 @@ var opCreateVPNConnectionRoute *aws.Operation
 
 // CreateVPNGatewayRequest generates a request for the CreateVPNGateway operation.
 func (c *EC2) CreateVPNGatewayRequest(input *CreateVPNGatewayInput) (req *aws.Request, output *CreateVPNGatewayOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateVPNGateway == nil {
 		opCreateVPNGateway = &aws.Operation{
 			Name:       "CreateVpnGateway",
@@ -1644,6 +1782,9 @@ var opCreateVPNGateway *aws.Operation
 
 // CreateVolumeRequest generates a request for the CreateVolume operation.
 func (c *EC2) CreateVolumeRequest(input *CreateVolumeInput) (req *aws.Request, output *Volume) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateVolume == nil {
 		opCreateVolume = &aws.Operation{
 			Name:       "CreateVolume",
@@ -1686,6 +1827,9 @@ var opCreateVolume *aws.Operation
 
 // DeleteCustomerGatewayRequest generates a request for the DeleteCustomerGateway operation.
 func (c *EC2) DeleteCustomerGatewayRequest(input *DeleteCustomerGatewayInput) (req *aws.Request, output *DeleteCustomerGatewayOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteCustomerGateway == nil {
 		opDeleteCustomerGateway = &aws.Operation{
 			Name:       "DeleteCustomerGateway",
@@ -1713,6 +1857,9 @@ var opDeleteCustomerGateway *aws.Operation
 
 // DeleteDHCPOptionsRequest generates a request for the DeleteDHCPOptions operation.
 func (c *EC2) DeleteDHCPOptionsRequest(input *DeleteDHCPOptionsInput) (req *aws.Request, output *DeleteDHCPOptionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteDHCPOptions == nil {
 		opDeleteDHCPOptions = &aws.Operation{
 			Name:       "DeleteDhcpOptions",
@@ -1742,6 +1889,9 @@ var opDeleteDHCPOptions *aws.Operation
 
 // DeleteInternetGatewayRequest generates a request for the DeleteInternetGateway operation.
 func (c *EC2) DeleteInternetGatewayRequest(input *DeleteInternetGatewayInput) (req *aws.Request, output *DeleteInternetGatewayOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteInternetGateway == nil {
 		opDeleteInternetGateway = &aws.Operation{
 			Name:       "DeleteInternetGateway",
@@ -1769,6 +1919,9 @@ var opDeleteInternetGateway *aws.Operation
 
 // DeleteKeyPairRequest generates a request for the DeleteKeyPair operation.
 func (c *EC2) DeleteKeyPairRequest(input *DeleteKeyPairInput) (req *aws.Request, output *DeleteKeyPairOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteKeyPair == nil {
 		opDeleteKeyPair = &aws.Operation{
 			Name:       "DeleteKeyPair",
@@ -1795,6 +1948,9 @@ var opDeleteKeyPair *aws.Operation
 
 // DeleteNetworkACLRequest generates a request for the DeleteNetworkACL operation.
 func (c *EC2) DeleteNetworkACLRequest(input *DeleteNetworkACLInput) (req *aws.Request, output *DeleteNetworkACLOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteNetworkACL == nil {
 		opDeleteNetworkACL = &aws.Operation{
 			Name:       "DeleteNetworkAcl",
@@ -1822,6 +1978,9 @@ var opDeleteNetworkACL *aws.Operation
 
 // DeleteNetworkACLEntryRequest generates a request for the DeleteNetworkACLEntry operation.
 func (c *EC2) DeleteNetworkACLEntryRequest(input *DeleteNetworkACLEntryInput) (req *aws.Request, output *DeleteNetworkACLEntryOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteNetworkACLEntry == nil {
 		opDeleteNetworkACLEntry = &aws.Operation{
 			Name:       "DeleteNetworkAclEntry",
@@ -1849,6 +2008,9 @@ var opDeleteNetworkACLEntry *aws.Operation
 
 // DeleteNetworkInterfaceRequest generates a request for the DeleteNetworkInterface operation.
 func (c *EC2) DeleteNetworkInterfaceRequest(input *DeleteNetworkInterfaceInput) (req *aws.Request, output *DeleteNetworkInterfaceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteNetworkInterface == nil {
 		opDeleteNetworkInterface = &aws.Operation{
 			Name:       "DeleteNetworkInterface",
@@ -1876,6 +2038,9 @@ var opDeleteNetworkInterface *aws.Operation
 
 // DeletePlacementGroupRequest generates a request for the DeletePlacementGroup operation.
 func (c *EC2) DeletePlacementGroupRequest(input *DeletePlacementGroupInput) (req *aws.Request, output *DeletePlacementGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeletePlacementGroup == nil {
 		opDeletePlacementGroup = &aws.Operation{
 			Name:       "DeletePlacementGroup",
@@ -1905,6 +2070,9 @@ var opDeletePlacementGroup *aws.Operation
 
 // DeleteRouteRequest generates a request for the DeleteRoute operation.
 func (c *EC2) DeleteRouteRequest(input *DeleteRouteInput) (req *aws.Request, output *DeleteRouteOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteRoute == nil {
 		opDeleteRoute = &aws.Operation{
 			Name:       "DeleteRoute",
@@ -1931,6 +2099,9 @@ var opDeleteRoute *aws.Operation
 
 // DeleteRouteTableRequest generates a request for the DeleteRouteTable operation.
 func (c *EC2) DeleteRouteTableRequest(input *DeleteRouteTableInput) (req *aws.Request, output *DeleteRouteTableOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteRouteTable == nil {
 		opDeleteRouteTable = &aws.Operation{
 			Name:       "DeleteRouteTable",
@@ -1959,6 +2130,9 @@ var opDeleteRouteTable *aws.Operation
 
 // DeleteSecurityGroupRequest generates a request for the DeleteSecurityGroup operation.
 func (c *EC2) DeleteSecurityGroupRequest(input *DeleteSecurityGroupInput) (req *aws.Request, output *DeleteSecurityGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteSecurityGroup == nil {
 		opDeleteSecurityGroup = &aws.Operation{
 			Name:       "DeleteSecurityGroup",
@@ -1989,6 +2163,9 @@ var opDeleteSecurityGroup *aws.Operation
 
 // DeleteSnapshotRequest generates a request for the DeleteSnapshot operation.
 func (c *EC2) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *aws.Request, output *DeleteSnapshotOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteSnapshot == nil {
 		opDeleteSnapshot = &aws.Operation{
 			Name:       "DeleteSnapshot",
@@ -2029,6 +2206,9 @@ var opDeleteSnapshot *aws.Operation
 
 // DeleteSpotDatafeedSubscriptionRequest generates a request for the DeleteSpotDatafeedSubscription operation.
 func (c *EC2) DeleteSpotDatafeedSubscriptionRequest(input *DeleteSpotDatafeedSubscriptionInput) (req *aws.Request, output *DeleteSpotDatafeedSubscriptionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteSpotDatafeedSubscription == nil {
 		opDeleteSpotDatafeedSubscription = &aws.Operation{
 			Name:       "DeleteSpotDatafeedSubscription",
@@ -2057,6 +2237,9 @@ var opDeleteSpotDatafeedSubscription *aws.Operation
 
 // DeleteSubnetRequest generates a request for the DeleteSubnet operation.
 func (c *EC2) DeleteSubnetRequest(input *DeleteSubnetInput) (req *aws.Request, output *DeleteSubnetOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteSubnet == nil {
 		opDeleteSubnet = &aws.Operation{
 			Name:       "DeleteSubnet",
@@ -2084,6 +2267,9 @@ var opDeleteSubnet *aws.Operation
 
 // DeleteTagsRequest generates a request for the DeleteTags operation.
 func (c *EC2) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Request, output *DeleteTagsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteTags == nil {
 		opDeleteTags = &aws.Operation{
 			Name:       "DeleteTags",
@@ -2114,6 +2300,9 @@ var opDeleteTags *aws.Operation
 
 // DeleteVPCRequest generates a request for the DeleteVPC operation.
 func (c *EC2) DeleteVPCRequest(input *DeleteVPCInput) (req *aws.Request, output *DeleteVPCOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteVPC == nil {
 		opDeleteVPC = &aws.Operation{
 			Name:       "DeleteVpc",
@@ -2144,6 +2333,9 @@ var opDeleteVPC *aws.Operation
 
 // DeleteVPCPeeringConnectionRequest generates a request for the DeleteVPCPeeringConnection operation.
 func (c *EC2) DeleteVPCPeeringConnectionRequest(input *DeleteVPCPeeringConnectionInput) (req *aws.Request, output *DeleteVPCPeeringConnectionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteVPCPeeringConnection == nil {
 		opDeleteVPCPeeringConnection = &aws.Operation{
 			Name:       "DeleteVpcPeeringConnection",
@@ -2173,6 +2365,9 @@ var opDeleteVPCPeeringConnection *aws.Operation
 
 // DeleteVPNConnectionRequest generates a request for the DeleteVPNConnection operation.
 func (c *EC2) DeleteVPNConnectionRequest(input *DeleteVPNConnectionInput) (req *aws.Request, output *DeleteVPNConnectionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteVPNConnection == nil {
 		opDeleteVPNConnection = &aws.Operation{
 			Name:       "DeleteVpnConnection",
@@ -2208,6 +2403,9 @@ var opDeleteVPNConnection *aws.Operation
 
 // DeleteVPNConnectionRouteRequest generates a request for the DeleteVPNConnectionRoute operation.
 func (c *EC2) DeleteVPNConnectionRouteRequest(input *DeleteVPNConnectionRouteInput) (req *aws.Request, output *DeleteVPNConnectionRouteOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteVPNConnectionRoute == nil {
 		opDeleteVPNConnectionRoute = &aws.Operation{
 			Name:       "DeleteVpnConnectionRoute",
@@ -2237,6 +2435,9 @@ var opDeleteVPNConnectionRoute *aws.Operation
 
 // DeleteVPNGatewayRequest generates a request for the DeleteVPNGateway operation.
 func (c *EC2) DeleteVPNGatewayRequest(input *DeleteVPNGatewayInput) (req *aws.Request, output *DeleteVPNGatewayOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteVPNGateway == nil {
 		opDeleteVPNGateway = &aws.Operation{
 			Name:       "DeleteVpnGateway",
@@ -2267,6 +2468,9 @@ var opDeleteVPNGateway *aws.Operation
 
 // DeleteVolumeRequest generates a request for the DeleteVolume operation.
 func (c *EC2) DeleteVolumeRequest(input *DeleteVolumeInput) (req *aws.Request, output *DeleteVolumeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteVolume == nil {
 		opDeleteVolume = &aws.Operation{
 			Name:       "DeleteVolume",
@@ -2299,6 +2503,9 @@ var opDeleteVolume *aws.Operation
 
 // DeregisterImageRequest generates a request for the DeregisterImage operation.
 func (c *EC2) DeregisterImageRequest(input *DeregisterImageInput) (req *aws.Request, output *DeregisterImageOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeregisterImage == nil {
 		opDeregisterImage = &aws.Operation{
 			Name:       "DeregisterImage",
@@ -2328,6 +2535,9 @@ var opDeregisterImage *aws.Operation
 
 // DescribeAccountAttributesRequest generates a request for the DescribeAccountAttributes operation.
 func (c *EC2) DescribeAccountAttributesRequest(input *DescribeAccountAttributesInput) (req *aws.Request, output *DescribeAccountAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAccountAttributes == nil {
 		opDescribeAccountAttributes = &aws.Operation{
 			Name:       "DescribeAccountAttributes",
@@ -2372,6 +2582,9 @@ var opDescribeAccountAttributes *aws.Operation
 
 // DescribeAddressesRequest generates a request for the DescribeAddresses operation.
 func (c *EC2) DescribeAddressesRequest(input *DescribeAddressesInput) (req *aws.Request, output *DescribeAddressesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAddresses == nil {
 		opDescribeAddresses = &aws.Operation{
 			Name:       "DescribeAddresses",
@@ -2402,6 +2615,9 @@ var opDescribeAddresses *aws.Operation
 
 // DescribeAvailabilityZonesRequest generates a request for the DescribeAvailabilityZones operation.
 func (c *EC2) DescribeAvailabilityZonesRequest(input *DescribeAvailabilityZonesInput) (req *aws.Request, output *DescribeAvailabilityZonesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAvailabilityZones == nil {
 		opDescribeAvailabilityZones = &aws.Operation{
 			Name:       "DescribeAvailabilityZones",
@@ -2434,6 +2650,9 @@ var opDescribeAvailabilityZones *aws.Operation
 
 // DescribeBundleTasksRequest generates a request for the DescribeBundleTasks operation.
 func (c *EC2) DescribeBundleTasksRequest(input *DescribeBundleTasksInput) (req *aws.Request, output *DescribeBundleTasksOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeBundleTasks == nil {
 		opDescribeBundleTasks = &aws.Operation{
 			Name:       "DescribeBundleTasks",
@@ -2465,6 +2684,9 @@ var opDescribeBundleTasks *aws.Operation
 
 // DescribeClassicLinkInstancesRequest generates a request for the DescribeClassicLinkInstances operation.
 func (c *EC2) DescribeClassicLinkInstancesRequest(input *DescribeClassicLinkInstancesInput) (req *aws.Request, output *DescribeClassicLinkInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeClassicLinkInstances == nil {
 		opDescribeClassicLinkInstances = &aws.Operation{
 			Name:       "DescribeClassicLinkInstances",
@@ -2494,6 +2716,9 @@ var opDescribeClassicLinkInstances *aws.Operation
 
 // DescribeConversionTasksRequest generates a request for the DescribeConversionTasks operation.
 func (c *EC2) DescribeConversionTasksRequest(input *DescribeConversionTasksInput) (req *aws.Request, output *DescribeConversionTasksOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeConversionTasks == nil {
 		opDescribeConversionTasks = &aws.Operation{
 			Name:       "DescribeConversionTasks",
@@ -2523,6 +2748,9 @@ var opDescribeConversionTasks *aws.Operation
 
 // DescribeCustomerGatewaysRequest generates a request for the DescribeCustomerGateways operation.
 func (c *EC2) DescribeCustomerGatewaysRequest(input *DescribeCustomerGatewaysInput) (req *aws.Request, output *DescribeCustomerGatewaysOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeCustomerGateways == nil {
 		opDescribeCustomerGateways = &aws.Operation{
 			Name:       "DescribeCustomerGateways",
@@ -2553,6 +2781,9 @@ var opDescribeCustomerGateways *aws.Operation
 
 // DescribeDHCPOptionsRequest generates a request for the DescribeDHCPOptions operation.
 func (c *EC2) DescribeDHCPOptionsRequest(input *DescribeDHCPOptionsInput) (req *aws.Request, output *DescribeDHCPOptionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeDHCPOptions == nil {
 		opDescribeDHCPOptions = &aws.Operation{
 			Name:       "DescribeDhcpOptions",
@@ -2582,6 +2813,9 @@ var opDescribeDHCPOptions *aws.Operation
 
 // DescribeExportTasksRequest generates a request for the DescribeExportTasks operation.
 func (c *EC2) DescribeExportTasksRequest(input *DescribeExportTasksInput) (req *aws.Request, output *DescribeExportTasksOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeExportTasks == nil {
 		opDescribeExportTasks = &aws.Operation{
 			Name:       "DescribeExportTasks",
@@ -2608,6 +2842,9 @@ var opDescribeExportTasks *aws.Operation
 
 // DescribeImageAttributeRequest generates a request for the DescribeImageAttribute operation.
 func (c *EC2) DescribeImageAttributeRequest(input *DescribeImageAttributeInput) (req *aws.Request, output *DescribeImageAttributeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeImageAttribute == nil {
 		opDescribeImageAttribute = &aws.Operation{
 			Name:       "DescribeImageAttribute",
@@ -2635,6 +2872,9 @@ var opDescribeImageAttribute *aws.Operation
 
 // DescribeImagesRequest generates a request for the DescribeImages operation.
 func (c *EC2) DescribeImagesRequest(input *DescribeImagesInput) (req *aws.Request, output *DescribeImagesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeImages == nil {
 		opDescribeImages = &aws.Operation{
 			Name:       "DescribeImages",
@@ -2667,6 +2907,9 @@ var opDescribeImages *aws.Operation
 
 // DescribeInstanceAttributeRequest generates a request for the DescribeInstanceAttribute operation.
 func (c *EC2) DescribeInstanceAttributeRequest(input *DescribeInstanceAttributeInput) (req *aws.Request, output *DescribeInstanceAttributeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeInstanceAttribute == nil {
 		opDescribeInstanceAttribute = &aws.Operation{
 			Name:       "DescribeInstanceAttribute",
@@ -2697,6 +2940,9 @@ var opDescribeInstanceAttribute *aws.Operation
 
 // DescribeInstanceStatusRequest generates a request for the DescribeInstanceStatus operation.
 func (c *EC2) DescribeInstanceStatusRequest(input *DescribeInstanceStatusInput) (req *aws.Request, output *DescribeInstanceStatusOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeInstanceStatus == nil {
 		opDescribeInstanceStatus = &aws.Operation{
 			Name:       "DescribeInstanceStatus",
@@ -2781,6 +3027,9 @@ var opDescribeInstanceStatus *aws.Operation
 
 // DescribeInstancesRequest generates a request for the DescribeInstances operation.
 func (c *EC2) DescribeInstancesRequest(input *DescribeInstancesInput) (req *aws.Request, output *DescribeInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeInstances == nil {
 		opDescribeInstances = &aws.Operation{
 			Name:       "DescribeInstances",
@@ -2816,6 +3065,9 @@ var opDescribeInstances *aws.Operation
 
 // DescribeInternetGatewaysRequest generates a request for the DescribeInternetGateways operation.
 func (c *EC2) DescribeInternetGatewaysRequest(input *DescribeInternetGatewaysInput) (req *aws.Request, output *DescribeInternetGatewaysOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeInternetGateways == nil {
 		opDescribeInternetGateways = &aws.Operation{
 			Name:       "DescribeInternetGateways",
@@ -2842,6 +3094,9 @@ var opDescribeInternetGateways *aws.Operation
 
 // DescribeKeyPairsRequest generates a request for the DescribeKeyPairs operation.
 func (c *EC2) DescribeKeyPairsRequest(input *DescribeKeyPairsInput) (req *aws.Request, output *DescribeKeyPairsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeKeyPairs == nil {
 		opDescribeKeyPairs = &aws.Operation{
 			Name:       "DescribeKeyPairs",
@@ -2871,6 +3126,9 @@ var opDescribeKeyPairs *aws.Operation
 
 // DescribeNetworkACLsRequest generates a request for the DescribeNetworkACLs operation.
 func (c *EC2) DescribeNetworkACLsRequest(input *DescribeNetworkACLsInput) (req *aws.Request, output *DescribeNetworkACLsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeNetworkACLs == nil {
 		opDescribeNetworkACLs = &aws.Operation{
 			Name:       "DescribeNetworkAcls",
@@ -2900,6 +3158,9 @@ var opDescribeNetworkACLs *aws.Operation
 
 // DescribeNetworkInterfaceAttributeRequest generates a request for the DescribeNetworkInterfaceAttribute operation.
 func (c *EC2) DescribeNetworkInterfaceAttributeRequest(input *DescribeNetworkInterfaceAttributeInput) (req *aws.Request, output *DescribeNetworkInterfaceAttributeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeNetworkInterfaceAttribute == nil {
 		opDescribeNetworkInterfaceAttribute = &aws.Operation{
 			Name:       "DescribeNetworkInterfaceAttribute",
@@ -2927,6 +3188,9 @@ var opDescribeNetworkInterfaceAttribute *aws.Operation
 
 // DescribeNetworkInterfacesRequest generates a request for the DescribeNetworkInterfaces operation.
 func (c *EC2) DescribeNetworkInterfacesRequest(input *DescribeNetworkInterfacesInput) (req *aws.Request, output *DescribeNetworkInterfacesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeNetworkInterfaces == nil {
 		opDescribeNetworkInterfaces = &aws.Operation{
 			Name:       "DescribeNetworkInterfaces",
@@ -2953,6 +3217,9 @@ var opDescribeNetworkInterfaces *aws.Operation
 
 // DescribePlacementGroupsRequest generates a request for the DescribePlacementGroups operation.
 func (c *EC2) DescribePlacementGroupsRequest(input *DescribePlacementGroupsInput) (req *aws.Request, output *DescribePlacementGroupsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribePlacementGroups == nil {
 		opDescribePlacementGroups = &aws.Operation{
 			Name:       "DescribePlacementGroups",
@@ -2981,6 +3248,9 @@ var opDescribePlacementGroups *aws.Operation
 
 // DescribeRegionsRequest generates a request for the DescribeRegions operation.
 func (c *EC2) DescribeRegionsRequest(input *DescribeRegionsInput) (req *aws.Request, output *DescribeRegionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeRegions == nil {
 		opDescribeRegions = &aws.Operation{
 			Name:       "DescribeRegions",
@@ -3010,6 +3280,9 @@ var opDescribeRegions *aws.Operation
 
 // DescribeReservedInstancesRequest generates a request for the DescribeReservedInstances operation.
 func (c *EC2) DescribeReservedInstancesRequest(input *DescribeReservedInstancesInput) (req *aws.Request, output *DescribeReservedInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeReservedInstances == nil {
 		opDescribeReservedInstances = &aws.Operation{
 			Name:       "DescribeReservedInstances",
@@ -3039,6 +3312,9 @@ var opDescribeReservedInstances *aws.Operation
 
 // DescribeReservedInstancesListingsRequest generates a request for the DescribeReservedInstancesListings operation.
 func (c *EC2) DescribeReservedInstancesListingsRequest(input *DescribeReservedInstancesListingsInput) (req *aws.Request, output *DescribeReservedInstancesListingsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeReservedInstancesListings == nil {
 		opDescribeReservedInstancesListings = &aws.Operation{
 			Name:       "DescribeReservedInstancesListings",
@@ -3086,6 +3362,9 @@ var opDescribeReservedInstancesListings *aws.Operation
 
 // DescribeReservedInstancesModificationsRequest generates a request for the DescribeReservedInstancesModifications operation.
 func (c *EC2) DescribeReservedInstancesModificationsRequest(input *DescribeReservedInstancesModificationsInput) (req *aws.Request, output *DescribeReservedInstancesModificationsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeReservedInstancesModifications == nil {
 		opDescribeReservedInstancesModifications = &aws.Operation{
 			Name:       "DescribeReservedInstancesModifications",
@@ -3118,6 +3397,9 @@ var opDescribeReservedInstancesModifications *aws.Operation
 
 // DescribeReservedInstancesOfferingsRequest generates a request for the DescribeReservedInstancesOfferings operation.
 func (c *EC2) DescribeReservedInstancesOfferingsRequest(input *DescribeReservedInstancesOfferingsInput) (req *aws.Request, output *DescribeReservedInstancesOfferingsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeReservedInstancesOfferings == nil {
 		opDescribeReservedInstancesOfferings = &aws.Operation{
 			Name:       "DescribeReservedInstancesOfferings",
@@ -3151,6 +3433,9 @@ var opDescribeReservedInstancesOfferings *aws.Operation
 
 // DescribeRouteTablesRequest generates a request for the DescribeRouteTables operation.
 func (c *EC2) DescribeRouteTablesRequest(input *DescribeRouteTablesInput) (req *aws.Request, output *DescribeRouteTablesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeRouteTables == nil {
 		opDescribeRouteTables = &aws.Operation{
 			Name:       "DescribeRouteTables",
@@ -3180,6 +3465,9 @@ var opDescribeRouteTables *aws.Operation
 
 // DescribeSecurityGroupsRequest generates a request for the DescribeSecurityGroups operation.
 func (c *EC2) DescribeSecurityGroupsRequest(input *DescribeSecurityGroupsInput) (req *aws.Request, output *DescribeSecurityGroupsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeSecurityGroups == nil {
 		opDescribeSecurityGroups = &aws.Operation{
 			Name:       "DescribeSecurityGroups",
@@ -3213,6 +3501,9 @@ var opDescribeSecurityGroups *aws.Operation
 
 // DescribeSnapshotAttributeRequest generates a request for the DescribeSnapshotAttribute operation.
 func (c *EC2) DescribeSnapshotAttributeRequest(input *DescribeSnapshotAttributeInput) (req *aws.Request, output *DescribeSnapshotAttributeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeSnapshotAttribute == nil {
 		opDescribeSnapshotAttribute = &aws.Operation{
 			Name:       "DescribeSnapshotAttribute",
@@ -3243,6 +3534,9 @@ var opDescribeSnapshotAttribute *aws.Operation
 
 // DescribeSnapshotsRequest generates a request for the DescribeSnapshots operation.
 func (c *EC2) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *aws.Request, output *DescribeSnapshotsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeSnapshots == nil {
 		opDescribeSnapshots = &aws.Operation{
 			Name:       "DescribeSnapshots",
@@ -3308,6 +3602,9 @@ var opDescribeSnapshots *aws.Operation
 
 // DescribeSpotDatafeedSubscriptionRequest generates a request for the DescribeSpotDatafeedSubscription operation.
 func (c *EC2) DescribeSpotDatafeedSubscriptionRequest(input *DescribeSpotDatafeedSubscriptionInput) (req *aws.Request, output *DescribeSpotDatafeedSubscriptionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeSpotDatafeedSubscription == nil {
 		opDescribeSpotDatafeedSubscription = &aws.Operation{
 			Name:       "DescribeSpotDatafeedSubscription",
@@ -3336,6 +3633,9 @@ var opDescribeSpotDatafeedSubscription *aws.Operation
 
 // DescribeSpotInstanceRequestsRequest generates a request for the DescribeSpotInstanceRequests operation.
 func (c *EC2) DescribeSpotInstanceRequestsRequest(input *DescribeSpotInstanceRequestsInput) (req *aws.Request, output *DescribeSpotInstanceRequestsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeSpotInstanceRequests == nil {
 		opDescribeSpotInstanceRequests = &aws.Operation{
 			Name:       "DescribeSpotInstanceRequests",
@@ -3373,6 +3673,9 @@ var opDescribeSpotInstanceRequests *aws.Operation
 
 // DescribeSpotPriceHistoryRequest generates a request for the DescribeSpotPriceHistory operation.
 func (c *EC2) DescribeSpotPriceHistoryRequest(input *DescribeSpotPriceHistoryInput) (req *aws.Request, output *DescribeSpotPriceHistoryOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeSpotPriceHistory == nil {
 		opDescribeSpotPriceHistory = &aws.Operation{
 			Name:       "DescribeSpotPriceHistory",
@@ -3407,6 +3710,9 @@ var opDescribeSpotPriceHistory *aws.Operation
 
 // DescribeSubnetsRequest generates a request for the DescribeSubnets operation.
 func (c *EC2) DescribeSubnetsRequest(input *DescribeSubnetsInput) (req *aws.Request, output *DescribeSubnetsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeSubnets == nil {
 		opDescribeSubnets = &aws.Operation{
 			Name:       "DescribeSubnets",
@@ -3436,6 +3742,9 @@ var opDescribeSubnets *aws.Operation
 
 // DescribeTagsRequest generates a request for the DescribeTags operation.
 func (c *EC2) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, output *DescribeTagsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeTags == nil {
 		opDescribeTags = &aws.Operation{
 			Name:       "DescribeTags",
@@ -3465,6 +3774,9 @@ var opDescribeTags *aws.Operation
 
 // DescribeVPCAttributeRequest generates a request for the DescribeVPCAttribute operation.
 func (c *EC2) DescribeVPCAttributeRequest(input *DescribeVPCAttributeInput) (req *aws.Request, output *DescribeVPCAttributeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeVPCAttribute == nil {
 		opDescribeVPCAttribute = &aws.Operation{
 			Name:       "DescribeVpcAttribute",
@@ -3492,6 +3804,9 @@ var opDescribeVPCAttribute *aws.Operation
 
 // DescribeVPCClassicLinkRequest generates a request for the DescribeVPCClassicLink operation.
 func (c *EC2) DescribeVPCClassicLinkRequest(input *DescribeVPCClassicLinkInput) (req *aws.Request, output *DescribeVPCClassicLinkOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeVPCClassicLink == nil {
 		opDescribeVPCClassicLink = &aws.Operation{
 			Name:       "DescribeVpcClassicLink",
@@ -3518,6 +3833,9 @@ var opDescribeVPCClassicLink *aws.Operation
 
 // DescribeVPCPeeringConnectionsRequest generates a request for the DescribeVPCPeeringConnections operation.
 func (c *EC2) DescribeVPCPeeringConnectionsRequest(input *DescribeVPCPeeringConnectionsInput) (req *aws.Request, output *DescribeVPCPeeringConnectionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeVPCPeeringConnections == nil {
 		opDescribeVPCPeeringConnections = &aws.Operation{
 			Name:       "DescribeVpcPeeringConnections",
@@ -3544,6 +3862,9 @@ var opDescribeVPCPeeringConnections *aws.Operation
 
 // DescribeVPCsRequest generates a request for the DescribeVPCs operation.
 func (c *EC2) DescribeVPCsRequest(input *DescribeVPCsInput) (req *aws.Request, output *DescribeVPCsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeVPCs == nil {
 		opDescribeVPCs = &aws.Operation{
 			Name:       "DescribeVpcs",
@@ -3570,6 +3891,9 @@ var opDescribeVPCs *aws.Operation
 
 // DescribeVPNConnectionsRequest generates a request for the DescribeVPNConnections operation.
 func (c *EC2) DescribeVPNConnectionsRequest(input *DescribeVPNConnectionsInput) (req *aws.Request, output *DescribeVPNConnectionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeVPNConnections == nil {
 		opDescribeVPNConnections = &aws.Operation{
 			Name:       "DescribeVpnConnections",
@@ -3600,6 +3924,9 @@ var opDescribeVPNConnections *aws.Operation
 
 // DescribeVPNGatewaysRequest generates a request for the DescribeVPNGateways operation.
 func (c *EC2) DescribeVPNGatewaysRequest(input *DescribeVPNGatewaysInput) (req *aws.Request, output *DescribeVPNGatewaysOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeVPNGateways == nil {
 		opDescribeVPNGateways = &aws.Operation{
 			Name:       "DescribeVpnGateways",
@@ -3630,6 +3957,9 @@ var opDescribeVPNGateways *aws.Operation
 
 // DescribeVolumeAttributeRequest generates a request for the DescribeVolumeAttribute operation.
 func (c *EC2) DescribeVolumeAttributeRequest(input *DescribeVolumeAttributeInput) (req *aws.Request, output *DescribeVolumeAttributeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeVolumeAttribute == nil {
 		opDescribeVolumeAttribute = &aws.Operation{
 			Name:       "DescribeVolumeAttribute",
@@ -3660,6 +3990,9 @@ var opDescribeVolumeAttribute *aws.Operation
 
 // DescribeVolumeStatusRequest generates a request for the DescribeVolumeStatus operation.
 func (c *EC2) DescribeVolumeStatusRequest(input *DescribeVolumeStatusInput) (req *aws.Request, output *DescribeVolumeStatusOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeVolumeStatus == nil {
 		opDescribeVolumeStatus = &aws.Operation{
 			Name:       "DescribeVolumeStatus",
@@ -3720,6 +4053,9 @@ var opDescribeVolumeStatus *aws.Operation
 
 // DescribeVolumesRequest generates a request for the DescribeVolumes operation.
 func (c *EC2) DescribeVolumesRequest(input *DescribeVolumesInput) (req *aws.Request, output *DescribeVolumesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeVolumes == nil {
 		opDescribeVolumes = &aws.Operation{
 			Name:       "DescribeVolumes",
@@ -3756,6 +4092,9 @@ var opDescribeVolumes *aws.Operation
 
 // DetachClassicLinkVPCRequest generates a request for the DetachClassicLinkVPC operation.
 func (c *EC2) DetachClassicLinkVPCRequest(input *DetachClassicLinkVPCInput) (req *aws.Request, output *DetachClassicLinkVPCOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDetachClassicLinkVPC == nil {
 		opDetachClassicLinkVPC = &aws.Operation{
 			Name:       "DetachClassicLinkVpc",
@@ -3784,6 +4123,9 @@ var opDetachClassicLinkVPC *aws.Operation
 
 // DetachInternetGatewayRequest generates a request for the DetachInternetGateway operation.
 func (c *EC2) DetachInternetGatewayRequest(input *DetachInternetGatewayInput) (req *aws.Request, output *DetachInternetGatewayOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDetachInternetGateway == nil {
 		opDetachInternetGateway = &aws.Operation{
 			Name:       "DetachInternetGateway",
@@ -3812,6 +4154,9 @@ var opDetachInternetGateway *aws.Operation
 
 // DetachNetworkInterfaceRequest generates a request for the DetachNetworkInterface operation.
 func (c *EC2) DetachNetworkInterfaceRequest(input *DetachNetworkInterfaceInput) (req *aws.Request, output *DetachNetworkInterfaceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDetachNetworkInterface == nil {
 		opDetachNetworkInterface = &aws.Operation{
 			Name:       "DetachNetworkInterface",
@@ -3838,6 +4183,9 @@ var opDetachNetworkInterface *aws.Operation
 
 // DetachVPNGatewayRequest generates a request for the DetachVPNGateway operation.
 func (c *EC2) DetachVPNGatewayRequest(input *DetachVPNGatewayInput) (req *aws.Request, output *DetachVPNGatewayOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDetachVPNGateway == nil {
 		opDetachVPNGateway = &aws.Operation{
 			Name:       "DetachVpnGateway",
@@ -3871,6 +4219,9 @@ var opDetachVPNGateway *aws.Operation
 
 // DetachVolumeRequest generates a request for the DetachVolume operation.
 func (c *EC2) DetachVolumeRequest(input *DetachVolumeInput) (req *aws.Request, output *VolumeAttachment) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDetachVolume == nil {
 		opDetachVolume = &aws.Operation{
 			Name:       "DetachVolume",
@@ -3910,6 +4261,9 @@ var opDetachVolume *aws.Operation
 
 // DisableVGWRoutePropagationRequest generates a request for the DisableVGWRoutePropagation operation.
 func (c *EC2) DisableVGWRoutePropagationRequest(input *DisableVGWRoutePropagationInput) (req *aws.Request, output *DisableVGWRoutePropagationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDisableVGWRoutePropagation == nil {
 		opDisableVGWRoutePropagation = &aws.Operation{
 			Name:       "DisableVgwRoutePropagation",
@@ -3937,6 +4291,9 @@ var opDisableVGWRoutePropagation *aws.Operation
 
 // DisableVPCClassicLinkRequest generates a request for the DisableVPCClassicLink operation.
 func (c *EC2) DisableVPCClassicLinkRequest(input *DisableVPCClassicLinkInput) (req *aws.Request, output *DisableVPCClassicLinkOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDisableVPCClassicLink == nil {
 		opDisableVPCClassicLink = &aws.Operation{
 			Name:       "DisableVpcClassicLink",
@@ -3964,6 +4321,9 @@ var opDisableVPCClassicLink *aws.Operation
 
 // DisassociateAddressRequest generates a request for the DisassociateAddress operation.
 func (c *EC2) DisassociateAddressRequest(input *DisassociateAddressInput) (req *aws.Request, output *DisassociateAddressOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDisassociateAddress == nil {
 		opDisassociateAddress = &aws.Operation{
 			Name:       "DisassociateAddress",
@@ -3998,6 +4358,9 @@ var opDisassociateAddress *aws.Operation
 
 // DisassociateRouteTableRequest generates a request for the DisassociateRouteTable operation.
 func (c *EC2) DisassociateRouteTableRequest(input *DisassociateRouteTableInput) (req *aws.Request, output *DisassociateRouteTableOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDisassociateRouteTable == nil {
 		opDisassociateRouteTable = &aws.Operation{
 			Name:       "DisassociateRouteTable",
@@ -4029,6 +4392,9 @@ var opDisassociateRouteTable *aws.Operation
 
 // EnableVGWRoutePropagationRequest generates a request for the EnableVGWRoutePropagation operation.
 func (c *EC2) EnableVGWRoutePropagationRequest(input *EnableVGWRoutePropagationInput) (req *aws.Request, output *EnableVGWRoutePropagationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opEnableVGWRoutePropagation == nil {
 		opEnableVGWRoutePropagation = &aws.Operation{
 			Name:       "EnableVgwRoutePropagation",
@@ -4056,6 +4422,9 @@ var opEnableVGWRoutePropagation *aws.Operation
 
 // EnableVPCClassicLinkRequest generates a request for the EnableVPCClassicLink operation.
 func (c *EC2) EnableVPCClassicLinkRequest(input *EnableVPCClassicLinkInput) (req *aws.Request, output *EnableVPCClassicLinkOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opEnableVPCClassicLink == nil {
 		opEnableVPCClassicLink = &aws.Operation{
 			Name:       "EnableVpcClassicLink",
@@ -4088,6 +4457,9 @@ var opEnableVPCClassicLink *aws.Operation
 
 // EnableVolumeIORequest generates a request for the EnableVolumeIO operation.
 func (c *EC2) EnableVolumeIORequest(input *EnableVolumeIOInput) (req *aws.Request, output *EnableVolumeIOOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opEnableVolumeIO == nil {
 		opEnableVolumeIO = &aws.Operation{
 			Name:       "EnableVolumeIO",
@@ -4115,6 +4487,9 @@ var opEnableVolumeIO *aws.Operation
 
 // GetConsoleOutputRequest generates a request for the GetConsoleOutput operation.
 func (c *EC2) GetConsoleOutputRequest(input *GetConsoleOutputInput) (req *aws.Request, output *GetConsoleOutputOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetConsoleOutput == nil {
 		opGetConsoleOutput = &aws.Operation{
 			Name:       "GetConsoleOutput",
@@ -4158,6 +4533,9 @@ var opGetConsoleOutput *aws.Operation
 
 // GetPasswordDataRequest generates a request for the GetPasswordData operation.
 func (c *EC2) GetPasswordDataRequest(input *GetPasswordDataInput) (req *aws.Request, output *GetPasswordDataOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetPasswordData == nil {
 		opGetPasswordData = &aws.Operation{
 			Name:       "GetPasswordData",
@@ -4197,6 +4575,9 @@ var opGetPasswordData *aws.Operation
 
 // ImportInstanceRequest generates a request for the ImportInstance operation.
 func (c *EC2) ImportInstanceRequest(input *ImportInstanceInput) (req *aws.Request, output *ImportInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opImportInstance == nil {
 		opImportInstance = &aws.Operation{
 			Name:       "ImportInstance",
@@ -4227,6 +4608,9 @@ var opImportInstance *aws.Operation
 
 // ImportKeyPairRequest generates a request for the ImportKeyPair operation.
 func (c *EC2) ImportKeyPairRequest(input *ImportKeyPairInput) (req *aws.Request, output *ImportKeyPairOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opImportKeyPair == nil {
 		opImportKeyPair = &aws.Operation{
 			Name:       "ImportKeyPair",
@@ -4260,6 +4644,9 @@ var opImportKeyPair *aws.Operation
 
 // ImportVolumeRequest generates a request for the ImportVolume operation.
 func (c *EC2) ImportVolumeRequest(input *ImportVolumeInput) (req *aws.Request, output *ImportVolumeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opImportVolume == nil {
 		opImportVolume = &aws.Operation{
 			Name:       "ImportVolume",
@@ -4291,6 +4678,9 @@ var opImportVolume *aws.Operation
 
 // ModifyImageAttributeRequest generates a request for the ModifyImageAttribute operation.
 func (c *EC2) ModifyImageAttributeRequest(input *ModifyImageAttributeInput) (req *aws.Request, output *ModifyImageAttributeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyImageAttribute == nil {
 		opModifyImageAttribute = &aws.Operation{
 			Name:       "ModifyImageAttribute",
@@ -4321,6 +4711,9 @@ var opModifyImageAttribute *aws.Operation
 
 // ModifyInstanceAttributeRequest generates a request for the ModifyInstanceAttribute operation.
 func (c *EC2) ModifyInstanceAttributeRequest(input *ModifyInstanceAttributeInput) (req *aws.Request, output *ModifyInstanceAttributeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyInstanceAttribute == nil {
 		opModifyInstanceAttribute = &aws.Operation{
 			Name:       "ModifyInstanceAttribute",
@@ -4352,6 +4745,9 @@ var opModifyInstanceAttribute *aws.Operation
 
 // ModifyNetworkInterfaceAttributeRequest generates a request for the ModifyNetworkInterfaceAttribute operation.
 func (c *EC2) ModifyNetworkInterfaceAttributeRequest(input *ModifyNetworkInterfaceAttributeInput) (req *aws.Request, output *ModifyNetworkInterfaceAttributeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyNetworkInterfaceAttribute == nil {
 		opModifyNetworkInterfaceAttribute = &aws.Operation{
 			Name:       "ModifyNetworkInterfaceAttribute",
@@ -4379,6 +4775,9 @@ var opModifyNetworkInterfaceAttribute *aws.Operation
 
 // ModifyReservedInstancesRequest generates a request for the ModifyReservedInstances operation.
 func (c *EC2) ModifyReservedInstancesRequest(input *ModifyReservedInstancesInput) (req *aws.Request, output *ModifyReservedInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyReservedInstances == nil {
 		opModifyReservedInstances = &aws.Operation{
 			Name:       "ModifyReservedInstances",
@@ -4411,6 +4810,9 @@ var opModifyReservedInstances *aws.Operation
 
 // ModifySnapshotAttributeRequest generates a request for the ModifySnapshotAttribute operation.
 func (c *EC2) ModifySnapshotAttributeRequest(input *ModifySnapshotAttributeInput) (req *aws.Request, output *ModifySnapshotAttributeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifySnapshotAttribute == nil {
 		opModifySnapshotAttribute = &aws.Operation{
 			Name:       "ModifySnapshotAttribute",
@@ -4447,6 +4849,9 @@ var opModifySnapshotAttribute *aws.Operation
 
 // ModifySubnetAttributeRequest generates a request for the ModifySubnetAttribute operation.
 func (c *EC2) ModifySubnetAttributeRequest(input *ModifySubnetAttributeInput) (req *aws.Request, output *ModifySubnetAttributeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifySubnetAttribute == nil {
 		opModifySubnetAttribute = &aws.Operation{
 			Name:       "ModifySubnetAttribute",
@@ -4473,6 +4878,9 @@ var opModifySubnetAttribute *aws.Operation
 
 // ModifyVPCAttributeRequest generates a request for the ModifyVPCAttribute operation.
 func (c *EC2) ModifyVPCAttributeRequest(input *ModifyVPCAttributeInput) (req *aws.Request, output *ModifyVPCAttributeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyVPCAttribute == nil {
 		opModifyVPCAttribute = &aws.Operation{
 			Name:       "ModifyVpcAttribute",
@@ -4499,6 +4907,9 @@ var opModifyVPCAttribute *aws.Operation
 
 // ModifyVolumeAttributeRequest generates a request for the ModifyVolumeAttribute operation.
 func (c *EC2) ModifyVolumeAttributeRequest(input *ModifyVolumeAttributeInput) (req *aws.Request, output *ModifyVolumeAttributeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyVolumeAttribute == nil {
 		opModifyVolumeAttribute = &aws.Operation{
 			Name:       "ModifyVolumeAttribute",
@@ -4534,6 +4945,9 @@ var opModifyVolumeAttribute *aws.Operation
 
 // MonitorInstancesRequest generates a request for the MonitorInstances operation.
 func (c *EC2) MonitorInstancesRequest(input *MonitorInstancesInput) (req *aws.Request, output *MonitorInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opMonitorInstances == nil {
 		opMonitorInstances = &aws.Operation{
 			Name:       "MonitorInstances",
@@ -4562,6 +4976,9 @@ var opMonitorInstances *aws.Operation
 
 // PurchaseReservedInstancesOfferingRequest generates a request for the PurchaseReservedInstancesOffering operation.
 func (c *EC2) PurchaseReservedInstancesOfferingRequest(input *PurchaseReservedInstancesOfferingInput) (req *aws.Request, output *PurchaseReservedInstancesOfferingOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPurchaseReservedInstancesOffering == nil {
 		opPurchaseReservedInstancesOffering = &aws.Operation{
 			Name:       "PurchaseReservedInstancesOffering",
@@ -4600,6 +5017,9 @@ var opPurchaseReservedInstancesOffering *aws.Operation
 
 // RebootInstancesRequest generates a request for the RebootInstances operation.
 func (c *EC2) RebootInstancesRequest(input *RebootInstancesInput) (req *aws.Request, output *RebootInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRebootInstances == nil {
 		opRebootInstances = &aws.Operation{
 			Name:       "RebootInstances",
@@ -4636,6 +5056,9 @@ var opRebootInstances *aws.Operation
 
 // RegisterImageRequest generates a request for the RegisterImage operation.
 func (c *EC2) RegisterImageRequest(input *RegisterImageInput) (req *aws.Request, output *RegisterImageOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRegisterImage == nil {
 		opRegisterImage = &aws.Operation{
 			Name:       "RegisterImage",
@@ -4681,6 +5104,9 @@ var opRegisterImage *aws.Operation
 
 // RejectVPCPeeringConnectionRequest generates a request for the RejectVPCPeeringConnection operation.
 func (c *EC2) RejectVPCPeeringConnectionRequest(input *RejectVPCPeeringConnectionInput) (req *aws.Request, output *RejectVPCPeeringConnectionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRejectVPCPeeringConnection == nil {
 		opRejectVPCPeeringConnection = &aws.Operation{
 			Name:       "RejectVpcPeeringConnection",
@@ -4711,6 +5137,9 @@ var opRejectVPCPeeringConnection *aws.Operation
 
 // ReleaseAddressRequest generates a request for the ReleaseAddress operation.
 func (c *EC2) ReleaseAddressRequest(input *ReleaseAddressInput) (req *aws.Request, output *ReleaseAddressOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opReleaseAddress == nil {
 		opReleaseAddress = &aws.Operation{
 			Name:       "ReleaseAddress",
@@ -4751,6 +5180,9 @@ var opReleaseAddress *aws.Operation
 
 // ReplaceNetworkACLAssociationRequest generates a request for the ReplaceNetworkACLAssociation operation.
 func (c *EC2) ReplaceNetworkACLAssociationRequest(input *ReplaceNetworkACLAssociationInput) (req *aws.Request, output *ReplaceNetworkACLAssociationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opReplaceNetworkACLAssociation == nil {
 		opReplaceNetworkACLAssociation = &aws.Operation{
 			Name:       "ReplaceNetworkAclAssociation",
@@ -4780,6 +5212,9 @@ var opReplaceNetworkACLAssociation *aws.Operation
 
 // ReplaceNetworkACLEntryRequest generates a request for the ReplaceNetworkACLEntry operation.
 func (c *EC2) ReplaceNetworkACLEntryRequest(input *ReplaceNetworkACLEntryInput) (req *aws.Request, output *ReplaceNetworkACLEntryOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opReplaceNetworkACLEntry == nil {
 		opReplaceNetworkACLEntry = &aws.Operation{
 			Name:       "ReplaceNetworkAclEntry",
@@ -4808,6 +5243,9 @@ var opReplaceNetworkACLEntry *aws.Operation
 
 // ReplaceRouteRequest generates a request for the ReplaceRoute operation.
 func (c *EC2) ReplaceRouteRequest(input *ReplaceRouteInput) (req *aws.Request, output *ReplaceRouteOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opReplaceRoute == nil {
 		opReplaceRoute = &aws.Operation{
 			Name:       "ReplaceRoute",
@@ -4839,6 +5277,9 @@ var opReplaceRoute *aws.Operation
 
 // ReplaceRouteTableAssociationRequest generates a request for the ReplaceRouteTableAssociation operation.
 func (c *EC2) ReplaceRouteTableAssociationRequest(input *ReplaceRouteTableAssociationInput) (req *aws.Request, output *ReplaceRouteTableAssociationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opReplaceRouteTableAssociation == nil {
 		opReplaceRouteTableAssociation = &aws.Operation{
 			Name:       "ReplaceRouteTableAssociation",
@@ -4873,6 +5314,9 @@ var opReplaceRouteTableAssociation *aws.Operation
 
 // ReportInstanceStatusRequest generates a request for the ReportInstanceStatus operation.
 func (c *EC2) ReportInstanceStatusRequest(input *ReportInstanceStatusInput) (req *aws.Request, output *ReportInstanceStatusOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opReportInstanceStatus == nil {
 		opReportInstanceStatus = &aws.Operation{
 			Name:       "ReportInstanceStatus",
@@ -4905,6 +5349,9 @@ var opReportInstanceStatus *aws.Operation
 
 // RequestSpotInstancesRequest generates a request for the RequestSpotInstances operation.
 func (c *EC2) RequestSpotInstancesRequest(input *RequestSpotInstancesInput) (req *aws.Request, output *RequestSpotInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRequestSpotInstances == nil {
 		opRequestSpotInstances = &aws.Operation{
 			Name:       "RequestSpotInstances",
@@ -4936,6 +5383,9 @@ var opRequestSpotInstances *aws.Operation
 
 // ResetImageAttributeRequest generates a request for the ResetImageAttribute operation.
 func (c *EC2) ResetImageAttributeRequest(input *ResetImageAttributeInput) (req *aws.Request, output *ResetImageAttributeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opResetImageAttribute == nil {
 		opResetImageAttribute = &aws.Operation{
 			Name:       "ResetImageAttribute",
@@ -4964,6 +5414,9 @@ var opResetImageAttribute *aws.Operation
 
 // ResetInstanceAttributeRequest generates a request for the ResetInstanceAttribute operation.
 func (c *EC2) ResetInstanceAttributeRequest(input *ResetInstanceAttributeInput) (req *aws.Request, output *ResetInstanceAttributeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opResetInstanceAttribute == nil {
 		opResetInstanceAttribute = &aws.Operation{
 			Name:       "ResetInstanceAttribute",
@@ -4998,6 +5451,9 @@ var opResetInstanceAttribute *aws.Operation
 
 // ResetNetworkInterfaceAttributeRequest generates a request for the ResetNetworkInterfaceAttribute operation.
 func (c *EC2) ResetNetworkInterfaceAttributeRequest(input *ResetNetworkInterfaceAttributeInput) (req *aws.Request, output *ResetNetworkInterfaceAttributeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opResetNetworkInterfaceAttribute == nil {
 		opResetNetworkInterfaceAttribute = &aws.Operation{
 			Name:       "ResetNetworkInterfaceAttribute",
@@ -5025,6 +5481,9 @@ var opResetNetworkInterfaceAttribute *aws.Operation
 
 // ResetSnapshotAttributeRequest generates a request for the ResetSnapshotAttribute operation.
 func (c *EC2) ResetSnapshotAttributeRequest(input *ResetSnapshotAttributeInput) (req *aws.Request, output *ResetSnapshotAttributeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opResetSnapshotAttribute == nil {
 		opResetSnapshotAttribute = &aws.Operation{
 			Name:       "ResetSnapshotAttribute",
@@ -5055,6 +5514,9 @@ var opResetSnapshotAttribute *aws.Operation
 
 // RevokeSecurityGroupEgressRequest generates a request for the RevokeSecurityGroupEgress operation.
 func (c *EC2) RevokeSecurityGroupEgressRequest(input *RevokeSecurityGroupEgressInput) (req *aws.Request, output *RevokeSecurityGroupEgressOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRevokeSecurityGroupEgress == nil {
 		opRevokeSecurityGroupEgress = &aws.Operation{
 			Name:       "RevokeSecurityGroupEgress",
@@ -5091,6 +5553,9 @@ var opRevokeSecurityGroupEgress *aws.Operation
 
 // RevokeSecurityGroupIngressRequest generates a request for the RevokeSecurityGroupIngress operation.
 func (c *EC2) RevokeSecurityGroupIngressRequest(input *RevokeSecurityGroupIngressInput) (req *aws.Request, output *RevokeSecurityGroupIngressOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRevokeSecurityGroupIngress == nil {
 		opRevokeSecurityGroupIngress = &aws.Operation{
 			Name:       "RevokeSecurityGroupIngress",
@@ -5127,6 +5592,9 @@ var opRevokeSecurityGroupIngress *aws.Operation
 
 // RunInstancesRequest generates a request for the RunInstances operation.
 func (c *EC2) RunInstancesRequest(input *RunInstancesInput) (req *aws.Request, output *Reservation) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRunInstances == nil {
 		opRunInstances = &aws.Operation{
 			Name:       "RunInstances",
@@ -5185,6 +5653,9 @@ var opRunInstances *aws.Operation
 
 // StartInstancesRequest generates a request for the StartInstances operation.
 func (c *EC2) StartInstancesRequest(input *StartInstancesInput) (req *aws.Request, output *StartInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opStartInstances == nil {
 		opStartInstances = &aws.Operation{
 			Name:       "StartInstances",
@@ -5229,6 +5700,9 @@ var opStartInstances *aws.Operation
 
 // StopInstancesRequest generates a request for the StopInstances operation.
 func (c *EC2) StopInstancesRequest(input *StopInstancesInput) (req *aws.Request, output *StopInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opStopInstances == nil {
 		opStopInstances = &aws.Operation{
 			Name:       "StopInstances",
@@ -5285,6 +5759,9 @@ var opStopInstances *aws.Operation
 
 // TerminateInstancesRequest generates a request for the TerminateInstances operation.
 func (c *EC2) TerminateInstancesRequest(input *TerminateInstancesInput) (req *aws.Request, output *TerminateInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opTerminateInstances == nil {
 		opTerminateInstances = &aws.Operation{
 			Name:       "TerminateInstances",
@@ -5332,6 +5809,9 @@ var opTerminateInstances *aws.Operation
 
 // UnassignPrivateIPAddressesRequest generates a request for the UnassignPrivateIPAddresses operation.
 func (c *EC2) UnassignPrivateIPAddressesRequest(input *UnassignPrivateIPAddressesInput) (req *aws.Request, output *UnassignPrivateIPAddressesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUnassignPrivateIPAddresses == nil {
 		opUnassignPrivateIPAddresses = &aws.Operation{
 			Name:       "UnassignPrivateIpAddresses",
@@ -5358,6 +5838,9 @@ var opUnassignPrivateIPAddresses *aws.Operation
 
 // UnmonitorInstancesRequest generates a request for the UnmonitorInstances operation.
 func (c *EC2) UnmonitorInstancesRequest(input *UnmonitorInstancesInput) (req *aws.Request, output *UnmonitorInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUnmonitorInstances == nil {
 		opUnmonitorInstances = &aws.Operation{
 			Name:       "UnmonitorInstances",

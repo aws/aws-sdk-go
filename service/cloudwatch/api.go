@@ -4,13 +4,19 @@
 package cloudwatch
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // DeleteAlarmsRequest generates a request for the DeleteAlarms operation.
 func (c *CloudWatch) DeleteAlarmsRequest(input *DeleteAlarmsInput) (req *aws.Request, output *DeleteAlarmsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteAlarms == nil {
 		opDeleteAlarms = &aws.Operation{
 			Name:       "DeleteAlarms",
@@ -37,6 +43,9 @@ var opDeleteAlarms *aws.Operation
 
 // DescribeAlarmHistoryRequest generates a request for the DescribeAlarmHistory operation.
 func (c *CloudWatch) DescribeAlarmHistoryRequest(input *DescribeAlarmHistoryInput) (req *aws.Request, output *DescribeAlarmHistoryOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAlarmHistory == nil {
 		opDescribeAlarmHistory = &aws.Operation{
 			Name:       "DescribeAlarmHistory",
@@ -65,6 +74,9 @@ var opDescribeAlarmHistory *aws.Operation
 
 // DescribeAlarmsRequest generates a request for the DescribeAlarms operation.
 func (c *CloudWatch) DescribeAlarmsRequest(input *DescribeAlarmsInput) (req *aws.Request, output *DescribeAlarmsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAlarms == nil {
 		opDescribeAlarms = &aws.Operation{
 			Name:       "DescribeAlarms",
@@ -93,6 +105,9 @@ var opDescribeAlarms *aws.Operation
 
 // DescribeAlarmsForMetricRequest generates a request for the DescribeAlarmsForMetric operation.
 func (c *CloudWatch) DescribeAlarmsForMetricRequest(input *DescribeAlarmsForMetricInput) (req *aws.Request, output *DescribeAlarmsForMetricOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAlarmsForMetric == nil {
 		opDescribeAlarmsForMetric = &aws.Operation{
 			Name:       "DescribeAlarmsForMetric",
@@ -120,6 +135,9 @@ var opDescribeAlarmsForMetric *aws.Operation
 
 // DisableAlarmActionsRequest generates a request for the DisableAlarmActions operation.
 func (c *CloudWatch) DisableAlarmActionsRequest(input *DisableAlarmActionsInput) (req *aws.Request, output *DisableAlarmActionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDisableAlarmActions == nil {
 		opDisableAlarmActions = &aws.Operation{
 			Name:       "DisableAlarmActions",
@@ -147,6 +165,9 @@ var opDisableAlarmActions *aws.Operation
 
 // EnableAlarmActionsRequest generates a request for the EnableAlarmActions operation.
 func (c *CloudWatch) EnableAlarmActionsRequest(input *EnableAlarmActionsInput) (req *aws.Request, output *EnableAlarmActionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opEnableAlarmActions == nil {
 		opEnableAlarmActions = &aws.Operation{
 			Name:       "EnableAlarmActions",
@@ -173,6 +194,9 @@ var opEnableAlarmActions *aws.Operation
 
 // GetMetricStatisticsRequest generates a request for the GetMetricStatistics operation.
 func (c *CloudWatch) GetMetricStatisticsRequest(input *GetMetricStatisticsInput) (req *aws.Request, output *GetMetricStatisticsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetMetricStatistics == nil {
 		opGetMetricStatistics = &aws.Operation{
 			Name:       "GetMetricStatistics",
@@ -224,6 +248,9 @@ var opGetMetricStatistics *aws.Operation
 
 // ListMetricsRequest generates a request for the ListMetrics operation.
 func (c *CloudWatch) ListMetricsRequest(input *ListMetricsInput) (req *aws.Request, output *ListMetricsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListMetrics == nil {
 		opListMetrics = &aws.Operation{
 			Name:       "ListMetrics",
@@ -252,6 +279,9 @@ var opListMetrics *aws.Operation
 
 // PutMetricAlarmRequest generates a request for the PutMetricAlarm operation.
 func (c *CloudWatch) PutMetricAlarmRequest(input *PutMetricAlarmInput) (req *aws.Request, output *PutMetricAlarmOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutMetricAlarm == nil {
 		opPutMetricAlarm = &aws.Operation{
 			Name:       "PutMetricAlarm",
@@ -284,6 +314,9 @@ var opPutMetricAlarm *aws.Operation
 
 // PutMetricDataRequest generates a request for the PutMetricData operation.
 func (c *CloudWatch) PutMetricDataRequest(input *PutMetricDataInput) (req *aws.Request, output *PutMetricDataOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutMetricData == nil {
 		opPutMetricData = &aws.Operation{
 			Name:       "PutMetricData",
@@ -323,6 +356,9 @@ var opPutMetricData *aws.Operation
 
 // SetAlarmStateRequest generates a request for the SetAlarmState operation.
 func (c *CloudWatch) SetAlarmStateRequest(input *SetAlarmStateInput) (req *aws.Request, output *SetAlarmStateOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetAlarmState == nil {
 		opSetAlarmState = &aws.Operation{
 			Name:       "SetAlarmState",

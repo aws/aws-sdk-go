@@ -4,11 +4,18 @@
 package elastictranscoder
 
 import (
+	"sync"
+
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // CancelJobRequest generates a request for the CancelJob operation.
 func (c *ElasticTranscoder) CancelJobRequest(input *CancelJobInput) (req *aws.Request, output *CancelJobOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCancelJob == nil {
 		opCancelJob = &aws.Operation{
 			Name:       "CancelJob",
@@ -39,6 +46,9 @@ var opCancelJob *aws.Operation
 
 // CreateJobRequest generates a request for the CreateJob operation.
 func (c *ElasticTranscoder) CreateJobRequest(input *CreateJobInput) (req *aws.Request, output *CreateJobResponse) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateJob == nil {
 		opCreateJob = &aws.Operation{
 			Name:       "CreateJob",
@@ -71,6 +81,9 @@ var opCreateJob *aws.Operation
 
 // CreatePipelineRequest generates a request for the CreatePipeline operation.
 func (c *ElasticTranscoder) CreatePipelineRequest(input *CreatePipelineInput) (req *aws.Request, output *CreatePipelineOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreatePipeline == nil {
 		opCreatePipeline = &aws.Operation{
 			Name:       "CreatePipeline",
@@ -97,6 +110,9 @@ var opCreatePipeline *aws.Operation
 
 // CreatePresetRequest generates a request for the CreatePreset operation.
 func (c *ElasticTranscoder) CreatePresetRequest(input *CreatePresetInput) (req *aws.Request, output *CreatePresetOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreatePreset == nil {
 		opCreatePreset = &aws.Operation{
 			Name:       "CreatePreset",
@@ -137,6 +153,9 @@ var opCreatePreset *aws.Operation
 
 // DeletePipelineRequest generates a request for the DeletePipeline operation.
 func (c *ElasticTranscoder) DeletePipelineRequest(input *DeletePipelineInput) (req *aws.Request, output *DeletePipelineOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeletePipeline == nil {
 		opDeletePipeline = &aws.Operation{
 			Name:       "DeletePipeline",
@@ -167,6 +186,9 @@ var opDeletePipeline *aws.Operation
 
 // DeletePresetRequest generates a request for the DeletePreset operation.
 func (c *ElasticTranscoder) DeletePresetRequest(input *DeletePresetInput) (req *aws.Request, output *DeletePresetOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeletePreset == nil {
 		opDeletePreset = &aws.Operation{
 			Name:       "DeletePreset",
@@ -195,6 +217,9 @@ var opDeletePreset *aws.Operation
 
 // ListJobsByPipelineRequest generates a request for the ListJobsByPipeline operation.
 func (c *ElasticTranscoder) ListJobsByPipelineRequest(input *ListJobsByPipelineInput) (req *aws.Request, output *ListJobsByPipelineOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListJobsByPipeline == nil {
 		opListJobsByPipeline = &aws.Operation{
 			Name:       "ListJobsByPipeline",
@@ -225,6 +250,9 @@ var opListJobsByPipeline *aws.Operation
 
 // ListJobsByStatusRequest generates a request for the ListJobsByStatus operation.
 func (c *ElasticTranscoder) ListJobsByStatusRequest(input *ListJobsByStatusInput) (req *aws.Request, output *ListJobsByStatusOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListJobsByStatus == nil {
 		opListJobsByStatus = &aws.Operation{
 			Name:       "ListJobsByStatus",
@@ -253,6 +281,9 @@ var opListJobsByStatus *aws.Operation
 
 // ListPipelinesRequest generates a request for the ListPipelines operation.
 func (c *ElasticTranscoder) ListPipelinesRequest(input *ListPipelinesInput) (req *aws.Request, output *ListPipelinesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListPipelines == nil {
 		opListPipelines = &aws.Operation{
 			Name:       "ListPipelines",
@@ -280,6 +311,9 @@ var opListPipelines *aws.Operation
 
 // ListPresetsRequest generates a request for the ListPresets operation.
 func (c *ElasticTranscoder) ListPresetsRequest(input *ListPresetsInput) (req *aws.Request, output *ListPresetsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListPresets == nil {
 		opListPresets = &aws.Operation{
 			Name:       "ListPresets",
@@ -307,6 +341,9 @@ var opListPresets *aws.Operation
 
 // ReadJobRequest generates a request for the ReadJob operation.
 func (c *ElasticTranscoder) ReadJobRequest(input *ReadJobInput) (req *aws.Request, output *ReadJobOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opReadJob == nil {
 		opReadJob = &aws.Operation{
 			Name:       "ReadJob",
@@ -333,6 +370,9 @@ var opReadJob *aws.Operation
 
 // ReadPipelineRequest generates a request for the ReadPipeline operation.
 func (c *ElasticTranscoder) ReadPipelineRequest(input *ReadPipelineInput) (req *aws.Request, output *ReadPipelineOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opReadPipeline == nil {
 		opReadPipeline = &aws.Operation{
 			Name:       "ReadPipeline",
@@ -359,6 +399,9 @@ var opReadPipeline *aws.Operation
 
 // ReadPresetRequest generates a request for the ReadPreset operation.
 func (c *ElasticTranscoder) ReadPresetRequest(input *ReadPresetInput) (req *aws.Request, output *ReadPresetOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opReadPreset == nil {
 		opReadPreset = &aws.Operation{
 			Name:       "ReadPreset",
@@ -385,6 +428,9 @@ var opReadPreset *aws.Operation
 
 // TestRoleRequest generates a request for the TestRole operation.
 func (c *ElasticTranscoder) TestRoleRequest(input *TestRoleInput) (req *aws.Request, output *TestRoleOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opTestRole == nil {
 		opTestRole = &aws.Operation{
 			Name:       "TestRole",
@@ -417,6 +463,9 @@ var opTestRole *aws.Operation
 
 // UpdatePipelineRequest generates a request for the UpdatePipeline operation.
 func (c *ElasticTranscoder) UpdatePipelineRequest(input *UpdatePipelineInput) (req *aws.Request, output *UpdatePipelineOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdatePipeline == nil {
 		opUpdatePipeline = &aws.Operation{
 			Name:       "UpdatePipeline",
@@ -447,6 +496,9 @@ var opUpdatePipeline *aws.Operation
 
 // UpdatePipelineNotificationsRequest generates a request for the UpdatePipelineNotifications operation.
 func (c *ElasticTranscoder) UpdatePipelineNotificationsRequest(input *UpdatePipelineNotificationsInput) (req *aws.Request, output *UpdatePipelineNotificationsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdatePipelineNotifications == nil {
 		opUpdatePipelineNotifications = &aws.Operation{
 			Name:       "UpdatePipelineNotifications",
@@ -477,6 +529,9 @@ var opUpdatePipelineNotifications *aws.Operation
 
 // UpdatePipelineStatusRequest generates a request for the UpdatePipelineStatus operation.
 func (c *ElasticTranscoder) UpdatePipelineStatusRequest(input *UpdatePipelineStatusInput) (req *aws.Request, output *UpdatePipelineStatusOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdatePipelineStatus == nil {
 		opUpdatePipelineStatus = &aws.Operation{
 			Name:       "UpdatePipelineStatus",

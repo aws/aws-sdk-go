@@ -5,12 +5,18 @@ package lambda
 
 import (
 	"io"
+	"sync"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // AddEventSourceRequest generates a request for the AddEventSource operation.
 func (c *Lambda) AddEventSourceRequest(input *AddEventSourceInput) (req *aws.Request, output *EventSourceConfiguration) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAddEventSource == nil {
 		opAddEventSource = &aws.Operation{
 			Name:       "AddEventSource",
@@ -56,6 +62,9 @@ var opAddEventSource *aws.Operation
 
 // DeleteFunctionRequest generates a request for the DeleteFunction operation.
 func (c *Lambda) DeleteFunctionRequest(input *DeleteFunctionInput) (req *aws.Request, output *DeleteFunctionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteFunction == nil {
 		opDeleteFunction = &aws.Operation{
 			Name:       "DeleteFunction",
@@ -84,6 +93,9 @@ var opDeleteFunction *aws.Operation
 
 // GetEventSourceRequest generates a request for the GetEventSource operation.
 func (c *Lambda) GetEventSourceRequest(input *GetEventSourceInput) (req *aws.Request, output *EventSourceConfiguration) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetEventSource == nil {
 		opGetEventSource = &aws.Operation{
 			Name:       "GetEventSource",
@@ -113,6 +125,9 @@ var opGetEventSource *aws.Operation
 
 // GetFunctionRequest generates a request for the GetFunction operation.
 func (c *Lambda) GetFunctionRequest(input *GetFunctionInput) (req *aws.Request, output *GetFunctionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetFunction == nil {
 		opGetFunction = &aws.Operation{
 			Name:       "GetFunction",
@@ -145,6 +160,9 @@ var opGetFunction *aws.Operation
 
 // GetFunctionConfigurationRequest generates a request for the GetFunctionConfiguration operation.
 func (c *Lambda) GetFunctionConfigurationRequest(input *GetFunctionConfigurationInput) (req *aws.Request, output *FunctionConfiguration) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetFunctionConfiguration == nil {
 		opGetFunctionConfiguration = &aws.Operation{
 			Name:       "GetFunctionConfiguration",
@@ -176,6 +194,9 @@ var opGetFunctionConfiguration *aws.Operation
 
 // InvokeAsyncRequest generates a request for the InvokeAsync operation.
 func (c *Lambda) InvokeAsyncRequest(input *InvokeAsyncInput) (req *aws.Request, output *InvokeAsyncOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opInvokeAsync == nil {
 		opInvokeAsync = &aws.Operation{
 			Name:       "InvokeAsync",
@@ -206,6 +227,9 @@ var opInvokeAsync *aws.Operation
 
 // ListEventSourcesRequest generates a request for the ListEventSources operation.
 func (c *Lambda) ListEventSourcesRequest(input *ListEventSourcesInput) (req *aws.Request, output *ListEventSourcesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListEventSources == nil {
 		opListEventSources = &aws.Operation{
 			Name:       "ListEventSources",
@@ -239,6 +263,9 @@ var opListEventSources *aws.Operation
 
 // ListFunctionsRequest generates a request for the ListFunctions operation.
 func (c *Lambda) ListFunctionsRequest(input *ListFunctionsInput) (req *aws.Request, output *ListFunctionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListFunctions == nil {
 		opListFunctions = &aws.Operation{
 			Name:       "ListFunctions",
@@ -269,6 +296,9 @@ var opListFunctions *aws.Operation
 
 // RemoveEventSourceRequest generates a request for the RemoveEventSource operation.
 func (c *Lambda) RemoveEventSourceRequest(input *RemoveEventSourceInput) (req *aws.Request, output *RemoveEventSourceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRemoveEventSource == nil {
 		opRemoveEventSource = &aws.Operation{
 			Name:       "RemoveEventSource",
@@ -298,6 +328,9 @@ var opRemoveEventSource *aws.Operation
 
 // UpdateFunctionConfigurationRequest generates a request for the UpdateFunctionConfiguration operation.
 func (c *Lambda) UpdateFunctionConfigurationRequest(input *UpdateFunctionConfigurationInput) (req *aws.Request, output *FunctionConfiguration) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateFunctionConfiguration == nil {
 		opUpdateFunctionConfiguration = &aws.Operation{
 			Name:       "UpdateFunctionConfiguration",
@@ -330,6 +363,9 @@ var opUpdateFunctionConfiguration *aws.Operation
 
 // UploadFunctionRequest generates a request for the UploadFunction operation.
 func (c *Lambda) UploadFunctionRequest(input *UploadFunctionInput) (req *aws.Request, output *FunctionConfiguration) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUploadFunction == nil {
 		opUploadFunction = &aws.Operation{
 			Name:       "UploadFunction",

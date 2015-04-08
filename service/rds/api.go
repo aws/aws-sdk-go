@@ -4,13 +4,19 @@
 package rds
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // AddSourceIdentifierToSubscriptionRequest generates a request for the AddSourceIdentifierToSubscription operation.
 func (c *RDS) AddSourceIdentifierToSubscriptionRequest(input *AddSourceIdentifierToSubscriptionInput) (req *aws.Request, output *AddSourceIdentifierToSubscriptionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAddSourceIdentifierToSubscription == nil {
 		opAddSourceIdentifierToSubscription = &aws.Operation{
 			Name:       "AddSourceIdentifierToSubscription",
@@ -37,6 +43,9 @@ var opAddSourceIdentifierToSubscription *aws.Operation
 
 // AddTagsToResourceRequest generates a request for the AddTagsToResource operation.
 func (c *RDS) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *aws.Request, output *AddTagsToResourceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAddTagsToResource == nil {
 		opAddTagsToResource = &aws.Operation{
 			Name:       "AddTagsToResource",
@@ -68,6 +77,9 @@ var opAddTagsToResource *aws.Operation
 
 // ApplyPendingMaintenanceActionRequest generates a request for the ApplyPendingMaintenanceAction operation.
 func (c *RDS) ApplyPendingMaintenanceActionRequest(input *ApplyPendingMaintenanceActionInput) (req *aws.Request, output *ApplyPendingMaintenanceActionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opApplyPendingMaintenanceAction == nil {
 		opApplyPendingMaintenanceAction = &aws.Operation{
 			Name:       "ApplyPendingMaintenanceAction",
@@ -94,6 +106,9 @@ var opApplyPendingMaintenanceAction *aws.Operation
 
 // AuthorizeDBSecurityGroupIngressRequest generates a request for the AuthorizeDBSecurityGroupIngress operation.
 func (c *RDS) AuthorizeDBSecurityGroupIngressRequest(input *AuthorizeDBSecurityGroupIngressInput) (req *aws.Request, output *AuthorizeDBSecurityGroupIngressOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAuthorizeDBSecurityGroupIngress == nil {
 		opAuthorizeDBSecurityGroupIngress = &aws.Operation{
 			Name:       "AuthorizeDBSecurityGroupIngress",
@@ -131,6 +146,9 @@ var opAuthorizeDBSecurityGroupIngress *aws.Operation
 
 // CopyDBParameterGroupRequest generates a request for the CopyDBParameterGroup operation.
 func (c *RDS) CopyDBParameterGroupRequest(input *CopyDBParameterGroupInput) (req *aws.Request, output *CopyDBParameterGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCopyDBParameterGroup == nil {
 		opCopyDBParameterGroup = &aws.Operation{
 			Name:       "CopyDBParameterGroup",
@@ -157,6 +175,9 @@ var opCopyDBParameterGroup *aws.Operation
 
 // CopyDBSnapshotRequest generates a request for the CopyDBSnapshot operation.
 func (c *RDS) CopyDBSnapshotRequest(input *CopyDBSnapshotInput) (req *aws.Request, output *CopyDBSnapshotOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCopyDBSnapshot == nil {
 		opCopyDBSnapshot = &aws.Operation{
 			Name:       "CopyDBSnapshot",
@@ -184,6 +205,9 @@ var opCopyDBSnapshot *aws.Operation
 
 // CopyOptionGroupRequest generates a request for the CopyOptionGroup operation.
 func (c *RDS) CopyOptionGroupRequest(input *CopyOptionGroupInput) (req *aws.Request, output *CopyOptionGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCopyOptionGroup == nil {
 		opCopyOptionGroup = &aws.Operation{
 			Name:       "CopyOptionGroup",
@@ -210,6 +234,9 @@ var opCopyOptionGroup *aws.Operation
 
 // CreateDBInstanceRequest generates a request for the CreateDBInstance operation.
 func (c *RDS) CreateDBInstanceRequest(input *CreateDBInstanceInput) (req *aws.Request, output *CreateDBInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateDBInstance == nil {
 		opCreateDBInstance = &aws.Operation{
 			Name:       "CreateDBInstance",
@@ -236,6 +263,9 @@ var opCreateDBInstance *aws.Operation
 
 // CreateDBInstanceReadReplicaRequest generates a request for the CreateDBInstanceReadReplica operation.
 func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadReplicaInput) (req *aws.Request, output *CreateDBInstanceReadReplicaOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateDBInstanceReadReplica == nil {
 		opCreateDBInstanceReadReplica = &aws.Operation{
 			Name:       "CreateDBInstanceReadReplica",
@@ -269,6 +299,9 @@ var opCreateDBInstanceReadReplica *aws.Operation
 
 // CreateDBParameterGroupRequest generates a request for the CreateDBParameterGroup operation.
 func (c *RDS) CreateDBParameterGroupRequest(input *CreateDBParameterGroupInput) (req *aws.Request, output *CreateDBParameterGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateDBParameterGroup == nil {
 		opCreateDBParameterGroup = &aws.Operation{
 			Name:       "CreateDBParameterGroup",
@@ -315,6 +348,9 @@ var opCreateDBParameterGroup *aws.Operation
 
 // CreateDBSecurityGroupRequest generates a request for the CreateDBSecurityGroup operation.
 func (c *RDS) CreateDBSecurityGroupRequest(input *CreateDBSecurityGroupInput) (req *aws.Request, output *CreateDBSecurityGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateDBSecurityGroup == nil {
 		opCreateDBSecurityGroup = &aws.Operation{
 			Name:       "CreateDBSecurityGroup",
@@ -342,6 +378,9 @@ var opCreateDBSecurityGroup *aws.Operation
 
 // CreateDBSnapshotRequest generates a request for the CreateDBSnapshot operation.
 func (c *RDS) CreateDBSnapshotRequest(input *CreateDBSnapshotInput) (req *aws.Request, output *CreateDBSnapshotOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateDBSnapshot == nil {
 		opCreateDBSnapshot = &aws.Operation{
 			Name:       "CreateDBSnapshot",
@@ -368,6 +407,9 @@ var opCreateDBSnapshot *aws.Operation
 
 // CreateDBSubnetGroupRequest generates a request for the CreateDBSubnetGroup operation.
 func (c *RDS) CreateDBSubnetGroupRequest(input *CreateDBSubnetGroupInput) (req *aws.Request, output *CreateDBSubnetGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateDBSubnetGroup == nil {
 		opCreateDBSubnetGroup = &aws.Operation{
 			Name:       "CreateDBSubnetGroup",
@@ -395,6 +437,9 @@ var opCreateDBSubnetGroup *aws.Operation
 
 // CreateEventSubscriptionRequest generates a request for the CreateEventSubscription operation.
 func (c *RDS) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput) (req *aws.Request, output *CreateEventSubscriptionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateEventSubscription == nil {
 		opCreateEventSubscription = &aws.Operation{
 			Name:       "CreateEventSubscription",
@@ -439,6 +484,9 @@ var opCreateEventSubscription *aws.Operation
 
 // CreateOptionGroupRequest generates a request for the CreateOptionGroup operation.
 func (c *RDS) CreateOptionGroupRequest(input *CreateOptionGroupInput) (req *aws.Request, output *CreateOptionGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateOptionGroup == nil {
 		opCreateOptionGroup = &aws.Operation{
 			Name:       "CreateOptionGroup",
@@ -465,6 +513,9 @@ var opCreateOptionGroup *aws.Operation
 
 // DeleteDBInstanceRequest generates a request for the DeleteDBInstance operation.
 func (c *RDS) DeleteDBInstanceRequest(input *DeleteDBInstanceInput) (req *aws.Request, output *DeleteDBInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteDBInstance == nil {
 		opDeleteDBInstance = &aws.Operation{
 			Name:       "DeleteDBInstance",
@@ -500,6 +551,9 @@ var opDeleteDBInstance *aws.Operation
 
 // DeleteDBParameterGroupRequest generates a request for the DeleteDBParameterGroup operation.
 func (c *RDS) DeleteDBParameterGroupRequest(input *DeleteDBParameterGroupInput) (req *aws.Request, output *DeleteDBParameterGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteDBParameterGroup == nil {
 		opDeleteDBParameterGroup = &aws.Operation{
 			Name:       "DeleteDBParameterGroup",
@@ -529,6 +583,9 @@ var opDeleteDBParameterGroup *aws.Operation
 
 // DeleteDBSecurityGroupRequest generates a request for the DeleteDBSecurityGroup operation.
 func (c *RDS) DeleteDBSecurityGroupRequest(input *DeleteDBSecurityGroupInput) (req *aws.Request, output *DeleteDBSecurityGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteDBSecurityGroup == nil {
 		opDeleteDBSecurityGroup = &aws.Operation{
 			Name:       "DeleteDBSecurityGroup",
@@ -557,6 +614,9 @@ var opDeleteDBSecurityGroup *aws.Operation
 
 // DeleteDBSnapshotRequest generates a request for the DeleteDBSnapshot operation.
 func (c *RDS) DeleteDBSnapshotRequest(input *DeleteDBSnapshotInput) (req *aws.Request, output *DeleteDBSnapshotOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteDBSnapshot == nil {
 		opDeleteDBSnapshot = &aws.Operation{
 			Name:       "DeleteDBSnapshot",
@@ -586,6 +646,9 @@ var opDeleteDBSnapshot *aws.Operation
 
 // DeleteDBSubnetGroupRequest generates a request for the DeleteDBSubnetGroup operation.
 func (c *RDS) DeleteDBSubnetGroupRequest(input *DeleteDBSubnetGroupInput) (req *aws.Request, output *DeleteDBSubnetGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteDBSubnetGroup == nil {
 		opDeleteDBSubnetGroup = &aws.Operation{
 			Name:       "DeleteDBSubnetGroup",
@@ -614,6 +677,9 @@ var opDeleteDBSubnetGroup *aws.Operation
 
 // DeleteEventSubscriptionRequest generates a request for the DeleteEventSubscription operation.
 func (c *RDS) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionInput) (req *aws.Request, output *DeleteEventSubscriptionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteEventSubscription == nil {
 		opDeleteEventSubscription = &aws.Operation{
 			Name:       "DeleteEventSubscription",
@@ -640,6 +706,9 @@ var opDeleteEventSubscription *aws.Operation
 
 // DeleteOptionGroupRequest generates a request for the DeleteOptionGroup operation.
 func (c *RDS) DeleteOptionGroupRequest(input *DeleteOptionGroupInput) (req *aws.Request, output *DeleteOptionGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteOptionGroup == nil {
 		opDeleteOptionGroup = &aws.Operation{
 			Name:       "DeleteOptionGroup",
@@ -666,6 +735,9 @@ var opDeleteOptionGroup *aws.Operation
 
 // DescribeDBEngineVersionsRequest generates a request for the DescribeDBEngineVersions operation.
 func (c *RDS) DescribeDBEngineVersionsRequest(input *DescribeDBEngineVersionsInput) (req *aws.Request, output *DescribeDBEngineVersionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeDBEngineVersions == nil {
 		opDescribeDBEngineVersions = &aws.Operation{
 			Name:       "DescribeDBEngineVersions",
@@ -692,6 +764,9 @@ var opDescribeDBEngineVersions *aws.Operation
 
 // DescribeDBInstancesRequest generates a request for the DescribeDBInstances operation.
 func (c *RDS) DescribeDBInstancesRequest(input *DescribeDBInstancesInput) (req *aws.Request, output *DescribeDBInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeDBInstances == nil {
 		opDescribeDBInstances = &aws.Operation{
 			Name:       "DescribeDBInstances",
@@ -718,6 +793,9 @@ var opDescribeDBInstances *aws.Operation
 
 // DescribeDBLogFilesRequest generates a request for the DescribeDBLogFiles operation.
 func (c *RDS) DescribeDBLogFilesRequest(input *DescribeDBLogFilesInput) (req *aws.Request, output *DescribeDBLogFilesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeDBLogFiles == nil {
 		opDescribeDBLogFiles = &aws.Operation{
 			Name:       "DescribeDBLogFiles",
@@ -744,6 +822,9 @@ var opDescribeDBLogFiles *aws.Operation
 
 // DescribeDBParameterGroupsRequest generates a request for the DescribeDBParameterGroups operation.
 func (c *RDS) DescribeDBParameterGroupsRequest(input *DescribeDBParameterGroupsInput) (req *aws.Request, output *DescribeDBParameterGroupsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeDBParameterGroups == nil {
 		opDescribeDBParameterGroups = &aws.Operation{
 			Name:       "DescribeDBParameterGroups",
@@ -772,6 +853,9 @@ var opDescribeDBParameterGroups *aws.Operation
 
 // DescribeDBParametersRequest generates a request for the DescribeDBParameters operation.
 func (c *RDS) DescribeDBParametersRequest(input *DescribeDBParametersInput) (req *aws.Request, output *DescribeDBParametersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeDBParameters == nil {
 		opDescribeDBParameters = &aws.Operation{
 			Name:       "DescribeDBParameters",
@@ -798,6 +882,9 @@ var opDescribeDBParameters *aws.Operation
 
 // DescribeDBSecurityGroupsRequest generates a request for the DescribeDBSecurityGroups operation.
 func (c *RDS) DescribeDBSecurityGroupsRequest(input *DescribeDBSecurityGroupsInput) (req *aws.Request, output *DescribeDBSecurityGroupsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeDBSecurityGroups == nil {
 		opDescribeDBSecurityGroups = &aws.Operation{
 			Name:       "DescribeDBSecurityGroups",
@@ -826,6 +913,9 @@ var opDescribeDBSecurityGroups *aws.Operation
 
 // DescribeDBSnapshotsRequest generates a request for the DescribeDBSnapshots operation.
 func (c *RDS) DescribeDBSnapshotsRequest(input *DescribeDBSnapshotsInput) (req *aws.Request, output *DescribeDBSnapshotsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeDBSnapshots == nil {
 		opDescribeDBSnapshots = &aws.Operation{
 			Name:       "DescribeDBSnapshots",
@@ -852,6 +942,9 @@ var opDescribeDBSnapshots *aws.Operation
 
 // DescribeDBSubnetGroupsRequest generates a request for the DescribeDBSubnetGroups operation.
 func (c *RDS) DescribeDBSubnetGroupsRequest(input *DescribeDBSubnetGroupsInput) (req *aws.Request, output *DescribeDBSubnetGroupsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeDBSubnetGroups == nil {
 		opDescribeDBSubnetGroups = &aws.Operation{
 			Name:       "DescribeDBSubnetGroups",
@@ -881,6 +974,9 @@ var opDescribeDBSubnetGroups *aws.Operation
 
 // DescribeEngineDefaultParametersRequest generates a request for the DescribeEngineDefaultParameters operation.
 func (c *RDS) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaultParametersInput) (req *aws.Request, output *DescribeEngineDefaultParametersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeEngineDefaultParameters == nil {
 		opDescribeEngineDefaultParameters = &aws.Operation{
 			Name:       "DescribeEngineDefaultParameters",
@@ -908,6 +1004,9 @@ var opDescribeEngineDefaultParameters *aws.Operation
 
 // DescribeEventCategoriesRequest generates a request for the DescribeEventCategories operation.
 func (c *RDS) DescribeEventCategoriesRequest(input *DescribeEventCategoriesInput) (req *aws.Request, output *DescribeEventCategoriesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeEventCategories == nil {
 		opDescribeEventCategories = &aws.Operation{
 			Name:       "DescribeEventCategories",
@@ -937,6 +1036,9 @@ var opDescribeEventCategories *aws.Operation
 
 // DescribeEventSubscriptionsRequest generates a request for the DescribeEventSubscriptions operation.
 func (c *RDS) DescribeEventSubscriptionsRequest(input *DescribeEventSubscriptionsInput) (req *aws.Request, output *DescribeEventSubscriptionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeEventSubscriptions == nil {
 		opDescribeEventSubscriptions = &aws.Operation{
 			Name:       "DescribeEventSubscriptions",
@@ -967,6 +1069,9 @@ var opDescribeEventSubscriptions *aws.Operation
 
 // DescribeEventsRequest generates a request for the DescribeEvents operation.
 func (c *RDS) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Request, output *DescribeEventsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeEvents == nil {
 		opDescribeEvents = &aws.Operation{
 			Name:       "DescribeEvents",
@@ -997,6 +1102,9 @@ var opDescribeEvents *aws.Operation
 
 // DescribeOptionGroupOptionsRequest generates a request for the DescribeOptionGroupOptions operation.
 func (c *RDS) DescribeOptionGroupOptionsRequest(input *DescribeOptionGroupOptionsInput) (req *aws.Request, output *DescribeOptionGroupOptionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeOptionGroupOptions == nil {
 		opDescribeOptionGroupOptions = &aws.Operation{
 			Name:       "DescribeOptionGroupOptions",
@@ -1023,6 +1131,9 @@ var opDescribeOptionGroupOptions *aws.Operation
 
 // DescribeOptionGroupsRequest generates a request for the DescribeOptionGroups operation.
 func (c *RDS) DescribeOptionGroupsRequest(input *DescribeOptionGroupsInput) (req *aws.Request, output *DescribeOptionGroupsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeOptionGroups == nil {
 		opDescribeOptionGroups = &aws.Operation{
 			Name:       "DescribeOptionGroups",
@@ -1049,6 +1160,9 @@ var opDescribeOptionGroups *aws.Operation
 
 // DescribeOrderableDBInstanceOptionsRequest generates a request for the DescribeOrderableDBInstanceOptions operation.
 func (c *RDS) DescribeOrderableDBInstanceOptionsRequest(input *DescribeOrderableDBInstanceOptionsInput) (req *aws.Request, output *DescribeOrderableDBInstanceOptionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeOrderableDBInstanceOptions == nil {
 		opDescribeOrderableDBInstanceOptions = &aws.Operation{
 			Name:       "DescribeOrderableDBInstanceOptions",
@@ -1075,6 +1189,9 @@ var opDescribeOrderableDBInstanceOptions *aws.Operation
 
 // DescribePendingMaintenanceActionsRequest generates a request for the DescribePendingMaintenanceActions operation.
 func (c *RDS) DescribePendingMaintenanceActionsRequest(input *DescribePendingMaintenanceActionsInput) (req *aws.Request, output *DescribePendingMaintenanceActionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribePendingMaintenanceActions == nil {
 		opDescribePendingMaintenanceActions = &aws.Operation{
 			Name:       "DescribePendingMaintenanceActions",
@@ -1102,6 +1219,9 @@ var opDescribePendingMaintenanceActions *aws.Operation
 
 // DescribeReservedDBInstancesRequest generates a request for the DescribeReservedDBInstances operation.
 func (c *RDS) DescribeReservedDBInstancesRequest(input *DescribeReservedDBInstancesInput) (req *aws.Request, output *DescribeReservedDBInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeReservedDBInstances == nil {
 		opDescribeReservedDBInstances = &aws.Operation{
 			Name:       "DescribeReservedDBInstances",
@@ -1129,6 +1249,9 @@ var opDescribeReservedDBInstances *aws.Operation
 
 // DescribeReservedDBInstancesOfferingsRequest generates a request for the DescribeReservedDBInstancesOfferings operation.
 func (c *RDS) DescribeReservedDBInstancesOfferingsRequest(input *DescribeReservedDBInstancesOfferingsInput) (req *aws.Request, output *DescribeReservedDBInstancesOfferingsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeReservedDBInstancesOfferings == nil {
 		opDescribeReservedDBInstancesOfferings = &aws.Operation{
 			Name:       "DescribeReservedDBInstancesOfferings",
@@ -1155,6 +1278,9 @@ var opDescribeReservedDBInstancesOfferings *aws.Operation
 
 // DownloadDBLogFilePortionRequest generates a request for the DownloadDBLogFilePortion operation.
 func (c *RDS) DownloadDBLogFilePortionRequest(input *DownloadDBLogFilePortionInput) (req *aws.Request, output *DownloadDBLogFilePortionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDownloadDBLogFilePortion == nil {
 		opDownloadDBLogFilePortion = &aws.Operation{
 			Name:       "DownloadDBLogFilePortion",
@@ -1181,6 +1307,9 @@ var opDownloadDBLogFilePortion *aws.Operation
 
 // ListTagsForResourceRequest generates a request for the ListTagsForResource operation.
 func (c *RDS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *aws.Request, output *ListTagsForResourceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListTagsForResource == nil {
 		opListTagsForResource = &aws.Operation{
 			Name:       "ListTagsForResource",
@@ -1210,6 +1339,9 @@ var opListTagsForResource *aws.Operation
 
 // ModifyDBInstanceRequest generates a request for the ModifyDBInstance operation.
 func (c *RDS) ModifyDBInstanceRequest(input *ModifyDBInstanceInput) (req *aws.Request, output *ModifyDBInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyDBInstance == nil {
 		opModifyDBInstance = &aws.Operation{
 			Name:       "ModifyDBInstance",
@@ -1237,6 +1369,9 @@ var opModifyDBInstance *aws.Operation
 
 // ModifyDBParameterGroupRequest generates a request for the ModifyDBParameterGroup operation.
 func (c *RDS) ModifyDBParameterGroupRequest(input *ModifyDBParameterGroupInput) (req *aws.Request, output *DBParameterGroupNameMessage) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyDBParameterGroup == nil {
 		opModifyDBParameterGroup = &aws.Operation{
 			Name:       "ModifyDBParameterGroup",
@@ -1280,6 +1415,9 @@ var opModifyDBParameterGroup *aws.Operation
 
 // ModifyDBSubnetGroupRequest generates a request for the ModifyDBSubnetGroup operation.
 func (c *RDS) ModifyDBSubnetGroupRequest(input *ModifyDBSubnetGroupInput) (req *aws.Request, output *ModifyDBSubnetGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyDBSubnetGroup == nil {
 		opModifyDBSubnetGroup = &aws.Operation{
 			Name:       "ModifyDBSubnetGroup",
@@ -1307,6 +1445,9 @@ var opModifyDBSubnetGroup *aws.Operation
 
 // ModifyEventSubscriptionRequest generates a request for the ModifyEventSubscription operation.
 func (c *RDS) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionInput) (req *aws.Request, output *ModifyEventSubscriptionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyEventSubscription == nil {
 		opModifyEventSubscription = &aws.Operation{
 			Name:       "ModifyEventSubscription",
@@ -1341,6 +1482,9 @@ var opModifyEventSubscription *aws.Operation
 
 // ModifyOptionGroupRequest generates a request for the ModifyOptionGroup operation.
 func (c *RDS) ModifyOptionGroupRequest(input *ModifyOptionGroupInput) (req *aws.Request, output *ModifyOptionGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyOptionGroup == nil {
 		opModifyOptionGroup = &aws.Operation{
 			Name:       "ModifyOptionGroup",
@@ -1367,6 +1511,9 @@ var opModifyOptionGroup *aws.Operation
 
 // PromoteReadReplicaRequest generates a request for the PromoteReadReplica operation.
 func (c *RDS) PromoteReadReplicaRequest(input *PromoteReadReplicaInput) (req *aws.Request, output *PromoteReadReplicaOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPromoteReadReplica == nil {
 		opPromoteReadReplica = &aws.Operation{
 			Name:       "PromoteReadReplica",
@@ -1398,6 +1545,9 @@ var opPromoteReadReplica *aws.Operation
 
 // PurchaseReservedDBInstancesOfferingRequest generates a request for the PurchaseReservedDBInstancesOffering operation.
 func (c *RDS) PurchaseReservedDBInstancesOfferingRequest(input *PurchaseReservedDBInstancesOfferingInput) (req *aws.Request, output *PurchaseReservedDBInstancesOfferingOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPurchaseReservedDBInstancesOffering == nil {
 		opPurchaseReservedDBInstancesOffering = &aws.Operation{
 			Name:       "PurchaseReservedDBInstancesOffering",
@@ -1424,6 +1574,9 @@ var opPurchaseReservedDBInstancesOffering *aws.Operation
 
 // RebootDBInstanceRequest generates a request for the RebootDBInstance operation.
 func (c *RDS) RebootDBInstanceRequest(input *RebootDBInstanceInput) (req *aws.Request, output *RebootDBInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRebootDBInstance == nil {
 		opRebootDBInstance = &aws.Operation{
 			Name:       "RebootDBInstance",
@@ -1466,6 +1619,9 @@ var opRebootDBInstance *aws.Operation
 
 // RemoveSourceIdentifierFromSubscriptionRequest generates a request for the RemoveSourceIdentifierFromSubscription operation.
 func (c *RDS) RemoveSourceIdentifierFromSubscriptionRequest(input *RemoveSourceIdentifierFromSubscriptionInput) (req *aws.Request, output *RemoveSourceIdentifierFromSubscriptionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRemoveSourceIdentifierFromSubscription == nil {
 		opRemoveSourceIdentifierFromSubscription = &aws.Operation{
 			Name:       "RemoveSourceIdentifierFromSubscription",
@@ -1492,6 +1648,9 @@ var opRemoveSourceIdentifierFromSubscription *aws.Operation
 
 // RemoveTagsFromResourceRequest generates a request for the RemoveTagsFromResource operation.
 func (c *RDS) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) (req *aws.Request, output *RemoveTagsFromResourceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRemoveTagsFromResource == nil {
 		opRemoveTagsFromResource = &aws.Operation{
 			Name:       "RemoveTagsFromResource",
@@ -1521,6 +1680,9 @@ var opRemoveTagsFromResource *aws.Operation
 
 // ResetDBParameterGroupRequest generates a request for the ResetDBParameterGroup operation.
 func (c *RDS) ResetDBParameterGroupRequest(input *ResetDBParameterGroupInput) (req *aws.Request, output *DBParameterGroupNameMessage) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opResetDBParameterGroup == nil {
 		opResetDBParameterGroup = &aws.Operation{
 			Name:       "ResetDBParameterGroup",
@@ -1553,6 +1715,9 @@ var opResetDBParameterGroup *aws.Operation
 
 // RestoreDBInstanceFromDBSnapshotRequest generates a request for the RestoreDBInstanceFromDBSnapshot operation.
 func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFromDBSnapshotInput) (req *aws.Request, output *RestoreDBInstanceFromDBSnapshotOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRestoreDBInstanceFromDBSnapshot == nil {
 		opRestoreDBInstanceFromDBSnapshot = &aws.Operation{
 			Name:       "RestoreDBInstanceFromDBSnapshot",
@@ -1591,6 +1756,9 @@ var opRestoreDBInstanceFromDBSnapshot *aws.Operation
 
 // RestoreDBInstanceToPointInTimeRequest generates a request for the RestoreDBInstanceToPointInTime operation.
 func (c *RDS) RestoreDBInstanceToPointInTimeRequest(input *RestoreDBInstanceToPointInTimeInput) (req *aws.Request, output *RestoreDBInstanceToPointInTimeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRestoreDBInstanceToPointInTime == nil {
 		opRestoreDBInstanceToPointInTime = &aws.Operation{
 			Name:       "RestoreDBInstanceToPointInTime",
@@ -1621,6 +1789,9 @@ var opRestoreDBInstanceToPointInTime *aws.Operation
 
 // RevokeDBSecurityGroupIngressRequest generates a request for the RevokeDBSecurityGroupIngress operation.
 func (c *RDS) RevokeDBSecurityGroupIngressRequest(input *RevokeDBSecurityGroupIngressInput) (req *aws.Request, output *RevokeDBSecurityGroupIngressOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRevokeDBSecurityGroupIngress == nil {
 		opRevokeDBSecurityGroupIngress = &aws.Operation{
 			Name:       "RevokeDBSecurityGroupIngress",
@@ -2788,6 +2959,11 @@ type DBInstance struct {
 	// associated with.
 	CharacterSetName *string `type:"string"`
 
+	// If StorageEncrypted is true, the region-unique, immutable identifier for
+	// the encrypted DB instance. This identifier is found in AWS CloudTrail log
+	// entries whenever the KMS key for the DB instance is accessed.
+	DBIResourceID *string `locationName:"DbiResourceId" type:"string"`
+
 	// Contains the name of the compute and memory capacity class of the DB instance.
 	DBInstanceClass *string `type:"string"`
 
@@ -2827,11 +3003,6 @@ type DBInstance struct {
 	// Specifies information on the subnet group associated with the DB instance,
 	// including the name, description, and subnets in the subnet group.
 	DBSubnetGroup *DBSubnetGroup `type:"structure"`
-
-	// If StorageEncrypted is true, the region-unique, immutable identifier for
-	// the encrypted DB instance. This identifier is found in AWS CloudTrail log
-	// entries whenever the KMS key for the DB instance is accessed.
-	DBiResourceID *string `locationName:"DbiResourceId" type:"string"`
 
 	// Specifies the connection endpoint.
 	Endpoint *Endpoint `type:"structure"`

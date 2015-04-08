@@ -4,13 +4,19 @@
 package kms
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // CreateAliasRequest generates a request for the CreateAlias operation.
 func (c *KMS) CreateAliasRequest(input *CreateAliasInput) (req *aws.Request, output *CreateAliasOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateAlias == nil {
 		opCreateAlias = &aws.Operation{
 			Name:       "CreateAlias",
@@ -43,6 +49,9 @@ var opCreateAlias *aws.Operation
 
 // CreateGrantRequest generates a request for the CreateGrant operation.
 func (c *KMS) CreateGrantRequest(input *CreateGrantInput) (req *aws.Request, output *CreateGrantOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateGrant == nil {
 		opCreateGrant = &aws.Operation{
 			Name:       "CreateGrant",
@@ -73,6 +82,9 @@ var opCreateGrant *aws.Operation
 
 // CreateKeyRequest generates a request for the CreateKey operation.
 func (c *KMS) CreateKeyRequest(input *CreateKeyInput) (req *aws.Request, output *CreateKeyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateKey == nil {
 		opCreateKey = &aws.Operation{
 			Name:       "CreateKey",
@@ -102,6 +114,9 @@ var opCreateKey *aws.Operation
 
 // DecryptRequest generates a request for the Decrypt operation.
 func (c *KMS) DecryptRequest(input *DecryptInput) (req *aws.Request, output *DecryptOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDecrypt == nil {
 		opDecrypt = &aws.Operation{
 			Name:       "Decrypt",
@@ -139,6 +154,9 @@ var opDecrypt *aws.Operation
 
 // DeleteAliasRequest generates a request for the DeleteAlias operation.
 func (c *KMS) DeleteAliasRequest(input *DeleteAliasInput) (req *aws.Request, output *DeleteAliasOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteAlias == nil {
 		opDeleteAlias = &aws.Operation{
 			Name:       "DeleteAlias",
@@ -165,6 +183,9 @@ var opDeleteAlias *aws.Operation
 
 // DescribeKeyRequest generates a request for the DescribeKey operation.
 func (c *KMS) DescribeKeyRequest(input *DescribeKeyInput) (req *aws.Request, output *DescribeKeyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeKey == nil {
 		opDescribeKey = &aws.Operation{
 			Name:       "DescribeKey",
@@ -191,6 +212,9 @@ var opDescribeKey *aws.Operation
 
 // DisableKeyRequest generates a request for the DisableKey operation.
 func (c *KMS) DisableKeyRequest(input *DisableKeyInput) (req *aws.Request, output *DisableKeyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDisableKey == nil {
 		opDisableKey = &aws.Operation{
 			Name:       "DisableKey",
@@ -217,6 +241,9 @@ var opDisableKey *aws.Operation
 
 // DisableKeyRotationRequest generates a request for the DisableKeyRotation operation.
 func (c *KMS) DisableKeyRotationRequest(input *DisableKeyRotationInput) (req *aws.Request, output *DisableKeyRotationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDisableKeyRotation == nil {
 		opDisableKeyRotation = &aws.Operation{
 			Name:       "DisableKeyRotation",
@@ -243,6 +270,9 @@ var opDisableKeyRotation *aws.Operation
 
 // EnableKeyRequest generates a request for the EnableKey operation.
 func (c *KMS) EnableKeyRequest(input *EnableKeyInput) (req *aws.Request, output *EnableKeyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opEnableKey == nil {
 		opEnableKey = &aws.Operation{
 			Name:       "EnableKey",
@@ -270,6 +300,9 @@ var opEnableKey *aws.Operation
 
 // EnableKeyRotationRequest generates a request for the EnableKeyRotation operation.
 func (c *KMS) EnableKeyRotationRequest(input *EnableKeyRotationInput) (req *aws.Request, output *EnableKeyRotationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opEnableKeyRotation == nil {
 		opEnableKeyRotation = &aws.Operation{
 			Name:       "EnableKeyRotation",
@@ -296,6 +329,9 @@ var opEnableKeyRotation *aws.Operation
 
 // EncryptRequest generates a request for the Encrypt operation.
 func (c *KMS) EncryptRequest(input *EncryptInput) (req *aws.Request, output *EncryptOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opEncrypt == nil {
 		opEncrypt = &aws.Operation{
 			Name:       "Encrypt",
@@ -338,6 +374,9 @@ var opEncrypt *aws.Operation
 
 // GenerateDataKeyRequest generates a request for the GenerateDataKey operation.
 func (c *KMS) GenerateDataKeyRequest(input *GenerateDataKeyInput) (req *aws.Request, output *GenerateDataKeyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGenerateDataKey == nil {
 		opGenerateDataKey = &aws.Operation{
 			Name:       "GenerateDataKey",
@@ -393,6 +432,9 @@ var opGenerateDataKey *aws.Operation
 
 // GenerateDataKeyWithoutPlaintextRequest generates a request for the GenerateDataKeyWithoutPlaintext operation.
 func (c *KMS) GenerateDataKeyWithoutPlaintextRequest(input *GenerateDataKeyWithoutPlaintextInput) (req *aws.Request, output *GenerateDataKeyWithoutPlaintextOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGenerateDataKeyWithoutPlaintext == nil {
 		opGenerateDataKeyWithoutPlaintext = &aws.Operation{
 			Name:       "GenerateDataKeyWithoutPlaintext",
@@ -423,6 +465,9 @@ var opGenerateDataKeyWithoutPlaintext *aws.Operation
 
 // GenerateRandomRequest generates a request for the GenerateRandom operation.
 func (c *KMS) GenerateRandomRequest(input *GenerateRandomInput) (req *aws.Request, output *GenerateRandomOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGenerateRandom == nil {
 		opGenerateRandom = &aws.Operation{
 			Name:       "GenerateRandom",
@@ -449,6 +494,9 @@ var opGenerateRandom *aws.Operation
 
 // GetKeyPolicyRequest generates a request for the GetKeyPolicy operation.
 func (c *KMS) GetKeyPolicyRequest(input *GetKeyPolicyInput) (req *aws.Request, output *GetKeyPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetKeyPolicy == nil {
 		opGetKeyPolicy = &aws.Operation{
 			Name:       "GetKeyPolicy",
@@ -475,6 +523,9 @@ var opGetKeyPolicy *aws.Operation
 
 // GetKeyRotationStatusRequest generates a request for the GetKeyRotationStatus operation.
 func (c *KMS) GetKeyRotationStatusRequest(input *GetKeyRotationStatusInput) (req *aws.Request, output *GetKeyRotationStatusOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetKeyRotationStatus == nil {
 		opGetKeyRotationStatus = &aws.Operation{
 			Name:       "GetKeyRotationStatus",
@@ -502,6 +553,9 @@ var opGetKeyRotationStatus *aws.Operation
 
 // ListAliasesRequest generates a request for the ListAliases operation.
 func (c *KMS) ListAliasesRequest(input *ListAliasesInput) (req *aws.Request, output *ListAliasesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListAliases == nil {
 		opListAliases = &aws.Operation{
 			Name:       "ListAliases",
@@ -528,6 +582,9 @@ var opListAliases *aws.Operation
 
 // ListGrantsRequest generates a request for the ListGrants operation.
 func (c *KMS) ListGrantsRequest(input *ListGrantsInput) (req *aws.Request, output *ListGrantsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListGrants == nil {
 		opListGrants = &aws.Operation{
 			Name:       "ListGrants",
@@ -554,6 +611,9 @@ var opListGrants *aws.Operation
 
 // ListKeyPoliciesRequest generates a request for the ListKeyPolicies operation.
 func (c *KMS) ListKeyPoliciesRequest(input *ListKeyPoliciesInput) (req *aws.Request, output *ListKeyPoliciesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListKeyPolicies == nil {
 		opListKeyPolicies = &aws.Operation{
 			Name:       "ListKeyPolicies",
@@ -580,6 +640,9 @@ var opListKeyPolicies *aws.Operation
 
 // ListKeysRequest generates a request for the ListKeys operation.
 func (c *KMS) ListKeysRequest(input *ListKeysInput) (req *aws.Request, output *ListKeysOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListKeys == nil {
 		opListKeys = &aws.Operation{
 			Name:       "ListKeys",
@@ -606,6 +669,9 @@ var opListKeys *aws.Operation
 
 // PutKeyPolicyRequest generates a request for the PutKeyPolicy operation.
 func (c *KMS) PutKeyPolicyRequest(input *PutKeyPolicyInput) (req *aws.Request, output *PutKeyPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutKeyPolicy == nil {
 		opPutKeyPolicy = &aws.Operation{
 			Name:       "PutKeyPolicy",
@@ -632,6 +698,9 @@ var opPutKeyPolicy *aws.Operation
 
 // ReEncryptRequest generates a request for the ReEncrypt operation.
 func (c *KMS) ReEncryptRequest(input *ReEncryptInput) (req *aws.Request, output *ReEncryptOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opReEncrypt == nil {
 		opReEncrypt = &aws.Operation{
 			Name:       "ReEncrypt",
@@ -661,6 +730,9 @@ var opReEncrypt *aws.Operation
 
 // RetireGrantRequest generates a request for the RetireGrant operation.
 func (c *KMS) RetireGrantRequest(input *RetireGrantInput) (req *aws.Request, output *RetireGrantOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRetireGrant == nil {
 		opRetireGrant = &aws.Operation{
 			Name:       "RetireGrant",
@@ -691,6 +763,9 @@ var opRetireGrant *aws.Operation
 
 // RevokeGrantRequest generates a request for the RevokeGrant operation.
 func (c *KMS) RevokeGrantRequest(input *RevokeGrantInput) (req *aws.Request, output *RevokeGrantOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRevokeGrant == nil {
 		opRevokeGrant = &aws.Operation{
 			Name:       "RevokeGrant",
@@ -718,6 +793,9 @@ var opRevokeGrant *aws.Operation
 
 // UpdateKeyDescriptionRequest generates a request for the UpdateKeyDescription operation.
 func (c *KMS) UpdateKeyDescriptionRequest(input *UpdateKeyDescriptionInput) (req *aws.Request, output *UpdateKeyDescriptionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateKeyDescription == nil {
 		opUpdateKeyDescription = &aws.Operation{
 			Name:       "UpdateKeyDescription",

@@ -4,13 +4,19 @@
 package iam
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // AddClientIDToOpenIDConnectProviderRequest generates a request for the AddClientIDToOpenIDConnectProvider operation.
 func (c *IAM) AddClientIDToOpenIDConnectProviderRequest(input *AddClientIDToOpenIDConnectProviderInput) (req *aws.Request, output *AddClientIDToOpenIDConnectProviderOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAddClientIDToOpenIDConnectProvider == nil {
 		opAddClientIDToOpenIDConnectProvider = &aws.Operation{
 			Name:       "AddClientIDToOpenIDConnectProvider",
@@ -41,6 +47,9 @@ var opAddClientIDToOpenIDConnectProvider *aws.Operation
 
 // AddRoleToInstanceProfileRequest generates a request for the AddRoleToInstanceProfile operation.
 func (c *IAM) AddRoleToInstanceProfileRequest(input *AddRoleToInstanceProfileInput) (req *aws.Request, output *AddRoleToInstanceProfileOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAddRoleToInstanceProfile == nil {
 		opAddRoleToInstanceProfile = &aws.Operation{
 			Name:       "AddRoleToInstanceProfile",
@@ -70,6 +79,9 @@ var opAddRoleToInstanceProfile *aws.Operation
 
 // AddUserToGroupRequest generates a request for the AddUserToGroup operation.
 func (c *IAM) AddUserToGroupRequest(input *AddUserToGroupInput) (req *aws.Request, output *AddUserToGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAddUserToGroup == nil {
 		opAddUserToGroup = &aws.Operation{
 			Name:       "AddUserToGroup",
@@ -96,6 +108,9 @@ var opAddUserToGroup *aws.Operation
 
 // AttachGroupPolicyRequest generates a request for the AttachGroupPolicy operation.
 func (c *IAM) AttachGroupPolicyRequest(input *AttachGroupPolicyInput) (req *aws.Request, output *AttachGroupPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAttachGroupPolicy == nil {
 		opAttachGroupPolicy = &aws.Operation{
 			Name:       "AttachGroupPolicy",
@@ -129,6 +144,9 @@ var opAttachGroupPolicy *aws.Operation
 
 // AttachRolePolicyRequest generates a request for the AttachRolePolicy operation.
 func (c *IAM) AttachRolePolicyRequest(input *AttachRolePolicyInput) (req *aws.Request, output *AttachRolePolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAttachRolePolicy == nil {
 		opAttachRolePolicy = &aws.Operation{
 			Name:       "AttachRolePolicy",
@@ -166,6 +184,9 @@ var opAttachRolePolicy *aws.Operation
 
 // AttachUserPolicyRequest generates a request for the AttachUserPolicy operation.
 func (c *IAM) AttachUserPolicyRequest(input *AttachUserPolicyInput) (req *aws.Request, output *AttachUserPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAttachUserPolicy == nil {
 		opAttachUserPolicy = &aws.Operation{
 			Name:       "AttachUserPolicy",
@@ -199,6 +220,9 @@ var opAttachUserPolicy *aws.Operation
 
 // ChangePasswordRequest generates a request for the ChangePassword operation.
 func (c *IAM) ChangePasswordRequest(input *ChangePasswordInput) (req *aws.Request, output *ChangePasswordOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opChangePassword == nil {
 		opChangePassword = &aws.Operation{
 			Name:       "ChangePassword",
@@ -230,6 +254,9 @@ var opChangePassword *aws.Operation
 
 // CreateAccessKeyRequest generates a request for the CreateAccessKey operation.
 func (c *IAM) CreateAccessKeyRequest(input *CreateAccessKeyInput) (req *aws.Request, output *CreateAccessKeyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateAccessKey == nil {
 		opCreateAccessKey = &aws.Operation{
 			Name:       "CreateAccessKey",
@@ -272,6 +299,9 @@ var opCreateAccessKey *aws.Operation
 
 // CreateAccountAliasRequest generates a request for the CreateAccountAlias operation.
 func (c *IAM) CreateAccountAliasRequest(input *CreateAccountAliasInput) (req *aws.Request, output *CreateAccountAliasOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateAccountAlias == nil {
 		opCreateAccountAlias = &aws.Operation{
 			Name:       "CreateAccountAlias",
@@ -300,6 +330,9 @@ var opCreateAccountAlias *aws.Operation
 
 // CreateGroupRequest generates a request for the CreateGroup operation.
 func (c *IAM) CreateGroupRequest(input *CreateGroupInput) (req *aws.Request, output *CreateGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateGroup == nil {
 		opCreateGroup = &aws.Operation{
 			Name:       "CreateGroup",
@@ -330,6 +363,9 @@ var opCreateGroup *aws.Operation
 
 // CreateInstanceProfileRequest generates a request for the CreateInstanceProfile operation.
 func (c *IAM) CreateInstanceProfileRequest(input *CreateInstanceProfileInput) (req *aws.Request, output *CreateInstanceProfileOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateInstanceProfile == nil {
 		opCreateInstanceProfile = &aws.Operation{
 			Name:       "CreateInstanceProfile",
@@ -361,6 +397,9 @@ var opCreateInstanceProfile *aws.Operation
 
 // CreateLoginProfileRequest generates a request for the CreateLoginProfile operation.
 func (c *IAM) CreateLoginProfileRequest(input *CreateLoginProfileInput) (req *aws.Request, output *CreateLoginProfileOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateLoginProfile == nil {
 		opCreateLoginProfile = &aws.Operation{
 			Name:       "CreateLoginProfile",
@@ -390,6 +429,9 @@ var opCreateLoginProfile *aws.Operation
 
 // CreateOpenIDConnectProviderRequest generates a request for the CreateOpenIDConnectProvider operation.
 func (c *IAM) CreateOpenIDConnectProviderRequest(input *CreateOpenIDConnectProviderInput) (req *aws.Request, output *CreateOpenIDConnectProviderOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateOpenIDConnectProvider == nil {
 		opCreateOpenIDConnectProvider = &aws.Operation{
 			Name:       "CreateOpenIDConnectProvider",
@@ -432,6 +474,9 @@ var opCreateOpenIDConnectProvider *aws.Operation
 
 // CreatePolicyRequest generates a request for the CreatePolicy operation.
 func (c *IAM) CreatePolicyRequest(input *CreatePolicyInput) (req *aws.Request, output *CreatePolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreatePolicy == nil {
 		opCreatePolicy = &aws.Operation{
 			Name:       "CreatePolicy",
@@ -467,6 +512,9 @@ var opCreatePolicy *aws.Operation
 
 // CreatePolicyVersionRequest generates a request for the CreatePolicyVersion operation.
 func (c *IAM) CreatePolicyVersionRequest(input *CreatePolicyVersionInput) (req *aws.Request, output *CreatePolicyVersionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreatePolicyVersion == nil {
 		opCreatePolicyVersion = &aws.Operation{
 			Name:       "CreatePolicyVersion",
@@ -505,6 +553,9 @@ var opCreatePolicyVersion *aws.Operation
 
 // CreateRoleRequest generates a request for the CreateRole operation.
 func (c *IAM) CreateRoleRequest(input *CreateRoleInput) (req *aws.Request, output *CreateRoleOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateRole == nil {
 		opCreateRole = &aws.Operation{
 			Name:       "CreateRole",
@@ -539,6 +590,9 @@ var opCreateRole *aws.Operation
 
 // CreateSAMLProviderRequest generates a request for the CreateSAMLProvider operation.
 func (c *IAM) CreateSAMLProviderRequest(input *CreateSAMLProviderInput) (req *aws.Request, output *CreateSAMLProviderOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateSAMLProvider == nil {
 		opCreateSAMLProvider = &aws.Operation{
 			Name:       "CreateSAMLProvider",
@@ -584,6 +638,9 @@ var opCreateSAMLProvider *aws.Operation
 
 // CreateUserRequest generates a request for the CreateUser operation.
 func (c *IAM) CreateUserRequest(input *CreateUserInput) (req *aws.Request, output *CreateUserOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateUser == nil {
 		opCreateUser = &aws.Operation{
 			Name:       "CreateUser",
@@ -614,6 +671,9 @@ var opCreateUser *aws.Operation
 
 // CreateVirtualMFADeviceRequest generates a request for the CreateVirtualMFADevice operation.
 func (c *IAM) CreateVirtualMFADeviceRequest(input *CreateVirtualMFADeviceInput) (req *aws.Request, output *CreateVirtualMFADeviceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateVirtualMFADevice == nil {
 		opCreateVirtualMFADevice = &aws.Operation{
 			Name:       "CreateVirtualMFADevice",
@@ -653,6 +713,9 @@ var opCreateVirtualMFADevice *aws.Operation
 
 // DeactivateMFADeviceRequest generates a request for the DeactivateMFADevice operation.
 func (c *IAM) DeactivateMFADeviceRequest(input *DeactivateMFADeviceInput) (req *aws.Request, output *DeactivateMFADeviceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeactivateMFADevice == nil {
 		opDeactivateMFADevice = &aws.Operation{
 			Name:       "DeactivateMFADevice",
@@ -684,6 +747,9 @@ var opDeactivateMFADevice *aws.Operation
 
 // DeleteAccessKeyRequest generates a request for the DeleteAccessKey operation.
 func (c *IAM) DeleteAccessKeyRequest(input *DeleteAccessKeyInput) (req *aws.Request, output *DeleteAccessKeyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteAccessKey == nil {
 		opDeleteAccessKey = &aws.Operation{
 			Name:       "DeleteAccessKey",
@@ -715,6 +781,9 @@ var opDeleteAccessKey *aws.Operation
 
 // DeleteAccountAliasRequest generates a request for the DeleteAccountAlias operation.
 func (c *IAM) DeleteAccountAliasRequest(input *DeleteAccountAliasInput) (req *aws.Request, output *DeleteAccountAliasOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteAccountAlias == nil {
 		opDeleteAccountAlias = &aws.Operation{
 			Name:       "DeleteAccountAlias",
@@ -743,6 +812,9 @@ var opDeleteAccountAlias *aws.Operation
 
 // DeleteAccountPasswordPolicyRequest generates a request for the DeleteAccountPasswordPolicy operation.
 func (c *IAM) DeleteAccountPasswordPolicyRequest(input *DeleteAccountPasswordPolicyInput) (req *aws.Request, output *DeleteAccountPasswordPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteAccountPasswordPolicy == nil {
 		opDeleteAccountPasswordPolicy = &aws.Operation{
 			Name:       "DeleteAccountPasswordPolicy",
@@ -769,6 +841,9 @@ var opDeleteAccountPasswordPolicy *aws.Operation
 
 // DeleteGroupRequest generates a request for the DeleteGroup operation.
 func (c *IAM) DeleteGroupRequest(input *DeleteGroupInput) (req *aws.Request, output *DeleteGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteGroup == nil {
 		opDeleteGroup = &aws.Operation{
 			Name:       "DeleteGroup",
@@ -796,6 +871,9 @@ var opDeleteGroup *aws.Operation
 
 // DeleteGroupPolicyRequest generates a request for the DeleteGroupPolicy operation.
 func (c *IAM) DeleteGroupPolicyRequest(input *DeleteGroupPolicyInput) (req *aws.Request, output *DeleteGroupPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteGroupPolicy == nil {
 		opDeleteGroupPolicy = &aws.Operation{
 			Name:       "DeleteGroupPolicy",
@@ -827,6 +905,9 @@ var opDeleteGroupPolicy *aws.Operation
 
 // DeleteInstanceProfileRequest generates a request for the DeleteInstanceProfile operation.
 func (c *IAM) DeleteInstanceProfileRequest(input *DeleteInstanceProfileInput) (req *aws.Request, output *DeleteInstanceProfileOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteInstanceProfile == nil {
 		opDeleteInstanceProfile = &aws.Operation{
 			Name:       "DeleteInstanceProfile",
@@ -860,6 +941,9 @@ var opDeleteInstanceProfile *aws.Operation
 
 // DeleteLoginProfileRequest generates a request for the DeleteLoginProfile operation.
 func (c *IAM) DeleteLoginProfileRequest(input *DeleteLoginProfileInput) (req *aws.Request, output *DeleteLoginProfileOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteLoginProfile == nil {
 		opDeleteLoginProfile = &aws.Operation{
 			Name:       "DeleteLoginProfile",
@@ -892,6 +976,9 @@ var opDeleteLoginProfile *aws.Operation
 
 // DeleteOpenIDConnectProviderRequest generates a request for the DeleteOpenIDConnectProvider operation.
 func (c *IAM) DeleteOpenIDConnectProviderRequest(input *DeleteOpenIDConnectProviderInput) (req *aws.Request, output *DeleteOpenIDConnectProviderOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteOpenIDConnectProvider == nil {
 		opDeleteOpenIDConnectProvider = &aws.Operation{
 			Name:       "DeleteOpenIDConnectProvider",
@@ -925,6 +1012,9 @@ var opDeleteOpenIDConnectProvider *aws.Operation
 
 // DeletePolicyRequest generates a request for the DeletePolicy operation.
 func (c *IAM) DeletePolicyRequest(input *DeletePolicyInput) (req *aws.Request, output *DeletePolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeletePolicy == nil {
 		opDeletePolicy = &aws.Operation{
 			Name:       "DeletePolicy",
@@ -968,6 +1058,9 @@ var opDeletePolicy *aws.Operation
 
 // DeletePolicyVersionRequest generates a request for the DeletePolicyVersion operation.
 func (c *IAM) DeletePolicyVersionRequest(input *DeletePolicyVersionInput) (req *aws.Request, output *DeletePolicyVersionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeletePolicyVersion == nil {
 		opDeletePolicyVersion = &aws.Operation{
 			Name:       "DeletePolicyVersion",
@@ -1002,6 +1095,9 @@ var opDeletePolicyVersion *aws.Operation
 
 // DeleteRoleRequest generates a request for the DeleteRole operation.
 func (c *IAM) DeleteRoleRequest(input *DeleteRoleInput) (req *aws.Request, output *DeleteRoleOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteRole == nil {
 		opDeleteRole = &aws.Operation{
 			Name:       "DeleteRole",
@@ -1033,6 +1129,9 @@ var opDeleteRole *aws.Operation
 
 // DeleteRolePolicyRequest generates a request for the DeleteRolePolicy operation.
 func (c *IAM) DeleteRolePolicyRequest(input *DeleteRolePolicyInput) (req *aws.Request, output *DeleteRolePolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteRolePolicy == nil {
 		opDeleteRolePolicy = &aws.Operation{
 			Name:       "DeleteRolePolicy",
@@ -1064,6 +1163,9 @@ var opDeleteRolePolicy *aws.Operation
 
 // DeleteSAMLProviderRequest generates a request for the DeleteSAMLProvider operation.
 func (c *IAM) DeleteSAMLProviderRequest(input *DeleteSAMLProviderInput) (req *aws.Request, output *DeleteSAMLProviderOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteSAMLProvider == nil {
 		opDeleteSAMLProvider = &aws.Operation{
 			Name:       "DeleteSAMLProvider",
@@ -1096,6 +1198,9 @@ var opDeleteSAMLProvider *aws.Operation
 
 // DeleteServerCertificateRequest generates a request for the DeleteServerCertificate operation.
 func (c *IAM) DeleteServerCertificateRequest(input *DeleteServerCertificateInput) (req *aws.Request, output *DeleteServerCertificateOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteServerCertificate == nil {
 		opDeleteServerCertificate = &aws.Operation{
 			Name:       "DeleteServerCertificate",
@@ -1132,6 +1237,9 @@ var opDeleteServerCertificate *aws.Operation
 
 // DeleteSigningCertificateRequest generates a request for the DeleteSigningCertificate operation.
 func (c *IAM) DeleteSigningCertificateRequest(input *DeleteSigningCertificateInput) (req *aws.Request, output *DeleteSigningCertificateOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteSigningCertificate == nil {
 		opDeleteSigningCertificate = &aws.Operation{
 			Name:       "DeleteSigningCertificate",
@@ -1163,6 +1271,9 @@ var opDeleteSigningCertificate *aws.Operation
 
 // DeleteUserRequest generates a request for the DeleteUser operation.
 func (c *IAM) DeleteUserRequest(input *DeleteUserInput) (req *aws.Request, output *DeleteUserOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteUser == nil {
 		opDeleteUser = &aws.Operation{
 			Name:       "DeleteUser",
@@ -1190,6 +1301,9 @@ var opDeleteUser *aws.Operation
 
 // DeleteUserPolicyRequest generates a request for the DeleteUserPolicy operation.
 func (c *IAM) DeleteUserPolicyRequest(input *DeleteUserPolicyInput) (req *aws.Request, output *DeleteUserPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteUserPolicy == nil {
 		opDeleteUserPolicy = &aws.Operation{
 			Name:       "DeleteUserPolicy",
@@ -1221,6 +1335,9 @@ var opDeleteUserPolicy *aws.Operation
 
 // DeleteVirtualMFADeviceRequest generates a request for the DeleteVirtualMFADevice operation.
 func (c *IAM) DeleteVirtualMFADeviceRequest(input *DeleteVirtualMFADeviceInput) (req *aws.Request, output *DeleteVirtualMFADeviceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteVirtualMFADevice == nil {
 		opDeleteVirtualMFADevice = &aws.Operation{
 			Name:       "DeleteVirtualMFADevice",
@@ -1250,6 +1367,9 @@ var opDeleteVirtualMFADevice *aws.Operation
 
 // DetachGroupPolicyRequest generates a request for the DetachGroupPolicy operation.
 func (c *IAM) DetachGroupPolicyRequest(input *DetachGroupPolicyInput) (req *aws.Request, output *DetachGroupPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDetachGroupPolicy == nil {
 		opDetachGroupPolicy = &aws.Operation{
 			Name:       "DetachGroupPolicy",
@@ -1281,6 +1401,9 @@ var opDetachGroupPolicy *aws.Operation
 
 // DetachRolePolicyRequest generates a request for the DetachRolePolicy operation.
 func (c *IAM) DetachRolePolicyRequest(input *DetachRolePolicyInput) (req *aws.Request, output *DetachRolePolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDetachRolePolicy == nil {
 		opDetachRolePolicy = &aws.Operation{
 			Name:       "DetachRolePolicy",
@@ -1312,6 +1435,9 @@ var opDetachRolePolicy *aws.Operation
 
 // DetachUserPolicyRequest generates a request for the DetachUserPolicy operation.
 func (c *IAM) DetachUserPolicyRequest(input *DetachUserPolicyInput) (req *aws.Request, output *DetachUserPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDetachUserPolicy == nil {
 		opDetachUserPolicy = &aws.Operation{
 			Name:       "DetachUserPolicy",
@@ -1343,6 +1469,9 @@ var opDetachUserPolicy *aws.Operation
 
 // EnableMFADeviceRequest generates a request for the EnableMFADevice operation.
 func (c *IAM) EnableMFADeviceRequest(input *EnableMFADeviceInput) (req *aws.Request, output *EnableMFADeviceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opEnableMFADevice == nil {
 		opEnableMFADevice = &aws.Operation{
 			Name:       "EnableMFADevice",
@@ -1371,6 +1500,9 @@ var opEnableMFADevice *aws.Operation
 
 // GenerateCredentialReportRequest generates a request for the GenerateCredentialReport operation.
 func (c *IAM) GenerateCredentialReportRequest(input *GenerateCredentialReportInput) (req *aws.Request, output *GenerateCredentialReportOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGenerateCredentialReport == nil {
 		opGenerateCredentialReport = &aws.Operation{
 			Name:       "GenerateCredentialReport",
@@ -1399,6 +1531,9 @@ var opGenerateCredentialReport *aws.Operation
 
 // GetAccountAuthorizationDetailsRequest generates a request for the GetAccountAuthorizationDetails operation.
 func (c *IAM) GetAccountAuthorizationDetailsRequest(input *GetAccountAuthorizationDetailsInput) (req *aws.Request, output *GetAccountAuthorizationDetailsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetAccountAuthorizationDetails == nil {
 		opGetAccountAuthorizationDetails = &aws.Operation{
 			Name:       "GetAccountAuthorizationDetails",
@@ -1431,6 +1566,9 @@ var opGetAccountAuthorizationDetails *aws.Operation
 
 // GetAccountPasswordPolicyRequest generates a request for the GetAccountPasswordPolicy operation.
 func (c *IAM) GetAccountPasswordPolicyRequest(input *GetAccountPasswordPolicyInput) (req *aws.Request, output *GetAccountPasswordPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetAccountPasswordPolicy == nil {
 		opGetAccountPasswordPolicy = &aws.Operation{
 			Name:       "GetAccountPasswordPolicy",
@@ -1458,6 +1596,9 @@ var opGetAccountPasswordPolicy *aws.Operation
 
 // GetAccountSummaryRequest generates a request for the GetAccountSummary operation.
 func (c *IAM) GetAccountSummaryRequest(input *GetAccountSummaryInput) (req *aws.Request, output *GetAccountSummaryOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetAccountSummary == nil {
 		opGetAccountSummary = &aws.Operation{
 			Name:       "GetAccountSummary",
@@ -1488,6 +1629,9 @@ var opGetAccountSummary *aws.Operation
 
 // GetCredentialReportRequest generates a request for the GetCredentialReport operation.
 func (c *IAM) GetCredentialReportRequest(input *GetCredentialReportInput) (req *aws.Request, output *GetCredentialReportOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetCredentialReport == nil {
 		opGetCredentialReport = &aws.Operation{
 			Name:       "GetCredentialReport",
@@ -1516,6 +1660,9 @@ var opGetCredentialReport *aws.Operation
 
 // GetGroupRequest generates a request for the GetGroup operation.
 func (c *IAM) GetGroupRequest(input *GetGroupInput) (req *aws.Request, output *GetGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetGroup == nil {
 		opGetGroup = &aws.Operation{
 			Name:       "GetGroup",
@@ -1543,6 +1690,9 @@ var opGetGroup *aws.Operation
 
 // GetGroupPolicyRequest generates a request for the GetGroupPolicy operation.
 func (c *IAM) GetGroupPolicyRequest(input *GetGroupPolicyInput) (req *aws.Request, output *GetGroupPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetGroupPolicy == nil {
 		opGetGroupPolicy = &aws.Operation{
 			Name:       "GetGroupPolicy",
@@ -1579,6 +1729,9 @@ var opGetGroupPolicy *aws.Operation
 
 // GetInstanceProfileRequest generates a request for the GetInstanceProfile operation.
 func (c *IAM) GetInstanceProfileRequest(input *GetInstanceProfileInput) (req *aws.Request, output *GetInstanceProfileOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetInstanceProfile == nil {
 		opGetInstanceProfile = &aws.Operation{
 			Name:       "GetInstanceProfile",
@@ -1608,6 +1761,9 @@ var opGetInstanceProfile *aws.Operation
 
 // GetLoginProfileRequest generates a request for the GetLoginProfile operation.
 func (c *IAM) GetLoginProfileRequest(input *GetLoginProfileInput) (req *aws.Request, output *GetLoginProfileOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetLoginProfile == nil {
 		opGetLoginProfile = &aws.Operation{
 			Name:       "GetLoginProfile",
@@ -1636,6 +1792,9 @@ var opGetLoginProfile *aws.Operation
 
 // GetOpenIDConnectProviderRequest generates a request for the GetOpenIDConnectProvider operation.
 func (c *IAM) GetOpenIDConnectProviderRequest(input *GetOpenIDConnectProviderInput) (req *aws.Request, output *GetOpenIDConnectProviderOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetOpenIDConnectProvider == nil {
 		opGetOpenIDConnectProvider = &aws.Operation{
 			Name:       "GetOpenIDConnectProvider",
@@ -1662,6 +1821,9 @@ var opGetOpenIDConnectProvider *aws.Operation
 
 // GetPolicyRequest generates a request for the GetPolicy operation.
 func (c *IAM) GetPolicyRequest(input *GetPolicyInput) (req *aws.Request, output *GetPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetPolicy == nil {
 		opGetPolicy = &aws.Operation{
 			Name:       "GetPolicy",
@@ -1701,6 +1863,9 @@ var opGetPolicy *aws.Operation
 
 // GetPolicyVersionRequest generates a request for the GetPolicyVersion operation.
 func (c *IAM) GetPolicyVersionRequest(input *GetPolicyVersionInput) (req *aws.Request, output *GetPolicyVersionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetPolicyVersion == nil {
 		opGetPolicyVersion = &aws.Operation{
 			Name:       "GetPolicyVersion",
@@ -1738,6 +1903,9 @@ var opGetPolicyVersion *aws.Operation
 
 // GetRoleRequest generates a request for the GetRole operation.
 func (c *IAM) GetRoleRequest(input *GetRoleInput) (req *aws.Request, output *GetRoleOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetRole == nil {
 		opGetRole = &aws.Operation{
 			Name:       "GetRole",
@@ -1770,6 +1938,9 @@ var opGetRole *aws.Operation
 
 // GetRolePolicyRequest generates a request for the GetRolePolicy operation.
 func (c *IAM) GetRolePolicyRequest(input *GetRolePolicyInput) (req *aws.Request, output *GetRolePolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetRolePolicy == nil {
 		opGetRolePolicy = &aws.Operation{
 			Name:       "GetRolePolicy",
@@ -1809,6 +1980,9 @@ var opGetRolePolicy *aws.Operation
 
 // GetSAMLProviderRequest generates a request for the GetSAMLProvider operation.
 func (c *IAM) GetSAMLProviderRequest(input *GetSAMLProviderInput) (req *aws.Request, output *GetSAMLProviderOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetSAMLProvider == nil {
 		opGetSAMLProvider = &aws.Operation{
 			Name:       "GetSAMLProvider",
@@ -1838,6 +2012,9 @@ var opGetSAMLProvider *aws.Operation
 
 // GetServerCertificateRequest generates a request for the GetServerCertificate operation.
 func (c *IAM) GetServerCertificateRequest(input *GetServerCertificateInput) (req *aws.Request, output *GetServerCertificateOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetServerCertificate == nil {
 		opGetServerCertificate = &aws.Operation{
 			Name:       "GetServerCertificate",
@@ -1864,6 +2041,9 @@ var opGetServerCertificate *aws.Operation
 
 // GetUserRequest generates a request for the GetUser operation.
 func (c *IAM) GetUserRequest(input *GetUserInput) (req *aws.Request, output *GetUserOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetUser == nil {
 		opGetUser = &aws.Operation{
 			Name:       "GetUser",
@@ -1894,6 +2074,9 @@ var opGetUser *aws.Operation
 
 // GetUserPolicyRequest generates a request for the GetUserPolicy operation.
 func (c *IAM) GetUserPolicyRequest(input *GetUserPolicyInput) (req *aws.Request, output *GetUserPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetUserPolicy == nil {
 		opGetUserPolicy = &aws.Operation{
 			Name:       "GetUserPolicy",
@@ -1930,6 +2113,9 @@ var opGetUserPolicy *aws.Operation
 
 // ListAccessKeysRequest generates a request for the ListAccessKeys operation.
 func (c *IAM) ListAccessKeysRequest(input *ListAccessKeysInput) (req *aws.Request, output *ListAccessKeysOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListAccessKeys == nil {
 		opListAccessKeys = &aws.Operation{
 			Name:       "ListAccessKeys",
@@ -1968,6 +2154,9 @@ var opListAccessKeys *aws.Operation
 
 // ListAccountAliasesRequest generates a request for the ListAccountAliases operation.
 func (c *IAM) ListAccountAliasesRequest(input *ListAccountAliasesInput) (req *aws.Request, output *ListAccountAliasesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListAccountAliases == nil {
 		opListAccountAliases = &aws.Operation{
 			Name:       "ListAccountAliases",
@@ -1998,6 +2187,9 @@ var opListAccountAliases *aws.Operation
 
 // ListAttachedGroupPoliciesRequest generates a request for the ListAttachedGroupPolicies operation.
 func (c *IAM) ListAttachedGroupPoliciesRequest(input *ListAttachedGroupPoliciesInput) (req *aws.Request, output *ListAttachedGroupPoliciesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListAttachedGroupPolicies == nil {
 		opListAttachedGroupPolicies = &aws.Operation{
 			Name:       "ListAttachedGroupPolicies",
@@ -2035,6 +2227,9 @@ var opListAttachedGroupPolicies *aws.Operation
 
 // ListAttachedRolePoliciesRequest generates a request for the ListAttachedRolePolicies operation.
 func (c *IAM) ListAttachedRolePoliciesRequest(input *ListAttachedRolePoliciesInput) (req *aws.Request, output *ListAttachedRolePoliciesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListAttachedRolePolicies == nil {
 		opListAttachedRolePolicies = &aws.Operation{
 			Name:       "ListAttachedRolePolicies",
@@ -2072,6 +2267,9 @@ var opListAttachedRolePolicies *aws.Operation
 
 // ListAttachedUserPoliciesRequest generates a request for the ListAttachedUserPolicies operation.
 func (c *IAM) ListAttachedUserPoliciesRequest(input *ListAttachedUserPoliciesInput) (req *aws.Request, output *ListAttachedUserPoliciesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListAttachedUserPolicies == nil {
 		opListAttachedUserPolicies = &aws.Operation{
 			Name:       "ListAttachedUserPolicies",
@@ -2109,6 +2307,9 @@ var opListAttachedUserPolicies *aws.Operation
 
 // ListEntitiesForPolicyRequest generates a request for the ListEntitiesForPolicy operation.
 func (c *IAM) ListEntitiesForPolicyRequest(input *ListEntitiesForPolicyInput) (req *aws.Request, output *ListEntitiesForPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListEntitiesForPolicy == nil {
 		opListEntitiesForPolicy = &aws.Operation{
 			Name:       "ListEntitiesForPolicy",
@@ -2143,6 +2344,9 @@ var opListEntitiesForPolicy *aws.Operation
 
 // ListGroupPoliciesRequest generates a request for the ListGroupPolicies operation.
 func (c *IAM) ListGroupPoliciesRequest(input *ListGroupPoliciesInput) (req *aws.Request, output *ListGroupPoliciesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListGroupPolicies == nil {
 		opListGroupPolicies = &aws.Operation{
 			Name:       "ListGroupPolicies",
@@ -2180,6 +2384,9 @@ var opListGroupPolicies *aws.Operation
 
 // ListGroupsRequest generates a request for the ListGroups operation.
 func (c *IAM) ListGroupsRequest(input *ListGroupsInput) (req *aws.Request, output *ListGroupsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListGroups == nil {
 		opListGroups = &aws.Operation{
 			Name:       "ListGroups",
@@ -2208,6 +2415,9 @@ var opListGroups *aws.Operation
 
 // ListGroupsForUserRequest generates a request for the ListGroupsForUser operation.
 func (c *IAM) ListGroupsForUserRequest(input *ListGroupsForUserInput) (req *aws.Request, output *ListGroupsForUserOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListGroupsForUser == nil {
 		opListGroupsForUser = &aws.Operation{
 			Name:       "ListGroupsForUser",
@@ -2236,6 +2446,9 @@ var opListGroupsForUser *aws.Operation
 
 // ListInstanceProfilesRequest generates a request for the ListInstanceProfiles operation.
 func (c *IAM) ListInstanceProfilesRequest(input *ListInstanceProfilesInput) (req *aws.Request, output *ListInstanceProfilesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListInstanceProfiles == nil {
 		opListInstanceProfiles = &aws.Operation{
 			Name:       "ListInstanceProfiles",
@@ -2266,6 +2479,9 @@ var opListInstanceProfiles *aws.Operation
 
 // ListInstanceProfilesForRoleRequest generates a request for the ListInstanceProfilesForRole operation.
 func (c *IAM) ListInstanceProfilesForRoleRequest(input *ListInstanceProfilesForRoleInput) (req *aws.Request, output *ListInstanceProfilesForRoleOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListInstanceProfilesForRole == nil {
 		opListInstanceProfilesForRole = &aws.Operation{
 			Name:       "ListInstanceProfilesForRole",
@@ -2296,6 +2512,9 @@ var opListInstanceProfilesForRole *aws.Operation
 
 // ListMFADevicesRequest generates a request for the ListMFADevices operation.
 func (c *IAM) ListMFADevicesRequest(input *ListMFADevicesInput) (req *aws.Request, output *ListMFADevicesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListMFADevices == nil {
 		opListMFADevices = &aws.Operation{
 			Name:       "ListMFADevices",
@@ -2327,6 +2546,9 @@ var opListMFADevices *aws.Operation
 
 // ListOpenIDConnectProvidersRequest generates a request for the ListOpenIDConnectProviders operation.
 func (c *IAM) ListOpenIDConnectProvidersRequest(input *ListOpenIDConnectProvidersInput) (req *aws.Request, output *ListOpenIDConnectProvidersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListOpenIDConnectProviders == nil {
 		opListOpenIDConnectProviders = &aws.Operation{
 			Name:       "ListOpenIDConnectProviders",
@@ -2353,6 +2575,9 @@ var opListOpenIDConnectProviders *aws.Operation
 
 // ListPoliciesRequest generates a request for the ListPolicies operation.
 func (c *IAM) ListPoliciesRequest(input *ListPoliciesInput) (req *aws.Request, output *ListPoliciesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListPolicies == nil {
 		opListPolicies = &aws.Operation{
 			Name:       "ListPolicies",
@@ -2391,6 +2616,9 @@ var opListPolicies *aws.Operation
 
 // ListPolicyVersionsRequest generates a request for the ListPolicyVersions operation.
 func (c *IAM) ListPolicyVersionsRequest(input *ListPolicyVersionsInput) (req *aws.Request, output *ListPolicyVersionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListPolicyVersions == nil {
 		opListPolicyVersions = &aws.Operation{
 			Name:       "ListPolicyVersions",
@@ -2422,6 +2650,9 @@ var opListPolicyVersions *aws.Operation
 
 // ListRolePoliciesRequest generates a request for the ListRolePolicies operation.
 func (c *IAM) ListRolePoliciesRequest(input *ListRolePoliciesInput) (req *aws.Request, output *ListRolePoliciesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListRolePolicies == nil {
 		opListRolePolicies = &aws.Operation{
 			Name:       "ListRolePolicies",
@@ -2459,6 +2690,9 @@ var opListRolePolicies *aws.Operation
 
 // ListRolesRequest generates a request for the ListRoles operation.
 func (c *IAM) ListRolesRequest(input *ListRolesInput) (req *aws.Request, output *ListRolesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListRoles == nil {
 		opListRoles = &aws.Operation{
 			Name:       "ListRoles",
@@ -2492,6 +2726,9 @@ var opListRoles *aws.Operation
 
 // ListSAMLProvidersRequest generates a request for the ListSAMLProviders operation.
 func (c *IAM) ListSAMLProvidersRequest(input *ListSAMLProvidersInput) (req *aws.Request, output *ListSAMLProvidersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListSAMLProviders == nil {
 		opListSAMLProviders = &aws.Operation{
 			Name:       "ListSAMLProviders",
@@ -2520,6 +2757,9 @@ var opListSAMLProviders *aws.Operation
 
 // ListServerCertificatesRequest generates a request for the ListServerCertificates operation.
 func (c *IAM) ListServerCertificatesRequest(input *ListServerCertificatesInput) (req *aws.Request, output *ListServerCertificatesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListServerCertificates == nil {
 		opListServerCertificates = &aws.Operation{
 			Name:       "ListServerCertificates",
@@ -2549,6 +2789,9 @@ var opListServerCertificates *aws.Operation
 
 // ListSigningCertificatesRequest generates a request for the ListSigningCertificates operation.
 func (c *IAM) ListSigningCertificatesRequest(input *ListSigningCertificatesInput) (req *aws.Request, output *ListSigningCertificatesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListSigningCertificates == nil {
 		opListSigningCertificates = &aws.Operation{
 			Name:       "ListSigningCertificates",
@@ -2584,6 +2827,9 @@ var opListSigningCertificates *aws.Operation
 
 // ListUserPoliciesRequest generates a request for the ListUserPolicies operation.
 func (c *IAM) ListUserPoliciesRequest(input *ListUserPoliciesInput) (req *aws.Request, output *ListUserPoliciesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListUserPolicies == nil {
 		opListUserPolicies = &aws.Operation{
 			Name:       "ListUserPolicies",
@@ -2620,6 +2866,9 @@ var opListUserPolicies *aws.Operation
 
 // ListUsersRequest generates a request for the ListUsers operation.
 func (c *IAM) ListUsersRequest(input *ListUsersInput) (req *aws.Request, output *ListUsersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListUsers == nil {
 		opListUsers = &aws.Operation{
 			Name:       "ListUsers",
@@ -2650,6 +2899,9 @@ var opListUsers *aws.Operation
 
 // ListVirtualMFADevicesRequest generates a request for the ListVirtualMFADevices operation.
 func (c *IAM) ListVirtualMFADevicesRequest(input *ListVirtualMFADevicesInput) (req *aws.Request, output *ListVirtualMFADevicesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListVirtualMFADevices == nil {
 		opListVirtualMFADevices = &aws.Operation{
 			Name:       "ListVirtualMFADevices",
@@ -2681,6 +2933,9 @@ var opListVirtualMFADevices *aws.Operation
 
 // PutGroupPolicyRequest generates a request for the PutGroupPolicy operation.
 func (c *IAM) PutGroupPolicyRequest(input *PutGroupPolicyInput) (req *aws.Request, output *PutGroupPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutGroupPolicy == nil {
 		opPutGroupPolicy = &aws.Operation{
 			Name:       "PutGroupPolicy",
@@ -2723,6 +2978,9 @@ var opPutGroupPolicy *aws.Operation
 
 // PutRolePolicyRequest generates a request for the PutRolePolicy operation.
 func (c *IAM) PutRolePolicyRequest(input *PutRolePolicyInput) (req *aws.Request, output *PutRolePolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutRolePolicy == nil {
 		opPutRolePolicy = &aws.Operation{
 			Name:       "PutRolePolicy",
@@ -2771,6 +3029,9 @@ var opPutRolePolicy *aws.Operation
 
 // PutUserPolicyRequest generates a request for the PutUserPolicy operation.
 func (c *IAM) PutUserPolicyRequest(input *PutUserPolicyInput) (req *aws.Request, output *PutUserPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutUserPolicy == nil {
 		opPutUserPolicy = &aws.Operation{
 			Name:       "PutUserPolicy",
@@ -2813,6 +3074,9 @@ var opPutUserPolicy *aws.Operation
 
 // RemoveClientIDFromOpenIDConnectProviderRequest generates a request for the RemoveClientIDFromOpenIDConnectProvider operation.
 func (c *IAM) RemoveClientIDFromOpenIDConnectProviderRequest(input *RemoveClientIDFromOpenIDConnectProviderInput) (req *aws.Request, output *RemoveClientIDFromOpenIDConnectProviderOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRemoveClientIDFromOpenIDConnectProvider == nil {
 		opRemoveClientIDFromOpenIDConnectProvider = &aws.Operation{
 			Name:       "RemoveClientIDFromOpenIDConnectProvider",
@@ -2843,6 +3107,9 @@ var opRemoveClientIDFromOpenIDConnectProvider *aws.Operation
 
 // RemoveRoleFromInstanceProfileRequest generates a request for the RemoveRoleFromInstanceProfile operation.
 func (c *IAM) RemoveRoleFromInstanceProfileRequest(input *RemoveRoleFromInstanceProfileInput) (req *aws.Request, output *RemoveRoleFromInstanceProfileOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRemoveRoleFromInstanceProfile == nil {
 		opRemoveRoleFromInstanceProfile = &aws.Operation{
 			Name:       "RemoveRoleFromInstanceProfile",
@@ -2877,6 +3144,9 @@ var opRemoveRoleFromInstanceProfile *aws.Operation
 
 // RemoveUserFromGroupRequest generates a request for the RemoveUserFromGroup operation.
 func (c *IAM) RemoveUserFromGroupRequest(input *RemoveUserFromGroupInput) (req *aws.Request, output *RemoveUserFromGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRemoveUserFromGroup == nil {
 		opRemoveUserFromGroup = &aws.Operation{
 			Name:       "RemoveUserFromGroup",
@@ -2903,6 +3173,9 @@ var opRemoveUserFromGroup *aws.Operation
 
 // ResyncMFADeviceRequest generates a request for the ResyncMFADevice operation.
 func (c *IAM) ResyncMFADeviceRequest(input *ResyncMFADeviceInput) (req *aws.Request, output *ResyncMFADeviceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opResyncMFADevice == nil {
 		opResyncMFADevice = &aws.Operation{
 			Name:       "ResyncMFADevice",
@@ -2933,6 +3206,9 @@ var opResyncMFADevice *aws.Operation
 
 // SetDefaultPolicyVersionRequest generates a request for the SetDefaultPolicyVersion operation.
 func (c *IAM) SetDefaultPolicyVersionRequest(input *SetDefaultPolicyVersionInput) (req *aws.Request, output *SetDefaultPolicyVersionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetDefaultPolicyVersion == nil {
 		opSetDefaultPolicyVersion = &aws.Operation{
 			Name:       "SetDefaultPolicyVersion",
@@ -2968,6 +3244,9 @@ var opSetDefaultPolicyVersion *aws.Operation
 
 // UpdateAccessKeyRequest generates a request for the UpdateAccessKey operation.
 func (c *IAM) UpdateAccessKeyRequest(input *UpdateAccessKeyInput) (req *aws.Request, output *UpdateAccessKeyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateAccessKey == nil {
 		opUpdateAccessKey = &aws.Operation{
 			Name:       "UpdateAccessKey",
@@ -3005,6 +3284,9 @@ var opUpdateAccessKey *aws.Operation
 
 // UpdateAccountPasswordPolicyRequest generates a request for the UpdateAccountPasswordPolicy operation.
 func (c *IAM) UpdateAccountPasswordPolicyRequest(input *UpdateAccountPasswordPolicyInput) (req *aws.Request, output *UpdateAccountPasswordPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateAccountPasswordPolicy == nil {
 		opUpdateAccountPasswordPolicy = &aws.Operation{
 			Name:       "UpdateAccountPasswordPolicy",
@@ -3040,6 +3322,9 @@ var opUpdateAccountPasswordPolicy *aws.Operation
 
 // UpdateAssumeRolePolicyRequest generates a request for the UpdateAssumeRolePolicy operation.
 func (c *IAM) UpdateAssumeRolePolicyRequest(input *UpdateAssumeRolePolicyInput) (req *aws.Request, output *UpdateAssumeRolePolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateAssumeRolePolicy == nil {
 		opUpdateAssumeRolePolicy = &aws.Operation{
 			Name:       "UpdateAssumeRolePolicy",
@@ -3068,6 +3353,9 @@ var opUpdateAssumeRolePolicy *aws.Operation
 
 // UpdateGroupRequest generates a request for the UpdateGroup operation.
 func (c *IAM) UpdateGroupRequest(input *UpdateGroupInput) (req *aws.Request, output *UpdateGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateGroup == nil {
 		opUpdateGroup = &aws.Operation{
 			Name:       "UpdateGroup",
@@ -3103,6 +3391,9 @@ var opUpdateGroup *aws.Operation
 
 // UpdateLoginProfileRequest generates a request for the UpdateLoginProfile operation.
 func (c *IAM) UpdateLoginProfileRequest(input *UpdateLoginProfileInput) (req *aws.Request, output *UpdateLoginProfileOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateLoginProfile == nil {
 		opUpdateLoginProfile = &aws.Operation{
 			Name:       "UpdateLoginProfile",
@@ -3133,6 +3424,9 @@ var opUpdateLoginProfile *aws.Operation
 
 // UpdateOpenIDConnectProviderThumbprintRequest generates a request for the UpdateOpenIDConnectProviderThumbprint operation.
 func (c *IAM) UpdateOpenIDConnectProviderThumbprintRequest(input *UpdateOpenIDConnectProviderThumbprintInput) (req *aws.Request, output *UpdateOpenIDConnectProviderThumbprintOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateOpenIDConnectProviderThumbprint == nil {
 		opUpdateOpenIDConnectProviderThumbprint = &aws.Operation{
 			Name:       "UpdateOpenIDConnectProviderThumbprint",
@@ -3172,6 +3466,9 @@ var opUpdateOpenIDConnectProviderThumbprint *aws.Operation
 
 // UpdateSAMLProviderRequest generates a request for the UpdateSAMLProvider operation.
 func (c *IAM) UpdateSAMLProviderRequest(input *UpdateSAMLProviderInput) (req *aws.Request, output *UpdateSAMLProviderOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateSAMLProvider == nil {
 		opUpdateSAMLProvider = &aws.Operation{
 			Name:       "UpdateSAMLProvider",
@@ -3200,6 +3497,9 @@ var opUpdateSAMLProvider *aws.Operation
 
 // UpdateServerCertificateRequest generates a request for the UpdateServerCertificate operation.
 func (c *IAM) UpdateServerCertificateRequest(input *UpdateServerCertificateInput) (req *aws.Request, output *UpdateServerCertificateOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateServerCertificate == nil {
 		opUpdateServerCertificate = &aws.Operation{
 			Name:       "UpdateServerCertificate",
@@ -3236,6 +3536,9 @@ var opUpdateServerCertificate *aws.Operation
 
 // UpdateSigningCertificateRequest generates a request for the UpdateSigningCertificate operation.
 func (c *IAM) UpdateSigningCertificateRequest(input *UpdateSigningCertificateInput) (req *aws.Request, output *UpdateSigningCertificateOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateSigningCertificate == nil {
 		opUpdateSigningCertificate = &aws.Operation{
 			Name:       "UpdateSigningCertificate",
@@ -3273,6 +3576,9 @@ var opUpdateSigningCertificate *aws.Operation
 
 // UpdateUserRequest generates a request for the UpdateUser operation.
 func (c *IAM) UpdateUserRequest(input *UpdateUserInput) (req *aws.Request, output *UpdateUserOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateUser == nil {
 		opUpdateUser = &aws.Operation{
 			Name:       "UpdateUser",
@@ -3308,6 +3614,9 @@ var opUpdateUser *aws.Operation
 
 // UploadServerCertificateRequest generates a request for the UploadServerCertificate operation.
 func (c *IAM) UploadServerCertificateRequest(input *UploadServerCertificateInput) (req *aws.Request, output *UploadServerCertificateOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUploadServerCertificate == nil {
 		opUploadServerCertificate = &aws.Operation{
 			Name:       "UploadServerCertificate",
@@ -3348,6 +3657,9 @@ var opUploadServerCertificate *aws.Operation
 
 // UploadSigningCertificateRequest generates a request for the UploadSigningCertificate operation.
 func (c *IAM) UploadSigningCertificateRequest(input *UploadSigningCertificateInput) (req *aws.Request, output *UploadSigningCertificateOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUploadSigningCertificate == nil {
 		opUploadSigningCertificate = &aws.Operation{
 			Name:       "UploadSigningCertificate",

@@ -4,13 +4,19 @@
 package emr
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // AddInstanceGroupsRequest generates a request for the AddInstanceGroups operation.
 func (c *EMR) AddInstanceGroupsRequest(input *AddInstanceGroupsInput) (req *aws.Request, output *AddInstanceGroupsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAddInstanceGroups == nil {
 		opAddInstanceGroups = &aws.Operation{
 			Name:       "AddInstanceGroups",
@@ -37,6 +43,9 @@ var opAddInstanceGroups *aws.Operation
 
 // AddJobFlowStepsRequest generates a request for the AddJobFlowSteps operation.
 func (c *EMR) AddJobFlowStepsRequest(input *AddJobFlowStepsInput) (req *aws.Request, output *AddJobFlowStepsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAddJobFlowSteps == nil {
 		opAddJobFlowSteps = &aws.Operation{
 			Name:       "AddJobFlowSteps",
@@ -86,6 +95,9 @@ var opAddJobFlowSteps *aws.Operation
 
 // AddTagsRequest generates a request for the AddTags operation.
 func (c *EMR) AddTagsRequest(input *AddTagsInput) (req *aws.Request, output *AddTagsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAddTags == nil {
 		opAddTags = &aws.Operation{
 			Name:       "AddTags",
@@ -115,6 +127,9 @@ var opAddTags *aws.Operation
 
 // DescribeClusterRequest generates a request for the DescribeCluster operation.
 func (c *EMR) DescribeClusterRequest(input *DescribeClusterInput) (req *aws.Request, output *DescribeClusterOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeCluster == nil {
 		opDescribeCluster = &aws.Operation{
 			Name:       "DescribeCluster",
@@ -142,6 +157,9 @@ var opDescribeCluster *aws.Operation
 
 // DescribeJobFlowsRequest generates a request for the DescribeJobFlows operation.
 func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *aws.Request, output *DescribeJobFlowsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeJobFlows == nil {
 		opDescribeJobFlows = &aws.Operation{
 			Name:       "DescribeJobFlows",
@@ -185,6 +203,9 @@ var opDescribeJobFlows *aws.Operation
 
 // DescribeStepRequest generates a request for the DescribeStep operation.
 func (c *EMR) DescribeStepRequest(input *DescribeStepInput) (req *aws.Request, output *DescribeStepOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeStep == nil {
 		opDescribeStep = &aws.Operation{
 			Name:       "DescribeStep",
@@ -211,6 +232,9 @@ var opDescribeStep *aws.Operation
 
 // ListBootstrapActionsRequest generates a request for the ListBootstrapActions operation.
 func (c *EMR) ListBootstrapActionsRequest(input *ListBootstrapActionsInput) (req *aws.Request, output *ListBootstrapActionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListBootstrapActions == nil {
 		opListBootstrapActions = &aws.Operation{
 			Name:       "ListBootstrapActions",
@@ -237,6 +261,9 @@ var opListBootstrapActions *aws.Operation
 
 // ListClustersRequest generates a request for the ListClusters operation.
 func (c *EMR) ListClustersRequest(input *ListClustersInput) (req *aws.Request, output *ListClustersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListClusters == nil {
 		opListClusters = &aws.Operation{
 			Name:       "ListClusters",
@@ -267,6 +294,9 @@ var opListClusters *aws.Operation
 
 // ListInstanceGroupsRequest generates a request for the ListInstanceGroups operation.
 func (c *EMR) ListInstanceGroupsRequest(input *ListInstanceGroupsInput) (req *aws.Request, output *ListInstanceGroupsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListInstanceGroups == nil {
 		opListInstanceGroups = &aws.Operation{
 			Name:       "ListInstanceGroups",
@@ -293,6 +323,9 @@ var opListInstanceGroups *aws.Operation
 
 // ListInstancesRequest generates a request for the ListInstances operation.
 func (c *EMR) ListInstancesRequest(input *ListInstancesInput) (req *aws.Request, output *ListInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListInstances == nil {
 		opListInstances = &aws.Operation{
 			Name:       "ListInstances",
@@ -323,6 +356,9 @@ var opListInstances *aws.Operation
 
 // ListStepsRequest generates a request for the ListSteps operation.
 func (c *EMR) ListStepsRequest(input *ListStepsInput) (req *aws.Request, output *ListStepsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListSteps == nil {
 		opListSteps = &aws.Operation{
 			Name:       "ListSteps",
@@ -349,6 +385,9 @@ var opListSteps *aws.Operation
 
 // ModifyInstanceGroupsRequest generates a request for the ModifyInstanceGroups operation.
 func (c *EMR) ModifyInstanceGroupsRequest(input *ModifyInstanceGroupsInput) (req *aws.Request, output *ModifyInstanceGroupsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyInstanceGroups == nil {
 		opModifyInstanceGroups = &aws.Operation{
 			Name:       "ModifyInstanceGroups",
@@ -378,6 +417,9 @@ var opModifyInstanceGroups *aws.Operation
 
 // RemoveTagsRequest generates a request for the RemoveTags operation.
 func (c *EMR) RemoveTagsRequest(input *RemoveTagsInput) (req *aws.Request, output *RemoveTagsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRemoveTags == nil {
 		opRemoveTags = &aws.Operation{
 			Name:       "RemoveTags",
@@ -409,6 +451,9 @@ var opRemoveTags *aws.Operation
 
 // RunJobFlowRequest generates a request for the RunJobFlow operation.
 func (c *EMR) RunJobFlowRequest(input *RunJobFlowInput) (req *aws.Request, output *RunJobFlowOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRunJobFlow == nil {
 		opRunJobFlow = &aws.Operation{
 			Name:       "RunJobFlow",
@@ -457,6 +502,9 @@ var opRunJobFlow *aws.Operation
 
 // SetTerminationProtectionRequest generates a request for the SetTerminationProtection operation.
 func (c *EMR) SetTerminationProtectionRequest(input *SetTerminationProtectionInput) (req *aws.Request, output *SetTerminationProtectionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetTerminationProtection == nil {
 		opSetTerminationProtection = &aws.Operation{
 			Name:       "SetTerminationProtection",
@@ -499,6 +547,9 @@ var opSetTerminationProtection *aws.Operation
 
 // SetVisibleToAllUsersRequest generates a request for the SetVisibleToAllUsers operation.
 func (c *EMR) SetVisibleToAllUsersRequest(input *SetVisibleToAllUsersInput) (req *aws.Request, output *SetVisibleToAllUsersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetVisibleToAllUsers == nil {
 		opSetVisibleToAllUsers = &aws.Operation{
 			Name:       "SetVisibleToAllUsers",
@@ -530,6 +581,9 @@ var opSetVisibleToAllUsers *aws.Operation
 
 // TerminateJobFlowsRequest generates a request for the TerminateJobFlows operation.
 func (c *EMR) TerminateJobFlowsRequest(input *TerminateJobFlowsInput) (req *aws.Request, output *TerminateJobFlowsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opTerminateJobFlows == nil {
 		opTerminateJobFlows = &aws.Operation{
 			Name:       "TerminateJobFlows",

@@ -4,11 +4,18 @@
 package cloudwatchlogs
 
 import (
+	"sync"
+
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // CreateLogGroupRequest generates a request for the CreateLogGroup operation.
 func (c *CloudWatchLogs) CreateLogGroupRequest(input *CreateLogGroupInput) (req *aws.Request, output *CreateLogGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateLogGroup == nil {
 		opCreateLogGroup = &aws.Operation{
 			Name:       "CreateLogGroup",
@@ -41,6 +48,9 @@ var opCreateLogGroup *aws.Operation
 
 // CreateLogStreamRequest generates a request for the CreateLogStream operation.
 func (c *CloudWatchLogs) CreateLogStreamRequest(input *CreateLogStreamInput) (req *aws.Request, output *CreateLogStreamOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateLogStream == nil {
 		opCreateLogStream = &aws.Operation{
 			Name:       "CreateLogStream",
@@ -73,6 +83,9 @@ var opCreateLogStream *aws.Operation
 
 // DeleteLogGroupRequest generates a request for the DeleteLogGroup operation.
 func (c *CloudWatchLogs) DeleteLogGroupRequest(input *DeleteLogGroupInput) (req *aws.Request, output *DeleteLogGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteLogGroup == nil {
 		opDeleteLogGroup = &aws.Operation{
 			Name:       "DeleteLogGroup",
@@ -100,6 +113,9 @@ var opDeleteLogGroup *aws.Operation
 
 // DeleteLogStreamRequest generates a request for the DeleteLogStream operation.
 func (c *CloudWatchLogs) DeleteLogStreamRequest(input *DeleteLogStreamInput) (req *aws.Request, output *DeleteLogStreamOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteLogStream == nil {
 		opDeleteLogStream = &aws.Operation{
 			Name:       "DeleteLogStream",
@@ -127,6 +143,9 @@ var opDeleteLogStream *aws.Operation
 
 // DeleteMetricFilterRequest generates a request for the DeleteMetricFilter operation.
 func (c *CloudWatchLogs) DeleteMetricFilterRequest(input *DeleteMetricFilterInput) (req *aws.Request, output *DeleteMetricFilterOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteMetricFilter == nil {
 		opDeleteMetricFilter = &aws.Operation{
 			Name:       "DeleteMetricFilter",
@@ -153,6 +172,9 @@ var opDeleteMetricFilter *aws.Operation
 
 // DeleteRetentionPolicyRequest generates a request for the DeleteRetentionPolicy operation.
 func (c *CloudWatchLogs) DeleteRetentionPolicyRequest(input *DeleteRetentionPolicyInput) (req *aws.Request, output *DeleteRetentionPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteRetentionPolicy == nil {
 		opDeleteRetentionPolicy = &aws.Operation{
 			Name:       "DeleteRetentionPolicy",
@@ -180,6 +202,9 @@ var opDeleteRetentionPolicy *aws.Operation
 
 // DescribeLogGroupsRequest generates a request for the DescribeLogGroups operation.
 func (c *CloudWatchLogs) DescribeLogGroupsRequest(input *DescribeLogGroupsInput) (req *aws.Request, output *DescribeLogGroupsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeLogGroups == nil {
 		opDescribeLogGroups = &aws.Operation{
 			Name:       "DescribeLogGroups",
@@ -213,6 +238,9 @@ var opDescribeLogGroups *aws.Operation
 
 // DescribeLogStreamsRequest generates a request for the DescribeLogStreams operation.
 func (c *CloudWatchLogs) DescribeLogStreamsRequest(input *DescribeLogStreamsInput) (req *aws.Request, output *DescribeLogStreamsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeLogStreams == nil {
 		opDescribeLogStreams = &aws.Operation{
 			Name:       "DescribeLogStreams",
@@ -247,6 +275,9 @@ var opDescribeLogStreams *aws.Operation
 
 // DescribeMetricFiltersRequest generates a request for the DescribeMetricFilters operation.
 func (c *CloudWatchLogs) DescribeMetricFiltersRequest(input *DescribeMetricFiltersInput) (req *aws.Request, output *DescribeMetricFiltersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeMetricFilters == nil {
 		opDescribeMetricFilters = &aws.Operation{
 			Name:       "DescribeMetricFilters",
@@ -279,6 +310,9 @@ var opDescribeMetricFilters *aws.Operation
 
 // GetLogEventsRequest generates a request for the GetLogEvents operation.
 func (c *CloudWatchLogs) GetLogEventsRequest(input *GetLogEventsInput) (req *aws.Request, output *GetLogEventsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetLogEvents == nil {
 		opGetLogEvents = &aws.Operation{
 			Name:       "GetLogEvents",
@@ -314,6 +348,9 @@ var opGetLogEvents *aws.Operation
 
 // PutLogEventsRequest generates a request for the PutLogEvents operation.
 func (c *CloudWatchLogs) PutLogEventsRequest(input *PutLogEventsInput) (req *aws.Request, output *PutLogEventsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutLogEvents == nil {
 		opPutLogEvents = &aws.Operation{
 			Name:       "PutLogEvents",
@@ -352,6 +389,9 @@ var opPutLogEvents *aws.Operation
 
 // PutMetricFilterRequest generates a request for the PutMetricFilter operation.
 func (c *CloudWatchLogs) PutMetricFilterRequest(input *PutMetricFilterInput) (req *aws.Request, output *PutMetricFilterOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutMetricFilter == nil {
 		opPutMetricFilter = &aws.Operation{
 			Name:       "PutMetricFilter",
@@ -380,6 +420,9 @@ var opPutMetricFilter *aws.Operation
 
 // PutRetentionPolicyRequest generates a request for the PutRetentionPolicy operation.
 func (c *CloudWatchLogs) PutRetentionPolicyRequest(input *PutRetentionPolicyInput) (req *aws.Request, output *PutRetentionPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutRetentionPolicy == nil {
 		opPutRetentionPolicy = &aws.Operation{
 			Name:       "PutRetentionPolicy",
@@ -408,6 +451,9 @@ var opPutRetentionPolicy *aws.Operation
 
 // TestMetricFilterRequest generates a request for the TestMetricFilter operation.
 func (c *CloudWatchLogs) TestMetricFilterRequest(input *TestMetricFilterInput) (req *aws.Request, output *TestMetricFilterOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opTestMetricFilter == nil {
 		opTestMetricFilter = &aws.Operation{
 			Name:       "TestMetricFilter",
