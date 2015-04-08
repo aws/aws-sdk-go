@@ -27,6 +27,15 @@ func newGenerateInfo(modelFile, svcPath string) *generateInfo {
 	g := &generateInfo{API: &api.API{}}
 	g.API.Attach(modelFile)
 
+	if svc := os.Getenv("SERVICES"); svc != "" {
+		svcs := strings.Split(svc, ",")
+		for _, s := range svcs {
+			if s != g.API.PackageName() { // skip this non-included service
+				return nil
+			}
+		}
+	}
+
 	// ensure the directory exists
 	pkgDir := filepath.Join(svcPath, g.API.PackageName())
 	os.MkdirAll(pkgDir, 0775)
@@ -84,19 +93,19 @@ func main() {
 				}
 			}()
 
-			g := newGenerateInfo(file, svcPath)
+			if g := newGenerateInfo(file, svcPath); g != nil {
+				switch g.API.PackageName() {
+				case "simpledb", "importexport", "glacier", "cloudsearchdomain":
+					// These services are not yet supported, do nothing.
+				default:
+					fmt.Printf("Generating %s (%s)...\n",
+						g.API.PackageName(), g.API.Metadata.APIVersion)
 
-			switch g.API.PackageName() {
-			case "simpledb", "importexport", "glacier", "cloudsearchdomain":
-				// These services are not yet supported, do nothing.
-			default:
-				fmt.Printf("Generating %s (%s)...\n",
-					g.API.PackageName(), g.API.Metadata.APIVersion)
-
-				// write api.go and service.go files
-				g.writeAPIFile()
-				g.writeExamplesFile()
-				g.writeServiceFile()
+					// write api.go and service.go files
+					g.writeAPIFile()
+					g.writeExamplesFile()
+					g.writeServiceFile()
+				}
 			}
 		}()
 	}
