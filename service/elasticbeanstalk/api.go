@@ -1046,6 +1046,12 @@ type metadataCheckDNSAvailabilityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ConfigurationDeploymentStatusDeployed = "deployed"
+	ConfigurationDeploymentStatusFailed   = "failed"
+	ConfigurationDeploymentStatusPending  = "pending"
+)
+
 // Describes the possible values for a configuration option.
 type ConfigurationOptionDescription struct {
 	// An indication of which action is required if the value for this configuration
@@ -1163,6 +1169,11 @@ type ConfigurationOptionSetting struct {
 type metadataConfigurationOptionSetting struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	ConfigurationOptionValueTypeList   = "List"
+	ConfigurationOptionValueTypeScalar = "Scalar"
+)
 
 // Describes the settings for a configuration set.
 type ConfigurationSettingsDescription struct {
@@ -1917,6 +1928,13 @@ type metadataEnvironmentDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	EnvironmentHealthGreen  = "Green"
+	EnvironmentHealthGrey   = "Grey"
+	EnvironmentHealthRed    = "Red"
+	EnvironmentHealthYellow = "Yellow"
+)
+
 // The information retrieved from the Amazon EC2 instances.
 type EnvironmentInfoDescription struct {
 	// The Amazon EC2 Instance ID for this information.
@@ -1937,6 +1955,10 @@ type EnvironmentInfoDescription struct {
 type metadataEnvironmentInfoDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	EnvironmentInfoTypeTail = "tail"
+)
 
 // Describes the AWS resources in use by this environment. This data is live.
 type EnvironmentResourceDescription struct {
@@ -1980,6 +2002,14 @@ type EnvironmentResourcesDescription struct {
 type metadataEnvironmentResourcesDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	EnvironmentStatusLaunching   = "Launching"
+	EnvironmentStatusReady       = "Ready"
+	EnvironmentStatusTerminated  = "Terminated"
+	EnvironmentStatusTerminating = "Terminating"
+	EnvironmentStatusUpdating    = "Updating"
+)
 
 // Describes the properties of an environment tier
 type EnvironmentTier struct {
@@ -2031,6 +2061,15 @@ type EventDescription struct {
 type metadataEventDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	EventSeverityDebug = "DEBUG"
+	EventSeverityError = "ERROR"
+	EventSeverityFatal = "FATAL"
+	EventSeverityInfo  = "INFO"
+	EventSeverityTrace = "TRACE"
+	EventSeverityWarn  = "WARN"
+)
 
 // The description of an Amazon EC2 instance.
 type Instance struct {
@@ -2669,3 +2708,8 @@ type ValidationMessage struct {
 type metadataValidationMessage struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	ValidationSeverityError   = "error"
+	ValidationSeverityWarning = "warning"
+)

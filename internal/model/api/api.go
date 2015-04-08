@@ -171,7 +171,12 @@ var oprw sync.Mutex
 
 {{ range $_, $s := .ShapeList }}
 {{ if eq $s.Type "structure" }}{{ $s.GoCode }}{{ end }}
-
+{{ if $s.Enums }}
+const (
+{{ range $enum := $s.Enums }}
+{{ $enum.Name }} = {{ $enum.Value }}{{ end }}
+)
+{{ end }}
 {{ end }}
 `))
 

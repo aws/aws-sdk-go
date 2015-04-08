@@ -1265,6 +1265,13 @@ type metadataShard struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ShardIteratorTypeAfterSequenceNumber = "AFTER_SEQUENCE_NUMBER"
+	ShardIteratorTypeAtSequenceNumber    = "AT_SEQUENCE_NUMBER"
+	ShardIteratorTypeLatest              = "LATEST"
+	ShardIteratorTypeTrimHorizon         = "TRIM_HORIZON"
+)
+
 // Represents the input for SplitShard.
 type SplitShardInput struct {
 	// A hash key value for the starting hash key of one of the child shards created
@@ -1331,6 +1338,13 @@ type StreamDescription struct {
 type metadataStreamDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	StreamStatusActive   = "ACTIVE"
+	StreamStatusCreating = "CREATING"
+	StreamStatusDeleting = "DELETING"
+	StreamStatusUpdating = "UPDATING"
+)
 
 // Metadata assigned to the stream, consisting of a key-value pair.
 type Tag struct {

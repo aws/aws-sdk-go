@@ -984,6 +984,14 @@ type metadataOperator struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	OperatorTypeBetween = "BETWEEN"
+	OperatorTypeEq      = "EQ"
+	OperatorTypeGe      = "GE"
+	OperatorTypeLe      = "LE"
+	OperatorTypeRefEq   = "REF_EQ"
+)
+
 // The attributes allowed or specified with a parameter object.
 type ParameterAttribute struct {
 	// The field identifier.
@@ -1480,6 +1488,12 @@ type TaskObject struct {
 type metadataTaskObject struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	TaskStatusFailed   = "FAILED"
+	TaskStatusFalse    = "FALSE"
+	TaskStatusFinished = "FINISHED"
+)
 
 // The input of the ValidatePipelineDefinition action.
 type ValidatePipelineDefinitionInput struct {

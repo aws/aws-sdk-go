@@ -5906,6 +5906,11 @@ type metadataAccountAttribute struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	AccountAttributeNameDefaultVPC         = "default-vpc"
+	AccountAttributeNameSupportedPlatforms = "supported-platforms"
+)
+
 // Describes a value of an account attribute.
 type AccountAttributeValue struct {
 	// The value of the attribute.
@@ -5986,6 +5991,11 @@ type AllocateAddressOutput struct {
 type metadataAllocateAddressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	ArchitectureValuesI386  = "i386"
+	ArchitectureValuesX8664 = "x86_64"
+)
 
 type AssignPrivateIPAddressesInput struct {
 	// Indicates whether to allow an IP address that is already assigned to another
@@ -6256,6 +6266,13 @@ type metadataAttachVolumeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	AttachmentStatusAttached  = "attached"
+	AttachmentStatusAttaching = "attaching"
+	AttachmentStatusDetached  = "detached"
+	AttachmentStatusDetaching = "detaching"
+)
+
 // The value to use when a resource attribute accepts a Boolean value.
 type AttributeBooleanValue struct {
 	// Valid values are true or false.
@@ -6414,6 +6431,10 @@ type metadataAvailabilityZoneMessage struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	AvailabilityZoneStateAvailable = "available"
+)
+
 type BlobAttributeValue struct {
 	Value []byte `locationName:"value" type:"blob"`
 
@@ -6539,6 +6560,16 @@ type metadataBundleTaskError struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	BundleTaskStateBundling           = "bundling"
+	BundleTaskStateCancelling         = "cancelling"
+	BundleTaskStateComplete           = "complete"
+	BundleTaskStateFailed             = "failed"
+	BundleTaskStatePending            = "pending"
+	BundleTaskStateStoring            = "storing"
+	BundleTaskStateWaitingForShutdown = "waiting-for-shutdown"
+)
+
 type CancelBundleTaskInput struct {
 	// The ID of the bundle task.
 	BundleID *string `locationName:"BundleId" type:"string" required:"true"`
@@ -6626,6 +6657,14 @@ type CancelReservedInstancesListingOutput struct {
 type metadataCancelReservedInstancesListingOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	CancelSpotInstanceRequestStateActive    = "active"
+	CancelSpotInstanceRequestStateCancelled = "cancelled"
+	CancelSpotInstanceRequestStateClosed    = "closed"
+	CancelSpotInstanceRequestStateCompleted = "completed"
+	CancelSpotInstanceRequestStateOpen      = "open"
+)
 
 type CancelSpotInstanceRequestsInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
@@ -6715,6 +6754,10 @@ type metadataConfirmProductInstanceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ContainerFormatOva = "ova"
+)
+
 // Describes a conversion task.
 type ConversionTask struct {
 	// The ID of the conversion task.
@@ -6746,6 +6789,13 @@ type ConversionTask struct {
 type metadataConversionTask struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	ConversionTaskStateActive     = "active"
+	ConversionTaskStateCancelled  = "cancelled"
+	ConversionTaskStateCancelling = "cancelling"
+	ConversionTaskStateCompleted  = "completed"
+)
 
 type CopyImageInput struct {
 	// Unique, case-sensitive identifier you provide to ensure idempotency of the
@@ -7648,6 +7698,10 @@ type metadataCreateVolumePermissionModifications struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	CurrencyCodeValuesUsd = "USD"
+)
+
 // Describes a customer gateway.
 type CustomerGateway struct {
 	// The customer gateway's Border Gateway Protocol (BGP) Autonomous System Number
@@ -7709,6 +7763,11 @@ type DHCPOptions struct {
 type metadataDHCPOptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	DatafeedSubscriptionStateActive   = "Active"
+	DatafeedSubscriptionStateInactive = "Inactive"
+)
 
 type DeleteCustomerGatewayInput struct {
 	// The ID of the customer gateway.
@@ -11072,6 +11131,11 @@ type metadataDetachVolumeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	DeviceTypeEBS           = "ebs"
+	DeviceTypeInstanceStore = "instance-store"
+)
+
 type DisableVGWRoutePropagationInput struct {
 	// The ID of the virtual private gateway.
 	GatewayID *string `locationName:"GatewayId" type:"string" required:"true"`
@@ -11224,6 +11288,12 @@ type metadataDiskImageDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	DiskImageFormatRaw  = "RAW"
+	DiskImageFormatVHD  = "VHD"
+	DiskImageFormatVMDK = "VMDK"
+)
+
 type DiskImageVolumeDescription struct {
 	// The volume identifier.
 	ID *string `locationName:"id" type:"string" required:"true"`
@@ -11237,6 +11307,11 @@ type DiskImageVolumeDescription struct {
 type metadataDiskImageVolumeDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	DomainTypeStandard = "standard"
+	DomainTypeVPC      = "vpc"
+)
 
 // Describes an Amazon EBS block device.
 type EBSBlockDevice struct {
@@ -11392,6 +11467,20 @@ type metadataEnableVolumeIOOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	EventCodeInstanceReboot     = "instance-reboot"
+	EventCodeInstanceRetirement = "instance-retirement"
+	EventCodeInstanceStop       = "instance-stop"
+	EventCodeSystemMaintenance  = "system-maintenance"
+	EventCodeSystemReboot       = "system-reboot"
+)
+
+const (
+	ExportEnvironmentCitrix    = "citrix"
+	ExportEnvironmentMicrosoft = "microsoft"
+	ExportEnvironmentVMWare    = "vmware"
+)
+
 // Describes an export task.
 type ExportTask struct {
 	// A description of the resource being exported.
@@ -11417,6 +11506,13 @@ type ExportTask struct {
 type metadataExportTask struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	ExportTaskStateActive     = "active"
+	ExportTaskStateCancelled  = "cancelled"
+	ExportTaskStateCancelling = "cancelling"
+	ExportTaskStateCompleted  = "completed"
+)
 
 type ExportToS3Task struct {
 	// The container format used to combine disk images with metadata (such as OVF).
@@ -11473,6 +11569,10 @@ type Filter struct {
 type metadataFilter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	GatewayTypeIPsec1 = "ipsec.1"
+)
 
 type GetConsoleOutputInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
@@ -11548,6 +11648,11 @@ type GroupIdentifier struct {
 type metadataGroupIdentifier struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	HypervisorTypeOvm = "ovm"
+	HypervisorTypeXen = "xen"
+)
 
 // Describes an IAM instance profile.
 type IAMInstanceProfile struct {
@@ -11724,6 +11829,26 @@ type Image struct {
 type metadataImage struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	ImageAttributeNameBlockDeviceMapping = "blockDeviceMapping"
+	ImageAttributeNameDescription        = "description"
+	ImageAttributeNameKernel             = "kernel"
+	ImageAttributeNameLaunchPermission   = "launchPermission"
+	ImageAttributeNameProductCodes       = "productCodes"
+	ImageAttributeNameRAMDisk            = "ramdisk"
+)
+
+const (
+	ImageStateAvailable    = "available"
+	ImageStateDeregistered = "deregistered"
+)
+
+const (
+	ImageTypeValuesKernel  = "kernel"
+	ImageTypeValuesMachine = "machine"
+	ImageTypeValuesRAMDisk = "ramdisk"
+)
 
 type ImportInstanceInput struct {
 	// A description for the instance being imported.
@@ -12071,6 +12196,22 @@ type metadataInstance struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	InstanceAttributeNameBlockDeviceMapping                = "blockDeviceMapping"
+	InstanceAttributeNameDisableAPITermination             = "disableApiTermination"
+	InstanceAttributeNameEBSOptimized                      = "ebsOptimized"
+	InstanceAttributeNameGroupSet                          = "groupSet"
+	InstanceAttributeNameInstanceInitiatedShutdownBehavior = "instanceInitiatedShutdownBehavior"
+	InstanceAttributeNameInstanceType                      = "instanceType"
+	InstanceAttributeNameKernel                            = "kernel"
+	InstanceAttributeNameProductCodes                      = "productCodes"
+	InstanceAttributeNameRAMDisk                           = "ramdisk"
+	InstanceAttributeNameRootDeviceName                    = "rootDeviceName"
+	InstanceAttributeNameSRIOVNetSupport                   = "sriovNetSupport"
+	InstanceAttributeNameSourceDestCheck                   = "sourceDestCheck"
+	InstanceAttributeNameUserData                          = "userData"
+)
+
 // Describes a block device mapping.
 type InstanceBlockDeviceMapping struct {
 	// The device name exposed to the instance (for example, /dev/sdh).
@@ -12138,6 +12279,10 @@ type InstanceExportDetails struct {
 type metadataInstanceExportDetails struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	InstanceLifecycleTypeSpot = "spot"
+)
 
 // Describes the monitoring information of the instance.
 type InstanceMonitoring struct {
@@ -12370,6 +12515,15 @@ type metadataInstanceStateChange struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	InstanceStateNamePending      = "pending"
+	InstanceStateNameRunning      = "running"
+	InstanceStateNameShuttingDown = "shutting-down"
+	InstanceStateNameStopped      = "stopped"
+	InstanceStateNameStopping     = "stopping"
+	InstanceStateNameTerminated   = "terminated"
+)
+
 // Describes the status of an instance.
 type InstanceStatus struct {
 	// The Availability Zone of the instance.
@@ -12455,6 +12609,52 @@ type InstanceStatusSummary struct {
 type metadataInstanceStatusSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	InstanceTypeC1Medium   = "c1.medium"
+	InstanceTypeC1Xlarge   = "c1.xlarge"
+	InstanceTypeC32xlarge  = "c3.2xlarge"
+	InstanceTypeC34xlarge  = "c3.4xlarge"
+	InstanceTypeC38xlarge  = "c3.8xlarge"
+	InstanceTypeC3Large    = "c3.large"
+	InstanceTypeC3Xlarge   = "c3.xlarge"
+	InstanceTypeC42xlarge  = "c4.2xlarge"
+	InstanceTypeC44xlarge  = "c4.4xlarge"
+	InstanceTypeC48xlarge  = "c4.8xlarge"
+	InstanceTypeC4Large    = "c4.large"
+	InstanceTypeC4Xlarge   = "c4.xlarge"
+	InstanceTypeCC14xlarge = "cc1.4xlarge"
+	InstanceTypeCC28xlarge = "cc2.8xlarge"
+	InstanceTypeCg14xlarge = "cg1.4xlarge"
+	InstanceTypeCr18xlarge = "cr1.8xlarge"
+	InstanceTypeG22xlarge  = "g2.2xlarge"
+	InstanceTypeHi14xlarge = "hi1.4xlarge"
+	InstanceTypeHs18xlarge = "hs1.8xlarge"
+	InstanceTypeI22xlarge  = "i2.2xlarge"
+	InstanceTypeI24xlarge  = "i2.4xlarge"
+	InstanceTypeI28xlarge  = "i2.8xlarge"
+	InstanceTypeI2Xlarge   = "i2.xlarge"
+	InstanceTypeM1Large    = "m1.large"
+	InstanceTypeM1Medium   = "m1.medium"
+	InstanceTypeM1Small    = "m1.small"
+	InstanceTypeM1Xlarge   = "m1.xlarge"
+	InstanceTypeM22xlarge  = "m2.2xlarge"
+	InstanceTypeM24xlarge  = "m2.4xlarge"
+	InstanceTypeM2Xlarge   = "m2.xlarge"
+	InstanceTypeM32xlarge  = "m3.2xlarge"
+	InstanceTypeM3Large    = "m3.large"
+	InstanceTypeM3Medium   = "m3.medium"
+	InstanceTypeM3Xlarge   = "m3.xlarge"
+	InstanceTypeR32xlarge  = "r3.2xlarge"
+	InstanceTypeR34xlarge  = "r3.4xlarge"
+	InstanceTypeR38xlarge  = "r3.8xlarge"
+	InstanceTypeR3Large    = "r3.large"
+	InstanceTypeR3Xlarge   = "r3.xlarge"
+	InstanceTypeT1Micro    = "t1.micro"
+	InstanceTypeT2Medium   = "t2.medium"
+	InstanceTypeT2Micro    = "t2.micro"
+	InstanceTypeT2Small    = "t2.small"
+)
 
 // Describes an Internet gateway.
 type InternetGateway struct {
@@ -12600,6 +12800,20 @@ type LaunchSpecification struct {
 type metadataLaunchSpecification struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	ListingStateAvailable = "available"
+	ListingStateCancelled = "cancelled"
+	ListingStatePending   = "pending"
+	ListingStateSold      = "sold"
+)
+
+const (
+	ListingStatusActive    = "active"
+	ListingStatusCancelled = "cancelled"
+	ListingStatusClosed    = "closed"
+	ListingStatusPending   = "pending"
+)
 
 type ModifyImageAttributeInput struct {
 	// The name of the attribute to modify.
@@ -12962,6 +13176,12 @@ type metadataMonitoring struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	MonitoringStateDisabled = "disabled"
+	MonitoringStateEnabled  = "enabled"
+	MonitoringStatePending  = "pending"
+)
+
 // Describes a network ACL.
 type NetworkACL struct {
 	// Any associations between the network ACL and one or more subnets
@@ -13173,6 +13393,13 @@ type metadataNetworkInterfaceAttachmentChanges struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	NetworkInterfaceAttributeAttachment      = "attachment"
+	NetworkInterfaceAttributeDescription     = "description"
+	NetworkInterfaceAttributeGroupSet        = "groupSet"
+	NetworkInterfaceAttributeSourceDestCheck = "sourceDestCheck"
+)
+
 // Describes the private IP address of a network interface.
 type NetworkInterfacePrivateIPAddress struct {
 	// The association information for an Elastic IP address associated with the
@@ -13196,6 +13423,13 @@ type metadataNetworkInterfacePrivateIPAddress struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	NetworkInterfaceStatusAttaching = "attaching"
+	NetworkInterfaceStatusAvailable = "available"
+	NetworkInterfaceStatusDetaching = "detaching"
+	NetworkInterfaceStatusInUse     = "in-use"
+)
+
 type NewDHCPConfiguration struct {
 	Key *string `locationName:"key" type:"string"`
 
@@ -13207,6 +13441,19 @@ type NewDHCPConfiguration struct {
 type metadataNewDHCPConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	OfferingTypeValuesAllUpfront        = "All Upfront"
+	OfferingTypeValuesHeavyUtilization  = "Heavy Utilization"
+	OfferingTypeValuesLightUtilization  = "Light Utilization"
+	OfferingTypeValuesMediumUtilization = "Medium Utilization"
+	OfferingTypeValuesNoUpfront         = "No Upfront"
+	OfferingTypeValuesPartialUpfront    = "Partial Upfront"
+)
+
+const (
+	PermissionGroupAll = "all"
+)
 
 // Describes the placement for the instance.
 type Placement struct {
@@ -13244,6 +13491,21 @@ type PlacementGroup struct {
 type metadataPlacementGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	PlacementGroupStateAvailable = "available"
+	PlacementGroupStateDeleted   = "deleted"
+	PlacementGroupStateDeleting  = "deleting"
+	PlacementGroupStatePending   = "pending"
+)
+
+const (
+	PlacementStrategyCluster = "cluster"
+)
+
+const (
+	PlatformValuesWindows = "Windows"
+)
 
 // Describes a range of ports.
 type PortRange struct {
@@ -13358,6 +13620,11 @@ type metadataProductCode struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ProductCodeValuesDevpay      = "devpay"
+	ProductCodeValuesMarketplace = "marketplace"
+)
+
 // Describes a virtual private gateway propagating route.
 type PropagatingVGW struct {
 	// The ID of the virtual private gateway (VGW).
@@ -13402,6 +13669,13 @@ type metadataPurchaseReservedInstancesOfferingOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	RIProductDescriptionLinuxUnix          = "Linux/UNIX"
+	RIProductDescriptionLinuxUnixamazonVPC = "Linux/UNIX (Amazon VPC)"
+	RIProductDescriptionWindows            = "Windows"
+	RIProductDescriptionWindowsAmazonVPC   = "Windows (Amazon VPC)"
+)
+
 type RebootInstancesInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
@@ -13437,6 +13711,10 @@ type RecurringCharge struct {
 type metadataRecurringCharge struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	RecurringChargeFrequencyHourly = "Hourly"
+)
 
 // Describes a region.
 type Region struct {
@@ -13705,6 +13983,18 @@ type metadataReplaceRouteTableAssociationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ReportInstanceReasonCodesInstanceStuckInState     = "instance-stuck-in-state"
+	ReportInstanceReasonCodesNotAcceptingCredentials  = "not-accepting-credentials"
+	ReportInstanceReasonCodesOther                    = "other"
+	ReportInstanceReasonCodesPasswordNotAvailable     = "password-not-available"
+	ReportInstanceReasonCodesPerformanceEBSVolume     = "performance-ebs-volume"
+	ReportInstanceReasonCodesPerformanceInstanceStore = "performance-instance-store"
+	ReportInstanceReasonCodesPerformanceNetwork       = "performance-network"
+	ReportInstanceReasonCodesPerformanceOther         = "performance-other"
+	ReportInstanceReasonCodesUnresponsive             = "unresponsive"
+)
+
 type ReportInstanceStatusInput struct {
 	// Descriptive text about the health state of your instance.
 	Description *string `locationName:"description" type:"string"`
@@ -13761,6 +14051,11 @@ type ReportInstanceStatusOutput struct {
 type metadataReportInstanceStatusOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	ReportStatusTypeImpaired = "impaired"
+	ReportStatusTypeOK       = "ok"
+)
 
 type RequestSpotInstancesInput struct {
 	// The user-specified name for a logical grouping of bids.
@@ -13946,6 +14241,13 @@ type ReservedInstanceLimitPrice struct {
 type metadataReservedInstanceLimitPrice struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	ReservedInstanceStateActive         = "active"
+	ReservedInstanceStatePaymentFailed  = "payment-failed"
+	ReservedInstanceStatePaymentPending = "payment-pending"
+	ReservedInstanceStateRetired        = "retired"
+)
 
 // Describes a Reserved Instance.
 type ReservedInstances struct {
@@ -14202,6 +14504,10 @@ type metadataResetImageAttributeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ResetImageAttributeNameLaunchPermission = "launchPermission"
+)
+
 type ResetImageAttributeOutput struct {
 	metadataResetImageAttributeOutput `json:"-", xml:"-"`
 }
@@ -14282,6 +14588,26 @@ type ResetSnapshotAttributeOutput struct {
 type metadataResetSnapshotAttributeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	ResourceTypeCustomerGateway      = "customer-gateway"
+	ResourceTypeDHCPOptions          = "dhcp-options"
+	ResourceTypeImage                = "image"
+	ResourceTypeInstance             = "instance"
+	ResourceTypeInternetGateway      = "internet-gateway"
+	ResourceTypeNetworkACL           = "network-acl"
+	ResourceTypeNetworkInterface     = "network-interface"
+	ResourceTypeReservedInstances    = "reserved-instances"
+	ResourceTypeRouteTable           = "route-table"
+	ResourceTypeSecurityGroup        = "security-group"
+	ResourceTypeSnapshot             = "snapshot"
+	ResourceTypeSpotInstancesRequest = "spot-instances-request"
+	ResourceTypeSubnet               = "subnet"
+	ResourceTypeVPC                  = "vpc"
+	ResourceTypeVPNConnection        = "vpn-connection"
+	ResourceTypeVPNGateway           = "vpn-gateway"
+	ResourceTypeVolume               = "volume"
+)
 
 type RevokeSecurityGroupEgressInput struct {
 	// The CIDR IP address range. You can't specify this parameter when specifying
@@ -14424,6 +14750,17 @@ type metadataRoute struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	RouteOriginCreateRoute               = "CreateRoute"
+	RouteOriginCreateRouteTable          = "CreateRouteTable"
+	RouteOriginEnableVGWRoutePropagation = "EnableVgwRoutePropagation"
+)
+
+const (
+	RouteStateActive    = "active"
+	RouteStateBlackhole = "blackhole"
+)
+
 // Describes a route table.
 type RouteTable struct {
 	// The associations between the route table and one or more subnets.
@@ -14471,6 +14808,11 @@ type RouteTableAssociation struct {
 type metadataRouteTableAssociation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	RuleActionAllow = "allow"
+	RuleActionDeny  = "deny"
+)
 
 type RunInstancesInput struct {
 	// Reserved.
@@ -14685,6 +15027,11 @@ type metadataSecurityGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ShutdownBehaviorStop      = "stop"
+	ShutdownBehaviorTerminate = "terminate"
+)
+
 // Describes a snapshot.
 type Snapshot struct {
 	// The description for the snapshot.
@@ -14731,6 +15078,17 @@ type Snapshot struct {
 type metadataSnapshot struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	SnapshotAttributeNameCreateVolumePermission = "createVolumePermission"
+	SnapshotAttributeNameProductCodes           = "productCodes"
+)
+
+const (
+	SnapshotStateCompleted = "completed"
+	SnapshotStateError     = "error"
+	SnapshotStatePending   = "pending"
+)
 
 // Describes the data feed for a Spot Instance.
 type SpotDatafeedSubscription struct {
@@ -14828,6 +15186,14 @@ type metadataSpotInstanceRequest struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	SpotInstanceStateActive    = "active"
+	SpotInstanceStateCancelled = "cancelled"
+	SpotInstanceStateClosed    = "closed"
+	SpotInstanceStateFailed    = "failed"
+	SpotInstanceStateOpen      = "open"
+)
+
 // Describes a Spot Instance state change.
 type SpotInstanceStateFault struct {
 	// The reason code for the Spot Instance state change.
@@ -14860,6 +15226,11 @@ type SpotInstanceStatus struct {
 type metadataSpotInstanceStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	SpotInstanceTypeOneTime    = "one-time"
+	SpotInstanceTypePersistent = "persistent"
+)
 
 // Describes Spot Instance placement.
 type SpotPlacement struct {
@@ -14965,6 +15336,16 @@ type metadataStateReason struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	StatusNameReachability = "reachability"
+)
+
+const (
+	StatusTypeFailed           = "failed"
+	StatusTypeInsufficientData = "insufficient-data"
+	StatusTypePassed           = "passed"
+)
+
 type StopInstancesInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
@@ -15046,6 +15427,18 @@ type metadataSubnet struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	SubnetStateAvailable = "available"
+	SubnetStatePending   = "pending"
+)
+
+const (
+	SummaryStatusImpaired         = "impaired"
+	SummaryStatusInsufficientData = "insufficient-data"
+	SummaryStatusNotApplicable    = "not-applicable"
+	SummaryStatusOK               = "ok"
+)
+
 // Describes a tag.
 type Tag struct {
 	// The key of the tag.
@@ -15087,6 +15480,16 @@ type TagDescription struct {
 type metadataTagDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	TelemetryStatusDown = "DOWN"
+	TelemetryStatusUp   = "UP"
+)
+
+const (
+	TenancyDedicated = "dedicated"
+	TenancyDefault   = "default"
+)
 
 type TerminateInstancesInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
@@ -15451,6 +15854,11 @@ type metadataVPNStaticRoute struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	VirtualizationTypeHVM         = "hvm"
+	VirtualizationTypeParavirtual = "paravirtual"
+)
+
 // Describes a volume.
 type Volume struct {
 	Attachments []*VolumeAttachment `locationName:"attachmentSet" locationNameList:"item" type:"list"`
@@ -15536,6 +15944,18 @@ type metadataVolumeAttachment struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	VolumeAttachmentStateAttached  = "attached"
+	VolumeAttachmentStateAttaching = "attaching"
+	VolumeAttachmentStateDetached  = "detached"
+	VolumeAttachmentStateDetaching = "detaching"
+)
+
+const (
+	VolumeAttributeNameAutoEnableIo = "autoEnableIO"
+	VolumeAttributeNameProductCodes = "productCodes"
+)
+
 // Describes an Amazon EBS volume.
 type VolumeDetail struct {
 	// The size of the volume, in GiB.
@@ -15547,6 +15967,15 @@ type VolumeDetail struct {
 type metadataVolumeDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	VolumeStateAvailable = "available"
+	VolumeStateCreating  = "creating"
+	VolumeStateDeleted   = "deleted"
+	VolumeStateDeleting  = "deleting"
+	VolumeStateError     = "error"
+	VolumeStateInUse     = "in-use"
+)
 
 // Describes a volume status operation code.
 type VolumeStatusAction struct {
@@ -15623,6 +16052,12 @@ type metadataVolumeStatusInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	VolumeStatusInfoStatusImpaired         = "impaired"
+	VolumeStatusInfoStatusInsufficientData = "insufficient-data"
+	VolumeStatusInfoStatusOK               = "ok"
+)
+
 // Describes the volume status.
 type VolumeStatusItem struct {
 	// The details of the operation.
@@ -15646,3 +16081,35 @@ type VolumeStatusItem struct {
 type metadataVolumeStatusItem struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	VolumeStatusNameIoEnabled     = "io-enabled"
+	VolumeStatusNameIoPerformance = "io-performance"
+)
+
+const (
+	VolumeTypeGp2      = "gp2"
+	VolumeTypeIo1      = "io1"
+	VolumeTypeStandard = "standard"
+)
+
+const (
+	VPCAttributeNameEnableDNSHostnames = "enableDnsHostnames"
+	VPCAttributeNameEnableDNSSupport   = "enableDnsSupport"
+)
+
+const (
+	VPCStateAvailable = "available"
+	VPCStatePending   = "pending"
+)
+
+const (
+	VPNStateAvailable = "available"
+	VPNStateDeleted   = "deleted"
+	VPNStateDeleting  = "deleting"
+	VPNStatePending   = "pending"
+)
+
+const (
+	VPNStaticRouteSourceStatic = "Static"
+)

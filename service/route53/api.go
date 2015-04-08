@@ -1201,6 +1201,12 @@ type metadataChange struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ChangeActionCreate = "CREATE"
+	ChangeActionDelete = "DELETE"
+	ChangeActionUpsert = "UPSERT"
+)
+
 // A complex type that contains an optional comment and the changes that you
 // want to make with a change batch request.
 type ChangeBatch struct {
@@ -1285,6 +1291,11 @@ type ChangeResourceRecordSetsOutput struct {
 type metadataChangeResourceRecordSetsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	ChangeStatusInsync  = "INSYNC"
+	ChangeStatusPending = "PENDING"
+)
 
 // A complex type containing information about a request to add, change, or
 // delete the tags that are associated with a resource.
@@ -2021,6 +2032,14 @@ type metadataHealthCheckObservation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	HealthCheckTypeHTTP          = "HTTP"
+	HealthCheckTypeHTTPS         = "HTTPS"
+	HealthCheckTypeHTTPSStrMatch = "HTTPS_STR_MATCH"
+	HealthCheckTypeHTTPStrMatch  = "HTTP_STR_MATCH"
+	HealthCheckTypeTCP           = "TCP"
+)
+
 // A complex type that contain information about the specified hosted zone.
 type HostedZone struct {
 	// A unique string that identifies the request to create the hosted zone.
@@ -2575,6 +2594,19 @@ type metadataListTagsForResourcesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	RRTypeA     = "A"
+	RRTypeAaaa  = "AAAA"
+	RRTypeCNAME = "CNAME"
+	RRTypeMx    = "MX"
+	RRTypeNs    = "NS"
+	RRTypePtr   = "PTR"
+	RRTypeSoa   = "SOA"
+	RRTypeSpf   = "SPF"
+	RRTypeSrv   = "SRV"
+	RRTypeTxt   = "TXT"
+)
+
 // A complex type that contains the value of the Value element for the current
 // resource record set.
 type ResourceRecord struct {
@@ -2659,6 +2691,24 @@ type metadataResourceRecordSet struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ResourceRecordSetFailoverPrimary   = "PRIMARY"
+	ResourceRecordSetFailoverSecondary = "SECONDARY"
+)
+
+const (
+	ResourceRecordSetRegionApNortheast1 = "ap-northeast-1"
+	ResourceRecordSetRegionApSoutheast1 = "ap-southeast-1"
+	ResourceRecordSetRegionApSoutheast2 = "ap-southeast-2"
+	ResourceRecordSetRegionCnNorth1     = "cn-north-1"
+	ResourceRecordSetRegionEuCentral1   = "eu-central-1"
+	ResourceRecordSetRegionEuWest1      = "eu-west-1"
+	ResourceRecordSetRegionSaEast1      = "sa-east-1"
+	ResourceRecordSetRegionUsEast1      = "us-east-1"
+	ResourceRecordSetRegionUsWest1      = "us-west-1"
+	ResourceRecordSetRegionUsWest2      = "us-west-2"
+)
+
 // A complex type containing a resource and its associated tags.
 type ResourceTagSet struct {
 	// The ID for the specified resource.
@@ -2714,6 +2764,11 @@ type Tag struct {
 type metadataTag struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	TagResourceTypeHealthcheck = "healthcheck"
+	TagResourceTypeHostedzone  = "hostedzone"
+)
 
 // >A complex type that contains information about the request to update a health
 // check.
@@ -2829,3 +2884,16 @@ type VPC struct {
 type metadataVPC struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	VPCRegionApNortheast1 = "ap-northeast-1"
+	VPCRegionApSoutheast1 = "ap-southeast-1"
+	VPCRegionApSoutheast2 = "ap-southeast-2"
+	VPCRegionCnNorth1     = "cn-north-1"
+	VPCRegionEuCentral1   = "eu-central-1"
+	VPCRegionEuWest1      = "eu-west-1"
+	VPCRegionSaEast1      = "sa-east-1"
+	VPCRegionUsEast1      = "us-east-1"
+	VPCRegionUsWest1      = "us-west-1"
+	VPCRegionUsWest2      = "us-west-2"
+)

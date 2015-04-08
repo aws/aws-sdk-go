@@ -764,6 +764,12 @@ type metadataApplicationInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ApplicationRevisionSortByFirstUsedTime = "firstUsedTime"
+	ApplicationRevisionSortByLastUsedTime  = "lastUsedTime"
+	ApplicationRevisionSortByRegisterTime  = "registerTime"
+)
+
 // Information about an Auto Scaling group.
 type AutoScalingGroup struct {
 	// An Auto Scaling lifecycle event hook name.
@@ -827,6 +833,12 @@ type BatchGetDeploymentsOutput struct {
 type metadataBatchGetDeploymentsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	BundleTypeTAR = "tar"
+	BundleTypeTGZ = "tgz"
+	BundleTypeZip = "zip"
+)
 
 // Represents the input of a create application operation.
 type CreateApplicationInput struct {
@@ -1108,6 +1120,11 @@ type metadataDeploymentConfigInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	DeploymentCreatorAutoscaling = "autoscaling"
+	DeploymentCreatorUser        = "user"
+)
+
 // Information about a deployment group.
 type DeploymentGroupInfo struct {
 	// The application name.
@@ -1234,6 +1251,15 @@ type metadataDeploymentOverview struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	DeploymentStatusCreated    = "Created"
+	DeploymentStatusFailed     = "Failed"
+	DeploymentStatusInProgress = "InProgress"
+	DeploymentStatusQueued     = "Queued"
+	DeploymentStatusStopped    = "Stopped"
+	DeploymentStatusSucceeded  = "Succeeded"
+)
+
 // Diagnostic information about executable scripts that are part of a deployment.
 type Diagnostics struct {
 	// The associated error code:
@@ -1281,6 +1307,26 @@ type EC2TagFilter struct {
 type metadataEC2TagFilter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	EC2TagFilterTypeKeyAndValue = "KEY_AND_VALUE"
+	EC2TagFilterTypeKeyOnly     = "KEY_ONLY"
+	EC2TagFilterTypeValueOnly   = "VALUE_ONLY"
+)
+
+const (
+	ErrorCodeApplicationMissing       = "APPLICATION_MISSING"
+	ErrorCodeDeploymentGroupMissing   = "DEPLOYMENT_GROUP_MISSING"
+	ErrorCodeHealthConstraints        = "HEALTH_CONSTRAINTS"
+	ErrorCodeHealthConstraintsInvalid = "HEALTH_CONSTRAINTS_INVALID"
+	ErrorCodeIAMRoleMissing           = "IAM_ROLE_MISSING"
+	ErrorCodeIAMRolePermissions       = "IAM_ROLE_PERMISSIONS"
+	ErrorCodeInternalError            = "INTERNAL_ERROR"
+	ErrorCodeNoInstances              = "NO_INSTANCES"
+	ErrorCodeOverMaxInstances         = "OVER_MAX_INSTANCES"
+	ErrorCodeRevisionMissing          = "REVISION_MISSING"
+	ErrorCodeTimeout                  = "TIMEOUT"
+)
 
 // Information about a deployment error.
 type ErrorInformation struct {
@@ -1519,6 +1565,15 @@ type metadataGitHubLocation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	InstanceStatusFailed     = "Failed"
+	InstanceStatusInProgress = "InProgress"
+	InstanceStatusPending    = "Pending"
+	InstanceStatusSkipped    = "Skipped"
+	InstanceStatusSucceeded  = "Succeeded"
+	InstanceStatusUnknown    = "Unknown"
+)
+
 // Information about an Amazon EC2 instance in a deployment.
 type InstanceSummary struct {
 	// The deployment ID.
@@ -1548,6 +1603,15 @@ type InstanceSummary struct {
 type metadataInstanceSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	LifecycleErrorCodeScriptFailed        = "ScriptFailed"
+	LifecycleErrorCodeScriptMissing       = "ScriptMissing"
+	LifecycleErrorCodeScriptNotExecutable = "ScriptNotExecutable"
+	LifecycleErrorCodeScriptTimedOut      = "ScriptTimedOut"
+	LifecycleErrorCodeSuccess             = "Success"
+	LifecycleErrorCodeUnknownError        = "UnknownError"
+)
 
 // Information about a deployment lifecycle event.
 type LifecycleEvent struct {
@@ -1579,6 +1643,15 @@ type LifecycleEvent struct {
 type metadataLifecycleEvent struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	LifecycleEventStatusFailed     = "Failed"
+	LifecycleEventStatusInProgress = "InProgress"
+	LifecycleEventStatusPending    = "Pending"
+	LifecycleEventStatusSkipped    = "Skipped"
+	LifecycleEventStatusSucceeded  = "Succeeded"
+	LifecycleEventStatusUnknown    = "Unknown"
+)
 
 // Represents the input of a list application revisions operation.
 type ListApplicationRevisionsInput struct {
@@ -1845,6 +1918,12 @@ type metadataListDeploymentsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ListStateFilterActionExclude = "exclude"
+	ListStateFilterActionIgnore  = "ignore"
+	ListStateFilterActionInclude = "include"
+)
+
 // Information about minimum healthy instances.
 type MinimumHealthyHosts struct {
 	// The minimum healthy instances type:
@@ -1874,6 +1953,11 @@ type MinimumHealthyHosts struct {
 type metadataMinimumHealthyHosts struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	MinimumHealthyHostsTypeFleetPercent = "FLEET_PERCENT"
+	MinimumHealthyHostsTypeHostCount    = "HOST_COUNT"
+)
 
 // Represents the input of a register application revision operation.
 type RegisterApplicationRevisionInput struct {
@@ -1925,6 +2009,11 @@ type metadataRevisionLocation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	RevisionLocationTypeGitHub = "GitHub"
+	RevisionLocationTypeS3     = "S3"
+)
+
 // Information about the location of application artifacts that are stored in
 // Amazon S3.
 type S3Location struct {
@@ -1962,6 +2051,11 @@ type metadataS3Location struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	SortOrderAscending  = "ascending"
+	SortOrderDescending = "descending"
+)
+
 // Represents the input of a stop deployment operation.
 type StopDeploymentInput struct {
 	// The unique ID of a deployment.
@@ -1990,6 +2084,11 @@ type StopDeploymentOutput struct {
 type metadataStopDeploymentOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	StopStatusPending   = "Pending"
+	StopStatusSucceeded = "Succeeded"
+)
 
 // Information about a time range.
 type TimeRange struct {

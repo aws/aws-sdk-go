@@ -1880,6 +1880,11 @@ type metadataAddTagsToResourceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ApplyMethodImmediate     = "immediate"
+	ApplyMethodPendingReboot = "pending-reboot"
+)
+
 type ApplyPendingMaintenanceActionInput struct {
 	// The pending maintenance action to apply to this resource.
 	ApplyAction *string `type:"string" required:"true"`
@@ -6427,6 +6432,13 @@ type RevokeDBSecurityGroupIngressOutput struct {
 type metadataRevokeDBSecurityGroupIngressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	SourceTypeDBInstance       = "db-instance"
+	SourceTypeDBParameterGroup = "db-parameter-group"
+	SourceTypeDBSecurityGroup  = "db-security-group"
+	SourceTypeDBSnapshot       = "db-snapshot"
+)
 
 // This data type is used as a response element in the DescribeDBSubnetGroups
 // action.

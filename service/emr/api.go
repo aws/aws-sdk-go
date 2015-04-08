@@ -616,6 +616,13 @@ func (c *EMR) TerminateJobFlows(input *TerminateJobFlowsInput) (output *Terminat
 
 var opTerminateJobFlows *aws.Operation
 
+const (
+	ActionOnFailureCancelAndWait    = "CANCEL_AND_WAIT"
+	ActionOnFailureContinue         = "CONTINUE"
+	ActionOnFailureTerminateCluster = "TERMINATE_CLUSTER"
+	ActionOnFailureTerminateJobFlow = "TERMINATE_JOB_FLOW"
+)
+
 // Input to an AddInstanceGroups call.
 type AddInstanceGroupsInput struct {
 	// Instance Groups to add.
@@ -831,6 +838,16 @@ type metadataCluster struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	ClusterStateBootstrapping        = "BOOTSTRAPPING"
+	ClusterStateRunning              = "RUNNING"
+	ClusterStateStarting             = "STARTING"
+	ClusterStateTerminated           = "TERMINATED"
+	ClusterStateTerminatedWithErrors = "TERMINATED_WITH_ERRORS"
+	ClusterStateTerminating          = "TERMINATING"
+	ClusterStateWaiting              = "WAITING"
+)
+
 // The reason that the cluster changed to its current state.
 type ClusterStateChangeReason struct {
 	// The programmatic code for the state change reason.
@@ -845,6 +862,16 @@ type ClusterStateChangeReason struct {
 type metadataClusterStateChangeReason struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	ClusterStateChangeReasonCodeAllStepsCompleted = "ALL_STEPS_COMPLETED"
+	ClusterStateChangeReasonCodeBootstrapFailure  = "BOOTSTRAP_FAILURE"
+	ClusterStateChangeReasonCodeInstanceFailure   = "INSTANCE_FAILURE"
+	ClusterStateChangeReasonCodeInternalError     = "INTERNAL_ERROR"
+	ClusterStateChangeReasonCodeStepFailure       = "STEP_FAILURE"
+	ClusterStateChangeReasonCodeUserRequest       = "USER_REQUEST"
+	ClusterStateChangeReasonCodeValidationError   = "VALIDATION_ERROR"
+)
 
 // The detailed status of the cluster.
 type ClusterStatus struct {
@@ -1278,6 +1305,19 @@ type metadataInstanceGroupModifyConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	InstanceGroupStateArrested      = "ARRESTED"
+	InstanceGroupStateBootstrapping = "BOOTSTRAPPING"
+	InstanceGroupStateEnded         = "ENDED"
+	InstanceGroupStateProvisioning  = "PROVISIONING"
+	InstanceGroupStateResizing      = "RESIZING"
+	InstanceGroupStateRunning       = "RUNNING"
+	InstanceGroupStateShuttingDown  = "SHUTTING_DOWN"
+	InstanceGroupStateSuspended     = "SUSPENDED"
+	InstanceGroupStateTerminated    = "TERMINATED"
+	InstanceGroupStateTerminating   = "TERMINATING"
+)
+
 // The status change reason details for the instance group.
 type InstanceGroupStateChangeReason struct {
 	// The programmable code for the state change reason.
@@ -1292,6 +1332,13 @@ type InstanceGroupStateChangeReason struct {
 type metadataInstanceGroupStateChangeReason struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	InstanceGroupStateChangeReasonCodeClusterTerminated = "CLUSTER_TERMINATED"
+	InstanceGroupStateChangeReasonCodeInstanceFailure   = "INSTANCE_FAILURE"
+	InstanceGroupStateChangeReasonCodeInternalError     = "INTERNAL_ERROR"
+	InstanceGroupStateChangeReasonCodeValidationError   = "VALIDATION_ERROR"
+)
 
 // The details of the instance group status.
 type InstanceGroupStatus struct {
@@ -1329,6 +1376,26 @@ type metadataInstanceGroupTimeline struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	InstanceGroupTypeCore   = "CORE"
+	InstanceGroupTypeMaster = "MASTER"
+	InstanceGroupTypeTask   = "TASK"
+)
+
+const (
+	InstanceRoleTypeCore   = "CORE"
+	InstanceRoleTypeMaster = "MASTER"
+	InstanceRoleTypeTask   = "TASK"
+)
+
+const (
+	InstanceStateAwaitingFulfillment = "AWAITING_FULFILLMENT"
+	InstanceStateBootstrapping       = "BOOTSTRAPPING"
+	InstanceStateProvisioning        = "PROVISIONING"
+	InstanceStateRunning             = "RUNNING"
+	InstanceStateTerminated          = "TERMINATED"
+)
+
 // The details of the status change reason for the instance.
 type InstanceStateChangeReason struct {
 	// The programmable code for the state change reason.
@@ -1343,6 +1410,14 @@ type InstanceStateChangeReason struct {
 type metadataInstanceStateChangeReason struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	InstanceStateChangeReasonCodeBootstrapFailure  = "BOOTSTRAP_FAILURE"
+	InstanceStateChangeReasonCodeClusterTerminated = "CLUSTER_TERMINATED"
+	InstanceStateChangeReasonCodeInstanceFailure   = "INSTANCE_FAILURE"
+	InstanceStateChangeReasonCodeInternalError     = "INTERNAL_ERROR"
+	InstanceStateChangeReasonCodeValidationError   = "VALIDATION_ERROR"
+)
 
 // The instance status details.
 type InstanceStatus struct {
@@ -1436,6 +1511,17 @@ type JobFlowDetail struct {
 type metadataJobFlowDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	JobFlowExecutionStateBootstrapping = "BOOTSTRAPPING"
+	JobFlowExecutionStateCompleted     = "COMPLETED"
+	JobFlowExecutionStateFailed        = "FAILED"
+	JobFlowExecutionStateRunning       = "RUNNING"
+	JobFlowExecutionStateShuttingDown  = "SHUTTING_DOWN"
+	JobFlowExecutionStateStarting      = "STARTING"
+	JobFlowExecutionStateTerminated    = "TERMINATED"
+	JobFlowExecutionStateWaiting       = "WAITING"
+)
 
 // Describes the status of the job flow.
 type JobFlowExecutionStatusDetail struct {
@@ -1778,6 +1864,11 @@ type metadataListStepsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	MarketTypeOnDemand = "ON_DEMAND"
+	MarketTypeSpot     = "SPOT"
+)
+
 // Change the size of some instance groups.
 type ModifyInstanceGroupsInput struct {
 	// Instance groups to change.
@@ -2060,6 +2151,16 @@ type metadataStepDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	StepExecutionStateCancelled   = "CANCELLED"
+	StepExecutionStateCompleted   = "COMPLETED"
+	StepExecutionStateContinue    = "CONTINUE"
+	StepExecutionStateFailed      = "FAILED"
+	StepExecutionStateInterrupted = "INTERRUPTED"
+	StepExecutionStatePending     = "PENDING"
+	StepExecutionStateRunning     = "RUNNING"
+)
+
 // The execution state of a step.
 type StepExecutionStatusDetail struct {
 	// The creation date and time of the step.
@@ -2084,6 +2185,15 @@ type metadataStepExecutionStatusDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+const (
+	StepStateCancelled   = "CANCELLED"
+	StepStateCompleted   = "COMPLETED"
+	StepStateFailed      = "FAILED"
+	StepStateInterrupted = "INTERRUPTED"
+	StepStatePending     = "PENDING"
+	StepStateRunning     = "RUNNING"
+)
+
 // The details of the step state change reason.
 type StepStateChangeReason struct {
 	// The programmable code for the state change reason.
@@ -2098,6 +2208,10 @@ type StepStateChangeReason struct {
 type metadataStepStateChangeReason struct {
 	SDKShapeTraits bool `type:"structure"`
 }
+
+const (
+	StepStateChangeReasonCodeNone = "NONE"
+)
 
 // The execution status details of the cluster step.
 type StepStatus struct {
