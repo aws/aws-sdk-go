@@ -1,6 +1,9 @@
 package awsutil
 
-import "reflect"
+import (
+	"io"
+	"reflect"
+)
 
 // Copy deeply copies a src structure to dst. Useful for copying request and
 // response structures.
@@ -24,12 +27,20 @@ func rcopy(dst, src reflect.Value) {
 
 	switch src.Kind() {
 	case reflect.Ptr:
-		e := src.Type().Elem()
-		if dst.CanSet() {
-			dst.Set(reflect.New(e))
-		}
-		if src.Elem().IsValid() {
-			rcopy(dst.Elem(), src.Elem())
+		if _, ok := src.Interface().(io.Reader); ok {
+			if dst.Kind() == reflect.Ptr && dst.Elem().CanSet() {
+				dst.Elem().Set(src)
+			} else if dst.CanSet() {
+				dst.Set(src)
+			}
+		} else {
+			e := src.Type().Elem()
+			if dst.CanSet() {
+				dst.Set(reflect.New(e))
+			}
+			if src.Elem().IsValid() {
+				rcopy(dst.Elem(), src.Elem())
+			}
 		}
 	case reflect.Struct:
 		dst.Set(reflect.New(src.Type()).Elem())

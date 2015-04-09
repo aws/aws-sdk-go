@@ -1,7 +1,10 @@
 package awsutil_test
 
 import (
+	"bytes"
 	"fmt"
+	"io"
+	"io/ioutil"
 	"testing"
 
 	"github.com/awslabs/aws-sdk-go/aws/awsutil"
@@ -85,6 +88,20 @@ func TestCopyNil(t *testing.T) {
 	var s string
 	awsutil.Copy(&s, nil)
 	assert.Equal(t, "", s)
+}
+
+func TestCopyReader(t *testing.T) {
+	var buf io.Reader = bytes.NewReader([]byte("hello world"))
+	var r io.Reader
+	awsutil.Copy(&r, buf)
+	b, err := ioutil.ReadAll(r)
+	assert.NoError(t, err)
+	assert.Equal(t, []byte("hello world"), b)
+
+	// empty bytes because this is not a deep copy
+	b, err = ioutil.ReadAll(buf)
+	assert.NoError(t, err)
+	assert.Equal(t, []byte(""), b)
 }
 
 func ExampleCopyOf() {
