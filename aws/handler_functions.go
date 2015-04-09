@@ -72,11 +72,14 @@ func AfterRetryHandler(r *Request) {
 }
 
 var (
-	ErrMissingRegion = fmt.Errorf("could not find region configuration.")
+	ErrMissingRegion   = fmt.Errorf("could not find region configuration.")
+	ErrMissingEndpoint = fmt.Errorf("`Endpoint' configuration is required for this service.")
 )
 
 func ValidateEndpointHandler(r *Request) {
-	if r.Service.SigningRegion == "" && r.Service.Config.Region == "" {
+	if r.Service.Endpoint == "" {
+		r.Error = ErrMissingEndpoint
+	} else if r.Service.SigningRegion == "" && r.Service.Config.Region == "" {
 		r.Error = ErrMissingRegion
 	}
 }
