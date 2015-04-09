@@ -12,8 +12,7 @@ import (
 )
 
 var svc = s3.New(&aws.Config{
-	Region:      "mock-region",
-	Credentials: aws.DetectCreds("AKID", "SECRET", ""),
+	Region: "mock-region",
 })
 
 func assertMD5(t *testing.T, req *aws.Request) {
