@@ -68,7 +68,7 @@ func (s *Service) Initialize() {
 func (s *Service) buildEndpoint() {
 	if s.Config.Endpoint != "" {
 		s.Endpoint = s.Config.Endpoint
-	} else if s.Config.Region != "" {
+	} else {
 		s.Endpoint, s.SigningRegion =
 			endpoints.EndpointForRegion(s.ServiceName, s.Config.Region)
 	}

@@ -16,8 +16,9 @@ var db *dynamodb.DynamoDB
 
 func TestMain(m *testing.M) {
 	db = dynamodb.New(&aws.Config{
-		Region:     "mock-region",
-		MaxRetries: 2,
+		Region:      "mock-region",
+		Credentials: aws.DetectCreds("AKID", "SECRET", ""),
+		MaxRetries:  2,
 	})
 	db.Handlers.Send.Clear() // mock sending
 
