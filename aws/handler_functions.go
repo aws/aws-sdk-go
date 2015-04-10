@@ -77,9 +77,9 @@ var (
 )
 
 func ValidateEndpointHandler(r *Request) {
-	if r.Service.Endpoint == "" {
-		r.Error = ErrMissingEndpoint
-	} else if r.Service.SigningRegion == "" && r.Service.Config.Region == "" {
+	if r.Service.SigningRegion == "" && r.Service.Config.Region == "" {
 		r.Error = ErrMissingRegion
+	} else if r.Service.Endpoint == "" {
+		r.Error = ErrMissingEndpoint
 	}
 }
