@@ -95,7 +95,7 @@ func main() {
 
 			if g := newGenerateInfo(file, svcPath); g != nil {
 				switch g.API.PackageName() {
-				case "simpledb", "importexport", "glacier":
+				case "simpledb", "importexport":
 					// These services are not yet supported, do nothing.
 				default:
 					fmt.Printf("Generating %s (%s)...\n",
