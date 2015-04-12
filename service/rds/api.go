@@ -25,6 +25,10 @@ func (c *RDS) AddSourceIdentifierToSubscriptionRequest(input *AddSourceIdentifie
 		}
 	}
 
+	if input == nil {
+		input = &AddSourceIdentifierToSubscriptionInput{}
+	}
+
 	req = c.newRequest(opAddSourceIdentifierToSubscription, input, output)
 	output = &AddSourceIdentifierToSubscriptionOutput{}
 	req.Data = output
@@ -52,6 +56,10 @@ func (c *RDS) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *aws.
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &AddTagsToResourceInput{}
 	}
 
 	req = c.newRequest(opAddTagsToResource, input, output)
@@ -88,6 +96,10 @@ func (c *RDS) ApplyPendingMaintenanceActionRequest(input *ApplyPendingMaintenanc
 		}
 	}
 
+	if input == nil {
+		input = &ApplyPendingMaintenanceActionInput{}
+	}
+
 	req = c.newRequest(opApplyPendingMaintenanceAction, input, output)
 	output = &ApplyPendingMaintenanceActionOutput{}
 	req.Data = output
@@ -115,6 +127,10 @@ func (c *RDS) AuthorizeDBSecurityGroupIngressRequest(input *AuthorizeDBSecurityG
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &AuthorizeDBSecurityGroupIngressInput{}
 	}
 
 	req = c.newRequest(opAuthorizeDBSecurityGroupIngress, input, output)
@@ -157,6 +173,10 @@ func (c *RDS) CopyDBParameterGroupRequest(input *CopyDBParameterGroupInput) (req
 		}
 	}
 
+	if input == nil {
+		input = &CopyDBParameterGroupInput{}
+	}
+
 	req = c.newRequest(opCopyDBParameterGroup, input, output)
 	output = &CopyDBParameterGroupOutput{}
 	req.Data = output
@@ -184,6 +204,10 @@ func (c *RDS) CopyDBSnapshotRequest(input *CopyDBSnapshotInput) (req *aws.Reques
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CopyDBSnapshotInput{}
 	}
 
 	req = c.newRequest(opCopyDBSnapshot, input, output)
@@ -216,6 +240,10 @@ func (c *RDS) CopyOptionGroupRequest(input *CopyOptionGroupInput) (req *aws.Requ
 		}
 	}
 
+	if input == nil {
+		input = &CopyOptionGroupInput{}
+	}
+
 	req = c.newRequest(opCopyOptionGroup, input, output)
 	output = &CopyOptionGroupOutput{}
 	req.Data = output
@@ -245,6 +273,10 @@ func (c *RDS) CreateDBInstanceRequest(input *CreateDBInstanceInput) (req *aws.Re
 		}
 	}
 
+	if input == nil {
+		input = &CreateDBInstanceInput{}
+	}
+
 	req = c.newRequest(opCreateDBInstance, input, output)
 	output = &CreateDBInstanceOutput{}
 	req.Data = output
@@ -272,6 +304,10 @@ func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadRepl
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateDBInstanceReadReplicaInput{}
 	}
 
 	req = c.newRequest(opCreateDBInstanceReadReplica, input, output)
@@ -308,6 +344,10 @@ func (c *RDS) CreateDBParameterGroupRequest(input *CreateDBParameterGroupInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateDBParameterGroupInput{}
 	}
 
 	req = c.newRequest(opCreateDBParameterGroup, input, output)
@@ -359,6 +399,10 @@ func (c *RDS) CreateDBSecurityGroupRequest(input *CreateDBSecurityGroupInput) (r
 		}
 	}
 
+	if input == nil {
+		input = &CreateDBSecurityGroupInput{}
+	}
+
 	req = c.newRequest(opCreateDBSecurityGroup, input, output)
 	output = &CreateDBSecurityGroupOutput{}
 	req.Data = output
@@ -387,6 +431,10 @@ func (c *RDS) CreateDBSnapshotRequest(input *CreateDBSnapshotInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateDBSnapshotInput{}
 	}
 
 	req = c.newRequest(opCreateDBSnapshot, input, output)
@@ -418,6 +466,10 @@ func (c *RDS) CreateDBSubnetGroupRequest(input *CreateDBSubnetGroupInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &CreateDBSubnetGroupInput{}
+	}
+
 	req = c.newRequest(opCreateDBSubnetGroup, input, output)
 	output = &CreateDBSubnetGroupOutput{}
 	req.Data = output
@@ -446,6 +498,10 @@ func (c *RDS) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateEventSubscriptionInput{}
 	}
 
 	req = c.newRequest(opCreateEventSubscription, input, output)
@@ -495,6 +551,10 @@ func (c *RDS) CreateOptionGroupRequest(input *CreateOptionGroupInput) (req *aws.
 		}
 	}
 
+	if input == nil {
+		input = &CreateOptionGroupInput{}
+	}
+
 	req = c.newRequest(opCreateOptionGroup, input, output)
 	output = &CreateOptionGroupOutput{}
 	req.Data = output
@@ -522,6 +582,10 @@ func (c *RDS) DeleteDBInstanceRequest(input *DeleteDBInstanceInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteDBInstanceInput{}
 	}
 
 	req = c.newRequest(opDeleteDBInstance, input, output)
@@ -562,6 +626,10 @@ func (c *RDS) DeleteDBParameterGroupRequest(input *DeleteDBParameterGroupInput) 
 		}
 	}
 
+	if input == nil {
+		input = &DeleteDBParameterGroupInput{}
+	}
+
 	req = c.newRequest(opDeleteDBParameterGroup, input, output)
 	output = &DeleteDBParameterGroupOutput{}
 	req.Data = output
@@ -594,6 +662,10 @@ func (c *RDS) DeleteDBSecurityGroupRequest(input *DeleteDBSecurityGroupInput) (r
 		}
 	}
 
+	if input == nil {
+		input = &DeleteDBSecurityGroupInput{}
+	}
+
 	req = c.newRequest(opDeleteDBSecurityGroup, input, output)
 	output = &DeleteDBSecurityGroupOutput{}
 	req.Data = output
@@ -623,6 +695,10 @@ func (c *RDS) DeleteDBSnapshotRequest(input *DeleteDBSnapshotInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteDBSnapshotInput{}
 	}
 
 	req = c.newRequest(opDeleteDBSnapshot, input, output)
@@ -657,6 +733,10 @@ func (c *RDS) DeleteDBSubnetGroupRequest(input *DeleteDBSubnetGroupInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &DeleteDBSubnetGroupInput{}
+	}
+
 	req = c.newRequest(opDeleteDBSubnetGroup, input, output)
 	output = &DeleteDBSubnetGroupOutput{}
 	req.Data = output
@@ -688,6 +768,10 @@ func (c *RDS) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionInput
 		}
 	}
 
+	if input == nil {
+		input = &DeleteEventSubscriptionInput{}
+	}
+
 	req = c.newRequest(opDeleteEventSubscription, input, output)
 	output = &DeleteEventSubscriptionOutput{}
 	req.Data = output
@@ -715,6 +799,10 @@ func (c *RDS) DeleteOptionGroupRequest(input *DeleteOptionGroupInput) (req *aws.
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteOptionGroupInput{}
 	}
 
 	req = c.newRequest(opDeleteOptionGroup, input, output)
@@ -746,6 +834,10 @@ func (c *RDS) DescribeDBEngineVersionsRequest(input *DescribeDBEngineVersionsInp
 		}
 	}
 
+	if input == nil {
+		input = &DescribeDBEngineVersionsInput{}
+	}
+
 	req = c.newRequest(opDescribeDBEngineVersions, input, output)
 	output = &DescribeDBEngineVersionsOutput{}
 	req.Data = output
@@ -773,6 +865,10 @@ func (c *RDS) DescribeDBInstancesRequest(input *DescribeDBInstancesInput) (req *
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeDBInstancesInput{}
 	}
 
 	req = c.newRequest(opDescribeDBInstances, input, output)
@@ -804,6 +900,10 @@ func (c *RDS) DescribeDBLogFilesRequest(input *DescribeDBLogFilesInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &DescribeDBLogFilesInput{}
+	}
+
 	req = c.newRequest(opDescribeDBLogFiles, input, output)
 	output = &DescribeDBLogFilesOutput{}
 	req.Data = output
@@ -831,6 +931,10 @@ func (c *RDS) DescribeDBParameterGroupsRequest(input *DescribeDBParameterGroupsI
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeDBParameterGroupsInput{}
 	}
 
 	req = c.newRequest(opDescribeDBParameterGroups, input, output)
@@ -864,6 +968,10 @@ func (c *RDS) DescribeDBParametersRequest(input *DescribeDBParametersInput) (req
 		}
 	}
 
+	if input == nil {
+		input = &DescribeDBParametersInput{}
+	}
+
 	req = c.newRequest(opDescribeDBParameters, input, output)
 	output = &DescribeDBParametersOutput{}
 	req.Data = output
@@ -891,6 +999,10 @@ func (c *RDS) DescribeDBSecurityGroupsRequest(input *DescribeDBSecurityGroupsInp
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeDBSecurityGroupsInput{}
 	}
 
 	req = c.newRequest(opDescribeDBSecurityGroups, input, output)
@@ -924,6 +1036,10 @@ func (c *RDS) DescribeDBSnapshotsRequest(input *DescribeDBSnapshotsInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &DescribeDBSnapshotsInput{}
+	}
+
 	req = c.newRequest(opDescribeDBSnapshots, input, output)
 	output = &DescribeDBSnapshotsOutput{}
 	req.Data = output
@@ -951,6 +1067,10 @@ func (c *RDS) DescribeDBSubnetGroupsRequest(input *DescribeDBSubnetGroupsInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeDBSubnetGroupsInput{}
 	}
 
 	req = c.newRequest(opDescribeDBSubnetGroups, input, output)
@@ -985,6 +1105,10 @@ func (c *RDS) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaul
 		}
 	}
 
+	if input == nil {
+		input = &DescribeEngineDefaultParametersInput{}
+	}
+
 	req = c.newRequest(opDescribeEngineDefaultParameters, input, output)
 	output = &DescribeEngineDefaultParametersOutput{}
 	req.Data = output
@@ -1013,6 +1137,10 @@ func (c *RDS) DescribeEventCategoriesRequest(input *DescribeEventCategoriesInput
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeEventCategoriesInput{}
 	}
 
 	req = c.newRequest(opDescribeEventCategories, input, output)
@@ -1045,6 +1173,10 @@ func (c *RDS) DescribeEventSubscriptionsRequest(input *DescribeEventSubscription
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeEventSubscriptionsInput{}
 	}
 
 	req = c.newRequest(opDescribeEventSubscriptions, input, output)
@@ -1080,6 +1212,10 @@ func (c *RDS) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Reques
 		}
 	}
 
+	if input == nil {
+		input = &DescribeEventsInput{}
+	}
+
 	req = c.newRequest(opDescribeEvents, input, output)
 	output = &DescribeEventsOutput{}
 	req.Data = output
@@ -1113,6 +1249,10 @@ func (c *RDS) DescribeOptionGroupOptionsRequest(input *DescribeOptionGroupOption
 		}
 	}
 
+	if input == nil {
+		input = &DescribeOptionGroupOptionsInput{}
+	}
+
 	req = c.newRequest(opDescribeOptionGroupOptions, input, output)
 	output = &DescribeOptionGroupOptionsOutput{}
 	req.Data = output
@@ -1140,6 +1280,10 @@ func (c *RDS) DescribeOptionGroupsRequest(input *DescribeOptionGroupsInput) (req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeOptionGroupsInput{}
 	}
 
 	req = c.newRequest(opDescribeOptionGroups, input, output)
@@ -1171,6 +1315,10 @@ func (c *RDS) DescribeOrderableDBInstanceOptionsRequest(input *DescribeOrderable
 		}
 	}
 
+	if input == nil {
+		input = &DescribeOrderableDBInstanceOptionsInput{}
+	}
+
 	req = c.newRequest(opDescribeOrderableDBInstanceOptions, input, output)
 	output = &DescribeOrderableDBInstanceOptionsOutput{}
 	req.Data = output
@@ -1198,6 +1346,10 @@ func (c *RDS) DescribePendingMaintenanceActionsRequest(input *DescribePendingMai
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribePendingMaintenanceActionsInput{}
 	}
 
 	req = c.newRequest(opDescribePendingMaintenanceActions, input, output)
@@ -1230,6 +1382,10 @@ func (c *RDS) DescribeReservedDBInstancesRequest(input *DescribeReservedDBInstan
 		}
 	}
 
+	if input == nil {
+		input = &DescribeReservedDBInstancesInput{}
+	}
+
 	req = c.newRequest(opDescribeReservedDBInstances, input, output)
 	output = &DescribeReservedDBInstancesOutput{}
 	req.Data = output
@@ -1258,6 +1414,10 @@ func (c *RDS) DescribeReservedDBInstancesOfferingsRequest(input *DescribeReserve
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeReservedDBInstancesOfferingsInput{}
 	}
 
 	req = c.newRequest(opDescribeReservedDBInstancesOfferings, input, output)
@@ -1289,6 +1449,10 @@ func (c *RDS) DownloadDBLogFilePortionRequest(input *DownloadDBLogFilePortionInp
 		}
 	}
 
+	if input == nil {
+		input = &DownloadDBLogFilePortionInput{}
+	}
+
 	req = c.newRequest(opDownloadDBLogFilePortion, input, output)
 	output = &DownloadDBLogFilePortionOutput{}
 	req.Data = output
@@ -1316,6 +1480,10 @@ func (c *RDS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
 	}
 
 	req = c.newRequest(opListTagsForResource, input, output)
@@ -1350,6 +1518,10 @@ func (c *RDS) ModifyDBInstanceRequest(input *ModifyDBInstanceInput) (req *aws.Re
 		}
 	}
 
+	if input == nil {
+		input = &ModifyDBInstanceInput{}
+	}
+
 	req = c.newRequest(opModifyDBInstance, input, output)
 	output = &ModifyDBInstanceOutput{}
 	req.Data = output
@@ -1378,6 +1550,10 @@ func (c *RDS) ModifyDBParameterGroupRequest(input *ModifyDBParameterGroupInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ModifyDBParameterGroupInput{}
 	}
 
 	req = c.newRequest(opModifyDBParameterGroup, input, output)
@@ -1426,6 +1602,10 @@ func (c *RDS) ModifyDBSubnetGroupRequest(input *ModifyDBSubnetGroupInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &ModifyDBSubnetGroupInput{}
+	}
+
 	req = c.newRequest(opModifyDBSubnetGroup, input, output)
 	output = &ModifyDBSubnetGroupOutput{}
 	req.Data = output
@@ -1454,6 +1634,10 @@ func (c *RDS) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionInput
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ModifyEventSubscriptionInput{}
 	}
 
 	req = c.newRequest(opModifyEventSubscription, input, output)
@@ -1493,6 +1677,10 @@ func (c *RDS) ModifyOptionGroupRequest(input *ModifyOptionGroupInput) (req *aws.
 		}
 	}
 
+	if input == nil {
+		input = &ModifyOptionGroupInput{}
+	}
+
 	req = c.newRequest(opModifyOptionGroup, input, output)
 	output = &ModifyOptionGroupOutput{}
 	req.Data = output
@@ -1520,6 +1708,10 @@ func (c *RDS) PromoteReadReplicaRequest(input *PromoteReadReplicaInput) (req *aw
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PromoteReadReplicaInput{}
 	}
 
 	req = c.newRequest(opPromoteReadReplica, input, output)
@@ -1556,6 +1748,10 @@ func (c *RDS) PurchaseReservedDBInstancesOfferingRequest(input *PurchaseReserved
 		}
 	}
 
+	if input == nil {
+		input = &PurchaseReservedDBInstancesOfferingInput{}
+	}
+
 	req = c.newRequest(opPurchaseReservedDBInstancesOffering, input, output)
 	output = &PurchaseReservedDBInstancesOfferingOutput{}
 	req.Data = output
@@ -1583,6 +1779,10 @@ func (c *RDS) RebootDBInstanceRequest(input *RebootDBInstanceInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RebootDBInstanceInput{}
 	}
 
 	req = c.newRequest(opRebootDBInstance, input, output)
@@ -1630,6 +1830,10 @@ func (c *RDS) RemoveSourceIdentifierFromSubscriptionRequest(input *RemoveSourceI
 		}
 	}
 
+	if input == nil {
+		input = &RemoveSourceIdentifierFromSubscriptionInput{}
+	}
+
 	req = c.newRequest(opRemoveSourceIdentifierFromSubscription, input, output)
 	output = &RemoveSourceIdentifierFromSubscriptionOutput{}
 	req.Data = output
@@ -1657,6 +1861,10 @@ func (c *RDS) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RemoveTagsFromResourceInput{}
 	}
 
 	req = c.newRequest(opRemoveTagsFromResource, input, output)
@@ -1689,6 +1897,10 @@ func (c *RDS) ResetDBParameterGroupRequest(input *ResetDBParameterGroupInput) (r
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ResetDBParameterGroupInput{}
 	}
 
 	req = c.newRequest(opResetDBParameterGroup, input, output)
@@ -1724,6 +1936,10 @@ func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFro
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RestoreDBInstanceFromDBSnapshotInput{}
 	}
 
 	req = c.newRequest(opRestoreDBInstanceFromDBSnapshot, input, output)
@@ -1767,6 +1983,10 @@ func (c *RDS) RestoreDBInstanceToPointInTimeRequest(input *RestoreDBInstanceToPo
 		}
 	}
 
+	if input == nil {
+		input = &RestoreDBInstanceToPointInTimeInput{}
+	}
+
 	req = c.newRequest(opRestoreDBInstanceToPointInTime, input, output)
 	output = &RestoreDBInstanceToPointInTimeOutput{}
 	req.Data = output
@@ -1798,6 +2018,10 @@ func (c *RDS) RevokeDBSecurityGroupIngressRequest(input *RevokeDBSecurityGroupIn
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RevokeDBSecurityGroupIngressInput{}
 	}
 
 	req = c.newRequest(opRevokeDBSecurityGroupIngress, input, output)
@@ -2959,11 +3183,6 @@ type DBInstance struct {
 	// associated with.
 	CharacterSetName *string `type:"string"`
 
-	// If StorageEncrypted is true, the region-unique, immutable identifier for
-	// the encrypted DB instance. This identifier is found in AWS CloudTrail log
-	// entries whenever the KMS key for the DB instance is accessed.
-	DBIResourceID *string `locationName:"DbiResourceId" type:"string"`
-
 	// Contains the name of the compute and memory capacity class of the DB instance.
 	DBInstanceClass *string `type:"string"`
 
@@ -3003,6 +3222,11 @@ type DBInstance struct {
 	// Specifies information on the subnet group associated with the DB instance,
 	// including the name, description, and subnets in the subnet group.
 	DBSubnetGroup *DBSubnetGroup `type:"structure"`
+
+	// If StorageEncrypted is true, the region-unique, immutable identifier for
+	// the encrypted DB instance. This identifier is found in AWS CloudTrail log
+	// entries whenever the KMS key for the DB instance is accessed.
+	DBiResourceID *string `locationName:"DbiResourceId" type:"string"`
 
 	// Specifies the connection endpoint.
 	Endpoint *Endpoint `type:"structure"`

@@ -24,6 +24,10 @@ func (c *ECS) CreateClusterRequest(input *CreateClusterInput) (req *aws.Request,
 		}
 	}
 
+	if input == nil {
+		input = &CreateClusterInput{}
+	}
+
 	req = c.newRequest(opCreateCluster, input, output)
 	output = &CreateClusterOutput{}
 	req.Data = output
@@ -57,6 +61,10 @@ func (c *ECS) DeleteClusterRequest(input *DeleteClusterInput) (req *aws.Request,
 		}
 	}
 
+	if input == nil {
+		input = &DeleteClusterInput{}
+	}
+
 	req = c.newRequest(opDeleteCluster, input, output)
 	output = &DeleteClusterOutput{}
 	req.Data = output
@@ -88,6 +96,10 @@ func (c *ECS) DeregisterContainerInstanceRequest(input *DeregisterContainerInsta
 		}
 	}
 
+	if input == nil {
+		input = &DeregisterContainerInstanceInput{}
+	}
+
 	req = c.newRequest(opDeregisterContainerInstance, input, output)
 	output = &DeregisterContainerInstanceOutput{}
 	req.Data = output
@@ -116,6 +128,10 @@ func (c *ECS) DeregisterTaskDefinitionRequest(input *DeregisterTaskDefinitionInp
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeregisterTaskDefinitionInput{}
 	}
 
 	req = c.newRequest(opDeregisterTaskDefinition, input, output)
@@ -150,6 +166,10 @@ func (c *ECS) DescribeClustersRequest(input *DescribeClustersInput) (req *aws.Re
 		}
 	}
 
+	if input == nil {
+		input = &DescribeClustersInput{}
+	}
+
 	req = c.newRequest(opDescribeClusters, input, output)
 	output = &DescribeClustersOutput{}
 	req.Data = output
@@ -177,6 +197,10 @@ func (c *ECS) DescribeContainerInstancesRequest(input *DescribeContainerInstance
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeContainerInstancesInput{}
 	}
 
 	req = c.newRequest(opDescribeContainerInstances, input, output)
@@ -207,6 +231,10 @@ func (c *ECS) DescribeTaskDefinitionRequest(input *DescribeTaskDefinitionInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeTaskDefinitionInput{}
 	}
 
 	req = c.newRequest(opDescribeTaskDefinition, input, output)
@@ -240,6 +268,10 @@ func (c *ECS) DescribeTasksRequest(input *DescribeTasksInput) (req *aws.Request,
 		}
 	}
 
+	if input == nil {
+		input = &DescribeTasksInput{}
+	}
+
 	req = c.newRequest(opDescribeTasks, input, output)
 	output = &DescribeTasksOutput{}
 	req.Data = output
@@ -267,6 +299,10 @@ func (c *ECS) DiscoverPollEndpointRequest(input *DiscoverPollEndpointInput) (req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DiscoverPollEndpointInput{}
 	}
 
 	req = c.newRequest(opDiscoverPollEndpoint, input, output)
@@ -302,6 +338,10 @@ func (c *ECS) ListClustersRequest(input *ListClustersInput) (req *aws.Request, o
 		}
 	}
 
+	if input == nil {
+		input = &ListClustersInput{}
+	}
+
 	req = c.newRequest(opListClusters, input, output)
 	output = &ListClustersOutput{}
 	req.Data = output
@@ -331,6 +371,10 @@ func (c *ECS) ListContainerInstancesRequest(input *ListContainerInstancesInput) 
 		}
 	}
 
+	if input == nil {
+		input = &ListContainerInstancesInput{}
+	}
+
 	req = c.newRequest(opListContainerInstances, input, output)
 	output = &ListContainerInstancesOutput{}
 	req.Data = output
@@ -358,6 +402,10 @@ func (c *ECS) ListTaskDefinitionFamiliesRequest(input *ListTaskDefinitionFamilie
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListTaskDefinitionFamiliesInput{}
 	}
 
 	req = c.newRequest(opListTaskDefinitionFamilies, input, output)
@@ -390,6 +438,10 @@ func (c *ECS) ListTaskDefinitionsRequest(input *ListTaskDefinitionsInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &ListTaskDefinitionsInput{}
+	}
+
 	req = c.newRequest(opListTaskDefinitions, input, output)
 	output = &ListTaskDefinitionsOutput{}
 	req.Data = output
@@ -418,6 +470,10 @@ func (c *ECS) ListTasksRequest(input *ListTasksInput) (req *aws.Request, output 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListTasksInput{}
 	}
 
 	req = c.newRequest(opListTasks, input, output)
@@ -449,6 +505,10 @@ func (c *ECS) RegisterContainerInstanceRequest(input *RegisterContainerInstanceI
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RegisterContainerInstanceInput{}
 	}
 
 	req = c.newRequest(opRegisterContainerInstance, input, output)
@@ -484,6 +544,10 @@ func (c *ECS) RegisterTaskDefinitionRequest(input *RegisterTaskDefinitionInput) 
 		}
 	}
 
+	if input == nil {
+		input = &RegisterTaskDefinitionInput{}
+	}
+
 	req = c.newRequest(opRegisterTaskDefinition, input, output)
 	output = &RegisterTaskDefinitionOutput{}
 	req.Data = output
@@ -517,6 +581,10 @@ func (c *ECS) RunTaskRequest(input *RunTaskInput) (req *aws.Request, output *Run
 		}
 	}
 
+	if input == nil {
+		input = &RunTaskInput{}
+	}
+
 	req = c.newRequest(opRunTask, input, output)
 	output = &RunTaskOutput{}
 	req.Data = output
@@ -546,6 +614,10 @@ func (c *ECS) StartTaskRequest(input *StartTaskInput) (req *aws.Request, output 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &StartTaskInput{}
 	}
 
 	req = c.newRequest(opStartTask, input, output)
@@ -579,6 +651,10 @@ func (c *ECS) StopTaskRequest(input *StopTaskInput) (req *aws.Request, output *S
 		}
 	}
 
+	if input == nil {
+		input = &StopTaskInput{}
+	}
+
 	req = c.newRequest(opStopTask, input, output)
 	output = &StopTaskOutput{}
 	req.Data = output
@@ -606,6 +682,10 @@ func (c *ECS) SubmitContainerStateChangeRequest(input *SubmitContainerStateChang
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SubmitContainerStateChangeInput{}
 	}
 
 	req = c.newRequest(opSubmitContainerStateChange, input, output)
@@ -638,6 +718,10 @@ func (c *ECS) SubmitTaskStateChangeRequest(input *SubmitTaskStateChangeInput) (r
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SubmitTaskStateChangeInput{}
 	}
 
 	req = c.newRequest(opSubmitTaskStateChange, input, output)

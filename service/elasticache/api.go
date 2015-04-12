@@ -25,6 +25,10 @@ func (c *ElastiCache) AddTagsToResourceRequest(input *AddTagsToResourceInput) (r
 		}
 	}
 
+	if input == nil {
+		input = &AddTagsToResourceInput{}
+	}
+
 	req = c.newRequest(opAddTagsToResource, input, output)
 	output = &TagListMessage{}
 	req.Data = output
@@ -64,6 +68,10 @@ func (c *ElastiCache) AuthorizeCacheSecurityGroupIngressRequest(input *Authorize
 		}
 	}
 
+	if input == nil {
+		input = &AuthorizeCacheSecurityGroupIngressInput{}
+	}
+
 	req = c.newRequest(opAuthorizeCacheSecurityGroupIngress, input, output)
 	output = &AuthorizeCacheSecurityGroupIngressOutput{}
 	req.Data = output
@@ -98,6 +106,10 @@ func (c *ElastiCache) CopySnapshotRequest(input *CopySnapshotInput) (req *aws.Re
 		}
 	}
 
+	if input == nil {
+		input = &CopySnapshotInput{}
+	}
+
 	req = c.newRequest(opCopySnapshot, input, output)
 	output = &CopySnapshotOutput{}
 	req.Data = output
@@ -125,6 +137,10 @@ func (c *ElastiCache) CreateCacheClusterRequest(input *CreateCacheClusterInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateCacheClusterInput{}
 	}
 
 	req = c.newRequest(opCreateCacheCluster, input, output)
@@ -158,6 +174,10 @@ func (c *ElastiCache) CreateCacheParameterGroupRequest(input *CreateCacheParamet
 		}
 	}
 
+	if input == nil {
+		input = &CreateCacheParameterGroupInput{}
+	}
+
 	req = c.newRequest(opCreateCacheParameterGroup, input, output)
 	output = &CreateCacheParameterGroupOutput{}
 	req.Data = output
@@ -187,6 +207,10 @@ func (c *ElastiCache) CreateCacheSecurityGroupRequest(input *CreateCacheSecurity
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateCacheSecurityGroupInput{}
 	}
 
 	req = c.newRequest(opCreateCacheSecurityGroup, input, output)
@@ -224,6 +248,10 @@ func (c *ElastiCache) CreateCacheSubnetGroupRequest(input *CreateCacheSubnetGrou
 		}
 	}
 
+	if input == nil {
+		input = &CreateCacheSubnetGroupInput{}
+	}
+
 	req = c.newRequest(opCreateCacheSubnetGroup, input, output)
 	output = &CreateCacheSubnetGroupOutput{}
 	req.Data = output
@@ -254,6 +282,10 @@ func (c *ElastiCache) CreateReplicationGroupRequest(input *CreateReplicationGrou
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateReplicationGroupInput{}
 	}
 
 	req = c.newRequest(opCreateReplicationGroup, input, output)
@@ -295,6 +327,10 @@ func (c *ElastiCache) CreateSnapshotRequest(input *CreateSnapshotInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &CreateSnapshotInput{}
+	}
+
 	req = c.newRequest(opCreateSnapshot, input, output)
 	output = &CreateSnapshotOutput{}
 	req.Data = output
@@ -323,6 +359,10 @@ func (c *ElastiCache) DeleteCacheClusterRequest(input *DeleteCacheClusterInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteCacheClusterInput{}
 	}
 
 	req = c.newRequest(opDeleteCacheCluster, input, output)
@@ -361,6 +401,10 @@ func (c *ElastiCache) DeleteCacheParameterGroupRequest(input *DeleteCacheParamet
 		}
 	}
 
+	if input == nil {
+		input = &DeleteCacheParameterGroupInput{}
+	}
+
 	req = c.newRequest(opDeleteCacheParameterGroup, input, output)
 	output = &DeleteCacheParameterGroupOutput{}
 	req.Data = output
@@ -390,6 +434,10 @@ func (c *ElastiCache) DeleteCacheSecurityGroupRequest(input *DeleteCacheSecurity
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteCacheSecurityGroupInput{}
 	}
 
 	req = c.newRequest(opDeleteCacheSecurityGroup, input, output)
@@ -424,6 +472,10 @@ func (c *ElastiCache) DeleteCacheSubnetGroupRequest(input *DeleteCacheSubnetGrou
 		}
 	}
 
+	if input == nil {
+		input = &DeleteCacheSubnetGroupInput{}
+	}
+
 	req = c.newRequest(opDeleteCacheSubnetGroup, input, output)
 	output = &DeleteCacheSubnetGroupOutput{}
 	req.Data = output
@@ -454,6 +506,10 @@ func (c *ElastiCache) DeleteReplicationGroupRequest(input *DeleteReplicationGrou
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteReplicationGroupInput{}
 	}
 
 	req = c.newRequest(opDeleteReplicationGroup, input, output)
@@ -492,6 +548,10 @@ func (c *ElastiCache) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &DeleteSnapshotInput{}
+	}
+
 	req = c.newRequest(opDeleteSnapshot, input, output)
 	output = &DeleteSnapshotOutput{}
 	req.Data = output
@@ -521,6 +581,10 @@ func (c *ElastiCache) DescribeCacheClustersRequest(input *DescribeCacheClustersI
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeCacheClustersInput{}
 	}
 
 	req = c.newRequest(opDescribeCacheClusters, input, output)
@@ -573,6 +637,10 @@ func (c *ElastiCache) DescribeCacheEngineVersionsRequest(input *DescribeCacheEng
 		}
 	}
 
+	if input == nil {
+		input = &DescribeCacheEngineVersionsInput{}
+	}
+
 	req = c.newRequest(opDescribeCacheEngineVersions, input, output)
 	output = &DescribeCacheEngineVersionsOutput{}
 	req.Data = output
@@ -601,6 +669,10 @@ func (c *ElastiCache) DescribeCacheParameterGroupsRequest(input *DescribeCachePa
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeCacheParameterGroupsInput{}
 	}
 
 	req = c.newRequest(opDescribeCacheParameterGroups, input, output)
@@ -634,6 +706,10 @@ func (c *ElastiCache) DescribeCacheParametersRequest(input *DescribeCacheParamet
 		}
 	}
 
+	if input == nil {
+		input = &DescribeCacheParametersInput{}
+	}
+
 	req = c.newRequest(opDescribeCacheParameters, input, output)
 	output = &DescribeCacheParametersOutput{}
 	req.Data = output
@@ -662,6 +738,10 @@ func (c *ElastiCache) DescribeCacheSecurityGroupsRequest(input *DescribeCacheSec
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeCacheSecurityGroupsInput{}
 	}
 
 	req = c.newRequest(opDescribeCacheSecurityGroups, input, output)
@@ -695,6 +775,10 @@ func (c *ElastiCache) DescribeCacheSubnetGroupsRequest(input *DescribeCacheSubne
 		}
 	}
 
+	if input == nil {
+		input = &DescribeCacheSubnetGroupsInput{}
+	}
+
 	req = c.newRequest(opDescribeCacheSubnetGroups, input, output)
 	output = &DescribeCacheSubnetGroupsOutput{}
 	req.Data = output
@@ -726,6 +810,10 @@ func (c *ElastiCache) DescribeEngineDefaultParametersRequest(input *DescribeEngi
 		}
 	}
 
+	if input == nil {
+		input = &DescribeEngineDefaultParametersInput{}
+	}
+
 	req = c.newRequest(opDescribeEngineDefaultParameters, input, output)
 	output = &DescribeEngineDefaultParametersOutput{}
 	req.Data = output
@@ -754,6 +842,10 @@ func (c *ElastiCache) DescribeEventsRequest(input *DescribeEventsInput) (req *aw
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeEventsInput{}
 	}
 
 	req = c.newRequest(opDescribeEvents, input, output)
@@ -791,6 +883,10 @@ func (c *ElastiCache) DescribeReplicationGroupsRequest(input *DescribeReplicatio
 		}
 	}
 
+	if input == nil {
+		input = &DescribeReplicationGroupsInput{}
+	}
+
 	req = c.newRequest(opDescribeReplicationGroups, input, output)
 	output = &DescribeReplicationGroupsOutput{}
 	req.Data = output
@@ -820,6 +916,10 @@ func (c *ElastiCache) DescribeReservedCacheNodesRequest(input *DescribeReservedC
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeReservedCacheNodesInput{}
 	}
 
 	req = c.newRequest(opDescribeReservedCacheNodes, input, output)
@@ -852,6 +952,10 @@ func (c *ElastiCache) DescribeReservedCacheNodesOfferingsRequest(input *Describe
 		}
 	}
 
+	if input == nil {
+		input = &DescribeReservedCacheNodesOfferingsInput{}
+	}
+
 	req = c.newRequest(opDescribeReservedCacheNodesOfferings, input, output)
 	output = &DescribeReservedCacheNodesOfferingsOutput{}
 	req.Data = output
@@ -880,6 +984,10 @@ func (c *ElastiCache) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (r
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeSnapshotsInput{}
 	}
 
 	req = c.newRequest(opDescribeSnapshots, input, output)
@@ -912,6 +1020,10 @@ func (c *ElastiCache) ListTagsForResourceRequest(input *ListTagsForResourceInput
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
 	}
 
 	req = c.newRequest(opListTagsForResource, input, output)
@@ -950,6 +1062,10 @@ func (c *ElastiCache) ModifyCacheClusterRequest(input *ModifyCacheClusterInput) 
 		}
 	}
 
+	if input == nil {
+		input = &ModifyCacheClusterInput{}
+	}
+
 	req = c.newRequest(opModifyCacheCluster, input, output)
 	output = &ModifyCacheClusterOutput{}
 	req.Data = output
@@ -979,6 +1095,10 @@ func (c *ElastiCache) ModifyCacheParameterGroupRequest(input *ModifyCacheParamet
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ModifyCacheParameterGroupInput{}
 	}
 
 	req = c.newRequest(opModifyCacheParameterGroup, input, output)
@@ -1012,6 +1132,10 @@ func (c *ElastiCache) ModifyCacheSubnetGroupRequest(input *ModifyCacheSubnetGrou
 		}
 	}
 
+	if input == nil {
+		input = &ModifyCacheSubnetGroupInput{}
+	}
+
 	req = c.newRequest(opModifyCacheSubnetGroup, input, output)
 	output = &ModifyCacheSubnetGroupOutput{}
 	req.Data = output
@@ -1039,6 +1163,10 @@ func (c *ElastiCache) ModifyReplicationGroupRequest(input *ModifyReplicationGrou
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ModifyReplicationGroupInput{}
 	}
 
 	req = c.newRequest(opModifyReplicationGroup, input, output)
@@ -1071,6 +1199,10 @@ func (c *ElastiCache) PurchaseReservedCacheNodesOfferingRequest(input *PurchaseR
 		}
 	}
 
+	if input == nil {
+		input = &PurchaseReservedCacheNodesOfferingInput{}
+	}
+
 	req = c.newRequest(opPurchaseReservedCacheNodesOffering, input, output)
 	output = &PurchaseReservedCacheNodesOfferingOutput{}
 	req.Data = output
@@ -1099,6 +1231,10 @@ func (c *ElastiCache) RebootCacheClusterRequest(input *RebootCacheClusterInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RebootCacheClusterInput{}
 	}
 
 	req = c.newRequest(opRebootCacheCluster, input, output)
@@ -1139,6 +1275,10 @@ func (c *ElastiCache) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourc
 		}
 	}
 
+	if input == nil {
+		input = &RemoveTagsFromResourceInput{}
+	}
+
 	req = c.newRequest(opRemoveTagsFromResource, input, output)
 	output = &TagListMessage{}
 	req.Data = output
@@ -1167,6 +1307,10 @@ func (c *ElastiCache) ResetCacheParameterGroupRequest(input *ResetCacheParameter
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ResetCacheParameterGroupInput{}
 	}
 
 	req = c.newRequest(opResetCacheParameterGroup, input, output)
@@ -1199,6 +1343,10 @@ func (c *ElastiCache) RevokeCacheSecurityGroupIngressRequest(input *RevokeCacheS
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RevokeCacheSecurityGroupIngressInput{}
 	}
 
 	req = c.newRequest(opRevokeCacheSecurityGroupIngress, input, output)

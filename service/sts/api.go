@@ -25,6 +25,10 @@ func (c *STS) AssumeRoleRequest(input *AssumeRoleInput) (req *aws.Request, outpu
 		}
 	}
 
+	if input == nil {
+		input = &AssumeRoleInput{}
+	}
+
 	req = c.newRequest(opAssumeRole, input, output)
 	output = &AssumeRoleOutput{}
 	req.Data = output
@@ -124,6 +128,10 @@ func (c *STS) AssumeRoleWithSAMLRequest(input *AssumeRoleWithSAMLInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &AssumeRoleWithSAMLInput{}
+	}
+
 	req = c.newRequest(opAssumeRoleWithSAML, input, output)
 	output = &AssumeRoleWithSAMLOutput{}
 	req.Data = output
@@ -193,6 +201,10 @@ func (c *STS) AssumeRoleWithWebIdentityRequest(input *AssumeRoleWithWebIdentityI
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &AssumeRoleWithWebIdentityInput{}
 	}
 
 	req = c.newRequest(opAssumeRoleWithWebIdentity, input, output)
@@ -279,6 +291,10 @@ func (c *STS) DecodeAuthorizationMessageRequest(input *DecodeAuthorizationMessag
 		}
 	}
 
+	if input == nil {
+		input = &DecodeAuthorizationMessageInput{}
+	}
+
 	req = c.newRequest(opDecodeAuthorizationMessage, input, output)
 	output = &DecodeAuthorizationMessageOutput{}
 	req.Data = output
@@ -327,6 +343,10 @@ func (c *STS) GetFederationTokenRequest(input *GetFederationTokenInput) (req *aw
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetFederationTokenInput{}
 	}
 
 	req = c.newRequest(opGetFederationToken, input, output)
@@ -417,6 +437,10 @@ func (c *STS) GetSessionTokenRequest(input *GetSessionTokenInput) (req *aws.Requ
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetSessionTokenInput{}
 	}
 
 	req = c.newRequest(opGetSessionToken, input, output)

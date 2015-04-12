@@ -24,6 +24,10 @@ func (c *SNS) AddPermissionRequest(input *AddPermissionInput) (req *aws.Request,
 		}
 	}
 
+	if input == nil {
+		input = &AddPermissionInput{}
+	}
+
 	req = c.newRequest(opAddPermission, input, output)
 	output = &AddPermissionOutput{}
 	req.Data = output
@@ -52,6 +56,10 @@ func (c *SNS) ConfirmSubscriptionRequest(input *ConfirmSubscriptionInput) (req *
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ConfirmSubscriptionInput{}
 	}
 
 	req = c.newRequest(opConfirmSubscription, input, output)
@@ -85,6 +93,10 @@ func (c *SNS) CreatePlatformApplicationRequest(input *CreatePlatformApplicationI
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreatePlatformApplicationInput{}
 	}
 
 	req = c.newRequest(opCreatePlatformApplication, input, output)
@@ -126,6 +138,10 @@ func (c *SNS) CreatePlatformEndpointRequest(input *CreatePlatformEndpointInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreatePlatformEndpointInput{}
 	}
 
 	req = c.newRequest(opCreatePlatformEndpoint, input, output)
@@ -170,6 +186,10 @@ func (c *SNS) CreateTopicRequest(input *CreateTopicInput) (req *aws.Request, out
 		}
 	}
 
+	if input == nil {
+		input = &CreateTopicInput{}
+	}
+
 	req = c.newRequest(opCreateTopic, input, output)
 	output = &CreateTopicOutput{}
 	req.Data = output
@@ -203,6 +223,10 @@ func (c *SNS) DeleteEndpointRequest(input *DeleteEndpointInput) (req *aws.Reques
 		}
 	}
 
+	if input == nil {
+		input = &DeleteEndpointInput{}
+	}
+
 	req = c.newRequest(opDeleteEndpoint, input, output)
 	output = &DeleteEndpointOutput{}
 	req.Data = output
@@ -231,6 +255,10 @@ func (c *SNS) DeletePlatformApplicationRequest(input *DeletePlatformApplicationI
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeletePlatformApplicationInput{}
 	}
 
 	req = c.newRequest(opDeletePlatformApplication, input, output)
@@ -262,6 +290,10 @@ func (c *SNS) DeleteTopicRequest(input *DeleteTopicInput) (req *aws.Request, out
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteTopicInput{}
 	}
 
 	req = c.newRequest(opDeleteTopic, input, output)
@@ -296,6 +328,10 @@ func (c *SNS) GetEndpointAttributesRequest(input *GetEndpointAttributesInput) (r
 		}
 	}
 
+	if input == nil {
+		input = &GetEndpointAttributesInput{}
+	}
+
 	req = c.newRequest(opGetEndpointAttributes, input, output)
 	output = &GetEndpointAttributesOutput{}
 	req.Data = output
@@ -325,6 +361,10 @@ func (c *SNS) GetPlatformApplicationAttributesRequest(input *GetPlatformApplicat
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetPlatformApplicationAttributesInput{}
 	}
 
 	req = c.newRequest(opGetPlatformApplicationAttributes, input, output)
@@ -358,6 +398,10 @@ func (c *SNS) GetSubscriptionAttributesRequest(input *GetSubscriptionAttributesI
 		}
 	}
 
+	if input == nil {
+		input = &GetSubscriptionAttributesInput{}
+	}
+
 	req = c.newRequest(opGetSubscriptionAttributes, input, output)
 	output = &GetSubscriptionAttributesOutput{}
 	req.Data = output
@@ -385,6 +429,10 @@ func (c *SNS) GetTopicAttributesRequest(input *GetTopicAttributesInput) (req *aw
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetTopicAttributesInput{}
 	}
 
 	req = c.newRequest(opGetTopicAttributes, input, output)
@@ -415,6 +463,10 @@ func (c *SNS) ListEndpointsByPlatformApplicationRequest(input *ListEndpointsByPl
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListEndpointsByPlatformApplicationInput{}
 	}
 
 	req = c.newRequest(opListEndpointsByPlatformApplication, input, output)
@@ -453,6 +505,10 @@ func (c *SNS) ListPlatformApplicationsRequest(input *ListPlatformApplicationsInp
 		}
 	}
 
+	if input == nil {
+		input = &ListPlatformApplicationsInput{}
+	}
+
 	req = c.newRequest(opListPlatformApplications, input, output)
 	output = &ListPlatformApplicationsOutput{}
 	req.Data = output
@@ -489,6 +545,10 @@ func (c *SNS) ListSubscriptionsRequest(input *ListSubscriptionsInput) (req *aws.
 		}
 	}
 
+	if input == nil {
+		input = &ListSubscriptionsInput{}
+	}
+
 	req = c.newRequest(opListSubscriptions, input, output)
 	output = &ListSubscriptionsOutput{}
 	req.Data = output
@@ -519,6 +579,10 @@ func (c *SNS) ListSubscriptionsByTopicRequest(input *ListSubscriptionsByTopicInp
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListSubscriptionsByTopicInput{}
 	}
 
 	req = c.newRequest(opListSubscriptionsByTopic, input, output)
@@ -553,6 +617,10 @@ func (c *SNS) ListTopicsRequest(input *ListTopicsInput) (req *aws.Request, outpu
 		}
 	}
 
+	if input == nil {
+		input = &ListTopicsInput{}
+	}
+
 	req = c.newRequest(opListTopics, input, output)
 	output = &ListTopicsOutput{}
 	req.Data = output
@@ -582,6 +650,10 @@ func (c *SNS) PublishRequest(input *PublishInput) (req *aws.Request, output *Pub
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PublishInput{}
 	}
 
 	req = c.newRequest(opPublish, input, output)
@@ -622,6 +694,10 @@ func (c *SNS) RemovePermissionRequest(input *RemovePermissionInput) (req *aws.Re
 		}
 	}
 
+	if input == nil {
+		input = &RemovePermissionInput{}
+	}
+
 	req = c.newRequest(opRemovePermission, input, output)
 	output = &RemovePermissionOutput{}
 	req.Data = output
@@ -649,6 +725,10 @@ func (c *SNS) SetEndpointAttributesRequest(input *SetEndpointAttributesInput) (r
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SetEndpointAttributesInput{}
 	}
 
 	req = c.newRequest(opSetEndpointAttributes, input, output)
@@ -682,6 +762,10 @@ func (c *SNS) SetPlatformApplicationAttributesRequest(input *SetPlatformApplicat
 		}
 	}
 
+	if input == nil {
+		input = &SetPlatformApplicationAttributesInput{}
+	}
+
 	req = c.newRequest(opSetPlatformApplicationAttributes, input, output)
 	output = &SetPlatformApplicationAttributesOutput{}
 	req.Data = output
@@ -713,6 +797,10 @@ func (c *SNS) SetSubscriptionAttributesRequest(input *SetSubscriptionAttributesI
 		}
 	}
 
+	if input == nil {
+		input = &SetSubscriptionAttributesInput{}
+	}
+
 	req = c.newRequest(opSetSubscriptionAttributes, input, output)
 	output = &SetSubscriptionAttributesOutput{}
 	req.Data = output
@@ -742,6 +830,10 @@ func (c *SNS) SetTopicAttributesRequest(input *SetTopicAttributesInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &SetTopicAttributesInput{}
+	}
+
 	req = c.newRequest(opSetTopicAttributes, input, output)
 	output = &SetTopicAttributesOutput{}
 	req.Data = output
@@ -769,6 +861,10 @@ func (c *SNS) SubscribeRequest(input *SubscribeInput) (req *aws.Request, output 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SubscribeInput{}
 	}
 
 	req = c.newRequest(opSubscribe, input, output)
@@ -801,6 +897,10 @@ func (c *SNS) UnsubscribeRequest(input *UnsubscribeInput) (req *aws.Request, out
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UnsubscribeInput{}
 	}
 
 	req = c.newRequest(opUnsubscribe, input, output)

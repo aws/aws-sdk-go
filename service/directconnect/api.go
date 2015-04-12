@@ -24,6 +24,10 @@ func (c *DirectConnect) AllocateConnectionOnInterconnectRequest(input *AllocateC
 		}
 	}
 
+	if input == nil {
+		input = &AllocateConnectionOnInterconnectInput{}
+	}
+
 	req = c.newRequest(opAllocateConnectionOnInterconnect, input, output)
 	output = &Connection{}
 	req.Data = output
@@ -54,6 +58,10 @@ func (c *DirectConnect) AllocatePrivateVirtualInterfaceRequest(input *AllocatePr
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &AllocatePrivateVirtualInterfaceInput{}
 	}
 
 	req = c.newRequest(opAllocatePrivateVirtualInterface, input, output)
@@ -93,6 +101,10 @@ func (c *DirectConnect) AllocatePublicVirtualInterfaceRequest(input *AllocatePub
 		}
 	}
 
+	if input == nil {
+		input = &AllocatePublicVirtualInterfaceInput{}
+	}
+
 	req = c.newRequest(opAllocatePublicVirtualInterface, input, output)
 	output = &VirtualInterface{}
 	req.Data = output
@@ -130,6 +142,10 @@ func (c *DirectConnect) ConfirmConnectionRequest(input *ConfirmConnectionInput) 
 		}
 	}
 
+	if input == nil {
+		input = &ConfirmConnectionInput{}
+	}
+
 	req = c.newRequest(opConfirmConnection, input, output)
 	output = &ConfirmConnectionOutput{}
 	req.Data = output
@@ -161,6 +177,10 @@ func (c *DirectConnect) ConfirmPrivateVirtualInterfaceRequest(input *ConfirmPriv
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ConfirmPrivateVirtualInterfaceInput{}
 	}
 
 	req = c.newRequest(opConfirmPrivateVirtualInterface, input, output)
@@ -196,6 +216,10 @@ func (c *DirectConnect) ConfirmPublicVirtualInterfaceRequest(input *ConfirmPubli
 		}
 	}
 
+	if input == nil {
+		input = &ConfirmPublicVirtualInterfaceInput{}
+	}
+
 	req = c.newRequest(opConfirmPublicVirtualInterface, input, output)
 	output = &ConfirmPublicVirtualInterfaceOutput{}
 	req.Data = output
@@ -226,6 +250,10 @@ func (c *DirectConnect) CreateConnectionRequest(input *CreateConnectionInput) (r
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateConnectionInput{}
 	}
 
 	req = c.newRequest(opCreateConnection, input, output)
@@ -264,6 +292,10 @@ func (c *DirectConnect) CreateInterconnectRequest(input *CreateInterconnectInput
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateInterconnectInput{}
 	}
 
 	req = c.newRequest(opCreateInterconnect, input, output)
@@ -310,6 +342,10 @@ func (c *DirectConnect) CreatePrivateVirtualInterfaceRequest(input *CreatePrivat
 		}
 	}
 
+	if input == nil {
+		input = &CreatePrivateVirtualInterfaceInput{}
+	}
+
 	req = c.newRequest(opCreatePrivateVirtualInterface, input, output)
 	output = &VirtualInterface{}
 	req.Data = output
@@ -339,6 +375,10 @@ func (c *DirectConnect) CreatePublicVirtualInterfaceRequest(input *CreatePublicV
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreatePublicVirtualInterfaceInput{}
 	}
 
 	req = c.newRequest(opCreatePublicVirtualInterface, input, output)
@@ -371,6 +411,10 @@ func (c *DirectConnect) DeleteConnectionRequest(input *DeleteConnectionInput) (r
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteConnectionInput{}
 	}
 
 	req = c.newRequest(opDeleteConnection, input, output)
@@ -407,6 +451,10 @@ func (c *DirectConnect) DeleteInterconnectRequest(input *DeleteInterconnectInput
 		}
 	}
 
+	if input == nil {
+		input = &DeleteInterconnectInput{}
+	}
+
 	req = c.newRequest(opDeleteInterconnect, input, output)
 	output = &DeleteInterconnectOutput{}
 	req.Data = output
@@ -436,6 +484,10 @@ func (c *DirectConnect) DeleteVirtualInterfaceRequest(input *DeleteVirtualInterf
 		}
 	}
 
+	if input == nil {
+		input = &DeleteVirtualInterfaceInput{}
+	}
+
 	req = c.newRequest(opDeleteVirtualInterface, input, output)
 	output = &DeleteVirtualInterfaceOutput{}
 	req.Data = output
@@ -463,6 +515,10 @@ func (c *DirectConnect) DescribeConnectionsRequest(input *DescribeConnectionsInp
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeConnectionsInput{}
 	}
 
 	req = c.newRequest(opDescribeConnections, input, output)
@@ -496,6 +552,10 @@ func (c *DirectConnect) DescribeConnectionsOnInterconnectRequest(input *Describe
 		}
 	}
 
+	if input == nil {
+		input = &DescribeConnectionsOnInterconnectInput{}
+	}
+
 	req = c.newRequest(opDescribeConnectionsOnInterconnect, input, output)
 	output = &Connections{}
 	req.Data = output
@@ -523,6 +583,10 @@ func (c *DirectConnect) DescribeInterconnectsRequest(input *DescribeInterconnect
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeInterconnectsInput{}
 	}
 
 	req = c.newRequest(opDescribeInterconnects, input, output)
@@ -556,6 +620,10 @@ func (c *DirectConnect) DescribeLocationsRequest(input *DescribeLocationsInput) 
 		}
 	}
 
+	if input == nil {
+		input = &DescribeLocationsInput{}
+	}
+
 	req = c.newRequest(opDescribeLocations, input, output)
 	output = &DescribeLocationsOutput{}
 	req.Data = output
@@ -585,6 +653,10 @@ func (c *DirectConnect) DescribeVirtualGatewaysRequest(input *DescribeVirtualGat
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeVirtualGatewaysInput{}
 	}
 
 	req = c.newRequest(opDescribeVirtualGateways, input, output)
@@ -620,6 +692,10 @@ func (c *DirectConnect) DescribeVirtualInterfacesRequest(input *DescribeVirtualI
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeVirtualInterfacesInput{}
 	}
 
 	req = c.newRequest(opDescribeVirtualInterfaces, input, output)

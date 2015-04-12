@@ -25,6 +25,10 @@ func (c *Route53) AssociateVPCWithHostedZoneRequest(input *AssociateVPCWithHoste
 		}
 	}
 
+	if input == nil {
+		input = &AssociateVPCWithHostedZoneInput{}
+	}
+
 	req = c.newRequest(opAssociateVPCWithHostedZone, input, output)
 	output = &AssociateVPCWithHostedZoneOutput{}
 	req.Data = output
@@ -59,6 +63,10 @@ func (c *Route53) ChangeResourceRecordSetsRequest(input *ChangeResourceRecordSet
 			HTTPMethod: "POST",
 			HTTPPath:   "/2013-04-01/hostedzone/{Id}/rrset/",
 		}
+	}
+
+	if input == nil {
+		input = &ChangeResourceRecordSetsInput{}
 	}
 
 	req = c.newRequest(opChangeResourceRecordSets, input, output)
@@ -117,6 +125,10 @@ func (c *Route53) ChangeTagsForResourceRequest(input *ChangeTagsForResourceInput
 		}
 	}
 
+	if input == nil {
+		input = &ChangeTagsForResourceInput{}
+	}
+
 	req = c.newRequest(opChangeTagsForResource, input, output)
 	output = &ChangeTagsForResourceOutput{}
 	req.Data = output
@@ -143,6 +155,10 @@ func (c *Route53) CreateHealthCheckRequest(input *CreateHealthCheckInput) (req *
 			HTTPMethod: "POST",
 			HTTPPath:   "/2013-04-01/healthcheck",
 		}
+	}
+
+	if input == nil {
+		input = &CreateHealthCheckInput{}
 	}
 
 	req = c.newRequest(opCreateHealthCheck, input, output)
@@ -177,6 +193,10 @@ func (c *Route53) CreateHostedZoneRequest(input *CreateHostedZoneInput) (req *aw
 			HTTPMethod: "POST",
 			HTTPPath:   "/2013-04-01/hostedzone",
 		}
+	}
+
+	if input == nil {
+		input = &CreateHostedZoneInput{}
 	}
 
 	req = c.newRequest(opCreateHostedZone, input, output)
@@ -228,6 +248,10 @@ func (c *Route53) CreateReusableDelegationSetRequest(input *CreateReusableDelega
 		}
 	}
 
+	if input == nil {
+		input = &CreateReusableDelegationSetInput{}
+	}
+
 	req = c.newRequest(opCreateReusableDelegationSet, input, output)
 	output = &CreateReusableDelegationSetOutput{}
 	req.Data = output
@@ -263,6 +287,10 @@ func (c *Route53) DeleteHealthCheckRequest(input *DeleteHealthCheckInput) (req *
 			HTTPMethod: "DELETE",
 			HTTPPath:   "/2013-04-01/healthcheck/{HealthCheckId}",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteHealthCheckInput{}
 	}
 
 	req = c.newRequest(opDeleteHealthCheck, input, output)
@@ -301,6 +329,10 @@ func (c *Route53) DeleteHostedZoneRequest(input *DeleteHostedZoneInput) (req *aw
 			HTTPMethod: "DELETE",
 			HTTPPath:   "/2013-04-01/hostedzone/{Id}",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteHostedZoneInput{}
 	}
 
 	req = c.newRequest(opDeleteHostedZone, input, output)
@@ -345,6 +377,10 @@ func (c *Route53) DeleteReusableDelegationSetRequest(input *DeleteReusableDelega
 		}
 	}
 
+	if input == nil {
+		input = &DeleteReusableDelegationSetInput{}
+	}
+
 	req = c.newRequest(opDeleteReusableDelegationSet, input, output)
 	output = &DeleteReusableDelegationSetOutput{}
 	req.Data = output
@@ -382,6 +418,10 @@ func (c *Route53) DisassociateVPCFromHostedZoneRequest(input *DisassociateVPCFro
 		}
 	}
 
+	if input == nil {
+		input = &DisassociateVPCFromHostedZoneInput{}
+	}
+
 	req = c.newRequest(opDisassociateVPCFromHostedZone, input, output)
 	output = &DisassociateVPCFromHostedZoneOutput{}
 	req.Data = output
@@ -416,6 +456,10 @@ func (c *Route53) GetChangeRequest(input *GetChangeInput) (req *aws.Request, out
 			HTTPMethod: "GET",
 			HTTPPath:   "/2013-04-01/change/{Id}",
 		}
+	}
+
+	if input == nil {
+		input = &GetChangeInput{}
 	}
 
 	req = c.newRequest(opGetChange, input, output)
@@ -455,6 +499,10 @@ func (c *Route53) GetCheckerIPRangesRequest(input *GetCheckerIPRangesInput) (req
 		}
 	}
 
+	if input == nil {
+		input = &GetCheckerIPRangesInput{}
+	}
+
 	req = c.newRequest(opGetCheckerIPRanges, input, output)
 	output = &GetCheckerIPRangesOutput{}
 	req.Data = output
@@ -485,6 +533,10 @@ func (c *Route53) GetGeoLocationRequest(input *GetGeoLocationInput) (req *aws.Re
 			HTTPMethod: "GET",
 			HTTPPath:   "/2013-04-01/geolocation",
 		}
+	}
+
+	if input == nil {
+		input = &GetGeoLocationInput{}
 	}
 
 	req = c.newRequest(opGetGeoLocation, input, output)
@@ -518,6 +570,10 @@ func (c *Route53) GetHealthCheckRequest(input *GetHealthCheckInput) (req *aws.Re
 		}
 	}
 
+	if input == nil {
+		input = &GetHealthCheckInput{}
+	}
+
 	req = c.newRequest(opGetHealthCheck, input, output)
 	output = &GetHealthCheckOutput{}
 	req.Data = output
@@ -548,6 +604,10 @@ func (c *Route53) GetHealthCheckCountRequest(input *GetHealthCheckCountInput) (r
 		}
 	}
 
+	if input == nil {
+		input = &GetHealthCheckCountInput{}
+	}
+
 	req = c.newRequest(opGetHealthCheckCount, input, output)
 	output = &GetHealthCheckCountOutput{}
 	req.Data = output
@@ -576,6 +636,10 @@ func (c *Route53) GetHealthCheckLastFailureReasonRequest(input *GetHealthCheckLa
 			HTTPMethod: "GET",
 			HTTPPath:   "/2013-04-01/healthcheck/{HealthCheckId}/lastfailurereason",
 		}
+	}
+
+	if input == nil {
+		input = &GetHealthCheckLastFailureReasonInput{}
 	}
 
 	req = c.newRequest(opGetHealthCheckLastFailureReason, input, output)
@@ -610,6 +674,10 @@ func (c *Route53) GetHealthCheckStatusRequest(input *GetHealthCheckStatusInput) 
 		}
 	}
 
+	if input == nil {
+		input = &GetHealthCheckStatusInput{}
+	}
+
 	req = c.newRequest(opGetHealthCheckStatus, input, output)
 	output = &GetHealthCheckStatusOutput{}
 	req.Data = output
@@ -639,6 +707,10 @@ func (c *Route53) GetHostedZoneRequest(input *GetHostedZoneInput) (req *aws.Requ
 			HTTPMethod: "GET",
 			HTTPPath:   "/2013-04-01/hostedzone/{Id}",
 		}
+	}
+
+	if input == nil {
+		input = &GetHostedZoneInput{}
 	}
 
 	req = c.newRequest(opGetHostedZone, input, output)
@@ -673,6 +745,10 @@ func (c *Route53) GetHostedZoneCountRequest(input *GetHostedZoneCountInput) (req
 		}
 	}
 
+	if input == nil {
+		input = &GetHostedZoneCountInput{}
+	}
+
 	req = c.newRequest(opGetHostedZoneCount, input, output)
 	output = &GetHostedZoneCountOutput{}
 	req.Data = output
@@ -703,6 +779,10 @@ func (c *Route53) GetReusableDelegationSetRequest(input *GetReusableDelegationSe
 		}
 	}
 
+	if input == nil {
+		input = &GetReusableDelegationSetInput{}
+	}
+
 	req = c.newRequest(opGetReusableDelegationSet, input, output)
 	output = &GetReusableDelegationSetOutput{}
 	req.Data = output
@@ -731,6 +811,10 @@ func (c *Route53) ListGeoLocationsRequest(input *ListGeoLocationsInput) (req *aw
 			HTTPMethod: "GET",
 			HTTPPath:   "/2013-04-01/geolocations",
 		}
+	}
+
+	if input == nil {
+		input = &ListGeoLocationsInput{}
 	}
 
 	req = c.newRequest(opListGeoLocations, input, output)
@@ -774,6 +858,10 @@ func (c *Route53) ListHealthChecksRequest(input *ListHealthChecksInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &ListHealthChecksInput{}
+	}
+
 	req = c.newRequest(opListHealthChecks, input, output)
 	output = &ListHealthChecksOutput{}
 	req.Data = output
@@ -809,6 +897,10 @@ func (c *Route53) ListHostedZonesRequest(input *ListHostedZonesInput) (req *aws.
 			HTTPMethod: "GET",
 			HTTPPath:   "/2013-04-01/hostedzone",
 		}
+	}
+
+	if input == nil {
+		input = &ListHostedZonesInput{}
 	}
 
 	req = c.newRequest(opListHostedZones, input, output)
@@ -848,6 +940,10 @@ func (c *Route53) ListHostedZonesByNameRequest(input *ListHostedZonesByNameInput
 		}
 	}
 
+	if input == nil {
+		input = &ListHostedZonesByNameInput{}
+	}
+
 	req = c.newRequest(opListHostedZonesByName, input, output)
 	output = &ListHostedZonesByNameOutput{}
 	req.Data = output
@@ -885,6 +981,10 @@ func (c *Route53) ListResourceRecordSetsRequest(input *ListResourceRecordSetsInp
 			HTTPMethod: "GET",
 			HTTPPath:   "/2013-04-01/hostedzone/{Id}/rrset",
 		}
+	}
+
+	if input == nil {
+		input = &ListResourceRecordSetsInput{}
 	}
 
 	req = c.newRequest(opListResourceRecordSets, input, output)
@@ -953,6 +1053,10 @@ func (c *Route53) ListReusableDelegationSetsRequest(input *ListReusableDelegatio
 		}
 	}
 
+	if input == nil {
+		input = &ListReusableDelegationSetsInput{}
+	}
+
 	req = c.newRequest(opListReusableDelegationSets, input, output)
 	output = &ListReusableDelegationSetsOutput{}
 	req.Data = output
@@ -991,6 +1095,10 @@ func (c *Route53) ListTagsForResourceRequest(input *ListTagsForResourceInput) (r
 		}
 	}
 
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
 	req = c.newRequest(opListTagsForResource, input, output)
 	output = &ListTagsForResourceOutput{}
 	req.Data = output
@@ -1019,6 +1127,10 @@ func (c *Route53) ListTagsForResourcesRequest(input *ListTagsForResourcesInput) 
 		}
 	}
 
+	if input == nil {
+		input = &ListTagsForResourcesInput{}
+	}
+
 	req = c.newRequest(opListTagsForResources, input, output)
 	output = &ListTagsForResourcesOutput{}
 	req.Data = output
@@ -1045,6 +1157,10 @@ func (c *Route53) UpdateHealthCheckRequest(input *UpdateHealthCheckInput) (req *
 			HTTPMethod: "POST",
 			HTTPPath:   "/2013-04-01/healthcheck/{HealthCheckId}",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateHealthCheckInput{}
 	}
 
 	req = c.newRequest(opUpdateHealthCheck, input, output)
@@ -1079,6 +1195,10 @@ func (c *Route53) UpdateHostedZoneCommentRequest(input *UpdateHostedZoneCommentI
 			HTTPMethod: "POST",
 			HTTPPath:   "/2013-04-01/hostedzone/{Id}",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateHostedZoneCommentInput{}
 	}
 
 	req = c.newRequest(opUpdateHostedZoneComment, input, output)

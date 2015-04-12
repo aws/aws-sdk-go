@@ -25,6 +25,10 @@ func (c *SWF) CountClosedWorkflowExecutionsRequest(input *CountClosedWorkflowExe
 		}
 	}
 
+	if input == nil {
+		input = &CountClosedWorkflowExecutionsInput{}
+	}
+
 	req = c.newRequest(opCountClosedWorkflowExecutions, input, output)
 	output = &WorkflowExecutionCount{}
 	req.Data = output
@@ -71,6 +75,10 @@ func (c *SWF) CountOpenWorkflowExecutionsRequest(input *CountOpenWorkflowExecuti
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CountOpenWorkflowExecutionsInput{}
 	}
 
 	req = c.newRequest(opCountOpenWorkflowExecutions, input, output)
@@ -121,6 +129,10 @@ func (c *SWF) CountPendingActivityTasksRequest(input *CountPendingActivityTasksI
 		}
 	}
 
+	if input == nil {
+		input = &CountPendingActivityTasksInput{}
+	}
+
 	req = c.newRequest(opCountPendingActivityTasks, input, output)
 	output = &PendingTaskCount{}
 	req.Data = output
@@ -166,6 +178,10 @@ func (c *SWF) CountPendingDecisionTasksRequest(input *CountPendingDecisionTasksI
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CountPendingDecisionTasksInput{}
 	}
 
 	req = c.newRequest(opCountPendingDecisionTasks, input, output)
@@ -215,6 +231,10 @@ func (c *SWF) DeprecateActivityTypeRequest(input *DeprecateActivityTypeInput) (r
 		}
 	}
 
+	if input == nil {
+		input = &DeprecateActivityTypeInput{}
+	}
+
 	req = c.newRequest(opDeprecateActivityType, input, output)
 	output = &DeprecateActivityTypeOutput{}
 	req.Data = output
@@ -261,6 +281,10 @@ func (c *SWF) DeprecateDomainRequest(input *DeprecateDomainInput) (req *aws.Requ
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeprecateDomainInput{}
 	}
 
 	req = c.newRequest(opDeprecateDomain, input, output)
@@ -312,6 +336,10 @@ func (c *SWF) DeprecateWorkflowTypeRequest(input *DeprecateWorkflowTypeInput) (r
 		}
 	}
 
+	if input == nil {
+		input = &DeprecateWorkflowTypeInput{}
+	}
+
 	req = c.newRequest(opDeprecateWorkflowType, input, output)
 	output = &DeprecateWorkflowTypeOutput{}
 	req.Data = output
@@ -361,6 +389,10 @@ func (c *SWF) DescribeActivityTypeRequest(input *DescribeActivityTypeInput) (req
 		}
 	}
 
+	if input == nil {
+		input = &DescribeActivityTypeInput{}
+	}
+
 	req = c.newRequest(opDescribeActivityType, input, output)
 	output = &DescribeActivityTypeOutput{}
 	req.Data = output
@@ -408,6 +440,10 @@ func (c *SWF) DescribeDomainRequest(input *DescribeDomainInput) (req *aws.Reques
 		}
 	}
 
+	if input == nil {
+		input = &DescribeDomainInput{}
+	}
+
 	req = c.newRequest(opDescribeDomain, input, output)
 	output = &DescribeDomainOutput{}
 	req.Data = output
@@ -450,6 +486,10 @@ func (c *SWF) DescribeWorkflowExecutionRequest(input *DescribeWorkflowExecutionI
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeWorkflowExecutionInput{}
 	}
 
 	req = c.newRequest(opDescribeWorkflowExecution, input, output)
@@ -495,6 +535,10 @@ func (c *SWF) DescribeWorkflowTypeRequest(input *DescribeWorkflowTypeInput) (req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeWorkflowTypeInput{}
 	}
 
 	req = c.newRequest(opDescribeWorkflowType, input, output)
@@ -544,6 +588,10 @@ func (c *SWF) GetWorkflowExecutionHistoryRequest(input *GetWorkflowExecutionHist
 		}
 	}
 
+	if input == nil {
+		input = &GetWorkflowExecutionHistoryInput{}
+	}
+
 	req = c.newRequest(opGetWorkflowExecutionHistory, input, output)
 	output = &GetWorkflowExecutionHistoryOutput{}
 	req.Data = output
@@ -588,6 +636,10 @@ func (c *SWF) ListActivityTypesRequest(input *ListActivityTypesInput) (req *aws.
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListActivityTypesInput{}
 	}
 
 	req = c.newRequest(opListActivityTypes, input, output)
@@ -635,6 +687,10 @@ func (c *SWF) ListClosedWorkflowExecutionsRequest(input *ListClosedWorkflowExecu
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListClosedWorkflowExecutionsInput{}
 	}
 
 	req = c.newRequest(opListClosedWorkflowExecutions, input, output)
@@ -687,6 +743,10 @@ func (c *SWF) ListDomainsRequest(input *ListDomainsInput) (req *aws.Request, out
 		}
 	}
 
+	if input == nil {
+		input = &ListDomainsInput{}
+	}
+
 	req = c.newRequest(opListDomains, input, output)
 	output = &ListDomainsOutput{}
 	req.Data = output
@@ -732,6 +792,10 @@ func (c *SWF) ListOpenWorkflowExecutionsRequest(input *ListOpenWorkflowExecution
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListOpenWorkflowExecutionsInput{}
 	}
 
 	req = c.newRequest(opListOpenWorkflowExecutions, input, output)
@@ -784,6 +848,10 @@ func (c *SWF) ListWorkflowTypesRequest(input *ListWorkflowTypesInput) (req *aws.
 		}
 	}
 
+	if input == nil {
+		input = &ListWorkflowTypesInput{}
+	}
+
 	req = c.newRequest(opListWorkflowTypes, input, output)
 	output = &ListWorkflowTypesOutput{}
 	req.Data = output
@@ -827,6 +895,10 @@ func (c *SWF) PollForActivityTaskRequest(input *PollForActivityTaskInput) (req *
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PollForActivityTaskInput{}
 	}
 
 	req = c.newRequest(opPollForActivityTask, input, output)
@@ -880,6 +952,10 @@ func (c *SWF) PollForDecisionTaskRequest(input *PollForDecisionTaskInput) (req *
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PollForDecisionTaskInput{}
 	}
 
 	req = c.newRequest(opPollForDecisionTask, input, output)
@@ -941,6 +1017,10 @@ func (c *SWF) RecordActivityTaskHeartbeatRequest(input *RecordActivityTaskHeartb
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RecordActivityTaskHeartbeatInput{}
 	}
 
 	req = c.newRequest(opRecordActivityTaskHeartbeat, input, output)
@@ -1007,6 +1087,10 @@ func (c *SWF) RegisterActivityTypeRequest(input *RegisterActivityTypeInput) (req
 		}
 	}
 
+	if input == nil {
+		input = &RegisterActivityTypeInput{}
+	}
+
 	req = c.newRequest(opRegisterActivityType, input, output)
 	output = &RegisterActivityTypeOutput{}
 	req.Data = output
@@ -1056,6 +1140,10 @@ func (c *SWF) RegisterDomainRequest(input *RegisterDomainInput) (req *aws.Reques
 		}
 	}
 
+	if input == nil {
+		input = &RegisterDomainInput{}
+	}
+
 	req = c.newRequest(opRegisterDomain, input, output)
 	output = &RegisterDomainOutput{}
 	req.Data = output
@@ -1098,6 +1186,10 @@ func (c *SWF) RegisterWorkflowTypeRequest(input *RegisterWorkflowTypeInput) (req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RegisterWorkflowTypeInput{}
 	}
 
 	req = c.newRequest(opRegisterWorkflowType, input, output)
@@ -1152,6 +1244,10 @@ func (c *SWF) RequestCancelWorkflowExecutionRequest(input *RequestCancelWorkflow
 		}
 	}
 
+	if input == nil {
+		input = &RequestCancelWorkflowExecutionInput{}
+	}
+
 	req = c.newRequest(opRequestCancelWorkflowExecution, input, output)
 	output = &RequestCancelWorkflowExecutionOutput{}
 	req.Data = output
@@ -1201,6 +1297,10 @@ func (c *SWF) RespondActivityTaskCanceledRequest(input *RespondActivityTaskCance
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RespondActivityTaskCanceledInput{}
 	}
 
 	req = c.newRequest(opRespondActivityTaskCanceled, input, output)
@@ -1259,6 +1359,10 @@ func (c *SWF) RespondActivityTaskCompletedRequest(input *RespondActivityTaskComp
 		}
 	}
 
+	if input == nil {
+		input = &RespondActivityTaskCompletedInput{}
+	}
+
 	req = c.newRequest(opRespondActivityTaskCompleted, input, output)
 	output = &RespondActivityTaskCompletedOutput{}
 	req.Data = output
@@ -1313,6 +1417,10 @@ func (c *SWF) RespondActivityTaskFailedRequest(input *RespondActivityTaskFailedI
 		}
 	}
 
+	if input == nil {
+		input = &RespondActivityTaskFailedInput{}
+	}
+
 	req = c.newRequest(opRespondActivityTaskFailed, input, output)
 	output = &RespondActivityTaskFailedOutput{}
 	req.Data = output
@@ -1364,6 +1472,10 @@ func (c *SWF) RespondDecisionTaskCompletedRequest(input *RespondDecisionTaskComp
 		}
 	}
 
+	if input == nil {
+		input = &RespondDecisionTaskCompletedInput{}
+	}
+
 	req = c.newRequest(opRespondDecisionTaskCompleted, input, output)
 	output = &RespondDecisionTaskCompletedOutput{}
 	req.Data = output
@@ -1406,6 +1518,10 @@ func (c *SWF) SignalWorkflowExecutionRequest(input *SignalWorkflowExecutionInput
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SignalWorkflowExecutionInput{}
 	}
 
 	req = c.newRequest(opSignalWorkflowExecution, input, output)
@@ -1455,6 +1571,10 @@ func (c *SWF) StartWorkflowExecutionRequest(input *StartWorkflowExecutionInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &StartWorkflowExecutionInput{}
 	}
 
 	req = c.newRequest(opStartWorkflowExecution, input, output)
@@ -1507,6 +1627,10 @@ func (c *SWF) TerminateWorkflowExecutionRequest(input *TerminateWorkflowExecutio
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &TerminateWorkflowExecutionInput{}
 	}
 
 	req = c.newRequest(opTerminateWorkflowExecution, input, output)

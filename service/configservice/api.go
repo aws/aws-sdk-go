@@ -25,6 +25,10 @@ func (c *ConfigService) DeleteDeliveryChannelRequest(input *DeleteDeliveryChanne
 		}
 	}
 
+	if input == nil {
+		input = &DeleteDeliveryChannelInput{}
+	}
+
 	req = c.newRequest(opDeleteDeliveryChannel, input, output)
 	output = &DeleteDeliveryChannelOutput{}
 	req.Data = output
@@ -57,6 +61,10 @@ func (c *ConfigService) DeliverConfigSnapshotRequest(input *DeliverConfigSnapsho
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeliverConfigSnapshotInput{}
 	}
 
 	req = c.newRequest(opDeliverConfigSnapshot, input, output)
@@ -94,6 +102,10 @@ func (c *ConfigService) DescribeConfigurationRecorderStatusRequest(input *Descri
 		}
 	}
 
+	if input == nil {
+		input = &DescribeConfigurationRecorderStatusInput{}
+	}
+
 	req = c.newRequest(opDescribeConfigurationRecorderStatus, input, output)
 	output = &DescribeConfigurationRecorderStatusOutput{}
 	req.Data = output
@@ -123,6 +135,10 @@ func (c *ConfigService) DescribeConfigurationRecordersRequest(input *DescribeCon
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeConfigurationRecordersInput{}
 	}
 
 	req = c.newRequest(opDescribeConfigurationRecorders, input, output)
@@ -156,6 +172,10 @@ func (c *ConfigService) DescribeDeliveryChannelStatusRequest(input *DescribeDeli
 		}
 	}
 
+	if input == nil {
+		input = &DescribeDeliveryChannelStatusInput{}
+	}
+
 	req = c.newRequest(opDescribeDeliveryChannelStatus, input, output)
 	output = &DescribeDeliveryChannelStatusOutput{}
 	req.Data = output
@@ -187,6 +207,10 @@ func (c *ConfigService) DescribeDeliveryChannelsRequest(input *DescribeDeliveryC
 		}
 	}
 
+	if input == nil {
+		input = &DescribeDeliveryChannelsInput{}
+	}
+
 	req = c.newRequest(opDescribeDeliveryChannels, input, output)
 	output = &DescribeDeliveryChannelsOutput{}
 	req.Data = output
@@ -216,6 +240,10 @@ func (c *ConfigService) GetResourceConfigHistoryRequest(input *GetResourceConfig
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetResourceConfigHistoryInput{}
 	}
 
 	req = c.newRequest(opGetResourceConfigHistory, input, output)
@@ -251,6 +279,10 @@ func (c *ConfigService) PutConfigurationRecorderRequest(input *PutConfigurationR
 		}
 	}
 
+	if input == nil {
+		input = &PutConfigurationRecorderInput{}
+	}
+
 	req = c.newRequest(opPutConfigurationRecorder, input, output)
 	output = &PutConfigurationRecorderOutput{}
 	req.Data = output
@@ -282,6 +314,10 @@ func (c *ConfigService) PutDeliveryChannelRequest(input *PutDeliveryChannelInput
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PutDeliveryChannelInput{}
 	}
 
 	req = c.newRequest(opPutDeliveryChannel, input, output)
@@ -321,6 +357,10 @@ func (c *ConfigService) StartConfigurationRecorderRequest(input *StartConfigurat
 		}
 	}
 
+	if input == nil {
+		input = &StartConfigurationRecorderInput{}
+	}
+
 	req = c.newRequest(opStartConfigurationRecorder, input, output)
 	output = &StartConfigurationRecorderOutput{}
 	req.Data = output
@@ -352,6 +392,10 @@ func (c *ConfigService) StopConfigurationRecorderRequest(input *StopConfiguratio
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &StopConfigurationRecorderInput{}
 	}
 
 	req = c.newRequest(opStopConfigurationRecorder, input, output)

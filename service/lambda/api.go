@@ -25,6 +25,10 @@ func (c *Lambda) AddEventSourceRequest(input *AddEventSourceInput) (req *aws.Req
 		}
 	}
 
+	if input == nil {
+		input = &AddEventSourceInput{}
+	}
+
 	req = c.newRequest(opAddEventSource, input, output)
 	output = &EventSourceConfiguration{}
 	req.Data = output
@@ -73,6 +77,10 @@ func (c *Lambda) DeleteFunctionRequest(input *DeleteFunctionInput) (req *aws.Req
 		}
 	}
 
+	if input == nil {
+		input = &DeleteFunctionInput{}
+	}
+
 	req = c.newRequest(opDeleteFunction, input, output)
 	output = &DeleteFunctionOutput{}
 	req.Data = output
@@ -102,6 +110,10 @@ func (c *Lambda) GetEventSourceRequest(input *GetEventSourceInput) (req *aws.Req
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-13/event-source-mappings/{UUID}",
 		}
+	}
+
+	if input == nil {
+		input = &GetEventSourceInput{}
 	}
 
 	req = c.newRequest(opGetEventSource, input, output)
@@ -134,6 +146,10 @@ func (c *Lambda) GetFunctionRequest(input *GetFunctionInput) (req *aws.Request, 
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-13/functions/{FunctionName}",
 		}
+	}
+
+	if input == nil {
+		input = &GetFunctionInput{}
 	}
 
 	req = c.newRequest(opGetFunction, input, output)
@@ -171,6 +187,10 @@ func (c *Lambda) GetFunctionConfigurationRequest(input *GetFunctionConfiguration
 		}
 	}
 
+	if input == nil {
+		input = &GetFunctionConfigurationInput{}
+	}
+
 	req = c.newRequest(opGetFunctionConfiguration, input, output)
 	output = &FunctionConfiguration{}
 	req.Data = output
@@ -205,6 +225,10 @@ func (c *Lambda) InvokeAsyncRequest(input *InvokeAsyncInput) (req *aws.Request, 
 		}
 	}
 
+	if input == nil {
+		input = &InvokeAsyncInput{}
+	}
+
 	req = c.newRequest(opInvokeAsync, input, output)
 	output = &InvokeAsyncOutput{}
 	req.Data = output
@@ -236,6 +260,10 @@ func (c *Lambda) ListEventSourcesRequest(input *ListEventSourcesInput) (req *aws
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-13/event-source-mappings/",
 		}
+	}
+
+	if input == nil {
+		input = &ListEventSourcesInput{}
 	}
 
 	req = c.newRequest(opListEventSources, input, output)
@@ -274,6 +302,10 @@ func (c *Lambda) ListFunctionsRequest(input *ListFunctionsInput) (req *aws.Reque
 		}
 	}
 
+	if input == nil {
+		input = &ListFunctionsInput{}
+	}
+
 	req = c.newRequest(opListFunctions, input, output)
 	output = &ListFunctionsOutput{}
 	req.Data = output
@@ -307,6 +339,10 @@ func (c *Lambda) RemoveEventSourceRequest(input *RemoveEventSourceInput) (req *a
 		}
 	}
 
+	if input == nil {
+		input = &RemoveEventSourceInput{}
+	}
+
 	req = c.newRequest(opRemoveEventSource, input, output)
 	output = &RemoveEventSourceOutput{}
 	req.Data = output
@@ -337,6 +373,10 @@ func (c *Lambda) UpdateFunctionConfigurationRequest(input *UpdateFunctionConfigu
 			HTTPMethod: "PUT",
 			HTTPPath:   "/2014-11-13/functions/{FunctionName}/configuration",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateFunctionConfigurationInput{}
 	}
 
 	req = c.newRequest(opUpdateFunctionConfiguration, input, output)
@@ -372,6 +412,10 @@ func (c *Lambda) UploadFunctionRequest(input *UploadFunctionInput) (req *aws.Req
 			HTTPMethod: "PUT",
 			HTTPPath:   "/2014-11-13/functions/{FunctionName}",
 		}
+	}
+
+	if input == nil {
+		input = &UploadFunctionInput{}
 	}
 
 	req = c.newRequest(opUploadFunction, input, output)

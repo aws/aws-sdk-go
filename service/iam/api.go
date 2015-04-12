@@ -25,6 +25,10 @@ func (c *IAM) AddClientIDToOpenIDConnectProviderRequest(input *AddClientIDToOpen
 		}
 	}
 
+	if input == nil {
+		input = &AddClientIDToOpenIDConnectProviderInput{}
+	}
+
 	req = c.newRequest(opAddClientIDToOpenIDConnectProvider, input, output)
 	output = &AddClientIDToOpenIDConnectProviderOutput{}
 	req.Data = output
@@ -56,6 +60,10 @@ func (c *IAM) AddRoleToInstanceProfileRequest(input *AddRoleToInstanceProfileInp
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &AddRoleToInstanceProfileInput{}
 	}
 
 	req = c.newRequest(opAddRoleToInstanceProfile, input, output)
@@ -90,6 +98,10 @@ func (c *IAM) AddUserToGroupRequest(input *AddUserToGroupInput) (req *aws.Reques
 		}
 	}
 
+	if input == nil {
+		input = &AddUserToGroupInput{}
+	}
+
 	req = c.newRequest(opAddUserToGroup, input, output)
 	output = &AddUserToGroupOutput{}
 	req.Data = output
@@ -117,6 +129,10 @@ func (c *IAM) AttachGroupPolicyRequest(input *AttachGroupPolicyInput) (req *aws.
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &AttachGroupPolicyInput{}
 	}
 
 	req = c.newRequest(opAttachGroupPolicy, input, output)
@@ -153,6 +169,10 @@ func (c *IAM) AttachRolePolicyRequest(input *AttachRolePolicyInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &AttachRolePolicyInput{}
 	}
 
 	req = c.newRequest(opAttachRolePolicy, input, output)
@@ -195,6 +215,10 @@ func (c *IAM) AttachUserPolicyRequest(input *AttachUserPolicyInput) (req *aws.Re
 		}
 	}
 
+	if input == nil {
+		input = &AttachUserPolicyInput{}
+	}
+
 	req = c.newRequest(opAttachUserPolicy, input, output)
 	output = &AttachUserPolicyOutput{}
 	req.Data = output
@@ -231,6 +255,10 @@ func (c *IAM) ChangePasswordRequest(input *ChangePasswordInput) (req *aws.Reques
 		}
 	}
 
+	if input == nil {
+		input = &ChangePasswordInput{}
+	}
+
 	req = c.newRequest(opChangePassword, input, output)
 	output = &ChangePasswordOutput{}
 	req.Data = output
@@ -263,6 +291,10 @@ func (c *IAM) CreateAccessKeyRequest(input *CreateAccessKeyInput) (req *aws.Requ
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateAccessKeyInput{}
 	}
 
 	req = c.newRequest(opCreateAccessKey, input, output)
@@ -310,6 +342,10 @@ func (c *IAM) CreateAccountAliasRequest(input *CreateAccountAliasInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &CreateAccountAliasInput{}
+	}
+
 	req = c.newRequest(opCreateAccountAlias, input, output)
 	output = &CreateAccountAliasOutput{}
 	req.Data = output
@@ -339,6 +375,10 @@ func (c *IAM) CreateGroupRequest(input *CreateGroupInput) (req *aws.Request, out
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateGroupInput{}
 	}
 
 	req = c.newRequest(opCreateGroup, input, output)
@@ -372,6 +412,10 @@ func (c *IAM) CreateInstanceProfileRequest(input *CreateInstanceProfileInput) (r
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateInstanceProfileInput{}
 	}
 
 	req = c.newRequest(opCreateInstanceProfile, input, output)
@@ -408,6 +452,10 @@ func (c *IAM) CreateLoginProfileRequest(input *CreateLoginProfileInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &CreateLoginProfileInput{}
+	}
+
 	req = c.newRequest(opCreateLoginProfile, input, output)
 	output = &CreateLoginProfileOutput{}
 	req.Data = output
@@ -438,6 +486,10 @@ func (c *IAM) CreateOpenIDConnectProviderRequest(input *CreateOpenIDConnectProvi
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateOpenIDConnectProviderInput{}
 	}
 
 	req = c.newRequest(opCreateOpenIDConnectProvider, input, output)
@@ -485,6 +537,10 @@ func (c *IAM) CreatePolicyRequest(input *CreatePolicyInput) (req *aws.Request, o
 		}
 	}
 
+	if input == nil {
+		input = &CreatePolicyInput{}
+	}
+
 	req = c.newRequest(opCreatePolicy, input, output)
 	output = &CreatePolicyOutput{}
 	req.Data = output
@@ -521,6 +577,10 @@ func (c *IAM) CreatePolicyVersionRequest(input *CreatePolicyVersionInput) (req *
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreatePolicyVersionInput{}
 	}
 
 	req = c.newRequest(opCreatePolicyVersion, input, output)
@@ -564,6 +624,10 @@ func (c *IAM) CreateRoleRequest(input *CreateRoleInput) (req *aws.Request, outpu
 		}
 	}
 
+	if input == nil {
+		input = &CreateRoleInput{}
+	}
+
 	req = c.newRequest(opCreateRole, input, output)
 	output = &CreateRoleOutput{}
 	req.Data = output
@@ -599,6 +663,10 @@ func (c *IAM) CreateSAMLProviderRequest(input *CreateSAMLProviderInput) (req *aw
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateSAMLProviderInput{}
 	}
 
 	req = c.newRequest(opCreateSAMLProvider, input, output)
@@ -649,6 +717,10 @@ func (c *IAM) CreateUserRequest(input *CreateUserInput) (req *aws.Request, outpu
 		}
 	}
 
+	if input == nil {
+		input = &CreateUserInput{}
+	}
+
 	req = c.newRequest(opCreateUser, input, output)
 	output = &CreateUserOutput{}
 	req.Data = output
@@ -680,6 +752,10 @@ func (c *IAM) CreateVirtualMFADeviceRequest(input *CreateVirtualMFADeviceInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateVirtualMFADeviceInput{}
 	}
 
 	req = c.newRequest(opCreateVirtualMFADevice, input, output)
@@ -724,6 +800,10 @@ func (c *IAM) DeactivateMFADeviceRequest(input *DeactivateMFADeviceInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &DeactivateMFADeviceInput{}
+	}
+
 	req = c.newRequest(opDeactivateMFADevice, input, output)
 	output = &DeactivateMFADeviceOutput{}
 	req.Data = output
@@ -756,6 +836,10 @@ func (c *IAM) DeleteAccessKeyRequest(input *DeleteAccessKeyInput) (req *aws.Requ
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteAccessKeyInput{}
 	}
 
 	req = c.newRequest(opDeleteAccessKey, input, output)
@@ -792,6 +876,10 @@ func (c *IAM) DeleteAccountAliasRequest(input *DeleteAccountAliasInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &DeleteAccountAliasInput{}
+	}
+
 	req = c.newRequest(opDeleteAccountAlias, input, output)
 	output = &DeleteAccountAliasOutput{}
 	req.Data = output
@@ -823,6 +911,10 @@ func (c *IAM) DeleteAccountPasswordPolicyRequest(input *DeleteAccountPasswordPol
 		}
 	}
 
+	if input == nil {
+		input = &DeleteAccountPasswordPolicyInput{}
+	}
+
 	req = c.newRequest(opDeleteAccountPasswordPolicy, input, output)
 	output = &DeleteAccountPasswordPolicyOutput{}
 	req.Data = output
@@ -850,6 +942,10 @@ func (c *IAM) DeleteGroupRequest(input *DeleteGroupInput) (req *aws.Request, out
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteGroupInput{}
 	}
 
 	req = c.newRequest(opDeleteGroup, input, output)
@@ -880,6 +976,10 @@ func (c *IAM) DeleteGroupPolicyRequest(input *DeleteGroupPolicyInput) (req *aws.
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteGroupPolicyInput{}
 	}
 
 	req = c.newRequest(opDeleteGroupPolicy, input, output)
@@ -914,6 +1014,10 @@ func (c *IAM) DeleteInstanceProfileRequest(input *DeleteInstanceProfileInput) (r
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteInstanceProfileInput{}
 	}
 
 	req = c.newRequest(opDeleteInstanceProfile, input, output)
@@ -952,6 +1056,10 @@ func (c *IAM) DeleteLoginProfileRequest(input *DeleteLoginProfileInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &DeleteLoginProfileInput{}
+	}
+
 	req = c.newRequest(opDeleteLoginProfile, input, output)
 	output = &DeleteLoginProfileOutput{}
 	req.Data = output
@@ -985,6 +1093,10 @@ func (c *IAM) DeleteOpenIDConnectProviderRequest(input *DeleteOpenIDConnectProvi
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteOpenIDConnectProviderInput{}
 	}
 
 	req = c.newRequest(opDeleteOpenIDConnectProvider, input, output)
@@ -1021,6 +1133,10 @@ func (c *IAM) DeletePolicyRequest(input *DeletePolicyInput) (req *aws.Request, o
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeletePolicyInput{}
 	}
 
 	req = c.newRequest(opDeletePolicy, input, output)
@@ -1069,6 +1185,10 @@ func (c *IAM) DeletePolicyVersionRequest(input *DeletePolicyVersionInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &DeletePolicyVersionInput{}
+	}
+
 	req = c.newRequest(opDeletePolicyVersion, input, output)
 	output = &DeletePolicyVersionOutput{}
 	req.Data = output
@@ -1106,6 +1226,10 @@ func (c *IAM) DeleteRoleRequest(input *DeleteRoleInput) (req *aws.Request, outpu
 		}
 	}
 
+	if input == nil {
+		input = &DeleteRoleInput{}
+	}
+
 	req = c.newRequest(opDeleteRole, input, output)
 	output = &DeleteRoleOutput{}
 	req.Data = output
@@ -1138,6 +1262,10 @@ func (c *IAM) DeleteRolePolicyRequest(input *DeleteRolePolicyInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteRolePolicyInput{}
 	}
 
 	req = c.newRequest(opDeleteRolePolicy, input, output)
@@ -1174,6 +1302,10 @@ func (c *IAM) DeleteSAMLProviderRequest(input *DeleteSAMLProviderInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &DeleteSAMLProviderInput{}
+	}
+
 	req = c.newRequest(opDeleteSAMLProvider, input, output)
 	output = &DeleteSAMLProviderOutput{}
 	req.Data = output
@@ -1207,6 +1339,10 @@ func (c *IAM) DeleteServerCertificateRequest(input *DeleteServerCertificateInput
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteServerCertificateInput{}
 	}
 
 	req = c.newRequest(opDeleteServerCertificate, input, output)
@@ -1248,6 +1384,10 @@ func (c *IAM) DeleteSigningCertificateRequest(input *DeleteSigningCertificateInp
 		}
 	}
 
+	if input == nil {
+		input = &DeleteSigningCertificateInput{}
+	}
+
 	req = c.newRequest(opDeleteSigningCertificate, input, output)
 	output = &DeleteSigningCertificateOutput{}
 	req.Data = output
@@ -1282,6 +1422,10 @@ func (c *IAM) DeleteUserRequest(input *DeleteUserInput) (req *aws.Request, outpu
 		}
 	}
 
+	if input == nil {
+		input = &DeleteUserInput{}
+	}
+
 	req = c.newRequest(opDeleteUser, input, output)
 	output = &DeleteUserOutput{}
 	req.Data = output
@@ -1310,6 +1454,10 @@ func (c *IAM) DeleteUserPolicyRequest(input *DeleteUserPolicyInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteUserPolicyInput{}
 	}
 
 	req = c.newRequest(opDeleteUserPolicy, input, output)
@@ -1346,6 +1494,10 @@ func (c *IAM) DeleteVirtualMFADeviceRequest(input *DeleteVirtualMFADeviceInput) 
 		}
 	}
 
+	if input == nil {
+		input = &DeleteVirtualMFADeviceInput{}
+	}
+
 	req = c.newRequest(opDeleteVirtualMFADevice, input, output)
 	output = &DeleteVirtualMFADeviceOutput{}
 	req.Data = output
@@ -1376,6 +1528,10 @@ func (c *IAM) DetachGroupPolicyRequest(input *DetachGroupPolicyInput) (req *aws.
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DetachGroupPolicyInput{}
 	}
 
 	req = c.newRequest(opDetachGroupPolicy, input, output)
@@ -1412,6 +1568,10 @@ func (c *IAM) DetachRolePolicyRequest(input *DetachRolePolicyInput) (req *aws.Re
 		}
 	}
 
+	if input == nil {
+		input = &DetachRolePolicyInput{}
+	}
+
 	req = c.newRequest(opDetachRolePolicy, input, output)
 	output = &DetachRolePolicyOutput{}
 	req.Data = output
@@ -1444,6 +1604,10 @@ func (c *IAM) DetachUserPolicyRequest(input *DetachUserPolicyInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DetachUserPolicyInput{}
 	}
 
 	req = c.newRequest(opDetachUserPolicy, input, output)
@@ -1480,6 +1644,10 @@ func (c *IAM) EnableMFADeviceRequest(input *EnableMFADeviceInput) (req *aws.Requ
 		}
 	}
 
+	if input == nil {
+		input = &EnableMFADeviceInput{}
+	}
+
 	req = c.newRequest(opEnableMFADevice, input, output)
 	output = &EnableMFADeviceOutput{}
 	req.Data = output
@@ -1511,6 +1679,10 @@ func (c *IAM) GenerateCredentialReportRequest(input *GenerateCredentialReportInp
 		}
 	}
 
+	if input == nil {
+		input = &GenerateCredentialReportInput{}
+	}
+
 	req = c.newRequest(opGenerateCredentialReport, input, output)
 	output = &GenerateCredentialReportOutput{}
 	req.Data = output
@@ -1540,6 +1712,10 @@ func (c *IAM) GetAccountAuthorizationDetailsRequest(input *GetAccountAuthorizati
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetAccountAuthorizationDetailsInput{}
 	}
 
 	req = c.newRequest(opGetAccountAuthorizationDetails, input, output)
@@ -1577,6 +1753,10 @@ func (c *IAM) GetAccountPasswordPolicyRequest(input *GetAccountPasswordPolicyInp
 		}
 	}
 
+	if input == nil {
+		input = &GetAccountPasswordPolicyInput{}
+	}
+
 	req = c.newRequest(opGetAccountPasswordPolicy, input, output)
 	output = &GetAccountPasswordPolicyOutput{}
 	req.Data = output
@@ -1605,6 +1785,10 @@ func (c *IAM) GetAccountSummaryRequest(input *GetAccountSummaryInput) (req *aws.
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetAccountSummaryInput{}
 	}
 
 	req = c.newRequest(opGetAccountSummary, input, output)
@@ -1640,6 +1824,10 @@ func (c *IAM) GetCredentialReportRequest(input *GetCredentialReportInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &GetCredentialReportInput{}
+	}
+
 	req = c.newRequest(opGetCredentialReport, input, output)
 	output = &GetCredentialReportOutput{}
 	req.Data = output
@@ -1671,6 +1859,10 @@ func (c *IAM) GetGroupRequest(input *GetGroupInput) (req *aws.Request, output *G
 		}
 	}
 
+	if input == nil {
+		input = &GetGroupInput{}
+	}
+
 	req = c.newRequest(opGetGroup, input, output)
 	output = &GetGroupOutput{}
 	req.Data = output
@@ -1699,6 +1891,10 @@ func (c *IAM) GetGroupPolicyRequest(input *GetGroupPolicyInput) (req *aws.Reques
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetGroupPolicyInput{}
 	}
 
 	req = c.newRequest(opGetGroupPolicy, input, output)
@@ -1740,6 +1936,10 @@ func (c *IAM) GetInstanceProfileRequest(input *GetInstanceProfileInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &GetInstanceProfileInput{}
+	}
+
 	req = c.newRequest(opGetInstanceProfile, input, output)
 	output = &GetInstanceProfileOutput{}
 	req.Data = output
@@ -1770,6 +1970,10 @@ func (c *IAM) GetLoginProfileRequest(input *GetLoginProfileInput) (req *aws.Requ
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetLoginProfileInput{}
 	}
 
 	req = c.newRequest(opGetLoginProfile, input, output)
@@ -1803,6 +2007,10 @@ func (c *IAM) GetOpenIDConnectProviderRequest(input *GetOpenIDConnectProviderInp
 		}
 	}
 
+	if input == nil {
+		input = &GetOpenIDConnectProviderInput{}
+	}
+
 	req = c.newRequest(opGetOpenIDConnectProvider, input, output)
 	output = &GetOpenIDConnectProviderOutput{}
 	req.Data = output
@@ -1830,6 +2038,10 @@ func (c *IAM) GetPolicyRequest(input *GetPolicyInput) (req *aws.Request, output 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetPolicyInput{}
 	}
 
 	req = c.newRequest(opGetPolicy, input, output)
@@ -1874,6 +2086,10 @@ func (c *IAM) GetPolicyVersionRequest(input *GetPolicyVersionInput) (req *aws.Re
 		}
 	}
 
+	if input == nil {
+		input = &GetPolicyVersionInput{}
+	}
+
 	req = c.newRequest(opGetPolicyVersion, input, output)
 	output = &GetPolicyVersionOutput{}
 	req.Data = output
@@ -1914,6 +2130,10 @@ func (c *IAM) GetRoleRequest(input *GetRoleInput) (req *aws.Request, output *Get
 		}
 	}
 
+	if input == nil {
+		input = &GetRoleInput{}
+	}
+
 	req = c.newRequest(opGetRole, input, output)
 	output = &GetRoleOutput{}
 	req.Data = output
@@ -1947,6 +2167,10 @@ func (c *IAM) GetRolePolicyRequest(input *GetRolePolicyInput) (req *aws.Request,
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetRolePolicyInput{}
 	}
 
 	req = c.newRequest(opGetRolePolicy, input, output)
@@ -1991,6 +2215,10 @@ func (c *IAM) GetSAMLProviderRequest(input *GetSAMLProviderInput) (req *aws.Requ
 		}
 	}
 
+	if input == nil {
+		input = &GetSAMLProviderInput{}
+	}
+
 	req = c.newRequest(opGetSAMLProvider, input, output)
 	output = &GetSAMLProviderOutput{}
 	req.Data = output
@@ -2023,6 +2251,10 @@ func (c *IAM) GetServerCertificateRequest(input *GetServerCertificateInput) (req
 		}
 	}
 
+	if input == nil {
+		input = &GetServerCertificateInput{}
+	}
+
 	req = c.newRequest(opGetServerCertificate, input, output)
 	output = &GetServerCertificateOutput{}
 	req.Data = output
@@ -2050,6 +2282,10 @@ func (c *IAM) GetUserRequest(input *GetUserInput) (req *aws.Request, output *Get
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetUserInput{}
 	}
 
 	req = c.newRequest(opGetUser, input, output)
@@ -2083,6 +2319,10 @@ func (c *IAM) GetUserPolicyRequest(input *GetUserPolicyInput) (req *aws.Request,
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetUserPolicyInput{}
 	}
 
 	req = c.newRequest(opGetUserPolicy, input, output)
@@ -2122,6 +2362,10 @@ func (c *IAM) ListAccessKeysRequest(input *ListAccessKeysInput) (req *aws.Reques
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListAccessKeysInput{}
 	}
 
 	req = c.newRequest(opListAccessKeys, input, output)
@@ -2165,6 +2409,10 @@ func (c *IAM) ListAccountAliasesRequest(input *ListAccountAliasesInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &ListAccountAliasesInput{}
+	}
+
 	req = c.newRequest(opListAccountAliases, input, output)
 	output = &ListAccountAliasesOutput{}
 	req.Data = output
@@ -2196,6 +2444,10 @@ func (c *IAM) ListAttachedGroupPoliciesRequest(input *ListAttachedGroupPoliciesI
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListAttachedGroupPoliciesInput{}
 	}
 
 	req = c.newRequest(opListAttachedGroupPolicies, input, output)
@@ -2238,6 +2490,10 @@ func (c *IAM) ListAttachedRolePoliciesRequest(input *ListAttachedRolePoliciesInp
 		}
 	}
 
+	if input == nil {
+		input = &ListAttachedRolePoliciesInput{}
+	}
+
 	req = c.newRequest(opListAttachedRolePolicies, input, output)
 	output = &ListAttachedRolePoliciesOutput{}
 	req.Data = output
@@ -2276,6 +2532,10 @@ func (c *IAM) ListAttachedUserPoliciesRequest(input *ListAttachedUserPoliciesInp
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListAttachedUserPoliciesInput{}
 	}
 
 	req = c.newRequest(opListAttachedUserPolicies, input, output)
@@ -2318,6 +2578,10 @@ func (c *IAM) ListEntitiesForPolicyRequest(input *ListEntitiesForPolicyInput) (r
 		}
 	}
 
+	if input == nil {
+		input = &ListEntitiesForPolicyInput{}
+	}
+
 	req = c.newRequest(opListEntitiesForPolicy, input, output)
 	output = &ListEntitiesForPolicyOutput{}
 	req.Data = output
@@ -2353,6 +2617,10 @@ func (c *IAM) ListGroupPoliciesRequest(input *ListGroupPoliciesInput) (req *aws.
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListGroupPoliciesInput{}
 	}
 
 	req = c.newRequest(opListGroupPolicies, input, output)
@@ -2395,6 +2663,10 @@ func (c *IAM) ListGroupsRequest(input *ListGroupsInput) (req *aws.Request, outpu
 		}
 	}
 
+	if input == nil {
+		input = &ListGroupsInput{}
+	}
+
 	req = c.newRequest(opListGroups, input, output)
 	output = &ListGroupsOutput{}
 	req.Data = output
@@ -2426,6 +2698,10 @@ func (c *IAM) ListGroupsForUserRequest(input *ListGroupsForUserInput) (req *aws.
 		}
 	}
 
+	if input == nil {
+		input = &ListGroupsForUserInput{}
+	}
+
 	req = c.newRequest(opListGroupsForUser, input, output)
 	output = &ListGroupsForUserOutput{}
 	req.Data = output
@@ -2455,6 +2731,10 @@ func (c *IAM) ListInstanceProfilesRequest(input *ListInstanceProfilesInput) (req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListInstanceProfilesInput{}
 	}
 
 	req = c.newRequest(opListInstanceProfiles, input, output)
@@ -2490,6 +2770,10 @@ func (c *IAM) ListInstanceProfilesForRoleRequest(input *ListInstanceProfilesForR
 		}
 	}
 
+	if input == nil {
+		input = &ListInstanceProfilesForRoleInput{}
+	}
+
 	req = c.newRequest(opListInstanceProfilesForRole, input, output)
 	output = &ListInstanceProfilesForRoleOutput{}
 	req.Data = output
@@ -2521,6 +2805,10 @@ func (c *IAM) ListMFADevicesRequest(input *ListMFADevicesInput) (req *aws.Reques
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListMFADevicesInput{}
 	}
 
 	req = c.newRequest(opListMFADevices, input, output)
@@ -2557,6 +2845,10 @@ func (c *IAM) ListOpenIDConnectProvidersRequest(input *ListOpenIDConnectProvider
 		}
 	}
 
+	if input == nil {
+		input = &ListOpenIDConnectProvidersInput{}
+	}
+
 	req = c.newRequest(opListOpenIDConnectProviders, input, output)
 	output = &ListOpenIDConnectProvidersOutput{}
 	req.Data = output
@@ -2584,6 +2876,10 @@ func (c *IAM) ListPoliciesRequest(input *ListPoliciesInput) (req *aws.Request, o
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListPoliciesInput{}
 	}
 
 	req = c.newRequest(opListPolicies, input, output)
@@ -2627,6 +2923,10 @@ func (c *IAM) ListPolicyVersionsRequest(input *ListPolicyVersionsInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &ListPolicyVersionsInput{}
+	}
+
 	req = c.newRequest(opListPolicyVersions, input, output)
 	output = &ListPolicyVersionsOutput{}
 	req.Data = output
@@ -2659,6 +2959,10 @@ func (c *IAM) ListRolePoliciesRequest(input *ListRolePoliciesInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListRolePoliciesInput{}
 	}
 
 	req = c.newRequest(opListRolePolicies, input, output)
@@ -2701,6 +3005,10 @@ func (c *IAM) ListRolesRequest(input *ListRolesInput) (req *aws.Request, output 
 		}
 	}
 
+	if input == nil {
+		input = &ListRolesInput{}
+	}
+
 	req = c.newRequest(opListRoles, input, output)
 	output = &ListRolesOutput{}
 	req.Data = output
@@ -2737,6 +3045,10 @@ func (c *IAM) ListSAMLProvidersRequest(input *ListSAMLProvidersInput) (req *aws.
 		}
 	}
 
+	if input == nil {
+		input = &ListSAMLProvidersInput{}
+	}
+
 	req = c.newRequest(opListSAMLProviders, input, output)
 	output = &ListSAMLProvidersOutput{}
 	req.Data = output
@@ -2766,6 +3078,10 @@ func (c *IAM) ListServerCertificatesRequest(input *ListServerCertificatesInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListServerCertificatesInput{}
 	}
 
 	req = c.newRequest(opListServerCertificates, input, output)
@@ -2798,6 +3114,10 @@ func (c *IAM) ListSigningCertificatesRequest(input *ListSigningCertificatesInput
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListSigningCertificatesInput{}
 	}
 
 	req = c.newRequest(opListSigningCertificates, input, output)
@@ -2836,6 +3156,10 @@ func (c *IAM) ListUserPoliciesRequest(input *ListUserPoliciesInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListUserPoliciesInput{}
 	}
 
 	req = c.newRequest(opListUserPolicies, input, output)
@@ -2877,6 +3201,10 @@ func (c *IAM) ListUsersRequest(input *ListUsersInput) (req *aws.Request, output 
 		}
 	}
 
+	if input == nil {
+		input = &ListUsersInput{}
+	}
+
 	req = c.newRequest(opListUsers, input, output)
 	output = &ListUsersOutput{}
 	req.Data = output
@@ -2908,6 +3236,10 @@ func (c *IAM) ListVirtualMFADevicesRequest(input *ListVirtualMFADevicesInput) (r
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListVirtualMFADevicesInput{}
 	}
 
 	req = c.newRequest(opListVirtualMFADevices, input, output)
@@ -2942,6 +3274,10 @@ func (c *IAM) PutGroupPolicyRequest(input *PutGroupPolicyInput) (req *aws.Reques
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PutGroupPolicyInput{}
 	}
 
 	req = c.newRequest(opPutGroupPolicy, input, output)
@@ -2987,6 +3323,10 @@ func (c *IAM) PutRolePolicyRequest(input *PutRolePolicyInput) (req *aws.Request,
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PutRolePolicyInput{}
 	}
 
 	req = c.newRequest(opPutRolePolicy, input, output)
@@ -3040,6 +3380,10 @@ func (c *IAM) PutUserPolicyRequest(input *PutUserPolicyInput) (req *aws.Request,
 		}
 	}
 
+	if input == nil {
+		input = &PutUserPolicyInput{}
+	}
+
 	req = c.newRequest(opPutUserPolicy, input, output)
 	output = &PutUserPolicyOutput{}
 	req.Data = output
@@ -3085,6 +3429,10 @@ func (c *IAM) RemoveClientIDFromOpenIDConnectProviderRequest(input *RemoveClient
 		}
 	}
 
+	if input == nil {
+		input = &RemoveClientIDFromOpenIDConnectProviderInput{}
+	}
+
 	req = c.newRequest(opRemoveClientIDFromOpenIDConnectProvider, input, output)
 	output = &RemoveClientIDFromOpenIDConnectProviderOutput{}
 	req.Data = output
@@ -3116,6 +3464,10 @@ func (c *IAM) RemoveRoleFromInstanceProfileRequest(input *RemoveRoleFromInstance
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RemoveRoleFromInstanceProfileInput{}
 	}
 
 	req = c.newRequest(opRemoveRoleFromInstanceProfile, input, output)
@@ -3155,6 +3507,10 @@ func (c *IAM) RemoveUserFromGroupRequest(input *RemoveUserFromGroupInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &RemoveUserFromGroupInput{}
+	}
+
 	req = c.newRequest(opRemoveUserFromGroup, input, output)
 	output = &RemoveUserFromGroupOutput{}
 	req.Data = output
@@ -3182,6 +3538,10 @@ func (c *IAM) ResyncMFADeviceRequest(input *ResyncMFADeviceInput) (req *aws.Requ
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ResyncMFADeviceInput{}
 	}
 
 	req = c.newRequest(opResyncMFADevice, input, output)
@@ -3215,6 +3575,10 @@ func (c *IAM) SetDefaultPolicyVersionRequest(input *SetDefaultPolicyVersionInput
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SetDefaultPolicyVersionInput{}
 	}
 
 	req = c.newRequest(opSetDefaultPolicyVersion, input, output)
@@ -3253,6 +3617,10 @@ func (c *IAM) UpdateAccessKeyRequest(input *UpdateAccessKeyInput) (req *aws.Requ
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateAccessKeyInput{}
 	}
 
 	req = c.newRequest(opUpdateAccessKey, input, output)
@@ -3295,6 +3663,10 @@ func (c *IAM) UpdateAccountPasswordPolicyRequest(input *UpdateAccountPasswordPol
 		}
 	}
 
+	if input == nil {
+		input = &UpdateAccountPasswordPolicyInput{}
+	}
+
 	req = c.newRequest(opUpdateAccountPasswordPolicy, input, output)
 	output = &UpdateAccountPasswordPolicyOutput{}
 	req.Data = output
@@ -3333,6 +3705,10 @@ func (c *IAM) UpdateAssumeRolePolicyRequest(input *UpdateAssumeRolePolicyInput) 
 		}
 	}
 
+	if input == nil {
+		input = &UpdateAssumeRolePolicyInput{}
+	}
+
 	req = c.newRequest(opUpdateAssumeRolePolicy, input, output)
 	output = &UpdateAssumeRolePolicyOutput{}
 	req.Data = output
@@ -3362,6 +3738,10 @@ func (c *IAM) UpdateGroupRequest(input *UpdateGroupInput) (req *aws.Request, out
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateGroupInput{}
 	}
 
 	req = c.newRequest(opUpdateGroup, input, output)
@@ -3402,6 +3782,10 @@ func (c *IAM) UpdateLoginProfileRequest(input *UpdateLoginProfileInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &UpdateLoginProfileInput{}
+	}
+
 	req = c.newRequest(opUpdateLoginProfile, input, output)
 	output = &UpdateLoginProfileOutput{}
 	req.Data = output
@@ -3433,6 +3817,10 @@ func (c *IAM) UpdateOpenIDConnectProviderThumbprintRequest(input *UpdateOpenIDCo
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateOpenIDConnectProviderThumbprintInput{}
 	}
 
 	req = c.newRequest(opUpdateOpenIDConnectProviderThumbprint, input, output)
@@ -3477,6 +3865,10 @@ func (c *IAM) UpdateSAMLProviderRequest(input *UpdateSAMLProviderInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &UpdateSAMLProviderInput{}
+	}
+
 	req = c.newRequest(opUpdateSAMLProvider, input, output)
 	output = &UpdateSAMLProviderOutput{}
 	req.Data = output
@@ -3506,6 +3898,10 @@ func (c *IAM) UpdateServerCertificateRequest(input *UpdateServerCertificateInput
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateServerCertificateInput{}
 	}
 
 	req = c.newRequest(opUpdateServerCertificate, input, output)
@@ -3545,6 +3941,10 @@ func (c *IAM) UpdateSigningCertificateRequest(input *UpdateSigningCertificateInp
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateSigningCertificateInput{}
 	}
 
 	req = c.newRequest(opUpdateSigningCertificate, input, output)
@@ -3587,6 +3987,10 @@ func (c *IAM) UpdateUserRequest(input *UpdateUserInput) (req *aws.Request, outpu
 		}
 	}
 
+	if input == nil {
+		input = &UpdateUserInput{}
+	}
+
 	req = c.newRequest(opUpdateUser, input, output)
 	output = &UpdateUserOutput{}
 	req.Data = output
@@ -3623,6 +4027,10 @@ func (c *IAM) UploadServerCertificateRequest(input *UploadServerCertificateInput
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UploadServerCertificateInput{}
 	}
 
 	req = c.newRequest(opUploadServerCertificate, input, output)
@@ -3666,6 +4074,10 @@ func (c *IAM) UploadSigningCertificateRequest(input *UploadSigningCertificateInp
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UploadSigningCertificateInput{}
 	}
 
 	req = c.newRequest(opUploadSigningCertificate, input, output)

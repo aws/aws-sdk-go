@@ -24,6 +24,10 @@ func (c *Support) AddAttachmentsToSetRequest(input *AddAttachmentsToSetInput) (r
 		}
 	}
 
+	if input == nil {
+		input = &AddAttachmentsToSetInput{}
+	}
+
 	req = c.newRequest(opAddAttachmentsToSet, input, output)
 	output = &AddAttachmentsToSetOutput{}
 	req.Data = output
@@ -62,6 +66,10 @@ func (c *Support) AddCommunicationToCaseRequest(input *AddCommunicationToCaseInp
 		}
 	}
 
+	if input == nil {
+		input = &AddCommunicationToCaseInput{}
+	}
+
 	req = c.newRequest(opAddCommunicationToCase, input, output)
 	output = &AddCommunicationToCaseOutput{}
 	req.Data = output
@@ -96,6 +104,10 @@ func (c *Support) CreateCaseRequest(input *CreateCaseInput) (req *aws.Request, o
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateCaseInput{}
 	}
 
 	req = c.newRequest(opCreateCase, input, output)
@@ -156,6 +168,10 @@ func (c *Support) DescribeAttachmentRequest(input *DescribeAttachmentInput) (req
 		}
 	}
 
+	if input == nil {
+		input = &DescribeAttachmentInput{}
+	}
+
 	req = c.newRequest(opDescribeAttachment, input, output)
 	output = &DescribeAttachmentOutput{}
 	req.Data = output
@@ -186,6 +202,10 @@ func (c *Support) DescribeCasesRequest(input *DescribeCasesInput) (req *aws.Requ
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeCasesInput{}
 	}
 
 	req = c.newRequest(opDescribeCases, input, output)
@@ -230,6 +250,10 @@ func (c *Support) DescribeCommunicationsRequest(input *DescribeCommunicationsInp
 		}
 	}
 
+	if input == nil {
+		input = &DescribeCommunicationsInput{}
+	}
+
 	req = c.newRequest(opDescribeCommunications, input, output)
 	output = &DescribeCommunicationsOutput{}
 	req.Data = output
@@ -266,6 +290,10 @@ func (c *Support) DescribeServicesRequest(input *DescribeServicesInput) (req *aw
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeServicesInput{}
 	}
 
 	req = c.newRequest(opDescribeServices, input, output)
@@ -307,6 +335,10 @@ func (c *Support) DescribeSeverityLevelsRequest(input *DescribeSeverityLevelsInp
 		}
 	}
 
+	if input == nil {
+		input = &DescribeSeverityLevelsInput{}
+	}
+
 	req = c.newRequest(opDescribeSeverityLevels, input, output)
 	output = &DescribeSeverityLevelsOutput{}
 	req.Data = output
@@ -338,6 +370,10 @@ func (c *Support) DescribeTrustedAdvisorCheckRefreshStatusesRequest(input *Descr
 		}
 	}
 
+	if input == nil {
+		input = &DescribeTrustedAdvisorCheckRefreshStatusesInput{}
+	}
+
 	req = c.newRequest(opDescribeTrustedAdvisorCheckRefreshStatuses, input, output)
 	output = &DescribeTrustedAdvisorCheckRefreshStatusesOutput{}
 	req.Data = output
@@ -366,6 +402,10 @@ func (c *Support) DescribeTrustedAdvisorCheckResultRequest(input *DescribeTruste
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeTrustedAdvisorCheckResultInput{}
 	}
 
 	req = c.newRequest(opDescribeTrustedAdvisorCheckResult, input, output)
@@ -408,6 +448,10 @@ func (c *Support) DescribeTrustedAdvisorCheckSummariesRequest(input *DescribeTru
 		}
 	}
 
+	if input == nil {
+		input = &DescribeTrustedAdvisorCheckSummariesInput{}
+	}
+
 	req = c.newRequest(opDescribeTrustedAdvisorCheckSummaries, input, output)
 	output = &DescribeTrustedAdvisorCheckSummariesOutput{}
 	req.Data = output
@@ -440,6 +484,10 @@ func (c *Support) DescribeTrustedAdvisorChecksRequest(input *DescribeTrustedAdvi
 		}
 	}
 
+	if input == nil {
+		input = &DescribeTrustedAdvisorChecksInput{}
+	}
+
 	req = c.newRequest(opDescribeTrustedAdvisorChecks, input, output)
 	output = &DescribeTrustedAdvisorChecksOutput{}
 	req.Data = output
@@ -470,6 +518,10 @@ func (c *Support) RefreshTrustedAdvisorCheckRequest(input *RefreshTrustedAdvisor
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RefreshTrustedAdvisorCheckInput{}
 	}
 
 	req = c.newRequest(opRefreshTrustedAdvisorCheck, input, output)
@@ -508,6 +560,10 @@ func (c *Support) ResolveCaseRequest(input *ResolveCaseInput) (req *aws.Request,
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ResolveCaseInput{}
 	}
 
 	req = c.newRequest(opResolveCase, input, output)

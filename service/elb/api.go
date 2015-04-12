@@ -25,6 +25,10 @@ func (c *ELB) AddTagsRequest(input *AddTagsInput) (req *aws.Request, output *Add
 		}
 	}
 
+	if input == nil {
+		input = &AddTagsInput{}
+	}
+
 	req = c.newRequest(opAddTags, input, output)
 	output = &AddTagsOutput{}
 	req.Data = output
@@ -63,6 +67,10 @@ func (c *ELB) ApplySecurityGroupsToLoadBalancerRequest(input *ApplySecurityGroup
 		}
 	}
 
+	if input == nil {
+		input = &ApplySecurityGroupsToLoadBalancerInput{}
+	}
+
 	req = c.newRequest(opApplySecurityGroupsToLoadBalancer, input, output)
 	output = &ApplySecurityGroupsToLoadBalancerOutput{}
 	req.Data = output
@@ -95,6 +103,10 @@ func (c *ELB) AttachLoadBalancerToSubnetsRequest(input *AttachLoadBalancerToSubn
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &AttachLoadBalancerToSubnetsInput{}
 	}
 
 	req = c.newRequest(opAttachLoadBalancerToSubnets, input, output)
@@ -132,6 +144,10 @@ func (c *ELB) ConfigureHealthCheckRequest(input *ConfigureHealthCheckInput) (req
 		}
 	}
 
+	if input == nil {
+		input = &ConfigureHealthCheckInput{}
+	}
+
 	req = c.newRequest(opConfigureHealthCheck, input, output)
 	output = &ConfigureHealthCheckOutput{}
 	req.Data = output
@@ -163,6 +179,10 @@ func (c *ELB) CreateAppCookieStickinessPolicyRequest(input *CreateAppCookieStick
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateAppCookieStickinessPolicyInput{}
 	}
 
 	req = c.newRequest(opCreateAppCookieStickinessPolicy, input, output)
@@ -211,6 +231,10 @@ func (c *ELB) CreateLBCookieStickinessPolicyRequest(input *CreateLBCookieStickin
 		}
 	}
 
+	if input == nil {
+		input = &CreateLBCookieStickinessPolicyInput{}
+	}
+
 	req = c.newRequest(opCreateLBCookieStickinessPolicy, input, output)
 	output = &CreateLBCookieStickinessPolicyOutput{}
 	req.Data = output
@@ -254,6 +278,10 @@ func (c *ELB) CreateLoadBalancerRequest(input *CreateLoadBalancerInput) (req *aw
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateLoadBalancerInput{}
 	}
 
 	req = c.newRequest(opCreateLoadBalancer, input, output)
@@ -306,6 +334,10 @@ func (c *ELB) CreateLoadBalancerListenersRequest(input *CreateLoadBalancerListen
 		}
 	}
 
+	if input == nil {
+		input = &CreateLoadBalancerListenersInput{}
+	}
+
 	req = c.newRequest(opCreateLoadBalancerListeners, input, output)
 	output = &CreateLoadBalancerListenersOutput{}
 	req.Data = output
@@ -341,6 +373,10 @@ func (c *ELB) CreateLoadBalancerPolicyRequest(input *CreateLoadBalancerPolicyInp
 		}
 	}
 
+	if input == nil {
+		input = &CreateLoadBalancerPolicyInput{}
+	}
+
 	req = c.newRequest(opCreateLoadBalancerPolicy, input, output)
 	output = &CreateLoadBalancerPolicyOutput{}
 	req.Data = output
@@ -371,6 +407,10 @@ func (c *ELB) DeleteLoadBalancerRequest(input *DeleteLoadBalancerInput) (req *aw
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteLoadBalancerInput{}
 	}
 
 	req = c.newRequest(opDeleteLoadBalancer, input, output)
@@ -414,6 +454,10 @@ func (c *ELB) DeleteLoadBalancerListenersRequest(input *DeleteLoadBalancerListen
 		}
 	}
 
+	if input == nil {
+		input = &DeleteLoadBalancerListenersInput{}
+	}
+
 	req = c.newRequest(opDeleteLoadBalancerListeners, input, output)
 	output = &DeleteLoadBalancerListenersOutput{}
 	req.Data = output
@@ -441,6 +485,10 @@ func (c *ELB) DeleteLoadBalancerPolicyRequest(input *DeleteLoadBalancerPolicyInp
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteLoadBalancerPolicyInput{}
 	}
 
 	req = c.newRequest(opDeleteLoadBalancerPolicy, input, output)
@@ -471,6 +519,10 @@ func (c *ELB) DeregisterInstancesFromLoadBalancerRequest(input *DeregisterInstan
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeregisterInstancesFromLoadBalancerInput{}
 	}
 
 	req = c.newRequest(opDeregisterInstancesFromLoadBalancer, input, output)
@@ -513,6 +565,10 @@ func (c *ELB) DescribeInstanceHealthRequest(input *DescribeInstanceHealthInput) 
 		}
 	}
 
+	if input == nil {
+		input = &DescribeInstanceHealthInput{}
+	}
+
 	req = c.newRequest(opDescribeInstanceHealth, input, output)
 	output = &DescribeInstanceHealthOutput{}
 	req.Data = output
@@ -547,6 +603,10 @@ func (c *ELB) DescribeLoadBalancerAttributesRequest(input *DescribeLoadBalancerA
 		}
 	}
 
+	if input == nil {
+		input = &DescribeLoadBalancerAttributesInput{}
+	}
+
 	req = c.newRequest(opDescribeLoadBalancerAttributes, input, output)
 	output = &DescribeLoadBalancerAttributesOutput{}
 	req.Data = output
@@ -575,6 +635,10 @@ func (c *ELB) DescribeLoadBalancerPoliciesRequest(input *DescribeLoadBalancerPol
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeLoadBalancerPoliciesInput{}
 	}
 
 	req = c.newRequest(opDescribeLoadBalancerPolicies, input, output)
@@ -612,6 +676,10 @@ func (c *ELB) DescribeLoadBalancerPolicyTypesRequest(input *DescribeLoadBalancer
 		}
 	}
 
+	if input == nil {
+		input = &DescribeLoadBalancerPolicyTypesInput{}
+	}
+
 	req = c.newRequest(opDescribeLoadBalancerPolicyTypes, input, output)
 	output = &DescribeLoadBalancerPolicyTypesOutput{}
 	req.Data = output
@@ -642,6 +710,10 @@ func (c *ELB) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (r
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeLoadBalancersInput{}
 	}
 
 	req = c.newRequest(opDescribeLoadBalancers, input, output)
@@ -678,6 +750,10 @@ func (c *ELB) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, o
 		}
 	}
 
+	if input == nil {
+		input = &DescribeTagsInput{}
+	}
+
 	req = c.newRequest(opDescribeTags, input, output)
 	output = &DescribeTagsOutput{}
 	req.Data = output
@@ -705,6 +781,10 @@ func (c *ELB) DetachLoadBalancerFromSubnetsRequest(input *DetachLoadBalancerFrom
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DetachLoadBalancerFromSubnetsInput{}
 	}
 
 	req = c.newRequest(opDetachLoadBalancerFromSubnets, input, output)
@@ -740,6 +820,10 @@ func (c *ELB) DisableAvailabilityZonesForLoadBalancerRequest(input *DisableAvail
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DisableAvailabilityZonesForLoadBalancerInput{}
 	}
 
 	req = c.newRequest(opDisableAvailabilityZonesForLoadBalancer, input, output)
@@ -784,6 +868,10 @@ func (c *ELB) EnableAvailabilityZonesForLoadBalancerRequest(input *EnableAvailab
 		}
 	}
 
+	if input == nil {
+		input = &EnableAvailabilityZonesForLoadBalancerInput{}
+	}
+
 	req = c.newRequest(opEnableAvailabilityZonesForLoadBalancer, input, output)
 	output = &EnableAvailabilityZonesForLoadBalancerOutput{}
 	req.Data = output
@@ -820,6 +908,10 @@ func (c *ELB) ModifyLoadBalancerAttributesRequest(input *ModifyLoadBalancerAttri
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ModifyLoadBalancerAttributesInput{}
 	}
 
 	req = c.newRequest(opModifyLoadBalancerAttributes, input, output)
@@ -861,6 +953,10 @@ func (c *ELB) RegisterInstancesWithLoadBalancerRequest(input *RegisterInstancesW
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RegisterInstancesWithLoadBalancerInput{}
 	}
 
 	req = c.newRequest(opRegisterInstancesWithLoadBalancer, input, output)
@@ -917,6 +1013,10 @@ func (c *ELB) RemoveTagsRequest(input *RemoveTagsInput) (req *aws.Request, outpu
 		}
 	}
 
+	if input == nil {
+		input = &RemoveTagsInput{}
+	}
+
 	req = c.newRequest(opRemoveTags, input, output)
 	output = &RemoveTagsOutput{}
 	req.Data = output
@@ -944,6 +1044,10 @@ func (c *ELB) SetLoadBalancerListenerSSLCertificateRequest(input *SetLoadBalance
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SetLoadBalancerListenerSSLCertificateInput{}
 	}
 
 	req = c.newRequest(opSetLoadBalancerListenerSSLCertificate, input, output)
@@ -979,6 +1083,10 @@ func (c *ELB) SetLoadBalancerPoliciesForBackendServerRequest(input *SetLoadBalan
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SetLoadBalancerPoliciesForBackendServerInput{}
 	}
 
 	req = c.newRequest(opSetLoadBalancerPoliciesForBackendServer, input, output)
@@ -1021,6 +1129,10 @@ func (c *ELB) SetLoadBalancerPoliciesOfListenerRequest(input *SetLoadBalancerPol
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SetLoadBalancerPoliciesOfListenerInput{}
 	}
 
 	req = c.newRequest(opSetLoadBalancerPoliciesOfListener, input, output)

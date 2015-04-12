@@ -24,6 +24,10 @@ func (c *SQS) AddPermissionRequest(input *AddPermissionInput) (req *aws.Request,
 		}
 	}
 
+	if input == nil {
+		input = &AddPermissionInput{}
+	}
+
 	req = c.newRequest(opAddPermission, input, output)
 	output = &AddPermissionOutput{}
 	req.Data = output
@@ -68,6 +72,10 @@ func (c *SQS) ChangeMessageVisibilityRequest(input *ChangeMessageVisibilityInput
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ChangeMessageVisibilityInput{}
 	}
 
 	req = c.newRequest(opChangeMessageVisibility, input, output)
@@ -128,6 +136,10 @@ func (c *SQS) ChangeMessageVisibilityBatchRequest(input *ChangeMessageVisibility
 		}
 	}
 
+	if input == nil {
+		input = &ChangeMessageVisibilityBatchInput{}
+	}
+
 	req = c.newRequest(opChangeMessageVisibilityBatch, input, output)
 	output = &ChangeMessageVisibilityBatchOutput{}
 	req.Data = output
@@ -167,6 +179,10 @@ func (c *SQS) CreateQueueRequest(input *CreateQueueInput) (req *aws.Request, out
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateQueueInput{}
 	}
 
 	req = c.newRequest(opCreateQueue, input, output)
@@ -222,6 +238,10 @@ func (c *SQS) DeleteMessageRequest(input *DeleteMessageInput) (req *aws.Request,
 		}
 	}
 
+	if input == nil {
+		input = &DeleteMessageInput{}
+	}
+
 	req = c.newRequest(opDeleteMessage, input, output)
 	output = &DeleteMessageOutput{}
 	req.Data = output
@@ -270,6 +290,10 @@ func (c *SQS) DeleteMessageBatchRequest(input *DeleteMessageBatchInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &DeleteMessageBatchInput{}
+	}
+
 	req = c.newRequest(opDeleteMessageBatch, input, output)
 	output = &DeleteMessageBatchOutput{}
 	req.Data = output
@@ -309,6 +333,10 @@ func (c *SQS) DeleteQueueRequest(input *DeleteQueueInput) (req *aws.Request, out
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteQueueInput{}
 	}
 
 	req = c.newRequest(opDeleteQueue, input, output)
@@ -354,6 +382,10 @@ func (c *SQS) GetQueueAttributesRequest(input *GetQueueAttributesInput) (req *aw
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetQueueAttributesInput{}
 	}
 
 	req = c.newRequest(opGetQueueAttributes, input, output)
@@ -419,6 +451,10 @@ func (c *SQS) GetQueueURLRequest(input *GetQueueURLInput) (req *aws.Request, out
 		}
 	}
 
+	if input == nil {
+		input = &GetQueueURLInput{}
+	}
+
 	req = c.newRequest(opGetQueueURL, input, output)
 	output = &GetQueueURLOutput{}
 	req.Data = output
@@ -455,6 +491,10 @@ func (c *SQS) ListDeadLetterSourceQueuesRequest(input *ListDeadLetterSourceQueue
 		}
 	}
 
+	if input == nil {
+		input = &ListDeadLetterSourceQueuesInput{}
+	}
+
 	req = c.newRequest(opListDeadLetterSourceQueues, input, output)
 	output = &ListDeadLetterSourceQueuesOutput{}
 	req.Data = output
@@ -488,6 +528,10 @@ func (c *SQS) ListQueuesRequest(input *ListQueuesInput) (req *aws.Request, outpu
 		}
 	}
 
+	if input == nil {
+		input = &ListQueuesInput{}
+	}
+
 	req = c.newRequest(opListQueues, input, output)
 	output = &ListQueuesOutput{}
 	req.Data = output
@@ -517,6 +561,10 @@ func (c *SQS) PurgeQueueRequest(input *PurgeQueueInput) (req *aws.Request, outpu
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PurgeQueueInput{}
 	}
 
 	req = c.newRequest(opPurgeQueue, input, output)
@@ -554,6 +602,10 @@ func (c *SQS) ReceiveMessageRequest(input *ReceiveMessageInput) (req *aws.Reques
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ReceiveMessageInput{}
 	}
 
 	req = c.newRequest(opReceiveMessage, input, output)
@@ -626,6 +678,10 @@ func (c *SQS) RemovePermissionRequest(input *RemovePermissionInput) (req *aws.Re
 		}
 	}
 
+	if input == nil {
+		input = &RemovePermissionInput{}
+	}
+
 	req = c.newRequest(opRemovePermission, input, output)
 	output = &RemovePermissionOutput{}
 	req.Data = output
@@ -654,6 +710,10 @@ func (c *SQS) SendMessageRequest(input *SendMessageInput) (req *aws.Request, out
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SendMessageInput{}
 	}
 
 	req = c.newRequest(opSendMessage, input, output)
@@ -694,6 +754,10 @@ func (c *SQS) SendMessageBatchRequest(input *SendMessageBatchInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SendMessageBatchInput{}
 	}
 
 	req = c.newRequest(opSendMessageBatch, input, output)
@@ -748,6 +812,10 @@ func (c *SQS) SetQueueAttributesRequest(input *SetQueueAttributesInput) (req *aw
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SetQueueAttributesInput{}
 	}
 
 	req = c.newRequest(opSetQueueAttributes, input, output)

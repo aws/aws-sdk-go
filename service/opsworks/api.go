@@ -24,6 +24,10 @@ func (c *OpsWorks) AssignInstanceRequest(input *AssignInstanceInput) (req *aws.R
 		}
 	}
 
+	if input == nil {
+		input = &AssignInstanceInput{}
+	}
+
 	req = c.newRequest(opAssignInstance, input, output)
 	output = &AssignInstanceOutput{}
 	req.Data = output
@@ -57,6 +61,10 @@ func (c *OpsWorks) AssignVolumeRequest(input *AssignVolumeInput) (req *aws.Reque
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &AssignVolumeInput{}
 	}
 
 	req = c.newRequest(opAssignVolume, input, output)
@@ -95,6 +103,10 @@ func (c *OpsWorks) AssociateElasticIPRequest(input *AssociateElasticIPInput) (re
 		}
 	}
 
+	if input == nil {
+		input = &AssociateElasticIPInput{}
+	}
+
 	req = c.newRequest(opAssociateElasticIP, input, output)
 	output = &AssociateElasticIPOutput{}
 	req.Data = output
@@ -129,6 +141,10 @@ func (c *OpsWorks) AttachElasticLoadBalancerRequest(input *AttachElasticLoadBala
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &AttachElasticLoadBalancerInput{}
 	}
 
 	req = c.newRequest(opAttachElasticLoadBalancer, input, output)
@@ -170,6 +186,10 @@ func (c *OpsWorks) CloneStackRequest(input *CloneStackInput) (req *aws.Request, 
 		}
 	}
 
+	if input == nil {
+		input = &CloneStackInput{}
+	}
+
 	req = c.newRequest(opCloneStack, input, output)
 	output = &CloneStackOutput{}
 	req.Data = output
@@ -202,6 +222,10 @@ func (c *OpsWorks) CreateAppRequest(input *CreateAppInput) (req *aws.Request, ou
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateAppInput{}
 	}
 
 	req = c.newRequest(opCreateApp, input, output)
@@ -237,6 +261,10 @@ func (c *OpsWorks) CreateDeploymentRequest(input *CreateDeploymentInput) (req *a
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateDeploymentInput{}
 	}
 
 	req = c.newRequest(opCreateDeployment, input, output)
@@ -275,6 +303,10 @@ func (c *OpsWorks) CreateInstanceRequest(input *CreateInstanceInput) (req *aws.R
 		}
 	}
 
+	if input == nil {
+		input = &CreateInstanceInput{}
+	}
+
 	req = c.newRequest(opCreateInstance, input, output)
 	output = &CreateInstanceOutput{}
 	req.Data = output
@@ -308,6 +340,10 @@ func (c *OpsWorks) CreateLayerRequest(input *CreateLayerInput) (req *aws.Request
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateLayerInput{}
 	}
 
 	req = c.newRequest(opCreateLayer, input, output)
@@ -351,6 +387,10 @@ func (c *OpsWorks) CreateStackRequest(input *CreateStackInput) (req *aws.Request
 		}
 	}
 
+	if input == nil {
+		input = &CreateStackInput{}
+	}
+
 	req = c.newRequest(opCreateStack, input, output)
 	output = &CreateStackOutput{}
 	req.Data = output
@@ -382,6 +422,10 @@ func (c *OpsWorks) CreateUserProfileRequest(input *CreateUserProfileInput) (req 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateUserProfileInput{}
 	}
 
 	req = c.newRequest(opCreateUserProfile, input, output)
@@ -417,6 +461,10 @@ func (c *OpsWorks) DeleteAppRequest(input *DeleteAppInput) (req *aws.Request, ou
 		}
 	}
 
+	if input == nil {
+		input = &DeleteAppInput{}
+	}
+
 	req = c.newRequest(opDeleteApp, input, output)
 	output = &DeleteAppOutput{}
 	req.Data = output
@@ -449,6 +497,10 @@ func (c *OpsWorks) DeleteInstanceRequest(input *DeleteInstanceInput) (req *aws.R
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteInstanceInput{}
 	}
 
 	req = c.newRequest(opDeleteInstance, input, output)
@@ -488,6 +540,10 @@ func (c *OpsWorks) DeleteLayerRequest(input *DeleteLayerInput) (req *aws.Request
 		}
 	}
 
+	if input == nil {
+		input = &DeleteLayerInput{}
+	}
+
 	req = c.newRequest(opDeleteLayer, input, output)
 	output = &DeleteLayerOutput{}
 	req.Data = output
@@ -522,6 +578,10 @@ func (c *OpsWorks) DeleteStackRequest(input *DeleteStackInput) (req *aws.Request
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteStackInput{}
 	}
 
 	req = c.newRequest(opDeleteStack, input, output)
@@ -560,6 +620,10 @@ func (c *OpsWorks) DeleteUserProfileRequest(input *DeleteUserProfileInput) (req 
 		}
 	}
 
+	if input == nil {
+		input = &DeleteUserProfileInput{}
+	}
+
 	req = c.newRequest(opDeleteUserProfile, input, output)
 	output = &DeleteUserProfileOutput{}
 	req.Data = output
@@ -591,6 +655,10 @@ func (c *OpsWorks) DeregisterElasticIPRequest(input *DeregisterElasticIPInput) (
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeregisterElasticIPInput{}
 	}
 
 	req = c.newRequest(opDeregisterElasticIP, input, output)
@@ -626,6 +694,10 @@ func (c *OpsWorks) DeregisterInstanceRequest(input *DeregisterInstanceInput) (re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeregisterInstanceInput{}
 	}
 
 	req = c.newRequest(opDeregisterInstance, input, output)
@@ -664,6 +736,10 @@ func (c *OpsWorks) DeregisterRDSDBInstanceRequest(input *DeregisterRDSDBInstance
 		}
 	}
 
+	if input == nil {
+		input = &DeregisterRDSDBInstanceInput{}
+	}
+
 	req = c.newRequest(opDeregisterRDSDBInstance, input, output)
 	output = &DeregisterRDSDBInstanceOutput{}
 	req.Data = output
@@ -696,6 +772,10 @@ func (c *OpsWorks) DeregisterVolumeRequest(input *DeregisterVolumeInput) (req *a
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeregisterVolumeInput{}
 	}
 
 	req = c.newRequest(opDeregisterVolume, input, output)
@@ -731,6 +811,10 @@ func (c *OpsWorks) DescribeAppsRequest(input *DescribeAppsInput) (req *aws.Reque
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeAppsInput{}
 	}
 
 	req = c.newRequest(opDescribeApps, input, output)
@@ -769,6 +853,10 @@ func (c *OpsWorks) DescribeCommandsRequest(input *DescribeCommandsInput) (req *a
 		}
 	}
 
+	if input == nil {
+		input = &DescribeCommandsInput{}
+	}
+
 	req = c.newRequest(opDescribeCommands, input, output)
 	output = &DescribeCommandsOutput{}
 	req.Data = output
@@ -803,6 +891,10 @@ func (c *OpsWorks) DescribeDeploymentsRequest(input *DescribeDeploymentsInput) (
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeDeploymentsInput{}
 	}
 
 	req = c.newRequest(opDescribeDeployments, input, output)
@@ -841,6 +933,10 @@ func (c *OpsWorks) DescribeElasticIPsRequest(input *DescribeElasticIPsInput) (re
 		}
 	}
 
+	if input == nil {
+		input = &DescribeElasticIPsInput{}
+	}
+
 	req = c.newRequest(opDescribeElasticIPs, input, output)
 	output = &DescribeElasticIPsOutput{}
 	req.Data = output
@@ -875,6 +971,10 @@ func (c *OpsWorks) DescribeElasticLoadBalancersRequest(input *DescribeElasticLoa
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeElasticLoadBalancersInput{}
 	}
 
 	req = c.newRequest(opDescribeElasticLoadBalancers, input, output)
@@ -913,6 +1013,10 @@ func (c *OpsWorks) DescribeInstancesRequest(input *DescribeInstancesInput) (req 
 		}
 	}
 
+	if input == nil {
+		input = &DescribeInstancesInput{}
+	}
+
 	req = c.newRequest(opDescribeInstances, input, output)
 	output = &DescribeInstancesOutput{}
 	req.Data = output
@@ -947,6 +1051,10 @@ func (c *OpsWorks) DescribeLayersRequest(input *DescribeLayersInput) (req *aws.R
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeLayersInput{}
 	}
 
 	req = c.newRequest(opDescribeLayers, input, output)
@@ -985,6 +1093,10 @@ func (c *OpsWorks) DescribeLoadBasedAutoScalingRequest(input *DescribeLoadBasedA
 		}
 	}
 
+	if input == nil {
+		input = &DescribeLoadBasedAutoScalingInput{}
+	}
+
 	req = c.newRequest(opDescribeLoadBasedAutoScaling, input, output)
 	output = &DescribeLoadBasedAutoScalingOutput{}
 	req.Data = output
@@ -1021,6 +1133,10 @@ func (c *OpsWorks) DescribeMyUserProfileRequest(input *DescribeMyUserProfileInpu
 		}
 	}
 
+	if input == nil {
+		input = &DescribeMyUserProfileInput{}
+	}
+
 	req = c.newRequest(opDescribeMyUserProfile, input, output)
 	output = &DescribeMyUserProfileOutput{}
 	req.Data = output
@@ -1052,6 +1168,10 @@ func (c *OpsWorks) DescribePermissionsRequest(input *DescribePermissionsInput) (
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribePermissionsInput{}
 	}
 
 	req = c.newRequest(opDescribePermissions, input, output)
@@ -1086,6 +1206,10 @@ func (c *OpsWorks) DescribeRAIDArraysRequest(input *DescribeRAIDArraysInput) (re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeRAIDArraysInput{}
 	}
 
 	req = c.newRequest(opDescribeRAIDArrays, input, output)
@@ -1124,6 +1248,10 @@ func (c *OpsWorks) DescribeRDSDBInstancesRequest(input *DescribeRDSDBInstancesIn
 		}
 	}
 
+	if input == nil {
+		input = &DescribeRDSDBInstancesInput{}
+	}
+
 	req = c.newRequest(opDescribeRDSDBInstances, input, output)
 	output = &DescribeRDSDBInstancesOutput{}
 	req.Data = output
@@ -1156,6 +1284,10 @@ func (c *OpsWorks) DescribeServiceErrorsRequest(input *DescribeServiceErrorsInpu
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeServiceErrorsInput{}
 	}
 
 	req = c.newRequest(opDescribeServiceErrors, input, output)
@@ -1192,6 +1324,10 @@ func (c *OpsWorks) DescribeStackProvisioningParametersRequest(input *DescribeSta
 		}
 	}
 
+	if input == nil {
+		input = &DescribeStackProvisioningParametersInput{}
+	}
+
 	req = c.newRequest(opDescribeStackProvisioningParameters, input, output)
 	output = &DescribeStackProvisioningParametersOutput{}
 	req.Data = output
@@ -1224,6 +1360,10 @@ func (c *OpsWorks) DescribeStackSummaryRequest(input *DescribeStackSummaryInput)
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeStackSummaryInput{}
 	}
 
 	req = c.newRequest(opDescribeStackSummary, input, output)
@@ -1261,6 +1401,10 @@ func (c *OpsWorks) DescribeStacksRequest(input *DescribeStacksInput) (req *aws.R
 		}
 	}
 
+	if input == nil {
+		input = &DescribeStacksInput{}
+	}
+
 	req = c.newRequest(opDescribeStacks, input, output)
 	output = &DescribeStacksOutput{}
 	req.Data = output
@@ -1293,6 +1437,10 @@ func (c *OpsWorks) DescribeTimeBasedAutoScalingRequest(input *DescribeTimeBasedA
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeTimeBasedAutoScalingInput{}
 	}
 
 	req = c.newRequest(opDescribeTimeBasedAutoScaling, input, output)
@@ -1331,6 +1479,10 @@ func (c *OpsWorks) DescribeUserProfilesRequest(input *DescribeUserProfilesInput)
 		}
 	}
 
+	if input == nil {
+		input = &DescribeUserProfilesInput{}
+	}
+
 	req = c.newRequest(opDescribeUserProfiles, input, output)
 	output = &DescribeUserProfilesOutput{}
 	req.Data = output
@@ -1362,6 +1514,10 @@ func (c *OpsWorks) DescribeVolumesRequest(input *DescribeVolumesInput) (req *aws
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeVolumesInput{}
 	}
 
 	req = c.newRequest(opDescribeVolumes, input, output)
@@ -1400,6 +1556,10 @@ func (c *OpsWorks) DetachElasticLoadBalancerRequest(input *DetachElasticLoadBala
 		}
 	}
 
+	if input == nil {
+		input = &DetachElasticLoadBalancerInput{}
+	}
+
 	req = c.newRequest(opDetachElasticLoadBalancer, input, output)
 	output = &DetachElasticLoadBalancerOutput{}
 	req.Data = output
@@ -1432,6 +1592,10 @@ func (c *OpsWorks) DisassociateElasticIPRequest(input *DisassociateElasticIPInpu
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DisassociateElasticIPInput{}
 	}
 
 	req = c.newRequest(opDisassociateElasticIP, input, output)
@@ -1470,6 +1634,10 @@ func (c *OpsWorks) GetHostnameSuggestionRequest(input *GetHostnameSuggestionInpu
 		}
 	}
 
+	if input == nil {
+		input = &GetHostnameSuggestionInput{}
+	}
+
 	req = c.newRequest(opGetHostnameSuggestion, input, output)
 	output = &GetHostnameSuggestionOutput{}
 	req.Data = output
@@ -1503,6 +1671,10 @@ func (c *OpsWorks) RebootInstanceRequest(input *RebootInstanceInput) (req *aws.R
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RebootInstanceInput{}
 	}
 
 	req = c.newRequest(opRebootInstance, input, output)
@@ -1540,6 +1712,10 @@ func (c *OpsWorks) RegisterElasticIPRequest(input *RegisterElasticIPInput) (req 
 		}
 	}
 
+	if input == nil {
+		input = &RegisterElasticIPInput{}
+	}
+
 	req = c.newRequest(opRegisterElasticIP, input, output)
 	output = &RegisterElasticIPOutput{}
 	req.Data = output
@@ -1575,6 +1751,10 @@ func (c *OpsWorks) RegisterInstanceRequest(input *RegisterInstanceInput) (req *a
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RegisterInstanceInput{}
 	}
 
 	req = c.newRequest(opRegisterInstance, input, output)
@@ -1616,6 +1796,10 @@ func (c *OpsWorks) RegisterRDSDBInstanceRequest(input *RegisterRDSDBInstanceInpu
 		}
 	}
 
+	if input == nil {
+		input = &RegisterRDSDBInstanceInput{}
+	}
+
 	req = c.newRequest(opRegisterRDSDBInstance, input, output)
 	output = &RegisterRDSDBInstanceOutput{}
 	req.Data = output
@@ -1648,6 +1832,10 @@ func (c *OpsWorks) RegisterVolumeRequest(input *RegisterVolumeInput) (req *aws.R
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RegisterVolumeInput{}
 	}
 
 	req = c.newRequest(opRegisterVolume, input, output)
@@ -1685,6 +1873,10 @@ func (c *OpsWorks) SetLoadBasedAutoScalingRequest(input *SetLoadBasedAutoScaling
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SetLoadBasedAutoScalingInput{}
 	}
 
 	req = c.newRequest(opSetLoadBasedAutoScaling, input, output)
@@ -1728,6 +1920,10 @@ func (c *OpsWorks) SetPermissionRequest(input *SetPermissionInput) (req *aws.Req
 		}
 	}
 
+	if input == nil {
+		input = &SetPermissionInput{}
+	}
+
 	req = c.newRequest(opSetPermission, input, output)
 	output = &SetPermissionOutput{}
 	req.Data = output
@@ -1761,6 +1957,10 @@ func (c *OpsWorks) SetTimeBasedAutoScalingRequest(input *SetTimeBasedAutoScaling
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SetTimeBasedAutoScalingInput{}
 	}
 
 	req = c.newRequest(opSetTimeBasedAutoScaling, input, output)
@@ -1799,6 +1999,10 @@ func (c *OpsWorks) StartInstanceRequest(input *StartInstanceInput) (req *aws.Req
 		}
 	}
 
+	if input == nil {
+		input = &StartInstanceInput{}
+	}
+
 	req = c.newRequest(opStartInstance, input, output)
 	output = &StartInstanceOutput{}
 	req.Data = output
@@ -1834,6 +2038,10 @@ func (c *OpsWorks) StartStackRequest(input *StartStackInput) (req *aws.Request, 
 		}
 	}
 
+	if input == nil {
+		input = &StartStackInput{}
+	}
+
 	req = c.newRequest(opStartStack, input, output)
 	output = &StartStackOutput{}
 	req.Data = output
@@ -1866,6 +2074,10 @@ func (c *OpsWorks) StopInstanceRequest(input *StopInstanceInput) (req *aws.Reque
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &StopInstanceInput{}
 	}
 
 	req = c.newRequest(opStopInstance, input, output)
@@ -1905,6 +2117,10 @@ func (c *OpsWorks) StopStackRequest(input *StopStackInput) (req *aws.Request, ou
 		}
 	}
 
+	if input == nil {
+		input = &StopStackInput{}
+	}
+
 	req = c.newRequest(opStopStack, input, output)
 	output = &StopStackOutput{}
 	req.Data = output
@@ -1937,6 +2153,10 @@ func (c *OpsWorks) UnassignInstanceRequest(input *UnassignInstanceInput) (req *a
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UnassignInstanceInput{}
 	}
 
 	req = c.newRequest(opUnassignInstance, input, output)
@@ -1976,6 +2196,10 @@ func (c *OpsWorks) UnassignVolumeRequest(input *UnassignVolumeInput) (req *aws.R
 		}
 	}
 
+	if input == nil {
+		input = &UnassignVolumeInput{}
+	}
+
 	req = c.newRequest(opUnassignVolume, input, output)
 	output = &UnassignVolumeOutput{}
 	req.Data = output
@@ -2011,6 +2235,10 @@ func (c *OpsWorks) UpdateAppRequest(input *UpdateAppInput) (req *aws.Request, ou
 		}
 	}
 
+	if input == nil {
+		input = &UpdateAppInput{}
+	}
+
 	req = c.newRequest(opUpdateApp, input, output)
 	output = &UpdateAppOutput{}
 	req.Data = output
@@ -2043,6 +2271,10 @@ func (c *OpsWorks) UpdateElasticIPRequest(input *UpdateElasticIPInput) (req *aws
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateElasticIPInput{}
 	}
 
 	req = c.newRequest(opUpdateElasticIP, input, output)
@@ -2080,6 +2312,10 @@ func (c *OpsWorks) UpdateInstanceRequest(input *UpdateInstanceInput) (req *aws.R
 		}
 	}
 
+	if input == nil {
+		input = &UpdateInstanceInput{}
+	}
+
 	req = c.newRequest(opUpdateInstance, input, output)
 	output = &UpdateInstanceOutput{}
 	req.Data = output
@@ -2112,6 +2348,10 @@ func (c *OpsWorks) UpdateLayerRequest(input *UpdateLayerInput) (req *aws.Request
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateLayerInput{}
 	}
 
 	req = c.newRequest(opUpdateLayer, input, output)
@@ -2148,6 +2388,10 @@ func (c *OpsWorks) UpdateMyUserProfileRequest(input *UpdateMyUserProfileInput) (
 		}
 	}
 
+	if input == nil {
+		input = &UpdateMyUserProfileInput{}
+	}
+
 	req = c.newRequest(opUpdateMyUserProfile, input, output)
 	output = &UpdateMyUserProfileOutput{}
 	req.Data = output
@@ -2179,6 +2423,10 @@ func (c *OpsWorks) UpdateRDSDBInstanceRequest(input *UpdateRDSDBInstanceInput) (
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateRDSDBInstanceInput{}
 	}
 
 	req = c.newRequest(opUpdateRDSDBInstance, input, output)
@@ -2215,6 +2463,10 @@ func (c *OpsWorks) UpdateStackRequest(input *UpdateStackInput) (req *aws.Request
 		}
 	}
 
+	if input == nil {
+		input = &UpdateStackInput{}
+	}
+
 	req = c.newRequest(opUpdateStack, input, output)
 	output = &UpdateStackOutput{}
 	req.Data = output
@@ -2249,6 +2501,10 @@ func (c *OpsWorks) UpdateUserProfileRequest(input *UpdateUserProfileInput) (req 
 		}
 	}
 
+	if input == nil {
+		input = &UpdateUserProfileInput{}
+	}
+
 	req = c.newRequest(opUpdateUserProfile, input, output)
 	output = &UpdateUserProfileOutput{}
 	req.Data = output
@@ -2280,6 +2536,10 @@ func (c *OpsWorks) UpdateVolumeRequest(input *UpdateVolumeInput) (req *aws.Reque
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateVolumeInput{}
 	}
 
 	req = c.newRequest(opUpdateVolume, input, output)

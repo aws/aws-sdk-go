@@ -24,6 +24,10 @@ func (c *Kinesis) AddTagsToStreamRequest(input *AddTagsToStreamInput) (req *aws.
 		}
 	}
 
+	if input == nil {
+		input = &AddTagsToStreamInput{}
+	}
+
 	req = c.newRequest(opAddTagsToStream, input, output)
 	output = &AddTagsToStreamOutput{}
 	req.Data = output
@@ -55,6 +59,10 @@ func (c *Kinesis) CreateStreamRequest(input *CreateStreamInput) (req *aws.Reques
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateStreamInput{}
 	}
 
 	req = c.newRequest(opCreateStream, input, output)
@@ -122,6 +130,10 @@ func (c *Kinesis) DeleteStreamRequest(input *DeleteStreamInput) (req *aws.Reques
 		}
 	}
 
+	if input == nil {
+		input = &DeleteStreamInput{}
+	}
+
 	req = c.newRequest(opDeleteStream, input, output)
 	output = &DeleteStreamOutput{}
 	req.Data = output
@@ -167,6 +179,10 @@ func (c *Kinesis) DescribeStreamRequest(input *DescribeStreamInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeStreamInput{}
 	}
 
 	req = c.newRequest(opDescribeStream, input, output)
@@ -217,6 +233,10 @@ func (c *Kinesis) GetRecordsRequest(input *GetRecordsInput) (req *aws.Request, o
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetRecordsInput{}
 	}
 
 	req = c.newRequest(opGetRecords, input, output)
@@ -292,6 +312,10 @@ func (c *Kinesis) GetShardIteratorRequest(input *GetShardIteratorInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &GetShardIteratorInput{}
+	}
+
 	req = c.newRequest(opGetShardIterator, input, output)
 	output = &GetShardIteratorOutput{}
 	req.Data = output
@@ -357,6 +381,10 @@ func (c *Kinesis) ListStreamsRequest(input *ListStreamsInput) (req *aws.Request,
 		}
 	}
 
+	if input == nil {
+		input = &ListStreamsInput{}
+	}
+
 	req = c.newRequest(opListStreams, input, output)
 	output = &ListStreamsOutput{}
 	req.Data = output
@@ -401,6 +429,10 @@ func (c *Kinesis) ListTagsForStreamRequest(input *ListTagsForStreamInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &ListTagsForStreamInput{}
+	}
+
 	req = c.newRequest(opListTagsForStream, input, output)
 	output = &ListTagsForStreamOutput{}
 	req.Data = output
@@ -428,6 +460,10 @@ func (c *Kinesis) MergeShardsRequest(input *MergeShardsInput) (req *aws.Request,
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &MergeShardsInput{}
 	}
 
 	req = c.newRequest(opMergeShards, input, output)
@@ -491,6 +527,10 @@ func (c *Kinesis) PutRecordRequest(input *PutRecordInput) (req *aws.Request, out
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PutRecordInput{}
 	}
 
 	req = c.newRequest(opPutRecord, input, output)
@@ -557,6 +597,10 @@ func (c *Kinesis) PutRecordsRequest(input *PutRecordsInput) (req *aws.Request, o
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PutRecordsInput{}
 	}
 
 	req = c.newRequest(opPutRecords, input, output)
@@ -640,6 +684,10 @@ func (c *Kinesis) RemoveTagsFromStreamRequest(input *RemoveTagsFromStreamInput) 
 		}
 	}
 
+	if input == nil {
+		input = &RemoveTagsFromStreamInput{}
+	}
+
 	req = c.newRequest(opRemoveTagsFromStream, input, output)
 	output = &RemoveTagsFromStreamOutput{}
 	req.Data = output
@@ -669,6 +717,10 @@ func (c *Kinesis) SplitShardRequest(input *SplitShardInput) (req *aws.Request, o
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SplitShardInput{}
 	}
 
 	req = c.newRequest(opSplitShard, input, output)

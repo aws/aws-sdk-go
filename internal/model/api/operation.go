@@ -58,6 +58,10 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 		}
 	}
 
+	if input == nil {
+		input = &{{ .InputRef.GoTypeElem }}{}
+	}
+
 	req = c.newRequest(op{{ .ExportedName }}, input, output)
 	output = &{{ .OutputRef.GoTypeElem }}{}
 	req.Data = output

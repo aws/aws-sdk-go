@@ -25,6 +25,10 @@ func (c *CloudSearchDomain) SearchRequest(input *SearchInput) (req *aws.Request,
 		}
 	}
 
+	if input == nil {
+		input = &SearchInput{}
+	}
+
 	req = c.newRequest(opSearch, input, output)
 	output = &SearchOutput{}
 	req.Data = output
@@ -72,6 +76,10 @@ func (c *CloudSearchDomain) SuggestRequest(input *SuggestInput) (req *aws.Reques
 		}
 	}
 
+	if input == nil {
+		input = &SuggestInput{}
+	}
+
 	req = c.newRequest(opSuggest, input, output)
 	output = &SuggestOutput{}
 	req.Data = output
@@ -115,6 +123,10 @@ func (c *CloudSearchDomain) UploadDocumentsRequest(input *UploadDocumentsInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/2013-01-01/documents/batch?format=sdk",
 		}
+	}
+
+	if input == nil {
+		input = &UploadDocumentsInput{}
 	}
 
 	req = c.newRequest(opUploadDocuments, input, output)

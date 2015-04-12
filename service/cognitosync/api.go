@@ -25,6 +25,10 @@ func (c *CognitoSync) BulkPublishRequest(input *BulkPublishInput) (req *aws.Requ
 		}
 	}
 
+	if input == nil {
+		input = &BulkPublishInput{}
+	}
+
 	req = c.newRequest(opBulkPublish, input, output)
 	output = &BulkPublishOutput{}
 	req.Data = output
@@ -55,6 +59,10 @@ func (c *CognitoSync) DeleteDatasetRequest(input *DeleteDatasetInput) (req *aws.
 			HTTPMethod: "DELETE",
 			HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteDatasetInput{}
 	}
 
 	req = c.newRequest(opDeleteDataset, input, output)
@@ -92,6 +100,10 @@ func (c *CognitoSync) DescribeDatasetRequest(input *DescribeDatasetInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &DescribeDatasetInput{}
+	}
+
 	req = c.newRequest(opDescribeDataset, input, output)
 	output = &DescribeDatasetOutput{}
 	req.Data = output
@@ -125,6 +137,10 @@ func (c *CognitoSync) DescribeIdentityPoolUsageRequest(input *DescribeIdentityPo
 			HTTPMethod: "GET",
 			HTTPPath:   "/identitypools/{IdentityPoolId}",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeIdentityPoolUsageInput{}
 	}
 
 	req = c.newRequest(opDescribeIdentityPoolUsage, input, output)
@@ -161,6 +177,10 @@ func (c *CognitoSync) DescribeIdentityUsageRequest(input *DescribeIdentityUsageI
 		}
 	}
 
+	if input == nil {
+		input = &DescribeIdentityUsageInput{}
+	}
+
 	req = c.newRequest(opDescribeIdentityUsage, input, output)
 	output = &DescribeIdentityUsageOutput{}
 	req.Data = output
@@ -194,6 +214,10 @@ func (c *CognitoSync) GetBulkPublishDetailsRequest(input *GetBulkPublishDetailsI
 		}
 	}
 
+	if input == nil {
+		input = &GetBulkPublishDetailsInput{}
+	}
+
 	req = c.newRequest(opGetBulkPublishDetails, input, output)
 	output = &GetBulkPublishDetailsOutput{}
 	req.Data = output
@@ -223,6 +247,10 @@ func (c *CognitoSync) GetIdentityPoolConfigurationRequest(input *GetIdentityPool
 		}
 	}
 
+	if input == nil {
+		input = &GetIdentityPoolConfigurationInput{}
+	}
+
 	req = c.newRequest(opGetIdentityPoolConfiguration, input, output)
 	output = &GetIdentityPoolConfigurationOutput{}
 	req.Data = output
@@ -250,6 +278,10 @@ func (c *CognitoSync) ListDatasetsRequest(input *ListDatasetsInput) (req *aws.Re
 			HTTPMethod: "GET",
 			HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets",
 		}
+	}
+
+	if input == nil {
+		input = &ListDatasetsInput{}
 	}
 
 	req = c.newRequest(opListDatasets, input, output)
@@ -287,6 +319,10 @@ func (c *CognitoSync) ListIdentityPoolUsageRequest(input *ListIdentityPoolUsageI
 		}
 	}
 
+	if input == nil {
+		input = &ListIdentityPoolUsageInput{}
+	}
+
 	req = c.newRequest(opListIdentityPoolUsage, input, output)
 	output = &ListIdentityPoolUsageOutput{}
 	req.Data = output
@@ -318,6 +354,10 @@ func (c *CognitoSync) ListRecordsRequest(input *ListRecordsInput) (req *aws.Requ
 			HTTPMethod: "GET",
 			HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/records",
 		}
+	}
+
+	if input == nil {
+		input = &ListRecordsInput{}
 	}
 
 	req = c.newRequest(opListRecords, input, output)
@@ -356,6 +396,10 @@ func (c *CognitoSync) RegisterDeviceRequest(input *RegisterDeviceInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &RegisterDeviceInput{}
+	}
+
 	req = c.newRequest(opRegisterDevice, input, output)
 	output = &RegisterDeviceOutput{}
 	req.Data = output
@@ -385,6 +429,10 @@ func (c *CognitoSync) SetIdentityPoolConfigurationRequest(input *SetIdentityPool
 		}
 	}
 
+	if input == nil {
+		input = &SetIdentityPoolConfigurationInput{}
+	}
+
 	req = c.newRequest(opSetIdentityPoolConfiguration, input, output)
 	output = &SetIdentityPoolConfigurationOutput{}
 	req.Data = output
@@ -412,6 +460,10 @@ func (c *CognitoSync) SubscribeToDatasetRequest(input *SubscribeToDatasetInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/subscriptions/{DeviceId}",
 		}
+	}
+
+	if input == nil {
+		input = &SubscribeToDatasetInput{}
 	}
 
 	req = c.newRequest(opSubscribeToDataset, input, output)
@@ -444,6 +496,10 @@ func (c *CognitoSync) UnsubscribeFromDatasetRequest(input *UnsubscribeFromDatase
 		}
 	}
 
+	if input == nil {
+		input = &UnsubscribeFromDatasetInput{}
+	}
+
 	req = c.newRequest(opUnsubscribeFromDataset, input, output)
 	output = &UnsubscribeFromDatasetOutput{}
 	req.Data = output
@@ -472,6 +528,10 @@ func (c *CognitoSync) UpdateRecordsRequest(input *UpdateRecordsInput) (req *aws.
 			HTTPMethod: "POST",
 			HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateRecordsInput{}
 	}
 
 	req = c.newRequest(opUpdateRecords, input, output)

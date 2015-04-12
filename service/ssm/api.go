@@ -25,6 +25,10 @@ func (c *SSM) CreateAssociationRequest(input *CreateAssociationInput) (req *aws.
 		}
 	}
 
+	if input == nil {
+		input = &CreateAssociationInput{}
+	}
+
 	req = c.newRequest(opCreateAssociation, input, output)
 	output = &CreateAssociationOutput{}
 	req.Data = output
@@ -60,6 +64,10 @@ func (c *SSM) CreateAssociationBatchRequest(input *CreateAssociationBatchInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateAssociationBatchInput{}
 	}
 
 	req = c.newRequest(opCreateAssociationBatch, input, output)
@@ -99,6 +107,10 @@ func (c *SSM) CreateDocumentRequest(input *CreateDocumentInput) (req *aws.Reques
 		}
 	}
 
+	if input == nil {
+		input = &CreateDocumentInput{}
+	}
+
 	req = c.newRequest(opCreateDocument, input, output)
 	output = &CreateDocumentOutput{}
 	req.Data = output
@@ -129,6 +141,10 @@ func (c *SSM) DeleteAssociationRequest(input *DeleteAssociationInput) (req *aws.
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteAssociationInput{}
 	}
 
 	req = c.newRequest(opDeleteAssociation, input, output)
@@ -166,6 +182,10 @@ func (c *SSM) DeleteDocumentRequest(input *DeleteDocumentInput) (req *aws.Reques
 		}
 	}
 
+	if input == nil {
+		input = &DeleteDocumentInput{}
+	}
+
 	req = c.newRequest(opDeleteDocument, input, output)
 	output = &DeleteDocumentOutput{}
 	req.Data = output
@@ -198,6 +218,10 @@ func (c *SSM) DescribeAssociationRequest(input *DescribeAssociationInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &DescribeAssociationInput{}
+	}
+
 	req = c.newRequest(opDescribeAssociation, input, output)
 	output = &DescribeAssociationOutput{}
 	req.Data = output
@@ -225,6 +249,10 @@ func (c *SSM) DescribeDocumentRequest(input *DescribeDocumentInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeDocumentInput{}
 	}
 
 	req = c.newRequest(opDescribeDocument, input, output)
@@ -256,6 +284,10 @@ func (c *SSM) GetDocumentRequest(input *GetDocumentInput) (req *aws.Request, out
 		}
 	}
 
+	if input == nil {
+		input = &GetDocumentInput{}
+	}
+
 	req = c.newRequest(opGetDocument, input, output)
 	output = &GetDocumentOutput{}
 	req.Data = output
@@ -283,6 +315,10 @@ func (c *SSM) ListAssociationsRequest(input *ListAssociationsInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListAssociationsInput{}
 	}
 
 	req = c.newRequest(opListAssociations, input, output)
@@ -314,6 +350,10 @@ func (c *SSM) ListDocumentsRequest(input *ListDocumentsInput) (req *aws.Request,
 		}
 	}
 
+	if input == nil {
+		input = &ListDocumentsInput{}
+	}
+
 	req = c.newRequest(opListDocuments, input, output)
 	output = &ListDocumentsOutput{}
 	req.Data = output
@@ -341,6 +381,10 @@ func (c *SSM) UpdateAssociationStatusRequest(input *UpdateAssociationStatusInput
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateAssociationStatusInput{}
 	}
 
 	req = c.newRequest(opUpdateAssociationStatus, input, output)
