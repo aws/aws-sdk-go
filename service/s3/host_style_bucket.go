@@ -29,7 +29,7 @@ func hostStyleBucketName(r *aws.Request, bucket string) bool {
 
 	// Bucket might be DNS compatible but dots in the hostname will fail
 	// certificate validation, so do not use host-style.
-	if !r.Config.DisableSSL && strings.Contains(bucket, ".") {
+	if r.HTTPRequest.URL.Scheme == "https" && strings.Contains(bucket, ".") {
 		return false
 	}
 
