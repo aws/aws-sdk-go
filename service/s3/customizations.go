@@ -4,6 +4,9 @@ import "github.com/awslabs/aws-sdk-go/aws"
 
 func init() {
 	initService = func(s *aws.Service) {
+		// Support building custom host-style bucket endpoints
+		s.Handlers.Build.PushFront(updateHostWithBucket)
+
 		// S3 uses custom error unmarshaling logic
 		s.Handlers.UnmarshalError.Clear()
 		s.Handlers.UnmarshalError.PushBack(unmarshalError)
