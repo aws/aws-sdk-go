@@ -20,6 +20,9 @@ func init() {
 		case opGetBucketLocation:
 			// GetBucketLocation has custom parsing logic
 			r.Handlers.Unmarshal.PushFront(buildGetBucketLocation)
+		case opCreateBucket:
+			// Auto-populate LocationConstraint with current region
+			r.Handlers.Validate.PushFront(populateLocationConstraint)
 		}
 	}
 }

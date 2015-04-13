@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awsutil"
 	"github.com/awslabs/aws-sdk-go/service/s3"
 	"github.com/stretchr/testify/assert"
 )
@@ -36,4 +37,37 @@ func TestGetBucketLocation(t *testing.T) {
 			assert.Equal(t, test.loc, *resp.LocationConstraint)
 		}
 	}
+}
+
+func TestPopulateLocationConstraint(t *testing.T) {
+	s := s3.New(baseConfig)
+	in := &s3.CreateBucketInput{
+		Bucket: aws.String("bucket"),
+	}
+	req, _ := s.CreateBucketRequest(in)
+	err := req.Build()
+	assert.NoError(t, err)
+	assert.Equal(t, "mock-region", awsutil.ValuesAtPath(req.Params, "CreateBucketConfiguration.LocationConstraint")[0])
+	assert.Nil(t, in.CreateBucketConfiguration) // don't modify original params
+}
+
+func TestNoPopulateLocationConstraintIfProvided(t *testing.T) {
+	s := s3.New(baseConfig)
+	req, _ := s.CreateBucketRequest(&s3.CreateBucketInput{
+		Bucket: aws.String("bucket"),
+		CreateBucketConfiguration: &s3.CreateBucketConfiguration{},
+	})
+	err := req.Build()
+	assert.NoError(t, err)
+	assert.Equal(t, 0, len(awsutil.ValuesAtPath(req.Params, "CreateBucketConfiguration.LocationConstraint")))
+}
+
+func TestNoPopulateLocationConstraintIfClassic(t *testing.T) {
+	s := s3.New(baseConfig.Merge(&aws.Config{Region: "us-east-1"}))
+	req, _ := s.CreateBucketRequest(&s3.CreateBucketInput{
+		Bucket: aws.String("bucket"),
+	})
+	err := req.Build()
+	assert.NoError(t, err)
+	assert.Equal(t, 0, len(awsutil.ValuesAtPath(req.Params, "CreateBucketConfiguration.LocationConstraint")))
 }
