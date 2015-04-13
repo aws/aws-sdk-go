@@ -9,7 +9,7 @@ type APIError struct {
 }
 
 func (e APIError) Error() string {
-	return e.Message
+	return e.Code + ": " + e.Message
 }
 
 func Error(e error) *APIError {
