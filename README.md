@@ -91,20 +91,6 @@ func main() {
 You can find more information and operations in our
 [API documentation](http://godoc.org/github.com/awslabs/aws-sdk-go).
 
-## TODO
-
-The following list of feature enhancements are planned or are currently
-in the works:
-
-* #162: `sqs.SendMessage()`, `sqs.SendMessageBatch()`, `sqs.ReceiveMessage()`:
-  validate MD5 checksums of message bodies in responses.
-* #163: `cloudsearchdomain`: Add support for CloudSearchDomain client.
-* #165: `glacier`: Add support for Glacier.
-* #166: `s3`: Improve error messages for empty response payloads.
-* #167: `s3`: Validate that SSL is used when SSE keys are provided.
-* #168: `s3`: Support path-style bucket access for non-DNS-compatible bucket names.
-* #169: `s3.CreateBucket()`: Auto-populate `LocationConstraint` with `Config.Region`.
-
 ## License
 
 This SDK is distributed under the
