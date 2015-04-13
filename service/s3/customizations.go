@@ -7,6 +7,9 @@ func init() {
 		// Support building custom host-style bucket endpoints
 		s.Handlers.Build.PushFront(updateHostWithBucket)
 
+		// Require SSL when using SSE keys
+		s.Handlers.Validate.PushBack(validateSSERequiresSSL)
+
 		// S3 uses custom error unmarshaling logic
 		s.Handlers.UnmarshalError.Clear()
 		s.Handlers.UnmarshalError.PushBack(unmarshalError)
