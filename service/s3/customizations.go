@@ -17,6 +17,9 @@ func init() {
 		case opPutBucketCORS, opPutBucketLifecycle, opPutBucketTagging, opDeleteObjects:
 			// These S3 operations require Content-MD5 to be set
 			r.Handlers.Build.PushBack(contentMD5)
+		case opGetBucketLocation:
+			// GetBucketLocation has custom parsing logic
+			r.Handlers.Unmarshal.PushFront(buildGetBucketLocation)
 		}
 	}
 }
