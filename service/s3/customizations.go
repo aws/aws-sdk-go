@@ -9,6 +9,7 @@ func init() {
 
 		// Require SSL when using SSE keys
 		s.Handlers.Validate.PushBack(validateSSERequiresSSL)
+		s.Handlers.Build.PushBack(computeSSEKeys)
 
 		// S3 uses custom error unmarshaling logic
 		s.Handlers.UnmarshalError.Clear()
