@@ -65,6 +65,3 @@ func Match(t *testing.T, regex, expected string) {
 		t.Errorf("%q\n\tdoes not match /%s/", expected, regex)
 	}
 }
-
-func PathToNestedStruct(path string, terminalValue interface{}) {
-}
