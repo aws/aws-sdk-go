@@ -33,7 +33,30 @@
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
         }
       ],
-      "documentation":"<p>Creates a new Amazon ECS cluster. By default, your account will receive a <code>default</code> cluster when you launch your first container instance. However, you can create your own cluster with a unique name with the <code>CreateCluster</code> action.</p> <important> <p>During the preview, each account is limited to two clusters.</p> </important>"
+      "documentation":"<p>Creates a new Amazon ECS cluster. By default, your account will receive a <code>default</code> cluster when you launch your first container instance. However, you can create your own cluster with a unique name with the <code>CreateCluster</code> action.</p>"
+    },
+    "CreateService":{
+      "name":"CreateService",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateServiceRequest"},
+      "output":{"shape":"CreateServiceResponse"},
+      "errors":[
+        {
+          "shape":"ServerException",
+          "exception":true,
+          "fault":true,
+          "documentation":"<p>These errors are usually caused by a server-side issue.</p>"
+        },
+        {
+          "shape":"ClientException",
+          "exception":true,
+          "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        }
+      ],
+      "documentation":"<p>Runs and maintains a desired number of tasks from a specified task definition. If the number of tasks running in a service drops below <code>desiredCount</code>, Amazon ECS will spawn another instantiation of the task in the specified cluster.</p>"
     },
     "DeleteCluster":{
       "name":"DeleteCluster",
@@ -57,6 +80,29 @@
         }
       ],
       "documentation":"<p>Deletes the specified cluster. You must deregister all container instances from this cluster before you may delete it. You can list the container instances in a cluster with <a>ListContainerInstances</a> and deregister them with <a>DeregisterContainerInstance</a>.</p>"
+    },
+    "DeleteService":{
+      "name":"DeleteService",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteServiceRequest"},
+      "output":{"shape":"DeleteServiceResponse"},
+      "errors":[
+        {
+          "shape":"ServerException",
+          "exception":true,
+          "fault":true,
+          "documentation":"<p>These errors are usually caused by a server-side issue.</p>"
+        },
+        {
+          "shape":"ClientException",
+          "exception":true,
+          "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        }
+      ],
+      "documentation":"<p>Deletes a specified service within a cluster.</p>"
     },
     "DeregisterContainerInstance":{
       "name":"DeregisterContainerInstance",
@@ -149,6 +195,29 @@
         }
       ],
       "documentation":"<p>Describes Amazon EC2 Container Service container instances. Returns metadata about registered and remaining resources on each container instance requested.</p>"
+    },
+    "DescribeServices":{
+      "name":"DescribeServices",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeServicesRequest"},
+      "output":{"shape":"DescribeServicesResponse"},
+      "errors":[
+        {
+          "shape":"ServerException",
+          "exception":true,
+          "fault":true,
+          "documentation":"<p>These errors are usually caused by a server-side issue.</p>"
+        },
+        {
+          "shape":"ClientException",
+          "exception":true,
+          "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        }
+      ],
+      "documentation":"<p>Describes the specified services running in your cluster.</p>"
     },
     "DescribeTaskDefinition":{
       "name":"DescribeTaskDefinition",
@@ -264,6 +333,29 @@
         }
       ],
       "documentation":"<p>Returns a list of container instances in a specified cluster.</p>"
+    },
+    "ListServices":{
+      "name":"ListServices",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListServicesRequest"},
+      "output":{"shape":"ListServicesResponse"},
+      "errors":[
+        {
+          "shape":"ServerException",
+          "exception":true,
+          "fault":true,
+          "documentation":"<p>These errors are usually caused by a server-side issue.</p>"
+        },
+        {
+          "shape":"ClientException",
+          "exception":true,
+          "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        }
+      ],
+      "documentation":"<p>Lists the services that are running in a specified cluster.</p>"
     },
     "ListTaskDefinitionFamilies":{
       "name":"ListTaskDefinitionFamilies",
@@ -401,7 +493,7 @@
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
         }
       ],
-      "documentation":"<p>Start a task using random placement and the default Amazon ECS scheduler. If you want to use your own scheduler or place a task on a specific container instance, use <code>StartTask</code> instead.</p>"
+      "documentation":"<p>Start a task using random placement and the default Amazon ECS scheduler. If you want to use your own scheduler or place a task on a specific container instance, use <code>StartTask</code> instead.</p> <important> <p>The <code>count</code> parameter is limited to 10 tasks per call.</p> </important>"
     },
     "StartTask":{
       "name":"StartTask",
@@ -424,7 +516,7 @@
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
         }
       ],
-      "documentation":"<p>Starts a new task from the specified task definition on the specified container instance or instances. If you want to use the default Amazon ECS scheduler to place your task, use <code>RunTask</code> instead.</p>"
+      "documentation":"<p>Starts a new task from the specified task definition on the specified container instance or instances. If you want to use the default Amazon ECS scheduler to place your task, use <code>RunTask</code> instead.</p> <important> <p>The list of container instances to start tasks on is limited to 10.</p> </important>"
     },
     "StopTask":{
       "name":"StopTask",
@@ -494,6 +586,29 @@
         }
       ],
       "documentation":"<note><p>This action is only used by the Amazon EC2 Container Service agent, and it is not intended for use outside of the agent.</p></note> <p>Sent to acknowledge that a task changed states.</p>"
+    },
+    "UpdateService":{
+      "name":"UpdateService",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateServiceRequest"},
+      "output":{"shape":"UpdateServiceResponse"},
+      "errors":[
+        {
+          "shape":"ServerException",
+          "exception":true,
+          "fault":true,
+          "documentation":"<p>These errors are usually caused by a server-side issue.</p>"
+        },
+        {
+          "shape":"ClientException",
+          "exception":true,
+          "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        }
+      ],
+      "documentation":"<p>Modify the desired count or task definition used in a service.</p> <p>You can add to or subtract from the number of instantiations of a task definition in a service by specifying the cluster that the service is running in and a new <code>desiredCount</code> parameter.</p> <p>You can use <code>UpdateService</code> to modify your task definition and deploy a new version of your service, one task at a time. If you modify the task definition with <code>UpdateService</code>, Amazon ECS spawns a task with the new version of the task definition and then stops an old task after the new version is running. Because <code>UpdateService</code> starts a new version of the task before stopping an old version, your cluster must have capacity to support one more instantiation of the task when <code>UpdateService</code> is run. If your cluster cannot support another instantiation of the task used in your service, you can reduce the desired count of your service by one before modifying the task definition.</p>"
     }
   },
   "shapes":{
@@ -528,6 +643,18 @@
         "status":{
           "shape":"String",
           "documentation":"<p>The status of the cluster. The valid values are <code>ACTIVE</code> or <code>INACTIVE</code>. <code>ACTIVE</code> indicates that you can register container instances with the cluster and the associated instances can accept tasks.</p>"
+        },
+        "registeredContainerInstancesCount":{
+          "shape":"Integer",
+          "documentation":"<p>The number of container instances registered into the cluster.</p>"
+        },
+        "runningTasksCount":{
+          "shape":"Integer",
+          "documentation":"<p>The number of tasks in the cluster that are in the <code>RUNNING</code> state.</p>"
+        },
+        "pendingTasksCount":{
+          "shape":"Integer",
+          "documentation":"<p>The number of tasks in the cluster that are in the <code>PENDING</code> state.</p>"
         }
       },
       "documentation":"<p>A regional grouping of one or more container instances on which you can run task requests. Each account receives a default cluster the first time you use the Amazon ECS service, but you may also create other clusters. Clusters may contain more than one instance type simultaneously.</p> <important> <p>During the preview, each account is limited to two clusters.</p> </important>"
@@ -650,6 +777,14 @@
         "agentConnected":{
           "shape":"Boolean",
           "documentation":"<p>This parameter returns <code>true</code> if the agent is actually connected to Amazon ECS. Registered instances with an agent that may be unhealthy or stopped will return <code>false</code>, and instances without a connected agent cannot accept placement request.</p>"
+        },
+        "runningTasksCount":{
+          "shape":"Integer",
+          "documentation":"<p>The number of tasks on the container instance that are in the <code>RUNNING</code> status.</p>"
+        },
+        "pendingTasksCount":{
+          "shape":"Integer",
+          "documentation":"<p>The number of tasks on the container instance that are in the <code>PENDING</code> status.</p>"
         }
       },
       "documentation":"<p>An Amazon EC2 instance that is running the Amazon ECS agent and has been registered with a cluster.</p>"
@@ -667,9 +802,10 @@
         },
         "command":{
           "shape":"StringList",
-          "documentation":"<p>The command to send to the container that receives the override.</p>"
+          "documentation":"<p>The command to send to the container that overrides the default command from the Docker image or the task definition.</p>"
         }
-      }
+      },
+      "documentation":"<p>The name of a container in a task definition and the command it should run instead of its default.</p>"
     },
     "ContainerOverrides":{
       "type":"list",
@@ -684,7 +820,7 @@
       "members":{
         "clusterName":{
           "shape":"String",
-          "documentation":"<p>The name of your cluster. If you do not specify a name for your cluster, you will create a cluster named <code>default</code>.</p>"
+          "documentation":"<p>The name of your cluster. If you do not specify a name for your cluster, you will create a cluster named <code>default</code>. Up to 255 letters (uppercase and lowercase), numbers, hyphens, and underscores are allowed.</p>"
         }
       }
     },
@@ -694,6 +830,49 @@
         "cluster":{
           "shape":"Cluster",
           "documentation":"<p>The full description of your new cluster.</p>"
+        }
+      }
+    },
+    "CreateServiceRequest":{
+      "type":"structure",
+      "required":["serviceName"],
+      "members":{
+        "cluster":{
+          "shape":"String",
+          "documentation":"<p>The short name or full Amazon Resource Name (ARN) of the cluster that you want to run your service on. If you do not specify a cluster, the default cluster is assumed.</p>"
+        },
+        "serviceName":{
+          "shape":"String",
+          "documentation":"<p>The name of your service. Up to 255 letters (uppercase and lowercase), numbers, hyphens, and underscores are allowed.</p>"
+        },
+        "taskDefinition":{
+          "shape":"String",
+          "documentation":"<p>The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full Amazon Resource Name (ARN) of the task definition that you want to run in your service.</p>"
+        },
+        "loadBalancers":{
+          "shape":"LoadBalancers",
+          "documentation":"<p>A list of load balancer objects, containing the load balancer name, the container name (as it appears in a container definition), and the container port to access from the load balancer.</p>"
+        },
+        "desiredCount":{
+          "shape":"BoxedInteger",
+          "documentation":"<p>The number of instantiations of the specified task definition that you would like to place and keep running on your cluster.</p>"
+        },
+        "clientToken":{
+          "shape":"String",
+          "documentation":"<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. Up to 32 ASCII characters are allowed.</p>"
+        },
+        "role":{
+          "shape":"String",
+          "documentation":"<p>The name or full Amazon Resource Name (ARN) of the IAM role that allows your Amazon ECS container agent to make calls to your load balancer on your behalf. This parameter is only required if you are using a load balancer with your service.</p>"
+        }
+      }
+    },
+    "CreateServiceResponse":{
+      "type":"structure",
+      "members":{
+        "service":{
+          "shape":"Service",
+          "documentation":"<p>The full description of your service following the create call.</p>"
         }
       }
     },
@@ -715,6 +894,67 @@
           "documentation":"<p>The full description of the deleted cluster.</p>"
         }
       }
+    },
+    "DeleteServiceRequest":{
+      "type":"structure",
+      "required":["service"],
+      "members":{
+        "cluster":{
+          "shape":"String",
+          "documentation":"<p>The name of the cluster that hosts the service you want to delete.</p>"
+        },
+        "service":{
+          "shape":"String",
+          "documentation":"<p>The name of the service you want to delete.</p>"
+        }
+      }
+    },
+    "DeleteServiceResponse":{
+      "type":"structure",
+      "members":{
+        "service":{"shape":"Service"}
+      }
+    },
+    "Deployment":{
+      "type":"structure",
+      "members":{
+        "id":{
+          "shape":"String",
+          "documentation":"<p>The ID of the deployment.</p>"
+        },
+        "status":{
+          "shape":"String",
+          "documentation":"<p>The status of the deployment. Valid values are <code>PRIMARY</code> (for the most recent deployment), <code>ACTIVE</code> (for previous deployments that still have tasks running, but are being replaced with the <code>PRIMARY</code> deployment), and <code>INACTIVE</code> (for deployments that have been completely replaced).</p>"
+        },
+        "taskDefinition":{
+          "shape":"String",
+          "documentation":"<p>The most recent task definition that was specified for the service to use.</p>"
+        },
+        "desiredCount":{
+          "shape":"Integer",
+          "documentation":"<p>The most recent desired count of tasks that was specified for the service to deploy and/or maintain.</p>"
+        },
+        "pendingCount":{
+          "shape":"Integer",
+          "documentation":"<p>The number of tasks in the deployment that are in the <code>PENDING</code> status.</p>"
+        },
+        "runningCount":{
+          "shape":"Integer",
+          "documentation":"<p>The number of tasks in the deployment that are in the <code>RUNNING</code> status.</p>"
+        },
+        "createdAt":{
+          "shape":"Timestamp",
+          "documentation":"<p>The Unix time in seconds and milliseconds when the service was created.</p>"
+        },
+        "updatedAt":{
+          "shape":"Timestamp",
+          "documentation":"<p>The Unix time in seconds and milliseconds when the service was last updated.</p>"
+        }
+      }
+    },
+    "Deployments":{
+      "type":"list",
+      "member":{"shape":"Deployment"}
     },
     "DeregisterContainerInstanceRequest":{
       "type":"structure",
@@ -800,6 +1040,33 @@
           "documentation":"<p>The list of container instances.</p>"
         },
         "failures":{"shape":"Failures"}
+      }
+    },
+    "DescribeServicesRequest":{
+      "type":"structure",
+      "required":["services"],
+      "members":{
+        "cluster":{
+          "shape":"String",
+          "documentation":"<p>The name of the cluster that hosts the service you want to describe.</p>"
+        },
+        "services":{
+          "shape":"StringList",
+          "documentation":"<p>A list of services you want to describe.</p>"
+        }
+      }
+    },
+    "DescribeServicesResponse":{
+      "type":"structure",
+      "members":{
+        "services":{
+          "shape":"Services",
+          "documentation":"<p>The list of services described.</p>"
+        },
+        "failures":{
+          "shape":"Failures",
+          "documentation":"<p>Any failures associated with the call.</p>"
+        }
       }
     },
     "DescribeTaskDefinitionRequest":{
@@ -968,6 +1235,36 @@
         }
       }
     },
+    "ListServicesRequest":{
+      "type":"structure",
+      "members":{
+        "cluster":{
+          "shape":"String",
+          "documentation":"<p>The short name or full Amazon Resource Name (ARN) of the cluster that hosts the services you want to list. If you do not specify a cluster, the default cluster is assumed..</p>"
+        },
+        "nextToken":{
+          "shape":"String",
+          "documentation":"<p>The <code>nextToken</code> value returned from a previous paginated <code>ListServices</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. This value is <code>null</code> when there are no more results to return.</p>"
+        },
+        "maxResults":{
+          "shape":"BoxedInteger",
+          "documentation":"<p>The maximum number of container instance results returned by <code>ListServices</code> in paginated output. When this parameter is used, <code>ListServices</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListServices</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListServices</code> returns up to 100 results and a <code>nextToken</code> value if applicable.</p>"
+        }
+      }
+    },
+    "ListServicesResponse":{
+      "type":"structure",
+      "members":{
+        "serviceArns":{
+          "shape":"StringList",
+          "documentation":"<p>The list of full Amazon Resource Name (ARN) entries for each service associated with the specified cluster.</p>"
+        },
+        "nextToken":{
+          "shape":"String",
+          "documentation":"<p>The <code>nextToken</code> value to include in a future <code>ListServices</code> request. When the results of a <code>ListServices</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>"
+        }
+      }
+    },
     "ListTaskDefinitionFamiliesRequest":{
       "type":"structure",
       "members":{
@@ -1050,6 +1347,14 @@
         "maxResults":{
           "shape":"BoxedInteger",
           "documentation":"<p>The maximum number of task results returned by <code>ListTasks</code> in paginated output. When this parameter is used, <code>ListTasks</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListTasks</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListTasks</code> returns up to 100 results and a <code>nextToken</code> value if applicable.</p>"
+        },
+        "startedBy":{
+          "shape":"String",
+          "documentation":"<p>The <code>startedBy</code> value that you want to filter the task results with. Specifying a <code>startedBy</code> value will limit the results to tasks that were started with that value.</p>"
+        },
+        "serviceName":{
+          "shape":"String",
+          "documentation":"<p>The name of the service that you want to filter the <code>ListTasks</code> results with. Specifying a <code>serviceName</code> will limit the results to tasks that belong to that service.</p>"
         }
       }
     },
@@ -1065,6 +1370,27 @@
           "documentation":"<p>The <code>nextToken</code> value to include in a future <code>ListTasks</code> request. When the results of a <code>ListTasks</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>"
         }
       }
+    },
+    "LoadBalancer":{
+      "type":"structure",
+      "members":{
+        "loadBalancerName":{
+          "shape":"String",
+          "documentation":"<p>The name of the load balancer.</p>"
+        },
+        "containerName":{
+          "shape":"String",
+          "documentation":"<p>The name of the container to associate with the load balancer.</p>"
+        },
+        "containerPort":{
+          "shape":"BoxedInteger",
+          "documentation":"<p>The port on the container to associate with the load balancer.</p>"
+        }
+      }
+    },
+    "LoadBalancers":{
+      "type":"list",
+      "member":{"shape":"LoadBalancer"}
     },
     "Long":{"type":"long"},
     "MountPoint":{
@@ -1136,7 +1462,8 @@
         },
         "instanceIdentityDocument":{"shape":"String"},
         "instanceIdentityDocumentSignature":{"shape":"String"},
-        "totalResources":{"shape":"Resources"}
+        "totalResources":{"shape":"Resources"},
+        "versionInfo":{"shape":"VersionInfo"}
       }
     },
     "RegisterContainerInstanceResponse":{
@@ -1154,7 +1481,7 @@
       "members":{
         "family":{
           "shape":"String",
-          "documentation":"<p>You must specify a <code>family</code> for a task definition, which allows you to track multiple versions of the same task definition. You can think of the <code>family</code> as a name for your task definition.</p>"
+          "documentation":"<p>You must specify a <code>family</code> for a task definition, which allows you to track multiple versions of the same task definition. You can think of the <code>family</code> as a name for your task definition. Up to 255 letters (uppercase and lowercase), numbers, hyphens, and underscores are allowed.</p>"
         },
         "containerDefinitions":{
           "shape":"ContainerDefinitions",
@@ -1218,10 +1545,17 @@
           "shape":"String",
           "documentation":"<p>The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full Amazon Resource Name (ARN) of the task definition that you want to run.</p>"
         },
-        "overrides":{"shape":"TaskOverride"},
+        "overrides":{
+          "shape":"TaskOverride",
+          "documentation":"<p>A list of container overrides in JSON format that specify the name of a container in the specified task definition and the command it should run instead of its default. A total of 8192 characters are allowed for overrides. This limit includes the JSON formatting characters of the override structure.</p>"
+        },
         "count":{
           "shape":"BoxedInteger",
-          "documentation":"<p>The number of instances of the specified task that you would like to place on your cluster.</p>"
+          "documentation":"<p>The number of instantiations of the specified task that you would like to place on your cluster.</p> <important> <p>The <code>count</code> parameter is limited to 10 tasks per call.</p> </important>"
+        },
+        "startedBy":{
+          "shape":"String",
+          "documentation":"<p>An optional tag specified when a task is started. For example if you automatically trigger a task to run a batch process job, you could apply a unique identifier for that job to your task with the <code>startedBy</code> parameter. You can then identify which tasks belong to that job by filtering the results of a <a>ListTasks</a> call with the <code>startedBy</code> value.</p> <p>If a task is started by an Amazon ECS service, then the <code>startedBy</code> parameter contains the deployment ID of the service that starts it.</p>"
         }
       }
     },
@@ -1247,6 +1581,84 @@
       "fault":true,
       "documentation":"<p>These errors are usually caused by a server-side issue.</p>"
     },
+    "Service":{
+      "type":"structure",
+      "members":{
+        "serviceArn":{
+          "shape":"String",
+          "documentation":"<p>The Amazon Resource Name (ARN) that identifies the service. The ARN contains the <code>arn:aws:ecs</code> namespace, followed by the region of the service, the AWS account ID of the service owner, the <code>service</code> namespace, and then the service name. For example, arn:aws:ecs:<i>region</i>:<i>012345678910</i>:service/<i>my-service</i>.</p>"
+        },
+        "serviceName":{
+          "shape":"String",
+          "documentation":"<p>A user-generated string that you can use to identify your service.</p>"
+        },
+        "clusterArn":{
+          "shape":"String",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the of the cluster that hosts the service.</p>"
+        },
+        "loadBalancers":{
+          "shape":"LoadBalancers",
+          "documentation":"<p>A list of load balancer objects, containing the load balancer name, the container name (as it appears in a container definition), and the container port to access from the load balancer.</p>"
+        },
+        "status":{
+          "shape":"String",
+          "documentation":"<p>The status of the service. The valid values are <code>ACTIVE</code>, <code>DRAINING</code>, or <code>INACTIVE</code>.</p>"
+        },
+        "desiredCount":{
+          "shape":"Integer",
+          "documentation":"<p>The desired number of instantiations of the task definition to keep running on the service. This value is specified when the service is created with <a>CreateService</a>, and it can be modified with <a>UpdateService</a>.</p>"
+        },
+        "runningCount":{
+          "shape":"Integer",
+          "documentation":"<p>The number of tasks in the cluster that are in the <code>RUNNING</code> state.</p>"
+        },
+        "pendingCount":{
+          "shape":"Integer",
+          "documentation":"<p>The number of tasks in the cluster that are in the <code>PENDING</code> state.</p>"
+        },
+        "taskDefinition":{
+          "shape":"String",
+          "documentation":"<p>The task definition to use for tasks in the service. This value is specified when the service is created with <a>CreateService</a>, and it can be modified with <a>UpdateService</a>.</p>"
+        },
+        "deployments":{
+          "shape":"Deployments",
+          "documentation":"<p>The current state of deployments for the service.</p>"
+        },
+        "roleArn":{
+          "shape":"String",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the IAM role associated with the service that allows the Amazon ECS container agent to register container instances with a load balancer. </p>"
+        },
+        "events":{
+          "shape":"ServiceEvents",
+          "documentation":"<p>The event stream for your service. A maximum of 100 of the latest events are displayed.</p>"
+        }
+      }
+    },
+    "ServiceEvent":{
+      "type":"structure",
+      "members":{
+        "id":{
+          "shape":"String",
+          "documentation":"<p>The ID string of the event.</p>"
+        },
+        "createdAt":{
+          "shape":"Timestamp",
+          "documentation":"<p>The Unix time in seconds and milliseconds when the event was triggered.</p>"
+        },
+        "message":{
+          "shape":"String",
+          "documentation":"<p>The event message.</p>"
+        }
+      }
+    },
+    "ServiceEvents":{
+      "type":"list",
+      "member":{"shape":"ServiceEvent"}
+    },
+    "Services":{
+      "type":"list",
+      "member":{"shape":"Service"}
+    },
     "StartTaskRequest":{
       "type":"structure",
       "required":[
@@ -1262,10 +1674,17 @@
           "shape":"String",
           "documentation":"<p>The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full Amazon Resource Name (ARN) of the task definition that you want to start.</p>"
         },
-        "overrides":{"shape":"TaskOverride"},
+        "overrides":{
+          "shape":"TaskOverride",
+          "documentation":"<p>A list of container overrides in JSON format that specify the name of a container in the specified task definition and the command it should run instead of its default. A total of 8192 characters are allowed for overrides. This limit includes the JSON formatting characters of the override structure.</p>"
+        },
         "containerInstances":{
           "shape":"StringList",
-          "documentation":"<p>The container instance UUIDs or full Amazon Resource Name (ARN) entries for the container instances on which you would like to place your task.</p>"
+          "documentation":"<p>The container instance UUIDs or full Amazon Resource Name (ARN) entries for the container instances on which you would like to place your task.</p> <important> <p>The list of container instances to start tasks on is limited to 10.</p> </important>"
+        },
+        "startedBy":{
+          "shape":"String",
+          "documentation":"<p>An optional tag specified when a task is started. For example if you automatically trigger a task to run a batch process job, you could apply a unique identifier for that job to your task with the <code>startedBy</code> parameter. You can then identify which tasks belong to that job by filtering the results of a <a>ListTasks</a> call with the <code>startedBy</code> value.</p> <p>If a task is started by an Amazon ECS service, then the <code>startedBy</code> parameter contains the deployment ID of the service that starts it.</p>"
         }
       }
     },
@@ -1413,6 +1832,10 @@
         "containers":{
           "shape":"Containers",
           "documentation":"<p>The containers associated with the task.</p>"
+        },
+        "startedBy":{
+          "shape":"String",
+          "documentation":"<p>The tag specified when a task is started. If the task is started by an Amazon ECS service, then the <code>startedBy</code> parameter contains the deployment ID of the service that starts it.</p>"
         }
       }
     },
@@ -1446,13 +1869,63 @@
       "members":{
         "containerOverrides":{
           "shape":"ContainerOverrides",
-          "documentation":"<p>One or more container overrides to send when running a task.</p>"
+          "documentation":"<p>One or more container overrides sent to a task.</p>"
         }
-      }
+      },
+      "documentation":"<p>A list of container overrides in JSON format that specify the name of a container in a task definition and the command it should run instead of its default.</p>"
     },
     "Tasks":{
       "type":"list",
       "member":{"shape":"Task"}
+    },
+    "Timestamp":{"type":"timestamp"},
+    "UpdateServiceRequest":{
+      "type":"structure",
+      "required":["service"],
+      "members":{
+        "cluster":{
+          "shape":"String",
+          "documentation":"<p>The short name or full Amazon Resource Name (ARN) of the cluster that your service is running on. If you do not specify a cluster, the default cluster is assumed.</p>"
+        },
+        "service":{
+          "shape":"String",
+          "documentation":"<p>The name of the service that you want to update.</p>"
+        },
+        "desiredCount":{
+          "shape":"BoxedInteger",
+          "documentation":"<p>The number of instantiations of the task that you would like to place and keep running in your service.</p>"
+        },
+        "taskDefinition":{
+          "shape":"String",
+          "documentation":"<p>The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full Amazon Resource Name (ARN) of the task definition that you want to run in your service. If you modify the task definition with <code>UpdateService</code>, Amazon ECS spawns a task with the new version of the task definition and then stops an old task after the new version is running.</p>"
+        }
+      }
+    },
+    "UpdateServiceResponse":{
+      "type":"structure",
+      "members":{
+        "service":{
+          "shape":"Service",
+          "documentation":"<p>The full description of your service following the update call.</p>"
+        }
+      }
+    },
+    "VersionInfo":{
+      "type":"structure",
+      "members":{
+        "agentVersion":{
+          "shape":"String",
+          "documentation":"<p>The version number of the Amazon ECS container agent.</p>"
+        },
+        "agentHash":{
+          "shape":"String",
+          "documentation":"<p>The Git commit hash for the Amazon ECS container agent build on the <a href=\"https://github.com/aws/amazon-ecs-agent/commits/master\">amazon-ecs-agent </a> GitHub repository.</p>"
+        },
+        "dockerVersion":{
+          "shape":"String",
+          "documentation":"<p>The Docker version running on the container instance.</p>"
+        }
+      }
     },
     "Volume":{
       "type":"structure",
