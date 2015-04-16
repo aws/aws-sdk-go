@@ -103,6 +103,12 @@ func (q *queryParser) parseStruct(v url.Values, value reflect.Value, prefix stri
 }
 
 func (q *queryParser) parseList(v url.Values, value reflect.Value, prefix string, tag reflect.StructTag) error {
+	// If it's empty, generate an empty value
+	if !value.IsNil() && value.Len() == 0 {
+		v.Set(prefix, "")
+		return nil
+	}
+
 	// check for unflattened list member
 	if !q.isEC2 && tag.Get("flattened") == "" {
 		prefix += ".member"
@@ -123,6 +129,12 @@ func (q *queryParser) parseList(v url.Values, value reflect.Value, prefix string
 }
 
 func (q *queryParser) parseMap(v url.Values, value reflect.Value, prefix string, tag reflect.StructTag) error {
+	// If it's empty, generate an empty value
+	if !value.IsNil() && value.Len() == 0 {
+		v.Set(prefix, "")
+		return nil
+	}
+
 	// check for unflattened list member
 	if !q.isEC2 && tag.Get("flattened") == "" {
 		prefix += ".entry"
