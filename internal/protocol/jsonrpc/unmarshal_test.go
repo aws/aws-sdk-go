@@ -151,7 +151,7 @@ func (c *OutputService2ProtocolTest) newRequest(op *aws.Operation, params, data 
 }
 
 // OutputService2TestCaseOperation1Request generates a request for the OutputService2TestCaseOperation1 operation.
-func (c *OutputService2ProtocolTest) OutputService2TestCaseOperation1Request(input *OutputService2TestShapeOutputService2TestShapeOutputService2TestCaseOperation1Input) (req *aws.Request, output *OutputService2TestShapeOutputShape) {
+func (c *OutputService2ProtocolTest) OutputService2TestCaseOperation1Request(input *OutputService2TestShapeOutputService2TestCaseOperation1Input) (req *aws.Request, output *OutputService2TestShapeOutputShape) {
 
 	if opOutputService2TestCaseOperation1 == nil {
 		opOutputService2TestCaseOperation1 = &aws.Operation{
@@ -160,7 +160,7 @@ func (c *OutputService2ProtocolTest) OutputService2TestCaseOperation1Request(inp
 	}
 
 	if input == nil {
-		input = &OutputService2TestShapeOutputService2TestShapeOutputService2TestCaseOperation1Input{}
+		input = &OutputService2TestShapeOutputService2TestCaseOperation1Input{}
 	}
 
 	req = c.newRequest(opOutputService2TestCaseOperation1, input, output)
@@ -169,7 +169,7 @@ func (c *OutputService2ProtocolTest) OutputService2TestCaseOperation1Request(inp
 	return
 }
 
-func (c *OutputService2ProtocolTest) OutputService2TestCaseOperation1(input *OutputService2TestShapeOutputService2TestShapeOutputService2TestCaseOperation1Input) (output *OutputService2TestShapeOutputShape, err error) {
+func (c *OutputService2ProtocolTest) OutputService2TestCaseOperation1(input *OutputService2TestShapeOutputService2TestCaseOperation1Input) (output *OutputService2TestShapeOutputShape, err error) {
 	req, out := c.OutputService2TestCaseOperation1Request(input)
 	output = out
 	err = req.Send()
@@ -178,11 +178,11 @@ func (c *OutputService2ProtocolTest) OutputService2TestCaseOperation1(input *Out
 
 var opOutputService2TestCaseOperation1 *aws.Operation
 
-type OutputService2TestShapeOutputService2TestShapeOutputService2TestCaseOperation1Input struct {
-	metadataOutputService2TestShapeOutputService2TestShapeOutputService2TestCaseOperation1Input `json:"-", xml:"-"`
+type OutputService2TestShapeOutputService2TestCaseOperation1Input struct {
+	metadataOutputService2TestShapeOutputService2TestCaseOperation1Input `json:"-", xml:"-"`
 }
 
-type metadataOutputService2TestShapeOutputService2TestShapeOutputService2TestCaseOperation1Input struct {
+type metadataOutputService2TestShapeOutputService2TestCaseOperation1Input struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -697,8 +697,8 @@ func TestOutputService2ProtocolTestScalarMembersCase1(t *testing.T) {
 	assert.Equal(t, 1.3, *out.Double)
 	assert.Equal(t, false, *out.FalseBool)
 	assert.Equal(t, 1.2, *out.Float)
-	assert.Equal(t, 200, *out.Long)
-	assert.Equal(t, 123, *out.Num)
+	assert.Equal(t, int64(200), *out.Long)
+	assert.Equal(t, int64(123), *out.Num)
 	assert.Equal(t, "myname", *out.Str)
 	assert.Equal(t, true, *out.TrueBool)
 
@@ -783,10 +783,10 @@ func TestOutputService6ProtocolTestMapsCase1(t *testing.T) {
 
 	// assert response
 	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, 1, *(*out.MapMember)["a"][0])
-	assert.Equal(t, 2, *(*out.MapMember)["a"][1])
-	assert.Equal(t, 3, *(*out.MapMember)["b"][0])
-	assert.Equal(t, 4, *(*out.MapMember)["b"][1])
+	assert.Equal(t, int64(1), *(*out.MapMember)["a"][0])
+	assert.Equal(t, int64(2), *(*out.MapMember)["a"][1])
+	assert.Equal(t, int64(3), *(*out.MapMember)["b"][0])
+	assert.Equal(t, int64(4), *(*out.MapMember)["b"][1])
 
 }
 
