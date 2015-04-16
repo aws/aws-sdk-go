@@ -55,6 +55,7 @@ func (s *Service) Initialize() {
 	s.Handlers.Build.PushBack(UserAgentHandler)
 	s.Handlers.Sign.PushBack(BuildContentLength)
 	s.Handlers.Send.PushBack(SendHandler)
+	s.Handlers.Retry.PushBack(RetryHandler)
 	s.Handlers.AfterRetry.PushBack(AfterRetryHandler)
 	s.Handlers.ValidateResponse.PushBack(ValidateResponseHandler)
 	s.AddDebugHandlers()
