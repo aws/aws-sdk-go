@@ -2,6 +2,7 @@ package sqs
 
 import (
 	"crypto/md5"
+	"encoding/hex"
 	"fmt"
 	"strings"
 
@@ -87,7 +88,8 @@ func checksumsMatch(body, expectedMD5 *string) error {
 		return errChecksumMissingMD5
 	}
 
-	sum := fmt.Sprintf("%x", md5.Sum([]byte(*body)))
+	msum := md5.Sum([]byte(*body))
+	sum := hex.EncodeToString(msum[:])
 	if sum != *expectedMD5 {
 		return fmt.Errorf("expected MD5 checksum '%s', got '%s'", *expectedMD5, sum)
 	}

@@ -1,7 +1,7 @@
 package glacier
 
 import (
-	"fmt"
+	"encoding/hex"
 	"reflect"
 
 	"github.com/awslabs/aws-sdk-go/aws"
@@ -44,11 +44,11 @@ func addChecksum(r *aws.Request) {
 	h := ComputeHashes(r.Body)
 
 	if r.HTTPRequest.Header.Get("X-Amz-Content-Sha256") == "" {
-		hstr := fmt.Sprintf("%x", h.LinearHash)
+		hstr := hex.EncodeToString(h.LinearHash)
 		r.HTTPRequest.Header.Set("X-Amz-Content-Sha256", hstr)
 	}
 	if r.HTTPRequest.Header.Get("X-Amz-Sha256-Tree-Hash") == "" {
-		hstr := fmt.Sprintf("%x", h.TreeHash)
+		hstr := hex.EncodeToString(h.TreeHash)
 		r.HTTPRequest.Header.Set("X-Amz-Sha256-Tree-Hash", hstr)
 	}
 }
