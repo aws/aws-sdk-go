@@ -263,9 +263,14 @@ func GenerateTestSuite(filename string) string {
 		}
 		svcCode = removeImports(svcCode)
 		svcCode = strings.Replace(svcCode, "func New(", "func New"+suite.API.StructName()+"(", -1)
-
 		buf.WriteString(svcCode + "\n\n")
-		buf.WriteString(removeImports(suite.API.APIGoCode()) + "\n\n")
+
+		apiCode := removeImports(suite.API.APIGoCode())
+		apiCode = strings.Replace(apiCode, "var oprw sync.Mutex", "", -1)
+		apiCode = strings.Replace(apiCode, "oprw.Lock()", "", -1)
+		apiCode = strings.Replace(apiCode, "defer oprw.Unlock()", "", -1)
+		buf.WriteString(apiCode + "\n\n")
+
 		innerBuf.WriteString(suite.TestSuite() + "\n")
 	}
 
