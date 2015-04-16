@@ -70,11 +70,16 @@ func (c *InputService1ProtocolTest) newRequest(op *aws.Operation, params, data i
 
 // InputService1TestCaseOperation1Request generates a request for the InputService1TestCaseOperation1 operation.
 func (c *InputService1ProtocolTest) InputService1TestCaseOperation1Request(input *InputService1TestShapeInputShape) (req *aws.Request, output *InputService1TestShapeInputService1TestCaseOperation1Output) {
+
 	if opInputService1TestCaseOperation1 == nil {
 		opInputService1TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 		}
+	}
+
+	if input == nil {
+		input = &InputService1TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService1TestCaseOperation1, input, output)
@@ -150,10 +155,15 @@ func (c *InputService2ProtocolTest) newRequest(op *aws.Operation, params, data i
 
 // InputService2TestCaseOperation1Request generates a request for the InputService2TestCaseOperation1 operation.
 func (c *InputService2ProtocolTest) InputService2TestCaseOperation1Request(input *InputService2TestShapeInputShape) (req *aws.Request, output *InputService2TestShapeInputService2TestCaseOperation1Output) {
+
 	if opInputService2TestCaseOperation1 == nil {
 		opInputService2TestCaseOperation1 = &aws.Operation{
 			Name: "OperationName",
 		}
+	}
+
+	if input == nil {
+		input = &InputService2TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService2TestCaseOperation1, input, output)
@@ -229,10 +239,15 @@ func (c *InputService3ProtocolTest) newRequest(op *aws.Operation, params, data i
 
 // InputService3TestCaseOperation1Request generates a request for the InputService3TestCaseOperation1 operation.
 func (c *InputService3ProtocolTest) InputService3TestCaseOperation1Request(input *InputService3TestShapeInputShape) (req *aws.Request, output *InputService3TestShapeInputService3TestCaseOperation1Output) {
+
 	if opInputService3TestCaseOperation1 == nil {
 		opInputService3TestCaseOperation1 = &aws.Operation{
 			Name: "OperationName",
 		}
+	}
+
+	if input == nil {
+		input = &InputService3TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService3TestCaseOperation1, input, output)
@@ -252,10 +267,15 @@ var opInputService3TestCaseOperation1 *aws.Operation
 
 // InputService3TestCaseOperation2Request generates a request for the InputService3TestCaseOperation2 operation.
 func (c *InputService3ProtocolTest) InputService3TestCaseOperation2Request(input *InputService3TestShapeInputShape) (req *aws.Request, output *InputService3TestShapeInputService3TestCaseOperation2Output) {
+
 	if opInputService3TestCaseOperation2 == nil {
 		opInputService3TestCaseOperation2 = &aws.Operation{
 			Name: "OperationName",
 		}
+	}
+
+	if input == nil {
+		input = &InputService3TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService3TestCaseOperation2, input, output)
@@ -341,11 +361,16 @@ func (c *InputService4ProtocolTest) newRequest(op *aws.Operation, params, data i
 
 // InputService4TestCaseOperation1Request generates a request for the InputService4TestCaseOperation1 operation.
 func (c *InputService4ProtocolTest) InputService4TestCaseOperation1Request(input *InputService4TestShapeInputShape) (req *aws.Request, output *InputService4TestShapeInputService4TestCaseOperation1Output) {
+
 	if opInputService4TestCaseOperation1 == nil {
 		opInputService4TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 		}
+	}
+
+	if input == nil {
+		input = &InputService4TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService4TestCaseOperation1, input, output)
@@ -421,10 +446,15 @@ func (c *InputService5ProtocolTest) newRequest(op *aws.Operation, params, data i
 
 // InputService5TestCaseOperation1Request generates a request for the InputService5TestCaseOperation1 operation.
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation1Request(input *InputService5TestShapeInputShape) (req *aws.Request, output *InputService5TestShapeInputService5TestCaseOperation1Output) {
+
 	if opInputService5TestCaseOperation1 == nil {
 		opInputService5TestCaseOperation1 = &aws.Operation{
 			Name: "OperationName",
 		}
+	}
+
+	if input == nil {
+		input = &InputService5TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService5TestCaseOperation1, input, output)
@@ -444,10 +474,15 @@ var opInputService5TestCaseOperation1 *aws.Operation
 
 // InputService5TestCaseOperation2Request generates a request for the InputService5TestCaseOperation2 operation.
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation2Request(input *InputService5TestShapeInputShape) (req *aws.Request, output *InputService5TestShapeInputService5TestCaseOperation2Output) {
+
 	if opInputService5TestCaseOperation2 == nil {
 		opInputService5TestCaseOperation2 = &aws.Operation{
 			Name: "OperationName",
 		}
+	}
+
+	if input == nil {
+		input = &InputService5TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService5TestCaseOperation2, input, output)
@@ -467,10 +502,15 @@ var opInputService5TestCaseOperation2 *aws.Operation
 
 // InputService5TestCaseOperation3Request generates a request for the InputService5TestCaseOperation3 operation.
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation3Request(input *InputService5TestShapeInputShape) (req *aws.Request, output *InputService5TestShapeInputService5TestCaseOperation3Output) {
+
 	if opInputService5TestCaseOperation3 == nil {
 		opInputService5TestCaseOperation3 = &aws.Operation{
 			Name: "OperationName",
 		}
+	}
+
+	if input == nil {
+		input = &InputService5TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService5TestCaseOperation3, input, output)
@@ -490,10 +530,15 @@ var opInputService5TestCaseOperation3 *aws.Operation
 
 // InputService5TestCaseOperation4Request generates a request for the InputService5TestCaseOperation4 operation.
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation4Request(input *InputService5TestShapeInputShape) (req *aws.Request, output *InputService5TestShapeInputService5TestShapeInputService5TestCaseOperation4Output) {
+
 	if opInputService5TestCaseOperation4 == nil {
 		opInputService5TestCaseOperation4 = &aws.Operation{
 			Name: "OperationName",
 		}
+	}
+
+	if input == nil {
+		input = &InputService5TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService5TestCaseOperation4, input, output)
@@ -513,10 +558,15 @@ var opInputService5TestCaseOperation4 *aws.Operation
 
 // InputService5TestCaseOperation5Request generates a request for the InputService5TestCaseOperation5 operation.
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation5Request(input *InputService5TestShapeInputShape) (req *aws.Request, output *InputService5TestShapeInputService5TestCaseOperation5Output) {
+
 	if opInputService5TestCaseOperation5 == nil {
 		opInputService5TestCaseOperation5 = &aws.Operation{
 			Name: "OperationName",
 		}
+	}
+
+	if input == nil {
+		input = &InputService5TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService5TestCaseOperation5, input, output)
@@ -536,10 +586,15 @@ var opInputService5TestCaseOperation5 *aws.Operation
 
 // InputService5TestCaseOperation6Request generates a request for the InputService5TestCaseOperation6 operation.
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation6Request(input *InputService5TestShapeInputShape) (req *aws.Request, output *InputService5TestShapeInputService5TestCaseOperation6Output) {
+
 	if opInputService5TestCaseOperation6 == nil {
 		opInputService5TestCaseOperation6 = &aws.Operation{
 			Name: "OperationName",
 		}
+	}
+
+	if input == nil {
+		input = &InputService5TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService5TestCaseOperation6, input, output)
