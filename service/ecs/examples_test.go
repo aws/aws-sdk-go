@@ -33,6 +33,39 @@ func ExampleECS_CreateCluster() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleECS_CreateService() {
+	svc := ecs.New(nil)
+
+	params := &ecs.CreateServiceInput{
+		ServiceName:  aws.String("String"), // Required
+		ClientToken:  aws.String("String"),
+		Cluster:      aws.String("String"),
+		DesiredCount: aws.Long(1),
+		LoadBalancers: []*ecs.LoadBalancer{
+			&ecs.LoadBalancer{ // Required
+				ContainerName:    aws.String("String"),
+				ContainerPort:    aws.Long(1),
+				LoadBalancerName: aws.String("String"),
+			},
+			// More values...
+		},
+		Role:           aws.String("String"),
+		TaskDefinition: aws.String("String"),
+	}
+	resp, err := svc.CreateService(params)
+
+	if awserr := aws.Error(err); awserr != nil {
+		// A service error occurred.
+		fmt.Println("Error:", awserr.Code, awserr.Message)
+	} else if err != nil {
+		// A non-service error occurred.
+		panic(err)
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleECS_DeleteCluster() {
 	svc := ecs.New(nil)
 
@@ -40,6 +73,27 @@ func ExampleECS_DeleteCluster() {
 		Cluster: aws.String("String"), // Required
 	}
 	resp, err := svc.DeleteCluster(params)
+
+	if awserr := aws.Error(err); awserr != nil {
+		// A service error occurred.
+		fmt.Println("Error:", awserr.Code, awserr.Message)
+	} else if err != nil {
+		// A non-service error occurred.
+		panic(err)
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleECS_DeleteService() {
+	svc := ecs.New(nil)
+
+	params := &ecs.DeleteServiceInput{
+		Service: aws.String("String"), // Required
+		Cluster: aws.String("String"),
+	}
+	resp, err := svc.DeleteService(params)
 
 	if awserr := aws.Error(err); awserr != nil {
 		// A service error occurred.
@@ -129,6 +183,30 @@ func ExampleECS_DescribeContainerInstances() {
 		Cluster: aws.String("String"),
 	}
 	resp, err := svc.DescribeContainerInstances(params)
+
+	if awserr := aws.Error(err); awserr != nil {
+		// A service error occurred.
+		fmt.Println("Error:", awserr.Code, awserr.Message)
+	} else if err != nil {
+		// A non-service error occurred.
+		panic(err)
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleECS_DescribeServices() {
+	svc := ecs.New(nil)
+
+	params := &ecs.DescribeServicesInput{
+		Services: []*string{ // Required
+			aws.String("String"), // Required
+			// More values...
+		},
+		Cluster: aws.String("String"),
+	}
+	resp, err := svc.DescribeServices(params)
 
 	if awserr := aws.Error(err); awserr != nil {
 		// A service error occurred.
@@ -250,6 +328,28 @@ func ExampleECS_ListContainerInstances() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleECS_ListServices() {
+	svc := ecs.New(nil)
+
+	params := &ecs.ListServicesInput{
+		Cluster:    aws.String("String"),
+		MaxResults: aws.Long(1),
+		NextToken:  aws.String("String"),
+	}
+	resp, err := svc.ListServices(params)
+
+	if awserr := aws.Error(err); awserr != nil {
+		// A service error occurred.
+		fmt.Println("Error:", awserr.Code, awserr.Message)
+	} else if err != nil {
+		// A non-service error occurred.
+		panic(err)
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleECS_ListTaskDefinitionFamilies() {
 	svc := ecs.New(nil)
 
@@ -303,6 +403,8 @@ func ExampleECS_ListTasks() {
 		Family:            aws.String("String"),
 		MaxResults:        aws.Long(1),
 		NextToken:         aws.String("String"),
+		ServiceName:       aws.String("String"),
+		StartedBy:         aws.String("String"),
 	}
 	resp, err := svc.ListTasks(params)
 
@@ -338,6 +440,11 @@ func ExampleECS_RegisterContainerInstance() {
 				Type: aws.String("String"),
 			},
 			// More values...
+		},
+		VersionInfo: &ecs.VersionInfo{
+			AgentHash:     aws.String("String"),
+			AgentVersion:  aws.String("String"),
+			DockerVersion: aws.String("String"),
 		},
 	}
 	resp, err := svc.RegisterContainerInstance(params)
@@ -453,6 +560,7 @@ func ExampleECS_RunTask() {
 				// More values...
 			},
 		},
+		StartedBy: aws.String("String"),
 	}
 	resp, err := svc.RunTask(params)
 
@@ -490,6 +598,7 @@ func ExampleECS_StartTask() {
 				// More values...
 			},
 		},
+		StartedBy: aws.String("String"),
 	}
 	resp, err := svc.StartTask(params)
 
@@ -569,6 +678,29 @@ func ExampleECS_SubmitTaskStateChange() {
 		Task:    aws.String("String"),
 	}
 	resp, err := svc.SubmitTaskStateChange(params)
+
+	if awserr := aws.Error(err); awserr != nil {
+		// A service error occurred.
+		fmt.Println("Error:", awserr.Code, awserr.Message)
+	} else if err != nil {
+		// A non-service error occurred.
+		panic(err)
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleECS_UpdateService() {
+	svc := ecs.New(nil)
+
+	params := &ecs.UpdateServiceInput{
+		Service:        aws.String("String"), // Required
+		Cluster:        aws.String("String"),
+		DesiredCount:   aws.Long(1),
+		TaskDefinition: aws.String("String"),
+	}
+	resp, err := svc.UpdateService(params)
 
 	if awserr := aws.Error(err); awserr != nil {
 		// A service error occurred.
