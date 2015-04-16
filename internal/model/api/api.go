@@ -46,6 +46,11 @@ func (a *API) PackageName() string {
 	return strings.ToLower(a.StructName())
 }
 
+// Returns the package name for the interface.
+func (a *API) InterfacePackageName() string {
+	return a.PackageName() + "iface"
+}
+
 var nameRegex = regexp.MustCompile(`^Amazon|AWS\s*|\(.*|\s+|\W+`)
 
 // StructName returns the service struct name for a given service
@@ -280,4 +285,44 @@ func (a *API) ExampleGoCode() string {
 		strings.Join(exs, "\n\n"),
 	)
 	return util.GoFmt(code)
+}
+
+var tplInterface = template.Must(template.New("interface").Parse(`
+type {{ .StructName }} interface {
+    {{ range $_, $o := .OperationList }}
+        {{ $o.InterfaceSignature }}
+    {{ end }}
+}
+`))
+
+// Returns the go code for the service's API operations as an interface{}.
+// Assumes that the interface is being created in a different package than
+// the service API's package.
+func (a *API) InterfaceGoCode() string {
+	a.resetImports()
+	a.imports = map[string]bool{
+		"github.com/awslabs/aws-sdk-go/service/" + a.PackageName(): true,
+	}
+
+	var buf bytes.Buffer
+	err := tplInterface.Execute(&buf, &struct {
+		StructName    string
+		OperationList []*Operation
+	}{
+		StructName:    a.StructName() + "API",
+		OperationList: a.OperationList(),
+	})
+
+	if err != nil {
+		panic(err)
+	}
+
+	code := a.importsGoCode() + strings.TrimSpace(buf.String())
+	return util.GoFmt(code)
+}
+
+// Returns a string of instantiating the API prefixed with its package name.
+// Takes a string depicting the Config.
+func (a *API) NewAPIGoCodeWithPkgName(cfg string) string {
+	return fmt.Sprintf("%s.New(%s)", a.PackageName(), cfg)
 }

@@ -66,7 +66,7 @@ var (
 
 var tplTestCase = template.Must(template.New("testcase").Parse(`
 func Test{{ .TestName }}(t *testing.T) {
-	client := {{ .API.PackageName }}.New(nil)
+	client := {{ .API.NewAPIGoCodeWithPkgName "nil" }}
 	resp, e := client.{{ .API.ExportableName .Operation }}({{ .InputCode }})
 	err := aws.Error(e)
 	_, _, _ = resp, e, err // avoid unused warnings

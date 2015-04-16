@@ -89,9 +89,24 @@ func (o *Operation) GoCode() string {
 	return strings.TrimSpace(util.GoFmt(buf.String()))
 }
 
+var tplInfSig = template.Must(template.New("opsig").Parse(`
+{{ .ExportedName }}({{ .InputRef.GoTypeWithPkgName }}) ({{ .OutputRef.GoTypeWithPkgName }}, error)
+`))
+
+// Returns a string representing the Operation's interface{} functional signature.
+func (o *Operation) InterfaceSignature() string {
+	var buf bytes.Buffer
+	err := tplInfSig.Execute(&buf, o)
+	if err != nil {
+		panic(err)
+	}
+
+	return strings.TrimSpace(util.GoFmt(buf.String()))
+}
+
 var tplExample = template.Must(template.New("operationExample").Parse(`
 func Example{{ .API.StructName }}_{{ .ExportedName }}() {
-	svc := {{ .API.PackageName }}.New(nil)
+	svc := {{ .API.NewAPIGoCodeWithPkgName "nil" }}
 
 	{{ .ExampleInput }}
 	resp, err := svc.{{ .ExportedName }}(params)

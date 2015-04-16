@@ -70,9 +70,44 @@ func (s *Shape) MemberNames() []string {
 	return names
 }
 
+// Returns a shape's type as a string with the package name in <packageName>.<type> format.
+// package naming only applies to structures.
+func (s *Shape) GoTypeWithPkgName() string {
+	return goType(s, true)
+}
+
+// Returns a shape's Go type
 func (s *Shape) GoType() string {
+	return goType(s, false)
+}
+
+// Returns a shape ref's Go type.
+func (ref *ShapeRef) GoType() string {
+	if ref.Shape == nil {
+		panic(fmt.Errorf("missing shape definition on reference for %#v", ref))
+	}
+
+	return ref.Shape.GoType()
+}
+
+// Returns a shape's type as a string with the package name in <packageName>.<type> format.
+// package naming only applies to structures.
+func (ref *ShapeRef) GoTypeWithPkgName() string {
+	if ref.Shape == nil {
+		panic(fmt.Errorf("missing shape definition on reference for %#v", ref))
+	}
+
+	return ref.Shape.GoTypeWithPkgName()
+}
+
+// Returns a string version of the Shape's type.
+// If withPkgName is true, the package name will be added as a prefix
+func goType(s *Shape, withPkgName bool) string {
 	switch s.Type {
 	case "structure":
+		if withPkgName {
+			return fmt.Sprintf("*%s.%s", s.API.PackageName(), s.ShapeName)
+		}
 		return "*" + s.ShapeName
 	case "map":
 		return "*map[string]" + s.ValueRef.GoType()
@@ -94,14 +129,6 @@ func (s *Shape) GoType() string {
 	default:
 		panic("Unsupported shape type: " + s.Type)
 	}
-}
-
-func (ref *ShapeRef) GoType() string {
-	if ref.Shape == nil {
-		panic(fmt.Errorf("missing shape definition on reference for %#v", ref))
-	}
-
-	return ref.Shape.GoType()
 }
 
 func (s *Shape) GoTypeElem() string {
