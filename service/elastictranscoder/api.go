@@ -24,6 +24,10 @@ func (c *ElasticTranscoder) CancelJobRequest(input *CancelJobInput) (req *aws.Re
 		}
 	}
 
+	if input == nil {
+		input = &CancelJobInput{}
+	}
+
 	req = c.newRequest(opCancelJob, input, output)
 	output = &CancelJobOutput{}
 	req.Data = output
@@ -55,6 +59,10 @@ func (c *ElasticTranscoder) CreateJobRequest(input *CreateJobInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/2012-09-25/jobs",
 		}
+	}
+
+	if input == nil {
+		input = &CreateJobInput{}
 	}
 
 	req = c.newRequest(opCreateJob, input, output)
@@ -92,6 +100,10 @@ func (c *ElasticTranscoder) CreatePipelineRequest(input *CreatePipelineInput) (r
 		}
 	}
 
+	if input == nil {
+		input = &CreatePipelineInput{}
+	}
+
 	req = c.newRequest(opCreatePipeline, input, output)
 	output = &CreatePipelineOutput{}
 	req.Data = output
@@ -119,6 +131,10 @@ func (c *ElasticTranscoder) CreatePresetRequest(input *CreatePresetInput) (req *
 			HTTPMethod: "POST",
 			HTTPPath:   "/2012-09-25/presets",
 		}
+	}
+
+	if input == nil {
+		input = &CreatePresetInput{}
 	}
 
 	req = c.newRequest(opCreatePreset, input, output)
@@ -164,6 +180,10 @@ func (c *ElasticTranscoder) DeletePipelineRequest(input *DeletePipelineInput) (r
 		}
 	}
 
+	if input == nil {
+		input = &DeletePipelineInput{}
+	}
+
 	req = c.newRequest(opDeletePipeline, input, output)
 	output = &DeletePipelineOutput{}
 	req.Data = output
@@ -197,6 +217,10 @@ func (c *ElasticTranscoder) DeletePresetRequest(input *DeletePresetInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &DeletePresetInput{}
+	}
+
 	req = c.newRequest(opDeletePreset, input, output)
 	output = &DeletePresetOutput{}
 	req.Data = output
@@ -226,6 +250,10 @@ func (c *ElasticTranscoder) ListJobsByPipelineRequest(input *ListJobsByPipelineI
 			HTTPMethod: "GET",
 			HTTPPath:   "/2012-09-25/jobsByPipeline/{PipelineId}",
 		}
+	}
+
+	if input == nil {
+		input = &ListJobsByPipelineInput{}
 	}
 
 	req = c.newRequest(opListJobsByPipeline, input, output)
@@ -261,6 +289,10 @@ func (c *ElasticTranscoder) ListJobsByStatusRequest(input *ListJobsByStatusInput
 		}
 	}
 
+	if input == nil {
+		input = &ListJobsByStatusInput{}
+	}
+
 	req = c.newRequest(opListJobsByStatus, input, output)
 	output = &ListJobsByStatusOutput{}
 	req.Data = output
@@ -290,6 +322,10 @@ func (c *ElasticTranscoder) ListPipelinesRequest(input *ListPipelinesInput) (req
 			HTTPMethod: "GET",
 			HTTPPath:   "/2012-09-25/pipelines",
 		}
+	}
+
+	if input == nil {
+		input = &ListPipelinesInput{}
 	}
 
 	req = c.newRequest(opListPipelines, input, output)
@@ -322,6 +358,10 @@ func (c *ElasticTranscoder) ListPresetsRequest(input *ListPresetsInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &ListPresetsInput{}
+	}
+
 	req = c.newRequest(opListPresets, input, output)
 	output = &ListPresetsOutput{}
 	req.Data = output
@@ -350,6 +390,10 @@ func (c *ElasticTranscoder) ReadJobRequest(input *ReadJobInput) (req *aws.Reques
 			HTTPMethod: "GET",
 			HTTPPath:   "/2012-09-25/jobs/{Id}",
 		}
+	}
+
+	if input == nil {
+		input = &ReadJobInput{}
 	}
 
 	req = c.newRequest(opReadJob, input, output)
@@ -381,6 +425,10 @@ func (c *ElasticTranscoder) ReadPipelineRequest(input *ReadPipelineInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &ReadPipelineInput{}
+	}
+
 	req = c.newRequest(opReadPipeline, input, output)
 	output = &ReadPipelineOutput{}
 	req.Data = output
@@ -410,6 +458,10 @@ func (c *ElasticTranscoder) ReadPresetRequest(input *ReadPresetInput) (req *aws.
 		}
 	}
 
+	if input == nil {
+		input = &ReadPresetInput{}
+	}
+
 	req = c.newRequest(opReadPreset, input, output)
 	output = &ReadPresetOutput{}
 	req.Data = output
@@ -437,6 +489,10 @@ func (c *ElasticTranscoder) TestRoleRequest(input *TestRoleInput) (req *aws.Requ
 			HTTPMethod: "POST",
 			HTTPPath:   "/2012-09-25/roleTests",
 		}
+	}
+
+	if input == nil {
+		input = &TestRoleInput{}
 	}
 
 	req = c.newRequest(opTestRole, input, output)
@@ -474,6 +530,10 @@ func (c *ElasticTranscoder) UpdatePipelineRequest(input *UpdatePipelineInput) (r
 		}
 	}
 
+	if input == nil {
+		input = &UpdatePipelineInput{}
+	}
+
 	req = c.newRequest(opUpdatePipeline, input, output)
 	output = &UpdatePipelineOutput{}
 	req.Data = output
@@ -507,6 +567,10 @@ func (c *ElasticTranscoder) UpdatePipelineNotificationsRequest(input *UpdatePipe
 		}
 	}
 
+	if input == nil {
+		input = &UpdatePipelineNotificationsInput{}
+	}
+
 	req = c.newRequest(opUpdatePipelineNotifications, input, output)
 	output = &UpdatePipelineNotificationsOutput{}
 	req.Data = output
@@ -538,6 +602,10 @@ func (c *ElasticTranscoder) UpdatePipelineStatusRequest(input *UpdatePipelineSta
 			HTTPMethod: "POST",
 			HTTPPath:   "/2012-09-25/pipelines/{Id}/status",
 		}
+	}
+
+	if input == nil {
+		input = &UpdatePipelineStatusInput{}
 	}
 
 	req = c.newRequest(opUpdatePipelineStatus, input, output)

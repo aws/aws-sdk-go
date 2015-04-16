@@ -25,6 +25,10 @@ func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *aws.Reque
 		}
 	}
 
+	if input == nil {
+		input = &CreateTrailInput{}
+	}
+
 	req = c.newRequest(opCreateTrail, input, output)
 	output = &CreateTrailOutput{}
 	req.Data = output
@@ -57,6 +61,10 @@ func (c *CloudTrail) DeleteTrailRequest(input *DeleteTrailInput) (req *aws.Reque
 		}
 	}
 
+	if input == nil {
+		input = &DeleteTrailInput{}
+	}
+
 	req = c.newRequest(opDeleteTrail, input, output)
 	output = &DeleteTrailOutput{}
 	req.Data = output
@@ -84,6 +92,10 @@ func (c *CloudTrail) DescribeTrailsRequest(input *DescribeTrailsInput) (req *aws
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeTrailsInput{}
 	}
 
 	req = c.newRequest(opDescribeTrails, input, output)
@@ -116,6 +128,10 @@ func (c *CloudTrail) GetTrailStatusRequest(input *GetTrailStatusInput) (req *aws
 		}
 	}
 
+	if input == nil {
+		input = &GetTrailStatusInput{}
+	}
+
 	req = c.newRequest(opGetTrailStatus, input, output)
 	output = &GetTrailStatusOutput{}
 	req.Data = output
@@ -145,6 +161,10 @@ func (c *CloudTrail) LookupEventsRequest(input *LookupEventsInput) (req *aws.Req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &LookupEventsInput{}
 	}
 
 	req = c.newRequest(opLookupEvents, input, output)
@@ -189,6 +209,10 @@ func (c *CloudTrail) StartLoggingRequest(input *StartLoggingInput) (req *aws.Req
 		}
 	}
 
+	if input == nil {
+		input = &StartLoggingInput{}
+	}
+
 	req = c.newRequest(opStartLogging, input, output)
 	output = &StartLoggingOutput{}
 	req.Data = output
@@ -216,6 +240,10 @@ func (c *CloudTrail) StopLoggingRequest(input *StopLoggingInput) (req *aws.Reque
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &StopLoggingInput{}
 	}
 
 	req = c.newRequest(opStopLogging, input, output)
@@ -248,6 +276,10 @@ func (c *CloudTrail) UpdateTrailRequest(input *UpdateTrailInput) (req *aws.Reque
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateTrailInput{}
 	}
 
 	req = c.newRequest(opUpdateTrail, input, output)

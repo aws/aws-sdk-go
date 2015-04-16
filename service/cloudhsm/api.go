@@ -24,6 +24,10 @@ func (c *CloudHSM) CreateHAPGRequest(input *CreateHAPGInput) (req *aws.Request, 
 		}
 	}
 
+	if input == nil {
+		input = &CreateHAPGInput{}
+	}
+
 	req = c.newRequest(opCreateHAPG, input, output)
 	output = &CreateHAPGOutput{}
 	req.Data = output
@@ -52,6 +56,10 @@ func (c *CloudHSM) CreateHSMRequest(input *CreateHSMInput) (req *aws.Request, ou
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateHSMInput{}
 	}
 
 	req = c.newRequest(opCreateHSM, input, output)
@@ -84,6 +92,10 @@ func (c *CloudHSM) CreateLunaClientRequest(input *CreateLunaClientInput) (req *a
 		}
 	}
 
+	if input == nil {
+		input = &CreateLunaClientInput{}
+	}
+
 	req = c.newRequest(opCreateLunaClient, input, output)
 	output = &CreateLunaClientOutput{}
 	req.Data = output
@@ -113,6 +125,10 @@ func (c *CloudHSM) DeleteHAPGRequest(input *DeleteHAPGInput) (req *aws.Request, 
 		}
 	}
 
+	if input == nil {
+		input = &DeleteHAPGInput{}
+	}
+
 	req = c.newRequest(opDeleteHAPG, input, output)
 	output = &DeleteHAPGOutput{}
 	req.Data = output
@@ -140,6 +156,10 @@ func (c *CloudHSM) DeleteHSMRequest(input *DeleteHSMInput) (req *aws.Request, ou
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteHSMInput{}
 	}
 
 	req = c.newRequest(opDeleteHSM, input, output)
@@ -172,6 +192,10 @@ func (c *CloudHSM) DeleteLunaClientRequest(input *DeleteLunaClientInput) (req *a
 		}
 	}
 
+	if input == nil {
+		input = &DeleteLunaClientInput{}
+	}
+
 	req = c.newRequest(opDeleteLunaClient, input, output)
 	output = &DeleteLunaClientOutput{}
 	req.Data = output
@@ -201,6 +225,10 @@ func (c *CloudHSM) DescribeHAPGRequest(input *DescribeHAPGInput) (req *aws.Reque
 		}
 	}
 
+	if input == nil {
+		input = &DescribeHAPGInput{}
+	}
+
 	req = c.newRequest(opDescribeHAPG, input, output)
 	output = &DescribeHAPGOutput{}
 	req.Data = output
@@ -228,6 +256,10 @@ func (c *CloudHSM) DescribeHSMRequest(input *DescribeHSMInput) (req *aws.Request
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeHSMInput{}
 	}
 
 	req = c.newRequest(opDescribeHSM, input, output)
@@ -260,6 +292,10 @@ func (c *CloudHSM) DescribeLunaClientRequest(input *DescribeLunaClientInput) (re
 		}
 	}
 
+	if input == nil {
+		input = &DescribeLunaClientInput{}
+	}
+
 	req = c.newRequest(opDescribeLunaClient, input, output)
 	output = &DescribeLunaClientOutput{}
 	req.Data = output
@@ -287,6 +323,10 @@ func (c *CloudHSM) GetConfigRequest(input *GetConfigInput) (req *aws.Request, ou
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetConfigInput{}
 	}
 
 	req = c.newRequest(opGetConfig, input, output)
@@ -319,6 +359,10 @@ func (c *CloudHSM) ListAvailableZonesRequest(input *ListAvailableZonesInput) (re
 		}
 	}
 
+	if input == nil {
+		input = &ListAvailableZonesInput{}
+	}
+
 	req = c.newRequest(opListAvailableZones, input, output)
 	output = &ListAvailableZonesOutput{}
 	req.Data = output
@@ -346,6 +390,10 @@ func (c *CloudHSM) ListHSMsRequest(input *ListHSMsInput) (req *aws.Request, outp
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListHSMsInput{}
 	}
 
 	req = c.newRequest(opListHSMs, input, output)
@@ -383,6 +431,10 @@ func (c *CloudHSM) ListHapgsRequest(input *ListHapgsInput) (req *aws.Request, ou
 		}
 	}
 
+	if input == nil {
+		input = &ListHapgsInput{}
+	}
+
 	req = c.newRequest(opListHapgs, input, output)
 	output = &ListHapgsOutput{}
 	req.Data = output
@@ -415,6 +467,10 @@ func (c *CloudHSM) ListLunaClientsRequest(input *ListLunaClientsInput) (req *aws
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListLunaClientsInput{}
 	}
 
 	req = c.newRequest(opListLunaClients, input, output)
@@ -451,6 +507,10 @@ func (c *CloudHSM) ModifyHAPGRequest(input *ModifyHAPGInput) (req *aws.Request, 
 		}
 	}
 
+	if input == nil {
+		input = &ModifyHAPGInput{}
+	}
+
 	req = c.newRequest(opModifyHAPG, input, output)
 	output = &ModifyHAPGOutput{}
 	req.Data = output
@@ -480,6 +540,10 @@ func (c *CloudHSM) ModifyHSMRequest(input *ModifyHSMInput) (req *aws.Request, ou
 		}
 	}
 
+	if input == nil {
+		input = &ModifyHSMInput{}
+	}
+
 	req = c.newRequest(opModifyHSM, input, output)
 	output = &ModifyHSMOutput{}
 	req.Data = output
@@ -507,6 +571,10 @@ func (c *CloudHSM) ModifyLunaClientRequest(input *ModifyLunaClientInput) (req *a
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ModifyLunaClientInput{}
 	}
 
 	req = c.newRequest(opModifyLunaClient, input, output)

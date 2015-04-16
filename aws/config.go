@@ -20,6 +20,7 @@ var DefaultConfig = &Config{
 	MaxRetries:              DEFAULT_RETRIES,
 	DisableParamValidation:  false,
 	DisableComputeChecksums: false,
+	S3ForcePathStyle:        false,
 }
 
 type Config struct {
@@ -34,6 +35,7 @@ type Config struct {
 	MaxRetries              int
 	DisableParamValidation  bool
 	DisableComputeChecksums bool
+	S3ForcePathStyle        bool
 }
 
 func (c Config) Merge(newcfg *Config) *Config {
@@ -103,6 +105,12 @@ func (c Config) Merge(newcfg *Config) *Config {
 		cfg.DisableComputeChecksums = newcfg.DisableComputeChecksums
 	} else {
 		cfg.DisableComputeChecksums = c.DisableComputeChecksums
+	}
+
+	if newcfg != nil && newcfg.S3ForcePathStyle {
+		cfg.S3ForcePathStyle = newcfg.S3ForcePathStyle
+	} else {
+		cfg.S3ForcePathStyle = c.S3ForcePathStyle
 	}
 
 	return &cfg

@@ -25,6 +25,10 @@ func (c *CloudFormation) CancelUpdateStackRequest(input *CancelUpdateStackInput)
 		}
 	}
 
+	if input == nil {
+		input = &CancelUpdateStackInput{}
+	}
+
 	req = c.newRequest(opCancelUpdateStack, input, output)
 	output = &CancelUpdateStackOutput{}
 	req.Data = output
@@ -55,6 +59,10 @@ func (c *CloudFormation) CreateStackRequest(input *CreateStackInput) (req *aws.R
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateStackInput{}
 	}
 
 	req = c.newRequest(opCreateStack, input, output)
@@ -88,6 +96,10 @@ func (c *CloudFormation) DeleteStackRequest(input *DeleteStackInput) (req *aws.R
 		}
 	}
 
+	if input == nil {
+		input = &DeleteStackInput{}
+	}
+
 	req = c.newRequest(opDeleteStack, input, output)
 	output = &DeleteStackOutput{}
 	req.Data = output
@@ -117,6 +129,10 @@ func (c *CloudFormation) DescribeStackEventsRequest(input *DescribeStackEventsIn
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeStackEventsInput{}
 	}
 
 	req = c.newRequest(opDescribeStackEvents, input, output)
@@ -153,6 +169,10 @@ func (c *CloudFormation) DescribeStackResourceRequest(input *DescribeStackResour
 		}
 	}
 
+	if input == nil {
+		input = &DescribeStackResourceInput{}
+	}
+
 	req = c.newRequest(opDescribeStackResource, input, output)
 	output = &DescribeStackResourceOutput{}
 	req.Data = output
@@ -183,6 +203,10 @@ func (c *CloudFormation) DescribeStackResourcesRequest(input *DescribeStackResou
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeStackResourcesInput{}
 	}
 
 	req = c.newRequest(opDescribeStackResources, input, output)
@@ -230,6 +254,10 @@ func (c *CloudFormation) DescribeStacksRequest(input *DescribeStacksInput) (req 
 		}
 	}
 
+	if input == nil {
+		input = &DescribeStacksInput{}
+	}
+
 	req = c.newRequest(opDescribeStacks, input, output)
 	output = &DescribeStacksOutput{}
 	req.Data = output
@@ -258,6 +286,10 @@ func (c *CloudFormation) EstimateTemplateCostRequest(input *EstimateTemplateCost
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &EstimateTemplateCostInput{}
 	}
 
 	req = c.newRequest(opEstimateTemplateCost, input, output)
@@ -291,6 +323,10 @@ func (c *CloudFormation) GetStackPolicyRequest(input *GetStackPolicyInput) (req 
 		}
 	}
 
+	if input == nil {
+		input = &GetStackPolicyInput{}
+	}
+
 	req = c.newRequest(opGetStackPolicy, input, output)
 	output = &GetStackPolicyOutput{}
 	req.Data = output
@@ -319,6 +355,10 @@ func (c *CloudFormation) GetTemplateRequest(input *GetTemplateInput) (req *aws.R
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetTemplateInput{}
 	}
 
 	req = c.newRequest(opGetTemplate, input, output)
@@ -354,6 +394,10 @@ func (c *CloudFormation) GetTemplateSummaryRequest(input *GetTemplateSummaryInpu
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetTemplateSummaryInput{}
 	}
 
 	req = c.newRequest(opGetTemplateSummary, input, output)
@@ -394,6 +438,10 @@ func (c *CloudFormation) ListStackResourcesRequest(input *ListStackResourcesInpu
 		}
 	}
 
+	if input == nil {
+		input = &ListStackResourcesInput{}
+	}
+
 	req = c.newRequest(opListStackResources, input, output)
 	output = &ListStackResourcesOutput{}
 	req.Data = output
@@ -424,6 +472,10 @@ func (c *CloudFormation) ListStacksRequest(input *ListStacksInput) (req *aws.Req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListStacksInput{}
 	}
 
 	req = c.newRequest(opListStacks, input, output)
@@ -459,6 +511,10 @@ func (c *CloudFormation) SetStackPolicyRequest(input *SetStackPolicyInput) (req 
 		}
 	}
 
+	if input == nil {
+		input = &SetStackPolicyInput{}
+	}
+
 	req = c.newRequest(opSetStackPolicy, input, output)
 	output = &SetStackPolicyOutput{}
 	req.Data = output
@@ -486,6 +542,10 @@ func (c *CloudFormation) SignalResourceRequest(input *SignalResourceInput) (req 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SignalResourceInput{}
 	}
 
 	req = c.newRequest(opSignalResource, input, output)
@@ -520,6 +580,10 @@ func (c *CloudFormation) UpdateStackRequest(input *UpdateStackInput) (req *aws.R
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateStackInput{}
 	}
 
 	req = c.newRequest(opUpdateStack, input, output)
@@ -560,6 +624,10 @@ func (c *CloudFormation) ValidateTemplateRequest(input *ValidateTemplateInput) (
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ValidateTemplateInput{}
 	}
 
 	req = c.newRequest(opValidateTemplate, input, output)

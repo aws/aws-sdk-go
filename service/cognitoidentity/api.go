@@ -25,6 +25,10 @@ func (c *CognitoIdentity) CreateIdentityPoolRequest(input *CreateIdentityPoolInp
 		}
 	}
 
+	if input == nil {
+		input = &CreateIdentityPoolInput{}
+	}
+
 	req = c.newRequest(opCreateIdentityPool, input, output)
 	output = &IdentityPool{}
 	req.Data = output
@@ -54,6 +58,10 @@ func (c *CognitoIdentity) DeleteIdentityPoolRequest(input *DeleteIdentityPoolInp
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteIdentityPoolInput{}
 	}
 
 	req = c.newRequest(opDeleteIdentityPool, input, output)
@@ -86,6 +94,10 @@ func (c *CognitoIdentity) DescribeIdentityRequest(input *DescribeIdentityInput) 
 		}
 	}
 
+	if input == nil {
+		input = &DescribeIdentityInput{}
+	}
+
 	req = c.newRequest(opDescribeIdentity, input, output)
 	output = &IdentityDescription{}
 	req.Data = output
@@ -116,6 +128,10 @@ func (c *CognitoIdentity) DescribeIdentityPoolRequest(input *DescribeIdentityPoo
 		}
 	}
 
+	if input == nil {
+		input = &DescribeIdentityPoolInput{}
+	}
+
 	req = c.newRequest(opDescribeIdentityPool, input, output)
 	output = &IdentityPool{}
 	req.Data = output
@@ -144,6 +160,10 @@ func (c *CognitoIdentity) GetCredentialsForIdentityRequest(input *GetCredentials
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetCredentialsForIdentityInput{}
 	}
 
 	req = c.newRequest(opGetCredentialsForIdentity, input, output)
@@ -178,6 +198,10 @@ func (c *CognitoIdentity) GetIDRequest(input *GetIDInput) (req *aws.Request, out
 		}
 	}
 
+	if input == nil {
+		input = &GetIDInput{}
+	}
+
 	req = c.newRequest(opGetID, input, output)
 	output = &GetIDOutput{}
 	req.Data = output
@@ -208,6 +232,10 @@ func (c *CognitoIdentity) GetIdentityPoolRolesRequest(input *GetIdentityPoolRole
 		}
 	}
 
+	if input == nil {
+		input = &GetIdentityPoolRolesInput{}
+	}
+
 	req = c.newRequest(opGetIdentityPoolRoles, input, output)
 	output = &GetIdentityPoolRolesOutput{}
 	req.Data = output
@@ -235,6 +263,10 @@ func (c *CognitoIdentity) GetOpenIDTokenRequest(input *GetOpenIDTokenInput) (req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetOpenIDTokenInput{}
 	}
 
 	req = c.newRequest(opGetOpenIDToken, input, output)
@@ -268,6 +300,10 @@ func (c *CognitoIdentity) GetOpenIDTokenForDeveloperIdentityRequest(input *GetOp
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetOpenIDTokenForDeveloperIdentityInput{}
 	}
 
 	req = c.newRequest(opGetOpenIDTokenForDeveloperIdentity, input, output)
@@ -312,6 +348,10 @@ func (c *CognitoIdentity) ListIdentitiesRequest(input *ListIdentitiesInput) (req
 		}
 	}
 
+	if input == nil {
+		input = &ListIdentitiesInput{}
+	}
+
 	req = c.newRequest(opListIdentities, input, output)
 	output = &ListIdentitiesOutput{}
 	req.Data = output
@@ -341,6 +381,10 @@ func (c *CognitoIdentity) ListIdentityPoolsRequest(input *ListIdentityPoolsInput
 		}
 	}
 
+	if input == nil {
+		input = &ListIdentityPoolsInput{}
+	}
+
 	req = c.newRequest(opListIdentityPools, input, output)
 	output = &ListIdentityPoolsOutput{}
 	req.Data = output
@@ -368,6 +412,10 @@ func (c *CognitoIdentity) LookupDeveloperIdentityRequest(input *LookupDeveloperI
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &LookupDeveloperIdentityInput{}
 	}
 
 	req = c.newRequest(opLookupDeveloperIdentity, input, output)
@@ -406,6 +454,10 @@ func (c *CognitoIdentity) MergeDeveloperIdentitiesRequest(input *MergeDeveloperI
 		}
 	}
 
+	if input == nil {
+		input = &MergeDeveloperIdentitiesInput{}
+	}
+
 	req = c.newRequest(opMergeDeveloperIdentities, input, output)
 	output = &MergeDeveloperIdentitiesOutput{}
 	req.Data = output
@@ -441,6 +493,10 @@ func (c *CognitoIdentity) SetIdentityPoolRolesRequest(input *SetIdentityPoolRole
 		}
 	}
 
+	if input == nil {
+		input = &SetIdentityPoolRolesInput{}
+	}
+
 	req = c.newRequest(opSetIdentityPoolRoles, input, output)
 	output = &SetIdentityPoolRolesOutput{}
 	req.Data = output
@@ -469,6 +525,10 @@ func (c *CognitoIdentity) UnlinkDeveloperIdentityRequest(input *UnlinkDeveloperI
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UnlinkDeveloperIdentityInput{}
 	}
 
 	req = c.newRequest(opUnlinkDeveloperIdentity, input, output)
@@ -503,6 +563,10 @@ func (c *CognitoIdentity) UnlinkIdentityRequest(input *UnlinkIdentityInput) (req
 		}
 	}
 
+	if input == nil {
+		input = &UnlinkIdentityInput{}
+	}
+
 	req = c.newRequest(opUnlinkIdentity, input, output)
 	output = &UnlinkIdentityOutput{}
 	req.Data = output
@@ -532,6 +596,10 @@ func (c *CognitoIdentity) UpdateIdentityPoolRequest(input *IdentityPool) (req *a
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &IdentityPool{}
 	}
 
 	req = c.newRequest(opUpdateIdentityPool, input, output)

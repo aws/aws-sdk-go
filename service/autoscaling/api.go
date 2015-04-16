@@ -25,6 +25,10 @@ func (c *AutoScaling) AttachInstancesRequest(input *AttachInstancesInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &AttachInstancesInput{}
+	}
+
 	req = c.newRequest(opAttachInstances, input, output)
 	output = &AttachInstancesOutput{}
 	req.Data = output
@@ -56,6 +60,10 @@ func (c *AutoScaling) CompleteLifecycleActionRequest(input *CompleteLifecycleAct
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CompleteLifecycleActionInput{}
 	}
 
 	req = c.newRequest(opCompleteLifecycleAction, input, output)
@@ -101,6 +109,10 @@ func (c *AutoScaling) CreateAutoScalingGroupRequest(input *CreateAutoScalingGrou
 		}
 	}
 
+	if input == nil {
+		input = &CreateAutoScalingGroupInput{}
+	}
+
 	req = c.newRequest(opCreateAutoScalingGroup, input, output)
 	output = &CreateAutoScalingGroupOutput{}
 	req.Data = output
@@ -134,6 +146,10 @@ func (c *AutoScaling) CreateLaunchConfigurationRequest(input *CreateLaunchConfig
 		}
 	}
 
+	if input == nil {
+		input = &CreateLaunchConfigurationInput{}
+	}
+
 	req = c.newRequest(opCreateLaunchConfiguration, input, output)
 	output = &CreateLaunchConfigurationOutput{}
 	req.Data = output
@@ -165,6 +181,10 @@ func (c *AutoScaling) CreateOrUpdateTagsRequest(input *CreateOrUpdateTagsInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateOrUpdateTagsInput{}
 	}
 
 	req = c.newRequest(opCreateOrUpdateTags, input, output)
@@ -202,6 +222,10 @@ func (c *AutoScaling) DeleteAutoScalingGroupRequest(input *DeleteAutoScalingGrou
 		}
 	}
 
+	if input == nil {
+		input = &DeleteAutoScalingGroupInput{}
+	}
+
 	req = c.newRequest(opDeleteAutoScalingGroup, input, output)
 	output = &DeleteAutoScalingGroupOutput{}
 	req.Data = output
@@ -237,6 +261,10 @@ func (c *AutoScaling) DeleteLaunchConfigurationRequest(input *DeleteLaunchConfig
 		}
 	}
 
+	if input == nil {
+		input = &DeleteLaunchConfigurationInput{}
+	}
+
 	req = c.newRequest(opDeleteLaunchConfiguration, input, output)
 	output = &DeleteLaunchConfigurationOutput{}
 	req.Data = output
@@ -268,6 +296,10 @@ func (c *AutoScaling) DeleteLifecycleHookRequest(input *DeleteLifecycleHookInput
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteLifecycleHookInput{}
 	}
 
 	req = c.newRequest(opDeleteLifecycleHook, input, output)
@@ -302,6 +334,10 @@ func (c *AutoScaling) DeleteNotificationConfigurationRequest(input *DeleteNotifi
 		}
 	}
 
+	if input == nil {
+		input = &DeleteNotificationConfigurationInput{}
+	}
+
 	req = c.newRequest(opDeleteNotificationConfiguration, input, output)
 	output = &DeleteNotificationConfigurationOutput{}
 	req.Data = output
@@ -329,6 +365,10 @@ func (c *AutoScaling) DeletePolicyRequest(input *DeletePolicyInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeletePolicyInput{}
 	}
 
 	req = c.newRequest(opDeletePolicy, input, output)
@@ -360,6 +400,10 @@ func (c *AutoScaling) DeleteScheduledActionRequest(input *DeleteScheduledActionI
 		}
 	}
 
+	if input == nil {
+		input = &DeleteScheduledActionInput{}
+	}
+
 	req = c.newRequest(opDeleteScheduledAction, input, output)
 	output = &DeleteScheduledActionOutput{}
 	req.Data = output
@@ -389,6 +433,10 @@ func (c *AutoScaling) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Reques
 		}
 	}
 
+	if input == nil {
+		input = &DeleteTagsInput{}
+	}
+
 	req = c.newRequest(opDeleteTags, input, output)
 	output = &DeleteTagsOutput{}
 	req.Data = output
@@ -416,6 +464,10 @@ func (c *AutoScaling) DescribeAccountLimitsRequest(input *DescribeAccountLimitsI
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeAccountLimitsInput{}
 	}
 
 	req = c.newRequest(opDescribeAccountLimits, input, output)
@@ -450,6 +502,10 @@ func (c *AutoScaling) DescribeAdjustmentTypesRequest(input *DescribeAdjustmentTy
 		}
 	}
 
+	if input == nil {
+		input = &DescribeAdjustmentTypesInput{}
+	}
+
 	req = c.newRequest(opDescribeAdjustmentTypes, input, output)
 	output = &DescribeAdjustmentTypesOutput{}
 	req.Data = output
@@ -477,6 +533,10 @@ func (c *AutoScaling) DescribeAutoScalingGroupsRequest(input *DescribeAutoScalin
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeAutoScalingGroupsInput{}
 	}
 
 	req = c.newRequest(opDescribeAutoScalingGroups, input, output)
@@ -511,6 +571,10 @@ func (c *AutoScaling) DescribeAutoScalingInstancesRequest(input *DescribeAutoSca
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeAutoScalingInstancesInput{}
 	}
 
 	req = c.newRequest(opDescribeAutoScalingInstances, input, output)
@@ -548,6 +612,10 @@ func (c *AutoScaling) DescribeAutoScalingNotificationTypesRequest(input *Describ
 		}
 	}
 
+	if input == nil {
+		input = &DescribeAutoScalingNotificationTypesInput{}
+	}
+
 	req = c.newRequest(opDescribeAutoScalingNotificationTypes, input, output)
 	output = &DescribeAutoScalingNotificationTypesOutput{}
 	req.Data = output
@@ -575,6 +643,10 @@ func (c *AutoScaling) DescribeLaunchConfigurationsRequest(input *DescribeLaunchC
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeLaunchConfigurationsInput{}
 	}
 
 	req = c.newRequest(opDescribeLaunchConfigurations, input, output)
@@ -611,6 +683,10 @@ func (c *AutoScaling) DescribeLifecycleHookTypesRequest(input *DescribeLifecycle
 		}
 	}
 
+	if input == nil {
+		input = &DescribeLifecycleHookTypesInput{}
+	}
+
 	req = c.newRequest(opDescribeLifecycleHookTypes, input, output)
 	output = &DescribeLifecycleHookTypesOutput{}
 	req.Data = output
@@ -640,6 +716,10 @@ func (c *AutoScaling) DescribeLifecycleHooksRequest(input *DescribeLifecycleHook
 		}
 	}
 
+	if input == nil {
+		input = &DescribeLifecycleHooksInput{}
+	}
+
 	req = c.newRequest(opDescribeLifecycleHooks, input, output)
 	output = &DescribeLifecycleHooksOutput{}
 	req.Data = output
@@ -667,6 +747,10 @@ func (c *AutoScaling) DescribeMetricCollectionTypesRequest(input *DescribeMetric
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeMetricCollectionTypesInput{}
 	}
 
 	req = c.newRequest(opDescribeMetricCollectionTypes, input, output)
@@ -702,6 +786,10 @@ func (c *AutoScaling) DescribeNotificationConfigurationsRequest(input *DescribeN
 		}
 	}
 
+	if input == nil {
+		input = &DescribeNotificationConfigurationsInput{}
+	}
+
 	req = c.newRequest(opDescribeNotificationConfigurations, input, output)
 	output = &DescribeNotificationConfigurationsOutput{}
 	req.Data = output
@@ -730,6 +818,10 @@ func (c *AutoScaling) DescribePoliciesRequest(input *DescribePoliciesInput) (req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribePoliciesInput{}
 	}
 
 	req = c.newRequest(opDescribePolicies, input, output)
@@ -763,6 +855,10 @@ func (c *AutoScaling) DescribeScalingActivitiesRequest(input *DescribeScalingAct
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeScalingActivitiesInput{}
 	}
 
 	req = c.newRequest(opDescribeScalingActivities, input, output)
@@ -801,6 +897,10 @@ func (c *AutoScaling) DescribeScalingProcessTypesRequest(input *DescribeScalingP
 		}
 	}
 
+	if input == nil {
+		input = &DescribeScalingProcessTypesInput{}
+	}
+
 	req = c.newRequest(opDescribeScalingProcessTypes, input, output)
 	output = &DescribeScalingProcessTypesOutput{}
 	req.Data = output
@@ -831,6 +931,10 @@ func (c *AutoScaling) DescribeScheduledActionsRequest(input *DescribeScheduledAc
 		}
 	}
 
+	if input == nil {
+		input = &DescribeScheduledActionsInput{}
+	}
+
 	req = c.newRequest(opDescribeScheduledActions, input, output)
 	output = &DescribeScheduledActionsOutput{}
 	req.Data = output
@@ -859,6 +963,10 @@ func (c *AutoScaling) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeTagsInput{}
 	}
 
 	req = c.newRequest(opDescribeTags, input, output)
@@ -899,6 +1007,10 @@ func (c *AutoScaling) DescribeTerminationPolicyTypesRequest(input *DescribeTermi
 		}
 	}
 
+	if input == nil {
+		input = &DescribeTerminationPolicyTypesInput{}
+	}
+
 	req = c.newRequest(opDescribeTerminationPolicyTypes, input, output)
 	output = &DescribeTerminationPolicyTypesOutput{}
 	req.Data = output
@@ -926,6 +1038,10 @@ func (c *AutoScaling) DetachInstancesRequest(input *DetachInstancesInput) (req *
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DetachInstancesInput{}
 	}
 
 	req = c.newRequest(opDetachInstances, input, output)
@@ -963,6 +1079,10 @@ func (c *AutoScaling) DisableMetricsCollectionRequest(input *DisableMetricsColle
 		}
 	}
 
+	if input == nil {
+		input = &DisableMetricsCollectionInput{}
+	}
+
 	req = c.newRequest(opDisableMetricsCollection, input, output)
 	output = &DisableMetricsCollectionOutput{}
 	req.Data = output
@@ -991,6 +1111,10 @@ func (c *AutoScaling) EnableMetricsCollectionRequest(input *EnableMetricsCollect
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &EnableMetricsCollectionInput{}
 	}
 
 	req = c.newRequest(opEnableMetricsCollection, input, output)
@@ -1026,6 +1150,10 @@ func (c *AutoScaling) EnterStandbyRequest(input *EnterStandbyInput) (req *aws.Re
 		}
 	}
 
+	if input == nil {
+		input = &EnterStandbyInput{}
+	}
+
 	req = c.newRequest(opEnterStandby, input, output)
 	output = &EnterStandbyOutput{}
 	req.Data = output
@@ -1058,6 +1186,10 @@ func (c *AutoScaling) ExecutePolicyRequest(input *ExecutePolicyInput) (req *aws.
 		}
 	}
 
+	if input == nil {
+		input = &ExecutePolicyInput{}
+	}
+
 	req = c.newRequest(opExecutePolicy, input, output)
 	output = &ExecutePolicyOutput{}
 	req.Data = output
@@ -1085,6 +1217,10 @@ func (c *AutoScaling) ExitStandbyRequest(input *ExitStandbyInput) (req *aws.Requ
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ExitStandbyInput{}
 	}
 
 	req = c.newRequest(opExitStandby, input, output)
@@ -1117,6 +1253,10 @@ func (c *AutoScaling) PutLifecycleHookRequest(input *PutLifecycleHookInput) (req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PutLifecycleHookInput{}
 	}
 
 	req = c.newRequest(opPutLifecycleHook, input, output)
@@ -1165,6 +1305,10 @@ func (c *AutoScaling) PutNotificationConfigurationRequest(input *PutNotification
 		}
 	}
 
+	if input == nil {
+		input = &PutNotificationConfigurationInput{}
+	}
+
 	req = c.newRequest(opPutNotificationConfiguration, input, output)
 	output = &PutNotificationConfigurationOutput{}
 	req.Data = output
@@ -1202,6 +1346,10 @@ func (c *AutoScaling) PutScalingPolicyRequest(input *PutScalingPolicyInput) (req
 		}
 	}
 
+	if input == nil {
+		input = &PutScalingPolicyInput{}
+	}
+
 	req = c.newRequest(opPutScalingPolicy, input, output)
 	output = &PutScalingPolicyOutput{}
 	req.Data = output
@@ -1232,6 +1380,10 @@ func (c *AutoScaling) PutScheduledUpdateGroupActionRequest(input *PutScheduledUp
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PutScheduledUpdateGroupActionInput{}
 	}
 
 	req = c.newRequest(opPutScheduledUpdateGroupAction, input, output)
@@ -1269,6 +1421,10 @@ func (c *AutoScaling) RecordLifecycleActionHeartbeatRequest(input *RecordLifecyc
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RecordLifecycleActionHeartbeatInput{}
 	}
 
 	req = c.newRequest(opRecordLifecycleActionHeartbeat, input, output)
@@ -1315,6 +1471,10 @@ func (c *AutoScaling) ResumeProcessesRequest(input *ScalingProcessQuery) (req *a
 		}
 	}
 
+	if input == nil {
+		input = &ScalingProcessQuery{}
+	}
+
 	req = c.newRequest(opResumeProcesses, input, output)
 	output = &ResumeProcessesOutput{}
 	req.Data = output
@@ -1348,6 +1508,10 @@ func (c *AutoScaling) SetDesiredCapacityRequest(input *SetDesiredCapacityInput) 
 		}
 	}
 
+	if input == nil {
+		input = &SetDesiredCapacityInput{}
+	}
+
 	req = c.newRequest(opSetDesiredCapacity, input, output)
 	output = &SetDesiredCapacityOutput{}
 	req.Data = output
@@ -1375,6 +1539,10 @@ func (c *AutoScaling) SetInstanceHealthRequest(input *SetInstanceHealthInput) (r
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SetInstanceHealthInput{}
 	}
 
 	req = c.newRequest(opSetInstanceHealth, input, output)
@@ -1407,6 +1575,10 @@ func (c *AutoScaling) SuspendProcessesRequest(input *ScalingProcessQuery) (req *
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ScalingProcessQuery{}
 	}
 
 	req = c.newRequest(opSuspendProcesses, input, output)
@@ -1448,6 +1620,10 @@ func (c *AutoScaling) TerminateInstanceInAutoScalingGroupRequest(input *Terminat
 		}
 	}
 
+	if input == nil {
+		input = &TerminateInstanceInAutoScalingGroupInput{}
+	}
+
 	req = c.newRequest(opTerminateInstanceInAutoScalingGroup, input, output)
 	output = &TerminateInstanceInAutoScalingGroupOutput{}
 	req.Data = output
@@ -1479,6 +1655,10 @@ func (c *AutoScaling) UpdateAutoScalingGroupRequest(input *UpdateAutoScalingGrou
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateAutoScalingGroupInput{}
 	}
 
 	req = c.newRequest(opUpdateAutoScalingGroup, input, output)

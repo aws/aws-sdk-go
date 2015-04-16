@@ -68,12 +68,17 @@ func (c *InputService1ProtocolTest) newRequest(op *aws.Operation, params, data i
 
 // InputService1TestCaseOperation1Request generates a request for the InputService1TestCaseOperation1 operation.
 func (c *InputService1ProtocolTest) InputService1TestCaseOperation1Request(input *InputService1TestShapeInputShape) (req *aws.Request, output *InputService1TestShapeInputService1TestCaseOperation1Output) {
+
 	if opInputService1TestCaseOperation1 == nil {
 		opInputService1TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 			HTTPPath:   "/2014-01-01/hostedzone",
 		}
+	}
+
+	if input == nil {
+		input = &InputService1TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService1TestCaseOperation1, input, output)
@@ -93,12 +98,17 @@ var opInputService1TestCaseOperation1 *aws.Operation
 
 // InputService1TestCaseOperation2Request generates a request for the InputService1TestCaseOperation2 operation.
 func (c *InputService1ProtocolTest) InputService1TestCaseOperation2Request(input *InputService1TestShapeInputShape) (req *aws.Request, output *InputService1TestShapeInputService1TestCaseOperation2Output) {
+
 	if opInputService1TestCaseOperation2 == nil {
 		opInputService1TestCaseOperation2 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "PUT",
 			HTTPPath:   "/2014-01-01/hostedzone",
 		}
+	}
+
+	if input == nil {
+		input = &InputService1TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService1TestCaseOperation2, input, output)
@@ -182,12 +192,17 @@ func (c *InputService2ProtocolTest) newRequest(op *aws.Operation, params, data i
 
 // InputService2TestCaseOperation1Request generates a request for the InputService2TestCaseOperation1 operation.
 func (c *InputService2ProtocolTest) InputService2TestCaseOperation1Request(input *InputService2TestShapeInputShape) (req *aws.Request, output *InputService2TestShapeInputService2TestCaseOperation1Output) {
+
 	if opInputService2TestCaseOperation1 == nil {
 		opInputService2TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 			HTTPPath:   "/2014-01-01/hostedzone",
 		}
+	}
+
+	if input == nil {
+		input = &InputService2TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService2TestCaseOperation1, input, output)
@@ -267,12 +282,17 @@ func (c *InputService3ProtocolTest) newRequest(op *aws.Operation, params, data i
 
 // InputService3TestCaseOperation1Request generates a request for the InputService3TestCaseOperation1 operation.
 func (c *InputService3ProtocolTest) InputService3TestCaseOperation1Request(input *InputService3TestShapeInputShape) (req *aws.Request, output *InputService3TestShapeInputService3TestCaseOperation1Output) {
+
 	if opInputService3TestCaseOperation1 == nil {
 		opInputService3TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 			HTTPPath:   "/2014-01-01/hostedzone",
 		}
+	}
+
+	if input == nil {
+		input = &InputService3TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService3TestCaseOperation1, input, output)
@@ -360,12 +380,17 @@ func (c *InputService4ProtocolTest) newRequest(op *aws.Operation, params, data i
 
 // InputService4TestCaseOperation1Request generates a request for the InputService4TestCaseOperation1 operation.
 func (c *InputService4ProtocolTest) InputService4TestCaseOperation1Request(input *InputService4TestShapeInputShape) (req *aws.Request, output *InputService4TestShapeInputService4TestCaseOperation1Output) {
+
 	if opInputService4TestCaseOperation1 == nil {
 		opInputService4TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 			HTTPPath:   "/2014-01-01/hostedzone",
 		}
+	}
+
+	if input == nil {
+		input = &InputService4TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService4TestCaseOperation1, input, output)
@@ -453,12 +478,17 @@ func (c *InputService5ProtocolTest) newRequest(op *aws.Operation, params, data i
 
 // InputService5TestCaseOperation1Request generates a request for the InputService5TestCaseOperation1 operation.
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation1Request(input *InputService5TestShapeInputShape) (req *aws.Request, output *InputService5TestShapeInputService5TestCaseOperation1Output) {
+
 	if opInputService5TestCaseOperation1 == nil {
 		opInputService5TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 			HTTPPath:   "/2014-01-01/hostedzone",
 		}
+	}
+
+	if input == nil {
+		input = &InputService5TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService5TestCaseOperation1, input, output)
@@ -532,12 +562,17 @@ func (c *InputService6ProtocolTest) newRequest(op *aws.Operation, params, data i
 
 // InputService6TestCaseOperation1Request generates a request for the InputService6TestCaseOperation1 operation.
 func (c *InputService6ProtocolTest) InputService6TestCaseOperation1Request(input *InputService6TestShapeInputShape) (req *aws.Request, output *InputService6TestShapeInputService6TestCaseOperation1Output) {
+
 	if opInputService6TestCaseOperation1 == nil {
 		opInputService6TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 			HTTPPath:   "/2014-01-01/hostedzone",
 		}
+	}
+
+	if input == nil {
+		input = &InputService6TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService6TestCaseOperation1, input, output)
@@ -611,12 +646,17 @@ func (c *InputService7ProtocolTest) newRequest(op *aws.Operation, params, data i
 
 // InputService7TestCaseOperation1Request generates a request for the InputService7TestCaseOperation1 operation.
 func (c *InputService7ProtocolTest) InputService7TestCaseOperation1Request(input *InputService7TestShapeInputShape) (req *aws.Request, output *InputService7TestShapeInputService7TestCaseOperation1Output) {
+
 	if opInputService7TestCaseOperation1 == nil {
 		opInputService7TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 			HTTPPath:   "/2014-01-01/hostedzone",
 		}
+	}
+
+	if input == nil {
+		input = &InputService7TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService7TestCaseOperation1, input, output)
@@ -690,12 +730,17 @@ func (c *InputService8ProtocolTest) newRequest(op *aws.Operation, params, data i
 
 // InputService8TestCaseOperation1Request generates a request for the InputService8TestCaseOperation1 operation.
 func (c *InputService8ProtocolTest) InputService8TestCaseOperation1Request(input *InputService8TestShapeInputShape) (req *aws.Request, output *InputService8TestShapeInputService8TestCaseOperation1Output) {
+
 	if opInputService8TestCaseOperation1 == nil {
 		opInputService8TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 			HTTPPath:   "/2014-01-01/hostedzone",
 		}
+	}
+
+	if input == nil {
+		input = &InputService8TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService8TestCaseOperation1, input, output)
@@ -769,12 +814,17 @@ func (c *InputService9ProtocolTest) newRequest(op *aws.Operation, params, data i
 
 // InputService9TestCaseOperation1Request generates a request for the InputService9TestCaseOperation1 operation.
 func (c *InputService9ProtocolTest) InputService9TestCaseOperation1Request(input *InputService9TestShapeInputShape) (req *aws.Request, output *InputService9TestShapeInputService9TestCaseOperation1Output) {
+
 	if opInputService9TestCaseOperation1 == nil {
 		opInputService9TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 			HTTPPath:   "/2014-01-01/hostedzone",
 		}
+	}
+
+	if input == nil {
+		input = &InputService9TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService9TestCaseOperation1, input, output)
@@ -858,12 +908,17 @@ func (c *InputService10ProtocolTest) newRequest(op *aws.Operation, params, data 
 
 // InputService10TestCaseOperation1Request generates a request for the InputService10TestCaseOperation1 operation.
 func (c *InputService10ProtocolTest) InputService10TestCaseOperation1Request(input *InputService10TestShapeInputShape) (req *aws.Request, output *InputService10TestShapeInputService10TestCaseOperation1Output) {
+
 	if opInputService10TestCaseOperation1 == nil {
 		opInputService10TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 			HTTPPath:   "/2014-01-01/hostedzone",
 		}
+	}
+
+	if input == nil {
+		input = &InputService10TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService10TestCaseOperation1, input, output)
@@ -949,12 +1004,17 @@ func (c *InputService11ProtocolTest) newRequest(op *aws.Operation, params, data 
 
 // InputService11TestCaseOperation1Request generates a request for the InputService11TestCaseOperation1 operation.
 func (c *InputService11ProtocolTest) InputService11TestCaseOperation1Request(input *InputService11TestShapeInputShape) (req *aws.Request, output *InputService11TestShapeInputService11TestCaseOperation1Output) {
+
 	if opInputService11TestCaseOperation1 == nil {
 		opInputService11TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &InputService11TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService11TestCaseOperation1, input, output)
@@ -1028,12 +1088,17 @@ func (c *InputService12ProtocolTest) newRequest(op *aws.Operation, params, data 
 
 // InputService12TestCaseOperation1Request generates a request for the InputService12TestCaseOperation1 operation.
 func (c *InputService12ProtocolTest) InputService12TestCaseOperation1Request(input *InputService12TestShapeInputShape) (req *aws.Request, output *InputService12TestShapeInputService12TestCaseOperation1Output) {
+
 	if opInputService12TestCaseOperation1 == nil {
 		opInputService12TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &InputService12TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService12TestCaseOperation1, input, output)
@@ -1107,12 +1172,17 @@ func (c *InputService13ProtocolTest) newRequest(op *aws.Operation, params, data 
 
 // InputService13TestCaseOperation1Request generates a request for the InputService13TestCaseOperation1 operation.
 func (c *InputService13ProtocolTest) InputService13TestCaseOperation1Request(input *InputService13TestShapeInputShape) (req *aws.Request, output *InputService13TestShapeInputService13TestCaseOperation1Output) {
+
 	if opInputService13TestCaseOperation1 == nil {
 		opInputService13TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &InputService13TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService13TestCaseOperation1, input, output)
@@ -1132,12 +1202,17 @@ var opInputService13TestCaseOperation1 *aws.Operation
 
 // InputService13TestCaseOperation2Request generates a request for the InputService13TestCaseOperation2 operation.
 func (c *InputService13ProtocolTest) InputService13TestCaseOperation2Request(input *InputService13TestShapeInputShape) (req *aws.Request, output *InputService13TestShapeInputService13TestCaseOperation2Output) {
+
 	if opInputService13TestCaseOperation2 == nil {
 		opInputService13TestCaseOperation2 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &InputService13TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService13TestCaseOperation2, input, output)
@@ -1219,12 +1294,17 @@ func (c *InputService14ProtocolTest) newRequest(op *aws.Operation, params, data 
 
 // InputService14TestCaseOperation1Request generates a request for the InputService14TestCaseOperation1 operation.
 func (c *InputService14ProtocolTest) InputService14TestCaseOperation1Request(input *InputService14TestShapeInputShape) (req *aws.Request, output *InputService14TestShapeInputService14TestCaseOperation1Output) {
+
 	if opInputService14TestCaseOperation1 == nil {
 		opInputService14TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &InputService14TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService14TestCaseOperation1, input, output)
@@ -1244,12 +1324,17 @@ var opInputService14TestCaseOperation1 *aws.Operation
 
 // InputService14TestCaseOperation2Request generates a request for the InputService14TestCaseOperation2 operation.
 func (c *InputService14ProtocolTest) InputService14TestCaseOperation2Request(input *InputService14TestShapeInputShape) (req *aws.Request, output *InputService14TestShapeInputService14TestCaseOperation2Output) {
+
 	if opInputService14TestCaseOperation2 == nil {
 		opInputService14TestCaseOperation2 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &InputService14TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService14TestCaseOperation2, input, output)
@@ -1341,12 +1426,17 @@ func (c *InputService15ProtocolTest) newRequest(op *aws.Operation, params, data 
 
 // InputService15TestCaseOperation1Request generates a request for the InputService15TestCaseOperation1 operation.
 func (c *InputService15ProtocolTest) InputService15TestCaseOperation1Request(input *InputService15TestShapeInputShape) (req *aws.Request, output *InputService15TestShapeInputService15TestCaseOperation1Output) {
+
 	if opInputService15TestCaseOperation1 == nil {
 		opInputService15TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &InputService15TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService15TestCaseOperation1, input, output)
@@ -1442,12 +1532,17 @@ func (c *InputService16ProtocolTest) newRequest(op *aws.Operation, params, data 
 
 // InputService16TestCaseOperation1Request generates a request for the InputService16TestCaseOperation1 operation.
 func (c *InputService16ProtocolTest) InputService16TestCaseOperation1Request(input *InputService16TestShapeInputShape) (req *aws.Request, output *InputService16TestShapeInputService16TestCaseOperation1Output) {
+
 	if opInputService16TestCaseOperation1 == nil {
 		opInputService16TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}/{Key+}",
 		}
+	}
+
+	if input == nil {
+		input = &InputService16TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService16TestCaseOperation1, input, output)
@@ -1523,12 +1618,17 @@ func (c *InputService17ProtocolTest) newRequest(op *aws.Operation, params, data 
 
 // InputService17TestCaseOperation1Request generates a request for the InputService17TestCaseOperation1 operation.
 func (c *InputService17ProtocolTest) InputService17TestCaseOperation1Request(input *InputService17TestShapeInputShape) (req *aws.Request, output *InputService17TestShapeInputService17TestCaseOperation1Output) {
+
 	if opInputService17TestCaseOperation1 == nil {
 		opInputService17TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 			HTTPPath:   "/path",
 		}
+	}
+
+	if input == nil {
+		input = &InputService17TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService17TestCaseOperation1, input, output)
@@ -1548,12 +1648,17 @@ var opInputService17TestCaseOperation1 *aws.Operation
 
 // InputService17TestCaseOperation2Request generates a request for the InputService17TestCaseOperation2 operation.
 func (c *InputService17ProtocolTest) InputService17TestCaseOperation2Request(input *InputService17TestShapeInputShape) (req *aws.Request, output *InputService17TestShapeInputService17TestCaseOperation2Output) {
+
 	if opInputService17TestCaseOperation2 == nil {
 		opInputService17TestCaseOperation2 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 			HTTPPath:   "/path?abc=mno",
 		}
+	}
+
+	if input == nil {
+		input = &InputService17TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService17TestCaseOperation2, input, output)
@@ -1635,12 +1740,17 @@ func (c *InputService18ProtocolTest) newRequest(op *aws.Operation, params, data 
 
 // InputService18TestCaseOperation1Request generates a request for the InputService18TestCaseOperation1 operation.
 func (c *InputService18ProtocolTest) InputService18TestCaseOperation1Request(input *InputService18TestShapeInputShape) (req *aws.Request, output *InputService18TestShapeInputService18TestCaseOperation1Output) {
+
 	if opInputService18TestCaseOperation1 == nil {
 		opInputService18TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 			HTTPPath:   "/path",
 		}
+	}
+
+	if input == nil {
+		input = &InputService18TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService18TestCaseOperation1, input, output)
@@ -1659,7 +1769,8 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation1(input *Inp
 var opInputService18TestCaseOperation1 *aws.Operation
 
 // InputService18TestCaseOperation2Request generates a request for the InputService18TestCaseOperation2 operation.
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation2Request(input *InputService18TestShapeInputShape) (req *aws.Request, output *InputService18TestShapeInputService18TestCaseOperation2Output) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation2Request(input *InputService18TestShapeInputShape) (req *aws.Request, output *InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation2Output) {
+
 	if opInputService18TestCaseOperation2 == nil {
 		opInputService18TestCaseOperation2 = &aws.Operation{
 			Name:       "OperationName",
@@ -1668,13 +1779,17 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation2Request(inp
 		}
 	}
 
+	if input == nil {
+		input = &InputService18TestShapeInputShape{}
+	}
+
 	req = c.newRequest(opInputService18TestCaseOperation2, input, output)
-	output = &InputService18TestShapeInputService18TestCaseOperation2Output{}
+	output = &InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation2Output{}
 	req.Data = output
 	return
 }
 
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation2(input *InputService18TestShapeInputShape) (output *InputService18TestShapeInputService18TestCaseOperation2Output, err error) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation2(input *InputService18TestShapeInputShape) (output *InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation2Output, err error) {
 	req, out := c.InputService18TestCaseOperation2Request(input)
 	output = out
 	err = req.Send()
@@ -1685,12 +1800,17 @@ var opInputService18TestCaseOperation2 *aws.Operation
 
 // InputService18TestCaseOperation3Request generates a request for the InputService18TestCaseOperation3 operation.
 func (c *InputService18ProtocolTest) InputService18TestCaseOperation3Request(input *InputService18TestShapeInputShape) (req *aws.Request, output *InputService18TestShapeInputService18TestCaseOperation3Output) {
+
 	if opInputService18TestCaseOperation3 == nil {
 		opInputService18TestCaseOperation3 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 			HTTPPath:   "/path",
 		}
+	}
+
+	if input == nil {
+		input = &InputService18TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService18TestCaseOperation3, input, output)
@@ -1710,12 +1830,17 @@ var opInputService18TestCaseOperation3 *aws.Operation
 
 // InputService18TestCaseOperation4Request generates a request for the InputService18TestCaseOperation4 operation.
 func (c *InputService18ProtocolTest) InputService18TestCaseOperation4Request(input *InputService18TestShapeInputShape) (req *aws.Request, output *InputService18TestShapeInputService18TestCaseOperation4Output) {
+
 	if opInputService18TestCaseOperation4 == nil {
 		opInputService18TestCaseOperation4 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 			HTTPPath:   "/path",
 		}
+	}
+
+	if input == nil {
+		input = &InputService18TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService18TestCaseOperation4, input, output)
@@ -1735,12 +1860,17 @@ var opInputService18TestCaseOperation4 *aws.Operation
 
 // InputService18TestCaseOperation5Request generates a request for the InputService18TestCaseOperation5 operation.
 func (c *InputService18ProtocolTest) InputService18TestCaseOperation5Request(input *InputService18TestShapeInputShape) (req *aws.Request, output *InputService18TestShapeInputService18TestCaseOperation5Output) {
+
 	if opInputService18TestCaseOperation5 == nil {
 		opInputService18TestCaseOperation5 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 			HTTPPath:   "/path",
 		}
+	}
+
+	if input == nil {
+		input = &InputService18TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService18TestCaseOperation5, input, output)
@@ -1759,7 +1889,8 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation5(input *Inp
 var opInputService18TestCaseOperation5 *aws.Operation
 
 // InputService18TestCaseOperation6Request generates a request for the InputService18TestCaseOperation6 operation.
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation6Request(input *InputService18TestShapeInputShape) (req *aws.Request, output *InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation6Output) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation6Request(input *InputService18TestShapeInputShape) (req *aws.Request, output *InputService18TestShapeInputService18TestCaseOperation6Output) {
+
 	if opInputService18TestCaseOperation6 == nil {
 		opInputService18TestCaseOperation6 = &aws.Operation{
 			Name:       "OperationName",
@@ -1768,13 +1899,17 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation6Request(inp
 		}
 	}
 
+	if input == nil {
+		input = &InputService18TestShapeInputShape{}
+	}
+
 	req = c.newRequest(opInputService18TestCaseOperation6, input, output)
-	output = &InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation6Output{}
+	output = &InputService18TestShapeInputService18TestCaseOperation6Output{}
 	req.Data = output
 	return
 }
 
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation6(input *InputService18TestShapeInputShape) (output *InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation6Output, err error) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation6(input *InputService18TestShapeInputShape) (output *InputService18TestShapeInputService18TestCaseOperation6Output, err error) {
 	req, out := c.InputService18TestCaseOperation6Request(input)
 	output = out
 	err = req.Send()
@@ -1788,14 +1923,6 @@ type InputService18TestShapeInputService18TestCaseOperation1Output struct {
 }
 
 type metadataInputService18TestShapeInputService18TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InputService18TestShapeInputService18TestCaseOperation2Output struct {
-	metadataInputService18TestShapeInputService18TestCaseOperation2Output `json:"-", xml:"-"`
-}
-
-type metadataInputService18TestShapeInputService18TestCaseOperation2Output struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1823,38 +1950,46 @@ type metadataInputService18TestShapeInputService18TestCaseOperation5Output struc
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation6Output struct {
-	metadataInputService18TestShapeInputService18TestShapeInputService18TestCaseOperation6Output `json:"-", xml:"-"`
+type InputService18TestShapeInputService18TestCaseOperation6Output struct {
+	metadataInputService18TestShapeInputService18TestCaseOperation6Output `json:"-", xml:"-"`
 }
 
-type metadataInputService18TestShapeInputService18TestShapeInputService18TestCaseOperation6Output struct {
+type metadataInputService18TestShapeInputService18TestCaseOperation6Output struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation2Output struct {
+	metadataInputService18TestShapeInputService18TestShapeInputService18TestCaseOperation2Output `json:"-", xml:"-"`
+}
+
+type metadataInputService18TestShapeInputService18TestShapeInputService18TestCaseOperation2Output struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type InputService18TestShapeInputService18TestShapeRecursiveStructType struct {
+	NoRecurse *string `type:"string"`
+
+	RecursiveList []*InputService18TestShapeInputService18TestShapeRecursiveStructType `type:"list"`
+
+	RecursiveMap *map[string]*InputService18TestShapeInputService18TestShapeRecursiveStructType `type:"map"`
+
+	RecursiveStruct *InputService18TestShapeInputService18TestShapeRecursiveStructType `type:"structure"`
+
+	metadataInputService18TestShapeInputService18TestShapeRecursiveStructType `json:"-", xml:"-"`
+}
+
+type metadataInputService18TestShapeInputService18TestShapeRecursiveStructType struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 type InputService18TestShapeInputShape struct {
-	RecursiveStruct *InputService18TestShapeRecursiveStructType `type:"structure"`
+	RecursiveStruct *InputService18TestShapeInputService18TestShapeRecursiveStructType `type:"structure"`
 
 	metadataInputService18TestShapeInputShape `json:"-", xml:"-"`
 }
 
 type metadataInputService18TestShapeInputShape struct {
 	SDKShapeTraits bool `locationName:"OperationRequest" type:"structure" xmlURI:"https://foo/"`
-}
-
-type InputService18TestShapeRecursiveStructType struct {
-	NoRecurse *string `type:"string"`
-
-	RecursiveList []*InputService18TestShapeRecursiveStructType `type:"list"`
-
-	RecursiveMap *map[string]*InputService18TestShapeRecursiveStructType `type:"map"`
-
-	RecursiveStruct *InputService18TestShapeRecursiveStructType `type:"structure"`
-
-	metadataInputService18TestShapeRecursiveStructType `json:"-", xml:"-"`
-}
-
-type metadataInputService18TestShapeRecursiveStructType struct {
-	SDKShapeTraits bool `type:"structure"`
 }
 
 // InputService19ProtocolTest is a client for InputService19ProtocolTest.
@@ -1895,12 +2030,17 @@ func (c *InputService19ProtocolTest) newRequest(op *aws.Operation, params, data 
 
 // InputService19TestCaseOperation1Request generates a request for the InputService19TestCaseOperation1 operation.
 func (c *InputService19ProtocolTest) InputService19TestCaseOperation1Request(input *InputService19TestShapeInputShape) (req *aws.Request, output *InputService19TestShapeInputService19TestCaseOperation1Output) {
+
 	if opInputService19TestCaseOperation1 == nil {
 		opInputService19TestCaseOperation1 = &aws.Operation{
 			Name:       "OperationName",
 			HTTPMethod: "POST",
 			HTTPPath:   "/path",
 		}
+	}
+
+	if input == nil {
+		input = &InputService19TestShapeInputShape{}
 	}
 
 	req = c.newRequest(opInputService19TestCaseOperation1, input, output)
@@ -2507,7 +2647,7 @@ func TestInputService18ProtocolTestRecursiveShapesCase1(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := &InputService18TestShapeInputShape{
-		RecursiveStruct: &InputService18TestShapeRecursiveStructType{
+		RecursiveStruct: &InputService18TestShapeInputService18TestShapeRecursiveStructType{
 			NoRecurse: aws.String("foo"),
 		},
 	}
@@ -2535,8 +2675,8 @@ func TestInputService18ProtocolTestRecursiveShapesCase2(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := &InputService18TestShapeInputShape{
-		RecursiveStruct: &InputService18TestShapeRecursiveStructType{
-			RecursiveStruct: &InputService18TestShapeRecursiveStructType{
+		RecursiveStruct: &InputService18TestShapeInputService18TestShapeRecursiveStructType{
+			RecursiveStruct: &InputService18TestShapeInputService18TestShapeRecursiveStructType{
 				NoRecurse: aws.String("foo"),
 			},
 		},
@@ -2565,10 +2705,10 @@ func TestInputService18ProtocolTestRecursiveShapesCase3(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := &InputService18TestShapeInputShape{
-		RecursiveStruct: &InputService18TestShapeRecursiveStructType{
-			RecursiveStruct: &InputService18TestShapeRecursiveStructType{
-				RecursiveStruct: &InputService18TestShapeRecursiveStructType{
-					RecursiveStruct: &InputService18TestShapeRecursiveStructType{
+		RecursiveStruct: &InputService18TestShapeInputService18TestShapeRecursiveStructType{
+			RecursiveStruct: &InputService18TestShapeInputService18TestShapeRecursiveStructType{
+				RecursiveStruct: &InputService18TestShapeInputService18TestShapeRecursiveStructType{
+					RecursiveStruct: &InputService18TestShapeInputService18TestShapeRecursiveStructType{
 						NoRecurse: aws.String("foo"),
 					},
 				},
@@ -2599,12 +2739,12 @@ func TestInputService18ProtocolTestRecursiveShapesCase4(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := &InputService18TestShapeInputShape{
-		RecursiveStruct: &InputService18TestShapeRecursiveStructType{
-			RecursiveList: []*InputService18TestShapeRecursiveStructType{
-				&InputService18TestShapeRecursiveStructType{
+		RecursiveStruct: &InputService18TestShapeInputService18TestShapeRecursiveStructType{
+			RecursiveList: []*InputService18TestShapeInputService18TestShapeRecursiveStructType{
+				&InputService18TestShapeInputService18TestShapeRecursiveStructType{
 					NoRecurse: aws.String("foo"),
 				},
-				&InputService18TestShapeRecursiveStructType{
+				&InputService18TestShapeInputService18TestShapeRecursiveStructType{
 					NoRecurse: aws.String("bar"),
 				},
 			},
@@ -2634,13 +2774,13 @@ func TestInputService18ProtocolTestRecursiveShapesCase5(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := &InputService18TestShapeInputShape{
-		RecursiveStruct: &InputService18TestShapeRecursiveStructType{
-			RecursiveList: []*InputService18TestShapeRecursiveStructType{
-				&InputService18TestShapeRecursiveStructType{
+		RecursiveStruct: &InputService18TestShapeInputService18TestShapeRecursiveStructType{
+			RecursiveList: []*InputService18TestShapeInputService18TestShapeRecursiveStructType{
+				&InputService18TestShapeInputService18TestShapeRecursiveStructType{
 					NoRecurse: aws.String("foo"),
 				},
-				&InputService18TestShapeRecursiveStructType{
-					RecursiveStruct: &InputService18TestShapeRecursiveStructType{
+				&InputService18TestShapeInputService18TestShapeRecursiveStructType{
+					RecursiveStruct: &InputService18TestShapeInputService18TestShapeRecursiveStructType{
 						NoRecurse: aws.String("bar"),
 					},
 				},
@@ -2671,12 +2811,12 @@ func TestInputService18ProtocolTestRecursiveShapesCase6(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := &InputService18TestShapeInputShape{
-		RecursiveStruct: &InputService18TestShapeRecursiveStructType{
-			RecursiveMap: &map[string]*InputService18TestShapeRecursiveStructType{
-				"bar": &InputService18TestShapeRecursiveStructType{
+		RecursiveStruct: &InputService18TestShapeInputService18TestShapeRecursiveStructType{
+			RecursiveMap: &map[string]*InputService18TestShapeInputService18TestShapeRecursiveStructType{
+				"bar": &InputService18TestShapeInputService18TestShapeRecursiveStructType{
 					NoRecurse: aws.String("bar"),
 				},
-				"foo": &InputService18TestShapeRecursiveStructType{
+				"foo": &InputService18TestShapeInputService18TestShapeRecursiveStructType{
 					NoRecurse: aws.String("foo"),
 				},
 			},

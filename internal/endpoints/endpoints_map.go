@@ -22,6 +22,10 @@ var endpointsMap = endpointStruct{
 			Endpoint:      "cloudfront.amazonaws.com",
 			SigningRegion: "us-east-1",
 		},
+		"*/cloudsearchdomain": endpointEntry{
+			Endpoint:      "",
+			SigningRegion: "us-east-1",
+		},
 		"*/iam": endpointEntry{
 			Endpoint:      "iam.amazonaws.com",
 			SigningRegion: "us-east-1",

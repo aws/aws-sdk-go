@@ -24,6 +24,10 @@ func (c *CloudWatchLogs) CreateLogGroupRequest(input *CreateLogGroupInput) (req 
 		}
 	}
 
+	if input == nil {
+		input = &CreateLogGroupInput{}
+	}
+
 	req = c.newRequest(opCreateLogGroup, input, output)
 	output = &CreateLogGroupOutput{}
 	req.Data = output
@@ -57,6 +61,10 @@ func (c *CloudWatchLogs) CreateLogStreamRequest(input *CreateLogStreamInput) (re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateLogStreamInput{}
 	}
 
 	req = c.newRequest(opCreateLogStream, input, output)
@@ -94,6 +102,10 @@ func (c *CloudWatchLogs) DeleteLogGroupRequest(input *DeleteLogGroupInput) (req 
 		}
 	}
 
+	if input == nil {
+		input = &DeleteLogGroupInput{}
+	}
+
 	req = c.newRequest(opDeleteLogGroup, input, output)
 	output = &DeleteLogGroupOutput{}
 	req.Data = output
@@ -122,6 +134,10 @@ func (c *CloudWatchLogs) DeleteLogStreamRequest(input *DeleteLogStreamInput) (re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteLogStreamInput{}
 	}
 
 	req = c.newRequest(opDeleteLogStream, input, output)
@@ -154,6 +170,10 @@ func (c *CloudWatchLogs) DeleteMetricFilterRequest(input *DeleteMetricFilterInpu
 		}
 	}
 
+	if input == nil {
+		input = &DeleteMetricFilterInput{}
+	}
+
 	req = c.newRequest(opDeleteMetricFilter, input, output)
 	output = &DeleteMetricFilterOutput{}
 	req.Data = output
@@ -181,6 +201,10 @@ func (c *CloudWatchLogs) DeleteRetentionPolicyRequest(input *DeleteRetentionPoli
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteRetentionPolicyInput{}
 	}
 
 	req = c.newRequest(opDeleteRetentionPolicy, input, output)
@@ -211,6 +235,10 @@ func (c *CloudWatchLogs) DescribeLogGroupsRequest(input *DescribeLogGroupsInput)
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeLogGroupsInput{}
 	}
 
 	req = c.newRequest(opDescribeLogGroups, input, output)
@@ -247,6 +275,10 @@ func (c *CloudWatchLogs) DescribeLogStreamsRequest(input *DescribeLogStreamsInpu
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeLogStreamsInput{}
 	}
 
 	req = c.newRequest(opDescribeLogStreams, input, output)
@@ -286,6 +318,10 @@ func (c *CloudWatchLogs) DescribeMetricFiltersRequest(input *DescribeMetricFilte
 		}
 	}
 
+	if input == nil {
+		input = &DescribeMetricFiltersInput{}
+	}
+
 	req = c.newRequest(opDescribeMetricFilters, input, output)
 	output = &DescribeMetricFiltersOutput{}
 	req.Data = output
@@ -319,6 +355,10 @@ func (c *CloudWatchLogs) GetLogEventsRequest(input *GetLogEventsInput) (req *aws
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetLogEventsInput{}
 	}
 
 	req = c.newRequest(opGetLogEvents, input, output)
@@ -357,6 +397,10 @@ func (c *CloudWatchLogs) PutLogEventsRequest(input *PutLogEventsInput) (req *aws
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PutLogEventsInput{}
 	}
 
 	req = c.newRequest(opPutLogEvents, input, output)
@@ -400,6 +444,10 @@ func (c *CloudWatchLogs) PutMetricFilterRequest(input *PutMetricFilterInput) (re
 		}
 	}
 
+	if input == nil {
+		input = &PutMetricFilterInput{}
+	}
+
 	req = c.newRequest(opPutMetricFilter, input, output)
 	output = &PutMetricFilterOutput{}
 	req.Data = output
@@ -431,6 +479,10 @@ func (c *CloudWatchLogs) PutRetentionPolicyRequest(input *PutRetentionPolicyInpu
 		}
 	}
 
+	if input == nil {
+		input = &PutRetentionPolicyInput{}
+	}
+
 	req = c.newRequest(opPutRetentionPolicy, input, output)
 	output = &PutRetentionPolicyOutput{}
 	req.Data = output
@@ -460,6 +512,10 @@ func (c *CloudWatchLogs) TestMetricFilterRequest(input *TestMetricFilterInput) (
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &TestMetricFilterInput{}
 	}
 
 	req = c.newRequest(opTestMetricFilter, input, output)

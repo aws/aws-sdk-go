@@ -25,6 +25,10 @@ func (c *CloudWatch) DeleteAlarmsRequest(input *DeleteAlarmsInput) (req *aws.Req
 		}
 	}
 
+	if input == nil {
+		input = &DeleteAlarmsInput{}
+	}
+
 	req = c.newRequest(opDeleteAlarms, input, output)
 	output = &DeleteAlarmsOutput{}
 	req.Data = output
@@ -52,6 +56,10 @@ func (c *CloudWatch) DescribeAlarmHistoryRequest(input *DescribeAlarmHistoryInpu
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeAlarmHistoryInput{}
 	}
 
 	req = c.newRequest(opDescribeAlarmHistory, input, output)
@@ -85,6 +93,10 @@ func (c *CloudWatch) DescribeAlarmsRequest(input *DescribeAlarmsInput) (req *aws
 		}
 	}
 
+	if input == nil {
+		input = &DescribeAlarmsInput{}
+	}
+
 	req = c.newRequest(opDescribeAlarms, input, output)
 	output = &DescribeAlarmsOutput{}
 	req.Data = output
@@ -114,6 +126,10 @@ func (c *CloudWatch) DescribeAlarmsForMetricRequest(input *DescribeAlarmsForMetr
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeAlarmsForMetricInput{}
 	}
 
 	req = c.newRequest(opDescribeAlarmsForMetric, input, output)
@@ -146,6 +162,10 @@ func (c *CloudWatch) DisableAlarmActionsRequest(input *DisableAlarmActionsInput)
 		}
 	}
 
+	if input == nil {
+		input = &DisableAlarmActionsInput{}
+	}
+
 	req = c.newRequest(opDisableAlarmActions, input, output)
 	output = &DisableAlarmActionsOutput{}
 	req.Data = output
@@ -176,6 +196,10 @@ func (c *CloudWatch) EnableAlarmActionsRequest(input *EnableAlarmActionsInput) (
 		}
 	}
 
+	if input == nil {
+		input = &EnableAlarmActionsInput{}
+	}
+
 	req = c.newRequest(opEnableAlarmActions, input, output)
 	output = &EnableAlarmActionsOutput{}
 	req.Data = output
@@ -203,6 +227,10 @@ func (c *CloudWatch) GetMetricStatisticsRequest(input *GetMetricStatisticsInput)
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetMetricStatisticsInput{}
 	}
 
 	req = c.newRequest(opGetMetricStatistics, input, output)
@@ -259,6 +287,10 @@ func (c *CloudWatch) ListMetricsRequest(input *ListMetricsInput) (req *aws.Reque
 		}
 	}
 
+	if input == nil {
+		input = &ListMetricsInput{}
+	}
+
 	req = c.newRequest(opListMetrics, input, output)
 	output = &ListMetricsOutput{}
 	req.Data = output
@@ -288,6 +320,10 @@ func (c *CloudWatch) PutMetricAlarmRequest(input *PutMetricAlarmInput) (req *aws
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PutMetricAlarmInput{}
 	}
 
 	req = c.newRequest(opPutMetricAlarm, input, output)
@@ -323,6 +359,10 @@ func (c *CloudWatch) PutMetricDataRequest(input *PutMetricDataInput) (req *aws.R
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PutMetricDataInput{}
 	}
 
 	req = c.newRequest(opPutMetricData, input, output)
@@ -365,6 +405,10 @@ func (c *CloudWatch) SetAlarmStateRequest(input *SetAlarmStateInput) (req *aws.R
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SetAlarmStateInput{}
 	}
 
 	req = c.newRequest(opSetAlarmState, input, output)

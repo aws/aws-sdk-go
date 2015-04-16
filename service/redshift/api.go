@@ -25,6 +25,10 @@ func (c *Redshift) AuthorizeClusterSecurityGroupIngressRequest(input *AuthorizeC
 		}
 	}
 
+	if input == nil {
+		input = &AuthorizeClusterSecurityGroupIngressInput{}
+	}
+
 	req = c.newRequest(opAuthorizeClusterSecurityGroupIngress, input, output)
 	output = &AuthorizeClusterSecurityGroupIngressOutput{}
 	req.Data = output
@@ -68,6 +72,10 @@ func (c *Redshift) AuthorizeSnapshotAccessRequest(input *AuthorizeSnapshotAccess
 		}
 	}
 
+	if input == nil {
+		input = &AuthorizeSnapshotAccessInput{}
+	}
+
 	req = c.newRequest(opAuthorizeSnapshotAccess, input, output)
 	output = &AuthorizeSnapshotAccessOutput{}
 	req.Data = output
@@ -99,6 +107,10 @@ func (c *Redshift) CopyClusterSnapshotRequest(input *CopyClusterSnapshotInput) (
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CopyClusterSnapshotInput{}
 	}
 
 	req = c.newRequest(opCopyClusterSnapshot, input, output)
@@ -142,6 +154,10 @@ func (c *Redshift) CreateClusterRequest(input *CreateClusterInput) (req *aws.Req
 		}
 	}
 
+	if input == nil {
+		input = &CreateClusterInput{}
+	}
+
 	req = c.newRequest(opCreateCluster, input, output)
 	output = &CreateClusterOutput{}
 	req.Data = output
@@ -175,6 +191,10 @@ func (c *Redshift) CreateClusterParameterGroupRequest(input *CreateClusterParame
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateClusterParameterGroupInput{}
 	}
 
 	req = c.newRequest(opCreateClusterParameterGroup, input, output)
@@ -216,6 +236,10 @@ func (c *Redshift) CreateClusterSecurityGroupRequest(input *CreateClusterSecurit
 		}
 	}
 
+	if input == nil {
+		input = &CreateClusterSecurityGroupInput{}
+	}
+
 	req = c.newRequest(opCreateClusterSecurityGroup, input, output)
 	output = &CreateClusterSecurityGroupOutput{}
 	req.Data = output
@@ -248,6 +272,10 @@ func (c *Redshift) CreateClusterSnapshotRequest(input *CreateClusterSnapshotInpu
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateClusterSnapshotInput{}
 	}
 
 	req = c.newRequest(opCreateClusterSnapshot, input, output)
@@ -284,6 +312,10 @@ func (c *Redshift) CreateClusterSubnetGroupRequest(input *CreateClusterSubnetGro
 		}
 	}
 
+	if input == nil {
+		input = &CreateClusterSubnetGroupInput{}
+	}
+
 	req = c.newRequest(opCreateClusterSubnetGroup, input, output)
 	output = &CreateClusterSubnetGroupOutput{}
 	req.Data = output
@@ -317,6 +349,10 @@ func (c *Redshift) CreateEventSubscriptionRequest(input *CreateEventSubscription
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateEventSubscriptionInput{}
 	}
 
 	req = c.newRequest(opCreateEventSubscription, input, output)
@@ -369,6 +405,10 @@ func (c *Redshift) CreateHSMClientCertificateRequest(input *CreateHSMClientCerti
 		}
 	}
 
+	if input == nil {
+		input = &CreateHSMClientCertificateInput{}
+	}
+
 	req = c.newRequest(opCreateHSMClientCertificate, input, output)
 	output = &CreateHSMClientCertificateOutput{}
 	req.Data = output
@@ -404,6 +444,10 @@ func (c *Redshift) CreateHSMConfigurationRequest(input *CreateHSMConfigurationIn
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateHSMConfigurationInput{}
 	}
 
 	req = c.newRequest(opCreateHSMConfiguration, input, output)
@@ -444,6 +488,10 @@ func (c *Redshift) CreateTagsRequest(input *CreateTagsInput) (req *aws.Request, 
 		}
 	}
 
+	if input == nil {
+		input = &CreateTagsInput{}
+	}
+
 	req = c.newRequest(opCreateTags, input, output)
 	output = &CreateTagsOutput{}
 	req.Data = output
@@ -477,6 +525,10 @@ func (c *Redshift) DeleteClusterRequest(input *DeleteClusterInput) (req *aws.Req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteClusterInput{}
 	}
 
 	req = c.newRequest(opDeleteCluster, input, output)
@@ -524,6 +576,10 @@ func (c *Redshift) DeleteClusterParameterGroupRequest(input *DeleteClusterParame
 		}
 	}
 
+	if input == nil {
+		input = &DeleteClusterParameterGroupInput{}
+	}
+
 	req = c.newRequest(opDeleteClusterParameterGroup, input, output)
 	output = &DeleteClusterParameterGroupOutput{}
 	req.Data = output
@@ -552,6 +608,10 @@ func (c *Redshift) DeleteClusterSecurityGroupRequest(input *DeleteClusterSecurit
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteClusterSecurityGroupInput{}
 	}
 
 	req = c.newRequest(opDeleteClusterSecurityGroup, input, output)
@@ -586,6 +646,10 @@ func (c *Redshift) DeleteClusterSnapshotRequest(input *DeleteClusterSnapshotInpu
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteClusterSnapshotInput{}
 	}
 
 	req = c.newRequest(opDeleteClusterSnapshot, input, output)
@@ -624,6 +688,10 @@ func (c *Redshift) DeleteClusterSubnetGroupRequest(input *DeleteClusterSubnetGro
 		}
 	}
 
+	if input == nil {
+		input = &DeleteClusterSubnetGroupInput{}
+	}
+
 	req = c.newRequest(opDeleteClusterSubnetGroup, input, output)
 	output = &DeleteClusterSubnetGroupOutput{}
 	req.Data = output
@@ -651,6 +719,10 @@ func (c *Redshift) DeleteEventSubscriptionRequest(input *DeleteEventSubscription
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteEventSubscriptionInput{}
 	}
 
 	req = c.newRequest(opDeleteEventSubscription, input, output)
@@ -682,6 +754,10 @@ func (c *Redshift) DeleteHSMClientCertificateRequest(input *DeleteHSMClientCerti
 		}
 	}
 
+	if input == nil {
+		input = &DeleteHSMClientCertificateInput{}
+	}
+
 	req = c.newRequest(opDeleteHSMClientCertificate, input, output)
 	output = &DeleteHSMClientCertificateOutput{}
 	req.Data = output
@@ -709,6 +785,10 @@ func (c *Redshift) DeleteHSMConfigurationRequest(input *DeleteHSMConfigurationIn
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteHSMConfigurationInput{}
 	}
 
 	req = c.newRequest(opDeleteHSMConfiguration, input, output)
@@ -740,6 +820,10 @@ func (c *Redshift) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Request, 
 		}
 	}
 
+	if input == nil {
+		input = &DeleteTagsInput{}
+	}
+
 	req = c.newRequest(opDeleteTags, input, output)
 	output = &DeleteTagsOutput{}
 	req.Data = output
@@ -768,6 +852,10 @@ func (c *Redshift) DescribeClusterParameterGroupsRequest(input *DescribeClusterP
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeClusterParameterGroupsInput{}
 	}
 
 	req = c.newRequest(opDescribeClusterParameterGroups, input, output)
@@ -817,6 +905,10 @@ func (c *Redshift) DescribeClusterParametersRequest(input *DescribeClusterParame
 		}
 	}
 
+	if input == nil {
+		input = &DescribeClusterParametersInput{}
+	}
+
 	req = c.newRequest(opDescribeClusterParameters, input, output)
 	output = &DescribeClusterParametersOutput{}
 	req.Data = output
@@ -855,6 +947,10 @@ func (c *Redshift) DescribeClusterSecurityGroupsRequest(input *DescribeClusterSe
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeClusterSecurityGroupsInput{}
 	}
 
 	req = c.newRequest(opDescribeClusterSecurityGroups, input, output)
@@ -902,6 +998,10 @@ func (c *Redshift) DescribeClusterSnapshotsRequest(input *DescribeClusterSnapsho
 		}
 	}
 
+	if input == nil {
+		input = &DescribeClusterSnapshotsInput{}
+	}
+
 	req = c.newRequest(opDescribeClusterSnapshots, input, output)
 	output = &DescribeClusterSnapshotsOutput{}
 	req.Data = output
@@ -946,6 +1046,10 @@ func (c *Redshift) DescribeClusterSubnetGroupsRequest(input *DescribeClusterSubn
 		}
 	}
 
+	if input == nil {
+		input = &DescribeClusterSubnetGroupsInput{}
+	}
+
 	req = c.newRequest(opDescribeClusterSubnetGroups, input, output)
 	output = &DescribeClusterSubnetGroupsOutput{}
 	req.Data = output
@@ -987,6 +1091,10 @@ func (c *Redshift) DescribeClusterVersionsRequest(input *DescribeClusterVersions
 		}
 	}
 
+	if input == nil {
+		input = &DescribeClusterVersionsInput{}
+	}
+
 	req = c.newRequest(opDescribeClusterVersions, input, output)
 	output = &DescribeClusterVersionsOutput{}
 	req.Data = output
@@ -1018,6 +1126,10 @@ func (c *Redshift) DescribeClustersRequest(input *DescribeClustersInput) (req *a
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeClustersInput{}
 	}
 
 	req = c.newRequest(opDescribeClusters, input, output)
@@ -1062,6 +1174,10 @@ func (c *Redshift) DescribeDefaultClusterParametersRequest(input *DescribeDefaul
 		}
 	}
 
+	if input == nil {
+		input = &DescribeDefaultClusterParametersInput{}
+	}
+
 	req = c.newRequest(opDescribeDefaultClusterParameters, input, output)
 	output = &DescribeDefaultClusterParametersOutput{}
 	req.Data = output
@@ -1095,6 +1211,10 @@ func (c *Redshift) DescribeEventCategoriesRequest(input *DescribeEventCategories
 		}
 	}
 
+	if input == nil {
+		input = &DescribeEventCategoriesInput{}
+	}
+
 	req = c.newRequest(opDescribeEventCategories, input, output)
 	output = &DescribeEventCategoriesOutput{}
 	req.Data = output
@@ -1124,6 +1244,10 @@ func (c *Redshift) DescribeEventSubscriptionsRequest(input *DescribeEventSubscri
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeEventSubscriptionsInput{}
 	}
 
 	req = c.newRequest(opDescribeEventSubscriptions, input, output)
@@ -1157,6 +1281,10 @@ func (c *Redshift) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.R
 		}
 	}
 
+	if input == nil {
+		input = &DescribeEventsInput{}
+	}
+
 	req = c.newRequest(opDescribeEvents, input, output)
 	output = &DescribeEventsOutput{}
 	req.Data = output
@@ -1187,6 +1315,10 @@ func (c *Redshift) DescribeHSMClientCertificatesRequest(input *DescribeHSMClient
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeHSMClientCertificatesInput{}
 	}
 
 	req = c.newRequest(opDescribeHSMClientCertificates, input, output)
@@ -1230,6 +1362,10 @@ func (c *Redshift) DescribeHSMConfigurationsRequest(input *DescribeHSMConfigurat
 		}
 	}
 
+	if input == nil {
+		input = &DescribeHSMConfigurationsInput{}
+	}
+
 	req = c.newRequest(opDescribeHSMConfigurations, input, output)
 	output = &DescribeHSMConfigurationsOutput{}
 	req.Data = output
@@ -1271,6 +1407,10 @@ func (c *Redshift) DescribeLoggingStatusRequest(input *DescribeLoggingStatusInpu
 		}
 	}
 
+	if input == nil {
+		input = &DescribeLoggingStatusInput{}
+	}
+
 	req = c.newRequest(opDescribeLoggingStatus, input, output)
 	output = &LoggingStatus{}
 	req.Data = output
@@ -1299,6 +1439,10 @@ func (c *Redshift) DescribeOrderableClusterOptionsRequest(input *DescribeOrderab
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeOrderableClusterOptionsInput{}
 	}
 
 	req = c.newRequest(opDescribeOrderableClusterOptions, input, output)
@@ -1336,6 +1480,10 @@ func (c *Redshift) DescribeReservedNodeOfferingsRequest(input *DescribeReservedN
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeReservedNodeOfferingsInput{}
 	}
 
 	req = c.newRequest(opDescribeReservedNodeOfferings, input, output)
@@ -1376,6 +1524,10 @@ func (c *Redshift) DescribeReservedNodesRequest(input *DescribeReservedNodesInpu
 		}
 	}
 
+	if input == nil {
+		input = &DescribeReservedNodesInput{}
+	}
+
 	req = c.newRequest(opDescribeReservedNodes, input, output)
 	output = &DescribeReservedNodesOutput{}
 	req.Data = output
@@ -1403,6 +1555,10 @@ func (c *Redshift) DescribeResizeRequest(input *DescribeResizeInput) (req *aws.R
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeResizeInput{}
 	}
 
 	req = c.newRequest(opDescribeResize, input, output)
@@ -1438,6 +1594,10 @@ func (c *Redshift) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Reque
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeTagsInput{}
 	}
 
 	req = c.newRequest(opDescribeTags, input, output)
@@ -1487,6 +1647,10 @@ func (c *Redshift) DisableLoggingRequest(input *DisableLoggingInput) (req *aws.R
 		}
 	}
 
+	if input == nil {
+		input = &DisableLoggingInput{}
+	}
+
 	req = c.newRequest(opDisableLogging, input, output)
 	output = &LoggingStatus{}
 	req.Data = output
@@ -1515,6 +1679,10 @@ func (c *Redshift) DisableSnapshotCopyRequest(input *DisableSnapshotCopyInput) (
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DisableSnapshotCopyInput{}
 	}
 
 	req = c.newRequest(opDisableSnapshotCopy, input, output)
@@ -1547,6 +1715,10 @@ func (c *Redshift) EnableLoggingRequest(input *EnableLoggingInput) (req *aws.Req
 		}
 	}
 
+	if input == nil {
+		input = &EnableLoggingInput{}
+	}
+
 	req = c.newRequest(opEnableLogging, input, output)
 	output = &LoggingStatus{}
 	req.Data = output
@@ -1577,6 +1749,10 @@ func (c *Redshift) EnableSnapshotCopyRequest(input *EnableSnapshotCopyInput) (re
 		}
 	}
 
+	if input == nil {
+		input = &EnableSnapshotCopyInput{}
+	}
+
 	req = c.newRequest(opEnableSnapshotCopy, input, output)
 	output = &EnableSnapshotCopyOutput{}
 	req.Data = output
@@ -1605,6 +1781,10 @@ func (c *Redshift) ModifyClusterRequest(input *ModifyClusterInput) (req *aws.Req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ModifyClusterInput{}
 	}
 
 	req = c.newRequest(opModifyCluster, input, output)
@@ -1646,6 +1826,10 @@ func (c *Redshift) ModifyClusterParameterGroupRequest(input *ModifyClusterParame
 		}
 	}
 
+	if input == nil {
+		input = &ModifyClusterParameterGroupInput{}
+	}
+
 	req = c.newRequest(opModifyClusterParameterGroup, input, output)
 	output = &ClusterParameterGroupNameMessage{}
 	req.Data = output
@@ -1679,6 +1863,10 @@ func (c *Redshift) ModifyClusterSubnetGroupRequest(input *ModifyClusterSubnetGro
 		}
 	}
 
+	if input == nil {
+		input = &ModifyClusterSubnetGroupInput{}
+	}
+
 	req = c.newRequest(opModifyClusterSubnetGroup, input, output)
 	output = &ModifyClusterSubnetGroupOutput{}
 	req.Data = output
@@ -1710,6 +1898,10 @@ func (c *Redshift) ModifyEventSubscriptionRequest(input *ModifyEventSubscription
 		}
 	}
 
+	if input == nil {
+		input = &ModifyEventSubscriptionInput{}
+	}
+
 	req = c.newRequest(opModifyEventSubscription, input, output)
 	output = &ModifyEventSubscriptionOutput{}
 	req.Data = output
@@ -1737,6 +1929,10 @@ func (c *Redshift) ModifySnapshotCopyRetentionPeriodRequest(input *ModifySnapsho
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ModifySnapshotCopyRetentionPeriodInput{}
 	}
 
 	req = c.newRequest(opModifySnapshotCopyRetentionPeriod, input, output)
@@ -1767,6 +1963,10 @@ func (c *Redshift) PurchaseReservedNodeOfferingRequest(input *PurchaseReservedNo
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PurchaseReservedNodeOfferingInput{}
 	}
 
 	req = c.newRequest(opPurchaseReservedNodeOffering, input, output)
@@ -1806,6 +2006,10 @@ func (c *Redshift) RebootClusterRequest(input *RebootClusterInput) (req *aws.Req
 		}
 	}
 
+	if input == nil {
+		input = &RebootClusterInput{}
+	}
+
 	req = c.newRequest(opRebootCluster, input, output)
 	output = &RebootClusterOutput{}
 	req.Data = output
@@ -1841,6 +2045,10 @@ func (c *Redshift) ResetClusterParameterGroupRequest(input *ResetClusterParamete
 		}
 	}
 
+	if input == nil {
+		input = &ResetClusterParameterGroupInput{}
+	}
+
 	req = c.newRequest(opResetClusterParameterGroup, input, output)
 	output = &ClusterParameterGroupNameMessage{}
 	req.Data = output
@@ -1871,6 +2079,10 @@ func (c *Redshift) RestoreFromClusterSnapshotRequest(input *RestoreFromClusterSn
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RestoreFromClusterSnapshotInput{}
 	}
 
 	req = c.newRequest(opRestoreFromClusterSnapshot, input, output)
@@ -1914,6 +2126,10 @@ func (c *Redshift) RevokeClusterSecurityGroupIngressRequest(input *RevokeCluster
 		}
 	}
 
+	if input == nil {
+		input = &RevokeClusterSecurityGroupIngressInput{}
+	}
+
 	req = c.newRequest(opRevokeClusterSecurityGroupIngress, input, output)
 	output = &RevokeClusterSecurityGroupIngressOutput{}
 	req.Data = output
@@ -1945,6 +2161,10 @@ func (c *Redshift) RevokeSnapshotAccessRequest(input *RevokeSnapshotAccessInput)
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RevokeSnapshotAccessInput{}
 	}
 
 	req = c.newRequest(opRevokeSnapshotAccess, input, output)
@@ -1980,6 +2200,10 @@ func (c *Redshift) RotateEncryptionKeyRequest(input *RotateEncryptionKeyInput) (
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RotateEncryptionKeyInput{}
 	}
 
 	req = c.newRequest(opRotateEncryptionKey, input, output)

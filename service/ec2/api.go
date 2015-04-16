@@ -25,6 +25,10 @@ func (c *EC2) AcceptVPCPeeringConnectionRequest(input *AcceptVPCPeeringConnectio
 		}
 	}
 
+	if input == nil {
+		input = &AcceptVPCPeeringConnectionInput{}
+	}
+
 	req = c.newRequest(opAcceptVPCPeeringConnection, input, output)
 	output = &AcceptVPCPeeringConnectionOutput{}
 	req.Data = output
@@ -55,6 +59,10 @@ func (c *EC2) AllocateAddressRequest(input *AllocateAddressInput) (req *aws.Requ
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &AllocateAddressInput{}
 	}
 
 	req = c.newRequest(opAllocateAddress, input, output)
@@ -88,6 +96,10 @@ func (c *EC2) AssignPrivateIPAddressesRequest(input *AssignPrivateIPAddressesInp
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &AssignPrivateIPAddressesInput{}
 	}
 
 	req = c.newRequest(opAssignPrivateIPAddresses, input, output)
@@ -127,6 +139,10 @@ func (c *EC2) AssociateAddressRequest(input *AssociateAddressInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &AssociateAddressInput{}
 	}
 
 	req = c.newRequest(opAssociateAddress, input, output)
@@ -174,6 +190,10 @@ func (c *EC2) AssociateDHCPOptionsRequest(input *AssociateDHCPOptionsInput) (req
 		}
 	}
 
+	if input == nil {
+		input = &AssociateDHCPOptionsInput{}
+	}
+
 	req = c.newRequest(opAssociateDHCPOptions, input, output)
 	output = &AssociateDHCPOptionsOutput{}
 	req.Data = output
@@ -214,6 +234,10 @@ func (c *EC2) AssociateRouteTableRequest(input *AssociateRouteTableInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &AssociateRouteTableInput{}
+	}
+
 	req = c.newRequest(opAssociateRouteTable, input, output)
 	output = &AssociateRouteTableOutput{}
 	req.Data = output
@@ -248,6 +272,10 @@ func (c *EC2) AttachClassicLinkVPCRequest(input *AttachClassicLinkVPCInput) (req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &AttachClassicLinkVPCInput{}
 	}
 
 	req = c.newRequest(opAttachClassicLinkVPC, input, output)
@@ -290,6 +318,10 @@ func (c *EC2) AttachInternetGatewayRequest(input *AttachInternetGatewayInput) (r
 		}
 	}
 
+	if input == nil {
+		input = &AttachInternetGatewayInput{}
+	}
+
 	req = c.newRequest(opAttachInternetGateway, input, output)
 	output = &AttachInternetGatewayOutput{}
 	req.Data = output
@@ -321,6 +353,10 @@ func (c *EC2) AttachNetworkInterfaceRequest(input *AttachNetworkInterfaceInput) 
 		}
 	}
 
+	if input == nil {
+		input = &AttachNetworkInterfaceInput{}
+	}
+
 	req = c.newRequest(opAttachNetworkInterface, input, output)
 	output = &AttachNetworkInterfaceOutput{}
 	req.Data = output
@@ -348,6 +384,10 @@ func (c *EC2) AttachVPNGatewayRequest(input *AttachVPNGatewayInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &AttachVPNGatewayInput{}
 	}
 
 	req = c.newRequest(opAttachVPNGateway, input, output)
@@ -379,6 +419,10 @@ func (c *EC2) AttachVolumeRequest(input *AttachVolumeInput) (req *aws.Request, o
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &AttachVolumeInput{}
 	}
 
 	req = c.newRequest(opAttachVolume, input, output)
@@ -435,6 +479,10 @@ func (c *EC2) AuthorizeSecurityGroupEgressRequest(input *AuthorizeSecurityGroupE
 		}
 	}
 
+	if input == nil {
+		input = &AuthorizeSecurityGroupEgressInput{}
+	}
+
 	req = c.newRequest(opAuthorizeSecurityGroupEgress, input, output)
 	output = &AuthorizeSecurityGroupEgressOutput{}
 	req.Data = output
@@ -484,6 +532,10 @@ func (c *EC2) AuthorizeSecurityGroupIngressRequest(input *AuthorizeSecurityGroup
 		}
 	}
 
+	if input == nil {
+		input = &AuthorizeSecurityGroupIngressInput{}
+	}
+
 	req = c.newRequest(opAuthorizeSecurityGroupIngress, input, output)
 	output = &AuthorizeSecurityGroupIngressOutput{}
 	req.Data = output
@@ -531,6 +583,10 @@ func (c *EC2) BundleInstanceRequest(input *BundleInstanceInput) (req *aws.Reques
 		}
 	}
 
+	if input == nil {
+		input = &BundleInstanceInput{}
+	}
+
 	req = c.newRequest(opBundleInstance, input, output)
 	output = &BundleInstanceOutput{}
 	req.Data = output
@@ -569,6 +625,10 @@ func (c *EC2) CancelBundleTaskRequest(input *CancelBundleTaskInput) (req *aws.Re
 		}
 	}
 
+	if input == nil {
+		input = &CancelBundleTaskInput{}
+	}
+
 	req = c.newRequest(opCancelBundleTask, input, output)
 	output = &CancelBundleTaskOutput{}
 	req.Data = output
@@ -596,6 +656,10 @@ func (c *EC2) CancelConversionTaskRequest(input *CancelConversionTaskInput) (req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CancelConversionTaskInput{}
 	}
 
 	req = c.newRequest(opCancelConversionTask, input, output)
@@ -635,6 +699,10 @@ func (c *EC2) CancelExportTaskRequest(input *CancelExportTaskInput) (req *aws.Re
 		}
 	}
 
+	if input == nil {
+		input = &CancelExportTaskInput{}
+	}
+
 	req = c.newRequest(opCancelExportTask, input, output)
 	output = &CancelExportTaskOutput{}
 	req.Data = output
@@ -665,6 +733,10 @@ func (c *EC2) CancelReservedInstancesListingRequest(input *CancelReservedInstanc
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CancelReservedInstancesListingInput{}
 	}
 
 	req = c.newRequest(opCancelReservedInstancesListing, input, output)
@@ -698,6 +770,10 @@ func (c *EC2) CancelSpotInstanceRequestsRequest(input *CancelSpotInstanceRequest
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CancelSpotInstanceRequestsInput{}
 	}
 
 	req = c.newRequest(opCancelSpotInstanceRequests, input, output)
@@ -737,6 +813,10 @@ func (c *EC2) ConfirmProductInstanceRequest(input *ConfirmProductInstanceInput) 
 		}
 	}
 
+	if input == nil {
+		input = &ConfirmProductInstanceInput{}
+	}
+
 	req = c.newRequest(opConfirmProductInstance, input, output)
 	output = &ConfirmProductInstanceOutput{}
 	req.Data = output
@@ -767,6 +847,10 @@ func (c *EC2) CopyImageRequest(input *CopyImageInput) (req *aws.Request, output 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CopyImageInput{}
 	}
 
 	req = c.newRequest(opCopyImage, input, output)
@@ -802,6 +886,10 @@ func (c *EC2) CopySnapshotRequest(input *CopySnapshotInput) (req *aws.Request, o
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CopySnapshotInput{}
 	}
 
 	req = c.newRequest(opCopySnapshot, input, output)
@@ -844,6 +932,10 @@ func (c *EC2) CreateCustomerGatewayRequest(input *CreateCustomerGatewayInput) (r
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateCustomerGatewayInput{}
 	}
 
 	req = c.newRequest(opCreateCustomerGateway, input, output)
@@ -891,6 +983,10 @@ func (c *EC2) CreateDHCPOptionsRequest(input *CreateDHCPOptionsInput) (req *aws.
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateDHCPOptionsInput{}
 	}
 
 	req = c.newRequest(opCreateDHCPOptions, input, output)
@@ -950,6 +1046,10 @@ func (c *EC2) CreateImageRequest(input *CreateImageInput) (req *aws.Request, out
 		}
 	}
 
+	if input == nil {
+		input = &CreateImageInput{}
+	}
+
 	req = c.newRequest(opCreateImage, input, output)
 	output = &CreateImageOutput{}
 	req.Data = output
@@ -988,6 +1088,10 @@ func (c *EC2) CreateInstanceExportTaskRequest(input *CreateInstanceExportTaskInp
 		}
 	}
 
+	if input == nil {
+		input = &CreateInstanceExportTaskInput{}
+	}
+
 	req = c.newRequest(opCreateInstanceExportTask, input, output)
 	output = &CreateInstanceExportTaskOutput{}
 	req.Data = output
@@ -1022,6 +1126,10 @@ func (c *EC2) CreateInternetGatewayRequest(input *CreateInternetGatewayInput) (r
 		}
 	}
 
+	if input == nil {
+		input = &CreateInternetGatewayInput{}
+	}
+
 	req = c.newRequest(opCreateInternetGateway, input, output)
 	output = &CreateInternetGatewayOutput{}
 	req.Data = output
@@ -1053,6 +1161,10 @@ func (c *EC2) CreateKeyPairRequest(input *CreateKeyPairInput) (req *aws.Request,
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateKeyPairInput{}
 	}
 
 	req = c.newRequest(opCreateKeyPair, input, output)
@@ -1095,6 +1207,10 @@ func (c *EC2) CreateNetworkACLRequest(input *CreateNetworkACLInput) (req *aws.Re
 		}
 	}
 
+	if input == nil {
+		input = &CreateNetworkACLInput{}
+	}
+
 	req = c.newRequest(opCreateNetworkACL, input, output)
 	output = &CreateNetworkACLOutput{}
 	req.Data = output
@@ -1126,6 +1242,10 @@ func (c *EC2) CreateNetworkACLEntryRequest(input *CreateNetworkACLEntryInput) (r
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateNetworkACLEntryInput{}
 	}
 
 	req = c.newRequest(opCreateNetworkACLEntry, input, output)
@@ -1173,6 +1293,10 @@ func (c *EC2) CreateNetworkInterfaceRequest(input *CreateNetworkInterfaceInput) 
 		}
 	}
 
+	if input == nil {
+		input = &CreateNetworkInterfaceInput{}
+	}
+
 	req = c.newRequest(opCreateNetworkInterface, input, output)
 	output = &CreateNetworkInterfaceOutput{}
 	req.Data = output
@@ -1204,6 +1328,10 @@ func (c *EC2) CreatePlacementGroupRequest(input *CreatePlacementGroupInput) (req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreatePlacementGroupInput{}
 	}
 
 	req = c.newRequest(opCreatePlacementGroup, input, output)
@@ -1238,6 +1366,10 @@ func (c *EC2) CreateReservedInstancesListingRequest(input *CreateReservedInstanc
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateReservedInstancesListingInput{}
 	}
 
 	req = c.newRequest(opCreateReservedInstancesListing, input, output)
@@ -1288,6 +1420,10 @@ func (c *EC2) CreateRouteRequest(input *CreateRouteInput) (req *aws.Request, out
 		}
 	}
 
+	if input == nil {
+		input = &CreateRouteInput{}
+	}
+
 	req = c.newRequest(opCreateRoute, input, output)
 	output = &CreateRouteOutput{}
 	req.Data = output
@@ -1335,6 +1471,10 @@ func (c *EC2) CreateRouteTableRequest(input *CreateRouteTableInput) (req *aws.Re
 		}
 	}
 
+	if input == nil {
+		input = &CreateRouteTableInput{}
+	}
+
 	req = c.newRequest(opCreateRouteTable, input, output)
 	output = &CreateRouteTableOutput{}
 	req.Data = output
@@ -1366,6 +1506,10 @@ func (c *EC2) CreateSecurityGroupRequest(input *CreateSecurityGroupInput) (req *
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateSecurityGroupInput{}
 	}
 
 	req = c.newRequest(opCreateSecurityGroup, input, output)
@@ -1421,6 +1565,10 @@ func (c *EC2) CreateSnapshotRequest(input *CreateSnapshotInput) (req *aws.Reques
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateSnapshotInput{}
 	}
 
 	req = c.newRequest(opCreateSnapshot, input, output)
@@ -1480,6 +1628,10 @@ func (c *EC2) CreateSpotDatafeedSubscriptionRequest(input *CreateSpotDatafeedSub
 		}
 	}
 
+	if input == nil {
+		input = &CreateSpotDatafeedSubscriptionInput{}
+	}
+
 	req = c.newRequest(opCreateSpotDatafeedSubscription, input, output)
 	output = &CreateSpotDatafeedSubscriptionOutput{}
 	req.Data = output
@@ -1510,6 +1662,10 @@ func (c *EC2) CreateSubnetRequest(input *CreateSubnetInput) (req *aws.Request, o
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateSubnetInput{}
 	}
 
 	req = c.newRequest(opCreateSubnet, input, output)
@@ -1565,6 +1721,10 @@ func (c *EC2) CreateTagsRequest(input *CreateTagsInput) (req *aws.Request, outpu
 		}
 	}
 
+	if input == nil {
+		input = &CreateTagsInput{}
+	}
+
 	req = c.newRequest(opCreateTags, input, output)
 	output = &CreateTagsOutput{}
 	req.Data = output
@@ -1597,6 +1757,10 @@ func (c *EC2) CreateVPCRequest(input *CreateVPCInput) (req *aws.Request, output 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateVPCInput{}
 	}
 
 	req = c.newRequest(opCreateVPC, input, output)
@@ -1638,6 +1802,10 @@ func (c *EC2) CreateVPCPeeringConnectionRequest(input *CreateVPCPeeringConnectio
 		}
 	}
 
+	if input == nil {
+		input = &CreateVPCPeeringConnectionInput{}
+	}
+
 	req = c.newRequest(opCreateVPCPeeringConnection, input, output)
 	output = &CreateVPCPeeringConnectionOutput{}
 	req.Data = output
@@ -1675,6 +1843,10 @@ func (c *EC2) CreateVPNConnectionRequest(input *CreateVPNConnectionInput) (req *
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateVPNConnectionInput{}
 	}
 
 	req = c.newRequest(opCreateVPNConnection, input, output)
@@ -1722,6 +1894,10 @@ func (c *EC2) CreateVPNConnectionRouteRequest(input *CreateVPNConnectionRouteInp
 		}
 	}
 
+	if input == nil {
+		input = &CreateVPNConnectionRouteInput{}
+	}
+
 	req = c.newRequest(opCreateVPNConnectionRoute, input, output)
 	output = &CreateVPNConnectionRouteOutput{}
 	req.Data = output
@@ -1758,6 +1934,10 @@ func (c *EC2) CreateVPNGatewayRequest(input *CreateVPNGatewayInput) (req *aws.Re
 		}
 	}
 
+	if input == nil {
+		input = &CreateVPNGatewayInput{}
+	}
+
 	req = c.newRequest(opCreateVPNGateway, input, output)
 	output = &CreateVPNGatewayOutput{}
 	req.Data = output
@@ -1791,6 +1971,10 @@ func (c *EC2) CreateVolumeRequest(input *CreateVolumeInput) (req *aws.Request, o
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateVolumeInput{}
 	}
 
 	req = c.newRequest(opCreateVolume, input, output)
@@ -1838,6 +2022,10 @@ func (c *EC2) DeleteCustomerGatewayRequest(input *DeleteCustomerGatewayInput) (r
 		}
 	}
 
+	if input == nil {
+		input = &DeleteCustomerGatewayInput{}
+	}
+
 	req = c.newRequest(opDeleteCustomerGateway, input, output)
 	output = &DeleteCustomerGatewayOutput{}
 	req.Data = output
@@ -1866,6 +2054,10 @@ func (c *EC2) DeleteDHCPOptionsRequest(input *DeleteDHCPOptionsInput) (req *aws.
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteDHCPOptionsInput{}
 	}
 
 	req = c.newRequest(opDeleteDHCPOptions, input, output)
@@ -1900,6 +2092,10 @@ func (c *EC2) DeleteInternetGatewayRequest(input *DeleteInternetGatewayInput) (r
 		}
 	}
 
+	if input == nil {
+		input = &DeleteInternetGatewayInput{}
+	}
+
 	req = c.newRequest(opDeleteInternetGateway, input, output)
 	output = &DeleteInternetGatewayOutput{}
 	req.Data = output
@@ -1930,6 +2126,10 @@ func (c *EC2) DeleteKeyPairRequest(input *DeleteKeyPairInput) (req *aws.Request,
 		}
 	}
 
+	if input == nil {
+		input = &DeleteKeyPairInput{}
+	}
+
 	req = c.newRequest(opDeleteKeyPair, input, output)
 	output = &DeleteKeyPairOutput{}
 	req.Data = output
@@ -1957,6 +2157,10 @@ func (c *EC2) DeleteNetworkACLRequest(input *DeleteNetworkACLInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteNetworkACLInput{}
 	}
 
 	req = c.newRequest(opDeleteNetworkACL, input, output)
@@ -1989,6 +2193,10 @@ func (c *EC2) DeleteNetworkACLEntryRequest(input *DeleteNetworkACLEntryInput) (r
 		}
 	}
 
+	if input == nil {
+		input = &DeleteNetworkACLEntryInput{}
+	}
+
 	req = c.newRequest(opDeleteNetworkACLEntry, input, output)
 	output = &DeleteNetworkACLEntryOutput{}
 	req.Data = output
@@ -2019,6 +2227,10 @@ func (c *EC2) DeleteNetworkInterfaceRequest(input *DeleteNetworkInterfaceInput) 
 		}
 	}
 
+	if input == nil {
+		input = &DeleteNetworkInterfaceInput{}
+	}
+
 	req = c.newRequest(opDeleteNetworkInterface, input, output)
 	output = &DeleteNetworkInterfaceOutput{}
 	req.Data = output
@@ -2047,6 +2259,10 @@ func (c *EC2) DeletePlacementGroupRequest(input *DeletePlacementGroupInput) (req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeletePlacementGroupInput{}
 	}
 
 	req = c.newRequest(opDeletePlacementGroup, input, output)
@@ -2081,6 +2297,10 @@ func (c *EC2) DeleteRouteRequest(input *DeleteRouteInput) (req *aws.Request, out
 		}
 	}
 
+	if input == nil {
+		input = &DeleteRouteInput{}
+	}
+
 	req = c.newRequest(opDeleteRoute, input, output)
 	output = &DeleteRouteOutput{}
 	req.Data = output
@@ -2108,6 +2328,10 @@ func (c *EC2) DeleteRouteTableRequest(input *DeleteRouteTableInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteRouteTableInput{}
 	}
 
 	req = c.newRequest(opDeleteRouteTable, input, output)
@@ -2141,6 +2365,10 @@ func (c *EC2) DeleteSecurityGroupRequest(input *DeleteSecurityGroupInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &DeleteSecurityGroupInput{}
+	}
+
 	req = c.newRequest(opDeleteSecurityGroup, input, output)
 	output = &DeleteSecurityGroupOutput{}
 	req.Data = output
@@ -2172,6 +2400,10 @@ func (c *EC2) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *aws.Reques
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteSnapshotInput{}
 	}
 
 	req = c.newRequest(opDeleteSnapshot, input, output)
@@ -2217,6 +2449,10 @@ func (c *EC2) DeleteSpotDatafeedSubscriptionRequest(input *DeleteSpotDatafeedSub
 		}
 	}
 
+	if input == nil {
+		input = &DeleteSpotDatafeedSubscriptionInput{}
+	}
+
 	req = c.newRequest(opDeleteSpotDatafeedSubscription, input, output)
 	output = &DeleteSpotDatafeedSubscriptionOutput{}
 	req.Data = output
@@ -2248,6 +2484,10 @@ func (c *EC2) DeleteSubnetRequest(input *DeleteSubnetInput) (req *aws.Request, o
 		}
 	}
 
+	if input == nil {
+		input = &DeleteSubnetInput{}
+	}
+
 	req = c.newRequest(opDeleteSubnet, input, output)
 	output = &DeleteSubnetOutput{}
 	req.Data = output
@@ -2276,6 +2516,10 @@ func (c *EC2) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Request, outpu
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteTagsInput{}
 	}
 
 	req = c.newRequest(opDeleteTags, input, output)
@@ -2311,6 +2555,10 @@ func (c *EC2) DeleteVPCRequest(input *DeleteVPCInput) (req *aws.Request, output 
 		}
 	}
 
+	if input == nil {
+		input = &DeleteVPCInput{}
+	}
+
 	req = c.newRequest(opDeleteVPC, input, output)
 	output = &DeleteVPCOutput{}
 	req.Data = output
@@ -2344,6 +2592,10 @@ func (c *EC2) DeleteVPCPeeringConnectionRequest(input *DeleteVPCPeeringConnectio
 		}
 	}
 
+	if input == nil {
+		input = &DeleteVPCPeeringConnectionInput{}
+	}
+
 	req = c.newRequest(opDeleteVPCPeeringConnection, input, output)
 	output = &DeleteVPCPeeringConnectionOutput{}
 	req.Data = output
@@ -2374,6 +2626,10 @@ func (c *EC2) DeleteVPNConnectionRequest(input *DeleteVPNConnectionInput) (req *
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteVPNConnectionInput{}
 	}
 
 	req = c.newRequest(opDeleteVPNConnection, input, output)
@@ -2414,6 +2670,10 @@ func (c *EC2) DeleteVPNConnectionRouteRequest(input *DeleteVPNConnectionRouteInp
 		}
 	}
 
+	if input == nil {
+		input = &DeleteVPNConnectionRouteInput{}
+	}
+
 	req = c.newRequest(opDeleteVPNConnectionRoute, input, output)
 	output = &DeleteVPNConnectionRouteOutput{}
 	req.Data = output
@@ -2444,6 +2704,10 @@ func (c *EC2) DeleteVPNGatewayRequest(input *DeleteVPNGatewayInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteVPNGatewayInput{}
 	}
 
 	req = c.newRequest(opDeleteVPNGateway, input, output)
@@ -2477,6 +2741,10 @@ func (c *EC2) DeleteVolumeRequest(input *DeleteVolumeInput) (req *aws.Request, o
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteVolumeInput{}
 	}
 
 	req = c.newRequest(opDeleteVolume, input, output)
@@ -2514,6 +2782,10 @@ func (c *EC2) DeregisterImageRequest(input *DeregisterImageInput) (req *aws.Requ
 		}
 	}
 
+	if input == nil {
+		input = &DeregisterImageInput{}
+	}
+
 	req = c.newRequest(opDeregisterImage, input, output)
 	output = &DeregisterImageOutput{}
 	req.Data = output
@@ -2544,6 +2816,10 @@ func (c *EC2) DescribeAccountAttributesRequest(input *DescribeAccountAttributesI
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeAccountAttributesInput{}
 	}
 
 	req = c.newRequest(opDescribeAccountAttributes, input, output)
@@ -2593,6 +2869,10 @@ func (c *EC2) DescribeAddressesRequest(input *DescribeAddressesInput) (req *aws.
 		}
 	}
 
+	if input == nil {
+		input = &DescribeAddressesInput{}
+	}
+
 	req = c.newRequest(opDescribeAddresses, input, output)
 	output = &DescribeAddressesOutput{}
 	req.Data = output
@@ -2624,6 +2904,10 @@ func (c *EC2) DescribeAvailabilityZonesRequest(input *DescribeAvailabilityZonesI
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeAvailabilityZonesInput{}
 	}
 
 	req = c.newRequest(opDescribeAvailabilityZones, input, output)
@@ -2661,6 +2945,10 @@ func (c *EC2) DescribeBundleTasksRequest(input *DescribeBundleTasksInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &DescribeBundleTasksInput{}
+	}
+
 	req = c.newRequest(opDescribeBundleTasks, input, output)
 	output = &DescribeBundleTasksOutput{}
 	req.Data = output
@@ -2695,6 +2983,10 @@ func (c *EC2) DescribeClassicLinkInstancesRequest(input *DescribeClassicLinkInst
 		}
 	}
 
+	if input == nil {
+		input = &DescribeClassicLinkInstancesInput{}
+	}
+
 	req = c.newRequest(opDescribeClassicLinkInstances, input, output)
 	output = &DescribeClassicLinkInstancesOutput{}
 	req.Data = output
@@ -2727,6 +3019,10 @@ func (c *EC2) DescribeConversionTasksRequest(input *DescribeConversionTasksInput
 		}
 	}
 
+	if input == nil {
+		input = &DescribeConversionTasksInput{}
+	}
+
 	req = c.newRequest(opDescribeConversionTasks, input, output)
 	output = &DescribeConversionTasksOutput{}
 	req.Data = output
@@ -2757,6 +3053,10 @@ func (c *EC2) DescribeCustomerGatewaysRequest(input *DescribeCustomerGatewaysInp
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeCustomerGatewaysInput{}
 	}
 
 	req = c.newRequest(opDescribeCustomerGateways, input, output)
@@ -2792,6 +3092,10 @@ func (c *EC2) DescribeDHCPOptionsRequest(input *DescribeDHCPOptionsInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &DescribeDHCPOptionsInput{}
+	}
+
 	req = c.newRequest(opDescribeDHCPOptions, input, output)
 	output = &DescribeDHCPOptionsOutput{}
 	req.Data = output
@@ -2824,6 +3128,10 @@ func (c *EC2) DescribeExportTasksRequest(input *DescribeExportTasksInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &DescribeExportTasksInput{}
+	}
+
 	req = c.newRequest(opDescribeExportTasks, input, output)
 	output = &DescribeExportTasksOutput{}
 	req.Data = output
@@ -2851,6 +3159,10 @@ func (c *EC2) DescribeImageAttributeRequest(input *DescribeImageAttributeInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeImageAttributeInput{}
 	}
 
 	req = c.newRequest(opDescribeImageAttribute, input, output)
@@ -2881,6 +3193,10 @@ func (c *EC2) DescribeImagesRequest(input *DescribeImagesInput) (req *aws.Reques
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeImagesInput{}
 	}
 
 	req = c.newRequest(opDescribeImages, input, output)
@@ -2918,6 +3234,10 @@ func (c *EC2) DescribeInstanceAttributeRequest(input *DescribeInstanceAttributeI
 		}
 	}
 
+	if input == nil {
+		input = &DescribeInstanceAttributeInput{}
+	}
+
 	req = c.newRequest(opDescribeInstanceAttribute, input, output)
 	output = &DescribeInstanceAttributeOutput{}
 	req.Data = output
@@ -2949,6 +3269,10 @@ func (c *EC2) DescribeInstanceStatusRequest(input *DescribeInstanceStatusInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeInstanceStatusInput{}
 	}
 
 	req = c.newRequest(opDescribeInstanceStatus, input, output)
@@ -3038,6 +3362,10 @@ func (c *EC2) DescribeInstancesRequest(input *DescribeInstancesInput) (req *aws.
 		}
 	}
 
+	if input == nil {
+		input = &DescribeInstancesInput{}
+	}
+
 	req = c.newRequest(opDescribeInstances, input, output)
 	output = &DescribeInstancesOutput{}
 	req.Data = output
@@ -3076,6 +3404,10 @@ func (c *EC2) DescribeInternetGatewaysRequest(input *DescribeInternetGatewaysInp
 		}
 	}
 
+	if input == nil {
+		input = &DescribeInternetGatewaysInput{}
+	}
+
 	req = c.newRequest(opDescribeInternetGateways, input, output)
 	output = &DescribeInternetGatewaysOutput{}
 	req.Data = output
@@ -3103,6 +3435,10 @@ func (c *EC2) DescribeKeyPairsRequest(input *DescribeKeyPairsInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeKeyPairsInput{}
 	}
 
 	req = c.newRequest(opDescribeKeyPairs, input, output)
@@ -3137,6 +3473,10 @@ func (c *EC2) DescribeNetworkACLsRequest(input *DescribeNetworkACLsInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &DescribeNetworkACLsInput{}
+	}
+
 	req = c.newRequest(opDescribeNetworkACLs, input, output)
 	output = &DescribeNetworkACLsOutput{}
 	req.Data = output
@@ -3169,6 +3509,10 @@ func (c *EC2) DescribeNetworkInterfaceAttributeRequest(input *DescribeNetworkInt
 		}
 	}
 
+	if input == nil {
+		input = &DescribeNetworkInterfaceAttributeInput{}
+	}
+
 	req = c.newRequest(opDescribeNetworkInterfaceAttribute, input, output)
 	output = &DescribeNetworkInterfaceAttributeOutput{}
 	req.Data = output
@@ -3197,6 +3541,10 @@ func (c *EC2) DescribeNetworkInterfacesRequest(input *DescribeNetworkInterfacesI
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeNetworkInterfacesInput{}
 	}
 
 	req = c.newRequest(opDescribeNetworkInterfaces, input, output)
@@ -3228,6 +3576,10 @@ func (c *EC2) DescribePlacementGroupsRequest(input *DescribePlacementGroupsInput
 		}
 	}
 
+	if input == nil {
+		input = &DescribePlacementGroupsInput{}
+	}
+
 	req = c.newRequest(opDescribePlacementGroups, input, output)
 	output = &DescribePlacementGroupsOutput{}
 	req.Data = output
@@ -3257,6 +3609,10 @@ func (c *EC2) DescribeRegionsRequest(input *DescribeRegionsInput) (req *aws.Requ
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeRegionsInput{}
 	}
 
 	req = c.newRequest(opDescribeRegions, input, output)
@@ -3291,6 +3647,10 @@ func (c *EC2) DescribeReservedInstancesRequest(input *DescribeReservedInstancesI
 		}
 	}
 
+	if input == nil {
+		input = &DescribeReservedInstancesInput{}
+	}
+
 	req = c.newRequest(opDescribeReservedInstances, input, output)
 	output = &DescribeReservedInstancesOutput{}
 	req.Data = output
@@ -3321,6 +3681,10 @@ func (c *EC2) DescribeReservedInstancesListingsRequest(input *DescribeReservedIn
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeReservedInstancesListingsInput{}
 	}
 
 	req = c.newRequest(opDescribeReservedInstancesListings, input, output)
@@ -3373,6 +3737,10 @@ func (c *EC2) DescribeReservedInstancesModificationsRequest(input *DescribeReser
 		}
 	}
 
+	if input == nil {
+		input = &DescribeReservedInstancesModificationsInput{}
+	}
+
 	req = c.newRequest(opDescribeReservedInstancesModifications, input, output)
 	output = &DescribeReservedInstancesModificationsOutput{}
 	req.Data = output
@@ -3406,6 +3774,10 @@ func (c *EC2) DescribeReservedInstancesOfferingsRequest(input *DescribeReservedI
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeReservedInstancesOfferingsInput{}
 	}
 
 	req = c.newRequest(opDescribeReservedInstancesOfferings, input, output)
@@ -3444,6 +3816,10 @@ func (c *EC2) DescribeRouteTablesRequest(input *DescribeRouteTablesInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &DescribeRouteTablesInput{}
+	}
+
 	req = c.newRequest(opDescribeRouteTables, input, output)
 	output = &DescribeRouteTablesOutput{}
 	req.Data = output
@@ -3474,6 +3850,10 @@ func (c *EC2) DescribeSecurityGroupsRequest(input *DescribeSecurityGroupsInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeSecurityGroupsInput{}
 	}
 
 	req = c.newRequest(opDescribeSecurityGroups, input, output)
@@ -3512,6 +3892,10 @@ func (c *EC2) DescribeSnapshotAttributeRequest(input *DescribeSnapshotAttributeI
 		}
 	}
 
+	if input == nil {
+		input = &DescribeSnapshotAttributeInput{}
+	}
+
 	req = c.newRequest(opDescribeSnapshotAttribute, input, output)
 	output = &DescribeSnapshotAttributeOutput{}
 	req.Data = output
@@ -3543,6 +3927,10 @@ func (c *EC2) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *aws.
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeSnapshotsInput{}
 	}
 
 	req = c.newRequest(opDescribeSnapshots, input, output)
@@ -3613,6 +4001,10 @@ func (c *EC2) DescribeSpotDatafeedSubscriptionRequest(input *DescribeSpotDatafee
 		}
 	}
 
+	if input == nil {
+		input = &DescribeSpotDatafeedSubscriptionInput{}
+	}
+
 	req = c.newRequest(opDescribeSpotDatafeedSubscription, input, output)
 	output = &DescribeSpotDatafeedSubscriptionOutput{}
 	req.Data = output
@@ -3642,6 +4034,10 @@ func (c *EC2) DescribeSpotInstanceRequestsRequest(input *DescribeSpotInstanceReq
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeSpotInstanceRequestsInput{}
 	}
 
 	req = c.newRequest(opDescribeSpotInstanceRequests, input, output)
@@ -3684,6 +4080,10 @@ func (c *EC2) DescribeSpotPriceHistoryRequest(input *DescribeSpotPriceHistoryInp
 		}
 	}
 
+	if input == nil {
+		input = &DescribeSpotPriceHistoryInput{}
+	}
+
 	req = c.newRequest(opDescribeSpotPriceHistory, input, output)
 	output = &DescribeSpotPriceHistoryOutput{}
 	req.Data = output
@@ -3721,6 +4121,10 @@ func (c *EC2) DescribeSubnetsRequest(input *DescribeSubnetsInput) (req *aws.Requ
 		}
 	}
 
+	if input == nil {
+		input = &DescribeSubnetsInput{}
+	}
+
 	req = c.newRequest(opDescribeSubnets, input, output)
 	output = &DescribeSubnetsOutput{}
 	req.Data = output
@@ -3751,6 +4155,10 @@ func (c *EC2) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, o
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeTagsInput{}
 	}
 
 	req = c.newRequest(opDescribeTags, input, output)
@@ -3785,6 +4193,10 @@ func (c *EC2) DescribeVPCAttributeRequest(input *DescribeVPCAttributeInput) (req
 		}
 	}
 
+	if input == nil {
+		input = &DescribeVPCAttributeInput{}
+	}
+
 	req = c.newRequest(opDescribeVPCAttribute, input, output)
 	output = &DescribeVPCAttributeOutput{}
 	req.Data = output
@@ -3813,6 +4225,10 @@ func (c *EC2) DescribeVPCClassicLinkRequest(input *DescribeVPCClassicLinkInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeVPCClassicLinkInput{}
 	}
 
 	req = c.newRequest(opDescribeVPCClassicLink, input, output)
@@ -3844,6 +4260,10 @@ func (c *EC2) DescribeVPCPeeringConnectionsRequest(input *DescribeVPCPeeringConn
 		}
 	}
 
+	if input == nil {
+		input = &DescribeVPCPeeringConnectionsInput{}
+	}
+
 	req = c.newRequest(opDescribeVPCPeeringConnections, input, output)
 	output = &DescribeVPCPeeringConnectionsOutput{}
 	req.Data = output
@@ -3873,6 +4293,10 @@ func (c *EC2) DescribeVPCsRequest(input *DescribeVPCsInput) (req *aws.Request, o
 		}
 	}
 
+	if input == nil {
+		input = &DescribeVPCsInput{}
+	}
+
 	req = c.newRequest(opDescribeVPCs, input, output)
 	output = &DescribeVPCsOutput{}
 	req.Data = output
@@ -3900,6 +4324,10 @@ func (c *EC2) DescribeVPNConnectionsRequest(input *DescribeVPNConnectionsInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeVPNConnectionsInput{}
 	}
 
 	req = c.newRequest(opDescribeVPNConnections, input, output)
@@ -3935,6 +4363,10 @@ func (c *EC2) DescribeVPNGatewaysRequest(input *DescribeVPNGatewaysInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &DescribeVPNGatewaysInput{}
+	}
+
 	req = c.newRequest(opDescribeVPNGateways, input, output)
 	output = &DescribeVPNGatewaysOutput{}
 	req.Data = output
@@ -3968,6 +4400,10 @@ func (c *EC2) DescribeVolumeAttributeRequest(input *DescribeVolumeAttributeInput
 		}
 	}
 
+	if input == nil {
+		input = &DescribeVolumeAttributeInput{}
+	}
+
 	req = c.newRequest(opDescribeVolumeAttribute, input, output)
 	output = &DescribeVolumeAttributeOutput{}
 	req.Data = output
@@ -3999,6 +4435,10 @@ func (c *EC2) DescribeVolumeStatusRequest(input *DescribeVolumeStatusInput) (req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeVolumeStatusInput{}
 	}
 
 	req = c.newRequest(opDescribeVolumeStatus, input, output)
@@ -4064,6 +4504,10 @@ func (c *EC2) DescribeVolumesRequest(input *DescribeVolumesInput) (req *aws.Requ
 		}
 	}
 
+	if input == nil {
+		input = &DescribeVolumesInput{}
+	}
+
 	req = c.newRequest(opDescribeVolumes, input, output)
 	output = &DescribeVolumesOutput{}
 	req.Data = output
@@ -4103,6 +4547,10 @@ func (c *EC2) DetachClassicLinkVPCRequest(input *DetachClassicLinkVPCInput) (req
 		}
 	}
 
+	if input == nil {
+		input = &DetachClassicLinkVPCInput{}
+	}
+
 	req = c.newRequest(opDetachClassicLinkVPC, input, output)
 	output = &DetachClassicLinkVPCOutput{}
 	req.Data = output
@@ -4132,6 +4580,10 @@ func (c *EC2) DetachInternetGatewayRequest(input *DetachInternetGatewayInput) (r
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DetachInternetGatewayInput{}
 	}
 
 	req = c.newRequest(opDetachInternetGateway, input, output)
@@ -4165,6 +4617,10 @@ func (c *EC2) DetachNetworkInterfaceRequest(input *DetachNetworkInterfaceInput) 
 		}
 	}
 
+	if input == nil {
+		input = &DetachNetworkInterfaceInput{}
+	}
+
 	req = c.newRequest(opDetachNetworkInterface, input, output)
 	output = &DetachNetworkInterfaceOutput{}
 	req.Data = output
@@ -4192,6 +4648,10 @@ func (c *EC2) DetachVPNGatewayRequest(input *DetachVPNGatewayInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DetachVPNGatewayInput{}
 	}
 
 	req = c.newRequest(opDetachVPNGateway, input, output)
@@ -4228,6 +4688,10 @@ func (c *EC2) DetachVolumeRequest(input *DetachVolumeInput) (req *aws.Request, o
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DetachVolumeInput{}
 	}
 
 	req = c.newRequest(opDetachVolume, input, output)
@@ -4272,6 +4736,10 @@ func (c *EC2) DisableVGWRoutePropagationRequest(input *DisableVGWRoutePropagatio
 		}
 	}
 
+	if input == nil {
+		input = &DisableVGWRoutePropagationInput{}
+	}
+
 	req = c.newRequest(opDisableVGWRoutePropagation, input, output)
 	output = &DisableVGWRoutePropagationOutput{}
 	req.Data = output
@@ -4302,6 +4770,10 @@ func (c *EC2) DisableVPCClassicLinkRequest(input *DisableVPCClassicLinkInput) (r
 		}
 	}
 
+	if input == nil {
+		input = &DisableVPCClassicLinkInput{}
+	}
+
 	req = c.newRequest(opDisableVPCClassicLink, input, output)
 	output = &DisableVPCClassicLinkOutput{}
 	req.Data = output
@@ -4330,6 +4802,10 @@ func (c *EC2) DisassociateAddressRequest(input *DisassociateAddressInput) (req *
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DisassociateAddressInput{}
 	}
 
 	req = c.newRequest(opDisassociateAddress, input, output)
@@ -4369,6 +4845,10 @@ func (c *EC2) DisassociateRouteTableRequest(input *DisassociateRouteTableInput) 
 		}
 	}
 
+	if input == nil {
+		input = &DisassociateRouteTableInput{}
+	}
+
 	req = c.newRequest(opDisassociateRouteTable, input, output)
 	output = &DisassociateRouteTableOutput{}
 	req.Data = output
@@ -4403,6 +4883,10 @@ func (c *EC2) EnableVGWRoutePropagationRequest(input *EnableVGWRoutePropagationI
 		}
 	}
 
+	if input == nil {
+		input = &EnableVGWRoutePropagationInput{}
+	}
+
 	req = c.newRequest(opEnableVGWRoutePropagation, input, output)
 	output = &EnableVGWRoutePropagationOutput{}
 	req.Data = output
@@ -4431,6 +4915,10 @@ func (c *EC2) EnableVPCClassicLinkRequest(input *EnableVPCClassicLinkInput) (req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &EnableVPCClassicLinkInput{}
 	}
 
 	req = c.newRequest(opEnableVPCClassicLink, input, output)
@@ -4468,6 +4956,10 @@ func (c *EC2) EnableVolumeIORequest(input *EnableVolumeIOInput) (req *aws.Reques
 		}
 	}
 
+	if input == nil {
+		input = &EnableVolumeIOInput{}
+	}
+
 	req = c.newRequest(opEnableVolumeIO, input, output)
 	output = &EnableVolumeIOOutput{}
 	req.Data = output
@@ -4496,6 +4988,10 @@ func (c *EC2) GetConsoleOutputRequest(input *GetConsoleOutputInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetConsoleOutputInput{}
 	}
 
 	req = c.newRequest(opGetConsoleOutput, input, output)
@@ -4544,6 +5040,10 @@ func (c *EC2) GetPasswordDataRequest(input *GetPasswordDataInput) (req *aws.Requ
 		}
 	}
 
+	if input == nil {
+		input = &GetPasswordDataInput{}
+	}
+
 	req = c.newRequest(opGetPasswordData, input, output)
 	output = &GetPasswordDataOutput{}
 	req.Data = output
@@ -4586,6 +5086,10 @@ func (c *EC2) ImportInstanceRequest(input *ImportInstanceInput) (req *aws.Reques
 		}
 	}
 
+	if input == nil {
+		input = &ImportInstanceInput{}
+	}
+
 	req = c.newRequest(opImportInstance, input, output)
 	output = &ImportInstanceOutput{}
 	req.Data = output
@@ -4617,6 +5121,10 @@ func (c *EC2) ImportKeyPairRequest(input *ImportKeyPairInput) (req *aws.Request,
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ImportKeyPairInput{}
 	}
 
 	req = c.newRequest(opImportKeyPair, input, output)
@@ -4655,6 +5163,10 @@ func (c *EC2) ImportVolumeRequest(input *ImportVolumeInput) (req *aws.Request, o
 		}
 	}
 
+	if input == nil {
+		input = &ImportVolumeInput{}
+	}
+
 	req = c.newRequest(opImportVolume, input, output)
 	output = &ImportVolumeOutput{}
 	req.Data = output
@@ -4689,6 +5201,10 @@ func (c *EC2) ModifyImageAttributeRequest(input *ModifyImageAttributeInput) (req
 		}
 	}
 
+	if input == nil {
+		input = &ModifyImageAttributeInput{}
+	}
+
 	req = c.newRequest(opModifyImageAttribute, input, output)
 	output = &ModifyImageAttributeOutput{}
 	req.Data = output
@@ -4720,6 +5236,10 @@ func (c *EC2) ModifyInstanceAttributeRequest(input *ModifyInstanceAttributeInput
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ModifyInstanceAttributeInput{}
 	}
 
 	req = c.newRequest(opModifyInstanceAttribute, input, output)
@@ -4756,6 +5276,10 @@ func (c *EC2) ModifyNetworkInterfaceAttributeRequest(input *ModifyNetworkInterfa
 		}
 	}
 
+	if input == nil {
+		input = &ModifyNetworkInterfaceAttributeInput{}
+	}
+
 	req = c.newRequest(opModifyNetworkInterfaceAttribute, input, output)
 	output = &ModifyNetworkInterfaceAttributeOutput{}
 	req.Data = output
@@ -4784,6 +5308,10 @@ func (c *EC2) ModifyReservedInstancesRequest(input *ModifyReservedInstancesInput
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ModifyReservedInstancesInput{}
 	}
 
 	req = c.newRequest(opModifyReservedInstances, input, output)
@@ -4819,6 +5347,10 @@ func (c *EC2) ModifySnapshotAttributeRequest(input *ModifySnapshotAttributeInput
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ModifySnapshotAttributeInput{}
 	}
 
 	req = c.newRequest(opModifySnapshotAttribute, input, output)
@@ -4860,6 +5392,10 @@ func (c *EC2) ModifySubnetAttributeRequest(input *ModifySubnetAttributeInput) (r
 		}
 	}
 
+	if input == nil {
+		input = &ModifySubnetAttributeInput{}
+	}
+
 	req = c.newRequest(opModifySubnetAttribute, input, output)
 	output = &ModifySubnetAttributeOutput{}
 	req.Data = output
@@ -4889,6 +5425,10 @@ func (c *EC2) ModifyVPCAttributeRequest(input *ModifyVPCAttributeInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &ModifyVPCAttributeInput{}
+	}
+
 	req = c.newRequest(opModifyVPCAttribute, input, output)
 	output = &ModifyVPCAttributeOutput{}
 	req.Data = output
@@ -4916,6 +5456,10 @@ func (c *EC2) ModifyVolumeAttributeRequest(input *ModifyVolumeAttributeInput) (r
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ModifyVolumeAttributeInput{}
 	}
 
 	req = c.newRequest(opModifyVolumeAttribute, input, output)
@@ -4956,6 +5500,10 @@ func (c *EC2) MonitorInstancesRequest(input *MonitorInstancesInput) (req *aws.Re
 		}
 	}
 
+	if input == nil {
+		input = &MonitorInstancesInput{}
+	}
+
 	req = c.newRequest(opMonitorInstances, input, output)
 	output = &MonitorInstancesOutput{}
 	req.Data = output
@@ -4985,6 +5533,10 @@ func (c *EC2) PurchaseReservedInstancesOfferingRequest(input *PurchaseReservedIn
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PurchaseReservedInstancesOfferingInput{}
 	}
 
 	req = c.newRequest(opPurchaseReservedInstancesOffering, input, output)
@@ -5028,6 +5580,10 @@ func (c *EC2) RebootInstancesRequest(input *RebootInstancesInput) (req *aws.Requ
 		}
 	}
 
+	if input == nil {
+		input = &RebootInstancesInput{}
+	}
+
 	req = c.newRequest(opRebootInstances, input, output)
 	output = &RebootInstancesOutput{}
 	req.Data = output
@@ -5065,6 +5621,10 @@ func (c *EC2) RegisterImageRequest(input *RegisterImageInput) (req *aws.Request,
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RegisterImageInput{}
 	}
 
 	req = c.newRequest(opRegisterImage, input, output)
@@ -5115,6 +5675,10 @@ func (c *EC2) RejectVPCPeeringConnectionRequest(input *RejectVPCPeeringConnectio
 		}
 	}
 
+	if input == nil {
+		input = &RejectVPCPeeringConnectionInput{}
+	}
+
 	req = c.newRequest(opRejectVPCPeeringConnection, input, output)
 	output = &RejectVPCPeeringConnectionOutput{}
 	req.Data = output
@@ -5146,6 +5710,10 @@ func (c *EC2) ReleaseAddressRequest(input *ReleaseAddressInput) (req *aws.Reques
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ReleaseAddressInput{}
 	}
 
 	req = c.newRequest(opReleaseAddress, input, output)
@@ -5191,6 +5759,10 @@ func (c *EC2) ReplaceNetworkACLAssociationRequest(input *ReplaceNetworkACLAssoci
 		}
 	}
 
+	if input == nil {
+		input = &ReplaceNetworkACLAssociationInput{}
+	}
+
 	req = c.newRequest(opReplaceNetworkACLAssociation, input, output)
 	output = &ReplaceNetworkACLAssociationOutput{}
 	req.Data = output
@@ -5223,6 +5795,10 @@ func (c *EC2) ReplaceNetworkACLEntryRequest(input *ReplaceNetworkACLEntryInput) 
 		}
 	}
 
+	if input == nil {
+		input = &ReplaceNetworkACLEntryInput{}
+	}
+
 	req = c.newRequest(opReplaceNetworkACLEntry, input, output)
 	output = &ReplaceNetworkACLEntryOutput{}
 	req.Data = output
@@ -5252,6 +5828,10 @@ func (c *EC2) ReplaceRouteRequest(input *ReplaceRouteInput) (req *aws.Request, o
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ReplaceRouteInput{}
 	}
 
 	req = c.newRequest(opReplaceRoute, input, output)
@@ -5286,6 +5866,10 @@ func (c *EC2) ReplaceRouteTableAssociationRequest(input *ReplaceRouteTableAssoci
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ReplaceRouteTableAssociationInput{}
 	}
 
 	req = c.newRequest(opReplaceRouteTableAssociation, input, output)
@@ -5325,6 +5909,10 @@ func (c *EC2) ReportInstanceStatusRequest(input *ReportInstanceStatusInput) (req
 		}
 	}
 
+	if input == nil {
+		input = &ReportInstanceStatusInput{}
+	}
+
 	req = c.newRequest(opReportInstanceStatus, input, output)
 	output = &ReportInstanceStatusOutput{}
 	req.Data = output
@@ -5358,6 +5946,10 @@ func (c *EC2) RequestSpotInstancesRequest(input *RequestSpotInstancesInput) (req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RequestSpotInstancesInput{}
 	}
 
 	req = c.newRequest(opRequestSpotInstances, input, output)
@@ -5394,6 +5986,10 @@ func (c *EC2) ResetImageAttributeRequest(input *ResetImageAttributeInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &ResetImageAttributeInput{}
+	}
+
 	req = c.newRequest(opResetImageAttribute, input, output)
 	output = &ResetImageAttributeOutput{}
 	req.Data = output
@@ -5423,6 +6019,10 @@ func (c *EC2) ResetInstanceAttributeRequest(input *ResetInstanceAttributeInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ResetInstanceAttributeInput{}
 	}
 
 	req = c.newRequest(opResetInstanceAttribute, input, output)
@@ -5462,6 +6062,10 @@ func (c *EC2) ResetNetworkInterfaceAttributeRequest(input *ResetNetworkInterface
 		}
 	}
 
+	if input == nil {
+		input = &ResetNetworkInterfaceAttributeInput{}
+	}
+
 	req = c.newRequest(opResetNetworkInterfaceAttribute, input, output)
 	output = &ResetNetworkInterfaceAttributeOutput{}
 	req.Data = output
@@ -5490,6 +6094,10 @@ func (c *EC2) ResetSnapshotAttributeRequest(input *ResetSnapshotAttributeInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ResetSnapshotAttributeInput{}
 	}
 
 	req = c.newRequest(opResetSnapshotAttribute, input, output)
@@ -5523,6 +6131,10 @@ func (c *EC2) RevokeSecurityGroupEgressRequest(input *RevokeSecurityGroupEgressI
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RevokeSecurityGroupEgressInput{}
 	}
 
 	req = c.newRequest(opRevokeSecurityGroupEgress, input, output)
@@ -5564,6 +6176,10 @@ func (c *EC2) RevokeSecurityGroupIngressRequest(input *RevokeSecurityGroupIngres
 		}
 	}
 
+	if input == nil {
+		input = &RevokeSecurityGroupIngressInput{}
+	}
+
 	req = c.newRequest(opRevokeSecurityGroupIngress, input, output)
 	output = &RevokeSecurityGroupIngressOutput{}
 	req.Data = output
@@ -5601,6 +6217,10 @@ func (c *EC2) RunInstancesRequest(input *RunInstancesInput) (req *aws.Request, o
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RunInstancesInput{}
 	}
 
 	req = c.newRequest(opRunInstances, input, output)
@@ -5664,6 +6284,10 @@ func (c *EC2) StartInstancesRequest(input *StartInstancesInput) (req *aws.Reques
 		}
 	}
 
+	if input == nil {
+		input = &StartInstancesInput{}
+	}
+
 	req = c.newRequest(opStartInstances, input, output)
 	output = &StartInstancesOutput{}
 	req.Data = output
@@ -5709,6 +6333,10 @@ func (c *EC2) StopInstancesRequest(input *StopInstancesInput) (req *aws.Request,
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &StopInstancesInput{}
 	}
 
 	req = c.newRequest(opStopInstances, input, output)
@@ -5770,6 +6398,10 @@ func (c *EC2) TerminateInstancesRequest(input *TerminateInstancesInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &TerminateInstancesInput{}
+	}
+
 	req = c.newRequest(opTerminateInstances, input, output)
 	output = &TerminateInstancesOutput{}
 	req.Data = output
@@ -5820,6 +6452,10 @@ func (c *EC2) UnassignPrivateIPAddressesRequest(input *UnassignPrivateIPAddresse
 		}
 	}
 
+	if input == nil {
+		input = &UnassignPrivateIPAddressesInput{}
+	}
+
 	req = c.newRequest(opUnassignPrivateIPAddresses, input, output)
 	output = &UnassignPrivateIPAddressesOutput{}
 	req.Data = output
@@ -5847,6 +6483,10 @@ func (c *EC2) UnmonitorInstancesRequest(input *UnmonitorInstancesInput) (req *aw
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UnmonitorInstancesInput{}
 	}
 
 	req = c.newRequest(opUnmonitorInstances, input, output)

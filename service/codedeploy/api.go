@@ -25,6 +25,10 @@ func (c *CodeDeploy) BatchGetApplicationsRequest(input *BatchGetApplicationsInpu
 		}
 	}
 
+	if input == nil {
+		input = &BatchGetApplicationsInput{}
+	}
+
 	req = c.newRequest(opBatchGetApplications, input, output)
 	output = &BatchGetApplicationsOutput{}
 	req.Data = output
@@ -52,6 +56,10 @@ func (c *CodeDeploy) BatchGetDeploymentsRequest(input *BatchGetDeploymentsInput)
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &BatchGetDeploymentsInput{}
 	}
 
 	req = c.newRequest(opBatchGetDeployments, input, output)
@@ -83,6 +91,10 @@ func (c *CodeDeploy) CreateApplicationRequest(input *CreateApplicationInput) (re
 		}
 	}
 
+	if input == nil {
+		input = &CreateApplicationInput{}
+	}
+
 	req = c.newRequest(opCreateApplication, input, output)
 	output = &CreateApplicationOutput{}
 	req.Data = output
@@ -110,6 +122,10 @@ func (c *CodeDeploy) CreateDeploymentRequest(input *CreateDeploymentInput) (req 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateDeploymentInput{}
 	}
 
 	req = c.newRequest(opCreateDeployment, input, output)
@@ -141,6 +157,10 @@ func (c *CodeDeploy) CreateDeploymentConfigRequest(input *CreateDeploymentConfig
 		}
 	}
 
+	if input == nil {
+		input = &CreateDeploymentConfigInput{}
+	}
+
 	req = c.newRequest(opCreateDeploymentConfig, input, output)
 	output = &CreateDeploymentConfigOutput{}
 	req.Data = output
@@ -168,6 +188,10 @@ func (c *CodeDeploy) CreateDeploymentGroupRequest(input *CreateDeploymentGroupIn
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateDeploymentGroupInput{}
 	}
 
 	req = c.newRequest(opCreateDeploymentGroup, input, output)
@@ -199,6 +223,10 @@ func (c *CodeDeploy) DeleteApplicationRequest(input *DeleteApplicationInput) (re
 		}
 	}
 
+	if input == nil {
+		input = &DeleteApplicationInput{}
+	}
+
 	req = c.newRequest(opDeleteApplication, input, output)
 	output = &DeleteApplicationOutput{}
 	req.Data = output
@@ -226,6 +254,10 @@ func (c *CodeDeploy) DeleteDeploymentConfigRequest(input *DeleteDeploymentConfig
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteDeploymentConfigInput{}
 	}
 
 	req = c.newRequest(opDeleteDeploymentConfig, input, output)
@@ -260,6 +292,10 @@ func (c *CodeDeploy) DeleteDeploymentGroupRequest(input *DeleteDeploymentGroupIn
 		}
 	}
 
+	if input == nil {
+		input = &DeleteDeploymentGroupInput{}
+	}
+
 	req = c.newRequest(opDeleteDeploymentGroup, input, output)
 	output = &DeleteDeploymentGroupOutput{}
 	req.Data = output
@@ -287,6 +323,10 @@ func (c *CodeDeploy) GetApplicationRequest(input *GetApplicationInput) (req *aws
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetApplicationInput{}
 	}
 
 	req = c.newRequest(opGetApplication, input, output)
@@ -318,6 +358,10 @@ func (c *CodeDeploy) GetApplicationRevisionRequest(input *GetApplicationRevision
 		}
 	}
 
+	if input == nil {
+		input = &GetApplicationRevisionInput{}
+	}
+
 	req = c.newRequest(opGetApplicationRevision, input, output)
 	output = &GetApplicationRevisionOutput{}
 	req.Data = output
@@ -345,6 +389,10 @@ func (c *CodeDeploy) GetDeploymentRequest(input *GetDeploymentInput) (req *aws.R
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetDeploymentInput{}
 	}
 
 	req = c.newRequest(opGetDeployment, input, output)
@@ -376,6 +424,10 @@ func (c *CodeDeploy) GetDeploymentConfigRequest(input *GetDeploymentConfigInput)
 		}
 	}
 
+	if input == nil {
+		input = &GetDeploymentConfigInput{}
+	}
+
 	req = c.newRequest(opGetDeploymentConfig, input, output)
 	output = &GetDeploymentConfigOutput{}
 	req.Data = output
@@ -403,6 +455,10 @@ func (c *CodeDeploy) GetDeploymentGroupRequest(input *GetDeploymentGroupInput) (
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetDeploymentGroupInput{}
 	}
 
 	req = c.newRequest(opGetDeploymentGroup, input, output)
@@ -434,6 +490,10 @@ func (c *CodeDeploy) GetDeploymentInstanceRequest(input *GetDeploymentInstanceIn
 		}
 	}
 
+	if input == nil {
+		input = &GetDeploymentInstanceInput{}
+	}
+
 	req = c.newRequest(opGetDeploymentInstance, input, output)
 	output = &GetDeploymentInstanceOutput{}
 	req.Data = output
@@ -461,6 +521,10 @@ func (c *CodeDeploy) ListApplicationRevisionsRequest(input *ListApplicationRevis
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListApplicationRevisionsInput{}
 	}
 
 	req = c.newRequest(opListApplicationRevisions, input, output)
@@ -492,6 +556,10 @@ func (c *CodeDeploy) ListApplicationsRequest(input *ListApplicationsInput) (req 
 		}
 	}
 
+	if input == nil {
+		input = &ListApplicationsInput{}
+	}
+
 	req = c.newRequest(opListApplications, input, output)
 	output = &ListApplicationsOutput{}
 	req.Data = output
@@ -521,6 +589,10 @@ func (c *CodeDeploy) ListDeploymentConfigsRequest(input *ListDeploymentConfigsIn
 		}
 	}
 
+	if input == nil {
+		input = &ListDeploymentConfigsInput{}
+	}
+
 	req = c.newRequest(opListDeploymentConfigs, input, output)
 	output = &ListDeploymentConfigsOutput{}
 	req.Data = output
@@ -548,6 +620,10 @@ func (c *CodeDeploy) ListDeploymentGroupsRequest(input *ListDeploymentGroupsInpu
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListDeploymentGroupsInput{}
 	}
 
 	req = c.newRequest(opListDeploymentGroups, input, output)
@@ -580,6 +656,10 @@ func (c *CodeDeploy) ListDeploymentInstancesRequest(input *ListDeploymentInstanc
 		}
 	}
 
+	if input == nil {
+		input = &ListDeploymentInstancesInput{}
+	}
+
 	req = c.newRequest(opListDeploymentInstances, input, output)
 	output = &ListDeploymentInstancesOutput{}
 	req.Data = output
@@ -607,6 +687,10 @@ func (c *CodeDeploy) ListDeploymentsRequest(input *ListDeploymentsInput) (req *a
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListDeploymentsInput{}
 	}
 
 	req = c.newRequest(opListDeployments, input, output)
@@ -639,6 +723,10 @@ func (c *CodeDeploy) RegisterApplicationRevisionRequest(input *RegisterApplicati
 		}
 	}
 
+	if input == nil {
+		input = &RegisterApplicationRevisionInput{}
+	}
+
 	req = c.newRequest(opRegisterApplicationRevision, input, output)
 	output = &RegisterApplicationRevisionOutput{}
 	req.Data = output
@@ -666,6 +754,10 @@ func (c *CodeDeploy) StopDeploymentRequest(input *StopDeploymentInput) (req *aws
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &StopDeploymentInput{}
 	}
 
 	req = c.newRequest(opStopDeployment, input, output)
@@ -697,6 +789,10 @@ func (c *CodeDeploy) UpdateApplicationRequest(input *UpdateApplicationInput) (re
 		}
 	}
 
+	if input == nil {
+		input = &UpdateApplicationInput{}
+	}
+
 	req = c.newRequest(opUpdateApplication, input, output)
 	output = &UpdateApplicationOutput{}
 	req.Data = output
@@ -724,6 +820,10 @@ func (c *CodeDeploy) UpdateDeploymentGroupRequest(input *UpdateDeploymentGroupIn
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateDeploymentGroupInput{}
 	}
 
 	req = c.newRequest(opUpdateDeploymentGroup, input, output)

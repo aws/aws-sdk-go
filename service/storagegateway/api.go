@@ -25,6 +25,10 @@ func (c *StorageGateway) ActivateGatewayRequest(input *ActivateGatewayInput) (re
 		}
 	}
 
+	if input == nil {
+		input = &ActivateGatewayInput{}
+	}
+
 	req = c.newRequest(opActivateGateway, input, output)
 	output = &ActivateGatewayOutput{}
 	req.Data = output
@@ -62,6 +66,10 @@ func (c *StorageGateway) AddCacheRequest(input *AddCacheInput) (req *aws.Request
 		}
 	}
 
+	if input == nil {
+		input = &AddCacheInput{}
+	}
+
 	req = c.newRequest(opAddCache, input, output)
 	output = &AddCacheOutput{}
 	req.Data = output
@@ -97,6 +105,10 @@ func (c *StorageGateway) AddUploadBufferRequest(input *AddUploadBufferInput) (re
 		}
 	}
 
+	if input == nil {
+		input = &AddUploadBufferInput{}
+	}
+
 	req = c.newRequest(opAddUploadBuffer, input, output)
 	output = &AddUploadBufferOutput{}
 	req.Data = output
@@ -130,6 +142,10 @@ func (c *StorageGateway) AddWorkingStorageRequest(input *AddWorkingStorageInput)
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &AddWorkingStorageInput{}
 	}
 
 	req = c.newRequest(opAddWorkingStorage, input, output)
@@ -171,6 +187,10 @@ func (c *StorageGateway) CancelArchivalRequest(input *CancelArchivalInput) (req 
 		}
 	}
 
+	if input == nil {
+		input = &CancelArchivalInput{}
+	}
+
 	req = c.newRequest(opCancelArchival, input, output)
 	output = &CancelArchivalOutput{}
 	req.Data = output
@@ -199,6 +219,10 @@ func (c *StorageGateway) CancelRetrievalRequest(input *CancelRetrievalInput) (re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CancelRetrievalInput{}
 	}
 
 	req = c.newRequest(opCancelRetrieval, input, output)
@@ -230,6 +254,10 @@ func (c *StorageGateway) CreateCachediSCSIVolumeRequest(input *CreateCachediSCSI
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateCachediSCSIVolumeInput{}
 	}
 
 	req = c.newRequest(opCreateCachediSCSIVolume, input, output)
@@ -269,6 +297,10 @@ func (c *StorageGateway) CreateSnapshotRequest(input *CreateSnapshotInput) (req 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateSnapshotInput{}
 	}
 
 	req = c.newRequest(opCreateSnapshot, input, output)
@@ -319,6 +351,10 @@ func (c *StorageGateway) CreateSnapshotFromVolumeRecoveryPointRequest(input *Cre
 		}
 	}
 
+	if input == nil {
+		input = &CreateSnapshotFromVolumeRecoveryPointInput{}
+	}
+
 	req = c.newRequest(opCreateSnapshotFromVolumeRecoveryPoint, input, output)
 	output = &CreateSnapshotFromVolumeRecoveryPointOutput{}
 	req.Data = output
@@ -365,6 +401,10 @@ func (c *StorageGateway) CreateStorediSCSIVolumeRequest(input *CreateStorediSCSI
 		}
 	}
 
+	if input == nil {
+		input = &CreateStorediSCSIVolumeInput{}
+	}
+
 	req = c.newRequest(opCreateStorediSCSIVolume, input, output)
 	output = &CreateStorediSCSIVolumeOutput{}
 	req.Data = output
@@ -406,6 +446,10 @@ func (c *StorageGateway) CreateTapesRequest(input *CreateTapesInput) (req *aws.R
 		}
 	}
 
+	if input == nil {
+		input = &CreateTapesInput{}
+	}
+
 	req = c.newRequest(opCreateTapes, input, output)
 	output = &CreateTapesOutput{}
 	req.Data = output
@@ -437,6 +481,10 @@ func (c *StorageGateway) DeleteBandwidthRateLimitRequest(input *DeleteBandwidthR
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteBandwidthRateLimitInput{}
 	}
 
 	req = c.newRequest(opDeleteBandwidthRateLimit, input, output)
@@ -472,6 +520,10 @@ func (c *StorageGateway) DeleteChapCredentialsRequest(input *DeleteChapCredentia
 		}
 	}
 
+	if input == nil {
+		input = &DeleteChapCredentialsInput{}
+	}
+
 	req = c.newRequest(opDeleteChapCredentials, input, output)
 	output = &DeleteChapCredentialsOutput{}
 	req.Data = output
@@ -500,6 +552,10 @@ func (c *StorageGateway) DeleteGatewayRequest(input *DeleteGatewayInput) (req *a
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteGatewayInput{}
 	}
 
 	req = c.newRequest(opDeleteGateway, input, output)
@@ -546,6 +602,10 @@ func (c *StorageGateway) DeleteSnapshotScheduleRequest(input *DeleteSnapshotSche
 		}
 	}
 
+	if input == nil {
+		input = &DeleteSnapshotScheduleInput{}
+	}
+
 	req = c.newRequest(opDeleteSnapshotSchedule, input, output)
 	output = &DeleteSnapshotScheduleOutput{}
 	req.Data = output
@@ -584,6 +644,10 @@ func (c *StorageGateway) DeleteTapeRequest(input *DeleteTapeInput) (req *aws.Req
 		}
 	}
 
+	if input == nil {
+		input = &DeleteTapeInput{}
+	}
+
 	req = c.newRequest(opDeleteTape, input, output)
 	output = &DeleteTapeOutput{}
 	req.Data = output
@@ -613,6 +677,10 @@ func (c *StorageGateway) DeleteTapeArchiveRequest(input *DeleteTapeArchiveInput)
 		}
 	}
 
+	if input == nil {
+		input = &DeleteTapeArchiveInput{}
+	}
+
 	req = c.newRequest(opDeleteTapeArchive, input, output)
 	output = &DeleteTapeArchiveOutput{}
 	req.Data = output
@@ -640,6 +708,10 @@ func (c *StorageGateway) DeleteVolumeRequest(input *DeleteVolumeInput) (req *aws
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteVolumeInput{}
 	}
 
 	req = c.newRequest(opDeleteVolume, input, output)
@@ -684,6 +756,10 @@ func (c *StorageGateway) DescribeBandwidthRateLimitRequest(input *DescribeBandwi
 		}
 	}
 
+	if input == nil {
+		input = &DescribeBandwidthRateLimitInput{}
+	}
+
 	req = c.newRequest(opDescribeBandwidthRateLimit, input, output)
 	output = &DescribeBandwidthRateLimitOutput{}
 	req.Data = output
@@ -719,6 +795,10 @@ func (c *StorageGateway) DescribeCacheRequest(input *DescribeCacheInput) (req *a
 		}
 	}
 
+	if input == nil {
+		input = &DescribeCacheInput{}
+	}
+
 	req = c.newRequest(opDescribeCache, input, output)
 	output = &DescribeCacheOutput{}
 	req.Data = output
@@ -750,6 +830,10 @@ func (c *StorageGateway) DescribeCachediSCSIVolumesRequest(input *DescribeCached
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeCachediSCSIVolumesInput{}
 	}
 
 	req = c.newRequest(opDescribeCachediSCSIVolumes, input, output)
@@ -787,6 +871,10 @@ func (c *StorageGateway) DescribeChapCredentialsRequest(input *DescribeChapCrede
 		}
 	}
 
+	if input == nil {
+		input = &DescribeChapCredentialsInput{}
+	}
+
 	req = c.newRequest(opDescribeChapCredentials, input, output)
 	output = &DescribeChapCredentialsOutput{}
 	req.Data = output
@@ -816,6 +904,10 @@ func (c *StorageGateway) DescribeGatewayInformationRequest(input *DescribeGatewa
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeGatewayInformationInput{}
 	}
 
 	req = c.newRequest(opDescribeGatewayInformation, input, output)
@@ -850,6 +942,10 @@ func (c *StorageGateway) DescribeMaintenanceStartTimeRequest(input *DescribeMain
 		}
 	}
 
+	if input == nil {
+		input = &DescribeMaintenanceStartTimeInput{}
+	}
+
 	req = c.newRequest(opDescribeMaintenanceStartTime, input, output)
 	output = &DescribeMaintenanceStartTimeOutput{}
 	req.Data = output
@@ -881,6 +977,10 @@ func (c *StorageGateway) DescribeSnapshotScheduleRequest(input *DescribeSnapshot
 		}
 	}
 
+	if input == nil {
+		input = &DescribeSnapshotScheduleInput{}
+	}
+
 	req = c.newRequest(opDescribeSnapshotSchedule, input, output)
 	output = &DescribeSnapshotScheduleOutput{}
 	req.Data = output
@@ -910,6 +1010,10 @@ func (c *StorageGateway) DescribeStorediSCSIVolumesRequest(input *DescribeStored
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeStorediSCSIVolumesInput{}
 	}
 
 	req = c.newRequest(opDescribeStorediSCSIVolumes, input, output)
@@ -944,6 +1048,10 @@ func (c *StorageGateway) DescribeTapeArchivesRequest(input *DescribeTapeArchives
 		}
 	}
 
+	if input == nil {
+		input = &DescribeTapeArchivesInput{}
+	}
+
 	req = c.newRequest(opDescribeTapeArchives, input, output)
 	output = &DescribeTapeArchivesOutput{}
 	req.Data = output
@@ -975,6 +1083,10 @@ func (c *StorageGateway) DescribeTapeRecoveryPointsRequest(input *DescribeTapeRe
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeTapeRecoveryPointsInput{}
 	}
 
 	req = c.newRequest(opDescribeTapeRecoveryPoints, input, output)
@@ -1011,6 +1123,10 @@ func (c *StorageGateway) DescribeTapesRequest(input *DescribeTapesInput) (req *a
 		}
 	}
 
+	if input == nil {
+		input = &DescribeTapesInput{}
+	}
+
 	req = c.newRequest(opDescribeTapes, input, output)
 	output = &DescribeTapesOutput{}
 	req.Data = output
@@ -1040,6 +1156,10 @@ func (c *StorageGateway) DescribeUploadBufferRequest(input *DescribeUploadBuffer
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeUploadBufferInput{}
 	}
 
 	req = c.newRequest(opDescribeUploadBuffer, input, output)
@@ -1076,6 +1196,10 @@ func (c *StorageGateway) DescribeVTLDevicesRequest(input *DescribeVTLDevicesInpu
 		}
 	}
 
+	if input == nil {
+		input = &DescribeVTLDevicesInput{}
+	}
+
 	req = c.newRequest(opDescribeVTLDevices, input, output)
 	output = &DescribeVTLDevicesOutput{}
 	req.Data = output
@@ -1106,6 +1230,10 @@ func (c *StorageGateway) DescribeWorkingStorageRequest(input *DescribeWorkingSto
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeWorkingStorageInput{}
 	}
 
 	req = c.newRequest(opDescribeWorkingStorage, input, output)
@@ -1146,6 +1274,10 @@ func (c *StorageGateway) DisableGatewayRequest(input *DisableGatewayInput) (req 
 		}
 	}
 
+	if input == nil {
+		input = &DisableGatewayInput{}
+	}
+
 	req = c.newRequest(opDisableGateway, input, output)
 	output = &DisableGatewayOutput{}
 	req.Data = output
@@ -1179,6 +1311,10 @@ func (c *StorageGateway) ListGatewaysRequest(input *ListGatewaysInput) (req *aws
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListGatewaysInput{}
 	}
 
 	req = c.newRequest(opListGateways, input, output)
@@ -1220,6 +1356,10 @@ func (c *StorageGateway) ListLocalDisksRequest(input *ListLocalDisksInput) (req 
 		}
 	}
 
+	if input == nil {
+		input = &ListLocalDisksInput{}
+	}
+
 	req = c.newRequest(opListLocalDisks, input, output)
 	output = &ListLocalDisksOutput{}
 	req.Data = output
@@ -1258,6 +1398,10 @@ func (c *StorageGateway) ListVolumeRecoveryPointsRequest(input *ListVolumeRecove
 		}
 	}
 
+	if input == nil {
+		input = &ListVolumeRecoveryPointsInput{}
+	}
+
 	req = c.newRequest(opListVolumeRecoveryPoints, input, output)
 	output = &ListVolumeRecoveryPointsOutput{}
 	req.Data = output
@@ -1291,6 +1435,10 @@ func (c *StorageGateway) ListVolumesRequest(input *ListVolumesInput) (req *aws.R
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListVolumesInput{}
 	}
 
 	req = c.newRequest(opListVolumes, input, output)
@@ -1331,6 +1479,10 @@ func (c *StorageGateway) ResetCacheRequest(input *ResetCacheInput) (req *aws.Req
 		}
 	}
 
+	if input == nil {
+		input = &ResetCacheInput{}
+	}
+
 	req = c.newRequest(opResetCache, input, output)
 	output = &ResetCacheOutput{}
 	req.Data = output
@@ -1360,6 +1512,10 @@ func (c *StorageGateway) RetrieveTapeArchiveRequest(input *RetrieveTapeArchiveIn
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RetrieveTapeArchiveInput{}
 	}
 
 	req = c.newRequest(opRetrieveTapeArchive, input, output)
@@ -1398,6 +1554,10 @@ func (c *StorageGateway) RetrieveTapeRecoveryPointRequest(input *RetrieveTapeRec
 		}
 	}
 
+	if input == nil {
+		input = &RetrieveTapeRecoveryPointInput{}
+	}
+
 	req = c.newRequest(opRetrieveTapeRecoveryPoint, input, output)
 	output = &RetrieveTapeRecoveryPointOutput{}
 	req.Data = output
@@ -1433,6 +1593,10 @@ func (c *StorageGateway) ShutdownGatewayRequest(input *ShutdownGatewayInput) (re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ShutdownGatewayInput{}
 	}
 
 	req = c.newRequest(opShutdownGateway, input, output)
@@ -1482,6 +1646,10 @@ func (c *StorageGateway) StartGatewayRequest(input *StartGatewayInput) (req *aws
 		}
 	}
 
+	if input == nil {
+		input = &StartGatewayInput{}
+	}
+
 	req = c.newRequest(opStartGateway, input, output)
 	output = &StartGatewayOutput{}
 	req.Data = output
@@ -1518,6 +1686,10 @@ func (c *StorageGateway) UpdateBandwidthRateLimitRequest(input *UpdateBandwidthR
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateBandwidthRateLimitInput{}
 	}
 
 	req = c.newRequest(opUpdateBandwidthRateLimit, input, output)
@@ -1559,6 +1731,10 @@ func (c *StorageGateway) UpdateChapCredentialsRequest(input *UpdateChapCredentia
 		}
 	}
 
+	if input == nil {
+		input = &UpdateChapCredentialsInput{}
+	}
+
 	req = c.newRequest(opUpdateChapCredentials, input, output)
 	output = &UpdateChapCredentialsOutput{}
 	req.Data = output
@@ -1593,6 +1769,10 @@ func (c *StorageGateway) UpdateGatewayInformationRequest(input *UpdateGatewayInf
 		}
 	}
 
+	if input == nil {
+		input = &UpdateGatewayInformationInput{}
+	}
+
 	req = c.newRequest(opUpdateGatewayInformation, input, output)
 	output = &UpdateGatewayInformationOutput{}
 	req.Data = output
@@ -1622,6 +1802,10 @@ func (c *StorageGateway) UpdateGatewaySoftwareNowRequest(input *UpdateGatewaySof
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateGatewaySoftwareNowInput{}
 	}
 
 	req = c.newRequest(opUpdateGatewaySoftwareNow, input, output)
@@ -1665,6 +1849,10 @@ func (c *StorageGateway) UpdateMaintenanceStartTimeRequest(input *UpdateMaintena
 		}
 	}
 
+	if input == nil {
+		input = &UpdateMaintenanceStartTimeInput{}
+	}
+
 	req = c.newRequest(opUpdateMaintenanceStartTime, input, output)
 	output = &UpdateMaintenanceStartTimeOutput{}
 	req.Data = output
@@ -1694,6 +1882,10 @@ func (c *StorageGateway) UpdateSnapshotScheduleRequest(input *UpdateSnapshotSche
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateSnapshotScheduleInput{}
 	}
 
 	req = c.newRequest(opUpdateSnapshotSchedule, input, output)
@@ -1731,6 +1923,10 @@ func (c *StorageGateway) UpdateVTLDeviceTypeRequest(input *UpdateVTLDeviceTypeIn
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateVTLDeviceTypeInput{}
 	}
 
 	req = c.newRequest(opUpdateVTLDeviceType, input, output)

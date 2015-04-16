@@ -25,6 +25,10 @@ func (c *SES) DeleteIdentityRequest(input *DeleteIdentityInput) (req *aws.Reques
 		}
 	}
 
+	if input == nil {
+		input = &DeleteIdentityInput{}
+	}
+
 	req = c.newRequest(opDeleteIdentity, input, output)
 	output = &DeleteIdentityOutput{}
 	req.Data = output
@@ -55,6 +59,10 @@ func (c *SES) DeleteVerifiedEmailAddressRequest(input *DeleteVerifiedEmailAddres
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteVerifiedEmailAddressInput{}
 	}
 
 	req = c.newRequest(opDeleteVerifiedEmailAddress, input, output)
@@ -88,6 +96,10 @@ func (c *SES) GetIdentityDKIMAttributesRequest(input *GetIdentityDKIMAttributesI
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetIdentityDKIMAttributesInput{}
 	}
 
 	req = c.newRequest(opGetIdentityDKIMAttributes, input, output)
@@ -135,6 +147,10 @@ func (c *SES) GetIdentityNotificationAttributesRequest(input *GetIdentityNotific
 		}
 	}
 
+	if input == nil {
+		input = &GetIdentityNotificationAttributesInput{}
+	}
+
 	req = c.newRequest(opGetIdentityNotificationAttributes, input, output)
 	output = &GetIdentityNotificationAttributesOutput{}
 	req.Data = output
@@ -170,6 +186,10 @@ func (c *SES) GetIdentityVerificationAttributesRequest(input *GetIdentityVerific
 		}
 	}
 
+	if input == nil {
+		input = &GetIdentityVerificationAttributesInput{}
+	}
+
 	req = c.newRequest(opGetIdentityVerificationAttributes, input, output)
 	output = &GetIdentityVerificationAttributesOutput{}
 	req.Data = output
@@ -203,6 +223,10 @@ func (c *SES) GetSendQuotaRequest(input *GetSendQuotaInput) (req *aws.Request, o
 		}
 	}
 
+	if input == nil {
+		input = &GetSendQuotaInput{}
+	}
+
 	req = c.newRequest(opGetSendQuota, input, output)
 	output = &GetSendQuotaOutput{}
 	req.Data = output
@@ -232,6 +256,10 @@ func (c *SES) GetSendStatisticsRequest(input *GetSendStatisticsInput) (req *aws.
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetSendStatisticsInput{}
 	}
 
 	req = c.newRequest(opGetSendStatistics, input, output)
@@ -268,6 +296,10 @@ func (c *SES) ListIdentitiesRequest(input *ListIdentitiesInput) (req *aws.Reques
 		}
 	}
 
+	if input == nil {
+		input = &ListIdentitiesInput{}
+	}
+
 	req = c.newRequest(opListIdentities, input, output)
 	output = &ListIdentitiesOutput{}
 	req.Data = output
@@ -298,6 +330,10 @@ func (c *SES) ListVerifiedEmailAddressesRequest(input *ListVerifiedEmailAddresse
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListVerifiedEmailAddressesInput{}
 	}
 
 	req = c.newRequest(opListVerifiedEmailAddresses, input, output)
@@ -331,6 +367,10 @@ func (c *SES) SendEmailRequest(input *SendEmailInput) (req *aws.Request, output 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SendEmailInput{}
 	}
 
 	req = c.newRequest(opSendEmail, input, output)
@@ -379,6 +419,10 @@ func (c *SES) SendRawEmailRequest(input *SendRawEmailInput) (req *aws.Request, o
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SendRawEmailInput{}
 	}
 
 	req = c.newRequest(opSendRawEmail, input, output)
@@ -436,6 +480,10 @@ func (c *SES) SetIdentityDKIMEnabledRequest(input *SetIdentityDKIMEnabledInput) 
 		}
 	}
 
+	if input == nil {
+		input = &SetIdentityDKIMEnabledInput{}
+	}
+
 	req = c.newRequest(opSetIdentityDKIMEnabled, input, output)
 	output = &SetIdentityDKIMEnabledOutput{}
 	req.Data = output
@@ -478,6 +526,10 @@ func (c *SES) SetIdentityFeedbackForwardingEnabledRequest(input *SetIdentityFeed
 		}
 	}
 
+	if input == nil {
+		input = &SetIdentityFeedbackForwardingEnabledInput{}
+	}
+
 	req = c.newRequest(opSetIdentityFeedbackForwardingEnabled, input, output)
 	output = &SetIdentityFeedbackForwardingEnabledOutput{}
 	req.Data = output
@@ -515,6 +567,10 @@ func (c *SES) SetIdentityNotificationTopicRequest(input *SetIdentityNotification
 		}
 	}
 
+	if input == nil {
+		input = &SetIdentityNotificationTopicInput{}
+	}
+
 	req = c.newRequest(opSetIdentityNotificationTopic, input, output)
 	output = &SetIdentityNotificationTopicOutput{}
 	req.Data = output
@@ -549,6 +605,10 @@ func (c *SES) VerifyDomainDKIMRequest(input *VerifyDomainDKIMInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &VerifyDomainDKIMInput{}
 	}
 
 	req = c.newRequest(opVerifyDomainDKIM, input, output)
@@ -594,6 +654,10 @@ func (c *SES) VerifyDomainIdentityRequest(input *VerifyDomainIdentityInput) (req
 		}
 	}
 
+	if input == nil {
+		input = &VerifyDomainIdentityInput{}
+	}
+
 	req = c.newRequest(opVerifyDomainIdentity, input, output)
 	output = &VerifyDomainIdentityOutput{}
 	req.Data = output
@@ -623,6 +687,10 @@ func (c *SES) VerifyEmailAddressRequest(input *VerifyEmailAddressInput) (req *aw
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &VerifyEmailAddressInput{}
 	}
 
 	req = c.newRequest(opVerifyEmailAddress, input, output)
@@ -657,6 +725,10 @@ func (c *SES) VerifyEmailIdentityRequest(input *VerifyEmailIdentityInput) (req *
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &VerifyEmailIdentityInput{}
 	}
 
 	req = c.newRequest(opVerifyEmailIdentity, input, output)

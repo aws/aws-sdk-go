@@ -25,6 +25,10 @@ func (c *KMS) CreateAliasRequest(input *CreateAliasInput) (req *aws.Request, out
 		}
 	}
 
+	if input == nil {
+		input = &CreateAliasInput{}
+	}
+
 	req = c.newRequest(opCreateAlias, input, output)
 	output = &CreateAliasOutput{}
 	req.Data = output
@@ -60,6 +64,10 @@ func (c *KMS) CreateGrantRequest(input *CreateGrantInput) (req *aws.Request, out
 		}
 	}
 
+	if input == nil {
+		input = &CreateGrantInput{}
+	}
+
 	req = c.newRequest(opCreateGrant, input, output)
 	output = &CreateGrantOutput{}
 	req.Data = output
@@ -93,6 +101,10 @@ func (c *KMS) CreateKeyRequest(input *CreateKeyInput) (req *aws.Request, output 
 		}
 	}
 
+	if input == nil {
+		input = &CreateKeyInput{}
+	}
+
 	req = c.newRequest(opCreateKey, input, output)
 	output = &CreateKeyOutput{}
 	req.Data = output
@@ -123,6 +135,10 @@ func (c *KMS) DecryptRequest(input *DecryptInput) (req *aws.Request, output *Dec
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DecryptInput{}
 	}
 
 	req = c.newRequest(opDecrypt, input, output)
@@ -165,6 +181,10 @@ func (c *KMS) DeleteAliasRequest(input *DeleteAliasInput) (req *aws.Request, out
 		}
 	}
 
+	if input == nil {
+		input = &DeleteAliasInput{}
+	}
+
 	req = c.newRequest(opDeleteAlias, input, output)
 	output = &DeleteAliasOutput{}
 	req.Data = output
@@ -192,6 +212,10 @@ func (c *KMS) DescribeKeyRequest(input *DescribeKeyInput) (req *aws.Request, out
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeKeyInput{}
 	}
 
 	req = c.newRequest(opDescribeKey, input, output)
@@ -223,6 +247,10 @@ func (c *KMS) DisableKeyRequest(input *DisableKeyInput) (req *aws.Request, outpu
 		}
 	}
 
+	if input == nil {
+		input = &DisableKeyInput{}
+	}
+
 	req = c.newRequest(opDisableKey, input, output)
 	output = &DisableKeyOutput{}
 	req.Data = output
@@ -252,6 +280,10 @@ func (c *KMS) DisableKeyRotationRequest(input *DisableKeyRotationInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &DisableKeyRotationInput{}
+	}
+
 	req = c.newRequest(opDisableKeyRotation, input, output)
 	output = &DisableKeyRotationOutput{}
 	req.Data = output
@@ -279,6 +311,10 @@ func (c *KMS) EnableKeyRequest(input *EnableKeyInput) (req *aws.Request, output 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &EnableKeyInput{}
 	}
 
 	req = c.newRequest(opEnableKey, input, output)
@@ -311,6 +347,10 @@ func (c *KMS) EnableKeyRotationRequest(input *EnableKeyRotationInput) (req *aws.
 		}
 	}
 
+	if input == nil {
+		input = &EnableKeyRotationInput{}
+	}
+
 	req = c.newRequest(opEnableKeyRotation, input, output)
 	output = &EnableKeyRotationOutput{}
 	req.Data = output
@@ -338,6 +378,10 @@ func (c *KMS) EncryptRequest(input *EncryptInput) (req *aws.Request, output *Enc
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &EncryptInput{}
 	}
 
 	req = c.newRequest(opEncrypt, input, output)
@@ -383,6 +427,10 @@ func (c *KMS) GenerateDataKeyRequest(input *GenerateDataKeyInput) (req *aws.Requ
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GenerateDataKeyInput{}
 	}
 
 	req = c.newRequest(opGenerateDataKey, input, output)
@@ -443,6 +491,10 @@ func (c *KMS) GenerateDataKeyWithoutPlaintextRequest(input *GenerateDataKeyWitho
 		}
 	}
 
+	if input == nil {
+		input = &GenerateDataKeyWithoutPlaintextInput{}
+	}
+
 	req = c.newRequest(opGenerateDataKeyWithoutPlaintext, input, output)
 	output = &GenerateDataKeyWithoutPlaintextOutput{}
 	req.Data = output
@@ -476,6 +528,10 @@ func (c *KMS) GenerateRandomRequest(input *GenerateRandomInput) (req *aws.Reques
 		}
 	}
 
+	if input == nil {
+		input = &GenerateRandomInput{}
+	}
+
 	req = c.newRequest(opGenerateRandom, input, output)
 	output = &GenerateRandomOutput{}
 	req.Data = output
@@ -505,6 +561,10 @@ func (c *KMS) GetKeyPolicyRequest(input *GetKeyPolicyInput) (req *aws.Request, o
 		}
 	}
 
+	if input == nil {
+		input = &GetKeyPolicyInput{}
+	}
+
 	req = c.newRequest(opGetKeyPolicy, input, output)
 	output = &GetKeyPolicyOutput{}
 	req.Data = output
@@ -532,6 +592,10 @@ func (c *KMS) GetKeyRotationStatusRequest(input *GetKeyRotationStatusInput) (req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetKeyRotationStatusInput{}
 	}
 
 	req = c.newRequest(opGetKeyRotationStatus, input, output)
@@ -564,6 +628,10 @@ func (c *KMS) ListAliasesRequest(input *ListAliasesInput) (req *aws.Request, out
 		}
 	}
 
+	if input == nil {
+		input = &ListAliasesInput{}
+	}
+
 	req = c.newRequest(opListAliases, input, output)
 	output = &ListAliasesOutput{}
 	req.Data = output
@@ -591,6 +659,10 @@ func (c *KMS) ListGrantsRequest(input *ListGrantsInput) (req *aws.Request, outpu
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListGrantsInput{}
 	}
 
 	req = c.newRequest(opListGrants, input, output)
@@ -622,6 +694,10 @@ func (c *KMS) ListKeyPoliciesRequest(input *ListKeyPoliciesInput) (req *aws.Requ
 		}
 	}
 
+	if input == nil {
+		input = &ListKeyPoliciesInput{}
+	}
+
 	req = c.newRequest(opListKeyPolicies, input, output)
 	output = &ListKeyPoliciesOutput{}
 	req.Data = output
@@ -649,6 +725,10 @@ func (c *KMS) ListKeysRequest(input *ListKeysInput) (req *aws.Request, output *L
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListKeysInput{}
 	}
 
 	req = c.newRequest(opListKeys, input, output)
@@ -680,6 +760,10 @@ func (c *KMS) PutKeyPolicyRequest(input *PutKeyPolicyInput) (req *aws.Request, o
 		}
 	}
 
+	if input == nil {
+		input = &PutKeyPolicyInput{}
+	}
+
 	req = c.newRequest(opPutKeyPolicy, input, output)
 	output = &PutKeyPolicyOutput{}
 	req.Data = output
@@ -707,6 +791,10 @@ func (c *KMS) ReEncryptRequest(input *ReEncryptInput) (req *aws.Request, output 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ReEncryptInput{}
 	}
 
 	req = c.newRequest(opReEncrypt, input, output)
@@ -739,6 +827,10 @@ func (c *KMS) RetireGrantRequest(input *RetireGrantInput) (req *aws.Request, out
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RetireGrantInput{}
 	}
 
 	req = c.newRequest(opRetireGrant, input, output)
@@ -774,6 +866,10 @@ func (c *KMS) RevokeGrantRequest(input *RevokeGrantInput) (req *aws.Request, out
 		}
 	}
 
+	if input == nil {
+		input = &RevokeGrantInput{}
+	}
+
 	req = c.newRequest(opRevokeGrant, input, output)
 	output = &RevokeGrantOutput{}
 	req.Data = output
@@ -802,6 +898,10 @@ func (c *KMS) UpdateKeyDescriptionRequest(input *UpdateKeyDescriptionInput) (req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateKeyDescriptionInput{}
 	}
 
 	req = c.newRequest(opUpdateKeyDescription, input, output)

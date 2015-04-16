@@ -25,6 +25,10 @@ func (c *CloudFront) CreateCloudFrontOriginAccessIdentityRequest(input *CreateCl
 		}
 	}
 
+	if input == nil {
+		input = &CreateCloudFrontOriginAccessIdentityInput{}
+	}
+
 	req = c.newRequest(opCreateCloudFrontOriginAccessIdentity, input, output)
 	output = &CreateCloudFrontOriginAccessIdentityOutput{}
 	req.Data = output
@@ -52,6 +56,10 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 			HTTPMethod: "POST",
 			HTTPPath:   "/2014-11-06/distribution",
 		}
+	}
+
+	if input == nil {
+		input = &CreateDistributionInput{}
 	}
 
 	req = c.newRequest(opCreateDistribution, input, output)
@@ -83,6 +91,10 @@ func (c *CloudFront) CreateInvalidationRequest(input *CreateInvalidationInput) (
 		}
 	}
 
+	if input == nil {
+		input = &CreateInvalidationInput{}
+	}
+
 	req = c.newRequest(opCreateInvalidation, input, output)
 	output = &CreateInvalidationOutput{}
 	req.Data = output
@@ -110,6 +122,10 @@ func (c *CloudFront) CreateStreamingDistributionRequest(input *CreateStreamingDi
 			HTTPMethod: "POST",
 			HTTPPath:   "/2014-11-06/streaming-distribution",
 		}
+	}
+
+	if input == nil {
+		input = &CreateStreamingDistributionInput{}
 	}
 
 	req = c.newRequest(opCreateStreamingDistribution, input, output)
@@ -141,6 +157,10 @@ func (c *CloudFront) DeleteCloudFrontOriginAccessIdentityRequest(input *DeleteCl
 		}
 	}
 
+	if input == nil {
+		input = &DeleteCloudFrontOriginAccessIdentityInput{}
+	}
+
 	req = c.newRequest(opDeleteCloudFrontOriginAccessIdentity, input, output)
 	output = &DeleteCloudFrontOriginAccessIdentityOutput{}
 	req.Data = output
@@ -168,6 +188,10 @@ func (c *CloudFront) DeleteDistributionRequest(input *DeleteDistributionInput) (
 			HTTPMethod: "DELETE",
 			HTTPPath:   "/2014-11-06/distribution/{Id}",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteDistributionInput{}
 	}
 
 	req = c.newRequest(opDeleteDistribution, input, output)
@@ -199,6 +223,10 @@ func (c *CloudFront) DeleteStreamingDistributionRequest(input *DeleteStreamingDi
 		}
 	}
 
+	if input == nil {
+		input = &DeleteStreamingDistributionInput{}
+	}
+
 	req = c.newRequest(opDeleteStreamingDistribution, input, output)
 	output = &DeleteStreamingDistributionOutput{}
 	req.Data = output
@@ -226,6 +254,10 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentityRequest(input *GetCloudFro
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront/{Id}",
 		}
+	}
+
+	if input == nil {
+		input = &GetCloudFrontOriginAccessIdentityInput{}
 	}
 
 	req = c.newRequest(opGetCloudFrontOriginAccessIdentity, input, output)
@@ -257,6 +289,10 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfigRequest(input *GetCl
 		}
 	}
 
+	if input == nil {
+		input = &GetCloudFrontOriginAccessIdentityConfigInput{}
+	}
+
 	req = c.newRequest(opGetCloudFrontOriginAccessIdentityConfig, input, output)
 	output = &GetCloudFrontOriginAccessIdentityConfigOutput{}
 	req.Data = output
@@ -284,6 +320,10 @@ func (c *CloudFront) GetDistributionRequest(input *GetDistributionInput) (req *a
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/distribution/{Id}",
 		}
+	}
+
+	if input == nil {
+		input = &GetDistributionInput{}
 	}
 
 	req = c.newRequest(opGetDistribution, input, output)
@@ -315,6 +355,10 @@ func (c *CloudFront) GetDistributionConfigRequest(input *GetDistributionConfigIn
 		}
 	}
 
+	if input == nil {
+		input = &GetDistributionConfigInput{}
+	}
+
 	req = c.newRequest(opGetDistributionConfig, input, output)
 	output = &GetDistributionConfigOutput{}
 	req.Data = output
@@ -342,6 +386,10 @@ func (c *CloudFront) GetInvalidationRequest(input *GetInvalidationInput) (req *a
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/distribution/{DistributionId}/invalidation/{Id}",
 		}
+	}
+
+	if input == nil {
+		input = &GetInvalidationInput{}
 	}
 
 	req = c.newRequest(opGetInvalidation, input, output)
@@ -373,6 +421,10 @@ func (c *CloudFront) GetStreamingDistributionRequest(input *GetStreamingDistribu
 		}
 	}
 
+	if input == nil {
+		input = &GetStreamingDistributionInput{}
+	}
+
 	req = c.newRequest(opGetStreamingDistribution, input, output)
 	output = &GetStreamingDistributionOutput{}
 	req.Data = output
@@ -400,6 +452,10 @@ func (c *CloudFront) GetStreamingDistributionConfigRequest(input *GetStreamingDi
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/streaming-distribution/{Id}/config",
 		}
+	}
+
+	if input == nil {
+		input = &GetStreamingDistributionConfigInput{}
 	}
 
 	req = c.newRequest(opGetStreamingDistributionConfig, input, output)
@@ -431,6 +487,10 @@ func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesRequest(input *ListClou
 		}
 	}
 
+	if input == nil {
+		input = &ListCloudFrontOriginAccessIdentitiesInput{}
+	}
+
 	req = c.newRequest(opListCloudFrontOriginAccessIdentities, input, output)
 	output = &ListCloudFrontOriginAccessIdentitiesOutput{}
 	req.Data = output
@@ -458,6 +518,10 @@ func (c *CloudFront) ListDistributionsRequest(input *ListDistributionsInput) (re
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/distribution",
 		}
+	}
+
+	if input == nil {
+		input = &ListDistributionsInput{}
 	}
 
 	req = c.newRequest(opListDistributions, input, output)
@@ -489,6 +553,10 @@ func (c *CloudFront) ListInvalidationsRequest(input *ListInvalidationsInput) (re
 		}
 	}
 
+	if input == nil {
+		input = &ListInvalidationsInput{}
+	}
+
 	req = c.newRequest(opListInvalidations, input, output)
 	output = &ListInvalidationsOutput{}
 	req.Data = output
@@ -516,6 +584,10 @@ func (c *CloudFront) ListStreamingDistributionsRequest(input *ListStreamingDistr
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/streaming-distribution",
 		}
+	}
+
+	if input == nil {
+		input = &ListStreamingDistributionsInput{}
 	}
 
 	req = c.newRequest(opListStreamingDistributions, input, output)
@@ -547,6 +619,10 @@ func (c *CloudFront) UpdateCloudFrontOriginAccessIdentityRequest(input *UpdateCl
 		}
 	}
 
+	if input == nil {
+		input = &UpdateCloudFrontOriginAccessIdentityInput{}
+	}
+
 	req = c.newRequest(opUpdateCloudFrontOriginAccessIdentity, input, output)
 	output = &UpdateCloudFrontOriginAccessIdentityOutput{}
 	req.Data = output
@@ -576,6 +652,10 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 		}
 	}
 
+	if input == nil {
+		input = &UpdateDistributionInput{}
+	}
+
 	req = c.newRequest(opUpdateDistribution, input, output)
 	output = &UpdateDistributionOutput{}
 	req.Data = output
@@ -603,6 +683,10 @@ func (c *CloudFront) UpdateStreamingDistributionRequest(input *UpdateStreamingDi
 			HTTPMethod: "PUT",
 			HTTPPath:   "/2014-11-06/streaming-distribution/{Id}/config",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateStreamingDistributionInput{}
 	}
 
 	req = c.newRequest(opUpdateStreamingDistribution, input, output)

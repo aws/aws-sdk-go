@@ -26,6 +26,10 @@ func (c *S3) AbortMultipartUploadRequest(input *AbortMultipartUploadInput) (req 
 		}
 	}
 
+	if input == nil {
+		input = &AbortMultipartUploadInput{}
+	}
+
 	req = c.newRequest(opAbortMultipartUpload, input, output)
 	output = &AbortMultipartUploadOutput{}
 	req.Data = output
@@ -59,6 +63,10 @@ func (c *S3) CompleteMultipartUploadRequest(input *CompleteMultipartUploadInput)
 		}
 	}
 
+	if input == nil {
+		input = &CompleteMultipartUploadInput{}
+	}
+
 	req = c.newRequest(opCompleteMultipartUpload, input, output)
 	output = &CompleteMultipartUploadOutput{}
 	req.Data = output
@@ -86,6 +94,10 @@ func (c *S3) CopyObjectRequest(input *CopyObjectInput) (req *aws.Request, output
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}/{Key+}",
 		}
+	}
+
+	if input == nil {
+		input = &CopyObjectInput{}
 	}
 
 	req = c.newRequest(opCopyObject, input, output)
@@ -117,6 +129,10 @@ func (c *S3) CreateBucketRequest(input *CreateBucketInput) (req *aws.Request, ou
 		}
 	}
 
+	if input == nil {
+		input = &CreateBucketInput{}
+	}
+
 	req = c.newRequest(opCreateBucket, input, output)
 	output = &CreateBucketOutput{}
 	req.Data = output
@@ -144,6 +160,10 @@ func (c *S3) CreateMultipartUploadRequest(input *CreateMultipartUploadInput) (re
 			HTTPMethod: "POST",
 			HTTPPath:   "/{Bucket}/{Key+}?uploads",
 		}
+	}
+
+	if input == nil {
+		input = &CreateMultipartUploadInput{}
 	}
 
 	req = c.newRequest(opCreateMultipartUpload, input, output)
@@ -181,6 +201,10 @@ func (c *S3) DeleteBucketRequest(input *DeleteBucketInput) (req *aws.Request, ou
 		}
 	}
 
+	if input == nil {
+		input = &DeleteBucketInput{}
+	}
+
 	req = c.newRequest(opDeleteBucket, input, output)
 	output = &DeleteBucketOutput{}
 	req.Data = output
@@ -209,6 +233,10 @@ func (c *S3) DeleteBucketCORSRequest(input *DeleteBucketCORSInput) (req *aws.Req
 			HTTPMethod: "DELETE",
 			HTTPPath:   "/{Bucket}?cors",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteBucketCORSInput{}
 	}
 
 	req = c.newRequest(opDeleteBucketCORS, input, output)
@@ -240,6 +268,10 @@ func (c *S3) DeleteBucketLifecycleRequest(input *DeleteBucketLifecycleInput) (re
 		}
 	}
 
+	if input == nil {
+		input = &DeleteBucketLifecycleInput{}
+	}
+
 	req = c.newRequest(opDeleteBucketLifecycle, input, output)
 	output = &DeleteBucketLifecycleOutput{}
 	req.Data = output
@@ -267,6 +299,10 @@ func (c *S3) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) (req *aws
 			HTTPMethod: "DELETE",
 			HTTPPath:   "/{Bucket}?policy",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteBucketPolicyInput{}
 	}
 
 	req = c.newRequest(opDeleteBucketPolicy, input, output)
@@ -298,6 +334,10 @@ func (c *S3) DeleteBucketReplicationRequest(input *DeleteBucketReplicationInput)
 		}
 	}
 
+	if input == nil {
+		input = &DeleteBucketReplicationInput{}
+	}
+
 	req = c.newRequest(opDeleteBucketReplication, input, output)
 	output = &DeleteBucketReplicationOutput{}
 	req.Data = output
@@ -324,6 +364,10 @@ func (c *S3) DeleteBucketTaggingRequest(input *DeleteBucketTaggingInput) (req *a
 			HTTPMethod: "DELETE",
 			HTTPPath:   "/{Bucket}?tagging",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteBucketTaggingInput{}
 	}
 
 	req = c.newRequest(opDeleteBucketTagging, input, output)
@@ -355,6 +399,10 @@ func (c *S3) DeleteBucketWebsiteRequest(input *DeleteBucketWebsiteInput) (req *a
 		}
 	}
 
+	if input == nil {
+		input = &DeleteBucketWebsiteInput{}
+	}
+
 	req = c.newRequest(opDeleteBucketWebsite, input, output)
 	output = &DeleteBucketWebsiteOutput{}
 	req.Data = output
@@ -382,6 +430,10 @@ func (c *S3) DeleteObjectRequest(input *DeleteObjectInput) (req *aws.Request, ou
 			HTTPMethod: "DELETE",
 			HTTPPath:   "/{Bucket}/{Key+}",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteObjectInput{}
 	}
 
 	req = c.newRequest(opDeleteObject, input, output)
@@ -415,6 +467,10 @@ func (c *S3) DeleteObjectsRequest(input *DeleteObjectsInput) (req *aws.Request, 
 		}
 	}
 
+	if input == nil {
+		input = &DeleteObjectsInput{}
+	}
+
 	req = c.newRequest(opDeleteObjects, input, output)
 	output = &DeleteObjectsOutput{}
 	req.Data = output
@@ -443,6 +499,10 @@ func (c *S3) GetBucketACLRequest(input *GetBucketACLInput) (req *aws.Request, ou
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}?acl",
 		}
+	}
+
+	if input == nil {
+		input = &GetBucketACLInput{}
 	}
 
 	req = c.newRequest(opGetBucketACL, input, output)
@@ -474,6 +534,10 @@ func (c *S3) GetBucketCORSRequest(input *GetBucketCORSInput) (req *aws.Request, 
 		}
 	}
 
+	if input == nil {
+		input = &GetBucketCORSInput{}
+	}
+
 	req = c.newRequest(opGetBucketCORS, input, output)
 	output = &GetBucketCORSOutput{}
 	req.Data = output
@@ -501,6 +565,10 @@ func (c *S3) GetBucketLifecycleRequest(input *GetBucketLifecycleInput) (req *aws
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}?lifecycle",
 		}
+	}
+
+	if input == nil {
+		input = &GetBucketLifecycleInput{}
 	}
 
 	req = c.newRequest(opGetBucketLifecycle, input, output)
@@ -532,6 +600,10 @@ func (c *S3) GetBucketLocationRequest(input *GetBucketLocationInput) (req *aws.R
 		}
 	}
 
+	if input == nil {
+		input = &GetBucketLocationInput{}
+	}
+
 	req = c.newRequest(opGetBucketLocation, input, output)
 	output = &GetBucketLocationOutput{}
 	req.Data = output
@@ -559,6 +631,10 @@ func (c *S3) GetBucketLoggingRequest(input *GetBucketLoggingInput) (req *aws.Req
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}?logging",
 		}
+	}
+
+	if input == nil {
+		input = &GetBucketLoggingInput{}
 	}
 
 	req = c.newRequest(opGetBucketLogging, input, output)
@@ -591,6 +667,10 @@ func (c *S3) GetBucketNotificationRequest(input *GetBucketNotificationInput) (re
 		}
 	}
 
+	if input == nil {
+		input = &GetBucketNotificationInput{}
+	}
+
 	req = c.newRequest(opGetBucketNotification, input, output)
 	output = &GetBucketNotificationOutput{}
 	req.Data = output
@@ -618,6 +698,10 @@ func (c *S3) GetBucketPolicyRequest(input *GetBucketPolicyInput) (req *aws.Reque
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}?policy",
 		}
+	}
+
+	if input == nil {
+		input = &GetBucketPolicyInput{}
 	}
 
 	req = c.newRequest(opGetBucketPolicy, input, output)
@@ -649,6 +733,10 @@ func (c *S3) GetBucketReplicationRequest(input *GetBucketReplicationInput) (req 
 		}
 	}
 
+	if input == nil {
+		input = &GetBucketReplicationInput{}
+	}
+
 	req = c.newRequest(opGetBucketReplication, input, output)
 	output = &GetBucketReplicationOutput{}
 	req.Data = output
@@ -675,6 +763,10 @@ func (c *S3) GetBucketRequestPaymentRequest(input *GetBucketRequestPaymentInput)
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}?requestPayment",
 		}
+	}
+
+	if input == nil {
+		input = &GetBucketRequestPaymentInput{}
 	}
 
 	req = c.newRequest(opGetBucketRequestPayment, input, output)
@@ -706,6 +798,10 @@ func (c *S3) GetBucketTaggingRequest(input *GetBucketTaggingInput) (req *aws.Req
 		}
 	}
 
+	if input == nil {
+		input = &GetBucketTaggingInput{}
+	}
+
 	req = c.newRequest(opGetBucketTagging, input, output)
 	output = &GetBucketTaggingOutput{}
 	req.Data = output
@@ -733,6 +829,10 @@ func (c *S3) GetBucketVersioningRequest(input *GetBucketVersioningInput) (req *a
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}?versioning",
 		}
+	}
+
+	if input == nil {
+		input = &GetBucketVersioningInput{}
 	}
 
 	req = c.newRequest(opGetBucketVersioning, input, output)
@@ -764,6 +864,10 @@ func (c *S3) GetBucketWebsiteRequest(input *GetBucketWebsiteInput) (req *aws.Req
 		}
 	}
 
+	if input == nil {
+		input = &GetBucketWebsiteInput{}
+	}
+
 	req = c.newRequest(opGetBucketWebsite, input, output)
 	output = &GetBucketWebsiteOutput{}
 	req.Data = output
@@ -791,6 +895,10 @@ func (c *S3) GetObjectRequest(input *GetObjectInput) (req *aws.Request, output *
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}/{Key+}",
 		}
+	}
+
+	if input == nil {
+		input = &GetObjectInput{}
 	}
 
 	req = c.newRequest(opGetObject, input, output)
@@ -822,6 +930,10 @@ func (c *S3) GetObjectACLRequest(input *GetObjectACLInput) (req *aws.Request, ou
 		}
 	}
 
+	if input == nil {
+		input = &GetObjectACLInput{}
+	}
+
 	req = c.newRequest(opGetObjectACL, input, output)
 	output = &GetObjectACLOutput{}
 	req.Data = output
@@ -849,6 +961,10 @@ func (c *S3) GetObjectTorrentRequest(input *GetObjectTorrentInput) (req *aws.Req
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}/{Key+}?torrent",
 		}
+	}
+
+	if input == nil {
+		input = &GetObjectTorrentInput{}
 	}
 
 	req = c.newRequest(opGetObjectTorrent, input, output)
@@ -880,6 +996,10 @@ func (c *S3) HeadBucketRequest(input *HeadBucketInput) (req *aws.Request, output
 		}
 	}
 
+	if input == nil {
+		input = &HeadBucketInput{}
+	}
+
 	req = c.newRequest(opHeadBucket, input, output)
 	output = &HeadBucketOutput{}
 	req.Data = output
@@ -908,6 +1028,10 @@ func (c *S3) HeadObjectRequest(input *HeadObjectInput) (req *aws.Request, output
 			HTTPMethod: "HEAD",
 			HTTPPath:   "/{Bucket}/{Key+}",
 		}
+	}
+
+	if input == nil {
+		input = &HeadObjectInput{}
 	}
 
 	req = c.newRequest(opHeadObject, input, output)
@@ -941,6 +1065,10 @@ func (c *S3) ListBucketsRequest(input *ListBucketsInput) (req *aws.Request, outp
 		}
 	}
 
+	if input == nil {
+		input = &ListBucketsInput{}
+	}
+
 	req = c.newRequest(opListBuckets, input, output)
 	output = &ListBucketsOutput{}
 	req.Data = output
@@ -968,6 +1096,10 @@ func (c *S3) ListMultipartUploadsRequest(input *ListMultipartUploadsInput) (req 
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}?uploads",
 		}
+	}
+
+	if input == nil {
+		input = &ListMultipartUploadsInput{}
 	}
 
 	req = c.newRequest(opListMultipartUploads, input, output)
@@ -999,6 +1131,10 @@ func (c *S3) ListObjectVersionsRequest(input *ListObjectVersionsInput) (req *aws
 		}
 	}
 
+	if input == nil {
+		input = &ListObjectVersionsInput{}
+	}
+
 	req = c.newRequest(opListObjectVersions, input, output)
 	output = &ListObjectVersionsOutput{}
 	req.Data = output
@@ -1026,6 +1162,10 @@ func (c *S3) ListObjectsRequest(input *ListObjectsInput) (req *aws.Request, outp
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}",
 		}
+	}
+
+	if input == nil {
+		input = &ListObjectsInput{}
 	}
 
 	req = c.newRequest(opListObjects, input, output)
@@ -1059,6 +1199,10 @@ func (c *S3) ListPartsRequest(input *ListPartsInput) (req *aws.Request, output *
 		}
 	}
 
+	if input == nil {
+		input = &ListPartsInput{}
+	}
+
 	req = c.newRequest(opListParts, input, output)
 	output = &ListPartsOutput{}
 	req.Data = output
@@ -1086,6 +1230,10 @@ func (c *S3) PutBucketACLRequest(input *PutBucketACLInput) (req *aws.Request, ou
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}?acl",
 		}
+	}
+
+	if input == nil {
+		input = &PutBucketACLInput{}
 	}
 
 	req = c.newRequest(opPutBucketACL, input, output)
@@ -1117,6 +1265,10 @@ func (c *S3) PutBucketCORSRequest(input *PutBucketCORSInput) (req *aws.Request, 
 		}
 	}
 
+	if input == nil {
+		input = &PutBucketCORSInput{}
+	}
+
 	req = c.newRequest(opPutBucketCORS, input, output)
 	output = &PutBucketCORSOutput{}
 	req.Data = output
@@ -1144,6 +1296,10 @@ func (c *S3) PutBucketLifecycleRequest(input *PutBucketLifecycleInput) (req *aws
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}?lifecycle",
 		}
+	}
+
+	if input == nil {
+		input = &PutBucketLifecycleInput{}
 	}
 
 	req = c.newRequest(opPutBucketLifecycle, input, output)
@@ -1174,6 +1330,10 @@ func (c *S3) PutBucketLoggingRequest(input *PutBucketLoggingInput) (req *aws.Req
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}?logging",
 		}
+	}
+
+	if input == nil {
+		input = &PutBucketLoggingInput{}
 	}
 
 	req = c.newRequest(opPutBucketLogging, input, output)
@@ -1207,6 +1367,10 @@ func (c *S3) PutBucketNotificationRequest(input *PutBucketNotificationInput) (re
 		}
 	}
 
+	if input == nil {
+		input = &PutBucketNotificationInput{}
+	}
+
 	req = c.newRequest(opPutBucketNotification, input, output)
 	output = &PutBucketNotificationOutput{}
 	req.Data = output
@@ -1234,6 +1398,10 @@ func (c *S3) PutBucketPolicyRequest(input *PutBucketPolicyInput) (req *aws.Reque
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}?policy",
 		}
+	}
+
+	if input == nil {
+		input = &PutBucketPolicyInput{}
 	}
 
 	req = c.newRequest(opPutBucketPolicy, input, output)
@@ -1266,6 +1434,10 @@ func (c *S3) PutBucketReplicationRequest(input *PutBucketReplicationInput) (req 
 		}
 	}
 
+	if input == nil {
+		input = &PutBucketReplicationInput{}
+	}
+
 	req = c.newRequest(opPutBucketReplication, input, output)
 	output = &PutBucketReplicationOutput{}
 	req.Data = output
@@ -1294,6 +1466,10 @@ func (c *S3) PutBucketRequestPaymentRequest(input *PutBucketRequestPaymentInput)
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}?requestPayment",
 		}
+	}
+
+	if input == nil {
+		input = &PutBucketRequestPaymentInput{}
 	}
 
 	req = c.newRequest(opPutBucketRequestPayment, input, output)
@@ -1329,6 +1505,10 @@ func (c *S3) PutBucketTaggingRequest(input *PutBucketTaggingInput) (req *aws.Req
 		}
 	}
 
+	if input == nil {
+		input = &PutBucketTaggingInput{}
+	}
+
 	req = c.newRequest(opPutBucketTagging, input, output)
 	output = &PutBucketTaggingOutput{}
 	req.Data = output
@@ -1356,6 +1536,10 @@ func (c *S3) PutBucketVersioningRequest(input *PutBucketVersioningInput) (req *a
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}?versioning",
 		}
+	}
+
+	if input == nil {
+		input = &PutBucketVersioningInput{}
 	}
 
 	req = c.newRequest(opPutBucketVersioning, input, output)
@@ -1388,6 +1572,10 @@ func (c *S3) PutBucketWebsiteRequest(input *PutBucketWebsiteInput) (req *aws.Req
 		}
 	}
 
+	if input == nil {
+		input = &PutBucketWebsiteInput{}
+	}
+
 	req = c.newRequest(opPutBucketWebsite, input, output)
 	output = &PutBucketWebsiteOutput{}
 	req.Data = output
@@ -1417,6 +1605,10 @@ func (c *S3) PutObjectRequest(input *PutObjectInput) (req *aws.Request, output *
 		}
 	}
 
+	if input == nil {
+		input = &PutObjectInput{}
+	}
+
 	req = c.newRequest(opPutObject, input, output)
 	output = &PutObjectOutput{}
 	req.Data = output
@@ -1444,6 +1636,10 @@ func (c *S3) PutObjectACLRequest(input *PutObjectACLInput) (req *aws.Request, ou
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}/{Key+}?acl",
 		}
+	}
+
+	if input == nil {
+		input = &PutObjectACLInput{}
 	}
 
 	req = c.newRequest(opPutObjectACL, input, output)
@@ -1476,6 +1672,10 @@ func (c *S3) RestoreObjectRequest(input *RestoreObjectInput) (req *aws.Request, 
 		}
 	}
 
+	if input == nil {
+		input = &RestoreObjectInput{}
+	}
+
 	req = c.newRequest(opRestoreObject, input, output)
 	output = &RestoreObjectOutput{}
 	req.Data = output
@@ -1503,6 +1703,10 @@ func (c *S3) UploadPartRequest(input *UploadPartInput) (req *aws.Request, output
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}/{Key+}",
 		}
+	}
+
+	if input == nil {
+		input = &UploadPartInput{}
 	}
 
 	req = c.newRequest(opUploadPart, input, output)
@@ -1538,6 +1742,10 @@ func (c *S3) UploadPartCopyRequest(input *UploadPartCopyInput) (req *aws.Request
 			HTTPMethod: "PUT",
 			HTTPPath:   "/{Bucket}/{Key+}",
 		}
+	}
+
+	if input == nil {
+		input = &UploadPartCopyInput{}
 	}
 
 	req = c.newRequest(opUploadPartCopy, input, output)

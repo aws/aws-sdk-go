@@ -25,6 +25,10 @@ func (c *CloudSearch) BuildSuggestersRequest(input *BuildSuggestersInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &BuildSuggestersInput{}
+	}
+
 	req = c.newRequest(opBuildSuggesters, input, output)
 	output = &BuildSuggestersOutput{}
 	req.Data = output
@@ -56,6 +60,10 @@ func (c *CloudSearch) CreateDomainRequest(input *CreateDomainInput) (req *aws.Re
 		}
 	}
 
+	if input == nil {
+		input = &CreateDomainInput{}
+	}
+
 	req = c.newRequest(opCreateDomain, input, output)
 	output = &CreateDomainOutput{}
 	req.Data = output
@@ -85,6 +93,10 @@ func (c *CloudSearch) DefineAnalysisSchemeRequest(input *DefineAnalysisSchemeInp
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DefineAnalysisSchemeInput{}
 	}
 
 	req = c.newRequest(opDefineAnalysisScheme, input, output)
@@ -119,6 +131,10 @@ func (c *CloudSearch) DefineExpressionRequest(input *DefineExpressionInput) (req
 		}
 	}
 
+	if input == nil {
+		input = &DefineExpressionInput{}
+	}
+
 	req = c.newRequest(opDefineExpression, input, output)
 	output = &DefineExpressionOutput{}
 	req.Data = output
@@ -149,6 +165,10 @@ func (c *CloudSearch) DefineIndexFieldRequest(input *DefineIndexFieldInput) (req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DefineIndexFieldInput{}
 	}
 
 	req = c.newRequest(opDefineIndexField, input, output)
@@ -187,6 +207,10 @@ func (c *CloudSearch) DefineSuggesterRequest(input *DefineSuggesterInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &DefineSuggesterInput{}
+	}
+
 	req = c.newRequest(opDefineSuggester, input, output)
 	output = &DefineSuggesterOutput{}
 	req.Data = output
@@ -221,6 +245,10 @@ func (c *CloudSearch) DeleteAnalysisSchemeRequest(input *DeleteAnalysisSchemeInp
 		}
 	}
 
+	if input == nil {
+		input = &DeleteAnalysisSchemeInput{}
+	}
+
 	req = c.newRequest(opDeleteAnalysisScheme, input, output)
 	output = &DeleteAnalysisSchemeOutput{}
 	req.Data = output
@@ -250,6 +278,10 @@ func (c *CloudSearch) DeleteDomainRequest(input *DeleteDomainInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteDomainInput{}
 	}
 
 	req = c.newRequest(opDeleteDomain, input, output)
@@ -284,6 +316,10 @@ func (c *CloudSearch) DeleteExpressionRequest(input *DeleteExpressionInput) (req
 		}
 	}
 
+	if input == nil {
+		input = &DeleteExpressionInput{}
+	}
+
 	req = c.newRequest(opDeleteExpression, input, output)
 	output = &DeleteExpressionOutput{}
 	req.Data = output
@@ -313,6 +349,10 @@ func (c *CloudSearch) DeleteIndexFieldRequest(input *DeleteIndexFieldInput) (req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteIndexFieldInput{}
 	}
 
 	req = c.newRequest(opDeleteIndexField, input, output)
@@ -346,6 +386,10 @@ func (c *CloudSearch) DeleteSuggesterRequest(input *DeleteSuggesterInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &DeleteSuggesterInput{}
+	}
+
 	req = c.newRequest(opDeleteSuggester, input, output)
 	output = &DeleteSuggesterOutput{}
 	req.Data = output
@@ -375,6 +419,10 @@ func (c *CloudSearch) DescribeAnalysisSchemesRequest(input *DescribeAnalysisSche
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeAnalysisSchemesInput{}
 	}
 
 	req = c.newRequest(opDescribeAnalysisSchemes, input, output)
@@ -412,6 +460,10 @@ func (c *CloudSearch) DescribeAvailabilityOptionsRequest(input *DescribeAvailabi
 		}
 	}
 
+	if input == nil {
+		input = &DescribeAvailabilityOptionsInput{}
+	}
+
 	req = c.newRequest(opDescribeAvailabilityOptions, input, output)
 	output = &DescribeAvailabilityOptionsOutput{}
 	req.Data = output
@@ -443,6 +495,10 @@ func (c *CloudSearch) DescribeDomainsRequest(input *DescribeDomainsInput) (req *
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeDomainsInput{}
 	}
 
 	req = c.newRequest(opDescribeDomains, input, output)
@@ -479,6 +535,10 @@ func (c *CloudSearch) DescribeExpressionsRequest(input *DescribeExpressionsInput
 		}
 	}
 
+	if input == nil {
+		input = &DescribeExpressionsInput{}
+	}
+
 	req = c.newRequest(opDescribeExpressions, input, output)
 	output = &DescribeExpressionsOutput{}
 	req.Data = output
@@ -511,6 +571,10 @@ func (c *CloudSearch) DescribeIndexFieldsRequest(input *DescribeIndexFieldsInput
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeIndexFieldsInput{}
 	}
 
 	req = c.newRequest(opDescribeIndexFields, input, output)
@@ -547,6 +611,10 @@ func (c *CloudSearch) DescribeScalingParametersRequest(input *DescribeScalingPar
 		}
 	}
 
+	if input == nil {
+		input = &DescribeScalingParametersInput{}
+	}
+
 	req = c.newRequest(opDescribeScalingParameters, input, output)
 	output = &DescribeScalingParametersOutput{}
 	req.Data = output
@@ -577,6 +645,10 @@ func (c *CloudSearch) DescribeServiceAccessPoliciesRequest(input *DescribeServic
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeServiceAccessPoliciesInput{}
 	}
 
 	req = c.newRequest(opDescribeServiceAccessPolicies, input, output)
@@ -611,6 +683,10 @@ func (c *CloudSearch) DescribeSuggestersRequest(input *DescribeSuggestersInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeSuggestersInput{}
 	}
 
 	req = c.newRequest(opDescribeSuggesters, input, output)
@@ -648,6 +724,10 @@ func (c *CloudSearch) IndexDocumentsRequest(input *IndexDocumentsInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &IndexDocumentsInput{}
+	}
+
 	req = c.newRequest(opIndexDocuments, input, output)
 	output = &IndexDocumentsOutput{}
 	req.Data = output
@@ -679,6 +759,10 @@ func (c *CloudSearch) ListDomainNamesRequest(input *ListDomainNamesInput) (req *
 		}
 	}
 
+	if input == nil {
+		input = &ListDomainNamesInput{}
+	}
+
 	req = c.newRequest(opListDomainNames, input, output)
 	output = &ListDomainNamesOutput{}
 	req.Data = output
@@ -706,6 +790,10 @@ func (c *CloudSearch) UpdateAvailabilityOptionsRequest(input *UpdateAvailability
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateAvailabilityOptionsInput{}
 	}
 
 	req = c.newRequest(opUpdateAvailabilityOptions, input, output)
@@ -742,6 +830,10 @@ func (c *CloudSearch) UpdateScalingParametersRequest(input *UpdateScalingParamet
 		}
 	}
 
+	if input == nil {
+		input = &UpdateScalingParametersInput{}
+	}
+
 	req = c.newRequest(opUpdateScalingParameters, input, output)
 	output = &UpdateScalingParametersOutput{}
 	req.Data = output
@@ -776,6 +868,10 @@ func (c *CloudSearch) UpdateServiceAccessPoliciesRequest(input *UpdateServiceAcc
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateServiceAccessPoliciesInput{}
 	}
 
 	req = c.newRequest(opUpdateServiceAccessPolicies, input, output)

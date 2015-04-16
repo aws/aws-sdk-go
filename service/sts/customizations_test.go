@@ -9,8 +9,7 @@ import (
 )
 
 var svc = sts.New(&aws.Config{
-	Region:      "mock-region",
-	Credentials: aws.DetectCreds("AKID", "SECRET", ""),
+	Region: "mock-region",
 })
 
 func TestUnsignedRequest_AssumeRoleWithSAML(t *testing.T) {

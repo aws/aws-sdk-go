@@ -25,6 +25,10 @@ func (c *Route53Domains) CheckDomainAvailabilityRequest(input *CheckDomainAvaila
 		}
 	}
 
+	if input == nil {
+		input = &CheckDomainAvailabilityInput{}
+	}
+
 	req = c.newRequest(opCheckDomainAvailability, input, output)
 	output = &CheckDomainAvailabilityOutput{}
 	req.Data = output
@@ -57,6 +61,10 @@ func (c *Route53Domains) DeleteTagsForDomainRequest(input *DeleteTagsForDomainIn
 		}
 	}
 
+	if input == nil {
+		input = &DeleteTagsForDomainInput{}
+	}
+
 	req = c.newRequest(opDeleteTagsForDomain, input, output)
 	output = &DeleteTagsForDomainOutput{}
 	req.Data = output
@@ -87,6 +95,10 @@ func (c *Route53Domains) DisableDomainAutoRenewRequest(input *DisableDomainAutoR
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DisableDomainAutoRenewInput{}
 	}
 
 	req = c.newRequest(opDisableDomainAutoRenew, input, output)
@@ -124,6 +136,10 @@ func (c *Route53Domains) DisableDomainTransferLockRequest(input *DisableDomainTr
 		}
 	}
 
+	if input == nil {
+		input = &DisableDomainTransferLockInput{}
+	}
+
 	req = c.newRequest(opDisableDomainTransferLock, input, output)
 	output = &DisableDomainTransferLockOutput{}
 	req.Data = output
@@ -157,6 +173,10 @@ func (c *Route53Domains) EnableDomainAutoRenewRequest(input *EnableDomainAutoRen
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &EnableDomainAutoRenewInput{}
 	}
 
 	req = c.newRequest(opEnableDomainAutoRenew, input, output)
@@ -197,6 +217,10 @@ func (c *Route53Domains) EnableDomainTransferLockRequest(input *EnableDomainTran
 		}
 	}
 
+	if input == nil {
+		input = &EnableDomainTransferLockInput{}
+	}
+
 	req = c.newRequest(opEnableDomainTransferLock, input, output)
 	output = &EnableDomainTransferLockOutput{}
 	req.Data = output
@@ -230,6 +254,10 @@ func (c *Route53Domains) GetDomainDetailRequest(input *GetDomainDetailInput) (re
 		}
 	}
 
+	if input == nil {
+		input = &GetDomainDetailInput{}
+	}
+
 	req = c.newRequest(opGetDomainDetail, input, output)
 	output = &GetDomainDetailOutput{}
 	req.Data = output
@@ -260,6 +288,10 @@ func (c *Route53Domains) GetOperationDetailRequest(input *GetOperationDetailInpu
 		}
 	}
 
+	if input == nil {
+		input = &GetOperationDetailInput{}
+	}
+
 	req = c.newRequest(opGetOperationDetail, input, output)
 	output = &GetOperationDetailOutput{}
 	req.Data = output
@@ -287,6 +319,10 @@ func (c *Route53Domains) ListDomainsRequest(input *ListDomainsInput) (req *aws.R
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListDomainsInput{}
 	}
 
 	req = c.newRequest(opListDomains, input, output)
@@ -319,6 +355,10 @@ func (c *Route53Domains) ListOperationsRequest(input *ListOperationsInput) (req 
 		}
 	}
 
+	if input == nil {
+		input = &ListOperationsInput{}
+	}
+
 	req = c.newRequest(opListOperations, input, output)
 	output = &ListOperationsOutput{}
 	req.Data = output
@@ -346,6 +386,10 @@ func (c *Route53Domains) ListTagsForDomainRequest(input *ListTagsForDomainInput)
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListTagsForDomainInput{}
 	}
 
 	req = c.newRequest(opListTagsForDomain, input, output)
@@ -379,6 +423,10 @@ func (c *Route53Domains) RegisterDomainRequest(input *RegisterDomainInput) (req 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RegisterDomainInput{}
 	}
 
 	req = c.newRequest(opRegisterDomain, input, output)
@@ -428,6 +476,10 @@ func (c *Route53Domains) RetrieveDomainAuthCodeRequest(input *RetrieveDomainAuth
 		}
 	}
 
+	if input == nil {
+		input = &RetrieveDomainAuthCodeInput{}
+	}
+
 	req = c.newRequest(opRetrieveDomainAuthCode, input, output)
 	output = &RetrieveDomainAuthCodeOutput{}
 	req.Data = output
@@ -456,6 +508,10 @@ func (c *Route53Domains) TransferDomainRequest(input *TransferDomainInput) (req 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &TransferDomainInput{}
 	}
 
 	req = c.newRequest(opTransferDomain, input, output)
@@ -510,6 +566,10 @@ func (c *Route53Domains) UpdateDomainContactRequest(input *UpdateDomainContactIn
 		}
 	}
 
+	if input == nil {
+		input = &UpdateDomainContactInput{}
+	}
+
 	req = c.newRequest(opUpdateDomainContact, input, output)
 	output = &UpdateDomainContactOutput{}
 	req.Data = output
@@ -544,6 +604,10 @@ func (c *Route53Domains) UpdateDomainContactPrivacyRequest(input *UpdateDomainCo
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateDomainContactPrivacyInput{}
 	}
 
 	req = c.newRequest(opUpdateDomainContactPrivacy, input, output)
@@ -585,6 +649,10 @@ func (c *Route53Domains) UpdateDomainNameserversRequest(input *UpdateDomainNames
 		}
 	}
 
+	if input == nil {
+		input = &UpdateDomainNameserversInput{}
+	}
+
 	req = c.newRequest(opUpdateDomainNameservers, input, output)
 	output = &UpdateDomainNameserversOutput{}
 	req.Data = output
@@ -619,6 +687,10 @@ func (c *Route53Domains) UpdateTagsForDomainRequest(input *UpdateTagsForDomainIn
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateTagsForDomainInput{}
 	}
 
 	req = c.newRequest(opUpdateTagsForDomain, input, output)

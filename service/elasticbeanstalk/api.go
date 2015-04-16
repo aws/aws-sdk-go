@@ -25,6 +25,10 @@ func (c *ElasticBeanstalk) CheckDNSAvailabilityRequest(input *CheckDNSAvailabili
 		}
 	}
 
+	if input == nil {
+		input = &CheckDNSAvailabilityInput{}
+	}
+
 	req = c.newRequest(opCheckDNSAvailability, input, output)
 	output = &CheckDNSAvailabilityOutput{}
 	req.Data = output
@@ -52,6 +56,10 @@ func (c *ElasticBeanstalk) CreateApplicationRequest(input *CreateApplicationInpu
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateApplicationInput{}
 	}
 
 	req = c.newRequest(opCreateApplication, input, output)
@@ -84,6 +92,10 @@ func (c *ElasticBeanstalk) CreateApplicationVersionRequest(input *CreateApplicat
 		}
 	}
 
+	if input == nil {
+		input = &CreateApplicationVersionInput{}
+	}
+
 	req = c.newRequest(opCreateApplicationVersion, input, output)
 	output = &ApplicationVersionDescriptionMessage{}
 	req.Data = output
@@ -111,6 +123,10 @@ func (c *ElasticBeanstalk) CreateConfigurationTemplateRequest(input *CreateConfi
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateConfigurationTemplateInput{}
 	}
 
 	req = c.newRequest(opCreateConfigurationTemplate, input, output)
@@ -148,6 +164,10 @@ func (c *ElasticBeanstalk) CreateEnvironmentRequest(input *CreateEnvironmentInpu
 		}
 	}
 
+	if input == nil {
+		input = &CreateEnvironmentInput{}
+	}
+
 	req = c.newRequest(opCreateEnvironment, input, output)
 	output = &EnvironmentDescription{}
 	req.Data = output
@@ -176,6 +196,10 @@ func (c *ElasticBeanstalk) CreateStorageLocationRequest(input *CreateStorageLoca
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateStorageLocationInput{}
 	}
 
 	req = c.newRequest(opCreateStorageLocation, input, output)
@@ -209,6 +233,10 @@ func (c *ElasticBeanstalk) DeleteApplicationRequest(input *DeleteApplicationInpu
 		}
 	}
 
+	if input == nil {
+		input = &DeleteApplicationInput{}
+	}
+
 	req = c.newRequest(opDeleteApplication, input, output)
 	output = &DeleteApplicationOutput{}
 	req.Data = output
@@ -240,6 +268,10 @@ func (c *ElasticBeanstalk) DeleteApplicationVersionRequest(input *DeleteApplicat
 		}
 	}
 
+	if input == nil {
+		input = &DeleteApplicationVersionInput{}
+	}
+
 	req = c.newRequest(opDeleteApplicationVersion, input, output)
 	output = &DeleteApplicationVersionOutput{}
 	req.Data = output
@@ -269,6 +301,10 @@ func (c *ElasticBeanstalk) DeleteConfigurationTemplateRequest(input *DeleteConfi
 		}
 	}
 
+	if input == nil {
+		input = &DeleteConfigurationTemplateInput{}
+	}
+
 	req = c.newRequest(opDeleteConfigurationTemplate, input, output)
 	output = &DeleteConfigurationTemplateOutput{}
 	req.Data = output
@@ -296,6 +332,10 @@ func (c *ElasticBeanstalk) DeleteEnvironmentConfigurationRequest(input *DeleteEn
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteEnvironmentConfigurationInput{}
 	}
 
 	req = c.newRequest(opDeleteEnvironmentConfiguration, input, output)
@@ -334,6 +374,10 @@ func (c *ElasticBeanstalk) DescribeApplicationVersionsRequest(input *DescribeApp
 		}
 	}
 
+	if input == nil {
+		input = &DescribeApplicationVersionsInput{}
+	}
+
 	req = c.newRequest(opDescribeApplicationVersions, input, output)
 	output = &DescribeApplicationVersionsOutput{}
 	req.Data = output
@@ -363,6 +407,10 @@ func (c *ElasticBeanstalk) DescribeApplicationsRequest(input *DescribeApplicatio
 		}
 	}
 
+	if input == nil {
+		input = &DescribeApplicationsInput{}
+	}
+
 	req = c.newRequest(opDescribeApplications, input, output)
 	output = &DescribeApplicationsOutput{}
 	req.Data = output
@@ -390,6 +438,10 @@ func (c *ElasticBeanstalk) DescribeConfigurationOptionsRequest(input *DescribeCo
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeConfigurationOptionsInput{}
 	}
 
 	req = c.newRequest(opDescribeConfigurationOptions, input, output)
@@ -423,6 +475,10 @@ func (c *ElasticBeanstalk) DescribeConfigurationSettingsRequest(input *DescribeC
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeConfigurationSettingsInput{}
 	}
 
 	req = c.newRequest(opDescribeConfigurationSettings, input, output)
@@ -466,6 +522,10 @@ func (c *ElasticBeanstalk) DescribeEnvironmentResourcesRequest(input *DescribeEn
 		}
 	}
 
+	if input == nil {
+		input = &DescribeEnvironmentResourcesInput{}
+	}
+
 	req = c.newRequest(opDescribeEnvironmentResources, input, output)
 	output = &DescribeEnvironmentResourcesOutput{}
 	req.Data = output
@@ -493,6 +553,10 @@ func (c *ElasticBeanstalk) DescribeEnvironmentsRequest(input *DescribeEnvironmen
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeEnvironmentsInput{}
 	}
 
 	req = c.newRequest(opDescribeEnvironments, input, output)
@@ -524,6 +588,10 @@ func (c *ElasticBeanstalk) DescribeEventsRequest(input *DescribeEventsInput) (re
 		}
 	}
 
+	if input == nil {
+		input = &DescribeEventsInput{}
+	}
+
 	req = c.newRequest(opDescribeEvents, input, output)
 	output = &DescribeEventsOutput{}
 	req.Data = output
@@ -551,6 +619,10 @@ func (c *ElasticBeanstalk) ListAvailableSolutionStacksRequest(input *ListAvailab
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListAvailableSolutionStacksInput{}
 	}
 
 	req = c.newRequest(opListAvailableSolutionStacks, input, output)
@@ -582,6 +654,10 @@ func (c *ElasticBeanstalk) RebuildEnvironmentRequest(input *RebuildEnvironmentIn
 		}
 	}
 
+	if input == nil {
+		input = &RebuildEnvironmentInput{}
+	}
+
 	req = c.newRequest(opRebuildEnvironment, input, output)
 	output = &RebuildEnvironmentOutput{}
 	req.Data = output
@@ -610,6 +686,10 @@ func (c *ElasticBeanstalk) RequestEnvironmentInfoRequest(input *RequestEnvironme
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RequestEnvironmentInfoInput{}
 	}
 
 	req = c.newRequest(opRequestEnvironmentInfo, input, output)
@@ -650,6 +730,10 @@ func (c *ElasticBeanstalk) RestartAppServerRequest(input *RestartAppServerInput)
 		}
 	}
 
+	if input == nil {
+		input = &RestartAppServerInput{}
+	}
+
 	req = c.newRequest(opRestartAppServer, input, output)
 	output = &RestartAppServerOutput{}
 	req.Data = output
@@ -678,6 +762,10 @@ func (c *ElasticBeanstalk) RetrieveEnvironmentInfoRequest(input *RetrieveEnviron
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RetrieveEnvironmentInfoInput{}
 	}
 
 	req = c.newRequest(opRetrieveEnvironmentInfo, input, output)
@@ -713,6 +801,10 @@ func (c *ElasticBeanstalk) SwapEnvironmentCNAMEsRequest(input *SwapEnvironmentCN
 		}
 	}
 
+	if input == nil {
+		input = &SwapEnvironmentCNAMEsInput{}
+	}
+
 	req = c.newRequest(opSwapEnvironmentCNAMEs, input, output)
 	output = &SwapEnvironmentCNAMEsOutput{}
 	req.Data = output
@@ -740,6 +832,10 @@ func (c *ElasticBeanstalk) TerminateEnvironmentRequest(input *TerminateEnvironme
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &TerminateEnvironmentInput{}
 	}
 
 	req = c.newRequest(opTerminateEnvironment, input, output)
@@ -771,6 +867,10 @@ func (c *ElasticBeanstalk) UpdateApplicationRequest(input *UpdateApplicationInpu
 		}
 	}
 
+	if input == nil {
+		input = &UpdateApplicationInput{}
+	}
+
 	req = c.newRequest(opUpdateApplication, input, output)
 	output = &ApplicationDescriptionMessage{}
 	req.Data = output
@@ -800,6 +900,10 @@ func (c *ElasticBeanstalk) UpdateApplicationVersionRequest(input *UpdateApplicat
 		}
 	}
 
+	if input == nil {
+		input = &UpdateApplicationVersionInput{}
+	}
+
 	req = c.newRequest(opUpdateApplicationVersion, input, output)
 	output = &ApplicationVersionDescriptionMessage{}
 	req.Data = output
@@ -827,6 +931,10 @@ func (c *ElasticBeanstalk) UpdateConfigurationTemplateRequest(input *UpdateConfi
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateConfigurationTemplateInput{}
 	}
 
 	req = c.newRequest(opUpdateConfigurationTemplate, input, output)
@@ -861,6 +969,10 @@ func (c *ElasticBeanstalk) UpdateEnvironmentRequest(input *UpdateEnvironmentInpu
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateEnvironmentInput{}
 	}
 
 	req = c.newRequest(opUpdateEnvironment, input, output)
@@ -900,6 +1012,10 @@ func (c *ElasticBeanstalk) ValidateConfigurationSettingsRequest(input *ValidateC
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ValidateConfigurationSettingsInput{}
 	}
 
 	req = c.newRequest(opValidateConfigurationSettings, input, output)

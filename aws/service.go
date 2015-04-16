@@ -52,7 +52,6 @@ func (s *Service) Initialize() {
 
 	s.DefaultMaxRetries = 3
 	s.Handlers.Validate.PushBack(ValidateEndpointHandler)
-	s.Handlers.Validate.PushBack(ValidateCredentialsHandler)
 	s.Handlers.Build.PushBack(UserAgentHandler)
 	s.Handlers.Sign.PushBack(BuildContentLength)
 	s.Handlers.Send.PushBack(SendHandler)
@@ -75,7 +74,7 @@ func (s *Service) buildEndpoint() {
 			endpoints.EndpointForRegion(s.ServiceName, s.Config.Region)
 	}
 
-	if !schemeRE.MatchString(s.Endpoint) {
+	if s.Endpoint != "" && !schemeRE.MatchString(s.Endpoint) {
 		scheme := "https"
 		if s.Config.DisableSSL {
 			scheme = "http"

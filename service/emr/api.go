@@ -25,6 +25,10 @@ func (c *EMR) AddInstanceGroupsRequest(input *AddInstanceGroupsInput) (req *aws.
 		}
 	}
 
+	if input == nil {
+		input = &AddInstanceGroupsInput{}
+	}
+
 	req = c.newRequest(opAddInstanceGroups, input, output)
 	output = &AddInstanceGroupsOutput{}
 	req.Data = output
@@ -52,6 +56,10 @@ func (c *EMR) AddJobFlowStepsRequest(input *AddJobFlowStepsInput) (req *aws.Requ
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &AddJobFlowStepsInput{}
 	}
 
 	req = c.newRequest(opAddJobFlowSteps, input, output)
@@ -106,6 +114,10 @@ func (c *EMR) AddTagsRequest(input *AddTagsInput) (req *aws.Request, output *Add
 		}
 	}
 
+	if input == nil {
+		input = &AddTagsInput{}
+	}
+
 	req = c.newRequest(opAddTags, input, output)
 	output = &AddTagsOutput{}
 	req.Data = output
@@ -138,6 +150,10 @@ func (c *EMR) DescribeClusterRequest(input *DescribeClusterInput) (req *aws.Requ
 		}
 	}
 
+	if input == nil {
+		input = &DescribeClusterInput{}
+	}
+
 	req = c.newRequest(opDescribeCluster, input, output)
 	output = &DescribeClusterOutput{}
 	req.Data = output
@@ -166,6 +182,10 @@ func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *aws.Re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeJobFlowsInput{}
 	}
 
 	req = c.newRequest(opDescribeJobFlows, input, output)
@@ -214,6 +234,10 @@ func (c *EMR) DescribeStepRequest(input *DescribeStepInput) (req *aws.Request, o
 		}
 	}
 
+	if input == nil {
+		input = &DescribeStepInput{}
+	}
+
 	req = c.newRequest(opDescribeStep, input, output)
 	output = &DescribeStepOutput{}
 	req.Data = output
@@ -243,6 +267,10 @@ func (c *EMR) ListBootstrapActionsRequest(input *ListBootstrapActionsInput) (req
 		}
 	}
 
+	if input == nil {
+		input = &ListBootstrapActionsInput{}
+	}
+
 	req = c.newRequest(opListBootstrapActions, input, output)
 	output = &ListBootstrapActionsOutput{}
 	req.Data = output
@@ -270,6 +298,10 @@ func (c *EMR) ListClustersRequest(input *ListClustersInput) (req *aws.Request, o
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListClustersInput{}
 	}
 
 	req = c.newRequest(opListClusters, input, output)
@@ -305,6 +337,10 @@ func (c *EMR) ListInstanceGroupsRequest(input *ListInstanceGroupsInput) (req *aw
 		}
 	}
 
+	if input == nil {
+		input = &ListInstanceGroupsInput{}
+	}
+
 	req = c.newRequest(opListInstanceGroups, input, output)
 	output = &ListInstanceGroupsOutput{}
 	req.Data = output
@@ -332,6 +368,10 @@ func (c *EMR) ListInstancesRequest(input *ListInstancesInput) (req *aws.Request,
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListInstancesInput{}
 	}
 
 	req = c.newRequest(opListInstances, input, output)
@@ -367,6 +407,10 @@ func (c *EMR) ListStepsRequest(input *ListStepsInput) (req *aws.Request, output 
 		}
 	}
 
+	if input == nil {
+		input = &ListStepsInput{}
+	}
+
 	req = c.newRequest(opListSteps, input, output)
 	output = &ListStepsOutput{}
 	req.Data = output
@@ -394,6 +438,10 @@ func (c *EMR) ModifyInstanceGroupsRequest(input *ModifyInstanceGroupsInput) (req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ModifyInstanceGroupsInput{}
 	}
 
 	req = c.newRequest(opModifyInstanceGroups, input, output)
@@ -428,6 +476,10 @@ func (c *EMR) RemoveTagsRequest(input *RemoveTagsInput) (req *aws.Request, outpu
 		}
 	}
 
+	if input == nil {
+		input = &RemoveTagsInput{}
+	}
+
 	req = c.newRequest(opRemoveTags, input, output)
 	output = &RemoveTagsOutput{}
 	req.Data = output
@@ -460,6 +512,10 @@ func (c *EMR) RunJobFlowRequest(input *RunJobFlowInput) (req *aws.Request, outpu
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RunJobFlowInput{}
 	}
 
 	req = c.newRequest(opRunJobFlow, input, output)
@@ -513,6 +569,10 @@ func (c *EMR) SetTerminationProtectionRequest(input *SetTerminationProtectionInp
 		}
 	}
 
+	if input == nil {
+		input = &SetTerminationProtectionInput{}
+	}
+
 	req = c.newRequest(opSetTerminationProtection, input, output)
 	output = &SetTerminationProtectionOutput{}
 	req.Data = output
@@ -558,6 +618,10 @@ func (c *EMR) SetVisibleToAllUsersRequest(input *SetVisibleToAllUsersInput) (req
 		}
 	}
 
+	if input == nil {
+		input = &SetVisibleToAllUsersInput{}
+	}
+
 	req = c.newRequest(opSetVisibleToAllUsers, input, output)
 	output = &SetVisibleToAllUsersOutput{}
 	req.Data = output
@@ -590,6 +654,10 @@ func (c *EMR) TerminateJobFlowsRequest(input *TerminateJobFlowsInput) (req *aws.
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &TerminateJobFlowsInput{}
 	}
 
 	req = c.newRequest(opTerminateJobFlows, input, output)

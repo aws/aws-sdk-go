@@ -24,6 +24,10 @@ func (c *DataPipeline) ActivatePipelineRequest(input *ActivatePipelineInput) (re
 		}
 	}
 
+	if input == nil {
+		input = &ActivatePipelineInput{}
+	}
+
 	req = c.newRequest(opActivatePipeline, input, output)
 	output = &ActivatePipelineOutput{}
 	req.Data = output
@@ -59,6 +63,10 @@ func (c *DataPipeline) AddTagsRequest(input *AddTagsInput) (req *aws.Request, ou
 		}
 	}
 
+	if input == nil {
+		input = &AddTagsInput{}
+	}
+
 	req = c.newRequest(opAddTags, input, output)
 	output = &AddTagsOutput{}
 	req.Data = output
@@ -86,6 +94,10 @@ func (c *DataPipeline) CreatePipelineRequest(input *CreatePipelineInput) (req *a
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreatePipelineInput{}
 	}
 
 	req = c.newRequest(opCreatePipeline, input, output)
@@ -116,6 +128,10 @@ func (c *DataPipeline) DeletePipelineRequest(input *DeletePipelineInput) (req *a
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeletePipelineInput{}
 	}
 
 	req = c.newRequest(opDeletePipeline, input, output)
@@ -154,6 +170,10 @@ func (c *DataPipeline) DescribeObjectsRequest(input *DescribeObjectsInput) (req 
 		}
 	}
 
+	if input == nil {
+		input = &DescribeObjectsInput{}
+	}
+
 	req = c.newRequest(opDescribeObjects, input, output)
 	output = &DescribeObjectsOutput{}
 	req.Data = output
@@ -183,6 +203,10 @@ func (c *DataPipeline) DescribePipelinesRequest(input *DescribePipelinesInput) (
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribePipelinesInput{}
 	}
 
 	req = c.newRequest(opDescribePipelines, input, output)
@@ -222,6 +246,10 @@ func (c *DataPipeline) EvaluateExpressionRequest(input *EvaluateExpressionInput)
 		}
 	}
 
+	if input == nil {
+		input = &EvaluateExpressionInput{}
+	}
+
 	req = c.newRequest(opEvaluateExpression, input, output)
 	output = &EvaluateExpressionOutput{}
 	req.Data = output
@@ -250,6 +278,10 @@ func (c *DataPipeline) GetPipelineDefinitionRequest(input *GetPipelineDefinition
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetPipelineDefinitionInput{}
 	}
 
 	req = c.newRequest(opGetPipelineDefinition, input, output)
@@ -282,6 +314,10 @@ func (c *DataPipeline) ListPipelinesRequest(input *ListPipelinesInput) (req *aws
 		}
 	}
 
+	if input == nil {
+		input = &ListPipelinesInput{}
+	}
+
 	req = c.newRequest(opListPipelines, input, output)
 	output = &ListPipelinesOutput{}
 	req.Data = output
@@ -310,6 +346,10 @@ func (c *DataPipeline) PollForTaskRequest(input *PollForTaskInput) (req *aws.Req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PollForTaskInput{}
 	}
 
 	req = c.newRequest(opPollForTask, input, output)
@@ -354,6 +394,10 @@ func (c *DataPipeline) PutPipelineDefinitionRequest(input *PutPipelineDefinition
 		}
 	}
 
+	if input == nil {
+		input = &PutPipelineDefinitionInput{}
+	}
+
 	req = c.newRequest(opPutPipelineDefinition, input, output)
 	output = &PutPipelineDefinitionOutput{}
 	req.Data = output
@@ -394,6 +438,10 @@ func (c *DataPipeline) QueryObjectsRequest(input *QueryObjectsInput) (req *aws.R
 		}
 	}
 
+	if input == nil {
+		input = &QueryObjectsInput{}
+	}
+
 	req = c.newRequest(opQueryObjects, input, output)
 	output = &QueryObjectsOutput{}
 	req.Data = output
@@ -430,6 +478,10 @@ func (c *DataPipeline) RemoveTagsRequest(input *RemoveTagsInput) (req *aws.Reque
 		}
 	}
 
+	if input == nil {
+		input = &RemoveTagsInput{}
+	}
+
 	req = c.newRequest(opRemoveTags, input, output)
 	output = &RemoveTagsOutput{}
 	req.Data = output
@@ -457,6 +509,10 @@ func (c *DataPipeline) ReportTaskProgressRequest(input *ReportTaskProgressInput)
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ReportTaskProgressInput{}
 	}
 
 	req = c.newRequest(opReportTaskProgress, input, output)
@@ -499,6 +555,10 @@ func (c *DataPipeline) ReportTaskRunnerHeartbeatRequest(input *ReportTaskRunnerH
 		}
 	}
 
+	if input == nil {
+		input = &ReportTaskRunnerHeartbeatInput{}
+	}
+
 	req = c.newRequest(opReportTaskRunnerHeartbeat, input, output)
 	output = &ReportTaskRunnerHeartbeatOutput{}
 	req.Data = output
@@ -530,6 +590,10 @@ func (c *DataPipeline) SetStatusRequest(input *SetStatusInput) (req *aws.Request
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SetStatusInput{}
 	}
 
 	req = c.newRequest(opSetStatus, input, output)
@@ -565,6 +629,10 @@ func (c *DataPipeline) SetTaskStatusRequest(input *SetTaskStatusInput) (req *aws
 		}
 	}
 
+	if input == nil {
+		input = &SetTaskStatusInput{}
+	}
+
 	req = c.newRequest(opSetTaskStatus, input, output)
 	output = &SetTaskStatusOutput{}
 	req.Data = output
@@ -595,6 +663,10 @@ func (c *DataPipeline) ValidatePipelineDefinitionRequest(input *ValidatePipeline
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ValidatePipelineDefinitionInput{}
 	}
 
 	req = c.newRequest(opValidatePipelineDefinition, input, output)

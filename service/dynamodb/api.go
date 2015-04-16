@@ -25,6 +25,10 @@ func (c *DynamoDB) BatchGetItemRequest(input *BatchGetItemInput) (req *aws.Reque
 		}
 	}
 
+	if input == nil {
+		input = &BatchGetItemInput{}
+	}
+
 	req = c.newRequest(opBatchGetItem, input, output)
 	output = &BatchGetItemOutput{}
 	req.Data = output
@@ -97,6 +101,10 @@ func (c *DynamoDB) BatchWriteItemRequest(input *BatchWriteItemInput) (req *aws.R
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &BatchWriteItemInput{}
 	}
 
 	req = c.newRequest(opBatchWriteItem, input, output)
@@ -196,6 +204,10 @@ func (c *DynamoDB) CreateTableRequest(input *CreateTableInput) (req *aws.Request
 		}
 	}
 
+	if input == nil {
+		input = &CreateTableInput{}
+	}
+
 	req = c.newRequest(opCreateTable, input, output)
 	output = &CreateTableOutput{}
 	req.Data = output
@@ -237,6 +249,10 @@ func (c *DynamoDB) DeleteItemRequest(input *DeleteItemInput) (req *aws.Request, 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteItemInput{}
 	}
 
 	req = c.newRequest(opDeleteItem, input, output)
@@ -281,6 +297,10 @@ func (c *DynamoDB) DeleteTableRequest(input *DeleteTableInput) (req *aws.Request
 		}
 	}
 
+	if input == nil {
+		input = &DeleteTableInput{}
+	}
+
 	req = c.newRequest(opDeleteTable, input, output)
 	output = &DeleteTableOutput{}
 	req.Data = output
@@ -323,6 +343,10 @@ func (c *DynamoDB) DescribeTableRequest(input *DescribeTableInput) (req *aws.Req
 		}
 	}
 
+	if input == nil {
+		input = &DescribeTableInput{}
+	}
+
 	req = c.newRequest(opDescribeTable, input, output)
 	output = &DescribeTableOutput{}
 	req.Data = output
@@ -360,6 +384,10 @@ func (c *DynamoDB) GetItemRequest(input *GetItemInput) (req *aws.Request, output
 		}
 	}
 
+	if input == nil {
+		input = &GetItemInput{}
+	}
+
 	req = c.newRequest(opGetItem, input, output)
 	output = &GetItemOutput{}
 	req.Data = output
@@ -395,6 +423,10 @@ func (c *DynamoDB) ListTablesRequest(input *ListTablesInput) (req *aws.Request, 
 		}
 	}
 
+	if input == nil {
+		input = &ListTablesInput{}
+	}
+
 	req = c.newRequest(opListTables, input, output)
 	output = &ListTablesOutput{}
 	req.Data = output
@@ -424,6 +456,10 @@ func (c *DynamoDB) PutItemRequest(input *PutItemInput) (req *aws.Request, output
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PutItemInput{}
 	}
 
 	req = c.newRequest(opPutItem, input, output)
@@ -479,6 +515,10 @@ func (c *DynamoDB) QueryRequest(input *QueryInput) (req *aws.Request, output *Qu
 		}
 	}
 
+	if input == nil {
+		input = &QueryInput{}
+	}
+
 	req = c.newRequest(opQuery, input, output)
 	output = &QueryOutput{}
 	req.Data = output
@@ -529,6 +569,10 @@ func (c *DynamoDB) ScanRequest(input *ScanInput) (req *aws.Request, output *Scan
 		}
 	}
 
+	if input == nil {
+		input = &ScanInput{}
+	}
+
 	req = c.newRequest(opScan, input, output)
 	output = &ScanOutput{}
 	req.Data = output
@@ -574,6 +618,10 @@ func (c *DynamoDB) UpdateItemRequest(input *UpdateItemInput) (req *aws.Request, 
 		}
 	}
 
+	if input == nil {
+		input = &UpdateItemInput{}
+	}
+
 	req = c.newRequest(opUpdateItem, input, output)
 	output = &UpdateItemOutput{}
 	req.Data = output
@@ -610,6 +658,10 @@ func (c *DynamoDB) UpdateTableRequest(input *UpdateTableInput) (req *aws.Request
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateTableInput{}
 	}
 
 	req = c.newRequest(opUpdateTable, input, output)

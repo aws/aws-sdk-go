@@ -21,6 +21,10 @@
       "endpoint": "cloudfront.amazonaws.com",
       "signingRegion": "us-east-1"
     },
+    "*/cloudsearchdomain": {
+      "endpoint": "",
+      "signingRegion": "us-east-1"
+    },
     "*/iam": {
       "endpoint": "iam.amazonaws.com",
       "signingRegion": "us-east-1"
