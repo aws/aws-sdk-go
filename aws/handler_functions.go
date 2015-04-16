@@ -51,12 +51,15 @@ func SendHandler(r *Request) {
 
 func ValidateResponseHandler(r *Request) {
 	if r.HTTPResponse.StatusCode == 0 || r.HTTPResponse.StatusCode >= 400 {
+		// this may be replaced by an UnmarshalError handler
 		r.Error = &APIError{
 			StatusCode: r.HTTPResponse.StatusCode,
-			Code:       "UnknownError",
-			Message:    "unknown error",
+			Message:    r.HTTPResponse.Status,
 		}
 	}
+}
+
+func RetryHandler(r *Request) {
 	r.Retryable = r.Service.ShouldRetry(r)
 	r.RetryDelay = r.Service.RetryRules(r)
 }
