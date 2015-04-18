@@ -151,7 +151,7 @@ func buildMap(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) err
 func buildScalar(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) error {
 	switch converted := value.Interface().(type) {
 	case string:
-		buf.WriteString(fmt.Sprintf("%q", converted))
+		writeString(converted, buf)
 	case []byte:
 		if !value.IsNil() {
 			buf.WriteString(fmt.Sprintf("%q", base64.StdEncoding.EncodeToString(converted)))
@@ -168,4 +168,18 @@ func buildScalar(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) 
 		return fmt.Errorf("unsupported JSON value %v (%s)", value.Interface(), value.Type())
 	}
 	return nil
+}
+
+func writeString(s string, buf *bytes.Buffer) {
+	buf.WriteByte('"')
+	for _, r := range s {
+		if r == '"' {
+			buf.WriteString(`\"`)
+		} else if r < 32 {
+			fmt.Fprintf(buf, "\\u%0.4x", r)
+		} else {
+			buf.WriteRune(r)
+		}
+	}
+	buf.WriteByte('"')
 }
