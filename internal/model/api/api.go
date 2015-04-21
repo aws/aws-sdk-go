@@ -1,3 +1,4 @@
+// Package for rendering service generated files.
 package api
 
 import (
@@ -11,6 +12,7 @@ import (
 	"github.com/awslabs/aws-sdk-go/internal/util"
 )
 
+// An API defines a service API's definition. and logic to serialize the definition.
 type API struct {
 	Metadata   Metadata
 	Operations map[string]*Operation
@@ -31,6 +33,7 @@ type API struct {
 	unrecognizedNames map[string]string
 }
 
+// A Metadata is the metadata about an API's definition.
 type Metadata struct {
 	APIVersion          string
 	EndpointPrefix      string
@@ -43,18 +46,19 @@ type Metadata struct {
 	Protocol            string
 }
 
+// PackageName name of the API package
 func (a *API) PackageName() string {
 	return strings.ToLower(a.StructName())
 }
 
-// Returns the package name for the interface.
+// InterfacePackageName returns the package name for the interface.
 func (a *API) InterfacePackageName() string {
 	return a.PackageName() + "iface"
 }
 
 var nameRegex = regexp.MustCompile(`^Amazon|AWS\s*|\(.*|\s+|\W+`)
 
-// StructName returns the service struct name for a given service
+// StructName returns the struct name for a given API.
 func (a *API) StructName() string {
 	if a.name == "" {
 		name := a.Metadata.ServiceAbbreviation
@@ -75,10 +79,12 @@ func (a *API) StructName() string {
 	return a.name
 }
 
+// UseInitMethods returns if the service's init method should be rendered.
 func (a *API) UseInitMethods() bool {
 	return !a.NoInitMethods
 }
 
+// NiceName returns the human friendly API name.
 func (a *API) NiceName() string {
 	if a.Metadata.ServiceAbbreviation != "" {
 		return a.Metadata.ServiceAbbreviation
@@ -86,6 +92,7 @@ func (a *API) NiceName() string {
 	return a.Metadata.ServiceFullName
 }
 
+// ProtocolPackage returns the package name of the protocol this API uses.
 func (a *API) ProtocolPackage() string {
 	switch a.Metadata.Protocol {
 	case "json":
@@ -97,6 +104,7 @@ func (a *API) ProtocolPackage() string {
 	}
 }
 
+// OperationNames returns a slice of API operations supported.
 func (a *API) OperationNames() []string {
 	i, names := 0, make([]string, len(a.Operations))
 	for n, _ := range a.Operations {
@@ -107,6 +115,7 @@ func (a *API) OperationNames() []string {
 	return names
 }
 
+// OperationList returns a slice of API operation pointers
 func (a *API) OperationList() []*Operation {
 	list := make([]*Operation, len(a.Operations))
 	for i, n := range a.OperationNames() {
@@ -115,6 +124,7 @@ func (a *API) OperationList() []*Operation {
 	return list
 }
 
+// ShapeNames returns a slice of names for each shape used by the API.
 func (a *API) ShapeNames() []string {
 	i, names := 0, make([]string, len(a.Shapes))
 	for n, _ := range a.Shapes {
@@ -125,6 +135,7 @@ func (a *API) ShapeNames() []string {
 	return names
 }
 
+// ShapeList returns a slice of shape pointers used by the API.
 func (a *API) ShapeList() []*Shape {
 	list := make([]*Shape, len(a.Shapes))
 	for i, n := range a.ShapeNames() {
@@ -133,12 +144,14 @@ func (a *API) ShapeList() []*Shape {
 	return list
 }
 
+// resetImports resets the import map to default values.
 func (a *API) resetImports() {
 	a.imports = map[string]bool{
 		"github.com/awslabs/aws-sdk-go/aws": true,
 	}
 }
 
+// importsGoCode returns the generated Go import code.
 func (a *API) importsGoCode() string {
 	if len(a.imports) == 0 {
 		return ""
@@ -167,6 +180,7 @@ func (a *API) importsGoCode() string {
 	return code
 }
 
+// A tplAPI is the top level template for the API
 var tplAPI = template.Must(template.New("api").Parse(`
 var oprw sync.Mutex
 
@@ -181,6 +195,7 @@ var oprw sync.Mutex
 {{ end }}
 `))
 
+// APIGoCode renders the API in Go code. Returning it as a string
 func (a *API) APIGoCode() string {
 	a.resetImports()
 	a.imports["sync"] = true
@@ -194,6 +209,7 @@ func (a *API) APIGoCode() string {
 	return util.GoFmt(code)
 }
 
+// A tplService defines the template for the service generated code.
 var tplService = template.Must(template.New("service").Parse(`
 // {{ .StructName }} is a client for {{ .NiceName }}.
 type {{ .StructName }} struct {
@@ -255,6 +271,7 @@ func (c *{{ .StructName }}) newRequest(op *aws.Operation, params, data interface
 }
 `))
 
+// ServiceGoCode renders service go code. Returning it as a string.
 func (a *API) ServiceGoCode() string {
 	a.resetImports()
 	a.imports["github.com/awslabs/aws-sdk-go/internal/signer/v4"] = true
@@ -270,6 +287,7 @@ func (a *API) ServiceGoCode() string {
 	return util.GoFmt(code)
 }
 
+// ExampleGoCode renders service example code. Returning it as a string.
 func (a *API) ExampleGoCode() string {
 	exs := []string{}
 	for _, o := range a.OperationList() {
@@ -289,6 +307,7 @@ func (a *API) ExampleGoCode() string {
 	return util.GoFmt(code)
 }
 
+// A tplInterface defines the template for the service interface type.
 var tplInterface = template.Must(template.New("interface").Parse(`
 type {{ .StructName }} interface {
     {{ range $_, $o := .OperationList }}

@@ -11,6 +11,8 @@ import (
 	"github.com/awslabs/aws-sdk-go/internal/endpoints"
 )
 
+// A Service implements the base service request and response handling
+// used by all services.
 type Service struct {
 	Config            *Config
 	Handlers          Handlers
@@ -29,12 +31,14 @@ type Service struct {
 
 var schemeRE = regexp.MustCompile("^([^:]+)://")
 
+// NewService will return a pointer to a new Server object initialized.
 func NewService(config *Config) *Service {
 	svc := &Service{Config: config}
 	svc.Initialize()
 	return svc
 }
 
+// Initialize initializes the service.
 func (s *Service) Initialize() {
 	if s.Config == nil {
 		s.Config = &Config{}
@@ -66,6 +70,7 @@ func (s *Service) Initialize() {
 	}
 }
 
+// buildEndpoint builds the endpoint values the service will use to make requests with.
 func (s *Service) buildEndpoint() {
 	if s.Config.Endpoint != "" {
 		s.Endpoint = s.Config.Endpoint
@@ -83,6 +88,8 @@ func (s *Service) buildEndpoint() {
 	}
 }
 
+// AddDebugHandlers injects debug logging handlers into the service to log request
+// debug information.
 func (s *Service) AddDebugHandlers() {
 	out := s.Config.Logger
 	if s.Config.LogLevel == 0 {
@@ -110,6 +117,8 @@ func (s *Service) AddDebugHandlers() {
 	})
 }
 
+// MaxRetries returns the number of maximum returns the service will use to make
+// an individual API request.
 func (s *Service) MaxRetries() uint {
 	if s.Config.MaxRetries < 0 {
 		return s.DefaultMaxRetries
@@ -118,6 +127,7 @@ func (s *Service) MaxRetries() uint {
 	}
 }
 
+// retryRules returns the delay duration before retrying this request again
 func retryRules(r *Request) time.Duration {
 	delay := time.Duration(math.Pow(2, float64(r.RetryCount))) * 30
 	return delay * time.Millisecond
@@ -131,6 +141,7 @@ var retryableCodes = map[string]struct{}{
 	"Throttling":                             struct{}{},
 }
 
+// shouldRetry returns if the request should be retried.
 func shouldRetry(r *Request) bool {
 	if r.HTTPResponse.StatusCode >= 500 {
 		return true

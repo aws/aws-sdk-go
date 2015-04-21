@@ -10,10 +10,12 @@ import (
 	"github.com/awslabs/aws-sdk-go/internal/util/utilsort"
 )
 
+// A paramFiller provides string formatting for a shape and its types.
 type paramFiller struct {
 	prefixPackageName bool
 }
 
+// typeName returns the type name of a shape.
 func (f paramFiller) typeName(shape *api.Shape) string {
 	if f.prefixPackageName && shape.Type == "structure" {
 		return "*" + shape.API.PackageName() + "." + shape.GoTypeElem()
@@ -22,11 +24,13 @@ func (f paramFiller) typeName(shape *api.Shape) string {
 	}
 }
 
+// ParamsStructFromJSON returns a JSON string representation of a structure.
 func ParamsStructFromJSON(value interface{}, shape *api.Shape, prefixPackageName bool) string {
 	f := paramFiller{prefixPackageName: prefixPackageName}
 	return util.GoFmt(f.paramsStructAny(value, shape))
 }
 
+// paramsStructAny returns the string representation of any value.
 func (f paramFiller) paramsStructAny(value interface{}, shape *api.Shape) string {
 	if value == nil {
 		return ""
@@ -82,6 +86,7 @@ func (f paramFiller) paramsStructAny(value interface{}, shape *api.Shape) string
 	return ""
 }
 
+// paramsStructStruct returns the string representation of a structure
 func (f paramFiller) paramsStructStruct(value map[string]interface{}, shape *api.Shape) string {
 	out := "&" + f.typeName(shape)[1:] + "{\n"
 	for _, n := range shape.MemberNames() {
@@ -96,6 +101,7 @@ func (f paramFiller) paramsStructStruct(value map[string]interface{}, shape *api
 	return out
 }
 
+// paramsStructMap returns the string representation of a map of values
 func (f paramFiller) paramsStructMap(value map[string]interface{}, shape *api.Shape) string {
 	out := "&" + f.typeName(shape)[1:] + "{\n"
 	keys := utilsort.SortedKeys(value)
@@ -107,6 +113,7 @@ func (f paramFiller) paramsStructMap(value map[string]interface{}, shape *api.Sh
 	return out
 }
 
+// paramsStructList returns the string representation of slice of values
 func (f paramFiller) paramsStructList(value []interface{}, shape *api.Shape) string {
 	out := f.typeName(shape) + "{\n"
 	for _, v := range value {
@@ -116,6 +123,7 @@ func (f paramFiller) paramsStructList(value []interface{}, shape *api.Shape) str
 	return out
 }
 
+// findMember searches a map for a key ignoring case. Returns the map key if found.
 func findMember(value map[string]interface{}, key string) string {
 	for actualKey, _ := range value {
 		if strings.ToLower(key) == strings.ToLower(actualKey) {

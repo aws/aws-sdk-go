@@ -8,10 +8,13 @@ type APIError struct {
 	RequestID  string
 }
 
+// Error returns the error as a string. Satisfies error interface.
 func (e APIError) Error() string {
 	return e.Code + ": " + e.Message
 }
 
+// Error returns an APIError pointer if the error e is an APIError type.
+// If the error is not an APIError nil will be returned.
 func Error(e error) *APIError {
 	if err, ok := e.(*APIError); ok {
 		return err

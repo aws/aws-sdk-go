@@ -11,6 +11,7 @@ import (
 	"github.com/awslabs/aws-sdk-go/internal/util"
 )
 
+// An Operation defines a specific API Operation.
 type Operation struct {
 	API           *API `json:"-"`
 	ExportedName  string
@@ -21,20 +22,24 @@ type Operation struct {
 	OutputRef     ShapeRef `json:"output"`
 }
 
+// A HTTPInfo defines the method of HTTP request for the Operation.
 type HTTPInfo struct {
 	Method       string
 	RequestURI   string
 	ResponseCode uint
 }
 
+// HasInput returns if the Operation accepts an input paramater
 func (o *Operation) HasInput() bool {
 	return o.InputRef.ShapeName != ""
 }
 
+// HasOutput returns if the Operation accepts an output parameter
 func (o *Operation) HasOutput() bool {
 	return o.OutputRef.ShapeName != ""
 }
 
+// Docstring returns the docstring formated documentation for the Operation
 func (o *Operation) Docstring() string {
 	if o.Documentation != "" {
 		return docstring(o.Documentation)
@@ -42,6 +47,7 @@ func (o *Operation) Docstring() string {
 	return ""
 }
 
+// tplOperation defines a template for rendering an API Operation
 var tplOperation = template.Must(template.New("operation").Parse(`
 // {{ .ExportedName }}Request generates a request for the {{ .ExportedName }} operation.
 func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
@@ -79,6 +85,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 var op{{ .ExportedName }} *aws.Operation
 `))
 
+// GoCode returns a string of rendered GoCode for this Operation
 func (o *Operation) GoCode() string {
 	var buf bytes.Buffer
 	err := tplOperation.Execute(&buf, o)
@@ -89,6 +96,7 @@ func (o *Operation) GoCode() string {
 	return strings.TrimSpace(util.GoFmt(buf.String()))
 }
 
+// tplInfSig defines the template for rendering an Operation's signature within an Interface definition.
 var tplInfSig = template.Must(template.New("opsig").Parse(`
 {{ .ExportedName }}({{ .InputRef.GoTypeWithPkgName }}) ({{ .OutputRef.GoTypeWithPkgName }}, error)
 `))
@@ -104,6 +112,7 @@ func (o *Operation) InterfaceSignature() string {
 	return strings.TrimSpace(util.GoFmt(buf.String()))
 }
 
+// tplExample defines the template for rendering an Operation example
 var tplExample = template.Must(template.New("operationExample").Parse(`
 func Example{{ .API.StructName }}_{{ .ExportedName }}() {
 	svc := {{ .API.NewAPIGoCodeWithPkgName "nil" }}
@@ -124,6 +133,7 @@ func Example{{ .API.StructName }}_{{ .ExportedName }}() {
 }
 `))
 
+// Example returns a string of the rendered Go code for the Operation
 func (o *Operation) Example() string {
 	var buf bytes.Buffer
 	err := tplExample.Execute(&buf, o)
@@ -134,6 +144,7 @@ func (o *Operation) Example() string {
 	return strings.TrimSpace(util.GoFmt(buf.String()))
 }
 
+// ExampleInput return a string of the rendered Go code for an example's input parameters
 func (o *Operation) ExampleInput() string {
 	if len(o.InputRef.Shape.MemberRefs) == 0 {
 		return fmt.Sprintf("var params *%s.%s",
@@ -143,11 +154,13 @@ func (o *Operation) ExampleInput() string {
 	return "params := " + e.traverseAny(o.InputRef.Shape, false, false)
 }
 
+// A example provides
 type example struct {
 	*Operation
 	visited map[string]int
 }
 
+// traverseAny returns rendered Go code for the shape.
 func (e *example) traverseAny(s *Shape, required, payload bool) string {
 	str := ""
 	e.visited[s.ShapeName]++
@@ -170,6 +183,7 @@ func (e *example) traverseAny(s *Shape, required, payload bool) string {
 
 var reType = regexp.MustCompile(`\b([A-Z])`)
 
+// traverseStruct returns rendered Go code for a structure type shape.
 func (e *example) traverseStruct(s *Shape, required, payload bool) string {
 	var buf bytes.Buffer
 	buf.WriteString("&" + s.API.PackageName() + "." + s.GoTypeElem() + "{")
@@ -209,6 +223,7 @@ func (e *example) traverseStruct(s *Shape, required, payload bool) string {
 	return buf.String()
 }
 
+// traverseMap returns rendered Go code for a map type shape.
 func (e *example) traverseMap(s *Shape, required, payload bool) string {
 	var buf bytes.Buffer
 	t := reType.ReplaceAllString(s.GoTypeElem(), s.API.PackageName()+".$1")
@@ -233,6 +248,7 @@ func (e *example) traverseMap(s *Shape, required, payload bool) string {
 	return buf.String()
 }
 
+// traverseList returns rendered Go code for a list type shape.
 func (e *example) traverseList(s *Shape, required, payload bool) string {
 	var buf bytes.Buffer
 	t := reType.ReplaceAllString(s.GoTypeElem(), s.API.PackageName()+".$1")
@@ -257,6 +273,8 @@ func (e *example) traverseList(s *Shape, required, payload bool) string {
 	return buf.String()
 }
 
+// traverseScalar returns an AWS Type string representation initialized to a value.
+// Will panic if s is an unsupported shape type.
 func (e *example) traverseScalar(s *Shape, required, payload bool) string {
 	str := ""
 	switch s.Type {

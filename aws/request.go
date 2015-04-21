@@ -11,6 +11,7 @@ import (
 	"time"
 )
 
+// A Request is the service request to be made.
 type Request struct {
 	*Service
 	Handlers     Handlers
@@ -33,12 +34,19 @@ type Request struct {
 	signed bool
 }
 
+// An Operation is the service API operation to be made.
 type Operation struct {
 	Name       string
 	HTTPMethod string
 	HTTPPath   string
 }
 
+// NewRequest returns a new Request pointer for the service API
+// operation and parameters.
+//
+// Params is any value of input parameters to be the request payload.
+// Data is pointer value to an object which the request's response
+// payload will be deserialized to.
 func NewRequest(service *Service, operation *Operation, params interface{}, data interface{}) *Request {
 	method := operation.HTTPMethod
 	if method == "" {
@@ -69,31 +77,44 @@ func NewRequest(service *Service, operation *Operation, params interface{}, data
 	return r
 }
 
+// WillRetry returns if the request's can be retried.
 func (r *Request) WillRetry() bool {
 	return r.Error != nil && r.Retryable.Get() && r.RetryCount < r.Service.MaxRetries()
 }
 
+// ParamsFilled returns if the request's parameters have been populated
+// and the parameters are valid. False is returned if no parameters are
+// provided or invalid.
 func (r *Request) ParamsFilled() bool {
 	return r.Params != nil && reflect.ValueOf(r.Params).Elem().IsValid()
 }
 
+// DataFilled returns true if the request's data for response deserialization
+// target has been set and is a valid. False is returned if data is not
+// set, or is invalid.
 func (r *Request) DataFilled() bool {
 	return r.Data != nil && reflect.ValueOf(r.Data).Elem().IsValid()
 }
 
+// SetBufferBody will set the request's body bytes that will be sent to
+// the service API.
 func (r *Request) SetBufferBody(buf []byte) {
 	r.SetReaderBody(bytes.NewReader(buf))
 }
 
+// SetStringBody sets the body of the request to be backed by a string.
 func (r *Request) SetStringBody(s string) {
 	r.SetReaderBody(strings.NewReader(s))
 }
 
+// SetReaderBody will set the request's body reader.
 func (r *Request) SetReaderBody(reader io.ReadSeeker) {
 	r.HTTPRequest.Body = ioutil.NopCloser(reader)
 	r.Body = reader
 }
 
+// Presign returns the request's signed URL. Error will be returned
+// if the signing fails.
 func (r *Request) Presign(expireTime time.Duration) (string, error) {
 	r.ExpireTime = expireTime
 	r.Sign()
@@ -104,6 +125,16 @@ func (r *Request) Presign(expireTime time.Duration) (string, error) {
 	}
 }
 
+// Build will build the request's object so it can be signed and sent
+// to the service. Build will also validate all the request's parameters.
+// Anny additional build Handlers set on this request will be run
+// in the order they were set.
+//
+// The request will only be built once. Multiple calls to build will have
+// no effect.
+//
+// If any Validate or Build errors occur the build will stop and the error
+// which occurred will be returned.
 func (r *Request) Build() error {
 	if !r.built {
 		r.Error = nil
@@ -118,6 +149,10 @@ func (r *Request) Build() error {
 	return r.Error
 }
 
+// Sign will sign the request retuning error if errors are encountered.
+//
+// Send will build the request prior to signing. All Sign Handlers will
+// be executed in the order they were set.
 func (r *Request) Sign() error {
 	if r.signed {
 		return r.Error
@@ -133,6 +168,10 @@ func (r *Request) Sign() error {
 	return r.Error
 }
 
+// Send will send the request returning error if errors are encountered.
+//
+// Send will sign the request prior to sending. All Send Handlers will
+// be executed in the order they were set.
 func (r *Request) Send() error {
 	for {
 		r.Sign()

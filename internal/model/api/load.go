@@ -6,6 +6,11 @@ import (
 	"os"
 )
 
+// Load takes a set of files for each filetype and returns an API pointer.
+// The API will be initialized once all files have been loaded and parsed.
+//
+// Will panic if any failure opening the definition JSON files, or there
+// are unrecognized exported names.
 func Load(api, docs, paginators, waiters string) *API {
 	a := API{}
 	a.Attach(api)
@@ -15,6 +20,8 @@ func Load(api, docs, paginators, waiters string) *API {
 	return &a
 }
 
+// Attach opens a file by name, and unmarshal its JSON data.
+// Will proceed to setup the API if not already done so.
 func (a *API) Attach(filename string) {
 	f, err := os.Open(filename)
 	if err != nil {
@@ -27,6 +34,8 @@ func (a *API) Attach(filename string) {
 	}
 }
 
+// AttachString will unmarshal a raw JSON string, and setup the
+// API if not already done so.
 func (a *API) AttachString(str string) {
 	json.Unmarshal([]byte(str), a)
 
@@ -35,6 +44,7 @@ func (a *API) AttachString(str string) {
 	}
 }
 
+// Setup initializes the API.
 func (a *API) Setup() {
 	a.unrecognizedNames = map[string]string{}
 	a.writeShapeNames()

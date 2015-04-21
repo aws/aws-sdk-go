@@ -6,6 +6,8 @@ import (
 	"strings"
 )
 
+// ValidateParameters is a request handler to validate the input parameters.
+// Validating parameters only has meaning if done prior to the request being sent.
 func ValidateParameters(r *Request) {
 	if r.ParamsFilled() {
 		v := validator{errors: []string{}}
@@ -19,10 +21,13 @@ func ValidateParameters(r *Request) {
 	}
 }
 
+// A validator validates values. Collects validations errors which occurs.
 type validator struct {
 	errors []string
 }
 
+// validateAny will validate any struct, slice or map type. All validations
+// are also performed recursively for nested types.
 func (v *validator) validateAny(value reflect.Value, path string) {
 	value = reflect.Indirect(value)
 	if !value.IsValid() {
@@ -43,6 +48,8 @@ func (v *validator) validateAny(value reflect.Value, path string) {
 	}
 }
 
+// validateStruct will validate the struct value's fields. If the structure has
+// nested types those types will be validated also.
 func (v *validator) validateStruct(value reflect.Value, path string) {
 	prefix := "."
 	if path == "" {

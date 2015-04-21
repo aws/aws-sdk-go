@@ -11,10 +11,14 @@ var sleepDelay = func(delay time.Duration) {
 	time.Sleep(delay)
 }
 
+// Interface for matching types which also have a Len method.
 type lener interface {
 	Len() int
 }
 
+// BuildContentLength builds the content length of a request based on the body,
+// or will use the HTTPRequest.Header's "Content-Length" if defined. If unable
+// to determine request body length and no "Content-Length" was specified it will panic.
 func BuildContentLength(r *Request) {
 	if slength := r.HTTPRequest.Header.Get("Content-Length"); slength != "" {
 		length, _ := strconv.ParseInt(slength, 10, 64)
@@ -41,14 +45,17 @@ func BuildContentLength(r *Request) {
 	r.HTTPRequest.Header.Set("Content-Length", fmt.Sprintf("%d", length))
 }
 
+// UserAgentHandler is a request handler for injecting User agent into requests.
 func UserAgentHandler(r *Request) {
 	r.HTTPRequest.Header.Set("User-Agent", SDKName+"/"+SDKVersion)
 }
 
+// SendHandler is a request handler to send service request using HTTP client.
 func SendHandler(r *Request) {
 	r.HTTPResponse, r.Error = r.Service.Config.HTTPClient.Do(r.HTTPRequest)
 }
 
+// ValidateResponseHandler is a request handler to validate service response.
 func ValidateResponseHandler(r *Request) {
 	if r.HTTPResponse.StatusCode == 0 || r.HTTPResponse.StatusCode >= 400 {
 		// this may be replaced by an UnmarshalError handler
@@ -90,6 +97,9 @@ var (
 	ErrMissingEndpoint = fmt.Errorf("`Endpoint' configuration is required for this service.")
 )
 
+// ValidateEndpointHandler is a request handler to validate a request had the
+// appropriate Region and Endpoint set. Will set r.Error if the endpoint or
+// region is not valid.
 func ValidateEndpointHandler(r *Request) {
 	if r.Service.SigningRegion == "" && r.Service.Config.Region == "" {
 		r.Error = ErrMissingRegion

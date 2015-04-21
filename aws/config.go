@@ -7,7 +7,11 @@ import (
 	"os"
 )
 
-// Initialize the default chain provider credentials
+// DefaultChainCredentials is a Credentials which will find the first available
+// credentials Value from the list of Providers.
+//
+// This should be used in the default case. Once the type of credentials are
+// known switching to the specific Credentials will be more efficient.
 var DefaultChainCredentials *credentials.Credentials = credentials.NewChainCredentials(
 	[]credentials.Provider{
 		&credentials.EnvProvider{},
@@ -17,6 +21,7 @@ var DefaultChainCredentials *credentials.Credentials = credentials.NewChainCrede
 
 const DEFAULT_RETRIES = -1
 
+// DefaultConfig is the default all service configuration will be based off of.
 var DefaultConfig = &Config{
 	Credentials:             DefaultChainCredentials,
 	Endpoint:                "",
@@ -33,6 +38,7 @@ var DefaultConfig = &Config{
 	S3ForcePathStyle:        false,
 }
 
+// A Config provides service configuration
 type Config struct {
 	Credentials             *credentials.Credentials
 	Endpoint                string
@@ -49,6 +55,7 @@ type Config struct {
 	S3ForcePathStyle        bool
 }
 
+// Copy will return a shallow copy of the Config object.
 func (c Config) Copy() Config {
 	dst := Config{}
 	dst.Credentials = c.Credentials
@@ -67,6 +74,11 @@ func (c Config) Copy() Config {
 	return dst
 }
 
+// Merge merges the newcfg attribute values into this Config. Each attribute
+// will be merged into this config if the newcfg attribute's value is non-zero.
+// Due to this, newcfg attributes with zero values cannot be merged in. For
+// example bool attributes cannot be cleared using Merge, and must be explicitly
+// set on the Config structure.
 func (c Config) Merge(newcfg *Config) *Config {
 	cfg := Config{}
 

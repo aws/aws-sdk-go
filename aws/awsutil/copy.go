@@ -20,6 +20,7 @@ func CopyOf(src interface{}) (dst interface{}) {
 	return
 }
 
+// rcopy performs a recursive copy of values from the source to destination.
 func rcopy(dst, src reflect.Value) {
 	if !src.IsValid() {
 		return

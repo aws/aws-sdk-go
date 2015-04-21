@@ -16,6 +16,7 @@ var reLink = regexp.MustCompile(`<a href="(.+?)">(.+?)</a>`)
 var reTag = regexp.MustCompile(`<.+?>`)
 var reEndNL = regexp.MustCompile(`\n+$`)
 
+// docstring rewrites a string to insert godocs formatting.
 func docstring(doc string) string {
 	doc = reNewline.ReplaceAllString(doc, "")
 	doc = reMultiSpace.ReplaceAllString(doc, " ")
@@ -36,6 +37,7 @@ func docstring(doc string) string {
 	return commentify(doc)
 }
 
+// commentify converts a string to a Go comment
 func commentify(doc string) string {
 	lines := strings.Split(doc, "\n")
 	out := []string{}
@@ -49,6 +51,9 @@ func commentify(doc string) string {
 	return strings.Join(out, "\n") + "\n"
 }
 
+// wrap returns a rewritten version of text to have line breaks
+// at approximately length characters. Line breaks will only be
+// inserted into whitespace.
 func wrap(text string, length int) string {
 	var buf bytes.Buffer
 	var last rune
