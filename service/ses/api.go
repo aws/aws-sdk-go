@@ -541,7 +541,9 @@ func (c *SES) SetIdentityFeedbackForwardingEnabledRequest(input *SetIdentityFeed
 // forwarding can only be disabled when Amazon Simple Notification Service (Amazon
 // SNS) topics are specified for both bounces and complaints.
 //
-// This action is throttled at one request per second.
+// Feedback forwarding does not apply to delivery notifications. Delivery notifications
+// are only available through Amazon SNS. This action is throttled at one request
+// per second.
 //
 // For more information about using notifications with Amazon SES, see the
 // Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html).
@@ -581,7 +583,9 @@ func (c *SES) SetIdentityNotificationTopicRequest(input *SetIdentityNotification
 // Service (Amazon SNS) topic to which Amazon SES will publish bounce, complaint,
 // and/or delivery notifications for emails sent with that identity as the Source.
 //
-// This action is throttled at one request per second.
+// Unless feedback forwarding is enabled, you must specify Amazon SNS topics
+// for bounce and complaint notifications. For more information, see SetIdentityFeedbackForwardingEnabled.
+//  This action is throttled at one request per second.
 //
 // For more information about feedback notification, see the Amazon SES Developer
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html).
@@ -1252,6 +1256,11 @@ type SendRawEmailInput struct {
 	// other characters, then you must use MIME encoded-word syntax (RFC 2047) instead
 	// of a literal string. MIME encoded-word syntax uses the following form: =?charset?encoding?encoded-text?=.
 	// For more information, see RFC 2047 (http://tools.ietf.org/html/rfc2047).
+	//
+	// If you specify the Source parameter and have feedback forwarding enabled,
+	// then bounces and complaints will be sent to this email address. This takes
+	// precedence over any Return-Path header that you might include in the raw
+	// text of the message.
 	Source *string `type:"string"`
 
 	metadataSendRawEmailInput `json:"-", xml:"-"`

@@ -1,4 +1,5 @@
 {
+  "version":"2.0",
   "metadata":{
     "apiVersion":"2010-05-08",
     "endpointPrefix":"iam",
@@ -9,7 +10,7 @@
     "xmlNamespace":"https://iam.amazonaws.com/doc/2010-05-08/",
     "protocol":"query"
   },
-  "documentation":"<fullname>AWS Identity and Access Management</fullname> <p> AWS Identity and Access Management (IAM) is a web service that you can use to manage users and user permissions under your AWS account. This guide provides descriptions of IAM actions that you can call programmatically. For general information about IAM, see <a href=\"http://aws.amazon.com/iam/\">AWS Identity and Access Management (IAM)</a>. For the user guide for IAM, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/\">Using IAM</a>. </p> <note> AWS provides SDKs that consist of libraries and sample code for various programming languages and platforms (Java, Ruby, .NET, iOS, Android, etc.). The SDKs provide a convenient way to create programmatic access to IAM and AWS. For example, the SDKs take care of tasks such as cryptographically signing requests (see below), managing errors, and retrying requests automatically. For information about the AWS SDKs, including how to download and install them, see the <a href=\"http://aws.amazon.com/tools/\">Tools for Amazon Web Services</a> page. </note> <p> We recommend that you use the AWS SDKs to make programmatic API calls to IAM. However, you can also use the IAM Query API to make direct calls to the IAM web service. To learn more about the IAM Query API, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html\">Making Query Requests</a> in the <i>Using IAM</i> guide. IAM supports GET and POST requests for all actions. That is, the API does not require you to use GET for some actions and POST for others. However, GET requests are subject to the limitation size of a URL. Therefore, for operations that require larger sizes, use a POST request. </p> <p> <b>Signing Requests</b> </p> <p> Requests must be signed using an access key ID and a secret access key. We strongly recommend that you do not use your AWS account access key ID and secret access key for everyday work with IAM. You can use the access key ID and secret access key for an IAM user or you can use the AWS Security Token Service to generate temporary security credentials and use those to sign requests. </p> <p> To sign requests, we recommend that you use <a href=\"http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\">Signature Version 4</a>. If you have an existing application that uses Signature Version 2, you do not have to update it to use Signature Version 4. However, some operations now require Signature Version 4. The documentation for operations that require version 4 indicate this requirement. </p> <p> <b>Recording API requests</b> </p> <p> IAM supports AWS CloudTrail, which is a service that records AWS calls for your AWS account and delivers log files to an Amazon S3 bucket. By using information collected by CloudTrail, you can determine what requests were successfully made to IAM, who made the request, when it was made, and so on. To learn more about CloudTrail, including how to turn it on and find your log files, see the <a href=\"http://docs.aws.amazon.com/awscloudtrail/latest/userguide/whatisawscloudtrail.html\">AWS CloudTrail User Guide</a>. </p> <p> <b>Additional Resources</b> </p> <p>For more information, see the following:</p> <ul> <li> <a href=\"http://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html\">AWS Security Credentials</a>. This topic provides general information about the types of credentials used for accessing AWS. </li> <li> <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/IAMBestPractices.html\">IAM Best Practices</a>. This topic presents a list of suggestions for using the IAM service to help secure your AWS resources. </li> <li> <a href=\"http://docs.aws.amazon.com/STS/latest/UsingSTS/\">AWS Security Token Service</a>. This guide describes how to create and use temporary security credentials. </li> <li> <a href=\"http://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html\">Signing AWS API Requests</a>. This set of topics walk you through the process of signing a request using an access key ID and secret access key. </li> </ul>",
+  "documentation":"<fullname>AWS Identity and Access Management</fullname> <p>AWS Identity and Access Management (IAM) is a web service that you can use to manage users and user permissions under your AWS account. This guide provides descriptions of IAM actions that you can call programmatically. For general information about IAM, see <a href=\"http://aws.amazon.com/iam/\">AWS Identity and Access Management (IAM)</a>. For the user guide for IAM, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/\">Using IAM</a>. </p> <note>AWS provides SDKs that consist of libraries and sample code for various programming languages and platforms (Java, Ruby, .NET, iOS, Android, etc.). The SDKs provide a convenient way to create programmatic access to IAM and AWS. For example, the SDKs take care of tasks such as cryptographically signing requests (see below), managing errors, and retrying requests automatically. For information about the AWS SDKs, including how to download and install them, see the <a href=\"http://aws.amazon.com/tools/\">Tools for Amazon Web Services</a> page. </note> <p>We recommend that you use the AWS SDKs to make programmatic API calls to IAM. However, you can also use the IAM Query API to make direct calls to the IAM web service. To learn more about the IAM Query API, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html\">Making Query Requests</a> in the <i>Using IAM</i> guide. IAM supports GET and POST requests for all actions. That is, the API does not require you to use GET for some actions and POST for others. However, GET requests are subject to the limitation size of a URL. Therefore, for operations that require larger sizes, use a POST request. </p> <p> <b>Signing Requests</b> </p> <p>Requests must be signed using an access key ID and a secret access key. We strongly recommend that you do not use your AWS account access key ID and secret access key for everyday work with IAM. You can use the access key ID and secret access key for an IAM user or you can use the AWS Security Token Service to generate temporary security credentials and use those to sign requests. </p> <p>To sign requests, we recommend that you use <a href=\"http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\">Signature Version 4</a>. If you have an existing application that uses Signature Version 2, you do not have to update it to use Signature Version 4. However, some operations now require Signature Version 4. The documentation for operations that require version 4 indicate this requirement. </p> <p> <b>Additional Resources</b> </p> <p>For more information, see the following:</p> <ul> <li> <a href=\"http://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html\">AWS Security Credentials</a>. This topic provides general information about the types of credentials used for accessing AWS. </li> <li> <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/IAMBestPractices.html\">IAM Best Practices</a>. This topic presents a list of suggestions for using the IAM service to help secure your AWS resources. </li> <li> <a href=\"http://docs.aws.amazon.com/STS/latest/UsingSTS/\">AWS Security Token Service</a>. This guide describes how to create and use temporary security credentials. </li> <li> <a href=\"http://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html\">Signing AWS API Requests</a>. This set of topics walk you through the process of signing a request using an access key ID and secret access key. </li> </ul>",
   "operations":{
     "AddClientIDToOpenIDConnectProvider":{
       "name":"AddClientIDToOpenIDConnectProvider",
@@ -1014,7 +1015,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p> Creates a new virtual MFA device for the AWS account. After creating the virtual MFA, use <a>EnableMFADevice</a> to attach the MFA device to an IAM user. For more information about creating and working with virtual MFA devices, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_VirtualMFA.html\">Using a Virtual MFA Device</a> in the <i>Using IAM</i> guide. </p> <p> For information about limits on the number of MFA devices you can create, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html\">Limitations on Entities</a> in the <i>Using IAM</i> guide. </p> <important> The seed information contained in the QR code and the Base32 string should be treated like any other secret access information, such as your AWS access keys or your passwords. After you provision your virtual device, you should ensure that the information is destroyed following secure procedures. </important>"
+      "documentation":"<p>Creates a new virtual MFA device for the AWS account. After creating the virtual MFA, use <a>EnableMFADevice</a> to attach the MFA device to an IAM user. For more information about creating and working with virtual MFA devices, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_VirtualMFA.html\">Using a Virtual MFA Device</a> in the <i>Using IAM</i> guide. </p> <p>For information about limits on the number of MFA devices you can create, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html\">Limitations on Entities</a> in the <i>Using IAM</i> guide. </p> <important>The seed information contained in the QR code and the Base32 string should be treated like any other secret access information, such as your AWS access keys or your passwords. After you provision your virtual device, you should ensure that the information is destroyed following secure procedures. </important>"
     },
     "DeactivateMFADevice":{
       "name":"DeactivateMFADevice",
@@ -1323,7 +1324,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p> Deletes the specified instance profile. The instance profile must not have an associated role. </p> <important> Make sure you do not have any Amazon EC2 instances running with the instance profile you are about to delete. Deleting a role or instance profile that is associated with a running instance will break any applications running on the instance. </important> <p> For more information about instance profiles, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/AboutInstanceProfiles.html\">About Instance Profiles</a>. </p>"
+      "documentation":"<p>Deletes the specified instance profile. The instance profile must not have an associated role. </p> <important> Make sure you do not have any Amazon EC2 instances running with the instance profile you are about to delete. Deleting a role or instance profile that is associated with a running instance will break any applications running on the instance. </important> <p>For more information about instance profiles, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/AboutInstanceProfiles.html\">About Instance Profiles</a>. </p>"
     },
     "DeleteLoginProfile":{
       "name":"DeleteLoginProfile",
@@ -1583,7 +1584,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p> Deletes the specified role. The role must not have any policies attached. For more information about roles, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html\">Working with Roles</a>. </p> <important> Make sure you do not have any Amazon EC2 instances running with the role you are about to delete. Deleting a role or instance profile that is associated with a running instance will break any applications running on the instance. </important>"
+      "documentation":"<p>Deletes the specified role. The role must not have any policies attached. For more information about roles, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html\">Working with Roles</a>. </p> <important>Make sure you do not have any Amazon EC2 instances running with the role you are about to delete. Deleting a role or instance profile that is associated with a running instance will break any applications running on the instance. </important>"
     },
     "DeleteRolePolicy":{
       "name":"DeleteRolePolicy",
@@ -1763,7 +1764,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p>Deletes the specified signing certificate associated with the specified user.</p> <p> If you do not specify a user name, IAM determines the user name implicitly based on the AWS access key ID signing the request. Because this action works for access keys under the AWS account, you can use this action to manage root credentials even if the AWS account has no associated users. </p>"
+      "documentation":"<p>Deletes the specified signing certificate associated with the specified user.</p> <p>If you do not specify a user name, IAM determines the user name implicitly based on the AWS access key ID signing the request. Because this action works for access keys under the AWS account, you can use this action to manage root credentials even if the AWS account has no associated users. </p>"
     },
     "DeleteUser":{
       "name":"DeleteUser",
@@ -2159,6 +2160,32 @@
       ],
       "documentation":"<p> Generates a credential report for the AWS account. For more information about the credential report, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/credential-reports.html\">Getting Credential Reports</a> in the <i>Using IAM</i> guide. </p>"
     },
+    "GetAccessKeyLastUsed":{
+      "name":"GetAccessKeyLastUsed",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetAccessKeyLastUsedRequest"},
+      "output":{
+        "shape":"GetAccessKeyLastUsedResponse",
+        "documentation":"<p>Contains the response to a successful <a>GetAccessKeyLastUsed</a> request. It is also returned as a member of the <a>AccessKeyMetaData</a> structure returned by the <a>ListAccessKeys</a> action.</p>",
+        "resultWrapper":"GetAccessKeyLastUsedResult"
+      },
+      "errors":[
+        {
+          "shape":"NoSuchEntityException",
+          "error":{
+            "code":"NoSuchEntity",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p> The request was rejected because it referenced an entity that does not exist. The error message describes the entity. </p>"
+        }
+      ],
+      "documentation":"<p>Retrieves information about when the specified access key was last used. The information includes the date and time of last use, along with the AWS service and region that were specified in the last request made with that key.</p>"
+    },
     "GetAccountAuthorizationDetails":{
       "name":"GetAccountAuthorizationDetails",
       "http":{
@@ -2182,7 +2209,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p>Retrieves information about all IAM users, groups, and roles in your account, including their relationships to one another and their policies. Use this API to obtain a snapshot of the configuration of IAM permissions (users, groups, roles, and their policies) in your account.</p> <p>You can optionally filter the results using the <code>Filter</code> parameter. You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters.</p>"
+      "documentation":"<p>Retrieves information about all IAM users, groups, and roles in your account, including their relationships to one another and their policies. Use this API to obtain a snapshot of the configuration of IAM permissions (users, groups, roles, and policies) in your account.</p> <p>You can optionally filter the results using the <code>Filter</code> parameter. You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters.</p>"
     },
     "GetAccountPasswordPolicy":{
       "name":"GetAccountPasswordPolicy",
@@ -2216,7 +2243,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p> Retrieves the password policy for the AWS account. For more information about using a password policy, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_ManagingPasswordPolicies.html\">Managing an IAM Password Policy</a>. </p>"
+      "documentation":"<p>Retrieves the password policy for the AWS account. For more information about using a password policy, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_ManagingPasswordPolicies.html\">Managing an IAM Password Policy</a>. </p>"
     },
     "GetAccountSummary":{
       "name":"GetAccountSummary",
@@ -2434,7 +2461,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p> Retrieves the user name and password-creation date for the specified user. If the user has not been assigned a password, the action returns a 404 (<code>NoSuchEntity</code>) error. </p>"
+      "documentation":"<p>Retrieves the user name and password-creation date for the specified user. If the user has not been assigned a password, the action returns a 404 (<code>NoSuchEntity</code>) error. </p>"
     },
     "GetOpenIDConnectProvider":{
       "name":"GetOpenIDConnectProvider",
@@ -2604,7 +2631,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p> Retrieves information about the specified role, including the role's path, GUID, ARN, and the policy granting permission to assume the role. For more information about ARNs, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html#Identifiers_ARNs\">ARNs</a>. For more information about roles, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html\">Working with Roles</a>. </p> <p> The returned policy is URL-encoded according to RFC 3986. For more information about RFC 3986, go to <a href=\"http://www.faqs.org/rfcs/rfc3986.html\">http://www.faqs.org/rfcs/rfc3986.html</a>. </p>"
+      "documentation":"<p>Retrieves information about the specified role, including the role's path, GUID, ARN, and the policy granting permission to assume the role. For more information about ARNs, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html#Identifiers_ARNs\">ARNs</a>. For more information about roles, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html\">Working with Roles</a>. </p> <p>The returned policy is URL-encoded according to RFC 3986. For more information about RFC 3986, go to <a href=\"http://www.faqs.org/rfcs/rfc3986.html\">http://www.faqs.org/rfcs/rfc3986.html</a>. </p>"
     },
     "GetRolePolicy":{
       "name":"GetRolePolicy",
@@ -2684,7 +2711,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p> Returns the SAML provider metadocument that was uploaded when the provider was created or updated. </p> <note> This operation requires <a href=\"http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\">Signature Version 4</a>. </note>"
+      "documentation":"<p>Returns the SAML provider metadocument that was uploaded when the provider was created or updated. </p> <note>This operation requires <a href=\"http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\">Signature Version 4</a>. </note>"
     },
     "GetServerCertificate":{
       "name":"GetServerCertificate",
@@ -2824,7 +2851,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p> Returns information about the access key IDs associated with the specified user. If there are none, the action returns an empty list. </p> <p> Although each user is limited to a small number of keys, you can still paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. </p> <p> If the <code>UserName</code> field is not specified, the UserName is determined implicitly based on the AWS access key ID used to sign the request. Because this action works for access keys under the AWS account, you can use this action to manage root credentials even if the AWS account has no associated users. </p> <note> To ensure the security of your AWS account, the secret access key is accessible only during key and user creation. </note>"
+      "documentation":"<p>Returns information about the access key IDs associated with the specified user. If there are none, the action returns an empty list. </p> <p>Although each user is limited to a small number of keys, you can still paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. </p> <p>If the <code>UserName</code> field is not specified, the UserName is determined implicitly based on the AWS access key ID used to sign the request. Because this action works for access keys under the AWS account, you can use this action to manage root credentials even if the AWS account has no associated users. </p> <note>To ensure the security of your AWS account, the secret access key is accessible only during key and user creation. </note>"
     },
     "ListAccountAliases":{
       "name":"ListAccountAliases",
@@ -3124,7 +3151,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p>Lists the groups the specified user belongs to.</p> <p> You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. </p>"
+      "documentation":"<p>Lists the groups the specified user belongs to.</p> <p>You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. </p>"
     },
     "ListInstanceProfiles":{
       "name":"ListInstanceProfiles",
@@ -3149,7 +3176,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p> Lists the instance profiles that have the specified path prefix. If there are none, the action returns an empty list. For more information about instance profiles, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/AboutInstanceProfiles.html\">About Instance Profiles</a>. </p> <p> You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. </p>"
+      "documentation":"<p>Lists the instance profiles that have the specified path prefix. If there are none, the action returns an empty list. For more information about instance profiles, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/AboutInstanceProfiles.html\">About Instance Profiles</a>. </p> <p>You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. </p>"
     },
     "ListInstanceProfilesForRole":{
       "name":"ListInstanceProfilesForRole",
@@ -3184,7 +3211,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p> Lists the instance profiles that have the specified associated role. If there are none, the action returns an empty list. For more information about instance profiles, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/AboutInstanceProfiles.html\">About Instance Profiles</a>. </p> <p> You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. </p>"
+      "documentation":"<p>Lists the instance profiles that have the specified associated role. If there are none, the action returns an empty list. For more information about instance profiles, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/AboutInstanceProfiles.html\">About Instance Profiles</a>. </p> <p>You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. </p>"
     },
     "ListMFADevices":{
       "name":"ListMFADevices",
@@ -3219,7 +3246,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p> Lists the MFA devices. If the request includes the user name, then this action lists all the MFA devices associated with the specified user name. If you do not specify a user name, IAM determines the user name implicitly based on the AWS access key ID signing the request. </p> <p> You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. </p>"
+      "documentation":"<p>Lists the MFA devices. If the request includes the user name, then this action lists all the MFA devices associated with the specified user name. If you do not specify a user name, IAM determines the user name implicitly based on the AWS access key ID signing the request. </p> <p>You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. </p>"
     },
     "ListOpenIDConnectProviders":{
       "name":"ListOpenIDConnectProviders",
@@ -3374,7 +3401,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p> Lists the roles that have the specified path prefix. If there are none, the action returns an empty list. For more information about roles, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html\">Working with Roles</a>. </p> <p> You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. </p> <p> The returned policy is URL-encoded according to RFC 3986. For more information about RFC 3986, go to <a href=\"http://www.faqs.org/rfcs/rfc3986.html\">http://www.faqs.org/rfcs/rfc3986.html</a>. </p>"
+      "documentation":"<p>Lists the roles that have the specified path prefix. If there are none, the action returns an empty list. For more information about roles, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html\">Working with Roles</a>. </p> <p>You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. </p> <p>The returned policy is URL-encoded according to RFC 3986. For more information about RFC 3986, go to <a href=\"http://www.faqs.org/rfcs/rfc3986.html\">http://www.faqs.org/rfcs/rfc3986.html</a>. </p>"
     },
     "ListSAMLProviders":{
       "name":"ListSAMLProviders",
@@ -3459,7 +3486,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p> Returns information about the signing certificates associated with the specified user. If there are none, the action returns an empty list. </p> <p> Although each user is limited to a small number of signing certificates, you can still paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. </p> <p> If the <code>UserName</code> field is not specified, the user name is determined implicitly based on the AWS access key ID used to sign the request. Because this action works for access keys under the AWS account, you can use this action to manage root credentials even if the AWS account has no associated users. </p>"
+      "documentation":"<p>Returns information about the signing certificates associated with the specified user. If there are none, the action returns an empty list. </p> <p>Although each user is limited to a small number of signing certificates, you can still paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. </p> <p>If the <code>UserName</code> field is not specified, the user name is determined implicitly based on the AWS access key ID used to sign the request. Because this action works for access keys under the AWS account, you can use this action to manage root credentials even if the AWS account has no associated users. </p>"
     },
     "ListUserPolicies":{
       "name":"ListUserPolicies",
@@ -3533,7 +3560,7 @@
         "documentation":"<p>Contains the response to a successful <a>ListVirtualMFADevices</a> request. </p>",
         "resultWrapper":"ListVirtualMFADevicesResult"
       },
-      "documentation":"<p> Lists the virtual MFA devices under the AWS account by assignment status. If you do not specify an assignment status, the action returns a list of all virtual MFA devices. Assignment status can be <code>Assigned</code>, <code>Unassigned</code>, or <code>Any</code>. </p> <p> You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. </p>"
+      "documentation":"<p>Lists the virtual MFA devices under the AWS account by assignment status. If you do not specify an assignment status, the action returns a list of all virtual MFA devices. Assignment status can be <code>Assigned</code>, <code>Unassigned</code>, or <code>Any</code>. </p> <p>You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. </p>"
     },
     "PutGroupPolicy":{
       "name":"PutGroupPolicy",
@@ -3943,7 +3970,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p> Changes the status of the specified access key from Active to Inactive, or vice versa. This action can be used to disable a user's key as part of a key rotation work flow. </p> <p> If the <code>UserName</code> field is not specified, the UserName is determined implicitly based on the AWS access key ID used to sign the request. Because this action works for access keys under the AWS account, you can use this action to manage root credentials even if the AWS account has no associated users. </p> <p> For information about rotating keys, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingCredentials.html\">Managing Keys and Certificates</a> in the <i>Using IAM</i> guide. </p>"
+      "documentation":"<p>Changes the status of the specified access key from Active to Inactive, or vice versa. This action can be used to disable a user's key as part of a key rotation work flow. </p> <p>If the <code>UserName</code> field is not specified, the UserName is determined implicitly based on the AWS access key ID used to sign the request. Because this action works for access keys under the AWS account, you can use this action to manage root credentials even if the AWS account has no associated users. </p> <p>For information about rotating keys, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingCredentials.html\">Managing Keys and Certificates</a> in the <i>Using IAM</i> guide. </p>"
     },
     "UpdateAccountPasswordPolicy":{
       "name":"UpdateAccountPasswordPolicy",
@@ -3993,7 +4020,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p>Updates the password policy settings for the AWS account.</p> <note> <p> This action does not support partial updates. No parameters are required, but if you do not specify a parameter, that parameter's value reverts to its default value. See the <b>Request Parameters</b> section for each parameter's default value. </p> </note> <p> For more information about using a password policy, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_ManagingPasswordPolicies.html\">Managing an IAM Password Policy</a> in the <i>Using IAM</i> guide. </p>"
+      "documentation":"<p>Updates the password policy settings for the AWS account.</p> <note> <p>This action does not support partial updates. No parameters are required, but if you do not specify a parameter, that parameter's value reverts to its default value. See the <b>Request Parameters</b> section for each parameter's default value. </p> </note> <p> For more information about using a password policy, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_ManagingPasswordPolicies.html\">Managing an IAM Password Policy</a> in the <i>Using IAM</i> guide. </p>"
     },
     "UpdateAssumeRolePolicy":{
       "name":"UpdateAssumeRolePolicy",
@@ -4093,7 +4120,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p>Updates the name and/or the path of the specified group.</p> <important> You should understand the implications of changing a group's path or name. For more information, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_WorkingWithGroupsAndUsers.html\">Renaming Users and Groups</a> in the <i>Using IAM</i> guide. </important> <note> To change a group name the requester must have appropriate permissions on both the source object and the target object. For example, to change Managers to MGRs, the entity making the request must have permission on Managers and MGRs, or must have permission on all (*). For more information about permissions, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html\" target=\"blank\">Permissions and Policies</a>. </note>"
+      "documentation":"<p>Updates the name and/or the path of the specified group.</p> <important> You should understand the implications of changing a group's path or name. For more information, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_WorkingWithGroupsAndUsers.html\">Renaming Users and Groups</a> in the <i>Using IAM</i> guide. </important> <note>To change a group name the requester must have appropriate permissions on both the source object and the target object. For example, to change Managers to MGRs, the entity making the request must have permission on Managers and MGRs, or must have permission on all (*). For more information about permissions, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html\" target=\"blank\">Permissions and Policies</a>. </note>"
     },
     "UpdateLoginProfile":{
       "name":"UpdateLoginProfile",
@@ -4248,7 +4275,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p>Updates the metadata document for an existing SAML provider.</p> <note> This operation requires <a href=\"http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\">Signature Version 4</a>. </note>"
+      "documentation":"<p>Updates the metadata document for an existing SAML provider.</p> <note>This operation requires <a href=\"http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\">Signature Version 4</a>. </note>"
     },
     "UpdateServerCertificate":{
       "name":"UpdateServerCertificate",
@@ -4298,7 +4325,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p>Updates the name and/or the path of the specified server certificate.</p> <important> You should understand the implications of changing a server certificate's path or name. For more information, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingServerCerts.html\">Managing Server Certificates</a> in the <i>Using IAM</i> guide. </important> <note> To change a server certificate name the requester must have appropriate permissions on both the source object and the target object. For example, to change the name from ProductionCert to ProdCert, the entity making the request must have permission on ProductionCert and ProdCert, or must have permission on all (*). For more information about permissions, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html\" target=\"blank\">Permissions and Policies</a>. </note>"
+      "documentation":"<p>Updates the name and/or the path of the specified server certificate.</p> <important> You should understand the implications of changing a server certificate's path or name. For more information, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingServerCerts.html\">Managing Server Certificates</a> in the <i>Using IAM</i> guide. </important> <note>To change a server certificate name the requester must have appropriate permissions on both the source object and the target object. For example, to change the name from ProductionCert to ProdCert, the entity making the request must have permission on ProductionCert and ProdCert, or must have permission on all (*). For more information about permissions, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html\" target=\"blank\">Permissions and Policies</a>. </note>"
     },
     "UpdateSigningCertificate":{
       "name":"UpdateSigningCertificate",
@@ -4338,7 +4365,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p> Changes the status of the specified signing certificate from active to disabled, or vice versa. This action can be used to disable a user's signing certificate as part of a certificate rotation work flow. </p> <p> If the <code>UserName</code> field is not specified, the UserName is determined implicitly based on the AWS access key ID used to sign the request. Because this action works for access keys under the AWS account, you can use this action to manage root credentials even if the AWS account has no associated users. </p> <p> For information about rotating certificates, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingCredentials.html\">Managing Keys and Certificates</a> in the <i>Using IAM</i> guide. </p>"
+      "documentation":"<p>Changes the status of the specified signing certificate from active to disabled, or vice versa. This action can be used to disable a user's signing certificate as part of a certificate rotation work flow. </p> <p>If the <code>UserName</code> field is not specified, the UserName is determined implicitly based on the AWS access key ID used to sign the request. Because this action works for access keys under the AWS account, you can use this action to manage root credentials even if the AWS account has no associated users. </p>"
     },
     "UpdateUser":{
       "name":"UpdateUser",
@@ -4463,7 +4490,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p> Uploads a server certificate entity for the AWS account. The server certificate entity includes a public key certificate, a private key, and an optional certificate chain, which should all be PEM-encoded. </p> <p> For information about the number of server certificates you can upload, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html\">Limitations on IAM Entities</a> in the <i>Using IAM</i> guide. </p> <note> Because the body of the public key certificate, private key, and the certificate chain can be large, you should use POST rather than GET when calling <code>UploadServerCertificate</code>. For information about setting up signatures and authorization through the API, go to <a href=\"http://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html\">Signing AWS API Requests</a> in the <i>AWS General Reference</i>. For general information about using the Query API with IAM, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html\">Making Query Requests</a> in the <i>Using IAM</i> guide. </note>"
+      "documentation":"<p>Uploads a server certificate entity for the AWS account. The server certificate entity includes a public key certificate, a private key, and an optional certificate chain, which should all be PEM-encoded. </p> <p>For information about the number of server certificates you can upload, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html\">Limitations on IAM Entities</a> in the <i>Using IAM</i> guide. </p> <note>Because the body of the public key certificate, private key, and the certificate chain can be large, you should use POST rather than GET when calling <code>UploadServerCertificate</code>. For information about setting up signatures and authorization through the API, go to <a href=\"http://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html\">Signing AWS API Requests</a> in the <i>AWS General Reference</i>. For general information about using the Query API with IAM, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html\">Making Query Requests</a> in the <i>Using IAM</i> guide. </note>"
     },
     "UploadSigningCertificate":{
       "name":"UploadSigningCertificate",
@@ -4548,7 +4575,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p> Uploads an X.509 signing certificate and associates it with the specified user. Some AWS services use X.509 signing certificates to validate requests that are signed with a corresponding private key. When you upload the certificate, its default status is <code>Active</code>. </p> <p> If the <code>UserName</code> field is not specified, the user name is determined implicitly based on the AWS access key ID used to sign the request. Because this action works for access keys under the AWS account, you can use this action to manage root credentials even if the AWS account has no associated users. </p> <note> Because the body of a X.509 certificate can be large, you should use POST rather than GET when calling <code>UploadSigningCertificate</code>. For information about setting up signatures and authorization through the API, go to <a href=\"http://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html\">Signing AWS API Requests</a> in the <i>AWS General Reference</i>. For general information about using the Query API with IAM, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html\">Making Query Requests</a> in the <i>Using IAM</i>guide. </note>"
+      "documentation":"<p>Uploads an X.509 signing certificate and associates it with the specified user. Some AWS services use X.509 signing certificates to validate requests that are signed with a corresponding private key. When you upload the certificate, its default status is <code>Active</code>. </p> <p>If the <code>UserName</code> field is not specified, the user name is determined implicitly based on the AWS access key ID used to sign the request. Because this action works for access keys under the AWS account, you can use this action to manage root credentials even if the AWS account has no associated users. </p> <note>Because the body of a X.509 certificate can be large, you should use POST rather than GET when calling <code>UploadSigningCertificate</code>. For information about setting up signatures and authorization through the API, go to <a href=\"http://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html\">Signing AWS API Requests</a> in the <i>AWS General Reference</i>. For general information about using the Query API with IAM, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html\">Making Query Requests</a> in the <i>Using IAM</i>guide. </note>"
     }
   },
   "shapes":{
@@ -4571,7 +4598,7 @@
         },
         "Status":{
           "shape":"statusType",
-          "documentation":"<p> The status of the access key. <code>Active</code> means the key is valid for API calls, while <code>Inactive</code> means it is not. </p>"
+          "documentation":"<p>The status of the access key. <code>Active</code> means the key is valid for API calls, while <code>Inactive</code> means it is not. </p>"
         },
         "SecretAccessKey":{
           "shape":"accessKeySecretType",
@@ -4583,6 +4610,29 @@
         }
       },
       "documentation":"<p>Contains information about an AWS access key.</p> <p> This data type is used as a response element in the <a>CreateAccessKey</a> and <a>ListAccessKeys</a> actions. </p> <note>The <code>SecretAccessKey</code> value is returned only in response to <a>CreateAccessKey</a>. You can get a secret access key only when you first create an access key; you cannot recover the secret access key later. If you lose a secret access key, you must create a new access key. </note>"
+    },
+    "AccessKeyLastUsed":{
+      "type":"structure",
+      "required":[
+        "LastUsedDate",
+        "ServiceName",
+        "Region"
+      ],
+      "members":{
+        "LastUsedDate":{
+          "shape":"dateType",
+          "documentation":"<p>The date and time, in <a href=\"http://www.iso.org/iso/iso8601\">ISO 8601 date-time format</a>, when the access key was most recently used.</p>"
+        },
+        "ServiceName":{
+          "shape":"stringType",
+          "documentation":"<p>The name of the AWS service with which this access key was most recently used.</p>"
+        },
+        "Region":{
+          "shape":"stringType",
+          "documentation":"<p>The AWS region where this access key was most recently used.</p> <p>For more information about AWS regions, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html\">Regions and Endpoints</a> in the Amazon Web Services General Reference.</p>"
+        }
+      },
+      "documentation":"<p>Contains information about the last time an AWS access key was used.</p> <p>This data type is used as a response element in the <a>GetAccessKeyLastUsed</a> action.</p>"
     },
     "AccessKeyMetadata":{
       "type":"structure",
@@ -4708,7 +4758,7 @@
         },
         "PolicyArn":{"shape":"arnType"}
       },
-      "documentation":"<p>Contains information about an attached policy.</p> <p>An attached policy is a managed policy that has been attached to a user, group, or role. This data type is used as a response element in the <a>ListAttachedGroupPolicies</a>, <a>ListAttachedRolePolicies</a>, and <a>ListAttachedUserPolicies</a> actions. </p> <p>For more information about managed policies, refer to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html\">Managed Policies and Inline Policies</a> in the <i>Using IAM</i> guide. </p>"
+      "documentation":"<p>Contains information about an attached policy.</p> <p>An attached policy is a managed policy that has been attached to a user, group, or role. This data type is used as a response element in the <a>ListAttachedGroupPolicies</a>, <a>ListAttachedRolePolicies</a>, <a>ListAttachedUserPolicies</a>, and <a>GetAccountAuthorizationDetails</a> actions. </p> <p>For more information about managed policies, refer to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html\">Managed Policies and Inline Policies</a> in the <i>Using IAM</i> guide. </p>"
     },
     "BootstrapDatum":{
       "type":"blob",
@@ -4978,7 +5028,7 @@
       "members":{
         "SAMLMetadataDocument":{
           "shape":"SAMLMetadataDocumentType",
-          "documentation":"<p> An XML document generated by an identity provider (IdP) that supports SAML 2.0. The document includes the issuer's name, expiration information, and keys that can be used to validate the SAML authentication response (assertions) that are received from the IdP. You must generate the metadata document using the identity management software that is used as your organization's IdP. </p> <p> For more information, see <a href=\"http://docs.aws.amazon.com/STS/latest/UsingSTS/CreatingSAML.html\">Creating Temporary Security Credentials for SAML Federation</a> in the <i>Using Temporary Security Credentials</i> guide. </p>"
+          "documentation":"<p>An XML document generated by an identity provider (IdP) that supports SAML 2.0. The document includes the issuer's name, expiration information, and keys that can be used to validate the SAML authentication response (assertions) that are received from the IdP. You must generate the metadata document using the identity management software that is used as your organization's IdP. </p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/STS/latest/UsingSTS/CreatingSAML.html\">Creating Temporary Security Credentials for SAML Federation</a> in the <i>Using Temporary Security Credentials</i> guide. </p>"
         },
         "Name":{
           "shape":"SAMLProviderNameType",
@@ -5427,7 +5477,9 @@
       "enum":[
         "User",
         "Role",
-        "Group"
+        "Group",
+        "LocalManagedPolicy",
+        "AWSManagedPolicy"
       ]
     },
     "GenerateCredentialReportResponse":{
@@ -5444,12 +5496,36 @@
       },
       "documentation":"<p>Contains the response to a successful <a>GenerateCredentialReport</a> request. </p>"
     },
+    "GetAccessKeyLastUsedRequest":{
+      "type":"structure",
+      "required":["AccessKeyId"],
+      "members":{
+        "AccessKeyId":{
+          "shape":"accessKeyIdType",
+          "documentation":"<p>The identifier of an access key.</p>"
+        }
+      }
+    },
+    "GetAccessKeyLastUsedResponse":{
+      "type":"structure",
+      "members":{
+        "UserName":{
+          "shape":"existingUserNameType",
+          "documentation":"<p>The name of the AWS IAM user that owns this access key.</p>"
+        },
+        "AccessKeyLastUsed":{
+          "shape":"AccessKeyLastUsed",
+          "documentation":"<p>Contains information about the last time the access key was used.</p>"
+        }
+      },
+      "documentation":"<p>Contains the response to a successful <a>GetAccessKeyLastUsed</a> request. It is also returned as a member of the <a>AccessKeyMetaData</a> structure returned by the <a>ListAccessKeys</a> action.</p>"
+    },
     "GetAccountAuthorizationDetailsRequest":{
       "type":"structure",
       "members":{
         "Filter":{
           "shape":"entityListType",
-          "documentation":"<p>A list of entity types (user, group, or role) for filtering the results.</p>"
+          "documentation":"<p>A list of entity types (user, group, role, local managed policy, or AWS managed policy) for filtering the results.</p>"
         },
         "MaxItems":{
           "shape":"maxItemsType",
@@ -5475,6 +5551,10 @@
         "RoleDetailList":{
           "shape":"roleDetailListType",
           "documentation":"<p>A list containing information about IAM roles.</p>"
+        },
+        "Policies":{
+          "shape":"ManagedPolicyDetailListType",
+          "documentation":"<p>A list containing information about managed policies.</p>"
         },
         "IsTruncated":{
           "shape":"booleanType",
@@ -5947,7 +6027,11 @@
         },
         "GroupPolicyList":{
           "shape":"policyDetailListType",
-          "documentation":"<p>A list of the group's policies.</p>"
+          "documentation":"<p>A list of the inline policies embedded in the group.</p>"
+        },
+        "AttachedManagedPolicies":{
+          "shape":"attachedPoliciesListType",
+          "documentation":"<p>A list of the managed policies attached to the group.</p>"
         }
       },
       "documentation":"<p>Contains information about an IAM group, including all of the group's policies. </p> <p>This data type is used as a response element in the <a>GetAccountAuthorizationDetails</a> action.</p>"
@@ -6748,11 +6832,11 @@
         },
         "Marker":{
           "shape":"markerType",
-          "documentation":"<p> Use this only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received. </p>"
+          "documentation":"<p>Use this only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received. </p>"
         },
         "MaxItems":{
           "shape":"maxItemsType",
-          "documentation":"<p> Use this only when paginating results to indicate the maximum number of certificate IDs you want in the response. If there are additional certificate IDs beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100. </p>"
+          "documentation":"<p>Use this only when paginating results to indicate the maximum number of certificate IDs you want in the response. If there are additional certificate IDs beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100. </p>"
         }
       }
     },
@@ -6955,6 +7039,57 @@
       "exception":true,
       "documentation":"<p> The request was rejected because the policy document was malformed. The error message describes the specific error. </p>"
     },
+    "ManagedPolicyDetail":{
+      "type":"structure",
+      "members":{
+        "PolicyName":{
+          "shape":"policyNameType",
+          "documentation":"<p>The friendly name (not ARN) identifying the policy.</p>"
+        },
+        "PolicyId":{
+          "shape":"idType",
+          "documentation":"<p>The stable and unique string identifying the policy. </p> <p>For more information about IDs, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html\">IAM Identifiers</a> in the <i>Using IAM</i> guide.</p>"
+        },
+        "Arn":{"shape":"arnType"},
+        "Path":{
+          "shape":"policyPathType",
+          "documentation":"<p>The path to the policy.</p> <p>For more information about paths, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html\">IAM Identifiers</a> in the <i>Using IAM</i> guide.</p>"
+        },
+        "DefaultVersionId":{
+          "shape":"policyVersionIdType",
+          "documentation":"<p>The identifier for the version of the policy that is set as the default (operative) version. </p> <p>For more information about policy versions, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-versions.html\">Versioning for Managed Policies</a> in the <i>Using IAM</i> guide. </p>"
+        },
+        "AttachmentCount":{
+          "shape":"attachmentCountType",
+          "documentation":"<p>The number of principal entities (users, groups, and roles) that the policy is attached to.</p>"
+        },
+        "IsAttachable":{
+          "shape":"booleanType",
+          "documentation":"<p>Specifies whether the policy can be attached to an IAM user, group, or role. </p>"
+        },
+        "Description":{
+          "shape":"policyDescriptionType",
+          "documentation":"<p>A friendly description of the policy.</p>"
+        },
+        "CreateDate":{
+          "shape":"dateType",
+          "documentation":"<p>The date and time, in <a href=\"http://www.iso.org/iso/iso8601\">ISO 8601 date-time format</a>, when the policy was created.</p>"
+        },
+        "UpdateDate":{
+          "shape":"dateType",
+          "documentation":"<p>The date and time, in <a href=\"http://www.iso.org/iso/iso8601\">ISO 8601 date-time format</a>, when the policy was last updated.</p> <p>When a policy has only one version, this field contains the date and time when the policy was created. When a policy has more than one version, this field contains the date and time when the most recent policy version was created. </p>"
+        },
+        "PolicyVersionList":{
+          "shape":"policyDocumentVersionListType",
+          "documentation":"<p>A list containing information about the versions of the policy.</p>"
+        }
+      },
+      "documentation":"<p>Contains information about a managed policy, including the policy's ARN, versions, and the number of principal entities (users, groups, and roles) that the policy is attached to.</p> <p>This data type is used as a response element in the <a>GetAccountAuthorizationDetails</a> action.</p> <p>For more information about managed policies, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html\">Managed Policies and Inline Policies</a> in the <i>Using IAM</i> guide. </p>"
+    },
+    "ManagedPolicyDetailListType":{
+      "type":"list",
+      "member":{"shape":"ManagedPolicyDetail"}
+    },
     "NoSuchEntityException":{
       "type":"structure",
       "members":{
@@ -7149,7 +7284,7 @@
       "members":{
         "Document":{
           "shape":"policyDocumentType",
-          "documentation":"<p>The policy document.</p> <p>The policy document is returned in the response to the <a>GetPolicyVersion</a> operation. It is not included in the response to the <a>ListPolicyVersions</a> operation. </p>"
+          "documentation":"<p>The policy document.</p> <p>The policy document is returned in the response to the <a>GetPolicyVersion</a> operation. It is not included in the response to the <a>ListPolicyVersions</a> or <a>GetAccountAuthorizationDetails</a> operations. </p>"
         },
         "VersionId":{
           "shape":"policyVersionIdType",
@@ -7164,7 +7299,7 @@
           "documentation":"<p>The date and time, in <a href=\"http://www.iso.org/iso/iso8601\">ISO 8601 date-time format</a>, when the policy version was created.</p>"
         }
       },
-      "documentation":"<p>Contains information about a version of a managed policy.</p> <p>This data type is used as a response element in the <a>CreatePolicyVersion</a>, <a>GetPolicyVersion</a>, and <a>ListPolicyVersions</a> actions. </p> <p>For more information about managed policies, refer to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html\">Managed Policies and Inline Policies</a> in the <i>Using IAM</i> guide. </p>"
+      "documentation":"<p>Contains information about a version of a managed policy.</p> <p>This data type is used as a response element in the <a>CreatePolicyVersion</a>, <a>GetPolicyVersion</a>, <a>ListPolicyVersions</a>, and <a>GetAccountAuthorizationDetails</a> actions. </p> <p>For more information about managed policies, refer to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html\">Managed Policies and Inline Policies</a> in the <i>Using IAM</i> guide. </p>"
     },
     "PutGroupPolicyRequest":{
       "type":"structure",
@@ -7388,7 +7523,11 @@
         "InstanceProfileList":{"shape":"instanceProfileListType"},
         "RolePolicyList":{
           "shape":"policyDetailListType",
-          "documentation":"<p>A list of the role's access (permissions) policies. </p>"
+          "documentation":"<p>A list of inline policies embedded in the role. These policies are the role's access (permissions) policies.</p>"
+        },
+        "AttachedManagedPolicies":{
+          "shape":"attachedPoliciesListType",
+          "documentation":"<p>A list of managed policies attached to the role. These policies are the role's access (permissions) policies.</p>"
         }
       },
       "documentation":"<p>Contains information about an IAM role, including all of the role's policies.</p> <p>This data type is used as a response element in the <a>GetAccountAuthorizationDetails</a> action.</p>"
@@ -7746,7 +7885,7 @@
       "members":{
         "UserName":{
           "shape":"existingUserNameType",
-          "documentation":"<p> Name of the user to update. If you're changing the name of the user, this is the original user name. </p>"
+          "documentation":"<p>Name of the user to update. If you're changing the name of the user, this is the original user name. </p>"
         },
         "NewPath":{
           "shape":"pathType",
@@ -7768,7 +7907,7 @@
       "members":{
         "Path":{
           "shape":"pathType",
-          "documentation":"<p> The path for the server certificate. For more information about paths, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html\">IAM Identifiers</a> in the <i>Using IAM</i> guide. </p> <p>This parameter is optional. If it is not included, it defaults to a slash (/).</p> <note> If you are uploading a server certificate specifically for use with Amazon CloudFront distributions, you must specify a path using the <code>--path</code> option. The path must begin with <code>/cloudfront</code> and must include a trailing slash (for example, <code>/cloudfront/test/</code>). </note>"
+          "documentation":"<p>The path for the server certificate. For more information about paths, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html\">IAM Identifiers</a> in the <i>Using IAM</i> guide. </p> <p>This parameter is optional. If it is not included, it defaults to a slash (/).</p> <note> If you are uploading a server certificate specifically for use with Amazon CloudFront distributions, you must specify a path using the <code>--path</code> option. The path must begin with <code>/cloudfront</code> and must include a trailing slash (for example, <code>/cloudfront/test/</code>). </note>"
         },
         "ServerCertificateName":{
           "shape":"serverCertificateNameType",
@@ -7784,7 +7923,7 @@
         },
         "CertificateChain":{
           "shape":"certificateChainType",
-          "documentation":"<p> The contents of the certificate chain. This is typically a concatenation of the PEM-encoded public key certificates of the chain. </p>"
+          "documentation":"<p>The contents of the certificate chain. This is typically a concatenation of the PEM-encoded public key certificates of the chain. </p>"
         }
       }
     },
@@ -7882,11 +8021,15 @@
         },
         "UserPolicyList":{
           "shape":"policyDetailListType",
-          "documentation":"<p>A list of the user's policies.</p>"
+          "documentation":"<p>A list of the inline policies embedded in the user.</p>"
         },
         "GroupList":{
           "shape":"groupNameListType",
           "documentation":"<p>A list of IAM groups that the user is in.</p>"
+        },
+        "AttachedManagedPolicies":{
+          "shape":"attachedPoliciesListType",
+          "documentation":"<p>A list of the managed policies attached to the user.</p>"
         }
       },
       "documentation":"<p>Contains information about an IAM user, including all the user's policies and all the IAM groups the user is in.</p> <p>This data type is used as a response element in the <a>GetAccountAuthorizationDetails</a> action.</p>"
@@ -8213,6 +8356,7 @@
         "Inactive"
       ]
     },
+    "stringType":{"type":"string"},
     "summaryKeyType":{
       "type":"string",
       "enum":[

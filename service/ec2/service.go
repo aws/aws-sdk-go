@@ -26,7 +26,7 @@ func New(config *aws.Config) *EC2 {
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "ec2",
-		APIVersion:  "2014-10-01",
+		APIVersion:  "2015-03-01",
 	}
 	service.Initialize()
 

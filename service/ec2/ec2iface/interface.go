@@ -39,6 +39,8 @@ type EC2API interface {
 
 	CancelExportTask(*ec2.CancelExportTaskInput) (*ec2.CancelExportTaskOutput, error)
 
+	CancelImportTask(*ec2.CancelImportTaskInput) (*ec2.CancelImportTaskOutput, error)
+
 	CancelReservedInstancesListing(*ec2.CancelReservedInstancesListingInput) (*ec2.CancelReservedInstancesListingOutput, error)
 
 	CancelSpotInstanceRequests(*ec2.CancelSpotInstanceRequestsInput) (*ec2.CancelSpotInstanceRequestsOutput, error)
@@ -163,6 +165,10 @@ type EC2API interface {
 
 	DescribeImages(*ec2.DescribeImagesInput) (*ec2.DescribeImagesOutput, error)
 
+	DescribeImportImageTasks(*ec2.DescribeImportImageTasksInput) (*ec2.DescribeImportImageTasksOutput, error)
+
+	DescribeImportSnapshotTasks(*ec2.DescribeImportSnapshotTasksInput) (*ec2.DescribeImportSnapshotTasksOutput, error)
+
 	DescribeInstanceAttribute(*ec2.DescribeInstanceAttributeInput) (*ec2.DescribeInstanceAttributeOutput, error)
 
 	DescribeInstanceStatus(*ec2.DescribeInstanceStatusInput) (*ec2.DescribeInstanceStatusOutput, error)
@@ -255,9 +261,13 @@ type EC2API interface {
 
 	GetPasswordData(*ec2.GetPasswordDataInput) (*ec2.GetPasswordDataOutput, error)
 
+	ImportImage(*ec2.ImportImageInput) (*ec2.ImportImageOutput, error)
+
 	ImportInstance(*ec2.ImportInstanceInput) (*ec2.ImportInstanceOutput, error)
 
 	ImportKeyPair(*ec2.ImportKeyPairInput) (*ec2.ImportKeyPairOutput, error)
+
+	ImportSnapshot(*ec2.ImportSnapshotInput) (*ec2.ImportSnapshotOutput, error)
 
 	ImportVolume(*ec2.ImportVolumeInput) (*ec2.ImportVolumeOutput, error)
 

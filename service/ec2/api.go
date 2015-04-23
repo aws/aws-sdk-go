@@ -722,6 +722,39 @@ func (c *EC2) CancelExportTask(input *CancelExportTaskInput) (output *CancelExpo
 
 var opCancelExportTask *aws.Operation
 
+// CancelImportTaskRequest generates a request for the CancelImportTask operation.
+func (c *EC2) CancelImportTaskRequest(input *CancelImportTaskInput) (req *aws.Request, output *CancelImportTaskOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opCancelImportTask == nil {
+		opCancelImportTask = &aws.Operation{
+			Name:       "CancelImportTask",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &CancelImportTaskInput{}
+	}
+
+	req = c.newRequest(opCancelImportTask, input, output)
+	output = &CancelImportTaskOutput{}
+	req.Data = output
+	return
+}
+
+// Cancels an in-process import virtual machine or import snapshot task.
+func (c *EC2) CancelImportTask(input *CancelImportTaskInput) (output *CancelImportTaskOutput, err error) {
+	req, out := c.CancelImportTaskRequest(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opCancelImportTask *aws.Operation
+
 // CancelReservedInstancesListingRequest generates a request for the CancelReservedInstancesListing operation.
 func (c *EC2) CancelReservedInstancesListingRequest(input *CancelReservedInstancesListingInput) (req *aws.Request, output *CancelReservedInstancesListingOutput) {
 	oprw.Lock()
@@ -963,6 +996,12 @@ func (c *EC2) CreateCustomerGatewayRequest(input *CreateCustomerGatewayInput) (r
 //  For more information about VPN customer gateways, see Adding a Hardware
 // Virtual Private Gateway to Your VPC (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html)
 // in the Amazon Virtual Private Cloud User Guide.
+//
+//  You cannot create more than one customer gateway with the same VPN type,
+// IP address, and BGP ASN parameter values. If you run an identical request
+// more than one time, the first request creates the customer gateway, and subsequent
+// requests return information about the existing customer gateway. The subsequent
+// requests do not create new customer gateway resources.
 func (c *EC2) CreateCustomerGateway(input *CreateCustomerGatewayInput) (output *CreateCustomerGatewayOutput, err error) {
 	req, out := c.CreateCustomerGatewayRequest(input)
 	output = out
@@ -3221,6 +3260,73 @@ func (c *EC2) DescribeImages(input *DescribeImagesInput) (output *DescribeImages
 
 var opDescribeImages *aws.Operation
 
+// DescribeImportImageTasksRequest generates a request for the DescribeImportImageTasks operation.
+func (c *EC2) DescribeImportImageTasksRequest(input *DescribeImportImageTasksInput) (req *aws.Request, output *DescribeImportImageTasksOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opDescribeImportImageTasks == nil {
+		opDescribeImportImageTasks = &aws.Operation{
+			Name:       "DescribeImportImageTasks",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &DescribeImportImageTasksInput{}
+	}
+
+	req = c.newRequest(opDescribeImportImageTasks, input, output)
+	output = &DescribeImportImageTasksOutput{}
+	req.Data = output
+	return
+}
+
+// Displays details about an import virtual machine or import snapshot tasks
+// that are already created.
+func (c *EC2) DescribeImportImageTasks(input *DescribeImportImageTasksInput) (output *DescribeImportImageTasksOutput, err error) {
+	req, out := c.DescribeImportImageTasksRequest(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opDescribeImportImageTasks *aws.Operation
+
+// DescribeImportSnapshotTasksRequest generates a request for the DescribeImportSnapshotTasks operation.
+func (c *EC2) DescribeImportSnapshotTasksRequest(input *DescribeImportSnapshotTasksInput) (req *aws.Request, output *DescribeImportSnapshotTasksOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opDescribeImportSnapshotTasks == nil {
+		opDescribeImportSnapshotTasks = &aws.Operation{
+			Name:       "DescribeImportSnapshotTasks",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &DescribeImportSnapshotTasksInput{}
+	}
+
+	req = c.newRequest(opDescribeImportSnapshotTasks, input, output)
+	output = &DescribeImportSnapshotTasksOutput{}
+	req.Data = output
+	return
+}
+
+// Displays details about an import snapshot tasks that is already created.
+func (c *EC2) DescribeImportSnapshotTasks(input *DescribeImportSnapshotTasksInput) (output *DescribeImportSnapshotTasksOutput, err error) {
+	req, out := c.DescribeImportSnapshotTasksRequest(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opDescribeImportSnapshotTasks *aws.Operation
+
 // DescribeInstanceAttributeRequest generates a request for the DescribeInstanceAttribute operation.
 func (c *EC2) DescribeInstanceAttributeRequest(input *DescribeInstanceAttributeInput) (req *aws.Request, output *DescribeInstanceAttributeOutput) {
 	oprw.Lock()
@@ -5073,6 +5179,40 @@ func (c *EC2) GetPasswordData(input *GetPasswordDataInput) (output *GetPasswordD
 
 var opGetPasswordData *aws.Operation
 
+// ImportImageRequest generates a request for the ImportImage operation.
+func (c *EC2) ImportImageRequest(input *ImportImageInput) (req *aws.Request, output *ImportImageOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opImportImage == nil {
+		opImportImage = &aws.Operation{
+			Name:       "ImportImage",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &ImportImageInput{}
+	}
+
+	req = c.newRequest(opImportImage, input, output)
+	output = &ImportImageOutput{}
+	req.Data = output
+	return
+}
+
+// Import single or multi-volume disk images or Amazon EBS snapshots into an
+// Amazon Machine Image (AMI).
+func (c *EC2) ImportImage(input *ImportImageInput) (output *ImportImageOutput, err error) {
+	req, out := c.ImportImageRequest(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opImportImage *aws.Operation
+
 // ImportInstanceRequest generates a request for the ImportInstance operation.
 func (c *EC2) ImportInstanceRequest(input *ImportInstanceInput) (req *aws.Request, output *ImportInstanceOutput) {
 	oprw.Lock()
@@ -5097,10 +5237,12 @@ func (c *EC2) ImportInstanceRequest(input *ImportInstanceInput) (req *aws.Reques
 }
 
 // Creates an import instance task using metadata from the specified disk image.
-// After importing the image, you then upload it using the ec2-import-volume
-// command in the EC2 command line tools. For more information, see Using the
-// Command Line Tools to Import Your Virtual Machine to Amazon EC2 in the Amazon
-// Elastic Compute Cloud User Guide.
+// ImportInstance only supports single-volume VMs. To import multi-volume VMs,
+// use ImportImage. After importing the image, you then upload it using the
+// ec2-import-volume command in the EC2 command line tools. For more information,
+// see Using the Command Line Tools to Import Your Virtual Machine to Amazon
+// EC2 (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UploadingYourInstancesandVolumes.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) ImportInstance(input *ImportInstanceInput) (output *ImportInstanceOutput, err error) {
 	req, out := c.ImportInstanceRequest(input)
 	output = out
@@ -5149,6 +5291,39 @@ func (c *EC2) ImportKeyPair(input *ImportKeyPairInput) (output *ImportKeyPairOut
 }
 
 var opImportKeyPair *aws.Operation
+
+// ImportSnapshotRequest generates a request for the ImportSnapshot operation.
+func (c *EC2) ImportSnapshotRequest(input *ImportSnapshotInput) (req *aws.Request, output *ImportSnapshotOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opImportSnapshot == nil {
+		opImportSnapshot = &aws.Operation{
+			Name:       "ImportSnapshot",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &ImportSnapshotInput{}
+	}
+
+	req = c.newRequest(opImportSnapshot, input, output)
+	output = &ImportSnapshotOutput{}
+	req.Data = output
+	return
+}
+
+// Import a disk into an Amazon Elastic Block Store (Amazon EBS) snapshot.
+func (c *EC2) ImportSnapshot(input *ImportSnapshotInput) (output *ImportSnapshotOutput, err error) {
+	req, out := c.ImportSnapshotRequest(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opImportSnapshot *aws.Operation
 
 // ImportVolumeRequest generates a request for the ImportVolume operation.
 func (c *EC2) ImportVolumeRequest(input *ImportVolumeInput) (req *aws.Request, output *ImportVolumeOutput) {
@@ -7066,7 +7241,7 @@ type metadataBlobAttributeValue struct {
 
 // Describes a block device mapping.
 type BlockDeviceMapping struct {
-	// The device name exposed to the instance (for example, /dev/sdh).
+	// The device name exposed to the instance (for example, /dev/sdh or xvdh).
 	DeviceName *string `locationName:"deviceName" type:"string"`
 
 	// Parameters used to automatically set up Amazon EBS volumes when the instance
@@ -7245,6 +7420,39 @@ type metadataCancelExportTaskOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type CancelImportTaskInput struct {
+	// The reason for canceling the task.
+	CancelReason *string `type:"string"`
+
+	DryRun *bool `type:"boolean"`
+
+	// The ID of the ImportImage or ImportSnapshot task to be cancelled.
+	ImportTaskID *string `locationName:"ImportTaskId" type:"string"`
+
+	metadataCancelImportTaskInput `json:"-", xml:"-"`
+}
+
+type metadataCancelImportTaskInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type CancelImportTaskOutput struct {
+	// The task ID of the ImportImage or ImportSnapshot task being canceled.
+	ImportTaskID *string `locationName:"importTaskId" type:"string"`
+
+	// The current state of the ImportImage or ImportSnapshot task being canceled.
+	PreviousState *string `locationName:"previousState" type:"string"`
+
+	// The current state of the ImportImage or ImportSnapshot task being canceled.
+	State *string `locationName:"state" type:"string"`
+
+	metadataCancelImportTaskOutput `json:"-", xml:"-"`
+}
+
+type metadataCancelImportTaskOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type CancelReservedInstancesListingInput struct {
 	// The ID of the Reserved Instance listing.
 	ReservedInstancesListingID *string `locationName:"reservedInstancesListingId" type:"string" required:"true"`
@@ -7324,6 +7532,27 @@ type ClassicLinkInstance struct {
 }
 
 type metadataClassicLinkInstance struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Client-specific data.
+type ClientData struct {
+	// User-defined comment about the upload.
+	Comment *string `type:"string"`
+
+	// The time that the disk upload ends.
+	UploadEnd *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The size of the uploaded disk image.
+	UploadSize *float64 `type:"double"`
+
+	// The time that the disk upload starts.
+	UploadStart *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	metadataClientData `json:"-", xml:"-"`
+}
+
+type metadataClientData struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -7429,8 +7658,14 @@ type CopySnapshotInput struct {
 	// A description for the new Amazon EBS snapshot.
 	Description *string `type:"string"`
 
-	// The destination region of the snapshot copy operation. This parameter is
-	// required in the PresignedUrl.
+	// The destination region to use in the PresignedUrl parameter of a snapshot
+	// copy operation. This parameter is only valid for specifying the destination
+	// region in a PresignedUrl parameter, where it is required.
+	//
+	//  CopySnapshot sends the snapshot copy to the regional endpoint that you
+	// send the HTTP request to, such as ec2.us-east-1.amazonaws.com (in the AWS
+	// CLI, this is specified with the --region parameter or the default region
+	// in your AWS configuration file).
 	DestinationRegion *string `locationName:"destinationRegion" type:"string"`
 
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
@@ -7809,8 +8044,7 @@ type metadataCreatePlacementGroupOutput struct {
 type CreateReservedInstancesListingInput struct {
 	// Unique, case-sensitive identifier you provide to ensure idempotency of your
 	// listings. This helps avoid duplicate listings. For more information, see
-	// Ensuring Idempotency (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html)
-	// in the Amazon Elastic Compute Cloud User Guide.
+	// Ensuring Idempotency (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
 	ClientToken *string `locationName:"clientToken" type:"string" required:"true"`
 
 	// The number of instances that are a part of a Reserved Instance account to
@@ -8218,7 +8452,10 @@ type CreateVolumeInput struct {
 	Encrypted *bool `locationName:"encrypted" type:"boolean"`
 
 	// Only valid for Provisioned IOPS (SSD) volumes. The number of I/O operations
-	// per second (IOPS) to provision for the volume.
+	// per second (IOPS) to provision for the volume, with a maximum ratio of 30
+	// IOPS/GiB.
+	//
+	// Constraint: Range is 100 to 20000 for Provisioned IOPS (SSD) volumes
 	IOPS *int64 `locationName:"Iops" type:"integer"`
 
 	// The full ARN of the AWS Key Management Service (KMS) master key to use when
@@ -8231,10 +8468,9 @@ type CreateVolumeInput struct {
 
 	// The size of the volume, in GiBs.
 	//
-	// Constraints: If the volume type is io1, the minimum size of the volume is
-	// 4 GiB; otherwise, the minimum size is 1 GiB. The maximum volume size is 1024
-	// GiB. If you specify a snapshot, the volume size must be equal to or larger
-	// than the snapshot size.
+	// Constraints: 1-1024 for standard volumes, 1-16384 for gp2 volumes, and 4-16384
+	// for io1 volumes. If you specify a snapshot, the volume size must be equal
+	// to or larger than the snapshot size.
 	//
 	// Default: If you're creating the volume from a snapshot and don't specify
 	// a volume size, the default is the snapshot size.
@@ -9025,16 +9261,17 @@ type DescribeClassicLinkInstancesInput struct {
 	// One or more instance IDs. Must be instances linked to a VPC through ClassicLink.
 	InstanceIDs []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list"`
 
-	// The maximum number of items to return for this request. The request returns
-	// a token that you can specify in a subsequent call to get the next set of
-	// results. You cannot specify this parameter and the instance IDs parameter
+	// The maximum number of results to return for the request in a single page.
+	// The remaining results of the initial request can be seen by sending another
+	// request with the returned NextToken value. This value can be between 5 and
+	// 1000; if MaxResults is given a value larger than 1000, only 1000 results
+	// are returned. You cannot specify this parameter and the instance IDs parameter
 	// in the same request.
 	//
 	// Constraint: If the value is greater than 1000, we return only 1000 items.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
-	// The token for the next set of items to return. (You received this token from
-	// a prior call.)
+	// The token to retrieve the next page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataDescribeClassicLinkInstancesInput `json:"-", xml:"-"`
@@ -9048,8 +9285,8 @@ type DescribeClassicLinkInstancesOutput struct {
 	// Information about one or more linked EC2-Classic instances.
 	Instances []*ClassicLinkInstance `locationName:"instancesSet" locationNameList:"item" type:"list"`
 
-	// The token to use when requesting the next set of items. If there are no additional
-	// items to return, the string is empty.
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataDescribeClassicLinkInstancesOutput `json:"-", xml:"-"`
@@ -9368,6 +9605,80 @@ type metadataDescribeImagesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type DescribeImportImageTasksInput struct {
+	DryRun *bool `type:"boolean"`
+
+	// Filters to be applied on a describe request.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// A list of ImportImage task IDs to describe.
+	ImportTaskIDs []*string `locationName:"ImportTaskId" locationNameList:"ImportTaskId" type:"list"`
+
+	// The maximum number of results in a page.
+	MaxResults *int64 `type:"integer"`
+
+	// The token to get the next page of paginated describe requests.
+	NextToken *string `type:"string"`
+
+	metadataDescribeImportImageTasksInput `json:"-", xml:"-"`
+}
+
+type metadataDescribeImportImageTasksInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DescribeImportImageTasksOutput struct {
+	// A list of zero or more ImportImage tasks that are currently active or completed/cancelled
+	// in the previous 7 days.
+	ImportImageTasks []*ImportImageTask `locationName:"importImageTaskSet" locationNameList:"item" type:"list"`
+
+	// The token to get the next page of paginated describe requests.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	metadataDescribeImportImageTasksOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeImportImageTasksOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DescribeImportSnapshotTasksInput struct {
+	DryRun *bool `type:"boolean"`
+
+	// The filters to be applied on a describe request.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// A list of IDs of the ImportSnapshot tasks to describe.
+	ImportTaskIDs []*string `locationName:"ImportTaskId" locationNameList:"ImportTaskId" type:"list"`
+
+	// The maximum number of results in a page.
+	MaxResults *int64 `type:"integer"`
+
+	// The token to get to the next page of paginated describe requests.
+	NextToken *string `type:"string"`
+
+	metadataDescribeImportSnapshotTasksInput `json:"-", xml:"-"`
+}
+
+type metadataDescribeImportSnapshotTasksInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DescribeImportSnapshotTasksOutput struct {
+	// A list of zero or more ImportSnapshot tasks that are currently active or
+	// completed/cancelled in the previous 7 days.
+	ImportSnapshotTasks []*ImportSnapshotTask `locationName:"importSnapshotTaskSet" locationNameList:"item" type:"list"`
+
+	// The token to get to the next page of paginated describe requests.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	metadataDescribeImportSnapshotTasksOutput `json:"-", xml:"-"`
+}
+
+type metadataDescribeImportSnapshotTasksOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DescribeInstanceAttributeInput struct {
 	// The instance attribute.
 	Attribute *string `locationName:"attribute" type:"string" required:"true"`
@@ -9418,7 +9729,7 @@ type DescribeInstanceAttributeOutput struct {
 	// The RAM disk ID.
 	RAMDiskID *AttributeValue `locationName:"ramdisk" type:"structure"`
 
-	// The name of the root device (for example, /dev/sda1).
+	// The name of the root device (for example, /dev/sda1 or /dev/xvda).
 	RootDeviceName *AttributeValue `locationName:"rootDeviceName" type:"structure"`
 
 	// The value to use for a resource attribute.
@@ -9492,17 +9803,15 @@ type DescribeInstanceStatusInput struct {
 	// Constraints: Maximum 100 explicitly specified instance IDs.
 	InstanceIDs []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list"`
 
-	// The maximum number of paginated instance items per response. The call also
-	// returns a token that you can specify in a subsequent call to get the next
-	// set of results. If the value is greater than 1000, we return only 1000 items.
-	// You cannot specify this parameter and the instance IDs parameter in the same
-	// request.
-	//
-	// Default: 1000
+	// The maximum number of results to return for the request in a single page.
+	// The remaining results of the initial request can be seen by sending another
+	// request with the returned NextToken value. This value can be between 5 and
+	// 1000; if MaxResults is given a value larger than 1000, only 1000 results
+	// are returned. You cannot specify this parameter and the instance IDs parameter
+	// in the same request.
 	MaxResults *int64 `type:"integer"`
 
-	// The next paginated set of results to return. (You received this token from
-	// a prior call.)
+	// The token to retrieve the next page of results.
 	NextToken *string `type:"string"`
 
 	metadataDescribeInstanceStatusInput `json:"-", xml:"-"`
@@ -9516,7 +9825,8 @@ type DescribeInstanceStatusOutput struct {
 	// One or more instance status descriptions.
 	InstanceStatuses []*InstanceStatus `locationName:"instanceStatusSet" locationNameList:"item" type:"list"`
 
-	// The next paginated set of results to return.
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataDescribeInstanceStatusOutput `json:"-", xml:"-"`
@@ -9542,7 +9852,7 @@ type DescribeInstancesInput struct {
 	// whether the Amazon EBS volume is deleted on instance termination.
 	//
 	//   block-device-mapping.device-name - The device name for the Amazon EBS
-	// volume (for example, /dev/sdh).
+	// volume (for example, /dev/sdh or xvdh).
 	//
 	//   block-device-mapping.status - The status for the Amazon EBS volume (attaching
 	// | attached | detaching | detached).
@@ -9580,7 +9890,7 @@ type DescribeInstancesInput struct {
 	//   instance-state-name - The state of the instance (pending | running | shutting-down
 	// | terminated | stopping | stopped).
 	//
-	//   instance-type - The type of instance (for example, m1.small).
+	//   instance-type - The type of instance (for example, t2.micro).
 	//
 	//   instance.group-id - The ID of the security group for the instance.
 	//
@@ -9634,7 +9944,7 @@ type DescribeInstancesInput struct {
 	// get one reservation ID.
 	//
 	//   root-device-name - The name of the root device for the instance (for example,
-	// /dev/sda1).
+	// /dev/sda1 or /dev/xvda).
 	//
 	//   root-device-type - The type of root device that the instance uses (ebs
 	// | instance-store).
@@ -9698,9 +10008,9 @@ type DescribeInstancesInput struct {
 	//   network-interface-private-dns-name - The private DNS name of the network
 	// interface.
 	//
-	//   network-interface.source-destination-check - Whether the network interface
-	// performs source/destination checking. A value of true means checking is enabled,
-	// and false means checking is disabled. The value must be false for the network
+	//   network-interface.source-dest-check - Whether the network interface performs
+	// source/destination checking. A value of true means checking is enabled, and
+	// false means checking is disabled. The value must be false for the network
 	// interface to perform network address translation (NAT) in your VPC.
 	//
 	//   network-interface.group-id - The ID of a security group associated with
@@ -9759,15 +10069,15 @@ type DescribeInstancesInput struct {
 	// Default: Describes all your instances.
 	InstanceIDs []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list"`
 
-	// The maximum number of items to return for this call. The call also returns
-	// a token that you can specify in a subsequent call to get the next set of
-	// results. If the value is greater than 1000, we return only 1000 items. You
-	// cannot specify this parameter and the instance IDs parameter in the same
-	// request.
+	// The maximum number of results to return for the request in a single page.
+	// The remaining results of the initial request can be seen by sending another
+	// request with the returned NextToken value. This value can be between 5 and
+	// 1000; if MaxResults is given a value larger than 1000, only 1000 results
+	// are returned. You cannot specify this parameter and the instance IDs parameter
+	// in the same request.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
-	// The token for the next set of items to return. (You received this token from
-	// a prior call.)
+	// The token to request the next page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataDescribeInstancesInput `json:"-", xml:"-"`
@@ -9778,8 +10088,8 @@ type metadataDescribeInstancesInput struct {
 }
 
 type DescribeInstancesOutput struct {
-	// The token to use when requesting the next set of items. If there are no additional
-	// items to return, the string is empty.
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// One or more reservations.
@@ -10319,7 +10629,7 @@ type DescribeReservedInstancesModificationsInput struct {
 	//   update-date - The time when the modification request was last updated.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
-	// The token for the next page of data.
+	// The token to retrieve the next page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// IDs for the submitted modification request.
@@ -10333,7 +10643,8 @@ type metadataDescribeReservedInstancesModificationsInput struct {
 }
 
 type DescribeReservedInstancesModificationsOutput struct {
-	// The token for the next page of data.
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The Reserved Instance modification information.
@@ -10404,7 +10715,9 @@ type DescribeReservedInstancesOfferingsInput struct {
 	// Default: 20
 	MaxInstanceCount *int64 `type:"integer"`
 
-	// The maximum number of offerings to return. The maximum is 100.
+	// The maximum number of results to return for the request in a single page.
+	// The remaining results of the initial request can be seen by sending another
+	// request with the returned NextToken value. The maximum is 100.
 	//
 	// Default: 100
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
@@ -10414,7 +10727,7 @@ type DescribeReservedInstancesOfferingsInput struct {
 	// Default: 2592000 (1 month)
 	MinDuration *int64 `type:"long"`
 
-	// The token to use when requesting the next paginated set of offerings.
+	// The token to retrieve the next page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The Reserved Instance offering type. If you are using tools that predate
@@ -10437,7 +10750,8 @@ type metadataDescribeReservedInstancesOfferingsInput struct {
 }
 
 type DescribeReservedInstancesOfferingsOutput struct {
-	// The next paginated set of results to return.
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// A list of Reserved Instances offerings.
@@ -10921,13 +11235,14 @@ type DescribeSpotPriceHistoryInput struct {
 	// Filters the results by the specified instance types.
 	InstanceTypes []*string `locationName:"InstanceType" type:"list"`
 
-	// The maximum number of items to return for this call. The call also returns
-	// a token that you can specify in a subsequent call to get the next set of
-	// results.
+	// The maximum number of results to return for the request in a single page.
+	// The remaining results of the initial request can be seen by sending another
+	// request with the returned NextToken value. This value can be between 5 and
+	// 1000; if MaxResults is given a value larger than 1000, only 1000 results
+	// are returned.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
-	// The token for the next set of items. (You received this token from a prior
-	// call.)
+	// The token to retrieve the next page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// Filters the results by the specified basic product descriptions.
@@ -10945,8 +11260,8 @@ type metadataDescribeSpotPriceHistoryInput struct {
 }
 
 type DescribeSpotPriceHistoryOutput struct {
-	// The token to use when requesting the next set of items. If there are no additional
-	// items to return, the string is empty.
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The historical Spot Prices.
@@ -11036,13 +11351,14 @@ type DescribeTagsInput struct {
 	//   value - The tag value.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
-	// The maximum number of items to return for this call. The call also returns
-	// a token that you can specify in a subsequent call to get the next set of
-	// results. If the value is greater than 1000, we return only 1000 items.
+	// The maximum number of results to return for the request in a single page.
+	// The remaining results of the initial request can be seen by sending another
+	// request with the returned NextToken value. This value can be between 5 and
+	// 1000; if MaxResults is given a value larger than 1000, only 1000 results
+	// are returned.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
-	// The token for the next set of items to return. (You received this token from
-	// a prior call.)
+	// The token to retrieve the next page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataDescribeTagsInput `json:"-", xml:"-"`
@@ -11053,8 +11369,8 @@ type metadataDescribeTagsInput struct {
 }
 
 type DescribeTagsOutput struct {
-	// The token to use when requesting the next set of items. If there are no additional
-	// items to return, the string is empty.
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return..
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// A list of tags.
@@ -11457,12 +11773,20 @@ type DescribeVolumeStatusInput struct {
 	// | insufficient-data).
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
-	// The maximum number of paginated volume items per response. You cannot specify
-	// this parameter and the volume IDs parameter in the same request.
+	// The maximum number of volume results returned by DescribeVolumeStatus in
+	// paginated output. When this parameter is used, the request only returns MaxResults
+	// results in a single page along with a NextToken response element. The remaining
+	// results of the initial request can be seen by sending another request with
+	// the returned NextToken value. This value can be between 5 and 1000; if MaxResults
+	// is given a value larger than 1000, only 1000 results are returned. If this
+	// parameter is not used, then DescribeVolumeStatus returns all results. You
+	// cannot specify this parameter and the volume IDs parameter in the same request.
 	MaxResults *int64 `type:"integer"`
 
-	// The next paginated set of results to return using the pagination token returned
-	// by a previous call.
+	// The NextToken value to include in a future DescribeVolumeStatus request.
+	// When the results of the request exceed MaxResults, this value can be used
+	// to retrieve the next page of results. This value is null when there are no
+	// more results to return.
 	NextToken *string `type:"string"`
 
 	// One or more volume IDs.
@@ -11478,7 +11802,8 @@ type metadataDescribeVolumeStatusInput struct {
 }
 
 type DescribeVolumeStatusOutput struct {
-	// The next paginated set of results to return.
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// A list of volumes.
@@ -11895,8 +12220,8 @@ type EBSBlockDevice struct {
 	// performance, I/O credits, and bursting, see Amazon EBS Volume Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	//
-	// Constraint: Range is 100 to 4000 for Provisioned IOPS (SSD) volumes and
-	// 3 to 3072 for General Purpose (SSD) volumes.
+	// Constraint: Range is 100 to 20000 for Provisioned IOPS (SSD) volumes and
+	// 3 to 10000 for General Purpose (SSD) volumes.
 	//
 	// Condition: This parameter is required for requests to create io1 volumes;
 	// it is not used in requests to create standard or gp2 volumes.
@@ -11907,10 +12232,9 @@ type EBSBlockDevice struct {
 
 	// The size of the volume, in GiB.
 	//
-	// Constraints: If the volume type is io1, the minimum size of the volume is
-	// 4 GiB; otherwise, the minimum size is 1 GiB. The maximum volume size is 1024
-	// GiB. If you specify a snapshot, the volume size must be equal to or larger
-	// than the snapshot size.
+	// Constraints: 1-1024 for standard volumes, 1-16384 for gp2 volumes, and 4-16384
+	// for io1 volumes. If you specify a snapshot, the volume size must be equal
+	// to or larger than the snapshot size.
 	//
 	// Default: If you're creating the volume from a snapshot and don't specify
 	// a volume size, the default is the snapshot size.
@@ -12067,7 +12391,7 @@ type ExportToS3Task struct {
 	DiskImageFormat *string `locationName:"diskImageFormat" type:"string"`
 
 	// The Amazon S3 bucket for the destination image. The destination bucket must
-	// exist and grant WRITE and READ_ACL permissions to the AWS account vm-import-export@amazon.com.
+	// exist and grant WRITE and READ_ACP permissions to the AWS account vm-import-export@amazon.com.
 	S3Bucket *string `locationName:"s3Bucket" type:"string"`
 
 	S3Key *string `locationName:"s3Key" type:"string"`
@@ -12335,7 +12659,7 @@ type Image struct {
 	// images.
 	RAMDiskID *string `locationName:"ramdiskId" type:"string"`
 
-	// The device name of the root device (for example, /dev/sda1 or xvda).
+	// The device name of the root device (for example, /dev/sda1 or /dev/xvda).
 	RootDeviceName *string `locationName:"rootDeviceName" type:"string"`
 
 	// The type of root device used by the AMI. The AMI can use an Amazon EBS volume
@@ -12362,6 +12686,159 @@ type Image struct {
 }
 
 type metadataImage struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// The disk container object for an ImportImage task.
+type ImageDiskContainer struct {
+	// The description of the disk image (optional).
+	Description *string `type:"string"`
+
+	// The Amazon EBS block device mapping for the disk (optional).
+	DeviceName *string `type:"string"`
+
+	// The format of the disk image being imported (optional).
+	Format *string `type:"string"`
+
+	// The Amazon EBS snapshot ID to be used for importing the snapshot.
+	SnapshotID *string `locationName:"SnapshotId" type:"string"`
+
+	// The URL to the Amazon S3-based disk image being imported. The URL can either
+	// be a https URL (https://..) or an Amazon S3 URL (s3://..)
+	URL *string `locationName:"Url" type:"string"`
+
+	// User's Amazon S3 bucket details used to access the image.
+	UserBucket *UserBucket `type:"structure"`
+
+	metadataImageDiskContainer `json:"-", xml:"-"`
+}
+
+type metadataImageDiskContainer struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type ImportImageInput struct {
+	// The architecture of the virtual machine being imported (optional).
+	Architecture *string `type:"string"`
+
+	// Client-specific data.
+	ClientData *ClientData `type:"structure"`
+
+	// The token to enable idempotency for VM import requests (optional).
+	ClientToken *string `type:"string"`
+
+	// A description string for the import image task (optional).
+	Description *string `type:"string"`
+
+	DiskContainers []*ImageDiskContainer `locationName:"DiskContainer" locationNameList:"item" type:"list"`
+
+	DryRun *bool `type:"boolean"`
+
+	// The target hypervisor platform to use (optional).
+	Hypervisor *string `type:"string"`
+
+	// The license type to be used for the Amazon Machine Image (AMI) after importing
+	// (optional).
+	//
+	// Note: You may only use BYOL if you have existing licenses with rights to
+	// use these licenses in a third party cloud like AWS. For more information,
+	// see VM Import/Export Prerequisites (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/VMImportPrerequisites.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	//
+	// Valid Values: AWS | BYOL
+	LicenseType *string `type:"string"`
+
+	// The operating system of the virtual machine being imported (optional).
+	Platform *string `type:"string"`
+
+	// The name of the role to use when not using the default role name 'vmimport'
+	// (optional).
+	RoleName *string `type:"string"`
+
+	metadataImportImageInput `json:"-", xml:"-"`
+}
+
+type metadataImportImageInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type ImportImageOutput struct {
+	// Architecture of the virtual machine being imported.
+	Architecture *string `locationName:"architecture" type:"string"`
+
+	// A description of the import task.
+	Description *string `locationName:"description" type:"string"`
+
+	// Target hypervisor of the import task.
+	Hypervisor *string `locationName:"hypervisor" type:"string"`
+
+	// The Amazon Machine Image (AMI) ID created by the import task.
+	ImageID *string `locationName:"imageId" type:"string"`
+
+	// The task id of the ImportImage task.
+	ImportTaskID *string `locationName:"importTaskId" type:"string"`
+
+	// License type of the virtual machine being imported.
+	LicenseType *string `locationName:"licenseType" type:"string"`
+
+	// Operating system of the VM being imported.
+	Platform *string `locationName:"platform" type:"string"`
+
+	// The task's progress.
+	Progress *string `locationName:"progress" type:"string"`
+
+	SnapshotDetails []*SnapshotDetail `locationName:"snapshotDetailSet" locationNameList:"item" type:"list"`
+
+	// A brief status of the task.
+	Status *string `locationName:"status" type:"string"`
+
+	// A detailed status message of the import task.
+	StatusMessage *string `locationName:"statusMessage" type:"string"`
+
+	metadataImportImageOutput `json:"-", xml:"-"`
+}
+
+type metadataImportImageOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type ImportImageTask struct {
+	// Architecture of the VM being imported.
+	Architecture *string `locationName:"architecture" type:"string"`
+
+	// Description of the import task.
+	Description *string `locationName:"description" type:"string"`
+
+	// Target hypervisor for the import task.
+	Hypervisor *string `locationName:"hypervisor" type:"string"`
+
+	// The Amazon Machine Image (AMI) ID of the imported virtual machine.
+	ImageID *string `locationName:"imageId" type:"string"`
+
+	// The ID of the import task.
+	ImportTaskID *string `locationName:"importTaskId" type:"string"`
+
+	// License type of the VM being imported.
+	LicenseType *string `locationName:"licenseType" type:"string"`
+
+	// The description string for the import image task.
+	Platform *string `locationName:"platform" type:"string"`
+
+	// The percentage of progress of the ImportImage task.
+	Progress *string `locationName:"progress" type:"string"`
+
+	SnapshotDetails []*SnapshotDetail `locationName:"snapshotDetailSet" locationNameList:"item" type:"list"`
+
+	// A brief status for the ImportImage task.
+	Status *string `locationName:"status" type:"string"`
+
+	// A descriptive status message for the ImportImage task.
+	StatusMessage *string `locationName:"statusMessage" type:"string"`
+
+	metadataImportImageTask `json:"-", xml:"-"`
+}
+
+type metadataImportImageTask struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -12520,6 +12997,66 @@ type metadataImportKeyPairOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type ImportSnapshotInput struct {
+	// Client-specific data.
+	ClientData *ClientData `type:"structure"`
+
+	// Token to enable idempotency for VM import requests (optional).
+	ClientToken *string `type:"string"`
+
+	// The description string for the ImportSnapshot task.
+	Description *string `type:"string"`
+
+	// The disk container object for the ImportSnapshot request.
+	DiskContainer *SnapshotDiskContainer `type:"structure"`
+
+	DryRun *bool `type:"boolean"`
+
+	// The name of the role to use when not using the default role name 'vmimport'
+	// (optional).
+	RoleName *string `type:"string"`
+
+	metadataImportSnapshotInput `json:"-", xml:"-"`
+}
+
+type metadataImportSnapshotInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type ImportSnapshotOutput struct {
+	// Description of the import snapshot task.
+	Description *string `locationName:"description" type:"string"`
+
+	// Task ID of the ImportSnapshot task.
+	ImportTaskID *string `locationName:"importTaskId" type:"string"`
+
+	// Details about the import snapshot task.
+	SnapshotTaskDetail *SnapshotTaskDetail `locationName:"snapshotTaskDetail" type:"structure"`
+
+	metadataImportSnapshotOutput `json:"-", xml:"-"`
+}
+
+type metadataImportSnapshotOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type ImportSnapshotTask struct {
+	// Description for the import snapshot task.
+	Description *string `locationName:"description" type:"string"`
+
+	// The task ID of the ImportSnapshot task.
+	ImportTaskID *string `locationName:"importTaskId" type:"string"`
+
+	// Details about the import snapshot task.
+	SnapshotTaskDetail *SnapshotTaskDetail `locationName:"snapshotTaskDetail" type:"structure"`
+
+	metadataImportSnapshotTask `json:"-", xml:"-"`
+}
+
+type metadataImportSnapshotTask struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type ImportVolumeInput struct {
 	// The Availability Zone for the resulting Amazon EBS volume.
 	AvailabilityZone *string `locationName:"availabilityZone" type:"string" required:"true"`
@@ -12659,7 +13196,7 @@ type Instance struct {
 	// The RAM disk associated with this instance.
 	RAMDiskID *string `locationName:"ramdiskId" type:"string"`
 
-	// The root device name (for example, /dev/sda1).
+	// The root device name (for example, /dev/sda1 or /dev/xvda).
 	RootDeviceName *string `locationName:"rootDeviceName" type:"string"`
 
 	// The root device type used by the AMI. The AMI can use an Amazon EBS volume
@@ -12713,7 +13250,7 @@ type metadataInstance struct {
 
 // Describes a block device mapping.
 type InstanceBlockDeviceMapping struct {
-	// The device name exposed to the instance (for example, /dev/sdh).
+	// The device name exposed to the instance (for example, /dev/sdh or xvdh).
 	DeviceName *string `locationName:"deviceName" type:"string"`
 
 	// Parameters used to automatically set up Amazon EBS volumes when the instance
@@ -12729,7 +13266,7 @@ type metadataInstanceBlockDeviceMapping struct {
 
 // Describes a block device mapping entry.
 type InstanceBlockDeviceMappingSpecification struct {
-	// The device name exposed to the instance (for example, /dev/sdh).
+	// The device name exposed to the instance (for example, /dev/sdh or xvdh).
 	DeviceName *string `locationName:"deviceName" type:"string"`
 
 	// Parameters used to automatically set up Amazon EBS volumes when the instance
@@ -13253,6 +13790,7 @@ type ModifyImageAttributeInput struct {
 	// The ID of the AMI.
 	ImageID *string `locationName:"ImageId" type:"string" required:"true"`
 
+	// A launch permission modification.
 	LaunchPermission *LaunchPermissionModifications `type:"structure"`
 
 	// The operation type.
@@ -13320,9 +13858,6 @@ type ModifyInstanceAttributeInput struct {
 	// [EC2-VPC] Changes the security groups of the instance. You must specify at
 	// least one security group, even if it's just the default security group for
 	// the VPC. You must specify the security group ID, not the security group name.
-	//
-	// For example, if you want the instance to be in sg-1a1a1a1a and sg-9b9b9b9b,
-	// specify GroupId.1=sg-1a1a1a1a and GroupId.2=sg-9b9b9b9b.
 	Groups []*string `locationName:"GroupId" locationNameList:"groupId" type:"list"`
 
 	// The ID of the instance.
@@ -13425,7 +13960,7 @@ type metadataModifyNetworkInterfaceAttributeOutput struct {
 
 type ModifyReservedInstancesInput struct {
 	// A unique, case-sensitive token you provide to ensure idempotency of your
-	// modification request.
+	// modification request. For more information, see Ensuring Idempotency (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
 	// The IDs of the Reserved Instances to modify.
@@ -13489,7 +14024,8 @@ type metadataModifySnapshotAttributeOutput struct {
 }
 
 type ModifySubnetAttributeInput struct {
-	// The value to use when a resource attribute accepts a Boolean value.
+	// Specify true to indicate that instances launched into the specified subnet
+	// should be assigned public IP address.
 	MapPublicIPOnLaunch *AttributeBooleanValue `locationName:"MapPublicIpOnLaunch" type:"structure"`
 
 	// The ID of the subnet.
@@ -14124,7 +14660,7 @@ type RegisterImageInput struct {
 	// The ID of the RAM disk.
 	RAMDiskID *string `locationName:"ramdiskId" type:"string"`
 
-	// The name of the root device (for example, /dev/sda1, or xvda).
+	// The name of the root device (for example, /dev/sda1, or /dev/xvda).
 	RootDeviceName *string `locationName:"rootDeviceName" type:"string"`
 
 	// Set to simple to enable enhanced networking for the AMI and any instances
@@ -14681,7 +15217,8 @@ type metadataReservedInstancesID struct {
 
 // Describes a Reserved Instance listing.
 type ReservedInstancesListing struct {
-	// The idempotency token you provided when you created the listing.
+	// A unique, case-sensitive key supplied by the client to ensure that the request
+	// is idempotent. For more information, see Ensuring Idempotency (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
 	// The time the listing was created.
@@ -14721,8 +15258,8 @@ type metadataReservedInstancesListing struct {
 
 // Describes a Reserved Instance modification.
 type ReservedInstancesModification struct {
-	// A unique, case-sensitive key supplied by the client to ensure that the modification
-	// request is idempotent.
+	// A unique, case-sensitive key supplied by the client to ensure that the request
+	// is idempotent. For more information, see Ensuring Idempotency (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
 	// The time when the modification request was created.
@@ -15120,8 +15657,7 @@ type RunInstancesInput struct {
 	BlockDeviceMappings []*BlockDeviceMapping `locationName:"BlockDeviceMapping" locationNameList:"BlockDeviceMapping" type:"list"`
 
 	// Unique, case-sensitive identifier you provide to ensure the idempotency of
-	// the request. For more information, see How to Ensure Idempotency (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html)
-	// in the Amazon Elastic Compute Cloud User Guide.
+	// the request. For more information, see Ensuring Idempotency (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
 	//
 	// Constraints: Maximum 64 ASCII characters
 	ClientToken *string `locationName:"clientToken" type:"string"`
@@ -15369,6 +15905,103 @@ type Snapshot struct {
 }
 
 type metadataSnapshot struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// The details of the snapshot created from the imported disk.
+type SnapshotDetail struct {
+	// Description for the snapshot.
+	Description *string `locationName:"description" type:"string"`
+
+	// The Amazon EBS block device mapping for the snapshot.
+	DeviceName *string `locationName:"deviceName" type:"string"`
+
+	// The size of the disk in the snapshot.
+	DiskImageSize *float64 `locationName:"diskImageSize" type:"double"`
+
+	// The format of the disk image from which the snapshot is created.
+	Format *string `locationName:"format" type:"string"`
+
+	// The percentage of progress for the task.
+	Progress *string `locationName:"progress" type:"string"`
+
+	// The snapshot ID of the disk being imported.
+	SnapshotID *string `locationName:"snapshotId" type:"string"`
+
+	// A brief status of the snapshot creation.
+	Status *string `locationName:"status" type:"string"`
+
+	// A detailed status message for the snapshot creation.
+	StatusMessage *string `locationName:"statusMessage" type:"string"`
+
+	// The URL used to access the disk image.
+	URL *string `locationName:"url" type:"string"`
+
+	// User's Amazon S3 bucket details used to access the image.
+	UserBucket *UserBucketDetails `locationName:"userBucket" type:"structure"`
+
+	metadataSnapshotDetail `json:"-", xml:"-"`
+}
+
+type metadataSnapshotDetail struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// The disk container object for the ImportSnapshot request.
+type SnapshotDiskContainer struct {
+	// The description of the disk image being imported.
+	Description *string `type:"string"`
+
+	// The format of the disk image being imported.
+	Format *string `type:"string"`
+
+	// The URL to the Amazon S3-based disk image being imported. It can either be
+	// a https URL (https://..) or an Amazon S3 URL (s3://..).
+	URL *string `locationName:"Url" type:"string"`
+
+	// User's Amazon S3 bucket details used to access the image.
+	UserBucket *UserBucket `type:"structure"`
+
+	metadataSnapshotDiskContainer `json:"-", xml:"-"`
+}
+
+type metadataSnapshotDiskContainer struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Details about the import snapshot task.
+type SnapshotTaskDetail struct {
+	// The description of the snapshot.
+	Description *string `locationName:"description" type:"string"`
+
+	// The size of the disk in the snapshot.
+	DiskImageSize *float64 `locationName:"diskImageSize" type:"double"`
+
+	// The format of the disk image from which the snapshot is created.
+	Format *string `locationName:"format" type:"string"`
+
+	// The percentage of completion for the ImportSnapshot task.
+	Progress *string `locationName:"progress" type:"string"`
+
+	// The snapshot ID of the disk being imported.
+	SnapshotID *string `locationName:"snapshotId" type:"string"`
+
+	// A brief status for the ImportSnapshot task.
+	Status *string `locationName:"status" type:"string"`
+
+	// A detailed status message for the ImportSnapshot task.
+	StatusMessage *string `locationName:"statusMessage" type:"string"`
+
+	// The URL of the disk image from which the snapshot is created.
+	URL *string `locationName:"url" type:"string"`
+
+	// User's Amazon S3 bucket details used to access the image.
+	UserBucket *UserBucketDetails `locationName:"userBucket" type:"structure"`
+
+	metadataSnapshotTaskDetail `json:"-", xml:"-"`
+}
+
+type metadataSnapshotTaskDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -15799,6 +16432,36 @@ type metadataUnmonitorInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// User's Amazon S3 bucket details used to access the image.
+type UserBucket struct {
+	// The Amazon S3 bucket name where the disk image is located.
+	S3Bucket *string `type:"string"`
+
+	// The Amazon S3 Key for the disk image.
+	S3Key *string `type:"string"`
+
+	metadataUserBucket `json:"-", xml:"-"`
+}
+
+type metadataUserBucket struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// User's Amazon S3 bucket details used to access the image.
+type UserBucketDetails struct {
+	// The Amazon S3 bucket from which the disk image was created.
+	S3Bucket *string `locationName:"s3Bucket" type:"string"`
+
+	// The Amazon S3 key from which the disk image was created.
+	S3Key *string `locationName:"s3Key" type:"string"`
+
+	metadataUserBucketDetails `json:"-", xml:"-"`
+}
+
+type metadataUserBucketDetails struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type UserData struct {
 	Data *string `locationName:"data" type:"string"`
 
@@ -16112,8 +16775,8 @@ type Volume struct {
 	// performance, I/O credits, and bursting, see Amazon EBS Volume Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	//
-	// Constraint: Range is 100 to 4000 for Provisioned IOPS (SSD) volumes and
-	// 3 to 3072 for General Purpose (SSD) volumes.
+	// Constraint: Range is 100 to 20000 for Provisioned IOPS (SSD) volumes and
+	// 3 to 10000 for General Purpose (SSD) volumes.
 	//
 	// Condition: This parameter is required for requests to create io1 volumes;
 	// it is not used in requests to create standard or gp2 volumes.

@@ -911,6 +911,26 @@ func ExampleIAM_GenerateCredentialReport() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleIAM_GetAccessKeyLastUsed() {
+	svc := iam.New(nil)
+
+	params := &iam.GetAccessKeyLastUsedInput{
+		AccessKeyID: aws.String("accessKeyIdType"), // Required
+	}
+	resp, err := svc.GetAccessKeyLastUsed(params)
+
+	if awserr := aws.Error(err); awserr != nil {
+		// A service error occurred.
+		fmt.Println("Error:", awserr.Code, awserr.Message)
+	} else if err != nil {
+		// A non-service error occurred.
+		panic(err)
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleIAM_GetAccountAuthorizationDetails() {
 	svc := iam.New(nil)
 

@@ -208,6 +208,9 @@ type metadataDocumentServiceWarning struct {
 
 // Information about a document that matches the search request.
 type Hit struct {
+	// The expressions returned from a document that matches the search request.
+	Exprs *map[string]*string `locationName:"exprs" type:"map"`
+
 	// The fields returned from a document that matches the search request.
 	Fields *map[string][]*string `locationName:"fields" type:"map"`
 
@@ -263,8 +266,13 @@ type SearchInput struct {
 	// or specify search or filter criteria. You can also specify expressions as
 	// return fields.
 	//
-	// For more information about defining and using expressions, see Configuring
-	// Expressions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html)
+	// You specify the expressions in JSON using the form {"EXPRESSIONNAME":"EXPRESSION"}.
+	// You can define and use multiple expressions in a search request. For example:
+	//
+	//  {"expression1":"_score*rating", "expression2":"(1/rank)*year"}
+	//
+	// For information about the variables, operators, and functions you can use
+	// in expressions, see Writing Expressions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html#writing-expressions)
 	// in the Amazon CloudSearch Developer Guide.
 	Expr *string `location:"querystring" locationName:"expr" type:"string"`
 
@@ -297,6 +305,25 @@ type SearchInput struct {
 	//   If no facet options are specified, facet counts are computed for all field
 	// values, the facets are sorted by facet count, and the top 10 facets are returned
 	// in the results.
+	//
+	// To count particular buckets of values, use the buckets option. For example,
+	// the following request uses the buckets option to calculate and return facet
+	// counts by decade.
+	//
+	//  {"year":{"buckets":["[1970,1979]","[1980,1989]","[1990,1999]","[2000,2009]","[2010,}"]}}
+	//
+	// To sort facets by facet count, use the count option. For example, the following
+	// request sets the sort option to count to sort the facet values by facet count,
+	// with the facet values that have the most matching documents listed first.
+	// Setting the size option to 3 returns only the top three facet values.
+	//
+	//  {"year":{"sort":"count","size":3}}
+	//
+	// To sort the facets by value, use the bucket option. For example, the following
+	// request sets the sort option to bucket to sort the facet values numerically
+	// by year, with earliest year listed first.
+	//
+	//  {"year":{"sort":"bucket"}}
 	//
 	// For more information, see Getting and Using Facet Information (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/faceting.html)
 	// in the Amazon CloudSearch Developer Guide.
@@ -332,6 +359,12 @@ type SearchInput struct {
 	// The default for text highlights is *.   If no highlight options are specified
 	// for a field, the returned field text is treated as HTML and the first match
 	// is highlighted with emphasis tags: &lt;em>search-term&lt;/em&gt;.
+	//
+	// For example, the following request retrieves highlights for the actors and
+	// title fields.
+	//
+	//  { "actors": {}, "title": {"format": "text","max_phrases": 2,"pre_tag":
+	// "","post_tag": ""} }
 	Highlight *string `location:"querystring" locationName:"highlight" type:"string"`
 
 	// Enables partial results to be returned if one or more index partitions are
@@ -359,6 +392,7 @@ type SearchInput struct {
 	Query *string `location:"querystring" locationName:"q" type:"string" required:"true"`
 
 	// Configures options for the query parser specified in the queryParser parameter.
+	// You specify the options in JSON using the following form {"OPTION1":"VALUE1","OPTION2":VALUE2"..."OPTIONN":"VALUEN"}.
 	//
 	// The options you can configure vary according to which parser you use:
 	//

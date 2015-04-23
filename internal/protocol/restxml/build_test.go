@@ -1799,7 +1799,7 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation2(input *Inp
 var opInputService18TestCaseOperation2 *aws.Operation
 
 // InputService18TestCaseOperation3Request generates a request for the InputService18TestCaseOperation3 operation.
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation3Request(input *InputService18TestShapeInputShape) (req *aws.Request, output *InputService18TestShapeInputService18TestCaseOperation3Output) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation3Request(input *InputService18TestShapeInputShape) (req *aws.Request, output *InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation3Output) {
 
 	if opInputService18TestCaseOperation3 == nil {
 		opInputService18TestCaseOperation3 = &aws.Operation{
@@ -1814,12 +1814,12 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation3Request(inp
 	}
 
 	req = c.newRequest(opInputService18TestCaseOperation3, input, output)
-	output = &InputService18TestShapeInputService18TestCaseOperation3Output{}
+	output = &InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation3Output{}
 	req.Data = output
 	return
 }
 
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation3(input *InputService18TestShapeInputShape) (output *InputService18TestShapeInputService18TestCaseOperation3Output, err error) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation3(input *InputService18TestShapeInputShape) (output *InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation3Output, err error) {
 	req, out := c.InputService18TestCaseOperation3Request(input)
 	output = out
 	err = req.Send()
@@ -1829,7 +1829,7 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation3(input *Inp
 var opInputService18TestCaseOperation3 *aws.Operation
 
 // InputService18TestCaseOperation4Request generates a request for the InputService18TestCaseOperation4 operation.
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation4Request(input *InputService18TestShapeInputShape) (req *aws.Request, output *InputService18TestShapeInputService18TestCaseOperation4Output) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation4Request(input *InputService18TestShapeInputShape) (req *aws.Request, output *InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation4Output) {
 
 	if opInputService18TestCaseOperation4 == nil {
 		opInputService18TestCaseOperation4 = &aws.Operation{
@@ -1844,12 +1844,12 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation4Request(inp
 	}
 
 	req = c.newRequest(opInputService18TestCaseOperation4, input, output)
-	output = &InputService18TestShapeInputService18TestCaseOperation4Output{}
+	output = &InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation4Output{}
 	req.Data = output
 	return
 }
 
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation4(input *InputService18TestShapeInputShape) (output *InputService18TestShapeInputService18TestCaseOperation4Output, err error) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation4(input *InputService18TestShapeInputShape) (output *InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation4Output, err error) {
 	req, out := c.InputService18TestCaseOperation4Request(input)
 	output = out
 	err = req.Send()
@@ -1889,7 +1889,7 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation5(input *Inp
 var opInputService18TestCaseOperation5 *aws.Operation
 
 // InputService18TestCaseOperation6Request generates a request for the InputService18TestCaseOperation6 operation.
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation6Request(input *InputService18TestShapeInputShape) (req *aws.Request, output *InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation6Output) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation6Request(input *InputService18TestShapeInputShape) (req *aws.Request, output *InputService18TestShapeInputService18TestCaseOperation6Output) {
 
 	if opInputService18TestCaseOperation6 == nil {
 		opInputService18TestCaseOperation6 = &aws.Operation{
@@ -1904,12 +1904,12 @@ func (c *InputService18ProtocolTest) InputService18TestCaseOperation6Request(inp
 	}
 
 	req = c.newRequest(opInputService18TestCaseOperation6, input, output)
-	output = &InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation6Output{}
+	output = &InputService18TestShapeInputService18TestCaseOperation6Output{}
 	req.Data = output
 	return
 }
 
-func (c *InputService18ProtocolTest) InputService18TestCaseOperation6(input *InputService18TestShapeInputShape) (output *InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation6Output, err error) {
+func (c *InputService18ProtocolTest) InputService18TestCaseOperation6(input *InputService18TestShapeInputShape) (output *InputService18TestShapeInputService18TestCaseOperation6Output, err error) {
 	req, out := c.InputService18TestCaseOperation6Request(input)
 	output = out
 	err = req.Send()
@@ -1934,22 +1934,6 @@ type metadataInputService18TestShapeInputService18TestCaseOperation2Output struc
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type InputService18TestShapeInputService18TestCaseOperation3Output struct {
-	metadataInputService18TestShapeInputService18TestCaseOperation3Output `json:"-", xml:"-"`
-}
-
-type metadataInputService18TestShapeInputService18TestCaseOperation3Output struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InputService18TestShapeInputService18TestCaseOperation4Output struct {
-	metadataInputService18TestShapeInputService18TestCaseOperation4Output `json:"-", xml:"-"`
-}
-
-type metadataInputService18TestShapeInputService18TestCaseOperation4Output struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 type InputService18TestShapeInputService18TestCaseOperation5Output struct {
 	metadataInputService18TestShapeInputService18TestCaseOperation5Output `json:"-", xml:"-"`
 }
@@ -1958,11 +1942,27 @@ type metadataInputService18TestShapeInputService18TestCaseOperation5Output struc
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation6Output struct {
-	metadataInputService18TestShapeInputService18TestShapeInputService18TestCaseOperation6Output `json:"-", xml:"-"`
+type InputService18TestShapeInputService18TestCaseOperation6Output struct {
+	metadataInputService18TestShapeInputService18TestCaseOperation6Output `json:"-", xml:"-"`
 }
 
-type metadataInputService18TestShapeInputService18TestShapeInputService18TestCaseOperation6Output struct {
+type metadataInputService18TestShapeInputService18TestCaseOperation6Output struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation3Output struct {
+	metadataInputService18TestShapeInputService18TestShapeInputService18TestCaseOperation3Output `json:"-", xml:"-"`
+}
+
+type metadataInputService18TestShapeInputService18TestShapeInputService18TestCaseOperation3Output struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type InputService18TestShapeInputService18TestShapeInputService18TestCaseOperation4Output struct {
+	metadataInputService18TestShapeInputService18TestShapeInputService18TestCaseOperation4Output `json:"-", xml:"-"`
+}
+
+type metadataInputService18TestShapeInputService18TestShapeInputService18TestCaseOperation4Output struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 

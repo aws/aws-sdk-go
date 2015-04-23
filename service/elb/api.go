@@ -35,13 +35,11 @@ func (c *ELB) AddTagsRequest(input *AddTagsInput) (req *aws.Request, output *Add
 	return
 }
 
-// Adds one or more tags for the specified load balancer. Each load balancer
-// can have a maximum of 10 tags. Each tag consists of a key and an optional
-// value.
+// Adds the specified tags to the specified load balancer. Each load balancer
+// can have a maximum of 10 tags.
 //
-// Tag keys must be unique for each load balancer. If a tag with the same key
-// is already associated with the load balancer, this action will update the
-// value of the key.
+// Each tag consists of a key and an optional value. If a tag with the same
+// key is already associated with the load balancer, AddTags updates its value.
 //
 // For more information, see Tagging (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#tagging-elb)
 // in the Elastic Load Balancing Developer Guide.
@@ -77,11 +75,11 @@ func (c *ELB) ApplySecurityGroupsToLoadBalancerRequest(input *ApplySecurityGroup
 	return
 }
 
-// Associates one or more security groups with your load balancer in Amazon
-// Virtual Private Cloud (Amazon VPC). The provided security group IDs will
-// override any currently applied security groups.
+// Associates one or more security groups with your load balancer in a virtual
+// private cloud (VPC). The specified security groups override the previously
+// associated security groups.
 //
-// For more information, see Manage Security Groups in Amazon VPC (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/USVPC_ApplySG.html)
+// For more information, see Manage Security Groups for Amazon VPC (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/USVPC_ApplySG.html)
 // in the Elastic Load Balancing Developer Guide.
 func (c *ELB) ApplySecurityGroupsToLoadBalancer(input *ApplySecurityGroupsToLoadBalancerInput) (output *ApplySecurityGroupsToLoadBalancerOutput, err error) {
 	req, out := c.ApplySecurityGroupsToLoadBalancerRequest(input)
@@ -115,12 +113,11 @@ func (c *ELB) AttachLoadBalancerToSubnetsRequest(input *AttachLoadBalancerToSubn
 	return
 }
 
-// Adds one or more subnets to the set of configured subnets in the Amazon Virtual
-// Private Cloud (Amazon VPC) for the load balancer.
+// Adds one or more subnets to the set of configured subnets for the specified
+// load balancer.
 //
-//  The load balancers evenly distribute requests across all of the registered
-// subnets. For more information, see Deploy Elastic Load Balancing in Amazon
-// VPC (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/UserScenariosForVPC.html)
+// The load balancer evenly distributes requests across all registered subnets.
+// For more information, see Elastic Load Balancing in Amazon VPC (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/UserScenariosForVPC.html)
 // in the Elastic Load Balancing Developer Guide.
 func (c *ELB) AttachLoadBalancerToSubnets(input *AttachLoadBalancerToSubnetsInput) (output *AttachLoadBalancerToSubnetsOutput, err error) {
 	req, out := c.AttachLoadBalancerToSubnetsRequest(input)
@@ -154,10 +151,10 @@ func (c *ELB) ConfigureHealthCheckRequest(input *ConfigureHealthCheckInput) (req
 	return
 }
 
-// Specifies the health check settings to use for evaluating the health state
+// Specifies the health check settings to use when evaluating the health state
 // of your back-end instances.
 //
-// For more information, see Health Check (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#healthcheck)
+// For more information, see Health Checks (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#healthcheck)
 // in the Elastic Load Balancing Developer Guide.
 func (c *ELB) ConfigureHealthCheck(input *ConfigureHealthCheckInput) (output *ConfigureHealthCheckOutput, err error) {
 	req, out := c.ConfigureHealthCheckRequest(input)
@@ -195,19 +192,16 @@ func (c *ELB) CreateAppCookieStickinessPolicyRequest(input *CreateAppCookieStick
 // of an application-generated cookie. This policy can be associated only with
 // HTTP/HTTPS listeners.
 //
-//  This policy is similar to the policy created by CreateLBCookieStickinessPolicy,
-// except that the lifetime of the special Elastic Load Balancing cookie follows
-// the lifetime of the application-generated cookie specified in the policy
-// configuration. The load balancer only inserts a new stickiness cookie when
-// the application response includes a new application cookie.
+// This policy is similar to the policy created by CreateLBCookieStickinessPolicy,
+// except that the lifetime of the special Elastic Load Balancing cookie, AWSELB,
+// follows the lifetime of the application-generated cookie specified in the
+// policy configuration. The load balancer only inserts a new stickiness cookie
+// when the application response includes a new application cookie.
 //
-//  If the application cookie is explicitly removed or expires, the session
+// If the application cookie is explicitly removed or expires, the session
 // stops being sticky until a new application cookie is issued.
 //
-//  An application client must receive and send two cookies: the application-generated
-// cookie and the special Elastic Load Balancing cookie named AWSELB. This is
-// the default behavior for many common web browsers.  For more information,
-// see Enabling Application-Controlled Session Stickiness (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_StickySessions.html#US_EnableStickySessionsAppCookies)
+// For more information, see Application-Controlled Session Stickiness (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_StickySessions.html#US_EnableStickySessionsAppCookies)
 // in the Elastic Load Balancing Developer Guide.
 func (c *ELB) CreateAppCookieStickinessPolicy(input *CreateAppCookieStickinessPolicyInput) (output *CreateAppCookieStickinessPolicyOutput, err error) {
 	req, out := c.CreateAppCookieStickinessPolicyRequest(input)
@@ -245,18 +239,18 @@ func (c *ELB) CreateLBCookieStickinessPolicyRequest(input *CreateLBCookieStickin
 // the lifetime of the browser (user-agent) or a specified expiration period.
 // This policy can be associated only with HTTP/HTTPS listeners.
 //
-//  When a load balancer implements this policy, the load balancer uses a special
-// cookie to track the backend server instance for each request. When the load
+// When a load balancer implements this policy, the load balancer uses a special
+// cookie to track the back-end server instance for each request. When the load
 // balancer receives a request, it first checks to see if this cookie is present
 // in the request. If so, the load balancer sends the request to the application
 // server specified in the cookie. If not, the load balancer sends the request
-// to a server that is chosen based on the existing load balancing algorithm.
+// to a server that is chosen based on the existing load-balancing algorithm.
 //
-//  A cookie is inserted into the response for binding subsequent requests
-// from the same user to that server. The validity of the cookie is based on
-// the cookie expiration time, which is specified in the policy configuration.
+// A cookie is inserted into the response for binding subsequent requests from
+// the same user to that server. The validity of the cookie is based on the
+// cookie expiration time, which is specified in the policy configuration.
 //
-// For more information, see Enabling Duration-Based Session Stickiness (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_StickySessions.html#US_EnableStickySessionsLBCookies)
+// For more information, see Duration-Based Session Stickiness (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_StickySessions.html#US_EnableStickySessionsLBCookies)
 // in the Elastic Load Balancing Developer Guide.
 func (c *ELB) CreateLBCookieStickinessPolicy(input *CreateLBCookieStickinessPolicyInput) (output *CreateLBCookieStickinessPolicyOutput, err error) {
 	req, out := c.CreateLBCookieStickinessPolicyRequest(input)
@@ -290,28 +284,28 @@ func (c *ELB) CreateLoadBalancerRequest(input *CreateLoadBalancerInput) (req *aw
 	return
 }
 
-// Creates a new load balancer.
+// Creates a load balancer.
 //
-//  After the call has completed successfully, a new load balancer is created
-// with a unique Domain Name Service (DNS) name. The DNS name includes the name
-// of the AWS region in which the load balance was created. For example, if
-// your load balancer was created in the United States, the DNS name might end
-// with either of the following:
+// If the call completes successfully, a new load balancer is created with
+// a unique Domain Name Service (DNS) name. The DNS name includes the name of
+// the AWS region in which the load balancer was created. For example, the DNS
+// name might end with either of the following:
 //
-//   us-east-1.elb.amazonaws.com (for the Northern Virginia region)   us-west-1.elb.amazonaws.com
-// (for the Northern California region)   For information about the AWS regions
-// supported by Elastic Load Balancing, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html#elb_region).
+//   us-east-1.elb.amazonaws.com   us-west-2.elb.amazonaws.com   For information
+// about the AWS regions supported by Elastic Load Balancing, see Regions and
+// Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html#elb_region)
+// in the Amazon Web Services General Reference.
 //
-// You can create up to 20 load balancers per region per account.
+// You can create up to 20 load balancers per region per account. You can request
+// an increase for the number of load balancers for your account. For more information,
+// see Elastic Load Balancing Limits (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-limits.html)
+// in the Elastic Load Balancing Developer Guide.
 //
-// Elastic Load Balancing supports load balancing your Amazon EC2 instances
-// launched within any one of the following platforms:
-//
-//   EC2-Classic For information on creating and managing your load balancers
-// in EC2-Classic, see Deploy Elastic Load Balancing in Amazon EC2-Classic (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/UserScenariosForEC2.html).
-//
-//   EC2-VPC For information on creating and managing your load balancers in
-// EC2-VPC, see Deploy Elastic Load Balancing in Amazon VPC (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/UserScenariosForVPC.html).
+// Elastic Load Balancing supports load balancing your EC2 instances launched
+// in either the EC2-Classic or EC2-VPC platform. For more information, see
+// Elastic Load Balancing in EC2-Classic (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/UserScenariosForEC2.html)
+// or Elastic Load Balancing in a VPC (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/UserScenariosForVPC.html)
+// in the Elastic Load Balancing Developer Guide.
 func (c *ELB) CreateLoadBalancer(input *CreateLoadBalancerInput) (output *CreateLoadBalancerOutput, err error) {
 	req, out := c.CreateLoadBalancerRequest(input)
 	output = out
@@ -344,10 +338,10 @@ func (c *ELB) CreateLoadBalancerListenersRequest(input *CreateLoadBalancerListen
 	return
 }
 
-// Creates one or more listeners on a load balancer for the specified port.
-// If a listener with the given port does not already exist, it will be created;
-// otherwise, the properties of the new listener must match the properties of
-// the existing listener.
+// Creates one or more listeners for the specified load balancer. If a listener
+// with the specified port does not already exist, it is created; otherwise,
+// the properties of the new listener must match the properties of the existing
+// listener.
 //
 // For more information, see Add a Listener to Your Load Balancer (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/us-add-listener.html)
 // in the Elastic Load Balancing Developer Guide.
@@ -383,10 +377,11 @@ func (c *ELB) CreateLoadBalancerPolicyRequest(input *CreateLoadBalancerPolicyInp
 	return
 }
 
-// Creates a new policy that contains the necessary attributes depending on
-// the policy type. Policies are settings that are saved for your load balancer
-// and that can be applied to the front-end listener, or the back-end application
-// server, depending on your policy type.
+// Creates a policy with the specified attributes for the specified load balancer.
+//
+// Policies are settings that are saved for your load balancer and that can
+// be applied to the front-end listener or the back-end application server,
+// depending on the policy type.
 func (c *ELB) CreateLoadBalancerPolicy(input *CreateLoadBalancerPolicyInput) (output *CreateLoadBalancerPolicyOutput, err error) {
 	req, out := c.CreateLoadBalancerPolicyRequest(input)
 	output = out
@@ -421,17 +416,14 @@ func (c *ELB) DeleteLoadBalancerRequest(input *DeleteLoadBalancerInput) (req *aw
 
 // Deletes the specified load balancer.
 //
-//  If attempting to recreate the load balancer, you must reconfigure all the
-// settings. The DNS name associated with a deleted load balancer will no longer
-// be usable. Once deleted, the name and associated DNS record of the load balancer
-// no longer exist and traffic sent to any of its IP addresses will no longer
-// be delivered to back-end instances.
+// If you are attempting to recreate a load balancer, you must reconfigure
+// all settings. The DNS name associated with a deleted load balancer are no
+// longer usable. The name and associated DNS record of the deleted load balancer
+// no longer exist and traffic sent to any of its IP addresses is no longer
+// delivered to back-end instances.
 //
-//  To successfully call this API, you must provide the same account credentials
-// as were used to create the load balancer.
-//
-//  By design, if the load balancer does not exist or has already been deleted,
-// a call to DeleteLoadBalancer action still succeeds.
+// If the load balancer does not exist or has already been deleted, the call
+// to DeleteLoadBalancer still succeeds.
 func (c *ELB) DeleteLoadBalancer(input *DeleteLoadBalancerInput) (output *DeleteLoadBalancerOutput, err error) {
 	req, out := c.DeleteLoadBalancerRequest(input)
 	output = out
@@ -464,7 +456,7 @@ func (c *ELB) DeleteLoadBalancerListenersRequest(input *DeleteLoadBalancerListen
 	return
 }
 
-// Deletes listeners from the load balancer for the specified port.
+// Deletes the specified listeners from the specified load balancer.
 func (c *ELB) DeleteLoadBalancerListeners(input *DeleteLoadBalancerListenersInput) (output *DeleteLoadBalancerListenersOutput, err error) {
 	req, out := c.DeleteLoadBalancerListenersRequest(input)
 	output = out
@@ -497,8 +489,8 @@ func (c *ELB) DeleteLoadBalancerPolicyRequest(input *DeleteLoadBalancerPolicyInp
 	return
 }
 
-// Deletes a policy from the load balancer. The specified policy must not be
-// enabled for any listeners.
+// Deletes the specified policy from the specified load balancer. This policy
+// must not be enabled for any listeners.
 func (c *ELB) DeleteLoadBalancerPolicy(input *DeleteLoadBalancerPolicyInput) (output *DeleteLoadBalancerPolicyOutput, err error) {
 	req, out := c.DeleteLoadBalancerPolicyRequest(input)
 	output = out
@@ -531,18 +523,15 @@ func (c *ELB) DeregisterInstancesFromLoadBalancerRequest(input *DeregisterInstan
 	return
 }
 
-// Deregisters instances from the load balancer. Once the instance is deregistered,
-// it will stop receiving traffic from the load balancer.
+// Deregisters the specified instances from the specified load balancer. After
+// the instance is deregistered, it no longer receives traffic from the load
+// balancer.
 //
-//  In order to successfully call this API, the same account credentials as
-// those used to create the load balancer must be provided.
-//
-// For more information, see De-register and Register Amazon EC2 Instances
-// (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_DeReg_Reg_Instances.html)
-// in the Elastic Load Balancing Developer Guide.
-//
-// You can use DescribeLoadBalancers to verify if the instance is deregistered
+// You can use DescribeLoadBalancers to verify that the instance is deregistered
 // from the load balancer.
+//
+// For more information, see Deregister and Register Amazon EC2 Instances (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_DeReg_Reg_Instances.html)
+// in the Elastic Load Balancing Developer Guide.
 func (c *ELB) DeregisterInstancesFromLoadBalancer(input *DeregisterInstancesFromLoadBalancerInput) (output *DeregisterInstancesFromLoadBalancerOutput, err error) {
 	req, out := c.DeregisterInstancesFromLoadBalancerRequest(input)
 	output = out
@@ -575,12 +564,10 @@ func (c *ELB) DescribeInstanceHealthRequest(input *DescribeInstanceHealthInput) 
 	return
 }
 
-// Returns the current state of the specified instances registered with the
-// specified load balancer. If no instances are specified, the state of all
-// the instances registered with the load balancer is returned.
-//
-//  You must provide the same account credentials as those that were used to
-// create the load balancer.
+// Describes the state of the specified instances registered with the specified
+// load balancer. If no instances are specified, the call describes the state
+// of all instances registered with the load balancer, not including any terminated
+// instances.
 func (c *ELB) DescribeInstanceHealth(input *DescribeInstanceHealthInput) (output *DescribeInstanceHealthOutput, err error) {
 	req, out := c.DescribeInstanceHealthRequest(input)
 	output = out
@@ -613,8 +600,7 @@ func (c *ELB) DescribeLoadBalancerAttributesRequest(input *DescribeLoadBalancerA
 	return
 }
 
-// Returns detailed information about all of the attributes associated with
-// the specified load balancer.
+// Describes the attributes for the specified load balancer.
 func (c *ELB) DescribeLoadBalancerAttributes(input *DescribeLoadBalancerAttributesInput) (output *DescribeLoadBalancerAttributesOutput, err error) {
 	req, out := c.DescribeLoadBalancerAttributesRequest(input)
 	output = out
@@ -647,13 +633,14 @@ func (c *ELB) DescribeLoadBalancerPoliciesRequest(input *DescribeLoadBalancerPol
 	return
 }
 
-// Returns detailed descriptions of the policies. If you specify a load balancer
-// name, the action returns the descriptions of all the policies created for
-// the load balancer. If you specify a policy name associated with your load
-// balancer, the action returns the description of that policy. If you don't
-// specify a load balancer name, the action returns descriptions of the specified
-// sample policies, or descriptions of all the sample policies. The names of
-// the sample policies have the ELBSample- prefix.
+// Describes the specified policies.
+//
+// If you specify a load balancer name, the action returns the descriptions
+// of all policies created for the load balancer. If you specify a policy name
+// associated with your load balancer, the action returns the description of
+// that policy. If you don't specify a load balancer name, the action returns
+// descriptions of the specified sample policies, or descriptions of all sample
+// policies. The names of the sample policies have the ELBSample- prefix.
 func (c *ELB) DescribeLoadBalancerPolicies(input *DescribeLoadBalancerPoliciesInput) (output *DescribeLoadBalancerPoliciesOutput, err error) {
 	req, out := c.DescribeLoadBalancerPoliciesRequest(input)
 	output = out
@@ -686,10 +673,10 @@ func (c *ELB) DescribeLoadBalancerPolicyTypesRequest(input *DescribeLoadBalancer
 	return
 }
 
-// Returns meta-information on the specified load balancer policies defined
-// by the Elastic Load Balancing service. The policy types that are returned
-// from this action can be used in a CreateLoadBalancerPolicy action to instantiate
-// specific policy configurations that will be applied to a load balancer.
+// Describes the specified load balancer policy types.
+//
+// You can use these policy types with CreateLoadBalancerPolicy to create policy
+// configurations for a load balancer.
 func (c *ELB) DescribeLoadBalancerPolicyTypes(input *DescribeLoadBalancerPolicyTypesInput) (output *DescribeLoadBalancerPolicyTypesOutput, err error) {
 	req, out := c.DescribeLoadBalancerPolicyTypesRequest(input)
 	output = out
@@ -722,12 +709,8 @@ func (c *ELB) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (r
 	return
 }
 
-// Returns detailed configuration information for all the load balancers created
-// for the account. If you specify load balancer names, the action returns configuration
-// information of the specified load balancers.
-//
-//  In order to retrieve this information, you must provide the same account
-// credentials that was used to create the load balancer.
+// Describes the specified the load balancers. If no load balancers are specified,
+// the call describes all of your load balancers.
 func (c *ELB) DescribeLoadBalancers(input *DescribeLoadBalancersInput) (output *DescribeLoadBalancersOutput, err error) {
 	req, out := c.DescribeLoadBalancersRequest(input)
 	output = out
@@ -760,7 +743,7 @@ func (c *ELB) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, o
 	return
 }
 
-// Describes the tags associated with one or more load balancers.
+// Describes the tags associated with the specified load balancers.
 func (c *ELB) DescribeTags(input *DescribeTagsInput) (output *DescribeTagsOutput, err error) {
 	req, out := c.DescribeTagsRequest(input)
 	output = out
@@ -793,13 +776,12 @@ func (c *ELB) DetachLoadBalancerFromSubnetsRequest(input *DetachLoadBalancerFrom
 	return
 }
 
-// Removes subnets from the set of configured subnets in the Amazon Virtual
-// Private Cloud (Amazon VPC) for the load balancer.
+// Removes the specified subnets from the set of configured subnets for the
+// load balancer.
 //
-//  After a subnet is removed all of the EC2 instances registered with the
-// load balancer that are in the removed subnet will go into the OutOfService
-// state. When a subnet is removed, the load balancer will balance the traffic
-// among the remaining routable subnets for the load balancer.
+// After a subnet is removed, all EC2 instances registered with the load balancer
+// in the removed subnet go into the OutOfService state. Then, the load balancer
+// balances the traffic among the remaining routable subnets.
 func (c *ELB) DetachLoadBalancerFromSubnets(input *DetachLoadBalancerFromSubnetsInput) (output *DetachLoadBalancerFromSubnetsOutput, err error) {
 	req, out := c.DetachLoadBalancerFromSubnetsRequest(input)
 	output = out
@@ -832,16 +814,14 @@ func (c *ELB) DisableAvailabilityZonesForLoadBalancerRequest(input *DisableAvail
 	return
 }
 
-// Removes the specified EC2 Availability Zones from the set of configured Availability
-// Zones for the load balancer.
+// Removes the specified Availability Zones from the set of Availability Zones
+// for the specified load balancer.
 //
-//  There must be at least one Availability Zone registered with a load balancer
-// at all times. Once an Availability Zone is removed, all the instances registered
+// There must be at least one Availability Zone registered with a load balancer
+// at all times. After an Availability Zone is removed, all instances registered
 // with the load balancer that are in the removed Availability Zone go into
-// the OutOfService state. Upon Availability Zone removal, the load balancer
-// attempts to equally balance the traffic among its remaining usable Availability
-// Zones. Trying to remove an Availability Zone that was not associated with
-// the load balancer does nothing.
+// the OutOfService state. Then, the load balancer attempts to equally balance
+// the traffic among its remaining Availability Zones.
 //
 // For more information, see Disable an Availability Zone from a Load-Balanced
 // Application (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_ShrinkLBApp04.html)
@@ -878,15 +858,13 @@ func (c *ELB) EnableAvailabilityZonesForLoadBalancerRequest(input *EnableAvailab
 	return
 }
 
-// Adds one or more EC2 Availability Zones to the load balancer.
+// Adds the specified Availability Zones to the set of Availability Zones for
+// the specified load balancer.
 //
-//  The load balancer evenly distributes requests across all its registered
+// The load balancer evenly distributes requests across all its registered
 // Availability Zones that contain instances.
 //
-//  The new EC2 Availability Zones to be added must be in the same EC2 Region
-// as the Availability Zones for which the load balancer was created.  For more
-// information, see Expand a Load Balanced Application to an Additional Availability
-// Zone (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_AddLBAvailabilityZone.html)
+// For more information, see Add Availability Zone (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_AddLBAvailabilityZone.html)
 // in the Elastic Load Balancing Developer Guide.
 func (c *ELB) EnableAvailabilityZonesForLoadBalancer(input *EnableAvailabilityZonesForLoadBalancerInput) (output *EnableAvailabilityZonesForLoadBalancerOutput, err error) {
 	req, out := c.EnableAvailabilityZonesForLoadBalancerRequest(input)
@@ -920,14 +898,15 @@ func (c *ELB) ModifyLoadBalancerAttributesRequest(input *ModifyLoadBalancerAttri
 	return
 }
 
-// Modifies the attributes of a specified load balancer.
+// Modifies the attributes of the specified load balancer.
 //
 // You can modify the load balancer attributes, such as AccessLogs, ConnectionDraining,
 // and CrossZoneLoadBalancing by either enabling or disabling them. Or, you
 // can modify the load balancer attribute ConnectionSettings by specifying an
 // idle connection timeout value for your load balancer.
 //
-// For more information, see the following:
+// For more information, see the following in the Elastic Load Balancing Developer
+// Guide:
 //
 //  Cross-Zone Load Balancing (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#request-routing)
 // Connection Draining (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#conn-drain)
@@ -965,32 +944,33 @@ func (c *ELB) RegisterInstancesWithLoadBalancerRequest(input *RegisterInstancesW
 	return
 }
 
-// Adds new instances to the load balancer.
+// Adds the specified instances to the specified load balancer.
 //
-//  Once the instance is registered, it starts receiving traffic and requests
-// from the load balancer. Any instance that is not in any of the Availability
-// Zones registered for the load balancer will be moved to the OutOfService
-// state. It will move to the InService state when the Availability Zone is
-// added to the load balancer.
+// The instance must be a running instance in the same network as the load
+// balancer (EC2-Classic or the same VPC). If you have EC2-Classic instances
+// and a load balancer in a VPC with ClassicLink enabled, you can link the EC2-Classic
+// instances to that VPC and then register the linked EC2-Classic instances
+// with the load balancer in the VPC.
 //
-// When an instance registered with a load balancer is stopped and then restarted,
+// Note that RegisterInstanceWithLoadBalancer completes when the request has
+// been registered. Instance registration happens shortly afterwards. To check
+// the state of the registered instances, use DescribeLoadBalancers or DescribeInstanceHealth.
+//
+// After the instance is registered, it starts receiving traffic and requests
+// from the load balancer. Any instance that is not in one of the Availability
+// Zones registered for the load balancer is moved to the OutOfService state.
+// If an Availability Zone is added to the load balancer later, any instances
+// registered with the load balancer move to the InService state.
+//
+// If you stop an instance registered with a load balancer and then start it,
 // the IP addresses associated with the instance changes. Elastic Load Balancing
 // cannot recognize the new IP address, which prevents it from routing traffic
-// to the instances. We recommend that you de-register your Amazon EC2 instances
-// from your load balancer after you stop your instance, and then register the
-// load balancer with your instance after you've restarted. To de-register your
-// instances from load balancer, use DeregisterInstancesFromLoadBalancer action.
+// to the instances. We recommend that you use the following sequence: stop
+// the instance, deregister the instance, start the instance, and then register
+// the instance. To deregister instances from a load balancer, use DeregisterInstancesFromLoadBalancer.
 //
-// For more information, see De-register and Register Amazon EC2 Instances
-// (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_DeReg_Reg_Instances.html)
+// For more information, see Deregister and Register EC2 Instances (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_DeReg_Reg_Instances.html)
 // in the Elastic Load Balancing Developer Guide.
-//
-//  In order for this call to be successful, you must provide the same account
-// credentials as those that were used to create the load balancer.   Completion
-// of this API does not guarantee that operation has completed. Rather, it means
-// that the request has been registered and the changes will happen shortly.
-//  You can use DescribeLoadBalancers or DescribeInstanceHealth action to check
-// the state of the newly registered instances.
 func (c *ELB) RegisterInstancesWithLoadBalancer(input *RegisterInstancesWithLoadBalancerInput) (output *RegisterInstancesWithLoadBalancerOutput, err error) {
 	req, out := c.RegisterInstancesWithLoadBalancerRequest(input)
 	output = out
@@ -1060,8 +1040,8 @@ func (c *ELB) SetLoadBalancerListenerSSLCertificateRequest(input *SetLoadBalance
 // The specified certificate replaces any prior certificate that was used on
 // the same load balancer and port.
 //
-// For more information on updating your SSL certificate, see Updating an SSL
-// Certificate for a Load Balancer (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_UpdatingLoadBalancerSSL.html)
+// For more information about updating your SSL certificate, see Updating an
+// SSL Certificate for a Load Balancer (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_UpdatingLoadBalancerSSL.html)
 // in the Elastic Load Balancing Developer Guide.
 func (c *ELB) SetLoadBalancerListenerSSLCertificate(input *SetLoadBalancerListenerSSLCertificateInput) (output *SetLoadBalancerListenerSSLCertificateOutput, err error) {
 	req, out := c.SetLoadBalancerListenerSSLCertificateRequest(input)
@@ -1095,20 +1075,17 @@ func (c *ELB) SetLoadBalancerPoliciesForBackendServerRequest(input *SetLoadBalan
 	return
 }
 
-// Replaces the current set of policies associated with a port on which the
-// back-end server is listening with a new set of policies. After the policies
-// have been created using CreateLoadBalancerPolicy, they can be applied here
-// as a list. At this time, only the back-end server authentication policy type
-// can be applied to the back-end ports; this policy type is composed of multiple
-// public key policies.
+// Replaces the set of policies associated with the specified port on which
+// the back-end server is listening with a new set of policies. At this time,
+// only the back-end server authentication policy type can be applied to the
+// back-end ports; this policy type is composed of multiple public key policies.
 //
-//  The SetLoadBalancerPoliciesForBackendServer replaces the current set of
-// policies associated with the specified instance port. Every time you use
-// this action to enable the policies, use the PolicyNames parameter to list
-// all the policies you want to enable.
+// Each time you use SetLoadBalancerPoliciesForBackendServer to enable the
+// policies, use the PolicyNames parameter to list the policies that you want
+// to enable.
 //
-//  You can use DescribeLoadBalancers or DescribeLoadBalancerPolicies action
-// to verify that the policy has been associated with the back-end server.
+// You can use DescribeLoadBalancers or DescribeLoadBalancerPolicies to verify
+// that the policy is associated with the back-end server.
 func (c *ELB) SetLoadBalancerPoliciesForBackendServer(input *SetLoadBalancerPoliciesForBackendServerInput) (output *SetLoadBalancerPoliciesForBackendServerOutput, err error) {
 	req, out := c.SetLoadBalancerPoliciesForBackendServerRequest(input)
 	output = out
@@ -1141,8 +1118,8 @@ func (c *ELB) SetLoadBalancerPoliciesOfListenerRequest(input *SetLoadBalancerPol
 	return
 }
 
-// Associates, updates, or disables a policy with a listener on the load balancer.
-// You can associate multiple policies with a listener.
+// Associates, updates, or disables a policy with a listener for the specified
+// load balancer. You can associate multiple policies with a listener.
 func (c *ELB) SetLoadBalancerPoliciesOfListener(input *SetLoadBalancerPoliciesOfListenerInput) (output *SetLoadBalancerPoliciesOfListenerOutput, err error) {
 	req, out := c.SetLoadBalancerPoliciesOfListenerRequest(input)
 	output = out
@@ -1152,7 +1129,7 @@ func (c *ELB) SetLoadBalancerPoliciesOfListener(input *SetLoadBalancerPoliciesOf
 
 var opSetLoadBalancerPoliciesOfListener *aws.Operation
 
-// The AccessLog data type.
+// Information about the AccessLog attribute.
 type AccessLog struct {
 	// The interval for publishing the access logs. You can specify an interval
 	// of either 5 minutes or 60 minutes.
@@ -1178,13 +1155,11 @@ type metadataAccessLog struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The input for the AddTags action
 type AddTagsInput struct {
-	// The name of the load balancer to tag. You can specify a maximum of one load
-	// balancer name.
+	// The name of the load balancer. You can specify one load balancer only.
 	LoadBalancerNames []*string `type:"list" required:"true"`
 
-	// A list of tags for each load balancer.
+	// The tags.
 	Tags []*Tag `type:"list" required:"true"`
 
 	metadataAddTagsInput `json:"-", xml:"-"`
@@ -1194,7 +1169,6 @@ type metadataAddTagsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the AddTags action.
 type AddTagsOutput struct {
 	metadataAddTagsOutput `json:"-", xml:"-"`
 }
@@ -1203,9 +1177,12 @@ type metadataAddTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// This data type is reserved.
 type AdditionalAttribute struct {
+	// This parameter is reserved.
 	Key *string `type:"string"`
 
+	// This parameter is reserved.
 	Value *string `type:"string"`
 
 	metadataAdditionalAttribute `json:"-", xml:"-"`
@@ -1215,7 +1192,7 @@ type metadataAdditionalAttribute struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The AppCookieStickinessPolicy data type.
+// Information about a policy for application-controlled session stickiness.
 type AppCookieStickinessPolicy struct {
 	// The name of the application cookie used for stickiness.
 	CookieName *string `type:"string"`
@@ -1231,15 +1208,12 @@ type metadataAppCookieStickinessPolicy struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The input for the ApplySecurityGroupsToLoadBalancer action.
 type ApplySecurityGroupsToLoadBalancerInput struct {
-	// The name associated with the load balancer. The name must be unique within
-	// the set of load balancers associated with your AWS account.
+	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	// A list of security group IDs to associate with your load balancer in VPC.
-	// The security group IDs must be provided as the ID and not the security group
-	// name (For example, sg-1234).
+	// The IDs of the security groups to associate with the load balancer. Note
+	// that you cannot specify the name of the security group.
 	SecurityGroups []*string `type:"list" required:"true"`
 
 	metadataApplySecurityGroupsToLoadBalancerInput `json:"-", xml:"-"`
@@ -1249,9 +1223,8 @@ type metadataApplySecurityGroupsToLoadBalancerInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The out for the ApplySecurityGroupsToLoadBalancer action.
 type ApplySecurityGroupsToLoadBalancerOutput struct {
-	// A list of security group IDs associated with your load balancer.
+	// The IDs of the security groups associated with the load balancer.
 	SecurityGroups []*string `type:"list"`
 
 	metadataApplySecurityGroupsToLoadBalancerOutput `json:"-", xml:"-"`
@@ -1261,14 +1234,12 @@ type metadataApplySecurityGroupsToLoadBalancerOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The input for the AttachLoadBalancerToSubnets action.
 type AttachLoadBalancerToSubnetsInput struct {
-	// The name associated with the load balancer. The name must be unique within
-	// the set of load balancers associated with your AWS account.
+	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	// A list of subnet IDs to add for the load balancer. You can add only one subnet
-	// per Availability Zone.
+	// The IDs of the subnets to add for the load balancer. You can add only one
+	// subnet per Availability Zone.
 	Subnets []*string `type:"list" required:"true"`
 
 	metadataAttachLoadBalancerToSubnetsInput `json:"-", xml:"-"`
@@ -1278,9 +1249,8 @@ type metadataAttachLoadBalancerToSubnetsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the AttachLoadBalancerToSubnets action.
 type AttachLoadBalancerToSubnetsOutput struct {
-	// A list of subnet IDs attached to the load balancer.
+	// The IDs of the subnets attached to the load balancer.
 	Subnets []*string `type:"list"`
 
 	metadataAttachLoadBalancerToSubnetsOutput `json:"-", xml:"-"`
@@ -1290,13 +1260,12 @@ type metadataAttachLoadBalancerToSubnetsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// This data type is used as a response element in the DescribeLoadBalancers
-// action to describe the configuration of the back-end server.
+// Information about the configuration of a back-end server.
 type BackendServerDescription struct {
-	// Provides the port on which the back-end server is listening.
+	// The port on which the back-end server is listening.
 	InstancePort *int64 `type:"integer"`
 
-	// Provides a list of policy names enabled for the back-end server.
+	// The names of the policies enabled for the back-end server.
 	PolicyNames []*string `type:"list"`
 
 	metadataBackendServerDescription `json:"-", xml:"-"`
@@ -1306,13 +1275,11 @@ type metadataBackendServerDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// Input for the ConfigureHealthCheck action.
 type ConfigureHealthCheckInput struct {
-	// A structure containing the configuration information for the new healthcheck.
+	// The configuration information for the new health check.
 	HealthCheck *HealthCheck `type:"structure" required:"true"`
 
-	// The mnemonic name associated with the load balancer. The name must be unique
-	// within the set of load balancers associated with your AWS account.
+	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
 	metadataConfigureHealthCheckInput `json:"-", xml:"-"`
@@ -1322,9 +1289,8 @@ type metadataConfigureHealthCheckInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the ConfigureHealthCheck action.
 type ConfigureHealthCheckOutput struct {
-	// The updated healthcheck for the instances.
+	// The updated health check.
 	HealthCheck *HealthCheck `type:"structure"`
 
 	metadataConfigureHealthCheckOutput `json:"-", xml:"-"`
@@ -1334,13 +1300,13 @@ type metadataConfigureHealthCheckOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The ConnectionDraining data type.
+// Information about the ConnectionDraining attribute.
 type ConnectionDraining struct {
 	// Specifies whether connection draining is enabled for the load balancer.
 	Enabled *bool `type:"boolean" required:"true"`
 
-	// Specifies the maximum time (in seconds) to keep the existing connections
-	// open before deregistering the instances.
+	// The maximum time, in seconds, to keep the existing connections open before
+	// deregistering the instances.
 	Timeout *int64 `type:"integer"`
 
 	metadataConnectionDraining `json:"-", xml:"-"`
@@ -1350,10 +1316,10 @@ type metadataConnectionDraining struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The ConnectionSettings data type.
+// Information about the ConnectionSettings attribute.
 type ConnectionSettings struct {
-	// Specifies the time (in seconds) the connection is allowed to be idle (no
-	// data has been sent over the connection) before it is closed by the load balancer.
+	// The time, in seconds, that the connection is allowed to be idle (no data
+	// has been sent over the connection) before it is closed by the load balancer.
 	IdleTimeout *int64 `type:"integer" required:"true"`
 
 	metadataConnectionSettings `json:"-", xml:"-"`
@@ -1363,15 +1329,14 @@ type metadataConnectionSettings struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The input for the CreateAppCookieStickinessPolicy action.
 type CreateAppCookieStickinessPolicyInput struct {
-	// Name of the application cookie used for stickiness.
+	// The name of the application cookie used for stickiness.
 	CookieName *string `type:"string" required:"true"`
 
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	// The name of the policy being created. The name must be unique within the
+	// The name of the policy being created. This name must be unique within the
 	// set of policies for this load balancer.
 	PolicyName *string `type:"string" required:"true"`
 
@@ -1382,7 +1347,6 @@ type metadataCreateAppCookieStickinessPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the CreateAppCookieStickinessPolicy action.
 type CreateAppCookieStickinessPolicyOutput struct {
 	metadataCreateAppCookieStickinessPolicyOutput `json:"-", xml:"-"`
 }
@@ -1391,17 +1355,16 @@ type metadataCreateAppCookieStickinessPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The input for the CreateLBCookieStickinessPolicy action.
 type CreateLBCookieStickinessPolicyInput struct {
-	// The time period in seconds after which the cookie should be considered stale.
-	// Not specifying this parameter indicates that the sticky session will last
-	// for the duration of the browser session.
+	// The time period, in seconds, after which the cookie should be considered
+	// stale. If you do not specify this parameter, the sticky session lasts for
+	// the duration of the browser session.
 	CookieExpirationPeriod *int64 `type:"long"`
 
-	// The name associated with the load balancer.
+	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	// The name of the policy being created. The name must be unique within the
+	// The name of the policy being created. This name must be unique within the
 	// set of policies for this load balancer.
 	PolicyName *string `type:"string" required:"true"`
 
@@ -1412,7 +1375,6 @@ type metadataCreateLBCookieStickinessPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the CreateLBCookieStickinessPolicy action.
 type CreateLBCookieStickinessPolicyOutput struct {
 	metadataCreateLBCookieStickinessPolicyOutput `json:"-", xml:"-"`
 }
@@ -1421,51 +1383,53 @@ type metadataCreateLBCookieStickinessPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The input for the CreateLoadBalancer action.
 type CreateLoadBalancerInput struct {
-	// A list of Availability Zones.
+	// One or more Availability Zones from the same region as the load balancer.
+	// Traffic is equally distributed across all specified Availability Zones.
 	//
-	//  At least one Availability Zone must be specified. Specified Availability
-	// Zones must be in the same EC2 Region as the load balancer. Traffic will be
-	// equally distributed across all zones.
+	// You must specify at least one Availability Zone.
 	//
-	//  You can later add more Availability Zones after the creation of the load
-	// balancer by calling EnableAvailabilityZonesForLoadBalancer action.
+	// You can add more Availability Zones after you create the load balancer using
+	// EnableAvailabilityZonesForLoadBalancer.
 	AvailabilityZones []*string `type:"list"`
 
-	// A list of the following tuples: Protocol, LoadBalancerPort, InstanceProtocol,
-	// InstancePort, and SSLCertificateId.
+	// The listeners.
+	//
+	// For more information, see Listener Configurations for Elastic Load Balancing
+	// (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html)
+	// in the Elastic Load Balancing Developer Guide.
 	Listeners []*Listener `type:"list" required:"true"`
 
-	// The name associated with the load balancer. The name must be unique within
-	// your set of load balancers, must have a maximum of 32 characters, and must
-	// only contain alphanumeric characters or hyphens.
+	// The name of the load balancer.
+	//
+	// This name must be unique within your AWS account, must have a maximum of
+	// 32 characters, must contain only alphanumeric characters or hyphens, and
+	// cannot begin or end with a hyphen.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	// The type of a load balancer.
+	// The type of a load balancer. Valid only for load balancers in a VPC.
 	//
 	// By default, Elastic Load Balancing creates an Internet-facing load balancer
 	// with a publicly resolvable DNS name, which resolves to public IP addresses.
 	// For more information about Internet-facing and Internal load balancers, see
-	// Internet-facing and Internal Load Balancers (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/vpc-loadbalancer-types.html).
+	// Internet-facing and Internal Load Balancers (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/vpc-loadbalancer-types.html)
+	// in the Elastic Load Balancing Developer Guide.
 	//
-	// Specify the value internal for this option to create an internal load balancer
-	// with a DNS name that resolves to private IP addresses.
-	//
-	//  This option is only available for load balancers created within EC2-VPC.
+	// Specify internal to create an internal load balancer with a DNS name that
+	// resolves to private IP addresses.
 	Scheme *string `type:"string"`
 
-	// The security groups to assign to your load balancer within your VPC.
+	// The IDs of the security groups to assign to the load balancer.
 	SecurityGroups []*string `type:"list"`
 
-	// A list of subnet IDs in your VPC to attach to your load balancer. Specify
-	// one subnet per Availability Zone.
+	// The IDs of the subnets in your VPC to attach to the load balancer. Specify
+	// one subnet per Availability Zone specified in AvailabilityZones.
 	Subnets []*string `type:"list"`
 
 	// A list of tags to assign to the load balancer.
 	//
-	// For more information about setting tags for your load balancer, see Tagging
-	// (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#tagging-elb).
+	// For more information about tagging your load balancer, see Tagging (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#tagging-elb)
+	// in the Elastic Load Balancing Developer Guide.
 	Tags []*Tag `type:"list"`
 
 	metadataCreateLoadBalancerInput `json:"-", xml:"-"`
@@ -1475,10 +1439,8 @@ type metadataCreateLoadBalancerInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The input for the CreateLoadBalancerListeners action.
 type CreateLoadBalancerListenersInput struct {
-	// A list of LoadBalancerPort, InstancePort, Protocol, InstanceProtocol, and
-	// SSLCertificateId items.
+	// The listeners.
 	Listeners []*Listener `type:"list" required:"true"`
 
 	// The name of the load balancer.
@@ -1491,7 +1453,6 @@ type metadataCreateLoadBalancerListenersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the CreateLoadBalancerListeners action.
 type CreateLoadBalancerListenersOutput struct {
 	metadataCreateLoadBalancerListenersOutput `json:"-", xml:"-"`
 }
@@ -1500,9 +1461,8 @@ type metadataCreateLoadBalancerListenersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the CreateLoadBalancer action.
 type CreateLoadBalancerOutput struct {
-	// The DNS name for the load balancer.
+	// The DNS name of the load balancer.
 	DNSName *string `type:"string"`
 
 	metadataCreateLoadBalancerOutput `json:"-", xml:"-"`
@@ -1513,18 +1473,17 @@ type metadataCreateLoadBalancerOutput struct {
 }
 
 type CreateLoadBalancerPolicyInput struct {
-	// The name associated with the LoadBalancer for which the policy is being created.
+	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	// A list of attributes associated with the policy being created.
+	// The attributes for the policy.
 	PolicyAttributes []*PolicyAttribute `type:"list"`
 
-	// The name of the load balancer policy being created. The name must be unique
+	// The name of the load balancer policy to be created. This name must be unique
 	// within the set of policies for this load balancer.
 	PolicyName *string `type:"string" required:"true"`
 
-	// The name of the base policy type being used to create this policy. To get
-	// the list of policy types, use the DescribeLoadBalancerPolicyTypes action.
+	// The name of the base policy type. To get the list of policy types, use DescribeLoadBalancerPolicyTypes.
 	PolicyTypeName *string `type:"string" required:"true"`
 
 	metadataCreateLoadBalancerPolicyInput `json:"-", xml:"-"`
@@ -1534,7 +1493,6 @@ type metadataCreateLoadBalancerPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the CreateLoadBalancerPolicy action.
 type CreateLoadBalancerPolicyOutput struct {
 	metadataCreateLoadBalancerPolicyOutput `json:"-", xml:"-"`
 }
@@ -1543,7 +1501,7 @@ type metadataCreateLoadBalancerPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The CrossZoneLoadBalancing data type.
+// Information about the CrossZoneLoadBalancing attribute.
 type CrossZoneLoadBalancing struct {
 	// Specifies whether cross-zone load balancing is enabled for the load balancer.
 	Enabled *bool `type:"boolean" required:"true"`
@@ -1555,9 +1513,8 @@ type metadataCrossZoneLoadBalancing struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The input for the DeleteLoadBalancer action.
 type DeleteLoadBalancerInput struct {
-	// The name associated with the load balancer.
+	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
 	metadataDeleteLoadBalancerInput `json:"-", xml:"-"`
@@ -1567,12 +1524,11 @@ type metadataDeleteLoadBalancerInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The input for the DeleteLoadBalancerListeners action.
 type DeleteLoadBalancerListenersInput struct {
-	// The mnemonic name associated with the load balancer.
+	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	// The client port number(s) of the load balancer listener(s) to be removed.
+	// The client port numbers of the listeners.
 	LoadBalancerPorts []*int64 `type:"list" required:"true"`
 
 	metadataDeleteLoadBalancerListenersInput `json:"-", xml:"-"`
@@ -1582,7 +1538,6 @@ type metadataDeleteLoadBalancerListenersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the DeleteLoadBalancerListeners action.
 type DeleteLoadBalancerListenersOutput struct {
 	metadataDeleteLoadBalancerListenersOutput `json:"-", xml:"-"`
 }
@@ -1591,7 +1546,6 @@ type metadataDeleteLoadBalancerListenersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the DeleteLoadBalancer action.
 type DeleteLoadBalancerOutput struct {
 	metadataDeleteLoadBalancerOutput `json:"-", xml:"-"`
 }
@@ -1600,12 +1554,12 @@ type metadataDeleteLoadBalancerOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The input for the DeleteLoadBalancerPolicy action.
+// =
 type DeleteLoadBalancerPolicyInput struct {
-	// The mnemonic name associated with the load balancer.
+	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	// The mnemonic name for the policy being deleted.
+	// The name of the policy.
 	PolicyName *string `type:"string" required:"true"`
 
 	metadataDeleteLoadBalancerPolicyInput `json:"-", xml:"-"`
@@ -1615,7 +1569,6 @@ type metadataDeleteLoadBalancerPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the DeleteLoadBalancerPolicy action.
 type DeleteLoadBalancerPolicyOutput struct {
 	metadataDeleteLoadBalancerPolicyOutput `json:"-", xml:"-"`
 }
@@ -1624,12 +1577,11 @@ type metadataDeleteLoadBalancerPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The input for the DeregisterInstancesFromLoadBalancer action.
 type DeregisterInstancesFromLoadBalancerInput struct {
-	// A list of EC2 instance IDs consisting of all instances to be deregistered.
+	// The IDs of the instances.
 	Instances []*Instance `type:"list" required:"true"`
 
-	// The name associated with the load balancer.
+	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
 	metadataDeregisterInstancesFromLoadBalancerInput `json:"-", xml:"-"`
@@ -1639,9 +1591,8 @@ type metadataDeregisterInstancesFromLoadBalancerInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the DeregisterInstancesFromLoadBalancer action.
 type DeregisterInstancesFromLoadBalancerOutput struct {
-	// An updated list of remaining instances registered with the load balancer.
+	// The remaining instances registered with the load balancer.
 	Instances []*Instance `type:"list"`
 
 	metadataDeregisterInstancesFromLoadBalancerOutput `json:"-", xml:"-"`
@@ -1651,9 +1602,8 @@ type metadataDeregisterInstancesFromLoadBalancerOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The input for the DescribeEndPointState action.
 type DescribeInstanceHealthInput struct {
-	// A list of instance IDs whose states are being queried.
+	// The IDs of the instances.
 	Instances []*Instance `type:"list"`
 
 	// The name of the load balancer.
@@ -1666,9 +1616,8 @@ type metadataDescribeInstanceHealthInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the DescribeInstanceHealth action.
 type DescribeInstanceHealthOutput struct {
-	// A list containing health information for the specified instances.
+	// Information about the health of the instances.
 	InstanceStates []*InstanceState `type:"list"`
 
 	metadataDescribeInstanceHealthOutput `json:"-", xml:"-"`
@@ -1678,7 +1627,6 @@ type metadataDescribeInstanceHealthOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The input for the DescribeLoadBalancerAttributes action.
 type DescribeLoadBalancerAttributesInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
@@ -1690,9 +1638,8 @@ type metadataDescribeLoadBalancerAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The following element is returned in a structure named DescribeLoadBalancerAttributesResult.
 type DescribeLoadBalancerAttributesOutput struct {
-	// The load balancer attributes structure.
+	// Information about the load balancer attributes.
 	LoadBalancerAttributes *LoadBalancerAttributes `type:"structure"`
 
 	metadataDescribeLoadBalancerAttributesOutput `json:"-", xml:"-"`
@@ -1703,13 +1650,10 @@ type metadataDescribeLoadBalancerAttributesOutput struct {
 }
 
 type DescribeLoadBalancerPoliciesInput struct {
-	// The mnemonic name associated with the load balancer. If no name is specified,
-	// the operation returns the attributes of either all the sample policies pre-defined
-	// by Elastic Load Balancing or the specified sample polices.
+	// The name of the load balancer.
 	LoadBalancerName *string `type:"string"`
 
-	// The names of load balancer policies you've created or Elastic Load Balancing
-	// sample policy names.
+	// The names of the policies.
 	PolicyNames []*string `type:"list"`
 
 	metadataDescribeLoadBalancerPoliciesInput `json:"-", xml:"-"`
@@ -1719,9 +1663,8 @@ type metadataDescribeLoadBalancerPoliciesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the DescribeLoadBalancerPolicies action.
 type DescribeLoadBalancerPoliciesOutput struct {
-	// A list of policy description structures.
+	// Information about the policies.
 	PolicyDescriptions []*PolicyDescription `type:"list"`
 
 	metadataDescribeLoadBalancerPoliciesOutput `json:"-", xml:"-"`
@@ -1732,9 +1675,8 @@ type metadataDescribeLoadBalancerPoliciesOutput struct {
 }
 
 type DescribeLoadBalancerPolicyTypesInput struct {
-	// Specifies the name of the policy types. If no names are specified, returns
-	// the description of all the policy types defined by Elastic Load Balancing
-	// service.
+	// The names of the policy types. If no names are specified, describes all policy
+	// types defined by Elastic Load Balancing.
 	PolicyTypeNames []*string `type:"list"`
 
 	metadataDescribeLoadBalancerPolicyTypesInput `json:"-", xml:"-"`
@@ -1744,11 +1686,8 @@ type metadataDescribeLoadBalancerPolicyTypesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the DescribeLoadBalancerPolicyTypes action.
 type DescribeLoadBalancerPolicyTypesOutput struct {
-	// List of policy type description structures of the specified policy type.
-	// If no policy type names are specified, returns the description of all the
-	// policy types defined by Elastic Load Balancing service.
+	// Information about the policy types.
 	PolicyTypeDescriptions []*PolicyTypeDescription `type:"list"`
 
 	metadataDescribeLoadBalancerPolicyTypesOutput `json:"-", xml:"-"`
@@ -1758,17 +1697,16 @@ type metadataDescribeLoadBalancerPolicyTypesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The input for the DescribeLoadBalancers action.
 type DescribeLoadBalancersInput struct {
-	// A list of load balancer names associated with the account.
+	// The names of the load balancers.
 	LoadBalancerNames []*string `type:"list"`
 
-	// An optional parameter used for pagination of results from this call. If specified,
-	// the response includes only records beyond the marker.
+	// The marker for the next set of results. (You received this marker from a
+	// previous call.)
 	Marker *string `type:"string"`
 
-	// The number of results returned in each page. The default is 400. You cannot
-	// specify a page size greater than 400 or less than 1.
+	// The maximum number of results to return with this call (a number from 1 to
+	// 400). The default is 400.
 	PageSize *int64 `type:"integer"`
 
 	metadataDescribeLoadBalancersInput `json:"-", xml:"-"`
@@ -1778,13 +1716,12 @@ type metadataDescribeLoadBalancersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the DescribeLoadBalancers action.
 type DescribeLoadBalancersOutput struct {
-	// A list of load balancer description structures.
+	// Information about the load balancers.
 	LoadBalancerDescriptions []*LoadBalancerDescription `type:"list"`
 
-	// Specifies the value of next marker if the request returned more than one
-	// page of results.
+	// The marker to use when requesting the next set of results. If there are no
+	// additional results, the string is empty.
 	NextMarker *string `type:"string"`
 
 	metadataDescribeLoadBalancersOutput `json:"-", xml:"-"`
@@ -1794,7 +1731,6 @@ type metadataDescribeLoadBalancersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The input for the DescribeTags action.
 type DescribeTagsInput struct {
 	// The names of the load balancers.
 	LoadBalancerNames []*string `type:"list" required:"true"`
@@ -1806,9 +1742,8 @@ type metadataDescribeTagsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the DescribeTags action.
 type DescribeTagsOutput struct {
-	// A list of tag description structures.
+	// Information about the tags.
 	TagDescriptions []*TagDescription `type:"list"`
 
 	metadataDescribeTagsOutput `json:"-", xml:"-"`
@@ -1818,13 +1753,11 @@ type metadataDescribeTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The input for the DetachLoadBalancerFromSubnets action.
 type DetachLoadBalancerFromSubnetsInput struct {
-	// The name associated with the load balancer to be detached.
+	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	// A list of subnet IDs to remove from the set of configured subnets for the
-	// load balancer.
+	// The IDs of the subnets.
 	Subnets []*string `type:"list" required:"true"`
 
 	metadataDetachLoadBalancerFromSubnetsInput `json:"-", xml:"-"`
@@ -1834,9 +1767,8 @@ type metadataDetachLoadBalancerFromSubnetsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the DetachLoadBalancerFromSubnets action.
 type DetachLoadBalancerFromSubnetsOutput struct {
-	// A list of subnet IDs the load balancer is now attached to.
+	// The IDs of the remaining subnets for the load balancer.
 	Subnets []*string `type:"list"`
 
 	metadataDetachLoadBalancerFromSubnetsOutput `json:"-", xml:"-"`
@@ -1846,15 +1778,11 @@ type metadataDetachLoadBalancerFromSubnetsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The input for the DisableAvailabilityZonesForLoadBalancer action.
 type DisableAvailabilityZonesForLoadBalancerInput struct {
-	// A list of Availability Zones to be removed from the load balancer.
-	//
-	//  There must be at least one Availability Zone registered with a load balancer
-	// at all times. Specified Availability Zones must be in the same region.
+	// The Availability Zones.
 	AvailabilityZones []*string `type:"list" required:"true"`
 
-	// The name associated with the load balancer.
+	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
 	metadataDisableAvailabilityZonesForLoadBalancerInput `json:"-", xml:"-"`
@@ -1864,9 +1792,8 @@ type metadataDisableAvailabilityZonesForLoadBalancerInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the DisableAvailabilityZonesForLoadBalancer action.
 type DisableAvailabilityZonesForLoadBalancerOutput struct {
-	// A list of updated Availability Zones for the load balancer.
+	// The remaining Availability Zones for the load balancer.
 	AvailabilityZones []*string `type:"list"`
 
 	metadataDisableAvailabilityZonesForLoadBalancerOutput `json:"-", xml:"-"`
@@ -1876,13 +1803,11 @@ type metadataDisableAvailabilityZonesForLoadBalancerOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The input for the EnableAvailabilityZonesForLoadBalancer action.
 type EnableAvailabilityZonesForLoadBalancerInput struct {
-	// A list of new Availability Zones for the load balancer. Each Availability
-	// Zone must be in the same region as the load balancer.
+	// The Availability Zones. These must be in the same region as the load balancer.
 	AvailabilityZones []*string `type:"list" required:"true"`
 
-	// The name associated with the load balancer.
+	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
 	metadataEnableAvailabilityZonesForLoadBalancerInput `json:"-", xml:"-"`
@@ -1892,9 +1817,8 @@ type metadataEnableAvailabilityZonesForLoadBalancerInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the EnableAvailabilityZonesForLoadBalancer action.
 type EnableAvailabilityZonesForLoadBalancerOutput struct {
-	// An updated list of Availability Zones for the load balancer.
+	// The updated list of Availability Zones for the load balancer.
 	AvailabilityZones []*string `type:"list"`
 
 	metadataEnableAvailabilityZonesForLoadBalancerOutput `json:"-", xml:"-"`
@@ -1904,44 +1828,44 @@ type metadataEnableAvailabilityZonesForLoadBalancerOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The HealthCheck data type.
+// Information about a health check.
 type HealthCheck struct {
-	// Specifies the number of consecutive health probe successes required before
-	// moving the instance to the Healthy state.
+	// The number of consecutive health checks successes required before moving
+	// the instance to the Healthy state.
 	HealthyThreshold *int64 `type:"integer" required:"true"`
 
-	// Specifies the approximate interval, in seconds, between health checks of
-	// an individual instance.
+	// The approximate interval, in seconds, between health checks of an individual
+	// instance.
 	Interval *int64 `type:"integer" required:"true"`
 
-	// Specifies the instance being checked. The protocol is either TCP, HTTP, HTTPS,
-	// or SSL. The range of valid ports is one (1) through 65535.
+	// The instance being checked. The protocol is either TCP, HTTP, HTTPS, or SSL.
+	// The range of valid ports is one (1) through 65535.
 	//
-	//   TCP is the default, specified as a TCP: port pair, for example "TCP:5000".
-	// In this case a healthcheck simply attempts to open a TCP connection to the
-	// instance on the specified port. Failure to connect within the configured
+	// TCP is the default, specified as a TCP: port pair, for example "TCP:5000".
+	// In this case, a health check simply attempts to open a TCP connection to
+	// the instance on the specified port. Failure to connect within the configured
 	// timeout is considered unhealthy.
 	//
 	// SSL is also specified as SSL: port pair, for example, SSL:5000.
 	//
-	//  For HTTP or HTTPS protocol, the situation is different. You have to include
-	// a ping path in the string. HTTP is specified as a HTTP:port;/;PathToPing;
-	// grouping, for example "HTTP:80/weather/us/wa/seattle". In this case, a HTTP
-	// GET request is issued to the instance on the given port and path. Any answer
-	// other than "200 OK" within the timeout period is considered unhealthy.
+	// For HTTP/HTTPS, you must include a ping path in the string. HTTP is specified
+	// as a HTTP:port;/;PathToPing; grouping, for example "HTTP:80/weather/us/wa/seattle".
+	// In this case, a HTTP GET request is issued to the instance on the given port
+	// and path. Any answer other than "200 OK" within the timeout period is considered
+	// unhealthy.
 	//
-	//  The total length of the HTTP ping target needs to be 1024 16-bit Unicode
-	// characters or less.
+	// The total length of the HTTP ping target must be 1024 16-bit Unicode characters
+	// or less.
 	Target *string `type:"string" required:"true"`
 
-	// Specifies the amount of time, in seconds, during which no response means
-	// a failed health probe.
+	// The amount of time, in seconds, during which no response means a failed health
+	// check.
 	//
-	//  This value must be less than the Interval value.
+	// This value must be less than the Interval value.
 	Timeout *int64 `type:"integer" required:"true"`
 
-	// Specifies the number of consecutive health probe failures required before
-	// moving the instance to the Unhealthy state.
+	// The number of consecutive health check failures required before moving the
+	// instance to the Unhealthy state.
 	UnhealthyThreshold *int64 `type:"integer" required:"true"`
 
 	metadataHealthCheck `json:"-", xml:"-"`
@@ -1951,9 +1875,9 @@ type metadataHealthCheck struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The Instance data type.
+// The ID of a back-end instance.
 type Instance struct {
-	// Provides an EC2 instance ID.
+	// The ID of the instance.
 	InstanceID *string `locationName:"InstanceId" type:"string"`
 
 	metadataInstance `json:"-", xml:"-"`
@@ -1963,24 +1887,51 @@ type metadataInstance struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The InstanceState data type.
+// Information about the state of a back-end instance.
 type InstanceState struct {
-	// Provides a description of the instance state.
+	// A description of the instance state. This string can contain one or more
+	// of the following messages.
+	//
+	//   N/A
+	//
+	//   A transient error occurred. Please try again later.
+	//
+	//   Instance has failed at least the UnhealthyThreshold number of health checks
+	// consecutively.
+	//
+	//   Instance has not passed the configured HealthyThreshold number of health
+	// checks consecutively.
+	//
+	//   Instance registration is still in progress.
+	//
+	//   Instance is in the EC2 Availability Zone for which LoadBalancer is not
+	// configured to route traffic to.
+	//
+	//   Instance is not currently registered with the LoadBalancer.
+	//
+	//   Instance deregistration currently in progress.
+	//
+	//   Disable Availability Zone is currently in progress.
+	//
+	//   Instance is in pending state.
+	//
+	//   Instance is in stopped state.
+	//
+	//   Instance is in terminated state.
 	Description *string `type:"string"`
 
-	// Provides an EC2 instance ID.
+	// The ID of the instance.
 	InstanceID *string `locationName:"InstanceId" type:"string"`
 
-	// Provides information about the cause of OutOfService instances. Specifically,
-	// it indicates whether the cause is Elastic Load Balancing or the instance
-	// behind the load balancer.
+	// Information about the cause of OutOfService instances. Specifically, whether
+	// the cause is Elastic Load Balancing or the instance.
 	//
-	// Valid value: ELB|Instance|N/A
+	// Valid values: ELB | Instance | N/A
 	ReasonCode *string `type:"string"`
 
-	// Specifies the current state of the instance.
+	// The current state of the instance.
 	//
-	// Valid value: InService|OutOfService|Unknown
+	// Valid values: InService | OutOfService | Unknown
 	State *string `type:"string"`
 
 	metadataInstanceState `json:"-", xml:"-"`
@@ -1990,11 +1941,11 @@ type metadataInstanceState struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The LBCookieStickinessPolicy data type.
+// Information about a policy for duration-based session stickiness.
 type LBCookieStickinessPolicy struct {
-	// The time period in seconds after which the cookie should be considered stale.
-	// Not specifying this parameter indicates that the stickiness session will
-	// last for the duration of the browser session.
+	// The time period, in seconds, after which the cookie should be considered
+	// stale. If this parameter is not specified, the stickiness session lasts for
+	// the duration of the browser session.
 	CookieExpirationPeriod *int64 `type:"long"`
 
 	// The name for the policy being created. The name must be unique within the
@@ -2008,38 +1959,38 @@ type metadataLBCookieStickinessPolicy struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The Listener data type.
+// Information about a listener.
+//
+// For information about the protocols and the ports supported by Elastic Load
+// Balancing, see Listener Configurations for Elastic Load Balancing (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html)
+// in the Elastic Load Balancing Developer Guide.
 type Listener struct {
-	// Specifies the TCP port on which the instance server is listening. This property
-	// cannot be modified for the life of the load balancer.
+	// The port on which the instance server is listening - 25, 80, 443, 465, 587,
+	// or 1024-65535.
 	InstancePort *int64 `type:"integer" required:"true"`
 
-	// Specifies the protocol to use for routing traffic to back-end instances -
-	// HTTP, HTTPS, TCP, or SSL. This property cannot be modified for the life of
-	// the load balancer.
+	// The protocol to use for routing traffic to back-end instances: HTTP, HTTPS,
+	// TCP, or SSL.
 	//
-	//  If the front-end protocol is HTTP or HTTPS, InstanceProtocol has to be
-	// at the same protocol layer, i.e., HTTP or HTTPS. Likewise, if the front-end
-	// protocol is TCP or SSL, InstanceProtocol has to be TCP or SSL.   If there
-	// is another listener with the same InstancePort whose InstanceProtocol is
-	// secure, i.e., HTTPS or SSL, the listener's InstanceProtocol has to be secure,
-	// i.e., HTTPS or SSL. If there is another listener with the same InstancePort
-	// whose InstanceProtocol is HTTP or TCP, the listener's InstanceProtocol must
-	// be either HTTP or TCP.
+	// If the front-end protocol is HTTP, HTTPS, TCP, or SSL, InstanceProtocol
+	// must be at the same protocol.
+	//
+	// If there is another listener with the same InstancePort whose InstanceProtocol
+	// is secure, (HTTPS or SSL), the listener's InstanceProtocol must also be secure.
+	//
+	// If there is another listener with the same InstancePort whose InstanceProtocol
+	// is HTTP or TCP, the listener's InstanceProtocol must be HTTP or TCP.
 	InstanceProtocol *string `type:"string"`
 
-	// Specifies the external load balancer port number. This property cannot be
-	// modified for the life of the load balancer.
+	// The port on which the load balancer is listening: 25, 80, 443, 465, 587,
+	// or 1024-65535.
 	LoadBalancerPort *int64 `type:"integer" required:"true"`
 
-	// Specifies the load balancer transport protocol to use for routing - HTTP,
-	// HTTPS, TCP or SSL. This property cannot be modified for the life of the load
-	// balancer.
+	// The load balancer transport protocol to use for routing: HTTP, HTTPS, TCP,
+	// or SSL.
 	Protocol *string `type:"string" required:"true"`
 
-	// The ARN string of the server certificate. To get the ARN of the server certificate,
-	// call the AWS Identity and Access Management UploadServerCertificate  (http://docs.aws.amazon.com/IAM/latest/APIReference/index.html?API_UploadServerCertificate.html)
-	// API.
+	// The Amazon Resource Name (ARN) of the server certificate.
 	SSLCertificateID *string `locationName:"SSLCertificateId" type:"string"`
 
 	metadataListener `json:"-", xml:"-"`
@@ -2049,13 +2000,16 @@ type metadataListener struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The ListenerDescription data type.
+// The policies enabled for a listener.
 type ListenerDescription struct {
-	// The Listener data type.
+	// Information about a listener.
+	//
+	// For information about the protocols and the ports supported by Elastic Load
+	// Balancing, see Listener Configurations for Elastic Load Balancing (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html)
+	// in the Elastic Load Balancing Developer Guide.
 	Listener *Listener `type:"structure"`
 
-	// A list of policies enabled for this listener. An empty list indicates that
-	// no policies are enabled.
+	// The policies. If there are no policies enabled, the list is empty.
 	PolicyNames []*string `type:"list"`
 
 	metadataListenerDescription `json:"-", xml:"-"`
@@ -2065,40 +2019,40 @@ type metadataListenerDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The LoadBalancerAttributes data type.
+// The attributes for a load balancer.
 type LoadBalancerAttributes struct {
-	// The name of the load balancer attribute. If enabled, the load balancer captures
-	// detailed information of all the requests and delivers the information to
-	// the Amazon S3 bucket that you specify.
+	// If enabled, the load balancer captures detailed information of all requests
+	// and delivers the information to the Amazon S3 bucket that you specify.
 	//
-	// For more information, see Enable Access Logs (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/enable-access-logs.html).
+	// For more information, see Enable Access Logs (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/enable-access-logs.html)
+	// in the Elastic Load Balancing Developer Guide.
 	AccessLog *AccessLog `type:"structure"`
 
+	// This parameter is reserved.
 	AdditionalAttributes []*AdditionalAttribute `type:"list"`
 
-	// The name of the load balancer attribute. If enabled, the load balancer allows
-	// existing requests to complete before the load balancer shifts traffic away
-	// from a deregistered or unhealthy back-end instance.
+	// If enabled, the load balancer allows existing requests to complete before
+	// the load balancer shifts traffic away from a deregistered or unhealthy back-end
+	// instance.
 	//
-	// For more information, see Enable Connection Draining (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/config-conn-drain.html).
+	// For more information, see Enable Connection Draining (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/config-conn-drain.html)
+	// in the Elastic Load Balancing Developer Guide.
 	ConnectionDraining *ConnectionDraining `type:"structure"`
 
-	// The name of the load balancer attribute.
+	// If enabled, the load balancer allows the connections to remain idle (no data
+	// is sent over the connection) for the specified duration.
 	//
 	// By default, Elastic Load Balancing maintains a 60-second idle connection
 	// timeout for both front-end and back-end connections of your load balancer.
-	// If the ConnectionSettings attribute is set, Elastic Load Balancing will allow
-	// the connections to remain idle (no data is sent over the connection) for
-	// the specified duration.
-	//
-	// For more information, see Configure Idle Connection Timeout (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/config-idle-timeout.html).
+	// For more information, see Configure Idle Connection Timeout (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/config-idle-timeout.html)
+	// in the Elastic Load Balancing Developer Guide.
 	ConnectionSettings *ConnectionSettings `type:"structure"`
 
-	// The name of the load balancer attribute. If enabled, the load balancer routes
-	// the request traffic evenly across all back-end instances regardless of the
-	// Availability Zones.
+	// If enabled, the load balancer routes the request traffic evenly across all
+	// back-end instances regardless of the Availability Zones.
 	//
-	// For more information, see Enable Cross-Zone Load Balancing (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/enable-disable-crosszone-lb.html).
+	// For more information, see Enable Cross-Zone Load Balancing (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/enable-disable-crosszone-lb.html)
+	// in the Elastic Load Balancing Developer Guide.
 	CrossZoneLoadBalancing *CrossZoneLoadBalancing `type:"structure"`
 
 	metadataLoadBalancerAttributes `json:"-", xml:"-"`
@@ -2108,76 +2062,68 @@ type metadataLoadBalancerAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// Contains the result of a successful invocation of DescribeLoadBalancers.
+// Information about a load balancer.
 type LoadBalancerDescription struct {
-	// Specifies a list of Availability Zones.
+	// The Availability Zones for the load balancer.
 	AvailabilityZones []*string `type:"list"`
 
-	// Contains a list of back-end server descriptions.
+	// Information about the back-end servers.
 	BackendServerDescriptions []*BackendServerDescription `type:"list"`
 
-	// Provides the name of the Amazon Route 53 hosted zone that is associated with
-	// the load balancer. For information on how to associate your load balancer
-	// with a hosted zone, go to Using Domain Names With Elastic Load Balancing
+	// The Amazon Route 53 hosted zone associated with the load balancer.
+	//
+	// For more information, see Using Domain Names With Elastic Load Balancing
 	// (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/using-domain-names-with-elb.html)
 	// in the Elastic Load Balancing Developer Guide.
 	CanonicalHostedZoneName *string `type:"string"`
 
-	// Provides the ID of the Amazon Route 53 hosted zone name that is associated
-	// with the load balancer. For information on how to associate or disassociate
-	// your load balancer with a hosted zone, go to Using Domain Names With Elastic
-	// Load Balancing (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/using-domain-names-with-elb.html)
-	// in the Elastic Load Balancing Developer Guide.
+	// The ID of the Amazon Route 53 hosted zone name associated with the load balancer.
 	CanonicalHostedZoneNameID *string `type:"string"`
 
-	// Provides the date and time the load balancer was created.
+	// The date and time the load balancer was created.
 	CreatedTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// Specifies the external DNS name associated with the load balancer.
+	// The external DNS name of the load balancer.
 	DNSName *string `type:"string"`
 
-	// Specifies information regarding the various health probes conducted on the
-	// load balancer.
+	// Information about the health checks conducted on the load balancer.
 	HealthCheck *HealthCheck `type:"structure"`
 
-	// Provides a list of EC2 instance IDs for the load balancer.
+	// The IDs of the instances for the load balancer.
 	Instances []*Instance `type:"list"`
 
-	// LoadBalancerPort, InstancePort, Protocol, InstanceProtocol, and PolicyNames
-	// are returned in a list of tuples in the ListenerDescriptions element.
+	// The listeners for the load balancer.
 	ListenerDescriptions []*ListenerDescription `type:"list"`
 
-	// Specifies the name associated with the load balancer.
+	// The name of the load balancer.
 	LoadBalancerName *string `type:"string"`
 
-	// Provides a list of policies defined for the load balancer.
+	// The policies defined for the load balancer.
 	Policies *Policies `type:"structure"`
 
-	// Specifies the type of load balancer.
+	// The type of load balancer. Valid only for load balancers in a VPC.
 	//
-	// If the Scheme is internet-facing, the load balancer has a publicly resolvable
-	// DNS name that resolves to public IP addresses.
+	// If Scheme is internet-facing, the load balancer has a public DNS name that
+	// resolves to a public IP address.
 	//
-	// If the Scheme is internal, the load balancer has a publicly resolvable DNS
-	// name that resolves to private IP addresses.
-	//
-	//  This option is only available for load balancers attached to an Amazon
-	// VPC.
+	// If Scheme is internal, the load balancer has a public DNS name that resolves
+	// to a private IP address.
 	Scheme *string `type:"string"`
 
-	// The security groups the load balancer is a member of (VPC only).
+	// The security groups for the load balancer. Valid only for load balancers
+	// in a VPC.
 	SecurityGroups []*string `type:"list"`
 
 	// The security group that you can use as part of your inbound rules for your
-	// load balancer's back-end Amazon EC2 application instances. To only allow
-	// traffic from load balancers, add a security group rule to your back end instance
-	// that specifies this source security group as the inbound source.
+	// load balancer's back-end application instances. To only allow traffic from
+	// load balancers, add a security group rule to your back end instance that
+	// specifies this source security group as the inbound source.
 	SourceSecurityGroup *SourceSecurityGroup `type:"structure"`
 
-	// Provides a list of VPC subnet IDs for the load balancer.
+	// The IDs of the subnets for the load balancer.
 	Subnets []*string `type:"list"`
 
-	// Provides the ID of the VPC attached to the load balancer.
+	// The ID of the VPC for the load balancer.
 	VPCID *string `locationName:"VPCId" type:"string"`
 
 	metadataLoadBalancerDescription `json:"-", xml:"-"`
@@ -2187,9 +2133,8 @@ type metadataLoadBalancerDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The input for the ModifyLoadBalancerAttributes action.
 type ModifyLoadBalancerAttributesInput struct {
-	// Attributes of the load balancer.
+	// The attributes of the load balancer.
 	LoadBalancerAttributes *LoadBalancerAttributes `type:"structure" required:"true"`
 
 	// The name of the load balancer.
@@ -2202,9 +2147,8 @@ type metadataModifyLoadBalancerAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the ModifyLoadBalancerAttributes action.
 type ModifyLoadBalancerAttributesOutput struct {
-	// The LoadBalancerAttributes data type.
+	// The attributes for a load balancer.
 	LoadBalancerAttributes *LoadBalancerAttributes `type:"structure"`
 
 	// The name of the load balancer.
@@ -2217,15 +2161,15 @@ type metadataModifyLoadBalancerAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The policies data type.
+// The policies for a load balancer.
 type Policies struct {
-	// A list of the AppCookieStickinessPolicy objects created with CreateAppCookieStickinessPolicy.
+	// The stickiness policies created using CreateAppCookieStickinessPolicy.
 	AppCookieStickinessPolicies []*AppCookieStickinessPolicy `type:"list"`
 
-	// A list of LBCookieStickinessPolicy objects created with CreateAppCookieStickinessPolicy.
+	// The stickiness policies created using CreateLBCookieStickinessPolicy.
 	LBCookieStickinessPolicies []*LBCookieStickinessPolicy `type:"list"`
 
-	// A list of policy names other than the stickiness policies.
+	// The policies other than the stickiness policies.
 	OtherPolicies []*string `type:"list"`
 
 	metadataPolicies `json:"-", xml:"-"`
@@ -2235,13 +2179,12 @@ type metadataPolicies struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The PolicyAttribute data type. This data type contains a key/value pair that
-// defines properties of a specific policy.
+// Information about a policy attribute.
 type PolicyAttribute struct {
-	// The name of the attribute associated with the policy.
+	// The name of the attribute.
 	AttributeName *string `type:"string"`
 
-	// The value of the attribute associated with the policy.
+	// The value of the attribute.
 	AttributeValue *string `type:"string"`
 
 	metadataPolicyAttribute `json:"-", xml:"-"`
@@ -2251,13 +2194,12 @@ type metadataPolicyAttribute struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The PolicyAttributeDescription data type. This data type is used to describe
-// the attributes and values associated with a policy.
+// Information about a policy attribute.
 type PolicyAttributeDescription struct {
-	// The name of the attribute associated with the policy.
+	// The name of the attribute.
 	AttributeName *string `type:"string"`
 
-	// The value of the attribute associated with the policy.
+	// The value of the attribute.
 	AttributeValue *string `type:"string"`
 
 	metadataPolicyAttributeDescription `json:"-", xml:"-"`
@@ -2267,25 +2209,27 @@ type metadataPolicyAttributeDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The PolicyAttributeTypeDescription data type. This data type is used to describe
-// values that are acceptable for the policy attribute.
+// Information about a policy attribute type.
 type PolicyAttributeTypeDescription struct {
-	// The name of the attribute associated with the policy type.
+	// The name of the attribute.
 	AttributeName *string `type:"string"`
 
-	// The type of attribute. For example, Boolean, Integer, etc.
+	// The type of the attribute. For example, Boolean or Integer.
 	AttributeType *string `type:"string"`
 
-	// The cardinality of the attribute. Valid Values:  ONE(1) : Single value required
-	// ZERO_OR_ONE(0..1) : Up to one value can be supplied ZERO_OR_MORE(0..*) :
-	// Optional. Multiple values are allowed ONE_OR_MORE(1..*0) : Required. Multiple
-	// values are allowed
+	// The cardinality of the attribute.
+	//
+	// Valid values:
+	//
+	//  ONE(1) : Single value required ZERO_OR_ONE(0..1) : Up to one value can
+	// be supplied ZERO_OR_MORE(0..*) : Optional. Multiple values are allowed ONE_OR_MORE(1..*0)
+	// : Required. Multiple values are allowed
 	Cardinality *string `type:"string"`
 
 	// The default value of the attribute, if applicable.
 	DefaultValue *string `type:"string"`
 
-	// A human-readable description of the attribute.
+	// A description of the attribute.
 	Description *string `type:"string"`
 
 	metadataPolicyAttributeTypeDescription `json:"-", xml:"-"`
@@ -2295,15 +2239,15 @@ type metadataPolicyAttributeTypeDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The PolicyDescription data type.
+// Information about a policy.
 type PolicyDescription struct {
-	// A list of policy attribute description structures.
+	// The policy attributes.
 	PolicyAttributeDescriptions []*PolicyAttributeDescription `type:"list"`
 
-	// The name of the policy associated with the load balancer.
+	// The name of the policy.
 	PolicyName *string `type:"string"`
 
-	// The name of the policy type associated with the load balancer.
+	// The name of the policy type.
 	PolicyTypeName *string `type:"string"`
 
 	metadataPolicyDescription `json:"-", xml:"-"`
@@ -2313,13 +2257,13 @@ type metadataPolicyDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The PolicyTypeDescription data type.
+// Information about a policy type.
 type PolicyTypeDescription struct {
-	// A human-readable description of the policy type.
+	// A description of the policy type.
 	Description *string `type:"string"`
 
-	// The description of the policy attributes associated with the load balancer
-	// policies defined by the Elastic Load Balancing service.
+	// The description of the policy attributes associated with the policies defined
+	// by Elastic Load Balancing.
 	PolicyAttributeTypeDescriptions []*PolicyAttributeTypeDescription `type:"list"`
 
 	// The name of the policy type.
@@ -2332,13 +2276,11 @@ type metadataPolicyTypeDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The input for the RegisterInstancesWithLoadBalancer action.
 type RegisterInstancesWithLoadBalancerInput struct {
-	// A list of instance IDs that should be registered with the load balancer.
+	// The IDs of the instances.
 	Instances []*Instance `type:"list" required:"true"`
 
-	// The name associated with the load balancer. The name must be unique within
-	// your set of load balancers.
+	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
 	metadataRegisterInstancesWithLoadBalancerInput `json:"-", xml:"-"`
@@ -2348,9 +2290,8 @@ type metadataRegisterInstancesWithLoadBalancerInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the RegisterInstancesWithLoadBalancer action.
 type RegisterInstancesWithLoadBalancerOutput struct {
-	// An updated list of instances for the load balancer.
+	// The updated list of instances for the load balancer.
 	Instances []*Instance `type:"list"`
 
 	metadataRegisterInstancesWithLoadBalancerOutput `json:"-", xml:"-"`
@@ -2360,13 +2301,12 @@ type metadataRegisterInstancesWithLoadBalancerOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The input for the RemoveTags action.
 type RemoveTagsInput struct {
 	// The name of the load balancer. You can specify a maximum of one load balancer
 	// name.
 	LoadBalancerNames []*string `type:"list" required:"true"`
 
-	// A list of tag keys to remove.
+	// The list of tag keys to remove.
 	Tags []*TagKeyOnly `type:"list" required:"true"`
 
 	metadataRemoveTagsInput `json:"-", xml:"-"`
@@ -2376,7 +2316,6 @@ type metadataRemoveTagsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the RemoveTags action.
 type RemoveTagsOutput struct {
 	metadataRemoveTagsOutput `json:"-", xml:"-"`
 }
@@ -2385,7 +2324,6 @@ type metadataRemoveTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The input for the SetLoadBalancerListenerSSLCertificate action.
 type SetLoadBalancerListenerSSLCertificateInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
@@ -2393,9 +2331,7 @@ type SetLoadBalancerListenerSSLCertificateInput struct {
 	// The port that uses the specified SSL certificate.
 	LoadBalancerPort *int64 `type:"integer" required:"true"`
 
-	// The Amazon Resource Number (ARN) of the SSL certificate chain to use. For
-	// more information on SSL certificates, see  Managing Server Certificates (http://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingServerCerts.html)
-	// in the AWS Identity and Access Management User Guide.
+	// The Amazon Resource Name (ARN) of the SSL certificate.
 	SSLCertificateID *string `locationName:"SSLCertificateId" type:"string" required:"true"`
 
 	metadataSetLoadBalancerListenerSSLCertificateInput `json:"-", xml:"-"`
@@ -2405,7 +2341,6 @@ type metadataSetLoadBalancerListenerSSLCertificateInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the SetLoadBalancerListenerSSLCertificate action.
 type SetLoadBalancerListenerSSLCertificateOutput struct {
 	metadataSetLoadBalancerListenerSSLCertificateOutput `json:"-", xml:"-"`
 }
@@ -2414,16 +2349,14 @@ type metadataSetLoadBalancerListenerSSLCertificateOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The input for the SetLoadBalancerPoliciesForBackendServer action.
 type SetLoadBalancerPoliciesForBackendServerInput struct {
 	// The port number associated with the back-end server.
 	InstancePort *int64 `type:"integer" required:"true"`
 
-	// The mnemonic name associated with the load balancer. This name must be unique
-	// within the set of your load balancers.
+	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	// List of policy names to be set. If the list is empty, then all current polices
+	// The names of the policies. If the list is empty, then all current polices
 	// are removed from the back-end server.
 	PolicyNames []*string `type:"list" required:"true"`
 
@@ -2434,7 +2367,6 @@ type metadataSetLoadBalancerPoliciesForBackendServerInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the SetLoadBalancerPoliciesForBackendServer action.
 type SetLoadBalancerPoliciesForBackendServerOutput struct {
 	metadataSetLoadBalancerPoliciesForBackendServerOutput `json:"-", xml:"-"`
 }
@@ -2443,16 +2375,15 @@ type metadataSetLoadBalancerPoliciesForBackendServerOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The input for the SetLoadBalancerPoliciesOfListener action.
 type SetLoadBalancerPoliciesOfListenerInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	// The external port of the load balancer to associate the policy.
+	// The external port of the load balancer for the policy.
 	LoadBalancerPort *int64 `type:"integer" required:"true"`
 
-	// List of policies to be associated with the listener. If the list is empty,
-	// the current policy is removed from the listener.
+	// The names of the policies. If the list is empty, the current policy is removed
+	// from the listener.
 	PolicyNames []*string `type:"list" required:"true"`
 
 	metadataSetLoadBalancerPoliciesOfListenerInput `json:"-", xml:"-"`
@@ -2462,7 +2393,6 @@ type metadataSetLoadBalancerPoliciesOfListenerInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The output for the SetLoadBalancerPoliciesOfListener action.
 type SetLoadBalancerPoliciesOfListenerOutput struct {
 	metadataSetLoadBalancerPoliciesOfListenerOutput `json:"-", xml:"-"`
 }
@@ -2471,17 +2401,12 @@ type metadataSetLoadBalancerPoliciesOfListenerOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// This data type is used as a response element in the DescribeLoadBalancers
-// action. For information about Elastic Load Balancing security groups, go
-// to Using Security Groups With Elastic Load Balancing (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-security-features.html#using-elb-security-groups)
-// in the Elastic Load Balancing Developer Guide.
+// Information about a source security group.
 type SourceSecurityGroup struct {
-	// Name of the source security group. Use this value for the --source-group
-	// parameter of the ec2-authorize command in the Amazon EC2 command line tool.
+	// The name of the security group.
 	GroupName *string `type:"string"`
 
-	// Owner of the source security group. Use this value for the --source-group-user
-	// parameter of the ec2-authorize command in the Amazon EC2 command line tool.
+	// The owner of the security group.
 	OwnerAlias *string `type:"string"`
 
 	metadataSourceSecurityGroup `json:"-", xml:"-"`
@@ -2491,10 +2416,7 @@ type metadataSourceSecurityGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// Metadata assigned to a load balancer consisting of key-value pair.
-//
-// For more information, see Tagging (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#tagging-elb)
-// in the Elastic Load Balancing Developer Guide.
+// Information about a tag.
 type Tag struct {
 	// The key of the tag.
 	Key *string `type:"string" required:"true"`
@@ -2509,12 +2431,12 @@ type metadataTag struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The descriptions of all the tags associated with load balancer.
+// The tags associated with a load balancer.
 type TagDescription struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string"`
 
-	// List of tags associated with the load balancer.
+	// The tags.
 	Tags []*Tag `type:"list"`
 
 	metadataTagDescription `json:"-", xml:"-"`
@@ -2524,7 +2446,7 @@ type metadataTagDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// The key of a tag to be removed.
+// The key of a tag.
 type TagKeyOnly struct {
 	// The name of the key.
 	Key *string `type:"string"`

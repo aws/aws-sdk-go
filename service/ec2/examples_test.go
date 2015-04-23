@@ -459,6 +459,28 @@ func ExampleEC2_CancelExportTask() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleEC2_CancelImportTask() {
+	svc := ec2.New(nil)
+
+	params := &ec2.CancelImportTaskInput{
+		CancelReason: aws.String("String"),
+		DryRun:       aws.Boolean(true),
+		ImportTaskID: aws.String("String"),
+	}
+	resp, err := svc.CancelImportTask(params)
+
+	if awserr := aws.Error(err); awserr != nil {
+		// A service error occurred.
+		fmt.Println("Error:", awserr.Code, awserr.Message)
+	} else if err != nil {
+		// A non-service error occurred.
+		panic(err)
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleEC2_CancelReservedInstancesListing() {
 	svc := ec2.New(nil)
 
@@ -2018,6 +2040,78 @@ func ExampleEC2_DescribeImages() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleEC2_DescribeImportImageTasks() {
+	svc := ec2.New(nil)
+
+	params := &ec2.DescribeImportImageTasksInput{
+		DryRun: aws.Boolean(true),
+		Filters: []*ec2.Filter{
+			&ec2.Filter{ // Required
+				Name: aws.String("String"),
+				Values: []*string{
+					aws.String("String"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		ImportTaskIDs: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+		MaxResults: aws.Long(1),
+		NextToken:  aws.String("String"),
+	}
+	resp, err := svc.DescribeImportImageTasks(params)
+
+	if awserr := aws.Error(err); awserr != nil {
+		// A service error occurred.
+		fmt.Println("Error:", awserr.Code, awserr.Message)
+	} else if err != nil {
+		// A non-service error occurred.
+		panic(err)
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleEC2_DescribeImportSnapshotTasks() {
+	svc := ec2.New(nil)
+
+	params := &ec2.DescribeImportSnapshotTasksInput{
+		DryRun: aws.Boolean(true),
+		Filters: []*ec2.Filter{
+			&ec2.Filter{ // Required
+				Name: aws.String("String"),
+				Values: []*string{
+					aws.String("String"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		ImportTaskIDs: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+		MaxResults: aws.Long(1),
+		NextToken:  aws.String("String"),
+	}
+	resp, err := svc.DescribeImportSnapshotTasks(params)
+
+	if awserr := aws.Error(err); awserr != nil {
+		// A service error occurred.
+		fmt.Println("Error:", awserr.Code, awserr.Message)
+	} else if err != nil {
+		// A non-service error occurred.
+		panic(err)
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleEC2_DescribeInstanceAttribute() {
 	svc := ec2.New(nil)
 
@@ -3373,6 +3467,53 @@ func ExampleEC2_GetPasswordData() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleEC2_ImportImage() {
+	svc := ec2.New(nil)
+
+	params := &ec2.ImportImageInput{
+		Architecture: aws.String("String"),
+		ClientData: &ec2.ClientData{
+			Comment:     aws.String("String"),
+			UploadEnd:   aws.Time(time.Now()),
+			UploadSize:  aws.Double(1.0),
+			UploadStart: aws.Time(time.Now()),
+		},
+		ClientToken: aws.String("String"),
+		Description: aws.String("String"),
+		DiskContainers: []*ec2.ImageDiskContainer{
+			&ec2.ImageDiskContainer{ // Required
+				Description: aws.String("String"),
+				DeviceName:  aws.String("String"),
+				Format:      aws.String("String"),
+				SnapshotID:  aws.String("String"),
+				URL:         aws.String("String"),
+				UserBucket: &ec2.UserBucket{
+					S3Bucket: aws.String("String"),
+					S3Key:    aws.String("String"),
+				},
+			},
+			// More values...
+		},
+		DryRun:      aws.Boolean(true),
+		Hypervisor:  aws.String("String"),
+		LicenseType: aws.String("String"),
+		Platform:    aws.String("String"),
+		RoleName:    aws.String("String"),
+	}
+	resp, err := svc.ImportImage(params)
+
+	if awserr := aws.Error(err); awserr != nil {
+		// A service error occurred.
+		fmt.Println("Error:", awserr.Code, awserr.Message)
+	} else if err != nil {
+		// A non-service error occurred.
+		panic(err)
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleEC2_ImportInstance() {
 	svc := ec2.New(nil)
 
@@ -3443,6 +3584,44 @@ func ExampleEC2_ImportKeyPair() {
 		DryRun:            aws.Boolean(true),
 	}
 	resp, err := svc.ImportKeyPair(params)
+
+	if awserr := aws.Error(err); awserr != nil {
+		// A service error occurred.
+		fmt.Println("Error:", awserr.Code, awserr.Message)
+	} else if err != nil {
+		// A non-service error occurred.
+		panic(err)
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleEC2_ImportSnapshot() {
+	svc := ec2.New(nil)
+
+	params := &ec2.ImportSnapshotInput{
+		ClientData: &ec2.ClientData{
+			Comment:     aws.String("String"),
+			UploadEnd:   aws.Time(time.Now()),
+			UploadSize:  aws.Double(1.0),
+			UploadStart: aws.Time(time.Now()),
+		},
+		ClientToken: aws.String("String"),
+		Description: aws.String("String"),
+		DiskContainer: &ec2.SnapshotDiskContainer{
+			Description: aws.String("String"),
+			Format:      aws.String("String"),
+			URL:         aws.String("String"),
+			UserBucket: &ec2.UserBucket{
+				S3Bucket: aws.String("String"),
+				S3Key:    aws.String("String"),
+			},
+		},
+		DryRun:   aws.Boolean(true),
+		RoleName: aws.String("String"),
+	}
+	resp, err := svc.ImportSnapshot(params)
 
 	if awserr := aws.Error(err); awserr != nil {
 		// A service error occurred.

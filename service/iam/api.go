@@ -770,11 +770,11 @@ func (c *IAM) CreateVirtualMFADeviceRequest(input *CreateVirtualMFADeviceInput) 
 // go to Using a Virtual MFA Device (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_VirtualMFA.html)
 // in the Using IAM guide.
 //
-//  For information about limits on the number of MFA devices you can create,
+// For information about limits on the number of MFA devices you can create,
 // see Limitations on Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html)
 // in the Using IAM guide.
 //
-//  The seed information contained in the QR code and the Base32 string should
+// The seed information contained in the QR code and the Base32 string should
 // be treated like any other secret access information, such as your AWS access
 // keys or your passwords. After you provision your virtual device, you should
 // ensure that the information is destroyed following secure procedures.
@@ -1032,7 +1032,7 @@ func (c *IAM) DeleteInstanceProfileRequest(input *DeleteInstanceProfileInput) (r
 //  Make sure you do not have any Amazon EC2 instances running with the instance
 // profile you are about to delete. Deleting a role or instance profile that
 // is associated with a running instance will break any applications running
-// on the instance.   For more information about instance profiles, go to About
+// on the instance.  For more information about instance profiles, go to About
 // Instance Profiles (http://docs.aws.amazon.com/IAM/latest/UserGuide/AboutInstanceProfiles.html).
 func (c *IAM) DeleteInstanceProfile(input *DeleteInstanceProfileInput) (output *DeleteInstanceProfileOutput, err error) {
 	req, out := c.DeleteInstanceProfileRequest(input)
@@ -1239,7 +1239,7 @@ func (c *IAM) DeleteRoleRequest(input *DeleteRoleInput) (req *aws.Request, outpu
 // Deletes the specified role. The role must not have any policies attached.
 // For more information about roles, go to Working with Roles (http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html).
 //
-//  Make sure you do not have any Amazon EC2 instances running with the role
+// Make sure you do not have any Amazon EC2 instances running with the role
 // you are about to delete. Deleting a role or instance profile that is associated
 // with a running instance will break any applications running on the instance.
 func (c *IAM) DeleteRole(input *DeleteRoleInput) (output *DeleteRoleOutput, err error) {
@@ -1396,7 +1396,7 @@ func (c *IAM) DeleteSigningCertificateRequest(input *DeleteSigningCertificateInp
 
 // Deletes the specified signing certificate associated with the specified user.
 //
-//  If you do not specify a user name, IAM determines the user name implicitly
+// If you do not specify a user name, IAM determines the user name implicitly
 // based on the AWS access key ID signing the request. Because this action works
 // for access keys under the AWS account, you can use this action to manage
 // root credentials even if the AWS account has no associated users.
@@ -1701,6 +1701,42 @@ func (c *IAM) GenerateCredentialReport(input *GenerateCredentialReportInput) (ou
 
 var opGenerateCredentialReport *aws.Operation
 
+// GetAccessKeyLastUsedRequest generates a request for the GetAccessKeyLastUsed operation.
+func (c *IAM) GetAccessKeyLastUsedRequest(input *GetAccessKeyLastUsedInput) (req *aws.Request, output *GetAccessKeyLastUsedOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opGetAccessKeyLastUsed == nil {
+		opGetAccessKeyLastUsed = &aws.Operation{
+			Name:       "GetAccessKeyLastUsed",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &GetAccessKeyLastUsedInput{}
+	}
+
+	req = c.newRequest(opGetAccessKeyLastUsed, input, output)
+	output = &GetAccessKeyLastUsedOutput{}
+	req.Data = output
+	return
+}
+
+// Retrieves information about when the specified access key was last used.
+// The information includes the date and time of last use, along with the AWS
+// service and region that were specified in the last request made with that
+// key.
+func (c *IAM) GetAccessKeyLastUsed(input *GetAccessKeyLastUsedInput) (output *GetAccessKeyLastUsedOutput, err error) {
+	req, out := c.GetAccessKeyLastUsedRequest(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opGetAccessKeyLastUsed *aws.Operation
+
 // GetAccountAuthorizationDetailsRequest generates a request for the GetAccountAuthorizationDetails operation.
 func (c *IAM) GetAccountAuthorizationDetailsRequest(input *GetAccountAuthorizationDetailsInput) (req *aws.Request, output *GetAccountAuthorizationDetailsOutput) {
 	oprw.Lock()
@@ -1727,7 +1763,7 @@ func (c *IAM) GetAccountAuthorizationDetailsRequest(input *GetAccountAuthorizati
 // Retrieves information about all IAM users, groups, and roles in your account,
 // including their relationships to one another and their policies. Use this
 // API to obtain a snapshot of the configuration of IAM permissions (users,
-// groups, roles, and their policies) in your account.
+// groups, roles, and policies) in your account.
 //
 // You can optionally filter the results using the Filter parameter. You can
 // paginate the results using the MaxItems and Marker parameters.
@@ -2145,7 +2181,7 @@ func (c *IAM) GetRoleRequest(input *GetRoleInput) (req *aws.Request, output *Get
 // information about ARNs, go to ARNs (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html#Identifiers_ARNs).
 // For more information about roles, go to Working with Roles (http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html).
 //
-//  The returned policy is URL-encoded according to RFC 3986. For more information
+// The returned policy is URL-encoded according to RFC 3986. For more information
 // about RFC 3986, go to http://www.faqs.org/rfcs/rfc3986.html (http://www.faqs.org/rfcs/rfc3986.html).
 func (c *IAM) GetRole(input *GetRoleInput) (output *GetRoleOutput, err error) {
 	req, out := c.GetRoleRequest(input)
@@ -2228,7 +2264,7 @@ func (c *IAM) GetSAMLProviderRequest(input *GetSAMLProviderInput) (req *aws.Requ
 // Returns the SAML provider metadocument that was uploaded when the provider
 // was created or updated.
 //
-//  This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
+// This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
 func (c *IAM) GetSAMLProvider(input *GetSAMLProviderInput) (output *GetSAMLProviderOutput, err error) {
 	req, out := c.GetSAMLProviderRequest(input)
 	output = out
@@ -2377,15 +2413,15 @@ func (c *IAM) ListAccessKeysRequest(input *ListAccessKeysInput) (req *aws.Reques
 // Returns information about the access key IDs associated with the specified
 // user. If there are none, the action returns an empty list.
 //
-//  Although each user is limited to a small number of keys, you can still
-// paginate the results using the MaxItems and Marker parameters.
+// Although each user is limited to a small number of keys, you can still paginate
+// the results using the MaxItems and Marker parameters.
 //
-//  If the UserName field is not specified, the UserName is determined implicitly
+// If the UserName field is not specified, the UserName is determined implicitly
 // based on the AWS access key ID used to sign the request. Because this action
 // works for access keys under the AWS account, you can use this action to manage
 // root credentials even if the AWS account has no associated users.
 //
-//  To ensure the security of your AWS account, the secret access key is accessible
+// To ensure the security of your AWS account, the secret access key is accessible
 // only during key and user creation.
 func (c *IAM) ListAccessKeys(input *ListAccessKeysInput) (output *ListAccessKeysOutput, err error) {
 	req, out := c.ListAccessKeysRequest(input)
@@ -2710,7 +2746,7 @@ func (c *IAM) ListGroupsForUserRequest(input *ListGroupsForUserInput) (req *aws.
 
 // Lists the groups the specified user belongs to.
 //
-//  You can paginate the results using the MaxItems and Marker parameters.
+// You can paginate the results using the MaxItems and Marker parameters.
 func (c *IAM) ListGroupsForUser(input *ListGroupsForUserInput) (output *ListGroupsForUserOutput, err error) {
 	req, out := c.ListGroupsForUserRequest(input)
 	output = out
@@ -2747,7 +2783,7 @@ func (c *IAM) ListInstanceProfilesRequest(input *ListInstanceProfilesInput) (req
 // are none, the action returns an empty list. For more information about instance
 // profiles, go to About Instance Profiles (http://docs.aws.amazon.com/IAM/latest/UserGuide/AboutInstanceProfiles.html).
 //
-//  You can paginate the results using the MaxItems and Marker parameters.
+// You can paginate the results using the MaxItems and Marker parameters.
 func (c *IAM) ListInstanceProfiles(input *ListInstanceProfilesInput) (output *ListInstanceProfilesOutput, err error) {
 	req, out := c.ListInstanceProfilesRequest(input)
 	output = out
@@ -2784,7 +2820,7 @@ func (c *IAM) ListInstanceProfilesForRoleRequest(input *ListInstanceProfilesForR
 // are none, the action returns an empty list. For more information about instance
 // profiles, go to About Instance Profiles (http://docs.aws.amazon.com/IAM/latest/UserGuide/AboutInstanceProfiles.html).
 //
-//  You can paginate the results using the MaxItems and Marker parameters.
+// You can paginate the results using the MaxItems and Marker parameters.
 func (c *IAM) ListInstanceProfilesForRole(input *ListInstanceProfilesForRoleInput) (output *ListInstanceProfilesForRoleOutput, err error) {
 	req, out := c.ListInstanceProfilesForRoleRequest(input)
 	output = out
@@ -2822,7 +2858,7 @@ func (c *IAM) ListMFADevicesRequest(input *ListMFADevicesInput) (req *aws.Reques
 // do not specify a user name, IAM determines the user name implicitly based
 // on the AWS access key ID signing the request.
 //
-//  You can paginate the results using the MaxItems and Marker parameters.
+// You can paginate the results using the MaxItems and Marker parameters.
 func (c *IAM) ListMFADevices(input *ListMFADevicesInput) (output *ListMFADevicesOutput, err error) {
 	req, out := c.ListMFADevicesRequest(input)
 	output = out
@@ -3019,9 +3055,9 @@ func (c *IAM) ListRolesRequest(input *ListRolesInput) (req *aws.Request, output 
 // action returns an empty list. For more information about roles, go to Working
 // with Roles (http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html).
 //
-//  You can paginate the results using the MaxItems and Marker parameters.
+// You can paginate the results using the MaxItems and Marker parameters.
 //
-//  The returned policy is URL-encoded according to RFC 3986. For more information
+// The returned policy is URL-encoded according to RFC 3986. For more information
 // about RFC 3986, go to http://www.faqs.org/rfcs/rfc3986.html (http://www.faqs.org/rfcs/rfc3986.html).
 func (c *IAM) ListRoles(input *ListRolesInput) (output *ListRolesOutput, err error) {
 	req, out := c.ListRolesRequest(input)
@@ -3129,10 +3165,10 @@ func (c *IAM) ListSigningCertificatesRequest(input *ListSigningCertificatesInput
 // Returns information about the signing certificates associated with the specified
 // user. If there are none, the action returns an empty list.
 //
-//  Although each user is limited to a small number of signing certificates,
+// Although each user is limited to a small number of signing certificates,
 // you can still paginate the results using the MaxItems and Marker parameters.
 //
-//  If the UserName field is not specified, the user name is determined implicitly
+// If the UserName field is not specified, the user name is determined implicitly
 // based on the AWS access key ID used to sign the request. Because this action
 // works for access keys under the AWS account, you can use this action to manage
 // root credentials even if the AWS account has no associated users.
@@ -3253,7 +3289,7 @@ func (c *IAM) ListVirtualMFADevicesRequest(input *ListVirtualMFADevicesInput) (r
 // all virtual MFA devices. Assignment status can be Assigned, Unassigned, or
 // Any.
 //
-//  You can paginate the results using the MaxItems and Marker parameters.
+// You can paginate the results using the MaxItems and Marker parameters.
 func (c *IAM) ListVirtualMFADevices(input *ListVirtualMFADevicesInput) (output *ListVirtualMFADevicesOutput, err error) {
 	req, out := c.ListVirtualMFADevicesRequest(input)
 	output = out
@@ -3633,12 +3669,12 @@ func (c *IAM) UpdateAccessKeyRequest(input *UpdateAccessKeyInput) (req *aws.Requ
 // vice versa. This action can be used to disable a user's key as part of a
 // key rotation work flow.
 //
-//  If the UserName field is not specified, the UserName is determined implicitly
+// If the UserName field is not specified, the UserName is determined implicitly
 // based on the AWS access key ID used to sign the request. Because this action
 // works for access keys under the AWS account, you can use this action to manage
 // root credentials even if the AWS account has no associated users.
 //
-//  For information about rotating keys, see Managing Keys and Certificates
+// For information about rotating keys, see Managing Keys and Certificates
 // (http://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingCredentials.html)
 // in the Using IAM guide.
 func (c *IAM) UpdateAccessKey(input *UpdateAccessKeyInput) (output *UpdateAccessKeyOutput, err error) {
@@ -3675,7 +3711,7 @@ func (c *IAM) UpdateAccountPasswordPolicyRequest(input *UpdateAccountPasswordPol
 
 // Updates the password policy settings for the AWS account.
 //
-//   This action does not support partial updates. No parameters are required,
+//  This action does not support partial updates. No parameters are required,
 // but if you do not specify a parameter, that parameter's value reverts to
 // its default value. See the Request Parameters section for each parameter's
 // default value.
@@ -3754,11 +3790,11 @@ func (c *IAM) UpdateGroupRequest(input *UpdateGroupInput) (req *aws.Request, out
 //
 //  You should understand the implications of changing a group's path or name.
 // For more information, see Renaming Users and Groups (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_WorkingWithGroupsAndUsers.html)
-// in the Using IAM guide.   To change a group name the requester must have
-// appropriate permissions on both the source object and the target object.
-// For example, to change Managers to MGRs, the entity making the request must
-// have permission on Managers and MGRs, or must have permission on all (*).
-// For more information about permissions, see Permissions and Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html"
+// in the Using IAM guide.  To change a group name the requester must have appropriate
+// permissions on both the source object and the target object. For example,
+// to change Managers to MGRs, the entity making the request must have permission
+// on Managers and MGRs, or must have permission on all (*). For more information
+// about permissions, see Permissions and Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html"
 // target="blank).
 func (c *IAM) UpdateGroup(input *UpdateGroupInput) (output *UpdateGroupOutput, err error) {
 	req, out := c.UpdateGroupRequest(input)
@@ -3877,7 +3913,7 @@ func (c *IAM) UpdateSAMLProviderRequest(input *UpdateSAMLProviderInput) (req *aw
 
 // Updates the metadata document for an existing SAML provider.
 //
-//  This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
+// This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
 func (c *IAM) UpdateSAMLProvider(input *UpdateSAMLProviderInput) (output *UpdateSAMLProviderOutput, err error) {
 	req, out := c.UpdateSAMLProviderRequest(input)
 	output = out
@@ -3914,7 +3950,7 @@ func (c *IAM) UpdateServerCertificateRequest(input *UpdateServerCertificateInput
 //
 //  You should understand the implications of changing a server certificate's
 // path or name. For more information, see Managing Server Certificates (http://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingServerCerts.html)
-// in the Using IAM guide.   To change a server certificate name the requester
+// in the Using IAM guide.  To change a server certificate name the requester
 // must have appropriate permissions on both the source object and the target
 // object. For example, to change the name from ProductionCert to ProdCert,
 // the entity making the request must have permission on ProductionCert and
@@ -3957,14 +3993,10 @@ func (c *IAM) UpdateSigningCertificateRequest(input *UpdateSigningCertificateInp
 // or vice versa. This action can be used to disable a user's signing certificate
 // as part of a certificate rotation work flow.
 //
-//  If the UserName field is not specified, the UserName is determined implicitly
+// If the UserName field is not specified, the UserName is determined implicitly
 // based on the AWS access key ID used to sign the request. Because this action
 // works for access keys under the AWS account, you can use this action to manage
 // root credentials even if the AWS account has no associated users.
-//
-//  For information about rotating certificates, see Managing Keys and Certificates
-// (http://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingCredentials.html)
-// in the Using IAM guide.
 func (c *IAM) UpdateSigningCertificate(input *UpdateSigningCertificateInput) (output *UpdateSigningCertificateOutput, err error) {
 	req, out := c.UpdateSigningCertificateRequest(input)
 	output = out
@@ -4043,11 +4075,11 @@ func (c *IAM) UploadServerCertificateRequest(input *UploadServerCertificateInput
 // entity includes a public key certificate, a private key, and an optional
 // certificate chain, which should all be PEM-encoded.
 //
-//  For information about the number of server certificates you can upload,
+// For information about the number of server certificates you can upload,
 // see Limitations on IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html)
 // in the Using IAM guide.
 //
-//  Because the body of the public key certificate, private key, and the certificate
+// Because the body of the public key certificate, private key, and the certificate
 // chain can be large, you should use POST rather than GET when calling UploadServerCertificate.
 // For information about setting up signatures and authorization through the
 // API, go to Signing AWS API Requests (http://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html)
@@ -4091,12 +4123,12 @@ func (c *IAM) UploadSigningCertificateRequest(input *UploadSigningCertificateInp
 // that are signed with a corresponding private key. When you upload the certificate,
 // its default status is Active.
 //
-//  If the UserName field is not specified, the user name is determined implicitly
+// If the UserName field is not specified, the user name is determined implicitly
 // based on the AWS access key ID used to sign the request. Because this action
 // works for access keys under the AWS account, you can use this action to manage
 // root credentials even if the AWS account has no associated users.
 //
-//  Because the body of a X.509 certificate can be large, you should use POST
+// Because the body of a X.509 certificate can be large, you should use POST
 // rather than GET when calling UploadSigningCertificate. For information about
 // setting up signatures and authorization through the API, go to Signing AWS
 // API Requests (http://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html)
@@ -4142,6 +4174,32 @@ type AccessKey struct {
 }
 
 type metadataAccessKey struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Contains information about the last time an AWS access key was used.
+//
+// This data type is used as a response element in the GetAccessKeyLastUsed
+// action.
+type AccessKeyLastUsed struct {
+	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
+	// when the access key was most recently used.
+	LastUsedDate *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The AWS region where this access key was most recently used.
+	//
+	// For more information about AWS regions, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html)
+	// in the Amazon Web Services General Reference.
+	Region *string `type:"string" required:"true"`
+
+	// The name of the AWS service with which this access key was most recently
+	// used.
+	ServiceName *string `type:"string" required:"true"`
+
+	metadataAccessKeyLastUsed `json:"-", xml:"-"`
+}
+
+type metadataAccessKeyLastUsed struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -4319,7 +4377,8 @@ type metadataAttachUserPolicyOutput struct {
 //
 // An attached policy is a managed policy that has been attached to a user,
 // group, or role. This data type is used as a response element in the ListAttachedGroupPolicies,
-// ListAttachedRolePolicies, and ListAttachedUserPolicies actions.
+// ListAttachedRolePolicies, ListAttachedUserPolicies, and GetAccountAuthorizationDetails
+// actions.
 //
 // For more information about managed policies, refer to Managed Policies and
 // Inline Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
@@ -4697,7 +4756,7 @@ type CreateSAMLProviderInput struct {
 	// that are received from the IdP. You must generate the metadata document using
 	// the identity management software that is used as your organization's IdP.
 	//
-	//  For more information, see Creating Temporary Security Credentials for SAML
+	// For more information, see Creating Temporary Security Credentials for SAML
 	// Federation (http://docs.aws.amazon.com/STS/latest/UsingSTS/CreatingSAML.html)
 	// in the Using Temporary Security Credentials guide.
 	SAMLMetadataDocument *string `type:"string" required:"true"`
@@ -5313,8 +5372,37 @@ type metadataGenerateCredentialReportOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type GetAccessKeyLastUsedInput struct {
+	// The identifier of an access key.
+	AccessKeyID *string `locationName:"AccessKeyId" type:"string" required:"true"`
+
+	metadataGetAccessKeyLastUsedInput `json:"-", xml:"-"`
+}
+
+type metadataGetAccessKeyLastUsedInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Contains the response to a successful GetAccessKeyLastUsed request. It is
+// also returned as a member of the AccessKeyMetaData structure returned by
+// the ListAccessKeys action.
+type GetAccessKeyLastUsedOutput struct {
+	// Contains information about the last time the access key was used.
+	AccessKeyLastUsed *AccessKeyLastUsed `type:"structure"`
+
+	// The name of the AWS IAM user that owns this access key.
+	UserName *string `type:"string"`
+
+	metadataGetAccessKeyLastUsedOutput `json:"-", xml:"-"`
+}
+
+type metadataGetAccessKeyLastUsedOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type GetAccountAuthorizationDetailsInput struct {
-	// A list of entity types (user, group, or role) for filtering the results.
+	// A list of entity types (user, group, role, local managed policy, or AWS managed
+	// policy) for filtering the results.
 	Filter []*string `type:"list"`
 
 	// Use this only when paginating results, and only in a subsequent request after
@@ -5348,6 +5436,9 @@ type GetAccountAuthorizationDetailsOutput struct {
 	// If IsTruncated is true, this element is present and contains the value to
 	// use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
+
+	// A list containing information about managed policies.
+	Policies []*ManagedPolicyDetail `type:"list"`
 
 	// A list containing information about IAM roles.
 	RoleDetailList []*RoleDetail `type:"list"`
@@ -6009,6 +6100,9 @@ type GroupDetail struct {
 	// in the AWS General Reference.
 	ARN *string `locationName:"Arn" type:"string"`
 
+	// A list of the managed policies attached to the group.
+	AttachedManagedPolicies []*AttachedPolicy `type:"list"`
+
 	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
 	// when the group was created.
 	CreateDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -6021,7 +6115,7 @@ type GroupDetail struct {
 	// The friendly name that identifies the group.
 	GroupName *string `type:"string"`
 
-	// A list of the group's policies.
+	// A list of the inline policies embedded in the group.
 	GroupPolicyList []*PolicyDetail `type:"list"`
 
 	// The path to the group. For more information about paths, see IAM Identifiers
@@ -7155,6 +7249,80 @@ type metadataMFADevice struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains information about a managed policy, including the policy's ARN,
+// versions, and the number of principal entities (users, groups, and roles)
+// that the policy is attached to.
+//
+// This data type is used as a response element in the GetAccountAuthorizationDetails
+// action.
+//
+// For more information about managed policies, see Managed Policies and Inline
+// Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
+// in the Using IAM guide.
+type ManagedPolicyDetail struct {
+	// The Amazon Resource Name (ARN). ARNs are unique identifiers for AWS resources.
+	//
+	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
+	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
+	ARN *string `locationName:"Arn" type:"string"`
+
+	// The number of principal entities (users, groups, and roles) that the policy
+	// is attached to.
+	AttachmentCount *int64 `type:"integer"`
+
+	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
+	// when the policy was created.
+	CreateDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The identifier for the version of the policy that is set as the default (operative)
+	// version.
+	//
+	// For more information about policy versions, see Versioning for Managed Policies
+	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-versions.html)
+	// in the Using IAM guide.
+	DefaultVersionID *string `locationName:"DefaultVersionId" type:"string"`
+
+	// A friendly description of the policy.
+	Description *string `type:"string"`
+
+	// Specifies whether the policy can be attached to an IAM user, group, or role.
+	IsAttachable *bool `type:"boolean"`
+
+	// The path to the policy.
+	//
+	// For more information about paths, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
+	// in the Using IAM guide.
+	Path *string `type:"string"`
+
+	// The stable and unique string identifying the policy.
+	//
+	// For more information about IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
+	// in the Using IAM guide.
+	PolicyID *string `locationName:"PolicyId" type:"string"`
+
+	// The friendly name (not ARN) identifying the policy.
+	PolicyName *string `type:"string"`
+
+	// A list containing information about the versions of the policy.
+	PolicyVersionList []*PolicyVersion `type:"list"`
+
+	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
+	// when the policy was last updated.
+	//
+	// When a policy has only one version, this field contains the date and time
+	// when the policy was created. When a policy has more than one version, this
+	// field contains the date and time when the most recent policy version was
+	// created.
+	UpdateDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	metadataManagedPolicyDetail `json:"-", xml:"-"`
+}
+
+type metadataManagedPolicyDetail struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // Contains the Amazon Resource Name (ARN) for an IAM OpenID Connect provider.
 type OpenIDConnectProviderListEntry struct {
 	// The Amazon Resource Name (ARN). ARNs are unique identifiers for AWS resources.
@@ -7363,7 +7531,8 @@ type metadataPolicyUser struct {
 // Contains information about a version of a managed policy.
 //
 // This data type is used as a response element in the CreatePolicyVersion,
-// GetPolicyVersion, and ListPolicyVersions actions.
+// GetPolicyVersion, ListPolicyVersions, and GetAccountAuthorizationDetails
+// actions.
 //
 // For more information about managed policies, refer to Managed Policies and
 // Inline Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
@@ -7376,7 +7545,8 @@ type PolicyVersion struct {
 	// The policy document.
 	//
 	// The policy document is returned in the response to the GetPolicyVersion
-	// operation. It is not included in the response to the ListPolicyVersions operation.
+	// operation. It is not included in the response to the ListPolicyVersions or
+	// GetAccountAuthorizationDetails operations.
 	Document *string `type:"string"`
 
 	// Specifies whether the policy version is set as the policy's default version.
@@ -7628,6 +7798,10 @@ type RoleDetail struct {
 	//  The returned policy is URL-encoded according to RFC 3986 (http://www.faqs.org/rfcs/rfc3986.html).
 	AssumeRolePolicyDocument *string `type:"string"`
 
+	// A list of managed policies attached to the role. These policies are the role's
+	// access (permissions) policies.
+	AttachedManagedPolicies []*AttachedPolicy `type:"list"`
+
 	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
 	// when the role was created.
 	CreateDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -7648,7 +7822,8 @@ type RoleDetail struct {
 	// The friendly name that identifies the role.
 	RoleName *string `type:"string"`
 
-	// A list of the role's access (permissions) policies.
+	// A list of inline policies embedded in the role. These policies are the role's
+	// access (permissions) policies.
 	RolePolicyList []*PolicyDetail `type:"list"`
 
 	metadataRoleDetail `json:"-", xml:"-"`
@@ -8242,6 +8417,9 @@ type UserDetail struct {
 	// in the AWS General Reference.
 	ARN *string `locationName:"Arn" type:"string"`
 
+	// A list of the managed policies attached to the user.
+	AttachedManagedPolicies []*AttachedPolicy `type:"list"`
+
 	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
 	// when the user was created.
 	CreateDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -8262,7 +8440,7 @@ type UserDetail struct {
 	// The friendly name identifying the user.
 	UserName *string `type:"string"`
 
-	// A list of the user's policies.
+	// A list of the inline policies embedded in the user.
 	UserPolicyList []*PolicyDetail `type:"list"`
 
 	metadataUserDetail `json:"-", xml:"-"`

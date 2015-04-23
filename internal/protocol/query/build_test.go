@@ -845,7 +845,7 @@ func (c *InputService9ProtocolTest) newRequest(op *aws.Operation, params, data i
 }
 
 // InputService9TestCaseOperation1Request generates a request for the InputService9TestCaseOperation1 operation.
-func (c *InputService9ProtocolTest) InputService9TestCaseOperation1Request(input *InputService9TestShapeInputShape) (req *aws.Request, output *InputService9TestShapeInputService9TestShapeInputService9TestCaseOperation1Output) {
+func (c *InputService9ProtocolTest) InputService9TestCaseOperation1Request(input *InputService9TestShapeInputShape) (req *aws.Request, output *InputService9TestShapeInputService9TestCaseOperation1Output) {
 
 	if opInputService9TestCaseOperation1 == nil {
 		opInputService9TestCaseOperation1 = &aws.Operation{
@@ -858,12 +858,12 @@ func (c *InputService9ProtocolTest) InputService9TestCaseOperation1Request(input
 	}
 
 	req = c.newRequest(opInputService9TestCaseOperation1, input, output)
-	output = &InputService9TestShapeInputService9TestShapeInputService9TestCaseOperation1Output{}
+	output = &InputService9TestShapeInputService9TestCaseOperation1Output{}
 	req.Data = output
 	return
 }
 
-func (c *InputService9ProtocolTest) InputService9TestCaseOperation1(input *InputService9TestShapeInputShape) (output *InputService9TestShapeInputService9TestShapeInputService9TestCaseOperation1Output, err error) {
+func (c *InputService9ProtocolTest) InputService9TestCaseOperation1(input *InputService9TestShapeInputShape) (output *InputService9TestShapeInputService9TestCaseOperation1Output, err error) {
 	req, out := c.InputService9TestCaseOperation1Request(input)
 	output = out
 	err = req.Send()
@@ -873,7 +873,7 @@ func (c *InputService9ProtocolTest) InputService9TestCaseOperation1(input *Input
 var opInputService9TestCaseOperation1 *aws.Operation
 
 // InputService9TestCaseOperation2Request generates a request for the InputService9TestCaseOperation2 operation.
-func (c *InputService9ProtocolTest) InputService9TestCaseOperation2Request(input *InputService9TestShapeInputShape) (req *aws.Request, output *InputService9TestShapeInputService9TestShapeInputService9TestCaseOperation2Output) {
+func (c *InputService9ProtocolTest) InputService9TestCaseOperation2Request(input *InputService9TestShapeInputShape) (req *aws.Request, output *InputService9TestShapeInputService9TestCaseOperation2Output) {
 
 	if opInputService9TestCaseOperation2 == nil {
 		opInputService9TestCaseOperation2 = &aws.Operation{
@@ -886,12 +886,12 @@ func (c *InputService9ProtocolTest) InputService9TestCaseOperation2Request(input
 	}
 
 	req = c.newRequest(opInputService9TestCaseOperation2, input, output)
-	output = &InputService9TestShapeInputService9TestShapeInputService9TestCaseOperation2Output{}
+	output = &InputService9TestShapeInputService9TestCaseOperation2Output{}
 	req.Data = output
 	return
 }
 
-func (c *InputService9ProtocolTest) InputService9TestCaseOperation2(input *InputService9TestShapeInputShape) (output *InputService9TestShapeInputService9TestShapeInputService9TestCaseOperation2Output, err error) {
+func (c *InputService9ProtocolTest) InputService9TestCaseOperation2(input *InputService9TestShapeInputShape) (output *InputService9TestShapeInputService9TestCaseOperation2Output, err error) {
 	req, out := c.InputService9TestCaseOperation2Request(input)
 	output = out
 	err = req.Send()
@@ -957,7 +957,7 @@ func (c *InputService9ProtocolTest) InputService9TestCaseOperation4(input *Input
 var opInputService9TestCaseOperation4 *aws.Operation
 
 // InputService9TestCaseOperation5Request generates a request for the InputService9TestCaseOperation5 operation.
-func (c *InputService9ProtocolTest) InputService9TestCaseOperation5Request(input *InputService9TestShapeInputShape) (req *aws.Request, output *InputService9TestShapeInputService9TestShapeInputService9TestCaseOperation5Output) {
+func (c *InputService9ProtocolTest) InputService9TestCaseOperation5Request(input *InputService9TestShapeInputShape) (req *aws.Request, output *InputService9TestShapeInputService9TestCaseOperation5Output) {
 
 	if opInputService9TestCaseOperation5 == nil {
 		opInputService9TestCaseOperation5 = &aws.Operation{
@@ -970,12 +970,12 @@ func (c *InputService9ProtocolTest) InputService9TestCaseOperation5Request(input
 	}
 
 	req = c.newRequest(opInputService9TestCaseOperation5, input, output)
-	output = &InputService9TestShapeInputService9TestShapeInputService9TestCaseOperation5Output{}
+	output = &InputService9TestShapeInputService9TestCaseOperation5Output{}
 	req.Data = output
 	return
 }
 
-func (c *InputService9ProtocolTest) InputService9TestCaseOperation5(input *InputService9TestShapeInputShape) (output *InputService9TestShapeInputService9TestShapeInputService9TestCaseOperation5Output, err error) {
+func (c *InputService9ProtocolTest) InputService9TestCaseOperation5(input *InputService9TestShapeInputShape) (output *InputService9TestShapeInputService9TestCaseOperation5Output, err error) {
 	req, out := c.InputService9TestCaseOperation5Request(input)
 	output = out
 	err = req.Send()
@@ -1012,6 +1012,22 @@ func (c *InputService9ProtocolTest) InputService9TestCaseOperation6(input *Input
 
 var opInputService9TestCaseOperation6 *aws.Operation
 
+type InputService9TestShapeInputService9TestCaseOperation1Output struct {
+	metadataInputService9TestShapeInputService9TestCaseOperation1Output `json:"-", xml:"-"`
+}
+
+type metadataInputService9TestShapeInputService9TestCaseOperation1Output struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type InputService9TestShapeInputService9TestCaseOperation2Output struct {
+	metadataInputService9TestShapeInputService9TestCaseOperation2Output `json:"-", xml:"-"`
+}
+
+type metadataInputService9TestShapeInputService9TestCaseOperation2Output struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type InputService9TestShapeInputService9TestCaseOperation3Output struct {
 	metadataInputService9TestShapeInputService9TestCaseOperation3Output `json:"-", xml:"-"`
 }
@@ -1028,6 +1044,14 @@ type metadataInputService9TestShapeInputService9TestCaseOperation4Output struct 
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type InputService9TestShapeInputService9TestCaseOperation5Output struct {
+	metadataInputService9TestShapeInputService9TestCaseOperation5Output `json:"-", xml:"-"`
+}
+
+type metadataInputService9TestShapeInputService9TestCaseOperation5Output struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type InputService9TestShapeInputService9TestCaseOperation6Output struct {
 	metadataInputService9TestShapeInputService9TestCaseOperation6Output `json:"-", xml:"-"`
 }
@@ -1036,53 +1060,29 @@ type metadataInputService9TestShapeInputService9TestCaseOperation6Output struct 
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type InputService9TestShapeInputService9TestShapeInputService9TestCaseOperation1Output struct {
-	metadataInputService9TestShapeInputService9TestShapeInputService9TestCaseOperation1Output `json:"-", xml:"-"`
+type InputService9TestShapeInputService9TestShapeRecursiveStructType struct {
+	NoRecurse *string `type:"string"`
+
+	RecursiveList []*InputService9TestShapeInputService9TestShapeRecursiveStructType `type:"list"`
+
+	RecursiveMap *map[string]*InputService9TestShapeInputService9TestShapeRecursiveStructType `type:"map"`
+
+	RecursiveStruct *InputService9TestShapeInputService9TestShapeRecursiveStructType `type:"structure"`
+
+	metadataInputService9TestShapeInputService9TestShapeRecursiveStructType `json:"-", xml:"-"`
 }
 
-type metadataInputService9TestShapeInputService9TestShapeInputService9TestCaseOperation1Output struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InputService9TestShapeInputService9TestShapeInputService9TestCaseOperation2Output struct {
-	metadataInputService9TestShapeInputService9TestShapeInputService9TestCaseOperation2Output `json:"-", xml:"-"`
-}
-
-type metadataInputService9TestShapeInputService9TestShapeInputService9TestCaseOperation2Output struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InputService9TestShapeInputService9TestShapeInputService9TestCaseOperation5Output struct {
-	metadataInputService9TestShapeInputService9TestShapeInputService9TestCaseOperation5Output `json:"-", xml:"-"`
-}
-
-type metadataInputService9TestShapeInputService9TestShapeInputService9TestCaseOperation5Output struct {
+type metadataInputService9TestShapeInputService9TestShapeRecursiveStructType struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 type InputService9TestShapeInputShape struct {
-	RecursiveStruct *InputService9TestShapeRecursiveStructType `type:"structure"`
+	RecursiveStruct *InputService9TestShapeInputService9TestShapeRecursiveStructType `type:"structure"`
 
 	metadataInputService9TestShapeInputShape `json:"-", xml:"-"`
 }
 
 type metadataInputService9TestShapeInputShape struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InputService9TestShapeRecursiveStructType struct {
-	NoRecurse *string `type:"string"`
-
-	RecursiveList []*InputService9TestShapeRecursiveStructType `type:"list"`
-
-	RecursiveMap *map[string]*InputService9TestShapeRecursiveStructType `type:"map"`
-
-	RecursiveStruct *InputService9TestShapeRecursiveStructType `type:"structure"`
-
-	metadataInputService9TestShapeRecursiveStructType `json:"-", xml:"-"`
-}
-
-type metadataInputService9TestShapeRecursiveStructType struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1400,7 +1400,7 @@ func TestInputService9ProtocolTestRecursiveShapesCase1(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := &InputService9TestShapeInputShape{
-		RecursiveStruct: &InputService9TestShapeRecursiveStructType{
+		RecursiveStruct: &InputService9TestShapeInputService9TestShapeRecursiveStructType{
 			NoRecurse: aws.String("foo"),
 		},
 	}
@@ -1428,8 +1428,8 @@ func TestInputService9ProtocolTestRecursiveShapesCase2(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := &InputService9TestShapeInputShape{
-		RecursiveStruct: &InputService9TestShapeRecursiveStructType{
-			RecursiveStruct: &InputService9TestShapeRecursiveStructType{
+		RecursiveStruct: &InputService9TestShapeInputService9TestShapeRecursiveStructType{
+			RecursiveStruct: &InputService9TestShapeInputService9TestShapeRecursiveStructType{
 				NoRecurse: aws.String("foo"),
 			},
 		},
@@ -1458,10 +1458,10 @@ func TestInputService9ProtocolTestRecursiveShapesCase3(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := &InputService9TestShapeInputShape{
-		RecursiveStruct: &InputService9TestShapeRecursiveStructType{
-			RecursiveStruct: &InputService9TestShapeRecursiveStructType{
-				RecursiveStruct: &InputService9TestShapeRecursiveStructType{
-					RecursiveStruct: &InputService9TestShapeRecursiveStructType{
+		RecursiveStruct: &InputService9TestShapeInputService9TestShapeRecursiveStructType{
+			RecursiveStruct: &InputService9TestShapeInputService9TestShapeRecursiveStructType{
+				RecursiveStruct: &InputService9TestShapeInputService9TestShapeRecursiveStructType{
+					RecursiveStruct: &InputService9TestShapeInputService9TestShapeRecursiveStructType{
 						NoRecurse: aws.String("foo"),
 					},
 				},
@@ -1492,12 +1492,12 @@ func TestInputService9ProtocolTestRecursiveShapesCase4(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := &InputService9TestShapeInputShape{
-		RecursiveStruct: &InputService9TestShapeRecursiveStructType{
-			RecursiveList: []*InputService9TestShapeRecursiveStructType{
-				&InputService9TestShapeRecursiveStructType{
+		RecursiveStruct: &InputService9TestShapeInputService9TestShapeRecursiveStructType{
+			RecursiveList: []*InputService9TestShapeInputService9TestShapeRecursiveStructType{
+				&InputService9TestShapeInputService9TestShapeRecursiveStructType{
 					NoRecurse: aws.String("foo"),
 				},
-				&InputService9TestShapeRecursiveStructType{
+				&InputService9TestShapeInputService9TestShapeRecursiveStructType{
 					NoRecurse: aws.String("bar"),
 				},
 			},
@@ -1527,13 +1527,13 @@ func TestInputService9ProtocolTestRecursiveShapesCase5(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := &InputService9TestShapeInputShape{
-		RecursiveStruct: &InputService9TestShapeRecursiveStructType{
-			RecursiveList: []*InputService9TestShapeRecursiveStructType{
-				&InputService9TestShapeRecursiveStructType{
+		RecursiveStruct: &InputService9TestShapeInputService9TestShapeRecursiveStructType{
+			RecursiveList: []*InputService9TestShapeInputService9TestShapeRecursiveStructType{
+				&InputService9TestShapeInputService9TestShapeRecursiveStructType{
 					NoRecurse: aws.String("foo"),
 				},
-				&InputService9TestShapeRecursiveStructType{
-					RecursiveStruct: &InputService9TestShapeRecursiveStructType{
+				&InputService9TestShapeInputService9TestShapeRecursiveStructType{
+					RecursiveStruct: &InputService9TestShapeInputService9TestShapeRecursiveStructType{
 						NoRecurse: aws.String("bar"),
 					},
 				},
@@ -1564,12 +1564,12 @@ func TestInputService9ProtocolTestRecursiveShapesCase6(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := &InputService9TestShapeInputShape{
-		RecursiveStruct: &InputService9TestShapeRecursiveStructType{
-			RecursiveMap: &map[string]*InputService9TestShapeRecursiveStructType{
-				"bar": &InputService9TestShapeRecursiveStructType{
+		RecursiveStruct: &InputService9TestShapeInputService9TestShapeRecursiveStructType{
+			RecursiveMap: &map[string]*InputService9TestShapeInputService9TestShapeRecursiveStructType{
+				"bar": &InputService9TestShapeInputService9TestShapeRecursiveStructType{
 					NoRecurse: aws.String("bar"),
 				},
-				"foo": &InputService9TestShapeRecursiveStructType{
+				"foo": &InputService9TestShapeInputService9TestShapeRecursiveStructType{
 					NoRecurse: aws.String("foo"),
 				},
 			},
