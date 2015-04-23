@@ -18,7 +18,7 @@ var (
 
 func TestMakingABasicRequest(t *testing.T) {
 	client := lambda.New(nil)
-	resp, e := client.ListEventSources(&lambda.ListEventSourcesInput{})
+	resp, e := client.ListEventSourceMappings(&lambda.ListEventSourceMappingsInput{})
 	err := aws.Error(e)
 	_, _, _ = resp, e, err // avoid unused warnings
 
@@ -28,7 +28,7 @@ func TestMakingABasicRequest(t *testing.T) {
 
 func TestErrorHandling(t *testing.T) {
 	client := lambda.New(nil)
-	resp, e := client.GetEventSource(&lambda.GetEventSourceInput{
+	resp, e := client.GetEventSourceMapping(&lambda.GetEventSourceMappingInput{
 		UUID: aws.String("fake-uuid"),
 	})
 	err := aws.Error(e)

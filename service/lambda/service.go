@@ -26,7 +26,7 @@ func New(config *aws.Config) *Lambda {
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "lambda",
-		APIVersion:  "2014-11-11",
+		APIVersion:  "2015-03-31",
 	}
 	service.Initialize()
 

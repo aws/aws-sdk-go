@@ -5,25 +5,37 @@ import (
 )
 
 type LambdaAPI interface {
-	AddEventSource(*lambda.AddEventSourceInput) (*lambda.EventSourceConfiguration, error)
+	AddPermission(*lambda.AddPermissionInput) (*lambda.AddPermissionOutput, error)
+
+	CreateEventSourceMapping(*lambda.CreateEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, error)
+
+	CreateFunction(*lambda.CreateFunctionInput) (*lambda.FunctionConfiguration, error)
+
+	DeleteEventSourceMapping(*lambda.DeleteEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, error)
 
 	DeleteFunction(*lambda.DeleteFunctionInput) (*lambda.DeleteFunctionOutput, error)
 
-	GetEventSource(*lambda.GetEventSourceInput) (*lambda.EventSourceConfiguration, error)
+	GetEventSourceMapping(*lambda.GetEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, error)
 
 	GetFunction(*lambda.GetFunctionInput) (*lambda.GetFunctionOutput, error)
 
 	GetFunctionConfiguration(*lambda.GetFunctionConfigurationInput) (*lambda.FunctionConfiguration, error)
 
+	GetPolicy(*lambda.GetPolicyInput) (*lambda.GetPolicyOutput, error)
+
+	Invoke(*lambda.InvokeInput) (*lambda.InvokeOutput, error)
+
 	InvokeAsync(*lambda.InvokeAsyncInput) (*lambda.InvokeAsyncOutput, error)
 
-	ListEventSources(*lambda.ListEventSourcesInput) (*lambda.ListEventSourcesOutput, error)
+	ListEventSourceMappings(*lambda.ListEventSourceMappingsInput) (*lambda.ListEventSourceMappingsOutput, error)
 
 	ListFunctions(*lambda.ListFunctionsInput) (*lambda.ListFunctionsOutput, error)
 
-	RemoveEventSource(*lambda.RemoveEventSourceInput) (*lambda.RemoveEventSourceOutput, error)
+	RemovePermission(*lambda.RemovePermissionInput) (*lambda.RemovePermissionOutput, error)
+
+	UpdateEventSourceMapping(*lambda.UpdateEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, error)
+
+	UpdateFunctionCode(*lambda.UpdateFunctionCodeInput) (*lambda.FunctionConfiguration, error)
 
 	UpdateFunctionConfiguration(*lambda.UpdateFunctionConfigurationInput) (*lambda.FunctionConfiguration, error)
-
-	UploadFunction(*lambda.UploadFunctionInput) (*lambda.FunctionConfiguration, error)
 }

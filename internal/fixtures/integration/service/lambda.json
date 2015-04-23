@@ -1,9 +1,9 @@
 {
-	"api_version": "2014-11-11",
+	"api_version": "2015-03-31",
 	"cases": [
 		{
 			"description": "Making a basic request",
-			"operation": "ListEventSources",
+			"operation": "ListEventSourceMappings",
 			"input": {},
 			"assertions": [
 				{
@@ -22,7 +22,7 @@
 		},
 		{
 			"description": "Error handling",
-			"operation": "GetEventSource",
+			"operation": "GetEventSourceMapping",
 			"input": {
 				"UUID": "fake-uuid"
 			},

@@ -8,16 +8,15 @@ import (
 	"bytes"
 	"encoding/json"
 	"encoding/xml"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
+	"github.com/awslabs/aws-sdk-go/internal/util"
+	"github.com/stretchr/testify/assert"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"testing"
 	"time"
-
-	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
-	"github.com/awslabs/aws-sdk-go/internal/util"
-	"github.com/stretchr/testify/assert"
 )
 
 var _ bytes.Buffer // always import bytes
@@ -890,7 +889,7 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation5(input *Input
 var opInputService8TestCaseOperation5 *aws.Operation
 
 // InputService8TestCaseOperation6Request generates a request for the InputService8TestCaseOperation6 operation.
-func (c *InputService8ProtocolTest) InputService8TestCaseOperation6Request(input *InputService8TestShapeInputShape) (req *aws.Request, output *InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation6Output) {
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation6Request(input *InputService8TestShapeInputShape) (req *aws.Request, output *InputService8TestShapeInputService8TestCaseOperation6Output) {
 
 	if opInputService8TestCaseOperation6 == nil {
 		opInputService8TestCaseOperation6 = &aws.Operation{
@@ -905,12 +904,12 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation6Request(input
 	}
 
 	req = c.newRequest(opInputService8TestCaseOperation6, input, output)
-	output = &InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation6Output{}
+	output = &InputService8TestShapeInputService8TestCaseOperation6Output{}
 	req.Data = output
 	return
 }
 
-func (c *InputService8ProtocolTest) InputService8TestCaseOperation6(input *InputService8TestShapeInputShape) (output *InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation6Output, err error) {
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation6(input *InputService8TestShapeInputShape) (output *InputService8TestShapeInputService8TestCaseOperation6Output, err error) {
 	req, out := c.InputService8TestCaseOperation6Request(input)
 	output = out
 	err = req.Send()
@@ -959,11 +958,11 @@ type metadataInputService8TestShapeInputService8TestCaseOperation5Output struct 
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type InputService8TestShapeInputService8TestShapeInputService8TestCaseOperation6Output struct {
-	metadataInputService8TestShapeInputService8TestShapeInputService8TestCaseOperation6Output `json:"-", xml:"-"`
+type InputService8TestShapeInputService8TestCaseOperation6Output struct {
+	metadataInputService8TestShapeInputService8TestCaseOperation6Output `json:"-", xml:"-"`
 }
 
-type metadataInputService8TestShapeInputService8TestShapeInputService8TestCaseOperation6Output struct {
+type metadataInputService8TestShapeInputService8TestCaseOperation6Output struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1567,3 +1566,4 @@ func TestInputService9ProtocolTestTimestampValuesCase2(t *testing.T) {
 	assert.Equal(t, "Sun, 25 Jan 2015 08:00:00 GMT", r.Header.Get("x-amz-timearg"))
 
 }
+

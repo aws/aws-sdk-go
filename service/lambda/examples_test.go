@@ -13,20 +13,91 @@ import (
 var _ time.Duration
 var _ bytes.Buffer
 
-func ExampleLambda_AddEventSource() {
+func ExampleLambda_AddPermission() {
 	svc := lambda.New(nil)
 
-	params := &lambda.AddEventSourceInput{
-		EventSource:  aws.String("String"),       // Required
-		FunctionName: aws.String("FunctionName"), // Required
-		Role:         aws.String("RoleArn"),      // Required
-		BatchSize:    aws.Long(1),
-		Parameters: &map[string]*string{
-			"Key": aws.String("String"), // Required
-			// More values...
-		},
+	params := &lambda.AddPermissionInput{
+		Action:        aws.String("Action"),       // Required
+		FunctionName:  aws.String("FunctionName"), // Required
+		Principal:     aws.String("Principal"),    // Required
+		StatementID:   aws.String("StatementId"),  // Required
+		SourceARN:     aws.String("Arn"),
+		SourceAccount: aws.String("SourceOwner"),
 	}
-	resp, err := svc.AddEventSource(params)
+	resp, err := svc.AddPermission(params)
+
+	if awserr := aws.Error(err); awserr != nil {
+		// A service error occurred.
+		fmt.Println("Error:", awserr.Code, awserr.Message)
+	} else if err != nil {
+		// A non-service error occurred.
+		panic(err)
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleLambda_CreateEventSourceMapping() {
+	svc := lambda.New(nil)
+
+	params := &lambda.CreateEventSourceMappingInput{
+		EventSourceARN:   aws.String("Arn"),                 // Required
+		FunctionName:     aws.String("FunctionName"),        // Required
+		StartingPosition: aws.String("EventSourcePosition"), // Required
+		BatchSize:        aws.Long(1),
+		Enabled:          aws.Boolean(true),
+	}
+	resp, err := svc.CreateEventSourceMapping(params)
+
+	if awserr := aws.Error(err); awserr != nil {
+		// A service error occurred.
+		fmt.Println("Error:", awserr.Code, awserr.Message)
+	} else if err != nil {
+		// A non-service error occurred.
+		panic(err)
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleLambda_CreateFunction() {
+	svc := lambda.New(nil)
+
+	params := &lambda.CreateFunctionInput{
+		Code: &lambda.FunctionCode{ // Required
+			ZipFile: []byte("PAYLOAD"),
+		},
+		FunctionName: aws.String("FunctionName"), // Required
+		Handler:      aws.String("Handler"),      // Required
+		Role:         aws.String("RoleArn"),      // Required
+		Runtime:      aws.String("Runtime"),      // Required
+		Description:  aws.String("Description"),
+		MemorySize:   aws.Long(1),
+		Timeout:      aws.Long(1),
+	}
+	resp, err := svc.CreateFunction(params)
+
+	if awserr := aws.Error(err); awserr != nil {
+		// A service error occurred.
+		fmt.Println("Error:", awserr.Code, awserr.Message)
+	} else if err != nil {
+		// A non-service error occurred.
+		panic(err)
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleLambda_DeleteEventSourceMapping() {
+	svc := lambda.New(nil)
+
+	params := &lambda.DeleteEventSourceMappingInput{
+		UUID: aws.String("String"), // Required
+	}
+	resp, err := svc.DeleteEventSourceMapping(params)
 
 	if awserr := aws.Error(err); awserr != nil {
 		// A service error occurred.
@@ -60,13 +131,13 @@ func ExampleLambda_DeleteFunction() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
-func ExampleLambda_GetEventSource() {
+func ExampleLambda_GetEventSourceMapping() {
 	svc := lambda.New(nil)
 
-	params := &lambda.GetEventSourceInput{
+	params := &lambda.GetEventSourceMappingInput{
 		UUID: aws.String("String"), // Required
 	}
-	resp, err := svc.GetEventSource(params)
+	resp, err := svc.GetEventSourceMapping(params)
 
 	if awserr := aws.Error(err); awserr != nil {
 		// A service error occurred.
@@ -120,6 +191,50 @@ func ExampleLambda_GetFunctionConfiguration() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleLambda_GetPolicy() {
+	svc := lambda.New(nil)
+
+	params := &lambda.GetPolicyInput{
+		FunctionName: aws.String("FunctionName"), // Required
+	}
+	resp, err := svc.GetPolicy(params)
+
+	if awserr := aws.Error(err); awserr != nil {
+		// A service error occurred.
+		fmt.Println("Error:", awserr.Code, awserr.Message)
+	} else if err != nil {
+		// A non-service error occurred.
+		panic(err)
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleLambda_Invoke() {
+	svc := lambda.New(nil)
+
+	params := &lambda.InvokeInput{
+		FunctionName:   aws.String("FunctionName"), // Required
+		ClientContext:  aws.String("String"),
+		InvocationType: aws.String("InvocationType"),
+		LogType:        aws.String("LogType"),
+		Payload:        []byte("PAYLOAD"),
+	}
+	resp, err := svc.Invoke(params)
+
+	if awserr := aws.Error(err); awserr != nil {
+		// A service error occurred.
+		fmt.Println("Error:", awserr.Code, awserr.Message)
+	} else if err != nil {
+		// A non-service error occurred.
+		panic(err)
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleLambda_InvokeAsync() {
 	svc := lambda.New(nil)
 
@@ -141,16 +256,16 @@ func ExampleLambda_InvokeAsync() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
-func ExampleLambda_ListEventSources() {
+func ExampleLambda_ListEventSourceMappings() {
 	svc := lambda.New(nil)
 
-	params := &lambda.ListEventSourcesInput{
-		EventSourceARN: aws.String("String"),
+	params := &lambda.ListEventSourceMappingsInput{
+		EventSourceARN: aws.String("Arn"),
 		FunctionName:   aws.String("FunctionName"),
 		Marker:         aws.String("String"),
 		MaxItems:       aws.Long(1),
 	}
-	resp, err := svc.ListEventSources(params)
+	resp, err := svc.ListEventSourceMappings(params)
 
 	if awserr := aws.Error(err); awserr != nil {
 		// A service error occurred.
@@ -185,13 +300,58 @@ func ExampleLambda_ListFunctions() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
-func ExampleLambda_RemoveEventSource() {
+func ExampleLambda_RemovePermission() {
 	svc := lambda.New(nil)
 
-	params := &lambda.RemoveEventSourceInput{
-		UUID: aws.String("String"), // Required
+	params := &lambda.RemovePermissionInput{
+		FunctionName: aws.String("FunctionName"), // Required
+		StatementID:  aws.String("StatementId"),  // Required
 	}
-	resp, err := svc.RemoveEventSource(params)
+	resp, err := svc.RemovePermission(params)
+
+	if awserr := aws.Error(err); awserr != nil {
+		// A service error occurred.
+		fmt.Println("Error:", awserr.Code, awserr.Message)
+	} else if err != nil {
+		// A non-service error occurred.
+		panic(err)
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleLambda_UpdateEventSourceMapping() {
+	svc := lambda.New(nil)
+
+	params := &lambda.UpdateEventSourceMappingInput{
+		UUID:         aws.String("String"), // Required
+		BatchSize:    aws.Long(1),
+		Enabled:      aws.Boolean(true),
+		FunctionName: aws.String("FunctionName"),
+	}
+	resp, err := svc.UpdateEventSourceMapping(params)
+
+	if awserr := aws.Error(err); awserr != nil {
+		// A service error occurred.
+		fmt.Println("Error:", awserr.Code, awserr.Message)
+	} else if err != nil {
+		// A non-service error occurred.
+		panic(err)
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleLambda_UpdateFunctionCode() {
+	svc := lambda.New(nil)
+
+	params := &lambda.UpdateFunctionCodeInput{
+		FunctionName: aws.String("FunctionName"), // Required
+		ZipFile:      []byte("PAYLOAD"),          // Required
+	}
+	resp, err := svc.UpdateFunctionCode(params)
 
 	if awserr := aws.Error(err); awserr != nil {
 		// A service error occurred.
@@ -217,34 +377,6 @@ func ExampleLambda_UpdateFunctionConfiguration() {
 		Timeout:      aws.Long(1),
 	}
 	resp, err := svc.UpdateFunctionConfiguration(params)
-
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
-		// A non-service error occurred.
-		panic(err)
-	}
-
-	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
-}
-
-func ExampleLambda_UploadFunction() {
-	svc := lambda.New(nil)
-
-	params := &lambda.UploadFunctionInput{
-		FunctionName: aws.String("FunctionName"),         // Required
-		FunctionZip:  bytes.NewReader([]byte("PAYLOAD")), // Required
-		Handler:      aws.String("Handler"),              // Required
-		Mode:         aws.String("Mode"),                 // Required
-		Role:         aws.String("RoleArn"),              // Required
-		Runtime:      aws.String("Runtime"),              // Required
-		Description:  aws.String("Description"),
-		MemorySize:   aws.Long(1),
-		Timeout:      aws.Long(1),
-	}
-	resp, err := svc.UploadFunction(params)
 
 	if awserr := aws.Error(err); awserr != nil {
 		// A service error occurred.
