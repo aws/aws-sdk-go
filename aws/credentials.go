@@ -246,7 +246,7 @@ func (p *iamProvider) Credentials() (*Credentials, error) {
 
 	resp, err := IAMClient.Get(metadataCredentialsEndpoint)
 	if err != nil {
-		return nil, fmt.Errorf("listing IAM credentials")
+		return nil, fmt.Errorf("%s listing IAM credentials", err)
 	}
 	defer func() {
 		_ = resp.Body.Close()
