@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"net/url"
 	"reflect"
+	"strings"
 	"time"
 )
 
@@ -81,6 +82,10 @@ func (r *Request) DataFilled() bool {
 
 func (r *Request) SetBufferBody(buf []byte) {
 	r.SetReaderBody(bytes.NewReader(buf))
+}
+
+func (r *Request) SetStringBody(s string) {
+	r.SetReaderBody(strings.NewReader(s))
 }
 
 func (r *Request) SetReaderBody(reader io.ReadSeeker) {
