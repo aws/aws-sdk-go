@@ -29,10 +29,10 @@ func BuildContentLength(r *Request) {
 	case lener:
 		length = int64(body.Len())
 	case io.Seeker:
-		cur, _ := body.Seek(0, 1)
+		r.bodyStart, _ = body.Seek(0, 1)
 		end, _ := body.Seek(0, 2)
-		body.Seek(cur, 0) // make sure to seek back to original location
-		length = end - cur
+		body.Seek(r.bodyStart, 0) // make sure to seek back to original location
+		length = end - r.bodyStart
 	default:
 		panic("Cannot get length of body, must provide `ContentLength`")
 	}
@@ -62,6 +62,9 @@ func ValidateResponseHandler(r *Request) {
 func RetryHandler(r *Request) {
 	r.Retryable = r.Service.ShouldRetry(r)
 	r.RetryDelay = r.Service.RetryRules(r)
+	if r.Retryable {
+		r.ResetReaderBody()
+	}
 }
 
 func AfterRetryHandler(r *Request) {
