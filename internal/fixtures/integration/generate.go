@@ -42,8 +42,7 @@ type TestAssertion struct {
 	Expected  interface{}
 }
 
-var tplTestSuite = template.Must(template.New("testsuite").Parse(`
-// +build integration
+var tplTestSuite = template.Must(template.New("testsuite").Parse(`// +build integration
 
 package {{ .API.PackageName }}_test
 

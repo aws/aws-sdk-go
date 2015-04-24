@@ -957,7 +957,7 @@ type Cluster struct {
 	// the associated instances can accept tasks.
 	Status *string `locationName:"status" type:"string"`
 
-	metadataCluster `json:"-", xml:"-"`
+	metadataCluster `json:"-" xml:"-"`
 }
 
 type metadataCluster struct {
@@ -986,7 +986,7 @@ type Container struct {
 	// The Amazon Resource Name (ARN) of the task.
 	TaskARN *string `locationName:"taskArn" type:"string"`
 
-	metadataContainer `json:"-", xml:"-"`
+	metadataContainer `json:"-" xml:"-"`
 }
 
 type metadataContainer struct {
@@ -1051,7 +1051,7 @@ type ContainerDefinition struct {
 	// Data volumes to mount from another container.
 	VolumesFrom []*VolumeFrom `locationName:"volumesFrom" type:"list"`
 
-	metadataContainerDefinition `json:"-", xml:"-"`
+	metadataContainerDefinition `json:"-" xml:"-"`
 }
 
 type metadataContainerDefinition struct {
@@ -1094,7 +1094,7 @@ type ContainerInstance struct {
 	// ACTIVE indicates that the container instance can accept tasks.
 	Status *string `locationName:"status" type:"string"`
 
-	metadataContainerInstance `json:"-", xml:"-"`
+	metadataContainerInstance `json:"-" xml:"-"`
 }
 
 type metadataContainerInstance struct {
@@ -1111,7 +1111,7 @@ type ContainerOverride struct {
 	// The name of the container that receives the override.
 	Name *string `locationName:"name" type:"string"`
 
-	metadataContainerOverride `json:"-", xml:"-"`
+	metadataContainerOverride `json:"-" xml:"-"`
 }
 
 type metadataContainerOverride struct {
@@ -1124,7 +1124,7 @@ type CreateClusterInput struct {
 	// lowercase), numbers, hyphens, and underscores are allowed.
 	ClusterName *string `locationName:"clusterName" type:"string"`
 
-	metadataCreateClusterInput `json:"-", xml:"-"`
+	metadataCreateClusterInput `json:"-" xml:"-"`
 }
 
 type metadataCreateClusterInput struct {
@@ -1135,7 +1135,7 @@ type CreateClusterOutput struct {
 	// The full description of your new cluster.
 	Cluster *Cluster `locationName:"cluster" type:"structure"`
 
-	metadataCreateClusterOutput `json:"-", xml:"-"`
+	metadataCreateClusterOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateClusterOutput struct {
@@ -1175,7 +1175,7 @@ type CreateServiceInput struct {
 	// of the task definition that you want to run in your service.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string"`
 
-	metadataCreateServiceInput `json:"-", xml:"-"`
+	metadataCreateServiceInput `json:"-" xml:"-"`
 }
 
 type metadataCreateServiceInput struct {
@@ -1186,7 +1186,7 @@ type CreateServiceOutput struct {
 	// The full description of your service following the create call.
 	Service *Service `locationName:"service" type:"structure"`
 
-	metadataCreateServiceOutput `json:"-", xml:"-"`
+	metadataCreateServiceOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateServiceOutput struct {
@@ -1198,7 +1198,7 @@ type DeleteClusterInput struct {
 	// want to delete.
 	Cluster *string `locationName:"cluster" type:"string" required:"true"`
 
-	metadataDeleteClusterInput `json:"-", xml:"-"`
+	metadataDeleteClusterInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteClusterInput struct {
@@ -1209,7 +1209,7 @@ type DeleteClusterOutput struct {
 	// The full description of the deleted cluster.
 	Cluster *Cluster `locationName:"cluster" type:"structure"`
 
-	metadataDeleteClusterOutput `json:"-", xml:"-"`
+	metadataDeleteClusterOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteClusterOutput struct {
@@ -1223,7 +1223,7 @@ type DeleteServiceInput struct {
 	// The name of the service you want to delete.
 	Service *string `locationName:"service" type:"string" required:"true"`
 
-	metadataDeleteServiceInput `json:"-", xml:"-"`
+	metadataDeleteServiceInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteServiceInput struct {
@@ -1233,7 +1233,7 @@ type metadataDeleteServiceInput struct {
 type DeleteServiceOutput struct {
 	Service *Service `locationName:"service" type:"structure"`
 
-	metadataDeleteServiceOutput `json:"-", xml:"-"`
+	metadataDeleteServiceOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteServiceOutput struct {
@@ -1269,7 +1269,7 @@ type Deployment struct {
 	// The Unix time in seconds and milliseconds when the service was last updated.
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"unix"`
 
-	metadataDeployment `json:"-", xml:"-"`
+	metadataDeployment `json:"-" xml:"-"`
 }
 
 type metadataDeployment struct {
@@ -1295,7 +1295,7 @@ type DeregisterContainerInstanceInput struct {
 	// instance.
 	Force *bool `locationName:"force" type:"boolean"`
 
-	metadataDeregisterContainerInstanceInput `json:"-", xml:"-"`
+	metadataDeregisterContainerInstanceInput `json:"-" xml:"-"`
 }
 
 type metadataDeregisterContainerInstanceInput struct {
@@ -1307,7 +1307,7 @@ type DeregisterContainerInstanceOutput struct {
 	// registered with a cluster.
 	ContainerInstance *ContainerInstance `locationName:"containerInstance" type:"structure"`
 
-	metadataDeregisterContainerInstanceOutput `json:"-", xml:"-"`
+	metadataDeregisterContainerInstanceOutput `json:"-" xml:"-"`
 }
 
 type metadataDeregisterContainerInstanceOutput struct {
@@ -1319,7 +1319,7 @@ type DeregisterTaskDefinitionInput struct {
 	// of the task definition that you want to deregister.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
 
-	metadataDeregisterTaskDefinitionInput `json:"-", xml:"-"`
+	metadataDeregisterTaskDefinitionInput `json:"-" xml:"-"`
 }
 
 type metadataDeregisterTaskDefinitionInput struct {
@@ -1330,7 +1330,7 @@ type DeregisterTaskDefinitionOutput struct {
 	// The full description of the deregistered task.
 	TaskDefinition *TaskDefinition `locationName:"taskDefinition" type:"structure"`
 
-	metadataDeregisterTaskDefinitionOutput `json:"-", xml:"-"`
+	metadataDeregisterTaskDefinitionOutput `json:"-" xml:"-"`
 }
 
 type metadataDeregisterTaskDefinitionOutput struct {
@@ -1342,7 +1342,7 @@ type DescribeClustersInput struct {
 	// (ARN) entries. If you do not specify a cluster, the default cluster is assumed.
 	Clusters []*string `locationName:"clusters" type:"list"`
 
-	metadataDescribeClustersInput `json:"-", xml:"-"`
+	metadataDescribeClustersInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeClustersInput struct {
@@ -1355,7 +1355,7 @@ type DescribeClustersOutput struct {
 
 	Failures []*Failure `locationName:"failures" type:"list"`
 
-	metadataDescribeClustersOutput `json:"-", xml:"-"`
+	metadataDescribeClustersOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeClustersOutput struct {
@@ -1372,7 +1372,7 @@ type DescribeContainerInstancesInput struct {
 	// Name (ARN) entries.
 	ContainerInstances []*string `locationName:"containerInstances" type:"list" required:"true"`
 
-	metadataDescribeContainerInstancesInput `json:"-", xml:"-"`
+	metadataDescribeContainerInstancesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeContainerInstancesInput struct {
@@ -1385,7 +1385,7 @@ type DescribeContainerInstancesOutput struct {
 
 	Failures []*Failure `locationName:"failures" type:"list"`
 
-	metadataDescribeContainerInstancesOutput `json:"-", xml:"-"`
+	metadataDescribeContainerInstancesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeContainerInstancesOutput struct {
@@ -1399,7 +1399,7 @@ type DescribeServicesInput struct {
 	// A list of services you want to describe.
 	Services []*string `locationName:"services" type:"list" required:"true"`
 
-	metadataDescribeServicesInput `json:"-", xml:"-"`
+	metadataDescribeServicesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeServicesInput struct {
@@ -1413,7 +1413,7 @@ type DescribeServicesOutput struct {
 	// The list of services described.
 	Services []*Service `locationName:"services" type:"list"`
 
-	metadataDescribeServicesOutput `json:"-", xml:"-"`
+	metadataDescribeServicesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeServicesOutput struct {
@@ -1426,7 +1426,7 @@ type DescribeTaskDefinitionInput struct {
 	// of the task definition that you want to describe.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
 
-	metadataDescribeTaskDefinitionInput `json:"-", xml:"-"`
+	metadataDescribeTaskDefinitionInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTaskDefinitionInput struct {
@@ -1437,7 +1437,7 @@ type DescribeTaskDefinitionOutput struct {
 	// The full task definition description.
 	TaskDefinition *TaskDefinition `locationName:"taskDefinition" type:"structure"`
 
-	metadataDescribeTaskDefinitionOutput `json:"-", xml:"-"`
+	metadataDescribeTaskDefinitionOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTaskDefinitionOutput struct {
@@ -1453,7 +1453,7 @@ type DescribeTasksInput struct {
 	// A space-separated list of task UUIDs or full Amazon Resource Name (ARN) entries.
 	Tasks []*string `locationName:"tasks" type:"list" required:"true"`
 
-	metadataDescribeTasksInput `json:"-", xml:"-"`
+	metadataDescribeTasksInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTasksInput struct {
@@ -1466,7 +1466,7 @@ type DescribeTasksOutput struct {
 	// The list of tasks.
 	Tasks []*Task `locationName:"tasks" type:"list"`
 
-	metadataDescribeTasksOutput `json:"-", xml:"-"`
+	metadataDescribeTasksOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTasksOutput struct {
@@ -1484,7 +1484,7 @@ type DiscoverPollEndpointInput struct {
 	// example, arn:aws:ecs:region:aws_account_id:container-instance/container_instance_UUID.
 	ContainerInstance *string `locationName:"containerInstance" type:"string"`
 
-	metadataDiscoverPollEndpointInput `json:"-", xml:"-"`
+	metadataDiscoverPollEndpointInput `json:"-" xml:"-"`
 }
 
 type metadataDiscoverPollEndpointInput struct {
@@ -1495,7 +1495,7 @@ type DiscoverPollEndpointOutput struct {
 	// The endpoint for the Amazon ECS agent to poll.
 	Endpoint *string `locationName:"endpoint" type:"string"`
 
-	metadataDiscoverPollEndpointOutput `json:"-", xml:"-"`
+	metadataDiscoverPollEndpointOutput `json:"-" xml:"-"`
 }
 
 type metadataDiscoverPollEndpointOutput struct {
@@ -1509,7 +1509,7 @@ type Failure struct {
 	// The reason for the failure.
 	Reason *string `locationName:"reason" type:"string"`
 
-	metadataFailure `json:"-", xml:"-"`
+	metadataFailure `json:"-" xml:"-"`
 }
 
 type metadataFailure struct {
@@ -1522,7 +1522,7 @@ type HostVolumeProperties struct {
 	// for you.
 	SourcePath *string `locationName:"sourcePath" type:"string"`
 
-	metadataHostVolumeProperties `json:"-", xml:"-"`
+	metadataHostVolumeProperties `json:"-" xml:"-"`
 }
 
 type metadataHostVolumeProperties struct {
@@ -1536,7 +1536,7 @@ type KeyValuePair struct {
 	// The value of the key value pair.
 	Value *string `locationName:"value" type:"string"`
 
-	metadataKeyValuePair `json:"-", xml:"-"`
+	metadataKeyValuePair `json:"-" xml:"-"`
 }
 
 type metadataKeyValuePair struct {
@@ -1559,7 +1559,7 @@ type ListClustersInput struct {
 	// nextToken value. This value is null when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListClustersInput `json:"-", xml:"-"`
+	metadataListClustersInput `json:"-" xml:"-"`
 }
 
 type metadataListClustersInput struct {
@@ -1577,7 +1577,7 @@ type ListClustersOutput struct {
 	// more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListClustersOutput `json:"-", xml:"-"`
+	metadataListClustersOutput `json:"-" xml:"-"`
 }
 
 type metadataListClustersOutput struct {
@@ -1607,7 +1607,7 @@ type ListContainerInstancesInput struct {
 	// to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListContainerInstancesInput `json:"-", xml:"-"`
+	metadataListContainerInstancesInput `json:"-" xml:"-"`
 }
 
 type metadataListContainerInstancesInput struct {
@@ -1625,7 +1625,7 @@ type ListContainerInstancesOutput struct {
 	// when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListContainerInstancesOutput `json:"-", xml:"-"`
+	metadataListContainerInstancesOutput `json:"-" xml:"-"`
 }
 
 type metadataListContainerInstancesOutput struct {
@@ -1653,7 +1653,7 @@ type ListServicesInput struct {
 	// nextToken value. This value is null when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListServicesInput `json:"-", xml:"-"`
+	metadataListServicesInput `json:"-" xml:"-"`
 }
 
 type metadataListServicesInput struct {
@@ -1671,7 +1671,7 @@ type ListServicesOutput struct {
 	// with the specified cluster.
 	ServiceARNs []*string `locationName:"serviceArns" type:"list"`
 
-	metadataListServicesOutput `json:"-", xml:"-"`
+	metadataListServicesOutput `json:"-" xml:"-"`
 }
 
 type metadataListServicesOutput struct {
@@ -1701,7 +1701,7 @@ type ListTaskDefinitionFamiliesInput struct {
 	// to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListTaskDefinitionFamiliesInput `json:"-", xml:"-"`
+	metadataListTaskDefinitionFamiliesInput `json:"-" xml:"-"`
 }
 
 type metadataListTaskDefinitionFamiliesInput struct {
@@ -1719,7 +1719,7 @@ type ListTaskDefinitionFamiliesOutput struct {
 	// null when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListTaskDefinitionFamiliesOutput `json:"-", xml:"-"`
+	metadataListTaskDefinitionFamiliesOutput `json:"-" xml:"-"`
 }
 
 type metadataListTaskDefinitionFamiliesOutput struct {
@@ -1748,7 +1748,7 @@ type ListTaskDefinitionsInput struct {
 	// to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListTaskDefinitionsInput `json:"-", xml:"-"`
+	metadataListTaskDefinitionsInput `json:"-" xml:"-"`
 }
 
 type metadataListTaskDefinitionsInput struct {
@@ -1766,7 +1766,7 @@ type ListTaskDefinitionsOutput struct {
 	// request.
 	TaskDefinitionARNs []*string `locationName:"taskDefinitionArns" type:"list"`
 
-	metadataListTaskDefinitionsOutput `json:"-", xml:"-"`
+	metadataListTaskDefinitionsOutput `json:"-" xml:"-"`
 }
 
 type metadataListTaskDefinitionsOutput struct {
@@ -1814,7 +1814,7 @@ type ListTasksInput struct {
 	// that value.
 	StartedBy *string `locationName:"startedBy" type:"string"`
 
-	metadataListTasksInput `json:"-", xml:"-"`
+	metadataListTasksInput `json:"-" xml:"-"`
 }
 
 type metadataListTasksInput struct {
@@ -1831,7 +1831,7 @@ type ListTasksOutput struct {
 	// The list of task Amazon Resource Name (ARN) entries for the ListTasks request.
 	TaskARNs []*string `locationName:"taskArns" type:"list"`
 
-	metadataListTasksOutput `json:"-", xml:"-"`
+	metadataListTasksOutput `json:"-" xml:"-"`
 }
 
 type metadataListTasksOutput struct {
@@ -1848,7 +1848,7 @@ type LoadBalancer struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `locationName:"loadBalancerName" type:"string"`
 
-	metadataLoadBalancer `json:"-", xml:"-"`
+	metadataLoadBalancer `json:"-" xml:"-"`
 }
 
 type metadataLoadBalancer struct {
@@ -1867,7 +1867,7 @@ type MountPoint struct {
 	// The name of the volume to mount.
 	SourceVolume *string `locationName:"sourceVolume" type:"string"`
 
-	metadataMountPoint `json:"-", xml:"-"`
+	metadataMountPoint `json:"-" xml:"-"`
 }
 
 type metadataMountPoint struct {
@@ -1884,7 +1884,7 @@ type NetworkBinding struct {
 	// The port number on the host that is used with the network binding.
 	HostPort *int64 `locationName:"hostPort" type:"integer"`
 
-	metadataNetworkBinding `json:"-", xml:"-"`
+	metadataNetworkBinding `json:"-" xml:"-"`
 }
 
 type metadataNetworkBinding struct {
@@ -1917,7 +1917,7 @@ type PortMapping struct {
 	// reserved ports (automatically assigned ports do not count toward this limit).
 	HostPort *int64 `locationName:"hostPort" type:"integer"`
 
-	metadataPortMapping `json:"-", xml:"-"`
+	metadataPortMapping `json:"-" xml:"-"`
 }
 
 type metadataPortMapping struct {
@@ -1938,7 +1938,7 @@ type RegisterContainerInstanceInput struct {
 
 	VersionInfo *VersionInfo `locationName:"versionInfo" type:"structure"`
 
-	metadataRegisterContainerInstanceInput `json:"-", xml:"-"`
+	metadataRegisterContainerInstanceInput `json:"-" xml:"-"`
 }
 
 type metadataRegisterContainerInstanceInput struct {
@@ -1950,7 +1950,7 @@ type RegisterContainerInstanceOutput struct {
 	// registered with a cluster.
 	ContainerInstance *ContainerInstance `locationName:"containerInstance" type:"structure"`
 
-	metadataRegisterContainerInstanceOutput `json:"-", xml:"-"`
+	metadataRegisterContainerInstanceOutput `json:"-" xml:"-"`
 }
 
 type metadataRegisterContainerInstanceOutput struct {
@@ -1972,7 +1972,7 @@ type RegisterTaskDefinitionInput struct {
 	// may use.
 	Volumes []*Volume `locationName:"volumes" type:"list"`
 
-	metadataRegisterTaskDefinitionInput `json:"-", xml:"-"`
+	metadataRegisterTaskDefinitionInput `json:"-" xml:"-"`
 }
 
 type metadataRegisterTaskDefinitionInput struct {
@@ -1982,7 +1982,7 @@ type metadataRegisterTaskDefinitionInput struct {
 type RegisterTaskDefinitionOutput struct {
 	TaskDefinition *TaskDefinition `locationName:"taskDefinition" type:"structure"`
 
-	metadataRegisterTaskDefinitionOutput `json:"-", xml:"-"`
+	metadataRegisterTaskDefinitionOutput `json:"-" xml:"-"`
 }
 
 type metadataRegisterTaskDefinitionOutput struct {
@@ -2012,7 +2012,7 @@ type Resource struct {
 	// The type of the resource, such as INTEGER, DOUBLE, LONG, or STRINGSET.
 	Type *string `locationName:"type" type:"string"`
 
-	metadataResource `json:"-", xml:"-"`
+	metadataResource `json:"-" xml:"-"`
 }
 
 type metadataResource struct {
@@ -2051,7 +2051,7 @@ type RunTaskInput struct {
 	// of the task definition that you want to run.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
 
-	metadataRunTaskInput `json:"-", xml:"-"`
+	metadataRunTaskInput `json:"-" xml:"-"`
 }
 
 type metadataRunTaskInput struct {
@@ -2066,7 +2066,7 @@ type RunTaskOutput struct {
 	// placed on your cluster will be described here.
 	Tasks []*Task `locationName:"tasks" type:"list"`
 
-	metadataRunTaskOutput `json:"-", xml:"-"`
+	metadataRunTaskOutput `json:"-" xml:"-"`
 }
 
 type metadataRunTaskOutput struct {
@@ -2122,7 +2122,7 @@ type Service struct {
 	// UpdateService.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string"`
 
-	metadataService `json:"-", xml:"-"`
+	metadataService `json:"-" xml:"-"`
 }
 
 type metadataService struct {
@@ -2139,7 +2139,7 @@ type ServiceEvent struct {
 	// The event message.
 	Message *string `locationName:"message" type:"string"`
 
-	metadataServiceEvent `json:"-", xml:"-"`
+	metadataServiceEvent `json:"-" xml:"-"`
 }
 
 type metadataServiceEvent struct {
@@ -2178,7 +2178,7 @@ type StartTaskInput struct {
 	// of the task definition that you want to start.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
 
-	metadataStartTaskInput `json:"-", xml:"-"`
+	metadataStartTaskInput `json:"-" xml:"-"`
 }
 
 type metadataStartTaskInput struct {
@@ -2193,7 +2193,7 @@ type StartTaskOutput struct {
 	// placed on your container instances will be described here.
 	Tasks []*Task `locationName:"tasks" type:"list"`
 
-	metadataStartTaskOutput `json:"-", xml:"-"`
+	metadataStartTaskOutput `json:"-" xml:"-"`
 }
 
 type metadataStartTaskOutput struct {
@@ -2210,7 +2210,7 @@ type StopTaskInput struct {
 	// like to stop.
 	Task *string `locationName:"task" type:"string" required:"true"`
 
-	metadataStopTaskInput `json:"-", xml:"-"`
+	metadataStopTaskInput `json:"-" xml:"-"`
 }
 
 type metadataStopTaskInput struct {
@@ -2220,7 +2220,7 @@ type metadataStopTaskInput struct {
 type StopTaskOutput struct {
 	Task *Task `locationName:"task" type:"structure"`
 
-	metadataStopTaskOutput `json:"-", xml:"-"`
+	metadataStopTaskOutput `json:"-" xml:"-"`
 }
 
 type metadataStopTaskOutput struct {
@@ -2251,7 +2251,7 @@ type SubmitContainerStateChangeInput struct {
 	// container.
 	Task *string `locationName:"task" type:"string"`
 
-	metadataSubmitContainerStateChangeInput `json:"-", xml:"-"`
+	metadataSubmitContainerStateChangeInput `json:"-" xml:"-"`
 }
 
 type metadataSubmitContainerStateChangeInput struct {
@@ -2262,7 +2262,7 @@ type SubmitContainerStateChangeOutput struct {
 	// Acknowledgement of the state change.
 	Acknowledgment *string `locationName:"acknowledgment" type:"string"`
 
-	metadataSubmitContainerStateChangeOutput `json:"-", xml:"-"`
+	metadataSubmitContainerStateChangeOutput `json:"-" xml:"-"`
 }
 
 type metadataSubmitContainerStateChangeOutput struct {
@@ -2284,7 +2284,7 @@ type SubmitTaskStateChangeInput struct {
 	// change request.
 	Task *string `locationName:"task" type:"string"`
 
-	metadataSubmitTaskStateChangeInput `json:"-", xml:"-"`
+	metadataSubmitTaskStateChangeInput `json:"-" xml:"-"`
 }
 
 type metadataSubmitTaskStateChangeInput struct {
@@ -2295,7 +2295,7 @@ type SubmitTaskStateChangeOutput struct {
 	// Acknowledgement of the state change.
 	Acknowledgment *string `locationName:"acknowledgment" type:"string"`
 
-	metadataSubmitTaskStateChangeOutput `json:"-", xml:"-"`
+	metadataSubmitTaskStateChangeOutput `json:"-" xml:"-"`
 }
 
 type metadataSubmitTaskStateChangeOutput struct {
@@ -2333,7 +2333,7 @@ type Task struct {
 	// the task.
 	TaskDefinitionARN *string `locationName:"taskDefinitionArn" type:"string"`
 
-	metadataTask `json:"-", xml:"-"`
+	metadataTask `json:"-" xml:"-"`
 }
 
 type metadataTask struct {
@@ -2366,7 +2366,7 @@ type TaskDefinition struct {
 	// in the Amazon EC2 Container Service Developer Guide.
 	Volumes []*Volume `locationName:"volumes" type:"list"`
 
-	metadataTaskDefinition `json:"-", xml:"-"`
+	metadataTaskDefinition `json:"-" xml:"-"`
 }
 
 type metadataTaskDefinition struct {
@@ -2379,7 +2379,7 @@ type TaskOverride struct {
 	// One or more container overrides sent to a task.
 	ContainerOverrides []*ContainerOverride `locationName:"containerOverrides" type:"list"`
 
-	metadataTaskOverride `json:"-", xml:"-"`
+	metadataTaskOverride `json:"-" xml:"-"`
 }
 
 type metadataTaskOverride struct {
@@ -2406,7 +2406,7 @@ type UpdateServiceInput struct {
 	// version is running.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string"`
 
-	metadataUpdateServiceInput `json:"-", xml:"-"`
+	metadataUpdateServiceInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateServiceInput struct {
@@ -2417,7 +2417,7 @@ type UpdateServiceOutput struct {
 	// The full description of your service following the update call.
 	Service *Service `locationName:"service" type:"structure"`
 
-	metadataUpdateServiceOutput `json:"-", xml:"-"`
+	metadataUpdateServiceOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateServiceOutput struct {
@@ -2435,7 +2435,7 @@ type VersionInfo struct {
 	// The Docker version running on the container instance.
 	DockerVersion *string `locationName:"dockerVersion" type:"string"`
 
-	metadataVersionInfo `json:"-", xml:"-"`
+	metadataVersionInfo `json:"-" xml:"-"`
 }
 
 type metadataVersionInfo struct {
@@ -2452,7 +2452,7 @@ type Volume struct {
 	// of container definition mountPoints.
 	Name *string `locationName:"name" type:"string"`
 
-	metadataVolume `json:"-", xml:"-"`
+	metadataVolume `json:"-" xml:"-"`
 }
 
 type metadataVolume struct {
@@ -2468,7 +2468,7 @@ type VolumeFrom struct {
 	// The name of the container to mount volumes from.
 	SourceContainer *string `locationName:"sourceContainer" type:"string"`
 
-	metadataVolumeFrom `json:"-", xml:"-"`
+	metadataVolumeFrom `json:"-" xml:"-"`
 }
 
 type metadataVolumeFrom struct {

@@ -767,7 +767,7 @@ type Body struct {
 	// clients, or clients on high-latency networks (such as mobile devices).
 	Text *Content `type:"structure"`
 
-	metadataBody `json:"-", xml:"-"`
+	metadataBody `json:"-" xml:"-"`
 }
 
 type metadataBody struct {
@@ -786,7 +786,7 @@ type Content struct {
 	// The textual data of the content.
 	Data *string `type:"string" required:"true"`
 
-	metadataContent `json:"-", xml:"-"`
+	metadataContent `json:"-" xml:"-"`
 }
 
 type metadataContent struct {
@@ -799,7 +799,7 @@ type DeleteIdentityInput struct {
 	// The identity to be removed from the list of identities for the AWS Account.
 	Identity *string `type:"string" required:"true"`
 
-	metadataDeleteIdentityInput `json:"-", xml:"-"`
+	metadataDeleteIdentityInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteIdentityInput struct {
@@ -809,7 +809,7 @@ type metadataDeleteIdentityInput struct {
 // An empty element. Receiving this element indicates that the request completed
 // successfully.
 type DeleteIdentityOutput struct {
-	metadataDeleteIdentityOutput `json:"-", xml:"-"`
+	metadataDeleteIdentityOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteIdentityOutput struct {
@@ -822,7 +822,7 @@ type DeleteVerifiedEmailAddressInput struct {
 	// An email address to be removed from the list of verified addresses.
 	EmailAddress *string `type:"string" required:"true"`
 
-	metadataDeleteVerifiedEmailAddressInput `json:"-", xml:"-"`
+	metadataDeleteVerifiedEmailAddressInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteVerifiedEmailAddressInput struct {
@@ -830,7 +830,7 @@ type metadataDeleteVerifiedEmailAddressInput struct {
 }
 
 type DeleteVerifiedEmailAddressOutput struct {
-	metadataDeleteVerifiedEmailAddressOutput `json:"-", xml:"-"`
+	metadataDeleteVerifiedEmailAddressOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteVerifiedEmailAddressOutput struct {
@@ -854,7 +854,7 @@ type Destination struct {
 	// The To: field(s) of the message.
 	ToAddresses []*string `type:"list"`
 
-	metadataDestination `json:"-", xml:"-"`
+	metadataDestination `json:"-" xml:"-"`
 }
 
 type metadataDestination struct {
@@ -872,7 +872,7 @@ type GetIdentityDKIMAttributesInput struct {
 	// both.
 	Identities []*string `type:"list" required:"true"`
 
-	metadataGetIdentityDKIMAttributesInput `json:"-", xml:"-"`
+	metadataGetIdentityDKIMAttributesInput `json:"-" xml:"-"`
 }
 
 type metadataGetIdentityDKIMAttributesInput struct {
@@ -884,7 +884,7 @@ type GetIdentityDKIMAttributesOutput struct {
 	// The DKIM attributes for an email address or a domain.
 	DKIMAttributes *map[string]*IdentityDKIMAttributes `locationName:"DkimAttributes" type:"map" required:"true"`
 
-	metadataGetIdentityDKIMAttributesOutput `json:"-", xml:"-"`
+	metadataGetIdentityDKIMAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataGetIdentityDKIMAttributesOutput struct {
@@ -895,7 +895,7 @@ type GetIdentityNotificationAttributesInput struct {
 	// A list of one or more identities.
 	Identities []*string `type:"list" required:"true"`
 
-	metadataGetIdentityNotificationAttributesInput `json:"-", xml:"-"`
+	metadataGetIdentityNotificationAttributesInput `json:"-" xml:"-"`
 }
 
 type metadataGetIdentityNotificationAttributesInput struct {
@@ -910,7 +910,7 @@ type GetIdentityNotificationAttributesOutput struct {
 	// A map of Identity to IdentityNotificationAttributes.
 	NotificationAttributes *map[string]*IdentityNotificationAttributes `type:"map" required:"true"`
 
-	metadataGetIdentityNotificationAttributesOutput `json:"-", xml:"-"`
+	metadataGetIdentityNotificationAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataGetIdentityNotificationAttributesOutput struct {
@@ -923,7 +923,7 @@ type GetIdentityVerificationAttributesInput struct {
 	// A list of identities.
 	Identities []*string `type:"list" required:"true"`
 
-	metadataGetIdentityVerificationAttributesInput `json:"-", xml:"-"`
+	metadataGetIdentityVerificationAttributesInput `json:"-" xml:"-"`
 }
 
 type metadataGetIdentityVerificationAttributesInput struct {
@@ -935,7 +935,7 @@ type GetIdentityVerificationAttributesOutput struct {
 	// A map of Identities to IdentityVerificationAttributes objects.
 	VerificationAttributes *map[string]*IdentityVerificationAttributes `type:"map" required:"true"`
 
-	metadataGetIdentityVerificationAttributesOutput `json:"-", xml:"-"`
+	metadataGetIdentityVerificationAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataGetIdentityVerificationAttributesOutput struct {
@@ -943,7 +943,7 @@ type metadataGetIdentityVerificationAttributesOutput struct {
 }
 
 type GetSendQuotaInput struct {
-	metadataGetSendQuotaInput `json:"-", xml:"-"`
+	metadataGetSendQuotaInput `json:"-" xml:"-"`
 }
 
 type metadataGetSendQuotaInput struct {
@@ -962,7 +962,7 @@ type GetSendQuotaOutput struct {
 	// The number of emails sent during the previous 24 hours.
 	SentLast24Hours *float64 `type:"double"`
 
-	metadataGetSendQuotaOutput `json:"-", xml:"-"`
+	metadataGetSendQuotaOutput `json:"-" xml:"-"`
 }
 
 type metadataGetSendQuotaOutput struct {
@@ -970,7 +970,7 @@ type metadataGetSendQuotaOutput struct {
 }
 
 type GetSendStatisticsInput struct {
-	metadataGetSendStatisticsInput `json:"-", xml:"-"`
+	metadataGetSendStatisticsInput `json:"-" xml:"-"`
 }
 
 type metadataGetSendStatisticsInput struct {
@@ -984,7 +984,7 @@ type GetSendStatisticsOutput struct {
 	// A list of data points, each of which represents 15 minutes of activity.
 	SendDataPoints []*SendDataPoint `type:"list"`
 
-	metadataGetSendStatisticsOutput `json:"-", xml:"-"`
+	metadataGetSendStatisticsOutput `json:"-" xml:"-"`
 }
 
 type metadataGetSendStatisticsOutput struct {
@@ -1013,7 +1013,7 @@ type IdentityDKIMAttributes struct {
 	// identities, not email address identities.)
 	DKIMVerificationStatus *string `locationName:"DkimVerificationStatus" type:"string" required:"true"`
 
-	metadataIdentityDKIMAttributes `json:"-", xml:"-"`
+	metadataIdentityDKIMAttributes `json:"-" xml:"-"`
 }
 
 type metadataIdentityDKIMAttributes struct {
@@ -1043,7 +1043,7 @@ type IdentityNotificationAttributes struct {
 	// will be published only to the specified bounce and complaint Amazon SNS topics.
 	ForwardingEnabled *bool `type:"boolean" required:"true"`
 
-	metadataIdentityNotificationAttributes `json:"-", xml:"-"`
+	metadataIdentityNotificationAttributes `json:"-" xml:"-"`
 }
 
 type metadataIdentityNotificationAttributes struct {
@@ -1059,7 +1059,7 @@ type IdentityVerificationAttributes struct {
 	// The verification token for a domain identity. Null for email address identities.
 	VerificationToken *string `type:"string"`
 
-	metadataIdentityVerificationAttributes `json:"-", xml:"-"`
+	metadataIdentityVerificationAttributes `json:"-" xml:"-"`
 }
 
 type metadataIdentityVerificationAttributes struct {
@@ -1079,7 +1079,7 @@ type ListIdentitiesInput struct {
 	// The token to use for pagination.
 	NextToken *string `type:"string"`
 
-	metadataListIdentitiesInput `json:"-", xml:"-"`
+	metadataListIdentitiesInput `json:"-" xml:"-"`
 }
 
 type metadataListIdentitiesInput struct {
@@ -1094,7 +1094,7 @@ type ListIdentitiesOutput struct {
 	// The token used for pagination.
 	NextToken *string `type:"string"`
 
-	metadataListIdentitiesOutput `json:"-", xml:"-"`
+	metadataListIdentitiesOutput `json:"-" xml:"-"`
 }
 
 type metadataListIdentitiesOutput struct {
@@ -1102,7 +1102,7 @@ type metadataListIdentitiesOutput struct {
 }
 
 type ListVerifiedEmailAddressesInput struct {
-	metadataListVerifiedEmailAddressesInput `json:"-", xml:"-"`
+	metadataListVerifiedEmailAddressesInput `json:"-" xml:"-"`
 }
 
 type metadataListVerifiedEmailAddressesInput struct {
@@ -1114,7 +1114,7 @@ type ListVerifiedEmailAddressesOutput struct {
 	// A list of email addresses that have been verified.
 	VerifiedEmailAddresses []*string `type:"list"`
 
-	metadataListVerifiedEmailAddressesOutput `json:"-", xml:"-"`
+	metadataListVerifiedEmailAddressesOutput `json:"-" xml:"-"`
 }
 
 type metadataListVerifiedEmailAddressesOutput struct {
@@ -1130,7 +1130,7 @@ type Message struct {
 	// in the recipient's inbox.
 	Subject *Content `type:"structure" required:"true"`
 
-	metadataMessage `json:"-", xml:"-"`
+	metadataMessage `json:"-" xml:"-"`
 }
 
 type metadataMessage struct {
@@ -1148,7 +1148,7 @@ type RawMessage struct {
 	// For more information, go to the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html).
 	Data []byte `type:"blob" required:"true"`
 
-	metadataRawMessage `json:"-", xml:"-"`
+	metadataRawMessage `json:"-" xml:"-"`
 }
 
 type metadataRawMessage struct {
@@ -1173,7 +1173,7 @@ type SendDataPoint struct {
 	// Time of the data point.
 	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataSendDataPoint `json:"-", xml:"-"`
+	metadataSendDataPoint `json:"-" xml:"-"`
 }
 
 type metadataSendDataPoint struct {
@@ -1211,7 +1211,7 @@ type SendEmailInput struct {
 	// For more information, see RFC 2047 (http://tools.ietf.org/html/rfc2047).
 	Source *string `type:"string" required:"true"`
 
-	metadataSendEmailInput `json:"-", xml:"-"`
+	metadataSendEmailInput `json:"-" xml:"-"`
 }
 
 type metadataSendEmailInput struct {
@@ -1223,7 +1223,7 @@ type SendEmailOutput struct {
 	// The unique message identifier returned from the SendEmail action.
 	MessageID *string `locationName:"MessageId" type:"string" required:"true"`
 
-	metadataSendEmailOutput `json:"-", xml:"-"`
+	metadataSendEmailOutput `json:"-" xml:"-"`
 }
 
 type metadataSendEmailOutput struct {
@@ -1263,7 +1263,7 @@ type SendRawEmailInput struct {
 	// text of the message.
 	Source *string `type:"string"`
 
-	metadataSendRawEmailInput `json:"-", xml:"-"`
+	metadataSendRawEmailInput `json:"-" xml:"-"`
 }
 
 type metadataSendRawEmailInput struct {
@@ -1275,7 +1275,7 @@ type SendRawEmailOutput struct {
 	// The unique message identifier returned from the SendRawEmail action.
 	MessageID *string `locationName:"MessageId" type:"string" required:"true"`
 
-	metadataSendRawEmailOutput `json:"-", xml:"-"`
+	metadataSendRawEmailOutput `json:"-" xml:"-"`
 }
 
 type metadataSendRawEmailOutput struct {
@@ -1292,7 +1292,7 @@ type SetIdentityDKIMEnabledInput struct {
 	// The identity for which DKIM signing should be enabled or disabled.
 	Identity *string `type:"string" required:"true"`
 
-	metadataSetIdentityDKIMEnabledInput `json:"-", xml:"-"`
+	metadataSetIdentityDKIMEnabledInput `json:"-" xml:"-"`
 }
 
 type metadataSetIdentityDKIMEnabledInput struct {
@@ -1302,7 +1302,7 @@ type metadataSetIdentityDKIMEnabledInput struct {
 // An empty element. Receiving this element indicates that the request completed
 // successfully.
 type SetIdentityDKIMEnabledOutput struct {
-	metadataSetIdentityDKIMEnabledOutput `json:"-", xml:"-"`
+	metadataSetIdentityDKIMEnabledOutput `json:"-" xml:"-"`
 }
 
 type metadataSetIdentityDKIMEnabledOutput struct {
@@ -1322,7 +1322,7 @@ type SetIdentityFeedbackForwardingEnabledInput struct {
 	// Examples: user@example.com, example.com.
 	Identity *string `type:"string" required:"true"`
 
-	metadataSetIdentityFeedbackForwardingEnabledInput `json:"-", xml:"-"`
+	metadataSetIdentityFeedbackForwardingEnabledInput `json:"-" xml:"-"`
 }
 
 type metadataSetIdentityFeedbackForwardingEnabledInput struct {
@@ -1332,7 +1332,7 @@ type metadataSetIdentityFeedbackForwardingEnabledInput struct {
 // An empty element. Receiving this element indicates that the request completed
 // successfully.
 type SetIdentityFeedbackForwardingEnabledOutput struct {
-	metadataSetIdentityFeedbackForwardingEnabledOutput `json:"-", xml:"-"`
+	metadataSetIdentityFeedbackForwardingEnabledOutput `json:"-" xml:"-"`
 }
 
 type metadataSetIdentityFeedbackForwardingEnabledOutput struct {
@@ -1354,7 +1354,7 @@ type SetIdentityNotificationTopicInput struct {
 	// and publishing is disabled.
 	SNSTopic *string `locationName:"SnsTopic" type:"string"`
 
-	metadataSetIdentityNotificationTopicInput `json:"-", xml:"-"`
+	metadataSetIdentityNotificationTopicInput `json:"-" xml:"-"`
 }
 
 type metadataSetIdentityNotificationTopicInput struct {
@@ -1364,7 +1364,7 @@ type metadataSetIdentityNotificationTopicInput struct {
 // An empty element. Receiving this element indicates that the request completed
 // successfully.
 type SetIdentityNotificationTopicOutput struct {
-	metadataSetIdentityNotificationTopicOutput `json:"-", xml:"-"`
+	metadataSetIdentityNotificationTopicOutput `json:"-" xml:"-"`
 }
 
 type metadataSetIdentityNotificationTopicOutput struct {
@@ -1377,7 +1377,7 @@ type VerifyDomainDKIMInput struct {
 	// The name of the domain to be verified for Easy DKIM signing.
 	Domain *string `type:"string" required:"true"`
 
-	metadataVerifyDomainDKIMInput `json:"-", xml:"-"`
+	metadataVerifyDomainDKIMInput `json:"-" xml:"-"`
 }
 
 type metadataVerifyDomainDKIMInput struct {
@@ -1400,7 +1400,7 @@ type VerifyDomainDKIMOutput struct {
 	// the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html).
 	DKIMTokens []*string `locationName:"DkimTokens" type:"list" required:"true"`
 
-	metadataVerifyDomainDKIMOutput `json:"-", xml:"-"`
+	metadataVerifyDomainDKIMOutput `json:"-" xml:"-"`
 }
 
 type metadataVerifyDomainDKIMOutput struct {
@@ -1412,7 +1412,7 @@ type VerifyDomainIdentityInput struct {
 	// The domain to be verified.
 	Domain *string `type:"string" required:"true"`
 
-	metadataVerifyDomainIdentityInput `json:"-", xml:"-"`
+	metadataVerifyDomainIdentityInput `json:"-" xml:"-"`
 }
 
 type metadataVerifyDomainIdentityInput struct {
@@ -1425,7 +1425,7 @@ type VerifyDomainIdentityOutput struct {
 	// to complete domain verification.
 	VerificationToken *string `type:"string" required:"true"`
 
-	metadataVerifyDomainIdentityOutput `json:"-", xml:"-"`
+	metadataVerifyDomainIdentityOutput `json:"-" xml:"-"`
 }
 
 type metadataVerifyDomainIdentityOutput struct {
@@ -1437,7 +1437,7 @@ type VerifyEmailAddressInput struct {
 	// The email address to be verified.
 	EmailAddress *string `type:"string" required:"true"`
 
-	metadataVerifyEmailAddressInput `json:"-", xml:"-"`
+	metadataVerifyEmailAddressInput `json:"-" xml:"-"`
 }
 
 type metadataVerifyEmailAddressInput struct {
@@ -1445,7 +1445,7 @@ type metadataVerifyEmailAddressInput struct {
 }
 
 type VerifyEmailAddressOutput struct {
-	metadataVerifyEmailAddressOutput `json:"-", xml:"-"`
+	metadataVerifyEmailAddressOutput `json:"-" xml:"-"`
 }
 
 type metadataVerifyEmailAddressOutput struct {
@@ -1457,7 +1457,7 @@ type VerifyEmailIdentityInput struct {
 	// The email address to be verified.
 	EmailAddress *string `type:"string" required:"true"`
 
-	metadataVerifyEmailIdentityInput `json:"-", xml:"-"`
+	metadataVerifyEmailIdentityInput `json:"-" xml:"-"`
 }
 
 type metadataVerifyEmailIdentityInput struct {
@@ -1467,7 +1467,7 @@ type metadataVerifyEmailIdentityInput struct {
 // An empty element. Receiving this element indicates that the request completed
 // successfully.
 type VerifyEmailIdentityOutput struct {
-	metadataVerifyEmailIdentityOutput `json:"-", xml:"-"`
+	metadataVerifyEmailIdentityOutput `json:"-" xml:"-"`
 }
 
 type metadataVerifyEmailIdentityOutput struct {

@@ -931,7 +931,7 @@ type AliasListEntry struct {
 	// String that contains the key identifier pointed to by the alias.
 	TargetKeyID *string `locationName:"TargetKeyId" type:"string"`
 
-	metadataAliasListEntry `json:"-", xml:"-"`
+	metadataAliasListEntry `json:"-" xml:"-"`
 }
 
 type metadataAliasListEntry struct {
@@ -948,7 +948,7 @@ type CreateAliasInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	TargetKeyID *string `locationName:"TargetKeyId" type:"string" required:"true"`
 
-	metadataCreateAliasInput `json:"-", xml:"-"`
+	metadataCreateAliasInput `json:"-" xml:"-"`
 }
 
 type metadataCreateAliasInput struct {
@@ -956,7 +956,7 @@ type metadataCreateAliasInput struct {
 }
 
 type CreateAliasOutput struct {
-	metadataCreateAliasOutput `json:"-", xml:"-"`
+	metadataCreateAliasOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateAliasOutput struct {
@@ -990,7 +990,7 @@ type CreateGrantInput struct {
 	// RetireGrant.
 	RetiringPrincipal *string `type:"string"`
 
-	metadataCreateGrantInput `json:"-", xml:"-"`
+	metadataCreateGrantInput `json:"-" xml:"-"`
 }
 
 type metadataCreateGrantInput struct {
@@ -1004,7 +1004,7 @@ type CreateGrantOutput struct {
 	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
 	GrantToken *string `type:"string"`
 
-	metadataCreateGrantOutput `json:"-", xml:"-"`
+	metadataCreateGrantOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateGrantOutput struct {
@@ -1024,7 +1024,7 @@ type CreateKeyInput struct {
 	// the account. The key is the root of trust.
 	Policy *string `type:"string"`
 
-	metadataCreateKeyInput `json:"-", xml:"-"`
+	metadataCreateKeyInput `json:"-" xml:"-"`
 }
 
 type metadataCreateKeyInput struct {
@@ -1035,7 +1035,7 @@ type CreateKeyOutput struct {
 	// Metadata associated with the key.
 	KeyMetadata *KeyMetadata `type:"structure"`
 
-	metadataCreateKeyOutput `json:"-", xml:"-"`
+	metadataCreateKeyOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateKeyOutput struct {
@@ -1054,7 +1054,7 @@ type DecryptInput struct {
 	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
 	GrantTokens []*string `type:"list"`
 
-	metadataDecryptInput `json:"-", xml:"-"`
+	metadataDecryptInput `json:"-" xml:"-"`
 }
 
 type metadataDecryptInput struct {
@@ -1070,7 +1070,7 @@ type DecryptOutput struct {
 	// master key is not available or if you didn't have permission to use it.
 	Plaintext []byte `type:"blob"`
 
-	metadataDecryptOutput `json:"-", xml:"-"`
+	metadataDecryptOutput `json:"-" xml:"-"`
 }
 
 type metadataDecryptOutput struct {
@@ -1081,7 +1081,7 @@ type DeleteAliasInput struct {
 	// The alias to be deleted.
 	AliasName *string `type:"string" required:"true"`
 
-	metadataDeleteAliasInput `json:"-", xml:"-"`
+	metadataDeleteAliasInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAliasInput struct {
@@ -1089,7 +1089,7 @@ type metadataDeleteAliasInput struct {
 }
 
 type DeleteAliasOutput struct {
-	metadataDeleteAliasOutput `json:"-", xml:"-"`
+	metadataDeleteAliasOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAliasOutput struct {
@@ -1105,7 +1105,7 @@ type DescribeKeyInput struct {
 	// Example - alias/MyAliasName
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
-	metadataDescribeKeyInput `json:"-", xml:"-"`
+	metadataDescribeKeyInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeKeyInput struct {
@@ -1116,7 +1116,7 @@ type DescribeKeyOutput struct {
 	// Metadata associated with the key.
 	KeyMetadata *KeyMetadata `type:"structure"`
 
-	metadataDescribeKeyOutput `json:"-", xml:"-"`
+	metadataDescribeKeyOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeKeyOutput struct {
@@ -1130,7 +1130,7 @@ type DisableKeyInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
-	metadataDisableKeyInput `json:"-", xml:"-"`
+	metadataDisableKeyInput `json:"-" xml:"-"`
 }
 
 type metadataDisableKeyInput struct {
@@ -1138,7 +1138,7 @@ type metadataDisableKeyInput struct {
 }
 
 type DisableKeyOutput struct {
-	metadataDisableKeyOutput `json:"-", xml:"-"`
+	metadataDisableKeyOutput `json:"-" xml:"-"`
 }
 
 type metadataDisableKeyOutput struct {
@@ -1152,7 +1152,7 @@ type DisableKeyRotationInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
-	metadataDisableKeyRotationInput `json:"-", xml:"-"`
+	metadataDisableKeyRotationInput `json:"-" xml:"-"`
 }
 
 type metadataDisableKeyRotationInput struct {
@@ -1160,7 +1160,7 @@ type metadataDisableKeyRotationInput struct {
 }
 
 type DisableKeyRotationOutput struct {
-	metadataDisableKeyRotationOutput `json:"-", xml:"-"`
+	metadataDisableKeyRotationOutput `json:"-" xml:"-"`
 }
 
 type metadataDisableKeyRotationOutput struct {
@@ -1174,7 +1174,7 @@ type EnableKeyInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
-	metadataEnableKeyInput `json:"-", xml:"-"`
+	metadataEnableKeyInput `json:"-" xml:"-"`
 }
 
 type metadataEnableKeyInput struct {
@@ -1182,7 +1182,7 @@ type metadataEnableKeyInput struct {
 }
 
 type EnableKeyOutput struct {
-	metadataEnableKeyOutput `json:"-", xml:"-"`
+	metadataEnableKeyOutput `json:"-" xml:"-"`
 }
 
 type metadataEnableKeyOutput struct {
@@ -1196,7 +1196,7 @@ type EnableKeyRotationInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
-	metadataEnableKeyRotationInput `json:"-", xml:"-"`
+	metadataEnableKeyRotationInput `json:"-" xml:"-"`
 }
 
 type metadataEnableKeyRotationInput struct {
@@ -1204,7 +1204,7 @@ type metadataEnableKeyRotationInput struct {
 }
 
 type EnableKeyRotationOutput struct {
-	metadataEnableKeyRotationOutput `json:"-", xml:"-"`
+	metadataEnableKeyRotationOutput `json:"-" xml:"-"`
 }
 
 type metadataEnableKeyRotationOutput struct {
@@ -1232,7 +1232,7 @@ type EncryptInput struct {
 	// Data to be encrypted.
 	Plaintext []byte `type:"blob" required:"true"`
 
-	metadataEncryptInput `json:"-", xml:"-"`
+	metadataEncryptInput `json:"-" xml:"-"`
 }
 
 type metadataEncryptInput struct {
@@ -1247,7 +1247,7 @@ type EncryptOutput struct {
 	// The ID of the key used during encryption.
 	KeyID *string `locationName:"KeyId" type:"string"`
 
-	metadataEncryptOutput `json:"-", xml:"-"`
+	metadataEncryptOutput `json:"-" xml:"-"`
 }
 
 type metadataEncryptOutput struct {
@@ -1280,7 +1280,7 @@ type GenerateDataKeyInput struct {
 	// use the KeySpec parameter instead.
 	NumberOfBytes *int64 `type:"integer"`
 
-	metadataGenerateDataKeyInput `json:"-", xml:"-"`
+	metadataGenerateDataKeyInput `json:"-" xml:"-"`
 }
 
 type metadataGenerateDataKeyInput struct {
@@ -1306,7 +1306,7 @@ type GenerateDataKeyOutput struct {
 	// and then remove it from memory as soon as possible.
 	Plaintext []byte `type:"blob"`
 
-	metadataGenerateDataKeyOutput `json:"-", xml:"-"`
+	metadataGenerateDataKeyOutput `json:"-" xml:"-"`
 }
 
 type metadataGenerateDataKeyOutput struct {
@@ -1338,7 +1338,7 @@ type GenerateDataKeyWithoutPlaintextInput struct {
 	// instead.
 	NumberOfBytes *int64 `type:"integer"`
 
-	metadataGenerateDataKeyWithoutPlaintextInput `json:"-", xml:"-"`
+	metadataGenerateDataKeyWithoutPlaintextInput `json:"-" xml:"-"`
 }
 
 type metadataGenerateDataKeyWithoutPlaintextInput struct {
@@ -1357,7 +1357,7 @@ type GenerateDataKeyWithoutPlaintextOutput struct {
 	// copy of the data key.
 	KeyID *string `locationName:"KeyId" type:"string"`
 
-	metadataGenerateDataKeyWithoutPlaintextOutput `json:"-", xml:"-"`
+	metadataGenerateDataKeyWithoutPlaintextOutput `json:"-" xml:"-"`
 }
 
 type metadataGenerateDataKeyWithoutPlaintextOutput struct {
@@ -1369,7 +1369,7 @@ type GenerateRandomInput struct {
 	// 128, 256, 512, 1024 and so on. The current limit is 1024 bytes.
 	NumberOfBytes *int64 `type:"integer"`
 
-	metadataGenerateRandomInput `json:"-", xml:"-"`
+	metadataGenerateRandomInput `json:"-" xml:"-"`
 }
 
 type metadataGenerateRandomInput struct {
@@ -1380,7 +1380,7 @@ type GenerateRandomOutput struct {
 	// Plaintext that contains the unpredictable byte string.
 	Plaintext []byte `type:"blob"`
 
-	metadataGenerateRandomOutput `json:"-", xml:"-"`
+	metadataGenerateRandomOutput `json:"-" xml:"-"`
 }
 
 type metadataGenerateRandomOutput struct {
@@ -1398,7 +1398,7 @@ type GetKeyPolicyInput struct {
 	// Policy names can be discovered by calling ListKeyPolicies.
 	PolicyName *string `type:"string" required:"true"`
 
-	metadataGetKeyPolicyInput `json:"-", xml:"-"`
+	metadataGetKeyPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataGetKeyPolicyInput struct {
@@ -1409,7 +1409,7 @@ type GetKeyPolicyOutput struct {
 	// A policy document in JSON format.
 	Policy *string `type:"string"`
 
-	metadataGetKeyPolicyOutput `json:"-", xml:"-"`
+	metadataGetKeyPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataGetKeyPolicyOutput struct {
@@ -1423,7 +1423,7 @@ type GetKeyRotationStatusInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
-	metadataGetKeyRotationStatusInput `json:"-", xml:"-"`
+	metadataGetKeyRotationStatusInput `json:"-" xml:"-"`
 }
 
 type metadataGetKeyRotationStatusInput struct {
@@ -1434,7 +1434,7 @@ type GetKeyRotationStatusOutput struct {
 	// A Boolean value that specifies whether key rotation is enabled.
 	KeyRotationEnabled *bool `type:"boolean"`
 
-	metadataGetKeyRotationStatusOutput `json:"-", xml:"-"`
+	metadataGetKeyRotationStatusOutput `json:"-" xml:"-"`
 }
 
 type metadataGetKeyRotationStatusOutput struct {
@@ -1450,7 +1450,7 @@ type GrantConstraints struct {
 	// The constraint equals the full encryption context.
 	EncryptionContextSubset *map[string]*string `type:"map"`
 
-	metadataGrantConstraints `json:"-", xml:"-"`
+	metadataGrantConstraints `json:"-" xml:"-"`
 }
 
 type metadataGrantConstraints struct {
@@ -1480,7 +1480,7 @@ type GrantListEntry struct {
 	// The principal that can retire the account.
 	RetiringPrincipal *string `type:"string"`
 
-	metadataGrantListEntry `json:"-", xml:"-"`
+	metadataGrantListEntry `json:"-" xml:"-"`
 }
 
 type metadataGrantListEntry struct {
@@ -1495,7 +1495,7 @@ type KeyListEntry struct {
 	// Unique identifier of the key.
 	KeyID *string `locationName:"KeyId" type:"string"`
 
-	metadataKeyListEntry `json:"-", xml:"-"`
+	metadataKeyListEntry `json:"-" xml:"-"`
 }
 
 type metadataKeyListEntry struct {
@@ -1525,7 +1525,7 @@ type KeyMetadata struct {
 	// A value that specifies what operation(s) the key can perform.
 	KeyUsage *string `type:"string"`
 
-	metadataKeyMetadata `json:"-", xml:"-"`
+	metadataKeyMetadata `json:"-" xml:"-"`
 }
 
 type metadataKeyMetadata struct {
@@ -1543,7 +1543,7 @@ type ListAliasesInput struct {
 	// to the value of the NextMarker element in the response you just received.
 	Marker *string `type:"string"`
 
-	metadataListAliasesInput `json:"-", xml:"-"`
+	metadataListAliasesInput `json:"-" xml:"-"`
 }
 
 type metadataListAliasesInput struct {
@@ -1563,7 +1563,7 @@ type ListAliasesOutput struct {
 	// request parameter to retrieve more aliases in the list.
 	Truncated *bool `type:"boolean"`
 
-	metadataListAliasesOutput `json:"-", xml:"-"`
+	metadataListAliasesOutput `json:"-" xml:"-"`
 }
 
 type metadataListAliasesOutput struct {
@@ -1588,7 +1588,7 @@ type ListGrantsInput struct {
 	// Set it to the value of the NextMarker in the response you just received.
 	Marker *string `type:"string"`
 
-	metadataListGrantsInput `json:"-", xml:"-"`
+	metadataListGrantsInput `json:"-" xml:"-"`
 }
 
 type metadataListGrantsInput struct {
@@ -1608,7 +1608,7 @@ type ListGrantsOutput struct {
 	// request parameter to retrieve more grants in the list.
 	Truncated *bool `type:"boolean"`
 
-	metadataListGrantsOutput `json:"-", xml:"-"`
+	metadataListGrantsOutput `json:"-" xml:"-"`
 }
 
 type metadataListGrantsOutput struct {
@@ -1635,7 +1635,7 @@ type ListKeyPoliciesInput struct {
 	// Set it to the value of the NextMarker in the response you just received.
 	Marker *string `type:"string"`
 
-	metadataListKeyPoliciesInput `json:"-", xml:"-"`
+	metadataListKeyPoliciesInput `json:"-" xml:"-"`
 }
 
 type metadataListKeyPoliciesInput struct {
@@ -1656,7 +1656,7 @@ type ListKeyPoliciesOutput struct {
 	// request parameter to retrieve more policies in the list.
 	Truncated *bool `type:"boolean"`
 
-	metadataListKeyPoliciesOutput `json:"-", xml:"-"`
+	metadataListKeyPoliciesOutput `json:"-" xml:"-"`
 }
 
 type metadataListKeyPoliciesOutput struct {
@@ -1675,7 +1675,7 @@ type ListKeysInput struct {
 	// Set it to the value of the NextMarker in the response you just received.
 	Marker *string `type:"string"`
 
-	metadataListKeysInput `json:"-", xml:"-"`
+	metadataListKeysInput `json:"-" xml:"-"`
 }
 
 type metadataListKeysInput struct {
@@ -1695,7 +1695,7 @@ type ListKeysOutput struct {
 	// request parameter to retrieve more keys in the list.
 	Truncated *bool `type:"boolean"`
 
-	metadataListKeysOutput `json:"-", xml:"-"`
+	metadataListKeysOutput `json:"-" xml:"-"`
 }
 
 type metadataListKeysOutput struct {
@@ -1716,7 +1716,7 @@ type PutKeyPolicyInput struct {
 	// "default".
 	PolicyName *string `type:"string" required:"true"`
 
-	metadataPutKeyPolicyInput `json:"-", xml:"-"`
+	metadataPutKeyPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataPutKeyPolicyInput struct {
@@ -1724,7 +1724,7 @@ type metadataPutKeyPolicyInput struct {
 }
 
 type PutKeyPolicyOutput struct {
-	metadataPutKeyPolicyOutput `json:"-", xml:"-"`
+	metadataPutKeyPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataPutKeyPolicyOutput struct {
@@ -1754,7 +1754,7 @@ type ReEncryptInput struct {
 	// CiphertextBlob parameter.
 	SourceEncryptionContext *map[string]*string `type:"map"`
 
-	metadataReEncryptInput `json:"-", xml:"-"`
+	metadataReEncryptInput `json:"-" xml:"-"`
 }
 
 type metadataReEncryptInput struct {
@@ -1772,7 +1772,7 @@ type ReEncryptOutput struct {
 	// Unique identifier of the key used to originally encrypt the data.
 	SourceKeyID *string `locationName:"SourceKeyId" type:"string"`
 
-	metadataReEncryptOutput `json:"-", xml:"-"`
+	metadataReEncryptOutput `json:"-" xml:"-"`
 }
 
 type metadataReEncryptOutput struct {
@@ -1783,7 +1783,7 @@ type RetireGrantInput struct {
 	// Token that identifies the grant to be retired.
 	GrantToken *string `type:"string" required:"true"`
 
-	metadataRetireGrantInput `json:"-", xml:"-"`
+	metadataRetireGrantInput `json:"-" xml:"-"`
 }
 
 type metadataRetireGrantInput struct {
@@ -1791,7 +1791,7 @@ type metadataRetireGrantInput struct {
 }
 
 type RetireGrantOutput struct {
-	metadataRetireGrantOutput `json:"-", xml:"-"`
+	metadataRetireGrantOutput `json:"-" xml:"-"`
 }
 
 type metadataRetireGrantOutput struct {
@@ -1808,7 +1808,7 @@ type RevokeGrantInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
-	metadataRevokeGrantInput `json:"-", xml:"-"`
+	metadataRevokeGrantInput `json:"-" xml:"-"`
 }
 
 type metadataRevokeGrantInput struct {
@@ -1816,7 +1816,7 @@ type metadataRevokeGrantInput struct {
 }
 
 type RevokeGrantOutput struct {
-	metadataRevokeGrantOutput `json:"-", xml:"-"`
+	metadataRevokeGrantOutput `json:"-" xml:"-"`
 }
 
 type metadataRevokeGrantOutput struct {
@@ -1833,7 +1833,7 @@ type UpdateKeyDescriptionInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
-	metadataUpdateKeyDescriptionInput `json:"-", xml:"-"`
+	metadataUpdateKeyDescriptionInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateKeyDescriptionInput struct {
@@ -1841,7 +1841,7 @@ type metadataUpdateKeyDescriptionInput struct {
 }
 
 type UpdateKeyDescriptionOutput struct {
-	metadataUpdateKeyDescriptionOutput `json:"-", xml:"-"`
+	metadataUpdateKeyDescriptionOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateKeyDescriptionOutput struct {

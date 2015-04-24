@@ -559,7 +559,7 @@ type BulkPublishInput struct {
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
 
-	metadataBulkPublishInput `json:"-", xml:"-"`
+	metadataBulkPublishInput `json:"-" xml:"-"`
 }
 
 type metadataBulkPublishInput struct {
@@ -572,7 +572,7 @@ type BulkPublishOutput struct {
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string"`
 
-	metadataBulkPublishOutput `json:"-", xml:"-"`
+	metadataBulkPublishOutput `json:"-" xml:"-"`
 }
 
 type metadataBulkPublishOutput struct {
@@ -597,7 +597,7 @@ type CognitoStreams struct {
 	// will also fail if StreamingStatus is DISABLED.
 	StreamingStatus *string `type:"string"`
 
-	metadataCognitoStreams `json:"-", xml:"-"`
+	metadataCognitoStreams `json:"-" xml:"-"`
 }
 
 type metadataCognitoStreams struct {
@@ -633,7 +633,7 @@ type Dataset struct {
 	// Number of records in this dataset.
 	NumRecords *int64 `type:"long"`
 
-	metadataDataset `json:"-", xml:"-"`
+	metadataDataset `json:"-" xml:"-"`
 }
 
 type metadataDataset struct {
@@ -654,7 +654,7 @@ type DeleteDatasetInput struct {
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
 
-	metadataDeleteDatasetInput `json:"-", xml:"-"`
+	metadataDeleteDatasetInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDatasetInput struct {
@@ -670,7 +670,7 @@ type DeleteDatasetOutput struct {
 	// hold up to 1MB of key-value pairs.
 	Dataset *Dataset `type:"structure"`
 
-	metadataDeleteDatasetOutput `json:"-", xml:"-"`
+	metadataDeleteDatasetOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDatasetOutput struct {
@@ -692,7 +692,7 @@ type DescribeDatasetInput struct {
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
 
-	metadataDescribeDatasetInput `json:"-", xml:"-"`
+	metadataDescribeDatasetInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeDatasetInput struct {
@@ -708,7 +708,7 @@ type DescribeDatasetOutput struct {
 	// hold up to 1MB of key-value pairs.
 	Dataset *Dataset `type:"structure"`
 
-	metadataDescribeDatasetOutput `json:"-", xml:"-"`
+	metadataDescribeDatasetOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeDatasetOutput struct {
@@ -721,7 +721,7 @@ type DescribeIdentityPoolUsageInput struct {
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
 
-	metadataDescribeIdentityPoolUsageInput `json:"-", xml:"-"`
+	metadataDescribeIdentityPoolUsageInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeIdentityPoolUsageInput struct {
@@ -733,7 +733,7 @@ type DescribeIdentityPoolUsageOutput struct {
 	// Information about the usage of the identity pool.
 	IdentityPoolUsage *IdentityPoolUsage `type:"structure"`
 
-	metadataDescribeIdentityPoolUsageOutput `json:"-", xml:"-"`
+	metadataDescribeIdentityPoolUsageOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeIdentityPoolUsageOutput struct {
@@ -750,7 +750,7 @@ type DescribeIdentityUsageInput struct {
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
 
-	metadataDescribeIdentityUsageInput `json:"-", xml:"-"`
+	metadataDescribeIdentityUsageInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeIdentityUsageInput struct {
@@ -762,7 +762,7 @@ type DescribeIdentityUsageOutput struct {
 	// Usage information for the identity.
 	IdentityUsage *IdentityUsage `type:"structure"`
 
-	metadataDescribeIdentityUsageOutput `json:"-", xml:"-"`
+	metadataDescribeIdentityUsageOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeIdentityUsageOutput struct {
@@ -775,7 +775,7 @@ type GetBulkPublishDetailsInput struct {
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
 
-	metadataGetBulkPublishDetailsInput `json:"-", xml:"-"`
+	metadataGetBulkPublishDetailsInput `json:"-" xml:"-"`
 }
 
 type metadataGetBulkPublishDetailsInput struct {
@@ -811,7 +811,7 @@ type GetBulkPublishDetailsOutput struct {
 	// created by Amazon Cognito. GUID generation is unique within a region.
 	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string"`
 
-	metadataGetBulkPublishDetailsOutput `json:"-", xml:"-"`
+	metadataGetBulkPublishDetailsOutput `json:"-" xml:"-"`
 }
 
 type metadataGetBulkPublishDetailsOutput struct {
@@ -825,7 +825,7 @@ type GetIdentityPoolConfigurationInput struct {
 	// a configuration.
 	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
 
-	metadataGetIdentityPoolConfigurationInput `json:"-", xml:"-"`
+	metadataGetIdentityPoolConfigurationInput `json:"-" xml:"-"`
 }
 
 type metadataGetIdentityPoolConfigurationInput struct {
@@ -844,7 +844,7 @@ type GetIdentityPoolConfigurationOutput struct {
 	// Options to apply to this identity pool for push synchronization.
 	PushSync *PushSync `type:"structure"`
 
-	metadataGetIdentityPoolConfigurationOutput `json:"-", xml:"-"`
+	metadataGetIdentityPoolConfigurationOutput `json:"-" xml:"-"`
 }
 
 type metadataGetIdentityPoolConfigurationOutput struct {
@@ -866,7 +866,7 @@ type IdentityPoolUsage struct {
 	// Number of sync sessions for the identity pool.
 	SyncSessionsCount *int64 `type:"long"`
 
-	metadataIdentityPoolUsage `json:"-", xml:"-"`
+	metadataIdentityPoolUsage `json:"-" xml:"-"`
 }
 
 type metadataIdentityPoolUsage struct {
@@ -892,7 +892,7 @@ type IdentityUsage struct {
 	// Date on which the identity was last modified.
 	LastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	metadataIdentityUsage `json:"-", xml:"-"`
+	metadataIdentityUsage `json:"-" xml:"-"`
 }
 
 type metadataIdentityUsage struct {
@@ -915,7 +915,7 @@ type ListDatasetsInput struct {
 	// A pagination token for obtaining the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
-	metadataListDatasetsInput `json:"-", xml:"-"`
+	metadataListDatasetsInput `json:"-" xml:"-"`
 }
 
 type metadataListDatasetsInput struct {
@@ -933,7 +933,7 @@ type ListDatasetsOutput struct {
 	// A pagination token for obtaining the next page of results.
 	NextToken *string `type:"string"`
 
-	metadataListDatasetsOutput `json:"-", xml:"-"`
+	metadataListDatasetsOutput `json:"-" xml:"-"`
 }
 
 type metadataListDatasetsOutput struct {
@@ -948,7 +948,7 @@ type ListIdentityPoolUsageInput struct {
 	// A pagination token for obtaining the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
-	metadataListIdentityPoolUsageInput `json:"-", xml:"-"`
+	metadataListIdentityPoolUsageInput `json:"-" xml:"-"`
 }
 
 type metadataListIdentityPoolUsageInput struct {
@@ -969,7 +969,7 @@ type ListIdentityPoolUsageOutput struct {
 	// A pagination token for obtaining the next page of results.
 	NextToken *string `type:"string"`
 
-	metadataListIdentityPoolUsageOutput `json:"-", xml:"-"`
+	metadataListIdentityPoolUsageOutput `json:"-" xml:"-"`
 }
 
 type metadataListIdentityPoolUsageOutput struct {
@@ -1002,7 +1002,7 @@ type ListRecordsInput struct {
 	// A token containing a session ID, identity ID, and expiration.
 	SyncSessionToken *string `location:"querystring" locationName:"syncSessionToken" type:"string"`
 
-	metadataListRecordsInput `json:"-", xml:"-"`
+	metadataListRecordsInput `json:"-" xml:"-"`
 }
 
 type metadataListRecordsInput struct {
@@ -1038,7 +1038,7 @@ type ListRecordsOutput struct {
 	// A token containing a session ID, identity ID, and expiration.
 	SyncSessionToken *string `type:"string"`
 
-	metadataListRecordsOutput `json:"-", xml:"-"`
+	metadataListRecordsOutput `json:"-" xml:"-"`
 }
 
 type metadataListRecordsOutput struct {
@@ -1053,7 +1053,7 @@ type PushSync struct {
 	// A role configured to allow Cognito to call SNS on behalf of the developer.
 	RoleARN *string `locationName:"RoleArn" type:"string"`
 
-	metadataPushSync `json:"-", xml:"-"`
+	metadataPushSync `json:"-" xml:"-"`
 }
 
 type metadataPushSync struct {
@@ -1080,7 +1080,7 @@ type Record struct {
 	// The value for the record.
 	Value *string `type:"string"`
 
-	metadataRecord `json:"-", xml:"-"`
+	metadataRecord `json:"-" xml:"-"`
 }
 
 type metadataRecord struct {
@@ -1104,7 +1104,7 @@ type RecordPatch struct {
 	// The value associated with the record patch.
 	Value *string `type:"string"`
 
-	metadataRecordPatch `json:"-", xml:"-"`
+	metadataRecordPatch `json:"-" xml:"-"`
 }
 
 type metadataRecordPatch struct {
@@ -1127,7 +1127,7 @@ type RegisterDeviceInput struct {
 	// The push token.
 	Token *string `type:"string" required:"true"`
 
-	metadataRegisterDeviceInput `json:"-", xml:"-"`
+	metadataRegisterDeviceInput `json:"-" xml:"-"`
 }
 
 type metadataRegisterDeviceInput struct {
@@ -1139,7 +1139,7 @@ type RegisterDeviceOutput struct {
 	// The unique ID generated for this device by Cognito.
 	DeviceID *string `locationName:"DeviceId" type:"string"`
 
-	metadataRegisterDeviceOutput `json:"-", xml:"-"`
+	metadataRegisterDeviceOutput `json:"-" xml:"-"`
 }
 
 type metadataRegisterDeviceOutput struct {
@@ -1158,7 +1158,7 @@ type SetIdentityPoolConfigurationInput struct {
 	// Options to apply to this identity pool for push synchronization.
 	PushSync *PushSync `type:"structure"`
 
-	metadataSetIdentityPoolConfigurationInput `json:"-", xml:"-"`
+	metadataSetIdentityPoolConfigurationInput `json:"-" xml:"-"`
 }
 
 type metadataSetIdentityPoolConfigurationInput struct {
@@ -1177,7 +1177,7 @@ type SetIdentityPoolConfigurationOutput struct {
 	// Options to apply to this identity pool for push synchronization.
 	PushSync *PushSync `type:"structure"`
 
-	metadataSetIdentityPoolConfigurationOutput `json:"-", xml:"-"`
+	metadataSetIdentityPoolConfigurationOutput `json:"-" xml:"-"`
 }
 
 type metadataSetIdentityPoolConfigurationOutput struct {
@@ -1199,7 +1199,7 @@ type SubscribeToDatasetInput struct {
 	// created by Amazon Cognito. The ID of the pool to which the identity belongs.
 	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
 
-	metadataSubscribeToDatasetInput `json:"-", xml:"-"`
+	metadataSubscribeToDatasetInput `json:"-" xml:"-"`
 }
 
 type metadataSubscribeToDatasetInput struct {
@@ -1208,7 +1208,7 @@ type metadataSubscribeToDatasetInput struct {
 
 // Response to a SubscribeToDataset request.
 type SubscribeToDatasetOutput struct {
-	metadataSubscribeToDatasetOutput `json:"-", xml:"-"`
+	metadataSubscribeToDatasetOutput `json:"-" xml:"-"`
 }
 
 type metadataSubscribeToDatasetOutput struct {
@@ -1230,7 +1230,7 @@ type UnsubscribeFromDatasetInput struct {
 	// created by Amazon Cognito. The ID of the pool to which this identity belongs.
 	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
 
-	metadataUnsubscribeFromDatasetInput `json:"-", xml:"-"`
+	metadataUnsubscribeFromDatasetInput `json:"-" xml:"-"`
 }
 
 type metadataUnsubscribeFromDatasetInput struct {
@@ -1239,7 +1239,7 @@ type metadataUnsubscribeFromDatasetInput struct {
 
 // Response to an UnsubscribeFromDataset request.
 type UnsubscribeFromDatasetOutput struct {
-	metadataUnsubscribeFromDatasetOutput `json:"-", xml:"-"`
+	metadataUnsubscribeFromDatasetOutput `json:"-" xml:"-"`
 }
 
 type metadataUnsubscribeFromDatasetOutput struct {
@@ -1275,7 +1275,7 @@ type UpdateRecordsInput struct {
 	// dataset and identity.
 	SyncSessionToken *string `type:"string" required:"true"`
 
-	metadataUpdateRecordsInput `json:"-", xml:"-"`
+	metadataUpdateRecordsInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateRecordsInput struct {
@@ -1287,7 +1287,7 @@ type UpdateRecordsOutput struct {
 	// A list of records that have been updated.
 	Records []*Record `type:"list"`
 
-	metadataUpdateRecordsOutput `json:"-", xml:"-"`
+	metadataUpdateRecordsOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateRecordsOutput struct {

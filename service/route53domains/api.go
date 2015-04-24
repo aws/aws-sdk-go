@@ -730,7 +730,7 @@ type CheckDomainAvailabilityInput struct {
 	// Reserved for future use.
 	IDNLangCode *string `locationName:"IdnLangCode" type:"string"`
 
-	metadataCheckDomainAvailabilityInput `json:"-", xml:"-"`
+	metadataCheckDomainAvailabilityInput `json:"-" xml:"-"`
 }
 
 type metadataCheckDomainAvailabilityInput struct {
@@ -755,7 +755,7 @@ type CheckDomainAvailabilityOutput struct {
 	// name has been reserved for another person or organization.
 	Availability *string `type:"string" required:"true"`
 
-	metadataCheckDomainAvailabilityOutput `json:"-", xml:"-"`
+	metadataCheckDomainAvailabilityOutput `json:"-" xml:"-"`
 }
 
 type metadataCheckDomainAvailabilityOutput struct {
@@ -954,7 +954,7 @@ type ContactDetail struct {
 	// Required: No
 	ZipCode *string `type:"string"`
 
-	metadataContactDetail `json:"-", xml:"-"`
+	metadataContactDetail `json:"-" xml:"-"`
 }
 
 type metadataContactDetail struct {
@@ -991,7 +991,7 @@ type DeleteTagsForDomainInput struct {
 	// '>
 	TagsToDelete []*string `type:"list" required:"true"`
 
-	metadataDeleteTagsForDomainInput `json:"-", xml:"-"`
+	metadataDeleteTagsForDomainInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteTagsForDomainInput struct {
@@ -999,7 +999,7 @@ type metadataDeleteTagsForDomainInput struct {
 }
 
 type DeleteTagsForDomainOutput struct {
-	metadataDeleteTagsForDomainOutput `json:"-", xml:"-"`
+	metadataDeleteTagsForDomainOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteTagsForDomainOutput struct {
@@ -1009,7 +1009,7 @@ type metadataDeleteTagsForDomainOutput struct {
 type DisableDomainAutoRenewInput struct {
 	DomainName *string `type:"string" required:"true"`
 
-	metadataDisableDomainAutoRenewInput `json:"-", xml:"-"`
+	metadataDisableDomainAutoRenewInput `json:"-" xml:"-"`
 }
 
 type metadataDisableDomainAutoRenewInput struct {
@@ -1017,7 +1017,7 @@ type metadataDisableDomainAutoRenewInput struct {
 }
 
 type DisableDomainAutoRenewOutput struct {
-	metadataDisableDomainAutoRenewOutput `json:"-", xml:"-"`
+	metadataDisableDomainAutoRenewOutput `json:"-" xml:"-"`
 }
 
 type metadataDisableDomainAutoRenewOutput struct {
@@ -1039,7 +1039,7 @@ type DisableDomainTransferLockInput struct {
 	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
 
-	metadataDisableDomainTransferLockInput `json:"-", xml:"-"`
+	metadataDisableDomainTransferLockInput `json:"-" xml:"-"`
 }
 
 type metadataDisableDomainTransferLockInput struct {
@@ -1058,7 +1058,7 @@ type DisableDomainTransferLockOutput struct {
 	// Constraints: Maximum 255 characters.
 	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
 
-	metadataDisableDomainTransferLockOutput `json:"-", xml:"-"`
+	metadataDisableDomainTransferLockOutput `json:"-" xml:"-"`
 }
 
 type metadataDisableDomainTransferLockOutput struct {
@@ -1091,7 +1091,7 @@ type DomainSummary struct {
 	// Valid values: True | False
 	TransferLock *bool `type:"boolean"`
 
-	metadataDomainSummary `json:"-", xml:"-"`
+	metadataDomainSummary `json:"-" xml:"-"`
 }
 
 type metadataDomainSummary struct {
@@ -1101,7 +1101,7 @@ type metadataDomainSummary struct {
 type EnableDomainAutoRenewInput struct {
 	DomainName *string `type:"string" required:"true"`
 
-	metadataEnableDomainAutoRenewInput `json:"-", xml:"-"`
+	metadataEnableDomainAutoRenewInput `json:"-" xml:"-"`
 }
 
 type metadataEnableDomainAutoRenewInput struct {
@@ -1109,7 +1109,7 @@ type metadataEnableDomainAutoRenewInput struct {
 }
 
 type EnableDomainAutoRenewOutput struct {
-	metadataEnableDomainAutoRenewOutput `json:"-", xml:"-"`
+	metadataEnableDomainAutoRenewOutput `json:"-" xml:"-"`
 }
 
 type metadataEnableDomainAutoRenewOutput struct {
@@ -1131,7 +1131,7 @@ type EnableDomainTransferLockInput struct {
 	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
 
-	metadataEnableDomainTransferLockInput `json:"-", xml:"-"`
+	metadataEnableDomainTransferLockInput `json:"-" xml:"-"`
 }
 
 type metadataEnableDomainTransferLockInput struct {
@@ -1150,7 +1150,7 @@ type EnableDomainTransferLockOutput struct {
 	// Constraints: Maximum 255 characters.
 	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
 
-	metadataEnableDomainTransferLockOutput `json:"-", xml:"-"`
+	metadataEnableDomainTransferLockOutput `json:"-" xml:"-"`
 }
 
 type metadataEnableDomainTransferLockOutput struct {
@@ -1190,7 +1190,7 @@ type ExtraParam struct {
 	// Required: Yes
 	Value *string `type:"string" required:"true"`
 
-	metadataExtraParam `json:"-", xml:"-"`
+	metadataExtraParam `json:"-" xml:"-"`
 }
 
 type metadataExtraParam struct {
@@ -1212,7 +1212,7 @@ type GetDomainDetailInput struct {
 	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
 
-	metadataGetDomainDetailInput `json:"-", xml:"-"`
+	metadataGetDomainDetailInput `json:"-" xml:"-"`
 }
 
 type metadataGetDomainDetailInput struct {
@@ -1358,7 +1358,7 @@ type GetDomainDetailOutput struct {
 	// Type: String
 	WhoIsServer *string `type:"string"`
 
-	metadataGetDomainDetailOutput `json:"-", xml:"-"`
+	metadataGetDomainDetailOutput `json:"-" xml:"-"`
 }
 
 type metadataGetDomainDetailOutput struct {
@@ -1377,7 +1377,7 @@ type GetOperationDetailInput struct {
 	// Required: Yes
 	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
 
-	metadataGetOperationDetailInput `json:"-", xml:"-"`
+	metadataGetOperationDetailInput `json:"-" xml:"-"`
 }
 
 type metadataGetOperationDetailInput struct {
@@ -1414,7 +1414,7 @@ type GetOperationDetailOutput struct {
 	// Type: String
 	Type *string `type:"string"`
 
-	metadataGetOperationDetailOutput `json:"-", xml:"-"`
+	metadataGetOperationDetailOutput `json:"-" xml:"-"`
 }
 
 type metadataGetOperationDetailOutput struct {
@@ -1450,7 +1450,7 @@ type ListDomainsInput struct {
 	// Required: No
 	MaxItems *int64 `type:"integer"`
 
-	metadataListDomainsInput `json:"-", xml:"-"`
+	metadataListDomainsInput `json:"-" xml:"-"`
 }
 
 type metadataListDomainsInput struct {
@@ -1475,7 +1475,7 @@ type ListDomainsOutput struct {
 	// Parent: Operations
 	NextPageMarker *string `type:"string"`
 
-	metadataListDomainsOutput `json:"-", xml:"-"`
+	metadataListDomainsOutput `json:"-" xml:"-"`
 }
 
 type metadataListDomainsOutput struct {
@@ -1509,7 +1509,7 @@ type ListOperationsInput struct {
 	// Required: No
 	MaxItems *int64 `type:"integer"`
 
-	metadataListOperationsInput `json:"-", xml:"-"`
+	metadataListOperationsInput `json:"-" xml:"-"`
 }
 
 type metadataListOperationsInput struct {
@@ -1534,7 +1534,7 @@ type ListOperationsOutput struct {
 	// Children: OperationId, Status, SubmittedDate, Type
 	Operations []*OperationSummary `type:"list" required:"true"`
 
-	metadataListOperationsOutput `json:"-", xml:"-"`
+	metadataListOperationsOutput `json:"-" xml:"-"`
 }
 
 type metadataListOperationsOutput struct {
@@ -1546,7 +1546,7 @@ type ListTagsForDomainInput struct {
 	// The domain for which you want to get a list of tags.
 	DomainName *string `type:"string" required:"true"`
 
-	metadataListTagsForDomainInput `json:"-", xml:"-"`
+	metadataListTagsForDomainInput `json:"-" xml:"-"`
 }
 
 type metadataListTagsForDomainInput struct {
@@ -1574,7 +1574,7 @@ type ListTagsForDomainOutput struct {
 	// Type: String
 	TagList []*Tag `type:"list" required:"true"`
 
-	metadataListTagsForDomainOutput `json:"-", xml:"-"`
+	metadataListTagsForDomainOutput `json:"-" xml:"-"`
 }
 
 type metadataListTagsForDomainOutput struct {
@@ -1604,7 +1604,7 @@ type Nameserver struct {
 	// Parent: Nameservers
 	Name *string `type:"string" required:"true"`
 
-	metadataNameserver `json:"-", xml:"-"`
+	metadataNameserver `json:"-" xml:"-"`
 }
 
 type metadataNameserver struct {
@@ -1634,7 +1634,7 @@ type OperationSummary struct {
 	// | UPDATE_NAMESERVER | CHANGE_PRIVACY_PROTECTION | DOMAIN_LOCK
 	Type *string `type:"string" required:"true"`
 
-	metadataOperationSummary `json:"-", xml:"-"`
+	metadataOperationSummary `json:"-" xml:"-"`
 }
 
 type metadataOperationSummary struct {
@@ -1758,7 +1758,7 @@ type RegisterDomainInput struct {
 	// Required: Yes
 	TechContact *ContactDetail `type:"structure" required:"true"`
 
-	metadataRegisterDomainInput `json:"-", xml:"-"`
+	metadataRegisterDomainInput `json:"-" xml:"-"`
 }
 
 type metadataRegisterDomainInput struct {
@@ -1777,7 +1777,7 @@ type RegisterDomainOutput struct {
 	// Constraints: Maximum 255 characters.
 	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
 
-	metadataRegisterDomainOutput `json:"-", xml:"-"`
+	metadataRegisterDomainOutput `json:"-" xml:"-"`
 }
 
 type metadataRegisterDomainOutput struct {
@@ -1799,7 +1799,7 @@ type RetrieveDomainAuthCodeInput struct {
 	// Required: Yes
 	DomainName *string `type:"string" required:"true"`
 
-	metadataRetrieveDomainAuthCodeInput `json:"-", xml:"-"`
+	metadataRetrieveDomainAuthCodeInput `json:"-" xml:"-"`
 }
 
 type metadataRetrieveDomainAuthCodeInput struct {
@@ -1813,7 +1813,7 @@ type RetrieveDomainAuthCodeOutput struct {
 	// Type: String
 	AuthCode *string `type:"string" required:"true"`
 
-	metadataRetrieveDomainAuthCodeOutput `json:"-", xml:"-"`
+	metadataRetrieveDomainAuthCodeOutput `json:"-" xml:"-"`
 }
 
 type metadataRetrieveDomainAuthCodeOutput struct {
@@ -1848,7 +1848,7 @@ type Tag struct {
 	// Required: Yes
 	Value *string `type:"string"`
 
-	metadataTag `json:"-", xml:"-"`
+	metadataTag `json:"-" xml:"-"`
 }
 
 type metadataTag struct {
@@ -1989,7 +1989,7 @@ type TransferDomainInput struct {
 	// Required: Yes
 	TechContact *ContactDetail `type:"structure" required:"true"`
 
-	metadataTransferDomainInput `json:"-", xml:"-"`
+	metadataTransferDomainInput `json:"-" xml:"-"`
 }
 
 type metadataTransferDomainInput struct {
@@ -2008,7 +2008,7 @@ type TransferDomainOutput struct {
 	// Constraints: Maximum 255 characters.
 	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
 
-	metadataTransferDomainOutput `json:"-", xml:"-"`
+	metadataTransferDomainOutput `json:"-" xml:"-"`
 }
 
 type metadataTransferDomainOutput struct {
@@ -2063,7 +2063,7 @@ type UpdateDomainContactInput struct {
 	// Required: Yes
 	TechContact *ContactDetail `type:"structure"`
 
-	metadataUpdateDomainContactInput `json:"-", xml:"-"`
+	metadataUpdateDomainContactInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateDomainContactInput struct {
@@ -2082,7 +2082,7 @@ type UpdateDomainContactOutput struct {
 	// Constraints: Maximum 255 characters.
 	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
 
-	metadataUpdateDomainContactOutput `json:"-", xml:"-"`
+	metadataUpdateDomainContactOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateDomainContactOutput struct {
@@ -2146,7 +2146,7 @@ type UpdateDomainContactPrivacyInput struct {
 	// Required: No
 	TechPrivacy *bool `type:"boolean"`
 
-	metadataUpdateDomainContactPrivacyInput `json:"-", xml:"-"`
+	metadataUpdateDomainContactPrivacyInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateDomainContactPrivacyInput struct {
@@ -2165,7 +2165,7 @@ type UpdateDomainContactPrivacyOutput struct {
 	// Constraints: Maximum 255 characters.
 	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
 
-	metadataUpdateDomainContactPrivacyOutput `json:"-", xml:"-"`
+	metadataUpdateDomainContactPrivacyOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateDomainContactPrivacyOutput struct {
@@ -2199,7 +2199,7 @@ type UpdateDomainNameserversInput struct {
 	// Required: Yes
 	Nameservers []*Nameserver `type:"list" required:"true"`
 
-	metadataUpdateDomainNameserversInput `json:"-", xml:"-"`
+	metadataUpdateDomainNameserversInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateDomainNameserversInput struct {
@@ -2218,7 +2218,7 @@ type UpdateDomainNameserversOutput struct {
 	// Constraints: Maximum 255 characters.
 	OperationID *string `locationName:"OperationId" type:"string" required:"true"`
 
-	metadataUpdateDomainNameserversOutput `json:"-", xml:"-"`
+	metadataUpdateDomainNameserversOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateDomainNameserversOutput struct {
@@ -2284,7 +2284,7 @@ type UpdateTagsForDomainInput struct {
 	// Required: Yes
 	TagsToUpdate []*Tag `type:"list"`
 
-	metadataUpdateTagsForDomainInput `json:"-", xml:"-"`
+	metadataUpdateTagsForDomainInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateTagsForDomainInput struct {
@@ -2292,7 +2292,7 @@ type metadataUpdateTagsForDomainInput struct {
 }
 
 type UpdateTagsForDomainOutput struct {
-	metadataUpdateTagsForDomainOutput `json:"-", xml:"-"`
+	metadataUpdateTagsForDomainOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateTagsForDomainOutput struct {

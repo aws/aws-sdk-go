@@ -762,7 +762,7 @@ type AllocateConnectionOnInterconnectInput struct {
 	// Default: None
 	VLAN *int64 `locationName:"vlan" type:"integer" required:"true"`
 
-	metadataAllocateConnectionOnInterconnectInput `json:"-", xml:"-"`
+	metadataAllocateConnectionOnInterconnectInput `json:"-" xml:"-"`
 }
 
 type metadataAllocateConnectionOnInterconnectInput struct {
@@ -786,7 +786,7 @@ type AllocatePrivateVirtualInterfaceInput struct {
 	// Default: None
 	OwnerAccount *string `locationName:"ownerAccount" type:"string" required:"true"`
 
-	metadataAllocatePrivateVirtualInterfaceInput `json:"-", xml:"-"`
+	metadataAllocatePrivateVirtualInterfaceInput `json:"-" xml:"-"`
 }
 
 type metadataAllocatePrivateVirtualInterfaceInput struct {
@@ -810,7 +810,7 @@ type AllocatePublicVirtualInterfaceInput struct {
 	// Default: None
 	OwnerAccount *string `locationName:"ownerAccount" type:"string" required:"true"`
 
-	metadataAllocatePublicVirtualInterfaceInput `json:"-", xml:"-"`
+	metadataAllocatePublicVirtualInterfaceInput `json:"-" xml:"-"`
 }
 
 type metadataAllocatePublicVirtualInterfaceInput struct {
@@ -826,7 +826,7 @@ type ConfirmConnectionInput struct {
 	// Default: None
 	ConnectionID *string `locationName:"connectionId" type:"string" required:"true"`
 
-	metadataConfirmConnectionInput `json:"-", xml:"-"`
+	metadataConfirmConnectionInput `json:"-" xml:"-"`
 }
 
 type metadataConfirmConnectionInput struct {
@@ -847,7 +847,7 @@ type ConfirmConnectionOutput struct {
 	// the 'Rejected' state if it is deleted by the end customer.
 	ConnectionState *string `locationName:"connectionState" type:"string"`
 
-	metadataConfirmConnectionOutput `json:"-", xml:"-"`
+	metadataConfirmConnectionOutput `json:"-" xml:"-"`
 }
 
 type metadataConfirmConnectionOutput struct {
@@ -872,7 +872,7 @@ type ConfirmPrivateVirtualInterfaceInput struct {
 	// Default: None
 	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
 
-	metadataConfirmPrivateVirtualInterfaceInput `json:"-", xml:"-"`
+	metadataConfirmPrivateVirtualInterfaceInput `json:"-" xml:"-"`
 }
 
 type metadataConfirmPrivateVirtualInterfaceInput struct {
@@ -899,7 +899,7 @@ type ConfirmPrivateVirtualInterfaceOutput struct {
 	// the 'Rejected' state.
 	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string"`
 
-	metadataConfirmPrivateVirtualInterfaceOutput `json:"-", xml:"-"`
+	metadataConfirmPrivateVirtualInterfaceOutput `json:"-" xml:"-"`
 }
 
 type metadataConfirmPrivateVirtualInterfaceOutput struct {
@@ -915,7 +915,7 @@ type ConfirmPublicVirtualInterfaceInput struct {
 	// Default: None
 	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
 
-	metadataConfirmPublicVirtualInterfaceInput `json:"-", xml:"-"`
+	metadataConfirmPublicVirtualInterfaceInput `json:"-" xml:"-"`
 }
 
 type metadataConfirmPublicVirtualInterfaceInput struct {
@@ -942,7 +942,7 @@ type ConfirmPublicVirtualInterfaceOutput struct {
 	// the 'Rejected' state.
 	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string"`
 
-	metadataConfirmPublicVirtualInterfaceOutput `json:"-", xml:"-"`
+	metadataConfirmPublicVirtualInterfaceOutput `json:"-" xml:"-"`
 }
 
 type metadataConfirmPublicVirtualInterfaceOutput struct {
@@ -1008,7 +1008,7 @@ type Connection struct {
 	// Example: 101
 	VLAN *int64 `locationName:"vlan" type:"integer"`
 
-	metadataConnection `json:"-", xml:"-"`
+	metadataConnection `json:"-" xml:"-"`
 }
 
 type metadataConnection struct {
@@ -1020,7 +1020,7 @@ type Connections struct {
 	// A list of connections.
 	Connections []*Connection `locationName:"connections" type:"list"`
 
-	metadataConnections `json:"-", xml:"-"`
+	metadataConnections `json:"-" xml:"-"`
 }
 
 type metadataConnections struct {
@@ -1050,7 +1050,7 @@ type CreateConnectionInput struct {
 	// Default: None
 	Location *string `locationName:"location" type:"string" required:"true"`
 
-	metadataCreateConnectionInput `json:"-", xml:"-"`
+	metadataCreateConnectionInput `json:"-" xml:"-"`
 }
 
 type metadataCreateConnectionInput struct {
@@ -1082,7 +1082,7 @@ type CreateInterconnectInput struct {
 	// Default: None
 	Location *string `locationName:"location" type:"string" required:"true"`
 
-	metadataCreateInterconnectInput `json:"-", xml:"-"`
+	metadataCreateInterconnectInput `json:"-" xml:"-"`
 }
 
 type metadataCreateInterconnectInput struct {
@@ -1103,7 +1103,7 @@ type CreatePrivateVirtualInterfaceInput struct {
 	// Default: None
 	NewPrivateVirtualInterface *NewPrivateVirtualInterface `locationName:"newPrivateVirtualInterface" type:"structure" required:"true"`
 
-	metadataCreatePrivateVirtualInterfaceInput `json:"-", xml:"-"`
+	metadataCreatePrivateVirtualInterfaceInput `json:"-" xml:"-"`
 }
 
 type metadataCreatePrivateVirtualInterfaceInput struct {
@@ -1124,7 +1124,7 @@ type CreatePublicVirtualInterfaceInput struct {
 	// Default: None
 	NewPublicVirtualInterface *NewPublicVirtualInterface `locationName:"newPublicVirtualInterface" type:"structure" required:"true"`
 
-	metadataCreatePublicVirtualInterfaceInput `json:"-", xml:"-"`
+	metadataCreatePublicVirtualInterfaceInput `json:"-" xml:"-"`
 }
 
 type metadataCreatePublicVirtualInterfaceInput struct {
@@ -1140,7 +1140,7 @@ type DeleteConnectionInput struct {
 	// Default: None
 	ConnectionID *string `locationName:"connectionId" type:"string" required:"true"`
 
-	metadataDeleteConnectionInput `json:"-", xml:"-"`
+	metadataDeleteConnectionInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteConnectionInput struct {
@@ -1154,7 +1154,7 @@ type DeleteInterconnectInput struct {
 	// Example: dxcon-abc123
 	InterconnectID *string `locationName:"interconnectId" type:"string" required:"true"`
 
-	metadataDeleteInterconnectInput `json:"-", xml:"-"`
+	metadataDeleteInterconnectInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteInterconnectInput struct {
@@ -1171,7 +1171,7 @@ type DeleteInterconnectOutput struct {
 	// has been deleted.
 	InterconnectState *string `locationName:"interconnectState" type:"string"`
 
-	metadataDeleteInterconnectOutput `json:"-", xml:"-"`
+	metadataDeleteInterconnectOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteInterconnectOutput struct {
@@ -1187,7 +1187,7 @@ type DeleteVirtualInterfaceInput struct {
 	// Default: None
 	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
 
-	metadataDeleteVirtualInterfaceInput `json:"-", xml:"-"`
+	metadataDeleteVirtualInterfaceInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteVirtualInterfaceInput struct {
@@ -1214,7 +1214,7 @@ type DeleteVirtualInterfaceOutput struct {
 	// the 'Rejected' state.
 	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string"`
 
-	metadataDeleteVirtualInterfaceOutput `json:"-", xml:"-"`
+	metadataDeleteVirtualInterfaceOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteVirtualInterfaceOutput struct {
@@ -1230,7 +1230,7 @@ type DescribeConnectionsInput struct {
 	// Default: None
 	ConnectionID *string `locationName:"connectionId" type:"string"`
 
-	metadataDescribeConnectionsInput `json:"-", xml:"-"`
+	metadataDescribeConnectionsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeConnectionsInput struct {
@@ -1246,7 +1246,7 @@ type DescribeConnectionsOnInterconnectInput struct {
 	// Default: None
 	InterconnectID *string `locationName:"interconnectId" type:"string" required:"true"`
 
-	metadataDescribeConnectionsOnInterconnectInput `json:"-", xml:"-"`
+	metadataDescribeConnectionsOnInterconnectInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeConnectionsOnInterconnectInput struct {
@@ -1260,7 +1260,7 @@ type DescribeInterconnectsInput struct {
 	// Example: dxcon-abc123
 	InterconnectID *string `locationName:"interconnectId" type:"string"`
 
-	metadataDescribeInterconnectsInput `json:"-", xml:"-"`
+	metadataDescribeInterconnectsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeInterconnectsInput struct {
@@ -1272,7 +1272,7 @@ type DescribeInterconnectsOutput struct {
 	// A list of interconnects.
 	Interconnects []*Interconnect `locationName:"interconnects" type:"list"`
 
-	metadataDescribeInterconnectsOutput `json:"-", xml:"-"`
+	metadataDescribeInterconnectsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeInterconnectsOutput struct {
@@ -1280,7 +1280,7 @@ type metadataDescribeInterconnectsOutput struct {
 }
 
 type DescribeLocationsInput struct {
-	metadataDescribeLocationsInput `json:"-", xml:"-"`
+	metadataDescribeLocationsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLocationsInput struct {
@@ -1290,7 +1290,7 @@ type metadataDescribeLocationsInput struct {
 type DescribeLocationsOutput struct {
 	Locations []*Location `locationName:"locations" type:"list"`
 
-	metadataDescribeLocationsOutput `json:"-", xml:"-"`
+	metadataDescribeLocationsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLocationsOutput struct {
@@ -1298,7 +1298,7 @@ type metadataDescribeLocationsOutput struct {
 }
 
 type DescribeVirtualGatewaysInput struct {
-	metadataDescribeVirtualGatewaysInput `json:"-", xml:"-"`
+	metadataDescribeVirtualGatewaysInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeVirtualGatewaysInput struct {
@@ -1310,7 +1310,7 @@ type DescribeVirtualGatewaysOutput struct {
 	// A list of virtual private gateways.
 	VirtualGateways []*VirtualGateway `locationName:"virtualGateways" type:"list"`
 
-	metadataDescribeVirtualGatewaysOutput `json:"-", xml:"-"`
+	metadataDescribeVirtualGatewaysOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeVirtualGatewaysOutput struct {
@@ -1333,7 +1333,7 @@ type DescribeVirtualInterfacesInput struct {
 	// Default: None
 	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string"`
 
-	metadataDescribeVirtualInterfacesInput `json:"-", xml:"-"`
+	metadataDescribeVirtualInterfacesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeVirtualInterfacesInput struct {
@@ -1345,7 +1345,7 @@ type DescribeVirtualInterfacesOutput struct {
 	// A list of virtual interfaces.
 	VirtualInterfaces []*VirtualInterface `locationName:"virtualInterfaces" type:"list"`
 
-	metadataDescribeVirtualInterfacesOutput `json:"-", xml:"-"`
+	metadataDescribeVirtualInterfacesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeVirtualInterfacesOutput struct {
@@ -1404,7 +1404,7 @@ type Interconnect struct {
 	// Default: None
 	Region *string `locationName:"region" type:"string"`
 
-	metadataInterconnect `json:"-", xml:"-"`
+	metadataInterconnect `json:"-" xml:"-"`
 }
 
 type metadataInterconnect struct {
@@ -1421,7 +1421,7 @@ type Location struct {
 	// partner name and the physical site of the lit building.
 	LocationName *string `locationName:"locationName" type:"string"`
 
-	metadataLocation `json:"-", xml:"-"`
+	metadataLocation `json:"-" xml:"-"`
 }
 
 type metadataLocation struct {
@@ -1466,7 +1466,7 @@ type NewPrivateVirtualInterface struct {
 	// Example: "My VPC"
 	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" required:"true"`
 
-	metadataNewPrivateVirtualInterface `json:"-", xml:"-"`
+	metadataNewPrivateVirtualInterface `json:"-" xml:"-"`
 }
 
 type metadataNewPrivateVirtualInterface struct {
@@ -1506,7 +1506,7 @@ type NewPrivateVirtualInterfaceAllocation struct {
 	// Example: "My VPC"
 	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" required:"true"`
 
-	metadataNewPrivateVirtualInterfaceAllocation `json:"-", xml:"-"`
+	metadataNewPrivateVirtualInterfaceAllocation `json:"-" xml:"-"`
 }
 
 type metadataNewPrivateVirtualInterfaceAllocation struct {
@@ -1549,7 +1549,7 @@ type NewPublicVirtualInterface struct {
 	// Example: "My VPC"
 	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" required:"true"`
 
-	metadataNewPublicVirtualInterface `json:"-", xml:"-"`
+	metadataNewPublicVirtualInterface `json:"-" xml:"-"`
 }
 
 type metadataNewPublicVirtualInterface struct {
@@ -1593,7 +1593,7 @@ type NewPublicVirtualInterfaceAllocation struct {
 	// Example: "My VPC"
 	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" required:"true"`
 
-	metadataNewPublicVirtualInterfaceAllocation `json:"-", xml:"-"`
+	metadataNewPublicVirtualInterfaceAllocation `json:"-" xml:"-"`
 }
 
 type metadataNewPublicVirtualInterfaceAllocation struct {
@@ -1609,7 +1609,7 @@ type RouteFilterPrefix struct {
 	// Example: 10.10.10.0/24,10.10.11.0/24
 	CIDR *string `locationName:"cidr" type:"string"`
 
-	metadataRouteFilterPrefix `json:"-", xml:"-"`
+	metadataRouteFilterPrefix `json:"-" xml:"-"`
 }
 
 type metadataRouteFilterPrefix struct {
@@ -1635,7 +1635,7 @@ type VirtualGateway struct {
 	// over this gateway.
 	VirtualGatewayState *string `locationName:"virtualGatewayState" type:"string"`
 
-	metadataVirtualGateway `json:"-", xml:"-"`
+	metadataVirtualGateway `json:"-" xml:"-"`
 }
 
 type metadataVirtualGateway struct {
@@ -1735,7 +1735,7 @@ type VirtualInterface struct {
 	// so on.)
 	VirtualInterfaceType *string `locationName:"virtualInterfaceType" type:"string"`
 
-	metadataVirtualInterface `json:"-", xml:"-"`
+	metadataVirtualInterface `json:"-" xml:"-"`
 }
 
 type metadataVirtualInterface struct {

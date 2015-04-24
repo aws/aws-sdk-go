@@ -4170,7 +4170,7 @@ type AccessKey struct {
 	// The name of the IAM user that the access key is associated with.
 	UserName *string `type:"string" required:"true"`
 
-	metadataAccessKey `json:"-", xml:"-"`
+	metadataAccessKey `json:"-" xml:"-"`
 }
 
 type metadataAccessKey struct {
@@ -4196,7 +4196,7 @@ type AccessKeyLastUsed struct {
 	// used.
 	ServiceName *string `type:"string" required:"true"`
 
-	metadataAccessKeyLastUsed `json:"-", xml:"-"`
+	metadataAccessKeyLastUsed `json:"-" xml:"-"`
 }
 
 type metadataAccessKeyLastUsed struct {
@@ -4220,7 +4220,7 @@ type AccessKeyMetadata struct {
 	// The name of the IAM user that the key is associated with.
 	UserName *string `type:"string"`
 
-	metadataAccessKeyMetadata `json:"-", xml:"-"`
+	metadataAccessKeyMetadata `json:"-" xml:"-"`
 }
 
 type metadataAccessKeyMetadata struct {
@@ -4236,7 +4236,7 @@ type AddClientIDToOpenIDConnectProviderInput struct {
 	// the ListOpenIDConnectProviders action.
 	OpenIDConnectProviderARN *string `locationName:"OpenIDConnectProviderArn" type:"string" required:"true"`
 
-	metadataAddClientIDToOpenIDConnectProviderInput `json:"-", xml:"-"`
+	metadataAddClientIDToOpenIDConnectProviderInput `json:"-" xml:"-"`
 }
 
 type metadataAddClientIDToOpenIDConnectProviderInput struct {
@@ -4244,7 +4244,7 @@ type metadataAddClientIDToOpenIDConnectProviderInput struct {
 }
 
 type AddClientIDToOpenIDConnectProviderOutput struct {
-	metadataAddClientIDToOpenIDConnectProviderOutput `json:"-", xml:"-"`
+	metadataAddClientIDToOpenIDConnectProviderOutput `json:"-" xml:"-"`
 }
 
 type metadataAddClientIDToOpenIDConnectProviderOutput struct {
@@ -4258,7 +4258,7 @@ type AddRoleToInstanceProfileInput struct {
 	// The name of the role to add.
 	RoleName *string `type:"string" required:"true"`
 
-	metadataAddRoleToInstanceProfileInput `json:"-", xml:"-"`
+	metadataAddRoleToInstanceProfileInput `json:"-" xml:"-"`
 }
 
 type metadataAddRoleToInstanceProfileInput struct {
@@ -4266,7 +4266,7 @@ type metadataAddRoleToInstanceProfileInput struct {
 }
 
 type AddRoleToInstanceProfileOutput struct {
-	metadataAddRoleToInstanceProfileOutput `json:"-", xml:"-"`
+	metadataAddRoleToInstanceProfileOutput `json:"-" xml:"-"`
 }
 
 type metadataAddRoleToInstanceProfileOutput struct {
@@ -4280,7 +4280,7 @@ type AddUserToGroupInput struct {
 	// The name of the user to add.
 	UserName *string `type:"string" required:"true"`
 
-	metadataAddUserToGroupInput `json:"-", xml:"-"`
+	metadataAddUserToGroupInput `json:"-" xml:"-"`
 }
 
 type metadataAddUserToGroupInput struct {
@@ -4288,7 +4288,7 @@ type metadataAddUserToGroupInput struct {
 }
 
 type AddUserToGroupOutput struct {
-	metadataAddUserToGroupOutput `json:"-", xml:"-"`
+	metadataAddUserToGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataAddUserToGroupOutput struct {
@@ -4306,7 +4306,7 @@ type AttachGroupPolicyInput struct {
 	// in the AWS General Reference.
 	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
 
-	metadataAttachGroupPolicyInput `json:"-", xml:"-"`
+	metadataAttachGroupPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataAttachGroupPolicyInput struct {
@@ -4314,7 +4314,7 @@ type metadataAttachGroupPolicyInput struct {
 }
 
 type AttachGroupPolicyOutput struct {
-	metadataAttachGroupPolicyOutput `json:"-", xml:"-"`
+	metadataAttachGroupPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataAttachGroupPolicyOutput struct {
@@ -4332,7 +4332,7 @@ type AttachRolePolicyInput struct {
 	// The name (friendly name, not ARN) of the role to attach the policy to.
 	RoleName *string `type:"string" required:"true"`
 
-	metadataAttachRolePolicyInput `json:"-", xml:"-"`
+	metadataAttachRolePolicyInput `json:"-" xml:"-"`
 }
 
 type metadataAttachRolePolicyInput struct {
@@ -4340,7 +4340,7 @@ type metadataAttachRolePolicyInput struct {
 }
 
 type AttachRolePolicyOutput struct {
-	metadataAttachRolePolicyOutput `json:"-", xml:"-"`
+	metadataAttachRolePolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataAttachRolePolicyOutput struct {
@@ -4358,7 +4358,7 @@ type AttachUserPolicyInput struct {
 	// The name (friendly name, not ARN) of the user to attach the policy to.
 	UserName *string `type:"string" required:"true"`
 
-	metadataAttachUserPolicyInput `json:"-", xml:"-"`
+	metadataAttachUserPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataAttachUserPolicyInput struct {
@@ -4366,7 +4366,7 @@ type metadataAttachUserPolicyInput struct {
 }
 
 type AttachUserPolicyOutput struct {
-	metadataAttachUserPolicyOutput `json:"-", xml:"-"`
+	metadataAttachUserPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataAttachUserPolicyOutput struct {
@@ -4394,7 +4394,7 @@ type AttachedPolicy struct {
 	// The friendly name of the attached policy.
 	PolicyName *string `type:"string"`
 
-	metadataAttachedPolicy `json:"-", xml:"-"`
+	metadataAttachedPolicy `json:"-" xml:"-"`
 }
 
 type metadataAttachedPolicy struct {
@@ -4409,7 +4409,7 @@ type ChangePasswordInput struct {
 	// The IAM user's current password.
 	OldPassword *string `type:"string" required:"true"`
 
-	metadataChangePasswordInput `json:"-", xml:"-"`
+	metadataChangePasswordInput `json:"-" xml:"-"`
 }
 
 type metadataChangePasswordInput struct {
@@ -4417,7 +4417,7 @@ type metadataChangePasswordInput struct {
 }
 
 type ChangePasswordOutput struct {
-	metadataChangePasswordOutput `json:"-", xml:"-"`
+	metadataChangePasswordOutput `json:"-" xml:"-"`
 }
 
 type metadataChangePasswordOutput struct {
@@ -4428,7 +4428,7 @@ type CreateAccessKeyInput struct {
 	// The user name that the new key will belong to.
 	UserName *string `type:"string"`
 
-	metadataCreateAccessKeyInput `json:"-", xml:"-"`
+	metadataCreateAccessKeyInput `json:"-" xml:"-"`
 }
 
 type metadataCreateAccessKeyInput struct {
@@ -4440,7 +4440,7 @@ type CreateAccessKeyOutput struct {
 	// Information about the access key.
 	AccessKey *AccessKey `type:"structure" required:"true"`
 
-	metadataCreateAccessKeyOutput `json:"-", xml:"-"`
+	metadataCreateAccessKeyOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateAccessKeyOutput struct {
@@ -4451,7 +4451,7 @@ type CreateAccountAliasInput struct {
 	// The account alias to create.
 	AccountAlias *string `type:"string" required:"true"`
 
-	metadataCreateAccountAliasInput `json:"-", xml:"-"`
+	metadataCreateAccountAliasInput `json:"-" xml:"-"`
 }
 
 type metadataCreateAccountAliasInput struct {
@@ -4459,7 +4459,7 @@ type metadataCreateAccountAliasInput struct {
 }
 
 type CreateAccountAliasOutput struct {
-	metadataCreateAccountAliasOutput `json:"-", xml:"-"`
+	metadataCreateAccountAliasOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateAccountAliasOutput struct {
@@ -4478,7 +4478,7 @@ type CreateGroupInput struct {
 	// (/).
 	Path *string `type:"string"`
 
-	metadataCreateGroupInput `json:"-", xml:"-"`
+	metadataCreateGroupInput `json:"-" xml:"-"`
 }
 
 type metadataCreateGroupInput struct {
@@ -4490,7 +4490,7 @@ type CreateGroupOutput struct {
 	// Information about the group.
 	Group *Group `type:"structure" required:"true"`
 
-	metadataCreateGroupOutput `json:"-", xml:"-"`
+	metadataCreateGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateGroupOutput struct {
@@ -4509,7 +4509,7 @@ type CreateInstanceProfileInput struct {
 	// (/).
 	Path *string `type:"string"`
 
-	metadataCreateInstanceProfileInput `json:"-", xml:"-"`
+	metadataCreateInstanceProfileInput `json:"-" xml:"-"`
 }
 
 type metadataCreateInstanceProfileInput struct {
@@ -4521,7 +4521,7 @@ type CreateInstanceProfileOutput struct {
 	// Information about the instance profile.
 	InstanceProfile *InstanceProfile `type:"structure" required:"true"`
 
-	metadataCreateInstanceProfileOutput `json:"-", xml:"-"`
+	metadataCreateInstanceProfileOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateInstanceProfileOutput struct {
@@ -4538,7 +4538,7 @@ type CreateLoginProfileInput struct {
 	// The name of the user to create a password for.
 	UserName *string `type:"string" required:"true"`
 
-	metadataCreateLoginProfileInput `json:"-", xml:"-"`
+	metadataCreateLoginProfileInput `json:"-" xml:"-"`
 }
 
 type metadataCreateLoginProfileInput struct {
@@ -4550,7 +4550,7 @@ type CreateLoginProfileOutput struct {
 	// The user name and password create date.
 	LoginProfile *LoginProfile `type:"structure" required:"true"`
 
-	metadataCreateLoginProfileOutput `json:"-", xml:"-"`
+	metadataCreateLoginProfileOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateLoginProfileOutput struct {
@@ -4603,7 +4603,7 @@ type CreateOpenIDConnectProviderInput struct {
 	// provider in the AWS account, you will get an error.
 	URL *string `locationName:"Url" type:"string" required:"true"`
 
-	metadataCreateOpenIDConnectProviderInput `json:"-", xml:"-"`
+	metadataCreateOpenIDConnectProviderInput `json:"-" xml:"-"`
 }
 
 type metadataCreateOpenIDConnectProviderInput struct {
@@ -4616,7 +4616,7 @@ type CreateOpenIDConnectProviderOutput struct {
 	// created. For more information, see OpenIDConnectProviderListEntry.
 	OpenIDConnectProviderARN *string `locationName:"OpenIDConnectProviderArn" type:"string"`
 
-	metadataCreateOpenIDConnectProviderOutput `json:"-", xml:"-"`
+	metadataCreateOpenIDConnectProviderOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateOpenIDConnectProviderOutput struct {
@@ -4650,7 +4650,7 @@ type CreatePolicyInput struct {
 	// The name of the policy document.
 	PolicyName *string `type:"string" required:"true"`
 
-	metadataCreatePolicyInput `json:"-", xml:"-"`
+	metadataCreatePolicyInput `json:"-" xml:"-"`
 }
 
 type metadataCreatePolicyInput struct {
@@ -4662,7 +4662,7 @@ type CreatePolicyOutput struct {
 	// Information about the policy.
 	Policy *Policy `type:"structure"`
 
-	metadataCreatePolicyOutput `json:"-", xml:"-"`
+	metadataCreatePolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataCreatePolicyOutput struct {
@@ -4693,7 +4693,7 @@ type CreatePolicyVersionInput struct {
 	// in the Using IAM guide.
 	SetAsDefault *bool `type:"boolean"`
 
-	metadataCreatePolicyVersionInput `json:"-", xml:"-"`
+	metadataCreatePolicyVersionInput `json:"-" xml:"-"`
 }
 
 type metadataCreatePolicyVersionInput struct {
@@ -4705,7 +4705,7 @@ type CreatePolicyVersionOutput struct {
 	// Information about the policy version.
 	PolicyVersion *PolicyVersion `type:"structure"`
 
-	metadataCreatePolicyVersionOutput `json:"-", xml:"-"`
+	metadataCreatePolicyVersionOutput `json:"-" xml:"-"`
 }
 
 type metadataCreatePolicyVersionOutput struct {
@@ -4727,7 +4727,7 @@ type CreateRoleInput struct {
 	// The name of the role to create.
 	RoleName *string `type:"string" required:"true"`
 
-	metadataCreateRoleInput `json:"-", xml:"-"`
+	metadataCreateRoleInput `json:"-" xml:"-"`
 }
 
 type metadataCreateRoleInput struct {
@@ -4739,7 +4739,7 @@ type CreateRoleOutput struct {
 	// Information about the role.
 	Role *Role `type:"structure" required:"true"`
 
-	metadataCreateRoleOutput `json:"-", xml:"-"`
+	metadataCreateRoleOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateRoleOutput struct {
@@ -4761,7 +4761,7 @@ type CreateSAMLProviderInput struct {
 	// in the Using Temporary Security Credentials guide.
 	SAMLMetadataDocument *string `type:"string" required:"true"`
 
-	metadataCreateSAMLProviderInput `json:"-", xml:"-"`
+	metadataCreateSAMLProviderInput `json:"-" xml:"-"`
 }
 
 type metadataCreateSAMLProviderInput struct {
@@ -4773,7 +4773,7 @@ type CreateSAMLProviderOutput struct {
 	// The Amazon Resource Name (ARN) of the SAML provider.
 	SAMLProviderARN *string `locationName:"SAMLProviderArn" type:"string"`
 
-	metadataCreateSAMLProviderOutput `json:"-", xml:"-"`
+	metadataCreateSAMLProviderOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateSAMLProviderOutput struct {
@@ -4792,7 +4792,7 @@ type CreateUserInput struct {
 	// The name of the user to create.
 	UserName *string `type:"string" required:"true"`
 
-	metadataCreateUserInput `json:"-", xml:"-"`
+	metadataCreateUserInput `json:"-" xml:"-"`
 }
 
 type metadataCreateUserInput struct {
@@ -4804,7 +4804,7 @@ type CreateUserOutput struct {
 	// Information about the user.
 	User *User `type:"structure"`
 
-	metadataCreateUserOutput `json:"-", xml:"-"`
+	metadataCreateUserOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateUserOutput struct {
@@ -4824,7 +4824,7 @@ type CreateVirtualMFADeviceInput struct {
 	// virtual MFA device.
 	VirtualMFADeviceName *string `type:"string" required:"true"`
 
-	metadataCreateVirtualMFADeviceInput `json:"-", xml:"-"`
+	metadataCreateVirtualMFADeviceInput `json:"-" xml:"-"`
 }
 
 type metadataCreateVirtualMFADeviceInput struct {
@@ -4836,7 +4836,7 @@ type CreateVirtualMFADeviceOutput struct {
 	// A newly created virtual MFA device.
 	VirtualMFADevice *VirtualMFADevice `type:"structure" required:"true"`
 
-	metadataCreateVirtualMFADeviceOutput `json:"-", xml:"-"`
+	metadataCreateVirtualMFADeviceOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateVirtualMFADeviceOutput struct {
@@ -4851,7 +4851,7 @@ type DeactivateMFADeviceInput struct {
 	// The name of the user whose MFA device you want to deactivate.
 	UserName *string `type:"string" required:"true"`
 
-	metadataDeactivateMFADeviceInput `json:"-", xml:"-"`
+	metadataDeactivateMFADeviceInput `json:"-" xml:"-"`
 }
 
 type metadataDeactivateMFADeviceInput struct {
@@ -4859,7 +4859,7 @@ type metadataDeactivateMFADeviceInput struct {
 }
 
 type DeactivateMFADeviceOutput struct {
-	metadataDeactivateMFADeviceOutput `json:"-", xml:"-"`
+	metadataDeactivateMFADeviceOutput `json:"-" xml:"-"`
 }
 
 type metadataDeactivateMFADeviceOutput struct {
@@ -4874,7 +4874,7 @@ type DeleteAccessKeyInput struct {
 	// The name of the user whose key you want to delete.
 	UserName *string `type:"string"`
 
-	metadataDeleteAccessKeyInput `json:"-", xml:"-"`
+	metadataDeleteAccessKeyInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAccessKeyInput struct {
@@ -4882,7 +4882,7 @@ type metadataDeleteAccessKeyInput struct {
 }
 
 type DeleteAccessKeyOutput struct {
-	metadataDeleteAccessKeyOutput `json:"-", xml:"-"`
+	metadataDeleteAccessKeyOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAccessKeyOutput struct {
@@ -4893,7 +4893,7 @@ type DeleteAccountAliasInput struct {
 	// The name of the account alias to delete.
 	AccountAlias *string `type:"string" required:"true"`
 
-	metadataDeleteAccountAliasInput `json:"-", xml:"-"`
+	metadataDeleteAccountAliasInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAccountAliasInput struct {
@@ -4901,7 +4901,7 @@ type metadataDeleteAccountAliasInput struct {
 }
 
 type DeleteAccountAliasOutput struct {
-	metadataDeleteAccountAliasOutput `json:"-", xml:"-"`
+	metadataDeleteAccountAliasOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAccountAliasOutput struct {
@@ -4909,7 +4909,7 @@ type metadataDeleteAccountAliasOutput struct {
 }
 
 type DeleteAccountPasswordPolicyInput struct {
-	metadataDeleteAccountPasswordPolicyInput `json:"-", xml:"-"`
+	metadataDeleteAccountPasswordPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAccountPasswordPolicyInput struct {
@@ -4917,7 +4917,7 @@ type metadataDeleteAccountPasswordPolicyInput struct {
 }
 
 type DeleteAccountPasswordPolicyOutput struct {
-	metadataDeleteAccountPasswordPolicyOutput `json:"-", xml:"-"`
+	metadataDeleteAccountPasswordPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAccountPasswordPolicyOutput struct {
@@ -4928,7 +4928,7 @@ type DeleteGroupInput struct {
 	// The name of the group to delete.
 	GroupName *string `type:"string" required:"true"`
 
-	metadataDeleteGroupInput `json:"-", xml:"-"`
+	metadataDeleteGroupInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteGroupInput struct {
@@ -4936,7 +4936,7 @@ type metadataDeleteGroupInput struct {
 }
 
 type DeleteGroupOutput struct {
-	metadataDeleteGroupOutput `json:"-", xml:"-"`
+	metadataDeleteGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteGroupOutput struct {
@@ -4951,7 +4951,7 @@ type DeleteGroupPolicyInput struct {
 	// The name identifying the policy document to delete.
 	PolicyName *string `type:"string" required:"true"`
 
-	metadataDeleteGroupPolicyInput `json:"-", xml:"-"`
+	metadataDeleteGroupPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteGroupPolicyInput struct {
@@ -4959,7 +4959,7 @@ type metadataDeleteGroupPolicyInput struct {
 }
 
 type DeleteGroupPolicyOutput struct {
-	metadataDeleteGroupPolicyOutput `json:"-", xml:"-"`
+	metadataDeleteGroupPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteGroupPolicyOutput struct {
@@ -4970,7 +4970,7 @@ type DeleteInstanceProfileInput struct {
 	// The name of the instance profile to delete.
 	InstanceProfileName *string `type:"string" required:"true"`
 
-	metadataDeleteInstanceProfileInput `json:"-", xml:"-"`
+	metadataDeleteInstanceProfileInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteInstanceProfileInput struct {
@@ -4978,7 +4978,7 @@ type metadataDeleteInstanceProfileInput struct {
 }
 
 type DeleteInstanceProfileOutput struct {
-	metadataDeleteInstanceProfileOutput `json:"-", xml:"-"`
+	metadataDeleteInstanceProfileOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteInstanceProfileOutput struct {
@@ -4989,7 +4989,7 @@ type DeleteLoginProfileInput struct {
 	// The name of the user whose password you want to delete.
 	UserName *string `type:"string" required:"true"`
 
-	metadataDeleteLoginProfileInput `json:"-", xml:"-"`
+	metadataDeleteLoginProfileInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLoginProfileInput struct {
@@ -4997,7 +4997,7 @@ type metadataDeleteLoginProfileInput struct {
 }
 
 type DeleteLoginProfileOutput struct {
-	metadataDeleteLoginProfileOutput `json:"-", xml:"-"`
+	metadataDeleteLoginProfileOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLoginProfileOutput struct {
@@ -5010,7 +5010,7 @@ type DeleteOpenIDConnectProviderInput struct {
 	// action.
 	OpenIDConnectProviderARN *string `locationName:"OpenIDConnectProviderArn" type:"string" required:"true"`
 
-	metadataDeleteOpenIDConnectProviderInput `json:"-", xml:"-"`
+	metadataDeleteOpenIDConnectProviderInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteOpenIDConnectProviderInput struct {
@@ -5018,7 +5018,7 @@ type metadataDeleteOpenIDConnectProviderInput struct {
 }
 
 type DeleteOpenIDConnectProviderOutput struct {
-	metadataDeleteOpenIDConnectProviderOutput `json:"-", xml:"-"`
+	metadataDeleteOpenIDConnectProviderOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteOpenIDConnectProviderOutput struct {
@@ -5033,7 +5033,7 @@ type DeletePolicyInput struct {
 	// in the AWS General Reference.
 	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
 
-	metadataDeletePolicyInput `json:"-", xml:"-"`
+	metadataDeletePolicyInput `json:"-" xml:"-"`
 }
 
 type metadataDeletePolicyInput struct {
@@ -5041,7 +5041,7 @@ type metadataDeletePolicyInput struct {
 }
 
 type DeletePolicyOutput struct {
-	metadataDeletePolicyOutput `json:"-", xml:"-"`
+	metadataDeletePolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDeletePolicyOutput struct {
@@ -5063,7 +5063,7 @@ type DeletePolicyVersionInput struct {
 	// in the Using IAM guide.
 	VersionID *string `locationName:"VersionId" type:"string" required:"true"`
 
-	metadataDeletePolicyVersionInput `json:"-", xml:"-"`
+	metadataDeletePolicyVersionInput `json:"-" xml:"-"`
 }
 
 type metadataDeletePolicyVersionInput struct {
@@ -5071,7 +5071,7 @@ type metadataDeletePolicyVersionInput struct {
 }
 
 type DeletePolicyVersionOutput struct {
-	metadataDeletePolicyVersionOutput `json:"-", xml:"-"`
+	metadataDeletePolicyVersionOutput `json:"-" xml:"-"`
 }
 
 type metadataDeletePolicyVersionOutput struct {
@@ -5082,7 +5082,7 @@ type DeleteRoleInput struct {
 	// The name of the role to delete.
 	RoleName *string `type:"string" required:"true"`
 
-	metadataDeleteRoleInput `json:"-", xml:"-"`
+	metadataDeleteRoleInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteRoleInput struct {
@@ -5090,7 +5090,7 @@ type metadataDeleteRoleInput struct {
 }
 
 type DeleteRoleOutput struct {
-	metadataDeleteRoleOutput `json:"-", xml:"-"`
+	metadataDeleteRoleOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteRoleOutput struct {
@@ -5105,7 +5105,7 @@ type DeleteRolePolicyInput struct {
 	// embedded in.
 	RoleName *string `type:"string" required:"true"`
 
-	metadataDeleteRolePolicyInput `json:"-", xml:"-"`
+	metadataDeleteRolePolicyInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteRolePolicyInput struct {
@@ -5113,7 +5113,7 @@ type metadataDeleteRolePolicyInput struct {
 }
 
 type DeleteRolePolicyOutput struct {
-	metadataDeleteRolePolicyOutput `json:"-", xml:"-"`
+	metadataDeleteRolePolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteRolePolicyOutput struct {
@@ -5124,7 +5124,7 @@ type DeleteSAMLProviderInput struct {
 	// The Amazon Resource Name (ARN) of the SAML provider to delete.
 	SAMLProviderARN *string `locationName:"SAMLProviderArn" type:"string" required:"true"`
 
-	metadataDeleteSAMLProviderInput `json:"-", xml:"-"`
+	metadataDeleteSAMLProviderInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteSAMLProviderInput struct {
@@ -5132,7 +5132,7 @@ type metadataDeleteSAMLProviderInput struct {
 }
 
 type DeleteSAMLProviderOutput struct {
-	metadataDeleteSAMLProviderOutput `json:"-", xml:"-"`
+	metadataDeleteSAMLProviderOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteSAMLProviderOutput struct {
@@ -5143,7 +5143,7 @@ type DeleteServerCertificateInput struct {
 	// The name of the server certificate you want to delete.
 	ServerCertificateName *string `type:"string" required:"true"`
 
-	metadataDeleteServerCertificateInput `json:"-", xml:"-"`
+	metadataDeleteServerCertificateInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteServerCertificateInput struct {
@@ -5151,7 +5151,7 @@ type metadataDeleteServerCertificateInput struct {
 }
 
 type DeleteServerCertificateOutput struct {
-	metadataDeleteServerCertificateOutput `json:"-", xml:"-"`
+	metadataDeleteServerCertificateOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteServerCertificateOutput struct {
@@ -5165,7 +5165,7 @@ type DeleteSigningCertificateInput struct {
 	// The name of the user the signing certificate belongs to.
 	UserName *string `type:"string"`
 
-	metadataDeleteSigningCertificateInput `json:"-", xml:"-"`
+	metadataDeleteSigningCertificateInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteSigningCertificateInput struct {
@@ -5173,7 +5173,7 @@ type metadataDeleteSigningCertificateInput struct {
 }
 
 type DeleteSigningCertificateOutput struct {
-	metadataDeleteSigningCertificateOutput `json:"-", xml:"-"`
+	metadataDeleteSigningCertificateOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteSigningCertificateOutput struct {
@@ -5184,7 +5184,7 @@ type DeleteUserInput struct {
 	// The name of the user to delete.
 	UserName *string `type:"string" required:"true"`
 
-	metadataDeleteUserInput `json:"-", xml:"-"`
+	metadataDeleteUserInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteUserInput struct {
@@ -5192,7 +5192,7 @@ type metadataDeleteUserInput struct {
 }
 
 type DeleteUserOutput struct {
-	metadataDeleteUserOutput `json:"-", xml:"-"`
+	metadataDeleteUserOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteUserOutput struct {
@@ -5207,7 +5207,7 @@ type DeleteUserPolicyInput struct {
 	// embedded in.
 	UserName *string `type:"string" required:"true"`
 
-	metadataDeleteUserPolicyInput `json:"-", xml:"-"`
+	metadataDeleteUserPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteUserPolicyInput struct {
@@ -5215,7 +5215,7 @@ type metadataDeleteUserPolicyInput struct {
 }
 
 type DeleteUserPolicyOutput struct {
-	metadataDeleteUserPolicyOutput `json:"-", xml:"-"`
+	metadataDeleteUserPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteUserPolicyOutput struct {
@@ -5227,7 +5227,7 @@ type DeleteVirtualMFADeviceInput struct {
 	// devices, the serial number is the same as the ARN.
 	SerialNumber *string `type:"string" required:"true"`
 
-	metadataDeleteVirtualMFADeviceInput `json:"-", xml:"-"`
+	metadataDeleteVirtualMFADeviceInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteVirtualMFADeviceInput struct {
@@ -5235,7 +5235,7 @@ type metadataDeleteVirtualMFADeviceInput struct {
 }
 
 type DeleteVirtualMFADeviceOutput struct {
-	metadataDeleteVirtualMFADeviceOutput `json:"-", xml:"-"`
+	metadataDeleteVirtualMFADeviceOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteVirtualMFADeviceOutput struct {
@@ -5253,7 +5253,7 @@ type DetachGroupPolicyInput struct {
 	// in the AWS General Reference.
 	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
 
-	metadataDetachGroupPolicyInput `json:"-", xml:"-"`
+	metadataDetachGroupPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataDetachGroupPolicyInput struct {
@@ -5261,7 +5261,7 @@ type metadataDetachGroupPolicyInput struct {
 }
 
 type DetachGroupPolicyOutput struct {
-	metadataDetachGroupPolicyOutput `json:"-", xml:"-"`
+	metadataDetachGroupPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDetachGroupPolicyOutput struct {
@@ -5279,7 +5279,7 @@ type DetachRolePolicyInput struct {
 	// The name (friendly name, not ARN) of the role to detach the policy from.
 	RoleName *string `type:"string" required:"true"`
 
-	metadataDetachRolePolicyInput `json:"-", xml:"-"`
+	metadataDetachRolePolicyInput `json:"-" xml:"-"`
 }
 
 type metadataDetachRolePolicyInput struct {
@@ -5287,7 +5287,7 @@ type metadataDetachRolePolicyInput struct {
 }
 
 type DetachRolePolicyOutput struct {
-	metadataDetachRolePolicyOutput `json:"-", xml:"-"`
+	metadataDetachRolePolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDetachRolePolicyOutput struct {
@@ -5305,7 +5305,7 @@ type DetachUserPolicyInput struct {
 	// The name (friendly name, not ARN) of the user to detach the policy from.
 	UserName *string `type:"string" required:"true"`
 
-	metadataDetachUserPolicyInput `json:"-", xml:"-"`
+	metadataDetachUserPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataDetachUserPolicyInput struct {
@@ -5313,7 +5313,7 @@ type metadataDetachUserPolicyInput struct {
 }
 
 type DetachUserPolicyOutput struct {
-	metadataDetachUserPolicyOutput `json:"-", xml:"-"`
+	metadataDetachUserPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDetachUserPolicyOutput struct {
@@ -5334,7 +5334,7 @@ type EnableMFADeviceInput struct {
 	// The name of the user for whom you want to enable the MFA device.
 	UserName *string `type:"string" required:"true"`
 
-	metadataEnableMFADeviceInput `json:"-", xml:"-"`
+	metadataEnableMFADeviceInput `json:"-" xml:"-"`
 }
 
 type metadataEnableMFADeviceInput struct {
@@ -5342,7 +5342,7 @@ type metadataEnableMFADeviceInput struct {
 }
 
 type EnableMFADeviceOutput struct {
-	metadataEnableMFADeviceOutput `json:"-", xml:"-"`
+	metadataEnableMFADeviceOutput `json:"-" xml:"-"`
 }
 
 type metadataEnableMFADeviceOutput struct {
@@ -5350,7 +5350,7 @@ type metadataEnableMFADeviceOutput struct {
 }
 
 type GenerateCredentialReportInput struct {
-	metadataGenerateCredentialReportInput `json:"-", xml:"-"`
+	metadataGenerateCredentialReportInput `json:"-" xml:"-"`
 }
 
 type metadataGenerateCredentialReportInput struct {
@@ -5365,7 +5365,7 @@ type GenerateCredentialReportOutput struct {
 	// Information about the state of the credential report.
 	State *string `type:"string"`
 
-	metadataGenerateCredentialReportOutput `json:"-", xml:"-"`
+	metadataGenerateCredentialReportOutput `json:"-" xml:"-"`
 }
 
 type metadataGenerateCredentialReportOutput struct {
@@ -5376,7 +5376,7 @@ type GetAccessKeyLastUsedInput struct {
 	// The identifier of an access key.
 	AccessKeyID *string `locationName:"AccessKeyId" type:"string" required:"true"`
 
-	metadataGetAccessKeyLastUsedInput `json:"-", xml:"-"`
+	metadataGetAccessKeyLastUsedInput `json:"-" xml:"-"`
 }
 
 type metadataGetAccessKeyLastUsedInput struct {
@@ -5393,7 +5393,7 @@ type GetAccessKeyLastUsedOutput struct {
 	// The name of the AWS IAM user that owns this access key.
 	UserName *string `type:"string"`
 
-	metadataGetAccessKeyLastUsedOutput `json:"-", xml:"-"`
+	metadataGetAccessKeyLastUsedOutput `json:"-" xml:"-"`
 }
 
 type metadataGetAccessKeyLastUsedOutput struct {
@@ -5416,7 +5416,7 @@ type GetAccountAuthorizationDetailsInput struct {
 	// optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
-	metadataGetAccountAuthorizationDetailsInput `json:"-", xml:"-"`
+	metadataGetAccountAuthorizationDetailsInput `json:"-" xml:"-"`
 }
 
 type metadataGetAccountAuthorizationDetailsInput struct {
@@ -5446,7 +5446,7 @@ type GetAccountAuthorizationDetailsOutput struct {
 	// A list containing information about IAM users.
 	UserDetailList []*UserDetail `type:"list"`
 
-	metadataGetAccountAuthorizationDetailsOutput `json:"-", xml:"-"`
+	metadataGetAccountAuthorizationDetailsOutput `json:"-" xml:"-"`
 }
 
 type metadataGetAccountAuthorizationDetailsOutput struct {
@@ -5454,7 +5454,7 @@ type metadataGetAccountAuthorizationDetailsOutput struct {
 }
 
 type GetAccountPasswordPolicyInput struct {
-	metadataGetAccountPasswordPolicyInput `json:"-", xml:"-"`
+	metadataGetAccountPasswordPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataGetAccountPasswordPolicyInput struct {
@@ -5469,7 +5469,7 @@ type GetAccountPasswordPolicyOutput struct {
 	// action.
 	PasswordPolicy *PasswordPolicy `type:"structure" required:"true"`
 
-	metadataGetAccountPasswordPolicyOutput `json:"-", xml:"-"`
+	metadataGetAccountPasswordPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataGetAccountPasswordPolicyOutput struct {
@@ -5477,7 +5477,7 @@ type metadataGetAccountPasswordPolicyOutput struct {
 }
 
 type GetAccountSummaryInput struct {
-	metadataGetAccountSummaryInput `json:"-", xml:"-"`
+	metadataGetAccountSummaryInput `json:"-" xml:"-"`
 }
 
 type metadataGetAccountSummaryInput struct {
@@ -5631,7 +5631,7 @@ type GetAccountSummaryOutput struct {
 	// The maximum number of policy versions allowed for each managed policy.
 	SummaryMap *map[string]*int64 `type:"map"`
 
-	metadataGetAccountSummaryOutput `json:"-", xml:"-"`
+	metadataGetAccountSummaryOutput `json:"-" xml:"-"`
 }
 
 type metadataGetAccountSummaryOutput struct {
@@ -5639,7 +5639,7 @@ type metadataGetAccountSummaryOutput struct {
 }
 
 type GetCredentialReportInput struct {
-	metadataGetCredentialReportInput `json:"-", xml:"-"`
+	metadataGetCredentialReportInput `json:"-" xml:"-"`
 }
 
 type metadataGetCredentialReportInput struct {
@@ -5658,7 +5658,7 @@ type GetCredentialReportOutput struct {
 	// The format (MIME type) of the credential report.
 	ReportFormat *string `type:"string"`
 
-	metadataGetCredentialReportOutput `json:"-", xml:"-"`
+	metadataGetCredentialReportOutput `json:"-" xml:"-"`
 }
 
 type metadataGetCredentialReportOutput struct {
@@ -5680,7 +5680,7 @@ type GetGroupInput struct {
 	// optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
-	metadataGetGroupInput `json:"-", xml:"-"`
+	metadataGetGroupInput `json:"-" xml:"-"`
 }
 
 type metadataGetGroupInput struct {
@@ -5704,7 +5704,7 @@ type GetGroupOutput struct {
 	// A list of users in the group.
 	Users []*User `type:"list" required:"true"`
 
-	metadataGetGroupOutput `json:"-", xml:"-"`
+	metadataGetGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataGetGroupOutput struct {
@@ -5718,7 +5718,7 @@ type GetGroupPolicyInput struct {
 	// The name of the policy document to get.
 	PolicyName *string `type:"string" required:"true"`
 
-	metadataGetGroupPolicyInput `json:"-", xml:"-"`
+	metadataGetGroupPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataGetGroupPolicyInput struct {
@@ -5736,7 +5736,7 @@ type GetGroupPolicyOutput struct {
 	// The name of the policy.
 	PolicyName *string `type:"string" required:"true"`
 
-	metadataGetGroupPolicyOutput `json:"-", xml:"-"`
+	metadataGetGroupPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataGetGroupPolicyOutput struct {
@@ -5747,7 +5747,7 @@ type GetInstanceProfileInput struct {
 	// The name of the instance profile to get information about.
 	InstanceProfileName *string `type:"string" required:"true"`
 
-	metadataGetInstanceProfileInput `json:"-", xml:"-"`
+	metadataGetInstanceProfileInput `json:"-" xml:"-"`
 }
 
 type metadataGetInstanceProfileInput struct {
@@ -5759,7 +5759,7 @@ type GetInstanceProfileOutput struct {
 	// Information about the instance profile.
 	InstanceProfile *InstanceProfile `type:"structure" required:"true"`
 
-	metadataGetInstanceProfileOutput `json:"-", xml:"-"`
+	metadataGetInstanceProfileOutput `json:"-" xml:"-"`
 }
 
 type metadataGetInstanceProfileOutput struct {
@@ -5770,7 +5770,7 @@ type GetLoginProfileInput struct {
 	// The name of the user whose login profile you want to retrieve.
 	UserName *string `type:"string" required:"true"`
 
-	metadataGetLoginProfileInput `json:"-", xml:"-"`
+	metadataGetLoginProfileInput `json:"-" xml:"-"`
 }
 
 type metadataGetLoginProfileInput struct {
@@ -5782,7 +5782,7 @@ type GetLoginProfileOutput struct {
 	// The user name and password create date for the user.
 	LoginProfile *LoginProfile `type:"structure" required:"true"`
 
-	metadataGetLoginProfileOutput `json:"-", xml:"-"`
+	metadataGetLoginProfileOutput `json:"-" xml:"-"`
 }
 
 type metadataGetLoginProfileOutput struct {
@@ -5795,7 +5795,7 @@ type GetOpenIDConnectProviderInput struct {
 	// the ListOpenIDConnectProviders action.
 	OpenIDConnectProviderARN *string `locationName:"OpenIDConnectProviderArn" type:"string" required:"true"`
 
-	metadataGetOpenIDConnectProviderInput `json:"-", xml:"-"`
+	metadataGetOpenIDConnectProviderInput `json:"-" xml:"-"`
 }
 
 type metadataGetOpenIDConnectProviderInput struct {
@@ -5820,7 +5820,7 @@ type GetOpenIDConnectProviderOutput struct {
 	// information, see CreateOpenIDConnectProvider.
 	URL *string `locationName:"Url" type:"string"`
 
-	metadataGetOpenIDConnectProviderOutput `json:"-", xml:"-"`
+	metadataGetOpenIDConnectProviderOutput `json:"-" xml:"-"`
 }
 
 type metadataGetOpenIDConnectProviderOutput struct {
@@ -5835,7 +5835,7 @@ type GetPolicyInput struct {
 	// in the AWS General Reference.
 	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
 
-	metadataGetPolicyInput `json:"-", xml:"-"`
+	metadataGetPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataGetPolicyInput struct {
@@ -5847,7 +5847,7 @@ type GetPolicyOutput struct {
 	// Information about the policy.
 	Policy *Policy `type:"structure"`
 
-	metadataGetPolicyOutput `json:"-", xml:"-"`
+	metadataGetPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataGetPolicyOutput struct {
@@ -5865,7 +5865,7 @@ type GetPolicyVersionInput struct {
 	// Identifies the policy version to retrieve.
 	VersionID *string `locationName:"VersionId" type:"string" required:"true"`
 
-	metadataGetPolicyVersionInput `json:"-", xml:"-"`
+	metadataGetPolicyVersionInput `json:"-" xml:"-"`
 }
 
 type metadataGetPolicyVersionInput struct {
@@ -5881,7 +5881,7 @@ type GetPolicyVersionOutput struct {
 	// in the Using IAM guide.
 	PolicyVersion *PolicyVersion `type:"structure"`
 
-	metadataGetPolicyVersionOutput `json:"-", xml:"-"`
+	metadataGetPolicyVersionOutput `json:"-" xml:"-"`
 }
 
 type metadataGetPolicyVersionOutput struct {
@@ -5892,7 +5892,7 @@ type GetRoleInput struct {
 	// The name of the role to get information about.
 	RoleName *string `type:"string" required:"true"`
 
-	metadataGetRoleInput `json:"-", xml:"-"`
+	metadataGetRoleInput `json:"-" xml:"-"`
 }
 
 type metadataGetRoleInput struct {
@@ -5904,7 +5904,7 @@ type GetRoleOutput struct {
 	// Information about the role.
 	Role *Role `type:"structure" required:"true"`
 
-	metadataGetRoleOutput `json:"-", xml:"-"`
+	metadataGetRoleOutput `json:"-" xml:"-"`
 }
 
 type metadataGetRoleOutput struct {
@@ -5918,7 +5918,7 @@ type GetRolePolicyInput struct {
 	// The name of the role associated with the policy.
 	RoleName *string `type:"string" required:"true"`
 
-	metadataGetRolePolicyInput `json:"-", xml:"-"`
+	metadataGetRolePolicyInput `json:"-" xml:"-"`
 }
 
 type metadataGetRolePolicyInput struct {
@@ -5936,7 +5936,7 @@ type GetRolePolicyOutput struct {
 	// The role the policy is associated with.
 	RoleName *string `type:"string" required:"true"`
 
-	metadataGetRolePolicyOutput `json:"-", xml:"-"`
+	metadataGetRolePolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataGetRolePolicyOutput struct {
@@ -5947,7 +5947,7 @@ type GetSAMLProviderInput struct {
 	// The Amazon Resource Name (ARN) of the SAML provider to get information about.
 	SAMLProviderARN *string `locationName:"SAMLProviderArn" type:"string" required:"true"`
 
-	metadataGetSAMLProviderInput `json:"-", xml:"-"`
+	metadataGetSAMLProviderInput `json:"-" xml:"-"`
 }
 
 type metadataGetSAMLProviderInput struct {
@@ -5965,7 +5965,7 @@ type GetSAMLProviderOutput struct {
 	// The expiration date and time for the SAML provider.
 	ValidUntil *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataGetSAMLProviderOutput `json:"-", xml:"-"`
+	metadataGetSAMLProviderOutput `json:"-" xml:"-"`
 }
 
 type metadataGetSAMLProviderOutput struct {
@@ -5976,7 +5976,7 @@ type GetServerCertificateInput struct {
 	// The name of the server certificate you want to retrieve information about.
 	ServerCertificateName *string `type:"string" required:"true"`
 
-	metadataGetServerCertificateInput `json:"-", xml:"-"`
+	metadataGetServerCertificateInput `json:"-" xml:"-"`
 }
 
 type metadataGetServerCertificateInput struct {
@@ -5988,7 +5988,7 @@ type GetServerCertificateOutput struct {
 	// Information about the server certificate.
 	ServerCertificate *ServerCertificate `type:"structure" required:"true"`
 
-	metadataGetServerCertificateOutput `json:"-", xml:"-"`
+	metadataGetServerCertificateOutput `json:"-" xml:"-"`
 }
 
 type metadataGetServerCertificateOutput struct {
@@ -6002,7 +6002,7 @@ type GetUserInput struct {
 	// making the request.
 	UserName *string `type:"string"`
 
-	metadataGetUserInput `json:"-", xml:"-"`
+	metadataGetUserInput `json:"-" xml:"-"`
 }
 
 type metadataGetUserInput struct {
@@ -6014,7 +6014,7 @@ type GetUserOutput struct {
 	// Information about the user.
 	User *User `type:"structure" required:"true"`
 
-	metadataGetUserOutput `json:"-", xml:"-"`
+	metadataGetUserOutput `json:"-" xml:"-"`
 }
 
 type metadataGetUserOutput struct {
@@ -6028,7 +6028,7 @@ type GetUserPolicyInput struct {
 	// The name of the user who the policy is associated with.
 	UserName *string `type:"string" required:"true"`
 
-	metadataGetUserPolicyInput `json:"-", xml:"-"`
+	metadataGetUserPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataGetUserPolicyInput struct {
@@ -6046,7 +6046,7 @@ type GetUserPolicyOutput struct {
 	// The user the policy is associated with.
 	UserName *string `type:"string" required:"true"`
 
-	metadataGetUserPolicyOutput `json:"-", xml:"-"`
+	metadataGetUserPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataGetUserPolicyOutput struct {
@@ -6081,7 +6081,7 @@ type Group struct {
 	// in the Using IAM guide.
 	Path *string `type:"string" required:"true"`
 
-	metadataGroup `json:"-", xml:"-"`
+	metadataGroup `json:"-" xml:"-"`
 }
 
 type metadataGroup struct {
@@ -6123,7 +6123,7 @@ type GroupDetail struct {
 	// in the Using IAM guide.
 	Path *string `type:"string"`
 
-	metadataGroupDetail `json:"-", xml:"-"`
+	metadataGroupDetail `json:"-" xml:"-"`
 }
 
 type metadataGroupDetail struct {
@@ -6167,7 +6167,7 @@ type InstanceProfile struct {
 	// The role associated with the instance profile.
 	Roles []*Role `type:"list" required:"true"`
 
-	metadataInstanceProfile `json:"-", xml:"-"`
+	metadataInstanceProfile `json:"-" xml:"-"`
 }
 
 type metadataInstanceProfile struct {
@@ -6189,7 +6189,7 @@ type ListAccessKeysInput struct {
 	// The name of the user.
 	UserName *string `type:"string"`
 
-	metadataListAccessKeysInput `json:"-", xml:"-"`
+	metadataListAccessKeysInput `json:"-" xml:"-"`
 }
 
 type metadataListAccessKeysInput struct {
@@ -6210,7 +6210,7 @@ type ListAccessKeysOutput struct {
 	// use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
-	metadataListAccessKeysOutput `json:"-", xml:"-"`
+	metadataListAccessKeysOutput `json:"-" xml:"-"`
 }
 
 type metadataListAccessKeysOutput struct {
@@ -6229,7 +6229,7 @@ type ListAccountAliasesInput struct {
 	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
-	metadataListAccountAliasesInput `json:"-", xml:"-"`
+	metadataListAccountAliasesInput `json:"-" xml:"-"`
 }
 
 type metadataListAccountAliasesInput struct {
@@ -6252,7 +6252,7 @@ type ListAccountAliasesOutput struct {
 	// value of the Marker element in the response you just received.
 	Marker *string `type:"string"`
 
-	metadataListAccountAliasesOutput `json:"-", xml:"-"`
+	metadataListAccountAliasesOutput `json:"-" xml:"-"`
 }
 
 type metadataListAccountAliasesOutput struct {
@@ -6279,7 +6279,7 @@ type ListAttachedGroupPoliciesInput struct {
 	// it is not included, it defaults to a slash (/), listing all policies.
 	PathPrefix *string `type:"string"`
 
-	metadataListAttachedGroupPoliciesInput `json:"-", xml:"-"`
+	metadataListAttachedGroupPoliciesInput `json:"-" xml:"-"`
 }
 
 type metadataListAttachedGroupPoliciesInput struct {
@@ -6300,7 +6300,7 @@ type ListAttachedGroupPoliciesOutput struct {
 	// use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
-	metadataListAttachedGroupPoliciesOutput `json:"-", xml:"-"`
+	metadataListAttachedGroupPoliciesOutput `json:"-" xml:"-"`
 }
 
 type metadataListAttachedGroupPoliciesOutput struct {
@@ -6326,7 +6326,7 @@ type ListAttachedRolePoliciesInput struct {
 	// The name (friendly name, not ARN) of the role to list attached policies for.
 	RoleName *string `type:"string" required:"true"`
 
-	metadataListAttachedRolePoliciesInput `json:"-", xml:"-"`
+	metadataListAttachedRolePoliciesInput `json:"-" xml:"-"`
 }
 
 type metadataListAttachedRolePoliciesInput struct {
@@ -6347,7 +6347,7 @@ type ListAttachedRolePoliciesOutput struct {
 	// use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
-	metadataListAttachedRolePoliciesOutput `json:"-", xml:"-"`
+	metadataListAttachedRolePoliciesOutput `json:"-" xml:"-"`
 }
 
 type metadataListAttachedRolePoliciesOutput struct {
@@ -6373,7 +6373,7 @@ type ListAttachedUserPoliciesInput struct {
 	// The name (friendly name, not ARN) of the user to list attached policies for.
 	UserName *string `type:"string" required:"true"`
 
-	metadataListAttachedUserPoliciesInput `json:"-", xml:"-"`
+	metadataListAttachedUserPoliciesInput `json:"-" xml:"-"`
 }
 
 type metadataListAttachedUserPoliciesInput struct {
@@ -6394,7 +6394,7 @@ type ListAttachedUserPoliciesOutput struct {
 	// use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
-	metadataListAttachedUserPoliciesOutput `json:"-", xml:"-"`
+	metadataListAttachedUserPoliciesOutput `json:"-" xml:"-"`
 }
 
 type metadataListAttachedUserPoliciesOutput struct {
@@ -6431,7 +6431,7 @@ type ListEntitiesForPolicyInput struct {
 	// in the AWS General Reference.
 	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
 
-	metadataListEntitiesForPolicyInput `json:"-", xml:"-"`
+	metadataListEntitiesForPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataListEntitiesForPolicyInput struct {
@@ -6458,7 +6458,7 @@ type ListEntitiesForPolicyOutput struct {
 	// A list of users that the policy is attached to.
 	PolicyUsers []*PolicyUser `type:"list"`
 
-	metadataListEntitiesForPolicyOutput `json:"-", xml:"-"`
+	metadataListEntitiesForPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataListEntitiesForPolicyOutput struct {
@@ -6480,7 +6480,7 @@ type ListGroupPoliciesInput struct {
 	// is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
-	metadataListGroupPoliciesInput `json:"-", xml:"-"`
+	metadataListGroupPoliciesInput `json:"-" xml:"-"`
 }
 
 type metadataListGroupPoliciesInput struct {
@@ -6501,7 +6501,7 @@ type ListGroupPoliciesOutput struct {
 	// A list of policy names.
 	PolicyNames []*string `type:"list" required:"true"`
 
-	metadataListGroupPoliciesOutput `json:"-", xml:"-"`
+	metadataListGroupPoliciesOutput `json:"-" xml:"-"`
 }
 
 type metadataListGroupPoliciesOutput struct {
@@ -6523,7 +6523,7 @@ type ListGroupsForUserInput struct {
 	// The name of the user to list groups for.
 	UserName *string `type:"string" required:"true"`
 
-	metadataListGroupsForUserInput `json:"-", xml:"-"`
+	metadataListGroupsForUserInput `json:"-" xml:"-"`
 }
 
 type metadataListGroupsForUserInput struct {
@@ -6544,7 +6544,7 @@ type ListGroupsForUserOutput struct {
 	// use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
-	metadataListGroupsForUserOutput `json:"-", xml:"-"`
+	metadataListGroupsForUserOutput `json:"-" xml:"-"`
 }
 
 type metadataListGroupsForUserOutput struct {
@@ -6570,7 +6570,7 @@ type ListGroupsInput struct {
 	// (/), listing all groups.
 	PathPrefix *string `type:"string"`
 
-	metadataListGroupsInput `json:"-", xml:"-"`
+	metadataListGroupsInput `json:"-" xml:"-"`
 }
 
 type metadataListGroupsInput struct {
@@ -6591,7 +6591,7 @@ type ListGroupsOutput struct {
 	// use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
-	metadataListGroupsOutput `json:"-", xml:"-"`
+	metadataListGroupsOutput `json:"-" xml:"-"`
 }
 
 type metadataListGroupsOutput struct {
@@ -6614,7 +6614,7 @@ type ListInstanceProfilesForRoleInput struct {
 	// The name of the role to list instance profiles for.
 	RoleName *string `type:"string" required:"true"`
 
-	metadataListInstanceProfilesForRoleInput `json:"-", xml:"-"`
+	metadataListInstanceProfilesForRoleInput `json:"-" xml:"-"`
 }
 
 type metadataListInstanceProfilesForRoleInput struct {
@@ -6636,7 +6636,7 @@ type ListInstanceProfilesForRoleOutput struct {
 	// use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
-	metadataListInstanceProfilesForRoleOutput `json:"-", xml:"-"`
+	metadataListInstanceProfilesForRoleOutput `json:"-" xml:"-"`
 }
 
 type metadataListInstanceProfilesForRoleOutput struct {
@@ -6663,7 +6663,7 @@ type ListInstanceProfilesInput struct {
 	// (/), listing all instance profiles.
 	PathPrefix *string `type:"string"`
 
-	metadataListInstanceProfilesInput `json:"-", xml:"-"`
+	metadataListInstanceProfilesInput `json:"-" xml:"-"`
 }
 
 type metadataListInstanceProfilesInput struct {
@@ -6685,7 +6685,7 @@ type ListInstanceProfilesOutput struct {
 	// use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
-	metadataListInstanceProfilesOutput `json:"-", xml:"-"`
+	metadataListInstanceProfilesOutput `json:"-" xml:"-"`
 }
 
 type metadataListInstanceProfilesOutput struct {
@@ -6707,7 +6707,7 @@ type ListMFADevicesInput struct {
 	// The name of the user whose MFA devices you want to list.
 	UserName *string `type:"string"`
 
-	metadataListMFADevicesInput `json:"-", xml:"-"`
+	metadataListMFADevicesInput `json:"-" xml:"-"`
 }
 
 type metadataListMFADevicesInput struct {
@@ -6728,7 +6728,7 @@ type ListMFADevicesOutput struct {
 	// use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
-	metadataListMFADevicesOutput `json:"-", xml:"-"`
+	metadataListMFADevicesOutput `json:"-" xml:"-"`
 }
 
 type metadataListMFADevicesOutput struct {
@@ -6736,7 +6736,7 @@ type metadataListMFADevicesOutput struct {
 }
 
 type ListOpenIDConnectProvidersInput struct {
-	metadataListOpenIDConnectProvidersInput `json:"-", xml:"-"`
+	metadataListOpenIDConnectProvidersInput `json:"-" xml:"-"`
 }
 
 type metadataListOpenIDConnectProvidersInput struct {
@@ -6748,7 +6748,7 @@ type ListOpenIDConnectProvidersOutput struct {
 	// The list of IAM OpenID Connect providers in the AWS account.
 	OpenIDConnectProviderList []*OpenIDConnectProviderListEntry `type:"list"`
 
-	metadataListOpenIDConnectProvidersOutput `json:"-", xml:"-"`
+	metadataListOpenIDConnectProvidersOutput `json:"-" xml:"-"`
 }
 
 type metadataListOpenIDConnectProvidersOutput struct {
@@ -6787,7 +6787,7 @@ type ListPoliciesInput struct {
 	// all policies are returned.
 	Scope *string `type:"string"`
 
-	metadataListPoliciesInput `json:"-", xml:"-"`
+	metadataListPoliciesInput `json:"-" xml:"-"`
 }
 
 type metadataListPoliciesInput struct {
@@ -6808,7 +6808,7 @@ type ListPoliciesOutput struct {
 	// A list of policies.
 	Policies []*Policy `type:"list"`
 
-	metadataListPoliciesOutput `json:"-", xml:"-"`
+	metadataListPoliciesOutput `json:"-" xml:"-"`
 }
 
 type metadataListPoliciesOutput struct {
@@ -6835,7 +6835,7 @@ type ListPolicyVersionsInput struct {
 	// in the AWS General Reference.
 	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
 
-	metadataListPolicyVersionsInput `json:"-", xml:"-"`
+	metadataListPolicyVersionsInput `json:"-" xml:"-"`
 }
 
 type metadataListPolicyVersionsInput struct {
@@ -6861,7 +6861,7 @@ type ListPolicyVersionsOutput struct {
 	// in the Using IAM guide.
 	Versions []*PolicyVersion `type:"list"`
 
-	metadataListPolicyVersionsOutput `json:"-", xml:"-"`
+	metadataListPolicyVersionsOutput `json:"-" xml:"-"`
 }
 
 type metadataListPolicyVersionsOutput struct {
@@ -6883,7 +6883,7 @@ type ListRolePoliciesInput struct {
 	// The name of the role to list policies for.
 	RoleName *string `type:"string" required:"true"`
 
-	metadataListRolePoliciesInput `json:"-", xml:"-"`
+	metadataListRolePoliciesInput `json:"-" xml:"-"`
 }
 
 type metadataListRolePoliciesInput struct {
@@ -6904,7 +6904,7 @@ type ListRolePoliciesOutput struct {
 	// A list of policy names.
 	PolicyNames []*string `type:"list" required:"true"`
 
-	metadataListRolePoliciesOutput `json:"-", xml:"-"`
+	metadataListRolePoliciesOutput `json:"-" xml:"-"`
 }
 
 type metadataListRolePoliciesOutput struct {
@@ -6930,7 +6930,7 @@ type ListRolesInput struct {
 	// (/), listing all roles.
 	PathPrefix *string `type:"string"`
 
-	metadataListRolesInput `json:"-", xml:"-"`
+	metadataListRolesInput `json:"-" xml:"-"`
 }
 
 type metadataListRolesInput struct {
@@ -6951,7 +6951,7 @@ type ListRolesOutput struct {
 	// A list of roles.
 	Roles []*Role `type:"list" required:"true"`
 
-	metadataListRolesOutput `json:"-", xml:"-"`
+	metadataListRolesOutput `json:"-" xml:"-"`
 }
 
 type metadataListRolesOutput struct {
@@ -6959,7 +6959,7 @@ type metadataListRolesOutput struct {
 }
 
 type ListSAMLProvidersInput struct {
-	metadataListSAMLProvidersInput `json:"-", xml:"-"`
+	metadataListSAMLProvidersInput `json:"-" xml:"-"`
 }
 
 type metadataListSAMLProvidersInput struct {
@@ -6971,7 +6971,7 @@ type ListSAMLProvidersOutput struct {
 	// The list of SAML providers for this account.
 	SAMLProviderList []*SAMLProviderListEntry `type:"list"`
 
-	metadataListSAMLProvidersOutput `json:"-", xml:"-"`
+	metadataListSAMLProvidersOutput `json:"-" xml:"-"`
 }
 
 type metadataListSAMLProvidersOutput struct {
@@ -6998,7 +6998,7 @@ type ListServerCertificatesInput struct {
 	// (/), listing all server certificates.
 	PathPrefix *string `type:"string"`
 
-	metadataListServerCertificatesInput `json:"-", xml:"-"`
+	metadataListServerCertificatesInput `json:"-" xml:"-"`
 }
 
 type metadataListServerCertificatesInput struct {
@@ -7020,7 +7020,7 @@ type ListServerCertificatesOutput struct {
 	// A list of server certificates.
 	ServerCertificateMetadataList []*ServerCertificateMetadata `type:"list" required:"true"`
 
-	metadataListServerCertificatesOutput `json:"-", xml:"-"`
+	metadataListServerCertificatesOutput `json:"-" xml:"-"`
 }
 
 type metadataListServerCertificatesOutput struct {
@@ -7042,7 +7042,7 @@ type ListSigningCertificatesInput struct {
 	// The name of the user.
 	UserName *string `type:"string"`
 
-	metadataListSigningCertificatesInput `json:"-", xml:"-"`
+	metadataListSigningCertificatesInput `json:"-" xml:"-"`
 }
 
 type metadataListSigningCertificatesInput struct {
@@ -7063,7 +7063,7 @@ type ListSigningCertificatesOutput struct {
 	// use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
-	metadataListSigningCertificatesOutput `json:"-", xml:"-"`
+	metadataListSigningCertificatesOutput `json:"-" xml:"-"`
 }
 
 type metadataListSigningCertificatesOutput struct {
@@ -7085,7 +7085,7 @@ type ListUserPoliciesInput struct {
 	// The name of the user to list policies for.
 	UserName *string `type:"string" required:"true"`
 
-	metadataListUserPoliciesInput `json:"-", xml:"-"`
+	metadataListUserPoliciesInput `json:"-" xml:"-"`
 }
 
 type metadataListUserPoliciesInput struct {
@@ -7106,7 +7106,7 @@ type ListUserPoliciesOutput struct {
 	// A list of policy names.
 	PolicyNames []*string `type:"list" required:"true"`
 
-	metadataListUserPoliciesOutput `json:"-", xml:"-"`
+	metadataListUserPoliciesOutput `json:"-" xml:"-"`
 }
 
 type metadataListUserPoliciesOutput struct {
@@ -7132,7 +7132,7 @@ type ListUsersInput struct {
 	// (/), listing all user names.
 	PathPrefix *string `type:"string"`
 
-	metadataListUsersInput `json:"-", xml:"-"`
+	metadataListUsersInput `json:"-" xml:"-"`
 }
 
 type metadataListUsersInput struct {
@@ -7153,7 +7153,7 @@ type ListUsersOutput struct {
 	// A list of users.
 	Users []*User `type:"list" required:"true"`
 
-	metadataListUsersOutput `json:"-", xml:"-"`
+	metadataListUsersOutput `json:"-" xml:"-"`
 }
 
 type metadataListUsersOutput struct {
@@ -7177,7 +7177,7 @@ type ListVirtualMFADevicesInput struct {
 	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
-	metadataListVirtualMFADevicesInput `json:"-", xml:"-"`
+	metadataListVirtualMFADevicesInput `json:"-" xml:"-"`
 }
 
 type metadataListVirtualMFADevicesInput struct {
@@ -7199,7 +7199,7 @@ type ListVirtualMFADevicesOutput struct {
 	// value that was passed in the request.
 	VirtualMFADevices []*VirtualMFADevice `type:"list" required:"true"`
 
-	metadataListVirtualMFADevicesOutput `json:"-", xml:"-"`
+	metadataListVirtualMFADevicesOutput `json:"-" xml:"-"`
 }
 
 type metadataListVirtualMFADevicesOutput struct {
@@ -7221,7 +7221,7 @@ type LoginProfile struct {
 	// Console.
 	UserName *string `type:"string" required:"true"`
 
-	metadataLoginProfile `json:"-", xml:"-"`
+	metadataLoginProfile `json:"-" xml:"-"`
 }
 
 type metadataLoginProfile struct {
@@ -7242,7 +7242,7 @@ type MFADevice struct {
 	// The user with whom the MFA device is associated.
 	UserName *string `type:"string" required:"true"`
 
-	metadataMFADevice `json:"-", xml:"-"`
+	metadataMFADevice `json:"-" xml:"-"`
 }
 
 type metadataMFADevice struct {
@@ -7316,7 +7316,7 @@ type ManagedPolicyDetail struct {
 	// created.
 	UpdateDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataManagedPolicyDetail `json:"-", xml:"-"`
+	metadataManagedPolicyDetail `json:"-" xml:"-"`
 }
 
 type metadataManagedPolicyDetail struct {
@@ -7332,7 +7332,7 @@ type OpenIDConnectProviderListEntry struct {
 	// in the AWS General Reference.
 	ARN *string `locationName:"Arn" type:"string"`
 
-	metadataOpenIDConnectProviderListEntry `json:"-", xml:"-"`
+	metadataOpenIDConnectProviderListEntry `json:"-" xml:"-"`
 }
 
 type metadataOpenIDConnectProviderListEntry struct {
@@ -7377,7 +7377,7 @@ type PasswordPolicy struct {
 	// Specifies whether to require uppercase characters for IAM user passwords.
 	RequireUppercaseCharacters *bool `type:"boolean"`
 
-	metadataPasswordPolicy `json:"-", xml:"-"`
+	metadataPasswordPolicy `json:"-" xml:"-"`
 }
 
 type metadataPasswordPolicy struct {
@@ -7444,7 +7444,7 @@ type Policy struct {
 	// created.
 	UpdateDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataPolicy `json:"-", xml:"-"`
+	metadataPolicy `json:"-" xml:"-"`
 }
 
 type metadataPolicy struct {
@@ -7464,7 +7464,7 @@ type PolicyDetail struct {
 	// The name of the policy.
 	PolicyName *string `type:"string"`
 
-	metadataPolicyDetail `json:"-", xml:"-"`
+	metadataPolicyDetail `json:"-" xml:"-"`
 }
 
 type metadataPolicyDetail struct {
@@ -7483,7 +7483,7 @@ type PolicyGroup struct {
 	// The name (friendly name, not ARN) identifying the group.
 	GroupName *string `type:"string"`
 
-	metadataPolicyGroup `json:"-", xml:"-"`
+	metadataPolicyGroup `json:"-" xml:"-"`
 }
 
 type metadataPolicyGroup struct {
@@ -7502,7 +7502,7 @@ type PolicyRole struct {
 	// The name (friendly name, not ARN) identifying the role.
 	RoleName *string `type:"string"`
 
-	metadataPolicyRole `json:"-", xml:"-"`
+	metadataPolicyRole `json:"-" xml:"-"`
 }
 
 type metadataPolicyRole struct {
@@ -7521,7 +7521,7 @@ type PolicyUser struct {
 	// The name (friendly name, not ARN) identifying the user.
 	UserName *string `type:"string"`
 
-	metadataPolicyUser `json:"-", xml:"-"`
+	metadataPolicyUser `json:"-" xml:"-"`
 }
 
 type metadataPolicyUser struct {
@@ -7558,7 +7558,7 @@ type PolicyVersion struct {
 	// a policy is created, the first policy version is v1.
 	VersionID *string `locationName:"VersionId" type:"string"`
 
-	metadataPolicyVersion `json:"-", xml:"-"`
+	metadataPolicyVersion `json:"-" xml:"-"`
 }
 
 type metadataPolicyVersion struct {
@@ -7575,7 +7575,7 @@ type PutGroupPolicyInput struct {
 	// The name of the policy document.
 	PolicyName *string `type:"string" required:"true"`
 
-	metadataPutGroupPolicyInput `json:"-", xml:"-"`
+	metadataPutGroupPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataPutGroupPolicyInput struct {
@@ -7583,7 +7583,7 @@ type metadataPutGroupPolicyInput struct {
 }
 
 type PutGroupPolicyOutput struct {
-	metadataPutGroupPolicyOutput `json:"-", xml:"-"`
+	metadataPutGroupPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataPutGroupPolicyOutput struct {
@@ -7600,7 +7600,7 @@ type PutRolePolicyInput struct {
 	// The name of the role to associate the policy with.
 	RoleName *string `type:"string" required:"true"`
 
-	metadataPutRolePolicyInput `json:"-", xml:"-"`
+	metadataPutRolePolicyInput `json:"-" xml:"-"`
 }
 
 type metadataPutRolePolicyInput struct {
@@ -7608,7 +7608,7 @@ type metadataPutRolePolicyInput struct {
 }
 
 type PutRolePolicyOutput struct {
-	metadataPutRolePolicyOutput `json:"-", xml:"-"`
+	metadataPutRolePolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataPutRolePolicyOutput struct {
@@ -7625,7 +7625,7 @@ type PutUserPolicyInput struct {
 	// The name of the user to associate the policy with.
 	UserName *string `type:"string" required:"true"`
 
-	metadataPutUserPolicyInput `json:"-", xml:"-"`
+	metadataPutUserPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataPutUserPolicyInput struct {
@@ -7633,7 +7633,7 @@ type metadataPutUserPolicyInput struct {
 }
 
 type PutUserPolicyOutput struct {
-	metadataPutUserPolicyOutput `json:"-", xml:"-"`
+	metadataPutUserPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataPutUserPolicyOutput struct {
@@ -7650,7 +7650,7 @@ type RemoveClientIDFromOpenIDConnectProviderInput struct {
 	// using the ListOpenIDConnectProviders action.
 	OpenIDConnectProviderARN *string `locationName:"OpenIDConnectProviderArn" type:"string" required:"true"`
 
-	metadataRemoveClientIDFromOpenIDConnectProviderInput `json:"-", xml:"-"`
+	metadataRemoveClientIDFromOpenIDConnectProviderInput `json:"-" xml:"-"`
 }
 
 type metadataRemoveClientIDFromOpenIDConnectProviderInput struct {
@@ -7658,7 +7658,7 @@ type metadataRemoveClientIDFromOpenIDConnectProviderInput struct {
 }
 
 type RemoveClientIDFromOpenIDConnectProviderOutput struct {
-	metadataRemoveClientIDFromOpenIDConnectProviderOutput `json:"-", xml:"-"`
+	metadataRemoveClientIDFromOpenIDConnectProviderOutput `json:"-" xml:"-"`
 }
 
 type metadataRemoveClientIDFromOpenIDConnectProviderOutput struct {
@@ -7672,7 +7672,7 @@ type RemoveRoleFromInstanceProfileInput struct {
 	// The name of the role to remove.
 	RoleName *string `type:"string" required:"true"`
 
-	metadataRemoveRoleFromInstanceProfileInput `json:"-", xml:"-"`
+	metadataRemoveRoleFromInstanceProfileInput `json:"-" xml:"-"`
 }
 
 type metadataRemoveRoleFromInstanceProfileInput struct {
@@ -7680,7 +7680,7 @@ type metadataRemoveRoleFromInstanceProfileInput struct {
 }
 
 type RemoveRoleFromInstanceProfileOutput struct {
-	metadataRemoveRoleFromInstanceProfileOutput `json:"-", xml:"-"`
+	metadataRemoveRoleFromInstanceProfileOutput `json:"-" xml:"-"`
 }
 
 type metadataRemoveRoleFromInstanceProfileOutput struct {
@@ -7694,7 +7694,7 @@ type RemoveUserFromGroupInput struct {
 	// The name of the user to remove.
 	UserName *string `type:"string" required:"true"`
 
-	metadataRemoveUserFromGroupInput `json:"-", xml:"-"`
+	metadataRemoveUserFromGroupInput `json:"-" xml:"-"`
 }
 
 type metadataRemoveUserFromGroupInput struct {
@@ -7702,7 +7702,7 @@ type metadataRemoveUserFromGroupInput struct {
 }
 
 type RemoveUserFromGroupOutput struct {
-	metadataRemoveUserFromGroupOutput `json:"-", xml:"-"`
+	metadataRemoveUserFromGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataRemoveUserFromGroupOutput struct {
@@ -7722,7 +7722,7 @@ type ResyncMFADeviceInput struct {
 	// The name of the user whose MFA device you want to resynchronize.
 	UserName *string `type:"string" required:"true"`
 
-	metadataResyncMFADeviceInput `json:"-", xml:"-"`
+	metadataResyncMFADeviceInput `json:"-" xml:"-"`
 }
 
 type metadataResyncMFADeviceInput struct {
@@ -7730,7 +7730,7 @@ type metadataResyncMFADeviceInput struct {
 }
 
 type ResyncMFADeviceOutput struct {
-	metadataResyncMFADeviceOutput `json:"-", xml:"-"`
+	metadataResyncMFADeviceOutput `json:"-" xml:"-"`
 }
 
 type metadataResyncMFADeviceOutput struct {
@@ -7774,7 +7774,7 @@ type Role struct {
 	// The friendly name that identifies the role.
 	RoleName *string `type:"string" required:"true"`
 
-	metadataRole `json:"-", xml:"-"`
+	metadataRole `json:"-" xml:"-"`
 }
 
 type metadataRole struct {
@@ -7826,7 +7826,7 @@ type RoleDetail struct {
 	// access (permissions) policies.
 	RolePolicyList []*PolicyDetail `type:"list"`
 
-	metadataRoleDetail `json:"-", xml:"-"`
+	metadataRoleDetail `json:"-" xml:"-"`
 }
 
 type metadataRoleDetail struct {
@@ -7844,7 +7844,7 @@ type SAMLProviderListEntry struct {
 	// The expiration date and time for the SAML provider.
 	ValidUntil *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataSAMLProviderListEntry `json:"-", xml:"-"`
+	metadataSAMLProviderListEntry `json:"-" xml:"-"`
 }
 
 type metadataSAMLProviderListEntry struct {
@@ -7866,7 +7866,7 @@ type ServerCertificate struct {
 	// and ARN.
 	ServerCertificateMetadata *ServerCertificateMetadata `type:"structure" required:"true"`
 
-	metadataServerCertificate `json:"-", xml:"-"`
+	metadataServerCertificate `json:"-" xml:"-"`
 }
 
 type metadataServerCertificate struct {
@@ -7904,7 +7904,7 @@ type ServerCertificateMetadata struct {
 	// The date when the server certificate was uploaded.
 	UploadDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataServerCertificateMetadata `json:"-", xml:"-"`
+	metadataServerCertificateMetadata `json:"-" xml:"-"`
 }
 
 type metadataServerCertificateMetadata struct {
@@ -7926,7 +7926,7 @@ type SetDefaultPolicyVersionInput struct {
 	// in the Using IAM guide.
 	VersionID *string `locationName:"VersionId" type:"string" required:"true"`
 
-	metadataSetDefaultPolicyVersionInput `json:"-", xml:"-"`
+	metadataSetDefaultPolicyVersionInput `json:"-" xml:"-"`
 }
 
 type metadataSetDefaultPolicyVersionInput struct {
@@ -7934,7 +7934,7 @@ type metadataSetDefaultPolicyVersionInput struct {
 }
 
 type SetDefaultPolicyVersionOutput struct {
-	metadataSetDefaultPolicyVersionOutput `json:"-", xml:"-"`
+	metadataSetDefaultPolicyVersionOutput `json:"-" xml:"-"`
 }
 
 type metadataSetDefaultPolicyVersionOutput struct {
@@ -7962,7 +7962,7 @@ type SigningCertificate struct {
 	// The name of the user the signing certificate is associated with.
 	UserName *string `type:"string" required:"true"`
 
-	metadataSigningCertificate `json:"-", xml:"-"`
+	metadataSigningCertificate `json:"-" xml:"-"`
 }
 
 type metadataSigningCertificate struct {
@@ -7981,7 +7981,7 @@ type UpdateAccessKeyInput struct {
 	// The name of the user whose key you want to update.
 	UserName *string `type:"string"`
 
-	metadataUpdateAccessKeyInput `json:"-", xml:"-"`
+	metadataUpdateAccessKeyInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateAccessKeyInput struct {
@@ -7989,7 +7989,7 @@ type metadataUpdateAccessKeyInput struct {
 }
 
 type UpdateAccessKeyOutput struct {
-	metadataUpdateAccessKeyOutput `json:"-", xml:"-"`
+	metadataUpdateAccessKeyOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateAccessKeyOutput struct {
@@ -8054,7 +8054,7 @@ type UpdateAccountPasswordPolicyInput struct {
 	// Default value: false
 	RequireUppercaseCharacters *bool `type:"boolean"`
 
-	metadataUpdateAccountPasswordPolicyInput `json:"-", xml:"-"`
+	metadataUpdateAccountPasswordPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateAccountPasswordPolicyInput struct {
@@ -8062,7 +8062,7 @@ type metadataUpdateAccountPasswordPolicyInput struct {
 }
 
 type UpdateAccountPasswordPolicyOutput struct {
-	metadataUpdateAccountPasswordPolicyOutput `json:"-", xml:"-"`
+	metadataUpdateAccountPasswordPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateAccountPasswordPolicyOutput struct {
@@ -8076,7 +8076,7 @@ type UpdateAssumeRolePolicyInput struct {
 	// The name of the role to update.
 	RoleName *string `type:"string" required:"true"`
 
-	metadataUpdateAssumeRolePolicyInput `json:"-", xml:"-"`
+	metadataUpdateAssumeRolePolicyInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateAssumeRolePolicyInput struct {
@@ -8084,7 +8084,7 @@ type metadataUpdateAssumeRolePolicyInput struct {
 }
 
 type UpdateAssumeRolePolicyOutput struct {
-	metadataUpdateAssumeRolePolicyOutput `json:"-", xml:"-"`
+	metadataUpdateAssumeRolePolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateAssumeRolePolicyOutput struct {
@@ -8102,7 +8102,7 @@ type UpdateGroupInput struct {
 	// New path for the group. Only include this if changing the group's path.
 	NewPath *string `type:"string"`
 
-	metadataUpdateGroupInput `json:"-", xml:"-"`
+	metadataUpdateGroupInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateGroupInput struct {
@@ -8110,7 +8110,7 @@ type metadataUpdateGroupInput struct {
 }
 
 type UpdateGroupOutput struct {
-	metadataUpdateGroupOutput `json:"-", xml:"-"`
+	metadataUpdateGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateGroupOutput struct {
@@ -8127,7 +8127,7 @@ type UpdateLoginProfileInput struct {
 	// The name of the user whose password you want to update.
 	UserName *string `type:"string" required:"true"`
 
-	metadataUpdateLoginProfileInput `json:"-", xml:"-"`
+	metadataUpdateLoginProfileInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateLoginProfileInput struct {
@@ -8135,7 +8135,7 @@ type metadataUpdateLoginProfileInput struct {
 }
 
 type UpdateLoginProfileOutput struct {
-	metadataUpdateLoginProfileOutput `json:"-", xml:"-"`
+	metadataUpdateLoginProfileOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateLoginProfileOutput struct {
@@ -8152,7 +8152,7 @@ type UpdateOpenIDConnectProviderThumbprintInput struct {
 	// IAM OpenID Connect provider. For more information, see CreateOpenIDConnectProvider.
 	ThumbprintList []*string `type:"list" required:"true"`
 
-	metadataUpdateOpenIDConnectProviderThumbprintInput `json:"-", xml:"-"`
+	metadataUpdateOpenIDConnectProviderThumbprintInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateOpenIDConnectProviderThumbprintInput struct {
@@ -8160,7 +8160,7 @@ type metadataUpdateOpenIDConnectProviderThumbprintInput struct {
 }
 
 type UpdateOpenIDConnectProviderThumbprintOutput struct {
-	metadataUpdateOpenIDConnectProviderThumbprintOutput `json:"-", xml:"-"`
+	metadataUpdateOpenIDConnectProviderThumbprintOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateOpenIDConnectProviderThumbprintOutput struct {
@@ -8178,7 +8178,7 @@ type UpdateSAMLProviderInput struct {
 	// The Amazon Resource Name (ARN) of the SAML provider to update.
 	SAMLProviderARN *string `locationName:"SAMLProviderArn" type:"string" required:"true"`
 
-	metadataUpdateSAMLProviderInput `json:"-", xml:"-"`
+	metadataUpdateSAMLProviderInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateSAMLProviderInput struct {
@@ -8190,7 +8190,7 @@ type UpdateSAMLProviderOutput struct {
 	// The Amazon Resource Name (ARN) of the SAML provider that was updated.
 	SAMLProviderARN *string `locationName:"SAMLProviderArn" type:"string"`
 
-	metadataUpdateSAMLProviderOutput `json:"-", xml:"-"`
+	metadataUpdateSAMLProviderOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateSAMLProviderOutput struct {
@@ -8209,7 +8209,7 @@ type UpdateServerCertificateInput struct {
 	// The name of the server certificate that you want to update.
 	ServerCertificateName *string `type:"string" required:"true"`
 
-	metadataUpdateServerCertificateInput `json:"-", xml:"-"`
+	metadataUpdateServerCertificateInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateServerCertificateInput struct {
@@ -8217,7 +8217,7 @@ type metadataUpdateServerCertificateInput struct {
 }
 
 type UpdateServerCertificateOutput struct {
-	metadataUpdateServerCertificateOutput `json:"-", xml:"-"`
+	metadataUpdateServerCertificateOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateServerCertificateOutput struct {
@@ -8236,7 +8236,7 @@ type UpdateSigningCertificateInput struct {
 	// The name of the user the signing certificate belongs to.
 	UserName *string `type:"string"`
 
-	metadataUpdateSigningCertificateInput `json:"-", xml:"-"`
+	metadataUpdateSigningCertificateInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateSigningCertificateInput struct {
@@ -8244,7 +8244,7 @@ type metadataUpdateSigningCertificateInput struct {
 }
 
 type UpdateSigningCertificateOutput struct {
-	metadataUpdateSigningCertificateOutput `json:"-", xml:"-"`
+	metadataUpdateSigningCertificateOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateSigningCertificateOutput struct {
@@ -8264,7 +8264,7 @@ type UpdateUserInput struct {
 	// is the original user name.
 	UserName *string `type:"string" required:"true"`
 
-	metadataUpdateUserInput `json:"-", xml:"-"`
+	metadataUpdateUserInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateUserInput struct {
@@ -8272,7 +8272,7 @@ type metadataUpdateUserInput struct {
 }
 
 type UpdateUserOutput struct {
-	metadataUpdateUserOutput `json:"-", xml:"-"`
+	metadataUpdateUserOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateUserOutput struct {
@@ -8306,7 +8306,7 @@ type UploadServerCertificateInput struct {
 	// The name for the server certificate. Do not include the path in this value.
 	ServerCertificateName *string `type:"string" required:"true"`
 
-	metadataUploadServerCertificateInput `json:"-", xml:"-"`
+	metadataUploadServerCertificateInput `json:"-" xml:"-"`
 }
 
 type metadataUploadServerCertificateInput struct {
@@ -8319,7 +8319,7 @@ type UploadServerCertificateOutput struct {
 	// body, certificate chain, and private key.
 	ServerCertificateMetadata *ServerCertificateMetadata `type:"structure"`
 
-	metadataUploadServerCertificateOutput `json:"-", xml:"-"`
+	metadataUploadServerCertificateOutput `json:"-" xml:"-"`
 }
 
 type metadataUploadServerCertificateOutput struct {
@@ -8333,7 +8333,7 @@ type UploadSigningCertificateInput struct {
 	// The name of the user the signing certificate is for.
 	UserName *string `type:"string"`
 
-	metadataUploadSigningCertificateInput `json:"-", xml:"-"`
+	metadataUploadSigningCertificateInput `json:"-" xml:"-"`
 }
 
 type metadataUploadSigningCertificateInput struct {
@@ -8345,7 +8345,7 @@ type UploadSigningCertificateOutput struct {
 	// Information about the certificate.
 	Certificate *SigningCertificate `type:"structure" required:"true"`
 
-	metadataUploadSigningCertificateOutput `json:"-", xml:"-"`
+	metadataUploadSigningCertificateOutput `json:"-" xml:"-"`
 }
 
 type metadataUploadSigningCertificateOutput struct {
@@ -8397,7 +8397,7 @@ type User struct {
 	// The friendly name identifying the user.
 	UserName *string `type:"string" required:"true"`
 
-	metadataUser `json:"-", xml:"-"`
+	metadataUser `json:"-" xml:"-"`
 }
 
 type metadataUser struct {
@@ -8443,7 +8443,7 @@ type UserDetail struct {
 	// A list of the inline policies embedded in the user.
 	UserPolicyList []*PolicyDetail `type:"list"`
 
-	metadataUserDetail `json:"-", xml:"-"`
+	metadataUserDetail `json:"-" xml:"-"`
 }
 
 type metadataUserDetail struct {
@@ -8479,7 +8479,7 @@ type VirtualMFADevice struct {
 	//    ListUsers
 	User *User `type:"structure"`
 
-	metadataVirtualMFADevice `json:"-", xml:"-"`
+	metadataVirtualMFADevice `json:"-" xml:"-"`
 }
 
 type metadataVirtualMFADevice struct {

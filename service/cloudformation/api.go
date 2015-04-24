@@ -651,7 +651,7 @@ type CancelUpdateStackInput struct {
 	// The name or the unique identifier associated with the stack.
 	StackName *string `type:"string" required:"true"`
 
-	metadataCancelUpdateStackInput `json:"-", xml:"-"`
+	metadataCancelUpdateStackInput `json:"-" xml:"-"`
 }
 
 type metadataCancelUpdateStackInput struct {
@@ -659,7 +659,7 @@ type metadataCancelUpdateStackInput struct {
 }
 
 type CancelUpdateStackOutput struct {
-	metadataCancelUpdateStackOutput `json:"-", xml:"-"`
+	metadataCancelUpdateStackOutput `json:"-" xml:"-"`
 }
 
 type metadataCancelUpdateStackOutput struct {
@@ -755,7 +755,7 @@ type CreateStackInput struct {
 	// back.
 	TimeoutInMinutes *int64 `type:"integer"`
 
-	metadataCreateStackInput `json:"-", xml:"-"`
+	metadataCreateStackInput `json:"-" xml:"-"`
 }
 
 type metadataCreateStackInput struct {
@@ -767,7 +767,7 @@ type CreateStackOutput struct {
 	// Unique identifier of the stack.
 	StackID *string `locationName:"StackId" type:"string"`
 
-	metadataCreateStackOutput `json:"-", xml:"-"`
+	metadataCreateStackOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateStackOutput struct {
@@ -779,7 +779,7 @@ type DeleteStackInput struct {
 	// The name or the unique identifier associated with the stack.
 	StackName *string `type:"string" required:"true"`
 
-	metadataDeleteStackInput `json:"-", xml:"-"`
+	metadataDeleteStackInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteStackInput struct {
@@ -787,7 +787,7 @@ type metadataDeleteStackInput struct {
 }
 
 type DeleteStackOutput struct {
-	metadataDeleteStackOutput `json:"-", xml:"-"`
+	metadataDeleteStackOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteStackOutput struct {
@@ -810,7 +810,7 @@ type DescribeStackEventsInput struct {
 	// is no default value.
 	StackName *string `type:"string"`
 
-	metadataDescribeStackEventsInput `json:"-", xml:"-"`
+	metadataDescribeStackEventsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeStackEventsInput struct {
@@ -826,7 +826,7 @@ type DescribeStackEventsOutput struct {
 	// A list of StackEvents structures.
 	StackEvents []*StackEvent `type:"list"`
 
-	metadataDescribeStackEventsOutput `json:"-", xml:"-"`
+	metadataDescribeStackEventsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeStackEventsOutput struct {
@@ -848,7 +848,7 @@ type DescribeStackResourceInput struct {
 	// is no default value.
 	StackName *string `type:"string" required:"true"`
 
-	metadataDescribeStackResourceInput `json:"-", xml:"-"`
+	metadataDescribeStackResourceInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeStackResourceInput struct {
@@ -861,7 +861,7 @@ type DescribeStackResourceOutput struct {
 	// resource in the specified stack.
 	StackResourceDetail *StackResourceDetail `type:"structure"`
 
-	metadataDescribeStackResourceOutput `json:"-", xml:"-"`
+	metadataDescribeStackResourceOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeStackResourceOutput struct {
@@ -900,7 +900,7 @@ type DescribeStackResourcesInput struct {
 	// PhysicalResourceId.
 	StackName *string `type:"string"`
 
-	metadataDescribeStackResourcesInput `json:"-", xml:"-"`
+	metadataDescribeStackResourcesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeStackResourcesInput struct {
@@ -912,7 +912,7 @@ type DescribeStackResourcesOutput struct {
 	// A list of StackResource structures.
 	StackResources []*StackResource `type:"list"`
 
-	metadataDescribeStackResourcesOutput `json:"-", xml:"-"`
+	metadataDescribeStackResourcesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeStackResourcesOutput struct {
@@ -933,7 +933,7 @@ type DescribeStacksInput struct {
 	// is no default value.
 	StackName *string `type:"string"`
 
-	metadataDescribeStacksInput `json:"-", xml:"-"`
+	metadataDescribeStacksInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeStacksInput struct {
@@ -949,7 +949,7 @@ type DescribeStacksOutput struct {
 	// A list of stack structures.
 	Stacks []*Stack `type:"list"`
 
-	metadataDescribeStacksOutput `json:"-", xml:"-"`
+	metadataDescribeStacksOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeStacksOutput struct {
@@ -978,7 +978,7 @@ type EstimateTemplateCostInput struct {
 	// only TemplateBody is used.
 	TemplateURL *string `type:"string"`
 
-	metadataEstimateTemplateCostInput `json:"-", xml:"-"`
+	metadataEstimateTemplateCostInput `json:"-" xml:"-"`
 }
 
 type metadataEstimateTemplateCostInput struct {
@@ -991,7 +991,7 @@ type EstimateTemplateCostOutput struct {
 	// resources required to run the template.
 	URL *string `locationName:"Url" type:"string"`
 
-	metadataEstimateTemplateCostOutput `json:"-", xml:"-"`
+	metadataEstimateTemplateCostOutput `json:"-" xml:"-"`
 }
 
 type metadataEstimateTemplateCostOutput struct {
@@ -1004,7 +1004,7 @@ type GetStackPolicyInput struct {
 	// to get.
 	StackName *string `type:"string" required:"true"`
 
-	metadataGetStackPolicyInput `json:"-", xml:"-"`
+	metadataGetStackPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataGetStackPolicyInput struct {
@@ -1018,7 +1018,7 @@ type GetStackPolicyOutput struct {
 	// in the AWS CloudFormation User Guide.)
 	StackPolicyBody *string `type:"string"`
 
-	metadataGetStackPolicyOutput `json:"-", xml:"-"`
+	metadataGetStackPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataGetStackPolicyOutput struct {
@@ -1035,7 +1035,7 @@ type GetTemplateInput struct {
 	// is no default value.
 	StackName *string `type:"string" required:"true"`
 
-	metadataGetTemplateInput `json:"-", xml:"-"`
+	metadataGetTemplateInput `json:"-" xml:"-"`
 }
 
 type metadataGetTemplateInput struct {
@@ -1049,7 +1049,7 @@ type GetTemplateOutput struct {
 	// in the AWS CloudFormation User Guide.)
 	TemplateBody *string `type:"string"`
 
-	metadataGetTemplateOutput `json:"-", xml:"-"`
+	metadataGetTemplateOutput `json:"-" xml:"-"`
 }
 
 type metadataGetTemplateOutput struct {
@@ -1085,7 +1085,7 @@ type GetTemplateSummaryInput struct {
 	// TemplateBody, or TemplateURL.
 	TemplateURL *string `type:"string"`
 
-	metadataGetTemplateSummaryInput `json:"-", xml:"-"`
+	metadataGetTemplateSummaryInput `json:"-" xml:"-"`
 }
 
 type metadataGetTemplateSummaryInput struct {
@@ -1115,7 +1115,7 @@ type GetTemplateSummaryOutput struct {
 	// template.
 	Version *string `type:"string"`
 
-	metadataGetTemplateSummaryOutput `json:"-", xml:"-"`
+	metadataGetTemplateSummaryOutput `json:"-" xml:"-"`
 }
 
 type metadataGetTemplateSummaryOutput struct {
@@ -1138,7 +1138,7 @@ type ListStackResourcesInput struct {
 	// is no default value.
 	StackName *string `type:"string" required:"true"`
 
-	metadataListStackResourcesInput `json:"-", xml:"-"`
+	metadataListStackResourcesInput `json:"-" xml:"-"`
 }
 
 type metadataListStackResourcesInput struct {
@@ -1154,7 +1154,7 @@ type ListStackResourcesOutput struct {
 	// A list of StackResourceSummary structures.
 	StackResourceSummaries []*StackResourceSummary `type:"list"`
 
-	metadataListStackResourcesOutput `json:"-", xml:"-"`
+	metadataListStackResourcesOutput `json:"-" xml:"-"`
 }
 
 type metadataListStackResourcesOutput struct {
@@ -1174,7 +1174,7 @@ type ListStacksInput struct {
 	// stack status codes, see the StackStatus parameter of the Stack data type.
 	StackStatusFilter []*string `type:"list"`
 
-	metadataListStacksInput `json:"-", xml:"-"`
+	metadataListStacksInput `json:"-" xml:"-"`
 }
 
 type metadataListStacksInput struct {
@@ -1191,7 +1191,7 @@ type ListStacksOutput struct {
 	// stacks.
 	StackSummaries []*StackSummary `type:"list"`
 
-	metadataListStacksOutput `json:"-", xml:"-"`
+	metadataListStacksOutput `json:"-" xml:"-"`
 }
 
 type metadataListStacksOutput struct {
@@ -1209,7 +1209,7 @@ type Output struct {
 	// The value associated with the output.
 	OutputValue *string `type:"string"`
 
-	metadataOutput `json:"-", xml:"-"`
+	metadataOutput `json:"-" xml:"-"`
 }
 
 type metadataOutput struct {
@@ -1228,7 +1228,7 @@ type Parameter struct {
 	// for the stack.
 	UsePreviousValue *bool `type:"boolean"`
 
-	metadataParameter `json:"-", xml:"-"`
+	metadataParameter `json:"-" xml:"-"`
 }
 
 type metadataParameter struct {
@@ -1253,7 +1253,7 @@ type ParameterDeclaration struct {
 	// The type of parameter.
 	ParameterType *string `type:"string"`
 
-	metadataParameterDeclaration `json:"-", xml:"-"`
+	metadataParameterDeclaration `json:"-" xml:"-"`
 }
 
 type metadataParameterDeclaration struct {
@@ -1277,7 +1277,7 @@ type SetStackPolicyInput struct {
 	// but not both.
 	StackPolicyURL *string `type:"string"`
 
-	metadataSetStackPolicyInput `json:"-", xml:"-"`
+	metadataSetStackPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataSetStackPolicyInput struct {
@@ -1285,7 +1285,7 @@ type metadataSetStackPolicyInput struct {
 }
 
 type SetStackPolicyOutput struct {
-	metadataSetStackPolicyOutput `json:"-", xml:"-"`
+	metadataSetStackPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataSetStackPolicyOutput struct {
@@ -1311,7 +1311,7 @@ type SignalResourceInput struct {
 	// condition), each signal requires a different unique ID.
 	UniqueID *string `locationName:"UniqueId" type:"string" required:"true"`
 
-	metadataSignalResourceInput `json:"-", xml:"-"`
+	metadataSignalResourceInput `json:"-" xml:"-"`
 }
 
 type metadataSignalResourceInput struct {
@@ -1319,7 +1319,7 @@ type metadataSignalResourceInput struct {
 }
 
 type SignalResourceOutput struct {
-	metadataSignalResourceOutput `json:"-", xml:"-"`
+	metadataSignalResourceOutput `json:"-" xml:"-"`
 }
 
 type metadataSignalResourceOutput struct {
@@ -1373,7 +1373,7 @@ type Stack struct {
 	// The amount of time within which stack creation should complete.
 	TimeoutInMinutes *int64 `type:"integer"`
 
-	metadataStack `json:"-", xml:"-"`
+	metadataStack `json:"-" xml:"-"`
 }
 
 type metadataStack struct {
@@ -1415,7 +1415,7 @@ type StackEvent struct {
 	// Time the status was updated.
 	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	metadataStackEvent `json:"-", xml:"-"`
+	metadataStackEvent `json:"-" xml:"-"`
 }
 
 type metadataStackEvent struct {
@@ -1454,7 +1454,7 @@ type StackResource struct {
 	// Time the status was updated.
 	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	metadataStackResource `json:"-", xml:"-"`
+	metadataStackResource `json:"-" xml:"-"`
 }
 
 type metadataStackResource struct {
@@ -1498,7 +1498,7 @@ type StackResourceDetail struct {
 	// The name associated with the stack.
 	StackName *string `type:"string"`
 
-	metadataStackResourceDetail `json:"-", xml:"-"`
+	metadataStackResourceDetail `json:"-" xml:"-"`
 }
 
 type metadataStackResourceDetail struct {
@@ -1528,7 +1528,7 @@ type StackResourceSummary struct {
 	// in the AWS CloudFormation User Guide.)
 	ResourceType *string `type:"string" required:"true"`
 
-	metadataStackResourceSummary `json:"-", xml:"-"`
+	metadataStackResourceSummary `json:"-" xml:"-"`
 }
 
 type metadataStackResourceSummary struct {
@@ -1562,7 +1562,7 @@ type StackSummary struct {
 	// The template description of the template used to create the stack.
 	TemplateDescription *string `type:"string"`
 
-	metadataStackSummary `json:"-", xml:"-"`
+	metadataStackSummary `json:"-" xml:"-"`
 }
 
 type metadataStackSummary struct {
@@ -1582,7 +1582,7 @@ type Tag struct {
 	// of 256 characters for a tag value.
 	Value *string `type:"string"`
 
-	metadataTag `json:"-", xml:"-"`
+	metadataTag `json:"-" xml:"-"`
 }
 
 type metadataTag struct {
@@ -1604,7 +1604,7 @@ type TemplateParameter struct {
 	// The name associated with the parameter.
 	ParameterKey *string `type:"string"`
 
-	metadataTemplateParameter `json:"-", xml:"-"`
+	metadataTemplateParameter `json:"-" xml:"-"`
 }
 
 type metadataTemplateParameter struct {
@@ -1702,7 +1702,7 @@ type UpdateStackInput struct {
 	// updating.
 	UsePreviousTemplate *bool `type:"boolean"`
 
-	metadataUpdateStackInput `json:"-", xml:"-"`
+	metadataUpdateStackInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateStackInput struct {
@@ -1714,7 +1714,7 @@ type UpdateStackOutput struct {
 	// Unique identifier of the stack.
 	StackID *string `locationName:"StackId" type:"string"`
 
-	metadataUpdateStackOutput `json:"-", xml:"-"`
+	metadataUpdateStackOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateStackOutput struct {
@@ -1741,7 +1741,7 @@ type ValidateTemplateInput struct {
 	// only TemplateBody is used.
 	TemplateURL *string `type:"string"`
 
-	metadataValidateTemplateInput `json:"-", xml:"-"`
+	metadataValidateTemplateInput `json:"-" xml:"-"`
 }
 
 type metadataValidateTemplateInput struct {
@@ -1766,7 +1766,7 @@ type ValidateTemplateOutput struct {
 	// A list of TemplateParameter structures.
 	Parameters []*TemplateParameter `type:"list"`
 
-	metadataValidateTemplateOutput `json:"-", xml:"-"`
+	metadataValidateTemplateOutput `json:"-" xml:"-"`
 }
 
 type metadataValidateTemplateOutput struct {

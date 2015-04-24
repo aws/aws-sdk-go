@@ -1148,7 +1148,7 @@ type AccessLog struct {
 	// the root level of the bucket.
 	S3BucketPrefix *string `type:"string"`
 
-	metadataAccessLog `json:"-", xml:"-"`
+	metadataAccessLog `json:"-" xml:"-"`
 }
 
 type metadataAccessLog struct {
@@ -1162,7 +1162,7 @@ type AddTagsInput struct {
 	// The tags.
 	Tags []*Tag `type:"list" required:"true"`
 
-	metadataAddTagsInput `json:"-", xml:"-"`
+	metadataAddTagsInput `json:"-" xml:"-"`
 }
 
 type metadataAddTagsInput struct {
@@ -1170,7 +1170,7 @@ type metadataAddTagsInput struct {
 }
 
 type AddTagsOutput struct {
-	metadataAddTagsOutput `json:"-", xml:"-"`
+	metadataAddTagsOutput `json:"-" xml:"-"`
 }
 
 type metadataAddTagsOutput struct {
@@ -1185,7 +1185,7 @@ type AdditionalAttribute struct {
 	// This parameter is reserved.
 	Value *string `type:"string"`
 
-	metadataAdditionalAttribute `json:"-", xml:"-"`
+	metadataAdditionalAttribute `json:"-" xml:"-"`
 }
 
 type metadataAdditionalAttribute struct {
@@ -1201,7 +1201,7 @@ type AppCookieStickinessPolicy struct {
 	// a set of policies for this load balancer.
 	PolicyName *string `type:"string"`
 
-	metadataAppCookieStickinessPolicy `json:"-", xml:"-"`
+	metadataAppCookieStickinessPolicy `json:"-" xml:"-"`
 }
 
 type metadataAppCookieStickinessPolicy struct {
@@ -1216,7 +1216,7 @@ type ApplySecurityGroupsToLoadBalancerInput struct {
 	// that you cannot specify the name of the security group.
 	SecurityGroups []*string `type:"list" required:"true"`
 
-	metadataApplySecurityGroupsToLoadBalancerInput `json:"-", xml:"-"`
+	metadataApplySecurityGroupsToLoadBalancerInput `json:"-" xml:"-"`
 }
 
 type metadataApplySecurityGroupsToLoadBalancerInput struct {
@@ -1227,7 +1227,7 @@ type ApplySecurityGroupsToLoadBalancerOutput struct {
 	// The IDs of the security groups associated with the load balancer.
 	SecurityGroups []*string `type:"list"`
 
-	metadataApplySecurityGroupsToLoadBalancerOutput `json:"-", xml:"-"`
+	metadataApplySecurityGroupsToLoadBalancerOutput `json:"-" xml:"-"`
 }
 
 type metadataApplySecurityGroupsToLoadBalancerOutput struct {
@@ -1242,7 +1242,7 @@ type AttachLoadBalancerToSubnetsInput struct {
 	// subnet per Availability Zone.
 	Subnets []*string `type:"list" required:"true"`
 
-	metadataAttachLoadBalancerToSubnetsInput `json:"-", xml:"-"`
+	metadataAttachLoadBalancerToSubnetsInput `json:"-" xml:"-"`
 }
 
 type metadataAttachLoadBalancerToSubnetsInput struct {
@@ -1253,7 +1253,7 @@ type AttachLoadBalancerToSubnetsOutput struct {
 	// The IDs of the subnets attached to the load balancer.
 	Subnets []*string `type:"list"`
 
-	metadataAttachLoadBalancerToSubnetsOutput `json:"-", xml:"-"`
+	metadataAttachLoadBalancerToSubnetsOutput `json:"-" xml:"-"`
 }
 
 type metadataAttachLoadBalancerToSubnetsOutput struct {
@@ -1268,7 +1268,7 @@ type BackendServerDescription struct {
 	// The names of the policies enabled for the back-end server.
 	PolicyNames []*string `type:"list"`
 
-	metadataBackendServerDescription `json:"-", xml:"-"`
+	metadataBackendServerDescription `json:"-" xml:"-"`
 }
 
 type metadataBackendServerDescription struct {
@@ -1282,7 +1282,7 @@ type ConfigureHealthCheckInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	metadataConfigureHealthCheckInput `json:"-", xml:"-"`
+	metadataConfigureHealthCheckInput `json:"-" xml:"-"`
 }
 
 type metadataConfigureHealthCheckInput struct {
@@ -1293,7 +1293,7 @@ type ConfigureHealthCheckOutput struct {
 	// The updated health check.
 	HealthCheck *HealthCheck `type:"structure"`
 
-	metadataConfigureHealthCheckOutput `json:"-", xml:"-"`
+	metadataConfigureHealthCheckOutput `json:"-" xml:"-"`
 }
 
 type metadataConfigureHealthCheckOutput struct {
@@ -1309,7 +1309,7 @@ type ConnectionDraining struct {
 	// deregistering the instances.
 	Timeout *int64 `type:"integer"`
 
-	metadataConnectionDraining `json:"-", xml:"-"`
+	metadataConnectionDraining `json:"-" xml:"-"`
 }
 
 type metadataConnectionDraining struct {
@@ -1322,7 +1322,7 @@ type ConnectionSettings struct {
 	// has been sent over the connection) before it is closed by the load balancer.
 	IdleTimeout *int64 `type:"integer" required:"true"`
 
-	metadataConnectionSettings `json:"-", xml:"-"`
+	metadataConnectionSettings `json:"-" xml:"-"`
 }
 
 type metadataConnectionSettings struct {
@@ -1340,7 +1340,7 @@ type CreateAppCookieStickinessPolicyInput struct {
 	// set of policies for this load balancer.
 	PolicyName *string `type:"string" required:"true"`
 
-	metadataCreateAppCookieStickinessPolicyInput `json:"-", xml:"-"`
+	metadataCreateAppCookieStickinessPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataCreateAppCookieStickinessPolicyInput struct {
@@ -1348,7 +1348,7 @@ type metadataCreateAppCookieStickinessPolicyInput struct {
 }
 
 type CreateAppCookieStickinessPolicyOutput struct {
-	metadataCreateAppCookieStickinessPolicyOutput `json:"-", xml:"-"`
+	metadataCreateAppCookieStickinessPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateAppCookieStickinessPolicyOutput struct {
@@ -1368,7 +1368,7 @@ type CreateLBCookieStickinessPolicyInput struct {
 	// set of policies for this load balancer.
 	PolicyName *string `type:"string" required:"true"`
 
-	metadataCreateLBCookieStickinessPolicyInput `json:"-", xml:"-"`
+	metadataCreateLBCookieStickinessPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataCreateLBCookieStickinessPolicyInput struct {
@@ -1376,7 +1376,7 @@ type metadataCreateLBCookieStickinessPolicyInput struct {
 }
 
 type CreateLBCookieStickinessPolicyOutput struct {
-	metadataCreateLBCookieStickinessPolicyOutput `json:"-", xml:"-"`
+	metadataCreateLBCookieStickinessPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateLBCookieStickinessPolicyOutput struct {
@@ -1432,7 +1432,7 @@ type CreateLoadBalancerInput struct {
 	// in the Elastic Load Balancing Developer Guide.
 	Tags []*Tag `type:"list"`
 
-	metadataCreateLoadBalancerInput `json:"-", xml:"-"`
+	metadataCreateLoadBalancerInput `json:"-" xml:"-"`
 }
 
 type metadataCreateLoadBalancerInput struct {
@@ -1446,7 +1446,7 @@ type CreateLoadBalancerListenersInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	metadataCreateLoadBalancerListenersInput `json:"-", xml:"-"`
+	metadataCreateLoadBalancerListenersInput `json:"-" xml:"-"`
 }
 
 type metadataCreateLoadBalancerListenersInput struct {
@@ -1454,7 +1454,7 @@ type metadataCreateLoadBalancerListenersInput struct {
 }
 
 type CreateLoadBalancerListenersOutput struct {
-	metadataCreateLoadBalancerListenersOutput `json:"-", xml:"-"`
+	metadataCreateLoadBalancerListenersOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateLoadBalancerListenersOutput struct {
@@ -1465,7 +1465,7 @@ type CreateLoadBalancerOutput struct {
 	// The DNS name of the load balancer.
 	DNSName *string `type:"string"`
 
-	metadataCreateLoadBalancerOutput `json:"-", xml:"-"`
+	metadataCreateLoadBalancerOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateLoadBalancerOutput struct {
@@ -1486,7 +1486,7 @@ type CreateLoadBalancerPolicyInput struct {
 	// The name of the base policy type. To get the list of policy types, use DescribeLoadBalancerPolicyTypes.
 	PolicyTypeName *string `type:"string" required:"true"`
 
-	metadataCreateLoadBalancerPolicyInput `json:"-", xml:"-"`
+	metadataCreateLoadBalancerPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataCreateLoadBalancerPolicyInput struct {
@@ -1494,7 +1494,7 @@ type metadataCreateLoadBalancerPolicyInput struct {
 }
 
 type CreateLoadBalancerPolicyOutput struct {
-	metadataCreateLoadBalancerPolicyOutput `json:"-", xml:"-"`
+	metadataCreateLoadBalancerPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateLoadBalancerPolicyOutput struct {
@@ -1506,7 +1506,7 @@ type CrossZoneLoadBalancing struct {
 	// Specifies whether cross-zone load balancing is enabled for the load balancer.
 	Enabled *bool `type:"boolean" required:"true"`
 
-	metadataCrossZoneLoadBalancing `json:"-", xml:"-"`
+	metadataCrossZoneLoadBalancing `json:"-" xml:"-"`
 }
 
 type metadataCrossZoneLoadBalancing struct {
@@ -1517,7 +1517,7 @@ type DeleteLoadBalancerInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	metadataDeleteLoadBalancerInput `json:"-", xml:"-"`
+	metadataDeleteLoadBalancerInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLoadBalancerInput struct {
@@ -1531,7 +1531,7 @@ type DeleteLoadBalancerListenersInput struct {
 	// The client port numbers of the listeners.
 	LoadBalancerPorts []*int64 `type:"list" required:"true"`
 
-	metadataDeleteLoadBalancerListenersInput `json:"-", xml:"-"`
+	metadataDeleteLoadBalancerListenersInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLoadBalancerListenersInput struct {
@@ -1539,7 +1539,7 @@ type metadataDeleteLoadBalancerListenersInput struct {
 }
 
 type DeleteLoadBalancerListenersOutput struct {
-	metadataDeleteLoadBalancerListenersOutput `json:"-", xml:"-"`
+	metadataDeleteLoadBalancerListenersOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLoadBalancerListenersOutput struct {
@@ -1547,7 +1547,7 @@ type metadataDeleteLoadBalancerListenersOutput struct {
 }
 
 type DeleteLoadBalancerOutput struct {
-	metadataDeleteLoadBalancerOutput `json:"-", xml:"-"`
+	metadataDeleteLoadBalancerOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLoadBalancerOutput struct {
@@ -1562,7 +1562,7 @@ type DeleteLoadBalancerPolicyInput struct {
 	// The name of the policy.
 	PolicyName *string `type:"string" required:"true"`
 
-	metadataDeleteLoadBalancerPolicyInput `json:"-", xml:"-"`
+	metadataDeleteLoadBalancerPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLoadBalancerPolicyInput struct {
@@ -1570,7 +1570,7 @@ type metadataDeleteLoadBalancerPolicyInput struct {
 }
 
 type DeleteLoadBalancerPolicyOutput struct {
-	metadataDeleteLoadBalancerPolicyOutput `json:"-", xml:"-"`
+	metadataDeleteLoadBalancerPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLoadBalancerPolicyOutput struct {
@@ -1584,7 +1584,7 @@ type DeregisterInstancesFromLoadBalancerInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	metadataDeregisterInstancesFromLoadBalancerInput `json:"-", xml:"-"`
+	metadataDeregisterInstancesFromLoadBalancerInput `json:"-" xml:"-"`
 }
 
 type metadataDeregisterInstancesFromLoadBalancerInput struct {
@@ -1595,7 +1595,7 @@ type DeregisterInstancesFromLoadBalancerOutput struct {
 	// The remaining instances registered with the load balancer.
 	Instances []*Instance `type:"list"`
 
-	metadataDeregisterInstancesFromLoadBalancerOutput `json:"-", xml:"-"`
+	metadataDeregisterInstancesFromLoadBalancerOutput `json:"-" xml:"-"`
 }
 
 type metadataDeregisterInstancesFromLoadBalancerOutput struct {
@@ -1609,7 +1609,7 @@ type DescribeInstanceHealthInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	metadataDescribeInstanceHealthInput `json:"-", xml:"-"`
+	metadataDescribeInstanceHealthInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeInstanceHealthInput struct {
@@ -1620,7 +1620,7 @@ type DescribeInstanceHealthOutput struct {
 	// Information about the health of the instances.
 	InstanceStates []*InstanceState `type:"list"`
 
-	metadataDescribeInstanceHealthOutput `json:"-", xml:"-"`
+	metadataDescribeInstanceHealthOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeInstanceHealthOutput struct {
@@ -1631,7 +1631,7 @@ type DescribeLoadBalancerAttributesInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	metadataDescribeLoadBalancerAttributesInput `json:"-", xml:"-"`
+	metadataDescribeLoadBalancerAttributesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLoadBalancerAttributesInput struct {
@@ -1642,7 +1642,7 @@ type DescribeLoadBalancerAttributesOutput struct {
 	// Information about the load balancer attributes.
 	LoadBalancerAttributes *LoadBalancerAttributes `type:"structure"`
 
-	metadataDescribeLoadBalancerAttributesOutput `json:"-", xml:"-"`
+	metadataDescribeLoadBalancerAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLoadBalancerAttributesOutput struct {
@@ -1656,7 +1656,7 @@ type DescribeLoadBalancerPoliciesInput struct {
 	// The names of the policies.
 	PolicyNames []*string `type:"list"`
 
-	metadataDescribeLoadBalancerPoliciesInput `json:"-", xml:"-"`
+	metadataDescribeLoadBalancerPoliciesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLoadBalancerPoliciesInput struct {
@@ -1667,7 +1667,7 @@ type DescribeLoadBalancerPoliciesOutput struct {
 	// Information about the policies.
 	PolicyDescriptions []*PolicyDescription `type:"list"`
 
-	metadataDescribeLoadBalancerPoliciesOutput `json:"-", xml:"-"`
+	metadataDescribeLoadBalancerPoliciesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLoadBalancerPoliciesOutput struct {
@@ -1679,7 +1679,7 @@ type DescribeLoadBalancerPolicyTypesInput struct {
 	// types defined by Elastic Load Balancing.
 	PolicyTypeNames []*string `type:"list"`
 
-	metadataDescribeLoadBalancerPolicyTypesInput `json:"-", xml:"-"`
+	metadataDescribeLoadBalancerPolicyTypesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLoadBalancerPolicyTypesInput struct {
@@ -1690,7 +1690,7 @@ type DescribeLoadBalancerPolicyTypesOutput struct {
 	// Information about the policy types.
 	PolicyTypeDescriptions []*PolicyTypeDescription `type:"list"`
 
-	metadataDescribeLoadBalancerPolicyTypesOutput `json:"-", xml:"-"`
+	metadataDescribeLoadBalancerPolicyTypesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLoadBalancerPolicyTypesOutput struct {
@@ -1709,7 +1709,7 @@ type DescribeLoadBalancersInput struct {
 	// 400). The default is 400.
 	PageSize *int64 `type:"integer"`
 
-	metadataDescribeLoadBalancersInput `json:"-", xml:"-"`
+	metadataDescribeLoadBalancersInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLoadBalancersInput struct {
@@ -1724,7 +1724,7 @@ type DescribeLoadBalancersOutput struct {
 	// additional results, the string is empty.
 	NextMarker *string `type:"string"`
 
-	metadataDescribeLoadBalancersOutput `json:"-", xml:"-"`
+	metadataDescribeLoadBalancersOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLoadBalancersOutput struct {
@@ -1735,7 +1735,7 @@ type DescribeTagsInput struct {
 	// The names of the load balancers.
 	LoadBalancerNames []*string `type:"list" required:"true"`
 
-	metadataDescribeTagsInput `json:"-", xml:"-"`
+	metadataDescribeTagsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTagsInput struct {
@@ -1746,7 +1746,7 @@ type DescribeTagsOutput struct {
 	// Information about the tags.
 	TagDescriptions []*TagDescription `type:"list"`
 
-	metadataDescribeTagsOutput `json:"-", xml:"-"`
+	metadataDescribeTagsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTagsOutput struct {
@@ -1760,7 +1760,7 @@ type DetachLoadBalancerFromSubnetsInput struct {
 	// The IDs of the subnets.
 	Subnets []*string `type:"list" required:"true"`
 
-	metadataDetachLoadBalancerFromSubnetsInput `json:"-", xml:"-"`
+	metadataDetachLoadBalancerFromSubnetsInput `json:"-" xml:"-"`
 }
 
 type metadataDetachLoadBalancerFromSubnetsInput struct {
@@ -1771,7 +1771,7 @@ type DetachLoadBalancerFromSubnetsOutput struct {
 	// The IDs of the remaining subnets for the load balancer.
 	Subnets []*string `type:"list"`
 
-	metadataDetachLoadBalancerFromSubnetsOutput `json:"-", xml:"-"`
+	metadataDetachLoadBalancerFromSubnetsOutput `json:"-" xml:"-"`
 }
 
 type metadataDetachLoadBalancerFromSubnetsOutput struct {
@@ -1785,7 +1785,7 @@ type DisableAvailabilityZonesForLoadBalancerInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	metadataDisableAvailabilityZonesForLoadBalancerInput `json:"-", xml:"-"`
+	metadataDisableAvailabilityZonesForLoadBalancerInput `json:"-" xml:"-"`
 }
 
 type metadataDisableAvailabilityZonesForLoadBalancerInput struct {
@@ -1796,7 +1796,7 @@ type DisableAvailabilityZonesForLoadBalancerOutput struct {
 	// The remaining Availability Zones for the load balancer.
 	AvailabilityZones []*string `type:"list"`
 
-	metadataDisableAvailabilityZonesForLoadBalancerOutput `json:"-", xml:"-"`
+	metadataDisableAvailabilityZonesForLoadBalancerOutput `json:"-" xml:"-"`
 }
 
 type metadataDisableAvailabilityZonesForLoadBalancerOutput struct {
@@ -1810,7 +1810,7 @@ type EnableAvailabilityZonesForLoadBalancerInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	metadataEnableAvailabilityZonesForLoadBalancerInput `json:"-", xml:"-"`
+	metadataEnableAvailabilityZonesForLoadBalancerInput `json:"-" xml:"-"`
 }
 
 type metadataEnableAvailabilityZonesForLoadBalancerInput struct {
@@ -1821,7 +1821,7 @@ type EnableAvailabilityZonesForLoadBalancerOutput struct {
 	// The updated list of Availability Zones for the load balancer.
 	AvailabilityZones []*string `type:"list"`
 
-	metadataEnableAvailabilityZonesForLoadBalancerOutput `json:"-", xml:"-"`
+	metadataEnableAvailabilityZonesForLoadBalancerOutput `json:"-" xml:"-"`
 }
 
 type metadataEnableAvailabilityZonesForLoadBalancerOutput struct {
@@ -1868,7 +1868,7 @@ type HealthCheck struct {
 	// instance to the Unhealthy state.
 	UnhealthyThreshold *int64 `type:"integer" required:"true"`
 
-	metadataHealthCheck `json:"-", xml:"-"`
+	metadataHealthCheck `json:"-" xml:"-"`
 }
 
 type metadataHealthCheck struct {
@@ -1880,7 +1880,7 @@ type Instance struct {
 	// The ID of the instance.
 	InstanceID *string `locationName:"InstanceId" type:"string"`
 
-	metadataInstance `json:"-", xml:"-"`
+	metadataInstance `json:"-" xml:"-"`
 }
 
 type metadataInstance struct {
@@ -1934,7 +1934,7 @@ type InstanceState struct {
 	// Valid values: InService | OutOfService | Unknown
 	State *string `type:"string"`
 
-	metadataInstanceState `json:"-", xml:"-"`
+	metadataInstanceState `json:"-" xml:"-"`
 }
 
 type metadataInstanceState struct {
@@ -1952,7 +1952,7 @@ type LBCookieStickinessPolicy struct {
 	// set of policies for this load balancer.
 	PolicyName *string `type:"string"`
 
-	metadataLBCookieStickinessPolicy `json:"-", xml:"-"`
+	metadataLBCookieStickinessPolicy `json:"-" xml:"-"`
 }
 
 type metadataLBCookieStickinessPolicy struct {
@@ -1993,7 +1993,7 @@ type Listener struct {
 	// The Amazon Resource Name (ARN) of the server certificate.
 	SSLCertificateID *string `locationName:"SSLCertificateId" type:"string"`
 
-	metadataListener `json:"-", xml:"-"`
+	metadataListener `json:"-" xml:"-"`
 }
 
 type metadataListener struct {
@@ -2012,7 +2012,7 @@ type ListenerDescription struct {
 	// The policies. If there are no policies enabled, the list is empty.
 	PolicyNames []*string `type:"list"`
 
-	metadataListenerDescription `json:"-", xml:"-"`
+	metadataListenerDescription `json:"-" xml:"-"`
 }
 
 type metadataListenerDescription struct {
@@ -2055,7 +2055,7 @@ type LoadBalancerAttributes struct {
 	// in the Elastic Load Balancing Developer Guide.
 	CrossZoneLoadBalancing *CrossZoneLoadBalancing `type:"structure"`
 
-	metadataLoadBalancerAttributes `json:"-", xml:"-"`
+	metadataLoadBalancerAttributes `json:"-" xml:"-"`
 }
 
 type metadataLoadBalancerAttributes struct {
@@ -2126,7 +2126,7 @@ type LoadBalancerDescription struct {
 	// The ID of the VPC for the load balancer.
 	VPCID *string `locationName:"VPCId" type:"string"`
 
-	metadataLoadBalancerDescription `json:"-", xml:"-"`
+	metadataLoadBalancerDescription `json:"-" xml:"-"`
 }
 
 type metadataLoadBalancerDescription struct {
@@ -2140,7 +2140,7 @@ type ModifyLoadBalancerAttributesInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	metadataModifyLoadBalancerAttributesInput `json:"-", xml:"-"`
+	metadataModifyLoadBalancerAttributesInput `json:"-" xml:"-"`
 }
 
 type metadataModifyLoadBalancerAttributesInput struct {
@@ -2154,7 +2154,7 @@ type ModifyLoadBalancerAttributesOutput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string"`
 
-	metadataModifyLoadBalancerAttributesOutput `json:"-", xml:"-"`
+	metadataModifyLoadBalancerAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataModifyLoadBalancerAttributesOutput struct {
@@ -2172,7 +2172,7 @@ type Policies struct {
 	// The policies other than the stickiness policies.
 	OtherPolicies []*string `type:"list"`
 
-	metadataPolicies `json:"-", xml:"-"`
+	metadataPolicies `json:"-" xml:"-"`
 }
 
 type metadataPolicies struct {
@@ -2187,7 +2187,7 @@ type PolicyAttribute struct {
 	// The value of the attribute.
 	AttributeValue *string `type:"string"`
 
-	metadataPolicyAttribute `json:"-", xml:"-"`
+	metadataPolicyAttribute `json:"-" xml:"-"`
 }
 
 type metadataPolicyAttribute struct {
@@ -2202,7 +2202,7 @@ type PolicyAttributeDescription struct {
 	// The value of the attribute.
 	AttributeValue *string `type:"string"`
 
-	metadataPolicyAttributeDescription `json:"-", xml:"-"`
+	metadataPolicyAttributeDescription `json:"-" xml:"-"`
 }
 
 type metadataPolicyAttributeDescription struct {
@@ -2232,7 +2232,7 @@ type PolicyAttributeTypeDescription struct {
 	// A description of the attribute.
 	Description *string `type:"string"`
 
-	metadataPolicyAttributeTypeDescription `json:"-", xml:"-"`
+	metadataPolicyAttributeTypeDescription `json:"-" xml:"-"`
 }
 
 type metadataPolicyAttributeTypeDescription struct {
@@ -2250,7 +2250,7 @@ type PolicyDescription struct {
 	// The name of the policy type.
 	PolicyTypeName *string `type:"string"`
 
-	metadataPolicyDescription `json:"-", xml:"-"`
+	metadataPolicyDescription `json:"-" xml:"-"`
 }
 
 type metadataPolicyDescription struct {
@@ -2269,7 +2269,7 @@ type PolicyTypeDescription struct {
 	// The name of the policy type.
 	PolicyTypeName *string `type:"string"`
 
-	metadataPolicyTypeDescription `json:"-", xml:"-"`
+	metadataPolicyTypeDescription `json:"-" xml:"-"`
 }
 
 type metadataPolicyTypeDescription struct {
@@ -2283,7 +2283,7 @@ type RegisterInstancesWithLoadBalancerInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
 
-	metadataRegisterInstancesWithLoadBalancerInput `json:"-", xml:"-"`
+	metadataRegisterInstancesWithLoadBalancerInput `json:"-" xml:"-"`
 }
 
 type metadataRegisterInstancesWithLoadBalancerInput struct {
@@ -2294,7 +2294,7 @@ type RegisterInstancesWithLoadBalancerOutput struct {
 	// The updated list of instances for the load balancer.
 	Instances []*Instance `type:"list"`
 
-	metadataRegisterInstancesWithLoadBalancerOutput `json:"-", xml:"-"`
+	metadataRegisterInstancesWithLoadBalancerOutput `json:"-" xml:"-"`
 }
 
 type metadataRegisterInstancesWithLoadBalancerOutput struct {
@@ -2309,7 +2309,7 @@ type RemoveTagsInput struct {
 	// The list of tag keys to remove.
 	Tags []*TagKeyOnly `type:"list" required:"true"`
 
-	metadataRemoveTagsInput `json:"-", xml:"-"`
+	metadataRemoveTagsInput `json:"-" xml:"-"`
 }
 
 type metadataRemoveTagsInput struct {
@@ -2317,7 +2317,7 @@ type metadataRemoveTagsInput struct {
 }
 
 type RemoveTagsOutput struct {
-	metadataRemoveTagsOutput `json:"-", xml:"-"`
+	metadataRemoveTagsOutput `json:"-" xml:"-"`
 }
 
 type metadataRemoveTagsOutput struct {
@@ -2334,7 +2334,7 @@ type SetLoadBalancerListenerSSLCertificateInput struct {
 	// The Amazon Resource Name (ARN) of the SSL certificate.
 	SSLCertificateID *string `locationName:"SSLCertificateId" type:"string" required:"true"`
 
-	metadataSetLoadBalancerListenerSSLCertificateInput `json:"-", xml:"-"`
+	metadataSetLoadBalancerListenerSSLCertificateInput `json:"-" xml:"-"`
 }
 
 type metadataSetLoadBalancerListenerSSLCertificateInput struct {
@@ -2342,7 +2342,7 @@ type metadataSetLoadBalancerListenerSSLCertificateInput struct {
 }
 
 type SetLoadBalancerListenerSSLCertificateOutput struct {
-	metadataSetLoadBalancerListenerSSLCertificateOutput `json:"-", xml:"-"`
+	metadataSetLoadBalancerListenerSSLCertificateOutput `json:"-" xml:"-"`
 }
 
 type metadataSetLoadBalancerListenerSSLCertificateOutput struct {
@@ -2360,7 +2360,7 @@ type SetLoadBalancerPoliciesForBackendServerInput struct {
 	// are removed from the back-end server.
 	PolicyNames []*string `type:"list" required:"true"`
 
-	metadataSetLoadBalancerPoliciesForBackendServerInput `json:"-", xml:"-"`
+	metadataSetLoadBalancerPoliciesForBackendServerInput `json:"-" xml:"-"`
 }
 
 type metadataSetLoadBalancerPoliciesForBackendServerInput struct {
@@ -2368,7 +2368,7 @@ type metadataSetLoadBalancerPoliciesForBackendServerInput struct {
 }
 
 type SetLoadBalancerPoliciesForBackendServerOutput struct {
-	metadataSetLoadBalancerPoliciesForBackendServerOutput `json:"-", xml:"-"`
+	metadataSetLoadBalancerPoliciesForBackendServerOutput `json:"-" xml:"-"`
 }
 
 type metadataSetLoadBalancerPoliciesForBackendServerOutput struct {
@@ -2386,7 +2386,7 @@ type SetLoadBalancerPoliciesOfListenerInput struct {
 	// from the listener.
 	PolicyNames []*string `type:"list" required:"true"`
 
-	metadataSetLoadBalancerPoliciesOfListenerInput `json:"-", xml:"-"`
+	metadataSetLoadBalancerPoliciesOfListenerInput `json:"-" xml:"-"`
 }
 
 type metadataSetLoadBalancerPoliciesOfListenerInput struct {
@@ -2394,7 +2394,7 @@ type metadataSetLoadBalancerPoliciesOfListenerInput struct {
 }
 
 type SetLoadBalancerPoliciesOfListenerOutput struct {
-	metadataSetLoadBalancerPoliciesOfListenerOutput `json:"-", xml:"-"`
+	metadataSetLoadBalancerPoliciesOfListenerOutput `json:"-" xml:"-"`
 }
 
 type metadataSetLoadBalancerPoliciesOfListenerOutput struct {
@@ -2409,7 +2409,7 @@ type SourceSecurityGroup struct {
 	// The owner of the security group.
 	OwnerAlias *string `type:"string"`
 
-	metadataSourceSecurityGroup `json:"-", xml:"-"`
+	metadataSourceSecurityGroup `json:"-" xml:"-"`
 }
 
 type metadataSourceSecurityGroup struct {
@@ -2424,7 +2424,7 @@ type Tag struct {
 	// The value of the tag.
 	Value *string `type:"string"`
 
-	metadataTag `json:"-", xml:"-"`
+	metadataTag `json:"-" xml:"-"`
 }
 
 type metadataTag struct {
@@ -2439,7 +2439,7 @@ type TagDescription struct {
 	// The tags.
 	Tags []*Tag `type:"list"`
 
-	metadataTagDescription `json:"-", xml:"-"`
+	metadataTagDescription `json:"-" xml:"-"`
 }
 
 type metadataTagDescription struct {
@@ -2451,7 +2451,7 @@ type TagKeyOnly struct {
 	// The name of the key.
 	Key *string `type:"string"`
 
-	metadataTagKeyOnly `json:"-", xml:"-"`
+	metadataTagKeyOnly `json:"-" xml:"-"`
 }
 
 type metadataTagKeyOnly struct {

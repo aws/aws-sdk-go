@@ -941,7 +941,7 @@ type AddPermissionInput struct {
 	// The ARN of the topic whose access control policy you wish to modify.
 	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
-	metadataAddPermissionInput `json:"-", xml:"-"`
+	metadataAddPermissionInput `json:"-" xml:"-"`
 }
 
 type metadataAddPermissionInput struct {
@@ -949,7 +949,7 @@ type metadataAddPermissionInput struct {
 }
 
 type AddPermissionOutput struct {
-	metadataAddPermissionOutput `json:"-", xml:"-"`
+	metadataAddPermissionOutput `json:"-" xml:"-"`
 }
 
 type metadataAddPermissionOutput struct {
@@ -970,7 +970,7 @@ type ConfirmSubscriptionInput struct {
 	// The ARN of the topic for which you wish to confirm a subscription.
 	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
-	metadataConfirmSubscriptionInput `json:"-", xml:"-"`
+	metadataConfirmSubscriptionInput `json:"-" xml:"-"`
 }
 
 type metadataConfirmSubscriptionInput struct {
@@ -982,7 +982,7 @@ type ConfirmSubscriptionOutput struct {
 	// The ARN of the created subscription.
 	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string"`
 
-	metadataConfirmSubscriptionOutput `json:"-", xml:"-"`
+	metadataConfirmSubscriptionOutput `json:"-" xml:"-"`
 }
 
 type metadataConfirmSubscriptionOutput struct {
@@ -1003,7 +1003,7 @@ type CreatePlatformApplicationInput struct {
 	// (Apple Push Notification Service), APNS_SANDBOX, and GCM (Google Cloud Messaging).
 	Platform *string `type:"string" required:"true"`
 
-	metadataCreatePlatformApplicationInput `json:"-", xml:"-"`
+	metadataCreatePlatformApplicationInput `json:"-" xml:"-"`
 }
 
 type metadataCreatePlatformApplicationInput struct {
@@ -1015,7 +1015,7 @@ type CreatePlatformApplicationOutput struct {
 	// PlatformApplicationArn is returned.
 	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string"`
 
-	metadataCreatePlatformApplicationOutput `json:"-", xml:"-"`
+	metadataCreatePlatformApplicationOutput `json:"-" xml:"-"`
 }
 
 type metadataCreatePlatformApplicationOutput struct {
@@ -1042,7 +1042,7 @@ type CreatePlatformEndpointInput struct {
 	// token equivalent is called the registration ID.
 	Token *string `type:"string" required:"true"`
 
-	metadataCreatePlatformEndpointInput `json:"-", xml:"-"`
+	metadataCreatePlatformEndpointInput `json:"-" xml:"-"`
 }
 
 type metadataCreatePlatformEndpointInput struct {
@@ -1054,7 +1054,7 @@ type CreatePlatformEndpointOutput struct {
 	// EndpointArn returned from CreateEndpoint action.
 	EndpointARN *string `locationName:"EndpointArn" type:"string"`
 
-	metadataCreatePlatformEndpointOutput `json:"-", xml:"-"`
+	metadataCreatePlatformEndpointOutput `json:"-" xml:"-"`
 }
 
 type metadataCreatePlatformEndpointOutput struct {
@@ -1070,7 +1070,7 @@ type CreateTopicInput struct {
 	// 256 characters long.
 	Name *string `type:"string" required:"true"`
 
-	metadataCreateTopicInput `json:"-", xml:"-"`
+	metadataCreateTopicInput `json:"-" xml:"-"`
 }
 
 type metadataCreateTopicInput struct {
@@ -1082,7 +1082,7 @@ type CreateTopicOutput struct {
 	// The Amazon Resource Name (ARN) assigned to the created topic.
 	TopicARN *string `locationName:"TopicArn" type:"string"`
 
-	metadataCreateTopicOutput `json:"-", xml:"-"`
+	metadataCreateTopicOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateTopicOutput struct {
@@ -1094,7 +1094,7 @@ type DeleteEndpointInput struct {
 	// EndpointArn of endpoint to delete.
 	EndpointARN *string `locationName:"EndpointArn" type:"string" required:"true"`
 
-	metadataDeleteEndpointInput `json:"-", xml:"-"`
+	metadataDeleteEndpointInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteEndpointInput struct {
@@ -1102,7 +1102,7 @@ type metadataDeleteEndpointInput struct {
 }
 
 type DeleteEndpointOutput struct {
-	metadataDeleteEndpointOutput `json:"-", xml:"-"`
+	metadataDeleteEndpointOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteEndpointOutput struct {
@@ -1114,7 +1114,7 @@ type DeletePlatformApplicationInput struct {
 	// PlatformApplicationArn of platform application object to delete.
 	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string" required:"true"`
 
-	metadataDeletePlatformApplicationInput `json:"-", xml:"-"`
+	metadataDeletePlatformApplicationInput `json:"-" xml:"-"`
 }
 
 type metadataDeletePlatformApplicationInput struct {
@@ -1122,7 +1122,7 @@ type metadataDeletePlatformApplicationInput struct {
 }
 
 type DeletePlatformApplicationOutput struct {
-	metadataDeletePlatformApplicationOutput `json:"-", xml:"-"`
+	metadataDeletePlatformApplicationOutput `json:"-" xml:"-"`
 }
 
 type metadataDeletePlatformApplicationOutput struct {
@@ -1133,7 +1133,7 @@ type DeleteTopicInput struct {
 	// The ARN of the topic you want to delete.
 	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
-	metadataDeleteTopicInput `json:"-", xml:"-"`
+	metadataDeleteTopicInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteTopicInput struct {
@@ -1141,7 +1141,7 @@ type metadataDeleteTopicInput struct {
 }
 
 type DeleteTopicOutput struct {
-	metadataDeleteTopicOutput `json:"-", xml:"-"`
+	metadataDeleteTopicOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteTopicOutput struct {
@@ -1156,7 +1156,7 @@ type Endpoint struct {
 	// EndpointArn for mobile app and device.
 	EndpointARN *string `locationName:"EndpointArn" type:"string"`
 
-	metadataEndpoint `json:"-", xml:"-"`
+	metadataEndpoint `json:"-" xml:"-"`
 }
 
 type metadataEndpoint struct {
@@ -1168,7 +1168,7 @@ type GetEndpointAttributesInput struct {
 	// EndpointArn for GetEndpointAttributes input.
 	EndpointARN *string `locationName:"EndpointArn" type:"string" required:"true"`
 
-	metadataGetEndpointAttributesInput `json:"-", xml:"-"`
+	metadataGetEndpointAttributesInput `json:"-" xml:"-"`
 }
 
 type metadataGetEndpointAttributesInput struct {
@@ -1190,7 +1190,7 @@ type GetEndpointAttributesOutput struct {
 	// service.
 	Attributes *map[string]*string `type:"map"`
 
-	metadataGetEndpointAttributesOutput `json:"-", xml:"-"`
+	metadataGetEndpointAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataGetEndpointAttributesOutput struct {
@@ -1202,7 +1202,7 @@ type GetPlatformApplicationAttributesInput struct {
 	// PlatformApplicationArn for GetPlatformApplicationAttributesInput.
 	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string" required:"true"`
 
-	metadataGetPlatformApplicationAttributesInput `json:"-", xml:"-"`
+	metadataGetPlatformApplicationAttributesInput `json:"-" xml:"-"`
 }
 
 type metadataGetPlatformApplicationAttributesInput struct {
@@ -1222,7 +1222,7 @@ type GetPlatformApplicationAttributesOutput struct {
 	// endpoints.
 	Attributes *map[string]*string `type:"map"`
 
-	metadataGetPlatformApplicationAttributesOutput `json:"-", xml:"-"`
+	metadataGetPlatformApplicationAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataGetPlatformApplicationAttributesOutput struct {
@@ -1234,7 +1234,7 @@ type GetSubscriptionAttributesInput struct {
 	// The ARN of the subscription whose properties you want to get.
 	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string" required:"true"`
 
-	metadataGetSubscriptionAttributesInput `json:"-", xml:"-"`
+	metadataGetSubscriptionAttributesInput `json:"-" xml:"-"`
 }
 
 type metadataGetSubscriptionAttributesInput struct {
@@ -1255,7 +1255,7 @@ type GetSubscriptionAttributesOutput struct {
 	// policy and account system defaults
 	Attributes *map[string]*string `type:"map"`
 
-	metadataGetSubscriptionAttributesOutput `json:"-", xml:"-"`
+	metadataGetSubscriptionAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataGetSubscriptionAttributesOutput struct {
@@ -1267,7 +1267,7 @@ type GetTopicAttributesInput struct {
 	// The ARN of the topic whose properties you want to get.
 	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
-	metadataGetTopicAttributesInput `json:"-", xml:"-"`
+	metadataGetTopicAttributesInput `json:"-" xml:"-"`
 }
 
 type metadataGetTopicAttributesInput struct {
@@ -1290,7 +1290,7 @@ type GetTopicAttributesOutput struct {
 	// account system defaults
 	Attributes *map[string]*string `type:"map"`
 
-	metadataGetTopicAttributesOutput `json:"-", xml:"-"`
+	metadataGetTopicAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataGetTopicAttributesOutput struct {
@@ -1307,7 +1307,7 @@ type ListEndpointsByPlatformApplicationInput struct {
 	// PlatformApplicationArn for ListEndpointsByPlatformApplicationInput action.
 	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string" required:"true"`
 
-	metadataListEndpointsByPlatformApplicationInput `json:"-", xml:"-"`
+	metadataListEndpointsByPlatformApplicationInput `json:"-" xml:"-"`
 }
 
 type metadataListEndpointsByPlatformApplicationInput struct {
@@ -1323,7 +1323,7 @@ type ListEndpointsByPlatformApplicationOutput struct {
 	// action if additional records are available after the first page results.
 	NextToken *string `type:"string"`
 
-	metadataListEndpointsByPlatformApplicationOutput `json:"-", xml:"-"`
+	metadataListEndpointsByPlatformApplicationOutput `json:"-" xml:"-"`
 }
 
 type metadataListEndpointsByPlatformApplicationOutput struct {
@@ -1336,7 +1336,7 @@ type ListPlatformApplicationsInput struct {
 	// retrieve additional records that are available after the first page results.
 	NextToken *string `type:"string"`
 
-	metadataListPlatformApplicationsInput `json:"-", xml:"-"`
+	metadataListPlatformApplicationsInput `json:"-" xml:"-"`
 }
 
 type metadataListPlatformApplicationsInput struct {
@@ -1352,7 +1352,7 @@ type ListPlatformApplicationsOutput struct {
 	// Platform applications returned when calling ListPlatformApplications action.
 	PlatformApplications []*PlatformApplication `type:"list"`
 
-	metadataListPlatformApplicationsOutput `json:"-", xml:"-"`
+	metadataListPlatformApplicationsOutput `json:"-" xml:"-"`
 }
 
 type metadataListPlatformApplicationsOutput struct {
@@ -1367,7 +1367,7 @@ type ListSubscriptionsByTopicInput struct {
 	// The ARN of the topic for which you wish to find subscriptions.
 	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
-	metadataListSubscriptionsByTopicInput `json:"-", xml:"-"`
+	metadataListSubscriptionsByTopicInput `json:"-" xml:"-"`
 }
 
 type metadataListSubscriptionsByTopicInput struct {
@@ -1383,7 +1383,7 @@ type ListSubscriptionsByTopicOutput struct {
 	// A list of subscriptions.
 	Subscriptions []*Subscription `type:"list"`
 
-	metadataListSubscriptionsByTopicOutput `json:"-", xml:"-"`
+	metadataListSubscriptionsByTopicOutput `json:"-" xml:"-"`
 }
 
 type metadataListSubscriptionsByTopicOutput struct {
@@ -1395,7 +1395,7 @@ type ListSubscriptionsInput struct {
 	// Token returned by the previous ListSubscriptions request.
 	NextToken *string `type:"string"`
 
-	metadataListSubscriptionsInput `json:"-", xml:"-"`
+	metadataListSubscriptionsInput `json:"-" xml:"-"`
 }
 
 type metadataListSubscriptionsInput struct {
@@ -1411,7 +1411,7 @@ type ListSubscriptionsOutput struct {
 	// A list of subscriptions.
 	Subscriptions []*Subscription `type:"list"`
 
-	metadataListSubscriptionsOutput `json:"-", xml:"-"`
+	metadataListSubscriptionsOutput `json:"-" xml:"-"`
 }
 
 type metadataListSubscriptionsOutput struct {
@@ -1422,7 +1422,7 @@ type ListTopicsInput struct {
 	// Token returned by the previous ListTopics request.
 	NextToken *string `type:"string"`
 
-	metadataListTopicsInput `json:"-", xml:"-"`
+	metadataListTopicsInput `json:"-" xml:"-"`
 }
 
 type metadataListTopicsInput struct {
@@ -1438,7 +1438,7 @@ type ListTopicsOutput struct {
 	// A list of topic ARNs.
 	Topics []*Topic `type:"list"`
 
-	metadataListTopicsOutput `json:"-", xml:"-"`
+	metadataListTopicsOutput `json:"-" xml:"-"`
 }
 
 type metadataListTopicsOutput struct {
@@ -1467,7 +1467,7 @@ type MessageAttributeValue struct {
 	// see http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters (http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters).
 	StringValue *string `type:"string"`
 
-	metadataMessageAttributeValue `json:"-", xml:"-"`
+	metadataMessageAttributeValue `json:"-" xml:"-"`
 }
 
 type metadataMessageAttributeValue struct {
@@ -1482,7 +1482,7 @@ type PlatformApplication struct {
 	// PlatformApplicationArn for platform application object.
 	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string"`
 
-	metadataPlatformApplication `json:"-", xml:"-"`
+	metadataPlatformApplication `json:"-" xml:"-"`
 }
 
 type metadataPlatformApplication struct {
@@ -1553,7 +1553,7 @@ type PublishInput struct {
 	// The topic you want to publish to.
 	TopicARN *string `locationName:"TopicArn" type:"string"`
 
-	metadataPublishInput `json:"-", xml:"-"`
+	metadataPublishInput `json:"-" xml:"-"`
 }
 
 type metadataPublishInput struct {
@@ -1567,7 +1567,7 @@ type PublishOutput struct {
 	// Length Constraint: Maximum 100 characters
 	MessageID *string `locationName:"MessageId" type:"string"`
 
-	metadataPublishOutput `json:"-", xml:"-"`
+	metadataPublishOutput `json:"-" xml:"-"`
 }
 
 type metadataPublishOutput struct {
@@ -1582,7 +1582,7 @@ type RemovePermissionInput struct {
 	// The ARN of the topic whose access control policy you wish to modify.
 	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
-	metadataRemovePermissionInput `json:"-", xml:"-"`
+	metadataRemovePermissionInput `json:"-" xml:"-"`
 }
 
 type metadataRemovePermissionInput struct {
@@ -1590,7 +1590,7 @@ type metadataRemovePermissionInput struct {
 }
 
 type RemovePermissionOutput struct {
-	metadataRemovePermissionOutput `json:"-", xml:"-"`
+	metadataRemovePermissionOutput `json:"-" xml:"-"`
 }
 
 type metadataRemovePermissionOutput struct {
@@ -1615,7 +1615,7 @@ type SetEndpointAttributesInput struct {
 	// EndpointArn used for SetEndpointAttributes action.
 	EndpointARN *string `locationName:"EndpointArn" type:"string" required:"true"`
 
-	metadataSetEndpointAttributesInput `json:"-", xml:"-"`
+	metadataSetEndpointAttributesInput `json:"-" xml:"-"`
 }
 
 type metadataSetEndpointAttributesInput struct {
@@ -1623,7 +1623,7 @@ type metadataSetEndpointAttributesInput struct {
 }
 
 type SetEndpointAttributesOutput struct {
-	metadataSetEndpointAttributesOutput `json:"-", xml:"-"`
+	metadataSetEndpointAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataSetEndpointAttributesOutput struct {
@@ -1652,7 +1652,7 @@ type SetPlatformApplicationAttributesInput struct {
 	// PlatformApplicationArn for SetPlatformApplicationAttributes action.
 	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string" required:"true"`
 
-	metadataSetPlatformApplicationAttributesInput `json:"-", xml:"-"`
+	metadataSetPlatformApplicationAttributesInput `json:"-" xml:"-"`
 }
 
 type metadataSetPlatformApplicationAttributesInput struct {
@@ -1660,7 +1660,7 @@ type metadataSetPlatformApplicationAttributesInput struct {
 }
 
 type SetPlatformApplicationAttributesOutput struct {
-	metadataSetPlatformApplicationAttributesOutput `json:"-", xml:"-"`
+	metadataSetPlatformApplicationAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataSetPlatformApplicationAttributesOutput struct {
@@ -1681,7 +1681,7 @@ type SetSubscriptionAttributesInput struct {
 	// The ARN of the subscription to modify.
 	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string" required:"true"`
 
-	metadataSetSubscriptionAttributesInput `json:"-", xml:"-"`
+	metadataSetSubscriptionAttributesInput `json:"-" xml:"-"`
 }
 
 type metadataSetSubscriptionAttributesInput struct {
@@ -1689,7 +1689,7 @@ type metadataSetSubscriptionAttributesInput struct {
 }
 
 type SetSubscriptionAttributesOutput struct {
-	metadataSetSubscriptionAttributesOutput `json:"-", xml:"-"`
+	metadataSetSubscriptionAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataSetSubscriptionAttributesOutput struct {
@@ -1710,7 +1710,7 @@ type SetTopicAttributesInput struct {
 	// The ARN of the topic to modify.
 	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
-	metadataSetTopicAttributesInput `json:"-", xml:"-"`
+	metadataSetTopicAttributesInput `json:"-" xml:"-"`
 }
 
 type metadataSetTopicAttributesInput struct {
@@ -1718,7 +1718,7 @@ type metadataSetTopicAttributesInput struct {
 }
 
 type SetTopicAttributesOutput struct {
-	metadataSetTopicAttributesOutput `json:"-", xml:"-"`
+	metadataSetTopicAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataSetTopicAttributesOutput struct {
@@ -1751,7 +1751,7 @@ type SubscribeInput struct {
 	// The ARN of the topic you want to subscribe to.
 	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
-	metadataSubscribeInput `json:"-", xml:"-"`
+	metadataSubscribeInput `json:"-" xml:"-"`
 }
 
 type metadataSubscribeInput struct {
@@ -1764,7 +1764,7 @@ type SubscribeOutput struct {
 	// immediately (without requiring endpoint owner confirmation).
 	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string"`
 
-	metadataSubscribeOutput `json:"-", xml:"-"`
+	metadataSubscribeOutput `json:"-" xml:"-"`
 }
 
 type metadataSubscribeOutput struct {
@@ -1788,7 +1788,7 @@ type Subscription struct {
 	// The ARN of the subscription's topic.
 	TopicARN *string `locationName:"TopicArn" type:"string"`
 
-	metadataSubscription `json:"-", xml:"-"`
+	metadataSubscription `json:"-" xml:"-"`
 }
 
 type metadataSubscription struct {
@@ -1801,7 +1801,7 @@ type Topic struct {
 	// The topic's ARN.
 	TopicARN *string `locationName:"TopicArn" type:"string"`
 
-	metadataTopic `json:"-", xml:"-"`
+	metadataTopic `json:"-" xml:"-"`
 }
 
 type metadataTopic struct {
@@ -1813,7 +1813,7 @@ type UnsubscribeInput struct {
 	// The ARN of the subscription to be deleted.
 	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string" required:"true"`
 
-	metadataUnsubscribeInput `json:"-", xml:"-"`
+	metadataUnsubscribeInput `json:"-" xml:"-"`
 }
 
 type metadataUnsubscribeInput struct {
@@ -1821,7 +1821,7 @@ type metadataUnsubscribeInput struct {
 }
 
 type UnsubscribeOutput struct {
-	metadataUnsubscribeOutput `json:"-", xml:"-"`
+	metadataUnsubscribeOutput `json:"-" xml:"-"`
 }
 
 type metadataUnsubscribeOutput struct {

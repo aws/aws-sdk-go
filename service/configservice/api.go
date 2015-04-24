@@ -432,7 +432,7 @@ type ConfigExportDeliveryInfo struct {
 	// The time of the last successful delivery.
 	LastSuccessfulTime *time.Time `locationName:"lastSuccessfulTime" type:"timestamp" timestampFormat:"unix"`
 
-	metadataConfigExportDeliveryInfo `json:"-", xml:"-"`
+	metadataConfigExportDeliveryInfo `json:"-" xml:"-"`
 }
 
 type metadataConfigExportDeliveryInfo struct {
@@ -454,7 +454,7 @@ type ConfigStreamDeliveryInfo struct {
 	// The time from the last status change.
 	LastStatusChangeTime *time.Time `locationName:"lastStatusChangeTime" type:"timestamp" timestampFormat:"unix"`
 
-	metadataConfigStreamDeliveryInfo `json:"-", xml:"-"`
+	metadataConfigStreamDeliveryInfo `json:"-" xml:"-"`
 }
 
 type metadataConfigStreamDeliveryInfo struct {
@@ -519,7 +519,7 @@ type ConfigurationItem struct {
 	// The version number of the resource configuration.
 	Version *string `locationName:"version" type:"string"`
 
-	metadataConfigurationItem `json:"-", xml:"-"`
+	metadataConfigurationItem `json:"-" xml:"-"`
 }
 
 type metadataConfigurationItem struct {
@@ -538,7 +538,7 @@ type ConfigurationRecorder struct {
 	// associated with the account.
 	RoleARN *string `locationName:"roleARN" type:"string"`
 
-	metadataConfigurationRecorder `json:"-", xml:"-"`
+	metadataConfigurationRecorder `json:"-" xml:"-"`
 }
 
 type metadataConfigurationRecorder struct {
@@ -571,7 +571,7 @@ type ConfigurationRecorderStatus struct {
 	// Specifies whether the recorder is currently recording or not.
 	Recording *bool `locationName:"recording" type:"boolean"`
 
-	metadataConfigurationRecorderStatus `json:"-", xml:"-"`
+	metadataConfigurationRecorderStatus `json:"-" xml:"-"`
 }
 
 type metadataConfigurationRecorderStatus struct {
@@ -584,7 +584,7 @@ type DeleteDeliveryChannelInput struct {
 	// The name of the delivery channel to delete.
 	DeliveryChannelName *string `type:"string" required:"true"`
 
-	metadataDeleteDeliveryChannelInput `json:"-", xml:"-"`
+	metadataDeleteDeliveryChannelInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDeliveryChannelInput struct {
@@ -592,7 +592,7 @@ type metadataDeleteDeliveryChannelInput struct {
 }
 
 type DeleteDeliveryChannelOutput struct {
-	metadataDeleteDeliveryChannelOutput `json:"-", xml:"-"`
+	metadataDeleteDeliveryChannelOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDeliveryChannelOutput struct {
@@ -604,7 +604,7 @@ type DeliverConfigSnapshotInput struct {
 	// The name of the delivery channel through which the snapshot is delivered.
 	DeliveryChannelName *string `locationName:"deliveryChannelName" type:"string" required:"true"`
 
-	metadataDeliverConfigSnapshotInput `json:"-", xml:"-"`
+	metadataDeliverConfigSnapshotInput `json:"-" xml:"-"`
 }
 
 type metadataDeliverConfigSnapshotInput struct {
@@ -616,7 +616,7 @@ type DeliverConfigSnapshotOutput struct {
 	// The ID of the snapshot that is being created.
 	ConfigSnapshotID *string `locationName:"configSnapshotId" type:"string"`
 
-	metadataDeliverConfigSnapshotOutput `json:"-", xml:"-"`
+	metadataDeliverConfigSnapshotOutput `json:"-" xml:"-"`
 }
 
 type metadataDeliverConfigSnapshotOutput struct {
@@ -642,7 +642,7 @@ type DeliveryChannel struct {
 	// S3 bucket and the Amazon SNS topic.
 	SNSTopicARN *string `locationName:"snsTopicARN" type:"string"`
 
-	metadataDeliveryChannel `json:"-", xml:"-"`
+	metadataDeliveryChannel `json:"-" xml:"-"`
 }
 
 type metadataDeliveryChannel struct {
@@ -668,7 +668,7 @@ type DeliveryChannelStatus struct {
 	// The name of the delivery channel.
 	Name *string `locationName:"name" type:"string"`
 
-	metadataDeliveryChannelStatus `json:"-", xml:"-"`
+	metadataDeliveryChannelStatus `json:"-" xml:"-"`
 }
 
 type metadataDeliveryChannelStatus struct {
@@ -682,7 +682,7 @@ type DescribeConfigurationRecorderStatusInput struct {
 	// associated with the account.
 	ConfigurationRecorderNames []*string `type:"list"`
 
-	metadataDescribeConfigurationRecorderStatusInput `json:"-", xml:"-"`
+	metadataDescribeConfigurationRecorderStatusInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeConfigurationRecorderStatusInput struct {
@@ -694,7 +694,7 @@ type DescribeConfigurationRecorderStatusOutput struct {
 	// A list that contains status of the specified recorders.
 	ConfigurationRecordersStatus []*ConfigurationRecorderStatus `type:"list"`
 
-	metadataDescribeConfigurationRecorderStatusOutput `json:"-", xml:"-"`
+	metadataDescribeConfigurationRecorderStatusOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeConfigurationRecorderStatusOutput struct {
@@ -706,7 +706,7 @@ type DescribeConfigurationRecordersInput struct {
 	// A list of configuration recorder names.
 	ConfigurationRecorderNames []*string `type:"list"`
 
-	metadataDescribeConfigurationRecordersInput `json:"-", xml:"-"`
+	metadataDescribeConfigurationRecordersInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeConfigurationRecordersInput struct {
@@ -718,7 +718,7 @@ type DescribeConfigurationRecordersOutput struct {
 	// A list that contains the descriptions of the specified configuration recorders.
 	ConfigurationRecorders []*ConfigurationRecorder `type:"list"`
 
-	metadataDescribeConfigurationRecordersOutput `json:"-", xml:"-"`
+	metadataDescribeConfigurationRecordersOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeConfigurationRecordersOutput struct {
@@ -730,7 +730,7 @@ type DescribeDeliveryChannelStatusInput struct {
 	// A list of delivery channel names.
 	DeliveryChannelNames []*string `type:"list"`
 
-	metadataDescribeDeliveryChannelStatusInput `json:"-", xml:"-"`
+	metadataDescribeDeliveryChannelStatusInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeDeliveryChannelStatusInput struct {
@@ -742,7 +742,7 @@ type DescribeDeliveryChannelStatusOutput struct {
 	// A list that contains the status of a specified delivery channel.
 	DeliveryChannelsStatus []*DeliveryChannelStatus `type:"list"`
 
-	metadataDescribeDeliveryChannelStatusOutput `json:"-", xml:"-"`
+	metadataDescribeDeliveryChannelStatusOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeDeliveryChannelStatusOutput struct {
@@ -754,7 +754,7 @@ type DescribeDeliveryChannelsInput struct {
 	// A list of delivery channel names.
 	DeliveryChannelNames []*string `type:"list"`
 
-	metadataDescribeDeliveryChannelsInput `json:"-", xml:"-"`
+	metadataDescribeDeliveryChannelsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeDeliveryChannelsInput struct {
@@ -766,7 +766,7 @@ type DescribeDeliveryChannelsOutput struct {
 	// A list that contains the descriptions of the specified delivery channel.
 	DeliveryChannels []*DeliveryChannel `type:"list"`
 
-	metadataDescribeDeliveryChannelsOutput `json:"-", xml:"-"`
+	metadataDescribeDeliveryChannelsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeDeliveryChannelsOutput struct {
@@ -801,7 +801,7 @@ type GetResourceConfigHistoryInput struct {
 	// The resource type.
 	ResourceType *string `locationName:"resourceType" type:"string" required:"true"`
 
-	metadataGetResourceConfigHistoryInput `json:"-", xml:"-"`
+	metadataGetResourceConfigHistoryInput `json:"-" xml:"-"`
 }
 
 type metadataGetResourceConfigHistoryInput struct {
@@ -816,7 +816,7 @@ type GetResourceConfigHistoryOutput struct {
 	// A token used for pagination of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataGetResourceConfigHistoryOutput `json:"-", xml:"-"`
+	metadataGetResourceConfigHistoryOutput `json:"-" xml:"-"`
 }
 
 type metadataGetResourceConfigHistoryOutput struct {
@@ -829,7 +829,7 @@ type PutConfigurationRecorderInput struct {
 	// made to the resources.
 	ConfigurationRecorder *ConfigurationRecorder `type:"structure" required:"true"`
 
-	metadataPutConfigurationRecorderInput `json:"-", xml:"-"`
+	metadataPutConfigurationRecorderInput `json:"-" xml:"-"`
 }
 
 type metadataPutConfigurationRecorderInput struct {
@@ -837,7 +837,7 @@ type metadataPutConfigurationRecorderInput struct {
 }
 
 type PutConfigurationRecorderOutput struct {
-	metadataPutConfigurationRecorderOutput `json:"-", xml:"-"`
+	metadataPutConfigurationRecorderOutput `json:"-" xml:"-"`
 }
 
 type metadataPutConfigurationRecorderOutput struct {
@@ -850,7 +850,7 @@ type PutDeliveryChannelInput struct {
 	// information to an Amazon S3 bucket, and to an Amazon SNS topic.
 	DeliveryChannel *DeliveryChannel `type:"structure" required:"true"`
 
-	metadataPutDeliveryChannelInput `json:"-", xml:"-"`
+	metadataPutDeliveryChannelInput `json:"-" xml:"-"`
 }
 
 type metadataPutDeliveryChannelInput struct {
@@ -858,7 +858,7 @@ type metadataPutDeliveryChannelInput struct {
 }
 
 type PutDeliveryChannelOutput struct {
-	metadataPutDeliveryChannelOutput `json:"-", xml:"-"`
+	metadataPutDeliveryChannelOutput `json:"-" xml:"-"`
 }
 
 type metadataPutDeliveryChannelOutput struct {
@@ -876,7 +876,7 @@ type Relationship struct {
 	// The resource type of the related resource.
 	ResourceType *string `locationName:"resourceType" type:"string"`
 
-	metadataRelationship `json:"-", xml:"-"`
+	metadataRelationship `json:"-" xml:"-"`
 }
 
 type metadataRelationship struct {
@@ -889,7 +889,7 @@ type StartConfigurationRecorderInput struct {
 	// to the resources.
 	ConfigurationRecorderName *string `type:"string" required:"true"`
 
-	metadataStartConfigurationRecorderInput `json:"-", xml:"-"`
+	metadataStartConfigurationRecorderInput `json:"-" xml:"-"`
 }
 
 type metadataStartConfigurationRecorderInput struct {
@@ -897,7 +897,7 @@ type metadataStartConfigurationRecorderInput struct {
 }
 
 type StartConfigurationRecorderOutput struct {
-	metadataStartConfigurationRecorderOutput `json:"-", xml:"-"`
+	metadataStartConfigurationRecorderOutput `json:"-" xml:"-"`
 }
 
 type metadataStartConfigurationRecorderOutput struct {
@@ -910,7 +910,7 @@ type StopConfigurationRecorderInput struct {
 	// to the resources.
 	ConfigurationRecorderName *string `type:"string" required:"true"`
 
-	metadataStopConfigurationRecorderInput `json:"-", xml:"-"`
+	metadataStopConfigurationRecorderInput `json:"-" xml:"-"`
 }
 
 type metadataStopConfigurationRecorderInput struct {
@@ -918,7 +918,7 @@ type metadataStopConfigurationRecorderInput struct {
 }
 
 type StopConfigurationRecorderOutput struct {
-	metadataStopConfigurationRecorderOutput `json:"-", xml:"-"`
+	metadataStopConfigurationRecorderOutput `json:"-" xml:"-"`
 }
 
 type metadataStopConfigurationRecorderOutput struct {

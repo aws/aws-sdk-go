@@ -722,7 +722,7 @@ type AddPermissionInput struct {
 	// A unique statement identifier.
 	StatementID *string `locationName:"StatementId" type:"string" required:"true"`
 
-	metadataAddPermissionInput `json:"-", xml:"-"`
+	metadataAddPermissionInput `json:"-" xml:"-"`
 }
 
 type metadataAddPermissionInput struct {
@@ -734,7 +734,7 @@ type AddPermissionOutput struct {
 	// the same as a string using "\" as an escape character in the JSON.
 	Statement *string `type:"string"`
 
-	metadataAddPermissionOutput `json:"-", xml:"-"`
+	metadataAddPermissionOutput `json:"-" xml:"-"`
 }
 
 type metadataAddPermissionOutput struct {
@@ -771,7 +771,7 @@ type CreateEventSourceMappingInput struct {
 	// in the Amazon Kinesis API Reference.
 	StartingPosition *string `type:"string" required:"true"`
 
-	metadataCreateEventSourceMappingInput `json:"-", xml:"-"`
+	metadataCreateEventSourceMappingInput `json:"-" xml:"-"`
 }
 
 type metadataCreateEventSourceMappingInput struct {
@@ -823,7 +823,7 @@ type CreateFunctionInput struct {
 	// value based on your expected execution time. The default is 3 seconds.
 	Timeout *int64 `type:"integer"`
 
-	metadataCreateFunctionInput `json:"-", xml:"-"`
+	metadataCreateFunctionInput `json:"-" xml:"-"`
 }
 
 type metadataCreateFunctionInput struct {
@@ -834,7 +834,7 @@ type DeleteEventSourceMappingInput struct {
 	// The event source mapping ID.
 	UUID *string `location:"uri" locationName:"UUID" type:"string" required:"true"`
 
-	metadataDeleteEventSourceMappingInput `json:"-", xml:"-"`
+	metadataDeleteEventSourceMappingInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteEventSourceMappingInput struct {
@@ -852,7 +852,7 @@ type DeleteFunctionInput struct {
 	// the function name, it is limited to 64 character in length.
 	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"`
 
-	metadataDeleteFunctionInput `json:"-", xml:"-"`
+	metadataDeleteFunctionInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteFunctionInput struct {
@@ -860,7 +860,7 @@ type metadataDeleteFunctionInput struct {
 }
 
 type DeleteFunctionOutput struct {
-	metadataDeleteFunctionOutput `json:"-", xml:"-"`
+	metadataDeleteFunctionOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteFunctionOutput struct {
@@ -898,7 +898,7 @@ type EventSourceMappingConfiguration struct {
 	// The AWS Lambda assigned opaque identifier for the mapping.
 	UUID *string `type:"string"`
 
-	metadataEventSourceMappingConfiguration `json:"-", xml:"-"`
+	metadataEventSourceMappingConfiguration `json:"-" xml:"-"`
 }
 
 type metadataEventSourceMappingConfiguration struct {
@@ -912,7 +912,7 @@ type FunctionCode struct {
 	// in the AWS Lambda Developer Guide.
 	ZipFile []byte `type:"blob"`
 
-	metadataFunctionCode `json:"-", xml:"-"`
+	metadataFunctionCode `json:"-" xml:"-"`
 }
 
 type metadataFunctionCode struct {
@@ -928,7 +928,7 @@ type FunctionCodeLocation struct {
 	// The repository from which you can download the function.
 	RepositoryType *string `type:"string"`
 
-	metadataFunctionCodeLocation `json:"-", xml:"-"`
+	metadataFunctionCodeLocation `json:"-" xml:"-"`
 }
 
 type metadataFunctionCodeLocation struct {
@@ -971,7 +971,7 @@ type FunctionConfiguration struct {
 	// value based on your expected execution time. The default is 3 seconds.
 	Timeout *int64 `type:"integer"`
 
-	metadataFunctionConfiguration `json:"-", xml:"-"`
+	metadataFunctionConfiguration `json:"-" xml:"-"`
 }
 
 type metadataFunctionConfiguration struct {
@@ -982,7 +982,7 @@ type GetEventSourceMappingInput struct {
 	// The AWS Lambda assigned ID of the event source mapping.
 	UUID *string `location:"uri" locationName:"UUID" type:"string" required:"true"`
 
-	metadataGetEventSourceMappingInput `json:"-", xml:"-"`
+	metadataGetEventSourceMappingInput `json:"-" xml:"-"`
 }
 
 type metadataGetEventSourceMappingInput struct {
@@ -1001,7 +1001,7 @@ type GetFunctionConfigurationInput struct {
 	// the function name, it is limited to 64 character in length.
 	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"`
 
-	metadataGetFunctionConfigurationInput `json:"-", xml:"-"`
+	metadataGetFunctionConfigurationInput `json:"-" xml:"-"`
 }
 
 type metadataGetFunctionConfigurationInput struct {
@@ -1019,7 +1019,7 @@ type GetFunctionInput struct {
 	// the function name, it is limited to 64 character in length.
 	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"`
 
-	metadataGetFunctionInput `json:"-", xml:"-"`
+	metadataGetFunctionInput `json:"-" xml:"-"`
 }
 
 type metadataGetFunctionInput struct {
@@ -1034,7 +1034,7 @@ type GetFunctionOutput struct {
 	// A complex type that describes function metadata.
 	Configuration *FunctionConfiguration `type:"structure"`
 
-	metadataGetFunctionOutput `json:"-", xml:"-"`
+	metadataGetFunctionOutput `json:"-" xml:"-"`
 }
 
 type metadataGetFunctionOutput struct {
@@ -1052,7 +1052,7 @@ type GetPolicyInput struct {
 	// the function name, it is limited to 64 character in length.
 	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"`
 
-	metadataGetPolicyInput `json:"-", xml:"-"`
+	metadataGetPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataGetPolicyInput struct {
@@ -1064,7 +1064,7 @@ type GetPolicyOutput struct {
 	// the same as a string using "\" as an escape character in the JSON.
 	Policy *string `type:"string"`
 
-	metadataGetPolicyOutput `json:"-", xml:"-"`
+	metadataGetPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataGetPolicyOutput struct {
@@ -1078,7 +1078,7 @@ type InvokeAsyncInput struct {
 	// JSON that you want to provide to your Lambda function as input.
 	InvokeArgs io.ReadSeeker `type:"blob" required:"true"`
 
-	metadataInvokeAsyncInput `json:"-", xml:"-"`
+	metadataInvokeAsyncInput `json:"-" xml:"-"`
 }
 
 type metadataInvokeAsyncInput struct {
@@ -1090,7 +1090,7 @@ type InvokeAsyncOutput struct {
 	// It will be 202 upon success.
 	Status *int64 `location:"statusCode" type:"integer"`
 
-	metadataInvokeAsyncOutput `json:"-", xml:"-"`
+	metadataInvokeAsyncOutput `json:"-" xml:"-"`
 }
 
 type metadataInvokeAsyncOutput struct {
@@ -1135,7 +1135,7 @@ type InvokeInput struct {
 	// JSON that you want to provide to your Lambda function as input.
 	Payload []byte `type:"blob"`
 
-	metadataInvokeInput `json:"-", xml:"-"`
+	metadataInvokeInput `json:"-" xml:"-"`
 }
 
 type metadataInvokeInput struct {
@@ -1171,7 +1171,7 @@ type InvokeOutput struct {
 	// type the status code will be 204.
 	StatusCode *int64 `location:"statusCode" type:"integer"`
 
-	metadataInvokeOutput `json:"-", xml:"-"`
+	metadataInvokeOutput `json:"-" xml:"-"`
 }
 
 type metadataInvokeOutput struct {
@@ -1201,7 +1201,7 @@ type ListEventSourceMappingsInput struct {
 	// in response. This value must be greater than 0.
 	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
 
-	metadataListEventSourceMappingsInput `json:"-", xml:"-"`
+	metadataListEventSourceMappingsInput `json:"-" xml:"-"`
 }
 
 type metadataListEventSourceMappingsInput struct {
@@ -1216,7 +1216,7 @@ type ListEventSourceMappingsOutput struct {
 	// A string, present if there are more event source mappings.
 	NextMarker *string `type:"string"`
 
-	metadataListEventSourceMappingsOutput `json:"-", xml:"-"`
+	metadataListEventSourceMappingsOutput `json:"-" xml:"-"`
 }
 
 type metadataListEventSourceMappingsOutput struct {
@@ -1232,7 +1232,7 @@ type ListFunctionsInput struct {
 	// return in response. This parameter value must be greater than 0.
 	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
 
-	metadataListFunctionsInput `json:"-", xml:"-"`
+	metadataListFunctionsInput `json:"-" xml:"-"`
 }
 
 type metadataListFunctionsInput struct {
@@ -1247,7 +1247,7 @@ type ListFunctionsOutput struct {
 	// A string, present if there are more functions.
 	NextMarker *string `type:"string"`
 
-	metadataListFunctionsOutput `json:"-", xml:"-"`
+	metadataListFunctionsOutput `json:"-" xml:"-"`
 }
 
 type metadataListFunctionsOutput struct {
@@ -1268,7 +1268,7 @@ type RemovePermissionInput struct {
 	// Statement ID of the permission to remove.
 	StatementID *string `location:"uri" locationName:"StatementId" type:"string" required:"true"`
 
-	metadataRemovePermissionInput `json:"-", xml:"-"`
+	metadataRemovePermissionInput `json:"-" xml:"-"`
 }
 
 type metadataRemovePermissionInput struct {
@@ -1276,7 +1276,7 @@ type metadataRemovePermissionInput struct {
 }
 
 type RemovePermissionOutput struct {
-	metadataRemovePermissionOutput `json:"-", xml:"-"`
+	metadataRemovePermissionOutput `json:"-" xml:"-"`
 }
 
 type metadataRemovePermissionOutput struct {
@@ -1305,7 +1305,7 @@ type UpdateEventSourceMappingInput struct {
 	// The event source mapping identifier.
 	UUID *string `location:"uri" locationName:"UUID" type:"string" required:"true"`
 
-	metadataUpdateEventSourceMappingInput `json:"-", xml:"-"`
+	metadataUpdateEventSourceMappingInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateEventSourceMappingInput struct {
@@ -1326,7 +1326,7 @@ type UpdateFunctionCodeInput struct {
 	// Based64-encoded .zip file containing your packaged source code.
 	ZipFile []byte `type:"blob" required:"true"`
 
-	metadataUpdateFunctionCodeInput `json:"-", xml:"-"`
+	metadataUpdateFunctionCodeInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateFunctionCodeInput struct {
@@ -1369,7 +1369,7 @@ type UpdateFunctionConfigurationInput struct {
 	// value based on your expected execution time. The default is 3 seconds.
 	Timeout *int64 `type:"integer"`
 
-	metadataUpdateFunctionConfigurationInput `json:"-", xml:"-"`
+	metadataUpdateFunctionConfigurationInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateFunctionConfigurationInput struct {

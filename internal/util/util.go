@@ -84,7 +84,6 @@ func PrettyPrint(v interface{}) string {
 	default:
 		return fmt.Sprintf("%#v", v)
 	}
-	return ""
 }
 
 func pkgName(t reflect.Type) string {

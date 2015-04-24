@@ -174,7 +174,7 @@ type Bucket struct {
 	// The facet value being counted.
 	Value *string `locationName:"value" type:"string"`
 
-	metadataBucket `json:"-", xml:"-"`
+	metadataBucket `json:"-" xml:"-"`
 }
 
 type metadataBucket struct {
@@ -186,7 +186,7 @@ type BucketInfo struct {
 	// A list of the calculated facet values and counts.
 	Buckets []*Bucket `locationName:"buckets" type:"list"`
 
-	metadataBucketInfo `json:"-", xml:"-"`
+	metadataBucketInfo `json:"-" xml:"-"`
 }
 
 type metadataBucketInfo struct {
@@ -199,7 +199,7 @@ type DocumentServiceWarning struct {
 	// The description for a warning returned by the document service.
 	Message *string `locationName:"message" type:"string"`
 
-	metadataDocumentServiceWarning `json:"-", xml:"-"`
+	metadataDocumentServiceWarning `json:"-" xml:"-"`
 }
 
 type metadataDocumentServiceWarning struct {
@@ -220,7 +220,7 @@ type Hit struct {
 	// The document ID of a document that matches the search request.
 	ID *string `locationName:"id" type:"string"`
 
-	metadataHit `json:"-", xml:"-"`
+	metadataHit `json:"-" xml:"-"`
 }
 
 type metadataHit struct {
@@ -242,7 +242,7 @@ type Hits struct {
 	// The index of the first matching document.
 	Start *int64 `locationName:"start" type:"long"`
 
-	metadataHits `json:"-", xml:"-"`
+	metadataHits `json:"-" xml:"-"`
 }
 
 type metadataHits struct {
@@ -528,7 +528,7 @@ type SearchInput struct {
 	// in the Amazon CloudSearch Developer Guide.
 	Start *int64 `location:"querystring" locationName:"start" type:"long"`
 
-	metadataSearchInput `json:"-", xml:"-"`
+	metadataSearchInput `json:"-" xml:"-"`
 }
 
 type metadataSearchInput struct {
@@ -547,7 +547,7 @@ type SearchOutput struct {
 	// The status information returned for the search request.
 	Status *SearchStatus `locationName:"status" type:"structure"`
 
-	metadataSearchOutput `json:"-", xml:"-"`
+	metadataSearchOutput `json:"-" xml:"-"`
 }
 
 type metadataSearchOutput struct {
@@ -563,7 +563,7 @@ type SearchStatus struct {
 	// How long it took to process the request, in milliseconds.
 	TimeMS *int64 `locationName:"timems" type:"long"`
 
-	metadataSearchStatus `json:"-", xml:"-"`
+	metadataSearchStatus `json:"-" xml:"-"`
 }
 
 type metadataSearchStatus struct {
@@ -581,7 +581,7 @@ type SuggestInput struct {
 	// Specifies the name of the suggester to use to find suggested matches.
 	Suggester *string `location:"querystring" locationName:"suggester" type:"string" required:"true"`
 
-	metadataSuggestInput `json:"-", xml:"-"`
+	metadataSuggestInput `json:"-" xml:"-"`
 }
 
 type metadataSuggestInput struct {
@@ -599,7 +599,7 @@ type SuggestModel struct {
 	// The documents that match the query string.
 	Suggestions []*SuggestionMatch `locationName:"suggestions" type:"list"`
 
-	metadataSuggestModel `json:"-", xml:"-"`
+	metadataSuggestModel `json:"-" xml:"-"`
 }
 
 type metadataSuggestModel struct {
@@ -615,7 +615,7 @@ type SuggestOutput struct {
 	// Container for the matching search suggestion information.
 	Suggest *SuggestModel `locationName:"suggest" type:"structure"`
 
-	metadataSuggestOutput `json:"-", xml:"-"`
+	metadataSuggestOutput `json:"-" xml:"-"`
 }
 
 type metadataSuggestOutput struct {
@@ -631,7 +631,7 @@ type SuggestStatus struct {
 	// How long it took to process the request, in milliseconds.
 	TimeMS *int64 `locationName:"timems" type:"long"`
 
-	metadataSuggestStatus `json:"-", xml:"-"`
+	metadataSuggestStatus `json:"-" xml:"-"`
 }
 
 type metadataSuggestStatus struct {
@@ -649,7 +649,7 @@ type SuggestionMatch struct {
 	// The string that matches the query string specified in the SuggestRequest.
 	Suggestion *string `locationName:"suggestion" type:"string"`
 
-	metadataSuggestionMatch `json:"-", xml:"-"`
+	metadataSuggestionMatch `json:"-" xml:"-"`
 }
 
 type metadataSuggestionMatch struct {
@@ -667,7 +667,7 @@ type UploadDocumentsInput struct {
 	// A batch of documents formatted in JSON or HTML.
 	Documents io.ReadSeeker `locationName:"documents" type:"blob" required:"true"`
 
-	metadataUploadDocumentsInput `json:"-", xml:"-"`
+	metadataUploadDocumentsInput `json:"-" xml:"-"`
 }
 
 type metadataUploadDocumentsInput struct {
@@ -688,7 +688,7 @@ type UploadDocumentsOutput struct {
 	// Any warnings returned by the document service about the documents being uploaded.
 	Warnings []*DocumentServiceWarning `locationName:"warnings" type:"list"`
 
-	metadataUploadDocumentsOutput `json:"-", xml:"-"`
+	metadataUploadDocumentsOutput `json:"-" xml:"-"`
 }
 
 type metadataUploadDocumentsOutput struct {

@@ -2000,7 +2000,7 @@ type ActivateGatewayInput struct {
 	// Valid Values: "IBM-ULT3580-TD5"
 	TapeDriveType *string `type:"string"`
 
-	metadataActivateGatewayInput `json:"-", xml:"-"`
+	metadataActivateGatewayInput `json:"-" xml:"-"`
 }
 
 type metadataActivateGatewayInput struct {
@@ -2016,7 +2016,7 @@ type ActivateGatewayOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string"`
 
-	metadataActivateGatewayOutput `json:"-", xml:"-"`
+	metadataActivateGatewayOutput `json:"-" xml:"-"`
 }
 
 type metadataActivateGatewayOutput struct {
@@ -2030,7 +2030,7 @@ type AddCacheInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string" required:"true"`
 
-	metadataAddCacheInput `json:"-", xml:"-"`
+	metadataAddCacheInput `json:"-" xml:"-"`
 }
 
 type metadataAddCacheInput struct {
@@ -2042,7 +2042,7 @@ type AddCacheOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string"`
 
-	metadataAddCacheOutput `json:"-", xml:"-"`
+	metadataAddCacheOutput `json:"-" xml:"-"`
 }
 
 type metadataAddCacheOutput struct {
@@ -2056,7 +2056,7 @@ type AddUploadBufferInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string" required:"true"`
 
-	metadataAddUploadBufferInput `json:"-", xml:"-"`
+	metadataAddUploadBufferInput `json:"-" xml:"-"`
 }
 
 type metadataAddUploadBufferInput struct {
@@ -2068,7 +2068,7 @@ type AddUploadBufferOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string"`
 
-	metadataAddUploadBufferOutput `json:"-", xml:"-"`
+	metadataAddUploadBufferOutput `json:"-" xml:"-"`
 }
 
 type metadataAddUploadBufferOutput struct {
@@ -2088,7 +2088,7 @@ type AddWorkingStorageInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string" required:"true"`
 
-	metadataAddWorkingStorageInput `json:"-", xml:"-"`
+	metadataAddWorkingStorageInput `json:"-" xml:"-"`
 }
 
 type metadataAddWorkingStorageInput struct {
@@ -2102,7 +2102,7 @@ type AddWorkingStorageOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string"`
 
-	metadataAddWorkingStorageOutput `json:"-", xml:"-"`
+	metadataAddWorkingStorageOutput `json:"-" xml:"-"`
 }
 
 type metadataAddWorkingStorageOutput struct {
@@ -2127,7 +2127,7 @@ type CachediSCSIVolume struct {
 	// Lists iSCSI information about a volume.
 	VolumeiSCSIAttributes *VolumeiSCSIAttributes `type:"structure"`
 
-	metadataCachediSCSIVolume `json:"-", xml:"-"`
+	metadataCachediSCSIVolume `json:"-" xml:"-"`
 }
 
 type metadataCachediSCSIVolume struct {
@@ -2144,7 +2144,7 @@ type CancelArchivalInput struct {
 	// for.
 	TapeARN *string `type:"string" required:"true"`
 
-	metadataCancelArchivalInput `json:"-", xml:"-"`
+	metadataCancelArchivalInput `json:"-" xml:"-"`
 }
 
 type metadataCancelArchivalInput struct {
@@ -2157,7 +2157,7 @@ type CancelArchivalOutput struct {
 	// canceled.
 	TapeARN *string `type:"string"`
 
-	metadataCancelArchivalOutput `json:"-", xml:"-"`
+	metadataCancelArchivalOutput `json:"-" xml:"-"`
 }
 
 type metadataCancelArchivalOutput struct {
@@ -2174,7 +2174,7 @@ type CancelRetrievalInput struct {
 	// for.
 	TapeARN *string `type:"string" required:"true"`
 
-	metadataCancelRetrievalInput `json:"-", xml:"-"`
+	metadataCancelRetrievalInput `json:"-" xml:"-"`
 }
 
 type metadataCancelRetrievalInput struct {
@@ -2187,7 +2187,7 @@ type CancelRetrievalOutput struct {
 	// canceled.
 	TapeARN *string `type:"string"`
 
-	metadataCancelRetrievalOutput `json:"-", xml:"-"`
+	metadataCancelRetrievalOutput `json:"-" xml:"-"`
 }
 
 type metadataCancelRetrievalOutput struct {
@@ -2214,7 +2214,7 @@ type ChapInfo struct {
 	// (-).
 	TargetARN *string `type:"string"`
 
-	metadataChapInfo `json:"-", xml:"-"`
+	metadataChapInfo `json:"-" xml:"-"`
 }
 
 type metadataChapInfo struct {
@@ -2236,7 +2236,7 @@ type CreateCachediSCSIVolumeInput struct {
 
 	VolumeSizeInBytes *int64 `type:"long" required:"true"`
 
-	metadataCreateCachediSCSIVolumeInput `json:"-", xml:"-"`
+	metadataCreateCachediSCSIVolumeInput `json:"-" xml:"-"`
 }
 
 type metadataCreateCachediSCSIVolumeInput struct {
@@ -2248,7 +2248,7 @@ type CreateCachediSCSIVolumeOutput struct {
 
 	VolumeARN *string `type:"string"`
 
-	metadataCreateCachediSCSIVolumeOutput `json:"-", xml:"-"`
+	metadataCreateCachediSCSIVolumeOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateCachediSCSIVolumeOutput struct {
@@ -2260,7 +2260,7 @@ type CreateSnapshotFromVolumeRecoveryPointInput struct {
 
 	VolumeARN *string `type:"string" required:"true"`
 
-	metadataCreateSnapshotFromVolumeRecoveryPointInput `json:"-", xml:"-"`
+	metadataCreateSnapshotFromVolumeRecoveryPointInput `json:"-" xml:"-"`
 }
 
 type metadataCreateSnapshotFromVolumeRecoveryPointInput struct {
@@ -2274,7 +2274,7 @@ type CreateSnapshotFromVolumeRecoveryPointOutput struct {
 
 	VolumeRecoveryPointTime *string `type:"string"`
 
-	metadataCreateSnapshotFromVolumeRecoveryPointOutput `json:"-", xml:"-"`
+	metadataCreateSnapshotFromVolumeRecoveryPointOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateSnapshotFromVolumeRecoveryPointOutput struct {
@@ -2294,7 +2294,7 @@ type CreateSnapshotInput struct {
 	// to return a list of gateway volumes.
 	VolumeARN *string `type:"string" required:"true"`
 
-	metadataCreateSnapshotInput `json:"-", xml:"-"`
+	metadataCreateSnapshotInput `json:"-" xml:"-"`
 }
 
 type metadataCreateSnapshotInput struct {
@@ -2311,7 +2311,7 @@ type CreateSnapshotOutput struct {
 	// The Amazon Resource Name (ARN) of the volume of which the snapshot was taken.
 	VolumeARN *string `type:"string"`
 
-	metadataCreateSnapshotOutput `json:"-", xml:"-"`
+	metadataCreateSnapshotOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateSnapshotOutput struct {
@@ -2359,7 +2359,7 @@ type CreateStorediSCSIVolumeInput struct {
 	// The target name must be unique across all volumes of a gateway.
 	TargetName *string `type:"string" required:"true"`
 
-	metadataCreateStorediSCSIVolumeInput `json:"-", xml:"-"`
+	metadataCreateStorediSCSIVolumeInput `json:"-" xml:"-"`
 }
 
 type metadataCreateStorediSCSIVolumeInput struct {
@@ -2378,7 +2378,7 @@ type CreateStorediSCSIVolumeOutput struct {
 	// The size of the volume in bytes.
 	VolumeSizeInBytes *int64 `type:"long"`
 
-	metadataCreateStorediSCSIVolumeOutput `json:"-", xml:"-"`
+	metadataCreateStorediSCSIVolumeOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateStorediSCSIVolumeOutput struct {
@@ -2413,7 +2413,7 @@ type CreateTapesInput struct {
 	// The size must be gigabyte (1024*1024*1024 byte) aligned.
 	TapeSizeInBytes *int64 `type:"long" required:"true"`
 
-	metadataCreateTapesInput `json:"-", xml:"-"`
+	metadataCreateTapesInput `json:"-" xml:"-"`
 }
 
 type metadataCreateTapesInput struct {
@@ -2426,7 +2426,7 @@ type CreateTapesOutput struct {
 	// that were created.
 	TapeARNs []*string `type:"list"`
 
-	metadataCreateTapesOutput `json:"-", xml:"-"`
+	metadataCreateTapesOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateTapesOutput struct {
@@ -2440,7 +2440,7 @@ type DeleteBandwidthRateLimitInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string" required:"true"`
 
-	metadataDeleteBandwidthRateLimitInput `json:"-", xml:"-"`
+	metadataDeleteBandwidthRateLimitInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteBandwidthRateLimitInput struct {
@@ -2454,7 +2454,7 @@ type DeleteBandwidthRateLimitOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string"`
 
-	metadataDeleteBandwidthRateLimitOutput `json:"-", xml:"-"`
+	metadataDeleteBandwidthRateLimitOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteBandwidthRateLimitOutput struct {
@@ -2472,7 +2472,7 @@ type DeleteChapCredentialsInput struct {
 	// operation to return to retrieve the TargetARN for specified VolumeARN.
 	TargetARN *string `type:"string" required:"true"`
 
-	metadataDeleteChapCredentialsInput `json:"-", xml:"-"`
+	metadataDeleteChapCredentialsInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteChapCredentialsInput struct {
@@ -2487,7 +2487,7 @@ type DeleteChapCredentialsOutput struct {
 	// The Amazon Resource Name (ARN) of the target.
 	TargetARN *string `type:"string"`
 
-	metadataDeleteChapCredentialsOutput `json:"-", xml:"-"`
+	metadataDeleteChapCredentialsOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteChapCredentialsOutput struct {
@@ -2500,7 +2500,7 @@ type DeleteGatewayInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string" required:"true"`
 
-	metadataDeleteGatewayInput `json:"-", xml:"-"`
+	metadataDeleteGatewayInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteGatewayInput struct {
@@ -2513,7 +2513,7 @@ type DeleteGatewayOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string"`
 
-	metadataDeleteGatewayOutput `json:"-", xml:"-"`
+	metadataDeleteGatewayOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteGatewayOutput struct {
@@ -2523,7 +2523,7 @@ type metadataDeleteGatewayOutput struct {
 type DeleteSnapshotScheduleInput struct {
 	VolumeARN *string `type:"string" required:"true"`
 
-	metadataDeleteSnapshotScheduleInput `json:"-", xml:"-"`
+	metadataDeleteSnapshotScheduleInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteSnapshotScheduleInput struct {
@@ -2533,7 +2533,7 @@ type metadataDeleteSnapshotScheduleInput struct {
 type DeleteSnapshotScheduleOutput struct {
 	VolumeARN *string `type:"string"`
 
-	metadataDeleteSnapshotScheduleOutput `json:"-", xml:"-"`
+	metadataDeleteSnapshotScheduleOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteSnapshotScheduleOutput struct {
@@ -2546,7 +2546,7 @@ type DeleteTapeArchiveInput struct {
 	// tape shelf (VTS).
 	TapeARN *string `type:"string" required:"true"`
 
-	metadataDeleteTapeArchiveInput `json:"-", xml:"-"`
+	metadataDeleteTapeArchiveInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteTapeArchiveInput struct {
@@ -2559,7 +2559,7 @@ type DeleteTapeArchiveOutput struct {
 	// the virtual tape shelf (VTS).
 	TapeARN *string `type:"string"`
 
-	metadataDeleteTapeArchiveOutput `json:"-", xml:"-"`
+	metadataDeleteTapeArchiveOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteTapeArchiveOutput struct {
@@ -2576,7 +2576,7 @@ type DeleteTapeInput struct {
 	// The Amazon Resource Name (ARN) of the virtual tape to delete.
 	TapeARN *string `type:"string" required:"true"`
 
-	metadataDeleteTapeInput `json:"-", xml:"-"`
+	metadataDeleteTapeInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteTapeInput struct {
@@ -2588,7 +2588,7 @@ type DeleteTapeOutput struct {
 	// The Amazon Resource Name (ARN) of the deleted virtual tape.
 	TapeARN *string `type:"string"`
 
-	metadataDeleteTapeOutput `json:"-", xml:"-"`
+	metadataDeleteTapeOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteTapeOutput struct {
@@ -2601,7 +2601,7 @@ type DeleteVolumeInput struct {
 	// to return a list of gateway volumes.
 	VolumeARN *string `type:"string" required:"true"`
 
-	metadataDeleteVolumeInput `json:"-", xml:"-"`
+	metadataDeleteVolumeInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteVolumeInput struct {
@@ -2614,7 +2614,7 @@ type DeleteVolumeOutput struct {
 	// is the same ARN you provided in the request.
 	VolumeARN *string `type:"string"`
 
-	metadataDeleteVolumeOutput `json:"-", xml:"-"`
+	metadataDeleteVolumeOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteVolumeOutput struct {
@@ -2627,7 +2627,7 @@ type DescribeBandwidthRateLimitInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string" required:"true"`
 
-	metadataDescribeBandwidthRateLimitInput `json:"-", xml:"-"`
+	metadataDescribeBandwidthRateLimitInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeBandwidthRateLimitInput struct {
@@ -2648,7 +2648,7 @@ type DescribeBandwidthRateLimitOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string"`
 
-	metadataDescribeBandwidthRateLimitOutput `json:"-", xml:"-"`
+	metadataDescribeBandwidthRateLimitOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeBandwidthRateLimitOutput struct {
@@ -2660,7 +2660,7 @@ type DescribeCacheInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string" required:"true"`
 
-	metadataDescribeCacheInput `json:"-", xml:"-"`
+	metadataDescribeCacheInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeCacheInput struct {
@@ -2684,7 +2684,7 @@ type DescribeCacheOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string"`
 
-	metadataDescribeCacheOutput `json:"-", xml:"-"`
+	metadataDescribeCacheOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeCacheOutput struct {
@@ -2694,7 +2694,7 @@ type metadataDescribeCacheOutput struct {
 type DescribeCachediSCSIVolumesInput struct {
 	VolumeARNs []*string `type:"list" required:"true"`
 
-	metadataDescribeCachediSCSIVolumesInput `json:"-", xml:"-"`
+	metadataDescribeCachediSCSIVolumesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeCachediSCSIVolumesInput struct {
@@ -2707,7 +2707,7 @@ type DescribeCachediSCSIVolumesOutput struct {
 	// volume.
 	CachediSCSIVolumes []*CachediSCSIVolume `type:"list"`
 
-	metadataDescribeCachediSCSIVolumesOutput `json:"-", xml:"-"`
+	metadataDescribeCachediSCSIVolumesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeCachediSCSIVolumesOutput struct {
@@ -2721,7 +2721,7 @@ type DescribeChapCredentialsInput struct {
 	// operation to return to retrieve the TargetARN for specified VolumeARN.
 	TargetARN *string `type:"string" required:"true"`
 
-	metadataDescribeChapCredentialsInput `json:"-", xml:"-"`
+	metadataDescribeChapCredentialsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeChapCredentialsInput struct {
@@ -2746,7 +2746,7 @@ type DescribeChapCredentialsOutput struct {
 	//   TargetARN: The Amazon Resource Name (ARN) of the storage volume.
 	ChapCredentials []*ChapInfo `type:"list"`
 
-	metadataDescribeChapCredentialsOutput `json:"-", xml:"-"`
+	metadataDescribeChapCredentialsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeChapCredentialsOutput struct {
@@ -2759,7 +2759,7 @@ type DescribeGatewayInformationInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string" required:"true"`
 
-	metadataDescribeGatewayInformationInput `json:"-", xml:"-"`
+	metadataDescribeGatewayInformationInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeGatewayInformationInput struct {
@@ -2793,7 +2793,7 @@ type DescribeGatewayInformationOutput struct {
 	// this field is not returned in the response.
 	NextUpdateAvailabilityDate *string `type:"string"`
 
-	metadataDescribeGatewayInformationOutput `json:"-", xml:"-"`
+	metadataDescribeGatewayInformationOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeGatewayInformationOutput struct {
@@ -2806,7 +2806,7 @@ type DescribeMaintenanceStartTimeInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string" required:"true"`
 
-	metadataDescribeMaintenanceStartTimeInput `json:"-", xml:"-"`
+	metadataDescribeMaintenanceStartTimeInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeMaintenanceStartTimeInput struct {
@@ -2826,7 +2826,7 @@ type DescribeMaintenanceStartTimeOutput struct {
 
 	Timezone *string `type:"string"`
 
-	metadataDescribeMaintenanceStartTimeOutput `json:"-", xml:"-"`
+	metadataDescribeMaintenanceStartTimeOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeMaintenanceStartTimeOutput struct {
@@ -2840,7 +2840,7 @@ type DescribeSnapshotScheduleInput struct {
 	// to return a list of gateway volumes.
 	VolumeARN *string `type:"string" required:"true"`
 
-	metadataDescribeSnapshotScheduleInput `json:"-", xml:"-"`
+	metadataDescribeSnapshotScheduleInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeSnapshotScheduleInput struct {
@@ -2858,7 +2858,7 @@ type DescribeSnapshotScheduleOutput struct {
 
 	VolumeARN *string `type:"string"`
 
-	metadataDescribeSnapshotScheduleOutput `json:"-", xml:"-"`
+	metadataDescribeSnapshotScheduleOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeSnapshotScheduleOutput struct {
@@ -2872,7 +2872,7 @@ type DescribeStorediSCSIVolumesInput struct {
 	// same gateway. Use ListVolumes to get volume ARNs for a gateway.
 	VolumeARNs []*string `type:"list" required:"true"`
 
-	metadataDescribeStorediSCSIVolumesInput `json:"-", xml:"-"`
+	metadataDescribeStorediSCSIVolumesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeStorediSCSIVolumesInput struct {
@@ -2882,7 +2882,7 @@ type metadataDescribeStorediSCSIVolumesInput struct {
 type DescribeStorediSCSIVolumesOutput struct {
 	StorediSCSIVolumes []*StorediSCSIVolume `type:"list"`
 
-	metadataDescribeStorediSCSIVolumesOutput `json:"-", xml:"-"`
+	metadataDescribeStorediSCSIVolumesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeStorediSCSIVolumesOutput struct {
@@ -2903,7 +2903,7 @@ type DescribeTapeArchivesInput struct {
 	// the virtual tapes you want to describe.
 	TapeARNs []*string `type:"list"`
 
-	metadataDescribeTapeArchivesInput `json:"-", xml:"-"`
+	metadataDescribeTapeArchivesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTapeArchivesInput struct {
@@ -2925,7 +2925,7 @@ type DescribeTapeArchivesOutput struct {
 	// the tapes, status of the tapes, progress of the description and tape barcode.
 	TapeArchives []*TapeArchive `type:"list"`
 
-	metadataDescribeTapeArchivesOutput `json:"-", xml:"-"`
+	metadataDescribeTapeArchivesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTapeArchivesOutput struct {
@@ -2946,7 +2946,7 @@ type DescribeTapeRecoveryPointsInput struct {
 	// the virtual tape recovery points.
 	Marker *string `type:"string"`
 
-	metadataDescribeTapeRecoveryPointsInput `json:"-", xml:"-"`
+	metadataDescribeTapeRecoveryPointsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTapeRecoveryPointsInput struct {
@@ -2970,7 +2970,7 @@ type DescribeTapeRecoveryPointsOutput struct {
 	// An array of TapeRecoveryPointInfos that are available for the specified gateway.
 	TapeRecoveryPointInfos []*TapeRecoveryPointInfo `type:"list"`
 
-	metadataDescribeTapeRecoveryPointsOutput `json:"-", xml:"-"`
+	metadataDescribeTapeRecoveryPointsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTapeRecoveryPointsOutput struct {
@@ -3001,7 +3001,7 @@ type DescribeTapesInput struct {
 	// with the specified gateway.
 	TapeARNs []*string `type:"list"`
 
-	metadataDescribeTapesInput `json:"-", xml:"-"`
+	metadataDescribeTapesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTapesInput struct {
@@ -3020,7 +3020,7 @@ type DescribeTapesOutput struct {
 	// An array of virtual tape descriptions.
 	Tapes []*Tape `type:"list"`
 
-	metadataDescribeTapesOutput `json:"-", xml:"-"`
+	metadataDescribeTapesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTapesOutput struct {
@@ -3032,7 +3032,7 @@ type DescribeUploadBufferInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string" required:"true"`
 
-	metadataDescribeUploadBufferInput `json:"-", xml:"-"`
+	metadataDescribeUploadBufferInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeUploadBufferInput struct {
@@ -3050,7 +3050,7 @@ type DescribeUploadBufferOutput struct {
 
 	UploadBufferUsedInBytes *int64 `type:"long"`
 
-	metadataDescribeUploadBufferOutput `json:"-", xml:"-"`
+	metadataDescribeUploadBufferOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeUploadBufferOutput struct {
@@ -3079,7 +3079,7 @@ type DescribeVTLDevicesInput struct {
 	// gateway.
 	VTLDeviceARNs []*string `type:"list"`
 
-	metadataDescribeVTLDevicesInput `json:"-", xml:"-"`
+	metadataDescribeVTLDevicesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeVTLDevicesInput struct {
@@ -3102,7 +3102,7 @@ type DescribeVTLDevicesOutput struct {
 	// of the VTL devices.
 	VTLDevices []*VTLDevice `type:"list"`
 
-	metadataDescribeVTLDevicesOutput `json:"-", xml:"-"`
+	metadataDescribeVTLDevicesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeVTLDevicesOutput struct {
@@ -3115,7 +3115,7 @@ type DescribeWorkingStorageInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string" required:"true"`
 
-	metadataDescribeWorkingStorageInput `json:"-", xml:"-"`
+	metadataDescribeWorkingStorageInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeWorkingStorageInput struct {
@@ -3142,7 +3142,7 @@ type DescribeWorkingStorageOutput struct {
 	// is configured for the gateway, this field returns 0.
 	WorkingStorageUsedInBytes *int64 `type:"long"`
 
-	metadataDescribeWorkingStorageOutput `json:"-", xml:"-"`
+	metadataDescribeWorkingStorageOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeWorkingStorageOutput struct {
@@ -3164,7 +3164,7 @@ type DeviceiSCSIAttributes struct {
 	// name(iqn) of a tape drive or media changer target.
 	TargetARN *string `type:"string"`
 
-	metadataDeviceiSCSIAttributes `json:"-", xml:"-"`
+	metadataDeviceiSCSIAttributes `json:"-" xml:"-"`
 }
 
 type metadataDeviceiSCSIAttributes struct {
@@ -3177,7 +3177,7 @@ type DisableGatewayInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string" required:"true"`
 
-	metadataDisableGatewayInput `json:"-", xml:"-"`
+	metadataDisableGatewayInput `json:"-" xml:"-"`
 }
 
 type metadataDisableGatewayInput struct {
@@ -3189,7 +3189,7 @@ type DisableGatewayOutput struct {
 	// The unique Amazon Resource Name of the disabled gateway.
 	GatewayARN *string `type:"string"`
 
-	metadataDisableGatewayOutput `json:"-", xml:"-"`
+	metadataDisableGatewayOutput `json:"-" xml:"-"`
 }
 
 type metadataDisableGatewayOutput struct {
@@ -3211,7 +3211,7 @@ type Disk struct {
 
 	DiskStatus *string `type:"string"`
 
-	metadataDisk `json:"-", xml:"-"`
+	metadataDisk `json:"-" xml:"-"`
 }
 
 type metadataDisk struct {
@@ -3227,7 +3227,7 @@ type GatewayInfo struct {
 
 	GatewayType *string `type:"string"`
 
-	metadataGatewayInfo `json:"-", xml:"-"`
+	metadataGatewayInfo `json:"-" xml:"-"`
 }
 
 type metadataGatewayInfo struct {
@@ -3246,7 +3246,7 @@ type ListGatewaysInput struct {
 	// list of gateways.
 	Marker *string `type:"string"`
 
-	metadataListGatewaysInput `json:"-", xml:"-"`
+	metadataListGatewaysInput `json:"-" xml:"-"`
 }
 
 type metadataListGatewaysInput struct {
@@ -3258,7 +3258,7 @@ type ListGatewaysOutput struct {
 
 	Marker *string `type:"string"`
 
-	metadataListGatewaysOutput `json:"-", xml:"-"`
+	metadataListGatewaysOutput `json:"-" xml:"-"`
 }
 
 type metadataListGatewaysOutput struct {
@@ -3271,7 +3271,7 @@ type ListLocalDisksInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string" required:"true"`
 
-	metadataListLocalDisksInput `json:"-", xml:"-"`
+	metadataListLocalDisksInput `json:"-" xml:"-"`
 }
 
 type metadataListLocalDisksInput struct {
@@ -3285,7 +3285,7 @@ type ListLocalDisksOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string"`
 
-	metadataListLocalDisksOutput `json:"-", xml:"-"`
+	metadataListLocalDisksOutput `json:"-" xml:"-"`
 }
 
 type metadataListLocalDisksOutput struct {
@@ -3297,7 +3297,7 @@ type ListVolumeRecoveryPointsInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string" required:"true"`
 
-	metadataListVolumeRecoveryPointsInput `json:"-", xml:"-"`
+	metadataListVolumeRecoveryPointsInput `json:"-" xml:"-"`
 }
 
 type metadataListVolumeRecoveryPointsInput struct {
@@ -3311,7 +3311,7 @@ type ListVolumeRecoveryPointsOutput struct {
 
 	VolumeRecoveryPointInfos []*VolumeRecoveryPointInfo `type:"list"`
 
-	metadataListVolumeRecoveryPointsOutput `json:"-", xml:"-"`
+	metadataListVolumeRecoveryPointsOutput `json:"-" xml:"-"`
 }
 
 type metadataListVolumeRecoveryPointsOutput struct {
@@ -3335,7 +3335,7 @@ type ListVolumesInput struct {
 	// Volumes request.
 	Marker *string `type:"string"`
 
-	metadataListVolumesInput `json:"-", xml:"-"`
+	metadataListVolumesInput `json:"-" xml:"-"`
 }
 
 type metadataListVolumesInput struct {
@@ -3351,7 +3351,7 @@ type ListVolumesOutput struct {
 
 	VolumeInfos []*VolumeInfo `type:"list"`
 
-	metadataListVolumesOutput `json:"-", xml:"-"`
+	metadataListVolumesOutput `json:"-" xml:"-"`
 }
 
 type metadataListVolumesOutput struct {
@@ -3372,7 +3372,7 @@ type NetworkInterface struct {
 	// This is currently unsupported and will not be returned in output.
 	MACAddress *string `locationName:"MacAddress" type:"string"`
 
-	metadataNetworkInterface `json:"-", xml:"-"`
+	metadataNetworkInterface `json:"-" xml:"-"`
 }
 
 type metadataNetworkInterface struct {
@@ -3384,7 +3384,7 @@ type ResetCacheInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string" required:"true"`
 
-	metadataResetCacheInput `json:"-", xml:"-"`
+	metadataResetCacheInput `json:"-" xml:"-"`
 }
 
 type metadataResetCacheInput struct {
@@ -3396,7 +3396,7 @@ type ResetCacheOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string"`
 
-	metadataResetCacheOutput `json:"-", xml:"-"`
+	metadataResetCacheOutput `json:"-" xml:"-"`
 }
 
 type metadataResetCacheOutput struct {
@@ -3417,7 +3417,7 @@ type RetrieveTapeArchiveInput struct {
 	// the virtual tape shelf (VTS).
 	TapeARN *string `type:"string" required:"true"`
 
-	metadataRetrieveTapeArchiveInput `json:"-", xml:"-"`
+	metadataRetrieveTapeArchiveInput `json:"-" xml:"-"`
 }
 
 type metadataRetrieveTapeArchiveInput struct {
@@ -3429,7 +3429,7 @@ type RetrieveTapeArchiveOutput struct {
 	// The Amazon Resource Name (ARN) of the retrieved virtual tape.
 	TapeARN *string `type:"string"`
 
-	metadataRetrieveTapeArchiveOutput `json:"-", xml:"-"`
+	metadataRetrieveTapeArchiveOutput `json:"-" xml:"-"`
 }
 
 type metadataRetrieveTapeArchiveOutput struct {
@@ -3446,7 +3446,7 @@ type RetrieveTapeRecoveryPointInput struct {
 	// retrieve the recovery point.
 	TapeARN *string `type:"string" required:"true"`
 
-	metadataRetrieveTapeRecoveryPointInput `json:"-", xml:"-"`
+	metadataRetrieveTapeRecoveryPointInput `json:"-" xml:"-"`
 }
 
 type metadataRetrieveTapeRecoveryPointInput struct {
@@ -3459,7 +3459,7 @@ type RetrieveTapeRecoveryPointOutput struct {
 	// point was retrieved.
 	TapeARN *string `type:"string"`
 
-	metadataRetrieveTapeRecoveryPointOutput `json:"-", xml:"-"`
+	metadataRetrieveTapeRecoveryPointOutput `json:"-" xml:"-"`
 }
 
 type metadataRetrieveTapeRecoveryPointOutput struct {
@@ -3472,7 +3472,7 @@ type ShutdownGatewayInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string" required:"true"`
 
-	metadataShutdownGatewayInput `json:"-", xml:"-"`
+	metadataShutdownGatewayInput `json:"-" xml:"-"`
 }
 
 type metadataShutdownGatewayInput struct {
@@ -3485,7 +3485,7 @@ type ShutdownGatewayOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string"`
 
-	metadataShutdownGatewayOutput `json:"-", xml:"-"`
+	metadataShutdownGatewayOutput `json:"-" xml:"-"`
 }
 
 type metadataShutdownGatewayOutput struct {
@@ -3498,7 +3498,7 @@ type StartGatewayInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string" required:"true"`
 
-	metadataStartGatewayInput `json:"-", xml:"-"`
+	metadataStartGatewayInput `json:"-" xml:"-"`
 }
 
 type metadataStartGatewayInput struct {
@@ -3511,7 +3511,7 @@ type StartGatewayOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string"`
 
-	metadataStartGatewayOutput `json:"-", xml:"-"`
+	metadataStartGatewayOutput `json:"-" xml:"-"`
 }
 
 type metadataStartGatewayOutput struct {
@@ -3528,7 +3528,7 @@ type StorageGatewayError struct {
 	// Human-readable text that provides detail about the error that occurred.
 	ErrorDetails *map[string]*string `locationName:"errorDetails" type:"map"`
 
-	metadataStorageGatewayError `json:"-", xml:"-"`
+	metadataStorageGatewayError `json:"-" xml:"-"`
 }
 
 type metadataStorageGatewayError struct {
@@ -3557,7 +3557,7 @@ type StorediSCSIVolume struct {
 	// Lists iSCSI information about a volume.
 	VolumeiSCSIAttributes *VolumeiSCSIAttributes `type:"structure"`
 
-	metadataStorediSCSIVolume `json:"-", xml:"-"`
+	metadataStorediSCSIVolume `json:"-" xml:"-"`
 }
 
 type metadataStorediSCSIVolume struct {
@@ -3588,7 +3588,7 @@ type Tape struct {
 	// with.
 	VTLDevice *string `type:"string"`
 
-	metadataTape `json:"-", xml:"-"`
+	metadataTape `json:"-" xml:"-"`
 }
 
 type metadataTape struct {
@@ -3621,7 +3621,7 @@ type TapeArchive struct {
 	// The current state of the archived virtual tape.
 	TapeStatus *string `type:"string"`
 
-	metadataTapeArchive `json:"-", xml:"-"`
+	metadataTapeArchive `json:"-" xml:"-"`
 }
 
 type metadataTapeArchive struct {
@@ -3645,7 +3645,7 @@ type TapeRecoveryPointInfo struct {
 
 	TapeStatus *string `type:"string"`
 
-	metadataTapeRecoveryPointInfo `json:"-", xml:"-"`
+	metadataTapeRecoveryPointInfo `json:"-" xml:"-"`
 }
 
 type metadataTapeRecoveryPointInfo struct {
@@ -3666,7 +3666,7 @@ type UpdateBandwidthRateLimitInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string" required:"true"`
 
-	metadataUpdateBandwidthRateLimitInput `json:"-", xml:"-"`
+	metadataUpdateBandwidthRateLimitInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateBandwidthRateLimitInput struct {
@@ -3680,7 +3680,7 @@ type UpdateBandwidthRateLimitOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string"`
 
-	metadataUpdateBandwidthRateLimitOutput `json:"-", xml:"-"`
+	metadataUpdateBandwidthRateLimitOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateBandwidthRateLimitOutput struct {
@@ -3707,7 +3707,7 @@ type UpdateChapCredentialsInput struct {
 	// operation to return to retrieve the TargetARN for specified VolumeARN.
 	TargetARN *string `type:"string" required:"true"`
 
-	metadataUpdateChapCredentialsInput `json:"-", xml:"-"`
+	metadataUpdateChapCredentialsInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateChapCredentialsInput struct {
@@ -3724,7 +3724,7 @@ type UpdateChapCredentialsOutput struct {
 	// in the request.
 	TargetARN *string `type:"string"`
 
-	metadataUpdateChapCredentialsOutput `json:"-", xml:"-"`
+	metadataUpdateChapCredentialsOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateChapCredentialsOutput struct {
@@ -3742,7 +3742,7 @@ type UpdateGatewayInformationInput struct {
 
 	GatewayTimezone *string `type:"string"`
 
-	metadataUpdateGatewayInformationInput `json:"-", xml:"-"`
+	metadataUpdateGatewayInformationInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateGatewayInformationInput struct {
@@ -3755,7 +3755,7 @@ type UpdateGatewayInformationOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string"`
 
-	metadataUpdateGatewayInformationOutput `json:"-", xml:"-"`
+	metadataUpdateGatewayInformationOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateGatewayInformationOutput struct {
@@ -3768,7 +3768,7 @@ type UpdateGatewaySoftwareNowInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string" required:"true"`
 
-	metadataUpdateGatewaySoftwareNowInput `json:"-", xml:"-"`
+	metadataUpdateGatewaySoftwareNowInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateGatewaySoftwareNowInput struct {
@@ -3781,7 +3781,7 @@ type UpdateGatewaySoftwareNowOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string"`
 
-	metadataUpdateGatewaySoftwareNowOutput `json:"-", xml:"-"`
+	metadataUpdateGatewaySoftwareNowOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateGatewaySoftwareNowOutput struct {
@@ -3810,7 +3810,7 @@ type UpdateMaintenanceStartTimeInput struct {
 	// the gateway.
 	MinuteOfHour *int64 `type:"integer" required:"true"`
 
-	metadataUpdateMaintenanceStartTimeInput `json:"-", xml:"-"`
+	metadataUpdateMaintenanceStartTimeInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateMaintenanceStartTimeInput struct {
@@ -3824,7 +3824,7 @@ type UpdateMaintenanceStartTimeOutput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string"`
 
-	metadataUpdateMaintenanceStartTimeOutput `json:"-", xml:"-"`
+	metadataUpdateMaintenanceStartTimeOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateMaintenanceStartTimeOutput struct {
@@ -3851,7 +3851,7 @@ type UpdateSnapshotScheduleInput struct {
 	// to return a list of gateway volumes.
 	VolumeARN *string `type:"string" required:"true"`
 
-	metadataUpdateSnapshotScheduleInput `json:"-", xml:"-"`
+	metadataUpdateSnapshotScheduleInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateSnapshotScheduleInput struct {
@@ -3862,7 +3862,7 @@ type metadataUpdateSnapshotScheduleInput struct {
 type UpdateSnapshotScheduleOutput struct {
 	VolumeARN *string `type:"string"`
 
-	metadataUpdateSnapshotScheduleOutput `json:"-", xml:"-"`
+	metadataUpdateSnapshotScheduleOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateSnapshotScheduleOutput struct {
@@ -3879,7 +3879,7 @@ type UpdateVTLDeviceTypeInput struct {
 	// The Amazon Resource Name (ARN) of the medium changer you want to select.
 	VTLDeviceARN *string `type:"string" required:"true"`
 
-	metadataUpdateVTLDeviceTypeInput `json:"-", xml:"-"`
+	metadataUpdateVTLDeviceTypeInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateVTLDeviceTypeInput struct {
@@ -3891,7 +3891,7 @@ type UpdateVTLDeviceTypeOutput struct {
 	// The Amazon Resource Name (ARN) of the medium changer you have selected.
 	VTLDeviceARN *string `type:"string"`
 
-	metadataUpdateVTLDeviceTypeOutput `json:"-", xml:"-"`
+	metadataUpdateVTLDeviceTypeOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateVTLDeviceTypeOutput struct {
@@ -3913,7 +3913,7 @@ type VTLDevice struct {
 
 	VTLDeviceVendor *string `type:"string"`
 
-	metadataVTLDevice `json:"-", xml:"-"`
+	metadataVTLDevice `json:"-" xml:"-"`
 }
 
 type metadataVTLDevice struct {
@@ -3925,7 +3925,7 @@ type VolumeInfo struct {
 
 	VolumeType *string `type:"string"`
 
-	metadataVolumeInfo `json:"-", xml:"-"`
+	metadataVolumeInfo `json:"-" xml:"-"`
 }
 
 type metadataVolumeInfo struct {
@@ -3941,7 +3941,7 @@ type VolumeRecoveryPointInfo struct {
 
 	VolumeUsageInBytes *int64 `type:"long"`
 
-	metadataVolumeRecoveryPointInfo `json:"-", xml:"-"`
+	metadataVolumeRecoveryPointInfo `json:"-" xml:"-"`
 }
 
 type metadataVolumeRecoveryPointInfo struct {
@@ -3965,7 +3965,7 @@ type VolumeiSCSIAttributes struct {
 	// The Amazon Resource Name (ARN) of the volume target.
 	TargetARN *string `type:"string"`
 
-	metadataVolumeiSCSIAttributes `json:"-", xml:"-"`
+	metadataVolumeiSCSIAttributes `json:"-" xml:"-"`
 }
 
 type metadataVolumeiSCSIAttributes struct {

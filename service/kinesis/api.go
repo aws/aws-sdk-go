@@ -792,7 +792,7 @@ type AddTagsToStreamInput struct {
 	// The set of key-value pairs to use to create the tags.
 	Tags *map[string]*string `type:"map" required:"true"`
 
-	metadataAddTagsToStreamInput `json:"-", xml:"-"`
+	metadataAddTagsToStreamInput `json:"-" xml:"-"`
 }
 
 type metadataAddTagsToStreamInput struct {
@@ -800,7 +800,7 @@ type metadataAddTagsToStreamInput struct {
 }
 
 type AddTagsToStreamOutput struct {
-	metadataAddTagsToStreamOutput `json:"-", xml:"-"`
+	metadataAddTagsToStreamOutput `json:"-" xml:"-"`
 }
 
 type metadataAddTagsToStreamOutput struct {
@@ -825,7 +825,7 @@ type CreateStreamInput struct {
 	// have the same name.
 	StreamName *string `type:"string" required:"true"`
 
-	metadataCreateStreamInput `json:"-", xml:"-"`
+	metadataCreateStreamInput `json:"-" xml:"-"`
 }
 
 type metadataCreateStreamInput struct {
@@ -833,7 +833,7 @@ type metadataCreateStreamInput struct {
 }
 
 type CreateStreamOutput struct {
-	metadataCreateStreamOutput `json:"-", xml:"-"`
+	metadataCreateStreamOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateStreamOutput struct {
@@ -845,7 +845,7 @@ type DeleteStreamInput struct {
 	// The name of the stream to delete.
 	StreamName *string `type:"string" required:"true"`
 
-	metadataDeleteStreamInput `json:"-", xml:"-"`
+	metadataDeleteStreamInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteStreamInput struct {
@@ -853,7 +853,7 @@ type metadataDeleteStreamInput struct {
 }
 
 type DeleteStreamOutput struct {
-	metadataDeleteStreamOutput `json:"-", xml:"-"`
+	metadataDeleteStreamOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteStreamOutput struct {
@@ -871,7 +871,7 @@ type DescribeStreamInput struct {
 	// The name of the stream to describe.
 	StreamName *string `type:"string" required:"true"`
 
-	metadataDescribeStreamInput `json:"-", xml:"-"`
+	metadataDescribeStreamInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeStreamInput struct {
@@ -884,7 +884,7 @@ type DescribeStreamOutput struct {
 	// that comprise the stream, and states whether there are more shards available.
 	StreamDescription *StreamDescription `type:"structure" required:"true"`
 
-	metadataDescribeStreamOutput `json:"-", xml:"-"`
+	metadataDescribeStreamOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeStreamOutput struct {
@@ -902,7 +902,7 @@ type GetRecordsInput struct {
 	// number of a data record in the shard.
 	ShardIterator *string `type:"string" required:"true"`
 
-	metadataGetRecordsInput `json:"-", xml:"-"`
+	metadataGetRecordsInput `json:"-" xml:"-"`
 }
 
 type metadataGetRecordsInput struct {
@@ -919,7 +919,7 @@ type GetRecordsOutput struct {
 	// The data records retrieved from the shard.
 	Records []*Record `type:"list" required:"true"`
 
-	metadataGetRecordsOutput `json:"-", xml:"-"`
+	metadataGetRecordsOutput `json:"-" xml:"-"`
 }
 
 type metadataGetRecordsOutput struct {
@@ -952,7 +952,7 @@ type GetShardIteratorInput struct {
 	// The name of the stream.
 	StreamName *string `type:"string" required:"true"`
 
-	metadataGetShardIteratorInput `json:"-", xml:"-"`
+	metadataGetShardIteratorInput `json:"-" xml:"-"`
 }
 
 type metadataGetShardIteratorInput struct {
@@ -966,7 +966,7 @@ type GetShardIteratorOutput struct {
 	// record in a shard.
 	ShardIterator *string `type:"string"`
 
-	metadataGetShardIteratorOutput `json:"-", xml:"-"`
+	metadataGetShardIteratorOutput `json:"-" xml:"-"`
 }
 
 type metadataGetShardIteratorOutput struct {
@@ -982,7 +982,7 @@ type HashKeyRange struct {
 	// The starting hash key of the hash key range.
 	StartingHashKey *string `type:"string" required:"true"`
 
-	metadataHashKeyRange `json:"-", xml:"-"`
+	metadataHashKeyRange `json:"-" xml:"-"`
 }
 
 type metadataHashKeyRange struct {
@@ -997,7 +997,7 @@ type ListStreamsInput struct {
 	// The maximum number of streams to list.
 	Limit *int64 `type:"integer"`
 
-	metadataListStreamsInput `json:"-", xml:"-"`
+	metadataListStreamsInput `json:"-" xml:"-"`
 }
 
 type metadataListStreamsInput struct {
@@ -1013,7 +1013,7 @@ type ListStreamsOutput struct {
 	// the ListStreams request.
 	StreamNames []*string `type:"list" required:"true"`
 
-	metadataListStreamsOutput `json:"-", xml:"-"`
+	metadataListStreamsOutput `json:"-" xml:"-"`
 }
 
 type metadataListStreamsOutput struct {
@@ -1034,7 +1034,7 @@ type ListTagsForStreamInput struct {
 	// The name of the stream.
 	StreamName *string `type:"string" required:"true"`
 
-	metadataListTagsForStreamInput `json:"-", xml:"-"`
+	metadataListTagsForStreamInput `json:"-" xml:"-"`
 }
 
 type metadataListTagsForStreamInput struct {
@@ -1051,7 +1051,7 @@ type ListTagsForStreamOutput struct {
 	// ExclusiveStartTagKey and up to the specified Limit.
 	Tags []*Tag `type:"list" required:"true"`
 
-	metadataListTagsForStreamOutput `json:"-", xml:"-"`
+	metadataListTagsForStreamOutput `json:"-" xml:"-"`
 }
 
 type metadataListTagsForStreamOutput struct {
@@ -1069,7 +1069,7 @@ type MergeShardsInput struct {
 	// The name of the stream for the merge.
 	StreamName *string `type:"string" required:"true"`
 
-	metadataMergeShardsInput `json:"-", xml:"-"`
+	metadataMergeShardsInput `json:"-" xml:"-"`
 }
 
 type metadataMergeShardsInput struct {
@@ -1077,7 +1077,7 @@ type metadataMergeShardsInput struct {
 }
 
 type MergeShardsOutput struct {
-	metadataMergeShardsOutput `json:"-", xml:"-"`
+	metadataMergeShardsOutput `json:"-" xml:"-"`
 }
 
 type metadataMergeShardsOutput struct {
@@ -1115,7 +1115,7 @@ type PutRecordInput struct {
 	// The name of the stream to put the data record into.
 	StreamName *string `type:"string" required:"true"`
 
-	metadataPutRecordInput `json:"-", xml:"-"`
+	metadataPutRecordInput `json:"-" xml:"-"`
 }
 
 type metadataPutRecordInput struct {
@@ -1133,7 +1133,7 @@ type PutRecordOutput struct {
 	// The shard ID of the shard where the data record was placed.
 	ShardID *string `locationName:"ShardId" type:"string" required:"true"`
 
-	metadataPutRecordOutput `json:"-", xml:"-"`
+	metadataPutRecordOutput `json:"-" xml:"-"`
 }
 
 type metadataPutRecordOutput struct {
@@ -1148,7 +1148,7 @@ type PutRecordsInput struct {
 	// The stream name associated with the request.
 	StreamName *string `type:"string" required:"true"`
 
-	metadataPutRecordsInput `json:"-", xml:"-"`
+	metadataPutRecordsInput `json:"-" xml:"-"`
 }
 
 type metadataPutRecordsInput struct {
@@ -1167,7 +1167,7 @@ type PutRecordsOutput struct {
 	// ErrorCode and ErrorMessage in the result.
 	Records []*PutRecordsResultEntry `type:"list" required:"true"`
 
-	metadataPutRecordsOutput `json:"-", xml:"-"`
+	metadataPutRecordsOutput `json:"-" xml:"-"`
 }
 
 type metadataPutRecordsOutput struct {
@@ -1195,7 +1195,7 @@ type PutRecordsRequestEntry struct {
 	// the stream.
 	PartitionKey *string `type:"string" required:"true"`
 
-	metadataPutRecordsRequestEntry `json:"-", xml:"-"`
+	metadataPutRecordsRequestEntry `json:"-" xml:"-"`
 }
 
 type metadataPutRecordsRequestEntry struct {
@@ -1224,7 +1224,7 @@ type PutRecordsResultEntry struct {
 	// The shard ID for an individual record result.
 	ShardID *string `locationName:"ShardId" type:"string"`
 
-	metadataPutRecordsResultEntry `json:"-", xml:"-"`
+	metadataPutRecordsResultEntry `json:"-" xml:"-"`
 }
 
 type metadataPutRecordsResultEntry struct {
@@ -1246,7 +1246,7 @@ type Record struct {
 	// The unique identifier for the record in the Amazon Kinesis stream.
 	SequenceNumber *string `type:"string" required:"true"`
 
-	metadataRecord `json:"-", xml:"-"`
+	metadataRecord `json:"-" xml:"-"`
 }
 
 type metadataRecord struct {
@@ -1261,7 +1261,7 @@ type RemoveTagsFromStreamInput struct {
 	// A list of tag keys. Each corresponding tag is removed from the stream.
 	TagKeys []*string `type:"list" required:"true"`
 
-	metadataRemoveTagsFromStreamInput `json:"-", xml:"-"`
+	metadataRemoveTagsFromStreamInput `json:"-" xml:"-"`
 }
 
 type metadataRemoveTagsFromStreamInput struct {
@@ -1269,7 +1269,7 @@ type metadataRemoveTagsFromStreamInput struct {
 }
 
 type RemoveTagsFromStreamOutput struct {
-	metadataRemoveTagsFromStreamOutput `json:"-", xml:"-"`
+	metadataRemoveTagsFromStreamOutput `json:"-" xml:"-"`
 }
 
 type metadataRemoveTagsFromStreamOutput struct {
@@ -1285,7 +1285,7 @@ type SequenceNumberRange struct {
 	// The starting sequence number for the range.
 	StartingSequenceNumber *string `type:"string" required:"true"`
 
-	metadataSequenceNumberRange `json:"-", xml:"-"`
+	metadataSequenceNumberRange `json:"-" xml:"-"`
 }
 
 type metadataSequenceNumberRange struct {
@@ -1310,7 +1310,7 @@ type Shard struct {
 	// The unique identifier of the shard within the Amazon Kinesis stream.
 	ShardID *string `locationName:"ShardId" type:"string" required:"true"`
 
-	metadataShard `json:"-", xml:"-"`
+	metadataShard `json:"-" xml:"-"`
 }
 
 type metadataShard struct {
@@ -1334,7 +1334,7 @@ type SplitShardInput struct {
 	// The name of the stream for the shard split.
 	StreamName *string `type:"string" required:"true"`
 
-	metadataSplitShardInput `json:"-", xml:"-"`
+	metadataSplitShardInput `json:"-" xml:"-"`
 }
 
 type metadataSplitShardInput struct {
@@ -1342,7 +1342,7 @@ type metadataSplitShardInput struct {
 }
 
 type SplitShardOutput struct {
-	metadataSplitShardOutput `json:"-", xml:"-"`
+	metadataSplitShardOutput `json:"-" xml:"-"`
 }
 
 type metadataSplitShardOutput struct {
@@ -1377,7 +1377,7 @@ type StreamDescription struct {
 	// the UPDATING state.
 	StreamStatus *string `type:"string" required:"true"`
 
-	metadataStreamDescription `json:"-", xml:"-"`
+	metadataStreamDescription `json:"-" xml:"-"`
 }
 
 type metadataStreamDescription struct {
@@ -1395,7 +1395,7 @@ type Tag struct {
 	// space, _ . / = + - % @
 	Value *string `type:"string"`
 
-	metadataTag `json:"-", xml:"-"`
+	metadataTag `json:"-" xml:"-"`
 }
 
 type metadataTag struct {

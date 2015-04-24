@@ -412,7 +412,7 @@ type Association struct {
 	// The name of the configuration document.
 	Name *string `type:"string"`
 
-	metadataAssociation `json:"-", xml:"-"`
+	metadataAssociation `json:"-" xml:"-"`
 }
 
 type metadataAssociation struct {
@@ -433,7 +433,7 @@ type AssociationDescription struct {
 	// The association status.
 	Status *AssociationStatus `type:"structure"`
 
-	metadataAssociationDescription `json:"-", xml:"-"`
+	metadataAssociationDescription `json:"-" xml:"-"`
 }
 
 type metadataAssociationDescription struct {
@@ -448,7 +448,7 @@ type AssociationFilter struct {
 	// The filter value.
 	Value *string `locationName:"value" type:"string" required:"true"`
 
-	metadataAssociationFilter `json:"-", xml:"-"`
+	metadataAssociationFilter `json:"-" xml:"-"`
 }
 
 type metadataAssociationFilter struct {
@@ -469,7 +469,7 @@ type AssociationStatus struct {
 	// The status.
 	Name *string `type:"string" required:"true"`
 
-	metadataAssociationStatus `json:"-", xml:"-"`
+	metadataAssociationStatus `json:"-" xml:"-"`
 }
 
 type metadataAssociationStatus struct {
@@ -480,7 +480,7 @@ type CreateAssociationBatchInput struct {
 	// One or more associations.
 	Entries []*CreateAssociationBatchRequestEntry `locationNameList:"entries" type:"list" required:"true"`
 
-	metadataCreateAssociationBatchInput `json:"-", xml:"-"`
+	metadataCreateAssociationBatchInput `json:"-" xml:"-"`
 }
 
 type metadataCreateAssociationBatchInput struct {
@@ -494,7 +494,7 @@ type CreateAssociationBatchOutput struct {
 	// Information about the associations that succeeded.
 	Successful []*AssociationDescription `locationNameList:"AssociationDescription" type:"list"`
 
-	metadataCreateAssociationBatchOutput `json:"-", xml:"-"`
+	metadataCreateAssociationBatchOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateAssociationBatchOutput struct {
@@ -509,7 +509,7 @@ type CreateAssociationBatchRequestEntry struct {
 	// The name of the configuration document.
 	Name *string `type:"string"`
 
-	metadataCreateAssociationBatchRequestEntry `json:"-", xml:"-"`
+	metadataCreateAssociationBatchRequestEntry `json:"-" xml:"-"`
 }
 
 type metadataCreateAssociationBatchRequestEntry struct {
@@ -523,7 +523,7 @@ type CreateAssociationInput struct {
 	// The name of the configuration document.
 	Name *string `type:"string" required:"true"`
 
-	metadataCreateAssociationInput `json:"-", xml:"-"`
+	metadataCreateAssociationInput `json:"-" xml:"-"`
 }
 
 type metadataCreateAssociationInput struct {
@@ -534,7 +534,7 @@ type CreateAssociationOutput struct {
 	// Information about the association.
 	AssociationDescription *AssociationDescription `type:"structure"`
 
-	metadataCreateAssociationOutput `json:"-", xml:"-"`
+	metadataCreateAssociationOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateAssociationOutput struct {
@@ -549,7 +549,7 @@ type CreateDocumentInput struct {
 	// A name for the configuration document.
 	Name *string `type:"string" required:"true"`
 
-	metadataCreateDocumentInput `json:"-", xml:"-"`
+	metadataCreateDocumentInput `json:"-" xml:"-"`
 }
 
 type metadataCreateDocumentInput struct {
@@ -560,7 +560,7 @@ type CreateDocumentOutput struct {
 	// Information about the configuration document.
 	DocumentDescription *DocumentDescription `type:"structure"`
 
-	metadataCreateDocumentOutput `json:"-", xml:"-"`
+	metadataCreateDocumentOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateDocumentOutput struct {
@@ -574,7 +574,7 @@ type DeleteAssociationInput struct {
 	// The name of the configuration document.
 	Name *string `type:"string" required:"true"`
 
-	metadataDeleteAssociationInput `json:"-", xml:"-"`
+	metadataDeleteAssociationInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAssociationInput struct {
@@ -582,7 +582,7 @@ type metadataDeleteAssociationInput struct {
 }
 
 type DeleteAssociationOutput struct {
-	metadataDeleteAssociationOutput `json:"-", xml:"-"`
+	metadataDeleteAssociationOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAssociationOutput struct {
@@ -593,7 +593,7 @@ type DeleteDocumentInput struct {
 	// The name of the configuration document.
 	Name *string `type:"string" required:"true"`
 
-	metadataDeleteDocumentInput `json:"-", xml:"-"`
+	metadataDeleteDocumentInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDocumentInput struct {
@@ -601,7 +601,7 @@ type metadataDeleteDocumentInput struct {
 }
 
 type DeleteDocumentOutput struct {
-	metadataDeleteDocumentOutput `json:"-", xml:"-"`
+	metadataDeleteDocumentOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDocumentOutput struct {
@@ -615,7 +615,7 @@ type DescribeAssociationInput struct {
 	// The name of the configuration document.
 	Name *string `type:"string" required:"true"`
 
-	metadataDescribeAssociationInput `json:"-", xml:"-"`
+	metadataDescribeAssociationInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAssociationInput struct {
@@ -626,7 +626,7 @@ type DescribeAssociationOutput struct {
 	// Information about the association.
 	AssociationDescription *AssociationDescription `type:"structure"`
 
-	metadataDescribeAssociationOutput `json:"-", xml:"-"`
+	metadataDescribeAssociationOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAssociationOutput struct {
@@ -637,7 +637,7 @@ type DescribeDocumentInput struct {
 	// The name of the configuration document.
 	Name *string `type:"string" required:"true"`
 
-	metadataDescribeDocumentInput `json:"-", xml:"-"`
+	metadataDescribeDocumentInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeDocumentInput struct {
@@ -648,7 +648,7 @@ type DescribeDocumentOutput struct {
 	// Information about the configuration document.
 	Document *DocumentDescription `type:"structure"`
 
-	metadataDescribeDocumentOutput `json:"-", xml:"-"`
+	metadataDescribeDocumentOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeDocumentOutput struct {
@@ -669,7 +669,7 @@ type DocumentDescription struct {
 	// The status of the configuration document.
 	Status *string `type:"string"`
 
-	metadataDocumentDescription `json:"-", xml:"-"`
+	metadataDocumentDescription `json:"-" xml:"-"`
 }
 
 type metadataDocumentDescription struct {
@@ -684,7 +684,7 @@ type DocumentFilter struct {
 	// The value of the filter.
 	Value *string `locationName:"value" type:"string" required:"true"`
 
-	metadataDocumentFilter `json:"-", xml:"-"`
+	metadataDocumentFilter `json:"-" xml:"-"`
 }
 
 type metadataDocumentFilter struct {
@@ -696,7 +696,7 @@ type DocumentIdentifier struct {
 	// The name of the configuration document.
 	Name *string `type:"string"`
 
-	metadataDocumentIdentifier `json:"-", xml:"-"`
+	metadataDocumentIdentifier `json:"-" xml:"-"`
 }
 
 type metadataDocumentIdentifier struct {
@@ -714,7 +714,7 @@ type FailedCreateAssociation struct {
 	// A description of the failure.
 	Message *string `type:"string"`
 
-	metadataFailedCreateAssociation `json:"-", xml:"-"`
+	metadataFailedCreateAssociation `json:"-" xml:"-"`
 }
 
 type metadataFailedCreateAssociation struct {
@@ -725,7 +725,7 @@ type GetDocumentInput struct {
 	// The name of the configuration document.
 	Name *string `type:"string" required:"true"`
 
-	metadataGetDocumentInput `json:"-", xml:"-"`
+	metadataGetDocumentInput `json:"-" xml:"-"`
 }
 
 type metadataGetDocumentInput struct {
@@ -739,7 +739,7 @@ type GetDocumentOutput struct {
 	// The name of the configuration document.
 	Name *string `type:"string"`
 
-	metadataGetDocumentOutput `json:"-", xml:"-"`
+	metadataGetDocumentOutput `json:"-" xml:"-"`
 }
 
 type metadataGetDocumentOutput struct {
@@ -759,7 +759,7 @@ type ListAssociationsInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataListAssociationsInput `json:"-", xml:"-"`
+	metadataListAssociationsInput `json:"-" xml:"-"`
 }
 
 type metadataListAssociationsInput struct {
@@ -774,7 +774,7 @@ type ListAssociationsOutput struct {
 	// items to return, the string is empty.
 	NextToken *string `type:"string"`
 
-	metadataListAssociationsOutput `json:"-", xml:"-"`
+	metadataListAssociationsOutput `json:"-" xml:"-"`
 }
 
 type metadataListAssociationsOutput struct {
@@ -794,7 +794,7 @@ type ListDocumentsInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataListDocumentsInput `json:"-", xml:"-"`
+	metadataListDocumentsInput `json:"-" xml:"-"`
 }
 
 type metadataListDocumentsInput struct {
@@ -809,7 +809,7 @@ type ListDocumentsOutput struct {
 	// items to return, the string is empty.
 	NextToken *string `type:"string"`
 
-	metadataListDocumentsOutput `json:"-", xml:"-"`
+	metadataListDocumentsOutput `json:"-" xml:"-"`
 }
 
 type metadataListDocumentsOutput struct {
@@ -826,7 +826,7 @@ type UpdateAssociationStatusInput struct {
 	// The name of the configuration document.
 	Name *string `type:"string" required:"true"`
 
-	metadataUpdateAssociationStatusInput `json:"-", xml:"-"`
+	metadataUpdateAssociationStatusInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateAssociationStatusInput struct {
@@ -837,7 +837,7 @@ type UpdateAssociationStatusOutput struct {
 	// Information about the association.
 	AssociationDescription *AssociationDescription `type:"structure"`
 
-	metadataUpdateAssociationStatusOutput `json:"-", xml:"-"`
+	metadataUpdateAssociationStatusOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateAssociationStatusOutput struct {
