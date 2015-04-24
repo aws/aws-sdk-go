@@ -133,7 +133,8 @@ func retryRules(r *Request) time.Duration {
 func shouldRetry(r *Request) bool {
 	if r.HTTPResponse.StatusCode >= 500 {
 		return true
-	} else if err := Error(r.Error); err != nil {
+	}
+	if err := Error(r.Error); err != nil {
 		switch err.Code {
 		case "ExpiredTokenException":
 		case "ProvisionedThroughputExceededException", "Throttling":
