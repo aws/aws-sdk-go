@@ -41,27 +41,41 @@ var (
 )
 
 type DefaultCredentialsProvider struct {
+	backends []CredentialsProvider
 }
 
 func (p *DefaultCredentialsProvider) Credentials() (*Credentials, error) {
-	env, err := EnvCreds()
-	if err == nil {
-		return env.Credentials()
-	}
+	for _, backend := range p.backends {
+		creds, err := backend.Credentials()
 
-	profile, err := ProfileCreds("", "", 10*time.Minute)
-	if err == nil {
-		profileCreds, err := profile.Credentials()
 		if err == nil {
-			return profileCreds, nil
+			return creds, nil
 		}
 	}
 
-	return IAMCreds().Credentials()
+	return nil, fmt.Errorf("No backend returned valid credentials")
 }
 
 func DefaultCreds() CredentialsProvider {
-	return &DefaultCredentialsProvider{}
+	backends := []CredentialsProvider{}
+
+	envCreds, err := EnvCreds()
+
+	if err == nil {
+		backends = append(backends, envCreds)
+	}
+
+	profileCreds, err := ProfileCreds("", "", 10*time.Minute)
+
+	if err == nil {
+		backends = append(backends, profileCreds)
+	}
+
+	backends = append(backends, IAMCreds())
+
+	return &DefaultCredentialsProvider{
+		backends: backends,
+	}
 }
 
 // DetectCreds returns a CredentialsProvider based on the available information.
