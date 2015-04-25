@@ -7,6 +7,7 @@ import (
 	"net/url"
 	"os"
 	"regexp"
+	"sort"
 	"strconv"
 	"strings"
 	"text/template"
@@ -251,8 +252,15 @@ func GenerateTestSuite(filename string) string {
 		suite.API.Setup()
 		suite.API.Metadata.EndpointPrefix = suite.API.PackageName()
 
-		for n, s := range suite.API.Shapes {
-			s.Rename(svcPrefix + "TestShape" + n)
+		// Sort in order for deterministic test generation
+		names := make([]string, 0, len(suite.API.Shapes))
+		for n, _ := range suite.API.Shapes {
+			names = append(names, n)
+		}
+		sort.Strings(names)
+		for _, name := range names {
+			s := suite.API.Shapes[name]
+			s.Rename(svcPrefix + "TestShape" + name)
 		}
 
 		svcCode := addImports(suite.API.ServiceGoCode())
