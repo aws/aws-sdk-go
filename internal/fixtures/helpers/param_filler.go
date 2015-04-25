@@ -51,7 +51,9 @@ func (f paramFiller) paramsStructAny(value interface{}, shape *api.Shape) string
 		}
 	case "blob":
 		v := reflect.Indirect(reflect.ValueOf(value))
-		if v.IsValid() {
+		if v.IsValid() && shape.Streaming {
+			return fmt.Sprintf("aws.ReadSeekCloser(bytes.NewBufferString(%#v))", v.Interface())
+		} else if v.IsValid() {
 			return fmt.Sprintf("[]byte(%#v)", v.Interface())
 		}
 	case "boolean":
