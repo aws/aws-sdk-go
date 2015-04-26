@@ -965,7 +965,7 @@ func (c *OutputService11ProtocolTest) newRequest(op *aws.Operation, params, data
 }
 
 // OutputService11TestCaseOperation1Request generates a request for the OutputService11TestCaseOperation1 operation.
-func (c *OutputService11ProtocolTest) OutputService11TestCaseOperation1Request(input *OutputService11TestShapeOutputService11TestShapeOutputService11TestCaseOperation1Input) (req *aws.Request, output *OutputService11TestShapeOutputShape) {
+func (c *OutputService11ProtocolTest) OutputService11TestCaseOperation1Request(input *OutputService11TestShapeOutputService11TestCaseOperation1Input) (req *aws.Request, output *OutputService11TestShapeOutputShape) {
 
 	if opOutputService11TestCaseOperation1 == nil {
 		opOutputService11TestCaseOperation1 = &aws.Operation{
@@ -974,7 +974,7 @@ func (c *OutputService11ProtocolTest) OutputService11TestCaseOperation1Request(i
 	}
 
 	if input == nil {
-		input = &OutputService11TestShapeOutputService11TestShapeOutputService11TestCaseOperation1Input{}
+		input = &OutputService11TestShapeOutputService11TestCaseOperation1Input{}
 	}
 
 	req = c.newRequest(opOutputService11TestCaseOperation1, input, output)
@@ -983,7 +983,7 @@ func (c *OutputService11ProtocolTest) OutputService11TestCaseOperation1Request(i
 	return
 }
 
-func (c *OutputService11ProtocolTest) OutputService11TestCaseOperation1(input *OutputService11TestShapeOutputService11TestShapeOutputService11TestCaseOperation1Input) (output *OutputService11TestShapeOutputShape, err error) {
+func (c *OutputService11ProtocolTest) OutputService11TestCaseOperation1(input *OutputService11TestShapeOutputService11TestCaseOperation1Input) (output *OutputService11TestShapeOutputShape, err error) {
 	req, out := c.OutputService11TestCaseOperation1Request(input)
 	output = out
 	err = req.Send()
@@ -992,11 +992,11 @@ func (c *OutputService11ProtocolTest) OutputService11TestCaseOperation1(input *O
 
 var opOutputService11TestCaseOperation1 *aws.Operation
 
-type OutputService11TestShapeOutputService11TestShapeOutputService11TestCaseOperation1Input struct {
-	metadataOutputService11TestShapeOutputService11TestShapeOutputService11TestCaseOperation1Input `json:"-" xml:"-"`
+type OutputService11TestShapeOutputService11TestCaseOperation1Input struct {
+	metadataOutputService11TestShapeOutputService11TestCaseOperation1Input `json:"-" xml:"-"`
 }
 
-type metadataOutputService11TestShapeOutputService11TestShapeOutputService11TestCaseOperation1Input struct {
+type metadataOutputService11TestShapeOutputService11TestCaseOperation1Input struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 

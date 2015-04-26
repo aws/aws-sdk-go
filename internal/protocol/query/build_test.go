@@ -957,7 +957,7 @@ func (c *InputService9ProtocolTest) InputService9TestCaseOperation4(input *Input
 var opInputService9TestCaseOperation4 *aws.Operation
 
 // InputService9TestCaseOperation5Request generates a request for the InputService9TestCaseOperation5 operation.
-func (c *InputService9ProtocolTest) InputService9TestCaseOperation5Request(input *InputService9TestShapeInputShape) (req *aws.Request, output *InputService9TestShapeInputService9TestShapeInputService9TestCaseOperation5Output) {
+func (c *InputService9ProtocolTest) InputService9TestCaseOperation5Request(input *InputService9TestShapeInputShape) (req *aws.Request, output *InputService9TestShapeInputService9TestCaseOperation5Output) {
 
 	if opInputService9TestCaseOperation5 == nil {
 		opInputService9TestCaseOperation5 = &aws.Operation{
@@ -970,12 +970,12 @@ func (c *InputService9ProtocolTest) InputService9TestCaseOperation5Request(input
 	}
 
 	req = c.newRequest(opInputService9TestCaseOperation5, input, output)
-	output = &InputService9TestShapeInputService9TestShapeInputService9TestCaseOperation5Output{}
+	output = &InputService9TestShapeInputService9TestCaseOperation5Output{}
 	req.Data = output
 	return
 }
 
-func (c *InputService9ProtocolTest) InputService9TestCaseOperation5(input *InputService9TestShapeInputShape) (output *InputService9TestShapeInputService9TestShapeInputService9TestCaseOperation5Output, err error) {
+func (c *InputService9ProtocolTest) InputService9TestCaseOperation5(input *InputService9TestShapeInputShape) (output *InputService9TestShapeInputService9TestCaseOperation5Output, err error) {
 	req, out := c.InputService9TestCaseOperation5Request(input)
 	output = out
 	err = req.Send()
@@ -985,7 +985,7 @@ func (c *InputService9ProtocolTest) InputService9TestCaseOperation5(input *Input
 var opInputService9TestCaseOperation5 *aws.Operation
 
 // InputService9TestCaseOperation6Request generates a request for the InputService9TestCaseOperation6 operation.
-func (c *InputService9ProtocolTest) InputService9TestCaseOperation6Request(input *InputService9TestShapeInputShape) (req *aws.Request, output *InputService9TestShapeInputService9TestShapeInputService9TestCaseOperation6Output) {
+func (c *InputService9ProtocolTest) InputService9TestCaseOperation6Request(input *InputService9TestShapeInputShape) (req *aws.Request, output *InputService9TestShapeInputService9TestCaseOperation6Output) {
 
 	if opInputService9TestCaseOperation6 == nil {
 		opInputService9TestCaseOperation6 = &aws.Operation{
@@ -998,12 +998,12 @@ func (c *InputService9ProtocolTest) InputService9TestCaseOperation6Request(input
 	}
 
 	req = c.newRequest(opInputService9TestCaseOperation6, input, output)
-	output = &InputService9TestShapeInputService9TestShapeInputService9TestCaseOperation6Output{}
+	output = &InputService9TestShapeInputService9TestCaseOperation6Output{}
 	req.Data = output
 	return
 }
 
-func (c *InputService9ProtocolTest) InputService9TestCaseOperation6(input *InputService9TestShapeInputShape) (output *InputService9TestShapeInputService9TestShapeInputService9TestCaseOperation6Output, err error) {
+func (c *InputService9ProtocolTest) InputService9TestCaseOperation6(input *InputService9TestShapeInputShape) (output *InputService9TestShapeInputService9TestCaseOperation6Output, err error) {
 	req, out := c.InputService9TestCaseOperation6Request(input)
 	output = out
 	err = req.Send()
@@ -1044,19 +1044,19 @@ type metadataInputService9TestShapeInputService9TestCaseOperation4Output struct 
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type InputService9TestShapeInputService9TestShapeInputService9TestCaseOperation5Output struct {
-	metadataInputService9TestShapeInputService9TestShapeInputService9TestCaseOperation5Output `json:"-" xml:"-"`
+type InputService9TestShapeInputService9TestCaseOperation5Output struct {
+	metadataInputService9TestShapeInputService9TestCaseOperation5Output `json:"-" xml:"-"`
 }
 
-type metadataInputService9TestShapeInputService9TestShapeInputService9TestCaseOperation5Output struct {
+type metadataInputService9TestShapeInputService9TestCaseOperation5Output struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type InputService9TestShapeInputService9TestShapeInputService9TestCaseOperation6Output struct {
-	metadataInputService9TestShapeInputService9TestShapeInputService9TestCaseOperation6Output `json:"-" xml:"-"`
+type InputService9TestShapeInputService9TestCaseOperation6Output struct {
+	metadataInputService9TestShapeInputService9TestCaseOperation6Output `json:"-" xml:"-"`
 }
 
-type metadataInputService9TestShapeInputService9TestShapeInputService9TestCaseOperation6Output struct {
+type metadataInputService9TestShapeInputService9TestCaseOperation6Output struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
