@@ -18,6 +18,22 @@ import (
 // RFC822 returns an RFC822 formatted timestamp for AWS protocols
 const RFC822 = "Mon, 2 Jan 2006 15:04:05 GMT"
 
+// Whether the byte value can be sent without escaping in AWS URLs
+var noEscape [256]bool
+
+func init() {
+	for i := 0; i < len(noEscape); i++ {
+		// AWS expects every character except these to be escaped
+		noEscape[i] = (i >= 'A' && i <= 'Z') ||
+			(i >= 'a' && i <= 'z') ||
+			(i >= '0' && i <= '9') ||
+			i == '-' ||
+			i == '.' ||
+			i == '_' ||
+			i == '~'
+	}
+}
+
 func Build(r *aws.Request) {
 	if r.ParamsFilled() {
 		v := reflect.ValueOf(r.Params).Elem()
@@ -149,31 +165,8 @@ func updatePath(url *url.URL, urlPath string) {
 	url.Opaque = s + urlPath
 }
 
-// Whether the byte value can be sent without escaping in AWS URLs
-var noEscape [256]bool
-var noEscapeInitialized = false
-
-// initialise noEscape
-func initNoEscape() {
-	for i := range noEscape {
-		// Amazon expects every character except these escaped
-		noEscape[i] = (i >= 'A' && i <= 'Z') ||
-			(i >= 'a' && i <= 'z') ||
-			(i >= '0' && i <= '9') ||
-			i == '-' ||
-			i == '.' ||
-			i == '_' ||
-			i == '~'
-	}
-}
-
 // escapePath escapes part of a URL path in Amazon style
 func escapePath(path string, encodeSep bool) string {
-	if !noEscapeInitialized {
-		initNoEscape()
-		noEscapeInitialized = true
-	}
-
 	var buf bytes.Buffer
 	for i := 0; i < len(path); i++ {
 		c := path[i]
