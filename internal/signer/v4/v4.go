@@ -5,6 +5,7 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"fmt"
+	"github.com/awslabs/aws-sdk-go/aws/credentials"
 	"io"
 	"net/http"
 	"net/url"
@@ -57,7 +58,16 @@ type signer struct {
 }
 
 // Sign requests with signature version 4.
+//
+// Will sign the requests with the service config's Credentials object
+// Signing is skipped if the credentials is the credentials.AnonymousCredentials
+// object.
 func Sign(req *aws.Request) {
+	// If the request does not need to be signed ignore the signing of the
+	// request if the AnonymousCredentials object is used.
+	if req.Service.Config.Credentials == credentials.AnonymousCredentials {
+		return
+	}
 	creds, err := req.Service.Config.Credentials.Get()
 	if err != nil {
 		req.Error = err

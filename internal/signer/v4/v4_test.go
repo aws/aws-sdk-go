@@ -7,6 +7,8 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/credentials"
 )
 
 func buildSigner(serviceName string, region string, signTime time.Time, expireTime time.Duration, body string) signer {
@@ -72,6 +74,30 @@ func TestSignRequest(t *testing.T) {
 	q := signer.Request.Header
 	assert.Equal(t, expectedSig, q.Get("Authorization"))
 	assert.Equal(t, expectedDate, q.Get("X-Amz-Date"))
+}
+
+func TestAnonymousCredentials(t *testing.T) {
+	r := aws.NewRequest(
+		aws.NewService(&aws.Config{Credentials: credentials.AnonymousCredentials}),
+		&aws.Operation{
+			Name:       "BatchGetItem",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		},
+		nil,
+		nil,
+	)
+	Sign(r)
+
+	urlQ := r.HTTPRequest.URL.Query()
+	assert.Empty(t, urlQ.Get("X-Amz-Signature"))
+	assert.Empty(t, urlQ.Get("X-Amz-Credential"))
+	assert.Empty(t, urlQ.Get("X-Amz-SignedHeaders"))
+	assert.Empty(t, urlQ.Get("X-Amz-Date"))
+
+	hQ := r.HTTPRequest.Header
+	assert.Empty(t, hQ.Get("Authorization"))
+	assert.Empty(t, hQ.Get("X-Amz-Date"))
 }
 
 func BenchmarkPresignRequest(b *testing.B) {
