@@ -14,6 +14,7 @@ import (
 	"github.com/awslabs/aws-sdk-go/service/s3"
 	"github.com/awslabs/aws-sdk-go/service/s3/s3manager"
 	"github.com/stretchr/testify/assert"
+	"github.com/awslabs/aws-sdk-go/aws/credentials"
 )
 
 var buf12MB = make([]byte, 1024*1024*12)
@@ -30,7 +31,7 @@ func loggingSvc() (*s3.S3, *[]string, *[]interface{}) {
 	params := []interface{}{}
 	svc := s3.New(&aws.Config{
 		Region:      "mock-region",
-		Credentials: aws.DetectCreds("AKID", "SECRET", ""),
+		Credentials: credentials.NewStaticCredentials("AKID", "SECRET", ""),
 	})
 	svc.Handlers.Unmarshal.Clear()
 	svc.Handlers.UnmarshalMeta.Clear()

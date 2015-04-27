@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/credentials"
 	"github.com/awslabs/aws-sdk-go/service/s3"
 	"github.com/stretchr/testify/assert"
 )
@@ -15,8 +16,8 @@ type s3BucketTest struct {
 
 var (
 	baseConfig = &aws.Config{
-		Credentials: aws.DetectCreds("AKID", "SECRET", ""),
-		Region:      "mock-region",
+		Credentials: credentials.NewStaticCredentials("AKID", "SECRET", ""),
+		Region: "mock-region",
 	}
 
 	sslTests = []s3BucketTest{

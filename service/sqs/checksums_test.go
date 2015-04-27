@@ -7,14 +7,15 @@ import (
 	"testing"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/credentials"
 	"github.com/awslabs/aws-sdk-go/service/sqs"
 	"github.com/stretchr/testify/assert"
 )
 
 var svc = func() *sqs.SQS {
 	s := sqs.New(&aws.Config{
-		Region:                 "mock-region",
-		Credentials:            aws.DetectCreds("AKID", "SECRET", ""),
+		Region: "mock-region",
+		Credentials: credentials.NewStaticCredentials("AKID", "SECRET", ""),
 		DisableParamValidation: true,
 	})
 	s.Handlers.Send.Clear()
@@ -59,8 +60,8 @@ func TestSendMessageChecksumInvalid(t *testing.T) {
 
 func TestSendMessageChecksumInvalidNoValidation(t *testing.T) {
 	s := sqs.New(&aws.Config{
-		Region:                  "mock-region",
-		Credentials:             aws.DetectCreds("AKID", "SECRET", ""),
+		Region: "mock-region",
+		Credentials: credentials.NewStaticCredentials("AKID", "SECRET", ""),
 		DisableParamValidation:  true,
 		DisableComputeChecksums: true,
 	})

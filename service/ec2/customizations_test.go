@@ -6,14 +6,15 @@ import (
 	"testing"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/credentials"
 	"github.com/awslabs/aws-sdk-go/service/ec2"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestCopySnapshotPresignedURL(t *testing.T) {
 	svc := ec2.New(&aws.Config{
-		Credentials: aws.DetectCreds("AKID", "SECRET", ""),
-		Region:      "us-west-2",
+		Credentials: credentials.NewStaticCredentials("AKID", "SECRET", ""),
+		Region: "us-west-2",
 	})
 
 	assert.NotPanics(t, func() {

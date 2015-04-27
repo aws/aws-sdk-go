@@ -58,7 +58,7 @@ type signer struct {
 
 // Sign requests with signature version 4.
 func Sign(req *aws.Request) {
-	creds, err := req.Service.Config.Credentials.Credentials()
+	creds, err := req.Service.Config.Credentials.Get()
 	if err != nil {
 		req.Error = err
 		return

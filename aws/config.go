@@ -1,15 +1,24 @@
 package aws
 
 import (
+	"github.com/awslabs/aws-sdk-go/aws/credentials"
 	"io"
 	"net/http"
 	"os"
 )
 
+// Initialize the default chain provider credentials
+var DefaultChainCredentials *credentials.Credentials = credentials.NewChainCredentials(
+	[]credentials.Provider{
+		&credentials.EnvProvider{},
+		&credentials.SharedCredentialsProvider{Filename: "", Profile: ""},
+		&credentials.EC2RoleProvider{},
+	})
+
 const DEFAULT_RETRIES = -1
 
 var DefaultConfig = &Config{
-	Credentials:             DefaultCreds(),
+	Credentials:             DefaultChainCredentials,
 	Endpoint:                "",
 	Region:                  os.Getenv("AWS_REGION"),
 	DisableSSL:              false,
@@ -25,7 +34,7 @@ var DefaultConfig = &Config{
 }
 
 type Config struct {
-	Credentials             CredentialsProvider
+	Credentials             *credentials.Credentials
 	Endpoint                string
 	Region                  string
 	DisableSSL              bool
@@ -38,6 +47,24 @@ type Config struct {
 	DisableParamValidation  bool
 	DisableComputeChecksums bool
 	S3ForcePathStyle        bool
+}
+
+func (c Config) Copy() Config {
+	dst := Config{}
+	dst.Credentials = c.Credentials
+	dst.Endpoint = c.Endpoint
+	dst.Region = c.Region
+	dst.DisableSSL = c.DisableSSL
+	dst.ManualSend = c.ManualSend
+	dst.HTTPClient = c.HTTPClient
+	dst.LogLevel = c.LogLevel
+	dst.Logger = c.Logger
+	dst.MaxRetries = c.MaxRetries
+	dst.DisableParamValidation = c.DisableParamValidation
+	dst.DisableComputeChecksums = c.DisableComputeChecksums
+	dst.S3ForcePathStyle = c.S3ForcePathStyle
+
+	return dst
 }
 
 func (c Config) Merge(newcfg *Config) *Config {
