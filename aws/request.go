@@ -147,6 +147,7 @@ func (r *Request) Send() error {
 		r.Handlers.UnmarshalMeta.Run(r)
 		r.Handlers.ValidateResponse.Run(r)
 		if r.Error != nil {
+			r.Handlers.BeforeRetry.Run(r)
 			r.Handlers.Retry.Run(r)
 			r.Handlers.AfterRetry.Run(r)
 			if r.Error != nil {
@@ -158,6 +159,7 @@ func (r *Request) Send() error {
 
 		r.Handlers.Unmarshal.Run(r)
 		if r.Error != nil {
+			r.Handlers.BeforeRetry.Run(r)
 			r.Handlers.Retry.Run(r)
 			r.Handlers.AfterRetry.Run(r)
 			if r.Error != nil {

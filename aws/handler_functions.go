@@ -59,9 +59,10 @@ func ValidateResponseHandler(r *Request) {
 	}
 	r.Retryable = r.Service.ShouldRetry(r)
 	r.RetryDelay = r.Service.RetryRules(r)
-	if r.Retryable {
-		r.ResetReaderBody()
-	}
+}
+
+func BeforeRetryHandler(r *Request) {
+	r.ResetReaderBody()
 }
 
 func AfterRetryHandler(r *Request) {
