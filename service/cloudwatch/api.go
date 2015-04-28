@@ -453,7 +453,7 @@ type AlarmHistoryItem struct {
 	// in the Amazon CloudWatch Developer Guide.
 	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataAlarmHistoryItem `json:"-", xml:"-"`
+	metadataAlarmHistoryItem `json:"-" xml:"-"`
 }
 
 type metadataAlarmHistoryItem struct {
@@ -489,7 +489,7 @@ type Datapoint struct {
 	// The standard unit used for the datapoint.
 	Unit *string `type:"string"`
 
-	metadataDatapoint `json:"-", xml:"-"`
+	metadataDatapoint `json:"-" xml:"-"`
 }
 
 type metadataDatapoint struct {
@@ -500,7 +500,7 @@ type DeleteAlarmsInput struct {
 	// A list of alarms to be deleted.
 	AlarmNames []*string `type:"list" required:"true"`
 
-	metadataDeleteAlarmsInput `json:"-", xml:"-"`
+	metadataDeleteAlarmsInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAlarmsInput struct {
@@ -508,7 +508,7 @@ type metadataDeleteAlarmsInput struct {
 }
 
 type DeleteAlarmsOutput struct {
-	metadataDeleteAlarmsOutput `json:"-", xml:"-"`
+	metadataDeleteAlarmsOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAlarmsOutput struct {
@@ -535,7 +535,7 @@ type DescribeAlarmHistoryInput struct {
 	// The starting date to retrieve alarm history.
 	StartDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataDescribeAlarmHistoryInput `json:"-", xml:"-"`
+	metadataDescribeAlarmHistoryInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAlarmHistoryInput struct {
@@ -550,7 +550,7 @@ type DescribeAlarmHistoryOutput struct {
 	// A string that marks the start of the next batch of returned results.
 	NextToken *string `type:"string"`
 
-	metadataDescribeAlarmHistoryOutput `json:"-", xml:"-"`
+	metadataDescribeAlarmHistoryOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAlarmHistoryOutput struct {
@@ -576,7 +576,7 @@ type DescribeAlarmsForMetricInput struct {
 	// The unit for the metric.
 	Unit *string `type:"string"`
 
-	metadataDescribeAlarmsForMetricInput `json:"-", xml:"-"`
+	metadataDescribeAlarmsForMetricInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAlarmsForMetricInput struct {
@@ -588,7 +588,7 @@ type DescribeAlarmsForMetricOutput struct {
 	// A list of information for each alarm with the specified metric.
 	MetricAlarms []*MetricAlarm `type:"list"`
 
-	metadataDescribeAlarmsForMetricOutput `json:"-", xml:"-"`
+	metadataDescribeAlarmsForMetricOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAlarmsForMetricOutput struct {
@@ -616,7 +616,7 @@ type DescribeAlarmsInput struct {
 	// The state value to be used in matching alarms.
 	StateValue *string `type:"string"`
 
-	metadataDescribeAlarmsInput `json:"-", xml:"-"`
+	metadataDescribeAlarmsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAlarmsInput struct {
@@ -631,7 +631,7 @@ type DescribeAlarmsOutput struct {
 	// A string that marks the start of the next batch of returned results.
 	NextToken *string `type:"string"`
 
-	metadataDescribeAlarmsOutput `json:"-", xml:"-"`
+	metadataDescribeAlarmsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAlarmsOutput struct {
@@ -649,7 +649,7 @@ type Dimension struct {
 	// The value representing the dimension measurement
 	Value *string `type:"string" required:"true"`
 
-	metadataDimension `json:"-", xml:"-"`
+	metadataDimension `json:"-" xml:"-"`
 }
 
 type metadataDimension struct {
@@ -664,7 +664,7 @@ type DimensionFilter struct {
 	// The value of the dimension to be matched.
 	Value *string `type:"string"`
 
-	metadataDimensionFilter `json:"-", xml:"-"`
+	metadataDimensionFilter `json:"-" xml:"-"`
 }
 
 type metadataDimensionFilter struct {
@@ -675,7 +675,7 @@ type DisableAlarmActionsInput struct {
 	// The names of the alarms to disable actions for.
 	AlarmNames []*string `type:"list" required:"true"`
 
-	metadataDisableAlarmActionsInput `json:"-", xml:"-"`
+	metadataDisableAlarmActionsInput `json:"-" xml:"-"`
 }
 
 type metadataDisableAlarmActionsInput struct {
@@ -683,7 +683,7 @@ type metadataDisableAlarmActionsInput struct {
 }
 
 type DisableAlarmActionsOutput struct {
-	metadataDisableAlarmActionsOutput `json:"-", xml:"-"`
+	metadataDisableAlarmActionsOutput `json:"-" xml:"-"`
 }
 
 type metadataDisableAlarmActionsOutput struct {
@@ -694,7 +694,7 @@ type EnableAlarmActionsInput struct {
 	// The names of the alarms to enable actions for.
 	AlarmNames []*string `type:"list" required:"true"`
 
-	metadataEnableAlarmActionsInput `json:"-", xml:"-"`
+	metadataEnableAlarmActionsInput `json:"-" xml:"-"`
 }
 
 type metadataEnableAlarmActionsInput struct {
@@ -702,7 +702,7 @@ type metadataEnableAlarmActionsInput struct {
 }
 
 type EnableAlarmActionsOutput struct {
-	metadataEnableAlarmActionsOutput `json:"-", xml:"-"`
+	metadataEnableAlarmActionsOutput `json:"-" xml:"-"`
 }
 
 type metadataEnableAlarmActionsOutput struct {
@@ -743,7 +743,7 @@ type GetMetricStatisticsInput struct {
 	// The unit for the metric.
 	Unit *string `type:"string"`
 
-	metadataGetMetricStatisticsInput `json:"-", xml:"-"`
+	metadataGetMetricStatisticsInput `json:"-" xml:"-"`
 }
 
 type metadataGetMetricStatisticsInput struct {
@@ -758,7 +758,7 @@ type GetMetricStatisticsOutput struct {
 	// A label describing the specified metric.
 	Label *string `type:"string"`
 
-	metadataGetMetricStatisticsOutput `json:"-", xml:"-"`
+	metadataGetMetricStatisticsOutput `json:"-" xml:"-"`
 }
 
 type metadataGetMetricStatisticsOutput struct {
@@ -779,7 +779,7 @@ type ListMetricsInput struct {
 	// available.
 	NextToken *string `type:"string"`
 
-	metadataListMetricsInput `json:"-", xml:"-"`
+	metadataListMetricsInput `json:"-" xml:"-"`
 }
 
 type metadataListMetricsInput struct {
@@ -794,7 +794,7 @@ type ListMetricsOutput struct {
 	// A string that marks the start of the next batch of returned results.
 	NextToken *string `type:"string"`
 
-	metadataListMetricsOutput `json:"-", xml:"-"`
+	metadataListMetricsOutput `json:"-" xml:"-"`
 }
 
 type metadataListMetricsOutput struct {
@@ -818,7 +818,7 @@ type Metric struct {
 	// The namespace of the metric.
 	Namespace *string `type:"string"`
 
-	metadataMetric `json:"-", xml:"-"`
+	metadataMetric `json:"-" xml:"-"`
 }
 
 type metadataMetric struct {
@@ -912,7 +912,7 @@ type MetricAlarm struct {
 	// The unit of the alarm's associated metric.
 	Unit *string `type:"string"`
 
-	metadataMetricAlarm `json:"-", xml:"-"`
+	metadataMetricAlarm `json:"-" xml:"-"`
 }
 
 type metadataMetricAlarm struct {
@@ -952,7 +952,7 @@ type MetricDatum struct {
 	// exponents less than -130 (1 x 10^-130) are also truncated.
 	Value *float64 `type:"double"`
 
-	metadataMetricDatum `json:"-", xml:"-"`
+	metadataMetricDatum `json:"-" xml:"-"`
 }
 
 type metadataMetricDatum struct {
@@ -1017,7 +1017,7 @@ type PutMetricAlarmInput struct {
 	// The unit for the alarm's associated metric.
 	Unit *string `type:"string"`
 
-	metadataPutMetricAlarmInput `json:"-", xml:"-"`
+	metadataPutMetricAlarmInput `json:"-" xml:"-"`
 }
 
 type metadataPutMetricAlarmInput struct {
@@ -1025,7 +1025,7 @@ type metadataPutMetricAlarmInput struct {
 }
 
 type PutMetricAlarmOutput struct {
-	metadataPutMetricAlarmOutput `json:"-", xml:"-"`
+	metadataPutMetricAlarmOutput `json:"-" xml:"-"`
 }
 
 type metadataPutMetricAlarmOutput struct {
@@ -1039,7 +1039,7 @@ type PutMetricDataInput struct {
 	// The namespace for the metric data.
 	Namespace *string `type:"string" required:"true"`
 
-	metadataPutMetricDataInput `json:"-", xml:"-"`
+	metadataPutMetricDataInput `json:"-" xml:"-"`
 }
 
 type metadataPutMetricDataInput struct {
@@ -1047,7 +1047,7 @@ type metadataPutMetricDataInput struct {
 }
 
 type PutMetricDataOutput struct {
-	metadataPutMetricDataOutput `json:"-", xml:"-"`
+	metadataPutMetricDataOutput `json:"-" xml:"-"`
 }
 
 type metadataPutMetricDataOutput struct {
@@ -1070,7 +1070,7 @@ type SetAlarmStateInput struct {
 	// The value of the state.
 	StateValue *string `type:"string" required:"true"`
 
-	metadataSetAlarmStateInput `json:"-", xml:"-"`
+	metadataSetAlarmStateInput `json:"-" xml:"-"`
 }
 
 type metadataSetAlarmStateInput struct {
@@ -1078,7 +1078,7 @@ type metadataSetAlarmStateInput struct {
 }
 
 type SetAlarmStateOutput struct {
-	metadataSetAlarmStateOutput `json:"-", xml:"-"`
+	metadataSetAlarmStateOutput `json:"-" xml:"-"`
 }
 
 type metadataSetAlarmStateOutput struct {
@@ -1100,7 +1100,7 @@ type StatisticSet struct {
 	// The sum of values for the sample set.
 	Sum *float64 `type:"double" required:"true"`
 
-	metadataStatisticSet `json:"-", xml:"-"`
+	metadataStatisticSet `json:"-" xml:"-"`
 }
 
 type metadataStatisticSet struct {

@@ -1376,7 +1376,7 @@ type AddTagsToResourceInput struct {
 	// pair. A tag key must be accompanied by a tag value.
 	Tags []*Tag `locationNameList:"Tag" type:"list" required:"true"`
 
-	metadataAddTagsToResourceInput `json:"-", xml:"-"`
+	metadataAddTagsToResourceInput `json:"-" xml:"-"`
 }
 
 type metadataAddTagsToResourceInput struct {
@@ -1397,7 +1397,7 @@ type AuthorizeCacheSecurityGroupIngressInput struct {
 	// AWS account number for this parameter.
 	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string" required:"true"`
 
-	metadataAuthorizeCacheSecurityGroupIngressInput `json:"-", xml:"-"`
+	metadataAuthorizeCacheSecurityGroupIngressInput `json:"-" xml:"-"`
 }
 
 type metadataAuthorizeCacheSecurityGroupIngressInput struct {
@@ -1410,7 +1410,7 @@ type AuthorizeCacheSecurityGroupIngressOutput struct {
 	//   AuthorizeCacheSecurityGroupIngress   CreateCacheSecurityGroup   RevokeCacheSecurityGroupIngress
 	CacheSecurityGroup *CacheSecurityGroup `type:"structure"`
 
-	metadataAuthorizeCacheSecurityGroupIngressOutput `json:"-", xml:"-"`
+	metadataAuthorizeCacheSecurityGroupIngressOutput `json:"-" xml:"-"`
 }
 
 type metadataAuthorizeCacheSecurityGroupIngressOutput struct {
@@ -1422,7 +1422,7 @@ type AvailabilityZone struct {
 	// The name of the Availability Zone.
 	Name *string `type:"string"`
 
-	metadataAvailabilityZone `json:"-", xml:"-"`
+	metadataAvailabilityZone `json:"-" xml:"-"`
 }
 
 type metadataAvailabilityZone struct {
@@ -1543,7 +1543,7 @@ type CacheCluster struct {
 	// Example: 05:00-09:00
 	SnapshotWindow *string `type:"string"`
 
-	metadataCacheCluster `json:"-", xml:"-"`
+	metadataCacheCluster `json:"-" xml:"-"`
 }
 
 type metadataCacheCluster struct {
@@ -1567,7 +1567,7 @@ type CacheEngineVersion struct {
 	// The version number of the cache engine.
 	EngineVersion *string `type:"string"`
 
-	metadataCacheEngineVersion `json:"-", xml:"-"`
+	metadataCacheEngineVersion `json:"-" xml:"-"`
 }
 
 type metadataCacheEngineVersion struct {
@@ -1621,7 +1621,7 @@ type CacheNode struct {
 	// cluster.
 	SourceCacheNodeID *string `locationName:"SourceCacheNodeId" type:"string"`
 
-	metadataCacheNode `json:"-", xml:"-"`
+	metadataCacheNode `json:"-" xml:"-"`
 }
 
 type metadataCacheNode struct {
@@ -1658,7 +1658,7 @@ type CacheNodeTypeSpecificParameter struct {
 	// The source of the parameter value.
 	Source *string `type:"string"`
 
-	metadataCacheNodeTypeSpecificParameter `json:"-", xml:"-"`
+	metadataCacheNodeTypeSpecificParameter `json:"-" xml:"-"`
 }
 
 type metadataCacheNodeTypeSpecificParameter struct {
@@ -1673,7 +1673,7 @@ type CacheNodeTypeSpecificValue struct {
 	// The value for the cache node type.
 	Value *string `type:"string"`
 
-	metadataCacheNodeTypeSpecificValue `json:"-", xml:"-"`
+	metadataCacheNodeTypeSpecificValue `json:"-" xml:"-"`
 }
 
 type metadataCacheNodeTypeSpecificValue struct {
@@ -1692,7 +1692,7 @@ type CacheParameterGroup struct {
 	// The description for this cache parameter group.
 	Description *string `type:"string"`
 
-	metadataCacheParameterGroup `json:"-", xml:"-"`
+	metadataCacheParameterGroup `json:"-" xml:"-"`
 }
 
 type metadataCacheParameterGroup struct {
@@ -1706,7 +1706,7 @@ type CacheParameterGroupNameMessage struct {
 	// The name of the cache parameter group.
 	CacheParameterGroupName *string `type:"string"`
 
-	metadataCacheParameterGroupNameMessage `json:"-", xml:"-"`
+	metadataCacheParameterGroupNameMessage `json:"-" xml:"-"`
 }
 
 type metadataCacheParameterGroupNameMessage struct {
@@ -1725,7 +1725,7 @@ type CacheParameterGroupStatus struct {
 	// The status of parameter updates.
 	ParameterApplyStatus *string `type:"string"`
 
-	metadataCacheParameterGroupStatus `json:"-", xml:"-"`
+	metadataCacheParameterGroupStatus `json:"-" xml:"-"`
 }
 
 type metadataCacheParameterGroupStatus struct {
@@ -1749,7 +1749,7 @@ type CacheSecurityGroup struct {
 	// The AWS account ID of the cache security group owner.
 	OwnerID *string `locationName:"OwnerId" type:"string"`
 
-	metadataCacheSecurityGroup `json:"-", xml:"-"`
+	metadataCacheSecurityGroup `json:"-" xml:"-"`
 }
 
 type metadataCacheSecurityGroup struct {
@@ -1766,7 +1766,7 @@ type CacheSecurityGroupMembership struct {
 	// to a cache cluster are modified.
 	Status *string `type:"string"`
 
-	metadataCacheSecurityGroupMembership `json:"-", xml:"-"`
+	metadataCacheSecurityGroupMembership `json:"-" xml:"-"`
 }
 
 type metadataCacheSecurityGroupMembership struct {
@@ -1790,7 +1790,7 @@ type CacheSubnetGroup struct {
 	// group.
 	VPCID *string `locationName:"VpcId" type:"string"`
 
-	metadataCacheSubnetGroup `json:"-", xml:"-"`
+	metadataCacheSubnetGroup `json:"-" xml:"-"`
 }
 
 type metadataCacheSubnetGroup struct {
@@ -1805,7 +1805,7 @@ type CopySnapshotInput struct {
 	// A name for the copied snapshot.
 	TargetSnapshotName *string `type:"string" required:"true"`
 
-	metadataCopySnapshotInput `json:"-", xml:"-"`
+	metadataCopySnapshotInput `json:"-" xml:"-"`
 }
 
 type metadataCopySnapshotInput struct {
@@ -1817,7 +1817,7 @@ type CopySnapshotOutput struct {
 	// was taken.
 	Snapshot *Snapshot `type:"structure"`
 
-	metadataCopySnapshotOutput `json:"-", xml:"-"`
+	metadataCopySnapshotOutput `json:"-" xml:"-"`
 }
 
 type metadataCopySnapshotOutput struct {
@@ -2016,7 +2016,7 @@ type CreateCacheClusterInput struct {
 	// pair. A tag key must be accompanied by a tag value.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateCacheClusterInput `json:"-", xml:"-"`
+	metadataCreateCacheClusterInput `json:"-" xml:"-"`
 }
 
 type metadataCreateCacheClusterInput struct {
@@ -2027,7 +2027,7 @@ type CreateCacheClusterOutput struct {
 	// Contains all of the attributes of a specific cache cluster.
 	CacheCluster *CacheCluster `type:"structure"`
 
-	metadataCreateCacheClusterOutput `json:"-", xml:"-"`
+	metadataCreateCacheClusterOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateCacheClusterOutput struct {
@@ -2048,7 +2048,7 @@ type CreateCacheParameterGroupInput struct {
 	// A user-specified description for the cache parameter group.
 	Description *string `type:"string" required:"true"`
 
-	metadataCreateCacheParameterGroupInput `json:"-", xml:"-"`
+	metadataCreateCacheParameterGroupInput `json:"-" xml:"-"`
 }
 
 type metadataCreateCacheParameterGroupInput struct {
@@ -2059,7 +2059,7 @@ type CreateCacheParameterGroupOutput struct {
 	// Represents the output of a CreateCacheParameterGroup action.
 	CacheParameterGroup *CacheParameterGroup `type:"structure"`
 
-	metadataCreateCacheParameterGroupOutput `json:"-", xml:"-"`
+	metadataCreateCacheParameterGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateCacheParameterGroupOutput struct {
@@ -2080,7 +2080,7 @@ type CreateCacheSecurityGroupInput struct {
 	// A description for the cache security group.
 	Description *string `type:"string" required:"true"`
 
-	metadataCreateCacheSecurityGroupInput `json:"-", xml:"-"`
+	metadataCreateCacheSecurityGroupInput `json:"-" xml:"-"`
 }
 
 type metadataCreateCacheSecurityGroupInput struct {
@@ -2093,7 +2093,7 @@ type CreateCacheSecurityGroupOutput struct {
 	//   AuthorizeCacheSecurityGroupIngress   CreateCacheSecurityGroup   RevokeCacheSecurityGroupIngress
 	CacheSecurityGroup *CacheSecurityGroup `type:"structure"`
 
-	metadataCreateCacheSecurityGroupOutput `json:"-", xml:"-"`
+	metadataCreateCacheSecurityGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateCacheSecurityGroupOutput struct {
@@ -2115,7 +2115,7 @@ type CreateCacheSubnetGroupInput struct {
 	// A list of VPC subnet IDs for the cache subnet group.
 	SubnetIDs []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list" required:"true"`
 
-	metadataCreateCacheSubnetGroupInput `json:"-", xml:"-"`
+	metadataCreateCacheSubnetGroupInput `json:"-" xml:"-"`
 }
 
 type metadataCreateCacheSubnetGroupInput struct {
@@ -2128,7 +2128,7 @@ type CreateCacheSubnetGroupOutput struct {
 	//   CreateCacheSubnetGroup   ModifyCacheSubnetGroup
 	CacheSubnetGroup *CacheSubnetGroup `type:"structure"`
 
-	metadataCreateCacheSubnetGroupOutput `json:"-", xml:"-"`
+	metadataCreateCacheSubnetGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateCacheSubnetGroupOutput struct {
@@ -2306,7 +2306,7 @@ type CreateReplicationGroupInput struct {
 	// pair. A tag key must be accompanied by a tag value.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateReplicationGroupInput `json:"-", xml:"-"`
+	metadataCreateReplicationGroupInput `json:"-" xml:"-"`
 }
 
 type metadataCreateReplicationGroupInput struct {
@@ -2317,7 +2317,7 @@ type CreateReplicationGroupOutput struct {
 	// Contains all of the attributes of a specific replication group.
 	ReplicationGroup *ReplicationGroup `type:"structure"`
 
-	metadataCreateReplicationGroupOutput `json:"-", xml:"-"`
+	metadataCreateReplicationGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateReplicationGroupOutput struct {
@@ -2333,7 +2333,7 @@ type CreateSnapshotInput struct {
 	// A name for the snapshot being created.
 	SnapshotName *string `type:"string" required:"true"`
 
-	metadataCreateSnapshotInput `json:"-", xml:"-"`
+	metadataCreateSnapshotInput `json:"-" xml:"-"`
 }
 
 type metadataCreateSnapshotInput struct {
@@ -2345,7 +2345,7 @@ type CreateSnapshotOutput struct {
 	// was taken.
 	Snapshot *Snapshot `type:"structure"`
 
-	metadataCreateSnapshotOutput `json:"-", xml:"-"`
+	metadataCreateSnapshotOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateSnapshotOutput struct {
@@ -2363,7 +2363,7 @@ type DeleteCacheClusterInput struct {
 	// then deletes the cache cluster immediately afterward.
 	FinalSnapshotIdentifier *string `type:"string"`
 
-	metadataDeleteCacheClusterInput `json:"-", xml:"-"`
+	metadataDeleteCacheClusterInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteCacheClusterInput struct {
@@ -2374,7 +2374,7 @@ type DeleteCacheClusterOutput struct {
 	// Contains all of the attributes of a specific cache cluster.
 	CacheCluster *CacheCluster `type:"structure"`
 
-	metadataDeleteCacheClusterOutput `json:"-", xml:"-"`
+	metadataDeleteCacheClusterOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteCacheClusterOutput struct {
@@ -2389,7 +2389,7 @@ type DeleteCacheParameterGroupInput struct {
 	// clusters.
 	CacheParameterGroupName *string `type:"string" required:"true"`
 
-	metadataDeleteCacheParameterGroupInput `json:"-", xml:"-"`
+	metadataDeleteCacheParameterGroupInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteCacheParameterGroupInput struct {
@@ -2397,7 +2397,7 @@ type metadataDeleteCacheParameterGroupInput struct {
 }
 
 type DeleteCacheParameterGroupOutput struct {
-	metadataDeleteCacheParameterGroupOutput `json:"-", xml:"-"`
+	metadataDeleteCacheParameterGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteCacheParameterGroupOutput struct {
@@ -2411,7 +2411,7 @@ type DeleteCacheSecurityGroupInput struct {
 	// You cannot delete the default security group.
 	CacheSecurityGroupName *string `type:"string" required:"true"`
 
-	metadataDeleteCacheSecurityGroupInput `json:"-", xml:"-"`
+	metadataDeleteCacheSecurityGroupInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteCacheSecurityGroupInput struct {
@@ -2419,7 +2419,7 @@ type metadataDeleteCacheSecurityGroupInput struct {
 }
 
 type DeleteCacheSecurityGroupOutput struct {
-	metadataDeleteCacheSecurityGroupOutput `json:"-", xml:"-"`
+	metadataDeleteCacheSecurityGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteCacheSecurityGroupOutput struct {
@@ -2433,7 +2433,7 @@ type DeleteCacheSubnetGroupInput struct {
 	// Constraints: Must contain no more than 255 alphanumeric characters or hyphens.
 	CacheSubnetGroupName *string `type:"string" required:"true"`
 
-	metadataDeleteCacheSubnetGroupInput `json:"-", xml:"-"`
+	metadataDeleteCacheSubnetGroupInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteCacheSubnetGroupInput struct {
@@ -2441,7 +2441,7 @@ type metadataDeleteCacheSubnetGroupInput struct {
 }
 
 type DeleteCacheSubnetGroupOutput struct {
-	metadataDeleteCacheSubnetGroupOutput `json:"-", xml:"-"`
+	metadataDeleteCacheSubnetGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteCacheSubnetGroupOutput struct {
@@ -2464,7 +2464,7 @@ type DeleteReplicationGroupInput struct {
 	// node will be retained.
 	RetainPrimaryCluster *bool `type:"boolean"`
 
-	metadataDeleteReplicationGroupInput `json:"-", xml:"-"`
+	metadataDeleteReplicationGroupInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteReplicationGroupInput struct {
@@ -2475,7 +2475,7 @@ type DeleteReplicationGroupOutput struct {
 	// Contains all of the attributes of a specific replication group.
 	ReplicationGroup *ReplicationGroup `type:"structure"`
 
-	metadataDeleteReplicationGroupOutput `json:"-", xml:"-"`
+	metadataDeleteReplicationGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteReplicationGroupOutput struct {
@@ -2487,7 +2487,7 @@ type DeleteSnapshotInput struct {
 	// The name of the snapshot to be deleted.
 	SnapshotName *string `type:"string" required:"true"`
 
-	metadataDeleteSnapshotInput `json:"-", xml:"-"`
+	metadataDeleteSnapshotInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteSnapshotInput struct {
@@ -2499,7 +2499,7 @@ type DeleteSnapshotOutput struct {
 	// was taken.
 	Snapshot *Snapshot `type:"structure"`
 
-	metadataDeleteSnapshotOutput `json:"-", xml:"-"`
+	metadataDeleteSnapshotOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteSnapshotOutput struct {
@@ -2531,7 +2531,7 @@ type DescribeCacheClustersInput struct {
 	// to retrieve information about the individual cache nodes.
 	ShowCacheNodeInfo *bool `type:"boolean"`
 
-	metadataDescribeCacheClustersInput `json:"-", xml:"-"`
+	metadataDescribeCacheClustersInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeCacheClustersInput struct {
@@ -2547,7 +2547,7 @@ type DescribeCacheClustersOutput struct {
 	// Provides an identifier to allow retrieval of paginated results.
 	Marker *string `type:"string"`
 
-	metadataDescribeCacheClustersOutput `json:"-", xml:"-"`
+	metadataDescribeCacheClustersOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeCacheClustersOutput struct {
@@ -2590,7 +2590,7 @@ type DescribeCacheEngineVersionsInput struct {
 	// Constraints: minimum 20; maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	metadataDescribeCacheEngineVersionsInput `json:"-", xml:"-"`
+	metadataDescribeCacheEngineVersionsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeCacheEngineVersionsInput struct {
@@ -2606,7 +2606,7 @@ type DescribeCacheEngineVersionsOutput struct {
 	// Provides an identifier to allow retrieval of paginated results.
 	Marker *string `type:"string"`
 
-	metadataDescribeCacheEngineVersionsOutput `json:"-", xml:"-"`
+	metadataDescribeCacheEngineVersionsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeCacheEngineVersionsOutput struct {
@@ -2632,7 +2632,7 @@ type DescribeCacheParameterGroupsInput struct {
 	// Constraints: minimum 20; maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	metadataDescribeCacheParameterGroupsInput `json:"-", xml:"-"`
+	metadataDescribeCacheParameterGroupsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeCacheParameterGroupsInput struct {
@@ -2648,7 +2648,7 @@ type DescribeCacheParameterGroupsOutput struct {
 	// Provides an identifier to allow retrieval of paginated results.
 	Marker *string `type:"string"`
 
-	metadataDescribeCacheParameterGroupsOutput `json:"-", xml:"-"`
+	metadataDescribeCacheParameterGroupsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeCacheParameterGroupsOutput struct {
@@ -2679,7 +2679,7 @@ type DescribeCacheParametersInput struct {
 	// Valid values: user | system | engine-default
 	Source *string `type:"string"`
 
-	metadataDescribeCacheParametersInput `json:"-", xml:"-"`
+	metadataDescribeCacheParametersInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeCacheParametersInput struct {
@@ -2698,7 +2698,7 @@ type DescribeCacheParametersOutput struct {
 	// A list of Parameter instances.
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
 
-	metadataDescribeCacheParametersOutput `json:"-", xml:"-"`
+	metadataDescribeCacheParametersOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeCacheParametersOutput struct {
@@ -2724,7 +2724,7 @@ type DescribeCacheSecurityGroupsInput struct {
 	// Constraints: minimum 20; maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	metadataDescribeCacheSecurityGroupsInput `json:"-", xml:"-"`
+	metadataDescribeCacheSecurityGroupsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeCacheSecurityGroupsInput struct {
@@ -2740,7 +2740,7 @@ type DescribeCacheSecurityGroupsOutput struct {
 	// Provides an identifier to allow retrieval of paginated results.
 	Marker *string `type:"string"`
 
-	metadataDescribeCacheSecurityGroupsOutput `json:"-", xml:"-"`
+	metadataDescribeCacheSecurityGroupsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeCacheSecurityGroupsOutput struct {
@@ -2766,7 +2766,7 @@ type DescribeCacheSubnetGroupsInput struct {
 	// Constraints: minimum 20; maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	metadataDescribeCacheSubnetGroupsInput `json:"-", xml:"-"`
+	metadataDescribeCacheSubnetGroupsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeCacheSubnetGroupsInput struct {
@@ -2782,7 +2782,7 @@ type DescribeCacheSubnetGroupsOutput struct {
 	// Provides an identifier to allow retrieval of paginated results.
 	Marker *string `type:"string"`
 
-	metadataDescribeCacheSubnetGroupsOutput `json:"-", xml:"-"`
+	metadataDescribeCacheSubnetGroupsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeCacheSubnetGroupsOutput struct {
@@ -2809,7 +2809,7 @@ type DescribeEngineDefaultParametersInput struct {
 	// Constraints: minimum 20; maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	metadataDescribeEngineDefaultParametersInput `json:"-", xml:"-"`
+	metadataDescribeEngineDefaultParametersInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeEngineDefaultParametersInput struct {
@@ -2820,7 +2820,7 @@ type DescribeEngineDefaultParametersOutput struct {
 	// Represents the output of a DescribeEngineDefaultParameters action.
 	EngineDefaults *EngineDefaults `type:"structure"`
 
-	metadataDescribeEngineDefaultParametersOutput `json:"-", xml:"-"`
+	metadataDescribeEngineDefaultParametersOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeEngineDefaultParametersOutput struct {
@@ -2865,7 +2865,7 @@ type DescribeEventsInput struct {
 	// 8601 format.
 	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataDescribeEventsInput `json:"-", xml:"-"`
+	metadataDescribeEventsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeEventsInput struct {
@@ -2881,7 +2881,7 @@ type DescribeEventsOutput struct {
 	// Provides an identifier to allow retrieval of paginated results.
 	Marker *string `type:"string"`
 
-	metadataDescribeEventsOutput `json:"-", xml:"-"`
+	metadataDescribeEventsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeEventsOutput struct {
@@ -2911,7 +2911,7 @@ type DescribeReplicationGroupsInput struct {
 	// groups is returned.
 	ReplicationGroupID *string `locationName:"ReplicationGroupId" type:"string"`
 
-	metadataDescribeReplicationGroupsInput `json:"-", xml:"-"`
+	metadataDescribeReplicationGroupsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeReplicationGroupsInput struct {
@@ -2927,7 +2927,7 @@ type DescribeReplicationGroupsOutput struct {
 	// about one replication group.
 	ReplicationGroups []*ReplicationGroup `locationNameList:"ReplicationGroup" type:"list"`
 
-	metadataDescribeReplicationGroupsOutput `json:"-", xml:"-"`
+	metadataDescribeReplicationGroupsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeReplicationGroupsOutput struct {
@@ -2996,7 +2996,7 @@ type DescribeReservedCacheNodesInput struct {
 	// reservations matching the specified offering identifier.
 	ReservedCacheNodesOfferingID *string `locationName:"ReservedCacheNodesOfferingId" type:"string"`
 
-	metadataDescribeReservedCacheNodesInput `json:"-", xml:"-"`
+	metadataDescribeReservedCacheNodesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeReservedCacheNodesInput struct {
@@ -3063,7 +3063,7 @@ type DescribeReservedCacheNodesOfferingsInput struct {
 	// Example: 438012d3-4052-4cc7-b2e3-8d3372e0e706
 	ReservedCacheNodesOfferingID *string `locationName:"ReservedCacheNodesOfferingId" type:"string"`
 
-	metadataDescribeReservedCacheNodesOfferingsInput `json:"-", xml:"-"`
+	metadataDescribeReservedCacheNodesOfferingsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeReservedCacheNodesOfferingsInput struct {
@@ -3079,7 +3079,7 @@ type DescribeReservedCacheNodesOfferingsOutput struct {
 	// detailed information about one offering.
 	ReservedCacheNodesOfferings []*ReservedCacheNodesOffering `locationNameList:"ReservedCacheNodesOffering" type:"list"`
 
-	metadataDescribeReservedCacheNodesOfferingsOutput `json:"-", xml:"-"`
+	metadataDescribeReservedCacheNodesOfferingsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeReservedCacheNodesOfferingsOutput struct {
@@ -3095,7 +3095,7 @@ type DescribeReservedCacheNodesOutput struct {
 	// information about one node.
 	ReservedCacheNodes []*ReservedCacheNode `locationNameList:"ReservedCacheNode" type:"list"`
 
-	metadataDescribeReservedCacheNodesOutput `json:"-", xml:"-"`
+	metadataDescribeReservedCacheNodesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeReservedCacheNodesOutput struct {
@@ -3132,7 +3132,7 @@ type DescribeSnapshotsInput struct {
 	// snapshots.
 	SnapshotSource *string `type:"string"`
 
-	metadataDescribeSnapshotsInput `json:"-", xml:"-"`
+	metadataDescribeSnapshotsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeSnapshotsInput struct {
@@ -3150,7 +3150,7 @@ type DescribeSnapshotsOutput struct {
 	// about one snapshot.
 	Snapshots []*Snapshot `locationNameList:"Snapshot" type:"list"`
 
-	metadataDescribeSnapshotsOutput `json:"-", xml:"-"`
+	metadataDescribeSnapshotsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeSnapshotsOutput struct {
@@ -3168,7 +3168,7 @@ type EC2SecurityGroup struct {
 	// The status of the Amazon EC2 security group.
 	Status *string `type:"string"`
 
-	metadataEC2SecurityGroup `json:"-", xml:"-"`
+	metadataEC2SecurityGroup `json:"-" xml:"-"`
 }
 
 type metadataEC2SecurityGroup struct {
@@ -3184,7 +3184,7 @@ type Endpoint struct {
 	// The port number that the cache engine is listening on.
 	Port *int64 `type:"integer"`
 
-	metadataEndpoint `json:"-", xml:"-"`
+	metadataEndpoint `json:"-" xml:"-"`
 }
 
 type metadataEndpoint struct {
@@ -3207,7 +3207,7 @@ type EngineDefaults struct {
 	// Contains a list of engine default parameters.
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
 
-	metadataEngineDefaults `json:"-", xml:"-"`
+	metadataEngineDefaults `json:"-" xml:"-"`
 }
 
 type metadataEngineDefaults struct {
@@ -3233,7 +3233,7 @@ type Event struct {
 	// a security group, etc.
 	SourceType *string `type:"string"`
 
-	metadataEvent `json:"-", xml:"-"`
+	metadataEvent `json:"-" xml:"-"`
 }
 
 type metadataEvent struct {
@@ -3246,7 +3246,7 @@ type ListTagsForResourceInput struct {
 	// arn:aws:elasticache:us-west-2:0123456789:cluster:myCluster.
 	ResourceName *string `type:"string" required:"true"`
 
-	metadataListTagsForResourceInput `json:"-", xml:"-"`
+	metadataListTagsForResourceInput `json:"-" xml:"-"`
 }
 
 type metadataListTagsForResourceInput struct {
@@ -3433,7 +3433,7 @@ type ModifyCacheClusterInput struct {
 	// a daily snapshot of your cache cluster.
 	SnapshotWindow *string `type:"string"`
 
-	metadataModifyCacheClusterInput `json:"-", xml:"-"`
+	metadataModifyCacheClusterInput `json:"-" xml:"-"`
 }
 
 type metadataModifyCacheClusterInput struct {
@@ -3444,7 +3444,7 @@ type ModifyCacheClusterOutput struct {
 	// Contains all of the attributes of a specific cache cluster.
 	CacheCluster *CacheCluster `type:"structure"`
 
-	metadataModifyCacheClusterOutput `json:"-", xml:"-"`
+	metadataModifyCacheClusterOutput `json:"-" xml:"-"`
 }
 
 type metadataModifyCacheClusterOutput struct {
@@ -3461,7 +3461,7 @@ type ModifyCacheParameterGroupInput struct {
 	// A maximum of 20 parameters may be modified per request.
 	ParameterNameValues []*ParameterNameValue `locationNameList:"ParameterNameValue" type:"list" required:"true"`
 
-	metadataModifyCacheParameterGroupInput `json:"-", xml:"-"`
+	metadataModifyCacheParameterGroupInput `json:"-" xml:"-"`
 }
 
 type metadataModifyCacheParameterGroupInput struct {
@@ -3484,7 +3484,7 @@ type ModifyCacheSubnetGroupInput struct {
 	// The EC2 subnet IDs for the cache subnet group.
 	SubnetIDs []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list"`
 
-	metadataModifyCacheSubnetGroupInput `json:"-", xml:"-"`
+	metadataModifyCacheSubnetGroupInput `json:"-" xml:"-"`
 }
 
 type metadataModifyCacheSubnetGroupInput struct {
@@ -3497,7 +3497,7 @@ type ModifyCacheSubnetGroupOutput struct {
 	//   CreateCacheSubnetGroup   ModifyCacheSubnetGroup
 	CacheSubnetGroup *CacheSubnetGroup `type:"structure"`
 
-	metadataModifyCacheSubnetGroupOutput `json:"-", xml:"-"`
+	metadataModifyCacheSubnetGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataModifyCacheSubnetGroupOutput struct {
@@ -3613,7 +3613,7 @@ type ModifyReplicationGroupInput struct {
 	// replication group.
 	SnapshottingClusterID *string `locationName:"SnapshottingClusterId" type:"string"`
 
-	metadataModifyReplicationGroupInput `json:"-", xml:"-"`
+	metadataModifyReplicationGroupInput `json:"-" xml:"-"`
 }
 
 type metadataModifyReplicationGroupInput struct {
@@ -3624,7 +3624,7 @@ type ModifyReplicationGroupOutput struct {
 	// Contains all of the attributes of a specific replication group.
 	ReplicationGroup *ReplicationGroup `type:"structure"`
 
-	metadataModifyReplicationGroupOutput `json:"-", xml:"-"`
+	metadataModifyReplicationGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataModifyReplicationGroupOutput struct {
@@ -3647,7 +3647,7 @@ type NodeGroup struct {
 	// The current state of this replication group - creating, available, etc.
 	Status *string `type:"string"`
 
-	metadataNodeGroup `json:"-", xml:"-"`
+	metadataNodeGroup `json:"-" xml:"-"`
 }
 
 type metadataNodeGroup struct {
@@ -3673,7 +3673,7 @@ type NodeGroupMember struct {
 	// node.
 	ReadEndpoint *Endpoint `type:"structure"`
 
-	metadataNodeGroupMember `json:"-", xml:"-"`
+	metadataNodeGroupMember `json:"-" xml:"-"`
 }
 
 type metadataNodeGroupMember struct {
@@ -3695,7 +3695,7 @@ type NodeSnapshot struct {
 	// obtained for the snapshot.
 	SnapshotCreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataNodeSnapshot `json:"-", xml:"-"`
+	metadataNodeSnapshot `json:"-" xml:"-"`
 }
 
 type metadataNodeSnapshot struct {
@@ -3712,7 +3712,7 @@ type NotificationConfiguration struct {
 	// The current state of the topic.
 	TopicStatus *string `type:"string"`
 
-	metadataNotificationConfiguration `json:"-", xml:"-"`
+	metadataNotificationConfiguration `json:"-" xml:"-"`
 }
 
 type metadataNotificationConfiguration struct {
@@ -3748,7 +3748,7 @@ type Parameter struct {
 	// The source of the parameter.
 	Source *string `type:"string"`
 
-	metadataParameter `json:"-", xml:"-"`
+	metadataParameter `json:"-" xml:"-"`
 }
 
 type metadataParameter struct {
@@ -3763,7 +3763,7 @@ type ParameterNameValue struct {
 	// The value of the parameter.
 	ParameterValue *string `type:"string"`
 
-	metadataParameterNameValue `json:"-", xml:"-"`
+	metadataParameterNameValue `json:"-" xml:"-"`
 }
 
 type metadataParameterNameValue struct {
@@ -3786,7 +3786,7 @@ type PendingModifiedValues struct {
 	// this value must be between 1 and 20.
 	NumCacheNodes *int64 `type:"integer"`
 
-	metadataPendingModifiedValues `json:"-", xml:"-"`
+	metadataPendingModifiedValues `json:"-" xml:"-"`
 }
 
 type metadataPendingModifiedValues struct {
@@ -3810,7 +3810,7 @@ type PurchaseReservedCacheNodesOfferingInput struct {
 	// Example: 438012d3-4052-4cc7-b2e3-8d3372e0e706
 	ReservedCacheNodesOfferingID *string `locationName:"ReservedCacheNodesOfferingId" type:"string" required:"true"`
 
-	metadataPurchaseReservedCacheNodesOfferingInput `json:"-", xml:"-"`
+	metadataPurchaseReservedCacheNodesOfferingInput `json:"-" xml:"-"`
 }
 
 type metadataPurchaseReservedCacheNodesOfferingInput struct {
@@ -3821,7 +3821,7 @@ type PurchaseReservedCacheNodesOfferingOutput struct {
 	// Represents the output of a PurchaseReservedCacheNodesOffering action.
 	ReservedCacheNode *ReservedCacheNode `type:"structure"`
 
-	metadataPurchaseReservedCacheNodesOfferingOutput `json:"-", xml:"-"`
+	metadataPurchaseReservedCacheNodesOfferingOutput `json:"-" xml:"-"`
 }
 
 type metadataPurchaseReservedCacheNodesOfferingOutput struct {
@@ -3838,7 +3838,7 @@ type RebootCacheClusterInput struct {
 	// node IDs.
 	CacheNodeIDsToReboot []*string `locationName:"CacheNodeIdsToReboot" locationNameList:"CacheNodeId" type:"list" required:"true"`
 
-	metadataRebootCacheClusterInput `json:"-", xml:"-"`
+	metadataRebootCacheClusterInput `json:"-" xml:"-"`
 }
 
 type metadataRebootCacheClusterInput struct {
@@ -3849,7 +3849,7 @@ type RebootCacheClusterOutput struct {
 	// Contains all of the attributes of a specific cache cluster.
 	CacheCluster *CacheCluster `type:"structure"`
 
-	metadataRebootCacheClusterOutput `json:"-", xml:"-"`
+	metadataRebootCacheClusterOutput `json:"-" xml:"-"`
 }
 
 type metadataRebootCacheClusterOutput struct {
@@ -3865,7 +3865,7 @@ type RecurringCharge struct {
 	// The frequency of the recurring charge.
 	RecurringChargeFrequency *string `type:"string"`
 
-	metadataRecurringCharge `json:"-", xml:"-"`
+	metadataRecurringCharge `json:"-" xml:"-"`
 }
 
 type metadataRecurringCharge struct {
@@ -3883,7 +3883,7 @@ type RemoveTagsFromResourceInput struct {
 	// the key name Region from the resource named by the ResourceName parameter.
 	TagKeys []*string `type:"list" required:"true"`
 
-	metadataRemoveTagsFromResourceInput `json:"-", xml:"-"`
+	metadataRemoveTagsFromResourceInput `json:"-" xml:"-"`
 }
 
 type metadataRemoveTagsFromResourceInput struct {
@@ -3923,7 +3923,7 @@ type ReplicationGroup struct {
 	// The current state of this replication group - creating, available, etc.
 	Status *string `type:"string"`
 
-	metadataReplicationGroup `json:"-", xml:"-"`
+	metadataReplicationGroup `json:"-" xml:"-"`
 }
 
 type metadataReplicationGroup struct {
@@ -3944,7 +3944,7 @@ type ReplicationGroupPendingModifiedValues struct {
 	// was specified), or during the next maintenance window.
 	PrimaryClusterID *string `locationName:"PrimaryClusterId" type:"string"`
 
-	metadataReplicationGroupPendingModifiedValues `json:"-", xml:"-"`
+	metadataReplicationGroupPendingModifiedValues `json:"-" xml:"-"`
 }
 
 type metadataReplicationGroupPendingModifiedValues struct {
@@ -4007,7 +4007,7 @@ type ReservedCacheNode struct {
 	// The hourly price charged for this reserved cache node.
 	UsagePrice *float64 `type:"double"`
 
-	metadataReservedCacheNode `json:"-", xml:"-"`
+	metadataReservedCacheNode `json:"-" xml:"-"`
 }
 
 type metadataReservedCacheNode struct {
@@ -4058,7 +4058,7 @@ type ReservedCacheNodesOffering struct {
 	// The hourly price charged for this offering.
 	UsagePrice *float64 `type:"double"`
 
-	metadataReservedCacheNodesOffering `json:"-", xml:"-"`
+	metadataReservedCacheNodesOffering `json:"-" xml:"-"`
 }
 
 type metadataReservedCacheNodesOffering struct {
@@ -4080,7 +4080,7 @@ type ResetCacheParameterGroupInput struct {
 	// Valid values: true | false
 	ResetAllParameters *bool `type:"boolean"`
 
-	metadataResetCacheParameterGroupInput `json:"-", xml:"-"`
+	metadataResetCacheParameterGroupInput `json:"-" xml:"-"`
 }
 
 type metadataResetCacheParameterGroupInput struct {
@@ -4100,7 +4100,7 @@ type RevokeCacheSecurityGroupIngressInput struct {
 	// AWS account number for this parameter.
 	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string" required:"true"`
 
-	metadataRevokeCacheSecurityGroupIngressInput `json:"-", xml:"-"`
+	metadataRevokeCacheSecurityGroupIngressInput `json:"-" xml:"-"`
 }
 
 type metadataRevokeCacheSecurityGroupIngressInput struct {
@@ -4113,7 +4113,7 @@ type RevokeCacheSecurityGroupIngressOutput struct {
 	//   AuthorizeCacheSecurityGroupIngress   CreateCacheSecurityGroup   RevokeCacheSecurityGroupIngress
 	CacheSecurityGroup *CacheSecurityGroup `type:"structure"`
 
-	metadataRevokeCacheSecurityGroupIngressOutput `json:"-", xml:"-"`
+	metadataRevokeCacheSecurityGroupIngressOutput `json:"-" xml:"-"`
 }
 
 type metadataRevokeCacheSecurityGroupIngressOutput struct {
@@ -4130,7 +4130,7 @@ type SecurityGroupMembership struct {
 	// to a cache cluster are modified.
 	Status *string `type:"string"`
 
-	metadataSecurityGroupMembership `json:"-", xml:"-"`
+	metadataSecurityGroupMembership `json:"-" xml:"-"`
 }
 
 type metadataSecurityGroupMembership struct {
@@ -4244,7 +4244,7 @@ type Snapshot struct {
 	// group for the source cache cluster.
 	VPCID *string `locationName:"VpcId" type:"string"`
 
-	metadataSnapshot `json:"-", xml:"-"`
+	metadataSnapshot `json:"-" xml:"-"`
 }
 
 type metadataSnapshot struct {
@@ -4261,7 +4261,7 @@ type Subnet struct {
 	// The unique identifier for the subnet.
 	SubnetIdentifier *string `type:"string"`
 
-	metadataSubnet `json:"-", xml:"-"`
+	metadataSubnet `json:"-" xml:"-"`
 }
 
 type metadataSubnet struct {
@@ -4278,7 +4278,7 @@ type Tag struct {
 	// The tag's value. May not be null.
 	Value *string `type:"string"`
 
-	metadataTag `json:"-", xml:"-"`
+	metadataTag `json:"-" xml:"-"`
 }
 
 type metadataTag struct {
@@ -4291,7 +4291,7 @@ type TagListMessage struct {
 	// A list of cost allocation tags as key-value pairs.
 	TagList []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataTagListMessage `json:"-", xml:"-"`
+	metadataTagListMessage `json:"-" xml:"-"`
 }
 
 type metadataTagListMessage struct {

@@ -12,7 +12,7 @@ import (
 )
 
 type Operation struct {
-	API           *API `json: "-"`
+	API           *API `json:"-"`
 	ExportedName  string
 	Name          string
 	Documentation string

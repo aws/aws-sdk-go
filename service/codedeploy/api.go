@@ -857,7 +857,7 @@ type ApplicationInfo struct {
 	// otherwise, false.
 	LinkedToGitHub *bool `locationName:"linkedToGitHub" type:"boolean"`
 
-	metadataApplicationInfo `json:"-", xml:"-"`
+	metadataApplicationInfo `json:"-" xml:"-"`
 }
 
 type metadataApplicationInfo struct {
@@ -872,7 +872,7 @@ type AutoScalingGroup struct {
 	// The Auto Scaling group name.
 	Name *string `locationName:"name" type:"string"`
 
-	metadataAutoScalingGroup `json:"-", xml:"-"`
+	metadataAutoScalingGroup `json:"-" xml:"-"`
 }
 
 type metadataAutoScalingGroup struct {
@@ -885,7 +885,7 @@ type BatchGetApplicationsInput struct {
 	// spaces.
 	ApplicationNames []*string `locationName:"applicationNames" type:"list"`
 
-	metadataBatchGetApplicationsInput `json:"-", xml:"-"`
+	metadataBatchGetApplicationsInput `json:"-" xml:"-"`
 }
 
 type metadataBatchGetApplicationsInput struct {
@@ -897,7 +897,7 @@ type BatchGetApplicationsOutput struct {
 	// Information about the applications.
 	ApplicationsInfo []*ApplicationInfo `locationName:"applicationsInfo" type:"list"`
 
-	metadataBatchGetApplicationsOutput `json:"-", xml:"-"`
+	metadataBatchGetApplicationsOutput `json:"-" xml:"-"`
 }
 
 type metadataBatchGetApplicationsOutput struct {
@@ -909,7 +909,7 @@ type BatchGetDeploymentsInput struct {
 	// A list of deployment IDs, with multiple deployment IDs separated by spaces.
 	DeploymentIDs []*string `locationName:"deploymentIds" type:"list"`
 
-	metadataBatchGetDeploymentsInput `json:"-", xml:"-"`
+	metadataBatchGetDeploymentsInput `json:"-" xml:"-"`
 }
 
 type metadataBatchGetDeploymentsInput struct {
@@ -921,7 +921,7 @@ type BatchGetDeploymentsOutput struct {
 	// Information about the deployments.
 	DeploymentsInfo []*DeploymentInfo `locationName:"deploymentsInfo" type:"list"`
 
-	metadataBatchGetDeploymentsOutput `json:"-", xml:"-"`
+	metadataBatchGetDeploymentsOutput `json:"-" xml:"-"`
 }
 
 type metadataBatchGetDeploymentsOutput struct {
@@ -934,7 +934,7 @@ type CreateApplicationInput struct {
 	// account.
 	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
 
-	metadataCreateApplicationInput `json:"-", xml:"-"`
+	metadataCreateApplicationInput `json:"-" xml:"-"`
 }
 
 type metadataCreateApplicationInput struct {
@@ -946,7 +946,7 @@ type CreateApplicationOutput struct {
 	// A unique application ID.
 	ApplicationID *string `locationName:"applicationId" type:"string"`
 
-	metadataCreateApplicationOutput `json:"-", xml:"-"`
+	metadataCreateApplicationOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateApplicationOutput struct {
@@ -976,7 +976,7 @@ type CreateDeploymentConfigInput struct {
 	// FLEET_PERCENT and a value of 95.
 	MinimumHealthyHosts *MinimumHealthyHosts `locationName:"minimumHealthyHosts" type:"structure"`
 
-	metadataCreateDeploymentConfigInput `json:"-", xml:"-"`
+	metadataCreateDeploymentConfigInput `json:"-" xml:"-"`
 }
 
 type metadataCreateDeploymentConfigInput struct {
@@ -988,7 +988,7 @@ type CreateDeploymentConfigOutput struct {
 	// A unique deployment configuration ID.
 	DeploymentConfigID *string `locationName:"deploymentConfigId" type:"string"`
 
-	metadataCreateDeploymentConfigOutput `json:"-", xml:"-"`
+	metadataCreateDeploymentConfigOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateDeploymentConfigOutput struct {
@@ -1044,7 +1044,7 @@ type CreateDeploymentGroupInput struct {
 	// when interacting with AWS services.
 	ServiceRoleARN *string `locationName:"serviceRoleArn" type:"string"`
 
-	metadataCreateDeploymentGroupInput `json:"-", xml:"-"`
+	metadataCreateDeploymentGroupInput `json:"-" xml:"-"`
 }
 
 type metadataCreateDeploymentGroupInput struct {
@@ -1056,7 +1056,7 @@ type CreateDeploymentGroupOutput struct {
 	// A unique deployment group ID.
 	DeploymentGroupID *string `locationName:"deploymentGroupId" type:"string"`
 
-	metadataCreateDeploymentGroupOutput `json:"-", xml:"-"`
+	metadataCreateDeploymentGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateDeploymentGroupOutput struct {
@@ -1096,7 +1096,7 @@ type CreateDeploymentInput struct {
 	// location.
 	Revision *RevisionLocation `locationName:"revision" type:"structure"`
 
-	metadataCreateDeploymentInput `json:"-", xml:"-"`
+	metadataCreateDeploymentInput `json:"-" xml:"-"`
 }
 
 type metadataCreateDeploymentInput struct {
@@ -1108,7 +1108,7 @@ type CreateDeploymentOutput struct {
 	// A unique deployment ID.
 	DeploymentID *string `locationName:"deploymentId" type:"string"`
 
-	metadataCreateDeploymentOutput `json:"-", xml:"-"`
+	metadataCreateDeploymentOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateDeploymentOutput struct {
@@ -1120,7 +1120,7 @@ type DeleteApplicationInput struct {
 	// The name of an existing AWS CodeDeploy application within the AWS user account.
 	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
 
-	metadataDeleteApplicationInput `json:"-", xml:"-"`
+	metadataDeleteApplicationInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteApplicationInput struct {
@@ -1128,7 +1128,7 @@ type metadataDeleteApplicationInput struct {
 }
 
 type DeleteApplicationOutput struct {
-	metadataDeleteApplicationOutput `json:"-", xml:"-"`
+	metadataDeleteApplicationOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteApplicationOutput struct {
@@ -1140,7 +1140,7 @@ type DeleteDeploymentConfigInput struct {
 	// The name of an existing deployment configuration within the AWS user account.
 	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string" required:"true"`
 
-	metadataDeleteDeploymentConfigInput `json:"-", xml:"-"`
+	metadataDeleteDeploymentConfigInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDeploymentConfigInput struct {
@@ -1148,7 +1148,7 @@ type metadataDeleteDeploymentConfigInput struct {
 }
 
 type DeleteDeploymentConfigOutput struct {
-	metadataDeleteDeploymentConfigOutput `json:"-", xml:"-"`
+	metadataDeleteDeploymentConfigOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDeploymentConfigOutput struct {
@@ -1163,7 +1163,7 @@ type DeleteDeploymentGroupInput struct {
 	// The name of an existing deployment group for the specified application.
 	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string" required:"true"`
 
-	metadataDeleteDeploymentGroupInput `json:"-", xml:"-"`
+	metadataDeleteDeploymentGroupInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDeploymentGroupInput struct {
@@ -1180,7 +1180,7 @@ type DeleteDeploymentGroupOutput struct {
 	// group.
 	HooksNotCleanedUp []*AutoScalingGroup `locationName:"hooksNotCleanedUp" type:"list"`
 
-	metadataDeleteDeploymentGroupOutput `json:"-", xml:"-"`
+	metadataDeleteDeploymentGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDeploymentGroupOutput struct {
@@ -1201,7 +1201,7 @@ type DeploymentConfigInfo struct {
 	// Information about the number or percentage of minimum healthy instances.
 	MinimumHealthyHosts *MinimumHealthyHosts `locationName:"minimumHealthyHosts" type:"structure"`
 
-	metadataDeploymentConfigInfo `json:"-", xml:"-"`
+	metadataDeploymentConfigInfo `json:"-" xml:"-"`
 }
 
 type metadataDeploymentConfigInfo struct {
@@ -1235,7 +1235,7 @@ type DeploymentGroupInfo struct {
 	// type and its location.
 	TargetRevision *RevisionLocation `locationName:"targetRevision" type:"structure"`
 
-	metadataDeploymentGroupInfo `json:"-", xml:"-"`
+	metadataDeploymentGroupInfo `json:"-" xml:"-"`
 }
 
 type metadataDeploymentGroupInfo struct {
@@ -1303,7 +1303,7 @@ type DeploymentInfo struct {
 	// The current state of the deployment as a whole.
 	Status *string `locationName:"status" type:"string"`
 
-	metadataDeploymentInfo `json:"-", xml:"-"`
+	metadataDeploymentInfo `json:"-" xml:"-"`
 }
 
 type metadataDeploymentInfo struct {
@@ -1327,7 +1327,7 @@ type DeploymentOverview struct {
 	// The number of instances that have succeeded in the deployment.
 	Succeeded *int64 `type:"long"`
 
-	metadataDeploymentOverview `json:"-", xml:"-"`
+	metadataDeploymentOverview `json:"-" xml:"-"`
 }
 
 type metadataDeploymentOverview struct {
@@ -1355,7 +1355,7 @@ type Diagnostics struct {
 	// The name of the script.
 	ScriptName *string `locationName:"scriptName" type:"string"`
 
-	metadataDiagnostics `json:"-", xml:"-"`
+	metadataDiagnostics `json:"-" xml:"-"`
 }
 
 type metadataDiagnostics struct {
@@ -1375,7 +1375,7 @@ type EC2TagFilter struct {
 	// The Amazon EC2 tag filter value.
 	Value *string `type:"string"`
 
-	metadataEC2TagFilter `json:"-", xml:"-"`
+	metadataEC2TagFilter `json:"-" xml:"-"`
 }
 
 type metadataEC2TagFilter struct {
@@ -1407,7 +1407,7 @@ type ErrorInformation struct {
 	// An accompanying error message.
 	Message *string `locationName:"message" type:"string"`
 
-	metadataErrorInformation `json:"-", xml:"-"`
+	metadataErrorInformation `json:"-" xml:"-"`
 }
 
 type metadataErrorInformation struct {
@@ -1431,7 +1431,7 @@ type GenericRevisionInfo struct {
 	// When the revision was registered with AWS CodeDeploy.
 	RegisterTime *time.Time `locationName:"registerTime" type:"timestamp" timestampFormat:"unix"`
 
-	metadataGenericRevisionInfo `json:"-", xml:"-"`
+	metadataGenericRevisionInfo `json:"-" xml:"-"`
 }
 
 type metadataGenericRevisionInfo struct {
@@ -1443,7 +1443,7 @@ type GetApplicationInput struct {
 	// The name of an existing AWS CodeDeploy application within the AWS user account.
 	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
 
-	metadataGetApplicationInput `json:"-", xml:"-"`
+	metadataGetApplicationInput `json:"-" xml:"-"`
 }
 
 type metadataGetApplicationInput struct {
@@ -1455,7 +1455,7 @@ type GetApplicationOutput struct {
 	// Information about the application.
 	Application *ApplicationInfo `locationName:"application" type:"structure"`
 
-	metadataGetApplicationOutput `json:"-", xml:"-"`
+	metadataGetApplicationOutput `json:"-" xml:"-"`
 }
 
 type metadataGetApplicationOutput struct {
@@ -1471,7 +1471,7 @@ type GetApplicationRevisionInput struct {
 	// type and its location.
 	Revision *RevisionLocation `locationName:"revision" type:"structure" required:"true"`
 
-	metadataGetApplicationRevisionInput `json:"-", xml:"-"`
+	metadataGetApplicationRevisionInput `json:"-" xml:"-"`
 }
 
 type metadataGetApplicationRevisionInput struct {
@@ -1490,7 +1490,7 @@ type GetApplicationRevisionOutput struct {
 	// General information about the revision.
 	RevisionInfo *GenericRevisionInfo `locationName:"revisionInfo" type:"structure"`
 
-	metadataGetApplicationRevisionOutput `json:"-", xml:"-"`
+	metadataGetApplicationRevisionOutput `json:"-" xml:"-"`
 }
 
 type metadataGetApplicationRevisionOutput struct {
@@ -1502,7 +1502,7 @@ type GetDeploymentConfigInput struct {
 	// The name of an existing deployment configuration within the AWS user account.
 	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string" required:"true"`
 
-	metadataGetDeploymentConfigInput `json:"-", xml:"-"`
+	metadataGetDeploymentConfigInput `json:"-" xml:"-"`
 }
 
 type metadataGetDeploymentConfigInput struct {
@@ -1514,7 +1514,7 @@ type GetDeploymentConfigOutput struct {
 	// Information about the deployment configuration.
 	DeploymentConfigInfo *DeploymentConfigInfo `locationName:"deploymentConfigInfo" type:"structure"`
 
-	metadataGetDeploymentConfigOutput `json:"-", xml:"-"`
+	metadataGetDeploymentConfigOutput `json:"-" xml:"-"`
 }
 
 type metadataGetDeploymentConfigOutput struct {
@@ -1529,7 +1529,7 @@ type GetDeploymentGroupInput struct {
 	// The name of an existing deployment group for the specified application.
 	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string" required:"true"`
 
-	metadataGetDeploymentGroupInput `json:"-", xml:"-"`
+	metadataGetDeploymentGroupInput `json:"-" xml:"-"`
 }
 
 type metadataGetDeploymentGroupInput struct {
@@ -1541,7 +1541,7 @@ type GetDeploymentGroupOutput struct {
 	// Information about the deployment group.
 	DeploymentGroupInfo *DeploymentGroupInfo `locationName:"deploymentGroupInfo" type:"structure"`
 
-	metadataGetDeploymentGroupOutput `json:"-", xml:"-"`
+	metadataGetDeploymentGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataGetDeploymentGroupOutput struct {
@@ -1553,7 +1553,7 @@ type GetDeploymentInput struct {
 	// An existing deployment ID within the AWS user account.
 	DeploymentID *string `locationName:"deploymentId" type:"string" required:"true"`
 
-	metadataGetDeploymentInput `json:"-", xml:"-"`
+	metadataGetDeploymentInput `json:"-" xml:"-"`
 }
 
 type metadataGetDeploymentInput struct {
@@ -1568,7 +1568,7 @@ type GetDeploymentInstanceInput struct {
 	// The unique ID of an Amazon EC2 instance in the deployment's deployment group.
 	InstanceID *string `locationName:"instanceId" type:"string" required:"true"`
 
-	metadataGetDeploymentInstanceInput `json:"-", xml:"-"`
+	metadataGetDeploymentInstanceInput `json:"-" xml:"-"`
 }
 
 type metadataGetDeploymentInstanceInput struct {
@@ -1580,7 +1580,7 @@ type GetDeploymentInstanceOutput struct {
 	// Information about the instance.
 	InstanceSummary *InstanceSummary `locationName:"instanceSummary" type:"structure"`
 
-	metadataGetDeploymentInstanceOutput `json:"-", xml:"-"`
+	metadataGetDeploymentInstanceOutput `json:"-" xml:"-"`
 }
 
 type metadataGetDeploymentInstanceOutput struct {
@@ -1592,7 +1592,7 @@ type GetDeploymentOutput struct {
 	// Information about the deployment.
 	DeploymentInfo *DeploymentInfo `locationName:"deploymentInfo" type:"structure"`
 
-	metadataGetDeploymentOutput `json:"-", xml:"-"`
+	metadataGetDeploymentOutput `json:"-" xml:"-"`
 }
 
 type metadataGetDeploymentOutput struct {
@@ -1612,7 +1612,7 @@ type GitHubLocation struct {
 	// Specified as account/repository.
 	Repository *string `locationName:"repository" type:"string"`
 
-	metadataGitHubLocation `json:"-", xml:"-"`
+	metadataGitHubLocation `json:"-" xml:"-"`
 }
 
 type metadataGitHubLocation struct {
@@ -1642,7 +1642,7 @@ type InstanceSummary struct {
 	// deployment status is unknown for this instance.
 	Status *string `locationName:"status" type:"string"`
 
-	metadataInstanceSummary `json:"-", xml:"-"`
+	metadataInstanceSummary `json:"-" xml:"-"`
 }
 
 type metadataInstanceSummary struct {
@@ -1673,7 +1673,7 @@ type LifecycleEvent struct {
 	// lifecycle event is unknown.
 	Status *string `locationName:"status" type:"string"`
 
-	metadataLifecycleEvent `json:"-", xml:"-"`
+	metadataLifecycleEvent `json:"-" xml:"-"`
 }
 
 type metadataLifecycleEvent struct {
@@ -1725,7 +1725,7 @@ type ListApplicationRevisionsInput struct {
 	// If set to null, the results will be sorted in an arbitrary order.
 	SortOrder *string `locationName:"sortOrder" type:"string"`
 
-	metadataListApplicationRevisionsInput `json:"-", xml:"-"`
+	metadataListApplicationRevisionsInput `json:"-" xml:"-"`
 }
 
 type metadataListApplicationRevisionsInput struct {
@@ -1743,7 +1743,7 @@ type ListApplicationRevisionsOutput struct {
 	// A list of revision locations that contain the matching revisions.
 	Revisions []*RevisionLocation `locationName:"revisions" type:"list"`
 
-	metadataListApplicationRevisionsOutput `json:"-", xml:"-"`
+	metadataListApplicationRevisionsOutput `json:"-" xml:"-"`
 }
 
 type metadataListApplicationRevisionsOutput struct {
@@ -1756,7 +1756,7 @@ type ListApplicationsInput struct {
 	// which can be used to return the next set of applications in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListApplicationsInput `json:"-", xml:"-"`
+	metadataListApplicationsInput `json:"-" xml:"-"`
 }
 
 type metadataListApplicationsInput struct {
@@ -1773,7 +1773,7 @@ type ListApplicationsOutput struct {
 	// applications call to return the next set of applications in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListApplicationsOutput `json:"-", xml:"-"`
+	metadataListApplicationsOutput `json:"-" xml:"-"`
 }
 
 type metadataListApplicationsOutput struct {
@@ -1787,7 +1787,7 @@ type ListDeploymentConfigsInput struct {
 	// in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListDeploymentConfigsInput `json:"-", xml:"-"`
+	metadataListDeploymentConfigsInput `json:"-" xml:"-"`
 }
 
 type metadataListDeploymentConfigsInput struct {
@@ -1806,7 +1806,7 @@ type ListDeploymentConfigsOutput struct {
 	// in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListDeploymentConfigsOutput `json:"-", xml:"-"`
+	metadataListDeploymentConfigsOutput `json:"-" xml:"-"`
 }
 
 type metadataListDeploymentConfigsOutput struct {
@@ -1823,7 +1823,7 @@ type ListDeploymentGroupsInput struct {
 	// list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListDeploymentGroupsInput `json:"-", xml:"-"`
+	metadataListDeploymentGroupsInput `json:"-" xml:"-"`
 }
 
 type metadataListDeploymentGroupsInput struct {
@@ -1844,7 +1844,7 @@ type ListDeploymentGroupsOutput struct {
 	// list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListDeploymentGroupsOutput `json:"-", xml:"-"`
+	metadataListDeploymentGroupsOutput `json:"-" xml:"-"`
 }
 
 type metadataListDeploymentGroupsOutput struct {
@@ -1872,7 +1872,7 @@ type ListDeploymentInstancesInput struct {
 	// the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListDeploymentInstancesInput `json:"-", xml:"-"`
+	metadataListDeploymentInstancesInput `json:"-" xml:"-"`
 }
 
 type metadataListDeploymentInstancesInput struct {
@@ -1890,7 +1890,7 @@ type ListDeploymentInstancesOutput struct {
 	// in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListDeploymentInstancesOutput `json:"-", xml:"-"`
+	metadataListDeploymentInstancesOutput `json:"-" xml:"-"`
 }
 
 type metadataListDeploymentInstancesOutput struct {
@@ -1921,7 +1921,7 @@ type ListDeploymentsInput struct {
 	// which can be used to return the next set of deployments in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListDeploymentsInput `json:"-", xml:"-"`
+	metadataListDeploymentsInput `json:"-" xml:"-"`
 }
 
 type metadataListDeploymentsInput struct {
@@ -1938,7 +1938,7 @@ type ListDeploymentsOutput struct {
 	// deployments call to return the next set of deployments in the list.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListDeploymentsOutput `json:"-", xml:"-"`
+	metadataListDeploymentsOutput `json:"-" xml:"-"`
 }
 
 type metadataListDeploymentsOutput struct {
@@ -1968,7 +1968,7 @@ type MinimumHealthyHosts struct {
 	// The minimum healthy instances value.
 	Value *int64 `locationName:"value" type:"integer"`
 
-	metadataMinimumHealthyHosts `json:"-", xml:"-"`
+	metadataMinimumHealthyHosts `json:"-" xml:"-"`
 }
 
 type metadataMinimumHealthyHosts struct {
@@ -1987,7 +1987,7 @@ type RegisterApplicationRevisionInput struct {
 	// type and its location.
 	Revision *RevisionLocation `locationName:"revision" type:"structure" required:"true"`
 
-	metadataRegisterApplicationRevisionInput `json:"-", xml:"-"`
+	metadataRegisterApplicationRevisionInput `json:"-" xml:"-"`
 }
 
 type metadataRegisterApplicationRevisionInput struct {
@@ -1995,7 +1995,7 @@ type metadataRegisterApplicationRevisionInput struct {
 }
 
 type RegisterApplicationRevisionOutput struct {
-	metadataRegisterApplicationRevisionOutput `json:"-", xml:"-"`
+	metadataRegisterApplicationRevisionOutput `json:"-" xml:"-"`
 }
 
 type metadataRegisterApplicationRevisionOutput struct {
@@ -2018,7 +2018,7 @@ type RevisionLocation struct {
 	// Amazon S3.
 	S3Location *S3Location `locationName:"s3Location" type:"structure"`
 
-	metadataRevisionLocation `json:"-", xml:"-"`
+	metadataRevisionLocation `json:"-" xml:"-"`
 }
 
 type metadataRevisionLocation struct {
@@ -2055,7 +2055,7 @@ type S3Location struct {
 	// by default.
 	Version *string `locationName:"version" type:"string"`
 
-	metadataS3Location `json:"-", xml:"-"`
+	metadataS3Location `json:"-" xml:"-"`
 }
 
 type metadataS3Location struct {
@@ -2067,7 +2067,7 @@ type StopDeploymentInput struct {
 	// The unique ID of a deployment.
 	DeploymentID *string `locationName:"deploymentId" type:"string" required:"true"`
 
-	metadataStopDeploymentInput `json:"-", xml:"-"`
+	metadataStopDeploymentInput `json:"-" xml:"-"`
 }
 
 type metadataStopDeploymentInput struct {
@@ -2084,7 +2084,7 @@ type StopDeploymentOutput struct {
 	// An accompanying status message.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
-	metadataStopDeploymentOutput `json:"-", xml:"-"`
+	metadataStopDeploymentOutput `json:"-" xml:"-"`
 }
 
 type metadataStopDeploymentOutput struct {
@@ -2103,7 +2103,7 @@ type TimeRange struct {
 	// Specify null to leave the time range's start time open-ended.
 	Start *time.Time `locationName:"start" type:"timestamp" timestampFormat:"unix"`
 
-	metadataTimeRange `json:"-", xml:"-"`
+	metadataTimeRange `json:"-" xml:"-"`
 }
 
 type metadataTimeRange struct {
@@ -2118,7 +2118,7 @@ type UpdateApplicationInput struct {
 	// The new name that you want to change the application to.
 	NewApplicationName *string `locationName:"newApplicationName" type:"string"`
 
-	metadataUpdateApplicationInput `json:"-", xml:"-"`
+	metadataUpdateApplicationInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateApplicationInput struct {
@@ -2126,7 +2126,7 @@ type metadataUpdateApplicationInput struct {
 }
 
 type UpdateApplicationOutput struct {
-	metadataUpdateApplicationOutput `json:"-", xml:"-"`
+	metadataUpdateApplicationOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateApplicationOutput struct {
@@ -2159,7 +2159,7 @@ type UpdateDeploymentGroupInput struct {
 	// A replacement service role's ARN, if you want to change it.
 	ServiceRoleARN *string `locationName:"serviceRoleArn" type:"string"`
 
-	metadataUpdateDeploymentGroupInput `json:"-", xml:"-"`
+	metadataUpdateDeploymentGroupInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateDeploymentGroupInput struct {
@@ -2175,7 +2175,7 @@ type UpdateDeploymentGroupOutput struct {
 	// Scaling lifecycle event hooks from the AWS user account.
 	HooksNotCleanedUp []*AutoScalingGroup `locationName:"hooksNotCleanedUp" type:"list"`
 
-	metadataUpdateDeploymentGroupOutput `json:"-", xml:"-"`
+	metadataUpdateDeploymentGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateDeploymentGroupOutput struct {

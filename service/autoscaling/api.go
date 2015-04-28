@@ -1734,7 +1734,7 @@ type Activity struct {
 	// A friendly, more verbose description of the activity status.
 	StatusMessage *string `type:"string"`
 
-	metadataActivity `json:"-", xml:"-"`
+	metadataActivity `json:"-" xml:"-"`
 }
 
 type metadataActivity struct {
@@ -1750,7 +1750,7 @@ type AdjustmentType struct {
 	// in the Auto Scaling Developer Guide.
 	AdjustmentType *string `type:"string"`
 
-	metadataAdjustmentType `json:"-", xml:"-"`
+	metadataAdjustmentType `json:"-" xml:"-"`
 }
 
 type metadataAdjustmentType struct {
@@ -1765,7 +1765,7 @@ type Alarm struct {
 	// The name of the alarm.
 	AlarmName *string `type:"string"`
 
-	metadataAlarm `json:"-", xml:"-"`
+	metadataAlarm `json:"-" xml:"-"`
 }
 
 type metadataAlarm struct {
@@ -1779,7 +1779,7 @@ type AttachInstancesInput struct {
 	// One or more EC2 instance IDs. You must specify at least one ID.
 	InstanceIDs []*string `locationName:"InstanceIds" type:"list"`
 
-	metadataAttachInstancesInput `json:"-", xml:"-"`
+	metadataAttachInstancesInput `json:"-" xml:"-"`
 }
 
 type metadataAttachInstancesInput struct {
@@ -1787,7 +1787,7 @@ type metadataAttachInstancesInput struct {
 }
 
 type AttachInstancesOutput struct {
-	metadataAttachInstancesOutput `json:"-", xml:"-"`
+	metadataAttachInstancesOutput `json:"-" xml:"-"`
 }
 
 type metadataAttachInstancesOutput struct {
@@ -1864,7 +1864,7 @@ type AutoScalingGroup struct {
 	// Availability Zones of the subnets match the values for AvailabilityZones.
 	VPCZoneIdentifier *string `type:"string"`
 
-	metadataAutoScalingGroup `json:"-", xml:"-"`
+	metadataAutoScalingGroup `json:"-" xml:"-"`
 }
 
 type metadataAutoScalingGroup struct {
@@ -1895,7 +1895,7 @@ type AutoScalingInstanceDetails struct {
 	// in the Auto Scaling Developer Guide.
 	LifecycleState *string `type:"string" required:"true"`
 
-	metadataAutoScalingInstanceDetails `json:"-", xml:"-"`
+	metadataAutoScalingInstanceDetails `json:"-" xml:"-"`
 }
 
 type metadataAutoScalingInstanceDetails struct {
@@ -1920,7 +1920,7 @@ type BlockDeviceMapping struct {
 	// The name of the virtual device, ephemeral0 to ephemeral3.
 	VirtualName *string `type:"string"`
 
-	metadataBlockDeviceMapping `json:"-", xml:"-"`
+	metadataBlockDeviceMapping `json:"-" xml:"-"`
 }
 
 type metadataBlockDeviceMapping struct {
@@ -1943,7 +1943,7 @@ type CompleteLifecycleActionInput struct {
 	// The name of the lifecycle hook.
 	LifecycleHookName *string `type:"string" required:"true"`
 
-	metadataCompleteLifecycleActionInput `json:"-", xml:"-"`
+	metadataCompleteLifecycleActionInput `json:"-" xml:"-"`
 }
 
 type metadataCompleteLifecycleActionInput struct {
@@ -1951,7 +1951,7 @@ type metadataCompleteLifecycleActionInput struct {
 }
 
 type CompleteLifecycleActionOutput struct {
-	metadataCompleteLifecycleActionOutput `json:"-", xml:"-"`
+	metadataCompleteLifecycleActionOutput `json:"-" xml:"-"`
 }
 
 type metadataCompleteLifecycleActionOutput struct {
@@ -2061,7 +2061,7 @@ type CreateAutoScalingGroupInput struct {
 	// in the Auto Scaling Developer Guide.
 	VPCZoneIdentifier *string `type:"string"`
 
-	metadataCreateAutoScalingGroupInput `json:"-", xml:"-"`
+	metadataCreateAutoScalingGroupInput `json:"-" xml:"-"`
 }
 
 type metadataCreateAutoScalingGroupInput struct {
@@ -2069,7 +2069,7 @@ type metadataCreateAutoScalingGroupInput struct {
 }
 
 type CreateAutoScalingGroupOutput struct {
-	metadataCreateAutoScalingGroupOutput `json:"-", xml:"-"`
+	metadataCreateAutoScalingGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateAutoScalingGroupOutput struct {
@@ -2219,7 +2219,7 @@ type CreateLaunchConfigurationInput struct {
 	// data files.
 	UserData *string `type:"string"`
 
-	metadataCreateLaunchConfigurationInput `json:"-", xml:"-"`
+	metadataCreateLaunchConfigurationInput `json:"-" xml:"-"`
 }
 
 type metadataCreateLaunchConfigurationInput struct {
@@ -2227,7 +2227,7 @@ type metadataCreateLaunchConfigurationInput struct {
 }
 
 type CreateLaunchConfigurationOutput struct {
-	metadataCreateLaunchConfigurationOutput `json:"-", xml:"-"`
+	metadataCreateLaunchConfigurationOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateLaunchConfigurationOutput struct {
@@ -2252,7 +2252,7 @@ type CreateOrUpdateTagsInput struct {
 	// overwrites the previous tag definition, but you will not get an error message.
 	Tags []*Tag `type:"list" required:"true"`
 
-	metadataCreateOrUpdateTagsInput `json:"-", xml:"-"`
+	metadataCreateOrUpdateTagsInput `json:"-" xml:"-"`
 }
 
 type metadataCreateOrUpdateTagsInput struct {
@@ -2260,7 +2260,7 @@ type metadataCreateOrUpdateTagsInput struct {
 }
 
 type CreateOrUpdateTagsOutput struct {
-	metadataCreateOrUpdateTagsOutput `json:"-", xml:"-"`
+	metadataCreateOrUpdateTagsOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateOrUpdateTagsOutput struct {
@@ -2276,7 +2276,7 @@ type DeleteAutoScalingGroupInput struct {
 	// parameter also deletes any lifecycle actions associated with the group.
 	ForceDelete *bool `type:"boolean"`
 
-	metadataDeleteAutoScalingGroupInput `json:"-", xml:"-"`
+	metadataDeleteAutoScalingGroupInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAutoScalingGroupInput struct {
@@ -2284,7 +2284,7 @@ type metadataDeleteAutoScalingGroupInput struct {
 }
 
 type DeleteAutoScalingGroupOutput struct {
-	metadataDeleteAutoScalingGroupOutput `json:"-", xml:"-"`
+	metadataDeleteAutoScalingGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAutoScalingGroupOutput struct {
@@ -2295,7 +2295,7 @@ type DeleteLaunchConfigurationInput struct {
 	// The name of the launch configuration.
 	LaunchConfigurationName *string `type:"string" required:"true"`
 
-	metadataDeleteLaunchConfigurationInput `json:"-", xml:"-"`
+	metadataDeleteLaunchConfigurationInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLaunchConfigurationInput struct {
@@ -2303,7 +2303,7 @@ type metadataDeleteLaunchConfigurationInput struct {
 }
 
 type DeleteLaunchConfigurationOutput struct {
-	metadataDeleteLaunchConfigurationOutput `json:"-", xml:"-"`
+	metadataDeleteLaunchConfigurationOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLaunchConfigurationOutput struct {
@@ -2317,7 +2317,7 @@ type DeleteLifecycleHookInput struct {
 	// The name of the lifecycle hook.
 	LifecycleHookName *string `type:"string" required:"true"`
 
-	metadataDeleteLifecycleHookInput `json:"-", xml:"-"`
+	metadataDeleteLifecycleHookInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLifecycleHookInput struct {
@@ -2325,7 +2325,7 @@ type metadataDeleteLifecycleHookInput struct {
 }
 
 type DeleteLifecycleHookOutput struct {
-	metadataDeleteLifecycleHookOutput `json:"-", xml:"-"`
+	metadataDeleteLifecycleHookOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLifecycleHookOutput struct {
@@ -2340,7 +2340,7 @@ type DeleteNotificationConfigurationInput struct {
 	// (SNS) topic.
 	TopicARN *string `type:"string" required:"true"`
 
-	metadataDeleteNotificationConfigurationInput `json:"-", xml:"-"`
+	metadataDeleteNotificationConfigurationInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteNotificationConfigurationInput struct {
@@ -2348,7 +2348,7 @@ type metadataDeleteNotificationConfigurationInput struct {
 }
 
 type DeleteNotificationConfigurationOutput struct {
-	metadataDeleteNotificationConfigurationOutput `json:"-", xml:"-"`
+	metadataDeleteNotificationConfigurationOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteNotificationConfigurationOutput struct {
@@ -2362,7 +2362,7 @@ type DeletePolicyInput struct {
 	// The name or Amazon Resource Name (ARN) of the policy.
 	PolicyName *string `type:"string" required:"true"`
 
-	metadataDeletePolicyInput `json:"-", xml:"-"`
+	metadataDeletePolicyInput `json:"-" xml:"-"`
 }
 
 type metadataDeletePolicyInput struct {
@@ -2370,7 +2370,7 @@ type metadataDeletePolicyInput struct {
 }
 
 type DeletePolicyOutput struct {
-	metadataDeletePolicyOutput `json:"-", xml:"-"`
+	metadataDeletePolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDeletePolicyOutput struct {
@@ -2384,7 +2384,7 @@ type DeleteScheduledActionInput struct {
 	// The name of the action to delete.
 	ScheduledActionName *string `type:"string" required:"true"`
 
-	metadataDeleteScheduledActionInput `json:"-", xml:"-"`
+	metadataDeleteScheduledActionInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteScheduledActionInput struct {
@@ -2392,7 +2392,7 @@ type metadataDeleteScheduledActionInput struct {
 }
 
 type DeleteScheduledActionOutput struct {
-	metadataDeleteScheduledActionOutput `json:"-", xml:"-"`
+	metadataDeleteScheduledActionOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteScheduledActionOutput struct {
@@ -2406,7 +2406,7 @@ type DeleteTagsInput struct {
 	// or false.
 	Tags []*Tag `type:"list" required:"true"`
 
-	metadataDeleteTagsInput `json:"-", xml:"-"`
+	metadataDeleteTagsInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteTagsInput struct {
@@ -2414,7 +2414,7 @@ type metadataDeleteTagsInput struct {
 }
 
 type DeleteTagsOutput struct {
-	metadataDeleteTagsOutput `json:"-", xml:"-"`
+	metadataDeleteTagsOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteTagsOutput struct {
@@ -2422,7 +2422,7 @@ type metadataDeleteTagsOutput struct {
 }
 
 type DescribeAccountLimitsInput struct {
-	metadataDescribeAccountLimitsInput `json:"-", xml:"-"`
+	metadataDescribeAccountLimitsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAccountLimitsInput struct {
@@ -2438,7 +2438,7 @@ type DescribeAccountLimitsOutput struct {
 	// The default limit is 100 per region.
 	MaxNumberOfLaunchConfigurations *int64 `type:"integer"`
 
-	metadataDescribeAccountLimitsOutput `json:"-", xml:"-"`
+	metadataDescribeAccountLimitsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAccountLimitsOutput struct {
@@ -2446,7 +2446,7 @@ type metadataDescribeAccountLimitsOutput struct {
 }
 
 type DescribeAdjustmentTypesInput struct {
-	metadataDescribeAdjustmentTypesInput `json:"-", xml:"-"`
+	metadataDescribeAdjustmentTypesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAdjustmentTypesInput struct {
@@ -2457,7 +2457,7 @@ type DescribeAdjustmentTypesOutput struct {
 	// The policy adjustment types.
 	AdjustmentTypes []*AdjustmentType `type:"list"`
 
-	metadataDescribeAdjustmentTypesOutput `json:"-", xml:"-"`
+	metadataDescribeAdjustmentTypesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAdjustmentTypesOutput struct {
@@ -2475,7 +2475,7 @@ type DescribeAutoScalingGroupsInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataDescribeAutoScalingGroupsInput `json:"-", xml:"-"`
+	metadataDescribeAutoScalingGroupsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAutoScalingGroupsInput struct {
@@ -2490,7 +2490,7 @@ type DescribeAutoScalingGroupsOutput struct {
 	// items to return, the string is empty.
 	NextToken *string `type:"string"`
 
-	metadataDescribeAutoScalingGroupsOutput `json:"-", xml:"-"`
+	metadataDescribeAutoScalingGroupsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAutoScalingGroupsOutput struct {
@@ -2510,7 +2510,7 @@ type DescribeAutoScalingInstancesInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataDescribeAutoScalingInstancesInput `json:"-", xml:"-"`
+	metadataDescribeAutoScalingInstancesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAutoScalingInstancesInput struct {
@@ -2525,7 +2525,7 @@ type DescribeAutoScalingInstancesOutput struct {
 	// items to return, the string is empty.
 	NextToken *string `type:"string"`
 
-	metadataDescribeAutoScalingInstancesOutput `json:"-", xml:"-"`
+	metadataDescribeAutoScalingInstancesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAutoScalingInstancesOutput struct {
@@ -2533,7 +2533,7 @@ type metadataDescribeAutoScalingInstancesOutput struct {
 }
 
 type DescribeAutoScalingNotificationTypesInput struct {
-	metadataDescribeAutoScalingNotificationTypesInput `json:"-", xml:"-"`
+	metadataDescribeAutoScalingNotificationTypesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAutoScalingNotificationTypesInput struct {
@@ -2554,7 +2554,7 @@ type DescribeAutoScalingNotificationTypesOutput struct {
 	// autoscaling:TEST_NOTIFICATION
 	AutoScalingNotificationTypes []*string `type:"list"`
 
-	metadataDescribeAutoScalingNotificationTypesOutput `json:"-", xml:"-"`
+	metadataDescribeAutoScalingNotificationTypesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAutoScalingNotificationTypesOutput struct {
@@ -2572,7 +2572,7 @@ type DescribeLaunchConfigurationsInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataDescribeLaunchConfigurationsInput `json:"-", xml:"-"`
+	metadataDescribeLaunchConfigurationsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLaunchConfigurationsInput struct {
@@ -2587,7 +2587,7 @@ type DescribeLaunchConfigurationsOutput struct {
 	// items to return, the string is empty.
 	NextToken *string `type:"string"`
 
-	metadataDescribeLaunchConfigurationsOutput `json:"-", xml:"-"`
+	metadataDescribeLaunchConfigurationsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLaunchConfigurationsOutput struct {
@@ -2595,7 +2595,7 @@ type metadataDescribeLaunchConfigurationsOutput struct {
 }
 
 type DescribeLifecycleHookTypesInput struct {
-	metadataDescribeLifecycleHookTypesInput `json:"-", xml:"-"`
+	metadataDescribeLifecycleHookTypesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLifecycleHookTypesInput struct {
@@ -2610,7 +2610,7 @@ type DescribeLifecycleHookTypesOutput struct {
 	// autoscaling:EC2_INSTANCE_TERMINATING
 	LifecycleHookTypes []*string `type:"list"`
 
-	metadataDescribeLifecycleHookTypesOutput `json:"-", xml:"-"`
+	metadataDescribeLifecycleHookTypesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLifecycleHookTypesOutput struct {
@@ -2624,7 +2624,7 @@ type DescribeLifecycleHooksInput struct {
 	// The names of one or more lifecycle hooks.
 	LifecycleHookNames []*string `type:"list"`
 
-	metadataDescribeLifecycleHooksInput `json:"-", xml:"-"`
+	metadataDescribeLifecycleHooksInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLifecycleHooksInput struct {
@@ -2635,7 +2635,7 @@ type DescribeLifecycleHooksOutput struct {
 	// The lifecycle hooks for the specified group.
 	LifecycleHooks []*LifecycleHook `type:"list"`
 
-	metadataDescribeLifecycleHooksOutput `json:"-", xml:"-"`
+	metadataDescribeLifecycleHooksOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLifecycleHooksOutput struct {
@@ -2643,7 +2643,7 @@ type metadataDescribeLifecycleHooksOutput struct {
 }
 
 type DescribeMetricCollectionTypesInput struct {
-	metadataDescribeMetricCollectionTypesInput `json:"-", xml:"-"`
+	metadataDescribeMetricCollectionTypesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeMetricCollectionTypesInput struct {
@@ -2676,7 +2676,7 @@ type DescribeMetricCollectionTypesOutput struct {
 	// explicitly request it when calling EnableMetricsCollection.
 	Metrics []*MetricCollectionType `type:"list"`
 
-	metadataDescribeMetricCollectionTypesOutput `json:"-", xml:"-"`
+	metadataDescribeMetricCollectionTypesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeMetricCollectionTypesOutput struct {
@@ -2694,7 +2694,7 @@ type DescribeNotificationConfigurationsInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataDescribeNotificationConfigurationsInput `json:"-", xml:"-"`
+	metadataDescribeNotificationConfigurationsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeNotificationConfigurationsInput struct {
@@ -2709,7 +2709,7 @@ type DescribeNotificationConfigurationsOutput struct {
 	// The notification configurations.
 	NotificationConfigurations []*NotificationConfiguration `type:"list" required:"true"`
 
-	metadataDescribeNotificationConfigurationsOutput `json:"-", xml:"-"`
+	metadataDescribeNotificationConfigurationsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeNotificationConfigurationsOutput struct {
@@ -2733,7 +2733,7 @@ type DescribePoliciesInput struct {
 	// an unknown policy name, it is ignored with no error.
 	PolicyNames []*string `type:"list"`
 
-	metadataDescribePoliciesInput `json:"-", xml:"-"`
+	metadataDescribePoliciesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribePoliciesInput struct {
@@ -2748,7 +2748,7 @@ type DescribePoliciesOutput struct {
 	// The scaling policies.
 	ScalingPolicies []*ScalingPolicy `type:"list"`
 
-	metadataDescribePoliciesOutput `json:"-", xml:"-"`
+	metadataDescribePoliciesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribePoliciesOutput struct {
@@ -2773,7 +2773,7 @@ type DescribeScalingActivitiesInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataDescribeScalingActivitiesInput `json:"-", xml:"-"`
+	metadataDescribeScalingActivitiesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeScalingActivitiesInput struct {
@@ -2788,7 +2788,7 @@ type DescribeScalingActivitiesOutput struct {
 	// items to return, the string is empty.
 	NextToken *string `type:"string"`
 
-	metadataDescribeScalingActivitiesOutput `json:"-", xml:"-"`
+	metadataDescribeScalingActivitiesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeScalingActivitiesOutput struct {
@@ -2796,7 +2796,7 @@ type metadataDescribeScalingActivitiesOutput struct {
 }
 
 type DescribeScalingProcessTypesInput struct {
-	metadataDescribeScalingProcessTypesInput `json:"-", xml:"-"`
+	metadataDescribeScalingProcessTypesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeScalingProcessTypesInput struct {
@@ -2807,7 +2807,7 @@ type DescribeScalingProcessTypesOutput struct {
 	// The names of the process types.
 	Processes []*ProcessType `type:"list"`
 
-	metadataDescribeScalingProcessTypesOutput `json:"-", xml:"-"`
+	metadataDescribeScalingProcessTypesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeScalingProcessTypesOutput struct {
@@ -2842,7 +2842,7 @@ type DescribeScheduledActionsInput struct {
 	// provided, this parameter is ignored.
 	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataDescribeScheduledActionsInput `json:"-", xml:"-"`
+	metadataDescribeScheduledActionsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeScheduledActionsInput struct {
@@ -2857,7 +2857,7 @@ type DescribeScheduledActionsOutput struct {
 	// The scheduled actions.
 	ScheduledUpdateGroupActions []*ScheduledUpdateGroupAction `type:"list"`
 
-	metadataDescribeScheduledActionsOutput `json:"-", xml:"-"`
+	metadataDescribeScheduledActionsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeScheduledActionsOutput struct {
@@ -2878,7 +2878,7 @@ type DescribeTagsInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataDescribeTagsInput `json:"-", xml:"-"`
+	metadataDescribeTagsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTagsInput struct {
@@ -2893,7 +2893,7 @@ type DescribeTagsOutput struct {
 	// The tags.
 	Tags []*TagDescription `type:"list"`
 
-	metadataDescribeTagsOutput `json:"-", xml:"-"`
+	metadataDescribeTagsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTagsOutput struct {
@@ -2901,7 +2901,7 @@ type metadataDescribeTagsOutput struct {
 }
 
 type DescribeTerminationPolicyTypesInput struct {
-	metadataDescribeTerminationPolicyTypesInput `json:"-", xml:"-"`
+	metadataDescribeTerminationPolicyTypesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTerminationPolicyTypesInput struct {
@@ -2914,7 +2914,7 @@ type DescribeTerminationPolicyTypesOutput struct {
 	// Default.
 	TerminationPolicyTypes []*string `type:"list"`
 
-	metadataDescribeTerminationPolicyTypesOutput `json:"-", xml:"-"`
+	metadataDescribeTerminationPolicyTypesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTerminationPolicyTypesOutput struct {
@@ -2932,7 +2932,7 @@ type DetachInstancesInput struct {
 	// the number of instances detached.
 	ShouldDecrementDesiredCapacity *bool `type:"boolean" required:"true"`
 
-	metadataDetachInstancesInput `json:"-", xml:"-"`
+	metadataDetachInstancesInput `json:"-" xml:"-"`
 }
 
 type metadataDetachInstancesInput struct {
@@ -2943,7 +2943,7 @@ type DetachInstancesOutput struct {
 	// The activities related to detaching the instances from the Auto Scaling group.
 	Activities []*Activity `type:"list"`
 
-	metadataDetachInstancesOutput `json:"-", xml:"-"`
+	metadataDetachInstancesOutput `json:"-" xml:"-"`
 }
 
 type metadataDetachInstancesOutput struct {
@@ -2975,7 +2975,7 @@ type DisableMetricsCollectionInput struct {
 	//  If you omit this parameter, all metrics are disabled.
 	Metrics []*string `type:"list"`
 
-	metadataDisableMetricsCollectionInput `json:"-", xml:"-"`
+	metadataDisableMetricsCollectionInput `json:"-" xml:"-"`
 }
 
 type metadataDisableMetricsCollectionInput struct {
@@ -2983,7 +2983,7 @@ type metadataDisableMetricsCollectionInput struct {
 }
 
 type DisableMetricsCollectionOutput struct {
-	metadataDisableMetricsCollectionOutput `json:"-", xml:"-"`
+	metadataDisableMetricsCollectionOutput `json:"-" xml:"-"`
 }
 
 type metadataDisableMetricsCollectionOutput struct {
@@ -3027,7 +3027,7 @@ type EBS struct {
 	// Default: standard
 	VolumeType *string `type:"string"`
 
-	metadataEBS `json:"-", xml:"-"`
+	metadataEBS `json:"-" xml:"-"`
 }
 
 type metadataEBS struct {
@@ -3066,7 +3066,7 @@ type EnableMetricsCollectionInput struct {
 	// request it when calling EnableMetricsCollection.
 	Metrics []*string `type:"list"`
 
-	metadataEnableMetricsCollectionInput `json:"-", xml:"-"`
+	metadataEnableMetricsCollectionInput `json:"-" xml:"-"`
 }
 
 type metadataEnableMetricsCollectionInput struct {
@@ -3074,7 +3074,7 @@ type metadataEnableMetricsCollectionInput struct {
 }
 
 type EnableMetricsCollectionOutput struct {
-	metadataEnableMetricsCollectionOutput `json:"-", xml:"-"`
+	metadataEnableMetricsCollectionOutput `json:"-" xml:"-"`
 }
 
 type metadataEnableMetricsCollectionOutput struct {
@@ -3089,7 +3089,7 @@ type EnabledMetric struct {
 	// The name of the metric.
 	Metric *string `type:"string"`
 
-	metadataEnabledMetric `json:"-", xml:"-"`
+	metadataEnabledMetric `json:"-" xml:"-"`
 }
 
 type metadataEnabledMetric struct {
@@ -3110,7 +3110,7 @@ type EnterStandbyInput struct {
 	// mode.
 	ShouldDecrementDesiredCapacity *bool `type:"boolean" required:"true"`
 
-	metadataEnterStandbyInput `json:"-", xml:"-"`
+	metadataEnterStandbyInput `json:"-" xml:"-"`
 }
 
 type metadataEnterStandbyInput struct {
@@ -3121,7 +3121,7 @@ type EnterStandbyOutput struct {
 	// The activities related to moving instances into Standby mode.
 	Activities []*Activity `type:"list"`
 
-	metadataEnterStandbyOutput `json:"-", xml:"-"`
+	metadataEnterStandbyOutput `json:"-" xml:"-"`
 }
 
 type metadataEnterStandbyOutput struct {
@@ -3146,7 +3146,7 @@ type ExecutePolicyInput struct {
 	// The name or ARN of the policy.
 	PolicyName *string `type:"string" required:"true"`
 
-	metadataExecutePolicyInput `json:"-", xml:"-"`
+	metadataExecutePolicyInput `json:"-" xml:"-"`
 }
 
 type metadataExecutePolicyInput struct {
@@ -3154,7 +3154,7 @@ type metadataExecutePolicyInput struct {
 }
 
 type ExecutePolicyOutput struct {
-	metadataExecutePolicyOutput `json:"-", xml:"-"`
+	metadataExecutePolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataExecutePolicyOutput struct {
@@ -3168,7 +3168,7 @@ type ExitStandbyInput struct {
 	// One or more instance IDs. You must specify at least one instance ID.
 	InstanceIDs []*string `locationName:"InstanceIds" type:"list"`
 
-	metadataExitStandbyInput `json:"-", xml:"-"`
+	metadataExitStandbyInput `json:"-" xml:"-"`
 }
 
 type metadataExitStandbyInput struct {
@@ -3179,7 +3179,7 @@ type ExitStandbyOutput struct {
 	// The activities related to moving instances out of Standby mode.
 	Activities []*Activity `type:"list"`
 
-	metadataExitStandbyOutput `json:"-", xml:"-"`
+	metadataExitStandbyOutput `json:"-" xml:"-"`
 }
 
 type metadataExitStandbyOutput struct {
@@ -3195,7 +3195,7 @@ type Filter struct {
 	// The value of the filter.
 	Values []*string `type:"list"`
 
-	metadataFilter `json:"-", xml:"-"`
+	metadataFilter `json:"-" xml:"-"`
 }
 
 type metadataFilter struct {
@@ -3221,7 +3221,7 @@ type Instance struct {
 	//  The Quarantined lifecycle state is not used.
 	LifecycleState *string `type:"string" required:"true"`
 
-	metadataInstance `json:"-", xml:"-"`
+	metadataInstance `json:"-" xml:"-"`
 }
 
 type metadataInstance struct {
@@ -3233,7 +3233,7 @@ type InstanceMonitoring struct {
 	// If True, instance monitoring is enabled.
 	Enabled *bool `type:"boolean"`
 
-	metadataInstanceMonitoring `json:"-", xml:"-"`
+	metadataInstanceMonitoring `json:"-" xml:"-"`
 }
 
 type metadataInstanceMonitoring struct {
@@ -3310,7 +3310,7 @@ type LaunchConfiguration struct {
 	// The user data available to the EC2 instances.
 	UserData *string `type:"string"`
 
-	metadataLaunchConfiguration `json:"-", xml:"-"`
+	metadataLaunchConfiguration `json:"-" xml:"-"`
 }
 
 type metadataLaunchConfiguration struct {
@@ -3369,7 +3369,7 @@ type LifecycleHook struct {
 	// the specified notification target.
 	RoleARN *string `type:"string"`
 
-	metadataLifecycleHook `json:"-", xml:"-"`
+	metadataLifecycleHook `json:"-" xml:"-"`
 }
 
 type metadataLifecycleHook struct {
@@ -3381,7 +3381,7 @@ type MetricCollectionType struct {
 	// The metric.
 	Metric *string `type:"string"`
 
-	metadataMetricCollectionType `json:"-", xml:"-"`
+	metadataMetricCollectionType `json:"-" xml:"-"`
 }
 
 type metadataMetricCollectionType struct {
@@ -3393,7 +3393,7 @@ type MetricGranularityType struct {
 	// The granularity.
 	Granularity *string `type:"string"`
 
-	metadataMetricGranularityType `json:"-", xml:"-"`
+	metadataMetricGranularityType `json:"-" xml:"-"`
 }
 
 type metadataMetricGranularityType struct {
@@ -3412,7 +3412,7 @@ type NotificationConfiguration struct {
 	// (SNS) topic.
 	TopicARN *string `type:"string"`
 
-	metadataNotificationConfiguration `json:"-", xml:"-"`
+	metadataNotificationConfiguration `json:"-" xml:"-"`
 }
 
 type metadataNotificationConfiguration struct {
@@ -3495,7 +3495,7 @@ type ProcessType struct {
 	// The name of the process.
 	ProcessName *string `type:"string" required:"true"`
 
-	metadataProcessType `json:"-", xml:"-"`
+	metadataProcessType `json:"-" xml:"-"`
 }
 
 type metadataProcessType struct {
@@ -3562,7 +3562,7 @@ type PutLifecycleHookInput struct {
 	// existing hooks.
 	RoleARN *string `type:"string"`
 
-	metadataPutLifecycleHookInput `json:"-", xml:"-"`
+	metadataPutLifecycleHookInput `json:"-" xml:"-"`
 }
 
 type metadataPutLifecycleHookInput struct {
@@ -3570,7 +3570,7 @@ type metadataPutLifecycleHookInput struct {
 }
 
 type PutLifecycleHookOutput struct {
-	metadataPutLifecycleHookOutput `json:"-", xml:"-"`
+	metadataPutLifecycleHookOutput `json:"-" xml:"-"`
 }
 
 type metadataPutLifecycleHookOutput struct {
@@ -3589,7 +3589,7 @@ type PutNotificationConfigurationInput struct {
 	// (SNS) topic.
 	TopicARN *string `type:"string" required:"true"`
 
-	metadataPutNotificationConfigurationInput `json:"-", xml:"-"`
+	metadataPutNotificationConfigurationInput `json:"-" xml:"-"`
 }
 
 type metadataPutNotificationConfigurationInput struct {
@@ -3597,7 +3597,7 @@ type metadataPutNotificationConfigurationInput struct {
 }
 
 type PutNotificationConfigurationOutput struct {
-	metadataPutNotificationConfigurationOutput `json:"-", xml:"-"`
+	metadataPutNotificationConfigurationOutput `json:"-" xml:"-"`
 }
 
 type metadataPutNotificationConfigurationOutput struct {
@@ -3640,7 +3640,7 @@ type PutScalingPolicyInput struct {
 	// current capacity and a negative value removes from the current capacity.
 	ScalingAdjustment *int64 `type:"integer" required:"true"`
 
-	metadataPutScalingPolicyInput `json:"-", xml:"-"`
+	metadataPutScalingPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataPutScalingPolicyInput struct {
@@ -3651,7 +3651,7 @@ type PutScalingPolicyOutput struct {
 	// The Amazon Resource Name (ARN) of the policy.
 	PolicyARN *string `type:"string"`
 
-	metadataPutScalingPolicyOutput `json:"-", xml:"-"`
+	metadataPutScalingPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataPutScalingPolicyOutput struct {
@@ -3702,7 +3702,7 @@ type PutScheduledUpdateGroupActionInput struct {
 	// will return an error.
 	Time *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataPutScheduledUpdateGroupActionInput `json:"-", xml:"-"`
+	metadataPutScheduledUpdateGroupActionInput `json:"-" xml:"-"`
 }
 
 type metadataPutScheduledUpdateGroupActionInput struct {
@@ -3710,7 +3710,7 @@ type metadataPutScheduledUpdateGroupActionInput struct {
 }
 
 type PutScheduledUpdateGroupActionOutput struct {
-	metadataPutScheduledUpdateGroupActionOutput `json:"-", xml:"-"`
+	metadataPutScheduledUpdateGroupActionOutput `json:"-" xml:"-"`
 }
 
 type metadataPutScheduledUpdateGroupActionOutput struct {
@@ -3729,7 +3729,7 @@ type RecordLifecycleActionHeartbeatInput struct {
 	// The name of the lifecycle hook.
 	LifecycleHookName *string `type:"string" required:"true"`
 
-	metadataRecordLifecycleActionHeartbeatInput `json:"-", xml:"-"`
+	metadataRecordLifecycleActionHeartbeatInput `json:"-" xml:"-"`
 }
 
 type metadataRecordLifecycleActionHeartbeatInput struct {
@@ -3737,7 +3737,7 @@ type metadataRecordLifecycleActionHeartbeatInput struct {
 }
 
 type RecordLifecycleActionHeartbeatOutput struct {
-	metadataRecordLifecycleActionHeartbeatOutput `json:"-", xml:"-"`
+	metadataRecordLifecycleActionHeartbeatOutput `json:"-" xml:"-"`
 }
 
 type metadataRecordLifecycleActionHeartbeatOutput struct {
@@ -3745,7 +3745,7 @@ type metadataRecordLifecycleActionHeartbeatOutput struct {
 }
 
 type ResumeProcessesOutput struct {
-	metadataResumeProcessesOutput `json:"-", xml:"-"`
+	metadataResumeProcessesOutput `json:"-" xml:"-"`
 }
 
 type metadataResumeProcessesOutput struct {
@@ -3784,7 +3784,7 @@ type ScalingPolicy struct {
 	// capacity.
 	ScalingAdjustment *int64 `type:"integer"`
 
-	metadataScalingPolicy `json:"-", xml:"-"`
+	metadataScalingPolicy `json:"-" xml:"-"`
 }
 
 type metadataScalingPolicy struct {
@@ -3801,7 +3801,7 @@ type ScalingProcessQuery struct {
 	// ScheduledActions AddToLoadBalancer
 	ScalingProcesses []*string `type:"list"`
 
-	metadataScalingProcessQuery `json:"-", xml:"-"`
+	metadataScalingProcessQuery `json:"-" xml:"-"`
 }
 
 type metadataScalingProcessQuery struct {
@@ -3847,7 +3847,7 @@ type ScheduledUpdateGroupAction struct {
 	// The time that the action is scheduled to begin. Time is an alias for StartTime.
 	Time *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataScheduledUpdateGroupAction `json:"-", xml:"-"`
+	metadataScheduledUpdateGroupAction `json:"-" xml:"-"`
 }
 
 type metadataScheduledUpdateGroupAction struct {
@@ -3867,7 +3867,7 @@ type SetDesiredCapacityInput struct {
 	// initiating a scaling activity to set your Auto Scaling group to its new capacity.
 	HonorCooldown *bool `type:"boolean"`
 
-	metadataSetDesiredCapacityInput `json:"-", xml:"-"`
+	metadataSetDesiredCapacityInput `json:"-" xml:"-"`
 }
 
 type metadataSetDesiredCapacityInput struct {
@@ -3875,7 +3875,7 @@ type metadataSetDesiredCapacityInput struct {
 }
 
 type SetDesiredCapacityOutput struct {
-	metadataSetDesiredCapacityOutput `json:"-", xml:"-"`
+	metadataSetDesiredCapacityOutput `json:"-" xml:"-"`
 }
 
 type metadataSetDesiredCapacityOutput struct {
@@ -3900,7 +3900,7 @@ type SetInstanceHealthInput struct {
 	// for CreateAutoScalingGroup.
 	ShouldRespectGracePeriod *bool `type:"boolean"`
 
-	metadataSetInstanceHealthInput `json:"-", xml:"-"`
+	metadataSetInstanceHealthInput `json:"-" xml:"-"`
 }
 
 type metadataSetInstanceHealthInput struct {
@@ -3908,7 +3908,7 @@ type metadataSetInstanceHealthInput struct {
 }
 
 type SetInstanceHealthOutput struct {
-	metadataSetInstanceHealthOutput `json:"-", xml:"-"`
+	metadataSetInstanceHealthOutput `json:"-" xml:"-"`
 }
 
 type metadataSetInstanceHealthOutput struct {
@@ -3916,7 +3916,7 @@ type metadataSetInstanceHealthOutput struct {
 }
 
 type SuspendProcessesOutput struct {
-	metadataSuspendProcessesOutput `json:"-", xml:"-"`
+	metadataSuspendProcessesOutput `json:"-" xml:"-"`
 }
 
 type metadataSuspendProcessesOutput struct {
@@ -3932,7 +3932,7 @@ type SuspendedProcess struct {
 	// The reason that the process was suspended.
 	SuspensionReason *string `type:"string"`
 
-	metadataSuspendedProcess `json:"-", xml:"-"`
+	metadataSuspendedProcess `json:"-" xml:"-"`
 }
 
 type metadataSuspendedProcess struct {
@@ -3959,7 +3959,7 @@ type Tag struct {
 	// The tag value.
 	Value *string `type:"string"`
 
-	metadataTag `json:"-", xml:"-"`
+	metadataTag `json:"-" xml:"-"`
 }
 
 type metadataTag struct {
@@ -3986,7 +3986,7 @@ type TagDescription struct {
 	// The tag value.
 	Value *string `type:"string"`
 
-	metadataTagDescription `json:"-", xml:"-"`
+	metadataTagDescription `json:"-" xml:"-"`
 }
 
 type metadataTagDescription struct {
@@ -4001,7 +4001,7 @@ type TerminateInstanceInAutoScalingGroupInput struct {
 	// group.
 	ShouldDecrementDesiredCapacity *bool `type:"boolean" required:"true"`
 
-	metadataTerminateInstanceInAutoScalingGroupInput `json:"-", xml:"-"`
+	metadataTerminateInstanceInAutoScalingGroupInput `json:"-" xml:"-"`
 }
 
 type metadataTerminateInstanceInAutoScalingGroupInput struct {
@@ -4012,7 +4012,7 @@ type TerminateInstanceInAutoScalingGroupOutput struct {
 	// A scaling activity.
 	Activity *Activity `type:"structure"`
 
-	metadataTerminateInstanceInAutoScalingGroupOutput `json:"-", xml:"-"`
+	metadataTerminateInstanceInAutoScalingGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataTerminateInstanceInAutoScalingGroupOutput struct {
@@ -4079,7 +4079,7 @@ type UpdateAutoScalingGroupInput struct {
 	// in the Auto Scaling Developer Guide.
 	VPCZoneIdentifier *string `type:"string"`
 
-	metadataUpdateAutoScalingGroupInput `json:"-", xml:"-"`
+	metadataUpdateAutoScalingGroupInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateAutoScalingGroupInput struct {
@@ -4087,7 +4087,7 @@ type metadataUpdateAutoScalingGroupInput struct {
 }
 
 type UpdateAutoScalingGroupOutput struct {
-	metadataUpdateAutoScalingGroupOutput `json:"-", xml:"-"`
+	metadataUpdateAutoScalingGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateAutoScalingGroupOutput struct {

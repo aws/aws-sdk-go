@@ -697,7 +697,7 @@ type Artwork struct {
 	// this option, Elastic Transcoder does not scale the art up.
 	SizingPolicy *string `type:"string"`
 
-	metadataArtwork `json:"-", xml:"-"`
+	metadataArtwork `json:"-" xml:"-"`
 }
 
 type metadataArtwork struct {
@@ -725,7 +725,7 @@ type AudioCodecOptions struct {
 	// as required.
 	Profile *string `type:"string"`
 
-	metadataAudioCodecOptions `json:"-", xml:"-"`
+	metadataAudioCodecOptions `json:"-" xml:"-"`
 }
 
 type metadataAudioCodecOptions struct {
@@ -768,7 +768,7 @@ type AudioParameters struct {
 	// rate.
 	SampleRate *string `type:"string"`
 
-	metadataAudioParameters `json:"-", xml:"-"`
+	metadataAudioParameters `json:"-" xml:"-"`
 }
 
 type metadataAudioParameters struct {
@@ -783,7 +783,7 @@ type CancelJobInput struct {
 	// Submitted, use the ListJobsByStatus API action.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataCancelJobInput `json:"-", xml:"-"`
+	metadataCancelJobInput `json:"-" xml:"-"`
 }
 
 type metadataCancelJobInput struct {
@@ -793,7 +793,7 @@ type metadataCancelJobInput struct {
 // The response body contains a JSON object. If the job is successfully canceled,
 // the value of Success is true.
 type CancelJobOutput struct {
-	metadataCancelJobOutput `json:"-", xml:"-"`
+	metadataCancelJobOutput `json:"-" xml:"-"`
 }
 
 type metadataCancelJobOutput struct {
@@ -847,7 +847,7 @@ type CaptionFormat struct {
 	// (en), the name of the first caption file will be Sydney-en-sunrise00000.srt.
 	Pattern *string `type:"string"`
 
-	metadataCaptionFormat `json:"-", xml:"-"`
+	metadataCaptionFormat `json:"-" xml:"-"`
 }
 
 type metadataCaptionFormat struct {
@@ -888,7 +888,7 @@ type CaptionSource struct {
 	// Specify the TimeOffset in the form [+-]SS.sss or [+-]HH:mm:SS.ss.
 	TimeOffset *string `type:"string"`
 
-	metadataCaptionSource `json:"-", xml:"-"`
+	metadataCaptionSource `json:"-" xml:"-"`
 }
 
 type metadataCaptionSource struct {
@@ -925,7 +925,7 @@ type Captions struct {
 	//  MergePolicy cannot be null.
 	MergePolicy *string `type:"string"`
 
-	metadataCaptions `json:"-", xml:"-"`
+	metadataCaptions `json:"-" xml:"-"`
 }
 
 type metadataCaptions struct {
@@ -938,7 +938,7 @@ type Clip struct {
 	// Settings that determine when a clip begins and how long it lasts.
 	TimeSpan *TimeSpan `type:"structure"`
 
-	metadataClip `json:"-", xml:"-"`
+	metadataClip `json:"-" xml:"-"`
 }
 
 type metadataClip struct {
@@ -983,7 +983,7 @@ type CreateJobInput struct {
 	// will be returned in the same order in which you specify them.
 	UserMetadata *map[string]*string `type:"map"`
 
-	metadataCreateJobInput `json:"-", xml:"-"`
+	metadataCreateJobInput `json:"-" xml:"-"`
 }
 
 type metadataCreateJobInput struct {
@@ -1130,7 +1130,7 @@ type CreateJobOutput struct {
 	// the current output.
 	Watermarks []*JobWatermark `type:"list"`
 
-	metadataCreateJobOutput `json:"-", xml:"-"`
+	metadataCreateJobOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateJobOutput struct {
@@ -1198,7 +1198,7 @@ type CreateJobPlaylist struct {
 	// all outputs.
 	OutputKeys []*string `type:"list"`
 
-	metadataCreateJobPlaylist `json:"-", xml:"-"`
+	metadataCreateJobPlaylist `json:"-" xml:"-"`
 }
 
 type metadataCreateJobPlaylist struct {
@@ -1211,7 +1211,7 @@ type CreateJobResponse struct {
 	// is created.
 	Job *Job `type:"structure"`
 
-	metadataCreateJobResponse `json:"-", xml:"-"`
+	metadataCreateJobResponse `json:"-" xml:"-"`
 }
 
 type metadataCreateJobResponse struct {
@@ -1371,7 +1371,7 @@ type CreatePipelineInput struct {
 	// Transcoder to assign to the thumbnails that it stores in your Amazon S3 bucket.
 	ThumbnailConfig *PipelineOutputConfig `type:"structure"`
 
-	metadataCreatePipelineInput `json:"-", xml:"-"`
+	metadataCreatePipelineInput `json:"-" xml:"-"`
 }
 
 type metadataCreatePipelineInput struct {
@@ -1393,7 +1393,7 @@ type CreatePipelineOutput struct {
 	// cross-regional charges.
 	Warnings []*Warning `type:"list"`
 
-	metadataCreatePipelineOutput `json:"-", xml:"-"`
+	metadataCreatePipelineOutput `json:"-" xml:"-"`
 }
 
 type metadataCreatePipelineOutput struct {
@@ -1423,7 +1423,7 @@ type CreatePresetInput struct {
 	// A section of the request body that specifies the video parameters.
 	Video *VideoParameters `type:"structure"`
 
-	metadataCreatePresetInput `json:"-", xml:"-"`
+	metadataCreatePresetInput `json:"-" xml:"-"`
 }
 
 type metadataCreatePresetInput struct {
@@ -1442,7 +1442,7 @@ type CreatePresetOutput struct {
 	// preset because the settings might produce acceptable output.
 	Warning *string `type:"string"`
 
-	metadataCreatePresetOutput `json:"-", xml:"-"`
+	metadataCreatePresetOutput `json:"-" xml:"-"`
 }
 
 type metadataCreatePresetOutput struct {
@@ -1454,7 +1454,7 @@ type DeletePipelineInput struct {
 	// The identifier of the pipeline that you want to delete.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataDeletePipelineInput `json:"-", xml:"-"`
+	metadataDeletePipelineInput `json:"-" xml:"-"`
 }
 
 type metadataDeletePipelineInput struct {
@@ -1463,7 +1463,7 @@ type metadataDeletePipelineInput struct {
 
 // The DeletePipelineResponse structure.
 type DeletePipelineOutput struct {
-	metadataDeletePipelineOutput `json:"-", xml:"-"`
+	metadataDeletePipelineOutput `json:"-" xml:"-"`
 }
 
 type metadataDeletePipelineOutput struct {
@@ -1475,7 +1475,7 @@ type DeletePresetInput struct {
 	// The identifier of the preset for which you want to get detailed information.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataDeletePresetInput `json:"-", xml:"-"`
+	metadataDeletePresetInput `json:"-" xml:"-"`
 }
 
 type metadataDeletePresetInput struct {
@@ -1484,7 +1484,7 @@ type metadataDeletePresetInput struct {
 
 // The DeletePresetResponse structure.
 type DeletePresetOutput struct {
-	metadataDeletePresetOutput `json:"-", xml:"-"`
+	metadataDeletePresetOutput `json:"-" xml:"-"`
 }
 
 type metadataDeletePresetOutput struct {
@@ -1556,7 +1556,7 @@ type Encryption struct {
 	// data.
 	Mode *string `type:"string"`
 
-	metadataEncryption `json:"-", xml:"-"`
+	metadataEncryption `json:"-" xml:"-"`
 }
 
 type metadataEncryption struct {
@@ -1611,7 +1611,7 @@ type HLSContentProtection struct {
 	// tag in the output playlist.
 	Method *string `type:"string"`
 
-	metadataHLSContentProtection `json:"-", xml:"-"`
+	metadataHLSContentProtection `json:"-" xml:"-"`
 }
 
 type metadataHLSContentProtection struct {
@@ -1689,7 +1689,7 @@ type Job struct {
 	// The following symbols: _.:/=+-%@
 	UserMetadata *map[string]*string `type:"map"`
 
-	metadataJob `json:"-", xml:"-"`
+	metadataJob `json:"-" xml:"-"`
 }
 
 type metadataJob struct {
@@ -1714,7 +1714,7 @@ type JobAlbumArt struct {
 	// file.
 	MergePolicy *string `type:"string"`
 
-	metadataJobAlbumArt `json:"-", xml:"-"`
+	metadataJobAlbumArt `json:"-" xml:"-"`
 }
 
 type metadataJobAlbumArt struct {
@@ -1782,7 +1782,7 @@ type JobInput struct {
 	// detect the resolution of the input file.
 	Resolution *string `type:"string"`
 
-	metadataJobInput `json:"-", xml:"-"`
+	metadataJobInput `json:"-" xml:"-"`
 }
 
 type metadataJobInput struct {
@@ -1982,7 +1982,7 @@ type JobOutput struct {
 	// Specifies the width of the output file in pixels.
 	Width *int64 `type:"integer"`
 
-	metadataJobOutput `json:"-", xml:"-"`
+	metadataJobOutput `json:"-" xml:"-"`
 }
 
 type metadataJobOutput struct {
@@ -2012,7 +2012,7 @@ type JobWatermark struct {
 	// Id tells Elastic Transcoder which settings to use.
 	PresetWatermarkID *string `locationName:"PresetWatermarkId" type:"string"`
 
-	metadataJobWatermark `json:"-", xml:"-"`
+	metadataJobWatermark `json:"-" xml:"-"`
 }
 
 type metadataJobWatermark struct {
@@ -2032,7 +2032,7 @@ type ListJobsByPipelineInput struct {
 	// The ID of the pipeline for which you want to get job information.
 	PipelineID *string `location:"uri" locationName:"PipelineId" type:"string" required:"true"`
 
-	metadataListJobsByPipelineInput `json:"-", xml:"-"`
+	metadataListJobsByPipelineInput `json:"-" xml:"-"`
 }
 
 type metadataListJobsByPipelineInput struct {
@@ -2049,7 +2049,7 @@ type ListJobsByPipelineOutput struct {
 	// reached the last page of results, the value of NextPageToken is null.
 	NextPageToken *string `type:"string"`
 
-	metadataListJobsByPipelineOutput `json:"-", xml:"-"`
+	metadataListJobsByPipelineOutput `json:"-" xml:"-"`
 }
 
 type metadataListJobsByPipelineOutput struct {
@@ -2071,7 +2071,7 @@ type ListJobsByStatusInput struct {
 	// Progressing, Complete, Canceled, or Error.
 	Status *string `location:"uri" locationName:"Status" type:"string" required:"true"`
 
-	metadataListJobsByStatusInput `json:"-", xml:"-"`
+	metadataListJobsByStatusInput `json:"-" xml:"-"`
 }
 
 type metadataListJobsByStatusInput struct {
@@ -2088,7 +2088,7 @@ type ListJobsByStatusOutput struct {
 	// reached the last page of results, the value of NextPageToken is null.
 	NextPageToken *string `type:"string"`
 
-	metadataListJobsByStatusOutput `json:"-", xml:"-"`
+	metadataListJobsByStatusOutput `json:"-" xml:"-"`
 }
 
 type metadataListJobsByStatusOutput struct {
@@ -2106,7 +2106,7 @@ type ListPipelinesInput struct {
 	// in subsequent GET requests to get each successive page of results.
 	PageToken *string `location:"querystring" locationName:"PageToken" type:"string"`
 
-	metadataListPipelinesInput `json:"-", xml:"-"`
+	metadataListPipelinesInput `json:"-" xml:"-"`
 }
 
 type metadataListPipelinesInput struct {
@@ -2123,7 +2123,7 @@ type ListPipelinesOutput struct {
 	// An array of Pipeline objects.
 	Pipelines []*Pipeline `type:"list"`
 
-	metadataListPipelinesOutput `json:"-", xml:"-"`
+	metadataListPipelinesOutput `json:"-" xml:"-"`
 }
 
 type metadataListPipelinesOutput struct {
@@ -2141,7 +2141,7 @@ type ListPresetsInput struct {
 	// in subsequent GET requests to get each successive page of results.
 	PageToken *string `location:"querystring" locationName:"PageToken" type:"string"`
 
-	metadataListPresetsInput `json:"-", xml:"-"`
+	metadataListPresetsInput `json:"-" xml:"-"`
 }
 
 type metadataListPresetsInput struct {
@@ -2158,7 +2158,7 @@ type ListPresetsOutput struct {
 	// An array of Preset objects.
 	Presets []*Preset `type:"list"`
 
-	metadataListPresetsOutput `json:"-", xml:"-"`
+	metadataListPresetsOutput `json:"-" xml:"-"`
 }
 
 type metadataListPresetsOutput struct {
@@ -2187,7 +2187,7 @@ type Notifications struct {
 	// a warning condition.
 	Warning *string `type:"string"`
 
-	metadataNotifications `json:"-", xml:"-"`
+	metadataNotifications `json:"-" xml:"-"`
 }
 
 type metadataNotifications struct {
@@ -2221,7 +2221,7 @@ type Permission struct {
 	// or LogDelivery.
 	GranteeType *string `type:"string"`
 
-	metadataPermission `json:"-", xml:"-"`
+	metadataPermission `json:"-" xml:"-"`
 }
 
 type metadataPermission struct {
@@ -2341,7 +2341,7 @@ type Pipeline struct {
 	// to the thumbnails that it stores in your Amazon S3 bucket.
 	ThumbnailConfig *PipelineOutputConfig `type:"structure"`
 
-	metadataPipeline `json:"-", xml:"-"`
+	metadataPipeline `json:"-" xml:"-"`
 }
 
 type metadataPipeline struct {
@@ -2384,7 +2384,7 @@ type PipelineOutputConfig struct {
 	// in your Amazon S3 bucket.
 	StorageClass *string `type:"string"`
 
-	metadataPipelineOutputConfig `json:"-", xml:"-"`
+	metadataPipelineOutputConfig `json:"-" xml:"-"`
 }
 
 type metadataPipelineOutputConfig struct {
@@ -2462,7 +2462,7 @@ type Playlist struct {
 	// Information that further explains the status.
 	StatusDetail *string `type:"string"`
 
-	metadataPlaylist `json:"-", xml:"-"`
+	metadataPlaylist `json:"-" xml:"-"`
 }
 
 type metadataPlaylist struct {
@@ -2509,7 +2509,7 @@ type Preset struct {
 	// preset values.
 	Video *VideoParameters `type:"structure"`
 
-	metadataPreset `json:"-", xml:"-"`
+	metadataPreset `json:"-" xml:"-"`
 }
 
 type metadataPreset struct {
@@ -2642,7 +2642,7 @@ type PresetWatermark struct {
 	// offset calculation.
 	VerticalOffset *string `type:"string"`
 
-	metadataPresetWatermark `json:"-", xml:"-"`
+	metadataPresetWatermark `json:"-" xml:"-"`
 }
 
 type metadataPresetWatermark struct {
@@ -2654,7 +2654,7 @@ type ReadJobInput struct {
 	// The identifier of the job for which you want to get detailed information.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataReadJobInput `json:"-", xml:"-"`
+	metadataReadJobInput `json:"-" xml:"-"`
 }
 
 type metadataReadJobInput struct {
@@ -2666,7 +2666,7 @@ type ReadJobOutput struct {
 	// A section of the response body that provides information about the job.
 	Job *Job `type:"structure"`
 
-	metadataReadJobOutput `json:"-", xml:"-"`
+	metadataReadJobOutput `json:"-" xml:"-"`
 }
 
 type metadataReadJobOutput struct {
@@ -2678,7 +2678,7 @@ type ReadPipelineInput struct {
 	// The identifier of the pipeline to read.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataReadPipelineInput `json:"-", xml:"-"`
+	metadataReadPipelineInput `json:"-" xml:"-"`
 }
 
 type metadataReadPipelineInput struct {
@@ -2698,7 +2698,7 @@ type ReadPipelineOutput struct {
 	// cross-regional charges.
 	Warnings []*Warning `type:"list"`
 
-	metadataReadPipelineOutput `json:"-", xml:"-"`
+	metadataReadPipelineOutput `json:"-" xml:"-"`
 }
 
 type metadataReadPipelineOutput struct {
@@ -2710,7 +2710,7 @@ type ReadPresetInput struct {
 	// The identifier of the preset for which you want to get detailed information.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataReadPresetInput `json:"-", xml:"-"`
+	metadataReadPresetInput `json:"-" xml:"-"`
 }
 
 type metadataReadPresetInput struct {
@@ -2722,7 +2722,7 @@ type ReadPresetOutput struct {
 	// A section of the response body that provides information about the preset.
 	Preset *Preset `type:"structure"`
 
-	metadataReadPresetOutput `json:"-", xml:"-"`
+	metadataReadPresetOutput `json:"-" xml:"-"`
 }
 
 type metadataReadPresetOutput struct {
@@ -2747,7 +2747,7 @@ type TestRoleInput struct {
 	// that you want the action to send a test notification to.
 	Topics []*string `type:"list" required:"true"`
 
-	metadataTestRoleInput `json:"-", xml:"-"`
+	metadataTestRoleInput `json:"-" xml:"-"`
 }
 
 type metadataTestRoleInput struct {
@@ -2764,7 +2764,7 @@ type TestRoleOutput struct {
 	// is false.
 	Success *string `type:"string"`
 
-	metadataTestRoleOutput `json:"-", xml:"-"`
+	metadataTestRoleOutput `json:"-" xml:"-"`
 }
 
 type metadataTestRoleOutput struct {
@@ -2846,7 +2846,7 @@ type Thumbnails struct {
 	// Transcoder does not scale thumbnails up.
 	SizingPolicy *string `type:"string"`
 
-	metadataThumbnails `json:"-", xml:"-"`
+	metadataThumbnails `json:"-" xml:"-"`
 }
 
 type metadataThumbnails struct {
@@ -2870,7 +2870,7 @@ type TimeSpan struct {
 	// value, Elastic Transcoder starts at the beginning of the input file.
 	StartTime *string `type:"string"`
 
-	metadataTimeSpan `json:"-", xml:"-"`
+	metadataTimeSpan `json:"-" xml:"-"`
 }
 
 type metadataTimeSpan struct {
@@ -3001,7 +3001,7 @@ type UpdatePipelineInput struct {
 	// Transcoder to assign to the thumbnails that it stores in your Amazon S3 bucket.
 	ThumbnailConfig *PipelineOutputConfig `type:"structure"`
 
-	metadataUpdatePipelineInput `json:"-", xml:"-"`
+	metadataUpdatePipelineInput `json:"-" xml:"-"`
 }
 
 type metadataUpdatePipelineInput struct {
@@ -3032,7 +3032,7 @@ type UpdatePipelineNotificationsInput struct {
 	// returned when you created the topic.
 	Notifications *Notifications `type:"structure" required:"true"`
 
-	metadataUpdatePipelineNotificationsInput `json:"-", xml:"-"`
+	metadataUpdatePipelineNotificationsInput `json:"-" xml:"-"`
 }
 
 type metadataUpdatePipelineNotificationsInput struct {
@@ -3044,7 +3044,7 @@ type UpdatePipelineNotificationsOutput struct {
 	// A section of the response body that provides information about the pipeline.
 	Pipeline *Pipeline `type:"structure"`
 
-	metadataUpdatePipelineNotificationsOutput `json:"-", xml:"-"`
+	metadataUpdatePipelineNotificationsOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdatePipelineNotificationsOutput struct {
@@ -3065,7 +3065,7 @@ type UpdatePipelineOutput struct {
 	// cross-regional charges.
 	Warnings []*Warning `type:"list"`
 
-	metadataUpdatePipelineOutput `json:"-", xml:"-"`
+	metadataUpdatePipelineOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdatePipelineOutput struct {
@@ -3083,7 +3083,7 @@ type UpdatePipelineStatusInput struct {
 	// currently processing jobs.
 	Status *string `type:"string" required:"true"`
 
-	metadataUpdatePipelineStatusInput `json:"-", xml:"-"`
+	metadataUpdatePipelineStatusInput `json:"-" xml:"-"`
 }
 
 type metadataUpdatePipelineStatusInput struct {
@@ -3096,7 +3096,7 @@ type UpdatePipelineStatusOutput struct {
 	// A section of the response body that provides information about the pipeline.
 	Pipeline *Pipeline `type:"structure"`
 
-	metadataUpdatePipelineStatusOutput `json:"-", xml:"-"`
+	metadataUpdatePipelineStatusOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdatePipelineStatusOutput struct {
@@ -3400,7 +3400,7 @@ type VideoParameters struct {
 	// that have different dimensions.
 	Watermarks []*PresetWatermark `type:"list"`
 
-	metadataVideoParameters `json:"-", xml:"-"`
+	metadataVideoParameters `json:"-" xml:"-"`
 }
 
 type metadataVideoParameters struct {
@@ -3423,7 +3423,7 @@ type Warning struct {
 	// Note: AWS KMS keys must be in the same region as the pipeline.
 	Message *string `type:"string"`
 
-	metadataWarning `json:"-", xml:"-"`
+	metadataWarning `json:"-" xml:"-"`
 }
 
 type metadataWarning struct {

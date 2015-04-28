@@ -333,7 +333,7 @@ type CreateTrailInput struct {
 	// file delivery.
 	SNSTopicName *string `locationName:"SnsTopicName" type:"string"`
 
-	metadataCreateTrailInput `json:"-", xml:"-"`
+	metadataCreateTrailInput `json:"-" xml:"-"`
 }
 
 type metadataCreateTrailInput struct {
@@ -370,7 +370,7 @@ type CreateTrailOutput struct {
 	// file delivery.
 	SNSTopicName *string `locationName:"SnsTopicName" type:"string"`
 
-	metadataCreateTrailOutput `json:"-", xml:"-"`
+	metadataCreateTrailOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateTrailOutput struct {
@@ -382,7 +382,7 @@ type DeleteTrailInput struct {
 	// The name of a trail to be deleted.
 	Name *string `type:"string" required:"true"`
 
-	metadataDeleteTrailInput `json:"-", xml:"-"`
+	metadataDeleteTrailInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteTrailInput struct {
@@ -392,7 +392,7 @@ type metadataDeleteTrailInput struct {
 // Returns the objects or data listed below if successful. Otherwise, returns
 // an error.
 type DeleteTrailOutput struct {
-	metadataDeleteTrailOutput `json:"-", xml:"-"`
+	metadataDeleteTrailOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteTrailOutput struct {
@@ -404,7 +404,7 @@ type DescribeTrailsInput struct {
 	// The trail returned.
 	TrailNameList []*string `locationName:"trailNameList" type:"list"`
 
-	metadataDescribeTrailsInput `json:"-", xml:"-"`
+	metadataDescribeTrailsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTrailsInput struct {
@@ -417,7 +417,7 @@ type DescribeTrailsOutput struct {
 	// The list of trails.
 	TrailList []*Trail `locationName:"trailList" type:"list"`
 
-	metadataDescribeTrailsOutput `json:"-", xml:"-"`
+	metadataDescribeTrailsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTrailsOutput struct {
@@ -446,7 +446,7 @@ type Event struct {
 	// returned.
 	Username *string `type:"string"`
 
-	metadataEvent `json:"-", xml:"-"`
+	metadataEvent `json:"-" xml:"-"`
 }
 
 type metadataEvent struct {
@@ -458,7 +458,7 @@ type GetTrailStatusInput struct {
 	// The name of the trail for which you are requesting the current status.
 	Name *string `type:"string" required:"true"`
 
-	metadataGetTrailStatusInput `json:"-", xml:"-"`
+	metadataGetTrailStatusInput `json:"-" xml:"-"`
 }
 
 type metadataGetTrailStatusInput struct {
@@ -506,7 +506,7 @@ type GetTrailStatusOutput struct {
 	// API calls for an AWS account.
 	StopLoggingTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	metadataGetTrailStatusOutput `json:"-", xml:"-"`
+	metadataGetTrailStatusOutput `json:"-" xml:"-"`
 }
 
 type metadataGetTrailStatusOutput struct {
@@ -521,7 +521,7 @@ type LookupAttribute struct {
 	// Specifies a value for the specified AttributeKey.
 	AttributeValue *string `type:"string" required:"true"`
 
-	metadataLookupAttribute `json:"-", xml:"-"`
+	metadataLookupAttribute `json:"-" xml:"-"`
 }
 
 type metadataLookupAttribute struct {
@@ -555,7 +555,7 @@ type LookupEventsInput struct {
 	// error is returned.
 	StartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	metadataLookupEventsInput `json:"-", xml:"-"`
+	metadataLookupEventsInput `json:"-" xml:"-"`
 }
 
 type metadataLookupEventsInput struct {
@@ -576,7 +576,7 @@ type LookupEventsOutput struct {
 	// of 'root', the call with NextToken should include those same parameters.
 	NextToken *string `type:"string"`
 
-	metadataLookupEventsOutput `json:"-", xml:"-"`
+	metadataLookupEventsOutput `json:"-" xml:"-"`
 }
 
 type metadataLookupEventsOutput struct {
@@ -598,7 +598,7 @@ type Resource struct {
 	// Types Supported for Event Lookup (http://docs.aws.amazon.com/awscloudtrail/latest/userguide/lookup_supported_resourcetypes.html).
 	ResourceType *string `type:"string"`
 
-	metadataResource `json:"-", xml:"-"`
+	metadataResource `json:"-" xml:"-"`
 }
 
 type metadataResource struct {
@@ -610,7 +610,7 @@ type StartLoggingInput struct {
 	// The name of the trail for which CloudTrail logs AWS API calls.
 	Name *string `type:"string" required:"true"`
 
-	metadataStartLoggingInput `json:"-", xml:"-"`
+	metadataStartLoggingInput `json:"-" xml:"-"`
 }
 
 type metadataStartLoggingInput struct {
@@ -620,7 +620,7 @@ type metadataStartLoggingInput struct {
 // Returns the objects or data listed below if successful. Otherwise, returns
 // an error.
 type StartLoggingOutput struct {
-	metadataStartLoggingOutput `json:"-", xml:"-"`
+	metadataStartLoggingOutput `json:"-" xml:"-"`
 }
 
 type metadataStartLoggingOutput struct {
@@ -634,7 +634,7 @@ type StopLoggingInput struct {
 	// AWS API calls.
 	Name *string `type:"string" required:"true"`
 
-	metadataStopLoggingInput `json:"-", xml:"-"`
+	metadataStopLoggingInput `json:"-" xml:"-"`
 }
 
 type metadataStopLoggingInput struct {
@@ -644,7 +644,7 @@ type metadataStopLoggingInput struct {
 // Returns the objects or data listed below if successful. Otherwise, returns
 // an error.
 type StopLoggingOutput struct {
-	metadataStopLoggingOutput `json:"-", xml:"-"`
+	metadataStopLoggingOutput `json:"-" xml:"-"`
 }
 
 type metadataStopLoggingOutput struct {
@@ -678,7 +678,7 @@ type Trail struct {
 	// account owner when new CloudTrail log files have been delivered.
 	SNSTopicName *string `locationName:"SnsTopicName" type:"string"`
 
-	metadataTrail `json:"-", xml:"-"`
+	metadataTrail `json:"-" xml:"-"`
 }
 
 type metadataTrail struct {
@@ -715,7 +715,7 @@ type UpdateTrailInput struct {
 	// file delivery.
 	SNSTopicName *string `locationName:"SnsTopicName" type:"string"`
 
-	metadataUpdateTrailInput `json:"-", xml:"-"`
+	metadataUpdateTrailInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateTrailInput struct {
@@ -752,7 +752,7 @@ type UpdateTrailOutput struct {
 	// file delivery.
 	SNSTopicName *string `locationName:"SnsTopicName" type:"string"`
 
-	metadataUpdateTrailOutput `json:"-", xml:"-"`
+	metadataUpdateTrailOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateTrailOutput struct {

@@ -705,7 +705,7 @@ type AttributeDefinition struct {
 	// The data type for the attribute.
 	AttributeType *string `type:"string" required:"true"`
 
-	metadataAttributeDefinition `json:"-", xml:"-"`
+	metadataAttributeDefinition `json:"-" xml:"-"`
 }
 
 type metadataAttributeDefinition struct {
@@ -750,7 +750,7 @@ type AttributeValue struct {
 	// A String Set data type.
 	SS []*string `type:"list"`
 
-	metadataAttributeValue `json:"-", xml:"-"`
+	metadataAttributeValue `json:"-" xml:"-"`
 }
 
 type metadataAttributeValue struct {
@@ -841,7 +841,7 @@ type AttributeValueUpdate struct {
 	// attribute is a set; duplicate values are not allowed.
 	Value *AttributeValue `type:"structure"`
 
-	metadataAttributeValueUpdate `json:"-", xml:"-"`
+	metadataAttributeValueUpdate `json:"-" xml:"-"`
 }
 
 type metadataAttributeValueUpdate struct {
@@ -879,7 +879,7 @@ type BatchGetItemInput struct {
 	// in the response.
 	ReturnConsumedCapacity *string `type:"string"`
 
-	metadataBatchGetItemInput `json:"-", xml:"-"`
+	metadataBatchGetItemInput `json:"-" xml:"-"`
 }
 
 type metadataBatchGetItemInput struct {
@@ -924,7 +924,7 @@ type BatchGetItemOutput struct {
 	// UnprocessedKeys map.
 	UnprocessedKeys *map[string]*KeysAndAttributes `type:"map"`
 
-	metadataBatchGetItemOutput `json:"-", xml:"-"`
+	metadataBatchGetItemOutput `json:"-" xml:"-"`
 }
 
 type metadataBatchGetItemOutput struct {
@@ -972,7 +972,7 @@ type BatchWriteItemInput struct {
 	// in the response. If set to NONE (the default), no statistics are returned.
 	ReturnItemCollectionMetrics *string `type:"string"`
 
-	metadataBatchWriteItemInput `json:"-", xml:"-"`
+	metadataBatchWriteItemInput `json:"-" xml:"-"`
 }
 
 type metadataBatchWriteItemInput struct {
@@ -1042,7 +1042,7 @@ type BatchWriteItemOutput struct {
 	// empty UnprocessedItems map.
 	UnprocessedItems *map[string][]*WriteRequest `type:"map"`
 
-	metadataBatchWriteItemOutput `json:"-", xml:"-"`
+	metadataBatchWriteItemOutput `json:"-" xml:"-"`
 }
 
 type metadataBatchWriteItemOutput struct {
@@ -1055,7 +1055,7 @@ type Capacity struct {
 	// The total number of capacity units consumed on a table or an index.
 	CapacityUnits *float64 `type:"double"`
 
-	metadataCapacity `json:"-", xml:"-"`
+	metadataCapacity `json:"-" xml:"-"`
 }
 
 type metadataCapacity struct {
@@ -1223,7 +1223,7 @@ type Condition struct {
 	// in the Amazon DynamoDB Developer Guide.
 	ComparisonOperator *string `type:"string" required:"true"`
 
-	metadataCondition `json:"-", xml:"-"`
+	metadataCondition `json:"-" xml:"-"`
 }
 
 type metadataCondition struct {
@@ -1252,7 +1252,7 @@ type ConsumedCapacity struct {
 	// The name of the table that was affected by the operation.
 	TableName *string `type:"string"`
 
-	metadataConsumedCapacity `json:"-", xml:"-"`
+	metadataConsumedCapacity `json:"-" xml:"-"`
 }
 
 type metadataConsumedCapacity struct {
@@ -1280,7 +1280,7 @@ type CreateGlobalSecondaryIndexAction struct {
 	// in the Amazon DynamoDB Developer Guide.
 	ProvisionedThroughput *ProvisionedThroughput `type:"structure" required:"true"`
 
-	metadataCreateGlobalSecondaryIndexAction `json:"-", xml:"-"`
+	metadataCreateGlobalSecondaryIndexAction `json:"-" xml:"-"`
 }
 
 type metadataCreateGlobalSecondaryIndexAction struct {
@@ -1391,7 +1391,7 @@ type CreateTableInput struct {
 	// The name of the table to create.
 	TableName *string `type:"string" required:"true"`
 
-	metadataCreateTableInput `json:"-", xml:"-"`
+	metadataCreateTableInput `json:"-" xml:"-"`
 }
 
 type metadataCreateTableInput struct {
@@ -1403,7 +1403,7 @@ type CreateTableOutput struct {
 	// Represents the properties of a table.
 	TableDescription *TableDescription `type:"structure"`
 
-	metadataCreateTableOutput `json:"-", xml:"-"`
+	metadataCreateTableOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateTableOutput struct {
@@ -1415,7 +1415,7 @@ type DeleteGlobalSecondaryIndexAction struct {
 	// The name of the global secondary index to be deleted.
 	IndexName *string `type:"string" required:"true"`
 
-	metadataDeleteGlobalSecondaryIndexAction `json:"-", xml:"-"`
+	metadataDeleteGlobalSecondaryIndexAction `json:"-" xml:"-"`
 }
 
 type metadataDeleteGlobalSecondaryIndexAction struct {
@@ -1746,7 +1746,7 @@ type DeleteItemInput struct {
 	// The name of the table from which to delete the item.
 	TableName *string `type:"string" required:"true"`
 
-	metadataDeleteItemInput `json:"-", xml:"-"`
+	metadataDeleteItemInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteItemInput struct {
@@ -1789,7 +1789,7 @@ type DeleteItemOutput struct {
 	// precision or accuracy of the estimate.
 	ItemCollectionMetrics *ItemCollectionMetrics `type:"structure"`
 
-	metadataDeleteItemOutput `json:"-", xml:"-"`
+	metadataDeleteItemOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteItemOutput struct {
@@ -1803,7 +1803,7 @@ type DeleteRequest struct {
 	// specified, and their data types must match those of the table's key schema.
 	Key *map[string]*AttributeValue `type:"map" required:"true"`
 
-	metadataDeleteRequest `json:"-", xml:"-"`
+	metadataDeleteRequest `json:"-" xml:"-"`
 }
 
 type metadataDeleteRequest struct {
@@ -1815,7 +1815,7 @@ type DeleteTableInput struct {
 	// The name of the table to delete.
 	TableName *string `type:"string" required:"true"`
 
-	metadataDeleteTableInput `json:"-", xml:"-"`
+	metadataDeleteTableInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteTableInput struct {
@@ -1827,7 +1827,7 @@ type DeleteTableOutput struct {
 	// Represents the properties of a table.
 	TableDescription *TableDescription `type:"structure"`
 
-	metadataDeleteTableOutput `json:"-", xml:"-"`
+	metadataDeleteTableOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteTableOutput struct {
@@ -1839,7 +1839,7 @@ type DescribeTableInput struct {
 	// The name of the table to describe.
 	TableName *string `type:"string" required:"true"`
 
-	metadataDescribeTableInput `json:"-", xml:"-"`
+	metadataDescribeTableInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTableInput struct {
@@ -1851,7 +1851,7 @@ type DescribeTableOutput struct {
 	// Represents the properties of a table.
 	Table *TableDescription `type:"structure"`
 
-	metadataDescribeTableOutput `json:"-", xml:"-"`
+	metadataDescribeTableOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTableOutput struct {
@@ -2058,7 +2058,7 @@ type ExpectedAttributeValue struct {
 	// attribute is a set; duplicate values are not allowed.
 	Value *AttributeValue `type:"structure"`
 
-	metadataExpectedAttributeValue `json:"-", xml:"-"`
+	metadataExpectedAttributeValue `json:"-" xml:"-"`
 }
 
 type metadataExpectedAttributeValue struct {
@@ -2153,7 +2153,7 @@ type GetItemInput struct {
 	// The name of the table containing the requested item.
 	TableName *string `type:"string" required:"true"`
 
-	metadataGetItemInput `json:"-", xml:"-"`
+	metadataGetItemInput `json:"-" xml:"-"`
 }
 
 type metadataGetItemInput struct {
@@ -2173,7 +2173,7 @@ type GetItemOutput struct {
 	// A map of attribute names to AttributeValue objects, as specified by AttributesToGet.
 	Item *map[string]*AttributeValue `type:"map"`
 
-	metadataGetItemOutput `json:"-", xml:"-"`
+	metadataGetItemOutput `json:"-" xml:"-"`
 }
 
 type metadataGetItemOutput struct {
@@ -2203,7 +2203,7 @@ type GlobalSecondaryIndex struct {
 	// in the Amazon DynamoDB Developer Guide.
 	ProvisionedThroughput *ProvisionedThroughput `type:"structure" required:"true"`
 
-	metadataGlobalSecondaryIndex `json:"-", xml:"-"`
+	metadataGlobalSecondaryIndex `json:"-" xml:"-"`
 }
 
 type metadataGlobalSecondaryIndex struct {
@@ -2259,7 +2259,7 @@ type GlobalSecondaryIndexDescription struct {
 	// of read and write capacity units, along with data about increases and decreases.
 	ProvisionedThroughput *ProvisionedThroughputDescription `type:"structure"`
 
-	metadataGlobalSecondaryIndexDescription `json:"-", xml:"-"`
+	metadataGlobalSecondaryIndexDescription `json:"-" xml:"-"`
 }
 
 type metadataGlobalSecondaryIndexDescription struct {
@@ -2295,7 +2295,7 @@ type GlobalSecondaryIndexUpdate struct {
 	// throughput settings to be applied to that index.
 	Update *UpdateGlobalSecondaryIndexAction `type:"structure"`
 
-	metadataGlobalSecondaryIndexUpdate `json:"-", xml:"-"`
+	metadataGlobalSecondaryIndexUpdate `json:"-" xml:"-"`
 }
 
 type metadataGlobalSecondaryIndexUpdate struct {
@@ -2322,7 +2322,7 @@ type ItemCollectionMetrics struct {
 	// precision or accuracy of the estimate.
 	SizeEstimateRangeGB []*float64 `type:"list"`
 
-	metadataItemCollectionMetrics `json:"-", xml:"-"`
+	metadataItemCollectionMetrics `json:"-" xml:"-"`
 }
 
 type metadataItemCollectionMetrics struct {
@@ -2343,7 +2343,7 @@ type KeySchemaElement struct {
 	// The attribute data, consisting of the data type and the attribute value itself.
 	KeyType *string `type:"string" required:"true"`
 
-	metadataKeySchemaElement `json:"-", xml:"-"`
+	metadataKeySchemaElement `json:"-" xml:"-"`
 }
 
 type metadataKeySchemaElement struct {
@@ -2419,7 +2419,7 @@ type KeysAndAttributes struct {
 	// in the Amazon DynamoDB Developer Guide.
 	ProjectionExpression *string `type:"string"`
 
-	metadataKeysAndAttributes `json:"-", xml:"-"`
+	metadataKeysAndAttributes `json:"-" xml:"-"`
 }
 
 type metadataKeysAndAttributes struct {
@@ -2437,7 +2437,7 @@ type ListTablesInput struct {
 	// the limit is 100.
 	Limit *int64 `type:"integer"`
 
-	metadataListTablesInput `json:"-", xml:"-"`
+	metadataListTablesInput `json:"-" xml:"-"`
 }
 
 type metadataListTablesInput struct {
@@ -2462,7 +2462,7 @@ type ListTablesOutput struct {
 	// and obtain the next page of results.
 	TableNames []*string `type:"list"`
 
-	metadataListTablesOutput `json:"-", xml:"-"`
+	metadataListTablesOutput `json:"-" xml:"-"`
 }
 
 type metadataListTablesOutput struct {
@@ -2484,7 +2484,7 @@ type LocalSecondaryIndex struct {
 	// attributes, which are automatically projected.
 	Projection *Projection `type:"structure" required:"true"`
 
-	metadataLocalSecondaryIndex `json:"-", xml:"-"`
+	metadataLocalSecondaryIndex `json:"-" xml:"-"`
 }
 
 type metadataLocalSecondaryIndex struct {
@@ -2514,7 +2514,7 @@ type LocalSecondaryIndexDescription struct {
 	// attributes, which are automatically projected.
 	Projection *Projection `type:"structure"`
 
-	metadataLocalSecondaryIndexDescription `json:"-", xml:"-"`
+	metadataLocalSecondaryIndexDescription `json:"-" xml:"-"`
 }
 
 type metadataLocalSecondaryIndexDescription struct {
@@ -2543,7 +2543,7 @@ type Projection struct {
 	//   ALL - All of the table attributes are projected into the index.
 	ProjectionType *string `type:"string"`
 
-	metadataProjection `json:"-", xml:"-"`
+	metadataProjection `json:"-" xml:"-"`
 }
 
 type metadataProjection struct {
@@ -2569,7 +2569,7 @@ type ProvisionedThroughput struct {
 	// in the Amazon DynamoDB Developer Guide.
 	WriteCapacityUnits *int64 `type:"long" required:"true"`
 
-	metadataProvisionedThroughput `json:"-", xml:"-"`
+	metadataProvisionedThroughput `json:"-" xml:"-"`
 }
 
 type metadataProvisionedThroughput struct {
@@ -2601,7 +2601,7 @@ type ProvisionedThroughputDescription struct {
 	// a ThrottlingException.
 	WriteCapacityUnits *int64 `type:"long"`
 
-	metadataProvisionedThroughputDescription `json:"-", xml:"-"`
+	metadataProvisionedThroughputDescription `json:"-" xml:"-"`
 }
 
 type metadataProvisionedThroughputDescription struct {
@@ -2944,7 +2944,7 @@ type PutItemInput struct {
 	// The name of the table to contain the item.
 	TableName *string `type:"string" required:"true"`
 
-	metadataPutItemInput `json:"-", xml:"-"`
+	metadataPutItemInput `json:"-" xml:"-"`
 }
 
 type metadataPutItemInput struct {
@@ -2987,7 +2987,7 @@ type PutItemOutput struct {
 	// precision or accuracy of the estimate.
 	ItemCollectionMetrics *ItemCollectionMetrics `type:"structure"`
 
-	metadataPutItemOutput `json:"-", xml:"-"`
+	metadataPutItemOutput `json:"-" xml:"-"`
 }
 
 type metadataPutItemOutput struct {
@@ -3003,7 +3003,7 @@ type PutRequest struct {
 	// key schema for the table, their types must match the index key schema.
 	Item *map[string]*AttributeValue `type:"map" required:"true"`
 
-	metadataPutRequest `json:"-", xml:"-"`
+	metadataPutRequest `json:"-" xml:"-"`
 }
 
 type metadataPutRequest struct {
@@ -3386,7 +3386,7 @@ type QueryInput struct {
 	// The name of the table containing the requested items.
 	TableName *string `type:"string" required:"true"`
 
-	metadataQueryInput `json:"-", xml:"-"`
+	metadataQueryInput `json:"-" xml:"-"`
 }
 
 type metadataQueryInput struct {
@@ -3438,7 +3438,7 @@ type QueryOutput struct {
 	// as Count.
 	ScannedCount *int64 `type:"integer"`
 
-	metadataQueryOutput `json:"-", xml:"-"`
+	metadataQueryOutput `json:"-" xml:"-"`
 }
 
 type metadataQueryOutput struct {
@@ -3696,7 +3696,7 @@ type ScanInput struct {
 	// If you specify TotalSegments, you must also specify Segment.
 	TotalSegments *int64 `type:"integer"`
 
-	metadataScanInput `json:"-", xml:"-"`
+	metadataScanInput `json:"-" xml:"-"`
 }
 
 type metadataScanInput struct {
@@ -3747,7 +3747,7 @@ type ScanOutput struct {
 	// as Count.
 	ScannedCount *int64 `type:"integer"`
 
-	metadataScanOutput `json:"-", xml:"-"`
+	metadataScanOutput `json:"-" xml:"-"`
 }
 
 type metadataScanOutput struct {
@@ -3912,7 +3912,7 @@ type TableDescription struct {
 	//   ACTIVE - The table is ready for use.
 	TableStatus *string `type:"string"`
 
-	metadataTableDescription `json:"-", xml:"-"`
+	metadataTableDescription `json:"-" xml:"-"`
 }
 
 type metadataTableDescription struct {
@@ -3933,7 +3933,7 @@ type UpdateGlobalSecondaryIndexAction struct {
 	// in the Amazon DynamoDB Developer Guide.
 	ProvisionedThroughput *ProvisionedThroughput `type:"structure" required:"true"`
 
-	metadataUpdateGlobalSecondaryIndexAction `json:"-", xml:"-"`
+	metadataUpdateGlobalSecondaryIndexAction `json:"-" xml:"-"`
 }
 
 type metadataUpdateGlobalSecondaryIndexAction struct {
@@ -4433,7 +4433,7 @@ type UpdateItemInput struct {
 	// in the Amazon DynamoDB Developer Guide.
 	UpdateExpression *string `type:"string"`
 
-	metadataUpdateItemInput `json:"-", xml:"-"`
+	metadataUpdateItemInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateItemInput struct {
@@ -4461,7 +4461,7 @@ type UpdateItemOutput struct {
 	// returned in the response.
 	ItemCollectionMetrics *ItemCollectionMetrics `type:"structure"`
 
-	metadataUpdateItemOutput `json:"-", xml:"-"`
+	metadataUpdateItemOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateItemOutput struct {
@@ -4497,7 +4497,7 @@ type UpdateTableInput struct {
 	// The name of the table to be updated.
 	TableName *string `type:"string" required:"true"`
 
-	metadataUpdateTableInput `json:"-", xml:"-"`
+	metadataUpdateTableInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateTableInput struct {
@@ -4509,7 +4509,7 @@ type UpdateTableOutput struct {
 	// Represents the properties of a table.
 	TableDescription *TableDescription `type:"structure"`
 
-	metadataUpdateTableOutput `json:"-", xml:"-"`
+	metadataUpdateTableOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateTableOutput struct {
@@ -4527,7 +4527,7 @@ type WriteRequest struct {
 	// A request to perform a PutItem operation.
 	PutRequest *PutRequest `type:"structure"`
 
-	metadataWriteRequest `json:"-", xml:"-"`
+	metadataWriteRequest `json:"-" xml:"-"`
 }
 
 type metadataWriteRequest struct {

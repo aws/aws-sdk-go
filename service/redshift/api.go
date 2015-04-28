@@ -2227,7 +2227,7 @@ type AccountWithRestoreAccess struct {
 	// The identifier of an AWS customer account authorized to restore a snapshot.
 	AccountID *string `locationName:"AccountId" type:"string"`
 
-	metadataAccountWithRestoreAccess `json:"-", xml:"-"`
+	metadataAccountWithRestoreAccess `json:"-" xml:"-"`
 }
 
 type metadataAccountWithRestoreAccess struct {
@@ -2252,7 +2252,7 @@ type AuthorizeClusterSecurityGroupIngressInput struct {
 	//  Example: 111122223333
 	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
 
-	metadataAuthorizeClusterSecurityGroupIngressInput `json:"-", xml:"-"`
+	metadataAuthorizeClusterSecurityGroupIngressInput `json:"-" xml:"-"`
 }
 
 type metadataAuthorizeClusterSecurityGroupIngressInput struct {
@@ -2263,7 +2263,7 @@ type AuthorizeClusterSecurityGroupIngressOutput struct {
 	// Describes a security group.
 	ClusterSecurityGroup *ClusterSecurityGroup `type:"structure"`
 
-	metadataAuthorizeClusterSecurityGroupIngressOutput `json:"-", xml:"-"`
+	metadataAuthorizeClusterSecurityGroupIngressOutput `json:"-" xml:"-"`
 }
 
 type metadataAuthorizeClusterSecurityGroupIngressOutput struct {
@@ -2283,7 +2283,7 @@ type AuthorizeSnapshotAccessInput struct {
 	// The identifier of the snapshot the account is authorized to restore.
 	SnapshotIdentifier *string `type:"string" required:"true"`
 
-	metadataAuthorizeSnapshotAccessInput `json:"-", xml:"-"`
+	metadataAuthorizeSnapshotAccessInput `json:"-" xml:"-"`
 }
 
 type metadataAuthorizeSnapshotAccessInput struct {
@@ -2294,7 +2294,7 @@ type AuthorizeSnapshotAccessOutput struct {
 	// Describes a snapshot.
 	Snapshot *Snapshot `type:"structure"`
 
-	metadataAuthorizeSnapshotAccessOutput `json:"-", xml:"-"`
+	metadataAuthorizeSnapshotAccessOutput `json:"-" xml:"-"`
 }
 
 type metadataAuthorizeSnapshotAccessOutput struct {
@@ -2306,7 +2306,7 @@ type AvailabilityZone struct {
 	// The name of the availability zone.
 	Name *string `type:"string"`
 
-	metadataAvailabilityZone `json:"-", xml:"-"`
+	metadataAvailabilityZone `json:"-" xml:"-"`
 }
 
 type metadataAvailabilityZone struct {
@@ -2429,7 +2429,7 @@ type Cluster struct {
 	// VPC.
 	VPCSecurityGroups []*VPCSecurityGroupMembership `locationName:"VpcSecurityGroups" locationNameList:"VpcSecurityGroup" type:"list"`
 
-	metadataCluster `json:"-", xml:"-"`
+	metadataCluster `json:"-" xml:"-"`
 }
 
 type metadataCluster struct {
@@ -2447,7 +2447,7 @@ type ClusterNode struct {
 	// The public IP address of a node within a cluster.
 	PublicIPAddress *string `type:"string"`
 
-	metadataClusterNode `json:"-", xml:"-"`
+	metadataClusterNode `json:"-" xml:"-"`
 }
 
 type metadataClusterNode struct {
@@ -2469,7 +2469,7 @@ type ClusterParameterGroup struct {
 	// The list of tags for the cluster parameter group.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataClusterParameterGroup `json:"-", xml:"-"`
+	metadataClusterParameterGroup `json:"-" xml:"-"`
 }
 
 type metadataClusterParameterGroup struct {
@@ -2488,7 +2488,7 @@ type ClusterParameterGroupNameMessage struct {
 	// of an associated cluster.
 	ParameterGroupStatus *string `type:"string"`
 
-	metadataClusterParameterGroupNameMessage `json:"-", xml:"-"`
+	metadataClusterParameterGroupNameMessage `json:"-" xml:"-"`
 }
 
 type metadataClusterParameterGroupNameMessage struct {
@@ -2503,7 +2503,7 @@ type ClusterParameterGroupStatus struct {
 	// The name of the cluster parameter group.
 	ParameterGroupName *string `type:"string"`
 
-	metadataClusterParameterGroupStatus `json:"-", xml:"-"`
+	metadataClusterParameterGroupStatus `json:"-" xml:"-"`
 }
 
 type metadataClusterParameterGroupStatus struct {
@@ -2529,7 +2529,7 @@ type ClusterSecurityGroup struct {
 	// The list of tags for the cluster security group.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataClusterSecurityGroup `json:"-", xml:"-"`
+	metadataClusterSecurityGroup `json:"-" xml:"-"`
 }
 
 type metadataClusterSecurityGroup struct {
@@ -2544,7 +2544,7 @@ type ClusterSecurityGroupMembership struct {
 	// The status of the cluster security group.
 	Status *string `type:"string"`
 
-	metadataClusterSecurityGroupMembership `json:"-", xml:"-"`
+	metadataClusterSecurityGroupMembership `json:"-" xml:"-"`
 }
 
 type metadataClusterSecurityGroupMembership struct {
@@ -2562,7 +2562,7 @@ type ClusterSnapshotCopyStatus struct {
 	// region after they are copied from a source region.
 	RetentionPeriod *int64 `type:"long"`
 
-	metadataClusterSnapshotCopyStatus `json:"-", xml:"-"`
+	metadataClusterSnapshotCopyStatus `json:"-" xml:"-"`
 }
 
 type metadataClusterSnapshotCopyStatus struct {
@@ -2590,7 +2590,7 @@ type ClusterSubnetGroup struct {
 	// The VPC ID of the cluster subnet group.
 	VPCID *string `locationName:"VpcId" type:"string"`
 
-	metadataClusterSubnetGroup `json:"-", xml:"-"`
+	metadataClusterSubnetGroup `json:"-" xml:"-"`
 }
 
 type metadataClusterSubnetGroup struct {
@@ -2609,7 +2609,7 @@ type ClusterVersion struct {
 	// The description of the cluster version.
 	Description *string `type:"string"`
 
-	metadataClusterVersion `json:"-", xml:"-"`
+	metadataClusterVersion `json:"-" xml:"-"`
 }
 
 type metadataClusterVersion struct {
@@ -2643,7 +2643,7 @@ type CopyClusterSnapshotInput struct {
 	// that is making the request.
 	TargetSnapshotIdentifier *string `type:"string" required:"true"`
 
-	metadataCopyClusterSnapshotInput `json:"-", xml:"-"`
+	metadataCopyClusterSnapshotInput `json:"-" xml:"-"`
 }
 
 type metadataCopyClusterSnapshotInput struct {
@@ -2654,7 +2654,7 @@ type CopyClusterSnapshotOutput struct {
 	// Describes a snapshot.
 	Snapshot *Snapshot `type:"structure"`
 
-	metadataCopyClusterSnapshotOutput `json:"-", xml:"-"`
+	metadataCopyClusterSnapshotOutput `json:"-" xml:"-"`
 }
 
 type metadataCopyClusterSnapshotOutput struct {
@@ -2874,7 +2874,7 @@ type CreateClusterInput struct {
 	// Default: The default VPC security group is associated with the cluster.
 	VPCSecurityGroupIDs []*string `locationName:"VpcSecurityGroupIds" locationNameList:"VpcSecurityGroupId" type:"list"`
 
-	metadataCreateClusterInput `json:"-", xml:"-"`
+	metadataCreateClusterInput `json:"-" xml:"-"`
 }
 
 type metadataCreateClusterInput struct {
@@ -2885,7 +2885,7 @@ type CreateClusterOutput struct {
 	// Describes a cluster.
 	Cluster *Cluster `type:"structure"`
 
-	metadataCreateClusterOutput `json:"-", xml:"-"`
+	metadataCreateClusterOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateClusterOutput struct {
@@ -2920,7 +2920,7 @@ type CreateClusterParameterGroupInput struct {
 	// A list of tag instances.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateClusterParameterGroupInput `json:"-", xml:"-"`
+	metadataCreateClusterParameterGroupInput `json:"-" xml:"-"`
 }
 
 type metadataCreateClusterParameterGroupInput struct {
@@ -2931,7 +2931,7 @@ type CreateClusterParameterGroupOutput struct {
 	// Describes a parameter group.
 	ClusterParameterGroup *ClusterParameterGroup `type:"structure"`
 
-	metadataCreateClusterParameterGroupOutput `json:"-", xml:"-"`
+	metadataCreateClusterParameterGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateClusterParameterGroupOutput struct {
@@ -2956,7 +2956,7 @@ type CreateClusterSecurityGroupInput struct {
 	// A list of tag instances.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateClusterSecurityGroupInput `json:"-", xml:"-"`
+	metadataCreateClusterSecurityGroupInput `json:"-" xml:"-"`
 }
 
 type metadataCreateClusterSecurityGroupInput struct {
@@ -2967,7 +2967,7 @@ type CreateClusterSecurityGroupOutput struct {
 	// Describes a security group.
 	ClusterSecurityGroup *ClusterSecurityGroup `type:"structure"`
 
-	metadataCreateClusterSecurityGroupOutput `json:"-", xml:"-"`
+	metadataCreateClusterSecurityGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateClusterSecurityGroupOutput struct {
@@ -2991,7 +2991,7 @@ type CreateClusterSnapshotInput struct {
 	// A list of tag instances.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateClusterSnapshotInput `json:"-", xml:"-"`
+	metadataCreateClusterSnapshotInput `json:"-" xml:"-"`
 }
 
 type metadataCreateClusterSnapshotInput struct {
@@ -3002,7 +3002,7 @@ type CreateClusterSnapshotOutput struct {
 	// Describes a snapshot.
 	Snapshot *Snapshot `type:"structure"`
 
-	metadataCreateClusterSnapshotOutput `json:"-", xml:"-"`
+	metadataCreateClusterSnapshotOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateClusterSnapshotOutput struct {
@@ -3030,7 +3030,7 @@ type CreateClusterSubnetGroupInput struct {
 	// A list of tag instances.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateClusterSubnetGroupInput `json:"-", xml:"-"`
+	metadataCreateClusterSubnetGroupInput `json:"-" xml:"-"`
 }
 
 type metadataCreateClusterSubnetGroupInput struct {
@@ -3041,7 +3041,7 @@ type CreateClusterSubnetGroupOutput struct {
 	// Describes a subnet group.
 	ClusterSubnetGroup *ClusterSubnetGroup `type:"structure"`
 
-	metadataCreateClusterSubnetGroupOutput `json:"-", xml:"-"`
+	metadataCreateClusterSubnetGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateClusterSubnetGroupOutput struct {
@@ -3103,7 +3103,7 @@ type CreateEventSubscriptionInput struct {
 	// A list of tag instances.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateEventSubscriptionInput `json:"-", xml:"-"`
+	metadataCreateEventSubscriptionInput `json:"-" xml:"-"`
 }
 
 type metadataCreateEventSubscriptionInput struct {
@@ -3113,7 +3113,7 @@ type metadataCreateEventSubscriptionInput struct {
 type CreateEventSubscriptionOutput struct {
 	EventSubscription *EventSubscription `type:"structure"`
 
-	metadataCreateEventSubscriptionOutput `json:"-", xml:"-"`
+	metadataCreateEventSubscriptionOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateEventSubscriptionOutput struct {
@@ -3128,7 +3128,7 @@ type CreateHSMClientCertificateInput struct {
 	// A list of tag instances.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateHSMClientCertificateInput `json:"-", xml:"-"`
+	metadataCreateHSMClientCertificateInput `json:"-" xml:"-"`
 }
 
 type metadataCreateHSMClientCertificateInput struct {
@@ -3141,7 +3141,7 @@ type CreateHSMClientCertificateOutput struct {
 	// cluster to encrypt data files.
 	HSMClientCertificate *HSMClientCertificate `locationName:"HsmClientCertificate" type:"structure"`
 
-	metadataCreateHSMClientCertificateOutput `json:"-", xml:"-"`
+	metadataCreateHSMClientCertificateOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateHSMClientCertificateOutput struct {
@@ -3172,7 +3172,7 @@ type CreateHSMConfigurationInput struct {
 	// A list of tag instances.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataCreateHSMConfigurationInput `json:"-", xml:"-"`
+	metadataCreateHSMConfigurationInput `json:"-" xml:"-"`
 }
 
 type metadataCreateHSMConfigurationInput struct {
@@ -3185,7 +3185,7 @@ type CreateHSMConfigurationOutput struct {
 	// HSM where they can store database encryption keys.
 	HSMConfiguration *HSMConfiguration `locationName:"HsmConfiguration" type:"structure"`
 
-	metadataCreateHSMConfigurationOutput `json:"-", xml:"-"`
+	metadataCreateHSMConfigurationOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateHSMConfigurationOutput struct {
@@ -3206,7 +3206,7 @@ type CreateTagsInput struct {
 	// "tag-key"="version":"tag-value"="1.0".
 	Tags []*Tag `locationNameList:"Tag" type:"list" required:"true"`
 
-	metadataCreateTagsInput `json:"-", xml:"-"`
+	metadataCreateTagsInput `json:"-" xml:"-"`
 }
 
 type metadataCreateTagsInput struct {
@@ -3214,7 +3214,7 @@ type metadataCreateTagsInput struct {
 }
 
 type CreateTagsOutput struct {
-	metadataCreateTagsOutput `json:"-", xml:"-"`
+	metadataCreateTagsOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateTagsOutput struct {
@@ -3237,7 +3237,7 @@ type DefaultClusterParameters struct {
 	// The list of cluster default parameters.
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
 
-	metadataDefaultClusterParameters `json:"-", xml:"-"`
+	metadataDefaultClusterParameters `json:"-" xml:"-"`
 }
 
 type metadataDefaultClusterParameters struct {
@@ -3272,7 +3272,7 @@ type DeleteClusterInput struct {
 	// is false. Default: false
 	SkipFinalClusterSnapshot *bool `type:"boolean"`
 
-	metadataDeleteClusterInput `json:"-", xml:"-"`
+	metadataDeleteClusterInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteClusterInput struct {
@@ -3283,7 +3283,7 @@ type DeleteClusterOutput struct {
 	// Describes a cluster.
 	Cluster *Cluster `type:"structure"`
 
-	metadataDeleteClusterOutput `json:"-", xml:"-"`
+	metadataDeleteClusterOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteClusterOutput struct {
@@ -3299,7 +3299,7 @@ type DeleteClusterParameterGroupInput struct {
 	// a default cluster parameter group.
 	ParameterGroupName *string `type:"string" required:"true"`
 
-	metadataDeleteClusterParameterGroupInput `json:"-", xml:"-"`
+	metadataDeleteClusterParameterGroupInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteClusterParameterGroupInput struct {
@@ -3307,7 +3307,7 @@ type metadataDeleteClusterParameterGroupInput struct {
 }
 
 type DeleteClusterParameterGroupOutput struct {
-	metadataDeleteClusterParameterGroupOutput `json:"-", xml:"-"`
+	metadataDeleteClusterParameterGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteClusterParameterGroupOutput struct {
@@ -3318,7 +3318,7 @@ type DeleteClusterSecurityGroupInput struct {
 	// The name of the cluster security group to be deleted.
 	ClusterSecurityGroupName *string `type:"string" required:"true"`
 
-	metadataDeleteClusterSecurityGroupInput `json:"-", xml:"-"`
+	metadataDeleteClusterSecurityGroupInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteClusterSecurityGroupInput struct {
@@ -3326,7 +3326,7 @@ type metadataDeleteClusterSecurityGroupInput struct {
 }
 
 type DeleteClusterSecurityGroupOutput struct {
-	metadataDeleteClusterSecurityGroupOutput `json:"-", xml:"-"`
+	metadataDeleteClusterSecurityGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteClusterSecurityGroupOutput struct {
@@ -3347,7 +3347,7 @@ type DeleteClusterSnapshotInput struct {
 	// state.
 	SnapshotIdentifier *string `type:"string" required:"true"`
 
-	metadataDeleteClusterSnapshotInput `json:"-", xml:"-"`
+	metadataDeleteClusterSnapshotInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteClusterSnapshotInput struct {
@@ -3358,7 +3358,7 @@ type DeleteClusterSnapshotOutput struct {
 	// Describes a snapshot.
 	Snapshot *Snapshot `type:"structure"`
 
-	metadataDeleteClusterSnapshotOutput `json:"-", xml:"-"`
+	metadataDeleteClusterSnapshotOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteClusterSnapshotOutput struct {
@@ -3369,7 +3369,7 @@ type DeleteClusterSubnetGroupInput struct {
 	// The name of the cluster subnet group name to be deleted.
 	ClusterSubnetGroupName *string `type:"string" required:"true"`
 
-	metadataDeleteClusterSubnetGroupInput `json:"-", xml:"-"`
+	metadataDeleteClusterSubnetGroupInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteClusterSubnetGroupInput struct {
@@ -3377,7 +3377,7 @@ type metadataDeleteClusterSubnetGroupInput struct {
 }
 
 type DeleteClusterSubnetGroupOutput struct {
-	metadataDeleteClusterSubnetGroupOutput `json:"-", xml:"-"`
+	metadataDeleteClusterSubnetGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteClusterSubnetGroupOutput struct {
@@ -3388,7 +3388,7 @@ type DeleteEventSubscriptionInput struct {
 	// The name of the Amazon Redshift event notification subscription to be deleted.
 	SubscriptionName *string `type:"string" required:"true"`
 
-	metadataDeleteEventSubscriptionInput `json:"-", xml:"-"`
+	metadataDeleteEventSubscriptionInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteEventSubscriptionInput struct {
@@ -3396,7 +3396,7 @@ type metadataDeleteEventSubscriptionInput struct {
 }
 
 type DeleteEventSubscriptionOutput struct {
-	metadataDeleteEventSubscriptionOutput `json:"-", xml:"-"`
+	metadataDeleteEventSubscriptionOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteEventSubscriptionOutput struct {
@@ -3407,7 +3407,7 @@ type DeleteHSMClientCertificateInput struct {
 	// The identifier of the HSM client certificate to be deleted.
 	HSMClientCertificateIdentifier *string `locationName:"HsmClientCertificateIdentifier" type:"string" required:"true"`
 
-	metadataDeleteHSMClientCertificateInput `json:"-", xml:"-"`
+	metadataDeleteHSMClientCertificateInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteHSMClientCertificateInput struct {
@@ -3415,7 +3415,7 @@ type metadataDeleteHSMClientCertificateInput struct {
 }
 
 type DeleteHSMClientCertificateOutput struct {
-	metadataDeleteHSMClientCertificateOutput `json:"-", xml:"-"`
+	metadataDeleteHSMClientCertificateOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteHSMClientCertificateOutput struct {
@@ -3426,7 +3426,7 @@ type DeleteHSMConfigurationInput struct {
 	// The identifier of the Amazon Redshift HSM configuration to be deleted.
 	HSMConfigurationIdentifier *string `locationName:"HsmConfigurationIdentifier" type:"string" required:"true"`
 
-	metadataDeleteHSMConfigurationInput `json:"-", xml:"-"`
+	metadataDeleteHSMConfigurationInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteHSMConfigurationInput struct {
@@ -3434,7 +3434,7 @@ type metadataDeleteHSMConfigurationInput struct {
 }
 
 type DeleteHSMConfigurationOutput struct {
-	metadataDeleteHSMConfigurationOutput `json:"-", xml:"-"`
+	metadataDeleteHSMConfigurationOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteHSMConfigurationOutput struct {
@@ -3450,7 +3450,7 @@ type DeleteTagsInput struct {
 	// The tag key that you want to delete.
 	TagKeys []*string `locationNameList:"TagKey" type:"list" required:"true"`
 
-	metadataDeleteTagsInput `json:"-", xml:"-"`
+	metadataDeleteTagsInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteTagsInput struct {
@@ -3458,7 +3458,7 @@ type metadataDeleteTagsInput struct {
 }
 
 type DeleteTagsOutput struct {
-	metadataDeleteTagsOutput `json:"-", xml:"-"`
+	metadataDeleteTagsOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteTagsOutput struct {
@@ -3504,7 +3504,7 @@ type DescribeClusterParameterGroupsInput struct {
 	// both of these tag values associated with them.
 	TagValues []*string `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeClusterParameterGroupsInput `json:"-", xml:"-"`
+	metadataDescribeClusterParameterGroupsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeClusterParameterGroupsInput struct {
@@ -3524,7 +3524,7 @@ type DescribeClusterParameterGroupsOutput struct {
 	// parameter group.
 	ParameterGroups []*ClusterParameterGroup `locationNameList:"ClusterParameterGroup" type:"list"`
 
-	metadataDescribeClusterParameterGroupsOutput `json:"-", xml:"-"`
+	metadataDescribeClusterParameterGroupsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeClusterParameterGroupsOutput struct {
@@ -3562,7 +3562,7 @@ type DescribeClusterParametersInput struct {
 	// Valid Values: user | engine-default
 	Source *string `type:"string"`
 
-	metadataDescribeClusterParametersInput `json:"-", xml:"-"`
+	metadataDescribeClusterParametersInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeClusterParametersInput struct {
@@ -3582,7 +3582,7 @@ type DescribeClusterParametersOutput struct {
 	// cluster parameter group.
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
 
-	metadataDescribeClusterParametersOutput `json:"-", xml:"-"`
+	metadataDescribeClusterParametersOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeClusterParametersOutput struct {
@@ -3635,7 +3635,7 @@ type DescribeClusterSecurityGroupsInput struct {
 	// both of these tag values associated with them.
 	TagValues []*string `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeClusterSecurityGroupsInput `json:"-", xml:"-"`
+	metadataDescribeClusterSecurityGroupsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeClusterSecurityGroupsInput struct {
@@ -3654,7 +3654,7 @@ type DescribeClusterSecurityGroupsOutput struct {
 	// records have been retrieved for the request.
 	Marker *string `type:"string"`
 
-	metadataDescribeClusterSecurityGroupsOutput `json:"-", xml:"-"`
+	metadataDescribeClusterSecurityGroupsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeClusterSecurityGroupsOutput struct {
@@ -3728,7 +3728,7 @@ type DescribeClusterSnapshotsInput struct {
 	// these tag values associated with them.
 	TagValues []*string `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeClusterSnapshotsInput `json:"-", xml:"-"`
+	metadataDescribeClusterSnapshotsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeClusterSnapshotsInput struct {
@@ -3747,7 +3747,7 @@ type DescribeClusterSnapshotsOutput struct {
 	// A list of Snapshot instances.
 	Snapshots []*Snapshot `locationNameList:"Snapshot" type:"list"`
 
-	metadataDescribeClusterSnapshotsOutput `json:"-", xml:"-"`
+	metadataDescribeClusterSnapshotsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeClusterSnapshotsOutput struct {
@@ -3792,7 +3792,7 @@ type DescribeClusterSubnetGroupsInput struct {
 	// of these tag values associated with them.
 	TagValues []*string `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeClusterSubnetGroupsInput `json:"-", xml:"-"`
+	metadataDescribeClusterSubnetGroupsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeClusterSubnetGroupsInput struct {
@@ -3811,7 +3811,7 @@ type DescribeClusterSubnetGroupsOutput struct {
 	// records have been retrieved for the request.
 	Marker *string `type:"string"`
 
-	metadataDescribeClusterSubnetGroupsOutput `json:"-", xml:"-"`
+	metadataDescribeClusterSubnetGroupsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeClusterSubnetGroupsOutput struct {
@@ -3849,7 +3849,7 @@ type DescribeClusterVersionsInput struct {
 	// Constraints: minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	metadataDescribeClusterVersionsInput `json:"-", xml:"-"`
+	metadataDescribeClusterVersionsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeClusterVersionsInput struct {
@@ -3868,7 +3868,7 @@ type DescribeClusterVersionsOutput struct {
 	// records have been retrieved for the request.
 	Marker *string `type:"string"`
 
-	metadataDescribeClusterVersionsOutput `json:"-", xml:"-"`
+	metadataDescribeClusterVersionsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeClusterVersionsOutput struct {
@@ -3918,7 +3918,7 @@ type DescribeClustersInput struct {
 	// values associated with them.
 	TagValues []*string `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeClustersInput `json:"-", xml:"-"`
+	metadataDescribeClustersInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeClustersInput struct {
@@ -3937,7 +3937,7 @@ type DescribeClustersOutput struct {
 	// records have been retrieved for the request.
 	Marker *string `type:"string"`
 
-	metadataDescribeClustersOutput `json:"-", xml:"-"`
+	metadataDescribeClustersOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeClustersOutput struct {
@@ -3966,7 +3966,7 @@ type DescribeDefaultClusterParametersInput struct {
 	// The name of the cluster parameter group family.
 	ParameterGroupFamily *string `type:"string" required:"true"`
 
-	metadataDescribeDefaultClusterParametersInput `json:"-", xml:"-"`
+	metadataDescribeDefaultClusterParametersInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeDefaultClusterParametersInput struct {
@@ -3977,7 +3977,7 @@ type DescribeDefaultClusterParametersOutput struct {
 	// Describes the default cluster parameters for a parameter group family.
 	DefaultClusterParameters *DefaultClusterParameters `type:"structure"`
 
-	metadataDescribeDefaultClusterParametersOutput `json:"-", xml:"-"`
+	metadataDescribeDefaultClusterParametersOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeDefaultClusterParametersOutput struct {
@@ -3991,7 +3991,7 @@ type DescribeEventCategoriesInput struct {
 	//  Valid values: cluster, snapshot, parameter group, and security group.
 	SourceType *string `type:"string"`
 
-	metadataDescribeEventCategoriesInput `json:"-", xml:"-"`
+	metadataDescribeEventCategoriesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeEventCategoriesInput struct {
@@ -4002,7 +4002,7 @@ type DescribeEventCategoriesOutput struct {
 	// A list of event categories descriptions.
 	EventCategoriesMapList []*EventCategoriesMap `locationNameList:"EventCategoriesMap" type:"list"`
 
-	metadataDescribeEventCategoriesOutput `json:"-", xml:"-"`
+	metadataDescribeEventCategoriesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeEventCategoriesOutput struct {
@@ -4031,7 +4031,7 @@ type DescribeEventSubscriptionsInput struct {
 	// The name of the Amazon Redshift event notification subscription to be described.
 	SubscriptionName *string `type:"string"`
 
-	metadataDescribeEventSubscriptionsInput `json:"-", xml:"-"`
+	metadataDescribeEventSubscriptionsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeEventSubscriptionsInput struct {
@@ -4049,7 +4049,7 @@ type DescribeEventSubscriptionsOutput struct {
 	// records have been retrieved for the request.
 	Marker *string `type:"string"`
 
-	metadataDescribeEventSubscriptionsOutput `json:"-", xml:"-"`
+	metadataDescribeEventSubscriptionsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeEventSubscriptionsOutput struct {
@@ -4122,7 +4122,7 @@ type DescribeEventsInput struct {
 	// Example: 2009-07-08T18:00Z
 	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataDescribeEventsInput `json:"-", xml:"-"`
+	metadataDescribeEventsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeEventsInput struct {
@@ -4141,7 +4141,7 @@ type DescribeEventsOutput struct {
 	// records have been retrieved for the request.
 	Marker *string `type:"string"`
 
-	metadataDescribeEventsOutput `json:"-", xml:"-"`
+	metadataDescribeEventsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeEventsOutput struct {
@@ -4188,7 +4188,7 @@ type DescribeHSMClientCertificatesInput struct {
 	// that have either or both of these tag values associated with them.
 	TagValues []*string `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeHSMClientCertificatesInput `json:"-", xml:"-"`
+	metadataDescribeHSMClientCertificatesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeHSMClientCertificatesInput struct {
@@ -4208,7 +4208,7 @@ type DescribeHSMClientCertificatesOutput struct {
 	// records have been retrieved for the request.
 	Marker *string `type:"string"`
 
-	metadataDescribeHSMClientCertificatesOutput `json:"-", xml:"-"`
+	metadataDescribeHSMClientCertificatesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeHSMClientCertificatesOutput struct {
@@ -4255,7 +4255,7 @@ type DescribeHSMConfigurationsInput struct {
 	// or both of these tag values associated with them.
 	TagValues []*string `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeHSMConfigurationsInput `json:"-", xml:"-"`
+	metadataDescribeHSMConfigurationsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeHSMConfigurationsInput struct {
@@ -4273,7 +4273,7 @@ type DescribeHSMConfigurationsOutput struct {
 	// records have been retrieved for the request.
 	Marker *string `type:"string"`
 
-	metadataDescribeHSMConfigurationsOutput `json:"-", xml:"-"`
+	metadataDescribeHSMConfigurationsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeHSMConfigurationsOutput struct {
@@ -4286,7 +4286,7 @@ type DescribeLoggingStatusInput struct {
 	// Example: examplecluster
 	ClusterIdentifier *string `type:"string" required:"true"`
 
-	metadataDescribeLoggingStatusInput `json:"-", xml:"-"`
+	metadataDescribeLoggingStatusInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLoggingStatusInput struct {
@@ -4324,7 +4324,7 @@ type DescribeOrderableClusterOptionsInput struct {
 	// offerings matching the specified node type.
 	NodeType *string `type:"string"`
 
-	metadataDescribeOrderableClusterOptionsInput `json:"-", xml:"-"`
+	metadataDescribeOrderableClusterOptionsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeOrderableClusterOptionsInput struct {
@@ -4344,7 +4344,7 @@ type DescribeOrderableClusterOptionsOutput struct {
 	// options for the Cluster.
 	OrderableClusterOptions []*OrderableClusterOption `locationNameList:"OrderableClusterOption" type:"list"`
 
-	metadataDescribeOrderableClusterOptionsOutput `json:"-", xml:"-"`
+	metadataDescribeOrderableClusterOptionsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeOrderableClusterOptionsOutput struct {
@@ -4374,7 +4374,7 @@ type DescribeReservedNodeOfferingsInput struct {
 	// The unique identifier for the offering.
 	ReservedNodeOfferingID *string `locationName:"ReservedNodeOfferingId" type:"string"`
 
-	metadataDescribeReservedNodeOfferingsInput `json:"-", xml:"-"`
+	metadataDescribeReservedNodeOfferingsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeReservedNodeOfferingsInput struct {
@@ -4393,7 +4393,7 @@ type DescribeReservedNodeOfferingsOutput struct {
 	// A list of reserved node offerings.
 	ReservedNodeOfferings []*ReservedNodeOffering `locationNameList:"ReservedNodeOffering" type:"list"`
 
-	metadataDescribeReservedNodeOfferingsOutput `json:"-", xml:"-"`
+	metadataDescribeReservedNodeOfferingsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeReservedNodeOfferingsOutput struct {
@@ -4421,7 +4421,7 @@ type DescribeReservedNodesInput struct {
 	// Identifier for the node reservation.
 	ReservedNodeID *string `locationName:"ReservedNodeId" type:"string"`
 
-	metadataDescribeReservedNodesInput `json:"-", xml:"-"`
+	metadataDescribeReservedNodesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeReservedNodesInput struct {
@@ -4440,7 +4440,7 @@ type DescribeReservedNodesOutput struct {
 	// The list of reserved nodes.
 	ReservedNodes []*ReservedNode `locationNameList:"ReservedNode" type:"list"`
 
-	metadataDescribeReservedNodesOutput `json:"-", xml:"-"`
+	metadataDescribeReservedNodesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeReservedNodesOutput struct {
@@ -4455,7 +4455,7 @@ type DescribeResizeInput struct {
 	// are returned.
 	ClusterIdentifier *string `type:"string" required:"true"`
 
-	metadataDescribeResizeInput `json:"-", xml:"-"`
+	metadataDescribeResizeInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeResizeInput struct {
@@ -4523,7 +4523,7 @@ type DescribeResizeOutput struct {
 	// resize operation began.
 	TotalResizeDataInMegaBytes *int64 `type:"long"`
 
-	metadataDescribeResizeOutput `json:"-", xml:"-"`
+	metadataDescribeResizeOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeResizeOutput struct {
@@ -4574,7 +4574,7 @@ type DescribeTagsInput struct {
 	// associated with them.
 	TagValues []*string `locationNameList:"TagValue" type:"list"`
 
-	metadataDescribeTagsInput `json:"-", xml:"-"`
+	metadataDescribeTagsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTagsInput struct {
@@ -4593,7 +4593,7 @@ type DescribeTagsOutput struct {
 	// A list of tags with their associated resources.
 	TaggedResources []*TaggedResource `locationNameList:"TaggedResource" type:"list"`
 
-	metadataDescribeTagsOutput `json:"-", xml:"-"`
+	metadataDescribeTagsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTagsOutput struct {
@@ -4606,7 +4606,7 @@ type DisableLoggingInput struct {
 	// Example: examplecluster
 	ClusterIdentifier *string `type:"string" required:"true"`
 
-	metadataDisableLoggingInput `json:"-", xml:"-"`
+	metadataDisableLoggingInput `json:"-" xml:"-"`
 }
 
 type metadataDisableLoggingInput struct {
@@ -4621,7 +4621,7 @@ type DisableSnapshotCopyInput struct {
 	// snapshot copy enabled.
 	ClusterIdentifier *string `type:"string" required:"true"`
 
-	metadataDisableSnapshotCopyInput `json:"-", xml:"-"`
+	metadataDisableSnapshotCopyInput `json:"-" xml:"-"`
 }
 
 type metadataDisableSnapshotCopyInput struct {
@@ -4632,7 +4632,7 @@ type DisableSnapshotCopyOutput struct {
 	// Describes a cluster.
 	Cluster *Cluster `type:"structure"`
 
-	metadataDisableSnapshotCopyOutput `json:"-", xml:"-"`
+	metadataDisableSnapshotCopyOutput `json:"-" xml:"-"`
 }
 
 type metadataDisableSnapshotCopyOutput struct {
@@ -4654,7 +4654,7 @@ type EC2SecurityGroup struct {
 	// The list of tags for the EC2 security group.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataEC2SecurityGroup `json:"-", xml:"-"`
+	metadataEC2SecurityGroup `json:"-" xml:"-"`
 }
 
 type metadataEC2SecurityGroup struct {
@@ -4669,7 +4669,7 @@ type ElasticIPStatus struct {
 	// Describes the status of the elastic IP (EIP) address.
 	Status *string `type:"string"`
 
-	metadataElasticIPStatus `json:"-", xml:"-"`
+	metadataElasticIPStatus `json:"-" xml:"-"`
 }
 
 type metadataElasticIPStatus struct {
@@ -4699,7 +4699,7 @@ type EnableLoggingInput struct {
 	// codes for invalid characters are:  x00 to x20 x22 x27 x5c x7f or larger
 	S3KeyPrefix *string `type:"string"`
 
-	metadataEnableLoggingInput `json:"-", xml:"-"`
+	metadataEnableLoggingInput `json:"-" xml:"-"`
 }
 
 type metadataEnableLoggingInput struct {
@@ -4728,7 +4728,7 @@ type EnableSnapshotCopyInput struct {
 	//  Constraints: Must be at least 1 and no more than 35.
 	RetentionPeriod *int64 `type:"integer"`
 
-	metadataEnableSnapshotCopyInput `json:"-", xml:"-"`
+	metadataEnableSnapshotCopyInput `json:"-" xml:"-"`
 }
 
 type metadataEnableSnapshotCopyInput struct {
@@ -4739,7 +4739,7 @@ type EnableSnapshotCopyOutput struct {
 	// Describes a cluster.
 	Cluster *Cluster `type:"structure"`
 
-	metadataEnableSnapshotCopyOutput `json:"-", xml:"-"`
+	metadataEnableSnapshotCopyOutput `json:"-" xml:"-"`
 }
 
 type metadataEnableSnapshotCopyOutput struct {
@@ -4754,7 +4754,7 @@ type Endpoint struct {
 	// The port that the database engine is listening on.
 	Port *int64 `type:"integer"`
 
-	metadataEndpoint `json:"-", xml:"-"`
+	metadataEndpoint `json:"-" xml:"-"`
 }
 
 type metadataEndpoint struct {
@@ -4786,7 +4786,7 @@ type Event struct {
 	// The source type for this event.
 	SourceType *string `type:"string"`
 
-	metadataEvent `json:"-", xml:"-"`
+	metadataEvent `json:"-" xml:"-"`
 }
 
 type metadataEvent struct {
@@ -4801,7 +4801,7 @@ type EventCategoriesMap struct {
 	// the returned categories belong to.
 	SourceType *string `type:"string"`
 
-	metadataEventCategoriesMap `json:"-", xml:"-"`
+	metadataEventCategoriesMap `json:"-" xml:"-"`
 }
 
 type metadataEventCategoriesMap struct {
@@ -4823,7 +4823,7 @@ type EventInfoMap struct {
 	// Values: ERROR, INFO
 	Severity *string `type:"string"`
 
-	metadataEventInfoMap `json:"-", xml:"-"`
+	metadataEventInfoMap `json:"-" xml:"-"`
 }
 
 type metadataEventInfoMap struct {
@@ -4882,7 +4882,7 @@ type EventSubscription struct {
 	// The list of tags for the event subscription.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataEventSubscription `json:"-", xml:"-"`
+	metadataEventSubscription `json:"-" xml:"-"`
 }
 
 type metadataEventSubscription struct {
@@ -4903,7 +4903,7 @@ type HSMClientCertificate struct {
 	// The list of tags for the HSM client certificate.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataHSMClientCertificate `json:"-", xml:"-"`
+	metadataHSMClientCertificate `json:"-" xml:"-"`
 }
 
 type metadataHSMClientCertificate struct {
@@ -4930,7 +4930,7 @@ type HSMConfiguration struct {
 	// The list of tags for the HSM configuration.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataHSMConfiguration `json:"-", xml:"-"`
+	metadataHSMConfiguration `json:"-" xml:"-"`
 }
 
 type metadataHSMConfiguration struct {
@@ -4952,7 +4952,7 @@ type HSMStatus struct {
 	// Values: active, applying
 	Status *string `type:"string"`
 
-	metadataHSMStatus `json:"-", xml:"-"`
+	metadataHSMStatus `json:"-" xml:"-"`
 }
 
 type metadataHSMStatus struct {
@@ -4970,7 +4970,7 @@ type IPRange struct {
 	// The list of tags for the IP range.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
-	metadataIPRange `json:"-", xml:"-"`
+	metadataIPRange `json:"-" xml:"-"`
 }
 
 type metadataIPRange struct {
@@ -4997,7 +4997,7 @@ type LoggingStatus struct {
 	// The prefix applied to the log file names.
 	S3KeyPrefix *string `type:"string"`
 
-	metadataLoggingStatus `json:"-", xml:"-"`
+	metadataLoggingStatus `json:"-" xml:"-"`
 }
 
 type metadataLoggingStatus struct {
@@ -5159,7 +5159,7 @@ type ModifyClusterInput struct {
 	// the cluster.
 	VPCSecurityGroupIDs []*string `locationName:"VpcSecurityGroupIds" locationNameList:"VpcSecurityGroupId" type:"list"`
 
-	metadataModifyClusterInput `json:"-", xml:"-"`
+	metadataModifyClusterInput `json:"-" xml:"-"`
 }
 
 type metadataModifyClusterInput struct {
@@ -5170,7 +5170,7 @@ type ModifyClusterOutput struct {
 	// Describes a cluster.
 	Cluster *Cluster `type:"structure"`
 
-	metadataModifyClusterOutput `json:"-", xml:"-"`
+	metadataModifyClusterOutput `json:"-" xml:"-"`
 }
 
 type metadataModifyClusterOutput struct {
@@ -5191,7 +5191,7 @@ type ModifyClusterParameterGroupInput struct {
 	// name-value pairs in the wlm_json_configuration parameter.
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list" required:"true"`
 
-	metadataModifyClusterParameterGroupInput `json:"-", xml:"-"`
+	metadataModifyClusterParameterGroupInput `json:"-" xml:"-"`
 }
 
 type metadataModifyClusterParameterGroupInput struct {
@@ -5209,7 +5209,7 @@ type ModifyClusterSubnetGroupInput struct {
 	// single request.
 	SubnetIDs []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list" required:"true"`
 
-	metadataModifyClusterSubnetGroupInput `json:"-", xml:"-"`
+	metadataModifyClusterSubnetGroupInput `json:"-" xml:"-"`
 }
 
 type metadataModifyClusterSubnetGroupInput struct {
@@ -5220,7 +5220,7 @@ type ModifyClusterSubnetGroupOutput struct {
 	// Describes a subnet group.
 	ClusterSubnetGroup *ClusterSubnetGroup `type:"structure"`
 
-	metadataModifyClusterSubnetGroupOutput `json:"-", xml:"-"`
+	metadataModifyClusterSubnetGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataModifyClusterSubnetGroupOutput struct {
@@ -5272,7 +5272,7 @@ type ModifyEventSubscriptionInput struct {
 	// The name of the modified Amazon Redshift event notification subscription.
 	SubscriptionName *string `type:"string" required:"true"`
 
-	metadataModifyEventSubscriptionInput `json:"-", xml:"-"`
+	metadataModifyEventSubscriptionInput `json:"-" xml:"-"`
 }
 
 type metadataModifyEventSubscriptionInput struct {
@@ -5282,7 +5282,7 @@ type metadataModifyEventSubscriptionInput struct {
 type ModifyEventSubscriptionOutput struct {
 	EventSubscription *EventSubscription `type:"structure"`
 
-	metadataModifyEventSubscriptionOutput `json:"-", xml:"-"`
+	metadataModifyEventSubscriptionOutput `json:"-" xml:"-"`
 }
 
 type metadataModifyEventSubscriptionOutput struct {
@@ -5308,7 +5308,7 @@ type ModifySnapshotCopyRetentionPeriodInput struct {
 	//  Constraints: Must be at least 1 and no more than 35.
 	RetentionPeriod *int64 `type:"integer" required:"true"`
 
-	metadataModifySnapshotCopyRetentionPeriodInput `json:"-", xml:"-"`
+	metadataModifySnapshotCopyRetentionPeriodInput `json:"-" xml:"-"`
 }
 
 type metadataModifySnapshotCopyRetentionPeriodInput struct {
@@ -5319,7 +5319,7 @@ type ModifySnapshotCopyRetentionPeriodOutput struct {
 	// Describes a cluster.
 	Cluster *Cluster `type:"structure"`
 
-	metadataModifySnapshotCopyRetentionPeriodOutput `json:"-", xml:"-"`
+	metadataModifySnapshotCopyRetentionPeriodOutput `json:"-" xml:"-"`
 }
 
 type metadataModifySnapshotCopyRetentionPeriodOutput struct {
@@ -5340,7 +5340,7 @@ type OrderableClusterOption struct {
 	// The node type for the orderable cluster.
 	NodeType *string `type:"string"`
 
-	metadataOrderableClusterOption `json:"-", xml:"-"`
+	metadataOrderableClusterOption `json:"-" xml:"-"`
 }
 
 type metadataOrderableClusterOption struct {
@@ -5374,7 +5374,7 @@ type Parameter struct {
 	// The source of the parameter value, such as "engine-default" or "user".
 	Source *string `type:"string"`
 
-	metadataParameter `json:"-", xml:"-"`
+	metadataParameter `json:"-" xml:"-"`
 }
 
 type metadataParameter struct {
@@ -5405,7 +5405,7 @@ type PendingModifiedValues struct {
 	// The pending or in-progress change of the number of nodes in the cluster.
 	NumberOfNodes *int64 `type:"integer"`
 
-	metadataPendingModifiedValues `json:"-", xml:"-"`
+	metadataPendingModifiedValues `json:"-" xml:"-"`
 }
 
 type metadataPendingModifiedValues struct {
@@ -5421,7 +5421,7 @@ type PurchaseReservedNodeOfferingInput struct {
 	// The unique identifier of the reserved node offering you want to purchase.
 	ReservedNodeOfferingID *string `locationName:"ReservedNodeOfferingId" type:"string" required:"true"`
 
-	metadataPurchaseReservedNodeOfferingInput `json:"-", xml:"-"`
+	metadataPurchaseReservedNodeOfferingInput `json:"-" xml:"-"`
 }
 
 type metadataPurchaseReservedNodeOfferingInput struct {
@@ -5432,7 +5432,7 @@ type PurchaseReservedNodeOfferingOutput struct {
 	// Describes a reserved node.
 	ReservedNode *ReservedNode `type:"structure"`
 
-	metadataPurchaseReservedNodeOfferingOutput `json:"-", xml:"-"`
+	metadataPurchaseReservedNodeOfferingOutput `json:"-" xml:"-"`
 }
 
 type metadataPurchaseReservedNodeOfferingOutput struct {
@@ -5443,7 +5443,7 @@ type RebootClusterInput struct {
 	// The cluster identifier.
 	ClusterIdentifier *string `type:"string" required:"true"`
 
-	metadataRebootClusterInput `json:"-", xml:"-"`
+	metadataRebootClusterInput `json:"-" xml:"-"`
 }
 
 type metadataRebootClusterInput struct {
@@ -5454,7 +5454,7 @@ type RebootClusterOutput struct {
 	// Describes a cluster.
 	Cluster *Cluster `type:"structure"`
 
-	metadataRebootClusterOutput `json:"-", xml:"-"`
+	metadataRebootClusterOutput `json:"-" xml:"-"`
 }
 
 type metadataRebootClusterOutput struct {
@@ -5470,7 +5470,7 @@ type RecurringCharge struct {
 	// The frequency at which the recurring charge amount is applied.
 	RecurringChargeFrequency *string `type:"string"`
 
-	metadataRecurringCharge `json:"-", xml:"-"`
+	metadataRecurringCharge `json:"-" xml:"-"`
 }
 
 type metadataRecurringCharge struct {
@@ -5524,7 +5524,7 @@ type ReservedNode struct {
 	// The hourly rate Amazon Redshift charge you for this reserved node.
 	UsagePrice *float64 `type:"double"`
 
-	metadataReservedNode `json:"-", xml:"-"`
+	metadataReservedNode `json:"-" xml:"-"`
 }
 
 type metadataReservedNode struct {
@@ -5562,7 +5562,7 @@ type ReservedNodeOffering struct {
 	// is running.
 	UsagePrice *float64 `type:"double"`
 
-	metadataReservedNodeOffering `json:"-", xml:"-"`
+	metadataReservedNodeOffering `json:"-" xml:"-"`
 }
 
 type metadataReservedNodeOffering struct {
@@ -5585,7 +5585,7 @@ type ResetClusterParameterGroupInput struct {
 	// Default: true
 	ResetAllParameters *bool `type:"boolean"`
 
-	metadataResetClusterParameterGroupInput `json:"-", xml:"-"`
+	metadataResetClusterParameterGroupInput `json:"-" xml:"-"`
 }
 
 type metadataResetClusterParameterGroupInput struct {
@@ -5715,7 +5715,7 @@ type RestoreFromClusterSnapshotInput struct {
 	//  VPC security groups only apply to clusters in VPCs.
 	VPCSecurityGroupIDs []*string `locationName:"VpcSecurityGroupIds" locationNameList:"VpcSecurityGroupId" type:"list"`
 
-	metadataRestoreFromClusterSnapshotInput `json:"-", xml:"-"`
+	metadataRestoreFromClusterSnapshotInput `json:"-" xml:"-"`
 }
 
 type metadataRestoreFromClusterSnapshotInput struct {
@@ -5726,7 +5726,7 @@ type RestoreFromClusterSnapshotOutput struct {
 	// Describes a cluster.
 	Cluster *Cluster `type:"structure"`
 
-	metadataRestoreFromClusterSnapshotOutput `json:"-", xml:"-"`
+	metadataRestoreFromClusterSnapshotOutput `json:"-" xml:"-"`
 }
 
 type metadataRestoreFromClusterSnapshotOutput struct {
@@ -5758,7 +5758,7 @@ type RestoreStatus struct {
 	// or failed.
 	Status *string `type:"string"`
 
-	metadataRestoreStatus `json:"-", xml:"-"`
+	metadataRestoreStatus `json:"-" xml:"-"`
 }
 
 type metadataRestoreStatus struct {
@@ -5788,7 +5788,7 @@ type RevokeClusterSecurityGroupIngressInput struct {
 	// Example: 111122223333
 	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
 
-	metadataRevokeClusterSecurityGroupIngressInput `json:"-", xml:"-"`
+	metadataRevokeClusterSecurityGroupIngressInput `json:"-" xml:"-"`
 }
 
 type metadataRevokeClusterSecurityGroupIngressInput struct {
@@ -5799,7 +5799,7 @@ type RevokeClusterSecurityGroupIngressOutput struct {
 	// Describes a security group.
 	ClusterSecurityGroup *ClusterSecurityGroup `type:"structure"`
 
-	metadataRevokeClusterSecurityGroupIngressOutput `json:"-", xml:"-"`
+	metadataRevokeClusterSecurityGroupIngressOutput `json:"-" xml:"-"`
 }
 
 type metadataRevokeClusterSecurityGroupIngressOutput struct {
@@ -5819,7 +5819,7 @@ type RevokeSnapshotAccessInput struct {
 	// The identifier of the snapshot that the account can no longer access.
 	SnapshotIdentifier *string `type:"string" required:"true"`
 
-	metadataRevokeSnapshotAccessInput `json:"-", xml:"-"`
+	metadataRevokeSnapshotAccessInput `json:"-" xml:"-"`
 }
 
 type metadataRevokeSnapshotAccessInput struct {
@@ -5830,7 +5830,7 @@ type RevokeSnapshotAccessOutput struct {
 	// Describes a snapshot.
 	Snapshot *Snapshot `type:"structure"`
 
-	metadataRevokeSnapshotAccessOutput `json:"-", xml:"-"`
+	metadataRevokeSnapshotAccessOutput `json:"-" xml:"-"`
 }
 
 type metadataRevokeSnapshotAccessOutput struct {
@@ -5844,7 +5844,7 @@ type RotateEncryptionKeyInput struct {
 	//  Constraints: Must be the name of valid cluster that has encryption enabled.
 	ClusterIdentifier *string `type:"string" required:"true"`
 
-	metadataRotateEncryptionKeyInput `json:"-", xml:"-"`
+	metadataRotateEncryptionKeyInput `json:"-" xml:"-"`
 }
 
 type metadataRotateEncryptionKeyInput struct {
@@ -5855,7 +5855,7 @@ type RotateEncryptionKeyOutput struct {
 	// Describes a cluster.
 	Cluster *Cluster `type:"structure"`
 
-	metadataRotateEncryptionKeyOutput `json:"-", xml:"-"`
+	metadataRotateEncryptionKeyOutput `json:"-" xml:"-"`
 }
 
 type metadataRotateEncryptionKeyOutput struct {
@@ -5961,7 +5961,7 @@ type Snapshot struct {
 	// VPC. Otherwise, this field is not in the output.
 	VPCID *string `locationName:"VpcId" type:"string"`
 
-	metadataSnapshot `json:"-", xml:"-"`
+	metadataSnapshot `json:"-" xml:"-"`
 }
 
 type metadataSnapshot struct {
@@ -5979,7 +5979,7 @@ type Subnet struct {
 	// The status of the subnet.
 	SubnetStatus *string `type:"string"`
 
-	metadataSubnet `json:"-", xml:"-"`
+	metadataSubnet `json:"-" xml:"-"`
 }
 
 type metadataSubnet struct {
@@ -5994,7 +5994,7 @@ type Tag struct {
 	// The value for the resource tag.
 	Value *string `type:"string"`
 
-	metadataTag `json:"-", xml:"-"`
+	metadataTag `json:"-" xml:"-"`
 }
 
 type metadataTag struct {
@@ -6019,7 +6019,7 @@ type TaggedResource struct {
 	// The tag for the resource.
 	Tag *Tag `type:"structure"`
 
-	metadataTaggedResource `json:"-", xml:"-"`
+	metadataTaggedResource `json:"-" xml:"-"`
 }
 
 type metadataTaggedResource struct {
@@ -6032,7 +6032,7 @@ type VPCSecurityGroupMembership struct {
 
 	VPCSecurityGroupID *string `locationName:"VpcSecurityGroupId" type:"string"`
 
-	metadataVPCSecurityGroupMembership `json:"-", xml:"-"`
+	metadataVPCSecurityGroupMembership `json:"-" xml:"-"`
 }
 
 type metadataVPCSecurityGroupMembership struct {

@@ -694,7 +694,7 @@ type ActivatePipelineInput struct {
 	// The identifier of the pipeline to activate.
 	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
 
-	metadataActivatePipelineInput `json:"-", xml:"-"`
+	metadataActivatePipelineInput `json:"-" xml:"-"`
 }
 
 type metadataActivatePipelineInput struct {
@@ -703,7 +703,7 @@ type metadataActivatePipelineInput struct {
 
 // Contains the output from the ActivatePipeline action.
 type ActivatePipelineOutput struct {
-	metadataActivatePipelineOutput `json:"-", xml:"-"`
+	metadataActivatePipelineOutput `json:"-" xml:"-"`
 }
 
 type metadataActivatePipelineOutput struct {
@@ -718,7 +718,7 @@ type AddTagsInput struct {
 	// The tags as key/value pairs to add to the pipeline.
 	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
 
-	metadataAddTagsInput `json:"-", xml:"-"`
+	metadataAddTagsInput `json:"-" xml:"-"`
 }
 
 type metadataAddTagsInput struct {
@@ -727,7 +727,7 @@ type metadataAddTagsInput struct {
 
 // The response from the AddTags action.
 type AddTagsOutput struct {
-	metadataAddTagsOutput `json:"-", xml:"-"`
+	metadataAddTagsOutput `json:"-" xml:"-"`
 }
 
 type metadataAddTagsOutput struct {
@@ -763,7 +763,7 @@ type CreatePipelineInput struct {
 	// is scoped to the AWS account or IAM user credentials.
 	UniqueID *string `locationName:"uniqueId" type:"string" required:"true"`
 
-	metadataCreatePipelineInput `json:"-", xml:"-"`
+	metadataCreatePipelineInput `json:"-" xml:"-"`
 }
 
 type metadataCreatePipelineInput struct {
@@ -776,7 +776,7 @@ type CreatePipelineOutput struct {
 	// is a string of the form: df-06372391ZG65EXAMPLE.
 	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
 
-	metadataCreatePipelineOutput `json:"-", xml:"-"`
+	metadataCreatePipelineOutput `json:"-" xml:"-"`
 }
 
 type metadataCreatePipelineOutput struct {
@@ -788,7 +788,7 @@ type DeletePipelineInput struct {
 	// The identifier of the pipeline to be deleted.
 	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
 
-	metadataDeletePipelineInput `json:"-", xml:"-"`
+	metadataDeletePipelineInput `json:"-" xml:"-"`
 }
 
 type metadataDeletePipelineInput struct {
@@ -796,7 +796,7 @@ type metadataDeletePipelineInput struct {
 }
 
 type DeletePipelineOutput struct {
-	metadataDeletePipelineOutput `json:"-", xml:"-"`
+	metadataDeletePipelineOutput `json:"-" xml:"-"`
 }
 
 type metadataDeletePipelineOutput struct {
@@ -824,7 +824,7 @@ type DescribeObjectsInput struct {
 	// Identifier of the pipeline that contains the object definitions.
 	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
 
-	metadataDescribeObjectsInput `json:"-", xml:"-"`
+	metadataDescribeObjectsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeObjectsInput struct {
@@ -843,7 +843,7 @@ type DescribeObjectsOutput struct {
 	// An array of object definitions that are returned by the call to DescribeObjects.
 	PipelineObjects []*PipelineObject `locationName:"pipelineObjects" type:"list" required:"true"`
 
-	metadataDescribeObjectsOutput `json:"-", xml:"-"`
+	metadataDescribeObjectsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeObjectsOutput struct {
@@ -857,7 +857,7 @@ type DescribePipelinesInput struct {
 	// by calling ListPipelines.
 	PipelineIDs []*string `locationName:"pipelineIds" type:"list" required:"true"`
 
-	metadataDescribePipelinesInput `json:"-", xml:"-"`
+	metadataDescribePipelinesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribePipelinesInput struct {
@@ -869,7 +869,7 @@ type DescribePipelinesOutput struct {
 	// An array of descriptions returned for the specified pipelines.
 	PipelineDescriptionList []*PipelineDescription `locationName:"pipelineDescriptionList" type:"list" required:"true"`
 
-	metadataDescribePipelinesOutput `json:"-", xml:"-"`
+	metadataDescribePipelinesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribePipelinesOutput struct {
@@ -887,7 +887,7 @@ type EvaluateExpressionInput struct {
 	// The identifier of the pipeline.
 	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
 
-	metadataEvaluateExpressionInput `json:"-", xml:"-"`
+	metadataEvaluateExpressionInput `json:"-" xml:"-"`
 }
 
 type metadataEvaluateExpressionInput struct {
@@ -899,7 +899,7 @@ type EvaluateExpressionOutput struct {
 	// The evaluated expression.
 	EvaluatedExpression *string `locationName:"evaluatedExpression" type:"string" required:"true"`
 
-	metadataEvaluateExpressionOutput `json:"-", xml:"-"`
+	metadataEvaluateExpressionOutput `json:"-" xml:"-"`
 }
 
 type metadataEvaluateExpressionOutput struct {
@@ -919,7 +919,7 @@ type Field struct {
 	// The field value, expressed as a String.
 	StringValue *string `locationName:"stringValue" type:"string"`
 
-	metadataField `json:"-", xml:"-"`
+	metadataField `json:"-" xml:"-"`
 }
 
 type metadataField struct {
@@ -937,7 +937,7 @@ type GetPipelineDefinitionInput struct {
 	// that was activated.
 	Version *string `locationName:"version" type:"string"`
 
-	metadataGetPipelineDefinitionInput `json:"-", xml:"-"`
+	metadataGetPipelineDefinitionInput `json:"-" xml:"-"`
 }
 
 type metadataGetPipelineDefinitionInput struct {
@@ -955,7 +955,7 @@ type GetPipelineDefinitionOutput struct {
 	// An array of objects defined in the pipeline.
 	PipelineObjects []*PipelineObject `locationName:"pipelineObjects" type:"list"`
 
-	metadataGetPipelineDefinitionOutput `json:"-", xml:"-"`
+	metadataGetPipelineDefinitionOutput `json:"-" xml:"-"`
 }
 
 type metadataGetPipelineDefinitionOutput struct {
@@ -978,7 +978,7 @@ type InstanceIdentity struct {
 	// the information provided in the instance identity document.
 	Signature *string `locationName:"signature" type:"string"`
 
-	metadataInstanceIdentity `json:"-", xml:"-"`
+	metadataInstanceIdentity `json:"-" xml:"-"`
 }
 
 type metadataInstanceIdentity struct {
@@ -993,7 +993,7 @@ type ListPipelinesInput struct {
 	// value from the response to retrieve the next set of results.
 	Marker *string `locationName:"marker" type:"string"`
 
-	metadataListPipelinesInput `json:"-", xml:"-"`
+	metadataListPipelinesInput `json:"-" xml:"-"`
 }
 
 type metadataListPipelinesInput struct {
@@ -1016,7 +1016,7 @@ type ListPipelinesOutput struct {
 	// use these identifiers to call DescribePipelines and GetPipelineDefinition.
 	PipelineIDList []*PipelineIDName `locationName:"pipelineIdList" type:"list" required:"true"`
 
-	metadataListPipelinesOutput `json:"-", xml:"-"`
+	metadataListPipelinesOutput `json:"-" xml:"-"`
 }
 
 type metadataListPipelinesOutput struct {
@@ -1049,7 +1049,7 @@ type Operator struct {
 	// The value that the actual field value will be compared with.
 	Values []*string `locationName:"values" type:"list"`
 
-	metadataOperator `json:"-", xml:"-"`
+	metadataOperator `json:"-" xml:"-"`
 }
 
 type metadataOperator struct {
@@ -1064,7 +1064,7 @@ type ParameterAttribute struct {
 	// The field value, expressed as a String.
 	StringValue *string `locationName:"stringValue" type:"string" required:"true"`
 
-	metadataParameterAttribute `json:"-", xml:"-"`
+	metadataParameterAttribute `json:"-" xml:"-"`
 }
 
 type metadataParameterAttribute struct {
@@ -1079,7 +1079,7 @@ type ParameterObject struct {
 	// Identifier of the parameter object.
 	ID *string `locationName:"id" type:"string" required:"true"`
 
-	metadataParameterObject `json:"-", xml:"-"`
+	metadataParameterObject `json:"-" xml:"-"`
 }
 
 type metadataParameterObject struct {
@@ -1094,7 +1094,7 @@ type ParameterValue struct {
 	// The field value, expressed as a String.
 	StringValue *string `locationName:"stringValue" type:"string" required:"true"`
 
-	metadataParameterValue `json:"-", xml:"-"`
+	metadataParameterValue `json:"-" xml:"-"`
 }
 
 type metadataParameterValue struct {
@@ -1123,7 +1123,7 @@ type PipelineDescription struct {
 	// in the AWS Data Pipeline Developer Guide.
 	Tags []*Tag `locationName:"tags" type:"list"`
 
-	metadataPipelineDescription `json:"-", xml:"-"`
+	metadataPipelineDescription `json:"-" xml:"-"`
 }
 
 type metadataPipelineDescription struct {
@@ -1139,7 +1139,7 @@ type PipelineIDName struct {
 	// Name of the pipeline.
 	Name *string `locationName:"name" type:"string"`
 
-	metadataPipelineIDName `json:"-", xml:"-"`
+	metadataPipelineIDName `json:"-" xml:"-"`
 }
 
 type metadataPipelineIDName struct {
@@ -1159,7 +1159,7 @@ type PipelineObject struct {
 	// Name of the object.
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	metadataPipelineObject `json:"-", xml:"-"`
+	metadataPipelineObject `json:"-" xml:"-"`
 }
 
 type metadataPipelineObject struct {
@@ -1186,7 +1186,7 @@ type PollForTaskInput struct {
 	// string must be an exact, case-sensitive, match.
 	WorkerGroup *string `locationName:"workerGroup" type:"string" required:"true"`
 
-	metadataPollForTaskInput `json:"-", xml:"-"`
+	metadataPollForTaskInput `json:"-" xml:"-"`
 }
 
 type metadataPollForTaskInput struct {
@@ -1202,7 +1202,7 @@ type PollForTaskOutput struct {
 	// calls to ReportTaskProgress and SetTaskStatus.
 	TaskObject *TaskObject `locationName:"taskObject" type:"structure"`
 
-	metadataPollForTaskOutput `json:"-", xml:"-"`
+	metadataPollForTaskOutput `json:"-" xml:"-"`
 }
 
 type metadataPollForTaskOutput struct {
@@ -1224,7 +1224,7 @@ type PutPipelineDefinitionInput struct {
 	// definition.
 	PipelineObjects []*PipelineObject `locationName:"pipelineObjects" type:"list" required:"true"`
 
-	metadataPutPipelineDefinitionInput `json:"-", xml:"-"`
+	metadataPutPipelineDefinitionInput `json:"-" xml:"-"`
 }
 
 type metadataPutPipelineDefinitionInput struct {
@@ -1246,7 +1246,7 @@ type PutPipelineDefinitionOutput struct {
 	// in pipelineObjects.
 	ValidationWarnings []*ValidationWarning `locationName:"validationWarnings" type:"list"`
 
-	metadataPutPipelineDefinitionOutput `json:"-", xml:"-"`
+	metadataPutPipelineDefinitionOutput `json:"-" xml:"-"`
 }
 
 type metadataPutPipelineDefinitionOutput struct {
@@ -1259,7 +1259,7 @@ type Query struct {
 	// selectors to match the query.
 	Selectors []*Selector `locationName:"selectors" type:"list"`
 
-	metadataQuery `json:"-", xml:"-"`
+	metadataQuery `json:"-" xml:"-"`
 }
 
 type metadataQuery struct {
@@ -1291,7 +1291,7 @@ type QueryObjectsInput struct {
 	// values: COMPONENT, INSTANCE, ATTEMPT.
 	Sphere *string `locationName:"sphere" type:"string" required:"true"`
 
-	metadataQueryObjectsInput `json:"-", xml:"-"`
+	metadataQueryObjectsInput `json:"-" xml:"-"`
 }
 
 type metadataQueryObjectsInput struct {
@@ -1312,7 +1312,7 @@ type QueryObjectsOutput struct {
 	// the marker value from the response to retrieve the next set of results.
 	Marker *string `locationName:"marker" type:"string"`
 
-	metadataQueryObjectsOutput `json:"-", xml:"-"`
+	metadataQueryObjectsOutput `json:"-" xml:"-"`
 }
 
 type metadataQueryObjectsOutput struct {
@@ -1327,7 +1327,7 @@ type RemoveTagsInput struct {
 	// The keys of the tags you wish to remove.
 	TagKeys []*string `locationName:"tagKeys" type:"list" required:"true"`
 
-	metadataRemoveTagsInput `json:"-", xml:"-"`
+	metadataRemoveTagsInput `json:"-" xml:"-"`
 }
 
 type metadataRemoveTagsInput struct {
@@ -1336,7 +1336,7 @@ type metadataRemoveTagsInput struct {
 
 // The result of the RemoveTags action.
 type RemoveTagsOutput struct {
-	metadataRemoveTagsOutput `json:"-", xml:"-"`
+	metadataRemoveTagsOutput `json:"-" xml:"-"`
 }
 
 type metadataRemoveTagsOutput struct {
@@ -1354,7 +1354,7 @@ type ReportTaskProgressInput struct {
 	// action.
 	TaskID *string `locationName:"taskId" type:"string" required:"true"`
 
-	metadataReportTaskProgressInput `json:"-", xml:"-"`
+	metadataReportTaskProgressInput `json:"-" xml:"-"`
 }
 
 type metadataReportTaskProgressInput struct {
@@ -1367,7 +1367,7 @@ type ReportTaskProgressOutput struct {
 	// task runner does not need to call SetTaskStatus for canceled tasks.
 	Canceled *bool `locationName:"canceled" type:"boolean" required:"true"`
 
-	metadataReportTaskProgressOutput `json:"-", xml:"-"`
+	metadataReportTaskProgressOutput `json:"-" xml:"-"`
 }
 
 type metadataReportTaskProgressOutput struct {
@@ -1393,7 +1393,7 @@ type ReportTaskRunnerHeartbeatInput struct {
 	// the string must be an exact, case-sensitive, match.
 	WorkerGroup *string `locationName:"workerGroup" type:"string"`
 
-	metadataReportTaskRunnerHeartbeatInput `json:"-", xml:"-"`
+	metadataReportTaskRunnerHeartbeatInput `json:"-" xml:"-"`
 }
 
 type metadataReportTaskRunnerHeartbeatInput struct {
@@ -1406,7 +1406,7 @@ type ReportTaskRunnerHeartbeatOutput struct {
 	// task runner that called ReportTaskRunnerHeartbeat should terminate.
 	Terminate *bool `locationName:"terminate" type:"boolean" required:"true"`
 
-	metadataReportTaskRunnerHeartbeatOutput `json:"-", xml:"-"`
+	metadataReportTaskRunnerHeartbeatOutput `json:"-" xml:"-"`
 }
 
 type metadataReportTaskRunnerHeartbeatOutput struct {
@@ -1426,7 +1426,7 @@ type Selector struct {
 	// value.
 	Operator *Operator `locationName:"operator" type:"structure"`
 
-	metadataSelector `json:"-", xml:"-"`
+	metadataSelector `json:"-" xml:"-"`
 }
 
 type metadataSelector struct {
@@ -1447,7 +1447,7 @@ type SetStatusInput struct {
 	// RERUN, or MARK_FINISHED.
 	Status *string `locationName:"status" type:"string" required:"true"`
 
-	metadataSetStatusInput `json:"-", xml:"-"`
+	metadataSetStatusInput `json:"-" xml:"-"`
 }
 
 type metadataSetStatusInput struct {
@@ -1455,7 +1455,7 @@ type metadataSetStatusInput struct {
 }
 
 type SetStatusOutput struct {
-	metadataSetStatusOutput `json:"-", xml:"-"`
+	metadataSetStatusOutput `json:"-" xml:"-"`
 }
 
 type metadataSetStatusOutput struct {
@@ -1490,7 +1490,7 @@ type SetTaskStatusInput struct {
 	// The FALSE value is used by preconditions.
 	TaskStatus *string `locationName:"taskStatus" type:"string" required:"true"`
 
-	metadataSetTaskStatusInput `json:"-", xml:"-"`
+	metadataSetTaskStatusInput `json:"-" xml:"-"`
 }
 
 type metadataSetTaskStatusInput struct {
@@ -1499,7 +1499,7 @@ type metadataSetTaskStatusInput struct {
 
 // The output from the SetTaskStatus action.
 type SetTaskStatusOutput struct {
-	metadataSetTaskStatusOutput `json:"-", xml:"-"`
+	metadataSetTaskStatusOutput `json:"-" xml:"-"`
 }
 
 type metadataSetTaskStatusOutput struct {
@@ -1522,7 +1522,7 @@ type Tag struct {
 	// in the AWS Data Pipeline Developer Guide.
 	Value *string `locationName:"value" type:"string" required:"true"`
 
-	metadataTag `json:"-", xml:"-"`
+	metadataTag `json:"-" xml:"-"`
 }
 
 type metadataTag struct {
@@ -1546,7 +1546,7 @@ type TaskObject struct {
 	// and ReportTaskProgress actions.
 	TaskID *string `locationName:"taskId" type:"string"`
 
-	metadataTaskObject `json:"-", xml:"-"`
+	metadataTaskObject `json:"-" xml:"-"`
 }
 
 type metadataTaskObject struct {
@@ -1568,7 +1568,7 @@ type ValidatePipelineDefinitionInput struct {
 	// pipeline.
 	PipelineObjects []*PipelineObject `locationName:"pipelineObjects" type:"list" required:"true"`
 
-	metadataValidatePipelineDefinitionInput `json:"-", xml:"-"`
+	metadataValidatePipelineDefinitionInput `json:"-" xml:"-"`
 }
 
 type metadataValidatePipelineDefinitionInput struct {
@@ -1586,7 +1586,7 @@ type ValidatePipelineDefinitionOutput struct {
 	// Lists the validation warnings that were found by ValidatePipelineDefinition.
 	ValidationWarnings []*ValidationWarning `locationName:"validationWarnings" type:"list"`
 
-	metadataValidatePipelineDefinitionOutput `json:"-", xml:"-"`
+	metadataValidatePipelineDefinitionOutput `json:"-" xml:"-"`
 }
 
 type metadataValidatePipelineDefinitionOutput struct {
@@ -1603,7 +1603,7 @@ type ValidationError struct {
 	// The identifier of the object that contains the validation error.
 	ID *string `locationName:"id" type:"string"`
 
-	metadataValidationError `json:"-", xml:"-"`
+	metadataValidationError `json:"-" xml:"-"`
 }
 
 type metadataValidationError struct {
@@ -1620,7 +1620,7 @@ type ValidationWarning struct {
 	// A description of the validation warning.
 	Warnings []*string `locationName:"warnings" type:"list"`
 
-	metadataValidationWarning `json:"-", xml:"-"`
+	metadataValidationWarning `json:"-" xml:"-"`
 }
 
 type metadataValidationWarning struct {

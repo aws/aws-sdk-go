@@ -2612,7 +2612,7 @@ type App struct {
 	// The app type.
 	Type *string `type:"string"`
 
-	metadataApp `json:"-", xml:"-"`
+	metadataApp `json:"-" xml:"-"`
 }
 
 type metadataApp struct {
@@ -2627,7 +2627,7 @@ type AssignInstanceInput struct {
 	// a registered instance to a built-in layer.
 	LayerIDs []*string `locationName:"LayerIds" type:"list" required:"true"`
 
-	metadataAssignInstanceInput `json:"-", xml:"-"`
+	metadataAssignInstanceInput `json:"-" xml:"-"`
 }
 
 type metadataAssignInstanceInput struct {
@@ -2635,7 +2635,7 @@ type metadataAssignInstanceInput struct {
 }
 
 type AssignInstanceOutput struct {
-	metadataAssignInstanceOutput `json:"-", xml:"-"`
+	metadataAssignInstanceOutput `json:"-" xml:"-"`
 }
 
 type metadataAssignInstanceOutput struct {
@@ -2649,7 +2649,7 @@ type AssignVolumeInput struct {
 	// The volume ID.
 	VolumeID *string `locationName:"VolumeId" type:"string" required:"true"`
 
-	metadataAssignVolumeInput `json:"-", xml:"-"`
+	metadataAssignVolumeInput `json:"-" xml:"-"`
 }
 
 type metadataAssignVolumeInput struct {
@@ -2657,7 +2657,7 @@ type metadataAssignVolumeInput struct {
 }
 
 type AssignVolumeOutput struct {
-	metadataAssignVolumeOutput `json:"-", xml:"-"`
+	metadataAssignVolumeOutput `json:"-" xml:"-"`
 }
 
 type metadataAssignVolumeOutput struct {
@@ -2671,7 +2671,7 @@ type AssociateElasticIPInput struct {
 	// The instance ID.
 	InstanceID *string `locationName:"InstanceId" type:"string"`
 
-	metadataAssociateElasticIPInput `json:"-", xml:"-"`
+	metadataAssociateElasticIPInput `json:"-" xml:"-"`
 }
 
 type metadataAssociateElasticIPInput struct {
@@ -2679,7 +2679,7 @@ type metadataAssociateElasticIPInput struct {
 }
 
 type AssociateElasticIPOutput struct {
-	metadataAssociateElasticIPOutput `json:"-", xml:"-"`
+	metadataAssociateElasticIPOutput `json:"-" xml:"-"`
 }
 
 type metadataAssociateElasticIPOutput struct {
@@ -2694,7 +2694,7 @@ type AttachElasticLoadBalancerInput struct {
 	// to.
 	LayerID *string `locationName:"LayerId" type:"string" required:"true"`
 
-	metadataAttachElasticLoadBalancerInput `json:"-", xml:"-"`
+	metadataAttachElasticLoadBalancerInput `json:"-" xml:"-"`
 }
 
 type metadataAttachElasticLoadBalancerInput struct {
@@ -2702,7 +2702,7 @@ type metadataAttachElasticLoadBalancerInput struct {
 }
 
 type AttachElasticLoadBalancerOutput struct {
-	metadataAttachElasticLoadBalancerOutput `json:"-", xml:"-"`
+	metadataAttachElasticLoadBalancerOutput `json:"-" xml:"-"`
 }
 
 type metadataAttachElasticLoadBalancerOutput struct {
@@ -2739,7 +2739,7 @@ type AutoScalingThresholds struct {
 	// more instances are added or removed.
 	ThresholdsWaitTime *int64 `type:"integer"`
 
-	metadataAutoScalingThresholds `json:"-", xml:"-"`
+	metadataAutoScalingThresholds `json:"-" xml:"-"`
 }
 
 type metadataAutoScalingThresholds struct {
@@ -2754,7 +2754,7 @@ type ChefConfiguration struct {
 	// Whether to enable Berkshelf.
 	ManageBerkshelf *bool `type:"boolean"`
 
-	metadataChefConfiguration `json:"-", xml:"-"`
+	metadataChefConfiguration `json:"-" xml:"-"`
 }
 
 type metadataChefConfiguration struct {
@@ -2910,7 +2910,7 @@ type CloneStackInput struct {
 	// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html).
 	VPCID *string `locationName:"VpcId" type:"string"`
 
-	metadataCloneStackInput `json:"-", xml:"-"`
+	metadataCloneStackInput `json:"-" xml:"-"`
 }
 
 type metadataCloneStackInput struct {
@@ -2922,7 +2922,7 @@ type CloneStackOutput struct {
 	// The cloned stack ID.
 	StackID *string `locationName:"StackId" type:"string"`
 
-	metadataCloneStackOutput `json:"-", xml:"-"`
+	metadataCloneStackOutput `json:"-" xml:"-"`
 }
 
 type metadataCloneStackOutput struct {
@@ -2966,7 +2966,7 @@ type Command struct {
 	// update_custom_cookbooks execute_recipes
 	Type *string `type:"string"`
 
-	metadataCommand `json:"-", xml:"-"`
+	metadataCommand `json:"-" xml:"-"`
 }
 
 type metadataCommand struct {
@@ -3020,7 +3020,7 @@ type CreateAppInput struct {
 	// layer.
 	Type *string `type:"string" required:"true"`
 
-	metadataCreateAppInput `json:"-", xml:"-"`
+	metadataCreateAppInput `json:"-" xml:"-"`
 }
 
 type metadataCreateAppInput struct {
@@ -3032,7 +3032,7 @@ type CreateAppOutput struct {
 	// The app ID.
 	AppID *string `locationName:"AppId" type:"string"`
 
-	metadataCreateAppOutput `json:"-", xml:"-"`
+	metadataCreateAppOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateAppOutput struct {
@@ -3067,7 +3067,7 @@ type CreateDeploymentInput struct {
 	// The stack ID.
 	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
-	metadataCreateDeploymentInput `json:"-", xml:"-"`
+	metadataCreateDeploymentInput `json:"-" xml:"-"`
 }
 
 type metadataCreateDeploymentInput struct {
@@ -3080,7 +3080,7 @@ type CreateDeploymentOutput struct {
 	// deployment.
 	DeploymentID *string `locationName:"DeploymentId" type:"string"`
 
-	metadataCreateDeploymentOutput `json:"-", xml:"-"`
+	metadataCreateDeploymentOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateDeploymentOutput struct {
@@ -3164,7 +3164,7 @@ type CreateInstanceInput struct {
 	// The instance's virtualization type, paravirtual or hvm.
 	VirtualizationType *string `type:"string"`
 
-	metadataCreateInstanceInput `json:"-", xml:"-"`
+	metadataCreateInstanceInput `json:"-" xml:"-"`
 }
 
 type metadataCreateInstanceInput struct {
@@ -3176,7 +3176,7 @@ type CreateInstanceOutput struct {
 	// The instance ID.
 	InstanceID *string `locationName:"InstanceId" type:"string"`
 
-	metadataCreateInstanceOutput `json:"-", xml:"-"`
+	metadataCreateInstanceOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateInstanceOutput struct {
@@ -3249,7 +3249,7 @@ type CreateLayerInput struct {
 	// A VolumeConfigurations object that describes the layer's Amazon EBS volumes.
 	VolumeConfigurations []*VolumeConfiguration `type:"list"`
 
-	metadataCreateLayerInput `json:"-", xml:"-"`
+	metadataCreateLayerInput `json:"-" xml:"-"`
 }
 
 type metadataCreateLayerInput struct {
@@ -3261,7 +3261,7 @@ type CreateLayerOutput struct {
 	// The layer ID.
 	LayerID *string `locationName:"LayerId" type:"string"`
 
-	metadataCreateLayerOutput `json:"-", xml:"-"`
+	metadataCreateLayerOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateLayerOutput struct {
@@ -3402,7 +3402,7 @@ type CreateStackInput struct {
 	// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html).
 	VPCID *string `locationName:"VpcId" type:"string"`
 
-	metadataCreateStackInput `json:"-", xml:"-"`
+	metadataCreateStackInput `json:"-" xml:"-"`
 }
 
 type metadataCreateStackInput struct {
@@ -3415,7 +3415,7 @@ type CreateStackOutput struct {
 	// when performing actions such as DescribeStacks.
 	StackID *string `locationName:"StackId" type:"string"`
 
-	metadataCreateStackOutput `json:"-", xml:"-"`
+	metadataCreateStackOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateStackOutput struct {
@@ -3440,7 +3440,7 @@ type CreateUserProfileInput struct {
 	// IAM user name.
 	SSHUsername *string `locationName:"SshUsername" type:"string"`
 
-	metadataCreateUserProfileInput `json:"-", xml:"-"`
+	metadataCreateUserProfileInput `json:"-" xml:"-"`
 }
 
 type metadataCreateUserProfileInput struct {
@@ -3452,7 +3452,7 @@ type CreateUserProfileOutput struct {
 	// The user's IAM ARN.
 	IAMUserARN *string `locationName:"IamUserArn" type:"string"`
 
-	metadataCreateUserProfileOutput `json:"-", xml:"-"`
+	metadataCreateUserProfileOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateUserProfileOutput struct {
@@ -3471,7 +3471,7 @@ type DataSource struct {
 	// or RdsDbInstance.
 	Type *string `type:"string"`
 
-	metadataDataSource `json:"-", xml:"-"`
+	metadataDataSource `json:"-" xml:"-"`
 }
 
 type metadataDataSource struct {
@@ -3482,7 +3482,7 @@ type DeleteAppInput struct {
 	// The app ID.
 	AppID *string `locationName:"AppId" type:"string" required:"true"`
 
-	metadataDeleteAppInput `json:"-", xml:"-"`
+	metadataDeleteAppInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAppInput struct {
@@ -3490,7 +3490,7 @@ type metadataDeleteAppInput struct {
 }
 
 type DeleteAppOutput struct {
-	metadataDeleteAppOutput `json:"-", xml:"-"`
+	metadataDeleteAppOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAppOutput struct {
@@ -3507,7 +3507,7 @@ type DeleteInstanceInput struct {
 	// The instance ID.
 	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
 
-	metadataDeleteInstanceInput `json:"-", xml:"-"`
+	metadataDeleteInstanceInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteInstanceInput struct {
@@ -3515,7 +3515,7 @@ type metadataDeleteInstanceInput struct {
 }
 
 type DeleteInstanceOutput struct {
-	metadataDeleteInstanceOutput `json:"-", xml:"-"`
+	metadataDeleteInstanceOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteInstanceOutput struct {
@@ -3526,7 +3526,7 @@ type DeleteLayerInput struct {
 	// The layer ID.
 	LayerID *string `locationName:"LayerId" type:"string" required:"true"`
 
-	metadataDeleteLayerInput `json:"-", xml:"-"`
+	metadataDeleteLayerInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLayerInput struct {
@@ -3534,7 +3534,7 @@ type metadataDeleteLayerInput struct {
 }
 
 type DeleteLayerOutput struct {
-	metadataDeleteLayerOutput `json:"-", xml:"-"`
+	metadataDeleteLayerOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLayerOutput struct {
@@ -3545,7 +3545,7 @@ type DeleteStackInput struct {
 	// The stack ID.
 	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
-	metadataDeleteStackInput `json:"-", xml:"-"`
+	metadataDeleteStackInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteStackInput struct {
@@ -3553,7 +3553,7 @@ type metadataDeleteStackInput struct {
 }
 
 type DeleteStackOutput struct {
-	metadataDeleteStackOutput `json:"-", xml:"-"`
+	metadataDeleteStackOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteStackOutput struct {
@@ -3564,7 +3564,7 @@ type DeleteUserProfileInput struct {
 	// The user's IAM ARN.
 	IAMUserARN *string `locationName:"IamUserArn" type:"string" required:"true"`
 
-	metadataDeleteUserProfileInput `json:"-", xml:"-"`
+	metadataDeleteUserProfileInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteUserProfileInput struct {
@@ -3572,7 +3572,7 @@ type metadataDeleteUserProfileInput struct {
 }
 
 type DeleteUserProfileOutput struct {
-	metadataDeleteUserProfileOutput `json:"-", xml:"-"`
+	metadataDeleteUserProfileOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteUserProfileOutput struct {
@@ -3626,7 +3626,7 @@ type Deployment struct {
 	//  running successful failed
 	Status *string `type:"string"`
 
-	metadataDeployment `json:"-", xml:"-"`
+	metadataDeployment `json:"-" xml:"-"`
 }
 
 type metadataDeployment struct {
@@ -3675,7 +3675,7 @@ type DeploymentCommand struct {
 	// the app's web or application server.  undeploy: Undeploy the app.
 	Name *string `type:"string" required:"true"`
 
-	metadataDeploymentCommand `json:"-", xml:"-"`
+	metadataDeploymentCommand `json:"-" xml:"-"`
 }
 
 type metadataDeploymentCommand struct {
@@ -3686,7 +3686,7 @@ type DeregisterElasticIPInput struct {
 	// The Elastic IP address.
 	ElasticIP *string `locationName:"ElasticIp" type:"string" required:"true"`
 
-	metadataDeregisterElasticIPInput `json:"-", xml:"-"`
+	metadataDeregisterElasticIPInput `json:"-" xml:"-"`
 }
 
 type metadataDeregisterElasticIPInput struct {
@@ -3694,7 +3694,7 @@ type metadataDeregisterElasticIPInput struct {
 }
 
 type DeregisterElasticIPOutput struct {
-	metadataDeregisterElasticIPOutput `json:"-", xml:"-"`
+	metadataDeregisterElasticIPOutput `json:"-" xml:"-"`
 }
 
 type metadataDeregisterElasticIPOutput struct {
@@ -3705,7 +3705,7 @@ type DeregisterInstanceInput struct {
 	// The instance ID.
 	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
 
-	metadataDeregisterInstanceInput `json:"-", xml:"-"`
+	metadataDeregisterInstanceInput `json:"-" xml:"-"`
 }
 
 type metadataDeregisterInstanceInput struct {
@@ -3713,7 +3713,7 @@ type metadataDeregisterInstanceInput struct {
 }
 
 type DeregisterInstanceOutput struct {
-	metadataDeregisterInstanceOutput `json:"-", xml:"-"`
+	metadataDeregisterInstanceOutput `json:"-" xml:"-"`
 }
 
 type metadataDeregisterInstanceOutput struct {
@@ -3724,7 +3724,7 @@ type DeregisterRDSDBInstanceInput struct {
 	// The Amazon RDS instance's ARN.
 	RDSDBInstanceARN *string `locationName:"RdsDbInstanceArn" type:"string" required:"true"`
 
-	metadataDeregisterRDSDBInstanceInput `json:"-", xml:"-"`
+	metadataDeregisterRDSDBInstanceInput `json:"-" xml:"-"`
 }
 
 type metadataDeregisterRDSDBInstanceInput struct {
@@ -3732,7 +3732,7 @@ type metadataDeregisterRDSDBInstanceInput struct {
 }
 
 type DeregisterRDSDBInstanceOutput struct {
-	metadataDeregisterRDSDBInstanceOutput `json:"-", xml:"-"`
+	metadataDeregisterRDSDBInstanceOutput `json:"-" xml:"-"`
 }
 
 type metadataDeregisterRDSDBInstanceOutput struct {
@@ -3743,7 +3743,7 @@ type DeregisterVolumeInput struct {
 	// The volume ID.
 	VolumeID *string `locationName:"VolumeId" type:"string" required:"true"`
 
-	metadataDeregisterVolumeInput `json:"-", xml:"-"`
+	metadataDeregisterVolumeInput `json:"-" xml:"-"`
 }
 
 type metadataDeregisterVolumeInput struct {
@@ -3751,7 +3751,7 @@ type metadataDeregisterVolumeInput struct {
 }
 
 type DeregisterVolumeOutput struct {
-	metadataDeregisterVolumeOutput `json:"-", xml:"-"`
+	metadataDeregisterVolumeOutput `json:"-" xml:"-"`
 }
 
 type metadataDeregisterVolumeOutput struct {
@@ -3768,7 +3768,7 @@ type DescribeAppsInput struct {
 	// of the apps in the specified stack.
 	StackID *string `locationName:"StackId" type:"string"`
 
-	metadataDescribeAppsInput `json:"-", xml:"-"`
+	metadataDescribeAppsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAppsInput struct {
@@ -3780,7 +3780,7 @@ type DescribeAppsOutput struct {
 	// An array of App objects that describe the specified apps.
 	Apps []*App `type:"list"`
 
-	metadataDescribeAppsOutput `json:"-", xml:"-"`
+	metadataDescribeAppsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAppsOutput struct {
@@ -3801,7 +3801,7 @@ type DescribeCommandsInput struct {
 	// a description of the commands associated with the specified instance.
 	InstanceID *string `locationName:"InstanceId" type:"string"`
 
-	metadataDescribeCommandsInput `json:"-", xml:"-"`
+	metadataDescribeCommandsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeCommandsInput struct {
@@ -3813,7 +3813,7 @@ type DescribeCommandsOutput struct {
 	// An array of Command objects that describe each of the specified commands.
 	Commands []*Command `type:"list"`
 
-	metadataDescribeCommandsOutput `json:"-", xml:"-"`
+	metadataDescribeCommandsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeCommandsOutput struct {
@@ -3834,7 +3834,7 @@ type DescribeDeploymentsInput struct {
 	// a description of the commands associated with the specified stack.
 	StackID *string `locationName:"StackId" type:"string"`
 
-	metadataDescribeDeploymentsInput `json:"-", xml:"-"`
+	metadataDescribeDeploymentsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeDeploymentsInput struct {
@@ -3846,7 +3846,7 @@ type DescribeDeploymentsOutput struct {
 	// An array of Deployment objects that describe the deployments.
 	Deployments []*Deployment `type:"list"`
 
-	metadataDescribeDeploymentsOutput `json:"-", xml:"-"`
+	metadataDescribeDeploymentsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeDeploymentsOutput struct {
@@ -3867,7 +3867,7 @@ type DescribeElasticIPsInput struct {
 	// of the Elastic IP addresses that are registered with the specified stack.
 	StackID *string `locationName:"StackId" type:"string"`
 
-	metadataDescribeElasticIPsInput `json:"-", xml:"-"`
+	metadataDescribeElasticIPsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeElasticIPsInput struct {
@@ -3879,7 +3879,7 @@ type DescribeElasticIPsOutput struct {
 	// An ElasticIps object that describes the specified Elastic IP addresses.
 	ElasticIPs []*ElasticIP `locationName:"ElasticIps" type:"list"`
 
-	metadataDescribeElasticIPsOutput `json:"-", xml:"-"`
+	metadataDescribeElasticIPsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeElasticIPsOutput struct {
@@ -3894,7 +3894,7 @@ type DescribeElasticLoadBalancersInput struct {
 	// A stack ID. The action describes the stack's Elastic Load Balancing instances.
 	StackID *string `locationName:"StackId" type:"string"`
 
-	metadataDescribeElasticLoadBalancersInput `json:"-", xml:"-"`
+	metadataDescribeElasticLoadBalancersInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeElasticLoadBalancersInput struct {
@@ -3907,7 +3907,7 @@ type DescribeElasticLoadBalancersOutput struct {
 	// Load Balancing instances.
 	ElasticLoadBalancers []*ElasticLoadBalancer `type:"list"`
 
-	metadataDescribeElasticLoadBalancersOutput `json:"-", xml:"-"`
+	metadataDescribeElasticLoadBalancersOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeElasticLoadBalancersOutput struct {
@@ -3928,7 +3928,7 @@ type DescribeInstancesInput struct {
 	// of the instances associated with the specified stack.
 	StackID *string `locationName:"StackId" type:"string"`
 
-	metadataDescribeInstancesInput `json:"-", xml:"-"`
+	metadataDescribeInstancesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeInstancesInput struct {
@@ -3940,7 +3940,7 @@ type DescribeInstancesOutput struct {
 	// An array of Instance objects that describe the instances.
 	Instances []*Instance `type:"list"`
 
-	metadataDescribeInstancesOutput `json:"-", xml:"-"`
+	metadataDescribeInstancesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeInstancesOutput struct {
@@ -3956,7 +3956,7 @@ type DescribeLayersInput struct {
 	// The stack ID.
 	StackID *string `locationName:"StackId" type:"string"`
 
-	metadataDescribeLayersInput `json:"-", xml:"-"`
+	metadataDescribeLayersInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLayersInput struct {
@@ -3968,7 +3968,7 @@ type DescribeLayersOutput struct {
 	// An array of Layer objects that describe the layers.
 	Layers []*Layer `type:"list"`
 
-	metadataDescribeLayersOutput `json:"-", xml:"-"`
+	metadataDescribeLayersOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLayersOutput struct {
@@ -3979,7 +3979,7 @@ type DescribeLoadBasedAutoScalingInput struct {
 	// An array of layer IDs.
 	LayerIDs []*string `locationName:"LayerIds" type:"list" required:"true"`
 
-	metadataDescribeLoadBasedAutoScalingInput `json:"-", xml:"-"`
+	metadataDescribeLoadBasedAutoScalingInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLoadBasedAutoScalingInput struct {
@@ -3992,7 +3992,7 @@ type DescribeLoadBasedAutoScalingOutput struct {
 	// layer's configuration.
 	LoadBasedAutoScalingConfigurations []*LoadBasedAutoScalingConfiguration `type:"list"`
 
-	metadataDescribeLoadBasedAutoScalingOutput `json:"-", xml:"-"`
+	metadataDescribeLoadBasedAutoScalingOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLoadBasedAutoScalingOutput struct {
@@ -4000,7 +4000,7 @@ type metadataDescribeLoadBasedAutoScalingOutput struct {
 }
 
 type DescribeMyUserProfileInput struct {
-	metadataDescribeMyUserProfileInput `json:"-", xml:"-"`
+	metadataDescribeMyUserProfileInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeMyUserProfileInput struct {
@@ -4012,7 +4012,7 @@ type DescribeMyUserProfileOutput struct {
 	// A UserProfile object that describes the user's SSH information.
 	UserProfile *SelfUserProfile `type:"structure"`
 
-	metadataDescribeMyUserProfileOutput `json:"-", xml:"-"`
+	metadataDescribeMyUserProfileOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeMyUserProfileOutput struct {
@@ -4027,7 +4027,7 @@ type DescribePermissionsInput struct {
 	// The stack ID.
 	StackID *string `locationName:"StackId" type:"string"`
 
-	metadataDescribePermissionsInput `json:"-", xml:"-"`
+	metadataDescribePermissionsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribePermissionsInput struct {
@@ -4046,7 +4046,7 @@ type DescribePermissionsOutput struct {
 	// for the specified stack and IAM ARN.
 	Permissions []*Permission `type:"list"`
 
-	metadataDescribePermissionsOutput `json:"-", xml:"-"`
+	metadataDescribePermissionsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribePermissionsOutput struct {
@@ -4066,7 +4066,7 @@ type DescribeRAIDArraysInput struct {
 	// The stack ID.
 	StackID *string `locationName:"StackId" type:"string"`
 
-	metadataDescribeRAIDArraysInput `json:"-", xml:"-"`
+	metadataDescribeRAIDArraysInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeRAIDArraysInput struct {
@@ -4078,7 +4078,7 @@ type DescribeRAIDArraysOutput struct {
 	// A RaidArrays object that describes the specified RAID arrays.
 	RAIDArrays []*RAIDArray `locationName:"RaidArrays" type:"list"`
 
-	metadataDescribeRAIDArraysOutput `json:"-", xml:"-"`
+	metadataDescribeRAIDArraysOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeRAIDArraysOutput struct {
@@ -4093,7 +4093,7 @@ type DescribeRDSDBInstancesInput struct {
 	// descriptions of all registered Amazon RDS instances.
 	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
-	metadataDescribeRDSDBInstancesInput `json:"-", xml:"-"`
+	metadataDescribeRDSDBInstancesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeRDSDBInstancesInput struct {
@@ -4105,7 +4105,7 @@ type DescribeRDSDBInstancesOutput struct {
 	// An a array of RdsDbInstance objects that describe the instances.
 	RDSDBInstances []*RDSDBInstance `locationName:"RdsDbInstances" type:"list"`
 
-	metadataDescribeRDSDBInstancesOutput `json:"-", xml:"-"`
+	metadataDescribeRDSDBInstancesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeRDSDBInstancesOutput struct {
@@ -4126,7 +4126,7 @@ type DescribeServiceErrorsInput struct {
 	// of the errors associated with the specified stack.
 	StackID *string `locationName:"StackId" type:"string"`
 
-	metadataDescribeServiceErrorsInput `json:"-", xml:"-"`
+	metadataDescribeServiceErrorsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeServiceErrorsInput struct {
@@ -4138,7 +4138,7 @@ type DescribeServiceErrorsOutput struct {
 	// An array of ServiceError objects that describe the specified service errors.
 	ServiceErrors []*ServiceError `type:"list"`
 
-	metadataDescribeServiceErrorsOutput `json:"-", xml:"-"`
+	metadataDescribeServiceErrorsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeServiceErrorsOutput struct {
@@ -4149,7 +4149,7 @@ type DescribeStackProvisioningParametersInput struct {
 	// The stack ID
 	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
-	metadataDescribeStackProvisioningParametersInput `json:"-", xml:"-"`
+	metadataDescribeStackProvisioningParametersInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeStackProvisioningParametersInput struct {
@@ -4164,7 +4164,7 @@ type DescribeStackProvisioningParametersOutput struct {
 	// An embedded object that contains the provisioning parameters.
 	Parameters *map[string]*string `type:"map"`
 
-	metadataDescribeStackProvisioningParametersOutput `json:"-", xml:"-"`
+	metadataDescribeStackProvisioningParametersOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeStackProvisioningParametersOutput struct {
@@ -4175,7 +4175,7 @@ type DescribeStackSummaryInput struct {
 	// The stack ID.
 	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
-	metadataDescribeStackSummaryInput `json:"-", xml:"-"`
+	metadataDescribeStackSummaryInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeStackSummaryInput struct {
@@ -4187,7 +4187,7 @@ type DescribeStackSummaryOutput struct {
 	// A StackSummary object that contains the results.
 	StackSummary *StackSummary `type:"structure"`
 
-	metadataDescribeStackSummaryOutput `json:"-", xml:"-"`
+	metadataDescribeStackSummaryOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeStackSummaryOutput struct {
@@ -4199,7 +4199,7 @@ type DescribeStacksInput struct {
 	// this parameter, DescribeStacks returns a description of every stack.
 	StackIDs []*string `locationName:"StackIds" type:"list"`
 
-	metadataDescribeStacksInput `json:"-", xml:"-"`
+	metadataDescribeStacksInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeStacksInput struct {
@@ -4211,7 +4211,7 @@ type DescribeStacksOutput struct {
 	// An array of Stack objects that describe the stacks.
 	Stacks []*Stack `type:"list"`
 
-	metadataDescribeStacksOutput `json:"-", xml:"-"`
+	metadataDescribeStacksOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeStacksOutput struct {
@@ -4222,7 +4222,7 @@ type DescribeTimeBasedAutoScalingInput struct {
 	// An array of instance IDs.
 	InstanceIDs []*string `locationName:"InstanceIds" type:"list" required:"true"`
 
-	metadataDescribeTimeBasedAutoScalingInput `json:"-", xml:"-"`
+	metadataDescribeTimeBasedAutoScalingInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTimeBasedAutoScalingInput struct {
@@ -4235,7 +4235,7 @@ type DescribeTimeBasedAutoScalingOutput struct {
 	// for the specified instances.
 	TimeBasedAutoScalingConfigurations []*TimeBasedAutoScalingConfiguration `type:"list"`
 
-	metadataDescribeTimeBasedAutoScalingOutput `json:"-", xml:"-"`
+	metadataDescribeTimeBasedAutoScalingOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTimeBasedAutoScalingOutput struct {
@@ -4246,7 +4246,7 @@ type DescribeUserProfilesInput struct {
 	// An array of IAM user ARNs that identify the users to be described.
 	IAMUserARNs []*string `locationName:"IamUserArns" type:"list"`
 
-	metadataDescribeUserProfilesInput `json:"-", xml:"-"`
+	metadataDescribeUserProfilesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeUserProfilesInput struct {
@@ -4258,7 +4258,7 @@ type DescribeUserProfilesOutput struct {
 	// A Users object that describes the specified users.
 	UserProfiles []*UserProfile `type:"list"`
 
-	metadataDescribeUserProfilesOutput `json:"-", xml:"-"`
+	metadataDescribeUserProfilesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeUserProfilesOutput struct {
@@ -4282,7 +4282,7 @@ type DescribeVolumesInput struct {
 	// of every volume.
 	VolumeIDs []*string `locationName:"VolumeIds" type:"list"`
 
-	metadataDescribeVolumesInput `json:"-", xml:"-"`
+	metadataDescribeVolumesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeVolumesInput struct {
@@ -4294,7 +4294,7 @@ type DescribeVolumesOutput struct {
 	// An array of volume IDs.
 	Volumes []*Volume `type:"list"`
 
-	metadataDescribeVolumesOutput `json:"-", xml:"-"`
+	metadataDescribeVolumesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeVolumesOutput struct {
@@ -4309,7 +4309,7 @@ type DetachElasticLoadBalancerInput struct {
 	// to.
 	LayerID *string `locationName:"LayerId" type:"string" required:"true"`
 
-	metadataDetachElasticLoadBalancerInput `json:"-", xml:"-"`
+	metadataDetachElasticLoadBalancerInput `json:"-" xml:"-"`
 }
 
 type metadataDetachElasticLoadBalancerInput struct {
@@ -4317,7 +4317,7 @@ type metadataDetachElasticLoadBalancerInput struct {
 }
 
 type DetachElasticLoadBalancerOutput struct {
-	metadataDetachElasticLoadBalancerOutput `json:"-", xml:"-"`
+	metadataDetachElasticLoadBalancerOutput `json:"-" xml:"-"`
 }
 
 type metadataDetachElasticLoadBalancerOutput struct {
@@ -4328,7 +4328,7 @@ type DisassociateElasticIPInput struct {
 	// The Elastic IP address.
 	ElasticIP *string `locationName:"ElasticIp" type:"string" required:"true"`
 
-	metadataDisassociateElasticIPInput `json:"-", xml:"-"`
+	metadataDisassociateElasticIPInput `json:"-" xml:"-"`
 }
 
 type metadataDisassociateElasticIPInput struct {
@@ -4336,7 +4336,7 @@ type metadataDisassociateElasticIPInput struct {
 }
 
 type DisassociateElasticIPOutput struct {
-	metadataDisassociateElasticIPOutput `json:"-", xml:"-"`
+	metadataDisassociateElasticIPOutput `json:"-" xml:"-"`
 }
 
 type metadataDisassociateElasticIPOutput struct {
@@ -4360,7 +4360,7 @@ type ElasticIP struct {
 	// The AWS region. For more information, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html).
 	Region *string `type:"string"`
 
-	metadataElasticIP `json:"-", xml:"-"`
+	metadataElasticIP `json:"-" xml:"-"`
 }
 
 type metadataElasticIP struct {
@@ -4397,7 +4397,7 @@ type ElasticLoadBalancer struct {
 	// The VPC ID.
 	VPCID *string `locationName:"VpcId" type:"string"`
 
-	metadataElasticLoadBalancer `json:"-", xml:"-"`
+	metadataElasticLoadBalancer `json:"-" xml:"-"`
 }
 
 type metadataElasticLoadBalancer struct {
@@ -4423,7 +4423,7 @@ type EnvironmentVariable struct {
 	// be printable.
 	Value *string `type:"string" required:"true"`
 
-	metadataEnvironmentVariable `json:"-", xml:"-"`
+	metadataEnvironmentVariable `json:"-" xml:"-"`
 }
 
 type metadataEnvironmentVariable struct {
@@ -4434,7 +4434,7 @@ type GetHostnameSuggestionInput struct {
 	// The layer ID.
 	LayerID *string `locationName:"LayerId" type:"string" required:"true"`
 
-	metadataGetHostnameSuggestionInput `json:"-", xml:"-"`
+	metadataGetHostnameSuggestionInput `json:"-" xml:"-"`
 }
 
 type metadataGetHostnameSuggestionInput struct {
@@ -4449,7 +4449,7 @@ type GetHostnameSuggestionOutput struct {
 	// The layer ID.
 	LayerID *string `locationName:"LayerId" type:"string"`
 
-	metadataGetHostnameSuggestionOutput `json:"-", xml:"-"`
+	metadataGetHostnameSuggestionOutput `json:"-" xml:"-"`
 }
 
 type metadataGetHostnameSuggestionOutput struct {
@@ -4576,7 +4576,7 @@ type Instance struct {
 	// The instance's virtualization type, paravirtual or hvm.
 	VirtualizationType *string `type:"string"`
 
-	metadataInstance `json:"-", xml:"-"`
+	metadataInstance `json:"-" xml:"-"`
 }
 
 type metadataInstance struct {
@@ -4592,7 +4592,7 @@ type InstanceIdentity struct {
 	// A signature that can be used to verify the document's accuracy and authenticity.
 	Signature *string `type:"string"`
 
-	metadataInstanceIdentity `json:"-", xml:"-"`
+	metadataInstanceIdentity `json:"-" xml:"-"`
 }
 
 type metadataInstanceIdentity struct {
@@ -4658,7 +4658,7 @@ type InstancesCount struct {
 	// The number of instances in the Unassigning state.
 	Unassigning *int64 `type:"integer"`
 
-	metadataInstancesCount `json:"-", xml:"-"`
+	metadataInstancesCount `json:"-" xml:"-"`
 }
 
 type metadataInstancesCount struct {
@@ -4748,7 +4748,7 @@ type Layer struct {
 	// A VolumeConfigurations object that describes the layer's Amazon EBS volumes.
 	VolumeConfigurations []*VolumeConfiguration `type:"list"`
 
-	metadataLayer `json:"-", xml:"-"`
+	metadataLayer `json:"-" xml:"-"`
 }
 
 type metadataLayer struct {
@@ -4760,7 +4760,7 @@ type LifecycleEventConfiguration struct {
 	// A ShutdownEventConfiguration object that specifies the Shutdown event configuration.
 	Shutdown *ShutdownEventConfiguration `type:"structure"`
 
-	metadataLifecycleEventConfiguration `json:"-", xml:"-"`
+	metadataLifecycleEventConfiguration `json:"-" xml:"-"`
 }
 
 type metadataLifecycleEventConfiguration struct {
@@ -4783,7 +4783,7 @@ type LoadBasedAutoScalingConfiguration struct {
 	// which defines how and when AWS OpsWorks increases the number of instances.
 	UpScaling *AutoScalingThresholds `type:"structure"`
 
-	metadataLoadBasedAutoScalingConfiguration `json:"-", xml:"-"`
+	metadataLoadBasedAutoScalingConfiguration `json:"-" xml:"-"`
 }
 
 type metadataLoadBasedAutoScalingConfiguration struct {
@@ -4811,7 +4811,7 @@ type Permission struct {
 	// A stack ID.
 	StackID *string `locationName:"StackId" type:"string"`
 
-	metadataPermission `json:"-", xml:"-"`
+	metadataPermission `json:"-" xml:"-"`
 }
 
 type metadataPermission struct {
@@ -4860,7 +4860,7 @@ type RAIDArray struct {
 	// The volume type, standard or PIOPS.
 	VolumeType *string `type:"string"`
 
-	metadataRAIDArray `json:"-", xml:"-"`
+	metadataRAIDArray `json:"-" xml:"-"`
 }
 
 type metadataRAIDArray struct {
@@ -4898,7 +4898,7 @@ type RDSDBInstance struct {
 	// The ID of the stack that the instance is registered with.
 	StackID *string `locationName:"StackId" type:"string"`
 
-	metadataRDSDBInstance `json:"-", xml:"-"`
+	metadataRDSDBInstance `json:"-" xml:"-"`
 }
 
 type metadataRDSDBInstance struct {
@@ -4909,7 +4909,7 @@ type RebootInstanceInput struct {
 	// The instance ID.
 	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
 
-	metadataRebootInstanceInput `json:"-", xml:"-"`
+	metadataRebootInstanceInput `json:"-" xml:"-"`
 }
 
 type metadataRebootInstanceInput struct {
@@ -4917,7 +4917,7 @@ type metadataRebootInstanceInput struct {
 }
 
 type RebootInstanceOutput struct {
-	metadataRebootInstanceOutput `json:"-", xml:"-"`
+	metadataRebootInstanceOutput `json:"-" xml:"-"`
 }
 
 type metadataRebootInstanceOutput struct {
@@ -4951,7 +4951,7 @@ type Recipes struct {
 	// An array of custom recipe names to be run following a undeploy event.
 	Undeploy []*string `type:"list"`
 
-	metadataRecipes `json:"-", xml:"-"`
+	metadataRecipes `json:"-" xml:"-"`
 }
 
 type metadataRecipes struct {
@@ -4965,7 +4965,7 @@ type RegisterElasticIPInput struct {
 	// The stack ID.
 	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
-	metadataRegisterElasticIPInput `json:"-", xml:"-"`
+	metadataRegisterElasticIPInput `json:"-" xml:"-"`
 }
 
 type metadataRegisterElasticIPInput struct {
@@ -4977,7 +4977,7 @@ type RegisterElasticIPOutput struct {
 	// The Elastic IP address.
 	ElasticIP *string `locationName:"ElasticIp" type:"string"`
 
-	metadataRegisterElasticIPOutput `json:"-", xml:"-"`
+	metadataRegisterElasticIPOutput `json:"-" xml:"-"`
 }
 
 type metadataRegisterElasticIPOutput struct {
@@ -5007,7 +5007,7 @@ type RegisterInstanceInput struct {
 	// The ID of the stack that the instance is to be registered with.
 	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
-	metadataRegisterInstanceInput `json:"-", xml:"-"`
+	metadataRegisterInstanceInput `json:"-" xml:"-"`
 }
 
 type metadataRegisterInstanceInput struct {
@@ -5019,7 +5019,7 @@ type RegisterInstanceOutput struct {
 	// The registered instance's AWS OpsWorks ID.
 	InstanceID *string `locationName:"InstanceId" type:"string"`
 
-	metadataRegisterInstanceOutput `json:"-", xml:"-"`
+	metadataRegisterInstanceOutput `json:"-" xml:"-"`
 }
 
 type metadataRegisterInstanceOutput struct {
@@ -5039,7 +5039,7 @@ type RegisterRDSDBInstanceInput struct {
 	// The stack ID.
 	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
-	metadataRegisterRDSDBInstanceInput `json:"-", xml:"-"`
+	metadataRegisterRDSDBInstanceInput `json:"-" xml:"-"`
 }
 
 type metadataRegisterRDSDBInstanceInput struct {
@@ -5047,7 +5047,7 @@ type metadataRegisterRDSDBInstanceInput struct {
 }
 
 type RegisterRDSDBInstanceOutput struct {
-	metadataRegisterRDSDBInstanceOutput `json:"-", xml:"-"`
+	metadataRegisterRDSDBInstanceOutput `json:"-" xml:"-"`
 }
 
 type metadataRegisterRDSDBInstanceOutput struct {
@@ -5061,7 +5061,7 @@ type RegisterVolumeInput struct {
 	// The stack ID.
 	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
-	metadataRegisterVolumeInput `json:"-", xml:"-"`
+	metadataRegisterVolumeInput `json:"-" xml:"-"`
 }
 
 type metadataRegisterVolumeInput struct {
@@ -5073,7 +5073,7 @@ type RegisterVolumeOutput struct {
 	// The volume ID.
 	VolumeID *string `locationName:"VolumeId" type:"string"`
 
-	metadataRegisterVolumeOutput `json:"-", xml:"-"`
+	metadataRegisterVolumeOutput `json:"-" xml:"-"`
 }
 
 type metadataRegisterVolumeOutput struct {
@@ -5091,7 +5091,7 @@ type ReportedOs struct {
 	// The operating system version.
 	Version *string `type:"string"`
 
-	metadataReportedOs `json:"-", xml:"-"`
+	metadataReportedOs `json:"-" xml:"-"`
 }
 
 type metadataReportedOs struct {
@@ -5110,7 +5110,7 @@ type SSLConfiguration struct {
 	// The private key; the contents of the certificate's domain.kex file.
 	PrivateKey *string `type:"string" required:"true"`
 
-	metadataSSLConfiguration `json:"-", xml:"-"`
+	metadataSSLConfiguration `json:"-" xml:"-"`
 }
 
 type metadataSSLConfiguration struct {
@@ -5131,7 +5131,7 @@ type SelfUserProfile struct {
 	// The user's SSH user name.
 	SSHUsername *string `locationName:"SshUsername" type:"string"`
 
-	metadataSelfUserProfile `json:"-", xml:"-"`
+	metadataSelfUserProfile `json:"-" xml:"-"`
 }
 
 type metadataSelfUserProfile struct {
@@ -5158,7 +5158,7 @@ type ServiceError struct {
 	// The error type.
 	Type *string `type:"string"`
 
-	metadataServiceError `json:"-", xml:"-"`
+	metadataServiceError `json:"-" xml:"-"`
 }
 
 type metadataServiceError struct {
@@ -5182,7 +5182,7 @@ type SetLoadBasedAutoScalingInput struct {
 	// OpsWorks starts a specified number of instances.
 	UpScaling *AutoScalingThresholds `type:"structure"`
 
-	metadataSetLoadBasedAutoScalingInput `json:"-", xml:"-"`
+	metadataSetLoadBasedAutoScalingInput `json:"-" xml:"-"`
 }
 
 type metadataSetLoadBasedAutoScalingInput struct {
@@ -5190,7 +5190,7 @@ type metadataSetLoadBasedAutoScalingInput struct {
 }
 
 type SetLoadBasedAutoScalingOutput struct {
-	metadataSetLoadBasedAutoScalingOutput `json:"-", xml:"-"`
+	metadataSetLoadBasedAutoScalingOutput `json:"-" xml:"-"`
 }
 
 type metadataSetLoadBasedAutoScalingOutput struct {
@@ -5217,7 +5217,7 @@ type SetPermissionInput struct {
 	// The stack ID.
 	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
-	metadataSetPermissionInput `json:"-", xml:"-"`
+	metadataSetPermissionInput `json:"-" xml:"-"`
 }
 
 type metadataSetPermissionInput struct {
@@ -5225,7 +5225,7 @@ type metadataSetPermissionInput struct {
 }
 
 type SetPermissionOutput struct {
-	metadataSetPermissionOutput `json:"-", xml:"-"`
+	metadataSetPermissionOutput `json:"-" xml:"-"`
 }
 
 type metadataSetPermissionOutput struct {
@@ -5239,7 +5239,7 @@ type SetTimeBasedAutoScalingInput struct {
 	// The instance ID.
 	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
 
-	metadataSetTimeBasedAutoScalingInput `json:"-", xml:"-"`
+	metadataSetTimeBasedAutoScalingInput `json:"-" xml:"-"`
 }
 
 type metadataSetTimeBasedAutoScalingInput struct {
@@ -5247,7 +5247,7 @@ type metadataSetTimeBasedAutoScalingInput struct {
 }
 
 type SetTimeBasedAutoScalingOutput struct {
-	metadataSetTimeBasedAutoScalingOutput `json:"-", xml:"-"`
+	metadataSetTimeBasedAutoScalingOutput `json:"-" xml:"-"`
 }
 
 type metadataSetTimeBasedAutoScalingOutput struct {
@@ -5264,7 +5264,7 @@ type ShutdownEventConfiguration struct {
 	// event before shutting down an instance.
 	ExecutionTimeout *int64 `type:"integer"`
 
-	metadataShutdownEventConfiguration `json:"-", xml:"-"`
+	metadataShutdownEventConfiguration `json:"-" xml:"-"`
 }
 
 type metadataShutdownEventConfiguration struct {
@@ -5304,7 +5304,7 @@ type Source struct {
 	// to the user name.
 	Username *string `type:"string"`
 
-	metadataSource `json:"-", xml:"-"`
+	metadataSource `json:"-" xml:"-"`
 }
 
 type metadataSource struct {
@@ -5394,7 +5394,7 @@ type Stack struct {
 	// The VPC ID, if the stack is running in a VPC.
 	VPCID *string `locationName:"VpcId" type:"string"`
 
-	metadataStack `json:"-", xml:"-"`
+	metadataStack `json:"-" xml:"-"`
 }
 
 type metadataStack struct {
@@ -5410,7 +5410,7 @@ type StackConfigurationManager struct {
 	// default value is 11.4.
 	Version *string `type:"string"`
 
-	metadataStackConfigurationManager `json:"-", xml:"-"`
+	metadataStackConfigurationManager `json:"-" xml:"-"`
 }
 
 type metadataStackConfigurationManager struct {
@@ -5437,7 +5437,7 @@ type StackSummary struct {
 	// The stack ID.
 	StackID *string `locationName:"StackId" type:"string"`
 
-	metadataStackSummary `json:"-", xml:"-"`
+	metadataStackSummary `json:"-" xml:"-"`
 }
 
 type metadataStackSummary struct {
@@ -5448,7 +5448,7 @@ type StartInstanceInput struct {
 	// The instance ID.
 	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
 
-	metadataStartInstanceInput `json:"-", xml:"-"`
+	metadataStartInstanceInput `json:"-" xml:"-"`
 }
 
 type metadataStartInstanceInput struct {
@@ -5456,7 +5456,7 @@ type metadataStartInstanceInput struct {
 }
 
 type StartInstanceOutput struct {
-	metadataStartInstanceOutput `json:"-", xml:"-"`
+	metadataStartInstanceOutput `json:"-" xml:"-"`
 }
 
 type metadataStartInstanceOutput struct {
@@ -5467,7 +5467,7 @@ type StartStackInput struct {
 	// The stack ID.
 	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
-	metadataStartStackInput `json:"-", xml:"-"`
+	metadataStartStackInput `json:"-" xml:"-"`
 }
 
 type metadataStartStackInput struct {
@@ -5475,7 +5475,7 @@ type metadataStartStackInput struct {
 }
 
 type StartStackOutput struct {
-	metadataStartStackOutput `json:"-", xml:"-"`
+	metadataStartStackOutput `json:"-" xml:"-"`
 }
 
 type metadataStartStackOutput struct {
@@ -5486,7 +5486,7 @@ type StopInstanceInput struct {
 	// The instance ID.
 	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
 
-	metadataStopInstanceInput `json:"-", xml:"-"`
+	metadataStopInstanceInput `json:"-" xml:"-"`
 }
 
 type metadataStopInstanceInput struct {
@@ -5494,7 +5494,7 @@ type metadataStopInstanceInput struct {
 }
 
 type StopInstanceOutput struct {
-	metadataStopInstanceOutput `json:"-", xml:"-"`
+	metadataStopInstanceOutput `json:"-" xml:"-"`
 }
 
 type metadataStopInstanceOutput struct {
@@ -5505,7 +5505,7 @@ type StopStackInput struct {
 	// The stack ID.
 	StackID *string `locationName:"StackId" type:"string" required:"true"`
 
-	metadataStopStackInput `json:"-", xml:"-"`
+	metadataStopStackInput `json:"-" xml:"-"`
 }
 
 type metadataStopStackInput struct {
@@ -5513,7 +5513,7 @@ type metadataStopStackInput struct {
 }
 
 type StopStackOutput struct {
-	metadataStopStackOutput `json:"-", xml:"-"`
+	metadataStopStackOutput `json:"-" xml:"-"`
 }
 
 type metadataStopStackOutput struct {
@@ -5528,7 +5528,7 @@ type TimeBasedAutoScalingConfiguration struct {
 	// The instance ID.
 	InstanceID *string `locationName:"InstanceId" type:"string"`
 
-	metadataTimeBasedAutoScalingConfiguration `json:"-", xml:"-"`
+	metadataTimeBasedAutoScalingConfiguration `json:"-" xml:"-"`
 }
 
 type metadataTimeBasedAutoScalingConfiguration struct {
@@ -5539,7 +5539,7 @@ type UnassignInstanceInput struct {
 	// The instance ID.
 	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
 
-	metadataUnassignInstanceInput `json:"-", xml:"-"`
+	metadataUnassignInstanceInput `json:"-" xml:"-"`
 }
 
 type metadataUnassignInstanceInput struct {
@@ -5547,7 +5547,7 @@ type metadataUnassignInstanceInput struct {
 }
 
 type UnassignInstanceOutput struct {
-	metadataUnassignInstanceOutput `json:"-", xml:"-"`
+	metadataUnassignInstanceOutput `json:"-" xml:"-"`
 }
 
 type metadataUnassignInstanceOutput struct {
@@ -5558,7 +5558,7 @@ type UnassignVolumeInput struct {
 	// The volume ID.
 	VolumeID *string `locationName:"VolumeId" type:"string" required:"true"`
 
-	metadataUnassignVolumeInput `json:"-", xml:"-"`
+	metadataUnassignVolumeInput `json:"-" xml:"-"`
 }
 
 type metadataUnassignVolumeInput struct {
@@ -5566,7 +5566,7 @@ type metadataUnassignVolumeInput struct {
 }
 
 type UnassignVolumeOutput struct {
-	metadataUnassignVolumeOutput `json:"-", xml:"-"`
+	metadataUnassignVolumeOutput `json:"-" xml:"-"`
 }
 
 type metadataUnassignVolumeOutput struct {
@@ -5614,7 +5614,7 @@ type UpdateAppInput struct {
 	// The app type.
 	Type *string `type:"string"`
 
-	metadataUpdateAppInput `json:"-", xml:"-"`
+	metadataUpdateAppInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateAppInput struct {
@@ -5622,7 +5622,7 @@ type metadataUpdateAppInput struct {
 }
 
 type UpdateAppOutput struct {
-	metadataUpdateAppOutput `json:"-", xml:"-"`
+	metadataUpdateAppOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateAppOutput struct {
@@ -5636,7 +5636,7 @@ type UpdateElasticIPInput struct {
 	// The new name.
 	Name *string `type:"string"`
 
-	metadataUpdateElasticIPInput `json:"-", xml:"-"`
+	metadataUpdateElasticIPInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateElasticIPInput struct {
@@ -5644,7 +5644,7 @@ type metadataUpdateElasticIPInput struct {
 }
 
 type UpdateElasticIPOutput struct {
-	metadataUpdateElasticIPOutput `json:"-", xml:"-"`
+	metadataUpdateElasticIPOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateElasticIPOutput struct {
@@ -5712,7 +5712,7 @@ type UpdateInstanceInput struct {
 	// The instance SSH key name.
 	SSHKeyName *string `locationName:"SshKeyName" type:"string"`
 
-	metadataUpdateInstanceInput `json:"-", xml:"-"`
+	metadataUpdateInstanceInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateInstanceInput struct {
@@ -5720,7 +5720,7 @@ type metadataUpdateInstanceInput struct {
 }
 
 type UpdateInstanceOutput struct {
-	metadataUpdateInstanceOutput `json:"-", xml:"-"`
+	metadataUpdateInstanceOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateInstanceOutput struct {
@@ -5786,7 +5786,7 @@ type UpdateLayerInput struct {
 	// A VolumeConfigurations object that describes the layer's Amazon EBS volumes.
 	VolumeConfigurations []*VolumeConfiguration `type:"list"`
 
-	metadataUpdateLayerInput `json:"-", xml:"-"`
+	metadataUpdateLayerInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateLayerInput struct {
@@ -5794,7 +5794,7 @@ type metadataUpdateLayerInput struct {
 }
 
 type UpdateLayerOutput struct {
-	metadataUpdateLayerOutput `json:"-", xml:"-"`
+	metadataUpdateLayerOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateLayerOutput struct {
@@ -5805,7 +5805,7 @@ type UpdateMyUserProfileInput struct {
 	// The user's SSH public key.
 	SSHPublicKey *string `locationName:"SshPublicKey" type:"string"`
 
-	metadataUpdateMyUserProfileInput `json:"-", xml:"-"`
+	metadataUpdateMyUserProfileInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateMyUserProfileInput struct {
@@ -5813,7 +5813,7 @@ type metadataUpdateMyUserProfileInput struct {
 }
 
 type UpdateMyUserProfileOutput struct {
-	metadataUpdateMyUserProfileOutput `json:"-", xml:"-"`
+	metadataUpdateMyUserProfileOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateMyUserProfileOutput struct {
@@ -5830,7 +5830,7 @@ type UpdateRDSDBInstanceInput struct {
 	// The Amazon RDS instance's ARN.
 	RDSDBInstanceARN *string `locationName:"RdsDbInstanceArn" type:"string" required:"true"`
 
-	metadataUpdateRDSDBInstanceInput `json:"-", xml:"-"`
+	metadataUpdateRDSDBInstanceInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateRDSDBInstanceInput struct {
@@ -5838,7 +5838,7 @@ type metadataUpdateRDSDBInstanceInput struct {
 }
 
 type UpdateRDSDBInstanceOutput struct {
-	metadataUpdateRDSDBInstanceOutput `json:"-", xml:"-"`
+	metadataUpdateRDSDBInstanceOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateRDSDBInstanceOutput struct {
@@ -5959,7 +5959,7 @@ type UpdateStackInput struct {
 	//   For more information, see Create a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
 	UseOpsWorksSecurityGroups *bool `locationName:"UseOpsworksSecurityGroups" type:"boolean"`
 
-	metadataUpdateStackInput `json:"-", xml:"-"`
+	metadataUpdateStackInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateStackInput struct {
@@ -5967,7 +5967,7 @@ type metadataUpdateStackInput struct {
 }
 
 type UpdateStackOutput struct {
-	metadataUpdateStackOutput `json:"-", xml:"-"`
+	metadataUpdateStackOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateStackOutput struct {
@@ -5992,7 +5992,7 @@ type UpdateUserProfileInput struct {
 	// IAM user name.
 	SSHUsername *string `locationName:"SshUsername" type:"string"`
 
-	metadataUpdateUserProfileInput `json:"-", xml:"-"`
+	metadataUpdateUserProfileInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateUserProfileInput struct {
@@ -6000,7 +6000,7 @@ type metadataUpdateUserProfileInput struct {
 }
 
 type UpdateUserProfileOutput struct {
-	metadataUpdateUserProfileOutput `json:"-", xml:"-"`
+	metadataUpdateUserProfileOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateUserProfileOutput struct {
@@ -6017,7 +6017,7 @@ type UpdateVolumeInput struct {
 	// The volume ID.
 	VolumeID *string `locationName:"VolumeId" type:"string" required:"true"`
 
-	metadataUpdateVolumeInput `json:"-", xml:"-"`
+	metadataUpdateVolumeInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateVolumeInput struct {
@@ -6025,7 +6025,7 @@ type metadataUpdateVolumeInput struct {
 }
 
 type UpdateVolumeOutput struct {
-	metadataUpdateVolumeOutput `json:"-", xml:"-"`
+	metadataUpdateVolumeOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateVolumeOutput struct {
@@ -6050,7 +6050,7 @@ type UserProfile struct {
 	// The user's SSH user name.
 	SSHUsername *string `locationName:"SshUsername" type:"string"`
 
-	metadataUserProfile `json:"-", xml:"-"`
+	metadataUserProfile `json:"-" xml:"-"`
 }
 
 type metadataUserProfile struct {
@@ -6100,7 +6100,7 @@ type Volume struct {
 	// The volume type, standard or PIOPS.
 	VolumeType *string `type:"string"`
 
-	metadataVolume `json:"-", xml:"-"`
+	metadataVolume `json:"-" xml:"-"`
 }
 
 type metadataVolume struct {
@@ -6130,7 +6130,7 @@ type VolumeConfiguration struct {
 	// (SSD)
 	VolumeType *string `type:"string"`
 
-	metadataVolumeConfiguration `json:"-", xml:"-"`
+	metadataVolumeConfiguration `json:"-" xml:"-"`
 }
 
 type metadataVolumeConfiguration struct {
@@ -6173,7 +6173,7 @@ type WeeklyAutoScalingSchedule struct {
 	// The schedule for Wednesday.
 	Wednesday *map[string]*string `type:"map"`
 
-	metadataWeeklyAutoScalingSchedule `json:"-", xml:"-"`
+	metadataWeeklyAutoScalingSchedule `json:"-" xml:"-"`
 }
 
 type metadataWeeklyAutoScalingSchedule struct {

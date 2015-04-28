@@ -905,7 +905,7 @@ type AccessPoliciesStatus struct {
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataAccessPoliciesStatus `json:"-", xml:"-"`
+	metadataAccessPoliciesStatus `json:"-" xml:"-"`
 }
 
 type metadataAccessPoliciesStatus struct {
@@ -951,7 +951,7 @@ type AnalysisOptions struct {
 	// in the Amazon CloudSearch Developer Guide.
 	Synonyms *string `type:"string"`
 
-	metadataAnalysisOptions `json:"-", xml:"-"`
+	metadataAnalysisOptions `json:"-" xml:"-"`
 }
 
 type metadataAnalysisOptions struct {
@@ -975,7 +975,7 @@ type AnalysisScheme struct {
 	// a-z (lowercase), 0-9, and _ (underscore).
 	AnalysisSchemeName *string `type:"string" required:"true"`
 
-	metadataAnalysisScheme `json:"-", xml:"-"`
+	metadataAnalysisScheme `json:"-" xml:"-"`
 }
 
 type metadataAnalysisScheme struct {
@@ -993,7 +993,7 @@ type AnalysisSchemeStatus struct {
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataAnalysisSchemeStatus `json:"-", xml:"-"`
+	metadataAnalysisSchemeStatus `json:"-" xml:"-"`
 }
 
 type metadataAnalysisSchemeStatus struct {
@@ -1008,7 +1008,7 @@ type AvailabilityOptionsStatus struct {
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataAvailabilityOptionsStatus `json:"-", xml:"-"`
+	metadataAvailabilityOptionsStatus `json:"-" xml:"-"`
 }
 
 type metadataAvailabilityOptionsStatus struct {
@@ -1024,7 +1024,7 @@ type BuildSuggestersInput struct {
 	// 0-9, and - (hyphen).
 	DomainName *string `type:"string" required:"true"`
 
-	metadataBuildSuggestersInput `json:"-", xml:"-"`
+	metadataBuildSuggestersInput `json:"-" xml:"-"`
 }
 
 type metadataBuildSuggestersInput struct {
@@ -1037,7 +1037,7 @@ type BuildSuggestersOutput struct {
 	// A list of field names.
 	FieldNames []*string `type:"list"`
 
-	metadataBuildSuggestersOutput `json:"-", xml:"-"`
+	metadataBuildSuggestersOutput `json:"-" xml:"-"`
 }
 
 type metadataBuildSuggestersOutput struct {
@@ -1052,7 +1052,7 @@ type CreateDomainInput struct {
 	// and be at least 3 and no more than 28 characters long.
 	DomainName *string `type:"string" required:"true"`
 
-	metadataCreateDomainInput `json:"-", xml:"-"`
+	metadataCreateDomainInput `json:"-" xml:"-"`
 }
 
 type metadataCreateDomainInput struct {
@@ -1065,7 +1065,7 @@ type CreateDomainOutput struct {
 	// The current status of the search domain.
 	DomainStatus *DomainStatus `type:"structure"`
 
-	metadataCreateDomainOutput `json:"-", xml:"-"`
+	metadataCreateDomainOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateDomainOutput struct {
@@ -1090,7 +1090,7 @@ type DateArrayOptions struct {
 	// A list of source fields to map to the field.
 	SourceFields *string `type:"string"`
 
-	metadataDateArrayOptions `json:"-", xml:"-"`
+	metadataDateArrayOptions `json:"-" xml:"-"`
 }
 
 type metadataDateArrayOptions struct {
@@ -1133,7 +1133,7 @@ type DateOptions struct {
 	// a document's ID, you can use the name _id.
 	SourceField *string `type:"string"`
 
-	metadataDateOptions `json:"-", xml:"-"`
+	metadataDateOptions `json:"-" xml:"-"`
 }
 
 type metadataDateOptions struct {
@@ -1155,7 +1155,7 @@ type DefineAnalysisSchemeInput struct {
 	// 0-9, and - (hyphen).
 	DomainName *string `type:"string" required:"true"`
 
-	metadataDefineAnalysisSchemeInput `json:"-", xml:"-"`
+	metadataDefineAnalysisSchemeInput `json:"-" xml:"-"`
 }
 
 type metadataDefineAnalysisSchemeInput struct {
@@ -1168,7 +1168,7 @@ type DefineAnalysisSchemeOutput struct {
 	// The status and configuration of an AnalysisScheme.
 	AnalysisScheme *AnalysisSchemeStatus `type:"structure" required:"true"`
 
-	metadataDefineAnalysisSchemeOutput `json:"-", xml:"-"`
+	metadataDefineAnalysisSchemeOutput `json:"-" xml:"-"`
 }
 
 type metadataDefineAnalysisSchemeOutput struct {
@@ -1190,7 +1190,7 @@ type DefineExpressionInput struct {
 	// in the search results.
 	Expression *Expression `type:"structure" required:"true"`
 
-	metadataDefineExpressionInput `json:"-", xml:"-"`
+	metadataDefineExpressionInput `json:"-" xml:"-"`
 }
 
 type metadataDefineExpressionInput struct {
@@ -1203,7 +1203,7 @@ type DefineExpressionOutput struct {
 	// The value of an Expression and its current status.
 	Expression *ExpressionStatus `type:"structure" required:"true"`
 
-	metadataDefineExpressionOutput `json:"-", xml:"-"`
+	metadataDefineExpressionOutput `json:"-" xml:"-"`
 }
 
 type metadataDefineExpressionOutput struct {
@@ -1222,7 +1222,7 @@ type DefineIndexFieldInput struct {
 	// The index field and field options you want to configure.
 	IndexField *IndexField `type:"structure" required:"true"`
 
-	metadataDefineIndexFieldInput `json:"-", xml:"-"`
+	metadataDefineIndexFieldInput `json:"-" xml:"-"`
 }
 
 type metadataDefineIndexFieldInput struct {
@@ -1235,7 +1235,7 @@ type DefineIndexFieldOutput struct {
 	// The value of an IndexField and its current status.
 	IndexField *IndexFieldStatus `type:"structure" required:"true"`
 
-	metadataDefineIndexFieldOutput `json:"-", xml:"-"`
+	metadataDefineIndexFieldOutput `json:"-" xml:"-"`
 }
 
 type metadataDefineIndexFieldOutput struct {
@@ -1256,7 +1256,7 @@ type DefineSuggesterInput struct {
 	// options can be configured for a suggester: FuzzyMatching, SortExpression.
 	Suggester *Suggester `type:"structure" required:"true"`
 
-	metadataDefineSuggesterInput `json:"-", xml:"-"`
+	metadataDefineSuggesterInput `json:"-" xml:"-"`
 }
 
 type metadataDefineSuggesterInput struct {
@@ -1269,7 +1269,7 @@ type DefineSuggesterOutput struct {
 	// The value of a Suggester and its current status.
 	Suggester *SuggesterStatus `type:"structure" required:"true"`
 
-	metadataDefineSuggesterOutput `json:"-", xml:"-"`
+	metadataDefineSuggesterOutput `json:"-" xml:"-"`
 }
 
 type metadataDefineSuggesterOutput struct {
@@ -1289,7 +1289,7 @@ type DeleteAnalysisSchemeInput struct {
 	// 0-9, and - (hyphen).
 	DomainName *string `type:"string" required:"true"`
 
-	metadataDeleteAnalysisSchemeInput `json:"-", xml:"-"`
+	metadataDeleteAnalysisSchemeInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAnalysisSchemeInput struct {
@@ -1302,7 +1302,7 @@ type DeleteAnalysisSchemeOutput struct {
 	// The status of the analysis scheme being deleted.
 	AnalysisScheme *AnalysisSchemeStatus `type:"structure" required:"true"`
 
-	metadataDeleteAnalysisSchemeOutput `json:"-", xml:"-"`
+	metadataDeleteAnalysisSchemeOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAnalysisSchemeOutput struct {
@@ -1315,7 +1315,7 @@ type DeleteDomainInput struct {
 	// The name of the domain you want to permanently delete.
 	DomainName *string `type:"string" required:"true"`
 
-	metadataDeleteDomainInput `json:"-", xml:"-"`
+	metadataDeleteDomainInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDomainInput struct {
@@ -1328,7 +1328,7 @@ type DeleteDomainOutput struct {
 	// The current status of the search domain.
 	DomainStatus *DomainStatus `type:"structure"`
 
-	metadataDeleteDomainOutput `json:"-", xml:"-"`
+	metadataDeleteDomainOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDomainOutput struct {
@@ -1348,7 +1348,7 @@ type DeleteExpressionInput struct {
 	// The name of the Expression to delete.
 	ExpressionName *string `type:"string" required:"true"`
 
-	metadataDeleteExpressionInput `json:"-", xml:"-"`
+	metadataDeleteExpressionInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteExpressionInput struct {
@@ -1361,7 +1361,7 @@ type DeleteExpressionOutput struct {
 	// The status of the expression being deleted.
 	Expression *ExpressionStatus `type:"structure" required:"true"`
 
-	metadataDeleteExpressionOutput `json:"-", xml:"-"`
+	metadataDeleteExpressionOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteExpressionOutput struct {
@@ -1382,7 +1382,7 @@ type DeleteIndexFieldInput struct {
 	// options.
 	IndexFieldName *string `type:"string" required:"true"`
 
-	metadataDeleteIndexFieldInput `json:"-", xml:"-"`
+	metadataDeleteIndexFieldInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteIndexFieldInput struct {
@@ -1394,7 +1394,7 @@ type DeleteIndexFieldOutput struct {
 	// The status of the index field being deleted.
 	IndexField *IndexFieldStatus `type:"structure" required:"true"`
 
-	metadataDeleteIndexFieldOutput `json:"-", xml:"-"`
+	metadataDeleteIndexFieldOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteIndexFieldOutput struct {
@@ -1414,7 +1414,7 @@ type DeleteSuggesterInput struct {
 	// Specifies the name of the suggester you want to delete.
 	SuggesterName *string `type:"string" required:"true"`
 
-	metadataDeleteSuggesterInput `json:"-", xml:"-"`
+	metadataDeleteSuggesterInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteSuggesterInput struct {
@@ -1427,7 +1427,7 @@ type DeleteSuggesterOutput struct {
 	// The status of the suggester being deleted.
 	Suggester *SuggesterStatus `type:"structure" required:"true"`
 
-	metadataDeleteSuggesterOutput `json:"-", xml:"-"`
+	metadataDeleteSuggesterOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteSuggesterOutput struct {
@@ -1450,7 +1450,7 @@ type DescribeAnalysisSchemesInput struct {
 	// The name of the domain you want to describe.
 	DomainName *string `type:"string" required:"true"`
 
-	metadataDescribeAnalysisSchemesInput `json:"-", xml:"-"`
+	metadataDescribeAnalysisSchemesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAnalysisSchemesInput struct {
@@ -1463,7 +1463,7 @@ type DescribeAnalysisSchemesOutput struct {
 	// The analysis scheme descriptions.
 	AnalysisSchemes []*AnalysisSchemeStatus `type:"list" required:"true"`
 
-	metadataDescribeAnalysisSchemesOutput `json:"-", xml:"-"`
+	metadataDescribeAnalysisSchemesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAnalysisSchemesOutput struct {
@@ -1482,7 +1482,7 @@ type DescribeAvailabilityOptionsInput struct {
 	// The name of the domain you want to describe.
 	DomainName *string `type:"string" required:"true"`
 
-	metadataDescribeAvailabilityOptionsInput `json:"-", xml:"-"`
+	metadataDescribeAvailabilityOptionsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAvailabilityOptionsInput struct {
@@ -1496,7 +1496,7 @@ type DescribeAvailabilityOptionsOutput struct {
 	// is enabled for the domain.
 	AvailabilityOptions *AvailabilityOptionsStatus `type:"structure"`
 
-	metadataDescribeAvailabilityOptionsOutput `json:"-", xml:"-"`
+	metadataDescribeAvailabilityOptionsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAvailabilityOptionsOutput struct {
@@ -1510,7 +1510,7 @@ type DescribeDomainsInput struct {
 	// The names of the domains you want to include in the response.
 	DomainNames []*string `type:"list"`
 
-	metadataDescribeDomainsInput `json:"-", xml:"-"`
+	metadataDescribeDomainsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeDomainsInput struct {
@@ -1523,7 +1523,7 @@ type DescribeDomainsOutput struct {
 	// A list that contains the status of each requested domain.
 	DomainStatusList []*DomainStatus `type:"list" required:"true"`
 
-	metadataDescribeDomainsOutput `json:"-", xml:"-"`
+	metadataDescribeDomainsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeDomainsOutput struct {
@@ -1547,7 +1547,7 @@ type DescribeExpressionsInput struct {
 	// not specified, all expressions are shown.
 	ExpressionNames []*string `type:"list"`
 
-	metadataDescribeExpressionsInput `json:"-", xml:"-"`
+	metadataDescribeExpressionsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeExpressionsInput struct {
@@ -1560,7 +1560,7 @@ type DescribeExpressionsOutput struct {
 	// The expressions configured for the domain.
 	Expressions []*ExpressionStatus `type:"list" required:"true"`
 
-	metadataDescribeExpressionsOutput `json:"-", xml:"-"`
+	metadataDescribeExpressionsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeExpressionsOutput struct {
@@ -1584,7 +1584,7 @@ type DescribeIndexFieldsInput struct {
 	// is returned for all configured index fields.
 	FieldNames []*string `type:"list"`
 
-	metadataDescribeIndexFieldsInput `json:"-", xml:"-"`
+	metadataDescribeIndexFieldsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeIndexFieldsInput struct {
@@ -1597,7 +1597,7 @@ type DescribeIndexFieldsOutput struct {
 	// The index fields configured for the domain.
 	IndexFields []*IndexFieldStatus `type:"list" required:"true"`
 
-	metadataDescribeIndexFieldsOutput `json:"-", xml:"-"`
+	metadataDescribeIndexFieldsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeIndexFieldsOutput struct {
@@ -1613,7 +1613,7 @@ type DescribeScalingParametersInput struct {
 	// 0-9, and - (hyphen).
 	DomainName *string `type:"string" required:"true"`
 
-	metadataDescribeScalingParametersInput `json:"-", xml:"-"`
+	metadataDescribeScalingParametersInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeScalingParametersInput struct {
@@ -1626,7 +1626,7 @@ type DescribeScalingParametersOutput struct {
 	// The status and configuration of a search domain's scaling parameters.
 	ScalingParameters *ScalingParametersStatus `type:"structure" required:"true"`
 
-	metadataDescribeScalingParametersOutput `json:"-", xml:"-"`
+	metadataDescribeScalingParametersOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeScalingParametersOutput struct {
@@ -1645,7 +1645,7 @@ type DescribeServiceAccessPoliciesInput struct {
 	// The name of the domain you want to describe.
 	DomainName *string `type:"string" required:"true"`
 
-	metadataDescribeServiceAccessPoliciesInput `json:"-", xml:"-"`
+	metadataDescribeServiceAccessPoliciesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeServiceAccessPoliciesInput struct {
@@ -1657,7 +1657,7 @@ type DescribeServiceAccessPoliciesOutput struct {
 	// The access rules configured for the domain specified in the request.
 	AccessPolicies *AccessPoliciesStatus `type:"structure" required:"true"`
 
-	metadataDescribeServiceAccessPoliciesOutput `json:"-", xml:"-"`
+	metadataDescribeServiceAccessPoliciesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeServiceAccessPoliciesOutput struct {
@@ -1680,7 +1680,7 @@ type DescribeSuggestersInput struct {
 	// The suggesters you want to describe.
 	SuggesterNames []*string `type:"list"`
 
-	metadataDescribeSuggestersInput `json:"-", xml:"-"`
+	metadataDescribeSuggestersInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeSuggestersInput struct {
@@ -1692,7 +1692,7 @@ type DescribeSuggestersOutput struct {
 	// The suggesters configured for the domain specified in the request.
 	Suggesters []*SuggesterStatus `type:"list" required:"true"`
 
-	metadataDescribeSuggestersOutput `json:"-", xml:"-"`
+	metadataDescribeSuggestersOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeSuggestersOutput struct {
@@ -1720,7 +1720,7 @@ type DocumentSuggesterOptions struct {
 	// The name of the index field you want to use for suggestions.
 	SourceField *string `type:"string" required:"true"`
 
-	metadataDocumentSuggesterOptions `json:"-", xml:"-"`
+	metadataDocumentSuggesterOptions `json:"-" xml:"-"`
 }
 
 type metadataDocumentSuggesterOptions struct {
@@ -1779,7 +1779,7 @@ type DomainStatus struct {
 	// The service endpoint for requesting search results from a search domain.
 	SearchService *ServiceEndpoint `type:"structure"`
 
-	metadataDomainStatus `json:"-", xml:"-"`
+	metadataDomainStatus `json:"-" xml:"-"`
 }
 
 type metadataDomainStatus struct {
@@ -1805,7 +1805,7 @@ type DoubleArrayOptions struct {
 	// A list of source fields to map to the field.
 	SourceFields *string `type:"string"`
 
-	metadataDoubleArrayOptions `json:"-", xml:"-"`
+	metadataDoubleArrayOptions `json:"-" xml:"-"`
 }
 
 type metadataDoubleArrayOptions struct {
@@ -1835,7 +1835,7 @@ type DoubleOptions struct {
 	// The name of the source field to map to the field.
 	SourceField *string `type:"string"`
 
-	metadataDoubleOptions `json:"-", xml:"-"`
+	metadataDoubleOptions `json:"-" xml:"-"`
 }
 
 type metadataDoubleOptions struct {
@@ -1856,7 +1856,7 @@ type Expression struct {
 	// target="_blank) in the Amazon CloudSearch Developer Guide.
 	ExpressionValue *string `type:"string" required:"true"`
 
-	metadataExpression `json:"-", xml:"-"`
+	metadataExpression `json:"-" xml:"-"`
 }
 
 type metadataExpression struct {
@@ -1871,7 +1871,7 @@ type ExpressionStatus struct {
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataExpressionStatus `json:"-", xml:"-"`
+	metadataExpressionStatus `json:"-" xml:"-"`
 }
 
 type metadataExpressionStatus struct {
@@ -1887,7 +1887,7 @@ type IndexDocumentsInput struct {
 	// 0-9, and - (hyphen).
 	DomainName *string `type:"string" required:"true"`
 
-	metadataIndexDocumentsInput `json:"-", xml:"-"`
+	metadataIndexDocumentsInput `json:"-" xml:"-"`
 }
 
 type metadataIndexDocumentsInput struct {
@@ -1900,7 +1900,7 @@ type IndexDocumentsOutput struct {
 	// The names of the fields that are currently being indexed.
 	FieldNames []*string `type:"list"`
 
-	metadataIndexDocumentsOutput `json:"-", xml:"-"`
+	metadataIndexDocumentsOutput `json:"-" xml:"-"`
 }
 
 type metadataIndexDocumentsOutput struct {
@@ -1984,7 +1984,7 @@ type IndexField struct {
 	// by default.
 	TextOptions *TextOptions `type:"structure"`
 
-	metadataIndexField `json:"-", xml:"-"`
+	metadataIndexField `json:"-" xml:"-"`
 }
 
 type metadataIndexField struct {
@@ -2000,7 +2000,7 @@ type IndexFieldStatus struct {
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataIndexFieldStatus `json:"-", xml:"-"`
+	metadataIndexFieldStatus `json:"-" xml:"-"`
 }
 
 type metadataIndexFieldStatus struct {
@@ -2026,7 +2026,7 @@ type IntArrayOptions struct {
 	// A list of source fields to map to the field.
 	SourceFields *string `type:"string"`
 
-	metadataIntArrayOptions `json:"-", xml:"-"`
+	metadataIntArrayOptions `json:"-" xml:"-"`
 }
 
 type metadataIntArrayOptions struct {
@@ -2056,7 +2056,7 @@ type IntOptions struct {
 	// The name of the source field to map to the field.
 	SourceField *string `type:"string"`
 
-	metadataIntOptions `json:"-", xml:"-"`
+	metadataIntOptions `json:"-" xml:"-"`
 }
 
 type metadataIntOptions struct {
@@ -2098,7 +2098,7 @@ type LatLonOptions struct {
 	// a document's ID, you can use the name _id.
 	SourceField *string `type:"string"`
 
-	metadataLatLonOptions `json:"-", xml:"-"`
+	metadataLatLonOptions `json:"-" xml:"-"`
 }
 
 type metadataLatLonOptions struct {
@@ -2110,7 +2110,7 @@ type Limits struct {
 
 	MaximumReplicationCount *int64 `type:"integer" required:"true"`
 
-	metadataLimits `json:"-", xml:"-"`
+	metadataLimits `json:"-" xml:"-"`
 }
 
 type metadataLimits struct {
@@ -2118,7 +2118,7 @@ type metadataLimits struct {
 }
 
 type ListDomainNamesInput struct {
-	metadataListDomainNamesInput `json:"-", xml:"-"`
+	metadataListDomainNamesInput `json:"-" xml:"-"`
 }
 
 type metadataListDomainNamesInput struct {
@@ -2131,7 +2131,7 @@ type ListDomainNamesOutput struct {
 	// The names of the search domains owned by an account.
 	DomainNames *map[string]*string `type:"map"`
 
-	metadataListDomainNamesOutput `json:"-", xml:"-"`
+	metadataListDomainNamesOutput `json:"-" xml:"-"`
 }
 
 type metadataListDomainNamesOutput struct {
@@ -2157,7 +2157,7 @@ type LiteralArrayOptions struct {
 	// A list of source fields to map to the field.
 	SourceFields *string `type:"string"`
 
-	metadataLiteralArrayOptions `json:"-", xml:"-"`
+	metadataLiteralArrayOptions `json:"-" xml:"-"`
 }
 
 type metadataLiteralArrayOptions struct {
@@ -2198,7 +2198,7 @@ type LiteralOptions struct {
 	// a document's ID, you can use the name _id.
 	SourceField *string `type:"string"`
 
-	metadataLiteralOptions `json:"-", xml:"-"`
+	metadataLiteralOptions `json:"-" xml:"-"`
 }
 
 type metadataLiteralOptions struct {
@@ -2230,7 +2230,7 @@ type OptionStatus struct {
 	// A unique integer that indicates when this option was last updated.
 	UpdateVersion *int64 `type:"integer"`
 
-	metadataOptionStatus `json:"-", xml:"-"`
+	metadataOptionStatus `json:"-" xml:"-"`
 }
 
 type metadataOptionStatus struct {
@@ -2250,7 +2250,7 @@ type ScalingParameters struct {
 	// The number of replicas you want to preconfigure for each index partition.
 	DesiredReplicationCount *int64 `type:"integer"`
 
-	metadataScalingParameters `json:"-", xml:"-"`
+	metadataScalingParameters `json:"-" xml:"-"`
 }
 
 type metadataScalingParameters struct {
@@ -2265,7 +2265,7 @@ type ScalingParametersStatus struct {
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataScalingParametersStatus `json:"-", xml:"-"`
+	metadataScalingParametersStatus `json:"-" xml:"-"`
 }
 
 type metadataScalingParametersStatus struct {
@@ -2278,7 +2278,7 @@ type ServiceEndpoint struct {
 	// or doc-imdb-movies-oopcnjfn6ugofer3zx5iadxxca.eu-west-1.cloudsearch.amazonaws.com.
 	Endpoint *string `type:"string"`
 
-	metadataServiceEndpoint `json:"-", xml:"-"`
+	metadataServiceEndpoint `json:"-" xml:"-"`
 }
 
 type metadataServiceEndpoint struct {
@@ -2296,7 +2296,7 @@ type Suggester struct {
 	// a-z (lowercase), 0-9, and _ (underscore).
 	SuggesterName *string `type:"string" required:"true"`
 
-	metadataSuggester `json:"-", xml:"-"`
+	metadataSuggester `json:"-" xml:"-"`
 }
 
 type metadataSuggester struct {
@@ -2313,7 +2313,7 @@ type SuggesterStatus struct {
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataSuggesterStatus `json:"-", xml:"-"`
+	metadataSuggesterStatus `json:"-" xml:"-"`
 }
 
 type metadataSuggesterStatus struct {
@@ -2339,7 +2339,7 @@ type TextArrayOptions struct {
 	// A list of source fields to map to the field.
 	SourceFields *string `type:"string"`
 
-	metadataTextArrayOptions `json:"-", xml:"-"`
+	metadataTextArrayOptions `json:"-" xml:"-"`
 }
 
 type metadataTextArrayOptions struct {
@@ -2381,7 +2381,7 @@ type TextOptions struct {
 	// a document's ID, you can use the name _id.
 	SourceField *string `type:"string"`
 
-	metadataTextOptions `json:"-", xml:"-"`
+	metadataTextOptions `json:"-" xml:"-"`
 }
 
 type metadataTextOptions struct {
@@ -2404,7 +2404,7 @@ type UpdateAvailabilityOptionsInput struct {
 	// option to false.
 	MultiAZ *bool `type:"boolean" required:"true"`
 
-	metadataUpdateAvailabilityOptionsInput `json:"-", xml:"-"`
+	metadataUpdateAvailabilityOptionsInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateAvailabilityOptionsInput struct {
@@ -2418,7 +2418,7 @@ type UpdateAvailabilityOptionsOutput struct {
 	// enabled for the domain.
 	AvailabilityOptions *AvailabilityOptionsStatus `type:"structure"`
 
-	metadataUpdateAvailabilityOptionsOutput `json:"-", xml:"-"`
+	metadataUpdateAvailabilityOptionsOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateAvailabilityOptionsOutput struct {
@@ -2438,7 +2438,7 @@ type UpdateScalingParametersInput struct {
 	// The desired instance type and desired number of replicas of each index partition.
 	ScalingParameters *ScalingParameters `type:"structure" required:"true"`
 
-	metadataUpdateScalingParametersInput `json:"-", xml:"-"`
+	metadataUpdateScalingParametersInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateScalingParametersInput struct {
@@ -2451,7 +2451,7 @@ type UpdateScalingParametersOutput struct {
 	// The status and configuration of a search domain's scaling parameters.
 	ScalingParameters *ScalingParametersStatus `type:"structure" required:"true"`
 
-	metadataUpdateScalingParametersOutput `json:"-", xml:"-"`
+	metadataUpdateScalingParametersOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateScalingParametersOutput struct {
@@ -2472,7 +2472,7 @@ type UpdateServiceAccessPoliciesInput struct {
 	// 0-9, and - (hyphen).
 	DomainName *string `type:"string" required:"true"`
 
-	metadataUpdateServiceAccessPoliciesInput `json:"-", xml:"-"`
+	metadataUpdateServiceAccessPoliciesInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateServiceAccessPoliciesInput struct {
@@ -2485,7 +2485,7 @@ type UpdateServiceAccessPoliciesOutput struct {
 	// The access rules configured for the domain.
 	AccessPolicies *AccessPoliciesStatus `type:"structure" required:"true"`
 
-	metadataUpdateServiceAccessPoliciesOutput `json:"-", xml:"-"`
+	metadataUpdateServiceAccessPoliciesOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateServiceAccessPoliciesOutput struct {

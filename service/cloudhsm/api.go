@@ -601,7 +601,7 @@ type CreateHAPGInput struct {
 	// The label of the new high-availability partition group.
 	Label *string `type:"string" required:"true"`
 
-	metadataCreateHAPGInput `json:"-", xml:"-"`
+	metadataCreateHAPGInput `json:"-" xml:"-"`
 }
 
 type metadataCreateHAPGInput struct {
@@ -613,7 +613,7 @@ type CreateHAPGOutput struct {
 	// The ARN of the high-availability partition group.
 	HAPGARN *string `locationName:"HapgArn" type:"string"`
 
-	metadataCreateHAPGOutput `json:"-", xml:"-"`
+	metadataCreateHAPGOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateHAPGOutput struct {
@@ -648,7 +648,7 @@ type CreateHSMInput struct {
 	// The IP address for the syslog monitoring server.
 	SyslogIP *string `locationName:"SyslogIp" type:"string"`
 
-	metadataCreateHSMInput `json:"-", xml:"-"`
+	metadataCreateHSMInput `json:"-" xml:"-"`
 }
 
 type metadataCreateHSMInput struct {
@@ -660,7 +660,7 @@ type CreateHSMOutput struct {
 	// The ARN of the HSM.
 	HSMARN *string `locationName:"HsmArn" type:"string"`
 
-	metadataCreateHSMOutput `json:"-", xml:"-"`
+	metadataCreateHSMOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateHSMOutput struct {
@@ -676,7 +676,7 @@ type CreateLunaClientInput struct {
 	// The label for the client.
 	Label *string `type:"string"`
 
-	metadataCreateLunaClientInput `json:"-", xml:"-"`
+	metadataCreateLunaClientInput `json:"-" xml:"-"`
 }
 
 type metadataCreateLunaClientInput struct {
@@ -688,7 +688,7 @@ type CreateLunaClientOutput struct {
 	// The ARN of the client.
 	ClientARN *string `locationName:"ClientArn" type:"string"`
 
-	metadataCreateLunaClientOutput `json:"-", xml:"-"`
+	metadataCreateLunaClientOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateLunaClientOutput struct {
@@ -700,7 +700,7 @@ type DeleteHAPGInput struct {
 	// The ARN of the high-availability partition group to delete.
 	HAPGARN *string `locationName:"HapgArn" type:"string" required:"true"`
 
-	metadataDeleteHAPGInput `json:"-", xml:"-"`
+	metadataDeleteHAPGInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteHAPGInput struct {
@@ -712,7 +712,7 @@ type DeleteHAPGOutput struct {
 	// The status of the action.
 	Status *string `type:"string" required:"true"`
 
-	metadataDeleteHAPGOutput `json:"-", xml:"-"`
+	metadataDeleteHAPGOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteHAPGOutput struct {
@@ -724,7 +724,7 @@ type DeleteHSMInput struct {
 	// The ARN of the HSM to delete.
 	HSMARN *string `locationName:"HsmArn" type:"string" required:"true"`
 
-	metadataDeleteHSMInput `json:"-", xml:"-"`
+	metadataDeleteHSMInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteHSMInput struct {
@@ -736,7 +736,7 @@ type DeleteHSMOutput struct {
 	// The status of the action.
 	Status *string `type:"string" required:"true"`
 
-	metadataDeleteHSMOutput `json:"-", xml:"-"`
+	metadataDeleteHSMOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteHSMOutput struct {
@@ -747,7 +747,7 @@ type DeleteLunaClientInput struct {
 	// The ARN of the client to delete.
 	ClientARN *string `locationName:"ClientArn" type:"string" required:"true"`
 
-	metadataDeleteLunaClientInput `json:"-", xml:"-"`
+	metadataDeleteLunaClientInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLunaClientInput struct {
@@ -758,7 +758,7 @@ type DeleteLunaClientOutput struct {
 	// The status of the action.
 	Status *string `type:"string" required:"true"`
 
-	metadataDeleteLunaClientOutput `json:"-", xml:"-"`
+	metadataDeleteLunaClientOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLunaClientOutput struct {
@@ -770,7 +770,7 @@ type DescribeHAPGInput struct {
 	// The ARN of the high-availability partition group to describe.
 	HAPGARN *string `locationName:"HapgArn" type:"string" required:"true"`
 
-	metadataDescribeHAPGInput `json:"-", xml:"-"`
+	metadataDescribeHAPGInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeHAPGInput struct {
@@ -807,7 +807,7 @@ type DescribeHAPGOutput struct {
 	// The state of the high-availability partition group.
 	State *string `type:"string"`
 
-	metadataDescribeHAPGOutput `json:"-", xml:"-"`
+	metadataDescribeHAPGOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeHAPGOutput struct {
@@ -824,7 +824,7 @@ type DescribeHSMInput struct {
 	// must be specified.
 	HSMSerialNumber *string `locationName:"HsmSerialNumber" type:"string"`
 
-	metadataDescribeHSMInput `json:"-", xml:"-"`
+	metadataDescribeHSMInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeHSMInput struct {
@@ -896,7 +896,7 @@ type DescribeHSMOutput struct {
 	// The name of the HSM vendor.
 	VendorName *string `type:"string"`
 
-	metadataDescribeHSMOutput `json:"-", xml:"-"`
+	metadataDescribeHSMOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeHSMOutput struct {
@@ -910,7 +910,7 @@ type DescribeLunaClientInput struct {
 	// The ARN of the client.
 	ClientARN *string `locationName:"ClientArn" type:"string"`
 
-	metadataDescribeLunaClientInput `json:"-", xml:"-"`
+	metadataDescribeLunaClientInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLunaClientInput struct {
@@ -933,7 +933,7 @@ type DescribeLunaClientOutput struct {
 	// The date and time the client was last modified.
 	LastModifiedTimestamp *string `type:"string"`
 
-	metadataDescribeLunaClientOutput `json:"-", xml:"-"`
+	metadataDescribeLunaClientOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLunaClientOutput struct {
@@ -951,7 +951,7 @@ type GetConfigInput struct {
 	// are associated with the client.
 	HAPGList []*string `locationName:"HapgList" type:"list" required:"true"`
 
-	metadataGetConfigInput `json:"-", xml:"-"`
+	metadataGetConfigInput `json:"-" xml:"-"`
 }
 
 type metadataGetConfigInput struct {
@@ -968,7 +968,7 @@ type GetConfigOutput struct {
 	// The type of credentials.
 	ConfigType *string `type:"string"`
 
-	metadataGetConfigOutput `json:"-", xml:"-"`
+	metadataGetConfigOutput `json:"-" xml:"-"`
 }
 
 type metadataGetConfigOutput struct {
@@ -977,7 +977,7 @@ type metadataGetConfigOutput struct {
 
 // Contains the inputs for the ListAvailableZones action.
 type ListAvailableZonesInput struct {
-	metadataListAvailableZonesInput `json:"-", xml:"-"`
+	metadataListAvailableZonesInput `json:"-" xml:"-"`
 }
 
 type metadataListAvailableZonesInput struct {
@@ -988,7 +988,7 @@ type ListAvailableZonesOutput struct {
 	// The list of Availability Zones that have available AWS CloudHSM capacity.
 	AZList []*string `type:"list"`
 
-	metadataListAvailableZonesOutput `json:"-", xml:"-"`
+	metadataListAvailableZonesOutput `json:"-" xml:"-"`
 }
 
 type metadataListAvailableZonesOutput struct {
@@ -1000,7 +1000,7 @@ type ListHSMsInput struct {
 	// the first call.
 	NextToken *string `type:"string"`
 
-	metadataListHSMsInput `json:"-", xml:"-"`
+	metadataListHSMsInput `json:"-" xml:"-"`
 }
 
 type metadataListHSMsInput struct {
@@ -1016,7 +1016,7 @@ type ListHSMsOutput struct {
 	// the next set of items.
 	NextToken *string `type:"string"`
 
-	metadataListHSMsOutput `json:"-", xml:"-"`
+	metadataListHSMsOutput `json:"-" xml:"-"`
 }
 
 type metadataListHSMsOutput struct {
@@ -1028,7 +1028,7 @@ type ListHapgsInput struct {
 	// is the first call.
 	NextToken *string `type:"string"`
 
-	metadataListHapgsInput `json:"-", xml:"-"`
+	metadataListHapgsInput `json:"-" xml:"-"`
 }
 
 type metadataListHapgsInput struct {
@@ -1043,7 +1043,7 @@ type ListHapgsOutput struct {
 	// retrieve the next set of items.
 	NextToken *string `type:"string"`
 
-	metadataListHapgsOutput `json:"-", xml:"-"`
+	metadataListHapgsOutput `json:"-" xml:"-"`
 }
 
 type metadataListHapgsOutput struct {
@@ -1055,7 +1055,7 @@ type ListLunaClientsInput struct {
 	// this is the first call.
 	NextToken *string `type:"string"`
 
-	metadataListLunaClientsInput `json:"-", xml:"-"`
+	metadataListLunaClientsInput `json:"-" xml:"-"`
 }
 
 type metadataListLunaClientsInput struct {
@@ -1070,7 +1070,7 @@ type ListLunaClientsOutput struct {
 	// retrieve the next set of items.
 	NextToken *string `type:"string"`
 
-	metadataListLunaClientsOutput `json:"-", xml:"-"`
+	metadataListLunaClientsOutput `json:"-" xml:"-"`
 }
 
 type metadataListLunaClientsOutput struct {
@@ -1088,7 +1088,7 @@ type ModifyHAPGInput struct {
 	// partition group.
 	PartitionSerialList []*string `type:"list"`
 
-	metadataModifyHAPGInput `json:"-", xml:"-"`
+	metadataModifyHAPGInput `json:"-" xml:"-"`
 }
 
 type metadataModifyHAPGInput struct {
@@ -1099,7 +1099,7 @@ type ModifyHAPGOutput struct {
 	// The ARN of the high-availability partition group.
 	HAPGARN *string `locationName:"HapgArn" type:"string"`
 
-	metadataModifyHAPGOutput `json:"-", xml:"-"`
+	metadataModifyHAPGOutput `json:"-" xml:"-"`
 }
 
 type metadataModifyHAPGOutput struct {
@@ -1126,7 +1126,7 @@ type ModifyHSMInput struct {
 	// The new IP address for the syslog monitoring server.
 	SyslogIP *string `locationName:"SyslogIp" type:"string"`
 
-	metadataModifyHSMInput `json:"-", xml:"-"`
+	metadataModifyHSMInput `json:"-" xml:"-"`
 }
 
 type metadataModifyHSMInput struct {
@@ -1138,7 +1138,7 @@ type ModifyHSMOutput struct {
 	// The ARN of the HSM.
 	HSMARN *string `locationName:"HsmArn" type:"string"`
 
-	metadataModifyHSMOutput `json:"-", xml:"-"`
+	metadataModifyHSMOutput `json:"-" xml:"-"`
 }
 
 type metadataModifyHSMOutput struct {
@@ -1152,7 +1152,7 @@ type ModifyLunaClientInput struct {
 	// The ARN of the client.
 	ClientARN *string `locationName:"ClientArn" type:"string" required:"true"`
 
-	metadataModifyLunaClientInput `json:"-", xml:"-"`
+	metadataModifyLunaClientInput `json:"-" xml:"-"`
 }
 
 type metadataModifyLunaClientInput struct {
@@ -1163,7 +1163,7 @@ type ModifyLunaClientOutput struct {
 	// The ARN of the client.
 	ClientARN *string `locationName:"ClientArn" type:"string"`
 
-	metadataModifyLunaClientOutput `json:"-", xml:"-"`
+	metadataModifyLunaClientOutput `json:"-" xml:"-"`
 }
 
 type metadataModifyLunaClientOutput struct {

@@ -641,7 +641,7 @@ type CreateIdentityPoolInput struct {
 	// Optional key:value pairs mapping provider names to provider app IDs.
 	SupportedLoginProviders *map[string]*string `type:"map"`
 
-	metadataCreateIdentityPoolInput `json:"-", xml:"-"`
+	metadataCreateIdentityPoolInput `json:"-" xml:"-"`
 }
 
 type metadataCreateIdentityPoolInput struct {
@@ -662,7 +662,7 @@ type Credentials struct {
 	// The Session Token portion of the credentials
 	SessionToken *string `type:"string"`
 
-	metadataCredentials `json:"-", xml:"-"`
+	metadataCredentials `json:"-" xml:"-"`
 }
 
 type metadataCredentials struct {
@@ -674,7 +674,7 @@ type DeleteIdentityPoolInput struct {
 	// An identity pool ID in the format REGION:GUID.
 	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
 
-	metadataDeleteIdentityPoolInput `json:"-", xml:"-"`
+	metadataDeleteIdentityPoolInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteIdentityPoolInput struct {
@@ -682,7 +682,7 @@ type metadataDeleteIdentityPoolInput struct {
 }
 
 type DeleteIdentityPoolOutput struct {
-	metadataDeleteIdentityPoolOutput `json:"-", xml:"-"`
+	metadataDeleteIdentityPoolOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteIdentityPoolOutput struct {
@@ -694,7 +694,7 @@ type DescribeIdentityInput struct {
 	// A unique identifier in the format REGION:GUID.
 	IdentityID *string `locationName:"IdentityId" type:"string" required:"true"`
 
-	metadataDescribeIdentityInput `json:"-", xml:"-"`
+	metadataDescribeIdentityInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeIdentityInput struct {
@@ -706,7 +706,7 @@ type DescribeIdentityPoolInput struct {
 	// An identity pool ID in the format REGION:GUID.
 	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
 
-	metadataDescribeIdentityPoolInput `json:"-", xml:"-"`
+	metadataDescribeIdentityPoolInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeIdentityPoolInput struct {
@@ -721,7 +721,7 @@ type GetCredentialsForIdentityInput struct {
 	// A set of optional name-value pairs that map provider names to provider tokens.
 	Logins *map[string]*string `type:"map"`
 
-	metadataGetCredentialsForIdentityInput `json:"-", xml:"-"`
+	metadataGetCredentialsForIdentityInput `json:"-" xml:"-"`
 }
 
 type metadataGetCredentialsForIdentityInput struct {
@@ -736,7 +736,7 @@ type GetCredentialsForIdentityOutput struct {
 	// A unique identifier in the format REGION:GUID.
 	IdentityID *string `locationName:"IdentityId" type:"string"`
 
-	metadataGetCredentialsForIdentityOutput `json:"-", xml:"-"`
+	metadataGetCredentialsForIdentityOutput `json:"-" xml:"-"`
 }
 
 type metadataGetCredentialsForIdentityOutput struct {
@@ -757,7 +757,7 @@ type GetIDInput struct {
 	//  Google: accounts.google.com  Amazon: www.amazon.com
 	Logins *map[string]*string `type:"map"`
 
-	metadataGetIDInput `json:"-", xml:"-"`
+	metadataGetIDInput `json:"-" xml:"-"`
 }
 
 type metadataGetIDInput struct {
@@ -769,7 +769,7 @@ type GetIDOutput struct {
 	// A unique identifier in the format REGION:GUID.
 	IdentityID *string `locationName:"IdentityId" type:"string"`
 
-	metadataGetIDOutput `json:"-", xml:"-"`
+	metadataGetIDOutput `json:"-" xml:"-"`
 }
 
 type metadataGetIDOutput struct {
@@ -781,7 +781,7 @@ type GetIdentityPoolRolesInput struct {
 	// An identity pool ID in the format REGION:GUID.
 	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string"`
 
-	metadataGetIdentityPoolRolesInput `json:"-", xml:"-"`
+	metadataGetIdentityPoolRolesInput `json:"-" xml:"-"`
 }
 
 type metadataGetIdentityPoolRolesInput struct {
@@ -797,7 +797,7 @@ type GetIdentityPoolRolesOutput struct {
 	// and unauthenticated roles are supported.
 	Roles *map[string]*string `type:"map"`
 
-	metadataGetIdentityPoolRolesOutput `json:"-", xml:"-"`
+	metadataGetIdentityPoolRolesOutput `json:"-" xml:"-"`
 }
 
 type metadataGetIdentityPoolRolesOutput struct {
@@ -833,7 +833,7 @@ type GetOpenIDTokenForDeveloperIdentityInput struct {
 	// AWS resources for the token's duration.
 	TokenDuration *int64 `type:"long"`
 
-	metadataGetOpenIDTokenForDeveloperIdentityInput `json:"-", xml:"-"`
+	metadataGetOpenIDTokenForDeveloperIdentityInput `json:"-" xml:"-"`
 }
 
 type metadataGetOpenIDTokenForDeveloperIdentityInput struct {
@@ -848,7 +848,7 @@ type GetOpenIDTokenForDeveloperIdentityOutput struct {
 	// An OpenID token.
 	Token *string `type:"string"`
 
-	metadataGetOpenIDTokenForDeveloperIdentityOutput `json:"-", xml:"-"`
+	metadataGetOpenIDTokenForDeveloperIdentityOutput `json:"-" xml:"-"`
 }
 
 type metadataGetOpenIDTokenForDeveloperIdentityOutput struct {
@@ -863,7 +863,7 @@ type GetOpenIDTokenInput struct {
 	// A set of optional name-value pairs that map provider names to provider tokens.
 	Logins *map[string]*string `type:"map"`
 
-	metadataGetOpenIDTokenInput `json:"-", xml:"-"`
+	metadataGetOpenIDTokenInput `json:"-" xml:"-"`
 }
 
 type metadataGetOpenIDTokenInput struct {
@@ -879,7 +879,7 @@ type GetOpenIDTokenOutput struct {
 	// An OpenID token, valid for 15 minutes.
 	Token *string `type:"string"`
 
-	metadataGetOpenIDTokenOutput `json:"-", xml:"-"`
+	metadataGetOpenIDTokenOutput `json:"-" xml:"-"`
 }
 
 type metadataGetOpenIDTokenOutput struct {
@@ -900,7 +900,7 @@ type IdentityDescription struct {
 	// A set of optional name-value pairs that map provider names to provider tokens.
 	Logins []*string `type:"list"`
 
-	metadataIdentityDescription `json:"-", xml:"-"`
+	metadataIdentityDescription `json:"-" xml:"-"`
 }
 
 type metadataIdentityDescription struct {
@@ -927,7 +927,7 @@ type IdentityPool struct {
 	// Optional key:value pairs mapping provider names to provider app IDs.
 	SupportedLoginProviders *map[string]*string `type:"map"`
 
-	metadataIdentityPool `json:"-", xml:"-"`
+	metadataIdentityPool `json:"-" xml:"-"`
 }
 
 type metadataIdentityPool struct {
@@ -942,7 +942,7 @@ type IdentityPoolShortDescription struct {
 	// A string that you provide.
 	IdentityPoolName *string `type:"string"`
 
-	metadataIdentityPoolShortDescription `json:"-", xml:"-"`
+	metadataIdentityPoolShortDescription `json:"-" xml:"-"`
 }
 
 type metadataIdentityPoolShortDescription struct {
@@ -960,7 +960,7 @@ type ListIdentitiesInput struct {
 	// A pagination token.
 	NextToken *string `type:"string"`
 
-	metadataListIdentitiesInput `json:"-", xml:"-"`
+	metadataListIdentitiesInput `json:"-" xml:"-"`
 }
 
 type metadataListIdentitiesInput struct {
@@ -978,7 +978,7 @@ type ListIdentitiesOutput struct {
 	// A pagination token.
 	NextToken *string `type:"string"`
 
-	metadataListIdentitiesOutput `json:"-", xml:"-"`
+	metadataListIdentitiesOutput `json:"-" xml:"-"`
 }
 
 type metadataListIdentitiesOutput struct {
@@ -993,7 +993,7 @@ type ListIdentityPoolsInput struct {
 	// A pagination token.
 	NextToken *string `type:"string"`
 
-	metadataListIdentityPoolsInput `json:"-", xml:"-"`
+	metadataListIdentityPoolsInput `json:"-" xml:"-"`
 }
 
 type metadataListIdentityPoolsInput struct {
@@ -1008,7 +1008,7 @@ type ListIdentityPoolsOutput struct {
 	// A pagination token.
 	NextToken *string `type:"string"`
 
-	metadataListIdentityPoolsOutput `json:"-", xml:"-"`
+	metadataListIdentityPoolsOutput `json:"-" xml:"-"`
 }
 
 type metadataListIdentityPoolsOutput struct {
@@ -1039,7 +1039,7 @@ type LookupDeveloperIdentityInput struct {
 	// results starting from the 11th match.
 	NextToken *string `type:"string"`
 
-	metadataLookupDeveloperIdentityInput `json:"-", xml:"-"`
+	metadataLookupDeveloperIdentityInput `json:"-" xml:"-"`
 }
 
 type metadataLookupDeveloperIdentityInput struct {
@@ -1064,7 +1064,7 @@ type LookupDeveloperIdentityOutput struct {
 	// results starting from the 11th match.
 	NextToken *string `type:"string"`
 
-	metadataLookupDeveloperIdentityOutput `json:"-", xml:"-"`
+	metadataLookupDeveloperIdentityOutput `json:"-" xml:"-"`
 }
 
 type metadataLookupDeveloperIdentityOutput struct {
@@ -1089,7 +1089,7 @@ type MergeDeveloperIdentitiesInput struct {
 	// User identifier for the source user. The value should be a DeveloperUserIdentifier.
 	SourceUserIdentifier *string `type:"string" required:"true"`
 
-	metadataMergeDeveloperIdentitiesInput `json:"-", xml:"-"`
+	metadataMergeDeveloperIdentitiesInput `json:"-" xml:"-"`
 }
 
 type metadataMergeDeveloperIdentitiesInput struct {
@@ -1101,7 +1101,7 @@ type MergeDeveloperIdentitiesOutput struct {
 	// A unique identifier in the format REGION:GUID.
 	IdentityID *string `locationName:"IdentityId" type:"string"`
 
-	metadataMergeDeveloperIdentitiesOutput `json:"-", xml:"-"`
+	metadataMergeDeveloperIdentitiesOutput `json:"-" xml:"-"`
 }
 
 type metadataMergeDeveloperIdentitiesOutput struct {
@@ -1117,7 +1117,7 @@ type SetIdentityPoolRolesInput struct {
 	// and unauthenticated roles are supported.
 	Roles *map[string]*string `type:"map" required:"true"`
 
-	metadataSetIdentityPoolRolesInput `json:"-", xml:"-"`
+	metadataSetIdentityPoolRolesInput `json:"-" xml:"-"`
 }
 
 type metadataSetIdentityPoolRolesInput struct {
@@ -1125,7 +1125,7 @@ type metadataSetIdentityPoolRolesInput struct {
 }
 
 type SetIdentityPoolRolesOutput struct {
-	metadataSetIdentityPoolRolesOutput `json:"-", xml:"-"`
+	metadataSetIdentityPoolRolesOutput `json:"-" xml:"-"`
 }
 
 type metadataSetIdentityPoolRolesOutput struct {
@@ -1146,7 +1146,7 @@ type UnlinkDeveloperIdentityInput struct {
 	// An identity pool ID in the format REGION:GUID.
 	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
 
-	metadataUnlinkDeveloperIdentityInput `json:"-", xml:"-"`
+	metadataUnlinkDeveloperIdentityInput `json:"-" xml:"-"`
 }
 
 type metadataUnlinkDeveloperIdentityInput struct {
@@ -1154,7 +1154,7 @@ type metadataUnlinkDeveloperIdentityInput struct {
 }
 
 type UnlinkDeveloperIdentityOutput struct {
-	metadataUnlinkDeveloperIdentityOutput `json:"-", xml:"-"`
+	metadataUnlinkDeveloperIdentityOutput `json:"-" xml:"-"`
 }
 
 type metadataUnlinkDeveloperIdentityOutput struct {
@@ -1172,7 +1172,7 @@ type UnlinkIdentityInput struct {
 	// Provider names to unlink from this identity.
 	LoginsToRemove []*string `type:"list" required:"true"`
 
-	metadataUnlinkIdentityInput `json:"-", xml:"-"`
+	metadataUnlinkIdentityInput `json:"-" xml:"-"`
 }
 
 type metadataUnlinkIdentityInput struct {
@@ -1180,7 +1180,7 @@ type metadataUnlinkIdentityInput struct {
 }
 
 type UnlinkIdentityOutput struct {
-	metadataUnlinkIdentityOutput `json:"-", xml:"-"`
+	metadataUnlinkIdentityOutput `json:"-" xml:"-"`
 }
 
 type metadataUnlinkIdentityOutput struct {

@@ -1058,7 +1058,7 @@ type ApplicationDescription struct {
 	// The names of the versions for this application.
 	Versions []*string `type:"list"`
 
-	metadataApplicationDescription `json:"-", xml:"-"`
+	metadataApplicationDescription `json:"-" xml:"-"`
 }
 
 type metadataApplicationDescription struct {
@@ -1070,7 +1070,7 @@ type ApplicationDescriptionMessage struct {
 	// The ApplicationDescription of the application.
 	Application *ApplicationDescription `type:"structure"`
 
-	metadataApplicationDescriptionMessage `json:"-", xml:"-"`
+	metadataApplicationDescriptionMessage `json:"-" xml:"-"`
 }
 
 type metadataApplicationDescriptionMessage struct {
@@ -1097,7 +1097,7 @@ type ApplicationVersionDescription struct {
 	// A label uniquely identifying the version for the associated application.
 	VersionLabel *string `type:"string"`
 
-	metadataApplicationVersionDescription `json:"-", xml:"-"`
+	metadataApplicationVersionDescription `json:"-" xml:"-"`
 }
 
 type metadataApplicationVersionDescription struct {
@@ -1109,7 +1109,7 @@ type ApplicationVersionDescriptionMessage struct {
 	// The ApplicationVersionDescription of the application version.
 	ApplicationVersion *ApplicationVersionDescription `type:"structure"`
 
-	metadataApplicationVersionDescriptionMessage `json:"-", xml:"-"`
+	metadataApplicationVersionDescriptionMessage `json:"-" xml:"-"`
 }
 
 type metadataApplicationVersionDescriptionMessage struct {
@@ -1121,7 +1121,7 @@ type AutoScalingGroup struct {
 	// The name of the AutoScalingGroup .
 	Name *string `type:"string"`
 
-	metadataAutoScalingGroup `json:"-", xml:"-"`
+	metadataAutoScalingGroup `json:"-" xml:"-"`
 }
 
 type metadataAutoScalingGroup struct {
@@ -1133,7 +1133,7 @@ type CheckDNSAvailabilityInput struct {
 	// The prefix used when this CNAME is reserved.
 	CNAMEPrefix *string `type:"string" required:"true"`
 
-	metadataCheckDNSAvailabilityInput `json:"-", xml:"-"`
+	metadataCheckDNSAvailabilityInput `json:"-" xml:"-"`
 }
 
 type metadataCheckDNSAvailabilityInput struct {
@@ -1155,7 +1155,7 @@ type CheckDNSAvailabilityOutput struct {
 	// the provided prefix.
 	FullyQualifiedCNAME *string `type:"string"`
 
-	metadataCheckDNSAvailabilityOutput `json:"-", xml:"-"`
+	metadataCheckDNSAvailabilityOutput `json:"-" xml:"-"`
 }
 
 type metadataCheckDNSAvailabilityOutput struct {
@@ -1252,7 +1252,7 @@ type ConfigurationOptionDescription struct {
 	// false .
 	ValueType *string `type:"string"`
 
-	metadataConfigurationOptionDescription `json:"-", xml:"-"`
+	metadataConfigurationOptionDescription `json:"-" xml:"-"`
 }
 
 type metadataConfigurationOptionDescription struct {
@@ -1273,7 +1273,7 @@ type ConfigurationOptionSetting struct {
 	// The current value for the configuration option.
 	Value *string `type:"string"`
 
-	metadataConfigurationOptionSetting `json:"-", xml:"-"`
+	metadataConfigurationOptionSetting `json:"-" xml:"-"`
 }
 
 type metadataConfigurationOptionSetting struct {
@@ -1328,7 +1328,7 @@ type ConfigurationSettingsDescription struct {
 	// set.
 	TemplateName *string `type:"string"`
 
-	metadataConfigurationSettingsDescription `json:"-", xml:"-"`
+	metadataConfigurationSettingsDescription `json:"-" xml:"-"`
 }
 
 type metadataConfigurationSettingsDescription struct {
@@ -1346,7 +1346,7 @@ type CreateApplicationInput struct {
 	// Describes the application.
 	Description *string `type:"string"`
 
-	metadataCreateApplicationInput `json:"-", xml:"-"`
+	metadataCreateApplicationInput `json:"-" xml:"-"`
 }
 
 type metadataCreateApplicationInput struct {
@@ -1398,7 +1398,7 @@ type CreateApplicationVersionInput struct {
 	// returns an InvalidParameterValue error.
 	VersionLabel *string `type:"string" required:"true"`
 
-	metadataCreateApplicationVersionInput `json:"-", xml:"-"`
+	metadataCreateApplicationVersionInput `json:"-" xml:"-"`
 }
 
 type metadataCreateApplicationVersionInput struct {
@@ -1462,7 +1462,7 @@ type CreateConfigurationTemplateInput struct {
 	// Elastic Beanstalk returns an InvalidParameterValue error.
 	TemplateName *string `type:"string" required:"true"`
 
-	metadataCreateConfigurationTemplateInput `json:"-", xml:"-"`
+	metadataCreateConfigurationTemplateInput `json:"-" xml:"-"`
 }
 
 type metadataCreateConfigurationTemplateInput struct {
@@ -1540,7 +1540,7 @@ type CreateEnvironmentInput struct {
 	// sample application in the container.
 	VersionLabel *string `type:"string"`
 
-	metadataCreateEnvironmentInput `json:"-", xml:"-"`
+	metadataCreateEnvironmentInput `json:"-" xml:"-"`
 }
 
 type metadataCreateEnvironmentInput struct {
@@ -1548,7 +1548,7 @@ type metadataCreateEnvironmentInput struct {
 }
 
 type CreateStorageLocationInput struct {
-	metadataCreateStorageLocationInput `json:"-", xml:"-"`
+	metadataCreateStorageLocationInput `json:"-" xml:"-"`
 }
 
 type metadataCreateStorageLocationInput struct {
@@ -1560,7 +1560,7 @@ type CreateStorageLocationOutput struct {
 	// The name of the Amazon S3 bucket created.
 	S3Bucket *string `type:"string"`
 
-	metadataCreateStorageLocationOutput `json:"-", xml:"-"`
+	metadataCreateStorageLocationOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateStorageLocationOutput struct {
@@ -1576,7 +1576,7 @@ type DeleteApplicationInput struct {
 	// the application.
 	TerminateEnvByForce *bool `type:"boolean"`
 
-	metadataDeleteApplicationInput `json:"-", xml:"-"`
+	metadataDeleteApplicationInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteApplicationInput struct {
@@ -1584,7 +1584,7 @@ type metadataDeleteApplicationInput struct {
 }
 
 type DeleteApplicationOutput struct {
-	metadataDeleteApplicationOutput `json:"-", xml:"-"`
+	metadataDeleteApplicationOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteApplicationOutput struct {
@@ -1606,7 +1606,7 @@ type DeleteApplicationVersionInput struct {
 	// The label of the version to delete.
 	VersionLabel *string `type:"string" required:"true"`
 
-	metadataDeleteApplicationVersionInput `json:"-", xml:"-"`
+	metadataDeleteApplicationVersionInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteApplicationVersionInput struct {
@@ -1614,7 +1614,7 @@ type metadataDeleteApplicationVersionInput struct {
 }
 
 type DeleteApplicationVersionOutput struct {
-	metadataDeleteApplicationVersionOutput `json:"-", xml:"-"`
+	metadataDeleteApplicationVersionOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteApplicationVersionOutput struct {
@@ -1629,7 +1629,7 @@ type DeleteConfigurationTemplateInput struct {
 	// The name of the configuration template to delete.
 	TemplateName *string `type:"string" required:"true"`
 
-	metadataDeleteConfigurationTemplateInput `json:"-", xml:"-"`
+	metadataDeleteConfigurationTemplateInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteConfigurationTemplateInput struct {
@@ -1637,7 +1637,7 @@ type metadataDeleteConfigurationTemplateInput struct {
 }
 
 type DeleteConfigurationTemplateOutput struct {
-	metadataDeleteConfigurationTemplateOutput `json:"-", xml:"-"`
+	metadataDeleteConfigurationTemplateOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteConfigurationTemplateOutput struct {
@@ -1652,7 +1652,7 @@ type DeleteEnvironmentConfigurationInput struct {
 	// The name of the environment to delete the draft configuration from.
 	EnvironmentName *string `type:"string" required:"true"`
 
-	metadataDeleteEnvironmentConfigurationInput `json:"-", xml:"-"`
+	metadataDeleteEnvironmentConfigurationInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteEnvironmentConfigurationInput struct {
@@ -1660,7 +1660,7 @@ type metadataDeleteEnvironmentConfigurationInput struct {
 }
 
 type DeleteEnvironmentConfigurationOutput struct {
-	metadataDeleteEnvironmentConfigurationOutput `json:"-", xml:"-"`
+	metadataDeleteEnvironmentConfigurationOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteEnvironmentConfigurationOutput struct {
@@ -1677,7 +1677,7 @@ type DescribeApplicationVersionsInput struct {
 	// have the specified version labels.
 	VersionLabels []*string `type:"list"`
 
-	metadataDescribeApplicationVersionsInput `json:"-", xml:"-"`
+	metadataDescribeApplicationVersionsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeApplicationVersionsInput struct {
@@ -1689,7 +1689,7 @@ type DescribeApplicationVersionsOutput struct {
 	// A list of ApplicationVersionDescription .
 	ApplicationVersions []*ApplicationVersionDescription `type:"list"`
 
-	metadataDescribeApplicationVersionsOutput `json:"-", xml:"-"`
+	metadataDescribeApplicationVersionsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeApplicationVersionsOutput struct {
@@ -1702,7 +1702,7 @@ type DescribeApplicationsInput struct {
 	// only include those with the specified names.
 	ApplicationNames []*string `type:"list"`
 
-	metadataDescribeApplicationsInput `json:"-", xml:"-"`
+	metadataDescribeApplicationsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeApplicationsInput struct {
@@ -1714,7 +1714,7 @@ type DescribeApplicationsOutput struct {
 	// This parameter contains a list of ApplicationDescription.
 	Applications []*ApplicationDescription `type:"list"`
 
-	metadataDescribeApplicationsOutput `json:"-", xml:"-"`
+	metadataDescribeApplicationsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeApplicationsOutput struct {
@@ -1741,7 +1741,7 @@ type DescribeConfigurationOptionsInput struct {
 	// to describe.
 	TemplateName *string `type:"string"`
 
-	metadataDescribeConfigurationOptionsInput `json:"-", xml:"-"`
+	metadataDescribeConfigurationOptionsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeConfigurationOptionsInput struct {
@@ -1756,7 +1756,7 @@ type DescribeConfigurationOptionsOutput struct {
 	// The name of the solution stack these configuration options belong to.
 	SolutionStackName *string `type:"string"`
 
-	metadataDescribeConfigurationOptionsOutput `json:"-", xml:"-"`
+	metadataDescribeConfigurationOptionsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeConfigurationOptionsOutput struct {
@@ -1785,7 +1785,7 @@ type DescribeConfigurationSettingsInput struct {
 	// error.
 	TemplateName *string `type:"string"`
 
-	metadataDescribeConfigurationSettingsInput `json:"-", xml:"-"`
+	metadataDescribeConfigurationSettingsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeConfigurationSettingsInput struct {
@@ -1797,7 +1797,7 @@ type DescribeConfigurationSettingsOutput struct {
 	// A list of ConfigurationSettingsDescription.
 	ConfigurationSettings []*ConfigurationSettingsDescription `type:"list"`
 
-	metadataDescribeConfigurationSettingsOutput `json:"-", xml:"-"`
+	metadataDescribeConfigurationSettingsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeConfigurationSettingsOutput struct {
@@ -1820,7 +1820,7 @@ type DescribeEnvironmentResourcesInput struct {
 	// error.
 	EnvironmentName *string `type:"string"`
 
-	metadataDescribeEnvironmentResourcesInput `json:"-", xml:"-"`
+	metadataDescribeEnvironmentResourcesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeEnvironmentResourcesInput struct {
@@ -1832,7 +1832,7 @@ type DescribeEnvironmentResourcesOutput struct {
 	// A list of EnvironmentResourceDescription.
 	EnvironmentResources *EnvironmentResourceDescription `type:"structure"`
 
-	metadataDescribeEnvironmentResourcesOutput `json:"-", xml:"-"`
+	metadataDescribeEnvironmentResourcesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeEnvironmentResourcesOutput struct {
@@ -1869,7 +1869,7 @@ type DescribeEnvironmentsInput struct {
 	// include only those that are associated with this application version.
 	VersionLabel *string `type:"string"`
 
-	metadataDescribeEnvironmentsInput `json:"-", xml:"-"`
+	metadataDescribeEnvironmentsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeEnvironmentsInput struct {
@@ -1881,7 +1881,7 @@ type DescribeEnvironmentsOutput struct {
 	// Returns an EnvironmentDescription list.
 	Environments []*EnvironmentDescription `type:"list"`
 
-	metadataDescribeEnvironmentsOutput `json:"-", xml:"-"`
+	metadataDescribeEnvironmentsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeEnvironmentsOutput struct {
@@ -1933,7 +1933,7 @@ type DescribeEventsInput struct {
 	// those associated with this application version.
 	VersionLabel *string `type:"string"`
 
-	metadataDescribeEventsInput `json:"-", xml:"-"`
+	metadataDescribeEventsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeEventsInput struct {
@@ -1949,7 +1949,7 @@ type DescribeEventsOutput struct {
 	// token in the next DescribeEvents call to get the next batch of events.
 	NextToken *string `type:"string"`
 
-	metadataDescribeEventsOutput `json:"-", xml:"-"`
+	metadataDescribeEventsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeEventsOutput struct {
@@ -2026,7 +2026,7 @@ type EnvironmentDescription struct {
 	// The application version deployed in this environment.
 	VersionLabel *string `type:"string"`
 
-	metadataEnvironmentDescription `json:"-", xml:"-"`
+	metadataEnvironmentDescription `json:"-" xml:"-"`
 }
 
 type metadataEnvironmentDescription struct {
@@ -2047,7 +2047,7 @@ type EnvironmentInfoDescription struct {
 	// The time stamp when this information was retrieved.
 	SampleTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataEnvironmentInfoDescription `json:"-", xml:"-"`
+	metadataEnvironmentInfoDescription `json:"-" xml:"-"`
 }
 
 type metadataEnvironmentInfoDescription struct {
@@ -2077,7 +2077,7 @@ type EnvironmentResourceDescription struct {
 	// The AutoScaling triggers in use by this environment.
 	Triggers []*Trigger `type:"list"`
 
-	metadataEnvironmentResourceDescription `json:"-", xml:"-"`
+	metadataEnvironmentResourceDescription `json:"-" xml:"-"`
 }
 
 type metadataEnvironmentResourceDescription struct {
@@ -2090,7 +2090,7 @@ type EnvironmentResourcesDescription struct {
 	// Describes the LoadBalancer.
 	LoadBalancer *LoadBalancerDescription `type:"structure"`
 
-	metadataEnvironmentResourcesDescription `json:"-", xml:"-"`
+	metadataEnvironmentResourcesDescription `json:"-" xml:"-"`
 }
 
 type metadataEnvironmentResourcesDescription struct {
@@ -2108,7 +2108,7 @@ type EnvironmentTier struct {
 	// The version of this environment tier.
 	Version *string `type:"string"`
 
-	metadataEnvironmentTier `json:"-", xml:"-"`
+	metadataEnvironmentTier `json:"-" xml:"-"`
 }
 
 type metadataEnvironmentTier struct {
@@ -2141,7 +2141,7 @@ type EventDescription struct {
 	// The release label for the application version associated with this event.
 	VersionLabel *string `type:"string"`
 
-	metadataEventDescription `json:"-", xml:"-"`
+	metadataEventDescription `json:"-" xml:"-"`
 }
 
 type metadataEventDescription struct {
@@ -2153,7 +2153,7 @@ type Instance struct {
 	// The ID of the Amazon EC2 instance.
 	ID *string `locationName:"Id" type:"string"`
 
-	metadataInstance `json:"-", xml:"-"`
+	metadataInstance `json:"-" xml:"-"`
 }
 
 type metadataInstance struct {
@@ -2165,7 +2165,7 @@ type LaunchConfiguration struct {
 	// The name of the launch configuration.
 	Name *string `type:"string"`
 
-	metadataLaunchConfiguration `json:"-", xml:"-"`
+	metadataLaunchConfiguration `json:"-" xml:"-"`
 }
 
 type metadataLaunchConfiguration struct {
@@ -2173,7 +2173,7 @@ type metadataLaunchConfiguration struct {
 }
 
 type ListAvailableSolutionStacksInput struct {
-	metadataListAvailableSolutionStacksInput `json:"-", xml:"-"`
+	metadataListAvailableSolutionStacksInput `json:"-" xml:"-"`
 }
 
 type metadataListAvailableSolutionStacksInput struct {
@@ -2188,7 +2188,7 @@ type ListAvailableSolutionStacksOutput struct {
 	// A list of available solution stacks.
 	SolutionStacks []*string `type:"list"`
 
-	metadataListAvailableSolutionStacksOutput `json:"-", xml:"-"`
+	metadataListAvailableSolutionStacksOutput `json:"-" xml:"-"`
 }
 
 type metadataListAvailableSolutionStacksOutput struct {
@@ -2203,7 +2203,7 @@ type Listener struct {
 	// The protocol that is used by the Listener.
 	Protocol *string `type:"string"`
 
-	metadataListener `json:"-", xml:"-"`
+	metadataListener `json:"-" xml:"-"`
 }
 
 type metadataListener struct {
@@ -2215,7 +2215,7 @@ type LoadBalancer struct {
 	// The name of the LoadBalancer.
 	Name *string `type:"string"`
 
-	metadataLoadBalancer `json:"-", xml:"-"`
+	metadataLoadBalancer `json:"-" xml:"-"`
 }
 
 type metadataLoadBalancer struct {
@@ -2233,7 +2233,7 @@ type LoadBalancerDescription struct {
 	// The name of the LoadBalancer.
 	LoadBalancerName *string `type:"string"`
 
-	metadataLoadBalancerDescription `json:"-", xml:"-"`
+	metadataLoadBalancerDescription `json:"-" xml:"-"`
 }
 
 type metadataLoadBalancerDescription struct {
@@ -2250,7 +2250,7 @@ type OptionRestrictionRegex struct {
 	// this restriction must match.
 	Pattern *string `type:"string"`
 
-	metadataOptionRestrictionRegex `json:"-", xml:"-"`
+	metadataOptionRestrictionRegex `json:"-" xml:"-"`
 }
 
 type metadataOptionRestrictionRegex struct {
@@ -2265,7 +2265,7 @@ type OptionSpecification struct {
 	// The name of the configuration option.
 	OptionName *string `type:"string"`
 
-	metadataOptionSpecification `json:"-", xml:"-"`
+	metadataOptionSpecification `json:"-" xml:"-"`
 }
 
 type metadataOptionSpecification struct {
@@ -2280,7 +2280,7 @@ type Queue struct {
 	// The URL of the queue.
 	URL *string `type:"string"`
 
-	metadataQueue `json:"-", xml:"-"`
+	metadataQueue `json:"-" xml:"-"`
 }
 
 type metadataQueue struct {
@@ -2302,7 +2302,7 @@ type RebuildEnvironmentInput struct {
 	// error.
 	EnvironmentName *string `type:"string"`
 
-	metadataRebuildEnvironmentInput `json:"-", xml:"-"`
+	metadataRebuildEnvironmentInput `json:"-" xml:"-"`
 }
 
 type metadataRebuildEnvironmentInput struct {
@@ -2310,7 +2310,7 @@ type metadataRebuildEnvironmentInput struct {
 }
 
 type RebuildEnvironmentOutput struct {
-	metadataRebuildEnvironmentOutput `json:"-", xml:"-"`
+	metadataRebuildEnvironmentOutput `json:"-" xml:"-"`
 }
 
 type metadataRebuildEnvironmentOutput struct {
@@ -2342,7 +2342,7 @@ type RequestEnvironmentInfoInput struct {
 	// The type of information to request.
 	InfoType *string `type:"string" required:"true"`
 
-	metadataRequestEnvironmentInfoInput `json:"-", xml:"-"`
+	metadataRequestEnvironmentInfoInput `json:"-" xml:"-"`
 }
 
 type metadataRequestEnvironmentInfoInput struct {
@@ -2350,7 +2350,7 @@ type metadataRequestEnvironmentInfoInput struct {
 }
 
 type RequestEnvironmentInfoOutput struct {
-	metadataRequestEnvironmentInfoOutput `json:"-", xml:"-"`
+	metadataRequestEnvironmentInfoOutput `json:"-" xml:"-"`
 }
 
 type metadataRequestEnvironmentInfoOutput struct {
@@ -2372,7 +2372,7 @@ type RestartAppServerInput struct {
 	// error.
 	EnvironmentName *string `type:"string"`
 
-	metadataRestartAppServerInput `json:"-", xml:"-"`
+	metadataRestartAppServerInput `json:"-" xml:"-"`
 }
 
 type metadataRestartAppServerInput struct {
@@ -2380,7 +2380,7 @@ type metadataRestartAppServerInput struct {
 }
 
 type RestartAppServerOutput struct {
-	metadataRestartAppServerOutput `json:"-", xml:"-"`
+	metadataRestartAppServerOutput `json:"-" xml:"-"`
 }
 
 type metadataRestartAppServerOutput struct {
@@ -2410,7 +2410,7 @@ type RetrieveEnvironmentInfoInput struct {
 	// The type of information to retrieve.
 	InfoType *string `type:"string" required:"true"`
 
-	metadataRetrieveEnvironmentInfoInput `json:"-", xml:"-"`
+	metadataRetrieveEnvironmentInfoInput `json:"-" xml:"-"`
 }
 
 type metadataRetrieveEnvironmentInfoInput struct {
@@ -2422,7 +2422,7 @@ type RetrieveEnvironmentInfoOutput struct {
 	// The EnvironmentInfoDescription of the environment.
 	EnvironmentInfo []*EnvironmentInfoDescription `type:"list"`
 
-	metadataRetrieveEnvironmentInfoOutput `json:"-", xml:"-"`
+	metadataRetrieveEnvironmentInfoOutput `json:"-" xml:"-"`
 }
 
 type metadataRetrieveEnvironmentInfoOutput struct {
@@ -2437,7 +2437,7 @@ type S3Location struct {
 	// The Amazon S3 key where the data is located.
 	S3Key *string `type:"string"`
 
-	metadataS3Location `json:"-", xml:"-"`
+	metadataS3Location `json:"-" xml:"-"`
 }
 
 type metadataS3Location struct {
@@ -2452,7 +2452,7 @@ type SolutionStackDescription struct {
 	// The name of the solution stack.
 	SolutionStackName *string `type:"string"`
 
-	metadataSolutionStackDescription `json:"-", xml:"-"`
+	metadataSolutionStackDescription `json:"-" xml:"-"`
 }
 
 type metadataSolutionStackDescription struct {
@@ -2467,7 +2467,7 @@ type SourceConfiguration struct {
 	// The name of the configuration template.
 	TemplateName *string `type:"string"`
 
-	metadataSourceConfiguration `json:"-", xml:"-"`
+	metadataSourceConfiguration `json:"-" xml:"-"`
 }
 
 type metadataSourceConfiguration struct {
@@ -2503,7 +2503,7 @@ type SwapEnvironmentCNAMEsInput struct {
 	// must specify the DestinationEnvironmentName.
 	SourceEnvironmentName *string `type:"string"`
 
-	metadataSwapEnvironmentCNAMEsInput `json:"-", xml:"-"`
+	metadataSwapEnvironmentCNAMEsInput `json:"-" xml:"-"`
 }
 
 type metadataSwapEnvironmentCNAMEsInput struct {
@@ -2511,7 +2511,7 @@ type metadataSwapEnvironmentCNAMEsInput struct {
 }
 
 type SwapEnvironmentCNAMEsOutput struct {
-	metadataSwapEnvironmentCNAMEsOutput `json:"-", xml:"-"`
+	metadataSwapEnvironmentCNAMEsOutput `json:"-" xml:"-"`
 }
 
 type metadataSwapEnvironmentCNAMEsOutput struct {
@@ -2526,7 +2526,7 @@ type Tag struct {
 	// The value of the tag.
 	Value *string `type:"string"`
 
-	metadataTag `json:"-", xml:"-"`
+	metadataTag `json:"-" xml:"-"`
 }
 
 type metadataTag struct {
@@ -2569,7 +2569,7 @@ type TerminateEnvironmentInput struct {
 	//  Valid Values: true | false
 	TerminateResources *bool `type:"boolean"`
 
-	metadataTerminateEnvironmentInput `json:"-", xml:"-"`
+	metadataTerminateEnvironmentInput `json:"-" xml:"-"`
 }
 
 type metadataTerminateEnvironmentInput struct {
@@ -2581,7 +2581,7 @@ type Trigger struct {
 	// The name of the trigger.
 	Name *string `type:"string"`
 
-	metadataTrigger `json:"-", xml:"-"`
+	metadataTrigger `json:"-" xml:"-"`
 }
 
 type metadataTrigger struct {
@@ -2599,7 +2599,7 @@ type UpdateApplicationInput struct {
 	// Default: If not specified, AWS Elastic Beanstalk does not update the description.
 	Description *string `type:"string"`
 
-	metadataUpdateApplicationInput `json:"-", xml:"-"`
+	metadataUpdateApplicationInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateApplicationInput struct {
@@ -2622,7 +2622,7 @@ type UpdateApplicationVersionInput struct {
 	// an InvalidParameterValue error.
 	VersionLabel *string `type:"string" required:"true"`
 
-	metadataUpdateApplicationVersionInput `json:"-", xml:"-"`
+	metadataUpdateApplicationVersionInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateApplicationVersionInput struct {
@@ -2656,7 +2656,7 @@ type UpdateConfigurationTemplateInput struct {
 	// returns an InvalidParameterValue error.
 	TemplateName *string `type:"string" required:"true"`
 
-	metadataUpdateConfigurationTemplateInput `json:"-", xml:"-"`
+	metadataUpdateConfigurationTemplateInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateConfigurationTemplateInput struct {
@@ -2713,7 +2713,7 @@ type UpdateEnvironmentInput struct {
 	// an InvalidParameterValue error.
 	VersionLabel *string `type:"string"`
 
-	metadataUpdateEnvironmentInput `json:"-", xml:"-"`
+	metadataUpdateEnvironmentInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateEnvironmentInput struct {
@@ -2739,7 +2739,7 @@ type ValidateConfigurationSettingsInput struct {
 	//  Condition: You cannot specify both this and an environment name.
 	TemplateName *string `type:"string"`
 
-	metadataValidateConfigurationSettingsInput `json:"-", xml:"-"`
+	metadataValidateConfigurationSettingsInput `json:"-" xml:"-"`
 }
 
 type metadataValidateConfigurationSettingsInput struct {
@@ -2751,7 +2751,7 @@ type ValidateConfigurationSettingsOutput struct {
 	// A list of ValidationMessage.
 	Messages []*ValidationMessage `type:"list"`
 
-	metadataValidateConfigurationSettingsOutput `json:"-", xml:"-"`
+	metadataValidateConfigurationSettingsOutput `json:"-" xml:"-"`
 }
 
 type metadataValidateConfigurationSettingsOutput struct {
@@ -2779,7 +2779,7 @@ type ValidationMessage struct {
 	// into account.
 	Severity *string `type:"string"`
 
-	metadataValidationMessage `json:"-", xml:"-"`
+	metadataValidationMessage `json:"-" xml:"-"`
 }
 
 type metadataValidationMessage struct {

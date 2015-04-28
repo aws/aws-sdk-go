@@ -1324,7 +1324,7 @@ type AbortMultipartUploadInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataAbortMultipartUploadInput `json:"-", xml:"-"`
+	metadataAbortMultipartUploadInput `json:"-" xml:"-"`
 }
 
 type metadataAbortMultipartUploadInput struct {
@@ -1332,7 +1332,7 @@ type metadataAbortMultipartUploadInput struct {
 }
 
 type AbortMultipartUploadOutput struct {
-	metadataAbortMultipartUploadOutput `json:"-", xml:"-"`
+	metadataAbortMultipartUploadOutput `json:"-" xml:"-"`
 }
 
 type metadataAbortMultipartUploadOutput struct {
@@ -1354,7 +1354,7 @@ type ArchiveCreationOutput struct {
 	// The relative URI path of the newly added archive resource.
 	Location *string `location:"header" locationName:"Location" type:"string"`
 
-	metadataArchiveCreationOutput `json:"-", xml:"-"`
+	metadataArchiveCreationOutput `json:"-" xml:"-"`
 }
 
 type metadataArchiveCreationOutput struct {
@@ -1389,7 +1389,7 @@ type CompleteMultipartUploadInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataCompleteMultipartUploadInput `json:"-", xml:"-"`
+	metadataCompleteMultipartUploadInput `json:"-" xml:"-"`
 }
 
 type metadataCompleteMultipartUploadInput struct {
@@ -1407,7 +1407,7 @@ type CreateVaultInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataCreateVaultInput `json:"-", xml:"-"`
+	metadataCreateVaultInput `json:"-" xml:"-"`
 }
 
 type metadataCreateVaultInput struct {
@@ -1419,7 +1419,7 @@ type CreateVaultOutput struct {
 	// The URI of the vault that was created.
 	Location *string `location:"header" locationName:"Location" type:"string"`
 
-	metadataCreateVaultOutput `json:"-", xml:"-"`
+	metadataCreateVaultOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateVaultOutput struct {
@@ -1429,7 +1429,7 @@ type metadataCreateVaultOutput struct {
 type DataRetrievalPolicy struct {
 	Rules []*DataRetrievalRule `type:"list"`
 
-	metadataDataRetrievalPolicy `json:"-", xml:"-"`
+	metadataDataRetrievalPolicy `json:"-" xml:"-"`
 }
 
 type metadataDataRetrievalPolicy struct {
@@ -1441,7 +1441,7 @@ type DataRetrievalRule struct {
 
 	Strategy *string `type:"string"`
 
-	metadataDataRetrievalRule `json:"-", xml:"-"`
+	metadataDataRetrievalRule `json:"-" xml:"-"`
 }
 
 type metadataDataRetrievalRule struct {
@@ -1462,7 +1462,7 @@ type DeleteArchiveInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataDeleteArchiveInput `json:"-", xml:"-"`
+	metadataDeleteArchiveInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteArchiveInput struct {
@@ -1470,7 +1470,7 @@ type metadataDeleteArchiveInput struct {
 }
 
 type DeleteArchiveOutput struct {
-	metadataDeleteArchiveOutput `json:"-", xml:"-"`
+	metadataDeleteArchiveOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteArchiveOutput struct {
@@ -1488,7 +1488,7 @@ type DeleteVaultInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataDeleteVaultInput `json:"-", xml:"-"`
+	metadataDeleteVaultInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteVaultInput struct {
@@ -1507,7 +1507,7 @@ type DeleteVaultNotificationsInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataDeleteVaultNotificationsInput `json:"-", xml:"-"`
+	metadataDeleteVaultNotificationsInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteVaultNotificationsInput struct {
@@ -1515,7 +1515,7 @@ type metadataDeleteVaultNotificationsInput struct {
 }
 
 type DeleteVaultNotificationsOutput struct {
-	metadataDeleteVaultNotificationsOutput `json:"-", xml:"-"`
+	metadataDeleteVaultNotificationsOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteVaultNotificationsOutput struct {
@@ -1523,7 +1523,7 @@ type metadataDeleteVaultNotificationsOutput struct {
 }
 
 type DeleteVaultOutput struct {
-	metadataDeleteVaultOutput `json:"-", xml:"-"`
+	metadataDeleteVaultOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteVaultOutput struct {
@@ -1544,7 +1544,7 @@ type DescribeJobInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataDescribeJobInput `json:"-", xml:"-"`
+	metadataDescribeJobInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeJobInput struct {
@@ -1562,7 +1562,7 @@ type DescribeVaultInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataDescribeVaultInput `json:"-", xml:"-"`
+	metadataDescribeVaultInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeVaultInput struct {
@@ -1595,7 +1595,7 @@ type DescribeVaultOutput struct {
 	// The name of the vault.
 	VaultName *string `type:"string"`
 
-	metadataDescribeVaultOutput `json:"-", xml:"-"`
+	metadataDescribeVaultOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeVaultOutput struct {
@@ -1605,7 +1605,7 @@ type metadataDescribeVaultOutput struct {
 type GetDataRetrievalPolicyInput struct {
 	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
-	metadataGetDataRetrievalPolicyInput `json:"-", xml:"-"`
+	metadataGetDataRetrievalPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataGetDataRetrievalPolicyInput struct {
@@ -1615,7 +1615,7 @@ type metadataGetDataRetrievalPolicyInput struct {
 type GetDataRetrievalPolicyOutput struct {
 	Policy *DataRetrievalPolicy `type:"structure"`
 
-	metadataGetDataRetrievalPolicyOutput `json:"-", xml:"-"`
+	metadataGetDataRetrievalPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataGetDataRetrievalPolicyOutput struct {
@@ -1641,7 +1641,7 @@ type GetJobOutputInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataGetJobOutputInput `json:"-", xml:"-"`
+	metadataGetJobOutputInput `json:"-" xml:"-"`
 }
 
 type metadataGetJobOutputInput struct {
@@ -1688,7 +1688,7 @@ type GetJobOutputOutput struct {
 	// a range was specified in the request.
 	Status *int64 `location:"statusCode" locationName:"status" type:"integer"`
 
-	metadataGetJobOutputOutput `json:"-", xml:"-"`
+	metadataGetJobOutputOutput `json:"-" xml:"-"`
 }
 
 type metadataGetJobOutputOutput struct {
@@ -1707,7 +1707,7 @@ type GetVaultNotificationsInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataGetVaultNotificationsInput `json:"-", xml:"-"`
+	metadataGetVaultNotificationsInput `json:"-" xml:"-"`
 }
 
 type metadataGetVaultNotificationsInput struct {
@@ -1719,7 +1719,7 @@ type GetVaultNotificationsOutput struct {
 	// Returns the notification configuration set on the vault.
 	VaultNotificationConfig *VaultNotificationConfig `locationName:"vaultNotificationConfig" type:"structure"`
 
-	metadataGetVaultNotificationsOutput `json:"-", xml:"-"`
+	metadataGetVaultNotificationsOutput `json:"-" xml:"-"`
 }
 
 type metadataGetVaultNotificationsOutput struct {
@@ -1806,7 +1806,7 @@ type GlacierJobDescription struct {
 	// was requested.
 	VaultARN *string `type:"string"`
 
-	metadataGlacierJobDescription `json:"-", xml:"-"`
+	metadataGlacierJobDescription `json:"-" xml:"-"`
 }
 
 type metadataGlacierJobDescription struct {
@@ -1827,7 +1827,7 @@ type InitiateJobInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataInitiateJobInput `json:"-", xml:"-"`
+	metadataInitiateJobInput `json:"-" xml:"-"`
 }
 
 type metadataInitiateJobInput struct {
@@ -1842,7 +1842,7 @@ type InitiateJobOutput struct {
 	// The relative URI path of the job.
 	Location *string `location:"header" locationName:"Location" type:"string"`
 
-	metadataInitiateJobOutput `json:"-", xml:"-"`
+	metadataInitiateJobOutput `json:"-" xml:"-"`
 }
 
 type metadataInitiateJobOutput struct {
@@ -1872,7 +1872,7 @@ type InitiateMultipartUploadInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataInitiateMultipartUploadInput `json:"-", xml:"-"`
+	metadataInitiateMultipartUploadInput `json:"-" xml:"-"`
 }
 
 type metadataInitiateMultipartUploadInput struct {
@@ -1888,7 +1888,7 @@ type InitiateMultipartUploadOutput struct {
 	// location.
 	UploadID *string `location:"header" locationName:"x-amz-multipart-upload-id" type:"string"`
 
-	metadataInitiateMultipartUploadOutput `json:"-", xml:"-"`
+	metadataInitiateMultipartUploadOutput `json:"-" xml:"-"`
 }
 
 type metadataInitiateMultipartUploadOutput struct {
@@ -1924,7 +1924,7 @@ type InventoryRetrievalJobDescription struct {
 	// date format, for example, 2013-03-20T17:03:43Z.
 	StartDate *string `type:"string"`
 
-	metadataInventoryRetrievalJobDescription `json:"-", xml:"-"`
+	metadataInventoryRetrievalJobDescription `json:"-" xml:"-"`
 }
 
 type metadataInventoryRetrievalJobDescription struct {
@@ -1953,7 +1953,7 @@ type InventoryRetrievalJobInput struct {
 	// date format, for example, 2013-03-20T17:03:43Z.
 	StartDate *string `type:"string"`
 
-	metadataInventoryRetrievalJobInput `json:"-", xml:"-"`
+	metadataInventoryRetrievalJobInput `json:"-" xml:"-"`
 }
 
 type metadataInventoryRetrievalJobInput struct {
@@ -2002,7 +2002,7 @@ type JobParameters struct {
 	// of a vault. Valid values are "archive-retrieval" and "inventory-retrieval".
 	Type *string `type:"string"`
 
-	metadataJobParameters `json:"-", xml:"-"`
+	metadataJobParameters `json:"-" xml:"-"`
 }
 
 type metadataJobParameters struct {
@@ -2037,7 +2037,7 @@ type ListJobsInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataListJobsInput `json:"-", xml:"-"`
+	metadataListJobsInput `json:"-" xml:"-"`
 }
 
 type metadataListJobsInput struct {
@@ -2054,7 +2054,7 @@ type ListJobsOutput struct {
 	// list. If there are no more jobs, this value is null.
 	Marker *string `type:"string"`
 
-	metadataListJobsOutput `json:"-", xml:"-"`
+	metadataListJobsOutput `json:"-" xml:"-"`
 }
 
 type metadataListJobsOutput struct {
@@ -2084,7 +2084,7 @@ type ListMultipartUploadsInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataListMultipartUploadsInput `json:"-", xml:"-"`
+	metadataListMultipartUploadsInput `json:"-" xml:"-"`
 }
 
 type metadataListMultipartUploadsInput struct {
@@ -2101,7 +2101,7 @@ type ListMultipartUploadsOutput struct {
 	// A list of in-progress multipart uploads.
 	UploadsList []*UploadListElement `type:"list"`
 
-	metadataListMultipartUploadsOutput `json:"-", xml:"-"`
+	metadataListMultipartUploadsOutput `json:"-" xml:"-"`
 }
 
 type metadataListMultipartUploadsOutput struct {
@@ -2134,7 +2134,7 @@ type ListPartsInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataListPartsInput `json:"-", xml:"-"`
+	metadataListPartsInput `json:"-" xml:"-"`
 }
 
 type metadataListPartsInput struct {
@@ -2168,7 +2168,7 @@ type ListPartsOutput struct {
 	// was initiated.
 	VaultARN *string `type:"string"`
 
-	metadataListPartsOutput `json:"-", xml:"-"`
+	metadataListPartsOutput `json:"-" xml:"-"`
 }
 
 type metadataListPartsOutput struct {
@@ -2192,7 +2192,7 @@ type ListVaultsInput struct {
 	// the listing of vaults should begin.
 	Marker *string `location:"querystring" locationName:"marker" type:"string"`
 
-	metadataListVaultsInput `json:"-", xml:"-"`
+	metadataListVaultsInput `json:"-" xml:"-"`
 }
 
 type metadataListVaultsInput struct {
@@ -2208,7 +2208,7 @@ type ListVaultsOutput struct {
 	// List of vaults.
 	VaultList []*DescribeVaultOutput `type:"list"`
 
-	metadataListVaultsOutput `json:"-", xml:"-"`
+	metadataListVaultsOutput `json:"-" xml:"-"`
 }
 
 type metadataListVaultsOutput struct {
@@ -2224,7 +2224,7 @@ type PartListElement struct {
 	// field is never null.
 	SHA256TreeHash *string `type:"string"`
 
-	metadataPartListElement `json:"-", xml:"-"`
+	metadataPartListElement `json:"-" xml:"-"`
 }
 
 type metadataPartListElement struct {
@@ -2236,7 +2236,7 @@ type SetDataRetrievalPolicyInput struct {
 
 	Policy *DataRetrievalPolicy `type:"structure"`
 
-	metadataSetDataRetrievalPolicyInput `json:"-", xml:"-"`
+	metadataSetDataRetrievalPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataSetDataRetrievalPolicyInput struct {
@@ -2244,7 +2244,7 @@ type metadataSetDataRetrievalPolicyInput struct {
 }
 
 type SetDataRetrievalPolicyOutput struct {
-	metadataSetDataRetrievalPolicyOutput `json:"-", xml:"-"`
+	metadataSetDataRetrievalPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataSetDataRetrievalPolicyOutput struct {
@@ -2266,7 +2266,7 @@ type SetVaultNotificationsInput struct {
 	// Provides options for specifying notification configuration.
 	VaultNotificationConfig *VaultNotificationConfig `locationName:"vaultNotificationConfig" type:"structure"`
 
-	metadataSetVaultNotificationsInput `json:"-", xml:"-"`
+	metadataSetVaultNotificationsInput `json:"-" xml:"-"`
 }
 
 type metadataSetVaultNotificationsInput struct {
@@ -2274,7 +2274,7 @@ type metadataSetVaultNotificationsInput struct {
 }
 
 type SetVaultNotificationsOutput struct {
-	metadataSetVaultNotificationsOutput `json:"-", xml:"-"`
+	metadataSetVaultNotificationsOutput `json:"-" xml:"-"`
 }
 
 type metadataSetVaultNotificationsOutput struct {
@@ -2301,7 +2301,7 @@ type UploadArchiveInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataUploadArchiveInput `json:"-", xml:"-"`
+	metadataUploadArchiveInput `json:"-" xml:"-"`
 }
 
 type metadataUploadArchiveInput struct {
@@ -2328,7 +2328,7 @@ type UploadListElement struct {
 	// The Amazon Resource Name (ARN) of the vault that contains the archive.
 	VaultARN *string `type:"string"`
 
-	metadataUploadListElement `json:"-", xml:"-"`
+	metadataUploadListElement `json:"-" xml:"-"`
 }
 
 type metadataUploadListElement struct {
@@ -2361,7 +2361,7 @@ type UploadMultipartPartInput struct {
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 
-	metadataUploadMultipartPartInput `json:"-", xml:"-"`
+	metadataUploadMultipartPartInput `json:"-" xml:"-"`
 }
 
 type metadataUploadMultipartPartInput struct {
@@ -2373,7 +2373,7 @@ type UploadMultipartPartOutput struct {
 	// The SHA256 tree hash that Amazon Glacier computed for the uploaded part.
 	Checksum *string `location:"header" locationName:"x-amz-sha256-tree-hash" type:"string"`
 
-	metadataUploadMultipartPartOutput `json:"-", xml:"-"`
+	metadataUploadMultipartPartOutput `json:"-" xml:"-"`
 }
 
 type metadataUploadMultipartPartOutput struct {
@@ -2390,7 +2390,7 @@ type VaultNotificationConfig struct {
 	// Name (ARN).
 	SNSTopic *string `type:"string"`
 
-	metadataVaultNotificationConfig `json:"-", xml:"-"`
+	metadataVaultNotificationConfig `json:"-" xml:"-"`
 }
 
 type metadataVaultNotificationConfig struct {

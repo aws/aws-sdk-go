@@ -868,7 +868,7 @@ type AddPermissionInput struct {
 	// The URL of the Amazon SQS queue to take action on.
 	QueueURL *string `locationName:"QueueUrl" type:"string" required:"true"`
 
-	metadataAddPermissionInput `json:"-", xml:"-"`
+	metadataAddPermissionInput `json:"-" xml:"-"`
 }
 
 type metadataAddPermissionInput struct {
@@ -876,7 +876,7 @@ type metadataAddPermissionInput struct {
 }
 
 type AddPermissionOutput struct {
-	metadataAddPermissionOutput `json:"-", xml:"-"`
+	metadataAddPermissionOutput `json:"-" xml:"-"`
 }
 
 type metadataAddPermissionOutput struct {
@@ -898,7 +898,7 @@ type BatchResultErrorEntry struct {
 	// Whether the error happened due to the sender's fault.
 	SenderFault *bool `type:"boolean" required:"true"`
 
-	metadataBatchResultErrorEntry `json:"-", xml:"-"`
+	metadataBatchResultErrorEntry `json:"-" xml:"-"`
 }
 
 type metadataBatchResultErrorEntry struct {
@@ -913,7 +913,7 @@ type ChangeMessageVisibilityBatchInput struct {
 	// The URL of the Amazon SQS queue to take action on.
 	QueueURL *string `locationName:"QueueUrl" type:"string" required:"true"`
 
-	metadataChangeMessageVisibilityBatchInput `json:"-", xml:"-"`
+	metadataChangeMessageVisibilityBatchInput `json:"-" xml:"-"`
 }
 
 type metadataChangeMessageVisibilityBatchInput struct {
@@ -930,7 +930,7 @@ type ChangeMessageVisibilityBatchOutput struct {
 	// A list of ChangeMessageVisibilityBatchResultEntry items.
 	Successful []*ChangeMessageVisibilityBatchResultEntry `locationNameList:"ChangeMessageVisibilityBatchResultEntry" type:"list" flattened:"true" required:"true"`
 
-	metadataChangeMessageVisibilityBatchOutput `json:"-", xml:"-"`
+	metadataChangeMessageVisibilityBatchOutput `json:"-" xml:"-"`
 }
 
 type metadataChangeMessageVisibilityBatchOutput struct {
@@ -961,7 +961,7 @@ type ChangeMessageVisibilityBatchRequestEntry struct {
 	// The new value (in seconds) for the message's visibility timeout.
 	VisibilityTimeout *int64 `type:"integer"`
 
-	metadataChangeMessageVisibilityBatchRequestEntry `json:"-", xml:"-"`
+	metadataChangeMessageVisibilityBatchRequestEntry `json:"-" xml:"-"`
 }
 
 type metadataChangeMessageVisibilityBatchRequestEntry struct {
@@ -973,7 +973,7 @@ type ChangeMessageVisibilityBatchResultEntry struct {
 	// Represents a message whose visibility timeout has been changed successfully.
 	ID *string `locationName:"Id" type:"string" required:"true"`
 
-	metadataChangeMessageVisibilityBatchResultEntry `json:"-", xml:"-"`
+	metadataChangeMessageVisibilityBatchResultEntry `json:"-" xml:"-"`
 }
 
 type metadataChangeMessageVisibilityBatchResultEntry struct {
@@ -992,7 +992,7 @@ type ChangeMessageVisibilityInput struct {
 	// visibility timeout.
 	VisibilityTimeout *int64 `type:"integer" required:"true"`
 
-	metadataChangeMessageVisibilityInput `json:"-", xml:"-"`
+	metadataChangeMessageVisibilityInput `json:"-" xml:"-"`
 }
 
 type metadataChangeMessageVisibilityInput struct {
@@ -1000,7 +1000,7 @@ type metadataChangeMessageVisibilityInput struct {
 }
 
 type ChangeMessageVisibilityOutput struct {
-	metadataChangeMessageVisibilityOutput `json:"-", xml:"-"`
+	metadataChangeMessageVisibilityOutput `json:"-" xml:"-"`
 }
 
 type metadataChangeMessageVisibilityOutput struct {
@@ -1035,7 +1035,7 @@ type CreateQueueInput struct {
 	// The name for the queue to be created.
 	QueueName *string `type:"string" required:"true"`
 
-	metadataCreateQueueInput `json:"-", xml:"-"`
+	metadataCreateQueueInput `json:"-" xml:"-"`
 }
 
 type metadataCreateQueueInput struct {
@@ -1047,7 +1047,7 @@ type CreateQueueOutput struct {
 	// The URL for the created Amazon SQS queue.
 	QueueURL *string `locationName:"QueueUrl" type:"string"`
 
-	metadataCreateQueueOutput `json:"-", xml:"-"`
+	metadataCreateQueueOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateQueueOutput struct {
@@ -1061,7 +1061,7 @@ type DeleteMessageBatchInput struct {
 	// The URL of the Amazon SQS queue to take action on.
 	QueueURL *string `locationName:"QueueUrl" type:"string" required:"true"`
 
-	metadataDeleteMessageBatchInput `json:"-", xml:"-"`
+	metadataDeleteMessageBatchInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteMessageBatchInput struct {
@@ -1078,7 +1078,7 @@ type DeleteMessageBatchOutput struct {
 	// A list of DeleteMessageBatchResultEntry items.
 	Successful []*DeleteMessageBatchResultEntry `locationNameList:"DeleteMessageBatchResultEntry" type:"list" flattened:"true" required:"true"`
 
-	metadataDeleteMessageBatchOutput `json:"-", xml:"-"`
+	metadataDeleteMessageBatchOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteMessageBatchOutput struct {
@@ -1095,7 +1095,7 @@ type DeleteMessageBatchRequestEntry struct {
 	// A receipt handle.
 	ReceiptHandle *string `type:"string" required:"true"`
 
-	metadataDeleteMessageBatchRequestEntry `json:"-", xml:"-"`
+	metadataDeleteMessageBatchRequestEntry `json:"-" xml:"-"`
 }
 
 type metadataDeleteMessageBatchRequestEntry struct {
@@ -1107,7 +1107,7 @@ type DeleteMessageBatchResultEntry struct {
 	// Represents a successfully deleted message.
 	ID *string `locationName:"Id" type:"string" required:"true"`
 
-	metadataDeleteMessageBatchResultEntry `json:"-", xml:"-"`
+	metadataDeleteMessageBatchResultEntry `json:"-" xml:"-"`
 }
 
 type metadataDeleteMessageBatchResultEntry struct {
@@ -1121,7 +1121,7 @@ type DeleteMessageInput struct {
 	// The receipt handle associated with the message to delete.
 	ReceiptHandle *string `type:"string" required:"true"`
 
-	metadataDeleteMessageInput `json:"-", xml:"-"`
+	metadataDeleteMessageInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteMessageInput struct {
@@ -1129,7 +1129,7 @@ type metadataDeleteMessageInput struct {
 }
 
 type DeleteMessageOutput struct {
-	metadataDeleteMessageOutput `json:"-", xml:"-"`
+	metadataDeleteMessageOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteMessageOutput struct {
@@ -1140,7 +1140,7 @@ type DeleteQueueInput struct {
 	// The URL of the Amazon SQS queue to take action on.
 	QueueURL *string `locationName:"QueueUrl" type:"string" required:"true"`
 
-	metadataDeleteQueueInput `json:"-", xml:"-"`
+	metadataDeleteQueueInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteQueueInput struct {
@@ -1148,7 +1148,7 @@ type metadataDeleteQueueInput struct {
 }
 
 type DeleteQueueOutput struct {
-	metadataDeleteQueueOutput `json:"-", xml:"-"`
+	metadataDeleteQueueOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteQueueOutput struct {
@@ -1162,7 +1162,7 @@ type GetQueueAttributesInput struct {
 	// The URL of the Amazon SQS queue to take action on.
 	QueueURL *string `locationName:"QueueUrl" type:"string" required:"true"`
 
-	metadataGetQueueAttributesInput `json:"-", xml:"-"`
+	metadataGetQueueAttributesInput `json:"-" xml:"-"`
 }
 
 type metadataGetQueueAttributesInput struct {
@@ -1174,7 +1174,7 @@ type GetQueueAttributesOutput struct {
 	// A map of attributes to the respective values.
 	Attributes *map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
 
-	metadataGetQueueAttributesOutput `json:"-", xml:"-"`
+	metadataGetQueueAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataGetQueueAttributesOutput struct {
@@ -1189,7 +1189,7 @@ type GetQueueURLInput struct {
 	// The AWS account ID of the account that created the queue.
 	QueueOwnerAWSAccountID *string `locationName:"QueueOwnerAWSAccountId" type:"string"`
 
-	metadataGetQueueURLInput `json:"-", xml:"-"`
+	metadataGetQueueURLInput `json:"-" xml:"-"`
 }
 
 type metadataGetQueueURLInput struct {
@@ -1202,7 +1202,7 @@ type GetQueueURLOutput struct {
 	// The URL for the queue.
 	QueueURL *string `locationName:"QueueUrl" type:"string"`
 
-	metadataGetQueueURLOutput `json:"-", xml:"-"`
+	metadataGetQueueURLOutput `json:"-" xml:"-"`
 }
 
 type metadataGetQueueURLOutput struct {
@@ -1213,7 +1213,7 @@ type ListDeadLetterSourceQueuesInput struct {
 	// The queue URL of a dead letter queue.
 	QueueURL *string `locationName:"QueueUrl" type:"string" required:"true"`
 
-	metadataListDeadLetterSourceQueuesInput `json:"-", xml:"-"`
+	metadataListDeadLetterSourceQueuesInput `json:"-" xml:"-"`
 }
 
 type metadataListDeadLetterSourceQueuesInput struct {
@@ -1226,7 +1226,7 @@ type ListDeadLetterSourceQueuesOutput struct {
 	// with a dead letter queue.
 	QueueURLs []*string `locationName:"queueUrls" locationNameList:"QueueUrl" type:"list" flattened:"true" required:"true"`
 
-	metadataListDeadLetterSourceQueuesOutput `json:"-", xml:"-"`
+	metadataListDeadLetterSourceQueuesOutput `json:"-" xml:"-"`
 }
 
 type metadataListDeadLetterSourceQueuesOutput struct {
@@ -1238,7 +1238,7 @@ type ListQueuesInput struct {
 	// begins with the specified string are returned.
 	QueueNamePrefix *string `type:"string"`
 
-	metadataListQueuesInput `json:"-", xml:"-"`
+	metadataListQueuesInput `json:"-" xml:"-"`
 }
 
 type metadataListQueuesInput struct {
@@ -1250,7 +1250,7 @@ type ListQueuesOutput struct {
 	// A list of queue URLs, up to 1000 entries.
 	QueueURLs []*string `locationName:"QueueUrls" locationNameList:"QueueUrl" type:"list" flattened:"true"`
 
-	metadataListQueuesOutput `json:"-", xml:"-"`
+	metadataListQueuesOutput `json:"-" xml:"-"`
 }
 
 type metadataListQueuesOutput struct {
@@ -1290,7 +1290,7 @@ type Message struct {
 	// you provide the last received receipt handle to delete the message.
 	ReceiptHandle *string `type:"string"`
 
-	metadataMessage `json:"-", xml:"-"`
+	metadataMessage `json:"-" xml:"-"`
 }
 
 type metadataMessage struct {
@@ -1325,7 +1325,7 @@ type MessageAttributeValue struct {
 	// see http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters (http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters).
 	StringValue *string `type:"string"`
 
-	metadataMessageAttributeValue `json:"-", xml:"-"`
+	metadataMessageAttributeValue `json:"-" xml:"-"`
 }
 
 type metadataMessageAttributeValue struct {
@@ -1337,7 +1337,7 @@ type PurgeQueueInput struct {
 	// API.
 	QueueURL *string `locationName:"QueueUrl" type:"string" required:"true"`
 
-	metadataPurgeQueueInput `json:"-", xml:"-"`
+	metadataPurgeQueueInput `json:"-" xml:"-"`
 }
 
 type metadataPurgeQueueInput struct {
@@ -1345,7 +1345,7 @@ type metadataPurgeQueueInput struct {
 }
 
 type PurgeQueueOutput struct {
-	metadataPurgeQueueOutput `json:"-", xml:"-"`
+	metadataPurgeQueueOutput `json:"-" xml:"-"`
 }
 
 type metadataPurgeQueueOutput struct {
@@ -1401,7 +1401,7 @@ type ReceiveMessageInput struct {
 	// sooner than WaitTimeSeconds.
 	WaitTimeSeconds *int64 `type:"integer"`
 
-	metadataReceiveMessageInput `json:"-", xml:"-"`
+	metadataReceiveMessageInput `json:"-" xml:"-"`
 }
 
 type metadataReceiveMessageInput struct {
@@ -1413,7 +1413,7 @@ type ReceiveMessageOutput struct {
 	// A list of messages.
 	Messages []*Message `locationNameList:"Message" type:"list" flattened:"true"`
 
-	metadataReceiveMessageOutput `json:"-", xml:"-"`
+	metadataReceiveMessageOutput `json:"-" xml:"-"`
 }
 
 type metadataReceiveMessageOutput struct {
@@ -1428,7 +1428,7 @@ type RemovePermissionInput struct {
 	// The URL of the Amazon SQS queue to take action on.
 	QueueURL *string `locationName:"QueueUrl" type:"string" required:"true"`
 
-	metadataRemovePermissionInput `json:"-", xml:"-"`
+	metadataRemovePermissionInput `json:"-" xml:"-"`
 }
 
 type metadataRemovePermissionInput struct {
@@ -1436,7 +1436,7 @@ type metadataRemovePermissionInput struct {
 }
 
 type RemovePermissionOutput struct {
-	metadataRemovePermissionOutput `json:"-", xml:"-"`
+	metadataRemovePermissionOutput `json:"-" xml:"-"`
 }
 
 type metadataRemovePermissionOutput struct {
@@ -1450,7 +1450,7 @@ type SendMessageBatchInput struct {
 	// The URL of the Amazon SQS queue to take action on.
 	QueueURL *string `locationName:"QueueUrl" type:"string" required:"true"`
 
-	metadataSendMessageBatchInput `json:"-", xml:"-"`
+	metadataSendMessageBatchInput `json:"-" xml:"-"`
 }
 
 type metadataSendMessageBatchInput struct {
@@ -1468,7 +1468,7 @@ type SendMessageBatchOutput struct {
 	// A list of SendMessageBatchResultEntry items.
 	Successful []*SendMessageBatchResultEntry `locationNameList:"SendMessageBatchResultEntry" type:"list" flattened:"true" required:"true"`
 
-	metadataSendMessageBatchOutput `json:"-", xml:"-"`
+	metadataSendMessageBatchOutput `json:"-" xml:"-"`
 }
 
 type metadataSendMessageBatchOutput struct {
@@ -1492,7 +1492,7 @@ type SendMessageBatchRequestEntry struct {
 	// Body of the message.
 	MessageBody *string `type:"string" required:"true"`
 
-	metadataSendMessageBatchRequestEntry `json:"-", xml:"-"`
+	metadataSendMessageBatchRequestEntry `json:"-" xml:"-"`
 }
 
 type metadataSendMessageBatchRequestEntry struct {
@@ -1519,7 +1519,7 @@ type SendMessageBatchResultEntry struct {
 	// An identifier for the message.
 	MessageID *string `locationName:"MessageId" type:"string" required:"true"`
 
-	metadataSendMessageBatchResultEntry `json:"-", xml:"-"`
+	metadataSendMessageBatchResultEntry `json:"-" xml:"-"`
 }
 
 type metadataSendMessageBatchResultEntry struct {
@@ -1544,7 +1544,7 @@ type SendMessageInput struct {
 	// The URL of the Amazon SQS queue to take action on.
 	QueueURL *string `locationName:"QueueUrl" type:"string" required:"true"`
 
-	metadataSendMessageInput `json:"-", xml:"-"`
+	metadataSendMessageInput `json:"-" xml:"-"`
 }
 
 type metadataSendMessageInput struct {
@@ -1570,7 +1570,7 @@ type SendMessageOutput struct {
 	// in the Amazon SQS Developer Guide.
 	MessageID *string `locationName:"MessageId" type:"string"`
 
-	metadataSendMessageOutput `json:"-", xml:"-"`
+	metadataSendMessageOutput `json:"-" xml:"-"`
 }
 
 type metadataSendMessageOutput struct {
@@ -1607,7 +1607,7 @@ type SetQueueAttributesInput struct {
 	// The URL of the Amazon SQS queue to take action on.
 	QueueURL *string `locationName:"QueueUrl" type:"string" required:"true"`
 
-	metadataSetQueueAttributesInput `json:"-", xml:"-"`
+	metadataSetQueueAttributesInput `json:"-" xml:"-"`
 }
 
 type metadataSetQueueAttributesInput struct {
@@ -1615,7 +1615,7 @@ type metadataSetQueueAttributesInput struct {
 }
 
 type SetQueueAttributesOutput struct {
-	metadataSetQueueAttributesOutput `json:"-", xml:"-"`
+	metadataSetQueueAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataSetQueueAttributesOutput struct {

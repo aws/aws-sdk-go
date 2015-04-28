@@ -723,7 +723,7 @@ type ActiveTrustedSigners struct {
 	// value of Quantity for ActiveTrustedSigners will be 3.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataActiveTrustedSigners `json:"-", xml:"-"`
+	metadataActiveTrustedSigners `json:"-" xml:"-"`
 }
 
 type metadataActiveTrustedSigners struct {
@@ -740,7 +740,7 @@ type Aliases struct {
 	// The number of CNAMEs, if any, for this distribution.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataAliases `json:"-", xml:"-"`
+	metadataAliases `json:"-" xml:"-"`
 }
 
 type metadataAliases struct {
@@ -773,7 +773,7 @@ type AllowedMethods struct {
 	// requests) and 7 (for GET, HEAD, OPTIONS, PUT, PATCH, POST, and DELETE requests).
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataAllowedMethods `json:"-", xml:"-"`
+	metadataAllowedMethods `json:"-" xml:"-"`
 }
 
 type metadataAllowedMethods struct {
@@ -856,7 +856,7 @@ type CacheBehavior struct {
 	// the HTTPS URL.
 	ViewerProtocolPolicy *string `type:"string" required:"true"`
 
-	metadataCacheBehavior `json:"-", xml:"-"`
+	metadataCacheBehavior `json:"-" xml:"-"`
 }
 
 type metadataCacheBehavior struct {
@@ -872,7 +872,7 @@ type CacheBehaviors struct {
 	// The number of cache behaviors for this distribution.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataCacheBehaviors `json:"-", xml:"-"`
+	metadataCacheBehaviors `json:"-" xml:"-"`
 }
 
 type metadataCacheBehaviors struct {
@@ -895,7 +895,7 @@ type CachedMethods struct {
 	// (for caching responses to GET, HEAD, and OPTIONS requests).
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataCachedMethods `json:"-", xml:"-"`
+	metadataCachedMethods `json:"-" xml:"-"`
 }
 
 type metadataCachedMethods struct {
@@ -915,7 +915,7 @@ type CloudFrontOriginAccessIdentity struct {
 	// Amazon S3.
 	S3CanonicalUserID *string `locationName:"S3CanonicalUserId" type:"string" required:"true"`
 
-	metadataCloudFrontOriginAccessIdentity `json:"-", xml:"-"`
+	metadataCloudFrontOriginAccessIdentity `json:"-" xml:"-"`
 }
 
 type metadataCloudFrontOriginAccessIdentity struct {
@@ -940,7 +940,7 @@ type CloudFrontOriginAccessIdentityConfig struct {
 	// Any comments you want to include about the origin access identity.
 	Comment *string `type:"string" required:"true"`
 
-	metadataCloudFrontOriginAccessIdentityConfig `json:"-", xml:"-"`
+	metadataCloudFrontOriginAccessIdentityConfig `json:"-" xml:"-"`
 }
 
 type metadataCloudFrontOriginAccessIdentityConfig struct {
@@ -974,7 +974,7 @@ type CloudFrontOriginAccessIdentityList struct {
 	// current AWS account.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataCloudFrontOriginAccessIdentityList `json:"-", xml:"-"`
+	metadataCloudFrontOriginAccessIdentityList `json:"-" xml:"-"`
 }
 
 type metadataCloudFrontOriginAccessIdentityList struct {
@@ -995,7 +995,7 @@ type CloudFrontOriginAccessIdentitySummary struct {
 	// Amazon S3.
 	S3CanonicalUserID *string `locationName:"S3CanonicalUserId" type:"string" required:"true"`
 
-	metadataCloudFrontOriginAccessIdentitySummary `json:"-", xml:"-"`
+	metadataCloudFrontOriginAccessIdentitySummary `json:"-" xml:"-"`
 }
 
 type metadataCloudFrontOriginAccessIdentitySummary struct {
@@ -1012,7 +1012,7 @@ type CookieNames struct {
 	// The number of whitelisted cookies for this cache behavior.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataCookieNames `json:"-", xml:"-"`
+	metadataCookieNames `json:"-" xml:"-"`
 }
 
 type metadataCookieNames struct {
@@ -1032,7 +1032,7 @@ type CookiePreference struct {
 	// CloudFront to forward to your origin that is associated with this cache behavior.
 	WhitelistedNames *CookieNames `type:"structure"`
 
-	metadataCookiePreference `json:"-", xml:"-"`
+	metadataCookiePreference `json:"-" xml:"-"`
 }
 
 type metadataCookiePreference struct {
@@ -1044,7 +1044,7 @@ type CreateCloudFrontOriginAccessIdentityInput struct {
 	// The origin access identity's configuration information.
 	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `locationName:"CloudFrontOriginAccessIdentityConfig" type:"structure" required:"true"`
 
-	metadataCreateCloudFrontOriginAccessIdentityInput `json:"-", xml:"-"`
+	metadataCreateCloudFrontOriginAccessIdentityInput `json:"-" xml:"-"`
 }
 
 type metadataCreateCloudFrontOriginAccessIdentityInput struct {
@@ -1063,7 +1063,7 @@ type CreateCloudFrontOriginAccessIdentityOutput struct {
 	// example: https://cloudfront.amazonaws.com/2010-11-01/origin-access-identity/cloudfront/E74FTE3AJFJ256A.
 	Location *string `location:"header" locationName:"Location" type:"string"`
 
-	metadataCreateCloudFrontOriginAccessIdentityOutput `json:"-", xml:"-"`
+	metadataCreateCloudFrontOriginAccessIdentityOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateCloudFrontOriginAccessIdentityOutput struct {
@@ -1075,7 +1075,7 @@ type CreateDistributionInput struct {
 	// The distribution's configuration information.
 	DistributionConfig *DistributionConfig `locationName:"DistributionConfig" type:"structure" required:"true"`
 
-	metadataCreateDistributionInput `json:"-", xml:"-"`
+	metadataCreateDistributionInput `json:"-" xml:"-"`
 }
 
 type metadataCreateDistributionInput struct {
@@ -1094,7 +1094,7 @@ type CreateDistributionOutput struct {
 	// example: https://cloudfront.amazonaws.com/2010-11-01/distribution/EDFDVBD632BHDS5.
 	Location *string `location:"header" locationName:"Location" type:"string"`
 
-	metadataCreateDistributionOutput `json:"-", xml:"-"`
+	metadataCreateDistributionOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateDistributionOutput struct {
@@ -1109,7 +1109,7 @@ type CreateInvalidationInput struct {
 	// The batch information for the invalidation.
 	InvalidationBatch *InvalidationBatch `locationName:"InvalidationBatch" type:"structure" required:"true"`
 
-	metadataCreateInvalidationInput `json:"-", xml:"-"`
+	metadataCreateInvalidationInput `json:"-" xml:"-"`
 }
 
 type metadataCreateInvalidationInput struct {
@@ -1125,7 +1125,7 @@ type CreateInvalidationOutput struct {
 	// including the Invalidation ID.
 	Location *string `location:"header" locationName:"Location" type:"string"`
 
-	metadataCreateInvalidationOutput `json:"-", xml:"-"`
+	metadataCreateInvalidationOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateInvalidationOutput struct {
@@ -1137,7 +1137,7 @@ type CreateStreamingDistributionInput struct {
 	// The streaming distribution's configuration information.
 	StreamingDistributionConfig *StreamingDistributionConfig `locationName:"StreamingDistributionConfig" type:"structure" required:"true"`
 
-	metadataCreateStreamingDistributionInput `json:"-", xml:"-"`
+	metadataCreateStreamingDistributionInput `json:"-" xml:"-"`
 }
 
 type metadataCreateStreamingDistributionInput struct {
@@ -1156,7 +1156,7 @@ type CreateStreamingDistributionOutput struct {
 	// The streaming distribution's information.
 	StreamingDistribution *StreamingDistribution `type:"structure"`
 
-	metadataCreateStreamingDistributionOutput `json:"-", xml:"-"`
+	metadataCreateStreamingDistributionOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateStreamingDistributionOutput struct {
@@ -1197,7 +1197,7 @@ type CustomErrorResponse struct {
 	// return the custom error page to the viewer.
 	ResponsePagePath *string `type:"string"`
 
-	metadataCustomErrorResponse `json:"-", xml:"-"`
+	metadataCustomErrorResponse `json:"-" xml:"-"`
 }
 
 type metadataCustomErrorResponse struct {
@@ -1213,7 +1213,7 @@ type CustomErrorResponses struct {
 	// The number of custom error responses for this distribution.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataCustomErrorResponses `json:"-", xml:"-"`
+	metadataCustomErrorResponses `json:"-" xml:"-"`
 }
 
 type metadataCustomErrorResponses struct {
@@ -1231,7 +1231,7 @@ type CustomOriginConfig struct {
 	// The origin protocol policy to apply to your origin.
 	OriginProtocolPolicy *string `type:"string" required:"true"`
 
-	metadataCustomOriginConfig `json:"-", xml:"-"`
+	metadataCustomOriginConfig `json:"-" xml:"-"`
 }
 
 type metadataCustomOriginConfig struct {
@@ -1294,7 +1294,7 @@ type DefaultCacheBehavior struct {
 	// the HTTPS URL.
 	ViewerProtocolPolicy *string `type:"string" required:"true"`
 
-	metadataDefaultCacheBehavior `json:"-", xml:"-"`
+	metadataDefaultCacheBehavior `json:"-" xml:"-"`
 }
 
 type metadataDefaultCacheBehavior struct {
@@ -1310,7 +1310,7 @@ type DeleteCloudFrontOriginAccessIdentityInput struct {
 	// For example: E2QWRUHAPOMQZL.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
-	metadataDeleteCloudFrontOriginAccessIdentityInput `json:"-", xml:"-"`
+	metadataDeleteCloudFrontOriginAccessIdentityInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteCloudFrontOriginAccessIdentityInput struct {
@@ -1318,7 +1318,7 @@ type metadataDeleteCloudFrontOriginAccessIdentityInput struct {
 }
 
 type DeleteCloudFrontOriginAccessIdentityOutput struct {
-	metadataDeleteCloudFrontOriginAccessIdentityOutput `json:"-", xml:"-"`
+	metadataDeleteCloudFrontOriginAccessIdentityOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteCloudFrontOriginAccessIdentityOutput struct {
@@ -1334,7 +1334,7 @@ type DeleteDistributionInput struct {
 	// For example: E2QWRUHAPOMQZL.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
-	metadataDeleteDistributionInput `json:"-", xml:"-"`
+	metadataDeleteDistributionInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDistributionInput struct {
@@ -1342,7 +1342,7 @@ type metadataDeleteDistributionInput struct {
 }
 
 type DeleteDistributionOutput struct {
-	metadataDeleteDistributionOutput `json:"-", xml:"-"`
+	metadataDeleteDistributionOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDistributionOutput struct {
@@ -1358,7 +1358,7 @@ type DeleteStreamingDistributionInput struct {
 	// distribution. For example: E2QWRUHAPOMQZL.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
-	metadataDeleteStreamingDistributionInput `json:"-", xml:"-"`
+	metadataDeleteStreamingDistributionInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteStreamingDistributionInput struct {
@@ -1366,7 +1366,7 @@ type metadataDeleteStreamingDistributionInput struct {
 }
 
 type DeleteStreamingDistributionOutput struct {
-	metadataDeleteStreamingDistributionOutput `json:"-", xml:"-"`
+	metadataDeleteStreamingDistributionOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteStreamingDistributionOutput struct {
@@ -1405,7 +1405,7 @@ type Distribution struct {
 	// throughout the Amazon CloudFront system.
 	Status *string `type:"string" required:"true"`
 
-	metadataDistribution `json:"-", xml:"-"`
+	metadataDistribution `json:"-" xml:"-"`
 }
 
 type metadataDistribution struct {
@@ -1474,7 +1474,7 @@ type DistributionConfig struct {
 	// distribution.
 	ViewerCertificate *ViewerCertificate `type:"structure"`
 
-	metadataDistributionConfig `json:"-", xml:"-"`
+	metadataDistributionConfig `json:"-" xml:"-"`
 }
 
 type metadataDistributionConfig struct {
@@ -1507,7 +1507,7 @@ type DistributionList struct {
 	// The number of distributions that were created by the current AWS account.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataDistributionList `json:"-", xml:"-"`
+	metadataDistributionList `json:"-" xml:"-"`
 }
 
 type metadataDistributionList struct {
@@ -1564,7 +1564,7 @@ type DistributionSummary struct {
 	// distribution.
 	ViewerCertificate *ViewerCertificate `type:"structure" required:"true"`
 
-	metadataDistributionSummary `json:"-", xml:"-"`
+	metadataDistributionSummary `json:"-" xml:"-"`
 }
 
 type metadataDistributionSummary struct {
@@ -1586,7 +1586,7 @@ type ForwardedValues struct {
 	// specify false.
 	QueryString *bool `type:"boolean" required:"true"`
 
-	metadataForwardedValues `json:"-", xml:"-"`
+	metadataForwardedValues `json:"-" xml:"-"`
 }
 
 type metadataForwardedValues struct {
@@ -1624,7 +1624,7 @@ type GeoRestriction struct {
 	// you want CloudFront to distribute your content.
 	RestrictionType *string `type:"string" required:"true"`
 
-	metadataGeoRestriction `json:"-", xml:"-"`
+	metadataGeoRestriction `json:"-" xml:"-"`
 }
 
 type metadataGeoRestriction struct {
@@ -1636,7 +1636,7 @@ type GetCloudFrontOriginAccessIdentityConfigInput struct {
 	// The identity's id.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataGetCloudFrontOriginAccessIdentityConfigInput `json:"-", xml:"-"`
+	metadataGetCloudFrontOriginAccessIdentityConfigInput `json:"-" xml:"-"`
 }
 
 type metadataGetCloudFrontOriginAccessIdentityConfigInput struct {
@@ -1651,7 +1651,7 @@ type GetCloudFrontOriginAccessIdentityConfigOutput struct {
 	// The current version of the configuration. For example: E2QWRUHAPOMQZL.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	metadataGetCloudFrontOriginAccessIdentityConfigOutput `json:"-", xml:"-"`
+	metadataGetCloudFrontOriginAccessIdentityConfigOutput `json:"-" xml:"-"`
 }
 
 type metadataGetCloudFrontOriginAccessIdentityConfigOutput struct {
@@ -1663,7 +1663,7 @@ type GetCloudFrontOriginAccessIdentityInput struct {
 	// The identity's id.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataGetCloudFrontOriginAccessIdentityInput `json:"-", xml:"-"`
+	metadataGetCloudFrontOriginAccessIdentityInput `json:"-" xml:"-"`
 }
 
 type metadataGetCloudFrontOriginAccessIdentityInput struct {
@@ -1679,7 +1679,7 @@ type GetCloudFrontOriginAccessIdentityOutput struct {
 	// E2QWRUHAPOMQZL.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	metadataGetCloudFrontOriginAccessIdentityOutput `json:"-", xml:"-"`
+	metadataGetCloudFrontOriginAccessIdentityOutput `json:"-" xml:"-"`
 }
 
 type metadataGetCloudFrontOriginAccessIdentityOutput struct {
@@ -1691,7 +1691,7 @@ type GetDistributionConfigInput struct {
 	// The distribution's id.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataGetDistributionConfigInput `json:"-", xml:"-"`
+	metadataGetDistributionConfigInput `json:"-" xml:"-"`
 }
 
 type metadataGetDistributionConfigInput struct {
@@ -1706,7 +1706,7 @@ type GetDistributionConfigOutput struct {
 	// The current version of the configuration. For example: E2QWRUHAPOMQZL.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	metadataGetDistributionConfigOutput `json:"-", xml:"-"`
+	metadataGetDistributionConfigOutput `json:"-" xml:"-"`
 }
 
 type metadataGetDistributionConfigOutput struct {
@@ -1718,7 +1718,7 @@ type GetDistributionInput struct {
 	// The distribution's id.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataGetDistributionInput `json:"-", xml:"-"`
+	metadataGetDistributionInput `json:"-" xml:"-"`
 }
 
 type metadataGetDistributionInput struct {
@@ -1733,7 +1733,7 @@ type GetDistributionOutput struct {
 	// The current version of the distribution's information. For example: E2QWRUHAPOMQZL.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	metadataGetDistributionOutput `json:"-", xml:"-"`
+	metadataGetDistributionOutput `json:"-" xml:"-"`
 }
 
 type metadataGetDistributionOutput struct {
@@ -1748,7 +1748,7 @@ type GetInvalidationInput struct {
 	// The invalidation's id.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataGetInvalidationInput `json:"-", xml:"-"`
+	metadataGetInvalidationInput `json:"-" xml:"-"`
 }
 
 type metadataGetInvalidationInput struct {
@@ -1760,7 +1760,7 @@ type GetInvalidationOutput struct {
 	// The invalidation's information.
 	Invalidation *Invalidation `type:"structure"`
 
-	metadataGetInvalidationOutput `json:"-", xml:"-"`
+	metadataGetInvalidationOutput `json:"-" xml:"-"`
 }
 
 type metadataGetInvalidationOutput struct {
@@ -1772,7 +1772,7 @@ type GetStreamingDistributionConfigInput struct {
 	// The streaming distribution's id.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataGetStreamingDistributionConfigInput `json:"-", xml:"-"`
+	metadataGetStreamingDistributionConfigInput `json:"-" xml:"-"`
 }
 
 type metadataGetStreamingDistributionConfigInput struct {
@@ -1787,7 +1787,7 @@ type GetStreamingDistributionConfigOutput struct {
 	// The streaming distribution's configuration information.
 	StreamingDistributionConfig *StreamingDistributionConfig `type:"structure"`
 
-	metadataGetStreamingDistributionConfigOutput `json:"-", xml:"-"`
+	metadataGetStreamingDistributionConfigOutput `json:"-" xml:"-"`
 }
 
 type metadataGetStreamingDistributionConfigOutput struct {
@@ -1799,7 +1799,7 @@ type GetStreamingDistributionInput struct {
 	// The streaming distribution's id.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataGetStreamingDistributionInput `json:"-", xml:"-"`
+	metadataGetStreamingDistributionInput `json:"-" xml:"-"`
 }
 
 type metadataGetStreamingDistributionInput struct {
@@ -1815,7 +1815,7 @@ type GetStreamingDistributionOutput struct {
 	// The streaming distribution's information.
 	StreamingDistribution *StreamingDistribution `type:"structure"`
 
-	metadataGetStreamingDistributionOutput `json:"-", xml:"-"`
+	metadataGetStreamingDistributionOutput `json:"-" xml:"-"`
 }
 
 type metadataGetStreamingDistributionOutput struct {
@@ -1845,7 +1845,7 @@ type Headers struct {
 	// Items.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataHeaders `json:"-", xml:"-"`
+	metadataHeaders `json:"-" xml:"-"`
 }
 
 type metadataHeaders struct {
@@ -1867,7 +1867,7 @@ type Invalidation struct {
 	// the status is Completed.
 	Status *string `type:"string" required:"true"`
 
-	metadataInvalidation `json:"-", xml:"-"`
+	metadataInvalidation `json:"-" xml:"-"`
 }
 
 type metadataInvalidation struct {
@@ -1895,7 +1895,7 @@ type InvalidationBatch struct {
 	// path, or CloudFront will not invalidate the old version of the updated object.
 	Paths *Paths `type:"structure" required:"true"`
 
-	metadataInvalidationBatch `json:"-", xml:"-"`
+	metadataInvalidationBatch `json:"-" xml:"-"`
 }
 
 type metadataInvalidationBatch struct {
@@ -1928,7 +1928,7 @@ type InvalidationList struct {
 	// The number of invalidation batches that were created by the current AWS account.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataInvalidationList `json:"-", xml:"-"`
+	metadataInvalidationList `json:"-" xml:"-"`
 }
 
 type metadataInvalidationList struct {
@@ -1945,7 +1945,7 @@ type InvalidationSummary struct {
 	// The status of an invalidation request.
 	Status *string `type:"string" required:"true"`
 
-	metadataInvalidationSummary `json:"-", xml:"-"`
+	metadataInvalidationSummary `json:"-" xml:"-"`
 }
 
 type metadataInvalidationSummary struct {
@@ -1962,7 +1962,7 @@ type KeyPairIDs struct {
 	// The number of active CloudFront key pairs for AwsAccountNumber.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataKeyPairIDs `json:"-", xml:"-"`
+	metadataKeyPairIDs `json:"-" xml:"-"`
 }
 
 type metadataKeyPairIDs struct {
@@ -1981,7 +1981,7 @@ type ListCloudFrontOriginAccessIdentitiesInput struct {
 	// The maximum number of origin access identities you want in the response body.
 	MaxItems *string `location:"querystring" locationName:"MaxItems" type:"string"`
 
-	metadataListCloudFrontOriginAccessIdentitiesInput `json:"-", xml:"-"`
+	metadataListCloudFrontOriginAccessIdentitiesInput `json:"-" xml:"-"`
 }
 
 type metadataListCloudFrontOriginAccessIdentitiesInput struct {
@@ -1993,7 +1993,7 @@ type ListCloudFrontOriginAccessIdentitiesOutput struct {
 	// The CloudFrontOriginAccessIdentityList type.
 	CloudFrontOriginAccessIdentityList *CloudFrontOriginAccessIdentityList `type:"structure"`
 
-	metadataListCloudFrontOriginAccessIdentitiesOutput `json:"-", xml:"-"`
+	metadataListCloudFrontOriginAccessIdentitiesOutput `json:"-" xml:"-"`
 }
 
 type metadataListCloudFrontOriginAccessIdentitiesOutput struct {
@@ -2012,7 +2012,7 @@ type ListDistributionsInput struct {
 	// The maximum number of distributions you want in the response body.
 	MaxItems *string `location:"querystring" locationName:"MaxItems" type:"string"`
 
-	metadataListDistributionsInput `json:"-", xml:"-"`
+	metadataListDistributionsInput `json:"-" xml:"-"`
 }
 
 type metadataListDistributionsInput struct {
@@ -2024,7 +2024,7 @@ type ListDistributionsOutput struct {
 	// The DistributionList type.
 	DistributionList *DistributionList `type:"structure"`
 
-	metadataListDistributionsOutput `json:"-", xml:"-"`
+	metadataListDistributionsOutput `json:"-" xml:"-"`
 }
 
 type metadataListDistributionsOutput struct {
@@ -2048,7 +2048,7 @@ type ListInvalidationsInput struct {
 	// The maximum number of invalidation batches you want in the response body.
 	MaxItems *string `location:"querystring" locationName:"MaxItems" type:"string"`
 
-	metadataListInvalidationsInput `json:"-", xml:"-"`
+	metadataListInvalidationsInput `json:"-" xml:"-"`
 }
 
 type metadataListInvalidationsInput struct {
@@ -2060,7 +2060,7 @@ type ListInvalidationsOutput struct {
 	// Information about invalidation batches.
 	InvalidationList *InvalidationList `type:"structure"`
 
-	metadataListInvalidationsOutput `json:"-", xml:"-"`
+	metadataListInvalidationsOutput `json:"-" xml:"-"`
 }
 
 type metadataListInvalidationsOutput struct {
@@ -2079,7 +2079,7 @@ type ListStreamingDistributionsInput struct {
 	// The maximum number of streaming distributions you want in the response body.
 	MaxItems *string `location:"querystring" locationName:"MaxItems" type:"string"`
 
-	metadataListStreamingDistributionsInput `json:"-", xml:"-"`
+	metadataListStreamingDistributionsInput `json:"-" xml:"-"`
 }
 
 type metadataListStreamingDistributionsInput struct {
@@ -2091,7 +2091,7 @@ type ListStreamingDistributionsOutput struct {
 	// The StreamingDistributionList type.
 	StreamingDistributionList *StreamingDistributionList `type:"structure"`
 
-	metadataListStreamingDistributionsOutput `json:"-", xml:"-"`
+	metadataListStreamingDistributionsOutput `json:"-" xml:"-"`
 }
 
 type metadataListStreamingDistributionsOutput struct {
@@ -2125,7 +2125,7 @@ type LoggingConfig struct {
 	// Prefix element in the Logging element.
 	Prefix *string `type:"string" required:"true"`
 
-	metadataLoggingConfig `json:"-", xml:"-"`
+	metadataLoggingConfig `json:"-" xml:"-"`
 }
 
 type metadataLoggingConfig struct {
@@ -2162,7 +2162,7 @@ type Origin struct {
 	// origin is a custom origin, use the CustomOriginConfig element instead.
 	S3OriginConfig *S3OriginConfig `type:"structure"`
 
-	metadataOrigin `json:"-", xml:"-"`
+	metadataOrigin `json:"-" xml:"-"`
 }
 
 type metadataOrigin struct {
@@ -2177,7 +2177,7 @@ type Origins struct {
 	// The number of origins for this distribution.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataOrigins `json:"-", xml:"-"`
+	metadataOrigins `json:"-" xml:"-"`
 }
 
 type metadataOrigins struct {
@@ -2193,7 +2193,7 @@ type Paths struct {
 	// The number of objects that you want to invalidate.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataPaths `json:"-", xml:"-"`
+	metadataPaths `json:"-" xml:"-"`
 }
 
 type metadataPaths struct {
@@ -2211,7 +2211,7 @@ type Restrictions struct {
 	// website.
 	GeoRestriction *GeoRestriction `type:"structure" required:"true"`
 
-	metadataRestrictions `json:"-", xml:"-"`
+	metadataRestrictions `json:"-" xml:"-"`
 }
 
 type metadataRestrictions struct {
@@ -2227,7 +2227,7 @@ type S3Origin struct {
 	// Your S3 origin's origin access identity.
 	OriginAccessIdentity *string `type:"string" required:"true"`
 
-	metadataS3Origin `json:"-", xml:"-"`
+	metadataS3Origin `json:"-" xml:"-"`
 }
 
 type metadataS3Origin struct {
@@ -2250,7 +2250,7 @@ type S3OriginConfig struct {
 	// created the origin access identity.
 	OriginAccessIdentity *string `type:"string" required:"true"`
 
-	metadataS3OriginConfig `json:"-", xml:"-"`
+	metadataS3OriginConfig `json:"-" xml:"-"`
 }
 
 type metadataS3OriginConfig struct {
@@ -2270,7 +2270,7 @@ type Signer struct {
 	// associated with AwsAccountNumber.
 	KeyPairIDs *KeyPairIDs `locationName:"KeyPairIds" type:"structure"`
 
-	metadataSigner `json:"-", xml:"-"`
+	metadataSigner `json:"-" xml:"-"`
 }
 
 type metadataSigner struct {
@@ -2307,7 +2307,7 @@ type StreamingDistribution struct {
 	// The current configuration information for the streaming distribution.
 	StreamingDistributionConfig *StreamingDistributionConfig `type:"structure" required:"true"`
 
-	metadataStreamingDistribution `json:"-", xml:"-"`
+	metadataStreamingDistribution `json:"-" xml:"-"`
 }
 
 type metadataStreamingDistribution struct {
@@ -2364,7 +2364,7 @@ type StreamingDistributionConfig struct {
 	// of the trusted signers that you want to include in the updated distribution.
 	TrustedSigners *TrustedSigners `type:"structure" required:"true"`
 
-	metadataStreamingDistributionConfig `json:"-", xml:"-"`
+	metadataStreamingDistributionConfig `json:"-" xml:"-"`
 }
 
 type metadataStreamingDistributionConfig struct {
@@ -2398,7 +2398,7 @@ type StreamingDistributionList struct {
 	// account.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataStreamingDistributionList `json:"-", xml:"-"`
+	metadataStreamingDistributionList `json:"-" xml:"-"`
 }
 
 type metadataStreamingDistributionList struct {
@@ -2450,7 +2450,7 @@ type StreamingDistributionSummary struct {
 	// of the trusted signers that you want to include in the updated distribution.
 	TrustedSigners *TrustedSigners `type:"structure" required:"true"`
 
-	metadataStreamingDistributionSummary `json:"-", xml:"-"`
+	metadataStreamingDistributionSummary `json:"-" xml:"-"`
 }
 
 type metadataStreamingDistributionSummary struct {
@@ -2477,7 +2477,7 @@ type StreamingLoggingConfig struct {
 	// an empty Prefix element in the Logging element.
 	Prefix *string `type:"string" required:"true"`
 
-	metadataStreamingLoggingConfig `json:"-", xml:"-"`
+	metadataStreamingLoggingConfig `json:"-" xml:"-"`
 }
 
 type metadataStreamingLoggingConfig struct {
@@ -2507,7 +2507,7 @@ type TrustedSigners struct {
 	// The number of trusted signers for this cache behavior.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataTrustedSigners `json:"-", xml:"-"`
+	metadataTrustedSigners `json:"-" xml:"-"`
 }
 
 type metadataTrustedSigners struct {
@@ -2526,7 +2526,7 @@ type UpdateCloudFrontOriginAccessIdentityInput struct {
 	// configuration. For example: E2QWRUHAPOMQZL.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
-	metadataUpdateCloudFrontOriginAccessIdentityInput `json:"-", xml:"-"`
+	metadataUpdateCloudFrontOriginAccessIdentityInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateCloudFrontOriginAccessIdentityInput struct {
@@ -2541,7 +2541,7 @@ type UpdateCloudFrontOriginAccessIdentityOutput struct {
 	// The current version of the configuration. For example: E2QWRUHAPOMQZL.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	metadataUpdateCloudFrontOriginAccessIdentityOutput `json:"-", xml:"-"`
+	metadataUpdateCloudFrontOriginAccessIdentityOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateCloudFrontOriginAccessIdentityOutput struct {
@@ -2560,7 +2560,7 @@ type UpdateDistributionInput struct {
 	// configuration. For example: E2QWRUHAPOMQZL.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
-	metadataUpdateDistributionInput `json:"-", xml:"-"`
+	metadataUpdateDistributionInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateDistributionInput struct {
@@ -2575,7 +2575,7 @@ type UpdateDistributionOutput struct {
 	// The current version of the configuration. For example: E2QWRUHAPOMQZL.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	metadataUpdateDistributionOutput `json:"-", xml:"-"`
+	metadataUpdateDistributionOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateDistributionOutput struct {
@@ -2594,7 +2594,7 @@ type UpdateStreamingDistributionInput struct {
 	// The streaming distribution's configuration information.
 	StreamingDistributionConfig *StreamingDistributionConfig `locationName:"StreamingDistributionConfig" type:"structure" required:"true"`
 
-	metadataUpdateStreamingDistributionInput `json:"-", xml:"-"`
+	metadataUpdateStreamingDistributionInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateStreamingDistributionInput struct {
@@ -2609,7 +2609,7 @@ type UpdateStreamingDistributionOutput struct {
 	// The streaming distribution's information.
 	StreamingDistribution *StreamingDistribution `type:"structure"`
 
-	metadataUpdateStreamingDistributionOutput `json:"-", xml:"-"`
+	metadataUpdateStreamingDistributionOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateStreamingDistributionOutput struct {
@@ -2655,7 +2655,7 @@ type ViewerCertificate struct {
 	// for SSLSupportMethod if you specified true for CloudFrontDefaultCertificate.
 	SSLSupportMethod *string `type:"string"`
 
-	metadataViewerCertificate `json:"-", xml:"-"`
+	metadataViewerCertificate `json:"-" xml:"-"`
 }
 
 type metadataViewerCertificate struct {

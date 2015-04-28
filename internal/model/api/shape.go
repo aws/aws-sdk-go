@@ -9,8 +9,8 @@ import (
 )
 
 type ShapeRef struct {
-	API           *API   `json: "-"`
-	Shape         *Shape `json: "-"`
+	API           *API   `json:"-"`
+	Shape         *Shape `json:"-"`
 	Documentation string
 	ShapeName     string `json:"shape"`
 	Location      string
@@ -29,7 +29,7 @@ type XMLInfo struct {
 }
 
 type Shape struct {
-	API           *API `json: "-"`
+	API           *API `json:"-"`
 	ShapeName     string
 	Documentation string
 	MemberRefs    map[string]*ShapeRef `json:"members"`
@@ -256,7 +256,7 @@ func (s *Shape) GoCode() string {
 		}
 		metaStruct := "metadata" + s.ShapeName
 		ref := &ShapeRef{ShapeName: s.ShapeName, API: s.API, Shape: s}
-		code += "\n" + metaStruct + "  `json:\"-\", xml:\"-\"`\n"
+		code += "\n" + metaStruct + "  `json:\"-\" xml:\"-\"`\n"
 		code += "}\n\n"
 		code += "type " + metaStruct + " struct {\n"
 		code += "SDKShapeTraits bool " + ref.GoTags(true, false)

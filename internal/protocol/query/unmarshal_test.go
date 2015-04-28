@@ -95,7 +95,7 @@ func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1(input *Out
 var opOutputService1TestCaseOperation1 *aws.Operation
 
 type OutputService1TestShapeOutputService1TestCaseOperation1Input struct {
-	metadataOutputService1TestShapeOutputService1TestCaseOperation1Input `json:"-", xml:"-"`
+	metadataOutputService1TestShapeOutputService1TestCaseOperation1Input `json:"-" xml:"-"`
 }
 
 type metadataOutputService1TestShapeOutputService1TestCaseOperation1Input struct {
@@ -121,7 +121,7 @@ type OutputService1TestShapeOutputShape struct {
 
 	TrueBool *bool `type:"boolean"`
 
-	metadataOutputService1TestShapeOutputShape `json:"-", xml:"-"`
+	metadataOutputService1TestShapeOutputShape `json:"-" xml:"-"`
 }
 
 type metadataOutputService1TestShapeOutputShape struct {
@@ -193,7 +193,7 @@ func (c *OutputService2ProtocolTest) OutputService2TestCaseOperation1(input *Out
 var opOutputService2TestCaseOperation1 *aws.Operation
 
 type OutputService2TestShapeOutputService2TestCaseOperation1Input struct {
-	metadataOutputService2TestShapeOutputService2TestCaseOperation1Input `json:"-", xml:"-"`
+	metadataOutputService2TestShapeOutputService2TestCaseOperation1Input `json:"-" xml:"-"`
 }
 
 type metadataOutputService2TestShapeOutputService2TestCaseOperation1Input struct {
@@ -205,7 +205,7 @@ type OutputService2TestShapeOutputShape struct {
 
 	Str *string `type:"string"`
 
-	metadataOutputService2TestShapeOutputShape `json:"-", xml:"-"`
+	metadataOutputService2TestShapeOutputShape `json:"-" xml:"-"`
 }
 
 type metadataOutputService2TestShapeOutputShape struct {
@@ -277,7 +277,7 @@ func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation1(input *Out
 var opOutputService3TestCaseOperation1 *aws.Operation
 
 type OutputService3TestShapeOutputService3TestCaseOperation1Input struct {
-	metadataOutputService3TestShapeOutputService3TestCaseOperation1Input `json:"-", xml:"-"`
+	metadataOutputService3TestShapeOutputService3TestCaseOperation1Input `json:"-" xml:"-"`
 }
 
 type metadataOutputService3TestShapeOutputService3TestCaseOperation1Input struct {
@@ -287,7 +287,7 @@ type metadataOutputService3TestShapeOutputService3TestCaseOperation1Input struct
 type OutputService3TestShapeOutputShape struct {
 	Blob []byte `type:"blob"`
 
-	metadataOutputService3TestShapeOutputShape `json:"-", xml:"-"`
+	metadataOutputService3TestShapeOutputShape `json:"-" xml:"-"`
 }
 
 type metadataOutputService3TestShapeOutputShape struct {
@@ -359,7 +359,7 @@ func (c *OutputService4ProtocolTest) OutputService4TestCaseOperation1(input *Out
 var opOutputService4TestCaseOperation1 *aws.Operation
 
 type OutputService4TestShapeOutputService4TestCaseOperation1Input struct {
-	metadataOutputService4TestShapeOutputService4TestCaseOperation1Input `json:"-", xml:"-"`
+	metadataOutputService4TestShapeOutputService4TestCaseOperation1Input `json:"-" xml:"-"`
 }
 
 type metadataOutputService4TestShapeOutputService4TestCaseOperation1Input struct {
@@ -369,7 +369,7 @@ type metadataOutputService4TestShapeOutputService4TestCaseOperation1Input struct
 type OutputService4TestShapeOutputShape struct {
 	ListMember []*string `type:"list"`
 
-	metadataOutputService4TestShapeOutputShape `json:"-", xml:"-"`
+	metadataOutputService4TestShapeOutputShape `json:"-" xml:"-"`
 }
 
 type metadataOutputService4TestShapeOutputShape struct {
@@ -441,7 +441,7 @@ func (c *OutputService5ProtocolTest) OutputService5TestCaseOperation1(input *Out
 var opOutputService5TestCaseOperation1 *aws.Operation
 
 type OutputService5TestShapeOutputService5TestCaseOperation1Input struct {
-	metadataOutputService5TestShapeOutputService5TestCaseOperation1Input `json:"-", xml:"-"`
+	metadataOutputService5TestShapeOutputService5TestCaseOperation1Input `json:"-" xml:"-"`
 }
 
 type metadataOutputService5TestShapeOutputService5TestCaseOperation1Input struct {
@@ -451,7 +451,7 @@ type metadataOutputService5TestShapeOutputService5TestCaseOperation1Input struct
 type OutputService5TestShapeOutputShape struct {
 	ListMember []*string `locationNameList:"item" type:"list"`
 
-	metadataOutputService5TestShapeOutputShape `json:"-", xml:"-"`
+	metadataOutputService5TestShapeOutputShape `json:"-" xml:"-"`
 }
 
 type metadataOutputService5TestShapeOutputShape struct {
@@ -523,7 +523,7 @@ func (c *OutputService6ProtocolTest) OutputService6TestCaseOperation1(input *Out
 var opOutputService6TestCaseOperation1 *aws.Operation
 
 type OutputService6TestShapeOutputService6TestCaseOperation1Input struct {
-	metadataOutputService6TestShapeOutputService6TestCaseOperation1Input `json:"-", xml:"-"`
+	metadataOutputService6TestShapeOutputService6TestCaseOperation1Input `json:"-" xml:"-"`
 }
 
 type metadataOutputService6TestShapeOutputService6TestCaseOperation1Input struct {
@@ -533,7 +533,7 @@ type metadataOutputService6TestShapeOutputService6TestCaseOperation1Input struct
 type OutputService6TestShapeOutputShape struct {
 	ListMember []*string `type:"list" flattened:"true"`
 
-	metadataOutputService6TestShapeOutputShape `json:"-", xml:"-"`
+	metadataOutputService6TestShapeOutputShape `json:"-" xml:"-"`
 }
 
 type metadataOutputService6TestShapeOutputShape struct {
@@ -605,7 +605,7 @@ func (c *OutputService7ProtocolTest) OutputService7TestCaseOperation1(input *Out
 var opOutputService7TestCaseOperation1 *aws.Operation
 
 type OutputService7TestShapeOutputService7TestCaseOperation1Input struct {
-	metadataOutputService7TestShapeOutputService7TestCaseOperation1Input `json:"-", xml:"-"`
+	metadataOutputService7TestShapeOutputService7TestCaseOperation1Input `json:"-" xml:"-"`
 }
 
 type metadataOutputService7TestShapeOutputService7TestCaseOperation1Input struct {
@@ -615,7 +615,7 @@ type metadataOutputService7TestShapeOutputService7TestCaseOperation1Input struct
 type OutputService7TestShapeOutputShape struct {
 	ListMember []*string `type:"list" flattened:"true"`
 
-	metadataOutputService7TestShapeOutputShape `json:"-", xml:"-"`
+	metadataOutputService7TestShapeOutputShape `json:"-" xml:"-"`
 }
 
 type metadataOutputService7TestShapeOutputShape struct {
@@ -687,7 +687,7 @@ func (c *OutputService8ProtocolTest) OutputService8TestCaseOperation1(input *Out
 var opOutputService8TestCaseOperation1 *aws.Operation
 
 type OutputService8TestShapeOutputService8TestCaseOperation1Input struct {
-	metadataOutputService8TestShapeOutputService8TestCaseOperation1Input `json:"-", xml:"-"`
+	metadataOutputService8TestShapeOutputService8TestCaseOperation1Input `json:"-" xml:"-"`
 }
 
 type metadataOutputService8TestShapeOutputService8TestCaseOperation1Input struct {
@@ -697,7 +697,7 @@ type metadataOutputService8TestShapeOutputService8TestCaseOperation1Input struct
 type OutputService8TestShapeOutputShape struct {
 	List []*OutputService8TestShapeStructureShape `type:"list"`
 
-	metadataOutputService8TestShapeOutputShape `json:"-", xml:"-"`
+	metadataOutputService8TestShapeOutputShape `json:"-" xml:"-"`
 }
 
 type metadataOutputService8TestShapeOutputShape struct {
@@ -711,7 +711,7 @@ type OutputService8TestShapeStructureShape struct {
 
 	Foo *string `type:"string"`
 
-	metadataOutputService8TestShapeStructureShape `json:"-", xml:"-"`
+	metadataOutputService8TestShapeStructureShape `json:"-" xml:"-"`
 }
 
 type metadataOutputService8TestShapeStructureShape struct {
@@ -783,7 +783,7 @@ func (c *OutputService9ProtocolTest) OutputService9TestCaseOperation1(input *Out
 var opOutputService9TestCaseOperation1 *aws.Operation
 
 type OutputService9TestShapeOutputService9TestCaseOperation1Input struct {
-	metadataOutputService9TestShapeOutputService9TestCaseOperation1Input `json:"-", xml:"-"`
+	metadataOutputService9TestShapeOutputService9TestCaseOperation1Input `json:"-" xml:"-"`
 }
 
 type metadataOutputService9TestShapeOutputService9TestCaseOperation1Input struct {
@@ -793,7 +793,7 @@ type metadataOutputService9TestShapeOutputService9TestCaseOperation1Input struct
 type OutputService9TestShapeOutputShape struct {
 	List []*OutputService9TestShapeStructureShape `type:"list" flattened:"true"`
 
-	metadataOutputService9TestShapeOutputShape `json:"-", xml:"-"`
+	metadataOutputService9TestShapeOutputShape `json:"-" xml:"-"`
 }
 
 type metadataOutputService9TestShapeOutputShape struct {
@@ -807,7 +807,7 @@ type OutputService9TestShapeStructureShape struct {
 
 	Foo *string `type:"string"`
 
-	metadataOutputService9TestShapeStructureShape `json:"-", xml:"-"`
+	metadataOutputService9TestShapeStructureShape `json:"-" xml:"-"`
 }
 
 type metadataOutputService9TestShapeStructureShape struct {
@@ -879,7 +879,7 @@ func (c *OutputService10ProtocolTest) OutputService10TestCaseOperation1(input *O
 var opOutputService10TestCaseOperation1 *aws.Operation
 
 type OutputService10TestShapeOutputService10TestCaseOperation1Input struct {
-	metadataOutputService10TestShapeOutputService10TestCaseOperation1Input `json:"-", xml:"-"`
+	metadataOutputService10TestShapeOutputService10TestCaseOperation1Input `json:"-" xml:"-"`
 }
 
 type metadataOutputService10TestShapeOutputService10TestCaseOperation1Input struct {
@@ -889,7 +889,7 @@ type metadataOutputService10TestShapeOutputService10TestCaseOperation1Input stru
 type OutputService10TestShapeOutputShape struct {
 	List []*string `locationNameList:"NamedList" type:"list" flattened:"true"`
 
-	metadataOutputService10TestShapeOutputShape `json:"-", xml:"-"`
+	metadataOutputService10TestShapeOutputShape `json:"-" xml:"-"`
 }
 
 type metadataOutputService10TestShapeOutputShape struct {
@@ -961,7 +961,7 @@ func (c *OutputService11ProtocolTest) OutputService11TestCaseOperation1(input *O
 var opOutputService11TestCaseOperation1 *aws.Operation
 
 type OutputService11TestShapeOutputService11TestCaseOperation1Input struct {
-	metadataOutputService11TestShapeOutputService11TestCaseOperation1Input `json:"-", xml:"-"`
+	metadataOutputService11TestShapeOutputService11TestCaseOperation1Input `json:"-" xml:"-"`
 }
 
 type metadataOutputService11TestShapeOutputService11TestCaseOperation1Input struct {
@@ -971,7 +971,7 @@ type metadataOutputService11TestShapeOutputService11TestCaseOperation1Input stru
 type OutputService11TestShapeOutputShape struct {
 	Map *map[string]*OutputService11TestShapeStructType `type:"map"`
 
-	metadataOutputService11TestShapeOutputShape `json:"-", xml:"-"`
+	metadataOutputService11TestShapeOutputShape `json:"-" xml:"-"`
 }
 
 type metadataOutputService11TestShapeOutputShape struct {
@@ -981,7 +981,7 @@ type metadataOutputService11TestShapeOutputShape struct {
 type OutputService11TestShapeStructType struct {
 	Foo *string `locationName:"foo" type:"string"`
 
-	metadataOutputService11TestShapeStructType `json:"-", xml:"-"`
+	metadataOutputService11TestShapeStructType `json:"-" xml:"-"`
 }
 
 type metadataOutputService11TestShapeStructType struct {
@@ -1053,7 +1053,7 @@ func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1(input *O
 var opOutputService12TestCaseOperation1 *aws.Operation
 
 type OutputService12TestShapeOutputService12TestCaseOperation1Input struct {
-	metadataOutputService12TestShapeOutputService12TestCaseOperation1Input `json:"-", xml:"-"`
+	metadataOutputService12TestShapeOutputService12TestCaseOperation1Input `json:"-" xml:"-"`
 }
 
 type metadataOutputService12TestShapeOutputService12TestCaseOperation1Input struct {
@@ -1063,7 +1063,7 @@ type metadataOutputService12TestShapeOutputService12TestCaseOperation1Input stru
 type OutputService12TestShapeOutputShape struct {
 	Map *map[string]*string `type:"map" flattened:"true"`
 
-	metadataOutputService12TestShapeOutputShape `json:"-", xml:"-"`
+	metadataOutputService12TestShapeOutputShape `json:"-" xml:"-"`
 }
 
 type metadataOutputService12TestShapeOutputShape struct {
@@ -1135,7 +1135,7 @@ func (c *OutputService13ProtocolTest) OutputService13TestCaseOperation1(input *O
 var opOutputService13TestCaseOperation1 *aws.Operation
 
 type OutputService13TestShapeOutputService13TestCaseOperation1Input struct {
-	metadataOutputService13TestShapeOutputService13TestCaseOperation1Input `json:"-", xml:"-"`
+	metadataOutputService13TestShapeOutputService13TestCaseOperation1Input `json:"-" xml:"-"`
 }
 
 type metadataOutputService13TestShapeOutputService13TestCaseOperation1Input struct {
@@ -1145,7 +1145,7 @@ type metadataOutputService13TestShapeOutputService13TestCaseOperation1Input stru
 type OutputService13TestShapeOutputShape struct {
 	Map *map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
 
-	metadataOutputService13TestShapeOutputShape `json:"-", xml:"-"`
+	metadataOutputService13TestShapeOutputShape `json:"-" xml:"-"`
 }
 
 type metadataOutputService13TestShapeOutputShape struct {
@@ -1217,7 +1217,7 @@ func (c *OutputService14ProtocolTest) OutputService14TestCaseOperation1(input *O
 var opOutputService14TestCaseOperation1 *aws.Operation
 
 type OutputService14TestShapeOutputService14TestCaseOperation1Input struct {
-	metadataOutputService14TestShapeOutputService14TestCaseOperation1Input `json:"-", xml:"-"`
+	metadataOutputService14TestShapeOutputService14TestCaseOperation1Input `json:"-" xml:"-"`
 }
 
 type metadataOutputService14TestShapeOutputService14TestCaseOperation1Input struct {
@@ -1227,7 +1227,7 @@ type metadataOutputService14TestShapeOutputService14TestCaseOperation1Input stru
 type OutputService14TestShapeOutputShape struct {
 	Map *map[string]*string `locationNameKey:"foo" locationNameValue:"bar" type:"map" flattened:"true"`
 
-	metadataOutputService14TestShapeOutputShape `json:"-", xml:"-"`
+	metadataOutputService14TestShapeOutputShape `json:"-" xml:"-"`
 }
 
 type metadataOutputService14TestShapeOutputShape struct {

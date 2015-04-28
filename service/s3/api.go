@@ -1777,7 +1777,7 @@ type AbortMultipartUploadInput struct {
 
 	UploadID *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
-	metadataAbortMultipartUploadInput `json:"-", xml:"-"`
+	metadataAbortMultipartUploadInput `json:"-" xml:"-"`
 }
 
 type metadataAbortMultipartUploadInput struct {
@@ -1789,7 +1789,7 @@ type AbortMultipartUploadOutput struct {
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
 
-	metadataAbortMultipartUploadOutput `json:"-", xml:"-"`
+	metadataAbortMultipartUploadOutput `json:"-" xml:"-"`
 }
 
 type metadataAbortMultipartUploadOutput struct {
@@ -1802,7 +1802,7 @@ type AccessControlPolicy struct {
 
 	Owner *Owner `type:"structure"`
 
-	metadataAccessControlPolicy `json:"-", xml:"-"`
+	metadataAccessControlPolicy `json:"-" xml:"-"`
 }
 
 type metadataAccessControlPolicy struct {
@@ -1816,7 +1816,7 @@ type Bucket struct {
 	// The name of the bucket.
 	Name *string `type:"string"`
 
-	metadataBucket `json:"-", xml:"-"`
+	metadataBucket `json:"-" xml:"-"`
 }
 
 type metadataBucket struct {
@@ -1826,7 +1826,7 @@ type metadataBucket struct {
 type BucketLoggingStatus struct {
 	LoggingEnabled *LoggingEnabled `type:"structure"`
 
-	metadataBucketLoggingStatus `json:"-", xml:"-"`
+	metadataBucketLoggingStatus `json:"-" xml:"-"`
 }
 
 type metadataBucketLoggingStatus struct {
@@ -1836,7 +1836,7 @@ type metadataBucketLoggingStatus struct {
 type CORSConfiguration struct {
 	CORSRules []*CORSRule `locationName:"CORSRule" type:"list" flattened:"true"`
 
-	metadataCORSConfiguration `json:"-", xml:"-"`
+	metadataCORSConfiguration `json:"-" xml:"-"`
 }
 
 type metadataCORSConfiguration struct {
@@ -1863,7 +1863,7 @@ type CORSRule struct {
 	// for the specified resource.
 	MaxAgeSeconds *int64 `type:"integer"`
 
-	metadataCORSRule `json:"-", xml:"-"`
+	metadataCORSRule `json:"-" xml:"-"`
 }
 
 type metadataCORSRule struct {
@@ -1881,7 +1881,7 @@ type CloudFunctionConfiguration struct {
 
 	InvocationRole *string `type:"string"`
 
-	metadataCloudFunctionConfiguration `json:"-", xml:"-"`
+	metadataCloudFunctionConfiguration `json:"-" xml:"-"`
 }
 
 type metadataCloudFunctionConfiguration struct {
@@ -1891,7 +1891,7 @@ type metadataCloudFunctionConfiguration struct {
 type CommonPrefix struct {
 	Prefix *string `type:"string"`
 
-	metadataCommonPrefix `json:"-", xml:"-"`
+	metadataCommonPrefix `json:"-" xml:"-"`
 }
 
 type metadataCommonPrefix struct {
@@ -1913,7 +1913,7 @@ type CompleteMultipartUploadInput struct {
 
 	UploadID *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
-	metadataCompleteMultipartUploadInput `json:"-", xml:"-"`
+	metadataCompleteMultipartUploadInput `json:"-" xml:"-"`
 }
 
 type metadataCompleteMultipartUploadInput struct {
@@ -1949,7 +1949,7 @@ type CompleteMultipartUploadOutput struct {
 	// Version of the object.
 	VersionID *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 
-	metadataCompleteMultipartUploadOutput `json:"-", xml:"-"`
+	metadataCompleteMultipartUploadOutput `json:"-" xml:"-"`
 }
 
 type metadataCompleteMultipartUploadOutput struct {
@@ -1959,7 +1959,7 @@ type metadataCompleteMultipartUploadOutput struct {
 type CompletedMultipartUpload struct {
 	Parts []*CompletedPart `locationName:"Part" type:"list" flattened:"true"`
 
-	metadataCompletedMultipartUpload `json:"-", xml:"-"`
+	metadataCompletedMultipartUpload `json:"-" xml:"-"`
 }
 
 type metadataCompletedMultipartUpload struct {
@@ -1973,7 +1973,7 @@ type CompletedPart struct {
 	// Part number that identifies the part.
 	PartNumber *int64 `type:"integer"`
 
-	metadataCompletedPart `json:"-", xml:"-"`
+	metadataCompletedPart `json:"-" xml:"-"`
 }
 
 type metadataCompletedPart struct {
@@ -1997,7 +1997,7 @@ type Condition struct {
 	// the redirect to be applied.
 	KeyPrefixEquals *string `type:"string"`
 
-	metadataCondition `json:"-", xml:"-"`
+	metadataCondition `json:"-" xml:"-"`
 }
 
 type metadataCondition struct {
@@ -2121,7 +2121,7 @@ type CopyObjectInput struct {
 	// the value of this header in the object metadata.
 	WebsiteRedirectLocation *string `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
 
-	metadataCopyObjectInput `json:"-", xml:"-"`
+	metadataCopyObjectInput `json:"-" xml:"-"`
 }
 
 type metadataCopyObjectInput struct {
@@ -2158,7 +2158,7 @@ type CopyObjectOutput struct {
 	// (e.g., AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
 
-	metadataCopyObjectOutput `json:"-", xml:"-"`
+	metadataCopyObjectOutput `json:"-" xml:"-"`
 }
 
 type metadataCopyObjectOutput struct {
@@ -2170,7 +2170,7 @@ type CopyObjectResult struct {
 
 	LastModified *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataCopyObjectResult `json:"-", xml:"-"`
+	metadataCopyObjectResult `json:"-" xml:"-"`
 }
 
 type metadataCopyObjectResult struct {
@@ -2184,7 +2184,7 @@ type CopyPartResult struct {
 	// Date and time at which the object was uploaded.
 	LastModified *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataCopyPartResult `json:"-", xml:"-"`
+	metadataCopyPartResult `json:"-" xml:"-"`
 }
 
 type metadataCopyPartResult struct {
@@ -2195,7 +2195,7 @@ type CreateBucketConfiguration struct {
 	// Specifies the region where the bucket will be created.
 	LocationConstraint *string `type:"string"`
 
-	metadataCreateBucketConfiguration `json:"-", xml:"-"`
+	metadataCreateBucketConfiguration `json:"-" xml:"-"`
 }
 
 type metadataCreateBucketConfiguration struct {
@@ -2226,7 +2226,7 @@ type CreateBucketInput struct {
 	// Allows grantee to write the ACL for the applicable bucket.
 	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
 
-	metadataCreateBucketInput `json:"-", xml:"-"`
+	metadataCreateBucketInput `json:"-" xml:"-"`
 }
 
 type metadataCreateBucketInput struct {
@@ -2236,7 +2236,7 @@ type metadataCreateBucketInput struct {
 type CreateBucketOutput struct {
 	Location *string `location:"header" locationName:"Location" type:"string"`
 
-	metadataCreateBucketOutput `json:"-", xml:"-"`
+	metadataCreateBucketOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateBucketOutput struct {
@@ -2326,7 +2326,7 @@ type CreateMultipartUploadInput struct {
 	// the value of this header in the object metadata.
 	WebsiteRedirectLocation *string `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
 
-	metadataCreateMultipartUploadInput `json:"-", xml:"-"`
+	metadataCreateMultipartUploadInput `json:"-" xml:"-"`
 }
 
 type metadataCreateMultipartUploadInput struct {
@@ -2365,7 +2365,7 @@ type CreateMultipartUploadOutput struct {
 	// ID for the initiated multipart upload.
 	UploadID *string `locationName:"UploadId" type:"string"`
 
-	metadataCreateMultipartUploadOutput `json:"-", xml:"-"`
+	metadataCreateMultipartUploadOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateMultipartUploadOutput struct {
@@ -2379,7 +2379,7 @@ type Delete struct {
 	// you must set its value to true.
 	Quiet *bool `type:"boolean"`
 
-	metadataDelete `json:"-", xml:"-"`
+	metadataDelete `json:"-" xml:"-"`
 }
 
 type metadataDelete struct {
@@ -2389,7 +2389,7 @@ type metadataDelete struct {
 type DeleteBucketCORSInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataDeleteBucketCORSInput `json:"-", xml:"-"`
+	metadataDeleteBucketCORSInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteBucketCORSInput struct {
@@ -2397,7 +2397,7 @@ type metadataDeleteBucketCORSInput struct {
 }
 
 type DeleteBucketCORSOutput struct {
-	metadataDeleteBucketCORSOutput `json:"-", xml:"-"`
+	metadataDeleteBucketCORSOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteBucketCORSOutput struct {
@@ -2407,7 +2407,7 @@ type metadataDeleteBucketCORSOutput struct {
 type DeleteBucketInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataDeleteBucketInput `json:"-", xml:"-"`
+	metadataDeleteBucketInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteBucketInput struct {
@@ -2417,7 +2417,7 @@ type metadataDeleteBucketInput struct {
 type DeleteBucketLifecycleInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataDeleteBucketLifecycleInput `json:"-", xml:"-"`
+	metadataDeleteBucketLifecycleInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteBucketLifecycleInput struct {
@@ -2425,7 +2425,7 @@ type metadataDeleteBucketLifecycleInput struct {
 }
 
 type DeleteBucketLifecycleOutput struct {
-	metadataDeleteBucketLifecycleOutput `json:"-", xml:"-"`
+	metadataDeleteBucketLifecycleOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteBucketLifecycleOutput struct {
@@ -2433,7 +2433,7 @@ type metadataDeleteBucketLifecycleOutput struct {
 }
 
 type DeleteBucketOutput struct {
-	metadataDeleteBucketOutput `json:"-", xml:"-"`
+	metadataDeleteBucketOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteBucketOutput struct {
@@ -2443,7 +2443,7 @@ type metadataDeleteBucketOutput struct {
 type DeleteBucketPolicyInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataDeleteBucketPolicyInput `json:"-", xml:"-"`
+	metadataDeleteBucketPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteBucketPolicyInput struct {
@@ -2451,7 +2451,7 @@ type metadataDeleteBucketPolicyInput struct {
 }
 
 type DeleteBucketPolicyOutput struct {
-	metadataDeleteBucketPolicyOutput `json:"-", xml:"-"`
+	metadataDeleteBucketPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteBucketPolicyOutput struct {
@@ -2461,7 +2461,7 @@ type metadataDeleteBucketPolicyOutput struct {
 type DeleteBucketReplicationInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataDeleteBucketReplicationInput `json:"-", xml:"-"`
+	metadataDeleteBucketReplicationInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteBucketReplicationInput struct {
@@ -2469,7 +2469,7 @@ type metadataDeleteBucketReplicationInput struct {
 }
 
 type DeleteBucketReplicationOutput struct {
-	metadataDeleteBucketReplicationOutput `json:"-", xml:"-"`
+	metadataDeleteBucketReplicationOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteBucketReplicationOutput struct {
@@ -2479,7 +2479,7 @@ type metadataDeleteBucketReplicationOutput struct {
 type DeleteBucketTaggingInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataDeleteBucketTaggingInput `json:"-", xml:"-"`
+	metadataDeleteBucketTaggingInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteBucketTaggingInput struct {
@@ -2487,7 +2487,7 @@ type metadataDeleteBucketTaggingInput struct {
 }
 
 type DeleteBucketTaggingOutput struct {
-	metadataDeleteBucketTaggingOutput `json:"-", xml:"-"`
+	metadataDeleteBucketTaggingOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteBucketTaggingOutput struct {
@@ -2497,7 +2497,7 @@ type metadataDeleteBucketTaggingOutput struct {
 type DeleteBucketWebsiteInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataDeleteBucketWebsiteInput `json:"-", xml:"-"`
+	metadataDeleteBucketWebsiteInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteBucketWebsiteInput struct {
@@ -2505,7 +2505,7 @@ type metadataDeleteBucketWebsiteInput struct {
 }
 
 type DeleteBucketWebsiteOutput struct {
-	metadataDeleteBucketWebsiteOutput `json:"-", xml:"-"`
+	metadataDeleteBucketWebsiteOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteBucketWebsiteOutput struct {
@@ -2528,7 +2528,7 @@ type DeleteMarkerEntry struct {
 	// Version ID of an object.
 	VersionID *string `locationName:"VersionId" type:"string"`
 
-	metadataDeleteMarkerEntry `json:"-", xml:"-"`
+	metadataDeleteMarkerEntry `json:"-" xml:"-"`
 }
 
 type metadataDeleteMarkerEntry struct {
@@ -2553,7 +2553,7 @@ type DeleteObjectInput struct {
 	// VersionId used to reference a specific version of the object.
 	VersionID *string `location:"querystring" locationName:"versionId" type:"string"`
 
-	metadataDeleteObjectInput `json:"-", xml:"-"`
+	metadataDeleteObjectInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteObjectInput struct {
@@ -2573,7 +2573,7 @@ type DeleteObjectOutput struct {
 	// operation.
 	VersionID *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 
-	metadataDeleteObjectOutput `json:"-", xml:"-"`
+	metadataDeleteObjectOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteObjectOutput struct {
@@ -2595,7 +2595,7 @@ type DeleteObjectsInput struct {
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
 	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
 
-	metadataDeleteObjectsInput `json:"-", xml:"-"`
+	metadataDeleteObjectsInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteObjectsInput struct {
@@ -2611,7 +2611,7 @@ type DeleteObjectsOutput struct {
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
 
-	metadataDeleteObjectsOutput `json:"-", xml:"-"`
+	metadataDeleteObjectsOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteObjectsOutput struct {
@@ -2627,7 +2627,7 @@ type DeletedObject struct {
 
 	VersionID *string `locationName:"VersionId" type:"string"`
 
-	metadataDeletedObject `json:"-", xml:"-"`
+	metadataDeletedObject `json:"-" xml:"-"`
 }
 
 type metadataDeletedObject struct {
@@ -2639,7 +2639,7 @@ type Destination struct {
 	// replicas of the object identified by the rule.
 	Bucket *string `type:"string" required:"true"`
 
-	metadataDestination `json:"-", xml:"-"`
+	metadataDestination `json:"-" xml:"-"`
 }
 
 type metadataDestination struct {
@@ -2655,7 +2655,7 @@ type Error struct {
 
 	VersionID *string `locationName:"VersionId" type:"string"`
 
-	metadataError `json:"-", xml:"-"`
+	metadataError `json:"-" xml:"-"`
 }
 
 type metadataError struct {
@@ -2666,7 +2666,7 @@ type ErrorDocument struct {
 	// The object key name to use when a 4XX class error occurs.
 	Key *string `type:"string" required:"true"`
 
-	metadataErrorDocument `json:"-", xml:"-"`
+	metadataErrorDocument `json:"-" xml:"-"`
 }
 
 type metadataErrorDocument struct {
@@ -2676,7 +2676,7 @@ type metadataErrorDocument struct {
 type GetBucketACLInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketACLInput `json:"-", xml:"-"`
+	metadataGetBucketACLInput `json:"-" xml:"-"`
 }
 
 type metadataGetBucketACLInput struct {
@@ -2689,7 +2689,7 @@ type GetBucketACLOutput struct {
 
 	Owner *Owner `type:"structure"`
 
-	metadataGetBucketACLOutput `json:"-", xml:"-"`
+	metadataGetBucketACLOutput `json:"-" xml:"-"`
 }
 
 type metadataGetBucketACLOutput struct {
@@ -2699,7 +2699,7 @@ type metadataGetBucketACLOutput struct {
 type GetBucketCORSInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketCORSInput `json:"-", xml:"-"`
+	metadataGetBucketCORSInput `json:"-" xml:"-"`
 }
 
 type metadataGetBucketCORSInput struct {
@@ -2709,7 +2709,7 @@ type metadataGetBucketCORSInput struct {
 type GetBucketCORSOutput struct {
 	CORSRules []*CORSRule `locationName:"CORSRule" type:"list" flattened:"true"`
 
-	metadataGetBucketCORSOutput `json:"-", xml:"-"`
+	metadataGetBucketCORSOutput `json:"-" xml:"-"`
 }
 
 type metadataGetBucketCORSOutput struct {
@@ -2719,7 +2719,7 @@ type metadataGetBucketCORSOutput struct {
 type GetBucketLifecycleInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketLifecycleInput `json:"-", xml:"-"`
+	metadataGetBucketLifecycleInput `json:"-" xml:"-"`
 }
 
 type metadataGetBucketLifecycleInput struct {
@@ -2729,7 +2729,7 @@ type metadataGetBucketLifecycleInput struct {
 type GetBucketLifecycleOutput struct {
 	Rules []*LifecycleRule `locationName:"Rule" type:"list" flattened:"true"`
 
-	metadataGetBucketLifecycleOutput `json:"-", xml:"-"`
+	metadataGetBucketLifecycleOutput `json:"-" xml:"-"`
 }
 
 type metadataGetBucketLifecycleOutput struct {
@@ -2739,7 +2739,7 @@ type metadataGetBucketLifecycleOutput struct {
 type GetBucketLocationInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketLocationInput `json:"-", xml:"-"`
+	metadataGetBucketLocationInput `json:"-" xml:"-"`
 }
 
 type metadataGetBucketLocationInput struct {
@@ -2749,7 +2749,7 @@ type metadataGetBucketLocationInput struct {
 type GetBucketLocationOutput struct {
 	LocationConstraint *string `type:"string"`
 
-	metadataGetBucketLocationOutput `json:"-", xml:"-"`
+	metadataGetBucketLocationOutput `json:"-" xml:"-"`
 }
 
 type metadataGetBucketLocationOutput struct {
@@ -2759,7 +2759,7 @@ type metadataGetBucketLocationOutput struct {
 type GetBucketLoggingInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketLoggingInput `json:"-", xml:"-"`
+	metadataGetBucketLoggingInput `json:"-" xml:"-"`
 }
 
 type metadataGetBucketLoggingInput struct {
@@ -2769,7 +2769,7 @@ type metadataGetBucketLoggingInput struct {
 type GetBucketLoggingOutput struct {
 	LoggingEnabled *LoggingEnabled `type:"structure"`
 
-	metadataGetBucketLoggingOutput `json:"-", xml:"-"`
+	metadataGetBucketLoggingOutput `json:"-" xml:"-"`
 }
 
 type metadataGetBucketLoggingOutput struct {
@@ -2779,7 +2779,7 @@ type metadataGetBucketLoggingOutput struct {
 type GetBucketNotificationInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketNotificationInput `json:"-", xml:"-"`
+	metadataGetBucketNotificationInput `json:"-" xml:"-"`
 }
 
 type metadataGetBucketNotificationInput struct {
@@ -2793,7 +2793,7 @@ type GetBucketNotificationOutput struct {
 
 	TopicConfiguration *TopicConfiguration `type:"structure"`
 
-	metadataGetBucketNotificationOutput `json:"-", xml:"-"`
+	metadataGetBucketNotificationOutput `json:"-" xml:"-"`
 }
 
 type metadataGetBucketNotificationOutput struct {
@@ -2803,7 +2803,7 @@ type metadataGetBucketNotificationOutput struct {
 type GetBucketPolicyInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketPolicyInput `json:"-", xml:"-"`
+	metadataGetBucketPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataGetBucketPolicyInput struct {
@@ -2814,7 +2814,7 @@ type GetBucketPolicyOutput struct {
 	// The bucket policy as a JSON document.
 	Policy *string `type:"string"`
 
-	metadataGetBucketPolicyOutput `json:"-", xml:"-"`
+	metadataGetBucketPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataGetBucketPolicyOutput struct {
@@ -2824,7 +2824,7 @@ type metadataGetBucketPolicyOutput struct {
 type GetBucketReplicationInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketReplicationInput `json:"-", xml:"-"`
+	metadataGetBucketReplicationInput `json:"-" xml:"-"`
 }
 
 type metadataGetBucketReplicationInput struct {
@@ -2836,7 +2836,7 @@ type GetBucketReplicationOutput struct {
 	// replication configuration size can be up to 2 MB.
 	ReplicationConfiguration *ReplicationConfiguration `type:"structure"`
 
-	metadataGetBucketReplicationOutput `json:"-", xml:"-"`
+	metadataGetBucketReplicationOutput `json:"-" xml:"-"`
 }
 
 type metadataGetBucketReplicationOutput struct {
@@ -2846,7 +2846,7 @@ type metadataGetBucketReplicationOutput struct {
 type GetBucketRequestPaymentInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketRequestPaymentInput `json:"-", xml:"-"`
+	metadataGetBucketRequestPaymentInput `json:"-" xml:"-"`
 }
 
 type metadataGetBucketRequestPaymentInput struct {
@@ -2857,7 +2857,7 @@ type GetBucketRequestPaymentOutput struct {
 	// Specifies who pays for the download and request fees.
 	Payer *string `type:"string"`
 
-	metadataGetBucketRequestPaymentOutput `json:"-", xml:"-"`
+	metadataGetBucketRequestPaymentOutput `json:"-" xml:"-"`
 }
 
 type metadataGetBucketRequestPaymentOutput struct {
@@ -2867,7 +2867,7 @@ type metadataGetBucketRequestPaymentOutput struct {
 type GetBucketTaggingInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketTaggingInput `json:"-", xml:"-"`
+	metadataGetBucketTaggingInput `json:"-" xml:"-"`
 }
 
 type metadataGetBucketTaggingInput struct {
@@ -2877,7 +2877,7 @@ type metadataGetBucketTaggingInput struct {
 type GetBucketTaggingOutput struct {
 	TagSet []*Tag `locationNameList:"Tag" type:"list" required:"true"`
 
-	metadataGetBucketTaggingOutput `json:"-", xml:"-"`
+	metadataGetBucketTaggingOutput `json:"-" xml:"-"`
 }
 
 type metadataGetBucketTaggingOutput struct {
@@ -2887,7 +2887,7 @@ type metadataGetBucketTaggingOutput struct {
 type GetBucketVersioningInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketVersioningInput `json:"-", xml:"-"`
+	metadataGetBucketVersioningInput `json:"-" xml:"-"`
 }
 
 type metadataGetBucketVersioningInput struct {
@@ -2903,7 +2903,7 @@ type GetBucketVersioningOutput struct {
 	// The versioning state of the bucket.
 	Status *string `type:"string"`
 
-	metadataGetBucketVersioningOutput `json:"-", xml:"-"`
+	metadataGetBucketVersioningOutput `json:"-" xml:"-"`
 }
 
 type metadataGetBucketVersioningOutput struct {
@@ -2913,7 +2913,7 @@ type metadataGetBucketVersioningOutput struct {
 type GetBucketWebsiteInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataGetBucketWebsiteInput `json:"-", xml:"-"`
+	metadataGetBucketWebsiteInput `json:"-" xml:"-"`
 }
 
 type metadataGetBucketWebsiteInput struct {
@@ -2929,7 +2929,7 @@ type GetBucketWebsiteOutput struct {
 
 	RoutingRules []*RoutingRule `locationNameList:"RoutingRule" type:"list"`
 
-	metadataGetBucketWebsiteOutput `json:"-", xml:"-"`
+	metadataGetBucketWebsiteOutput `json:"-" xml:"-"`
 }
 
 type metadataGetBucketWebsiteOutput struct {
@@ -2950,7 +2950,7 @@ type GetObjectACLInput struct {
 	// VersionId used to reference a specific version of the object.
 	VersionID *string `location:"querystring" locationName:"versionId" type:"string"`
 
-	metadataGetObjectACLInput `json:"-", xml:"-"`
+	metadataGetObjectACLInput `json:"-" xml:"-"`
 }
 
 type metadataGetObjectACLInput struct {
@@ -2967,7 +2967,7 @@ type GetObjectACLOutput struct {
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
 
-	metadataGetObjectACLOutput `json:"-", xml:"-"`
+	metadataGetObjectACLOutput `json:"-" xml:"-"`
 }
 
 type metadataGetObjectACLOutput struct {
@@ -3042,7 +3042,7 @@ type GetObjectInput struct {
 	// VersionId used to reference a specific version of the object.
 	VersionID *string `location:"querystring" locationName:"versionId" type:"string"`
 
-	metadataGetObjectInput `json:"-", xml:"-"`
+	metadataGetObjectInput `json:"-" xml:"-"`
 }
 
 type metadataGetObjectInput struct {
@@ -3140,7 +3140,7 @@ type GetObjectOutput struct {
 	// the value of this header in the object metadata.
 	WebsiteRedirectLocation *string `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
 
-	metadataGetObjectOutput `json:"-", xml:"-"`
+	metadataGetObjectOutput `json:"-" xml:"-"`
 }
 
 type metadataGetObjectOutput struct {
@@ -3158,7 +3158,7 @@ type GetObjectTorrentInput struct {
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
 	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
 
-	metadataGetObjectTorrentInput `json:"-", xml:"-"`
+	metadataGetObjectTorrentInput `json:"-" xml:"-"`
 }
 
 type metadataGetObjectTorrentInput struct {
@@ -3172,7 +3172,7 @@ type GetObjectTorrentOutput struct {
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
 
-	metadataGetObjectTorrentOutput `json:"-", xml:"-"`
+	metadataGetObjectTorrentOutput `json:"-" xml:"-"`
 }
 
 type metadataGetObjectTorrentOutput struct {
@@ -3185,7 +3185,7 @@ type Grant struct {
 	// Specifies the permission given to the grantee.
 	Permission *string `type:"string"`
 
-	metadataGrant `json:"-", xml:"-"`
+	metadataGrant `json:"-" xml:"-"`
 }
 
 type metadataGrant struct {
@@ -3208,7 +3208,7 @@ type Grantee struct {
 	// URI of the grantee group.
 	URI *string `type:"string"`
 
-	metadataGrantee `json:"-", xml:"-"`
+	metadataGrantee `json:"-" xml:"-"`
 }
 
 type metadataGrantee struct {
@@ -3218,7 +3218,7 @@ type metadataGrantee struct {
 type HeadBucketInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	metadataHeadBucketInput `json:"-", xml:"-"`
+	metadataHeadBucketInput `json:"-" xml:"-"`
 }
 
 type metadataHeadBucketInput struct {
@@ -3226,7 +3226,7 @@ type metadataHeadBucketInput struct {
 }
 
 type HeadBucketOutput struct {
-	metadataHeadBucketOutput `json:"-", xml:"-"`
+	metadataHeadBucketOutput `json:"-" xml:"-"`
 }
 
 type metadataHeadBucketOutput struct {
@@ -3283,7 +3283,7 @@ type HeadObjectInput struct {
 	// VersionId used to reference a specific version of the object.
 	VersionID *string `location:"querystring" locationName:"versionId" type:"string"`
 
-	metadataHeadObjectInput `json:"-", xml:"-"`
+	metadataHeadObjectInput `json:"-" xml:"-"`
 }
 
 type metadataHeadObjectInput struct {
@@ -3378,7 +3378,7 @@ type HeadObjectOutput struct {
 	// the value of this header in the object metadata.
 	WebsiteRedirectLocation *string `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
 
-	metadataHeadObjectOutput `json:"-", xml:"-"`
+	metadataHeadObjectOutput `json:"-" xml:"-"`
 }
 
 type metadataHeadObjectOutput struct {
@@ -3392,7 +3392,7 @@ type IndexDocument struct {
 	// The suffix must not be empty and must not include a slash character.
 	Suffix *string `type:"string" required:"true"`
 
-	metadataIndexDocument `json:"-", xml:"-"`
+	metadataIndexDocument `json:"-" xml:"-"`
 }
 
 type metadataIndexDocument struct {
@@ -3407,7 +3407,7 @@ type Initiator struct {
 	// the principal is an IAM User, it provides a user ARN value.
 	ID *string `type:"string"`
 
-	metadataInitiator `json:"-", xml:"-"`
+	metadataInitiator `json:"-" xml:"-"`
 }
 
 type metadataInitiator struct {
@@ -3417,7 +3417,7 @@ type metadataInitiator struct {
 type LifecycleConfiguration struct {
 	Rules []*LifecycleRule `locationName:"Rule" type:"list" flattened:"true" required:"true"`
 
-	metadataLifecycleConfiguration `json:"-", xml:"-"`
+	metadataLifecycleConfiguration `json:"-" xml:"-"`
 }
 
 type metadataLifecycleConfiguration struct {
@@ -3433,7 +3433,7 @@ type LifecycleExpiration struct {
 	// The value must be a non-zero positive integer.
 	Days *int64 `type:"integer"`
 
-	metadataLifecycleExpiration `json:"-", xml:"-"`
+	metadataLifecycleExpiration `json:"-" xml:"-"`
 }
 
 type metadataLifecycleExpiration struct {
@@ -3469,7 +3469,7 @@ type LifecycleRule struct {
 
 	Transition *Transition `type:"structure"`
 
-	metadataLifecycleRule `json:"-", xml:"-"`
+	metadataLifecycleRule `json:"-" xml:"-"`
 }
 
 type metadataLifecycleRule struct {
@@ -3477,7 +3477,7 @@ type metadataLifecycleRule struct {
 }
 
 type ListBucketsInput struct {
-	metadataListBucketsInput `json:"-", xml:"-"`
+	metadataListBucketsInput `json:"-" xml:"-"`
 }
 
 type metadataListBucketsInput struct {
@@ -3489,7 +3489,7 @@ type ListBucketsOutput struct {
 
 	Owner *Owner `type:"structure"`
 
-	metadataListBucketsOutput `json:"-", xml:"-"`
+	metadataListBucketsOutput `json:"-" xml:"-"`
 }
 
 type metadataListBucketsOutput struct {
@@ -3528,7 +3528,7 @@ type ListMultipartUploadsInput struct {
 	// is ignored.
 	UploadIDMarker *string `location:"querystring" locationName:"upload-id-marker" type:"string"`
 
-	metadataListMultipartUploadsInput `json:"-", xml:"-"`
+	metadataListMultipartUploadsInput `json:"-" xml:"-"`
 }
 
 type metadataListMultipartUploadsInput struct {
@@ -3576,7 +3576,7 @@ type ListMultipartUploadsOutput struct {
 
 	Uploads []*MultipartUpload `locationName:"Upload" type:"list" flattened:"true"`
 
-	metadataListMultipartUploadsOutput `json:"-", xml:"-"`
+	metadataListMultipartUploadsOutput `json:"-" xml:"-"`
 }
 
 type metadataListMultipartUploadsOutput struct {
@@ -3610,7 +3610,7 @@ type ListObjectVersionsInput struct {
 	// Specifies the object version you want to start listing from.
 	VersionIDMarker *string `location:"querystring" locationName:"version-id-marker" type:"string"`
 
-	metadataListObjectVersionsInput `json:"-", xml:"-"`
+	metadataListObjectVersionsInput `json:"-" xml:"-"`
 }
 
 type metadataListObjectVersionsInput struct {
@@ -3653,7 +3653,7 @@ type ListObjectVersionsOutput struct {
 
 	Versions []*ObjectVersion `locationName:"Version" type:"list" flattened:"true"`
 
-	metadataListObjectVersionsOutput `json:"-", xml:"-"`
+	metadataListObjectVersionsOutput `json:"-" xml:"-"`
 }
 
 type metadataListObjectVersionsOutput struct {
@@ -3684,7 +3684,7 @@ type ListObjectsInput struct {
 	// Limits the response to keys that begin with the specified prefix.
 	Prefix *string `location:"querystring" locationName:"prefix" type:"string"`
 
-	metadataListObjectsInput `json:"-", xml:"-"`
+	metadataListObjectsInput `json:"-" xml:"-"`
 }
 
 type metadataListObjectsInput struct {
@@ -3722,7 +3722,7 @@ type ListObjectsOutput struct {
 
 	Prefix *string `type:"string"`
 
-	metadataListObjectsOutput `json:"-", xml:"-"`
+	metadataListObjectsOutput `json:"-" xml:"-"`
 }
 
 type metadataListObjectsOutput struct {
@@ -3750,7 +3750,7 @@ type ListPartsInput struct {
 	// Upload ID identifying the multipart upload whose parts are being listed.
 	UploadID *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
-	metadataListPartsInput `json:"-", xml:"-"`
+	metadataListPartsInput `json:"-" xml:"-"`
 }
 
 type metadataListPartsInput struct {
@@ -3795,7 +3795,7 @@ type ListPartsOutput struct {
 	// Upload ID identifying the multipart upload whose parts are being listed.
 	UploadID *string `locationName:"UploadId" type:"string"`
 
-	metadataListPartsOutput `json:"-", xml:"-"`
+	metadataListPartsOutput `json:"-" xml:"-"`
 }
 
 type metadataListPartsOutput struct {
@@ -3817,7 +3817,7 @@ type LoggingEnabled struct {
 	// be stored under.
 	TargetPrefix *string `type:"string"`
 
-	metadataLoggingEnabled `json:"-", xml:"-"`
+	metadataLoggingEnabled `json:"-" xml:"-"`
 }
 
 type metadataLoggingEnabled struct {
@@ -3842,7 +3842,7 @@ type MultipartUpload struct {
 	// Upload ID that identifies the multipart upload.
 	UploadID *string `locationName:"UploadId" type:"string"`
 
-	metadataMultipartUpload `json:"-", xml:"-"`
+	metadataMultipartUpload `json:"-" xml:"-"`
 }
 
 type metadataMultipartUpload struct {
@@ -3862,7 +3862,7 @@ type NoncurrentVersionExpiration struct {
 	// Service Developer Guide.
 	NoncurrentDays *int64 `type:"integer"`
 
-	metadataNoncurrentVersionExpiration `json:"-", xml:"-"`
+	metadataNoncurrentVersionExpiration `json:"-" xml:"-"`
 }
 
 type metadataNoncurrentVersionExpiration struct {
@@ -3885,7 +3885,7 @@ type NoncurrentVersionTransition struct {
 	// The class of storage used to store the object.
 	StorageClass *string `type:"string"`
 
-	metadataNoncurrentVersionTransition `json:"-", xml:"-"`
+	metadataNoncurrentVersionTransition `json:"-" xml:"-"`
 }
 
 type metadataNoncurrentVersionTransition struct {
@@ -3899,7 +3899,7 @@ type NotificationConfiguration struct {
 
 	TopicConfiguration *TopicConfiguration `type:"structure"`
 
-	metadataNotificationConfiguration `json:"-", xml:"-"`
+	metadataNotificationConfiguration `json:"-" xml:"-"`
 }
 
 type metadataNotificationConfiguration struct {
@@ -3920,7 +3920,7 @@ type Object struct {
 	// The class of storage used to store the object.
 	StorageClass *string `type:"string"`
 
-	metadataObject `json:"-", xml:"-"`
+	metadataObject `json:"-" xml:"-"`
 }
 
 type metadataObject struct {
@@ -3934,7 +3934,7 @@ type ObjectIdentifier struct {
 	// VersionId for the specific version of the object to delete.
 	VersionID *string `locationName:"VersionId" type:"string"`
 
-	metadataObjectIdentifier `json:"-", xml:"-"`
+	metadataObjectIdentifier `json:"-" xml:"-"`
 }
 
 type metadataObjectIdentifier struct {
@@ -3965,7 +3965,7 @@ type ObjectVersion struct {
 	// Version ID of an object.
 	VersionID *string `locationName:"VersionId" type:"string"`
 
-	metadataObjectVersion `json:"-", xml:"-"`
+	metadataObjectVersion `json:"-" xml:"-"`
 }
 
 type metadataObjectVersion struct {
@@ -3977,7 +3977,7 @@ type Owner struct {
 
 	ID *string `type:"string"`
 
-	metadataOwner `json:"-", xml:"-"`
+	metadataOwner `json:"-" xml:"-"`
 }
 
 type metadataOwner struct {
@@ -3997,7 +3997,7 @@ type Part struct {
 	// Size of the uploaded part data.
 	Size *int64 `type:"integer"`
 
-	metadataPart `json:"-", xml:"-"`
+	metadataPart `json:"-" xml:"-"`
 }
 
 type metadataPart struct {
@@ -4028,7 +4028,7 @@ type PutBucketACLInput struct {
 	// Allows grantee to write the ACL for the applicable bucket.
 	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
 
-	metadataPutBucketACLInput `json:"-", xml:"-"`
+	metadataPutBucketACLInput `json:"-" xml:"-"`
 }
 
 type metadataPutBucketACLInput struct {
@@ -4036,7 +4036,7 @@ type metadataPutBucketACLInput struct {
 }
 
 type PutBucketACLOutput struct {
-	metadataPutBucketACLOutput `json:"-", xml:"-"`
+	metadataPutBucketACLOutput `json:"-" xml:"-"`
 }
 
 type metadataPutBucketACLOutput struct {
@@ -4048,7 +4048,7 @@ type PutBucketCORSInput struct {
 
 	CORSConfiguration *CORSConfiguration `locationName:"CORSConfiguration" type:"structure"`
 
-	metadataPutBucketCORSInput `json:"-", xml:"-"`
+	metadataPutBucketCORSInput `json:"-" xml:"-"`
 }
 
 type metadataPutBucketCORSInput struct {
@@ -4056,7 +4056,7 @@ type metadataPutBucketCORSInput struct {
 }
 
 type PutBucketCORSOutput struct {
-	metadataPutBucketCORSOutput `json:"-", xml:"-"`
+	metadataPutBucketCORSOutput `json:"-" xml:"-"`
 }
 
 type metadataPutBucketCORSOutput struct {
@@ -4068,7 +4068,7 @@ type PutBucketLifecycleInput struct {
 
 	LifecycleConfiguration *LifecycleConfiguration `locationName:"LifecycleConfiguration" type:"structure"`
 
-	metadataPutBucketLifecycleInput `json:"-", xml:"-"`
+	metadataPutBucketLifecycleInput `json:"-" xml:"-"`
 }
 
 type metadataPutBucketLifecycleInput struct {
@@ -4076,7 +4076,7 @@ type metadataPutBucketLifecycleInput struct {
 }
 
 type PutBucketLifecycleOutput struct {
-	metadataPutBucketLifecycleOutput `json:"-", xml:"-"`
+	metadataPutBucketLifecycleOutput `json:"-" xml:"-"`
 }
 
 type metadataPutBucketLifecycleOutput struct {
@@ -4088,7 +4088,7 @@ type PutBucketLoggingInput struct {
 
 	BucketLoggingStatus *BucketLoggingStatus `locationName:"BucketLoggingStatus" type:"structure" required:"true"`
 
-	metadataPutBucketLoggingInput `json:"-", xml:"-"`
+	metadataPutBucketLoggingInput `json:"-" xml:"-"`
 }
 
 type metadataPutBucketLoggingInput struct {
@@ -4096,7 +4096,7 @@ type metadataPutBucketLoggingInput struct {
 }
 
 type PutBucketLoggingOutput struct {
-	metadataPutBucketLoggingOutput `json:"-", xml:"-"`
+	metadataPutBucketLoggingOutput `json:"-" xml:"-"`
 }
 
 type metadataPutBucketLoggingOutput struct {
@@ -4108,7 +4108,7 @@ type PutBucketNotificationInput struct {
 
 	NotificationConfiguration *NotificationConfiguration `locationName:"NotificationConfiguration" type:"structure" required:"true"`
 
-	metadataPutBucketNotificationInput `json:"-", xml:"-"`
+	metadataPutBucketNotificationInput `json:"-" xml:"-"`
 }
 
 type metadataPutBucketNotificationInput struct {
@@ -4116,7 +4116,7 @@ type metadataPutBucketNotificationInput struct {
 }
 
 type PutBucketNotificationOutput struct {
-	metadataPutBucketNotificationOutput `json:"-", xml:"-"`
+	metadataPutBucketNotificationOutput `json:"-" xml:"-"`
 }
 
 type metadataPutBucketNotificationOutput struct {
@@ -4129,7 +4129,7 @@ type PutBucketPolicyInput struct {
 	// The bucket policy as a JSON document.
 	Policy *string `type:"string" required:"true"`
 
-	metadataPutBucketPolicyInput `json:"-", xml:"-"`
+	metadataPutBucketPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataPutBucketPolicyInput struct {
@@ -4137,7 +4137,7 @@ type metadataPutBucketPolicyInput struct {
 }
 
 type PutBucketPolicyOutput struct {
-	metadataPutBucketPolicyOutput `json:"-", xml:"-"`
+	metadataPutBucketPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataPutBucketPolicyOutput struct {
@@ -4151,7 +4151,7 @@ type PutBucketReplicationInput struct {
 	// replication configuration size can be up to 2 MB.
 	ReplicationConfiguration *ReplicationConfiguration `locationName:"ReplicationConfiguration" type:"structure" required:"true"`
 
-	metadataPutBucketReplicationInput `json:"-", xml:"-"`
+	metadataPutBucketReplicationInput `json:"-" xml:"-"`
 }
 
 type metadataPutBucketReplicationInput struct {
@@ -4159,7 +4159,7 @@ type metadataPutBucketReplicationInput struct {
 }
 
 type PutBucketReplicationOutput struct {
-	metadataPutBucketReplicationOutput `json:"-", xml:"-"`
+	metadataPutBucketReplicationOutput `json:"-" xml:"-"`
 }
 
 type metadataPutBucketReplicationOutput struct {
@@ -4171,7 +4171,7 @@ type PutBucketRequestPaymentInput struct {
 
 	RequestPaymentConfiguration *RequestPaymentConfiguration `locationName:"RequestPaymentConfiguration" type:"structure" required:"true"`
 
-	metadataPutBucketRequestPaymentInput `json:"-", xml:"-"`
+	metadataPutBucketRequestPaymentInput `json:"-" xml:"-"`
 }
 
 type metadataPutBucketRequestPaymentInput struct {
@@ -4179,7 +4179,7 @@ type metadataPutBucketRequestPaymentInput struct {
 }
 
 type PutBucketRequestPaymentOutput struct {
-	metadataPutBucketRequestPaymentOutput `json:"-", xml:"-"`
+	metadataPutBucketRequestPaymentOutput `json:"-" xml:"-"`
 }
 
 type metadataPutBucketRequestPaymentOutput struct {
@@ -4191,7 +4191,7 @@ type PutBucketTaggingInput struct {
 
 	Tagging *Tagging `locationName:"Tagging" type:"structure" required:"true"`
 
-	metadataPutBucketTaggingInput `json:"-", xml:"-"`
+	metadataPutBucketTaggingInput `json:"-" xml:"-"`
 }
 
 type metadataPutBucketTaggingInput struct {
@@ -4199,7 +4199,7 @@ type metadataPutBucketTaggingInput struct {
 }
 
 type PutBucketTaggingOutput struct {
-	metadataPutBucketTaggingOutput `json:"-", xml:"-"`
+	metadataPutBucketTaggingOutput `json:"-" xml:"-"`
 }
 
 type metadataPutBucketTaggingOutput struct {
@@ -4215,7 +4215,7 @@ type PutBucketVersioningInput struct {
 
 	VersioningConfiguration *VersioningConfiguration `locationName:"VersioningConfiguration" type:"structure" required:"true"`
 
-	metadataPutBucketVersioningInput `json:"-", xml:"-"`
+	metadataPutBucketVersioningInput `json:"-" xml:"-"`
 }
 
 type metadataPutBucketVersioningInput struct {
@@ -4223,7 +4223,7 @@ type metadataPutBucketVersioningInput struct {
 }
 
 type PutBucketVersioningOutput struct {
-	metadataPutBucketVersioningOutput `json:"-", xml:"-"`
+	metadataPutBucketVersioningOutput `json:"-" xml:"-"`
 }
 
 type metadataPutBucketVersioningOutput struct {
@@ -4235,7 +4235,7 @@ type PutBucketWebsiteInput struct {
 
 	WebsiteConfiguration *WebsiteConfiguration `locationName:"WebsiteConfiguration" type:"structure" required:"true"`
 
-	metadataPutBucketWebsiteInput `json:"-", xml:"-"`
+	metadataPutBucketWebsiteInput `json:"-" xml:"-"`
 }
 
 type metadataPutBucketWebsiteInput struct {
@@ -4243,7 +4243,7 @@ type metadataPutBucketWebsiteInput struct {
 }
 
 type PutBucketWebsiteOutput struct {
-	metadataPutBucketWebsiteOutput `json:"-", xml:"-"`
+	metadataPutBucketWebsiteOutput `json:"-" xml:"-"`
 }
 
 type metadataPutBucketWebsiteOutput struct {
@@ -4282,7 +4282,7 @@ type PutObjectACLInput struct {
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
 	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
 
-	metadataPutObjectACLInput `json:"-", xml:"-"`
+	metadataPutObjectACLInput `json:"-" xml:"-"`
 }
 
 type metadataPutObjectACLInput struct {
@@ -4294,7 +4294,7 @@ type PutObjectACLOutput struct {
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
 
-	metadataPutObjectACLOutput `json:"-", xml:"-"`
+	metadataPutObjectACLOutput `json:"-" xml:"-"`
 }
 
 type metadataPutObjectACLOutput struct {
@@ -4391,7 +4391,7 @@ type PutObjectInput struct {
 	// the value of this header in the object metadata.
 	WebsiteRedirectLocation *string `location:"header" locationName:"x-amz-website-redirect-location" type:"string"`
 
-	metadataPutObjectInput `json:"-", xml:"-"`
+	metadataPutObjectInput `json:"-" xml:"-"`
 }
 
 type metadataPutObjectInput struct {
@@ -4431,7 +4431,7 @@ type PutObjectOutput struct {
 	// Version of the object.
 	VersionID *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 
-	metadataPutObjectOutput `json:"-", xml:"-"`
+	metadataPutObjectOutput `json:"-" xml:"-"`
 }
 
 type metadataPutObjectOutput struct {
@@ -4447,7 +4447,7 @@ type QueueConfiguration struct {
 
 	Queue *string `type:"string"`
 
-	metadataQueueConfiguration `json:"-", xml:"-"`
+	metadataQueueConfiguration `json:"-" xml:"-"`
 }
 
 type metadataQueueConfiguration struct {
@@ -4479,7 +4479,7 @@ type Redirect struct {
 	// be present only if ReplaceKeyPrefixWith is not provided.
 	ReplaceKeyWith *string `type:"string"`
 
-	metadataRedirect `json:"-", xml:"-"`
+	metadataRedirect `json:"-" xml:"-"`
 }
 
 type metadataRedirect struct {
@@ -4494,7 +4494,7 @@ type RedirectAllRequestsTo struct {
 	// protocol that is used in the original request.
 	Protocol *string `type:"string"`
 
-	metadataRedirectAllRequestsTo `json:"-", xml:"-"`
+	metadataRedirectAllRequestsTo `json:"-" xml:"-"`
 }
 
 type metadataRedirectAllRequestsTo struct {
@@ -4512,7 +4512,7 @@ type ReplicationConfiguration struct {
 	// configuration must have at least one rule and can contain up to 1,000 rules.
 	Rules []*ReplicationRule `locationName:"Rule" type:"list" flattened:"true" required:"true"`
 
-	metadataReplicationConfiguration `json:"-", xml:"-"`
+	metadataReplicationConfiguration `json:"-" xml:"-"`
 }
 
 type metadataReplicationConfiguration struct {
@@ -4533,7 +4533,7 @@ type ReplicationRule struct {
 	// The rule is ignored if status is not Enabled.
 	Status *string `type:"string" required:"true"`
 
-	metadataReplicationRule `json:"-", xml:"-"`
+	metadataReplicationRule `json:"-" xml:"-"`
 }
 
 type metadataReplicationRule struct {
@@ -4544,7 +4544,7 @@ type RequestPaymentConfiguration struct {
 	// Specifies who pays for the download and request fees.
 	Payer *string `type:"string" required:"true"`
 
-	metadataRequestPaymentConfiguration `json:"-", xml:"-"`
+	metadataRequestPaymentConfiguration `json:"-" xml:"-"`
 }
 
 type metadataRequestPaymentConfiguration struct {
@@ -4566,7 +4566,7 @@ type RestoreObjectInput struct {
 
 	VersionID *string `location:"querystring" locationName:"versionId" type:"string"`
 
-	metadataRestoreObjectInput `json:"-", xml:"-"`
+	metadataRestoreObjectInput `json:"-" xml:"-"`
 }
 
 type metadataRestoreObjectInput struct {
@@ -4578,7 +4578,7 @@ type RestoreObjectOutput struct {
 	// request.
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
 
-	metadataRestoreObjectOutput `json:"-", xml:"-"`
+	metadataRestoreObjectOutput `json:"-" xml:"-"`
 }
 
 type metadataRestoreObjectOutput struct {
@@ -4589,7 +4589,7 @@ type RestoreRequest struct {
 	// Lifetime of the active copy in days
 	Days *int64 `type:"integer" required:"true"`
 
-	metadataRestoreRequest `json:"-", xml:"-"`
+	metadataRestoreRequest `json:"-" xml:"-"`
 }
 
 type metadataRestoreRequest struct {
@@ -4608,7 +4608,7 @@ type RoutingRule struct {
 	// you can can specify a different error code to return.
 	Redirect *Redirect `type:"structure" required:"true"`
 
-	metadataRoutingRule `json:"-", xml:"-"`
+	metadataRoutingRule `json:"-" xml:"-"`
 }
 
 type metadataRoutingRule struct {
@@ -4622,7 +4622,7 @@ type Tag struct {
 	// Value of the tag.
 	Value *string `type:"string" required:"true"`
 
-	metadataTag `json:"-", xml:"-"`
+	metadataTag `json:"-" xml:"-"`
 }
 
 type metadataTag struct {
@@ -4632,7 +4632,7 @@ type metadataTag struct {
 type Tagging struct {
 	TagSet []*Tag `locationNameList:"Tag" type:"list" required:"true"`
 
-	metadataTagging `json:"-", xml:"-"`
+	metadataTagging `json:"-" xml:"-"`
 }
 
 type metadataTagging struct {
@@ -4645,7 +4645,7 @@ type TargetGrant struct {
 	// Logging permissions assigned to the Grantee for the bucket.
 	Permission *string `type:"string"`
 
-	metadataTargetGrant `json:"-", xml:"-"`
+	metadataTargetGrant `json:"-" xml:"-"`
 }
 
 type metadataTargetGrant struct {
@@ -4664,7 +4664,7 @@ type TopicConfiguration struct {
 	// specified events for the bucket.
 	Topic *string `type:"string"`
 
-	metadataTopicConfiguration `json:"-", xml:"-"`
+	metadataTopicConfiguration `json:"-" xml:"-"`
 }
 
 type metadataTopicConfiguration struct {
@@ -4683,7 +4683,7 @@ type Transition struct {
 	// The class of storage used to store the object.
 	StorageClass *string `type:"string"`
 
-	metadataTransition `json:"-", xml:"-"`
+	metadataTransition `json:"-" xml:"-"`
 }
 
 type metadataTransition struct {
@@ -4761,7 +4761,7 @@ type UploadPartCopyInput struct {
 	// Upload ID identifying the multipart upload whose part is being copied.
 	UploadID *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
-	metadataUploadPartCopyInput `json:"-", xml:"-"`
+	metadataUploadPartCopyInput `json:"-" xml:"-"`
 }
 
 type metadataUploadPartCopyInput struct {
@@ -4797,7 +4797,7 @@ type UploadPartCopyOutput struct {
 	// (e.g., AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
 
-	metadataUploadPartCopyOutput `json:"-", xml:"-"`
+	metadataUploadPartCopyOutput `json:"-" xml:"-"`
 }
 
 type metadataUploadPartCopyOutput struct {
@@ -4844,7 +4844,7 @@ type UploadPartInput struct {
 	// Upload ID identifying the multipart upload whose part is being uploaded.
 	UploadID *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
-	metadataUploadPartInput `json:"-", xml:"-"`
+	metadataUploadPartInput `json:"-" xml:"-"`
 }
 
 type metadataUploadPartInput struct {
@@ -4877,7 +4877,7 @@ type UploadPartOutput struct {
 	// (e.g., AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
 
-	metadataUploadPartOutput `json:"-", xml:"-"`
+	metadataUploadPartOutput `json:"-" xml:"-"`
 }
 
 type metadataUploadPartOutput struct {
@@ -4893,7 +4893,7 @@ type VersioningConfiguration struct {
 	// The versioning state of the bucket.
 	Status *string `type:"string"`
 
-	metadataVersioningConfiguration `json:"-", xml:"-"`
+	metadataVersioningConfiguration `json:"-" xml:"-"`
 }
 
 type metadataVersioningConfiguration struct {
@@ -4909,7 +4909,7 @@ type WebsiteConfiguration struct {
 
 	RoutingRules []*RoutingRule `locationNameList:"RoutingRule" type:"list"`
 
-	metadataWebsiteConfiguration `json:"-", xml:"-"`
+	metadataWebsiteConfiguration `json:"-" xml:"-"`
 }
 
 type metadataWebsiteConfiguration struct {

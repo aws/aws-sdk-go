@@ -533,7 +533,7 @@ type AssumeRoleInput struct {
 	// is missing or expired, the AssumeRole call returns an "access denied" error.
 	TokenCode *string `type:"string"`
 
-	metadataAssumeRoleInput `json:"-", xml:"-"`
+	metadataAssumeRoleInput `json:"-" xml:"-"`
 }
 
 type metadataAssumeRoleInput struct {
@@ -559,7 +559,7 @@ type AssumeRoleOutput struct {
 	// which means the policy exceeded the allowed space.
 	PackedPolicySize *int64 `type:"integer"`
 
-	metadataAssumeRoleOutput `json:"-", xml:"-"`
+	metadataAssumeRoleOutput `json:"-" xml:"-"`
 }
 
 type metadataAssumeRoleOutput struct {
@@ -601,7 +601,7 @@ type AssumeRoleWithSAMLInput struct {
 	// in the Using IAM guide.
 	SAMLAssertion *string `type:"string" required:"true"`
 
-	metadataAssumeRoleWithSAMLInput `json:"-", xml:"-"`
+	metadataAssumeRoleWithSAMLInput `json:"-" xml:"-"`
 }
 
 type metadataAssumeRoleWithSAMLInput struct {
@@ -654,7 +654,7 @@ type AssumeRoleWithSAMLOutput struct {
 	// is returned with no modifications.
 	SubjectType *string `type:"string"`
 
-	metadataAssumeRoleWithSAMLOutput `json:"-", xml:"-"`
+	metadataAssumeRoleWithSAMLOutput `json:"-" xml:"-"`
 }
 
 type metadataAssumeRoleWithSAMLOutput struct {
@@ -703,7 +703,7 @@ type AssumeRoleWithWebIdentityInput struct {
 	// the application makes an AssumeRoleWithWebIdentity call.
 	WebIdentityToken *string `type:"string" required:"true"`
 
-	metadataAssumeRoleWithWebIdentityInput `json:"-", xml:"-"`
+	metadataAssumeRoleWithWebIdentityInput `json:"-" xml:"-"`
 }
 
 type metadataAssumeRoleWithWebIdentityInput struct {
@@ -750,7 +750,7 @@ type AssumeRoleWithWebIdentityOutput struct {
 	// claim.
 	SubjectFromWebIdentityToken *string `type:"string"`
 
-	metadataAssumeRoleWithWebIdentityOutput `json:"-", xml:"-"`
+	metadataAssumeRoleWithWebIdentityOutput `json:"-" xml:"-"`
 }
 
 type metadataAssumeRoleWithWebIdentityOutput struct {
@@ -771,7 +771,7 @@ type AssumedRoleUser struct {
 	// role is created.
 	AssumedRoleID *string `locationName:"AssumedRoleId" type:"string" required:"true"`
 
-	metadataAssumedRoleUser `json:"-", xml:"-"`
+	metadataAssumedRoleUser `json:"-" xml:"-"`
 }
 
 type metadataAssumedRoleUser struct {
@@ -792,7 +792,7 @@ type Credentials struct {
 	// The token that users must pass to the service API to use the temporary credentials.
 	SessionToken *string `type:"string" required:"true"`
 
-	metadataCredentials `json:"-", xml:"-"`
+	metadataCredentials `json:"-" xml:"-"`
 }
 
 type metadataCredentials struct {
@@ -803,7 +803,7 @@ type DecodeAuthorizationMessageInput struct {
 	// The encoded message that was returned with the response.
 	EncodedMessage *string `type:"string" required:"true"`
 
-	metadataDecodeAuthorizationMessageInput `json:"-", xml:"-"`
+	metadataDecodeAuthorizationMessageInput `json:"-" xml:"-"`
 }
 
 type metadataDecodeAuthorizationMessageInput struct {
@@ -818,7 +818,7 @@ type DecodeAuthorizationMessageOutput struct {
 	// see DecodeAuthorizationMessage.
 	DecodedMessage *string `type:"string"`
 
-	metadataDecodeAuthorizationMessageOutput `json:"-", xml:"-"`
+	metadataDecodeAuthorizationMessageOutput `json:"-" xml:"-"`
 }
 
 type metadataDecodeAuthorizationMessageOutput struct {
@@ -837,7 +837,7 @@ type FederatedUser struct {
 	// similar to the unique ID of an IAM user.
 	FederatedUserID *string `locationName:"FederatedUserId" type:"string" required:"true"`
 
-	metadataFederatedUser `json:"-", xml:"-"`
+	metadataFederatedUser `json:"-" xml:"-"`
 }
 
 type metadataFederatedUser struct {
@@ -880,7 +880,7 @@ type GetFederationTokenInput struct {
 	// in Using Temporary Security Credentials.
 	Policy *string `type:"string"`
 
-	metadataGetFederationTokenInput `json:"-", xml:"-"`
+	metadataGetFederationTokenInput `json:"-" xml:"-"`
 }
 
 type metadataGetFederationTokenInput struct {
@@ -904,7 +904,7 @@ type GetFederationTokenOutput struct {
 	// of the allowed value.
 	PackedPolicySize *int64 `type:"integer"`
 
-	metadataGetFederationTokenOutput `json:"-", xml:"-"`
+	metadataGetFederationTokenOutput `json:"-" xml:"-"`
 }
 
 type metadataGetFederationTokenOutput struct {
@@ -936,7 +936,7 @@ type GetSessionTokenInput struct {
 	// response when requesting resources that require MFA authentication.
 	TokenCode *string `type:"string"`
 
-	metadataGetSessionTokenInput `json:"-", xml:"-"`
+	metadataGetSessionTokenInput `json:"-" xml:"-"`
 }
 
 type metadataGetSessionTokenInput struct {
@@ -949,7 +949,7 @@ type GetSessionTokenOutput struct {
 	// The session credentials for API authentication.
 	Credentials *Credentials `type:"structure"`
 
-	metadataGetSessionTokenOutput `json:"-", xml:"-"`
+	metadataGetSessionTokenOutput `json:"-" xml:"-"`
 }
 
 type metadataGetSessionTokenOutput struct {

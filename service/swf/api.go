@@ -1683,7 +1683,7 @@ type ActivityTaskCancelRequestedEventAttributes struct {
 	// back the chain of events leading up to this event.
 	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
-	metadataActivityTaskCancelRequestedEventAttributes `json:"-", xml:"-"`
+	metadataActivityTaskCancelRequestedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataActivityTaskCancelRequestedEventAttributes struct {
@@ -1710,7 +1710,7 @@ type ActivityTaskCanceledEventAttributes struct {
 	// back the chain of events leading up to this event.
 	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
-	metadataActivityTaskCanceledEventAttributes `json:"-", xml:"-"`
+	metadataActivityTaskCanceledEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataActivityTaskCanceledEventAttributes struct {
@@ -1732,7 +1732,7 @@ type ActivityTaskCompletedEventAttributes struct {
 	// back the chain of events leading up to this event.
 	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
-	metadataActivityTaskCompletedEventAttributes `json:"-", xml:"-"`
+	metadataActivityTaskCompletedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataActivityTaskCompletedEventAttributes struct {
@@ -1757,7 +1757,7 @@ type ActivityTaskFailedEventAttributes struct {
 	// back the chain of events leading up to this event.
 	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
-	metadataActivityTaskFailedEventAttributes `json:"-", xml:"-"`
+	metadataActivityTaskFailedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataActivityTaskFailedEventAttributes struct {
@@ -1817,7 +1817,7 @@ type ActivityTaskScheduledEventAttributes struct {
 	// in the Amazon Simple Workflow Developer Guide.
 	TaskPriority *string `locationName:"taskPriority" type:"string"`
 
-	metadataActivityTaskScheduledEventAttributes `json:"-", xml:"-"`
+	metadataActivityTaskScheduledEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataActivityTaskScheduledEventAttributes struct {
@@ -1835,7 +1835,7 @@ type ActivityTaskStartedEventAttributes struct {
 	// by tracing back the chain of events leading up to this event.
 	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
-	metadataActivityTaskStartedEventAttributes `json:"-", xml:"-"`
+	metadataActivityTaskStartedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataActivityTaskStartedEventAttributes struct {
@@ -1861,7 +1861,7 @@ type ActivityTaskTimedOutEventAttributes struct {
 	// The type of the timeout that caused this event.
 	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true"`
 
-	metadataActivityTaskTimedOutEventAttributes `json:"-", xml:"-"`
+	metadataActivityTaskTimedOutEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataActivityTaskTimedOutEventAttributes struct {
@@ -1882,7 +1882,7 @@ type ActivityType struct {
 	// a domain.
 	Version *string `locationName:"version" type:"string" required:"true"`
 
-	metadataActivityType `json:"-", xml:"-"`
+	metadataActivityType `json:"-" xml:"-"`
 }
 
 type metadataActivityType struct {
@@ -1948,7 +1948,7 @@ type ActivityTypeConfiguration struct {
 	// 0. The value "NONE" can be used to specify unlimited duration.
 	DefaultTaskStartToCloseTimeout *string `locationName:"defaultTaskStartToCloseTimeout" type:"string"`
 
-	metadataActivityTypeConfiguration `json:"-", xml:"-"`
+	metadataActivityTypeConfiguration `json:"-" xml:"-"`
 }
 
 type metadataActivityTypeConfiguration struct {
@@ -1972,7 +1972,7 @@ type ActivityTypeInfo struct {
 	// The current status of the activity type.
 	Status *string `locationName:"status" type:"string" required:"true"`
 
-	metadataActivityTypeInfo `json:"-", xml:"-"`
+	metadataActivityTypeInfo `json:"-" xml:"-"`
 }
 
 type metadataActivityTypeInfo struct {
@@ -1998,7 +1998,7 @@ type CancelTimerDecisionAttributes struct {
 	// Required. The unique Id of the timer to cancel.
 	TimerID *string `locationName:"timerId" type:"string" required:"true"`
 
-	metadataCancelTimerDecisionAttributes `json:"-", xml:"-"`
+	metadataCancelTimerDecisionAttributes `json:"-" xml:"-"`
 }
 
 type metadataCancelTimerDecisionAttributes struct {
@@ -2024,7 +2024,7 @@ type CancelTimerFailedEventAttributes struct {
 	// The timerId provided in the CancelTimer decision that failed.
 	TimerID *string `locationName:"timerId" type:"string" required:"true"`
 
-	metadataCancelTimerFailedEventAttributes `json:"-", xml:"-"`
+	metadataCancelTimerFailedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataCancelTimerFailedEventAttributes struct {
@@ -2050,7 +2050,7 @@ type CancelWorkflowExecutionDecisionAttributes struct {
 	// Optional. details of the cancellation.
 	Details *string `locationName:"details" type:"string"`
 
-	metadataCancelWorkflowExecutionDecisionAttributes `json:"-", xml:"-"`
+	metadataCancelWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
 }
 
 type metadataCancelWorkflowExecutionDecisionAttributes struct {
@@ -2073,7 +2073,7 @@ type CancelWorkflowExecutionFailedEventAttributes struct {
 	// back the chain of events leading up to this event.
 	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
-	metadataCancelWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
+	metadataCancelWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataCancelWorkflowExecutionFailedEventAttributes struct {
@@ -2102,7 +2102,7 @@ type ChildWorkflowExecutionCanceledEventAttributes struct {
 	// The type of the child workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataChildWorkflowExecutionCanceledEventAttributes `json:"-", xml:"-"`
+	metadataChildWorkflowExecutionCanceledEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataChildWorkflowExecutionCanceledEventAttributes struct {
@@ -2131,7 +2131,7 @@ type ChildWorkflowExecutionCompletedEventAttributes struct {
 	// The type of the child workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataChildWorkflowExecutionCompletedEventAttributes `json:"-", xml:"-"`
+	metadataChildWorkflowExecutionCompletedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataChildWorkflowExecutionCompletedEventAttributes struct {
@@ -2163,7 +2163,7 @@ type ChildWorkflowExecutionFailedEventAttributes struct {
 	// The type of the child workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataChildWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
+	metadataChildWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataChildWorkflowExecutionFailedEventAttributes struct {
@@ -2184,7 +2184,7 @@ type ChildWorkflowExecutionStartedEventAttributes struct {
 	// The type of the child workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataChildWorkflowExecutionStartedEventAttributes `json:"-", xml:"-"`
+	metadataChildWorkflowExecutionStartedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataChildWorkflowExecutionStartedEventAttributes struct {
@@ -2210,7 +2210,7 @@ type ChildWorkflowExecutionTerminatedEventAttributes struct {
 	// The type of the child workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataChildWorkflowExecutionTerminatedEventAttributes `json:"-", xml:"-"`
+	metadataChildWorkflowExecutionTerminatedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataChildWorkflowExecutionTerminatedEventAttributes struct {
@@ -2240,7 +2240,7 @@ type ChildWorkflowExecutionTimedOutEventAttributes struct {
 	// The type of the child workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataChildWorkflowExecutionTimedOutEventAttributes `json:"-", xml:"-"`
+	metadataChildWorkflowExecutionTimedOutEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataChildWorkflowExecutionTimedOutEventAttributes struct {
@@ -2254,7 +2254,7 @@ type CloseStatusFilter struct {
 	// for it to meet the criteria of this filter.
 	Status *string `locationName:"status" type:"string" required:"true"`
 
-	metadataCloseStatusFilter `json:"-", xml:"-"`
+	metadataCloseStatusFilter `json:"-" xml:"-"`
 }
 
 type metadataCloseStatusFilter struct {
@@ -2281,7 +2281,7 @@ type CompleteWorkflowExecutionDecisionAttributes struct {
 	// defined.
 	Result *string `locationName:"result" type:"string"`
 
-	metadataCompleteWorkflowExecutionDecisionAttributes `json:"-", xml:"-"`
+	metadataCompleteWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
 }
 
 type metadataCompleteWorkflowExecutionDecisionAttributes struct {
@@ -2304,7 +2304,7 @@ type CompleteWorkflowExecutionFailedEventAttributes struct {
 	// back the chain of events leading up to this event.
 	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
-	metadataCompleteWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
+	metadataCompleteWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataCompleteWorkflowExecutionFailedEventAttributes struct {
@@ -2399,7 +2399,7 @@ type ContinueAsNewWorkflowExecutionDecisionAttributes struct {
 
 	WorkflowTypeVersion *string `locationName:"workflowTypeVersion" type:"string"`
 
-	metadataContinueAsNewWorkflowExecutionDecisionAttributes `json:"-", xml:"-"`
+	metadataContinueAsNewWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
 }
 
 type metadataContinueAsNewWorkflowExecutionDecisionAttributes struct {
@@ -2422,7 +2422,7 @@ type ContinueAsNewWorkflowExecutionFailedEventAttributes struct {
 	// tracing back the chain of events leading up to this event.
 	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
-	metadataContinueAsNewWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
+	metadataContinueAsNewWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataContinueAsNewWorkflowExecutionFailedEventAttributes struct {
@@ -2474,7 +2474,7 @@ type CountClosedWorkflowExecutionsInput struct {
 	// exclusive. You can specify at most one of these in a request.
 	TypeFilter *WorkflowTypeFilter `locationName:"typeFilter" type:"structure"`
 
-	metadataCountClosedWorkflowExecutionsInput `json:"-", xml:"-"`
+	metadataCountClosedWorkflowExecutionsInput `json:"-" xml:"-"`
 }
 
 type metadataCountClosedWorkflowExecutionsInput struct {
@@ -2509,7 +2509,7 @@ type CountOpenWorkflowExecutionsInput struct {
 	// specify at most one of these in a request.
 	TypeFilter *WorkflowTypeFilter `locationName:"typeFilter" type:"structure"`
 
-	metadataCountOpenWorkflowExecutionsInput `json:"-", xml:"-"`
+	metadataCountOpenWorkflowExecutionsInput `json:"-" xml:"-"`
 }
 
 type metadataCountOpenWorkflowExecutionsInput struct {
@@ -2523,7 +2523,7 @@ type CountPendingActivityTasksInput struct {
 	// The name of the task list.
 	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
 
-	metadataCountPendingActivityTasksInput `json:"-", xml:"-"`
+	metadataCountPendingActivityTasksInput `json:"-" xml:"-"`
 }
 
 type metadataCountPendingActivityTasksInput struct {
@@ -2537,7 +2537,7 @@ type CountPendingDecisionTasksInput struct {
 	// The name of the task list.
 	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
 
-	metadataCountPendingDecisionTasksInput `json:"-", xml:"-"`
+	metadataCountPendingDecisionTasksInput `json:"-" xml:"-"`
 }
 
 type metadataCountPendingDecisionTasksInput struct {
@@ -2699,7 +2699,7 @@ type Decision struct {
 	// types.
 	StartTimerDecisionAttributes *StartTimerDecisionAttributes `locationName:"startTimerDecisionAttributes" type:"structure"`
 
-	metadataDecision `json:"-", xml:"-"`
+	metadataDecision `json:"-" xml:"-"`
 }
 
 type metadataDecision struct {
@@ -2721,7 +2721,7 @@ type DecisionTaskCompletedEventAttributes struct {
 	// back the chain of events leading up to this event.
 	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
-	metadataDecisionTaskCompletedEventAttributes `json:"-", xml:"-"`
+	metadataDecisionTaskCompletedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataDecisionTaskCompletedEventAttributes struct {
@@ -2750,7 +2750,7 @@ type DecisionTaskScheduledEventAttributes struct {
 	// in the Amazon Simple Workflow Developer Guide.
 	TaskPriority *string `locationName:"taskPriority" type:"string"`
 
-	metadataDecisionTaskScheduledEventAttributes `json:"-", xml:"-"`
+	metadataDecisionTaskScheduledEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataDecisionTaskScheduledEventAttributes struct {
@@ -2768,7 +2768,7 @@ type DecisionTaskStartedEventAttributes struct {
 	// by tracing back the chain of events leading up to this event.
 	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
-	metadataDecisionTaskStartedEventAttributes `json:"-", xml:"-"`
+	metadataDecisionTaskStartedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataDecisionTaskStartedEventAttributes struct {
@@ -2790,7 +2790,7 @@ type DecisionTaskTimedOutEventAttributes struct {
 	// The type of timeout that expired before the decision task could be completed.
 	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true"`
 
-	metadataDecisionTaskTimedOutEventAttributes `json:"-", xml:"-"`
+	metadataDecisionTaskTimedOutEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataDecisionTaskTimedOutEventAttributes struct {
@@ -2804,7 +2804,7 @@ type DeprecateActivityTypeInput struct {
 	// The name of the domain in which the activity type is registered.
 	Domain *string `locationName:"domain" type:"string" required:"true"`
 
-	metadataDeprecateActivityTypeInput `json:"-", xml:"-"`
+	metadataDeprecateActivityTypeInput `json:"-" xml:"-"`
 }
 
 type metadataDeprecateActivityTypeInput struct {
@@ -2812,7 +2812,7 @@ type metadataDeprecateActivityTypeInput struct {
 }
 
 type DeprecateActivityTypeOutput struct {
-	metadataDeprecateActivityTypeOutput `json:"-", xml:"-"`
+	metadataDeprecateActivityTypeOutput `json:"-" xml:"-"`
 }
 
 type metadataDeprecateActivityTypeOutput struct {
@@ -2823,7 +2823,7 @@ type DeprecateDomainInput struct {
 	// The name of the domain to deprecate.
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	metadataDeprecateDomainInput `json:"-", xml:"-"`
+	metadataDeprecateDomainInput `json:"-" xml:"-"`
 }
 
 type metadataDeprecateDomainInput struct {
@@ -2831,7 +2831,7 @@ type metadataDeprecateDomainInput struct {
 }
 
 type DeprecateDomainOutput struct {
-	metadataDeprecateDomainOutput `json:"-", xml:"-"`
+	metadataDeprecateDomainOutput `json:"-" xml:"-"`
 }
 
 type metadataDeprecateDomainOutput struct {
@@ -2845,7 +2845,7 @@ type DeprecateWorkflowTypeInput struct {
 	// The workflow type to deprecate.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataDeprecateWorkflowTypeInput `json:"-", xml:"-"`
+	metadataDeprecateWorkflowTypeInput `json:"-" xml:"-"`
 }
 
 type metadataDeprecateWorkflowTypeInput struct {
@@ -2853,7 +2853,7 @@ type metadataDeprecateWorkflowTypeInput struct {
 }
 
 type DeprecateWorkflowTypeOutput struct {
-	metadataDeprecateWorkflowTypeOutput `json:"-", xml:"-"`
+	metadataDeprecateWorkflowTypeOutput `json:"-" xml:"-"`
 }
 
 type metadataDeprecateWorkflowTypeOutput struct {
@@ -2868,7 +2868,7 @@ type DescribeActivityTypeInput struct {
 	// The name of the domain in which the activity type is registered.
 	Domain *string `locationName:"domain" type:"string" required:"true"`
 
-	metadataDescribeActivityTypeInput `json:"-", xml:"-"`
+	metadataDescribeActivityTypeInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeActivityTypeInput struct {
@@ -2891,7 +2891,7 @@ type DescribeActivityTypeOutput struct {
 	// You cannot create new tasks of this type.
 	TypeInfo *ActivityTypeInfo `locationName:"typeInfo" type:"structure" required:"true"`
 
-	metadataDescribeActivityTypeOutput `json:"-", xml:"-"`
+	metadataDescribeActivityTypeOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeActivityTypeOutput struct {
@@ -2902,7 +2902,7 @@ type DescribeDomainInput struct {
 	// The name of the domain to describe.
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	metadataDescribeDomainInput `json:"-", xml:"-"`
+	metadataDescribeDomainInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeDomainInput struct {
@@ -2917,7 +2917,7 @@ type DescribeDomainOutput struct {
 	// Contains general information about a domain.
 	DomainInfo *DomainInfo `locationName:"domainInfo" type:"structure" required:"true"`
 
-	metadataDescribeDomainOutput `json:"-", xml:"-"`
+	metadataDescribeDomainOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeDomainOutput struct {
@@ -2931,7 +2931,7 @@ type DescribeWorkflowExecutionInput struct {
 	// The workflow execution to describe.
 	Execution *WorkflowExecution `locationName:"execution" type:"structure" required:"true"`
 
-	metadataDescribeWorkflowExecutionInput `json:"-", xml:"-"`
+	metadataDescribeWorkflowExecutionInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeWorkflowExecutionInput struct {
@@ -2961,7 +2961,7 @@ type DescribeWorkflowExecutionOutput struct {
 	// tasks of all types.
 	OpenCounts *WorkflowExecutionOpenCounts `locationName:"openCounts" type:"structure" required:"true"`
 
-	metadataDescribeWorkflowExecutionOutput `json:"-", xml:"-"`
+	metadataDescribeWorkflowExecutionOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeWorkflowExecutionOutput struct {
@@ -2975,7 +2975,7 @@ type DescribeWorkflowTypeInput struct {
 	// The workflow type to describe.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataDescribeWorkflowTypeInput `json:"-", xml:"-"`
+	metadataDescribeWorkflowTypeInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeWorkflowTypeInput struct {
@@ -2998,7 +2998,7 @@ type DescribeWorkflowTypeOutput struct {
 	// You cannot create new workflow executions of this type.
 	TypeInfo *WorkflowTypeInfo `locationName:"typeInfo" type:"structure" required:"true"`
 
-	metadataDescribeWorkflowTypeOutput `json:"-", xml:"-"`
+	metadataDescribeWorkflowTypeOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeWorkflowTypeOutput struct {
@@ -3010,7 +3010,7 @@ type DomainConfiguration struct {
 	// The retention period for workflow executions in this domain.
 	WorkflowExecutionRetentionPeriodInDays *string `locationName:"workflowExecutionRetentionPeriodInDays" type:"string" required:"true"`
 
-	metadataDomainConfiguration `json:"-", xml:"-"`
+	metadataDomainConfiguration `json:"-" xml:"-"`
 }
 
 type metadataDomainConfiguration struct {
@@ -3033,7 +3033,7 @@ type DomainInfo struct {
 	// in use. You should not create new workflow executions in this domain.
 	Status *string `locationName:"status" type:"string" required:"true"`
 
-	metadataDomainInfo `json:"-", xml:"-"`
+	metadataDomainInfo `json:"-" xml:"-"`
 }
 
 type metadataDomainInfo struct {
@@ -3052,7 +3052,7 @@ type ExecutionTimeFilter struct {
 	// Specifies the oldest start or close date and time to return.
 	OldestDate *time.Time `locationName:"oldestDate" type:"timestamp" timestampFormat:"unix" required:"true"`
 
-	metadataExecutionTimeFilter `json:"-", xml:"-"`
+	metadataExecutionTimeFilter `json:"-" xml:"-"`
 }
 
 type metadataExecutionTimeFilter struct {
@@ -3070,7 +3070,7 @@ type ExternalWorkflowExecutionCancelRequestedEventAttributes struct {
 	// The external workflow execution to which the cancellation request was delivered.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
 
-	metadataExternalWorkflowExecutionCancelRequestedEventAttributes `json:"-", xml:"-"`
+	metadataExternalWorkflowExecutionCancelRequestedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataExternalWorkflowExecutionCancelRequestedEventAttributes struct {
@@ -3088,7 +3088,7 @@ type ExternalWorkflowExecutionSignaledEventAttributes struct {
 	// The external workflow execution that the signal was delivered to.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
 
-	metadataExternalWorkflowExecutionSignaledEventAttributes `json:"-", xml:"-"`
+	metadataExternalWorkflowExecutionSignaledEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataExternalWorkflowExecutionSignaledEventAttributes struct {
@@ -3117,7 +3117,7 @@ type FailWorkflowExecutionDecisionAttributes struct {
 	// A descriptive reason for the failure that may help in diagnostics.
 	Reason *string `locationName:"reason" type:"string"`
 
-	metadataFailWorkflowExecutionDecisionAttributes `json:"-", xml:"-"`
+	metadataFailWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
 }
 
 type metadataFailWorkflowExecutionDecisionAttributes struct {
@@ -3140,7 +3140,7 @@ type FailWorkflowExecutionFailedEventAttributes struct {
 	// chain of events leading up to this event.
 	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
-	metadataFailWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
+	metadataFailWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataFailWorkflowExecutionFailedEventAttributes struct {
@@ -3175,7 +3175,7 @@ type GetWorkflowExecutionHistoryInput struct {
 	// are returned in ascending order of the eventTimeStamp of the events.
 	ReverseOrder *bool `locationName:"reverseOrder" type:"boolean"`
 
-	metadataGetWorkflowExecutionHistoryInput `json:"-", xml:"-"`
+	metadataGetWorkflowExecutionHistoryInput `json:"-" xml:"-"`
 }
 
 type metadataGetWorkflowExecutionHistoryInput struct {
@@ -3197,7 +3197,7 @@ type GetWorkflowExecutionHistoryOutput struct {
 	// in a single call.
 	NextPageToken *string `locationName:"nextPageToken" type:"string"`
 
-	metadataGetWorkflowExecutionHistoryOutput `json:"-", xml:"-"`
+	metadataGetWorkflowExecutionHistoryOutput `json:"-" xml:"-"`
 }
 
 type metadataGetWorkflowExecutionHistoryOutput struct {
@@ -3499,7 +3499,7 @@ type HistoryEvent struct {
 	// event types.
 	WorkflowExecutionTimedOutEventAttributes *WorkflowExecutionTimedOutEventAttributes `locationName:"workflowExecutionTimedOutEventAttributes" type:"structure"`
 
-	metadataHistoryEvent `json:"-", xml:"-"`
+	metadataHistoryEvent `json:"-" xml:"-"`
 }
 
 type metadataHistoryEvent struct {
@@ -3537,7 +3537,7 @@ type ListActivityTypesInput struct {
 	// are returned in ascending alphabetical order by name of the activity types.
 	ReverseOrder *bool `locationName:"reverseOrder" type:"boolean"`
 
-	metadataListActivityTypesInput `json:"-", xml:"-"`
+	metadataListActivityTypesInput `json:"-" xml:"-"`
 }
 
 type metadataListActivityTypesInput struct {
@@ -3557,7 +3557,7 @@ type ListActivityTypesOutput struct {
 	// List of activity type information.
 	TypeInfos []*ActivityTypeInfo `locationName:"typeInfos" type:"list" required:"true"`
 
-	metadataListActivityTypesOutput `json:"-", xml:"-"`
+	metadataListActivityTypesOutput `json:"-" xml:"-"`
 }
 
 type metadataListActivityTypesOutput struct {
@@ -3634,7 +3634,7 @@ type ListClosedWorkflowExecutionsInput struct {
 	// exclusive. You can specify at most one of these in a request.
 	TypeFilter *WorkflowTypeFilter `locationName:"typeFilter" type:"structure"`
 
-	metadataListClosedWorkflowExecutionsInput `json:"-", xml:"-"`
+	metadataListClosedWorkflowExecutionsInput `json:"-" xml:"-"`
 }
 
 type metadataListClosedWorkflowExecutionsInput struct {
@@ -3666,7 +3666,7 @@ type ListDomainsInput struct {
 	// are returned in ascending alphabetical order by name of the domains.
 	ReverseOrder *bool `locationName:"reverseOrder" type:"boolean"`
 
-	metadataListDomainsInput `json:"-", xml:"-"`
+	metadataListDomainsInput `json:"-" xml:"-"`
 }
 
 type metadataListDomainsInput struct {
@@ -3686,7 +3686,7 @@ type ListDomainsOutput struct {
 	// in a single call.
 	NextPageToken *string `locationName:"nextPageToken" type:"string"`
 
-	metadataListDomainsOutput `json:"-", xml:"-"`
+	metadataListDomainsOutput `json:"-" xml:"-"`
 }
 
 type metadataListDomainsOutput struct {
@@ -3741,7 +3741,7 @@ type ListOpenWorkflowExecutionsInput struct {
 	// specify at most one of these in a request.
 	TypeFilter *WorkflowTypeFilter `locationName:"typeFilter" type:"structure"`
 
-	metadataListOpenWorkflowExecutionsInput `json:"-", xml:"-"`
+	metadataListOpenWorkflowExecutionsInput `json:"-" xml:"-"`
 }
 
 type metadataListOpenWorkflowExecutionsInput struct {
@@ -3780,7 +3780,7 @@ type ListWorkflowTypesInput struct {
 	// types.
 	ReverseOrder *bool `locationName:"reverseOrder" type:"boolean"`
 
-	metadataListWorkflowTypesInput `json:"-", xml:"-"`
+	metadataListWorkflowTypesInput `json:"-" xml:"-"`
 }
 
 type metadataListWorkflowTypesInput struct {
@@ -3800,7 +3800,7 @@ type ListWorkflowTypesOutput struct {
 	// The list of workflow type information.
 	TypeInfos []*WorkflowTypeInfo `locationName:"typeInfos" type:"list" required:"true"`
 
-	metadataListWorkflowTypesOutput `json:"-", xml:"-"`
+	metadataListWorkflowTypesOutput `json:"-" xml:"-"`
 }
 
 type metadataListWorkflowTypesOutput struct {
@@ -3821,7 +3821,7 @@ type MarkerRecordedEventAttributes struct {
 	// The name of the marker.
 	MarkerName *string `locationName:"markerName" type:"string" required:"true"`
 
-	metadataMarkerRecordedEventAttributes `json:"-", xml:"-"`
+	metadataMarkerRecordedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataMarkerRecordedEventAttributes struct {
@@ -3837,7 +3837,7 @@ type PendingTaskCount struct {
 	// supported by this API and the count returned is the truncated value.
 	Truncated *bool `locationName:"truncated" type:"boolean"`
 
-	metadataPendingTaskCount `json:"-", xml:"-"`
+	metadataPendingTaskCount `json:"-" xml:"-"`
 }
 
 type metadataPendingTaskCount struct {
@@ -3861,7 +3861,7 @@ type PollForActivityTaskInput struct {
 	// string quotarnquot.
 	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
 
-	metadataPollForActivityTaskInput `json:"-", xml:"-"`
+	metadataPollForActivityTaskInput `json:"-" xml:"-"`
 }
 
 type metadataPollForActivityTaskInput struct {
@@ -3891,7 +3891,7 @@ type PollForActivityTaskOutput struct {
 	// The workflow execution that started this activity task.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
 
-	metadataPollForActivityTaskOutput `json:"-", xml:"-"`
+	metadataPollForActivityTaskOutput `json:"-" xml:"-"`
 }
 
 type metadataPollForActivityTaskOutput struct {
@@ -3941,7 +3941,7 @@ type PollForDecisionTaskInput struct {
 	// string quotarnquot.
 	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
 
-	metadataPollForDecisionTaskInput `json:"-", xml:"-"`
+	metadataPollForDecisionTaskInput `json:"-" xml:"-"`
 }
 
 type metadataPollForDecisionTaskInput struct {
@@ -3983,7 +3983,7 @@ type PollForDecisionTaskOutput struct {
 	// The type of the workflow execution for which this decision task was created.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataPollForDecisionTaskOutput `json:"-", xml:"-"`
+	metadataPollForDecisionTaskOutput `json:"-" xml:"-"`
 }
 
 type metadataPollForDecisionTaskOutput struct {
@@ -4001,7 +4001,7 @@ type RecordActivityTaskHeartbeatInput struct {
 	// be passed. This enables it to provide its progress and respond with results.
 	TaskToken *string `locationName:"taskToken" type:"string" required:"true"`
 
-	metadataRecordActivityTaskHeartbeatInput `json:"-", xml:"-"`
+	metadataRecordActivityTaskHeartbeatInput `json:"-" xml:"-"`
 }
 
 type metadataRecordActivityTaskHeartbeatInput struct {
@@ -4013,7 +4013,7 @@ type RecordActivityTaskHeartbeatOutput struct {
 	// Set to true if cancellation of the task is requested.
 	CancelRequested *bool `locationName:"cancelRequested" type:"boolean" required:"true"`
 
-	metadataRecordActivityTaskHeartbeatOutput `json:"-", xml:"-"`
+	metadataRecordActivityTaskHeartbeatOutput `json:"-" xml:"-"`
 }
 
 type metadataRecordActivityTaskHeartbeatOutput struct {
@@ -4042,7 +4042,7 @@ type RecordMarkerDecisionAttributes struct {
 	// Required. The name of the marker.
 	MarkerName *string `locationName:"markerName" type:"string" required:"true"`
 
-	metadataRecordMarkerDecisionAttributes `json:"-", xml:"-"`
+	metadataRecordMarkerDecisionAttributes `json:"-" xml:"-"`
 }
 
 type metadataRecordMarkerDecisionAttributes struct {
@@ -4068,7 +4068,7 @@ type RecordMarkerFailedEventAttributes struct {
 	// The marker's name.
 	MarkerName *string `locationName:"markerName" type:"string" required:"true"`
 
-	metadataRecordMarkerFailedEventAttributes `json:"-", xml:"-"`
+	metadataRecordMarkerFailedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataRecordMarkerFailedEventAttributes struct {
@@ -4151,7 +4151,7 @@ type RegisterActivityTypeInput struct {
 	// it must not contain the literal string quotarnquot.
 	Version *string `locationName:"version" type:"string" required:"true"`
 
-	metadataRegisterActivityTypeInput `json:"-", xml:"-"`
+	metadataRegisterActivityTypeInput `json:"-" xml:"-"`
 }
 
 type metadataRegisterActivityTypeInput struct {
@@ -4159,7 +4159,7 @@ type metadataRegisterActivityTypeInput struct {
 }
 
 type RegisterActivityTypeOutput struct {
-	metadataRegisterActivityTypeOutput `json:"-", xml:"-"`
+	metadataRegisterActivityTypeOutput `json:"-" xml:"-"`
 }
 
 type metadataRegisterActivityTypeOutput struct {
@@ -4192,7 +4192,7 @@ type RegisterDomainInput struct {
 	// in the Amazon SWF Developer Guide.
 	WorkflowExecutionRetentionPeriodInDays *string `locationName:"workflowExecutionRetentionPeriodInDays" type:"string" required:"true"`
 
-	metadataRegisterDomainInput `json:"-", xml:"-"`
+	metadataRegisterDomainInput `json:"-" xml:"-"`
 }
 
 type metadataRegisterDomainInput struct {
@@ -4200,7 +4200,7 @@ type metadataRegisterDomainInput struct {
 }
 
 type RegisterDomainOutput struct {
-	metadataRegisterDomainOutput `json:"-", xml:"-"`
+	metadataRegisterDomainOutput `json:"-" xml:"-"`
 }
 
 type metadataRegisterDomainOutput struct {
@@ -4283,7 +4283,7 @@ type RegisterWorkflowTypeInput struct {
 	// Also, it must not contain the literal string quotarnquot.
 	Version *string `locationName:"version" type:"string" required:"true"`
 
-	metadataRegisterWorkflowTypeInput `json:"-", xml:"-"`
+	metadataRegisterWorkflowTypeInput `json:"-" xml:"-"`
 }
 
 type metadataRegisterWorkflowTypeInput struct {
@@ -4291,7 +4291,7 @@ type metadataRegisterWorkflowTypeInput struct {
 }
 
 type RegisterWorkflowTypeOutput struct {
-	metadataRegisterWorkflowTypeOutput `json:"-", xml:"-"`
+	metadataRegisterWorkflowTypeOutput `json:"-" xml:"-"`
 }
 
 type metadataRegisterWorkflowTypeOutput struct {
@@ -4317,7 +4317,7 @@ type RequestCancelActivityTaskDecisionAttributes struct {
 	// The activityId of the activity task to be canceled.
 	ActivityID *string `locationName:"activityId" type:"string" required:"true"`
 
-	metadataRequestCancelActivityTaskDecisionAttributes `json:"-", xml:"-"`
+	metadataRequestCancelActivityTaskDecisionAttributes `json:"-" xml:"-"`
 }
 
 type metadataRequestCancelActivityTaskDecisionAttributes struct {
@@ -4343,7 +4343,7 @@ type RequestCancelActivityTaskFailedEventAttributes struct {
 	// back the chain of events leading up to this event.
 	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
-	metadataRequestCancelActivityTaskFailedEventAttributes `json:"-", xml:"-"`
+	metadataRequestCancelActivityTaskFailedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataRequestCancelActivityTaskFailedEventAttributes struct {
@@ -4376,7 +4376,7 @@ type RequestCancelExternalWorkflowExecutionDecisionAttributes struct {
 	// Required. The workflowId of the external workflow execution to cancel.
 	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
-	metadataRequestCancelExternalWorkflowExecutionDecisionAttributes `json:"-", xml:"-"`
+	metadataRequestCancelExternalWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
 }
 
 type metadataRequestCancelExternalWorkflowExecutionDecisionAttributes struct {
@@ -4414,7 +4414,7 @@ type RequestCancelExternalWorkflowExecutionFailedEventAttributes struct {
 	// be delivered.
 	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
-	metadataRequestCancelExternalWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
+	metadataRequestCancelExternalWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataRequestCancelExternalWorkflowExecutionFailedEventAttributes struct {
@@ -4439,7 +4439,7 @@ type RequestCancelExternalWorkflowExecutionInitiatedEventAttributes struct {
 	// The workflowId of the external workflow execution to be canceled.
 	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
-	metadataRequestCancelExternalWorkflowExecutionInitiatedEventAttributes `json:"-", xml:"-"`
+	metadataRequestCancelExternalWorkflowExecutionInitiatedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataRequestCancelExternalWorkflowExecutionInitiatedEventAttributes struct {
@@ -4456,7 +4456,7 @@ type RequestCancelWorkflowExecutionInput struct {
 	// The workflowId of the workflow execution to cancel.
 	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
-	metadataRequestCancelWorkflowExecutionInput `json:"-", xml:"-"`
+	metadataRequestCancelWorkflowExecutionInput `json:"-" xml:"-"`
 }
 
 type metadataRequestCancelWorkflowExecutionInput struct {
@@ -4464,7 +4464,7 @@ type metadataRequestCancelWorkflowExecutionInput struct {
 }
 
 type RequestCancelWorkflowExecutionOutput struct {
-	metadataRequestCancelWorkflowExecutionOutput `json:"-", xml:"-"`
+	metadataRequestCancelWorkflowExecutionOutput `json:"-" xml:"-"`
 }
 
 type metadataRequestCancelWorkflowExecutionOutput struct {
@@ -4482,7 +4482,7 @@ type RespondActivityTaskCanceledInput struct {
 	// be passed. This enables it to provide its progress and respond with results.
 	TaskToken *string `locationName:"taskToken" type:"string" required:"true"`
 
-	metadataRespondActivityTaskCanceledInput `json:"-", xml:"-"`
+	metadataRespondActivityTaskCanceledInput `json:"-" xml:"-"`
 }
 
 type metadataRespondActivityTaskCanceledInput struct {
@@ -4490,7 +4490,7 @@ type metadataRespondActivityTaskCanceledInput struct {
 }
 
 type RespondActivityTaskCanceledOutput struct {
-	metadataRespondActivityTaskCanceledOutput `json:"-", xml:"-"`
+	metadataRespondActivityTaskCanceledOutput `json:"-" xml:"-"`
 }
 
 type metadataRespondActivityTaskCanceledOutput struct {
@@ -4509,7 +4509,7 @@ type RespondActivityTaskCompletedInput struct {
 	// be passed. This enables it to provide its progress and respond with results.
 	TaskToken *string `locationName:"taskToken" type:"string" required:"true"`
 
-	metadataRespondActivityTaskCompletedInput `json:"-", xml:"-"`
+	metadataRespondActivityTaskCompletedInput `json:"-" xml:"-"`
 }
 
 type metadataRespondActivityTaskCompletedInput struct {
@@ -4517,7 +4517,7 @@ type metadataRespondActivityTaskCompletedInput struct {
 }
 
 type RespondActivityTaskCompletedOutput struct {
-	metadataRespondActivityTaskCompletedOutput `json:"-", xml:"-"`
+	metadataRespondActivityTaskCompletedOutput `json:"-" xml:"-"`
 }
 
 type metadataRespondActivityTaskCompletedOutput struct {
@@ -4538,7 +4538,7 @@ type RespondActivityTaskFailedInput struct {
 	// be passed. This enables it to provide its progress and respond with results.
 	TaskToken *string `locationName:"taskToken" type:"string" required:"true"`
 
-	metadataRespondActivityTaskFailedInput `json:"-", xml:"-"`
+	metadataRespondActivityTaskFailedInput `json:"-" xml:"-"`
 }
 
 type metadataRespondActivityTaskFailedInput struct {
@@ -4546,7 +4546,7 @@ type metadataRespondActivityTaskFailedInput struct {
 }
 
 type RespondActivityTaskFailedOutput struct {
-	metadataRespondActivityTaskFailedOutput `json:"-", xml:"-"`
+	metadataRespondActivityTaskFailedOutput `json:"-" xml:"-"`
 }
 
 type metadataRespondActivityTaskFailedOutput struct {
@@ -4568,7 +4568,7 @@ type RespondDecisionTaskCompletedInput struct {
 	// be passed. This enables it to provide its progress and respond with results.
 	TaskToken *string `locationName:"taskToken" type:"string" required:"true"`
 
-	metadataRespondDecisionTaskCompletedInput `json:"-", xml:"-"`
+	metadataRespondDecisionTaskCompletedInput `json:"-" xml:"-"`
 }
 
 type metadataRespondDecisionTaskCompletedInput struct {
@@ -4576,7 +4576,7 @@ type metadataRespondDecisionTaskCompletedInput struct {
 }
 
 type RespondDecisionTaskCompletedOutput struct {
-	metadataRespondDecisionTaskCompletedOutput `json:"-", xml:"-"`
+	metadataRespondDecisionTaskCompletedOutput `json:"-" xml:"-"`
 }
 
 type metadataRespondDecisionTaskCompletedOutput struct {
@@ -4692,7 +4692,7 @@ type ScheduleActivityTaskDecisionAttributes struct {
 	// in the Amazon Simple Workflow Developer Guide.
 	TaskPriority *string `locationName:"taskPriority" type:"string"`
 
-	metadataScheduleActivityTaskDecisionAttributes `json:"-", xml:"-"`
+	metadataScheduleActivityTaskDecisionAttributes `json:"-" xml:"-"`
 }
 
 type metadataScheduleActivityTaskDecisionAttributes struct {
@@ -4721,7 +4721,7 @@ type ScheduleActivityTaskFailedEventAttributes struct {
 	// up to this event.
 	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
-	metadataScheduleActivityTaskFailedEventAttributes `json:"-", xml:"-"`
+	metadataScheduleActivityTaskFailedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataScheduleActivityTaskFailedEventAttributes struct {
@@ -4762,7 +4762,7 @@ type SignalExternalWorkflowExecutionDecisionAttributes struct {
 	// Required. The workflowId of the workflow execution to be signaled.
 	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
-	metadataSignalExternalWorkflowExecutionDecisionAttributes `json:"-", xml:"-"`
+	metadataSignalExternalWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
 }
 
 type metadataSignalExternalWorkflowExecutionDecisionAttributes struct {
@@ -4801,7 +4801,7 @@ type SignalExternalWorkflowExecutionFailedEventAttributes struct {
 	// delivered to.
 	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
-	metadataSignalExternalWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
+	metadataSignalExternalWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataSignalExternalWorkflowExecutionFailedEventAttributes struct {
@@ -4832,7 +4832,7 @@ type SignalExternalWorkflowExecutionInitiatedEventAttributes struct {
 	// The workflowId of the external workflow execution.
 	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
-	metadataSignalExternalWorkflowExecutionInitiatedEventAttributes `json:"-", xml:"-"`
+	metadataSignalExternalWorkflowExecutionInitiatedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataSignalExternalWorkflowExecutionInitiatedEventAttributes struct {
@@ -4856,7 +4856,7 @@ type SignalWorkflowExecutionInput struct {
 	// The workflowId of the workflow execution to signal.
 	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
-	metadataSignalWorkflowExecutionInput `json:"-", xml:"-"`
+	metadataSignalWorkflowExecutionInput `json:"-" xml:"-"`
 }
 
 type metadataSignalWorkflowExecutionInput struct {
@@ -4864,7 +4864,7 @@ type metadataSignalWorkflowExecutionInput struct {
 }
 
 type SignalWorkflowExecutionOutput struct {
-	metadataSignalWorkflowExecutionOutput `json:"-", xml:"-"`
+	metadataSignalWorkflowExecutionOutput `json:"-" xml:"-"`
 }
 
 type metadataSignalWorkflowExecutionOutput struct {
@@ -4981,7 +4981,7 @@ type StartChildWorkflowExecutionDecisionAttributes struct {
 	// Required. The type of the workflow execution to be started.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataStartChildWorkflowExecutionDecisionAttributes `json:"-", xml:"-"`
+	metadataStartChildWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
 }
 
 type metadataStartChildWorkflowExecutionDecisionAttributes struct {
@@ -5019,7 +5019,7 @@ type StartChildWorkflowExecutionFailedEventAttributes struct {
 	// failed.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataStartChildWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
+	metadataStartChildWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataStartChildWorkflowExecutionFailedEventAttributes struct {
@@ -5090,7 +5090,7 @@ type StartChildWorkflowExecutionInitiatedEventAttributes struct {
 	// The type of the child workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataStartChildWorkflowExecutionInitiatedEventAttributes `json:"-", xml:"-"`
+	metadataStartChildWorkflowExecutionInitiatedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataStartChildWorkflowExecutionInitiatedEventAttributes struct {
@@ -5131,7 +5131,7 @@ type StartTimerDecisionAttributes struct {
 	// string quotarnquot.
 	TimerID *string `locationName:"timerId" type:"string" required:"true"`
 
-	metadataStartTimerDecisionAttributes `json:"-", xml:"-"`
+	metadataStartTimerDecisionAttributes `json:"-" xml:"-"`
 }
 
 type metadataStartTimerDecisionAttributes struct {
@@ -5157,7 +5157,7 @@ type StartTimerFailedEventAttributes struct {
 	// The timerId provided in the StartTimer decision that failed.
 	TimerID *string `locationName:"timerId" type:"string" required:"true"`
 
-	metadataStartTimerFailedEventAttributes `json:"-", xml:"-"`
+	metadataStartTimerFailedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataStartTimerFailedEventAttributes struct {
@@ -5265,7 +5265,7 @@ type StartWorkflowExecutionInput struct {
 	// The type of the workflow to start.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataStartWorkflowExecutionInput `json:"-", xml:"-"`
+	metadataStartWorkflowExecutionInput `json:"-" xml:"-"`
 }
 
 type metadataStartWorkflowExecutionInput struct {
@@ -5278,7 +5278,7 @@ type StartWorkflowExecutionOutput struct {
 	// can be used to uniquely identify the workflow execution within a domain.
 	RunID *string `locationName:"runId" type:"string"`
 
-	metadataStartWorkflowExecutionOutput `json:"-", xml:"-"`
+	metadataStartWorkflowExecutionOutput `json:"-" xml:"-"`
 }
 
 type metadataStartWorkflowExecutionOutput struct {
@@ -5291,7 +5291,7 @@ type TagFilter struct {
 	// it to meet the filter criteria.
 	Tag *string `locationName:"tag" type:"string" required:"true"`
 
-	metadataTagFilter `json:"-", xml:"-"`
+	metadataTagFilter `json:"-" xml:"-"`
 }
 
 type metadataTagFilter struct {
@@ -5303,7 +5303,7 @@ type TaskList struct {
 	// The name of the task list.
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	metadataTaskList `json:"-", xml:"-"`
+	metadataTaskList `json:"-" xml:"-"`
 }
 
 type metadataTaskList struct {
@@ -5344,7 +5344,7 @@ type TerminateWorkflowExecutionInput struct {
 	// The workflowId of the workflow execution to terminate.
 	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
-	metadataTerminateWorkflowExecutionInput `json:"-", xml:"-"`
+	metadataTerminateWorkflowExecutionInput `json:"-" xml:"-"`
 }
 
 type metadataTerminateWorkflowExecutionInput struct {
@@ -5352,7 +5352,7 @@ type metadataTerminateWorkflowExecutionInput struct {
 }
 
 type TerminateWorkflowExecutionOutput struct {
-	metadataTerminateWorkflowExecutionOutput `json:"-", xml:"-"`
+	metadataTerminateWorkflowExecutionOutput `json:"-" xml:"-"`
 }
 
 type metadataTerminateWorkflowExecutionOutput struct {
@@ -5375,7 +5375,7 @@ type TimerCanceledEventAttributes struct {
 	// The unique Id of the timer that was canceled.
 	TimerID *string `locationName:"timerId" type:"string" required:"true"`
 
-	metadataTimerCanceledEventAttributes `json:"-", xml:"-"`
+	metadataTimerCanceledEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataTimerCanceledEventAttributes struct {
@@ -5392,7 +5392,7 @@ type TimerFiredEventAttributes struct {
 	// The unique Id of the timer that fired.
 	TimerID *string `locationName:"timerId" type:"string" required:"true"`
 
-	metadataTimerFiredEventAttributes `json:"-", xml:"-"`
+	metadataTimerFiredEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataTimerFiredEventAttributes struct {
@@ -5420,7 +5420,7 @@ type TimerStartedEventAttributes struct {
 	// The unique Id of the timer that was started.
 	TimerID *string `locationName:"timerId" type:"string" required:"true"`
 
-	metadataTimerStartedEventAttributes `json:"-", xml:"-"`
+	metadataTimerStartedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataTimerStartedEventAttributes struct {
@@ -5435,7 +5435,7 @@ type WorkflowExecution struct {
 	// The user defined identifier associated with the workflow execution.
 	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
-	metadataWorkflowExecution `json:"-", xml:"-"`
+	metadataWorkflowExecution `json:"-" xml:"-"`
 }
 
 type metadataWorkflowExecution struct {
@@ -5459,7 +5459,7 @@ type WorkflowExecutionCancelRequestedEventAttributes struct {
 	// The external workflow execution for which the cancellation was requested.
 	ExternalWorkflowExecution *WorkflowExecution `locationName:"externalWorkflowExecution" type:"structure"`
 
-	metadataWorkflowExecutionCancelRequestedEventAttributes `json:"-", xml:"-"`
+	metadataWorkflowExecutionCancelRequestedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataWorkflowExecutionCancelRequestedEventAttributes struct {
@@ -5477,7 +5477,7 @@ type WorkflowExecutionCanceledEventAttributes struct {
 	// Details for the cancellation (if any).
 	Details *string `locationName:"details" type:"string"`
 
-	metadataWorkflowExecutionCanceledEventAttributes `json:"-", xml:"-"`
+	metadataWorkflowExecutionCanceledEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataWorkflowExecutionCanceledEventAttributes struct {
@@ -5495,7 +5495,7 @@ type WorkflowExecutionCompletedEventAttributes struct {
 	// The result produced by the workflow execution upon successful completion.
 	Result *string `locationName:"result" type:"string"`
 
-	metadataWorkflowExecutionCompletedEventAttributes `json:"-", xml:"-"`
+	metadataWorkflowExecutionCompletedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataWorkflowExecutionCompletedEventAttributes struct {
@@ -5544,7 +5544,7 @@ type WorkflowExecutionConfiguration struct {
 	// 0. The value "NONE" can be used to specify unlimited duration.
 	TaskStartToCloseTimeout *string `locationName:"taskStartToCloseTimeout" type:"string" required:"true"`
 
-	metadataWorkflowExecutionConfiguration `json:"-", xml:"-"`
+	metadataWorkflowExecutionConfiguration `json:"-" xml:"-"`
 }
 
 type metadataWorkflowExecutionConfiguration struct {
@@ -5601,7 +5601,7 @@ type WorkflowExecutionContinuedAsNewEventAttributes struct {
 	// Represents a workflow type.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataWorkflowExecutionContinuedAsNewEventAttributes `json:"-", xml:"-"`
+	metadataWorkflowExecutionContinuedAsNewEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataWorkflowExecutionContinuedAsNewEventAttributes struct {
@@ -5618,7 +5618,7 @@ type WorkflowExecutionCount struct {
 	// supported by this API and the count returned is the truncated value.
 	Truncated *bool `locationName:"truncated" type:"boolean"`
 
-	metadataWorkflowExecutionCount `json:"-", xml:"-"`
+	metadataWorkflowExecutionCount `json:"-" xml:"-"`
 }
 
 type metadataWorkflowExecutionCount struct {
@@ -5639,7 +5639,7 @@ type WorkflowExecutionFailedEventAttributes struct {
 	// The descriptive reason provided for the failure (if any).
 	Reason *string `locationName:"reason" type:"string"`
 
-	metadataWorkflowExecutionFailedEventAttributes `json:"-", xml:"-"`
+	metadataWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataWorkflowExecutionFailedEventAttributes struct {
@@ -5651,7 +5651,7 @@ type WorkflowExecutionFilter struct {
 	// The workflowId to pass of match the criteria of this filter.
 	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
-	metadataWorkflowExecutionFilter `json:"-", xml:"-"`
+	metadataWorkflowExecutionFilter `json:"-" xml:"-"`
 }
 
 type metadataWorkflowExecutionFilter struct {
@@ -5700,7 +5700,7 @@ type WorkflowExecutionInfo struct {
 	// The type of the workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataWorkflowExecutionInfo `json:"-", xml:"-"`
+	metadataWorkflowExecutionInfo `json:"-" xml:"-"`
 }
 
 type metadataWorkflowExecutionInfo struct {
@@ -5720,7 +5720,7 @@ type WorkflowExecutionInfos struct {
 	// in a single call.
 	NextPageToken *string `locationName:"nextPageToken" type:"string"`
 
-	metadataWorkflowExecutionInfos `json:"-", xml:"-"`
+	metadataWorkflowExecutionInfos `json:"-" xml:"-"`
 }
 
 type metadataWorkflowExecutionInfos struct {
@@ -5744,7 +5744,7 @@ type WorkflowExecutionOpenCounts struct {
 	// yet.
 	OpenTimers *int64 `locationName:"openTimers" type:"integer" required:"true"`
 
-	metadataWorkflowExecutionOpenCounts `json:"-", xml:"-"`
+	metadataWorkflowExecutionOpenCounts `json:"-" xml:"-"`
 }
 
 type metadataWorkflowExecutionOpenCounts struct {
@@ -5773,7 +5773,7 @@ type WorkflowExecutionSignaledEventAttributes struct {
 	// inputs to determine how to the process the signal.
 	SignalName *string `locationName:"signalName" type:"string" required:"true"`
 
-	metadataWorkflowExecutionSignaledEventAttributes `json:"-", xml:"-"`
+	metadataWorkflowExecutionSignaledEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataWorkflowExecutionSignaledEventAttributes struct {
@@ -5839,7 +5839,7 @@ type WorkflowExecutionStartedEventAttributes struct {
 	// The workflow type of this execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataWorkflowExecutionStartedEventAttributes `json:"-", xml:"-"`
+	metadataWorkflowExecutionStartedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataWorkflowExecutionStartedEventAttributes struct {
@@ -5870,7 +5870,7 @@ type WorkflowExecutionTerminatedEventAttributes struct {
 	// The reason provided for the termination (if any).
 	Reason *string `locationName:"reason" type:"string"`
 
-	metadataWorkflowExecutionTerminatedEventAttributes `json:"-", xml:"-"`
+	metadataWorkflowExecutionTerminatedEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataWorkflowExecutionTerminatedEventAttributes struct {
@@ -5893,7 +5893,7 @@ type WorkflowExecutionTimedOutEventAttributes struct {
 	// The type of timeout that caused this event.
 	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true"`
 
-	metadataWorkflowExecutionTimedOutEventAttributes `json:"-", xml:"-"`
+	metadataWorkflowExecutionTimedOutEventAttributes `json:"-" xml:"-"`
 }
 
 type metadataWorkflowExecutionTimedOutEventAttributes struct {
@@ -5914,7 +5914,7 @@ type WorkflowType struct {
 	// a domain.
 	Version *string `locationName:"version" type:"string" required:"true"`
 
-	metadataWorkflowType `json:"-", xml:"-"`
+	metadataWorkflowType `json:"-" xml:"-"`
 }
 
 type metadataWorkflowType struct {
@@ -5978,7 +5978,7 @@ type WorkflowTypeConfiguration struct {
 	// 0. The value "NONE" can be used to specify unlimited duration.
 	DefaultTaskStartToCloseTimeout *string `locationName:"defaultTaskStartToCloseTimeout" type:"string"`
 
-	metadataWorkflowTypeConfiguration `json:"-", xml:"-"`
+	metadataWorkflowTypeConfiguration `json:"-" xml:"-"`
 }
 
 type metadataWorkflowTypeConfiguration struct {
@@ -5994,7 +5994,7 @@ type WorkflowTypeFilter struct {
 	// Version of the workflow type.
 	Version *string `locationName:"version" type:"string"`
 
-	metadataWorkflowTypeFilter `json:"-", xml:"-"`
+	metadataWorkflowTypeFilter `json:"-" xml:"-"`
 }
 
 type metadataWorkflowTypeFilter struct {
@@ -6019,7 +6019,7 @@ type WorkflowTypeInfo struct {
 	// The workflow type this information is about.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
-	metadataWorkflowTypeInfo `json:"-", xml:"-"`
+	metadataWorkflowTypeInfo `json:"-" xml:"-"`
 }
 
 type metadataWorkflowTypeInfo struct {

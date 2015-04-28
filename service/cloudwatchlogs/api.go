@@ -539,7 +539,7 @@ var opTestMetricFilter *aws.Operation
 type CreateLogGroupInput struct {
 	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
 
-	metadataCreateLogGroupInput `json:"-", xml:"-"`
+	metadataCreateLogGroupInput `json:"-" xml:"-"`
 }
 
 type metadataCreateLogGroupInput struct {
@@ -547,7 +547,7 @@ type metadataCreateLogGroupInput struct {
 }
 
 type CreateLogGroupOutput struct {
-	metadataCreateLogGroupOutput `json:"-", xml:"-"`
+	metadataCreateLogGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateLogGroupOutput struct {
@@ -559,7 +559,7 @@ type CreateLogStreamInput struct {
 
 	LogStreamName *string `locationName:"logStreamName" type:"string" required:"true"`
 
-	metadataCreateLogStreamInput `json:"-", xml:"-"`
+	metadataCreateLogStreamInput `json:"-" xml:"-"`
 }
 
 type metadataCreateLogStreamInput struct {
@@ -567,7 +567,7 @@ type metadataCreateLogStreamInput struct {
 }
 
 type CreateLogStreamOutput struct {
-	metadataCreateLogStreamOutput `json:"-", xml:"-"`
+	metadataCreateLogStreamOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateLogStreamOutput struct {
@@ -577,7 +577,7 @@ type metadataCreateLogStreamOutput struct {
 type DeleteLogGroupInput struct {
 	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
 
-	metadataDeleteLogGroupInput `json:"-", xml:"-"`
+	metadataDeleteLogGroupInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLogGroupInput struct {
@@ -585,7 +585,7 @@ type metadataDeleteLogGroupInput struct {
 }
 
 type DeleteLogGroupOutput struct {
-	metadataDeleteLogGroupOutput `json:"-", xml:"-"`
+	metadataDeleteLogGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLogGroupOutput struct {
@@ -597,7 +597,7 @@ type DeleteLogStreamInput struct {
 
 	LogStreamName *string `locationName:"logStreamName" type:"string" required:"true"`
 
-	metadataDeleteLogStreamInput `json:"-", xml:"-"`
+	metadataDeleteLogStreamInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLogStreamInput struct {
@@ -605,7 +605,7 @@ type metadataDeleteLogStreamInput struct {
 }
 
 type DeleteLogStreamOutput struct {
-	metadataDeleteLogStreamOutput `json:"-", xml:"-"`
+	metadataDeleteLogStreamOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLogStreamOutput struct {
@@ -618,7 +618,7 @@ type DeleteMetricFilterInput struct {
 
 	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
 
-	metadataDeleteMetricFilterInput `json:"-", xml:"-"`
+	metadataDeleteMetricFilterInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteMetricFilterInput struct {
@@ -626,7 +626,7 @@ type metadataDeleteMetricFilterInput struct {
 }
 
 type DeleteMetricFilterOutput struct {
-	metadataDeleteMetricFilterOutput `json:"-", xml:"-"`
+	metadataDeleteMetricFilterOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteMetricFilterOutput struct {
@@ -636,7 +636,7 @@ type metadataDeleteMetricFilterOutput struct {
 type DeleteRetentionPolicyInput struct {
 	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
 
-	metadataDeleteRetentionPolicyInput `json:"-", xml:"-"`
+	metadataDeleteRetentionPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteRetentionPolicyInput struct {
@@ -644,7 +644,7 @@ type metadataDeleteRetentionPolicyInput struct {
 }
 
 type DeleteRetentionPolicyOutput struct {
-	metadataDeleteRetentionPolicyOutput `json:"-", xml:"-"`
+	metadataDeleteRetentionPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteRetentionPolicyOutput struct {
@@ -663,7 +663,7 @@ type DescribeLogGroupsInput struct {
 	// request.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeLogGroupsInput `json:"-", xml:"-"`
+	metadataDescribeLogGroupsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLogGroupsInput struct {
@@ -679,7 +679,7 @@ type DescribeLogGroupsOutput struct {
 	// token expires after 24 hours.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeLogGroupsOutput `json:"-", xml:"-"`
+	metadataDescribeLogGroupsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLogGroupsOutput struct {
@@ -712,7 +712,7 @@ type DescribeLogStreamsInput struct {
 	// also contain a logStreamNamePrefix.
 	OrderBy *string `locationName:"orderBy" type:"string"`
 
-	metadataDescribeLogStreamsInput `json:"-", xml:"-"`
+	metadataDescribeLogStreamsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLogStreamsInput struct {
@@ -728,7 +728,7 @@ type DescribeLogStreamsOutput struct {
 	// token expires after 24 hours.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeLogStreamsOutput `json:"-", xml:"-"`
+	metadataDescribeLogStreamsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLogStreamsOutput struct {
@@ -750,7 +750,7 @@ type DescribeMetricFiltersInput struct {
 	// request.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeMetricFiltersInput `json:"-", xml:"-"`
+	metadataDescribeMetricFiltersInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeMetricFiltersInput struct {
@@ -765,7 +765,7 @@ type DescribeMetricFiltersOutput struct {
 	// token expires after 24 hours.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeMetricFiltersOutput `json:"-", xml:"-"`
+	metadataDescribeMetricFiltersOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeMetricFiltersOutput struct {
@@ -799,7 +799,7 @@ type GetLogEventsInput struct {
 	// UTC.
 	StartTime *int64 `locationName:"startTime" type:"long"`
 
-	metadataGetLogEventsInput `json:"-", xml:"-"`
+	metadataGetLogEventsInput `json:"-" xml:"-"`
 }
 
 type metadataGetLogEventsInput struct {
@@ -819,7 +819,7 @@ type GetLogEventsOutput struct {
 	// token expires after 24 hours.
 	NextForwardToken *string `locationName:"nextForwardToken" type:"string"`
 
-	metadataGetLogEventsOutput `json:"-", xml:"-"`
+	metadataGetLogEventsOutput `json:"-" xml:"-"`
 }
 
 type metadataGetLogEventsOutput struct {
@@ -837,7 +837,7 @@ type InputLogEvent struct {
 	// UTC.
 	Timestamp *int64 `locationName:"timestamp" type:"long" required:"true"`
 
-	metadataInputLogEvent `json:"-", xml:"-"`
+	metadataInputLogEvent `json:"-" xml:"-"`
 }
 
 type metadataInputLogEvent struct {
@@ -863,7 +863,7 @@ type LogGroup struct {
 
 	StoredBytes *int64 `locationName:"storedBytes" type:"long"`
 
-	metadataLogGroup `json:"-", xml:"-"`
+	metadataLogGroup `json:"-" xml:"-"`
 }
 
 type metadataLogGroup struct {
@@ -899,7 +899,7 @@ type LogStream struct {
 	// obtained from the response of the previous request.
 	UploadSequenceToken *string `locationName:"uploadSequenceToken" type:"string"`
 
-	metadataLogStream `json:"-", xml:"-"`
+	metadataLogStream `json:"-" xml:"-"`
 }
 
 type metadataLogStream struct {
@@ -925,7 +925,7 @@ type MetricFilter struct {
 
 	MetricTransformations []*MetricTransformation `locationName:"metricTransformations" type:"list"`
 
-	metadataMetricFilter `json:"-", xml:"-"`
+	metadataMetricFilter `json:"-" xml:"-"`
 }
 
 type metadataMetricFilter struct {
@@ -939,7 +939,7 @@ type MetricFilterMatchRecord struct {
 
 	ExtractedValues *map[string]*string `locationName:"extractedValues" type:"map"`
 
-	metadataMetricFilterMatchRecord `json:"-", xml:"-"`
+	metadataMetricFilterMatchRecord `json:"-" xml:"-"`
 }
 
 type metadataMetricFilterMatchRecord struct {
@@ -960,7 +960,7 @@ type MetricTransformation struct {
 	// value in the log event.
 	MetricValue *string `locationName:"metricValue" type:"string" required:"true"`
 
-	metadataMetricTransformation `json:"-", xml:"-"`
+	metadataMetricTransformation `json:"-" xml:"-"`
 }
 
 type metadataMetricTransformation struct {
@@ -978,7 +978,7 @@ type OutputLogEvent struct {
 	// UTC.
 	Timestamp *int64 `locationName:"timestamp" type:"long"`
 
-	metadataOutputLogEvent `json:"-", xml:"-"`
+	metadataOutputLogEvent `json:"-" xml:"-"`
 }
 
 type metadataOutputLogEvent struct {
@@ -997,7 +997,7 @@ type PutLogEventsInput struct {
 	// request.
 	SequenceToken *string `locationName:"sequenceToken" type:"string"`
 
-	metadataPutLogEventsInput `json:"-", xml:"-"`
+	metadataPutLogEventsInput `json:"-" xml:"-"`
 }
 
 type metadataPutLogEventsInput struct {
@@ -1012,7 +1012,7 @@ type PutLogEventsOutput struct {
 
 	RejectedLogEventsInfo *RejectedLogEventsInfo `locationName:"rejectedLogEventsInfo" type:"structure"`
 
-	metadataPutLogEventsOutput `json:"-", xml:"-"`
+	metadataPutLogEventsOutput `json:"-" xml:"-"`
 }
 
 type metadataPutLogEventsOutput struct {
@@ -1033,7 +1033,7 @@ type PutMetricFilterInput struct {
 
 	MetricTransformations []*MetricTransformation `locationName:"metricTransformations" type:"list" required:"true"`
 
-	metadataPutMetricFilterInput `json:"-", xml:"-"`
+	metadataPutMetricFilterInput `json:"-" xml:"-"`
 }
 
 type metadataPutMetricFilterInput struct {
@@ -1041,7 +1041,7 @@ type metadataPutMetricFilterInput struct {
 }
 
 type PutMetricFilterOutput struct {
-	metadataPutMetricFilterOutput `json:"-", xml:"-"`
+	metadataPutMetricFilterOutput `json:"-" xml:"-"`
 }
 
 type metadataPutMetricFilterOutput struct {
@@ -1056,7 +1056,7 @@ type PutRetentionPolicyInput struct {
 	// 365, 400, 545, 731, 1827, 3653.
 	RetentionInDays *int64 `locationName:"retentionInDays" type:"integer" required:"true"`
 
-	metadataPutRetentionPolicyInput `json:"-", xml:"-"`
+	metadataPutRetentionPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataPutRetentionPolicyInput struct {
@@ -1064,7 +1064,7 @@ type metadataPutRetentionPolicyInput struct {
 }
 
 type PutRetentionPolicyOutput struct {
-	metadataPutRetentionPolicyOutput `json:"-", xml:"-"`
+	metadataPutRetentionPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataPutRetentionPolicyOutput struct {
@@ -1078,7 +1078,7 @@ type RejectedLogEventsInfo struct {
 
 	TooOldLogEventEndIndex *int64 `locationName:"tooOldLogEventEndIndex" type:"integer"`
 
-	metadataRejectedLogEventsInfo `json:"-", xml:"-"`
+	metadataRejectedLogEventsInfo `json:"-" xml:"-"`
 }
 
 type metadataRejectedLogEventsInfo struct {
@@ -1094,7 +1094,7 @@ type TestMetricFilterInput struct {
 
 	LogEventMessages []*string `locationName:"logEventMessages" type:"list" required:"true"`
 
-	metadataTestMetricFilterInput `json:"-", xml:"-"`
+	metadataTestMetricFilterInput `json:"-" xml:"-"`
 }
 
 type metadataTestMetricFilterInput struct {
@@ -1104,7 +1104,7 @@ type metadataTestMetricFilterInput struct {
 type TestMetricFilterOutput struct {
 	Matches []*MetricFilterMatchRecord `locationName:"matches" type:"list"`
 
-	metadataTestMetricFilterOutput `json:"-", xml:"-"`
+	metadataTestMetricFilterOutput `json:"-" xml:"-"`
 }
 
 type metadataTestMetricFilterOutput struct {

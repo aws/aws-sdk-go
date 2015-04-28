@@ -594,7 +594,7 @@ type AddAttachmentsToSetInput struct {
 	// set, and the size limit is 5 MB per attachment.
 	Attachments []*Attachment `locationName:"attachments" type:"list" required:"true"`
 
-	metadataAddAttachmentsToSetInput `json:"-", xml:"-"`
+	metadataAddAttachmentsToSetInput `json:"-" xml:"-"`
 }
 
 type metadataAddAttachmentsToSetInput struct {
@@ -613,7 +613,7 @@ type AddAttachmentsToSetOutput struct {
 	// The time and date when the attachment set expires.
 	ExpiryTime *string `locationName:"expiryTime" type:"string"`
 
-	metadataAddAttachmentsToSetOutput `json:"-", xml:"-"`
+	metadataAddAttachmentsToSetOutput `json:"-" xml:"-"`
 }
 
 type metadataAddAttachmentsToSetOutput struct {
@@ -637,7 +637,7 @@ type AddCommunicationToCaseInput struct {
 	// The body of an email communication to add to the support case.
 	CommunicationBody *string `locationName:"communicationBody" type:"string" required:"true"`
 
-	metadataAddCommunicationToCaseInput `json:"-", xml:"-"`
+	metadataAddCommunicationToCaseInput `json:"-" xml:"-"`
 }
 
 type metadataAddCommunicationToCaseInput struct {
@@ -649,7 +649,7 @@ type AddCommunicationToCaseOutput struct {
 	// True if AddCommunicationToCase succeeds. Otherwise, returns an error.
 	Result *bool `locationName:"result" type:"boolean"`
 
-	metadataAddCommunicationToCaseOutput `json:"-", xml:"-"`
+	metadataAddCommunicationToCaseOutput `json:"-" xml:"-"`
 }
 
 type metadataAddCommunicationToCaseOutput struct {
@@ -665,7 +665,7 @@ type Attachment struct {
 	// The name of the attachment file.
 	FileName *string `locationName:"fileName" type:"string"`
 
-	metadataAttachment `json:"-", xml:"-"`
+	metadataAttachment `json:"-" xml:"-"`
 }
 
 type metadataAttachment struct {
@@ -681,7 +681,7 @@ type AttachmentDetails struct {
 	// The file name of the attachment.
 	FileName *string `locationName:"fileName" type:"string"`
 
-	metadataAttachmentDetails `json:"-", xml:"-"`
+	metadataAttachmentDetails `json:"-" xml:"-"`
 }
 
 type metadataAttachmentDetails struct {
@@ -752,7 +752,7 @@ type CaseDetails struct {
 	// The time that the case was case created in the AWS Support Center.
 	TimeCreated *string `locationName:"timeCreated" type:"string"`
 
-	metadataCaseDetails `json:"-", xml:"-"`
+	metadataCaseDetails `json:"-" xml:"-"`
 }
 
 type metadataCaseDetails struct {
@@ -769,7 +769,7 @@ type Category struct {
 	// The category name for the support case.
 	Name *string `locationName:"name" type:"string"`
 
-	metadataCategory `json:"-", xml:"-"`
+	metadataCategory `json:"-" xml:"-"`
 }
 
 type metadataCategory struct {
@@ -796,7 +796,7 @@ type Communication struct {
 	// The time the communication was created.
 	TimeCreated *string `locationName:"timeCreated" type:"string"`
 
-	metadataCommunication `json:"-", xml:"-"`
+	metadataCommunication `json:"-" xml:"-"`
 }
 
 type metadataCommunication struct {
@@ -840,7 +840,7 @@ type CreateCaseInput struct {
 	// The title of the AWS Support case.
 	Subject *string `locationName:"subject" type:"string" required:"true"`
 
-	metadataCreateCaseInput `json:"-", xml:"-"`
+	metadataCreateCaseInput `json:"-" xml:"-"`
 }
 
 type metadataCreateCaseInput struct {
@@ -854,7 +854,7 @@ type CreateCaseOutput struct {
 	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
 	CaseID *string `locationName:"caseId" type:"string"`
 
-	metadataCreateCaseOutput `json:"-", xml:"-"`
+	metadataCreateCaseOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateCaseOutput struct {
@@ -866,7 +866,7 @@ type DescribeAttachmentInput struct {
 	// operation.
 	AttachmentID *string `locationName:"attachmentId" type:"string" required:"true"`
 
-	metadataDescribeAttachmentInput `json:"-", xml:"-"`
+	metadataDescribeAttachmentInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAttachmentInput struct {
@@ -879,7 +879,7 @@ type DescribeAttachmentOutput struct {
 	// The attachment content and file name.
 	Attachment *Attachment `locationName:"attachment" type:"structure"`
 
-	metadataDescribeAttachmentOutput `json:"-", xml:"-"`
+	metadataDescribeAttachmentOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAttachmentOutput struct {
@@ -921,7 +921,7 @@ type DescribeCasesInput struct {
 	// A resumption point for pagination.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeCasesInput `json:"-", xml:"-"`
+	metadataDescribeCasesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeCasesInput struct {
@@ -937,7 +937,7 @@ type DescribeCasesOutput struct {
 	// A resumption point for pagination.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeCasesOutput `json:"-", xml:"-"`
+	metadataDescribeCasesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeCasesOutput struct {
@@ -963,7 +963,7 @@ type DescribeCommunicationsInput struct {
 	// A resumption point for pagination.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeCommunicationsInput `json:"-", xml:"-"`
+	metadataDescribeCommunicationsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeCommunicationsInput struct {
@@ -978,7 +978,7 @@ type DescribeCommunicationsOutput struct {
 	// A resumption point for pagination.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeCommunicationsOutput `json:"-", xml:"-"`
+	metadataDescribeCommunicationsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeCommunicationsOutput struct {
@@ -994,7 +994,7 @@ type DescribeServicesInput struct {
 	// A JSON-formatted list of service codes available for AWS services.
 	ServiceCodeList []*string `locationName:"serviceCodeList" type:"list"`
 
-	metadataDescribeServicesInput `json:"-", xml:"-"`
+	metadataDescribeServicesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeServicesInput struct {
@@ -1006,7 +1006,7 @@ type DescribeServicesOutput struct {
 	// A JSON-formatted list of AWS services.
 	Services []*Service `locationName:"services" type:"list"`
 
-	metadataDescribeServicesOutput `json:"-", xml:"-"`
+	metadataDescribeServicesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeServicesOutput struct {
@@ -1019,7 +1019,7 @@ type DescribeSeverityLevelsInput struct {
 	// must be passed explicitly for operations that take them.
 	Language *string `locationName:"language" type:"string"`
 
-	metadataDescribeSeverityLevelsInput `json:"-", xml:"-"`
+	metadataDescribeSeverityLevelsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeSeverityLevelsInput struct {
@@ -1032,7 +1032,7 @@ type DescribeSeverityLevelsOutput struct {
 	// are defined by your service level agreement with AWS.
 	SeverityLevels []*SeverityLevel `locationName:"severityLevels" type:"list"`
 
-	metadataDescribeSeverityLevelsOutput `json:"-", xml:"-"`
+	metadataDescribeSeverityLevelsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeSeverityLevelsOutput struct {
@@ -1043,7 +1043,7 @@ type DescribeTrustedAdvisorCheckRefreshStatusesInput struct {
 	// The IDs of the Trusted Advisor checks.
 	CheckIDs []*string `locationName:"checkIds" type:"list" required:"true"`
 
-	metadataDescribeTrustedAdvisorCheckRefreshStatusesInput `json:"-", xml:"-"`
+	metadataDescribeTrustedAdvisorCheckRefreshStatusesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTrustedAdvisorCheckRefreshStatusesInput struct {
@@ -1056,7 +1056,7 @@ type DescribeTrustedAdvisorCheckRefreshStatusesOutput struct {
 	// The refresh status of the specified Trusted Advisor checks.
 	Statuses []*TrustedAdvisorCheckRefreshStatus `locationName:"statuses" type:"list" required:"true"`
 
-	metadataDescribeTrustedAdvisorCheckRefreshStatusesOutput `json:"-", xml:"-"`
+	metadataDescribeTrustedAdvisorCheckRefreshStatusesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTrustedAdvisorCheckRefreshStatusesOutput struct {
@@ -1072,7 +1072,7 @@ type DescribeTrustedAdvisorCheckResultInput struct {
 	// must be passed explicitly for operations that take them.
 	Language *string `locationName:"language" type:"string"`
 
-	metadataDescribeTrustedAdvisorCheckResultInput `json:"-", xml:"-"`
+	metadataDescribeTrustedAdvisorCheckResultInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTrustedAdvisorCheckResultInput struct {
@@ -1085,7 +1085,7 @@ type DescribeTrustedAdvisorCheckResultOutput struct {
 	// The detailed results of the Trusted Advisor check.
 	Result *TrustedAdvisorCheckResult `locationName:"result" type:"structure"`
 
-	metadataDescribeTrustedAdvisorCheckResultOutput `json:"-", xml:"-"`
+	metadataDescribeTrustedAdvisorCheckResultOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTrustedAdvisorCheckResultOutput struct {
@@ -1096,7 +1096,7 @@ type DescribeTrustedAdvisorCheckSummariesInput struct {
 	// The IDs of the Trusted Advisor checks.
 	CheckIDs []*string `locationName:"checkIds" type:"list" required:"true"`
 
-	metadataDescribeTrustedAdvisorCheckSummariesInput `json:"-", xml:"-"`
+	metadataDescribeTrustedAdvisorCheckSummariesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTrustedAdvisorCheckSummariesInput struct {
@@ -1109,7 +1109,7 @@ type DescribeTrustedAdvisorCheckSummariesOutput struct {
 	// The summary information for the requested Trusted Advisor checks.
 	Summaries []*TrustedAdvisorCheckSummary `locationName:"summaries" type:"list" required:"true"`
 
-	metadataDescribeTrustedAdvisorCheckSummariesOutput `json:"-", xml:"-"`
+	metadataDescribeTrustedAdvisorCheckSummariesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTrustedAdvisorCheckSummariesOutput struct {
@@ -1122,7 +1122,7 @@ type DescribeTrustedAdvisorChecksInput struct {
 	// must be passed explicitly for operations that take them.
 	Language *string `locationName:"language" type:"string" required:"true"`
 
-	metadataDescribeTrustedAdvisorChecksInput `json:"-", xml:"-"`
+	metadataDescribeTrustedAdvisorChecksInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTrustedAdvisorChecksInput struct {
@@ -1135,7 +1135,7 @@ type DescribeTrustedAdvisorChecksOutput struct {
 	// Information about all available Trusted Advisor checks.
 	Checks []*TrustedAdvisorCheckDescription `locationName:"checks" type:"list" required:"true"`
 
-	metadataDescribeTrustedAdvisorChecksOutput `json:"-", xml:"-"`
+	metadataDescribeTrustedAdvisorChecksOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTrustedAdvisorChecksOutput struct {
@@ -1150,7 +1150,7 @@ type RecentCaseCommunications struct {
 	// A resumption point for pagination.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataRecentCaseCommunications `json:"-", xml:"-"`
+	metadataRecentCaseCommunications `json:"-" xml:"-"`
 }
 
 type metadataRecentCaseCommunications struct {
@@ -1161,7 +1161,7 @@ type RefreshTrustedAdvisorCheckInput struct {
 	// The unique identifier for the Trusted Advisor check.
 	CheckID *string `locationName:"checkId" type:"string" required:"true"`
 
-	metadataRefreshTrustedAdvisorCheckInput `json:"-", xml:"-"`
+	metadataRefreshTrustedAdvisorCheckInput `json:"-" xml:"-"`
 }
 
 type metadataRefreshTrustedAdvisorCheckInput struct {
@@ -1174,7 +1174,7 @@ type RefreshTrustedAdvisorCheckOutput struct {
 	// the check is eligible for refresh.
 	Status *TrustedAdvisorCheckRefreshStatus `locationName:"status" type:"structure" required:"true"`
 
-	metadataRefreshTrustedAdvisorCheckOutput `json:"-", xml:"-"`
+	metadataRefreshTrustedAdvisorCheckOutput `json:"-" xml:"-"`
 }
 
 type metadataRefreshTrustedAdvisorCheckOutput struct {
@@ -1186,7 +1186,7 @@ type ResolveCaseInput struct {
 	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
 	CaseID *string `locationName:"caseId" type:"string"`
 
-	metadataResolveCaseInput `json:"-", xml:"-"`
+	metadataResolveCaseInput `json:"-" xml:"-"`
 }
 
 type metadataResolveCaseInput struct {
@@ -1201,7 +1201,7 @@ type ResolveCaseOutput struct {
 	// The status of the case when the ResolveCase request was sent.
 	InitialCaseStatus *string `locationName:"initialCaseStatus" type:"string"`
 
-	metadataResolveCaseOutput `json:"-", xml:"-"`
+	metadataResolveCaseOutput `json:"-" xml:"-"`
 }
 
 type metadataResolveCaseOutput struct {
@@ -1223,7 +1223,7 @@ type Service struct {
 	// code.
 	Name *string `locationName:"name" type:"string"`
 
-	metadataService `json:"-", xml:"-"`
+	metadataService `json:"-" xml:"-"`
 }
 
 type metadataService struct {
@@ -1240,7 +1240,7 @@ type SeverityLevel struct {
 	// The name of the severity level that corresponds to the severity level code.
 	Name *string `locationName:"name" type:"string"`
 
-	metadataSeverityLevel `json:"-", xml:"-"`
+	metadataSeverityLevel `json:"-" xml:"-"`
 }
 
 type metadataSeverityLevel struct {
@@ -1254,7 +1254,7 @@ type TrustedAdvisorCategorySpecificSummary struct {
 	// is in the Cost Optimizing category.
 	CostOptimizing *TrustedAdvisorCostOptimizingSummary `locationName:"costOptimizing" type:"structure"`
 
-	metadataTrustedAdvisorCategorySpecificSummary `json:"-", xml:"-"`
+	metadataTrustedAdvisorCategorySpecificSummary `json:"-" xml:"-"`
 }
 
 type metadataTrustedAdvisorCategorySpecificSummary struct {
@@ -1283,7 +1283,7 @@ type TrustedAdvisorCheckDescription struct {
 	// The display name for the Trusted Advisor check.
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	metadataTrustedAdvisorCheckDescription `json:"-", xml:"-"`
+	metadataTrustedAdvisorCheckDescription `json:"-" xml:"-"`
 }
 
 type metadataTrustedAdvisorCheckDescription struct {
@@ -1303,7 +1303,7 @@ type TrustedAdvisorCheckRefreshStatus struct {
 	// "none", "enqueued", "processing", "success", or "abandoned".
 	Status *string `locationName:"status" type:"string" required:"true"`
 
-	metadataTrustedAdvisorCheckRefreshStatus `json:"-", xml:"-"`
+	metadataTrustedAdvisorCheckRefreshStatus `json:"-" xml:"-"`
 }
 
 type metadataTrustedAdvisorCheckRefreshStatus struct {
@@ -1333,7 +1333,7 @@ type TrustedAdvisorCheckResult struct {
 	// The time of the last refresh of the check.
 	Timestamp *string `locationName:"timestamp" type:"string" required:"true"`
 
-	metadataTrustedAdvisorCheckResult `json:"-", xml:"-"`
+	metadataTrustedAdvisorCheckResult `json:"-" xml:"-"`
 }
 
 type metadataTrustedAdvisorCheckResult struct {
@@ -1364,7 +1364,7 @@ type TrustedAdvisorCheckSummary struct {
 	// The time of the last refresh of the check.
 	Timestamp *string `locationName:"timestamp" type:"string" required:"true"`
 
-	metadataTrustedAdvisorCheckSummary `json:"-", xml:"-"`
+	metadataTrustedAdvisorCheckSummary `json:"-" xml:"-"`
 }
 
 type metadataTrustedAdvisorCheckSummary struct {
@@ -1382,7 +1382,7 @@ type TrustedAdvisorCostOptimizingSummary struct {
 	// actions are taken.
 	EstimatedPercentMonthlySavings *float64 `locationName:"estimatedPercentMonthlySavings" type:"double" required:"true"`
 
-	metadataTrustedAdvisorCostOptimizingSummary `json:"-", xml:"-"`
+	metadataTrustedAdvisorCostOptimizingSummary `json:"-" xml:"-"`
 }
 
 type metadataTrustedAdvisorCostOptimizingSummary struct {
@@ -1411,7 +1411,7 @@ type TrustedAdvisorResourceDetail struct {
 	// The status code for the resource identified in the Trusted Advisor check.
 	Status *string `locationName:"status" type:"string" required:"true"`
 
-	metadataTrustedAdvisorResourceDetail `json:"-", xml:"-"`
+	metadataTrustedAdvisorResourceDetail `json:"-" xml:"-"`
 }
 
 type metadataTrustedAdvisorResourceDetail struct {
@@ -1436,7 +1436,7 @@ type TrustedAdvisorResourcesSummary struct {
 	// marked as suppressed by the user.
 	ResourcesSuppressed *int64 `locationName:"resourcesSuppressed" type:"long" required:"true"`
 
-	metadataTrustedAdvisorResourcesSummary `json:"-", xml:"-"`
+	metadataTrustedAdvisorResourcesSummary `json:"-" xml:"-"`
 }
 
 type metadataTrustedAdvisorResourcesSummary struct {
