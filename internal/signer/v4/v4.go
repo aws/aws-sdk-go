@@ -111,8 +111,10 @@ func (v4 *signer) sign() {
 		fmt.Fprintln(out, v4.canonicalString)
 		fmt.Fprintf(out, "---[ STRING TO SIGN ]--------------------------------\n")
 		fmt.Fprintln(out, v4.stringToSign)
-		fmt.Fprintf(out, "---[ SIGNED URL ]--------------------------------\n")
-		fmt.Fprintln(out, v4.Request.URL)
+		if v4.isPresign {
+			fmt.Fprintf(out, "---[ SIGNED URL ]--------------------------------\n")
+			fmt.Fprintln(out, v4.Request.URL)
+		}
 		fmt.Fprintf(out, "-----------------------------------------------------\n")
 	}
 }

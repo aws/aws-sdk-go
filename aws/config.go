@@ -15,6 +15,7 @@ var DefaultConfig = &Config{
 	DisableSSL:              false,
 	ManualSend:              false,
 	HTTPClient:              http.DefaultClient,
+	LogHTTPBody:             false,
 	LogLevel:                0,
 	Logger:                  os.Stdout,
 	MaxRetries:              DEFAULT_RETRIES,
@@ -30,6 +31,7 @@ type Config struct {
 	DisableSSL              bool
 	ManualSend              bool
 	HTTPClient              *http.Client
+	LogHTTPBody             bool
 	LogLevel                uint
 	Logger                  io.Writer
 	MaxRetries              int
@@ -75,6 +77,12 @@ func (c Config) Merge(newcfg *Config) *Config {
 		cfg.HTTPClient = newcfg.HTTPClient
 	} else {
 		cfg.HTTPClient = c.HTTPClient
+	}
+
+	if newcfg != nil && newcfg.LogHTTPBody {
+		cfg.LogHTTPBody = newcfg.LogHTTPBody
+	} else {
+		cfg.LogHTTPBody = c.LogHTTPBody
 	}
 
 	if newcfg != nil && newcfg.LogLevel != 0 {

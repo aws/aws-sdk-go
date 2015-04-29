@@ -88,17 +88,9 @@ func (s *Service) AddDebugHandlers() {
 		return
 	}
 
-	s.Handlers.Sign.PushBack(func(r *Request) {
-		dumpedBody, _ := httputil.DumpRequest(r.HTTPRequest, true)
-
-		fmt.Fprintf(out, "=> [%s] %s.%s(%+v)\n", r.Time,
-			r.Service.ServiceName, r.Operation.Name, r.Params)
-		fmt.Fprintf(out, "---[ REQUEST PRE-SIGN ]------------------------------\n")
-		fmt.Fprintf(out, "%s\n", string(dumpedBody))
-		fmt.Fprintf(out, "-----------------------------------------------------\n")
-	})
 	s.Handlers.Send.PushFront(func(r *Request) {
-		dumpedBody, _ := httputil.DumpRequestOut(r.HTTPRequest, true)
+		logBody := r.Config.LogHTTPBody
+		dumpedBody, _ := httputil.DumpRequestOut(r.HTTPRequest, logBody)
 
 		fmt.Fprintf(out, "---[ REQUEST POST-SIGN ]-----------------------------\n")
 		fmt.Fprintf(out, "%s\n", string(dumpedBody))
@@ -107,7 +99,8 @@ func (s *Service) AddDebugHandlers() {
 	s.Handlers.Send.PushBack(func(r *Request) {
 		fmt.Fprintf(out, "---[ RESPONSE ]--------------------------------------\n")
 		if r.HTTPResponse != nil {
-			dumpedBody, _ := httputil.DumpResponse(r.HTTPResponse, true)
+			logBody := r.Config.LogHTTPBody
+			dumpedBody, _ := httputil.DumpResponse(r.HTTPResponse, logBody)
 			fmt.Fprintf(out, "%s\n", string(dumpedBody))
 		} else if r.Error != nil {
 			fmt.Fprintf(out, "%s\n", r.Error)
