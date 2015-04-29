@@ -97,7 +97,7 @@ func buildBody(r *aws.Request, v reflect.Value) {
 					case []byte:
 						r.SetBufferBody(reader)
 					case string:
-						r.SetBufferBody([]byte(reader))
+						r.SetStringBody(reader)
 					default:
 						r.Error = fmt.Errorf("unknown payload type %s", payload.Type())
 					}

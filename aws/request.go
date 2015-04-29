@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"net/url"
 	"reflect"
+	"strings"
 	"time"
 )
 
@@ -19,6 +20,7 @@ type Request struct {
 	HTTPRequest  *http.Request
 	HTTPResponse *http.Response
 	Body         io.ReadSeeker
+	bodyStart    int64 // offset from beginning of Body that the request body starts
 	Params       interface{}
 	Error        error
 	Data         interface{}
@@ -82,9 +84,18 @@ func (r *Request) SetBufferBody(buf []byte) {
 	r.SetReaderBody(bytes.NewReader(buf))
 }
 
+func (r *Request) SetStringBody(s string) {
+	r.SetReaderBody(strings.NewReader(s))
+}
+
 func (r *Request) SetReaderBody(reader io.ReadSeeker) {
 	r.HTTPRequest.Body = ioutil.NopCloser(reader)
 	r.Body = reader
+}
+
+func (r *Request) ResetReaderBody() {
+	r.Body.Seek(r.bodyStart, 0)
+	r.HTTPRequest.Body = ioutil.NopCloser(r.Body)
 }
 
 func (r *Request) Presign(expireTime time.Duration) (string, error) {
@@ -136,6 +147,7 @@ func (r *Request) Send() error {
 		r.Handlers.UnmarshalMeta.Run(r)
 		r.Handlers.ValidateResponse.Run(r)
 		if r.Error != nil {
+			r.Handlers.BeforeRetry.Run(r)
 			r.Handlers.Retry.Run(r)
 			r.Handlers.AfterRetry.Run(r)
 			if r.Error != nil {
@@ -147,6 +159,7 @@ func (r *Request) Send() error {
 
 		r.Handlers.Unmarshal.Run(r)
 		if r.Error != nil {
+			r.Handlers.BeforeRetry.Run(r)
 			r.Handlers.Retry.Run(r)
 			r.Handlers.AfterRetry.Run(r)
 			if r.Error != nil {

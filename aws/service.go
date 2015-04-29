@@ -55,6 +55,7 @@ func (s *Service) Initialize() {
 	s.Handlers.Build.PushBack(UserAgentHandler)
 	s.Handlers.Sign.PushBack(BuildContentLength)
 	s.Handlers.Send.PushBack(SendHandler)
+	s.Handlers.BeforeRetry.PushBack(BeforeRetryHandler)
 	s.Handlers.AfterRetry.PushBack(AfterRetryHandler)
 	s.Handlers.ValidateResponse.PushBack(ValidateResponseHandler)
 	s.AddDebugHandlers()
@@ -125,7 +126,8 @@ func retryRules(r *Request) time.Duration {
 func shouldRetry(r *Request) bool {
 	if r.HTTPResponse.StatusCode >= 500 {
 		return true
-	} else if err := Error(r.Error); err != nil {
+	}
+	if err := Error(r.Error); err != nil {
 		switch err.Code {
 		case "ExpiredTokenException":
 		case "ProvisionedThroughputExceededException", "Throttling":
