@@ -74,7 +74,7 @@ func validateCRC32(r *aws.Request) {
 
 	if crc != uint32(expected) {
 		// CRC does not match, set a retryable error
-		r.Retryable = true
+		r.Retryable.Set(true)
 		r.Error = &aws.APIError{
 			Code:    "CRC32CheckFailed",
 			Message: "CRC32 integrity check failed",

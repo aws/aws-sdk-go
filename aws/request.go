@@ -26,7 +26,7 @@ type Request struct {
 	Data         interface{}
 	RequestID    string
 	RetryCount   uint
-	Retryable    bool
+	Retryable    SettableBool
 	RetryDelay   time.Duration
 
 	built bool
@@ -69,7 +69,7 @@ func NewRequest(service *Service, operation *Operation, params interface{}, data
 }
 
 func (r *Request) WillRetry() bool {
-	return r.Error != nil && r.Retryable && r.RetryCount < r.Service.MaxRetries()
+	return r.Error != nil && r.Retryable.Get() && r.RetryCount < r.Service.MaxRetries()
 }
 
 func (r *Request) ParamsFilled() bool {
@@ -91,11 +91,6 @@ func (r *Request) SetStringBody(s string) {
 func (r *Request) SetReaderBody(reader io.ReadSeeker) {
 	r.HTTPRequest.Body = ioutil.NopCloser(reader)
 	r.Body = reader
-}
-
-func (r *Request) ResetReaderBody() {
-	r.Body.Seek(r.bodyStart, 0)
-	r.HTTPRequest.Body = ioutil.NopCloser(r.Body)
 }
 
 func (r *Request) Presign(expireTime time.Duration) (string, error) {
@@ -139,6 +134,13 @@ func (r *Request) Send() error {
 	}
 
 	for {
+		if r.Retryable.Get() {
+			// Re-seek the body back to the original point in for a retry so that
+			// send will send the body's contents again in the upcoming request.
+			r.Body.Seek(r.bodyStart, 0)
+		}
+		r.Retryable.Reset()
+
 		r.Handlers.Send.Run(r)
 		if r.Error != nil {
 			return r.Error

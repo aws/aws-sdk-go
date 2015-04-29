@@ -54,17 +54,20 @@ func ValidateResponseHandler(r *Request) {
 		// this may be replaced by an UnmarshalError handler
 		r.Error = &APIError{
 			StatusCode: r.HTTPResponse.StatusCode,
-			Message:    r.HTTPResponse.Status,
+			Code:       "UnknownError",
+			Message:    "unknown error",
 		}
 	}
 }
 
 func RetryHandler(r *Request) {
-	r.Retryable = r.Service.ShouldRetry(r)
-	r.RetryDelay = r.Service.RetryRules(r)
-	if r.Retryable {
-		r.ResetReaderBody()
+	// If one of the other handlers already set the retry state
+	// we don't want to override it based on the service's state
+	if !r.Retryable.IsSet() {
+		r.Retryable.Set(r.Service.ShouldRetry(r))
 	}
+
+	r.RetryDelay = r.Service.RetryRules(r)
 }
 
 func AfterRetryHandler(r *Request) {
@@ -72,7 +75,6 @@ func AfterRetryHandler(r *Request) {
 		sleepDelay(r.RetryDelay)
 
 		r.RetryCount++
-		r.Retryable = false
 		r.Error = nil
 	}
 }
