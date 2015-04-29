@@ -3,6 +3,7 @@ package awsutil
 import (
 	"bytes"
 	"fmt"
+	"io"
 	"reflect"
 	"strings"
 )
@@ -91,6 +92,8 @@ func stringValue(v reflect.Value, indent int, buf *bytes.Buffer) {
 		switch v.Interface().(type) {
 		case string:
 			format = "%q"
+		case io.ReadSeeker, io.Reader:
+			format = "buffer(%p)"
 		}
 		fmt.Fprintf(buf, format, v.Interface())
 	}
