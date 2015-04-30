@@ -18,6 +18,7 @@ type Service struct {
 	ServiceName       string
 	APIVersion        string
 	Endpoint          string
+	SigningName       string
 	SigningRegion     string
 	JSONVersion       string
 	TargetPrefix      string

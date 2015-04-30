@@ -26,6 +26,7 @@ func New(config *aws.Config) *CloudSearchDomain {
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "cloudsearchdomain",
+		SigningName: "cloudsearch",
 		APIVersion:  "2013-01-01",
 	}
 	service.Initialize()

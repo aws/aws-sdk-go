@@ -26,6 +26,7 @@ func New(config *aws.Config) *SES {
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "email",
+		SigningName: "ses",
 		APIVersion:  "2010-12-01",
 	}
 	service.Initialize()

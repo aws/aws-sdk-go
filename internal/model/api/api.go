@@ -34,6 +34,7 @@ type API struct {
 type Metadata struct {
 	APIVersion          string
 	EndpointPrefix      string
+	SigningName         string
 	ServiceAbbreviation string
 	ServiceFullName     string
 	SignatureVersion    string
@@ -214,7 +215,8 @@ func New(config *aws.Config) *{{ .StructName }} {
 
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config),
-		ServiceName:  "{{ .Metadata.EndpointPrefix }}",
+		ServiceName:  "{{ .Metadata.EndpointPrefix }}",{{ if ne .Metadata.SigningName "" }}
+		SigningName:  "{{ .Metadata.SigningName }}",{{ end }}
 		APIVersion:   "{{ .Metadata.APIVersion }}",
 {{ if eq .Metadata.Protocol "json" }}JSONVersion:  "{{ .Metadata.JSONVersion }}",
 		TargetPrefix: "{{ .Metadata.TargetPrefix }}",

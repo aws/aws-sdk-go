@@ -69,13 +69,18 @@ func Sign(req *aws.Request) {
 		region = req.Service.Config.Region
 	}
 
+	name := req.Service.SigningName
+	if name == "" {
+		name = req.Service.ServiceName
+	}
+
 	s := signer{
 		Request:         req.HTTPRequest,
 		Time:            req.Time,
 		ExpireTime:      req.ExpireTime,
 		Query:           req.HTTPRequest.URL.Query(),
 		Body:            req.Body,
-		ServiceName:     req.Service.ServiceName,
+		ServiceName:     name,
 		Region:          region,
 		AccessKeyID:     creds.AccessKeyID,
 		SecretAccessKey: creds.SecretAccessKey,
