@@ -90,9 +90,9 @@ func TestUploadOrderMulti(t *testing.T) {
 
 	// CompleteMultipartUpload
 	assert.Equal(t, "UPLOAD-ID", val((*args)[4], "UploadID"))
-	assert.Equal(t, 1, val((*args)[4], "MultipartUpload.Parts[0].PartNumber"))
-	assert.Equal(t, 2, val((*args)[4], "MultipartUpload.Parts[1].PartNumber"))
-	assert.Equal(t, 3, val((*args)[4], "MultipartUpload.Parts[2].PartNumber"))
+	assert.Equal(t, int64(1), val((*args)[4], "MultipartUpload.Parts[0].PartNumber"))
+	assert.Equal(t, int64(2), val((*args)[4], "MultipartUpload.Parts[1].PartNumber"))
+	assert.Equal(t, int64(3), val((*args)[4], "MultipartUpload.Parts[2].PartNumber"))
 	assert.Regexp(t, `^ETAG\d+$`, val((*args)[4], "MultipartUpload.Parts[0].ETag"))
 	assert.Regexp(t, `^ETAG\d+$`, val((*args)[4], "MultipartUpload.Parts[1].ETag"))
 	assert.Regexp(t, `^ETAG\d+$`, val((*args)[4], "MultipartUpload.Parts[2].ETag"))
