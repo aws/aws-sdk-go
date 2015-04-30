@@ -29,10 +29,10 @@ func BuildContentLength(r *Request) {
 	case lener:
 		length = int64(body.Len())
 	case io.Seeker:
-		cur, _ := body.Seek(0, 1)
+		r.bodyStart, _ = body.Seek(0, 1)
 		end, _ := body.Seek(0, 2)
-		body.Seek(cur, 0) // make sure to seek back to original location
-		length = end - cur
+		body.Seek(r.bodyStart, 0) // make sure to seek back to original location
+		length = end - r.bodyStart
 	default:
 		panic("Cannot get length of body, must provide `ContentLength`")
 	}
@@ -51,13 +51,22 @@ func SendHandler(r *Request) {
 
 func ValidateResponseHandler(r *Request) {
 	if r.HTTPResponse.StatusCode == 0 || r.HTTPResponse.StatusCode >= 400 {
+		// this may be replaced by an UnmarshalError handler
 		r.Error = &APIError{
 			StatusCode: r.HTTPResponse.StatusCode,
 			Code:       "UnknownError",
 			Message:    "unknown error",
 		}
 	}
-	r.Retryable = r.Service.ShouldRetry(r)
+}
+
+func RetryHandler(r *Request) {
+	// If one of the other handlers already set the retry state
+	// we don't want to override it based on the service's state
+	if !r.Retryable.IsSet() {
+		r.Retryable.Set(r.Service.ShouldRetry(r))
+	}
+
 	r.RetryDelay = r.Service.RetryRules(r)
 }
 
@@ -66,7 +75,6 @@ func AfterRetryHandler(r *Request) {
 		sleepDelay(r.RetryDelay)
 
 		r.RetryCount++
-		r.Retryable = false
 		r.Error = nil
 	}
 }

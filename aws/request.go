@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"net/url"
 	"reflect"
+	"strings"
 	"time"
 )
 
@@ -19,12 +20,13 @@ type Request struct {
 	HTTPRequest  *http.Request
 	HTTPResponse *http.Response
 	Body         io.ReadSeeker
+	bodyStart    int64 // offset from beginning of Body that the request body starts
 	Params       interface{}
 	Error        error
 	Data         interface{}
 	RequestID    string
 	RetryCount   uint
-	Retryable    bool
+	Retryable    SettableBool
 	RetryDelay   time.Duration
 
 	built bool
@@ -67,7 +69,7 @@ func NewRequest(service *Service, operation *Operation, params interface{}, data
 }
 
 func (r *Request) WillRetry() bool {
-	return r.Error != nil && r.Retryable && r.RetryCount < r.Service.MaxRetries()
+	return r.Error != nil && r.Retryable.Get() && r.RetryCount < r.Service.MaxRetries()
 }
 
 func (r *Request) ParamsFilled() bool {
@@ -80,6 +82,10 @@ func (r *Request) DataFilled() bool {
 
 func (r *Request) SetBufferBody(buf []byte) {
 	r.SetReaderBody(bytes.NewReader(buf))
+}
+
+func (r *Request) SetStringBody(s string) {
+	r.SetReaderBody(strings.NewReader(s))
 }
 
 func (r *Request) SetReaderBody(reader io.ReadSeeker) {
@@ -128,6 +134,13 @@ func (r *Request) Send() error {
 	}
 
 	for {
+		if r.Retryable.Get() {
+			// Re-seek the body back to the original point in for a retry so that
+			// send will send the body's contents again in the upcoming request.
+			r.Body.Seek(r.bodyStart, 0)
+		}
+		r.Retryable.Reset()
+
 		r.Handlers.Send.Run(r)
 		if r.Error != nil {
 			return r.Error
@@ -136,10 +149,10 @@ func (r *Request) Send() error {
 		r.Handlers.UnmarshalMeta.Run(r)
 		r.Handlers.ValidateResponse.Run(r)
 		if r.Error != nil {
+			r.Handlers.UnmarshalError.Run(r)
 			r.Handlers.Retry.Run(r)
 			r.Handlers.AfterRetry.Run(r)
 			if r.Error != nil {
-				r.Handlers.UnmarshalError.Run(r)
 				return r.Error
 			}
 			continue
