@@ -28,7 +28,10 @@ func loggingSvc() (*s3.S3, *[]string, *[]interface{}) {
 	partNum := 0
 	names := []string{}
 	params := []interface{}{}
-	svc := s3.New(&aws.Config{Region: "mock-region"})
+	svc := s3.New(&aws.Config{
+		Region:      "mock-region",
+		Credentials: aws.DetectCreds("AKID", "SECRET", ""),
+	})
 	svc.Handlers.Unmarshal.Clear()
 	svc.Handlers.UnmarshalMeta.Clear()
 	svc.Handlers.UnmarshalError.Clear()
