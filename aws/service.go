@@ -130,14 +130,20 @@ func retryRules(r *Request) time.Duration {
 	return delay * time.Millisecond
 }
 
+// Collection of service response codes which are generically
+// retryable for all services.
+var retryableCodes = map[string]struct{} {
+	"ExpiredTokenException": struct{}{},
+	"ProvisionedThroughputExceededException": struct{}{},
+	"Throttling": struct{}{},
+}
+
 func shouldRetry(r *Request) bool {
 	if r.HTTPResponse.StatusCode >= 500 {
 		return true
 	}
 	if err := Error(r.Error); err != nil {
-		switch err.Code {
-		case "ExpiredTokenException":
-		case "ProvisionedThroughputExceededException", "Throttling":
+		if _, ok := retryableCodes[err.Code]; ok {
 			return true
 		}
 	}

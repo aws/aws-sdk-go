@@ -167,3 +167,37 @@ func TestRequestExhaustRetries(t *testing.T) {
 	assert.Equal(t, 3, int(r.RetryCount))
 	assert.True(t, reflect.DeepEqual([]time.Duration{30 * time.Millisecond, 60 * time.Millisecond, 120 * time.Millisecond}, delays))
 }
+
+
+// test that the request is retried after the credentials are expired.
+func TestRequestRecoverExpiredCreds(t *testing.T) {
+	reqNum := 0
+	reqs := []http.Response{
+		http.Response{StatusCode: 400, Body: body(`{"__type":"ExpiredTokenException","message":"expired token"}`)},
+		http.Response{StatusCode: 200, Body: body(`{"data":"valid"}`)},
+	}
+
+	s := NewService(&Config{MaxRetries: 10})
+	s.Handlers.Validate.Clear()
+	s.Handlers.Unmarshal.PushBack(unmarshal)
+	s.Handlers.UnmarshalError.PushBack(unmarshalError)
+	rxTokenExpired := 0
+	s.Handlers.Retry.PushBack(func(r *Request) {
+		if err := Error(r.Error); err != nil && err.Code == "ExpiredTokenException"  {
+			// Refresh the credentials
+			rxTokenExpired++
+		}
+	})
+	s.Handlers.Send.Clear() // mock sending
+	s.Handlers.Send.PushBack(func(r *Request) {
+		r.HTTPResponse = &reqs[reqNum]
+		reqNum++
+	})
+	out := &testData{}
+	r := NewRequest(s, &Operation{Name: "Operation"}, nil, out)
+	err := r.Send()
+	assert.Nil(t, err)
+	assert.Equal(t, 1, rxTokenExpired, "Expect token to be expired once")
+	assert.Equal(t, 1, int(r.RetryCount))
+	assert.Equal(t, "valid", out.Data)
+}
