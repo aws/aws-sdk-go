@@ -60,19 +60,25 @@ func ValidateResponseHandler(r *Request) {
 	}
 }
 
-func RetryHandler(r *Request) {
+func AfterRetryHandler(r *Request) {
 	// If one of the other handlers already set the retry state
 	// we don't want to override it based on the service's state
 	if !r.Retryable.IsSet() {
 		r.Retryable.Set(r.Service.ShouldRetry(r))
 	}
 
-	r.RetryDelay = r.Service.RetryRules(r)
-}
-
-func AfterRetryHandler(r *Request) {
 	if r.WillRetry() {
+		r.RetryDelay = r.Service.RetryRules(r)
 		sleepDelay(r.RetryDelay)
+
+		// when the expired token exception occurs the credentials
+		// need to be expired locally so that the next request to
+		// get credentials will trigger a credentials refresh.
+		if err := Error(r.Error); err != nil && err.Code == "ExpiredTokenException" {
+			r.Config.Credentials.Expire()
+			// The credentials will need to be resigned with new credentials
+			r.signed = false
+		}
 
 		r.RetryCount++
 		r.Error = nil

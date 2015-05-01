@@ -10,6 +10,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/awslabs/aws-sdk-go/aws/credentials"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -168,7 +169,6 @@ func TestRequestExhaustRetries(t *testing.T) {
 	assert.True(t, reflect.DeepEqual([]time.Duration{30 * time.Millisecond, 60 * time.Millisecond, 120 * time.Millisecond}, delays))
 }
 
-
 // test that the request is retried after the credentials are expired.
 func TestRequestRecoverExpiredCreds(t *testing.T) {
 	reqNum := 0
@@ -177,16 +177,27 @@ func TestRequestRecoverExpiredCreds(t *testing.T) {
 		http.Response{StatusCode: 200, Body: body(`{"data":"valid"}`)},
 	}
 
-	s := NewService(&Config{MaxRetries: 10})
+	s := NewService(&Config{MaxRetries: 10, Credentials: credentials.NewStaticCredentials("AKID", "SECRET", "")})
 	s.Handlers.Validate.Clear()
 	s.Handlers.Unmarshal.PushBack(unmarshal)
 	s.Handlers.UnmarshalError.PushBack(unmarshalError)
-	rxTokenExpired := 0
+
+	credExpiredBeforeRetry := false
+	credExpiredAfterRetry := false
+
 	s.Handlers.Retry.PushBack(func(r *Request) {
-		if err := Error(r.Error); err != nil && err.Code == "ExpiredTokenException"  {
-			// Refresh the credentials
-			rxTokenExpired++
+		if err := Error(r.Error); err != nil && err.Code == "ExpiredTokenException" {
+			credExpiredBeforeRetry = r.Config.Credentials.IsExpired()
 		}
+	})
+
+	s.Handlers.AfterRetry.PushBack(func(r *Request) {
+		credExpiredAfterRetry = r.Config.Credentials.IsExpired()
+	})
+
+	s.Handlers.Sign.Clear()
+	s.Handlers.Sign.PushBack(func(r *Request) {
+		r.Config.Credentials.Get()
 	})
 	s.Handlers.Send.Clear() // mock sending
 	s.Handlers.Send.PushBack(func(r *Request) {
@@ -197,7 +208,11 @@ func TestRequestRecoverExpiredCreds(t *testing.T) {
 	r := NewRequest(s, &Operation{Name: "Operation"}, nil, out)
 	err := r.Send()
 	assert.Nil(t, err)
-	assert.Equal(t, 1, rxTokenExpired, "Expect token to be expired once")
+
+	assert.False(t, credExpiredBeforeRetry, "Expect valid creds before retry check")
+	assert.True(t, credExpiredAfterRetry, "Expect expired creds after retry check")
+	assert.False(t, s.Config.Credentials.IsExpired(), "Expect valid creds after cred expired recovery")
+
 	assert.Equal(t, 1, int(r.RetryCount))
 	assert.Equal(t, "valid", out.Data)
 }

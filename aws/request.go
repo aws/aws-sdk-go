@@ -29,7 +29,8 @@ type Request struct {
 	Retryable    SettableBool
 	RetryDelay   time.Duration
 
-	built bool
+	built  bool
+	signed bool
 }
 
 type Operation struct {
@@ -118,22 +119,27 @@ func (r *Request) Build() error {
 }
 
 func (r *Request) Sign() error {
+	if r.signed {
+		return r.Error
+	}
+
 	r.Build()
 	if r.Error != nil {
 		return r.Error
 	}
 
 	r.Handlers.Sign.Run(r)
+	r.signed = r.Error != nil
 	return r.Error
 }
 
 func (r *Request) Send() error {
-	r.Sign()
-	if r.Error != nil {
-		return r.Error
-	}
-
 	for {
+		r.Sign()
+		if r.Error != nil {
+			return r.Error
+		}
+
 		if r.Retryable.Get() {
 			// Re-seek the body back to the original point in for a retry so that
 			// send will send the body's contents again in the upcoming request.
@@ -168,6 +174,8 @@ func (r *Request) Send() error {
 			continue
 		}
 
-		return nil
+		break
 	}
+
+	return nil
 }

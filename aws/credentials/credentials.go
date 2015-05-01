@@ -37,10 +37,6 @@ type Credentials struct {
 	provider Provider
 }
 
-func (c *Credentials) Provider() Provider {
-	return c.provider
-}
-
 // NewCredentials returns a pointer to a new Credentials object with the
 // provider set.
 func NewCredentials(provider Provider) *Credentials {
