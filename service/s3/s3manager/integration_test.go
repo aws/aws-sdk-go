@@ -17,7 +17,8 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var md512MB = fmt.Sprintf("%x", md5.Sum(buf12MB))
+var integBuf12MB = make([]byte, 1024*1024*12)
+var integMD512MB = fmt.Sprintf("%x", md5.Sum(integBuf12MB))
 
 var bucketName *string
 
@@ -79,14 +80,14 @@ func TestUploadConcurrently(t *testing.T) {
 	out, err := s3manager.Upload(svc, &s3manager.UploadInput{
 		Bucket: bucketName,
 		Key:    &key,
-		Body:   bytes.NewReader(buf12MB),
+		Body:   bytes.NewReader(integBuf12MB),
 	}, nil)
 
 	assert.NoError(t, err)
 	assert.NotEqual(t, "", out.UploadID)
 	assert.Regexp(t, `^https?://.+/`+key+`$`, out.Location)
 
-	validate(t, key, md512MB)
+	validate(t, key, integMD512MB)
 }
 
 func TestUploadFailCleanup(t *testing.T) {
@@ -107,7 +108,7 @@ func TestUploadFailCleanup(t *testing.T) {
 	u, err := s3manager.Upload(svc, &s3manager.UploadInput{
 		Bucket: bucketName,
 		Key:    &key,
-		Body:   bytes.NewReader(buf12MB),
+		Body:   bytes.NewReader(integBuf12MB),
 	}, &s3manager.UploadOptions{
 		LeavePartsOnError: false,
 	})
