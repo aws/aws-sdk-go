@@ -42,6 +42,7 @@ func Build(req *aws.Request) {
 }
 
 func Unmarshal(req *aws.Request) {
+	defer req.HTTPResponse.Body.Close()
 	if req.DataFilled() {
 		err := jsonutil.UnmarshalJSON(req.Data, req.HTTPResponse.Body)
 		if err != nil {
@@ -56,6 +57,7 @@ func UnmarshalMeta(req *aws.Request) {
 }
 
 func UnmarshalError(req *aws.Request) {
+	defer req.HTTPResponse.Body.Close()
 	bodyBytes, err := ioutil.ReadAll(req.HTTPResponse.Body)
 	if err != nil {
 		req.Error = err
