@@ -9,17 +9,17 @@ import (
 	"time"
 )
 
-func initTestServer() *httptest.Server {
+func initTestServer(expireOn string) *httptest.Server {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.RequestURI == "/" {
 			fmt.Fprintln(w, "/creds")
 		} else {
-			fmt.Fprintln(w, `{
+			fmt.Fprintf(w, `{
   "AccessKeyId" : "accessKey",
   "SecretAccessKey" : "secret",
   "Token" : "token",
-  "Expiration" : "2014-12-16T01:51:37Z"
-}`)
+  "Expiration" : "%s"
+}`, expireOn)
 		}
 	}))
 
@@ -27,7 +27,7 @@ func initTestServer() *httptest.Server {
 }
 
 func TestEC2RoleProvider(t *testing.T) {
-	server := initTestServer()
+	server := initTestServer("2014-12-16T01:51:37Z")
 	defer server.Close()
 
 	p := &EC2RoleProvider{Client: http.DefaultClient, Endpoint: server.URL}
@@ -41,7 +41,7 @@ func TestEC2RoleProvider(t *testing.T) {
 }
 
 func TestEC2RoleProviderIsExpired(t *testing.T) {
-	server := initTestServer()
+	server := initTestServer("2014-12-16T01:51:37Z")
 	defer server.Close()
 
 	p := &EC2RoleProvider{Client: http.DefaultClient, Endpoint: server.URL}
@@ -66,8 +66,34 @@ func TestEC2RoleProviderIsExpired(t *testing.T) {
 	assert.True(t, p.IsExpired(), "Expect creds to be expired.")
 }
 
+func TestEC2RoleProviderExpiryWindowIsExpired(t *testing.T) {
+	server := initTestServer("2014-12-16T01:51:37Z")
+	defer server.Close()
+
+	p := &EC2RoleProvider{Client: http.DefaultClient, Endpoint: server.URL, ExpiryWindow: time.Hour * 1}
+	defer func() {
+		currentTime = time.Now
+	}()
+	currentTime = func() time.Time {
+		return time.Date(2014, 12, 15, 0, 51, 37, 0, time.UTC)
+	}
+
+	assert.True(t, p.IsExpired(), "Expect creds to be expired before retrieve.")
+
+	_, err := p.Retrieve()
+	assert.Nil(t, err, "Expect no error")
+
+	assert.False(t, p.IsExpired(), "Expect creds to not be expired after retrieve.")
+
+	currentTime = func() time.Time {
+		return time.Date(2014, 12, 16, 0, 55, 37, 0, time.UTC)
+	}
+
+	assert.True(t, p.IsExpired(), "Expect creds to be expired.")
+}
+
 func BenchmarkEC2RoleProvider(b *testing.B) {
-	server := initTestServer()
+	server := initTestServer("2014-12-16T01:51:37Z")
 	defer server.Close()
 
 	p := &EC2RoleProvider{Client: http.DefaultClient, Endpoint: server.URL}

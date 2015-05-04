@@ -12,6 +12,24 @@ const metadataCredentialsEndpoint = "http://169.254.169.254/latest/meta-data/iam
 
 // A EC2RoleProvider retrieves credentials from the EC2 service, and keeps track if
 // those credentials are expired.
+//
+// Example how to configure the EC2RoleProvider with custom http Client, Endpoint
+// or ExpiryWindow
+//
+//     p := &credentials.EC2RoleProvider{
+//         // Pass in a custom timeout to be used when requesting
+//         // IAM EC2 Role credentials.
+//         Client: &http.Client{
+//             Timeout: 10 * time.Second,
+//         },
+//         // Use default EC2 Role metadata endpoint, Alternate endpoints can be
+//         // specified setting Endpoint to something else.
+//         Endpoint: "",
+//         // Do not use early expiry of credentials. If a non zero value is
+//         // specified the credentials will be expired early
+//         ExpiryWindow: 0,
+//     }
+//
 type EC2RoleProvider struct {
 	// Endpoint must be fully quantified URL
 	Endpoint string
@@ -26,6 +44,8 @@ type EC2RoleProvider struct {
 	//
 	// So a ExpiryWindow of 10s would cause calls to IsExpired() to return true
 	// 10 seconds before the credentials are actually expired.
+	//
+	// If ExpiryWindow is 0 or less it will be ignored.
 	ExpiryWindow time.Duration
 
 	// The date/time at which the credentials expire.
@@ -33,7 +53,17 @@ type EC2RoleProvider struct {
 }
 
 // NewEC2RoleCredentials returns a pointer to a new Credentials object
-// wrapping the MetadataService provider.
+// wrapping the EC2RoleProvider.
+//
+// Takes a custom http.Client which can be configured for custom handling of
+// things such as timeout.
+//
+// Endpoint is the URL that the EC2RoleProvider will connect to when retrieving
+// role and credentials.
+//
+// Window is the expiry window that will be subtracted from the expiry returned
+// by the role credential request. This is done so that the credentials will
+// expire sooner than their actual lifespan.
 func NewEC2RoleCredentials(client *http.Client, endpoint string, window time.Duration) *Credentials {
 	return NewCredentials(&EC2RoleProvider{
 		Endpoint:     endpoint,
@@ -69,6 +99,11 @@ func (m *EC2RoleProvider) Retrieve() (Value, error) {
 	}
 
 	m.expiresOn = roleCreds.Expiration
+	if m.ExpiryWindow > 0 {
+		// Offset based on expiry window if set.
+		m.expiresOn = m.expiresOn.Add(-m.ExpiryWindow)
+	}
+
 	return Value{
 		AccessKeyID:     roleCreds.AccessKeyID,
 		SecretAccessKey: roleCreds.SecretAccessKey,

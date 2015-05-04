@@ -18,10 +18,10 @@ var (
 // in the list.
 //
 // If none of the Providers retrieve valid credentials Value, ChainProvider's
-// Retrieve will return the error ErrNoValidProvidersFoundInChain.
+// Retrieve() will return the error ErrNoValidProvidersFoundInChain.
 //
 // If a Provider is found which returns valid credentials Value ChainProvider
-// will cache that Provider for all calls to IsExpired, until Retrieve is
+// will cache that Provider for all calls to IsExpired(), until Retrieve is
 // called again.
 //
 // Example of ChainProvider to be used with an EnvProvider and EC2RoleProvider.
@@ -54,7 +54,7 @@ func NewChainCredentials(providers []Provider) *Credentials {
 // Retrieve returns the credentials value or error if no provider returned
 // without error.
 //
-// If a provider is found it will be cached and any calls to IsExpired
+// If a provider is found it will be cached and any calls to IsExpired()
 // will return the expired state of the cached provider.
 func (c *ChainProvider) Retrieve() (Value, error) {
 	for _, p := range c.Providers {
