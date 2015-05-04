@@ -4,8 +4,40 @@ import (
 	"fmt"
 )
 
+var (
+	// ErrNoValidProvidersFoundInChain Is returned when there are no valid
+	// providers in the ChainProvider.
+	ErrNoValidProvidersFoundInChain = fmt.Errorf("no valid providers in chain")
+)
+
 // A ChainProvider will search for a provider which returns credentials
 // and cache that provider until Retrieve is called again.
+//
+// The ChainProvider provides a way of chaining multiple providers together
+// which will pick the first available using priority order of the Providers
+// in the list.
+//
+// If none of the Providers retrieve valid credentials Value, ChainProvider's
+// Retrieve will return the error ErrNoValidProvidersFoundInChain.
+//
+// If a Provider is found which returns valid credentials Value ChainProvider
+// will cache that Provider for all calls to IsExpired, until Retrieve is
+// called again.
+//
+// Example of ChainProvider to be used with an EnvProvider and EC2RoleProvider.
+// In this example EnvProvider will first check if any credentials are available
+// vai the environment variables. If there are none ChainProvider will check
+// the next Provider in the list, EC2RoleProvider in this case. If EC2RoleProvider
+// does not return any credentials ChainProvider will return the error
+// ErrNoValidProvidersFoundInChain
+//
+//     creds := NewChainCredentials(
+//         []Provider{
+//             &EnvProvider{},
+//             &EC2RoleProvider{},
+//         })
+//     creds.Retrieve()
+//
 type ChainProvider struct {
 	Providers []Provider
 	curr      Provider
@@ -35,7 +67,7 @@ func (c *ChainProvider) Retrieve() (Value, error) {
 
 	// TODO better error reporting. maybe report error for each failed retrieve?
 
-	return Value{}, fmt.Errorf("no valid providers in chain")
+	return Value{}, ErrNoValidProvidersFoundInChain
 }
 
 // IsExpired will returned the expired state of the currently cached provider

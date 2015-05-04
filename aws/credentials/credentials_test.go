@@ -48,7 +48,8 @@ func TestCredentialsExpire(t *testing.T) {
 	stub := &stubProvider{}
 	c := NewCredentials(stub)
 
-	assert.False(t, c.IsExpired(), "Expected not to be expired")
+	stub.expired = false
+	assert.True(t, c.IsExpired(), "Expected to start out expired")
 	c.Expire()
 	assert.True(t, c.IsExpired(), "Expected to be expired")
 

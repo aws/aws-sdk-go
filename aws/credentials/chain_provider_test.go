@@ -55,7 +55,7 @@ func TestChainProviderWithNoProvider(t *testing.T) {
 
 	assert.True(t, p.IsExpired(), "Expect expired with no providers")
 	_, err := p.Retrieve()
-	assert.Contains(t, "no valid providers in chain", err.Error(), "Expect no providers error returned")
+	assert.Equal(t, ErrNoValidProvidersFoundInChain, err, "Expect no providers error returned")
 }
 
 func TestChainProviderWithNoValidProvider(t *testing.T) {

@@ -65,7 +65,7 @@ func TestAfterRetryRefreshCreds(t *testing.T) {
 		AfterRetryHandler(r)
 	})
 
-	assert.False(t, svc.Config.Credentials.IsExpired())
+	assert.True(t, svc.Config.Credentials.IsExpired(), "Expect to start out expired")
 	assert.False(t, credProvider.retreiveCalled)
 
 	req := NewRequest(svc, &Operation{Name: "Operation"}, nil, nil)

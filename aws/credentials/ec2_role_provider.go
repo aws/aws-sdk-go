@@ -32,9 +32,9 @@ type EC2RoleProvider struct {
 	expiresOn time.Time
 }
 
-// NewMetadataServiceCredentials returns a pointer to a new Credentials object
+// NewEC2RoleCredentials returns a pointer to a new Credentials object
 // wrapping the MetadataService provider.
-func NewMetadataServiceCredentials(client *http.Client, endpoint string, window time.Duration) *Credentials {
+func NewEC2RoleCredentials(client *http.Client, endpoint string, window time.Duration) *Credentials {
 	return NewCredentials(&EC2RoleProvider{
 		Endpoint:     endpoint,
 		Client:       client,
