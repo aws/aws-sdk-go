@@ -1,8 +1,13 @@
 package aws
 
 import (
+	"bytes"
 	"fmt"
 	"io"
+	"io/ioutil"
+	"net/http"
+	"net/url"
+	"regexp"
 	"strconv"
 	"time"
 )
@@ -50,14 +55,29 @@ func UserAgentHandler(r *Request) {
 	r.HTTPRequest.Header.Set("User-Agent", SDKName+"/"+SDKVersion)
 }
 
+var reStatusCode = regexp.MustCompile(`^(\d+)`)
+
 // SendHandler is a request handler to send service request using HTTP client.
 func SendHandler(r *Request) {
 	r.HTTPResponse, r.Error = r.Service.Config.HTTPClient.Do(r.HTTPRequest)
+	if r.Error != nil {
+		if e, ok := r.Error.(*url.Error); ok {
+			if s := reStatusCode.FindStringSubmatch(e.Err.Error()); s != nil {
+				code, _ := strconv.ParseInt(s[1], 10, 64)
+				r.Error = nil
+				r.HTTPResponse = &http.Response{
+					StatusCode: int(code),
+					Status:     http.StatusText(int(code)),
+					Body:       ioutil.NopCloser(bytes.NewReader([]byte{})),
+				}
+			}
+		}
+	}
 }
 
 // ValidateResponseHandler is a request handler to validate service response.
 func ValidateResponseHandler(r *Request) {
-	if r.HTTPResponse.StatusCode == 0 || r.HTTPResponse.StatusCode >= 400 {
+	if r.HTTPResponse.StatusCode == 0 || r.HTTPResponse.StatusCode >= 300 {
 		// this may be replaced by an UnmarshalError handler
 		r.Error = &APIError{
 			StatusCode: r.HTTPResponse.StatusCode,
