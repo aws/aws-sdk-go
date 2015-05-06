@@ -18,6 +18,7 @@ var s3StatusCodeErrorTests = []struct {
 	code    string
 	message string
 }{
+	{301, "Moved Permanently", "", "MovedPermanently", "Moved Permanently"},
 	{403, "Forbidden", "", "Forbidden", "Forbidden"},
 	{400, "Bad Request", "", "BadRequest", "Bad Request"},
 	{404, "Not Found", "", "NotFound", "Not Found"},
