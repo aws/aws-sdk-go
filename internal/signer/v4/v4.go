@@ -231,7 +231,7 @@ func (v4 *signer) buildCanonicalHeaders() {
 }
 
 func (v4 *signer) buildCanonicalString() {
-	v4.Request.URL.RawQuery = v4.Query.Encode()
+	v4.Request.URL.RawQuery = strings.Replace(v4.Query.Encode(), "+", "%20", -1)
 	uri := v4.Request.URL.Opaque
 	if uri != "" {
 		uri = "/" + strings.Join(strings.Split(uri, "/")[3:], "/")
