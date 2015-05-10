@@ -184,7 +184,7 @@ func (u *uploader) upload() (*UploadOutput, error) {
 		return nil, err
 	}
 
-	mu := multiuploader{uploader: u}
+	mu := newMultiuploader(u)
 	return mu.upload(packet)
 }
 
@@ -209,10 +209,19 @@ func (u *uploader) singlePart(part []byte) (*UploadOutput, error) {
 type multiuploader struct {
 	*uploader
 	wg       sync.WaitGroup
+	quit     chan struct{}
+	closed   bool
 	m        sync.Mutex
 	err      error
 	uploadID string
 	parts    completedParts
+}
+
+func newMultiuploader(u *uploader) *multiuploader {
+	return &multiuploader{
+		uploader: u,
+		quit:     make(chan struct{}),
+	}
 }
 
 // keeps track of a single chunk of data being sent to S3.
@@ -243,28 +252,35 @@ func (u *multiuploader) upload(firstPart []byte) (*UploadOutput, error) {
 	u.uploadID = *resp.UploadID
 
 	// Create the workers
-	ch := make(chan chunk, u.opts.Concurrency)
+	ch := make(chan chunk)
 	for i := 0; i < u.opts.Concurrency; i++ {
 		u.wg.Add(1)
 		go u.readChunk(ch)
 	}
 
-	// Send part 1 to the workers
-	var num int64 = 1
-	ch <- chunk{buf: firstPart, num: num}
-
-	// Read and queue the rest of the parts
-	for u.geterr() == nil {
-		num++
-
-		packet := make([]byte, u.opts.PartSize)
-		n, err := io.ReadFull(u.in.Body, packet)
-		ch <- chunk{buf: packet[0:n], num: num}
-		if err != nil {
-			if err != io.EOF && err != io.ErrUnexpectedEOF {
-				u.seterr(err)
+ChunkLoop:
+	for num, done := int64(1), false; !done; num++ {
+		var packet []byte
+		if num == 1 {
+			packet = firstPart
+		} else {
+			packet = make([]byte, u.opts.PartSize)
+			n, err := io.ReadFull(u.in.Body, packet)
+			if err != nil {
+				if err != io.EOF && err != io.ErrUnexpectedEOF {
+					u.seterr(err)
+					u.close()
+					break
+				}
+				done = true
 			}
-			break
+			packet = packet[:n]
+		}
+
+		select {
+		case <-u.quit:
+			break ChunkLoop
+		case ch <- chunk{buf: packet, num: num}:
 		}
 	}
 
@@ -286,16 +302,19 @@ func (u *multiuploader) upload(firstPart []byte) (*UploadOutput, error) {
 // and send() them as UploadPart requests.
 func (u *multiuploader) readChunk(ch chan chunk) {
 	defer u.wg.Done()
-	for u.geterr() == nil {
-		data, ok := <-ch
-
-		if !ok {
-			break
-		}
-
-		if err := u.send(data); err != nil {
-			u.seterr(err)
-			break
+	for {
+		select {
+		case <-u.quit:
+			return
+		case c, ok := <-ch:
+			if !ok {
+				return
+			}
+			if err := u.send(c); err != nil {
+				u.seterr(err)
+				u.close()
+				return
+			}
 		}
 	}
 }
@@ -338,6 +357,16 @@ func (u *multiuploader) seterr(e error) {
 	defer u.m.Unlock()
 
 	u.err = e
+}
+
+func (u *multiuploader) close() {
+	u.m.Lock()
+	defer u.m.Unlock()
+
+	if !u.closed {
+		close(u.quit)
+		u.closed = true
+	}
 }
 
 // fail will abort the multipart unless LeavePartsOnError is set to true.
