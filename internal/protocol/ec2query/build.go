@@ -9,6 +9,7 @@ import (
 	"github.com/awslabs/aws-sdk-go/internal/protocol/query/queryutil"
 )
 
+// Build builds a request for the EC2 protocol.
 func Build(r *aws.Request) {
 	body := url.Values{
 		"Action":  {r.Operation.Name},

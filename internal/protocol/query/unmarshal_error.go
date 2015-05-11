@@ -14,6 +14,7 @@ type xmlErrorResponse struct {
 	RequestID string   `xml:"RequestId"`
 }
 
+// UnmarshalError unmarshals an error response for an AWS Query service.
 func UnmarshalError(r *aws.Request) {
 	defer r.HTTPResponse.Body.Close()
 

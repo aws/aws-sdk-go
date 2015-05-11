@@ -13,6 +13,7 @@ import (
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+// Unmarshal unmarshals the REST component of a response in a REST service.
 func Unmarshal(r *aws.Request) {
 	if r.DataFilled() {
 		v := reflect.Indirect(reflect.ValueOf(r.Data))

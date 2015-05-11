@@ -34,6 +34,7 @@ func init() {
 	}
 }
 
+// Build builds the REST component of a service request.
 func Build(r *aws.Request) {
 	if r.ParamsFilled() {
 		v := reflect.ValueOf(r.Params).Elem()

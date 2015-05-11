@@ -19,23 +19,23 @@ import (
 	"github.com/awslabs/aws-sdk-go/internal/util"
 )
 
-type TestSuite struct {
+type testSuite struct {
 	API         *api.API
 	PackageName string
 	APIVersion  string `json:"api_version"`
-	Cases       []*TestCase
+	Cases       []*testCase
 }
 
-type TestCase struct {
+type testCase struct {
 	API         *api.API
 	Description string
 	Operation   string
 	Input       interface{}
-	Assertions  []*TestAssertion
+	Assertions  []*testAssertion
 }
 
-type TestAssertion struct {
-	Case      *TestCase
+type testAssertion struct {
+	Case      *testCase
 	Assertion string
 	Context   string
 	Path      string
@@ -76,7 +76,7 @@ func Test{{ .TestName }}(t *testing.T) {
 }
 `))
 
-func (t *TestSuite) setup() {
+func (t *testSuite) setup() {
 	_, d, _, _ := runtime.Caller(1)
 	file := filepath.Join(path.Dir(d), "..", "..", "..", "apis",
 		t.PackageName, t.APIVersion+".normal.json")
@@ -92,7 +92,7 @@ func (t *TestSuite) setup() {
 	}
 }
 
-func (t *TestSuite) write() {
+func (t *testSuite) write() {
 	_, d, _, _ := runtime.Caller(1)
 	file := filepath.Join(path.Dir(d), "..", "..", "..", "service",
 		t.PackageName, "integration_test.go")
@@ -106,7 +106,7 @@ func (t *TestSuite) write() {
 	ioutil.WriteFile(file, b, 0644)
 }
 
-func (t *TestCase) TestName() string {
+func (t *testCase) TestName() string {
 	out := ""
 	for _, v := range strings.Split(t.Description, " ") {
 		out += util.Capitalize(v)
@@ -114,7 +114,7 @@ func (t *TestCase) TestName() string {
 	return out
 }
 
-func (t *TestCase) GoCode() string {
+func (t *testCase) GoCode() string {
 	var buf bytes.Buffer
 	if err := tplTestCase.Execute(&buf, t); err != nil {
 		panic(err)
@@ -122,7 +122,7 @@ func (t *TestCase) GoCode() string {
 	return util.GoFmt(buf.String())
 }
 
-func (t *TestCase) InputCode() string {
+func (t *testCase) InputCode() string {
 	op := t.API.Operations[t.API.ExportableName(t.Operation)]
 	if op.InputRef.Shape == nil {
 		return ""
@@ -130,7 +130,7 @@ func (t *TestCase) InputCode() string {
 	return helpers.ParamsStructFromJSON(t.Input, op.InputRef.Shape, true)
 }
 
-func (t *TestAssertion) GoCode() string {
+func (t *testAssertion) GoCode() string {
 	call, actual, expected := "", "", fmt.Sprintf("%#v", t.Expected)
 
 	if expected == "<nil>" {
@@ -170,9 +170,11 @@ func (t *TestAssertion) GoCode() string {
 	return fmt.Sprintf("%s(t, %s, %s)\n", call, expected, actual)
 }
 
-func GenerateIntegrationSuite(testFile string) {
+// generateIntegrationSuite generates an integration test suite based on a given
+// test configuration JSON file.
+func generateIntegrationSuite(testFile string) {
 	pkgName := strings.Replace(filepath.Base(testFile), ".json", "", -1)
-	suite := &TestSuite{PackageName: pkgName}
+	suite := &testSuite{PackageName: pkgName}
 
 	if file, err := os.Open(testFile); err == nil {
 		defer file.Close()
@@ -195,6 +197,6 @@ func main() {
 	}
 
 	for _, file := range files {
-		GenerateIntegrationSuite(file)
+		generateIntegrationSuite(file)
 	}
 }

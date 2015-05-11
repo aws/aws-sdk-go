@@ -11,6 +11,8 @@ import (
 	"time"
 )
 
+// Parse parses an object i and fills a url.Values object. The isEC2 flag
+// indicates if this is the EC2 Query sub-protocol.
 func Parse(body url.Values, i interface{}, isEC2 bool) error {
 	q := queryParser{isEC2: isEC2}
 	return q.parseValue(body, reflect.ValueOf(i), "", "")

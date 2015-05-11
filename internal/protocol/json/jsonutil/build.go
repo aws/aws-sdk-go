@@ -11,6 +11,7 @@ import (
 	"time"
 )
 
+// BuildJSON builds a JSON string for a given object v.
 func BuildJSON(v interface{}) ([]byte, error) {
 	var buf bytes.Buffer
 

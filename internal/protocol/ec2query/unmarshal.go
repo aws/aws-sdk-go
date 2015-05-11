@@ -10,6 +10,7 @@ import (
 	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
 )
 
+// Unmarshal unmarshals a response body for the EC2 protocol.
 func Unmarshal(r *aws.Request) {
 	defer r.HTTPResponse.Body.Close()
 	if r.DataFilled() {
@@ -22,6 +23,7 @@ func Unmarshal(r *aws.Request) {
 	}
 }
 
+// UnmarshalMeta unmarshals response headers for the EC2 protocol.
 func UnmarshalMeta(r *aws.Request) {
 	// TODO implement unmarshaling of request IDs
 }
@@ -33,6 +35,7 @@ type xmlErrorResponse struct {
 	RequestID string   `xml:"RequestId"`
 }
 
+// UnmarshalError unmarshals a response error for the EC2 protocol.
 func UnmarshalError(r *aws.Request) {
 	defer r.HTTPResponse.Body.Close()
 

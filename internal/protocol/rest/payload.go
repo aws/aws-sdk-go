@@ -2,6 +2,7 @@ package rest
 
 import "reflect"
 
+// PayloadMember returns the payload field member of i if there is one, or nil.
 func PayloadMember(i interface{}) interface{} {
 	if i == nil {
 		return nil
@@ -27,6 +28,7 @@ func PayloadMember(i interface{}) interface{} {
 	return nil
 }
 
+// PayloadType returns the type of a payload field member of i if there is one, or "".
 func PayloadType(i interface{}) string {
 	v := reflect.Indirect(reflect.ValueOf(i))
 	if !v.IsValid() {

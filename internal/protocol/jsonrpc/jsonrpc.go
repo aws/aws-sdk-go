@@ -14,6 +14,7 @@ import (
 
 var emptyJSON = []byte("{}")
 
+// Build builds a JSON payload for a JSON RPC request.
 func Build(req *aws.Request) {
 	var buf []byte
 	var err error
@@ -41,6 +42,7 @@ func Build(req *aws.Request) {
 	}
 }
 
+// Unmarshal unmarshals a response for a JSON RPC service.
 func Unmarshal(req *aws.Request) {
 	defer req.HTTPResponse.Body.Close()
 	if req.DataFilled() {
@@ -52,10 +54,12 @@ func Unmarshal(req *aws.Request) {
 	return
 }
 
+// UnmarshalMeta unmarshals headers from a response for a JSON RPC service.
 func UnmarshalMeta(req *aws.Request) {
 	req.RequestID = req.HTTPResponse.Header.Get("x-amzn-requestid")
 }
 
+// UnmarshalError unmarshals an error response for a JSON RPC service.
 func UnmarshalError(req *aws.Request) {
 	defer req.HTTPResponse.Body.Close()
 	bodyBytes, err := ioutil.ReadAll(req.HTTPResponse.Body)

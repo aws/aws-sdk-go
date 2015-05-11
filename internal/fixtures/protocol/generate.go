@@ -18,23 +18,23 @@ import (
 	"github.com/awslabs/aws-sdk-go/internal/util/utilassert"
 )
 
-type TestSuite struct {
+type testSuite struct {
 	*api.API
 	Description string
-	Cases       []TestCase
+	Cases       []testCase
 	title       string
 }
 
-type TestCase struct {
-	*TestSuite
+type testCase struct {
+	TestSuite  *testSuite
 	Given      *api.Operation
 	Params     interface{}     `json:",omitempty"`
 	Data       interface{}     `json:"result,omitempty"`
-	InputTest  TestExpectation `json:"serialized"`
-	OutputTest TestExpectation `json:"response"`
+	InputTest  testExpectation `json:"serialized"`
+	OutputTest testExpectation `json:"response"`
 }
 
-type TestExpectation struct {
+type testExpectation struct {
 	Body       string
 	URI        string
 	Headers    map[string]string
@@ -86,7 +86,7 @@ func addImports(code string) string {
 	return str
 }
 
-func (t *TestSuite) TestSuite() string {
+func (t *testSuite) TestSuite() string {
 	var buf bytes.Buffer
 
 	t.title = reStripSpace.ReplaceAllStringFunc(t.Description, func(x string) string {
@@ -107,7 +107,7 @@ func Test{{ .OpName }}(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := {{ .ParamsString }}
-	req, _ := svc.{{ .Given.ExportedName }}Request(input)
+	req, _ := svc.{{ .TestCase.Given.ExportedName }}Request(input)
 	r := req.HTTPRequest
 
 	// build request
@@ -128,7 +128,7 @@ func Test{{ .OpName }}(t *testing.T) {
 `))
 
 type tplInputTestCaseData struct {
-	*TestCase
+	TestCase             *testCase
 	OpName, ParamsString string
 }
 
@@ -141,7 +141,7 @@ func (t tplInputTestCaseData) BodyAssertions() string {
 		code += "body, _ := ioutil.ReadAll(r.Body)\n"
 	}
 
-	code += "assert.Equal(t, util.Trim(`" + t.InputTest.Body + "`), util.Trim(string(body)))"
+	code += "assert.Equal(t, util.Trim(`" + t.TestCase.InputTest.Body + "`), util.Trim(string(body)))"
 	return code
 }
 
@@ -150,7 +150,7 @@ func Test{{ .OpName }}(t *testing.T) {
 	svc := New{{ .TestCase.TestSuite.API.StructName }}(nil)
 
 	buf := bytes.NewReader([]byte({{ .Body }}))
-	req, out := svc.{{ .Given.ExportedName }}Request(nil)
+	req, out := svc.{{ .TestCase.Given.ExportedName }}Request(nil)
 	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
 
 	// set headers
@@ -169,18 +169,18 @@ func Test{{ .OpName }}(t *testing.T) {
 `))
 
 type tplOutputTestCaseData struct {
-	*TestCase
+	TestCase                 *testCase
 	Body, OpName, Assertions string
 }
 
-func (i *TestCase) TestCase(idx int) string {
+func (i *testCase) TestCase(idx int) string {
 	var buf bytes.Buffer
 
-	opName := i.API.StructName() + i.TestSuite.title + "Case" + strconv.Itoa(idx+1)
+	opName := i.TestSuite.API.StructName() + i.TestSuite.title + "Case" + strconv.Itoa(idx+1)
 
 	if i.Params != nil { // input test
 		// query test should sort body as form encoded values
-		switch i.API.Metadata.Protocol {
+		switch i.TestSuite.API.Metadata.Protocol {
 		case "query", "ec2":
 			m, _ := url.ParseQuery(i.InputTest.Body)
 			i.InputTest.Body = m.Encode()
@@ -215,13 +215,15 @@ func (i *TestCase) TestCase(idx int) string {
 	return util.GoFmt(buf.String())
 }
 
-func GenerateTestSuite(filename string) string {
+// generateTestSuite generates a protocol test suite for a given configuration
+// JSON protocol test file.
+func generateTestSuite(filename string) string {
 	inout := "Input"
 	if strings.Contains(filename, "output/") {
 		inout = "Output"
 	}
 
-	var suites []TestSuite
+	var suites []testSuite
 	f, err := os.Open(filename)
 	if err != nil {
 		panic(err)
@@ -286,7 +288,7 @@ func GenerateTestSuite(filename string) string {
 }
 
 func main() {
-	out := GenerateTestSuite(os.Args[1])
+	out := generateTestSuite(os.Args[1])
 	if len(os.Args) == 3 {
 		f, err := os.Create(os.Args[2])
 		defer f.Close()

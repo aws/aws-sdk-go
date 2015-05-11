@@ -13,6 +13,7 @@ import (
 	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
 )
 
+// Build builds a request payload for the REST XML protocol.
 func Build(r *aws.Request) {
 	rest.Build(r)
 
@@ -27,6 +28,7 @@ func Build(r *aws.Request) {
 	}
 }
 
+// Unmarshal unmarshals a payload response for the REST XML protocol.
 func Unmarshal(r *aws.Request) {
 	if t := rest.PayloadType(r.Data); t == "structure" || t == "" {
 		defer r.HTTPResponse.Body.Close()
@@ -39,10 +41,12 @@ func Unmarshal(r *aws.Request) {
 	}
 }
 
+// UnmarshalMeta unmarshals response headers for the REST XML protocol.
 func UnmarshalMeta(r *aws.Request) {
 	rest.Unmarshal(r)
 }
 
+// UnmarshalError unmarshals a response error for the REST XML protocol.
 func UnmarshalError(r *aws.Request) {
 	query.UnmarshalError(r)
 }
