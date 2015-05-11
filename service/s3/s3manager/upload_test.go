@@ -11,10 +11,10 @@ import (
 
 	"github.com/awslabs/aws-sdk-go/aws"
 	"github.com/awslabs/aws-sdk-go/aws/awsutil"
+	"github.com/awslabs/aws-sdk-go/aws/credentials"
 	"github.com/awslabs/aws-sdk-go/service/s3"
 	"github.com/awslabs/aws-sdk-go/service/s3/s3manager"
 	"github.com/stretchr/testify/assert"
-	"github.com/awslabs/aws-sdk-go/aws/credentials"
 )
 
 var buf12MB = make([]byte, 1024*1024*12)
@@ -237,25 +237,22 @@ func TestUploadOrderMultiFailureLeaveParts(t *testing.T) {
 	assert.Equal(t, []string{"CreateMultipartUpload", "UploadPart", "UploadPart"}, *ops)
 }
 
-var failreaderCount = 0
+type failreader struct{ remaining int }
 
-type failreader struct{ times int }
-
-func (f failreader) Read(b []byte) (int, error) {
-	failreaderCount++
-	if failreaderCount >= f.times {
+func (f *failreader) Read(b []byte) (int, error) {
+	f.remaining--
+	if f.remaining <= 0 {
 		return 0, fmt.Errorf("random failure")
 	}
 	return len(b), nil
 }
 
 func TestUploadOrderReadFail1(t *testing.T) {
-	failreaderCount = 0
 	s, ops, _ := loggingSvc()
 	_, err := s3manager.Upload(s, &s3manager.UploadInput{
 		Bucket: aws.String("Bucket"),
 		Key:    aws.String("Key"),
-		Body:   failreader{1},
+		Body:   &failreader{1},
 	}, nil)
 
 	assert.EqualError(t, err, "random failure")
@@ -263,14 +260,18 @@ func TestUploadOrderReadFail1(t *testing.T) {
 }
 
 func TestUploadOrderReadFail2(t *testing.T) {
-	failreaderCount = 0
 	s, ops, _ := loggingSvc()
 	_, err := s3manager.Upload(s, &s3manager.UploadInput{
 		Bucket: aws.String("Bucket"),
 		Key:    aws.String("Key"),
-		Body:   failreader{2},
+		Body:   &failreader{2},
 	}, nil)
 
 	assert.EqualError(t, err, "random failure")
-	assert.Equal(t, []string{"CreateMultipartUpload", "AbortMultipartUpload"}, *ops)
+	nOps := len(*ops)
+	if nOps < 2 || nOps > 3 {
+		t.Fatalf("want 2 or 3 operations but got %d", nOps)
+	}
+	assert.Equal(t, "CreateMultipartUpload", (*ops)[0])
+	assert.Equal(t, "AbortMultipartUpload", (*ops)[nOps-1])
 }
