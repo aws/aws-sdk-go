@@ -7,8 +7,13 @@ import (
 	"testing"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/internal/test/integration"
 	"github.com/awslabs/aws-sdk-go/service/cloudfront"
 	"github.com/stretchr/testify/assert"
+)
+
+var (
+	_ = integration.Imported
 )
 
 func assertMatches(t *testing.T, regex, expected string) {

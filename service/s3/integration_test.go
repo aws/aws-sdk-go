@@ -12,12 +12,14 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/internal/test/integration"
 	"github.com/awslabs/aws-sdk-go/service/s3"
 	"github.com/stretchr/testify/assert"
 )
 
 var bucketName *string
 var svc *s3.S3
+var _ = integration.Imported
 
 func TestMain(m *testing.M) {
 	setup()

@@ -50,6 +50,7 @@ import (
 	"testing"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/internal/test/integration"
 	"github.com/awslabs/aws-sdk-go/internal/util/utilassert"
 	"github.com/awslabs/aws-sdk-go/service/{{ .API.PackageName }}"
 	"github.com/stretchr/testify/assert"
@@ -58,6 +59,7 @@ import (
 var (
 	_ = assert.Equal
 	_ = utilassert.Match
+	_ = integration.Imported
 )
 
 {{ range $_, $t := .Cases }}{{ $t.GoCode }}{{ end }}

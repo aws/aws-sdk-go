@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/internal/test/integration"
 	"github.com/awslabs/aws-sdk-go/internal/util/utilassert"
 	"github.com/awslabs/aws-sdk-go/service/lambda"
 	"github.com/stretchr/testify/assert"
@@ -14,6 +15,7 @@ import (
 var (
 	_ = assert.Equal
 	_ = utilassert.Match
+	_ = integration.Imported
 )
 
 func TestMakingABasicRequest(t *testing.T) {
