@@ -17,5 +17,5 @@ test: generate-test
 
 unit:
 	lint=`golint ./aws/... && golint ./internal/...`; echo "$$lint"; \
-	  if [[ $$lint != "" ]]; then exit 1; fi
+	  if [ "$$lint" != "" ]; then exit 1; fi
 	go test ./...
