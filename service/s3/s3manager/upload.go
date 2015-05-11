@@ -315,7 +315,8 @@ func (u *multiuploader) send(c chunk) error {
 		return err
 	}
 
-	completed := &s3.CompletedPart{ETag: resp.ETag, PartNumber: &c.num}
+	n := c.num
+	completed := &s3.CompletedPart{ETag: resp.ETag, PartNumber: &n}
 
 	u.m.Lock()
 	u.parts = append(u.parts, completed)
