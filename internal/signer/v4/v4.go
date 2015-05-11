@@ -202,9 +202,9 @@ func (v4 *signer) buildQuery() {
 }
 
 func (v4 *signer) buildCanonicalHeaders() {
-	headers := make([]string, 0)
+	var headers []string
 	headers = append(headers, "host")
-	for k, _ := range v4.Request.Header {
+	for k := range v4.Request.Header {
 		if _, ok := ignoredHeaders[http.CanonicalHeaderKey(k)]; ok {
 			continue // ignored header
 		}

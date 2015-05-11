@@ -101,7 +101,8 @@ var tplInfSig = template.Must(template.New("opsig").Parse(`
 {{ .ExportedName }}({{ .InputRef.GoTypeWithPkgName }}) ({{ .OutputRef.GoTypeWithPkgName }}, error)
 `))
 
-// Returns a string representing the Operation's interface{} functional signature.
+// InterfaceSignature returns a string representing the Operation's interface{}
+// functional signature.
 func (o *Operation) InterfaceSignature() string {
 	var buf bytes.Buffer
 	err := tplInfSig.Execute(&buf, o)

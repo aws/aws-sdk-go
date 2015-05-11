@@ -258,9 +258,8 @@ func parseScalar(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 		t, err := time.Parse(ISO8601UTC, node.Text)
 		if err != nil {
 			return err
-		} else {
-			r.Set(reflect.ValueOf(&t))
 		}
+		r.Set(reflect.ValueOf(&t))
 	default:
 		return fmt.Errorf("unsupported value: %v (%s)", r.Interface(), r.Type())
 	}

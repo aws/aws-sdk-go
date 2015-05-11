@@ -68,7 +68,7 @@ func (s *Shape) Rename(newName string) {
 // MemberNames returns a slice of struct member names.
 func (s *Shape) MemberNames() []string {
 	i, names := 0, make([]string, len(s.MemberRefs))
-	for n, _ := range s.MemberRefs {
+	for n := range s.MemberRefs {
 		names[i] = n
 		i++
 	}
@@ -76,18 +76,18 @@ func (s *Shape) MemberNames() []string {
 	return names
 }
 
-// Returns a shape's type as a string with the package name in <packageName>.<type> format.
-// package naming only applies to structures.
+// GoTypeWithPkgName returns a shape's type as a string with the package name in
+// <packageName>.<type> format. Package naming only applies to structures.
 func (s *Shape) GoTypeWithPkgName() string {
 	return goType(s, true)
 }
 
-// Returns a shape's Go type
+// GoType returns a shape's Go type
 func (s *Shape) GoType() string {
 	return goType(s, false)
 }
 
-// Returns a shape ref's Go type.
+// GoType returns a shape ref's Go type.
 func (ref *ShapeRef) GoType() string {
 	if ref.Shape == nil {
 		panic(fmt.Errorf("missing shape definition on reference for %#v", ref))
@@ -96,8 +96,8 @@ func (ref *ShapeRef) GoType() string {
 	return ref.Shape.GoType()
 }
 
-// Returns a shape's type as a string with the package name in <packageName>.<type> format.
-// package naming only applies to structures.
+// GoTypeWithPkgName returns a shape's type as a string with the package name in
+// <packageName>.<type> format. Package naming only applies to structures.
 func (ref *ShapeRef) GoTypeWithPkgName() string {
 	if ref.Shape == nil {
 		panic(fmt.Errorf("missing shape definition on reference for %#v", ref))

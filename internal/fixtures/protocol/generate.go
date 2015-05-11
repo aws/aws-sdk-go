@@ -254,7 +254,7 @@ func GenerateTestSuite(filename string) string {
 
 		// Sort in order for deterministic test generation
 		names := make([]string, 0, len(suite.API.Shapes))
-		for n, _ := range suite.API.Shapes {
+		for n := range suite.API.Shapes {
 			names = append(names, n)
 		}
 		sort.Strings(names)

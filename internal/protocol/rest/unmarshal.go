@@ -135,37 +135,32 @@ func unmarshalHeader(v reflect.Value, header string) error {
 		b, err := base64.StdEncoding.DecodeString(header)
 		if err != nil {
 			return err
-		} else {
-			v.Set(reflect.ValueOf(&b))
 		}
+		v.Set(reflect.ValueOf(&b))
 	case *bool:
 		b, err := strconv.ParseBool(header)
 		if err != nil {
 			return err
-		} else {
-			v.Set(reflect.ValueOf(&b))
 		}
+		v.Set(reflect.ValueOf(&b))
 	case *int64:
 		i, err := strconv.ParseInt(header, 10, 64)
 		if err != nil {
 			return err
-		} else {
-			v.Set(reflect.ValueOf(&i))
 		}
+		v.Set(reflect.ValueOf(&i))
 	case *float64:
 		f, err := strconv.ParseFloat(header, 64)
 		if err != nil {
 			return err
-		} else {
-			v.Set(reflect.ValueOf(&f))
 		}
+		v.Set(reflect.ValueOf(&f))
 	case *time.Time:
 		t, err := time.Parse(RFC822, header)
 		if err != nil {
 			return err
-		} else {
-			v.Set(reflect.ValueOf(&t))
 		}
+		v.Set(reflect.ValueOf(&t))
 	default:
 		err := fmt.Errorf("Unsupported value for param %v (%s)", v.Interface(), v.Type())
 		return err

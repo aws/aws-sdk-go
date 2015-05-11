@@ -80,9 +80,8 @@ func PrettyPrint(v interface{}) string {
 	case reflect.Ptr:
 		if e := value.Elem(); e.IsValid() {
 			return "&" + PrettyPrint(e.Interface())
-		} else {
-			return "nil"
 		}
+		return "nil"
 	case reflect.Slice:
 		str := "[]" + fullName(value.Type().Elem()) + "{\n"
 		for i := 0; i < value.Len(); i++ {

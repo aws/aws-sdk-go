@@ -1,4 +1,4 @@
-// Package for rendering service generated files.
+// Package api represnets API abstractions for rendering service generated files.
 package api
 
 import (
@@ -107,7 +107,7 @@ func (a *API) ProtocolPackage() string {
 // OperationNames returns a slice of API operations supported.
 func (a *API) OperationNames() []string {
 	i, names := 0, make([]string, len(a.Operations))
-	for n, _ := range a.Operations {
+	for n := range a.Operations {
 		names[i] = n
 		i++
 	}
@@ -127,7 +127,7 @@ func (a *API) OperationList() []*Operation {
 // ShapeNames returns a slice of names for each shape used by the API.
 func (a *API) ShapeNames() []string {
 	i, names := 0, make([]string, len(a.Shapes))
-	for n, _ := range a.Shapes {
+	for n := range a.Shapes {
 		names[i] = n
 		i++
 	}
@@ -158,7 +158,7 @@ func (a *API) importsGoCode() string {
 	}
 
 	corePkgs, extPkgs := []string{}, []string{}
-	for i, _ := range a.imports {
+	for i := range a.imports {
 		if strings.Contains(i, ".") {
 			extPkgs = append(extPkgs, i)
 		} else {
@@ -316,9 +316,9 @@ type {{ .StructName }} interface {
 }
 `))
 
-// Returns the go code for the service's API operations as an interface{}.
-// Assumes that the interface is being created in a different package than
-// the service API's package.
+// InterfaceGoCode returns the go code for the service's API operations as an
+// interface{}. Assumes that the interface is being created in a different
+// package than the service API's package.
 func (a *API) InterfaceGoCode() string {
 	a.resetImports()
 	a.imports = map[string]bool{
@@ -342,8 +342,8 @@ func (a *API) InterfaceGoCode() string {
 	return util.GoFmt(code)
 }
 
-// Returns a string of instantiating the API prefixed with its package name.
-// Takes a string depicting the Config.
+// NewAPIGoCodeWithPkgName returns a string of instantiating the API prefixed
+// with its package name. Takes a string depicting the Config.
 func (a *API) NewAPIGoCodeWithPkgName(cfg string) string {
 	return fmt.Sprintf("%s.New(%s)", a.PackageName(), cfg)
 }

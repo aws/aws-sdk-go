@@ -13,7 +13,7 @@ import (
 
 // findMember searches the shape for the member with the matching key name.
 func findMember(shape *api.Shape, key string) string {
-	for actualKey, _ := range shape.MemberRefs {
+	for actualKey := range shape.MemberRefs {
 		if strings.ToLower(key) == strings.ToLower(actualKey) {
 			return actualKey
 		}

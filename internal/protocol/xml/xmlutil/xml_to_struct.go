@@ -82,7 +82,7 @@ func StructToXML(e *xml.Encoder, node *XMLNode, sorted bool) error {
 		e.EncodeToken(xml.CharData([]byte(node.Text)))
 	} else if sorted {
 		sortedNames := []string{}
-		for k, _ := range node.Children {
+		for k := range node.Children {
 			sortedNames = append(sortedNames, k)
 		}
 		sort.Strings(sortedNames)

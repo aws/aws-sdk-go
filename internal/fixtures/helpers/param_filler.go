@@ -19,9 +19,8 @@ type paramFiller struct {
 func (f paramFiller) typeName(shape *api.Shape) string {
 	if f.prefixPackageName && shape.Type == "structure" {
 		return "*" + shape.API.PackageName() + "." + shape.GoTypeElem()
-	} else {
-		return shape.GoType()
 	}
+	return shape.GoType()
 }
 
 // ParamsStructFromJSON returns a JSON string representation of a structure.
@@ -125,7 +124,7 @@ func (f paramFiller) paramsStructList(value []interface{}, shape *api.Shape) str
 
 // findMember searches a map for a key ignoring case. Returns the map key if found.
 func findMember(value map[string]interface{}, key string) string {
-	for actualKey, _ := range value {
+	for actualKey := range value {
 		if strings.ToLower(key) == strings.ToLower(actualKey) {
 			return actualKey
 		}
