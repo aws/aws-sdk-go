@@ -2,13 +2,14 @@ package credentials
 
 import (
 	"fmt"
-	"github.com/vaughan0/go-ini"
 	"os"
 	"path/filepath"
+
+	"github.com/vaughan0/go-ini"
 )
 
 var (
-	// ErrProfileHomeNotFound is emitted when the user directory cannot be found.
+	// ErrSharedCredentialsHomeNotFound is emitted when the user directory cannot be found.
 	ErrSharedCredentialsHomeNotFound = fmt.Errorf("User home directory not found.")
 )
 
@@ -30,7 +31,7 @@ type SharedCredentialsProvider struct {
 	retrieved bool
 }
 
-// NewProfileCredentials returns a pointer to a new Credentials object
+// NewSharedCredentials returns a pointer to a new Credentials object
 // wrapping the Profile file provider.
 func NewSharedCredentials(filename, profile string) *Credentials {
 	return NewCredentials(&SharedCredentialsProvider{

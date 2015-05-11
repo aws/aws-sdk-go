@@ -1,4 +1,4 @@
-// Package provides Credential retrieval and management
+// Package credentials provides credential retrieval and management
 //
 // The Credentials is the primary method of getting access to and managing
 // credentials Values. Using dependency injection retrieval of the credential
@@ -68,11 +68,13 @@ var AnonymousCredentials = NewStaticCredentials("", "", "")
 // A Value is the AWS credentials value for individual credential fields.
 type Value struct {
 	// AWS Access key ID
-	AccessKeyID     string
+	AccessKeyID string
+
 	// AWS Secret Access Key
 	SecretAccessKey string
+
 	// AWS Session Token
-	SessionToken    string
+	SessionToken string
 }
 
 // A Provider is the interface for any component which will provide credentials
@@ -113,7 +115,7 @@ type Credentials struct {
 // NewCredentials returns a pointer to a new Credentials with the provider set.
 func NewCredentials(provider Provider) *Credentials {
 	return &Credentials{
-		provider: provider,
+		provider:     provider,
 		forceRefresh: true,
 	}
 }

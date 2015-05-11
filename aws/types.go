@@ -36,6 +36,8 @@ func ReadSeekCloser(r io.Reader) ReaderSeekerCloser {
 	return ReaderSeekerCloser{r}
 }
 
+// ReaderSeekerCloser represents a reader that can also delegate io.Seeker and
+// io.Closer interfaces to the underlying object if they are available.
 type ReaderSeekerCloser struct {
 	r io.Reader
 }

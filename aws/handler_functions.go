@@ -87,6 +87,8 @@ func ValidateResponseHandler(r *Request) {
 	}
 }
 
+// AfterRetryHandler performs final checks to determine if the request should
+// be retried and how long to delay.
 func AfterRetryHandler(r *Request) {
 	// If one of the other handlers already set the retry state
 	// we don't want to override it based on the service's state
@@ -113,8 +115,13 @@ func AfterRetryHandler(r *Request) {
 }
 
 var (
-	ErrMissingRegion   = fmt.Errorf("could not find region configuration.")
-	ErrMissingEndpoint = fmt.Errorf("`Endpoint' configuration is required for this service.")
+	// ErrMissingRegion is an error that is returned if region configuration is
+	// not found.
+	ErrMissingRegion = fmt.Errorf("could not find region configuration")
+
+	// ErrMissingEndpoint is an error that is returned if an endpoint cannot be
+	// resolved for a service.
+	ErrMissingEndpoint = fmt.Errorf("`Endpoint' configuration is required for this service")
 )
 
 // ValidateEndpointHandler is a request handler to validate a request had the

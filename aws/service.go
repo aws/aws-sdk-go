@@ -122,9 +122,8 @@ func (s *Service) AddDebugHandlers() {
 func (s *Service) MaxRetries() uint {
 	if s.Config.MaxRetries < 0 {
 		return s.DefaultMaxRetries
-	} else {
-		return uint(s.Config.MaxRetries)
 	}
+	return uint(s.Config.MaxRetries)
 }
 
 // retryRules returns the delay duration before retrying this request again

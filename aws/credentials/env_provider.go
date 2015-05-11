@@ -30,7 +30,7 @@ func NewEnvCredentials() *Credentials {
 	return NewCredentials(&EnvProvider{})
 }
 
-// Refresh retrieves the keys from the environment.
+// Retrieve retrieves the keys from the environment.
 func (e *EnvProvider) Retrieve() (Value, error) {
 	e.retrieved = false
 

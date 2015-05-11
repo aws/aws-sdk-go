@@ -1,10 +1,11 @@
 package aws
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws/credentials"
 	"io"
 	"net/http"
 	"os"
+
+	"github.com/awslabs/aws-sdk-go/aws/credentials"
 )
 
 // DefaultChainCredentials is a Credentials which will find the first available
@@ -12,14 +13,16 @@ import (
 //
 // This should be used in the default case. Once the type of credentials are
 // known switching to the specific Credentials will be more efficient.
-var DefaultChainCredentials *credentials.Credentials = credentials.NewChainCredentials(
+var DefaultChainCredentials = credentials.NewChainCredentials(
 	[]credentials.Provider{
 		&credentials.EnvProvider{},
 		&credentials.SharedCredentialsProvider{Filename: "", Profile: ""},
 		&credentials.EC2RoleProvider{},
 	})
 
-const DEFAULT_RETRIES = -1
+// The default number of retries for a service. The value of -1 indicates that
+// the service specific retry default will be used.
+const DefaultRetries = -1
 
 // DefaultConfig is the default all service configuration will be based off of.
 var DefaultConfig = &Config{
@@ -32,7 +35,7 @@ var DefaultConfig = &Config{
 	LogHTTPBody:             false,
 	LogLevel:                0,
 	Logger:                  os.Stdout,
-	MaxRetries:              DEFAULT_RETRIES,
+	MaxRetries:              DefaultRetries,
 	DisableParamValidation:  false,
 	DisableComputeChecksums: false,
 	S3ForcePathStyle:        false,
@@ -136,7 +139,7 @@ func (c Config) Merge(newcfg *Config) *Config {
 		cfg.Logger = c.Logger
 	}
 
-	if newcfg != nil && newcfg.MaxRetries != DEFAULT_RETRIES {
+	if newcfg != nil && newcfg.MaxRetries != DefaultRetries {
 		cfg.MaxRetries = newcfg.MaxRetries
 	} else {
 		cfg.MaxRetries = c.MaxRetries

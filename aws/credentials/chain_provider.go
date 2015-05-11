@@ -43,7 +43,7 @@ type ChainProvider struct {
 	curr      Provider
 }
 
-// NewMetadataServiceCredentials returns a pointer to a new Credentials object
+// NewChainCredentials returns a pointer to a new Credentials object
 // wrapping a chain of providers.
 func NewChainCredentials(providers []Provider) *Credentials {
 	return NewCredentials(&ChainProvider{

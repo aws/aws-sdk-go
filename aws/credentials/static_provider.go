@@ -5,6 +5,7 @@ import (
 )
 
 var (
+	// ErrStaticCredentialsEmpty is emitted when static credentials are empty.
 	ErrStaticCredentialsEmpty = fmt.Errorf("static credentials are empty")
 )
 
@@ -24,7 +25,7 @@ func NewStaticCredentials(id, secret, token string) *Credentials {
 	}})
 }
 
-// Get returns the credentials or error if the credentials are invalid.
+// Retrieve returns the credentials or error if the credentials are invalid.
 func (s *StaticProvider) Retrieve() (Value, error) {
 	if s.AccessKeyID == "" || s.SecretAccessKey == "" {
 		return Value{}, ErrStaticCredentialsEmpty

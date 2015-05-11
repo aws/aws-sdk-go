@@ -120,9 +120,8 @@ func (r *Request) Presign(expireTime time.Duration) (string, error) {
 	r.Sign()
 	if r.Error != nil {
 		return "", r.Error
-	} else {
-		return r.HTTPRequest.URL.String(), nil
 	}
+	return r.HTTPRequest.URL.String(), nil
 }
 
 // Build will build the request's object so it can be signed and sent
