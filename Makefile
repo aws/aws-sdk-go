@@ -14,3 +14,8 @@ generate:
 
 test: generate-test
 	go test ./... -tags=integration
+
+unit:
+	lint=`golint ./aws/...`; echo "$$lint"; \
+	  if [[ $$lint != "" ]]; then exit 1; fi
+	go test ./...
