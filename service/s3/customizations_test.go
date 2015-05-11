@@ -7,9 +7,12 @@ import (
 	"testing"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/internal/test/unit"
 	"github.com/awslabs/aws-sdk-go/service/s3"
 	"github.com/stretchr/testify/assert"
 )
+
+var _ = unit.Imported
 
 func assertMD5(t *testing.T, req *aws.Request) {
 	err := req.Build()
@@ -22,7 +25,7 @@ func assertMD5(t *testing.T, req *aws.Request) {
 }
 
 func TestMD5InPutBucketCORS(t *testing.T) {
-	svc := s3.New(baseConfig)
+	svc := s3.New(nil)
 	req, _ := svc.PutBucketCORSRequest(&s3.PutBucketCORSInput{
 		Bucket: aws.String("bucketname"),
 		CORSConfiguration: &s3.CORSConfiguration{
@@ -35,7 +38,7 @@ func TestMD5InPutBucketCORS(t *testing.T) {
 }
 
 func TestMD5InPutBucketLifecycle(t *testing.T) {
-	svc := s3.New(baseConfig)
+	svc := s3.New(nil)
 	req, _ := svc.PutBucketLifecycleRequest(&s3.PutBucketLifecycleInput{
 		Bucket: aws.String("bucketname"),
 		LifecycleConfiguration: &s3.LifecycleConfiguration{
@@ -52,7 +55,7 @@ func TestMD5InPutBucketLifecycle(t *testing.T) {
 }
 
 func TestMD5InPutBucketTagging(t *testing.T) {
-	svc := s3.New(baseConfig)
+	svc := s3.New(nil)
 	req, _ := svc.PutBucketTaggingRequest(&s3.PutBucketTaggingInput{
 		Bucket: aws.String("bucketname"),
 		Tagging: &s3.Tagging{
@@ -65,7 +68,7 @@ func TestMD5InPutBucketTagging(t *testing.T) {
 }
 
 func TestMD5InDeleteObjects(t *testing.T) {
-	svc := s3.New(baseConfig)
+	svc := s3.New(nil)
 	req, _ := svc.DeleteObjectsRequest(&s3.DeleteObjectsInput{
 		Bucket: aws.String("bucketname"),
 		Delete: &s3.Delete{

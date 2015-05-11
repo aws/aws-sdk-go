@@ -8,17 +8,16 @@ import (
 	"testing"
 
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/credentials"
+	"github.com/awslabs/aws-sdk-go/internal/test/unit"
 	"github.com/awslabs/aws-sdk-go/service/dynamodb"
 	"github.com/stretchr/testify/assert"
 )
 
+var _ = unit.Imported
 var db *dynamodb.DynamoDB
 
 func TestMain(m *testing.M) {
 	db = dynamodb.New(&aws.Config{
-		Region: "mock-region",
-		Credentials: credentials.NewStaticCredentials("AKID", "SECRET", ""),
 		MaxRetries: 2,
 	})
 	db.Handlers.Send.Clear() // mock sending
@@ -85,8 +84,6 @@ func TestValidateCRC32DoesNotMatch(t *testing.T) {
 
 func TestValidateCRC32DoesNotMatchNoComputeChecksum(t *testing.T) {
 	svc := dynamodb.New(&aws.Config{
-		Region: "mock-region",
-		Credentials: credentials.NewStaticCredentials("AKID", "SECRET", ""),
 		MaxRetries:              2,
 		DisableComputeChecksums: true,
 	})

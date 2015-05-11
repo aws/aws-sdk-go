@@ -6,16 +6,15 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/credentials"
+	"github.com/awslabs/aws-sdk-go/internal/test/unit"
 	"github.com/awslabs/aws-sdk-go/service/s3"
 	"github.com/stretchr/testify/assert"
 )
 
+var _ = unit.Imported
+
 func TestPresignHandler(t *testing.T) {
-	svc := s3.New(&aws.Config{
-		Credentials: credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
-		Region:      "mock-region",
-	})
+	svc := s3.New(nil)
 	req, _ := svc.PutObjectRequest(&s3.PutObjectInput{
 		Bucket:             aws.String("bucket"),
 		Key:                aws.String("key"),
