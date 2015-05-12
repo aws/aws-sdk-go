@@ -3119,6 +3119,9 @@ type GetObjectOutput struct {
 	// Size of the body in bytes.
 	ContentLength *int64 `location:"header" locationName:"Content-Length" type:"integer"`
 
+	// The portion of the object returned in the response.
+	ContentRange *string `location:"header" locationName:"Content-Range" type:"string"`
+
 	// A standard MIME type describing the format of the object data.
 	ContentType *string `location:"header" locationName:"Content-Type" type:"string"`
 
