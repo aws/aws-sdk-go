@@ -980,6 +980,7 @@
     "ContentLanguage":{"type":"string"},
     "ContentLength":{"type":"integer"},
     "ContentMD5":{"type":"string"},
+    "ContentRange":{"type":"string"},
     "ContentType":{"type":"string"},
     "CopyObjectOutput":{
       "type":"structure",
@@ -2198,6 +2199,12 @@
           "location":"header",
           "locationName":"Content-Language",
           "documentation":"The language the content is in."
+        },
+        "ContentRange":{
+          "shape":"ContentRange",
+          "location":"header",
+          "locationName":"Content-Range",
+          "documentation":"The portion of the object returned in the response."
         },
         "ContentType":{
           "shape":"ContentType",
