@@ -721,34 +721,34 @@ type metadataAttributeDefinition struct {
 // attribute is a set; duplicate values are not allowed.
 type AttributeValue struct {
 	// A Binary data type.
-	B []byte `type:"blob"`
+	B []byte `json:"B,omitempty", type:"blob"`
 
 	// A Boolean data type.
-	BOOL *bool `type:"boolean"`
+	BOOL *bool `json:"BOOL,omitempty", type:"boolean"`
 
 	// A Binary Set data type.
-	BS [][]byte `type:"list"`
+	BS [][]byte `json:"BS,omitempty", type:"list"`
 
 	// A List of attribute values.
-	L []*AttributeValue `type:"list"`
+	L []*AttributeValue `json:"L,omitempty", type:"list"`
 
 	// A Map of attribute values.
-	M *map[string]*AttributeValue `type:"map"`
+	M *map[string]*AttributeValue `json:"M,omitempty", type:"map"`
 
 	// A Number data type.
-	N *string `type:"string"`
+	N *string `json:"N,omitempty", type:"string"`
 
 	// A Number Set data type.
-	NS []*string `type:"list"`
+	NS []*string `json:"NS,omitempty", type:"list"`
 
 	// A Null data type.
-	NULL *bool `type:"boolean"`
+	NULL *bool `json:"NULL,omitempty", type:"boolean"`
 
 	// A String data type.
-	S *string `type:"string"`
+	S *string `json:"S,omitempty", type:"string"`
 
 	// A String Set data type.
-	SS []*string `type:"list"`
+	SS []*string `json:"SS,omitempty", type:"list"`
 
 	metadataAttributeValue `json:"-" xml:"-"`
 }
