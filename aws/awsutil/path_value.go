@@ -8,7 +8,6 @@ import (
 )
 
 var indexRe = regexp.MustCompile(`(.+)\[(-?\d+)?\]$`)
-var rnil = reflect.ValueOf(nil)
 
 // rValuesAtPath returns a slice of values found in value v. The values
 // in v are explored recursively so all nested values are collected.
@@ -55,7 +54,6 @@ func rValuesAtPath(v interface{}, path string, create bool, caseSensitive bool) 
 			// pull component name out of struct member
 			if value.Kind() != reflect.Struct {
 				continue
-		}
 			}
 
 			if c == "*" { // pull all members
@@ -84,15 +82,8 @@ func rValuesAtPath(v interface{}, path string, create bool, caseSensitive bool) 
 			}
 
 			if value.IsValid() {
-				if create {
-					// TODO resize slice
-				} else {
-					return rnil
-				}
 				nextvals = append(nextvals, value)
-				i = value.Len() + i
 			}
-			value = reflect.Indirect(value.Index(i))
 		}
 		values = nextvals
 
