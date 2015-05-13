@@ -1,3 +1,5 @@
+// +build !integration
+
 package sqs_test
 
 import (

@@ -1,4 +1,7 @@
 // Package unit performs initialization and validation for unit tests
+//
+// +build !integration
+
 package unit
 
 import (

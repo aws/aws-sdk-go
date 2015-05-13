@@ -1,3 +1,5 @@
+// +build !integration
+
 package v4_test
 
 import (
