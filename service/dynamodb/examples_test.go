@@ -736,46 +736,6 @@ func ExampleDynamoDB_Query() {
 	svc := dynamodb.New(nil)
 
 	params := &dynamodb.QueryInput{
-		KeyConditions: &map[string]*dynamodb.Condition{ // Required
-			"Key": &dynamodb.Condition{ // Required
-				ComparisonOperator: aws.String("ComparisonOperator"), // Required
-				AttributeValueList: []*dynamodb.AttributeValue{
-					&dynamodb.AttributeValue{ // Required
-						B:    []byte("PAYLOAD"),
-						BOOL: aws.Boolean(true),
-						BS: [][]byte{
-							[]byte("PAYLOAD"), // Required
-							// More values...
-						},
-						L: []*dynamodb.AttributeValue{
-							&dynamodb.AttributeValue{ // Required
-							// Recursive values...
-							},
-							// More values...
-						},
-						M: &map[string]*dynamodb.AttributeValue{
-							"Key": &dynamodb.AttributeValue{ // Required
-							// Recursive values...
-							},
-							// More values...
-						},
-						N: aws.String("NumberAttributeValue"),
-						NS: []*string{
-							aws.String("NumberAttributeValue"), // Required
-							// More values...
-						},
-						NULL: aws.Boolean(true),
-						S:    aws.String("StringAttributeValue"),
-						SS: []*string{
-							aws.String("StringAttributeValue"), // Required
-							// More values...
-						},
-					},
-					// More values...
-				},
-			},
-			// More values...
-		},
 		TableName: aws.String("TableName"), // Required
 		AttributesToGet: []*string{
 			aws.String("AttributeName"), // Required
@@ -855,8 +815,49 @@ func ExampleDynamoDB_Query() {
 			},
 			// More values...
 		},
-		FilterExpression:     aws.String("ConditionExpression"),
-		IndexName:            aws.String("IndexName"),
+		FilterExpression:       aws.String("ConditionExpression"),
+		IndexName:              aws.String("IndexName"),
+		KeyConditionExpression: aws.String("KeyExpression"),
+		KeyConditions: &map[string]*dynamodb.Condition{
+			"Key": &dynamodb.Condition{ // Required
+				ComparisonOperator: aws.String("ComparisonOperator"), // Required
+				AttributeValueList: []*dynamodb.AttributeValue{
+					&dynamodb.AttributeValue{ // Required
+						B:    []byte("PAYLOAD"),
+						BOOL: aws.Boolean(true),
+						BS: [][]byte{
+							[]byte("PAYLOAD"), // Required
+							// More values...
+						},
+						L: []*dynamodb.AttributeValue{
+							&dynamodb.AttributeValue{ // Required
+							// Recursive values...
+							},
+							// More values...
+						},
+						M: &map[string]*dynamodb.AttributeValue{
+							"Key": &dynamodb.AttributeValue{ // Required
+							// Recursive values...
+							},
+							// More values...
+						},
+						N: aws.String("NumberAttributeValue"),
+						NS: []*string{
+							aws.String("NumberAttributeValue"), // Required
+							// More values...
+						},
+						NULL: aws.Boolean(true),
+						S:    aws.String("StringAttributeValue"),
+						SS: []*string{
+							aws.String("StringAttributeValue"), // Required
+							// More values...
+						},
+					},
+					// More values...
+				},
+			},
+			// More values...
+		},
 		Limit:                aws.Long(1),
 		ProjectionExpression: aws.String("ProjectionExpression"),
 		QueryFilter: &map[string]*dynamodb.Condition{
