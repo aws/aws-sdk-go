@@ -835,19 +835,16 @@ func (c *RDS) DescribeDBEngineVersions(input *DescribeDBEngineVersionsInput) (*D
 	return out, err
 }
 
-func (c *RDS) DescribeDBEngineVersionsPages(input *DescribeDBEngineVersionsInput) <-chan *DescribeDBEngineVersionsOutput {
+func (c *RDS) DescribeDBEngineVersionsPages(input *DescribeDBEngineVersionsInput, fn func(*DescribeDBEngineVersionsOutput, error) bool) {
 	page, _ := c.DescribeDBEngineVersionsRequest(input)
-	ch := make(chan *DescribeDBEngineVersionsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeDBEngineVersionsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeDBEngineVersionsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeDBEngineVersions *aws.Operation
@@ -888,19 +885,16 @@ func (c *RDS) DescribeDBInstances(input *DescribeDBInstancesInput) (*DescribeDBI
 	return out, err
 }
 
-func (c *RDS) DescribeDBInstancesPages(input *DescribeDBInstancesInput) <-chan *DescribeDBInstancesOutput {
+func (c *RDS) DescribeDBInstancesPages(input *DescribeDBInstancesInput, fn func(*DescribeDBInstancesOutput, error) bool) {
 	page, _ := c.DescribeDBInstancesRequest(input)
-	ch := make(chan *DescribeDBInstancesOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeDBInstancesOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeDBInstancesOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeDBInstances *aws.Operation
@@ -941,19 +935,16 @@ func (c *RDS) DescribeDBLogFiles(input *DescribeDBLogFilesInput) (*DescribeDBLog
 	return out, err
 }
 
-func (c *RDS) DescribeDBLogFilesPages(input *DescribeDBLogFilesInput) <-chan *DescribeDBLogFilesOutput {
+func (c *RDS) DescribeDBLogFilesPages(input *DescribeDBLogFilesInput, fn func(*DescribeDBLogFilesOutput, error) bool) {
 	page, _ := c.DescribeDBLogFilesRequest(input)
-	ch := make(chan *DescribeDBLogFilesOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeDBLogFilesOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeDBLogFilesOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeDBLogFiles *aws.Operation
@@ -996,19 +987,16 @@ func (c *RDS) DescribeDBParameterGroups(input *DescribeDBParameterGroupsInput) (
 	return out, err
 }
 
-func (c *RDS) DescribeDBParameterGroupsPages(input *DescribeDBParameterGroupsInput) <-chan *DescribeDBParameterGroupsOutput {
+func (c *RDS) DescribeDBParameterGroupsPages(input *DescribeDBParameterGroupsInput, fn func(*DescribeDBParameterGroupsOutput, error) bool) {
 	page, _ := c.DescribeDBParameterGroupsRequest(input)
-	ch := make(chan *DescribeDBParameterGroupsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeDBParameterGroupsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeDBParameterGroupsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeDBParameterGroups *aws.Operation
@@ -1049,19 +1037,16 @@ func (c *RDS) DescribeDBParameters(input *DescribeDBParametersInput) (*DescribeD
 	return out, err
 }
 
-func (c *RDS) DescribeDBParametersPages(input *DescribeDBParametersInput) <-chan *DescribeDBParametersOutput {
+func (c *RDS) DescribeDBParametersPages(input *DescribeDBParametersInput, fn func(*DescribeDBParametersOutput, error) bool) {
 	page, _ := c.DescribeDBParametersRequest(input)
-	ch := make(chan *DescribeDBParametersOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeDBParametersOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeDBParametersOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeDBParameters *aws.Operation
@@ -1104,19 +1089,16 @@ func (c *RDS) DescribeDBSecurityGroups(input *DescribeDBSecurityGroupsInput) (*D
 	return out, err
 }
 
-func (c *RDS) DescribeDBSecurityGroupsPages(input *DescribeDBSecurityGroupsInput) <-chan *DescribeDBSecurityGroupsOutput {
+func (c *RDS) DescribeDBSecurityGroupsPages(input *DescribeDBSecurityGroupsInput, fn func(*DescribeDBSecurityGroupsOutput, error) bool) {
 	page, _ := c.DescribeDBSecurityGroupsRequest(input)
-	ch := make(chan *DescribeDBSecurityGroupsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeDBSecurityGroupsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeDBSecurityGroupsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeDBSecurityGroups *aws.Operation
@@ -1157,19 +1139,16 @@ func (c *RDS) DescribeDBSnapshots(input *DescribeDBSnapshotsInput) (*DescribeDBS
 	return out, err
 }
 
-func (c *RDS) DescribeDBSnapshotsPages(input *DescribeDBSnapshotsInput) <-chan *DescribeDBSnapshotsOutput {
+func (c *RDS) DescribeDBSnapshotsPages(input *DescribeDBSnapshotsInput, fn func(*DescribeDBSnapshotsOutput, error) bool) {
 	page, _ := c.DescribeDBSnapshotsRequest(input)
-	ch := make(chan *DescribeDBSnapshotsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeDBSnapshotsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeDBSnapshotsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeDBSnapshots *aws.Operation
@@ -1213,19 +1192,16 @@ func (c *RDS) DescribeDBSubnetGroups(input *DescribeDBSubnetGroupsInput) (*Descr
 	return out, err
 }
 
-func (c *RDS) DescribeDBSubnetGroupsPages(input *DescribeDBSubnetGroupsInput) <-chan *DescribeDBSubnetGroupsOutput {
+func (c *RDS) DescribeDBSubnetGroupsPages(input *DescribeDBSubnetGroupsInput, fn func(*DescribeDBSubnetGroupsOutput, error) bool) {
 	page, _ := c.DescribeDBSubnetGroupsRequest(input)
-	ch := make(chan *DescribeDBSubnetGroupsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeDBSubnetGroupsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeDBSubnetGroupsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeDBSubnetGroups *aws.Operation
@@ -1267,19 +1243,16 @@ func (c *RDS) DescribeEngineDefaultParameters(input *DescribeEngineDefaultParame
 	return out, err
 }
 
-func (c *RDS) DescribeEngineDefaultParametersPages(input *DescribeEngineDefaultParametersInput) <-chan *DescribeEngineDefaultParametersOutput {
+func (c *RDS) DescribeEngineDefaultParametersPages(input *DescribeEngineDefaultParametersInput, fn func(*DescribeEngineDefaultParametersOutput, error) bool) {
 	page, _ := c.DescribeEngineDefaultParametersRequest(input)
-	ch := make(chan *DescribeEngineDefaultParametersOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeEngineDefaultParametersOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeEngineDefaultParametersOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeEngineDefaultParameters *aws.Operation
@@ -1359,19 +1332,16 @@ func (c *RDS) DescribeEventSubscriptions(input *DescribeEventSubscriptionsInput)
 	return out, err
 }
 
-func (c *RDS) DescribeEventSubscriptionsPages(input *DescribeEventSubscriptionsInput) <-chan *DescribeEventSubscriptionsOutput {
+func (c *RDS) DescribeEventSubscriptionsPages(input *DescribeEventSubscriptionsInput, fn func(*DescribeEventSubscriptionsOutput, error) bool) {
 	page, _ := c.DescribeEventSubscriptionsRequest(input)
-	ch := make(chan *DescribeEventSubscriptionsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeEventSubscriptionsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeEventSubscriptionsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeEventSubscriptions *aws.Operation
@@ -1416,19 +1386,16 @@ func (c *RDS) DescribeEvents(input *DescribeEventsInput) (*DescribeEventsOutput,
 	return out, err
 }
 
-func (c *RDS) DescribeEventsPages(input *DescribeEventsInput) <-chan *DescribeEventsOutput {
+func (c *RDS) DescribeEventsPages(input *DescribeEventsInput, fn func(*DescribeEventsOutput, error) bool) {
 	page, _ := c.DescribeEventsRequest(input)
-	ch := make(chan *DescribeEventsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeEventsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeEventsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeEvents *aws.Operation
@@ -1469,19 +1436,16 @@ func (c *RDS) DescribeOptionGroupOptions(input *DescribeOptionGroupOptionsInput)
 	return out, err
 }
 
-func (c *RDS) DescribeOptionGroupOptionsPages(input *DescribeOptionGroupOptionsInput) <-chan *DescribeOptionGroupOptionsOutput {
+func (c *RDS) DescribeOptionGroupOptionsPages(input *DescribeOptionGroupOptionsInput, fn func(*DescribeOptionGroupOptionsOutput, error) bool) {
 	page, _ := c.DescribeOptionGroupOptionsRequest(input)
-	ch := make(chan *DescribeOptionGroupOptionsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeOptionGroupOptionsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeOptionGroupOptionsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeOptionGroupOptions *aws.Operation
@@ -1522,19 +1486,16 @@ func (c *RDS) DescribeOptionGroups(input *DescribeOptionGroupsInput) (*DescribeO
 	return out, err
 }
 
-func (c *RDS) DescribeOptionGroupsPages(input *DescribeOptionGroupsInput) <-chan *DescribeOptionGroupsOutput {
+func (c *RDS) DescribeOptionGroupsPages(input *DescribeOptionGroupsInput, fn func(*DescribeOptionGroupsOutput, error) bool) {
 	page, _ := c.DescribeOptionGroupsRequest(input)
-	ch := make(chan *DescribeOptionGroupsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeOptionGroupsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeOptionGroupsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeOptionGroups *aws.Operation
@@ -1575,19 +1536,16 @@ func (c *RDS) DescribeOrderableDBInstanceOptions(input *DescribeOrderableDBInsta
 	return out, err
 }
 
-func (c *RDS) DescribeOrderableDBInstanceOptionsPages(input *DescribeOrderableDBInstanceOptionsInput) <-chan *DescribeOrderableDBInstanceOptionsOutput {
+func (c *RDS) DescribeOrderableDBInstanceOptionsPages(input *DescribeOrderableDBInstanceOptionsInput, fn func(*DescribeOrderableDBInstanceOptionsOutput, error) bool) {
 	page, _ := c.DescribeOrderableDBInstanceOptionsRequest(input)
-	ch := make(chan *DescribeOrderableDBInstanceOptionsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeOrderableDBInstanceOptionsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeOrderableDBInstanceOptionsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeOrderableDBInstanceOptions *aws.Operation
@@ -1662,19 +1620,16 @@ func (c *RDS) DescribeReservedDBInstances(input *DescribeReservedDBInstancesInpu
 	return out, err
 }
 
-func (c *RDS) DescribeReservedDBInstancesPages(input *DescribeReservedDBInstancesInput) <-chan *DescribeReservedDBInstancesOutput {
+func (c *RDS) DescribeReservedDBInstancesPages(input *DescribeReservedDBInstancesInput, fn func(*DescribeReservedDBInstancesOutput, error) bool) {
 	page, _ := c.DescribeReservedDBInstancesRequest(input)
-	ch := make(chan *DescribeReservedDBInstancesOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeReservedDBInstancesOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeReservedDBInstancesOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeReservedDBInstances *aws.Operation
@@ -1715,19 +1670,16 @@ func (c *RDS) DescribeReservedDBInstancesOfferings(input *DescribeReservedDBInst
 	return out, err
 }
 
-func (c *RDS) DescribeReservedDBInstancesOfferingsPages(input *DescribeReservedDBInstancesOfferingsInput) <-chan *DescribeReservedDBInstancesOfferingsOutput {
+func (c *RDS) DescribeReservedDBInstancesOfferingsPages(input *DescribeReservedDBInstancesOfferingsInput, fn func(*DescribeReservedDBInstancesOfferingsOutput, error) bool) {
 	page, _ := c.DescribeReservedDBInstancesOfferingsRequest(input)
-	ch := make(chan *DescribeReservedDBInstancesOfferingsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DescribeReservedDBInstancesOfferingsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DescribeReservedDBInstancesOfferingsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDescribeReservedDBInstancesOfferings *aws.Operation
@@ -1768,19 +1720,16 @@ func (c *RDS) DownloadDBLogFilePortion(input *DownloadDBLogFilePortionInput) (*D
 	return out, err
 }
 
-func (c *RDS) DownloadDBLogFilePortionPages(input *DownloadDBLogFilePortionInput) <-chan *DownloadDBLogFilePortionOutput {
+func (c *RDS) DownloadDBLogFilePortionPages(input *DownloadDBLogFilePortionInput, fn func(*DownloadDBLogFilePortionOutput, error) bool) {
 	page, _ := c.DownloadDBLogFilePortionRequest(input)
-	ch := make(chan *DownloadDBLogFilePortionOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*DownloadDBLogFilePortionOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*DownloadDBLogFilePortionOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opDownloadDBLogFilePortion *aws.Operation
@@ -1795,12 +1744,6 @@ func (c *RDS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 			Name:       "ListTagsForResource",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -1822,21 +1765,6 @@ func (c *RDS) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsFor
 	req, out := c.ListTagsForResourceRequest(input)
 	err := req.Send()
 	return out, err
-}
-
-func (c *RDS) ListTagsForResourcePages(input *ListTagsForResourceInput) <-chan *ListTagsForResourceOutput {
-	page, _ := c.ListTagsForResourceRequest(input)
-	ch := make(chan *ListTagsForResourceOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*ListTagsForResourceOutput)
-			ch <- out
-			page = page.NextPage()
-		}
-		close(ch)
-	}()
-	return ch
 }
 
 var opListTagsForResource *aws.Operation
@@ -3489,7 +3417,6 @@ type metadataDBEngineVersion struct {
 //  CreateDBInstance DeleteDBInstance ModifyDBInstance  This data type is used
 // as a response element in the DescribeDBInstances action.
 type DBInstance struct {
-<<<<<<< HEAD
 	// Specifies the allocated storage size specified in gigabytes.
 	AllocatedStorage *int64 `type:"integer"`
 
@@ -3505,11 +3432,6 @@ type DBInstance struct {
 	// If present, specifies the name of the character set that this instance is
 	// associated with.
 	CharacterSetName *string `type:"string"`
-
-	// If StorageEncrypted is true, the region-unique, immutable identifier for
-	// the encrypted DB instance. This identifier is found in AWS CloudTrail log
-	// entries whenever the KMS key for the DB instance is accessed.
-	DBIResourceID *string `locationName:"DbiResourceId" type:"string"`
 
 	// Contains the name of the compute and memory capacity class of the DB instance.
 	DBInstanceClass *string `type:"string"`
@@ -3550,6 +3472,11 @@ type DBInstance struct {
 	// Specifies information on the subnet group associated with the DB instance,
 	// including the name, description, and subnets in the subnet group.
 	DBSubnetGroup *DBSubnetGroup `type:"structure"`
+
+	// If StorageEncrypted is true, the region-unique, immutable identifier for
+	// the encrypted DB instance. This identifier is found in AWS CloudTrail log
+	// entries whenever the KMS key for the DB instance is accessed.
+	DBiResourceID *string `locationName:"DbiResourceId" type:"string"`
 
 	// Specifies the connection endpoint.
 	Endpoint *Endpoint `type:"structure"`
@@ -3644,46 +3571,6 @@ type DBInstance struct {
 	VPCSecurityGroups []*VPCSecurityGroupMembership `locationName:"VpcSecurityGroups" locationNameList:"VpcSecurityGroupMembership" type:"list"`
 
 	metadataDBInstance `json:"-" xml:"-"`
-=======
-	AllocatedStorage                      *int64                        `type:"integer"`
-	AutoMinorVersionUpgrade               *bool                         `type:"boolean"`
-	AvailabilityZone                      *string                       `type:"string"`
-	BackupRetentionPeriod                 *int64                        `type:"integer"`
-	CharacterSetName                      *string                       `type:"string"`
-	DBInstanceClass                       *string                       `type:"string"`
-	DBInstanceIdentifier                  *string                       `type:"string"`
-	DBInstanceStatus                      *string                       `type:"string"`
-	DBName                                *string                       `type:"string"`
-	DBParameterGroups                     []*DBParameterGroupStatus     `locationNameList:"DBParameterGroup" type:"list"`
-	DBSecurityGroups                      []*DBSecurityGroupMembership  `locationNameList:"DBSecurityGroup" type:"list"`
-	DBSubnetGroup                         *DBSubnetGroup                `type:"structure"`
-	DBiResourceID                         *string                       `locationName:"DbiResourceId" type:"string"`
-	Endpoint                              *Endpoint                     `type:"structure"`
-	Engine                                *string                       `type:"string"`
-	EngineVersion                         *string                       `type:"string"`
-	IOPS                                  *int64                        `locationName:"Iops" type:"integer"`
-	InstanceCreateTime                    *time.Time                    `type:"timestamp" timestampFormat:"iso8601"`
-	KMSKeyID                              *string                       `locationName:"KmsKeyId" type:"string"`
-	LatestRestorableTime                  *time.Time                    `type:"timestamp" timestampFormat:"iso8601"`
-	LicenseModel                          *string                       `type:"string"`
-	MasterUsername                        *string                       `type:"string"`
-	MultiAZ                               *bool                         `type:"boolean"`
-	OptionGroupMemberships                []*OptionGroupMembership      `locationNameList:"OptionGroupMembership" type:"list"`
-	PendingModifiedValues                 *PendingModifiedValues        `type:"structure"`
-	PreferredBackupWindow                 *string                       `type:"string"`
-	PreferredMaintenanceWindow            *string                       `type:"string"`
-	PubliclyAccessible                    *bool                         `type:"boolean"`
-	ReadReplicaDBInstanceIdentifiers      []*string                     `locationNameList:"ReadReplicaDBInstanceIdentifier" type:"list"`
-	ReadReplicaSourceDBInstanceIdentifier *string                       `type:"string"`
-	SecondaryAvailabilityZone             *string                       `type:"string"`
-	StatusInfos                           []*DBInstanceStatusInfo       `locationNameList:"DBInstanceStatusInfo" type:"list"`
-	StorageEncrypted                      *bool                         `type:"boolean"`
-	StorageType                           *string                       `type:"string"`
-	TDECredentialARN                      *string                       `locationName:"TdeCredentialArn" type:"string"`
-	VPCSecurityGroups                     []*VPCSecurityGroupMembership `locationName:"VpcSecurityGroups" locationNameList:"VpcSecurityGroupMembership" type:"list"`
-
-	metadataDBInstance `json:"-", xml:"-"`
->>>>>>> Add paginator configuration to supported operations.
 }
 
 type metadataDBInstance struct {

@@ -475,26 +475,19 @@ func (c *Lambda) ListEventSourceMappings(input *ListEventSourceMappingsInput) (*
 	return out, err
 }
 
-<<<<<<< HEAD
-var opListEventSourceMappings *aws.Operation
-=======
-func (c *Lambda) ListEventSourcesPages(input *ListEventSourcesInput) <-chan *ListEventSourcesOutput {
-	page, _ := c.ListEventSourcesRequest(input)
-	ch := make(chan *ListEventSourcesOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*ListEventSourcesOutput)
-			ch <- out
-			page = page.NextPage()
+func (c *Lambda) ListEventSourceMappingsPages(input *ListEventSourceMappingsInput, fn func(*ListEventSourceMappingsOutput, error) bool) {
+	page, _ := c.ListEventSourceMappingsRequest(input)
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*ListEventSourceMappingsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
-var opListEventSources *aws.Operation
->>>>>>> Add initial implementation of pagination
+var opListEventSourceMappings *aws.Operation
 
 // ListFunctionsRequest generates a request for the ListFunctions operation.
 func (c *Lambda) ListFunctionsRequest(input *ListFunctionsInput) (req *aws.Request, output *ListFunctionsOutput) {
@@ -536,19 +529,16 @@ func (c *Lambda) ListFunctions(input *ListFunctionsInput) (*ListFunctionsOutput,
 	return out, err
 }
 
-func (c *Lambda) ListFunctionsPages(input *ListFunctionsInput) <-chan *ListFunctionsOutput {
+func (c *Lambda) ListFunctionsPages(input *ListFunctionsInput, fn func(*ListFunctionsOutput, error) bool) {
 	page, _ := c.ListFunctionsRequest(input)
-	ch := make(chan *ListFunctionsOutput)
-	go func() {
-		for page != nil {
-			page.Send()
-			out := page.Data.(*ListFunctionsOutput)
-			ch <- out
-			page = page.NextPage()
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*ListFunctionsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
 		}
-		close(ch)
-	}()
-	return ch
+	}
+	fn(nil, nil)
 }
 
 var opListFunctions *aws.Operation

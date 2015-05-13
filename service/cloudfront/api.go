@@ -19,9 +19,9 @@ func (c *CloudFront) CreateCloudFrontOriginAccessIdentityRequest(input *CreateCl
 
 	if opCreateCloudFrontOriginAccessIdentity == nil {
 		opCreateCloudFrontOriginAccessIdentity = &aws.Operation{
-			Name:       "CreateCloudFrontOriginAccessIdentity2014_10_21",
+			Name:       "CreateCloudFrontOriginAccessIdentity2014_11_06",
 			HTTPMethod: "POST",
-			HTTPPath:   "/2014-10-21/origin-access-identity/cloudfront",
+			HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront",
 		}
 	}
 
@@ -51,9 +51,9 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 
 	if opCreateDistribution == nil {
 		opCreateDistribution = &aws.Operation{
-			Name:       "CreateDistribution2014_10_21",
+			Name:       "CreateDistribution2014_11_06",
 			HTTPMethod: "POST",
-			HTTPPath:   "/2014-10-21/distribution",
+			HTTPPath:   "/2014-11-06/distribution",
 		}
 	}
 
@@ -83,9 +83,9 @@ func (c *CloudFront) CreateInvalidationRequest(input *CreateInvalidationInput) (
 
 	if opCreateInvalidation == nil {
 		opCreateInvalidation = &aws.Operation{
-			Name:       "CreateInvalidation2014_10_21",
+			Name:       "CreateInvalidation2014_11_06",
 			HTTPMethod: "POST",
-			HTTPPath:   "/2014-10-21/distribution/{DistributionId}/invalidation",
+			HTTPPath:   "/2014-11-06/distribution/{DistributionId}/invalidation",
 		}
 	}
 
@@ -115,9 +115,9 @@ func (c *CloudFront) CreateStreamingDistributionRequest(input *CreateStreamingDi
 
 	if opCreateStreamingDistribution == nil {
 		opCreateStreamingDistribution = &aws.Operation{
-			Name:       "CreateStreamingDistribution2014_10_21",
+			Name:       "CreateStreamingDistribution2014_11_06",
 			HTTPMethod: "POST",
-			HTTPPath:   "/2014-10-21/streaming-distribution",
+			HTTPPath:   "/2014-11-06/streaming-distribution",
 		}
 	}
 
@@ -147,9 +147,9 @@ func (c *CloudFront) DeleteCloudFrontOriginAccessIdentityRequest(input *DeleteCl
 
 	if opDeleteCloudFrontOriginAccessIdentity == nil {
 		opDeleteCloudFrontOriginAccessIdentity = &aws.Operation{
-			Name:       "DeleteCloudFrontOriginAccessIdentity2014_10_21",
+			Name:       "DeleteCloudFrontOriginAccessIdentity2014_11_06",
 			HTTPMethod: "DELETE",
-			HTTPPath:   "/2014-10-21/origin-access-identity/cloudfront/{Id}",
+			HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront/{Id}",
 		}
 	}
 
@@ -179,9 +179,9 @@ func (c *CloudFront) DeleteDistributionRequest(input *DeleteDistributionInput) (
 
 	if opDeleteDistribution == nil {
 		opDeleteDistribution = &aws.Operation{
-			Name:       "DeleteDistribution2014_10_21",
+			Name:       "DeleteDistribution2014_11_06",
 			HTTPMethod: "DELETE",
-			HTTPPath:   "/2014-10-21/distribution/{Id}",
+			HTTPPath:   "/2014-11-06/distribution/{Id}",
 		}
 	}
 
@@ -211,9 +211,9 @@ func (c *CloudFront) DeleteStreamingDistributionRequest(input *DeleteStreamingDi
 
 	if opDeleteStreamingDistribution == nil {
 		opDeleteStreamingDistribution = &aws.Operation{
-			Name:       "DeleteStreamingDistribution2014_10_21",
+			Name:       "DeleteStreamingDistribution2014_11_06",
 			HTTPMethod: "DELETE",
-			HTTPPath:   "/2014-10-21/streaming-distribution/{Id}",
+			HTTPPath:   "/2014-11-06/streaming-distribution/{Id}",
 		}
 	}
 
@@ -243,9 +243,9 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentityRequest(input *GetCloudFro
 
 	if opGetCloudFrontOriginAccessIdentity == nil {
 		opGetCloudFrontOriginAccessIdentity = &aws.Operation{
-			Name:       "GetCloudFrontOriginAccessIdentity2014_10_21",
+			Name:       "GetCloudFrontOriginAccessIdentity2014_11_06",
 			HTTPMethod: "GET",
-			HTTPPath:   "/2014-10-21/origin-access-identity/cloudfront/{Id}",
+			HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront/{Id}",
 		}
 	}
 
@@ -275,9 +275,9 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfigRequest(input *GetCl
 
 	if opGetCloudFrontOriginAccessIdentityConfig == nil {
 		opGetCloudFrontOriginAccessIdentityConfig = &aws.Operation{
-			Name:       "GetCloudFrontOriginAccessIdentityConfig2014_10_21",
+			Name:       "GetCloudFrontOriginAccessIdentityConfig2014_11_06",
 			HTTPMethod: "GET",
-			HTTPPath:   "/2014-10-21/origin-access-identity/cloudfront/{Id}/config",
+			HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront/{Id}/config",
 		}
 	}
 
@@ -307,9 +307,9 @@ func (c *CloudFront) GetDistributionRequest(input *GetDistributionInput) (req *a
 
 	if opGetDistribution == nil {
 		opGetDistribution = &aws.Operation{
-			Name:       "GetDistribution2014_10_21",
+			Name:       "GetDistribution2014_11_06",
 			HTTPMethod: "GET",
-			HTTPPath:   "/2014-10-21/distribution/{Id}",
+			HTTPPath:   "/2014-11-06/distribution/{Id}",
 		}
 	}
 
@@ -339,9 +339,9 @@ func (c *CloudFront) GetDistributionConfigRequest(input *GetDistributionConfigIn
 
 	if opGetDistributionConfig == nil {
 		opGetDistributionConfig = &aws.Operation{
-			Name:       "GetDistributionConfig2014_10_21",
+			Name:       "GetDistributionConfig2014_11_06",
 			HTTPMethod: "GET",
-			HTTPPath:   "/2014-10-21/distribution/{Id}/config",
+			HTTPPath:   "/2014-11-06/distribution/{Id}/config",
 		}
 	}
 
@@ -371,9 +371,9 @@ func (c *CloudFront) GetInvalidationRequest(input *GetInvalidationInput) (req *a
 
 	if opGetInvalidation == nil {
 		opGetInvalidation = &aws.Operation{
-			Name:       "GetInvalidation2014_10_21",
+			Name:       "GetInvalidation2014_11_06",
 			HTTPMethod: "GET",
-			HTTPPath:   "/2014-10-21/distribution/{DistributionId}/invalidation/{Id}",
+			HTTPPath:   "/2014-11-06/distribution/{DistributionId}/invalidation/{Id}",
 		}
 	}
 
@@ -403,9 +403,9 @@ func (c *CloudFront) GetStreamingDistributionRequest(input *GetStreamingDistribu
 
 	if opGetStreamingDistribution == nil {
 		opGetStreamingDistribution = &aws.Operation{
-			Name:       "GetStreamingDistribution2014_10_21",
+			Name:       "GetStreamingDistribution2014_11_06",
 			HTTPMethod: "GET",
-			HTTPPath:   "/2014-10-21/streaming-distribution/{Id}",
+			HTTPPath:   "/2014-11-06/streaming-distribution/{Id}",
 		}
 	}
 
@@ -435,9 +435,9 @@ func (c *CloudFront) GetStreamingDistributionConfigRequest(input *GetStreamingDi
 
 	if opGetStreamingDistributionConfig == nil {
 		opGetStreamingDistributionConfig = &aws.Operation{
-			Name:       "GetStreamingDistributionConfig2014_10_21",
+			Name:       "GetStreamingDistributionConfig2014_11_06",
 			HTTPMethod: "GET",
-			HTTPPath:   "/2014-10-21/streaming-distribution/{Id}/config",
+			HTTPPath:   "/2014-11-06/streaming-distribution/{Id}/config",
 		}
 	}
 
@@ -467,9 +467,9 @@ func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesRequest(input *ListClou
 
 	if opListCloudFrontOriginAccessIdentities == nil {
 		opListCloudFrontOriginAccessIdentities = &aws.Operation{
-			Name:       "ListCloudFrontOriginAccessIdentities2014_10_21",
+			Name:       "ListCloudFrontOriginAccessIdentities2014_11_06",
 			HTTPMethod: "GET",
-			HTTPPath:   "/2014-10-21/origin-access-identity/cloudfront",
+			HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront",
 			Paginator: &aws.Paginator{
 				InputToken:      "Marker",
 				OutputToken:     "CloudFrontOriginAccessIdentityList.NextMarker",
@@ -517,9 +517,9 @@ func (c *CloudFront) ListDistributionsRequest(input *ListDistributionsInput) (re
 
 	if opListDistributions == nil {
 		opListDistributions = &aws.Operation{
-			Name:       "ListDistributions2014_10_21",
+			Name:       "ListDistributions2014_11_06",
 			HTTPMethod: "GET",
-			HTTPPath:   "/2014-10-21/distribution",
+			HTTPPath:   "/2014-11-06/distribution",
 			Paginator: &aws.Paginator{
 				InputToken:      "Marker",
 				OutputToken:     "DistributionList.NextMarker",
@@ -567,9 +567,9 @@ func (c *CloudFront) ListInvalidationsRequest(input *ListInvalidationsInput) (re
 
 	if opListInvalidations == nil {
 		opListInvalidations = &aws.Operation{
-			Name:       "ListInvalidations2014_10_21",
+			Name:       "ListInvalidations2014_11_06",
 			HTTPMethod: "GET",
-			HTTPPath:   "/2014-10-21/distribution/{DistributionId}/invalidation",
+			HTTPPath:   "/2014-11-06/distribution/{DistributionId}/invalidation",
 			Paginator: &aws.Paginator{
 				InputToken:      "Marker",
 				OutputToken:     "InvalidationList.NextMarker",
@@ -617,9 +617,9 @@ func (c *CloudFront) ListStreamingDistributionsRequest(input *ListStreamingDistr
 
 	if opListStreamingDistributions == nil {
 		opListStreamingDistributions = &aws.Operation{
-			Name:       "ListStreamingDistributions2014_10_21",
+			Name:       "ListStreamingDistributions2014_11_06",
 			HTTPMethod: "GET",
-			HTTPPath:   "/2014-10-21/streaming-distribution",
+			HTTPPath:   "/2014-11-06/streaming-distribution",
 			Paginator: &aws.Paginator{
 				InputToken:      "Marker",
 				OutputToken:     "StreamingDistributionList.NextMarker",
@@ -667,9 +667,9 @@ func (c *CloudFront) UpdateCloudFrontOriginAccessIdentityRequest(input *UpdateCl
 
 	if opUpdateCloudFrontOriginAccessIdentity == nil {
 		opUpdateCloudFrontOriginAccessIdentity = &aws.Operation{
-			Name:       "UpdateCloudFrontOriginAccessIdentity2014_10_21",
+			Name:       "UpdateCloudFrontOriginAccessIdentity2014_11_06",
 			HTTPMethod: "PUT",
-			HTTPPath:   "/2014-10-21/origin-access-identity/cloudfront/{Id}/config",
+			HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront/{Id}/config",
 		}
 	}
 
@@ -699,9 +699,9 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 
 	if opUpdateDistribution == nil {
 		opUpdateDistribution = &aws.Operation{
-			Name:       "UpdateDistribution2014_10_21",
+			Name:       "UpdateDistribution2014_11_06",
 			HTTPMethod: "PUT",
-			HTTPPath:   "/2014-10-21/distribution/{Id}/config",
+			HTTPPath:   "/2014-11-06/distribution/{Id}/config",
 		}
 	}
 
@@ -731,9 +731,9 @@ func (c *CloudFront) UpdateStreamingDistributionRequest(input *UpdateStreamingDi
 
 	if opUpdateStreamingDistribution == nil {
 		opUpdateStreamingDistribution = &aws.Operation{
-			Name:       "UpdateStreamingDistribution2014_10_21",
+			Name:       "UpdateStreamingDistribution2014_11_06",
 			HTTPMethod: "PUT",
-			HTTPPath:   "/2014-10-21/streaming-distribution/{Id}/config",
+			HTTPPath:   "/2014-11-06/streaming-distribution/{Id}/config",
 		}
 	}
 
@@ -1467,10 +1467,10 @@ type metadataDistribution struct {
 type DistributionConfig struct {
 	// A complex type that contains information about CNAMEs (alternate domain names),
 	// if any, for this distribution.
-	Aliases *Aliases `type:"structure" required:"true"`
+	Aliases *Aliases `type:"structure"`
 
 	// A complex type that contains zero or more CacheBehavior elements.
-	CacheBehaviors *CacheBehaviors `type:"structure" required:"true"`
+	CacheBehaviors *CacheBehaviors `type:"structure"`
 
 	// A unique number that ensures the request can't be replayed. If the CallerReference
 	// is new (no matter the content of the DistributionConfig object), a new distribution
@@ -1503,19 +1503,19 @@ type DistributionConfig struct {
 	// from an existing distribution, update the distribution configuration and
 	// include an empty DefaultRootObject element. To replace the default root object,
 	// update the distribution configuration and specify the new object.
-	DefaultRootObject *string `type:"string" required:"true"`
+	DefaultRootObject *string `type:"string"`
 
 	// Whether the distribution is enabled to accept end user requests for content.
 	Enabled *bool `type:"boolean" required:"true"`
 
 	// A complex type that controls whether access logs are written for the distribution.
-	Logging *LoggingConfig `type:"structure" required:"true"`
+	Logging *LoggingConfig `type:"structure"`
 
 	// A complex type that contains information about origins for this distribution.
 	Origins *Origins `type:"structure" required:"true"`
 
 	// A complex type that contains information about price class for this distribution.
-	PriceClass *string `type:"string" required:"true"`
+	PriceClass *string `type:"string"`
 
 	// A complex type that identifies ways in which you want to restrict distribution
 	// of your content.
@@ -2203,6 +2203,12 @@ type Origin struct {
 	// request matches the path pattern for that cache behavior.
 	ID *string `locationName:"Id" type:"string" required:"true"`
 
+	// An optional element that causes CloudFront to request your content from a
+	// directory in your Amazon S3 bucket or your custom origin. When you include
+	// the OriginPath element, specify the directory name, beginning with a /. CloudFront
+	// appends the directory name to the value of DomainName.
+	OriginPath *string `type:"string"`
+
 	// A complex type that contains information about the Amazon S3 origin. If the
 	// origin is a custom origin, use the CustomOriginConfig element instead.
 	S3OriginConfig *S3OriginConfig `type:"structure"`
@@ -2363,7 +2369,7 @@ type metadataStreamingDistribution struct {
 type StreamingDistributionConfig struct {
 	// A complex type that contains information about CNAMEs (alternate domain names),
 	// if any, for this streaming distribution.
-	Aliases *Aliases `type:"structure" required:"true"`
+	Aliases *Aliases `type:"structure"`
 
 	// A unique number that ensures the request can't be replayed. If the CallerReference
 	// is new (no matter the content of the StreamingDistributionConfig object),
@@ -2386,11 +2392,11 @@ type StreamingDistributionConfig struct {
 
 	// A complex type that controls whether access logs are written for the streaming
 	// distribution.
-	Logging *StreamingLoggingConfig `type:"structure" required:"true"`
+	Logging *StreamingLoggingConfig `type:"structure"`
 
 	// A complex type that contains information about price class for this streaming
 	// distribution.
-	PriceClass *string `type:"string" required:"true"`
+	PriceClass *string `type:"string"`
 
 	// A complex type that contains information about the Amazon S3 bucket from
 	// which you want CloudFront to get your media files for distribution.

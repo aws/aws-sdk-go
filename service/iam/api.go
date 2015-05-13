@@ -1703,6 +1703,12 @@ func (c *IAM) GetAccountAuthorizationDetailsRequest(input *GetAccountAuthorizati
 			Name:       "GetAccountAuthorizationDetails",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "Marker",
+				OutputToken:     "Marker",
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -1727,6 +1733,18 @@ func (c *IAM) GetAccountAuthorizationDetails(input *GetAccountAuthorizationDetai
 	req, out := c.GetAccountAuthorizationDetailsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *IAM) GetAccountAuthorizationDetailsPages(input *GetAccountAuthorizationDetailsInput, fn func(*GetAccountAuthorizationDetailsOutput, error) bool) {
+	page, _ := c.GetAccountAuthorizationDetailsRequest(input)
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*GetAccountAuthorizationDetailsOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
+		}
+	}
+	fn(nil, nil)
 }
 
 var opGetAccountAuthorizationDetails *aws.Operation
@@ -3198,6 +3216,12 @@ func (c *IAM) ListSAMLProvidersRequest(input *ListSAMLProvidersInput) (req *aws.
 			Name:       "ListSAMLProviders",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputToken:      "",
+				OutputToken:     "",
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -3218,6 +3242,18 @@ func (c *IAM) ListSAMLProviders(input *ListSAMLProvidersInput) (*ListSAMLProvide
 	req, out := c.ListSAMLProvidersRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *IAM) ListSAMLProvidersPages(input *ListSAMLProvidersInput, fn func(*ListSAMLProvidersOutput, error) bool) {
+	page, _ := c.ListSAMLProvidersRequest(input)
+	for ; page != nil; page = page.NextPage() {
+		page.Send()
+		out := page.Data.(*ListSAMLProvidersOutput)
+		if result := fn(out, page.Error); page.Error != nil || !result {
+			return
+		}
+	}
+	fn(nil, nil)
 }
 
 var opListSAMLProviders *aws.Operation
