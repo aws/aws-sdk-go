@@ -77,6 +77,23 @@ func TestCopy(t *testing.T) {
 	assert.NotEqual(t, f2.C, f1.C)
 }
 
+func TestCopyIgnoreNilMembers(t *testing.T) {
+	type Foo struct {
+		A *string
+	}
+
+	f := &Foo{}
+	assert.Nil(t, f.A)
+
+	var f2 Foo
+	awsutil.Copy(&f2, f)
+	assert.Nil(t, f2.A)
+
+	fcopy := awsutil.CopyOf(f)
+	f3 := fcopy.(*Foo)
+	assert.Nil(t, f3.A)
+}
+
 func TestCopyPrimitive(t *testing.T) {
 	str := "hello"
 	var s string

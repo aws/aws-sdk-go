@@ -36,7 +36,7 @@ func rcopy(dst, src reflect.Value) {
 			}
 		} else {
 			e := src.Type().Elem()
-			if dst.CanSet() {
+			if dst.CanSet() && !src.IsNil() {
 				dst.Set(reflect.New(e))
 			}
 			if src.Elem().IsValid() {
