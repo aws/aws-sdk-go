@@ -1,8 +1,7 @@
-// Integration version of the unit.go which will panic if imported into and
-// a test file while the "integration" tag is set.
-//
 // +build integration
 
+// Integration version of the unit.go which will panic if imported into and
+// a test file while the "integration" tag is set.
 package unit
 
 // Imported is a marker to ensure that this package's init() function gets
