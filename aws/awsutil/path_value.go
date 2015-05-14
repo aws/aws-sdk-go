@@ -11,11 +11,11 @@ var indexRe = regexp.MustCompile(`(.+)\[(-?\d+)?\]$`)
 
 // rValuesAtPath returns a slice of values found in value v. The values
 // in v are explored recursively so all nested values are collected.
-func rValuesAtPath(v interface{}, path string, create bool) []reflect.Value {
+func rValuesAtPath(v interface{}, path string, create bool, caseSensitive bool) []reflect.Value {
 	pathparts := strings.Split(path, "||")
 	if len(pathparts) > 1 {
 		for _, pathpart := range pathparts {
-			vals := rValuesAtPath(v, pathpart, create)
+			vals := rValuesAtPath(v, pathpart, create, caseSensitive)
 			if vals != nil && len(vals) > 0 {
 				return vals
 			}
@@ -31,7 +31,7 @@ func rValuesAtPath(v interface{}, path string, create bool) []reflect.Value {
 		c := strings.TrimSpace(components[0])
 		if c == "" { // no actual component, illegal syntax
 			return nil
-		} else if c != "*" && strings.ToLower(c[0:1]) == c[0:1] {
+		} else if caseSensitive && c != "*" && strings.ToLower(c[0:1]) == c[0:1] {
 			// TODO normalize case for user
 			return nil // don't support unexported fields
 		}
@@ -65,7 +65,15 @@ func rValuesAtPath(v interface{}, path string, create bool) []reflect.Value {
 				continue
 			}
 
-			value = value.FieldByName(c)
+			value = value.FieldByNameFunc(func(name string) bool {
+				if c == name {
+					return true
+				} else if !caseSensitive && strings.ToLower(name) == strings.ToLower(c) {
+					return true
+				}
+				return false
+			})
+
 			if create && value.Kind() == reflect.Ptr && value.IsNil() {
 				value.Set(reflect.New(value.Type().Elem()))
 				value = value.Elem()
@@ -124,7 +132,20 @@ func rValuesAtPath(v interface{}, path string, create bool) []reflect.Value {
 
 // ValuesAtPath returns a list of objects at the lexical path inside of a structure
 func ValuesAtPath(i interface{}, path string) []interface{} {
-	if rvals := rValuesAtPath(i, path, false); rvals != nil {
+	if rvals := rValuesAtPath(i, path, false, true); rvals != nil {
+		vals := make([]interface{}, len(rvals))
+		for i, rval := range rvals {
+			vals[i] = rval.Interface()
+		}
+		return vals
+	}
+	return nil
+}
+
+// ValuesAtAnyPath returns a list of objects at the case-insensitive lexical
+// path inside of a structure
+func ValuesAtAnyPath(i interface{}, path string) []interface{} {
+	if rvals := rValuesAtPath(i, path, false, false); rvals != nil {
 		vals := make([]interface{}, len(rvals))
 		for i, rval := range rvals {
 			vals[i] = rval.Interface()
@@ -136,7 +157,17 @@ func ValuesAtPath(i interface{}, path string) []interface{} {
 
 // SetValueAtPath sets an object at the lexical path inside of a structure
 func SetValueAtPath(i interface{}, path string, v interface{}) {
-	if rvals := rValuesAtPath(i, path, true); rvals != nil {
+	if rvals := rValuesAtPath(i, path, true, true); rvals != nil {
+		for _, rval := range rvals {
+			rval.Set(reflect.ValueOf(v))
+		}
+	}
+}
+
+// SetValueAtAnyPath sets an object at the case insensitive lexical path inside
+// of a structure
+func SetValueAtAnyPath(i interface{}, path string, v interface{}) {
+	if rvals := rValuesAtPath(i, path, true, false); rvals != nil {
 		for _, rval := range rvals {
 			rval.Set(reflect.ValueOf(v))
 		}
