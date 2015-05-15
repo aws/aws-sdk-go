@@ -54,6 +54,15 @@ func TestMD5InPutBucketLifecycle(t *testing.T) {
 	assertMD5(t, req)
 }
 
+func TestMD5InPutBucketPolicy(t *testing.T) {
+	svc := s3.New(nil)
+	req, _ := svc.PutBucketPolicyRequest(&s3.PutBucketPolicyInput{
+		Bucket: aws.String("bucketname"),
+		Policy: aws.String("{}"),
+	})
+	assertMD5(t, req)
+}
+
 func TestMD5InPutBucketTagging(t *testing.T) {
 	svc := s3.New(nil)
 	req, _ := svc.PutBucketTaggingRequest(&s3.PutBucketTaggingInput{
