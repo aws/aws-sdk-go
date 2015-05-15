@@ -135,8 +135,8 @@ func buildURI(r *aws.Request, v reflect.Value, name string) {
 		r.Error = err
 	} else if value != nil {
 		uri := r.HTTPRequest.URL.Path
-		uri = strings.Replace(uri, "{"+name+"}", escapePath(*value, true), -1)
-		uri = strings.Replace(uri, "{"+name+"+}", escapePath(*value, false), -1)
+		uri = strings.Replace(uri, "{"+name+"}", EscapePath(*value, true), -1)
+		uri = strings.Replace(uri, "{"+name+"+}", EscapePath(*value, false), -1)
 		r.HTTPRequest.URL.Path = uri
 	}
 }
@@ -166,8 +166,8 @@ func updatePath(url *url.URL, urlPath string) {
 	url.Opaque = s + urlPath
 }
 
-// escapePath escapes part of a URL path in Amazon style
-func escapePath(path string, encodeSep bool) string {
+// EscapePath escapes part of a URL path in Amazon style
+func EscapePath(path string, encodeSep bool) string {
 	var buf bytes.Buffer
 	for i := 0; i < len(path); i++ {
 		c := path[i]

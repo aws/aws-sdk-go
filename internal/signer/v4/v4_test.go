@@ -54,7 +54,7 @@ func TestPresignRequest(t *testing.T) {
 
 	expectedDate := "19700101T000000Z"
 	expectedHeaders := "host;x-amz-meta-other-header;x-amz-target"
-	expectedSig := "4c86bacebb78e458e8e898e93547513079d67ab95d3d5c02236889e21ea0df2b"
+	expectedSig := "5eeedebf6f995145ce56daa02902d10485246d3defb34f97b973c1f40ab82d36"
 	expectedCred := "AKID/19700101/us-east-1/dynamodb/aws4_request"
 
 	q := signer.Request.URL.Query()
@@ -69,7 +69,7 @@ func TestSignRequest(t *testing.T) {
 	signer.sign()
 
 	expectedDate := "19700101T000000Z"
-	expectedSig := "AWS4-HMAC-SHA256 Credential=AKID/19700101/us-east-1/dynamodb/aws4_request, SignedHeaders=host;x-amz-date;x-amz-meta-other-header;x-amz-security-token;x-amz-target, Signature=d4df864b291252d2c9206be75963db54db09ca70265622cc787cbe50ca0efcc8"
+	expectedSig := "AWS4-HMAC-SHA256 Credential=AKID/19700101/us-east-1/dynamodb/aws4_request, SignedHeaders=host;x-amz-date;x-amz-meta-other-header;x-amz-security-token;x-amz-target, Signature=69ada33fec48180dab153576e4dd80c4e04124f80dda3eccfed8a67c2b91ed5e"
 
 	q := signer.Request.Header
 	assert.Equal(t, expectedSig, q.Get("Authorization"))

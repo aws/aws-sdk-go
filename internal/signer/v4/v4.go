@@ -14,6 +14,7 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws/credentials"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/rest"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
@@ -241,6 +242,10 @@ func (v4 *signer) buildCanonicalString() {
 	}
 	if uri == "" {
 		uri = "/"
+	}
+
+	if v4.ServiceName != "s3" {
+		uri = rest.EscapePath(uri, false)
 	}
 
 	v4.canonicalString = strings.Join([]string{
