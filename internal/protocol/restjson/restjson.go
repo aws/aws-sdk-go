@@ -55,6 +55,10 @@ func UnmarshalError(r *aws.Request) {
 		return
 	}
 
+	if code == "" {
+		code = jsonErr.Code
+	}
+
 	codes := strings.SplitN(code, ":", 2)
 	r.Error = aws.APIError{
 		StatusCode: r.HTTPResponse.StatusCode,
@@ -64,5 +68,6 @@ func UnmarshalError(r *aws.Request) {
 }
 
 type jsonErrorResponse struct {
+	Code    string `json:"code"`
 	Message string `json:"message"`
 }
