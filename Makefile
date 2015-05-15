@@ -5,16 +5,13 @@ default: generate
 generate-protocol-test:
 	go generate ./internal/protocol/...
 
-generate-integration-test:
-	go generate ./internal/fixtures/integration
-
-generate-test: generate-protocol-test generate-integration-test
+generate-test: generate-protocol-test
 
 generate:
 	go generate ./aws
 	go generate ./service
 
-integration: generate-test
+integration:
 	go get -u github.com/lsegal/gucumber/cmd/gucumber
 	go test ./... -tags=integration
 	gucumber
