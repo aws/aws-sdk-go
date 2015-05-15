@@ -14,8 +14,8 @@ generate:
 	go generate ./aws
 	go generate ./service
 
-integation: generate-test
-	go get -u github.com/lsegal/gucumber
+integration: generate-test
+	go get -u github.com/lsegal/gucumber/cmd/gucumber
 	go test ./... -tags=integration
 	gucumber
 
