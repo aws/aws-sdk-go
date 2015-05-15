@@ -309,7 +309,7 @@ func (a *API) ExampleGoCode() string {
 
 // A tplInterface defines the template for the service interface type.
 var tplInterface = template.Must(template.New("interface").Parse(`
-type {{ .StructName }} interface {
+type {{ .StructName }}API interface {
     {{ range $_, $o := .OperationList }}
         {{ $o.InterfaceSignature }}
     {{ end }}
@@ -326,13 +326,34 @@ func (a *API) InterfaceGoCode() string {
 	}
 
 	var buf bytes.Buffer
-	err := tplInterface.Execute(&buf, &struct {
-		StructName    string
-		OperationList []*Operation
-	}{
-		StructName:    a.StructName() + "API",
-		OperationList: a.OperationList(),
-	})
+	err := tplInterface.Execute(&buf, a)
+
+	if err != nil {
+		panic(err)
+	}
+
+	code := a.importsGoCode() + strings.TrimSpace(buf.String())
+	return util.GoFmt(code)
+}
+
+var tplInterfaceTest = template.Must(template.New("interfacetest").Parse(`
+func TestInterface(t *testing.T) {
+	assert.Implements(t, (*{{ .InterfacePackageName }}.{{ .StructName }}API)(nil), {{ .PackageName }}.New(nil))
+}
+`))
+
+// InterfaceTestGoCode returns the go code for the testing of a service interface.
+func (a *API) InterfaceTestGoCode() string {
+	a.resetImports()
+	a.imports = map[string]bool{
+		"testing": true,
+		"github.com/awslabs/aws-sdk-go/service/" + a.PackageName():                                  true,
+		"github.com/awslabs/aws-sdk-go/service/" + a.PackageName() + "/" + a.InterfacePackageName(): true,
+		"github.com/stretchr/testify/assert":                                                        true,
+	}
+
+	var buf bytes.Buffer
+	err := tplInterfaceTest.Execute(&buf, a)
 
 	if err != nil {
 		panic(err)
