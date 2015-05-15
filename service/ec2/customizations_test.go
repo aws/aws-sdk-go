@@ -1,5 +1,3 @@
-// +build !integration
-
 package ec2_test
 
 import (

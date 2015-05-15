@@ -1,6 +1,6 @@
 // +build integration
 
-package s3manager_test
+package s3manager
 
 import (
 	"bytes"

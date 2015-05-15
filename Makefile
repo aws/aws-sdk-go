@@ -12,8 +12,8 @@ generate:
 	go generate ./service
 
 integration:
-	go get -u github.com/lsegal/gucumber/cmd/gucumber
-	go test ./... -tags=integration
+	go get github.com/lsegal/gucumber/cmd/gucumber
+	go test ./internal/test/integration/... -tags=integration
 	gucumber
 
 unit:
