@@ -31,7 +31,7 @@ func addAccountID(r *aws.Request) {
 	}
 
 	v := reflect.Indirect(reflect.ValueOf(r.Params))
-	if f := v.FieldByName("AccountID"); f.Elem().String() == "" {
+	if f := v.FieldByName("AccountID"); f.IsNil() {
 		f.Set(reflect.ValueOf(&defaultAccountID))
 	}
 }
