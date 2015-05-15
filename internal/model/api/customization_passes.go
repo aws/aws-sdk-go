@@ -1,7 +1,8 @@
 package api
 
 var svcCustomizations = map[string]func(*API){
-	"s3": s3Customizations,
+	"s3":         s3Customizations,
+	"cloudfront": cloudfrontCustomizations,
 }
 
 // customizationPasses Executes customization logic for the API by package name.
@@ -24,4 +25,17 @@ func s3Customizations(a *API) {
 	if s, ok := a.Shapes["Rule"]; ok {
 		s.Rename("LifecycleRule")
 	}
+}
+
+// cloudfrontCustomizations customized the API generation to replace values
+// specific to CloudFront.
+func cloudfrontCustomizations(a *API) {
+	// MaxItems members should always be integers
+	for _, s := range a.Shapes {
+		if ref, ok := s.MemberRefs["MaxItems"]; ok {
+			ref.ShapeName = "Integer"
+			ref.Shape = a.Shapes["Integer"]
+		}
+	}
+
 }
