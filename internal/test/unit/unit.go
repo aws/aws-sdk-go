@@ -13,7 +13,7 @@ import (
 //
 // To use this package, import it and add:
 //
-// 	 var _ = integration.Imported
+// 	 var _ = unit.Imported
 const Imported = true
 
 func init() {
