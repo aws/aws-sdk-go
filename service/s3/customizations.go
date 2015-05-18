@@ -1,8 +1,6 @@
 package s3
 
-import (
-	"github.com/awslabs/aws-sdk-go/aws"
-)
+import "github.com/awslabs/aws-sdk-go/aws"
 
 func init() {
 	initService = func(s *aws.Service) {
@@ -23,10 +21,6 @@ func init() {
 		case opPutBucketCORS, opPutBucketLifecycle, opPutBucketPolicy, opPutBucketTagging, opDeleteObjects:
 			// These S3 operations require Content-MD5 to be set
 			r.Handlers.Build.PushBack(contentMD5)
-		case opGetBucketPolicy:
-			// GetBucketPolicy is a JSON string response when successful not XML wrapped,
-			// Errors are still returned as XML though.
-			r.Handlers.Unmarshal.PushFront(unmarshalGetBucketPolicy)
 		case opGetBucketLocation:
 			// GetBucketLocation has custom parsing logic
 			r.Handlers.Unmarshal.PushFront(buildGetBucketLocation)
