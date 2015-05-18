@@ -1026,6 +1026,88 @@ type metadataOutputService11TestShapeOutputShape struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// OutputService12ProtocolTest is a client for OutputService12ProtocolTest.
+type OutputService12ProtocolTest struct {
+	*aws.Service
+}
+
+// New returns a new OutputService12ProtocolTest client.
+func NewOutputService12ProtocolTest(config *aws.Config) *OutputService12ProtocolTest {
+	if config == nil {
+		config = &aws.Config{}
+	}
+
+	service := &aws.Service{
+		Config:      aws.DefaultConfig.Merge(config),
+		ServiceName: "outputservice12protocoltest",
+		APIVersion:  "",
+	}
+	service.Initialize()
+
+	// Handlers
+	service.Handlers.Sign.PushBack(v4.Sign)
+	service.Handlers.Build.PushBack(restxml.Build)
+	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+
+	return &OutputService12ProtocolTest{service}
+}
+
+// newRequest creates a new request for a OutputService12ProtocolTest operation and runs any
+// custom request initialization.
+func (c *OutputService12ProtocolTest) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
+	req := aws.NewRequest(c.Service, op, params, data)
+
+	return req
+}
+
+// OutputService12TestCaseOperation1Request generates a request for the OutputService12TestCaseOperation1 operation.
+func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1Request(input *OutputService12TestShapeOutputService12TestCaseOperation1Input) (req *aws.Request, output *OutputService12TestShapeOutputShape) {
+
+	if opOutputService12TestCaseOperation1 == nil {
+		opOutputService12TestCaseOperation1 = &aws.Operation{
+			Name: "OperationName",
+		}
+	}
+
+	if input == nil {
+		input = &OutputService12TestShapeOutputService12TestCaseOperation1Input{}
+	}
+
+	req = c.newRequest(opOutputService12TestCaseOperation1, input, output)
+	output = &OutputService12TestShapeOutputShape{}
+	req.Data = output
+	return
+}
+
+func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1(input *OutputService12TestShapeOutputService12TestCaseOperation1Input) (output *OutputService12TestShapeOutputShape, err error) {
+	req, out := c.OutputService12TestCaseOperation1Request(input)
+	output = out
+	err = req.Send()
+	return
+}
+
+var opOutputService12TestCaseOperation1 *aws.Operation
+
+type OutputService12TestShapeOutputService12TestCaseOperation1Input struct {
+	metadataOutputService12TestShapeOutputService12TestCaseOperation1Input `json:"-" xml:"-"`
+}
+
+type metadataOutputService12TestShapeOutputService12TestCaseOperation1Input struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type OutputService12TestShapeOutputShape struct {
+	String *string `type:"string"`
+
+	metadataOutputService12TestShapeOutputShape `json:"-" xml:"-"`
+}
+
+type metadataOutputService12TestShapeOutputShape struct {
+	SDKShapeTraits bool `type:"structure" payload:"String"`
+}
+
 //
 // Tests begin here
 //
@@ -1316,6 +1398,26 @@ func TestOutputService11ProtocolTestScalarMembersInHeadersCase1(t *testing.T) {
 	assert.Equal(t, "string", *out.Str)
 	assert.Equal(t, time.Unix(1.4221728e+09, 0).UTC().String(), out.Timestamp.String())
 	assert.Equal(t, true, *out.TrueBool)
+
+}
+
+func TestOutputService12ProtocolTestStringCase1(t *testing.T) {
+	svc := NewOutputService12ProtocolTest(nil)
+
+	buf := bytes.NewReader([]byte("operation result string"))
+	req, out := svc.OutputService12TestCaseOperation1Request(nil)
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
+
+	// unmarshal response
+	restxml.UnmarshalMeta(req)
+	restxml.Unmarshal(req)
+	assert.NoError(t, req.Error)
+
+	// assert response
+	assert.NotNil(t, out) // ensure out variable is used
+	assert.Equal(t, "operation result string", *out.String)
 
 }
 

@@ -27,7 +27,7 @@ func unmarshalBody(r *aws.Request, v reflect.Value) {
 		if payloadName := field.Tag.Get("payload"); payloadName != "" {
 			pfield, _ := v.Type().FieldByName(payloadName)
 			if ptag := pfield.Tag.Get("type"); ptag != "" && ptag != "structure" {
-				payload := reflect.Indirect(v.FieldByName(payloadName))
+				payload := v.FieldByName(payloadName)
 				if payload.IsValid() {
 					switch payload.Interface().(type) {
 					case []byte:
@@ -37,12 +37,13 @@ func unmarshalBody(r *aws.Request, v reflect.Value) {
 						} else {
 							payload.Set(reflect.ValueOf(b))
 						}
-					case string:
+					case *string:
 						b, err := ioutil.ReadAll(r.HTTPResponse.Body)
 						if err != nil {
 							r.Error = err
 						} else {
-							payload.Set(reflect.ValueOf(string(b)))
+							str := string(b)
+							payload.Set(reflect.ValueOf(&str))
 						}
 					default:
 						switch payload.Type().String() {
