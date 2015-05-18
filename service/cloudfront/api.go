@@ -1979,7 +1979,7 @@ type ListCloudFrontOriginAccessIdentitiesInput struct {
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
 	// The maximum number of origin access identities you want in the response body.
-	MaxItems *string `location:"querystring" locationName:"MaxItems" type:"string"`
+	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
 
 	metadataListCloudFrontOriginAccessIdentitiesInput `json:"-" xml:"-"`
 }
@@ -2010,7 +2010,7 @@ type ListDistributionsInput struct {
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
 	// The maximum number of distributions you want in the response body.
-	MaxItems *string `location:"querystring" locationName:"MaxItems" type:"string"`
+	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
 
 	metadataListDistributionsInput `json:"-" xml:"-"`
 }
@@ -2046,7 +2046,7 @@ type ListInvalidationsInput struct {
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
 	// The maximum number of invalidation batches you want in the response body.
-	MaxItems *string `location:"querystring" locationName:"MaxItems" type:"string"`
+	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
 
 	metadataListInvalidationsInput `json:"-" xml:"-"`
 }
@@ -2077,7 +2077,7 @@ type ListStreamingDistributionsInput struct {
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
 	// The maximum number of streaming distributions you want in the response body.
-	MaxItems *string `location:"querystring" locationName:"MaxItems" type:"string"`
+	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
 
 	metadataListStreamingDistributionsInput `json:"-" xml:"-"`
 }

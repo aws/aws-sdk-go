@@ -11,11 +11,13 @@ import (
 
 	"github.com/awslabs/aws-sdk-go/aws"
 	"github.com/awslabs/aws-sdk-go/aws/awsutil"
+	"github.com/awslabs/aws-sdk-go/internal/test/unit"
 	"github.com/awslabs/aws-sdk-go/service/s3"
 	"github.com/awslabs/aws-sdk-go/service/s3/s3manager"
 	"github.com/stretchr/testify/assert"
 )
 
+var _ = unit.Imported
 var buf12MB = make([]byte, 1024*1024*12)
 var buf2MB = make([]byte, 1024*1024*2)
 
@@ -28,10 +30,7 @@ func loggingSvc() (*s3.S3, *[]string, *[]interface{}) {
 	partNum := 0
 	names := []string{}
 	params := []interface{}{}
-	svc := s3.New(&aws.Config{
-		Region:      "mock-region",
-		Credentials: aws.DetectCreds("AKID", "SECRET", ""),
-	})
+	svc := s3.New(nil)
 	svc.Handlers.Unmarshal.Clear()
 	svc.Handlers.UnmarshalMeta.Clear()
 	svc.Handlers.UnmarshalError.Clear()

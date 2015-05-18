@@ -8,12 +8,15 @@ import (
 	"strings"
 )
 
+// StringValue returns the string representation of a value.
 func StringValue(i interface{}) string {
 	var buf bytes.Buffer
 	stringValue(reflect.ValueOf(i), 0, &buf)
 	return buf.String()
 }
 
+// stringValue will recursively walk value v to build a textual
+// representation of the value.
 func stringValue(v reflect.Value, indent int, buf *bytes.Buffer) {
 	for v.Kind() == reflect.Ptr {
 		v = v.Elem()

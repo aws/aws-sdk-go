@@ -9,6 +9,7 @@ import (
 	"github.com/awslabs/aws-sdk-go/internal/protocol/query/queryutil"
 )
 
+// Build builds a request for an AWS Query service.
 func Build(r *aws.Request) {
 	body := url.Values{
 		"Action":  {r.Operation.Name},

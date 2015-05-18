@@ -11,6 +11,7 @@ import (
 	"time"
 )
 
+// UnmarshalJSON reads a stream and unmarshals the results in object v.
 func UnmarshalJSON(v interface{}, stream io.Reader) error {
 	var out interface{}
 

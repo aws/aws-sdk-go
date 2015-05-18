@@ -10,6 +10,7 @@ import (
 	"strings"
 )
 
+// ExportableName a name which is exportable as a value or name in Go code
 func (a *API) ExportableName(name string) string {
 	if name == "" {
 		return name
@@ -57,6 +58,7 @@ func (a *API) ExportableName(name string) string {
 	return out
 }
 
+// splitName splits name into a slice of strings split by capitalization.
 func splitName(name string) []string {
 	out, buf := []string{}, ""
 
@@ -91,6 +93,7 @@ func splitName(name string) []string {
 	return out
 }
 
+// Generate the map of white listed exported names as soon as the package is initialized.
 var whitelistExportNames = func() map[string]string {
 	list := map[string]string{}
 	_, filename, _, _ := runtime.Caller(1)

@@ -13,6 +13,7 @@ import (
 	"github.com/awslabs/aws-sdk-go/internal/protocol/rest"
 )
 
+// Build builds a request for the REST JSON protocol.
 func Build(r *aws.Request) {
 	rest.Build(r)
 
@@ -21,16 +22,19 @@ func Build(r *aws.Request) {
 	}
 }
 
+// Unmarshal unmarshals a response body for the REST JSON protocol.
 func Unmarshal(r *aws.Request) {
 	if t := rest.PayloadType(r.Data); t == "structure" || t == "" {
 		jsonrpc.Unmarshal(r)
 	}
 }
 
+// UnmarshalMeta unmarshals response headers for the REST JSON protocol.
 func UnmarshalMeta(r *aws.Request) {
 	rest.Unmarshal(r)
 }
 
+// UnmarshalError unmarshals a response error for the REST JSON protocol.
 func UnmarshalError(r *aws.Request) {
 	code := r.HTTPResponse.Header.Get("X-Amzn-Errortype")
 	bodyBytes, err := ioutil.ReadAll(r.HTTPResponse.Body)
@@ -51,6 +55,10 @@ func UnmarshalError(r *aws.Request) {
 		return
 	}
 
+	if code == "" {
+		code = jsonErr.Code
+	}
+
 	codes := strings.SplitN(code, ":", 2)
 	r.Error = aws.APIError{
 		StatusCode: r.HTTPResponse.StatusCode,
@@ -60,5 +68,6 @@ func UnmarshalError(r *aws.Request) {
 }
 
 type jsonErrorResponse struct {
+	Code    string `json:"code"`
 	Message string `json:"message"`
 }

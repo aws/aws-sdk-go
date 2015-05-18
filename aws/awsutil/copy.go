@@ -20,6 +20,7 @@ func CopyOf(src interface{}) (dst interface{}) {
 	return
 }
 
+// rcopy performs a recursive copy of values from the source to destination.
 func rcopy(dst, src reflect.Value) {
 	if !src.IsValid() {
 		return
@@ -35,7 +36,7 @@ func rcopy(dst, src reflect.Value) {
 			}
 		} else {
 			e := src.Type().Elem()
-			if dst.CanSet() {
+			if dst.CanSet() && !src.IsNil() {
 				dst.Set(reflect.New(e))
 			}
 			if src.Elem().IsValid() {

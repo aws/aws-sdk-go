@@ -1,5 +1,7 @@
 package aws
 
+// A Handlers provides a collection of request handlers for various
+// stages of handling requests.
 type Handlers struct {
 	Validate         HandlerList
 	Build            HandlerList
@@ -13,6 +15,7 @@ type Handlers struct {
 	AfterRetry       HandlerList
 }
 
+// copy returns of this handler's lists.
 func (h *Handlers) copy() Handlers {
 	return Handlers{
 		Validate:         h.Validate.copy(),
@@ -42,7 +45,7 @@ func (h *Handlers) Clear() {
 	h.AfterRetry.Clear()
 }
 
-// A handler list manages zero or more handlers in a list.
+// A HandlerList manages zero or more handlers in a list.
 type HandlerList struct {
 	list []func(*Request)
 }

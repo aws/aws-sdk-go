@@ -513,7 +513,7 @@ func ExampleCloudFront_ListCloudFrontOriginAccessIdentities() {
 
 	params := &cloudfront.ListCloudFrontOriginAccessIdentitiesInput{
 		Marker:   aws.String("string"),
-		MaxItems: aws.String("string"),
+		MaxItems: aws.Long(1),
 	}
 	resp, err := svc.ListCloudFrontOriginAccessIdentities(params)
 
@@ -534,7 +534,7 @@ func ExampleCloudFront_ListDistributions() {
 
 	params := &cloudfront.ListDistributionsInput{
 		Marker:   aws.String("string"),
-		MaxItems: aws.String("string"),
+		MaxItems: aws.Long(1),
 	}
 	resp, err := svc.ListDistributions(params)
 
@@ -556,7 +556,7 @@ func ExampleCloudFront_ListInvalidations() {
 	params := &cloudfront.ListInvalidationsInput{
 		DistributionID: aws.String("string"), // Required
 		Marker:         aws.String("string"),
-		MaxItems:       aws.String("string"),
+		MaxItems:       aws.Long(1),
 	}
 	resp, err := svc.ListInvalidations(params)
 
@@ -577,7 +577,7 @@ func ExampleCloudFront_ListStreamingDistributions() {
 
 	params := &cloudfront.ListStreamingDistributionsInput{
 		Marker:   aws.String("string"),
-		MaxItems: aws.String("string"),
+		MaxItems: aws.Long(1),
 	}
 	resp, err := svc.ListStreamingDistributions(params)
 

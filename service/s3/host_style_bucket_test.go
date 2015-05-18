@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/internal/test/unit"
 	"github.com/awslabs/aws-sdk-go/service/s3"
 	"github.com/stretchr/testify/assert"
 )
@@ -14,10 +15,7 @@ type s3BucketTest struct {
 }
 
 var (
-	baseConfig = &aws.Config{
-		Credentials: aws.DetectCreds("AKID", "SECRET", ""),
-		Region:      "mock-region",
-	}
+	_ = unit.Imported
 
 	sslTests = []s3BucketTest{
 		{"abc", "https://abc.s3.mock-region.amazonaws.com/"},
@@ -48,16 +46,16 @@ func runTests(t *testing.T, svc *s3.S3, tests []s3BucketTest) {
 }
 
 func TestHostStyleBucketBuild(t *testing.T) {
-	s := s3.New(baseConfig)
+	s := s3.New(nil)
 	runTests(t, s, sslTests)
 }
 
 func TestHostStyleBucketBuildNoSSL(t *testing.T) {
-	s := s3.New(baseConfig.Merge(&aws.Config{DisableSSL: true}))
+	s := s3.New(&aws.Config{DisableSSL: true})
 	runTests(t, s, nosslTests)
 }
 
 func TestPathStyleBucketBuild(t *testing.T) {
-	s := s3.New(baseConfig.Merge(&aws.Config{S3ForcePathStyle: true}))
+	s := s3.New(&aws.Config{S3ForcePathStyle: true})
 	runTests(t, s, forcepathTests)
 }

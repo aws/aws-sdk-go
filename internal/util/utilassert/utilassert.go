@@ -11,8 +11,9 @@ import (
 	"github.com/awslabs/aws-sdk-go/internal/util/utilsort"
 )
 
+// findMember searches the shape for the member with the matching key name.
 func findMember(shape *api.Shape, key string) string {
-	for actualKey, _ := range shape.MemberRefs {
+	for actualKey := range shape.MemberRefs {
 		if strings.ToLower(key) == strings.ToLower(actualKey) {
 			return actualKey
 		}
@@ -20,6 +21,9 @@ func findMember(shape *api.Shape, key string) string {
 	return ""
 }
 
+// GenerateAssertions builds assertions for a shape based on its type.
+//
+// The shape's recursive values also will have assertions generated for them.
 func GenerateAssertions(out interface{}, shape *api.Shape, prefix string) string {
 	switch t := out.(type) {
 	case map[string]interface{}:
@@ -62,6 +66,8 @@ func GenerateAssertions(out interface{}, shape *api.Shape, prefix string) string
 	}
 }
 
+// Match is a testing helper to test for testing error by comparing expected
+// with a regular expression.
 func Match(t *testing.T, regex, expected string) {
 	if !regexp.MustCompile(regex).Match([]byte(expected)) {
 		t.Errorf("%q\n\tdoes not match /%s/", expected, regex)

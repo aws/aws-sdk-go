@@ -6,15 +6,15 @@ import (
 	"testing"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/internal/test/unit"
 	"github.com/awslabs/aws-sdk-go/service/ec2"
 	"github.com/stretchr/testify/assert"
 )
 
+var _ = unit.Imported
+
 func TestCopySnapshotPresignedURL(t *testing.T) {
-	svc := ec2.New(&aws.Config{
-		Credentials: aws.DetectCreds("AKID", "SECRET", ""),
-		Region:      "us-west-2",
-	})
+	svc := ec2.New(&aws.Config{Region: "us-west-2"})
 
 	assert.NotPanics(t, func() {
 		// Doesn't panic on nil input

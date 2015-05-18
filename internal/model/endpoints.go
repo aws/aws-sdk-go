@@ -7,7 +7,7 @@ import (
 	"text/template"
 )
 
-// Generate writes a Go file to the given writer.
+// GenerateEndpoints writes a Go file to the given writer.
 func GenerateEndpoints(endpoints interface{}, w io.Writer) error {
 	tmpl, err := template.New("endpoints").Parse(t)
 	if err != nil {
