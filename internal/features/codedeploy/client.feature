@@ -12,5 +12,5 @@ Feature: Amazon CodeDeploy
     Then I expect the response error code to be "ApplicationDoesNotExistException"
     And I expect the response error message to include:
     """
-    No application found for name: bogus-app
+    Applications not found for
     """
