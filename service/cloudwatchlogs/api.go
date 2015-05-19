@@ -7,6 +7,7 @@ import (
 	"sync"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -41,11 +42,10 @@ func (c *CloudWatchLogs) CreateLogGroupRequest(input *CreateLogGroupInput) (req 
 //  You must use the following guidelines when naming a log group:  Log group
 // names can be between 1 and 512 characters long. Allowed characters are a-z,
 // A-Z, 0-9, '_' (underscore), '-' (hyphen), '/' (forward slash), and '.' (period).
-func (c *CloudWatchLogs) CreateLogGroup(input *CreateLogGroupInput) (output *CreateLogGroupOutput, err error) {
+func (c *CloudWatchLogs) CreateLogGroup(input *CreateLogGroupInput) (*CreateLogGroupOutput, awserr.Error) {
 	req, out := c.CreateLogGroupRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateLogGroup *aws.Operation
@@ -80,11 +80,10 @@ func (c *CloudWatchLogs) CreateLogStreamRequest(input *CreateLogStreamInput) (re
 //  You must use the following guidelines when naming a log stream:  Log stream
 // names can be between 1 and 512 characters long. The ':' colon character is
 // not allowed.
-func (c *CloudWatchLogs) CreateLogStream(input *CreateLogStreamInput) (output *CreateLogStreamOutput, err error) {
+func (c *CloudWatchLogs) CreateLogStream(input *CreateLogStreamInput) (*CreateLogStreamOutput, awserr.Error) {
 	req, out := c.CreateLogStreamRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateLogStream *aws.Operation
@@ -114,11 +113,10 @@ func (c *CloudWatchLogs) DeleteLogGroupRequest(input *DeleteLogGroupInput) (req 
 
 // Deletes the log group with the specified name and permanently deletes all
 // the archived log events associated with it.
-func (c *CloudWatchLogs) DeleteLogGroup(input *DeleteLogGroupInput) (output *DeleteLogGroupOutput, err error) {
+func (c *CloudWatchLogs) DeleteLogGroup(input *DeleteLogGroupInput) (*DeleteLogGroupOutput, awserr.Error) {
 	req, out := c.DeleteLogGroupRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteLogGroup *aws.Operation
@@ -148,11 +146,10 @@ func (c *CloudWatchLogs) DeleteLogStreamRequest(input *DeleteLogStreamInput) (re
 
 // Deletes a log stream and permanently deletes all the archived log events
 // associated with it.
-func (c *CloudWatchLogs) DeleteLogStream(input *DeleteLogStreamInput) (output *DeleteLogStreamOutput, err error) {
+func (c *CloudWatchLogs) DeleteLogStream(input *DeleteLogStreamInput) (*DeleteLogStreamOutput, awserr.Error) {
 	req, out := c.DeleteLogStreamRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteLogStream *aws.Operation
@@ -181,11 +178,10 @@ func (c *CloudWatchLogs) DeleteMetricFilterRequest(input *DeleteMetricFilterInpu
 }
 
 // Deletes a metric filter associated with the specified log group.
-func (c *CloudWatchLogs) DeleteMetricFilter(input *DeleteMetricFilterInput) (output *DeleteMetricFilterOutput, err error) {
+func (c *CloudWatchLogs) DeleteMetricFilter(input *DeleteMetricFilterInput) (*DeleteMetricFilterOutput, awserr.Error) {
 	req, out := c.DeleteMetricFilterRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteMetricFilter *aws.Operation
@@ -215,11 +211,10 @@ func (c *CloudWatchLogs) DeleteRetentionPolicyRequest(input *DeleteRetentionPoli
 
 // Deletes the retention policy of the specified log group. Log events would
 // not expire if they belong to log groups without a retention policy.
-func (c *CloudWatchLogs) DeleteRetentionPolicy(input *DeleteRetentionPolicyInput) (output *DeleteRetentionPolicyOutput, err error) {
+func (c *CloudWatchLogs) DeleteRetentionPolicy(input *DeleteRetentionPolicyInput) (*DeleteRetentionPolicyOutput, awserr.Error) {
 	req, out := c.DeleteRetentionPolicyRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteRetentionPolicy *aws.Operation
@@ -255,11 +250,10 @@ func (c *CloudWatchLogs) DescribeLogGroupsRequest(input *DescribeLogGroupsInput)
 // log groups to list, the response would contain a nextToken value in the response
 // body. You can also limit the number of log groups returned in the response
 // by specifying the limit parameter in the request.
-func (c *CloudWatchLogs) DescribeLogGroups(input *DescribeLogGroupsInput) (output *DescribeLogGroupsOutput, err error) {
+func (c *CloudWatchLogs) DescribeLogGroups(input *DescribeLogGroupsInput) (*DescribeLogGroupsOutput, awserr.Error) {
 	req, out := c.DescribeLogGroupsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeLogGroups *aws.Operation
@@ -296,11 +290,10 @@ func (c *CloudWatchLogs) DescribeLogStreamsRequest(input *DescribeLogStreamsInpu
 // response by specifying the limit parameter in the request. This operation
 // has a limit of five transactions per second, after which transactions are
 // throttled.
-func (c *CloudWatchLogs) DescribeLogStreams(input *DescribeLogStreamsInput) (output *DescribeLogStreamsOutput, err error) {
+func (c *CloudWatchLogs) DescribeLogStreams(input *DescribeLogStreamsInput) (*DescribeLogStreamsOutput, awserr.Error) {
 	req, out := c.DescribeLogStreamsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeLogStreams *aws.Operation
@@ -335,11 +328,10 @@ func (c *CloudWatchLogs) DescribeMetricFiltersRequest(input *DescribeMetricFilte
 // more metric filters to list, the response would contain a nextToken value
 // in the response body. You can also limit the number of metric filters returned
 // in the response by specifying the limit parameter in the request.
-func (c *CloudWatchLogs) DescribeMetricFilters(input *DescribeMetricFiltersInput) (output *DescribeMetricFiltersOutput, err error) {
+func (c *CloudWatchLogs) DescribeMetricFilters(input *DescribeMetricFiltersInput) (*DescribeMetricFiltersOutput, awserr.Error) {
 	req, out := c.DescribeMetricFiltersRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeMetricFilters *aws.Operation
@@ -377,11 +369,10 @@ func (c *CloudWatchLogs) GetLogEventsRequest(input *GetLogEventsInput) (req *aws
 // events in either forward or backward direction. You can also limit the number
 // of log events returned in the response by specifying the limit parameter
 // in the request.
-func (c *CloudWatchLogs) GetLogEvents(input *GetLogEventsInput) (output *GetLogEventsOutput, err error) {
+func (c *CloudWatchLogs) GetLogEvents(input *GetLogEventsInput) (*GetLogEventsOutput, awserr.Error) {
 	req, out := c.GetLogEventsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetLogEvents *aws.Operation
@@ -422,11 +413,10 @@ func (c *CloudWatchLogs) PutLogEventsRequest(input *PutLogEventsInput) (req *aws
 // log events in the batch can be older than 14 days or the retention period
 // of the log group. The log events in the batch must be in chronological ordered
 // by their timestamp. The maximum number of log events in a batch is 10,000.
-func (c *CloudWatchLogs) PutLogEvents(input *PutLogEventsInput) (output *PutLogEventsOutput, err error) {
+func (c *CloudWatchLogs) PutLogEvents(input *PutLogEventsInput) (*PutLogEventsOutput, awserr.Error) {
 	req, out := c.PutLogEventsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opPutLogEvents *aws.Operation
@@ -457,11 +447,10 @@ func (c *CloudWatchLogs) PutMetricFilterRequest(input *PutMetricFilterInput) (re
 // Creates or updates a metric filter and associates it with the specified log
 // group. Metric filters allow you to configure rules to extract metric data
 // from log events ingested through PutLogEvents requests.
-func (c *CloudWatchLogs) PutMetricFilter(input *PutMetricFilterInput) (output *PutMetricFilterOutput, err error) {
+func (c *CloudWatchLogs) PutMetricFilter(input *PutMetricFilterInput) (*PutMetricFilterOutput, awserr.Error) {
 	req, out := c.PutMetricFilterRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opPutMetricFilter *aws.Operation
@@ -492,11 +481,10 @@ func (c *CloudWatchLogs) PutRetentionPolicyRequest(input *PutRetentionPolicyInpu
 // Sets the retention of the specified log group. A retention policy allows
 // you to configure the number of days you want to retain log events in the
 // specified log group.
-func (c *CloudWatchLogs) PutRetentionPolicy(input *PutRetentionPolicyInput) (output *PutRetentionPolicyOutput, err error) {
+func (c *CloudWatchLogs) PutRetentionPolicy(input *PutRetentionPolicyInput) (*PutRetentionPolicyOutput, awserr.Error) {
 	req, out := c.PutRetentionPolicyRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opPutRetentionPolicy *aws.Operation
@@ -527,11 +515,10 @@ func (c *CloudWatchLogs) TestMetricFilterRequest(input *TestMetricFilterInput) (
 // Tests the filter pattern of a metric filter against a sample of log event
 // messages. You can use this operation to validate the correctness of a metric
 // filter pattern.
-func (c *CloudWatchLogs) TestMetricFilter(input *TestMetricFilterInput) (output *TestMetricFilterOutput, err error) {
+func (c *CloudWatchLogs) TestMetricFilter(input *TestMetricFilterInput) (*TestMetricFilterOutput, awserr.Error) {
 	req, out := c.TestMetricFilterRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opTestMetricFilter *aws.Operation

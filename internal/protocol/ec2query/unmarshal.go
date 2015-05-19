@@ -7,6 +7,7 @@ import (
 	"io"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/internal/apierr"
 	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
 )
 
@@ -17,7 +18,7 @@ func Unmarshal(r *aws.Request) {
 		decoder := xml.NewDecoder(r.HTTPResponse.Body)
 		err := xmlutil.UnmarshalXML(r.Data, decoder, "")
 		if err != nil {
-			r.Error = err
+			r.Error = apierr.New("Unmarshal", "failed decoding EC2 Query response", err)
 			return
 		}
 	}
@@ -42,12 +43,12 @@ func UnmarshalError(r *aws.Request) {
 	resp := &xmlErrorResponse{}
 	err := xml.NewDecoder(r.HTTPResponse.Body).Decode(resp)
 	if err != nil && err != io.EOF {
-		r.Error = err
+		r.Error = apierr.New("Unmarshal", "failed decoding EC2 Query error response", err)
 	} else {
-		r.Error = aws.APIError{
-			StatusCode: r.HTTPResponse.StatusCode,
-			Code:       resp.Code,
-			Message:    resp.Message,
-		}
+		r.Error = apierr.NewRequestError(
+			apierr.New(resp.Code, resp.Message, nil),
+			r.HTTPResponse.StatusCode,
+			resp.RequestID,
+		)
 	}
 }

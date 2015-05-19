@@ -4,8 +4,9 @@ import (
 	"bytes"
 	"fmt"
 	"time"
-
 	"github.com/awslabs/aws-sdk-go/aws"
+
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/aws/awsutil"
 	"github.com/awslabs/aws-sdk-go/service/ses"
 )
@@ -21,12 +22,12 @@ func ExampleSES_DeleteIdentity() {
 	}
 	resp, err := svc.DeleteIdentity(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -41,12 +42,12 @@ func ExampleSES_DeleteVerifiedEmailAddress() {
 	}
 	resp, err := svc.DeleteVerifiedEmailAddress(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -64,12 +65,12 @@ func ExampleSES_GetIdentityDKIMAttributes() {
 	}
 	resp, err := svc.GetIdentityDKIMAttributes(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -87,12 +88,12 @@ func ExampleSES_GetIdentityNotificationAttributes() {
 	}
 	resp, err := svc.GetIdentityNotificationAttributes(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -110,12 +111,12 @@ func ExampleSES_GetIdentityVerificationAttributes() {
 	}
 	resp, err := svc.GetIdentityVerificationAttributes(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -128,12 +129,12 @@ func ExampleSES_GetSendQuota() {
 	var params *ses.GetSendQuotaInput
 	resp, err := svc.GetSendQuota(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -146,12 +147,12 @@ func ExampleSES_GetSendStatistics() {
 	var params *ses.GetSendStatisticsInput
 	resp, err := svc.GetSendStatistics(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -168,12 +169,12 @@ func ExampleSES_ListIdentities() {
 	}
 	resp, err := svc.ListIdentities(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -186,12 +187,12 @@ func ExampleSES_ListVerifiedEmailAddresses() {
 	var params *ses.ListVerifiedEmailAddressesInput
 	resp, err := svc.ListVerifiedEmailAddresses(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -241,12 +242,12 @@ func ExampleSES_SendEmail() {
 	}
 	resp, err := svc.SendEmail(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -268,12 +269,12 @@ func ExampleSES_SendRawEmail() {
 	}
 	resp, err := svc.SendRawEmail(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -289,12 +290,12 @@ func ExampleSES_SetIdentityDKIMEnabled() {
 	}
 	resp, err := svc.SetIdentityDKIMEnabled(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -310,12 +311,12 @@ func ExampleSES_SetIdentityFeedbackForwardingEnabled() {
 	}
 	resp, err := svc.SetIdentityFeedbackForwardingEnabled(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -332,12 +333,12 @@ func ExampleSES_SetIdentityNotificationTopic() {
 	}
 	resp, err := svc.SetIdentityNotificationTopic(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -352,12 +353,12 @@ func ExampleSES_VerifyDomainDKIM() {
 	}
 	resp, err := svc.VerifyDomainDKIM(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -372,12 +373,12 @@ func ExampleSES_VerifyDomainIdentity() {
 	}
 	resp, err := svc.VerifyDomainIdentity(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -392,12 +393,12 @@ func ExampleSES_VerifyEmailAddress() {
 	}
 	resp, err := svc.VerifyEmailAddress(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -412,12 +413,12 @@ func ExampleSES_VerifyEmailIdentity() {
 	}
 	resp, err := svc.VerifyEmailIdentity(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.

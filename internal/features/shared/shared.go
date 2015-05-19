@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/aws/awsutil"
 	. "github.com/lsegal/gucumber"
 	"github.com/stretchr/testify/assert"
@@ -54,18 +55,18 @@ func init() {
 	})
 
 	Then(`^I expect the response error code to be "(.+?)"$`, func(code string) {
-		err, ok := World["error"].(aws.APIError)
+		err, ok := World["error"].(awserr.Error)
 		assert.True(T, ok, "no error returned")
 		if ok {
-			assert.Equal(T, code, err.Code)
+			assert.Equal(T, code, err.Code())
 		}
 	})
 
 	And(`^I expect the response error message to include:$`, func(data string) {
-		err, ok := World["error"].(aws.APIError)
+		err, ok := World["error"].(awserr.Error)
 		assert.True(T, ok, "no error returned")
 		if ok {
-			assert.Contains(T, err.Message, data)
+			assert.Contains(T, err.Message(), data)
 		}
 	})
 }

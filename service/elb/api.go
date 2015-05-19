@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -43,11 +44,10 @@ func (c *ELB) AddTagsRequest(input *AddTagsInput) (req *aws.Request, output *Add
 //
 // For more information, see Tagging (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#tagging-elb)
 // in the Elastic Load Balancing Developer Guide.
-func (c *ELB) AddTags(input *AddTagsInput) (output *AddTagsOutput, err error) {
+func (c *ELB) AddTags(input *AddTagsInput) (*AddTagsOutput, awserr.Error) {
 	req, out := c.AddTagsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opAddTags *aws.Operation
@@ -81,11 +81,10 @@ func (c *ELB) ApplySecurityGroupsToLoadBalancerRequest(input *ApplySecurityGroup
 //
 // For more information, see Manage Security Groups for Amazon VPC (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/USVPC_ApplySG.html)
 // in the Elastic Load Balancing Developer Guide.
-func (c *ELB) ApplySecurityGroupsToLoadBalancer(input *ApplySecurityGroupsToLoadBalancerInput) (output *ApplySecurityGroupsToLoadBalancerOutput, err error) {
+func (c *ELB) ApplySecurityGroupsToLoadBalancer(input *ApplySecurityGroupsToLoadBalancerInput) (*ApplySecurityGroupsToLoadBalancerOutput, awserr.Error) {
 	req, out := c.ApplySecurityGroupsToLoadBalancerRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opApplySecurityGroupsToLoadBalancer *aws.Operation
@@ -119,11 +118,10 @@ func (c *ELB) AttachLoadBalancerToSubnetsRequest(input *AttachLoadBalancerToSubn
 // The load balancer evenly distributes requests across all registered subnets.
 // For more information, see Elastic Load Balancing in Amazon VPC (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/UserScenariosForVPC.html)
 // in the Elastic Load Balancing Developer Guide.
-func (c *ELB) AttachLoadBalancerToSubnets(input *AttachLoadBalancerToSubnetsInput) (output *AttachLoadBalancerToSubnetsOutput, err error) {
+func (c *ELB) AttachLoadBalancerToSubnets(input *AttachLoadBalancerToSubnetsInput) (*AttachLoadBalancerToSubnetsOutput, awserr.Error) {
 	req, out := c.AttachLoadBalancerToSubnetsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opAttachLoadBalancerToSubnets *aws.Operation
@@ -156,11 +154,10 @@ func (c *ELB) ConfigureHealthCheckRequest(input *ConfigureHealthCheckInput) (req
 //
 // For more information, see Health Checks (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#healthcheck)
 // in the Elastic Load Balancing Developer Guide.
-func (c *ELB) ConfigureHealthCheck(input *ConfigureHealthCheckInput) (output *ConfigureHealthCheckOutput, err error) {
+func (c *ELB) ConfigureHealthCheck(input *ConfigureHealthCheckInput) (*ConfigureHealthCheckOutput, awserr.Error) {
 	req, out := c.ConfigureHealthCheckRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opConfigureHealthCheck *aws.Operation
@@ -203,11 +200,10 @@ func (c *ELB) CreateAppCookieStickinessPolicyRequest(input *CreateAppCookieStick
 //
 // For more information, see Application-Controlled Session Stickiness (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_StickySessions.html#US_EnableStickySessionsAppCookies)
 // in the Elastic Load Balancing Developer Guide.
-func (c *ELB) CreateAppCookieStickinessPolicy(input *CreateAppCookieStickinessPolicyInput) (output *CreateAppCookieStickinessPolicyOutput, err error) {
+func (c *ELB) CreateAppCookieStickinessPolicy(input *CreateAppCookieStickinessPolicyInput) (*CreateAppCookieStickinessPolicyOutput, awserr.Error) {
 	req, out := c.CreateAppCookieStickinessPolicyRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateAppCookieStickinessPolicy *aws.Operation
@@ -252,11 +248,10 @@ func (c *ELB) CreateLBCookieStickinessPolicyRequest(input *CreateLBCookieStickin
 //
 // For more information, see Duration-Based Session Stickiness (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_StickySessions.html#US_EnableStickySessionsLBCookies)
 // in the Elastic Load Balancing Developer Guide.
-func (c *ELB) CreateLBCookieStickinessPolicy(input *CreateLBCookieStickinessPolicyInput) (output *CreateLBCookieStickinessPolicyOutput, err error) {
+func (c *ELB) CreateLBCookieStickinessPolicy(input *CreateLBCookieStickinessPolicyInput) (*CreateLBCookieStickinessPolicyOutput, awserr.Error) {
 	req, out := c.CreateLBCookieStickinessPolicyRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateLBCookieStickinessPolicy *aws.Operation
@@ -306,11 +301,10 @@ func (c *ELB) CreateLoadBalancerRequest(input *CreateLoadBalancerInput) (req *aw
 // Elastic Load Balancing in EC2-Classic (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/UserScenariosForEC2.html)
 // or Elastic Load Balancing in a VPC (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/UserScenariosForVPC.html)
 // in the Elastic Load Balancing Developer Guide.
-func (c *ELB) CreateLoadBalancer(input *CreateLoadBalancerInput) (output *CreateLoadBalancerOutput, err error) {
+func (c *ELB) CreateLoadBalancer(input *CreateLoadBalancerInput) (*CreateLoadBalancerOutput, awserr.Error) {
 	req, out := c.CreateLoadBalancerRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateLoadBalancer *aws.Operation
@@ -345,11 +339,10 @@ func (c *ELB) CreateLoadBalancerListenersRequest(input *CreateLoadBalancerListen
 //
 // For more information, see Add a Listener to Your Load Balancer (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/us-add-listener.html)
 // in the Elastic Load Balancing Developer Guide.
-func (c *ELB) CreateLoadBalancerListeners(input *CreateLoadBalancerListenersInput) (output *CreateLoadBalancerListenersOutput, err error) {
+func (c *ELB) CreateLoadBalancerListeners(input *CreateLoadBalancerListenersInput) (*CreateLoadBalancerListenersOutput, awserr.Error) {
 	req, out := c.CreateLoadBalancerListenersRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateLoadBalancerListeners *aws.Operation
@@ -382,11 +375,10 @@ func (c *ELB) CreateLoadBalancerPolicyRequest(input *CreateLoadBalancerPolicyInp
 // Policies are settings that are saved for your load balancer and that can
 // be applied to the front-end listener or the back-end application server,
 // depending on the policy type.
-func (c *ELB) CreateLoadBalancerPolicy(input *CreateLoadBalancerPolicyInput) (output *CreateLoadBalancerPolicyOutput, err error) {
+func (c *ELB) CreateLoadBalancerPolicy(input *CreateLoadBalancerPolicyInput) (*CreateLoadBalancerPolicyOutput, awserr.Error) {
 	req, out := c.CreateLoadBalancerPolicyRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateLoadBalancerPolicy *aws.Operation
@@ -424,11 +416,10 @@ func (c *ELB) DeleteLoadBalancerRequest(input *DeleteLoadBalancerInput) (req *aw
 //
 // If the load balancer does not exist or has already been deleted, the call
 // to DeleteLoadBalancer still succeeds.
-func (c *ELB) DeleteLoadBalancer(input *DeleteLoadBalancerInput) (output *DeleteLoadBalancerOutput, err error) {
+func (c *ELB) DeleteLoadBalancer(input *DeleteLoadBalancerInput) (*DeleteLoadBalancerOutput, awserr.Error) {
 	req, out := c.DeleteLoadBalancerRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteLoadBalancer *aws.Operation
@@ -457,11 +448,10 @@ func (c *ELB) DeleteLoadBalancerListenersRequest(input *DeleteLoadBalancerListen
 }
 
 // Deletes the specified listeners from the specified load balancer.
-func (c *ELB) DeleteLoadBalancerListeners(input *DeleteLoadBalancerListenersInput) (output *DeleteLoadBalancerListenersOutput, err error) {
+func (c *ELB) DeleteLoadBalancerListeners(input *DeleteLoadBalancerListenersInput) (*DeleteLoadBalancerListenersOutput, awserr.Error) {
 	req, out := c.DeleteLoadBalancerListenersRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteLoadBalancerListeners *aws.Operation
@@ -491,11 +481,10 @@ func (c *ELB) DeleteLoadBalancerPolicyRequest(input *DeleteLoadBalancerPolicyInp
 
 // Deletes the specified policy from the specified load balancer. This policy
 // must not be enabled for any listeners.
-func (c *ELB) DeleteLoadBalancerPolicy(input *DeleteLoadBalancerPolicyInput) (output *DeleteLoadBalancerPolicyOutput, err error) {
+func (c *ELB) DeleteLoadBalancerPolicy(input *DeleteLoadBalancerPolicyInput) (*DeleteLoadBalancerPolicyOutput, awserr.Error) {
 	req, out := c.DeleteLoadBalancerPolicyRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteLoadBalancerPolicy *aws.Operation
@@ -532,11 +521,10 @@ func (c *ELB) DeregisterInstancesFromLoadBalancerRequest(input *DeregisterInstan
 //
 // For more information, see Deregister and Register Amazon EC2 Instances (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_DeReg_Reg_Instances.html)
 // in the Elastic Load Balancing Developer Guide.
-func (c *ELB) DeregisterInstancesFromLoadBalancer(input *DeregisterInstancesFromLoadBalancerInput) (output *DeregisterInstancesFromLoadBalancerOutput, err error) {
+func (c *ELB) DeregisterInstancesFromLoadBalancer(input *DeregisterInstancesFromLoadBalancerInput) (*DeregisterInstancesFromLoadBalancerOutput, awserr.Error) {
 	req, out := c.DeregisterInstancesFromLoadBalancerRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeregisterInstancesFromLoadBalancer *aws.Operation
@@ -568,11 +556,10 @@ func (c *ELB) DescribeInstanceHealthRequest(input *DescribeInstanceHealthInput) 
 // load balancer. If no instances are specified, the call describes the state
 // of all instances registered with the load balancer, not including any terminated
 // instances.
-func (c *ELB) DescribeInstanceHealth(input *DescribeInstanceHealthInput) (output *DescribeInstanceHealthOutput, err error) {
+func (c *ELB) DescribeInstanceHealth(input *DescribeInstanceHealthInput) (*DescribeInstanceHealthOutput, awserr.Error) {
 	req, out := c.DescribeInstanceHealthRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeInstanceHealth *aws.Operation
@@ -601,11 +588,10 @@ func (c *ELB) DescribeLoadBalancerAttributesRequest(input *DescribeLoadBalancerA
 }
 
 // Describes the attributes for the specified load balancer.
-func (c *ELB) DescribeLoadBalancerAttributes(input *DescribeLoadBalancerAttributesInput) (output *DescribeLoadBalancerAttributesOutput, err error) {
+func (c *ELB) DescribeLoadBalancerAttributes(input *DescribeLoadBalancerAttributesInput) (*DescribeLoadBalancerAttributesOutput, awserr.Error) {
 	req, out := c.DescribeLoadBalancerAttributesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeLoadBalancerAttributes *aws.Operation
@@ -641,11 +627,10 @@ func (c *ELB) DescribeLoadBalancerPoliciesRequest(input *DescribeLoadBalancerPol
 // that policy. If you don't specify a load balancer name, the action returns
 // descriptions of the specified sample policies, or descriptions of all sample
 // policies. The names of the sample policies have the ELBSample- prefix.
-func (c *ELB) DescribeLoadBalancerPolicies(input *DescribeLoadBalancerPoliciesInput) (output *DescribeLoadBalancerPoliciesOutput, err error) {
+func (c *ELB) DescribeLoadBalancerPolicies(input *DescribeLoadBalancerPoliciesInput) (*DescribeLoadBalancerPoliciesOutput, awserr.Error) {
 	req, out := c.DescribeLoadBalancerPoliciesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeLoadBalancerPolicies *aws.Operation
@@ -677,11 +662,10 @@ func (c *ELB) DescribeLoadBalancerPolicyTypesRequest(input *DescribeLoadBalancer
 //
 // You can use these policy types with CreateLoadBalancerPolicy to create policy
 // configurations for a load balancer.
-func (c *ELB) DescribeLoadBalancerPolicyTypes(input *DescribeLoadBalancerPolicyTypesInput) (output *DescribeLoadBalancerPolicyTypesOutput, err error) {
+func (c *ELB) DescribeLoadBalancerPolicyTypes(input *DescribeLoadBalancerPolicyTypesInput) (*DescribeLoadBalancerPolicyTypesOutput, awserr.Error) {
 	req, out := c.DescribeLoadBalancerPolicyTypesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeLoadBalancerPolicyTypes *aws.Operation
@@ -711,11 +695,10 @@ func (c *ELB) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (r
 
 // Describes the specified the load balancers. If no load balancers are specified,
 // the call describes all of your load balancers.
-func (c *ELB) DescribeLoadBalancers(input *DescribeLoadBalancersInput) (output *DescribeLoadBalancersOutput, err error) {
+func (c *ELB) DescribeLoadBalancers(input *DescribeLoadBalancersInput) (*DescribeLoadBalancersOutput, awserr.Error) {
 	req, out := c.DescribeLoadBalancersRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeLoadBalancers *aws.Operation
@@ -744,11 +727,10 @@ func (c *ELB) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, o
 }
 
 // Describes the tags associated with the specified load balancers.
-func (c *ELB) DescribeTags(input *DescribeTagsInput) (output *DescribeTagsOutput, err error) {
+func (c *ELB) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, awserr.Error) {
 	req, out := c.DescribeTagsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeTags *aws.Operation
@@ -782,11 +764,10 @@ func (c *ELB) DetachLoadBalancerFromSubnetsRequest(input *DetachLoadBalancerFrom
 // After a subnet is removed, all EC2 instances registered with the load balancer
 // in the removed subnet go into the OutOfService state. Then, the load balancer
 // balances the traffic among the remaining routable subnets.
-func (c *ELB) DetachLoadBalancerFromSubnets(input *DetachLoadBalancerFromSubnetsInput) (output *DetachLoadBalancerFromSubnetsOutput, err error) {
+func (c *ELB) DetachLoadBalancerFromSubnets(input *DetachLoadBalancerFromSubnetsInput) (*DetachLoadBalancerFromSubnetsOutput, awserr.Error) {
 	req, out := c.DetachLoadBalancerFromSubnetsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDetachLoadBalancerFromSubnets *aws.Operation
@@ -826,11 +807,10 @@ func (c *ELB) DisableAvailabilityZonesForLoadBalancerRequest(input *DisableAvail
 // For more information, see Disable an Availability Zone from a Load-Balanced
 // Application (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_ShrinkLBApp04.html)
 // in the Elastic Load Balancing Developer Guide.
-func (c *ELB) DisableAvailabilityZonesForLoadBalancer(input *DisableAvailabilityZonesForLoadBalancerInput) (output *DisableAvailabilityZonesForLoadBalancerOutput, err error) {
+func (c *ELB) DisableAvailabilityZonesForLoadBalancer(input *DisableAvailabilityZonesForLoadBalancerInput) (*DisableAvailabilityZonesForLoadBalancerOutput, awserr.Error) {
 	req, out := c.DisableAvailabilityZonesForLoadBalancerRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDisableAvailabilityZonesForLoadBalancer *aws.Operation
@@ -866,11 +846,10 @@ func (c *ELB) EnableAvailabilityZonesForLoadBalancerRequest(input *EnableAvailab
 //
 // For more information, see Add Availability Zone (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_AddLBAvailabilityZone.html)
 // in the Elastic Load Balancing Developer Guide.
-func (c *ELB) EnableAvailabilityZonesForLoadBalancer(input *EnableAvailabilityZonesForLoadBalancerInput) (output *EnableAvailabilityZonesForLoadBalancerOutput, err error) {
+func (c *ELB) EnableAvailabilityZonesForLoadBalancer(input *EnableAvailabilityZonesForLoadBalancerInput) (*EnableAvailabilityZonesForLoadBalancerOutput, awserr.Error) {
 	req, out := c.EnableAvailabilityZonesForLoadBalancerRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opEnableAvailabilityZonesForLoadBalancer *aws.Operation
@@ -912,11 +891,10 @@ func (c *ELB) ModifyLoadBalancerAttributesRequest(input *ModifyLoadBalancerAttri
 // Connection Draining (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#conn-drain)
 // Access Logs (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/access-log-collection.html)
 // Idle Connection Timeout (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#idle-timeout)
-func (c *ELB) ModifyLoadBalancerAttributes(input *ModifyLoadBalancerAttributesInput) (output *ModifyLoadBalancerAttributesOutput, err error) {
+func (c *ELB) ModifyLoadBalancerAttributes(input *ModifyLoadBalancerAttributesInput) (*ModifyLoadBalancerAttributesOutput, awserr.Error) {
 	req, out := c.ModifyLoadBalancerAttributesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opModifyLoadBalancerAttributes *aws.Operation
@@ -971,11 +949,10 @@ func (c *ELB) RegisterInstancesWithLoadBalancerRequest(input *RegisterInstancesW
 //
 // For more information, see Deregister and Register EC2 Instances (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_DeReg_Reg_Instances.html)
 // in the Elastic Load Balancing Developer Guide.
-func (c *ELB) RegisterInstancesWithLoadBalancer(input *RegisterInstancesWithLoadBalancerInput) (output *RegisterInstancesWithLoadBalancerOutput, err error) {
+func (c *ELB) RegisterInstancesWithLoadBalancer(input *RegisterInstancesWithLoadBalancerInput) (*RegisterInstancesWithLoadBalancerOutput, awserr.Error) {
 	req, out := c.RegisterInstancesWithLoadBalancerRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRegisterInstancesWithLoadBalancer *aws.Operation
@@ -1004,11 +981,10 @@ func (c *ELB) RemoveTagsRequest(input *RemoveTagsInput) (req *aws.Request, outpu
 }
 
 // Removes one or more tags from the specified load balancer.
-func (c *ELB) RemoveTags(input *RemoveTagsInput) (output *RemoveTagsOutput, err error) {
+func (c *ELB) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutput, awserr.Error) {
 	req, out := c.RemoveTagsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRemoveTags *aws.Operation
@@ -1043,11 +1019,10 @@ func (c *ELB) SetLoadBalancerListenerSSLCertificateRequest(input *SetLoadBalance
 // For more information about updating your SSL certificate, see Updating an
 // SSL Certificate for a Load Balancer (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_UpdatingLoadBalancerSSL.html)
 // in the Elastic Load Balancing Developer Guide.
-func (c *ELB) SetLoadBalancerListenerSSLCertificate(input *SetLoadBalancerListenerSSLCertificateInput) (output *SetLoadBalancerListenerSSLCertificateOutput, err error) {
+func (c *ELB) SetLoadBalancerListenerSSLCertificate(input *SetLoadBalancerListenerSSLCertificateInput) (*SetLoadBalancerListenerSSLCertificateOutput, awserr.Error) {
 	req, out := c.SetLoadBalancerListenerSSLCertificateRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSetLoadBalancerListenerSSLCertificate *aws.Operation
@@ -1086,11 +1061,10 @@ func (c *ELB) SetLoadBalancerPoliciesForBackendServerRequest(input *SetLoadBalan
 //
 // You can use DescribeLoadBalancers or DescribeLoadBalancerPolicies to verify
 // that the policy is associated with the back-end server.
-func (c *ELB) SetLoadBalancerPoliciesForBackendServer(input *SetLoadBalancerPoliciesForBackendServerInput) (output *SetLoadBalancerPoliciesForBackendServerOutput, err error) {
+func (c *ELB) SetLoadBalancerPoliciesForBackendServer(input *SetLoadBalancerPoliciesForBackendServerInput) (*SetLoadBalancerPoliciesForBackendServerOutput, awserr.Error) {
 	req, out := c.SetLoadBalancerPoliciesForBackendServerRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSetLoadBalancerPoliciesForBackendServer *aws.Operation
@@ -1120,11 +1094,10 @@ func (c *ELB) SetLoadBalancerPoliciesOfListenerRequest(input *SetLoadBalancerPol
 
 // Associates, updates, or disables a policy with a listener for the specified
 // load balancer. You can associate multiple policies with a listener.
-func (c *ELB) SetLoadBalancerPoliciesOfListener(input *SetLoadBalancerPoliciesOfListenerInput) (output *SetLoadBalancerPoliciesOfListenerOutput, err error) {
+func (c *ELB) SetLoadBalancerPoliciesOfListener(input *SetLoadBalancerPoliciesOfListenerInput) (*SetLoadBalancerPoliciesOfListenerOutput, awserr.Error) {
 	req, out := c.SetLoadBalancerPoliciesOfListenerRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSetLoadBalancerPoliciesOfListener *aws.Operation

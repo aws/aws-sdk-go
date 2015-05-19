@@ -6,11 +6,14 @@ import (
 	"path/filepath"
 
 	"github.com/vaughan0/go-ini"
+
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
+	"github.com/awslabs/aws-sdk-go/internal/apierr"
 )
 
 var (
 	// ErrSharedCredentialsHomeNotFound is emitted when the user directory cannot be found.
-	ErrSharedCredentialsHomeNotFound = fmt.Errorf("User home directory not found.")
+	ErrSharedCredentialsHomeNotFound = apierr.New("UserHomeNotFound", "user home directory not found.", nil)
 )
 
 // A SharedCredentialsProvider retrieves credentials from the current user's home
@@ -42,7 +45,7 @@ func NewSharedCredentials(filename, profile string) *Credentials {
 
 // Retrieve reads and extracts the shared credentials from the current
 // users home directory.
-func (p *SharedCredentialsProvider) Retrieve() (Value, error) {
+func (p *SharedCredentialsProvider) Retrieve() (Value, awserr.Error) {
 	p.retrieved = false
 
 	filename, err := p.filename()
@@ -67,21 +70,25 @@ func (p *SharedCredentialsProvider) IsExpired() bool {
 // loadProfiles loads from the file pointed to by shared credentials filename for profile.
 // The credentials retrieved from the profile will be returned or error. Error will be
 // returned if it fails to read from the file, or the data is invalid.
-func loadProfile(filename, profile string) (Value, error) {
+func loadProfile(filename, profile string) (Value, awserr.Error) {
 	config, err := ini.LoadFile(filename)
 	if err != nil {
-		return Value{}, err
+		return Value{}, apierr.New("SharedCredsLoad", "failed to load shared credentials file", err)
 	}
 	iniProfile := config.Section(profile)
 
 	id, ok := iniProfile["aws_access_key_id"]
 	if !ok {
-		return Value{}, fmt.Errorf("shared credentials %s in %s did not contain aws_access_key_id", profile, filename)
+		return Value{}, apierr.New("SharedCredsAccessKey",
+			fmt.Sprintf("shared credentials %s in %s did not contain aws_access_key_id", profile, filename),
+			nil)
 	}
 
 	secret, ok := iniProfile["aws_secret_access_key"]
 	if !ok {
-		return Value{}, fmt.Errorf("shared credentials %s in %s did not contain aws_secret_access_key", profile, filename)
+		return Value{}, apierr.New("SharedCredsSecret",
+			fmt.Sprintf("shared credentials %s in %s did not contain aws_secret_access_key", profile, filename),
+			nil)
 	}
 
 	token := iniProfile["aws_session_token"]
@@ -96,7 +103,7 @@ func loadProfile(filename, profile string) (Value, error) {
 // filename returns the filename to use to read AWS shared credentials.
 //
 // Will return an error if the user's home directory path cannot be found.
-func (p *SharedCredentialsProvider) filename() (string, error) {
+func (p *SharedCredentialsProvider) filename() (string, awserr.Error) {
 	if p.Filename == "" {
 		homeDir := os.Getenv("HOME") // *nix
 		if homeDir == "" {           // Windows

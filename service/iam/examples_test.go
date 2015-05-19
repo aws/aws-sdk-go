@@ -4,8 +4,9 @@ import (
 	"bytes"
 	"fmt"
 	"time"
-
 	"github.com/awslabs/aws-sdk-go/aws"
+
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/aws/awsutil"
 	"github.com/awslabs/aws-sdk-go/service/iam"
 )
@@ -22,12 +23,12 @@ func ExampleIAM_AddClientIDToOpenIDConnectProvider() {
 	}
 	resp, err := svc.AddClientIDToOpenIDConnectProvider(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -43,12 +44,12 @@ func ExampleIAM_AddRoleToInstanceProfile() {
 	}
 	resp, err := svc.AddRoleToInstanceProfile(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -64,12 +65,12 @@ func ExampleIAM_AddUserToGroup() {
 	}
 	resp, err := svc.AddUserToGroup(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -85,12 +86,12 @@ func ExampleIAM_AttachGroupPolicy() {
 	}
 	resp, err := svc.AttachGroupPolicy(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -106,12 +107,12 @@ func ExampleIAM_AttachRolePolicy() {
 	}
 	resp, err := svc.AttachRolePolicy(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -127,12 +128,12 @@ func ExampleIAM_AttachUserPolicy() {
 	}
 	resp, err := svc.AttachUserPolicy(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -148,12 +149,12 @@ func ExampleIAM_ChangePassword() {
 	}
 	resp, err := svc.ChangePassword(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -168,12 +169,12 @@ func ExampleIAM_CreateAccessKey() {
 	}
 	resp, err := svc.CreateAccessKey(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -188,12 +189,12 @@ func ExampleIAM_CreateAccountAlias() {
 	}
 	resp, err := svc.CreateAccountAlias(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -209,12 +210,12 @@ func ExampleIAM_CreateGroup() {
 	}
 	resp, err := svc.CreateGroup(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -230,12 +231,12 @@ func ExampleIAM_CreateInstanceProfile() {
 	}
 	resp, err := svc.CreateInstanceProfile(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -252,12 +253,12 @@ func ExampleIAM_CreateLoginProfile() {
 	}
 	resp, err := svc.CreateLoginProfile(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -280,12 +281,12 @@ func ExampleIAM_CreateOpenIDConnectProvider() {
 	}
 	resp, err := svc.CreateOpenIDConnectProvider(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -303,12 +304,12 @@ func ExampleIAM_CreatePolicy() {
 	}
 	resp, err := svc.CreatePolicy(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -325,12 +326,12 @@ func ExampleIAM_CreatePolicyVersion() {
 	}
 	resp, err := svc.CreatePolicyVersion(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -347,12 +348,12 @@ func ExampleIAM_CreateRole() {
 	}
 	resp, err := svc.CreateRole(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -368,12 +369,12 @@ func ExampleIAM_CreateSAMLProvider() {
 	}
 	resp, err := svc.CreateSAMLProvider(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -389,12 +390,12 @@ func ExampleIAM_CreateUser() {
 	}
 	resp, err := svc.CreateUser(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -410,12 +411,12 @@ func ExampleIAM_CreateVirtualMFADevice() {
 	}
 	resp, err := svc.CreateVirtualMFADevice(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -431,12 +432,12 @@ func ExampleIAM_DeactivateMFADevice() {
 	}
 	resp, err := svc.DeactivateMFADevice(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -452,12 +453,12 @@ func ExampleIAM_DeleteAccessKey() {
 	}
 	resp, err := svc.DeleteAccessKey(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -472,12 +473,12 @@ func ExampleIAM_DeleteAccountAlias() {
 	}
 	resp, err := svc.DeleteAccountAlias(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -490,12 +491,12 @@ func ExampleIAM_DeleteAccountPasswordPolicy() {
 	var params *iam.DeleteAccountPasswordPolicyInput
 	resp, err := svc.DeleteAccountPasswordPolicy(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -510,12 +511,12 @@ func ExampleIAM_DeleteGroup() {
 	}
 	resp, err := svc.DeleteGroup(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -531,12 +532,12 @@ func ExampleIAM_DeleteGroupPolicy() {
 	}
 	resp, err := svc.DeleteGroupPolicy(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -551,12 +552,12 @@ func ExampleIAM_DeleteInstanceProfile() {
 	}
 	resp, err := svc.DeleteInstanceProfile(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -571,12 +572,12 @@ func ExampleIAM_DeleteLoginProfile() {
 	}
 	resp, err := svc.DeleteLoginProfile(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -591,12 +592,12 @@ func ExampleIAM_DeleteOpenIDConnectProvider() {
 	}
 	resp, err := svc.DeleteOpenIDConnectProvider(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -611,12 +612,12 @@ func ExampleIAM_DeletePolicy() {
 	}
 	resp, err := svc.DeletePolicy(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -632,12 +633,12 @@ func ExampleIAM_DeletePolicyVersion() {
 	}
 	resp, err := svc.DeletePolicyVersion(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -652,12 +653,12 @@ func ExampleIAM_DeleteRole() {
 	}
 	resp, err := svc.DeleteRole(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -673,12 +674,12 @@ func ExampleIAM_DeleteRolePolicy() {
 	}
 	resp, err := svc.DeleteRolePolicy(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -693,12 +694,12 @@ func ExampleIAM_DeleteSAMLProvider() {
 	}
 	resp, err := svc.DeleteSAMLProvider(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -713,12 +714,12 @@ func ExampleIAM_DeleteServerCertificate() {
 	}
 	resp, err := svc.DeleteServerCertificate(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -734,12 +735,12 @@ func ExampleIAM_DeleteSigningCertificate() {
 	}
 	resp, err := svc.DeleteSigningCertificate(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -754,12 +755,12 @@ func ExampleIAM_DeleteUser() {
 	}
 	resp, err := svc.DeleteUser(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -775,12 +776,12 @@ func ExampleIAM_DeleteUserPolicy() {
 	}
 	resp, err := svc.DeleteUserPolicy(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -795,12 +796,12 @@ func ExampleIAM_DeleteVirtualMFADevice() {
 	}
 	resp, err := svc.DeleteVirtualMFADevice(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -816,12 +817,12 @@ func ExampleIAM_DetachGroupPolicy() {
 	}
 	resp, err := svc.DetachGroupPolicy(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -837,12 +838,12 @@ func ExampleIAM_DetachRolePolicy() {
 	}
 	resp, err := svc.DetachRolePolicy(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -858,12 +859,12 @@ func ExampleIAM_DetachUserPolicy() {
 	}
 	resp, err := svc.DetachUserPolicy(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -881,12 +882,12 @@ func ExampleIAM_EnableMFADevice() {
 	}
 	resp, err := svc.EnableMFADevice(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -899,12 +900,12 @@ func ExampleIAM_GenerateCredentialReport() {
 	var params *iam.GenerateCredentialReportInput
 	resp, err := svc.GenerateCredentialReport(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -919,12 +920,12 @@ func ExampleIAM_GetAccessKeyLastUsed() {
 	}
 	resp, err := svc.GetAccessKeyLastUsed(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -944,12 +945,12 @@ func ExampleIAM_GetAccountAuthorizationDetails() {
 	}
 	resp, err := svc.GetAccountAuthorizationDetails(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -962,12 +963,12 @@ func ExampleIAM_GetAccountPasswordPolicy() {
 	var params *iam.GetAccountPasswordPolicyInput
 	resp, err := svc.GetAccountPasswordPolicy(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -980,12 +981,12 @@ func ExampleIAM_GetAccountSummary() {
 	var params *iam.GetAccountSummaryInput
 	resp, err := svc.GetAccountSummary(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -998,12 +999,12 @@ func ExampleIAM_GetCredentialReport() {
 	var params *iam.GetCredentialReportInput
 	resp, err := svc.GetCredentialReport(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1020,12 +1021,12 @@ func ExampleIAM_GetGroup() {
 	}
 	resp, err := svc.GetGroup(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1041,12 +1042,12 @@ func ExampleIAM_GetGroupPolicy() {
 	}
 	resp, err := svc.GetGroupPolicy(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1061,12 +1062,12 @@ func ExampleIAM_GetInstanceProfile() {
 	}
 	resp, err := svc.GetInstanceProfile(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1081,12 +1082,12 @@ func ExampleIAM_GetLoginProfile() {
 	}
 	resp, err := svc.GetLoginProfile(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1101,12 +1102,12 @@ func ExampleIAM_GetOpenIDConnectProvider() {
 	}
 	resp, err := svc.GetOpenIDConnectProvider(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1121,12 +1122,12 @@ func ExampleIAM_GetPolicy() {
 	}
 	resp, err := svc.GetPolicy(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1142,12 +1143,12 @@ func ExampleIAM_GetPolicyVersion() {
 	}
 	resp, err := svc.GetPolicyVersion(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1162,12 +1163,12 @@ func ExampleIAM_GetRole() {
 	}
 	resp, err := svc.GetRole(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1183,12 +1184,12 @@ func ExampleIAM_GetRolePolicy() {
 	}
 	resp, err := svc.GetRolePolicy(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1203,12 +1204,12 @@ func ExampleIAM_GetSAMLProvider() {
 	}
 	resp, err := svc.GetSAMLProvider(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1223,12 +1224,12 @@ func ExampleIAM_GetServerCertificate() {
 	}
 	resp, err := svc.GetServerCertificate(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1243,12 +1244,12 @@ func ExampleIAM_GetUser() {
 	}
 	resp, err := svc.GetUser(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1264,12 +1265,12 @@ func ExampleIAM_GetUserPolicy() {
 	}
 	resp, err := svc.GetUserPolicy(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1286,12 +1287,12 @@ func ExampleIAM_ListAccessKeys() {
 	}
 	resp, err := svc.ListAccessKeys(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1307,12 +1308,12 @@ func ExampleIAM_ListAccountAliases() {
 	}
 	resp, err := svc.ListAccountAliases(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1330,12 +1331,12 @@ func ExampleIAM_ListAttachedGroupPolicies() {
 	}
 	resp, err := svc.ListAttachedGroupPolicies(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1353,12 +1354,12 @@ func ExampleIAM_ListAttachedRolePolicies() {
 	}
 	resp, err := svc.ListAttachedRolePolicies(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1376,12 +1377,12 @@ func ExampleIAM_ListAttachedUserPolicies() {
 	}
 	resp, err := svc.ListAttachedUserPolicies(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1400,12 +1401,12 @@ func ExampleIAM_ListEntitiesForPolicy() {
 	}
 	resp, err := svc.ListEntitiesForPolicy(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1422,12 +1423,12 @@ func ExampleIAM_ListGroupPolicies() {
 	}
 	resp, err := svc.ListGroupPolicies(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1444,12 +1445,12 @@ func ExampleIAM_ListGroups() {
 	}
 	resp, err := svc.ListGroups(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1466,12 +1467,12 @@ func ExampleIAM_ListGroupsForUser() {
 	}
 	resp, err := svc.ListGroupsForUser(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1488,12 +1489,12 @@ func ExampleIAM_ListInstanceProfiles() {
 	}
 	resp, err := svc.ListInstanceProfiles(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1510,12 +1511,12 @@ func ExampleIAM_ListInstanceProfilesForRole() {
 	}
 	resp, err := svc.ListInstanceProfilesForRole(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1532,12 +1533,12 @@ func ExampleIAM_ListMFADevices() {
 	}
 	resp, err := svc.ListMFADevices(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1550,12 +1551,12 @@ func ExampleIAM_ListOpenIDConnectProviders() {
 	var params *iam.ListOpenIDConnectProvidersInput
 	resp, err := svc.ListOpenIDConnectProviders(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1574,12 +1575,12 @@ func ExampleIAM_ListPolicies() {
 	}
 	resp, err := svc.ListPolicies(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1596,12 +1597,12 @@ func ExampleIAM_ListPolicyVersions() {
 	}
 	resp, err := svc.ListPolicyVersions(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1618,12 +1619,12 @@ func ExampleIAM_ListRolePolicies() {
 	}
 	resp, err := svc.ListRolePolicies(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1640,12 +1641,12 @@ func ExampleIAM_ListRoles() {
 	}
 	resp, err := svc.ListRoles(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1658,12 +1659,12 @@ func ExampleIAM_ListSAMLProviders() {
 	var params *iam.ListSAMLProvidersInput
 	resp, err := svc.ListSAMLProviders(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1680,12 +1681,12 @@ func ExampleIAM_ListServerCertificates() {
 	}
 	resp, err := svc.ListServerCertificates(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1702,12 +1703,12 @@ func ExampleIAM_ListSigningCertificates() {
 	}
 	resp, err := svc.ListSigningCertificates(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1724,12 +1725,12 @@ func ExampleIAM_ListUserPolicies() {
 	}
 	resp, err := svc.ListUserPolicies(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1746,12 +1747,12 @@ func ExampleIAM_ListUsers() {
 	}
 	resp, err := svc.ListUsers(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1768,12 +1769,12 @@ func ExampleIAM_ListVirtualMFADevices() {
 	}
 	resp, err := svc.ListVirtualMFADevices(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1790,12 +1791,12 @@ func ExampleIAM_PutGroupPolicy() {
 	}
 	resp, err := svc.PutGroupPolicy(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1812,12 +1813,12 @@ func ExampleIAM_PutRolePolicy() {
 	}
 	resp, err := svc.PutRolePolicy(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1834,12 +1835,12 @@ func ExampleIAM_PutUserPolicy() {
 	}
 	resp, err := svc.PutUserPolicy(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1855,12 +1856,12 @@ func ExampleIAM_RemoveClientIDFromOpenIDConnectProvider() {
 	}
 	resp, err := svc.RemoveClientIDFromOpenIDConnectProvider(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1876,12 +1877,12 @@ func ExampleIAM_RemoveRoleFromInstanceProfile() {
 	}
 	resp, err := svc.RemoveRoleFromInstanceProfile(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1897,12 +1898,12 @@ func ExampleIAM_RemoveUserFromGroup() {
 	}
 	resp, err := svc.RemoveUserFromGroup(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1920,12 +1921,12 @@ func ExampleIAM_ResyncMFADevice() {
 	}
 	resp, err := svc.ResyncMFADevice(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1941,12 +1942,12 @@ func ExampleIAM_SetDefaultPolicyVersion() {
 	}
 	resp, err := svc.SetDefaultPolicyVersion(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1963,12 +1964,12 @@ func ExampleIAM_UpdateAccessKey() {
 	}
 	resp, err := svc.UpdateAccessKey(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1991,12 +1992,12 @@ func ExampleIAM_UpdateAccountPasswordPolicy() {
 	}
 	resp, err := svc.UpdateAccountPasswordPolicy(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -2012,12 +2013,12 @@ func ExampleIAM_UpdateAssumeRolePolicy() {
 	}
 	resp, err := svc.UpdateAssumeRolePolicy(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -2034,12 +2035,12 @@ func ExampleIAM_UpdateGroup() {
 	}
 	resp, err := svc.UpdateGroup(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -2056,12 +2057,12 @@ func ExampleIAM_UpdateLoginProfile() {
 	}
 	resp, err := svc.UpdateLoginProfile(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -2080,12 +2081,12 @@ func ExampleIAM_UpdateOpenIDConnectProviderThumbprint() {
 	}
 	resp, err := svc.UpdateOpenIDConnectProviderThumbprint(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -2101,12 +2102,12 @@ func ExampleIAM_UpdateSAMLProvider() {
 	}
 	resp, err := svc.UpdateSAMLProvider(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -2123,12 +2124,12 @@ func ExampleIAM_UpdateServerCertificate() {
 	}
 	resp, err := svc.UpdateServerCertificate(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -2145,12 +2146,12 @@ func ExampleIAM_UpdateSigningCertificate() {
 	}
 	resp, err := svc.UpdateSigningCertificate(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -2167,12 +2168,12 @@ func ExampleIAM_UpdateUser() {
 	}
 	resp, err := svc.UpdateUser(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -2191,12 +2192,12 @@ func ExampleIAM_UploadServerCertificate() {
 	}
 	resp, err := svc.UploadServerCertificate(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -2212,12 +2213,12 @@ func ExampleIAM_UploadSigningCertificate() {
 	}
 	resp, err := svc.UploadSigningCertificate(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.

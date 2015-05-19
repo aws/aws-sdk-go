@@ -4,8 +4,9 @@ import (
 	"bytes"
 	"fmt"
 	"time"
-
 	"github.com/awslabs/aws-sdk-go/aws"
+
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/aws/awsutil"
 	"github.com/awslabs/aws-sdk-go/service/storagegateway"
 )
@@ -27,12 +28,12 @@ func ExampleStorageGateway_ActivateGateway() {
 	}
 	resp, err := svc.ActivateGateway(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -51,12 +52,12 @@ func ExampleStorageGateway_AddCache() {
 	}
 	resp, err := svc.AddCache(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -75,12 +76,12 @@ func ExampleStorageGateway_AddUploadBuffer() {
 	}
 	resp, err := svc.AddUploadBuffer(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -99,12 +100,12 @@ func ExampleStorageGateway_AddWorkingStorage() {
 	}
 	resp, err := svc.AddWorkingStorage(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -120,12 +121,12 @@ func ExampleStorageGateway_CancelArchival() {
 	}
 	resp, err := svc.CancelArchival(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -141,12 +142,12 @@ func ExampleStorageGateway_CancelRetrieval() {
 	}
 	resp, err := svc.CancelRetrieval(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -166,12 +167,12 @@ func ExampleStorageGateway_CreateCachediSCSIVolume() {
 	}
 	resp, err := svc.CreateCachediSCSIVolume(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -187,12 +188,12 @@ func ExampleStorageGateway_CreateSnapshot() {
 	}
 	resp, err := svc.CreateSnapshot(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -208,12 +209,12 @@ func ExampleStorageGateway_CreateSnapshotFromVolumeRecoveryPoint() {
 	}
 	resp, err := svc.CreateSnapshotFromVolumeRecoveryPoint(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -233,12 +234,12 @@ func ExampleStorageGateway_CreateStorediSCSIVolume() {
 	}
 	resp, err := svc.CreateStorediSCSIVolume(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -257,12 +258,12 @@ func ExampleStorageGateway_CreateTapes() {
 	}
 	resp, err := svc.CreateTapes(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -278,12 +279,12 @@ func ExampleStorageGateway_DeleteBandwidthRateLimit() {
 	}
 	resp, err := svc.DeleteBandwidthRateLimit(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -299,12 +300,12 @@ func ExampleStorageGateway_DeleteChapCredentials() {
 	}
 	resp, err := svc.DeleteChapCredentials(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -319,12 +320,12 @@ func ExampleStorageGateway_DeleteGateway() {
 	}
 	resp, err := svc.DeleteGateway(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -339,12 +340,12 @@ func ExampleStorageGateway_DeleteSnapshotSchedule() {
 	}
 	resp, err := svc.DeleteSnapshotSchedule(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -360,12 +361,12 @@ func ExampleStorageGateway_DeleteTape() {
 	}
 	resp, err := svc.DeleteTape(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -380,12 +381,12 @@ func ExampleStorageGateway_DeleteTapeArchive() {
 	}
 	resp, err := svc.DeleteTapeArchive(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -400,12 +401,12 @@ func ExampleStorageGateway_DeleteVolume() {
 	}
 	resp, err := svc.DeleteVolume(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -420,12 +421,12 @@ func ExampleStorageGateway_DescribeBandwidthRateLimit() {
 	}
 	resp, err := svc.DescribeBandwidthRateLimit(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -440,12 +441,12 @@ func ExampleStorageGateway_DescribeCache() {
 	}
 	resp, err := svc.DescribeCache(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -463,12 +464,12 @@ func ExampleStorageGateway_DescribeCachediSCSIVolumes() {
 	}
 	resp, err := svc.DescribeCachediSCSIVolumes(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -483,12 +484,12 @@ func ExampleStorageGateway_DescribeChapCredentials() {
 	}
 	resp, err := svc.DescribeChapCredentials(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -503,12 +504,12 @@ func ExampleStorageGateway_DescribeGatewayInformation() {
 	}
 	resp, err := svc.DescribeGatewayInformation(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -523,12 +524,12 @@ func ExampleStorageGateway_DescribeMaintenanceStartTime() {
 	}
 	resp, err := svc.DescribeMaintenanceStartTime(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -543,12 +544,12 @@ func ExampleStorageGateway_DescribeSnapshotSchedule() {
 	}
 	resp, err := svc.DescribeSnapshotSchedule(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -566,12 +567,12 @@ func ExampleStorageGateway_DescribeStorediSCSIVolumes() {
 	}
 	resp, err := svc.DescribeStorediSCSIVolumes(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -591,12 +592,12 @@ func ExampleStorageGateway_DescribeTapeArchives() {
 	}
 	resp, err := svc.DescribeTapeArchives(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -613,12 +614,12 @@ func ExampleStorageGateway_DescribeTapeRecoveryPoints() {
 	}
 	resp, err := svc.DescribeTapeRecoveryPoints(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -639,12 +640,12 @@ func ExampleStorageGateway_DescribeTapes() {
 	}
 	resp, err := svc.DescribeTapes(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -659,12 +660,12 @@ func ExampleStorageGateway_DescribeUploadBuffer() {
 	}
 	resp, err := svc.DescribeUploadBuffer(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -685,12 +686,12 @@ func ExampleStorageGateway_DescribeVTLDevices() {
 	}
 	resp, err := svc.DescribeVTLDevices(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -705,12 +706,12 @@ func ExampleStorageGateway_DescribeWorkingStorage() {
 	}
 	resp, err := svc.DescribeWorkingStorage(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -725,12 +726,12 @@ func ExampleStorageGateway_DisableGateway() {
 	}
 	resp, err := svc.DisableGateway(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -746,12 +747,12 @@ func ExampleStorageGateway_ListGateways() {
 	}
 	resp, err := svc.ListGateways(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -766,12 +767,12 @@ func ExampleStorageGateway_ListLocalDisks() {
 	}
 	resp, err := svc.ListLocalDisks(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -786,12 +787,12 @@ func ExampleStorageGateway_ListVolumeRecoveryPoints() {
 	}
 	resp, err := svc.ListVolumeRecoveryPoints(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -808,12 +809,12 @@ func ExampleStorageGateway_ListVolumes() {
 	}
 	resp, err := svc.ListVolumes(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -828,12 +829,12 @@ func ExampleStorageGateway_ResetCache() {
 	}
 	resp, err := svc.ResetCache(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -849,12 +850,12 @@ func ExampleStorageGateway_RetrieveTapeArchive() {
 	}
 	resp, err := svc.RetrieveTapeArchive(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -870,12 +871,12 @@ func ExampleStorageGateway_RetrieveTapeRecoveryPoint() {
 	}
 	resp, err := svc.RetrieveTapeRecoveryPoint(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -890,12 +891,12 @@ func ExampleStorageGateway_ShutdownGateway() {
 	}
 	resp, err := svc.ShutdownGateway(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -910,12 +911,12 @@ func ExampleStorageGateway_StartGateway() {
 	}
 	resp, err := svc.StartGateway(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -932,12 +933,12 @@ func ExampleStorageGateway_UpdateBandwidthRateLimit() {
 	}
 	resp, err := svc.UpdateBandwidthRateLimit(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -955,12 +956,12 @@ func ExampleStorageGateway_UpdateChapCredentials() {
 	}
 	resp, err := svc.UpdateChapCredentials(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -977,12 +978,12 @@ func ExampleStorageGateway_UpdateGatewayInformation() {
 	}
 	resp, err := svc.UpdateGatewayInformation(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -997,12 +998,12 @@ func ExampleStorageGateway_UpdateGatewaySoftwareNow() {
 	}
 	resp, err := svc.UpdateGatewaySoftwareNow(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1020,12 +1021,12 @@ func ExampleStorageGateway_UpdateMaintenanceStartTime() {
 	}
 	resp, err := svc.UpdateMaintenanceStartTime(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1043,12 +1044,12 @@ func ExampleStorageGateway_UpdateSnapshotSchedule() {
 	}
 	resp, err := svc.UpdateSnapshotSchedule(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1064,12 +1065,12 @@ func ExampleStorageGateway_UpdateVTLDeviceType() {
 	}
 	resp, err := svc.UpdateVTLDeviceType(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.

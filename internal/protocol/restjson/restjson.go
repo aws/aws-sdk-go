@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/internal/apierr"
 	"github.com/awslabs/aws-sdk-go/internal/protocol/jsonrpc"
 	"github.com/awslabs/aws-sdk-go/internal/protocol/rest"
 )
@@ -39,19 +40,20 @@ func UnmarshalError(r *aws.Request) {
 	code := r.HTTPResponse.Header.Get("X-Amzn-Errortype")
 	bodyBytes, err := ioutil.ReadAll(r.HTTPResponse.Body)
 	if err != nil {
-		r.Error = err
+		r.Error = apierr.New("Unmarshal", "failed reading REST JSON error response", err)
 		return
 	}
 	if len(bodyBytes) == 0 {
-		r.Error = aws.APIError{
-			StatusCode: r.HTTPResponse.StatusCode,
-			Message:    r.HTTPResponse.Status,
-		}
+		r.Error = apierr.NewRequestError(
+			apierr.New("Unmarshal", r.HTTPResponse.Status, nil),
+			r.HTTPResponse.StatusCode,
+			"",
+		)
 		return
 	}
 	var jsonErr jsonErrorResponse
 	if err := json.Unmarshal(bodyBytes, &jsonErr); err != nil {
-		r.Error = err
+		r.Error = apierr.New("Unmarshal", "failed decoding REST JSON error response", err)
 		return
 	}
 
@@ -60,11 +62,11 @@ func UnmarshalError(r *aws.Request) {
 	}
 
 	codes := strings.SplitN(code, ":", 2)
-	r.Error = aws.APIError{
-		StatusCode: r.HTTPResponse.StatusCode,
-		Code:       codes[0],
-		Message:    jsonErr.Message,
-	}
+	r.Error = apierr.NewRequestError(
+		apierr.New(codes[0], jsonErr.Message, nil),
+		r.HTTPResponse.StatusCode,
+		"",
+	)
 }
 
 type jsonErrorResponse struct {

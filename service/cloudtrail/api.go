@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -39,11 +40,10 @@ func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *aws.Reque
 //
 // Creates a trail that specifies the settings for delivery of log data to
 // an Amazon S3 bucket.
-func (c *CloudTrail) CreateTrail(input *CreateTrailInput) (output *CreateTrailOutput, err error) {
+func (c *CloudTrail) CreateTrail(input *CreateTrailInput) (*CreateTrailOutput, awserr.Error) {
 	req, out := c.CreateTrailRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateTrail *aws.Operation
@@ -72,11 +72,10 @@ func (c *CloudTrail) DeleteTrailRequest(input *DeleteTrailInput) (req *aws.Reque
 }
 
 // Deletes a trail.
-func (c *CloudTrail) DeleteTrail(input *DeleteTrailInput) (output *DeleteTrailOutput, err error) {
+func (c *CloudTrail) DeleteTrail(input *DeleteTrailInput) (*DeleteTrailOutput, awserr.Error) {
 	req, out := c.DeleteTrailRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteTrail *aws.Operation
@@ -106,11 +105,10 @@ func (c *CloudTrail) DescribeTrailsRequest(input *DescribeTrailsInput) (req *aws
 
 // Retrieves settings for the trail associated with the current region for your
 // account.
-func (c *CloudTrail) DescribeTrails(input *DescribeTrailsInput) (output *DescribeTrailsOutput, err error) {
+func (c *CloudTrail) DescribeTrails(input *DescribeTrailsInput) (*DescribeTrailsOutput, awserr.Error) {
 	req, out := c.DescribeTrailsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeTrails *aws.Operation
@@ -141,11 +139,10 @@ func (c *CloudTrail) GetTrailStatusRequest(input *GetTrailStatusInput) (req *aws
 // Returns a JSON-formatted list of information about the specified trail. Fields
 // include information on delivery errors, Amazon SNS and Amazon S3 errors,
 // and start and stop logging times for each trail.
-func (c *CloudTrail) GetTrailStatus(input *GetTrailStatusInput) (output *GetTrailStatusOutput, err error) {
+func (c *CloudTrail) GetTrailStatus(input *GetTrailStatusInput) (*GetTrailStatusOutput, awserr.Error) {
 	req, out := c.GetTrailStatusRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetTrailStatus *aws.Operation
@@ -187,11 +184,10 @@ func (c *CloudTrail) LookupEventsRequest(input *LookupEventsInput) (req *aws.Req
 //
 // Events that occurred during the selected time range will not be available
 // for lookup if CloudTrail logging was not enabled when the events occurred.
-func (c *CloudTrail) LookupEvents(input *LookupEventsInput) (output *LookupEventsOutput, err error) {
+func (c *CloudTrail) LookupEvents(input *LookupEventsInput) (*LookupEventsOutput, awserr.Error) {
 	req, out := c.LookupEventsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opLookupEvents *aws.Operation
@@ -220,11 +216,10 @@ func (c *CloudTrail) StartLoggingRequest(input *StartLoggingInput) (req *aws.Req
 }
 
 // Starts the recording of AWS API calls and log file delivery for a trail.
-func (c *CloudTrail) StartLogging(input *StartLoggingInput) (output *StartLoggingOutput, err error) {
+func (c *CloudTrail) StartLogging(input *StartLoggingInput) (*StartLoggingOutput, awserr.Error) {
 	req, out := c.StartLoggingRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opStartLogging *aws.Operation
@@ -256,11 +251,10 @@ func (c *CloudTrail) StopLoggingRequest(input *StopLoggingInput) (req *aws.Reque
 // trail. Under most circumstances, there is no need to use this action. You
 // can update a trail without stopping it first. This action is the only way
 // to stop recording.
-func (c *CloudTrail) StopLogging(input *StopLoggingInput) (output *StopLoggingOutput, err error) {
+func (c *CloudTrail) StopLogging(input *StopLoggingInput) (*StopLoggingOutput, awserr.Error) {
 	req, out := c.StopLoggingRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opStopLogging *aws.Operation
@@ -294,11 +288,10 @@ func (c *CloudTrail) UpdateTrailRequest(input *UpdateTrailInput) (req *aws.Reque
 // do not require stopping the CloudTrail service. Use this action to designate
 // an existing bucket for log delivery. If the existing bucket has previously
 // been a target for CloudTrail log files, an IAM policy exists for the bucket.
-func (c *CloudTrail) UpdateTrail(input *UpdateTrailInput) (output *UpdateTrailOutput, err error) {
+func (c *CloudTrail) UpdateTrail(input *UpdateTrailInput) (*UpdateTrailOutput, awserr.Error) {
 	req, out := c.UpdateTrailRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateTrail *aws.Operation

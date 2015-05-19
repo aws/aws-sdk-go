@@ -23,5 +23,6 @@ func TestFlattenedTraits(t *testing.T) {
 	})
 
 	assert.Error(t, err)
-	assert.EqualError(t, err, "InvalidAddress: The address QUEUE is not valid for this endpoint.")
+	assert.Equal(t, "InvalidAddress", err.Code())
+	assert.Equal(t, "The address QUEUE is not valid for this endpoint.", err.Message())
 }

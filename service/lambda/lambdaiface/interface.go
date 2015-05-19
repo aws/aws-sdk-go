@@ -4,41 +4,42 @@
 package lambdaiface
 
 import (
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/lambda"
 )
 
 type LambdaAPI interface {
-	AddPermission(*lambda.AddPermissionInput) (*lambda.AddPermissionOutput, error)
+	AddPermission(*lambda.AddPermissionInput) (*lambda.AddPermissionOutput, awserr.Error)
 
-	CreateEventSourceMapping(*lambda.CreateEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, error)
+	CreateEventSourceMapping(*lambda.CreateEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, awserr.Error)
 
-	CreateFunction(*lambda.CreateFunctionInput) (*lambda.FunctionConfiguration, error)
+	CreateFunction(*lambda.CreateFunctionInput) (*lambda.FunctionConfiguration, awserr.Error)
 
-	DeleteEventSourceMapping(*lambda.DeleteEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, error)
+	DeleteEventSourceMapping(*lambda.DeleteEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, awserr.Error)
 
-	DeleteFunction(*lambda.DeleteFunctionInput) (*lambda.DeleteFunctionOutput, error)
+	DeleteFunction(*lambda.DeleteFunctionInput) (*lambda.DeleteFunctionOutput, awserr.Error)
 
-	GetEventSourceMapping(*lambda.GetEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, error)
+	GetEventSourceMapping(*lambda.GetEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, awserr.Error)
 
-	GetFunction(*lambda.GetFunctionInput) (*lambda.GetFunctionOutput, error)
+	GetFunction(*lambda.GetFunctionInput) (*lambda.GetFunctionOutput, awserr.Error)
 
-	GetFunctionConfiguration(*lambda.GetFunctionConfigurationInput) (*lambda.FunctionConfiguration, error)
+	GetFunctionConfiguration(*lambda.GetFunctionConfigurationInput) (*lambda.FunctionConfiguration, awserr.Error)
 
-	GetPolicy(*lambda.GetPolicyInput) (*lambda.GetPolicyOutput, error)
+	GetPolicy(*lambda.GetPolicyInput) (*lambda.GetPolicyOutput, awserr.Error)
 
-	Invoke(*lambda.InvokeInput) (*lambda.InvokeOutput, error)
+	Invoke(*lambda.InvokeInput) (*lambda.InvokeOutput, awserr.Error)
 
-	InvokeAsync(*lambda.InvokeAsyncInput) (*lambda.InvokeAsyncOutput, error)
+	InvokeAsync(*lambda.InvokeAsyncInput) (*lambda.InvokeAsyncOutput, awserr.Error)
 
-	ListEventSourceMappings(*lambda.ListEventSourceMappingsInput) (*lambda.ListEventSourceMappingsOutput, error)
+	ListEventSourceMappings(*lambda.ListEventSourceMappingsInput) (*lambda.ListEventSourceMappingsOutput, awserr.Error)
 
-	ListFunctions(*lambda.ListFunctionsInput) (*lambda.ListFunctionsOutput, error)
+	ListFunctions(*lambda.ListFunctionsInput) (*lambda.ListFunctionsOutput, awserr.Error)
 
-	RemovePermission(*lambda.RemovePermissionInput) (*lambda.RemovePermissionOutput, error)
+	RemovePermission(*lambda.RemovePermissionInput) (*lambda.RemovePermissionOutput, awserr.Error)
 
-	UpdateEventSourceMapping(*lambda.UpdateEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, error)
+	UpdateEventSourceMapping(*lambda.UpdateEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, awserr.Error)
 
-	UpdateFunctionCode(*lambda.UpdateFunctionCodeInput) (*lambda.FunctionConfiguration, error)
+	UpdateFunctionCode(*lambda.UpdateFunctionCodeInput) (*lambda.FunctionConfiguration, awserr.Error)
 
-	UpdateFunctionConfiguration(*lambda.UpdateFunctionConfigurationInput) (*lambda.FunctionConfiguration, error)
+	UpdateFunctionConfiguration(*lambda.UpdateFunctionConfigurationInput) (*lambda.FunctionConfiguration, awserr.Error)
 }

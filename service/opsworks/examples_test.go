@@ -4,8 +4,9 @@ import (
 	"bytes"
 	"fmt"
 	"time"
-
 	"github.com/awslabs/aws-sdk-go/aws"
+
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/aws/awsutil"
 	"github.com/awslabs/aws-sdk-go/service/opsworks"
 )
@@ -25,12 +26,12 @@ func ExampleOpsWorks_AssignInstance() {
 	}
 	resp, err := svc.AssignInstance(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -46,12 +47,12 @@ func ExampleOpsWorks_AssignVolume() {
 	}
 	resp, err := svc.AssignVolume(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -67,12 +68,12 @@ func ExampleOpsWorks_AssociateElasticIP() {
 	}
 	resp, err := svc.AssociateElasticIP(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -88,12 +89,12 @@ func ExampleOpsWorks_AttachElasticLoadBalancer() {
 	}
 	resp, err := svc.AttachElasticLoadBalancer(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -147,12 +148,12 @@ func ExampleOpsWorks_CloneStack() {
 	}
 	resp, err := svc.CloneStack(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -209,12 +210,12 @@ func ExampleOpsWorks_CreateApp() {
 	}
 	resp, err := svc.CreateApp(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -246,12 +247,12 @@ func ExampleOpsWorks_CreateDeployment() {
 	}
 	resp, err := svc.CreateDeployment(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -283,12 +284,12 @@ func ExampleOpsWorks_CreateInstance() {
 	}
 	resp, err := svc.CreateInstance(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -363,12 +364,12 @@ func ExampleOpsWorks_CreateLayer() {
 	}
 	resp, err := svc.CreateLayer(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -416,12 +417,12 @@ func ExampleOpsWorks_CreateStack() {
 	}
 	resp, err := svc.CreateStack(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -439,12 +440,12 @@ func ExampleOpsWorks_CreateUserProfile() {
 	}
 	resp, err := svc.CreateUserProfile(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -459,12 +460,12 @@ func ExampleOpsWorks_DeleteApp() {
 	}
 	resp, err := svc.DeleteApp(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -481,12 +482,12 @@ func ExampleOpsWorks_DeleteInstance() {
 	}
 	resp, err := svc.DeleteInstance(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -501,12 +502,12 @@ func ExampleOpsWorks_DeleteLayer() {
 	}
 	resp, err := svc.DeleteLayer(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -521,12 +522,12 @@ func ExampleOpsWorks_DeleteStack() {
 	}
 	resp, err := svc.DeleteStack(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -541,12 +542,12 @@ func ExampleOpsWorks_DeleteUserProfile() {
 	}
 	resp, err := svc.DeleteUserProfile(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -561,12 +562,12 @@ func ExampleOpsWorks_DeregisterElasticIP() {
 	}
 	resp, err := svc.DeregisterElasticIP(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -581,12 +582,12 @@ func ExampleOpsWorks_DeregisterInstance() {
 	}
 	resp, err := svc.DeregisterInstance(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -601,12 +602,12 @@ func ExampleOpsWorks_DeregisterRDSDBInstance() {
 	}
 	resp, err := svc.DeregisterRDSDBInstance(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -621,12 +622,12 @@ func ExampleOpsWorks_DeregisterVolume() {
 	}
 	resp, err := svc.DeregisterVolume(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -645,12 +646,12 @@ func ExampleOpsWorks_DescribeApps() {
 	}
 	resp, err := svc.DescribeApps(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -670,12 +671,12 @@ func ExampleOpsWorks_DescribeCommands() {
 	}
 	resp, err := svc.DescribeCommands(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -695,12 +696,12 @@ func ExampleOpsWorks_DescribeDeployments() {
 	}
 	resp, err := svc.DescribeDeployments(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -720,12 +721,12 @@ func ExampleOpsWorks_DescribeElasticIPs() {
 	}
 	resp, err := svc.DescribeElasticIPs(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -744,12 +745,12 @@ func ExampleOpsWorks_DescribeElasticLoadBalancers() {
 	}
 	resp, err := svc.DescribeElasticLoadBalancers(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -769,12 +770,12 @@ func ExampleOpsWorks_DescribeInstances() {
 	}
 	resp, err := svc.DescribeInstances(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -793,12 +794,12 @@ func ExampleOpsWorks_DescribeLayers() {
 	}
 	resp, err := svc.DescribeLayers(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -816,12 +817,12 @@ func ExampleOpsWorks_DescribeLoadBasedAutoScaling() {
 	}
 	resp, err := svc.DescribeLoadBasedAutoScaling(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -834,12 +835,12 @@ func ExampleOpsWorks_DescribeMyUserProfile() {
 	var params *opsworks.DescribeMyUserProfileInput
 	resp, err := svc.DescribeMyUserProfile(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -855,12 +856,12 @@ func ExampleOpsWorks_DescribePermissions() {
 	}
 	resp, err := svc.DescribePermissions(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -880,12 +881,12 @@ func ExampleOpsWorks_DescribeRAIDArrays() {
 	}
 	resp, err := svc.DescribeRAIDArrays(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -904,12 +905,12 @@ func ExampleOpsWorks_DescribeRDSDBInstances() {
 	}
 	resp, err := svc.DescribeRDSDBInstances(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -929,12 +930,12 @@ func ExampleOpsWorks_DescribeServiceErrors() {
 	}
 	resp, err := svc.DescribeServiceErrors(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -949,12 +950,12 @@ func ExampleOpsWorks_DescribeStackProvisioningParameters() {
 	}
 	resp, err := svc.DescribeStackProvisioningParameters(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -969,12 +970,12 @@ func ExampleOpsWorks_DescribeStackSummary() {
 	}
 	resp, err := svc.DescribeStackSummary(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -992,12 +993,12 @@ func ExampleOpsWorks_DescribeStacks() {
 	}
 	resp, err := svc.DescribeStacks(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1015,12 +1016,12 @@ func ExampleOpsWorks_DescribeTimeBasedAutoScaling() {
 	}
 	resp, err := svc.DescribeTimeBasedAutoScaling(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1038,12 +1039,12 @@ func ExampleOpsWorks_DescribeUserProfiles() {
 	}
 	resp, err := svc.DescribeUserProfiles(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1064,12 +1065,12 @@ func ExampleOpsWorks_DescribeVolumes() {
 	}
 	resp, err := svc.DescribeVolumes(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1085,12 +1086,12 @@ func ExampleOpsWorks_DetachElasticLoadBalancer() {
 	}
 	resp, err := svc.DetachElasticLoadBalancer(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1105,12 +1106,12 @@ func ExampleOpsWorks_DisassociateElasticIP() {
 	}
 	resp, err := svc.DisassociateElasticIP(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1125,12 +1126,12 @@ func ExampleOpsWorks_GetHostnameSuggestion() {
 	}
 	resp, err := svc.GetHostnameSuggestion(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1145,12 +1146,12 @@ func ExampleOpsWorks_RebootInstance() {
 	}
 	resp, err := svc.RebootInstance(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1166,12 +1167,12 @@ func ExampleOpsWorks_RegisterElasticIP() {
 	}
 	resp, err := svc.RegisterElasticIP(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1195,12 +1196,12 @@ func ExampleOpsWorks_RegisterInstance() {
 	}
 	resp, err := svc.RegisterInstance(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1218,12 +1219,12 @@ func ExampleOpsWorks_RegisterRDSDBInstance() {
 	}
 	resp, err := svc.RegisterRDSDBInstance(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1239,12 +1240,12 @@ func ExampleOpsWorks_RegisterVolume() {
 	}
 	resp, err := svc.RegisterVolume(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1276,12 +1277,12 @@ func ExampleOpsWorks_SetLoadBasedAutoScaling() {
 	}
 	resp, err := svc.SetLoadBasedAutoScaling(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1300,12 +1301,12 @@ func ExampleOpsWorks_SetPermission() {
 	}
 	resp, err := svc.SetPermission(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1350,12 +1351,12 @@ func ExampleOpsWorks_SetTimeBasedAutoScaling() {
 	}
 	resp, err := svc.SetTimeBasedAutoScaling(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1370,12 +1371,12 @@ func ExampleOpsWorks_StartInstance() {
 	}
 	resp, err := svc.StartInstance(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1390,12 +1391,12 @@ func ExampleOpsWorks_StartStack() {
 	}
 	resp, err := svc.StartStack(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1410,12 +1411,12 @@ func ExampleOpsWorks_StopInstance() {
 	}
 	resp, err := svc.StopInstance(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1430,12 +1431,12 @@ func ExampleOpsWorks_StopStack() {
 	}
 	resp, err := svc.StopStack(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1450,12 +1451,12 @@ func ExampleOpsWorks_UnassignInstance() {
 	}
 	resp, err := svc.UnassignInstance(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1470,12 +1471,12 @@ func ExampleOpsWorks_UnassignVolume() {
 	}
 	resp, err := svc.UnassignVolume(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1531,12 +1532,12 @@ func ExampleOpsWorks_UpdateApp() {
 	}
 	resp, err := svc.UpdateApp(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1552,12 +1553,12 @@ func ExampleOpsWorks_UpdateElasticIP() {
 	}
 	resp, err := svc.UpdateElasticIP(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1585,12 +1586,12 @@ func ExampleOpsWorks_UpdateInstance() {
 	}
 	resp, err := svc.UpdateInstance(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1664,12 +1665,12 @@ func ExampleOpsWorks_UpdateLayer() {
 	}
 	resp, err := svc.UpdateLayer(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1684,12 +1685,12 @@ func ExampleOpsWorks_UpdateMyUserProfile() {
 	}
 	resp, err := svc.UpdateMyUserProfile(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1706,12 +1707,12 @@ func ExampleOpsWorks_UpdateRDSDBInstance() {
 	}
 	resp, err := svc.UpdateRDSDBInstance(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1758,12 +1759,12 @@ func ExampleOpsWorks_UpdateStack() {
 	}
 	resp, err := svc.UpdateStack(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1781,12 +1782,12 @@ func ExampleOpsWorks_UpdateUserProfile() {
 	}
 	resp, err := svc.UpdateUserProfile(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.
@@ -1803,12 +1804,12 @@ func ExampleOpsWorks_UpdateVolume() {
 	}
 	resp, err := svc.UpdateVolume(params)
 
-	if awserr := aws.Error(err); awserr != nil {
-		// A service error occurred.
-		fmt.Println("Error:", awserr.Code, awserr.Message)
-	} else if err != nil {
+	if reqerr, ok := err.(awserr.RequestFailure); ok {
+		// A service error occurred
+		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	} else {
 		// A non-service error occurred.
-		panic(err)
+		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
 	}
 
 	// Pretty-print the response data.

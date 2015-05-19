@@ -8,6 +8,7 @@ import (
 	"sync"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -54,11 +55,10 @@ func (c *CloudSearchDomain) SearchRequest(input *SearchInput) (req *aws.Request,
 // for your domain, use the Amazon CloudSearch configuration service DescribeDomains
 // action. A domain's endpoints are also displayed on the domain dashboard in
 // the Amazon CloudSearch console.
-func (c *CloudSearchDomain) Search(input *SearchInput) (output *SearchOutput, err error) {
+func (c *CloudSearchDomain) Search(input *SearchInput) (*SearchOutput, awserr.Error) {
 	req, out := c.SearchRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSearch *aws.Operation
@@ -103,11 +103,10 @@ func (c *CloudSearchDomain) SuggestRequest(input *SuggestInput) (req *aws.Reques
 // for your domain, use the Amazon CloudSearch configuration service DescribeDomains
 // action. A domain's endpoints are also displayed on the domain dashboard in
 // the Amazon CloudSearch console.
-func (c *CloudSearchDomain) Suggest(input *SuggestInput) (output *SuggestOutput, err error) {
+func (c *CloudSearchDomain) Suggest(input *SuggestInput) (*SuggestOutput, awserr.Error) {
 	req, out := c.SuggestRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSuggest *aws.Operation
@@ -157,11 +156,10 @@ func (c *CloudSearchDomain) UploadDocumentsRequest(input *UploadDocumentsInput) 
 // in the Amazon CloudSearch Developer Guide. For more information about uploading
 // data for indexing, see Uploading Data (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/uploading-data.html)
 // in the Amazon CloudSearch Developer Guide.
-func (c *CloudSearchDomain) UploadDocuments(input *UploadDocumentsInput) (output *UploadDocumentsOutput, err error) {
+func (c *CloudSearchDomain) UploadDocuments(input *UploadDocumentsInput) (*UploadDocumentsOutput, awserr.Error) {
 	req, out := c.UploadDocumentsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUploadDocuments *aws.Operation

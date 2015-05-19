@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -38,11 +39,10 @@ func (c *CognitoIdentity) CreateIdentityPoolRequest(input *CreateIdentityPoolInp
 // Creates a new identity pool. The identity pool is a store of user identity
 // information that is specific to your AWS account. The limit on identity pools
 // is 60 per account.
-func (c *CognitoIdentity) CreateIdentityPool(input *CreateIdentityPoolInput) (output *IdentityPool, err error) {
+func (c *CognitoIdentity) CreateIdentityPool(input *CreateIdentityPoolInput) (*IdentityPool, awserr.Error) {
 	req, out := c.CreateIdentityPoolRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateIdentityPool *aws.Operation
@@ -72,11 +72,10 @@ func (c *CognitoIdentity) DeleteIdentityPoolRequest(input *DeleteIdentityPoolInp
 
 // Deletes a user pool. Once a pool is deleted, users will not be able to authenticate
 // with the pool.
-func (c *CognitoIdentity) DeleteIdentityPool(input *DeleteIdentityPoolInput) (output *DeleteIdentityPoolOutput, err error) {
+func (c *CognitoIdentity) DeleteIdentityPool(input *DeleteIdentityPoolInput) (*DeleteIdentityPoolOutput, awserr.Error) {
 	req, out := c.DeleteIdentityPoolRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteIdentityPool *aws.Operation
@@ -106,11 +105,10 @@ func (c *CognitoIdentity) DescribeIdentityRequest(input *DescribeIdentityInput) 
 
 // Returns metadata related to the given identity, including when the identity
 // was created and any associated linked logins.
-func (c *CognitoIdentity) DescribeIdentity(input *DescribeIdentityInput) (output *IdentityDescription, err error) {
+func (c *CognitoIdentity) DescribeIdentity(input *DescribeIdentityInput) (*IdentityDescription, awserr.Error) {
 	req, out := c.DescribeIdentityRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeIdentity *aws.Operation
@@ -140,11 +138,10 @@ func (c *CognitoIdentity) DescribeIdentityPoolRequest(input *DescribeIdentityPoo
 
 // Gets details about a particular identity pool, including the pool name, ID
 // description, creation date, and current number of users.
-func (c *CognitoIdentity) DescribeIdentityPool(input *DescribeIdentityPoolInput) (output *IdentityPool, err error) {
+func (c *CognitoIdentity) DescribeIdentityPool(input *DescribeIdentityPoolInput) (*IdentityPool, awserr.Error) {
 	req, out := c.DescribeIdentityPoolRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeIdentityPool *aws.Operation
@@ -176,11 +173,10 @@ func (c *CognitoIdentity) GetCredentialsForIdentityRequest(input *GetCredentials
 // will be validated against supported login providers. If the token is for
 // cognito-identity.amazonaws.com, it will be passed through to AWS Security
 // Token Service with the appropriate role for the token.
-func (c *CognitoIdentity) GetCredentialsForIdentity(input *GetCredentialsForIdentityInput) (output *GetCredentialsForIdentityOutput, err error) {
+func (c *CognitoIdentity) GetCredentialsForIdentity(input *GetCredentialsForIdentityInput) (*GetCredentialsForIdentityOutput, awserr.Error) {
 	req, out := c.GetCredentialsForIdentityRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetCredentialsForIdentity *aws.Operation
@@ -210,11 +206,10 @@ func (c *CognitoIdentity) GetIDRequest(input *GetIDInput) (req *aws.Request, out
 
 // Generates (or retrieves) a Cognito ID. Supplying multiple logins will create
 // an implicit linked account.
-func (c *CognitoIdentity) GetID(input *GetIDInput) (output *GetIDOutput, err error) {
+func (c *CognitoIdentity) GetID(input *GetIDInput) (*GetIDOutput, awserr.Error) {
 	req, out := c.GetIDRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetID *aws.Operation
@@ -243,11 +238,10 @@ func (c *CognitoIdentity) GetIdentityPoolRolesRequest(input *GetIdentityPoolRole
 }
 
 // Gets the roles for an identity pool.
-func (c *CognitoIdentity) GetIdentityPoolRoles(input *GetIdentityPoolRolesInput) (output *GetIdentityPoolRolesOutput, err error) {
+func (c *CognitoIdentity) GetIdentityPoolRoles(input *GetIdentityPoolRolesInput) (*GetIdentityPoolRolesOutput, awserr.Error) {
 	req, out := c.GetIdentityPoolRolesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetIdentityPoolRoles *aws.Operation
@@ -280,11 +274,10 @@ func (c *CognitoIdentity) GetOpenIDTokenRequest(input *GetOpenIDTokenInput) (req
 // Supplying multiple logins creates an implicit link.
 //
 // The OpenId token is valid for 15 minutes.
-func (c *CognitoIdentity) GetOpenIDToken(input *GetOpenIDTokenInput) (output *GetOpenIDTokenOutput, err error) {
+func (c *CognitoIdentity) GetOpenIDToken(input *GetOpenIDTokenInput) (*GetOpenIDTokenOutput, awserr.Error) {
 	req, out := c.GetOpenIDTokenRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetOpenIDToken *aws.Operation
@@ -326,11 +319,10 @@ func (c *CognitoIdentity) GetOpenIDTokenForDeveloperIdentityRequest(input *GetOp
 // new login with an existing authenticated/unauthenticated identity, you can
 // do so by providing the existing IdentityId. This API will create the identity
 // in the specified IdentityPoolId.
-func (c *CognitoIdentity) GetOpenIDTokenForDeveloperIdentity(input *GetOpenIDTokenForDeveloperIdentityInput) (output *GetOpenIDTokenForDeveloperIdentityOutput, err error) {
+func (c *CognitoIdentity) GetOpenIDTokenForDeveloperIdentity(input *GetOpenIDTokenForDeveloperIdentityInput) (*GetOpenIDTokenForDeveloperIdentityOutput, awserr.Error) {
 	req, out := c.GetOpenIDTokenForDeveloperIdentityRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetOpenIDTokenForDeveloperIdentity *aws.Operation
@@ -359,11 +351,10 @@ func (c *CognitoIdentity) ListIdentitiesRequest(input *ListIdentitiesInput) (req
 }
 
 // Lists the identities in a pool.
-func (c *CognitoIdentity) ListIdentities(input *ListIdentitiesInput) (output *ListIdentitiesOutput, err error) {
+func (c *CognitoIdentity) ListIdentities(input *ListIdentitiesInput) (*ListIdentitiesOutput, awserr.Error) {
 	req, out := c.ListIdentitiesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListIdentities *aws.Operation
@@ -392,11 +383,10 @@ func (c *CognitoIdentity) ListIdentityPoolsRequest(input *ListIdentityPoolsInput
 }
 
 // Lists all of the Cognito identity pools registered for your account.
-func (c *CognitoIdentity) ListIdentityPools(input *ListIdentityPoolsInput) (output *ListIdentityPoolsOutput, err error) {
+func (c *CognitoIdentity) ListIdentityPools(input *ListIdentityPoolsInput) (*ListIdentityPoolsOutput, awserr.Error) {
 	req, out := c.ListIdentityPoolsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListIdentityPools *aws.Operation
@@ -432,11 +422,10 @@ func (c *CognitoIdentity) LookupDeveloperIdentityRequest(input *LookupDeveloperI
 // DeveloperUserIdentifier will be matched against IdentityID. If the values
 // are verified against the database, the response returns both values and is
 // the same as the request. Otherwise a ResourceConflictException is thrown.
-func (c *CognitoIdentity) LookupDeveloperIdentity(input *LookupDeveloperIdentityInput) (output *LookupDeveloperIdentityOutput, err error) {
+func (c *CognitoIdentity) LookupDeveloperIdentity(input *LookupDeveloperIdentityInput) (*LookupDeveloperIdentityOutput, awserr.Error) {
 	req, out := c.LookupDeveloperIdentityRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opLookupDeveloperIdentity *aws.Operation
@@ -471,11 +460,10 @@ func (c *CognitoIdentity) MergeDeveloperIdentitiesRequest(input *MergeDeveloperI
 // with the IdentityId of the DestinationUserIdentifier. Only developer-authenticated
 // users can be merged. If the users to be merged are associated with the same
 // public provider, but as two different users, an exception will be thrown.
-func (c *CognitoIdentity) MergeDeveloperIdentities(input *MergeDeveloperIdentitiesInput) (output *MergeDeveloperIdentitiesOutput, err error) {
+func (c *CognitoIdentity) MergeDeveloperIdentities(input *MergeDeveloperIdentitiesInput) (*MergeDeveloperIdentitiesOutput, awserr.Error) {
 	req, out := c.MergeDeveloperIdentitiesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opMergeDeveloperIdentities *aws.Operation
@@ -505,11 +493,10 @@ func (c *CognitoIdentity) SetIdentityPoolRolesRequest(input *SetIdentityPoolRole
 
 // Sets the roles for an identity pool. These roles are used when making calls
 // to GetCredentialsForIdentity action.
-func (c *CognitoIdentity) SetIdentityPoolRoles(input *SetIdentityPoolRolesInput) (output *SetIdentityPoolRolesOutput, err error) {
+func (c *CognitoIdentity) SetIdentityPoolRoles(input *SetIdentityPoolRolesInput) (*SetIdentityPoolRolesOutput, awserr.Error) {
 	req, out := c.SetIdentityPoolRolesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSetIdentityPoolRoles *aws.Operation
@@ -541,11 +528,10 @@ func (c *CognitoIdentity) UnlinkDeveloperIdentityRequest(input *UnlinkDeveloperI
 // users will be considered new identities next time they are seen. If, for
 // a given Cognito identity, you remove all federated identities as well as
 // the developer user identifier, the Cognito identity becomes inaccessible.
-func (c *CognitoIdentity) UnlinkDeveloperIdentity(input *UnlinkDeveloperIdentityInput) (output *UnlinkDeveloperIdentityOutput, err error) {
+func (c *CognitoIdentity) UnlinkDeveloperIdentity(input *UnlinkDeveloperIdentityInput) (*UnlinkDeveloperIdentityOutput, awserr.Error) {
 	req, out := c.UnlinkDeveloperIdentityRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUnlinkDeveloperIdentity *aws.Operation
@@ -576,11 +562,10 @@ func (c *CognitoIdentity) UnlinkIdentityRequest(input *UnlinkIdentityInput) (req
 // Unlinks a federated identity from an existing account. Unlinked logins will
 // be considered new identities next time they are seen. Removing the last linked
 // login will make this identity inaccessible.
-func (c *CognitoIdentity) UnlinkIdentity(input *UnlinkIdentityInput) (output *UnlinkIdentityOutput, err error) {
+func (c *CognitoIdentity) UnlinkIdentity(input *UnlinkIdentityInput) (*UnlinkIdentityOutput, awserr.Error) {
 	req, out := c.UnlinkIdentityRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUnlinkIdentity *aws.Operation
@@ -609,11 +594,10 @@ func (c *CognitoIdentity) UpdateIdentityPoolRequest(input *IdentityPool) (req *a
 }
 
 // Updates a user pool.
-func (c *CognitoIdentity) UpdateIdentityPool(input *IdentityPool) (output *IdentityPool, err error) {
+func (c *CognitoIdentity) UpdateIdentityPool(input *IdentityPool) (*IdentityPool, awserr.Error) {
 	req, out := c.UpdateIdentityPoolRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateIdentityPool *aws.Operation

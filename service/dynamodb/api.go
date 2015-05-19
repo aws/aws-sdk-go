@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -81,11 +82,10 @@ func (c *DynamoDB) BatchGetItemRequest(input *BatchGetItemInput) (req *aws.Reque
 // for nonexistent items consume the minimum read capacity units according to
 // the type of read. For more information, see Capacity Units Calculations (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#CapacityUnitCalculations)
 // in the Amazon DynamoDB Developer Guide.
-func (c *DynamoDB) BatchGetItem(input *BatchGetItemInput) (output *BatchGetItemOutput, err error) {
+func (c *DynamoDB) BatchGetItem(input *BatchGetItemInput) (*BatchGetItemOutput, awserr.Error) {
 	req, out := c.BatchGetItemRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opBatchGetItem *aws.Operation
@@ -183,11 +183,10 @@ func (c *DynamoDB) BatchWriteItemRequest(input *BatchWriteItemInput) (req *aws.R
 //   Any individual item in a batch exceeds 400 KB.
 //
 //   The total request size exceeds 16 MB.
-func (c *DynamoDB) BatchWriteItem(input *BatchWriteItemInput) (output *BatchWriteItemOutput, err error) {
+func (c *DynamoDB) BatchWriteItem(input *BatchWriteItemInput) (*BatchWriteItemOutput, awserr.Error) {
 	req, out := c.BatchWriteItemRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opBatchWriteItem *aws.Operation
@@ -230,11 +229,10 @@ func (c *DynamoDB) CreateTableRequest(input *CreateTableInput) (req *aws.Request
 // with secondary indexes can be in the CREATING state at any given time.
 //
 // You can use the DescribeTable API to check the table status.
-func (c *DynamoDB) CreateTable(input *CreateTableInput) (output *CreateTableOutput, err error) {
+func (c *DynamoDB) CreateTable(input *CreateTableInput) (*CreateTableOutput, awserr.Error) {
 	req, out := c.CreateTableRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateTable *aws.Operation
@@ -276,11 +274,10 @@ func (c *DynamoDB) DeleteItemRequest(input *DeleteItemInput) (req *aws.Request, 
 // Conditional deletes are useful for deleting items only if specific conditions
 // are met. If those conditions are met, DynamoDB performs the delete. Otherwise,
 // the item is not deleted.
-func (c *DynamoDB) DeleteItem(input *DeleteItemInput) (output *DeleteItemOutput, err error) {
+func (c *DynamoDB) DeleteItem(input *DeleteItemInput) (*DeleteItemOutput, awserr.Error) {
 	req, out := c.DeleteItemRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteItem *aws.Operation
@@ -322,11 +319,10 @@ func (c *DynamoDB) DeleteTableRequest(input *DeleteTableInput) (req *aws.Request
 //  When you delete a table, any indexes on that table are also deleted.
 //
 // Use the DescribeTable API to check the status of the table.
-func (c *DynamoDB) DeleteTable(input *DeleteTableInput) (output *DeleteTableOutput, err error) {
+func (c *DynamoDB) DeleteTable(input *DeleteTableInput) (*DeleteTableOutput, awserr.Error) {
 	req, out := c.DeleteTableRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteTable *aws.Operation
@@ -363,11 +359,10 @@ func (c *DynamoDB) DescribeTableRequest(input *DescribeTableInput) (req *aws.Req
 // uses an eventually consistent query, and the metadata for your table might
 // not be available at that moment. Wait for a few seconds, and then try the
 // DescribeTable request again.
-func (c *DynamoDB) DescribeTable(input *DescribeTableInput) (output *DescribeTableOutput, err error) {
+func (c *DynamoDB) DescribeTable(input *DescribeTableInput) (*DescribeTableOutput, awserr.Error) {
 	req, out := c.DescribeTableRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeTable *aws.Operation
@@ -402,11 +397,10 @@ func (c *DynamoDB) GetItemRequest(input *GetItemInput) (req *aws.Request, output
 // requires a strongly consistent read, set ConsistentRead to true. Although
 // a strongly consistent read might take more time than an eventually consistent
 // read, it always returns the last updated value.
-func (c *DynamoDB) GetItem(input *GetItemInput) (output *GetItemOutput, err error) {
+func (c *DynamoDB) GetItem(input *GetItemInput) (*GetItemOutput, awserr.Error) {
 	req, out := c.GetItemRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetItem *aws.Operation
@@ -437,11 +431,10 @@ func (c *DynamoDB) ListTablesRequest(input *ListTablesInput) (req *aws.Request, 
 // Returns an array of table names associated with the current account and endpoint.
 // The output from ListTables is paginated, with each page returning a maximum
 // of 100 table names.
-func (c *DynamoDB) ListTables(input *ListTablesInput) (output *ListTablesOutput, err error) {
+func (c *DynamoDB) ListTables(input *ListTablesInput) (*ListTablesOutput, awserr.Error) {
 	req, out := c.ListTablesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListTables *aws.Operation
@@ -494,11 +487,10 @@ func (c *DynamoDB) PutItemRequest(input *PutItemInput) (req *aws.Request, output
 //
 //  For more information about using this API, see Working with Items (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html)
 // in the Amazon DynamoDB Developer Guide.
-func (c *DynamoDB) PutItem(input *PutItemInput) (output *PutItemOutput, err error) {
+func (c *DynamoDB) PutItem(input *PutItemInput) (*PutItemOutput, awserr.Error) {
 	req, out := c.PutItemRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opPutItem *aws.Operation
@@ -551,11 +543,10 @@ func (c *DynamoDB) QueryRequest(input *QueryInput) (req *aws.Request, output *Qu
 // to true and obtain a strongly consistent result. Global secondary indexes
 // support eventually consistent reads only, so do not specify ConsistentRead
 // when querying a global secondary index.
-func (c *DynamoDB) Query(input *QueryInput) (output *QueryOutput, err error) {
+func (c *DynamoDB) Query(input *QueryInput) (*QueryOutput, awserr.Error) {
 	req, out := c.QueryRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opQuery *aws.Operation
@@ -600,11 +591,10 @@ func (c *DynamoDB) ScanRequest(input *ScanInput) (req *aws.Request, output *Scan
 // Scan operation by providing the Segment and TotalSegments parameters. For
 // more information, see Parallel Scan (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#QueryAndScanParallelScan)
 // in the Amazon DynamoDB Developer Guide.
-func (c *DynamoDB) Scan(input *ScanInput) (output *ScanOutput, err error) {
+func (c *DynamoDB) Scan(input *ScanInput) (*ScanOutput, awserr.Error) {
 	req, out := c.ScanRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opScan *aws.Operation
@@ -642,11 +632,10 @@ func (c *DynamoDB) UpdateItemRequest(input *UpdateItemInput) (req *aws.Request, 
 //
 // You can also return the item's attribute values in the same UpdateItem operation
 // using the ReturnValues parameter.
-func (c *DynamoDB) UpdateItem(input *UpdateItemInput) (output *UpdateItemOutput, err error) {
+func (c *DynamoDB) UpdateItem(input *UpdateItemInput) (*UpdateItemOutput, awserr.Error) {
 	req, out := c.UpdateItemRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateItem *aws.Operation
@@ -692,11 +681,10 @@ func (c *DynamoDB) UpdateTableRequest(input *UpdateTableInput) (req *aws.Request
 // still has the provisioned throughput from before the call. The table's new
 // provisioned throughput settings go into effect when the table returns to
 // the ACTIVE state; at that point, the UpdateTable operation is complete.
-func (c *DynamoDB) UpdateTable(input *UpdateTableInput) (output *UpdateTableOutput, err error) {
+func (c *DynamoDB) UpdateTable(input *UpdateTableInput) (*UpdateTableOutput, awserr.Error) {
 	req, out := c.UpdateTableRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateTable *aws.Operation

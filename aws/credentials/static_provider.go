@@ -1,12 +1,13 @@
 package credentials
 
 import (
-	"fmt"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
+	"github.com/awslabs/aws-sdk-go/internal/apierr"
 )
 
 var (
 	// ErrStaticCredentialsEmpty is emitted when static credentials are empty.
-	ErrStaticCredentialsEmpty = fmt.Errorf("static credentials are empty")
+	ErrStaticCredentialsEmpty = apierr.New("EmptyStaticCreds", "static credentials are empty", nil)
 )
 
 // A StaticProvider is a set of credentials which are set pragmatically,
@@ -26,7 +27,7 @@ func NewStaticCredentials(id, secret, token string) *Credentials {
 }
 
 // Retrieve returns the credentials or error if the credentials are invalid.
-func (s *StaticProvider) Retrieve() (Value, error) {
+func (s *StaticProvider) Retrieve() (Value, awserr.Error) {
 	if s.AccessKeyID == "" || s.SecretAccessKey == "" {
 		return Value{}, ErrStaticCredentialsEmpty
 	}

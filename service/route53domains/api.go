@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -39,11 +40,10 @@ func (c *Route53Domains) CheckDomainAvailabilityRequest(input *CheckDomainAvaila
 // this API without authenticating. Note that if the availability status of
 // a domain is pending, you must submit another request to determine the availability
 // of the domain name.
-func (c *Route53Domains) CheckDomainAvailability(input *CheckDomainAvailabilityInput) (output *CheckDomainAvailabilityOutput, err error) {
+func (c *Route53Domains) CheckDomainAvailability(input *CheckDomainAvailabilityInput) (*CheckDomainAvailabilityOutput, awserr.Error) {
 	req, out := c.CheckDomainAvailabilityRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCheckDomainAvailability *aws.Operation
@@ -75,11 +75,10 @@ func (c *Route53Domains) DeleteTagsForDomainRequest(input *DeleteTagsForDomainIn
 //
 // All tag operations are eventually consistent; subsequent operations may
 // not immediately represent all issued operations.
-func (c *Route53Domains) DeleteTagsForDomain(input *DeleteTagsForDomainInput) (output *DeleteTagsForDomainOutput, err error) {
+func (c *Route53Domains) DeleteTagsForDomain(input *DeleteTagsForDomainInput) (*DeleteTagsForDomainOutput, awserr.Error) {
 	req, out := c.DeleteTagsForDomainRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteTagsForDomain *aws.Operation
@@ -114,11 +113,10 @@ func (c *Route53Domains) DisableDomainAutoRenewRequest(input *DisableDomainAutoR
 // disable automatic renewal, registration for the domain will not be renewed
 // when the expiration date passes, and you will lose control of the domain
 // name.
-func (c *Route53Domains) DisableDomainAutoRenew(input *DisableDomainAutoRenewInput) (output *DisableDomainAutoRenewOutput, err error) {
+func (c *Route53Domains) DisableDomainAutoRenew(input *DisableDomainAutoRenewInput) (*DisableDomainAutoRenewOutput, awserr.Error) {
 	req, out := c.DisableDomainAutoRenewRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDisableDomainAutoRenew *aws.Operation
@@ -153,11 +151,10 @@ func (c *Route53Domains) DisableDomainTransferLockRequest(input *DisableDomainTr
 // ID that you can use to track the progress and completion of the action. If
 // the request is not completed successfully, the domain registrant will be
 // notified by email.
-func (c *Route53Domains) DisableDomainTransferLock(input *DisableDomainTransferLockInput) (output *DisableDomainTransferLockOutput, err error) {
+func (c *Route53Domains) DisableDomainTransferLock(input *DisableDomainTransferLockInput) (*DisableDomainTransferLockOutput, awserr.Error) {
 	req, out := c.DisableDomainTransferLockRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDisableDomainTransferLock *aws.Operation
@@ -195,11 +192,10 @@ func (c *Route53Domains) EnableDomainAutoRenewRequest(input *EnableDomainAutoRen
 // on the website for our registrar partner, Gandi. Route 53 requires that you
 // renew before the end of the renewal period that is listed on the Gandi website
 // so we can complete processing before the deadline.
-func (c *Route53Domains) EnableDomainAutoRenew(input *EnableDomainAutoRenewInput) (output *EnableDomainAutoRenewOutput, err error) {
+func (c *Route53Domains) EnableDomainAutoRenew(input *EnableDomainAutoRenewInput) (*EnableDomainAutoRenewOutput, awserr.Error) {
 	req, out := c.EnableDomainAutoRenewRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opEnableDomainAutoRenew *aws.Operation
@@ -232,11 +228,10 @@ func (c *Route53Domains) EnableDomainTransferLockRequest(input *EnableDomainTran
 // ID that you can use to track the progress and completion of the action. If
 // the request is not completed successfully, the domain registrant will be
 // notified by email.
-func (c *Route53Domains) EnableDomainTransferLock(input *EnableDomainTransferLockInput) (output *EnableDomainTransferLockOutput, err error) {
+func (c *Route53Domains) EnableDomainTransferLock(input *EnableDomainTransferLockInput) (*EnableDomainTransferLockOutput, awserr.Error) {
 	req, out := c.EnableDomainTransferLockRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opEnableDomainTransferLock *aws.Operation
@@ -266,11 +261,10 @@ func (c *Route53Domains) GetDomainDetailRequest(input *GetDomainDetailInput) (re
 
 // This operation returns detailed information about the domain. The domain's
 // contact information is also returned as part of the output.
-func (c *Route53Domains) GetDomainDetail(input *GetDomainDetailInput) (output *GetDomainDetailOutput, err error) {
+func (c *Route53Domains) GetDomainDetail(input *GetDomainDetailInput) (*GetDomainDetailOutput, awserr.Error) {
 	req, out := c.GetDomainDetailRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetDomainDetail *aws.Operation
@@ -299,11 +293,10 @@ func (c *Route53Domains) GetOperationDetailRequest(input *GetOperationDetailInpu
 }
 
 // This operation returns the current status of an operation that is not completed.
-func (c *Route53Domains) GetOperationDetail(input *GetOperationDetailInput) (output *GetOperationDetailOutput, err error) {
+func (c *Route53Domains) GetOperationDetail(input *GetOperationDetailInput) (*GetOperationDetailOutput, awserr.Error) {
 	req, out := c.GetOperationDetailRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetOperationDetail *aws.Operation
@@ -333,11 +326,10 @@ func (c *Route53Domains) ListDomainsRequest(input *ListDomainsInput) (req *aws.R
 
 // This operation returns all the domain names registered with Amazon Route
 // 53 for the current AWS account.
-func (c *Route53Domains) ListDomains(input *ListDomainsInput) (output *ListDomainsOutput, err error) {
+func (c *Route53Domains) ListDomains(input *ListDomainsInput) (*ListDomainsOutput, awserr.Error) {
 	req, out := c.ListDomainsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListDomains *aws.Operation
@@ -366,11 +358,10 @@ func (c *Route53Domains) ListOperationsRequest(input *ListOperationsInput) (req 
 }
 
 // This operation returns the operation IDs of operations that are not yet complete.
-func (c *Route53Domains) ListOperations(input *ListOperationsInput) (output *ListOperationsOutput, err error) {
+func (c *Route53Domains) ListOperations(input *ListOperationsInput) (*ListOperationsOutput, awserr.Error) {
 	req, out := c.ListOperationsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListOperations *aws.Operation
@@ -403,11 +394,10 @@ func (c *Route53Domains) ListTagsForDomainRequest(input *ListTagsForDomainInput)
 //
 // All tag operations are eventually consistent; subsequent operations may
 // not immediately represent all issued operations.
-func (c *Route53Domains) ListTagsForDomain(input *ListTagsForDomainInput) (output *ListTagsForDomainOutput, err error) {
+func (c *Route53Domains) ListTagsForDomain(input *ListTagsForDomainInput) (*ListTagsForDomainOutput, awserr.Error) {
 	req, out := c.ListTagsForDomainRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListTagsForDomain *aws.Operation
@@ -454,11 +444,10 @@ func (c *Route53Domains) RegisterDomainRequest(input *RegisterDomainInput) (req 
 // successfully, the domain registrant is notified by email. Charges your AWS
 // account an amount based on the top-level domain. For more information, see
 // Amazon Route 53 Pricing (http://aws.amazon.com/route53/pricing/).
-func (c *Route53Domains) RegisterDomain(input *RegisterDomainInput) (output *RegisterDomainOutput, err error) {
+func (c *Route53Domains) RegisterDomain(input *RegisterDomainInput) (*RegisterDomainOutput, awserr.Error) {
 	req, out := c.RegisterDomainRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRegisterDomain *aws.Operation
@@ -488,11 +477,10 @@ func (c *Route53Domains) RetrieveDomainAuthCodeRequest(input *RetrieveDomainAuth
 
 // This operation returns the AuthCode for the domain. To transfer a domain
 // to another registrar, you provide this value to the new registrar.
-func (c *Route53Domains) RetrieveDomainAuthCode(input *RetrieveDomainAuthCodeInput) (output *RetrieveDomainAuthCodeOutput, err error) {
+func (c *Route53Domains) RetrieveDomainAuthCode(input *RetrieveDomainAuthCodeInput) (*RetrieveDomainAuthCodeOutput, awserr.Error) {
 	req, out := c.RetrieveDomainAuthCodeRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRetrieveDomainAuthCode *aws.Operation
@@ -544,11 +532,10 @@ func (c *Route53Domains) TransferDomainRequest(input *TransferDomainInput) (req 
 // operation ID that you can use to track the progress and completion of the
 // action. If the transfer doesn't complete successfully, the domain registrant
 // will be notified by email.
-func (c *Route53Domains) TransferDomain(input *TransferDomainInput) (output *TransferDomainOutput, err error) {
+func (c *Route53Domains) TransferDomain(input *TransferDomainInput) (*TransferDomainOutput, awserr.Error) {
 	req, out := c.TransferDomainRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opTransferDomain *aws.Operation
@@ -584,11 +571,10 @@ func (c *Route53Domains) UpdateDomainContactRequest(input *UpdateDomainContactIn
 // can use to track the progress and completion of the action. If the request
 // is not completed successfully, the domain registrant will be notified by
 // email.
-func (c *Route53Domains) UpdateDomainContact(input *UpdateDomainContactInput) (output *UpdateDomainContactOutput, err error) {
+func (c *Route53Domains) UpdateDomainContact(input *UpdateDomainContactInput) (*UpdateDomainContactOutput, awserr.Error) {
 	req, out := c.UpdateDomainContactRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateDomainContact *aws.Operation
@@ -627,11 +613,10 @@ func (c *Route53Domains) UpdateDomainContactPrivacyRequest(input *UpdateDomainCo
 // you can use with GetOperationDetail to track the progress and completion
 // of the action. If the request is not completed successfully, the domain registrant
 // will be notified by email.
-func (c *Route53Domains) UpdateDomainContactPrivacy(input *UpdateDomainContactPrivacyInput) (output *UpdateDomainContactPrivacyOutput, err error) {
+func (c *Route53Domains) UpdateDomainContactPrivacy(input *UpdateDomainContactPrivacyInput) (*UpdateDomainContactPrivacyOutput, awserr.Error) {
 	req, out := c.UpdateDomainContactPrivacyRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateDomainContactPrivacy *aws.Operation
@@ -667,11 +652,10 @@ func (c *Route53Domains) UpdateDomainNameserversRequest(input *UpdateDomainNames
 // If successful, this operation returns an operation ID that you can use to
 // track the progress and completion of the action. If the request is not completed
 // successfully, the domain registrant will be notified by email.
-func (c *Route53Domains) UpdateDomainNameservers(input *UpdateDomainNameserversInput) (output *UpdateDomainNameserversOutput, err error) {
+func (c *Route53Domains) UpdateDomainNameservers(input *UpdateDomainNameserversInput) (*UpdateDomainNameserversOutput, awserr.Error) {
 	req, out := c.UpdateDomainNameserversRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateDomainNameservers *aws.Operation
@@ -703,11 +687,10 @@ func (c *Route53Domains) UpdateTagsForDomainRequest(input *UpdateTagsForDomainIn
 //
 // All tag operations are eventually consistent; subsequent operations may
 // not immediately represent all issued operations.
-func (c *Route53Domains) UpdateTagsForDomain(input *UpdateTagsForDomainInput) (output *UpdateTagsForDomainOutput, err error) {
+func (c *Route53Domains) UpdateTagsForDomain(input *UpdateTagsForDomainInput) (*UpdateTagsForDomainOutput, awserr.Error) {
 	req, out := c.UpdateTagsForDomainRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateTagsForDomain *aws.Operation

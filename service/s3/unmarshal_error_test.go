@@ -46,8 +46,7 @@ func TestStatusCodeError(t *testing.T) {
 		})
 
 		assert.Error(t, err)
-		aerr := aws.Error(err)
-		assert.Equal(t, test.code, aerr.Code)
-		assert.Equal(t, test.message, aerr.Message)
+		assert.Equal(t, test.code, err.Code())
+		assert.Equal(t, test.message, err.Message())
 	}
 }

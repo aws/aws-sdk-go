@@ -7,6 +7,7 @@ import (
 	"sync"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -36,11 +37,10 @@ func (c *CloudHSM) CreateHAPGRequest(input *CreateHAPGInput) (req *aws.Request, 
 
 // Creates a high-availability partition group. A high-availability partition
 // group is a group of partitions that spans multiple physical HSMs.
-func (c *CloudHSM) CreateHAPG(input *CreateHAPGInput) (output *CreateHAPGOutput, err error) {
+func (c *CloudHSM) CreateHAPG(input *CreateHAPGInput) (*CreateHAPGOutput, awserr.Error) {
 	req, out := c.CreateHAPGRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateHAPG *aws.Operation
@@ -70,11 +70,10 @@ func (c *CloudHSM) CreateHSMRequest(input *CreateHSMInput) (req *aws.Request, ou
 
 // Creates an uninitialized HSM instance. Running this command provisions an
 // HSM appliance and will result in charges to your AWS account for the HSM.
-func (c *CloudHSM) CreateHSM(input *CreateHSMInput) (output *CreateHSMOutput, err error) {
+func (c *CloudHSM) CreateHSM(input *CreateHSMInput) (*CreateHSMOutput, awserr.Error) {
 	req, out := c.CreateHSMRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateHSM *aws.Operation
@@ -103,11 +102,10 @@ func (c *CloudHSM) CreateLunaClientRequest(input *CreateLunaClientInput) (req *a
 }
 
 // Creates an HSM client.
-func (c *CloudHSM) CreateLunaClient(input *CreateLunaClientInput) (output *CreateLunaClientOutput, err error) {
+func (c *CloudHSM) CreateLunaClient(input *CreateLunaClientInput) (*CreateLunaClientOutput, awserr.Error) {
 	req, out := c.CreateLunaClientRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateLunaClient *aws.Operation
@@ -136,11 +134,10 @@ func (c *CloudHSM) DeleteHAPGRequest(input *DeleteHAPGInput) (req *aws.Request, 
 }
 
 // Deletes a high-availability partition group.
-func (c *CloudHSM) DeleteHAPG(input *DeleteHAPGInput) (output *DeleteHAPGOutput, err error) {
+func (c *CloudHSM) DeleteHAPG(input *DeleteHAPGInput) (*DeleteHAPGOutput, awserr.Error) {
 	req, out := c.DeleteHAPGRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteHAPG *aws.Operation
@@ -170,11 +167,10 @@ func (c *CloudHSM) DeleteHSMRequest(input *DeleteHSMInput) (req *aws.Request, ou
 
 // Deletes an HSM. Once complete, this operation cannot be undone and your key
 // material cannot be recovered.
-func (c *CloudHSM) DeleteHSM(input *DeleteHSMInput) (output *DeleteHSMOutput, err error) {
+func (c *CloudHSM) DeleteHSM(input *DeleteHSMInput) (*DeleteHSMOutput, awserr.Error) {
 	req, out := c.DeleteHSMRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteHSM *aws.Operation
@@ -203,11 +199,10 @@ func (c *CloudHSM) DeleteLunaClientRequest(input *DeleteLunaClientInput) (req *a
 }
 
 // Deletes a client.
-func (c *CloudHSM) DeleteLunaClient(input *DeleteLunaClientInput) (output *DeleteLunaClientOutput, err error) {
+func (c *CloudHSM) DeleteLunaClient(input *DeleteLunaClientInput) (*DeleteLunaClientOutput, awserr.Error) {
 	req, out := c.DeleteLunaClientRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteLunaClient *aws.Operation
@@ -236,11 +231,10 @@ func (c *CloudHSM) DescribeHAPGRequest(input *DescribeHAPGInput) (req *aws.Reque
 }
 
 // Retrieves information about a high-availability partition group.
-func (c *CloudHSM) DescribeHAPG(input *DescribeHAPGInput) (output *DescribeHAPGOutput, err error) {
+func (c *CloudHSM) DescribeHAPG(input *DescribeHAPGInput) (*DescribeHAPGOutput, awserr.Error) {
 	req, out := c.DescribeHAPGRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeHAPG *aws.Operation
@@ -270,11 +264,10 @@ func (c *CloudHSM) DescribeHSMRequest(input *DescribeHSMInput) (req *aws.Request
 
 // Retrieves information about an HSM. You can identify the HSM by its ARN or
 // its serial number.
-func (c *CloudHSM) DescribeHSM(input *DescribeHSMInput) (output *DescribeHSMOutput, err error) {
+func (c *CloudHSM) DescribeHSM(input *DescribeHSMInput) (*DescribeHSMOutput, awserr.Error) {
 	req, out := c.DescribeHSMRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeHSM *aws.Operation
@@ -303,11 +296,10 @@ func (c *CloudHSM) DescribeLunaClientRequest(input *DescribeLunaClientInput) (re
 }
 
 // Retrieves information about an HSM client.
-func (c *CloudHSM) DescribeLunaClient(input *DescribeLunaClientInput) (output *DescribeLunaClientOutput, err error) {
+func (c *CloudHSM) DescribeLunaClient(input *DescribeLunaClientInput) (*DescribeLunaClientOutput, awserr.Error) {
 	req, out := c.DescribeLunaClientRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeLunaClient *aws.Operation
@@ -337,11 +329,10 @@ func (c *CloudHSM) GetConfigRequest(input *GetConfigInput) (req *aws.Request, ou
 
 // Gets the configuration files necessary to connect to all high availability
 // partition groups the client is associated with.
-func (c *CloudHSM) GetConfig(input *GetConfigInput) (output *GetConfigOutput, err error) {
+func (c *CloudHSM) GetConfig(input *GetConfigInput) (*GetConfigOutput, awserr.Error) {
 	req, out := c.GetConfigRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetConfig *aws.Operation
@@ -370,11 +361,10 @@ func (c *CloudHSM) ListAvailableZonesRequest(input *ListAvailableZonesInput) (re
 }
 
 // Lists the Availability Zones that have available AWS CloudHSM capacity.
-func (c *CloudHSM) ListAvailableZones(input *ListAvailableZonesInput) (output *ListAvailableZonesOutput, err error) {
+func (c *CloudHSM) ListAvailableZones(input *ListAvailableZonesInput) (*ListAvailableZonesOutput, awserr.Error) {
 	req, out := c.ListAvailableZonesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListAvailableZones *aws.Operation
@@ -409,11 +399,10 @@ func (c *CloudHSM) ListHSMsRequest(input *ListHSMsInput) (req *aws.Request, outp
 // If more results are available, the NextToken member of the response contains
 // a token that you pass in the next call to ListHsms to retrieve the next set
 // of items.
-func (c *CloudHSM) ListHSMs(input *ListHSMsInput) (output *ListHSMsOutput, err error) {
+func (c *CloudHSM) ListHSMs(input *ListHSMsInput) (*ListHSMsOutput, awserr.Error) {
 	req, out := c.ListHSMsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListHSMs *aws.Operation
@@ -447,11 +436,10 @@ func (c *CloudHSM) ListHapgsRequest(input *ListHapgsInput) (req *aws.Request, ou
 // If more results are available, the NextToken member of the response contains
 // a token that you pass in the next call to ListHapgs to retrieve the next
 // set of items.
-func (c *CloudHSM) ListHapgs(input *ListHapgsInput) (output *ListHapgsOutput, err error) {
+func (c *CloudHSM) ListHapgs(input *ListHapgsInput) (*ListHapgsOutput, awserr.Error) {
 	req, out := c.ListHapgsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListHapgs *aws.Operation
@@ -485,11 +473,10 @@ func (c *CloudHSM) ListLunaClientsRequest(input *ListLunaClientsInput) (req *aws
 // If more results are available, the NextToken member of the response contains
 // a token that you pass in the next call to ListLunaClients to retrieve the
 // next set of items.
-func (c *CloudHSM) ListLunaClients(input *ListLunaClientsInput) (output *ListLunaClientsOutput, err error) {
+func (c *CloudHSM) ListLunaClients(input *ListLunaClientsInput) (*ListLunaClientsOutput, awserr.Error) {
 	req, out := c.ListLunaClientsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListLunaClients *aws.Operation
@@ -518,11 +505,10 @@ func (c *CloudHSM) ModifyHAPGRequest(input *ModifyHAPGInput) (req *aws.Request, 
 }
 
 // Modifies an existing high-availability partition group.
-func (c *CloudHSM) ModifyHAPG(input *ModifyHAPGInput) (output *ModifyHAPGOutput, err error) {
+func (c *CloudHSM) ModifyHAPG(input *ModifyHAPGInput) (*ModifyHAPGOutput, awserr.Error) {
 	req, out := c.ModifyHAPGRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opModifyHAPG *aws.Operation
@@ -551,11 +537,10 @@ func (c *CloudHSM) ModifyHSMRequest(input *ModifyHSMInput) (req *aws.Request, ou
 }
 
 // Modifies an HSM.
-func (c *CloudHSM) ModifyHSM(input *ModifyHSMInput) (output *ModifyHSMOutput, err error) {
+func (c *CloudHSM) ModifyHSM(input *ModifyHSMInput) (*ModifyHSMOutput, awserr.Error) {
 	req, out := c.ModifyHSMRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opModifyHSM *aws.Operation
@@ -587,11 +572,10 @@ func (c *CloudHSM) ModifyLunaClientRequest(input *ModifyLunaClientInput) (req *a
 //
 // This action can potentially start a workflow to install the new certificate
 // on the client's HSMs.
-func (c *CloudHSM) ModifyLunaClient(input *ModifyLunaClientInput) (output *ModifyLunaClientOutput, err error) {
+func (c *CloudHSM) ModifyLunaClient(input *ModifyLunaClientInput) (*ModifyLunaClientOutput, awserr.Error) {
 	req, out := c.ModifyLunaClientRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opModifyLunaClient *aws.Operation

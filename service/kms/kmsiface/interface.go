@@ -4,57 +4,58 @@
 package kmsiface
 
 import (
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/kms"
 )
 
 type KMSAPI interface {
-	CreateAlias(*kms.CreateAliasInput) (*kms.CreateAliasOutput, error)
+	CreateAlias(*kms.CreateAliasInput) (*kms.CreateAliasOutput, awserr.Error)
 
-	CreateGrant(*kms.CreateGrantInput) (*kms.CreateGrantOutput, error)
+	CreateGrant(*kms.CreateGrantInput) (*kms.CreateGrantOutput, awserr.Error)
 
-	CreateKey(*kms.CreateKeyInput) (*kms.CreateKeyOutput, error)
+	CreateKey(*kms.CreateKeyInput) (*kms.CreateKeyOutput, awserr.Error)
 
-	Decrypt(*kms.DecryptInput) (*kms.DecryptOutput, error)
+	Decrypt(*kms.DecryptInput) (*kms.DecryptOutput, awserr.Error)
 
-	DeleteAlias(*kms.DeleteAliasInput) (*kms.DeleteAliasOutput, error)
+	DeleteAlias(*kms.DeleteAliasInput) (*kms.DeleteAliasOutput, awserr.Error)
 
-	DescribeKey(*kms.DescribeKeyInput) (*kms.DescribeKeyOutput, error)
+	DescribeKey(*kms.DescribeKeyInput) (*kms.DescribeKeyOutput, awserr.Error)
 
-	DisableKey(*kms.DisableKeyInput) (*kms.DisableKeyOutput, error)
+	DisableKey(*kms.DisableKeyInput) (*kms.DisableKeyOutput, awserr.Error)
 
-	DisableKeyRotation(*kms.DisableKeyRotationInput) (*kms.DisableKeyRotationOutput, error)
+	DisableKeyRotation(*kms.DisableKeyRotationInput) (*kms.DisableKeyRotationOutput, awserr.Error)
 
-	EnableKey(*kms.EnableKeyInput) (*kms.EnableKeyOutput, error)
+	EnableKey(*kms.EnableKeyInput) (*kms.EnableKeyOutput, awserr.Error)
 
-	EnableKeyRotation(*kms.EnableKeyRotationInput) (*kms.EnableKeyRotationOutput, error)
+	EnableKeyRotation(*kms.EnableKeyRotationInput) (*kms.EnableKeyRotationOutput, awserr.Error)
 
-	Encrypt(*kms.EncryptInput) (*kms.EncryptOutput, error)
+	Encrypt(*kms.EncryptInput) (*kms.EncryptOutput, awserr.Error)
 
-	GenerateDataKey(*kms.GenerateDataKeyInput) (*kms.GenerateDataKeyOutput, error)
+	GenerateDataKey(*kms.GenerateDataKeyInput) (*kms.GenerateDataKeyOutput, awserr.Error)
 
-	GenerateDataKeyWithoutPlaintext(*kms.GenerateDataKeyWithoutPlaintextInput) (*kms.GenerateDataKeyWithoutPlaintextOutput, error)
+	GenerateDataKeyWithoutPlaintext(*kms.GenerateDataKeyWithoutPlaintextInput) (*kms.GenerateDataKeyWithoutPlaintextOutput, awserr.Error)
 
-	GenerateRandom(*kms.GenerateRandomInput) (*kms.GenerateRandomOutput, error)
+	GenerateRandom(*kms.GenerateRandomInput) (*kms.GenerateRandomOutput, awserr.Error)
 
-	GetKeyPolicy(*kms.GetKeyPolicyInput) (*kms.GetKeyPolicyOutput, error)
+	GetKeyPolicy(*kms.GetKeyPolicyInput) (*kms.GetKeyPolicyOutput, awserr.Error)
 
-	GetKeyRotationStatus(*kms.GetKeyRotationStatusInput) (*kms.GetKeyRotationStatusOutput, error)
+	GetKeyRotationStatus(*kms.GetKeyRotationStatusInput) (*kms.GetKeyRotationStatusOutput, awserr.Error)
 
-	ListAliases(*kms.ListAliasesInput) (*kms.ListAliasesOutput, error)
+	ListAliases(*kms.ListAliasesInput) (*kms.ListAliasesOutput, awserr.Error)
 
-	ListGrants(*kms.ListGrantsInput) (*kms.ListGrantsOutput, error)
+	ListGrants(*kms.ListGrantsInput) (*kms.ListGrantsOutput, awserr.Error)
 
-	ListKeyPolicies(*kms.ListKeyPoliciesInput) (*kms.ListKeyPoliciesOutput, error)
+	ListKeyPolicies(*kms.ListKeyPoliciesInput) (*kms.ListKeyPoliciesOutput, awserr.Error)
 
-	ListKeys(*kms.ListKeysInput) (*kms.ListKeysOutput, error)
+	ListKeys(*kms.ListKeysInput) (*kms.ListKeysOutput, awserr.Error)
 
-	PutKeyPolicy(*kms.PutKeyPolicyInput) (*kms.PutKeyPolicyOutput, error)
+	PutKeyPolicy(*kms.PutKeyPolicyInput) (*kms.PutKeyPolicyOutput, awserr.Error)
 
-	ReEncrypt(*kms.ReEncryptInput) (*kms.ReEncryptOutput, error)
+	ReEncrypt(*kms.ReEncryptInput) (*kms.ReEncryptOutput, awserr.Error)
 
-	RetireGrant(*kms.RetireGrantInput) (*kms.RetireGrantOutput, error)
+	RetireGrant(*kms.RetireGrantInput) (*kms.RetireGrantOutput, awserr.Error)
 
-	RevokeGrant(*kms.RevokeGrantInput) (*kms.RevokeGrantOutput, error)
+	RevokeGrant(*kms.RevokeGrantInput) (*kms.RevokeGrantOutput, awserr.Error)
 
-	UpdateKeyDescription(*kms.UpdateKeyDescriptionInput) (*kms.UpdateKeyDescriptionOutput, error)
+	UpdateKeyDescription(*kms.UpdateKeyDescriptionInput) (*kms.UpdateKeyDescriptionOutput, awserr.Error)
 }

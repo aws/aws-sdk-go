@@ -49,6 +49,7 @@
 package credentials
 
 import (
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"sync"
 	"time"
 )
@@ -86,7 +87,7 @@ type Value struct {
 type Provider interface {
 	// Refresh returns nil if it successfully retrieved the value.
 	// Error is returned if the value were not obtainable, or empty.
-	Retrieve() (Value, error)
+	Retrieve() (Value, awserr.Error)
 
 	// IsExpired returns if the credentials are no longer valid, and need
 	// to be retrieved.
@@ -129,7 +130,7 @@ func NewCredentials(provider Provider) *Credentials {
 //
 // If Credentials.Expire() was called the credentials Value will be force
 // expired, and the next call to Get() will cause them to be refreshed.
-func (c *Credentials) Get() (Value, error) {
+func (c *Credentials) Get() (Value, awserr.Error) {
 	c.m.Lock()
 	defer c.m.Unlock()
 

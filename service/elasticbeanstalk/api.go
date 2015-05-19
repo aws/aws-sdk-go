@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -36,11 +37,10 @@ func (c *ElasticBeanstalk) CheckDNSAvailabilityRequest(input *CheckDNSAvailabili
 }
 
 // Checks if the specified CNAME is available.
-func (c *ElasticBeanstalk) CheckDNSAvailability(input *CheckDNSAvailabilityInput) (output *CheckDNSAvailabilityOutput, err error) {
+func (c *ElasticBeanstalk) CheckDNSAvailability(input *CheckDNSAvailabilityInput) (*CheckDNSAvailabilityOutput, awserr.Error) {
 	req, out := c.CheckDNSAvailabilityRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCheckDNSAvailability *aws.Operation
@@ -70,11 +70,10 @@ func (c *ElasticBeanstalk) CreateApplicationRequest(input *CreateApplicationInpu
 
 // Creates an application that has one configuration template named default
 // and no application versions.
-func (c *ElasticBeanstalk) CreateApplication(input *CreateApplicationInput) (output *ApplicationDescriptionMessage, err error) {
+func (c *ElasticBeanstalk) CreateApplication(input *CreateApplicationInput) (*ApplicationDescriptionMessage, awserr.Error) {
 	req, out := c.CreateApplicationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateApplication *aws.Operation
@@ -103,11 +102,10 @@ func (c *ElasticBeanstalk) CreateApplicationVersionRequest(input *CreateApplicat
 }
 
 // Creates an application version for the specified application.
-func (c *ElasticBeanstalk) CreateApplicationVersion(input *CreateApplicationVersionInput) (output *ApplicationVersionDescriptionMessage, err error) {
+func (c *ElasticBeanstalk) CreateApplicationVersion(input *CreateApplicationVersionInput) (*ApplicationVersionDescriptionMessage, awserr.Error) {
 	req, out := c.CreateApplicationVersionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateApplicationVersion *aws.Operation
@@ -142,11 +140,10 @@ func (c *ElasticBeanstalk) CreateConfigurationTemplateRequest(input *CreateConfi
 // Related Topics
 //
 //   DescribeConfigurationOptions   DescribeConfigurationSettings   ListAvailableSolutionStacks
-func (c *ElasticBeanstalk) CreateConfigurationTemplate(input *CreateConfigurationTemplateInput) (output *ConfigurationSettingsDescription, err error) {
+func (c *ElasticBeanstalk) CreateConfigurationTemplate(input *CreateConfigurationTemplateInput) (*ConfigurationSettingsDescription, awserr.Error) {
 	req, out := c.CreateConfigurationTemplateRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateConfigurationTemplate *aws.Operation
@@ -176,11 +173,10 @@ func (c *ElasticBeanstalk) CreateEnvironmentRequest(input *CreateEnvironmentInpu
 
 // Launches an environment for the specified application using the specified
 // configuration.
-func (c *ElasticBeanstalk) CreateEnvironment(input *CreateEnvironmentInput) (output *EnvironmentDescription, err error) {
+func (c *ElasticBeanstalk) CreateEnvironment(input *CreateEnvironmentInput) (*EnvironmentDescription, awserr.Error) {
 	req, out := c.CreateEnvironmentRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateEnvironment *aws.Operation
@@ -211,11 +207,10 @@ func (c *ElasticBeanstalk) CreateStorageLocationRequest(input *CreateStorageLoca
 // Creates the Amazon S3 storage location for the account.
 //
 //  This location is used to store user log files.
-func (c *ElasticBeanstalk) CreateStorageLocation(input *CreateStorageLocationInput) (output *CreateStorageLocationOutput, err error) {
+func (c *ElasticBeanstalk) CreateStorageLocation(input *CreateStorageLocationInput) (*CreateStorageLocationOutput, awserr.Error) {
 	req, out := c.CreateStorageLocationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateStorageLocation *aws.Operation
@@ -246,11 +241,10 @@ func (c *ElasticBeanstalk) DeleteApplicationRequest(input *DeleteApplicationInpu
 // Deletes the specified application along with all associated versions and
 // configurations. The application versions will not be deleted from your Amazon
 // S3 bucket.
-func (c *ElasticBeanstalk) DeleteApplication(input *DeleteApplicationInput) (output *DeleteApplicationOutput, err error) {
+func (c *ElasticBeanstalk) DeleteApplication(input *DeleteApplicationInput) (*DeleteApplicationOutput, awserr.Error) {
 	req, out := c.DeleteApplicationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteApplication *aws.Operation
@@ -279,11 +273,10 @@ func (c *ElasticBeanstalk) DeleteApplicationVersionRequest(input *DeleteApplicat
 }
 
 // Deletes the specified version from the specified application.
-func (c *ElasticBeanstalk) DeleteApplicationVersion(input *DeleteApplicationVersionInput) (output *DeleteApplicationVersionOutput, err error) {
+func (c *ElasticBeanstalk) DeleteApplicationVersion(input *DeleteApplicationVersionInput) (*DeleteApplicationVersionOutput, awserr.Error) {
 	req, out := c.DeleteApplicationVersionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteApplicationVersion *aws.Operation
@@ -312,11 +305,10 @@ func (c *ElasticBeanstalk) DeleteConfigurationTemplateRequest(input *DeleteConfi
 }
 
 // Deletes the specified configuration template.
-func (c *ElasticBeanstalk) DeleteConfigurationTemplate(input *DeleteConfigurationTemplateInput) (output *DeleteConfigurationTemplateOutput, err error) {
+func (c *ElasticBeanstalk) DeleteConfigurationTemplate(input *DeleteConfigurationTemplateInput) (*DeleteConfigurationTemplateOutput, awserr.Error) {
 	req, out := c.DeleteConfigurationTemplateRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteConfigurationTemplate *aws.Operation
@@ -352,11 +344,10 @@ func (c *ElasticBeanstalk) DeleteEnvironmentConfigurationRequest(input *DeleteEn
 // for the draft configuration indicates whether the deployment is in process
 // or has failed. The draft configuration remains in existence until it is deleted
 // with this action.
-func (c *ElasticBeanstalk) DeleteEnvironmentConfiguration(input *DeleteEnvironmentConfigurationInput) (output *DeleteEnvironmentConfigurationOutput, err error) {
+func (c *ElasticBeanstalk) DeleteEnvironmentConfiguration(input *DeleteEnvironmentConfigurationInput) (*DeleteEnvironmentConfigurationOutput, awserr.Error) {
 	req, out := c.DeleteEnvironmentConfigurationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteEnvironmentConfiguration *aws.Operation
@@ -385,11 +376,10 @@ func (c *ElasticBeanstalk) DescribeApplicationVersionsRequest(input *DescribeApp
 }
 
 // Returns descriptions for existing application versions.
-func (c *ElasticBeanstalk) DescribeApplicationVersions(input *DescribeApplicationVersionsInput) (output *DescribeApplicationVersionsOutput, err error) {
+func (c *ElasticBeanstalk) DescribeApplicationVersions(input *DescribeApplicationVersionsInput) (*DescribeApplicationVersionsOutput, awserr.Error) {
 	req, out := c.DescribeApplicationVersionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeApplicationVersions *aws.Operation
@@ -418,11 +408,10 @@ func (c *ElasticBeanstalk) DescribeApplicationsRequest(input *DescribeApplicatio
 }
 
 // Returns the descriptions of existing applications.
-func (c *ElasticBeanstalk) DescribeApplications(input *DescribeApplicationsInput) (output *DescribeApplicationsOutput, err error) {
+func (c *ElasticBeanstalk) DescribeApplications(input *DescribeApplicationsInput) (*DescribeApplicationsOutput, awserr.Error) {
 	req, out := c.DescribeApplicationsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeApplications *aws.Operation
@@ -455,11 +444,10 @@ func (c *ElasticBeanstalk) DescribeConfigurationOptionsRequest(input *DescribeCo
 // description includes the values the options, their default values, and an
 // indication of the required action on a running environment if an option value
 // is changed.
-func (c *ElasticBeanstalk) DescribeConfigurationOptions(input *DescribeConfigurationOptionsInput) (output *DescribeConfigurationOptionsOutput, err error) {
+func (c *ElasticBeanstalk) DescribeConfigurationOptions(input *DescribeConfigurationOptionsInput) (*DescribeConfigurationOptionsOutput, awserr.Error) {
 	req, out := c.DescribeConfigurationOptionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeConfigurationOptions *aws.Operation
@@ -500,11 +488,10 @@ func (c *ElasticBeanstalk) DescribeConfigurationSettingsRequest(input *DescribeC
 // Related Topics
 //
 //   DeleteEnvironmentConfiguration
-func (c *ElasticBeanstalk) DescribeConfigurationSettings(input *DescribeConfigurationSettingsInput) (output *DescribeConfigurationSettingsOutput, err error) {
+func (c *ElasticBeanstalk) DescribeConfigurationSettings(input *DescribeConfigurationSettingsInput) (*DescribeConfigurationSettingsOutput, awserr.Error) {
 	req, out := c.DescribeConfigurationSettingsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeConfigurationSettings *aws.Operation
@@ -533,11 +520,10 @@ func (c *ElasticBeanstalk) DescribeEnvironmentResourcesRequest(input *DescribeEn
 }
 
 // Returns AWS resources for this environment.
-func (c *ElasticBeanstalk) DescribeEnvironmentResources(input *DescribeEnvironmentResourcesInput) (output *DescribeEnvironmentResourcesOutput, err error) {
+func (c *ElasticBeanstalk) DescribeEnvironmentResources(input *DescribeEnvironmentResourcesInput) (*DescribeEnvironmentResourcesOutput, awserr.Error) {
 	req, out := c.DescribeEnvironmentResourcesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeEnvironmentResources *aws.Operation
@@ -566,11 +552,10 @@ func (c *ElasticBeanstalk) DescribeEnvironmentsRequest(input *DescribeEnvironmen
 }
 
 // Returns descriptions for existing environments.
-func (c *ElasticBeanstalk) DescribeEnvironments(input *DescribeEnvironmentsInput) (output *DescribeEnvironmentsOutput, err error) {
+func (c *ElasticBeanstalk) DescribeEnvironments(input *DescribeEnvironmentsInput) (*DescribeEnvironmentsOutput, awserr.Error) {
 	req, out := c.DescribeEnvironmentsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeEnvironments *aws.Operation
@@ -599,11 +584,10 @@ func (c *ElasticBeanstalk) DescribeEventsRequest(input *DescribeEventsInput) (re
 }
 
 // Returns list of event descriptions matching criteria up to the last 6 weeks.
-func (c *ElasticBeanstalk) DescribeEvents(input *DescribeEventsInput) (output *DescribeEventsOutput, err error) {
+func (c *ElasticBeanstalk) DescribeEvents(input *DescribeEventsInput) (*DescribeEventsOutput, awserr.Error) {
 	req, out := c.DescribeEventsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeEvents *aws.Operation
@@ -632,11 +616,10 @@ func (c *ElasticBeanstalk) ListAvailableSolutionStacksRequest(input *ListAvailab
 }
 
 // Returns a list of the available solution stack names.
-func (c *ElasticBeanstalk) ListAvailableSolutionStacks(input *ListAvailableSolutionStacksInput) (output *ListAvailableSolutionStacksOutput, err error) {
+func (c *ElasticBeanstalk) ListAvailableSolutionStacks(input *ListAvailableSolutionStacksInput) (*ListAvailableSolutionStacksOutput, awserr.Error) {
 	req, out := c.ListAvailableSolutionStacksRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListAvailableSolutionStacks *aws.Operation
@@ -666,11 +649,10 @@ func (c *ElasticBeanstalk) RebuildEnvironmentRequest(input *RebuildEnvironmentIn
 
 // Deletes and recreates all of the AWS resources (for example: the Auto Scaling
 // group, load balancer, etc.) for a specified environment and forces a restart.
-func (c *ElasticBeanstalk) RebuildEnvironment(input *RebuildEnvironmentInput) (output *RebuildEnvironmentOutput, err error) {
+func (c *ElasticBeanstalk) RebuildEnvironment(input *RebuildEnvironmentInput) (*RebuildEnvironmentOutput, awserr.Error) {
 	req, out := c.RebuildEnvironmentRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRebuildEnvironment *aws.Operation
@@ -708,11 +690,10 @@ func (c *ElasticBeanstalk) RequestEnvironmentInfoRequest(input *RequestEnvironme
 // Related Topics
 //
 //   RetrieveEnvironmentInfo
-func (c *ElasticBeanstalk) RequestEnvironmentInfo(input *RequestEnvironmentInfoInput) (output *RequestEnvironmentInfoOutput, err error) {
+func (c *ElasticBeanstalk) RequestEnvironmentInfo(input *RequestEnvironmentInfoInput) (*RequestEnvironmentInfoOutput, awserr.Error) {
 	req, out := c.RequestEnvironmentInfoRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRequestEnvironmentInfo *aws.Operation
@@ -742,11 +723,10 @@ func (c *ElasticBeanstalk) RestartAppServerRequest(input *RestartAppServerInput)
 
 // Causes the environment to restart the application container server running
 // on each Amazon EC2 instance.
-func (c *ElasticBeanstalk) RestartAppServer(input *RestartAppServerInput) (output *RestartAppServerOutput, err error) {
+func (c *ElasticBeanstalk) RestartAppServer(input *RestartAppServerInput) (*RestartAppServerOutput, awserr.Error) {
 	req, out := c.RestartAppServerRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRestartAppServer *aws.Operation
@@ -779,11 +759,10 @@ func (c *ElasticBeanstalk) RetrieveEnvironmentInfoRequest(input *RetrieveEnviron
 // Related Topics
 //
 //   RequestEnvironmentInfo
-func (c *ElasticBeanstalk) RetrieveEnvironmentInfo(input *RetrieveEnvironmentInfoInput) (output *RetrieveEnvironmentInfoOutput, err error) {
+func (c *ElasticBeanstalk) RetrieveEnvironmentInfo(input *RetrieveEnvironmentInfoInput) (*RetrieveEnvironmentInfoOutput, awserr.Error) {
 	req, out := c.RetrieveEnvironmentInfoRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRetrieveEnvironmentInfo *aws.Operation
@@ -812,11 +791,10 @@ func (c *ElasticBeanstalk) SwapEnvironmentCNAMEsRequest(input *SwapEnvironmentCN
 }
 
 // Swaps the CNAMEs of two environments.
-func (c *ElasticBeanstalk) SwapEnvironmentCNAMEs(input *SwapEnvironmentCNAMEsInput) (output *SwapEnvironmentCNAMEsOutput, err error) {
+func (c *ElasticBeanstalk) SwapEnvironmentCNAMEs(input *SwapEnvironmentCNAMEsInput) (*SwapEnvironmentCNAMEsOutput, awserr.Error) {
 	req, out := c.SwapEnvironmentCNAMEsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSwapEnvironmentCNAMEs *aws.Operation
@@ -845,11 +823,10 @@ func (c *ElasticBeanstalk) TerminateEnvironmentRequest(input *TerminateEnvironme
 }
 
 // Terminates the specified environment.
-func (c *ElasticBeanstalk) TerminateEnvironment(input *TerminateEnvironmentInput) (output *EnvironmentDescription, err error) {
+func (c *ElasticBeanstalk) TerminateEnvironment(input *TerminateEnvironmentInput) (*EnvironmentDescription, awserr.Error) {
 	req, out := c.TerminateEnvironmentRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opTerminateEnvironment *aws.Operation
@@ -878,11 +855,10 @@ func (c *ElasticBeanstalk) UpdateApplicationRequest(input *UpdateApplicationInpu
 }
 
 // Updates the specified application to have the specified properties.
-func (c *ElasticBeanstalk) UpdateApplication(input *UpdateApplicationInput) (output *ApplicationDescriptionMessage, err error) {
+func (c *ElasticBeanstalk) UpdateApplication(input *UpdateApplicationInput) (*ApplicationDescriptionMessage, awserr.Error) {
 	req, out := c.UpdateApplicationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateApplication *aws.Operation
@@ -911,11 +887,10 @@ func (c *ElasticBeanstalk) UpdateApplicationVersionRequest(input *UpdateApplicat
 }
 
 // Updates the specified application version to have the specified properties.
-func (c *ElasticBeanstalk) UpdateApplicationVersion(input *UpdateApplicationVersionInput) (output *ApplicationVersionDescriptionMessage, err error) {
+func (c *ElasticBeanstalk) UpdateApplicationVersion(input *UpdateApplicationVersionInput) (*ApplicationVersionDescriptionMessage, awserr.Error) {
 	req, out := c.UpdateApplicationVersionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateApplicationVersion *aws.Operation
@@ -949,11 +924,10 @@ func (c *ElasticBeanstalk) UpdateConfigurationTemplateRequest(input *UpdateConfi
 // Related Topics
 //
 //   DescribeConfigurationOptions
-func (c *ElasticBeanstalk) UpdateConfigurationTemplate(input *UpdateConfigurationTemplateInput) (output *ConfigurationSettingsDescription, err error) {
+func (c *ElasticBeanstalk) UpdateConfigurationTemplate(input *UpdateConfigurationTemplateInput) (*ConfigurationSettingsDescription, awserr.Error) {
 	req, out := c.UpdateConfigurationTemplateRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateConfigurationTemplate *aws.Operation
@@ -992,11 +966,10 @@ func (c *ElasticBeanstalk) UpdateEnvironmentRequest(input *UpdateEnvironmentInpu
 // settings, a draft configuration is created and DescribeConfigurationSettings
 // for this environment returns two setting descriptions with different DeploymentStatus
 // values.
-func (c *ElasticBeanstalk) UpdateEnvironment(input *UpdateEnvironmentInput) (output *EnvironmentDescription, err error) {
+func (c *ElasticBeanstalk) UpdateEnvironment(input *UpdateEnvironmentInput) (*EnvironmentDescription, awserr.Error) {
 	req, out := c.UpdateEnvironmentRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateEnvironment *aws.Operation
@@ -1029,11 +1002,10 @@ func (c *ElasticBeanstalk) ValidateConfigurationSettingsRequest(input *ValidateC
 //
 //  This action returns a list of messages indicating any errors or warnings
 // associated with the selection of option values.
-func (c *ElasticBeanstalk) ValidateConfigurationSettings(input *ValidateConfigurationSettingsInput) (output *ValidateConfigurationSettingsOutput, err error) {
+func (c *ElasticBeanstalk) ValidateConfigurationSettings(input *ValidateConfigurationSettingsInput) (*ValidateConfigurationSettingsOutput, awserr.Error) {
 	req, out := c.ValidateConfigurationSettingsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opValidateConfigurationSettings *aws.Operation

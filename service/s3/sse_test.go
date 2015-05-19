@@ -22,9 +22,8 @@ func TestSSECustomerKeyOverHTTPError(t *testing.T) {
 	err := req.Build()
 
 	assert.Error(t, err)
-	aerr := aws.Error(err)
-	assert.Equal(t, "ConfigError", aerr.Code)
-	assert.Contains(t, aerr.Message, "cannot send SSE keys over HTTP")
+	assert.Equal(t, "ConfigError", err.Code())
+	assert.Contains(t, err.Message(), "cannot send SSE keys over HTTP")
 }
 
 func TestCopySourceSSECustomerKeyOverHTTPError(t *testing.T) {
@@ -38,9 +37,8 @@ func TestCopySourceSSECustomerKeyOverHTTPError(t *testing.T) {
 	err := req.Build()
 
 	assert.Error(t, err)
-	aerr := aws.Error(err)
-	assert.Equal(t, "ConfigError", aerr.Code)
-	assert.Contains(t, aerr.Message, "cannot send SSE keys over HTTP")
+	assert.Equal(t, "ConfigError", err.Code())
+	assert.Contains(t, err.Message(), "cannot send SSE keys over HTTP")
 }
 
 func TestComputeSSEKeys(t *testing.T) {

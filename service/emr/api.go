@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -36,11 +37,10 @@ func (c *EMR) AddInstanceGroupsRequest(input *AddInstanceGroupsInput) (req *aws.
 }
 
 // AddInstanceGroups adds an instance group to a running cluster.
-func (c *EMR) AddInstanceGroups(input *AddInstanceGroupsInput) (output *AddInstanceGroupsOutput, err error) {
+func (c *EMR) AddInstanceGroups(input *AddInstanceGroupsInput) (*AddInstanceGroupsOutput, awserr.Error) {
 	req, out := c.AddInstanceGroupsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opAddInstanceGroups *aws.Operation
@@ -92,11 +92,10 @@ func (c *EMR) AddJobFlowStepsRequest(input *AddJobFlowStepsInput) (req *aws.Requ
 //
 //  You can only add steps to a job flow that is in one of the following states:
 // STARTING, BOOTSTRAPPING, RUNNING, or WAITING.
-func (c *EMR) AddJobFlowSteps(input *AddJobFlowStepsInput) (output *AddJobFlowStepsOutput, err error) {
+func (c *EMR) AddJobFlowSteps(input *AddJobFlowStepsInput) (*AddJobFlowStepsOutput, awserr.Error) {
 	req, out := c.AddJobFlowStepsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opAddJobFlowSteps *aws.Operation
@@ -128,11 +127,10 @@ func (c *EMR) AddTagsRequest(input *AddTagsInput) (req *aws.Request, output *Add
 // in various ways, such as grouping clusters to track your Amazon EMR resource
 // allocation costs. For more information, see Tagging Amazon EMR Resources
 // (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-tags.html).
-func (c *EMR) AddTags(input *AddTagsInput) (output *AddTagsOutput, err error) {
+func (c *EMR) AddTags(input *AddTagsInput) (*AddTagsOutput, awserr.Error) {
 	req, out := c.AddTagsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opAddTags *aws.Operation
@@ -162,11 +160,10 @@ func (c *EMR) DescribeClusterRequest(input *DescribeClusterInput) (req *aws.Requ
 
 // Provides cluster-level details including status, hardware and software configuration,
 // VPC settings, and so on. For information about the cluster steps, see ListSteps.
-func (c *EMR) DescribeCluster(input *DescribeClusterInput) (output *DescribeClusterOutput, err error) {
+func (c *EMR) DescribeCluster(input *DescribeClusterInput) (*DescribeClusterOutput, awserr.Error) {
 	req, out := c.DescribeClusterRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeCluster *aws.Operation
@@ -212,11 +209,10 @@ func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *aws.Re
 // within the last two months that are in one of the following states: RUNNING,
 // WAITING, SHUTTING_DOWN, STARTING    Amazon Elastic MapReduce can return a
 // maximum of 512 job flow descriptions.
-func (c *EMR) DescribeJobFlows(input *DescribeJobFlowsInput) (output *DescribeJobFlowsOutput, err error) {
+func (c *EMR) DescribeJobFlows(input *DescribeJobFlowsInput) (*DescribeJobFlowsOutput, awserr.Error) {
 	req, out := c.DescribeJobFlowsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeJobFlows *aws.Operation
@@ -245,11 +241,10 @@ func (c *EMR) DescribeStepRequest(input *DescribeStepInput) (req *aws.Request, o
 }
 
 // Provides more detail about the cluster step.
-func (c *EMR) DescribeStep(input *DescribeStepInput) (output *DescribeStepOutput, err error) {
+func (c *EMR) DescribeStep(input *DescribeStepInput) (*DescribeStepOutput, awserr.Error) {
 	req, out := c.DescribeStepRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeStep *aws.Operation
@@ -278,11 +273,10 @@ func (c *EMR) ListBootstrapActionsRequest(input *ListBootstrapActionsInput) (req
 }
 
 // Provides information about the bootstrap actions associated with a cluster.
-func (c *EMR) ListBootstrapActions(input *ListBootstrapActionsInput) (output *ListBootstrapActionsOutput, err error) {
+func (c *EMR) ListBootstrapActions(input *ListBootstrapActionsInput) (*ListBootstrapActionsOutput, awserr.Error) {
 	req, out := c.ListBootstrapActionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListBootstrapActions *aws.Operation
@@ -315,11 +309,10 @@ func (c *EMR) ListClustersRequest(input *ListClustersInput) (req *aws.Request, o
 // by cluster creation date and time or by status. This call returns a maximum
 // of 50 clusters per call, but returns a marker to track the paging of the
 // cluster list across multiple ListClusters calls.
-func (c *EMR) ListClusters(input *ListClustersInput) (output *ListClustersOutput, err error) {
+func (c *EMR) ListClusters(input *ListClustersInput) (*ListClustersOutput, awserr.Error) {
 	req, out := c.ListClustersRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListClusters *aws.Operation
@@ -348,11 +341,10 @@ func (c *EMR) ListInstanceGroupsRequest(input *ListInstanceGroupsInput) (req *aw
 }
 
 // Provides all available details about the instance groups in a cluster.
-func (c *EMR) ListInstanceGroups(input *ListInstanceGroupsInput) (output *ListInstanceGroupsOutput, err error) {
+func (c *EMR) ListInstanceGroups(input *ListInstanceGroupsInput) (*ListInstanceGroupsOutput, awserr.Error) {
 	req, out := c.ListInstanceGroupsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListInstanceGroups *aws.Operation
@@ -385,11 +377,10 @@ func (c *EMR) ListInstancesRequest(input *ListInstancesInput) (req *aws.Request,
 // indicates when the EC2 instances reach the Ready state, when instances become
 // available to Amazon EMR to use for jobs, and the IP addresses for cluster
 // instances, etc.
-func (c *EMR) ListInstances(input *ListInstancesInput) (output *ListInstancesOutput, err error) {
+func (c *EMR) ListInstances(input *ListInstancesInput) (*ListInstancesOutput, awserr.Error) {
 	req, out := c.ListInstancesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListInstances *aws.Operation
@@ -418,11 +409,10 @@ func (c *EMR) ListStepsRequest(input *ListStepsInput) (req *aws.Request, output 
 }
 
 // Provides a list of steps for the cluster.
-func (c *EMR) ListSteps(input *ListStepsInput) (output *ListStepsOutput, err error) {
+func (c *EMR) ListSteps(input *ListStepsInput) (*ListStepsOutput, awserr.Error) {
 	req, out := c.ListStepsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListSteps *aws.Operation
@@ -454,11 +444,10 @@ func (c *EMR) ModifyInstanceGroupsRequest(input *ModifyInstanceGroupsInput) (req
 // of an instance group. The input parameters include the new target instance
 // count for the group and the instance group ID. The call will either succeed
 // or fail atomically.
-func (c *EMR) ModifyInstanceGroups(input *ModifyInstanceGroupsInput) (output *ModifyInstanceGroupsOutput, err error) {
+func (c *EMR) ModifyInstanceGroups(input *ModifyInstanceGroupsInput) (*ModifyInstanceGroupsOutput, awserr.Error) {
 	req, out := c.ModifyInstanceGroupsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opModifyInstanceGroups *aws.Operation
@@ -492,11 +481,10 @@ func (c *EMR) RemoveTagsRequest(input *RemoveTagsInput) (req *aws.Request, outpu
 // Resources (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-tags.html).
 //
 // The following example removes the stack tag with value Prod from a cluster:
-func (c *EMR) RemoveTags(input *RemoveTagsInput) (output *RemoveTagsOutput, err error) {
+func (c *EMR) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutput, awserr.Error) {
 	req, out := c.RemoveTagsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRemoveTags *aws.Operation
@@ -547,11 +535,10 @@ func (c *EMR) RunJobFlowRequest(input *RunJobFlowInput) (req *aws.Request, outpu
 //
 // For long running job flows, we recommend that you periodically store your
 // results.
-func (c *EMR) RunJobFlow(input *RunJobFlowInput) (output *RunJobFlowOutput, err error) {
+func (c *EMR) RunJobFlow(input *RunJobFlowInput) (*RunJobFlowOutput, awserr.Error) {
 	req, out := c.RunJobFlowRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRunJobFlow *aws.Operation
@@ -596,11 +583,10 @@ func (c *EMR) SetTerminationProtectionRequest(input *SetTerminationProtectionInp
 //
 //  For more information, go to Protecting a Job Flow from Termination (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/UsingEMR_TerminationProtection.html)
 // in the Amazon Elastic MapReduce Developer's Guide.
-func (c *EMR) SetTerminationProtection(input *SetTerminationProtectionInput) (output *SetTerminationProtectionOutput, err error) {
+func (c *EMR) SetTerminationProtection(input *SetTerminationProtectionInput) (*SetTerminationProtectionOutput, awserr.Error) {
 	req, out := c.SetTerminationProtectionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSetTerminationProtection *aws.Operation
@@ -634,11 +620,10 @@ func (c *EMR) SetVisibleToAllUsersRequest(input *SetVisibleToAllUsersInput) (req
 // it using the VisibleToAllUsers parameter of RunJobFlow. The SetVisibleToAllUsers
 // action can be called only by an IAM user who created the job flow or the
 // AWS account that owns the job flow.
-func (c *EMR) SetVisibleToAllUsers(input *SetVisibleToAllUsersInput) (output *SetVisibleToAllUsersOutput, err error) {
+func (c *EMR) SetVisibleToAllUsers(input *SetVisibleToAllUsersInput) (*SetVisibleToAllUsersOutput, awserr.Error) {
 	req, out := c.SetVisibleToAllUsersRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSetVisibleToAllUsers *aws.Operation
@@ -675,11 +660,10 @@ func (c *EMR) TerminateJobFlowsRequest(input *TerminateJobFlowsInput) (req *aws.
 // is asynchronous. Depending on the configuration of the job flow, it may take
 // up to 5-20 minutes for the job flow to completely terminate and release allocated
 // resources, such as Amazon EC2 instances.
-func (c *EMR) TerminateJobFlows(input *TerminateJobFlowsInput) (output *TerminateJobFlowsOutput, err error) {
+func (c *EMR) TerminateJobFlows(input *TerminateJobFlowsInput) (*TerminateJobFlowsOutput, awserr.Error) {
 	req, out := c.TerminateJobFlowsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opTerminateJobFlows *aws.Operation

@@ -4,41 +4,42 @@
 package cloudhsmiface
 
 import (
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/cloudhsm"
 )
 
 type CloudHSMAPI interface {
-	CreateHAPG(*cloudhsm.CreateHAPGInput) (*cloudhsm.CreateHAPGOutput, error)
+	CreateHAPG(*cloudhsm.CreateHAPGInput) (*cloudhsm.CreateHAPGOutput, awserr.Error)
 
-	CreateHSM(*cloudhsm.CreateHSMInput) (*cloudhsm.CreateHSMOutput, error)
+	CreateHSM(*cloudhsm.CreateHSMInput) (*cloudhsm.CreateHSMOutput, awserr.Error)
 
-	CreateLunaClient(*cloudhsm.CreateLunaClientInput) (*cloudhsm.CreateLunaClientOutput, error)
+	CreateLunaClient(*cloudhsm.CreateLunaClientInput) (*cloudhsm.CreateLunaClientOutput, awserr.Error)
 
-	DeleteHAPG(*cloudhsm.DeleteHAPGInput) (*cloudhsm.DeleteHAPGOutput, error)
+	DeleteHAPG(*cloudhsm.DeleteHAPGInput) (*cloudhsm.DeleteHAPGOutput, awserr.Error)
 
-	DeleteHSM(*cloudhsm.DeleteHSMInput) (*cloudhsm.DeleteHSMOutput, error)
+	DeleteHSM(*cloudhsm.DeleteHSMInput) (*cloudhsm.DeleteHSMOutput, awserr.Error)
 
-	DeleteLunaClient(*cloudhsm.DeleteLunaClientInput) (*cloudhsm.DeleteLunaClientOutput, error)
+	DeleteLunaClient(*cloudhsm.DeleteLunaClientInput) (*cloudhsm.DeleteLunaClientOutput, awserr.Error)
 
-	DescribeHAPG(*cloudhsm.DescribeHAPGInput) (*cloudhsm.DescribeHAPGOutput, error)
+	DescribeHAPG(*cloudhsm.DescribeHAPGInput) (*cloudhsm.DescribeHAPGOutput, awserr.Error)
 
-	DescribeHSM(*cloudhsm.DescribeHSMInput) (*cloudhsm.DescribeHSMOutput, error)
+	DescribeHSM(*cloudhsm.DescribeHSMInput) (*cloudhsm.DescribeHSMOutput, awserr.Error)
 
-	DescribeLunaClient(*cloudhsm.DescribeLunaClientInput) (*cloudhsm.DescribeLunaClientOutput, error)
+	DescribeLunaClient(*cloudhsm.DescribeLunaClientInput) (*cloudhsm.DescribeLunaClientOutput, awserr.Error)
 
-	GetConfig(*cloudhsm.GetConfigInput) (*cloudhsm.GetConfigOutput, error)
+	GetConfig(*cloudhsm.GetConfigInput) (*cloudhsm.GetConfigOutput, awserr.Error)
 
-	ListAvailableZones(*cloudhsm.ListAvailableZonesInput) (*cloudhsm.ListAvailableZonesOutput, error)
+	ListAvailableZones(*cloudhsm.ListAvailableZonesInput) (*cloudhsm.ListAvailableZonesOutput, awserr.Error)
 
-	ListHSMs(*cloudhsm.ListHSMsInput) (*cloudhsm.ListHSMsOutput, error)
+	ListHSMs(*cloudhsm.ListHSMsInput) (*cloudhsm.ListHSMsOutput, awserr.Error)
 
-	ListHapgs(*cloudhsm.ListHapgsInput) (*cloudhsm.ListHapgsOutput, error)
+	ListHapgs(*cloudhsm.ListHapgsInput) (*cloudhsm.ListHapgsOutput, awserr.Error)
 
-	ListLunaClients(*cloudhsm.ListLunaClientsInput) (*cloudhsm.ListLunaClientsOutput, error)
+	ListLunaClients(*cloudhsm.ListLunaClientsInput) (*cloudhsm.ListLunaClientsOutput, awserr.Error)
 
-	ModifyHAPG(*cloudhsm.ModifyHAPGInput) (*cloudhsm.ModifyHAPGOutput, error)
+	ModifyHAPG(*cloudhsm.ModifyHAPGInput) (*cloudhsm.ModifyHAPGOutput, awserr.Error)
 
-	ModifyHSM(*cloudhsm.ModifyHSMInput) (*cloudhsm.ModifyHSMOutput, error)
+	ModifyHSM(*cloudhsm.ModifyHSMInput) (*cloudhsm.ModifyHSMOutput, awserr.Error)
 
-	ModifyLunaClient(*cloudhsm.ModifyLunaClientInput) (*cloudhsm.ModifyLunaClientOutput, error)
+	ModifyLunaClient(*cloudhsm.ModifyLunaClientInput) (*cloudhsm.ModifyLunaClientOutput, awserr.Error)
 }

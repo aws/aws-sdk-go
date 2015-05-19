@@ -199,6 +199,7 @@ var oprw sync.Mutex
 func (a *API) APIGoCode() string {
 	a.resetImports()
 	a.imports["sync"] = true
+	a.imports["github.com/awslabs/aws-sdk-go/aws/awserr"] = true
 	var buf bytes.Buffer
 	err := tplAPI.Execute(&buf, a)
 	if err != nil {
@@ -294,12 +295,13 @@ func (a *API) ExampleGoCode() string {
 		exs = append(exs, o.Example())
 	}
 
-	code := fmt.Sprintf("import (\n%q\n%q\n%q\n\n%q\n%q\n%q\n)\n\n"+
+	code := fmt.Sprintf("import (\n%q\n%q\n%q\n%q\n\n%q\n%q\n%q\n)\n\n"+
 		"var _ time.Duration\nvar _ bytes.Buffer\n\n%s",
 		"bytes",
 		"fmt",
 		"time",
 		"github.com/awslabs/aws-sdk-go/aws",
+		"github.com/awslabs/aws-sdk-go/aws/awserr",
 		"github.com/awslabs/aws-sdk-go/aws/awsutil",
 		"github.com/awslabs/aws-sdk-go/service/"+a.PackageName(),
 		strings.Join(exs, "\n\n"),
@@ -323,6 +325,7 @@ func (a *API) InterfaceGoCode() string {
 	a.resetImports()
 	a.imports = map[string]bool{
 		"github.com/awslabs/aws-sdk-go/service/" + a.PackageName(): true,
+		"github.com/awslabs/aws-sdk-go/aws/awserr":                 true,
 	}
 
 	var buf bytes.Buffer

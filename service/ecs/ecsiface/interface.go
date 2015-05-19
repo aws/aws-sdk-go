@@ -4,59 +4,60 @@
 package ecsiface
 
 import (
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/ecs"
 )
 
 type ECSAPI interface {
-	CreateCluster(*ecs.CreateClusterInput) (*ecs.CreateClusterOutput, error)
+	CreateCluster(*ecs.CreateClusterInput) (*ecs.CreateClusterOutput, awserr.Error)
 
-	CreateService(*ecs.CreateServiceInput) (*ecs.CreateServiceOutput, error)
+	CreateService(*ecs.CreateServiceInput) (*ecs.CreateServiceOutput, awserr.Error)
 
-	DeleteCluster(*ecs.DeleteClusterInput) (*ecs.DeleteClusterOutput, error)
+	DeleteCluster(*ecs.DeleteClusterInput) (*ecs.DeleteClusterOutput, awserr.Error)
 
-	DeleteService(*ecs.DeleteServiceInput) (*ecs.DeleteServiceOutput, error)
+	DeleteService(*ecs.DeleteServiceInput) (*ecs.DeleteServiceOutput, awserr.Error)
 
-	DeregisterContainerInstance(*ecs.DeregisterContainerInstanceInput) (*ecs.DeregisterContainerInstanceOutput, error)
+	DeregisterContainerInstance(*ecs.DeregisterContainerInstanceInput) (*ecs.DeregisterContainerInstanceOutput, awserr.Error)
 
-	DeregisterTaskDefinition(*ecs.DeregisterTaskDefinitionInput) (*ecs.DeregisterTaskDefinitionOutput, error)
+	DeregisterTaskDefinition(*ecs.DeregisterTaskDefinitionInput) (*ecs.DeregisterTaskDefinitionOutput, awserr.Error)
 
-	DescribeClusters(*ecs.DescribeClustersInput) (*ecs.DescribeClustersOutput, error)
+	DescribeClusters(*ecs.DescribeClustersInput) (*ecs.DescribeClustersOutput, awserr.Error)
 
-	DescribeContainerInstances(*ecs.DescribeContainerInstancesInput) (*ecs.DescribeContainerInstancesOutput, error)
+	DescribeContainerInstances(*ecs.DescribeContainerInstancesInput) (*ecs.DescribeContainerInstancesOutput, awserr.Error)
 
-	DescribeServices(*ecs.DescribeServicesInput) (*ecs.DescribeServicesOutput, error)
+	DescribeServices(*ecs.DescribeServicesInput) (*ecs.DescribeServicesOutput, awserr.Error)
 
-	DescribeTaskDefinition(*ecs.DescribeTaskDefinitionInput) (*ecs.DescribeTaskDefinitionOutput, error)
+	DescribeTaskDefinition(*ecs.DescribeTaskDefinitionInput) (*ecs.DescribeTaskDefinitionOutput, awserr.Error)
 
-	DescribeTasks(*ecs.DescribeTasksInput) (*ecs.DescribeTasksOutput, error)
+	DescribeTasks(*ecs.DescribeTasksInput) (*ecs.DescribeTasksOutput, awserr.Error)
 
-	DiscoverPollEndpoint(*ecs.DiscoverPollEndpointInput) (*ecs.DiscoverPollEndpointOutput, error)
+	DiscoverPollEndpoint(*ecs.DiscoverPollEndpointInput) (*ecs.DiscoverPollEndpointOutput, awserr.Error)
 
-	ListClusters(*ecs.ListClustersInput) (*ecs.ListClustersOutput, error)
+	ListClusters(*ecs.ListClustersInput) (*ecs.ListClustersOutput, awserr.Error)
 
-	ListContainerInstances(*ecs.ListContainerInstancesInput) (*ecs.ListContainerInstancesOutput, error)
+	ListContainerInstances(*ecs.ListContainerInstancesInput) (*ecs.ListContainerInstancesOutput, awserr.Error)
 
-	ListServices(*ecs.ListServicesInput) (*ecs.ListServicesOutput, error)
+	ListServices(*ecs.ListServicesInput) (*ecs.ListServicesOutput, awserr.Error)
 
-	ListTaskDefinitionFamilies(*ecs.ListTaskDefinitionFamiliesInput) (*ecs.ListTaskDefinitionFamiliesOutput, error)
+	ListTaskDefinitionFamilies(*ecs.ListTaskDefinitionFamiliesInput) (*ecs.ListTaskDefinitionFamiliesOutput, awserr.Error)
 
-	ListTaskDefinitions(*ecs.ListTaskDefinitionsInput) (*ecs.ListTaskDefinitionsOutput, error)
+	ListTaskDefinitions(*ecs.ListTaskDefinitionsInput) (*ecs.ListTaskDefinitionsOutput, awserr.Error)
 
-	ListTasks(*ecs.ListTasksInput) (*ecs.ListTasksOutput, error)
+	ListTasks(*ecs.ListTasksInput) (*ecs.ListTasksOutput, awserr.Error)
 
-	RegisterContainerInstance(*ecs.RegisterContainerInstanceInput) (*ecs.RegisterContainerInstanceOutput, error)
+	RegisterContainerInstance(*ecs.RegisterContainerInstanceInput) (*ecs.RegisterContainerInstanceOutput, awserr.Error)
 
-	RegisterTaskDefinition(*ecs.RegisterTaskDefinitionInput) (*ecs.RegisterTaskDefinitionOutput, error)
+	RegisterTaskDefinition(*ecs.RegisterTaskDefinitionInput) (*ecs.RegisterTaskDefinitionOutput, awserr.Error)
 
-	RunTask(*ecs.RunTaskInput) (*ecs.RunTaskOutput, error)
+	RunTask(*ecs.RunTaskInput) (*ecs.RunTaskOutput, awserr.Error)
 
-	StartTask(*ecs.StartTaskInput) (*ecs.StartTaskOutput, error)
+	StartTask(*ecs.StartTaskInput) (*ecs.StartTaskOutput, awserr.Error)
 
-	StopTask(*ecs.StopTaskInput) (*ecs.StopTaskOutput, error)
+	StopTask(*ecs.StopTaskInput) (*ecs.StopTaskOutput, awserr.Error)
 
-	SubmitContainerStateChange(*ecs.SubmitContainerStateChangeInput) (*ecs.SubmitContainerStateChangeOutput, error)
+	SubmitContainerStateChange(*ecs.SubmitContainerStateChangeInput) (*ecs.SubmitContainerStateChangeOutput, awserr.Error)
 
-	SubmitTaskStateChange(*ecs.SubmitTaskStateChangeInput) (*ecs.SubmitTaskStateChangeOutput, error)
+	SubmitTaskStateChange(*ecs.SubmitTaskStateChangeInput) (*ecs.SubmitTaskStateChangeOutput, awserr.Error)
 
-	UpdateService(*ecs.UpdateServiceInput) (*ecs.UpdateServiceOutput, error)
+	UpdateService(*ecs.UpdateServiceInput) (*ecs.UpdateServiceOutput, awserr.Error)
 }

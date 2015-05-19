@@ -4,29 +4,30 @@
 package ssmiface
 
 import (
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/ssm"
 )
 
 type SSMAPI interface {
-	CreateAssociation(*ssm.CreateAssociationInput) (*ssm.CreateAssociationOutput, error)
+	CreateAssociation(*ssm.CreateAssociationInput) (*ssm.CreateAssociationOutput, awserr.Error)
 
-	CreateAssociationBatch(*ssm.CreateAssociationBatchInput) (*ssm.CreateAssociationBatchOutput, error)
+	CreateAssociationBatch(*ssm.CreateAssociationBatchInput) (*ssm.CreateAssociationBatchOutput, awserr.Error)
 
-	CreateDocument(*ssm.CreateDocumentInput) (*ssm.CreateDocumentOutput, error)
+	CreateDocument(*ssm.CreateDocumentInput) (*ssm.CreateDocumentOutput, awserr.Error)
 
-	DeleteAssociation(*ssm.DeleteAssociationInput) (*ssm.DeleteAssociationOutput, error)
+	DeleteAssociation(*ssm.DeleteAssociationInput) (*ssm.DeleteAssociationOutput, awserr.Error)
 
-	DeleteDocument(*ssm.DeleteDocumentInput) (*ssm.DeleteDocumentOutput, error)
+	DeleteDocument(*ssm.DeleteDocumentInput) (*ssm.DeleteDocumentOutput, awserr.Error)
 
-	DescribeAssociation(*ssm.DescribeAssociationInput) (*ssm.DescribeAssociationOutput, error)
+	DescribeAssociation(*ssm.DescribeAssociationInput) (*ssm.DescribeAssociationOutput, awserr.Error)
 
-	DescribeDocument(*ssm.DescribeDocumentInput) (*ssm.DescribeDocumentOutput, error)
+	DescribeDocument(*ssm.DescribeDocumentInput) (*ssm.DescribeDocumentOutput, awserr.Error)
 
-	GetDocument(*ssm.GetDocumentInput) (*ssm.GetDocumentOutput, error)
+	GetDocument(*ssm.GetDocumentInput) (*ssm.GetDocumentOutput, awserr.Error)
 
-	ListAssociations(*ssm.ListAssociationsInput) (*ssm.ListAssociationsOutput, error)
+	ListAssociations(*ssm.ListAssociationsInput) (*ssm.ListAssociationsOutput, awserr.Error)
 
-	ListDocuments(*ssm.ListDocumentsInput) (*ssm.ListDocumentsOutput, error)
+	ListDocuments(*ssm.ListDocumentsInput) (*ssm.ListDocumentsOutput, awserr.Error)
 
-	UpdateAssociationStatus(*ssm.UpdateAssociationStatusInput) (*ssm.UpdateAssociationStatusOutput, error)
+	UpdateAssociationStatus(*ssm.UpdateAssociationStatusInput) (*ssm.UpdateAssociationStatusOutput, awserr.Error)
 }

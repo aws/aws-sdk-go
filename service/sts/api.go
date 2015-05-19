@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -106,11 +107,10 @@ func (c *STS) AssumeRoleRequest(input *AssumeRoleInput) (req *aws.Request, outpu
 // parameters. The SerialNumber value identifies the user's hardware or virtual
 // MFA device. The TokenCode is the time-based one-time password (TOTP) that
 // the MFA devices produces.
-func (c *STS) AssumeRole(input *AssumeRoleInput) (output *AssumeRoleOutput, err error) {
+func (c *STS) AssumeRole(input *AssumeRoleInput) (*AssumeRoleOutput, awserr.Error) {
 	req, out := c.AssumeRoleRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opAssumeRole *aws.Operation
@@ -181,11 +181,10 @@ func (c *STS) AssumeRoleWithSAMLRequest(input *AssumeRoleWithSAMLInput) (req *aw
 // in Using IAM.   Configuring a Relying Party and Claims (http://docs.aws.amazon.com/IAM/latest/UserGuide/create-role-saml-IdP-tasks.html)
 // in Using IAM.   Creating a Role for SAML-Based Federation (http://docs.aws.amazon.com/IAM/latest/UserGuide/create-role-saml.html)
 // in Using IAM.
-func (c *STS) AssumeRoleWithSAML(input *AssumeRoleWithSAMLInput) (output *AssumeRoleWithSAMLOutput, err error) {
+func (c *STS) AssumeRoleWithSAML(input *AssumeRoleWithSAMLInput) (*AssumeRoleWithSAMLOutput, awserr.Error) {
 	req, out := c.AssumeRoleWithSAMLRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opAssumeRoleWithSAML *aws.Operation
@@ -269,11 +268,10 @@ func (c *STS) AssumeRoleWithWebIdentityRequest(input *AssumeRoleWithWebIdentityI
 // (http://aws.amazon.com/articles/4617974389850313" target="_blank). This article
 // discusses web identity federation and shows an example of how to use web
 // identity federation to get access to content in Amazon S3.
-func (c *STS) AssumeRoleWithWebIdentity(input *AssumeRoleWithWebIdentityInput) (output *AssumeRoleWithWebIdentityOutput, err error) {
+func (c *STS) AssumeRoleWithWebIdentity(input *AssumeRoleWithWebIdentityInput) (*AssumeRoleWithWebIdentityOutput, awserr.Error) {
 	req, out := c.AssumeRoleWithWebIdentityRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opAssumeRoleWithWebIdentity *aws.Operation
@@ -323,11 +321,10 @@ func (c *STS) DecodeAuthorizationMessageRequest(input *DecodeAuthorizationMessag
 // in Using IAM.  The principal who made the request. The requested action.
 // The requested resource. The values of condition keys in the context of the
 // user's request.
-func (c *STS) DecodeAuthorizationMessage(input *DecodeAuthorizationMessageInput) (output *DecodeAuthorizationMessageOutput, err error) {
+func (c *STS) DecodeAuthorizationMessage(input *DecodeAuthorizationMessageInput) (*DecodeAuthorizationMessageOutput, awserr.Error) {
 	req, out := c.DecodeAuthorizationMessageRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDecodeAuthorizationMessage *aws.Operation
@@ -417,11 +414,10 @@ func (c *STS) GetFederationTokenRequest(input *GetFederationTokenInput) (req *aw
 // to create temporary security credentials, see Creating Temporary Credentials
 // to Enable Access for Federated Users (http://docs.aws.amazon.com/STS/latest/UsingSTS/CreatingFedTokens.html)
 // in Using Temporary Security Credentials.
-func (c *STS) GetFederationToken(input *GetFederationTokenInput) (output *GetFederationTokenOutput, err error) {
+func (c *STS) GetFederationToken(input *GetFederationTokenInput) (*GetFederationTokenOutput, awserr.Error) {
 	req, out := c.GetFederationTokenRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetFederationToken *aws.Operation
@@ -475,11 +471,10 @@ func (c *STS) GetSessionTokenRequest(input *GetSessionTokenInput) (req *aws.Requ
 // For more information about using GetSessionToken to create temporary credentials,
 // go to Creating Temporary Credentials to Enable Access for IAM Users (http://docs.aws.amazon.com/STS/latest/UsingSTS/CreatingSessionTokens.html"
 // target="_blank) in Using Temporary Security Credentials.
-func (c *STS) GetSessionToken(input *GetSessionTokenInput) (output *GetSessionTokenOutput, err error) {
+func (c *STS) GetSessionToken(input *GetSessionTokenInput) (*GetSessionTokenOutput, awserr.Error) {
 	req, out := c.GetSessionTokenRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetSessionToken *aws.Operation

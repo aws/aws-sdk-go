@@ -60,8 +60,7 @@ func TestValidateCRC32AlreadyErrorSkip(t *testing.T) {
 	req := mockCRCResponse(db, 400, "{}", "1234")
 	assert.Error(t, req.Error)
 
-	aerr := aws.Error(req.Error)
-	assert.NotEqual(t, "CRC32CheckFailed", aerr.Code)
+	assert.NotEqual(t, "CRC32CheckFailed", req.Error.Code())
 }
 
 func TestValidateCRC32IsValid(t *testing.T) {
@@ -77,8 +76,7 @@ func TestValidateCRC32DoesNotMatch(t *testing.T) {
 	req := mockCRCResponse(db, 200, "{}", "1234")
 	assert.Error(t, req.Error)
 
-	aerr := aws.Error(req.Error)
-	assert.Equal(t, "CRC32CheckFailed", aerr.Code)
+	assert.Equal(t, "CRC32CheckFailed", req.Error.Code())
 	assert.Equal(t, 2, int(req.RetryCount))
 }
 

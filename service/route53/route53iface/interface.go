@@ -4,67 +4,68 @@
 package route53iface
 
 import (
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/route53"
 )
 
 type Route53API interface {
-	AssociateVPCWithHostedZone(*route53.AssociateVPCWithHostedZoneInput) (*route53.AssociateVPCWithHostedZoneOutput, error)
+	AssociateVPCWithHostedZone(*route53.AssociateVPCWithHostedZoneInput) (*route53.AssociateVPCWithHostedZoneOutput, awserr.Error)
 
-	ChangeResourceRecordSets(*route53.ChangeResourceRecordSetsInput) (*route53.ChangeResourceRecordSetsOutput, error)
+	ChangeResourceRecordSets(*route53.ChangeResourceRecordSetsInput) (*route53.ChangeResourceRecordSetsOutput, awserr.Error)
 
-	ChangeTagsForResource(*route53.ChangeTagsForResourceInput) (*route53.ChangeTagsForResourceOutput, error)
+	ChangeTagsForResource(*route53.ChangeTagsForResourceInput) (*route53.ChangeTagsForResourceOutput, awserr.Error)
 
-	CreateHealthCheck(*route53.CreateHealthCheckInput) (*route53.CreateHealthCheckOutput, error)
+	CreateHealthCheck(*route53.CreateHealthCheckInput) (*route53.CreateHealthCheckOutput, awserr.Error)
 
-	CreateHostedZone(*route53.CreateHostedZoneInput) (*route53.CreateHostedZoneOutput, error)
+	CreateHostedZone(*route53.CreateHostedZoneInput) (*route53.CreateHostedZoneOutput, awserr.Error)
 
-	CreateReusableDelegationSet(*route53.CreateReusableDelegationSetInput) (*route53.CreateReusableDelegationSetOutput, error)
+	CreateReusableDelegationSet(*route53.CreateReusableDelegationSetInput) (*route53.CreateReusableDelegationSetOutput, awserr.Error)
 
-	DeleteHealthCheck(*route53.DeleteHealthCheckInput) (*route53.DeleteHealthCheckOutput, error)
+	DeleteHealthCheck(*route53.DeleteHealthCheckInput) (*route53.DeleteHealthCheckOutput, awserr.Error)
 
-	DeleteHostedZone(*route53.DeleteHostedZoneInput) (*route53.DeleteHostedZoneOutput, error)
+	DeleteHostedZone(*route53.DeleteHostedZoneInput) (*route53.DeleteHostedZoneOutput, awserr.Error)
 
-	DeleteReusableDelegationSet(*route53.DeleteReusableDelegationSetInput) (*route53.DeleteReusableDelegationSetOutput, error)
+	DeleteReusableDelegationSet(*route53.DeleteReusableDelegationSetInput) (*route53.DeleteReusableDelegationSetOutput, awserr.Error)
 
-	DisassociateVPCFromHostedZone(*route53.DisassociateVPCFromHostedZoneInput) (*route53.DisassociateVPCFromHostedZoneOutput, error)
+	DisassociateVPCFromHostedZone(*route53.DisassociateVPCFromHostedZoneInput) (*route53.DisassociateVPCFromHostedZoneOutput, awserr.Error)
 
-	GetChange(*route53.GetChangeInput) (*route53.GetChangeOutput, error)
+	GetChange(*route53.GetChangeInput) (*route53.GetChangeOutput, awserr.Error)
 
-	GetCheckerIPRanges(*route53.GetCheckerIPRangesInput) (*route53.GetCheckerIPRangesOutput, error)
+	GetCheckerIPRanges(*route53.GetCheckerIPRangesInput) (*route53.GetCheckerIPRangesOutput, awserr.Error)
 
-	GetGeoLocation(*route53.GetGeoLocationInput) (*route53.GetGeoLocationOutput, error)
+	GetGeoLocation(*route53.GetGeoLocationInput) (*route53.GetGeoLocationOutput, awserr.Error)
 
-	GetHealthCheck(*route53.GetHealthCheckInput) (*route53.GetHealthCheckOutput, error)
+	GetHealthCheck(*route53.GetHealthCheckInput) (*route53.GetHealthCheckOutput, awserr.Error)
 
-	GetHealthCheckCount(*route53.GetHealthCheckCountInput) (*route53.GetHealthCheckCountOutput, error)
+	GetHealthCheckCount(*route53.GetHealthCheckCountInput) (*route53.GetHealthCheckCountOutput, awserr.Error)
 
-	GetHealthCheckLastFailureReason(*route53.GetHealthCheckLastFailureReasonInput) (*route53.GetHealthCheckLastFailureReasonOutput, error)
+	GetHealthCheckLastFailureReason(*route53.GetHealthCheckLastFailureReasonInput) (*route53.GetHealthCheckLastFailureReasonOutput, awserr.Error)
 
-	GetHealthCheckStatus(*route53.GetHealthCheckStatusInput) (*route53.GetHealthCheckStatusOutput, error)
+	GetHealthCheckStatus(*route53.GetHealthCheckStatusInput) (*route53.GetHealthCheckStatusOutput, awserr.Error)
 
-	GetHostedZone(*route53.GetHostedZoneInput) (*route53.GetHostedZoneOutput, error)
+	GetHostedZone(*route53.GetHostedZoneInput) (*route53.GetHostedZoneOutput, awserr.Error)
 
-	GetHostedZoneCount(*route53.GetHostedZoneCountInput) (*route53.GetHostedZoneCountOutput, error)
+	GetHostedZoneCount(*route53.GetHostedZoneCountInput) (*route53.GetHostedZoneCountOutput, awserr.Error)
 
-	GetReusableDelegationSet(*route53.GetReusableDelegationSetInput) (*route53.GetReusableDelegationSetOutput, error)
+	GetReusableDelegationSet(*route53.GetReusableDelegationSetInput) (*route53.GetReusableDelegationSetOutput, awserr.Error)
 
-	ListGeoLocations(*route53.ListGeoLocationsInput) (*route53.ListGeoLocationsOutput, error)
+	ListGeoLocations(*route53.ListGeoLocationsInput) (*route53.ListGeoLocationsOutput, awserr.Error)
 
-	ListHealthChecks(*route53.ListHealthChecksInput) (*route53.ListHealthChecksOutput, error)
+	ListHealthChecks(*route53.ListHealthChecksInput) (*route53.ListHealthChecksOutput, awserr.Error)
 
-	ListHostedZones(*route53.ListHostedZonesInput) (*route53.ListHostedZonesOutput, error)
+	ListHostedZones(*route53.ListHostedZonesInput) (*route53.ListHostedZonesOutput, awserr.Error)
 
-	ListHostedZonesByName(*route53.ListHostedZonesByNameInput) (*route53.ListHostedZonesByNameOutput, error)
+	ListHostedZonesByName(*route53.ListHostedZonesByNameInput) (*route53.ListHostedZonesByNameOutput, awserr.Error)
 
-	ListResourceRecordSets(*route53.ListResourceRecordSetsInput) (*route53.ListResourceRecordSetsOutput, error)
+	ListResourceRecordSets(*route53.ListResourceRecordSetsInput) (*route53.ListResourceRecordSetsOutput, awserr.Error)
 
-	ListReusableDelegationSets(*route53.ListReusableDelegationSetsInput) (*route53.ListReusableDelegationSetsOutput, error)
+	ListReusableDelegationSets(*route53.ListReusableDelegationSetsInput) (*route53.ListReusableDelegationSetsOutput, awserr.Error)
 
-	ListTagsForResource(*route53.ListTagsForResourceInput) (*route53.ListTagsForResourceOutput, error)
+	ListTagsForResource(*route53.ListTagsForResourceInput) (*route53.ListTagsForResourceOutput, awserr.Error)
 
-	ListTagsForResources(*route53.ListTagsForResourcesInput) (*route53.ListTagsForResourcesOutput, error)
+	ListTagsForResources(*route53.ListTagsForResourcesInput) (*route53.ListTagsForResourcesOutput, awserr.Error)
 
-	UpdateHealthCheck(*route53.UpdateHealthCheckInput) (*route53.UpdateHealthCheckOutput, error)
+	UpdateHealthCheck(*route53.UpdateHealthCheckInput) (*route53.UpdateHealthCheckOutput, awserr.Error)
 
-	UpdateHostedZoneComment(*route53.UpdateHostedZoneCommentInput) (*route53.UpdateHostedZoneCommentOutput, error)
+	UpdateHostedZoneComment(*route53.UpdateHostedZoneCommentInput) (*route53.UpdateHostedZoneCommentOutput, awserr.Error)
 }

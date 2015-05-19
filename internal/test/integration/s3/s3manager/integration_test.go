@@ -106,7 +106,7 @@ func TestUploadFailCleanup(t *testing.T) {
 	})
 
 	key := "12mb-leave"
-	u, err := s3manager.Upload(svc, &s3manager.UploadInput{
+	_, err := s3manager.Upload(svc, &s3manager.UploadInput{
 		Bucket: bucketName,
 		Key:    &key,
 		Body:   bytes.NewReader(integBuf12MB),
@@ -114,8 +114,13 @@ func TestUploadFailCleanup(t *testing.T) {
 		LeavePartsOnError: false,
 	})
 	assert.Error(t, err)
+	uploadID := ""
+	if merr, ok := err.(s3manager.MultiUploadFailure); ok {
+		uploadID = merr.UploadID()
+	}
+	assert.NotEmpty(t, uploadID)
 
 	_, err = svc.ListParts(&s3.ListPartsInput{
-		Bucket: bucketName, Key: &key, UploadID: &u.UploadID})
+		Bucket: bucketName, Key: &key, UploadID: &uploadID})
 	assert.Error(t, err)
 }

@@ -4,35 +4,36 @@
 package supportiface
 
 import (
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/support"
 )
 
 type SupportAPI interface {
-	AddAttachmentsToSet(*support.AddAttachmentsToSetInput) (*support.AddAttachmentsToSetOutput, error)
+	AddAttachmentsToSet(*support.AddAttachmentsToSetInput) (*support.AddAttachmentsToSetOutput, awserr.Error)
 
-	AddCommunicationToCase(*support.AddCommunicationToCaseInput) (*support.AddCommunicationToCaseOutput, error)
+	AddCommunicationToCase(*support.AddCommunicationToCaseInput) (*support.AddCommunicationToCaseOutput, awserr.Error)
 
-	CreateCase(*support.CreateCaseInput) (*support.CreateCaseOutput, error)
+	CreateCase(*support.CreateCaseInput) (*support.CreateCaseOutput, awserr.Error)
 
-	DescribeAttachment(*support.DescribeAttachmentInput) (*support.DescribeAttachmentOutput, error)
+	DescribeAttachment(*support.DescribeAttachmentInput) (*support.DescribeAttachmentOutput, awserr.Error)
 
-	DescribeCases(*support.DescribeCasesInput) (*support.DescribeCasesOutput, error)
+	DescribeCases(*support.DescribeCasesInput) (*support.DescribeCasesOutput, awserr.Error)
 
-	DescribeCommunications(*support.DescribeCommunicationsInput) (*support.DescribeCommunicationsOutput, error)
+	DescribeCommunications(*support.DescribeCommunicationsInput) (*support.DescribeCommunicationsOutput, awserr.Error)
 
-	DescribeServices(*support.DescribeServicesInput) (*support.DescribeServicesOutput, error)
+	DescribeServices(*support.DescribeServicesInput) (*support.DescribeServicesOutput, awserr.Error)
 
-	DescribeSeverityLevels(*support.DescribeSeverityLevelsInput) (*support.DescribeSeverityLevelsOutput, error)
+	DescribeSeverityLevels(*support.DescribeSeverityLevelsInput) (*support.DescribeSeverityLevelsOutput, awserr.Error)
 
-	DescribeTrustedAdvisorCheckRefreshStatuses(*support.DescribeTrustedAdvisorCheckRefreshStatusesInput) (*support.DescribeTrustedAdvisorCheckRefreshStatusesOutput, error)
+	DescribeTrustedAdvisorCheckRefreshStatuses(*support.DescribeTrustedAdvisorCheckRefreshStatusesInput) (*support.DescribeTrustedAdvisorCheckRefreshStatusesOutput, awserr.Error)
 
-	DescribeTrustedAdvisorCheckResult(*support.DescribeTrustedAdvisorCheckResultInput) (*support.DescribeTrustedAdvisorCheckResultOutput, error)
+	DescribeTrustedAdvisorCheckResult(*support.DescribeTrustedAdvisorCheckResultInput) (*support.DescribeTrustedAdvisorCheckResultOutput, awserr.Error)
 
-	DescribeTrustedAdvisorCheckSummaries(*support.DescribeTrustedAdvisorCheckSummariesInput) (*support.DescribeTrustedAdvisorCheckSummariesOutput, error)
+	DescribeTrustedAdvisorCheckSummaries(*support.DescribeTrustedAdvisorCheckSummariesInput) (*support.DescribeTrustedAdvisorCheckSummariesOutput, awserr.Error)
 
-	DescribeTrustedAdvisorChecks(*support.DescribeTrustedAdvisorChecksInput) (*support.DescribeTrustedAdvisorChecksOutput, error)
+	DescribeTrustedAdvisorChecks(*support.DescribeTrustedAdvisorChecksInput) (*support.DescribeTrustedAdvisorChecksOutput, awserr.Error)
 
-	RefreshTrustedAdvisorCheck(*support.RefreshTrustedAdvisorCheckInput) (*support.RefreshTrustedAdvisorCheckOutput, error)
+	RefreshTrustedAdvisorCheck(*support.RefreshTrustedAdvisorCheckInput) (*support.RefreshTrustedAdvisorCheckOutput, awserr.Error)
 
-	ResolveCase(*support.ResolveCaseInput) (*support.ResolveCaseOutput, error)
+	ResolveCase(*support.ResolveCaseInput) (*support.ResolveCaseOutput, awserr.Error)
 }

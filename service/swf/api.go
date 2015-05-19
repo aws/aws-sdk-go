@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -55,11 +56,10 @@ func (c *SWF) CountClosedWorkflowExecutionsRequest(input *CountClosedWorkflowExe
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) CountClosedWorkflowExecutions(input *CountClosedWorkflowExecutionsInput) (output *WorkflowExecutionCount, err error) {
+func (c *SWF) CountClosedWorkflowExecutions(input *CountClosedWorkflowExecutionsInput) (*WorkflowExecutionCount, awserr.Error) {
 	req, out := c.CountClosedWorkflowExecutionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCountClosedWorkflowExecutions *aws.Operation
@@ -107,11 +107,10 @@ func (c *SWF) CountOpenWorkflowExecutionsRequest(input *CountOpenWorkflowExecuti
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) CountOpenWorkflowExecutions(input *CountOpenWorkflowExecutionsInput) (output *WorkflowExecutionCount, err error) {
+func (c *SWF) CountOpenWorkflowExecutions(input *CountOpenWorkflowExecutionsInput) (*WorkflowExecutionCount, awserr.Error) {
 	req, out := c.CountOpenWorkflowExecutionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCountOpenWorkflowExecutions *aws.Operation
@@ -158,11 +157,10 @@ func (c *SWF) CountPendingActivityTasksRequest(input *CountPendingActivityTasksI
 // the action fails. The associated event attribute's cause parameter will be
 // set to OPERATION_NOT_PERMITTED. For details and example IAM policies, see
 // Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) CountPendingActivityTasks(input *CountPendingActivityTasksInput) (output *PendingTaskCount, err error) {
+func (c *SWF) CountPendingActivityTasks(input *CountPendingActivityTasksInput) (*PendingTaskCount, awserr.Error) {
 	req, out := c.CountPendingActivityTasksRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCountPendingActivityTasks *aws.Operation
@@ -209,11 +207,10 @@ func (c *SWF) CountPendingDecisionTasksRequest(input *CountPendingDecisionTasksI
 // the action fails. The associated event attribute's cause parameter will be
 // set to OPERATION_NOT_PERMITTED. For details and example IAM policies, see
 // Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) CountPendingDecisionTasks(input *CountPendingDecisionTasksInput) (output *PendingTaskCount, err error) {
+func (c *SWF) CountPendingDecisionTasks(input *CountPendingDecisionTasksInput) (*PendingTaskCount, awserr.Error) {
 	req, out := c.CountPendingDecisionTasksRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCountPendingDecisionTasks *aws.Operation
@@ -261,11 +258,10 @@ func (c *SWF) DeprecateActivityTypeRequest(input *DeprecateActivityTypeInput) (r
 // constraints, the action fails. The associated event attribute's cause parameter
 // will be set to OPERATION_NOT_PERMITTED. For details and example IAM policies,
 // see Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) DeprecateActivityType(input *DeprecateActivityTypeInput) (output *DeprecateActivityTypeOutput, err error) {
+func (c *SWF) DeprecateActivityType(input *DeprecateActivityTypeInput) (*DeprecateActivityTypeOutput, awserr.Error) {
 	req, out := c.DeprecateActivityTypeRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeprecateActivityType *aws.Operation
@@ -314,11 +310,10 @@ func (c *SWF) DeprecateDomainRequest(input *DeprecateDomainInput) (req *aws.Requ
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) DeprecateDomain(input *DeprecateDomainInput) (output *DeprecateDomainOutput, err error) {
+func (c *SWF) DeprecateDomain(input *DeprecateDomainInput) (*DeprecateDomainOutput, awserr.Error) {
 	req, out := c.DeprecateDomainRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeprecateDomain *aws.Operation
@@ -367,11 +362,10 @@ func (c *SWF) DeprecateWorkflowTypeRequest(input *DeprecateWorkflowTypeInput) (r
 // constraints, the action fails. The associated event attribute's cause parameter
 // will be set to OPERATION_NOT_PERMITTED. For details and example IAM policies,
 // see Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) DeprecateWorkflowType(input *DeprecateWorkflowTypeInput) (output *DeprecateWorkflowTypeOutput, err error) {
+func (c *SWF) DeprecateWorkflowType(input *DeprecateWorkflowTypeInput) (*DeprecateWorkflowTypeOutput, awserr.Error) {
 	req, out := c.DeprecateWorkflowTypeRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeprecateWorkflowType *aws.Operation
@@ -418,11 +412,10 @@ func (c *SWF) DescribeActivityTypeRequest(input *DescribeActivityTypeInput) (req
 // constraints, the action fails. The associated event attribute's cause parameter
 // will be set to OPERATION_NOT_PERMITTED. For details and example IAM policies,
 // see Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) DescribeActivityType(input *DescribeActivityTypeInput) (output *DescribeActivityTypeOutput, err error) {
+func (c *SWF) DescribeActivityType(input *DescribeActivityTypeInput) (*DescribeActivityTypeOutput, awserr.Error) {
 	req, out := c.DescribeActivityTypeRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeActivityType *aws.Operation
@@ -466,11 +459,10 @@ func (c *SWF) DescribeDomainRequest(input *DescribeDomainInput) (req *aws.Reques
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) DescribeDomain(input *DescribeDomainInput) (output *DescribeDomainOutput, err error) {
+func (c *SWF) DescribeDomain(input *DescribeDomainInput) (*DescribeDomainOutput, awserr.Error) {
 	req, out := c.DescribeDomainRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeDomain *aws.Operation
@@ -515,11 +507,10 @@ func (c *SWF) DescribeWorkflowExecutionRequest(input *DescribeWorkflowExecutionI
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) DescribeWorkflowExecution(input *DescribeWorkflowExecutionInput) (output *DescribeWorkflowExecutionOutput, err error) {
+func (c *SWF) DescribeWorkflowExecution(input *DescribeWorkflowExecutionInput) (*DescribeWorkflowExecutionOutput, awserr.Error) {
 	req, out := c.DescribeWorkflowExecutionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeWorkflowExecution *aws.Operation
@@ -566,11 +557,10 @@ func (c *SWF) DescribeWorkflowTypeRequest(input *DescribeWorkflowTypeInput) (req
 // constraints, the action fails. The associated event attribute's cause parameter
 // will be set to OPERATION_NOT_PERMITTED. For details and example IAM policies,
 // see Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) DescribeWorkflowType(input *DescribeWorkflowTypeInput) (output *DescribeWorkflowTypeOutput, err error) {
+func (c *SWF) DescribeWorkflowType(input *DescribeWorkflowTypeInput) (*DescribeWorkflowTypeOutput, awserr.Error) {
 	req, out := c.DescribeWorkflowTypeRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeWorkflowType *aws.Operation
@@ -616,11 +606,10 @@ func (c *SWF) GetWorkflowExecutionHistoryRequest(input *GetWorkflowExecutionHist
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) GetWorkflowExecutionHistory(input *GetWorkflowExecutionHistoryInput) (output *GetWorkflowExecutionHistoryOutput, err error) {
+func (c *SWF) GetWorkflowExecutionHistory(input *GetWorkflowExecutionHistoryInput) (*GetWorkflowExecutionHistoryOutput, awserr.Error) {
 	req, out := c.GetWorkflowExecutionHistoryRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetWorkflowExecutionHistory *aws.Operation
@@ -667,11 +656,10 @@ func (c *SWF) ListActivityTypesRequest(input *ListActivityTypesInput) (req *aws.
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) ListActivityTypes(input *ListActivityTypesInput) (output *ListActivityTypesOutput, err error) {
+func (c *SWF) ListActivityTypes(input *ListActivityTypesInput) (*ListActivityTypesOutput, awserr.Error) {
 	req, out := c.ListActivityTypesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListActivityTypes *aws.Operation
@@ -721,11 +709,10 @@ func (c *SWF) ListClosedWorkflowExecutionsRequest(input *ListClosedWorkflowExecu
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) ListClosedWorkflowExecutions(input *ListClosedWorkflowExecutionsInput) (output *WorkflowExecutionInfos, err error) {
+func (c *SWF) ListClosedWorkflowExecutions(input *ListClosedWorkflowExecutionsInput) (*WorkflowExecutionInfos, awserr.Error) {
 	req, out := c.ListClosedWorkflowExecutionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListClosedWorkflowExecutions *aws.Operation
@@ -772,11 +759,10 @@ func (c *SWF) ListDomainsRequest(input *ListDomainsInput) (req *aws.Request, out
 // specified constraints, the action fails. The associated event attribute's
 // cause parameter will be set to OPERATION_NOT_PERMITTED. For details and example
 // IAM policies, see Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) ListDomains(input *ListDomainsInput) (output *ListDomainsOutput, err error) {
+func (c *SWF) ListDomains(input *ListDomainsInput) (*ListDomainsOutput, awserr.Error) {
 	req, out := c.ListDomainsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListDomains *aws.Operation
@@ -826,11 +812,10 @@ func (c *SWF) ListOpenWorkflowExecutionsRequest(input *ListOpenWorkflowExecution
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) ListOpenWorkflowExecutions(input *ListOpenWorkflowExecutionsInput) (output *WorkflowExecutionInfos, err error) {
+func (c *SWF) ListOpenWorkflowExecutions(input *ListOpenWorkflowExecutionsInput) (*WorkflowExecutionInfos, awserr.Error) {
 	req, out := c.ListOpenWorkflowExecutionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListOpenWorkflowExecutions *aws.Operation
@@ -875,11 +860,10 @@ func (c *SWF) ListWorkflowTypesRequest(input *ListWorkflowTypesInput) (req *aws.
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) ListWorkflowTypes(input *ListWorkflowTypesInput) (output *ListWorkflowTypesOutput, err error) {
+func (c *SWF) ListWorkflowTypes(input *ListWorkflowTypesInput) (*ListWorkflowTypesOutput, awserr.Error) {
 	req, out := c.ListWorkflowTypesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListWorkflowTypes *aws.Operation
@@ -932,11 +916,10 @@ func (c *SWF) PollForActivityTaskRequest(input *PollForActivityTaskInput) (req *
 // the action fails. The associated event attribute's cause parameter will be
 // set to OPERATION_NOT_PERMITTED. For details and example IAM policies, see
 // Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) PollForActivityTask(input *PollForActivityTaskInput) (output *PollForActivityTaskOutput, err error) {
+func (c *SWF) PollForActivityTask(input *PollForActivityTaskInput) (*PollForActivityTaskOutput, awserr.Error) {
 	req, out := c.PollForActivityTaskRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opPollForActivityTask *aws.Operation
@@ -997,11 +980,10 @@ func (c *SWF) PollForDecisionTaskRequest(input *PollForDecisionTaskInput) (req *
 // the action fails. The associated event attribute's cause parameter will be
 // set to OPERATION_NOT_PERMITTED. For details and example IAM policies, see
 // Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) PollForDecisionTask(input *PollForDecisionTaskInput) (output *PollForDecisionTaskOutput, err error) {
+func (c *SWF) PollForDecisionTask(input *PollForDecisionTaskInput) (*PollForDecisionTaskOutput, awserr.Error) {
 	req, out := c.PollForDecisionTaskRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opPollForDecisionTask *aws.Operation
@@ -1065,11 +1047,10 @@ func (c *SWF) RecordActivityTaskHeartbeatRequest(input *RecordActivityTaskHeartb
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) RecordActivityTaskHeartbeat(input *RecordActivityTaskHeartbeatInput) (output *RecordActivityTaskHeartbeatOutput, err error) {
+func (c *SWF) RecordActivityTaskHeartbeat(input *RecordActivityTaskHeartbeatInput) (*RecordActivityTaskHeartbeatOutput, awserr.Error) {
 	req, out := c.RecordActivityTaskHeartbeatRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRecordActivityTaskHeartbeat *aws.Operation
@@ -1118,11 +1099,10 @@ func (c *SWF) RegisterActivityTypeRequest(input *RegisterActivityTypeInput) (req
 // event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) RegisterActivityType(input *RegisterActivityTypeInput) (output *RegisterActivityTypeOutput, err error) {
+func (c *SWF) RegisterActivityType(input *RegisterActivityTypeInput) (*RegisterActivityTypeOutput, awserr.Error) {
 	req, out := c.RegisterActivityTypeRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRegisterActivityType *aws.Operation
@@ -1166,11 +1146,10 @@ func (c *SWF) RegisterDomainRequest(input *RegisterDomainInput) (req *aws.Reques
 // The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) RegisterDomain(input *RegisterDomainInput) (output *RegisterDomainOutput, err error) {
+func (c *SWF) RegisterDomain(input *RegisterDomainInput) (*RegisterDomainOutput, awserr.Error) {
 	req, out := c.RegisterDomainRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRegisterDomain *aws.Operation
@@ -1222,11 +1201,10 @@ func (c *SWF) RegisterWorkflowTypeRequest(input *RegisterWorkflowTypeInput) (req
 // event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) RegisterWorkflowType(input *RegisterWorkflowTypeInput) (output *RegisterWorkflowTypeOutput, err error) {
+func (c *SWF) RegisterWorkflowType(input *RegisterWorkflowTypeInput) (*RegisterWorkflowTypeOutput, awserr.Error) {
 	req, out := c.RegisterWorkflowTypeRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRegisterWorkflowType *aws.Operation
@@ -1277,11 +1255,10 @@ func (c *SWF) RequestCancelWorkflowExecutionRequest(input *RequestCancelWorkflow
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) RequestCancelWorkflowExecution(input *RequestCancelWorkflowExecutionInput) (output *RequestCancelWorkflowExecutionOutput, err error) {
+func (c *SWF) RequestCancelWorkflowExecution(input *RequestCancelWorkflowExecutionInput) (*RequestCancelWorkflowExecutionOutput, awserr.Error) {
 	req, out := c.RequestCancelWorkflowExecutionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRequestCancelWorkflowExecution *aws.Operation
@@ -1337,11 +1314,10 @@ func (c *SWF) RespondActivityTaskCanceledRequest(input *RespondActivityTaskCance
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) RespondActivityTaskCanceled(input *RespondActivityTaskCanceledInput) (output *RespondActivityTaskCanceledOutput, err error) {
+func (c *SWF) RespondActivityTaskCanceled(input *RespondActivityTaskCanceledInput) (*RespondActivityTaskCanceledOutput, awserr.Error) {
 	req, out := c.RespondActivityTaskCanceledRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRespondActivityTaskCanceled *aws.Operation
@@ -1395,11 +1371,10 @@ func (c *SWF) RespondActivityTaskCompletedRequest(input *RespondActivityTaskComp
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) RespondActivityTaskCompleted(input *RespondActivityTaskCompletedInput) (output *RespondActivityTaskCompletedOutput, err error) {
+func (c *SWF) RespondActivityTaskCompleted(input *RespondActivityTaskCompletedInput) (*RespondActivityTaskCompletedOutput, awserr.Error) {
 	req, out := c.RespondActivityTaskCompletedRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRespondActivityTaskCompleted *aws.Operation
@@ -1450,11 +1425,10 @@ func (c *SWF) RespondActivityTaskFailedRequest(input *RespondActivityTaskFailedI
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) RespondActivityTaskFailed(input *RespondActivityTaskFailedInput) (output *RespondActivityTaskFailedOutput, err error) {
+func (c *SWF) RespondActivityTaskFailed(input *RespondActivityTaskFailedInput) (*RespondActivityTaskFailedOutput, awserr.Error) {
 	req, out := c.RespondActivityTaskFailedRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRespondActivityTaskFailed *aws.Operation
@@ -1498,11 +1472,10 @@ func (c *SWF) RespondDecisionTaskCompletedRequest(input *RespondDecisionTaskComp
 // permissions on decisions as if they were actual API calls, including applying
 // conditions to some parameters. For more information, see Using IAM to Manage
 // Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) RespondDecisionTaskCompleted(input *RespondDecisionTaskCompletedInput) (output *RespondDecisionTaskCompletedOutput, err error) {
+func (c *SWF) RespondDecisionTaskCompleted(input *RespondDecisionTaskCompletedInput) (*RespondDecisionTaskCompletedOutput, awserr.Error) {
 	req, out := c.RespondDecisionTaskCompletedRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRespondDecisionTaskCompleted *aws.Operation
@@ -1551,11 +1524,10 @@ func (c *SWF) SignalWorkflowExecutionRequest(input *SignalWorkflowExecutionInput
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) SignalWorkflowExecution(input *SignalWorkflowExecutionInput) (output *SignalWorkflowExecutionOutput, err error) {
+func (c *SWF) SignalWorkflowExecution(input *SignalWorkflowExecutionInput) (*SignalWorkflowExecutionOutput, awserr.Error) {
 	req, out := c.SignalWorkflowExecutionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSignalWorkflowExecution *aws.Operation
@@ -1607,11 +1579,10 @@ func (c *SWF) StartWorkflowExecutionRequest(input *StartWorkflowExecutionInput) 
 // constraints, the action fails. The associated event attribute's cause parameter
 // will be set to OPERATION_NOT_PERMITTED. For details and example IAM policies,
 // see Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) StartWorkflowExecution(input *StartWorkflowExecutionInput) (output *StartWorkflowExecutionOutput, err error) {
+func (c *SWF) StartWorkflowExecution(input *StartWorkflowExecutionInput) (*StartWorkflowExecutionOutput, awserr.Error) {
 	req, out := c.StartWorkflowExecutionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opStartWorkflowExecution *aws.Operation
@@ -1663,11 +1634,10 @@ func (c *SWF) TerminateWorkflowExecutionRequest(input *TerminateWorkflowExecutio
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-func (c *SWF) TerminateWorkflowExecution(input *TerminateWorkflowExecutionInput) (output *TerminateWorkflowExecutionOutput, err error) {
+func (c *SWF) TerminateWorkflowExecution(input *TerminateWorkflowExecutionInput) (*TerminateWorkflowExecutionOutput, awserr.Error) {
 	req, out := c.TerminateWorkflowExecutionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opTerminateWorkflowExecution *aws.Operation

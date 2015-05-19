@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -44,11 +45,10 @@ func (c *SSM) CreateAssociationRequest(input *CreateAssociationInput) (req *aws.
 // If you associate a configuration document with an instance that already
 // has an associated configuration document, we replace the current configuration
 // document with the new configuration document.
-func (c *SSM) CreateAssociation(input *CreateAssociationInput) (output *CreateAssociationOutput, err error) {
+func (c *SSM) CreateAssociation(input *CreateAssociationInput) (*CreateAssociationOutput, awserr.Error) {
 	req, out := c.CreateAssociationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateAssociation *aws.Operation
@@ -85,11 +85,10 @@ func (c *SSM) CreateAssociationBatchRequest(input *CreateAssociationBatchInput) 
 // If you associate a configuration document with an instance that already
 // has an associated configuration document, we replace the current configuration
 // document with the new configuration document.
-func (c *SSM) CreateAssociationBatch(input *CreateAssociationBatchInput) (output *CreateAssociationBatchOutput, err error) {
+func (c *SSM) CreateAssociationBatch(input *CreateAssociationBatchInput) (*CreateAssociationBatchOutput, awserr.Error) {
 	req, out := c.CreateAssociationBatchRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateAssociationBatch *aws.Operation
@@ -121,11 +120,10 @@ func (c *SSM) CreateDocumentRequest(input *CreateDocumentInput) (req *aws.Reques
 //
 // After you create a configuration document, you can use CreateAssociation
 // to associate it with one or more running instances.
-func (c *SSM) CreateDocument(input *CreateDocumentInput) (output *CreateDocumentOutput, err error) {
+func (c *SSM) CreateDocument(input *CreateDocumentInput) (*CreateDocumentOutput, awserr.Error) {
 	req, out := c.CreateDocumentRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateDocument *aws.Operation
@@ -160,11 +158,10 @@ func (c *SSM) DeleteAssociationRequest(input *DeleteAssociationInput) (req *aws.
 // state of an instance after you disassociate a configuration document, you
 // must create a new configuration document with the desired configuration and
 // associate it with the instance.
-func (c *SSM) DeleteAssociation(input *DeleteAssociationInput) (output *DeleteAssociationOutput, err error) {
+func (c *SSM) DeleteAssociation(input *DeleteAssociationInput) (*DeleteAssociationOutput, awserr.Error) {
 	req, out := c.DeleteAssociationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteAssociation *aws.Operation
@@ -196,11 +193,10 @@ func (c *SSM) DeleteDocumentRequest(input *DeleteDocumentInput) (req *aws.Reques
 //
 // You must use DeleteAssociation to disassociate all instances that are associated
 // with the configuration document before you can delete it.
-func (c *SSM) DeleteDocument(input *DeleteDocumentInput) (output *DeleteDocumentOutput, err error) {
+func (c *SSM) DeleteDocument(input *DeleteDocumentInput) (*DeleteDocumentOutput, awserr.Error) {
 	req, out := c.DeleteDocumentRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteDocument *aws.Operation
@@ -229,11 +225,10 @@ func (c *SSM) DescribeAssociationRequest(input *DescribeAssociationInput) (req *
 }
 
 // Describes the associations for the specified configuration document or instance.
-func (c *SSM) DescribeAssociation(input *DescribeAssociationInput) (output *DescribeAssociationOutput, err error) {
+func (c *SSM) DescribeAssociation(input *DescribeAssociationInput) (*DescribeAssociationOutput, awserr.Error) {
 	req, out := c.DescribeAssociationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeAssociation *aws.Operation
@@ -262,11 +257,10 @@ func (c *SSM) DescribeDocumentRequest(input *DescribeDocumentInput) (req *aws.Re
 }
 
 // Describes the specified configuration document.
-func (c *SSM) DescribeDocument(input *DescribeDocumentInput) (output *DescribeDocumentOutput, err error) {
+func (c *SSM) DescribeDocument(input *DescribeDocumentInput) (*DescribeDocumentOutput, awserr.Error) {
 	req, out := c.DescribeDocumentRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeDocument *aws.Operation
@@ -295,11 +289,10 @@ func (c *SSM) GetDocumentRequest(input *GetDocumentInput) (req *aws.Request, out
 }
 
 // Gets the contents of the specified configuration document.
-func (c *SSM) GetDocument(input *GetDocumentInput) (output *GetDocumentOutput, err error) {
+func (c *SSM) GetDocument(input *GetDocumentInput) (*GetDocumentOutput, awserr.Error) {
 	req, out := c.GetDocumentRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetDocument *aws.Operation
@@ -328,11 +321,10 @@ func (c *SSM) ListAssociationsRequest(input *ListAssociationsInput) (req *aws.Re
 }
 
 // Lists the associations for the specified configuration document or instance.
-func (c *SSM) ListAssociations(input *ListAssociationsInput) (output *ListAssociationsOutput, err error) {
+func (c *SSM) ListAssociations(input *ListAssociationsInput) (*ListAssociationsOutput, awserr.Error) {
 	req, out := c.ListAssociationsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListAssociations *aws.Operation
@@ -361,11 +353,10 @@ func (c *SSM) ListDocumentsRequest(input *ListDocumentsInput) (req *aws.Request,
 }
 
 // Describes one or more of your configuration documents.
-func (c *SSM) ListDocuments(input *ListDocumentsInput) (output *ListDocumentsOutput, err error) {
+func (c *SSM) ListDocuments(input *ListDocumentsInput) (*ListDocumentsOutput, awserr.Error) {
 	req, out := c.ListDocumentsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListDocuments *aws.Operation
@@ -395,11 +386,10 @@ func (c *SSM) UpdateAssociationStatusRequest(input *UpdateAssociationStatusInput
 
 // Updates the status of the configuration document associated with the specified
 // instance.
-func (c *SSM) UpdateAssociationStatus(input *UpdateAssociationStatusInput) (output *UpdateAssociationStatusOutput, err error) {
+func (c *SSM) UpdateAssociationStatus(input *UpdateAssociationStatusInput) (*UpdateAssociationStatusOutput, awserr.Error) {
 	req, out := c.UpdateAssociationStatusRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateAssociationStatus *aws.Operation

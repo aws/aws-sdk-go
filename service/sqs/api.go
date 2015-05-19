@@ -7,6 +7,7 @@ import (
 	"sync"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -52,11 +53,10 @@ func (c *SQS) AddPermissionRequest(input *AddPermissionInput) (req *aws.Request,
 // a parameter list with two elements looks like this:  &Attribute.1=this
 //
 // &Attribute.2=that
-func (c *SQS) AddPermission(input *AddPermissionInput) (output *AddPermissionOutput, err error) {
+func (c *SQS) AddPermission(input *AddPermissionInput) (*AddPermissionOutput, awserr.Error) {
 	req, out := c.AddPermissionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opAddPermission *aws.Operation
@@ -114,11 +114,10 @@ func (c *SQS) ChangeMessageVisibilityRequest(input *ChangeMessageVisibilityInput
 // If you don't delete a message after it is received, the visibility timeout
 // for the message the next time it is received reverts to the original timeout
 // value, not the value you set with the ChangeMessageVisibility action.
-func (c *SQS) ChangeMessageVisibility(input *ChangeMessageVisibilityInput) (output *ChangeMessageVisibilityOutput, err error) {
+func (c *SQS) ChangeMessageVisibility(input *ChangeMessageVisibilityInput) (*ChangeMessageVisibilityOutput, awserr.Error) {
 	req, out := c.ChangeMessageVisibilityRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opChangeMessageVisibility *aws.Operation
@@ -159,11 +158,10 @@ func (c *SQS) ChangeMessageVisibilityBatchRequest(input *ChangeMessageVisibility
 // this:  &Attribute.1=this
 //
 // &Attribute.2=that
-func (c *SQS) ChangeMessageVisibilityBatch(input *ChangeMessageVisibilityBatchInput) (output *ChangeMessageVisibilityBatchOutput, err error) {
+func (c *SQS) ChangeMessageVisibilityBatch(input *ChangeMessageVisibilityBatchInput) (*ChangeMessageVisibilityBatchOutput, awserr.Error) {
 	req, out := c.ChangeMessageVisibilityBatchRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opChangeMessageVisibilityBatch *aws.Operation
@@ -216,11 +214,10 @@ func (c *SQS) CreateQueueRequest(input *CreateQueueInput) (req *aws.Request, out
 // a parameter list with two elements looks like this:  &Attribute.1=this
 //
 // &Attribute.2=that
-func (c *SQS) CreateQueue(input *CreateQueueInput) (output *CreateQueueOutput, err error) {
+func (c *SQS) CreateQueue(input *CreateQueueInput) (*CreateQueueOutput, awserr.Error) {
 	req, out := c.CreateQueueRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateQueue *aws.Operation
@@ -268,11 +265,10 @@ func (c *SQS) DeleteMessageRequest(input *DeleteMessageInput) (req *aws.Request,
 // copy remains on the server and might be returned to you again on a subsequent
 // receive request. You should create your system to be idempotent so that receiving
 // a particular message more than once is not a problem.
-func (c *SQS) DeleteMessage(input *DeleteMessageInput) (output *DeleteMessageOutput, err error) {
+func (c *SQS) DeleteMessage(input *DeleteMessageInput) (*DeleteMessageOutput, awserr.Error) {
 	req, out := c.DeleteMessageRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteMessage *aws.Operation
@@ -313,11 +309,10 @@ func (c *SQS) DeleteMessageBatchRequest(input *DeleteMessageBatchInput) (req *aw
 // a parameter list with two elements looks like this:  &Attribute.1=this
 //
 // &Attribute.2=that
-func (c *SQS) DeleteMessageBatch(input *DeleteMessageBatchInput) (output *DeleteMessageBatchOutput, err error) {
+func (c *SQS) DeleteMessageBatch(input *DeleteMessageBatchInput) (*DeleteMessageBatchOutput, awserr.Error) {
 	req, out := c.DeleteMessageBatchRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteMessageBatch *aws.Operation
@@ -362,11 +357,10 @@ func (c *SQS) DeleteQueueRequest(input *DeleteQueueInput) (req *aws.Request, out
 //  We reserve the right to delete queues that have had no activity for more
 // than 30 days. For more information, see How Amazon SQS Queues Work (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSConcepts.html)
 // in the Amazon SQS Developer Guide.
-func (c *SQS) DeleteQueue(input *DeleteQueueInput) (output *DeleteQueueOutput, err error) {
+func (c *SQS) DeleteQueue(input *DeleteQueueInput) (*DeleteQueueOutput, awserr.Error) {
 	req, out := c.DeleteQueueRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteQueue *aws.Operation
@@ -429,11 +423,10 @@ func (c *SQS) GetQueueAttributesRequest(input *GetQueueAttributesInput) (req *aw
 // this:  &Attribute.1=this
 //
 // &Attribute.2=that
-func (c *SQS) GetQueueAttributes(input *GetQueueAttributesInput) (output *GetQueueAttributesOutput, err error) {
+func (c *SQS) GetQueueAttributes(input *GetQueueAttributesInput) (*GetQueueAttributesOutput, awserr.Error) {
 	req, out := c.GetQueueAttributesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetQueueAttributes *aws.Operation
@@ -469,11 +462,10 @@ func (c *SQS) GetQueueURLRequest(input *GetQueueURLInput) (req *aws.Request, out
 // must grant you permission to access the queue. For more information about
 // shared queue access, see AddPermission or go to Shared Queues (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/acp-overview.html)
 // in the Amazon SQS Developer Guide.
-func (c *SQS) GetQueueURL(input *GetQueueURLInput) (output *GetQueueURLOutput, err error) {
+func (c *SQS) GetQueueURL(input *GetQueueURLInput) (*GetQueueURLOutput, awserr.Error) {
 	req, out := c.GetQueueURLRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetQueueURL *aws.Operation
@@ -506,11 +498,10 @@ func (c *SQS) ListDeadLetterSourceQueuesRequest(input *ListDeadLetterSourceQueue
 //
 // For more information about using dead letter queues, see Using Amazon SQS
 // Dead Letter Queues (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html).
-func (c *SQS) ListDeadLetterSourceQueues(input *ListDeadLetterSourceQueuesInput) (output *ListDeadLetterSourceQueuesOutput, err error) {
+func (c *SQS) ListDeadLetterSourceQueues(input *ListDeadLetterSourceQueuesInput) (*ListDeadLetterSourceQueuesOutput, awserr.Error) {
 	req, out := c.ListDeadLetterSourceQueuesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListDeadLetterSourceQueues *aws.Operation
@@ -541,11 +532,10 @@ func (c *SQS) ListQueuesRequest(input *ListQueuesInput) (req *aws.Request, outpu
 // Returns a list of your queues. The maximum number of queues that can be returned
 // is 1000. If you specify a value for the optional QueueNamePrefix parameter,
 // only queues with a name beginning with the specified value are returned.
-func (c *SQS) ListQueues(input *ListQueuesInput) (output *ListQueuesOutput, err error) {
+func (c *SQS) ListQueues(input *ListQueuesInput) (*ListQueuesOutput, awserr.Error) {
 	req, out := c.ListQueuesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListQueues *aws.Operation
@@ -582,11 +572,10 @@ func (c *SQS) PurgeQueueRequest(input *PurgeQueueInput) (req *aws.Request, outpu
 // be deleted. While the queue is being purged, messages sent to the queue before
 // PurgeQueue was called may be received, but will be deleted within the next
 // minute.
-func (c *SQS) PurgeQueue(input *PurgeQueueInput) (output *PurgeQueueOutput, err error) {
+func (c *SQS) PurgeQueue(input *PurgeQueueInput) (*PurgeQueueOutput, awserr.Error) {
 	req, out := c.PurgeQueueRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opPurgeQueue *aws.Operation
@@ -656,11 +645,10 @@ func (c *SQS) ReceiveMessageRequest(input *ReceiveMessageInput) (req *aws.Reques
 //   Going forward, new attributes might be added. If you are writing code
 // that calls this action, we recommend that you structure your code so that
 // it can handle new attributes gracefully.
-func (c *SQS) ReceiveMessage(input *ReceiveMessageInput) (output *ReceiveMessageOutput, err error) {
+func (c *SQS) ReceiveMessage(input *ReceiveMessageInput) (*ReceiveMessageOutput, awserr.Error) {
 	req, out := c.ReceiveMessageRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opReceiveMessage *aws.Operation
@@ -690,11 +678,10 @@ func (c *SQS) RemovePermissionRequest(input *RemovePermissionInput) (req *aws.Re
 
 // Revokes any permissions in the queue policy that matches the specified Label
 // parameter. Only the owner of the queue can remove permissions.
-func (c *SQS) RemovePermission(input *RemovePermissionInput) (output *RemovePermissionOutput, err error) {
+func (c *SQS) RemovePermission(input *RemovePermissionInput) (*RemovePermissionOutput, awserr.Error) {
 	req, out := c.RemovePermissionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRemovePermission *aws.Operation
@@ -734,11 +721,10 @@ func (c *SQS) SendMessageRequest(input *SendMessageInput) (req *aws.Request, out
 // in the list, your request will be rejected.
 //
 //  #x9 | #xA | #xD | [#x20 to #xD7FF] | [#xE000 to #xFFFD] | [#x10000 to #x10FFFF]
-func (c *SQS) SendMessage(input *SendMessageInput) (output *SendMessageOutput, err error) {
+func (c *SQS) SendMessage(input *SendMessageInput) (*SendMessageOutput, awserr.Error) {
 	req, out := c.SendMessageRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSendMessage *aws.Operation
@@ -792,11 +778,10 @@ func (c *SQS) SendMessageBatchRequest(input *SendMessageBatchInput) (req *aws.Re
 // this:  &Attribute.1=this
 //
 // &Attribute.2=that
-func (c *SQS) SendMessageBatch(input *SendMessageBatchInput) (output *SendMessageBatchOutput, err error) {
+func (c *SQS) SendMessageBatch(input *SendMessageBatchInput) (*SendMessageBatchOutput, awserr.Error) {
 	req, out := c.SendMessageBatchRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSendMessageBatch *aws.Operation
@@ -832,11 +817,10 @@ func (c *SQS) SetQueueAttributesRequest(input *SetQueueAttributesInput) (req *aw
 // Going forward, new attributes might be added. If you are writing code that
 // calls this action, we recommend that you structure your code so that it can
 // handle new attributes gracefully.
-func (c *SQS) SetQueueAttributes(input *SetQueueAttributesInput) (output *SetQueueAttributesOutput, err error) {
+func (c *SQS) SetQueueAttributes(input *SetQueueAttributesInput) (*SetQueueAttributesOutput, awserr.Error) {
 	req, out := c.SetQueueAttributesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSetQueueAttributes *aws.Operation

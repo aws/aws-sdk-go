@@ -4,33 +4,34 @@
 package kinesisiface
 
 import (
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/kinesis"
 )
 
 type KinesisAPI interface {
-	AddTagsToStream(*kinesis.AddTagsToStreamInput) (*kinesis.AddTagsToStreamOutput, error)
+	AddTagsToStream(*kinesis.AddTagsToStreamInput) (*kinesis.AddTagsToStreamOutput, awserr.Error)
 
-	CreateStream(*kinesis.CreateStreamInput) (*kinesis.CreateStreamOutput, error)
+	CreateStream(*kinesis.CreateStreamInput) (*kinesis.CreateStreamOutput, awserr.Error)
 
-	DeleteStream(*kinesis.DeleteStreamInput) (*kinesis.DeleteStreamOutput, error)
+	DeleteStream(*kinesis.DeleteStreamInput) (*kinesis.DeleteStreamOutput, awserr.Error)
 
-	DescribeStream(*kinesis.DescribeStreamInput) (*kinesis.DescribeStreamOutput, error)
+	DescribeStream(*kinesis.DescribeStreamInput) (*kinesis.DescribeStreamOutput, awserr.Error)
 
-	GetRecords(*kinesis.GetRecordsInput) (*kinesis.GetRecordsOutput, error)
+	GetRecords(*kinesis.GetRecordsInput) (*kinesis.GetRecordsOutput, awserr.Error)
 
-	GetShardIterator(*kinesis.GetShardIteratorInput) (*kinesis.GetShardIteratorOutput, error)
+	GetShardIterator(*kinesis.GetShardIteratorInput) (*kinesis.GetShardIteratorOutput, awserr.Error)
 
-	ListStreams(*kinesis.ListStreamsInput) (*kinesis.ListStreamsOutput, error)
+	ListStreams(*kinesis.ListStreamsInput) (*kinesis.ListStreamsOutput, awserr.Error)
 
-	ListTagsForStream(*kinesis.ListTagsForStreamInput) (*kinesis.ListTagsForStreamOutput, error)
+	ListTagsForStream(*kinesis.ListTagsForStreamInput) (*kinesis.ListTagsForStreamOutput, awserr.Error)
 
-	MergeShards(*kinesis.MergeShardsInput) (*kinesis.MergeShardsOutput, error)
+	MergeShards(*kinesis.MergeShardsInput) (*kinesis.MergeShardsOutput, awserr.Error)
 
-	PutRecord(*kinesis.PutRecordInput) (*kinesis.PutRecordOutput, error)
+	PutRecord(*kinesis.PutRecordInput) (*kinesis.PutRecordOutput, awserr.Error)
 
-	PutRecords(*kinesis.PutRecordsInput) (*kinesis.PutRecordsOutput, error)
+	PutRecords(*kinesis.PutRecordsInput) (*kinesis.PutRecordsOutput, awserr.Error)
 
-	RemoveTagsFromStream(*kinesis.RemoveTagsFromStreamInput) (*kinesis.RemoveTagsFromStreamOutput, error)
+	RemoveTagsFromStream(*kinesis.RemoveTagsFromStreamInput) (*kinesis.RemoveTagsFromStreamOutput, awserr.Error)
 
-	SplitShard(*kinesis.SplitShardInput) (*kinesis.SplitShardOutput, error)
+	SplitShard(*kinesis.SplitShardInput) (*kinesis.SplitShardOutput, awserr.Error)
 }

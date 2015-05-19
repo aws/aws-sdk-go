@@ -4,41 +4,42 @@
 package emriface
 
 import (
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/emr"
 )
 
 type EMRAPI interface {
-	AddInstanceGroups(*emr.AddInstanceGroupsInput) (*emr.AddInstanceGroupsOutput, error)
+	AddInstanceGroups(*emr.AddInstanceGroupsInput) (*emr.AddInstanceGroupsOutput, awserr.Error)
 
-	AddJobFlowSteps(*emr.AddJobFlowStepsInput) (*emr.AddJobFlowStepsOutput, error)
+	AddJobFlowSteps(*emr.AddJobFlowStepsInput) (*emr.AddJobFlowStepsOutput, awserr.Error)
 
-	AddTags(*emr.AddTagsInput) (*emr.AddTagsOutput, error)
+	AddTags(*emr.AddTagsInput) (*emr.AddTagsOutput, awserr.Error)
 
-	DescribeCluster(*emr.DescribeClusterInput) (*emr.DescribeClusterOutput, error)
+	DescribeCluster(*emr.DescribeClusterInput) (*emr.DescribeClusterOutput, awserr.Error)
 
-	DescribeJobFlows(*emr.DescribeJobFlowsInput) (*emr.DescribeJobFlowsOutput, error)
+	DescribeJobFlows(*emr.DescribeJobFlowsInput) (*emr.DescribeJobFlowsOutput, awserr.Error)
 
-	DescribeStep(*emr.DescribeStepInput) (*emr.DescribeStepOutput, error)
+	DescribeStep(*emr.DescribeStepInput) (*emr.DescribeStepOutput, awserr.Error)
 
-	ListBootstrapActions(*emr.ListBootstrapActionsInput) (*emr.ListBootstrapActionsOutput, error)
+	ListBootstrapActions(*emr.ListBootstrapActionsInput) (*emr.ListBootstrapActionsOutput, awserr.Error)
 
-	ListClusters(*emr.ListClustersInput) (*emr.ListClustersOutput, error)
+	ListClusters(*emr.ListClustersInput) (*emr.ListClustersOutput, awserr.Error)
 
-	ListInstanceGroups(*emr.ListInstanceGroupsInput) (*emr.ListInstanceGroupsOutput, error)
+	ListInstanceGroups(*emr.ListInstanceGroupsInput) (*emr.ListInstanceGroupsOutput, awserr.Error)
 
-	ListInstances(*emr.ListInstancesInput) (*emr.ListInstancesOutput, error)
+	ListInstances(*emr.ListInstancesInput) (*emr.ListInstancesOutput, awserr.Error)
 
-	ListSteps(*emr.ListStepsInput) (*emr.ListStepsOutput, error)
+	ListSteps(*emr.ListStepsInput) (*emr.ListStepsOutput, awserr.Error)
 
-	ModifyInstanceGroups(*emr.ModifyInstanceGroupsInput) (*emr.ModifyInstanceGroupsOutput, error)
+	ModifyInstanceGroups(*emr.ModifyInstanceGroupsInput) (*emr.ModifyInstanceGroupsOutput, awserr.Error)
 
-	RemoveTags(*emr.RemoveTagsInput) (*emr.RemoveTagsOutput, error)
+	RemoveTags(*emr.RemoveTagsInput) (*emr.RemoveTagsOutput, awserr.Error)
 
-	RunJobFlow(*emr.RunJobFlowInput) (*emr.RunJobFlowOutput, error)
+	RunJobFlow(*emr.RunJobFlowInput) (*emr.RunJobFlowOutput, awserr.Error)
 
-	SetTerminationProtection(*emr.SetTerminationProtectionInput) (*emr.SetTerminationProtectionOutput, error)
+	SetTerminationProtection(*emr.SetTerminationProtectionInput) (*emr.SetTerminationProtectionOutput, awserr.Error)
 
-	SetVisibleToAllUsers(*emr.SetVisibleToAllUsersInput) (*emr.SetVisibleToAllUsersOutput, error)
+	SetVisibleToAllUsers(*emr.SetVisibleToAllUsersInput) (*emr.SetVisibleToAllUsersOutput, awserr.Error)
 
-	TerminateJobFlows(*emr.TerminateJobFlowsInput) (*emr.TerminateJobFlowsOutput, error)
+	TerminateJobFlows(*emr.TerminateJobFlowsInput) (*emr.TerminateJobFlowsOutput, awserr.Error)
 }

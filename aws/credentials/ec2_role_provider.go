@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"encoding/json"
 	"fmt"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
+	"github.com/awslabs/aws-sdk-go/internal/apierr"
 	"net/http"
 	"time"
 )
@@ -75,7 +77,7 @@ func NewEC2RoleCredentials(client *http.Client, endpoint string, window time.Dur
 // Retrieve retrieves credentials from the EC2 service.
 // Error will be returned if the request fails, or unable to extract
 // the desired credentials.
-func (m *EC2RoleProvider) Retrieve() (Value, error) {
+func (m *EC2RoleProvider) Retrieve() (Value, awserr.Error) {
 	if m.Client == nil {
 		m.Client = http.DefaultClient
 	}
@@ -89,7 +91,7 @@ func (m *EC2RoleProvider) Retrieve() (Value, error) {
 	}
 
 	if len(credsList) == 0 {
-		return Value{}, fmt.Errorf("empty MetadataService credentials list")
+		return Value{}, apierr.New("EmptyEC2RoleList", "empty EC2 Role list", nil)
 	}
 	credsName := credsList[0]
 
@@ -127,10 +129,10 @@ type ec2RoleCredRespBody struct {
 
 // requestCredList requests a list of credentials from the EC2 service.
 // If there are no credentials, or there is an error making or receiving the request
-func requestCredList(client *http.Client, endpoint string) ([]string, error) {
+func requestCredList(client *http.Client, endpoint string) ([]string, awserr.Error) {
 	resp, err := client.Get(endpoint)
 	if err != nil {
-		return nil, fmt.Errorf("%s listing MetadataService credentials", err)
+		return nil, apierr.New("ListEC2Role", "failed to list EC2 Roles", err)
 	}
 	defer resp.Body.Close()
 
@@ -141,7 +143,7 @@ func requestCredList(client *http.Client, endpoint string) ([]string, error) {
 	}
 
 	if err := s.Err(); err != nil {
-		return nil, fmt.Errorf("%s reading list of MetadataService credentials", err)
+		return nil, apierr.New("ReadEC2Role", "failed to read list of EC2 Roles", err)
 	}
 
 	return credsList, nil
@@ -151,16 +153,20 @@ func requestCredList(client *http.Client, endpoint string) ([]string, error) {
 //
 // If the credentials cannot be found, or there is an error reading the response
 // and error will be returned.
-func requestCred(client *http.Client, endpoint, credsName string) (*ec2RoleCredRespBody, error) {
+func requestCred(client *http.Client, endpoint, credsName string) (*ec2RoleCredRespBody, awserr.Error) {
 	resp, err := client.Get(endpoint + credsName)
 	if err != nil {
-		return nil, fmt.Errorf("getting %s MetadataService credentials", credsName)
+		return nil, apierr.New("GetEC2RoleCredentials",
+			fmt.Sprintf("failed to get %s EC2 Role credentials", credsName),
+			err)
 	}
 	defer resp.Body.Close()
 
 	respCreds := &ec2RoleCredRespBody{}
 	if err := json.NewDecoder(resp.Body).Decode(respCreds); err != nil {
-		return nil, fmt.Errorf("decoding %s MetadataService credentials", credsName)
+		return nil, apierr.New("DecodeEC2RoleCredentials",
+			fmt.Sprintf("failed to decode %s EC2 Role credentials", credsName),
+			err)
 	}
 
 	return respCreds, nil

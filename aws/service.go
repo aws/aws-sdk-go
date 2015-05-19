@@ -145,8 +145,8 @@ func shouldRetry(r *Request) bool {
 	if r.HTTPResponse.StatusCode >= 500 {
 		return true
 	}
-	if err := Error(r.Error); err != nil {
-		if _, ok := retryableCodes[err.Code]; ok {
+	if r.Error != nil {
+		if _, ok := retryableCodes[r.Error.Code()]; ok {
 			return true
 		}
 	}

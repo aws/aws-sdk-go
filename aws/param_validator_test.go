@@ -56,11 +56,10 @@ func TestMissingRequiredParameters(t *testing.T) {
 	input := &StructShape{}
 	req := aws.NewRequest(service, &aws.Operation{}, input, nil)
 	aws.ValidateParameters(req)
-	err := aws.Error(req.Error)
 
-	assert.Error(t, err)
-	assert.Equal(t, "InvalidParameter", err.Code)
-	assert.Equal(t, "3 validation errors:\n- missing required parameter: RequiredList\n- missing required parameter: RequiredMap\n- missing required parameter: RequiredBool", err.Message)
+	assert.Error(t, req.Error)
+	assert.Equal(t, "InvalidParameter", req.Error.Code())
+	assert.Equal(t, "3 validation errors:\n- missing required parameter: RequiredList\n- missing required parameter: RequiredMap\n- missing required parameter: RequiredBool", req.Error.Message())
 }
 
 func TestNestedMissingRequiredParameters(t *testing.T) {
@@ -76,10 +75,9 @@ func TestNestedMissingRequiredParameters(t *testing.T) {
 
 	req := aws.NewRequest(service, &aws.Operation{}, input, nil)
 	aws.ValidateParameters(req)
-	err := aws.Error(req.Error)
 
-	assert.Error(t, err)
-	assert.Equal(t, "InvalidParameter", err.Code)
-	assert.Equal(t, "3 validation errors:\n- missing required parameter: RequiredList[0].Name\n- missing required parameter: RequiredMap[\"key2\"].Name\n- missing required parameter: OptionalStruct.Name", err.Message)
+	assert.Error(t, req.Error)
+	assert.Equal(t, "InvalidParameter", req.Error.Code())
+	assert.Equal(t, "3 validation errors:\n- missing required parameter: RequiredList[0].Name\n- missing required parameter: RequiredMap[\"key2\"].Name\n- missing required parameter: OptionalStruct.Name", req.Error.Message())
 
 }

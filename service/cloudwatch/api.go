@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -36,11 +37,10 @@ func (c *CloudWatch) DeleteAlarmsRequest(input *DeleteAlarmsInput) (req *aws.Req
 }
 
 // Deletes all specified alarms. In the event of an error, no alarms are deleted.
-func (c *CloudWatch) DeleteAlarms(input *DeleteAlarmsInput) (output *DeleteAlarmsOutput, err error) {
+func (c *CloudWatch) DeleteAlarms(input *DeleteAlarmsInput) (*DeleteAlarmsOutput, awserr.Error) {
 	req, out := c.DeleteAlarmsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteAlarms *aws.Operation
@@ -71,11 +71,10 @@ func (c *CloudWatch) DescribeAlarmHistoryRequest(input *DescribeAlarmHistoryInpu
 // Retrieves history for the specified alarm. Filter alarms by date range or
 // item type. If an alarm name is not specified, Amazon CloudWatch returns histories
 // for all of the owner's alarms.
-func (c *CloudWatch) DescribeAlarmHistory(input *DescribeAlarmHistoryInput) (output *DescribeAlarmHistoryOutput, err error) {
+func (c *CloudWatch) DescribeAlarmHistory(input *DescribeAlarmHistoryInput) (*DescribeAlarmHistoryOutput, awserr.Error) {
 	req, out := c.DescribeAlarmHistoryRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeAlarmHistory *aws.Operation
@@ -106,11 +105,10 @@ func (c *CloudWatch) DescribeAlarmsRequest(input *DescribeAlarmsInput) (req *aws
 // Retrieves alarms with the specified names. If no name is specified, all alarms
 // for the user are returned. Alarms can be retrieved by using only a prefix
 // for the alarm name, the alarm state, or a prefix for any action.
-func (c *CloudWatch) DescribeAlarms(input *DescribeAlarmsInput) (output *DescribeAlarmsOutput, err error) {
+func (c *CloudWatch) DescribeAlarms(input *DescribeAlarmsInput) (*DescribeAlarmsOutput, awserr.Error) {
 	req, out := c.DescribeAlarmsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeAlarms *aws.Operation
@@ -140,11 +138,10 @@ func (c *CloudWatch) DescribeAlarmsForMetricRequest(input *DescribeAlarmsForMetr
 
 // Retrieves all alarms for a single metric. Specify a statistic, period, or
 // unit to filter the set of alarms further.
-func (c *CloudWatch) DescribeAlarmsForMetric(input *DescribeAlarmsForMetricInput) (output *DescribeAlarmsForMetricOutput, err error) {
+func (c *CloudWatch) DescribeAlarmsForMetric(input *DescribeAlarmsForMetricInput) (*DescribeAlarmsForMetricOutput, awserr.Error) {
 	req, out := c.DescribeAlarmsForMetricRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeAlarmsForMetric *aws.Operation
@@ -174,11 +171,10 @@ func (c *CloudWatch) DisableAlarmActionsRequest(input *DisableAlarmActionsInput)
 
 // Disables actions for the specified alarms. When an alarm's actions are disabled
 // the alarm's state may change, but none of the alarm's actions will execute.
-func (c *CloudWatch) DisableAlarmActions(input *DisableAlarmActionsInput) (output *DisableAlarmActionsOutput, err error) {
+func (c *CloudWatch) DisableAlarmActions(input *DisableAlarmActionsInput) (*DisableAlarmActionsOutput, awserr.Error) {
 	req, out := c.DisableAlarmActionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDisableAlarmActions *aws.Operation
@@ -207,11 +203,10 @@ func (c *CloudWatch) EnableAlarmActionsRequest(input *EnableAlarmActionsInput) (
 }
 
 // Enables actions for the specified alarms.
-func (c *CloudWatch) EnableAlarmActions(input *EnableAlarmActionsInput) (output *EnableAlarmActionsOutput, err error) {
+func (c *CloudWatch) EnableAlarmActions(input *EnableAlarmActionsInput) (*EnableAlarmActionsOutput, awserr.Error) {
 	req, out := c.EnableAlarmActionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opEnableAlarmActions *aws.Operation
@@ -265,11 +260,10 @@ func (c *CloudWatch) GetMetricStatisticsRequest(input *GetMetricStatisticsInput)
 // to Cloudwatch, go to Amazon CloudWatch Metrics, Namespaces, and Dimensions
 // Reference (http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html)
 // in the Amazon CloudWatch Developer Guide.
-func (c *CloudWatch) GetMetricStatistics(input *GetMetricStatisticsInput) (output *GetMetricStatisticsOutput, err error) {
+func (c *CloudWatch) GetMetricStatistics(input *GetMetricStatisticsInput) (*GetMetricStatisticsOutput, awserr.Error) {
 	req, out := c.GetMetricStatisticsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetMetricStatistics *aws.Operation
@@ -300,11 +294,10 @@ func (c *CloudWatch) ListMetricsRequest(input *ListMetricsInput) (req *aws.Reque
 // Returns a list of valid metrics stored for the AWS account owner. Returned
 // metrics can be used with GetMetricStatistics to obtain statistical data for
 // a given metric.
-func (c *CloudWatch) ListMetrics(input *ListMetricsInput) (output *ListMetricsOutput, err error) {
+func (c *CloudWatch) ListMetrics(input *ListMetricsInput) (*ListMetricsOutput, awserr.Error) {
 	req, out := c.ListMetricsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListMetrics *aws.Operation
@@ -339,11 +332,10 @@ func (c *CloudWatch) PutMetricAlarmRequest(input *PutMetricAlarmInput) (req *aws
 //  When this operation creates an alarm, the alarm state is immediately set
 // to INSUFFICIENT_DATA. The alarm is evaluated and its StateValue is set appropriately.
 // Any actions associated with the StateValue is then executed.
-func (c *CloudWatch) PutMetricAlarm(input *PutMetricAlarmInput) (output *PutMetricAlarmOutput, err error) {
+func (c *CloudWatch) PutMetricAlarm(input *PutMetricAlarmInput) (*PutMetricAlarmOutput, awserr.Error) {
 	req, out := c.PutMetricAlarmRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opPutMetricAlarm *aws.Operation
@@ -385,11 +377,10 @@ func (c *CloudWatch) PutMetricDataRequest(input *PutMetricDataInput) (req *aws.R
 // exponents less than -130 (1 x 10^-130) are also truncated.  Data that is
 // timestamped 24 hours or more in the past may take in excess of 48 hours to
 // become available from submission time using GetMetricStatistics.
-func (c *CloudWatch) PutMetricData(input *PutMetricDataInput) (output *PutMetricDataOutput, err error) {
+func (c *CloudWatch) PutMetricData(input *PutMetricDataInput) (*PutMetricDataOutput, awserr.Error) {
 	req, out := c.PutMetricDataRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opPutMetricData *aws.Operation
@@ -421,11 +412,10 @@ func (c *CloudWatch) SetAlarmStateRequest(input *SetAlarmStateInput) (req *aws.R
 // from the previous value, the action configured for the appropriate state
 // is invoked. This is not a permanent change. The next periodic alarm check
 // (in about a minute) will set the alarm to its actual state.
-func (c *CloudWatch) SetAlarmState(input *SetAlarmStateInput) (output *SetAlarmStateOutput, err error) {
+func (c *CloudWatch) SetAlarmState(input *SetAlarmStateInput) (*SetAlarmStateOutput, awserr.Error) {
 	req, out := c.SetAlarmStateRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSetAlarmState *aws.Operation

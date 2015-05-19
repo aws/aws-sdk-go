@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -36,11 +37,10 @@ func (c *CodeDeploy) BatchGetApplicationsRequest(input *BatchGetApplicationsInpu
 }
 
 // Gets information about one or more applications.
-func (c *CodeDeploy) BatchGetApplications(input *BatchGetApplicationsInput) (output *BatchGetApplicationsOutput, err error) {
+func (c *CodeDeploy) BatchGetApplications(input *BatchGetApplicationsInput) (*BatchGetApplicationsOutput, awserr.Error) {
 	req, out := c.BatchGetApplicationsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opBatchGetApplications *aws.Operation
@@ -69,11 +69,10 @@ func (c *CodeDeploy) BatchGetDeploymentsRequest(input *BatchGetDeploymentsInput)
 }
 
 // Gets information about one or more deployments.
-func (c *CodeDeploy) BatchGetDeployments(input *BatchGetDeploymentsInput) (output *BatchGetDeploymentsOutput, err error) {
+func (c *CodeDeploy) BatchGetDeployments(input *BatchGetDeploymentsInput) (*BatchGetDeploymentsOutput, awserr.Error) {
 	req, out := c.BatchGetDeploymentsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opBatchGetDeployments *aws.Operation
@@ -102,11 +101,10 @@ func (c *CodeDeploy) CreateApplicationRequest(input *CreateApplicationInput) (re
 }
 
 // Creates a new application.
-func (c *CodeDeploy) CreateApplication(input *CreateApplicationInput) (output *CreateApplicationOutput, err error) {
+func (c *CodeDeploy) CreateApplication(input *CreateApplicationInput) (*CreateApplicationOutput, awserr.Error) {
 	req, out := c.CreateApplicationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateApplication *aws.Operation
@@ -135,11 +133,10 @@ func (c *CodeDeploy) CreateDeploymentRequest(input *CreateDeploymentInput) (req 
 }
 
 // Deploys an application revision to the specified deployment group.
-func (c *CodeDeploy) CreateDeployment(input *CreateDeploymentInput) (output *CreateDeploymentOutput, err error) {
+func (c *CodeDeploy) CreateDeployment(input *CreateDeploymentInput) (*CreateDeploymentOutput, awserr.Error) {
 	req, out := c.CreateDeploymentRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateDeployment *aws.Operation
@@ -168,11 +165,10 @@ func (c *CodeDeploy) CreateDeploymentConfigRequest(input *CreateDeploymentConfig
 }
 
 // Creates a new deployment configuration.
-func (c *CodeDeploy) CreateDeploymentConfig(input *CreateDeploymentConfigInput) (output *CreateDeploymentConfigOutput, err error) {
+func (c *CodeDeploy) CreateDeploymentConfig(input *CreateDeploymentConfigInput) (*CreateDeploymentConfigOutput, awserr.Error) {
 	req, out := c.CreateDeploymentConfigRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateDeploymentConfig *aws.Operation
@@ -201,11 +197,10 @@ func (c *CodeDeploy) CreateDeploymentGroupRequest(input *CreateDeploymentGroupIn
 }
 
 // Creates a new deployment group for application revisions to be deployed to.
-func (c *CodeDeploy) CreateDeploymentGroup(input *CreateDeploymentGroupInput) (output *CreateDeploymentGroupOutput, err error) {
+func (c *CodeDeploy) CreateDeploymentGroup(input *CreateDeploymentGroupInput) (*CreateDeploymentGroupOutput, awserr.Error) {
 	req, out := c.CreateDeploymentGroupRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateDeploymentGroup *aws.Operation
@@ -234,11 +229,10 @@ func (c *CodeDeploy) DeleteApplicationRequest(input *DeleteApplicationInput) (re
 }
 
 // Deletes an application.
-func (c *CodeDeploy) DeleteApplication(input *DeleteApplicationInput) (output *DeleteApplicationOutput, err error) {
+func (c *CodeDeploy) DeleteApplication(input *DeleteApplicationInput) (*DeleteApplicationOutput, awserr.Error) {
 	req, out := c.DeleteApplicationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteApplication *aws.Operation
@@ -270,11 +264,10 @@ func (c *CodeDeploy) DeleteDeploymentConfigRequest(input *DeleteDeploymentConfig
 //
 // A deployment configuration cannot be deleted if it is currently in use.
 // Also, predefined configurations cannot be deleted.
-func (c *CodeDeploy) DeleteDeploymentConfig(input *DeleteDeploymentConfigInput) (output *DeleteDeploymentConfigOutput, err error) {
+func (c *CodeDeploy) DeleteDeploymentConfig(input *DeleteDeploymentConfigInput) (*DeleteDeploymentConfigOutput, awserr.Error) {
 	req, out := c.DeleteDeploymentConfigRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteDeploymentConfig *aws.Operation
@@ -303,11 +296,10 @@ func (c *CodeDeploy) DeleteDeploymentGroupRequest(input *DeleteDeploymentGroupIn
 }
 
 // Deletes a deployment group.
-func (c *CodeDeploy) DeleteDeploymentGroup(input *DeleteDeploymentGroupInput) (output *DeleteDeploymentGroupOutput, err error) {
+func (c *CodeDeploy) DeleteDeploymentGroup(input *DeleteDeploymentGroupInput) (*DeleteDeploymentGroupOutput, awserr.Error) {
 	req, out := c.DeleteDeploymentGroupRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteDeploymentGroup *aws.Operation
@@ -336,11 +328,10 @@ func (c *CodeDeploy) GetApplicationRequest(input *GetApplicationInput) (req *aws
 }
 
 // Gets information about an application.
-func (c *CodeDeploy) GetApplication(input *GetApplicationInput) (output *GetApplicationOutput, err error) {
+func (c *CodeDeploy) GetApplication(input *GetApplicationInput) (*GetApplicationOutput, awserr.Error) {
 	req, out := c.GetApplicationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetApplication *aws.Operation
@@ -369,11 +360,10 @@ func (c *CodeDeploy) GetApplicationRevisionRequest(input *GetApplicationRevision
 }
 
 // Gets information about an application revision.
-func (c *CodeDeploy) GetApplicationRevision(input *GetApplicationRevisionInput) (output *GetApplicationRevisionOutput, err error) {
+func (c *CodeDeploy) GetApplicationRevision(input *GetApplicationRevisionInput) (*GetApplicationRevisionOutput, awserr.Error) {
 	req, out := c.GetApplicationRevisionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetApplicationRevision *aws.Operation
@@ -402,11 +392,10 @@ func (c *CodeDeploy) GetDeploymentRequest(input *GetDeploymentInput) (req *aws.R
 }
 
 // Gets information about a deployment.
-func (c *CodeDeploy) GetDeployment(input *GetDeploymentInput) (output *GetDeploymentOutput, err error) {
+func (c *CodeDeploy) GetDeployment(input *GetDeploymentInput) (*GetDeploymentOutput, awserr.Error) {
 	req, out := c.GetDeploymentRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetDeployment *aws.Operation
@@ -435,11 +424,10 @@ func (c *CodeDeploy) GetDeploymentConfigRequest(input *GetDeploymentConfigInput)
 }
 
 // Gets information about a deployment configuration.
-func (c *CodeDeploy) GetDeploymentConfig(input *GetDeploymentConfigInput) (output *GetDeploymentConfigOutput, err error) {
+func (c *CodeDeploy) GetDeploymentConfig(input *GetDeploymentConfigInput) (*GetDeploymentConfigOutput, awserr.Error) {
 	req, out := c.GetDeploymentConfigRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetDeploymentConfig *aws.Operation
@@ -468,11 +456,10 @@ func (c *CodeDeploy) GetDeploymentGroupRequest(input *GetDeploymentGroupInput) (
 }
 
 // Gets information about a deployment group.
-func (c *CodeDeploy) GetDeploymentGroup(input *GetDeploymentGroupInput) (output *GetDeploymentGroupOutput, err error) {
+func (c *CodeDeploy) GetDeploymentGroup(input *GetDeploymentGroupInput) (*GetDeploymentGroupOutput, awserr.Error) {
 	req, out := c.GetDeploymentGroupRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetDeploymentGroup *aws.Operation
@@ -501,11 +488,10 @@ func (c *CodeDeploy) GetDeploymentInstanceRequest(input *GetDeploymentInstanceIn
 }
 
 // Gets information about an Amazon EC2 instance as part of a deployment.
-func (c *CodeDeploy) GetDeploymentInstance(input *GetDeploymentInstanceInput) (output *GetDeploymentInstanceOutput, err error) {
+func (c *CodeDeploy) GetDeploymentInstance(input *GetDeploymentInstanceInput) (*GetDeploymentInstanceOutput, awserr.Error) {
 	req, out := c.GetDeploymentInstanceRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetDeploymentInstance *aws.Operation
@@ -534,11 +520,10 @@ func (c *CodeDeploy) ListApplicationRevisionsRequest(input *ListApplicationRevis
 }
 
 // Lists information about revisions for an application.
-func (c *CodeDeploy) ListApplicationRevisions(input *ListApplicationRevisionsInput) (output *ListApplicationRevisionsOutput, err error) {
+func (c *CodeDeploy) ListApplicationRevisions(input *ListApplicationRevisionsInput) (*ListApplicationRevisionsOutput, awserr.Error) {
 	req, out := c.ListApplicationRevisionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListApplicationRevisions *aws.Operation
@@ -567,11 +552,10 @@ func (c *CodeDeploy) ListApplicationsRequest(input *ListApplicationsInput) (req 
 }
 
 // Lists the applications registered within the AWS user account.
-func (c *CodeDeploy) ListApplications(input *ListApplicationsInput) (output *ListApplicationsOutput, err error) {
+func (c *CodeDeploy) ListApplications(input *ListApplicationsInput) (*ListApplicationsOutput, awserr.Error) {
 	req, out := c.ListApplicationsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListApplications *aws.Operation
@@ -600,11 +584,10 @@ func (c *CodeDeploy) ListDeploymentConfigsRequest(input *ListDeploymentConfigsIn
 }
 
 // Lists the deployment configurations within the AWS user account.
-func (c *CodeDeploy) ListDeploymentConfigs(input *ListDeploymentConfigsInput) (output *ListDeploymentConfigsOutput, err error) {
+func (c *CodeDeploy) ListDeploymentConfigs(input *ListDeploymentConfigsInput) (*ListDeploymentConfigsOutput, awserr.Error) {
 	req, out := c.ListDeploymentConfigsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListDeploymentConfigs *aws.Operation
@@ -634,11 +617,10 @@ func (c *CodeDeploy) ListDeploymentGroupsRequest(input *ListDeploymentGroupsInpu
 
 // Lists the deployment groups for an application registered within the AWS
 // user account.
-func (c *CodeDeploy) ListDeploymentGroups(input *ListDeploymentGroupsInput) (output *ListDeploymentGroupsOutput, err error) {
+func (c *CodeDeploy) ListDeploymentGroups(input *ListDeploymentGroupsInput) (*ListDeploymentGroupsOutput, awserr.Error) {
 	req, out := c.ListDeploymentGroupsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListDeploymentGroups *aws.Operation
@@ -667,11 +649,10 @@ func (c *CodeDeploy) ListDeploymentInstancesRequest(input *ListDeploymentInstanc
 }
 
 // Lists the Amazon EC2 instances for a deployment within the AWS user account.
-func (c *CodeDeploy) ListDeploymentInstances(input *ListDeploymentInstancesInput) (output *ListDeploymentInstancesOutput, err error) {
+func (c *CodeDeploy) ListDeploymentInstances(input *ListDeploymentInstancesInput) (*ListDeploymentInstancesOutput, awserr.Error) {
 	req, out := c.ListDeploymentInstancesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListDeploymentInstances *aws.Operation
@@ -701,11 +682,10 @@ func (c *CodeDeploy) ListDeploymentsRequest(input *ListDeploymentsInput) (req *a
 
 // Lists the deployments under a deployment group for an application registered
 // within the AWS user account.
-func (c *CodeDeploy) ListDeployments(input *ListDeploymentsInput) (output *ListDeploymentsOutput, err error) {
+func (c *CodeDeploy) ListDeployments(input *ListDeploymentsInput) (*ListDeploymentsOutput, awserr.Error) {
 	req, out := c.ListDeploymentsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListDeployments *aws.Operation
@@ -734,11 +714,10 @@ func (c *CodeDeploy) RegisterApplicationRevisionRequest(input *RegisterApplicati
 }
 
 // Registers with AWS CodeDeploy a revision for the specified application.
-func (c *CodeDeploy) RegisterApplicationRevision(input *RegisterApplicationRevisionInput) (output *RegisterApplicationRevisionOutput, err error) {
+func (c *CodeDeploy) RegisterApplicationRevision(input *RegisterApplicationRevisionInput) (*RegisterApplicationRevisionOutput, awserr.Error) {
 	req, out := c.RegisterApplicationRevisionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRegisterApplicationRevision *aws.Operation
@@ -767,11 +746,10 @@ func (c *CodeDeploy) StopDeploymentRequest(input *StopDeploymentInput) (req *aws
 }
 
 // Attempts to stop an ongoing deployment.
-func (c *CodeDeploy) StopDeployment(input *StopDeploymentInput) (output *StopDeploymentOutput, err error) {
+func (c *CodeDeploy) StopDeployment(input *StopDeploymentInput) (*StopDeploymentOutput, awserr.Error) {
 	req, out := c.StopDeploymentRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opStopDeployment *aws.Operation
@@ -800,11 +778,10 @@ func (c *CodeDeploy) UpdateApplicationRequest(input *UpdateApplicationInput) (re
 }
 
 // Changes an existing application's name.
-func (c *CodeDeploy) UpdateApplication(input *UpdateApplicationInput) (output *UpdateApplicationOutput, err error) {
+func (c *CodeDeploy) UpdateApplication(input *UpdateApplicationInput) (*UpdateApplicationOutput, awserr.Error) {
 	req, out := c.UpdateApplicationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateApplication *aws.Operation
@@ -833,11 +810,10 @@ func (c *CodeDeploy) UpdateDeploymentGroupRequest(input *UpdateDeploymentGroupIn
 }
 
 // Changes information about an existing deployment group.
-func (c *CodeDeploy) UpdateDeploymentGroup(input *UpdateDeploymentGroupInput) (output *UpdateDeploymentGroupOutput, err error) {
+func (c *CodeDeploy) UpdateDeploymentGroup(input *UpdateDeploymentGroupInput) (*UpdateDeploymentGroupOutput, awserr.Error) {
 	req, out := c.UpdateDeploymentGroupRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateDeploymentGroup *aws.Operation

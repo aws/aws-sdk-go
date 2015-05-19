@@ -15,6 +15,7 @@ import (
 	"github.com/awslabs/aws-sdk-go/service/s3"
 	"github.com/awslabs/aws-sdk-go/service/s3/s3manager"
 	"github.com/stretchr/testify/assert"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var _ = unit.Imported
@@ -256,7 +257,8 @@ func TestUploadOrderReadFail1(t *testing.T) {
 		Body:   failreader{1},
 	}, nil)
 
-	assert.EqualError(t, err, "random failure")
+	assert.Equal(t, "ReadRequestBody", err.Code())
+	assert.EqualError(t, err.OrigErr(), "random failure")
 	assert.Equal(t, []string{}, *ops)
 }
 
@@ -269,6 +271,8 @@ func TestUploadOrderReadFail2(t *testing.T) {
 		Body:   failreader{2},
 	}, nil)
 
-	assert.EqualError(t, err, "random failure")
+	assert.Equal(t, "MultipartUpload", err.Code())
+	assert.Equal(t, "ReadRequestBody", err.OrigErr().(awserr.Error).Code())
+	assert.EqualError(t, err.OrigErr().(awserr.Error).OrigErr(), "random failure")
 	assert.Equal(t, []string{"CreateMultipartUpload", "AbortMultipartUpload"}, *ops)
 }

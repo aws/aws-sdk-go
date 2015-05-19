@@ -7,6 +7,7 @@ import (
 	"sync"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -36,11 +37,10 @@ func (c *SNS) AddPermissionRequest(input *AddPermissionInput) (req *aws.Request,
 
 // Adds a statement to a topic's access control policy, granting access for
 // the specified AWS accounts to the specified actions.
-func (c *SNS) AddPermission(input *AddPermissionInput) (output *AddPermissionOutput, err error) {
+func (c *SNS) AddPermission(input *AddPermissionInput) (*AddPermissionOutput, awserr.Error) {
 	req, out := c.AddPermissionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opAddPermission *aws.Operation
@@ -73,11 +73,10 @@ func (c *SNS) ConfirmSubscriptionRequest(input *ConfirmSubscriptionInput) (req *
 // valid, the action creates a new subscription and returns its Amazon Resource
 // Name (ARN). This call requires an AWS signature only when the AuthenticateOnUnsubscribe
 // flag is set to "true".
-func (c *SNS) ConfirmSubscription(input *ConfirmSubscriptionInput) (output *ConfirmSubscriptionOutput, err error) {
+func (c *SNS) ConfirmSubscription(input *ConfirmSubscriptionInput) (*ConfirmSubscriptionOutput, awserr.Error) {
 	req, out := c.ConfirmSubscriptionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opConfirmSubscription *aws.Operation
@@ -118,11 +117,10 @@ func (c *SNS) CreatePlatformApplicationRequest(input *CreatePlatformApplicationI
 // CreatePlatformApplication is then used as an attribute for the CreatePlatformEndpoint
 // action. For more information, see Using Amazon SNS Mobile Push Notifications
 // (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
-func (c *SNS) CreatePlatformApplication(input *CreatePlatformApplicationInput) (output *CreatePlatformApplicationOutput, err error) {
+func (c *SNS) CreatePlatformApplication(input *CreatePlatformApplicationInput) (*CreatePlatformApplicationOutput, awserr.Error) {
 	req, out := c.CreatePlatformApplicationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreatePlatformApplication *aws.Operation
@@ -164,11 +162,10 @@ func (c *SNS) CreatePlatformEndpointRequest(input *CreatePlatformEndpointInput) 
 // When using CreatePlatformEndpoint with Baidu, two attributes must be provided:
 // ChannelId and UserId. The token field must also contain the ChannelId. For
 // more information, see Creating an Amazon SNS Endpoint for Baidu (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePushBaiduEndpoint.html).
-func (c *SNS) CreatePlatformEndpoint(input *CreatePlatformEndpointInput) (output *CreatePlatformEndpointOutput, err error) {
+func (c *SNS) CreatePlatformEndpoint(input *CreatePlatformEndpointInput) (*CreatePlatformEndpointOutput, awserr.Error) {
 	req, out := c.CreatePlatformEndpointRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreatePlatformEndpoint *aws.Operation
@@ -201,11 +198,10 @@ func (c *SNS) CreateTopicRequest(input *CreateTopicInput) (req *aws.Request, out
 // (http://aws.amazon.com/sns/). This action is idempotent, so if the requester
 // already owns a topic with the specified name, that topic's ARN is returned
 // without creating a new topic.
-func (c *SNS) CreateTopic(input *CreateTopicInput) (output *CreateTopicOutput, err error) {
+func (c *SNS) CreateTopic(input *CreateTopicInput) (*CreateTopicOutput, awserr.Error) {
 	req, out := c.CreateTopicRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateTopic *aws.Operation
@@ -235,11 +231,10 @@ func (c *SNS) DeleteEndpointRequest(input *DeleteEndpointInput) (req *aws.Reques
 
 // Deletes the endpoint from Amazon SNS. This action is idempotent. For more
 // information, see Using Amazon SNS Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
-func (c *SNS) DeleteEndpoint(input *DeleteEndpointInput) (output *DeleteEndpointOutput, err error) {
+func (c *SNS) DeleteEndpoint(input *DeleteEndpointInput) (*DeleteEndpointOutput, awserr.Error) {
 	req, out := c.DeleteEndpointRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteEndpoint *aws.Operation
@@ -270,11 +265,10 @@ func (c *SNS) DeletePlatformApplicationRequest(input *DeletePlatformApplicationI
 // Deletes a platform application object for one of the supported push notification
 // services, such as APNS and GCM. For more information, see Using Amazon SNS
 // Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
-func (c *SNS) DeletePlatformApplication(input *DeletePlatformApplicationInput) (output *DeletePlatformApplicationOutput, err error) {
+func (c *SNS) DeletePlatformApplication(input *DeletePlatformApplicationInput) (*DeletePlatformApplicationOutput, awserr.Error) {
 	req, out := c.DeletePlatformApplicationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeletePlatformApplication *aws.Operation
@@ -306,11 +300,10 @@ func (c *SNS) DeleteTopicRequest(input *DeleteTopicInput) (req *aws.Request, out
 // some messages previously sent to the topic from being delivered to subscribers.
 // This action is idempotent, so deleting a topic that does not exist does not
 // result in an error.
-func (c *SNS) DeleteTopic(input *DeleteTopicInput) (output *DeleteTopicOutput, err error) {
+func (c *SNS) DeleteTopic(input *DeleteTopicInput) (*DeleteTopicOutput, awserr.Error) {
 	req, out := c.DeleteTopicRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteTopic *aws.Operation
@@ -341,11 +334,10 @@ func (c *SNS) GetEndpointAttributesRequest(input *GetEndpointAttributesInput) (r
 // Retrieves the endpoint attributes for a device on one of the supported push
 // notification services, such as GCM and APNS. For more information, see Using
 // Amazon SNS Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
-func (c *SNS) GetEndpointAttributes(input *GetEndpointAttributesInput) (output *GetEndpointAttributesOutput, err error) {
+func (c *SNS) GetEndpointAttributes(input *GetEndpointAttributesInput) (*GetEndpointAttributesOutput, awserr.Error) {
 	req, out := c.GetEndpointAttributesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetEndpointAttributes *aws.Operation
@@ -376,11 +368,10 @@ func (c *SNS) GetPlatformApplicationAttributesRequest(input *GetPlatformApplicat
 // Retrieves the attributes of the platform application object for the supported
 // push notification services, such as APNS and GCM. For more information, see
 // Using Amazon SNS Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
-func (c *SNS) GetPlatformApplicationAttributes(input *GetPlatformApplicationAttributesInput) (output *GetPlatformApplicationAttributesOutput, err error) {
+func (c *SNS) GetPlatformApplicationAttributes(input *GetPlatformApplicationAttributesInput) (*GetPlatformApplicationAttributesOutput, awserr.Error) {
 	req, out := c.GetPlatformApplicationAttributesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetPlatformApplicationAttributes *aws.Operation
@@ -409,11 +400,10 @@ func (c *SNS) GetSubscriptionAttributesRequest(input *GetSubscriptionAttributesI
 }
 
 // Returns all of the properties of a subscription.
-func (c *SNS) GetSubscriptionAttributes(input *GetSubscriptionAttributesInput) (output *GetSubscriptionAttributesOutput, err error) {
+func (c *SNS) GetSubscriptionAttributes(input *GetSubscriptionAttributesInput) (*GetSubscriptionAttributesOutput, awserr.Error) {
 	req, out := c.GetSubscriptionAttributesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetSubscriptionAttributes *aws.Operation
@@ -443,11 +433,10 @@ func (c *SNS) GetTopicAttributesRequest(input *GetTopicAttributesInput) (req *aw
 
 // Returns all of the properties of a topic. Topic properties returned might
 // differ based on the authorization of the user.
-func (c *SNS) GetTopicAttributes(input *GetTopicAttributesInput) (output *GetTopicAttributesOutput, err error) {
+func (c *SNS) GetTopicAttributes(input *GetTopicAttributesInput) (*GetTopicAttributesOutput, awserr.Error) {
 	req, out := c.GetTopicAttributesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetTopicAttributes *aws.Operation
@@ -483,11 +472,10 @@ func (c *SNS) ListEndpointsByPlatformApplicationRequest(input *ListEndpointsByPl
 // again using the NextToken string received from the previous call. When there
 // are no more records to return, NextToken will be null. For more information,
 // see Using Amazon SNS Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
-func (c *SNS) ListEndpointsByPlatformApplication(input *ListEndpointsByPlatformApplicationInput) (output *ListEndpointsByPlatformApplicationOutput, err error) {
+func (c *SNS) ListEndpointsByPlatformApplication(input *ListEndpointsByPlatformApplicationInput) (*ListEndpointsByPlatformApplicationOutput, awserr.Error) {
 	req, out := c.ListEndpointsByPlatformApplicationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListEndpointsByPlatformApplication *aws.Operation
@@ -523,11 +511,10 @@ func (c *SNS) ListPlatformApplicationsRequest(input *ListPlatformApplicationsInp
 // using the NextToken string received from the previous call. When there are
 // no more records to return, NextToken will be null. For more information,
 // see Using Amazon SNS Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
-func (c *SNS) ListPlatformApplications(input *ListPlatformApplicationsInput) (output *ListPlatformApplicationsOutput, err error) {
+func (c *SNS) ListPlatformApplications(input *ListPlatformApplicationsInput) (*ListPlatformApplicationsOutput, awserr.Error) {
 	req, out := c.ListPlatformApplicationsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListPlatformApplications *aws.Operation
@@ -559,11 +546,10 @@ func (c *SNS) ListSubscriptionsRequest(input *ListSubscriptionsInput) (req *aws.
 // list of subscriptions, up to 100. If there are more subscriptions, a NextToken
 // is also returned. Use the NextToken parameter in a new ListSubscriptions
 // call to get further results.
-func (c *SNS) ListSubscriptions(input *ListSubscriptionsInput) (output *ListSubscriptionsOutput, err error) {
+func (c *SNS) ListSubscriptions(input *ListSubscriptionsInput) (*ListSubscriptionsOutput, awserr.Error) {
 	req, out := c.ListSubscriptionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListSubscriptions *aws.Operation
@@ -595,11 +581,10 @@ func (c *SNS) ListSubscriptionsByTopicRequest(input *ListSubscriptionsByTopicInp
 // a limited list of subscriptions, up to 100. If there are more subscriptions,
 // a NextToken is also returned. Use the NextToken parameter in a new ListSubscriptionsByTopic
 // call to get further results.
-func (c *SNS) ListSubscriptionsByTopic(input *ListSubscriptionsByTopicInput) (output *ListSubscriptionsByTopicOutput, err error) {
+func (c *SNS) ListSubscriptionsByTopic(input *ListSubscriptionsByTopicInput) (*ListSubscriptionsByTopicOutput, awserr.Error) {
 	req, out := c.ListSubscriptionsByTopicRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListSubscriptionsByTopic *aws.Operation
@@ -630,11 +615,10 @@ func (c *SNS) ListTopicsRequest(input *ListTopicsInput) (req *aws.Request, outpu
 // Returns a list of the requester's topics. Each call returns a limited list
 // of topics, up to 100. If there are more topics, a NextToken is also returned.
 // Use the NextToken parameter in a new ListTopics call to get further results.
-func (c *SNS) ListTopics(input *ListTopicsInput) (output *ListTopicsOutput, err error) {
+func (c *SNS) ListTopics(input *ListTopicsInput) (*ListTopicsOutput, awserr.Error) {
 	req, out := c.ListTopicsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListTopics *aws.Operation
@@ -672,11 +656,10 @@ func (c *SNS) PublishRequest(input *PublishInput) (req *aws.Request, output *Pub
 // The EndpointArn is returned when making a call with the CreatePlatformEndpoint
 // action. The second example below shows a request and response for publishing
 // to a mobile endpoint.
-func (c *SNS) Publish(input *PublishInput) (output *PublishOutput, err error) {
+func (c *SNS) Publish(input *PublishInput) (*PublishOutput, awserr.Error) {
 	req, out := c.PublishRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opPublish *aws.Operation
@@ -705,11 +688,10 @@ func (c *SNS) RemovePermissionRequest(input *RemovePermissionInput) (req *aws.Re
 }
 
 // Removes a statement from a topic's access control policy.
-func (c *SNS) RemovePermission(input *RemovePermissionInput) (output *RemovePermissionOutput, err error) {
+func (c *SNS) RemovePermission(input *RemovePermissionInput) (*RemovePermissionOutput, awserr.Error) {
 	req, out := c.RemovePermissionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRemovePermission *aws.Operation
@@ -740,11 +722,10 @@ func (c *SNS) SetEndpointAttributesRequest(input *SetEndpointAttributesInput) (r
 // Sets the attributes for an endpoint for a device on one of the supported
 // push notification services, such as GCM and APNS. For more information, see
 // Using Amazon SNS Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
-func (c *SNS) SetEndpointAttributes(input *SetEndpointAttributesInput) (output *SetEndpointAttributesOutput, err error) {
+func (c *SNS) SetEndpointAttributes(input *SetEndpointAttributesInput) (*SetEndpointAttributesOutput, awserr.Error) {
 	req, out := c.SetEndpointAttributesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSetEndpointAttributes *aws.Operation
@@ -775,11 +756,10 @@ func (c *SNS) SetPlatformApplicationAttributesRequest(input *SetPlatformApplicat
 // Sets the attributes of the platform application object for the supported
 // push notification services, such as APNS and GCM. For more information, see
 // Using Amazon SNS Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
-func (c *SNS) SetPlatformApplicationAttributes(input *SetPlatformApplicationAttributesInput) (output *SetPlatformApplicationAttributesOutput, err error) {
+func (c *SNS) SetPlatformApplicationAttributes(input *SetPlatformApplicationAttributesInput) (*SetPlatformApplicationAttributesOutput, awserr.Error) {
 	req, out := c.SetPlatformApplicationAttributesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSetPlatformApplicationAttributes *aws.Operation
@@ -808,11 +788,10 @@ func (c *SNS) SetSubscriptionAttributesRequest(input *SetSubscriptionAttributesI
 }
 
 // Allows a subscription owner to set an attribute of the topic to a new value.
-func (c *SNS) SetSubscriptionAttributes(input *SetSubscriptionAttributesInput) (output *SetSubscriptionAttributesOutput, err error) {
+func (c *SNS) SetSubscriptionAttributes(input *SetSubscriptionAttributesInput) (*SetSubscriptionAttributesOutput, awserr.Error) {
 	req, out := c.SetSubscriptionAttributesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSetSubscriptionAttributes *aws.Operation
@@ -841,11 +820,10 @@ func (c *SNS) SetTopicAttributesRequest(input *SetTopicAttributesInput) (req *aw
 }
 
 // Allows a topic owner to set an attribute of the topic to a new value.
-func (c *SNS) SetTopicAttributes(input *SetTopicAttributesInput) (output *SetTopicAttributesOutput, err error) {
+func (c *SNS) SetTopicAttributes(input *SetTopicAttributesInput) (*SetTopicAttributesOutput, awserr.Error) {
 	req, out := c.SetTopicAttributesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSetTopicAttributes *aws.Operation
@@ -877,11 +855,10 @@ func (c *SNS) SubscribeRequest(input *SubscribeInput) (req *aws.Request, output 
 // message. To actually create a subscription, the endpoint owner must call
 // the ConfirmSubscription action with the token from the confirmation message.
 // Confirmation tokens are valid for three days.
-func (c *SNS) Subscribe(input *SubscribeInput) (output *SubscribeOutput, err error) {
+func (c *SNS) Subscribe(input *SubscribeInput) (*SubscribeOutput, awserr.Error) {
 	req, out := c.SubscribeRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSubscribe *aws.Operation
@@ -915,11 +892,10 @@ func (c *SNS) UnsubscribeRequest(input *UnsubscribeInput) (req *aws.Request, out
 // authentication and the requester is not the subscription owner, a final cancellation
 // message is delivered to the endpoint, so that the endpoint owner can easily
 // resubscribe to the topic if the Unsubscribe request was unintended.
-func (c *SNS) Unsubscribe(input *UnsubscribeInput) (output *UnsubscribeOutput, err error) {
+func (c *SNS) Unsubscribe(input *UnsubscribeInput) (*UnsubscribeOutput, awserr.Error) {
 	req, out := c.UnsubscribeRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUnsubscribe *aws.Operation

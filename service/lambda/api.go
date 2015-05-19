@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -46,11 +47,10 @@ func (c *Lambda) AddPermissionRequest(input *AddPermissionInput) (req *aws.Reque
 // policy but it can have multiple permission statements.
 //
 // This operation requires permission for the lambda:AddPermission action.
-func (c *Lambda) AddPermission(input *AddPermissionInput) (output *AddPermissionOutput, err error) {
+func (c *Lambda) AddPermission(input *AddPermissionInput) (*AddPermissionOutput, awserr.Error) {
 	req, out := c.AddPermissionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opAddPermission *aws.Operation
@@ -97,11 +97,10 @@ func (c *Lambda) CreateEventSourceMappingRequest(input *CreateEventSourceMapping
 //
 // This operation requires permission for the lambda:CreateEventSourceMapping
 // action.
-func (c *Lambda) CreateEventSourceMapping(input *CreateEventSourceMappingInput) (output *EventSourceMappingConfiguration, err error) {
+func (c *Lambda) CreateEventSourceMapping(input *CreateEventSourceMappingInput) (*EventSourceMappingConfiguration, awserr.Error) {
 	req, out := c.CreateEventSourceMappingRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateEventSourceMapping *aws.Operation
@@ -135,11 +134,10 @@ func (c *Lambda) CreateFunctionRequest(input *CreateFunctionInput) (req *aws.Req
 // fail. Note that the function name is case-sensitive.
 //
 // This operation requires permission for the lambda:CreateFunction action.
-func (c *Lambda) CreateFunction(input *CreateFunctionInput) (output *FunctionConfiguration, err error) {
+func (c *Lambda) CreateFunction(input *CreateFunctionInput) (*FunctionConfiguration, awserr.Error) {
 	req, out := c.CreateFunctionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateFunction *aws.Operation
@@ -172,11 +170,10 @@ func (c *Lambda) DeleteEventSourceMappingRequest(input *DeleteEventSourceMapping
 //
 // This operation requires permission for the lambda:DeleteEventSourceMapping
 // action.
-func (c *Lambda) DeleteEventSourceMapping(input *DeleteEventSourceMappingInput) (output *EventSourceMappingConfiguration, err error) {
+func (c *Lambda) DeleteEventSourceMapping(input *DeleteEventSourceMappingInput) (*EventSourceMappingConfiguration, awserr.Error) {
 	req, out := c.DeleteEventSourceMappingRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteEventSourceMapping *aws.Operation
@@ -210,11 +207,10 @@ func (c *Lambda) DeleteFunctionRequest(input *DeleteFunctionInput) (req *aws.Req
 // You will need to delete the event source mappings explicitly.
 //
 // This operation requires permission for the lambda:DeleteFunction action.
-func (c *Lambda) DeleteFunction(input *DeleteFunctionInput) (output *DeleteFunctionOutput, err error) {
+func (c *Lambda) DeleteFunction(input *DeleteFunctionInput) (*DeleteFunctionOutput, awserr.Error) {
 	req, out := c.DeleteFunctionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteFunction *aws.Operation
@@ -247,11 +243,10 @@ func (c *Lambda) GetEventSourceMappingRequest(input *GetEventSourceMappingInput)
 //
 // This operation requires permission for the lambda:GetEventSourceMapping
 // action.
-func (c *Lambda) GetEventSourceMapping(input *GetEventSourceMappingInput) (output *EventSourceMappingConfiguration, err error) {
+func (c *Lambda) GetEventSourceMapping(input *GetEventSourceMappingInput) (*EventSourceMappingConfiguration, awserr.Error) {
 	req, out := c.GetEventSourceMappingRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetEventSourceMapping *aws.Operation
@@ -286,11 +281,10 @@ func (c *Lambda) GetFunctionRequest(input *GetFunctionInput) (req *aws.Request, 
 // the function.
 //
 // This operation requires permission for the lambda:GetFunction action.
-func (c *Lambda) GetFunction(input *GetFunctionInput) (output *GetFunctionOutput, err error) {
+func (c *Lambda) GetFunction(input *GetFunctionInput) (*GetFunctionOutput, awserr.Error) {
 	req, out := c.GetFunctionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetFunction *aws.Operation
@@ -324,11 +318,10 @@ func (c *Lambda) GetFunctionConfigurationRequest(input *GetFunctionConfiguration
 //
 // This operation requires permission for the lambda:GetFunctionConfiguration
 // operation.
-func (c *Lambda) GetFunctionConfiguration(input *GetFunctionConfigurationInput) (output *FunctionConfiguration, err error) {
+func (c *Lambda) GetFunctionConfiguration(input *GetFunctionConfigurationInput) (*FunctionConfiguration, awserr.Error) {
 	req, out := c.GetFunctionConfigurationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetFunctionConfiguration *aws.Operation
@@ -360,11 +353,10 @@ func (c *Lambda) GetPolicyRequest(input *GetPolicyInput) (req *aws.Request, outp
 // AddPermission API, associated with the specified bucket.
 //
 // You need permission for the lambda:GetPolicy action.
-func (c *Lambda) GetPolicy(input *GetPolicyInput) (output *GetPolicyOutput, err error) {
+func (c *Lambda) GetPolicy(input *GetPolicyInput) (*GetPolicyOutput, awserr.Error) {
 	req, out := c.GetPolicyRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetPolicy *aws.Operation
@@ -395,11 +387,10 @@ func (c *Lambda) InvokeRequest(input *InvokeInput) (req *aws.Request, output *In
 // Invokes a specified Lambda function.
 //
 // This operation requires permission for the lambda:InvokeFunction action.
-func (c *Lambda) Invoke(input *InvokeInput) (output *InvokeOutput, err error) {
+func (c *Lambda) Invoke(input *InvokeInput) (*InvokeOutput, awserr.Error) {
 	req, out := c.InvokeRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opInvoke *aws.Operation
@@ -433,11 +424,10 @@ func (c *Lambda) InvokeAsyncRequest(input *InvokeAsyncInput) (req *aws.Request, 
 // function execution, see the CloudWatch logs console.
 //
 // This operation requires permission for the lambda:InvokeFunction action.
-func (c *Lambda) InvokeAsync(input *InvokeAsyncInput) (output *InvokeAsyncOutput, err error) {
+func (c *Lambda) InvokeAsync(input *InvokeAsyncInput) (*InvokeAsyncOutput, awserr.Error) {
 	req, out := c.InvokeAsyncRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opInvokeAsync *aws.Operation
@@ -474,11 +464,10 @@ func (c *Lambda) ListEventSourceMappingsRequest(input *ListEventSourceMappingsIn
 //
 // This operation requires permission for the lambda:ListEventSourceMappings
 // action.
-func (c *Lambda) ListEventSourceMappings(input *ListEventSourceMappingsInput) (output *ListEventSourceMappingsOutput, err error) {
+func (c *Lambda) ListEventSourceMappings(input *ListEventSourceMappingsInput) (*ListEventSourceMappingsOutput, awserr.Error) {
 	req, out := c.ListEventSourceMappingsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListEventSourceMappings *aws.Operation
@@ -511,11 +500,10 @@ func (c *Lambda) ListFunctionsRequest(input *ListFunctionsInput) (req *aws.Reque
 // to retrieve the code for your function.
 //
 // This operation requires permission for the lambda:ListFunctions action.
-func (c *Lambda) ListFunctions(input *ListFunctionsInput) (output *ListFunctionsOutput, err error) {
+func (c *Lambda) ListFunctions(input *ListFunctionsInput) (*ListFunctionsOutput, awserr.Error) {
 	req, out := c.ListFunctionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListFunctions *aws.Operation
@@ -550,11 +538,10 @@ func (c *Lambda) RemovePermissionRequest(input *RemovePermissionInput) (req *aws
 // permission to the function.
 //
 // You need permission for the lambda:RemovePermission action.
-func (c *Lambda) RemovePermission(input *RemovePermissionInput) (output *RemovePermissionOutput, err error) {
+func (c *Lambda) RemovePermission(input *RemovePermissionInput) (*RemovePermissionOutput, awserr.Error) {
 	req, out := c.RemovePermissionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRemovePermission *aws.Operation
@@ -589,11 +576,10 @@ func (c *Lambda) UpdateEventSourceMappingRequest(input *UpdateEventSourceMapping
 //
 // This operation requires permission for the lambda:UpdateEventSourceMapping
 // action.
-func (c *Lambda) UpdateEventSourceMapping(input *UpdateEventSourceMappingInput) (output *EventSourceMappingConfiguration, err error) {
+func (c *Lambda) UpdateEventSourceMapping(input *UpdateEventSourceMappingInput) (*EventSourceMappingConfiguration, awserr.Error) {
 	req, out := c.UpdateEventSourceMappingRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateEventSourceMapping *aws.Operation
@@ -626,11 +612,10 @@ func (c *Lambda) UpdateFunctionCodeRequest(input *UpdateFunctionCodeInput) (req 
 // configuration.
 //
 // This operation requires permission for the lambda:UpdateFunctionCode action.
-func (c *Lambda) UpdateFunctionCode(input *UpdateFunctionCodeInput) (output *FunctionConfiguration, err error) {
+func (c *Lambda) UpdateFunctionCode(input *UpdateFunctionCodeInput) (*FunctionConfiguration, awserr.Error) {
 	req, out := c.UpdateFunctionCodeRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateFunctionCode *aws.Operation
@@ -665,11 +650,10 @@ func (c *Lambda) UpdateFunctionConfigurationRequest(input *UpdateFunctionConfigu
 //
 // This operation requires permission for the lambda:UpdateFunctionConfiguration
 // action.
-func (c *Lambda) UpdateFunctionConfiguration(input *UpdateFunctionConfigurationInput) (output *FunctionConfiguration, err error) {
+func (c *Lambda) UpdateFunctionConfiguration(input *UpdateFunctionConfigurationInput) (*FunctionConfiguration, awserr.Error) {
 	req, out := c.UpdateFunctionConfigurationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateFunctionConfiguration *aws.Operation

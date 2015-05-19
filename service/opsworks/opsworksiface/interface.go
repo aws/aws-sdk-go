@@ -4,137 +4,138 @@
 package opsworksiface
 
 import (
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/opsworks"
 )
 
 type OpsWorksAPI interface {
-	AssignInstance(*opsworks.AssignInstanceInput) (*opsworks.AssignInstanceOutput, error)
+	AssignInstance(*opsworks.AssignInstanceInput) (*opsworks.AssignInstanceOutput, awserr.Error)
 
-	AssignVolume(*opsworks.AssignVolumeInput) (*opsworks.AssignVolumeOutput, error)
+	AssignVolume(*opsworks.AssignVolumeInput) (*opsworks.AssignVolumeOutput, awserr.Error)
 
-	AssociateElasticIP(*opsworks.AssociateElasticIPInput) (*opsworks.AssociateElasticIPOutput, error)
+	AssociateElasticIP(*opsworks.AssociateElasticIPInput) (*opsworks.AssociateElasticIPOutput, awserr.Error)
 
-	AttachElasticLoadBalancer(*opsworks.AttachElasticLoadBalancerInput) (*opsworks.AttachElasticLoadBalancerOutput, error)
+	AttachElasticLoadBalancer(*opsworks.AttachElasticLoadBalancerInput) (*opsworks.AttachElasticLoadBalancerOutput, awserr.Error)
 
-	CloneStack(*opsworks.CloneStackInput) (*opsworks.CloneStackOutput, error)
+	CloneStack(*opsworks.CloneStackInput) (*opsworks.CloneStackOutput, awserr.Error)
 
-	CreateApp(*opsworks.CreateAppInput) (*opsworks.CreateAppOutput, error)
+	CreateApp(*opsworks.CreateAppInput) (*opsworks.CreateAppOutput, awserr.Error)
 
-	CreateDeployment(*opsworks.CreateDeploymentInput) (*opsworks.CreateDeploymentOutput, error)
+	CreateDeployment(*opsworks.CreateDeploymentInput) (*opsworks.CreateDeploymentOutput, awserr.Error)
 
-	CreateInstance(*opsworks.CreateInstanceInput) (*opsworks.CreateInstanceOutput, error)
+	CreateInstance(*opsworks.CreateInstanceInput) (*opsworks.CreateInstanceOutput, awserr.Error)
 
-	CreateLayer(*opsworks.CreateLayerInput) (*opsworks.CreateLayerOutput, error)
+	CreateLayer(*opsworks.CreateLayerInput) (*opsworks.CreateLayerOutput, awserr.Error)
 
-	CreateStack(*opsworks.CreateStackInput) (*opsworks.CreateStackOutput, error)
+	CreateStack(*opsworks.CreateStackInput) (*opsworks.CreateStackOutput, awserr.Error)
 
-	CreateUserProfile(*opsworks.CreateUserProfileInput) (*opsworks.CreateUserProfileOutput, error)
+	CreateUserProfile(*opsworks.CreateUserProfileInput) (*opsworks.CreateUserProfileOutput, awserr.Error)
 
-	DeleteApp(*opsworks.DeleteAppInput) (*opsworks.DeleteAppOutput, error)
+	DeleteApp(*opsworks.DeleteAppInput) (*opsworks.DeleteAppOutput, awserr.Error)
 
-	DeleteInstance(*opsworks.DeleteInstanceInput) (*opsworks.DeleteInstanceOutput, error)
+	DeleteInstance(*opsworks.DeleteInstanceInput) (*opsworks.DeleteInstanceOutput, awserr.Error)
 
-	DeleteLayer(*opsworks.DeleteLayerInput) (*opsworks.DeleteLayerOutput, error)
+	DeleteLayer(*opsworks.DeleteLayerInput) (*opsworks.DeleteLayerOutput, awserr.Error)
 
-	DeleteStack(*opsworks.DeleteStackInput) (*opsworks.DeleteStackOutput, error)
+	DeleteStack(*opsworks.DeleteStackInput) (*opsworks.DeleteStackOutput, awserr.Error)
 
-	DeleteUserProfile(*opsworks.DeleteUserProfileInput) (*opsworks.DeleteUserProfileOutput, error)
+	DeleteUserProfile(*opsworks.DeleteUserProfileInput) (*opsworks.DeleteUserProfileOutput, awserr.Error)
 
-	DeregisterElasticIP(*opsworks.DeregisterElasticIPInput) (*opsworks.DeregisterElasticIPOutput, error)
+	DeregisterElasticIP(*opsworks.DeregisterElasticIPInput) (*opsworks.DeregisterElasticIPOutput, awserr.Error)
 
-	DeregisterInstance(*opsworks.DeregisterInstanceInput) (*opsworks.DeregisterInstanceOutput, error)
+	DeregisterInstance(*opsworks.DeregisterInstanceInput) (*opsworks.DeregisterInstanceOutput, awserr.Error)
 
-	DeregisterRDSDBInstance(*opsworks.DeregisterRDSDBInstanceInput) (*opsworks.DeregisterRDSDBInstanceOutput, error)
+	DeregisterRDSDBInstance(*opsworks.DeregisterRDSDBInstanceInput) (*opsworks.DeregisterRDSDBInstanceOutput, awserr.Error)
 
-	DeregisterVolume(*opsworks.DeregisterVolumeInput) (*opsworks.DeregisterVolumeOutput, error)
+	DeregisterVolume(*opsworks.DeregisterVolumeInput) (*opsworks.DeregisterVolumeOutput, awserr.Error)
 
-	DescribeApps(*opsworks.DescribeAppsInput) (*opsworks.DescribeAppsOutput, error)
+	DescribeApps(*opsworks.DescribeAppsInput) (*opsworks.DescribeAppsOutput, awserr.Error)
 
-	DescribeCommands(*opsworks.DescribeCommandsInput) (*opsworks.DescribeCommandsOutput, error)
+	DescribeCommands(*opsworks.DescribeCommandsInput) (*opsworks.DescribeCommandsOutput, awserr.Error)
 
-	DescribeDeployments(*opsworks.DescribeDeploymentsInput) (*opsworks.DescribeDeploymentsOutput, error)
+	DescribeDeployments(*opsworks.DescribeDeploymentsInput) (*opsworks.DescribeDeploymentsOutput, awserr.Error)
 
-	DescribeElasticIPs(*opsworks.DescribeElasticIPsInput) (*opsworks.DescribeElasticIPsOutput, error)
+	DescribeElasticIPs(*opsworks.DescribeElasticIPsInput) (*opsworks.DescribeElasticIPsOutput, awserr.Error)
 
-	DescribeElasticLoadBalancers(*opsworks.DescribeElasticLoadBalancersInput) (*opsworks.DescribeElasticLoadBalancersOutput, error)
+	DescribeElasticLoadBalancers(*opsworks.DescribeElasticLoadBalancersInput) (*opsworks.DescribeElasticLoadBalancersOutput, awserr.Error)
 
-	DescribeInstances(*opsworks.DescribeInstancesInput) (*opsworks.DescribeInstancesOutput, error)
+	DescribeInstances(*opsworks.DescribeInstancesInput) (*opsworks.DescribeInstancesOutput, awserr.Error)
 
-	DescribeLayers(*opsworks.DescribeLayersInput) (*opsworks.DescribeLayersOutput, error)
+	DescribeLayers(*opsworks.DescribeLayersInput) (*opsworks.DescribeLayersOutput, awserr.Error)
 
-	DescribeLoadBasedAutoScaling(*opsworks.DescribeLoadBasedAutoScalingInput) (*opsworks.DescribeLoadBasedAutoScalingOutput, error)
+	DescribeLoadBasedAutoScaling(*opsworks.DescribeLoadBasedAutoScalingInput) (*opsworks.DescribeLoadBasedAutoScalingOutput, awserr.Error)
 
-	DescribeMyUserProfile(*opsworks.DescribeMyUserProfileInput) (*opsworks.DescribeMyUserProfileOutput, error)
+	DescribeMyUserProfile(*opsworks.DescribeMyUserProfileInput) (*opsworks.DescribeMyUserProfileOutput, awserr.Error)
 
-	DescribePermissions(*opsworks.DescribePermissionsInput) (*opsworks.DescribePermissionsOutput, error)
+	DescribePermissions(*opsworks.DescribePermissionsInput) (*opsworks.DescribePermissionsOutput, awserr.Error)
 
-	DescribeRAIDArrays(*opsworks.DescribeRAIDArraysInput) (*opsworks.DescribeRAIDArraysOutput, error)
+	DescribeRAIDArrays(*opsworks.DescribeRAIDArraysInput) (*opsworks.DescribeRAIDArraysOutput, awserr.Error)
 
-	DescribeRDSDBInstances(*opsworks.DescribeRDSDBInstancesInput) (*opsworks.DescribeRDSDBInstancesOutput, error)
+	DescribeRDSDBInstances(*opsworks.DescribeRDSDBInstancesInput) (*opsworks.DescribeRDSDBInstancesOutput, awserr.Error)
 
-	DescribeServiceErrors(*opsworks.DescribeServiceErrorsInput) (*opsworks.DescribeServiceErrorsOutput, error)
+	DescribeServiceErrors(*opsworks.DescribeServiceErrorsInput) (*opsworks.DescribeServiceErrorsOutput, awserr.Error)
 
-	DescribeStackProvisioningParameters(*opsworks.DescribeStackProvisioningParametersInput) (*opsworks.DescribeStackProvisioningParametersOutput, error)
+	DescribeStackProvisioningParameters(*opsworks.DescribeStackProvisioningParametersInput) (*opsworks.DescribeStackProvisioningParametersOutput, awserr.Error)
 
-	DescribeStackSummary(*opsworks.DescribeStackSummaryInput) (*opsworks.DescribeStackSummaryOutput, error)
+	DescribeStackSummary(*opsworks.DescribeStackSummaryInput) (*opsworks.DescribeStackSummaryOutput, awserr.Error)
 
-	DescribeStacks(*opsworks.DescribeStacksInput) (*opsworks.DescribeStacksOutput, error)
+	DescribeStacks(*opsworks.DescribeStacksInput) (*opsworks.DescribeStacksOutput, awserr.Error)
 
-	DescribeTimeBasedAutoScaling(*opsworks.DescribeTimeBasedAutoScalingInput) (*opsworks.DescribeTimeBasedAutoScalingOutput, error)
+	DescribeTimeBasedAutoScaling(*opsworks.DescribeTimeBasedAutoScalingInput) (*opsworks.DescribeTimeBasedAutoScalingOutput, awserr.Error)
 
-	DescribeUserProfiles(*opsworks.DescribeUserProfilesInput) (*opsworks.DescribeUserProfilesOutput, error)
+	DescribeUserProfiles(*opsworks.DescribeUserProfilesInput) (*opsworks.DescribeUserProfilesOutput, awserr.Error)
 
-	DescribeVolumes(*opsworks.DescribeVolumesInput) (*opsworks.DescribeVolumesOutput, error)
+	DescribeVolumes(*opsworks.DescribeVolumesInput) (*opsworks.DescribeVolumesOutput, awserr.Error)
 
-	DetachElasticLoadBalancer(*opsworks.DetachElasticLoadBalancerInput) (*opsworks.DetachElasticLoadBalancerOutput, error)
+	DetachElasticLoadBalancer(*opsworks.DetachElasticLoadBalancerInput) (*opsworks.DetachElasticLoadBalancerOutput, awserr.Error)
 
-	DisassociateElasticIP(*opsworks.DisassociateElasticIPInput) (*opsworks.DisassociateElasticIPOutput, error)
+	DisassociateElasticIP(*opsworks.DisassociateElasticIPInput) (*opsworks.DisassociateElasticIPOutput, awserr.Error)
 
-	GetHostnameSuggestion(*opsworks.GetHostnameSuggestionInput) (*opsworks.GetHostnameSuggestionOutput, error)
+	GetHostnameSuggestion(*opsworks.GetHostnameSuggestionInput) (*opsworks.GetHostnameSuggestionOutput, awserr.Error)
 
-	RebootInstance(*opsworks.RebootInstanceInput) (*opsworks.RebootInstanceOutput, error)
+	RebootInstance(*opsworks.RebootInstanceInput) (*opsworks.RebootInstanceOutput, awserr.Error)
 
-	RegisterElasticIP(*opsworks.RegisterElasticIPInput) (*opsworks.RegisterElasticIPOutput, error)
+	RegisterElasticIP(*opsworks.RegisterElasticIPInput) (*opsworks.RegisterElasticIPOutput, awserr.Error)
 
-	RegisterInstance(*opsworks.RegisterInstanceInput) (*opsworks.RegisterInstanceOutput, error)
+	RegisterInstance(*opsworks.RegisterInstanceInput) (*opsworks.RegisterInstanceOutput, awserr.Error)
 
-	RegisterRDSDBInstance(*opsworks.RegisterRDSDBInstanceInput) (*opsworks.RegisterRDSDBInstanceOutput, error)
+	RegisterRDSDBInstance(*opsworks.RegisterRDSDBInstanceInput) (*opsworks.RegisterRDSDBInstanceOutput, awserr.Error)
 
-	RegisterVolume(*opsworks.RegisterVolumeInput) (*opsworks.RegisterVolumeOutput, error)
+	RegisterVolume(*opsworks.RegisterVolumeInput) (*opsworks.RegisterVolumeOutput, awserr.Error)
 
-	SetLoadBasedAutoScaling(*opsworks.SetLoadBasedAutoScalingInput) (*opsworks.SetLoadBasedAutoScalingOutput, error)
+	SetLoadBasedAutoScaling(*opsworks.SetLoadBasedAutoScalingInput) (*opsworks.SetLoadBasedAutoScalingOutput, awserr.Error)
 
-	SetPermission(*opsworks.SetPermissionInput) (*opsworks.SetPermissionOutput, error)
+	SetPermission(*opsworks.SetPermissionInput) (*opsworks.SetPermissionOutput, awserr.Error)
 
-	SetTimeBasedAutoScaling(*opsworks.SetTimeBasedAutoScalingInput) (*opsworks.SetTimeBasedAutoScalingOutput, error)
+	SetTimeBasedAutoScaling(*opsworks.SetTimeBasedAutoScalingInput) (*opsworks.SetTimeBasedAutoScalingOutput, awserr.Error)
 
-	StartInstance(*opsworks.StartInstanceInput) (*opsworks.StartInstanceOutput, error)
+	StartInstance(*opsworks.StartInstanceInput) (*opsworks.StartInstanceOutput, awserr.Error)
 
-	StartStack(*opsworks.StartStackInput) (*opsworks.StartStackOutput, error)
+	StartStack(*opsworks.StartStackInput) (*opsworks.StartStackOutput, awserr.Error)
 
-	StopInstance(*opsworks.StopInstanceInput) (*opsworks.StopInstanceOutput, error)
+	StopInstance(*opsworks.StopInstanceInput) (*opsworks.StopInstanceOutput, awserr.Error)
 
-	StopStack(*opsworks.StopStackInput) (*opsworks.StopStackOutput, error)
+	StopStack(*opsworks.StopStackInput) (*opsworks.StopStackOutput, awserr.Error)
 
-	UnassignInstance(*opsworks.UnassignInstanceInput) (*opsworks.UnassignInstanceOutput, error)
+	UnassignInstance(*opsworks.UnassignInstanceInput) (*opsworks.UnassignInstanceOutput, awserr.Error)
 
-	UnassignVolume(*opsworks.UnassignVolumeInput) (*opsworks.UnassignVolumeOutput, error)
+	UnassignVolume(*opsworks.UnassignVolumeInput) (*opsworks.UnassignVolumeOutput, awserr.Error)
 
-	UpdateApp(*opsworks.UpdateAppInput) (*opsworks.UpdateAppOutput, error)
+	UpdateApp(*opsworks.UpdateAppInput) (*opsworks.UpdateAppOutput, awserr.Error)
 
-	UpdateElasticIP(*opsworks.UpdateElasticIPInput) (*opsworks.UpdateElasticIPOutput, error)
+	UpdateElasticIP(*opsworks.UpdateElasticIPInput) (*opsworks.UpdateElasticIPOutput, awserr.Error)
 
-	UpdateInstance(*opsworks.UpdateInstanceInput) (*opsworks.UpdateInstanceOutput, error)
+	UpdateInstance(*opsworks.UpdateInstanceInput) (*opsworks.UpdateInstanceOutput, awserr.Error)
 
-	UpdateLayer(*opsworks.UpdateLayerInput) (*opsworks.UpdateLayerOutput, error)
+	UpdateLayer(*opsworks.UpdateLayerInput) (*opsworks.UpdateLayerOutput, awserr.Error)
 
-	UpdateMyUserProfile(*opsworks.UpdateMyUserProfileInput) (*opsworks.UpdateMyUserProfileOutput, error)
+	UpdateMyUserProfile(*opsworks.UpdateMyUserProfileInput) (*opsworks.UpdateMyUserProfileOutput, awserr.Error)
 
-	UpdateRDSDBInstance(*opsworks.UpdateRDSDBInstanceInput) (*opsworks.UpdateRDSDBInstanceOutput, error)
+	UpdateRDSDBInstance(*opsworks.UpdateRDSDBInstanceInput) (*opsworks.UpdateRDSDBInstanceOutput, awserr.Error)
 
-	UpdateStack(*opsworks.UpdateStackInput) (*opsworks.UpdateStackOutput, error)
+	UpdateStack(*opsworks.UpdateStackInput) (*opsworks.UpdateStackOutput, awserr.Error)
 
-	UpdateUserProfile(*opsworks.UpdateUserProfileInput) (*opsworks.UpdateUserProfileOutput, error)
+	UpdateUserProfile(*opsworks.UpdateUserProfileInput) (*opsworks.UpdateUserProfileOutput, awserr.Error)
 
-	UpdateVolume(*opsworks.UpdateVolumeInput) (*opsworks.UpdateVolumeOutput, error)
+	UpdateVolume(*opsworks.UpdateVolumeInput) (*opsworks.UpdateVolumeOutput, awserr.Error)
 }

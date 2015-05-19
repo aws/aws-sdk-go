@@ -4,57 +4,58 @@
 package snsiface
 
 import (
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/sns"
 )
 
 type SNSAPI interface {
-	AddPermission(*sns.AddPermissionInput) (*sns.AddPermissionOutput, error)
+	AddPermission(*sns.AddPermissionInput) (*sns.AddPermissionOutput, awserr.Error)
 
-	ConfirmSubscription(*sns.ConfirmSubscriptionInput) (*sns.ConfirmSubscriptionOutput, error)
+	ConfirmSubscription(*sns.ConfirmSubscriptionInput) (*sns.ConfirmSubscriptionOutput, awserr.Error)
 
-	CreatePlatformApplication(*sns.CreatePlatformApplicationInput) (*sns.CreatePlatformApplicationOutput, error)
+	CreatePlatformApplication(*sns.CreatePlatformApplicationInput) (*sns.CreatePlatformApplicationOutput, awserr.Error)
 
-	CreatePlatformEndpoint(*sns.CreatePlatformEndpointInput) (*sns.CreatePlatformEndpointOutput, error)
+	CreatePlatformEndpoint(*sns.CreatePlatformEndpointInput) (*sns.CreatePlatformEndpointOutput, awserr.Error)
 
-	CreateTopic(*sns.CreateTopicInput) (*sns.CreateTopicOutput, error)
+	CreateTopic(*sns.CreateTopicInput) (*sns.CreateTopicOutput, awserr.Error)
 
-	DeleteEndpoint(*sns.DeleteEndpointInput) (*sns.DeleteEndpointOutput, error)
+	DeleteEndpoint(*sns.DeleteEndpointInput) (*sns.DeleteEndpointOutput, awserr.Error)
 
-	DeletePlatformApplication(*sns.DeletePlatformApplicationInput) (*sns.DeletePlatformApplicationOutput, error)
+	DeletePlatformApplication(*sns.DeletePlatformApplicationInput) (*sns.DeletePlatformApplicationOutput, awserr.Error)
 
-	DeleteTopic(*sns.DeleteTopicInput) (*sns.DeleteTopicOutput, error)
+	DeleteTopic(*sns.DeleteTopicInput) (*sns.DeleteTopicOutput, awserr.Error)
 
-	GetEndpointAttributes(*sns.GetEndpointAttributesInput) (*sns.GetEndpointAttributesOutput, error)
+	GetEndpointAttributes(*sns.GetEndpointAttributesInput) (*sns.GetEndpointAttributesOutput, awserr.Error)
 
-	GetPlatformApplicationAttributes(*sns.GetPlatformApplicationAttributesInput) (*sns.GetPlatformApplicationAttributesOutput, error)
+	GetPlatformApplicationAttributes(*sns.GetPlatformApplicationAttributesInput) (*sns.GetPlatformApplicationAttributesOutput, awserr.Error)
 
-	GetSubscriptionAttributes(*sns.GetSubscriptionAttributesInput) (*sns.GetSubscriptionAttributesOutput, error)
+	GetSubscriptionAttributes(*sns.GetSubscriptionAttributesInput) (*sns.GetSubscriptionAttributesOutput, awserr.Error)
 
-	GetTopicAttributes(*sns.GetTopicAttributesInput) (*sns.GetTopicAttributesOutput, error)
+	GetTopicAttributes(*sns.GetTopicAttributesInput) (*sns.GetTopicAttributesOutput, awserr.Error)
 
-	ListEndpointsByPlatformApplication(*sns.ListEndpointsByPlatformApplicationInput) (*sns.ListEndpointsByPlatformApplicationOutput, error)
+	ListEndpointsByPlatformApplication(*sns.ListEndpointsByPlatformApplicationInput) (*sns.ListEndpointsByPlatformApplicationOutput, awserr.Error)
 
-	ListPlatformApplications(*sns.ListPlatformApplicationsInput) (*sns.ListPlatformApplicationsOutput, error)
+	ListPlatformApplications(*sns.ListPlatformApplicationsInput) (*sns.ListPlatformApplicationsOutput, awserr.Error)
 
-	ListSubscriptions(*sns.ListSubscriptionsInput) (*sns.ListSubscriptionsOutput, error)
+	ListSubscriptions(*sns.ListSubscriptionsInput) (*sns.ListSubscriptionsOutput, awserr.Error)
 
-	ListSubscriptionsByTopic(*sns.ListSubscriptionsByTopicInput) (*sns.ListSubscriptionsByTopicOutput, error)
+	ListSubscriptionsByTopic(*sns.ListSubscriptionsByTopicInput) (*sns.ListSubscriptionsByTopicOutput, awserr.Error)
 
-	ListTopics(*sns.ListTopicsInput) (*sns.ListTopicsOutput, error)
+	ListTopics(*sns.ListTopicsInput) (*sns.ListTopicsOutput, awserr.Error)
 
-	Publish(*sns.PublishInput) (*sns.PublishOutput, error)
+	Publish(*sns.PublishInput) (*sns.PublishOutput, awserr.Error)
 
-	RemovePermission(*sns.RemovePermissionInput) (*sns.RemovePermissionOutput, error)
+	RemovePermission(*sns.RemovePermissionInput) (*sns.RemovePermissionOutput, awserr.Error)
 
-	SetEndpointAttributes(*sns.SetEndpointAttributesInput) (*sns.SetEndpointAttributesOutput, error)
+	SetEndpointAttributes(*sns.SetEndpointAttributesInput) (*sns.SetEndpointAttributesOutput, awserr.Error)
 
-	SetPlatformApplicationAttributes(*sns.SetPlatformApplicationAttributesInput) (*sns.SetPlatformApplicationAttributesOutput, error)
+	SetPlatformApplicationAttributes(*sns.SetPlatformApplicationAttributesInput) (*sns.SetPlatformApplicationAttributesOutput, awserr.Error)
 
-	SetSubscriptionAttributes(*sns.SetSubscriptionAttributesInput) (*sns.SetSubscriptionAttributesOutput, error)
+	SetSubscriptionAttributes(*sns.SetSubscriptionAttributesInput) (*sns.SetSubscriptionAttributesOutput, awserr.Error)
 
-	SetTopicAttributes(*sns.SetTopicAttributesInput) (*sns.SetTopicAttributesOutput, error)
+	SetTopicAttributes(*sns.SetTopicAttributesInput) (*sns.SetTopicAttributesOutput, awserr.Error)
 
-	Subscribe(*sns.SubscribeInput) (*sns.SubscribeOutput, error)
+	Subscribe(*sns.SubscribeInput) (*sns.SubscribeOutput, awserr.Error)
 
-	Unsubscribe(*sns.UnsubscribeInput) (*sns.UnsubscribeOutput, error)
+	Unsubscribe(*sns.UnsubscribeInput) (*sns.UnsubscribeOutput, awserr.Error)
 }

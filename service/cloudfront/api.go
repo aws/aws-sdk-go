@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -36,11 +37,10 @@ func (c *CloudFront) CreateCloudFrontOriginAccessIdentityRequest(input *CreateCl
 }
 
 // Create a new origin access identity.
-func (c *CloudFront) CreateCloudFrontOriginAccessIdentity(input *CreateCloudFrontOriginAccessIdentityInput) (output *CreateCloudFrontOriginAccessIdentityOutput, err error) {
+func (c *CloudFront) CreateCloudFrontOriginAccessIdentity(input *CreateCloudFrontOriginAccessIdentityInput) (*CreateCloudFrontOriginAccessIdentityOutput, awserr.Error) {
 	req, out := c.CreateCloudFrontOriginAccessIdentityRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateCloudFrontOriginAccessIdentity *aws.Operation
@@ -69,11 +69,10 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 }
 
 // Create a new distribution.
-func (c *CloudFront) CreateDistribution(input *CreateDistributionInput) (output *CreateDistributionOutput, err error) {
+func (c *CloudFront) CreateDistribution(input *CreateDistributionInput) (*CreateDistributionOutput, awserr.Error) {
 	req, out := c.CreateDistributionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateDistribution *aws.Operation
@@ -102,11 +101,10 @@ func (c *CloudFront) CreateInvalidationRequest(input *CreateInvalidationInput) (
 }
 
 // Create a new invalidation.
-func (c *CloudFront) CreateInvalidation(input *CreateInvalidationInput) (output *CreateInvalidationOutput, err error) {
+func (c *CloudFront) CreateInvalidation(input *CreateInvalidationInput) (*CreateInvalidationOutput, awserr.Error) {
 	req, out := c.CreateInvalidationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateInvalidation *aws.Operation
@@ -135,11 +133,10 @@ func (c *CloudFront) CreateStreamingDistributionRequest(input *CreateStreamingDi
 }
 
 // Create a new streaming distribution.
-func (c *CloudFront) CreateStreamingDistribution(input *CreateStreamingDistributionInput) (output *CreateStreamingDistributionOutput, err error) {
+func (c *CloudFront) CreateStreamingDistribution(input *CreateStreamingDistributionInput) (*CreateStreamingDistributionOutput, awserr.Error) {
 	req, out := c.CreateStreamingDistributionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateStreamingDistribution *aws.Operation
@@ -168,11 +165,10 @@ func (c *CloudFront) DeleteCloudFrontOriginAccessIdentityRequest(input *DeleteCl
 }
 
 // Delete an origin access identity.
-func (c *CloudFront) DeleteCloudFrontOriginAccessIdentity(input *DeleteCloudFrontOriginAccessIdentityInput) (output *DeleteCloudFrontOriginAccessIdentityOutput, err error) {
+func (c *CloudFront) DeleteCloudFrontOriginAccessIdentity(input *DeleteCloudFrontOriginAccessIdentityInput) (*DeleteCloudFrontOriginAccessIdentityOutput, awserr.Error) {
 	req, out := c.DeleteCloudFrontOriginAccessIdentityRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteCloudFrontOriginAccessIdentity *aws.Operation
@@ -201,11 +197,10 @@ func (c *CloudFront) DeleteDistributionRequest(input *DeleteDistributionInput) (
 }
 
 // Delete a distribution.
-func (c *CloudFront) DeleteDistribution(input *DeleteDistributionInput) (output *DeleteDistributionOutput, err error) {
+func (c *CloudFront) DeleteDistribution(input *DeleteDistributionInput) (*DeleteDistributionOutput, awserr.Error) {
 	req, out := c.DeleteDistributionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteDistribution *aws.Operation
@@ -234,11 +229,10 @@ func (c *CloudFront) DeleteStreamingDistributionRequest(input *DeleteStreamingDi
 }
 
 // Delete a streaming distribution.
-func (c *CloudFront) DeleteStreamingDistribution(input *DeleteStreamingDistributionInput) (output *DeleteStreamingDistributionOutput, err error) {
+func (c *CloudFront) DeleteStreamingDistribution(input *DeleteStreamingDistributionInput) (*DeleteStreamingDistributionOutput, awserr.Error) {
 	req, out := c.DeleteStreamingDistributionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteStreamingDistribution *aws.Operation
@@ -267,11 +261,10 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentityRequest(input *GetCloudFro
 }
 
 // Get the information about an origin access identity.
-func (c *CloudFront) GetCloudFrontOriginAccessIdentity(input *GetCloudFrontOriginAccessIdentityInput) (output *GetCloudFrontOriginAccessIdentityOutput, err error) {
+func (c *CloudFront) GetCloudFrontOriginAccessIdentity(input *GetCloudFrontOriginAccessIdentityInput) (*GetCloudFrontOriginAccessIdentityOutput, awserr.Error) {
 	req, out := c.GetCloudFrontOriginAccessIdentityRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetCloudFrontOriginAccessIdentity *aws.Operation
@@ -300,11 +293,10 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfigRequest(input *GetCl
 }
 
 // Get the configuration information about an origin access identity.
-func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfig(input *GetCloudFrontOriginAccessIdentityConfigInput) (output *GetCloudFrontOriginAccessIdentityConfigOutput, err error) {
+func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfig(input *GetCloudFrontOriginAccessIdentityConfigInput) (*GetCloudFrontOriginAccessIdentityConfigOutput, awserr.Error) {
 	req, out := c.GetCloudFrontOriginAccessIdentityConfigRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetCloudFrontOriginAccessIdentityConfig *aws.Operation
@@ -333,11 +325,10 @@ func (c *CloudFront) GetDistributionRequest(input *GetDistributionInput) (req *a
 }
 
 // Get the information about a distribution.
-func (c *CloudFront) GetDistribution(input *GetDistributionInput) (output *GetDistributionOutput, err error) {
+func (c *CloudFront) GetDistribution(input *GetDistributionInput) (*GetDistributionOutput, awserr.Error) {
 	req, out := c.GetDistributionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetDistribution *aws.Operation
@@ -366,11 +357,10 @@ func (c *CloudFront) GetDistributionConfigRequest(input *GetDistributionConfigIn
 }
 
 // Get the configuration information about a distribution.
-func (c *CloudFront) GetDistributionConfig(input *GetDistributionConfigInput) (output *GetDistributionConfigOutput, err error) {
+func (c *CloudFront) GetDistributionConfig(input *GetDistributionConfigInput) (*GetDistributionConfigOutput, awserr.Error) {
 	req, out := c.GetDistributionConfigRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetDistributionConfig *aws.Operation
@@ -399,11 +389,10 @@ func (c *CloudFront) GetInvalidationRequest(input *GetInvalidationInput) (req *a
 }
 
 // Get the information about an invalidation.
-func (c *CloudFront) GetInvalidation(input *GetInvalidationInput) (output *GetInvalidationOutput, err error) {
+func (c *CloudFront) GetInvalidation(input *GetInvalidationInput) (*GetInvalidationOutput, awserr.Error) {
 	req, out := c.GetInvalidationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetInvalidation *aws.Operation
@@ -432,11 +421,10 @@ func (c *CloudFront) GetStreamingDistributionRequest(input *GetStreamingDistribu
 }
 
 // Get the information about a streaming distribution.
-func (c *CloudFront) GetStreamingDistribution(input *GetStreamingDistributionInput) (output *GetStreamingDistributionOutput, err error) {
+func (c *CloudFront) GetStreamingDistribution(input *GetStreamingDistributionInput) (*GetStreamingDistributionOutput, awserr.Error) {
 	req, out := c.GetStreamingDistributionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetStreamingDistribution *aws.Operation
@@ -465,11 +453,10 @@ func (c *CloudFront) GetStreamingDistributionConfigRequest(input *GetStreamingDi
 }
 
 // Get the configuration information about a streaming distribution.
-func (c *CloudFront) GetStreamingDistributionConfig(input *GetStreamingDistributionConfigInput) (output *GetStreamingDistributionConfigOutput, err error) {
+func (c *CloudFront) GetStreamingDistributionConfig(input *GetStreamingDistributionConfigInput) (*GetStreamingDistributionConfigOutput, awserr.Error) {
 	req, out := c.GetStreamingDistributionConfigRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetStreamingDistributionConfig *aws.Operation
@@ -498,11 +485,10 @@ func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesRequest(input *ListClou
 }
 
 // List origin access identities.
-func (c *CloudFront) ListCloudFrontOriginAccessIdentities(input *ListCloudFrontOriginAccessIdentitiesInput) (output *ListCloudFrontOriginAccessIdentitiesOutput, err error) {
+func (c *CloudFront) ListCloudFrontOriginAccessIdentities(input *ListCloudFrontOriginAccessIdentitiesInput) (*ListCloudFrontOriginAccessIdentitiesOutput, awserr.Error) {
 	req, out := c.ListCloudFrontOriginAccessIdentitiesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListCloudFrontOriginAccessIdentities *aws.Operation
@@ -531,11 +517,10 @@ func (c *CloudFront) ListDistributionsRequest(input *ListDistributionsInput) (re
 }
 
 // List distributions.
-func (c *CloudFront) ListDistributions(input *ListDistributionsInput) (output *ListDistributionsOutput, err error) {
+func (c *CloudFront) ListDistributions(input *ListDistributionsInput) (*ListDistributionsOutput, awserr.Error) {
 	req, out := c.ListDistributionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListDistributions *aws.Operation
@@ -564,11 +549,10 @@ func (c *CloudFront) ListInvalidationsRequest(input *ListInvalidationsInput) (re
 }
 
 // List invalidation batches.
-func (c *CloudFront) ListInvalidations(input *ListInvalidationsInput) (output *ListInvalidationsOutput, err error) {
+func (c *CloudFront) ListInvalidations(input *ListInvalidationsInput) (*ListInvalidationsOutput, awserr.Error) {
 	req, out := c.ListInvalidationsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListInvalidations *aws.Operation
@@ -597,11 +581,10 @@ func (c *CloudFront) ListStreamingDistributionsRequest(input *ListStreamingDistr
 }
 
 // List streaming distributions.
-func (c *CloudFront) ListStreamingDistributions(input *ListStreamingDistributionsInput) (output *ListStreamingDistributionsOutput, err error) {
+func (c *CloudFront) ListStreamingDistributions(input *ListStreamingDistributionsInput) (*ListStreamingDistributionsOutput, awserr.Error) {
 	req, out := c.ListStreamingDistributionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListStreamingDistributions *aws.Operation
@@ -630,11 +613,10 @@ func (c *CloudFront) UpdateCloudFrontOriginAccessIdentityRequest(input *UpdateCl
 }
 
 // Update an origin access identity.
-func (c *CloudFront) UpdateCloudFrontOriginAccessIdentity(input *UpdateCloudFrontOriginAccessIdentityInput) (output *UpdateCloudFrontOriginAccessIdentityOutput, err error) {
+func (c *CloudFront) UpdateCloudFrontOriginAccessIdentity(input *UpdateCloudFrontOriginAccessIdentityInput) (*UpdateCloudFrontOriginAccessIdentityOutput, awserr.Error) {
 	req, out := c.UpdateCloudFrontOriginAccessIdentityRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateCloudFrontOriginAccessIdentity *aws.Operation
@@ -663,11 +645,10 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 }
 
 // Update a distribution.
-func (c *CloudFront) UpdateDistribution(input *UpdateDistributionInput) (output *UpdateDistributionOutput, err error) {
+func (c *CloudFront) UpdateDistribution(input *UpdateDistributionInput) (*UpdateDistributionOutput, awserr.Error) {
 	req, out := c.UpdateDistributionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateDistribution *aws.Operation
@@ -696,11 +677,10 @@ func (c *CloudFront) UpdateStreamingDistributionRequest(input *UpdateStreamingDi
 }
 
 // Update a streaming distribution.
-func (c *CloudFront) UpdateStreamingDistribution(input *UpdateStreamingDistributionInput) (output *UpdateStreamingDistributionOutput, err error) {
+func (c *CloudFront) UpdateStreamingDistribution(input *UpdateStreamingDistributionInput) (*UpdateStreamingDistributionOutput, awserr.Error) {
 	req, out := c.UpdateStreamingDistributionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateStreamingDistribution *aws.Operation

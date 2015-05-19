@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -44,11 +45,10 @@ func (c *StorageGateway) ActivateGatewayRequest(input *ActivateGatewayInput) (re
 // for more information, see UpdateGatewayInformation.
 //
 // You must turn on the gateway VM before you can activate your gateway.
-func (c *StorageGateway) ActivateGateway(input *ActivateGatewayInput) (output *ActivateGatewayOutput, err error) {
+func (c *StorageGateway) ActivateGateway(input *ActivateGatewayInput) (*ActivateGatewayOutput, awserr.Error) {
 	req, out := c.ActivateGatewayRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opActivateGateway *aws.Operation
@@ -83,11 +83,10 @@ func (c *StorageGateway) AddCacheRequest(input *AddCacheInput) (req *aws.Request
 // In the request, you specify the gateway Amazon Resource Name (ARN) to which
 // you want to add cache, and one or more disk IDs that you want to configure
 // as cache.
-func (c *StorageGateway) AddCache(input *AddCacheInput) (output *AddCacheOutput, err error) {
+func (c *StorageGateway) AddCache(input *AddCacheInput) (*AddCacheOutput, awserr.Error) {
 	req, out := c.AddCacheRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opAddCache *aws.Operation
@@ -122,11 +121,10 @@ func (c *StorageGateway) AddUploadBufferRequest(input *AddUploadBufferInput) (re
 //  In the request, you specify the gateway Amazon Resource Name (ARN) to which
 // you want to add upload buffer, and one or more disk IDs that you want to
 // configure as upload buffer.
-func (c *StorageGateway) AddUploadBuffer(input *AddUploadBufferInput) (output *AddUploadBufferOutput, err error) {
+func (c *StorageGateway) AddUploadBuffer(input *AddUploadBufferInput) (*AddUploadBufferOutput, awserr.Error) {
 	req, out := c.AddUploadBufferRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opAddUploadBuffer *aws.Operation
@@ -165,11 +163,10 @@ func (c *StorageGateway) AddWorkingStorageRequest(input *AddWorkingStorageInput)
 // In the request, you specify the gateway Amazon Resource Name (ARN) to which
 // you want to add working storage, and one or more disk IDs that you want to
 // configure as working storage.
-func (c *StorageGateway) AddWorkingStorage(input *AddWorkingStorageInput) (output *AddWorkingStorageOutput, err error) {
+func (c *StorageGateway) AddWorkingStorage(input *AddWorkingStorageInput) (*AddWorkingStorageOutput, awserr.Error) {
 	req, out := c.AddWorkingStorageRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opAddWorkingStorage *aws.Operation
@@ -199,11 +196,10 @@ func (c *StorageGateway) CancelArchivalRequest(input *CancelArchivalInput) (req 
 
 // Cancels archiving of a virtual tape to the virtual tape shelf (VTS) after
 // the archiving process is initiated.
-func (c *StorageGateway) CancelArchival(input *CancelArchivalInput) (output *CancelArchivalOutput, err error) {
+func (c *StorageGateway) CancelArchival(input *CancelArchivalInput) (*CancelArchivalOutput, awserr.Error) {
 	req, out := c.CancelArchivalRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCancelArchival *aws.Operation
@@ -234,11 +230,10 @@ func (c *StorageGateway) CancelRetrievalRequest(input *CancelRetrievalInput) (re
 // Cancels retrieval of a virtual tape from the virtual tape shelf (VTS) to
 // a gateway after the retrieval process is initiated. The virtual tape is returned
 // to the VTS.
-func (c *StorageGateway) CancelRetrieval(input *CancelRetrievalInput) (output *CancelRetrievalOutput, err error) {
+func (c *StorageGateway) CancelRetrieval(input *CancelRetrievalInput) (*CancelRetrievalOutput, awserr.Error) {
 	req, out := c.CancelRetrievalRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCancelRetrieval *aws.Operation
@@ -277,11 +272,10 @@ func (c *StorageGateway) CreateCachediSCSIVolumeRequest(input *CreateCachediSCSI
 // information about it such as the volume Amazon Resource Name (ARN), its size,
 // and the iSCSI target ARN that initiators can use to connect to the volume
 // target.
-func (c *StorageGateway) CreateCachediSCSIVolume(input *CreateCachediSCSIVolumeInput) (output *CreateCachediSCSIVolumeOutput, err error) {
+func (c *StorageGateway) CreateCachediSCSIVolume(input *CreateCachediSCSIVolumeInput) (*CreateCachediSCSIVolumeOutput, awserr.Error) {
 	req, out := c.CreateCachediSCSIVolumeRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateCachediSCSIVolume *aws.Operation
@@ -329,11 +323,10 @@ func (c *StorageGateway) CreateSnapshotRequest(input *CreateSnapshotInput) (req 
 //
 // To list or delete a snapshot, you must use the Amazon EC2 API. For more
 // information, .
-func (c *StorageGateway) CreateSnapshot(input *CreateSnapshotInput) (output *CreateSnapshotOutput, err error) {
+func (c *StorageGateway) CreateSnapshot(input *CreateSnapshotInput) (*CreateSnapshotOutput, awserr.Error) {
 	req, out := c.CreateSnapshotRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateSnapshot *aws.Operation
@@ -379,11 +372,10 @@ func (c *StorageGateway) CreateSnapshotFromVolumeRecoveryPointRequest(input *Cre
 //
 //  To list or delete a snapshot, you must use the Amazon EC2 API. For more
 // information, in Amazon Elastic Compute Cloud API Reference.
-func (c *StorageGateway) CreateSnapshotFromVolumeRecoveryPoint(input *CreateSnapshotFromVolumeRecoveryPointInput) (output *CreateSnapshotFromVolumeRecoveryPointOutput, err error) {
+func (c *StorageGateway) CreateSnapshotFromVolumeRecoveryPoint(input *CreateSnapshotFromVolumeRecoveryPointInput) (*CreateSnapshotFromVolumeRecoveryPointOutput, awserr.Error) {
 	req, out := c.CreateSnapshotFromVolumeRecoveryPointRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateSnapshotFromVolumeRecoveryPoint *aws.Operation
@@ -424,11 +416,10 @@ func (c *StorageGateway) CreateStorediSCSIVolumeRequest(input *CreateStorediSCSI
 // the volume and returns volume information such as the volume Amazon Resource
 // Name (ARN), its size, and the iSCSI target ARN that initiators can use to
 // connect to the volume target.
-func (c *StorageGateway) CreateStorediSCSIVolume(input *CreateStorediSCSIVolumeInput) (output *CreateStorediSCSIVolumeOutput, err error) {
+func (c *StorageGateway) CreateStorediSCSIVolume(input *CreateStorediSCSIVolumeInput) (*CreateStorediSCSIVolumeOutput, awserr.Error) {
 	req, out := c.CreateStorediSCSIVolumeRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateStorediSCSIVolume *aws.Operation
@@ -461,11 +452,10 @@ func (c *StorageGateway) CreateTapesRequest(input *CreateTapesInput) (req *aws.R
 //
 // Cache storage must be allocated to the gateway before you can create virtual
 // tapes. Use the AddCache operation to add cache storage to a gateway.
-func (c *StorageGateway) CreateTapes(input *CreateTapesInput) (output *CreateTapesOutput, err error) {
+func (c *StorageGateway) CreateTapes(input *CreateTapesInput) (*CreateTapesOutput, awserr.Error) {
 	req, out := c.CreateTapesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateTapes *aws.Operation
@@ -498,11 +488,10 @@ func (c *StorageGateway) DeleteBandwidthRateLimitRequest(input *DeleteBandwidthR
 // If you delete only one of the limits, the other limit remains unchanged.
 // To specify which gateway to work with, use the Amazon Resource Name (ARN)
 // of the gateway in your request.
-func (c *StorageGateway) DeleteBandwidthRateLimit(input *DeleteBandwidthRateLimitInput) (output *DeleteBandwidthRateLimitOutput, err error) {
+func (c *StorageGateway) DeleteBandwidthRateLimit(input *DeleteBandwidthRateLimitInput) (*DeleteBandwidthRateLimitOutput, awserr.Error) {
 	req, out := c.DeleteBandwidthRateLimitRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteBandwidthRateLimit *aws.Operation
@@ -532,11 +521,10 @@ func (c *StorageGateway) DeleteChapCredentialsRequest(input *DeleteChapCredentia
 
 // This operation deletes Challenge-Handshake Authentication Protocol (CHAP)
 // credentials for a specified iSCSI target and initiator pair.
-func (c *StorageGateway) DeleteChapCredentials(input *DeleteChapCredentialsInput) (output *DeleteChapCredentialsOutput, err error) {
+func (c *StorageGateway) DeleteChapCredentials(input *DeleteChapCredentialsInput) (*DeleteChapCredentialsOutput, awserr.Error) {
 	req, out := c.DeleteChapCredentialsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteChapCredentials *aws.Operation
@@ -580,11 +568,10 @@ func (c *StorageGateway) DeleteGatewayRequest(input *DeleteGatewayInput) (req *a
 // by canceling your Amazon EC2 subscription.  If you prefer not to cancel your
 // Amazon EC2 subscription, you can delete your snapshots using the Amazon EC2
 // console. For more information, see the  AWS Storage Gateway Detail Page (http://aws.amazon.com/storagegateway).
-func (c *StorageGateway) DeleteGateway(input *DeleteGatewayInput) (output *DeleteGatewayOutput, err error) {
+func (c *StorageGateway) DeleteGateway(input *DeleteGatewayInput) (*DeleteGatewayOutput, awserr.Error) {
 	req, out := c.DeleteGatewayRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteGateway *aws.Operation
@@ -622,11 +609,10 @@ func (c *StorageGateway) DeleteSnapshotScheduleRequest(input *DeleteSnapshotSche
 //
 //  To list or delete a snapshot, you must use the Amazon EC2 API. in Amazon
 // Elastic Compute Cloud API Reference.
-func (c *StorageGateway) DeleteSnapshotSchedule(input *DeleteSnapshotScheduleInput) (output *DeleteSnapshotScheduleOutput, err error) {
+func (c *StorageGateway) DeleteSnapshotSchedule(input *DeleteSnapshotScheduleInput) (*DeleteSnapshotScheduleOutput, awserr.Error) {
 	req, out := c.DeleteSnapshotScheduleRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteSnapshotSchedule *aws.Operation
@@ -655,11 +641,10 @@ func (c *StorageGateway) DeleteTapeRequest(input *DeleteTapeInput) (req *aws.Req
 }
 
 // Deletes the specified virtual tape.
-func (c *StorageGateway) DeleteTape(input *DeleteTapeInput) (output *DeleteTapeOutput, err error) {
+func (c *StorageGateway) DeleteTape(input *DeleteTapeInput) (*DeleteTapeOutput, awserr.Error) {
 	req, out := c.DeleteTapeRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteTape *aws.Operation
@@ -688,11 +673,10 @@ func (c *StorageGateway) DeleteTapeArchiveRequest(input *DeleteTapeArchiveInput)
 }
 
 // Deletes the specified virtual tape from the virtual tape shelf (VTS).
-func (c *StorageGateway) DeleteTapeArchive(input *DeleteTapeArchiveInput) (output *DeleteTapeArchiveOutput, err error) {
+func (c *StorageGateway) DeleteTapeArchive(input *DeleteTapeArchiveInput) (*DeleteTapeArchiveOutput, awserr.Error) {
 	req, out := c.DeleteTapeArchiveRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteTapeArchive *aws.Operation
@@ -734,11 +718,10 @@ func (c *StorageGateway) DeleteVolumeRequest(input *DeleteVolumeInput) (req *aws
 //
 // In the request, you must provide the Amazon Resource Name (ARN) of the storage
 // volume you want to delete.
-func (c *StorageGateway) DeleteVolume(input *DeleteVolumeInput) (output *DeleteVolumeOutput, err error) {
+func (c *StorageGateway) DeleteVolume(input *DeleteVolumeInput) (*DeleteVolumeOutput, awserr.Error) {
 	req, out := c.DeleteVolumeRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteVolume *aws.Operation
@@ -773,11 +756,10 @@ func (c *StorageGateway) DescribeBandwidthRateLimitRequest(input *DescribeBandwi
 // limit is set. If no limits are set for the gateway, then this operation returns
 // only the gateway ARN in the response body. To specify which gateway to describe,
 // use the Amazon Resource Name (ARN) of the gateway in your request.
-func (c *StorageGateway) DescribeBandwidthRateLimit(input *DescribeBandwidthRateLimitInput) (output *DescribeBandwidthRateLimitOutput, err error) {
+func (c *StorageGateway) DescribeBandwidthRateLimit(input *DescribeBandwidthRateLimitInput) (*DescribeBandwidthRateLimitOutput, awserr.Error) {
 	req, out := c.DescribeBandwidthRateLimitRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeBandwidthRateLimit *aws.Operation
@@ -810,11 +792,10 @@ func (c *StorageGateway) DescribeCacheRequest(input *DescribeCacheInput) (req *a
 //
 //  The response includes disk IDs that are configured as cache, and it includes
 // the amount of cache allocated and used.
-func (c *StorageGateway) DescribeCache(input *DescribeCacheInput) (output *DescribeCacheOutput, err error) {
+func (c *StorageGateway) DescribeCache(input *DescribeCacheInput) (*DescribeCacheOutput, awserr.Error) {
 	req, out := c.DescribeCacheRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeCache *aws.Operation
@@ -849,11 +830,10 @@ func (c *StorageGateway) DescribeCachediSCSIVolumesRequest(input *DescribeCached
 //  The list of gateway volumes in the request must be from one gateway. In
 // the response Amazon Storage Gateway returns volume information sorted by
 // volume Amazon Resource Name (ARN).
-func (c *StorageGateway) DescribeCachediSCSIVolumes(input *DescribeCachediSCSIVolumesInput) (output *DescribeCachediSCSIVolumesOutput, err error) {
+func (c *StorageGateway) DescribeCachediSCSIVolumes(input *DescribeCachediSCSIVolumesInput) (*DescribeCachediSCSIVolumesOutput, awserr.Error) {
 	req, out := c.DescribeCachediSCSIVolumesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeCachediSCSIVolumes *aws.Operation
@@ -884,11 +864,10 @@ func (c *StorageGateway) DescribeChapCredentialsRequest(input *DescribeChapCrede
 // This operation returns an array of Challenge-Handshake Authentication Protocol
 // (CHAP) credentials information for a specified iSCSI target, one for each
 // target-initiator pair.
-func (c *StorageGateway) DescribeChapCredentials(input *DescribeChapCredentialsInput) (output *DescribeChapCredentialsOutput, err error) {
+func (c *StorageGateway) DescribeChapCredentials(input *DescribeChapCredentialsInput) (*DescribeChapCredentialsOutput, awserr.Error) {
 	req, out := c.DescribeChapCredentialsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeChapCredentials *aws.Operation
@@ -920,11 +899,10 @@ func (c *StorageGateway) DescribeGatewayInformationRequest(input *DescribeGatewa
 // interfaces, configured time zone, and the state (whether the gateway is running
 // or not). To specify which gateway to describe, use the Amazon Resource Name
 // (ARN) of the gateway in your request.
-func (c *StorageGateway) DescribeGatewayInformation(input *DescribeGatewayInformationInput) (output *DescribeGatewayInformationOutput, err error) {
+func (c *StorageGateway) DescribeGatewayInformation(input *DescribeGatewayInformationInput) (*DescribeGatewayInformationOutput, awserr.Error) {
 	req, out := c.DescribeGatewayInformationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeGatewayInformation *aws.Operation
@@ -955,11 +933,10 @@ func (c *StorageGateway) DescribeMaintenanceStartTimeRequest(input *DescribeMain
 // This operation returns your gateway's weekly maintenance start time including
 // the day and time of the week. Note that values are in terms of the gateway's
 // time zone.
-func (c *StorageGateway) DescribeMaintenanceStartTime(input *DescribeMaintenanceStartTimeInput) (output *DescribeMaintenanceStartTimeOutput, err error) {
+func (c *StorageGateway) DescribeMaintenanceStartTime(input *DescribeMaintenanceStartTimeInput) (*DescribeMaintenanceStartTimeOutput, awserr.Error) {
 	req, out := c.DescribeMaintenanceStartTimeRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeMaintenanceStartTime *aws.Operation
@@ -990,11 +967,10 @@ func (c *StorageGateway) DescribeSnapshotScheduleRequest(input *DescribeSnapshot
 // This operation describes the snapshot schedule for the specified gateway
 // volume. The snapshot schedule information includes intervals at which snapshots
 // are automatically initiated on the volume.
-func (c *StorageGateway) DescribeSnapshotSchedule(input *DescribeSnapshotScheduleInput) (output *DescribeSnapshotScheduleOutput, err error) {
+func (c *StorageGateway) DescribeSnapshotSchedule(input *DescribeSnapshotScheduleInput) (*DescribeSnapshotScheduleOutput, awserr.Error) {
 	req, out := c.DescribeSnapshotScheduleRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeSnapshotSchedule *aws.Operation
@@ -1026,11 +1002,10 @@ func (c *StorageGateway) DescribeStorediSCSIVolumesRequest(input *DescribeStored
 // request. The list of gateway volumes in the request must be from one gateway.
 // In the response Amazon Storage Gateway returns volume information sorted
 // by volume ARNs.
-func (c *StorageGateway) DescribeStorediSCSIVolumes(input *DescribeStorediSCSIVolumesInput) (output *DescribeStorediSCSIVolumesOutput, err error) {
+func (c *StorageGateway) DescribeStorediSCSIVolumes(input *DescribeStorediSCSIVolumesInput) (*DescribeStorediSCSIVolumesOutput, awserr.Error) {
 	req, out := c.DescribeStorediSCSIVolumesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeStorediSCSIVolumes *aws.Operation
@@ -1063,11 +1038,10 @@ func (c *StorageGateway) DescribeTapeArchivesRequest(input *DescribeTapeArchives
 //
 // If a specific TapeARN is not specified, AWS Storage Gateway returns a description
 // of all virtual tapes found in the VTS associated with your account.
-func (c *StorageGateway) DescribeTapeArchives(input *DescribeTapeArchivesInput) (output *DescribeTapeArchivesOutput, err error) {
+func (c *StorageGateway) DescribeTapeArchives(input *DescribeTapeArchivesInput) (*DescribeTapeArchivesOutput, awserr.Error) {
 	req, out := c.DescribeTapeArchivesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeTapeArchives *aws.Operation
@@ -1101,11 +1075,10 @@ func (c *StorageGateway) DescribeTapeRecoveryPointsRequest(input *DescribeTapeRe
 // A recovery point is a point in time view of a virtual tape at which all
 // the data on the virtual tape is consistent. If your gateway crashes, virtual
 // tapes that have recovery points can be recovered to a new gateway.
-func (c *StorageGateway) DescribeTapeRecoveryPoints(input *DescribeTapeRecoveryPointsInput) (output *DescribeTapeRecoveryPointsOutput, err error) {
+func (c *StorageGateway) DescribeTapeRecoveryPoints(input *DescribeTapeRecoveryPointsInput) (*DescribeTapeRecoveryPointsOutput, awserr.Error) {
 	req, out := c.DescribeTapeRecoveryPointsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeTapeRecoveryPoints *aws.Operation
@@ -1136,11 +1109,10 @@ func (c *StorageGateway) DescribeTapesRequest(input *DescribeTapesInput) (req *a
 // Returns a description of the specified Amazon Resource Name (ARN) of virtual
 // tapes. If a TapeARN is not specified, returns a description of all virtual
 // tapes associated with the specified gateway.
-func (c *StorageGateway) DescribeTapes(input *DescribeTapesInput) (output *DescribeTapesOutput, err error) {
+func (c *StorageGateway) DescribeTapes(input *DescribeTapesInput) (*DescribeTapesOutput, awserr.Error) {
 	req, out := c.DescribeTapesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeTapes *aws.Operation
@@ -1174,11 +1146,10 @@ func (c *StorageGateway) DescribeUploadBufferRequest(input *DescribeUploadBuffer
 //
 //  The response includes disk IDs that are configured as upload buffer space,
 // and it includes the amount of upload buffer space allocated and used.
-func (c *StorageGateway) DescribeUploadBuffer(input *DescribeUploadBufferInput) (output *DescribeUploadBufferOutput, err error) {
+func (c *StorageGateway) DescribeUploadBuffer(input *DescribeUploadBufferInput) (*DescribeUploadBufferOutput, awserr.Error) {
 	req, out := c.DescribeUploadBufferRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeUploadBuffer *aws.Operation
@@ -1210,11 +1181,10 @@ func (c *StorageGateway) DescribeVTLDevicesRequest(input *DescribeVTLDevicesInpu
 // gateway. In the response, AWS Storage Gateway returns VTL device information.
 //
 // The list of VTL devices must be from one gateway.
-func (c *StorageGateway) DescribeVTLDevices(input *DescribeVTLDevicesInput) (output *DescribeVTLDevicesOutput, err error) {
+func (c *StorageGateway) DescribeVTLDevices(input *DescribeVTLDevicesInput) (*DescribeVTLDevicesOutput, awserr.Error) {
 	req, out := c.DescribeVTLDevicesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeVTLDevices *aws.Operation
@@ -1252,11 +1222,10 @@ func (c *StorageGateway) DescribeWorkingStorageRequest(input *DescribeWorkingSto
 //
 // The response includes disk IDs that are configured as working storage, and
 // it includes the amount of working storage allocated and used.
-func (c *StorageGateway) DescribeWorkingStorage(input *DescribeWorkingStorageInput) (output *DescribeWorkingStorageOutput, err error) {
+func (c *StorageGateway) DescribeWorkingStorage(input *DescribeWorkingStorageInput) (*DescribeWorkingStorageOutput, awserr.Error) {
 	req, out := c.DescribeWorkingStorageRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeWorkingStorage *aws.Operation
@@ -1291,11 +1260,10 @@ func (c *StorageGateway) DisableGatewayRequest(input *DisableGatewayInput) (req 
 // Use this operation for a gateway-VTL that is not reachable or not functioning.
 //
 // Once a gateway is disabled it cannot be enabled.
-func (c *StorageGateway) DisableGateway(input *DisableGatewayInput) (output *DisableGatewayOutput, err error) {
+func (c *StorageGateway) DisableGateway(input *DisableGatewayInput) (*DisableGatewayOutput, awserr.Error) {
 	req, out := c.DisableGatewayRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDisableGateway *aws.Operation
@@ -1334,11 +1302,10 @@ func (c *StorageGateway) ListGatewaysRequest(input *ListGatewaysInput) (req *aws
 // If you have more gateways than are returned in a response-that is, the response
 // returns only a truncated list of your gateways-the response contains a marker
 // that you can specify in your next request to fetch the next page of gateways.
-func (c *StorageGateway) ListGateways(input *ListGatewaysInput) (output *ListGatewaysOutput, err error) {
+func (c *StorageGateway) ListGateways(input *ListGatewaysInput) (*ListGatewaysOutput, awserr.Error) {
 	req, out := c.ListGatewaysRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListGateways *aws.Operation
@@ -1376,11 +1343,10 @@ func (c *StorageGateway) ListLocalDisksRequest(input *ListLocalDisksInput) (req 
 // of present (the disk is availble to use), missing (the disk is no longer
 // connected to the gateway), or mismatch (the disk node is occupied by a disk
 // that has incorrect metadata or the disk content is corrupted).
-func (c *StorageGateway) ListLocalDisks(input *ListLocalDisksInput) (output *ListLocalDisksOutput, err error) {
+func (c *StorageGateway) ListLocalDisks(input *ListLocalDisksInput) (*ListLocalDisksOutput, awserr.Error) {
 	req, out := c.ListLocalDisksRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListLocalDisks *aws.Operation
@@ -1415,11 +1381,10 @@ func (c *StorageGateway) ListVolumeRecoveryPointsRequest(input *ListVolumeRecove
 // is a point in time at which all data of the volume is consistent and from
 // which you can create a snapshot. To create a snapshot from a volume recovery
 // point use the CreateSnapshotFromVolumeRecoveryPoint operation.
-func (c *StorageGateway) ListVolumeRecoveryPoints(input *ListVolumeRecoveryPointsInput) (output *ListVolumeRecoveryPointsOutput, err error) {
+func (c *StorageGateway) ListVolumeRecoveryPoints(input *ListVolumeRecoveryPointsInput) (*ListVolumeRecoveryPointsOutput, awserr.Error) {
 	req, out := c.ListVolumeRecoveryPointsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListVolumeRecoveryPoints *aws.Operation
@@ -1457,11 +1422,10 @@ func (c *StorageGateway) ListVolumesRequest(input *ListVolumesInput) (req *aws.R
 // returned in the response is truncated, the response includes a Marker field.
 // You can use this Marker value in your subsequent request to retrieve the
 // next set of volumes.
-func (c *StorageGateway) ListVolumes(input *ListVolumesInput) (output *ListVolumesOutput, err error) {
+func (c *StorageGateway) ListVolumes(input *ListVolumesInput) (*ListVolumesOutput, awserr.Error) {
 	req, out := c.ListVolumesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListVolumes *aws.Operation
@@ -1492,11 +1456,10 @@ func (c *StorageGateway) ResetCacheRequest(input *ResetCacheInput) (req *aws.Req
 // This operation resets all cache disks and makes the disks available for reconfiguration
 // as cache storage. When a cache is reset, the gateway loses its cache storage.
 // At this point you can reconfigure the disks as cache disks.
-func (c *StorageGateway) ResetCache(input *ResetCacheInput) (output *ResetCacheOutput, err error) {
+func (c *StorageGateway) ResetCache(input *ResetCacheInput) (*ResetCacheOutput, awserr.Error) {
 	req, out := c.ResetCacheRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opResetCache *aws.Operation
@@ -1532,11 +1495,10 @@ func (c *StorageGateway) RetrieveTapeArchiveRequest(input *RetrieveTapeArchiveIn
 // Once a tape is successfully retrieved to a gateway, it cannot be retrieved
 // again to another gateway. You must archive the tape again before you can
 // retrieve it to another gateway.
-func (c *StorageGateway) RetrieveTapeArchive(input *RetrieveTapeArchiveInput) (output *RetrieveTapeArchiveOutput, err error) {
+func (c *StorageGateway) RetrieveTapeArchive(input *RetrieveTapeArchiveInput) (*RetrieveTapeArchiveOutput, awserr.Error) {
 	req, out := c.RetrieveTapeArchiveRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRetrieveTapeArchive *aws.Operation
@@ -1573,11 +1535,10 @@ func (c *StorageGateway) RetrieveTapeRecoveryPointRequest(input *RetrieveTapeRec
 // The virtual tape can be retrieved to only one gateway. The retrieved tape
 // is read-only. The virtual tape can be retrieved to only a gateway-VTL. There
 // is no charge for retrieving recovery points.
-func (c *StorageGateway) RetrieveTapeRecoveryPoint(input *RetrieveTapeRecoveryPointInput) (output *RetrieveTapeRecoveryPointOutput, err error) {
+func (c *StorageGateway) RetrieveTapeRecoveryPoint(input *RetrieveTapeRecoveryPointInput) (*RetrieveTapeRecoveryPointOutput, awserr.Error) {
 	req, out := c.RetrieveTapeRecoveryPointRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRetrieveTapeRecoveryPoint *aws.Operation
@@ -1624,11 +1585,10 @@ func (c *StorageGateway) ShutdownGatewayRequest(input *ShutdownGatewayInput) (re
 // more information, see ActivateGateway. If do not intend to use the gateway
 // again, you must delete the gateway (using DeleteGateway) to no longer pay
 // software charges associated with the gateway.
-func (c *StorageGateway) ShutdownGateway(input *ShutdownGatewayInput) (output *ShutdownGatewayOutput, err error) {
+func (c *StorageGateway) ShutdownGateway(input *ShutdownGatewayInput) (*ShutdownGatewayOutput, awserr.Error) {
 	req, out := c.ShutdownGatewayRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opShutdownGateway *aws.Operation
@@ -1666,11 +1626,10 @@ func (c *StorageGateway) StartGatewayRequest(input *StartGatewayInput) (req *aws
 // call DescribeGatewayInformation and check the status before making any additional
 // API calls. For more information, see ActivateGateway. To specify which gateway
 // to start, use the Amazon Resource Name (ARN) of the gateway in your request.
-func (c *StorageGateway) StartGateway(input *StartGatewayInput) (output *StartGatewayOutput, err error) {
+func (c *StorageGateway) StartGateway(input *StartGatewayInput) (*StartGatewayOutput, awserr.Error) {
 	req, out := c.StartGatewayRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opStartGateway *aws.Operation
@@ -1709,11 +1668,10 @@ func (c *StorageGateway) UpdateBandwidthRateLimitRequest(input *UpdateBandwidthR
 //
 // To specify which gateway to update, use the Amazon Resource Name (ARN) of
 // the gateway in your request.
-func (c *StorageGateway) UpdateBandwidthRateLimit(input *UpdateBandwidthRateLimitInput) (output *UpdateBandwidthRateLimitOutput, err error) {
+func (c *StorageGateway) UpdateBandwidthRateLimit(input *UpdateBandwidthRateLimitInput) (*UpdateBandwidthRateLimitOutput, awserr.Error) {
 	req, out := c.UpdateBandwidthRateLimitRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateBandwidthRateLimit *aws.Operation
@@ -1747,11 +1705,10 @@ func (c *StorageGateway) UpdateChapCredentialsRequest(input *UpdateChapCredentia
 //
 //  When you update CHAP credentials, all existing connections on the target
 // are closed and initiators must reconnect with the new credentials.
-func (c *StorageGateway) UpdateChapCredentials(input *UpdateChapCredentialsInput) (output *UpdateChapCredentialsOutput, err error) {
+func (c *StorageGateway) UpdateChapCredentials(input *UpdateChapCredentialsInput) (*UpdateChapCredentialsOutput, awserr.Error) {
 	req, out := c.UpdateChapCredentialsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateChapCredentials *aws.Operation
@@ -1782,11 +1739,10 @@ func (c *StorageGateway) UpdateGatewayInformationRequest(input *UpdateGatewayInf
 // This operation updates a gateway's metadata, which includes the gateway's
 // name and time zone. To specify which gateway to update, use the Amazon Resource
 // Name (ARN) of the gateway in your request.
-func (c *StorageGateway) UpdateGatewayInformation(input *UpdateGatewayInformationInput) (output *UpdateGatewayInformationOutput, err error) {
+func (c *StorageGateway) UpdateGatewayInformation(input *UpdateGatewayInformationInput) (*UpdateGatewayInformationOutput, awserr.Error) {
 	req, out := c.UpdateGatewayInformationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateGatewayInformation *aws.Operation
@@ -1827,11 +1783,10 @@ func (c *StorageGateway) UpdateGatewaySoftwareNowRequest(input *UpdateGatewaySof
 // Settings (http://docs.aws.amazon.com/storagegateway/latest/userguide/ConfiguringiSCSIClientInitiatorWindowsClient.html#CustomizeWindowsiSCSISettings)
 // and Customizing Your Linux iSCSI Settings (http://docs.aws.amazon.com/storagegateway/latest/userguide/ConfiguringiSCSIClientInitiatorRedHatClient.html#CustomizeLinuxiSCSISettings),
 // respectively.
-func (c *StorageGateway) UpdateGatewaySoftwareNow(input *UpdateGatewaySoftwareNowInput) (output *UpdateGatewaySoftwareNowOutput, err error) {
+func (c *StorageGateway) UpdateGatewaySoftwareNow(input *UpdateGatewaySoftwareNowInput) (*UpdateGatewaySoftwareNowOutput, awserr.Error) {
 	req, out := c.UpdateGatewaySoftwareNowRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateGatewaySoftwareNow *aws.Operation
@@ -1862,11 +1817,10 @@ func (c *StorageGateway) UpdateMaintenanceStartTimeRequest(input *UpdateMaintena
 // This operation updates a gateway's weekly maintenance start time information,
 // including day and time of the week. The maintenance time is the time in your
 // gateway's time zone.
-func (c *StorageGateway) UpdateMaintenanceStartTime(input *UpdateMaintenanceStartTimeInput) (output *UpdateMaintenanceStartTimeOutput, err error) {
+func (c *StorageGateway) UpdateMaintenanceStartTime(input *UpdateMaintenanceStartTimeInput) (*UpdateMaintenanceStartTimeOutput, awserr.Error) {
 	req, out := c.UpdateMaintenanceStartTimeRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateMaintenanceStartTime *aws.Operation
@@ -1903,11 +1857,10 @@ func (c *StorageGateway) UpdateSnapshotScheduleRequest(input *UpdateSnapshotSche
 // In the request you must identify the gateway volume whose snapshot schedule
 // you want to update, and the schedule information, including when you want
 // the snapshot to begin on a day and the frequency (in hours) of snapshots.
-func (c *StorageGateway) UpdateSnapshotSchedule(input *UpdateSnapshotScheduleInput) (output *UpdateSnapshotScheduleOutput, err error) {
+func (c *StorageGateway) UpdateSnapshotSchedule(input *UpdateSnapshotScheduleInput) (*UpdateSnapshotScheduleOutput, awserr.Error) {
 	req, out := c.UpdateSnapshotScheduleRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateSnapshotSchedule *aws.Operation
@@ -1939,11 +1892,10 @@ func (c *StorageGateway) UpdateVTLDeviceTypeRequest(input *UpdateVTLDeviceTypeIn
 // you activate a gateway-VTL, you select a medium changer type for the gateway-VTL.
 // This operation enables you to select a different type of medium changer after
 // a gateway-VTL is activated.
-func (c *StorageGateway) UpdateVTLDeviceType(input *UpdateVTLDeviceTypeInput) (output *UpdateVTLDeviceTypeOutput, err error) {
+func (c *StorageGateway) UpdateVTLDeviceType(input *UpdateVTLDeviceTypeInput) (*UpdateVTLDeviceTypeOutput, awserr.Error) {
 	req, out := c.UpdateVTLDeviceTypeRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateVTLDeviceType *aws.Operation

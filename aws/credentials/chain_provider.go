@@ -1,13 +1,14 @@
 package credentials
 
 import (
-	"fmt"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
+	"github.com/awslabs/aws-sdk-go/internal/apierr"
 )
 
 var (
 	// ErrNoValidProvidersFoundInChain Is returned when there are no valid
 	// providers in the ChainProvider.
-	ErrNoValidProvidersFoundInChain = fmt.Errorf("no valid providers in chain")
+	ErrNoValidProvidersFoundInChain = apierr.New("NoCredentialProviders", "no valid providers in chain", nil)
 )
 
 // A ChainProvider will search for a provider which returns credentials
@@ -56,7 +57,7 @@ func NewChainCredentials(providers []Provider) *Credentials {
 //
 // If a provider is found it will be cached and any calls to IsExpired()
 // will return the expired state of the cached provider.
-func (c *ChainProvider) Retrieve() (Value, error) {
+func (c *ChainProvider) Retrieve() (Value, awserr.Error) {
 	for _, p := range c.Providers {
 		if creds, err := p.Retrieve(); err == nil {
 			c.curr = p
