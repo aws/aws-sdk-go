@@ -28,3 +28,6 @@ unit: deps
 
 deps:
 	go get ./...
+
+api_info:
+	@go run internal/model/cli/api-info/api-info.go
