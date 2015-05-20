@@ -8,7 +8,6 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -40,7 +39,7 @@ func (c *CloudFormation) CancelUpdateStackRequest(input *CancelUpdateStackInput)
 // the stack will roll back the update and revert to the previous stack configuration.
 //
 // Only stacks that are in the UPDATE_IN_PROGRESS state can be canceled.
-func (c *CloudFormation) CancelUpdateStack(input *CancelUpdateStackInput) (*CancelUpdateStackOutput, awserr.Error) {
+func (c *CloudFormation) CancelUpdateStack(input *CancelUpdateStackInput) (*CancelUpdateStackOutput, error) {
 	req, out := c.CancelUpdateStackRequest(input)
 	err := req.Send()
 	return out, err
@@ -74,7 +73,7 @@ func (c *CloudFormation) CreateStackRequest(input *CreateStackInput) (req *aws.R
 // Creates a stack as specified in the template. After the call completes successfully,
 // the stack creation starts. You can check the status of the stack via the
 // DescribeStacks API.
-func (c *CloudFormation) CreateStack(input *CreateStackInput) (*CreateStackOutput, awserr.Error) {
+func (c *CloudFormation) CreateStack(input *CreateStackInput) (*CreateStackOutput, error) {
 	req, out := c.CreateStackRequest(input)
 	err := req.Send()
 	return out, err
@@ -108,7 +107,7 @@ func (c *CloudFormation) DeleteStackRequest(input *DeleteStackInput) (req *aws.R
 // Deletes a specified stack. Once the call completes successfully, stack deletion
 // starts. Deleted stacks do not show up in the DescribeStacks API if the deletion
 // has been completed successfully.
-func (c *CloudFormation) DeleteStack(input *DeleteStackInput) (*DeleteStackOutput, awserr.Error) {
+func (c *CloudFormation) DeleteStack(input *DeleteStackInput) (*DeleteStackOutput, error) {
 	req, out := c.DeleteStackRequest(input)
 	err := req.Send()
 	return out, err
@@ -145,7 +144,7 @@ func (c *CloudFormation) DescribeStackEventsRequest(input *DescribeStackEventsIn
 //
 // You can list events for stacks that have failed to create or have been deleted
 // by specifying the unique stack identifier (stack ID).
-func (c *CloudFormation) DescribeStackEvents(input *DescribeStackEventsInput) (*DescribeStackEventsOutput, awserr.Error) {
+func (c *CloudFormation) DescribeStackEvents(input *DescribeStackEventsInput) (*DescribeStackEventsOutput, error) {
 	req, out := c.DescribeStackEventsRequest(input)
 	err := req.Send()
 	return out, err
@@ -180,7 +179,7 @@ func (c *CloudFormation) DescribeStackResourceRequest(input *DescribeStackResour
 //
 // For deleted stacks, DescribeStackResource returns resource information for
 // up to 90 days after the stack has been deleted.
-func (c *CloudFormation) DescribeStackResource(input *DescribeStackResourceInput) (*DescribeStackResourceOutput, awserr.Error) {
+func (c *CloudFormation) DescribeStackResource(input *DescribeStackResourceInput) (*DescribeStackResourceOutput, error) {
 	req, out := c.DescribeStackResourceRequest(input)
 	err := req.Send()
 	return out, err
@@ -228,7 +227,7 @@ func (c *CloudFormation) DescribeStackResourcesRequest(input *DescribeStackResou
 //
 // A ValidationError is returned if you specify both StackName and PhysicalResourceId
 // in the same request.
-func (c *CloudFormation) DescribeStackResources(input *DescribeStackResourcesInput) (*DescribeStackResourcesOutput, awserr.Error) {
+func (c *CloudFormation) DescribeStackResources(input *DescribeStackResourcesInput) (*DescribeStackResourcesOutput, error) {
 	req, out := c.DescribeStackResourcesRequest(input)
 	err := req.Send()
 	return out, err
@@ -261,7 +260,7 @@ func (c *CloudFormation) DescribeStacksRequest(input *DescribeStacksInput) (req 
 
 // Returns the description for the specified stack; if no stack name was specified,
 // then it returns the description for all the stacks created.
-func (c *CloudFormation) DescribeStacks(input *DescribeStacksInput) (*DescribeStacksOutput, awserr.Error) {
+func (c *CloudFormation) DescribeStacks(input *DescribeStacksInput) (*DescribeStacksOutput, error) {
 	req, out := c.DescribeStacksRequest(input)
 	err := req.Send()
 	return out, err
@@ -295,7 +294,7 @@ func (c *CloudFormation) EstimateTemplateCostRequest(input *EstimateTemplateCost
 // Returns the estimated monthly cost of a template. The return value is an
 // AWS Simple Monthly Calculator URL with a query string that describes the
 // resources required to run the template.
-func (c *CloudFormation) EstimateTemplateCost(input *EstimateTemplateCostInput) (*EstimateTemplateCostOutput, awserr.Error) {
+func (c *CloudFormation) EstimateTemplateCost(input *EstimateTemplateCostInput) (*EstimateTemplateCostOutput, error) {
 	req, out := c.EstimateTemplateCostRequest(input)
 	err := req.Send()
 	return out, err
@@ -328,7 +327,7 @@ func (c *CloudFormation) GetStackPolicyRequest(input *GetStackPolicyInput) (req 
 
 // Returns the stack policy for a specified stack. If a stack doesn't have a
 // policy, a null value is returned.
-func (c *CloudFormation) GetStackPolicy(input *GetStackPolicyInput) (*GetStackPolicyOutput, awserr.Error) {
+func (c *CloudFormation) GetStackPolicy(input *GetStackPolicyInput) (*GetStackPolicyOutput, error) {
 	req, out := c.GetStackPolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -366,7 +365,7 @@ func (c *CloudFormation) GetTemplateRequest(input *GetTemplateInput) (req *aws.R
 // the stack has been deleted.
 //
 //  If the template does not exist, a ValidationError is returned.
-func (c *CloudFormation) GetTemplate(input *GetTemplateInput) (*GetTemplateOutput, awserr.Error) {
+func (c *CloudFormation) GetTemplate(input *GetTemplateInput) (*GetTemplateOutput, error) {
 	req, out := c.GetTemplateRequest(input)
 	err := req.Send()
 	return out, err
@@ -407,7 +406,7 @@ func (c *CloudFormation) GetTemplateSummaryRequest(input *GetTemplateSummaryInpu
 // For deleted stacks, GetTemplateSummary returns the template information
 // for up to 90 days after the stack has been deleted. If the template does
 // not exist, a ValidationError is returned.
-func (c *CloudFormation) GetTemplateSummary(input *GetTemplateSummaryInput) (*GetTemplateSummaryOutput, awserr.Error) {
+func (c *CloudFormation) GetTemplateSummary(input *GetTemplateSummaryInput) (*GetTemplateSummaryOutput, error) {
 	req, out := c.GetTemplateSummaryRequest(input)
 	err := req.Send()
 	return out, err
@@ -442,7 +441,7 @@ func (c *CloudFormation) ListStackResourcesRequest(input *ListStackResourcesInpu
 //
 // For deleted stacks, ListStackResources returns resource information for
 // up to 90 days after the stack has been deleted.
-func (c *CloudFormation) ListStackResources(input *ListStackResourcesInput) (*ListStackResourcesOutput, awserr.Error) {
+func (c *CloudFormation) ListStackResources(input *ListStackResourcesInput) (*ListStackResourcesOutput, error) {
 	req, out := c.ListStackResourcesRequest(input)
 	err := req.Send()
 	return out, err
@@ -478,7 +477,7 @@ func (c *CloudFormation) ListStacksRequest(input *ListStacksInput) (req *aws.Req
 // is kept for 90 days after the stack is deleted. If no StackStatusFilter is
 // specified, summary information for all stacks is returned (including existing
 // stacks and stacks that have been deleted).
-func (c *CloudFormation) ListStacks(input *ListStacksInput) (*ListStacksOutput, awserr.Error) {
+func (c *CloudFormation) ListStacks(input *ListStacksInput) (*ListStacksOutput, error) {
 	req, out := c.ListStacksRequest(input)
 	err := req.Send()
 	return out, err
@@ -510,7 +509,7 @@ func (c *CloudFormation) SetStackPolicyRequest(input *SetStackPolicyInput) (req 
 }
 
 // Sets a stack policy for a specified stack.
-func (c *CloudFormation) SetStackPolicy(input *SetStackPolicyInput) (*SetStackPolicyOutput, awserr.Error) {
+func (c *CloudFormation) SetStackPolicy(input *SetStackPolicyInput) (*SetStackPolicyOutput, error) {
 	req, out := c.SetStackPolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -547,7 +546,7 @@ func (c *CloudFormation) SignalResourceRequest(input *SignalResourceInput) (req 
 // or update until resources receive the required number of signals or the timeout
 // period is exceeded. The SignalResource API is useful in cases where you want
 // to send signals from anywhere other than an Amazon EC2 instance.
-func (c *CloudFormation) SignalResource(input *SignalResourceInput) (*SignalResourceOutput, awserr.Error) {
+func (c *CloudFormation) SignalResource(input *SignalResourceInput) (*SignalResourceOutput, error) {
 	req, out := c.SignalResourceRequest(input)
 	err := req.Send()
 	return out, err
@@ -590,7 +589,7 @@ func (c *CloudFormation) UpdateStackRequest(input *UpdateStackInput) (req *aws.R
 //
 // For more information about creating an update template, updating a stack,
 // and monitoring the progress of the update, see Updating a Stack (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks.html).
-func (c *CloudFormation) UpdateStack(input *UpdateStackInput) (*UpdateStackOutput, awserr.Error) {
+func (c *CloudFormation) UpdateStack(input *UpdateStackInput) (*UpdateStackOutput, error) {
 	req, out := c.UpdateStackRequest(input)
 	err := req.Send()
 	return out, err
@@ -622,7 +621,7 @@ func (c *CloudFormation) ValidateTemplateRequest(input *ValidateTemplateInput) (
 }
 
 // Validates a specified template.
-func (c *CloudFormation) ValidateTemplate(input *ValidateTemplateInput) (*ValidateTemplateOutput, awserr.Error) {
+func (c *CloudFormation) ValidateTemplate(input *ValidateTemplateInput) (*ValidateTemplateOutput, error) {
 	req, out := c.ValidateTemplateRequest(input)
 	err := req.Send()
 	return out, err

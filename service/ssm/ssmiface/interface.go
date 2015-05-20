@@ -4,30 +4,29 @@
 package ssmiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/ssm"
 )
 
 type SSMAPI interface {
-	CreateAssociation(*ssm.CreateAssociationInput) (*ssm.CreateAssociationOutput, awserr.Error)
+	CreateAssociation(*ssm.CreateAssociationInput) (*ssm.CreateAssociationOutput, error)
 
-	CreateAssociationBatch(*ssm.CreateAssociationBatchInput) (*ssm.CreateAssociationBatchOutput, awserr.Error)
+	CreateAssociationBatch(*ssm.CreateAssociationBatchInput) (*ssm.CreateAssociationBatchOutput, error)
 
-	CreateDocument(*ssm.CreateDocumentInput) (*ssm.CreateDocumentOutput, awserr.Error)
+	CreateDocument(*ssm.CreateDocumentInput) (*ssm.CreateDocumentOutput, error)
 
-	DeleteAssociation(*ssm.DeleteAssociationInput) (*ssm.DeleteAssociationOutput, awserr.Error)
+	DeleteAssociation(*ssm.DeleteAssociationInput) (*ssm.DeleteAssociationOutput, error)
 
-	DeleteDocument(*ssm.DeleteDocumentInput) (*ssm.DeleteDocumentOutput, awserr.Error)
+	DeleteDocument(*ssm.DeleteDocumentInput) (*ssm.DeleteDocumentOutput, error)
 
-	DescribeAssociation(*ssm.DescribeAssociationInput) (*ssm.DescribeAssociationOutput, awserr.Error)
+	DescribeAssociation(*ssm.DescribeAssociationInput) (*ssm.DescribeAssociationOutput, error)
 
-	DescribeDocument(*ssm.DescribeDocumentInput) (*ssm.DescribeDocumentOutput, awserr.Error)
+	DescribeDocument(*ssm.DescribeDocumentInput) (*ssm.DescribeDocumentOutput, error)
 
-	GetDocument(*ssm.GetDocumentInput) (*ssm.GetDocumentOutput, awserr.Error)
+	GetDocument(*ssm.GetDocumentInput) (*ssm.GetDocumentOutput, error)
 
-	ListAssociations(*ssm.ListAssociationsInput) (*ssm.ListAssociationsOutput, awserr.Error)
+	ListAssociations(*ssm.ListAssociationsInput) (*ssm.ListAssociationsOutput, error)
 
-	ListDocuments(*ssm.ListDocumentsInput) (*ssm.ListDocumentsOutput, awserr.Error)
+	ListDocuments(*ssm.ListDocumentsInput) (*ssm.ListDocumentsOutput, error)
 
-	UpdateAssociationStatus(*ssm.UpdateAssociationStatusInput) (*ssm.UpdateAssociationStatusOutput, awserr.Error)
+	UpdateAssociationStatus(*ssm.UpdateAssociationStatusInput) (*ssm.UpdateAssociationStatusOutput, error)
 }

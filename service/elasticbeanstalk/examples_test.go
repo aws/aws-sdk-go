@@ -22,12 +22,15 @@ func ExampleElasticBeanstalk_CheckDNSAvailability() {
 	}
 	resp, err := svc.CheckDNSAvailability(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -43,12 +46,15 @@ func ExampleElasticBeanstalk_CreateApplication() {
 	}
 	resp, err := svc.CreateApplication(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -70,12 +76,15 @@ func ExampleElasticBeanstalk_CreateApplicationVersion() {
 	}
 	resp, err := svc.CreateApplicationVersion(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -106,12 +115,15 @@ func ExampleElasticBeanstalk_CreateConfigurationTemplate() {
 	}
 	resp, err := svc.CreateConfigurationTemplate(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -159,12 +171,15 @@ func ExampleElasticBeanstalk_CreateEnvironment() {
 	}
 	resp, err := svc.CreateEnvironment(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -177,12 +192,15 @@ func ExampleElasticBeanstalk_CreateStorageLocation() {
 	var params *elasticbeanstalk.CreateStorageLocationInput
 	resp, err := svc.CreateStorageLocation(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -198,12 +216,15 @@ func ExampleElasticBeanstalk_DeleteApplication() {
 	}
 	resp, err := svc.DeleteApplication(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -220,12 +241,15 @@ func ExampleElasticBeanstalk_DeleteApplicationVersion() {
 	}
 	resp, err := svc.DeleteApplicationVersion(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -241,12 +265,15 @@ func ExampleElasticBeanstalk_DeleteConfigurationTemplate() {
 	}
 	resp, err := svc.DeleteConfigurationTemplate(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -262,12 +289,15 @@ func ExampleElasticBeanstalk_DeleteEnvironmentConfiguration() {
 	}
 	resp, err := svc.DeleteEnvironmentConfiguration(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -286,12 +316,15 @@ func ExampleElasticBeanstalk_DescribeApplicationVersions() {
 	}
 	resp, err := svc.DescribeApplicationVersions(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -309,12 +342,15 @@ func ExampleElasticBeanstalk_DescribeApplications() {
 	}
 	resp, err := svc.DescribeApplications(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -339,12 +375,15 @@ func ExampleElasticBeanstalk_DescribeConfigurationOptions() {
 	}
 	resp, err := svc.DescribeConfigurationOptions(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -361,12 +400,15 @@ func ExampleElasticBeanstalk_DescribeConfigurationSettings() {
 	}
 	resp, err := svc.DescribeConfigurationSettings(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -382,12 +424,15 @@ func ExampleElasticBeanstalk_DescribeEnvironmentResources() {
 	}
 	resp, err := svc.DescribeEnvironmentResources(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -413,12 +458,15 @@ func ExampleElasticBeanstalk_DescribeEnvironments() {
 	}
 	resp, err := svc.DescribeEnvironments(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -443,12 +491,15 @@ func ExampleElasticBeanstalk_DescribeEvents() {
 	}
 	resp, err := svc.DescribeEvents(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -461,12 +512,15 @@ func ExampleElasticBeanstalk_ListAvailableSolutionStacks() {
 	var params *elasticbeanstalk.ListAvailableSolutionStacksInput
 	resp, err := svc.ListAvailableSolutionStacks(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -482,12 +536,15 @@ func ExampleElasticBeanstalk_RebuildEnvironment() {
 	}
 	resp, err := svc.RebuildEnvironment(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -504,12 +561,15 @@ func ExampleElasticBeanstalk_RequestEnvironmentInfo() {
 	}
 	resp, err := svc.RequestEnvironmentInfo(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -525,12 +585,15 @@ func ExampleElasticBeanstalk_RestartAppServer() {
 	}
 	resp, err := svc.RestartAppServer(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -547,12 +610,15 @@ func ExampleElasticBeanstalk_RetrieveEnvironmentInfo() {
 	}
 	resp, err := svc.RetrieveEnvironmentInfo(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -570,12 +636,15 @@ func ExampleElasticBeanstalk_SwapEnvironmentCNAMEs() {
 	}
 	resp, err := svc.SwapEnvironmentCNAMEs(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -592,12 +661,15 @@ func ExampleElasticBeanstalk_TerminateEnvironment() {
 	}
 	resp, err := svc.TerminateEnvironment(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -613,12 +685,15 @@ func ExampleElasticBeanstalk_UpdateApplication() {
 	}
 	resp, err := svc.UpdateApplication(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -635,12 +710,15 @@ func ExampleElasticBeanstalk_UpdateApplicationVersion() {
 	}
 	resp, err := svc.UpdateApplicationVersion(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -672,12 +750,15 @@ func ExampleElasticBeanstalk_UpdateConfigurationTemplate() {
 	}
 	resp, err := svc.UpdateConfigurationTemplate(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -716,12 +797,15 @@ func ExampleElasticBeanstalk_UpdateEnvironment() {
 	}
 	resp, err := svc.UpdateEnvironment(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -746,12 +830,15 @@ func ExampleElasticBeanstalk_ValidateConfigurationSettings() {
 	}
 	resp, err := svc.ValidateConfigurationSettings(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.

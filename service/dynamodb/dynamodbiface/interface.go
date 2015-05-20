@@ -4,34 +4,33 @@
 package dynamodbiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/dynamodb"
 )
 
 type DynamoDBAPI interface {
-	BatchGetItem(*dynamodb.BatchGetItemInput) (*dynamodb.BatchGetItemOutput, awserr.Error)
+	BatchGetItem(*dynamodb.BatchGetItemInput) (*dynamodb.BatchGetItemOutput, error)
 
-	BatchWriteItem(*dynamodb.BatchWriteItemInput) (*dynamodb.BatchWriteItemOutput, awserr.Error)
+	BatchWriteItem(*dynamodb.BatchWriteItemInput) (*dynamodb.BatchWriteItemOutput, error)
 
-	CreateTable(*dynamodb.CreateTableInput) (*dynamodb.CreateTableOutput, awserr.Error)
+	CreateTable(*dynamodb.CreateTableInput) (*dynamodb.CreateTableOutput, error)
 
-	DeleteItem(*dynamodb.DeleteItemInput) (*dynamodb.DeleteItemOutput, awserr.Error)
+	DeleteItem(*dynamodb.DeleteItemInput) (*dynamodb.DeleteItemOutput, error)
 
-	DeleteTable(*dynamodb.DeleteTableInput) (*dynamodb.DeleteTableOutput, awserr.Error)
+	DeleteTable(*dynamodb.DeleteTableInput) (*dynamodb.DeleteTableOutput, error)
 
-	DescribeTable(*dynamodb.DescribeTableInput) (*dynamodb.DescribeTableOutput, awserr.Error)
+	DescribeTable(*dynamodb.DescribeTableInput) (*dynamodb.DescribeTableOutput, error)
 
-	GetItem(*dynamodb.GetItemInput) (*dynamodb.GetItemOutput, awserr.Error)
+	GetItem(*dynamodb.GetItemInput) (*dynamodb.GetItemOutput, error)
 
-	ListTables(*dynamodb.ListTablesInput) (*dynamodb.ListTablesOutput, awserr.Error)
+	ListTables(*dynamodb.ListTablesInput) (*dynamodb.ListTablesOutput, error)
 
-	PutItem(*dynamodb.PutItemInput) (*dynamodb.PutItemOutput, awserr.Error)
+	PutItem(*dynamodb.PutItemInput) (*dynamodb.PutItemOutput, error)
 
-	Query(*dynamodb.QueryInput) (*dynamodb.QueryOutput, awserr.Error)
+	Query(*dynamodb.QueryInput) (*dynamodb.QueryOutput, error)
 
-	Scan(*dynamodb.ScanInput) (*dynamodb.ScanOutput, awserr.Error)
+	Scan(*dynamodb.ScanInput) (*dynamodb.ScanOutput, error)
 
-	UpdateItem(*dynamodb.UpdateItemInput) (*dynamodb.UpdateItemOutput, awserr.Error)
+	UpdateItem(*dynamodb.UpdateItemInput) (*dynamodb.UpdateItemOutput, error)
 
-	UpdateTable(*dynamodb.UpdateTableInput) (*dynamodb.UpdateTableOutput, awserr.Error)
+	UpdateTable(*dynamodb.UpdateTableInput) (*dynamodb.UpdateTableOutput, error)
 }

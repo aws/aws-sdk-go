@@ -25,12 +25,15 @@ func ExampleCodeDeploy_BatchGetApplications() {
 	}
 	resp, err := svc.BatchGetApplications(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -48,12 +51,15 @@ func ExampleCodeDeploy_BatchGetDeployments() {
 	}
 	resp, err := svc.BatchGetDeployments(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -68,12 +74,15 @@ func ExampleCodeDeploy_CreateApplication() {
 	}
 	resp, err := svc.CreateApplication(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -106,12 +115,15 @@ func ExampleCodeDeploy_CreateDeployment() {
 	}
 	resp, err := svc.CreateDeployment(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -130,12 +142,15 @@ func ExampleCodeDeploy_CreateDeploymentConfig() {
 	}
 	resp, err := svc.CreateDeploymentConfig(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -165,12 +180,15 @@ func ExampleCodeDeploy_CreateDeploymentGroup() {
 	}
 	resp, err := svc.CreateDeploymentGroup(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -185,12 +203,15 @@ func ExampleCodeDeploy_DeleteApplication() {
 	}
 	resp, err := svc.DeleteApplication(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -205,12 +226,15 @@ func ExampleCodeDeploy_DeleteDeploymentConfig() {
 	}
 	resp, err := svc.DeleteDeploymentConfig(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -226,12 +250,15 @@ func ExampleCodeDeploy_DeleteDeploymentGroup() {
 	}
 	resp, err := svc.DeleteDeploymentGroup(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -246,12 +273,15 @@ func ExampleCodeDeploy_GetApplication() {
 	}
 	resp, err := svc.GetApplication(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -280,12 +310,15 @@ func ExampleCodeDeploy_GetApplicationRevision() {
 	}
 	resp, err := svc.GetApplicationRevision(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -300,12 +333,15 @@ func ExampleCodeDeploy_GetDeployment() {
 	}
 	resp, err := svc.GetDeployment(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -320,12 +356,15 @@ func ExampleCodeDeploy_GetDeploymentConfig() {
 	}
 	resp, err := svc.GetDeploymentConfig(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -341,12 +380,15 @@ func ExampleCodeDeploy_GetDeploymentGroup() {
 	}
 	resp, err := svc.GetDeploymentGroup(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -362,12 +404,15 @@ func ExampleCodeDeploy_GetDeploymentInstance() {
 	}
 	resp, err := svc.GetDeploymentInstance(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -388,12 +433,15 @@ func ExampleCodeDeploy_ListApplicationRevisions() {
 	}
 	resp, err := svc.ListApplicationRevisions(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -408,12 +456,15 @@ func ExampleCodeDeploy_ListApplications() {
 	}
 	resp, err := svc.ListApplications(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -428,12 +479,15 @@ func ExampleCodeDeploy_ListDeploymentConfigs() {
 	}
 	resp, err := svc.ListDeploymentConfigs(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -449,12 +503,15 @@ func ExampleCodeDeploy_ListDeploymentGroups() {
 	}
 	resp, err := svc.ListDeploymentGroups(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -474,12 +531,15 @@ func ExampleCodeDeploy_ListDeploymentInstances() {
 	}
 	resp, err := svc.ListDeploymentInstances(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -504,12 +564,15 @@ func ExampleCodeDeploy_ListDeployments() {
 	}
 	resp, err := svc.ListDeployments(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -539,12 +602,15 @@ func ExampleCodeDeploy_RegisterApplicationRevision() {
 	}
 	resp, err := svc.RegisterApplicationRevision(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -559,12 +625,15 @@ func ExampleCodeDeploy_StopDeployment() {
 	}
 	resp, err := svc.StopDeployment(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -580,12 +649,15 @@ func ExampleCodeDeploy_UpdateApplication() {
 	}
 	resp, err := svc.UpdateApplication(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -616,12 +688,15 @@ func ExampleCodeDeploy_UpdateDeploymentGroup() {
 	}
 	resp, err := svc.UpdateDeploymentGroup(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.

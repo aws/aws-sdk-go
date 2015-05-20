@@ -1,7 +1,6 @@
 package credentials
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/internal/apierr"
 )
 
@@ -27,7 +26,7 @@ func NewStaticCredentials(id, secret, token string) *Credentials {
 }
 
 // Retrieve returns the credentials or error if the credentials are invalid.
-func (s *StaticProvider) Retrieve() (Value, awserr.Error) {
+func (s *StaticProvider) Retrieve() (Value, error) {
 	if s.AccessKeyID == "" || s.SecretAccessKey == "" {
 		return Value{}, ErrStaticCredentialsEmpty
 	}

@@ -8,7 +8,6 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -37,7 +36,7 @@ func (c *RDS) AddSourceIdentifierToSubscriptionRequest(input *AddSourceIdentifie
 }
 
 // Adds a source identifier to an existing RDS event notification subscription.
-func (c *RDS) AddSourceIdentifierToSubscription(input *AddSourceIdentifierToSubscriptionInput) (*AddSourceIdentifierToSubscriptionOutput, awserr.Error) {
+func (c *RDS) AddSourceIdentifierToSubscription(input *AddSourceIdentifierToSubscriptionInput) (*AddSourceIdentifierToSubscriptionOutput, error) {
 	req, out := c.AddSourceIdentifierToSubscriptionRequest(input)
 	err := req.Send()
 	return out, err
@@ -74,7 +73,7 @@ func (c *RDS) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *aws.
 //
 // For an overview on tagging Amazon RDS resources, see Tagging Amazon RDS
 // Resources (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Tagging.html).
-func (c *RDS) AddTagsToResource(input *AddTagsToResourceInput) (*AddTagsToResourceOutput, awserr.Error) {
+func (c *RDS) AddTagsToResource(input *AddTagsToResourceInput) (*AddTagsToResourceOutput, error) {
 	req, out := c.AddTagsToResourceRequest(input)
 	err := req.Send()
 	return out, err
@@ -106,7 +105,7 @@ func (c *RDS) ApplyPendingMaintenanceActionRequest(input *ApplyPendingMaintenanc
 }
 
 // Applies a pending maintenance action to a resource.
-func (c *RDS) ApplyPendingMaintenanceAction(input *ApplyPendingMaintenanceActionInput) (*ApplyPendingMaintenanceActionOutput, awserr.Error) {
+func (c *RDS) ApplyPendingMaintenanceAction(input *ApplyPendingMaintenanceActionInput) (*ApplyPendingMaintenanceActionOutput, error) {
 	req, out := c.ApplyPendingMaintenanceActionRequest(input)
 	err := req.Send()
 	return out, err
@@ -149,7 +148,7 @@ func (c *RDS) AuthorizeDBSecurityGroupIngressRequest(input *AuthorizeDBSecurityG
 // an Amazon RDS DB instance in another. You cannot authorize ingress from a
 // VPC security group in one VPC to an Amazon RDS DB instance in another.  For
 // an overview of CIDR ranges, go to the Wikipedia Tutorial (http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
-func (c *RDS) AuthorizeDBSecurityGroupIngress(input *AuthorizeDBSecurityGroupIngressInput) (*AuthorizeDBSecurityGroupIngressOutput, awserr.Error) {
+func (c *RDS) AuthorizeDBSecurityGroupIngress(input *AuthorizeDBSecurityGroupIngressInput) (*AuthorizeDBSecurityGroupIngressOutput, error) {
 	req, out := c.AuthorizeDBSecurityGroupIngressRequest(input)
 	err := req.Send()
 	return out, err
@@ -181,7 +180,7 @@ func (c *RDS) CopyDBParameterGroupRequest(input *CopyDBParameterGroupInput) (req
 }
 
 // Copies the specified DB parameter group.
-func (c *RDS) CopyDBParameterGroup(input *CopyDBParameterGroupInput) (*CopyDBParameterGroupOutput, awserr.Error) {
+func (c *RDS) CopyDBParameterGroup(input *CopyDBParameterGroupInput) (*CopyDBParameterGroupOutput, error) {
 	req, out := c.CopyDBParameterGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -214,7 +213,7 @@ func (c *RDS) CopyDBSnapshotRequest(input *CopyDBSnapshotInput) (req *aws.Reques
 
 // Copies the specified DBSnapshot. The source DBSnapshot must be in the "available"
 // state.
-func (c *RDS) CopyDBSnapshot(input *CopyDBSnapshotInput) (*CopyDBSnapshotOutput, awserr.Error) {
+func (c *RDS) CopyDBSnapshot(input *CopyDBSnapshotInput) (*CopyDBSnapshotOutput, error) {
 	req, out := c.CopyDBSnapshotRequest(input)
 	err := req.Send()
 	return out, err
@@ -246,7 +245,7 @@ func (c *RDS) CopyOptionGroupRequest(input *CopyOptionGroupInput) (req *aws.Requ
 }
 
 // Copies the specified option group.
-func (c *RDS) CopyOptionGroup(input *CopyOptionGroupInput) (*CopyOptionGroupOutput, awserr.Error) {
+func (c *RDS) CopyOptionGroup(input *CopyOptionGroupInput) (*CopyOptionGroupOutput, error) {
 	req, out := c.CopyOptionGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -278,7 +277,7 @@ func (c *RDS) CreateDBInstanceRequest(input *CreateDBInstanceInput) (req *aws.Re
 }
 
 // Creates a new DB instance.
-func (c *RDS) CreateDBInstance(input *CreateDBInstanceInput) (*CreateDBInstanceOutput, awserr.Error) {
+func (c *RDS) CreateDBInstance(input *CreateDBInstanceInput) (*CreateDBInstanceOutput, error) {
 	req, out := c.CreateDBInstanceRequest(input)
 	err := req.Send()
 	return out, err
@@ -317,7 +316,7 @@ func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadRepl
 // except as specified below.
 //
 //   The source DB instance must have backup retention enabled.
-func (c *RDS) CreateDBInstanceReadReplica(input *CreateDBInstanceReadReplicaInput) (*CreateDBInstanceReadReplicaOutput, awserr.Error) {
+func (c *RDS) CreateDBInstanceReadReplica(input *CreateDBInstanceReadReplicaInput) (*CreateDBInstanceReadReplicaOutput, error) {
 	req, out := c.CreateDBInstanceReadReplicaRequest(input)
 	err := req.Send()
 	return out, err
@@ -369,7 +368,7 @@ func (c *RDS) CreateDBParameterGroupRequest(input *CreateDBParameterGroupInput) 
 // You can use the Parameter Groups option of the Amazon RDS console (https://console.aws.amazon.com/rds/)
 // or the DescribeDBParameters command to verify that your DB parameter group
 // has been created or modified.
-func (c *RDS) CreateDBParameterGroup(input *CreateDBParameterGroupInput) (*CreateDBParameterGroupOutput, awserr.Error) {
+func (c *RDS) CreateDBParameterGroup(input *CreateDBParameterGroupInput) (*CreateDBParameterGroupOutput, error) {
 	req, out := c.CreateDBParameterGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -402,7 +401,7 @@ func (c *RDS) CreateDBSecurityGroupRequest(input *CreateDBSecurityGroupInput) (r
 
 // Creates a new DB security group. DB security groups control access to a DB
 // instance.
-func (c *RDS) CreateDBSecurityGroup(input *CreateDBSecurityGroupInput) (*CreateDBSecurityGroupOutput, awserr.Error) {
+func (c *RDS) CreateDBSecurityGroup(input *CreateDBSecurityGroupInput) (*CreateDBSecurityGroupOutput, error) {
 	req, out := c.CreateDBSecurityGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -434,7 +433,7 @@ func (c *RDS) CreateDBSnapshotRequest(input *CreateDBSnapshotInput) (req *aws.Re
 }
 
 // Creates a DBSnapshot. The source DBInstance must be in "available" state.
-func (c *RDS) CreateDBSnapshot(input *CreateDBSnapshotInput) (*CreateDBSnapshotOutput, awserr.Error) {
+func (c *RDS) CreateDBSnapshot(input *CreateDBSnapshotInput) (*CreateDBSnapshotOutput, error) {
 	req, out := c.CreateDBSnapshotRequest(input)
 	err := req.Send()
 	return out, err
@@ -467,7 +466,7 @@ func (c *RDS) CreateDBSubnetGroupRequest(input *CreateDBSubnetGroupInput) (req *
 
 // Creates a new DB subnet group. DB subnet groups must contain at least one
 // subnet in at least two AZs in the region.
-func (c *RDS) CreateDBSubnetGroup(input *CreateDBSubnetGroupInput) (*CreateDBSubnetGroupOutput, awserr.Error) {
+func (c *RDS) CreateDBSubnetGroup(input *CreateDBSubnetGroupInput) (*CreateDBSubnetGroupOutput, error) {
 	req, out := c.CreateDBSubnetGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -517,7 +516,7 @@ func (c *RDS) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput
 // type for all your RDS sources. If you do not specify either the SourceType
 // nor the SourceIdentifier, you will be notified of events generated from all
 // RDS sources belonging to your customer account.
-func (c *RDS) CreateEventSubscription(input *CreateEventSubscriptionInput) (*CreateEventSubscriptionOutput, awserr.Error) {
+func (c *RDS) CreateEventSubscription(input *CreateEventSubscriptionInput) (*CreateEventSubscriptionOutput, error) {
 	req, out := c.CreateEventSubscriptionRequest(input)
 	err := req.Send()
 	return out, err
@@ -549,7 +548,7 @@ func (c *RDS) CreateOptionGroupRequest(input *CreateOptionGroupInput) (req *aws.
 }
 
 // Creates a new option group. You can create up to 20 option groups.
-func (c *RDS) CreateOptionGroup(input *CreateOptionGroupInput) (*CreateOptionGroupOutput, awserr.Error) {
+func (c *RDS) CreateOptionGroup(input *CreateOptionGroupInput) (*CreateOptionGroupOutput, error) {
 	req, out := c.CreateOptionGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -590,7 +589,7 @@ func (c *RDS) DeleteDBInstanceRequest(input *DeleteDBInstanceInput) (req *aws.Re
 // be "deleting" until the DB snapshot is created. The API action DescribeDBInstance
 // is used to monitor the status of this operation. The action cannot be canceled
 // or reverted once submitted.
-func (c *RDS) DeleteDBInstance(input *DeleteDBInstanceInput) (*DeleteDBInstanceOutput, awserr.Error) {
+func (c *RDS) DeleteDBInstance(input *DeleteDBInstanceInput) (*DeleteDBInstanceOutput, error) {
 	req, out := c.DeleteDBInstanceRequest(input)
 	err := req.Send()
 	return out, err
@@ -625,7 +624,7 @@ func (c *RDS) DeleteDBParameterGroupRequest(input *DeleteDBParameterGroupInput) 
 // cannot be associated with any DB instances.
 //
 //  The specified DB parameter group cannot be associated with any DB instances.
-func (c *RDS) DeleteDBParameterGroup(input *DeleteDBParameterGroupInput) (*DeleteDBParameterGroupOutput, awserr.Error) {
+func (c *RDS) DeleteDBParameterGroup(input *DeleteDBParameterGroupInput) (*DeleteDBParameterGroupOutput, error) {
 	req, out := c.DeleteDBParameterGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -659,7 +658,7 @@ func (c *RDS) DeleteDBSecurityGroupRequest(input *DeleteDBSecurityGroupInput) (r
 // Deletes a DB security group.
 //
 // The specified DB security group must not be associated with any DB instances.
-func (c *RDS) DeleteDBSecurityGroup(input *DeleteDBSecurityGroupInput) (*DeleteDBSecurityGroupOutput, awserr.Error) {
+func (c *RDS) DeleteDBSecurityGroup(input *DeleteDBSecurityGroupInput) (*DeleteDBSecurityGroupOutput, error) {
 	req, out := c.DeleteDBSecurityGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -694,7 +693,7 @@ func (c *RDS) DeleteDBSnapshotRequest(input *DeleteDBSnapshotInput) (req *aws.Re
 // is terminated.
 //
 // The DBSnapshot must be in the available state to be deleted.
-func (c *RDS) DeleteDBSnapshot(input *DeleteDBSnapshotInput) (*DeleteDBSnapshotOutput, awserr.Error) {
+func (c *RDS) DeleteDBSnapshot(input *DeleteDBSnapshotInput) (*DeleteDBSnapshotOutput, error) {
 	req, out := c.DeleteDBSnapshotRequest(input)
 	err := req.Send()
 	return out, err
@@ -728,7 +727,7 @@ func (c *RDS) DeleteDBSubnetGroupRequest(input *DeleteDBSubnetGroupInput) (req *
 // Deletes a DB subnet group.
 //
 // The specified database subnet group must not be associated with any DB instances.
-func (c *RDS) DeleteDBSubnetGroup(input *DeleteDBSubnetGroupInput) (*DeleteDBSubnetGroupOutput, awserr.Error) {
+func (c *RDS) DeleteDBSubnetGroup(input *DeleteDBSubnetGroupInput) (*DeleteDBSubnetGroupOutput, error) {
 	req, out := c.DeleteDBSubnetGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -760,7 +759,7 @@ func (c *RDS) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionInput
 }
 
 // Deletes an RDS event notification subscription.
-func (c *RDS) DeleteEventSubscription(input *DeleteEventSubscriptionInput) (*DeleteEventSubscriptionOutput, awserr.Error) {
+func (c *RDS) DeleteEventSubscription(input *DeleteEventSubscriptionInput) (*DeleteEventSubscriptionOutput, error) {
 	req, out := c.DeleteEventSubscriptionRequest(input)
 	err := req.Send()
 	return out, err
@@ -792,7 +791,7 @@ func (c *RDS) DeleteOptionGroupRequest(input *DeleteOptionGroupInput) (req *aws.
 }
 
 // Deletes an existing option group.
-func (c *RDS) DeleteOptionGroup(input *DeleteOptionGroupInput) (*DeleteOptionGroupOutput, awserr.Error) {
+func (c *RDS) DeleteOptionGroup(input *DeleteOptionGroupInput) (*DeleteOptionGroupOutput, error) {
 	req, out := c.DeleteOptionGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -824,7 +823,7 @@ func (c *RDS) DescribeDBEngineVersionsRequest(input *DescribeDBEngineVersionsInp
 }
 
 // Returns a list of the available DB engines.
-func (c *RDS) DescribeDBEngineVersions(input *DescribeDBEngineVersionsInput) (*DescribeDBEngineVersionsOutput, awserr.Error) {
+func (c *RDS) DescribeDBEngineVersions(input *DescribeDBEngineVersionsInput) (*DescribeDBEngineVersionsOutput, error) {
 	req, out := c.DescribeDBEngineVersionsRequest(input)
 	err := req.Send()
 	return out, err
@@ -856,7 +855,7 @@ func (c *RDS) DescribeDBInstancesRequest(input *DescribeDBInstancesInput) (req *
 }
 
 // Returns information about provisioned RDS instances. This API supports pagination.
-func (c *RDS) DescribeDBInstances(input *DescribeDBInstancesInput) (*DescribeDBInstancesOutput, awserr.Error) {
+func (c *RDS) DescribeDBInstances(input *DescribeDBInstancesInput) (*DescribeDBInstancesOutput, error) {
 	req, out := c.DescribeDBInstancesRequest(input)
 	err := req.Send()
 	return out, err
@@ -888,7 +887,7 @@ func (c *RDS) DescribeDBLogFilesRequest(input *DescribeDBLogFilesInput) (req *aw
 }
 
 // Returns a list of DB log files for the DB instance.
-func (c *RDS) DescribeDBLogFiles(input *DescribeDBLogFilesInput) (*DescribeDBLogFilesOutput, awserr.Error) {
+func (c *RDS) DescribeDBLogFiles(input *DescribeDBLogFilesInput) (*DescribeDBLogFilesOutput, error) {
 	req, out := c.DescribeDBLogFilesRequest(input)
 	err := req.Send()
 	return out, err
@@ -922,7 +921,7 @@ func (c *RDS) DescribeDBParameterGroupsRequest(input *DescribeDBParameterGroupsI
 // Returns a list of DBParameterGroup descriptions. If a DBParameterGroupName
 // is specified, the list will contain only the description of the specified
 // DB parameter group.
-func (c *RDS) DescribeDBParameterGroups(input *DescribeDBParameterGroupsInput) (*DescribeDBParameterGroupsOutput, awserr.Error) {
+func (c *RDS) DescribeDBParameterGroups(input *DescribeDBParameterGroupsInput) (*DescribeDBParameterGroupsOutput, error) {
 	req, out := c.DescribeDBParameterGroupsRequest(input)
 	err := req.Send()
 	return out, err
@@ -954,7 +953,7 @@ func (c *RDS) DescribeDBParametersRequest(input *DescribeDBParametersInput) (req
 }
 
 // Returns the detailed parameter list for a particular DB parameter group.
-func (c *RDS) DescribeDBParameters(input *DescribeDBParametersInput) (*DescribeDBParametersOutput, awserr.Error) {
+func (c *RDS) DescribeDBParameters(input *DescribeDBParametersInput) (*DescribeDBParametersOutput, error) {
 	req, out := c.DescribeDBParametersRequest(input)
 	err := req.Send()
 	return out, err
@@ -988,7 +987,7 @@ func (c *RDS) DescribeDBSecurityGroupsRequest(input *DescribeDBSecurityGroupsInp
 // Returns a list of DBSecurityGroup descriptions. If a DBSecurityGroupName
 // is specified, the list will contain only the descriptions of the specified
 // DB security group.
-func (c *RDS) DescribeDBSecurityGroups(input *DescribeDBSecurityGroupsInput) (*DescribeDBSecurityGroupsOutput, awserr.Error) {
+func (c *RDS) DescribeDBSecurityGroups(input *DescribeDBSecurityGroupsInput) (*DescribeDBSecurityGroupsOutput, error) {
 	req, out := c.DescribeDBSecurityGroupsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1020,7 +1019,7 @@ func (c *RDS) DescribeDBSnapshotsRequest(input *DescribeDBSnapshotsInput) (req *
 }
 
 // Returns information about DB snapshots. This API supports pagination.
-func (c *RDS) DescribeDBSnapshots(input *DescribeDBSnapshotsInput) (*DescribeDBSnapshotsOutput, awserr.Error) {
+func (c *RDS) DescribeDBSnapshots(input *DescribeDBSnapshotsInput) (*DescribeDBSnapshotsOutput, error) {
 	req, out := c.DescribeDBSnapshotsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1055,7 +1054,7 @@ func (c *RDS) DescribeDBSubnetGroupsRequest(input *DescribeDBSubnetGroupsInput) 
 // the list will contain only the descriptions of the specified DBSubnetGroup.
 //
 // For an overview of CIDR ranges, go to the Wikipedia Tutorial (http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
-func (c *RDS) DescribeDBSubnetGroups(input *DescribeDBSubnetGroupsInput) (*DescribeDBSubnetGroupsOutput, awserr.Error) {
+func (c *RDS) DescribeDBSubnetGroups(input *DescribeDBSubnetGroupsInput) (*DescribeDBSubnetGroupsOutput, error) {
 	req, out := c.DescribeDBSubnetGroupsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1088,7 +1087,7 @@ func (c *RDS) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaul
 
 // Returns the default engine and system parameter information for the specified
 // database engine.
-func (c *RDS) DescribeEngineDefaultParameters(input *DescribeEngineDefaultParametersInput) (*DescribeEngineDefaultParametersOutput, awserr.Error) {
+func (c *RDS) DescribeEngineDefaultParameters(input *DescribeEngineDefaultParametersInput) (*DescribeEngineDefaultParametersOutput, error) {
 	req, out := c.DescribeEngineDefaultParametersRequest(input)
 	err := req.Send()
 	return out, err
@@ -1123,7 +1122,7 @@ func (c *RDS) DescribeEventCategoriesRequest(input *DescribeEventCategoriesInput
 // for a specified source type. You can see a list of the event categories and
 // source types in the  Events (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.html)
 // topic in the Amazon RDS User Guide.
-func (c *RDS) DescribeEventCategories(input *DescribeEventCategoriesInput) (*DescribeEventCategoriesOutput, awserr.Error) {
+func (c *RDS) DescribeEventCategories(input *DescribeEventCategoriesInput) (*DescribeEventCategoriesOutput, error) {
 	req, out := c.DescribeEventCategoriesRequest(input)
 	err := req.Send()
 	return out, err
@@ -1159,7 +1158,7 @@ func (c *RDS) DescribeEventSubscriptionsRequest(input *DescribeEventSubscription
 // SourceID, CreationTime, and Status.
 //
 // If you specify a SubscriptionName, lists the description for that subscription.
-func (c *RDS) DescribeEventSubscriptions(input *DescribeEventSubscriptionsInput) (*DescribeEventSubscriptionsOutput, awserr.Error) {
+func (c *RDS) DescribeEventSubscriptions(input *DescribeEventSubscriptionsInput) (*DescribeEventSubscriptionsOutput, error) {
 	req, out := c.DescribeEventSubscriptionsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1195,7 +1194,7 @@ func (c *RDS) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Reques
 // DB instance, DB security group, database snapshot, or DB parameter group
 // can be obtained by providing the name as a parameter. By default, the past
 // hour of events are returned.
-func (c *RDS) DescribeEvents(input *DescribeEventsInput) (*DescribeEventsOutput, awserr.Error) {
+func (c *RDS) DescribeEvents(input *DescribeEventsInput) (*DescribeEventsOutput, error) {
 	req, out := c.DescribeEventsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1227,7 +1226,7 @@ func (c *RDS) DescribeOptionGroupOptionsRequest(input *DescribeOptionGroupOption
 }
 
 // Describes all available options.
-func (c *RDS) DescribeOptionGroupOptions(input *DescribeOptionGroupOptionsInput) (*DescribeOptionGroupOptionsOutput, awserr.Error) {
+func (c *RDS) DescribeOptionGroupOptions(input *DescribeOptionGroupOptionsInput) (*DescribeOptionGroupOptionsOutput, error) {
 	req, out := c.DescribeOptionGroupOptionsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1259,7 +1258,7 @@ func (c *RDS) DescribeOptionGroupsRequest(input *DescribeOptionGroupsInput) (req
 }
 
 // Describes the available option groups.
-func (c *RDS) DescribeOptionGroups(input *DescribeOptionGroupsInput) (*DescribeOptionGroupsOutput, awserr.Error) {
+func (c *RDS) DescribeOptionGroups(input *DescribeOptionGroupsInput) (*DescribeOptionGroupsOutput, error) {
 	req, out := c.DescribeOptionGroupsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1291,7 +1290,7 @@ func (c *RDS) DescribeOrderableDBInstanceOptionsRequest(input *DescribeOrderable
 }
 
 // Returns a list of orderable DB instance options for the specified engine.
-func (c *RDS) DescribeOrderableDBInstanceOptions(input *DescribeOrderableDBInstanceOptionsInput) (*DescribeOrderableDBInstanceOptionsOutput, awserr.Error) {
+func (c *RDS) DescribeOrderableDBInstanceOptions(input *DescribeOrderableDBInstanceOptionsInput) (*DescribeOrderableDBInstanceOptionsOutput, error) {
 	req, out := c.DescribeOrderableDBInstanceOptionsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1324,7 +1323,7 @@ func (c *RDS) DescribePendingMaintenanceActionsRequest(input *DescribePendingMai
 
 // Returns a list of resources (for example, DB Instances) that have at least
 // one pending maintenance action.
-func (c *RDS) DescribePendingMaintenanceActions(input *DescribePendingMaintenanceActionsInput) (*DescribePendingMaintenanceActionsOutput, awserr.Error) {
+func (c *RDS) DescribePendingMaintenanceActions(input *DescribePendingMaintenanceActionsInput) (*DescribePendingMaintenanceActionsOutput, error) {
 	req, out := c.DescribePendingMaintenanceActionsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1357,7 +1356,7 @@ func (c *RDS) DescribeReservedDBInstancesRequest(input *DescribeReservedDBInstan
 
 // Returns information about reserved DB instances for this account, or about
 // a specified reserved DB instance.
-func (c *RDS) DescribeReservedDBInstances(input *DescribeReservedDBInstancesInput) (*DescribeReservedDBInstancesOutput, awserr.Error) {
+func (c *RDS) DescribeReservedDBInstances(input *DescribeReservedDBInstancesInput) (*DescribeReservedDBInstancesOutput, error) {
 	req, out := c.DescribeReservedDBInstancesRequest(input)
 	err := req.Send()
 	return out, err
@@ -1389,7 +1388,7 @@ func (c *RDS) DescribeReservedDBInstancesOfferingsRequest(input *DescribeReserve
 }
 
 // Lists available reserved DB instance offerings.
-func (c *RDS) DescribeReservedDBInstancesOfferings(input *DescribeReservedDBInstancesOfferingsInput) (*DescribeReservedDBInstancesOfferingsOutput, awserr.Error) {
+func (c *RDS) DescribeReservedDBInstancesOfferings(input *DescribeReservedDBInstancesOfferingsInput) (*DescribeReservedDBInstancesOfferingsOutput, error) {
 	req, out := c.DescribeReservedDBInstancesOfferingsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1421,7 +1420,7 @@ func (c *RDS) DownloadDBLogFilePortionRequest(input *DownloadDBLogFilePortionInp
 }
 
 // Downloads all or a portion of the specified log file.
-func (c *RDS) DownloadDBLogFilePortion(input *DownloadDBLogFilePortionInput) (*DownloadDBLogFilePortionOutput, awserr.Error) {
+func (c *RDS) DownloadDBLogFilePortion(input *DownloadDBLogFilePortionInput) (*DownloadDBLogFilePortionOutput, error) {
 	req, out := c.DownloadDBLogFilePortionRequest(input)
 	err := req.Send()
 	return out, err
@@ -1456,7 +1455,7 @@ func (c *RDS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 //
 // For an overview on tagging an Amazon RDS resource, see Tagging Amazon RDS
 // Resources (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Tagging.html).
-func (c *RDS) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, awserr.Error) {
+func (c *RDS) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
 	err := req.Send()
 	return out, err
@@ -1489,7 +1488,7 @@ func (c *RDS) ModifyDBInstanceRequest(input *ModifyDBInstanceInput) (req *aws.Re
 
 // Modify settings for a DB instance. You can change one or more database configuration
 // parameters by specifying these parameters and the new values in the request.
-func (c *RDS) ModifyDBInstance(input *ModifyDBInstanceInput) (*ModifyDBInstanceOutput, awserr.Error) {
+func (c *RDS) ModifyDBInstance(input *ModifyDBInstanceInput) (*ModifyDBInstanceOutput, error) {
 	req, out := c.ModifyDBInstanceRequest(input)
 	err := req.Send()
 	return out, err
@@ -1538,7 +1537,7 @@ func (c *RDS) ModifyDBParameterGroupRequest(input *ModifyDBParameterGroupInput) 
 // You can use the Parameter Groups option of the Amazon RDS console (https://console.aws.amazon.com/rds/)
 // or the DescribeDBParameters command to verify that your DB parameter group
 // has been created or modified.
-func (c *RDS) ModifyDBParameterGroup(input *ModifyDBParameterGroupInput) (*DBParameterGroupNameMessage, awserr.Error) {
+func (c *RDS) ModifyDBParameterGroup(input *ModifyDBParameterGroupInput) (*DBParameterGroupNameMessage, error) {
 	req, out := c.ModifyDBParameterGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -1571,7 +1570,7 @@ func (c *RDS) ModifyDBSubnetGroupRequest(input *ModifyDBSubnetGroupInput) (req *
 
 // Modifies an existing DB subnet group. DB subnet groups must contain at least
 // one subnet in at least two AZs in the region.
-func (c *RDS) ModifyDBSubnetGroup(input *ModifyDBSubnetGroupInput) (*ModifyDBSubnetGroupOutput, awserr.Error) {
+func (c *RDS) ModifyDBSubnetGroup(input *ModifyDBSubnetGroupInput) (*ModifyDBSubnetGroupOutput, error) {
 	req, out := c.ModifyDBSubnetGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -1611,7 +1610,7 @@ func (c *RDS) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionInput
 // Events (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.html)
 // topic in the Amazon RDS User Guide or by using the DescribeEventCategories
 // action.
-func (c *RDS) ModifyEventSubscription(input *ModifyEventSubscriptionInput) (*ModifyEventSubscriptionOutput, awserr.Error) {
+func (c *RDS) ModifyEventSubscription(input *ModifyEventSubscriptionInput) (*ModifyEventSubscriptionOutput, error) {
 	req, out := c.ModifyEventSubscriptionRequest(input)
 	err := req.Send()
 	return out, err
@@ -1643,7 +1642,7 @@ func (c *RDS) ModifyOptionGroupRequest(input *ModifyOptionGroupInput) (req *aws.
 }
 
 // Modifies an existing option group.
-func (c *RDS) ModifyOptionGroup(input *ModifyOptionGroupInput) (*ModifyOptionGroupOutput, awserr.Error) {
+func (c *RDS) ModifyOptionGroup(input *ModifyOptionGroupInput) (*ModifyOptionGroupOutput, error) {
 	req, out := c.ModifyOptionGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -1680,7 +1679,7 @@ func (c *RDS) PromoteReadReplicaRequest(input *PromoteReadReplicaInput) (req *aw
 // promoting the Read Replica. This ensures that no backup is taken during the
 // promotion process. Once the instance is promoted to a primary instance, backups
 // are taken based on your backup settings.
-func (c *RDS) PromoteReadReplica(input *PromoteReadReplicaInput) (*PromoteReadReplicaOutput, awserr.Error) {
+func (c *RDS) PromoteReadReplica(input *PromoteReadReplicaInput) (*PromoteReadReplicaOutput, error) {
 	req, out := c.PromoteReadReplicaRequest(input)
 	err := req.Send()
 	return out, err
@@ -1712,7 +1711,7 @@ func (c *RDS) PurchaseReservedDBInstancesOfferingRequest(input *PurchaseReserved
 }
 
 // Purchases a reserved DB instance offering.
-func (c *RDS) PurchaseReservedDBInstancesOffering(input *PurchaseReservedDBInstancesOfferingInput) (*PurchaseReservedDBInstancesOfferingOutput, awserr.Error) {
+func (c *RDS) PurchaseReservedDBInstancesOffering(input *PurchaseReservedDBInstancesOfferingInput) (*PurchaseReservedDBInstancesOfferingOutput, error) {
 	req, out := c.PurchaseReservedDBInstancesOfferingRequest(input)
 	err := req.Send()
 	return out, err
@@ -1760,7 +1759,7 @@ func (c *RDS) RebootDBInstanceRequest(input *RebootDBInstanceInput) (req *aws.Re
 // crash recovery process. To improve the reboot time, we recommend that you
 // reduce database activities as much as possible during the reboot process
 // to reduce rollback activity for in-transit transactions.
-func (c *RDS) RebootDBInstance(input *RebootDBInstanceInput) (*RebootDBInstanceOutput, awserr.Error) {
+func (c *RDS) RebootDBInstance(input *RebootDBInstanceInput) (*RebootDBInstanceOutput, error) {
 	req, out := c.RebootDBInstanceRequest(input)
 	err := req.Send()
 	return out, err
@@ -1792,7 +1791,7 @@ func (c *RDS) RemoveSourceIdentifierFromSubscriptionRequest(input *RemoveSourceI
 }
 
 // Removes a source identifier from an existing RDS event notification subscription.
-func (c *RDS) RemoveSourceIdentifierFromSubscription(input *RemoveSourceIdentifierFromSubscriptionInput) (*RemoveSourceIdentifierFromSubscriptionOutput, awserr.Error) {
+func (c *RDS) RemoveSourceIdentifierFromSubscription(input *RemoveSourceIdentifierFromSubscriptionInput) (*RemoveSourceIdentifierFromSubscriptionOutput, error) {
 	req, out := c.RemoveSourceIdentifierFromSubscriptionRequest(input)
 	err := req.Send()
 	return out, err
@@ -1827,7 +1826,7 @@ func (c *RDS) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) 
 //
 // For an overview on tagging an Amazon RDS resource, see Tagging Amazon RDS
 // Resources (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Tagging.html).
-func (c *RDS) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*RemoveTagsFromResourceOutput, awserr.Error) {
+func (c *RDS) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*RemoveTagsFromResourceOutput, error) {
 	req, out := c.RemoveTagsFromResourceRequest(input)
 	err := req.Send()
 	return out, err
@@ -1865,7 +1864,7 @@ func (c *RDS) ResetDBParameterGroupRequest(input *ResetDBParameterGroupInput) (r
 // dynamic parameters are updated immediately and static parameters are set
 // to pending-reboot to take effect on the next DB instance restart or RebootDBInstance
 // request.
-func (c *RDS) ResetDBParameterGroup(input *ResetDBParameterGroupInput) (*DBParameterGroupNameMessage, awserr.Error) {
+func (c *RDS) ResetDBParameterGroup(input *ResetDBParameterGroupInput) (*DBParameterGroupNameMessage, error) {
 	req, out := c.ResetDBParameterGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -1909,7 +1908,7 @@ func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFro
 // in the call to the RestoreDBInstanceFromDBSnapshot action. The result is
 // that you will replace the original DB instance with the DB instance created
 // from the snapshot.
-func (c *RDS) RestoreDBInstanceFromDBSnapshot(input *RestoreDBInstanceFromDBSnapshotInput) (*RestoreDBInstanceFromDBSnapshotOutput, awserr.Error) {
+func (c *RDS) RestoreDBInstanceFromDBSnapshot(input *RestoreDBInstanceFromDBSnapshotInput) (*RestoreDBInstanceFromDBSnapshotOutput, error) {
 	req, out := c.RestoreDBInstanceFromDBSnapshotRequest(input)
 	err := req.Send()
 	return out, err
@@ -1945,7 +1944,7 @@ func (c *RDS) RestoreDBInstanceToPointInTimeRequest(input *RestoreDBInstanceToPo
 // days. The target database is created from the source database with the same
 // configuration as the original database except that the DB instance is created
 // with the default DB security group.
-func (c *RDS) RestoreDBInstanceToPointInTime(input *RestoreDBInstanceToPointInTimeInput) (*RestoreDBInstanceToPointInTimeOutput, awserr.Error) {
+func (c *RDS) RestoreDBInstanceToPointInTime(input *RestoreDBInstanceToPointInTimeInput) (*RestoreDBInstanceToPointInTimeOutput, error) {
 	req, out := c.RestoreDBInstanceToPointInTimeRequest(input)
 	err := req.Send()
 	return out, err
@@ -1980,7 +1979,7 @@ func (c *RDS) RevokeDBSecurityGroupIngressRequest(input *RevokeDBSecurityGroupIn
 // or EC2 or VPC Security Groups. Required parameters for this API are one of
 // CIDRIP, EC2SecurityGroupId for VPC, or (EC2SecurityGroupOwnerId and either
 // EC2SecurityGroupName or EC2SecurityGroupId).
-func (c *RDS) RevokeDBSecurityGroupIngress(input *RevokeDBSecurityGroupIngressInput) (*RevokeDBSecurityGroupIngressOutput, awserr.Error) {
+func (c *RDS) RevokeDBSecurityGroupIngress(input *RevokeDBSecurityGroupIngressInput) (*RevokeDBSecurityGroupIngressOutput, error) {
 	req, out := c.RevokeDBSecurityGroupIngressRequest(input)
 	err := req.Send()
 	return out, err

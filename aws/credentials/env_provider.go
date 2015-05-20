@@ -1,7 +1,6 @@
 package credentials
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/internal/apierr"
 	"os"
 )
@@ -32,7 +31,7 @@ func NewEnvCredentials() *Credentials {
 }
 
 // Retrieve retrieves the keys from the environment.
-func (e *EnvProvider) Retrieve() (Value, awserr.Error) {
+func (e *EnvProvider) Retrieve() (Value, error) {
 	e.retrieved = false
 
 	id := os.Getenv("AWS_ACCESS_KEY_ID")

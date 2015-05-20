@@ -4,58 +4,57 @@
 package kmsiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/kms"
 )
 
 type KMSAPI interface {
-	CreateAlias(*kms.CreateAliasInput) (*kms.CreateAliasOutput, awserr.Error)
+	CreateAlias(*kms.CreateAliasInput) (*kms.CreateAliasOutput, error)
 
-	CreateGrant(*kms.CreateGrantInput) (*kms.CreateGrantOutput, awserr.Error)
+	CreateGrant(*kms.CreateGrantInput) (*kms.CreateGrantOutput, error)
 
-	CreateKey(*kms.CreateKeyInput) (*kms.CreateKeyOutput, awserr.Error)
+	CreateKey(*kms.CreateKeyInput) (*kms.CreateKeyOutput, error)
 
-	Decrypt(*kms.DecryptInput) (*kms.DecryptOutput, awserr.Error)
+	Decrypt(*kms.DecryptInput) (*kms.DecryptOutput, error)
 
-	DeleteAlias(*kms.DeleteAliasInput) (*kms.DeleteAliasOutput, awserr.Error)
+	DeleteAlias(*kms.DeleteAliasInput) (*kms.DeleteAliasOutput, error)
 
-	DescribeKey(*kms.DescribeKeyInput) (*kms.DescribeKeyOutput, awserr.Error)
+	DescribeKey(*kms.DescribeKeyInput) (*kms.DescribeKeyOutput, error)
 
-	DisableKey(*kms.DisableKeyInput) (*kms.DisableKeyOutput, awserr.Error)
+	DisableKey(*kms.DisableKeyInput) (*kms.DisableKeyOutput, error)
 
-	DisableKeyRotation(*kms.DisableKeyRotationInput) (*kms.DisableKeyRotationOutput, awserr.Error)
+	DisableKeyRotation(*kms.DisableKeyRotationInput) (*kms.DisableKeyRotationOutput, error)
 
-	EnableKey(*kms.EnableKeyInput) (*kms.EnableKeyOutput, awserr.Error)
+	EnableKey(*kms.EnableKeyInput) (*kms.EnableKeyOutput, error)
 
-	EnableKeyRotation(*kms.EnableKeyRotationInput) (*kms.EnableKeyRotationOutput, awserr.Error)
+	EnableKeyRotation(*kms.EnableKeyRotationInput) (*kms.EnableKeyRotationOutput, error)
 
-	Encrypt(*kms.EncryptInput) (*kms.EncryptOutput, awserr.Error)
+	Encrypt(*kms.EncryptInput) (*kms.EncryptOutput, error)
 
-	GenerateDataKey(*kms.GenerateDataKeyInput) (*kms.GenerateDataKeyOutput, awserr.Error)
+	GenerateDataKey(*kms.GenerateDataKeyInput) (*kms.GenerateDataKeyOutput, error)
 
-	GenerateDataKeyWithoutPlaintext(*kms.GenerateDataKeyWithoutPlaintextInput) (*kms.GenerateDataKeyWithoutPlaintextOutput, awserr.Error)
+	GenerateDataKeyWithoutPlaintext(*kms.GenerateDataKeyWithoutPlaintextInput) (*kms.GenerateDataKeyWithoutPlaintextOutput, error)
 
-	GenerateRandom(*kms.GenerateRandomInput) (*kms.GenerateRandomOutput, awserr.Error)
+	GenerateRandom(*kms.GenerateRandomInput) (*kms.GenerateRandomOutput, error)
 
-	GetKeyPolicy(*kms.GetKeyPolicyInput) (*kms.GetKeyPolicyOutput, awserr.Error)
+	GetKeyPolicy(*kms.GetKeyPolicyInput) (*kms.GetKeyPolicyOutput, error)
 
-	GetKeyRotationStatus(*kms.GetKeyRotationStatusInput) (*kms.GetKeyRotationStatusOutput, awserr.Error)
+	GetKeyRotationStatus(*kms.GetKeyRotationStatusInput) (*kms.GetKeyRotationStatusOutput, error)
 
-	ListAliases(*kms.ListAliasesInput) (*kms.ListAliasesOutput, awserr.Error)
+	ListAliases(*kms.ListAliasesInput) (*kms.ListAliasesOutput, error)
 
-	ListGrants(*kms.ListGrantsInput) (*kms.ListGrantsOutput, awserr.Error)
+	ListGrants(*kms.ListGrantsInput) (*kms.ListGrantsOutput, error)
 
-	ListKeyPolicies(*kms.ListKeyPoliciesInput) (*kms.ListKeyPoliciesOutput, awserr.Error)
+	ListKeyPolicies(*kms.ListKeyPoliciesInput) (*kms.ListKeyPoliciesOutput, error)
 
-	ListKeys(*kms.ListKeysInput) (*kms.ListKeysOutput, awserr.Error)
+	ListKeys(*kms.ListKeysInput) (*kms.ListKeysOutput, error)
 
-	PutKeyPolicy(*kms.PutKeyPolicyInput) (*kms.PutKeyPolicyOutput, awserr.Error)
+	PutKeyPolicy(*kms.PutKeyPolicyInput) (*kms.PutKeyPolicyOutput, error)
 
-	ReEncrypt(*kms.ReEncryptInput) (*kms.ReEncryptOutput, awserr.Error)
+	ReEncrypt(*kms.ReEncryptInput) (*kms.ReEncryptOutput, error)
 
-	RetireGrant(*kms.RetireGrantInput) (*kms.RetireGrantOutput, awserr.Error)
+	RetireGrant(*kms.RetireGrantInput) (*kms.RetireGrantOutput, error)
 
-	RevokeGrant(*kms.RevokeGrantInput) (*kms.RevokeGrantOutput, awserr.Error)
+	RevokeGrant(*kms.RevokeGrantInput) (*kms.RevokeGrantOutput, error)
 
-	UpdateKeyDescription(*kms.UpdateKeyDescriptionInput) (*kms.UpdateKeyDescriptionOutput, awserr.Error)
+	UpdateKeyDescription(*kms.UpdateKeyDescriptionInput) (*kms.UpdateKeyDescriptionOutput, error)
 }

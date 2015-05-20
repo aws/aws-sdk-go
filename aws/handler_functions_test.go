@@ -5,7 +5,6 @@ import (
 	"os"
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/aws/credentials"
 	"github.com/awslabs/aws-sdk-go/internal/apierr"
 	"github.com/stretchr/testify/assert"
@@ -41,7 +40,7 @@ type mockCredsProvider struct {
 	retreiveCalled bool
 }
 
-func (m *mockCredsProvider) Retrieve() (credentials.Value, awserr.Error) {
+func (m *mockCredsProvider) Retrieve() (credentials.Value, error) {
 	m.retreiveCalled = true
 	return credentials.Value{}, nil
 }

@@ -22,12 +22,15 @@ func ExampleCloudWatchLogs_CreateLogGroup() {
 	}
 	resp, err := svc.CreateLogGroup(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -43,12 +46,15 @@ func ExampleCloudWatchLogs_CreateLogStream() {
 	}
 	resp, err := svc.CreateLogStream(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -63,12 +69,15 @@ func ExampleCloudWatchLogs_DeleteLogGroup() {
 	}
 	resp, err := svc.DeleteLogGroup(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -84,12 +93,15 @@ func ExampleCloudWatchLogs_DeleteLogStream() {
 	}
 	resp, err := svc.DeleteLogStream(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -105,12 +117,15 @@ func ExampleCloudWatchLogs_DeleteMetricFilter() {
 	}
 	resp, err := svc.DeleteMetricFilter(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -125,12 +140,15 @@ func ExampleCloudWatchLogs_DeleteRetentionPolicy() {
 	}
 	resp, err := svc.DeleteRetentionPolicy(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -147,12 +165,15 @@ func ExampleCloudWatchLogs_DescribeLogGroups() {
 	}
 	resp, err := svc.DescribeLogGroups(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -172,12 +193,15 @@ func ExampleCloudWatchLogs_DescribeLogStreams() {
 	}
 	resp, err := svc.DescribeLogStreams(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -195,12 +219,15 @@ func ExampleCloudWatchLogs_DescribeMetricFilters() {
 	}
 	resp, err := svc.DescribeMetricFilters(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -221,12 +248,15 @@ func ExampleCloudWatchLogs_GetLogEvents() {
 	}
 	resp, err := svc.GetLogEvents(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -250,12 +280,15 @@ func ExampleCloudWatchLogs_PutLogEvents() {
 	}
 	resp, err := svc.PutLogEvents(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -280,12 +313,15 @@ func ExampleCloudWatchLogs_PutMetricFilter() {
 	}
 	resp, err := svc.PutMetricFilter(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -301,12 +337,15 @@ func ExampleCloudWatchLogs_PutRetentionPolicy() {
 	}
 	resp, err := svc.PutRetentionPolicy(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -325,12 +364,15 @@ func ExampleCloudWatchLogs_TestMetricFilter() {
 	}
 	resp, err := svc.TestMetricFilter(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.

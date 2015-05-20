@@ -23,12 +23,15 @@ func ExampleRoute53Domains_CheckDomainAvailability() {
 	}
 	resp, err := svc.CheckDomainAvailability(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -47,12 +50,15 @@ func ExampleRoute53Domains_DeleteTagsForDomain() {
 	}
 	resp, err := svc.DeleteTagsForDomain(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -67,12 +73,15 @@ func ExampleRoute53Domains_DisableDomainAutoRenew() {
 	}
 	resp, err := svc.DisableDomainAutoRenew(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -87,12 +96,15 @@ func ExampleRoute53Domains_DisableDomainTransferLock() {
 	}
 	resp, err := svc.DisableDomainTransferLock(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -107,12 +119,15 @@ func ExampleRoute53Domains_EnableDomainAutoRenew() {
 	}
 	resp, err := svc.EnableDomainAutoRenew(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -127,12 +142,15 @@ func ExampleRoute53Domains_EnableDomainTransferLock() {
 	}
 	resp, err := svc.EnableDomainTransferLock(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -147,12 +165,15 @@ func ExampleRoute53Domains_GetDomainDetail() {
 	}
 	resp, err := svc.GetDomainDetail(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -167,12 +188,15 @@ func ExampleRoute53Domains_GetOperationDetail() {
 	}
 	resp, err := svc.GetOperationDetail(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -188,12 +212,15 @@ func ExampleRoute53Domains_ListDomains() {
 	}
 	resp, err := svc.ListDomains(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -209,12 +236,15 @@ func ExampleRoute53Domains_ListOperations() {
 	}
 	resp, err := svc.ListOperations(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -229,12 +259,15 @@ func ExampleRoute53Domains_ListTagsForDomain() {
 	}
 	resp, err := svc.ListTagsForDomain(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -321,12 +354,15 @@ func ExampleRoute53Domains_RegisterDomain() {
 	}
 	resp, err := svc.RegisterDomain(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -341,12 +377,15 @@ func ExampleRoute53Domains_RetrieveDomainAuthCode() {
 	}
 	resp, err := svc.RetrieveDomainAuthCode(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -444,12 +483,15 @@ func ExampleRoute53Domains_TransferDomain() {
 	}
 	resp, err := svc.TransferDomain(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -530,12 +572,15 @@ func ExampleRoute53Domains_UpdateDomainContact() {
 	}
 	resp, err := svc.UpdateDomainContact(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -553,12 +598,15 @@ func ExampleRoute53Domains_UpdateDomainContactPrivacy() {
 	}
 	resp, err := svc.UpdateDomainContactPrivacy(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -584,12 +632,15 @@ func ExampleRoute53Domains_UpdateDomainNameservers() {
 	}
 	resp, err := svc.UpdateDomainNameservers(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -611,12 +662,15 @@ func ExampleRoute53Domains_UpdateTagsForDomain() {
 	}
 	resp, err := svc.UpdateTagsForDomain(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.

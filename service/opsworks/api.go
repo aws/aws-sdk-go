@@ -7,7 +7,6 @@ import (
 	"sync"
 
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -42,7 +41,7 @@ func (c *OpsWorks) AssignInstanceRequest(input *AssignInstanceInput) (req *aws.R
 // permissions level for the stack or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) AssignInstance(input *AssignInstanceInput) (*AssignInstanceOutput, awserr.Error) {
+func (c *OpsWorks) AssignInstance(input *AssignInstanceInput) (*AssignInstanceOutput, error) {
 	req, out := c.AssignInstanceRequest(input)
 	err := req.Send()
 	return out, err
@@ -81,7 +80,7 @@ func (c *OpsWorks) AssignVolumeRequest(input *AssignVolumeInput) (req *aws.Reque
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) AssignVolume(input *AssignVolumeInput) (*AssignVolumeOutput, awserr.Error) {
+func (c *OpsWorks) AssignVolume(input *AssignVolumeInput) (*AssignVolumeOutput, error) {
 	req, out := c.AssignVolumeRequest(input)
 	err := req.Send()
 	return out, err
@@ -120,7 +119,7 @@ func (c *OpsWorks) AssociateElasticIPRequest(input *AssociateElasticIPInput) (re
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) AssociateElasticIP(input *AssociateElasticIPInput) (*AssociateElasticIPOutput, awserr.Error) {
+func (c *OpsWorks) AssociateElasticIP(input *AssociateElasticIPInput) (*AssociateElasticIPOutput, error) {
 	req, out := c.AssociateElasticIPRequest(input)
 	err := req.Send()
 	return out, err
@@ -162,7 +161,7 @@ func (c *OpsWorks) AttachElasticLoadBalancerRequest(input *AttachElasticLoadBala
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) AttachElasticLoadBalancer(input *AttachElasticLoadBalancerInput) (*AttachElasticLoadBalancerOutput, awserr.Error) {
+func (c *OpsWorks) AttachElasticLoadBalancer(input *AttachElasticLoadBalancerInput) (*AttachElasticLoadBalancerOutput, error) {
 	req, out := c.AttachElasticLoadBalancerRequest(input)
 	err := req.Send()
 	return out, err
@@ -199,7 +198,7 @@ func (c *OpsWorks) CloneStackRequest(input *CloneStackInput) (req *aws.Request, 
 // Required Permissions: To use this action, an IAM user must have an attached
 // policy that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) CloneStack(input *CloneStackInput) (*CloneStackOutput, awserr.Error) {
+func (c *OpsWorks) CloneStack(input *CloneStackInput) (*CloneStackOutput, error) {
 	req, out := c.CloneStackRequest(input)
 	err := req.Send()
 	return out, err
@@ -237,7 +236,7 @@ func (c *OpsWorks) CreateAppRequest(input *CreateAppInput) (req *aws.Request, ou
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) CreateApp(input *CreateAppInput) (*CreateAppOutput, awserr.Error) {
+func (c *OpsWorks) CreateApp(input *CreateAppInput) (*CreateAppOutput, error) {
 	req, out := c.CreateAppRequest(input)
 	err := req.Send()
 	return out, err
@@ -276,7 +275,7 @@ func (c *OpsWorks) CreateDeploymentRequest(input *CreateDeploymentInput) (req *a
 // or Manage permissions level for the stack, or an attached policy that explicitly
 // grants permissions. For more information on user permissions, see Managing
 // User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) CreateDeployment(input *CreateDeploymentInput) (*CreateDeploymentOutput, awserr.Error) {
+func (c *OpsWorks) CreateDeployment(input *CreateDeploymentInput) (*CreateDeploymentOutput, error) {
 	req, out := c.CreateDeploymentRequest(input)
 	err := req.Send()
 	return out, err
@@ -314,7 +313,7 @@ func (c *OpsWorks) CreateInstanceRequest(input *CreateInstanceInput) (req *aws.R
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) CreateInstance(input *CreateInstanceInput) (*CreateInstanceOutput, awserr.Error) {
+func (c *OpsWorks) CreateInstance(input *CreateInstanceInput) (*CreateInstanceOutput, error) {
 	req, out := c.CreateInstanceRequest(input)
 	err := req.Send()
 	return out, err
@@ -358,7 +357,7 @@ func (c *OpsWorks) CreateLayerRequest(input *CreateLayerInput) (req *aws.Request
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) CreateLayer(input *CreateLayerInput) (*CreateLayerOutput, awserr.Error) {
+func (c *OpsWorks) CreateLayer(input *CreateLayerInput) (*CreateLayerOutput, error) {
 	req, out := c.CreateLayerRequest(input)
 	err := req.Send()
 	return out, err
@@ -394,7 +393,7 @@ func (c *OpsWorks) CreateStackRequest(input *CreateStackInput) (req *aws.Request
 // Required Permissions: To use this action, an IAM user must have an attached
 // policy that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) CreateStack(input *CreateStackInput) (*CreateStackOutput, awserr.Error) {
+func (c *OpsWorks) CreateStack(input *CreateStackInput) (*CreateStackOutput, error) {
 	req, out := c.CreateStackRequest(input)
 	err := req.Send()
 	return out, err
@@ -430,7 +429,7 @@ func (c *OpsWorks) CreateUserProfileRequest(input *CreateUserProfileInput) (req 
 // Required Permissions: To use this action, an IAM user must have an attached
 // policy that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) CreateUserProfile(input *CreateUserProfileInput) (*CreateUserProfileOutput, awserr.Error) {
+func (c *OpsWorks) CreateUserProfile(input *CreateUserProfileInput) (*CreateUserProfileOutput, error) {
 	req, out := c.CreateUserProfileRequest(input)
 	err := req.Send()
 	return out, err
@@ -467,7 +466,7 @@ func (c *OpsWorks) DeleteAppRequest(input *DeleteAppInput) (req *aws.Request, ou
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DeleteApp(input *DeleteAppInput) (*DeleteAppOutput, awserr.Error) {
+func (c *OpsWorks) DeleteApp(input *DeleteAppInput) (*DeleteAppOutput, error) {
 	req, out := c.DeleteAppRequest(input)
 	err := req.Send()
 	return out, err
@@ -507,7 +506,7 @@ func (c *OpsWorks) DeleteInstanceRequest(input *DeleteInstanceInput) (req *aws.R
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DeleteInstance(input *DeleteInstanceInput) (*DeleteInstanceOutput, awserr.Error) {
+func (c *OpsWorks) DeleteInstance(input *DeleteInstanceInput) (*DeleteInstanceOutput, error) {
 	req, out := c.DeleteInstanceRequest(input)
 	err := req.Send()
 	return out, err
@@ -546,7 +545,7 @@ func (c *OpsWorks) DeleteLayerRequest(input *DeleteLayerInput) (req *aws.Request
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DeleteLayer(input *DeleteLayerInput) (*DeleteLayerOutput, awserr.Error) {
+func (c *OpsWorks) DeleteLayer(input *DeleteLayerInput) (*DeleteLayerOutput, error) {
 	req, out := c.DeleteLayerRequest(input)
 	err := req.Send()
 	return out, err
@@ -585,7 +584,7 @@ func (c *OpsWorks) DeleteStackRequest(input *DeleteStackInput) (req *aws.Request
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DeleteStack(input *DeleteStackInput) (*DeleteStackOutput, awserr.Error) {
+func (c *OpsWorks) DeleteStack(input *DeleteStackInput) (*DeleteStackOutput, error) {
 	req, out := c.DeleteStackRequest(input)
 	err := req.Send()
 	return out, err
@@ -621,7 +620,7 @@ func (c *OpsWorks) DeleteUserProfileRequest(input *DeleteUserProfileInput) (req 
 // Required Permissions: To use this action, an IAM user must have an attached
 // policy that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DeleteUserProfile(input *DeleteUserProfileInput) (*DeleteUserProfileOutput, awserr.Error) {
+func (c *OpsWorks) DeleteUserProfile(input *DeleteUserProfileInput) (*DeleteUserProfileOutput, error) {
 	req, out := c.DeleteUserProfileRequest(input)
 	err := req.Send()
 	return out, err
@@ -659,7 +658,7 @@ func (c *OpsWorks) DeregisterElasticIPRequest(input *DeregisterElasticIPInput) (
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DeregisterElasticIP(input *DeregisterElasticIPInput) (*DeregisterElasticIPOutput, awserr.Error) {
+func (c *OpsWorks) DeregisterElasticIP(input *DeregisterElasticIPInput) (*DeregisterElasticIPOutput, error) {
 	req, out := c.DeregisterElasticIPRequest(input)
 	err := req.Send()
 	return out, err
@@ -698,7 +697,7 @@ func (c *OpsWorks) DeregisterInstanceRequest(input *DeregisterInstanceInput) (re
 // permissions level for the stack or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DeregisterInstance(input *DeregisterInstanceInput) (*DeregisterInstanceOutput, awserr.Error) {
+func (c *OpsWorks) DeregisterInstance(input *DeregisterInstanceInput) (*DeregisterInstanceOutput, error) {
 	req, out := c.DeregisterInstanceRequest(input)
 	err := req.Send()
 	return out, err
@@ -735,7 +734,7 @@ func (c *OpsWorks) DeregisterRDSDBInstanceRequest(input *DeregisterRDSDBInstance
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DeregisterRDSDBInstance(input *DeregisterRDSDBInstanceInput) (*DeregisterRDSDBInstanceOutput, awserr.Error) {
+func (c *OpsWorks) DeregisterRDSDBInstance(input *DeregisterRDSDBInstanceInput) (*DeregisterRDSDBInstanceOutput, error) {
 	req, out := c.DeregisterRDSDBInstanceRequest(input)
 	err := req.Send()
 	return out, err
@@ -773,7 +772,7 @@ func (c *OpsWorks) DeregisterVolumeRequest(input *DeregisterVolumeInput) (req *a
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DeregisterVolume(input *DeregisterVolumeInput) (*DeregisterVolumeOutput, awserr.Error) {
+func (c *OpsWorks) DeregisterVolume(input *DeregisterVolumeInput) (*DeregisterVolumeOutput, error) {
 	req, out := c.DeregisterVolumeRequest(input)
 	err := req.Send()
 	return out, err
@@ -812,7 +811,7 @@ func (c *OpsWorks) DescribeAppsRequest(input *DescribeAppsInput) (req *aws.Reque
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DescribeApps(input *DescribeAppsInput) (*DescribeAppsOutput, awserr.Error) {
+func (c *OpsWorks) DescribeApps(input *DescribeAppsInput) (*DescribeAppsOutput, error) {
 	req, out := c.DescribeAppsRequest(input)
 	err := req.Send()
 	return out, err
@@ -851,7 +850,7 @@ func (c *OpsWorks) DescribeCommandsRequest(input *DescribeCommandsInput) (req *a
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DescribeCommands(input *DescribeCommandsInput) (*DescribeCommandsOutput, awserr.Error) {
+func (c *OpsWorks) DescribeCommands(input *DescribeCommandsInput) (*DescribeCommandsOutput, error) {
 	req, out := c.DescribeCommandsRequest(input)
 	err := req.Send()
 	return out, err
@@ -890,7 +889,7 @@ func (c *OpsWorks) DescribeDeploymentsRequest(input *DescribeDeploymentsInput) (
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DescribeDeployments(input *DescribeDeploymentsInput) (*DescribeDeploymentsOutput, awserr.Error) {
+func (c *OpsWorks) DescribeDeployments(input *DescribeDeploymentsInput) (*DescribeDeploymentsOutput, error) {
 	req, out := c.DescribeDeploymentsRequest(input)
 	err := req.Send()
 	return out, err
@@ -929,7 +928,7 @@ func (c *OpsWorks) DescribeElasticIPsRequest(input *DescribeElasticIPsInput) (re
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DescribeElasticIPs(input *DescribeElasticIPsInput) (*DescribeElasticIPsOutput, awserr.Error) {
+func (c *OpsWorks) DescribeElasticIPs(input *DescribeElasticIPsInput) (*DescribeElasticIPsOutput, error) {
 	req, out := c.DescribeElasticIPsRequest(input)
 	err := req.Send()
 	return out, err
@@ -968,7 +967,7 @@ func (c *OpsWorks) DescribeElasticLoadBalancersRequest(input *DescribeElasticLoa
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DescribeElasticLoadBalancers(input *DescribeElasticLoadBalancersInput) (*DescribeElasticLoadBalancersOutput, awserr.Error) {
+func (c *OpsWorks) DescribeElasticLoadBalancers(input *DescribeElasticLoadBalancersInput) (*DescribeElasticLoadBalancersOutput, error) {
 	req, out := c.DescribeElasticLoadBalancersRequest(input)
 	err := req.Send()
 	return out, err
@@ -1007,7 +1006,7 @@ func (c *OpsWorks) DescribeInstancesRequest(input *DescribeInstancesInput) (req 
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DescribeInstances(input *DescribeInstancesInput) (*DescribeInstancesOutput, awserr.Error) {
+func (c *OpsWorks) DescribeInstances(input *DescribeInstancesInput) (*DescribeInstancesOutput, error) {
 	req, out := c.DescribeInstancesRequest(input)
 	err := req.Send()
 	return out, err
@@ -1046,7 +1045,7 @@ func (c *OpsWorks) DescribeLayersRequest(input *DescribeLayersInput) (req *aws.R
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DescribeLayers(input *DescribeLayersInput) (*DescribeLayersOutput, awserr.Error) {
+func (c *OpsWorks) DescribeLayers(input *DescribeLayersInput) (*DescribeLayersOutput, error) {
 	req, out := c.DescribeLayersRequest(input)
 	err := req.Send()
 	return out, err
@@ -1085,7 +1084,7 @@ func (c *OpsWorks) DescribeLoadBasedAutoScalingRequest(input *DescribeLoadBasedA
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DescribeLoadBasedAutoScaling(input *DescribeLoadBasedAutoScalingInput) (*DescribeLoadBasedAutoScalingOutput, awserr.Error) {
+func (c *OpsWorks) DescribeLoadBasedAutoScaling(input *DescribeLoadBasedAutoScalingInput) (*DescribeLoadBasedAutoScalingOutput, error) {
 	req, out := c.DescribeLoadBasedAutoScalingRequest(input)
 	err := req.Send()
 	return out, err
@@ -1121,7 +1120,7 @@ func (c *OpsWorks) DescribeMyUserProfileRequest(input *DescribeMyUserProfileInpu
 // Required Permissions: To use this action, an IAM user must have self-management
 // enabled or an attached policy that explicitly grants permissions. For more
 // information on user permissions, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DescribeMyUserProfile(input *DescribeMyUserProfileInput) (*DescribeMyUserProfileOutput, awserr.Error) {
+func (c *OpsWorks) DescribeMyUserProfile(input *DescribeMyUserProfileInput) (*DescribeMyUserProfileOutput, error) {
 	req, out := c.DescribeMyUserProfileRequest(input)
 	err := req.Send()
 	return out, err
@@ -1158,7 +1157,7 @@ func (c *OpsWorks) DescribePermissionsRequest(input *DescribePermissionsInput) (
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DescribePermissions(input *DescribePermissionsInput) (*DescribePermissionsOutput, awserr.Error) {
+func (c *OpsWorks) DescribePermissions(input *DescribePermissionsInput) (*DescribePermissionsOutput, error) {
 	req, out := c.DescribePermissionsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1197,7 +1196,7 @@ func (c *OpsWorks) DescribeRAIDArraysRequest(input *DescribeRAIDArraysInput) (re
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DescribeRAIDArrays(input *DescribeRAIDArraysInput) (*DescribeRAIDArraysOutput, awserr.Error) {
+func (c *OpsWorks) DescribeRAIDArrays(input *DescribeRAIDArraysInput) (*DescribeRAIDArraysOutput, error) {
 	req, out := c.DescribeRAIDArraysRequest(input)
 	err := req.Send()
 	return out, err
@@ -1234,7 +1233,7 @@ func (c *OpsWorks) DescribeRDSDBInstancesRequest(input *DescribeRDSDBInstancesIn
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DescribeRDSDBInstances(input *DescribeRDSDBInstancesInput) (*DescribeRDSDBInstancesOutput, awserr.Error) {
+func (c *OpsWorks) DescribeRDSDBInstances(input *DescribeRDSDBInstancesInput) (*DescribeRDSDBInstancesOutput, error) {
 	req, out := c.DescribeRDSDBInstancesRequest(input)
 	err := req.Send()
 	return out, err
@@ -1271,7 +1270,7 @@ func (c *OpsWorks) DescribeServiceErrorsRequest(input *DescribeServiceErrorsInpu
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DescribeServiceErrors(input *DescribeServiceErrorsInput) (*DescribeServiceErrorsOutput, awserr.Error) {
+func (c *OpsWorks) DescribeServiceErrors(input *DescribeServiceErrorsInput) (*DescribeServiceErrorsOutput, error) {
 	req, out := c.DescribeServiceErrorsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1308,7 +1307,7 @@ func (c *OpsWorks) DescribeStackProvisioningParametersRequest(input *DescribeSta
 // Deploy, or Manage permissions level for the stack or an attached policy that
 // explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DescribeStackProvisioningParameters(input *DescribeStackProvisioningParametersInput) (*DescribeStackProvisioningParametersOutput, awserr.Error) {
+func (c *OpsWorks) DescribeStackProvisioningParameters(input *DescribeStackProvisioningParametersInput) (*DescribeStackProvisioningParametersOutput, error) {
 	req, out := c.DescribeStackProvisioningParametersRequest(input)
 	err := req.Send()
 	return out, err
@@ -1346,7 +1345,7 @@ func (c *OpsWorks) DescribeStackSummaryRequest(input *DescribeStackSummaryInput)
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DescribeStackSummary(input *DescribeStackSummaryInput) (*DescribeStackSummaryOutput, awserr.Error) {
+func (c *OpsWorks) DescribeStackSummary(input *DescribeStackSummaryInput) (*DescribeStackSummaryOutput, error) {
 	req, out := c.DescribeStackSummaryRequest(input)
 	err := req.Send()
 	return out, err
@@ -1383,7 +1382,7 @@ func (c *OpsWorks) DescribeStacksRequest(input *DescribeStacksInput) (req *aws.R
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DescribeStacks(input *DescribeStacksInput) (*DescribeStacksOutput, awserr.Error) {
+func (c *OpsWorks) DescribeStacks(input *DescribeStacksInput) (*DescribeStacksOutput, error) {
 	req, out := c.DescribeStacksRequest(input)
 	err := req.Send()
 	return out, err
@@ -1422,7 +1421,7 @@ func (c *OpsWorks) DescribeTimeBasedAutoScalingRequest(input *DescribeTimeBasedA
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DescribeTimeBasedAutoScaling(input *DescribeTimeBasedAutoScalingInput) (*DescribeTimeBasedAutoScalingOutput, awserr.Error) {
+func (c *OpsWorks) DescribeTimeBasedAutoScaling(input *DescribeTimeBasedAutoScalingInput) (*DescribeTimeBasedAutoScalingOutput, error) {
 	req, out := c.DescribeTimeBasedAutoScalingRequest(input)
 	err := req.Send()
 	return out, err
@@ -1458,7 +1457,7 @@ func (c *OpsWorks) DescribeUserProfilesRequest(input *DescribeUserProfilesInput)
 // Required Permissions: To use this action, an IAM user must have an attached
 // policy that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DescribeUserProfiles(input *DescribeUserProfilesInput) (*DescribeUserProfilesOutput, awserr.Error) {
+func (c *OpsWorks) DescribeUserProfiles(input *DescribeUserProfilesInput) (*DescribeUserProfilesOutput, error) {
 	req, out := c.DescribeUserProfilesRequest(input)
 	err := req.Send()
 	return out, err
@@ -1497,7 +1496,7 @@ func (c *OpsWorks) DescribeVolumesRequest(input *DescribeVolumesInput) (req *aws
 // Deploy, or Manage permissions level for the stack, or an attached policy
 // that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DescribeVolumes(input *DescribeVolumesInput) (*DescribeVolumesOutput, awserr.Error) {
+func (c *OpsWorks) DescribeVolumes(input *DescribeVolumesInput) (*DescribeVolumesOutput, error) {
 	req, out := c.DescribeVolumesRequest(input)
 	err := req.Send()
 	return out, err
@@ -1534,7 +1533,7 @@ func (c *OpsWorks) DetachElasticLoadBalancerRequest(input *DetachElasticLoadBala
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DetachElasticLoadBalancer(input *DetachElasticLoadBalancerInput) (*DetachElasticLoadBalancerOutput, awserr.Error) {
+func (c *OpsWorks) DetachElasticLoadBalancer(input *DetachElasticLoadBalancerInput) (*DetachElasticLoadBalancerOutput, error) {
 	req, out := c.DetachElasticLoadBalancerRequest(input)
 	err := req.Send()
 	return out, err
@@ -1573,7 +1572,7 @@ func (c *OpsWorks) DisassociateElasticIPRequest(input *DisassociateElasticIPInpu
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) DisassociateElasticIP(input *DisassociateElasticIPInput) (*DisassociateElasticIPOutput, awserr.Error) {
+func (c *OpsWorks) DisassociateElasticIP(input *DisassociateElasticIPInput) (*DisassociateElasticIPOutput, error) {
 	req, out := c.DisassociateElasticIPRequest(input)
 	err := req.Send()
 	return out, err
@@ -1611,7 +1610,7 @@ func (c *OpsWorks) GetHostnameSuggestionRequest(input *GetHostnameSuggestionInpu
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) GetHostnameSuggestion(input *GetHostnameSuggestionInput) (*GetHostnameSuggestionOutput, awserr.Error) {
+func (c *OpsWorks) GetHostnameSuggestion(input *GetHostnameSuggestionInput) (*GetHostnameSuggestionOutput, error) {
 	req, out := c.GetHostnameSuggestionRequest(input)
 	err := req.Send()
 	return out, err
@@ -1649,7 +1648,7 @@ func (c *OpsWorks) RebootInstanceRequest(input *RebootInstanceInput) (req *aws.R
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) RebootInstance(input *RebootInstanceInput) (*RebootInstanceOutput, awserr.Error) {
+func (c *OpsWorks) RebootInstance(input *RebootInstanceInput) (*RebootInstanceOutput, error) {
 	req, out := c.RebootInstanceRequest(input)
 	err := req.Send()
 	return out, err
@@ -1689,7 +1688,7 @@ func (c *OpsWorks) RegisterElasticIPRequest(input *RegisterElasticIPInput) (req 
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) RegisterElasticIP(input *RegisterElasticIPInput) (*RegisterElasticIPOutput, awserr.Error) {
+func (c *OpsWorks) RegisterElasticIP(input *RegisterElasticIPInput) (*RegisterElasticIPOutput, error) {
 	req, out := c.RegisterElasticIPRequest(input)
 	err := req.Send()
 	return out, err
@@ -1731,7 +1730,7 @@ func (c *OpsWorks) RegisterInstanceRequest(input *RegisterInstanceInput) (req *a
 // To use this action, an IAM user must have a Manage permissions level for
 // the stack or an attached policy that explicitly grants permissions. For more
 // information on user permissions, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) RegisterInstance(input *RegisterInstanceInput) (*RegisterInstanceOutput, awserr.Error) {
+func (c *OpsWorks) RegisterInstance(input *RegisterInstanceInput) (*RegisterInstanceOutput, error) {
 	req, out := c.RegisterInstanceRequest(input)
 	err := req.Send()
 	return out, err
@@ -1768,7 +1767,7 @@ func (c *OpsWorks) RegisterRDSDBInstanceRequest(input *RegisterRDSDBInstanceInpu
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) RegisterRDSDBInstance(input *RegisterRDSDBInstanceInput) (*RegisterRDSDBInstanceOutput, awserr.Error) {
+func (c *OpsWorks) RegisterRDSDBInstance(input *RegisterRDSDBInstanceInput) (*RegisterRDSDBInstanceOutput, error) {
 	req, out := c.RegisterRDSDBInstanceRequest(input)
 	err := req.Send()
 	return out, err
@@ -1808,7 +1807,7 @@ func (c *OpsWorks) RegisterVolumeRequest(input *RegisterVolumeInput) (req *aws.R
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) RegisterVolume(input *RegisterVolumeInput) (*RegisterVolumeOutput, awserr.Error) {
+func (c *OpsWorks) RegisterVolume(input *RegisterVolumeInput) (*RegisterVolumeOutput, error) {
 	req, out := c.RegisterVolumeRequest(input)
 	err := req.Send()
 	return out, err
@@ -1852,7 +1851,7 @@ func (c *OpsWorks) SetLoadBasedAutoScalingRequest(input *SetLoadBasedAutoScaling
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) SetLoadBasedAutoScaling(input *SetLoadBasedAutoScalingInput) (*SetLoadBasedAutoScalingOutput, awserr.Error) {
+func (c *OpsWorks) SetLoadBasedAutoScaling(input *SetLoadBasedAutoScalingInput) (*SetLoadBasedAutoScalingOutput, error) {
 	req, out := c.SetLoadBasedAutoScalingRequest(input)
 	err := req.Send()
 	return out, err
@@ -1890,7 +1889,7 @@ func (c *OpsWorks) SetPermissionRequest(input *SetPermissionInput) (req *aws.Req
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) SetPermission(input *SetPermissionInput) (*SetPermissionOutput, awserr.Error) {
+func (c *OpsWorks) SetPermission(input *SetPermissionInput) (*SetPermissionOutput, error) {
 	req, out := c.SetPermissionRequest(input)
 	err := req.Send()
 	return out, err
@@ -1929,7 +1928,7 @@ func (c *OpsWorks) SetTimeBasedAutoScalingRequest(input *SetTimeBasedAutoScaling
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) SetTimeBasedAutoScaling(input *SetTimeBasedAutoScalingInput) (*SetTimeBasedAutoScalingOutput, awserr.Error) {
+func (c *OpsWorks) SetTimeBasedAutoScaling(input *SetTimeBasedAutoScalingInput) (*SetTimeBasedAutoScalingOutput, error) {
 	req, out := c.SetTimeBasedAutoScalingRequest(input)
 	err := req.Send()
 	return out, err
@@ -1967,7 +1966,7 @@ func (c *OpsWorks) StartInstanceRequest(input *StartInstanceInput) (req *aws.Req
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) StartInstance(input *StartInstanceInput) (*StartInstanceOutput, awserr.Error) {
+func (c *OpsWorks) StartInstance(input *StartInstanceInput) (*StartInstanceOutput, error) {
 	req, out := c.StartInstanceRequest(input)
 	err := req.Send()
 	return out, err
@@ -2004,7 +2003,7 @@ func (c *OpsWorks) StartStackRequest(input *StartStackInput) (req *aws.Request, 
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) StartStack(input *StartStackInput) (*StartStackOutput, awserr.Error) {
+func (c *OpsWorks) StartStack(input *StartStackInput) (*StartStackOutput, error) {
 	req, out := c.StartStackRequest(input)
 	err := req.Send()
 	return out, err
@@ -2044,7 +2043,7 @@ func (c *OpsWorks) StopInstanceRequest(input *StopInstanceInput) (req *aws.Reque
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) StopInstance(input *StopInstanceInput) (*StopInstanceOutput, awserr.Error) {
+func (c *OpsWorks) StopInstance(input *StopInstanceInput) (*StopInstanceOutput, error) {
 	req, out := c.StopInstanceRequest(input)
 	err := req.Send()
 	return out, err
@@ -2081,7 +2080,7 @@ func (c *OpsWorks) StopStackRequest(input *StopStackInput) (req *aws.Request, ou
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) StopStack(input *StopStackInput) (*StopStackOutput, awserr.Error) {
+func (c *OpsWorks) StopStack(input *StopStackInput) (*StopStackOutput, error) {
 	req, out := c.StopStackRequest(input)
 	err := req.Send()
 	return out, err
@@ -2121,7 +2120,7 @@ func (c *OpsWorks) UnassignInstanceRequest(input *UnassignInstanceInput) (req *a
 // permissions level for the stack or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) UnassignInstance(input *UnassignInstanceInput) (*UnassignInstanceOutput, awserr.Error) {
+func (c *OpsWorks) UnassignInstance(input *UnassignInstanceInput) (*UnassignInstanceOutput, error) {
 	req, out := c.UnassignInstanceRequest(input)
 	err := req.Send()
 	return out, err
@@ -2159,7 +2158,7 @@ func (c *OpsWorks) UnassignVolumeRequest(input *UnassignVolumeInput) (req *aws.R
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) UnassignVolume(input *UnassignVolumeInput) (*UnassignVolumeOutput, awserr.Error) {
+func (c *OpsWorks) UnassignVolume(input *UnassignVolumeInput) (*UnassignVolumeOutput, error) {
 	req, out := c.UnassignVolumeRequest(input)
 	err := req.Send()
 	return out, err
@@ -2196,7 +2195,7 @@ func (c *OpsWorks) UpdateAppRequest(input *UpdateAppInput) (req *aws.Request, ou
 // or Manage permissions level for the stack, or an attached policy that explicitly
 // grants permissions. For more information on user permissions, see Managing
 // User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) UpdateApp(input *UpdateAppInput) (*UpdateAppOutput, awserr.Error) {
+func (c *OpsWorks) UpdateApp(input *UpdateAppInput) (*UpdateAppOutput, error) {
 	req, out := c.UpdateAppRequest(input)
 	err := req.Send()
 	return out, err
@@ -2234,7 +2233,7 @@ func (c *OpsWorks) UpdateElasticIPRequest(input *UpdateElasticIPInput) (req *aws
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) UpdateElasticIP(input *UpdateElasticIPInput) (*UpdateElasticIPOutput, awserr.Error) {
+func (c *OpsWorks) UpdateElasticIP(input *UpdateElasticIPInput) (*UpdateElasticIPOutput, error) {
 	req, out := c.UpdateElasticIPRequest(input)
 	err := req.Send()
 	return out, err
@@ -2271,7 +2270,7 @@ func (c *OpsWorks) UpdateInstanceRequest(input *UpdateInstanceInput) (req *aws.R
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) UpdateInstance(input *UpdateInstanceInput) (*UpdateInstanceOutput, awserr.Error) {
+func (c *OpsWorks) UpdateInstance(input *UpdateInstanceInput) (*UpdateInstanceOutput, error) {
 	req, out := c.UpdateInstanceRequest(input)
 	err := req.Send()
 	return out, err
@@ -2308,7 +2307,7 @@ func (c *OpsWorks) UpdateLayerRequest(input *UpdateLayerInput) (req *aws.Request
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) UpdateLayer(input *UpdateLayerInput) (*UpdateLayerOutput, awserr.Error) {
+func (c *OpsWorks) UpdateLayer(input *UpdateLayerInput) (*UpdateLayerOutput, error) {
 	req, out := c.UpdateLayerRequest(input)
 	err := req.Send()
 	return out, err
@@ -2344,7 +2343,7 @@ func (c *OpsWorks) UpdateMyUserProfileRequest(input *UpdateMyUserProfileInput) (
 // Required Permissions: To use this action, an IAM user must have self-management
 // enabled or an attached policy that explicitly grants permissions. For more
 // information on user permissions, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) UpdateMyUserProfile(input *UpdateMyUserProfileInput) (*UpdateMyUserProfileOutput, awserr.Error) {
+func (c *OpsWorks) UpdateMyUserProfile(input *UpdateMyUserProfileInput) (*UpdateMyUserProfileOutput, error) {
 	req, out := c.UpdateMyUserProfileRequest(input)
 	err := req.Send()
 	return out, err
@@ -2381,7 +2380,7 @@ func (c *OpsWorks) UpdateRDSDBInstanceRequest(input *UpdateRDSDBInstanceInput) (
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) UpdateRDSDBInstance(input *UpdateRDSDBInstanceInput) (*UpdateRDSDBInstanceOutput, awserr.Error) {
+func (c *OpsWorks) UpdateRDSDBInstance(input *UpdateRDSDBInstanceInput) (*UpdateRDSDBInstanceOutput, error) {
 	req, out := c.UpdateRDSDBInstanceRequest(input)
 	err := req.Send()
 	return out, err
@@ -2418,7 +2417,7 @@ func (c *OpsWorks) UpdateStackRequest(input *UpdateStackInput) (req *aws.Request
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) UpdateStack(input *UpdateStackInput) (*UpdateStackOutput, awserr.Error) {
+func (c *OpsWorks) UpdateStack(input *UpdateStackInput) (*UpdateStackOutput, error) {
 	req, out := c.UpdateStackRequest(input)
 	err := req.Send()
 	return out, err
@@ -2454,7 +2453,7 @@ func (c *OpsWorks) UpdateUserProfileRequest(input *UpdateUserProfileInput) (req 
 // Required Permissions: To use this action, an IAM user must have an attached
 // policy that explicitly grants permissions. For more information on user permissions,
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) UpdateUserProfile(input *UpdateUserProfileInput) (*UpdateUserProfileOutput, awserr.Error) {
+func (c *OpsWorks) UpdateUserProfile(input *UpdateUserProfileInput) (*UpdateUserProfileOutput, error) {
 	req, out := c.UpdateUserProfileRequest(input)
 	err := req.Send()
 	return out, err
@@ -2492,7 +2491,7 @@ func (c *OpsWorks) UpdateVolumeRequest(input *UpdateVolumeInput) (req *aws.Reque
 // permissions level for the stack, or an attached policy that explicitly grants
 // permissions. For more information on user permissions, see Managing User
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
-func (c *OpsWorks) UpdateVolume(input *UpdateVolumeInput) (*UpdateVolumeOutput, awserr.Error) {
+func (c *OpsWorks) UpdateVolume(input *UpdateVolumeInput) (*UpdateVolumeOutput, error) {
 	req, out := c.UpdateVolumeRequest(input)
 	err := req.Send()
 	return out, err

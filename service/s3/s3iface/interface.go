@@ -4,112 +4,111 @@
 package s3iface
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/s3"
 )
 
 type S3API interface {
-	AbortMultipartUpload(*s3.AbortMultipartUploadInput) (*s3.AbortMultipartUploadOutput, awserr.Error)
+	AbortMultipartUpload(*s3.AbortMultipartUploadInput) (*s3.AbortMultipartUploadOutput, error)
 
-	CompleteMultipartUpload(*s3.CompleteMultipartUploadInput) (*s3.CompleteMultipartUploadOutput, awserr.Error)
+	CompleteMultipartUpload(*s3.CompleteMultipartUploadInput) (*s3.CompleteMultipartUploadOutput, error)
 
-	CopyObject(*s3.CopyObjectInput) (*s3.CopyObjectOutput, awserr.Error)
+	CopyObject(*s3.CopyObjectInput) (*s3.CopyObjectOutput, error)
 
-	CreateBucket(*s3.CreateBucketInput) (*s3.CreateBucketOutput, awserr.Error)
+	CreateBucket(*s3.CreateBucketInput) (*s3.CreateBucketOutput, error)
 
-	CreateMultipartUpload(*s3.CreateMultipartUploadInput) (*s3.CreateMultipartUploadOutput, awserr.Error)
+	CreateMultipartUpload(*s3.CreateMultipartUploadInput) (*s3.CreateMultipartUploadOutput, error)
 
-	DeleteBucket(*s3.DeleteBucketInput) (*s3.DeleteBucketOutput, awserr.Error)
+	DeleteBucket(*s3.DeleteBucketInput) (*s3.DeleteBucketOutput, error)
 
-	DeleteBucketCORS(*s3.DeleteBucketCORSInput) (*s3.DeleteBucketCORSOutput, awserr.Error)
+	DeleteBucketCORS(*s3.DeleteBucketCORSInput) (*s3.DeleteBucketCORSOutput, error)
 
-	DeleteBucketLifecycle(*s3.DeleteBucketLifecycleInput) (*s3.DeleteBucketLifecycleOutput, awserr.Error)
+	DeleteBucketLifecycle(*s3.DeleteBucketLifecycleInput) (*s3.DeleteBucketLifecycleOutput, error)
 
-	DeleteBucketPolicy(*s3.DeleteBucketPolicyInput) (*s3.DeleteBucketPolicyOutput, awserr.Error)
+	DeleteBucketPolicy(*s3.DeleteBucketPolicyInput) (*s3.DeleteBucketPolicyOutput, error)
 
-	DeleteBucketReplication(*s3.DeleteBucketReplicationInput) (*s3.DeleteBucketReplicationOutput, awserr.Error)
+	DeleteBucketReplication(*s3.DeleteBucketReplicationInput) (*s3.DeleteBucketReplicationOutput, error)
 
-	DeleteBucketTagging(*s3.DeleteBucketTaggingInput) (*s3.DeleteBucketTaggingOutput, awserr.Error)
+	DeleteBucketTagging(*s3.DeleteBucketTaggingInput) (*s3.DeleteBucketTaggingOutput, error)
 
-	DeleteBucketWebsite(*s3.DeleteBucketWebsiteInput) (*s3.DeleteBucketWebsiteOutput, awserr.Error)
+	DeleteBucketWebsite(*s3.DeleteBucketWebsiteInput) (*s3.DeleteBucketWebsiteOutput, error)
 
-	DeleteObject(*s3.DeleteObjectInput) (*s3.DeleteObjectOutput, awserr.Error)
+	DeleteObject(*s3.DeleteObjectInput) (*s3.DeleteObjectOutput, error)
 
-	DeleteObjects(*s3.DeleteObjectsInput) (*s3.DeleteObjectsOutput, awserr.Error)
+	DeleteObjects(*s3.DeleteObjectsInput) (*s3.DeleteObjectsOutput, error)
 
-	GetBucketACL(*s3.GetBucketACLInput) (*s3.GetBucketACLOutput, awserr.Error)
+	GetBucketACL(*s3.GetBucketACLInput) (*s3.GetBucketACLOutput, error)
 
-	GetBucketCORS(*s3.GetBucketCORSInput) (*s3.GetBucketCORSOutput, awserr.Error)
+	GetBucketCORS(*s3.GetBucketCORSInput) (*s3.GetBucketCORSOutput, error)
 
-	GetBucketLifecycle(*s3.GetBucketLifecycleInput) (*s3.GetBucketLifecycleOutput, awserr.Error)
+	GetBucketLifecycle(*s3.GetBucketLifecycleInput) (*s3.GetBucketLifecycleOutput, error)
 
-	GetBucketLocation(*s3.GetBucketLocationInput) (*s3.GetBucketLocationOutput, awserr.Error)
+	GetBucketLocation(*s3.GetBucketLocationInput) (*s3.GetBucketLocationOutput, error)
 
-	GetBucketLogging(*s3.GetBucketLoggingInput) (*s3.GetBucketLoggingOutput, awserr.Error)
+	GetBucketLogging(*s3.GetBucketLoggingInput) (*s3.GetBucketLoggingOutput, error)
 
-	GetBucketNotification(*s3.GetBucketNotificationInput) (*s3.GetBucketNotificationOutput, awserr.Error)
+	GetBucketNotification(*s3.GetBucketNotificationInput) (*s3.GetBucketNotificationOutput, error)
 
-	GetBucketPolicy(*s3.GetBucketPolicyInput) (*s3.GetBucketPolicyOutput, awserr.Error)
+	GetBucketPolicy(*s3.GetBucketPolicyInput) (*s3.GetBucketPolicyOutput, error)
 
-	GetBucketReplication(*s3.GetBucketReplicationInput) (*s3.GetBucketReplicationOutput, awserr.Error)
+	GetBucketReplication(*s3.GetBucketReplicationInput) (*s3.GetBucketReplicationOutput, error)
 
-	GetBucketRequestPayment(*s3.GetBucketRequestPaymentInput) (*s3.GetBucketRequestPaymentOutput, awserr.Error)
+	GetBucketRequestPayment(*s3.GetBucketRequestPaymentInput) (*s3.GetBucketRequestPaymentOutput, error)
 
-	GetBucketTagging(*s3.GetBucketTaggingInput) (*s3.GetBucketTaggingOutput, awserr.Error)
+	GetBucketTagging(*s3.GetBucketTaggingInput) (*s3.GetBucketTaggingOutput, error)
 
-	GetBucketVersioning(*s3.GetBucketVersioningInput) (*s3.GetBucketVersioningOutput, awserr.Error)
+	GetBucketVersioning(*s3.GetBucketVersioningInput) (*s3.GetBucketVersioningOutput, error)
 
-	GetBucketWebsite(*s3.GetBucketWebsiteInput) (*s3.GetBucketWebsiteOutput, awserr.Error)
+	GetBucketWebsite(*s3.GetBucketWebsiteInput) (*s3.GetBucketWebsiteOutput, error)
 
-	GetObject(*s3.GetObjectInput) (*s3.GetObjectOutput, awserr.Error)
+	GetObject(*s3.GetObjectInput) (*s3.GetObjectOutput, error)
 
-	GetObjectACL(*s3.GetObjectACLInput) (*s3.GetObjectACLOutput, awserr.Error)
+	GetObjectACL(*s3.GetObjectACLInput) (*s3.GetObjectACLOutput, error)
 
-	GetObjectTorrent(*s3.GetObjectTorrentInput) (*s3.GetObjectTorrentOutput, awserr.Error)
+	GetObjectTorrent(*s3.GetObjectTorrentInput) (*s3.GetObjectTorrentOutput, error)
 
-	HeadBucket(*s3.HeadBucketInput) (*s3.HeadBucketOutput, awserr.Error)
+	HeadBucket(*s3.HeadBucketInput) (*s3.HeadBucketOutput, error)
 
-	HeadObject(*s3.HeadObjectInput) (*s3.HeadObjectOutput, awserr.Error)
+	HeadObject(*s3.HeadObjectInput) (*s3.HeadObjectOutput, error)
 
-	ListBuckets(*s3.ListBucketsInput) (*s3.ListBucketsOutput, awserr.Error)
+	ListBuckets(*s3.ListBucketsInput) (*s3.ListBucketsOutput, error)
 
-	ListMultipartUploads(*s3.ListMultipartUploadsInput) (*s3.ListMultipartUploadsOutput, awserr.Error)
+	ListMultipartUploads(*s3.ListMultipartUploadsInput) (*s3.ListMultipartUploadsOutput, error)
 
-	ListObjectVersions(*s3.ListObjectVersionsInput) (*s3.ListObjectVersionsOutput, awserr.Error)
+	ListObjectVersions(*s3.ListObjectVersionsInput) (*s3.ListObjectVersionsOutput, error)
 
-	ListObjects(*s3.ListObjectsInput) (*s3.ListObjectsOutput, awserr.Error)
+	ListObjects(*s3.ListObjectsInput) (*s3.ListObjectsOutput, error)
 
-	ListParts(*s3.ListPartsInput) (*s3.ListPartsOutput, awserr.Error)
+	ListParts(*s3.ListPartsInput) (*s3.ListPartsOutput, error)
 
-	PutBucketACL(*s3.PutBucketACLInput) (*s3.PutBucketACLOutput, awserr.Error)
+	PutBucketACL(*s3.PutBucketACLInput) (*s3.PutBucketACLOutput, error)
 
-	PutBucketCORS(*s3.PutBucketCORSInput) (*s3.PutBucketCORSOutput, awserr.Error)
+	PutBucketCORS(*s3.PutBucketCORSInput) (*s3.PutBucketCORSOutput, error)
 
-	PutBucketLifecycle(*s3.PutBucketLifecycleInput) (*s3.PutBucketLifecycleOutput, awserr.Error)
+	PutBucketLifecycle(*s3.PutBucketLifecycleInput) (*s3.PutBucketLifecycleOutput, error)
 
-	PutBucketLogging(*s3.PutBucketLoggingInput) (*s3.PutBucketLoggingOutput, awserr.Error)
+	PutBucketLogging(*s3.PutBucketLoggingInput) (*s3.PutBucketLoggingOutput, error)
 
-	PutBucketNotification(*s3.PutBucketNotificationInput) (*s3.PutBucketNotificationOutput, awserr.Error)
+	PutBucketNotification(*s3.PutBucketNotificationInput) (*s3.PutBucketNotificationOutput, error)
 
-	PutBucketPolicy(*s3.PutBucketPolicyInput) (*s3.PutBucketPolicyOutput, awserr.Error)
+	PutBucketPolicy(*s3.PutBucketPolicyInput) (*s3.PutBucketPolicyOutput, error)
 
-	PutBucketReplication(*s3.PutBucketReplicationInput) (*s3.PutBucketReplicationOutput, awserr.Error)
+	PutBucketReplication(*s3.PutBucketReplicationInput) (*s3.PutBucketReplicationOutput, error)
 
-	PutBucketRequestPayment(*s3.PutBucketRequestPaymentInput) (*s3.PutBucketRequestPaymentOutput, awserr.Error)
+	PutBucketRequestPayment(*s3.PutBucketRequestPaymentInput) (*s3.PutBucketRequestPaymentOutput, error)
 
-	PutBucketTagging(*s3.PutBucketTaggingInput) (*s3.PutBucketTaggingOutput, awserr.Error)
+	PutBucketTagging(*s3.PutBucketTaggingInput) (*s3.PutBucketTaggingOutput, error)
 
-	PutBucketVersioning(*s3.PutBucketVersioningInput) (*s3.PutBucketVersioningOutput, awserr.Error)
+	PutBucketVersioning(*s3.PutBucketVersioningInput) (*s3.PutBucketVersioningOutput, error)
 
-	PutBucketWebsite(*s3.PutBucketWebsiteInput) (*s3.PutBucketWebsiteOutput, awserr.Error)
+	PutBucketWebsite(*s3.PutBucketWebsiteInput) (*s3.PutBucketWebsiteOutput, error)
 
-	PutObject(*s3.PutObjectInput) (*s3.PutObjectOutput, awserr.Error)
+	PutObject(*s3.PutObjectInput) (*s3.PutObjectOutput, error)
 
-	PutObjectACL(*s3.PutObjectACLInput) (*s3.PutObjectACLOutput, awserr.Error)
+	PutObjectACL(*s3.PutObjectACLInput) (*s3.PutObjectACLOutput, error)
 
-	RestoreObject(*s3.RestoreObjectInput) (*s3.RestoreObjectOutput, awserr.Error)
+	RestoreObject(*s3.RestoreObjectInput) (*s3.RestoreObjectOutput, error)
 
-	UploadPart(*s3.UploadPartInput) (*s3.UploadPartOutput, awserr.Error)
+	UploadPart(*s3.UploadPartInput) (*s3.UploadPartOutput, error)
 
-	UploadPartCopy(*s3.UploadPartCopyInput) (*s3.UploadPartCopyOutput, awserr.Error)
+	UploadPartCopy(*s3.UploadPartCopyInput) (*s3.UploadPartCopyOutput, error)
 }

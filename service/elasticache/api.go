@@ -8,7 +8,6 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -47,7 +46,7 @@ func (c *ElastiCache) AddTagsToResourceRequest(input *AddTagsToResourceInput) (r
 // categories (such as cost centers, application names, or owners) to organize
 // your costs across multiple services. For more information, see Using Cost
 // Allocation Tags in Amazon ElastiCache (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Tagging.html).
-func (c *ElastiCache) AddTagsToResource(input *AddTagsToResourceInput) (*TagListMessage, awserr.Error) {
+func (c *ElastiCache) AddTagsToResource(input *AddTagsToResourceInput) (*TagListMessage, error) {
 	req, out := c.AddTagsToResourceRequest(input)
 	err := req.Send()
 	return out, err
@@ -84,7 +83,7 @@ func (c *ElastiCache) AuthorizeCacheSecurityGroupIngressRequest(input *Authorize
 //
 // You cannot authorize ingress from an Amazon EC2 security group in one region
 // to an ElastiCache cluster in another region.
-func (c *ElastiCache) AuthorizeCacheSecurityGroupIngress(input *AuthorizeCacheSecurityGroupIngressInput) (*AuthorizeCacheSecurityGroupIngressOutput, awserr.Error) {
+func (c *ElastiCache) AuthorizeCacheSecurityGroupIngress(input *AuthorizeCacheSecurityGroupIngressInput) (*AuthorizeCacheSecurityGroupIngressOutput, error) {
 	req, out := c.AuthorizeCacheSecurityGroupIngressRequest(input)
 	err := req.Send()
 	return out, err
@@ -116,7 +115,7 @@ func (c *ElastiCache) CopySnapshotRequest(input *CopySnapshotInput) (req *aws.Re
 }
 
 // The CopySnapshot action makes a copy of an existing snapshot.
-func (c *ElastiCache) CopySnapshot(input *CopySnapshotInput) (*CopySnapshotOutput, awserr.Error) {
+func (c *ElastiCache) CopySnapshot(input *CopySnapshotInput) (*CopySnapshotOutput, error) {
 	req, out := c.CopySnapshotRequest(input)
 	err := req.Send()
 	return out, err
@@ -150,7 +149,7 @@ func (c *ElastiCache) CreateCacheClusterRequest(input *CreateCacheClusterInput) 
 // The CreateCacheCluster action creates a cache cluster. All nodes in the cache
 // cluster run the same protocol-compliant cache engine software, either Memcached
 // or Redis.
-func (c *ElastiCache) CreateCacheCluster(input *CreateCacheClusterInput) (*CreateCacheClusterOutput, awserr.Error) {
+func (c *ElastiCache) CreateCacheCluster(input *CreateCacheClusterInput) (*CreateCacheClusterOutput, error) {
 	req, out := c.CreateCacheClusterRequest(input)
 	err := req.Send()
 	return out, err
@@ -184,7 +183,7 @@ func (c *ElastiCache) CreateCacheParameterGroupRequest(input *CreateCacheParamet
 // The CreateCacheParameterGroup action creates a new cache parameter group.
 // A cache parameter group is a collection of parameters that you apply to all
 // of the nodes in a cache cluster.
-func (c *ElastiCache) CreateCacheParameterGroup(input *CreateCacheParameterGroupInput) (*CreateCacheParameterGroupOutput, awserr.Error) {
+func (c *ElastiCache) CreateCacheParameterGroup(input *CreateCacheParameterGroupInput) (*CreateCacheParameterGroupOutput, error) {
 	req, out := c.CreateCacheParameterGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -222,7 +221,7 @@ func (c *ElastiCache) CreateCacheSecurityGroupRequest(input *CreateCacheSecurity
 // outside of an Amazon Virtual Private Cloud (VPC). If you are creating a cache
 // cluster inside of a VPC, use a cache subnet group instead. For more information,
 // see CreateCacheSubnetGroup (http://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_CreateCacheSubnetGroup.html).
-func (c *ElastiCache) CreateCacheSecurityGroup(input *CreateCacheSecurityGroupInput) (*CreateCacheSecurityGroupOutput, awserr.Error) {
+func (c *ElastiCache) CreateCacheSecurityGroup(input *CreateCacheSecurityGroupInput) (*CreateCacheSecurityGroupOutput, error) {
 	req, out := c.CreateCacheSecurityGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -257,7 +256,7 @@ func (c *ElastiCache) CreateCacheSubnetGroupRequest(input *CreateCacheSubnetGrou
 //
 // Use this parameter only when you are creating a cluster in an Amazon Virtual
 // Private Cloud (VPC).
-func (c *ElastiCache) CreateCacheSubnetGroup(input *CreateCacheSubnetGroupInput) (*CreateCacheSubnetGroupOutput, awserr.Error) {
+func (c *ElastiCache) CreateCacheSubnetGroup(input *CreateCacheSubnetGroupInput) (*CreateCacheSubnetGroupOutput, error) {
 	req, out := c.CreateCacheSubnetGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -299,7 +298,7 @@ func (c *ElastiCache) CreateReplicationGroupRequest(input *CreateReplicationGrou
 // up to a total of five read replicas.
 //
 // Note: This action is valid only for Redis.
-func (c *ElastiCache) CreateReplicationGroup(input *CreateReplicationGroupInput) (*CreateReplicationGroupOutput, awserr.Error) {
+func (c *ElastiCache) CreateReplicationGroup(input *CreateReplicationGroupInput) (*CreateReplicationGroupOutput, error) {
 	req, out := c.CreateReplicationGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -332,7 +331,7 @@ func (c *ElastiCache) CreateSnapshotRequest(input *CreateSnapshotInput) (req *aw
 
 // The CreateSnapshot action creates a copy of an entire cache cluster at a
 // specific moment in time.
-func (c *ElastiCache) CreateSnapshot(input *CreateSnapshotInput) (*CreateSnapshotOutput, awserr.Error) {
+func (c *ElastiCache) CreateSnapshot(input *CreateSnapshotInput) (*CreateSnapshotOutput, error) {
 	req, out := c.CreateSnapshotRequest(input)
 	err := req.Send()
 	return out, err
@@ -371,7 +370,7 @@ func (c *ElastiCache) DeleteCacheClusterRequest(input *DeleteCacheClusterInput) 
 //
 // This API cannot be used to delete a cache cluster that is the last read
 // replica of a replication group that has Multi-AZ mode enabled.
-func (c *ElastiCache) DeleteCacheCluster(input *DeleteCacheClusterInput) (*DeleteCacheClusterOutput, awserr.Error) {
+func (c *ElastiCache) DeleteCacheCluster(input *DeleteCacheClusterInput) (*DeleteCacheClusterOutput, error) {
 	req, out := c.DeleteCacheClusterRequest(input)
 	err := req.Send()
 	return out, err
@@ -405,7 +404,7 @@ func (c *ElastiCache) DeleteCacheParameterGroupRequest(input *DeleteCacheParamet
 // The DeleteCacheParameterGroup action deletes the specified cache parameter
 // group. You cannot delete a cache parameter group if it is associated with
 // any cache clusters.
-func (c *ElastiCache) DeleteCacheParameterGroup(input *DeleteCacheParameterGroupInput) (*DeleteCacheParameterGroupOutput, awserr.Error) {
+func (c *ElastiCache) DeleteCacheParameterGroup(input *DeleteCacheParameterGroupInput) (*DeleteCacheParameterGroupOutput, error) {
 	req, out := c.DeleteCacheParameterGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -440,7 +439,7 @@ func (c *ElastiCache) DeleteCacheSecurityGroupRequest(input *DeleteCacheSecurity
 //
 // You cannot delete a cache security group if it is associated with any cache
 // clusters.
-func (c *ElastiCache) DeleteCacheSecurityGroup(input *DeleteCacheSecurityGroupInput) (*DeleteCacheSecurityGroupOutput, awserr.Error) {
+func (c *ElastiCache) DeleteCacheSecurityGroup(input *DeleteCacheSecurityGroupInput) (*DeleteCacheSecurityGroupOutput, error) {
 	req, out := c.DeleteCacheSecurityGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -475,7 +474,7 @@ func (c *ElastiCache) DeleteCacheSubnetGroupRequest(input *DeleteCacheSubnetGrou
 //
 // You cannot delete a cache subnet group if it is associated with any cache
 // clusters.
-func (c *ElastiCache) DeleteCacheSubnetGroup(input *DeleteCacheSubnetGroupInput) (*DeleteCacheSubnetGroupOutput, awserr.Error) {
+func (c *ElastiCache) DeleteCacheSubnetGroup(input *DeleteCacheSubnetGroupInput) (*DeleteCacheSubnetGroupOutput, error) {
 	req, out := c.DeleteCacheSubnetGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -514,7 +513,7 @@ func (c *ElastiCache) DeleteReplicationGroupRequest(input *DeleteReplicationGrou
 // When you receive a successful response from this action, Amazon ElastiCache
 // immediately begins deleting the selected resources; you cannot cancel or
 // revert this action.
-func (c *ElastiCache) DeleteReplicationGroup(input *DeleteReplicationGroupInput) (*DeleteReplicationGroupOutput, awserr.Error) {
+func (c *ElastiCache) DeleteReplicationGroup(input *DeleteReplicationGroupInput) (*DeleteReplicationGroupOutput, error) {
 	req, out := c.DeleteReplicationGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -548,7 +547,7 @@ func (c *ElastiCache) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *aw
 // The DeleteSnapshot action deletes an existing snapshot. When you receive
 // a successful response from this action, ElastiCache immediately begins deleting
 // the snapshot; you cannot cancel or revert this action.
-func (c *ElastiCache) DeleteSnapshot(input *DeleteSnapshotInput) (*DeleteSnapshotOutput, awserr.Error) {
+func (c *ElastiCache) DeleteSnapshot(input *DeleteSnapshotInput) (*DeleteSnapshotOutput, error) {
 	req, out := c.DeleteSnapshotRequest(input)
 	err := req.Send()
 	return out, err
@@ -601,7 +600,7 @@ func (c *ElastiCache) DescribeCacheClustersRequest(input *DescribeCacheClustersI
 //
 // If cache nodes are currently being removed from the cache cluster, no endpoint
 // information for the removed nodes is displayed.
-func (c *ElastiCache) DescribeCacheClusters(input *DescribeCacheClustersInput) (*DescribeCacheClustersOutput, awserr.Error) {
+func (c *ElastiCache) DescribeCacheClusters(input *DescribeCacheClustersInput) (*DescribeCacheClustersOutput, error) {
 	req, out := c.DescribeCacheClustersRequest(input)
 	err := req.Send()
 	return out, err
@@ -634,7 +633,7 @@ func (c *ElastiCache) DescribeCacheEngineVersionsRequest(input *DescribeCacheEng
 
 // The DescribeCacheEngineVersions action returns a list of the available cache
 // engines and their versions.
-func (c *ElastiCache) DescribeCacheEngineVersions(input *DescribeCacheEngineVersionsInput) (*DescribeCacheEngineVersionsOutput, awserr.Error) {
+func (c *ElastiCache) DescribeCacheEngineVersions(input *DescribeCacheEngineVersionsInput) (*DescribeCacheEngineVersionsOutput, error) {
 	req, out := c.DescribeCacheEngineVersionsRequest(input)
 	err := req.Send()
 	return out, err
@@ -668,7 +667,7 @@ func (c *ElastiCache) DescribeCacheParameterGroupsRequest(input *DescribeCachePa
 // The DescribeCacheParameterGroups action returns a list of cache parameter
 // group descriptions. If a cache parameter group name is specified, the list
 // will contain only the descriptions for that group.
-func (c *ElastiCache) DescribeCacheParameterGroups(input *DescribeCacheParameterGroupsInput) (*DescribeCacheParameterGroupsOutput, awserr.Error) {
+func (c *ElastiCache) DescribeCacheParameterGroups(input *DescribeCacheParameterGroupsInput) (*DescribeCacheParameterGroupsOutput, error) {
 	req, out := c.DescribeCacheParameterGroupsRequest(input)
 	err := req.Send()
 	return out, err
@@ -701,7 +700,7 @@ func (c *ElastiCache) DescribeCacheParametersRequest(input *DescribeCacheParamet
 
 // The DescribeCacheParameters action returns the detailed parameter list for
 // a particular cache parameter group.
-func (c *ElastiCache) DescribeCacheParameters(input *DescribeCacheParametersInput) (*DescribeCacheParametersOutput, awserr.Error) {
+func (c *ElastiCache) DescribeCacheParameters(input *DescribeCacheParametersInput) (*DescribeCacheParametersOutput, error) {
 	req, out := c.DescribeCacheParametersRequest(input)
 	err := req.Send()
 	return out, err
@@ -735,7 +734,7 @@ func (c *ElastiCache) DescribeCacheSecurityGroupsRequest(input *DescribeCacheSec
 // The DescribeCacheSecurityGroups action returns a list of cache security group
 // descriptions. If a cache security group name is specified, the list will
 // contain only the description of that group.
-func (c *ElastiCache) DescribeCacheSecurityGroups(input *DescribeCacheSecurityGroupsInput) (*DescribeCacheSecurityGroupsOutput, awserr.Error) {
+func (c *ElastiCache) DescribeCacheSecurityGroups(input *DescribeCacheSecurityGroupsInput) (*DescribeCacheSecurityGroupsOutput, error) {
 	req, out := c.DescribeCacheSecurityGroupsRequest(input)
 	err := req.Send()
 	return out, err
@@ -769,7 +768,7 @@ func (c *ElastiCache) DescribeCacheSubnetGroupsRequest(input *DescribeCacheSubne
 // The DescribeCacheSubnetGroups action returns a list of cache subnet group
 // descriptions. If a subnet group name is specified, the list will contain
 // only the description of that group.
-func (c *ElastiCache) DescribeCacheSubnetGroups(input *DescribeCacheSubnetGroupsInput) (*DescribeCacheSubnetGroupsOutput, awserr.Error) {
+func (c *ElastiCache) DescribeCacheSubnetGroups(input *DescribeCacheSubnetGroupsInput) (*DescribeCacheSubnetGroupsOutput, error) {
 	req, out := c.DescribeCacheSubnetGroupsRequest(input)
 	err := req.Send()
 	return out, err
@@ -802,7 +801,7 @@ func (c *ElastiCache) DescribeEngineDefaultParametersRequest(input *DescribeEngi
 
 // The DescribeEngineDefaultParameters action returns the default engine and
 // system parameter information for the specified cache engine.
-func (c *ElastiCache) DescribeEngineDefaultParameters(input *DescribeEngineDefaultParametersInput) (*DescribeEngineDefaultParametersOutput, awserr.Error) {
+func (c *ElastiCache) DescribeEngineDefaultParameters(input *DescribeEngineDefaultParametersInput) (*DescribeEngineDefaultParametersOutput, error) {
 	req, out := c.DescribeEngineDefaultParametersRequest(input)
 	err := req.Send()
 	return out, err
@@ -840,7 +839,7 @@ func (c *ElastiCache) DescribeEventsRequest(input *DescribeEventsInput) (req *aw
 //
 // By default, only the events occurring within the last hour are returned;
 // however, you can retrieve up to 14 days' worth of events if necessary.
-func (c *ElastiCache) DescribeEvents(input *DescribeEventsInput) (*DescribeEventsOutput, awserr.Error) {
+func (c *ElastiCache) DescribeEvents(input *DescribeEventsInput) (*DescribeEventsOutput, error) {
 	req, out := c.DescribeEventsRequest(input)
 	err := req.Send()
 	return out, err
@@ -874,7 +873,7 @@ func (c *ElastiCache) DescribeReplicationGroupsRequest(input *DescribeReplicatio
 // The DescribeReplicationGroups action returns information about a particular
 // replication group. If no identifier is specified, DescribeReplicationGroups
 // returns information about all replication groups.
-func (c *ElastiCache) DescribeReplicationGroups(input *DescribeReplicationGroupsInput) (*DescribeReplicationGroupsOutput, awserr.Error) {
+func (c *ElastiCache) DescribeReplicationGroups(input *DescribeReplicationGroupsInput) (*DescribeReplicationGroupsOutput, error) {
 	req, out := c.DescribeReplicationGroupsRequest(input)
 	err := req.Send()
 	return out, err
@@ -907,7 +906,7 @@ func (c *ElastiCache) DescribeReservedCacheNodesRequest(input *DescribeReservedC
 
 // The DescribeReservedCacheNodes action returns information about reserved
 // cache nodes for this account, or about a specified reserved cache node.
-func (c *ElastiCache) DescribeReservedCacheNodes(input *DescribeReservedCacheNodesInput) (*DescribeReservedCacheNodesOutput, awserr.Error) {
+func (c *ElastiCache) DescribeReservedCacheNodes(input *DescribeReservedCacheNodesInput) (*DescribeReservedCacheNodesOutput, error) {
 	req, out := c.DescribeReservedCacheNodesRequest(input)
 	err := req.Send()
 	return out, err
@@ -940,7 +939,7 @@ func (c *ElastiCache) DescribeReservedCacheNodesOfferingsRequest(input *Describe
 
 // The DescribeReservedCacheNodesOfferings action lists available reserved cache
 // node offerings.
-func (c *ElastiCache) DescribeReservedCacheNodesOfferings(input *DescribeReservedCacheNodesOfferingsInput) (*DescribeReservedCacheNodesOfferingsOutput, awserr.Error) {
+func (c *ElastiCache) DescribeReservedCacheNodesOfferings(input *DescribeReservedCacheNodesOfferingsInput) (*DescribeReservedCacheNodesOfferingsOutput, error) {
 	req, out := c.DescribeReservedCacheNodesOfferingsRequest(input)
 	err := req.Send()
 	return out, err
@@ -975,7 +974,7 @@ func (c *ElastiCache) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (r
 // By default, DescribeSnapshots lists all of your snapshots; it can optionally
 // describe a single snapshot, or just the snapshots associated with a particular
 // cache cluster.
-func (c *ElastiCache) DescribeSnapshots(input *DescribeSnapshotsInput) (*DescribeSnapshotsOutput, awserr.Error) {
+func (c *ElastiCache) DescribeSnapshots(input *DescribeSnapshotsInput) (*DescribeSnapshotsOutput, error) {
 	req, out := c.DescribeSnapshotsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1014,7 +1013,7 @@ func (c *ElastiCache) ListTagsForResourceRequest(input *ListTagsForResourceInput
 // You can have a maximum of 10 cost allocation tags on an ElastiCache resource.
 // For more information, see Using Cost Allocation Tags in Amazon ElastiCache
 // (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/BestPractices.html).
-func (c *ElastiCache) ListTagsForResource(input *ListTagsForResourceInput) (*TagListMessage, awserr.Error) {
+func (c *ElastiCache) ListTagsForResource(input *ListTagsForResourceInput) (*TagListMessage, error) {
 	req, out := c.ListTagsForResourceRequest(input)
 	err := req.Send()
 	return out, err
@@ -1048,7 +1047,7 @@ func (c *ElastiCache) ModifyCacheClusterRequest(input *ModifyCacheClusterInput) 
 // The ModifyCacheCluster action modifies the settings for a cache cluster.
 // You can use this action to change one or more cluster configuration parameters
 // by specifying the parameters and the new values.
-func (c *ElastiCache) ModifyCacheCluster(input *ModifyCacheClusterInput) (*ModifyCacheClusterOutput, awserr.Error) {
+func (c *ElastiCache) ModifyCacheCluster(input *ModifyCacheClusterInput) (*ModifyCacheClusterOutput, error) {
 	req, out := c.ModifyCacheClusterRequest(input)
 	err := req.Send()
 	return out, err
@@ -1082,7 +1081,7 @@ func (c *ElastiCache) ModifyCacheParameterGroupRequest(input *ModifyCacheParamet
 // The ModifyCacheParameterGroup action modifies the parameters of a cache parameter
 // group. You can modify up to 20 parameters in a single request by submitting
 // a list parameter name and value pairs.
-func (c *ElastiCache) ModifyCacheParameterGroup(input *ModifyCacheParameterGroupInput) (*CacheParameterGroupNameMessage, awserr.Error) {
+func (c *ElastiCache) ModifyCacheParameterGroup(input *ModifyCacheParameterGroupInput) (*CacheParameterGroupNameMessage, error) {
 	req, out := c.ModifyCacheParameterGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -1114,7 +1113,7 @@ func (c *ElastiCache) ModifyCacheSubnetGroupRequest(input *ModifyCacheSubnetGrou
 }
 
 // The ModifyCacheSubnetGroup action modifies an existing cache subnet group.
-func (c *ElastiCache) ModifyCacheSubnetGroup(input *ModifyCacheSubnetGroupInput) (*ModifyCacheSubnetGroupOutput, awserr.Error) {
+func (c *ElastiCache) ModifyCacheSubnetGroup(input *ModifyCacheSubnetGroupInput) (*ModifyCacheSubnetGroupOutput, error) {
 	req, out := c.ModifyCacheSubnetGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -1147,7 +1146,7 @@ func (c *ElastiCache) ModifyReplicationGroupRequest(input *ModifyReplicationGrou
 
 // The ModifyReplicationGroup action modifies the settings for a replication
 // group.
-func (c *ElastiCache) ModifyReplicationGroup(input *ModifyReplicationGroupInput) (*ModifyReplicationGroupOutput, awserr.Error) {
+func (c *ElastiCache) ModifyReplicationGroup(input *ModifyReplicationGroupInput) (*ModifyReplicationGroupOutput, error) {
 	req, out := c.ModifyReplicationGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -1180,7 +1179,7 @@ func (c *ElastiCache) PurchaseReservedCacheNodesOfferingRequest(input *PurchaseR
 
 // The PurchaseReservedCacheNodesOffering action allows you to purchase a reserved
 // cache node offering.
-func (c *ElastiCache) PurchaseReservedCacheNodesOffering(input *PurchaseReservedCacheNodesOfferingInput) (*PurchaseReservedCacheNodesOfferingOutput, awserr.Error) {
+func (c *ElastiCache) PurchaseReservedCacheNodesOffering(input *PurchaseReservedCacheNodesOfferingInput) (*PurchaseReservedCacheNodesOfferingOutput, error) {
 	req, out := c.PurchaseReservedCacheNodesOfferingRequest(input)
 	err := req.Send()
 	return out, err
@@ -1221,7 +1220,7 @@ func (c *ElastiCache) RebootCacheClusterRequest(input *RebootCacheClusterInput) 
 // to be lost.
 //
 // When the reboot is complete, a cache cluster event is created.
-func (c *ElastiCache) RebootCacheCluster(input *RebootCacheClusterInput) (*RebootCacheClusterOutput, awserr.Error) {
+func (c *ElastiCache) RebootCacheCluster(input *RebootCacheClusterInput) (*RebootCacheClusterOutput, error) {
 	req, out := c.RebootCacheClusterRequest(input)
 	err := req.Send()
 	return out, err
@@ -1254,7 +1253,7 @@ func (c *ElastiCache) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourc
 
 // The RemoveTagsFromResource action removes the tags identified by the TagKeys
 // list from the named resource.
-func (c *ElastiCache) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*TagListMessage, awserr.Error) {
+func (c *ElastiCache) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*TagListMessage, error) {
 	req, out := c.RemoveTagsFromResourceRequest(input)
 	err := req.Send()
 	return out, err
@@ -1289,7 +1288,7 @@ func (c *ElastiCache) ResetCacheParameterGroupRequest(input *ResetCacheParameter
 // group to the engine or system default value. You can reset specific parameters
 // by submitting a list of parameter names. To reset the entire cache parameter
 // group, specify the ResetAllParameters and CacheParameterGroupName parameters.
-func (c *ElastiCache) ResetCacheParameterGroup(input *ResetCacheParameterGroupInput) (*CacheParameterGroupNameMessage, awserr.Error) {
+func (c *ElastiCache) ResetCacheParameterGroup(input *ResetCacheParameterGroupInput) (*CacheParameterGroupNameMessage, error) {
 	req, out := c.ResetCacheParameterGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -1323,7 +1322,7 @@ func (c *ElastiCache) RevokeCacheSecurityGroupIngressRequest(input *RevokeCacheS
 // The RevokeCacheSecurityGroupIngress action revokes ingress from a cache security
 // group. Use this action to disallow access from an Amazon EC2 security group
 // that had been previously authorized.
-func (c *ElastiCache) RevokeCacheSecurityGroupIngress(input *RevokeCacheSecurityGroupIngressInput) (*RevokeCacheSecurityGroupIngressOutput, awserr.Error) {
+func (c *ElastiCache) RevokeCacheSecurityGroupIngress(input *RevokeCacheSecurityGroupIngressInput) (*RevokeCacheSecurityGroupIngressOutput, error) {
 	req, out := c.RevokeCacheSecurityGroupIngressRequest(input)
 	err := req.Send()
 	return out, err

@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/internal/endpoints"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 // A Service implements the base service request and response handling
@@ -146,8 +147,10 @@ func shouldRetry(r *Request) bool {
 		return true
 	}
 	if r.Error != nil {
-		if _, ok := retryableCodes[r.Error.Code()]; ok {
-			return true
+		if err, ok := r.Error.(awserr.Error); ok {
+			if _, ok := retryableCodes[err.Code()]; ok {
+				return true
+			}
 		}
 	}
 	return false

@@ -4,46 +4,45 @@
 package directconnectiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/directconnect"
 )
 
 type DirectConnectAPI interface {
-	AllocateConnectionOnInterconnect(*directconnect.AllocateConnectionOnInterconnectInput) (*directconnect.Connection, awserr.Error)
+	AllocateConnectionOnInterconnect(*directconnect.AllocateConnectionOnInterconnectInput) (*directconnect.Connection, error)
 
-	AllocatePrivateVirtualInterface(*directconnect.AllocatePrivateVirtualInterfaceInput) (*directconnect.VirtualInterface, awserr.Error)
+	AllocatePrivateVirtualInterface(*directconnect.AllocatePrivateVirtualInterfaceInput) (*directconnect.VirtualInterface, error)
 
-	AllocatePublicVirtualInterface(*directconnect.AllocatePublicVirtualInterfaceInput) (*directconnect.VirtualInterface, awserr.Error)
+	AllocatePublicVirtualInterface(*directconnect.AllocatePublicVirtualInterfaceInput) (*directconnect.VirtualInterface, error)
 
-	ConfirmConnection(*directconnect.ConfirmConnectionInput) (*directconnect.ConfirmConnectionOutput, awserr.Error)
+	ConfirmConnection(*directconnect.ConfirmConnectionInput) (*directconnect.ConfirmConnectionOutput, error)
 
-	ConfirmPrivateVirtualInterface(*directconnect.ConfirmPrivateVirtualInterfaceInput) (*directconnect.ConfirmPrivateVirtualInterfaceOutput, awserr.Error)
+	ConfirmPrivateVirtualInterface(*directconnect.ConfirmPrivateVirtualInterfaceInput) (*directconnect.ConfirmPrivateVirtualInterfaceOutput, error)
 
-	ConfirmPublicVirtualInterface(*directconnect.ConfirmPublicVirtualInterfaceInput) (*directconnect.ConfirmPublicVirtualInterfaceOutput, awserr.Error)
+	ConfirmPublicVirtualInterface(*directconnect.ConfirmPublicVirtualInterfaceInput) (*directconnect.ConfirmPublicVirtualInterfaceOutput, error)
 
-	CreateConnection(*directconnect.CreateConnectionInput) (*directconnect.Connection, awserr.Error)
+	CreateConnection(*directconnect.CreateConnectionInput) (*directconnect.Connection, error)
 
-	CreateInterconnect(*directconnect.CreateInterconnectInput) (*directconnect.Interconnect, awserr.Error)
+	CreateInterconnect(*directconnect.CreateInterconnectInput) (*directconnect.Interconnect, error)
 
-	CreatePrivateVirtualInterface(*directconnect.CreatePrivateVirtualInterfaceInput) (*directconnect.VirtualInterface, awserr.Error)
+	CreatePrivateVirtualInterface(*directconnect.CreatePrivateVirtualInterfaceInput) (*directconnect.VirtualInterface, error)
 
-	CreatePublicVirtualInterface(*directconnect.CreatePublicVirtualInterfaceInput) (*directconnect.VirtualInterface, awserr.Error)
+	CreatePublicVirtualInterface(*directconnect.CreatePublicVirtualInterfaceInput) (*directconnect.VirtualInterface, error)
 
-	DeleteConnection(*directconnect.DeleteConnectionInput) (*directconnect.Connection, awserr.Error)
+	DeleteConnection(*directconnect.DeleteConnectionInput) (*directconnect.Connection, error)
 
-	DeleteInterconnect(*directconnect.DeleteInterconnectInput) (*directconnect.DeleteInterconnectOutput, awserr.Error)
+	DeleteInterconnect(*directconnect.DeleteInterconnectInput) (*directconnect.DeleteInterconnectOutput, error)
 
-	DeleteVirtualInterface(*directconnect.DeleteVirtualInterfaceInput) (*directconnect.DeleteVirtualInterfaceOutput, awserr.Error)
+	DeleteVirtualInterface(*directconnect.DeleteVirtualInterfaceInput) (*directconnect.DeleteVirtualInterfaceOutput, error)
 
-	DescribeConnections(*directconnect.DescribeConnectionsInput) (*directconnect.Connections, awserr.Error)
+	DescribeConnections(*directconnect.DescribeConnectionsInput) (*directconnect.Connections, error)
 
-	DescribeConnectionsOnInterconnect(*directconnect.DescribeConnectionsOnInterconnectInput) (*directconnect.Connections, awserr.Error)
+	DescribeConnectionsOnInterconnect(*directconnect.DescribeConnectionsOnInterconnectInput) (*directconnect.Connections, error)
 
-	DescribeInterconnects(*directconnect.DescribeInterconnectsInput) (*directconnect.DescribeInterconnectsOutput, awserr.Error)
+	DescribeInterconnects(*directconnect.DescribeInterconnectsInput) (*directconnect.DescribeInterconnectsOutput, error)
 
-	DescribeLocations(*directconnect.DescribeLocationsInput) (*directconnect.DescribeLocationsOutput, awserr.Error)
+	DescribeLocations(*directconnect.DescribeLocationsInput) (*directconnect.DescribeLocationsOutput, error)
 
-	DescribeVirtualGateways(*directconnect.DescribeVirtualGatewaysInput) (*directconnect.DescribeVirtualGatewaysOutput, awserr.Error)
+	DescribeVirtualGateways(*directconnect.DescribeVirtualGatewaysInput) (*directconnect.DescribeVirtualGatewaysOutput, error)
 
-	DescribeVirtualInterfaces(*directconnect.DescribeVirtualInterfacesInput) (*directconnect.DescribeVirtualInterfacesOutput, awserr.Error)
+	DescribeVirtualInterfaces(*directconnect.DescribeVirtualInterfacesInput) (*directconnect.DescribeVirtualInterfacesOutput, error)
 }

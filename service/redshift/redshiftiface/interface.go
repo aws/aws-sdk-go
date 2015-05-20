@@ -4,120 +4,119 @@
 package redshiftiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/redshift"
 )
 
 type RedshiftAPI interface {
-	AuthorizeClusterSecurityGroupIngress(*redshift.AuthorizeClusterSecurityGroupIngressInput) (*redshift.AuthorizeClusterSecurityGroupIngressOutput, awserr.Error)
+	AuthorizeClusterSecurityGroupIngress(*redshift.AuthorizeClusterSecurityGroupIngressInput) (*redshift.AuthorizeClusterSecurityGroupIngressOutput, error)
 
-	AuthorizeSnapshotAccess(*redshift.AuthorizeSnapshotAccessInput) (*redshift.AuthorizeSnapshotAccessOutput, awserr.Error)
+	AuthorizeSnapshotAccess(*redshift.AuthorizeSnapshotAccessInput) (*redshift.AuthorizeSnapshotAccessOutput, error)
 
-	CopyClusterSnapshot(*redshift.CopyClusterSnapshotInput) (*redshift.CopyClusterSnapshotOutput, awserr.Error)
+	CopyClusterSnapshot(*redshift.CopyClusterSnapshotInput) (*redshift.CopyClusterSnapshotOutput, error)
 
-	CreateCluster(*redshift.CreateClusterInput) (*redshift.CreateClusterOutput, awserr.Error)
+	CreateCluster(*redshift.CreateClusterInput) (*redshift.CreateClusterOutput, error)
 
-	CreateClusterParameterGroup(*redshift.CreateClusterParameterGroupInput) (*redshift.CreateClusterParameterGroupOutput, awserr.Error)
+	CreateClusterParameterGroup(*redshift.CreateClusterParameterGroupInput) (*redshift.CreateClusterParameterGroupOutput, error)
 
-	CreateClusterSecurityGroup(*redshift.CreateClusterSecurityGroupInput) (*redshift.CreateClusterSecurityGroupOutput, awserr.Error)
+	CreateClusterSecurityGroup(*redshift.CreateClusterSecurityGroupInput) (*redshift.CreateClusterSecurityGroupOutput, error)
 
-	CreateClusterSnapshot(*redshift.CreateClusterSnapshotInput) (*redshift.CreateClusterSnapshotOutput, awserr.Error)
+	CreateClusterSnapshot(*redshift.CreateClusterSnapshotInput) (*redshift.CreateClusterSnapshotOutput, error)
 
-	CreateClusterSubnetGroup(*redshift.CreateClusterSubnetGroupInput) (*redshift.CreateClusterSubnetGroupOutput, awserr.Error)
+	CreateClusterSubnetGroup(*redshift.CreateClusterSubnetGroupInput) (*redshift.CreateClusterSubnetGroupOutput, error)
 
-	CreateEventSubscription(*redshift.CreateEventSubscriptionInput) (*redshift.CreateEventSubscriptionOutput, awserr.Error)
+	CreateEventSubscription(*redshift.CreateEventSubscriptionInput) (*redshift.CreateEventSubscriptionOutput, error)
 
-	CreateHSMClientCertificate(*redshift.CreateHSMClientCertificateInput) (*redshift.CreateHSMClientCertificateOutput, awserr.Error)
+	CreateHSMClientCertificate(*redshift.CreateHSMClientCertificateInput) (*redshift.CreateHSMClientCertificateOutput, error)
 
-	CreateHSMConfiguration(*redshift.CreateHSMConfigurationInput) (*redshift.CreateHSMConfigurationOutput, awserr.Error)
+	CreateHSMConfiguration(*redshift.CreateHSMConfigurationInput) (*redshift.CreateHSMConfigurationOutput, error)
 
-	CreateTags(*redshift.CreateTagsInput) (*redshift.CreateTagsOutput, awserr.Error)
+	CreateTags(*redshift.CreateTagsInput) (*redshift.CreateTagsOutput, error)
 
-	DeleteCluster(*redshift.DeleteClusterInput) (*redshift.DeleteClusterOutput, awserr.Error)
+	DeleteCluster(*redshift.DeleteClusterInput) (*redshift.DeleteClusterOutput, error)
 
-	DeleteClusterParameterGroup(*redshift.DeleteClusterParameterGroupInput) (*redshift.DeleteClusterParameterGroupOutput, awserr.Error)
+	DeleteClusterParameterGroup(*redshift.DeleteClusterParameterGroupInput) (*redshift.DeleteClusterParameterGroupOutput, error)
 
-	DeleteClusterSecurityGroup(*redshift.DeleteClusterSecurityGroupInput) (*redshift.DeleteClusterSecurityGroupOutput, awserr.Error)
+	DeleteClusterSecurityGroup(*redshift.DeleteClusterSecurityGroupInput) (*redshift.DeleteClusterSecurityGroupOutput, error)
 
-	DeleteClusterSnapshot(*redshift.DeleteClusterSnapshotInput) (*redshift.DeleteClusterSnapshotOutput, awserr.Error)
+	DeleteClusterSnapshot(*redshift.DeleteClusterSnapshotInput) (*redshift.DeleteClusterSnapshotOutput, error)
 
-	DeleteClusterSubnetGroup(*redshift.DeleteClusterSubnetGroupInput) (*redshift.DeleteClusterSubnetGroupOutput, awserr.Error)
+	DeleteClusterSubnetGroup(*redshift.DeleteClusterSubnetGroupInput) (*redshift.DeleteClusterSubnetGroupOutput, error)
 
-	DeleteEventSubscription(*redshift.DeleteEventSubscriptionInput) (*redshift.DeleteEventSubscriptionOutput, awserr.Error)
+	DeleteEventSubscription(*redshift.DeleteEventSubscriptionInput) (*redshift.DeleteEventSubscriptionOutput, error)
 
-	DeleteHSMClientCertificate(*redshift.DeleteHSMClientCertificateInput) (*redshift.DeleteHSMClientCertificateOutput, awserr.Error)
+	DeleteHSMClientCertificate(*redshift.DeleteHSMClientCertificateInput) (*redshift.DeleteHSMClientCertificateOutput, error)
 
-	DeleteHSMConfiguration(*redshift.DeleteHSMConfigurationInput) (*redshift.DeleteHSMConfigurationOutput, awserr.Error)
+	DeleteHSMConfiguration(*redshift.DeleteHSMConfigurationInput) (*redshift.DeleteHSMConfigurationOutput, error)
 
-	DeleteTags(*redshift.DeleteTagsInput) (*redshift.DeleteTagsOutput, awserr.Error)
+	DeleteTags(*redshift.DeleteTagsInput) (*redshift.DeleteTagsOutput, error)
 
-	DescribeClusterParameterGroups(*redshift.DescribeClusterParameterGroupsInput) (*redshift.DescribeClusterParameterGroupsOutput, awserr.Error)
+	DescribeClusterParameterGroups(*redshift.DescribeClusterParameterGroupsInput) (*redshift.DescribeClusterParameterGroupsOutput, error)
 
-	DescribeClusterParameters(*redshift.DescribeClusterParametersInput) (*redshift.DescribeClusterParametersOutput, awserr.Error)
+	DescribeClusterParameters(*redshift.DescribeClusterParametersInput) (*redshift.DescribeClusterParametersOutput, error)
 
-	DescribeClusterSecurityGroups(*redshift.DescribeClusterSecurityGroupsInput) (*redshift.DescribeClusterSecurityGroupsOutput, awserr.Error)
+	DescribeClusterSecurityGroups(*redshift.DescribeClusterSecurityGroupsInput) (*redshift.DescribeClusterSecurityGroupsOutput, error)
 
-	DescribeClusterSnapshots(*redshift.DescribeClusterSnapshotsInput) (*redshift.DescribeClusterSnapshotsOutput, awserr.Error)
+	DescribeClusterSnapshots(*redshift.DescribeClusterSnapshotsInput) (*redshift.DescribeClusterSnapshotsOutput, error)
 
-	DescribeClusterSubnetGroups(*redshift.DescribeClusterSubnetGroupsInput) (*redshift.DescribeClusterSubnetGroupsOutput, awserr.Error)
+	DescribeClusterSubnetGroups(*redshift.DescribeClusterSubnetGroupsInput) (*redshift.DescribeClusterSubnetGroupsOutput, error)
 
-	DescribeClusterVersions(*redshift.DescribeClusterVersionsInput) (*redshift.DescribeClusterVersionsOutput, awserr.Error)
+	DescribeClusterVersions(*redshift.DescribeClusterVersionsInput) (*redshift.DescribeClusterVersionsOutput, error)
 
-	DescribeClusters(*redshift.DescribeClustersInput) (*redshift.DescribeClustersOutput, awserr.Error)
+	DescribeClusters(*redshift.DescribeClustersInput) (*redshift.DescribeClustersOutput, error)
 
-	DescribeDefaultClusterParameters(*redshift.DescribeDefaultClusterParametersInput) (*redshift.DescribeDefaultClusterParametersOutput, awserr.Error)
+	DescribeDefaultClusterParameters(*redshift.DescribeDefaultClusterParametersInput) (*redshift.DescribeDefaultClusterParametersOutput, error)
 
-	DescribeEventCategories(*redshift.DescribeEventCategoriesInput) (*redshift.DescribeEventCategoriesOutput, awserr.Error)
+	DescribeEventCategories(*redshift.DescribeEventCategoriesInput) (*redshift.DescribeEventCategoriesOutput, error)
 
-	DescribeEventSubscriptions(*redshift.DescribeEventSubscriptionsInput) (*redshift.DescribeEventSubscriptionsOutput, awserr.Error)
+	DescribeEventSubscriptions(*redshift.DescribeEventSubscriptionsInput) (*redshift.DescribeEventSubscriptionsOutput, error)
 
-	DescribeEvents(*redshift.DescribeEventsInput) (*redshift.DescribeEventsOutput, awserr.Error)
+	DescribeEvents(*redshift.DescribeEventsInput) (*redshift.DescribeEventsOutput, error)
 
-	DescribeHSMClientCertificates(*redshift.DescribeHSMClientCertificatesInput) (*redshift.DescribeHSMClientCertificatesOutput, awserr.Error)
+	DescribeHSMClientCertificates(*redshift.DescribeHSMClientCertificatesInput) (*redshift.DescribeHSMClientCertificatesOutput, error)
 
-	DescribeHSMConfigurations(*redshift.DescribeHSMConfigurationsInput) (*redshift.DescribeHSMConfigurationsOutput, awserr.Error)
+	DescribeHSMConfigurations(*redshift.DescribeHSMConfigurationsInput) (*redshift.DescribeHSMConfigurationsOutput, error)
 
-	DescribeLoggingStatus(*redshift.DescribeLoggingStatusInput) (*redshift.LoggingStatus, awserr.Error)
+	DescribeLoggingStatus(*redshift.DescribeLoggingStatusInput) (*redshift.LoggingStatus, error)
 
-	DescribeOrderableClusterOptions(*redshift.DescribeOrderableClusterOptionsInput) (*redshift.DescribeOrderableClusterOptionsOutput, awserr.Error)
+	DescribeOrderableClusterOptions(*redshift.DescribeOrderableClusterOptionsInput) (*redshift.DescribeOrderableClusterOptionsOutput, error)
 
-	DescribeReservedNodeOfferings(*redshift.DescribeReservedNodeOfferingsInput) (*redshift.DescribeReservedNodeOfferingsOutput, awserr.Error)
+	DescribeReservedNodeOfferings(*redshift.DescribeReservedNodeOfferingsInput) (*redshift.DescribeReservedNodeOfferingsOutput, error)
 
-	DescribeReservedNodes(*redshift.DescribeReservedNodesInput) (*redshift.DescribeReservedNodesOutput, awserr.Error)
+	DescribeReservedNodes(*redshift.DescribeReservedNodesInput) (*redshift.DescribeReservedNodesOutput, error)
 
-	DescribeResize(*redshift.DescribeResizeInput) (*redshift.DescribeResizeOutput, awserr.Error)
+	DescribeResize(*redshift.DescribeResizeInput) (*redshift.DescribeResizeOutput, error)
 
-	DescribeTags(*redshift.DescribeTagsInput) (*redshift.DescribeTagsOutput, awserr.Error)
+	DescribeTags(*redshift.DescribeTagsInput) (*redshift.DescribeTagsOutput, error)
 
-	DisableLogging(*redshift.DisableLoggingInput) (*redshift.LoggingStatus, awserr.Error)
+	DisableLogging(*redshift.DisableLoggingInput) (*redshift.LoggingStatus, error)
 
-	DisableSnapshotCopy(*redshift.DisableSnapshotCopyInput) (*redshift.DisableSnapshotCopyOutput, awserr.Error)
+	DisableSnapshotCopy(*redshift.DisableSnapshotCopyInput) (*redshift.DisableSnapshotCopyOutput, error)
 
-	EnableLogging(*redshift.EnableLoggingInput) (*redshift.LoggingStatus, awserr.Error)
+	EnableLogging(*redshift.EnableLoggingInput) (*redshift.LoggingStatus, error)
 
-	EnableSnapshotCopy(*redshift.EnableSnapshotCopyInput) (*redshift.EnableSnapshotCopyOutput, awserr.Error)
+	EnableSnapshotCopy(*redshift.EnableSnapshotCopyInput) (*redshift.EnableSnapshotCopyOutput, error)
 
-	ModifyCluster(*redshift.ModifyClusterInput) (*redshift.ModifyClusterOutput, awserr.Error)
+	ModifyCluster(*redshift.ModifyClusterInput) (*redshift.ModifyClusterOutput, error)
 
-	ModifyClusterParameterGroup(*redshift.ModifyClusterParameterGroupInput) (*redshift.ClusterParameterGroupNameMessage, awserr.Error)
+	ModifyClusterParameterGroup(*redshift.ModifyClusterParameterGroupInput) (*redshift.ClusterParameterGroupNameMessage, error)
 
-	ModifyClusterSubnetGroup(*redshift.ModifyClusterSubnetGroupInput) (*redshift.ModifyClusterSubnetGroupOutput, awserr.Error)
+	ModifyClusterSubnetGroup(*redshift.ModifyClusterSubnetGroupInput) (*redshift.ModifyClusterSubnetGroupOutput, error)
 
-	ModifyEventSubscription(*redshift.ModifyEventSubscriptionInput) (*redshift.ModifyEventSubscriptionOutput, awserr.Error)
+	ModifyEventSubscription(*redshift.ModifyEventSubscriptionInput) (*redshift.ModifyEventSubscriptionOutput, error)
 
-	ModifySnapshotCopyRetentionPeriod(*redshift.ModifySnapshotCopyRetentionPeriodInput) (*redshift.ModifySnapshotCopyRetentionPeriodOutput, awserr.Error)
+	ModifySnapshotCopyRetentionPeriod(*redshift.ModifySnapshotCopyRetentionPeriodInput) (*redshift.ModifySnapshotCopyRetentionPeriodOutput, error)
 
-	PurchaseReservedNodeOffering(*redshift.PurchaseReservedNodeOfferingInput) (*redshift.PurchaseReservedNodeOfferingOutput, awserr.Error)
+	PurchaseReservedNodeOffering(*redshift.PurchaseReservedNodeOfferingInput) (*redshift.PurchaseReservedNodeOfferingOutput, error)
 
-	RebootCluster(*redshift.RebootClusterInput) (*redshift.RebootClusterOutput, awserr.Error)
+	RebootCluster(*redshift.RebootClusterInput) (*redshift.RebootClusterOutput, error)
 
-	ResetClusterParameterGroup(*redshift.ResetClusterParameterGroupInput) (*redshift.ClusterParameterGroupNameMessage, awserr.Error)
+	ResetClusterParameterGroup(*redshift.ResetClusterParameterGroupInput) (*redshift.ClusterParameterGroupNameMessage, error)
 
-	RestoreFromClusterSnapshot(*redshift.RestoreFromClusterSnapshotInput) (*redshift.RestoreFromClusterSnapshotOutput, awserr.Error)
+	RestoreFromClusterSnapshot(*redshift.RestoreFromClusterSnapshotInput) (*redshift.RestoreFromClusterSnapshotOutput, error)
 
-	RevokeClusterSecurityGroupIngress(*redshift.RevokeClusterSecurityGroupIngressInput) (*redshift.RevokeClusterSecurityGroupIngressOutput, awserr.Error)
+	RevokeClusterSecurityGroupIngress(*redshift.RevokeClusterSecurityGroupIngressInput) (*redshift.RevokeClusterSecurityGroupIngressOutput, error)
 
-	RevokeSnapshotAccess(*redshift.RevokeSnapshotAccessInput) (*redshift.RevokeSnapshotAccessOutput, awserr.Error)
+	RevokeSnapshotAccess(*redshift.RevokeSnapshotAccessInput) (*redshift.RevokeSnapshotAccessOutput, error)
 
-	RotateEncryptionKey(*redshift.RotateEncryptionKeyInput) (*redshift.RotateEncryptionKeyOutput, awserr.Error)
+	RotateEncryptionKey(*redshift.RotateEncryptionKeyInput) (*redshift.RotateEncryptionKeyOutput, error)
 }

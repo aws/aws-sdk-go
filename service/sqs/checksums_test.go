@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/internal/test/unit"
 	"github.com/awslabs/aws-sdk-go/service/sqs"
 	"github.com/stretchr/testify/assert"
@@ -53,8 +54,8 @@ func TestSendMessageChecksumInvalid(t *testing.T) {
 	err := req.Send()
 	assert.Error(t, err)
 
-	assert.Equal(t, "InvalidChecksum", err.Code())
-	assert.Contains(t, err.Message(), "expected MD5 checksum '000', got '098f6bcd4621d373cade4e832627b4f6'")
+	assert.Equal(t, "InvalidChecksum", err.(awserr.Error).Code())
+	assert.Contains(t, err.(awserr.Error).Message(), "expected MD5 checksum '000', got '098f6bcd4621d373cade4e832627b4f6'")
 }
 
 func TestSendMessageChecksumInvalidNoValidation(t *testing.T) {
@@ -89,8 +90,8 @@ func TestSendMessageChecksumNoInput(t *testing.T) {
 	err := req.Send()
 	assert.Error(t, err)
 
-	assert.Equal(t, "InvalidChecksum", err.Code())
-	assert.Contains(t, err.Message(), "cannot compute checksum. missing body.")
+	assert.Equal(t, "InvalidChecksum", err.(awserr.Error).Code())
+	assert.Contains(t, err.(awserr.Error).Message(), "cannot compute checksum. missing body.")
 }
 
 func TestSendMessageChecksumNoOutput(t *testing.T) {
@@ -105,8 +106,8 @@ func TestSendMessageChecksumNoOutput(t *testing.T) {
 	err := req.Send()
 	assert.Error(t, err)
 
-	assert.Equal(t, "InvalidChecksum", err.Code())
-	assert.Contains(t, err.Message(), "cannot verify checksum. missing response MD5.")
+	assert.Equal(t, "InvalidChecksum", err.(awserr.Error).Code())
+	assert.Contains(t, err.(awserr.Error).Message(), "cannot verify checksum. missing response MD5.")
 }
 
 func TestRecieveMessageChecksum(t *testing.T) {
@@ -146,8 +147,8 @@ func TestRecieveMessageChecksumInvalid(t *testing.T) {
 	err := req.Send()
 	assert.Error(t, err)
 
-	assert.Equal(t, "InvalidChecksum", err.Code())
-	assert.Contains(t, err.Message(), "invalid messages: 123, 456")
+	assert.Equal(t, "InvalidChecksum", err.(awserr.Error).Code())
+	assert.Contains(t, err.(awserr.Error).Message(), "invalid messages: 123, 456")
 }
 
 func TestSendMessageBatchChecksum(t *testing.T) {
@@ -201,6 +202,6 @@ func TestSendMessageBatchChecksumInvalid(t *testing.T) {
 	err := req.Send()
 	assert.Error(t, err)
 
-	assert.Equal(t, "InvalidChecksum", err.Code())
-	assert.Contains(t, err.Message(), "invalid messages: 456, 789")
+	assert.Equal(t, "InvalidChecksum", err.(awserr.Error).Code())
+	assert.Contains(t, err.(awserr.Error).Message(), "invalid messages: 456, 789")
 }

@@ -10,12 +10,12 @@ import (
 	"testing"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/aws/awsutil"
 	"github.com/awslabs/aws-sdk-go/internal/test/unit"
 	"github.com/awslabs/aws-sdk-go/service/s3"
 	"github.com/awslabs/aws-sdk-go/service/s3/s3manager"
 	"github.com/stretchr/testify/assert"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var _ = unit.Imported
@@ -257,8 +257,8 @@ func TestUploadOrderReadFail1(t *testing.T) {
 		Body:   failreader{1},
 	}, nil)
 
-	assert.Equal(t, "ReadRequestBody", err.Code())
-	assert.EqualError(t, err.OrigErr(), "random failure")
+	assert.Equal(t, "ReadRequestBody", err.(awserr.Error).Code())
+	assert.EqualError(t, err.(awserr.Error).OrigErr(), "random failure")
 	assert.Equal(t, []string{}, *ops)
 }
 
@@ -271,8 +271,8 @@ func TestUploadOrderReadFail2(t *testing.T) {
 		Body:   failreader{2},
 	}, nil)
 
-	assert.Equal(t, "MultipartUpload", err.Code())
-	assert.Equal(t, "ReadRequestBody", err.OrigErr().(awserr.Error).Code())
-	assert.EqualError(t, err.OrigErr().(awserr.Error).OrigErr(), "random failure")
+	assert.Equal(t, "MultipartUpload", err.(awserr.Error).Code())
+	assert.Equal(t, "ReadRequestBody", err.(awserr.Error).OrigErr().(awserr.Error).Code())
+	assert.EqualError(t, err.(awserr.Error).OrigErr().(awserr.Error).OrigErr(), "random failure")
 	assert.Equal(t, []string{"CreateMultipartUpload", "AbortMultipartUpload"}, *ops)
 }

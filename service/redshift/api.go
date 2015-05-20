@@ -8,7 +8,6 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -51,7 +50,7 @@ func (c *Redshift) AuthorizeClusterSecurityGroupIngressRequest(input *AuthorizeC
 // to the cluster. For information about managing security groups, go to Working
 // with Security Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-security-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
-func (c *Redshift) AuthorizeClusterSecurityGroupIngress(input *AuthorizeClusterSecurityGroupIngressInput) (*AuthorizeClusterSecurityGroupIngressOutput, awserr.Error) {
+func (c *Redshift) AuthorizeClusterSecurityGroupIngress(input *AuthorizeClusterSecurityGroupIngressInput) (*AuthorizeClusterSecurityGroupIngressOutput, error) {
 	req, out := c.AuthorizeClusterSecurityGroupIngressRequest(input)
 	err := req.Send()
 	return out, err
@@ -87,7 +86,7 @@ func (c *Redshift) AuthorizeSnapshotAccessRequest(input *AuthorizeSnapshotAccess
 //  For more information about working with snapshots, go to Amazon Redshift
 // Snapshots (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html)
 // in the Amazon Redshift Cluster Management Guide.
-func (c *Redshift) AuthorizeSnapshotAccess(input *AuthorizeSnapshotAccessInput) (*AuthorizeSnapshotAccessOutput, awserr.Error) {
+func (c *Redshift) AuthorizeSnapshotAccess(input *AuthorizeSnapshotAccessInput) (*AuthorizeSnapshotAccessOutput, error) {
 	req, out := c.AuthorizeSnapshotAccessRequest(input)
 	err := req.Send()
 	return out, err
@@ -131,7 +130,7 @@ func (c *Redshift) CopyClusterSnapshotRequest(input *CopyClusterSnapshotInput) (
 //  For more information about working with snapshots, go to Amazon Redshift
 // Snapshots (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html)
 // in the Amazon Redshift Cluster Management Guide.
-func (c *Redshift) CopyClusterSnapshot(input *CopyClusterSnapshotInput) (*CopyClusterSnapshotOutput, awserr.Error) {
+func (c *Redshift) CopyClusterSnapshot(input *CopyClusterSnapshotInput) (*CopyClusterSnapshotOutput, error) {
 	req, out := c.CopyClusterSnapshotRequest(input)
 	err := req.Send()
 	return out, err
@@ -169,7 +168,7 @@ func (c *Redshift) CreateClusterRequest(input *CreateClusterInput) (req *aws.Req
 // with the cluster. For more information about managing clusters, go to Amazon
 // Redshift Clusters (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html)
 // in the Amazon Redshift Cluster Management Guide .
-func (c *Redshift) CreateCluster(input *CreateClusterInput) (*CreateClusterOutput, awserr.Error) {
+func (c *Redshift) CreateCluster(input *CreateClusterInput) (*CreateClusterOutput, error) {
 	req, out := c.CreateClusterRequest(input)
 	err := req.Send()
 	return out, err
@@ -211,7 +210,7 @@ func (c *Redshift) CreateClusterParameterGroupRequest(input *CreateClusterParame
 // to the databases you create on the cluster. For more information about managing
 // parameter groups, go to Amazon Redshift Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
-func (c *Redshift) CreateClusterParameterGroup(input *CreateClusterParameterGroupInput) (*CreateClusterParameterGroupOutput, awserr.Error) {
+func (c *Redshift) CreateClusterParameterGroup(input *CreateClusterParameterGroupInput) (*CreateClusterParameterGroupOutput, error) {
 	req, out := c.CreateClusterParameterGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -248,7 +247,7 @@ func (c *Redshift) CreateClusterSecurityGroupRequest(input *CreateClusterSecurit
 //  For information about managing security groups, go to Amazon Redshift Cluster
 // Security Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-security-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
-func (c *Redshift) CreateClusterSecurityGroup(input *CreateClusterSecurityGroupInput) (*CreateClusterSecurityGroupOutput, awserr.Error) {
+func (c *Redshift) CreateClusterSecurityGroup(input *CreateClusterSecurityGroupInput) (*CreateClusterSecurityGroupOutput, error) {
 	req, out := c.CreateClusterSecurityGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -285,7 +284,7 @@ func (c *Redshift) CreateClusterSnapshotRequest(input *CreateClusterSnapshotInpu
 //  For more information about working with snapshots, go to Amazon Redshift
 // Snapshots (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html)
 // in the Amazon Redshift Cluster Management Guide.
-func (c *Redshift) CreateClusterSnapshot(input *CreateClusterSnapshotInput) (*CreateClusterSnapshotOutput, awserr.Error) {
+func (c *Redshift) CreateClusterSnapshot(input *CreateClusterSnapshotInput) (*CreateClusterSnapshotOutput, error) {
 	req, out := c.CreateClusterSnapshotRequest(input)
 	err := req.Send()
 	return out, err
@@ -323,7 +322,7 @@ func (c *Redshift) CreateClusterSubnetGroupRequest(input *CreateClusterSubnetGro
 //  For information about subnet groups, go to Amazon Redshift Cluster Subnet
 // Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-cluster-subnet-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
-func (c *Redshift) CreateClusterSubnetGroup(input *CreateClusterSubnetGroupInput) (*CreateClusterSubnetGroupOutput, awserr.Error) {
+func (c *Redshift) CreateClusterSubnetGroup(input *CreateClusterSubnetGroupInput) (*CreateClusterSubnetGroupOutput, error) {
 	req, out := c.CreateClusterSubnetGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -376,7 +375,7 @@ func (c *Redshift) CreateEventSubscriptionRequest(input *CreateEventSubscription
 // the SourceType nor the SourceIdentifier, you will be notified of events generated
 // from all Amazon Redshift sources belonging to your AWS account. You must
 // specify a source type if you specify a source ID.
-func (c *Redshift) CreateEventSubscription(input *CreateEventSubscriptionInput) (*CreateEventSubscriptionOutput, awserr.Error) {
+func (c *Redshift) CreateEventSubscription(input *CreateEventSubscriptionInput) (*CreateEventSubscriptionOutput, error) {
 	req, out := c.CreateEventSubscriptionRequest(input)
 	err := req.Send()
 	return out, err
@@ -416,7 +415,7 @@ func (c *Redshift) CreateHSMClientCertificateRequest(input *CreateHSMClientCerti
 // that provides a cluster the information needed to store and use encryption
 // keys in the HSM. For more information, go to Hardware Security Modules (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-HSM.html)
 // in the Amazon Redshift Cluster Management Guide.
-func (c *Redshift) CreateHSMClientCertificate(input *CreateHSMClientCertificateInput) (*CreateHSMClientCertificateOutput, awserr.Error) {
+func (c *Redshift) CreateHSMClientCertificate(input *CreateHSMClientCertificateInput) (*CreateHSMClientCertificateOutput, error) {
 	req, out := c.CreateHSMClientCertificateRequest(input)
 	err := req.Send()
 	return out, err
@@ -457,7 +456,7 @@ func (c *Redshift) CreateHSMConfigurationRequest(input *CreateHSMConfigurationIn
 // client certificate. For more information, go to Hardware Security Modules
 // (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-HSM.html) in
 // the Amazon Redshift Cluster Management Guide.
-func (c *Redshift) CreateHSMConfiguration(input *CreateHSMConfigurationInput) (*CreateHSMConfigurationOutput, awserr.Error) {
+func (c *Redshift) CreateHSMConfiguration(input *CreateHSMConfigurationInput) (*CreateHSMConfigurationOutput, error) {
 	req, out := c.CreateHSMConfigurationRequest(input)
 	err := req.Send()
 	return out, err
@@ -495,7 +494,7 @@ func (c *Redshift) CreateTagsRequest(input *CreateTagsInput) (req *aws.Request, 
 //
 //  If you specify a key that already exists for the resource, the value for
 // that key will be updated with the new value.
-func (c *Redshift) CreateTags(input *CreateTagsInput) (*CreateTagsOutput, awserr.Error) {
+func (c *Redshift) CreateTags(input *CreateTagsInput) (*CreateTagsOutput, error) {
 	req, out := c.CreateTagsRequest(input)
 	err := req.Send()
 	return out, err
@@ -543,7 +542,7 @@ func (c *Redshift) DeleteClusterRequest(input *DeleteClusterInput) (req *aws.Req
 //  For more information about managing clusters, go to Amazon Redshift Clusters
 // (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html)
 // in the Amazon Redshift Cluster Management Guide .
-func (c *Redshift) DeleteCluster(input *DeleteClusterInput) (*DeleteClusterOutput, awserr.Error) {
+func (c *Redshift) DeleteCluster(input *DeleteClusterInput) (*DeleteClusterOutput, error) {
 	req, out := c.DeleteClusterRequest(input)
 	err := req.Send()
 	return out, err
@@ -576,7 +575,7 @@ func (c *Redshift) DeleteClusterParameterGroupRequest(input *DeleteClusterParame
 
 // Deletes a specified Amazon Redshift parameter group. You cannot delete a
 // parameter group if it is associated with a cluster.
-func (c *Redshift) DeleteClusterParameterGroup(input *DeleteClusterParameterGroupInput) (*DeleteClusterParameterGroupOutput, awserr.Error) {
+func (c *Redshift) DeleteClusterParameterGroup(input *DeleteClusterParameterGroupInput) (*DeleteClusterParameterGroupOutput, error) {
 	req, out := c.DeleteClusterParameterGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -613,7 +612,7 @@ func (c *Redshift) DeleteClusterSecurityGroupRequest(input *DeleteClusterSecurit
 // You cannot delete the default security group.  For information about managing
 // security groups, go to Amazon Redshift Cluster Security Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-security-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
-func (c *Redshift) DeleteClusterSecurityGroup(input *DeleteClusterSecurityGroupInput) (*DeleteClusterSecurityGroupOutput, awserr.Error) {
+func (c *Redshift) DeleteClusterSecurityGroup(input *DeleteClusterSecurityGroupInput) (*DeleteClusterSecurityGroupOutput, error) {
 	req, out := c.DeleteClusterSecurityGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -652,7 +651,7 @@ func (c *Redshift) DeleteClusterSnapshotRequest(input *DeleteClusterSnapshotInpu
 // You must delete manual snapshot explicitly to avoid getting charged. If other
 // accounts are authorized to access the snapshot, you must revoke all of the
 // authorizations before you can delete the snapshot.
-func (c *Redshift) DeleteClusterSnapshot(input *DeleteClusterSnapshotInput) (*DeleteClusterSnapshotOutput, awserr.Error) {
+func (c *Redshift) DeleteClusterSnapshot(input *DeleteClusterSnapshotInput) (*DeleteClusterSnapshotOutput, error) {
 	req, out := c.DeleteClusterSnapshotRequest(input)
 	err := req.Send()
 	return out, err
@@ -684,7 +683,7 @@ func (c *Redshift) DeleteClusterSubnetGroupRequest(input *DeleteClusterSubnetGro
 }
 
 // Deletes the specified cluster subnet group.
-func (c *Redshift) DeleteClusterSubnetGroup(input *DeleteClusterSubnetGroupInput) (*DeleteClusterSubnetGroupOutput, awserr.Error) {
+func (c *Redshift) DeleteClusterSubnetGroup(input *DeleteClusterSubnetGroupInput) (*DeleteClusterSubnetGroupOutput, error) {
 	req, out := c.DeleteClusterSubnetGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -716,7 +715,7 @@ func (c *Redshift) DeleteEventSubscriptionRequest(input *DeleteEventSubscription
 }
 
 // Deletes an Amazon Redshift event notification subscription.
-func (c *Redshift) DeleteEventSubscription(input *DeleteEventSubscriptionInput) (*DeleteEventSubscriptionOutput, awserr.Error) {
+func (c *Redshift) DeleteEventSubscription(input *DeleteEventSubscriptionInput) (*DeleteEventSubscriptionOutput, error) {
 	req, out := c.DeleteEventSubscriptionRequest(input)
 	err := req.Send()
 	return out, err
@@ -748,7 +747,7 @@ func (c *Redshift) DeleteHSMClientCertificateRequest(input *DeleteHSMClientCerti
 }
 
 // Deletes the specified HSM client certificate.
-func (c *Redshift) DeleteHSMClientCertificate(input *DeleteHSMClientCertificateInput) (*DeleteHSMClientCertificateOutput, awserr.Error) {
+func (c *Redshift) DeleteHSMClientCertificate(input *DeleteHSMClientCertificateInput) (*DeleteHSMClientCertificateOutput, error) {
 	req, out := c.DeleteHSMClientCertificateRequest(input)
 	err := req.Send()
 	return out, err
@@ -780,7 +779,7 @@ func (c *Redshift) DeleteHSMConfigurationRequest(input *DeleteHSMConfigurationIn
 }
 
 // Deletes the specified Amazon Redshift HSM configuration.
-func (c *Redshift) DeleteHSMConfiguration(input *DeleteHSMConfigurationInput) (*DeleteHSMConfigurationOutput, awserr.Error) {
+func (c *Redshift) DeleteHSMConfiguration(input *DeleteHSMConfigurationInput) (*DeleteHSMConfigurationOutput, error) {
 	req, out := c.DeleteHSMConfigurationRequest(input)
 	err := req.Send()
 	return out, err
@@ -813,7 +812,7 @@ func (c *Redshift) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Request, 
 
 // Deletes a tag or tags from a resource. You must provide the ARN of the resource
 // from which you want to delete the tag or tags.
-func (c *Redshift) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, awserr.Error) {
+func (c *Redshift) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, error) {
 	req, out := c.DeleteTagsRequest(input)
 	err := req.Send()
 	return out, err
@@ -863,7 +862,7 @@ func (c *Redshift) DescribeClusterParameterGroupsRequest(input *DescribeClusterP
 // If both tag keys and values are omitted from the request, parameter groups
 // are returned regardless of whether they have tag keys or values associated
 // with them.
-func (c *Redshift) DescribeClusterParameterGroups(input *DescribeClusterParameterGroupsInput) (*DescribeClusterParameterGroupsOutput, awserr.Error) {
+func (c *Redshift) DescribeClusterParameterGroups(input *DescribeClusterParameterGroupsInput) (*DescribeClusterParameterGroupsOutput, error) {
 	req, out := c.DescribeClusterParameterGroupsRequest(input)
 	err := req.Send()
 	return out, err
@@ -906,7 +905,7 @@ func (c *Redshift) DescribeClusterParametersRequest(input *DescribeClusterParame
 //  For more information about managing parameter groups, go to Amazon Redshift
 // Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
-func (c *Redshift) DescribeClusterParameters(input *DescribeClusterParametersInput) (*DescribeClusterParametersOutput, awserr.Error) {
+func (c *Redshift) DescribeClusterParameters(input *DescribeClusterParametersInput) (*DescribeClusterParametersOutput, error) {
 	req, out := c.DescribeClusterParametersRequest(input)
 	err := req.Send()
 	return out, err
@@ -954,7 +953,7 @@ func (c *Redshift) DescribeClusterSecurityGroupsRequest(input *DescribeClusterSe
 // If both tag keys and values are omitted from the request, security groups
 // are returned regardless of whether they have tag keys or values associated
 // with them.
-func (c *Redshift) DescribeClusterSecurityGroups(input *DescribeClusterSecurityGroupsInput) (*DescribeClusterSecurityGroupsOutput, awserr.Error) {
+func (c *Redshift) DescribeClusterSecurityGroups(input *DescribeClusterSecurityGroupsInput) (*DescribeClusterSecurityGroupsOutput, error) {
 	req, out := c.DescribeClusterSecurityGroupsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1001,7 +1000,7 @@ func (c *Redshift) DescribeClusterSnapshotsRequest(input *DescribeClusterSnapsho
 // If both tag keys and values are omitted from the request, snapshots are
 // returned regardless of whether they have tag keys or values associated with
 // them.
-func (c *Redshift) DescribeClusterSnapshots(input *DescribeClusterSnapshotsInput) (*DescribeClusterSnapshotsOutput, awserr.Error) {
+func (c *Redshift) DescribeClusterSnapshots(input *DescribeClusterSnapshotsInput) (*DescribeClusterSnapshotsOutput, error) {
 	req, out := c.DescribeClusterSnapshotsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1045,7 +1044,7 @@ func (c *Redshift) DescribeClusterSubnetGroupsRequest(input *DescribeClusterSubn
 // If both tag keys and values are omitted from the request, subnet groups
 // are returned regardless of whether they have tag keys or values associated
 // with them.
-func (c *Redshift) DescribeClusterSubnetGroups(input *DescribeClusterSubnetGroupsInput) (*DescribeClusterSubnetGroupsOutput, awserr.Error) {
+func (c *Redshift) DescribeClusterSubnetGroups(input *DescribeClusterSubnetGroupsInput) (*DescribeClusterSubnetGroupsOutput, error) {
 	req, out := c.DescribeClusterSubnetGroupsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1081,7 +1080,7 @@ func (c *Redshift) DescribeClusterVersionsRequest(input *DescribeClusterVersions
 // the Amazon Redshift versions. For more information about managing clusters,
 // go to Amazon Redshift Clusters (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html)
 // in the Amazon Redshift Cluster Management Guide
-func (c *Redshift) DescribeClusterVersions(input *DescribeClusterVersionsInput) (*DescribeClusterVersionsOutput, awserr.Error) {
+func (c *Redshift) DescribeClusterVersions(input *DescribeClusterVersionsInput) (*DescribeClusterVersionsOutput, error) {
 	req, out := c.DescribeClusterVersionsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1126,7 +1125,7 @@ func (c *Redshift) DescribeClustersRequest(input *DescribeClustersInput) (req *a
 //
 // If both tag keys and values are omitted from the request, clusters are returned
 // regardless of whether they have tag keys or values associated with them.
-func (c *Redshift) DescribeClusters(input *DescribeClustersInput) (*DescribeClustersOutput, awserr.Error) {
+func (c *Redshift) DescribeClusters(input *DescribeClustersInput) (*DescribeClustersOutput, error) {
 	req, out := c.DescribeClustersRequest(input)
 	err := req.Send()
 	return out, err
@@ -1162,7 +1161,7 @@ func (c *Redshift) DescribeDefaultClusterParametersRequest(input *DescribeDefaul
 //  For more information about managing parameter groups, go to Amazon Redshift
 // Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
-func (c *Redshift) DescribeDefaultClusterParameters(input *DescribeDefaultClusterParametersInput) (*DescribeDefaultClusterParametersOutput, awserr.Error) {
+func (c *Redshift) DescribeDefaultClusterParameters(input *DescribeDefaultClusterParametersInput) (*DescribeDefaultClusterParametersOutput, error) {
 	req, out := c.DescribeDefaultClusterParametersRequest(input)
 	err := req.Send()
 	return out, err
@@ -1196,7 +1195,7 @@ func (c *Redshift) DescribeEventCategoriesRequest(input *DescribeEventCategories
 // Displays a list of event categories for all event source types, or for a
 // specified source type. For a list of the event categories and source types,
 // go to Amazon Redshift Event Notifications (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-event-notifications.html).
-func (c *Redshift) DescribeEventCategories(input *DescribeEventCategoriesInput) (*DescribeEventCategoriesOutput, awserr.Error) {
+func (c *Redshift) DescribeEventCategories(input *DescribeEventCategoriesInput) (*DescribeEventCategoriesOutput, error) {
 	req, out := c.DescribeEventCategoriesRequest(input)
 	err := req.Send()
 	return out, err
@@ -1230,7 +1229,7 @@ func (c *Redshift) DescribeEventSubscriptionsRequest(input *DescribeEventSubscri
 // Lists descriptions of all the Amazon Redshift event notifications subscription
 // for a customer account. If you specify a subscription name, lists the description
 // for that subscription.
-func (c *Redshift) DescribeEventSubscriptions(input *DescribeEventSubscriptionsInput) (*DescribeEventSubscriptionsOutput, awserr.Error) {
+func (c *Redshift) DescribeEventSubscriptions(input *DescribeEventSubscriptionsInput) (*DescribeEventSubscriptionsOutput, error) {
 	req, out := c.DescribeEventSubscriptionsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1265,7 +1264,7 @@ func (c *Redshift) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.R
 // groups for the past 14 days. Events specific to a particular cluster, security
 // group, snapshot or parameter group can be obtained by providing the name
 // as a parameter. By default, the past hour of events are returned.
-func (c *Redshift) DescribeEvents(input *DescribeEventsInput) (*DescribeEventsOutput, awserr.Error) {
+func (c *Redshift) DescribeEvents(input *DescribeEventsInput) (*DescribeEventsOutput, error) {
 	req, out := c.DescribeEventsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1309,7 +1308,7 @@ func (c *Redshift) DescribeHSMClientCertificatesRequest(input *DescribeHSMClient
 // If both tag keys and values are omitted from the request, HSM client certificates
 // are returned regardless of whether they have tag keys or values associated
 // with them.
-func (c *Redshift) DescribeHSMClientCertificates(input *DescribeHSMClientCertificatesInput) (*DescribeHSMClientCertificatesOutput, awserr.Error) {
+func (c *Redshift) DescribeHSMClientCertificates(input *DescribeHSMClientCertificatesInput) (*DescribeHSMClientCertificatesOutput, error) {
 	req, out := c.DescribeHSMClientCertificatesRequest(input)
 	err := req.Send()
 	return out, err
@@ -1353,7 +1352,7 @@ func (c *Redshift) DescribeHSMConfigurationsRequest(input *DescribeHSMConfigurat
 // If both tag keys and values are omitted from the request, HSM connections
 // are returned regardless of whether they have tag keys or values associated
 // with them.
-func (c *Redshift) DescribeHSMConfigurations(input *DescribeHSMConfigurationsInput) (*DescribeHSMConfigurationsOutput, awserr.Error) {
+func (c *Redshift) DescribeHSMConfigurations(input *DescribeHSMConfigurationsInput) (*DescribeHSMConfigurationsOutput, error) {
 	req, out := c.DescribeHSMConfigurationsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1386,7 +1385,7 @@ func (c *Redshift) DescribeLoggingStatusRequest(input *DescribeLoggingStatusInpu
 
 // Describes whether information, such as queries and connection attempts, is
 // being logged for the specified Amazon Redshift cluster.
-func (c *Redshift) DescribeLoggingStatus(input *DescribeLoggingStatusInput) (*LoggingStatus, awserr.Error) {
+func (c *Redshift) DescribeLoggingStatus(input *DescribeLoggingStatusInput) (*LoggingStatus, error) {
 	req, out := c.DescribeLoggingStatusRequest(input)
 	err := req.Send()
 	return out, err
@@ -1426,7 +1425,7 @@ func (c *Redshift) DescribeOrderableClusterOptionsRequest(input *DescribeOrderab
 // a cluster. For more information about managing clusters, go to Amazon Redshift
 // Clusters (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html)
 // in the Amazon Redshift Cluster Management Guide
-func (c *Redshift) DescribeOrderableClusterOptions(input *DescribeOrderableClusterOptionsInput) (*DescribeOrderableClusterOptionsOutput, awserr.Error) {
+func (c *Redshift) DescribeOrderableClusterOptions(input *DescribeOrderableClusterOptionsInput) (*DescribeOrderableClusterOptionsOutput, error) {
 	req, out := c.DescribeOrderableClusterOptionsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1467,7 +1466,7 @@ func (c *Redshift) DescribeReservedNodeOfferingsRequest(input *DescribeReservedN
 //  For more information about managing parameter groups, go to Purchasing
 // Reserved Nodes (http://docs.aws.amazon.com/redshift/latest/mgmt/purchase-reserved-node-instance.html)
 // in the Amazon Redshift Cluster Management Guide.
-func (c *Redshift) DescribeReservedNodeOfferings(input *DescribeReservedNodeOfferingsInput) (*DescribeReservedNodeOfferingsOutput, awserr.Error) {
+func (c *Redshift) DescribeReservedNodeOfferings(input *DescribeReservedNodeOfferingsInput) (*DescribeReservedNodeOfferingsOutput, error) {
 	req, out := c.DescribeReservedNodeOfferingsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1499,7 +1498,7 @@ func (c *Redshift) DescribeReservedNodesRequest(input *DescribeReservedNodesInpu
 }
 
 // Returns the descriptions of the reserved nodes.
-func (c *Redshift) DescribeReservedNodes(input *DescribeReservedNodesInput) (*DescribeReservedNodesOutput, awserr.Error) {
+func (c *Redshift) DescribeReservedNodes(input *DescribeReservedNodesInput) (*DescribeReservedNodesOutput, error) {
 	req, out := c.DescribeReservedNodesRequest(input)
 	err := req.Send()
 	return out, err
@@ -1537,7 +1536,7 @@ func (c *Redshift) DescribeResizeRequest(input *DescribeResizeInput) (req *aws.R
 //
 //  A resize operation can be requested using ModifyCluster and specifying
 // a different number or type of nodes for the cluster.
-func (c *Redshift) DescribeResize(input *DescribeResizeInput) (*DescribeResizeOutput, awserr.Error) {
+func (c *Redshift) DescribeResize(input *DescribeResizeInput) (*DescribeResizeOutput, error) {
 	req, out := c.DescribeResizeRequest(input)
 	err := req.Send()
 	return out, err
@@ -1587,7 +1586,7 @@ func (c *Redshift) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Reque
 // If both tag keys and values are omitted from the request, resources are
 // returned regardless of whether they have tag keys or values associated with
 // them.
-func (c *Redshift) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, awserr.Error) {
+func (c *Redshift) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, error) {
 	req, out := c.DescribeTagsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1620,7 +1619,7 @@ func (c *Redshift) DisableLoggingRequest(input *DisableLoggingInput) (req *aws.R
 
 // Stops logging information, such as queries and connection attempts, for the
 // specified Amazon Redshift cluster.
-func (c *Redshift) DisableLogging(input *DisableLoggingInput) (*LoggingStatus, awserr.Error) {
+func (c *Redshift) DisableLogging(input *DisableLoggingInput) (*LoggingStatus, error) {
 	req, out := c.DisableLoggingRequest(input)
 	err := req.Send()
 	return out, err
@@ -1653,7 +1652,7 @@ func (c *Redshift) DisableSnapshotCopyRequest(input *DisableSnapshotCopyInput) (
 
 // Disables the automatic copying of snapshots from one region to another region
 // for a specified cluster.
-func (c *Redshift) DisableSnapshotCopy(input *DisableSnapshotCopyInput) (*DisableSnapshotCopyOutput, awserr.Error) {
+func (c *Redshift) DisableSnapshotCopy(input *DisableSnapshotCopyInput) (*DisableSnapshotCopyOutput, error) {
 	req, out := c.DisableSnapshotCopyRequest(input)
 	err := req.Send()
 	return out, err
@@ -1686,7 +1685,7 @@ func (c *Redshift) EnableLoggingRequest(input *EnableLoggingInput) (req *aws.Req
 
 // Starts logging information, such as queries and connection attempts, for
 // the specified Amazon Redshift cluster.
-func (c *Redshift) EnableLogging(input *EnableLoggingInput) (*LoggingStatus, awserr.Error) {
+func (c *Redshift) EnableLogging(input *EnableLoggingInput) (*LoggingStatus, error) {
 	req, out := c.EnableLoggingRequest(input)
 	err := req.Send()
 	return out, err
@@ -1719,7 +1718,7 @@ func (c *Redshift) EnableSnapshotCopyRequest(input *EnableSnapshotCopyInput) (re
 
 // Enables the automatic copy of snapshots from one region to another region
 // for a specified cluster.
-func (c *Redshift) EnableSnapshotCopy(input *EnableSnapshotCopyInput) (*EnableSnapshotCopyOutput, awserr.Error) {
+func (c *Redshift) EnableSnapshotCopy(input *EnableSnapshotCopyInput) (*EnableSnapshotCopyOutput, error) {
 	req, out := c.EnableSnapshotCopyRequest(input)
 	err := req.Send()
 	return out, err
@@ -1761,7 +1760,7 @@ func (c *Redshift) ModifyClusterRequest(input *ModifyClusterInput) (req *aws.Req
 // You can also change node type and the number of nodes to scale up or down
 // the cluster. When resizing a cluster, you must specify both the number of
 // nodes and the node type even if one of the parameters does not change.
-func (c *Redshift) ModifyCluster(input *ModifyClusterInput) (*ModifyClusterOutput, awserr.Error) {
+func (c *Redshift) ModifyCluster(input *ModifyClusterInput) (*ModifyClusterOutput, error) {
 	req, out := c.ModifyClusterRequest(input)
 	err := req.Send()
 	return out, err
@@ -1797,7 +1796,7 @@ func (c *Redshift) ModifyClusterParameterGroupRequest(input *ModifyClusterParame
 //  For more information about managing parameter groups, go to Amazon Redshift
 // Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
-func (c *Redshift) ModifyClusterParameterGroup(input *ModifyClusterParameterGroupInput) (*ClusterParameterGroupNameMessage, awserr.Error) {
+func (c *Redshift) ModifyClusterParameterGroup(input *ModifyClusterParameterGroupInput) (*ClusterParameterGroupNameMessage, error) {
 	req, out := c.ModifyClusterParameterGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -1831,7 +1830,7 @@ func (c *Redshift) ModifyClusterSubnetGroupRequest(input *ModifyClusterSubnetGro
 // Modifies a cluster subnet group to include the specified list of VPC subnets.
 // The operation replaces the existing list of subnets with the new list of
 // subnets.
-func (c *Redshift) ModifyClusterSubnetGroup(input *ModifyClusterSubnetGroupInput) (*ModifyClusterSubnetGroupOutput, awserr.Error) {
+func (c *Redshift) ModifyClusterSubnetGroup(input *ModifyClusterSubnetGroupInput) (*ModifyClusterSubnetGroupOutput, error) {
 	req, out := c.ModifyClusterSubnetGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -1863,7 +1862,7 @@ func (c *Redshift) ModifyEventSubscriptionRequest(input *ModifyEventSubscription
 }
 
 // Modifies an existing Amazon Redshift event notification subscription.
-func (c *Redshift) ModifyEventSubscription(input *ModifyEventSubscriptionInput) (*ModifyEventSubscriptionOutput, awserr.Error) {
+func (c *Redshift) ModifyEventSubscription(input *ModifyEventSubscriptionInput) (*ModifyEventSubscriptionOutput, error) {
 	req, out := c.ModifyEventSubscriptionRequest(input)
 	err := req.Send()
 	return out, err
@@ -1896,7 +1895,7 @@ func (c *Redshift) ModifySnapshotCopyRetentionPeriodRequest(input *ModifySnapsho
 
 // Modifies the number of days to retain automated snapshots in the destination
 // region after they are copied from the source region.
-func (c *Redshift) ModifySnapshotCopyRetentionPeriod(input *ModifySnapshotCopyRetentionPeriodInput) (*ModifySnapshotCopyRetentionPeriodOutput, awserr.Error) {
+func (c *Redshift) ModifySnapshotCopyRetentionPeriod(input *ModifySnapshotCopyRetentionPeriodInput) (*ModifySnapshotCopyRetentionPeriodOutput, error) {
 	req, out := c.ModifySnapshotCopyRetentionPeriodRequest(input)
 	err := req.Send()
 	return out, err
@@ -1936,7 +1935,7 @@ func (c *Redshift) PurchaseReservedNodeOfferingRequest(input *PurchaseReservedNo
 //  For more information about managing parameter groups, go to Purchasing
 // Reserved Nodes (http://docs.aws.amazon.com/redshift/latest/mgmt/purchase-reserved-node-instance.html)
 // in the Amazon Redshift Cluster Management Guide.
-func (c *Redshift) PurchaseReservedNodeOffering(input *PurchaseReservedNodeOfferingInput) (*PurchaseReservedNodeOfferingOutput, awserr.Error) {
+func (c *Redshift) PurchaseReservedNodeOffering(input *PurchaseReservedNodeOfferingInput) (*PurchaseReservedNodeOfferingOutput, error) {
 	req, out := c.PurchaseReservedNodeOfferingRequest(input)
 	err := req.Send()
 	return out, err
@@ -1974,7 +1973,7 @@ func (c *Redshift) RebootClusterRequest(input *RebootClusterInput) (req *aws.Req
 // For more information about managing clusters, go to Amazon Redshift Clusters
 // (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html)
 // in the Amazon Redshift Cluster Management Guide
-func (c *Redshift) RebootCluster(input *RebootClusterInput) (*RebootClusterOutput, awserr.Error) {
+func (c *Redshift) RebootCluster(input *RebootClusterInput) (*RebootClusterOutput, error) {
 	req, out := c.RebootClusterRequest(input)
 	err := req.Send()
 	return out, err
@@ -2009,7 +2008,7 @@ func (c *Redshift) ResetClusterParameterGroupRequest(input *ResetClusterParamete
 // values and sets the source values of the parameters to "engine-default".
 // To reset the entire parameter group specify the ResetAllParameters parameter.
 // For parameter changes to take effect you must reboot any associated clusters.
-func (c *Redshift) ResetClusterParameterGroup(input *ResetClusterParameterGroupInput) (*ClusterParameterGroupNameMessage, awserr.Error) {
+func (c *Redshift) ResetClusterParameterGroup(input *ResetClusterParameterGroupInput) (*ClusterParameterGroupNameMessage, error) {
 	req, out := c.ResetClusterParameterGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -2053,7 +2052,7 @@ func (c *Redshift) RestoreFromClusterSnapshotRequest(input *RestoreFromClusterSn
 //  For more information about working with snapshots, go to Amazon Redshift
 // Snapshots (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html)
 // in the Amazon Redshift Cluster Management Guide.
-func (c *Redshift) RestoreFromClusterSnapshot(input *RestoreFromClusterSnapshotInput) (*RestoreFromClusterSnapshotOutput, awserr.Error) {
+func (c *Redshift) RestoreFromClusterSnapshot(input *RestoreFromClusterSnapshotInput) (*RestoreFromClusterSnapshotOutput, error) {
 	req, out := c.RestoreFromClusterSnapshotRequest(input)
 	err := req.Send()
 	return out, err
@@ -2089,7 +2088,7 @@ func (c *Redshift) RevokeClusterSecurityGroupIngressRequest(input *RevokeCluster
 // see AuthorizeClusterSecurityGroupIngress. For information about managing
 // security groups, go to Amazon Redshift Cluster Security Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-security-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
-func (c *Redshift) RevokeClusterSecurityGroupIngress(input *RevokeClusterSecurityGroupIngressInput) (*RevokeClusterSecurityGroupIngressOutput, awserr.Error) {
+func (c *Redshift) RevokeClusterSecurityGroupIngress(input *RevokeClusterSecurityGroupIngressInput) (*RevokeClusterSecurityGroupIngressOutput, error) {
 	req, out := c.RevokeClusterSecurityGroupIngressRequest(input)
 	err := req.Send()
 	return out, err
@@ -2127,7 +2126,7 @@ func (c *Redshift) RevokeSnapshotAccessRequest(input *RevokeSnapshotAccessInput)
 //  For more information about working with snapshots, go to Amazon Redshift
 // Snapshots (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html)
 // in the Amazon Redshift Cluster Management Guide.
-func (c *Redshift) RevokeSnapshotAccess(input *RevokeSnapshotAccessInput) (*RevokeSnapshotAccessOutput, awserr.Error) {
+func (c *Redshift) RevokeSnapshotAccess(input *RevokeSnapshotAccessInput) (*RevokeSnapshotAccessOutput, error) {
 	req, out := c.RevokeSnapshotAccessRequest(input)
 	err := req.Send()
 	return out, err
@@ -2159,7 +2158,7 @@ func (c *Redshift) RotateEncryptionKeyRequest(input *RotateEncryptionKeyInput) (
 }
 
 // Rotates the encryption keys for a cluster.
-func (c *Redshift) RotateEncryptionKey(input *RotateEncryptionKeyInput) (*RotateEncryptionKeyOutput, awserr.Error) {
+func (c *Redshift) RotateEncryptionKey(input *RotateEncryptionKeyInput) (*RotateEncryptionKeyOutput, error) {
 	req, out := c.RotateEncryptionKeyRequest(input)
 	err := req.Send()
 	return out, err

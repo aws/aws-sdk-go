@@ -8,7 +8,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"encoding/xml"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
 	"github.com/awslabs/aws-sdk-go/internal/util"
 	"github.com/stretchr/testify/assert"
@@ -88,7 +87,7 @@ func (c *InputService1ProtocolTest) InputService1TestCaseOperation1Request(input
 	return
 }
 
-func (c *InputService1ProtocolTest) InputService1TestCaseOperation1(input *InputService1TestShapeInputShape) (*InputService1TestShapeInputService1TestCaseOperation1Output, awserr.Error) {
+func (c *InputService1ProtocolTest) InputService1TestCaseOperation1(input *InputService1TestShapeInputShape) (*InputService1TestShapeInputService1TestCaseOperation1Output, error) {
 	req, out := c.InputService1TestCaseOperation1Request(input)
 	err := req.Send()
 	return out, err
@@ -171,7 +170,7 @@ func (c *InputService2ProtocolTest) InputService2TestCaseOperation1Request(input
 	return
 }
 
-func (c *InputService2ProtocolTest) InputService2TestCaseOperation1(input *InputService2TestShapeInputShape) (*InputService2TestShapeInputService2TestCaseOperation1Output, awserr.Error) {
+func (c *InputService2ProtocolTest) InputService2TestCaseOperation1(input *InputService2TestShapeInputShape) (*InputService2TestShapeInputService2TestCaseOperation1Output, error) {
 	req, out := c.InputService2TestCaseOperation1Request(input)
 	err := req.Send()
 	return out, err
@@ -254,7 +253,7 @@ func (c *InputService3ProtocolTest) InputService3TestCaseOperation1Request(input
 	return
 }
 
-func (c *InputService3ProtocolTest) InputService3TestCaseOperation1(input *InputService3TestShapeInputShape) (*InputService3TestShapeInputService3TestCaseOperation1Output, awserr.Error) {
+func (c *InputService3ProtocolTest) InputService3TestCaseOperation1(input *InputService3TestShapeInputShape) (*InputService3TestShapeInputService3TestCaseOperation1Output, error) {
 	req, out := c.InputService3TestCaseOperation1Request(input)
 	err := req.Send()
 	return out, err
@@ -341,7 +340,7 @@ func (c *InputService4ProtocolTest) InputService4TestCaseOperation1Request(input
 	return
 }
 
-func (c *InputService4ProtocolTest) InputService4TestCaseOperation1(input *InputService4TestShapeInputShape) (*InputService4TestShapeInputService4TestCaseOperation1Output, awserr.Error) {
+func (c *InputService4ProtocolTest) InputService4TestCaseOperation1(input *InputService4TestShapeInputShape) (*InputService4TestShapeInputService4TestCaseOperation1Output, error) {
 	req, out := c.InputService4TestCaseOperation1Request(input)
 	err := req.Send()
 	return out, err
@@ -442,7 +441,7 @@ func (c *InputService5ProtocolTest) InputService5TestCaseOperation1Request(input
 	return
 }
 
-func (c *InputService5ProtocolTest) InputService5TestCaseOperation1(input *InputService5TestShapeInputShape) (*InputService5TestShapeInputService5TestCaseOperation1Output, awserr.Error) {
+func (c *InputService5ProtocolTest) InputService5TestCaseOperation1(input *InputService5TestShapeInputShape) (*InputService5TestShapeInputService5TestCaseOperation1Output, error) {
 	req, out := c.InputService5TestCaseOperation1Request(input)
 	err := req.Send()
 	return out, err
@@ -545,7 +544,7 @@ func (c *InputService6ProtocolTest) InputService6TestCaseOperation1Request(input
 	return
 }
 
-func (c *InputService6ProtocolTest) InputService6TestCaseOperation1(input *InputService6TestShapeInputShape) (*InputService6TestShapeInputService6TestCaseOperation1Output, awserr.Error) {
+func (c *InputService6ProtocolTest) InputService6TestCaseOperation1(input *InputService6TestShapeInputShape) (*InputService6TestShapeInputService6TestCaseOperation1Output, error) {
 	req, out := c.InputService6TestCaseOperation1Request(input)
 	err := req.Send()
 	return out, err
@@ -632,7 +631,7 @@ func (c *InputService7ProtocolTest) InputService7TestCaseOperation1Request(input
 	return
 }
 
-func (c *InputService7ProtocolTest) InputService7TestCaseOperation1(input *InputService7TestShapeInputShape) (*InputService7TestShapeInputService7TestCaseOperation1Output, awserr.Error) {
+func (c *InputService7ProtocolTest) InputService7TestCaseOperation1(input *InputService7TestShapeInputShape) (*InputService7TestShapeInputService7TestCaseOperation1Output, error) {
 	req, out := c.InputService7TestCaseOperation1Request(input)
 	err := req.Send()
 	return out, err
@@ -661,7 +660,7 @@ func (c *InputService7ProtocolTest) InputService7TestCaseOperation2Request(input
 	return
 }
 
-func (c *InputService7ProtocolTest) InputService7TestCaseOperation2(input *InputService7TestShapeInputShape) (*InputService7TestShapeInputService7TestCaseOperation2Output, awserr.Error) {
+func (c *InputService7ProtocolTest) InputService7TestCaseOperation2(input *InputService7TestShapeInputShape) (*InputService7TestShapeInputService7TestCaseOperation2Output, error) {
 	req, out := c.InputService7TestCaseOperation2Request(input)
 	err := req.Send()
 	return out, err
@@ -752,7 +751,7 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation1Request(input
 	return
 }
 
-func (c *InputService8ProtocolTest) InputService8TestCaseOperation1(input *InputService8TestShapeInputShape) (*InputService8TestShapeInputService8TestCaseOperation1Output, awserr.Error) {
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation1(input *InputService8TestShapeInputShape) (*InputService8TestShapeInputService8TestCaseOperation1Output, error) {
 	req, out := c.InputService8TestCaseOperation1Request(input)
 	err := req.Send()
 	return out, err
@@ -781,7 +780,7 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation2Request(input
 	return
 }
 
-func (c *InputService8ProtocolTest) InputService8TestCaseOperation2(input *InputService8TestShapeInputShape) (*InputService8TestShapeInputService8TestCaseOperation2Output, awserr.Error) {
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation2(input *InputService8TestShapeInputShape) (*InputService8TestShapeInputService8TestCaseOperation2Output, error) {
 	req, out := c.InputService8TestCaseOperation2Request(input)
 	err := req.Send()
 	return out, err
@@ -810,7 +809,7 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation3Request(input
 	return
 }
 
-func (c *InputService8ProtocolTest) InputService8TestCaseOperation3(input *InputService8TestShapeInputShape) (*InputService8TestShapeInputService8TestCaseOperation3Output, awserr.Error) {
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation3(input *InputService8TestShapeInputShape) (*InputService8TestShapeInputService8TestCaseOperation3Output, error) {
 	req, out := c.InputService8TestCaseOperation3Request(input)
 	err := req.Send()
 	return out, err
@@ -839,7 +838,7 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation4Request(input
 	return
 }
 
-func (c *InputService8ProtocolTest) InputService8TestCaseOperation4(input *InputService8TestShapeInputShape) (*InputService8TestShapeInputService8TestCaseOperation4Output, awserr.Error) {
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation4(input *InputService8TestShapeInputShape) (*InputService8TestShapeInputService8TestCaseOperation4Output, error) {
 	req, out := c.InputService8TestCaseOperation4Request(input)
 	err := req.Send()
 	return out, err
@@ -868,7 +867,7 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation5Request(input
 	return
 }
 
-func (c *InputService8ProtocolTest) InputService8TestCaseOperation5(input *InputService8TestShapeInputShape) (*InputService8TestShapeInputService8TestCaseOperation5Output, awserr.Error) {
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation5(input *InputService8TestShapeInputShape) (*InputService8TestShapeInputService8TestCaseOperation5Output, error) {
 	req, out := c.InputService8TestCaseOperation5Request(input)
 	err := req.Send()
 	return out, err
@@ -897,7 +896,7 @@ func (c *InputService8ProtocolTest) InputService8TestCaseOperation6Request(input
 	return
 }
 
-func (c *InputService8ProtocolTest) InputService8TestCaseOperation6(input *InputService8TestShapeInputShape) (*InputService8TestShapeInputService8TestCaseOperation6Output, awserr.Error) {
+func (c *InputService8ProtocolTest) InputService8TestCaseOperation6(input *InputService8TestShapeInputShape) (*InputService8TestShapeInputService8TestCaseOperation6Output, error) {
 	req, out := c.InputService8TestCaseOperation6Request(input)
 	err := req.Send()
 	return out, err
@@ -1036,7 +1035,7 @@ func (c *InputService9ProtocolTest) InputService9TestCaseOperation1Request(input
 	return
 }
 
-func (c *InputService9ProtocolTest) InputService9TestCaseOperation1(input *InputService9TestShapeInputShape) (*InputService9TestShapeInputService9TestCaseOperation1Output, awserr.Error) {
+func (c *InputService9ProtocolTest) InputService9TestCaseOperation1(input *InputService9TestShapeInputShape) (*InputService9TestShapeInputService9TestCaseOperation1Output, error) {
 	req, out := c.InputService9TestCaseOperation1Request(input)
 	err := req.Send()
 	return out, err
@@ -1065,7 +1064,7 @@ func (c *InputService9ProtocolTest) InputService9TestCaseOperation2Request(input
 	return
 }
 
-func (c *InputService9ProtocolTest) InputService9TestCaseOperation2(input *InputService9TestShapeInputShape) (*InputService9TestShapeInputService9TestCaseOperation2Output, awserr.Error) {
+func (c *InputService9ProtocolTest) InputService9TestCaseOperation2(input *InputService9TestShapeInputShape) (*InputService9TestShapeInputService9TestCaseOperation2Output, error) {
 	req, out := c.InputService9TestCaseOperation2Request(input)
 	err := req.Send()
 	return out, err

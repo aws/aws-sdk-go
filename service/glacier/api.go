@@ -8,7 +8,6 @@ import (
 	"sync"
 
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -56,7 +55,7 @@ func (c *Glacier) AbortMultipartUploadRequest(input *AbortMultipartUploadInput) 
 // Archives in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/working-with-archives.html)
 // and Abort Multipart Upload (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-multipart-abort-upload.html)
 // in the Amazon Glacier Developer Guide.
-func (c *Glacier) AbortMultipartUpload(input *AbortMultipartUploadInput) (*AbortMultipartUploadOutput, awserr.Error) {
+func (c *Glacier) AbortMultipartUpload(input *AbortMultipartUploadInput) (*AbortMultipartUploadOutput, error) {
 	req, out := c.AbortMultipartUploadRequest(input)
 	err := req.Send()
 	return out, err
@@ -131,7 +130,7 @@ func (c *Glacier) CompleteMultipartUploadRequest(input *CompleteMultipartUploadI
 // Archives in Parts (Multipart Upload) (http://docs.aws.amazon.com/amazonglacier/latest/dev/uploading-archive-mpu.html)
 // and Complete Multipart Upload (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-multipart-complete-upload.html)
 // in the Amazon Glacier Developer Guide.
-func (c *Glacier) CompleteMultipartUpload(input *CompleteMultipartUploadInput) (*ArchiveCreationOutput, awserr.Error) {
+func (c *Glacier) CompleteMultipartUpload(input *CompleteMultipartUploadInput) (*ArchiveCreationOutput, error) {
 	req, out := c.CompleteMultipartUploadRequest(input)
 	err := req.Send()
 	return out, err
@@ -186,7 +185,7 @@ func (c *Glacier) CreateVaultRequest(input *CreateVaultInput) (req *aws.Request,
 // in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/creating-vaults.html)
 // and Create Vault  (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-put.html)
 // in the Amazon Glacier Developer Guide.
-func (c *Glacier) CreateVault(input *CreateVaultInput) (*CreateVaultOutput, awserr.Error) {
+func (c *Glacier) CreateVault(input *CreateVaultInput) (*CreateVaultOutput, error) {
 	req, out := c.CreateVaultRequest(input)
 	err := req.Send()
 	return out, err
@@ -238,7 +237,7 @@ func (c *Glacier) DeleteArchiveRequest(input *DeleteArchiveInput) (req *aws.Requ
 // in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/deleting-an-archive.html)
 // and Delete Archive (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-archive-delete.html)
 // in the Amazon Glacier Developer Guide.
-func (c *Glacier) DeleteArchive(input *DeleteArchiveInput) (*DeleteArchiveOutput, awserr.Error) {
+func (c *Glacier) DeleteArchive(input *DeleteArchiveInput) (*DeleteArchiveOutput, error) {
 	req, out := c.DeleteArchiveRequest(input)
 	err := req.Send()
 	return out, err
@@ -292,7 +291,7 @@ func (c *Glacier) DeleteVaultRequest(input *DeleteVaultInput) (req *aws.Request,
 // in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/deleting-vaults.html)
 // and Delete Vault  (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-delete.html)
 // in the Amazon Glacier Developer Guide.
-func (c *Glacier) DeleteVault(input *DeleteVaultInput) (*DeleteVaultOutput, awserr.Error) {
+func (c *Glacier) DeleteVault(input *DeleteVaultInput) (*DeleteVaultOutput, error) {
 	req, out := c.DeleteVaultRequest(input)
 	err := req.Send()
 	return out, err
@@ -338,7 +337,7 @@ func (c *Glacier) DeleteVaultNotificationsRequest(input *DeleteVaultNotification
 // Notifications in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/configuring-notifications.html)
 // and Delete Vault Notification Configuration  (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-notifications-delete.html)
 // in the Amazon Glacier Developer Guide.
-func (c *Glacier) DeleteVaultNotifications(input *DeleteVaultNotificationsInput) (*DeleteVaultNotificationsOutput, awserr.Error) {
+func (c *Glacier) DeleteVaultNotifications(input *DeleteVaultNotificationsInput) (*DeleteVaultNotificationsOutput, error) {
 	req, out := c.DeleteVaultNotificationsRequest(input)
 	err := req.Send()
 	return out, err
@@ -391,7 +390,7 @@ func (c *Glacier) DescribeJobRequest(input *DescribeJobInput) (req *aws.Request,
 //  For information about the underlying REST API, go to Working with Archives
 // in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-describe-job-get.html)
 // in the Amazon Glacier Developer Guide.
-func (c *Glacier) DescribeJob(input *DescribeJobInput) (*GlacierJobDescription, awserr.Error) {
+func (c *Glacier) DescribeJob(input *DescribeJobInput) (*GlacierJobDescription, error) {
 	req, out := c.DescribeJobRequest(input)
 	err := req.Send()
 	return out, err
@@ -442,7 +441,7 @@ func (c *Glacier) DescribeVaultRequest(input *DescribeVaultInput) (req *aws.Requ
 // Metadata in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/retrieving-vault-info.html)
 // and Describe Vault  (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-get.html)
 // in the Amazon Glacier Developer Guide.
-func (c *Glacier) DescribeVault(input *DescribeVaultInput) (*DescribeVaultOutput, awserr.Error) {
+func (c *Glacier) DescribeVault(input *DescribeVaultInput) (*DescribeVaultOutput, error) {
 	req, out := c.DescribeVaultRequest(input)
 	err := req.Send()
 	return out, err
@@ -473,7 +472,7 @@ func (c *Glacier) GetDataRetrievalPolicyRequest(input *GetDataRetrievalPolicyInp
 	return
 }
 
-func (c *Glacier) GetDataRetrievalPolicy(input *GetDataRetrievalPolicyInput) (*GetDataRetrievalPolicyOutput, awserr.Error) {
+func (c *Glacier) GetDataRetrievalPolicy(input *GetDataRetrievalPolicyInput) (*GetDataRetrievalPolicyOutput, error) {
 	req, out := c.GetDataRetrievalPolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -548,7 +547,7 @@ func (c *Glacier) GetJobOutputRequest(input *GetJobOutputInput) (req *aws.Reques
 // a Vault Inventory (http://docs.aws.amazon.com/amazonglacier/latest/dev/vault-inventory.html),
 // Downloading an Archive (http://docs.aws.amazon.com/amazonglacier/latest/dev/downloading-an-archive.html),
 // and Get Job Output  (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-job-output-get.html)
-func (c *Glacier) GetJobOutput(input *GetJobOutputInput) (*GetJobOutputOutput, awserr.Error) {
+func (c *Glacier) GetJobOutput(input *GetJobOutputInput) (*GetJobOutputOutput, error) {
 	req, out := c.GetJobOutputRequest(input)
 	err := req.Send()
 	return out, err
@@ -598,7 +597,7 @@ func (c *Glacier) GetVaultNotificationsRequest(input *GetVaultNotificationsInput
 // Notifications in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/configuring-notifications.html)
 // and Get Vault Notification Configuration  (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-notifications-get.html)
 // in the Amazon Glacier Developer Guide.
-func (c *Glacier) GetVaultNotifications(input *GetVaultNotificationsInput) (*GetVaultNotificationsOutput, awserr.Error) {
+func (c *Glacier) GetVaultNotifications(input *GetVaultNotificationsInput) (*GetVaultNotificationsOutput, error) {
 	req, out := c.GetVaultNotificationsRequest(input)
 	err := req.Send()
 	return out, err
@@ -739,7 +738,7 @@ func (c *Glacier) InitiateJobRequest(input *InitiateJobInput) (req *aws.Request,
 // For conceptual information and the underlying REST API, go to Initiate a
 // Job (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-initiate-job-post.html)
 // and Downloading a Vault Inventory (http://docs.aws.amazon.com/amazonglacier/latest/dev/vault-inventory.html)
-func (c *Glacier) InitiateJob(input *InitiateJobInput) (*InitiateJobOutput, awserr.Error) {
+func (c *Glacier) InitiateJob(input *InitiateJobInput) (*InitiateJobOutput, error) {
 	req, out := c.InitiateJobRequest(input)
 	err := req.Send()
 	return out, err
@@ -805,7 +804,7 @@ func (c *Glacier) InitiateMultipartUploadRequest(input *InitiateMultipartUploadI
 // Archives in Parts (Multipart Upload) (http://docs.aws.amazon.com/amazonglacier/latest/dev/uploading-archive-mpu.html)
 // and Initiate Multipart Upload (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-multipart-initiate-upload.html)
 // in the Amazon Glacier Developer Guide.
-func (c *Glacier) InitiateMultipartUpload(input *InitiateMultipartUploadInput) (*InitiateMultipartUploadOutput, awserr.Error) {
+func (c *Glacier) InitiateMultipartUpload(input *InitiateMultipartUploadInput) (*InitiateMultipartUploadOutput, error) {
 	req, out := c.InitiateMultipartUploadRequest(input)
 	err := req.Send()
 	return out, err
@@ -876,7 +875,7 @@ func (c *Glacier) ListJobsRequest(input *ListJobsInput) (req *aws.Request, outpu
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
 //
 // For the underlying REST API, go to List Jobs  (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-jobs-get.html)
-func (c *Glacier) ListJobs(input *ListJobsInput) (*ListJobsOutput, awserr.Error) {
+func (c *Glacier) ListJobs(input *ListJobsInput) (*ListJobsOutput, error) {
 	req, out := c.ListJobsRequest(input)
 	err := req.Send()
 	return out, err
@@ -937,7 +936,7 @@ func (c *Glacier) ListMultipartUploadsRequest(input *ListMultipartUploadsInput) 
 // Archives in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/working-with-archives.html)
 // and List Multipart Uploads  (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-multipart-list-uploads.html)
 // in the Amazon Glacier Developer Guide.
-func (c *Glacier) ListMultipartUploads(input *ListMultipartUploadsInput) (*ListMultipartUploadsOutput, awserr.Error) {
+func (c *Glacier) ListMultipartUploads(input *ListMultipartUploadsInput) (*ListMultipartUploadsOutput, error) {
 	req, out := c.ListMultipartUploadsRequest(input)
 	err := req.Send()
 	return out, err
@@ -992,7 +991,7 @@ func (c *Glacier) ListPartsRequest(input *ListPartsInput) (req *aws.Request, out
 // Archives in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/working-with-archives.html)
 // and List Parts (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-multipart-list-parts.html)
 // in the Amazon Glacier Developer Guide.
-func (c *Glacier) ListParts(input *ListPartsInput) (*ListPartsOutput, awserr.Error) {
+func (c *Glacier) ListParts(input *ListPartsInput) (*ListPartsOutput, error) {
 	req, out := c.ListPartsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1045,7 +1044,7 @@ func (c *Glacier) ListVaultsRequest(input *ListVaultsInput) (req *aws.Request, o
 // Metadata in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/retrieving-vault-info.html)
 // and List Vaults  (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-vaults-get.html)
 // in the Amazon Glacier Developer Guide.
-func (c *Glacier) ListVaults(input *ListVaultsInput) (*ListVaultsOutput, awserr.Error) {
+func (c *Glacier) ListVaults(input *ListVaultsInput) (*ListVaultsOutput, error) {
 	req, out := c.ListVaultsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1076,7 +1075,7 @@ func (c *Glacier) SetDataRetrievalPolicyRequest(input *SetDataRetrievalPolicyInp
 	return
 }
 
-func (c *Glacier) SetDataRetrievalPolicy(input *SetDataRetrievalPolicyInput) (*SetDataRetrievalPolicyOutput, awserr.Error) {
+func (c *Glacier) SetDataRetrievalPolicy(input *SetDataRetrievalPolicyInput) (*SetDataRetrievalPolicyOutput, error) {
 	req, out := c.SetDataRetrievalPolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -1136,7 +1135,7 @@ func (c *Glacier) SetVaultNotificationsRequest(input *SetVaultNotificationsInput
 // Notifications in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/configuring-notifications.html)
 // and Set Vault Notification Configuration  (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-notifications-put.html)
 // in the Amazon Glacier Developer Guide.
-func (c *Glacier) SetVaultNotifications(input *SetVaultNotificationsInput) (*SetVaultNotificationsOutput, awserr.Error) {
+func (c *Glacier) SetVaultNotifications(input *SetVaultNotificationsInput) (*SetVaultNotificationsOutput, error) {
 	req, out := c.SetVaultNotificationsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1203,7 +1202,7 @@ func (c *Glacier) UploadArchiveRequest(input *UploadArchiveInput) (req *aws.Requ
 // Archive in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/uploading-an-archive.html)
 // and Upload Archive (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-archive-post.html)
 // in the Amazon Glacier Developer Guide.
-func (c *Glacier) UploadArchive(input *UploadArchiveInput) (*ArchiveCreationOutput, awserr.Error) {
+func (c *Glacier) UploadArchive(input *UploadArchiveInput) (*ArchiveCreationOutput, error) {
 	req, out := c.UploadArchiveRequest(input)
 	err := req.Send()
 	return out, err
@@ -1277,7 +1276,7 @@ func (c *Glacier) UploadMultipartPartRequest(input *UploadMultipartPartInput) (r
 // Archives in Parts (Multipart Upload) (http://docs.aws.amazon.com/amazonglacier/latest/dev/uploading-archive-mpu.html)
 // and Upload Part  (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-upload-part.html)
 // in the Amazon Glacier Developer Guide.
-func (c *Glacier) UploadMultipartPart(input *UploadMultipartPartInput) (*UploadMultipartPartOutput, awserr.Error) {
+func (c *Glacier) UploadMultipartPart(input *UploadMultipartPartInput) (*UploadMultipartPartOutput, error) {
 	req, out := c.UploadMultipartPartRequest(input)
 	err := req.Send()
 	return out, err

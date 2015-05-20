@@ -4,44 +4,43 @@
 package datapipelineiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/datapipeline"
 )
 
 type DataPipelineAPI interface {
-	ActivatePipeline(*datapipeline.ActivatePipelineInput) (*datapipeline.ActivatePipelineOutput, awserr.Error)
+	ActivatePipeline(*datapipeline.ActivatePipelineInput) (*datapipeline.ActivatePipelineOutput, error)
 
-	AddTags(*datapipeline.AddTagsInput) (*datapipeline.AddTagsOutput, awserr.Error)
+	AddTags(*datapipeline.AddTagsInput) (*datapipeline.AddTagsOutput, error)
 
-	CreatePipeline(*datapipeline.CreatePipelineInput) (*datapipeline.CreatePipelineOutput, awserr.Error)
+	CreatePipeline(*datapipeline.CreatePipelineInput) (*datapipeline.CreatePipelineOutput, error)
 
-	DeletePipeline(*datapipeline.DeletePipelineInput) (*datapipeline.DeletePipelineOutput, awserr.Error)
+	DeletePipeline(*datapipeline.DeletePipelineInput) (*datapipeline.DeletePipelineOutput, error)
 
-	DescribeObjects(*datapipeline.DescribeObjectsInput) (*datapipeline.DescribeObjectsOutput, awserr.Error)
+	DescribeObjects(*datapipeline.DescribeObjectsInput) (*datapipeline.DescribeObjectsOutput, error)
 
-	DescribePipelines(*datapipeline.DescribePipelinesInput) (*datapipeline.DescribePipelinesOutput, awserr.Error)
+	DescribePipelines(*datapipeline.DescribePipelinesInput) (*datapipeline.DescribePipelinesOutput, error)
 
-	EvaluateExpression(*datapipeline.EvaluateExpressionInput) (*datapipeline.EvaluateExpressionOutput, awserr.Error)
+	EvaluateExpression(*datapipeline.EvaluateExpressionInput) (*datapipeline.EvaluateExpressionOutput, error)
 
-	GetPipelineDefinition(*datapipeline.GetPipelineDefinitionInput) (*datapipeline.GetPipelineDefinitionOutput, awserr.Error)
+	GetPipelineDefinition(*datapipeline.GetPipelineDefinitionInput) (*datapipeline.GetPipelineDefinitionOutput, error)
 
-	ListPipelines(*datapipeline.ListPipelinesInput) (*datapipeline.ListPipelinesOutput, awserr.Error)
+	ListPipelines(*datapipeline.ListPipelinesInput) (*datapipeline.ListPipelinesOutput, error)
 
-	PollForTask(*datapipeline.PollForTaskInput) (*datapipeline.PollForTaskOutput, awserr.Error)
+	PollForTask(*datapipeline.PollForTaskInput) (*datapipeline.PollForTaskOutput, error)
 
-	PutPipelineDefinition(*datapipeline.PutPipelineDefinitionInput) (*datapipeline.PutPipelineDefinitionOutput, awserr.Error)
+	PutPipelineDefinition(*datapipeline.PutPipelineDefinitionInput) (*datapipeline.PutPipelineDefinitionOutput, error)
 
-	QueryObjects(*datapipeline.QueryObjectsInput) (*datapipeline.QueryObjectsOutput, awserr.Error)
+	QueryObjects(*datapipeline.QueryObjectsInput) (*datapipeline.QueryObjectsOutput, error)
 
-	RemoveTags(*datapipeline.RemoveTagsInput) (*datapipeline.RemoveTagsOutput, awserr.Error)
+	RemoveTags(*datapipeline.RemoveTagsInput) (*datapipeline.RemoveTagsOutput, error)
 
-	ReportTaskProgress(*datapipeline.ReportTaskProgressInput) (*datapipeline.ReportTaskProgressOutput, awserr.Error)
+	ReportTaskProgress(*datapipeline.ReportTaskProgressInput) (*datapipeline.ReportTaskProgressOutput, error)
 
-	ReportTaskRunnerHeartbeat(*datapipeline.ReportTaskRunnerHeartbeatInput) (*datapipeline.ReportTaskRunnerHeartbeatOutput, awserr.Error)
+	ReportTaskRunnerHeartbeat(*datapipeline.ReportTaskRunnerHeartbeatInput) (*datapipeline.ReportTaskRunnerHeartbeatOutput, error)
 
-	SetStatus(*datapipeline.SetStatusInput) (*datapipeline.SetStatusOutput, awserr.Error)
+	SetStatus(*datapipeline.SetStatusInput) (*datapipeline.SetStatusOutput, error)
 
-	SetTaskStatus(*datapipeline.SetTaskStatusInput) (*datapipeline.SetTaskStatusOutput, awserr.Error)
+	SetTaskStatus(*datapipeline.SetTaskStatusInput) (*datapipeline.SetTaskStatusOutput, error)
 
-	ValidatePipelineDefinition(*datapipeline.ValidatePipelineDefinitionInput) (*datapipeline.ValidatePipelineDefinitionOutput, awserr.Error)
+	ValidatePipelineDefinition(*datapipeline.ValidatePipelineDefinitionInput) (*datapipeline.ValidatePipelineDefinitionOutput, error)
 }

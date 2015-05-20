@@ -4,42 +4,41 @@
 package elastictranscoderiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/elastictranscoder"
 )
 
 type ElasticTranscoderAPI interface {
-	CancelJob(*elastictranscoder.CancelJobInput) (*elastictranscoder.CancelJobOutput, awserr.Error)
+	CancelJob(*elastictranscoder.CancelJobInput) (*elastictranscoder.CancelJobOutput, error)
 
-	CreateJob(*elastictranscoder.CreateJobInput) (*elastictranscoder.CreateJobResponse, awserr.Error)
+	CreateJob(*elastictranscoder.CreateJobInput) (*elastictranscoder.CreateJobResponse, error)
 
-	CreatePipeline(*elastictranscoder.CreatePipelineInput) (*elastictranscoder.CreatePipelineOutput, awserr.Error)
+	CreatePipeline(*elastictranscoder.CreatePipelineInput) (*elastictranscoder.CreatePipelineOutput, error)
 
-	CreatePreset(*elastictranscoder.CreatePresetInput) (*elastictranscoder.CreatePresetOutput, awserr.Error)
+	CreatePreset(*elastictranscoder.CreatePresetInput) (*elastictranscoder.CreatePresetOutput, error)
 
-	DeletePipeline(*elastictranscoder.DeletePipelineInput) (*elastictranscoder.DeletePipelineOutput, awserr.Error)
+	DeletePipeline(*elastictranscoder.DeletePipelineInput) (*elastictranscoder.DeletePipelineOutput, error)
 
-	DeletePreset(*elastictranscoder.DeletePresetInput) (*elastictranscoder.DeletePresetOutput, awserr.Error)
+	DeletePreset(*elastictranscoder.DeletePresetInput) (*elastictranscoder.DeletePresetOutput, error)
 
-	ListJobsByPipeline(*elastictranscoder.ListJobsByPipelineInput) (*elastictranscoder.ListJobsByPipelineOutput, awserr.Error)
+	ListJobsByPipeline(*elastictranscoder.ListJobsByPipelineInput) (*elastictranscoder.ListJobsByPipelineOutput, error)
 
-	ListJobsByStatus(*elastictranscoder.ListJobsByStatusInput) (*elastictranscoder.ListJobsByStatusOutput, awserr.Error)
+	ListJobsByStatus(*elastictranscoder.ListJobsByStatusInput) (*elastictranscoder.ListJobsByStatusOutput, error)
 
-	ListPipelines(*elastictranscoder.ListPipelinesInput) (*elastictranscoder.ListPipelinesOutput, awserr.Error)
+	ListPipelines(*elastictranscoder.ListPipelinesInput) (*elastictranscoder.ListPipelinesOutput, error)
 
-	ListPresets(*elastictranscoder.ListPresetsInput) (*elastictranscoder.ListPresetsOutput, awserr.Error)
+	ListPresets(*elastictranscoder.ListPresetsInput) (*elastictranscoder.ListPresetsOutput, error)
 
-	ReadJob(*elastictranscoder.ReadJobInput) (*elastictranscoder.ReadJobOutput, awserr.Error)
+	ReadJob(*elastictranscoder.ReadJobInput) (*elastictranscoder.ReadJobOutput, error)
 
-	ReadPipeline(*elastictranscoder.ReadPipelineInput) (*elastictranscoder.ReadPipelineOutput, awserr.Error)
+	ReadPipeline(*elastictranscoder.ReadPipelineInput) (*elastictranscoder.ReadPipelineOutput, error)
 
-	ReadPreset(*elastictranscoder.ReadPresetInput) (*elastictranscoder.ReadPresetOutput, awserr.Error)
+	ReadPreset(*elastictranscoder.ReadPresetInput) (*elastictranscoder.ReadPresetOutput, error)
 
-	TestRole(*elastictranscoder.TestRoleInput) (*elastictranscoder.TestRoleOutput, awserr.Error)
+	TestRole(*elastictranscoder.TestRoleInput) (*elastictranscoder.TestRoleOutput, error)
 
-	UpdatePipeline(*elastictranscoder.UpdatePipelineInput) (*elastictranscoder.UpdatePipelineOutput, awserr.Error)
+	UpdatePipeline(*elastictranscoder.UpdatePipelineInput) (*elastictranscoder.UpdatePipelineOutput, error)
 
-	UpdatePipelineNotifications(*elastictranscoder.UpdatePipelineNotificationsInput) (*elastictranscoder.UpdatePipelineNotificationsOutput, awserr.Error)
+	UpdatePipelineNotifications(*elastictranscoder.UpdatePipelineNotificationsInput) (*elastictranscoder.UpdatePipelineNotificationsOutput, error)
 
-	UpdatePipelineStatus(*elastictranscoder.UpdatePipelineStatusInput) (*elastictranscoder.UpdatePipelineStatusOutput, awserr.Error)
+	UpdatePipelineStatus(*elastictranscoder.UpdatePipelineStatusInput) (*elastictranscoder.UpdatePipelineStatusOutput, error)
 }

@@ -8,7 +8,6 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -40,7 +39,7 @@ func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *aws.Reque
 //
 // Creates a trail that specifies the settings for delivery of log data to
 // an Amazon S3 bucket.
-func (c *CloudTrail) CreateTrail(input *CreateTrailInput) (*CreateTrailOutput, awserr.Error) {
+func (c *CloudTrail) CreateTrail(input *CreateTrailInput) (*CreateTrailOutput, error) {
 	req, out := c.CreateTrailRequest(input)
 	err := req.Send()
 	return out, err
@@ -72,7 +71,7 @@ func (c *CloudTrail) DeleteTrailRequest(input *DeleteTrailInput) (req *aws.Reque
 }
 
 // Deletes a trail.
-func (c *CloudTrail) DeleteTrail(input *DeleteTrailInput) (*DeleteTrailOutput, awserr.Error) {
+func (c *CloudTrail) DeleteTrail(input *DeleteTrailInput) (*DeleteTrailOutput, error) {
 	req, out := c.DeleteTrailRequest(input)
 	err := req.Send()
 	return out, err
@@ -105,7 +104,7 @@ func (c *CloudTrail) DescribeTrailsRequest(input *DescribeTrailsInput) (req *aws
 
 // Retrieves settings for the trail associated with the current region for your
 // account.
-func (c *CloudTrail) DescribeTrails(input *DescribeTrailsInput) (*DescribeTrailsOutput, awserr.Error) {
+func (c *CloudTrail) DescribeTrails(input *DescribeTrailsInput) (*DescribeTrailsOutput, error) {
 	req, out := c.DescribeTrailsRequest(input)
 	err := req.Send()
 	return out, err
@@ -139,7 +138,7 @@ func (c *CloudTrail) GetTrailStatusRequest(input *GetTrailStatusInput) (req *aws
 // Returns a JSON-formatted list of information about the specified trail. Fields
 // include information on delivery errors, Amazon SNS and Amazon S3 errors,
 // and start and stop logging times for each trail.
-func (c *CloudTrail) GetTrailStatus(input *GetTrailStatusInput) (*GetTrailStatusOutput, awserr.Error) {
+func (c *CloudTrail) GetTrailStatus(input *GetTrailStatusInput) (*GetTrailStatusOutput, error) {
 	req, out := c.GetTrailStatusRequest(input)
 	err := req.Send()
 	return out, err
@@ -184,7 +183,7 @@ func (c *CloudTrail) LookupEventsRequest(input *LookupEventsInput) (req *aws.Req
 //
 // Events that occurred during the selected time range will not be available
 // for lookup if CloudTrail logging was not enabled when the events occurred.
-func (c *CloudTrail) LookupEvents(input *LookupEventsInput) (*LookupEventsOutput, awserr.Error) {
+func (c *CloudTrail) LookupEvents(input *LookupEventsInput) (*LookupEventsOutput, error) {
 	req, out := c.LookupEventsRequest(input)
 	err := req.Send()
 	return out, err
@@ -216,7 +215,7 @@ func (c *CloudTrail) StartLoggingRequest(input *StartLoggingInput) (req *aws.Req
 }
 
 // Starts the recording of AWS API calls and log file delivery for a trail.
-func (c *CloudTrail) StartLogging(input *StartLoggingInput) (*StartLoggingOutput, awserr.Error) {
+func (c *CloudTrail) StartLogging(input *StartLoggingInput) (*StartLoggingOutput, error) {
 	req, out := c.StartLoggingRequest(input)
 	err := req.Send()
 	return out, err
@@ -251,7 +250,7 @@ func (c *CloudTrail) StopLoggingRequest(input *StopLoggingInput) (req *aws.Reque
 // trail. Under most circumstances, there is no need to use this action. You
 // can update a trail without stopping it first. This action is the only way
 // to stop recording.
-func (c *CloudTrail) StopLogging(input *StopLoggingInput) (*StopLoggingOutput, awserr.Error) {
+func (c *CloudTrail) StopLogging(input *StopLoggingInput) (*StopLoggingOutput, error) {
 	req, out := c.StopLoggingRequest(input)
 	err := req.Send()
 	return out, err
@@ -288,7 +287,7 @@ func (c *CloudTrail) UpdateTrailRequest(input *UpdateTrailInput) (req *aws.Reque
 // do not require stopping the CloudTrail service. Use this action to designate
 // an existing bucket for log delivery. If the existing bucket has previously
 // been a target for CloudTrail log files, an IAM policy exists for the bucket.
-func (c *CloudTrail) UpdateTrail(input *UpdateTrailInput) (*UpdateTrailOutput, awserr.Error) {
+func (c *CloudTrail) UpdateTrail(input *UpdateTrailInput) (*UpdateTrailOutput, error) {
 	req, out := c.UpdateTrailRequest(input)
 	err := req.Send()
 	return out, err

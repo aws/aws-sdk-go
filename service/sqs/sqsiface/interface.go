@@ -4,42 +4,41 @@
 package sqsiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/sqs"
 )
 
 type SQSAPI interface {
-	AddPermission(*sqs.AddPermissionInput) (*sqs.AddPermissionOutput, awserr.Error)
+	AddPermission(*sqs.AddPermissionInput) (*sqs.AddPermissionOutput, error)
 
-	ChangeMessageVisibility(*sqs.ChangeMessageVisibilityInput) (*sqs.ChangeMessageVisibilityOutput, awserr.Error)
+	ChangeMessageVisibility(*sqs.ChangeMessageVisibilityInput) (*sqs.ChangeMessageVisibilityOutput, error)
 
-	ChangeMessageVisibilityBatch(*sqs.ChangeMessageVisibilityBatchInput) (*sqs.ChangeMessageVisibilityBatchOutput, awserr.Error)
+	ChangeMessageVisibilityBatch(*sqs.ChangeMessageVisibilityBatchInput) (*sqs.ChangeMessageVisibilityBatchOutput, error)
 
-	CreateQueue(*sqs.CreateQueueInput) (*sqs.CreateQueueOutput, awserr.Error)
+	CreateQueue(*sqs.CreateQueueInput) (*sqs.CreateQueueOutput, error)
 
-	DeleteMessage(*sqs.DeleteMessageInput) (*sqs.DeleteMessageOutput, awserr.Error)
+	DeleteMessage(*sqs.DeleteMessageInput) (*sqs.DeleteMessageOutput, error)
 
-	DeleteMessageBatch(*sqs.DeleteMessageBatchInput) (*sqs.DeleteMessageBatchOutput, awserr.Error)
+	DeleteMessageBatch(*sqs.DeleteMessageBatchInput) (*sqs.DeleteMessageBatchOutput, error)
 
-	DeleteQueue(*sqs.DeleteQueueInput) (*sqs.DeleteQueueOutput, awserr.Error)
+	DeleteQueue(*sqs.DeleteQueueInput) (*sqs.DeleteQueueOutput, error)
 
-	GetQueueAttributes(*sqs.GetQueueAttributesInput) (*sqs.GetQueueAttributesOutput, awserr.Error)
+	GetQueueAttributes(*sqs.GetQueueAttributesInput) (*sqs.GetQueueAttributesOutput, error)
 
-	GetQueueURL(*sqs.GetQueueURLInput) (*sqs.GetQueueURLOutput, awserr.Error)
+	GetQueueURL(*sqs.GetQueueURLInput) (*sqs.GetQueueURLOutput, error)
 
-	ListDeadLetterSourceQueues(*sqs.ListDeadLetterSourceQueuesInput) (*sqs.ListDeadLetterSourceQueuesOutput, awserr.Error)
+	ListDeadLetterSourceQueues(*sqs.ListDeadLetterSourceQueuesInput) (*sqs.ListDeadLetterSourceQueuesOutput, error)
 
-	ListQueues(*sqs.ListQueuesInput) (*sqs.ListQueuesOutput, awserr.Error)
+	ListQueues(*sqs.ListQueuesInput) (*sqs.ListQueuesOutput, error)
 
-	PurgeQueue(*sqs.PurgeQueueInput) (*sqs.PurgeQueueOutput, awserr.Error)
+	PurgeQueue(*sqs.PurgeQueueInput) (*sqs.PurgeQueueOutput, error)
 
-	ReceiveMessage(*sqs.ReceiveMessageInput) (*sqs.ReceiveMessageOutput, awserr.Error)
+	ReceiveMessage(*sqs.ReceiveMessageInput) (*sqs.ReceiveMessageOutput, error)
 
-	RemovePermission(*sqs.RemovePermissionInput) (*sqs.RemovePermissionOutput, awserr.Error)
+	RemovePermission(*sqs.RemovePermissionInput) (*sqs.RemovePermissionOutput, error)
 
-	SendMessage(*sqs.SendMessageInput) (*sqs.SendMessageOutput, awserr.Error)
+	SendMessage(*sqs.SendMessageInput) (*sqs.SendMessageOutput, error)
 
-	SendMessageBatch(*sqs.SendMessageBatchInput) (*sqs.SendMessageBatchOutput, awserr.Error)
+	SendMessageBatch(*sqs.SendMessageBatchInput) (*sqs.SendMessageBatchOutput, error)
 
-	SetQueueAttributes(*sqs.SetQueueAttributesInput) (*sqs.SetQueueAttributesOutput, awserr.Error)
+	SetQueueAttributes(*sqs.SetQueueAttributesInput) (*sqs.SetQueueAttributesOutput, error)
 }

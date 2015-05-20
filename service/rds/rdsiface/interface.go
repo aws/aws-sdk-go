@@ -4,120 +4,119 @@
 package rdsiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/rds"
 )
 
 type RDSAPI interface {
-	AddSourceIdentifierToSubscription(*rds.AddSourceIdentifierToSubscriptionInput) (*rds.AddSourceIdentifierToSubscriptionOutput, awserr.Error)
+	AddSourceIdentifierToSubscription(*rds.AddSourceIdentifierToSubscriptionInput) (*rds.AddSourceIdentifierToSubscriptionOutput, error)
 
-	AddTagsToResource(*rds.AddTagsToResourceInput) (*rds.AddTagsToResourceOutput, awserr.Error)
+	AddTagsToResource(*rds.AddTagsToResourceInput) (*rds.AddTagsToResourceOutput, error)
 
-	ApplyPendingMaintenanceAction(*rds.ApplyPendingMaintenanceActionInput) (*rds.ApplyPendingMaintenanceActionOutput, awserr.Error)
+	ApplyPendingMaintenanceAction(*rds.ApplyPendingMaintenanceActionInput) (*rds.ApplyPendingMaintenanceActionOutput, error)
 
-	AuthorizeDBSecurityGroupIngress(*rds.AuthorizeDBSecurityGroupIngressInput) (*rds.AuthorizeDBSecurityGroupIngressOutput, awserr.Error)
+	AuthorizeDBSecurityGroupIngress(*rds.AuthorizeDBSecurityGroupIngressInput) (*rds.AuthorizeDBSecurityGroupIngressOutput, error)
 
-	CopyDBParameterGroup(*rds.CopyDBParameterGroupInput) (*rds.CopyDBParameterGroupOutput, awserr.Error)
+	CopyDBParameterGroup(*rds.CopyDBParameterGroupInput) (*rds.CopyDBParameterGroupOutput, error)
 
-	CopyDBSnapshot(*rds.CopyDBSnapshotInput) (*rds.CopyDBSnapshotOutput, awserr.Error)
+	CopyDBSnapshot(*rds.CopyDBSnapshotInput) (*rds.CopyDBSnapshotOutput, error)
 
-	CopyOptionGroup(*rds.CopyOptionGroupInput) (*rds.CopyOptionGroupOutput, awserr.Error)
+	CopyOptionGroup(*rds.CopyOptionGroupInput) (*rds.CopyOptionGroupOutput, error)
 
-	CreateDBInstance(*rds.CreateDBInstanceInput) (*rds.CreateDBInstanceOutput, awserr.Error)
+	CreateDBInstance(*rds.CreateDBInstanceInput) (*rds.CreateDBInstanceOutput, error)
 
-	CreateDBInstanceReadReplica(*rds.CreateDBInstanceReadReplicaInput) (*rds.CreateDBInstanceReadReplicaOutput, awserr.Error)
+	CreateDBInstanceReadReplica(*rds.CreateDBInstanceReadReplicaInput) (*rds.CreateDBInstanceReadReplicaOutput, error)
 
-	CreateDBParameterGroup(*rds.CreateDBParameterGroupInput) (*rds.CreateDBParameterGroupOutput, awserr.Error)
+	CreateDBParameterGroup(*rds.CreateDBParameterGroupInput) (*rds.CreateDBParameterGroupOutput, error)
 
-	CreateDBSecurityGroup(*rds.CreateDBSecurityGroupInput) (*rds.CreateDBSecurityGroupOutput, awserr.Error)
+	CreateDBSecurityGroup(*rds.CreateDBSecurityGroupInput) (*rds.CreateDBSecurityGroupOutput, error)
 
-	CreateDBSnapshot(*rds.CreateDBSnapshotInput) (*rds.CreateDBSnapshotOutput, awserr.Error)
+	CreateDBSnapshot(*rds.CreateDBSnapshotInput) (*rds.CreateDBSnapshotOutput, error)
 
-	CreateDBSubnetGroup(*rds.CreateDBSubnetGroupInput) (*rds.CreateDBSubnetGroupOutput, awserr.Error)
+	CreateDBSubnetGroup(*rds.CreateDBSubnetGroupInput) (*rds.CreateDBSubnetGroupOutput, error)
 
-	CreateEventSubscription(*rds.CreateEventSubscriptionInput) (*rds.CreateEventSubscriptionOutput, awserr.Error)
+	CreateEventSubscription(*rds.CreateEventSubscriptionInput) (*rds.CreateEventSubscriptionOutput, error)
 
-	CreateOptionGroup(*rds.CreateOptionGroupInput) (*rds.CreateOptionGroupOutput, awserr.Error)
+	CreateOptionGroup(*rds.CreateOptionGroupInput) (*rds.CreateOptionGroupOutput, error)
 
-	DeleteDBInstance(*rds.DeleteDBInstanceInput) (*rds.DeleteDBInstanceOutput, awserr.Error)
+	DeleteDBInstance(*rds.DeleteDBInstanceInput) (*rds.DeleteDBInstanceOutput, error)
 
-	DeleteDBParameterGroup(*rds.DeleteDBParameterGroupInput) (*rds.DeleteDBParameterGroupOutput, awserr.Error)
+	DeleteDBParameterGroup(*rds.DeleteDBParameterGroupInput) (*rds.DeleteDBParameterGroupOutput, error)
 
-	DeleteDBSecurityGroup(*rds.DeleteDBSecurityGroupInput) (*rds.DeleteDBSecurityGroupOutput, awserr.Error)
+	DeleteDBSecurityGroup(*rds.DeleteDBSecurityGroupInput) (*rds.DeleteDBSecurityGroupOutput, error)
 
-	DeleteDBSnapshot(*rds.DeleteDBSnapshotInput) (*rds.DeleteDBSnapshotOutput, awserr.Error)
+	DeleteDBSnapshot(*rds.DeleteDBSnapshotInput) (*rds.DeleteDBSnapshotOutput, error)
 
-	DeleteDBSubnetGroup(*rds.DeleteDBSubnetGroupInput) (*rds.DeleteDBSubnetGroupOutput, awserr.Error)
+	DeleteDBSubnetGroup(*rds.DeleteDBSubnetGroupInput) (*rds.DeleteDBSubnetGroupOutput, error)
 
-	DeleteEventSubscription(*rds.DeleteEventSubscriptionInput) (*rds.DeleteEventSubscriptionOutput, awserr.Error)
+	DeleteEventSubscription(*rds.DeleteEventSubscriptionInput) (*rds.DeleteEventSubscriptionOutput, error)
 
-	DeleteOptionGroup(*rds.DeleteOptionGroupInput) (*rds.DeleteOptionGroupOutput, awserr.Error)
+	DeleteOptionGroup(*rds.DeleteOptionGroupInput) (*rds.DeleteOptionGroupOutput, error)
 
-	DescribeDBEngineVersions(*rds.DescribeDBEngineVersionsInput) (*rds.DescribeDBEngineVersionsOutput, awserr.Error)
+	DescribeDBEngineVersions(*rds.DescribeDBEngineVersionsInput) (*rds.DescribeDBEngineVersionsOutput, error)
 
-	DescribeDBInstances(*rds.DescribeDBInstancesInput) (*rds.DescribeDBInstancesOutput, awserr.Error)
+	DescribeDBInstances(*rds.DescribeDBInstancesInput) (*rds.DescribeDBInstancesOutput, error)
 
-	DescribeDBLogFiles(*rds.DescribeDBLogFilesInput) (*rds.DescribeDBLogFilesOutput, awserr.Error)
+	DescribeDBLogFiles(*rds.DescribeDBLogFilesInput) (*rds.DescribeDBLogFilesOutput, error)
 
-	DescribeDBParameterGroups(*rds.DescribeDBParameterGroupsInput) (*rds.DescribeDBParameterGroupsOutput, awserr.Error)
+	DescribeDBParameterGroups(*rds.DescribeDBParameterGroupsInput) (*rds.DescribeDBParameterGroupsOutput, error)
 
-	DescribeDBParameters(*rds.DescribeDBParametersInput) (*rds.DescribeDBParametersOutput, awserr.Error)
+	DescribeDBParameters(*rds.DescribeDBParametersInput) (*rds.DescribeDBParametersOutput, error)
 
-	DescribeDBSecurityGroups(*rds.DescribeDBSecurityGroupsInput) (*rds.DescribeDBSecurityGroupsOutput, awserr.Error)
+	DescribeDBSecurityGroups(*rds.DescribeDBSecurityGroupsInput) (*rds.DescribeDBSecurityGroupsOutput, error)
 
-	DescribeDBSnapshots(*rds.DescribeDBSnapshotsInput) (*rds.DescribeDBSnapshotsOutput, awserr.Error)
+	DescribeDBSnapshots(*rds.DescribeDBSnapshotsInput) (*rds.DescribeDBSnapshotsOutput, error)
 
-	DescribeDBSubnetGroups(*rds.DescribeDBSubnetGroupsInput) (*rds.DescribeDBSubnetGroupsOutput, awserr.Error)
+	DescribeDBSubnetGroups(*rds.DescribeDBSubnetGroupsInput) (*rds.DescribeDBSubnetGroupsOutput, error)
 
-	DescribeEngineDefaultParameters(*rds.DescribeEngineDefaultParametersInput) (*rds.DescribeEngineDefaultParametersOutput, awserr.Error)
+	DescribeEngineDefaultParameters(*rds.DescribeEngineDefaultParametersInput) (*rds.DescribeEngineDefaultParametersOutput, error)
 
-	DescribeEventCategories(*rds.DescribeEventCategoriesInput) (*rds.DescribeEventCategoriesOutput, awserr.Error)
+	DescribeEventCategories(*rds.DescribeEventCategoriesInput) (*rds.DescribeEventCategoriesOutput, error)
 
-	DescribeEventSubscriptions(*rds.DescribeEventSubscriptionsInput) (*rds.DescribeEventSubscriptionsOutput, awserr.Error)
+	DescribeEventSubscriptions(*rds.DescribeEventSubscriptionsInput) (*rds.DescribeEventSubscriptionsOutput, error)
 
-	DescribeEvents(*rds.DescribeEventsInput) (*rds.DescribeEventsOutput, awserr.Error)
+	DescribeEvents(*rds.DescribeEventsInput) (*rds.DescribeEventsOutput, error)
 
-	DescribeOptionGroupOptions(*rds.DescribeOptionGroupOptionsInput) (*rds.DescribeOptionGroupOptionsOutput, awserr.Error)
+	DescribeOptionGroupOptions(*rds.DescribeOptionGroupOptionsInput) (*rds.DescribeOptionGroupOptionsOutput, error)
 
-	DescribeOptionGroups(*rds.DescribeOptionGroupsInput) (*rds.DescribeOptionGroupsOutput, awserr.Error)
+	DescribeOptionGroups(*rds.DescribeOptionGroupsInput) (*rds.DescribeOptionGroupsOutput, error)
 
-	DescribeOrderableDBInstanceOptions(*rds.DescribeOrderableDBInstanceOptionsInput) (*rds.DescribeOrderableDBInstanceOptionsOutput, awserr.Error)
+	DescribeOrderableDBInstanceOptions(*rds.DescribeOrderableDBInstanceOptionsInput) (*rds.DescribeOrderableDBInstanceOptionsOutput, error)
 
-	DescribePendingMaintenanceActions(*rds.DescribePendingMaintenanceActionsInput) (*rds.DescribePendingMaintenanceActionsOutput, awserr.Error)
+	DescribePendingMaintenanceActions(*rds.DescribePendingMaintenanceActionsInput) (*rds.DescribePendingMaintenanceActionsOutput, error)
 
-	DescribeReservedDBInstances(*rds.DescribeReservedDBInstancesInput) (*rds.DescribeReservedDBInstancesOutput, awserr.Error)
+	DescribeReservedDBInstances(*rds.DescribeReservedDBInstancesInput) (*rds.DescribeReservedDBInstancesOutput, error)
 
-	DescribeReservedDBInstancesOfferings(*rds.DescribeReservedDBInstancesOfferingsInput) (*rds.DescribeReservedDBInstancesOfferingsOutput, awserr.Error)
+	DescribeReservedDBInstancesOfferings(*rds.DescribeReservedDBInstancesOfferingsInput) (*rds.DescribeReservedDBInstancesOfferingsOutput, error)
 
-	DownloadDBLogFilePortion(*rds.DownloadDBLogFilePortionInput) (*rds.DownloadDBLogFilePortionOutput, awserr.Error)
+	DownloadDBLogFilePortion(*rds.DownloadDBLogFilePortionInput) (*rds.DownloadDBLogFilePortionOutput, error)
 
-	ListTagsForResource(*rds.ListTagsForResourceInput) (*rds.ListTagsForResourceOutput, awserr.Error)
+	ListTagsForResource(*rds.ListTagsForResourceInput) (*rds.ListTagsForResourceOutput, error)
 
-	ModifyDBInstance(*rds.ModifyDBInstanceInput) (*rds.ModifyDBInstanceOutput, awserr.Error)
+	ModifyDBInstance(*rds.ModifyDBInstanceInput) (*rds.ModifyDBInstanceOutput, error)
 
-	ModifyDBParameterGroup(*rds.ModifyDBParameterGroupInput) (*rds.DBParameterGroupNameMessage, awserr.Error)
+	ModifyDBParameterGroup(*rds.ModifyDBParameterGroupInput) (*rds.DBParameterGroupNameMessage, error)
 
-	ModifyDBSubnetGroup(*rds.ModifyDBSubnetGroupInput) (*rds.ModifyDBSubnetGroupOutput, awserr.Error)
+	ModifyDBSubnetGroup(*rds.ModifyDBSubnetGroupInput) (*rds.ModifyDBSubnetGroupOutput, error)
 
-	ModifyEventSubscription(*rds.ModifyEventSubscriptionInput) (*rds.ModifyEventSubscriptionOutput, awserr.Error)
+	ModifyEventSubscription(*rds.ModifyEventSubscriptionInput) (*rds.ModifyEventSubscriptionOutput, error)
 
-	ModifyOptionGroup(*rds.ModifyOptionGroupInput) (*rds.ModifyOptionGroupOutput, awserr.Error)
+	ModifyOptionGroup(*rds.ModifyOptionGroupInput) (*rds.ModifyOptionGroupOutput, error)
 
-	PromoteReadReplica(*rds.PromoteReadReplicaInput) (*rds.PromoteReadReplicaOutput, awserr.Error)
+	PromoteReadReplica(*rds.PromoteReadReplicaInput) (*rds.PromoteReadReplicaOutput, error)
 
-	PurchaseReservedDBInstancesOffering(*rds.PurchaseReservedDBInstancesOfferingInput) (*rds.PurchaseReservedDBInstancesOfferingOutput, awserr.Error)
+	PurchaseReservedDBInstancesOffering(*rds.PurchaseReservedDBInstancesOfferingInput) (*rds.PurchaseReservedDBInstancesOfferingOutput, error)
 
-	RebootDBInstance(*rds.RebootDBInstanceInput) (*rds.RebootDBInstanceOutput, awserr.Error)
+	RebootDBInstance(*rds.RebootDBInstanceInput) (*rds.RebootDBInstanceOutput, error)
 
-	RemoveSourceIdentifierFromSubscription(*rds.RemoveSourceIdentifierFromSubscriptionInput) (*rds.RemoveSourceIdentifierFromSubscriptionOutput, awserr.Error)
+	RemoveSourceIdentifierFromSubscription(*rds.RemoveSourceIdentifierFromSubscriptionInput) (*rds.RemoveSourceIdentifierFromSubscriptionOutput, error)
 
-	RemoveTagsFromResource(*rds.RemoveTagsFromResourceInput) (*rds.RemoveTagsFromResourceOutput, awserr.Error)
+	RemoveTagsFromResource(*rds.RemoveTagsFromResourceInput) (*rds.RemoveTagsFromResourceOutput, error)
 
-	ResetDBParameterGroup(*rds.ResetDBParameterGroupInput) (*rds.DBParameterGroupNameMessage, awserr.Error)
+	ResetDBParameterGroup(*rds.ResetDBParameterGroupInput) (*rds.DBParameterGroupNameMessage, error)
 
-	RestoreDBInstanceFromDBSnapshot(*rds.RestoreDBInstanceFromDBSnapshotInput) (*rds.RestoreDBInstanceFromDBSnapshotOutput, awserr.Error)
+	RestoreDBInstanceFromDBSnapshot(*rds.RestoreDBInstanceFromDBSnapshotInput) (*rds.RestoreDBInstanceFromDBSnapshotOutput, error)
 
-	RestoreDBInstanceToPointInTime(*rds.RestoreDBInstanceToPointInTimeInput) (*rds.RestoreDBInstanceToPointInTimeOutput, awserr.Error)
+	RestoreDBInstanceToPointInTime(*rds.RestoreDBInstanceToPointInTimeInput) (*rds.RestoreDBInstanceToPointInTimeOutput, error)
 
-	RevokeDBSecurityGroupIngress(*rds.RevokeDBSecurityGroupIngressInput) (*rds.RevokeDBSecurityGroupIngressOutput, awserr.Error)
+	RevokeDBSecurityGroupIngress(*rds.RevokeDBSecurityGroupIngressInput) (*rds.RevokeDBSecurityGroupIngressOutput, error)
 }

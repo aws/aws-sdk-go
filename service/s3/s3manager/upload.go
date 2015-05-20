@@ -207,7 +207,7 @@ type UploadOptions struct {
 // can configure the buffer size and concurrency through the opts parameter.
 //
 // If opts is set to nil, DefaultUploadOptions will be used.
-func Upload(s *s3.S3, input *UploadInput, opts *UploadOptions) (*UploadOutput, awserr.Error) {
+func Upload(s *s3.S3, input *UploadInput, opts *UploadOptions) (*UploadOutput, error) {
 	u := uploader{s: s, in: input, opts: initOptions(opts)}
 	return u.upload()
 }
@@ -235,7 +235,7 @@ type uploader struct {
 
 // internal logic for deciding whether to upload a single part or use a
 // multipart upload.
-func (u *uploader) upload() (*UploadOutput, awserr.Error) {
+func (u *uploader) upload() (*UploadOutput, error) {
 	// Do one read to determine if we have more than one part
 	packet := make([]byte, u.opts.PartSize)
 	n, err := io.ReadFull(u.in.Body, packet)
@@ -252,7 +252,7 @@ func (u *uploader) upload() (*UploadOutput, awserr.Error) {
 // singlePart contains upload logic for uploading a single chunk via
 // a regular PutObject request. Multipart requests require at least two
 // parts, or at least 5MB of data.
-func (u *uploader) singlePart(part []byte) (*UploadOutput, awserr.Error) {
+func (u *uploader) singlePart(part []byte) (*UploadOutput, error) {
 	req, _ := u.s.PutObjectRequest(&s3.PutObjectInput{
 		Bucket: u.in.Bucket,
 		Key:    u.in.Key,
@@ -271,7 +271,7 @@ type multiuploader struct {
 	*uploader
 	wg       sync.WaitGroup
 	m        sync.Mutex
-	err      awserr.Error
+	err      error
 	uploadID string
 	parts    completedParts
 }
@@ -292,7 +292,7 @@ func (a completedParts) Less(i, j int) bool { return *a[i].PartNumber < *a[j].Pa
 
 // upload will perform a multipart upload using the firstPart buffer containing
 // the first chunk of data.
-func (u *multiuploader) upload(firstPart []byte) (*UploadOutput, awserr.Error) {
+func (u *multiuploader) upload(firstPart []byte) (*UploadOutput, error) {
 	// Create the multipart
 	resp, err := u.s.CreateMultipartUpload(&s3.CreateMultipartUploadInput{
 		Bucket: u.in.Bucket,
@@ -366,7 +366,7 @@ func (u *multiuploader) readChunk(ch chan chunk) {
 
 // send performs an UploadPart request and keeps track of the completed
 // part information.
-func (u *multiuploader) send(c chunk) awserr.Error {
+func (u *multiuploader) send(c chunk) error {
 	resp, err := u.s.UploadPart(&s3.UploadPartInput{
 		Bucket:     u.in.Bucket,
 		Key:        u.in.Key,
@@ -390,7 +390,7 @@ func (u *multiuploader) send(c chunk) awserr.Error {
 }
 
 // geterr is a thread-safe getter for the error object
-func (u *multiuploader) geterr() awserr.Error {
+func (u *multiuploader) geterr() error {
 	u.m.Lock()
 	defer u.m.Unlock()
 
@@ -398,7 +398,7 @@ func (u *multiuploader) geterr() awserr.Error {
 }
 
 // seterr is a thread-safe setter for the error object
-func (u *multiuploader) seterr(e awserr.Error) {
+func (u *multiuploader) seterr(e error) {
 	u.m.Lock()
 	defer u.m.Unlock()
 

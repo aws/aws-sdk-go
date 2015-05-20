@@ -8,7 +8,6 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -40,7 +39,7 @@ func (c *CognitoSync) BulkPublishRequest(input *BulkPublishInput) (req *aws.Requ
 // the configured stream. Customers are limited to one successful bulk publish
 // per 24 hours. Bulk publish is an asynchronous request, customers can see
 // the status of the request via the GetBulkPublishDetails operation.
-func (c *CognitoSync) BulkPublish(input *BulkPublishInput) (*BulkPublishOutput, awserr.Error) {
+func (c *CognitoSync) BulkPublish(input *BulkPublishInput) (*BulkPublishOutput, error) {
 	req, out := c.BulkPublishRequest(input)
 	err := req.Send()
 	return out, err
@@ -78,7 +77,7 @@ func (c *CognitoSync) DeleteDatasetRequest(input *DeleteDatasetInput) (req *aws.
 //
 // DeleteDataset can be called with temporary user credentials provided by
 // Cognito Identity or with developer credentials.
-func (c *CognitoSync) DeleteDataset(input *DeleteDatasetInput) (*DeleteDatasetOutput, awserr.Error) {
+func (c *CognitoSync) DeleteDataset(input *DeleteDatasetInput) (*DeleteDatasetOutput, error) {
 	req, out := c.DeleteDatasetRequest(input)
 	err := req.Send()
 	return out, err
@@ -116,7 +115,7 @@ func (c *CognitoSync) DescribeDatasetRequest(input *DescribeDatasetInput) (req *
 // DescribeDataset can be called with temporary user credentials provided by
 // Cognito Identity or with developer credentials. You should use Cognito Identity
 // credentials to make this API call.
-func (c *CognitoSync) DescribeDataset(input *DescribeDatasetInput) (*DescribeDatasetOutput, awserr.Error) {
+func (c *CognitoSync) DescribeDataset(input *DescribeDatasetInput) (*DescribeDatasetOutput, error) {
 	req, out := c.DescribeDatasetRequest(input)
 	err := req.Send()
 	return out, err
@@ -153,7 +152,7 @@ func (c *CognitoSync) DescribeIdentityPoolUsageRequest(input *DescribeIdentityPo
 // DescribeIdentityPoolUsage can only be called with developer credentials.
 // You cannot make this API call with the temporary user credentials provided
 // by Cognito Identity.
-func (c *CognitoSync) DescribeIdentityPoolUsage(input *DescribeIdentityPoolUsageInput) (*DescribeIdentityPoolUsageOutput, awserr.Error) {
+func (c *CognitoSync) DescribeIdentityPoolUsage(input *DescribeIdentityPoolUsageInput) (*DescribeIdentityPoolUsageOutput, error) {
 	req, out := c.DescribeIdentityPoolUsageRequest(input)
 	err := req.Send()
 	return out, err
@@ -189,7 +188,7 @@ func (c *CognitoSync) DescribeIdentityUsageRequest(input *DescribeIdentityUsageI
 //
 // DescribeIdentityUsage can be called with temporary user credentials provided
 // by Cognito Identity or with developer credentials.
-func (c *CognitoSync) DescribeIdentityUsage(input *DescribeIdentityUsageInput) (*DescribeIdentityUsageOutput, awserr.Error) {
+func (c *CognitoSync) DescribeIdentityUsage(input *DescribeIdentityUsageInput) (*DescribeIdentityUsageOutput, error) {
 	req, out := c.DescribeIdentityUsageRequest(input)
 	err := req.Send()
 	return out, err
@@ -221,7 +220,7 @@ func (c *CognitoSync) GetBulkPublishDetailsRequest(input *GetBulkPublishDetailsI
 }
 
 // Get the status of the last BulkPublish operation for an identity pool.
-func (c *CognitoSync) GetBulkPublishDetails(input *GetBulkPublishDetailsInput) (*GetBulkPublishDetailsOutput, awserr.Error) {
+func (c *CognitoSync) GetBulkPublishDetails(input *GetBulkPublishDetailsInput) (*GetBulkPublishDetailsOutput, error) {
 	req, out := c.GetBulkPublishDetailsRequest(input)
 	err := req.Send()
 	return out, err
@@ -253,7 +252,7 @@ func (c *CognitoSync) GetIdentityPoolConfigurationRequest(input *GetIdentityPool
 }
 
 // Gets the configuration settings of an identity pool.
-func (c *CognitoSync) GetIdentityPoolConfiguration(input *GetIdentityPoolConfigurationInput) (*GetIdentityPoolConfigurationOutput, awserr.Error) {
+func (c *CognitoSync) GetIdentityPoolConfiguration(input *GetIdentityPoolConfigurationInput) (*GetIdentityPoolConfigurationOutput, error) {
 	req, out := c.GetIdentityPoolConfigurationRequest(input)
 	err := req.Send()
 	return out, err
@@ -291,7 +290,7 @@ func (c *CognitoSync) ListDatasetsRequest(input *ListDatasetsInput) (req *aws.Re
 // ListDatasets can be called with temporary user credentials provided by Cognito
 // Identity or with developer credentials. You should use the Cognito Identity
 // credentials to make this API call.
-func (c *CognitoSync) ListDatasets(input *ListDatasetsInput) (*ListDatasetsOutput, awserr.Error) {
+func (c *CognitoSync) ListDatasets(input *ListDatasetsInput) (*ListDatasetsOutput, error) {
 	req, out := c.ListDatasetsRequest(input)
 	err := req.Send()
 	return out, err
@@ -327,7 +326,7 @@ func (c *CognitoSync) ListIdentityPoolUsageRequest(input *ListIdentityPoolUsageI
 // ListIdentityPoolUsage can only be called with developer credentials. You
 // cannot make this API call with the temporary user credentials provided by
 // Cognito Identity.
-func (c *CognitoSync) ListIdentityPoolUsage(input *ListIdentityPoolUsageInput) (*ListIdentityPoolUsageOutput, awserr.Error) {
+func (c *CognitoSync) ListIdentityPoolUsage(input *ListIdentityPoolUsageInput) (*ListIdentityPoolUsageOutput, error) {
 	req, out := c.ListIdentityPoolUsageRequest(input)
 	err := req.Send()
 	return out, err
@@ -366,7 +365,7 @@ func (c *CognitoSync) ListRecordsRequest(input *ListRecordsInput) (req *aws.Requ
 // ListRecords can be called with temporary user credentials provided by Cognito
 // Identity or with developer credentials. You should use Cognito Identity credentials
 // to make this API call.
-func (c *CognitoSync) ListRecords(input *ListRecordsInput) (*ListRecordsOutput, awserr.Error) {
+func (c *CognitoSync) ListRecords(input *ListRecordsInput) (*ListRecordsOutput, error) {
 	req, out := c.ListRecordsRequest(input)
 	err := req.Send()
 	return out, err
@@ -398,7 +397,7 @@ func (c *CognitoSync) RegisterDeviceRequest(input *RegisterDeviceInput) (req *aw
 }
 
 // Registers a device to receive push sync notifications.
-func (c *CognitoSync) RegisterDevice(input *RegisterDeviceInput) (*RegisterDeviceOutput, awserr.Error) {
+func (c *CognitoSync) RegisterDevice(input *RegisterDeviceInput) (*RegisterDeviceOutput, error) {
 	req, out := c.RegisterDeviceRequest(input)
 	err := req.Send()
 	return out, err
@@ -430,7 +429,7 @@ func (c *CognitoSync) SetIdentityPoolConfigurationRequest(input *SetIdentityPool
 }
 
 // Sets the necessary configuration for push sync.
-func (c *CognitoSync) SetIdentityPoolConfiguration(input *SetIdentityPoolConfigurationInput) (*SetIdentityPoolConfigurationOutput, awserr.Error) {
+func (c *CognitoSync) SetIdentityPoolConfiguration(input *SetIdentityPoolConfigurationInput) (*SetIdentityPoolConfigurationOutput, error) {
 	req, out := c.SetIdentityPoolConfigurationRequest(input)
 	err := req.Send()
 	return out, err
@@ -463,7 +462,7 @@ func (c *CognitoSync) SubscribeToDatasetRequest(input *SubscribeToDatasetInput) 
 
 // Subscribes to receive notifications when a dataset is modified by another
 // device.
-func (c *CognitoSync) SubscribeToDataset(input *SubscribeToDatasetInput) (*SubscribeToDatasetOutput, awserr.Error) {
+func (c *CognitoSync) SubscribeToDataset(input *SubscribeToDatasetInput) (*SubscribeToDatasetOutput, error) {
 	req, out := c.SubscribeToDatasetRequest(input)
 	err := req.Send()
 	return out, err
@@ -496,7 +495,7 @@ func (c *CognitoSync) UnsubscribeFromDatasetRequest(input *UnsubscribeFromDatase
 
 // Unsubscribes from receiving notifications when a dataset is modified by another
 // device.
-func (c *CognitoSync) UnsubscribeFromDataset(input *UnsubscribeFromDatasetInput) (*UnsubscribeFromDatasetOutput, awserr.Error) {
+func (c *CognitoSync) UnsubscribeFromDataset(input *UnsubscribeFromDatasetInput) (*UnsubscribeFromDatasetOutput, error) {
 	req, out := c.UnsubscribeFromDatasetRequest(input)
 	err := req.Send()
 	return out, err
@@ -531,7 +530,7 @@ func (c *CognitoSync) UpdateRecordsRequest(input *UpdateRecordsInput) (req *aws.
 //
 // UpdateRecords can only be called with temporary user credentials provided
 // by Cognito Identity. You cannot make this API call with developer credentials.
-func (c *CognitoSync) UpdateRecords(input *UpdateRecordsInput) (*UpdateRecordsOutput, awserr.Error) {
+func (c *CognitoSync) UpdateRecords(input *UpdateRecordsInput) (*UpdateRecordsOutput, error) {
 	req, out := c.UpdateRecordsRequest(input)
 	err := req.Send()
 	return out, err

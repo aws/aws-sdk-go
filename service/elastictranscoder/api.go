@@ -7,7 +7,6 @@ import (
 	"sync"
 
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -40,7 +39,7 @@ func (c *ElasticTranscoder) CancelJobRequest(input *CancelJobInput) (req *aws.Re
 // You can only cancel a job that has a status of Submitted. To prevent a pipeline
 // from starting to process a job while you're getting the job identifier, use
 // UpdatePipelineStatus to temporarily pause the pipeline.
-func (c *ElasticTranscoder) CancelJob(input *CancelJobInput) (*CancelJobOutput, awserr.Error) {
+func (c *ElasticTranscoder) CancelJob(input *CancelJobInput) (*CancelJobOutput, error) {
 	req, out := c.CancelJobRequest(input)
 	err := req.Send()
 	return out, err
@@ -78,7 +77,7 @@ func (c *ElasticTranscoder) CreateJobRequest(input *CreateJobInput) (req *aws.Re
 // output for the Kindle Fire and another output for the Apple iPhone 4s), you
 // currently must use the Elastic Transcoder API to list the jobs (as opposed
 // to the AWS Console).
-func (c *ElasticTranscoder) CreateJob(input *CreateJobInput) (*CreateJobResponse, awserr.Error) {
+func (c *ElasticTranscoder) CreateJob(input *CreateJobInput) (*CreateJobResponse, error) {
 	req, out := c.CreateJobRequest(input)
 	err := req.Send()
 	return out, err
@@ -110,7 +109,7 @@ func (c *ElasticTranscoder) CreatePipelineRequest(input *CreatePipelineInput) (r
 }
 
 // The CreatePipeline operation creates a pipeline with settings that you specify.
-func (c *ElasticTranscoder) CreatePipeline(input *CreatePipelineInput) (*CreatePipelineOutput, awserr.Error) {
+func (c *ElasticTranscoder) CreatePipeline(input *CreatePipelineInput) (*CreatePipelineOutput, error) {
 	req, out := c.CreatePipelineRequest(input)
 	err := req.Send()
 	return out, err
@@ -156,7 +155,7 @@ func (c *ElasticTranscoder) CreatePresetRequest(input *CreatePresetInput) (req *
 // more information, see the International Telecommunication Union publication
 // Recommendation ITU-T H.264: Advanced video coding for generic audiovisual
 // services.
-func (c *ElasticTranscoder) CreatePreset(input *CreatePresetInput) (*CreatePresetOutput, awserr.Error) {
+func (c *ElasticTranscoder) CreatePreset(input *CreatePresetInput) (*CreatePresetOutput, error) {
 	req, out := c.CreatePresetRequest(input)
 	err := req.Send()
 	return out, err
@@ -192,7 +191,7 @@ func (c *ElasticTranscoder) DeletePipelineRequest(input *DeletePipelineInput) (r
 //  You can only delete a pipeline that has never been used or that is not
 // currently in use (doesn't contain any active jobs). If the pipeline is currently
 // in use, DeletePipeline returns an error.
-func (c *ElasticTranscoder) DeletePipeline(input *DeletePipelineInput) (*DeletePipelineOutput, awserr.Error) {
+func (c *ElasticTranscoder) DeletePipeline(input *DeletePipelineInput) (*DeletePipelineOutput, error) {
 	req, out := c.DeletePipelineRequest(input)
 	err := req.Send()
 	return out, err
@@ -226,7 +225,7 @@ func (c *ElasticTranscoder) DeletePresetRequest(input *DeletePresetInput) (req *
 // The DeletePreset operation removes a preset that you've added in an AWS region.
 //
 //  You can't delete the default presets that are included with Elastic Transcoder.
-func (c *ElasticTranscoder) DeletePreset(input *DeletePresetInput) (*DeletePresetOutput, awserr.Error) {
+func (c *ElasticTranscoder) DeletePreset(input *DeletePresetInput) (*DeletePresetOutput, error) {
 	req, out := c.DeletePresetRequest(input)
 	err := req.Send()
 	return out, err
@@ -262,7 +261,7 @@ func (c *ElasticTranscoder) ListJobsByPipelineRequest(input *ListJobsByPipelineI
 // Elastic Transcoder returns all of the jobs currently in the specified pipeline.
 // The response body contains one element for each job that satisfies the search
 // criteria.
-func (c *ElasticTranscoder) ListJobsByPipeline(input *ListJobsByPipelineInput) (*ListJobsByPipelineOutput, awserr.Error) {
+func (c *ElasticTranscoder) ListJobsByPipeline(input *ListJobsByPipelineInput) (*ListJobsByPipelineOutput, error) {
 	req, out := c.ListJobsByPipelineRequest(input)
 	err := req.Send()
 	return out, err
@@ -296,7 +295,7 @@ func (c *ElasticTranscoder) ListJobsByStatusRequest(input *ListJobsByStatusInput
 // The ListJobsByStatus operation gets a list of jobs that have a specified
 // status. The response body contains one element for each job that satisfies
 // the search criteria.
-func (c *ElasticTranscoder) ListJobsByStatus(input *ListJobsByStatusInput) (*ListJobsByStatusOutput, awserr.Error) {
+func (c *ElasticTranscoder) ListJobsByStatus(input *ListJobsByStatusInput) (*ListJobsByStatusOutput, error) {
 	req, out := c.ListJobsByStatusRequest(input)
 	err := req.Send()
 	return out, err
@@ -329,7 +328,7 @@ func (c *ElasticTranscoder) ListPipelinesRequest(input *ListPipelinesInput) (req
 
 // The ListPipelines operation gets a list of the pipelines associated with
 // the current AWS account.
-func (c *ElasticTranscoder) ListPipelines(input *ListPipelinesInput) (*ListPipelinesOutput, awserr.Error) {
+func (c *ElasticTranscoder) ListPipelines(input *ListPipelinesInput) (*ListPipelinesOutput, error) {
 	req, out := c.ListPipelinesRequest(input)
 	err := req.Send()
 	return out, err
@@ -362,7 +361,7 @@ func (c *ElasticTranscoder) ListPresetsRequest(input *ListPresetsInput) (req *aw
 
 // The ListPresets operation gets a list of the default presets included with
 // Elastic Transcoder and the presets that you've added in an AWS region.
-func (c *ElasticTranscoder) ListPresets(input *ListPresetsInput) (*ListPresetsOutput, awserr.Error) {
+func (c *ElasticTranscoder) ListPresets(input *ListPresetsInput) (*ListPresetsOutput, error) {
 	req, out := c.ListPresetsRequest(input)
 	err := req.Send()
 	return out, err
@@ -394,7 +393,7 @@ func (c *ElasticTranscoder) ReadJobRequest(input *ReadJobInput) (req *aws.Reques
 }
 
 // The ReadJob operation returns detailed information about a job.
-func (c *ElasticTranscoder) ReadJob(input *ReadJobInput) (*ReadJobOutput, awserr.Error) {
+func (c *ElasticTranscoder) ReadJob(input *ReadJobInput) (*ReadJobOutput, error) {
 	req, out := c.ReadJobRequest(input)
 	err := req.Send()
 	return out, err
@@ -426,7 +425,7 @@ func (c *ElasticTranscoder) ReadPipelineRequest(input *ReadPipelineInput) (req *
 }
 
 // The ReadPipeline operation gets detailed information about a pipeline.
-func (c *ElasticTranscoder) ReadPipeline(input *ReadPipelineInput) (*ReadPipelineOutput, awserr.Error) {
+func (c *ElasticTranscoder) ReadPipeline(input *ReadPipelineInput) (*ReadPipelineOutput, error) {
 	req, out := c.ReadPipelineRequest(input)
 	err := req.Send()
 	return out, err
@@ -458,7 +457,7 @@ func (c *ElasticTranscoder) ReadPresetRequest(input *ReadPresetInput) (req *aws.
 }
 
 // The ReadPreset operation gets detailed information about a preset.
-func (c *ElasticTranscoder) ReadPreset(input *ReadPresetInput) (*ReadPresetOutput, awserr.Error) {
+func (c *ElasticTranscoder) ReadPreset(input *ReadPresetInput) (*ReadPresetOutput, error) {
 	req, out := c.ReadPresetRequest(input)
 	err := req.Send()
 	return out, err
@@ -496,7 +495,7 @@ func (c *ElasticTranscoder) TestRoleRequest(input *TestRoleInput) (req *aws.Requ
 // with the transcoding process. The action attempts to assume the specified
 // IAM role, checks read access to the input and output buckets, and tries to
 // send a test notification to Amazon SNS topics that you specify.
-func (c *ElasticTranscoder) TestRole(input *TestRoleInput) (*TestRoleOutput, awserr.Error) {
+func (c *ElasticTranscoder) TestRole(input *TestRoleInput) (*TestRoleOutput, error) {
 	req, out := c.TestRoleRequest(input)
 	err := req.Send()
 	return out, err
@@ -532,7 +531,7 @@ func (c *ElasticTranscoder) UpdatePipelineRequest(input *UpdatePipelineInput) (r
 // that you have already submitted and that Elastic Transcoder has not started
 // to process are affected in addition to jobs that you submit after you change
 // settings.
-func (c *ElasticTranscoder) UpdatePipeline(input *UpdatePipelineInput) (*UpdatePipelineOutput, awserr.Error) {
+func (c *ElasticTranscoder) UpdatePipeline(input *UpdatePipelineInput) (*UpdatePipelineOutput, error) {
 	req, out := c.UpdatePipelineRequest(input)
 	err := req.Send()
 	return out, err
@@ -568,7 +567,7 @@ func (c *ElasticTranscoder) UpdatePipelineNotificationsRequest(input *UpdatePipe
 //
 // When you update notifications for a pipeline, Elastic Transcoder returns
 // the values that you specified in the request.
-func (c *ElasticTranscoder) UpdatePipelineNotifications(input *UpdatePipelineNotificationsInput) (*UpdatePipelineNotificationsOutput, awserr.Error) {
+func (c *ElasticTranscoder) UpdatePipelineNotifications(input *UpdatePipelineNotificationsInput) (*UpdatePipelineNotificationsOutput, error) {
 	req, out := c.UpdatePipelineNotificationsRequest(input)
 	err := req.Send()
 	return out, err
@@ -607,7 +606,7 @@ func (c *ElasticTranscoder) UpdatePipelineStatusRequest(input *UpdatePipelineSta
 // them; if you pause the pipeline to which you submitted the jobs, you have
 // more time to get the job IDs for the jobs that you want to cancel, and to
 // send a CancelJob request.
-func (c *ElasticTranscoder) UpdatePipelineStatus(input *UpdatePipelineStatusInput) (*UpdatePipelineStatusOutput, awserr.Error) {
+func (c *ElasticTranscoder) UpdatePipelineStatus(input *UpdatePipelineStatusInput) (*UpdatePipelineStatusOutput, error) {
 	req, out := c.UpdatePipelineStatusRequest(input)
 	err := req.Send()
 	return out, err

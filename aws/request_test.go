@@ -135,8 +135,8 @@ func TestRequest4xxUnretryable(t *testing.T) {
 	} else {
 		assert.Fail(t, "Expected error to be a service failure")
 	}
-	assert.Equal(t, "SignatureDoesNotMatch", err.Code())
-	assert.Equal(t, "Signature does not match.", err.Message())
+	assert.Equal(t, "SignatureDoesNotMatch", err.(awserr.Error).Code())
+	assert.Equal(t, "Signature does not match.", err.(awserr.Error).Message())
 	assert.Equal(t, 0, int(r.RetryCount))
 }
 
@@ -171,8 +171,8 @@ func TestRequestExhaustRetries(t *testing.T) {
 	} else {
 		assert.Fail(t, "Expected error to be a service failure")
 	}
-	assert.Equal(t, "UnknownError", err.Code())
-	assert.Equal(t, "An error occurred.", err.Message())
+	assert.Equal(t, "UnknownError", err.(awserr.Error).Code())
+	assert.Equal(t, "An error occurred.", err.(awserr.Error).Message())
 	assert.Equal(t, 3, int(r.RetryCount))
 	assert.True(t, reflect.DeepEqual([]time.Duration{30 * time.Millisecond, 60 * time.Millisecond, 120 * time.Millisecond}, delays))
 }
@@ -194,7 +194,7 @@ func TestRequestRecoverExpiredCreds(t *testing.T) {
 	credExpiredAfterRetry := false
 
 	s.Handlers.Retry.PushBack(func(r *Request) {
-		if r.Error != nil && r.Error.Code() == "ExpiredTokenException" {
+		if r.Error != nil && r.Error.(awserr.Error).Code() == "ExpiredTokenException" {
 			credExpiredBeforeRetry = r.Config.Credentials.IsExpired()
 		}
 	})

@@ -4,82 +4,81 @@
 package elasticacheiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/elasticache"
 )
 
 type ElastiCacheAPI interface {
-	AddTagsToResource(*elasticache.AddTagsToResourceInput) (*elasticache.TagListMessage, awserr.Error)
+	AddTagsToResource(*elasticache.AddTagsToResourceInput) (*elasticache.TagListMessage, error)
 
-	AuthorizeCacheSecurityGroupIngress(*elasticache.AuthorizeCacheSecurityGroupIngressInput) (*elasticache.AuthorizeCacheSecurityGroupIngressOutput, awserr.Error)
+	AuthorizeCacheSecurityGroupIngress(*elasticache.AuthorizeCacheSecurityGroupIngressInput) (*elasticache.AuthorizeCacheSecurityGroupIngressOutput, error)
 
-	CopySnapshot(*elasticache.CopySnapshotInput) (*elasticache.CopySnapshotOutput, awserr.Error)
+	CopySnapshot(*elasticache.CopySnapshotInput) (*elasticache.CopySnapshotOutput, error)
 
-	CreateCacheCluster(*elasticache.CreateCacheClusterInput) (*elasticache.CreateCacheClusterOutput, awserr.Error)
+	CreateCacheCluster(*elasticache.CreateCacheClusterInput) (*elasticache.CreateCacheClusterOutput, error)
 
-	CreateCacheParameterGroup(*elasticache.CreateCacheParameterGroupInput) (*elasticache.CreateCacheParameterGroupOutput, awserr.Error)
+	CreateCacheParameterGroup(*elasticache.CreateCacheParameterGroupInput) (*elasticache.CreateCacheParameterGroupOutput, error)
 
-	CreateCacheSecurityGroup(*elasticache.CreateCacheSecurityGroupInput) (*elasticache.CreateCacheSecurityGroupOutput, awserr.Error)
+	CreateCacheSecurityGroup(*elasticache.CreateCacheSecurityGroupInput) (*elasticache.CreateCacheSecurityGroupOutput, error)
 
-	CreateCacheSubnetGroup(*elasticache.CreateCacheSubnetGroupInput) (*elasticache.CreateCacheSubnetGroupOutput, awserr.Error)
+	CreateCacheSubnetGroup(*elasticache.CreateCacheSubnetGroupInput) (*elasticache.CreateCacheSubnetGroupOutput, error)
 
-	CreateReplicationGroup(*elasticache.CreateReplicationGroupInput) (*elasticache.CreateReplicationGroupOutput, awserr.Error)
+	CreateReplicationGroup(*elasticache.CreateReplicationGroupInput) (*elasticache.CreateReplicationGroupOutput, error)
 
-	CreateSnapshot(*elasticache.CreateSnapshotInput) (*elasticache.CreateSnapshotOutput, awserr.Error)
+	CreateSnapshot(*elasticache.CreateSnapshotInput) (*elasticache.CreateSnapshotOutput, error)
 
-	DeleteCacheCluster(*elasticache.DeleteCacheClusterInput) (*elasticache.DeleteCacheClusterOutput, awserr.Error)
+	DeleteCacheCluster(*elasticache.DeleteCacheClusterInput) (*elasticache.DeleteCacheClusterOutput, error)
 
-	DeleteCacheParameterGroup(*elasticache.DeleteCacheParameterGroupInput) (*elasticache.DeleteCacheParameterGroupOutput, awserr.Error)
+	DeleteCacheParameterGroup(*elasticache.DeleteCacheParameterGroupInput) (*elasticache.DeleteCacheParameterGroupOutput, error)
 
-	DeleteCacheSecurityGroup(*elasticache.DeleteCacheSecurityGroupInput) (*elasticache.DeleteCacheSecurityGroupOutput, awserr.Error)
+	DeleteCacheSecurityGroup(*elasticache.DeleteCacheSecurityGroupInput) (*elasticache.DeleteCacheSecurityGroupOutput, error)
 
-	DeleteCacheSubnetGroup(*elasticache.DeleteCacheSubnetGroupInput) (*elasticache.DeleteCacheSubnetGroupOutput, awserr.Error)
+	DeleteCacheSubnetGroup(*elasticache.DeleteCacheSubnetGroupInput) (*elasticache.DeleteCacheSubnetGroupOutput, error)
 
-	DeleteReplicationGroup(*elasticache.DeleteReplicationGroupInput) (*elasticache.DeleteReplicationGroupOutput, awserr.Error)
+	DeleteReplicationGroup(*elasticache.DeleteReplicationGroupInput) (*elasticache.DeleteReplicationGroupOutput, error)
 
-	DeleteSnapshot(*elasticache.DeleteSnapshotInput) (*elasticache.DeleteSnapshotOutput, awserr.Error)
+	DeleteSnapshot(*elasticache.DeleteSnapshotInput) (*elasticache.DeleteSnapshotOutput, error)
 
-	DescribeCacheClusters(*elasticache.DescribeCacheClustersInput) (*elasticache.DescribeCacheClustersOutput, awserr.Error)
+	DescribeCacheClusters(*elasticache.DescribeCacheClustersInput) (*elasticache.DescribeCacheClustersOutput, error)
 
-	DescribeCacheEngineVersions(*elasticache.DescribeCacheEngineVersionsInput) (*elasticache.DescribeCacheEngineVersionsOutput, awserr.Error)
+	DescribeCacheEngineVersions(*elasticache.DescribeCacheEngineVersionsInput) (*elasticache.DescribeCacheEngineVersionsOutput, error)
 
-	DescribeCacheParameterGroups(*elasticache.DescribeCacheParameterGroupsInput) (*elasticache.DescribeCacheParameterGroupsOutput, awserr.Error)
+	DescribeCacheParameterGroups(*elasticache.DescribeCacheParameterGroupsInput) (*elasticache.DescribeCacheParameterGroupsOutput, error)
 
-	DescribeCacheParameters(*elasticache.DescribeCacheParametersInput) (*elasticache.DescribeCacheParametersOutput, awserr.Error)
+	DescribeCacheParameters(*elasticache.DescribeCacheParametersInput) (*elasticache.DescribeCacheParametersOutput, error)
 
-	DescribeCacheSecurityGroups(*elasticache.DescribeCacheSecurityGroupsInput) (*elasticache.DescribeCacheSecurityGroupsOutput, awserr.Error)
+	DescribeCacheSecurityGroups(*elasticache.DescribeCacheSecurityGroupsInput) (*elasticache.DescribeCacheSecurityGroupsOutput, error)
 
-	DescribeCacheSubnetGroups(*elasticache.DescribeCacheSubnetGroupsInput) (*elasticache.DescribeCacheSubnetGroupsOutput, awserr.Error)
+	DescribeCacheSubnetGroups(*elasticache.DescribeCacheSubnetGroupsInput) (*elasticache.DescribeCacheSubnetGroupsOutput, error)
 
-	DescribeEngineDefaultParameters(*elasticache.DescribeEngineDefaultParametersInput) (*elasticache.DescribeEngineDefaultParametersOutput, awserr.Error)
+	DescribeEngineDefaultParameters(*elasticache.DescribeEngineDefaultParametersInput) (*elasticache.DescribeEngineDefaultParametersOutput, error)
 
-	DescribeEvents(*elasticache.DescribeEventsInput) (*elasticache.DescribeEventsOutput, awserr.Error)
+	DescribeEvents(*elasticache.DescribeEventsInput) (*elasticache.DescribeEventsOutput, error)
 
-	DescribeReplicationGroups(*elasticache.DescribeReplicationGroupsInput) (*elasticache.DescribeReplicationGroupsOutput, awserr.Error)
+	DescribeReplicationGroups(*elasticache.DescribeReplicationGroupsInput) (*elasticache.DescribeReplicationGroupsOutput, error)
 
-	DescribeReservedCacheNodes(*elasticache.DescribeReservedCacheNodesInput) (*elasticache.DescribeReservedCacheNodesOutput, awserr.Error)
+	DescribeReservedCacheNodes(*elasticache.DescribeReservedCacheNodesInput) (*elasticache.DescribeReservedCacheNodesOutput, error)
 
-	DescribeReservedCacheNodesOfferings(*elasticache.DescribeReservedCacheNodesOfferingsInput) (*elasticache.DescribeReservedCacheNodesOfferingsOutput, awserr.Error)
+	DescribeReservedCacheNodesOfferings(*elasticache.DescribeReservedCacheNodesOfferingsInput) (*elasticache.DescribeReservedCacheNodesOfferingsOutput, error)
 
-	DescribeSnapshots(*elasticache.DescribeSnapshotsInput) (*elasticache.DescribeSnapshotsOutput, awserr.Error)
+	DescribeSnapshots(*elasticache.DescribeSnapshotsInput) (*elasticache.DescribeSnapshotsOutput, error)
 
-	ListTagsForResource(*elasticache.ListTagsForResourceInput) (*elasticache.TagListMessage, awserr.Error)
+	ListTagsForResource(*elasticache.ListTagsForResourceInput) (*elasticache.TagListMessage, error)
 
-	ModifyCacheCluster(*elasticache.ModifyCacheClusterInput) (*elasticache.ModifyCacheClusterOutput, awserr.Error)
+	ModifyCacheCluster(*elasticache.ModifyCacheClusterInput) (*elasticache.ModifyCacheClusterOutput, error)
 
-	ModifyCacheParameterGroup(*elasticache.ModifyCacheParameterGroupInput) (*elasticache.CacheParameterGroupNameMessage, awserr.Error)
+	ModifyCacheParameterGroup(*elasticache.ModifyCacheParameterGroupInput) (*elasticache.CacheParameterGroupNameMessage, error)
 
-	ModifyCacheSubnetGroup(*elasticache.ModifyCacheSubnetGroupInput) (*elasticache.ModifyCacheSubnetGroupOutput, awserr.Error)
+	ModifyCacheSubnetGroup(*elasticache.ModifyCacheSubnetGroupInput) (*elasticache.ModifyCacheSubnetGroupOutput, error)
 
-	ModifyReplicationGroup(*elasticache.ModifyReplicationGroupInput) (*elasticache.ModifyReplicationGroupOutput, awserr.Error)
+	ModifyReplicationGroup(*elasticache.ModifyReplicationGroupInput) (*elasticache.ModifyReplicationGroupOutput, error)
 
-	PurchaseReservedCacheNodesOffering(*elasticache.PurchaseReservedCacheNodesOfferingInput) (*elasticache.PurchaseReservedCacheNodesOfferingOutput, awserr.Error)
+	PurchaseReservedCacheNodesOffering(*elasticache.PurchaseReservedCacheNodesOfferingInput) (*elasticache.PurchaseReservedCacheNodesOfferingOutput, error)
 
-	RebootCacheCluster(*elasticache.RebootCacheClusterInput) (*elasticache.RebootCacheClusterOutput, awserr.Error)
+	RebootCacheCluster(*elasticache.RebootCacheClusterInput) (*elasticache.RebootCacheClusterOutput, error)
 
-	RemoveTagsFromResource(*elasticache.RemoveTagsFromResourceInput) (*elasticache.TagListMessage, awserr.Error)
+	RemoveTagsFromResource(*elasticache.RemoveTagsFromResourceInput) (*elasticache.TagListMessage, error)
 
-	ResetCacheParameterGroup(*elasticache.ResetCacheParameterGroupInput) (*elasticache.CacheParameterGroupNameMessage, awserr.Error)
+	ResetCacheParameterGroup(*elasticache.ResetCacheParameterGroupInput) (*elasticache.CacheParameterGroupNameMessage, error)
 
-	RevokeCacheSecurityGroupIngress(*elasticache.RevokeCacheSecurityGroupIngressInput) (*elasticache.RevokeCacheSecurityGroupIngressOutput, awserr.Error)
+	RevokeCacheSecurityGroupIngress(*elasticache.RevokeCacheSecurityGroupIngressInput) (*elasticache.RevokeCacheSecurityGroupIngressOutput, error)
 }

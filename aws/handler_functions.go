@@ -3,7 +3,6 @@ package aws
 import (
 	"bytes"
 	"fmt"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/internal/apierr"
 	"io"
 	"io/ioutil"
@@ -12,6 +11,7 @@ import (
 	"regexp"
 	"strconv"
 	"time"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var sleepDelay = func(delay time.Duration) {
@@ -108,10 +108,12 @@ func AfterRetryHandler(r *Request) {
 		// when the expired token exception occurs the credentials
 		// need to be expired locally so that the next request to
 		// get credentials will trigger a credentials refresh.
-		if r.Error != nil && r.Error.Code() == "ExpiredTokenException" {
-			r.Config.Credentials.Expire()
-			// The credentials will need to be resigned with new credentials
-			r.signed = false
+		if r.Error != nil {
+			if err, ok := r.Error.(awserr.Error); ok && err.Code() == "ExpiredTokenException" {
+				r.Config.Credentials.Expire()
+				// The credentials will need to be resigned with new credentials
+				r.signed = false
+			}
 		}
 
 		r.RetryCount++
@@ -122,11 +124,11 @@ func AfterRetryHandler(r *Request) {
 var (
 	// ErrMissingRegion is an error that is returned if region configuration is
 	// not found.
-	ErrMissingRegion awserr.Error = apierr.New("MissingRegion", "could not find region configuration", nil)
+	ErrMissingRegion error = apierr.New("MissingRegion", "could not find region configuration", nil)
 
 	// ErrMissingEndpoint is an error that is returned if an endpoint cannot be
 	// resolved for a service.
-	ErrMissingEndpoint awserr.Error = apierr.New("MissingEndpoint", "'Endpoint' configuration is required for this service", nil)
+	ErrMissingEndpoint error = apierr.New("MissingEndpoint", "'Endpoint' configuration is required for this service", nil)
 )
 
 // ValidateEndpointHandler is a request handler to validate a request had the

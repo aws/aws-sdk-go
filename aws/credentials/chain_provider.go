@@ -1,7 +1,6 @@
 package credentials
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/internal/apierr"
 )
 
@@ -57,7 +56,7 @@ func NewChainCredentials(providers []Provider) *Credentials {
 //
 // If a provider is found it will be cached and any calls to IsExpired()
 // will return the expired state of the cached provider.
-func (c *ChainProvider) Retrieve() (Value, awserr.Error) {
+func (c *ChainProvider) Retrieve() (Value, error) {
 	for _, p := range c.Providers {
 		if creds, err := p.Retrieve(); err == nil {
 			c.curr = p

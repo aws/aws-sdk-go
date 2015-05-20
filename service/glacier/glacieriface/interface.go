@@ -4,50 +4,49 @@
 package glacieriface
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/glacier"
 )
 
 type GlacierAPI interface {
-	AbortMultipartUpload(*glacier.AbortMultipartUploadInput) (*glacier.AbortMultipartUploadOutput, awserr.Error)
+	AbortMultipartUpload(*glacier.AbortMultipartUploadInput) (*glacier.AbortMultipartUploadOutput, error)
 
-	CompleteMultipartUpload(*glacier.CompleteMultipartUploadInput) (*glacier.ArchiveCreationOutput, awserr.Error)
+	CompleteMultipartUpload(*glacier.CompleteMultipartUploadInput) (*glacier.ArchiveCreationOutput, error)
 
-	CreateVault(*glacier.CreateVaultInput) (*glacier.CreateVaultOutput, awserr.Error)
+	CreateVault(*glacier.CreateVaultInput) (*glacier.CreateVaultOutput, error)
 
-	DeleteArchive(*glacier.DeleteArchiveInput) (*glacier.DeleteArchiveOutput, awserr.Error)
+	DeleteArchive(*glacier.DeleteArchiveInput) (*glacier.DeleteArchiveOutput, error)
 
-	DeleteVault(*glacier.DeleteVaultInput) (*glacier.DeleteVaultOutput, awserr.Error)
+	DeleteVault(*glacier.DeleteVaultInput) (*glacier.DeleteVaultOutput, error)
 
-	DeleteVaultNotifications(*glacier.DeleteVaultNotificationsInput) (*glacier.DeleteVaultNotificationsOutput, awserr.Error)
+	DeleteVaultNotifications(*glacier.DeleteVaultNotificationsInput) (*glacier.DeleteVaultNotificationsOutput, error)
 
-	DescribeJob(*glacier.DescribeJobInput) (*glacier.GlacierJobDescription, awserr.Error)
+	DescribeJob(*glacier.DescribeJobInput) (*glacier.GlacierJobDescription, error)
 
-	DescribeVault(*glacier.DescribeVaultInput) (*glacier.DescribeVaultOutput, awserr.Error)
+	DescribeVault(*glacier.DescribeVaultInput) (*glacier.DescribeVaultOutput, error)
 
-	GetDataRetrievalPolicy(*glacier.GetDataRetrievalPolicyInput) (*glacier.GetDataRetrievalPolicyOutput, awserr.Error)
+	GetDataRetrievalPolicy(*glacier.GetDataRetrievalPolicyInput) (*glacier.GetDataRetrievalPolicyOutput, error)
 
-	GetJobOutput(*glacier.GetJobOutputInput) (*glacier.GetJobOutputOutput, awserr.Error)
+	GetJobOutput(*glacier.GetJobOutputInput) (*glacier.GetJobOutputOutput, error)
 
-	GetVaultNotifications(*glacier.GetVaultNotificationsInput) (*glacier.GetVaultNotificationsOutput, awserr.Error)
+	GetVaultNotifications(*glacier.GetVaultNotificationsInput) (*glacier.GetVaultNotificationsOutput, error)
 
-	InitiateJob(*glacier.InitiateJobInput) (*glacier.InitiateJobOutput, awserr.Error)
+	InitiateJob(*glacier.InitiateJobInput) (*glacier.InitiateJobOutput, error)
 
-	InitiateMultipartUpload(*glacier.InitiateMultipartUploadInput) (*glacier.InitiateMultipartUploadOutput, awserr.Error)
+	InitiateMultipartUpload(*glacier.InitiateMultipartUploadInput) (*glacier.InitiateMultipartUploadOutput, error)
 
-	ListJobs(*glacier.ListJobsInput) (*glacier.ListJobsOutput, awserr.Error)
+	ListJobs(*glacier.ListJobsInput) (*glacier.ListJobsOutput, error)
 
-	ListMultipartUploads(*glacier.ListMultipartUploadsInput) (*glacier.ListMultipartUploadsOutput, awserr.Error)
+	ListMultipartUploads(*glacier.ListMultipartUploadsInput) (*glacier.ListMultipartUploadsOutput, error)
 
-	ListParts(*glacier.ListPartsInput) (*glacier.ListPartsOutput, awserr.Error)
+	ListParts(*glacier.ListPartsInput) (*glacier.ListPartsOutput, error)
 
-	ListVaults(*glacier.ListVaultsInput) (*glacier.ListVaultsOutput, awserr.Error)
+	ListVaults(*glacier.ListVaultsInput) (*glacier.ListVaultsOutput, error)
 
-	SetDataRetrievalPolicy(*glacier.SetDataRetrievalPolicyInput) (*glacier.SetDataRetrievalPolicyOutput, awserr.Error)
+	SetDataRetrievalPolicy(*glacier.SetDataRetrievalPolicyInput) (*glacier.SetDataRetrievalPolicyOutput, error)
 
-	SetVaultNotifications(*glacier.SetVaultNotificationsInput) (*glacier.SetVaultNotificationsOutput, awserr.Error)
+	SetVaultNotifications(*glacier.SetVaultNotificationsInput) (*glacier.SetVaultNotificationsOutput, error)
 
-	UploadArchive(*glacier.UploadArchiveInput) (*glacier.ArchiveCreationOutput, awserr.Error)
+	UploadArchive(*glacier.UploadArchiveInput) (*glacier.ArchiveCreationOutput, error)
 
-	UploadMultipartPart(*glacier.UploadMultipartPartInput) (*glacier.UploadMultipartPartOutput, awserr.Error)
+	UploadMultipartPart(*glacier.UploadMultipartPartInput) (*glacier.UploadMultipartPartOutput, error)
 }

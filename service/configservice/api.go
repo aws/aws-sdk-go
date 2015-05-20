@@ -8,7 +8,6 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -42,7 +41,7 @@ func (c *ConfigService) DeleteDeliveryChannelRequest(input *DeleteDeliveryChanne
 // and the configuration recorder is still running. To delete the delivery channel,
 // stop the running configuration recorder using the StopConfigurationRecorder
 // action.
-func (c *ConfigService) DeleteDeliveryChannel(input *DeleteDeliveryChannelInput) (*DeleteDeliveryChannelOutput, awserr.Error) {
+func (c *ConfigService) DeleteDeliveryChannel(input *DeleteDeliveryChannelInput) (*DeleteDeliveryChannelOutput, error) {
 	req, out := c.DeleteDeliveryChannelRequest(input)
 	err := req.Send()
 	return out, err
@@ -80,7 +79,7 @@ func (c *ConfigService) DeliverConfigSnapshotRequest(input *DeliverConfigSnapsho
 //  Notification of starting the delivery. Notification of delivery completed,
 // if the delivery was successfully completed. Notification of delivery failure,
 // if the delivery failed to complete.
-func (c *ConfigService) DeliverConfigSnapshot(input *DeliverConfigSnapshotInput) (*DeliverConfigSnapshotOutput, awserr.Error) {
+func (c *ConfigService) DeliverConfigSnapshot(input *DeliverConfigSnapshotInput) (*DeliverConfigSnapshotOutput, error) {
 	req, out := c.DeliverConfigSnapshotRequest(input)
 	err := req.Send()
 	return out, err
@@ -114,7 +113,7 @@ func (c *ConfigService) DescribeConfigurationRecorderStatusRequest(input *Descri
 // Returns the current status of the specified configuration recorder. If a
 // configuration recorder is not specified, this action returns the status of
 // all configuration recorder associated with the account.
-func (c *ConfigService) DescribeConfigurationRecorderStatus(input *DescribeConfigurationRecorderStatusInput) (*DescribeConfigurationRecorderStatusOutput, awserr.Error) {
+func (c *ConfigService) DescribeConfigurationRecorderStatus(input *DescribeConfigurationRecorderStatusInput) (*DescribeConfigurationRecorderStatusOutput, error) {
 	req, out := c.DescribeConfigurationRecorderStatusRequest(input)
 	err := req.Send()
 	return out, err
@@ -148,7 +147,7 @@ func (c *ConfigService) DescribeConfigurationRecordersRequest(input *DescribeCon
 // Returns the name of one or more specified configuration recorders. If the
 // recorder name is not specified, this action returns the names of all the
 // configuration recorders associated with the account.
-func (c *ConfigService) DescribeConfigurationRecorders(input *DescribeConfigurationRecordersInput) (*DescribeConfigurationRecordersOutput, awserr.Error) {
+func (c *ConfigService) DescribeConfigurationRecorders(input *DescribeConfigurationRecordersInput) (*DescribeConfigurationRecordersOutput, error) {
 	req, out := c.DescribeConfigurationRecordersRequest(input)
 	err := req.Send()
 	return out, err
@@ -182,7 +181,7 @@ func (c *ConfigService) DescribeDeliveryChannelStatusRequest(input *DescribeDeli
 // Returns the current status of the specified delivery channel. If a delivery
 // channel is not specified, this action returns the current status of all delivery
 // channels associated with the account.
-func (c *ConfigService) DescribeDeliveryChannelStatus(input *DescribeDeliveryChannelStatusInput) (*DescribeDeliveryChannelStatusOutput, awserr.Error) {
+func (c *ConfigService) DescribeDeliveryChannelStatus(input *DescribeDeliveryChannelStatusInput) (*DescribeDeliveryChannelStatusOutput, error) {
 	req, out := c.DescribeDeliveryChannelStatusRequest(input)
 	err := req.Send()
 	return out, err
@@ -216,7 +215,7 @@ func (c *ConfigService) DescribeDeliveryChannelsRequest(input *DescribeDeliveryC
 // Returns details about the specified delivery channel. If a delivery channel
 // is not specified, this action returns the details of all delivery channels
 // associated with the account.
-func (c *ConfigService) DescribeDeliveryChannels(input *DescribeDeliveryChannelsInput) (*DescribeDeliveryChannelsOutput, awserr.Error) {
+func (c *ConfigService) DescribeDeliveryChannels(input *DescribeDeliveryChannelsInput) (*DescribeDeliveryChannelsOutput, error) {
 	req, out := c.DescribeDeliveryChannelsRequest(input)
 	err := req.Send()
 	return out, err
@@ -252,7 +251,7 @@ func (c *ConfigService) GetResourceConfigHistoryRequest(input *GetResourceConfig
 // interval. You can specify a limit on the number of results returned on the
 // page. If a limit is specified, a nextToken is returned as part of the result
 // that you can use to continue this request.
-func (c *ConfigService) GetResourceConfigHistory(input *GetResourceConfigHistoryInput) (*GetResourceConfigHistoryOutput, awserr.Error) {
+func (c *ConfigService) GetResourceConfigHistory(input *GetResourceConfigHistoryInput) (*GetResourceConfigHistoryOutput, error) {
 	req, out := c.GetResourceConfigHistoryRequest(input)
 	err := req.Send()
 	return out, err
@@ -288,7 +287,7 @@ func (c *ConfigService) PutConfigurationRecorderRequest(input *PutConfigurationR
 // You can use this action to change the role (roleARN) of an existing recorder.
 // To change the role, call the action on the existing configuration recorder
 // and specify a role.
-func (c *ConfigService) PutConfigurationRecorder(input *PutConfigurationRecorderInput) (*PutConfigurationRecorderOutput, awserr.Error) {
+func (c *ConfigService) PutConfigurationRecorder(input *PutConfigurationRecorderInput) (*PutConfigurationRecorderOutput, error) {
 	req, out := c.PutConfigurationRecorderRequest(input)
 	err := req.Send()
 	return out, err
@@ -328,7 +327,7 @@ func (c *ConfigService) PutDeliveryChannelRequest(input *PutDeliveryChannelInput
 // the S3 bucket and the SNS topic. If you specify a different value for either
 // the S3 bucket or the SNS topic, this action will keep the existing value
 // for the parameter that is not changed.
-func (c *ConfigService) PutDeliveryChannel(input *PutDeliveryChannelInput) (*PutDeliveryChannelOutput, awserr.Error) {
+func (c *ConfigService) PutDeliveryChannel(input *PutDeliveryChannelInput) (*PutDeliveryChannelOutput, error) {
 	req, out := c.PutDeliveryChannelRequest(input)
 	err := req.Send()
 	return out, err
@@ -364,7 +363,7 @@ func (c *ConfigService) StartConfigurationRecorderRequest(input *StartConfigurat
 //
 // You must have created at least one delivery channel to successfully start
 // the configuration recorder.
-func (c *ConfigService) StartConfigurationRecorder(input *StartConfigurationRecorderInput) (*StartConfigurationRecorderOutput, awserr.Error) {
+func (c *ConfigService) StartConfigurationRecorder(input *StartConfigurationRecorderInput) (*StartConfigurationRecorderOutput, error) {
 	req, out := c.StartConfigurationRecorderRequest(input)
 	err := req.Send()
 	return out, err
@@ -396,7 +395,7 @@ func (c *ConfigService) StopConfigurationRecorderRequest(input *StopConfiguratio
 }
 
 // Stops recording configurations of all the resources associated with the account.
-func (c *ConfigService) StopConfigurationRecorder(input *StopConfigurationRecorderInput) (*StopConfigurationRecorderOutput, awserr.Error) {
+func (c *ConfigService) StopConfigurationRecorder(input *StopConfigurationRecorderInput) (*StopConfigurationRecorderOutput, error) {
 	req, out := c.StopConfigurationRecorderRequest(input)
 	err := req.Send()
 	return out, err

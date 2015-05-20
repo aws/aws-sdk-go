@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/internal/test/unit"
 	"github.com/awslabs/aws-sdk-go/service/s3"
 	"github.com/stretchr/testify/assert"
@@ -22,8 +23,8 @@ func TestSSECustomerKeyOverHTTPError(t *testing.T) {
 	err := req.Build()
 
 	assert.Error(t, err)
-	assert.Equal(t, "ConfigError", err.Code())
-	assert.Contains(t, err.Message(), "cannot send SSE keys over HTTP")
+	assert.Equal(t, "ConfigError", err.(awserr.Error).Code())
+	assert.Contains(t, err.(awserr.Error).Message(), "cannot send SSE keys over HTTP")
 }
 
 func TestCopySourceSSECustomerKeyOverHTTPError(t *testing.T) {
@@ -37,8 +38,8 @@ func TestCopySourceSSECustomerKeyOverHTTPError(t *testing.T) {
 	err := req.Build()
 
 	assert.Error(t, err)
-	assert.Equal(t, "ConfigError", err.Code())
-	assert.Contains(t, err.Message(), "cannot send SSE keys over HTTP")
+	assert.Equal(t, "ConfigError", err.(awserr.Error).Code())
+	assert.Contains(t, err.(awserr.Error).Message(), "cannot send SSE keys over HTTP")
 }
 
 func TestComputeSSEKeys(t *testing.T) {

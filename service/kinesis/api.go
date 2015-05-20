@@ -7,7 +7,6 @@ import (
 	"sync"
 
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -40,7 +39,7 @@ func (c *Kinesis) AddTagsToStreamRequest(input *AddTagsToStreamInput) (req *aws.
 //
 // If tags have already been assigned to the stream, AddTagsToStream overwrites
 // any existing tags that correspond to the specified tag keys.
-func (c *Kinesis) AddTagsToStream(input *AddTagsToStreamInput) (*AddTagsToStreamOutput, awserr.Error) {
+func (c *Kinesis) AddTagsToStream(input *AddTagsToStreamInput) (*AddTagsToStreamOutput, error) {
 	req, out := c.AddTagsToStreamRequest(input)
 	err := req.Send()
 	return out, err
@@ -108,7 +107,7 @@ func (c *Kinesis) CreateStreamRequest(input *CreateStreamInput) (req *aws.Reques
 // in StreamStatus.
 //
 // CreateStream has a limit of 5 transactions per second per account.
-func (c *Kinesis) CreateStream(input *CreateStreamInput) (*CreateStreamOutput, awserr.Error) {
+func (c *Kinesis) CreateStream(input *CreateStreamInput) (*CreateStreamOutput, error) {
 	req, out := c.CreateStreamRequest(input)
 	err := req.Send()
 	return out, err
@@ -158,7 +157,7 @@ func (c *Kinesis) DeleteStreamRequest(input *DeleteStreamInput) (req *aws.Reques
 // which is returned in StreamStatus.
 //
 // DeleteStream has a limit of 5 transactions per second per account.
-func (c *Kinesis) DeleteStream(input *DeleteStreamInput) (*DeleteStreamOutput, awserr.Error) {
+func (c *Kinesis) DeleteStream(input *DeleteStreamInput) (*DeleteStreamOutput, error) {
 	req, out := c.DeleteStreamRequest(input)
 	err := req.Send()
 	return out, err
@@ -211,7 +210,7 @@ func (c *Kinesis) DescribeStreamRequest(input *DescribeStreamInput) (req *aws.Re
 // DescribeStream.
 //
 // DescribeStream has a limit of 10 transactions per second per account.
-func (c *Kinesis) DescribeStream(input *DescribeStreamInput) (*DescribeStreamOutput, awserr.Error) {
+func (c *Kinesis) DescribeStream(input *DescribeStreamInput) (*DescribeStreamOutput, error) {
 	req, out := c.DescribeStreamRequest(input)
 	err := req.Send()
 	return out, err
@@ -287,7 +286,7 @@ func (c *Kinesis) GetRecordsRequest(input *GetRecordsInput) (req *aws.Request, o
 // for write operations (PutRecord and PutRecords). For more information, see
 // Monitoring Amazon Kinesis with Amazon CloudWatch (http://docs.aws.amazon.com/kinesis/latest/dev/monitoring_with_cloudwatch.html)
 // in the Amazon Kinesis Developer Guide.
-func (c *Kinesis) GetRecords(input *GetRecordsInput) (*GetRecordsOutput, awserr.Error) {
+func (c *Kinesis) GetRecords(input *GetRecordsInput) (*GetRecordsOutput, error) {
 	req, out := c.GetRecordsRequest(input)
 	err := req.Send()
 	return out, err
@@ -355,7 +354,7 @@ func (c *Kinesis) GetShardIteratorRequest(input *GetShardIteratorInput) (req *aw
 //
 // GetShardIterator has a limit of 5 transactions per second per account per
 // open shard.
-func (c *Kinesis) GetShardIterator(input *GetShardIteratorInput) (*GetShardIteratorOutput, awserr.Error) {
+func (c *Kinesis) GetShardIterator(input *GetShardIteratorInput) (*GetShardIteratorOutput, error) {
 	req, out := c.GetShardIteratorRequest(input)
 	err := req.Send()
 	return out, err
@@ -402,7 +401,7 @@ func (c *Kinesis) ListStreamsRequest(input *ListStreamsInput) (req *aws.Request,
 // until all the stream names have been collected in the list.
 //
 // ListStreams has a limit of 5 transactions per second per account.
-func (c *Kinesis) ListStreams(input *ListStreamsInput) (*ListStreamsOutput, awserr.Error) {
+func (c *Kinesis) ListStreams(input *ListStreamsInput) (*ListStreamsOutput, error) {
 	req, out := c.ListStreamsRequest(input)
 	err := req.Send()
 	return out, err
@@ -434,7 +433,7 @@ func (c *Kinesis) ListTagsForStreamRequest(input *ListTagsForStreamInput) (req *
 }
 
 // Lists the tags for the specified Amazon Kinesis stream.
-func (c *Kinesis) ListTagsForStream(input *ListTagsForStreamInput) (*ListTagsForStreamOutput, awserr.Error) {
+func (c *Kinesis) ListTagsForStream(input *ListTagsForStreamInput) (*ListTagsForStreamOutput, error) {
 	req, out := c.ListTagsForStreamRequest(input)
 	err := req.Send()
 	return out, err
@@ -500,7 +499,7 @@ func (c *Kinesis) MergeShardsRequest(input *MergeShardsInput) (req *aws.Request,
 // DeleteStream, MergeShards or SplitShard, you will receive a LimitExceededException.
 //
 // MergeShards has limit of 5 transactions per second per account.
-func (c *Kinesis) MergeShards(input *MergeShardsInput) (*MergeShardsOutput, awserr.Error) {
+func (c *Kinesis) MergeShards(input *MergeShardsInput) (*MergeShardsOutput, error) {
 	req, out := c.MergeShardsRequest(input)
 	err := req.Send()
 	return out, err
@@ -569,7 +568,7 @@ func (c *Kinesis) PutRecordRequest(input *PutRecordInput) (req *aws.Request, out
 //
 // Data records are accessible for only 24 hours from the time that they are
 // added to an Amazon Kinesis stream.
-func (c *Kinesis) PutRecord(input *PutRecordInput) (*PutRecordOutput, awserr.Error) {
+func (c *Kinesis) PutRecord(input *PutRecordInput) (*PutRecordOutput, error) {
 	req, out := c.PutRecordRequest(input)
 	err := req.Send()
 	return out, err
@@ -653,7 +652,7 @@ func (c *Kinesis) PutRecordsRequest(input *PutRecordsInput) (req *aws.Request, o
 //
 // Data records are accessible for only 24 hours from the time that they are
 // added to an Amazon Kinesis stream.
-func (c *Kinesis) PutRecords(input *PutRecordsInput) (*PutRecordsOutput, awserr.Error) {
+func (c *Kinesis) PutRecords(input *PutRecordsInput) (*PutRecordsOutput, error) {
 	req, out := c.PutRecordsRequest(input)
 	err := req.Send()
 	return out, err
@@ -687,7 +686,7 @@ func (c *Kinesis) RemoveTagsFromStreamRequest(input *RemoveTagsFromStreamInput) 
 // Deletes tags from the specified Amazon Kinesis stream.
 //
 // If you specify a tag that does not exist, it is ignored.
-func (c *Kinesis) RemoveTagsFromStream(input *RemoveTagsFromStreamInput) (*RemoveTagsFromStreamOutput, awserr.Error) {
+func (c *Kinesis) RemoveTagsFromStream(input *RemoveTagsFromStreamInput) (*RemoveTagsFromStreamOutput, error) {
 	req, out := c.RemoveTagsFromStreamRequest(input)
 	err := req.Send()
 	return out, err
@@ -764,7 +763,7 @@ func (c *Kinesis) SplitShardRequest(input *SplitShardInput) (req *aws.Request, o
 // DeleteStream, MergeShards or SplitShard, you receive a LimitExceededException.
 //
 // SplitShard has limit of 5 transactions per second per account.
-func (c *Kinesis) SplitShard(input *SplitShardInput) (*SplitShardOutput, awserr.Error) {
+func (c *Kinesis) SplitShard(input *SplitShardInput) (*SplitShardOutput, error) {
 	req, out := c.SplitShardRequest(input)
 	err := req.Send()
 	return out, err

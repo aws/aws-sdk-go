@@ -7,7 +7,6 @@ import (
 	"sync"
 
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -45,7 +44,7 @@ func (c *Support) AddAttachmentsToSetRequest(input *AddAttachmentsToSetInput) (r
 // after it is created; the ExpiryTime returned in the response indicates when
 // the set expires. The maximum number of attachments in a set is 3, and the
 // maximum size of any attachment in the set is 5 MB.
-func (c *Support) AddAttachmentsToSet(input *AddAttachmentsToSetInput) (*AddAttachmentsToSetOutput, awserr.Error) {
+func (c *Support) AddAttachmentsToSet(input *AddAttachmentsToSetInput) (*AddAttachmentsToSetOutput, error) {
 	req, out := c.AddAttachmentsToSetRequest(input)
 	err := req.Send()
 	return out, err
@@ -84,7 +83,7 @@ func (c *Support) AddCommunicationToCaseRequest(input *AddCommunicationToCaseInp
 // The response indicates the success or failure of the request.
 //
 // This operation implements a subset of the features of the AWS Support Center.
-func (c *Support) AddCommunicationToCase(input *AddCommunicationToCaseInput) (*AddCommunicationToCaseOutput, awserr.Error) {
+func (c *Support) AddCommunicationToCase(input *AddCommunicationToCaseInput) (*AddCommunicationToCaseOutput, error) {
 	req, out := c.AddCommunicationToCaseRequest(input)
 	err := req.Send()
 	return out, err
@@ -145,7 +144,7 @@ func (c *Support) CreateCaseRequest(input *CreateCaseInput) (req *aws.Request, o
 //  A successful CreateCase request returns an AWS Support case number. Case
 // numbers are used by the DescribeCases operation to retrieve existing AWS
 // Support cases.
-func (c *Support) CreateCase(input *CreateCaseInput) (*CreateCaseOutput, awserr.Error) {
+func (c *Support) CreateCase(input *CreateCaseInput) (*CreateCaseOutput, error) {
 	req, out := c.CreateCaseRequest(input)
 	err := req.Send()
 	return out, err
@@ -180,7 +179,7 @@ func (c *Support) DescribeAttachmentRequest(input *DescribeAttachmentInput) (req
 // by the case management system when you add an attachment to a case or case
 // communication. Attachment IDs are returned in the AttachmentDetails objects
 // that are returned by the DescribeCommunications operation.
-func (c *Support) DescribeAttachment(input *DescribeAttachmentInput) (*DescribeAttachmentOutput, awserr.Error) {
+func (c *Support) DescribeAttachment(input *DescribeAttachmentInput) (*DescribeAttachmentOutput, error) {
 	req, out := c.DescribeAttachmentRequest(input)
 	err := req.Send()
 	return out, err
@@ -225,7 +224,7 @@ func (c *Support) DescribeCasesRequest(input *DescribeCasesInput) (req *aws.Requ
 //  One or more CaseDetails data types.  One or more NextToken values, which
 // specify where to paginate the returned records represented by the CaseDetails
 // objects.
-func (c *Support) DescribeCases(input *DescribeCasesInput) (*DescribeCasesOutput, awserr.Error) {
+func (c *Support) DescribeCases(input *DescribeCasesInput) (*DescribeCasesOutput, error) {
 	req, out := c.DescribeCasesRequest(input)
 	err := req.Send()
 	return out, err
@@ -266,7 +265,7 @@ func (c *Support) DescribeCommunicationsRequest(input *DescribeCommunicationsInp
 // You can use the MaxResults and NextToken parameters to control the pagination
 // of the result set. Set MaxResults to the number of cases you want displayed
 // on each page, and use NextToken to specify the resumption of pagination.
-func (c *Support) DescribeCommunications(input *DescribeCommunicationsInput) (*DescribeCommunicationsOutput, awserr.Error) {
+func (c *Support) DescribeCommunications(input *DescribeCommunicationsInput) (*DescribeCommunicationsOutput, error) {
 	req, out := c.DescribeCommunicationsRequest(input)
 	err := req.Send()
 	return out, err
@@ -308,7 +307,7 @@ func (c *Support) DescribeServicesRequest(input *DescribeServicesInput) (req *aw
 // and categories returned by the DescribeServices request. Always use the service
 // codes and categories obtained programmatically. This practice ensures that
 // you always have the most recent set of service and category codes.
-func (c *Support) DescribeServices(input *DescribeServicesInput) (*DescribeServicesOutput, awserr.Error) {
+func (c *Support) DescribeServices(input *DescribeServicesInput) (*DescribeServicesOutput, error) {
 	req, out := c.DescribeServicesRequest(input)
 	err := req.Send()
 	return out, err
@@ -342,7 +341,7 @@ func (c *Support) DescribeSeverityLevelsRequest(input *DescribeSeverityLevelsInp
 // Returns the list of severity levels that you can assign to an AWS Support
 // case. The severity level for a case is also a field in the CaseDetails data
 // type included in any CreateCase request.
-func (c *Support) DescribeSeverityLevels(input *DescribeSeverityLevelsInput) (*DescribeSeverityLevelsOutput, awserr.Error) {
+func (c *Support) DescribeSeverityLevels(input *DescribeSeverityLevelsInput) (*DescribeSeverityLevelsOutput, error) {
 	req, out := c.DescribeSeverityLevelsRequest(input)
 	err := req.Send()
 	return out, err
@@ -375,7 +374,7 @@ func (c *Support) DescribeTrustedAdvisorCheckRefreshStatusesRequest(input *Descr
 
 // Returns the refresh status of the Trusted Advisor checks that have the specified
 // check IDs. Check IDs can be obtained by calling DescribeTrustedAdvisorChecks.
-func (c *Support) DescribeTrustedAdvisorCheckRefreshStatuses(input *DescribeTrustedAdvisorCheckRefreshStatusesInput) (*DescribeTrustedAdvisorCheckRefreshStatusesOutput, awserr.Error) {
+func (c *Support) DescribeTrustedAdvisorCheckRefreshStatuses(input *DescribeTrustedAdvisorCheckRefreshStatusesInput) (*DescribeTrustedAdvisorCheckRefreshStatusesOutput, error) {
 	req, out := c.DescribeTrustedAdvisorCheckRefreshStatusesRequest(input)
 	err := req.Send()
 	return out, err
@@ -418,7 +417,7 @@ func (c *Support) DescribeTrustedAdvisorCheckResultRequest(input *DescribeTruste
 //   Status. The alert status of the check: "ok" (green), "warning" (yellow),
 // "error" (red), or "not_available".  Timestamp. The time of the last refresh
 // of the check.  CheckId. The unique identifier for the check.
-func (c *Support) DescribeTrustedAdvisorCheckResult(input *DescribeTrustedAdvisorCheckResultInput) (*DescribeTrustedAdvisorCheckResultOutput, awserr.Error) {
+func (c *Support) DescribeTrustedAdvisorCheckResult(input *DescribeTrustedAdvisorCheckResultInput) (*DescribeTrustedAdvisorCheckResultOutput, error) {
 	req, out := c.DescribeTrustedAdvisorCheckResultRequest(input)
 	err := req.Send()
 	return out, err
@@ -453,7 +452,7 @@ func (c *Support) DescribeTrustedAdvisorCheckSummariesRequest(input *DescribeTru
 // the specified check IDs. Check IDs can be obtained by calling DescribeTrustedAdvisorChecks.
 //
 // The response contains an array of TrustedAdvisorCheckSummary objects.
-func (c *Support) DescribeTrustedAdvisorCheckSummaries(input *DescribeTrustedAdvisorCheckSummariesInput) (*DescribeTrustedAdvisorCheckSummariesOutput, awserr.Error) {
+func (c *Support) DescribeTrustedAdvisorCheckSummaries(input *DescribeTrustedAdvisorCheckSummariesInput) (*DescribeTrustedAdvisorCheckSummariesOutput, error) {
 	req, out := c.DescribeTrustedAdvisorCheckSummariesRequest(input)
 	err := req.Send()
 	return out, err
@@ -488,7 +487,7 @@ func (c *Support) DescribeTrustedAdvisorChecksRequest(input *DescribeTrustedAdvi
 // name, ID, category, description, and metadata. You must specify a language
 // code; English ("en") and Japanese ("ja") are currently supported. The response
 // contains a TrustedAdvisorCheckDescription for each check.
-func (c *Support) DescribeTrustedAdvisorChecks(input *DescribeTrustedAdvisorChecksInput) (*DescribeTrustedAdvisorChecksOutput, awserr.Error) {
+func (c *Support) DescribeTrustedAdvisorChecks(input *DescribeTrustedAdvisorChecksInput) (*DescribeTrustedAdvisorChecksOutput, error) {
 	req, out := c.DescribeTrustedAdvisorChecksRequest(input)
 	err := req.Send()
 	return out, err
@@ -529,7 +528,7 @@ func (c *Support) RefreshTrustedAdvisorCheckRequest(input *RefreshTrustedAdvisor
 // "success", or "abandoned".  MillisUntilNextRefreshable. The amount of time,
 // in milliseconds, until the check is eligible for refresh.  CheckId. The unique
 // identifier for the check.
-func (c *Support) RefreshTrustedAdvisorCheck(input *RefreshTrustedAdvisorCheckInput) (*RefreshTrustedAdvisorCheckOutput, awserr.Error) {
+func (c *Support) RefreshTrustedAdvisorCheck(input *RefreshTrustedAdvisorCheckInput) (*RefreshTrustedAdvisorCheckOutput, error) {
 	req, out := c.RefreshTrustedAdvisorCheckRequest(input)
 	err := req.Send()
 	return out, err
@@ -562,7 +561,7 @@ func (c *Support) ResolveCaseRequest(input *ResolveCaseInput) (req *aws.Request,
 
 // Takes a CaseId and returns the initial state of the case along with the state
 // of the case after the call to ResolveCase completed.
-func (c *Support) ResolveCase(input *ResolveCaseInput) (*ResolveCaseOutput, awserr.Error) {
+func (c *Support) ResolveCase(input *ResolveCaseInput) (*ResolveCaseOutput, error) {
 	req, out := c.ResolveCaseRequest(input)
 	err := req.Send()
 	return out, err

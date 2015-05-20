@@ -7,7 +7,6 @@ import (
 	"sync"
 
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -42,7 +41,7 @@ func (c *DataPipeline) ActivatePipelineRequest(input *ActivatePipelineInput) (re
 //  Call this action to start processing pipeline tasks of a pipeline you've
 // created using the CreatePipeline and PutPipelineDefinition actions. A pipeline
 // cannot be modified after it has been successfully activated.
-func (c *DataPipeline) ActivatePipeline(input *ActivatePipelineInput) (*ActivatePipelineOutput, awserr.Error) {
+func (c *DataPipeline) ActivatePipeline(input *ActivatePipelineInput) (*ActivatePipelineOutput, error) {
 	req, out := c.ActivatePipelineRequest(input)
 	err := req.Send()
 	return out, err
@@ -74,7 +73,7 @@ func (c *DataPipeline) AddTagsRequest(input *AddTagsInput) (req *aws.Request, ou
 }
 
 // Add or modify tags in an existing pipeline.
-func (c *DataPipeline) AddTags(input *AddTagsInput) (*AddTagsOutput, awserr.Error) {
+func (c *DataPipeline) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
 	req, out := c.AddTagsRequest(input)
 	err := req.Send()
 	return out, err
@@ -107,7 +106,7 @@ func (c *DataPipeline) CreatePipelineRequest(input *CreatePipelineInput) (req *a
 
 // Creates a new empty pipeline. When this action succeeds, you can then use
 // the PutPipelineDefinition action to populate the pipeline.
-func (c *DataPipeline) CreatePipeline(input *CreatePipelineInput) (*CreatePipelineOutput, awserr.Error) {
+func (c *DataPipeline) CreatePipeline(input *CreatePipelineInput) (*CreatePipelineOutput, error) {
 	req, out := c.CreatePipelineRequest(input)
 	err := req.Send()
 	return out, err
@@ -146,7 +145,7 @@ func (c *DataPipeline) DeletePipelineRequest(input *DeletePipelineInput) (req *a
 //  To temporarily pause a pipeline instead of deleting it, call SetStatus
 // with the status set to Pause on individual components. Components that are
 // paused by SetStatus can be resumed.
-func (c *DataPipeline) DeletePipeline(input *DeletePipelineInput) (*DeletePipelineOutput, awserr.Error) {
+func (c *DataPipeline) DeletePipeline(input *DeletePipelineInput) (*DeletePipelineOutput, error) {
 	req, out := c.DeletePipelineRequest(input)
 	err := req.Send()
 	return out, err
@@ -180,7 +179,7 @@ func (c *DataPipeline) DescribeObjectsRequest(input *DescribeObjectsInput) (req 
 // Returns the object definitions for a set of objects associated with the pipeline.
 // Object definitions are composed of a set of fields that define the properties
 // of the object.
-func (c *DataPipeline) DescribeObjects(input *DescribeObjectsInput) (*DescribeObjectsOutput, awserr.Error) {
+func (c *DataPipeline) DescribeObjects(input *DescribeObjectsInput) (*DescribeObjectsOutput, error) {
 	req, out := c.DescribeObjectsRequest(input)
 	err := req.Send()
 	return out, err
@@ -220,7 +219,7 @@ func (c *DataPipeline) DescribePipelinesRequest(input *DescribePipelinesInput) (
 //
 //  To retrieve the full pipeline definition instead of metadata about the
 // pipeline, call the GetPipelineDefinition action.
-func (c *DataPipeline) DescribePipelines(input *DescribePipelinesInput) (*DescribePipelinesOutput, awserr.Error) {
+func (c *DataPipeline) DescribePipelines(input *DescribePipelinesInput) (*DescribePipelinesOutput, error) {
 	req, out := c.DescribePipelinesRequest(input)
 	err := req.Send()
 	return out, err
@@ -253,7 +252,7 @@ func (c *DataPipeline) EvaluateExpressionRequest(input *EvaluateExpressionInput)
 
 // Evaluates a string in the context of a specified object. A task runner can
 // use this action to evaluate SQL queries stored in Amazon S3.
-func (c *DataPipeline) EvaluateExpression(input *EvaluateExpressionInput) (*EvaluateExpressionOutput, awserr.Error) {
+func (c *DataPipeline) EvaluateExpression(input *EvaluateExpressionInput) (*EvaluateExpressionOutput, error) {
 	req, out := c.EvaluateExpressionRequest(input)
 	err := req.Send()
 	return out, err
@@ -286,7 +285,7 @@ func (c *DataPipeline) GetPipelineDefinitionRequest(input *GetPipelineDefinition
 
 // Returns the definition of the specified pipeline. You can call GetPipelineDefinition
 // to retrieve the pipeline definition you provided using PutPipelineDefinition.
-func (c *DataPipeline) GetPipelineDefinition(input *GetPipelineDefinitionInput) (*GetPipelineDefinitionOutput, awserr.Error) {
+func (c *DataPipeline) GetPipelineDefinition(input *GetPipelineDefinitionInput) (*GetPipelineDefinitionOutput, error) {
 	req, out := c.GetPipelineDefinitionRequest(input)
 	err := req.Send()
 	return out, err
@@ -319,7 +318,7 @@ func (c *DataPipeline) ListPipelinesRequest(input *ListPipelinesInput) (req *aws
 
 // Returns a list of pipeline identifiers for all active pipelines. Identifiers
 // are returned only for pipelines you have permission to access.
-func (c *DataPipeline) ListPipelines(input *ListPipelinesInput) (*ListPipelinesOutput, awserr.Error) {
+func (c *DataPipeline) ListPipelines(input *ListPipelinesInput) (*ListPipelinesOutput, error) {
 	req, out := c.ListPipelinesRequest(input)
 	err := req.Send()
 	return out, err
@@ -364,7 +363,7 @@ func (c *DataPipeline) PollForTaskRequest(input *PollForTaskInput) (req *aws.Req
 // set the socket timeout in your task runner to 90 seconds. The task runner
 // should not call PollForTask again on the same workerGroup until it receives
 // a response, and this may take up to 90 seconds.
-func (c *DataPipeline) PollForTask(input *PollForTaskInput) (*PollForTaskOutput, awserr.Error) {
+func (c *DataPipeline) PollForTask(input *PollForTaskInput) (*PollForTaskOutput, error) {
 	req, out := c.PollForTaskRequest(input)
 	err := req.Send()
 	return out, err
@@ -407,7 +406,7 @@ func (c *DataPipeline) PutPipelineDefinitionRequest(input *PutPipelineDefinition
 //
 //  Pipeline object definitions are passed to the PutPipelineDefinition action
 // and returned by the GetPipelineDefinition action.
-func (c *DataPipeline) PutPipelineDefinition(input *PutPipelineDefinitionInput) (*PutPipelineDefinitionOutput, awserr.Error) {
+func (c *DataPipeline) PutPipelineDefinition(input *PutPipelineDefinitionInput) (*PutPipelineDefinitionOutput, error) {
 	req, out := c.PutPipelineDefinitionRequest(input)
 	err := req.Send()
 	return out, err
@@ -446,7 +445,7 @@ func (c *DataPipeline) QueryObjectsRequest(input *QueryObjectsInput) (req *aws.R
 // set with a value set for marker. If HasMoreResults is set to True, you should
 // continue to call QueryObjects, passing in the returned value for marker,
 // until HasMoreResults returns False.
-func (c *DataPipeline) QueryObjects(input *QueryObjectsInput) (*QueryObjectsOutput, awserr.Error) {
+func (c *DataPipeline) QueryObjects(input *QueryObjectsInput) (*QueryObjectsOutput, error) {
 	req, out := c.QueryObjectsRequest(input)
 	err := req.Send()
 	return out, err
@@ -478,7 +477,7 @@ func (c *DataPipeline) RemoveTagsRequest(input *RemoveTagsInput) (req *aws.Reque
 }
 
 // Remove existing tags from a pipeline.
-func (c *DataPipeline) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutput, awserr.Error) {
+func (c *DataPipeline) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutput, error) {
 	req, out := c.RemoveTagsRequest(input)
 	err := req.Send()
 	return out, err
@@ -521,7 +520,7 @@ func (c *DataPipeline) ReportTaskProgressRequest(input *ReportTaskProgressInput)
 // that the task runner is unable to process the task and will reassign the
 // task in a subsequent response to PollForTask. task runners should call ReportTaskProgress
 // every 60 seconds.
-func (c *DataPipeline) ReportTaskProgress(input *ReportTaskProgressInput) (*ReportTaskProgressOutput, awserr.Error) {
+func (c *DataPipeline) ReportTaskProgress(input *ReportTaskProgressInput) (*ReportTaskProgressOutput, error) {
 	req, out := c.ReportTaskProgressRequest(input)
 	err := req.Send()
 	return out, err
@@ -557,7 +556,7 @@ func (c *DataPipeline) ReportTaskRunnerHeartbeatRequest(input *ReportTaskRunnerH
 // on a resource managed by AWS Data Pipeline, the web service can use this
 // call to detect when the task runner application has failed and restart a
 // new instance.
-func (c *DataPipeline) ReportTaskRunnerHeartbeat(input *ReportTaskRunnerHeartbeatInput) (*ReportTaskRunnerHeartbeatOutput, awserr.Error) {
+func (c *DataPipeline) ReportTaskRunnerHeartbeat(input *ReportTaskRunnerHeartbeatInput) (*ReportTaskRunnerHeartbeatOutput, error) {
 	req, out := c.ReportTaskRunnerHeartbeatRequest(input)
 	err := req.Send()
 	return out, err
@@ -593,7 +592,7 @@ func (c *DataPipeline) SetStatusRequest(input *SetStatusInput) (req *aws.Request
 // eventually consistent. The status that can be set depends on the type of
 // object, e.g. DataNode or Activity. You cannot perform this operation on FINISHED
 // pipelines and attempting to do so will return an InvalidRequestException.
-func (c *DataPipeline) SetStatus(input *SetStatusInput) (*SetStatusOutput, awserr.Error) {
+func (c *DataPipeline) SetStatus(input *SetStatusInput) (*SetStatusOutput, error) {
 	req, out := c.SetStatusRequest(input)
 	err := req.Send()
 	return out, err
@@ -628,7 +627,7 @@ func (c *DataPipeline) SetTaskStatusRequest(input *SetTaskStatusInput) (req *aws
 // about the final status. The task runner calls this action regardless of whether
 // the task was sucessful. The task runner does not need to call SetTaskStatus
 // for tasks that are canceled by the web service during a call to ReportTaskProgress.
-func (c *DataPipeline) SetTaskStatus(input *SetTaskStatusInput) (*SetTaskStatusOutput, awserr.Error) {
+func (c *DataPipeline) SetTaskStatus(input *SetTaskStatusInput) (*SetTaskStatusOutput, error) {
 	req, out := c.SetTaskStatusRequest(input)
 	err := req.Send()
 	return out, err
@@ -661,7 +660,7 @@ func (c *DataPipeline) ValidatePipelineDefinitionRequest(input *ValidatePipeline
 
 // Tests the pipeline definition with a set of validation checks to ensure that
 // it is well formed and can run without error.
-func (c *DataPipeline) ValidatePipelineDefinition(input *ValidatePipelineDefinitionInput) (*ValidatePipelineDefinitionOutput, awserr.Error) {
+func (c *DataPipeline) ValidatePipelineDefinition(input *ValidatePipelineDefinitionInput) (*ValidatePipelineDefinitionOutput, error) {
 	req, out := c.ValidatePipelineDefinitionRequest(input)
 	err := req.Send()
 	return out, err

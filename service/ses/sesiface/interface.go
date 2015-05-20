@@ -4,44 +4,43 @@
 package sesiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/ses"
 )
 
 type SESAPI interface {
-	DeleteIdentity(*ses.DeleteIdentityInput) (*ses.DeleteIdentityOutput, awserr.Error)
+	DeleteIdentity(*ses.DeleteIdentityInput) (*ses.DeleteIdentityOutput, error)
 
-	DeleteVerifiedEmailAddress(*ses.DeleteVerifiedEmailAddressInput) (*ses.DeleteVerifiedEmailAddressOutput, awserr.Error)
+	DeleteVerifiedEmailAddress(*ses.DeleteVerifiedEmailAddressInput) (*ses.DeleteVerifiedEmailAddressOutput, error)
 
-	GetIdentityDKIMAttributes(*ses.GetIdentityDKIMAttributesInput) (*ses.GetIdentityDKIMAttributesOutput, awserr.Error)
+	GetIdentityDKIMAttributes(*ses.GetIdentityDKIMAttributesInput) (*ses.GetIdentityDKIMAttributesOutput, error)
 
-	GetIdentityNotificationAttributes(*ses.GetIdentityNotificationAttributesInput) (*ses.GetIdentityNotificationAttributesOutput, awserr.Error)
+	GetIdentityNotificationAttributes(*ses.GetIdentityNotificationAttributesInput) (*ses.GetIdentityNotificationAttributesOutput, error)
 
-	GetIdentityVerificationAttributes(*ses.GetIdentityVerificationAttributesInput) (*ses.GetIdentityVerificationAttributesOutput, awserr.Error)
+	GetIdentityVerificationAttributes(*ses.GetIdentityVerificationAttributesInput) (*ses.GetIdentityVerificationAttributesOutput, error)
 
-	GetSendQuota(*ses.GetSendQuotaInput) (*ses.GetSendQuotaOutput, awserr.Error)
+	GetSendQuota(*ses.GetSendQuotaInput) (*ses.GetSendQuotaOutput, error)
 
-	GetSendStatistics(*ses.GetSendStatisticsInput) (*ses.GetSendStatisticsOutput, awserr.Error)
+	GetSendStatistics(*ses.GetSendStatisticsInput) (*ses.GetSendStatisticsOutput, error)
 
-	ListIdentities(*ses.ListIdentitiesInput) (*ses.ListIdentitiesOutput, awserr.Error)
+	ListIdentities(*ses.ListIdentitiesInput) (*ses.ListIdentitiesOutput, error)
 
-	ListVerifiedEmailAddresses(*ses.ListVerifiedEmailAddressesInput) (*ses.ListVerifiedEmailAddressesOutput, awserr.Error)
+	ListVerifiedEmailAddresses(*ses.ListVerifiedEmailAddressesInput) (*ses.ListVerifiedEmailAddressesOutput, error)
 
-	SendEmail(*ses.SendEmailInput) (*ses.SendEmailOutput, awserr.Error)
+	SendEmail(*ses.SendEmailInput) (*ses.SendEmailOutput, error)
 
-	SendRawEmail(*ses.SendRawEmailInput) (*ses.SendRawEmailOutput, awserr.Error)
+	SendRawEmail(*ses.SendRawEmailInput) (*ses.SendRawEmailOutput, error)
 
-	SetIdentityDKIMEnabled(*ses.SetIdentityDKIMEnabledInput) (*ses.SetIdentityDKIMEnabledOutput, awserr.Error)
+	SetIdentityDKIMEnabled(*ses.SetIdentityDKIMEnabledInput) (*ses.SetIdentityDKIMEnabledOutput, error)
 
-	SetIdentityFeedbackForwardingEnabled(*ses.SetIdentityFeedbackForwardingEnabledInput) (*ses.SetIdentityFeedbackForwardingEnabledOutput, awserr.Error)
+	SetIdentityFeedbackForwardingEnabled(*ses.SetIdentityFeedbackForwardingEnabledInput) (*ses.SetIdentityFeedbackForwardingEnabledOutput, error)
 
-	SetIdentityNotificationTopic(*ses.SetIdentityNotificationTopicInput) (*ses.SetIdentityNotificationTopicOutput, awserr.Error)
+	SetIdentityNotificationTopic(*ses.SetIdentityNotificationTopicInput) (*ses.SetIdentityNotificationTopicOutput, error)
 
-	VerifyDomainDKIM(*ses.VerifyDomainDKIMInput) (*ses.VerifyDomainDKIMOutput, awserr.Error)
+	VerifyDomainDKIM(*ses.VerifyDomainDKIMInput) (*ses.VerifyDomainDKIMOutput, error)
 
-	VerifyDomainIdentity(*ses.VerifyDomainIdentityInput) (*ses.VerifyDomainIdentityOutput, awserr.Error)
+	VerifyDomainIdentity(*ses.VerifyDomainIdentityInput) (*ses.VerifyDomainIdentityOutput, error)
 
-	VerifyEmailAddress(*ses.VerifyEmailAddressInput) (*ses.VerifyEmailAddressOutput, awserr.Error)
+	VerifyEmailAddress(*ses.VerifyEmailAddressInput) (*ses.VerifyEmailAddressOutput, error)
 
-	VerifyEmailIdentity(*ses.VerifyEmailIdentityInput) (*ses.VerifyEmailIdentityOutput, awserr.Error)
+	VerifyEmailIdentity(*ses.VerifyEmailIdentityInput) (*ses.VerifyEmailIdentityOutput, error)
 }

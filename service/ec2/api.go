@@ -8,7 +8,6 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -40,7 +39,7 @@ func (c *EC2) AcceptVPCPeeringConnectionRequest(input *AcceptVPCPeeringConnectio
 // connection must be in the pending-acceptance state, and you must be the owner
 // of the peer VPC. Use the DescribeVpcPeeringConnections request to view your
 // outstanding VPC peering connection requests.
-func (c *EC2) AcceptVPCPeeringConnection(input *AcceptVPCPeeringConnectionInput) (*AcceptVPCPeeringConnectionOutput, awserr.Error) {
+func (c *EC2) AcceptVPCPeeringConnection(input *AcceptVPCPeeringConnectionInput) (*AcceptVPCPeeringConnectionOutput, error) {
 	req, out := c.AcceptVPCPeeringConnectionRequest(input)
 	err := req.Send()
 	return out, err
@@ -76,7 +75,7 @@ func (c *EC2) AllocateAddressRequest(input *AllocateAddressInput) (req *aws.Requ
 // An Elastic IP address is for use either in the EC2-Classic platform or in
 // a VPC. For more information, see Elastic IP Addresses (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) AllocateAddress(input *AllocateAddressInput) (*AllocateAddressOutput, awserr.Error) {
+func (c *EC2) AllocateAddress(input *AllocateAddressInput) (*AllocateAddressOutput, error) {
 	req, out := c.AllocateAddressRequest(input)
 	err := req.Send()
 	return out, err
@@ -118,7 +117,7 @@ func (c *EC2) AssignPrivateIPAddressesRequest(input *AssignPrivateIPAddressesInp
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // AssignPrivateIpAddresses is available only in EC2-VPC.
-func (c *EC2) AssignPrivateIPAddresses(input *AssignPrivateIPAddressesInput) (*AssignPrivateIPAddressesOutput, awserr.Error) {
+func (c *EC2) AssignPrivateIPAddresses(input *AssignPrivateIPAddressesInput) (*AssignPrivateIPAddressesOutput, error) {
 	req, out := c.AssignPrivateIPAddressesRequest(input)
 	err := req.Send()
 	return out, err
@@ -166,7 +165,7 @@ func (c *EC2) AssociateAddressRequest(input *AssociateAddressInput) (req *aws.Re
 //
 // This is an idempotent operation. If you perform the operation more than
 // once, Amazon EC2 doesn't return an error.
-func (c *EC2) AssociateAddress(input *AssociateAddressInput) (*AssociateAddressOutput, awserr.Error) {
+func (c *EC2) AssociateAddress(input *AssociateAddressInput) (*AssociateAddressOutput, error) {
 	req, out := c.AssociateAddressRequest(input)
 	err := req.Send()
 	return out, err
@@ -209,7 +208,7 @@ func (c *EC2) AssociateDHCPOptionsRequest(input *AssociateDHCPOptionsInput) (req
 //
 // For more information, see DHCP Options Sets (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) AssociateDHCPOptions(input *AssociateDHCPOptionsInput) (*AssociateDHCPOptionsOutput, awserr.Error) {
+func (c *EC2) AssociateDHCPOptions(input *AssociateDHCPOptionsInput) (*AssociateDHCPOptionsOutput, error) {
 	req, out := c.AssociateDHCPOptionsRequest(input)
 	err := req.Send()
 	return out, err
@@ -248,7 +247,7 @@ func (c *EC2) AssociateRouteTableRequest(input *AssociateRouteTableInput) (req *
 //
 // For more information about route tables, see Route Tables (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) AssociateRouteTable(input *AssociateRouteTableInput) (*AssociateRouteTableOutput, awserr.Error) {
+func (c *EC2) AssociateRouteTable(input *AssociateRouteTableInput) (*AssociateRouteTableOutput, error) {
 	req, out := c.AssociateRouteTableRequest(input)
 	err := req.Send()
 	return out, err
@@ -291,7 +290,7 @@ func (c *EC2) AttachClassicLinkVPCRequest(input *AttachClassicLinkVPCInput) (req
 //
 // Linking your instance to a VPC is sometimes referred to as attaching your
 // instance.
-func (c *EC2) AttachClassicLinkVPC(input *AttachClassicLinkVPCInput) (*AttachClassicLinkVPCOutput, awserr.Error) {
+func (c *EC2) AttachClassicLinkVPC(input *AttachClassicLinkVPCInput) (*AttachClassicLinkVPCOutput, error) {
 	req, out := c.AttachClassicLinkVPCRequest(input)
 	err := req.Send()
 	return out, err
@@ -325,7 +324,7 @@ func (c *EC2) AttachInternetGatewayRequest(input *AttachInternetGatewayInput) (r
 // Attaches an Internet gateway to a VPC, enabling connectivity between the
 // Internet and the VPC. For more information about your VPC and Internet gateway,
 // see the Amazon Virtual Private Cloud User Guide (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/).
-func (c *EC2) AttachInternetGateway(input *AttachInternetGatewayInput) (*AttachInternetGatewayOutput, awserr.Error) {
+func (c *EC2) AttachInternetGateway(input *AttachInternetGatewayInput) (*AttachInternetGatewayOutput, error) {
 	req, out := c.AttachInternetGatewayRequest(input)
 	err := req.Send()
 	return out, err
@@ -357,7 +356,7 @@ func (c *EC2) AttachNetworkInterfaceRequest(input *AttachNetworkInterfaceInput) 
 }
 
 // Attaches a network interface to an instance.
-func (c *EC2) AttachNetworkInterface(input *AttachNetworkInterfaceInput) (*AttachNetworkInterfaceOutput, awserr.Error) {
+func (c *EC2) AttachNetworkInterface(input *AttachNetworkInterfaceInput) (*AttachNetworkInterfaceOutput, error) {
 	req, out := c.AttachNetworkInterfaceRequest(input)
 	err := req.Send()
 	return out, err
@@ -391,7 +390,7 @@ func (c *EC2) AttachVPNGatewayRequest(input *AttachVPNGatewayInput) (req *aws.Re
 // Attaches a virtual private gateway to a VPC. For more information, see Adding
 // a Hardware Virtual Private Gateway to Your VPC (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) AttachVPNGateway(input *AttachVPNGatewayInput) (*AttachVPNGatewayOutput, awserr.Error) {
+func (c *EC2) AttachVPNGateway(input *AttachVPNGatewayInput) (*AttachVPNGatewayOutput, error) {
 	req, out := c.AttachVPNGatewayRequest(input)
 	err := req.Send()
 	return out, err
@@ -448,7 +447,7 @@ func (c *EC2) AttachVolumeRequest(input *AttachVolumeInput) (req *aws.Request, o
 // For more information about Amazon EBS volumes, see Attaching Amazon EBS
 // Volumes (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) AttachVolume(input *AttachVolumeInput) (*VolumeAttachment, awserr.Error) {
+func (c *EC2) AttachVolume(input *AttachVolumeInput) (*VolumeAttachment, error) {
 	req, out := c.AttachVolumeRequest(input)
 	err := req.Send()
 	return out, err
@@ -500,7 +499,7 @@ func (c *EC2) AuthorizeSecurityGroupEgressRequest(input *AuthorizeSecurityGroupE
 //
 // Rule changes are propagated to affected instances as quickly as possible.
 // However, a small delay might occur.
-func (c *EC2) AuthorizeSecurityGroupEgress(input *AuthorizeSecurityGroupEgressInput) (*AuthorizeSecurityGroupEgressOutput, awserr.Error) {
+func (c *EC2) AuthorizeSecurityGroupEgress(input *AuthorizeSecurityGroupEgressInput) (*AuthorizeSecurityGroupEgressOutput, error) {
 	req, out := c.AuthorizeSecurityGroupEgressRequest(input)
 	err := req.Send()
 	return out, err
@@ -550,7 +549,7 @@ func (c *EC2) AuthorizeSecurityGroupIngressRequest(input *AuthorizeSecurityGroup
 // to access a security group in your VPC, or gives one or more other security
 // groups (called the source groups) permission to access a security group for
 // your VPC. The security groups must all be for the same VPC.
-func (c *EC2) AuthorizeSecurityGroupIngress(input *AuthorizeSecurityGroupIngressInput) (*AuthorizeSecurityGroupIngressOutput, awserr.Error) {
+func (c *EC2) AuthorizeSecurityGroupIngress(input *AuthorizeSecurityGroupIngressInput) (*AuthorizeSecurityGroupIngressOutput, error) {
 	req, out := c.AuthorizeSecurityGroupIngressRequest(input)
 	err := req.Send()
 	return out, err
@@ -591,7 +590,7 @@ func (c *EC2) BundleInstanceRequest(input *BundleInstanceInput) (req *aws.Reques
 //
 //  For more information, see Creating an Instance Store-Backed Windows AMI
 // (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_InstanceStoreBacked_WinAMI.html).
-func (c *EC2) BundleInstance(input *BundleInstanceInput) (*BundleInstanceOutput, awserr.Error) {
+func (c *EC2) BundleInstance(input *BundleInstanceInput) (*BundleInstanceOutput, error) {
 	req, out := c.BundleInstanceRequest(input)
 	err := req.Send()
 	return out, err
@@ -623,7 +622,7 @@ func (c *EC2) CancelBundleTaskRequest(input *CancelBundleTaskInput) (req *aws.Re
 }
 
 // Cancels a bundling operation for an instance store-backed Windows instance.
-func (c *EC2) CancelBundleTask(input *CancelBundleTaskInput) (*CancelBundleTaskOutput, awserr.Error) {
+func (c *EC2) CancelBundleTask(input *CancelBundleTaskInput) (*CancelBundleTaskOutput, error) {
 	req, out := c.CancelBundleTaskRequest(input)
 	err := req.Send()
 	return out, err
@@ -663,7 +662,7 @@ func (c *EC2) CancelConversionTaskRequest(input *CancelConversionTaskInput) (req
 // For more information, see Using the Command Line Tools to Import Your Virtual
 // Machine to Amazon EC2 (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UploadingYourInstancesandVolumes.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) CancelConversionTask(input *CancelConversionTaskInput) (*CancelConversionTaskOutput, awserr.Error) {
+func (c *EC2) CancelConversionTask(input *CancelConversionTaskInput) (*CancelConversionTaskOutput, error) {
 	req, out := c.CancelConversionTaskRequest(input)
 	err := req.Send()
 	return out, err
@@ -698,7 +697,7 @@ func (c *EC2) CancelExportTaskRequest(input *CancelExportTaskInput) (req *aws.Re
 // including any partially-created Amazon S3 objects. If the export task is
 // complete or is in the process of transferring the final disk image, the command
 // fails and returns an error.
-func (c *EC2) CancelExportTask(input *CancelExportTaskInput) (*CancelExportTaskOutput, awserr.Error) {
+func (c *EC2) CancelExportTask(input *CancelExportTaskInput) (*CancelExportTaskOutput, error) {
 	req, out := c.CancelExportTaskRequest(input)
 	err := req.Send()
 	return out, err
@@ -730,7 +729,7 @@ func (c *EC2) CancelImportTaskRequest(input *CancelImportTaskInput) (req *aws.Re
 }
 
 // Cancels an in-process import virtual machine or import snapshot task.
-func (c *EC2) CancelImportTask(input *CancelImportTaskInput) (*CancelImportTaskOutput, awserr.Error) {
+func (c *EC2) CancelImportTask(input *CancelImportTaskInput) (*CancelImportTaskOutput, error) {
 	req, out := c.CancelImportTaskRequest(input)
 	err := req.Send()
 	return out, err
@@ -766,7 +765,7 @@ func (c *EC2) CancelReservedInstancesListingRequest(input *CancelReservedInstanc
 //
 // For more information, see Reserved Instance Marketplace (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) CancelReservedInstancesListing(input *CancelReservedInstancesListingInput) (*CancelReservedInstancesListingOutput, awserr.Error) {
+func (c *EC2) CancelReservedInstancesListing(input *CancelReservedInstancesListingInput) (*CancelReservedInstancesListingOutput, error) {
 	req, out := c.CancelReservedInstancesListingRequest(input)
 	err := req.Send()
 	return out, err
@@ -806,7 +805,7 @@ func (c *EC2) CancelSpotInstanceRequestsRequest(input *CancelSpotInstanceRequest
 //
 //  Canceling a Spot Instance request does not terminate running Spot Instances
 // associated with the request.
-func (c *EC2) CancelSpotInstanceRequests(input *CancelSpotInstanceRequestsInput) (*CancelSpotInstanceRequestsOutput, awserr.Error) {
+func (c *EC2) CancelSpotInstanceRequests(input *CancelSpotInstanceRequestsInput) (*CancelSpotInstanceRequestsOutput, error) {
 	req, out := c.CancelSpotInstanceRequestsRequest(input)
 	err := req.Send()
 	return out, err
@@ -841,7 +840,7 @@ func (c *EC2) ConfirmProductInstanceRequest(input *ConfirmProductInstanceInput) 
 // can only be used by the owner of the product code. It is useful when a product
 // code owner needs to verify whether another user's instance is eligible for
 // support.
-func (c *EC2) ConfirmProductInstance(input *ConfirmProductInstanceInput) (*ConfirmProductInstanceOutput, awserr.Error) {
+func (c *EC2) ConfirmProductInstance(input *ConfirmProductInstanceInput) (*ConfirmProductInstanceOutput, error) {
 	req, out := c.ConfirmProductInstanceRequest(input)
 	err := req.Send()
 	return out, err
@@ -879,7 +878,7 @@ func (c *EC2) CopyImageRequest(input *CopyImageInput) (req *aws.Request, output 
 //
 // For more information, see Copying AMIs (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) CopyImage(input *CopyImageInput) (*CopyImageOutput, awserr.Error) {
+func (c *EC2) CopyImage(input *CopyImageInput) (*CopyImageOutput, error) {
 	req, out := c.CopyImageRequest(input)
 	err := req.Send()
 	return out, err
@@ -924,7 +923,7 @@ func (c *EC2) CopySnapshotRequest(input *CopySnapshotInput) (req *aws.Request, o
 //
 //  For more information, see Copying an Amazon EBS Snapshot (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) CopySnapshot(input *CopySnapshotInput) (*CopySnapshotOutput, awserr.Error) {
+func (c *EC2) CopySnapshot(input *CopySnapshotInput) (*CopySnapshotOutput, error) {
 	req, out := c.CopySnapshotRequest(input)
 	err := req.Send()
 	return out, err
@@ -980,7 +979,7 @@ func (c *EC2) CreateCustomerGatewayRequest(input *CreateCustomerGatewayInput) (r
 // more than one time, the first request creates the customer gateway, and subsequent
 // requests return information about the existing customer gateway. The subsequent
 // requests do not create new customer gateway resources.
-func (c *EC2) CreateCustomerGateway(input *CreateCustomerGatewayInput) (*CreateCustomerGatewayOutput, awserr.Error) {
+func (c *EC2) CreateCustomerGateway(input *CreateCustomerGatewayInput) (*CreateCustomerGatewayOutput, error) {
 	req, out := c.CreateCustomerGatewayRequest(input)
 	err := req.Send()
 	return out, err
@@ -1040,7 +1039,7 @@ func (c *EC2) CreateDHCPOptionsRequest(input *CreateDHCPOptionsInput) (req *aws.
 // either to AmazonProvidedDNS or to a domain name server of your choice. For
 // more information about DHCP options, see DHCP Options Sets (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) CreateDHCPOptions(input *CreateDHCPOptionsInput) (*CreateDHCPOptionsOutput, awserr.Error) {
+func (c *EC2) CreateDHCPOptions(input *CreateDHCPOptionsInput) (*CreateDHCPOptionsOutput, error) {
 	req, out := c.CreateDHCPOptionsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1081,7 +1080,7 @@ func (c *EC2) CreateImageRequest(input *CreateImageInput) (req *aws.Request, out
 //
 // For more information, see Creating Amazon EBS-Backed Linux AMIs (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) CreateImage(input *CreateImageInput) (*CreateImageOutput, awserr.Error) {
+func (c *EC2) CreateImage(input *CreateImageInput) (*CreateImageOutput, error) {
 	req, out := c.CreateImageRequest(input)
 	err := req.Send()
 	return out, err
@@ -1118,7 +1117,7 @@ func (c *EC2) CreateInstanceExportTaskRequest(input *CreateInstanceExportTaskInp
 // known limitations for the types of instances you can export, see Exporting
 // EC2 Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ExportingEC2Instances.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) CreateInstanceExportTask(input *CreateInstanceExportTaskInput) (*CreateInstanceExportTaskOutput, awserr.Error) {
+func (c *EC2) CreateInstanceExportTask(input *CreateInstanceExportTaskInput) (*CreateInstanceExportTaskOutput, error) {
 	req, out := c.CreateInstanceExportTaskRequest(input)
 	err := req.Send()
 	return out, err
@@ -1154,7 +1153,7 @@ func (c *EC2) CreateInternetGatewayRequest(input *CreateInternetGatewayInput) (r
 //
 // For more information about your VPC and Internet gateway, see the Amazon
 // Virtual Private Cloud User Guide (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/).
-func (c *EC2) CreateInternetGateway(input *CreateInternetGatewayInput) (*CreateInternetGatewayOutput, awserr.Error) {
+func (c *EC2) CreateInternetGateway(input *CreateInternetGatewayInput) (*CreateInternetGatewayOutput, error) {
 	req, out := c.CreateInternetGatewayRequest(input)
 	err := req.Send()
 	return out, err
@@ -1197,7 +1196,7 @@ func (c *EC2) CreateKeyPairRequest(input *CreateKeyPairInput) (req *aws.Request,
 //
 // For more information about key pairs, see Key Pairs (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) CreateKeyPair(input *CreateKeyPairInput) (*CreateKeyPairOutput, awserr.Error) {
+func (c *EC2) CreateKeyPair(input *CreateKeyPairInput) (*CreateKeyPairOutput, error) {
 	req, out := c.CreateKeyPairRequest(input)
 	err := req.Send()
 	return out, err
@@ -1233,7 +1232,7 @@ func (c *EC2) CreateNetworkACLRequest(input *CreateNetworkACLInput) (req *aws.Re
 //
 // For more information about network ACLs, see Network ACLs (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) CreateNetworkACL(input *CreateNetworkACLInput) (*CreateNetworkACLOutput, awserr.Error) {
+func (c *EC2) CreateNetworkACL(input *CreateNetworkACLInput) (*CreateNetworkACLOutput, error) {
 	req, out := c.CreateNetworkACLRequest(input)
 	err := req.Send()
 	return out, err
@@ -1281,7 +1280,7 @@ func (c *EC2) CreateNetworkACLEntryRequest(input *CreateNetworkACLEntryInput) (r
 //
 // For more information about network ACLs, see Network ACLs (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) CreateNetworkACLEntry(input *CreateNetworkACLEntryInput) (*CreateNetworkACLEntryOutput, awserr.Error) {
+func (c *EC2) CreateNetworkACLEntry(input *CreateNetworkACLEntryInput) (*CreateNetworkACLEntryOutput, error) {
 	req, out := c.CreateNetworkACLEntryRequest(input)
 	err := req.Send()
 	return out, err
@@ -1317,7 +1316,7 @@ func (c *EC2) CreateNetworkInterfaceRequest(input *CreateNetworkInterfaceInput) 
 // For more information about network interfaces, see Elastic Network Interfaces
 // (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html) in the
 // Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) CreateNetworkInterface(input *CreateNetworkInterfaceInput) (*CreateNetworkInterfaceOutput, awserr.Error) {
+func (c *EC2) CreateNetworkInterface(input *CreateNetworkInterfaceInput) (*CreateNetworkInterfaceOutput, error) {
 	req, out := c.CreateNetworkInterfaceRequest(input)
 	err := req.Send()
 	return out, err
@@ -1354,7 +1353,7 @@ func (c *EC2) CreatePlacementGroupRequest(input *CreatePlacementGroupInput) (req
 // For more information about placement groups and cluster instances, see Cluster
 // Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cluster_computing.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) CreatePlacementGroup(input *CreatePlacementGroupInput) (*CreatePlacementGroupOutput, awserr.Error) {
+func (c *EC2) CreatePlacementGroup(input *CreatePlacementGroupInput) (*CreatePlacementGroupOutput, error) {
 	req, out := c.CreatePlacementGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -1405,7 +1404,7 @@ func (c *EC2) CreateReservedInstancesListingRequest(input *CreateReservedInstanc
 //
 // For more information, see Reserved Instance Marketplace (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) CreateReservedInstancesListing(input *CreateReservedInstancesListingInput) (*CreateReservedInstancesListingOutput, awserr.Error) {
+func (c *EC2) CreateReservedInstancesListing(input *CreateReservedInstancesListingInput) (*CreateReservedInstancesListingOutput, error) {
 	req, out := c.CreateReservedInstancesListingRequest(input)
 	err := req.Send()
 	return out, err
@@ -1455,7 +1454,7 @@ func (c *EC2) CreateRouteRequest(input *CreateRouteInput) (req *aws.Request, out
 //
 // For more information about route tables, see Route Tables (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) CreateRoute(input *CreateRouteInput) (*CreateRouteOutput, awserr.Error) {
+func (c *EC2) CreateRoute(input *CreateRouteInput) (*CreateRouteOutput, error) {
 	req, out := c.CreateRouteRequest(input)
 	err := req.Send()
 	return out, err
@@ -1491,7 +1490,7 @@ func (c *EC2) CreateRouteTableRequest(input *CreateRouteTableInput) (req *aws.Re
 //
 // For more information about route tables, see Route Tables (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) CreateRouteTable(input *CreateRouteTableInput) (*CreateRouteTableOutput, awserr.Error) {
+func (c *EC2) CreateRouteTable(input *CreateRouteTableInput) (*CreateRouteTableOutput, error) {
 	req, out := c.CreateRouteTableRequest(input)
 	err := req.Send()
 	return out, err
@@ -1549,7 +1548,7 @@ func (c *EC2) CreateSecurityGroupRequest(input *CreateSecurityGroupInput) (req *
 //
 // You can add or remove rules from your security groups using AuthorizeSecurityGroupIngress,
 // AuthorizeSecurityGroupEgress, RevokeSecurityGroupIngress, and RevokeSecurityGroupEgress.
-func (c *EC2) CreateSecurityGroup(input *CreateSecurityGroupInput) (*CreateSecurityGroupOutput, awserr.Error) {
+func (c *EC2) CreateSecurityGroup(input *CreateSecurityGroupInput) (*CreateSecurityGroupOutput, error) {
 	req, out := c.CreateSecurityGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -1609,7 +1608,7 @@ func (c *EC2) CreateSnapshotRequest(input *CreateSnapshotInput) (req *aws.Reques
 // For more information, see Amazon Elastic Block Store (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html)
 // and Amazon EBS Encryption (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) CreateSnapshot(input *CreateSnapshotInput) (*Snapshot, awserr.Error) {
+func (c *EC2) CreateSnapshot(input *CreateSnapshotInput) (*Snapshot, error) {
 	req, out := c.CreateSnapshotRequest(input)
 	err := req.Send()
 	return out, err
@@ -1644,7 +1643,7 @@ func (c *EC2) CreateSpotDatafeedSubscriptionRequest(input *CreateSpotDatafeedSub
 // usage logs. You can create one data feed per AWS account. For more information,
 // see Spot Instance Data Feed (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) CreateSpotDatafeedSubscription(input *CreateSpotDatafeedSubscriptionInput) (*CreateSpotDatafeedSubscriptionOutput, awserr.Error) {
+func (c *EC2) CreateSpotDatafeedSubscription(input *CreateSpotDatafeedSubscriptionInput) (*CreateSpotDatafeedSubscriptionOutput, error) {
 	req, out := c.CreateSpotDatafeedSubscriptionRequest(input)
 	err := req.Send()
 	return out, err
@@ -1700,7 +1699,7 @@ func (c *EC2) CreateSubnetRequest(input *CreateSubnetInput) (req *aws.Request, o
 //
 // For more information about subnets, see Your VPC and Subnets (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) CreateSubnet(input *CreateSubnetInput) (*CreateSubnetOutput, awserr.Error) {
+func (c *EC2) CreateSubnet(input *CreateSubnetInput) (*CreateSubnetOutput, error) {
 	req, out := c.CreateSubnetRequest(input)
 	err := req.Send()
 	return out, err
@@ -1737,7 +1736,7 @@ func (c *EC2) CreateTagsRequest(input *CreateTagsInput) (req *aws.Request, outpu
 //
 // For more information about tags, see Tagging Your Resources (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) CreateTags(input *CreateTagsInput) (*CreateTagsOutput, awserr.Error) {
+func (c *EC2) CreateTags(input *CreateTagsInput) (*CreateTagsOutput, error) {
 	req, out := c.CreateTagsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1779,7 +1778,7 @@ func (c *EC2) CreateVPCRequest(input *CreateVPCInput) (req *aws.Request, output 
 // which includes only a default DNS server that we provide (AmazonProvidedDNS).
 // For more information about DHCP options, see DHCP Options Sets (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) CreateVPC(input *CreateVPCInput) (*CreateVPCOutput, awserr.Error) {
+func (c *EC2) CreateVPC(input *CreateVPCInput) (*CreateVPCOutput, error) {
 	req, out := c.CreateVPCRequest(input)
 	err := req.Send()
 	return out, err
@@ -1821,7 +1820,7 @@ func (c *EC2) CreateVPCPeeringConnectionRequest(input *CreateVPCPeeringConnectio
 //
 // A CreateVpcPeeringConnection request between VPCs with overlapping CIDR
 // blocks results in the VPC peering connection having a status of failed.
-func (c *EC2) CreateVPCPeeringConnection(input *CreateVPCPeeringConnectionInput) (*CreateVPCPeeringConnectionOutput, awserr.Error) {
+func (c *EC2) CreateVPCPeeringConnection(input *CreateVPCPeeringConnectionInput) (*CreateVPCPeeringConnectionOutput, error) {
 	req, out := c.CreateVPCPeeringConnectionRequest(input)
 	err := req.Send()
 	return out, err
@@ -1869,7 +1868,7 @@ func (c *EC2) CreateVPNConnectionRequest(input *CreateVPNConnectionInput) (req *
 // For more information about VPN connections, see Adding a Hardware Virtual
 // Private Gateway to Your VPC (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) CreateVPNConnection(input *CreateVPNConnectionInput) (*CreateVPNConnectionOutput, awserr.Error) {
+func (c *EC2) CreateVPNConnection(input *CreateVPNConnectionInput) (*CreateVPNConnectionOutput, error) {
 	req, out := c.CreateVPNConnectionRequest(input)
 	err := req.Send()
 	return out, err
@@ -1908,7 +1907,7 @@ func (c *EC2) CreateVPNConnectionRouteRequest(input *CreateVPNConnectionRouteInp
 // For more information about VPN connections, see Adding a Hardware Virtual
 // Private Gateway to Your VPC (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) CreateVPNConnectionRoute(input *CreateVPNConnectionRouteInput) (*CreateVPNConnectionRouteOutput, awserr.Error) {
+func (c *EC2) CreateVPNConnectionRoute(input *CreateVPNConnectionRouteInput) (*CreateVPNConnectionRouteOutput, error) {
 	req, out := c.CreateVPNConnectionRouteRequest(input)
 	err := req.Send()
 	return out, err
@@ -1946,7 +1945,7 @@ func (c *EC2) CreateVPNGatewayRequest(input *CreateVPNGatewayInput) (req *aws.Re
 // For more information about virtual private gateways, see Adding a Hardware
 // Virtual Private Gateway to Your VPC (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) CreateVPNGateway(input *CreateVPNGatewayInput) (*CreateVPNGatewayOutput, awserr.Error) {
+func (c *EC2) CreateVPNGateway(input *CreateVPNGatewayInput) (*CreateVPNGatewayOutput, error) {
 	req, out := c.CreateVPNGatewayRequest(input)
 	err := req.Send()
 	return out, err
@@ -1994,7 +1993,7 @@ func (c *EC2) CreateVolumeRequest(input *CreateVolumeInput) (req *aws.Request, o
 //
 // For more information, see Creating or Restoring an Amazon EBS Volume (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-creating-volume.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) CreateVolume(input *CreateVolumeInput) (*Volume, awserr.Error) {
+func (c *EC2) CreateVolume(input *CreateVolumeInput) (*Volume, error) {
 	req, out := c.CreateVolumeRequest(input)
 	err := req.Send()
 	return out, err
@@ -2027,7 +2026,7 @@ func (c *EC2) DeleteCustomerGatewayRequest(input *DeleteCustomerGatewayInput) (r
 
 // Deletes the specified customer gateway. You must delete the VPN connection
 // before you can delete the customer gateway.
-func (c *EC2) DeleteCustomerGateway(input *DeleteCustomerGatewayInput) (*DeleteCustomerGatewayOutput, awserr.Error) {
+func (c *EC2) DeleteCustomerGateway(input *DeleteCustomerGatewayInput) (*DeleteCustomerGatewayOutput, error) {
 	req, out := c.DeleteCustomerGatewayRequest(input)
 	err := req.Send()
 	return out, err
@@ -2062,7 +2061,7 @@ func (c *EC2) DeleteDHCPOptionsRequest(input *DeleteDHCPOptionsInput) (req *aws.
 // of DHCP options before you can delete it. You can disassociate the set of
 // DHCP options by associating either a new set of options or the default set
 // of options with the VPC.
-func (c *EC2) DeleteDHCPOptions(input *DeleteDHCPOptionsInput) (*DeleteDHCPOptionsOutput, awserr.Error) {
+func (c *EC2) DeleteDHCPOptions(input *DeleteDHCPOptionsInput) (*DeleteDHCPOptionsOutput, error) {
 	req, out := c.DeleteDHCPOptionsRequest(input)
 	err := req.Send()
 	return out, err
@@ -2095,7 +2094,7 @@ func (c *EC2) DeleteInternetGatewayRequest(input *DeleteInternetGatewayInput) (r
 
 // Deletes the specified Internet gateway. You must detach the Internet gateway
 // from the VPC before you can delete it.
-func (c *EC2) DeleteInternetGateway(input *DeleteInternetGatewayInput) (*DeleteInternetGatewayOutput, awserr.Error) {
+func (c *EC2) DeleteInternetGateway(input *DeleteInternetGatewayInput) (*DeleteInternetGatewayOutput, error) {
 	req, out := c.DeleteInternetGatewayRequest(input)
 	err := req.Send()
 	return out, err
@@ -2127,7 +2126,7 @@ func (c *EC2) DeleteKeyPairRequest(input *DeleteKeyPairInput) (req *aws.Request,
 }
 
 // Deletes the specified key pair, by removing the public key from Amazon EC2.
-func (c *EC2) DeleteKeyPair(input *DeleteKeyPairInput) (*DeleteKeyPairOutput, awserr.Error) {
+func (c *EC2) DeleteKeyPair(input *DeleteKeyPairInput) (*DeleteKeyPairOutput, error) {
 	req, out := c.DeleteKeyPairRequest(input)
 	err := req.Send()
 	return out, err
@@ -2160,7 +2159,7 @@ func (c *EC2) DeleteNetworkACLRequest(input *DeleteNetworkACLInput) (req *aws.Re
 
 // Deletes the specified network ACL. You can't delete the ACL if it's associated
 // with any subnets. You can't delete the default network ACL.
-func (c *EC2) DeleteNetworkACL(input *DeleteNetworkACLInput) (*DeleteNetworkACLOutput, awserr.Error) {
+func (c *EC2) DeleteNetworkACL(input *DeleteNetworkACLInput) (*DeleteNetworkACLOutput, error) {
 	req, out := c.DeleteNetworkACLRequest(input)
 	err := req.Send()
 	return out, err
@@ -2193,7 +2192,7 @@ func (c *EC2) DeleteNetworkACLEntryRequest(input *DeleteNetworkACLEntryInput) (r
 
 // Deletes the specified ingress or egress entry (rule) from the specified network
 // ACL.
-func (c *EC2) DeleteNetworkACLEntry(input *DeleteNetworkACLEntryInput) (*DeleteNetworkACLEntryOutput, awserr.Error) {
+func (c *EC2) DeleteNetworkACLEntry(input *DeleteNetworkACLEntryInput) (*DeleteNetworkACLEntryOutput, error) {
 	req, out := c.DeleteNetworkACLEntryRequest(input)
 	err := req.Send()
 	return out, err
@@ -2226,7 +2225,7 @@ func (c *EC2) DeleteNetworkInterfaceRequest(input *DeleteNetworkInterfaceInput) 
 
 // Deletes the specified network interface. You must detach the network interface
 // before you can delete it.
-func (c *EC2) DeleteNetworkInterface(input *DeleteNetworkInterfaceInput) (*DeleteNetworkInterfaceOutput, awserr.Error) {
+func (c *EC2) DeleteNetworkInterface(input *DeleteNetworkInterfaceInput) (*DeleteNetworkInterfaceOutput, error) {
 	req, out := c.DeleteNetworkInterfaceRequest(input)
 	err := req.Send()
 	return out, err
@@ -2261,7 +2260,7 @@ func (c *EC2) DeletePlacementGroupRequest(input *DeletePlacementGroupInput) (req
 // the placement group before you can delete the placement group. For more information
 // about placement groups and cluster instances, see Cluster Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cluster_computing.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) DeletePlacementGroup(input *DeletePlacementGroupInput) (*DeletePlacementGroupOutput, awserr.Error) {
+func (c *EC2) DeletePlacementGroup(input *DeletePlacementGroupInput) (*DeletePlacementGroupOutput, error) {
 	req, out := c.DeletePlacementGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -2293,7 +2292,7 @@ func (c *EC2) DeleteRouteRequest(input *DeleteRouteInput) (req *aws.Request, out
 }
 
 // Deletes the specified route from the specified route table.
-func (c *EC2) DeleteRoute(input *DeleteRouteInput) (*DeleteRouteOutput, awserr.Error) {
+func (c *EC2) DeleteRoute(input *DeleteRouteInput) (*DeleteRouteOutput, error) {
 	req, out := c.DeleteRouteRequest(input)
 	err := req.Send()
 	return out, err
@@ -2327,7 +2326,7 @@ func (c *EC2) DeleteRouteTableRequest(input *DeleteRouteTableInput) (req *aws.Re
 // Deletes the specified route table. You must disassociate the route table
 // from any subnets before you can delete it. You can't delete the main route
 // table.
-func (c *EC2) DeleteRouteTable(input *DeleteRouteTableInput) (*DeleteRouteTableOutput, awserr.Error) {
+func (c *EC2) DeleteRouteTable(input *DeleteRouteTableInput) (*DeleteRouteTableOutput, error) {
 	req, out := c.DeleteRouteTableRequest(input)
 	err := req.Send()
 	return out, err
@@ -2363,7 +2362,7 @@ func (c *EC2) DeleteSecurityGroupRequest(input *DeleteSecurityGroupInput) (req *
 // If you attempt to delete a security group that is associated with an instance,
 // or is referenced by another security group, the operation fails with InvalidGroup.InUse
 // in EC2-Classic or DependencyViolation in EC2-VPC.
-func (c *EC2) DeleteSecurityGroup(input *DeleteSecurityGroupInput) (*DeleteSecurityGroupOutput, awserr.Error) {
+func (c *EC2) DeleteSecurityGroup(input *DeleteSecurityGroupInput) (*DeleteSecurityGroupOutput, error) {
 	req, out := c.DeleteSecurityGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -2409,7 +2408,7 @@ func (c *EC2) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *aws.Reques
 //
 // For more information, see Deleting an Amazon EBS Snapshot (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-deleting-snapshot.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) DeleteSnapshot(input *DeleteSnapshotInput) (*DeleteSnapshotOutput, awserr.Error) {
+func (c *EC2) DeleteSnapshot(input *DeleteSnapshotInput) (*DeleteSnapshotOutput, error) {
 	req, out := c.DeleteSnapshotRequest(input)
 	err := req.Send()
 	return out, err
@@ -2443,7 +2442,7 @@ func (c *EC2) DeleteSpotDatafeedSubscriptionRequest(input *DeleteSpotDatafeedSub
 // Deletes the data feed for Spot Instances. For more information, see Spot
 // Instance Data Feed (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) DeleteSpotDatafeedSubscription(input *DeleteSpotDatafeedSubscriptionInput) (*DeleteSpotDatafeedSubscriptionOutput, awserr.Error) {
+func (c *EC2) DeleteSpotDatafeedSubscription(input *DeleteSpotDatafeedSubscriptionInput) (*DeleteSpotDatafeedSubscriptionOutput, error) {
 	req, out := c.DeleteSpotDatafeedSubscriptionRequest(input)
 	err := req.Send()
 	return out, err
@@ -2476,7 +2475,7 @@ func (c *EC2) DeleteSubnetRequest(input *DeleteSubnetInput) (req *aws.Request, o
 
 // Deletes the specified subnet. You must terminate all running instances in
 // the subnet before you can delete the subnet.
-func (c *EC2) DeleteSubnet(input *DeleteSubnetInput) (*DeleteSubnetOutput, awserr.Error) {
+func (c *EC2) DeleteSubnet(input *DeleteSubnetInput) (*DeleteSubnetOutput, error) {
 	req, out := c.DeleteSubnetRequest(input)
 	err := req.Send()
 	return out, err
@@ -2512,7 +2511,7 @@ func (c *EC2) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Request, outpu
 //
 // For more information about tags, see Tagging Your Resources (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, awserr.Error) {
+func (c *EC2) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, error) {
 	req, out := c.DeleteTagsRequest(input)
 	err := req.Send()
 	return out, err
@@ -2548,7 +2547,7 @@ func (c *EC2) DeleteVPCRequest(input *DeleteVPCInput) (req *aws.Request, output 
 // must terminate all instances running in the VPC, delete all security groups
 // associated with the VPC (except the default one), delete all route tables
 // associated with the VPC (except the default one), and so on.
-func (c *EC2) DeleteVPC(input *DeleteVPCInput) (*DeleteVPCOutput, awserr.Error) {
+func (c *EC2) DeleteVPC(input *DeleteVPCInput) (*DeleteVPCOutput, error) {
 	req, out := c.DeleteVPCRequest(input)
 	err := req.Send()
 	return out, err
@@ -2583,7 +2582,7 @@ func (c *EC2) DeleteVPCPeeringConnectionRequest(input *DeleteVPCPeeringConnectio
 // the owner of the peer VPC can delete the VPC peering connection if it's in
 // the active state. The owner of the requester VPC can delete a VPC peering
 // connection in the pending-acceptance state.
-func (c *EC2) DeleteVPCPeeringConnection(input *DeleteVPCPeeringConnectionInput) (*DeleteVPCPeeringConnectionOutput, awserr.Error) {
+func (c *EC2) DeleteVPCPeeringConnection(input *DeleteVPCPeeringConnectionInput) (*DeleteVPCPeeringConnectionOutput, error) {
 	req, out := c.DeleteVPCPeeringConnectionRequest(input)
 	err := req.Send()
 	return out, err
@@ -2624,7 +2623,7 @@ func (c *EC2) DeleteVPNConnectionRequest(input *DeleteVPNConnectionInput) (req *
 // or virtual private gateway. If you create a new VPN connection, you must
 // reconfigure the customer gateway using the new configuration information
 // returned with the new VPN connection ID.
-func (c *EC2) DeleteVPNConnection(input *DeleteVPNConnectionInput) (*DeleteVPNConnectionOutput, awserr.Error) {
+func (c *EC2) DeleteVPNConnection(input *DeleteVPNConnectionInput) (*DeleteVPNConnectionOutput, error) {
 	req, out := c.DeleteVPNConnectionRequest(input)
 	err := req.Send()
 	return out, err
@@ -2659,7 +2658,7 @@ func (c *EC2) DeleteVPNConnectionRouteRequest(input *DeleteVPNConnectionRouteInp
 // an existing virtual private gateway and a VPN customer gateway. The static
 // route allows traffic to be routed from the virtual private gateway to the
 // VPN customer gateway.
-func (c *EC2) DeleteVPNConnectionRoute(input *DeleteVPNConnectionRouteInput) (*DeleteVPNConnectionRouteOutput, awserr.Error) {
+func (c *EC2) DeleteVPNConnectionRoute(input *DeleteVPNConnectionRouteInput) (*DeleteVPNConnectionRouteOutput, error) {
 	req, out := c.DeleteVPNConnectionRouteRequest(input)
 	err := req.Send()
 	return out, err
@@ -2695,7 +2694,7 @@ func (c *EC2) DeleteVPNGatewayRequest(input *DeleteVPNGatewayInput) (req *aws.Re
 // VPN connection. Note that you don't need to delete the virtual private gateway
 // if you plan to delete and recreate the VPN connection between your VPC and
 // your network.
-func (c *EC2) DeleteVPNGateway(input *DeleteVPNGatewayInput) (*DeleteVPNGatewayOutput, awserr.Error) {
+func (c *EC2) DeleteVPNGateway(input *DeleteVPNGatewayInput) (*DeleteVPNGatewayOutput, error) {
 	req, out := c.DeleteVPNGatewayRequest(input)
 	err := req.Send()
 	return out, err
@@ -2733,7 +2732,7 @@ func (c *EC2) DeleteVolumeRequest(input *DeleteVolumeInput) (req *aws.Request, o
 //
 //  For more information, see Deleting an Amazon EBS Volume (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-deleting-volume.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) DeleteVolume(input *DeleteVolumeInput) (*DeleteVolumeOutput, awserr.Error) {
+func (c *EC2) DeleteVolume(input *DeleteVolumeInput) (*DeleteVolumeOutput, error) {
 	req, out := c.DeleteVolumeRequest(input)
 	err := req.Send()
 	return out, err
@@ -2768,7 +2767,7 @@ func (c *EC2) DeregisterImageRequest(input *DeregisterImageInput) (req *aws.Requ
 // to launch new instances.
 //
 // This command does not delete the AMI.
-func (c *EC2) DeregisterImage(input *DeregisterImageInput) (*DeregisterImageOutput, awserr.Error) {
+func (c *EC2) DeregisterImage(input *DeregisterImageInput) (*DeregisterImageOutput, error) {
 	req, out := c.DeregisterImageRequest(input)
 	err := req.Send()
 	return out, err
@@ -2818,7 +2817,7 @@ func (c *EC2) DescribeAccountAttributesRequest(input *DescribeAccountAttributesI
 //
 //   vpc-max-elastic-ips: The maximum number of Elastic IP addresses that you
 // can allocate for use with EC2-VPC.
-func (c *EC2) DescribeAccountAttributes(input *DescribeAccountAttributesInput) (*DescribeAccountAttributesOutput, awserr.Error) {
+func (c *EC2) DescribeAccountAttributes(input *DescribeAccountAttributesInput) (*DescribeAccountAttributesOutput, error) {
 	req, out := c.DescribeAccountAttributesRequest(input)
 	err := req.Send()
 	return out, err
@@ -2854,7 +2853,7 @@ func (c *EC2) DescribeAddressesRequest(input *DescribeAddressesInput) (req *aws.
 // An Elastic IP address is for use in either the EC2-Classic platform or in
 // a VPC. For more information, see Elastic IP Addresses (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) DescribeAddresses(input *DescribeAddressesInput) (*DescribeAddressesOutput, awserr.Error) {
+func (c *EC2) DescribeAddresses(input *DescribeAddressesInput) (*DescribeAddressesOutput, error) {
 	req, out := c.DescribeAddressesRequest(input)
 	err := req.Send()
 	return out, err
@@ -2892,7 +2891,7 @@ func (c *EC2) DescribeAvailabilityZonesRequest(input *DescribeAvailabilityZonesI
 //
 // For more information, see Regions and Availability Zones (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) DescribeAvailabilityZones(input *DescribeAvailabilityZonesInput) (*DescribeAvailabilityZonesOutput, awserr.Error) {
+func (c *EC2) DescribeAvailabilityZones(input *DescribeAvailabilityZonesInput) (*DescribeAvailabilityZonesOutput, error) {
 	req, out := c.DescribeAvailabilityZonesRequest(input)
 	err := req.Send()
 	return out, err
@@ -2929,7 +2928,7 @@ func (c *EC2) DescribeBundleTasksRequest(input *DescribeBundleTasksInput) (req *
 // task is no longer in the list, you can still register an AMI from it. Just
 // use RegisterImage with the Amazon S3 bucket name and image manifest name
 // you provided to the bundle task.
-func (c *EC2) DescribeBundleTasks(input *DescribeBundleTasksInput) (*DescribeBundleTasksOutput, awserr.Error) {
+func (c *EC2) DescribeBundleTasks(input *DescribeBundleTasksInput) (*DescribeBundleTasksOutput, error) {
 	req, out := c.DescribeBundleTasksRequest(input)
 	err := req.Send()
 	return out, err
@@ -2964,7 +2963,7 @@ func (c *EC2) DescribeClassicLinkInstancesRequest(input *DescribeClassicLinkInst
 // only returns information about EC2-Classic instances linked to a VPC through
 // ClassicLink; you cannot use this request to return information about other
 // instances.
-func (c *EC2) DescribeClassicLinkInstances(input *DescribeClassicLinkInstancesInput) (*DescribeClassicLinkInstancesOutput, awserr.Error) {
+func (c *EC2) DescribeClassicLinkInstances(input *DescribeClassicLinkInstancesInput) (*DescribeClassicLinkInstancesOutput, error) {
 	req, out := c.DescribeClassicLinkInstancesRequest(input)
 	err := req.Send()
 	return out, err
@@ -2999,7 +2998,7 @@ func (c *EC2) DescribeConversionTasksRequest(input *DescribeConversionTasksInput
 // Using the Command Line Tools to Import Your Virtual Machine to Amazon EC2
 // (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UploadingYourInstancesandVolumes.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) DescribeConversionTasks(input *DescribeConversionTasksInput) (*DescribeConversionTasksOutput, awserr.Error) {
+func (c *EC2) DescribeConversionTasks(input *DescribeConversionTasksInput) (*DescribeConversionTasksOutput, error) {
 	req, out := c.DescribeConversionTasksRequest(input)
 	err := req.Send()
 	return out, err
@@ -3035,7 +3034,7 @@ func (c *EC2) DescribeCustomerGatewaysRequest(input *DescribeCustomerGatewaysInp
 // For more information about VPN customer gateways, see Adding a Hardware
 // Virtual Private Gateway to Your VPC (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) DescribeCustomerGateways(input *DescribeCustomerGatewaysInput) (*DescribeCustomerGatewaysOutput, awserr.Error) {
+func (c *EC2) DescribeCustomerGateways(input *DescribeCustomerGatewaysInput) (*DescribeCustomerGatewaysOutput, error) {
 	req, out := c.DescribeCustomerGatewaysRequest(input)
 	err := req.Send()
 	return out, err
@@ -3070,7 +3069,7 @@ func (c *EC2) DescribeDHCPOptionsRequest(input *DescribeDHCPOptionsInput) (req *
 //
 // For more information about DHCP options sets, see DHCP Options Sets (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) DescribeDHCPOptions(input *DescribeDHCPOptionsInput) (*DescribeDHCPOptionsOutput, awserr.Error) {
+func (c *EC2) DescribeDHCPOptions(input *DescribeDHCPOptionsInput) (*DescribeDHCPOptionsOutput, error) {
 	req, out := c.DescribeDHCPOptionsRequest(input)
 	err := req.Send()
 	return out, err
@@ -3102,7 +3101,7 @@ func (c *EC2) DescribeExportTasksRequest(input *DescribeExportTasksInput) (req *
 }
 
 // Describes one or more of your export tasks.
-func (c *EC2) DescribeExportTasks(input *DescribeExportTasksInput) (*DescribeExportTasksOutput, awserr.Error) {
+func (c *EC2) DescribeExportTasks(input *DescribeExportTasksInput) (*DescribeExportTasksOutput, error) {
 	req, out := c.DescribeExportTasksRequest(input)
 	err := req.Send()
 	return out, err
@@ -3135,7 +3134,7 @@ func (c *EC2) DescribeImageAttributeRequest(input *DescribeImageAttributeInput) 
 
 // Describes the specified attribute of the specified AMI. You can specify only
 // one attribute at a time.
-func (c *EC2) DescribeImageAttribute(input *DescribeImageAttributeInput) (*DescribeImageAttributeOutput, awserr.Error) {
+func (c *EC2) DescribeImageAttribute(input *DescribeImageAttributeInput) (*DescribeImageAttributeOutput, error) {
 	req, out := c.DescribeImageAttributeRequest(input)
 	err := req.Send()
 	return out, err
@@ -3173,7 +3172,7 @@ func (c *EC2) DescribeImagesRequest(input *DescribeImagesInput) (req *aws.Reques
 //
 // Deregistered images are included in the returned results for an unspecified
 // interval after deregistration.
-func (c *EC2) DescribeImages(input *DescribeImagesInput) (*DescribeImagesOutput, awserr.Error) {
+func (c *EC2) DescribeImages(input *DescribeImagesInput) (*DescribeImagesOutput, error) {
 	req, out := c.DescribeImagesRequest(input)
 	err := req.Send()
 	return out, err
@@ -3206,7 +3205,7 @@ func (c *EC2) DescribeImportImageTasksRequest(input *DescribeImportImageTasksInp
 
 // Displays details about an import virtual machine or import snapshot tasks
 // that are already created.
-func (c *EC2) DescribeImportImageTasks(input *DescribeImportImageTasksInput) (*DescribeImportImageTasksOutput, awserr.Error) {
+func (c *EC2) DescribeImportImageTasks(input *DescribeImportImageTasksInput) (*DescribeImportImageTasksOutput, error) {
 	req, out := c.DescribeImportImageTasksRequest(input)
 	err := req.Send()
 	return out, err
@@ -3238,7 +3237,7 @@ func (c *EC2) DescribeImportSnapshotTasksRequest(input *DescribeImportSnapshotTa
 }
 
 // Displays details about an import snapshot tasks that is already created.
-func (c *EC2) DescribeImportSnapshotTasks(input *DescribeImportSnapshotTasksInput) (*DescribeImportSnapshotTasksOutput, awserr.Error) {
+func (c *EC2) DescribeImportSnapshotTasks(input *DescribeImportSnapshotTasksInput) (*DescribeImportSnapshotTasksOutput, error) {
 	req, out := c.DescribeImportSnapshotTasksRequest(input)
 	err := req.Send()
 	return out, err
@@ -3274,7 +3273,7 @@ func (c *EC2) DescribeInstanceAttributeRequest(input *DescribeInstanceAttributeI
 // kernel | ramdisk | userData | disableApiTermination | instanceInitiatedShutdownBehavior
 // | rootDeviceName | blockDeviceMapping | productCodes | sourceDestCheck |
 // groupSet | ebsOptimized | sriovNetSupport
-func (c *EC2) DescribeInstanceAttribute(input *DescribeInstanceAttributeInput) (*DescribeInstanceAttributeOutput, awserr.Error) {
+func (c *EC2) DescribeInstanceAttribute(input *DescribeInstanceAttributeInput) (*DescribeInstanceAttributeOutput, error) {
 	req, out := c.DescribeInstanceAttributeRequest(input)
 	err := req.Send()
 	return out, err
@@ -3364,7 +3363,7 @@ func (c *EC2) DescribeInstanceStatusRequest(input *DescribeInstanceStatusInput) 
 // working with scheduled events, see Working with an Instance That Has a Scheduled
 // Event (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-instances-status-check_sched.html#schedevents_actions)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) DescribeInstanceStatus(input *DescribeInstanceStatusInput) (*DescribeInstanceStatusOutput, awserr.Error) {
+func (c *EC2) DescribeInstanceStatus(input *DescribeInstanceStatusInput) (*DescribeInstanceStatusOutput, error) {
 	req, out := c.DescribeInstanceStatusRequest(input)
 	err := req.Send()
 	return out, err
@@ -3405,7 +3404,7 @@ func (c *EC2) DescribeInstancesRequest(input *DescribeInstancesInput) (req *aws.
 //
 // Recently terminated instances might appear in the returned results. This
 // interval is usually less than one hour.
-func (c *EC2) DescribeInstances(input *DescribeInstancesInput) (*DescribeInstancesOutput, awserr.Error) {
+func (c *EC2) DescribeInstances(input *DescribeInstancesInput) (*DescribeInstancesOutput, error) {
 	req, out := c.DescribeInstancesRequest(input)
 	err := req.Send()
 	return out, err
@@ -3437,7 +3436,7 @@ func (c *EC2) DescribeInternetGatewaysRequest(input *DescribeInternetGatewaysInp
 }
 
 // Describes one or more of your Internet gateways.
-func (c *EC2) DescribeInternetGateways(input *DescribeInternetGatewaysInput) (*DescribeInternetGatewaysOutput, awserr.Error) {
+func (c *EC2) DescribeInternetGateways(input *DescribeInternetGatewaysInput) (*DescribeInternetGatewaysOutput, error) {
 	req, out := c.DescribeInternetGatewaysRequest(input)
 	err := req.Send()
 	return out, err
@@ -3472,7 +3471,7 @@ func (c *EC2) DescribeKeyPairsRequest(input *DescribeKeyPairsInput) (req *aws.Re
 //
 // For more information about key pairs, see Key Pairs (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) DescribeKeyPairs(input *DescribeKeyPairsInput) (*DescribeKeyPairsOutput, awserr.Error) {
+func (c *EC2) DescribeKeyPairs(input *DescribeKeyPairsInput) (*DescribeKeyPairsOutput, error) {
 	req, out := c.DescribeKeyPairsRequest(input)
 	err := req.Send()
 	return out, err
@@ -3507,7 +3506,7 @@ func (c *EC2) DescribeNetworkACLsRequest(input *DescribeNetworkACLsInput) (req *
 //
 // For more information about network ACLs, see Network ACLs (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) DescribeNetworkACLs(input *DescribeNetworkACLsInput) (*DescribeNetworkACLsOutput, awserr.Error) {
+func (c *EC2) DescribeNetworkACLs(input *DescribeNetworkACLsInput) (*DescribeNetworkACLsOutput, error) {
 	req, out := c.DescribeNetworkACLsRequest(input)
 	err := req.Send()
 	return out, err
@@ -3540,7 +3539,7 @@ func (c *EC2) DescribeNetworkInterfaceAttributeRequest(input *DescribeNetworkInt
 
 // Describes a network interface attribute. You can specify only one attribute
 // at a time.
-func (c *EC2) DescribeNetworkInterfaceAttribute(input *DescribeNetworkInterfaceAttributeInput) (*DescribeNetworkInterfaceAttributeOutput, awserr.Error) {
+func (c *EC2) DescribeNetworkInterfaceAttribute(input *DescribeNetworkInterfaceAttributeInput) (*DescribeNetworkInterfaceAttributeOutput, error) {
 	req, out := c.DescribeNetworkInterfaceAttributeRequest(input)
 	err := req.Send()
 	return out, err
@@ -3572,7 +3571,7 @@ func (c *EC2) DescribeNetworkInterfacesRequest(input *DescribeNetworkInterfacesI
 }
 
 // Describes one or more of your network interfaces.
-func (c *EC2) DescribeNetworkInterfaces(input *DescribeNetworkInterfacesInput) (*DescribeNetworkInterfacesOutput, awserr.Error) {
+func (c *EC2) DescribeNetworkInterfaces(input *DescribeNetworkInterfacesInput) (*DescribeNetworkInterfacesOutput, error) {
 	req, out := c.DescribeNetworkInterfacesRequest(input)
 	err := req.Send()
 	return out, err
@@ -3606,7 +3605,7 @@ func (c *EC2) DescribePlacementGroupsRequest(input *DescribePlacementGroupsInput
 // Describes one or more of your placement groups. For more information about
 // placement groups and cluster instances, see Cluster Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cluster_computing.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) DescribePlacementGroups(input *DescribePlacementGroupsInput) (*DescribePlacementGroupsOutput, awserr.Error) {
+func (c *EC2) DescribePlacementGroups(input *DescribePlacementGroupsInput) (*DescribePlacementGroupsOutput, error) {
 	req, out := c.DescribePlacementGroupsRequest(input)
 	err := req.Send()
 	return out, err
@@ -3641,7 +3640,7 @@ func (c *EC2) DescribeRegionsRequest(input *DescribeRegionsInput) (req *aws.Requ
 //
 // For a list of the regions supported by Amazon EC2, see Regions and Endpoints
 // (http://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region).
-func (c *EC2) DescribeRegions(input *DescribeRegionsInput) (*DescribeRegionsOutput, awserr.Error) {
+func (c *EC2) DescribeRegions(input *DescribeRegionsInput) (*DescribeRegionsOutput, error) {
 	req, out := c.DescribeRegionsRequest(input)
 	err := req.Send()
 	return out, err
@@ -3676,7 +3675,7 @@ func (c *EC2) DescribeReservedInstancesRequest(input *DescribeReservedInstancesI
 //
 // For more information about Reserved Instances, see Reserved Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts-on-demand-reserved-instances.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) DescribeReservedInstances(input *DescribeReservedInstancesInput) (*DescribeReservedInstancesOutput, awserr.Error) {
+func (c *EC2) DescribeReservedInstances(input *DescribeReservedInstancesInput) (*DescribeReservedInstancesOutput, error) {
 	req, out := c.DescribeReservedInstancesRequest(input)
 	err := req.Send()
 	return out, err
@@ -3729,7 +3728,7 @@ func (c *EC2) DescribeReservedInstancesListingsRequest(input *DescribeReservedIn
 //
 // For more information, see Reserved Instance Marketplace (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) DescribeReservedInstancesListings(input *DescribeReservedInstancesListingsInput) (*DescribeReservedInstancesListingsOutput, awserr.Error) {
+func (c *EC2) DescribeReservedInstancesListings(input *DescribeReservedInstancesListingsInput) (*DescribeReservedInstancesListingsOutput, error) {
 	req, out := c.DescribeReservedInstancesListingsRequest(input)
 	err := req.Send()
 	return out, err
@@ -3767,7 +3766,7 @@ func (c *EC2) DescribeReservedInstancesModificationsRequest(input *DescribeReser
 //
 // For more information, see Modifying Reserved Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) DescribeReservedInstancesModifications(input *DescribeReservedInstancesModificationsInput) (*DescribeReservedInstancesModificationsOutput, awserr.Error) {
+func (c *EC2) DescribeReservedInstancesModifications(input *DescribeReservedInstancesModificationsInput) (*DescribeReservedInstancesModificationsOutput, error) {
 	req, out := c.DescribeReservedInstancesModificationsRequest(input)
 	err := req.Send()
 	return out, err
@@ -3806,7 +3805,7 @@ func (c *EC2) DescribeReservedInstancesOfferingsRequest(input *DescribeReservedI
 //
 // For more information, see Reserved Instance Marketplace (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) DescribeReservedInstancesOfferings(input *DescribeReservedInstancesOfferingsInput) (*DescribeReservedInstancesOfferingsOutput, awserr.Error) {
+func (c *EC2) DescribeReservedInstancesOfferings(input *DescribeReservedInstancesOfferingsInput) (*DescribeReservedInstancesOfferingsOutput, error) {
 	req, out := c.DescribeReservedInstancesOfferingsRequest(input)
 	err := req.Send()
 	return out, err
@@ -3841,7 +3840,7 @@ func (c *EC2) DescribeRouteTablesRequest(input *DescribeRouteTablesInput) (req *
 //
 // For more information about route tables, see Route Tables (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) DescribeRouteTables(input *DescribeRouteTablesInput) (*DescribeRouteTablesOutput, awserr.Error) {
+func (c *EC2) DescribeRouteTables(input *DescribeRouteTablesInput) (*DescribeRouteTablesOutput, error) {
 	req, out := c.DescribeRouteTablesRequest(input)
 	err := req.Send()
 	return out, err
@@ -3880,7 +3879,7 @@ func (c *EC2) DescribeSecurityGroupsRequest(input *DescribeSecurityGroupsInput) 
 // in the Amazon Elastic Compute Cloud User Guide and Security Groups for Your
 // VPC (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) DescribeSecurityGroups(input *DescribeSecurityGroupsInput) (*DescribeSecurityGroupsOutput, awserr.Error) {
+func (c *EC2) DescribeSecurityGroups(input *DescribeSecurityGroupsInput) (*DescribeSecurityGroupsOutput, error) {
 	req, out := c.DescribeSecurityGroupsRequest(input)
 	err := req.Send()
 	return out, err
@@ -3916,7 +3915,7 @@ func (c *EC2) DescribeSnapshotAttributeRequest(input *DescribeSnapshotAttributeI
 //
 // For more information about Amazon EBS snapshots, see Amazon EBS Snapshots
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) DescribeSnapshotAttribute(input *DescribeSnapshotAttributeInput) (*DescribeSnapshotAttributeOutput, awserr.Error) {
+func (c *EC2) DescribeSnapshotAttribute(input *DescribeSnapshotAttributeInput) (*DescribeSnapshotAttributeOutput, error) {
 	req, out := c.DescribeSnapshotAttributeRequest(input)
 	err := req.Send()
 	return out, err
@@ -3987,7 +3986,7 @@ func (c *EC2) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *aws.
 //
 // For more information about Amazon EBS snapshots, see Amazon EBS Snapshots
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) DescribeSnapshots(input *DescribeSnapshotsInput) (*DescribeSnapshotsOutput, awserr.Error) {
+func (c *EC2) DescribeSnapshots(input *DescribeSnapshotsInput) (*DescribeSnapshotsOutput, error) {
 	req, out := c.DescribeSnapshotsRequest(input)
 	err := req.Send()
 	return out, err
@@ -4021,7 +4020,7 @@ func (c *EC2) DescribeSpotDatafeedSubscriptionRequest(input *DescribeSpotDatafee
 // Describes the data feed for Spot Instances. For more information, see Spot
 // Instance Data Feed (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) DescribeSpotDatafeedSubscription(input *DescribeSpotDatafeedSubscriptionInput) (*DescribeSpotDatafeedSubscriptionOutput, awserr.Error) {
+func (c *EC2) DescribeSpotDatafeedSubscription(input *DescribeSpotDatafeedSubscriptionInput) (*DescribeSpotDatafeedSubscriptionOutput, error) {
 	req, out := c.DescribeSpotDatafeedSubscriptionRequest(input)
 	err := req.Send()
 	return out, err
@@ -4064,7 +4063,7 @@ func (c *EC2) DescribeSpotInstanceRequestsRequest(input *DescribeSpotInstanceReq
 // the instance ID appears in the response and contains the identifier of the
 // instance. Alternatively, you can use DescribeInstances with a filter to look
 // for instances where the instance lifecycle is spot.
-func (c *EC2) DescribeSpotInstanceRequests(input *DescribeSpotInstanceRequestsInput) (*DescribeSpotInstanceRequestsOutput, awserr.Error) {
+func (c *EC2) DescribeSpotInstanceRequests(input *DescribeSpotInstanceRequestsInput) (*DescribeSpotInstanceRequestsOutput, error) {
 	req, out := c.DescribeSpotInstanceRequestsRequest(input)
 	err := req.Send()
 	return out, err
@@ -4104,7 +4103,7 @@ func (c *EC2) DescribeSpotPriceHistoryRequest(input *DescribeSpotPriceHistoryInp
 // of the instance types within the time range that you specified and the time
 // when the price changed. The price is valid within the time period that you
 // specified; the response merely indicates the last time that the price changed.
-func (c *EC2) DescribeSpotPriceHistory(input *DescribeSpotPriceHistoryInput) (*DescribeSpotPriceHistoryOutput, awserr.Error) {
+func (c *EC2) DescribeSpotPriceHistory(input *DescribeSpotPriceHistoryInput) (*DescribeSpotPriceHistoryOutput, error) {
 	req, out := c.DescribeSpotPriceHistoryRequest(input)
 	err := req.Send()
 	return out, err
@@ -4139,7 +4138,7 @@ func (c *EC2) DescribeSubnetsRequest(input *DescribeSubnetsInput) (req *aws.Requ
 //
 // For more information about subnets, see Your VPC and Subnets (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) DescribeSubnets(input *DescribeSubnetsInput) (*DescribeSubnetsOutput, awserr.Error) {
+func (c *EC2) DescribeSubnets(input *DescribeSubnetsInput) (*DescribeSubnetsOutput, error) {
 	req, out := c.DescribeSubnetsRequest(input)
 	err := req.Send()
 	return out, err
@@ -4174,7 +4173,7 @@ func (c *EC2) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, o
 //
 // For more information about tags, see Tagging Your Resources (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, awserr.Error) {
+func (c *EC2) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, error) {
 	req, out := c.DescribeTagsRequest(input)
 	err := req.Send()
 	return out, err
@@ -4207,7 +4206,7 @@ func (c *EC2) DescribeVPCAttributeRequest(input *DescribeVPCAttributeInput) (req
 
 // Describes the specified attribute of the specified VPC. You can specify only
 // one attribute at a time.
-func (c *EC2) DescribeVPCAttribute(input *DescribeVPCAttributeInput) (*DescribeVPCAttributeOutput, awserr.Error) {
+func (c *EC2) DescribeVPCAttribute(input *DescribeVPCAttributeInput) (*DescribeVPCAttributeOutput, error) {
 	req, out := c.DescribeVPCAttributeRequest(input)
 	err := req.Send()
 	return out, err
@@ -4239,7 +4238,7 @@ func (c *EC2) DescribeVPCClassicLinkRequest(input *DescribeVPCClassicLinkInput) 
 }
 
 // Describes the ClassicLink status of one or more VPCs.
-func (c *EC2) DescribeVPCClassicLink(input *DescribeVPCClassicLinkInput) (*DescribeVPCClassicLinkOutput, awserr.Error) {
+func (c *EC2) DescribeVPCClassicLink(input *DescribeVPCClassicLinkInput) (*DescribeVPCClassicLinkOutput, error) {
 	req, out := c.DescribeVPCClassicLinkRequest(input)
 	err := req.Send()
 	return out, err
@@ -4271,7 +4270,7 @@ func (c *EC2) DescribeVPCPeeringConnectionsRequest(input *DescribeVPCPeeringConn
 }
 
 // Describes one or more of your VPC peering connections.
-func (c *EC2) DescribeVPCPeeringConnections(input *DescribeVPCPeeringConnectionsInput) (*DescribeVPCPeeringConnectionsOutput, awserr.Error) {
+func (c *EC2) DescribeVPCPeeringConnections(input *DescribeVPCPeeringConnectionsInput) (*DescribeVPCPeeringConnectionsOutput, error) {
 	req, out := c.DescribeVPCPeeringConnectionsRequest(input)
 	err := req.Send()
 	return out, err
@@ -4303,7 +4302,7 @@ func (c *EC2) DescribeVPCsRequest(input *DescribeVPCsInput) (req *aws.Request, o
 }
 
 // Describes one or more of your VPCs.
-func (c *EC2) DescribeVPCs(input *DescribeVPCsInput) (*DescribeVPCsOutput, awserr.Error) {
+func (c *EC2) DescribeVPCs(input *DescribeVPCsInput) (*DescribeVPCsOutput, error) {
 	req, out := c.DescribeVPCsRequest(input)
 	err := req.Send()
 	return out, err
@@ -4339,7 +4338,7 @@ func (c *EC2) DescribeVPNConnectionsRequest(input *DescribeVPNConnectionsInput) 
 // For more information about VPN connections, see Adding a Hardware Virtual
 // Private Gateway to Your VPC (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) DescribeVPNConnections(input *DescribeVPNConnectionsInput) (*DescribeVPNConnectionsOutput, awserr.Error) {
+func (c *EC2) DescribeVPNConnections(input *DescribeVPNConnectionsInput) (*DescribeVPNConnectionsOutput, error) {
 	req, out := c.DescribeVPNConnectionsRequest(input)
 	err := req.Send()
 	return out, err
@@ -4375,7 +4374,7 @@ func (c *EC2) DescribeVPNGatewaysRequest(input *DescribeVPNGatewaysInput) (req *
 // For more information about virtual private gateways, see Adding an IPsec
 // Hardware VPN to Your VPC (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) DescribeVPNGateways(input *DescribeVPNGatewaysInput) (*DescribeVPNGatewaysOutput, awserr.Error) {
+func (c *EC2) DescribeVPNGateways(input *DescribeVPNGatewaysInput) (*DescribeVPNGatewaysOutput, error) {
 	req, out := c.DescribeVPNGatewaysRequest(input)
 	err := req.Send()
 	return out, err
@@ -4411,7 +4410,7 @@ func (c *EC2) DescribeVolumeAttributeRequest(input *DescribeVolumeAttributeInput
 //
 // For more information about Amazon EBS volumes, see Amazon EBS Volumes in
 // the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) DescribeVolumeAttribute(input *DescribeVolumeAttributeInput) (*DescribeVolumeAttributeOutput, awserr.Error) {
+func (c *EC2) DescribeVolumeAttribute(input *DescribeVolumeAttributeInput) (*DescribeVolumeAttributeOutput, error) {
 	req, out := c.DescribeVolumeAttributeRequest(input)
 	err := req.Send()
 	return out, err
@@ -4477,7 +4476,7 @@ func (c *EC2) DescribeVolumeStatusRequest(input *DescribeVolumeStatusInput) (req
 //  Volume status is based on the volume status checks, and does not reflect
 // the volume state. Therefore, volume status does not indicate volumes in the
 // error state (for example, when a volume is incapable of accepting I/O.)
-func (c *EC2) DescribeVolumeStatus(input *DescribeVolumeStatusInput) (*DescribeVolumeStatusOutput, awserr.Error) {
+func (c *EC2) DescribeVolumeStatus(input *DescribeVolumeStatusInput) (*DescribeVolumeStatusOutput, error) {
 	req, out := c.DescribeVolumeStatusRequest(input)
 	err := req.Send()
 	return out, err
@@ -4519,7 +4518,7 @@ func (c *EC2) DescribeVolumesRequest(input *DescribeVolumesInput) (req *aws.Requ
 //
 // For more information about Amazon EBS volumes, see Amazon EBS Volumes in
 // the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) DescribeVolumes(input *DescribeVolumesInput) (*DescribeVolumesOutput, awserr.Error) {
+func (c *EC2) DescribeVolumes(input *DescribeVolumesInput) (*DescribeVolumesOutput, error) {
 	req, out := c.DescribeVolumesRequest(input)
 	err := req.Send()
 	return out, err
@@ -4553,7 +4552,7 @@ func (c *EC2) DetachClassicLinkVPCRequest(input *DetachClassicLinkVPCInput) (req
 // Unlinks (detaches) a linked EC2-Classic instance from a VPC. After the instance
 // has been unlinked, the VPC security groups are no longer associated with
 // it. An instance is automatically unlinked from a VPC when it's stopped.
-func (c *EC2) DetachClassicLinkVPC(input *DetachClassicLinkVPCInput) (*DetachClassicLinkVPCOutput, awserr.Error) {
+func (c *EC2) DetachClassicLinkVPC(input *DetachClassicLinkVPCInput) (*DetachClassicLinkVPCOutput, error) {
 	req, out := c.DetachClassicLinkVPCRequest(input)
 	err := req.Send()
 	return out, err
@@ -4587,7 +4586,7 @@ func (c *EC2) DetachInternetGatewayRequest(input *DetachInternetGatewayInput) (r
 // Detaches an Internet gateway from a VPC, disabling connectivity between the
 // Internet and the VPC. The VPC must not contain any running instances with
 // Elastic IP addresses.
-func (c *EC2) DetachInternetGateway(input *DetachInternetGatewayInput) (*DetachInternetGatewayOutput, awserr.Error) {
+func (c *EC2) DetachInternetGateway(input *DetachInternetGatewayInput) (*DetachInternetGatewayOutput, error) {
 	req, out := c.DetachInternetGatewayRequest(input)
 	err := req.Send()
 	return out, err
@@ -4619,7 +4618,7 @@ func (c *EC2) DetachNetworkInterfaceRequest(input *DetachNetworkInterfaceInput) 
 }
 
 // Detaches a network interface from an instance.
-func (c *EC2) DetachNetworkInterface(input *DetachNetworkInterfaceInput) (*DetachNetworkInterfaceOutput, awserr.Error) {
+func (c *EC2) DetachNetworkInterface(input *DetachNetworkInterfaceInput) (*DetachNetworkInterfaceOutput, error) {
 	req, out := c.DetachNetworkInterfaceRequest(input)
 	err := req.Send()
 	return out, err
@@ -4658,7 +4657,7 @@ func (c *EC2) DetachVPNGatewayRequest(input *DetachVPNGatewayInput) (req *aws.Re
 //
 // You must wait for the attachment's state to switch to detached before you
 // can delete the VPC or attach a different VPC to the virtual private gateway.
-func (c *EC2) DetachVPNGateway(input *DetachVPNGatewayInput) (*DetachVPNGatewayOutput, awserr.Error) {
+func (c *EC2) DetachVPNGateway(input *DetachVPNGatewayInput) (*DetachVPNGatewayOutput, error) {
 	req, out := c.DetachVPNGatewayRequest(input)
 	err := req.Send()
 	return out, err
@@ -4703,7 +4702,7 @@ func (c *EC2) DetachVolumeRequest(input *DetachVolumeInput) (req *aws.Request, o
 //
 // For more information, see Detaching an Amazon EBS Volume (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-detaching-volume.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) DetachVolume(input *DetachVolumeInput) (*VolumeAttachment, awserr.Error) {
+func (c *EC2) DetachVolume(input *DetachVolumeInput) (*VolumeAttachment, error) {
 	req, out := c.DetachVolumeRequest(input)
 	err := req.Send()
 	return out, err
@@ -4736,7 +4735,7 @@ func (c *EC2) DisableVGWRoutePropagationRequest(input *DisableVGWRoutePropagatio
 
 // Disables a virtual private gateway (VGW) from propagating routes to a specified
 // route table of a VPC.
-func (c *EC2) DisableVGWRoutePropagation(input *DisableVGWRoutePropagationInput) (*DisableVGWRoutePropagationOutput, awserr.Error) {
+func (c *EC2) DisableVGWRoutePropagation(input *DisableVGWRoutePropagationInput) (*DisableVGWRoutePropagationOutput, error) {
 	req, out := c.DisableVGWRoutePropagationRequest(input)
 	err := req.Send()
 	return out, err
@@ -4769,7 +4768,7 @@ func (c *EC2) DisableVPCClassicLinkRequest(input *DisableVPCClassicLinkInput) (r
 
 // Disables ClassicLink for a VPC. You cannot disable ClassicLink for a VPC
 // that has EC2-Classic instances linked to it.
-func (c *EC2) DisableVPCClassicLink(input *DisableVPCClassicLinkInput) (*DisableVPCClassicLinkOutput, awserr.Error) {
+func (c *EC2) DisableVPCClassicLink(input *DisableVPCClassicLinkInput) (*DisableVPCClassicLinkOutput, error) {
 	req, out := c.DisableVPCClassicLinkRequest(input)
 	err := req.Send()
 	return out, err
@@ -4809,7 +4808,7 @@ func (c *EC2) DisassociateAddressRequest(input *DisassociateAddressInput) (req *
 //
 // This is an idempotent operation. If you perform the operation more than
 // once, Amazon EC2 doesn't return an error.
-func (c *EC2) DisassociateAddress(input *DisassociateAddressInput) (*DisassociateAddressOutput, awserr.Error) {
+func (c *EC2) DisassociateAddress(input *DisassociateAddressInput) (*DisassociateAddressOutput, error) {
 	req, out := c.DisassociateAddressRequest(input)
 	err := req.Send()
 	return out, err
@@ -4846,7 +4845,7 @@ func (c *EC2) DisassociateRouteTableRequest(input *DisassociateRouteTableInput) 
 // route table. Instead, it uses the routes in the VPC's main route table. For
 // more information about route tables, see Route Tables (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) DisassociateRouteTable(input *DisassociateRouteTableInput) (*DisassociateRouteTableOutput, awserr.Error) {
+func (c *EC2) DisassociateRouteTable(input *DisassociateRouteTableInput) (*DisassociateRouteTableOutput, error) {
 	req, out := c.DisassociateRouteTableRequest(input)
 	err := req.Send()
 	return out, err
@@ -4879,7 +4878,7 @@ func (c *EC2) EnableVGWRoutePropagationRequest(input *EnableVGWRoutePropagationI
 
 // Enables a virtual private gateway (VGW) to propagate routes to the specified
 // route table of a VPC.
-func (c *EC2) EnableVGWRoutePropagation(input *EnableVGWRoutePropagationInput) (*EnableVGWRoutePropagationOutput, awserr.Error) {
+func (c *EC2) EnableVGWRoutePropagation(input *EnableVGWRoutePropagationInput) (*EnableVGWRoutePropagationOutput, error) {
 	req, out := c.EnableVGWRoutePropagationRequest(input)
 	err := req.Send()
 	return out, err
@@ -4917,7 +4916,7 @@ func (c *EC2) EnableVPCClassicLinkRequest(input *EnableVPCClassicLinkInput) (req
 // range, excluding local routes for VPCs in the 10.0.0.0/16 and 10.1.0.0/16
 // IP address ranges. For more information, see ClassicLink (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) EnableVPCClassicLink(input *EnableVPCClassicLinkInput) (*EnableVPCClassicLinkOutput, awserr.Error) {
+func (c *EC2) EnableVPCClassicLink(input *EnableVPCClassicLinkInput) (*EnableVPCClassicLinkOutput, error) {
 	req, out := c.EnableVPCClassicLinkRequest(input)
 	err := req.Send()
 	return out, err
@@ -4950,7 +4949,7 @@ func (c *EC2) EnableVolumeIORequest(input *EnableVolumeIOInput) (req *aws.Reques
 
 // Enables I/O operations for a volume that had I/O operations disabled because
 // the data on the volume was potentially inconsistent.
-func (c *EC2) EnableVolumeIO(input *EnableVolumeIOInput) (*EnableVolumeIOOutput, awserr.Error) {
+func (c *EC2) EnableVolumeIO(input *EnableVolumeIOInput) (*EnableVolumeIOOutput, error) {
 	req, out := c.EnableVolumeIORequest(input)
 	err := req.Send()
 	return out, err
@@ -4999,7 +4998,7 @@ func (c *EC2) GetConsoleOutputRequest(input *GetConsoleOutputInput) (req *aws.Re
 //
 // For Windows instances, the instance console output includes output from
 // the EC2Config service.
-func (c *EC2) GetConsoleOutput(input *GetConsoleOutputInput) (*GetConsoleOutputOutput, awserr.Error) {
+func (c *EC2) GetConsoleOutput(input *GetConsoleOutputInput) (*GetConsoleOutputOutput, error) {
 	req, out := c.GetConsoleOutputRequest(input)
 	err := req.Send()
 	return out, err
@@ -5044,7 +5043,7 @@ func (c *EC2) GetPasswordDataRequest(input *GetPasswordDataInput) (req *aws.Requ
 // Password generation and encryption takes a few moments. We recommend that
 // you wait up to 15 minutes after launching an instance before trying to retrieve
 // the generated password.
-func (c *EC2) GetPasswordData(input *GetPasswordDataInput) (*GetPasswordDataOutput, awserr.Error) {
+func (c *EC2) GetPasswordData(input *GetPasswordDataInput) (*GetPasswordDataOutput, error) {
 	req, out := c.GetPasswordDataRequest(input)
 	err := req.Send()
 	return out, err
@@ -5077,7 +5076,7 @@ func (c *EC2) ImportImageRequest(input *ImportImageInput) (req *aws.Request, out
 
 // Import single or multi-volume disk images or Amazon EBS snapshots into an
 // Amazon Machine Image (AMI).
-func (c *EC2) ImportImage(input *ImportImageInput) (*ImportImageOutput, awserr.Error) {
+func (c *EC2) ImportImage(input *ImportImageInput) (*ImportImageOutput, error) {
 	req, out := c.ImportImageRequest(input)
 	err := req.Send()
 	return out, err
@@ -5115,7 +5114,7 @@ func (c *EC2) ImportInstanceRequest(input *ImportInstanceInput) (req *aws.Reques
 // see Using the Command Line Tools to Import Your Virtual Machine to Amazon
 // EC2 (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UploadingYourInstancesandVolumes.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) ImportInstance(input *ImportInstanceInput) (*ImportInstanceOutput, awserr.Error) {
+func (c *EC2) ImportInstance(input *ImportInstanceInput) (*ImportInstanceOutput, error) {
 	req, out := c.ImportInstanceRequest(input)
 	err := req.Send()
 	return out, err
@@ -5154,7 +5153,7 @@ func (c *EC2) ImportKeyPairRequest(input *ImportKeyPairInput) (req *aws.Request,
 //
 // For more information about key pairs, see Key Pairs (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) ImportKeyPair(input *ImportKeyPairInput) (*ImportKeyPairOutput, awserr.Error) {
+func (c *EC2) ImportKeyPair(input *ImportKeyPairInput) (*ImportKeyPairOutput, error) {
 	req, out := c.ImportKeyPairRequest(input)
 	err := req.Send()
 	return out, err
@@ -5186,7 +5185,7 @@ func (c *EC2) ImportSnapshotRequest(input *ImportSnapshotInput) (req *aws.Reques
 }
 
 // Import a disk into an Amazon Elastic Block Store (Amazon EBS) snapshot.
-func (c *EC2) ImportSnapshot(input *ImportSnapshotInput) (*ImportSnapshotOutput, awserr.Error) {
+func (c *EC2) ImportSnapshot(input *ImportSnapshotInput) (*ImportSnapshotOutput, error) {
 	req, out := c.ImportSnapshotRequest(input)
 	err := req.Send()
 	return out, err
@@ -5223,7 +5222,7 @@ func (c *EC2) ImportVolumeRequest(input *ImportVolumeInput) (req *aws.Request, o
 // see Using the Command Line Tools to Import Your Virtual Machine to Amazon
 // EC2 (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UploadingYourInstancesandVolumes.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) ImportVolume(input *ImportVolumeInput) (*ImportVolumeOutput, awserr.Error) {
+func (c *EC2) ImportVolume(input *ImportVolumeInput) (*ImportVolumeOutput, error) {
 	req, out := c.ImportVolumeRequest(input)
 	err := req.Send()
 	return out, err
@@ -5259,7 +5258,7 @@ func (c *EC2) ModifyImageAttributeRequest(input *ModifyImageAttributeInput) (req
 //
 // AWS Marketplace product codes cannot be modified. Images with an AWS Marketplace
 // product code cannot be made public.
-func (c *EC2) ModifyImageAttribute(input *ModifyImageAttributeInput) (*ModifyImageAttributeOutput, awserr.Error) {
+func (c *EC2) ModifyImageAttribute(input *ModifyImageAttributeInput) (*ModifyImageAttributeOutput, error) {
 	req, out := c.ModifyImageAttributeRequest(input)
 	err := req.Send()
 	return out, err
@@ -5296,7 +5295,7 @@ func (c *EC2) ModifyInstanceAttributeRequest(input *ModifyInstanceAttributeInput
 // To modify some attributes, the instance must be stopped. For more information,
 // see Modifying Attributes of a Stopped Instance (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_ChangingAttributesWhileInstanceStopped.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) ModifyInstanceAttribute(input *ModifyInstanceAttributeInput) (*ModifyInstanceAttributeOutput, awserr.Error) {
+func (c *EC2) ModifyInstanceAttribute(input *ModifyInstanceAttributeInput) (*ModifyInstanceAttributeOutput, error) {
 	req, out := c.ModifyInstanceAttributeRequest(input)
 	err := req.Send()
 	return out, err
@@ -5329,7 +5328,7 @@ func (c *EC2) ModifyNetworkInterfaceAttributeRequest(input *ModifyNetworkInterfa
 
 // Modifies the specified network interface attribute. You can specify only
 // one attribute at a time.
-func (c *EC2) ModifyNetworkInterfaceAttribute(input *ModifyNetworkInterfaceAttributeInput) (*ModifyNetworkInterfaceAttributeOutput, awserr.Error) {
+func (c *EC2) ModifyNetworkInterfaceAttribute(input *ModifyNetworkInterfaceAttributeInput) (*ModifyNetworkInterfaceAttributeOutput, error) {
 	req, out := c.ModifyNetworkInterfaceAttributeRequest(input)
 	err := req.Send()
 	return out, err
@@ -5367,7 +5366,7 @@ func (c *EC2) ModifyReservedInstancesRequest(input *ModifyReservedInstancesInput
 //
 // For more information, see Modifying Reserved Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) ModifyReservedInstances(input *ModifyReservedInstancesInput) (*ModifyReservedInstancesOutput, awserr.Error) {
+func (c *EC2) ModifyReservedInstances(input *ModifyReservedInstancesInput) (*ModifyReservedInstancesOutput, error) {
 	req, out := c.ModifyReservedInstancesRequest(input)
 	err := req.Send()
 	return out, err
@@ -5409,7 +5408,7 @@ func (c *EC2) ModifySnapshotAttributeRequest(input *ModifySnapshotAttributeInput
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 //  Snapshots with AWS Marketplace product codes cannot be made public.
-func (c *EC2) ModifySnapshotAttribute(input *ModifySnapshotAttributeInput) (*ModifySnapshotAttributeOutput, awserr.Error) {
+func (c *EC2) ModifySnapshotAttribute(input *ModifySnapshotAttributeInput) (*ModifySnapshotAttributeOutput, error) {
 	req, out := c.ModifySnapshotAttributeRequest(input)
 	err := req.Send()
 	return out, err
@@ -5441,7 +5440,7 @@ func (c *EC2) ModifySubnetAttributeRequest(input *ModifySubnetAttributeInput) (r
 }
 
 // Modifies a subnet attribute.
-func (c *EC2) ModifySubnetAttribute(input *ModifySubnetAttributeInput) (*ModifySubnetAttributeOutput, awserr.Error) {
+func (c *EC2) ModifySubnetAttribute(input *ModifySubnetAttributeInput) (*ModifySubnetAttributeOutput, error) {
 	req, out := c.ModifySubnetAttributeRequest(input)
 	err := req.Send()
 	return out, err
@@ -5473,7 +5472,7 @@ func (c *EC2) ModifyVPCAttributeRequest(input *ModifyVPCAttributeInput) (req *aw
 }
 
 // Modifies the specified attribute of the specified VPC.
-func (c *EC2) ModifyVPCAttribute(input *ModifyVPCAttributeInput) (*ModifyVPCAttributeOutput, awserr.Error) {
+func (c *EC2) ModifyVPCAttribute(input *ModifyVPCAttributeInput) (*ModifyVPCAttributeOutput, error) {
 	req, out := c.ModifyVPCAttributeRequest(input)
 	err := req.Send()
 	return out, err
@@ -5514,7 +5513,7 @@ func (c *EC2) ModifyVolumeAttributeRequest(input *ModifyVolumeAttributeInput) (r
 // You can change the default behavior to resume I/O operations. We recommend
 // that you change this only for boot volumes or for volumes that are stateless
 // or disposable.
-func (c *EC2) ModifyVolumeAttribute(input *ModifyVolumeAttributeInput) (*ModifyVolumeAttributeOutput, awserr.Error) {
+func (c *EC2) ModifyVolumeAttribute(input *ModifyVolumeAttributeInput) (*ModifyVolumeAttributeOutput, error) {
 	req, out := c.ModifyVolumeAttributeRequest(input)
 	err := req.Send()
 	return out, err
@@ -5548,7 +5547,7 @@ func (c *EC2) MonitorInstancesRequest(input *MonitorInstancesInput) (req *aws.Re
 // Enables monitoring for a running instance. For more information about monitoring
 // instances, see Monitoring Your Instances and Volumes (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) MonitorInstances(input *MonitorInstancesInput) (*MonitorInstancesOutput, awserr.Error) {
+func (c *EC2) MonitorInstances(input *MonitorInstancesInput) (*MonitorInstancesOutput, error) {
 	req, out := c.MonitorInstancesRequest(input)
 	err := req.Send()
 	return out, err
@@ -5592,7 +5591,7 @@ func (c *EC2) PurchaseReservedInstancesOfferingRequest(input *PurchaseReservedIn
 // For more information, see Reserved Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts-on-demand-reserved-instances.html)
 // and Reserved Instance Marketplace (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) PurchaseReservedInstancesOffering(input *PurchaseReservedInstancesOfferingInput) (*PurchaseReservedInstancesOfferingOutput, awserr.Error) {
+func (c *EC2) PurchaseReservedInstancesOffering(input *PurchaseReservedInstancesOfferingInput) (*PurchaseReservedInstancesOfferingOutput, error) {
 	req, out := c.PurchaseReservedInstancesOfferingRequest(input)
 	err := req.Send()
 	return out, err
@@ -5634,7 +5633,7 @@ func (c *EC2) RebootInstancesRequest(input *RebootInstancesInput) (req *aws.Requ
 // For more information about troubleshooting, see Getting Console Output and
 // Rebooting Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-console.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) RebootInstances(input *RebootInstancesInput) (*RebootInstancesOutput, awserr.Error) {
+func (c *EC2) RebootInstances(input *RebootInstancesInput) (*RebootInstancesOutput, error) {
 	req, out := c.RebootInstancesRequest(input)
 	err := req.Send()
 	return out, err
@@ -5685,7 +5684,7 @@ func (c *EC2) RegisterImageRequest(input *RegisterImageInput) (req *aws.Request,
 //
 // You can't register an image where a secondary (non-root) snapshot has AWS
 // Marketplace product codes.
-func (c *EC2) RegisterImage(input *RegisterImageInput) (*RegisterImageOutput, awserr.Error) {
+func (c *EC2) RegisterImage(input *RegisterImageInput) (*RegisterImageOutput, error) {
 	req, out := c.RegisterImageRequest(input)
 	err := req.Send()
 	return out, err
@@ -5721,7 +5720,7 @@ func (c *EC2) RejectVPCPeeringConnectionRequest(input *RejectVPCPeeringConnectio
 // request to view your outstanding VPC peering connection requests. To delete
 // an active VPC peering connection, or to delete a VPC peering connection request
 // that you initiated, use DeleteVpcPeeringConnection.
-func (c *EC2) RejectVPCPeeringConnection(input *RejectVPCPeeringConnectionInput) (*RejectVPCPeeringConnectionOutput, awserr.Error) {
+func (c *EC2) RejectVPCPeeringConnection(input *RejectVPCPeeringConnectionInput) (*RejectVPCPeeringConnectionOutput, error) {
 	req, out := c.RejectVPCPeeringConnectionRequest(input)
 	err := req.Send()
 	return out, err
@@ -5767,7 +5766,7 @@ func (c *EC2) ReleaseAddressRequest(input *ReleaseAddressInput) (req *aws.Reques
 // [Nondefault VPC] You must use DisassociateAddress to disassociate the Elastic
 // IP address before you try to release it. Otherwise, Amazon EC2 returns an
 // error (InvalidIPAddress.InUse).
-func (c *EC2) ReleaseAddress(input *ReleaseAddressInput) (*ReleaseAddressOutput, awserr.Error) {
+func (c *EC2) ReleaseAddress(input *ReleaseAddressInput) (*ReleaseAddressOutput, error) {
 	req, out := c.ReleaseAddressRequest(input)
 	err := req.Send()
 	return out, err
@@ -5802,7 +5801,7 @@ func (c *EC2) ReplaceNetworkACLAssociationRequest(input *ReplaceNetworkACLAssoci
 // create a subnet, it's automatically associated with the default network ACL.
 // For more information about network ACLs, see Network ACLs (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) ReplaceNetworkACLAssociation(input *ReplaceNetworkACLAssociationInput) (*ReplaceNetworkACLAssociationOutput, awserr.Error) {
+func (c *EC2) ReplaceNetworkACLAssociation(input *ReplaceNetworkACLAssociationInput) (*ReplaceNetworkACLAssociationOutput, error) {
 	req, out := c.ReplaceNetworkACLAssociationRequest(input)
 	err := req.Send()
 	return out, err
@@ -5836,7 +5835,7 @@ func (c *EC2) ReplaceNetworkACLEntryRequest(input *ReplaceNetworkACLEntryInput) 
 // Replaces an entry (rule) in a network ACL. For more information about network
 // ACLs, see Network ACLs (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) ReplaceNetworkACLEntry(input *ReplaceNetworkACLEntryInput) (*ReplaceNetworkACLEntryOutput, awserr.Error) {
+func (c *EC2) ReplaceNetworkACLEntry(input *ReplaceNetworkACLEntryInput) (*ReplaceNetworkACLEntryOutput, error) {
 	req, out := c.ReplaceNetworkACLEntryRequest(input)
 	err := req.Send()
 	return out, err
@@ -5873,7 +5872,7 @@ func (c *EC2) ReplaceRouteRequest(input *ReplaceRouteInput) (req *aws.Request, o
 //
 // For more information about route tables, see Route Tables (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) ReplaceRoute(input *ReplaceRouteInput) (*ReplaceRouteOutput, awserr.Error) {
+func (c *EC2) ReplaceRoute(input *ReplaceRouteInput) (*ReplaceRouteOutput, error) {
 	req, out := c.ReplaceRouteRequest(input)
 	err := req.Send()
 	return out, err
@@ -5913,7 +5912,7 @@ func (c *EC2) ReplaceRouteTableAssociationRequest(input *ReplaceRouteTableAssoci
 // You can also use ReplaceRouteTableAssociation to change which table is the
 // main route table in the VPC. You just specify the main route table's association
 // ID and the route table to be the new main route table.
-func (c *EC2) ReplaceRouteTableAssociation(input *ReplaceRouteTableAssociationInput) (*ReplaceRouteTableAssociationOutput, awserr.Error) {
+func (c *EC2) ReplaceRouteTableAssociation(input *ReplaceRouteTableAssociationInput) (*ReplaceRouteTableAssociationOutput, error) {
 	req, out := c.ReplaceRouteTableAssociationRequest(input)
 	err := req.Send()
 	return out, err
@@ -5951,7 +5950,7 @@ func (c *EC2) ReportInstanceStatusRequest(input *ReportInstanceStatusInput) (req
 // to improve the accuracy of status checks.
 //
 // Use of this action does not change the value returned by DescribeInstanceStatus.
-func (c *EC2) ReportInstanceStatus(input *ReportInstanceStatusInput) (*ReportInstanceStatusOutput, awserr.Error) {
+func (c *EC2) ReportInstanceStatus(input *ReportInstanceStatusInput) (*ReportInstanceStatusOutput, error) {
 	req, out := c.ReportInstanceStatusRequest(input)
 	err := req.Send()
 	return out, err
@@ -5988,7 +5987,7 @@ func (c *EC2) RequestSpotInstancesRequest(input *RequestSpotInstancesInput) (req
 // Instance capacity and current Spot Instance requests. For more information,
 // see Spot Instance Requests (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) RequestSpotInstances(input *RequestSpotInstancesInput) (*RequestSpotInstancesOutput, awserr.Error) {
+func (c *EC2) RequestSpotInstances(input *RequestSpotInstancesInput) (*RequestSpotInstancesOutput, error) {
 	req, out := c.RequestSpotInstancesRequest(input)
 	err := req.Send()
 	return out, err
@@ -6022,7 +6021,7 @@ func (c *EC2) ResetImageAttributeRequest(input *ResetImageAttributeInput) (req *
 // Resets an attribute of an AMI to its default value.
 //
 //  The productCodes attribute can't be reset.
-func (c *EC2) ResetImageAttribute(input *ResetImageAttributeInput) (*ResetImageAttributeOutput, awserr.Error) {
+func (c *EC2) ResetImageAttribute(input *ResetImageAttributeInput) (*ResetImageAttributeOutput, error) {
 	req, out := c.ResetImageAttributeRequest(input)
 	err := req.Send()
 	return out, err
@@ -6062,7 +6061,7 @@ func (c *EC2) ResetInstanceAttributeRequest(input *ResetInstanceAttributeInput) 
 // value must be false for a NAT instance to perform NAT. For more information,
 // see NAT Instances (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_NAT_Instance.html)
 // in the Amazon Virtual Private Cloud User Guide.
-func (c *EC2) ResetInstanceAttribute(input *ResetInstanceAttributeInput) (*ResetInstanceAttributeOutput, awserr.Error) {
+func (c *EC2) ResetInstanceAttribute(input *ResetInstanceAttributeInput) (*ResetInstanceAttributeOutput, error) {
 	req, out := c.ResetInstanceAttributeRequest(input)
 	err := req.Send()
 	return out, err
@@ -6095,7 +6094,7 @@ func (c *EC2) ResetNetworkInterfaceAttributeRequest(input *ResetNetworkInterface
 
 // Resets a network interface attribute. You can specify only one attribute
 // at a time.
-func (c *EC2) ResetNetworkInterfaceAttribute(input *ResetNetworkInterfaceAttributeInput) (*ResetNetworkInterfaceAttributeOutput, awserr.Error) {
+func (c *EC2) ResetNetworkInterfaceAttribute(input *ResetNetworkInterfaceAttributeInput) (*ResetNetworkInterfaceAttributeOutput, error) {
 	req, out := c.ResetNetworkInterfaceAttributeRequest(input)
 	err := req.Send()
 	return out, err
@@ -6131,7 +6130,7 @@ func (c *EC2) ResetSnapshotAttributeRequest(input *ResetSnapshotAttributeInput) 
 // For more information on modifying snapshot permissions, see Sharing Snapshots
 // (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modifying-snapshot-permissions.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) ResetSnapshotAttribute(input *ResetSnapshotAttributeInput) (*ResetSnapshotAttributeOutput, awserr.Error) {
+func (c *EC2) ResetSnapshotAttribute(input *ResetSnapshotAttributeInput) (*ResetSnapshotAttributeOutput, error) {
 	req, out := c.ResetSnapshotAttributeRequest(input)
 	err := req.Send()
 	return out, err
@@ -6173,7 +6172,7 @@ func (c *EC2) RevokeSecurityGroupEgressRequest(input *RevokeSecurityGroupEgressI
 //
 // Rule changes are propagated to instances within the security group as quickly
 // as possible. However, a small delay might occur.
-func (c *EC2) RevokeSecurityGroupEgress(input *RevokeSecurityGroupEgressInput) (*RevokeSecurityGroupEgressOutput, awserr.Error) {
+func (c *EC2) RevokeSecurityGroupEgress(input *RevokeSecurityGroupEgressInput) (*RevokeSecurityGroupEgressOutput, error) {
 	req, out := c.RevokeSecurityGroupEgressRequest(input)
 	err := req.Send()
 	return out, err
@@ -6215,7 +6214,7 @@ func (c *EC2) RevokeSecurityGroupIngressRequest(input *RevokeSecurityGroupIngres
 //
 // Rule changes are propagated to instances within the security group as quickly
 // as possible. However, a small delay might occur.
-func (c *EC2) RevokeSecurityGroupIngress(input *RevokeSecurityGroupIngressInput) (*RevokeSecurityGroupIngressOutput, awserr.Error) {
+func (c *EC2) RevokeSecurityGroupIngress(input *RevokeSecurityGroupIngressInput) (*RevokeSecurityGroupIngressOutput, error) {
 	req, out := c.RevokeSecurityGroupIngressRequest(input)
 	err := req.Send()
 	return out, err
@@ -6279,7 +6278,7 @@ func (c *EC2) RunInstancesRequest(input *RunInstancesInput) (req *aws.Request, o
 // Immediately Terminates (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_InstanceStraightToTerminated.html),
 // and Troubleshooting Connecting to Your Instance (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesConnecting.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) RunInstances(input *RunInstancesInput) (*Reservation, awserr.Error) {
+func (c *EC2) RunInstances(input *RunInstancesInput) (*Reservation, error) {
 	req, out := c.RunInstancesRequest(input)
 	err := req.Send()
 	return out, err
@@ -6329,7 +6328,7 @@ func (c *EC2) StartInstancesRequest(input *StartInstancesInput) (req *aws.Reques
 //
 // For more information, see Stopping Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) StartInstances(input *StartInstancesInput) (*StartInstancesOutput, awserr.Error) {
+func (c *EC2) StartInstances(input *StartInstancesInput) (*StartInstancesOutput, error) {
 	req, out := c.StartInstancesRequest(input)
 	err := req.Send()
 	return out, err
@@ -6391,7 +6390,7 @@ func (c *EC2) StopInstancesRequest(input *StopInstancesInput) (req *aws.Request,
 // For more information about troubleshooting, see Troubleshooting Stopping
 // Your Instance (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesStopping.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) StopInstances(input *StopInstancesInput) (*StopInstancesOutput, awserr.Error) {
+func (c *EC2) StopInstances(input *StopInstancesInput) (*StopInstancesOutput, error) {
 	req, out := c.StopInstancesRequest(input)
 	err := req.Send()
 	return out, err
@@ -6444,7 +6443,7 @@ func (c *EC2) TerminateInstancesRequest(input *TerminateInstancesInput) (req *aw
 // For more information about troubleshooting, see Troubleshooting Terminating
 // Your Instance (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstancesShuttingDown.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) TerminateInstances(input *TerminateInstancesInput) (*TerminateInstancesOutput, awserr.Error) {
+func (c *EC2) TerminateInstances(input *TerminateInstancesInput) (*TerminateInstancesOutput, error) {
 	req, out := c.TerminateInstancesRequest(input)
 	err := req.Send()
 	return out, err
@@ -6476,7 +6475,7 @@ func (c *EC2) UnassignPrivateIPAddressesRequest(input *UnassignPrivateIPAddresse
 }
 
 // Unassigns one or more secondary private IP addresses from a network interface.
-func (c *EC2) UnassignPrivateIPAddresses(input *UnassignPrivateIPAddressesInput) (*UnassignPrivateIPAddressesOutput, awserr.Error) {
+func (c *EC2) UnassignPrivateIPAddresses(input *UnassignPrivateIPAddressesInput) (*UnassignPrivateIPAddressesOutput, error) {
 	req, out := c.UnassignPrivateIPAddressesRequest(input)
 	err := req.Send()
 	return out, err
@@ -6510,7 +6509,7 @@ func (c *EC2) UnmonitorInstancesRequest(input *UnmonitorInstancesInput) (req *aw
 // Disables monitoring for a running instance. For more information about monitoring
 // instances, see Monitoring Your Instances and Volumes (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html)
 // in the Amazon Elastic Compute Cloud User Guide.
-func (c *EC2) UnmonitorInstances(input *UnmonitorInstancesInput) (*UnmonitorInstancesOutput, awserr.Error) {
+func (c *EC2) UnmonitorInstances(input *UnmonitorInstancesInput) (*UnmonitorInstancesOutput, error) {
 	req, out := c.UnmonitorInstancesRequest(input)
 	err := req.Send()
 	return out, err

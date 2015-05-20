@@ -199,7 +199,6 @@ var oprw sync.Mutex
 func (a *API) APIGoCode() string {
 	a.resetImports()
 	a.imports["sync"] = true
-	a.imports["github.com/awslabs/aws-sdk-go/aws/awserr"] = true
 	var buf bytes.Buffer
 	err := tplAPI.Execute(&buf, a)
 	if err != nil {
@@ -325,7 +324,6 @@ func (a *API) InterfaceGoCode() string {
 	a.resetImports()
 	a.imports = map[string]bool{
 		"github.com/awslabs/aws-sdk-go/service/" + a.PackageName(): true,
-		"github.com/awslabs/aws-sdk-go/aws/awserr":                 true,
 	}
 
 	var buf bytes.Buffer

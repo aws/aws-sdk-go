@@ -8,7 +8,6 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -43,7 +42,7 @@ func (c *KMS) CreateAliasRequest(input *CreateAliasInput) (req *aws.Request, out
 // must start with the word "alias" followed by a forward slash (alias/). An
 // alias that begins with "aws" after the forward slash (alias/aws...) is reserved
 // by Amazon Web Services (AWS).
-func (c *KMS) CreateAlias(input *CreateAliasInput) (*CreateAliasOutput, awserr.Error) {
+func (c *KMS) CreateAlias(input *CreateAliasInput) (*CreateAliasOutput, error) {
 	req, out := c.CreateAliasRequest(input)
 	err := req.Send()
 	return out, err
@@ -79,7 +78,7 @@ func (c *KMS) CreateGrantRequest(input *CreateGrantInput) (req *aws.Request, out
 // about grants, see Grants (http://docs.aws.amazon.com/kms/latest/developerguide/grants.html)
 // in the developer guide. If a grant is absent, access to the key is evaluated
 // based on IAM policies attached to the user.  ListGrants RetireGrant RevokeGrant
-func (c *KMS) CreateGrant(input *CreateGrantInput) (*CreateGrantOutput, awserr.Error) {
+func (c *KMS) CreateGrant(input *CreateGrantInput) (*CreateGrantOutput, error) {
 	req, out := c.CreateGrantRequest(input)
 	err := req.Send()
 	return out, err
@@ -114,7 +113,7 @@ func (c *KMS) CreateKeyRequest(input *CreateKeyInput) (req *aws.Request, output 
 // small amounts of data (less than 4K) directly, but they are most commonly
 // used to encrypt or envelope data keys that are then used to encrypt customer
 // data. For more information about data keys, see GenerateDataKey and GenerateDataKeyWithoutPlaintext.
-func (c *KMS) CreateKey(input *CreateKeyInput) (*CreateKeyOutput, awserr.Error) {
+func (c *KMS) CreateKey(input *CreateKeyInput) (*CreateKeyOutput, error) {
 	req, out := c.CreateKeyRequest(input)
 	err := req.Send()
 	return out, err
@@ -157,7 +156,7 @@ func (c *KMS) DecryptRequest(input *DecryptInput) (req *aws.Request, output *Dec
 // access only in key policies. If you must grant Decrypt access in an IAM user
 // policy, you should scope the resource to specific keys or to specific trusted
 // accounts.
-func (c *KMS) Decrypt(input *DecryptInput) (*DecryptOutput, awserr.Error) {
+func (c *KMS) Decrypt(input *DecryptInput) (*DecryptOutput, error) {
 	req, out := c.DecryptRequest(input)
 	err := req.Send()
 	return out, err
@@ -189,7 +188,7 @@ func (c *KMS) DeleteAliasRequest(input *DeleteAliasInput) (req *aws.Request, out
 }
 
 // Deletes the specified alias.
-func (c *KMS) DeleteAlias(input *DeleteAliasInput) (*DeleteAliasOutput, awserr.Error) {
+func (c *KMS) DeleteAlias(input *DeleteAliasInput) (*DeleteAliasOutput, error) {
 	req, out := c.DeleteAliasRequest(input)
 	err := req.Send()
 	return out, err
@@ -221,7 +220,7 @@ func (c *KMS) DescribeKeyRequest(input *DescribeKeyInput) (req *aws.Request, out
 }
 
 // Provides detailed information about the specified customer master key.
-func (c *KMS) DescribeKey(input *DescribeKeyInput) (*DescribeKeyOutput, awserr.Error) {
+func (c *KMS) DescribeKey(input *DescribeKeyInput) (*DescribeKeyOutput, error) {
 	req, out := c.DescribeKeyRequest(input)
 	err := req.Send()
 	return out, err
@@ -253,7 +252,7 @@ func (c *KMS) DisableKeyRequest(input *DisableKeyInput) (req *aws.Request, outpu
 }
 
 // Marks a key as disabled, thereby preventing its use.
-func (c *KMS) DisableKey(input *DisableKeyInput) (*DisableKeyOutput, awserr.Error) {
+func (c *KMS) DisableKey(input *DisableKeyInput) (*DisableKeyOutput, error) {
 	req, out := c.DisableKeyRequest(input)
 	err := req.Send()
 	return out, err
@@ -285,7 +284,7 @@ func (c *KMS) DisableKeyRotationRequest(input *DisableKeyRotationInput) (req *aw
 }
 
 // Disables rotation of the specified key.
-func (c *KMS) DisableKeyRotation(input *DisableKeyRotationInput) (*DisableKeyRotationOutput, awserr.Error) {
+func (c *KMS) DisableKeyRotation(input *DisableKeyRotationInput) (*DisableKeyRotationOutput, error) {
 	req, out := c.DisableKeyRotationRequest(input)
 	err := req.Send()
 	return out, err
@@ -318,7 +317,7 @@ func (c *KMS) EnableKeyRequest(input *EnableKeyInput) (req *aws.Request, output 
 
 // Marks a key as enabled, thereby permitting its use. You can have up to 25
 // enabled keys at one time.
-func (c *KMS) EnableKey(input *EnableKeyInput) (*EnableKeyOutput, awserr.Error) {
+func (c *KMS) EnableKey(input *EnableKeyInput) (*EnableKeyOutput, error) {
 	req, out := c.EnableKeyRequest(input)
 	err := req.Send()
 	return out, err
@@ -350,7 +349,7 @@ func (c *KMS) EnableKeyRotationRequest(input *EnableKeyRotationInput) (req *aws.
 }
 
 // Enables rotation of the specified customer master key.
-func (c *KMS) EnableKeyRotation(input *EnableKeyRotationInput) (*EnableKeyRotationOutput, awserr.Error) {
+func (c *KMS) EnableKeyRotation(input *EnableKeyRotationInput) (*EnableKeyRotationOutput, error) {
 	req, out := c.EnableKeyRotationRequest(input)
 	err := req.Send()
 	return out, err
@@ -398,7 +397,7 @@ func (c *KMS) EncryptRequest(input *EncryptInput) (req *aws.Request, output *Enc
 // If you want to encrypt data locally in your application, you can use the
 // GenerateDataKey function to return a plaintext data encryption key and a
 // copy of the key encrypted under the customer master key (CMK) of your choosing.
-func (c *KMS) Encrypt(input *EncryptInput) (*EncryptOutput, awserr.Error) {
+func (c *KMS) Encrypt(input *EncryptInput) (*EncryptOutput, error) {
 	req, out := c.EncryptRequest(input)
 	err := req.Send()
 	return out, err
@@ -459,7 +458,7 @@ func (c *KMS) GenerateDataKeyRequest(input *GenerateDataKeyInput) (req *aws.Requ
 // if any, that you specified when you generated the key. The encryption context
 // is logged by CloudTrail, and you can use this log to help track the use of
 // particular data.
-func (c *KMS) GenerateDataKey(input *GenerateDataKeyInput) (*GenerateDataKeyOutput, awserr.Error) {
+func (c *KMS) GenerateDataKey(input *GenerateDataKeyInput) (*GenerateDataKeyOutput, error) {
 	req, out := c.GenerateDataKeyRequest(input)
 	err := req.Send()
 	return out, err
@@ -495,7 +494,7 @@ func (c *KMS) GenerateDataKeyWithoutPlaintextRequest(input *GenerateDataKeyWitho
 // You can use this API to, for example, satisfy an audit requirement that an
 // encrypted key be made available without exposing the plaintext copy of that
 // key.
-func (c *KMS) GenerateDataKeyWithoutPlaintext(input *GenerateDataKeyWithoutPlaintextInput) (*GenerateDataKeyWithoutPlaintextOutput, awserr.Error) {
+func (c *KMS) GenerateDataKeyWithoutPlaintext(input *GenerateDataKeyWithoutPlaintextInput) (*GenerateDataKeyWithoutPlaintextOutput, error) {
 	req, out := c.GenerateDataKeyWithoutPlaintextRequest(input)
 	err := req.Send()
 	return out, err
@@ -527,7 +526,7 @@ func (c *KMS) GenerateRandomRequest(input *GenerateRandomInput) (req *aws.Reques
 }
 
 // Generates an unpredictable byte string.
-func (c *KMS) GenerateRandom(input *GenerateRandomInput) (*GenerateRandomOutput, awserr.Error) {
+func (c *KMS) GenerateRandom(input *GenerateRandomInput) (*GenerateRandomOutput, error) {
 	req, out := c.GenerateRandomRequest(input)
 	err := req.Send()
 	return out, err
@@ -559,7 +558,7 @@ func (c *KMS) GetKeyPolicyRequest(input *GetKeyPolicyInput) (req *aws.Request, o
 }
 
 // Retrieves a policy attached to the specified key.
-func (c *KMS) GetKeyPolicy(input *GetKeyPolicyInput) (*GetKeyPolicyOutput, awserr.Error) {
+func (c *KMS) GetKeyPolicy(input *GetKeyPolicyInput) (*GetKeyPolicyOutput, error) {
 	req, out := c.GetKeyPolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -592,7 +591,7 @@ func (c *KMS) GetKeyRotationStatusRequest(input *GetKeyRotationStatusInput) (req
 
 // Retrieves a Boolean value that indicates whether key rotation is enabled
 // for the specified key.
-func (c *KMS) GetKeyRotationStatus(input *GetKeyRotationStatusInput) (*GetKeyRotationStatusOutput, awserr.Error) {
+func (c *KMS) GetKeyRotationStatus(input *GetKeyRotationStatusInput) (*GetKeyRotationStatusOutput, error) {
 	req, out := c.GetKeyRotationStatusRequest(input)
 	err := req.Send()
 	return out, err
@@ -624,7 +623,7 @@ func (c *KMS) ListAliasesRequest(input *ListAliasesInput) (req *aws.Request, out
 }
 
 // Lists all of the key aliases in the account.
-func (c *KMS) ListAliases(input *ListAliasesInput) (*ListAliasesOutput, awserr.Error) {
+func (c *KMS) ListAliases(input *ListAliasesInput) (*ListAliasesOutput, error) {
 	req, out := c.ListAliasesRequest(input)
 	err := req.Send()
 	return out, err
@@ -656,7 +655,7 @@ func (c *KMS) ListGrantsRequest(input *ListGrantsInput) (req *aws.Request, outpu
 }
 
 // List the grants for a specified key.
-func (c *KMS) ListGrants(input *ListGrantsInput) (*ListGrantsOutput, awserr.Error) {
+func (c *KMS) ListGrants(input *ListGrantsInput) (*ListGrantsOutput, error) {
 	req, out := c.ListGrantsRequest(input)
 	err := req.Send()
 	return out, err
@@ -688,7 +687,7 @@ func (c *KMS) ListKeyPoliciesRequest(input *ListKeyPoliciesInput) (req *aws.Requ
 }
 
 // Retrieves a list of policies attached to a key.
-func (c *KMS) ListKeyPolicies(input *ListKeyPoliciesInput) (*ListKeyPoliciesOutput, awserr.Error) {
+func (c *KMS) ListKeyPolicies(input *ListKeyPoliciesInput) (*ListKeyPoliciesOutput, error) {
 	req, out := c.ListKeyPoliciesRequest(input)
 	err := req.Send()
 	return out, err
@@ -720,7 +719,7 @@ func (c *KMS) ListKeysRequest(input *ListKeysInput) (req *aws.Request, output *L
 }
 
 // Lists the customer master keys.
-func (c *KMS) ListKeys(input *ListKeysInput) (*ListKeysOutput, awserr.Error) {
+func (c *KMS) ListKeys(input *ListKeysInput) (*ListKeysOutput, error) {
 	req, out := c.ListKeysRequest(input)
 	err := req.Send()
 	return out, err
@@ -752,7 +751,7 @@ func (c *KMS) PutKeyPolicyRequest(input *PutKeyPolicyInput) (req *aws.Request, o
 }
 
 // Attaches a policy to the specified key.
-func (c *KMS) PutKeyPolicy(input *PutKeyPolicyInput) (*PutKeyPolicyOutput, awserr.Error) {
+func (c *KMS) PutKeyPolicy(input *PutKeyPolicyInput) (*PutKeyPolicyOutput, error) {
 	req, out := c.PutKeyPolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -787,7 +786,7 @@ func (c *KMS) ReEncryptRequest(input *ReEncryptInput) (req *aws.Request, output 
 // the plaintext of the data on the client side. The data is first decrypted
 // and then encrypted. This operation can also be used to change the encryption
 // context of a ciphertext.
-func (c *KMS) ReEncrypt(input *ReEncryptInput) (*ReEncryptOutput, awserr.Error) {
+func (c *KMS) ReEncrypt(input *ReEncryptInput) (*ReEncryptOutput, error) {
 	req, out := c.ReEncryptRequest(input)
 	err := req.Send()
 	return out, err
@@ -823,7 +822,7 @@ func (c *KMS) RetireGrantRequest(input *RetireGrantInput) (req *aws.Request, out
 // that depend on it. The following are permitted to call this API:  The account
 // that created the grant The RetiringPrincipal, if present The GranteePrincipal,
 // if RetireGrant is a grantee operation
-func (c *KMS) RetireGrant(input *RetireGrantInput) (*RetireGrantOutput, awserr.Error) {
+func (c *KMS) RetireGrant(input *RetireGrantInput) (*RetireGrantOutput, error) {
 	req, out := c.RetireGrantRequest(input)
 	err := req.Send()
 	return out, err
@@ -856,7 +855,7 @@ func (c *KMS) RevokeGrantRequest(input *RevokeGrantInput) (req *aws.Request, out
 
 // Revokes a grant. You can revoke a grant to actively deny operations that
 // depend on it.
-func (c *KMS) RevokeGrant(input *RevokeGrantInput) (*RevokeGrantOutput, awserr.Error) {
+func (c *KMS) RevokeGrant(input *RevokeGrantInput) (*RevokeGrantOutput, error) {
 	req, out := c.RevokeGrantRequest(input)
 	err := req.Send()
 	return out, err
@@ -888,7 +887,7 @@ func (c *KMS) UpdateKeyDescriptionRequest(input *UpdateKeyDescriptionInput) (req
 }
 
 // Updates the description of a key.
-func (c *KMS) UpdateKeyDescription(input *UpdateKeyDescriptionInput) (*UpdateKeyDescriptionOutput, awserr.Error) {
+func (c *KMS) UpdateKeyDescription(input *UpdateKeyDescriptionInput) (*UpdateKeyDescriptionOutput, error) {
 	req, out := c.UpdateKeyDescriptionRequest(input)
 	err := req.Send()
 	return out, err

@@ -8,7 +8,6 @@ import (
 	"sync"
 
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -55,7 +54,7 @@ func (c *CloudSearchDomain) SearchRequest(input *SearchInput) (req *aws.Request,
 // for your domain, use the Amazon CloudSearch configuration service DescribeDomains
 // action. A domain's endpoints are also displayed on the domain dashboard in
 // the Amazon CloudSearch console.
-func (c *CloudSearchDomain) Search(input *SearchInput) (*SearchOutput, awserr.Error) {
+func (c *CloudSearchDomain) Search(input *SearchInput) (*SearchOutput, error) {
 	req, out := c.SearchRequest(input)
 	err := req.Send()
 	return out, err
@@ -103,7 +102,7 @@ func (c *CloudSearchDomain) SuggestRequest(input *SuggestInput) (req *aws.Reques
 // for your domain, use the Amazon CloudSearch configuration service DescribeDomains
 // action. A domain's endpoints are also displayed on the domain dashboard in
 // the Amazon CloudSearch console.
-func (c *CloudSearchDomain) Suggest(input *SuggestInput) (*SuggestOutput, awserr.Error) {
+func (c *CloudSearchDomain) Suggest(input *SuggestInput) (*SuggestOutput, error) {
 	req, out := c.SuggestRequest(input)
 	err := req.Send()
 	return out, err
@@ -156,7 +155,7 @@ func (c *CloudSearchDomain) UploadDocumentsRequest(input *UploadDocumentsInput) 
 // in the Amazon CloudSearch Developer Guide. For more information about uploading
 // data for indexing, see Uploading Data (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/uploading-data.html)
 // in the Amazon CloudSearch Developer Guide.
-func (c *CloudSearchDomain) UploadDocuments(input *UploadDocumentsInput) (*UploadDocumentsOutput, awserr.Error) {
+func (c *CloudSearchDomain) UploadDocuments(input *UploadDocumentsInput) (*UploadDocumentsOutput, error) {
 	req, out := c.UploadDocumentsRequest(input)
 	err := req.Send()
 	return out, err

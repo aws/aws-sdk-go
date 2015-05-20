@@ -7,7 +7,6 @@ import (
 
 	"github.com/vaughan0/go-ini"
 
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/internal/apierr"
 )
 
@@ -45,7 +44,7 @@ func NewSharedCredentials(filename, profile string) *Credentials {
 
 // Retrieve reads and extracts the shared credentials from the current
 // users home directory.
-func (p *SharedCredentialsProvider) Retrieve() (Value, awserr.Error) {
+func (p *SharedCredentialsProvider) Retrieve() (Value, error) {
 	p.retrieved = false
 
 	filename, err := p.filename()
@@ -70,7 +69,7 @@ func (p *SharedCredentialsProvider) IsExpired() bool {
 // loadProfiles loads from the file pointed to by shared credentials filename for profile.
 // The credentials retrieved from the profile will be returned or error. Error will be
 // returned if it fails to read from the file, or the data is invalid.
-func loadProfile(filename, profile string) (Value, awserr.Error) {
+func loadProfile(filename, profile string) (Value, error) {
 	config, err := ini.LoadFile(filename)
 	if err != nil {
 		return Value{}, apierr.New("SharedCredsLoad", "failed to load shared credentials file", err)
@@ -103,7 +102,7 @@ func loadProfile(filename, profile string) (Value, awserr.Error) {
 // filename returns the filename to use to read AWS shared credentials.
 //
 // Will return an error if the user's home directory path cannot be found.
-func (p *SharedCredentialsProvider) filename() (string, awserr.Error) {
+func (p *SharedCredentialsProvider) filename() (string, error) {
 	if p.Filename == "" {
 		homeDir := os.Getenv("HOME") // *nix
 		if homeDir == "" {           // Windows

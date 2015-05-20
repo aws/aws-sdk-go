@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"encoding/json"
 	"fmt"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/internal/apierr"
 	"net/http"
 	"time"
@@ -77,7 +76,7 @@ func NewEC2RoleCredentials(client *http.Client, endpoint string, window time.Dur
 // Retrieve retrieves credentials from the EC2 service.
 // Error will be returned if the request fails, or unable to extract
 // the desired credentials.
-func (m *EC2RoleProvider) Retrieve() (Value, awserr.Error) {
+func (m *EC2RoleProvider) Retrieve() (Value, error) {
 	if m.Client == nil {
 		m.Client = http.DefaultClient
 	}
@@ -129,7 +128,7 @@ type ec2RoleCredRespBody struct {
 
 // requestCredList requests a list of credentials from the EC2 service.
 // If there are no credentials, or there is an error making or receiving the request
-func requestCredList(client *http.Client, endpoint string) ([]string, awserr.Error) {
+func requestCredList(client *http.Client, endpoint string) ([]string, error) {
 	resp, err := client.Get(endpoint)
 	if err != nil {
 		return nil, apierr.New("ListEC2Role", "failed to list EC2 Roles", err)
@@ -153,7 +152,7 @@ func requestCredList(client *http.Client, endpoint string) ([]string, awserr.Err
 //
 // If the credentials cannot be found, or there is an error reading the response
 // and error will be returned.
-func requestCred(client *http.Client, endpoint, credsName string) (*ec2RoleCredRespBody, awserr.Error) {
+func requestCred(client *http.Client, endpoint, credsName string) (*ec2RoleCredRespBody, error) {
 	resp, err := client.Get(endpoint + credsName)
 	if err != nil {
 		return nil, apierr.New("GetEC2RoleCredentials",

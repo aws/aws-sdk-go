@@ -2,7 +2,6 @@ package aws
 
 import (
 	"bytes"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -24,7 +23,7 @@ type Request struct {
 	Body         io.ReadSeeker
 	bodyStart    int64 // offset from beginning of Body that the request body starts
 	Params       interface{}
-	Error        awserr.Error
+	Error        error
 	Data         interface{}
 	RequestID    string
 	RetryCount   uint
@@ -116,7 +115,7 @@ func (r *Request) SetReaderBody(reader io.ReadSeeker) {
 
 // Presign returns the request's signed URL. Error will be returned
 // if the signing fails.
-func (r *Request) Presign(expireTime time.Duration) (string, awserr.Error) {
+func (r *Request) Presign(expireTime time.Duration) (string, error) {
 	r.ExpireTime = expireTime
 	r.Sign()
 	if r.Error != nil {
@@ -135,7 +134,7 @@ func (r *Request) Presign(expireTime time.Duration) (string, awserr.Error) {
 //
 // If any Validate or Build errors occur the build will stop and the error
 // which occurred will be returned.
-func (r *Request) Build() awserr.Error {
+func (r *Request) Build() error {
 	if !r.built {
 		r.Error = nil
 		r.Handlers.Validate.Run(r)
@@ -153,7 +152,7 @@ func (r *Request) Build() awserr.Error {
 //
 // Send will build the request prior to signing. All Sign Handlers will
 // be executed in the order they were set.
-func (r *Request) Sign() awserr.Error {
+func (r *Request) Sign() error {
 	if r.signed {
 		return r.Error
 	}
@@ -172,7 +171,7 @@ func (r *Request) Sign() awserr.Error {
 //
 // Send will sign the request prior to sending. All Send Handlers will
 // be executed in the order they were set.
-func (r *Request) Send() awserr.Error {
+func (r *Request) Send() error {
 	for {
 		r.Sign()
 		if r.Error != nil {

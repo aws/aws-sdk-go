@@ -4,216 +4,215 @@
 package iamiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/iam"
 )
 
 type IAMAPI interface {
-	AddClientIDToOpenIDConnectProvider(*iam.AddClientIDToOpenIDConnectProviderInput) (*iam.AddClientIDToOpenIDConnectProviderOutput, awserr.Error)
+	AddClientIDToOpenIDConnectProvider(*iam.AddClientIDToOpenIDConnectProviderInput) (*iam.AddClientIDToOpenIDConnectProviderOutput, error)
 
-	AddRoleToInstanceProfile(*iam.AddRoleToInstanceProfileInput) (*iam.AddRoleToInstanceProfileOutput, awserr.Error)
+	AddRoleToInstanceProfile(*iam.AddRoleToInstanceProfileInput) (*iam.AddRoleToInstanceProfileOutput, error)
 
-	AddUserToGroup(*iam.AddUserToGroupInput) (*iam.AddUserToGroupOutput, awserr.Error)
+	AddUserToGroup(*iam.AddUserToGroupInput) (*iam.AddUserToGroupOutput, error)
 
-	AttachGroupPolicy(*iam.AttachGroupPolicyInput) (*iam.AttachGroupPolicyOutput, awserr.Error)
+	AttachGroupPolicy(*iam.AttachGroupPolicyInput) (*iam.AttachGroupPolicyOutput, error)
 
-	AttachRolePolicy(*iam.AttachRolePolicyInput) (*iam.AttachRolePolicyOutput, awserr.Error)
+	AttachRolePolicy(*iam.AttachRolePolicyInput) (*iam.AttachRolePolicyOutput, error)
 
-	AttachUserPolicy(*iam.AttachUserPolicyInput) (*iam.AttachUserPolicyOutput, awserr.Error)
+	AttachUserPolicy(*iam.AttachUserPolicyInput) (*iam.AttachUserPolicyOutput, error)
 
-	ChangePassword(*iam.ChangePasswordInput) (*iam.ChangePasswordOutput, awserr.Error)
+	ChangePassword(*iam.ChangePasswordInput) (*iam.ChangePasswordOutput, error)
 
-	CreateAccessKey(*iam.CreateAccessKeyInput) (*iam.CreateAccessKeyOutput, awserr.Error)
+	CreateAccessKey(*iam.CreateAccessKeyInput) (*iam.CreateAccessKeyOutput, error)
 
-	CreateAccountAlias(*iam.CreateAccountAliasInput) (*iam.CreateAccountAliasOutput, awserr.Error)
+	CreateAccountAlias(*iam.CreateAccountAliasInput) (*iam.CreateAccountAliasOutput, error)
 
-	CreateGroup(*iam.CreateGroupInput) (*iam.CreateGroupOutput, awserr.Error)
+	CreateGroup(*iam.CreateGroupInput) (*iam.CreateGroupOutput, error)
 
-	CreateInstanceProfile(*iam.CreateInstanceProfileInput) (*iam.CreateInstanceProfileOutput, awserr.Error)
+	CreateInstanceProfile(*iam.CreateInstanceProfileInput) (*iam.CreateInstanceProfileOutput, error)
 
-	CreateLoginProfile(*iam.CreateLoginProfileInput) (*iam.CreateLoginProfileOutput, awserr.Error)
+	CreateLoginProfile(*iam.CreateLoginProfileInput) (*iam.CreateLoginProfileOutput, error)
 
-	CreateOpenIDConnectProvider(*iam.CreateOpenIDConnectProviderInput) (*iam.CreateOpenIDConnectProviderOutput, awserr.Error)
+	CreateOpenIDConnectProvider(*iam.CreateOpenIDConnectProviderInput) (*iam.CreateOpenIDConnectProviderOutput, error)
 
-	CreatePolicy(*iam.CreatePolicyInput) (*iam.CreatePolicyOutput, awserr.Error)
+	CreatePolicy(*iam.CreatePolicyInput) (*iam.CreatePolicyOutput, error)
 
-	CreatePolicyVersion(*iam.CreatePolicyVersionInput) (*iam.CreatePolicyVersionOutput, awserr.Error)
+	CreatePolicyVersion(*iam.CreatePolicyVersionInput) (*iam.CreatePolicyVersionOutput, error)
 
-	CreateRole(*iam.CreateRoleInput) (*iam.CreateRoleOutput, awserr.Error)
+	CreateRole(*iam.CreateRoleInput) (*iam.CreateRoleOutput, error)
 
-	CreateSAMLProvider(*iam.CreateSAMLProviderInput) (*iam.CreateSAMLProviderOutput, awserr.Error)
+	CreateSAMLProvider(*iam.CreateSAMLProviderInput) (*iam.CreateSAMLProviderOutput, error)
 
-	CreateUser(*iam.CreateUserInput) (*iam.CreateUserOutput, awserr.Error)
+	CreateUser(*iam.CreateUserInput) (*iam.CreateUserOutput, error)
 
-	CreateVirtualMFADevice(*iam.CreateVirtualMFADeviceInput) (*iam.CreateVirtualMFADeviceOutput, awserr.Error)
+	CreateVirtualMFADevice(*iam.CreateVirtualMFADeviceInput) (*iam.CreateVirtualMFADeviceOutput, error)
 
-	DeactivateMFADevice(*iam.DeactivateMFADeviceInput) (*iam.DeactivateMFADeviceOutput, awserr.Error)
+	DeactivateMFADevice(*iam.DeactivateMFADeviceInput) (*iam.DeactivateMFADeviceOutput, error)
 
-	DeleteAccessKey(*iam.DeleteAccessKeyInput) (*iam.DeleteAccessKeyOutput, awserr.Error)
+	DeleteAccessKey(*iam.DeleteAccessKeyInput) (*iam.DeleteAccessKeyOutput, error)
 
-	DeleteAccountAlias(*iam.DeleteAccountAliasInput) (*iam.DeleteAccountAliasOutput, awserr.Error)
+	DeleteAccountAlias(*iam.DeleteAccountAliasInput) (*iam.DeleteAccountAliasOutput, error)
 
-	DeleteAccountPasswordPolicy(*iam.DeleteAccountPasswordPolicyInput) (*iam.DeleteAccountPasswordPolicyOutput, awserr.Error)
+	DeleteAccountPasswordPolicy(*iam.DeleteAccountPasswordPolicyInput) (*iam.DeleteAccountPasswordPolicyOutput, error)
 
-	DeleteGroup(*iam.DeleteGroupInput) (*iam.DeleteGroupOutput, awserr.Error)
+	DeleteGroup(*iam.DeleteGroupInput) (*iam.DeleteGroupOutput, error)
 
-	DeleteGroupPolicy(*iam.DeleteGroupPolicyInput) (*iam.DeleteGroupPolicyOutput, awserr.Error)
+	DeleteGroupPolicy(*iam.DeleteGroupPolicyInput) (*iam.DeleteGroupPolicyOutput, error)
 
-	DeleteInstanceProfile(*iam.DeleteInstanceProfileInput) (*iam.DeleteInstanceProfileOutput, awserr.Error)
+	DeleteInstanceProfile(*iam.DeleteInstanceProfileInput) (*iam.DeleteInstanceProfileOutput, error)
 
-	DeleteLoginProfile(*iam.DeleteLoginProfileInput) (*iam.DeleteLoginProfileOutput, awserr.Error)
+	DeleteLoginProfile(*iam.DeleteLoginProfileInput) (*iam.DeleteLoginProfileOutput, error)
 
-	DeleteOpenIDConnectProvider(*iam.DeleteOpenIDConnectProviderInput) (*iam.DeleteOpenIDConnectProviderOutput, awserr.Error)
+	DeleteOpenIDConnectProvider(*iam.DeleteOpenIDConnectProviderInput) (*iam.DeleteOpenIDConnectProviderOutput, error)
 
-	DeletePolicy(*iam.DeletePolicyInput) (*iam.DeletePolicyOutput, awserr.Error)
+	DeletePolicy(*iam.DeletePolicyInput) (*iam.DeletePolicyOutput, error)
 
-	DeletePolicyVersion(*iam.DeletePolicyVersionInput) (*iam.DeletePolicyVersionOutput, awserr.Error)
+	DeletePolicyVersion(*iam.DeletePolicyVersionInput) (*iam.DeletePolicyVersionOutput, error)
 
-	DeleteRole(*iam.DeleteRoleInput) (*iam.DeleteRoleOutput, awserr.Error)
+	DeleteRole(*iam.DeleteRoleInput) (*iam.DeleteRoleOutput, error)
 
-	DeleteRolePolicy(*iam.DeleteRolePolicyInput) (*iam.DeleteRolePolicyOutput, awserr.Error)
+	DeleteRolePolicy(*iam.DeleteRolePolicyInput) (*iam.DeleteRolePolicyOutput, error)
 
-	DeleteSAMLProvider(*iam.DeleteSAMLProviderInput) (*iam.DeleteSAMLProviderOutput, awserr.Error)
+	DeleteSAMLProvider(*iam.DeleteSAMLProviderInput) (*iam.DeleteSAMLProviderOutput, error)
 
-	DeleteServerCertificate(*iam.DeleteServerCertificateInput) (*iam.DeleteServerCertificateOutput, awserr.Error)
+	DeleteServerCertificate(*iam.DeleteServerCertificateInput) (*iam.DeleteServerCertificateOutput, error)
 
-	DeleteSigningCertificate(*iam.DeleteSigningCertificateInput) (*iam.DeleteSigningCertificateOutput, awserr.Error)
+	DeleteSigningCertificate(*iam.DeleteSigningCertificateInput) (*iam.DeleteSigningCertificateOutput, error)
 
-	DeleteUser(*iam.DeleteUserInput) (*iam.DeleteUserOutput, awserr.Error)
+	DeleteUser(*iam.DeleteUserInput) (*iam.DeleteUserOutput, error)
 
-	DeleteUserPolicy(*iam.DeleteUserPolicyInput) (*iam.DeleteUserPolicyOutput, awserr.Error)
+	DeleteUserPolicy(*iam.DeleteUserPolicyInput) (*iam.DeleteUserPolicyOutput, error)
 
-	DeleteVirtualMFADevice(*iam.DeleteVirtualMFADeviceInput) (*iam.DeleteVirtualMFADeviceOutput, awserr.Error)
+	DeleteVirtualMFADevice(*iam.DeleteVirtualMFADeviceInput) (*iam.DeleteVirtualMFADeviceOutput, error)
 
-	DetachGroupPolicy(*iam.DetachGroupPolicyInput) (*iam.DetachGroupPolicyOutput, awserr.Error)
+	DetachGroupPolicy(*iam.DetachGroupPolicyInput) (*iam.DetachGroupPolicyOutput, error)
 
-	DetachRolePolicy(*iam.DetachRolePolicyInput) (*iam.DetachRolePolicyOutput, awserr.Error)
+	DetachRolePolicy(*iam.DetachRolePolicyInput) (*iam.DetachRolePolicyOutput, error)
 
-	DetachUserPolicy(*iam.DetachUserPolicyInput) (*iam.DetachUserPolicyOutput, awserr.Error)
+	DetachUserPolicy(*iam.DetachUserPolicyInput) (*iam.DetachUserPolicyOutput, error)
 
-	EnableMFADevice(*iam.EnableMFADeviceInput) (*iam.EnableMFADeviceOutput, awserr.Error)
+	EnableMFADevice(*iam.EnableMFADeviceInput) (*iam.EnableMFADeviceOutput, error)
 
-	GenerateCredentialReport(*iam.GenerateCredentialReportInput) (*iam.GenerateCredentialReportOutput, awserr.Error)
+	GenerateCredentialReport(*iam.GenerateCredentialReportInput) (*iam.GenerateCredentialReportOutput, error)
 
-	GetAccessKeyLastUsed(*iam.GetAccessKeyLastUsedInput) (*iam.GetAccessKeyLastUsedOutput, awserr.Error)
+	GetAccessKeyLastUsed(*iam.GetAccessKeyLastUsedInput) (*iam.GetAccessKeyLastUsedOutput, error)
 
-	GetAccountAuthorizationDetails(*iam.GetAccountAuthorizationDetailsInput) (*iam.GetAccountAuthorizationDetailsOutput, awserr.Error)
+	GetAccountAuthorizationDetails(*iam.GetAccountAuthorizationDetailsInput) (*iam.GetAccountAuthorizationDetailsOutput, error)
 
-	GetAccountPasswordPolicy(*iam.GetAccountPasswordPolicyInput) (*iam.GetAccountPasswordPolicyOutput, awserr.Error)
+	GetAccountPasswordPolicy(*iam.GetAccountPasswordPolicyInput) (*iam.GetAccountPasswordPolicyOutput, error)
 
-	GetAccountSummary(*iam.GetAccountSummaryInput) (*iam.GetAccountSummaryOutput, awserr.Error)
+	GetAccountSummary(*iam.GetAccountSummaryInput) (*iam.GetAccountSummaryOutput, error)
 
-	GetCredentialReport(*iam.GetCredentialReportInput) (*iam.GetCredentialReportOutput, awserr.Error)
+	GetCredentialReport(*iam.GetCredentialReportInput) (*iam.GetCredentialReportOutput, error)
 
-	GetGroup(*iam.GetGroupInput) (*iam.GetGroupOutput, awserr.Error)
+	GetGroup(*iam.GetGroupInput) (*iam.GetGroupOutput, error)
 
-	GetGroupPolicy(*iam.GetGroupPolicyInput) (*iam.GetGroupPolicyOutput, awserr.Error)
+	GetGroupPolicy(*iam.GetGroupPolicyInput) (*iam.GetGroupPolicyOutput, error)
 
-	GetInstanceProfile(*iam.GetInstanceProfileInput) (*iam.GetInstanceProfileOutput, awserr.Error)
+	GetInstanceProfile(*iam.GetInstanceProfileInput) (*iam.GetInstanceProfileOutput, error)
 
-	GetLoginProfile(*iam.GetLoginProfileInput) (*iam.GetLoginProfileOutput, awserr.Error)
+	GetLoginProfile(*iam.GetLoginProfileInput) (*iam.GetLoginProfileOutput, error)
 
-	GetOpenIDConnectProvider(*iam.GetOpenIDConnectProviderInput) (*iam.GetOpenIDConnectProviderOutput, awserr.Error)
+	GetOpenIDConnectProvider(*iam.GetOpenIDConnectProviderInput) (*iam.GetOpenIDConnectProviderOutput, error)
 
-	GetPolicy(*iam.GetPolicyInput) (*iam.GetPolicyOutput, awserr.Error)
+	GetPolicy(*iam.GetPolicyInput) (*iam.GetPolicyOutput, error)
 
-	GetPolicyVersion(*iam.GetPolicyVersionInput) (*iam.GetPolicyVersionOutput, awserr.Error)
+	GetPolicyVersion(*iam.GetPolicyVersionInput) (*iam.GetPolicyVersionOutput, error)
 
-	GetRole(*iam.GetRoleInput) (*iam.GetRoleOutput, awserr.Error)
+	GetRole(*iam.GetRoleInput) (*iam.GetRoleOutput, error)
 
-	GetRolePolicy(*iam.GetRolePolicyInput) (*iam.GetRolePolicyOutput, awserr.Error)
+	GetRolePolicy(*iam.GetRolePolicyInput) (*iam.GetRolePolicyOutput, error)
 
-	GetSAMLProvider(*iam.GetSAMLProviderInput) (*iam.GetSAMLProviderOutput, awserr.Error)
+	GetSAMLProvider(*iam.GetSAMLProviderInput) (*iam.GetSAMLProviderOutput, error)
 
-	GetServerCertificate(*iam.GetServerCertificateInput) (*iam.GetServerCertificateOutput, awserr.Error)
+	GetServerCertificate(*iam.GetServerCertificateInput) (*iam.GetServerCertificateOutput, error)
 
-	GetUser(*iam.GetUserInput) (*iam.GetUserOutput, awserr.Error)
+	GetUser(*iam.GetUserInput) (*iam.GetUserOutput, error)
 
-	GetUserPolicy(*iam.GetUserPolicyInput) (*iam.GetUserPolicyOutput, awserr.Error)
+	GetUserPolicy(*iam.GetUserPolicyInput) (*iam.GetUserPolicyOutput, error)
 
-	ListAccessKeys(*iam.ListAccessKeysInput) (*iam.ListAccessKeysOutput, awserr.Error)
+	ListAccessKeys(*iam.ListAccessKeysInput) (*iam.ListAccessKeysOutput, error)
 
-	ListAccountAliases(*iam.ListAccountAliasesInput) (*iam.ListAccountAliasesOutput, awserr.Error)
+	ListAccountAliases(*iam.ListAccountAliasesInput) (*iam.ListAccountAliasesOutput, error)
 
-	ListAttachedGroupPolicies(*iam.ListAttachedGroupPoliciesInput) (*iam.ListAttachedGroupPoliciesOutput, awserr.Error)
+	ListAttachedGroupPolicies(*iam.ListAttachedGroupPoliciesInput) (*iam.ListAttachedGroupPoliciesOutput, error)
 
-	ListAttachedRolePolicies(*iam.ListAttachedRolePoliciesInput) (*iam.ListAttachedRolePoliciesOutput, awserr.Error)
+	ListAttachedRolePolicies(*iam.ListAttachedRolePoliciesInput) (*iam.ListAttachedRolePoliciesOutput, error)
 
-	ListAttachedUserPolicies(*iam.ListAttachedUserPoliciesInput) (*iam.ListAttachedUserPoliciesOutput, awserr.Error)
+	ListAttachedUserPolicies(*iam.ListAttachedUserPoliciesInput) (*iam.ListAttachedUserPoliciesOutput, error)
 
-	ListEntitiesForPolicy(*iam.ListEntitiesForPolicyInput) (*iam.ListEntitiesForPolicyOutput, awserr.Error)
+	ListEntitiesForPolicy(*iam.ListEntitiesForPolicyInput) (*iam.ListEntitiesForPolicyOutput, error)
 
-	ListGroupPolicies(*iam.ListGroupPoliciesInput) (*iam.ListGroupPoliciesOutput, awserr.Error)
+	ListGroupPolicies(*iam.ListGroupPoliciesInput) (*iam.ListGroupPoliciesOutput, error)
 
-	ListGroups(*iam.ListGroupsInput) (*iam.ListGroupsOutput, awserr.Error)
+	ListGroups(*iam.ListGroupsInput) (*iam.ListGroupsOutput, error)
 
-	ListGroupsForUser(*iam.ListGroupsForUserInput) (*iam.ListGroupsForUserOutput, awserr.Error)
+	ListGroupsForUser(*iam.ListGroupsForUserInput) (*iam.ListGroupsForUserOutput, error)
 
-	ListInstanceProfiles(*iam.ListInstanceProfilesInput) (*iam.ListInstanceProfilesOutput, awserr.Error)
+	ListInstanceProfiles(*iam.ListInstanceProfilesInput) (*iam.ListInstanceProfilesOutput, error)
 
-	ListInstanceProfilesForRole(*iam.ListInstanceProfilesForRoleInput) (*iam.ListInstanceProfilesForRoleOutput, awserr.Error)
+	ListInstanceProfilesForRole(*iam.ListInstanceProfilesForRoleInput) (*iam.ListInstanceProfilesForRoleOutput, error)
 
-	ListMFADevices(*iam.ListMFADevicesInput) (*iam.ListMFADevicesOutput, awserr.Error)
+	ListMFADevices(*iam.ListMFADevicesInput) (*iam.ListMFADevicesOutput, error)
 
-	ListOpenIDConnectProviders(*iam.ListOpenIDConnectProvidersInput) (*iam.ListOpenIDConnectProvidersOutput, awserr.Error)
+	ListOpenIDConnectProviders(*iam.ListOpenIDConnectProvidersInput) (*iam.ListOpenIDConnectProvidersOutput, error)
 
-	ListPolicies(*iam.ListPoliciesInput) (*iam.ListPoliciesOutput, awserr.Error)
+	ListPolicies(*iam.ListPoliciesInput) (*iam.ListPoliciesOutput, error)
 
-	ListPolicyVersions(*iam.ListPolicyVersionsInput) (*iam.ListPolicyVersionsOutput, awserr.Error)
+	ListPolicyVersions(*iam.ListPolicyVersionsInput) (*iam.ListPolicyVersionsOutput, error)
 
-	ListRolePolicies(*iam.ListRolePoliciesInput) (*iam.ListRolePoliciesOutput, awserr.Error)
+	ListRolePolicies(*iam.ListRolePoliciesInput) (*iam.ListRolePoliciesOutput, error)
 
-	ListRoles(*iam.ListRolesInput) (*iam.ListRolesOutput, awserr.Error)
+	ListRoles(*iam.ListRolesInput) (*iam.ListRolesOutput, error)
 
-	ListSAMLProviders(*iam.ListSAMLProvidersInput) (*iam.ListSAMLProvidersOutput, awserr.Error)
+	ListSAMLProviders(*iam.ListSAMLProvidersInput) (*iam.ListSAMLProvidersOutput, error)
 
-	ListServerCertificates(*iam.ListServerCertificatesInput) (*iam.ListServerCertificatesOutput, awserr.Error)
+	ListServerCertificates(*iam.ListServerCertificatesInput) (*iam.ListServerCertificatesOutput, error)
 
-	ListSigningCertificates(*iam.ListSigningCertificatesInput) (*iam.ListSigningCertificatesOutput, awserr.Error)
+	ListSigningCertificates(*iam.ListSigningCertificatesInput) (*iam.ListSigningCertificatesOutput, error)
 
-	ListUserPolicies(*iam.ListUserPoliciesInput) (*iam.ListUserPoliciesOutput, awserr.Error)
+	ListUserPolicies(*iam.ListUserPoliciesInput) (*iam.ListUserPoliciesOutput, error)
 
-	ListUsers(*iam.ListUsersInput) (*iam.ListUsersOutput, awserr.Error)
+	ListUsers(*iam.ListUsersInput) (*iam.ListUsersOutput, error)
 
-	ListVirtualMFADevices(*iam.ListVirtualMFADevicesInput) (*iam.ListVirtualMFADevicesOutput, awserr.Error)
+	ListVirtualMFADevices(*iam.ListVirtualMFADevicesInput) (*iam.ListVirtualMFADevicesOutput, error)
 
-	PutGroupPolicy(*iam.PutGroupPolicyInput) (*iam.PutGroupPolicyOutput, awserr.Error)
+	PutGroupPolicy(*iam.PutGroupPolicyInput) (*iam.PutGroupPolicyOutput, error)
 
-	PutRolePolicy(*iam.PutRolePolicyInput) (*iam.PutRolePolicyOutput, awserr.Error)
+	PutRolePolicy(*iam.PutRolePolicyInput) (*iam.PutRolePolicyOutput, error)
 
-	PutUserPolicy(*iam.PutUserPolicyInput) (*iam.PutUserPolicyOutput, awserr.Error)
+	PutUserPolicy(*iam.PutUserPolicyInput) (*iam.PutUserPolicyOutput, error)
 
-	RemoveClientIDFromOpenIDConnectProvider(*iam.RemoveClientIDFromOpenIDConnectProviderInput) (*iam.RemoveClientIDFromOpenIDConnectProviderOutput, awserr.Error)
+	RemoveClientIDFromOpenIDConnectProvider(*iam.RemoveClientIDFromOpenIDConnectProviderInput) (*iam.RemoveClientIDFromOpenIDConnectProviderOutput, error)
 
-	RemoveRoleFromInstanceProfile(*iam.RemoveRoleFromInstanceProfileInput) (*iam.RemoveRoleFromInstanceProfileOutput, awserr.Error)
+	RemoveRoleFromInstanceProfile(*iam.RemoveRoleFromInstanceProfileInput) (*iam.RemoveRoleFromInstanceProfileOutput, error)
 
-	RemoveUserFromGroup(*iam.RemoveUserFromGroupInput) (*iam.RemoveUserFromGroupOutput, awserr.Error)
+	RemoveUserFromGroup(*iam.RemoveUserFromGroupInput) (*iam.RemoveUserFromGroupOutput, error)
 
-	ResyncMFADevice(*iam.ResyncMFADeviceInput) (*iam.ResyncMFADeviceOutput, awserr.Error)
+	ResyncMFADevice(*iam.ResyncMFADeviceInput) (*iam.ResyncMFADeviceOutput, error)
 
-	SetDefaultPolicyVersion(*iam.SetDefaultPolicyVersionInput) (*iam.SetDefaultPolicyVersionOutput, awserr.Error)
+	SetDefaultPolicyVersion(*iam.SetDefaultPolicyVersionInput) (*iam.SetDefaultPolicyVersionOutput, error)
 
-	UpdateAccessKey(*iam.UpdateAccessKeyInput) (*iam.UpdateAccessKeyOutput, awserr.Error)
+	UpdateAccessKey(*iam.UpdateAccessKeyInput) (*iam.UpdateAccessKeyOutput, error)
 
-	UpdateAccountPasswordPolicy(*iam.UpdateAccountPasswordPolicyInput) (*iam.UpdateAccountPasswordPolicyOutput, awserr.Error)
+	UpdateAccountPasswordPolicy(*iam.UpdateAccountPasswordPolicyInput) (*iam.UpdateAccountPasswordPolicyOutput, error)
 
-	UpdateAssumeRolePolicy(*iam.UpdateAssumeRolePolicyInput) (*iam.UpdateAssumeRolePolicyOutput, awserr.Error)
+	UpdateAssumeRolePolicy(*iam.UpdateAssumeRolePolicyInput) (*iam.UpdateAssumeRolePolicyOutput, error)
 
-	UpdateGroup(*iam.UpdateGroupInput) (*iam.UpdateGroupOutput, awserr.Error)
+	UpdateGroup(*iam.UpdateGroupInput) (*iam.UpdateGroupOutput, error)
 
-	UpdateLoginProfile(*iam.UpdateLoginProfileInput) (*iam.UpdateLoginProfileOutput, awserr.Error)
+	UpdateLoginProfile(*iam.UpdateLoginProfileInput) (*iam.UpdateLoginProfileOutput, error)
 
-	UpdateOpenIDConnectProviderThumbprint(*iam.UpdateOpenIDConnectProviderThumbprintInput) (*iam.UpdateOpenIDConnectProviderThumbprintOutput, awserr.Error)
+	UpdateOpenIDConnectProviderThumbprint(*iam.UpdateOpenIDConnectProviderThumbprintInput) (*iam.UpdateOpenIDConnectProviderThumbprintOutput, error)
 
-	UpdateSAMLProvider(*iam.UpdateSAMLProviderInput) (*iam.UpdateSAMLProviderOutput, awserr.Error)
+	UpdateSAMLProvider(*iam.UpdateSAMLProviderInput) (*iam.UpdateSAMLProviderOutput, error)
 
-	UpdateServerCertificate(*iam.UpdateServerCertificateInput) (*iam.UpdateServerCertificateOutput, awserr.Error)
+	UpdateServerCertificate(*iam.UpdateServerCertificateInput) (*iam.UpdateServerCertificateOutput, error)
 
-	UpdateSigningCertificate(*iam.UpdateSigningCertificateInput) (*iam.UpdateSigningCertificateOutput, awserr.Error)
+	UpdateSigningCertificate(*iam.UpdateSigningCertificateInput) (*iam.UpdateSigningCertificateOutput, error)
 
-	UpdateUser(*iam.UpdateUserInput) (*iam.UpdateUserOutput, awserr.Error)
+	UpdateUser(*iam.UpdateUserInput) (*iam.UpdateUserOutput, error)
 
-	UploadServerCertificate(*iam.UploadServerCertificateInput) (*iam.UploadServerCertificateOutput, awserr.Error)
+	UploadServerCertificate(*iam.UploadServerCertificateInput) (*iam.UploadServerCertificateOutput, error)
 
-	UploadSigningCertificate(*iam.UploadSigningCertificateInput) (*iam.UploadSigningCertificateOutput, awserr.Error)
+	UploadSigningCertificate(*iam.UploadSigningCertificateInput) (*iam.UploadSigningCertificateOutput, error)
 }

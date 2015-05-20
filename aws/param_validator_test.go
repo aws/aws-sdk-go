@@ -5,6 +5,7 @@ import (
 
 	"github.com/awslabs/aws-sdk-go/aws"
 	"github.com/stretchr/testify/assert"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var service = func() *aws.Service {
@@ -58,8 +59,8 @@ func TestMissingRequiredParameters(t *testing.T) {
 	aws.ValidateParameters(req)
 
 	assert.Error(t, req.Error)
-	assert.Equal(t, "InvalidParameter", req.Error.Code())
-	assert.Equal(t, "3 validation errors:\n- missing required parameter: RequiredList\n- missing required parameter: RequiredMap\n- missing required parameter: RequiredBool", req.Error.Message())
+	assert.Equal(t, "InvalidParameter", req.Error.(awserr.Error).Code())
+	assert.Equal(t, "3 validation errors:\n- missing required parameter: RequiredList\n- missing required parameter: RequiredMap\n- missing required parameter: RequiredBool", req.Error.(awserr.Error).Message())
 }
 
 func TestNestedMissingRequiredParameters(t *testing.T) {
@@ -77,7 +78,7 @@ func TestNestedMissingRequiredParameters(t *testing.T) {
 	aws.ValidateParameters(req)
 
 	assert.Error(t, req.Error)
-	assert.Equal(t, "InvalidParameter", req.Error.Code())
-	assert.Equal(t, "3 validation errors:\n- missing required parameter: RequiredList[0].Name\n- missing required parameter: RequiredMap[\"key2\"].Name\n- missing required parameter: OptionalStruct.Name", req.Error.Message())
+	assert.Equal(t, "InvalidParameter", req.Error.(awserr.Error).Code())
+	assert.Equal(t, "3 validation errors:\n- missing required parameter: RequiredList[0].Name\n- missing required parameter: RequiredMap[\"key2\"].Name\n- missing required parameter: OptionalStruct.Name", req.Error.(awserr.Error).Message())
 
 }

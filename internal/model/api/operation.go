@@ -75,7 +75,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 }
 
 {{ .Docstring }}func (c *{{ .API.StructName }}) {{ .ExportedName }}(` +
-	`input {{ .InputRef.GoType }}) ({{ .OutputRef.GoType }}, awserr.Error) {
+	`input {{ .InputRef.GoType }}) ({{ .OutputRef.GoType }}, error) {
 	req, out := c.{{ .ExportedName }}Request(input)
 	err := req.Send()
 	return out, err
@@ -97,7 +97,7 @@ func (o *Operation) GoCode() string {
 
 // tplInfSig defines the template for rendering an Operation's signature within an Interface definition.
 var tplInfSig = template.Must(template.New("opsig").Parse(`
-{{ .ExportedName }}({{ .InputRef.GoTypeWithPkgName }}) ({{ .OutputRef.GoTypeWithPkgName }}, awserr.Error)
+{{ .ExportedName }}({{ .InputRef.GoTypeWithPkgName }}) ({{ .OutputRef.GoTypeWithPkgName }}, error)
 `))
 
 // InterfaceSignature returns a string representing the Operation's interface{}
@@ -120,12 +120,15 @@ func Example{{ .API.StructName }}_{{ .ExportedName }}() {
 	{{ .ExampleInput }}
 	resp, err := svc.{{ .ExportedName }}(params)
 
-	if reqerr, ok := err.(awserr.RequestFailure); ok {
-		// A service error occurred
-		fmt.Println(reqerr.Code(), reqerr.Message(), reqerr.StatusCode(), reqerr.RequestID())
+	if awsErr, ok := err.(awserr.Error); ok {
+		// Generic AWS Error with Code, Message, and original error (if any)
+		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+		if reqErr, ok := err.(awserr.RequestFailure); ok {
+			// A service error occurred
+			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+		}
 	} else {
-		// A non-service error occurred.
-		fmt.Println(err.Code(), reqerr.Message(), err.OrigErr())
+		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.

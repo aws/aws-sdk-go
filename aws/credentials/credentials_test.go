@@ -10,10 +10,10 @@ import (
 type stubProvider struct {
 	creds   Value
 	expired bool
-	err     awserr.Error
+	err     error
 }
 
-func (s *stubProvider) Retrieve() (Value, awserr.Error) {
+func (s *stubProvider) Retrieve() (Value, error) {
 	s.expired = false
 	return s.creds, s.err
 }
@@ -42,7 +42,7 @@ func TestCredentialsGetWithError(t *testing.T) {
 	c := NewCredentials(&stubProvider{err: apierr.New("provider error", "", nil), expired: true})
 
 	_, err := c.Get()
-	assert.Equal(t, "provider error", err.Code(), "Expected provider error")
+	assert.Equal(t, "provider error", err.(awserr.Error).Code(), "Expected provider error")
 }
 
 func TestCredentialsExpire(t *testing.T) {

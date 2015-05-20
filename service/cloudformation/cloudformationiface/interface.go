@@ -4,42 +4,41 @@
 package cloudformationiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/cloudformation"
 )
 
 type CloudFormationAPI interface {
-	CancelUpdateStack(*cloudformation.CancelUpdateStackInput) (*cloudformation.CancelUpdateStackOutput, awserr.Error)
+	CancelUpdateStack(*cloudformation.CancelUpdateStackInput) (*cloudformation.CancelUpdateStackOutput, error)
 
-	CreateStack(*cloudformation.CreateStackInput) (*cloudformation.CreateStackOutput, awserr.Error)
+	CreateStack(*cloudformation.CreateStackInput) (*cloudformation.CreateStackOutput, error)
 
-	DeleteStack(*cloudformation.DeleteStackInput) (*cloudformation.DeleteStackOutput, awserr.Error)
+	DeleteStack(*cloudformation.DeleteStackInput) (*cloudformation.DeleteStackOutput, error)
 
-	DescribeStackEvents(*cloudformation.DescribeStackEventsInput) (*cloudformation.DescribeStackEventsOutput, awserr.Error)
+	DescribeStackEvents(*cloudformation.DescribeStackEventsInput) (*cloudformation.DescribeStackEventsOutput, error)
 
-	DescribeStackResource(*cloudformation.DescribeStackResourceInput) (*cloudformation.DescribeStackResourceOutput, awserr.Error)
+	DescribeStackResource(*cloudformation.DescribeStackResourceInput) (*cloudformation.DescribeStackResourceOutput, error)
 
-	DescribeStackResources(*cloudformation.DescribeStackResourcesInput) (*cloudformation.DescribeStackResourcesOutput, awserr.Error)
+	DescribeStackResources(*cloudformation.DescribeStackResourcesInput) (*cloudformation.DescribeStackResourcesOutput, error)
 
-	DescribeStacks(*cloudformation.DescribeStacksInput) (*cloudformation.DescribeStacksOutput, awserr.Error)
+	DescribeStacks(*cloudformation.DescribeStacksInput) (*cloudformation.DescribeStacksOutput, error)
 
-	EstimateTemplateCost(*cloudformation.EstimateTemplateCostInput) (*cloudformation.EstimateTemplateCostOutput, awserr.Error)
+	EstimateTemplateCost(*cloudformation.EstimateTemplateCostInput) (*cloudformation.EstimateTemplateCostOutput, error)
 
-	GetStackPolicy(*cloudformation.GetStackPolicyInput) (*cloudformation.GetStackPolicyOutput, awserr.Error)
+	GetStackPolicy(*cloudformation.GetStackPolicyInput) (*cloudformation.GetStackPolicyOutput, error)
 
-	GetTemplate(*cloudformation.GetTemplateInput) (*cloudformation.GetTemplateOutput, awserr.Error)
+	GetTemplate(*cloudformation.GetTemplateInput) (*cloudformation.GetTemplateOutput, error)
 
-	GetTemplateSummary(*cloudformation.GetTemplateSummaryInput) (*cloudformation.GetTemplateSummaryOutput, awserr.Error)
+	GetTemplateSummary(*cloudformation.GetTemplateSummaryInput) (*cloudformation.GetTemplateSummaryOutput, error)
 
-	ListStackResources(*cloudformation.ListStackResourcesInput) (*cloudformation.ListStackResourcesOutput, awserr.Error)
+	ListStackResources(*cloudformation.ListStackResourcesInput) (*cloudformation.ListStackResourcesOutput, error)
 
-	ListStacks(*cloudformation.ListStacksInput) (*cloudformation.ListStacksOutput, awserr.Error)
+	ListStacks(*cloudformation.ListStacksInput) (*cloudformation.ListStacksOutput, error)
 
-	SetStackPolicy(*cloudformation.SetStackPolicyInput) (*cloudformation.SetStackPolicyOutput, awserr.Error)
+	SetStackPolicy(*cloudformation.SetStackPolicyInput) (*cloudformation.SetStackPolicyOutput, error)
 
-	SignalResource(*cloudformation.SignalResourceInput) (*cloudformation.SignalResourceOutput, awserr.Error)
+	SignalResource(*cloudformation.SignalResourceInput) (*cloudformation.SignalResourceOutput, error)
 
-	UpdateStack(*cloudformation.UpdateStackInput) (*cloudformation.UpdateStackOutput, awserr.Error)
+	UpdateStack(*cloudformation.UpdateStackInput) (*cloudformation.UpdateStackOutput, error)
 
-	ValidateTemplate(*cloudformation.ValidateTemplateInput) (*cloudformation.ValidateTemplateOutput, awserr.Error)
+	ValidateTemplate(*cloudformation.ValidateTemplateInput) (*cloudformation.ValidateTemplateOutput, error)
 }

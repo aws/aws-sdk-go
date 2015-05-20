@@ -8,7 +8,6 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var oprw sync.Mutex
@@ -41,7 +40,7 @@ func (c *IAM) AddClientIDToOpenIDConnectProviderRequest(input *AddClientIDToOpen
 //
 // This action is idempotent; it does not fail or return an error if you add
 // an existing client ID to the provider.
-func (c *IAM) AddClientIDToOpenIDConnectProvider(input *AddClientIDToOpenIDConnectProviderInput) (*AddClientIDToOpenIDConnectProviderOutput, awserr.Error) {
+func (c *IAM) AddClientIDToOpenIDConnectProvider(input *AddClientIDToOpenIDConnectProviderInput) (*AddClientIDToOpenIDConnectProviderOutput, error) {
 	req, out := c.AddClientIDToOpenIDConnectProviderRequest(input)
 	err := req.Send()
 	return out, err
@@ -76,7 +75,7 @@ func (c *IAM) AddRoleToInstanceProfileRequest(input *AddRoleToInstanceProfileInp
 // about roles, go to Working with Roles (http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html).
 // For more information about instance profiles, go to About Instance Profiles
 // (http://docs.aws.amazon.com/IAM/latest/UserGuide/AboutInstanceProfiles.html).
-func (c *IAM) AddRoleToInstanceProfile(input *AddRoleToInstanceProfileInput) (*AddRoleToInstanceProfileOutput, awserr.Error) {
+func (c *IAM) AddRoleToInstanceProfile(input *AddRoleToInstanceProfileInput) (*AddRoleToInstanceProfileOutput, error) {
 	req, out := c.AddRoleToInstanceProfileRequest(input)
 	err := req.Send()
 	return out, err
@@ -108,7 +107,7 @@ func (c *IAM) AddUserToGroupRequest(input *AddUserToGroupInput) (req *aws.Reques
 }
 
 // Adds the specified user to the specified group.
-func (c *IAM) AddUserToGroup(input *AddUserToGroupInput) (*AddUserToGroupOutput, awserr.Error) {
+func (c *IAM) AddUserToGroup(input *AddUserToGroupInput) (*AddUserToGroupOutput, error) {
 	req, out := c.AddUserToGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -147,7 +146,7 @@ func (c *IAM) AttachGroupPolicyRequest(input *AttachGroupPolicyInput) (req *aws.
 // For more information about policies, refer to Managed Policies and Inline
 // Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
-func (c *IAM) AttachGroupPolicy(input *AttachGroupPolicyInput) (*AttachGroupPolicyOutput, awserr.Error) {
+func (c *IAM) AttachGroupPolicy(input *AttachGroupPolicyInput) (*AttachGroupPolicyOutput, error) {
 	req, out := c.AttachGroupPolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -190,7 +189,7 @@ func (c *IAM) AttachRolePolicyRequest(input *AttachRolePolicyInput) (req *aws.Re
 // in a role, use PutRolePolicy. For more information about policies, refer
 // to Managed Policies and Inline Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
-func (c *IAM) AttachRolePolicy(input *AttachRolePolicyInput) (*AttachRolePolicyOutput, awserr.Error) {
+func (c *IAM) AttachRolePolicy(input *AttachRolePolicyInput) (*AttachRolePolicyOutput, error) {
 	req, out := c.AttachRolePolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -229,7 +228,7 @@ func (c *IAM) AttachUserPolicyRequest(input *AttachUserPolicyInput) (req *aws.Re
 // For more information about policies, refer to Managed Policies and Inline
 // Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
-func (c *IAM) AttachUserPolicy(input *AttachUserPolicyInput) (*AttachUserPolicyOutput, awserr.Error) {
+func (c *IAM) AttachUserPolicy(input *AttachUserPolicyInput) (*AttachUserPolicyOutput, error) {
 	req, out := c.AttachUserPolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -266,7 +265,7 @@ func (c *IAM) ChangePasswordRequest(input *ChangePasswordInput) (req *aws.Reques
 // To change the password for a different user, see UpdateLoginProfile. For
 // more information about modifying passwords, see Managing Passwords (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_ManagingLogins.html)
 // in the Using IAM guide.
-func (c *IAM) ChangePassword(input *ChangePasswordInput) (*ChangePasswordOutput, awserr.Error) {
+func (c *IAM) ChangePassword(input *ChangePasswordInput) (*ChangePasswordOutput, error) {
 	req, out := c.ChangePasswordRequest(input)
 	err := req.Send()
 	return out, err
@@ -314,7 +313,7 @@ func (c *IAM) CreateAccessKeyRequest(input *CreateAccessKeyInput) (req *aws.Requ
 // a text file) if you want to be able to access it again. If a secret key is
 // lost, you can delete the access keys for the associated user and then create
 // new keys.
-func (c *IAM) CreateAccessKey(input *CreateAccessKeyInput) (*CreateAccessKeyOutput, awserr.Error) {
+func (c *IAM) CreateAccessKey(input *CreateAccessKeyInput) (*CreateAccessKeyOutput, error) {
 	req, out := c.CreateAccessKeyRequest(input)
 	err := req.Send()
 	return out, err
@@ -348,7 +347,7 @@ func (c *IAM) CreateAccountAliasRequest(input *CreateAccountAliasInput) (req *aw
 // Creates an alias for your AWS account. For information about using an AWS
 // account alias, see Using an Alias for Your AWS Account ID (http://docs.aws.amazon.com/IAM/latest/UserGuide/AccountAlias.html)
 // in the Using IAM guide.
-func (c *IAM) CreateAccountAlias(input *CreateAccountAliasInput) (*CreateAccountAliasOutput, awserr.Error) {
+func (c *IAM) CreateAccountAlias(input *CreateAccountAliasInput) (*CreateAccountAliasOutput, error) {
 	req, out := c.CreateAccountAliasRequest(input)
 	err := req.Send()
 	return out, err
@@ -384,7 +383,7 @@ func (c *IAM) CreateGroupRequest(input *CreateGroupInput) (req *aws.Request, out
 //  For information about the number of groups you can create, see Limitations
 // on IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html)
 // in the Using IAM guide.
-func (c *IAM) CreateGroup(input *CreateGroupInput) (*CreateGroupOutput, awserr.Error) {
+func (c *IAM) CreateGroup(input *CreateGroupInput) (*CreateGroupOutput, error) {
 	req, out := c.CreateGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -421,7 +420,7 @@ func (c *IAM) CreateInstanceProfileRequest(input *CreateInstanceProfileInput) (r
 //  For information about the number of instance profiles you can create, see
 // Limitations on IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html)
 // in the Using IAM guide.
-func (c *IAM) CreateInstanceProfile(input *CreateInstanceProfileInput) (*CreateInstanceProfileOutput, awserr.Error) {
+func (c *IAM) CreateInstanceProfile(input *CreateInstanceProfileInput) (*CreateInstanceProfileOutput, error) {
 	req, out := c.CreateInstanceProfileRequest(input)
 	err := req.Send()
 	return out, err
@@ -456,7 +455,7 @@ func (c *IAM) CreateLoginProfileRequest(input *CreateLoginProfileInput) (req *aw
 // access AWS services through the AWS Management Console. For more information
 // about managing passwords, see Managing Passwords (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_ManagingLogins.html)
 // in the Using IAM guide.
-func (c *IAM) CreateLoginProfile(input *CreateLoginProfileInput) (*CreateLoginProfileOutput, awserr.Error) {
+func (c *IAM) CreateLoginProfile(input *CreateLoginProfileInput) (*CreateLoginProfileOutput, error) {
 	req, out := c.CreateLoginProfileRequest(input)
 	err := req.Send()
 	return out, err
@@ -504,7 +503,7 @@ func (c *IAM) CreateOpenIDConnectProviderRequest(input *CreateOpenIDConnectProvi
 // Because trust for the OIDC provider is ultimately derived from the IAM provider
 // that this action creates, it is a best practice to limit access to the CreateOpenIDConnectProvider
 // action to highly-privileged users.
-func (c *IAM) CreateOpenIDConnectProvider(input *CreateOpenIDConnectProviderInput) (*CreateOpenIDConnectProviderOutput, awserr.Error) {
+func (c *IAM) CreateOpenIDConnectProvider(input *CreateOpenIDConnectProviderInput) (*CreateOpenIDConnectProviderOutput, error) {
 	req, out := c.CreateOpenIDConnectProviderRequest(input)
 	err := req.Send()
 	return out, err
@@ -545,7 +544,7 @@ func (c *IAM) CreatePolicyRequest(input *CreatePolicyInput) (req *aws.Request, o
 // For more information about managed policies in general, refer to Managed
 // Policies and Inline Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
-func (c *IAM) CreatePolicy(input *CreatePolicyInput) (*CreatePolicyOutput, awserr.Error) {
+func (c *IAM) CreatePolicy(input *CreatePolicyInput) (*CreatePolicyOutput, error) {
 	req, out := c.CreatePolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -589,7 +588,7 @@ func (c *IAM) CreatePolicyVersionRequest(input *CreatePolicyVersionInput) (req *
 // For more information about managed policy versions, see Versioning for Managed
 // Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-versions.html)
 // in the Using IAM guide.
-func (c *IAM) CreatePolicyVersion(input *CreatePolicyVersionInput) (*CreatePolicyVersionOutput, awserr.Error) {
+func (c *IAM) CreatePolicyVersion(input *CreatePolicyVersionInput) (*CreatePolicyVersionOutput, error) {
 	req, out := c.CreatePolicyVersionRequest(input)
 	err := req.Send()
 	return out, err
@@ -629,7 +628,7 @@ func (c *IAM) CreateRoleRequest(input *CreateRoleInput) (req *aws.Request, outpu
 //  The example policy grants permission to an EC2 instance to assume the role.
 // The policy is URL-encoded according to RFC 3986. For more information about
 // RFC 3986, go to http://www.faqs.org/rfcs/rfc3986.html (http://www.faqs.org/rfcs/rfc3986.html).
-func (c *IAM) CreateRole(input *CreateRoleInput) (*CreateRoleOutput, awserr.Error) {
+func (c *IAM) CreateRole(input *CreateRoleInput) (*CreateRoleOutput, error) {
 	req, out := c.CreateRoleRequest(input)
 	err := req.Send()
 	return out, err
@@ -680,7 +679,7 @@ func (c *IAM) CreateSAMLProviderRequest(input *CreateSAMLProviderInput) (req *aw
 //   For more information, see Giving Console Access Using SAML (http://docs.aws.amazon.com/STS/latest/UsingSTS/STSMgmtConsole-SAML.html)
 // and Creating Temporary Security Credentials for SAML Federation (http://docs.aws.amazon.com/STS/latest/UsingSTS/CreatingSAML.html)
 // in the Using Temporary Credentials guide.
-func (c *IAM) CreateSAMLProvider(input *CreateSAMLProviderInput) (*CreateSAMLProviderOutput, awserr.Error) {
+func (c *IAM) CreateSAMLProvider(input *CreateSAMLProviderInput) (*CreateSAMLProviderOutput, error) {
 	req, out := c.CreateSAMLProviderRequest(input)
 	err := req.Send()
 	return out, err
@@ -716,7 +715,7 @@ func (c *IAM) CreateUserRequest(input *CreateUserInput) (req *aws.Request, outpu
 //  For information about limitations on the number of users you can create,
 // see Limitations on IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html)
 // in the Using IAM guide.
-func (c *IAM) CreateUser(input *CreateUserInput) (*CreateUserOutput, awserr.Error) {
+func (c *IAM) CreateUser(input *CreateUserInput) (*CreateUserOutput, error) {
 	req, out := c.CreateUserRequest(input)
 	err := req.Send()
 	return out, err
@@ -761,7 +760,7 @@ func (c *IAM) CreateVirtualMFADeviceRequest(input *CreateVirtualMFADeviceInput) 
 // be treated like any other secret access information, such as your AWS access
 // keys or your passwords. After you provision your virtual device, you should
 // ensure that the information is destroyed following secure procedures.
-func (c *IAM) CreateVirtualMFADevice(input *CreateVirtualMFADeviceInput) (*CreateVirtualMFADeviceOutput, awserr.Error) {
+func (c *IAM) CreateVirtualMFADevice(input *CreateVirtualMFADeviceInput) (*CreateVirtualMFADeviceOutput, error) {
 	req, out := c.CreateVirtualMFADeviceRequest(input)
 	err := req.Send()
 	return out, err
@@ -798,7 +797,7 @@ func (c *IAM) DeactivateMFADeviceRequest(input *DeactivateMFADeviceInput) (req *
 // For more information about creating and working with virtual MFA devices,
 // go to Using a Virtual MFA Device (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_VirtualMFA.html)
 // in the Using IAM guide.
-func (c *IAM) DeactivateMFADevice(input *DeactivateMFADeviceInput) (*DeactivateMFADeviceOutput, awserr.Error) {
+func (c *IAM) DeactivateMFADevice(input *DeactivateMFADeviceInput) (*DeactivateMFADeviceOutput, error) {
 	req, out := c.DeactivateMFADeviceRequest(input)
 	err := req.Send()
 	return out, err
@@ -835,7 +834,7 @@ func (c *IAM) DeleteAccessKeyRequest(input *DeleteAccessKeyInput) (req *aws.Requ
 // based on the AWS access key ID signing the request. Because this action works
 // for access keys under the AWS account, you can use this action to manage
 // root credentials even if the AWS account has no associated users.
-func (c *IAM) DeleteAccessKey(input *DeleteAccessKeyInput) (*DeleteAccessKeyOutput, awserr.Error) {
+func (c *IAM) DeleteAccessKey(input *DeleteAccessKeyInput) (*DeleteAccessKeyOutput, error) {
 	req, out := c.DeleteAccessKeyRequest(input)
 	err := req.Send()
 	return out, err
@@ -869,7 +868,7 @@ func (c *IAM) DeleteAccountAliasRequest(input *DeleteAccountAliasInput) (req *aw
 // Deletes the specified AWS account alias. For information about using an AWS
 // account alias, see Using an Alias for Your AWS Account ID (http://docs.aws.amazon.com/IAM/latest/UserGuide/AccountAlias.html)
 // in the Using IAM guide.
-func (c *IAM) DeleteAccountAlias(input *DeleteAccountAliasInput) (*DeleteAccountAliasOutput, awserr.Error) {
+func (c *IAM) DeleteAccountAlias(input *DeleteAccountAliasInput) (*DeleteAccountAliasOutput, error) {
 	req, out := c.DeleteAccountAliasRequest(input)
 	err := req.Send()
 	return out, err
@@ -901,7 +900,7 @@ func (c *IAM) DeleteAccountPasswordPolicyRequest(input *DeleteAccountPasswordPol
 }
 
 // Deletes the password policy for the AWS account.
-func (c *IAM) DeleteAccountPasswordPolicy(input *DeleteAccountPasswordPolicyInput) (*DeleteAccountPasswordPolicyOutput, awserr.Error) {
+func (c *IAM) DeleteAccountPasswordPolicy(input *DeleteAccountPasswordPolicyInput) (*DeleteAccountPasswordPolicyOutput, error) {
 	req, out := c.DeleteAccountPasswordPolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -934,7 +933,7 @@ func (c *IAM) DeleteGroupRequest(input *DeleteGroupInput) (req *aws.Request, out
 
 // Deletes the specified group. The group must not contain any users or have
 // any attached policies.
-func (c *IAM) DeleteGroup(input *DeleteGroupInput) (*DeleteGroupOutput, awserr.Error) {
+func (c *IAM) DeleteGroup(input *DeleteGroupInput) (*DeleteGroupOutput, error) {
 	req, out := c.DeleteGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -971,7 +970,7 @@ func (c *IAM) DeleteGroupPolicyRequest(input *DeleteGroupPolicyInput) (req *aws.
 // policy from a group, use DetachGroupPolicy. For more information about policies,
 // refer to Managed Policies and Inline Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
-func (c *IAM) DeleteGroupPolicy(input *DeleteGroupPolicyInput) (*DeleteGroupPolicyOutput, awserr.Error) {
+func (c *IAM) DeleteGroupPolicy(input *DeleteGroupPolicyInput) (*DeleteGroupPolicyOutput, error) {
 	req, out := c.DeleteGroupPolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -1010,7 +1009,7 @@ func (c *IAM) DeleteInstanceProfileRequest(input *DeleteInstanceProfileInput) (r
 // is associated with a running instance will break any applications running
 // on the instance.  For more information about instance profiles, go to About
 // Instance Profiles (http://docs.aws.amazon.com/IAM/latest/UserGuide/AboutInstanceProfiles.html).
-func (c *IAM) DeleteInstanceProfile(input *DeleteInstanceProfileInput) (*DeleteInstanceProfileOutput, awserr.Error) {
+func (c *IAM) DeleteInstanceProfile(input *DeleteInstanceProfileInput) (*DeleteInstanceProfileOutput, error) {
 	req, out := c.DeleteInstanceProfileRequest(input)
 	err := req.Send()
 	return out, err
@@ -1048,7 +1047,7 @@ func (c *IAM) DeleteLoginProfileRequest(input *DeleteLoginProfileInput) (req *aw
 // the command line interface or the API. To prevent all user access you must
 // also either make the access key inactive or delete it. For more information
 // about making keys inactive or deleting them, see UpdateAccessKey and DeleteAccessKey.
-func (c *IAM) DeleteLoginProfile(input *DeleteLoginProfileInput) (*DeleteLoginProfileOutput, awserr.Error) {
+func (c *IAM) DeleteLoginProfile(input *DeleteLoginProfileInput) (*DeleteLoginProfileOutput, error) {
 	req, out := c.DeleteLoginProfileRequest(input)
 	err := req.Send()
 	return out, err
@@ -1087,7 +1086,7 @@ func (c *IAM) DeleteOpenIDConnectProviderRequest(input *DeleteOpenIDConnectProvi
 //
 // This action is idempotent; it does not fail or return an error if you call
 // the action for a provider that was already deleted.
-func (c *IAM) DeleteOpenIDConnectProvider(input *DeleteOpenIDConnectProviderInput) (*DeleteOpenIDConnectProviderOutput, awserr.Error) {
+func (c *IAM) DeleteOpenIDConnectProvider(input *DeleteOpenIDConnectProviderInput) (*DeleteOpenIDConnectProviderOutput, error) {
 	req, out := c.DeleteOpenIDConnectProviderRequest(input)
 	err := req.Send()
 	return out, err
@@ -1136,7 +1135,7 @@ func (c *IAM) DeletePolicyRequest(input *DeletePolicyInput) (req *aws.Request, o
 // For information about managed policies, refer to Managed Policies and Inline
 // Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
-func (c *IAM) DeletePolicy(input *DeletePolicyInput) (*DeletePolicyOutput, awserr.Error) {
+func (c *IAM) DeletePolicy(input *DeletePolicyInput) (*DeletePolicyOutput, error) {
 	req, out := c.DeletePolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -1176,7 +1175,7 @@ func (c *IAM) DeletePolicyVersionRequest(input *DeletePolicyVersionInput) (req *
 // For information about versions for managed policies, refer to Versioning
 // for Managed Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-versions.html)
 // in the Using IAM guide.
-func (c *IAM) DeletePolicyVersion(input *DeletePolicyVersionInput) (*DeletePolicyVersionOutput, awserr.Error) {
+func (c *IAM) DeletePolicyVersion(input *DeletePolicyVersionInput) (*DeletePolicyVersionOutput, error) {
 	req, out := c.DeletePolicyVersionRequest(input)
 	err := req.Send()
 	return out, err
@@ -1213,7 +1212,7 @@ func (c *IAM) DeleteRoleRequest(input *DeleteRoleInput) (req *aws.Request, outpu
 // Make sure you do not have any Amazon EC2 instances running with the role
 // you are about to delete. Deleting a role or instance profile that is associated
 // with a running instance will break any applications running on the instance.
-func (c *IAM) DeleteRole(input *DeleteRoleInput) (*DeleteRoleOutput, awserr.Error) {
+func (c *IAM) DeleteRole(input *DeleteRoleInput) (*DeleteRoleOutput, error) {
 	req, out := c.DeleteRoleRequest(input)
 	err := req.Send()
 	return out, err
@@ -1250,7 +1249,7 @@ func (c *IAM) DeleteRolePolicyRequest(input *DeleteRolePolicyInput) (req *aws.Re
 // policy from a role, use DetachRolePolicy. For more information about policies,
 // refer to Managed Policies and Inline Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
-func (c *IAM) DeleteRolePolicy(input *DeleteRolePolicyInput) (*DeleteRolePolicyOutput, awserr.Error) {
+func (c *IAM) DeleteRolePolicy(input *DeleteRolePolicyInput) (*DeleteRolePolicyOutput, error) {
 	req, out := c.DeleteRolePolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -1288,7 +1287,7 @@ func (c *IAM) DeleteSAMLProviderRequest(input *DeleteSAMLProviderInput) (req *aw
 // role that references a SAML provider that has been deleted will fail.
 //
 //  This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
-func (c *IAM) DeleteSAMLProvider(input *DeleteSAMLProviderInput) (*DeleteSAMLProviderOutput, awserr.Error) {
+func (c *IAM) DeleteSAMLProvider(input *DeleteSAMLProviderInput) (*DeleteSAMLProviderOutput, error) {
 	req, out := c.DeleteSAMLProviderRequest(input)
 	err := req.Send()
 	return out, err
@@ -1330,7 +1329,7 @@ func (c *IAM) DeleteServerCertificateRequest(input *DeleteServerCertificateInput
 // delete the certificate. For more information, go to DeleteLoadBalancerListeners
 // (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/APIReference/API_DeleteLoadBalancerListeners.html)
 // in the Elastic Load Balancing API Reference.
-func (c *IAM) DeleteServerCertificate(input *DeleteServerCertificateInput) (*DeleteServerCertificateOutput, awserr.Error) {
+func (c *IAM) DeleteServerCertificate(input *DeleteServerCertificateInput) (*DeleteServerCertificateOutput, error) {
 	req, out := c.DeleteServerCertificateRequest(input)
 	err := req.Send()
 	return out, err
@@ -1367,7 +1366,7 @@ func (c *IAM) DeleteSigningCertificateRequest(input *DeleteSigningCertificateInp
 // based on the AWS access key ID signing the request. Because this action works
 // for access keys under the AWS account, you can use this action to manage
 // root credentials even if the AWS account has no associated users.
-func (c *IAM) DeleteSigningCertificate(input *DeleteSigningCertificateInput) (*DeleteSigningCertificateOutput, awserr.Error) {
+func (c *IAM) DeleteSigningCertificate(input *DeleteSigningCertificateInput) (*DeleteSigningCertificateOutput, error) {
 	req, out := c.DeleteSigningCertificateRequest(input)
 	err := req.Send()
 	return out, err
@@ -1400,7 +1399,7 @@ func (c *IAM) DeleteUserRequest(input *DeleteUserInput) (req *aws.Request, outpu
 
 // Deletes the specified user. The user must not belong to any groups, have
 // any keys or signing certificates, or have any attached policies.
-func (c *IAM) DeleteUser(input *DeleteUserInput) (*DeleteUserOutput, awserr.Error) {
+func (c *IAM) DeleteUser(input *DeleteUserInput) (*DeleteUserOutput, error) {
 	req, out := c.DeleteUserRequest(input)
 	err := req.Send()
 	return out, err
@@ -1437,7 +1436,7 @@ func (c *IAM) DeleteUserPolicyRequest(input *DeleteUserPolicyInput) (req *aws.Re
 // policy from a user, use DetachUserPolicy. For more information about policies,
 // refer to Managed Policies and Inline Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
-func (c *IAM) DeleteUserPolicy(input *DeleteUserPolicyInput) (*DeleteUserPolicyOutput, awserr.Error) {
+func (c *IAM) DeleteUserPolicy(input *DeleteUserPolicyInput) (*DeleteUserPolicyOutput, error) {
 	req, out := c.DeleteUserPolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -1472,7 +1471,7 @@ func (c *IAM) DeleteVirtualMFADeviceRequest(input *DeleteVirtualMFADeviceInput) 
 //
 //  You must deactivate a user's virtual MFA device before you can delete it.
 // For information about deactivating MFA devices, see DeactivateMFADevice.
-func (c *IAM) DeleteVirtualMFADevice(input *DeleteVirtualMFADeviceInput) (*DeleteVirtualMFADeviceOutput, awserr.Error) {
+func (c *IAM) DeleteVirtualMFADevice(input *DeleteVirtualMFADeviceInput) (*DeleteVirtualMFADeviceOutput, error) {
 	req, out := c.DeleteVirtualMFADeviceRequest(input)
 	err := req.Send()
 	return out, err
@@ -1509,7 +1508,7 @@ func (c *IAM) DetachGroupPolicyRequest(input *DetachGroupPolicyInput) (req *aws.
 // policy, use the DeleteGroupPolicy API. For information about policies, refer
 // to Managed Policies and Inline Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
-func (c *IAM) DetachGroupPolicy(input *DetachGroupPolicyInput) (*DetachGroupPolicyOutput, awserr.Error) {
+func (c *IAM) DetachGroupPolicy(input *DetachGroupPolicyInput) (*DetachGroupPolicyOutput, error) {
 	req, out := c.DetachGroupPolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -1546,7 +1545,7 @@ func (c *IAM) DetachRolePolicyRequest(input *DetachRolePolicyInput) (req *aws.Re
 // policy, use the DeleteRolePolicy API. For information about policies, refer
 // to Managed Policies and Inline Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
-func (c *IAM) DetachRolePolicy(input *DetachRolePolicyInput) (*DetachRolePolicyOutput, awserr.Error) {
+func (c *IAM) DetachRolePolicy(input *DetachRolePolicyInput) (*DetachRolePolicyOutput, error) {
 	req, out := c.DetachRolePolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -1583,7 +1582,7 @@ func (c *IAM) DetachUserPolicyRequest(input *DetachUserPolicyInput) (req *aws.Re
 // policy, use the DeleteUserPolicy API. For information about policies, refer
 // to Managed Policies and Inline Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
-func (c *IAM) DetachUserPolicy(input *DetachUserPolicyInput) (*DetachUserPolicyOutput, awserr.Error) {
+func (c *IAM) DetachUserPolicy(input *DetachUserPolicyInput) (*DetachUserPolicyOutput, error) {
 	req, out := c.DetachUserPolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -1617,7 +1616,7 @@ func (c *IAM) EnableMFADeviceRequest(input *EnableMFADeviceInput) (req *aws.Requ
 // Enables the specified MFA device and associates it with the specified user
 // name. When enabled, the MFA device is required for every subsequent login
 // by the user name associated with the device.
-func (c *IAM) EnableMFADevice(input *EnableMFADeviceInput) (*EnableMFADeviceOutput, awserr.Error) {
+func (c *IAM) EnableMFADevice(input *EnableMFADeviceInput) (*EnableMFADeviceOutput, error) {
 	req, out := c.EnableMFADeviceRequest(input)
 	err := req.Send()
 	return out, err
@@ -1651,7 +1650,7 @@ func (c *IAM) GenerateCredentialReportRequest(input *GenerateCredentialReportInp
 // Generates a credential report for the AWS account. For more information about
 // the credential report, see Getting Credential Reports (http://docs.aws.amazon.com/IAM/latest/UserGuide/credential-reports.html)
 // in the Using IAM guide.
-func (c *IAM) GenerateCredentialReport(input *GenerateCredentialReportInput) (*GenerateCredentialReportOutput, awserr.Error) {
+func (c *IAM) GenerateCredentialReport(input *GenerateCredentialReportInput) (*GenerateCredentialReportOutput, error) {
 	req, out := c.GenerateCredentialReportRequest(input)
 	err := req.Send()
 	return out, err
@@ -1686,7 +1685,7 @@ func (c *IAM) GetAccessKeyLastUsedRequest(input *GetAccessKeyLastUsedInput) (req
 // The information includes the date and time of last use, along with the AWS
 // service and region that were specified in the last request made with that
 // key.
-func (c *IAM) GetAccessKeyLastUsed(input *GetAccessKeyLastUsedInput) (*GetAccessKeyLastUsedOutput, awserr.Error) {
+func (c *IAM) GetAccessKeyLastUsed(input *GetAccessKeyLastUsedInput) (*GetAccessKeyLastUsedOutput, error) {
 	req, out := c.GetAccessKeyLastUsedRequest(input)
 	err := req.Send()
 	return out, err
@@ -1724,7 +1723,7 @@ func (c *IAM) GetAccountAuthorizationDetailsRequest(input *GetAccountAuthorizati
 //
 // You can optionally filter the results using the Filter parameter. You can
 // paginate the results using the MaxItems and Marker parameters.
-func (c *IAM) GetAccountAuthorizationDetails(input *GetAccountAuthorizationDetailsInput) (*GetAccountAuthorizationDetailsOutput, awserr.Error) {
+func (c *IAM) GetAccountAuthorizationDetails(input *GetAccountAuthorizationDetailsInput) (*GetAccountAuthorizationDetailsOutput, error) {
 	req, out := c.GetAccountAuthorizationDetailsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1757,7 +1756,7 @@ func (c *IAM) GetAccountPasswordPolicyRequest(input *GetAccountPasswordPolicyInp
 
 // Retrieves the password policy for the AWS account. For more information about
 // using a password policy, go to Managing an IAM Password Policy (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_ManagingPasswordPolicies.html).
-func (c *IAM) GetAccountPasswordPolicy(input *GetAccountPasswordPolicyInput) (*GetAccountPasswordPolicyOutput, awserr.Error) {
+func (c *IAM) GetAccountPasswordPolicy(input *GetAccountPasswordPolicyInput) (*GetAccountPasswordPolicyOutput, error) {
 	req, out := c.GetAccountPasswordPolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -1793,7 +1792,7 @@ func (c *IAM) GetAccountSummaryRequest(input *GetAccountSummaryInput) (req *aws.
 //  For information about limitations on IAM entities, see Limitations on IAM
 // Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html)
 // in the Using IAM guide.
-func (c *IAM) GetAccountSummary(input *GetAccountSummaryInput) (*GetAccountSummaryOutput, awserr.Error) {
+func (c *IAM) GetAccountSummary(input *GetAccountSummaryInput) (*GetAccountSummaryOutput, error) {
 	req, out := c.GetAccountSummaryRequest(input)
 	err := req.Send()
 	return out, err
@@ -1827,7 +1826,7 @@ func (c *IAM) GetCredentialReportRequest(input *GetCredentialReportInput) (req *
 // Retrieves a credential report for the AWS account. For more information about
 // the credential report, see Getting Credential Reports (http://docs.aws.amazon.com/IAM/latest/UserGuide/credential-reports.html)
 // in the Using IAM guide.
-func (c *IAM) GetCredentialReport(input *GetCredentialReportInput) (*GetCredentialReportOutput, awserr.Error) {
+func (c *IAM) GetCredentialReport(input *GetCredentialReportInput) (*GetCredentialReportOutput, error) {
 	req, out := c.GetCredentialReportRequest(input)
 	err := req.Send()
 	return out, err
@@ -1860,7 +1859,7 @@ func (c *IAM) GetGroupRequest(input *GetGroupInput) (req *aws.Request, output *G
 
 // Returns a list of users that are in the specified group. You can paginate
 // the results using the MaxItems and Marker parameters.
-func (c *IAM) GetGroup(input *GetGroupInput) (*GetGroupOutput, awserr.Error) {
+func (c *IAM) GetGroup(input *GetGroupInput) (*GetGroupOutput, error) {
 	req, out := c.GetGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -1902,7 +1901,7 @@ func (c *IAM) GetGroupPolicyRequest(input *GetGroupPolicyInput) (req *aws.Reques
 // For more information about policies, refer to Managed Policies and Inline
 // Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
-func (c *IAM) GetGroupPolicy(input *GetGroupPolicyInput) (*GetGroupPolicyOutput, awserr.Error) {
+func (c *IAM) GetGroupPolicy(input *GetGroupPolicyInput) (*GetGroupPolicyOutput, error) {
 	req, out := c.GetGroupPolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -1937,7 +1936,7 @@ func (c *IAM) GetInstanceProfileRequest(input *GetInstanceProfileInput) (req *aw
 // instance profile's path, GUID, ARN, and role. For more information about
 // instance profiles, go to About Instance Profiles (http://docs.aws.amazon.com/IAM/latest/UserGuide/AboutInstanceProfiles.html).
 // For more information about ARNs, go to ARNs (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html#Identifiers_ARNs).
-func (c *IAM) GetInstanceProfile(input *GetInstanceProfileInput) (*GetInstanceProfileOutput, awserr.Error) {
+func (c *IAM) GetInstanceProfile(input *GetInstanceProfileInput) (*GetInstanceProfileOutput, error) {
 	req, out := c.GetInstanceProfileRequest(input)
 	err := req.Send()
 	return out, err
@@ -1971,7 +1970,7 @@ func (c *IAM) GetLoginProfileRequest(input *GetLoginProfileInput) (req *aws.Requ
 // Retrieves the user name and password-creation date for the specified user.
 // If the user has not been assigned a password, the action returns a 404 (NoSuchEntity)
 // error.
-func (c *IAM) GetLoginProfile(input *GetLoginProfileInput) (*GetLoginProfileOutput, awserr.Error) {
+func (c *IAM) GetLoginProfile(input *GetLoginProfileInput) (*GetLoginProfileOutput, error) {
 	req, out := c.GetLoginProfileRequest(input)
 	err := req.Send()
 	return out, err
@@ -2003,7 +2002,7 @@ func (c *IAM) GetOpenIDConnectProviderRequest(input *GetOpenIDConnectProviderInp
 }
 
 // Returns information about the specified OpenID Connect provider.
-func (c *IAM) GetOpenIDConnectProvider(input *GetOpenIDConnectProviderInput) (*GetOpenIDConnectProviderOutput, awserr.Error) {
+func (c *IAM) GetOpenIDConnectProvider(input *GetOpenIDConnectProviderInput) (*GetOpenIDConnectProviderOutput, error) {
 	req, out := c.GetOpenIDConnectProviderRequest(input)
 	err := req.Send()
 	return out, err
@@ -2048,7 +2047,7 @@ func (c *IAM) GetPolicyRequest(input *GetPolicyInput) (req *aws.Request, output 
 // For more information about policies, refer to Managed Policies and Inline
 // Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
-func (c *IAM) GetPolicy(input *GetPolicyInput) (*GetPolicyOutput, awserr.Error) {
+func (c *IAM) GetPolicy(input *GetPolicyInput) (*GetPolicyOutput, error) {
 	req, out := c.GetPolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -2091,7 +2090,7 @@ func (c *IAM) GetPolicyVersionRequest(input *GetPolicyVersionInput) (req *aws.Re
 // For more information about the types of policies, refer to Managed Policies
 // and Inline Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
-func (c *IAM) GetPolicyVersion(input *GetPolicyVersionInput) (*GetPolicyVersionOutput, awserr.Error) {
+func (c *IAM) GetPolicyVersion(input *GetPolicyVersionInput) (*GetPolicyVersionOutput, error) {
 	req, out := c.GetPolicyVersionRequest(input)
 	err := req.Send()
 	return out, err
@@ -2129,7 +2128,7 @@ func (c *IAM) GetRoleRequest(input *GetRoleInput) (req *aws.Request, output *Get
 //
 // The returned policy is URL-encoded according to RFC 3986. For more information
 // about RFC 3986, go to http://www.faqs.org/rfcs/rfc3986.html (http://www.faqs.org/rfcs/rfc3986.html).
-func (c *IAM) GetRole(input *GetRoleInput) (*GetRoleOutput, awserr.Error) {
+func (c *IAM) GetRole(input *GetRoleInput) (*GetRoleOutput, error) {
 	req, out := c.GetRoleRequest(input)
 	err := req.Send()
 	return out, err
@@ -2174,7 +2173,7 @@ func (c *IAM) GetRolePolicyRequest(input *GetRolePolicyInput) (req *aws.Request,
 //
 // For more information about roles, go to Using Roles to Delegate Permissions
 // and Federate Identities (http://docs.aws.amazon.com/IAM/latest/UserGuide/roles-toplevel.html).
-func (c *IAM) GetRolePolicy(input *GetRolePolicyInput) (*GetRolePolicyOutput, awserr.Error) {
+func (c *IAM) GetRolePolicy(input *GetRolePolicyInput) (*GetRolePolicyOutput, error) {
 	req, out := c.GetRolePolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -2209,7 +2208,7 @@ func (c *IAM) GetSAMLProviderRequest(input *GetSAMLProviderInput) (req *aws.Requ
 // was created or updated.
 //
 // This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
-func (c *IAM) GetSAMLProvider(input *GetSAMLProviderInput) (*GetSAMLProviderOutput, awserr.Error) {
+func (c *IAM) GetSAMLProvider(input *GetSAMLProviderInput) (*GetSAMLProviderOutput, error) {
 	req, out := c.GetSAMLProviderRequest(input)
 	err := req.Send()
 	return out, err
@@ -2241,7 +2240,7 @@ func (c *IAM) GetServerCertificateRequest(input *GetServerCertificateInput) (req
 }
 
 // Retrieves information about the specified server certificate.
-func (c *IAM) GetServerCertificate(input *GetServerCertificateInput) (*GetServerCertificateOutput, awserr.Error) {
+func (c *IAM) GetServerCertificate(input *GetServerCertificateInput) (*GetServerCertificateOutput, error) {
 	req, out := c.GetServerCertificateRequest(input)
 	err := req.Send()
 	return out, err
@@ -2277,7 +2276,7 @@ func (c *IAM) GetUserRequest(input *GetUserInput) (req *aws.Request, output *Get
 //
 // If you do not specify a user name, IAM determines the user name implicitly
 // based on the AWS access key ID used to sign the request.
-func (c *IAM) GetUser(input *GetUserInput) (*GetUserOutput, awserr.Error) {
+func (c *IAM) GetUser(input *GetUserInput) (*GetUserOutput, error) {
 	req, out := c.GetUserRequest(input)
 	err := req.Send()
 	return out, err
@@ -2319,7 +2318,7 @@ func (c *IAM) GetUserPolicyRequest(input *GetUserPolicyInput) (req *aws.Request,
 // For more information about policies, refer to Managed Policies and Inline
 // Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
-func (c *IAM) GetUserPolicy(input *GetUserPolicyInput) (*GetUserPolicyOutput, awserr.Error) {
+func (c *IAM) GetUserPolicy(input *GetUserPolicyInput) (*GetUserPolicyOutput, error) {
 	req, out := c.GetUserPolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -2363,7 +2362,7 @@ func (c *IAM) ListAccessKeysRequest(input *ListAccessKeysInput) (req *aws.Reques
 //
 // To ensure the security of your AWS account, the secret access key is accessible
 // only during key and user creation.
-func (c *IAM) ListAccessKeys(input *ListAccessKeysInput) (*ListAccessKeysOutput, awserr.Error) {
+func (c *IAM) ListAccessKeys(input *ListAccessKeysInput) (*ListAccessKeysOutput, error) {
 	req, out := c.ListAccessKeysRequest(input)
 	err := req.Send()
 	return out, err
@@ -2399,7 +2398,7 @@ func (c *IAM) ListAccountAliasesRequest(input *ListAccountAliasesInput) (req *aw
 // in the Using IAM guide.
 //
 //  You can paginate the results using the MaxItems and Marker parameters.
-func (c *IAM) ListAccountAliases(input *ListAccountAliasesInput) (*ListAccountAliasesOutput, awserr.Error) {
+func (c *IAM) ListAccountAliases(input *ListAccountAliasesInput) (*ListAccountAliasesOutput, error) {
 	req, out := c.ListAccountAliasesRequest(input)
 	err := req.Send()
 	return out, err
@@ -2442,7 +2441,7 @@ func (c *IAM) ListAttachedGroupPoliciesRequest(input *ListAttachedGroupPoliciesI
 // matching the specified path prefix. If there are no policies attached to
 // the specified group (or none that match the specified path prefix), the action
 // returns an empty list.
-func (c *IAM) ListAttachedGroupPolicies(input *ListAttachedGroupPoliciesInput) (*ListAttachedGroupPoliciesOutput, awserr.Error) {
+func (c *IAM) ListAttachedGroupPolicies(input *ListAttachedGroupPoliciesInput) (*ListAttachedGroupPoliciesOutput, error) {
 	req, out := c.ListAttachedGroupPoliciesRequest(input)
 	err := req.Send()
 	return out, err
@@ -2485,7 +2484,7 @@ func (c *IAM) ListAttachedRolePoliciesRequest(input *ListAttachedRolePoliciesInp
 // matching the specified path prefix. If there are no policies attached to
 // the specified role (or none that match the specified path prefix), the action
 // returns an empty list.
-func (c *IAM) ListAttachedRolePolicies(input *ListAttachedRolePoliciesInput) (*ListAttachedRolePoliciesOutput, awserr.Error) {
+func (c *IAM) ListAttachedRolePolicies(input *ListAttachedRolePoliciesInput) (*ListAttachedRolePoliciesOutput, error) {
 	req, out := c.ListAttachedRolePoliciesRequest(input)
 	err := req.Send()
 	return out, err
@@ -2528,7 +2527,7 @@ func (c *IAM) ListAttachedUserPoliciesRequest(input *ListAttachedUserPoliciesInp
 // matching the specified path prefix. If there are no policies attached to
 // the specified group (or none that match the specified path prefix), the action
 // returns an empty list.
-func (c *IAM) ListAttachedUserPolicies(input *ListAttachedUserPoliciesInput) (*ListAttachedUserPoliciesOutput, awserr.Error) {
+func (c *IAM) ListAttachedUserPolicies(input *ListAttachedUserPoliciesInput) (*ListAttachedUserPoliciesOutput, error) {
 	req, out := c.ListAttachedUserPoliciesRequest(input)
 	err := req.Send()
 	return out, err
@@ -2568,7 +2567,7 @@ func (c *IAM) ListEntitiesForPolicyRequest(input *ListEntitiesForPolicyInput) (r
 // to Role.
 //
 // You can paginate the results using the MaxItems and Marker parameters.
-func (c *IAM) ListEntitiesForPolicy(input *ListEntitiesForPolicyInput) (*ListEntitiesForPolicyOutput, awserr.Error) {
+func (c *IAM) ListEntitiesForPolicy(input *ListEntitiesForPolicyInput) (*ListEntitiesForPolicyOutput, error) {
 	req, out := c.ListEntitiesForPolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -2611,7 +2610,7 @@ func (c *IAM) ListGroupPoliciesRequest(input *ListGroupPoliciesInput) (req *aws.
 // You can paginate the results using the MaxItems and Marker parameters. If
 // there are no inline policies embedded with the specified group, the action
 // returns an empty list.
-func (c *IAM) ListGroupPolicies(input *ListGroupPoliciesInput) (*ListGroupPoliciesOutput, awserr.Error) {
+func (c *IAM) ListGroupPolicies(input *ListGroupPoliciesInput) (*ListGroupPoliciesOutput, error) {
 	req, out := c.ListGroupPoliciesRequest(input)
 	err := req.Send()
 	return out, err
@@ -2645,7 +2644,7 @@ func (c *IAM) ListGroupsRequest(input *ListGroupsInput) (req *aws.Request, outpu
 // Lists the groups that have the specified path prefix.
 //
 //  You can paginate the results using the MaxItems and Marker parameters.
-func (c *IAM) ListGroups(input *ListGroupsInput) (*ListGroupsOutput, awserr.Error) {
+func (c *IAM) ListGroups(input *ListGroupsInput) (*ListGroupsOutput, error) {
 	req, out := c.ListGroupsRequest(input)
 	err := req.Send()
 	return out, err
@@ -2679,7 +2678,7 @@ func (c *IAM) ListGroupsForUserRequest(input *ListGroupsForUserInput) (req *aws.
 // Lists the groups the specified user belongs to.
 //
 // You can paginate the results using the MaxItems and Marker parameters.
-func (c *IAM) ListGroupsForUser(input *ListGroupsForUserInput) (*ListGroupsForUserOutput, awserr.Error) {
+func (c *IAM) ListGroupsForUser(input *ListGroupsForUserInput) (*ListGroupsForUserOutput, error) {
 	req, out := c.ListGroupsForUserRequest(input)
 	err := req.Send()
 	return out, err
@@ -2715,7 +2714,7 @@ func (c *IAM) ListInstanceProfilesRequest(input *ListInstanceProfilesInput) (req
 // profiles, go to About Instance Profiles (http://docs.aws.amazon.com/IAM/latest/UserGuide/AboutInstanceProfiles.html).
 //
 // You can paginate the results using the MaxItems and Marker parameters.
-func (c *IAM) ListInstanceProfiles(input *ListInstanceProfilesInput) (*ListInstanceProfilesOutput, awserr.Error) {
+func (c *IAM) ListInstanceProfiles(input *ListInstanceProfilesInput) (*ListInstanceProfilesOutput, error) {
 	req, out := c.ListInstanceProfilesRequest(input)
 	err := req.Send()
 	return out, err
@@ -2751,7 +2750,7 @@ func (c *IAM) ListInstanceProfilesForRoleRequest(input *ListInstanceProfilesForR
 // profiles, go to About Instance Profiles (http://docs.aws.amazon.com/IAM/latest/UserGuide/AboutInstanceProfiles.html).
 //
 // You can paginate the results using the MaxItems and Marker parameters.
-func (c *IAM) ListInstanceProfilesForRole(input *ListInstanceProfilesForRoleInput) (*ListInstanceProfilesForRoleOutput, awserr.Error) {
+func (c *IAM) ListInstanceProfilesForRole(input *ListInstanceProfilesForRoleInput) (*ListInstanceProfilesForRoleOutput, error) {
 	req, out := c.ListInstanceProfilesForRoleRequest(input)
 	err := req.Send()
 	return out, err
@@ -2788,7 +2787,7 @@ func (c *IAM) ListMFADevicesRequest(input *ListMFADevicesInput) (req *aws.Reques
 // on the AWS access key ID signing the request.
 //
 // You can paginate the results using the MaxItems and Marker parameters.
-func (c *IAM) ListMFADevices(input *ListMFADevicesInput) (*ListMFADevicesOutput, awserr.Error) {
+func (c *IAM) ListMFADevices(input *ListMFADevicesInput) (*ListMFADevicesOutput, error) {
 	req, out := c.ListMFADevicesRequest(input)
 	err := req.Send()
 	return out, err
@@ -2820,7 +2819,7 @@ func (c *IAM) ListOpenIDConnectProvidersRequest(input *ListOpenIDConnectProvider
 }
 
 // Lists information about the OpenID Connect providers in the AWS account.
-func (c *IAM) ListOpenIDConnectProviders(input *ListOpenIDConnectProvidersInput) (*ListOpenIDConnectProvidersOutput, awserr.Error) {
+func (c *IAM) ListOpenIDConnectProviders(input *ListOpenIDConnectProvidersInput) (*ListOpenIDConnectProvidersOutput, error) {
 	req, out := c.ListOpenIDConnectProvidersRequest(input)
 	err := req.Send()
 	return out, err
@@ -2864,7 +2863,7 @@ func (c *IAM) ListPoliciesRequest(input *ListPoliciesInput) (req *aws.Request, o
 // For more information about managed policies, refer to Managed Policies and
 // Inline Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
-func (c *IAM) ListPolicies(input *ListPoliciesInput) (*ListPoliciesOutput, awserr.Error) {
+func (c *IAM) ListPolicies(input *ListPoliciesInput) (*ListPoliciesOutput, error) {
 	req, out := c.ListPoliciesRequest(input)
 	err := req.Send()
 	return out, err
@@ -2901,7 +2900,7 @@ func (c *IAM) ListPolicyVersionsRequest(input *ListPolicyVersionsInput) (req *aw
 // For more information about managed policies, refer to Managed Policies and
 // Inline Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
-func (c *IAM) ListPolicyVersions(input *ListPolicyVersionsInput) (*ListPolicyVersionsOutput, awserr.Error) {
+func (c *IAM) ListPolicyVersions(input *ListPolicyVersionsInput) (*ListPolicyVersionsOutput, error) {
 	req, out := c.ListPolicyVersionsRequest(input)
 	err := req.Send()
 	return out, err
@@ -2944,7 +2943,7 @@ func (c *IAM) ListRolePoliciesRequest(input *ListRolePoliciesInput) (req *aws.Re
 // You can paginate the results using the MaxItems and Marker parameters. If
 // there are no inline policies embedded with the specified role, the action
 // returns an empty list.
-func (c *IAM) ListRolePolicies(input *ListRolePoliciesInput) (*ListRolePoliciesOutput, awserr.Error) {
+func (c *IAM) ListRolePolicies(input *ListRolePoliciesInput) (*ListRolePoliciesOutput, error) {
 	req, out := c.ListRolePoliciesRequest(input)
 	err := req.Send()
 	return out, err
@@ -2983,7 +2982,7 @@ func (c *IAM) ListRolesRequest(input *ListRolesInput) (req *aws.Request, output 
 //
 // The returned policy is URL-encoded according to RFC 3986. For more information
 // about RFC 3986, go to http://www.faqs.org/rfcs/rfc3986.html (http://www.faqs.org/rfcs/rfc3986.html).
-func (c *IAM) ListRoles(input *ListRolesInput) (*ListRolesOutput, awserr.Error) {
+func (c *IAM) ListRoles(input *ListRolesInput) (*ListRolesOutput, error) {
 	req, out := c.ListRolesRequest(input)
 	err := req.Send()
 	return out, err
@@ -3017,7 +3016,7 @@ func (c *IAM) ListSAMLProvidersRequest(input *ListSAMLProvidersInput) (req *aws.
 // Lists the SAML providers in the account.
 //
 //  This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
-func (c *IAM) ListSAMLProviders(input *ListSAMLProvidersInput) (*ListSAMLProvidersOutput, awserr.Error) {
+func (c *IAM) ListSAMLProviders(input *ListSAMLProvidersInput) (*ListSAMLProvidersOutput, error) {
 	req, out := c.ListSAMLProvidersRequest(input)
 	err := req.Send()
 	return out, err
@@ -3052,7 +3051,7 @@ func (c *IAM) ListServerCertificatesRequest(input *ListServerCertificatesInput) 
 // exist, the action returns an empty list.
 //
 //  You can paginate the results using the MaxItems and Marker parameters.
-func (c *IAM) ListServerCertificates(input *ListServerCertificatesInput) (*ListServerCertificatesOutput, awserr.Error) {
+func (c *IAM) ListServerCertificates(input *ListServerCertificatesInput) (*ListServerCertificatesOutput, error) {
 	req, out := c.ListServerCertificatesRequest(input)
 	err := req.Send()
 	return out, err
@@ -3093,7 +3092,7 @@ func (c *IAM) ListSigningCertificatesRequest(input *ListSigningCertificatesInput
 // based on the AWS access key ID used to sign the request. Because this action
 // works for access keys under the AWS account, you can use this action to manage
 // root credentials even if the AWS account has no associated users.
-func (c *IAM) ListSigningCertificates(input *ListSigningCertificatesInput) (*ListSigningCertificatesOutput, awserr.Error) {
+func (c *IAM) ListSigningCertificates(input *ListSigningCertificatesInput) (*ListSigningCertificatesOutput, error) {
 	req, out := c.ListSigningCertificatesRequest(input)
 	err := req.Send()
 	return out, err
@@ -3135,7 +3134,7 @@ func (c *IAM) ListUserPoliciesRequest(input *ListUserPoliciesInput) (req *aws.Re
 // You can paginate the results using the MaxItems and Marker parameters. If
 // there are no inline policies embedded with the specified user, the action
 // returns an empty list.
-func (c *IAM) ListUserPolicies(input *ListUserPoliciesInput) (*ListUserPoliciesOutput, awserr.Error) {
+func (c *IAM) ListUserPolicies(input *ListUserPoliciesInput) (*ListUserPoliciesOutput, error) {
 	req, out := c.ListUserPoliciesRequest(input)
 	err := req.Send()
 	return out, err
@@ -3171,7 +3170,7 @@ func (c *IAM) ListUsersRequest(input *ListUsersInput) (req *aws.Request, output 
 // none, the action returns an empty list.
 //
 // You can paginate the results using the MaxItems and Marker parameters.
-func (c *IAM) ListUsers(input *ListUsersInput) (*ListUsersOutput, awserr.Error) {
+func (c *IAM) ListUsers(input *ListUsersInput) (*ListUsersOutput, error) {
 	req, out := c.ListUsersRequest(input)
 	err := req.Send()
 	return out, err
@@ -3208,7 +3207,7 @@ func (c *IAM) ListVirtualMFADevicesRequest(input *ListVirtualMFADevicesInput) (r
 // Any.
 //
 // You can paginate the results using the MaxItems and Marker parameters.
-func (c *IAM) ListVirtualMFADevices(input *ListVirtualMFADevicesInput) (*ListVirtualMFADevicesOutput, awserr.Error) {
+func (c *IAM) ListVirtualMFADevices(input *ListVirtualMFADevicesInput) (*ListVirtualMFADevicesOutput, error) {
 	req, out := c.ListVirtualMFADevicesRequest(input)
 	err := req.Send()
 	return out, err
@@ -3256,7 +3255,7 @@ func (c *IAM) PutGroupPolicyRequest(input *PutGroupPolicyInput) (req *aws.Reques
 // when calling PutGroupPolicy. For general information about using the Query
 // API with IAM, go to Making Query Requests (http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html)
 // in the Using IAM guide.
-func (c *IAM) PutGroupPolicy(input *PutGroupPolicyInput) (*PutGroupPolicyOutput, awserr.Error) {
+func (c *IAM) PutGroupPolicy(input *PutGroupPolicyInput) (*PutGroupPolicyOutput, error) {
 	req, out := c.PutGroupPolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -3310,7 +3309,7 @@ func (c *IAM) PutRolePolicyRequest(input *PutRolePolicyInput) (req *aws.Request,
 // when calling PutRolePolicy. For general information about using the Query
 // API with IAM, go to Making Query Requests (http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html)
 // in the Using IAM guide.
-func (c *IAM) PutRolePolicy(input *PutRolePolicyInput) (*PutRolePolicyOutput, awserr.Error) {
+func (c *IAM) PutRolePolicy(input *PutRolePolicyInput) (*PutRolePolicyOutput, error) {
 	req, out := c.PutRolePolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -3358,7 +3357,7 @@ func (c *IAM) PutUserPolicyRequest(input *PutUserPolicyInput) (req *aws.Request,
 // when calling PutUserPolicy. For general information about using the Query
 // API with IAM, go to Making Query Requests (http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html)
 // in the Using IAM guide.
-func (c *IAM) PutUserPolicy(input *PutUserPolicyInput) (*PutUserPolicyOutput, awserr.Error) {
+func (c *IAM) PutUserPolicy(input *PutUserPolicyInput) (*PutUserPolicyOutput, error) {
 	req, out := c.PutUserPolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -3394,7 +3393,7 @@ func (c *IAM) RemoveClientIDFromOpenIDConnectProviderRequest(input *RemoveClient
 //
 // This action is idempotent; it does not fail or return an error if you try
 // to remove a client ID that was removed previously.
-func (c *IAM) RemoveClientIDFromOpenIDConnectProvider(input *RemoveClientIDFromOpenIDConnectProviderInput) (*RemoveClientIDFromOpenIDConnectProviderOutput, awserr.Error) {
+func (c *IAM) RemoveClientIDFromOpenIDConnectProvider(input *RemoveClientIDFromOpenIDConnectProviderInput) (*RemoveClientIDFromOpenIDConnectProviderOutput, error) {
 	req, out := c.RemoveClientIDFromOpenIDConnectProviderRequest(input)
 	err := req.Send()
 	return out, err
@@ -3434,7 +3433,7 @@ func (c *IAM) RemoveRoleFromInstanceProfileRequest(input *RemoveRoleFromInstance
 // go to Working with Roles (http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html).
 // For more information about instance profiles, go to About Instance Profiles
 // (http://docs.aws.amazon.com/IAM/latest/UserGuide/AboutInstanceProfiles.html).
-func (c *IAM) RemoveRoleFromInstanceProfile(input *RemoveRoleFromInstanceProfileInput) (*RemoveRoleFromInstanceProfileOutput, awserr.Error) {
+func (c *IAM) RemoveRoleFromInstanceProfile(input *RemoveRoleFromInstanceProfileInput) (*RemoveRoleFromInstanceProfileOutput, error) {
 	req, out := c.RemoveRoleFromInstanceProfileRequest(input)
 	err := req.Send()
 	return out, err
@@ -3466,7 +3465,7 @@ func (c *IAM) RemoveUserFromGroupRequest(input *RemoveUserFromGroupInput) (req *
 }
 
 // Removes the specified user from the specified group.
-func (c *IAM) RemoveUserFromGroup(input *RemoveUserFromGroupInput) (*RemoveUserFromGroupOutput, awserr.Error) {
+func (c *IAM) RemoveUserFromGroup(input *RemoveUserFromGroupInput) (*RemoveUserFromGroupOutput, error) {
 	req, out := c.RemoveUserFromGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -3502,7 +3501,7 @@ func (c *IAM) ResyncMFADeviceRequest(input *ResyncMFADeviceInput) (req *aws.Requ
 // For more information about creating and working with virtual MFA devices,
 // go to Using a Virtual MFA Device (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_VirtualMFA.html)
 // in the Using IAM guide.
-func (c *IAM) ResyncMFADevice(input *ResyncMFADeviceInput) (*ResyncMFADeviceOutput, awserr.Error) {
+func (c *IAM) ResyncMFADevice(input *ResyncMFADeviceInput) (*ResyncMFADeviceOutput, error) {
 	req, out := c.ResyncMFADeviceRequest(input)
 	err := req.Send()
 	return out, err
@@ -3543,7 +3542,7 @@ func (c *IAM) SetDefaultPolicyVersionRequest(input *SetDefaultPolicyVersionInput
 // For information about managed policies, refer to Managed Policies and Inline
 // Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
-func (c *IAM) SetDefaultPolicyVersion(input *SetDefaultPolicyVersionInput) (*SetDefaultPolicyVersionOutput, awserr.Error) {
+func (c *IAM) SetDefaultPolicyVersion(input *SetDefaultPolicyVersionInput) (*SetDefaultPolicyVersionOutput, error) {
 	req, out := c.SetDefaultPolicyVersionRequest(input)
 	err := req.Send()
 	return out, err
@@ -3586,7 +3585,7 @@ func (c *IAM) UpdateAccessKeyRequest(input *UpdateAccessKeyInput) (req *aws.Requ
 // For information about rotating keys, see Managing Keys and Certificates
 // (http://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingCredentials.html)
 // in the Using IAM guide.
-func (c *IAM) UpdateAccessKey(input *UpdateAccessKeyInput) (*UpdateAccessKeyOutput, awserr.Error) {
+func (c *IAM) UpdateAccessKey(input *UpdateAccessKeyInput) (*UpdateAccessKeyOutput, error) {
 	req, out := c.UpdateAccessKeyRequest(input)
 	err := req.Send()
 	return out, err
@@ -3627,7 +3626,7 @@ func (c *IAM) UpdateAccountPasswordPolicyRequest(input *UpdateAccountPasswordPol
 //   For more information about using a password policy, see Managing an IAM
 // Password Policy (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_ManagingPasswordPolicies.html)
 // in the Using IAM guide.
-func (c *IAM) UpdateAccountPasswordPolicy(input *UpdateAccountPasswordPolicyInput) (*UpdateAccountPasswordPolicyOutput, awserr.Error) {
+func (c *IAM) UpdateAccountPasswordPolicy(input *UpdateAccountPasswordPolicyInput) (*UpdateAccountPasswordPolicyOutput, error) {
 	req, out := c.UpdateAccountPasswordPolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -3661,7 +3660,7 @@ func (c *IAM) UpdateAssumeRolePolicyRequest(input *UpdateAssumeRolePolicyInput) 
 // Updates the policy that grants an entity permission to assume a role. For
 // more information about roles, go to Using Roles to Delegate Permissions and
 // Federate Identities (http://docs.aws.amazon.com/IAM/latest/UserGuide/roles-toplevel.html).
-func (c *IAM) UpdateAssumeRolePolicy(input *UpdateAssumeRolePolicyInput) (*UpdateAssumeRolePolicyOutput, awserr.Error) {
+func (c *IAM) UpdateAssumeRolePolicy(input *UpdateAssumeRolePolicyInput) (*UpdateAssumeRolePolicyOutput, error) {
 	req, out := c.UpdateAssumeRolePolicyRequest(input)
 	err := req.Send()
 	return out, err
@@ -3702,7 +3701,7 @@ func (c *IAM) UpdateGroupRequest(input *UpdateGroupInput) (req *aws.Request, out
 // on Managers and MGRs, or must have permission on all (*). For more information
 // about permissions, see Permissions and Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html"
 // target="blank).
-func (c *IAM) UpdateGroup(input *UpdateGroupInput) (*UpdateGroupOutput, awserr.Error) {
+func (c *IAM) UpdateGroup(input *UpdateGroupInput) (*UpdateGroupOutput, error) {
 	req, out := c.UpdateGroupRequest(input)
 	err := req.Send()
 	return out, err
@@ -3738,7 +3737,7 @@ func (c *IAM) UpdateLoginProfileRequest(input *UpdateLoginProfileInput) (req *aw
 // Users can change their own passwords by calling ChangePassword. For more
 // information about modifying passwords, see Managing Passwords (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_ManagingLogins.html)
 // in the Using IAM guide.
-func (c *IAM) UpdateLoginProfile(input *UpdateLoginProfileInput) (*UpdateLoginProfileOutput, awserr.Error) {
+func (c *IAM) UpdateLoginProfile(input *UpdateLoginProfileInput) (*UpdateLoginProfileOutput, error) {
 	req, out := c.UpdateLoginProfileRequest(input)
 	err := req.Send()
 	return out, err
@@ -3783,7 +3782,7 @@ func (c *IAM) UpdateOpenIDConnectProviderThumbprintRequest(input *UpdateOpenIDCo
 // the provider's certificate and is validated by the thumbprint, it is a best
 // practice to limit access to the UpdateOpenIDConnectProviderThumbprint action
 // to highly-privileged users.
-func (c *IAM) UpdateOpenIDConnectProviderThumbprint(input *UpdateOpenIDConnectProviderThumbprintInput) (*UpdateOpenIDConnectProviderThumbprintOutput, awserr.Error) {
+func (c *IAM) UpdateOpenIDConnectProviderThumbprint(input *UpdateOpenIDConnectProviderThumbprintInput) (*UpdateOpenIDConnectProviderThumbprintOutput, error) {
 	req, out := c.UpdateOpenIDConnectProviderThumbprintRequest(input)
 	err := req.Send()
 	return out, err
@@ -3817,7 +3816,7 @@ func (c *IAM) UpdateSAMLProviderRequest(input *UpdateSAMLProviderInput) (req *aw
 // Updates the metadata document for an existing SAML provider.
 //
 // This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
-func (c *IAM) UpdateSAMLProvider(input *UpdateSAMLProviderInput) (*UpdateSAMLProviderOutput, awserr.Error) {
+func (c *IAM) UpdateSAMLProvider(input *UpdateSAMLProviderInput) (*UpdateSAMLProviderOutput, error) {
 	req, out := c.UpdateSAMLProviderRequest(input)
 	err := req.Send()
 	return out, err
@@ -3859,7 +3858,7 @@ func (c *IAM) UpdateServerCertificateRequest(input *UpdateServerCertificateInput
 // ProdCert, or must have permission on all (*). For more information about
 // permissions, see Permissions and Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html"
 // target="blank).
-func (c *IAM) UpdateServerCertificate(input *UpdateServerCertificateInput) (*UpdateServerCertificateOutput, awserr.Error) {
+func (c *IAM) UpdateServerCertificate(input *UpdateServerCertificateInput) (*UpdateServerCertificateOutput, error) {
 	req, out := c.UpdateServerCertificateRequest(input)
 	err := req.Send()
 	return out, err
@@ -3898,7 +3897,7 @@ func (c *IAM) UpdateSigningCertificateRequest(input *UpdateSigningCertificateInp
 // based on the AWS access key ID used to sign the request. Because this action
 // works for access keys under the AWS account, you can use this action to manage
 // root credentials even if the AWS account has no associated users.
-func (c *IAM) UpdateSigningCertificate(input *UpdateSigningCertificateInput) (*UpdateSigningCertificateOutput, awserr.Error) {
+func (c *IAM) UpdateSigningCertificate(input *UpdateSigningCertificateInput) (*UpdateSigningCertificateOutput, error) {
 	req, out := c.UpdateSigningCertificateRequest(input)
 	err := req.Send()
 	return out, err
@@ -3939,7 +3938,7 @@ func (c *IAM) UpdateUserRequest(input *UpdateUserInput) (req *aws.Request, outpu
 // on Bob and Robert, or must have permission on all (*). For more information
 // about permissions, see Permissions and Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html"
 // target="blank).
-func (c *IAM) UpdateUser(input *UpdateUserInput) (*UpdateUserOutput, awserr.Error) {
+func (c *IAM) UpdateUser(input *UpdateUserInput) (*UpdateUserOutput, error) {
 	req, out := c.UpdateUserRequest(input)
 	err := req.Send()
 	return out, err
@@ -3985,7 +3984,7 @@ func (c *IAM) UploadServerCertificateRequest(input *UploadServerCertificateInput
 // in the AWS General Reference. For general information about using the Query
 // API with IAM, go to Making Query Requests (http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html)
 // in the Using IAM guide.
-func (c *IAM) UploadServerCertificate(input *UploadServerCertificateInput) (*UploadServerCertificateOutput, awserr.Error) {
+func (c *IAM) UploadServerCertificate(input *UploadServerCertificateInput) (*UploadServerCertificateOutput, error) {
 	req, out := c.UploadServerCertificateRequest(input)
 	err := req.Send()
 	return out, err
@@ -4033,7 +4032,7 @@ func (c *IAM) UploadSigningCertificateRequest(input *UploadSigningCertificateInp
 // in the AWS General Reference. For general information about using the Query
 // API with IAM, go to Making Query Requests (http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html)
 // in the Using IAMguide.
-func (c *IAM) UploadSigningCertificate(input *UploadSigningCertificateInput) (*UploadSigningCertificateOutput, awserr.Error) {
+func (c *IAM) UploadSigningCertificate(input *UploadSigningCertificateInput) (*UploadSigningCertificateOutput, error) {
 	req, out := c.UploadSigningCertificateRequest(input)
 	err := req.Send()
 	return out, err

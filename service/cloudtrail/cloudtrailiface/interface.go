@@ -4,24 +4,23 @@
 package cloudtrailiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/service/cloudtrail"
 )
 
 type CloudTrailAPI interface {
-	CreateTrail(*cloudtrail.CreateTrailInput) (*cloudtrail.CreateTrailOutput, awserr.Error)
+	CreateTrail(*cloudtrail.CreateTrailInput) (*cloudtrail.CreateTrailOutput, error)
 
-	DeleteTrail(*cloudtrail.DeleteTrailInput) (*cloudtrail.DeleteTrailOutput, awserr.Error)
+	DeleteTrail(*cloudtrail.DeleteTrailInput) (*cloudtrail.DeleteTrailOutput, error)
 
-	DescribeTrails(*cloudtrail.DescribeTrailsInput) (*cloudtrail.DescribeTrailsOutput, awserr.Error)
+	DescribeTrails(*cloudtrail.DescribeTrailsInput) (*cloudtrail.DescribeTrailsOutput, error)
 
-	GetTrailStatus(*cloudtrail.GetTrailStatusInput) (*cloudtrail.GetTrailStatusOutput, awserr.Error)
+	GetTrailStatus(*cloudtrail.GetTrailStatusInput) (*cloudtrail.GetTrailStatusOutput, error)
 
-	LookupEvents(*cloudtrail.LookupEventsInput) (*cloudtrail.LookupEventsOutput, awserr.Error)
+	LookupEvents(*cloudtrail.LookupEventsInput) (*cloudtrail.LookupEventsOutput, error)
 
-	StartLogging(*cloudtrail.StartLoggingInput) (*cloudtrail.StartLoggingOutput, awserr.Error)
+	StartLogging(*cloudtrail.StartLoggingInput) (*cloudtrail.StartLoggingOutput, error)
 
-	StopLogging(*cloudtrail.StopLoggingInput) (*cloudtrail.StopLoggingOutput, awserr.Error)
+	StopLogging(*cloudtrail.StopLoggingInput) (*cloudtrail.StopLoggingOutput, error)
 
-	UpdateTrail(*cloudtrail.UpdateTrailInput) (*cloudtrail.UpdateTrailOutput, awserr.Error)
+	UpdateTrail(*cloudtrail.UpdateTrailInput) (*cloudtrail.UpdateTrailOutput, error)
 }
