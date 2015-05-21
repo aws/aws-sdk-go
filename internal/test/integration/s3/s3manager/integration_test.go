@@ -42,6 +42,13 @@ func setup() {
 		if err == nil {
 			break
 		}
+	}
+
+	for {
+		_, err := svc.HeadBucket(&s3.HeadBucketInput{Bucket: bucketName})
+		if err == nil {
+			break
+		}
 		time.Sleep(1 * time.Second)
 	}
 }
