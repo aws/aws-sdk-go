@@ -2,6 +2,7 @@
 package shared
 
 import (
+	"fmt"
 	"os"
 	"reflect"
 	"regexp"
@@ -67,6 +68,22 @@ func init() {
 		assert.True(T, ok, "no error returned")
 		if ok {
 			assert.Contains(T, err.Message(), data)
+		}
+	})
+
+	And(`^I expect the response error message to include one of:$`, func(table [][]string) {
+		err, ok := World["error"].(awserr.Error)
+		assert.True(T, ok, "no error returned")
+		if ok {
+			found := false
+			for _, row := range table {
+				if strings.Contains(err.Message(), row[0]) {
+					found = true
+					break
+				}
+			}
+
+			assert.True(T, found, fmt.Sprintf("no error messages matched: \"%s\"", err.Message()))
 		}
 	})
 }
