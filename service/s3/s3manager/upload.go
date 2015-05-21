@@ -33,14 +33,14 @@ var DefaultUploadOptions = &UploadOptions{
 //
 // Example:
 //
-//     output, err := s3manage.Upload(svc, input, opts)
+//     output, err := s3manager.Upload(svc, input, opts)
 //     if err != nil {
 //         if multierr, ok := err.(MultiUploadFailure); ok {
 //             // Process error and its associated uploadID
 //             fmt.Println("Error:", multierr.Code(), multierr.Message(), multierr.UploadID())
 //         } else {
 //             // Process error generically
-//             fmt.Println("Error:", err.Code(), err.Message())
+//             fmt.Println("Error:", err.Error())
 //         }
 //     }
 //
