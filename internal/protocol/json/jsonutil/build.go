@@ -178,6 +178,14 @@ func writeString(s string, buf *bytes.Buffer) {
 			buf.WriteString(`\"`)
 		} else if r == '\\' {
 			buf.WriteString(`\\`)
+		} else if r == '\b' {
+			buf.WriteString(`\b`)
+		} else if r == '\f' {
+			buf.WriteString(`\f`)
+		} else if r == '\r' {
+			buf.WriteString(`\r`)
+		} else if r == '\t' {
+			buf.WriteString(`\t`)
 		} else if r == '\n' {
 			buf.WriteString(`\n`)
 		} else if r < 32 {
