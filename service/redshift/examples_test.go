@@ -25,15 +25,19 @@ func ExampleRedshift_AuthorizeClusterSecurityGroupIngress() {
 	}
 	resp, err := svc.AuthorizeClusterSecurityGroupIngress(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -50,15 +54,19 @@ func ExampleRedshift_AuthorizeSnapshotAccess() {
 	}
 	resp, err := svc.AuthorizeSnapshotAccess(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -75,15 +83,19 @@ func ExampleRedshift_CopyClusterSnapshot() {
 	}
 	resp, err := svc.CopyClusterSnapshot(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -133,15 +145,19 @@ func ExampleRedshift_CreateCluster() {
 	}
 	resp, err := svc.CreateCluster(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -165,15 +181,19 @@ func ExampleRedshift_CreateClusterParameterGroup() {
 	}
 	resp, err := svc.CreateClusterParameterGroup(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -196,15 +216,19 @@ func ExampleRedshift_CreateClusterSecurityGroup() {
 	}
 	resp, err := svc.CreateClusterSecurityGroup(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -227,15 +251,19 @@ func ExampleRedshift_CreateClusterSnapshot() {
 	}
 	resp, err := svc.CreateClusterSnapshot(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -262,15 +290,19 @@ func ExampleRedshift_CreateClusterSubnetGroup() {
 	}
 	resp, err := svc.CreateClusterSubnetGroup(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -304,15 +336,19 @@ func ExampleRedshift_CreateEventSubscription() {
 	}
 	resp, err := svc.CreateEventSubscription(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -334,15 +370,19 @@ func ExampleRedshift_CreateHSMClientCertificate() {
 	}
 	resp, err := svc.CreateHSMClientCertificate(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -369,15 +409,19 @@ func ExampleRedshift_CreateHSMConfiguration() {
 	}
 	resp, err := svc.CreateHSMConfiguration(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -399,15 +443,19 @@ func ExampleRedshift_CreateTags() {
 	}
 	resp, err := svc.CreateTags(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -424,15 +472,19 @@ func ExampleRedshift_DeleteCluster() {
 	}
 	resp, err := svc.DeleteCluster(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -447,15 +499,19 @@ func ExampleRedshift_DeleteClusterParameterGroup() {
 	}
 	resp, err := svc.DeleteClusterParameterGroup(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -470,15 +526,19 @@ func ExampleRedshift_DeleteClusterSecurityGroup() {
 	}
 	resp, err := svc.DeleteClusterSecurityGroup(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -494,15 +554,19 @@ func ExampleRedshift_DeleteClusterSnapshot() {
 	}
 	resp, err := svc.DeleteClusterSnapshot(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -517,15 +581,19 @@ func ExampleRedshift_DeleteClusterSubnetGroup() {
 	}
 	resp, err := svc.DeleteClusterSubnetGroup(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -540,15 +608,19 @@ func ExampleRedshift_DeleteEventSubscription() {
 	}
 	resp, err := svc.DeleteEventSubscription(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -563,15 +635,19 @@ func ExampleRedshift_DeleteHSMClientCertificate() {
 	}
 	resp, err := svc.DeleteHSMClientCertificate(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -586,15 +662,19 @@ func ExampleRedshift_DeleteHSMConfiguration() {
 	}
 	resp, err := svc.DeleteHSMConfiguration(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -613,15 +693,19 @@ func ExampleRedshift_DeleteTags() {
 	}
 	resp, err := svc.DeleteTags(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -646,15 +730,19 @@ func ExampleRedshift_DescribeClusterParameterGroups() {
 	}
 	resp, err := svc.DescribeClusterParameterGroups(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -672,15 +760,19 @@ func ExampleRedshift_DescribeClusterParameters() {
 	}
 	resp, err := svc.DescribeClusterParameters(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -705,15 +797,19 @@ func ExampleRedshift_DescribeClusterSecurityGroups() {
 	}
 	resp, err := svc.DescribeClusterSecurityGroups(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -743,15 +839,19 @@ func ExampleRedshift_DescribeClusterSnapshots() {
 	}
 	resp, err := svc.DescribeClusterSnapshots(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -776,15 +876,19 @@ func ExampleRedshift_DescribeClusterSubnetGroups() {
 	}
 	resp, err := svc.DescribeClusterSubnetGroups(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -802,15 +906,19 @@ func ExampleRedshift_DescribeClusterVersions() {
 	}
 	resp, err := svc.DescribeClusterVersions(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -835,15 +943,19 @@ func ExampleRedshift_DescribeClusters() {
 	}
 	resp, err := svc.DescribeClusters(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -860,15 +972,19 @@ func ExampleRedshift_DescribeDefaultClusterParameters() {
 	}
 	resp, err := svc.DescribeDefaultClusterParameters(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -883,15 +999,19 @@ func ExampleRedshift_DescribeEventCategories() {
 	}
 	resp, err := svc.DescribeEventCategories(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -908,15 +1028,19 @@ func ExampleRedshift_DescribeEventSubscriptions() {
 	}
 	resp, err := svc.DescribeEventSubscriptions(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -937,15 +1061,19 @@ func ExampleRedshift_DescribeEvents() {
 	}
 	resp, err := svc.DescribeEvents(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -970,15 +1098,19 @@ func ExampleRedshift_DescribeHSMClientCertificates() {
 	}
 	resp, err := svc.DescribeHSMClientCertificates(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -1003,15 +1135,19 @@ func ExampleRedshift_DescribeHSMConfigurations() {
 	}
 	resp, err := svc.DescribeHSMConfigurations(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -1026,15 +1162,19 @@ func ExampleRedshift_DescribeLoggingStatus() {
 	}
 	resp, err := svc.DescribeLoggingStatus(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -1052,15 +1192,19 @@ func ExampleRedshift_DescribeOrderableClusterOptions() {
 	}
 	resp, err := svc.DescribeOrderableClusterOptions(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -1077,15 +1221,19 @@ func ExampleRedshift_DescribeReservedNodeOfferings() {
 	}
 	resp, err := svc.DescribeReservedNodeOfferings(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -1102,15 +1250,19 @@ func ExampleRedshift_DescribeReservedNodes() {
 	}
 	resp, err := svc.DescribeReservedNodes(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -1125,15 +1277,19 @@ func ExampleRedshift_DescribeResize() {
 	}
 	resp, err := svc.DescribeResize(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -1159,15 +1315,19 @@ func ExampleRedshift_DescribeTags() {
 	}
 	resp, err := svc.DescribeTags(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -1182,15 +1342,19 @@ func ExampleRedshift_DisableLogging() {
 	}
 	resp, err := svc.DisableLogging(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -1205,15 +1369,19 @@ func ExampleRedshift_DisableSnapshotCopy() {
 	}
 	resp, err := svc.DisableSnapshotCopy(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -1230,15 +1398,19 @@ func ExampleRedshift_EnableLogging() {
 	}
 	resp, err := svc.EnableLogging(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -1255,15 +1427,19 @@ func ExampleRedshift_EnableSnapshotCopy() {
 	}
 	resp, err := svc.EnableSnapshotCopy(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -1298,15 +1474,19 @@ func ExampleRedshift_ModifyCluster() {
 	}
 	resp, err := svc.ModifyCluster(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -1334,15 +1514,19 @@ func ExampleRedshift_ModifyClusterParameterGroup() {
 	}
 	resp, err := svc.ModifyClusterParameterGroup(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -1362,15 +1546,19 @@ func ExampleRedshift_ModifyClusterSubnetGroup() {
 	}
 	resp, err := svc.ModifyClusterSubnetGroup(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -1397,15 +1585,19 @@ func ExampleRedshift_ModifyEventSubscription() {
 	}
 	resp, err := svc.ModifyEventSubscription(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -1421,15 +1613,19 @@ func ExampleRedshift_ModifySnapshotCopyRetentionPeriod() {
 	}
 	resp, err := svc.ModifySnapshotCopyRetentionPeriod(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -1445,15 +1641,19 @@ func ExampleRedshift_PurchaseReservedNodeOffering() {
 	}
 	resp, err := svc.PurchaseReservedNodeOffering(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -1468,15 +1668,19 @@ func ExampleRedshift_RebootCluster() {
 	}
 	resp, err := svc.RebootCluster(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -1505,15 +1709,19 @@ func ExampleRedshift_ResetClusterParameterGroup() {
 	}
 	resp, err := svc.ResetClusterParameterGroup(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -1551,15 +1759,19 @@ func ExampleRedshift_RestoreFromClusterSnapshot() {
 	}
 	resp, err := svc.RestoreFromClusterSnapshot(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -1577,15 +1789,19 @@ func ExampleRedshift_RevokeClusterSecurityGroupIngress() {
 	}
 	resp, err := svc.RevokeClusterSecurityGroupIngress(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -1602,15 +1818,19 @@ func ExampleRedshift_RevokeSnapshotAccess() {
 	}
 	resp, err := svc.RevokeSnapshotAccess(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -1625,15 +1845,19 @@ func ExampleRedshift_RotateEncryptionKey() {
 	}
 	resp, err := svc.RotateEncryptionKey(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.

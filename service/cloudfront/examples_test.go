@@ -25,15 +25,19 @@ func ExampleCloudFront_CreateCloudFrontOriginAccessIdentity() {
 	}
 	resp, err := svc.CreateCloudFrontOriginAccessIdentity(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -217,15 +221,19 @@ func ExampleCloudFront_CreateDistribution() {
 	}
 	resp, err := svc.CreateDistribution(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -250,15 +258,19 @@ func ExampleCloudFront_CreateInvalidation() {
 	}
 	resp, err := svc.CreateInvalidation(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -302,15 +314,19 @@ func ExampleCloudFront_CreateStreamingDistribution() {
 	}
 	resp, err := svc.CreateStreamingDistribution(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -326,15 +342,19 @@ func ExampleCloudFront_DeleteCloudFrontOriginAccessIdentity() {
 	}
 	resp, err := svc.DeleteCloudFrontOriginAccessIdentity(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -350,15 +370,19 @@ func ExampleCloudFront_DeleteDistribution() {
 	}
 	resp, err := svc.DeleteDistribution(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -374,15 +398,19 @@ func ExampleCloudFront_DeleteStreamingDistribution() {
 	}
 	resp, err := svc.DeleteStreamingDistribution(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -397,15 +425,19 @@ func ExampleCloudFront_GetCloudFrontOriginAccessIdentity() {
 	}
 	resp, err := svc.GetCloudFrontOriginAccessIdentity(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -420,15 +452,19 @@ func ExampleCloudFront_GetCloudFrontOriginAccessIdentityConfig() {
 	}
 	resp, err := svc.GetCloudFrontOriginAccessIdentityConfig(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -443,15 +479,19 @@ func ExampleCloudFront_GetDistribution() {
 	}
 	resp, err := svc.GetDistribution(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -466,15 +506,19 @@ func ExampleCloudFront_GetDistributionConfig() {
 	}
 	resp, err := svc.GetDistributionConfig(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -490,15 +534,19 @@ func ExampleCloudFront_GetInvalidation() {
 	}
 	resp, err := svc.GetInvalidation(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -513,15 +561,19 @@ func ExampleCloudFront_GetStreamingDistribution() {
 	}
 	resp, err := svc.GetStreamingDistribution(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -536,15 +588,19 @@ func ExampleCloudFront_GetStreamingDistributionConfig() {
 	}
 	resp, err := svc.GetStreamingDistributionConfig(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -560,15 +616,19 @@ func ExampleCloudFront_ListCloudFrontOriginAccessIdentities() {
 	}
 	resp, err := svc.ListCloudFrontOriginAccessIdentities(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -584,15 +644,19 @@ func ExampleCloudFront_ListDistributions() {
 	}
 	resp, err := svc.ListDistributions(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -609,15 +673,19 @@ func ExampleCloudFront_ListInvalidations() {
 	}
 	resp, err := svc.ListInvalidations(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -633,15 +701,19 @@ func ExampleCloudFront_ListStreamingDistributions() {
 	}
 	resp, err := svc.ListStreamingDistributions(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -661,15 +733,19 @@ func ExampleCloudFront_UpdateCloudFrontOriginAccessIdentity() {
 	}
 	resp, err := svc.UpdateCloudFrontOriginAccessIdentity(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -855,15 +931,19 @@ func ExampleCloudFront_UpdateDistribution() {
 	}
 	resp, err := svc.UpdateDistribution(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
@@ -909,15 +989,19 @@ func ExampleCloudFront_UpdateStreamingDistribution() {
 	}
 	resp, err := svc.UpdateStreamingDistribution(params)
 
-	if awsErr, ok := err.(awserr.Error); ok {
-		// Generic AWS Error with Code, Message, and original error (if any)
-		fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-		if reqErr, ok := err.(awserr.RequestFailure); ok {
-			// A service error occurred
-			fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
 		}
-	} else {
-		fmt.Println(err.Error())
 	}
 
 	// Pretty-print the response data.
