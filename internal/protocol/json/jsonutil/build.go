@@ -3,6 +3,7 @@ package jsonutil
 import (
 	"bytes"
 	"encoding/base64"
+	"encoding/json"
 	"fmt"
 	"reflect"
 	"sort"
@@ -152,7 +153,10 @@ func buildMap(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) err
 func buildScalar(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) error {
 	switch converted := value.Interface().(type) {
 	case string:
-		writeString(converted, buf)
+		err := writeString(converted, buf)
+		if err != nil {
+			return err
+		}
 	case []byte:
 		if !value.IsNil() {
 			buf.WriteString(fmt.Sprintf("%q", base64.StdEncoding.EncodeToString(converted)))
@@ -171,28 +175,11 @@ func buildScalar(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) 
 	return nil
 }
 
-func writeString(s string, buf *bytes.Buffer) {
-	buf.WriteByte('"')
-	for _, r := range s {
-		if r == '"' {
-			buf.WriteString(`\"`)
-		} else if r == '\\' {
-			buf.WriteString(`\\`)
-		} else if r == '\b' {
-			buf.WriteString(`\b`)
-		} else if r == '\f' {
-			buf.WriteString(`\f`)
-		} else if r == '\r' {
-			buf.WriteString(`\r`)
-		} else if r == '\t' {
-			buf.WriteString(`\t`)
-		} else if r == '\n' {
-			buf.WriteString(`\n`)
-		} else if r < 32 {
-			fmt.Fprintf(buf, "\\u%0.4x", r)
-		} else {
-			buf.WriteRune(r)
-		}
+func writeString(s string, buf *bytes.Buffer) error {
+	b, err := json.Marshal(s)
+	if err != nil {
+		return err
 	}
-	buf.WriteByte('"')
+	buf.Write(b)
+	return nil
 }
