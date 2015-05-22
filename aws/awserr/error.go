@@ -19,7 +19,7 @@ package awserr
 //         log.Println("Error:", err.Error())
 //
 //         // Get original error
-//         if origErr := err.Err(); nested != nil {
+//         if origErr := err.Err(); origErr != nil {
 //             // operate on original error.
 //         }
 //     }
@@ -52,6 +52,22 @@ type Error interface {
 //         } else {
 //             log.Printf("Error:", err.Code(), err.Message()
 //     }
+//
+// Combined with awserr.Error:
+//
+//    output, err := s3manage.Upload(svc, input, opts)
+//    if err != nil {
+//        if awsErr, ok := err.(awserr.Error); ok {
+//            // Generic AWS Error with Code, Message, and original error (if any)
+//            fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+//            if reqErr, ok := err.(awserr.RequestFailure); ok {
+//                // A service error occurred
+//                fmt.Println(reqErr.StatusCode(), reqErr.RequestID())
+//            }
+//        } else {
+//            fmt.Println(err.Error())
+//        }
+//    }
 //
 type RequestFailure interface {
 	Error
