@@ -10,19 +10,23 @@ package awserr
 //
 // Example:
 //
-//     output, err := s3manage.Upload(svc, input, opts)
-//     if err != nil {
-//         // Get error details
-//         log.Println("Error:", err.Code(), err.Message())
+//    output, err := s3manage.Upload(svc, input, opts)
+//    if err != nil {
+//        if awsErr, ok := err.(awserr.Error); ok {
+//            // Get error details
+//            log.Println("Error:", err.Code(), err.Message())
 //
-//         Prints out full error message, including original error if there was one.
-//         log.Println("Error:", err.Error())
+//            Prints out full error message, including original error if there was one.
+//            log.Println("Error:", err.Error())
 //
-//         // Get original error
-//         if origErr := err.Err(); origErr != nil {
-//             // operate on original error.
-//         }
-//     }
+//            // Get original error
+//            if origErr := err.Err(); origErr != nil {
+//                // operate on original error.
+//            }
+//        } else {
+//            fmt.Println(err.Error())
+//        }
+//    }
 //
 type Error interface {
 	// Satisfy the generic error interface.
@@ -50,7 +54,8 @@ type Error interface {
 //         if reqerr, ok := err.(RequestFailure); ok {
 //             log.Printf("Request failed", reqerr.Code(), reqerr.Message(), reqerr.RequestID())
 //         } else {
-//             log.Printf("Error:", err.Code(), err.Message()
+//             log.Printf("Error:", err.Error()
+//         }
 //     }
 //
 // Combined with awserr.Error:
@@ -60,6 +65,7 @@ type Error interface {
 //        if awsErr, ok := err.(awserr.Error); ok {
 //            // Generic AWS Error with Code, Message, and original error (if any)
 //            fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+//
 //            if reqErr, ok := err.(awserr.RequestFailure); ok {
 //                // A service error occurred
 //                fmt.Println(reqErr.StatusCode(), reqErr.RequestID())
