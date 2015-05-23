@@ -83,7 +83,6 @@ func (m *multiUploadError) UploadID() string {
 	return m.uploadID
 }
 
-
 // UploadInput contains all input for upload requests to Amazon S3.
 type UploadInput struct {
 	// The canned ACL to apply to the object.
@@ -182,7 +181,7 @@ type UploadOutput struct {
 	UploadID string
 }
 
-// Extra options to pass to an Upload() call.
+// UploadOptions holds extra options to pass to an Upload() call.
 type UploadOptions struct {
 	// The buffer size (in bytes) to use when buffering data into chunks and
 	// sending them as parts to S3. The minimum allowed part size is 5MB, and
@@ -257,6 +256,27 @@ func (u *uploader) singlePart(part []byte) (*UploadOutput, error) {
 		Bucket: u.in.Bucket,
 		Key:    u.in.Key,
 		Body:   bytes.NewReader(part),
+
+		ACL:                     u.in.ACL,
+		CacheControl:            u.in.CacheControl,
+		ContentDisposition:      u.in.ContentDisposition,
+		ContentEncoding:         u.in.ContentEncoding,
+		ContentLanguage:         u.in.ContentLanguage,
+		ContentType:             u.in.ContentType,
+		Expires:                 u.in.Expires,
+		GrantFullControl:        u.in.GrantFullControl,
+		GrantRead:               u.in.GrantRead,
+		GrantReadACP:            u.in.GrantReadACP,
+		GrantWriteACP:           u.in.GrantWriteACP,
+		Metadata:                u.in.Metadata,
+		RequestPayer:            u.in.RequestPayer,
+		SSECustomerAlgorithm:    u.in.SSECustomerAlgorithm,
+		SSECustomerKey:          u.in.SSECustomerKey,
+		SSECustomerKeyMD5:       u.in.SSECustomerKeyMD5,
+		SSEKMSKeyID:             u.in.SSEKMSKeyID,
+		ServerSideEncryption:    u.in.ServerSideEncryption,
+		StorageClass:            u.in.StorageClass,
+		WebsiteRedirectLocation: u.in.WebsiteRedirectLocation,
 	})
 	if err := req.Send(); err != nil {
 		return nil, err
@@ -297,6 +317,27 @@ func (u *multiuploader) upload(firstPart []byte) (*UploadOutput, error) {
 	resp, err := u.s.CreateMultipartUpload(&s3.CreateMultipartUploadInput{
 		Bucket: u.in.Bucket,
 		Key:    u.in.Key,
+
+		ACL:                     u.in.ACL,
+		CacheControl:            u.in.CacheControl,
+		ContentDisposition:      u.in.ContentDisposition,
+		ContentEncoding:         u.in.ContentEncoding,
+		ContentLanguage:         u.in.ContentLanguage,
+		ContentType:             u.in.ContentType,
+		Expires:                 u.in.Expires,
+		GrantFullControl:        u.in.GrantFullControl,
+		GrantRead:               u.in.GrantRead,
+		GrantReadACP:            u.in.GrantReadACP,
+		GrantWriteACP:           u.in.GrantWriteACP,
+		Metadata:                u.in.Metadata,
+		RequestPayer:            u.in.RequestPayer,
+		SSECustomerAlgorithm:    u.in.SSECustomerAlgorithm,
+		SSECustomerKey:          u.in.SSECustomerKey,
+		SSECustomerKeyMD5:       u.in.SSECustomerKeyMD5,
+		SSEKMSKeyID:             u.in.SSEKMSKeyID,
+		ServerSideEncryption:    u.in.ServerSideEncryption,
+		StorageClass:            u.in.StorageClass,
+		WebsiteRedirectLocation: u.in.WebsiteRedirectLocation,
 	})
 	if err != nil {
 		return nil, err
@@ -373,6 +414,10 @@ func (u *multiuploader) send(c chunk) error {
 		Body:       bytes.NewReader(c.buf),
 		UploadID:   &u.uploadID,
 		PartNumber: &c.num,
+
+		SSECustomerAlgorithm: u.in.SSECustomerAlgorithm,
+		SSECustomerKey:       u.in.SSECustomerKey,
+		SSECustomerKeyMD5:    u.in.SSECustomerKeyMD5,
 	})
 
 	if err != nil {
