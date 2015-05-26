@@ -4,9 +4,12 @@ import (
 	"testing"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/internal/test/unit"
 	"github.com/awslabs/aws-sdk-go/service/dynamodb"
 	"github.com/stretchr/testify/assert"
 )
+
+var _ = unit.Imported
 
 // Use DynamoDB methods for simplicity
 func TestPagination(t *testing.T) {
