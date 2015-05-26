@@ -9,9 +9,9 @@ generate-test: generate-protocol-test
 
 generate:
 	go generate ./aws
-	make service
+	make services
 
-service:
+services:
 	go generate ./service
 
 integration: deps
