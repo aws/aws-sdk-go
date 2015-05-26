@@ -1,7 +1,6 @@
 package aws_test
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/awslabs/aws-sdk-go/aws"
@@ -21,10 +20,10 @@ func TestPagination(t *testing.T) {
 		&dynamodb.ListTablesOutput{TableNames: []*string{aws.String("Table5")}},
 	}
 
-	db.Handlers.Send.Init() // mock sending
-	db.Handlers.Unmarshal.Init()
-	db.Handlers.UnmarshalMeta.Init()
-	db.Handlers.ValidateResponse.Init()
+	db.Handlers.Send.Clear() // mock sending
+	db.Handlers.Unmarshal.Clear()
+	db.Handlers.UnmarshalMeta.Clear()
+	db.Handlers.ValidateResponse.Clear()
 	db.Handlers.Build.PushBack(func(r *aws.Request) {
 		in := r.Params.(*dynamodb.ListTablesInput)
 		if in == nil {
@@ -70,10 +69,10 @@ func TestPaginationEarlyExit(t *testing.T) {
 		&dynamodb.ListTablesOutput{TableNames: []*string{aws.String("Table5")}},
 	}
 
-	db.Handlers.Send.Init() // mock sending
-	db.Handlers.Unmarshal.Init()
-	db.Handlers.UnmarshalMeta.Init()
-	db.Handlers.ValidateResponse.Init()
+	db.Handlers.Send.Clear() // mock sending
+	db.Handlers.Unmarshal.Clear()
+	db.Handlers.UnmarshalMeta.Clear()
+	db.Handlers.ValidateResponse.Clear()
 	db.Handlers.Unmarshal.PushBack(func(r *aws.Request) {
 		r.Data = resps[reqNum]
 		reqNum++
@@ -81,14 +80,12 @@ func TestPaginationEarlyExit(t *testing.T) {
 
 	params := &dynamodb.ListTablesInput{Limit: aws.Long(2)}
 	db.ListTablesPages(params, func(p *dynamodb.ListTablesOutput, err error) bool {
-		fmt.Println("page", numPages, p)
 		if p == nil && err == nil {
 			gotToEnd = true
 		} else {
 			numPages++
 		}
 		if numPages == 2 {
-			fmt.Println("BREAKING")
 			return false
 		}
 		return true

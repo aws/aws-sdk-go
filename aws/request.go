@@ -236,7 +236,7 @@ func (r *Request) nextPageToken() interface{} {
 	if r.Operation.Paginator == nil {
 		return nil
 	}
-	v := awsutil.ValuesAtPath(r.Data, r.Operation.OutputToken)
+	v := awsutil.ValuesAtAnyPath(r.Data, r.Operation.OutputToken)
 	if v != nil && len(v) > 0 {
 		return v[0]
 	}
@@ -250,7 +250,7 @@ func (r *Request) NextPage() *Request {
 	}
 
 	if r.Operation.TruncationToken != "" {
-		tr := awsutil.ValuesAtPath(r.Data, r.Operation.TruncationToken)
+		tr := awsutil.ValuesAtAnyPath(r.Data, r.Operation.TruncationToken)
 		if tr == nil {
 			return nil
 		} else if len(tr) > 0 {
