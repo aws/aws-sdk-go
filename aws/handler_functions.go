@@ -3,7 +3,6 @@ package aws
 import (
 	"bytes"
 	"fmt"
-	"github.com/awslabs/aws-sdk-go/internal/apierr"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -11,7 +10,9 @@ import (
 	"regexp"
 	"strconv"
 	"time"
+
 	"github.com/awslabs/aws-sdk-go/aws/awserr"
+	"github.com/awslabs/aws-sdk-go/internal/apierr"
 )
 
 var sleepDelay = func(delay time.Duration) {
@@ -124,7 +125,7 @@ func AfterRetryHandler(r *Request) {
 var (
 	// ErrMissingRegion is an error that is returned if region configuration is
 	// not found.
-	ErrMissingRegion error = apierr.New("MissingRegion", "could not find region configuration", nil)
+	ErrMissingRegion error = apierr.New("MissingRegion", "could not find region configuration, or that service is not available in this region.", nil)
 
 	// ErrMissingEndpoint is an error that is returned if an endpoint cannot be
 	// resolved for a service.
