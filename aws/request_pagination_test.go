@@ -60,6 +60,7 @@ func TestPagination(t *testing.T) {
 	assert.Equal(t, 3, numPages)
 	assert.True(t, gotToEnd)
 	assert.Nil(t, err)
+	assert.Nil(t, params.ExclusiveStartTableName)
 }
 
 // Use DynamoDB methods for simplicity

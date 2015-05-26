@@ -264,12 +264,13 @@ func (r *Request) NextPage() *Request {
 	}
 
 	data := reflect.New(reflect.TypeOf(r.Data).Elem()).Interface()
-	nr := NewRequest(r.Service, r.Operation, r.Params, data)
-
-	awsutil.SetValueAtPath(nr.Params, nr.Operation.InputToken, token)
+	nr := NewRequest(r.Service, r.Operation, awsutil.CopyOf(r.Params), data)
+	awsutil.SetValueAtAnyPath(nr.Params, nr.Operation.InputToken, token)
 	return nr
 }
 
+// This nil value is needed to work around passing nil into reflect.Value#Call()
+// See https://groups.google.com/forum/#!topic/golang-nuts/apNcACpl_fI
 var nilval interface{}
 var rnil = reflect.ValueOf(&nilval).Elem()
 
@@ -282,24 +283,28 @@ func (r *Request) EachPage(fn interface{}) error {
 	for page := r; page != nil; page = page.NextPage() {
 		page.Send()
 
-		result := true
+		shouldContinue := true
 		args := []reflect.Value{
 			reflect.ValueOf(page.Data),
 			reflect.ValueOf(!page.HasNextPage()),
 		}
+
+		// Use rnil (see above) when page.Data is nil to work around
+		// reflect.Value#Call() on nil values.
 		if page.Data == nil {
 			args[0] = rnil
 		}
+
 		out := valfn.Call(args)
 
 		if len(out) > 0 {
 			if out[0].Kind() != reflect.Bool {
 				panic("EachPage(fn) function must return bool if it returns a value")
 			}
-			result = out[0].Bool()
+			shouldContinue = out[0].Bool()
 		}
 
-		if page.Error != nil || !result {
+		if page.Error != nil || !shouldContinue {
 			return page.Error
 		}
 	}
