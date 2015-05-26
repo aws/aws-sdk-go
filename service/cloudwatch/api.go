@@ -82,16 +82,9 @@ func (c *CloudWatch) DescribeAlarmHistory(input *DescribeAlarmHistoryInput) (*De
 	return out, err
 }
 
-func (c *CloudWatch) DescribeAlarmHistoryPages(input *DescribeAlarmHistoryInput, fn func(*DescribeAlarmHistoryOutput, error) bool) {
+func (c *CloudWatch) DescribeAlarmHistoryPages(input *DescribeAlarmHistoryInput, fn func(*DescribeAlarmHistoryOutput, bool) bool) error {
 	page, _ := c.DescribeAlarmHistoryRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeAlarmHistoryOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeAlarmHistory *aws.Operation
@@ -134,16 +127,9 @@ func (c *CloudWatch) DescribeAlarms(input *DescribeAlarmsInput) (*DescribeAlarms
 	return out, err
 }
 
-func (c *CloudWatch) DescribeAlarmsPages(input *DescribeAlarmsInput, fn func(*DescribeAlarmsOutput, error) bool) {
+func (c *CloudWatch) DescribeAlarmsPages(input *DescribeAlarmsInput, fn func(*DescribeAlarmsOutput, bool) bool) error {
 	page, _ := c.DescribeAlarmsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeAlarmsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeAlarms *aws.Operation
@@ -341,16 +327,9 @@ func (c *CloudWatch) ListMetrics(input *ListMetricsInput) (*ListMetricsOutput, e
 	return out, err
 }
 
-func (c *CloudWatch) ListMetricsPages(input *ListMetricsInput, fn func(*ListMetricsOutput, error) bool) {
+func (c *CloudWatch) ListMetricsPages(input *ListMetricsInput, fn func(*ListMetricsOutput, bool) bool) error {
 	page, _ := c.ListMetricsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListMetricsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListMetrics *aws.Operation

@@ -2829,16 +2829,9 @@ func (c *EC2) DescribeAccountAttributes(input *DescribeAccountAttributesInput) (
 	return out, err
 }
 
-func (c *EC2) DescribeAccountAttributesPages(input *DescribeAccountAttributesInput, fn func(*DescribeAccountAttributesOutput, error) bool) {
+func (c *EC2) DescribeAccountAttributesPages(input *DescribeAccountAttributesInput, fn func(*DescribeAccountAttributesOutput, bool) bool) error {
 	page, _ := c.DescribeAccountAttributesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeAccountAttributesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeAccountAttributes *aws.Operation
@@ -2883,16 +2876,9 @@ func (c *EC2) DescribeAddresses(input *DescribeAddressesInput) (*DescribeAddress
 	return out, err
 }
 
-func (c *EC2) DescribeAddressesPages(input *DescribeAddressesInput, fn func(*DescribeAddressesOutput, error) bool) {
+func (c *EC2) DescribeAddressesPages(input *DescribeAddressesInput, fn func(*DescribeAddressesOutput, bool) bool) error {
 	page, _ := c.DescribeAddressesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeAddressesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeAddresses *aws.Operation
@@ -2939,16 +2925,9 @@ func (c *EC2) DescribeAvailabilityZones(input *DescribeAvailabilityZonesInput) (
 	return out, err
 }
 
-func (c *EC2) DescribeAvailabilityZonesPages(input *DescribeAvailabilityZonesInput, fn func(*DescribeAvailabilityZonesOutput, error) bool) {
+func (c *EC2) DescribeAvailabilityZonesPages(input *DescribeAvailabilityZonesInput, fn func(*DescribeAvailabilityZonesOutput, bool) bool) error {
 	page, _ := c.DescribeAvailabilityZonesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeAvailabilityZonesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeAvailabilityZones *aws.Operation
@@ -2994,16 +2973,9 @@ func (c *EC2) DescribeBundleTasks(input *DescribeBundleTasksInput) (*DescribeBun
 	return out, err
 }
 
-func (c *EC2) DescribeBundleTasksPages(input *DescribeBundleTasksInput, fn func(*DescribeBundleTasksOutput, error) bool) {
+func (c *EC2) DescribeBundleTasksPages(input *DescribeBundleTasksInput, fn func(*DescribeBundleTasksOutput, bool) bool) error {
 	page, _ := c.DescribeBundleTasksRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeBundleTasksOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeBundleTasks *aws.Operation
@@ -3082,16 +3054,9 @@ func (c *EC2) DescribeConversionTasks(input *DescribeConversionTasksInput) (*Des
 	return out, err
 }
 
-func (c *EC2) DescribeConversionTasksPages(input *DescribeConversionTasksInput, fn func(*DescribeConversionTasksOutput, error) bool) {
+func (c *EC2) DescribeConversionTasksPages(input *DescribeConversionTasksInput, fn func(*DescribeConversionTasksOutput, bool) bool) error {
 	page, _ := c.DescribeConversionTasksRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeConversionTasksOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeConversionTasks *aws.Operation
@@ -3136,16 +3101,9 @@ func (c *EC2) DescribeCustomerGateways(input *DescribeCustomerGatewaysInput) (*D
 	return out, err
 }
 
-func (c *EC2) DescribeCustomerGatewaysPages(input *DescribeCustomerGatewaysInput, fn func(*DescribeCustomerGatewaysOutput, error) bool) {
+func (c *EC2) DescribeCustomerGatewaysPages(input *DescribeCustomerGatewaysInput, fn func(*DescribeCustomerGatewaysOutput, bool) bool) error {
 	page, _ := c.DescribeCustomerGatewaysRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeCustomerGatewaysOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeCustomerGateways *aws.Operation
@@ -3189,16 +3147,9 @@ func (c *EC2) DescribeDHCPOptions(input *DescribeDHCPOptionsInput) (*DescribeDHC
 	return out, err
 }
 
-func (c *EC2) DescribeDHCPOptionsPages(input *DescribeDHCPOptionsInput, fn func(*DescribeDHCPOptionsOutput, error) bool) {
+func (c *EC2) DescribeDHCPOptionsPages(input *DescribeDHCPOptionsInput, fn func(*DescribeDHCPOptionsOutput, bool) bool) error {
 	page, _ := c.DescribeDHCPOptionsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeDHCPOptionsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeDHCPOptions *aws.Operation
@@ -3239,16 +3190,9 @@ func (c *EC2) DescribeExportTasks(input *DescribeExportTasksInput) (*DescribeExp
 	return out, err
 }
 
-func (c *EC2) DescribeExportTasksPages(input *DescribeExportTasksInput, fn func(*DescribeExportTasksOutput, error) bool) {
+func (c *EC2) DescribeExportTasksPages(input *DescribeExportTasksInput, fn func(*DescribeExportTasksOutput, bool) bool) error {
 	page, _ := c.DescribeExportTasksRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeExportTasksOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeExportTasks *aws.Operation
@@ -3328,16 +3272,9 @@ func (c *EC2) DescribeImages(input *DescribeImagesInput) (*DescribeImagesOutput,
 	return out, err
 }
 
-func (c *EC2) DescribeImagesPages(input *DescribeImagesInput, fn func(*DescribeImagesOutput, error) bool) {
+func (c *EC2) DescribeImagesPages(input *DescribeImagesInput, fn func(*DescribeImagesOutput, bool) bool) error {
 	page, _ := c.DescribeImagesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeImagesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeImages *aws.Operation
@@ -3537,16 +3474,9 @@ func (c *EC2) DescribeInstanceStatus(input *DescribeInstanceStatusInput) (*Descr
 	return out, err
 }
 
-func (c *EC2) DescribeInstanceStatusPages(input *DescribeInstanceStatusInput, fn func(*DescribeInstanceStatusOutput, error) bool) {
+func (c *EC2) DescribeInstanceStatusPages(input *DescribeInstanceStatusInput, fn func(*DescribeInstanceStatusOutput, bool) bool) error {
 	page, _ := c.DescribeInstanceStatusRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeInstanceStatusOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeInstanceStatus *aws.Operation
@@ -3596,16 +3526,9 @@ func (c *EC2) DescribeInstances(input *DescribeInstancesInput) (*DescribeInstanc
 	return out, err
 }
 
-func (c *EC2) DescribeInstancesPages(input *DescribeInstancesInput, fn func(*DescribeInstancesOutput, error) bool) {
+func (c *EC2) DescribeInstancesPages(input *DescribeInstancesInput, fn func(*DescribeInstancesOutput, bool) bool) error {
 	page, _ := c.DescribeInstancesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeInstancesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeInstances *aws.Operation
@@ -3646,16 +3569,9 @@ func (c *EC2) DescribeInternetGateways(input *DescribeInternetGatewaysInput) (*D
 	return out, err
 }
 
-func (c *EC2) DescribeInternetGatewaysPages(input *DescribeInternetGatewaysInput, fn func(*DescribeInternetGatewaysOutput, error) bool) {
+func (c *EC2) DescribeInternetGatewaysPages(input *DescribeInternetGatewaysInput, fn func(*DescribeInternetGatewaysOutput, bool) bool) error {
 	page, _ := c.DescribeInternetGatewaysRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeInternetGatewaysOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeInternetGateways *aws.Operation
@@ -3699,16 +3615,9 @@ func (c *EC2) DescribeKeyPairs(input *DescribeKeyPairsInput) (*DescribeKeyPairsO
 	return out, err
 }
 
-func (c *EC2) DescribeKeyPairsPages(input *DescribeKeyPairsInput, fn func(*DescribeKeyPairsOutput, error) bool) {
+func (c *EC2) DescribeKeyPairsPages(input *DescribeKeyPairsInput, fn func(*DescribeKeyPairsOutput, bool) bool) error {
 	page, _ := c.DescribeKeyPairsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeKeyPairsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeKeyPairs *aws.Operation
@@ -3752,16 +3661,9 @@ func (c *EC2) DescribeNetworkACLs(input *DescribeNetworkACLsInput) (*DescribeNet
 	return out, err
 }
 
-func (c *EC2) DescribeNetworkACLsPages(input *DescribeNetworkACLsInput, fn func(*DescribeNetworkACLsOutput, error) bool) {
+func (c *EC2) DescribeNetworkACLsPages(input *DescribeNetworkACLsInput, fn func(*DescribeNetworkACLsOutput, bool) bool) error {
 	page, _ := c.DescribeNetworkACLsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeNetworkACLsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeNetworkACLs *aws.Operation
@@ -3835,16 +3737,9 @@ func (c *EC2) DescribeNetworkInterfaces(input *DescribeNetworkInterfacesInput) (
 	return out, err
 }
 
-func (c *EC2) DescribeNetworkInterfacesPages(input *DescribeNetworkInterfacesInput, fn func(*DescribeNetworkInterfacesOutput, error) bool) {
+func (c *EC2) DescribeNetworkInterfacesPages(input *DescribeNetworkInterfacesInput, fn func(*DescribeNetworkInterfacesOutput, bool) bool) error {
 	page, _ := c.DescribeNetworkInterfacesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeNetworkInterfacesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeNetworkInterfaces *aws.Operation
@@ -3887,16 +3782,9 @@ func (c *EC2) DescribePlacementGroups(input *DescribePlacementGroupsInput) (*Des
 	return out, err
 }
 
-func (c *EC2) DescribePlacementGroupsPages(input *DescribePlacementGroupsInput, fn func(*DescribePlacementGroupsOutput, error) bool) {
+func (c *EC2) DescribePlacementGroupsPages(input *DescribePlacementGroupsInput, fn func(*DescribePlacementGroupsOutput, bool) bool) error {
 	page, _ := c.DescribePlacementGroupsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribePlacementGroupsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribePlacementGroups *aws.Operation
@@ -3940,16 +3828,9 @@ func (c *EC2) DescribeRegions(input *DescribeRegionsInput) (*DescribeRegionsOutp
 	return out, err
 }
 
-func (c *EC2) DescribeRegionsPages(input *DescribeRegionsInput, fn func(*DescribeRegionsOutput, error) bool) {
+func (c *EC2) DescribeRegionsPages(input *DescribeRegionsInput, fn func(*DescribeRegionsOutput, bool) bool) error {
 	page, _ := c.DescribeRegionsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeRegionsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeRegions *aws.Operation
@@ -3993,16 +3874,9 @@ func (c *EC2) DescribeReservedInstances(input *DescribeReservedInstancesInput) (
 	return out, err
 }
 
-func (c *EC2) DescribeReservedInstancesPages(input *DescribeReservedInstancesInput, fn func(*DescribeReservedInstancesOutput, error) bool) {
+func (c *EC2) DescribeReservedInstancesPages(input *DescribeReservedInstancesInput, fn func(*DescribeReservedInstancesOutput, bool) bool) error {
 	page, _ := c.DescribeReservedInstancesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeReservedInstancesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeReservedInstances *aws.Operation
@@ -4064,16 +3938,9 @@ func (c *EC2) DescribeReservedInstancesListings(input *DescribeReservedInstances
 	return out, err
 }
 
-func (c *EC2) DescribeReservedInstancesListingsPages(input *DescribeReservedInstancesListingsInput, fn func(*DescribeReservedInstancesListingsOutput, error) bool) {
+func (c *EC2) DescribeReservedInstancesListingsPages(input *DescribeReservedInstancesListingsInput, fn func(*DescribeReservedInstancesListingsOutput, bool) bool) error {
 	page, _ := c.DescribeReservedInstancesListingsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeReservedInstancesListingsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeReservedInstancesListings *aws.Operation
@@ -4120,16 +3987,9 @@ func (c *EC2) DescribeReservedInstancesModifications(input *DescribeReservedInst
 	return out, err
 }
 
-func (c *EC2) DescribeReservedInstancesModificationsPages(input *DescribeReservedInstancesModificationsInput, fn func(*DescribeReservedInstancesModificationsOutput, error) bool) {
+func (c *EC2) DescribeReservedInstancesModificationsPages(input *DescribeReservedInstancesModificationsInput, fn func(*DescribeReservedInstancesModificationsOutput, bool) bool) error {
 	page, _ := c.DescribeReservedInstancesModificationsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeReservedInstancesModificationsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeReservedInstancesModifications *aws.Operation
@@ -4177,16 +4037,9 @@ func (c *EC2) DescribeReservedInstancesOfferings(input *DescribeReservedInstance
 	return out, err
 }
 
-func (c *EC2) DescribeReservedInstancesOfferingsPages(input *DescribeReservedInstancesOfferingsInput, fn func(*DescribeReservedInstancesOfferingsOutput, error) bool) {
+func (c *EC2) DescribeReservedInstancesOfferingsPages(input *DescribeReservedInstancesOfferingsInput, fn func(*DescribeReservedInstancesOfferingsOutput, bool) bool) error {
 	page, _ := c.DescribeReservedInstancesOfferingsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeReservedInstancesOfferingsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeReservedInstancesOfferings *aws.Operation
@@ -4230,16 +4083,9 @@ func (c *EC2) DescribeRouteTables(input *DescribeRouteTablesInput) (*DescribeRou
 	return out, err
 }
 
-func (c *EC2) DescribeRouteTablesPages(input *DescribeRouteTablesInput, fn func(*DescribeRouteTablesOutput, error) bool) {
+func (c *EC2) DescribeRouteTablesPages(input *DescribeRouteTablesInput, fn func(*DescribeRouteTablesOutput, bool) bool) error {
 	page, _ := c.DescribeRouteTablesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeRouteTablesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeRouteTables *aws.Operation
@@ -4287,16 +4133,9 @@ func (c *EC2) DescribeSecurityGroups(input *DescribeSecurityGroupsInput) (*Descr
 	return out, err
 }
 
-func (c *EC2) DescribeSecurityGroupsPages(input *DescribeSecurityGroupsInput, fn func(*DescribeSecurityGroupsOutput, error) bool) {
+func (c *EC2) DescribeSecurityGroupsPages(input *DescribeSecurityGroupsInput, fn func(*DescribeSecurityGroupsOutput, bool) bool) error {
 	page, _ := c.DescribeSecurityGroupsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeSecurityGroupsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeSecurityGroups *aws.Operation
@@ -4412,16 +4251,9 @@ func (c *EC2) DescribeSnapshots(input *DescribeSnapshotsInput) (*DescribeSnapsho
 	return out, err
 }
 
-func (c *EC2) DescribeSnapshotsPages(input *DescribeSnapshotsInput, fn func(*DescribeSnapshotsOutput, error) bool) {
+func (c *EC2) DescribeSnapshotsPages(input *DescribeSnapshotsInput, fn func(*DescribeSnapshotsOutput, bool) bool) error {
 	page, _ := c.DescribeSnapshotsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeSnapshotsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeSnapshots *aws.Operation
@@ -4507,16 +4339,9 @@ func (c *EC2) DescribeSpotInstanceRequests(input *DescribeSpotInstanceRequestsIn
 	return out, err
 }
 
-func (c *EC2) DescribeSpotInstanceRequestsPages(input *DescribeSpotInstanceRequestsInput, fn func(*DescribeSpotInstanceRequestsOutput, error) bool) {
+func (c *EC2) DescribeSpotInstanceRequestsPages(input *DescribeSpotInstanceRequestsInput, fn func(*DescribeSpotInstanceRequestsOutput, bool) bool) error {
 	page, _ := c.DescribeSpotInstanceRequestsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeSpotInstanceRequestsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeSpotInstanceRequests *aws.Operation
@@ -4565,16 +4390,9 @@ func (c *EC2) DescribeSpotPriceHistory(input *DescribeSpotPriceHistoryInput) (*D
 	return out, err
 }
 
-func (c *EC2) DescribeSpotPriceHistoryPages(input *DescribeSpotPriceHistoryInput, fn func(*DescribeSpotPriceHistoryOutput, error) bool) {
+func (c *EC2) DescribeSpotPriceHistoryPages(input *DescribeSpotPriceHistoryInput, fn func(*DescribeSpotPriceHistoryOutput, bool) bool) error {
 	page, _ := c.DescribeSpotPriceHistoryRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeSpotPriceHistoryOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeSpotPriceHistory *aws.Operation
@@ -4618,16 +4436,9 @@ func (c *EC2) DescribeSubnets(input *DescribeSubnetsInput) (*DescribeSubnetsOutp
 	return out, err
 }
 
-func (c *EC2) DescribeSubnetsPages(input *DescribeSubnetsInput, fn func(*DescribeSubnetsOutput, error) bool) {
+func (c *EC2) DescribeSubnetsPages(input *DescribeSubnetsInput, fn func(*DescribeSubnetsOutput, bool) bool) error {
 	page, _ := c.DescribeSubnetsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeSubnetsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeSubnets *aws.Operation
@@ -4671,16 +4482,9 @@ func (c *EC2) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, error
 	return out, err
 }
 
-func (c *EC2) DescribeTagsPages(input *DescribeTagsInput, fn func(*DescribeTagsOutput, error) bool) {
+func (c *EC2) DescribeTagsPages(input *DescribeTagsInput, fn func(*DescribeTagsOutput, bool) bool) error {
 	page, _ := c.DescribeTagsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeTagsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeTags *aws.Operation
@@ -4818,16 +4622,9 @@ func (c *EC2) DescribeVPCs(input *DescribeVPCsInput) (*DescribeVPCsOutput, error
 	return out, err
 }
 
-func (c *EC2) DescribeVPCsPages(input *DescribeVPCsInput, fn func(*DescribeVPCsOutput, error) bool) {
+func (c *EC2) DescribeVPCsPages(input *DescribeVPCsInput, fn func(*DescribeVPCsOutput, bool) bool) error {
 	page, _ := c.DescribeVPCsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeVPCsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeVPCs *aws.Operation
@@ -4872,16 +4669,9 @@ func (c *EC2) DescribeVPNConnections(input *DescribeVPNConnectionsInput) (*Descr
 	return out, err
 }
 
-func (c *EC2) DescribeVPNConnectionsPages(input *DescribeVPNConnectionsInput, fn func(*DescribeVPNConnectionsOutput, error) bool) {
+func (c *EC2) DescribeVPNConnectionsPages(input *DescribeVPNConnectionsInput, fn func(*DescribeVPNConnectionsOutput, bool) bool) error {
 	page, _ := c.DescribeVPNConnectionsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeVPNConnectionsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeVPNConnections *aws.Operation
@@ -4926,16 +4716,9 @@ func (c *EC2) DescribeVPNGateways(input *DescribeVPNGatewaysInput) (*DescribeVPN
 	return out, err
 }
 
-func (c *EC2) DescribeVPNGatewaysPages(input *DescribeVPNGatewaysInput, fn func(*DescribeVPNGatewaysOutput, error) bool) {
+func (c *EC2) DescribeVPNGatewaysPages(input *DescribeVPNGatewaysInput, fn func(*DescribeVPNGatewaysOutput, bool) bool) error {
 	page, _ := c.DescribeVPNGatewaysRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeVPNGatewaysOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeVPNGateways *aws.Operation
@@ -5046,16 +4829,9 @@ func (c *EC2) DescribeVolumeStatus(input *DescribeVolumeStatusInput) (*DescribeV
 	return out, err
 }
 
-func (c *EC2) DescribeVolumeStatusPages(input *DescribeVolumeStatusInput, fn func(*DescribeVolumeStatusOutput, error) bool) {
+func (c *EC2) DescribeVolumeStatusPages(input *DescribeVolumeStatusInput, fn func(*DescribeVolumeStatusOutput, bool) bool) error {
 	page, _ := c.DescribeVolumeStatusRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeVolumeStatusOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeVolumeStatus *aws.Operation
@@ -5106,16 +4882,9 @@ func (c *EC2) DescribeVolumes(input *DescribeVolumesInput) (*DescribeVolumesOutp
 	return out, err
 }
 
-func (c *EC2) DescribeVolumesPages(input *DescribeVolumesInput, fn func(*DescribeVolumesOutput, error) bool) {
+func (c *EC2) DescribeVolumesPages(input *DescribeVolumesInput, fn func(*DescribeVolumesOutput, bool) bool) error {
 	page, _ := c.DescribeVolumesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeVolumesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeVolumes *aws.Operation

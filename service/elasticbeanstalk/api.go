@@ -595,16 +595,9 @@ func (c *ElasticBeanstalk) DescribeEvents(input *DescribeEventsInput) (*Describe
 	return out, err
 }
 
-func (c *ElasticBeanstalk) DescribeEventsPages(input *DescribeEventsInput, fn func(*DescribeEventsOutput, error) bool) {
+func (c *ElasticBeanstalk) DescribeEventsPages(input *DescribeEventsInput, fn func(*DescribeEventsOutput, bool) bool) error {
 	page, _ := c.DescribeEventsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeEventsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeEvents *aws.Operation

@@ -337,16 +337,9 @@ func (c *Route53Domains) ListDomains(input *ListDomainsInput) (*ListDomainsOutpu
 	return out, err
 }
 
-func (c *Route53Domains) ListDomainsPages(input *ListDomainsInput, fn func(*ListDomainsOutput, error) bool) {
+func (c *Route53Domains) ListDomainsPages(input *ListDomainsInput, fn func(*ListDomainsOutput, bool) bool) error {
 	page, _ := c.ListDomainsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListDomainsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListDomains *aws.Operation
@@ -387,16 +380,9 @@ func (c *Route53Domains) ListOperations(input *ListOperationsInput) (*ListOperat
 	return out, err
 }
 
-func (c *Route53Domains) ListOperationsPages(input *ListOperationsInput, fn func(*ListOperationsOutput, error) bool) {
+func (c *Route53Domains) ListOperationsPages(input *ListOperationsInput, fn func(*ListOperationsOutput, bool) bool) error {
 	page, _ := c.ListOperationsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListOperationsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListOperations *aws.Operation

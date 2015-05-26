@@ -315,16 +315,9 @@ func (c *SES) ListIdentities(input *ListIdentitiesInput) (*ListIdentitiesOutput,
 	return out, err
 }
 
-func (c *SES) ListIdentitiesPages(input *ListIdentitiesInput, fn func(*ListIdentitiesOutput, error) bool) {
+func (c *SES) ListIdentitiesPages(input *ListIdentitiesInput, fn func(*ListIdentitiesOutput, bool) bool) error {
 	page, _ := c.ListIdentitiesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListIdentitiesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListIdentities *aws.Operation

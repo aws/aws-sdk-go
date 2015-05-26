@@ -269,3 +269,40 @@ func (r *Request) NextPage() *Request {
 	awsutil.SetValueAtPath(nr.Params, nr.Operation.InputToken, token)
 	return nr
 }
+
+var nilval interface{}
+var rnil = reflect.ValueOf(&nilval).Elem()
+
+func (r *Request) EachPage(fn interface{}) error {
+	valfn := reflect.ValueOf(fn)
+	if valfn.Kind() != reflect.Func {
+		panic("expected function for EachPage()")
+	}
+
+	for page := r; page != nil; page = page.NextPage() {
+		page.Send()
+
+		result := true
+		args := []reflect.Value{
+			reflect.ValueOf(page.Data),
+			reflect.ValueOf(!page.HasNextPage()),
+		}
+		if page.Data == nil {
+			args[0] = rnil
+		}
+		out := valfn.Call(args)
+
+		if len(out) > 0 {
+			if out[0].Kind() != reflect.Bool {
+				panic("EachPage(fn) function must return bool if it returns a value")
+			}
+			result = out[0].Bool()
+		}
+
+		if page.Error != nil || !result {
+			return page.Error
+		}
+	}
+
+	return nil
+}

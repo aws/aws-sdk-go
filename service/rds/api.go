@@ -835,16 +835,9 @@ func (c *RDS) DescribeDBEngineVersions(input *DescribeDBEngineVersionsInput) (*D
 	return out, err
 }
 
-func (c *RDS) DescribeDBEngineVersionsPages(input *DescribeDBEngineVersionsInput, fn func(*DescribeDBEngineVersionsOutput, error) bool) {
+func (c *RDS) DescribeDBEngineVersionsPages(input *DescribeDBEngineVersionsInput, fn func(*DescribeDBEngineVersionsOutput, bool) bool) error {
 	page, _ := c.DescribeDBEngineVersionsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeDBEngineVersionsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeDBEngineVersions *aws.Operation
@@ -885,16 +878,9 @@ func (c *RDS) DescribeDBInstances(input *DescribeDBInstancesInput) (*DescribeDBI
 	return out, err
 }
 
-func (c *RDS) DescribeDBInstancesPages(input *DescribeDBInstancesInput, fn func(*DescribeDBInstancesOutput, error) bool) {
+func (c *RDS) DescribeDBInstancesPages(input *DescribeDBInstancesInput, fn func(*DescribeDBInstancesOutput, bool) bool) error {
 	page, _ := c.DescribeDBInstancesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeDBInstancesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeDBInstances *aws.Operation
@@ -935,16 +921,9 @@ func (c *RDS) DescribeDBLogFiles(input *DescribeDBLogFilesInput) (*DescribeDBLog
 	return out, err
 }
 
-func (c *RDS) DescribeDBLogFilesPages(input *DescribeDBLogFilesInput, fn func(*DescribeDBLogFilesOutput, error) bool) {
+func (c *RDS) DescribeDBLogFilesPages(input *DescribeDBLogFilesInput, fn func(*DescribeDBLogFilesOutput, bool) bool) error {
 	page, _ := c.DescribeDBLogFilesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeDBLogFilesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeDBLogFiles *aws.Operation
@@ -987,16 +966,9 @@ func (c *RDS) DescribeDBParameterGroups(input *DescribeDBParameterGroupsInput) (
 	return out, err
 }
 
-func (c *RDS) DescribeDBParameterGroupsPages(input *DescribeDBParameterGroupsInput, fn func(*DescribeDBParameterGroupsOutput, error) bool) {
+func (c *RDS) DescribeDBParameterGroupsPages(input *DescribeDBParameterGroupsInput, fn func(*DescribeDBParameterGroupsOutput, bool) bool) error {
 	page, _ := c.DescribeDBParameterGroupsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeDBParameterGroupsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeDBParameterGroups *aws.Operation
@@ -1037,16 +1009,9 @@ func (c *RDS) DescribeDBParameters(input *DescribeDBParametersInput) (*DescribeD
 	return out, err
 }
 
-func (c *RDS) DescribeDBParametersPages(input *DescribeDBParametersInput, fn func(*DescribeDBParametersOutput, error) bool) {
+func (c *RDS) DescribeDBParametersPages(input *DescribeDBParametersInput, fn func(*DescribeDBParametersOutput, bool) bool) error {
 	page, _ := c.DescribeDBParametersRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeDBParametersOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeDBParameters *aws.Operation
@@ -1089,16 +1054,9 @@ func (c *RDS) DescribeDBSecurityGroups(input *DescribeDBSecurityGroupsInput) (*D
 	return out, err
 }
 
-func (c *RDS) DescribeDBSecurityGroupsPages(input *DescribeDBSecurityGroupsInput, fn func(*DescribeDBSecurityGroupsOutput, error) bool) {
+func (c *RDS) DescribeDBSecurityGroupsPages(input *DescribeDBSecurityGroupsInput, fn func(*DescribeDBSecurityGroupsOutput, bool) bool) error {
 	page, _ := c.DescribeDBSecurityGroupsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeDBSecurityGroupsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeDBSecurityGroups *aws.Operation
@@ -1139,16 +1097,9 @@ func (c *RDS) DescribeDBSnapshots(input *DescribeDBSnapshotsInput) (*DescribeDBS
 	return out, err
 }
 
-func (c *RDS) DescribeDBSnapshotsPages(input *DescribeDBSnapshotsInput, fn func(*DescribeDBSnapshotsOutput, error) bool) {
+func (c *RDS) DescribeDBSnapshotsPages(input *DescribeDBSnapshotsInput, fn func(*DescribeDBSnapshotsOutput, bool) bool) error {
 	page, _ := c.DescribeDBSnapshotsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeDBSnapshotsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeDBSnapshots *aws.Operation
@@ -1192,16 +1143,9 @@ func (c *RDS) DescribeDBSubnetGroups(input *DescribeDBSubnetGroupsInput) (*Descr
 	return out, err
 }
 
-func (c *RDS) DescribeDBSubnetGroupsPages(input *DescribeDBSubnetGroupsInput, fn func(*DescribeDBSubnetGroupsOutput, error) bool) {
+func (c *RDS) DescribeDBSubnetGroupsPages(input *DescribeDBSubnetGroupsInput, fn func(*DescribeDBSubnetGroupsOutput, bool) bool) error {
 	page, _ := c.DescribeDBSubnetGroupsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeDBSubnetGroupsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeDBSubnetGroups *aws.Operation
@@ -1243,16 +1187,9 @@ func (c *RDS) DescribeEngineDefaultParameters(input *DescribeEngineDefaultParame
 	return out, err
 }
 
-func (c *RDS) DescribeEngineDefaultParametersPages(input *DescribeEngineDefaultParametersInput, fn func(*DescribeEngineDefaultParametersOutput, error) bool) {
+func (c *RDS) DescribeEngineDefaultParametersPages(input *DescribeEngineDefaultParametersInput, fn func(*DescribeEngineDefaultParametersOutput, bool) bool) error {
 	page, _ := c.DescribeEngineDefaultParametersRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeEngineDefaultParametersOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeEngineDefaultParameters *aws.Operation
@@ -1332,16 +1269,9 @@ func (c *RDS) DescribeEventSubscriptions(input *DescribeEventSubscriptionsInput)
 	return out, err
 }
 
-func (c *RDS) DescribeEventSubscriptionsPages(input *DescribeEventSubscriptionsInput, fn func(*DescribeEventSubscriptionsOutput, error) bool) {
+func (c *RDS) DescribeEventSubscriptionsPages(input *DescribeEventSubscriptionsInput, fn func(*DescribeEventSubscriptionsOutput, bool) bool) error {
 	page, _ := c.DescribeEventSubscriptionsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeEventSubscriptionsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeEventSubscriptions *aws.Operation
@@ -1386,16 +1316,9 @@ func (c *RDS) DescribeEvents(input *DescribeEventsInput) (*DescribeEventsOutput,
 	return out, err
 }
 
-func (c *RDS) DescribeEventsPages(input *DescribeEventsInput, fn func(*DescribeEventsOutput, error) bool) {
+func (c *RDS) DescribeEventsPages(input *DescribeEventsInput, fn func(*DescribeEventsOutput, bool) bool) error {
 	page, _ := c.DescribeEventsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeEventsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeEvents *aws.Operation
@@ -1436,16 +1359,9 @@ func (c *RDS) DescribeOptionGroupOptions(input *DescribeOptionGroupOptionsInput)
 	return out, err
 }
 
-func (c *RDS) DescribeOptionGroupOptionsPages(input *DescribeOptionGroupOptionsInput, fn func(*DescribeOptionGroupOptionsOutput, error) bool) {
+func (c *RDS) DescribeOptionGroupOptionsPages(input *DescribeOptionGroupOptionsInput, fn func(*DescribeOptionGroupOptionsOutput, bool) bool) error {
 	page, _ := c.DescribeOptionGroupOptionsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeOptionGroupOptionsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeOptionGroupOptions *aws.Operation
@@ -1486,16 +1402,9 @@ func (c *RDS) DescribeOptionGroups(input *DescribeOptionGroupsInput) (*DescribeO
 	return out, err
 }
 
-func (c *RDS) DescribeOptionGroupsPages(input *DescribeOptionGroupsInput, fn func(*DescribeOptionGroupsOutput, error) bool) {
+func (c *RDS) DescribeOptionGroupsPages(input *DescribeOptionGroupsInput, fn func(*DescribeOptionGroupsOutput, bool) bool) error {
 	page, _ := c.DescribeOptionGroupsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeOptionGroupsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeOptionGroups *aws.Operation
@@ -1536,16 +1445,9 @@ func (c *RDS) DescribeOrderableDBInstanceOptions(input *DescribeOrderableDBInsta
 	return out, err
 }
 
-func (c *RDS) DescribeOrderableDBInstanceOptionsPages(input *DescribeOrderableDBInstanceOptionsInput, fn func(*DescribeOrderableDBInstanceOptionsOutput, error) bool) {
+func (c *RDS) DescribeOrderableDBInstanceOptionsPages(input *DescribeOrderableDBInstanceOptionsInput, fn func(*DescribeOrderableDBInstanceOptionsOutput, bool) bool) error {
 	page, _ := c.DescribeOrderableDBInstanceOptionsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeOrderableDBInstanceOptionsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeOrderableDBInstanceOptions *aws.Operation
@@ -1620,16 +1522,9 @@ func (c *RDS) DescribeReservedDBInstances(input *DescribeReservedDBInstancesInpu
 	return out, err
 }
 
-func (c *RDS) DescribeReservedDBInstancesPages(input *DescribeReservedDBInstancesInput, fn func(*DescribeReservedDBInstancesOutput, error) bool) {
+func (c *RDS) DescribeReservedDBInstancesPages(input *DescribeReservedDBInstancesInput, fn func(*DescribeReservedDBInstancesOutput, bool) bool) error {
 	page, _ := c.DescribeReservedDBInstancesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeReservedDBInstancesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeReservedDBInstances *aws.Operation
@@ -1670,16 +1565,9 @@ func (c *RDS) DescribeReservedDBInstancesOfferings(input *DescribeReservedDBInst
 	return out, err
 }
 
-func (c *RDS) DescribeReservedDBInstancesOfferingsPages(input *DescribeReservedDBInstancesOfferingsInput, fn func(*DescribeReservedDBInstancesOfferingsOutput, error) bool) {
+func (c *RDS) DescribeReservedDBInstancesOfferingsPages(input *DescribeReservedDBInstancesOfferingsInput, fn func(*DescribeReservedDBInstancesOfferingsOutput, bool) bool) error {
 	page, _ := c.DescribeReservedDBInstancesOfferingsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeReservedDBInstancesOfferingsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeReservedDBInstancesOfferings *aws.Operation
@@ -1720,16 +1608,9 @@ func (c *RDS) DownloadDBLogFilePortion(input *DownloadDBLogFilePortionInput) (*D
 	return out, err
 }
 
-func (c *RDS) DownloadDBLogFilePortionPages(input *DownloadDBLogFilePortionInput, fn func(*DownloadDBLogFilePortionOutput, error) bool) {
+func (c *RDS) DownloadDBLogFilePortionPages(input *DownloadDBLogFilePortionInput, fn func(*DownloadDBLogFilePortionOutput, bool) bool) error {
 	page, _ := c.DownloadDBLogFilePortionRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DownloadDBLogFilePortionOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDownloadDBLogFilePortion *aws.Operation
@@ -3433,6 +3314,11 @@ type DBInstance struct {
 	// associated with.
 	CharacterSetName *string `type:"string"`
 
+	// If StorageEncrypted is true, the region-unique, immutable identifier for
+	// the encrypted DB instance. This identifier is found in AWS CloudTrail log
+	// entries whenever the KMS key for the DB instance is accessed.
+	DBIResourceID *string `locationName:"DbiResourceId" type:"string"`
+
 	// Contains the name of the compute and memory capacity class of the DB instance.
 	DBInstanceClass *string `type:"string"`
 
@@ -3472,11 +3358,6 @@ type DBInstance struct {
 	// Specifies information on the subnet group associated with the DB instance,
 	// including the name, description, and subnets in the subnet group.
 	DBSubnetGroup *DBSubnetGroup `type:"structure"`
-
-	// If StorageEncrypted is true, the region-unique, immutable identifier for
-	// the encrypted DB instance. This identifier is found in AWS CloudTrail log
-	// entries whenever the KMS key for the DB instance is accessed.
-	DBiResourceID *string `locationName:"DbiResourceId" type:"string"`
 
 	// Specifies the connection endpoint.
 	Endpoint *Endpoint `type:"structure"`

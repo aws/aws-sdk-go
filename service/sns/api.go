@@ -483,16 +483,9 @@ func (c *SNS) ListEndpointsByPlatformApplication(input *ListEndpointsByPlatformA
 	return out, err
 }
 
-func (c *SNS) ListEndpointsByPlatformApplicationPages(input *ListEndpointsByPlatformApplicationInput, fn func(*ListEndpointsByPlatformApplicationOutput, error) bool) {
+func (c *SNS) ListEndpointsByPlatformApplicationPages(input *ListEndpointsByPlatformApplicationInput, fn func(*ListEndpointsByPlatformApplicationOutput, bool) bool) error {
 	page, _ := c.ListEndpointsByPlatformApplicationRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListEndpointsByPlatformApplicationOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListEndpointsByPlatformApplication *aws.Operation
@@ -540,16 +533,9 @@ func (c *SNS) ListPlatformApplications(input *ListPlatformApplicationsInput) (*L
 	return out, err
 }
 
-func (c *SNS) ListPlatformApplicationsPages(input *ListPlatformApplicationsInput, fn func(*ListPlatformApplicationsOutput, error) bool) {
+func (c *SNS) ListPlatformApplicationsPages(input *ListPlatformApplicationsInput, fn func(*ListPlatformApplicationsOutput, bool) bool) error {
 	page, _ := c.ListPlatformApplicationsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListPlatformApplicationsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListPlatformApplications *aws.Operation
@@ -593,16 +579,9 @@ func (c *SNS) ListSubscriptions(input *ListSubscriptionsInput) (*ListSubscriptio
 	return out, err
 }
 
-func (c *SNS) ListSubscriptionsPages(input *ListSubscriptionsInput, fn func(*ListSubscriptionsOutput, error) bool) {
+func (c *SNS) ListSubscriptionsPages(input *ListSubscriptionsInput, fn func(*ListSubscriptionsOutput, bool) bool) error {
 	page, _ := c.ListSubscriptionsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListSubscriptionsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListSubscriptions *aws.Operation
@@ -646,16 +625,9 @@ func (c *SNS) ListSubscriptionsByTopic(input *ListSubscriptionsByTopicInput) (*L
 	return out, err
 }
 
-func (c *SNS) ListSubscriptionsByTopicPages(input *ListSubscriptionsByTopicInput, fn func(*ListSubscriptionsByTopicOutput, error) bool) {
+func (c *SNS) ListSubscriptionsByTopicPages(input *ListSubscriptionsByTopicInput, fn func(*ListSubscriptionsByTopicOutput, bool) bool) error {
 	page, _ := c.ListSubscriptionsByTopicRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListSubscriptionsByTopicOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListSubscriptionsByTopic *aws.Operation
@@ -698,16 +670,9 @@ func (c *SNS) ListTopics(input *ListTopicsInput) (*ListTopicsOutput, error) {
 	return out, err
 }
 
-func (c *SNS) ListTopicsPages(input *ListTopicsInput, fn func(*ListTopicsOutput, error) bool) {
+func (c *SNS) ListTopicsPages(input *ListTopicsInput, fn func(*ListTopicsOutput, bool) bool) error {
 	page, _ := c.ListTopicsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListTopicsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListTopics *aws.Operation

@@ -236,16 +236,9 @@ func (c *Support) DescribeCases(input *DescribeCasesInput) (*DescribeCasesOutput
 	return out, err
 }
 
-func (c *Support) DescribeCasesPages(input *DescribeCasesInput, fn func(*DescribeCasesOutput, error) bool) {
+func (c *Support) DescribeCasesPages(input *DescribeCasesInput, fn func(*DescribeCasesOutput, bool) bool) error {
 	page, _ := c.DescribeCasesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeCasesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeCases *aws.Operation
@@ -295,16 +288,9 @@ func (c *Support) DescribeCommunications(input *DescribeCommunicationsInput) (*D
 	return out, err
 }
 
-func (c *Support) DescribeCommunicationsPages(input *DescribeCommunicationsInput, fn func(*DescribeCommunicationsOutput, error) bool) {
+func (c *Support) DescribeCommunicationsPages(input *DescribeCommunicationsInput, fn func(*DescribeCommunicationsOutput, bool) bool) error {
 	page, _ := c.DescribeCommunicationsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeCommunicationsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeCommunications *aws.Operation

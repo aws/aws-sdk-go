@@ -617,16 +617,9 @@ func (c *SWF) GetWorkflowExecutionHistory(input *GetWorkflowExecutionHistoryInpu
 	return out, err
 }
 
-func (c *SWF) GetWorkflowExecutionHistoryPages(input *GetWorkflowExecutionHistoryInput, fn func(*GetWorkflowExecutionHistoryOutput, error) bool) {
+func (c *SWF) GetWorkflowExecutionHistoryPages(input *GetWorkflowExecutionHistoryInput, fn func(*GetWorkflowExecutionHistoryOutput, bool) bool) error {
 	page, _ := c.GetWorkflowExecutionHistoryRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*GetWorkflowExecutionHistoryOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opGetWorkflowExecutionHistory *aws.Operation
@@ -685,16 +678,9 @@ func (c *SWF) ListActivityTypes(input *ListActivityTypesInput) (*ListActivityTyp
 	return out, err
 }
 
-func (c *SWF) ListActivityTypesPages(input *ListActivityTypesInput, fn func(*ListActivityTypesOutput, error) bool) {
+func (c *SWF) ListActivityTypesPages(input *ListActivityTypesInput, fn func(*ListActivityTypesOutput, bool) bool) error {
 	page, _ := c.ListActivityTypesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListActivityTypesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListActivityTypes *aws.Operation
@@ -756,16 +742,9 @@ func (c *SWF) ListClosedWorkflowExecutions(input *ListClosedWorkflowExecutionsIn
 	return out, err
 }
 
-func (c *SWF) ListClosedWorkflowExecutionsPages(input *ListClosedWorkflowExecutionsInput, fn func(*WorkflowExecutionInfos, error) bool) {
+func (c *SWF) ListClosedWorkflowExecutionsPages(input *ListClosedWorkflowExecutionsInput, fn func(*WorkflowExecutionInfos, bool) bool) error {
 	page, _ := c.ListClosedWorkflowExecutionsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*WorkflowExecutionInfos)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListClosedWorkflowExecutions *aws.Operation
@@ -824,16 +803,9 @@ func (c *SWF) ListDomains(input *ListDomainsInput) (*ListDomainsOutput, error) {
 	return out, err
 }
 
-func (c *SWF) ListDomainsPages(input *ListDomainsInput, fn func(*ListDomainsOutput, error) bool) {
+func (c *SWF) ListDomainsPages(input *ListDomainsInput, fn func(*ListDomainsOutput, bool) bool) error {
 	page, _ := c.ListDomainsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListDomainsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListDomains *aws.Operation
@@ -895,16 +867,9 @@ func (c *SWF) ListOpenWorkflowExecutions(input *ListOpenWorkflowExecutionsInput)
 	return out, err
 }
 
-func (c *SWF) ListOpenWorkflowExecutionsPages(input *ListOpenWorkflowExecutionsInput, fn func(*WorkflowExecutionInfos, error) bool) {
+func (c *SWF) ListOpenWorkflowExecutionsPages(input *ListOpenWorkflowExecutionsInput, fn func(*WorkflowExecutionInfos, bool) bool) error {
 	page, _ := c.ListOpenWorkflowExecutionsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*WorkflowExecutionInfos)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListOpenWorkflowExecutions *aws.Operation
@@ -961,16 +926,9 @@ func (c *SWF) ListWorkflowTypes(input *ListWorkflowTypesInput) (*ListWorkflowTyp
 	return out, err
 }
 
-func (c *SWF) ListWorkflowTypesPages(input *ListWorkflowTypesInput, fn func(*ListWorkflowTypesOutput, error) bool) {
+func (c *SWF) ListWorkflowTypesPages(input *ListWorkflowTypesInput, fn func(*ListWorkflowTypesOutput, bool) bool) error {
 	page, _ := c.ListWorkflowTypesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListWorkflowTypesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListWorkflowTypes *aws.Operation
@@ -1099,16 +1057,9 @@ func (c *SWF) PollForDecisionTask(input *PollForDecisionTaskInput) (*PollForDeci
 	return out, err
 }
 
-func (c *SWF) PollForDecisionTaskPages(input *PollForDecisionTaskInput, fn func(*PollForDecisionTaskOutput, error) bool) {
+func (c *SWF) PollForDecisionTaskPages(input *PollForDecisionTaskInput, fn func(*PollForDecisionTaskOutput, bool) bool) error {
 	page, _ := c.PollForDecisionTaskRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*PollForDecisionTaskOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opPollForDecisionTask *aws.Operation

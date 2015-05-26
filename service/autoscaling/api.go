@@ -549,16 +549,9 @@ func (c *AutoScaling) DescribeAutoScalingGroups(input *DescribeAutoScalingGroups
 	return out, err
 }
 
-func (c *AutoScaling) DescribeAutoScalingGroupsPages(input *DescribeAutoScalingGroupsInput, fn func(*DescribeAutoScalingGroupsOutput, error) bool) {
+func (c *AutoScaling) DescribeAutoScalingGroupsPages(input *DescribeAutoScalingGroupsInput, fn func(*DescribeAutoScalingGroupsOutput, bool) bool) error {
 	page, _ := c.DescribeAutoScalingGroupsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeAutoScalingGroupsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeAutoScalingGroups *aws.Operation
@@ -605,16 +598,9 @@ func (c *AutoScaling) DescribeAutoScalingInstances(input *DescribeAutoScalingIns
 	return out, err
 }
 
-func (c *AutoScaling) DescribeAutoScalingInstancesPages(input *DescribeAutoScalingInstancesInput, fn func(*DescribeAutoScalingInstancesOutput, error) bool) {
+func (c *AutoScaling) DescribeAutoScalingInstancesPages(input *DescribeAutoScalingInstancesInput, fn func(*DescribeAutoScalingInstancesOutput, bool) bool) error {
 	page, _ := c.DescribeAutoScalingInstancesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeAutoScalingInstancesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeAutoScalingInstances *aws.Operation
@@ -692,16 +678,9 @@ func (c *AutoScaling) DescribeLaunchConfigurations(input *DescribeLaunchConfigur
 	return out, err
 }
 
-func (c *AutoScaling) DescribeLaunchConfigurationsPages(input *DescribeLaunchConfigurationsInput, fn func(*DescribeLaunchConfigurationsOutput, error) bool) {
+func (c *AutoScaling) DescribeLaunchConfigurationsPages(input *DescribeLaunchConfigurationsInput, fn func(*DescribeLaunchConfigurationsOutput, bool) bool) error {
 	page, _ := c.DescribeLaunchConfigurationsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeLaunchConfigurationsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeLaunchConfigurations *aws.Operation
@@ -843,16 +822,9 @@ func (c *AutoScaling) DescribeNotificationConfigurations(input *DescribeNotifica
 	return out, err
 }
 
-func (c *AutoScaling) DescribeNotificationConfigurationsPages(input *DescribeNotificationConfigurationsInput, fn func(*DescribeNotificationConfigurationsOutput, error) bool) {
+func (c *AutoScaling) DescribeNotificationConfigurationsPages(input *DescribeNotificationConfigurationsInput, fn func(*DescribeNotificationConfigurationsOutput, bool) bool) error {
 	page, _ := c.DescribeNotificationConfigurationsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeNotificationConfigurationsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeNotificationConfigurations *aws.Operation
@@ -897,16 +869,9 @@ func (c *AutoScaling) DescribePolicies(input *DescribePoliciesInput) (*DescribeP
 	return out, err
 }
 
-func (c *AutoScaling) DescribePoliciesPages(input *DescribePoliciesInput, fn func(*DescribePoliciesOutput, error) bool) {
+func (c *AutoScaling) DescribePoliciesPages(input *DescribePoliciesInput, fn func(*DescribePoliciesOutput, bool) bool) error {
 	page, _ := c.DescribePoliciesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribePoliciesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribePolicies *aws.Operation
@@ -954,16 +919,9 @@ func (c *AutoScaling) DescribeScalingActivities(input *DescribeScalingActivities
 	return out, err
 }
 
-func (c *AutoScaling) DescribeScalingActivitiesPages(input *DescribeScalingActivitiesInput, fn func(*DescribeScalingActivitiesOutput, error) bool) {
+func (c *AutoScaling) DescribeScalingActivitiesPages(input *DescribeScalingActivitiesInput, fn func(*DescribeScalingActivitiesOutput, bool) bool) error {
 	page, _ := c.DescribeScalingActivitiesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeScalingActivitiesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeScalingActivities *aws.Operation
@@ -1038,16 +996,9 @@ func (c *AutoScaling) DescribeScheduledActions(input *DescribeScheduledActionsIn
 	return out, err
 }
 
-func (c *AutoScaling) DescribeScheduledActionsPages(input *DescribeScheduledActionsInput, fn func(*DescribeScheduledActionsOutput, error) bool) {
+func (c *AutoScaling) DescribeScheduledActionsPages(input *DescribeScheduledActionsInput, fn func(*DescribeScheduledActionsOutput, bool) bool) error {
 	page, _ := c.DescribeScheduledActionsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeScheduledActionsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeScheduledActions *aws.Operation
@@ -1097,16 +1048,9 @@ func (c *AutoScaling) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutpu
 	return out, err
 }
 
-func (c *AutoScaling) DescribeTagsPages(input *DescribeTagsInput, fn func(*DescribeTagsOutput, error) bool) {
+func (c *AutoScaling) DescribeTagsPages(input *DescribeTagsInput, fn func(*DescribeTagsOutput, bool) bool) error {
 	page, _ := c.DescribeTagsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeTagsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeTags *aws.Operation

@@ -191,16 +191,9 @@ func (c *DataPipeline) DescribeObjects(input *DescribeObjectsInput) (*DescribeOb
 	return out, err
 }
 
-func (c *DataPipeline) DescribeObjectsPages(input *DescribeObjectsInput, fn func(*DescribeObjectsOutput, error) bool) {
+func (c *DataPipeline) DescribeObjectsPages(input *DescribeObjectsInput, fn func(*DescribeObjectsOutput, bool) bool) error {
 	page, _ := c.DescribeObjectsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeObjectsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeObjects *aws.Operation
@@ -348,16 +341,9 @@ func (c *DataPipeline) ListPipelines(input *ListPipelinesInput) (*ListPipelinesO
 	return out, err
 }
 
-func (c *DataPipeline) ListPipelinesPages(input *ListPipelinesInput, fn func(*ListPipelinesOutput, error) bool) {
+func (c *DataPipeline) ListPipelinesPages(input *ListPipelinesInput, fn func(*ListPipelinesOutput, bool) bool) error {
 	page, _ := c.ListPipelinesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListPipelinesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListPipelines *aws.Operation
@@ -493,16 +479,9 @@ func (c *DataPipeline) QueryObjects(input *QueryObjectsInput) (*QueryObjectsOutp
 	return out, err
 }
 
-func (c *DataPipeline) QueryObjectsPages(input *QueryObjectsInput, fn func(*QueryObjectsOutput, error) bool) {
+func (c *DataPipeline) QueryObjectsPages(input *QueryObjectsInput, fn func(*QueryObjectsOutput, bool) bool) error {
 	page, _ := c.QueryObjectsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*QueryObjectsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opQueryObjects *aws.Operation

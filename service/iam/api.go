@@ -1735,16 +1735,9 @@ func (c *IAM) GetAccountAuthorizationDetails(input *GetAccountAuthorizationDetai
 	return out, err
 }
 
-func (c *IAM) GetAccountAuthorizationDetailsPages(input *GetAccountAuthorizationDetailsInput, fn func(*GetAccountAuthorizationDetailsOutput, error) bool) {
+func (c *IAM) GetAccountAuthorizationDetailsPages(input *GetAccountAuthorizationDetailsInput, fn func(*GetAccountAuthorizationDetailsOutput, bool) bool) error {
 	page, _ := c.GetAccountAuthorizationDetailsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*GetAccountAuthorizationDetailsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opGetAccountAuthorizationDetails *aws.Operation
@@ -1889,16 +1882,9 @@ func (c *IAM) GetGroup(input *GetGroupInput) (*GetGroupOutput, error) {
 	return out, err
 }
 
-func (c *IAM) GetGroupPages(input *GetGroupInput, fn func(*GetGroupOutput, error) bool) {
+func (c *IAM) GetGroupPages(input *GetGroupInput, fn func(*GetGroupOutput, bool) bool) error {
 	page, _ := c.GetGroupRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*GetGroupOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opGetGroup *aws.Operation
@@ -2410,16 +2396,9 @@ func (c *IAM) ListAccessKeys(input *ListAccessKeysInput) (*ListAccessKeysOutput,
 	return out, err
 }
 
-func (c *IAM) ListAccessKeysPages(input *ListAccessKeysInput, fn func(*ListAccessKeysOutput, error) bool) {
+func (c *IAM) ListAccessKeysPages(input *ListAccessKeysInput, fn func(*ListAccessKeysOutput, bool) bool) error {
 	page, _ := c.ListAccessKeysRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListAccessKeysOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListAccessKeys *aws.Operation
@@ -2464,16 +2443,9 @@ func (c *IAM) ListAccountAliases(input *ListAccountAliasesInput) (*ListAccountAl
 	return out, err
 }
 
-func (c *IAM) ListAccountAliasesPages(input *ListAccountAliasesInput, fn func(*ListAccountAliasesOutput, error) bool) {
+func (c *IAM) ListAccountAliasesPages(input *ListAccountAliasesInput, fn func(*ListAccountAliasesOutput, bool) bool) error {
 	page, _ := c.ListAccountAliasesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListAccountAliasesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListAccountAliases *aws.Operation
@@ -2694,16 +2666,9 @@ func (c *IAM) ListGroupPolicies(input *ListGroupPoliciesInput) (*ListGroupPolici
 	return out, err
 }
 
-func (c *IAM) ListGroupPoliciesPages(input *ListGroupPoliciesInput, fn func(*ListGroupPoliciesOutput, error) bool) {
+func (c *IAM) ListGroupPoliciesPages(input *ListGroupPoliciesInput, fn func(*ListGroupPoliciesOutput, bool) bool) error {
 	page, _ := c.ListGroupPoliciesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListGroupPoliciesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListGroupPolicies *aws.Operation
@@ -2746,16 +2711,9 @@ func (c *IAM) ListGroups(input *ListGroupsInput) (*ListGroupsOutput, error) {
 	return out, err
 }
 
-func (c *IAM) ListGroupsPages(input *ListGroupsInput, fn func(*ListGroupsOutput, error) bool) {
+func (c *IAM) ListGroupsPages(input *ListGroupsInput, fn func(*ListGroupsOutput, bool) bool) error {
 	page, _ := c.ListGroupsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListGroupsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListGroups *aws.Operation
@@ -2798,16 +2756,9 @@ func (c *IAM) ListGroupsForUser(input *ListGroupsForUserInput) (*ListGroupsForUs
 	return out, err
 }
 
-func (c *IAM) ListGroupsForUserPages(input *ListGroupsForUserInput, fn func(*ListGroupsForUserOutput, error) bool) {
+func (c *IAM) ListGroupsForUserPages(input *ListGroupsForUserInput, fn func(*ListGroupsForUserOutput, bool) bool) error {
 	page, _ := c.ListGroupsForUserRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListGroupsForUserOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListGroupsForUser *aws.Operation
@@ -2852,16 +2803,9 @@ func (c *IAM) ListInstanceProfiles(input *ListInstanceProfilesInput) (*ListInsta
 	return out, err
 }
 
-func (c *IAM) ListInstanceProfilesPages(input *ListInstanceProfilesInput, fn func(*ListInstanceProfilesOutput, error) bool) {
+func (c *IAM) ListInstanceProfilesPages(input *ListInstanceProfilesInput, fn func(*ListInstanceProfilesOutput, bool) bool) error {
 	page, _ := c.ListInstanceProfilesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListInstanceProfilesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListInstanceProfiles *aws.Operation
@@ -2906,16 +2850,9 @@ func (c *IAM) ListInstanceProfilesForRole(input *ListInstanceProfilesForRoleInpu
 	return out, err
 }
 
-func (c *IAM) ListInstanceProfilesForRolePages(input *ListInstanceProfilesForRoleInput, fn func(*ListInstanceProfilesForRoleOutput, error) bool) {
+func (c *IAM) ListInstanceProfilesForRolePages(input *ListInstanceProfilesForRoleInput, fn func(*ListInstanceProfilesForRoleOutput, bool) bool) error {
 	page, _ := c.ListInstanceProfilesForRoleRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListInstanceProfilesForRoleOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListInstanceProfilesForRole *aws.Operation
@@ -2961,16 +2898,9 @@ func (c *IAM) ListMFADevices(input *ListMFADevicesInput) (*ListMFADevicesOutput,
 	return out, err
 }
 
-func (c *IAM) ListMFADevicesPages(input *ListMFADevicesInput, fn func(*ListMFADevicesOutput, error) bool) {
+func (c *IAM) ListMFADevicesPages(input *ListMFADevicesInput, fn func(*ListMFADevicesOutput, bool) bool) error {
 	page, _ := c.ListMFADevicesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListMFADevicesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListMFADevices *aws.Operation
@@ -3135,16 +3065,9 @@ func (c *IAM) ListRolePolicies(input *ListRolePoliciesInput) (*ListRolePoliciesO
 	return out, err
 }
 
-func (c *IAM) ListRolePoliciesPages(input *ListRolePoliciesInput, fn func(*ListRolePoliciesOutput, error) bool) {
+func (c *IAM) ListRolePoliciesPages(input *ListRolePoliciesInput, fn func(*ListRolePoliciesOutput, bool) bool) error {
 	page, _ := c.ListRolePoliciesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListRolePoliciesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListRolePolicies *aws.Operation
@@ -3192,16 +3115,9 @@ func (c *IAM) ListRoles(input *ListRolesInput) (*ListRolesOutput, error) {
 	return out, err
 }
 
-func (c *IAM) ListRolesPages(input *ListRolesInput, fn func(*ListRolesOutput, error) bool) {
+func (c *IAM) ListRolesPages(input *ListRolesInput, fn func(*ListRolesOutput, bool) bool) error {
 	page, _ := c.ListRolesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListRolesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListRoles *aws.Operation
@@ -3244,16 +3160,9 @@ func (c *IAM) ListSAMLProviders(input *ListSAMLProvidersInput) (*ListSAMLProvide
 	return out, err
 }
 
-func (c *IAM) ListSAMLProvidersPages(input *ListSAMLProvidersInput, fn func(*ListSAMLProvidersOutput, error) bool) {
+func (c *IAM) ListSAMLProvidersPages(input *ListSAMLProvidersInput, fn func(*ListSAMLProvidersOutput, bool) bool) error {
 	page, _ := c.ListSAMLProvidersRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListSAMLProvidersOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListSAMLProviders *aws.Operation
@@ -3297,16 +3206,9 @@ func (c *IAM) ListServerCertificates(input *ListServerCertificatesInput) (*ListS
 	return out, err
 }
 
-func (c *IAM) ListServerCertificatesPages(input *ListServerCertificatesInput, fn func(*ListServerCertificatesOutput, error) bool) {
+func (c *IAM) ListServerCertificatesPages(input *ListServerCertificatesInput, fn func(*ListServerCertificatesOutput, bool) bool) error {
 	page, _ := c.ListServerCertificatesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListServerCertificatesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListServerCertificates *aws.Operation
@@ -3356,16 +3258,9 @@ func (c *IAM) ListSigningCertificates(input *ListSigningCertificatesInput) (*Lis
 	return out, err
 }
 
-func (c *IAM) ListSigningCertificatesPages(input *ListSigningCertificatesInput, fn func(*ListSigningCertificatesOutput, error) bool) {
+func (c *IAM) ListSigningCertificatesPages(input *ListSigningCertificatesInput, fn func(*ListSigningCertificatesOutput, bool) bool) error {
 	page, _ := c.ListSigningCertificatesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListSigningCertificatesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListSigningCertificates *aws.Operation
@@ -3416,16 +3311,9 @@ func (c *IAM) ListUserPolicies(input *ListUserPoliciesInput) (*ListUserPoliciesO
 	return out, err
 }
 
-func (c *IAM) ListUserPoliciesPages(input *ListUserPoliciesInput, fn func(*ListUserPoliciesOutput, error) bool) {
+func (c *IAM) ListUserPoliciesPages(input *ListUserPoliciesInput, fn func(*ListUserPoliciesOutput, bool) bool) error {
 	page, _ := c.ListUserPoliciesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListUserPoliciesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListUserPolicies *aws.Operation
@@ -3470,16 +3358,9 @@ func (c *IAM) ListUsers(input *ListUsersInput) (*ListUsersOutput, error) {
 	return out, err
 }
 
-func (c *IAM) ListUsersPages(input *ListUsersInput, fn func(*ListUsersOutput, error) bool) {
+func (c *IAM) ListUsersPages(input *ListUsersInput, fn func(*ListUsersOutput, bool) bool) error {
 	page, _ := c.ListUsersRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListUsersOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListUsers *aws.Operation
@@ -3525,16 +3406,9 @@ func (c *IAM) ListVirtualMFADevices(input *ListVirtualMFADevicesInput) (*ListVir
 	return out, err
 }
 
-func (c *IAM) ListVirtualMFADevicesPages(input *ListVirtualMFADevicesInput, fn func(*ListVirtualMFADevicesOutput, error) bool) {
+func (c *IAM) ListVirtualMFADevicesPages(input *ListVirtualMFADevicesInput, fn func(*ListVirtualMFADevicesOutput, bool) bool) error {
 	page, _ := c.ListVirtualMFADevicesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListVirtualMFADevicesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListVirtualMFADevices *aws.Operation

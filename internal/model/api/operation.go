@@ -90,16 +90,9 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 
 {{ if .Paginator }}
 func (c *{{ .API.StructName }}) {{ .ExportedName }}Pages(` +
-	`input {{ .InputRef.GoType }}, fn func({{ .OutputRef.GoType }}, error) bool) {
+	`input {{ .InputRef.GoType }}, fn func({{ .OutputRef.GoType }}, bool) bool) error {
 	page, _ := c.{{ .ExportedName }}Request(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.({{ .OutputRef.GoType }})
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 {{ end }}
 

@@ -156,16 +156,9 @@ func (c *CloudFormation) DescribeStackEvents(input *DescribeStackEventsInput) (*
 	return out, err
 }
 
-func (c *CloudFormation) DescribeStackEventsPages(input *DescribeStackEventsInput, fn func(*DescribeStackEventsOutput, error) bool) {
+func (c *CloudFormation) DescribeStackEventsPages(input *DescribeStackEventsInput, fn func(*DescribeStackEventsOutput, bool) bool) error {
 	page, _ := c.DescribeStackEventsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeStackEventsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeStackEvents *aws.Operation
@@ -290,16 +283,9 @@ func (c *CloudFormation) DescribeStacks(input *DescribeStacksInput) (*DescribeSt
 	return out, err
 }
 
-func (c *CloudFormation) DescribeStacksPages(input *DescribeStacksInput, fn func(*DescribeStacksOutput, error) bool) {
+func (c *CloudFormation) DescribeStacksPages(input *DescribeStacksInput, fn func(*DescribeStacksOutput, bool) bool) error {
 	page, _ := c.DescribeStacksRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeStacksOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeStacks *aws.Operation
@@ -489,16 +475,9 @@ func (c *CloudFormation) ListStackResources(input *ListStackResourcesInput) (*Li
 	return out, err
 }
 
-func (c *CloudFormation) ListStackResourcesPages(input *ListStackResourcesInput, fn func(*ListStackResourcesOutput, error) bool) {
+func (c *CloudFormation) ListStackResourcesPages(input *ListStackResourcesInput, fn func(*ListStackResourcesOutput, bool) bool) error {
 	page, _ := c.ListStackResourcesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListStackResourcesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListStackResources *aws.Operation
@@ -543,16 +522,9 @@ func (c *CloudFormation) ListStacks(input *ListStacksInput) (*ListStacksOutput, 
 	return out, err
 }
 
-func (c *CloudFormation) ListStacksPages(input *ListStacksInput, fn func(*ListStacksOutput, error) bool) {
+func (c *CloudFormation) ListStacksPages(input *ListStacksInput, fn func(*ListStacksOutput, bool) bool) error {
 	page, _ := c.ListStacksRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListStacksOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListStacks *aws.Operation

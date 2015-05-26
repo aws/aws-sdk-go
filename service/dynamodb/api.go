@@ -442,16 +442,9 @@ func (c *DynamoDB) ListTables(input *ListTablesInput) (*ListTablesOutput, error)
 	return out, err
 }
 
-func (c *DynamoDB) ListTablesPages(input *ListTablesInput, fn func(*ListTablesOutput, error) bool) {
+func (c *DynamoDB) ListTablesPages(input *ListTablesInput, fn func(*ListTablesOutput, bool) bool) error {
 	page, _ := c.ListTablesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListTablesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListTables *aws.Operation
@@ -572,16 +565,9 @@ func (c *DynamoDB) Query(input *QueryInput) (*QueryOutput, error) {
 	return out, err
 }
 
-func (c *DynamoDB) QueryPages(input *QueryInput, fn func(*QueryOutput, error) bool) {
+func (c *DynamoDB) QueryPages(input *QueryInput, fn func(*QueryOutput, bool) bool) error {
 	page, _ := c.QueryRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*QueryOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opQuery *aws.Operation
@@ -638,16 +624,9 @@ func (c *DynamoDB) Scan(input *ScanInput) (*ScanOutput, error) {
 	return out, err
 }
 
-func (c *DynamoDB) ScanPages(input *ScanInput, fn func(*ScanOutput, error) bool) {
+func (c *DynamoDB) ScanPages(input *ScanInput, fn func(*ScanOutput, bool) bool) error {
 	page, _ := c.ScanRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ScanOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opScan *aws.Operation

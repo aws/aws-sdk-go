@@ -284,16 +284,9 @@ func (c *EMR) ListBootstrapActions(input *ListBootstrapActionsInput) (*ListBoots
 	return out, err
 }
 
-func (c *EMR) ListBootstrapActionsPages(input *ListBootstrapActionsInput, fn func(*ListBootstrapActionsOutput, error) bool) {
+func (c *EMR) ListBootstrapActionsPages(input *ListBootstrapActionsInput, fn func(*ListBootstrapActionsOutput, bool) bool) error {
 	page, _ := c.ListBootstrapActionsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListBootstrapActionsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListBootstrapActions *aws.Operation
@@ -338,16 +331,9 @@ func (c *EMR) ListClusters(input *ListClustersInput) (*ListClustersOutput, error
 	return out, err
 }
 
-func (c *EMR) ListClustersPages(input *ListClustersInput, fn func(*ListClustersOutput, error) bool) {
+func (c *EMR) ListClustersPages(input *ListClustersInput, fn func(*ListClustersOutput, bool) bool) error {
 	page, _ := c.ListClustersRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListClustersOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListClusters *aws.Operation
@@ -388,16 +374,9 @@ func (c *EMR) ListInstanceGroups(input *ListInstanceGroupsInput) (*ListInstanceG
 	return out, err
 }
 
-func (c *EMR) ListInstanceGroupsPages(input *ListInstanceGroupsInput, fn func(*ListInstanceGroupsOutput, error) bool) {
+func (c *EMR) ListInstanceGroupsPages(input *ListInstanceGroupsInput, fn func(*ListInstanceGroupsOutput, bool) bool) error {
 	page, _ := c.ListInstanceGroupsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListInstanceGroupsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListInstanceGroups *aws.Operation
@@ -442,16 +421,9 @@ func (c *EMR) ListInstances(input *ListInstancesInput) (*ListInstancesOutput, er
 	return out, err
 }
 
-func (c *EMR) ListInstancesPages(input *ListInstancesInput, fn func(*ListInstancesOutput, error) bool) {
+func (c *EMR) ListInstancesPages(input *ListInstancesInput, fn func(*ListInstancesOutput, bool) bool) error {
 	page, _ := c.ListInstancesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListInstancesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListInstances *aws.Operation
@@ -492,16 +464,9 @@ func (c *EMR) ListSteps(input *ListStepsInput) (*ListStepsOutput, error) {
 	return out, err
 }
 
-func (c *EMR) ListStepsPages(input *ListStepsInput, fn func(*ListStepsOutput, error) bool) {
+func (c *EMR) ListStepsPages(input *ListStepsInput, fn func(*ListStepsOutput, bool) bool) error {
 	page, _ := c.ListStepsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListStepsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListSteps *aws.Operation

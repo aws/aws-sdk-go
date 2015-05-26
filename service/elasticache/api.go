@@ -612,16 +612,9 @@ func (c *ElastiCache) DescribeCacheClusters(input *DescribeCacheClustersInput) (
 	return out, err
 }
 
-func (c *ElastiCache) DescribeCacheClustersPages(input *DescribeCacheClustersInput, fn func(*DescribeCacheClustersOutput, error) bool) {
+func (c *ElastiCache) DescribeCacheClustersPages(input *DescribeCacheClustersInput, fn func(*DescribeCacheClustersOutput, bool) bool) error {
 	page, _ := c.DescribeCacheClustersRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeCacheClustersOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeCacheClusters *aws.Operation
@@ -663,16 +656,9 @@ func (c *ElastiCache) DescribeCacheEngineVersions(input *DescribeCacheEngineVers
 	return out, err
 }
 
-func (c *ElastiCache) DescribeCacheEngineVersionsPages(input *DescribeCacheEngineVersionsInput, fn func(*DescribeCacheEngineVersionsOutput, error) bool) {
+func (c *ElastiCache) DescribeCacheEngineVersionsPages(input *DescribeCacheEngineVersionsInput, fn func(*DescribeCacheEngineVersionsOutput, bool) bool) error {
 	page, _ := c.DescribeCacheEngineVersionsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeCacheEngineVersionsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeCacheEngineVersions *aws.Operation
@@ -715,16 +701,9 @@ func (c *ElastiCache) DescribeCacheParameterGroups(input *DescribeCacheParameter
 	return out, err
 }
 
-func (c *ElastiCache) DescribeCacheParameterGroupsPages(input *DescribeCacheParameterGroupsInput, fn func(*DescribeCacheParameterGroupsOutput, error) bool) {
+func (c *ElastiCache) DescribeCacheParameterGroupsPages(input *DescribeCacheParameterGroupsInput, fn func(*DescribeCacheParameterGroupsOutput, bool) bool) error {
 	page, _ := c.DescribeCacheParameterGroupsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeCacheParameterGroupsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeCacheParameterGroups *aws.Operation
@@ -766,16 +745,9 @@ func (c *ElastiCache) DescribeCacheParameters(input *DescribeCacheParametersInpu
 	return out, err
 }
 
-func (c *ElastiCache) DescribeCacheParametersPages(input *DescribeCacheParametersInput, fn func(*DescribeCacheParametersOutput, error) bool) {
+func (c *ElastiCache) DescribeCacheParametersPages(input *DescribeCacheParametersInput, fn func(*DescribeCacheParametersOutput, bool) bool) error {
 	page, _ := c.DescribeCacheParametersRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeCacheParametersOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeCacheParameters *aws.Operation
@@ -818,16 +790,9 @@ func (c *ElastiCache) DescribeCacheSecurityGroups(input *DescribeCacheSecurityGr
 	return out, err
 }
 
-func (c *ElastiCache) DescribeCacheSecurityGroupsPages(input *DescribeCacheSecurityGroupsInput, fn func(*DescribeCacheSecurityGroupsOutput, error) bool) {
+func (c *ElastiCache) DescribeCacheSecurityGroupsPages(input *DescribeCacheSecurityGroupsInput, fn func(*DescribeCacheSecurityGroupsOutput, bool) bool) error {
 	page, _ := c.DescribeCacheSecurityGroupsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeCacheSecurityGroupsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeCacheSecurityGroups *aws.Operation
@@ -870,16 +835,9 @@ func (c *ElastiCache) DescribeCacheSubnetGroups(input *DescribeCacheSubnetGroups
 	return out, err
 }
 
-func (c *ElastiCache) DescribeCacheSubnetGroupsPages(input *DescribeCacheSubnetGroupsInput, fn func(*DescribeCacheSubnetGroupsOutput, error) bool) {
+func (c *ElastiCache) DescribeCacheSubnetGroupsPages(input *DescribeCacheSubnetGroupsInput, fn func(*DescribeCacheSubnetGroupsOutput, bool) bool) error {
 	page, _ := c.DescribeCacheSubnetGroupsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeCacheSubnetGroupsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeCacheSubnetGroups *aws.Operation
@@ -921,16 +879,9 @@ func (c *ElastiCache) DescribeEngineDefaultParameters(input *DescribeEngineDefau
 	return out, err
 }
 
-func (c *ElastiCache) DescribeEngineDefaultParametersPages(input *DescribeEngineDefaultParametersInput, fn func(*DescribeEngineDefaultParametersOutput, error) bool) {
+func (c *ElastiCache) DescribeEngineDefaultParametersPages(input *DescribeEngineDefaultParametersInput, fn func(*DescribeEngineDefaultParametersOutput, bool) bool) error {
 	page, _ := c.DescribeEngineDefaultParametersRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeEngineDefaultParametersOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeEngineDefaultParameters *aws.Operation
@@ -977,16 +928,9 @@ func (c *ElastiCache) DescribeEvents(input *DescribeEventsInput) (*DescribeEvent
 	return out, err
 }
 
-func (c *ElastiCache) DescribeEventsPages(input *DescribeEventsInput, fn func(*DescribeEventsOutput, error) bool) {
+func (c *ElastiCache) DescribeEventsPages(input *DescribeEventsInput, fn func(*DescribeEventsOutput, bool) bool) error {
 	page, _ := c.DescribeEventsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeEventsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeEvents *aws.Operation
@@ -1029,16 +973,9 @@ func (c *ElastiCache) DescribeReplicationGroups(input *DescribeReplicationGroups
 	return out, err
 }
 
-func (c *ElastiCache) DescribeReplicationGroupsPages(input *DescribeReplicationGroupsInput, fn func(*DescribeReplicationGroupsOutput, error) bool) {
+func (c *ElastiCache) DescribeReplicationGroupsPages(input *DescribeReplicationGroupsInput, fn func(*DescribeReplicationGroupsOutput, bool) bool) error {
 	page, _ := c.DescribeReplicationGroupsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeReplicationGroupsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeReplicationGroups *aws.Operation
@@ -1080,16 +1017,9 @@ func (c *ElastiCache) DescribeReservedCacheNodes(input *DescribeReservedCacheNod
 	return out, err
 }
 
-func (c *ElastiCache) DescribeReservedCacheNodesPages(input *DescribeReservedCacheNodesInput, fn func(*DescribeReservedCacheNodesOutput, error) bool) {
+func (c *ElastiCache) DescribeReservedCacheNodesPages(input *DescribeReservedCacheNodesInput, fn func(*DescribeReservedCacheNodesOutput, bool) bool) error {
 	page, _ := c.DescribeReservedCacheNodesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeReservedCacheNodesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeReservedCacheNodes *aws.Operation
@@ -1131,16 +1061,9 @@ func (c *ElastiCache) DescribeReservedCacheNodesOfferings(input *DescribeReserve
 	return out, err
 }
 
-func (c *ElastiCache) DescribeReservedCacheNodesOfferingsPages(input *DescribeReservedCacheNodesOfferingsInput, fn func(*DescribeReservedCacheNodesOfferingsOutput, error) bool) {
+func (c *ElastiCache) DescribeReservedCacheNodesOfferingsPages(input *DescribeReservedCacheNodesOfferingsInput, fn func(*DescribeReservedCacheNodesOfferingsOutput, bool) bool) error {
 	page, _ := c.DescribeReservedCacheNodesOfferingsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeReservedCacheNodesOfferingsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeReservedCacheNodesOfferings *aws.Operation
@@ -1184,16 +1107,9 @@ func (c *ElastiCache) DescribeSnapshots(input *DescribeSnapshotsInput) (*Describ
 	return out, err
 }
 
-func (c *ElastiCache) DescribeSnapshotsPages(input *DescribeSnapshotsInput, fn func(*DescribeSnapshotsOutput, error) bool) {
+func (c *ElastiCache) DescribeSnapshotsPages(input *DescribeSnapshotsInput, fn func(*DescribeSnapshotsOutput, bool) bool) error {
 	page, _ := c.DescribeSnapshotsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeSnapshotsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeSnapshots *aws.Operation

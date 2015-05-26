@@ -222,16 +222,9 @@ func (c *Kinesis) DescribeStream(input *DescribeStreamInput) (*DescribeStreamOut
 	return out, err
 }
 
-func (c *Kinesis) DescribeStreamPages(input *DescribeStreamInput, fn func(*DescribeStreamOutput, error) bool) {
+func (c *Kinesis) DescribeStreamPages(input *DescribeStreamInput, fn func(*DescribeStreamOutput, bool) bool) error {
 	page, _ := c.DescribeStreamRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeStreamOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeStream *aws.Operation
@@ -431,16 +424,9 @@ func (c *Kinesis) ListStreams(input *ListStreamsInput) (*ListStreamsOutput, erro
 	return out, err
 }
 
-func (c *Kinesis) ListStreamsPages(input *ListStreamsInput, fn func(*ListStreamsOutput, error) bool) {
+func (c *Kinesis) ListStreamsPages(input *ListStreamsInput, fn func(*ListStreamsOutput, bool) bool) error {
 	page, _ := c.ListStreamsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListStreamsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListStreams *aws.Operation

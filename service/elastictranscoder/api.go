@@ -273,16 +273,9 @@ func (c *ElasticTranscoder) ListJobsByPipeline(input *ListJobsByPipelineInput) (
 	return out, err
 }
 
-func (c *ElasticTranscoder) ListJobsByPipelinePages(input *ListJobsByPipelineInput, fn func(*ListJobsByPipelineOutput, error) bool) {
+func (c *ElasticTranscoder) ListJobsByPipelinePages(input *ListJobsByPipelineInput, fn func(*ListJobsByPipelineOutput, bool) bool) error {
 	page, _ := c.ListJobsByPipelineRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListJobsByPipelineOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListJobsByPipeline *aws.Operation
@@ -325,16 +318,9 @@ func (c *ElasticTranscoder) ListJobsByStatus(input *ListJobsByStatusInput) (*Lis
 	return out, err
 }
 
-func (c *ElasticTranscoder) ListJobsByStatusPages(input *ListJobsByStatusInput, fn func(*ListJobsByStatusOutput, error) bool) {
+func (c *ElasticTranscoder) ListJobsByStatusPages(input *ListJobsByStatusInput, fn func(*ListJobsByStatusOutput, bool) bool) error {
 	page, _ := c.ListJobsByStatusRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListJobsByStatusOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListJobsByStatus *aws.Operation
@@ -376,16 +362,9 @@ func (c *ElasticTranscoder) ListPipelines(input *ListPipelinesInput) (*ListPipel
 	return out, err
 }
 
-func (c *ElasticTranscoder) ListPipelinesPages(input *ListPipelinesInput, fn func(*ListPipelinesOutput, error) bool) {
+func (c *ElasticTranscoder) ListPipelinesPages(input *ListPipelinesInput, fn func(*ListPipelinesOutput, bool) bool) error {
 	page, _ := c.ListPipelinesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListPipelinesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListPipelines *aws.Operation
@@ -427,16 +406,9 @@ func (c *ElasticTranscoder) ListPresets(input *ListPresetsInput) (*ListPresetsOu
 	return out, err
 }
 
-func (c *ElasticTranscoder) ListPresetsPages(input *ListPresetsInput, fn func(*ListPresetsOutput, error) bool) {
+func (c *ElasticTranscoder) ListPresetsPages(input *ListPresetsInput, fn func(*ListPresetsOutput, bool) bool) error {
 	page, _ := c.ListPresetsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListPresetsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListPresets *aws.Operation

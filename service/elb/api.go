@@ -706,16 +706,9 @@ func (c *ELB) DescribeLoadBalancers(input *DescribeLoadBalancersInput) (*Describ
 	return out, err
 }
 
-func (c *ELB) DescribeLoadBalancersPages(input *DescribeLoadBalancersInput, fn func(*DescribeLoadBalancersOutput, error) bool) {
+func (c *ELB) DescribeLoadBalancersPages(input *DescribeLoadBalancersInput, fn func(*DescribeLoadBalancersOutput, bool) bool) error {
 	page, _ := c.DescribeLoadBalancersRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*DescribeLoadBalancersOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opDescribeLoadBalancers *aws.Operation

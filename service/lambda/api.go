@@ -475,16 +475,9 @@ func (c *Lambda) ListEventSourceMappings(input *ListEventSourceMappingsInput) (*
 	return out, err
 }
 
-func (c *Lambda) ListEventSourceMappingsPages(input *ListEventSourceMappingsInput, fn func(*ListEventSourceMappingsOutput, error) bool) {
+func (c *Lambda) ListEventSourceMappingsPages(input *ListEventSourceMappingsInput, fn func(*ListEventSourceMappingsOutput, bool) bool) error {
 	page, _ := c.ListEventSourceMappingsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListEventSourceMappingsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListEventSourceMappings *aws.Operation
@@ -529,16 +522,9 @@ func (c *Lambda) ListFunctions(input *ListFunctionsInput) (*ListFunctionsOutput,
 	return out, err
 }
 
-func (c *Lambda) ListFunctionsPages(input *ListFunctionsInput, fn func(*ListFunctionsOutput, error) bool) {
+func (c *Lambda) ListFunctionsPages(input *ListFunctionsInput, fn func(*ListFunctionsOutput, bool) bool) error {
 	page, _ := c.ListFunctionsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListFunctionsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListFunctions *aws.Operation

@@ -496,16 +496,9 @@ func (c *CloudFront) ListCloudFrontOriginAccessIdentities(input *ListCloudFrontO
 	return out, err
 }
 
-func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesPages(input *ListCloudFrontOriginAccessIdentitiesInput, fn func(*ListCloudFrontOriginAccessIdentitiesOutput, error) bool) {
+func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesPages(input *ListCloudFrontOriginAccessIdentitiesInput, fn func(*ListCloudFrontOriginAccessIdentitiesOutput, bool) bool) error {
 	page, _ := c.ListCloudFrontOriginAccessIdentitiesRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListCloudFrontOriginAccessIdentitiesOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListCloudFrontOriginAccessIdentities *aws.Operation
@@ -546,16 +539,9 @@ func (c *CloudFront) ListDistributions(input *ListDistributionsInput) (*ListDist
 	return out, err
 }
 
-func (c *CloudFront) ListDistributionsPages(input *ListDistributionsInput, fn func(*ListDistributionsOutput, error) bool) {
+func (c *CloudFront) ListDistributionsPages(input *ListDistributionsInput, fn func(*ListDistributionsOutput, bool) bool) error {
 	page, _ := c.ListDistributionsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListDistributionsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListDistributions *aws.Operation
@@ -596,16 +582,9 @@ func (c *CloudFront) ListInvalidations(input *ListInvalidationsInput) (*ListInva
 	return out, err
 }
 
-func (c *CloudFront) ListInvalidationsPages(input *ListInvalidationsInput, fn func(*ListInvalidationsOutput, error) bool) {
+func (c *CloudFront) ListInvalidationsPages(input *ListInvalidationsInput, fn func(*ListInvalidationsOutput, bool) bool) error {
 	page, _ := c.ListInvalidationsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListInvalidationsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListInvalidations *aws.Operation
@@ -646,16 +625,9 @@ func (c *CloudFront) ListStreamingDistributions(input *ListStreamingDistribution
 	return out, err
 }
 
-func (c *CloudFront) ListStreamingDistributionsPages(input *ListStreamingDistributionsInput, fn func(*ListStreamingDistributionsOutput, error) bool) {
+func (c *CloudFront) ListStreamingDistributionsPages(input *ListStreamingDistributionsInput, fn func(*ListStreamingDistributionsOutput, bool) bool) error {
 	page, _ := c.ListStreamingDistributionsRequest(input)
-	for ; page != nil; page = page.NextPage() {
-		page.Send()
-		out := page.Data.(*ListStreamingDistributionsOutput)
-		if result := fn(out, page.Error); page.Error != nil || !result {
-			return
-		}
-	}
-	fn(nil, nil)
+	return page.EachPage(fn)
 }
 
 var opListStreamingDistributions *aws.Operation
