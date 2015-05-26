@@ -496,7 +496,7 @@ func (c *CloudFront) ListCloudFrontOriginAccessIdentities(input *ListCloudFrontO
 	return out, err
 }
 
-func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesPages(input *ListCloudFrontOriginAccessIdentitiesInput, fn func(*ListCloudFrontOriginAccessIdentitiesOutput, bool) bool) error {
+func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesPages(input *ListCloudFrontOriginAccessIdentitiesInput, fn func(p *ListCloudFrontOriginAccessIdentitiesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListCloudFrontOriginAccessIdentitiesRequest(input)
 	return page.EachPage(fn)
 }
@@ -539,7 +539,7 @@ func (c *CloudFront) ListDistributions(input *ListDistributionsInput) (*ListDist
 	return out, err
 }
 
-func (c *CloudFront) ListDistributionsPages(input *ListDistributionsInput, fn func(*ListDistributionsOutput, bool) bool) error {
+func (c *CloudFront) ListDistributionsPages(input *ListDistributionsInput, fn func(p *ListDistributionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListDistributionsRequest(input)
 	return page.EachPage(fn)
 }
@@ -582,7 +582,7 @@ func (c *CloudFront) ListInvalidations(input *ListInvalidationsInput) (*ListInva
 	return out, err
 }
 
-func (c *CloudFront) ListInvalidationsPages(input *ListInvalidationsInput, fn func(*ListInvalidationsOutput, bool) bool) error {
+func (c *CloudFront) ListInvalidationsPages(input *ListInvalidationsInput, fn func(p *ListInvalidationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListInvalidationsRequest(input)
 	return page.EachPage(fn)
 }
@@ -625,7 +625,7 @@ func (c *CloudFront) ListStreamingDistributions(input *ListStreamingDistribution
 	return out, err
 }
 
-func (c *CloudFront) ListStreamingDistributionsPages(input *ListStreamingDistributionsInput, fn func(*ListStreamingDistributionsOutput, bool) bool) error {
+func (c *CloudFront) ListStreamingDistributionsPages(input *ListStreamingDistributionsInput, fn func(p *ListStreamingDistributionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListStreamingDistributionsRequest(input)
 	return page.EachPage(fn)
 }

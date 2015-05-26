@@ -442,7 +442,7 @@ func (c *DynamoDB) ListTables(input *ListTablesInput) (*ListTablesOutput, error)
 	return out, err
 }
 
-func (c *DynamoDB) ListTablesPages(input *ListTablesInput, fn func(*ListTablesOutput, bool) bool) error {
+func (c *DynamoDB) ListTablesPages(input *ListTablesInput, fn func(p *ListTablesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListTablesRequest(input)
 	return page.EachPage(fn)
 }
@@ -565,7 +565,7 @@ func (c *DynamoDB) Query(input *QueryInput) (*QueryOutput, error) {
 	return out, err
 }
 
-func (c *DynamoDB) QueryPages(input *QueryInput, fn func(*QueryOutput, bool) bool) error {
+func (c *DynamoDB) QueryPages(input *QueryInput, fn func(p *QueryOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.QueryRequest(input)
 	return page.EachPage(fn)
 }
@@ -624,7 +624,7 @@ func (c *DynamoDB) Scan(input *ScanInput) (*ScanOutput, error) {
 	return out, err
 }
 
-func (c *DynamoDB) ScanPages(input *ScanInput, fn func(*ScanOutput, bool) bool) error {
+func (c *DynamoDB) ScanPages(input *ScanInput, fn func(p *ScanOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ScanRequest(input)
 	return page.EachPage(fn)
 }

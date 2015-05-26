@@ -90,7 +90,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 
 {{ if .Paginator }}
 func (c *{{ .API.StructName }}) {{ .ExportedName }}Pages(` +
-	`input {{ .InputRef.GoType }}, fn func({{ .OutputRef.GoType }}, bool) bool) error {
+	`input {{ .InputRef.GoType }}, fn func(p {{ .OutputRef.GoType }}, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.{{ .ExportedName }}Request(input)
 	return page.EachPage(fn)
 }

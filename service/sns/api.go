@@ -483,7 +483,7 @@ func (c *SNS) ListEndpointsByPlatformApplication(input *ListEndpointsByPlatformA
 	return out, err
 }
 
-func (c *SNS) ListEndpointsByPlatformApplicationPages(input *ListEndpointsByPlatformApplicationInput, fn func(*ListEndpointsByPlatformApplicationOutput, bool) bool) error {
+func (c *SNS) ListEndpointsByPlatformApplicationPages(input *ListEndpointsByPlatformApplicationInput, fn func(p *ListEndpointsByPlatformApplicationOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListEndpointsByPlatformApplicationRequest(input)
 	return page.EachPage(fn)
 }
@@ -533,7 +533,7 @@ func (c *SNS) ListPlatformApplications(input *ListPlatformApplicationsInput) (*L
 	return out, err
 }
 
-func (c *SNS) ListPlatformApplicationsPages(input *ListPlatformApplicationsInput, fn func(*ListPlatformApplicationsOutput, bool) bool) error {
+func (c *SNS) ListPlatformApplicationsPages(input *ListPlatformApplicationsInput, fn func(p *ListPlatformApplicationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListPlatformApplicationsRequest(input)
 	return page.EachPage(fn)
 }
@@ -579,7 +579,7 @@ func (c *SNS) ListSubscriptions(input *ListSubscriptionsInput) (*ListSubscriptio
 	return out, err
 }
 
-func (c *SNS) ListSubscriptionsPages(input *ListSubscriptionsInput, fn func(*ListSubscriptionsOutput, bool) bool) error {
+func (c *SNS) ListSubscriptionsPages(input *ListSubscriptionsInput, fn func(p *ListSubscriptionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListSubscriptionsRequest(input)
 	return page.EachPage(fn)
 }
@@ -625,7 +625,7 @@ func (c *SNS) ListSubscriptionsByTopic(input *ListSubscriptionsByTopicInput) (*L
 	return out, err
 }
 
-func (c *SNS) ListSubscriptionsByTopicPages(input *ListSubscriptionsByTopicInput, fn func(*ListSubscriptionsByTopicOutput, bool) bool) error {
+func (c *SNS) ListSubscriptionsByTopicPages(input *ListSubscriptionsByTopicInput, fn func(p *ListSubscriptionsByTopicOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListSubscriptionsByTopicRequest(input)
 	return page.EachPage(fn)
 }
@@ -670,7 +670,7 @@ func (c *SNS) ListTopics(input *ListTopicsInput) (*ListTopicsOutput, error) {
 	return out, err
 }
 
-func (c *SNS) ListTopicsPages(input *ListTopicsInput, fn func(*ListTopicsOutput, bool) bool) error {
+func (c *SNS) ListTopicsPages(input *ListTopicsInput, fn func(p *ListTopicsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListTopicsRequest(input)
 	return page.EachPage(fn)
 }

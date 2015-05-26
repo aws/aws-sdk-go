@@ -2829,7 +2829,7 @@ func (c *EC2) DescribeAccountAttributes(input *DescribeAccountAttributesInput) (
 	return out, err
 }
 
-func (c *EC2) DescribeAccountAttributesPages(input *DescribeAccountAttributesInput, fn func(*DescribeAccountAttributesOutput, bool) bool) error {
+func (c *EC2) DescribeAccountAttributesPages(input *DescribeAccountAttributesInput, fn func(p *DescribeAccountAttributesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeAccountAttributesRequest(input)
 	return page.EachPage(fn)
 }
@@ -2876,7 +2876,7 @@ func (c *EC2) DescribeAddresses(input *DescribeAddressesInput) (*DescribeAddress
 	return out, err
 }
 
-func (c *EC2) DescribeAddressesPages(input *DescribeAddressesInput, fn func(*DescribeAddressesOutput, bool) bool) error {
+func (c *EC2) DescribeAddressesPages(input *DescribeAddressesInput, fn func(p *DescribeAddressesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeAddressesRequest(input)
 	return page.EachPage(fn)
 }
@@ -2925,7 +2925,7 @@ func (c *EC2) DescribeAvailabilityZones(input *DescribeAvailabilityZonesInput) (
 	return out, err
 }
 
-func (c *EC2) DescribeAvailabilityZonesPages(input *DescribeAvailabilityZonesInput, fn func(*DescribeAvailabilityZonesOutput, bool) bool) error {
+func (c *EC2) DescribeAvailabilityZonesPages(input *DescribeAvailabilityZonesInput, fn func(p *DescribeAvailabilityZonesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeAvailabilityZonesRequest(input)
 	return page.EachPage(fn)
 }
@@ -2973,7 +2973,7 @@ func (c *EC2) DescribeBundleTasks(input *DescribeBundleTasksInput) (*DescribeBun
 	return out, err
 }
 
-func (c *EC2) DescribeBundleTasksPages(input *DescribeBundleTasksInput, fn func(*DescribeBundleTasksOutput, bool) bool) error {
+func (c *EC2) DescribeBundleTasksPages(input *DescribeBundleTasksInput, fn func(p *DescribeBundleTasksOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeBundleTasksRequest(input)
 	return page.EachPage(fn)
 }
@@ -3054,7 +3054,7 @@ func (c *EC2) DescribeConversionTasks(input *DescribeConversionTasksInput) (*Des
 	return out, err
 }
 
-func (c *EC2) DescribeConversionTasksPages(input *DescribeConversionTasksInput, fn func(*DescribeConversionTasksOutput, bool) bool) error {
+func (c *EC2) DescribeConversionTasksPages(input *DescribeConversionTasksInput, fn func(p *DescribeConversionTasksOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeConversionTasksRequest(input)
 	return page.EachPage(fn)
 }
@@ -3101,7 +3101,7 @@ func (c *EC2) DescribeCustomerGateways(input *DescribeCustomerGatewaysInput) (*D
 	return out, err
 }
 
-func (c *EC2) DescribeCustomerGatewaysPages(input *DescribeCustomerGatewaysInput, fn func(*DescribeCustomerGatewaysOutput, bool) bool) error {
+func (c *EC2) DescribeCustomerGatewaysPages(input *DescribeCustomerGatewaysInput, fn func(p *DescribeCustomerGatewaysOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeCustomerGatewaysRequest(input)
 	return page.EachPage(fn)
 }
@@ -3147,7 +3147,7 @@ func (c *EC2) DescribeDHCPOptions(input *DescribeDHCPOptionsInput) (*DescribeDHC
 	return out, err
 }
 
-func (c *EC2) DescribeDHCPOptionsPages(input *DescribeDHCPOptionsInput, fn func(*DescribeDHCPOptionsOutput, bool) bool) error {
+func (c *EC2) DescribeDHCPOptionsPages(input *DescribeDHCPOptionsInput, fn func(p *DescribeDHCPOptionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeDHCPOptionsRequest(input)
 	return page.EachPage(fn)
 }
@@ -3190,7 +3190,7 @@ func (c *EC2) DescribeExportTasks(input *DescribeExportTasksInput) (*DescribeExp
 	return out, err
 }
 
-func (c *EC2) DescribeExportTasksPages(input *DescribeExportTasksInput, fn func(*DescribeExportTasksOutput, bool) bool) error {
+func (c *EC2) DescribeExportTasksPages(input *DescribeExportTasksInput, fn func(p *DescribeExportTasksOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeExportTasksRequest(input)
 	return page.EachPage(fn)
 }
@@ -3272,7 +3272,7 @@ func (c *EC2) DescribeImages(input *DescribeImagesInput) (*DescribeImagesOutput,
 	return out, err
 }
 
-func (c *EC2) DescribeImagesPages(input *DescribeImagesInput, fn func(*DescribeImagesOutput, bool) bool) error {
+func (c *EC2) DescribeImagesPages(input *DescribeImagesInput, fn func(p *DescribeImagesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeImagesRequest(input)
 	return page.EachPage(fn)
 }
@@ -3474,7 +3474,7 @@ func (c *EC2) DescribeInstanceStatus(input *DescribeInstanceStatusInput) (*Descr
 	return out, err
 }
 
-func (c *EC2) DescribeInstanceStatusPages(input *DescribeInstanceStatusInput, fn func(*DescribeInstanceStatusOutput, bool) bool) error {
+func (c *EC2) DescribeInstanceStatusPages(input *DescribeInstanceStatusInput, fn func(p *DescribeInstanceStatusOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeInstanceStatusRequest(input)
 	return page.EachPage(fn)
 }
@@ -3526,7 +3526,7 @@ func (c *EC2) DescribeInstances(input *DescribeInstancesInput) (*DescribeInstanc
 	return out, err
 }
 
-func (c *EC2) DescribeInstancesPages(input *DescribeInstancesInput, fn func(*DescribeInstancesOutput, bool) bool) error {
+func (c *EC2) DescribeInstancesPages(input *DescribeInstancesInput, fn func(p *DescribeInstancesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeInstancesRequest(input)
 	return page.EachPage(fn)
 }
@@ -3569,7 +3569,7 @@ func (c *EC2) DescribeInternetGateways(input *DescribeInternetGatewaysInput) (*D
 	return out, err
 }
 
-func (c *EC2) DescribeInternetGatewaysPages(input *DescribeInternetGatewaysInput, fn func(*DescribeInternetGatewaysOutput, bool) bool) error {
+func (c *EC2) DescribeInternetGatewaysPages(input *DescribeInternetGatewaysInput, fn func(p *DescribeInternetGatewaysOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeInternetGatewaysRequest(input)
 	return page.EachPage(fn)
 }
@@ -3615,7 +3615,7 @@ func (c *EC2) DescribeKeyPairs(input *DescribeKeyPairsInput) (*DescribeKeyPairsO
 	return out, err
 }
 
-func (c *EC2) DescribeKeyPairsPages(input *DescribeKeyPairsInput, fn func(*DescribeKeyPairsOutput, bool) bool) error {
+func (c *EC2) DescribeKeyPairsPages(input *DescribeKeyPairsInput, fn func(p *DescribeKeyPairsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeKeyPairsRequest(input)
 	return page.EachPage(fn)
 }
@@ -3661,7 +3661,7 @@ func (c *EC2) DescribeNetworkACLs(input *DescribeNetworkACLsInput) (*DescribeNet
 	return out, err
 }
 
-func (c *EC2) DescribeNetworkACLsPages(input *DescribeNetworkACLsInput, fn func(*DescribeNetworkACLsOutput, bool) bool) error {
+func (c *EC2) DescribeNetworkACLsPages(input *DescribeNetworkACLsInput, fn func(p *DescribeNetworkACLsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeNetworkACLsRequest(input)
 	return page.EachPage(fn)
 }
@@ -3737,7 +3737,7 @@ func (c *EC2) DescribeNetworkInterfaces(input *DescribeNetworkInterfacesInput) (
 	return out, err
 }
 
-func (c *EC2) DescribeNetworkInterfacesPages(input *DescribeNetworkInterfacesInput, fn func(*DescribeNetworkInterfacesOutput, bool) bool) error {
+func (c *EC2) DescribeNetworkInterfacesPages(input *DescribeNetworkInterfacesInput, fn func(p *DescribeNetworkInterfacesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeNetworkInterfacesRequest(input)
 	return page.EachPage(fn)
 }
@@ -3782,7 +3782,7 @@ func (c *EC2) DescribePlacementGroups(input *DescribePlacementGroupsInput) (*Des
 	return out, err
 }
 
-func (c *EC2) DescribePlacementGroupsPages(input *DescribePlacementGroupsInput, fn func(*DescribePlacementGroupsOutput, bool) bool) error {
+func (c *EC2) DescribePlacementGroupsPages(input *DescribePlacementGroupsInput, fn func(p *DescribePlacementGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribePlacementGroupsRequest(input)
 	return page.EachPage(fn)
 }
@@ -3828,7 +3828,7 @@ func (c *EC2) DescribeRegions(input *DescribeRegionsInput) (*DescribeRegionsOutp
 	return out, err
 }
 
-func (c *EC2) DescribeRegionsPages(input *DescribeRegionsInput, fn func(*DescribeRegionsOutput, bool) bool) error {
+func (c *EC2) DescribeRegionsPages(input *DescribeRegionsInput, fn func(p *DescribeRegionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeRegionsRequest(input)
 	return page.EachPage(fn)
 }
@@ -3874,7 +3874,7 @@ func (c *EC2) DescribeReservedInstances(input *DescribeReservedInstancesInput) (
 	return out, err
 }
 
-func (c *EC2) DescribeReservedInstancesPages(input *DescribeReservedInstancesInput, fn func(*DescribeReservedInstancesOutput, bool) bool) error {
+func (c *EC2) DescribeReservedInstancesPages(input *DescribeReservedInstancesInput, fn func(p *DescribeReservedInstancesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeReservedInstancesRequest(input)
 	return page.EachPage(fn)
 }
@@ -3938,7 +3938,7 @@ func (c *EC2) DescribeReservedInstancesListings(input *DescribeReservedInstances
 	return out, err
 }
 
-func (c *EC2) DescribeReservedInstancesListingsPages(input *DescribeReservedInstancesListingsInput, fn func(*DescribeReservedInstancesListingsOutput, bool) bool) error {
+func (c *EC2) DescribeReservedInstancesListingsPages(input *DescribeReservedInstancesListingsInput, fn func(p *DescribeReservedInstancesListingsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeReservedInstancesListingsRequest(input)
 	return page.EachPage(fn)
 }
@@ -3987,7 +3987,7 @@ func (c *EC2) DescribeReservedInstancesModifications(input *DescribeReservedInst
 	return out, err
 }
 
-func (c *EC2) DescribeReservedInstancesModificationsPages(input *DescribeReservedInstancesModificationsInput, fn func(*DescribeReservedInstancesModificationsOutput, bool) bool) error {
+func (c *EC2) DescribeReservedInstancesModificationsPages(input *DescribeReservedInstancesModificationsInput, fn func(p *DescribeReservedInstancesModificationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeReservedInstancesModificationsRequest(input)
 	return page.EachPage(fn)
 }
@@ -4037,7 +4037,7 @@ func (c *EC2) DescribeReservedInstancesOfferings(input *DescribeReservedInstance
 	return out, err
 }
 
-func (c *EC2) DescribeReservedInstancesOfferingsPages(input *DescribeReservedInstancesOfferingsInput, fn func(*DescribeReservedInstancesOfferingsOutput, bool) bool) error {
+func (c *EC2) DescribeReservedInstancesOfferingsPages(input *DescribeReservedInstancesOfferingsInput, fn func(p *DescribeReservedInstancesOfferingsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeReservedInstancesOfferingsRequest(input)
 	return page.EachPage(fn)
 }
@@ -4083,7 +4083,7 @@ func (c *EC2) DescribeRouteTables(input *DescribeRouteTablesInput) (*DescribeRou
 	return out, err
 }
 
-func (c *EC2) DescribeRouteTablesPages(input *DescribeRouteTablesInput, fn func(*DescribeRouteTablesOutput, bool) bool) error {
+func (c *EC2) DescribeRouteTablesPages(input *DescribeRouteTablesInput, fn func(p *DescribeRouteTablesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeRouteTablesRequest(input)
 	return page.EachPage(fn)
 }
@@ -4133,7 +4133,7 @@ func (c *EC2) DescribeSecurityGroups(input *DescribeSecurityGroupsInput) (*Descr
 	return out, err
 }
 
-func (c *EC2) DescribeSecurityGroupsPages(input *DescribeSecurityGroupsInput, fn func(*DescribeSecurityGroupsOutput, bool) bool) error {
+func (c *EC2) DescribeSecurityGroupsPages(input *DescribeSecurityGroupsInput, fn func(p *DescribeSecurityGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeSecurityGroupsRequest(input)
 	return page.EachPage(fn)
 }
@@ -4251,7 +4251,7 @@ func (c *EC2) DescribeSnapshots(input *DescribeSnapshotsInput) (*DescribeSnapsho
 	return out, err
 }
 
-func (c *EC2) DescribeSnapshotsPages(input *DescribeSnapshotsInput, fn func(*DescribeSnapshotsOutput, bool) bool) error {
+func (c *EC2) DescribeSnapshotsPages(input *DescribeSnapshotsInput, fn func(p *DescribeSnapshotsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeSnapshotsRequest(input)
 	return page.EachPage(fn)
 }
@@ -4339,7 +4339,7 @@ func (c *EC2) DescribeSpotInstanceRequests(input *DescribeSpotInstanceRequestsIn
 	return out, err
 }
 
-func (c *EC2) DescribeSpotInstanceRequestsPages(input *DescribeSpotInstanceRequestsInput, fn func(*DescribeSpotInstanceRequestsOutput, bool) bool) error {
+func (c *EC2) DescribeSpotInstanceRequestsPages(input *DescribeSpotInstanceRequestsInput, fn func(p *DescribeSpotInstanceRequestsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeSpotInstanceRequestsRequest(input)
 	return page.EachPage(fn)
 }
@@ -4390,7 +4390,7 @@ func (c *EC2) DescribeSpotPriceHistory(input *DescribeSpotPriceHistoryInput) (*D
 	return out, err
 }
 
-func (c *EC2) DescribeSpotPriceHistoryPages(input *DescribeSpotPriceHistoryInput, fn func(*DescribeSpotPriceHistoryOutput, bool) bool) error {
+func (c *EC2) DescribeSpotPriceHistoryPages(input *DescribeSpotPriceHistoryInput, fn func(p *DescribeSpotPriceHistoryOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeSpotPriceHistoryRequest(input)
 	return page.EachPage(fn)
 }
@@ -4436,7 +4436,7 @@ func (c *EC2) DescribeSubnets(input *DescribeSubnetsInput) (*DescribeSubnetsOutp
 	return out, err
 }
 
-func (c *EC2) DescribeSubnetsPages(input *DescribeSubnetsInput, fn func(*DescribeSubnetsOutput, bool) bool) error {
+func (c *EC2) DescribeSubnetsPages(input *DescribeSubnetsInput, fn func(p *DescribeSubnetsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeSubnetsRequest(input)
 	return page.EachPage(fn)
 }
@@ -4482,7 +4482,7 @@ func (c *EC2) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, error
 	return out, err
 }
 
-func (c *EC2) DescribeTagsPages(input *DescribeTagsInput, fn func(*DescribeTagsOutput, bool) bool) error {
+func (c *EC2) DescribeTagsPages(input *DescribeTagsInput, fn func(p *DescribeTagsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeTagsRequest(input)
 	return page.EachPage(fn)
 }
@@ -4622,7 +4622,7 @@ func (c *EC2) DescribeVPCs(input *DescribeVPCsInput) (*DescribeVPCsOutput, error
 	return out, err
 }
 
-func (c *EC2) DescribeVPCsPages(input *DescribeVPCsInput, fn func(*DescribeVPCsOutput, bool) bool) error {
+func (c *EC2) DescribeVPCsPages(input *DescribeVPCsInput, fn func(p *DescribeVPCsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeVPCsRequest(input)
 	return page.EachPage(fn)
 }
@@ -4669,7 +4669,7 @@ func (c *EC2) DescribeVPNConnections(input *DescribeVPNConnectionsInput) (*Descr
 	return out, err
 }
 
-func (c *EC2) DescribeVPNConnectionsPages(input *DescribeVPNConnectionsInput, fn func(*DescribeVPNConnectionsOutput, bool) bool) error {
+func (c *EC2) DescribeVPNConnectionsPages(input *DescribeVPNConnectionsInput, fn func(p *DescribeVPNConnectionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeVPNConnectionsRequest(input)
 	return page.EachPage(fn)
 }
@@ -4716,7 +4716,7 @@ func (c *EC2) DescribeVPNGateways(input *DescribeVPNGatewaysInput) (*DescribeVPN
 	return out, err
 }
 
-func (c *EC2) DescribeVPNGatewaysPages(input *DescribeVPNGatewaysInput, fn func(*DescribeVPNGatewaysOutput, bool) bool) error {
+func (c *EC2) DescribeVPNGatewaysPages(input *DescribeVPNGatewaysInput, fn func(p *DescribeVPNGatewaysOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeVPNGatewaysRequest(input)
 	return page.EachPage(fn)
 }
@@ -4829,7 +4829,7 @@ func (c *EC2) DescribeVolumeStatus(input *DescribeVolumeStatusInput) (*DescribeV
 	return out, err
 }
 
-func (c *EC2) DescribeVolumeStatusPages(input *DescribeVolumeStatusInput, fn func(*DescribeVolumeStatusOutput, bool) bool) error {
+func (c *EC2) DescribeVolumeStatusPages(input *DescribeVolumeStatusInput, fn func(p *DescribeVolumeStatusOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeVolumeStatusRequest(input)
 	return page.EachPage(fn)
 }
@@ -4882,7 +4882,7 @@ func (c *EC2) DescribeVolumes(input *DescribeVolumesInput) (*DescribeVolumesOutp
 	return out, err
 }
 
-func (c *EC2) DescribeVolumesPages(input *DescribeVolumesInput, fn func(*DescribeVolumesOutput, bool) bool) error {
+func (c *EC2) DescribeVolumesPages(input *DescribeVolumesInput, fn func(p *DescribeVolumesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeVolumesRequest(input)
 	return page.EachPage(fn)
 }

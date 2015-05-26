@@ -236,7 +236,7 @@ func (c *Support) DescribeCases(input *DescribeCasesInput) (*DescribeCasesOutput
 	return out, err
 }
 
-func (c *Support) DescribeCasesPages(input *DescribeCasesInput, fn func(*DescribeCasesOutput, bool) bool) error {
+func (c *Support) DescribeCasesPages(input *DescribeCasesInput, fn func(p *DescribeCasesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeCasesRequest(input)
 	return page.EachPage(fn)
 }
@@ -288,7 +288,7 @@ func (c *Support) DescribeCommunications(input *DescribeCommunicationsInput) (*D
 	return out, err
 }
 
-func (c *Support) DescribeCommunicationsPages(input *DescribeCommunicationsInput, fn func(*DescribeCommunicationsOutput, bool) bool) error {
+func (c *Support) DescribeCommunicationsPages(input *DescribeCommunicationsInput, fn func(p *DescribeCommunicationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeCommunicationsRequest(input)
 	return page.EachPage(fn)
 }

@@ -617,7 +617,7 @@ func (c *SWF) GetWorkflowExecutionHistory(input *GetWorkflowExecutionHistoryInpu
 	return out, err
 }
 
-func (c *SWF) GetWorkflowExecutionHistoryPages(input *GetWorkflowExecutionHistoryInput, fn func(*GetWorkflowExecutionHistoryOutput, bool) bool) error {
+func (c *SWF) GetWorkflowExecutionHistoryPages(input *GetWorkflowExecutionHistoryInput, fn func(p *GetWorkflowExecutionHistoryOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.GetWorkflowExecutionHistoryRequest(input)
 	return page.EachPage(fn)
 }
@@ -678,7 +678,7 @@ func (c *SWF) ListActivityTypes(input *ListActivityTypesInput) (*ListActivityTyp
 	return out, err
 }
 
-func (c *SWF) ListActivityTypesPages(input *ListActivityTypesInput, fn func(*ListActivityTypesOutput, bool) bool) error {
+func (c *SWF) ListActivityTypesPages(input *ListActivityTypesInput, fn func(p *ListActivityTypesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListActivityTypesRequest(input)
 	return page.EachPage(fn)
 }
@@ -742,7 +742,7 @@ func (c *SWF) ListClosedWorkflowExecutions(input *ListClosedWorkflowExecutionsIn
 	return out, err
 }
 
-func (c *SWF) ListClosedWorkflowExecutionsPages(input *ListClosedWorkflowExecutionsInput, fn func(*WorkflowExecutionInfos, bool) bool) error {
+func (c *SWF) ListClosedWorkflowExecutionsPages(input *ListClosedWorkflowExecutionsInput, fn func(p *WorkflowExecutionInfos, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListClosedWorkflowExecutionsRequest(input)
 	return page.EachPage(fn)
 }
@@ -803,7 +803,7 @@ func (c *SWF) ListDomains(input *ListDomainsInput) (*ListDomainsOutput, error) {
 	return out, err
 }
 
-func (c *SWF) ListDomainsPages(input *ListDomainsInput, fn func(*ListDomainsOutput, bool) bool) error {
+func (c *SWF) ListDomainsPages(input *ListDomainsInput, fn func(p *ListDomainsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListDomainsRequest(input)
 	return page.EachPage(fn)
 }
@@ -867,7 +867,7 @@ func (c *SWF) ListOpenWorkflowExecutions(input *ListOpenWorkflowExecutionsInput)
 	return out, err
 }
 
-func (c *SWF) ListOpenWorkflowExecutionsPages(input *ListOpenWorkflowExecutionsInput, fn func(*WorkflowExecutionInfos, bool) bool) error {
+func (c *SWF) ListOpenWorkflowExecutionsPages(input *ListOpenWorkflowExecutionsInput, fn func(p *WorkflowExecutionInfos, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListOpenWorkflowExecutionsRequest(input)
 	return page.EachPage(fn)
 }
@@ -926,7 +926,7 @@ func (c *SWF) ListWorkflowTypes(input *ListWorkflowTypesInput) (*ListWorkflowTyp
 	return out, err
 }
 
-func (c *SWF) ListWorkflowTypesPages(input *ListWorkflowTypesInput, fn func(*ListWorkflowTypesOutput, bool) bool) error {
+func (c *SWF) ListWorkflowTypesPages(input *ListWorkflowTypesInput, fn func(p *ListWorkflowTypesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListWorkflowTypesRequest(input)
 	return page.EachPage(fn)
 }
@@ -1057,7 +1057,7 @@ func (c *SWF) PollForDecisionTask(input *PollForDecisionTaskInput) (*PollForDeci
 	return out, err
 }
 
-func (c *SWF) PollForDecisionTaskPages(input *PollForDecisionTaskInput, fn func(*PollForDecisionTaskOutput, bool) bool) error {
+func (c *SWF) PollForDecisionTaskPages(input *PollForDecisionTaskInput, fn func(p *PollForDecisionTaskOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.PollForDecisionTaskRequest(input)
 	return page.EachPage(fn)
 }
