@@ -9,8 +9,8 @@ import (
 // response structures.
 //
 // Can copy between structs of different type, but will only copy fields which
-// are convertible and exist in both structs. Fields which are not convertible
-// or do not exist in both structs are ignored.
+// are convertible, assignable, and exist in both structs. Fields which are not
+// convertible, assignable, or do not exist in both structs are ignored.
 func Copy(dst, src interface{}) {
 	dstval := reflect.ValueOf(dst)
 	if !dstval.IsValid() {
@@ -34,7 +34,7 @@ func CopyOf(src interface{}) (dst interface{}) {
 // root is used to skip certain aspects of the copy which are not valid
 // for the root node of a object.
 func rcopy(dst, src reflect.Value, root bool) {
-	if !src.IsValid() || src.Kind() != dst.Kind() {
+	if !src.IsValid() {
 		return
 	}
 
@@ -85,11 +85,15 @@ func rcopy(dst, src reflect.Value, root bool) {
 			dst.SetMapIndex(k, v2)
 		}
 	default:
-		if !src.Type().ConvertibleTo(dst.Type()) {
-			// If the fields aren't convertible setting will cause a panic.
-			return
+		// Assign the value if possible. If its not assignable, it might
+		// need to be converted first. If convertible the value can be assigned
+		// If the value is not assignable nor convertible there is no generic
+		// way to assign the src value to dst.
+		if src.Type().AssignableTo(dst.Type()) {
+			dst.Set(src)
+		} else if src.Type().ConvertibleTo(dst.Type()) && dst.Kind() != reflect.String {
+			// Ignores the src value => dest string type conversion to prevent unexpected behavior
+			dst.Set(src.Convert(dst.Type()))
 		}
-
-		dst.Set(src)
 	}
 }
