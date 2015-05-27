@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws/awserr"
+	"github.com/awslabs/aws-sdk-go/aws/awsutil"
 	"github.com/awslabs/aws-sdk-go/internal/apierr"
 	"github.com/awslabs/aws-sdk-go/service/s3"
 )
@@ -82,7 +83,6 @@ func (m *multiUploadError) String() string {
 func (m *multiUploadError) UploadID() string {
 	return m.uploadID
 }
-
 
 // UploadInput contains all input for upload requests to Amazon S3.
 type UploadInput struct {
@@ -253,11 +253,11 @@ func (u *uploader) upload() (*UploadOutput, error) {
 // a regular PutObject request. Multipart requests require at least two
 // parts, or at least 5MB of data.
 func (u *uploader) singlePart(part []byte) (*UploadOutput, error) {
-	req, _ := u.s.PutObjectRequest(&s3.PutObjectInput{
-		Bucket: u.in.Bucket,
-		Key:    u.in.Key,
-		Body:   bytes.NewReader(part),
-	})
+	params := &s3.PutObjectInput{}
+	awsutil.Copy(params, u.in)
+	params.Body = bytes.NewReader(part)
+
+	req, _ := u.s.PutObjectRequest(params)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -293,11 +293,11 @@ func (a completedParts) Less(i, j int) bool { return *a[i].PartNumber < *a[j].Pa
 // upload will perform a multipart upload using the firstPart buffer containing
 // the first chunk of data.
 func (u *multiuploader) upload(firstPart []byte) (*UploadOutput, error) {
+	params := &s3.CreateMultipartUploadInput{}
+	awsutil.Copy(params, u.in)
+
 	// Create the multipart
-	resp, err := u.s.CreateMultipartUpload(&s3.CreateMultipartUploadInput{
-		Bucket: u.in.Bucket,
-		Key:    u.in.Key,
-	})
+	resp, err := u.s.CreateMultipartUpload(params)
 	if err != nil {
 		return nil, err
 	}
