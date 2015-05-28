@@ -1,4 +1,4 @@
-// Package of API error types.
+// Package apierr represents API error types.
 package apierr
 
 import "fmt"
@@ -61,7 +61,7 @@ func (b *BaseError) Message() string {
 	return b.message
 }
 
-// Err returns the original error if one was set. Nil is returned if no error
+// OrigErr returns the original error if one was set. Nil is returned if no error
 // was set.
 func (b *BaseError) OrigErr() error {
 	return b.origErr

@@ -44,6 +44,7 @@ type Operation struct {
 	*Paginator
 }
 
+// Paginator keeps track of pagination configuration for an API operation.
 type Paginator struct {
 	InputTokens     []string
 	OutputTokens    []string

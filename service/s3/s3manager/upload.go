@@ -182,7 +182,7 @@ type UploadOutput struct {
 	UploadID string
 }
 
-// Extra options to pass to an Upload() call.
+// UploadOptions keeps tracks of extra options to pass to an Upload() call.
 type UploadOptions struct {
 	// The buffer size (in bytes) to use when buffering data into chunks and
 	// sending them as parts to S3. The minimum allowed part size is 5MB, and

@@ -37,5 +37,4 @@ func cloudfrontCustomizations(a *API) {
 			ref.Shape = a.Shapes["Integer"]
 		}
 	}
-
 }

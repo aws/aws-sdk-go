@@ -1,4 +1,4 @@
-// Package of API error interface accessors for the SDK.
+// Package awserr represents API error interface accessors for the SDK.
 package awserr
 
 // An Error wraps lower level errors with code, message and an original error.

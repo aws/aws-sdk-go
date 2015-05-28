@@ -91,7 +91,7 @@ func TestSendMessageChecksumNoInput(t *testing.T) {
 	assert.Error(t, err)
 
 	assert.Equal(t, "InvalidChecksum", err.(awserr.Error).Code())
-	assert.Contains(t, err.(awserr.Error).Message(), "cannot compute checksum. missing body.")
+	assert.Contains(t, err.(awserr.Error).Message(), "cannot compute checksum. missing body")
 }
 
 func TestSendMessageChecksumNoOutput(t *testing.T) {
@@ -107,7 +107,7 @@ func TestSendMessageChecksumNoOutput(t *testing.T) {
 	assert.Error(t, err)
 
 	assert.Equal(t, "InvalidChecksum", err.(awserr.Error).Code())
-	assert.Contains(t, err.(awserr.Error).Message(), "cannot verify checksum. missing response MD5.")
+	assert.Contains(t, err.(awserr.Error).Message(), "cannot verify checksum. missing response MD5")
 }
 
 func TestRecieveMessageChecksum(t *testing.T) {

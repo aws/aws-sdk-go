@@ -11,8 +11,8 @@ import (
 )
 
 var (
-	errChecksumMissingBody = fmt.Errorf("cannot compute checksum. missing body.")
-	errChecksumMissingMD5  = fmt.Errorf("cannot verify checksum. missing response MD5.")
+	errChecksumMissingBody = fmt.Errorf("cannot compute checksum. missing body")
+	errChecksumMissingMD5  = fmt.Errorf("cannot verify checksum. missing response MD5")
 )
 
 func setupChecksumValidation(r *aws.Request) {

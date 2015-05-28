@@ -33,6 +33,8 @@ func init() {
 	}
 }
 
+// UniqueID returns a unique UUID-like identifier for use in generating
+// resources for integration tests.
 func UniqueID() string {
 	uuid := make([]byte, 16)
 	io.ReadFull(rand.Reader, uuid)

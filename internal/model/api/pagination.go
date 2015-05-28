@@ -6,6 +6,7 @@ import (
 	"os"
 )
 
+// Paginator keeps track of pagination configuration for an API operation.
 type Paginator struct {
 	InputTokens  interface{} `json:"input_token"`
 	OutputTokens interface{} `json:"output_token"`
@@ -31,6 +32,7 @@ type paginationDefinitions struct {
 	Pagination map[string]Paginator
 }
 
+// AttachPaginators attaches pagination configuration from filename to the API.
 func (a *API) AttachPaginators(filename string) {
 	p := paginationDefinitions{API: a}
 
@@ -47,6 +49,7 @@ func (a *API) AttachPaginators(filename string) {
 	p.setup()
 }
 
+// setup runs post-processing on the paginator configuration.
 func (p *paginationDefinitions) setup() {
 	for n, e := range p.Pagination {
 		if e.InputTokens == nil || e.OutputTokens == nil {
