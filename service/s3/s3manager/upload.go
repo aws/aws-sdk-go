@@ -410,16 +410,17 @@ func (u *multiuploader) upload(firstBuf io.ReadSeeker) (*UploadOutput, error) {
 // and send() them as UploadPart requests.
 func (u *multiuploader) readChunk(ch chan chunk) {
 	defer u.wg.Done()
-	for u.geterr() == nil {
+	for {
 		data, ok := <-ch
 
 		if !ok {
 			break
 		}
 
-		if err := u.send(data); err != nil {
-			u.seterr(err)
-			break
+		if u.geterr() == nil {
+			if err := u.send(data); err != nil {
+				u.seterr(err)
+			}
 		}
 	}
 }
