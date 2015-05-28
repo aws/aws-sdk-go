@@ -18,7 +18,7 @@ func ExampleCloudFront_CreateCloudFrontOriginAccessIdentity() {
 	svc := cloudfront.New(nil)
 
 	params := &cloudfront.CreateCloudFrontOriginAccessIdentityInput{
-		CloudFrontOriginAccessIdentityConfig: &cloudfront.CloudFrontOriginAccessIdentityConfig{ // Required
+		CloudFrontOriginAccessIdentityConfig: &cloudfront.OriginAccessIdentityConfig{ // Required
 			CallerReference: aws.String("string"), // Required
 			Comment:         aws.String("string"), // Required
 		},
@@ -724,7 +724,7 @@ func ExampleCloudFront_UpdateCloudFrontOriginAccessIdentity() {
 	svc := cloudfront.New(nil)
 
 	params := &cloudfront.UpdateCloudFrontOriginAccessIdentityInput{
-		CloudFrontOriginAccessIdentityConfig: &cloudfront.CloudFrontOriginAccessIdentityConfig{ // Required
+		CloudFrontOriginAccessIdentityConfig: &cloudfront.OriginAccessIdentityConfig{ // Required
 			CallerReference: aws.String("string"), // Required
 			Comment:         aws.String("string"), // Required
 		},

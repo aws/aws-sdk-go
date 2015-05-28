@@ -1837,114 +1837,6 @@ type metadataAttachInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// Describes an Auto Scaling group.
-type AutoScalingGroup struct {
-	// The Amazon Resource Name (ARN) of the group.
-	AutoScalingGroupARN *string `type:"string"`
-
-	// The name of the group.
-	AutoScalingGroupName *string `type:"string" required:"true"`
-
-	// One or more Availability Zones for the group.
-	AvailabilityZones []*string `type:"list" required:"true"`
-
-	// The date and time the group was created.
-	CreatedTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
-
-	// The number of seconds after a scaling activity completes before any further
-	// scaling activities can start.
-	DefaultCooldown *int64 `type:"integer" required:"true"`
-
-	// The size of the group.
-	DesiredCapacity *int64 `type:"integer" required:"true"`
-
-	// The metrics enabled for this Auto Scaling group.
-	EnabledMetrics []*EnabledMetric `type:"list"`
-
-	// The amount of time that Auto Scaling waits before checking an instance's
-	// health status. The grace period begins when an instance comes into service.
-	HealthCheckGracePeriod *int64 `type:"integer"`
-
-	// The service of interest for the health status check, which can be either
-	// EC2 for Amazon EC2 or ELB for Elastic Load Balancing.
-	HealthCheckType *string `type:"string" required:"true"`
-
-	// The EC2 instances associated with the group.
-	Instances []*Instance `type:"list"`
-
-	// The name of the associated launch configuration.
-	LaunchConfigurationName *string `type:"string" required:"true"`
-
-	// One or more load balancers associated with the group.
-	LoadBalancerNames []*string `type:"list"`
-
-	// The maximum size of the group.
-	MaxSize *int64 `type:"integer" required:"true"`
-
-	// The minimum size of the group.
-	MinSize *int64 `type:"integer" required:"true"`
-
-	// The name of the placement group into which you'll launch your instances,
-	// if any. For more information, see Placement Groups (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html).
-	PlacementGroup *string `type:"string"`
-
-	// The current state of the Auto Scaling group when a DeleteAutoScalingGroup
-	// action is in progress.
-	Status *string `type:"string"`
-
-	// The suspended processes associated with the group.
-	SuspendedProcesses []*SuspendedProcess `type:"list"`
-
-	// The tags for the Auto Scaling group.
-	Tags []*TagDescription `type:"list"`
-
-	// The termination policies for this Auto Scaling group.
-	TerminationPolicies []*string `type:"list"`
-
-	// One or more subnet IDs, if applicable, separated by commas.
-	//
-	// If you specify VPCZoneIdentifier and AvailabilityZones, ensure that the
-	// Availability Zones of the subnets match the values for AvailabilityZones.
-	VPCZoneIdentifier *string `type:"string"`
-
-	metadataAutoScalingGroup `json:"-" xml:"-"`
-}
-
-type metadataAutoScalingGroup struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-// Describes an EC2 instance associated with an Auto Scaling group.
-type AutoScalingInstanceDetails struct {
-	// The name of the Auto Scaling group associated with the instance.
-	AutoScalingGroupName *string `type:"string" required:"true"`
-
-	// The Availability Zone for the instance.
-	AvailabilityZone *string `type:"string" required:"true"`
-
-	// The health status of this instance. "Healthy" means that the instance is
-	// healthy and should remain in service. "Unhealthy" means that the instance
-	// is unhealthy and Auto Scaling should terminate and replace it.
-	HealthStatus *string `type:"string" required:"true"`
-
-	// The ID of the instance.
-	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
-
-	// The launch configuration associated with the instance.
-	LaunchConfigurationName *string `type:"string" required:"true"`
-
-	// The lifecycle state for the instance. For more information, see Auto Scaling
-	// Instance States (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html#AutoScalingStates)
-	// in the Auto Scaling Developer Guide.
-	LifecycleState *string `type:"string" required:"true"`
-
-	metadataAutoScalingInstanceDetails `json:"-" xml:"-"`
-}
-
-type metadataAutoScalingInstanceDetails struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 // Describes a block device mapping.
 type BlockDeviceMapping struct {
 	// The device name exposed to the EC2 instance (for example, /dev/sdh or xvdh).
@@ -2527,7 +2419,7 @@ type metadataDescribeAutoScalingGroupsInput struct {
 
 type DescribeAutoScalingGroupsOutput struct {
 	// The groups.
-	AutoScalingGroups []*AutoScalingGroup `type:"list" required:"true"`
+	AutoScalingGroups []*Group `type:"list" required:"true"`
 
 	// The token to use when requesting the next set of items. If there are no additional
 	// items to return, the string is empty.
@@ -2562,7 +2454,7 @@ type metadataDescribeAutoScalingInstancesInput struct {
 
 type DescribeAutoScalingInstancesOutput struct {
 	// The instances.
-	AutoScalingInstances []*AutoScalingInstanceDetails `type:"list"`
+	AutoScalingInstances []*InstanceDetails `type:"list"`
 
 	// The token to use when requesting the next set of items. If there are no additional
 	// items to return, the string is empty.
@@ -3245,6 +3137,83 @@ type metadataFilter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an Auto Scaling group.
+type Group struct {
+	// The Amazon Resource Name (ARN) of the group.
+	AutoScalingGroupARN *string `type:"string"`
+
+	// The name of the group.
+	AutoScalingGroupName *string `type:"string" required:"true"`
+
+	// One or more Availability Zones for the group.
+	AvailabilityZones []*string `type:"list" required:"true"`
+
+	// The date and time the group was created.
+	CreatedTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The number of seconds after a scaling activity completes before any further
+	// scaling activities can start.
+	DefaultCooldown *int64 `type:"integer" required:"true"`
+
+	// The size of the group.
+	DesiredCapacity *int64 `type:"integer" required:"true"`
+
+	// The metrics enabled for this Auto Scaling group.
+	EnabledMetrics []*EnabledMetric `type:"list"`
+
+	// The amount of time that Auto Scaling waits before checking an instance's
+	// health status. The grace period begins when an instance comes into service.
+	HealthCheckGracePeriod *int64 `type:"integer"`
+
+	// The service of interest for the health status check, which can be either
+	// EC2 for Amazon EC2 or ELB for Elastic Load Balancing.
+	HealthCheckType *string `type:"string" required:"true"`
+
+	// The EC2 instances associated with the group.
+	Instances []*Instance `type:"list"`
+
+	// The name of the associated launch configuration.
+	LaunchConfigurationName *string `type:"string" required:"true"`
+
+	// One or more load balancers associated with the group.
+	LoadBalancerNames []*string `type:"list"`
+
+	// The maximum size of the group.
+	MaxSize *int64 `type:"integer" required:"true"`
+
+	// The minimum size of the group.
+	MinSize *int64 `type:"integer" required:"true"`
+
+	// The name of the placement group into which you'll launch your instances,
+	// if any. For more information, see Placement Groups (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html).
+	PlacementGroup *string `type:"string"`
+
+	// The current state of the Auto Scaling group when a DeleteAutoScalingGroup
+	// action is in progress.
+	Status *string `type:"string"`
+
+	// The suspended processes associated with the group.
+	SuspendedProcesses []*SuspendedProcess `type:"list"`
+
+	// The tags for the Auto Scaling group.
+	Tags []*TagDescription `type:"list"`
+
+	// The termination policies for this Auto Scaling group.
+	TerminationPolicies []*string `type:"list"`
+
+	// One or more subnet IDs, if applicable, separated by commas.
+	//
+	// If you specify VPCZoneIdentifier and AvailabilityZones, ensure that the
+	// Availability Zones of the subnets match the values for AvailabilityZones.
+	VPCZoneIdentifier *string `type:"string"`
+
+	metadataGroup `json:"-" xml:"-"`
+}
+
+type metadataGroup struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // Describes an EC2 instance.
 type Instance struct {
 	// The Availability Zone associated with this instance.
@@ -3268,6 +3237,37 @@ type Instance struct {
 }
 
 type metadataInstance struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Describes an EC2 instance associated with an Auto Scaling group.
+type InstanceDetails struct {
+	// The name of the Auto Scaling group associated with the instance.
+	AutoScalingGroupName *string `type:"string" required:"true"`
+
+	// The Availability Zone for the instance.
+	AvailabilityZone *string `type:"string" required:"true"`
+
+	// The health status of this instance. "Healthy" means that the instance is
+	// healthy and should remain in service. "Unhealthy" means that the instance
+	// is unhealthy and Auto Scaling should terminate and replace it.
+	HealthStatus *string `type:"string" required:"true"`
+
+	// The ID of the instance.
+	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
+
+	// The launch configuration associated with the instance.
+	LaunchConfigurationName *string `type:"string" required:"true"`
+
+	// The lifecycle state for the instance. For more information, see Auto Scaling
+	// Instance States (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html#AutoScalingStates)
+	// in the Auto Scaling Developer Guide.
+	LifecycleState *string `type:"string" required:"true"`
+
+	metadataInstanceDetails `json:"-" xml:"-"`
+}
+
+type metadataInstanceDetails struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 

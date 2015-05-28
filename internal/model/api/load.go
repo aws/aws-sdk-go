@@ -50,6 +50,7 @@ func (a *API) Setup() {
 	a.unrecognizedNames = map[string]string{}
 	a.writeShapeNames()
 	a.resolveReferences()
+	a.fixStutterNames()
 	a.renameExportable()
 	a.renameToplevelShapes()
 	a.updateTopLevelShapeReferences()

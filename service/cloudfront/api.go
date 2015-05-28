@@ -925,106 +925,6 @@ type metadataCachedMethods struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// CloudFront origin access identity.
-type CloudFrontOriginAccessIdentity struct {
-	// The current configuration information for the identity.
-	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `type:"structure"`
-
-	// The ID for the origin access identity. For example: E74FTE3AJFJ256A.
-	ID *string `locationName:"Id" type:"string" required:"true"`
-
-	// The Amazon S3 canonical user ID for the origin access identity, which you
-	// use when giving the origin access identity read permission to an object in
-	// Amazon S3.
-	S3CanonicalUserID *string `locationName:"S3CanonicalUserId" type:"string" required:"true"`
-
-	metadataCloudFrontOriginAccessIdentity `json:"-" xml:"-"`
-}
-
-type metadataCloudFrontOriginAccessIdentity struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-// Origin access identity configuration.
-type CloudFrontOriginAccessIdentityConfig struct {
-	// A unique number that ensures the request can't be replayed. If the CallerReference
-	// is new (no matter the content of the CloudFrontOriginAccessIdentityConfig
-	// object), a new origin access identity is created. If the CallerReference
-	// is a value you already sent in a previous request to create an identity,
-	// and the content of the CloudFrontOriginAccessIdentityConfig is identical
-	// to the original request (ignoring white space), the response includes the
-	// same information returned to the original request. If the CallerReference
-	// is a value you already sent in a previous request to create an identity but
-	// the content of the CloudFrontOriginAccessIdentityConfig is different from
-	// the original request, CloudFront returns a CloudFrontOriginAccessIdentityAlreadyExists
-	// error.
-	CallerReference *string `type:"string" required:"true"`
-
-	// Any comments you want to include about the origin access identity.
-	Comment *string `type:"string" required:"true"`
-
-	metadataCloudFrontOriginAccessIdentityConfig `json:"-" xml:"-"`
-}
-
-type metadataCloudFrontOriginAccessIdentityConfig struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-// The CloudFrontOriginAccessIdentityList type.
-type CloudFrontOriginAccessIdentityList struct {
-	// A flag that indicates whether more origin access identities remain to be
-	// listed. If your results were truncated, you can make a follow-up pagination
-	// request using the Marker request parameter to retrieve more items in the
-	// list.
-	IsTruncated *bool `type:"boolean" required:"true"`
-
-	// A complex type that contains one CloudFrontOriginAccessIdentitySummary element
-	// for each origin access identity that was created by the current AWS account.
-	Items []*CloudFrontOriginAccessIdentitySummary `locationNameList:"CloudFrontOriginAccessIdentitySummary" type:"list"`
-
-	// The value you provided for the Marker request parameter.
-	Marker *string `type:"string" required:"true"`
-
-	// The value you provided for the MaxItems request parameter.
-	MaxItems *int64 `type:"integer" required:"true"`
-
-	// If IsTruncated is true, this element is present and contains the value you
-	// can use for the Marker request parameter to continue listing your origin
-	// access identities where they left off.
-	NextMarker *string `type:"string"`
-
-	// The number of CloudFront origin access identities that were created by the
-	// current AWS account.
-	Quantity *int64 `type:"integer" required:"true"`
-
-	metadataCloudFrontOriginAccessIdentityList `json:"-" xml:"-"`
-}
-
-type metadataCloudFrontOriginAccessIdentityList struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-// Summary of the information about a CloudFront origin access identity.
-type CloudFrontOriginAccessIdentitySummary struct {
-	// The comment for this origin access identity, as originally specified when
-	// created.
-	Comment *string `type:"string" required:"true"`
-
-	// The ID for the origin access identity. For example: E74FTE3AJFJ256A.
-	ID *string `locationName:"Id" type:"string" required:"true"`
-
-	// The Amazon S3 canonical user ID for the origin access identity, which you
-	// use when giving the origin access identity read permission to an object in
-	// Amazon S3.
-	S3CanonicalUserID *string `locationName:"S3CanonicalUserId" type:"string" required:"true"`
-
-	metadataCloudFrontOriginAccessIdentitySummary `json:"-" xml:"-"`
-}
-
-type metadataCloudFrontOriginAccessIdentitySummary struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 // A complex type that specifies the whitelisted cookies, if any, that you want
 // CloudFront to forward to your origin that is associated with this cache behavior.
 type CookieNames struct {
@@ -1065,7 +965,7 @@ type metadataCookiePreference struct {
 // The request to create a new origin access identity.
 type CreateCloudFrontOriginAccessIdentityInput struct {
 	// The origin access identity's configuration information.
-	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `locationName:"CloudFrontOriginAccessIdentityConfig" type:"structure" required:"true"`
+	CloudFrontOriginAccessIdentityConfig *OriginAccessIdentityConfig `locationName:"CloudFrontOriginAccessIdentityConfig" type:"structure" required:"true"`
 
 	metadataCreateCloudFrontOriginAccessIdentityInput `json:"-" xml:"-"`
 }
@@ -1077,7 +977,7 @@ type metadataCreateCloudFrontOriginAccessIdentityInput struct {
 // The returned result of the corresponding request.
 type CreateCloudFrontOriginAccessIdentityOutput struct {
 	// The origin access identity's information.
-	CloudFrontOriginAccessIdentity *CloudFrontOriginAccessIdentity `type:"structure"`
+	CloudFrontOriginAccessIdentity *OriginAccessIdentity `type:"structure"`
 
 	// The current version of the origin access identity created.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
@@ -1669,7 +1569,7 @@ type metadataGetCloudFrontOriginAccessIdentityConfigInput struct {
 // The returned result of the corresponding request.
 type GetCloudFrontOriginAccessIdentityConfigOutput struct {
 	// The origin access identity's configuration information.
-	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `type:"structure"`
+	CloudFrontOriginAccessIdentityConfig *OriginAccessIdentityConfig `type:"structure"`
 
 	// The current version of the configuration. For example: E2QWRUHAPOMQZL.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
@@ -1696,7 +1596,7 @@ type metadataGetCloudFrontOriginAccessIdentityInput struct {
 // The returned result of the corresponding request.
 type GetCloudFrontOriginAccessIdentityOutput struct {
 	// The origin access identity's information.
-	CloudFrontOriginAccessIdentity *CloudFrontOriginAccessIdentity `type:"structure"`
+	CloudFrontOriginAccessIdentity *OriginAccessIdentity `type:"structure"`
 
 	// The current version of the origin access identity's information. For example:
 	// E2QWRUHAPOMQZL.
@@ -2014,7 +1914,7 @@ type metadataListCloudFrontOriginAccessIdentitiesInput struct {
 // The returned result of the corresponding request.
 type ListCloudFrontOriginAccessIdentitiesOutput struct {
 	// The CloudFrontOriginAccessIdentityList type.
-	CloudFrontOriginAccessIdentityList *CloudFrontOriginAccessIdentityList `type:"structure"`
+	CloudFrontOriginAccessIdentityList *OriginAccessIdentityList `type:"structure"`
 
 	metadataListCloudFrontOriginAccessIdentitiesOutput `json:"-" xml:"-"`
 }
@@ -2189,6 +2089,106 @@ type Origin struct {
 }
 
 type metadataOrigin struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// CloudFront origin access identity.
+type OriginAccessIdentity struct {
+	// The current configuration information for the identity.
+	CloudFrontOriginAccessIdentityConfig *OriginAccessIdentityConfig `type:"structure"`
+
+	// The ID for the origin access identity. For example: E74FTE3AJFJ256A.
+	ID *string `locationName:"Id" type:"string" required:"true"`
+
+	// The Amazon S3 canonical user ID for the origin access identity, which you
+	// use when giving the origin access identity read permission to an object in
+	// Amazon S3.
+	S3CanonicalUserID *string `locationName:"S3CanonicalUserId" type:"string" required:"true"`
+
+	metadataOriginAccessIdentity `json:"-" xml:"-"`
+}
+
+type metadataOriginAccessIdentity struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Origin access identity configuration.
+type OriginAccessIdentityConfig struct {
+	// A unique number that ensures the request can't be replayed. If the CallerReference
+	// is new (no matter the content of the CloudFrontOriginAccessIdentityConfig
+	// object), a new origin access identity is created. If the CallerReference
+	// is a value you already sent in a previous request to create an identity,
+	// and the content of the CloudFrontOriginAccessIdentityConfig is identical
+	// to the original request (ignoring white space), the response includes the
+	// same information returned to the original request. If the CallerReference
+	// is a value you already sent in a previous request to create an identity but
+	// the content of the CloudFrontOriginAccessIdentityConfig is different from
+	// the original request, CloudFront returns a CloudFrontOriginAccessIdentityAlreadyExists
+	// error.
+	CallerReference *string `type:"string" required:"true"`
+
+	// Any comments you want to include about the origin access identity.
+	Comment *string `type:"string" required:"true"`
+
+	metadataOriginAccessIdentityConfig `json:"-" xml:"-"`
+}
+
+type metadataOriginAccessIdentityConfig struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// The CloudFrontOriginAccessIdentityList type.
+type OriginAccessIdentityList struct {
+	// A flag that indicates whether more origin access identities remain to be
+	// listed. If your results were truncated, you can make a follow-up pagination
+	// request using the Marker request parameter to retrieve more items in the
+	// list.
+	IsTruncated *bool `type:"boolean" required:"true"`
+
+	// A complex type that contains one CloudFrontOriginAccessIdentitySummary element
+	// for each origin access identity that was created by the current AWS account.
+	Items []*OriginAccessIdentitySummary `locationNameList:"CloudFrontOriginAccessIdentitySummary" type:"list"`
+
+	// The value you provided for the Marker request parameter.
+	Marker *string `type:"string" required:"true"`
+
+	// The value you provided for the MaxItems request parameter.
+	MaxItems *int64 `type:"integer" required:"true"`
+
+	// If IsTruncated is true, this element is present and contains the value you
+	// can use for the Marker request parameter to continue listing your origin
+	// access identities where they left off.
+	NextMarker *string `type:"string"`
+
+	// The number of CloudFront origin access identities that were created by the
+	// current AWS account.
+	Quantity *int64 `type:"integer" required:"true"`
+
+	metadataOriginAccessIdentityList `json:"-" xml:"-"`
+}
+
+type metadataOriginAccessIdentityList struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Summary of the information about a CloudFront origin access identity.
+type OriginAccessIdentitySummary struct {
+	// The comment for this origin access identity, as originally specified when
+	// created.
+	Comment *string `type:"string" required:"true"`
+
+	// The ID for the origin access identity. For example: E74FTE3AJFJ256A.
+	ID *string `locationName:"Id" type:"string" required:"true"`
+
+	// The Amazon S3 canonical user ID for the origin access identity, which you
+	// use when giving the origin access identity read permission to an object in
+	// Amazon S3.
+	S3CanonicalUserID *string `locationName:"S3CanonicalUserId" type:"string" required:"true"`
+
+	metadataOriginAccessIdentitySummary `json:"-" xml:"-"`
+}
+
+type metadataOriginAccessIdentitySummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -2540,7 +2540,7 @@ type metadataTrustedSigners struct {
 // The request to update an origin access identity.
 type UpdateCloudFrontOriginAccessIdentityInput struct {
 	// The identity's configuration information.
-	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `locationName:"CloudFrontOriginAccessIdentityConfig" type:"structure" required:"true"`
+	CloudFrontOriginAccessIdentityConfig *OriginAccessIdentityConfig `locationName:"CloudFrontOriginAccessIdentityConfig" type:"structure" required:"true"`
 
 	// The identity's id.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
@@ -2559,7 +2559,7 @@ type metadataUpdateCloudFrontOriginAccessIdentityInput struct {
 // The returned result of the corresponding request.
 type UpdateCloudFrontOriginAccessIdentityOutput struct {
 	// The origin access identity's information.
-	CloudFrontOriginAccessIdentity *CloudFrontOriginAccessIdentity `type:"structure"`
+	CloudFrontOriginAccessIdentity *OriginAccessIdentity `type:"structure"`
 
 	// The current version of the configuration. For example: E2QWRUHAPOMQZL.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`

@@ -20,7 +20,7 @@ type GlacierAPI interface {
 
 	DeleteVaultNotifications(*glacier.DeleteVaultNotificationsInput) (*glacier.DeleteVaultNotificationsOutput, error)
 
-	DescribeJob(*glacier.DescribeJobInput) (*glacier.GlacierJobDescription, error)
+	DescribeJob(*glacier.DescribeJobInput) (*glacier.JobDescription, error)
 
 	DescribeVault(*glacier.DescribeVaultInput) (*glacier.DescribeVaultOutput, error)
 

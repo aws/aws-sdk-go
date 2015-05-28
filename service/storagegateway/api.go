@@ -3235,6 +3235,23 @@ type metadataDisk struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Provides additional information about an error that was returned by the service
+// as an or. See the errorCode and errorDetails members for more information
+// about the error.
+type Error struct {
+	// Additional information about the error.
+	ErrorCode *string `locationName:"errorCode" type:"string"`
+
+	// Human-readable text that provides detail about the error that occurred.
+	ErrorDetails *map[string]*string `locationName:"errorDetails" type:"map"`
+
+	metadataError `json:"-" xml:"-"`
+}
+
+type metadataError struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type GatewayInfo struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
@@ -3532,23 +3549,6 @@ type StartGatewayOutput struct {
 }
 
 type metadataStartGatewayOutput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-// Provides additional information about an error that was returned by the service
-// as an or. See the errorCode and errorDetails members for more information
-// about the error.
-type StorageGatewayError struct {
-	// Additional information about the error.
-	ErrorCode *string `locationName:"errorCode" type:"string"`
-
-	// Human-readable text that provides detail about the error that occurred.
-	ErrorDetails *map[string]*string `locationName:"errorDetails" type:"map"`
-
-	metadataStorageGatewayError `json:"-" xml:"-"`
-}
-
-type metadataStorageGatewayError struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 

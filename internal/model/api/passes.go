@@ -1,5 +1,10 @@
 package api
 
+import (
+	"fmt"
+	"regexp"
+)
+
 // updateTopLevelShapeReferences moves resultWrapper, locationName, and
 // xmlNamespace traits from toplevel shape references to the toplevel
 // shapes for easier code generation
@@ -111,6 +116,29 @@ func (a *API) renameToplevelShapes() {
 		}
 		v.InputRef.Payload = a.ExportableName(v.InputRef.Payload)
 		v.OutputRef.Payload = a.ExportableName(v.OutputRef.Payload)
+	}
+}
+
+// fixStutterNames fixes all name struttering based on Go naming conventions.
+// "Stuttering" is when the prefix of a structure or function matches the
+// package name (case insensitive).
+func (a *API) fixStutterNames() {
+	re := regexp.MustCompile(fmt.Sprintf(`\A(?i:%s)`, a.PackageName()))
+
+	for name, op := range a.Operations {
+		newName := re.ReplaceAllString(name, "")
+		if newName != name {
+			delete(a.Operations, name)
+			a.Operations[newName] = op
+		}
+		op.ExportedName = newName
+	}
+
+	for k, s := range a.Shapes {
+		newName := re.ReplaceAllString(k, "")
+		if newName != s.ShapeName {
+			s.Rename(newName)
+		}
 	}
 }
 

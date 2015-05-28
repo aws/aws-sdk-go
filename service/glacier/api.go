@@ -346,7 +346,7 @@ func (c *Glacier) DeleteVaultNotifications(input *DeleteVaultNotificationsInput)
 var opDeleteVaultNotifications *aws.Operation
 
 // DescribeJobRequest generates a request for the DescribeJob operation.
-func (c *Glacier) DescribeJobRequest(input *DescribeJobInput) (req *aws.Request, output *GlacierJobDescription) {
+func (c *Glacier) DescribeJobRequest(input *DescribeJobInput) (req *aws.Request, output *JobDescription) {
 	oprw.Lock()
 	defer oprw.Unlock()
 
@@ -363,7 +363,7 @@ func (c *Glacier) DescribeJobRequest(input *DescribeJobInput) (req *aws.Request,
 	}
 
 	req = c.newRequest(opDescribeJob, input, output)
-	output = &GlacierJobDescription{}
+	output = &JobDescription{}
 	req.Data = output
 	return
 }
@@ -390,7 +390,7 @@ func (c *Glacier) DescribeJobRequest(input *DescribeJobInput) (req *aws.Request,
 //  For information about the underlying REST API, go to Working with Archives
 // in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-describe-job-get.html)
 // in the Amazon Glacier Developer Guide.
-func (c *Glacier) DescribeJob(input *DescribeJobInput) (*GlacierJobDescription, error) {
+func (c *Glacier) DescribeJob(input *DescribeJobInput) (*JobDescription, error) {
 	req, out := c.DescribeJobRequest(input)
 	err := req.Send()
 	return out, err
@@ -1705,93 +1705,6 @@ type metadataGetVaultNotificationsOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"VaultNotificationConfig"`
 }
 
-// Describes an Amazon Glacier job.
-type GlacierJobDescription struct {
-	// The job type. It is either ArchiveRetrieval or InventoryRetrieval.
-	Action *string `type:"string"`
-
-	// For an ArchiveRetrieval job, this is the archive ID requested for download.
-	// Otherwise, this field is null.
-	ArchiveID *string `locationName:"ArchiveId" type:"string"`
-
-	// The SHA256 tree hash of the entire archive for an archive retrieval. For
-	// inventory retrieval jobs, this field is null.
-	ArchiveSHA256TreeHash *string `type:"string"`
-
-	// For an ArchiveRetrieval job, this is the size in bytes of the archive being
-	// requested for download. For the InventoryRetrieval job, the value is null.
-	ArchiveSizeInBytes *int64 `type:"long"`
-
-	// The job status. When a job is completed, you get the job's output.
-	Completed *bool `type:"boolean"`
-
-	// The UTC time that the archive retrieval request completed. While the job
-	// is in progress, the value will be null.
-	CompletionDate *string `type:"string"`
-
-	// The UTC date when the job was created. A string representation of ISO 8601
-	// date format, for example, "2012-03-20T17:03:43.221Z".
-	CreationDate *string `type:"string"`
-
-	// Parameters used for range inventory retrieval.
-	InventoryRetrievalParameters *InventoryRetrievalJobDescription `type:"structure"`
-
-	// For an InventoryRetrieval job, this is the size in bytes of the inventory
-	// requested for download. For the ArchiveRetrieval job, the value is null.
-	InventorySizeInBytes *int64 `type:"long"`
-
-	// The job description you provided when you initiated the job.
-	JobDescription *string `type:"string"`
-
-	// An opaque string that identifies an Amazon Glacier job.
-	JobID *string `locationName:"JobId" type:"string"`
-
-	// The retrieved byte range for archive retrieval jobs in the form "StartByteValue-EndByteValue"
-	// If no range was specified in the archive retrieval, then the whole archive
-	// is retrieved and StartByteValue equals 0 and EndByteValue equals the size
-	// of the archive minus 1. For inventory retrieval jobs this field is null.
-	RetrievalByteRange *string `type:"string"`
-
-	// For an ArchiveRetrieval job, it is the checksum of the archive. Otherwise,
-	// the value is null.
-	//
-	//  The SHA256 tree hash value for the requested range of an archive. If the
-	// Initiate a Job request for an archive specified a tree-hash aligned range,
-	// then this field returns a value.
-	//
-	//  For the specific case when the whole archive is retrieved, this value is
-	// the same as the ArchiveSHA256TreeHash value.
-	//
-	//  This field is null in the following situations:  Archive retrieval jobs
-	// that specify a range that is not tree-hash aligned.
-	//
-	//   Archival jobs that specify a range that is equal to the whole archive
-	// and the job status is InProgress.
-	//
-	//   Inventory jobs.
-	SHA256TreeHash *string `type:"string"`
-
-	// An Amazon Simple Notification Service (Amazon SNS) topic that receives notification.
-	SNSTopic *string `type:"string"`
-
-	// The status code can be InProgress, Succeeded, or Failed, and indicates the
-	// status of the job.
-	StatusCode *string `type:"string"`
-
-	// A friendly message that describes the job status.
-	StatusMessage *string `type:"string"`
-
-	// The Amazon Resource Name (ARN) of the vault from which the archive retrieval
-	// was requested.
-	VaultARN *string `type:"string"`
-
-	metadataGlacierJobDescription `json:"-" xml:"-"`
-}
-
-type metadataGlacierJobDescription struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
 // Provides options for initiating an Amazon Glacier job.
 type InitiateJobInput struct {
 	// The AccountId is the AWS Account ID. You can specify either the AWS Account
@@ -1939,6 +1852,93 @@ type metadataInventoryRetrievalJobInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an Amazon Glacier job.
+type JobDescription struct {
+	// The job type. It is either ArchiveRetrieval or InventoryRetrieval.
+	Action *string `type:"string"`
+
+	// For an ArchiveRetrieval job, this is the archive ID requested for download.
+	// Otherwise, this field is null.
+	ArchiveID *string `locationName:"ArchiveId" type:"string"`
+
+	// The SHA256 tree hash of the entire archive for an archive retrieval. For
+	// inventory retrieval jobs, this field is null.
+	ArchiveSHA256TreeHash *string `type:"string"`
+
+	// For an ArchiveRetrieval job, this is the size in bytes of the archive being
+	// requested for download. For the InventoryRetrieval job, the value is null.
+	ArchiveSizeInBytes *int64 `type:"long"`
+
+	// The job status. When a job is completed, you get the job's output.
+	Completed *bool `type:"boolean"`
+
+	// The UTC time that the archive retrieval request completed. While the job
+	// is in progress, the value will be null.
+	CompletionDate *string `type:"string"`
+
+	// The UTC date when the job was created. A string representation of ISO 8601
+	// date format, for example, "2012-03-20T17:03:43.221Z".
+	CreationDate *string `type:"string"`
+
+	// Parameters used for range inventory retrieval.
+	InventoryRetrievalParameters *InventoryRetrievalJobDescription `type:"structure"`
+
+	// For an InventoryRetrieval job, this is the size in bytes of the inventory
+	// requested for download. For the ArchiveRetrieval job, the value is null.
+	InventorySizeInBytes *int64 `type:"long"`
+
+	// The job description you provided when you initiated the job.
+	JobDescription *string `type:"string"`
+
+	// An opaque string that identifies an Amazon Glacier job.
+	JobID *string `locationName:"JobId" type:"string"`
+
+	// The retrieved byte range for archive retrieval jobs in the form "StartByteValue-EndByteValue"
+	// If no range was specified in the archive retrieval, then the whole archive
+	// is retrieved and StartByteValue equals 0 and EndByteValue equals the size
+	// of the archive minus 1. For inventory retrieval jobs this field is null.
+	RetrievalByteRange *string `type:"string"`
+
+	// For an ArchiveRetrieval job, it is the checksum of the archive. Otherwise,
+	// the value is null.
+	//
+	//  The SHA256 tree hash value for the requested range of an archive. If the
+	// Initiate a Job request for an archive specified a tree-hash aligned range,
+	// then this field returns a value.
+	//
+	//  For the specific case when the whole archive is retrieved, this value is
+	// the same as the ArchiveSHA256TreeHash value.
+	//
+	//  This field is null in the following situations:  Archive retrieval jobs
+	// that specify a range that is not tree-hash aligned.
+	//
+	//   Archival jobs that specify a range that is equal to the whole archive
+	// and the job status is InProgress.
+	//
+	//   Inventory jobs.
+	SHA256TreeHash *string `type:"string"`
+
+	// An Amazon Simple Notification Service (Amazon SNS) topic that receives notification.
+	SNSTopic *string `type:"string"`
+
+	// The status code can be InProgress, Succeeded, or Failed, and indicates the
+	// status of the job.
+	StatusCode *string `type:"string"`
+
+	// A friendly message that describes the job status.
+	StatusMessage *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the vault from which the archive retrieval
+	// was requested.
+	VaultARN *string `type:"string"`
+
+	metadataJobDescription `json:"-" xml:"-"`
+}
+
+type metadataJobDescription struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // Provides options for defining a job.
 type JobParameters struct {
 	// The ID of the archive that you want to retrieve. This field is required only
@@ -2026,7 +2026,7 @@ type metadataListJobsInput struct {
 // Contains the Amazon Glacier response to your request.
 type ListJobsOutput struct {
 	// A list of job objects. Each job object contains metadata describing the job.
-	JobList []*GlacierJobDescription `type:"list"`
+	JobList []*JobDescription `type:"list"`
 
 	// An opaque string that represents where to continue pagination of the results.
 	// You use this value in a new List Jobs request to obtain more jobs in the
