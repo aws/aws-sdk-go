@@ -1,4 +1,5 @@
-LINTIGNOREDOT=-x 'internal/features.+should not use dot imports'
+LINTIGNOREDOT='internal/features.+should not use dot imports'
+LINTIGNOREDOC='service/[^/]+/(.*iface/interface|api)\.go:.+(comment on exported|should have comment or be unexported)'
 
 default: generate
 
@@ -20,9 +21,9 @@ integration: deps
 	gucumber
 
 lint: deps
-	lint=`golint ./aws/... && golint ./internal/...`; \
-	lint=`echo "$$lint" | grep ${LINTIGNOREDOT}`; \
-	echo $$lint; \
+	lint=`golint ./...`; \
+	lint=`echo "$$lint" | grep -E -v -e ${LINTIGNOREDOT} -e ${LINTIGNOREDOC}`; \
+	echo "$$lint"; \
 	if [ "$$lint" != "" ]; then exit 1; fi
 
 unit: deps lint
