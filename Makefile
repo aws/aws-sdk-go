@@ -1,5 +1,5 @@
 LINTIGNOREDOT='internal/features.+should not use dot imports'
-LINTIGNOREDOC='service/[^/]+/(.*iface/interface|api)\.go:.+(comment on exported|should have comment or be unexported)'
+LINTIGNOREDOC='service/[^/]+/(api)\.go:.+(comment on exported|should have comment or be unexported)'
 
 default: generate
 

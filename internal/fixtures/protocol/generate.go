@@ -295,7 +295,7 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		f.WriteString(out + "\n")
+		f.WriteString(util.GoFmt(out))
 	} else {
 		fmt.Println(out)
 	}

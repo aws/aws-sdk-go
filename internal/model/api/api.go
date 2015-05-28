@@ -294,12 +294,12 @@ func (a *API) ExampleGoCode() string {
 		exs = append(exs, o.Example())
 	}
 
-	code := fmt.Sprintf("import (\n%q\n%q\n%q\n%q\n\n%q\n%q\n%q\n)\n\n"+
+	code := fmt.Sprintf("import (\n%q\n%q\n%q\n\n%q\n%q\n%q\n%q\n)\n\n"+
 		"var _ time.Duration\nvar _ bytes.Buffer\n\n%s",
 		"bytes",
 		"fmt",
-		"github.com/awslabs/aws-sdk-go/aws",
 		"time",
+		"github.com/awslabs/aws-sdk-go/aws",
 		"github.com/awslabs/aws-sdk-go/aws/awserr",
 		"github.com/awslabs/aws-sdk-go/aws/awsutil",
 		"github.com/awslabs/aws-sdk-go/service/"+a.PackageName(),
@@ -310,6 +310,7 @@ func (a *API) ExampleGoCode() string {
 
 // A tplInterface defines the template for the service interface type.
 var tplInterface = template.Must(template.New("interface").Parse(`
+// {{ .StructName }}API is the interface type for {{ .PackageName }}.{{ .StructName }}.
 type {{ .StructName }}API interface {
     {{ range $_, $o := .OperationList }}
         {{ $o.InterfaceSignature }}
