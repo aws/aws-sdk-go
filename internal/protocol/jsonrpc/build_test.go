@@ -1035,4 +1035,3 @@ func TestInputService5ProtocolTestRecursiveShapesCase6(t *testing.T) {
 	assert.Equal(t, "com.amazonaws.foo.OperationName", r.Header.Get("X-Amz-Target"))
 
 }
-

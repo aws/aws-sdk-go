@@ -3,6 +3,7 @@ package aws
 import (
 	"bytes"
 	"fmt"
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/internal/apierr"
 	"io"
 	"io/ioutil"
@@ -11,7 +12,6 @@ import (
 	"regexp"
 	"strconv"
 	"time"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
 )
 
 var sleepDelay = func(delay time.Duration) {

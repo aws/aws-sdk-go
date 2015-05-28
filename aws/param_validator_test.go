@@ -4,8 +4,8 @@ import (
 	"testing"
 
 	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/stretchr/testify/assert"
 	"github.com/awslabs/aws-sdk-go/aws/awserr"
+	"github.com/stretchr/testify/assert"
 )
 
 var service = func() *aws.Service {

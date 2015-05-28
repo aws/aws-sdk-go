@@ -149,7 +149,7 @@ func TestCopyDifferentStructs(t *testing.T) {
 			"A": &int1,
 			"B": &int2,
 		},
-		SrcUnique: "unique",
+		SrcUnique:        "unique",
 		SameNameDiffType: 1,
 	}
 

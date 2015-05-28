@@ -922,4 +922,3 @@ func TestInputService8ProtocolTestTimestampValuesCase1(t *testing.T) {
 	// assert headers
 
 }
-

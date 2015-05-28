@@ -3,8 +3,8 @@ package cloudsearchdomain_test
 import (
 	"bytes"
 	"fmt"
-	"time"
 	"github.com/awslabs/aws-sdk-go/aws"
+	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws/awserr"
 	"github.com/awslabs/aws-sdk-go/aws/awsutil"

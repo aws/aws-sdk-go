@@ -1550,4 +1550,3 @@ func TestInputService9ProtocolTestTimestampValuesCase2(t *testing.T) {
 	assert.Equal(t, "Sun, 25 Jan 2015 08:00:00 GMT", r.Header.Get("x-amz-timearg"))
 
 }
-

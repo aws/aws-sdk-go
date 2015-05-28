@@ -9,7 +9,7 @@ import (
 	"github.com/awslabs/aws-sdk-go/internal/apierr"
 )
 
-var errSSERequiresSSL = apierr.New("ConfigError","cannot send SSE keys over HTTP.", nil)
+var errSSERequiresSSL = apierr.New("ConfigError", "cannot send SSE keys over HTTP.", nil)
 
 func validateSSERequiresSSL(r *aws.Request) {
 	if r.HTTPRequest.URL.Scheme != "https" {

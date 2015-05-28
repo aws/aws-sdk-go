@@ -801,4 +801,3 @@ func TestOutputService7ProtocolTestIgnoresExtraDataCase1(t *testing.T) {
 	assert.NotNil(t, out) // ensure out variable is used
 
 }
-

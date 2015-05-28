@@ -1407,4 +1407,3 @@ func TestOutputService12ProtocolTestStringCase1(t *testing.T) {
 	assert.Equal(t, "operation result string", *out.String)
 
 }
-

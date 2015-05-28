@@ -1528,4 +1528,3 @@ func TestOutputService14ProtocolTestNamedMapCase1(t *testing.T) {
 	assert.Equal(t, "bar", *(*out.Map)["qux"])
 
 }
-
