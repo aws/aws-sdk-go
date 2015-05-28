@@ -4,6 +4,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws/credentials"
 )
@@ -17,7 +18,7 @@ var DefaultChainCredentials = credentials.NewChainCredentials(
 	[]credentials.Provider{
 		&credentials.EnvProvider{},
 		&credentials.SharedCredentialsProvider{Filename: "", Profile: ""},
-		&credentials.EC2RoleProvider{},
+		&credentials.EC2RoleProvider{ExpiryWindow: 5 * time.Minute},
 	})
 
 // The default number of retries for a service. The value of -1 indicates that
