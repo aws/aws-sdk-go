@@ -45,8 +45,8 @@ type Operation struct {
 }
 
 type Paginator struct {
-	InputToken      string
-	OutputToken     string
+	InputTokens     []string
+	OutputTokens    []string
 	LimitToken      string
 	TruncationToken string
 }
@@ -229,43 +229,55 @@ func (r *Request) Send() error {
 }
 
 func (r *Request) HasNextPage() bool {
-	return r.nextPageToken() != nil
+	return r.nextPageTokens() != nil
 }
 
-func (r *Request) nextPageToken() interface{} {
+func (r *Request) nextPageTokens() []interface{} {
 	if r.Operation.Paginator == nil {
-		return nil
-	}
-	v := awsutil.ValuesAtAnyPath(r.Data, r.Operation.OutputToken)
-	if v != nil && len(v) > 0 {
-		return v[0]
-	}
-	return nil
-}
-
-func (r *Request) NextPage() *Request {
-	token := r.nextPageToken()
-	if token == nil {
 		return nil
 	}
 
 	if r.Operation.TruncationToken != "" {
 		tr := awsutil.ValuesAtAnyPath(r.Data, r.Operation.TruncationToken)
-		if tr == nil {
+		if tr == nil || len(tr) == 0 {
 			return nil
-		} else if len(tr) > 0 {
-			switch v := tr[0].(type) {
-			case bool:
-				if v == false {
-					return nil
-				}
+		}
+		switch v := tr[0].(type) {
+		case bool:
+			if v == false {
+				return nil
 			}
 		}
 	}
 
+	found := false
+	tokens := make([]interface{}, len(r.Operation.OutputTokens))
+
+	for i, outtok := range r.Operation.OutputTokens {
+		v := awsutil.ValuesAtAnyPath(r.Data, outtok)
+		if v != nil && len(v) > 0 {
+			found = true
+			tokens[i] = v[0]
+		}
+	}
+
+	if found {
+		return tokens
+	}
+	return nil
+}
+
+func (r *Request) NextPage() *Request {
+	tokens := r.nextPageTokens()
+	if tokens == nil {
+		return nil
+	}
+
 	data := reflect.New(reflect.TypeOf(r.Data).Elem()).Interface()
 	nr := NewRequest(r.Service, r.Operation, awsutil.CopyOf(r.Params), data)
-	awsutil.SetValueAtAnyPath(nr.Params, nr.Operation.InputToken, token)
+	for i, intok := range nr.Operation.InputTokens {
+		awsutil.SetValueAtAnyPath(nr.Params, intok, tokens[i])
+	}
 	return nr
 }
 
@@ -278,6 +290,9 @@ func (r *Request) EachPage(fn interface{}) error {
 	valfn := reflect.ValueOf(fn)
 	if valfn.Kind() != reflect.Func {
 		panic("expected function for EachPage()")
+	}
+	if valfn.Type().NumOut() > 0 && valfn.Type().Out(0).Kind() != reflect.Bool {
+		panic("EachPage(fn) function must return bool if it returns a value")
 	}
 
 	for page := r; page != nil; page = page.NextPage() {
@@ -298,9 +313,6 @@ func (r *Request) EachPage(fn interface{}) error {
 		out := valfn.Call(args)
 
 		if len(out) > 0 {
-			if out[0].Kind() != reflect.Bool {
-				panic("EachPage(fn) function must return bool if it returns a value")
-			}
 			shouldContinue = out[0].Bool()
 		}
 

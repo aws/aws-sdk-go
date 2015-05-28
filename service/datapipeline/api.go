@@ -164,8 +164,8 @@ func (c *DataPipeline) DescribeObjectsRequest(input *DescribeObjectsInput) (req 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "marker",
-				OutputToken:     "marker",
+				InputTokens:     []string{"marker"},
+				OutputTokens:    []string{"marker"},
 				LimitToken:      "",
 				TruncationToken: "hasMoreResults",
 			},
@@ -315,8 +315,8 @@ func (c *DataPipeline) ListPipelinesRequest(input *ListPipelinesInput) (req *aws
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "marker",
-				OutputToken:     "marker",
+				InputTokens:     []string{"marker"},
+				OutputTokens:    []string{"marker"},
 				LimitToken:      "",
 				TruncationToken: "hasMoreResults",
 			},
@@ -447,8 +447,8 @@ func (c *DataPipeline) QueryObjectsRequest(input *QueryObjectsInput) (req *aws.R
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "marker",
-				OutputToken:     "marker",
+				InputTokens:     []string{"marker"},
+				OutputTokens:    []string{"marker"},
 				LimitToken:      "limit",
 				TruncationToken: "hasMoreResults",
 			},

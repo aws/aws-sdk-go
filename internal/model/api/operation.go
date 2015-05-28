@@ -62,8 +62,8 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 			{{ if ne .HTTP.Method "" }}HTTPMethod: "{{ .HTTP.Method }}",
 			{{ end }}{{ if ne .HTTP.RequestURI "" }}HTTPPath:   "{{ .HTTP.RequestURI }}",
 			{{ end }}{{ if .Paginator }}Paginator: &aws.Paginator{
-					InputToken: "{{ .Paginator.InputToken }}",
-					OutputToken: "{{ .Paginator.OutputToken }}",
+					InputTokens: {{ .Paginator.InputTokensString }},
+					OutputTokens: {{ .Paginator.OutputTokensString }},
 					LimitToken: "{{ .Paginator.LimitKey }}",
 					TruncationToken: "{{ .Paginator.MoreResults }}",
 			},

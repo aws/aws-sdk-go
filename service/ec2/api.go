@@ -2785,12 +2785,6 @@ func (c *EC2) DescribeAccountAttributesRequest(input *DescribeAccountAttributesI
 			Name:       "DescribeAccountAttributes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -2829,11 +2823,6 @@ func (c *EC2) DescribeAccountAttributes(input *DescribeAccountAttributesInput) (
 	return out, err
 }
 
-func (c *EC2) DescribeAccountAttributesPages(input *DescribeAccountAttributesInput, fn func(p *DescribeAccountAttributesOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeAccountAttributesRequest(input)
-	return page.EachPage(fn)
-}
-
 var opDescribeAccountAttributes *aws.Operation
 
 // DescribeAddressesRequest generates a request for the DescribeAddresses operation.
@@ -2846,12 +2835,6 @@ func (c *EC2) DescribeAddressesRequest(input *DescribeAddressesInput) (req *aws.
 			Name:       "DescribeAddresses",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -2876,11 +2859,6 @@ func (c *EC2) DescribeAddresses(input *DescribeAddressesInput) (*DescribeAddress
 	return out, err
 }
 
-func (c *EC2) DescribeAddressesPages(input *DescribeAddressesInput, fn func(p *DescribeAddressesOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeAddressesRequest(input)
-	return page.EachPage(fn)
-}
-
 var opDescribeAddresses *aws.Operation
 
 // DescribeAvailabilityZonesRequest generates a request for the DescribeAvailabilityZones operation.
@@ -2893,12 +2871,6 @@ func (c *EC2) DescribeAvailabilityZonesRequest(input *DescribeAvailabilityZonesI
 			Name:       "DescribeAvailabilityZones",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -2925,11 +2897,6 @@ func (c *EC2) DescribeAvailabilityZones(input *DescribeAvailabilityZonesInput) (
 	return out, err
 }
 
-func (c *EC2) DescribeAvailabilityZonesPages(input *DescribeAvailabilityZonesInput, fn func(p *DescribeAvailabilityZonesOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeAvailabilityZonesRequest(input)
-	return page.EachPage(fn)
-}
-
 var opDescribeAvailabilityZones *aws.Operation
 
 // DescribeBundleTasksRequest generates a request for the DescribeBundleTasks operation.
@@ -2942,12 +2909,6 @@ func (c *EC2) DescribeBundleTasksRequest(input *DescribeBundleTasksInput) (req *
 			Name:       "DescribeBundleTasks",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -2971,11 +2932,6 @@ func (c *EC2) DescribeBundleTasks(input *DescribeBundleTasksInput) (*DescribeBun
 	req, out := c.DescribeBundleTasksRequest(input)
 	err := req.Send()
 	return out, err
-}
-
-func (c *EC2) DescribeBundleTasksPages(input *DescribeBundleTasksInput, fn func(p *DescribeBundleTasksOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeBundleTasksRequest(input)
-	return page.EachPage(fn)
 }
 
 var opDescribeBundleTasks *aws.Operation
@@ -3025,12 +2981,6 @@ func (c *EC2) DescribeConversionTasksRequest(input *DescribeConversionTasksInput
 			Name:       "DescribeConversionTasks",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -3054,11 +3004,6 @@ func (c *EC2) DescribeConversionTasks(input *DescribeConversionTasksInput) (*Des
 	return out, err
 }
 
-func (c *EC2) DescribeConversionTasksPages(input *DescribeConversionTasksInput, fn func(p *DescribeConversionTasksOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeConversionTasksRequest(input)
-	return page.EachPage(fn)
-}
-
 var opDescribeConversionTasks *aws.Operation
 
 // DescribeCustomerGatewaysRequest generates a request for the DescribeCustomerGateways operation.
@@ -3071,12 +3016,6 @@ func (c *EC2) DescribeCustomerGatewaysRequest(input *DescribeCustomerGatewaysInp
 			Name:       "DescribeCustomerGateways",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -3101,11 +3040,6 @@ func (c *EC2) DescribeCustomerGateways(input *DescribeCustomerGatewaysInput) (*D
 	return out, err
 }
 
-func (c *EC2) DescribeCustomerGatewaysPages(input *DescribeCustomerGatewaysInput, fn func(p *DescribeCustomerGatewaysOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeCustomerGatewaysRequest(input)
-	return page.EachPage(fn)
-}
-
 var opDescribeCustomerGateways *aws.Operation
 
 // DescribeDHCPOptionsRequest generates a request for the DescribeDHCPOptions operation.
@@ -3118,12 +3052,6 @@ func (c *EC2) DescribeDHCPOptionsRequest(input *DescribeDHCPOptionsInput) (req *
 			Name:       "DescribeDhcpOptions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -3147,11 +3075,6 @@ func (c *EC2) DescribeDHCPOptions(input *DescribeDHCPOptionsInput) (*DescribeDHC
 	return out, err
 }
 
-func (c *EC2) DescribeDHCPOptionsPages(input *DescribeDHCPOptionsInput, fn func(p *DescribeDHCPOptionsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeDHCPOptionsRequest(input)
-	return page.EachPage(fn)
-}
-
 var opDescribeDHCPOptions *aws.Operation
 
 // DescribeExportTasksRequest generates a request for the DescribeExportTasks operation.
@@ -3164,12 +3087,6 @@ func (c *EC2) DescribeExportTasksRequest(input *DescribeExportTasksInput) (req *
 			Name:       "DescribeExportTasks",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -3188,11 +3105,6 @@ func (c *EC2) DescribeExportTasks(input *DescribeExportTasksInput) (*DescribeExp
 	req, out := c.DescribeExportTasksRequest(input)
 	err := req.Send()
 	return out, err
-}
-
-func (c *EC2) DescribeExportTasksPages(input *DescribeExportTasksInput, fn func(p *DescribeExportTasksOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeExportTasksRequest(input)
-	return page.EachPage(fn)
 }
 
 var opDescribeExportTasks *aws.Operation
@@ -3240,12 +3152,6 @@ func (c *EC2) DescribeImagesRequest(input *DescribeImagesInput) (req *aws.Reques
 			Name:       "DescribeImages",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -3270,11 +3176,6 @@ func (c *EC2) DescribeImages(input *DescribeImagesInput) (*DescribeImagesOutput,
 	req, out := c.DescribeImagesRequest(input)
 	err := req.Send()
 	return out, err
-}
-
-func (c *EC2) DescribeImagesPages(input *DescribeImagesInput, fn func(p *DescribeImagesOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeImagesRequest(input)
-	return page.EachPage(fn)
 }
 
 var opDescribeImages *aws.Operation
@@ -3391,8 +3292,8 @@ func (c *EC2) DescribeInstanceStatusRequest(input *DescribeInstanceStatusInput) 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "NextToken",
-				OutputToken:     "NextToken",
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
 				LimitToken:      "MaxResults",
 				TruncationToken: "",
 			},
@@ -3492,8 +3393,8 @@ func (c *EC2) DescribeInstancesRequest(input *DescribeInstancesInput) (req *aws.
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "NextToken",
-				OutputToken:     "NextToken",
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
 				LimitToken:      "MaxResults",
 				TruncationToken: "",
 			},
@@ -3543,12 +3444,6 @@ func (c *EC2) DescribeInternetGatewaysRequest(input *DescribeInternetGatewaysInp
 			Name:       "DescribeInternetGateways",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -3569,11 +3464,6 @@ func (c *EC2) DescribeInternetGateways(input *DescribeInternetGatewaysInput) (*D
 	return out, err
 }
 
-func (c *EC2) DescribeInternetGatewaysPages(input *DescribeInternetGatewaysInput, fn func(p *DescribeInternetGatewaysOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeInternetGatewaysRequest(input)
-	return page.EachPage(fn)
-}
-
 var opDescribeInternetGateways *aws.Operation
 
 // DescribeKeyPairsRequest generates a request for the DescribeKeyPairs operation.
@@ -3586,12 +3476,6 @@ func (c *EC2) DescribeKeyPairsRequest(input *DescribeKeyPairsInput) (req *aws.Re
 			Name:       "DescribeKeyPairs",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -3615,11 +3499,6 @@ func (c *EC2) DescribeKeyPairs(input *DescribeKeyPairsInput) (*DescribeKeyPairsO
 	return out, err
 }
 
-func (c *EC2) DescribeKeyPairsPages(input *DescribeKeyPairsInput, fn func(p *DescribeKeyPairsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeKeyPairsRequest(input)
-	return page.EachPage(fn)
-}
-
 var opDescribeKeyPairs *aws.Operation
 
 // DescribeNetworkACLsRequest generates a request for the DescribeNetworkACLs operation.
@@ -3632,12 +3511,6 @@ func (c *EC2) DescribeNetworkACLsRequest(input *DescribeNetworkACLsInput) (req *
 			Name:       "DescribeNetworkAcls",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -3659,11 +3532,6 @@ func (c *EC2) DescribeNetworkACLs(input *DescribeNetworkACLsInput) (*DescribeNet
 	req, out := c.DescribeNetworkACLsRequest(input)
 	err := req.Send()
 	return out, err
-}
-
-func (c *EC2) DescribeNetworkACLsPages(input *DescribeNetworkACLsInput, fn func(p *DescribeNetworkACLsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeNetworkACLsRequest(input)
-	return page.EachPage(fn)
 }
 
 var opDescribeNetworkACLs *aws.Operation
@@ -3711,12 +3579,6 @@ func (c *EC2) DescribeNetworkInterfacesRequest(input *DescribeNetworkInterfacesI
 			Name:       "DescribeNetworkInterfaces",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -3737,11 +3599,6 @@ func (c *EC2) DescribeNetworkInterfaces(input *DescribeNetworkInterfacesInput) (
 	return out, err
 }
 
-func (c *EC2) DescribeNetworkInterfacesPages(input *DescribeNetworkInterfacesInput, fn func(p *DescribeNetworkInterfacesOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeNetworkInterfacesRequest(input)
-	return page.EachPage(fn)
-}
-
 var opDescribeNetworkInterfaces *aws.Operation
 
 // DescribePlacementGroupsRequest generates a request for the DescribePlacementGroups operation.
@@ -3754,12 +3611,6 @@ func (c *EC2) DescribePlacementGroupsRequest(input *DescribePlacementGroupsInput
 			Name:       "DescribePlacementGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -3782,11 +3633,6 @@ func (c *EC2) DescribePlacementGroups(input *DescribePlacementGroupsInput) (*Des
 	return out, err
 }
 
-func (c *EC2) DescribePlacementGroupsPages(input *DescribePlacementGroupsInput, fn func(p *DescribePlacementGroupsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribePlacementGroupsRequest(input)
-	return page.EachPage(fn)
-}
-
 var opDescribePlacementGroups *aws.Operation
 
 // DescribeRegionsRequest generates a request for the DescribeRegions operation.
@@ -3799,12 +3645,6 @@ func (c *EC2) DescribeRegionsRequest(input *DescribeRegionsInput) (req *aws.Requ
 			Name:       "DescribeRegions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -3828,11 +3668,6 @@ func (c *EC2) DescribeRegions(input *DescribeRegionsInput) (*DescribeRegionsOutp
 	return out, err
 }
 
-func (c *EC2) DescribeRegionsPages(input *DescribeRegionsInput, fn func(p *DescribeRegionsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeRegionsRequest(input)
-	return page.EachPage(fn)
-}
-
 var opDescribeRegions *aws.Operation
 
 // DescribeReservedInstancesRequest generates a request for the DescribeReservedInstances operation.
@@ -3845,12 +3680,6 @@ func (c *EC2) DescribeReservedInstancesRequest(input *DescribeReservedInstancesI
 			Name:       "DescribeReservedInstances",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -3874,11 +3703,6 @@ func (c *EC2) DescribeReservedInstances(input *DescribeReservedInstancesInput) (
 	return out, err
 }
 
-func (c *EC2) DescribeReservedInstancesPages(input *DescribeReservedInstancesInput, fn func(p *DescribeReservedInstancesOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeReservedInstancesRequest(input)
-	return page.EachPage(fn)
-}
-
 var opDescribeReservedInstances *aws.Operation
 
 // DescribeReservedInstancesListingsRequest generates a request for the DescribeReservedInstancesListings operation.
@@ -3891,12 +3715,6 @@ func (c *EC2) DescribeReservedInstancesListingsRequest(input *DescribeReservedIn
 			Name:       "DescribeReservedInstancesListings",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -3938,11 +3756,6 @@ func (c *EC2) DescribeReservedInstancesListings(input *DescribeReservedInstances
 	return out, err
 }
 
-func (c *EC2) DescribeReservedInstancesListingsPages(input *DescribeReservedInstancesListingsInput, fn func(p *DescribeReservedInstancesListingsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeReservedInstancesListingsRequest(input)
-	return page.EachPage(fn)
-}
-
 var opDescribeReservedInstancesListings *aws.Operation
 
 // DescribeReservedInstancesModificationsRequest generates a request for the DescribeReservedInstancesModifications operation.
@@ -3956,8 +3769,8 @@ func (c *EC2) DescribeReservedInstancesModificationsRequest(input *DescribeReser
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "NextToken",
-				OutputToken:     "NextToken",
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
 				LimitToken:      "",
 				TruncationToken: "",
 			},
@@ -4005,8 +3818,8 @@ func (c *EC2) DescribeReservedInstancesOfferingsRequest(input *DescribeReservedI
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "NextToken",
-				OutputToken:     "NextToken",
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
 				LimitToken:      "MaxResults",
 				TruncationToken: "",
 			},
@@ -4054,12 +3867,6 @@ func (c *EC2) DescribeRouteTablesRequest(input *DescribeRouteTablesInput) (req *
 			Name:       "DescribeRouteTables",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -4083,11 +3890,6 @@ func (c *EC2) DescribeRouteTables(input *DescribeRouteTablesInput) (*DescribeRou
 	return out, err
 }
 
-func (c *EC2) DescribeRouteTablesPages(input *DescribeRouteTablesInput, fn func(p *DescribeRouteTablesOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeRouteTablesRequest(input)
-	return page.EachPage(fn)
-}
-
 var opDescribeRouteTables *aws.Operation
 
 // DescribeSecurityGroupsRequest generates a request for the DescribeSecurityGroups operation.
@@ -4100,12 +3902,6 @@ func (c *EC2) DescribeSecurityGroupsRequest(input *DescribeSecurityGroupsInput) 
 			Name:       "DescribeSecurityGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -4131,11 +3927,6 @@ func (c *EC2) DescribeSecurityGroups(input *DescribeSecurityGroupsInput) (*Descr
 	req, out := c.DescribeSecurityGroupsRequest(input)
 	err := req.Send()
 	return out, err
-}
-
-func (c *EC2) DescribeSecurityGroupsPages(input *DescribeSecurityGroupsInput, fn func(p *DescribeSecurityGroupsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeSecurityGroupsRequest(input)
-	return page.EachPage(fn)
 }
 
 var opDescribeSecurityGroups *aws.Operation
@@ -4187,8 +3978,8 @@ func (c *EC2) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *aws.
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "NextToken",
-				OutputToken:     "NextToken",
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
 				LimitToken:      "",
 				TruncationToken: "",
 			},
@@ -4302,12 +4093,6 @@ func (c *EC2) DescribeSpotInstanceRequestsRequest(input *DescribeSpotInstanceReq
 			Name:       "DescribeSpotInstanceRequests",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -4339,11 +4124,6 @@ func (c *EC2) DescribeSpotInstanceRequests(input *DescribeSpotInstanceRequestsIn
 	return out, err
 }
 
-func (c *EC2) DescribeSpotInstanceRequestsPages(input *DescribeSpotInstanceRequestsInput, fn func(p *DescribeSpotInstanceRequestsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeSpotInstanceRequestsRequest(input)
-	return page.EachPage(fn)
-}
-
 var opDescribeSpotInstanceRequests *aws.Operation
 
 // DescribeSpotPriceHistoryRequest generates a request for the DescribeSpotPriceHistory operation.
@@ -4357,8 +4137,8 @@ func (c *EC2) DescribeSpotPriceHistoryRequest(input *DescribeSpotPriceHistoryInp
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "NextToken",
-				OutputToken:     "NextToken",
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
 				LimitToken:      "MaxResults",
 				TruncationToken: "",
 			},
@@ -4407,12 +4187,6 @@ func (c *EC2) DescribeSubnetsRequest(input *DescribeSubnetsInput) (req *aws.Requ
 			Name:       "DescribeSubnets",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -4436,11 +4210,6 @@ func (c *EC2) DescribeSubnets(input *DescribeSubnetsInput) (*DescribeSubnetsOutp
 	return out, err
 }
 
-func (c *EC2) DescribeSubnetsPages(input *DescribeSubnetsInput, fn func(p *DescribeSubnetsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeSubnetsRequest(input)
-	return page.EachPage(fn)
-}
-
 var opDescribeSubnets *aws.Operation
 
 // DescribeTagsRequest generates a request for the DescribeTags operation.
@@ -4453,12 +4222,6 @@ func (c *EC2) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, o
 			Name:       "DescribeTags",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -4480,11 +4243,6 @@ func (c *EC2) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, error
 	req, out := c.DescribeTagsRequest(input)
 	err := req.Send()
 	return out, err
-}
-
-func (c *EC2) DescribeTagsPages(input *DescribeTagsInput, fn func(p *DescribeTagsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeTagsRequest(input)
-	return page.EachPage(fn)
 }
 
 var opDescribeTags *aws.Operation
@@ -4596,12 +4354,6 @@ func (c *EC2) DescribeVPCsRequest(input *DescribeVPCsInput) (req *aws.Request, o
 			Name:       "DescribeVpcs",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -4622,11 +4374,6 @@ func (c *EC2) DescribeVPCs(input *DescribeVPCsInput) (*DescribeVPCsOutput, error
 	return out, err
 }
 
-func (c *EC2) DescribeVPCsPages(input *DescribeVPCsInput, fn func(p *DescribeVPCsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeVPCsRequest(input)
-	return page.EachPage(fn)
-}
-
 var opDescribeVPCs *aws.Operation
 
 // DescribeVPNConnectionsRequest generates a request for the DescribeVPNConnections operation.
@@ -4639,12 +4386,6 @@ func (c *EC2) DescribeVPNConnectionsRequest(input *DescribeVPNConnectionsInput) 
 			Name:       "DescribeVpnConnections",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -4669,11 +4410,6 @@ func (c *EC2) DescribeVPNConnections(input *DescribeVPNConnectionsInput) (*Descr
 	return out, err
 }
 
-func (c *EC2) DescribeVPNConnectionsPages(input *DescribeVPNConnectionsInput, fn func(p *DescribeVPNConnectionsOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeVPNConnectionsRequest(input)
-	return page.EachPage(fn)
-}
-
 var opDescribeVPNConnections *aws.Operation
 
 // DescribeVPNGatewaysRequest generates a request for the DescribeVPNGateways operation.
@@ -4686,12 +4422,6 @@ func (c *EC2) DescribeVPNGatewaysRequest(input *DescribeVPNGatewaysInput) (req *
 			Name:       "DescribeVpnGateways",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputToken:      "",
-				OutputToken:     "",
-				LimitToken:      "",
-				TruncationToken: "",
-			},
 		}
 	}
 
@@ -4714,11 +4444,6 @@ func (c *EC2) DescribeVPNGateways(input *DescribeVPNGatewaysInput) (*DescribeVPN
 	req, out := c.DescribeVPNGatewaysRequest(input)
 	err := req.Send()
 	return out, err
-}
-
-func (c *EC2) DescribeVPNGatewaysPages(input *DescribeVPNGatewaysInput, fn func(p *DescribeVPNGatewaysOutput, lastPage bool) (shouldContinue bool)) error {
-	page, _ := c.DescribeVPNGatewaysRequest(input)
-	return page.EachPage(fn)
 }
 
 var opDescribeVPNGateways *aws.Operation
@@ -4770,8 +4495,8 @@ func (c *EC2) DescribeVolumeStatusRequest(input *DescribeVolumeStatusInput) (req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "NextToken",
-				OutputToken:     "NextToken",
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
 				LimitToken:      "MaxResults",
 				TruncationToken: "",
 			},
@@ -4847,8 +4572,8 @@ func (c *EC2) DescribeVolumesRequest(input *DescribeVolumesInput) (req *aws.Requ
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "NextToken",
-				OutputToken:     "NextToken",
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
 				LimitToken:      "MaxResults",
 				TruncationToken: "",
 			},

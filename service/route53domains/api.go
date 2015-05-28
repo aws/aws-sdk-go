@@ -311,8 +311,8 @@ func (c *Route53Domains) ListDomainsRequest(input *ListDomainsInput) (req *aws.R
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "Marker",
-				OutputToken:     "NextPageMarker",
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"NextPageMarker"},
 				LimitToken:      "MaxItems",
 				TruncationToken: "",
 			},
@@ -355,8 +355,8 @@ func (c *Route53Domains) ListOperationsRequest(input *ListOperationsInput) (req 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "Marker",
-				OutputToken:     "NextPageMarker",
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"NextPageMarker"},
 				LimitToken:      "MaxItems",
 				TruncationToken: "",
 			},

@@ -287,8 +287,8 @@ func (c *SES) ListIdentitiesRequest(input *ListIdentitiesInput) (req *aws.Reques
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "NextToken",
-				OutputToken:     "NextToken",
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
 				LimitToken:      "MaxItems",
 				TruncationToken: "",
 			},

@@ -126,8 +126,8 @@ func (c *CloudFormation) DescribeStackEventsRequest(input *DescribeStackEventsIn
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "NextToken",
-				OutputToken:     "NextToken",
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
 				LimitToken:      "",
 				TruncationToken: "",
 			},
@@ -257,8 +257,8 @@ func (c *CloudFormation) DescribeStacksRequest(input *DescribeStacksInput) (req 
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "NextToken",
-				OutputToken:     "NextToken",
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
 				LimitToken:      "",
 				TruncationToken: "",
 			},
@@ -447,8 +447,8 @@ func (c *CloudFormation) ListStackResourcesRequest(input *ListStackResourcesInpu
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "NextToken",
-				OutputToken:     "NextToken",
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
 				LimitToken:      "",
 				TruncationToken: "",
 			},
@@ -493,8 +493,8 @@ func (c *CloudFormation) ListStacksRequest(input *ListStacksInput) (req *aws.Req
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "NextToken",
-				OutputToken:     "NextToken",
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
 				LimitToken:      "",
 				TruncationToken: "",
 			},

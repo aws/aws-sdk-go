@@ -198,8 +198,8 @@ func (c *Support) DescribeCasesRequest(input *DescribeCasesInput) (req *aws.Requ
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "nextToken",
-				OutputToken:     "nextToken",
+				InputTokens:     []string{"nextToken"},
+				OutputTokens:    []string{"nextToken"},
 				LimitToken:      "maxResults",
 				TruncationToken: "",
 			},
@@ -254,8 +254,8 @@ func (c *Support) DescribeCommunicationsRequest(input *DescribeCommunicationsInp
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "nextToken",
-				OutputToken:     "nextToken",
+				InputTokens:     []string{"nextToken"},
+				OutputTokens:    []string{"nextToken"},
 				LimitToken:      "maxResults",
 				TruncationToken: "",
 			},

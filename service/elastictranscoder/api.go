@@ -244,8 +244,8 @@ func (c *ElasticTranscoder) ListJobsByPipelineRequest(input *ListJobsByPipelineI
 			HTTPMethod: "GET",
 			HTTPPath:   "/2012-09-25/jobsByPipeline/{PipelineId}",
 			Paginator: &aws.Paginator{
-				InputToken:      "PageToken",
-				OutputToken:     "NextPageToken",
+				InputTokens:     []string{"PageToken"},
+				OutputTokens:    []string{"NextPageToken"},
 				LimitToken:      "",
 				TruncationToken: "",
 			},
@@ -291,8 +291,8 @@ func (c *ElasticTranscoder) ListJobsByStatusRequest(input *ListJobsByStatusInput
 			HTTPMethod: "GET",
 			HTTPPath:   "/2012-09-25/jobsByStatus/{Status}",
 			Paginator: &aws.Paginator{
-				InputToken:      "PageToken",
-				OutputToken:     "NextPageToken",
+				InputTokens:     []string{"PageToken"},
+				OutputTokens:    []string{"NextPageToken"},
 				LimitToken:      "",
 				TruncationToken: "",
 			},
@@ -336,8 +336,8 @@ func (c *ElasticTranscoder) ListPipelinesRequest(input *ListPipelinesInput) (req
 			HTTPMethod: "GET",
 			HTTPPath:   "/2012-09-25/pipelines",
 			Paginator: &aws.Paginator{
-				InputToken:      "PageToken",
-				OutputToken:     "NextPageToken",
+				InputTokens:     []string{"PageToken"},
+				OutputTokens:    []string{"NextPageToken"},
 				LimitToken:      "",
 				TruncationToken: "",
 			},
@@ -380,8 +380,8 @@ func (c *ElasticTranscoder) ListPresetsRequest(input *ListPresetsInput) (req *aw
 			HTTPMethod: "GET",
 			HTTPPath:   "/2012-09-25/presets",
 			Paginator: &aws.Paginator{
-				InputToken:      "PageToken",
-				OutputToken:     "NextPageToken",
+				InputTokens:     []string{"PageToken"},
+				OutputTokens:    []string{"NextPageToken"},
 				LimitToken:      "",
 				TruncationToken: "",
 			},

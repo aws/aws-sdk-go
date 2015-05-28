@@ -471,8 +471,8 @@ func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesRequest(input *ListClou
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront",
 			Paginator: &aws.Paginator{
-				InputToken:      "Marker",
-				OutputToken:     "CloudFrontOriginAccessIdentityList.NextMarker",
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"CloudFrontOriginAccessIdentityList.NextMarker"},
 				LimitToken:      "MaxItems",
 				TruncationToken: "CloudFrontOriginAccessIdentityList.IsTruncated",
 			},
@@ -514,8 +514,8 @@ func (c *CloudFront) ListDistributionsRequest(input *ListDistributionsInput) (re
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/distribution",
 			Paginator: &aws.Paginator{
-				InputToken:      "Marker",
-				OutputToken:     "DistributionList.NextMarker",
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"DistributionList.NextMarker"},
 				LimitToken:      "MaxItems",
 				TruncationToken: "DistributionList.IsTruncated",
 			},
@@ -557,8 +557,8 @@ func (c *CloudFront) ListInvalidationsRequest(input *ListInvalidationsInput) (re
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/distribution/{DistributionId}/invalidation",
 			Paginator: &aws.Paginator{
-				InputToken:      "Marker",
-				OutputToken:     "InvalidationList.NextMarker",
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"InvalidationList.NextMarker"},
 				LimitToken:      "MaxItems",
 				TruncationToken: "InvalidationList.IsTruncated",
 			},
@@ -600,8 +600,8 @@ func (c *CloudFront) ListStreamingDistributionsRequest(input *ListStreamingDistr
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/streaming-distribution",
 			Paginator: &aws.Paginator{
-				InputToken:      "Marker",
-				OutputToken:     "StreamingDistributionList.NextMarker",
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"StreamingDistributionList.NextMarker"},
 				LimitToken:      "MaxItems",
 				TruncationToken: "StreamingDistributionList.IsTruncated",
 			},

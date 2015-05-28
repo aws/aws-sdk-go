@@ -55,8 +55,8 @@ func (c *CloudWatch) DescribeAlarmHistoryRequest(input *DescribeAlarmHistoryInpu
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "NextToken",
-				OutputToken:     "NextToken",
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
 				LimitToken:      "MaxRecords",
 				TruncationToken: "",
 			},
@@ -100,8 +100,8 @@ func (c *CloudWatch) DescribeAlarmsRequest(input *DescribeAlarmsInput) (req *aws
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "NextToken",
-				OutputToken:     "NextToken",
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
 				LimitToken:      "MaxRecords",
 				TruncationToken: "",
 			},
@@ -300,8 +300,8 @@ func (c *CloudWatch) ListMetricsRequest(input *ListMetricsInput) (req *aws.Reque
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "NextToken",
-				OutputToken:     "NextToken",
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
 				LimitToken:      "",
 				TruncationToken: "",
 			},

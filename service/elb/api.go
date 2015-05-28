@@ -680,8 +680,8 @@ func (c *ELB) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (r
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "Marker",
-				OutputToken:     "NextMarker",
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"NextMarker"},
 				LimitToken:      "PageSize",
 				TruncationToken: "",
 			},

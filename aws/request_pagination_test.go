@@ -6,6 +6,7 @@ import (
 	"github.com/awslabs/aws-sdk-go/aws"
 	"github.com/awslabs/aws-sdk-go/internal/test/unit"
 	"github.com/awslabs/aws-sdk-go/service/dynamodb"
+	"github.com/awslabs/aws-sdk-go/service/s3"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -206,6 +207,90 @@ func TestPaginationEarlyExit(t *testing.T) {
 	assert.Equal(t, 2, numPages)
 	assert.False(t, gotToEnd)
 	assert.Nil(t, err)
+}
+
+func TestEachPagePanics(t *testing.T) {
+	db := dynamodb.New(nil)
+	db.Handlers.Send.Clear() // mock sending
+	req, _ := db.ListTablesRequest(nil)
+
+	assert.Panics(t, func() { req.EachPage(0) }) // must be a function
+	assert.Panics(t, func() {                    // must return bool
+		req.EachPage(func(p *dynamodb.ListTablesOutput, last bool) string {
+			return ""
+		})
+	})
+}
+
+func TestSkipPagination(t *testing.T) {
+	client := s3.New(nil)
+	client.Handlers.Send.Clear() // mock sending
+	client.Handlers.Unmarshal.Clear()
+	client.Handlers.UnmarshalMeta.Clear()
+	client.Handlers.ValidateResponse.Clear()
+	client.Handlers.Unmarshal.PushBack(func(r *aws.Request) {
+		r.Data = &s3.HeadBucketOutput{}
+	})
+
+	req, _ := client.HeadBucketRequest(&s3.HeadBucketInput{Bucket: aws.String("bucket")})
+
+	numPages, gotToEnd := 0, false
+	req.EachPage(func(p *s3.HeadBucketOutput, last bool) {
+		numPages++
+		if last {
+			gotToEnd = true
+		}
+	})
+	assert.Equal(t, 1, numPages)
+	assert.True(t, gotToEnd)
+}
+
+// Use S3 for simplicity
+func TestPaginationTruncation(t *testing.T) {
+	count := 0
+	client := s3.New(nil)
+
+	reqNum := &count
+	resps := []*s3.ListObjectsOutput{
+		&s3.ListObjectsOutput{IsTruncated: aws.Boolean(true), Contents: []*s3.Object{&s3.Object{Key: aws.String("Key1")}}},
+		&s3.ListObjectsOutput{IsTruncated: aws.Boolean(true), Contents: []*s3.Object{&s3.Object{Key: aws.String("Key2")}}},
+		&s3.ListObjectsOutput{IsTruncated: aws.Boolean(false), Contents: []*s3.Object{&s3.Object{Key: aws.String("Key3")}}},
+		&s3.ListObjectsOutput{IsTruncated: aws.Boolean(true), Contents: []*s3.Object{&s3.Object{Key: aws.String("Key4")}}},
+	}
+
+	client.Handlers.Send.Clear() // mock sending
+	client.Handlers.Unmarshal.Clear()
+	client.Handlers.UnmarshalMeta.Clear()
+	client.Handlers.ValidateResponse.Clear()
+	client.Handlers.Unmarshal.PushBack(func(r *aws.Request) {
+		r.Data = resps[*reqNum]
+		*reqNum++
+	})
+
+	params := &s3.ListObjectsInput{Bucket: aws.String("bucket")}
+
+	results := []string{}
+	err := client.ListObjectsPages(params, func(p *s3.ListObjectsOutput, last bool) bool {
+		results = append(results, *p.Contents[0].Key)
+		return true
+	})
+
+	assert.Equal(t, []string{"Key1", "Key2", "Key3"}, results)
+	assert.Nil(t, err)
+
+	// Try again without truncation token at all
+	count = 0
+	resps[1].IsTruncated = nil
+	resps[2].IsTruncated = aws.Boolean(true)
+	results = []string{}
+	err = client.ListObjectsPages(params, func(p *s3.ListObjectsOutput, last bool) bool {
+		results = append(results, *p.Contents[0].Key)
+		return true
+	})
+
+	assert.Equal(t, []string{"Key1", "Key2"}, results)
+	assert.Nil(t, err)
+
 }
 
 // Benchmarks

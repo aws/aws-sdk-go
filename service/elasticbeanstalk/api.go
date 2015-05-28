@@ -570,8 +570,8 @@ func (c *ElasticBeanstalk) DescribeEventsRequest(input *DescribeEventsInput) (re
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 			Paginator: &aws.Paginator{
-				InputToken:      "NextToken",
-				OutputToken:     "NextToken",
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
 				LimitToken:      "MaxRecords",
 				TruncationToken: "",
 			},
