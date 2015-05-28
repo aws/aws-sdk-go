@@ -6,6 +6,7 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+	"sort"
 	"sync"
 	"testing"
 
@@ -285,4 +286,62 @@ func TestUploadOrderReadFail2(t *testing.T) {
 	assert.Equal(t, "ReadRequestBody", err.(awserr.Error).OrigErr().(awserr.Error).Code())
 	assert.EqualError(t, err.(awserr.Error).OrigErr().(awserr.Error).OrigErr(), "random failure")
 	assert.Equal(t, []string{"CreateMultipartUpload", "AbortMultipartUpload"}, *ops)
+}
+
+type sizedReaderImpl struct {
+	size int
+	cur  int
+}
+
+type sizedReader struct {
+	*sizedReaderImpl
+}
+
+func (s sizedReader) Read(p []byte) (n int, err error) {
+	if s.cur >= s.size {
+		return 0, io.EOF
+	}
+
+	n = len(p)
+	s.cur += len(p)
+	if s.cur > s.size {
+		n -= s.cur - s.size
+	}
+
+	return
+}
+
+func TestUploadOrderMultiBufferedReader(t *testing.T) {
+	s, ops, args := loggingSvc()
+	_, err := s3manager.Upload(s, &s3manager.UploadInput{
+		Bucket: aws.String("Bucket"),
+		Key:    aws.String("Key"),
+		Body:   sizedReader{&sizedReaderImpl{size: 1024 * 1024 * 12}},
+	}, nil)
+
+	assert.NoError(t, err)
+	assert.Equal(t, []string{"CreateMultipartUpload", "UploadPart", "UploadPart", "UploadPart", "CompleteMultipartUpload"}, *ops)
+
+	// Part lengths
+	parts := []int{
+		buflen(val((*args)[1], "Body")),
+		buflen(val((*args)[2], "Body")),
+		buflen(val((*args)[3], "Body")),
+	}
+	sort.Ints(parts)
+	assert.Equal(t, []int{1024 * 1024 * 2, 1024 * 1024 * 5, 1024 * 1024 * 5}, parts)
+}
+
+func TestUploadOrderSingleBufferedReader(t *testing.T) {
+	s, ops, _ := loggingSvc()
+	resp, err := s3manager.Upload(s, &s3manager.UploadInput{
+		Bucket: aws.String("Bucket"),
+		Key:    aws.String("Key"),
+		Body:   sizedReader{&sizedReaderImpl{size: 1024 * 1024 * 2}},
+	}, nil)
+
+	assert.NoError(t, err)
+	assert.Equal(t, []string{"PutObject"}, *ops)
+	assert.NotEqual(t, "", resp.Location)
+	assert.Equal(t, "", resp.UploadID)
 }
