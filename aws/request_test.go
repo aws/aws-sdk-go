@@ -193,12 +193,6 @@ func TestRequestRecoverExpiredCreds(t *testing.T) {
 	credExpiredBeforeRetry := false
 	credExpiredAfterRetry := false
 
-	s.Handlers.Retry.PushBack(func(r *Request) {
-		if r.Error != nil && r.Error.(awserr.Error).Code() == "ExpiredTokenException" {
-			credExpiredBeforeRetry = r.Config.Credentials.IsExpired()
-		}
-	})
-
 	s.Handlers.AfterRetry.PushBack(func(r *Request) {
 		credExpiredAfterRetry = r.Config.Credentials.IsExpired()
 	})
