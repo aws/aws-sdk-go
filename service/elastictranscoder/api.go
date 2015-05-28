@@ -243,6 +243,12 @@ func (c *ElasticTranscoder) ListJobsByPipelineRequest(input *ListJobsByPipelineI
 			Name:       "ListJobsByPipeline",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2012-09-25/jobsByPipeline/{PipelineId}",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"PageToken"},
+				OutputTokens:    []string{"NextPageToken"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -267,6 +273,11 @@ func (c *ElasticTranscoder) ListJobsByPipeline(input *ListJobsByPipelineInput) (
 	return out, err
 }
 
+func (c *ElasticTranscoder) ListJobsByPipelinePages(input *ListJobsByPipelineInput, fn func(p *ListJobsByPipelineOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListJobsByPipelineRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListJobsByPipeline *aws.Operation
 
 // ListJobsByStatusRequest generates a request for the ListJobsByStatus operation.
@@ -279,6 +290,12 @@ func (c *ElasticTranscoder) ListJobsByStatusRequest(input *ListJobsByStatusInput
 			Name:       "ListJobsByStatus",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2012-09-25/jobsByStatus/{Status}",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"PageToken"},
+				OutputTokens:    []string{"NextPageToken"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -301,6 +318,11 @@ func (c *ElasticTranscoder) ListJobsByStatus(input *ListJobsByStatusInput) (*Lis
 	return out, err
 }
 
+func (c *ElasticTranscoder) ListJobsByStatusPages(input *ListJobsByStatusInput, fn func(p *ListJobsByStatusOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListJobsByStatusRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListJobsByStatus *aws.Operation
 
 // ListPipelinesRequest generates a request for the ListPipelines operation.
@@ -313,6 +335,12 @@ func (c *ElasticTranscoder) ListPipelinesRequest(input *ListPipelinesInput) (req
 			Name:       "ListPipelines",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2012-09-25/pipelines",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"PageToken"},
+				OutputTokens:    []string{"NextPageToken"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -334,6 +362,11 @@ func (c *ElasticTranscoder) ListPipelines(input *ListPipelinesInput) (*ListPipel
 	return out, err
 }
 
+func (c *ElasticTranscoder) ListPipelinesPages(input *ListPipelinesInput, fn func(p *ListPipelinesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListPipelinesRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListPipelines *aws.Operation
 
 // ListPresetsRequest generates a request for the ListPresets operation.
@@ -346,6 +379,12 @@ func (c *ElasticTranscoder) ListPresetsRequest(input *ListPresetsInput) (req *aw
 			Name:       "ListPresets",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2012-09-25/presets",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"PageToken"},
+				OutputTokens:    []string{"NextPageToken"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -365,6 +404,11 @@ func (c *ElasticTranscoder) ListPresets(input *ListPresetsInput) (*ListPresetsOu
 	req, out := c.ListPresetsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *ElasticTranscoder) ListPresetsPages(input *ListPresetsInput, fn func(p *ListPresetsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListPresetsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListPresets *aws.Operation

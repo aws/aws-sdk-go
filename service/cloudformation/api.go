@@ -125,6 +125,12 @@ func (c *CloudFormation) DescribeStackEventsRequest(input *DescribeStackEventsIn
 			Name:       "DescribeStackEvents",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -148,6 +154,11 @@ func (c *CloudFormation) DescribeStackEvents(input *DescribeStackEventsInput) (*
 	req, out := c.DescribeStackEventsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *CloudFormation) DescribeStackEventsPages(input *DescribeStackEventsInput, fn func(p *DescribeStackEventsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeStackEventsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeStackEvents *aws.Operation
@@ -245,6 +256,12 @@ func (c *CloudFormation) DescribeStacksRequest(input *DescribeStacksInput) (req 
 			Name:       "DescribeStacks",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -264,6 +281,11 @@ func (c *CloudFormation) DescribeStacks(input *DescribeStacksInput) (*DescribeSt
 	req, out := c.DescribeStacksRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *CloudFormation) DescribeStacksPages(input *DescribeStacksInput, fn func(p *DescribeStacksOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeStacksRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeStacks *aws.Operation
@@ -424,6 +446,12 @@ func (c *CloudFormation) ListStackResourcesRequest(input *ListStackResourcesInpu
 			Name:       "ListStackResources",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -447,6 +475,11 @@ func (c *CloudFormation) ListStackResources(input *ListStackResourcesInput) (*Li
 	return out, err
 }
 
+func (c *CloudFormation) ListStackResourcesPages(input *ListStackResourcesInput, fn func(p *ListStackResourcesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListStackResourcesRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListStackResources *aws.Operation
 
 // ListStacksRequest generates a request for the ListStacks operation.
@@ -459,6 +492,12 @@ func (c *CloudFormation) ListStacksRequest(input *ListStacksInput) (req *aws.Req
 			Name:       "ListStacks",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -481,6 +520,11 @@ func (c *CloudFormation) ListStacks(input *ListStacksInput) (*ListStacksOutput, 
 	req, out := c.ListStacksRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *CloudFormation) ListStacksPages(input *ListStacksInput, fn func(p *ListStacksOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListStacksRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListStacks *aws.Operation

@@ -569,6 +569,12 @@ func (c *ElasticBeanstalk) DescribeEventsRequest(input *DescribeEventsInput) (re
 			Name:       "DescribeEvents",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -587,6 +593,11 @@ func (c *ElasticBeanstalk) DescribeEvents(input *DescribeEventsInput) (*Describe
 	req, out := c.DescribeEventsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *ElasticBeanstalk) DescribeEventsPages(input *DescribeEventsInput, fn func(p *DescribeEventsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeEventsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeEvents *aws.Operation

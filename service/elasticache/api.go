@@ -565,6 +565,12 @@ func (c *ElastiCache) DescribeCacheClustersRequest(input *DescribeCacheClustersI
 			Name:       "DescribeCacheClusters",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -606,6 +612,11 @@ func (c *ElastiCache) DescribeCacheClusters(input *DescribeCacheClustersInput) (
 	return out, err
 }
 
+func (c *ElastiCache) DescribeCacheClustersPages(input *DescribeCacheClustersInput, fn func(p *DescribeCacheClustersOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeCacheClustersRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeCacheClusters *aws.Operation
 
 // DescribeCacheEngineVersionsRequest generates a request for the DescribeCacheEngineVersions operation.
@@ -618,6 +629,12 @@ func (c *ElastiCache) DescribeCacheEngineVersionsRequest(input *DescribeCacheEng
 			Name:       "DescribeCacheEngineVersions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -639,6 +656,11 @@ func (c *ElastiCache) DescribeCacheEngineVersions(input *DescribeCacheEngineVers
 	return out, err
 }
 
+func (c *ElastiCache) DescribeCacheEngineVersionsPages(input *DescribeCacheEngineVersionsInput, fn func(p *DescribeCacheEngineVersionsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeCacheEngineVersionsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeCacheEngineVersions *aws.Operation
 
 // DescribeCacheParameterGroupsRequest generates a request for the DescribeCacheParameterGroups operation.
@@ -651,6 +673,12 @@ func (c *ElastiCache) DescribeCacheParameterGroupsRequest(input *DescribeCachePa
 			Name:       "DescribeCacheParameterGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -673,6 +701,11 @@ func (c *ElastiCache) DescribeCacheParameterGroups(input *DescribeCacheParameter
 	return out, err
 }
 
+func (c *ElastiCache) DescribeCacheParameterGroupsPages(input *DescribeCacheParameterGroupsInput, fn func(p *DescribeCacheParameterGroupsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeCacheParameterGroupsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeCacheParameterGroups *aws.Operation
 
 // DescribeCacheParametersRequest generates a request for the DescribeCacheParameters operation.
@@ -685,6 +718,12 @@ func (c *ElastiCache) DescribeCacheParametersRequest(input *DescribeCacheParamet
 			Name:       "DescribeCacheParameters",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -706,6 +745,11 @@ func (c *ElastiCache) DescribeCacheParameters(input *DescribeCacheParametersInpu
 	return out, err
 }
 
+func (c *ElastiCache) DescribeCacheParametersPages(input *DescribeCacheParametersInput, fn func(p *DescribeCacheParametersOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeCacheParametersRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeCacheParameters *aws.Operation
 
 // DescribeCacheSecurityGroupsRequest generates a request for the DescribeCacheSecurityGroups operation.
@@ -718,6 +762,12 @@ func (c *ElastiCache) DescribeCacheSecurityGroupsRequest(input *DescribeCacheSec
 			Name:       "DescribeCacheSecurityGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -740,6 +790,11 @@ func (c *ElastiCache) DescribeCacheSecurityGroups(input *DescribeCacheSecurityGr
 	return out, err
 }
 
+func (c *ElastiCache) DescribeCacheSecurityGroupsPages(input *DescribeCacheSecurityGroupsInput, fn func(p *DescribeCacheSecurityGroupsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeCacheSecurityGroupsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeCacheSecurityGroups *aws.Operation
 
 // DescribeCacheSubnetGroupsRequest generates a request for the DescribeCacheSubnetGroups operation.
@@ -752,6 +807,12 @@ func (c *ElastiCache) DescribeCacheSubnetGroupsRequest(input *DescribeCacheSubne
 			Name:       "DescribeCacheSubnetGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -774,6 +835,11 @@ func (c *ElastiCache) DescribeCacheSubnetGroups(input *DescribeCacheSubnetGroups
 	return out, err
 }
 
+func (c *ElastiCache) DescribeCacheSubnetGroupsPages(input *DescribeCacheSubnetGroupsInput, fn func(p *DescribeCacheSubnetGroupsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeCacheSubnetGroupsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeCacheSubnetGroups *aws.Operation
 
 // DescribeEngineDefaultParametersRequest generates a request for the DescribeEngineDefaultParameters operation.
@@ -786,6 +852,12 @@ func (c *ElastiCache) DescribeEngineDefaultParametersRequest(input *DescribeEngi
 			Name:       "DescribeEngineDefaultParameters",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"EngineDefaults.Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -807,6 +879,11 @@ func (c *ElastiCache) DescribeEngineDefaultParameters(input *DescribeEngineDefau
 	return out, err
 }
 
+func (c *ElastiCache) DescribeEngineDefaultParametersPages(input *DescribeEngineDefaultParametersInput, fn func(p *DescribeEngineDefaultParametersOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeEngineDefaultParametersRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeEngineDefaultParameters *aws.Operation
 
 // DescribeEventsRequest generates a request for the DescribeEvents operation.
@@ -819,6 +896,12 @@ func (c *ElastiCache) DescribeEventsRequest(input *DescribeEventsInput) (req *aw
 			Name:       "DescribeEvents",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -845,6 +928,11 @@ func (c *ElastiCache) DescribeEvents(input *DescribeEventsInput) (*DescribeEvent
 	return out, err
 }
 
+func (c *ElastiCache) DescribeEventsPages(input *DescribeEventsInput, fn func(p *DescribeEventsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeEventsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeEvents *aws.Operation
 
 // DescribeReplicationGroupsRequest generates a request for the DescribeReplicationGroups operation.
@@ -857,6 +945,12 @@ func (c *ElastiCache) DescribeReplicationGroupsRequest(input *DescribeReplicatio
 			Name:       "DescribeReplicationGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -879,6 +973,11 @@ func (c *ElastiCache) DescribeReplicationGroups(input *DescribeReplicationGroups
 	return out, err
 }
 
+func (c *ElastiCache) DescribeReplicationGroupsPages(input *DescribeReplicationGroupsInput, fn func(p *DescribeReplicationGroupsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeReplicationGroupsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeReplicationGroups *aws.Operation
 
 // DescribeReservedCacheNodesRequest generates a request for the DescribeReservedCacheNodes operation.
@@ -891,6 +990,12 @@ func (c *ElastiCache) DescribeReservedCacheNodesRequest(input *DescribeReservedC
 			Name:       "DescribeReservedCacheNodes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -912,6 +1017,11 @@ func (c *ElastiCache) DescribeReservedCacheNodes(input *DescribeReservedCacheNod
 	return out, err
 }
 
+func (c *ElastiCache) DescribeReservedCacheNodesPages(input *DescribeReservedCacheNodesInput, fn func(p *DescribeReservedCacheNodesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeReservedCacheNodesRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeReservedCacheNodes *aws.Operation
 
 // DescribeReservedCacheNodesOfferingsRequest generates a request for the DescribeReservedCacheNodesOfferings operation.
@@ -924,6 +1034,12 @@ func (c *ElastiCache) DescribeReservedCacheNodesOfferingsRequest(input *Describe
 			Name:       "DescribeReservedCacheNodesOfferings",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -945,6 +1061,11 @@ func (c *ElastiCache) DescribeReservedCacheNodesOfferings(input *DescribeReserve
 	return out, err
 }
 
+func (c *ElastiCache) DescribeReservedCacheNodesOfferingsPages(input *DescribeReservedCacheNodesOfferingsInput, fn func(p *DescribeReservedCacheNodesOfferingsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeReservedCacheNodesOfferingsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeReservedCacheNodesOfferings *aws.Operation
 
 // DescribeSnapshotsRequest generates a request for the DescribeSnapshots operation.
@@ -957,6 +1078,12 @@ func (c *ElastiCache) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (r
 			Name:       "DescribeSnapshots",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -978,6 +1105,11 @@ func (c *ElastiCache) DescribeSnapshots(input *DescribeSnapshotsInput) (*Describ
 	req, out := c.DescribeSnapshotsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *ElastiCache) DescribeSnapshotsPages(input *DescribeSnapshotsInput, fn func(p *DescribeSnapshotsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeSnapshotsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeSnapshots *aws.Operation

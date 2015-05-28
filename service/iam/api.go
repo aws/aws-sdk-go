@@ -1703,6 +1703,12 @@ func (c *IAM) GetAccountAuthorizationDetailsRequest(input *GetAccountAuthorizati
 			Name:       "GetAccountAuthorizationDetails",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -1727,6 +1733,11 @@ func (c *IAM) GetAccountAuthorizationDetails(input *GetAccountAuthorizationDetai
 	req, out := c.GetAccountAuthorizationDetailsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *IAM) GetAccountAuthorizationDetailsPages(input *GetAccountAuthorizationDetailsInput, fn func(p *GetAccountAuthorizationDetailsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.GetAccountAuthorizationDetailsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opGetAccountAuthorizationDetails *aws.Operation
@@ -1844,6 +1855,12 @@ func (c *IAM) GetGroupRequest(input *GetGroupInput) (req *aws.Request, output *G
 			Name:       "GetGroup",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -1863,6 +1880,11 @@ func (c *IAM) GetGroup(input *GetGroupInput) (*GetGroupOutput, error) {
 	req, out := c.GetGroupRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *IAM) GetGroupPages(input *GetGroupInput, fn func(p *GetGroupOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.GetGroupRequest(input)
+	return page.EachPage(fn)
 }
 
 var opGetGroup *aws.Operation
@@ -2336,6 +2358,12 @@ func (c *IAM) ListAccessKeysRequest(input *ListAccessKeysInput) (req *aws.Reques
 			Name:       "ListAccessKeys",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -2368,6 +2396,11 @@ func (c *IAM) ListAccessKeys(input *ListAccessKeysInput) (*ListAccessKeysOutput,
 	return out, err
 }
 
+func (c *IAM) ListAccessKeysPages(input *ListAccessKeysInput, fn func(p *ListAccessKeysOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListAccessKeysRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListAccessKeys *aws.Operation
 
 // ListAccountAliasesRequest generates a request for the ListAccountAliases operation.
@@ -2380,6 +2413,12 @@ func (c *IAM) ListAccountAliasesRequest(input *ListAccountAliasesInput) (req *aw
 			Name:       "ListAccountAliases",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -2402,6 +2441,11 @@ func (c *IAM) ListAccountAliases(input *ListAccountAliasesInput) (*ListAccountAl
 	req, out := c.ListAccountAliasesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *IAM) ListAccountAliasesPages(input *ListAccountAliasesInput, fn func(p *ListAccountAliasesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListAccountAliasesRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListAccountAliases *aws.Operation
@@ -2585,6 +2629,12 @@ func (c *IAM) ListGroupPoliciesRequest(input *ListGroupPoliciesInput) (req *aws.
 			Name:       "ListGroupPolicies",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -2616,6 +2666,11 @@ func (c *IAM) ListGroupPolicies(input *ListGroupPoliciesInput) (*ListGroupPolici
 	return out, err
 }
 
+func (c *IAM) ListGroupPoliciesPages(input *ListGroupPoliciesInput, fn func(p *ListGroupPoliciesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListGroupPoliciesRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListGroupPolicies *aws.Operation
 
 // ListGroupsRequest generates a request for the ListGroups operation.
@@ -2628,6 +2683,12 @@ func (c *IAM) ListGroupsRequest(input *ListGroupsInput) (req *aws.Request, outpu
 			Name:       "ListGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -2650,6 +2711,11 @@ func (c *IAM) ListGroups(input *ListGroupsInput) (*ListGroupsOutput, error) {
 	return out, err
 }
 
+func (c *IAM) ListGroupsPages(input *ListGroupsInput, fn func(p *ListGroupsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListGroupsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListGroups *aws.Operation
 
 // ListGroupsForUserRequest generates a request for the ListGroupsForUser operation.
@@ -2662,6 +2728,12 @@ func (c *IAM) ListGroupsForUserRequest(input *ListGroupsForUserInput) (req *aws.
 			Name:       "ListGroupsForUser",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -2684,6 +2756,11 @@ func (c *IAM) ListGroupsForUser(input *ListGroupsForUserInput) (*ListGroupsForUs
 	return out, err
 }
 
+func (c *IAM) ListGroupsForUserPages(input *ListGroupsForUserInput, fn func(p *ListGroupsForUserOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListGroupsForUserRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListGroupsForUser *aws.Operation
 
 // ListInstanceProfilesRequest generates a request for the ListInstanceProfiles operation.
@@ -2696,6 +2773,12 @@ func (c *IAM) ListInstanceProfilesRequest(input *ListInstanceProfilesInput) (req
 			Name:       "ListInstanceProfiles",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -2720,6 +2803,11 @@ func (c *IAM) ListInstanceProfiles(input *ListInstanceProfilesInput) (*ListInsta
 	return out, err
 }
 
+func (c *IAM) ListInstanceProfilesPages(input *ListInstanceProfilesInput, fn func(p *ListInstanceProfilesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListInstanceProfilesRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListInstanceProfiles *aws.Operation
 
 // ListInstanceProfilesForRoleRequest generates a request for the ListInstanceProfilesForRole operation.
@@ -2732,6 +2820,12 @@ func (c *IAM) ListInstanceProfilesForRoleRequest(input *ListInstanceProfilesForR
 			Name:       "ListInstanceProfilesForRole",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -2756,6 +2850,11 @@ func (c *IAM) ListInstanceProfilesForRole(input *ListInstanceProfilesForRoleInpu
 	return out, err
 }
 
+func (c *IAM) ListInstanceProfilesForRolePages(input *ListInstanceProfilesForRoleInput, fn func(p *ListInstanceProfilesForRoleOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListInstanceProfilesForRoleRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListInstanceProfilesForRole *aws.Operation
 
 // ListMFADevicesRequest generates a request for the ListMFADevices operation.
@@ -2768,6 +2867,12 @@ func (c *IAM) ListMFADevicesRequest(input *ListMFADevicesInput) (req *aws.Reques
 			Name:       "ListMFADevices",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -2791,6 +2896,11 @@ func (c *IAM) ListMFADevices(input *ListMFADevicesInput) (*ListMFADevicesOutput,
 	req, out := c.ListMFADevicesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *IAM) ListMFADevicesPages(input *ListMFADevicesInput, fn func(p *ListMFADevicesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListMFADevicesRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListMFADevices *aws.Operation
@@ -2918,6 +3028,12 @@ func (c *IAM) ListRolePoliciesRequest(input *ListRolePoliciesInput) (req *aws.Re
 			Name:       "ListRolePolicies",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -2949,6 +3065,11 @@ func (c *IAM) ListRolePolicies(input *ListRolePoliciesInput) (*ListRolePoliciesO
 	return out, err
 }
 
+func (c *IAM) ListRolePoliciesPages(input *ListRolePoliciesInput, fn func(p *ListRolePoliciesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListRolePoliciesRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListRolePolicies *aws.Operation
 
 // ListRolesRequest generates a request for the ListRoles operation.
@@ -2961,6 +3082,12 @@ func (c *IAM) ListRolesRequest(input *ListRolesInput) (req *aws.Request, output 
 			Name:       "ListRoles",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -2986,6 +3113,11 @@ func (c *IAM) ListRoles(input *ListRolesInput) (*ListRolesOutput, error) {
 	req, out := c.ListRolesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *IAM) ListRolesPages(input *ListRolesInput, fn func(p *ListRolesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListRolesRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListRoles *aws.Operation
@@ -3034,6 +3166,12 @@ func (c *IAM) ListServerCertificatesRequest(input *ListServerCertificatesInput) 
 			Name:       "ListServerCertificates",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -3057,6 +3195,11 @@ func (c *IAM) ListServerCertificates(input *ListServerCertificatesInput) (*ListS
 	return out, err
 }
 
+func (c *IAM) ListServerCertificatesPages(input *ListServerCertificatesInput, fn func(p *ListServerCertificatesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListServerCertificatesRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListServerCertificates *aws.Operation
 
 // ListSigningCertificatesRequest generates a request for the ListSigningCertificates operation.
@@ -3069,6 +3212,12 @@ func (c *IAM) ListSigningCertificatesRequest(input *ListSigningCertificatesInput
 			Name:       "ListSigningCertificates",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -3098,6 +3247,11 @@ func (c *IAM) ListSigningCertificates(input *ListSigningCertificatesInput) (*Lis
 	return out, err
 }
 
+func (c *IAM) ListSigningCertificatesPages(input *ListSigningCertificatesInput, fn func(p *ListSigningCertificatesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListSigningCertificatesRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListSigningCertificates *aws.Operation
 
 // ListUserPoliciesRequest generates a request for the ListUserPolicies operation.
@@ -3110,6 +3264,12 @@ func (c *IAM) ListUserPoliciesRequest(input *ListUserPoliciesInput) (req *aws.Re
 			Name:       "ListUserPolicies",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -3140,6 +3300,11 @@ func (c *IAM) ListUserPolicies(input *ListUserPoliciesInput) (*ListUserPoliciesO
 	return out, err
 }
 
+func (c *IAM) ListUserPoliciesPages(input *ListUserPoliciesInput, fn func(p *ListUserPoliciesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListUserPoliciesRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListUserPolicies *aws.Operation
 
 // ListUsersRequest generates a request for the ListUsers operation.
@@ -3152,6 +3317,12 @@ func (c *IAM) ListUsersRequest(input *ListUsersInput) (req *aws.Request, output 
 			Name:       "ListUsers",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -3176,6 +3347,11 @@ func (c *IAM) ListUsers(input *ListUsersInput) (*ListUsersOutput, error) {
 	return out, err
 }
 
+func (c *IAM) ListUsersPages(input *ListUsersInput, fn func(p *ListUsersOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListUsersRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListUsers *aws.Operation
 
 // ListVirtualMFADevicesRequest generates a request for the ListVirtualMFADevices operation.
@@ -3188,6 +3364,12 @@ func (c *IAM) ListVirtualMFADevicesRequest(input *ListVirtualMFADevicesInput) (r
 			Name:       "ListVirtualMFADevices",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -3211,6 +3393,11 @@ func (c *IAM) ListVirtualMFADevices(input *ListVirtualMFADevicesInput) (*ListVir
 	req, out := c.ListVirtualMFADevicesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *IAM) ListVirtualMFADevicesPages(input *ListVirtualMFADevicesInput, fn func(p *ListVirtualMFADevicesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListVirtualMFADevicesRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListVirtualMFADevices *aws.Operation

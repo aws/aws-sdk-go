@@ -1063,6 +1063,12 @@ func (c *S3) ListMultipartUploadsRequest(input *ListMultipartUploadsInput) (req 
 			Name:       "ListMultipartUploads",
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}?uploads",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"KeyMarker", "UploadIdMarker"},
+				OutputTokens:    []string{"NextKeyMarker", "NextUploadIdMarker"},
+				LimitToken:      "MaxUploads",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -1083,6 +1089,11 @@ func (c *S3) ListMultipartUploads(input *ListMultipartUploadsInput) (*ListMultip
 	return out, err
 }
 
+func (c *S3) ListMultipartUploadsPages(input *ListMultipartUploadsInput, fn func(p *ListMultipartUploadsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListMultipartUploadsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListMultipartUploads *aws.Operation
 
 // ListObjectVersionsRequest generates a request for the ListObjectVersions operation.
@@ -1095,6 +1106,12 @@ func (c *S3) ListObjectVersionsRequest(input *ListObjectVersionsInput) (req *aws
 			Name:       "ListObjectVersions",
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}?versions",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"KeyMarker", "VersionIdMarker"},
+				OutputTokens:    []string{"NextKeyMarker", "NextVersionIdMarker"},
+				LimitToken:      "MaxKeys",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -1115,6 +1132,11 @@ func (c *S3) ListObjectVersions(input *ListObjectVersionsInput) (*ListObjectVers
 	return out, err
 }
 
+func (c *S3) ListObjectVersionsPages(input *ListObjectVersionsInput, fn func(p *ListObjectVersionsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListObjectVersionsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListObjectVersions *aws.Operation
 
 // ListObjectsRequest generates a request for the ListObjects operation.
@@ -1127,6 +1149,12 @@ func (c *S3) ListObjectsRequest(input *ListObjectsInput) (req *aws.Request, outp
 			Name:       "ListObjects",
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"NextMarker || Contents[-1].Key"},
+				LimitToken:      "MaxKeys",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -1149,6 +1177,11 @@ func (c *S3) ListObjects(input *ListObjectsInput) (*ListObjectsOutput, error) {
 	return out, err
 }
 
+func (c *S3) ListObjectsPages(input *ListObjectsInput, fn func(p *ListObjectsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListObjectsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListObjects *aws.Operation
 
 // ListPartsRequest generates a request for the ListParts operation.
@@ -1161,6 +1194,12 @@ func (c *S3) ListPartsRequest(input *ListPartsInput) (req *aws.Request, output *
 			Name:       "ListParts",
 			HTTPMethod: "GET",
 			HTTPPath:   "/{Bucket}/{Key+}",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"PartNumberMarker"},
+				OutputTokens:    []string{"NextPartNumberMarker"},
+				LimitToken:      "MaxParts",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -1179,6 +1218,11 @@ func (c *S3) ListParts(input *ListPartsInput) (*ListPartsOutput, error) {
 	req, out := c.ListPartsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *S3) ListPartsPages(input *ListPartsInput, fn func(p *ListPartsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListPartsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListParts *aws.Operation

@@ -518,6 +518,12 @@ func (c *AutoScaling) DescribeAutoScalingGroupsRequest(input *DescribeAutoScalin
 			Name:       "DescribeAutoScalingGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -543,6 +549,11 @@ func (c *AutoScaling) DescribeAutoScalingGroups(input *DescribeAutoScalingGroups
 	return out, err
 }
 
+func (c *AutoScaling) DescribeAutoScalingGroupsPages(input *DescribeAutoScalingGroupsInput, fn func(p *DescribeAutoScalingGroupsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeAutoScalingGroupsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeAutoScalingGroups *aws.Operation
 
 // DescribeAutoScalingInstancesRequest generates a request for the DescribeAutoScalingInstances operation.
@@ -555,6 +566,12 @@ func (c *AutoScaling) DescribeAutoScalingInstancesRequest(input *DescribeAutoSca
 			Name:       "DescribeAutoScalingInstances",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -579,6 +596,11 @@ func (c *AutoScaling) DescribeAutoScalingInstances(input *DescribeAutoScalingIns
 	req, out := c.DescribeAutoScalingInstancesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *AutoScaling) DescribeAutoScalingInstancesPages(input *DescribeAutoScalingInstancesInput, fn func(p *DescribeAutoScalingInstancesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeAutoScalingInstancesRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeAutoScalingInstances *aws.Operation
@@ -625,6 +647,12 @@ func (c *AutoScaling) DescribeLaunchConfigurationsRequest(input *DescribeLaunchC
 			Name:       "DescribeLaunchConfigurations",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -648,6 +676,11 @@ func (c *AutoScaling) DescribeLaunchConfigurations(input *DescribeLaunchConfigur
 	req, out := c.DescribeLaunchConfigurationsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *AutoScaling) DescribeLaunchConfigurationsPages(input *DescribeLaunchConfigurationsInput, fn func(p *DescribeLaunchConfigurationsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeLaunchConfigurationsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeLaunchConfigurations *aws.Operation
@@ -762,6 +795,12 @@ func (c *AutoScaling) DescribeNotificationConfigurationsRequest(input *DescribeN
 			Name:       "DescribeNotificationConfigurations",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -783,6 +822,11 @@ func (c *AutoScaling) DescribeNotificationConfigurations(input *DescribeNotifica
 	return out, err
 }
 
+func (c *AutoScaling) DescribeNotificationConfigurationsPages(input *DescribeNotificationConfigurationsInput, fn func(p *DescribeNotificationConfigurationsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeNotificationConfigurationsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeNotificationConfigurations *aws.Operation
 
 // DescribePoliciesRequest generates a request for the DescribePolicies operation.
@@ -795,6 +839,12 @@ func (c *AutoScaling) DescribePoliciesRequest(input *DescribePoliciesInput) (req
 			Name:       "DescribePolicies",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -819,6 +869,11 @@ func (c *AutoScaling) DescribePolicies(input *DescribePoliciesInput) (*DescribeP
 	return out, err
 }
 
+func (c *AutoScaling) DescribePoliciesPages(input *DescribePoliciesInput, fn func(p *DescribePoliciesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribePoliciesRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribePolicies *aws.Operation
 
 // DescribeScalingActivitiesRequest generates a request for the DescribeScalingActivities operation.
@@ -831,6 +886,12 @@ func (c *AutoScaling) DescribeScalingActivitiesRequest(input *DescribeScalingAct
 			Name:       "DescribeScalingActivities",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -856,6 +917,11 @@ func (c *AutoScaling) DescribeScalingActivities(input *DescribeScalingActivities
 	req, out := c.DescribeScalingActivitiesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *AutoScaling) DescribeScalingActivitiesPages(input *DescribeScalingActivitiesInput, fn func(p *DescribeScalingActivitiesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeScalingActivitiesRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeScalingActivities *aws.Operation
@@ -903,6 +969,12 @@ func (c *AutoScaling) DescribeScheduledActionsRequest(input *DescribeScheduledAc
 			Name:       "DescribeScheduledActions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -924,6 +996,11 @@ func (c *AutoScaling) DescribeScheduledActions(input *DescribeScheduledActionsIn
 	return out, err
 }
 
+func (c *AutoScaling) DescribeScheduledActionsPages(input *DescribeScheduledActionsInput, fn func(p *DescribeScheduledActionsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeScheduledActionsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeScheduledActions *aws.Operation
 
 // DescribeTagsRequest generates a request for the DescribeTags operation.
@@ -936,6 +1013,12 @@ func (c *AutoScaling) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Re
 			Name:       "DescribeTags",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -963,6 +1046,11 @@ func (c *AutoScaling) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutpu
 	req, out := c.DescribeTagsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *AutoScaling) DescribeTagsPages(input *DescribeTagsInput, fn func(p *DescribeTagsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeTagsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeTags *aws.Operation

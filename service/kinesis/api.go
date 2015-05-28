@@ -175,6 +175,12 @@ func (c *Kinesis) DescribeStreamRequest(input *DescribeStreamInput) (req *aws.Re
 			Name:       "DescribeStream",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"ExclusiveStartShardId"},
+				OutputTokens:    []string{"StreamDescription.Shards[-1].ShardId"},
+				LimitToken:      "Limit",
+				TruncationToken: "StreamDescription.HasMoreShards",
+			},
 		}
 	}
 
@@ -214,6 +220,11 @@ func (c *Kinesis) DescribeStream(input *DescribeStreamInput) (*DescribeStreamOut
 	req, out := c.DescribeStreamRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *Kinesis) DescribeStreamPages(input *DescribeStreamInput, fn func(p *DescribeStreamOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeStreamRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeStream *aws.Operation
@@ -372,6 +383,12 @@ func (c *Kinesis) ListStreamsRequest(input *ListStreamsInput) (req *aws.Request,
 			Name:       "ListStreams",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"ExclusiveStartStreamName"},
+				OutputTokens:    []string{"StreamNames[-1]"},
+				LimitToken:      "Limit",
+				TruncationToken: "HasMoreStreams",
+			},
 		}
 	}
 
@@ -405,6 +422,11 @@ func (c *Kinesis) ListStreams(input *ListStreamsInput) (*ListStreamsOutput, erro
 	req, out := c.ListStreamsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *Kinesis) ListStreamsPages(input *ListStreamsInput, fn func(p *ListStreamsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListStreamsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListStreams *aws.Operation

@@ -310,6 +310,12 @@ func (c *Route53Domains) ListDomainsRequest(input *ListDomainsInput) (req *aws.R
 			Name:       "ListDomains",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"NextPageMarker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -331,6 +337,11 @@ func (c *Route53Domains) ListDomains(input *ListDomainsInput) (*ListDomainsOutpu
 	return out, err
 }
 
+func (c *Route53Domains) ListDomainsPages(input *ListDomainsInput, fn func(p *ListDomainsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListDomainsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListDomains *aws.Operation
 
 // ListOperationsRequest generates a request for the ListOperations operation.
@@ -343,6 +354,12 @@ func (c *Route53Domains) ListOperationsRequest(input *ListOperationsInput) (req 
 			Name:       "ListOperations",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"NextPageMarker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -361,6 +378,11 @@ func (c *Route53Domains) ListOperations(input *ListOperationsInput) (*ListOperat
 	req, out := c.ListOperationsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *Route53Domains) ListOperationsPages(input *ListOperationsInput, fn func(p *ListOperationsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListOperationsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListOperations *aws.Operation

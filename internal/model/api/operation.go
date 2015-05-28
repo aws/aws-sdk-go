@@ -20,6 +20,7 @@ type Operation struct {
 	HTTP          HTTPInfo
 	InputRef      ShapeRef `json:"input"`
 	OutputRef     ShapeRef `json:"output"`
+	Paginator     *Paginator
 }
 
 // A HTTPInfo defines the method of HTTP request for the Operation.
@@ -60,6 +61,12 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 			Name:       "{{ .Name }}",
 			{{ if ne .HTTP.Method "" }}HTTPMethod: "{{ .HTTP.Method }}",
 			{{ end }}{{ if ne .HTTP.RequestURI "" }}HTTPPath:   "{{ .HTTP.RequestURI }}",
+			{{ end }}{{ if .Paginator }}Paginator: &aws.Paginator{
+					InputTokens: {{ .Paginator.InputTokensString }},
+					OutputTokens: {{ .Paginator.OutputTokensString }},
+					LimitToken: "{{ .Paginator.LimitKey }}",
+					TruncationToken: "{{ .Paginator.MoreResults }}",
+			},
 			{{ end }}
 		}
 	}
@@ -80,6 +87,14 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	err := req.Send()
 	return out, err
 }
+
+{{ if .Paginator }}
+func (c *{{ .API.StructName }}) {{ .ExportedName }}Pages(` +
+	`input {{ .InputRef.GoType }}, fn func(p {{ .OutputRef.GoType }}, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.{{ .ExportedName }}Request(input)
+	return page.EachPage(fn)
+}
+{{ end }}
 
 var op{{ .ExportedName }} *aws.Operation
 `))

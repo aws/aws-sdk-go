@@ -163,6 +163,12 @@ func (c *DataPipeline) DescribeObjectsRequest(input *DescribeObjectsInput) (req 
 			Name:       "DescribeObjects",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"marker"},
+				OutputTokens:    []string{"marker"},
+				LimitToken:      "",
+				TruncationToken: "hasMoreResults",
+			},
 		}
 	}
 
@@ -183,6 +189,11 @@ func (c *DataPipeline) DescribeObjects(input *DescribeObjectsInput) (*DescribeOb
 	req, out := c.DescribeObjectsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *DataPipeline) DescribeObjectsPages(input *DescribeObjectsInput, fn func(p *DescribeObjectsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeObjectsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeObjects *aws.Operation
@@ -303,6 +314,12 @@ func (c *DataPipeline) ListPipelinesRequest(input *ListPipelinesInput) (req *aws
 			Name:       "ListPipelines",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"marker"},
+				OutputTokens:    []string{"marker"},
+				LimitToken:      "",
+				TruncationToken: "hasMoreResults",
+			},
 		}
 	}
 
@@ -322,6 +339,11 @@ func (c *DataPipeline) ListPipelines(input *ListPipelinesInput) (*ListPipelinesO
 	req, out := c.ListPipelinesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *DataPipeline) ListPipelinesPages(input *ListPipelinesInput, fn func(p *ListPipelinesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListPipelinesRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListPipelines *aws.Operation
@@ -424,6 +446,12 @@ func (c *DataPipeline) QueryObjectsRequest(input *QueryObjectsInput) (req *aws.R
 			Name:       "QueryObjects",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"marker"},
+				OutputTokens:    []string{"marker"},
+				LimitToken:      "limit",
+				TruncationToken: "hasMoreResults",
+			},
 		}
 	}
 
@@ -449,6 +477,11 @@ func (c *DataPipeline) QueryObjects(input *QueryObjectsInput) (*QueryObjectsOutp
 	req, out := c.QueryObjectsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *DataPipeline) QueryObjectsPages(input *QueryObjectsInput, fn func(p *QueryObjectsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.QueryObjectsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opQueryObjects *aws.Operation

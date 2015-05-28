@@ -450,6 +450,12 @@ func (c *SNS) ListEndpointsByPlatformApplicationRequest(input *ListEndpointsByPl
 			Name:       "ListEndpointsByPlatformApplication",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -477,6 +483,11 @@ func (c *SNS) ListEndpointsByPlatformApplication(input *ListEndpointsByPlatformA
 	return out, err
 }
 
+func (c *SNS) ListEndpointsByPlatformApplicationPages(input *ListEndpointsByPlatformApplicationInput, fn func(p *ListEndpointsByPlatformApplicationOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListEndpointsByPlatformApplicationRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListEndpointsByPlatformApplication *aws.Operation
 
 // ListPlatformApplicationsRequest generates a request for the ListPlatformApplications operation.
@@ -489,6 +500,12 @@ func (c *SNS) ListPlatformApplicationsRequest(input *ListPlatformApplicationsInp
 			Name:       "ListPlatformApplications",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -516,6 +533,11 @@ func (c *SNS) ListPlatformApplications(input *ListPlatformApplicationsInput) (*L
 	return out, err
 }
 
+func (c *SNS) ListPlatformApplicationsPages(input *ListPlatformApplicationsInput, fn func(p *ListPlatformApplicationsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListPlatformApplicationsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListPlatformApplications *aws.Operation
 
 // ListSubscriptionsRequest generates a request for the ListSubscriptions operation.
@@ -528,6 +550,12 @@ func (c *SNS) ListSubscriptionsRequest(input *ListSubscriptionsInput) (req *aws.
 			Name:       "ListSubscriptions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -551,6 +579,11 @@ func (c *SNS) ListSubscriptions(input *ListSubscriptionsInput) (*ListSubscriptio
 	return out, err
 }
 
+func (c *SNS) ListSubscriptionsPages(input *ListSubscriptionsInput, fn func(p *ListSubscriptionsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListSubscriptionsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListSubscriptions *aws.Operation
 
 // ListSubscriptionsByTopicRequest generates a request for the ListSubscriptionsByTopic operation.
@@ -563,6 +596,12 @@ func (c *SNS) ListSubscriptionsByTopicRequest(input *ListSubscriptionsByTopicInp
 			Name:       "ListSubscriptionsByTopic",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -586,6 +625,11 @@ func (c *SNS) ListSubscriptionsByTopic(input *ListSubscriptionsByTopicInput) (*L
 	return out, err
 }
 
+func (c *SNS) ListSubscriptionsByTopicPages(input *ListSubscriptionsByTopicInput, fn func(p *ListSubscriptionsByTopicOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListSubscriptionsByTopicRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListSubscriptionsByTopic *aws.Operation
 
 // ListTopicsRequest generates a request for the ListTopics operation.
@@ -598,6 +642,12 @@ func (c *SNS) ListTopicsRequest(input *ListTopicsInput) (req *aws.Request, outpu
 			Name:       "ListTopics",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -618,6 +668,11 @@ func (c *SNS) ListTopics(input *ListTopicsInput) (*ListTopicsOutput, error) {
 	req, out := c.ListTopicsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *SNS) ListTopicsPages(input *ListTopicsInput, fn func(p *ListTopicsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListTopicsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListTopics *aws.Operation

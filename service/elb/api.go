@@ -679,6 +679,12 @@ func (c *ELB) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (r
 			Name:       "DescribeLoadBalancers",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"NextMarker"},
+				LimitToken:      "PageSize",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -698,6 +704,11 @@ func (c *ELB) DescribeLoadBalancers(input *DescribeLoadBalancersInput) (*Describ
 	req, out := c.DescribeLoadBalancersRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *ELB) DescribeLoadBalancersPages(input *DescribeLoadBalancersInput, fn func(p *DescribeLoadBalancersOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeLoadBalancersRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeLoadBalancers *aws.Operation

@@ -24,6 +24,7 @@ func Load(api, docs, paginators, waiters string) *API {
 // Will proceed to setup the API if not already done so.
 func (a *API) Attach(filename string) {
 	f, err := os.Open(filename)
+	defer f.Close()
 	if err != nil {
 		panic(err)
 	}

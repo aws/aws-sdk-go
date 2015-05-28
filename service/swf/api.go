@@ -574,6 +574,12 @@ func (c *SWF) GetWorkflowExecutionHistoryRequest(input *GetWorkflowExecutionHist
 			Name:       "GetWorkflowExecutionHistory",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"nextPageToken"},
+				OutputTokens:    []string{"nextPageToken"},
+				LimitToken:      "maximumPageSize",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -611,6 +617,11 @@ func (c *SWF) GetWorkflowExecutionHistory(input *GetWorkflowExecutionHistoryInpu
 	return out, err
 }
 
+func (c *SWF) GetWorkflowExecutionHistoryPages(input *GetWorkflowExecutionHistoryInput, fn func(p *GetWorkflowExecutionHistoryOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.GetWorkflowExecutionHistoryRequest(input)
+	return page.EachPage(fn)
+}
+
 var opGetWorkflowExecutionHistory *aws.Operation
 
 // ListActivityTypesRequest generates a request for the ListActivityTypes operation.
@@ -623,6 +634,12 @@ func (c *SWF) ListActivityTypesRequest(input *ListActivityTypesInput) (req *aws.
 			Name:       "ListActivityTypes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"nextPageToken"},
+				OutputTokens:    []string{"nextPageToken"},
+				LimitToken:      "maximumPageSize",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -661,6 +678,11 @@ func (c *SWF) ListActivityTypes(input *ListActivityTypesInput) (*ListActivityTyp
 	return out, err
 }
 
+func (c *SWF) ListActivityTypesPages(input *ListActivityTypesInput, fn func(p *ListActivityTypesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListActivityTypesRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListActivityTypes *aws.Operation
 
 // ListClosedWorkflowExecutionsRequest generates a request for the ListClosedWorkflowExecutions operation.
@@ -673,6 +695,12 @@ func (c *SWF) ListClosedWorkflowExecutionsRequest(input *ListClosedWorkflowExecu
 			Name:       "ListClosedWorkflowExecutions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"nextPageToken"},
+				OutputTokens:    []string{"nextPageToken"},
+				LimitToken:      "maximumPageSize",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -714,6 +742,11 @@ func (c *SWF) ListClosedWorkflowExecutions(input *ListClosedWorkflowExecutionsIn
 	return out, err
 }
 
+func (c *SWF) ListClosedWorkflowExecutionsPages(input *ListClosedWorkflowExecutionsInput, fn func(p *WorkflowExecutionInfos, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListClosedWorkflowExecutionsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListClosedWorkflowExecutions *aws.Operation
 
 // ListDomainsRequest generates a request for the ListDomains operation.
@@ -726,6 +759,12 @@ func (c *SWF) ListDomainsRequest(input *ListDomainsInput) (req *aws.Request, out
 			Name:       "ListDomains",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"nextPageToken"},
+				OutputTokens:    []string{"nextPageToken"},
+				LimitToken:      "maximumPageSize",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -764,6 +803,11 @@ func (c *SWF) ListDomains(input *ListDomainsInput) (*ListDomainsOutput, error) {
 	return out, err
 }
 
+func (c *SWF) ListDomainsPages(input *ListDomainsInput, fn func(p *ListDomainsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListDomainsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListDomains *aws.Operation
 
 // ListOpenWorkflowExecutionsRequest generates a request for the ListOpenWorkflowExecutions operation.
@@ -776,6 +820,12 @@ func (c *SWF) ListOpenWorkflowExecutionsRequest(input *ListOpenWorkflowExecution
 			Name:       "ListOpenWorkflowExecutions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"nextPageToken"},
+				OutputTokens:    []string{"nextPageToken"},
+				LimitToken:      "maximumPageSize",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -817,6 +867,11 @@ func (c *SWF) ListOpenWorkflowExecutions(input *ListOpenWorkflowExecutionsInput)
 	return out, err
 }
 
+func (c *SWF) ListOpenWorkflowExecutionsPages(input *ListOpenWorkflowExecutionsInput, fn func(p *WorkflowExecutionInfos, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListOpenWorkflowExecutionsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListOpenWorkflowExecutions *aws.Operation
 
 // ListWorkflowTypesRequest generates a request for the ListWorkflowTypes operation.
@@ -829,6 +884,12 @@ func (c *SWF) ListWorkflowTypesRequest(input *ListWorkflowTypesInput) (req *aws.
 			Name:       "ListWorkflowTypes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"nextPageToken"},
+				OutputTokens:    []string{"nextPageToken"},
+				LimitToken:      "maximumPageSize",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -863,6 +924,11 @@ func (c *SWF) ListWorkflowTypes(input *ListWorkflowTypesInput) (*ListWorkflowTyp
 	req, out := c.ListWorkflowTypesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *SWF) ListWorkflowTypesPages(input *ListWorkflowTypesInput, fn func(p *ListWorkflowTypesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListWorkflowTypesRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListWorkflowTypes *aws.Operation
@@ -933,6 +999,12 @@ func (c *SWF) PollForDecisionTaskRequest(input *PollForDecisionTaskInput) (req *
 			Name:       "PollForDecisionTask",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"nextPageToken"},
+				OutputTokens:    []string{"nextPageToken"},
+				LimitToken:      "maximumPageSize",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -983,6 +1055,11 @@ func (c *SWF) PollForDecisionTask(input *PollForDecisionTaskInput) (*PollForDeci
 	req, out := c.PollForDecisionTaskRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *SWF) PollForDecisionTaskPages(input *PollForDecisionTaskInput, fn func(p *PollForDecisionTaskOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.PollForDecisionTaskRequest(input)
+	return page.EachPage(fn)
 }
 
 var opPollForDecisionTask *aws.Operation

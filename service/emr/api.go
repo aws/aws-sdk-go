@@ -258,6 +258,12 @@ func (c *EMR) ListBootstrapActionsRequest(input *ListBootstrapActionsInput) (req
 			Name:       "ListBootstrapActions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -278,6 +284,11 @@ func (c *EMR) ListBootstrapActions(input *ListBootstrapActionsInput) (*ListBoots
 	return out, err
 }
 
+func (c *EMR) ListBootstrapActionsPages(input *ListBootstrapActionsInput, fn func(p *ListBootstrapActionsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListBootstrapActionsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListBootstrapActions *aws.Operation
 
 // ListClustersRequest generates a request for the ListClusters operation.
@@ -290,6 +301,12 @@ func (c *EMR) ListClustersRequest(input *ListClustersInput) (req *aws.Request, o
 			Name:       "ListClusters",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -314,6 +331,11 @@ func (c *EMR) ListClusters(input *ListClustersInput) (*ListClustersOutput, error
 	return out, err
 }
 
+func (c *EMR) ListClustersPages(input *ListClustersInput, fn func(p *ListClustersOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListClustersRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListClusters *aws.Operation
 
 // ListInstanceGroupsRequest generates a request for the ListInstanceGroups operation.
@@ -326,6 +348,12 @@ func (c *EMR) ListInstanceGroupsRequest(input *ListInstanceGroupsInput) (req *aw
 			Name:       "ListInstanceGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -346,6 +374,11 @@ func (c *EMR) ListInstanceGroups(input *ListInstanceGroupsInput) (*ListInstanceG
 	return out, err
 }
 
+func (c *EMR) ListInstanceGroupsPages(input *ListInstanceGroupsInput, fn func(p *ListInstanceGroupsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListInstanceGroupsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListInstanceGroups *aws.Operation
 
 // ListInstancesRequest generates a request for the ListInstances operation.
@@ -358,6 +391,12 @@ func (c *EMR) ListInstancesRequest(input *ListInstancesInput) (req *aws.Request,
 			Name:       "ListInstances",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -382,6 +421,11 @@ func (c *EMR) ListInstances(input *ListInstancesInput) (*ListInstancesOutput, er
 	return out, err
 }
 
+func (c *EMR) ListInstancesPages(input *ListInstancesInput, fn func(p *ListInstancesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListInstancesRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListInstances *aws.Operation
 
 // ListStepsRequest generates a request for the ListSteps operation.
@@ -394,6 +438,12 @@ func (c *EMR) ListStepsRequest(input *ListStepsInput) (req *aws.Request, output 
 			Name:       "ListSteps",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -412,6 +462,11 @@ func (c *EMR) ListSteps(input *ListStepsInput) (*ListStepsOutput, error) {
 	req, out := c.ListStepsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *EMR) ListStepsPages(input *ListStepsInput, fn func(p *ListStepsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListStepsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListSteps *aws.Operation

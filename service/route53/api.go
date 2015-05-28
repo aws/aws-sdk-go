@@ -834,6 +834,12 @@ func (c *Route53) ListHealthChecksRequest(input *ListHealthChecksInput) (req *aw
 			Name:       "ListHealthChecks",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2013-04-01/healthcheck",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"NextMarker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -862,6 +868,11 @@ func (c *Route53) ListHealthChecks(input *ListHealthChecksInput) (*ListHealthChe
 	return out, err
 }
 
+func (c *Route53) ListHealthChecksPages(input *ListHealthChecksInput, fn func(p *ListHealthChecksOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListHealthChecksRequest(input)
+	return page.EachPage(fn)
+}
+
 var opListHealthChecks *aws.Operation
 
 // ListHostedZonesRequest generates a request for the ListHostedZones operation.
@@ -874,6 +885,12 @@ func (c *Route53) ListHostedZonesRequest(input *ListHostedZonesInput) (req *aws.
 			Name:       "ListHostedZones",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2013-04-01/hostedzone",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"NextMarker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -900,6 +917,11 @@ func (c *Route53) ListHostedZones(input *ListHostedZonesInput) (*ListHostedZones
 	req, out := c.ListHostedZonesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *Route53) ListHostedZonesPages(input *ListHostedZonesInput, fn func(p *ListHostedZonesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListHostedZonesRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListHostedZones *aws.Operation
@@ -956,6 +978,12 @@ func (c *Route53) ListResourceRecordSetsRequest(input *ListResourceRecordSetsInp
 			Name:       "ListResourceRecordSets",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2013-04-01/hostedzone/{Id}/rrset",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"StartRecordName", "StartRecordType", "StartRecordIdentifier"},
+				OutputTokens:    []string{"NextRecordName", "NextRecordType", "NextRecordIdentifier"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -1011,6 +1039,11 @@ func (c *Route53) ListResourceRecordSets(input *ListResourceRecordSetsInput) (*L
 	req, out := c.ListResourceRecordSetsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *Route53) ListResourceRecordSetsPages(input *ListResourceRecordSetsInput, fn func(p *ListResourceRecordSetsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListResourceRecordSetsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListResourceRecordSets *aws.Operation

@@ -9,6 +9,8 @@ import (
 	"reflect"
 	"strings"
 	"time"
+
+	"github.com/awslabs/aws-sdk-go/aws/awsutil"
 )
 
 // A Request is the service request to be made.
@@ -39,6 +41,14 @@ type Operation struct {
 	Name       string
 	HTTPMethod string
 	HTTPPath   string
+	*Paginator
+}
+
+type Paginator struct {
+	InputTokens     []string
+	OutputTokens    []string
+	LimitToken      string
+	TruncationToken string
 }
 
 // NewRequest returns a new Request pointer for the service API
@@ -213,6 +223,102 @@ func (r *Request) Send() error {
 		}
 
 		break
+	}
+
+	return nil
+}
+
+func (r *Request) HasNextPage() bool {
+	return r.nextPageTokens() != nil
+}
+
+func (r *Request) nextPageTokens() []interface{} {
+	if r.Operation.Paginator == nil {
+		return nil
+	}
+
+	if r.Operation.TruncationToken != "" {
+		tr := awsutil.ValuesAtAnyPath(r.Data, r.Operation.TruncationToken)
+		if tr == nil || len(tr) == 0 {
+			return nil
+		}
+		switch v := tr[0].(type) {
+		case bool:
+			if v == false {
+				return nil
+			}
+		}
+	}
+
+	found := false
+	tokens := make([]interface{}, len(r.Operation.OutputTokens))
+
+	for i, outtok := range r.Operation.OutputTokens {
+		v := awsutil.ValuesAtAnyPath(r.Data, outtok)
+		if v != nil && len(v) > 0 {
+			found = true
+			tokens[i] = v[0]
+		}
+	}
+
+	if found {
+		return tokens
+	}
+	return nil
+}
+
+func (r *Request) NextPage() *Request {
+	tokens := r.nextPageTokens()
+	if tokens == nil {
+		return nil
+	}
+
+	data := reflect.New(reflect.TypeOf(r.Data).Elem()).Interface()
+	nr := NewRequest(r.Service, r.Operation, awsutil.CopyOf(r.Params), data)
+	for i, intok := range nr.Operation.InputTokens {
+		awsutil.SetValueAtAnyPath(nr.Params, intok, tokens[i])
+	}
+	return nr
+}
+
+// This nil value is needed to work around passing nil into reflect.Value#Call()
+// See https://groups.google.com/forum/#!topic/golang-nuts/apNcACpl_fI
+var nilval interface{}
+var rnil = reflect.ValueOf(&nilval).Elem()
+
+func (r *Request) EachPage(fn interface{}) error {
+	valfn := reflect.ValueOf(fn)
+	if valfn.Kind() != reflect.Func {
+		panic("expected function for EachPage()")
+	}
+	if valfn.Type().NumOut() > 0 && valfn.Type().Out(0).Kind() != reflect.Bool {
+		panic("EachPage(fn) function must return bool if it returns a value")
+	}
+
+	for page := r; page != nil; page = page.NextPage() {
+		page.Send()
+
+		shouldContinue := true
+		args := []reflect.Value{
+			reflect.ValueOf(page.Data),
+			reflect.ValueOf(!page.HasNextPage()),
+		}
+
+		// Use rnil (see above) when page.Data is nil to work around
+		// reflect.Value#Call() on nil values.
+		if page.Data == nil {
+			args[0] = rnil
+		}
+
+		out := valfn.Call(args)
+
+		if len(out) > 0 {
+			shouldContinue = out[0].Bool()
+		}
+
+		if page.Error != nil || !shouldContinue {
+			return page.Error
+		}
 	}
 
 	return nil

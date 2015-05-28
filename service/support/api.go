@@ -197,6 +197,12 @@ func (c *Support) DescribeCasesRequest(input *DescribeCasesInput) (req *aws.Requ
 			Name:       "DescribeCases",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"nextToken"},
+				OutputTokens:    []string{"nextToken"},
+				LimitToken:      "maxResults",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -230,6 +236,11 @@ func (c *Support) DescribeCases(input *DescribeCasesInput) (*DescribeCasesOutput
 	return out, err
 }
 
+func (c *Support) DescribeCasesPages(input *DescribeCasesInput, fn func(p *DescribeCasesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeCasesRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeCases *aws.Operation
 
 // DescribeCommunicationsRequest generates a request for the DescribeCommunications operation.
@@ -242,6 +253,12 @@ func (c *Support) DescribeCommunicationsRequest(input *DescribeCommunicationsInp
 			Name:       "DescribeCommunications",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"nextToken"},
+				OutputTokens:    []string{"nextToken"},
+				LimitToken:      "maxResults",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -269,6 +286,11 @@ func (c *Support) DescribeCommunications(input *DescribeCommunicationsInput) (*D
 	req, out := c.DescribeCommunicationsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *Support) DescribeCommunicationsPages(input *DescribeCommunicationsInput, fn func(p *DescribeCommunicationsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeCommunicationsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeCommunications *aws.Operation

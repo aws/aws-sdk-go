@@ -286,6 +286,12 @@ func (c *SES) ListIdentitiesRequest(input *ListIdentitiesInput) (req *aws.Reques
 			Name:       "ListIdentities",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -307,6 +313,11 @@ func (c *SES) ListIdentities(input *ListIdentitiesInput) (*ListIdentitiesOutput,
 	req, out := c.ListIdentitiesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *SES) ListIdentitiesPages(input *ListIdentitiesInput, fn func(p *ListIdentitiesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListIdentitiesRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListIdentities *aws.Operation

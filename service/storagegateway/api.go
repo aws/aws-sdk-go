@@ -1019,6 +1019,12 @@ func (c *StorageGateway) DescribeTapeArchivesRequest(input *DescribeTapeArchives
 			Name:       "DescribeTapeArchives",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "Limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1043,6 +1049,11 @@ func (c *StorageGateway) DescribeTapeArchives(input *DescribeTapeArchivesInput) 
 	return out, err
 }
 
+func (c *StorageGateway) DescribeTapeArchivesPages(input *DescribeTapeArchivesInput, fn func(p *DescribeTapeArchivesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeTapeArchivesRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeTapeArchives *aws.Operation
 
 // DescribeTapeRecoveryPointsRequest generates a request for the DescribeTapeRecoveryPoints operation.
@@ -1055,6 +1066,12 @@ func (c *StorageGateway) DescribeTapeRecoveryPointsRequest(input *DescribeTapeRe
 			Name:       "DescribeTapeRecoveryPoints",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "Limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1080,6 +1097,11 @@ func (c *StorageGateway) DescribeTapeRecoveryPoints(input *DescribeTapeRecoveryP
 	return out, err
 }
 
+func (c *StorageGateway) DescribeTapeRecoveryPointsPages(input *DescribeTapeRecoveryPointsInput, fn func(p *DescribeTapeRecoveryPointsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeTapeRecoveryPointsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeTapeRecoveryPoints *aws.Operation
 
 // DescribeTapesRequest generates a request for the DescribeTapes operation.
@@ -1092,6 +1114,12 @@ func (c *StorageGateway) DescribeTapesRequest(input *DescribeTapesInput) (req *a
 			Name:       "DescribeTapes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "Limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1112,6 +1140,11 @@ func (c *StorageGateway) DescribeTapes(input *DescribeTapesInput) (*DescribeTape
 	req, out := c.DescribeTapesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *StorageGateway) DescribeTapesPages(input *DescribeTapesInput, fn func(p *DescribeTapesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeTapesRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeTapes *aws.Operation
@@ -1163,6 +1196,12 @@ func (c *StorageGateway) DescribeVTLDevicesRequest(input *DescribeVTLDevicesInpu
 			Name:       "DescribeVTLDevices",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "Limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1184,6 +1223,11 @@ func (c *StorageGateway) DescribeVTLDevices(input *DescribeVTLDevicesInput) (*De
 	req, out := c.DescribeVTLDevicesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *StorageGateway) DescribeVTLDevicesPages(input *DescribeVTLDevicesInput, fn func(p *DescribeVTLDevicesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeVTLDevicesRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeVTLDevices *aws.Operation
@@ -1277,6 +1321,12 @@ func (c *StorageGateway) ListGatewaysRequest(input *ListGatewaysInput) (req *aws
 			Name:       "ListGateways",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "Limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1305,6 +1355,11 @@ func (c *StorageGateway) ListGateways(input *ListGatewaysInput) (*ListGatewaysOu
 	req, out := c.ListGatewaysRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *StorageGateway) ListGatewaysPages(input *ListGatewaysInput, fn func(p *ListGatewaysOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListGatewaysRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListGateways *aws.Operation
@@ -1398,6 +1453,12 @@ func (c *StorageGateway) ListVolumesRequest(input *ListVolumesInput) (req *aws.R
 			Name:       "ListVolumes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "Limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1425,6 +1486,11 @@ func (c *StorageGateway) ListVolumes(input *ListVolumesInput) (*ListVolumesOutpu
 	req, out := c.ListVolumesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *StorageGateway) ListVolumesPages(input *ListVolumesInput, fn func(p *ListVolumesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListVolumesRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListVolumes *aws.Operation

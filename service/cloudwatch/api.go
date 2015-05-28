@@ -54,6 +54,12 @@ func (c *CloudWatch) DescribeAlarmHistoryRequest(input *DescribeAlarmHistoryInpu
 			Name:       "DescribeAlarmHistory",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -76,6 +82,11 @@ func (c *CloudWatch) DescribeAlarmHistory(input *DescribeAlarmHistoryInput) (*De
 	return out, err
 }
 
+func (c *CloudWatch) DescribeAlarmHistoryPages(input *DescribeAlarmHistoryInput, fn func(p *DescribeAlarmHistoryOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeAlarmHistoryRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeAlarmHistory *aws.Operation
 
 // DescribeAlarmsRequest generates a request for the DescribeAlarms operation.
@@ -88,6 +99,12 @@ func (c *CloudWatch) DescribeAlarmsRequest(input *DescribeAlarmsInput) (req *aws
 			Name:       "DescribeAlarms",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -108,6 +125,11 @@ func (c *CloudWatch) DescribeAlarms(input *DescribeAlarmsInput) (*DescribeAlarms
 	req, out := c.DescribeAlarmsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *CloudWatch) DescribeAlarmsPages(input *DescribeAlarmsInput, fn func(p *DescribeAlarmsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeAlarmsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeAlarms *aws.Operation
@@ -277,6 +299,12 @@ func (c *CloudWatch) ListMetricsRequest(input *ListMetricsInput) (req *aws.Reque
 			Name:       "ListMetrics",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -297,6 +325,11 @@ func (c *CloudWatch) ListMetrics(input *ListMetricsInput) (*ListMetricsOutput, e
 	req, out := c.ListMetricsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *CloudWatch) ListMetricsPages(input *ListMetricsInput, fn func(p *ListMetricsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListMetricsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListMetrics *aws.Operation

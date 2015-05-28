@@ -414,6 +414,12 @@ func (c *DynamoDB) ListTablesRequest(input *ListTablesInput) (req *aws.Request, 
 			Name:       "ListTables",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"ExclusiveStartTableName"},
+				OutputTokens:    []string{"LastEvaluatedTableName"},
+				LimitToken:      "Limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -434,6 +440,11 @@ func (c *DynamoDB) ListTables(input *ListTablesInput) (*ListTablesOutput, error)
 	req, out := c.ListTablesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *DynamoDB) ListTablesPages(input *ListTablesInput, fn func(p *ListTablesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListTablesRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListTables *aws.Operation
@@ -504,6 +515,12 @@ func (c *DynamoDB) QueryRequest(input *QueryInput) (req *aws.Request, output *Qu
 			Name:       "Query",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"ExclusiveStartKey"},
+				OutputTokens:    []string{"LastEvaluatedKey"},
+				LimitToken:      "Limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -548,6 +565,11 @@ func (c *DynamoDB) Query(input *QueryInput) (*QueryOutput, error) {
 	return out, err
 }
 
+func (c *DynamoDB) QueryPages(input *QueryInput, fn func(p *QueryOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.QueryRequest(input)
+	return page.EachPage(fn)
+}
+
 var opQuery *aws.Operation
 
 // ScanRequest generates a request for the Scan operation.
@@ -560,6 +582,12 @@ func (c *DynamoDB) ScanRequest(input *ScanInput) (req *aws.Request, output *Scan
 			Name:       "Scan",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"ExclusiveStartKey"},
+				OutputTokens:    []string{"LastEvaluatedKey"},
+				LimitToken:      "Limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -594,6 +622,11 @@ func (c *DynamoDB) Scan(input *ScanInput) (*ScanOutput, error) {
 	req, out := c.ScanRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *DynamoDB) ScanPages(input *ScanInput, fn func(p *ScanOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ScanRequest(input)
+	return page.EachPage(fn)
 }
 
 var opScan *aws.Operation

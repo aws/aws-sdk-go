@@ -809,6 +809,12 @@ func (c *RDS) DescribeDBEngineVersionsRequest(input *DescribeDBEngineVersionsInp
 			Name:       "DescribeDBEngineVersions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -829,6 +835,11 @@ func (c *RDS) DescribeDBEngineVersions(input *DescribeDBEngineVersionsInput) (*D
 	return out, err
 }
 
+func (c *RDS) DescribeDBEngineVersionsPages(input *DescribeDBEngineVersionsInput, fn func(p *DescribeDBEngineVersionsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeDBEngineVersionsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeDBEngineVersions *aws.Operation
 
 // DescribeDBInstancesRequest generates a request for the DescribeDBInstances operation.
@@ -841,6 +852,12 @@ func (c *RDS) DescribeDBInstancesRequest(input *DescribeDBInstancesInput) (req *
 			Name:       "DescribeDBInstances",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -861,6 +878,11 @@ func (c *RDS) DescribeDBInstances(input *DescribeDBInstancesInput) (*DescribeDBI
 	return out, err
 }
 
+func (c *RDS) DescribeDBInstancesPages(input *DescribeDBInstancesInput, fn func(p *DescribeDBInstancesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeDBInstancesRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeDBInstances *aws.Operation
 
 // DescribeDBLogFilesRequest generates a request for the DescribeDBLogFiles operation.
@@ -873,6 +895,12 @@ func (c *RDS) DescribeDBLogFilesRequest(input *DescribeDBLogFilesInput) (req *aw
 			Name:       "DescribeDBLogFiles",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -893,6 +921,11 @@ func (c *RDS) DescribeDBLogFiles(input *DescribeDBLogFilesInput) (*DescribeDBLog
 	return out, err
 }
 
+func (c *RDS) DescribeDBLogFilesPages(input *DescribeDBLogFilesInput, fn func(p *DescribeDBLogFilesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeDBLogFilesRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeDBLogFiles *aws.Operation
 
 // DescribeDBParameterGroupsRequest generates a request for the DescribeDBParameterGroups operation.
@@ -905,6 +938,12 @@ func (c *RDS) DescribeDBParameterGroupsRequest(input *DescribeDBParameterGroupsI
 			Name:       "DescribeDBParameterGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -927,6 +966,11 @@ func (c *RDS) DescribeDBParameterGroups(input *DescribeDBParameterGroupsInput) (
 	return out, err
 }
 
+func (c *RDS) DescribeDBParameterGroupsPages(input *DescribeDBParameterGroupsInput, fn func(p *DescribeDBParameterGroupsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeDBParameterGroupsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeDBParameterGroups *aws.Operation
 
 // DescribeDBParametersRequest generates a request for the DescribeDBParameters operation.
@@ -939,6 +983,12 @@ func (c *RDS) DescribeDBParametersRequest(input *DescribeDBParametersInput) (req
 			Name:       "DescribeDBParameters",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -959,6 +1009,11 @@ func (c *RDS) DescribeDBParameters(input *DescribeDBParametersInput) (*DescribeD
 	return out, err
 }
 
+func (c *RDS) DescribeDBParametersPages(input *DescribeDBParametersInput, fn func(p *DescribeDBParametersOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeDBParametersRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeDBParameters *aws.Operation
 
 // DescribeDBSecurityGroupsRequest generates a request for the DescribeDBSecurityGroups operation.
@@ -971,6 +1026,12 @@ func (c *RDS) DescribeDBSecurityGroupsRequest(input *DescribeDBSecurityGroupsInp
 			Name:       "DescribeDBSecurityGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -993,6 +1054,11 @@ func (c *RDS) DescribeDBSecurityGroups(input *DescribeDBSecurityGroupsInput) (*D
 	return out, err
 }
 
+func (c *RDS) DescribeDBSecurityGroupsPages(input *DescribeDBSecurityGroupsInput, fn func(p *DescribeDBSecurityGroupsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeDBSecurityGroupsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeDBSecurityGroups *aws.Operation
 
 // DescribeDBSnapshotsRequest generates a request for the DescribeDBSnapshots operation.
@@ -1005,6 +1071,12 @@ func (c *RDS) DescribeDBSnapshotsRequest(input *DescribeDBSnapshotsInput) (req *
 			Name:       "DescribeDBSnapshots",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1025,6 +1097,11 @@ func (c *RDS) DescribeDBSnapshots(input *DescribeDBSnapshotsInput) (*DescribeDBS
 	return out, err
 }
 
+func (c *RDS) DescribeDBSnapshotsPages(input *DescribeDBSnapshotsInput, fn func(p *DescribeDBSnapshotsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeDBSnapshotsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeDBSnapshots *aws.Operation
 
 // DescribeDBSubnetGroupsRequest generates a request for the DescribeDBSubnetGroups operation.
@@ -1037,6 +1114,12 @@ func (c *RDS) DescribeDBSubnetGroupsRequest(input *DescribeDBSubnetGroupsInput) 
 			Name:       "DescribeDBSubnetGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1060,6 +1143,11 @@ func (c *RDS) DescribeDBSubnetGroups(input *DescribeDBSubnetGroupsInput) (*Descr
 	return out, err
 }
 
+func (c *RDS) DescribeDBSubnetGroupsPages(input *DescribeDBSubnetGroupsInput, fn func(p *DescribeDBSubnetGroupsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeDBSubnetGroupsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeDBSubnetGroups *aws.Operation
 
 // DescribeEngineDefaultParametersRequest generates a request for the DescribeEngineDefaultParameters operation.
@@ -1072,6 +1160,12 @@ func (c *RDS) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaul
 			Name:       "DescribeEngineDefaultParameters",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"EngineDefaults.Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1091,6 +1185,11 @@ func (c *RDS) DescribeEngineDefaultParameters(input *DescribeEngineDefaultParame
 	req, out := c.DescribeEngineDefaultParametersRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *RDS) DescribeEngineDefaultParametersPages(input *DescribeEngineDefaultParametersInput, fn func(p *DescribeEngineDefaultParametersOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeEngineDefaultParametersRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeEngineDefaultParameters *aws.Operation
@@ -1140,6 +1239,12 @@ func (c *RDS) DescribeEventSubscriptionsRequest(input *DescribeEventSubscription
 			Name:       "DescribeEventSubscriptions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1164,6 +1269,11 @@ func (c *RDS) DescribeEventSubscriptions(input *DescribeEventSubscriptionsInput)
 	return out, err
 }
 
+func (c *RDS) DescribeEventSubscriptionsPages(input *DescribeEventSubscriptionsInput, fn func(p *DescribeEventSubscriptionsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeEventSubscriptionsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeEventSubscriptions *aws.Operation
 
 // DescribeEventsRequest generates a request for the DescribeEvents operation.
@@ -1176,6 +1286,12 @@ func (c *RDS) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Reques
 			Name:       "DescribeEvents",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1200,6 +1316,11 @@ func (c *RDS) DescribeEvents(input *DescribeEventsInput) (*DescribeEventsOutput,
 	return out, err
 }
 
+func (c *RDS) DescribeEventsPages(input *DescribeEventsInput, fn func(p *DescribeEventsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeEventsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeEvents *aws.Operation
 
 // DescribeOptionGroupOptionsRequest generates a request for the DescribeOptionGroupOptions operation.
@@ -1212,6 +1333,12 @@ func (c *RDS) DescribeOptionGroupOptionsRequest(input *DescribeOptionGroupOption
 			Name:       "DescribeOptionGroupOptions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1232,6 +1359,11 @@ func (c *RDS) DescribeOptionGroupOptions(input *DescribeOptionGroupOptionsInput)
 	return out, err
 }
 
+func (c *RDS) DescribeOptionGroupOptionsPages(input *DescribeOptionGroupOptionsInput, fn func(p *DescribeOptionGroupOptionsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeOptionGroupOptionsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeOptionGroupOptions *aws.Operation
 
 // DescribeOptionGroupsRequest generates a request for the DescribeOptionGroups operation.
@@ -1244,6 +1376,12 @@ func (c *RDS) DescribeOptionGroupsRequest(input *DescribeOptionGroupsInput) (req
 			Name:       "DescribeOptionGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1264,6 +1402,11 @@ func (c *RDS) DescribeOptionGroups(input *DescribeOptionGroupsInput) (*DescribeO
 	return out, err
 }
 
+func (c *RDS) DescribeOptionGroupsPages(input *DescribeOptionGroupsInput, fn func(p *DescribeOptionGroupsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeOptionGroupsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeOptionGroups *aws.Operation
 
 // DescribeOrderableDBInstanceOptionsRequest generates a request for the DescribeOrderableDBInstanceOptions operation.
@@ -1276,6 +1419,12 @@ func (c *RDS) DescribeOrderableDBInstanceOptionsRequest(input *DescribeOrderable
 			Name:       "DescribeOrderableDBInstanceOptions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1294,6 +1443,11 @@ func (c *RDS) DescribeOrderableDBInstanceOptions(input *DescribeOrderableDBInsta
 	req, out := c.DescribeOrderableDBInstanceOptionsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *RDS) DescribeOrderableDBInstanceOptionsPages(input *DescribeOrderableDBInstanceOptionsInput, fn func(p *DescribeOrderableDBInstanceOptionsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeOrderableDBInstanceOptionsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeOrderableDBInstanceOptions *aws.Operation
@@ -1341,6 +1495,12 @@ func (c *RDS) DescribeReservedDBInstancesRequest(input *DescribeReservedDBInstan
 			Name:       "DescribeReservedDBInstances",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1362,6 +1522,11 @@ func (c *RDS) DescribeReservedDBInstances(input *DescribeReservedDBInstancesInpu
 	return out, err
 }
 
+func (c *RDS) DescribeReservedDBInstancesPages(input *DescribeReservedDBInstancesInput, fn func(p *DescribeReservedDBInstancesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeReservedDBInstancesRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeReservedDBInstances *aws.Operation
 
 // DescribeReservedDBInstancesOfferingsRequest generates a request for the DescribeReservedDBInstancesOfferings operation.
@@ -1374,6 +1539,12 @@ func (c *RDS) DescribeReservedDBInstancesOfferingsRequest(input *DescribeReserve
 			Name:       "DescribeReservedDBInstancesOfferings",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -1394,6 +1565,11 @@ func (c *RDS) DescribeReservedDBInstancesOfferings(input *DescribeReservedDBInst
 	return out, err
 }
 
+func (c *RDS) DescribeReservedDBInstancesOfferingsPages(input *DescribeReservedDBInstancesOfferingsInput, fn func(p *DescribeReservedDBInstancesOfferingsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeReservedDBInstancesOfferingsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeReservedDBInstancesOfferings *aws.Operation
 
 // DownloadDBLogFilePortionRequest generates a request for the DownloadDBLogFilePortion operation.
@@ -1406,6 +1582,12 @@ func (c *RDS) DownloadDBLogFilePortionRequest(input *DownloadDBLogFilePortionInp
 			Name:       "DownloadDBLogFilePortion",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "NumberOfLines",
+				TruncationToken: "AdditionalDataPending",
+			},
 		}
 	}
 
@@ -1424,6 +1606,11 @@ func (c *RDS) DownloadDBLogFilePortion(input *DownloadDBLogFilePortionInput) (*D
 	req, out := c.DownloadDBLogFilePortionRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *RDS) DownloadDBLogFilePortionPages(input *DownloadDBLogFilePortionInput, fn func(p *DownloadDBLogFilePortionOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DownloadDBLogFilePortionRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDownloadDBLogFilePortion *aws.Operation
