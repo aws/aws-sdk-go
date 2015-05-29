@@ -111,10 +111,12 @@ func AfterRetryHandler(r *Request) {
 		// need to be expired locally so that the next request to
 		// get credentials will trigger a credentials refresh.
 		if r.Error != nil {
-			if err, ok := r.Error.(awserr.Error); ok && err.Code() == "ExpiredTokenException" {
-				r.Config.Credentials.Expire()
-				// The credentials will need to be resigned with new credentials
-				r.signed = false
+			if err, ok := r.Error.(awserr.Error); ok {
+				if isCodeExpiredCreds(err.Code()) {
+					r.Config.Credentials.Expire()
+					// The credentials will need to be resigned with new credentials
+					r.signed = false
+				}
 			}
 		}
 
