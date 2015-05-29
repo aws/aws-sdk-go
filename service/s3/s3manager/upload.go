@@ -14,8 +14,14 @@ import (
 	"github.com/awslabs/aws-sdk-go/service/s3"
 )
 
+// The maximum allowed number of parts in a multi-part upload on Amazon S3.
+var MaxUploadParts = 1000
+
+// The minimum allowed part size when uploading a part to Amazon S3.
+var MinUploadPartSize int64 = 1024 * 1024 * 5
+
 // The default part size to buffer chunks of a payload into.
-var DefaultPartSize int64 = 1024 * 1024 * 5
+var DefaultPartSize = MinUploadPartSize
 
 // The default number of goroutines to spin up when using Upload().
 var DefaultConcurrency = 5
@@ -213,7 +219,10 @@ func Upload(s *s3.S3, input *UploadInput, opts *UploadOptions) (*UploadOutput, e
 }
 
 // initOptions will initialize all default values for UploadOptions.
-func initOptions(opts *UploadOptions) *UploadOptions {
+func initOptions(o *UploadOptions) *UploadOptions {
+	opts := &UploadOptions{}
+	awsutil.Copy(opts, o)
+
 	if opts == nil {
 		opts = DefaultUploadOptions
 	}
@@ -242,6 +251,11 @@ func (u *uploader) upload() (*UploadOutput, error) {
 	// Try to get the total size for some optimizations
 	u.initSize()
 
+	if u.opts.PartSize < MinUploadPartSize {
+		msg := fmt.Sprintf("part size must be at least %d bytes", MinUploadPartSize)
+		return nil, apierr.New("ConfigError", msg, nil)
+	}
+
 	// Do one read to determine if we have more than one part
 	buf, err := u.nextReader()
 	if err == io.EOF || err == io.ErrUnexpectedEOF { // single part
@@ -269,6 +283,11 @@ func (u *uploader) initSize() {
 			return
 		}
 		u.totalSize = n
+
+		// try to adjust partSize if it is too small
+		if u.totalSize/u.opts.PartSize >= int64(MaxUploadParts) {
+			u.opts.PartSize = u.totalSize / int64(MaxUploadParts)
+		}
 	}
 }
 
@@ -374,6 +393,14 @@ func (u *multiuploader) upload(firstBuf io.ReadSeeker) (*UploadOutput, error) {
 
 	// Read and queue the rest of the parts
 	for u.geterr() == nil {
+		// This upload exceeded maximum number of supported parts, error now.
+		if num > int64(MaxUploadParts) {
+			msg := fmt.Sprintf("exceeded total allowed parts (%d). "+
+				"Adjust PartSize to fit in this limit", MaxUploadParts)
+			u.seterr(apierr.New("TotalPartsExceeded", msg, nil))
+			break
+		}
+
 		num++
 
 		buf, err := u.nextReader()
@@ -395,8 +422,15 @@ func (u *multiuploader) upload(firstBuf io.ReadSeeker) (*UploadOutput, error) {
 	complete := u.complete()
 
 	if err := u.geterr(); err != nil {
+		var berr *apierr.BaseError
+		switch t := err.(type) {
+		case *apierr.BaseError:
+			berr = t
+		default:
+			berr = apierr.New("MultipartUpload", "upload multipart failed", err)
+		}
 		return nil, &multiUploadError{
-			BaseError: apierr.New("MultipartUpload", "upload multipart failed", err),
+			BaseError: berr,
 			uploadID:  u.uploadID,
 		}
 	}
