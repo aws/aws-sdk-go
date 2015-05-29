@@ -158,7 +158,7 @@ func isCodeRetryable(code string) bool {
 }
 
 func isCodeExpiredCreds(code string) bool {
-	_, ok := credsExpiredCodes[code];
+	_, ok := credsExpiredCodes[code]
 	return ok
 }
 
