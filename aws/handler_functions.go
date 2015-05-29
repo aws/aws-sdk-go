@@ -3,8 +3,6 @@ package aws
 import (
 	"bytes"
 	"fmt"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/internal/apierr"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -12,6 +10,9 @@ import (
 	"regexp"
 	"strconv"
 	"time"
+
+	"github.com/awslabs/aws-sdk-go/aws/awserr"
+	"github.com/awslabs/aws-sdk-go/internal/apierr"
 )
 
 var sleepDelay = func(delay time.Duration) {
@@ -81,6 +82,7 @@ func SendHandler(r *Request) {
 		}
 		// Catch all other request errors.
 		r.Error = apierr.New("RequestError", "send request failed", err)
+		r.Retryable.Set(true) // network errors are retryable
 	}
 }
 
