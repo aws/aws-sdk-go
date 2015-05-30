@@ -219,13 +219,12 @@ func Upload(s *s3.S3, input *UploadInput, opts *UploadOptions) (*UploadOutput, e
 }
 
 // initOptions will initialize all default values for UploadOptions.
-func initOptions(o *UploadOptions) *UploadOptions {
-	opts := &UploadOptions{}
-	awsutil.Copy(opts, o)
-
-	if opts == nil {
-		opts = DefaultUploadOptions
+func initOptions(o *UploadOptions) UploadOptions {
+	if o == nil {
+		return *DefaultUploadOptions
 	}
+
+	opts := *o
 	if opts.Concurrency == 0 {
 		opts.Concurrency = DefaultConcurrency
 	}
@@ -239,7 +238,7 @@ func initOptions(o *UploadOptions) *UploadOptions {
 type uploader struct {
 	s    *s3.S3
 	in   *UploadInput
-	opts *UploadOptions
+	opts UploadOptions
 
 	readerPos int64 // current reader position
 	totalSize int64 // set to -1 if the size is not known
