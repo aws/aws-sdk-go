@@ -40,24 +40,35 @@ type DownloadOptions struct {
 	S3 *s3.S3
 }
 
+// NewDownloader creates a new Downloader structure that downloads an object
+// from S3 in concurrent chunks. Pass in an optional DownloadOptions struct
+// to customize the downloader behavior.
 func NewDownloader(opts *DownloadOptions) *Downloader {
 	if opts == nil {
 		opts = DefaultDownloadOptions
 	}
-	return &Downloader{opts: *opts}
+	return &Downloader{opts: opts}
 }
 
+// The Downloader structure that calls Download(). It is safe to call Download()
+// on this structure for multiple objects and across concurrent goroutines.
 type Downloader struct {
-	opts DownloadOptions
+	opts *DownloadOptions
 }
 
+// Download downloads an object in S3 and writes the payload into w using
+// concurrent GET requests.
+//
+// It is safe to call this method for multiple objects and across concurrent
+// goroutines.
 func (d *Downloader) Download(w io.WriterAt, input *s3.GetObjectInput) error {
-	impl := downloadimpl{w: w, in: input, opts: &d.opts}
+	impl := downloader{w: w, in: input, opts: *d.opts}
 	return impl.download()
 }
 
-type downloadimpl struct {
-	opts *DownloadOptions
+// downloader is the implementation structure used internally by Downloader.
+type downloader struct {
+	opts DownloadOptions
 	in   *s3.GetObjectInput
 	w    io.WriterAt
 
@@ -69,7 +80,8 @@ type downloadimpl struct {
 	err        error
 }
 
-func (d *downloadimpl) init() {
+// init initializes the downloader with default options.
+func (d *downloader) init() {
 	d.totalBytes = -1
 
 	if d.opts.Concurrency == 0 {
@@ -85,7 +97,9 @@ func (d *downloadimpl) init() {
 	}
 }
 
-func (d *downloadimpl) download() error {
+// download performs the implementation of the object download across ranged
+// GETs.
+func (d *downloader) download() error {
 	d.init()
 
 	// Spin up workers
@@ -98,15 +112,22 @@ func (d *downloadimpl) download() error {
 	// Assign work
 	for d.geterr() == nil {
 		if d.pos != 0 {
+			// This is not the first chunk, let's wait until we know the total
+			// size of the payload so we can see if we have read the entire
+			// object.
 			total := d.getTotalBytes()
+
 			if total < 0 {
+				// Total has not yet been set, so sleep and loop around while
+				// waiting for our first worker to resolve this value.
 				time.Sleep(10 * time.Millisecond)
 				continue
 			} else if d.pos >= total {
-				break
+				break // We're finished queueing chunks
 			}
 		}
 
+		// Queue the next range of bytes to read.
 		ch <- dlchunk{
 			dlchunkcounter: &dlchunkcounter{},
 			w:              d.w,
@@ -124,7 +145,12 @@ func (d *downloadimpl) download() error {
 	return d.err
 }
 
-func (d *downloadimpl) downloadPart(ch chan dlchunk) {
+// downloadPart is an individual goroutine worker reading from the ch channel
+// and performing a GetObject request on the data with a given byte range.
+//
+// If this is the first worker, this operation also resolves the total number
+// of bytes to be read so that the worker manager knows when it is finished.
+func (d *downloader) downloadPart(ch chan dlchunk) {
 	defer d.wg.Done()
 
 	for {
@@ -135,6 +161,7 @@ func (d *downloadimpl) downloadPart(ch chan dlchunk) {
 		}
 
 		if d.geterr() == nil {
+			// Get the next byte range of data
 			in := &s3.GetObjectInput{}
 			awsutil.Copy(in, d.in)
 			rng := fmt.Sprintf("bytes=%d-%d",
@@ -145,7 +172,7 @@ func (d *downloadimpl) downloadPart(ch chan dlchunk) {
 			if err != nil {
 				d.seterr(err)
 			} else {
-				d.setTotalBytes(resp)
+				d.setTotalBytes(resp) // Set total if not yet set.
 
 				_, err := io.Copy(chunk, resp.Body)
 				resp.Body.Close()
@@ -159,14 +186,16 @@ func (d *downloadimpl) downloadPart(ch chan dlchunk) {
 	}
 }
 
-func (d *downloadimpl) getTotalBytes() int64 {
+// getTotalBytes is a thread-safe getter for retrieving the total byte status.
+func (d *downloader) getTotalBytes() int64 {
 	d.m.Lock()
 	defer d.m.Unlock()
 
 	return d.totalBytes
 }
 
-func (d *downloadimpl) setTotalBytes(resp *s3.GetObjectOutput) {
+// getTotalBytes is a thread-safe setter for setting the total byte status.
+func (d *downloader) setTotalBytes(resp *s3.GetObjectOutput) {
 	d.m.Lock()
 	defer d.m.Unlock()
 
@@ -185,7 +214,7 @@ func (d *downloadimpl) setTotalBytes(resp *s3.GetObjectOutput) {
 }
 
 // geterr is a thread-safe getter for the error object
-func (d *downloadimpl) geterr() error {
+func (d *downloader) geterr() error {
 	d.m.Lock()
 	defer d.m.Unlock()
 
@@ -193,13 +222,17 @@ func (d *downloadimpl) geterr() error {
 }
 
 // seterr is a thread-safe setter for the error object
-func (d *downloadimpl) seterr(e error) {
+func (d *downloader) seterr(e error) {
 	d.m.Lock()
 	defer d.m.Unlock()
 
 	d.err = e
 }
 
+// dlchunk represents a single chunk of data to write by the worker routine.
+// This structure also implements an io.SectionReader style interface for
+// io.WriterAt, effectively making it an io.SectionWriter (which does not
+// exist).
 type dlchunk struct {
 	*dlchunkcounter
 	w     io.WriterAt
@@ -207,10 +240,14 @@ type dlchunk struct {
 	size  int64
 }
 
+// dlchunkcounter keeps track of the current position the dlchunk struct is
+// writing to.
 type dlchunkcounter struct {
 	cur int64
 }
 
+// Write wraps io.WriterAt for the dlchunk, writing from the dlchunk's start
+// position to its end (or EOF).
 func (c dlchunk) Write(p []byte) (n int, err error) {
 	if c.cur >= c.size {
 		return 0, io.EOF
