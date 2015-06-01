@@ -21,16 +21,17 @@ var MaxUploadParts = 1000
 var MinUploadPartSize int64 = 1024 * 1024 * 5
 
 // The default part size to buffer chunks of a payload into.
-var DefaultPartSize = MinUploadPartSize
+var DefaultUploadPartSize = MinUploadPartSize
 
 // The default number of goroutines to spin up when using Upload().
-var DefaultConcurrency = 5
+var DefaultUploadConcurrency = 5
 
 // The default set of options used when opts is nil in Upload().
 var DefaultUploadOptions = &UploadOptions{
-	PartSize:          DefaultPartSize,
-	Concurrency:       DefaultConcurrency,
+	PartSize:          DefaultUploadPartSize,
+	Concurrency:       DefaultUploadConcurrency,
 	LeavePartsOnError: false,
+	S3:                nil,
 }
 
 // A MultiUploadFailure wraps a failed S3 multipart upload. An error returned
@@ -40,7 +41,8 @@ var DefaultUploadOptions = &UploadOptions{
 //
 // Example:
 //
-//     output, err := s3manager.Upload(svc, input, opts)
+//     u := s3manager.NewUploader(opts)
+//     output, err := u.upload(input)
 //     if err != nil {
 //         if multierr, ok := err.(MultiUploadFailure); ok {
 //             // Process error and its associated uploadID
@@ -206,6 +208,25 @@ type UploadOptions struct {
 	// Note that storing parts of an incomplete multipart upload counts towards
 	// space usage on S3 and will add additional costs if not cleaned up.
 	LeavePartsOnError bool
+
+	// The client to use when uploading to S3. Leave this as nil to use the
+	// default S3 client.
+	S3 *s3.S3
+}
+
+// NewUploader creates a new Uploader object to upload data to S3. Pass in
+// an optional opts structure to customize the uploader behavior.
+func NewUploader(opts *UploadOptions) *Uploader {
+	if opts == nil {
+		opts = DefaultUploadOptions
+	}
+	return &Uploader{opts: *opts}
+}
+
+// The Uploader structure that calls Upload(). It is safe to call Upload()
+// on this structure across concurrent goroutines.
+type Uploader struct {
+	opts UploadOptions
 }
 
 // Upload uploads an object to S3, intelligently buffering large files into
@@ -213,32 +234,15 @@ type UploadOptions struct {
 // can configure the buffer size and concurrency through the opts parameter.
 //
 // If opts is set to nil, DefaultUploadOptions will be used.
-func Upload(s *s3.S3, input *UploadInput, opts *UploadOptions) (*UploadOutput, error) {
-	u := uploader{s: s, in: input, opts: initOptions(opts)}
-	return u.upload()
-}
-
-// initOptions will initialize all default values for UploadOptions.
-func initOptions(o *UploadOptions) UploadOptions {
-	if o == nil {
-		return *DefaultUploadOptions
-	}
-
-	opts := *o
-	if opts.Concurrency == 0 {
-		opts.Concurrency = DefaultConcurrency
-	}
-	if opts.PartSize == 0 {
-		opts.PartSize = DefaultPartSize
-	}
-	return opts
+func (u *Uploader) Upload(input *UploadInput) (*UploadOutput, error) {
+	i := uploader{in: input, opts: &u.opts}
+	return i.upload()
 }
 
 // internal structure to manage an upload to S3.
 type uploader struct {
-	s    *s3.S3
 	in   *UploadInput
-	opts UploadOptions
+	opts *UploadOptions
 
 	readerPos int64 // current reader position
 	totalSize int64 // set to -1 if the size is not known
@@ -247,8 +251,7 @@ type uploader struct {
 // internal logic for deciding whether to upload a single part or use a
 // multipart upload.
 func (u *uploader) upload() (*UploadOutput, error) {
-	// Try to get the total size for some optimizations
-	u.initSize()
+	u.init()
 
 	if u.opts.PartSize < MinUploadPartSize {
 		msg := fmt.Sprintf("part size must be at least %d bytes", MinUploadPartSize)
@@ -265,6 +268,22 @@ func (u *uploader) upload() (*UploadOutput, error) {
 
 	mu := multiuploader{uploader: u}
 	return mu.upload(buf)
+}
+
+// init will initialize all default options.
+func (u *uploader) init() {
+	if u.opts.S3 == nil {
+		u.opts.S3 = s3.New(nil)
+	}
+	if u.opts.Concurrency == 0 {
+		u.opts.Concurrency = DefaultUploadConcurrency
+	}
+	if u.opts.PartSize == 0 {
+		u.opts.PartSize = DefaultUploadPartSize
+	}
+
+	// Try to get the total size for some optimizations
+	u.initSize()
 }
 
 // initSize tries to detect the total stream size, setting u.totalSize. If
@@ -333,7 +352,7 @@ func (u *uploader) singlePart(buf io.ReadSeeker) (*UploadOutput, error) {
 	awsutil.Copy(params, u.in)
 	params.Body = buf
 
-	req, _ := u.s.PutObjectRequest(params)
+	req, _ := u.opts.S3.PutObjectRequest(params)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -373,7 +392,7 @@ func (u *multiuploader) upload(firstBuf io.ReadSeeker) (*UploadOutput, error) {
 	awsutil.Copy(params, u.in)
 
 	// Create the multipart
-	resp, err := u.s.CreateMultipartUpload(params)
+	resp, err := u.opts.S3.CreateMultipartUpload(params)
 	if err != nil {
 		return nil, err
 	}
@@ -461,7 +480,7 @@ func (u *multiuploader) readChunk(ch chan chunk) {
 // send performs an UploadPart request and keeps track of the completed
 // part information.
 func (u *multiuploader) send(c chunk) error {
-	resp, err := u.s.UploadPart(&s3.UploadPartInput{
+	resp, err := u.opts.S3.UploadPart(&s3.UploadPartInput{
 		Bucket:     u.in.Bucket,
 		Key:        u.in.Key,
 		Body:       c.buf,
@@ -505,7 +524,7 @@ func (u *multiuploader) fail() {
 		return
 	}
 
-	u.s.AbortMultipartUpload(&s3.AbortMultipartUploadInput{
+	u.opts.S3.AbortMultipartUpload(&s3.AbortMultipartUploadInput{
 		Bucket:   u.in.Bucket,
 		Key:      u.in.Key,
 		UploadID: &u.uploadID,
@@ -522,7 +541,7 @@ func (u *multiuploader) complete() *s3.CompleteMultipartUploadOutput {
 	// Parts must be sorted in PartNumber order.
 	sort.Sort(u.parts)
 
-	resp, err := u.s.CompleteMultipartUpload(&s3.CompleteMultipartUploadInput{
+	resp, err := u.opts.S3.CompleteMultipartUpload(&s3.CompleteMultipartUploadInput{
 		Bucket:          u.in.Bucket,
 		Key:             u.in.Key,
 		UploadID:        &u.uploadID,

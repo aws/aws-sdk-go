@@ -83,13 +83,13 @@ func validate(t *testing.T, key string, md5value string) {
 }
 
 func TestUploadConcurrently(t *testing.T) {
-	svc := s3.New(nil)
 	key := "12mb-1"
-	out, err := s3manager.Upload(svc, &s3manager.UploadInput{
+	mgr := s3manager.NewUploader(nil)
+	out, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: bucketName,
 		Key:    &key,
 		Body:   bytes.NewReader(integBuf12MB),
-	}, nil)
+	})
 
 	assert.NoError(t, err)
 	assert.NotEqual(t, "", out.UploadID)
@@ -113,12 +113,14 @@ func TestUploadFailCleanup(t *testing.T) {
 	})
 
 	key := "12mb-leave"
-	_, err := s3manager.Upload(svc, &s3manager.UploadInput{
+	mgr := s3manager.NewUploader(&s3manager.UploadOptions{
+		S3:                svc,
+		LeavePartsOnError: false,
+	})
+	_, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: bucketName,
 		Key:    &key,
 		Body:   bytes.NewReader(integBuf12MB),
-	}, &s3manager.UploadOptions{
-		LeavePartsOnError: false,
 	})
 	assert.Error(t, err)
 	uploadID := ""
