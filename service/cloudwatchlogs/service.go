@@ -21,10 +21,6 @@ var initRequest func(*aws.Request)
 
 // New returns a new CloudWatchLogs client.
 func New(config *aws.Config) *CloudWatchLogs {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "logs",

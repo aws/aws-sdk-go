@@ -21,10 +21,6 @@ var initRequest func(*aws.Request)
 
 // New returns a new ElasticBeanstalk client.
 func New(config *aws.Config) *ElasticBeanstalk {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "elasticbeanstalk",

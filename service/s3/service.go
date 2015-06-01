@@ -21,10 +21,6 @@ var initRequest func(*aws.Request)
 
 // New returns a new S3 client.
 func New(config *aws.Config) *S3 {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "s3",

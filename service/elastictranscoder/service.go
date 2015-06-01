@@ -21,10 +21,6 @@ var initRequest func(*aws.Request)
 
 // New returns a new ElasticTranscoder client.
 func New(config *aws.Config) *ElasticTranscoder {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "elastictranscoder",

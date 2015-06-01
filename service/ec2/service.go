@@ -21,10 +21,6 @@ var initRequest func(*aws.Request)
 
 // New returns a new EC2 client.
 func New(config *aws.Config) *EC2 {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "ec2",

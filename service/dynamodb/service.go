@@ -21,10 +21,6 @@ var initRequest func(*aws.Request)
 
 // New returns a new DynamoDB client.
 func New(config *aws.Config) *DynamoDB {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "dynamodb",

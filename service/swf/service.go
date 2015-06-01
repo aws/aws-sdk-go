@@ -21,10 +21,6 @@ var initRequest func(*aws.Request)
 
 // New returns a new SWF client.
 func New(config *aws.Config) *SWF {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "swf",

@@ -21,10 +21,6 @@ var initRequest func(*aws.Request)
 
 // New returns a new Route53 client.
 func New(config *aws.Config) *Route53 {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "route53",

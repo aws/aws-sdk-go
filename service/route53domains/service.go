@@ -21,10 +21,6 @@ var initRequest func(*aws.Request)
 
 // New returns a new Route53Domains client.
 func New(config *aws.Config) *Route53Domains {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "route53domains",

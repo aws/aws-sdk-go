@@ -84,6 +84,10 @@ func (c Config) Copy() Config {
 // example bool attributes cannot be cleared using Merge, and must be explicitly
 // set on the Config structure.
 func (c Config) Merge(newcfg *Config) *Config {
+	if newcfg == nil {
+		return &c
+	}
+
 	cfg := Config{}
 
 	if newcfg != nil && newcfg.Credentials != nil {
