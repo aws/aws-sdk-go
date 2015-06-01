@@ -6,7 +6,7 @@ import (
 	"bytes"
 	"crypto/md5"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"testing"
 	"time"
@@ -74,12 +74,38 @@ func teardown() {
 	svc.DeleteBucket(&s3.DeleteBucketInput{Bucket: bucketName})
 }
 
+type dlwriter struct {
+	buf []byte
+}
+
+func newDLWriter(size int) *dlwriter {
+	return &dlwriter{buf: make([]byte, size)}
+}
+
+func (d dlwriter) WriteAt(p []byte, pos int64) (n int, err error) {
+	if pos > int64(len(d.buf)) {
+		return 0, io.EOF
+	}
+
+	written := 0
+	for i, b := range p {
+		if i >= len(d.buf) {
+			break
+		}
+		d.buf[pos+int64(i)] = b
+		written++
+	}
+	return written, nil
+}
+
 func validate(t *testing.T, key string, md5value string) {
-	svc := s3.New(nil)
-	resp, err := svc.GetObject(&s3.GetObjectInput{Bucket: bucketName, Key: &key})
+	mgr := s3manager.NewDownloader(nil)
+	params := &s3.GetObjectInput{Bucket: bucketName, Key: &key}
+
+	w := newDLWriter(1024 * 1024 * 20)
+	n, err := mgr.Download(w, params)
 	assert.NoError(t, err)
-	b, _ := ioutil.ReadAll(resp.Body)
-	assert.Equal(t, md5value, fmt.Sprintf("%x", md5.Sum(b)))
+	assert.Equal(t, md5value, fmt.Sprintf("%x", md5.Sum(w.buf[0:n])))
 }
 
 func TestUploadConcurrently(t *testing.T) {

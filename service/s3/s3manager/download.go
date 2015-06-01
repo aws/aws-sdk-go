@@ -61,7 +61,7 @@ type Downloader struct {
 //
 // It is safe to call this method for multiple objects and across concurrent
 // goroutines.
-func (d *Downloader) Download(w io.WriterAt, input *s3.GetObjectInput) error {
+func (d *Downloader) Download(w io.WriterAt, input *s3.GetObjectInput) (n int64, err error) {
 	impl := downloader{w: w, in: input, opts: *d.opts}
 	return impl.download()
 }
@@ -77,6 +77,7 @@ type downloader struct {
 
 	pos        int64
 	totalBytes int64
+	written    int64
 	err        error
 }
 
@@ -99,7 +100,7 @@ func (d *downloader) init() {
 
 // download performs the implementation of the object download across ranged
 // GETs.
-func (d *downloader) download() error {
+func (d *downloader) download() (n int64, err error) {
 	d.init()
 
 	// Spin up workers
@@ -142,7 +143,7 @@ func (d *downloader) download() error {
 	d.wg.Wait()
 
 	// Return error
-	return d.err
+	return d.written, d.err
 }
 
 // downloadPart is an individual goroutine worker reading from the ch channel
@@ -174,13 +175,13 @@ func (d *downloader) downloadPart(ch chan dlchunk) {
 			} else {
 				d.setTotalBytes(resp) // Set total if not yet set.
 
-				_, err := io.Copy(chunk, resp.Body)
+				n, err := io.Copy(chunk, resp.Body)
 				resp.Body.Close()
 
 				if err != nil {
 					d.seterr(err)
 				}
-
+				d.incrwritten(n)
 			}
 		}
 	}
@@ -211,6 +212,13 @@ func (d *downloader) setTotalBytes(resp *s3.GetObjectOutput) {
 	}
 
 	d.totalBytes = total
+}
+
+func (d *downloader) incrwritten(n int64) {
+	d.m.Lock()
+	defer d.m.Unlock()
+
+	d.written += n
 }
 
 // geterr is a thread-safe getter for the error object
