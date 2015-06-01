@@ -224,7 +224,7 @@ func NewUploader(opts *UploadOptions) *Uploader {
 }
 
 // The Uploader structure that calls Upload(). It is safe to call Upload()
-// on this structure across concurrent goroutines.
+// on this structure for multiple objects and across concurrent goroutines.
 type Uploader struct {
 	opts *UploadOptions
 }
@@ -235,7 +235,8 @@ type Uploader struct {
 //
 // If opts is set to nil, DefaultUploadOptions will be used.
 //
-// It is safe to call this method across concurrent goroutines.
+// It is safe to call this method for multiple objects and across concurrent
+// goroutines.
 func (u *Uploader) Upload(input *UploadInput) (*UploadOutput, error) {
 	i := uploader{in: input, opts: *u.opts}
 	return i.upload()
