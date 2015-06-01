@@ -10,12 +10,12 @@ import (
 	"strconv"
 )
 
-// Marshal accepts a map or struct converts it to the map[string]*AttributeValue
+// ConvertTo accepts a map or struct converts it to the map[string]*AttributeValue
 // type used to interact with the DynamoDB Item APIs.
 //
 // If in is a struct, we first JSON encode/decode it to get the data as a map.
 // This can/should be optimized later.
-func Marshal(in interface{}) (item map[string]*AttributeValue, err error) {
+func ConvertTo(in interface{}) (item map[string]*AttributeValue, err error) {
 	defer func() {
 		if r := recover(); r != nil {
 			if e, ok := r.(runtime.Error); ok {
@@ -32,29 +32,29 @@ func Marshal(in interface{}) (item map[string]*AttributeValue, err error) {
 	v := reflect.ValueOf(in)
 	switch v.Kind() {
 	case reflect.Struct:
-		item = marshalStruct(in)
+		item = convertToStruct(in)
 	case reflect.Map:
 		if v.Type().Key().Kind() != reflect.String {
 			return nil, errors.New("item must be a map[string]interface{} or struct (or a non-nil pointer to one), got " + v.Type().String())
 		}
-		item = marshalMap(in)
+		item = convertToMap(in)
 	case reflect.Ptr:
 		if v.IsNil() {
 			return nil, errors.New("item must not be nil")
 		}
-		return Marshal(v.Elem().Interface())
+		return ConvertTo(v.Elem().Interface())
 	default:
 		return nil, errors.New("item must be a map[string]interface{} or struct (or a non-nil pointer to one), got " + v.Type().String())
 	}
 	return item, nil
 }
 
-// Unmarshal accepts the map[string]*AttributeValue type returned by the
+// ConvertFrom accepts the map[string]*AttributeValue type returned by the
 // DynamoDB Item APIs and converts it to a map or struct.
 //
 // If v points to a struct, we first convert it to a basic map, then JSON
 // encode/decode it to convert to a struct. This can/should be optimized later.
-func Unmarshal(item map[string]*AttributeValue, v interface{}) (err error) {
+func ConvertFrom(item map[string]*AttributeValue, v interface{}) (err error) {
 	defer func() {
 		if r := recover(); r != nil {
 			if e, ok := r.(runtime.Error); ok {
@@ -70,7 +70,7 @@ func Unmarshal(item map[string]*AttributeValue, v interface{}) (err error) {
 
 	m := make(map[string]interface{})
 	for k, v := range item {
-		m[k] = unmarshal(v)
+		m[k] = convertFrom(v)
 	}
 
 	rv := reflect.ValueOf(v)
@@ -100,7 +100,7 @@ func Unmarshal(item map[string]*AttributeValue, v interface{}) (err error) {
 	return nil
 }
 
-func marshalStruct(in interface{}) map[string]*AttributeValue {
+func convertToStruct(in interface{}) map[string]*AttributeValue {
 	// TODO: We convert structs into basic maps by JSON encoding/decoding. This
 	// can be made more efficient by recursing over the struct directly.
 	b, err := json.Marshal(in)
@@ -116,19 +116,19 @@ func marshalStruct(in interface{}) map[string]*AttributeValue {
 		panic(err)
 	}
 
-	return marshalMap(m)
+	return convertToMap(m)
 }
 
-func marshalMap(in interface{}) map[string]*AttributeValue {
+func convertToMap(in interface{}) map[string]*AttributeValue {
 	item := make(map[string]*AttributeValue)
 	m := in.(map[string]interface{})
 	for k, v := range m {
-		item[k] = marshal(v)
+		item[k] = convertTo(v)
 	}
 	return item
 }
 
-func marshal(in interface{}) *AttributeValue {
+func convertTo(in interface{}) *AttributeValue {
 	a := &AttributeValue{}
 
 	if in == nil {
@@ -140,7 +140,7 @@ func marshal(in interface{}) *AttributeValue {
 	if m, ok := in.(map[string]interface{}); ok {
 		mp := make(map[string]*AttributeValue)
 		for k, v := range m {
-			mp[k] = marshal(v)
+			mp[k] = convertTo(v)
 		}
 		a.M = &mp
 		return a
@@ -149,7 +149,7 @@ func marshal(in interface{}) *AttributeValue {
 	if l, ok := in.([]interface{}); ok {
 		a.L = make([]*AttributeValue, len(l))
 		for index, v := range l {
-			a.L[index] = marshal(v)
+			a.L[index] = convertTo(v)
 		}
 		return a
 	}
@@ -184,7 +184,7 @@ func marshal(in interface{}) *AttributeValue {
 	return a
 }
 
-func unmarshal(a *AttributeValue) interface{} {
+func convertFrom(a *AttributeValue) interface{} {
 	if a.S != nil {
 		return *a.S
 	}
@@ -216,7 +216,7 @@ func unmarshal(a *AttributeValue) interface{} {
 	if a.M != nil {
 		m := make(map[string]interface{})
 		for k, v := range *a.M {
-			m[k] = unmarshal(v)
+			m[k] = convertFrom(v)
 		}
 		return m
 	}
@@ -224,7 +224,7 @@ func unmarshal(a *AttributeValue) interface{} {
 	if a.L != nil {
 		l := make([]interface{}, len(a.L))
 		for index, v := range a.L {
-			l[index] = unmarshal(v)
+			l[index] = convertFrom(v)
 		}
 		return l
 	}
