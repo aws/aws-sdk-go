@@ -71,13 +71,14 @@ func buflen(i interface{}) int {
 
 func TestUploadOrderMulti(t *testing.T) {
 	s, ops, args := loggingSvc()
-	resp, err := s3manager.Upload(s, &s3manager.UploadInput{
+	mgr := s3manager.NewUploader(&s3manager.UploadOptions{S3: s})
+	resp, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket:               aws.String("Bucket"),
 		Key:                  aws.String("Key"),
 		Body:                 bytes.NewReader(buf12MB),
 		ServerSideEncryption: aws.String("AES256"),
 		ContentType:          aws.String("content/type"),
-	}, nil)
+	})
 
 	assert.NoError(t, err)
 	assert.Equal(t, []string{"CreateMultipartUpload", "UploadPart", "UploadPart", "UploadPart", "CompleteMultipartUpload"}, *ops)
@@ -107,11 +108,16 @@ func TestUploadOrderMulti(t *testing.T) {
 
 func TestUploadOrderMultiDifferentPartSize(t *testing.T) {
 	s, ops, args := loggingSvc()
-	_, err := s3manager.Upload(s, &s3manager.UploadInput{
+	mgr := s3manager.NewUploader(&s3manager.UploadOptions{
+		S3:          s,
+		PartSize:    1024 * 1024 * 7,
+		Concurrency: 1,
+	})
+	_, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: aws.String("Bucket"),
 		Key:    aws.String("Key"),
 		Body:   bytes.NewReader(buf12MB),
-	}, &s3manager.UploadOptions{PartSize: 1024 * 1024 * 7, Concurrency: 1})
+	})
 
 	assert.NoError(t, err)
 	assert.Equal(t, []string{"CreateMultipartUpload", "UploadPart", "UploadPart", "CompleteMultipartUpload"}, *ops)
@@ -126,12 +132,13 @@ func TestUploadIncreasePartSize(t *testing.T) {
 	defer func() { s3manager.MaxUploadParts = 1000 }()
 
 	s, ops, args := loggingSvc()
-	opts := &s3manager.UploadOptions{Concurrency: 1}
-	_, err := s3manager.Upload(s, &s3manager.UploadInput{
+	opts := &s3manager.UploadOptions{S3: s, Concurrency: 1}
+	mgr := s3manager.NewUploader(opts)
+	_, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: aws.String("Bucket"),
 		Key:    aws.String("Key"),
 		Body:   bytes.NewReader(buf12MB),
-	}, opts)
+	})
 
 	assert.NoError(t, err)
 	assert.Equal(t, int64(0), opts.PartSize) // don't modify orig options
@@ -143,13 +150,13 @@ func TestUploadIncreasePartSize(t *testing.T) {
 }
 
 func TestUploadFailIfPartSizeTooSmall(t *testing.T) {
-	s := s3.New(nil)
 	opts := &s3manager.UploadOptions{PartSize: 5}
-	resp, err := s3manager.Upload(s, &s3manager.UploadInput{
+	mgr := s3manager.NewUploader(opts)
+	resp, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: aws.String("Bucket"),
 		Key:    aws.String("Key"),
 		Body:   bytes.NewReader(buf12MB),
-	}, opts)
+	})
 
 	assert.Nil(t, resp)
 	assert.NotNil(t, err)
@@ -161,13 +168,14 @@ func TestUploadFailIfPartSizeTooSmall(t *testing.T) {
 
 func TestUploadOrderSingle(t *testing.T) {
 	s, ops, args := loggingSvc()
-	resp, err := s3manager.Upload(s, &s3manager.UploadInput{
+	mgr := s3manager.NewUploader(&s3manager.UploadOptions{S3: s})
+	resp, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket:               aws.String("Bucket"),
 		Key:                  aws.String("Key"),
 		Body:                 bytes.NewReader(buf2MB),
 		ServerSideEncryption: aws.String("AES256"),
 		ContentType:          aws.String("content/type"),
-	}, nil)
+	})
 
 	assert.NoError(t, err)
 	assert.Equal(t, []string{"PutObject"}, *ops)
@@ -182,11 +190,12 @@ func TestUploadOrderSingleFailure(t *testing.T) {
 	s.Handlers.Send.PushBack(func(r *aws.Request) {
 		r.HTTPResponse.StatusCode = 400
 	})
-	resp, err := s3manager.Upload(s, &s3manager.UploadInput{
+	mgr := s3manager.NewUploader(&s3manager.UploadOptions{S3: s})
+	resp, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: aws.String("Bucket"),
 		Key:    aws.String("Key"),
 		Body:   bytes.NewReader(buf2MB),
-	}, nil)
+	})
 
 	assert.Error(t, err)
 	assert.Equal(t, []string{"PutObject"}, *ops)
@@ -195,11 +204,12 @@ func TestUploadOrderSingleFailure(t *testing.T) {
 
 func TestUploadOrderZero(t *testing.T) {
 	s, ops, args := loggingSvc()
-	resp, err := s3manager.Upload(s, &s3manager.UploadInput{
+	mgr := s3manager.NewUploader(&s3manager.UploadOptions{S3: s})
+	resp, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: aws.String("Bucket"),
 		Key:    aws.String("Key"),
 		Body:   bytes.NewReader(make([]byte, 0)),
-	}, nil)
+	})
 
 	assert.NoError(t, err)
 	assert.Equal(t, []string{"PutObject"}, *ops)
@@ -218,11 +228,13 @@ func TestUploadOrderMultiFailure(t *testing.T) {
 			}
 		}
 	})
-	_, err := s3manager.Upload(s, &s3manager.UploadInput{
+
+	mgr := s3manager.NewUploader(&s3manager.UploadOptions{S3: s, Concurrency: 1})
+	_, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: aws.String("Bucket"),
 		Key:    aws.String("Key"),
 		Body:   bytes.NewReader(buf12MB),
-	}, &s3manager.UploadOptions{Concurrency: 1})
+	})
 
 	assert.Error(t, err)
 	assert.Equal(t, []string{"CreateMultipartUpload", "UploadPart", "UploadPart", "AbortMultipartUpload"}, *ops)
@@ -236,11 +248,13 @@ func TestUploadOrderMultiFailureOnComplete(t *testing.T) {
 			r.HTTPResponse.StatusCode = 400
 		}
 	})
-	_, err := s3manager.Upload(s, &s3manager.UploadInput{
+
+	mgr := s3manager.NewUploader(&s3manager.UploadOptions{S3: s})
+	_, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: aws.String("Bucket"),
 		Key:    aws.String("Key"),
 		Body:   bytes.NewReader(buf12MB),
-	}, nil)
+	})
 
 	assert.Error(t, err)
 	assert.Equal(t, []string{"CreateMultipartUpload", "UploadPart", "UploadPart",
@@ -255,11 +269,13 @@ func TestUploadOrderMultiFailureOnCreate(t *testing.T) {
 			r.HTTPResponse.StatusCode = 400
 		}
 	})
-	_, err := s3manager.Upload(s, &s3manager.UploadInput{
+
+	mgr := s3manager.NewUploader(&s3manager.UploadOptions{S3: s})
+	_, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: aws.String("Bucket"),
 		Key:    aws.String("Key"),
 		Body:   bytes.NewReader(make([]byte, 1024*1024*12)),
-	}, nil)
+	})
 
 	assert.Error(t, err)
 	assert.Equal(t, []string{"CreateMultipartUpload"}, *ops)
@@ -275,11 +291,17 @@ func TestUploadOrderMultiFailureLeaveParts(t *testing.T) {
 			}
 		}
 	})
-	_, err := s3manager.Upload(s, &s3manager.UploadInput{
+
+	mgr := s3manager.NewUploader(&s3manager.UploadOptions{
+		S3:                s,
+		Concurrency:       1,
+		LeavePartsOnError: true,
+	})
+	_, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: aws.String("Bucket"),
 		Key:    aws.String("Key"),
 		Body:   bytes.NewReader(make([]byte, 1024*1024*12)),
-	}, &s3manager.UploadOptions{Concurrency: 1, LeavePartsOnError: true})
+	})
 
 	assert.Error(t, err)
 	assert.Equal(t, []string{"CreateMultipartUpload", "UploadPart", "UploadPart"}, *ops)
@@ -300,11 +322,12 @@ func (f failreader) Read(b []byte) (int, error) {
 func TestUploadOrderReadFail1(t *testing.T) {
 	failreaderCount = 0
 	s, ops, _ := loggingSvc()
-	_, err := s3manager.Upload(s, &s3manager.UploadInput{
+	mgr := s3manager.NewUploader(&s3manager.UploadOptions{S3: s})
+	_, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: aws.String("Bucket"),
 		Key:    aws.String("Key"),
 		Body:   failreader{1},
-	}, nil)
+	})
 
 	assert.Equal(t, "ReadRequestBody", err.(awserr.Error).Code())
 	assert.EqualError(t, err.(awserr.Error).OrigErr(), "random failure")
@@ -314,11 +337,12 @@ func TestUploadOrderReadFail1(t *testing.T) {
 func TestUploadOrderReadFail2(t *testing.T) {
 	failreaderCount = 0
 	s, ops, _ := loggingSvc()
-	_, err := s3manager.Upload(s, &s3manager.UploadInput{
+	mgr := s3manager.NewUploader(&s3manager.UploadOptions{S3: s})
+	_, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: aws.String("Bucket"),
 		Key:    aws.String("Key"),
 		Body:   failreader{2},
-	}, nil)
+	})
 
 	assert.Equal(t, "ReadRequestBody", err.(awserr.Error).Code())
 	assert.EqualError(t, err.(awserr.Error).OrigErr(), "random failure")
@@ -350,11 +374,12 @@ func (s sizedReader) Read(p []byte) (n int, err error) {
 
 func TestUploadOrderMultiBufferedReader(t *testing.T) {
 	s, ops, args := loggingSvc()
-	_, err := s3manager.Upload(s, &s3manager.UploadInput{
+	mgr := s3manager.NewUploader(&s3manager.UploadOptions{S3: s})
+	_, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: aws.String("Bucket"),
 		Key:    aws.String("Key"),
 		Body:   sizedReader{&sizedReaderImpl{size: 1024 * 1024 * 12}},
-	}, nil)
+	})
 
 	assert.NoError(t, err)
 	assert.Equal(t, []string{"CreateMultipartUpload", "UploadPart", "UploadPart", "UploadPart", "CompleteMultipartUpload"}, *ops)
@@ -373,11 +398,12 @@ func TestUploadOrderMultiBufferedReaderExceedTotalParts(t *testing.T) {
 	s3manager.MaxUploadParts = 2
 	defer func() { s3manager.MaxUploadParts = 1000 }()
 	s, ops, _ := loggingSvc()
-	resp, err := s3manager.Upload(s, &s3manager.UploadInput{
+	mgr := s3manager.NewUploader(&s3manager.UploadOptions{S3: s, Concurrency: 1})
+	resp, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: aws.String("Bucket"),
 		Key:    aws.String("Key"),
 		Body:   sizedReader{&sizedReaderImpl{size: 1024 * 1024 * 12}},
-	}, &s3manager.UploadOptions{Concurrency: 1})
+	})
 
 	assert.Error(t, err)
 	assert.Nil(t, resp)
@@ -390,11 +416,12 @@ func TestUploadOrderMultiBufferedReaderExceedTotalParts(t *testing.T) {
 
 func TestUploadOrderSingleBufferedReader(t *testing.T) {
 	s, ops, _ := loggingSvc()
-	resp, err := s3manager.Upload(s, &s3manager.UploadInput{
+	mgr := s3manager.NewUploader(&s3manager.UploadOptions{S3: s})
+	resp, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: aws.String("Bucket"),
 		Key:    aws.String("Key"),
 		Body:   sizedReader{&sizedReaderImpl{size: 1024 * 1024 * 2}},
-	}, nil)
+	})
 
 	assert.NoError(t, err)
 	assert.Equal(t, []string{"PutObject"}, *ops)
