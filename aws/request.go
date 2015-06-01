@@ -198,7 +198,11 @@ func (r *Request) Send() error {
 
 		r.Handlers.Send.Run(r)
 		if r.Error != nil {
-			return r.Error
+			r.Handlers.Retry.Run(r)
+			r.Handlers.AfterRetry.Run(r)
+			if r.Error != nil {
+				return r.Error
+			}
 		}
 
 		r.Handlers.UnmarshalMeta.Run(r)
