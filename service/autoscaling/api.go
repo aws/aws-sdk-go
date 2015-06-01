@@ -4,19 +4,29 @@
 package autoscaling
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // AttachInstancesRequest generates a request for the AttachInstances operation.
 func (c *AutoScaling) AttachInstancesRequest(input *AttachInstancesInput) (req *aws.Request, output *AttachInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAttachInstances == nil {
 		opAttachInstances = &aws.Operation{
 			Name:       "AttachInstances",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &AttachInstancesInput{}
 	}
 
 	req = c.newRequest(opAttachInstances, input, output)
@@ -30,23 +40,29 @@ func (c *AutoScaling) AttachInstancesRequest(input *AttachInstancesInput) (req *
 // For more information, see Attach Amazon EC2 Instances to Your Existing Auto
 // Scaling Group (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/attach-instance-asg.html)
 // in the Auto Scaling Developer Guide.
-func (c *AutoScaling) AttachInstances(input *AttachInstancesInput) (output *AttachInstancesOutput, err error) {
+func (c *AutoScaling) AttachInstances(input *AttachInstancesInput) (*AttachInstancesOutput, error) {
 	req, out := c.AttachInstancesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opAttachInstances *aws.Operation
 
 // CompleteLifecycleActionRequest generates a request for the CompleteLifecycleAction operation.
 func (c *AutoScaling) CompleteLifecycleActionRequest(input *CompleteLifecycleActionInput) (req *aws.Request, output *CompleteLifecycleActionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCompleteLifecycleAction == nil {
 		opCompleteLifecycleAction = &aws.Operation{
 			Name:       "CompleteLifecycleAction",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CompleteLifecycleActionInput{}
 	}
 
 	req = c.newRequest(opCompleteLifecycleAction, input, output)
@@ -70,23 +86,29 @@ func (c *AutoScaling) CompleteLifecycleActionRequest(input *CompleteLifecycleAct
 // action.  For more information, see Auto Scaling Pending State (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingPendingState.html)
 // and Auto Scaling Terminating State (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingTerminatingState.html)
 // in the Auto Scaling Developer Guide.
-func (c *AutoScaling) CompleteLifecycleAction(input *CompleteLifecycleActionInput) (output *CompleteLifecycleActionOutput, err error) {
+func (c *AutoScaling) CompleteLifecycleAction(input *CompleteLifecycleActionInput) (*CompleteLifecycleActionOutput, error) {
 	req, out := c.CompleteLifecycleActionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCompleteLifecycleAction *aws.Operation
 
 // CreateAutoScalingGroupRequest generates a request for the CreateAutoScalingGroup operation.
 func (c *AutoScaling) CreateAutoScalingGroupRequest(input *CreateAutoScalingGroupInput) (req *aws.Request, output *CreateAutoScalingGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateAutoScalingGroup == nil {
 		opCreateAutoScalingGroup = &aws.Operation{
 			Name:       "CreateAutoScalingGroup",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateAutoScalingGroupInput{}
 	}
 
 	req = c.newRequest(opCreateAutoScalingGroup, input, output)
@@ -100,23 +122,29 @@ func (c *AutoScaling) CreateAutoScalingGroupRequest(input *CreateAutoScalingGrou
 // If you exceed your maximum limit of Auto Scaling groups, which by default
 // is 20 per region, the call fails. For information about viewing and updating
 // these limits, see DescribeAccountLimits.
-func (c *AutoScaling) CreateAutoScalingGroup(input *CreateAutoScalingGroupInput) (output *CreateAutoScalingGroupOutput, err error) {
+func (c *AutoScaling) CreateAutoScalingGroup(input *CreateAutoScalingGroupInput) (*CreateAutoScalingGroupOutput, error) {
 	req, out := c.CreateAutoScalingGroupRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateAutoScalingGroup *aws.Operation
 
 // CreateLaunchConfigurationRequest generates a request for the CreateLaunchConfiguration operation.
 func (c *AutoScaling) CreateLaunchConfigurationRequest(input *CreateLaunchConfigurationInput) (req *aws.Request, output *CreateLaunchConfigurationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateLaunchConfiguration == nil {
 		opCreateLaunchConfiguration = &aws.Operation{
 			Name:       "CreateLaunchConfiguration",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateLaunchConfigurationInput{}
 	}
 
 	req = c.newRequest(opCreateLaunchConfiguration, input, output)
@@ -130,23 +158,29 @@ func (c *AutoScaling) CreateLaunchConfigurationRequest(input *CreateLaunchConfig
 // If you exceed your maximum limit of launch configurations, which by default
 // is 100 per region, the call fails. For information about viewing and updating
 // these limits, see DescribeAccountLimits.
-func (c *AutoScaling) CreateLaunchConfiguration(input *CreateLaunchConfigurationInput) (output *CreateLaunchConfigurationOutput, err error) {
+func (c *AutoScaling) CreateLaunchConfiguration(input *CreateLaunchConfigurationInput) (*CreateLaunchConfigurationOutput, error) {
 	req, out := c.CreateLaunchConfigurationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateLaunchConfiguration *aws.Operation
 
 // CreateOrUpdateTagsRequest generates a request for the CreateOrUpdateTags operation.
 func (c *AutoScaling) CreateOrUpdateTagsRequest(input *CreateOrUpdateTagsInput) (req *aws.Request, output *CreateOrUpdateTagsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateOrUpdateTags == nil {
 		opCreateOrUpdateTags = &aws.Operation{
 			Name:       "CreateOrUpdateTags",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateOrUpdateTagsInput{}
 	}
 
 	req = c.newRequest(opCreateOrUpdateTags, input, output)
@@ -162,23 +196,29 @@ func (c *AutoScaling) CreateOrUpdateTagsRequest(input *CreateOrUpdateTagsInput) 
 // parameters. See the Request Parameters for more information.  For more information,
 // see Add, Modify, or Remove Auto Scaling Group Tags (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/ASTagging.html)
 // in the Auto Scaling Developer Guide.
-func (c *AutoScaling) CreateOrUpdateTags(input *CreateOrUpdateTagsInput) (output *CreateOrUpdateTagsOutput, err error) {
+func (c *AutoScaling) CreateOrUpdateTags(input *CreateOrUpdateTagsInput) (*CreateOrUpdateTagsOutput, error) {
 	req, out := c.CreateOrUpdateTagsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateOrUpdateTags *aws.Operation
 
 // DeleteAutoScalingGroupRequest generates a request for the DeleteAutoScalingGroup operation.
 func (c *AutoScaling) DeleteAutoScalingGroupRequest(input *DeleteAutoScalingGroupInput) (req *aws.Request, output *DeleteAutoScalingGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteAutoScalingGroup == nil {
 		opDeleteAutoScalingGroup = &aws.Operation{
 			Name:       "DeleteAutoScalingGroup",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteAutoScalingGroupInput{}
 	}
 
 	req = c.newRequest(opDeleteAutoScalingGroup, input, output)
@@ -194,23 +234,29 @@ func (c *AutoScaling) DeleteAutoScalingGroupRequest(input *DeleteAutoScalingGrou
 // To remove all instances before calling DeleteAutoScalingGroup, you can call
 // UpdateAutoScalingGroup to set the minimum and maximum size of the AutoScalingGroup
 // to zero.
-func (c *AutoScaling) DeleteAutoScalingGroup(input *DeleteAutoScalingGroupInput) (output *DeleteAutoScalingGroupOutput, err error) {
+func (c *AutoScaling) DeleteAutoScalingGroup(input *DeleteAutoScalingGroupInput) (*DeleteAutoScalingGroupOutput, error) {
 	req, out := c.DeleteAutoScalingGroupRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteAutoScalingGroup *aws.Operation
 
 // DeleteLaunchConfigurationRequest generates a request for the DeleteLaunchConfiguration operation.
 func (c *AutoScaling) DeleteLaunchConfigurationRequest(input *DeleteLaunchConfigurationInput) (req *aws.Request, output *DeleteLaunchConfigurationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteLaunchConfiguration == nil {
 		opDeleteLaunchConfiguration = &aws.Operation{
 			Name:       "DeleteLaunchConfiguration",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteLaunchConfigurationInput{}
 	}
 
 	req = c.newRequest(opDeleteLaunchConfiguration, input, output)
@@ -224,23 +270,29 @@ func (c *AutoScaling) DeleteLaunchConfigurationRequest(input *DeleteLaunchConfig
 // The launch configuration must not be attached to an Auto Scaling group.
 // When this call completes, the launch configuration is no longer available
 // for use.
-func (c *AutoScaling) DeleteLaunchConfiguration(input *DeleteLaunchConfigurationInput) (output *DeleteLaunchConfigurationOutput, err error) {
+func (c *AutoScaling) DeleteLaunchConfiguration(input *DeleteLaunchConfigurationInput) (*DeleteLaunchConfigurationOutput, error) {
 	req, out := c.DeleteLaunchConfigurationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteLaunchConfiguration *aws.Operation
 
 // DeleteLifecycleHookRequest generates a request for the DeleteLifecycleHook operation.
 func (c *AutoScaling) DeleteLifecycleHookRequest(input *DeleteLifecycleHookInput) (req *aws.Request, output *DeleteLifecycleHookOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteLifecycleHook == nil {
 		opDeleteLifecycleHook = &aws.Operation{
 			Name:       "DeleteLifecycleHook",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteLifecycleHookInput{}
 	}
 
 	req = c.newRequest(opDeleteLifecycleHook, input, output)
@@ -253,23 +305,29 @@ func (c *AutoScaling) DeleteLifecycleHookRequest(input *DeleteLifecycleHookInput
 //
 // If there are any outstanding lifecycle actions, they are completed first
 // (ABANDON for launching instances, CONTINUE for terminating instances).
-func (c *AutoScaling) DeleteLifecycleHook(input *DeleteLifecycleHookInput) (output *DeleteLifecycleHookOutput, err error) {
+func (c *AutoScaling) DeleteLifecycleHook(input *DeleteLifecycleHookInput) (*DeleteLifecycleHookOutput, error) {
 	req, out := c.DeleteLifecycleHookRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteLifecycleHook *aws.Operation
 
 // DeleteNotificationConfigurationRequest generates a request for the DeleteNotificationConfiguration operation.
 func (c *AutoScaling) DeleteNotificationConfigurationRequest(input *DeleteNotificationConfigurationInput) (req *aws.Request, output *DeleteNotificationConfigurationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteNotificationConfiguration == nil {
 		opDeleteNotificationConfiguration = &aws.Operation{
 			Name:       "DeleteNotificationConfiguration",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteNotificationConfigurationInput{}
 	}
 
 	req = c.newRequest(opDeleteNotificationConfiguration, input, output)
@@ -279,23 +337,29 @@ func (c *AutoScaling) DeleteNotificationConfigurationRequest(input *DeleteNotifi
 }
 
 // Deletes the specified notification.
-func (c *AutoScaling) DeleteNotificationConfiguration(input *DeleteNotificationConfigurationInput) (output *DeleteNotificationConfigurationOutput, err error) {
+func (c *AutoScaling) DeleteNotificationConfiguration(input *DeleteNotificationConfigurationInput) (*DeleteNotificationConfigurationOutput, error) {
 	req, out := c.DeleteNotificationConfigurationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteNotificationConfiguration *aws.Operation
 
 // DeletePolicyRequest generates a request for the DeletePolicy operation.
 func (c *AutoScaling) DeletePolicyRequest(input *DeletePolicyInput) (req *aws.Request, output *DeletePolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeletePolicy == nil {
 		opDeletePolicy = &aws.Operation{
 			Name:       "DeletePolicy",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeletePolicyInput{}
 	}
 
 	req = c.newRequest(opDeletePolicy, input, output)
@@ -305,23 +369,29 @@ func (c *AutoScaling) DeletePolicyRequest(input *DeletePolicyInput) (req *aws.Re
 }
 
 // Deletes the specified Auto Scaling policy.
-func (c *AutoScaling) DeletePolicy(input *DeletePolicyInput) (output *DeletePolicyOutput, err error) {
+func (c *AutoScaling) DeletePolicy(input *DeletePolicyInput) (*DeletePolicyOutput, error) {
 	req, out := c.DeletePolicyRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeletePolicy *aws.Operation
 
 // DeleteScheduledActionRequest generates a request for the DeleteScheduledAction operation.
 func (c *AutoScaling) DeleteScheduledActionRequest(input *DeleteScheduledActionInput) (req *aws.Request, output *DeleteScheduledActionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteScheduledAction == nil {
 		opDeleteScheduledAction = &aws.Operation{
 			Name:       "DeleteScheduledAction",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteScheduledActionInput{}
 	}
 
 	req = c.newRequest(opDeleteScheduledAction, input, output)
@@ -331,23 +401,29 @@ func (c *AutoScaling) DeleteScheduledActionRequest(input *DeleteScheduledActionI
 }
 
 // Deletes the specified scheduled action.
-func (c *AutoScaling) DeleteScheduledAction(input *DeleteScheduledActionInput) (output *DeleteScheduledActionOutput, err error) {
+func (c *AutoScaling) DeleteScheduledAction(input *DeleteScheduledActionInput) (*DeleteScheduledActionOutput, error) {
 	req, out := c.DeleteScheduledActionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteScheduledAction *aws.Operation
 
 // DeleteTagsRequest generates a request for the DeleteTags operation.
 func (c *AutoScaling) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Request, output *DeleteTagsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteTags == nil {
 		opDeleteTags = &aws.Operation{
 			Name:       "DeleteTags",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteTagsInput{}
 	}
 
 	req = c.newRequest(opDeleteTags, input, output)
@@ -357,23 +433,29 @@ func (c *AutoScaling) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Reques
 }
 
 // Deletes the specified tags.
-func (c *AutoScaling) DeleteTags(input *DeleteTagsInput) (output *DeleteTagsOutput, err error) {
+func (c *AutoScaling) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, error) {
 	req, out := c.DeleteTagsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteTags *aws.Operation
 
 // DescribeAccountLimitsRequest generates a request for the DescribeAccountLimits operation.
 func (c *AutoScaling) DescribeAccountLimitsRequest(input *DescribeAccountLimitsInput) (req *aws.Request, output *DescribeAccountLimitsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAccountLimits == nil {
 		opDescribeAccountLimits = &aws.Operation{
 			Name:       "DescribeAccountLimits",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeAccountLimitsInput{}
 	}
 
 	req = c.newRequest(opDescribeAccountLimits, input, output)
@@ -386,23 +468,29 @@ func (c *AutoScaling) DescribeAccountLimitsRequest(input *DescribeAccountLimitsI
 //
 // For information about requesting an increase in these limits, see AWS Service
 // Limits (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html).
-func (c *AutoScaling) DescribeAccountLimits(input *DescribeAccountLimitsInput) (output *DescribeAccountLimitsOutput, err error) {
+func (c *AutoScaling) DescribeAccountLimits(input *DescribeAccountLimitsInput) (*DescribeAccountLimitsOutput, error) {
 	req, out := c.DescribeAccountLimitsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeAccountLimits *aws.Operation
 
 // DescribeAdjustmentTypesRequest generates a request for the DescribeAdjustmentTypes operation.
 func (c *AutoScaling) DescribeAdjustmentTypesRequest(input *DescribeAdjustmentTypesInput) (req *aws.Request, output *DescribeAdjustmentTypesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAdjustmentTypes == nil {
 		opDescribeAdjustmentTypes = &aws.Operation{
 			Name:       "DescribeAdjustmentTypes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeAdjustmentTypesInput{}
 	}
 
 	req = c.newRequest(opDescribeAdjustmentTypes, input, output)
@@ -412,23 +500,35 @@ func (c *AutoScaling) DescribeAdjustmentTypesRequest(input *DescribeAdjustmentTy
 }
 
 // Lists the policy adjustment types for use with PutScalingPolicy.
-func (c *AutoScaling) DescribeAdjustmentTypes(input *DescribeAdjustmentTypesInput) (output *DescribeAdjustmentTypesOutput, err error) {
+func (c *AutoScaling) DescribeAdjustmentTypes(input *DescribeAdjustmentTypesInput) (*DescribeAdjustmentTypesOutput, error) {
 	req, out := c.DescribeAdjustmentTypesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeAdjustmentTypes *aws.Operation
 
 // DescribeAutoScalingGroupsRequest generates a request for the DescribeAutoScalingGroups operation.
 func (c *AutoScaling) DescribeAutoScalingGroupsRequest(input *DescribeAutoScalingGroupsInput) (req *aws.Request, output *DescribeAutoScalingGroupsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAutoScalingGroups == nil {
 		opDescribeAutoScalingGroups = &aws.Operation{
 			Name:       "DescribeAutoScalingGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &DescribeAutoScalingGroupsInput{}
 	}
 
 	req = c.newRequest(opDescribeAutoScalingGroups, input, output)
@@ -443,23 +543,40 @@ func (c *AutoScaling) DescribeAutoScalingGroupsRequest(input *DescribeAutoScalin
 // You can specify a maximum number of items to be returned with a single call.
 // If there are more items to return, the call returns a token. To get the next
 // set of items, repeat the call with the returned token in the NextToken parameter.
-func (c *AutoScaling) DescribeAutoScalingGroups(input *DescribeAutoScalingGroupsInput) (output *DescribeAutoScalingGroupsOutput, err error) {
+func (c *AutoScaling) DescribeAutoScalingGroups(input *DescribeAutoScalingGroupsInput) (*DescribeAutoScalingGroupsOutput, error) {
 	req, out := c.DescribeAutoScalingGroupsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *AutoScaling) DescribeAutoScalingGroupsPages(input *DescribeAutoScalingGroupsInput, fn func(p *DescribeAutoScalingGroupsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeAutoScalingGroupsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeAutoScalingGroups *aws.Operation
 
 // DescribeAutoScalingInstancesRequest generates a request for the DescribeAutoScalingInstances operation.
 func (c *AutoScaling) DescribeAutoScalingInstancesRequest(input *DescribeAutoScalingInstancesInput) (req *aws.Request, output *DescribeAutoScalingInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAutoScalingInstances == nil {
 		opDescribeAutoScalingInstances = &aws.Operation{
 			Name:       "DescribeAutoScalingInstances",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &DescribeAutoScalingInstancesInput{}
 	}
 
 	req = c.newRequest(opDescribeAutoScalingInstances, input, output)
@@ -475,23 +592,34 @@ func (c *AutoScaling) DescribeAutoScalingInstancesRequest(input *DescribeAutoSca
 // default, a call returns up to 20 instances. If there are more items to return,
 // the call returns a token. To get the next set of items, repeat the call with
 // the returned token in the NextToken parameter.
-func (c *AutoScaling) DescribeAutoScalingInstances(input *DescribeAutoScalingInstancesInput) (output *DescribeAutoScalingInstancesOutput, err error) {
+func (c *AutoScaling) DescribeAutoScalingInstances(input *DescribeAutoScalingInstancesInput) (*DescribeAutoScalingInstancesOutput, error) {
 	req, out := c.DescribeAutoScalingInstancesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *AutoScaling) DescribeAutoScalingInstancesPages(input *DescribeAutoScalingInstancesInput, fn func(p *DescribeAutoScalingInstancesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeAutoScalingInstancesRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeAutoScalingInstances *aws.Operation
 
 // DescribeAutoScalingNotificationTypesRequest generates a request for the DescribeAutoScalingNotificationTypes operation.
 func (c *AutoScaling) DescribeAutoScalingNotificationTypesRequest(input *DescribeAutoScalingNotificationTypesInput) (req *aws.Request, output *DescribeAutoScalingNotificationTypesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAutoScalingNotificationTypes == nil {
 		opDescribeAutoScalingNotificationTypes = &aws.Operation{
 			Name:       "DescribeAutoScalingNotificationTypes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeAutoScalingNotificationTypesInput{}
 	}
 
 	req = c.newRequest(opDescribeAutoScalingNotificationTypes, input, output)
@@ -501,23 +629,35 @@ func (c *AutoScaling) DescribeAutoScalingNotificationTypesRequest(input *Describ
 }
 
 // Lists the notification types that are supported by Auto Scaling.
-func (c *AutoScaling) DescribeAutoScalingNotificationTypes(input *DescribeAutoScalingNotificationTypesInput) (output *DescribeAutoScalingNotificationTypesOutput, err error) {
+func (c *AutoScaling) DescribeAutoScalingNotificationTypes(input *DescribeAutoScalingNotificationTypesInput) (*DescribeAutoScalingNotificationTypesOutput, error) {
 	req, out := c.DescribeAutoScalingNotificationTypesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeAutoScalingNotificationTypes *aws.Operation
 
 // DescribeLaunchConfigurationsRequest generates a request for the DescribeLaunchConfigurations operation.
 func (c *AutoScaling) DescribeLaunchConfigurationsRequest(input *DescribeLaunchConfigurationsInput) (req *aws.Request, output *DescribeLaunchConfigurationsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeLaunchConfigurations == nil {
 		opDescribeLaunchConfigurations = &aws.Operation{
 			Name:       "DescribeLaunchConfigurations",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &DescribeLaunchConfigurationsInput{}
 	}
 
 	req = c.newRequest(opDescribeLaunchConfigurations, input, output)
@@ -532,23 +672,34 @@ func (c *AutoScaling) DescribeLaunchConfigurationsRequest(input *DescribeLaunchC
 // You can specify a maximum number of items to be returned with a single call.
 // If there are more items to return, the call returns a token. To get the next
 // set of items, repeat the call with the returned token in the NextToken parameter.
-func (c *AutoScaling) DescribeLaunchConfigurations(input *DescribeLaunchConfigurationsInput) (output *DescribeLaunchConfigurationsOutput, err error) {
+func (c *AutoScaling) DescribeLaunchConfigurations(input *DescribeLaunchConfigurationsInput) (*DescribeLaunchConfigurationsOutput, error) {
 	req, out := c.DescribeLaunchConfigurationsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *AutoScaling) DescribeLaunchConfigurationsPages(input *DescribeLaunchConfigurationsInput, fn func(p *DescribeLaunchConfigurationsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeLaunchConfigurationsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeLaunchConfigurations *aws.Operation
 
 // DescribeLifecycleHookTypesRequest generates a request for the DescribeLifecycleHookTypes operation.
 func (c *AutoScaling) DescribeLifecycleHookTypesRequest(input *DescribeLifecycleHookTypesInput) (req *aws.Request, output *DescribeLifecycleHookTypesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeLifecycleHookTypes == nil {
 		opDescribeLifecycleHookTypes = &aws.Operation{
 			Name:       "DescribeLifecycleHookTypes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeLifecycleHookTypesInput{}
 	}
 
 	req = c.newRequest(opDescribeLifecycleHookTypes, input, output)
@@ -558,23 +709,29 @@ func (c *AutoScaling) DescribeLifecycleHookTypesRequest(input *DescribeLifecycle
 }
 
 // Describes the available types of lifecycle hooks.
-func (c *AutoScaling) DescribeLifecycleHookTypes(input *DescribeLifecycleHookTypesInput) (output *DescribeLifecycleHookTypesOutput, err error) {
+func (c *AutoScaling) DescribeLifecycleHookTypes(input *DescribeLifecycleHookTypesInput) (*DescribeLifecycleHookTypesOutput, error) {
 	req, out := c.DescribeLifecycleHookTypesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeLifecycleHookTypes *aws.Operation
 
 // DescribeLifecycleHooksRequest generates a request for the DescribeLifecycleHooks operation.
 func (c *AutoScaling) DescribeLifecycleHooksRequest(input *DescribeLifecycleHooksInput) (req *aws.Request, output *DescribeLifecycleHooksOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeLifecycleHooks == nil {
 		opDescribeLifecycleHooks = &aws.Operation{
 			Name:       "DescribeLifecycleHooks",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeLifecycleHooksInput{}
 	}
 
 	req = c.newRequest(opDescribeLifecycleHooks, input, output)
@@ -584,23 +741,29 @@ func (c *AutoScaling) DescribeLifecycleHooksRequest(input *DescribeLifecycleHook
 }
 
 // Describes the lifecycle hooks for the specified Auto Scaling group.
-func (c *AutoScaling) DescribeLifecycleHooks(input *DescribeLifecycleHooksInput) (output *DescribeLifecycleHooksOutput, err error) {
+func (c *AutoScaling) DescribeLifecycleHooks(input *DescribeLifecycleHooksInput) (*DescribeLifecycleHooksOutput, error) {
 	req, out := c.DescribeLifecycleHooksRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeLifecycleHooks *aws.Operation
 
 // DescribeMetricCollectionTypesRequest generates a request for the DescribeMetricCollectionTypes operation.
 func (c *AutoScaling) DescribeMetricCollectionTypesRequest(input *DescribeMetricCollectionTypesInput) (req *aws.Request, output *DescribeMetricCollectionTypesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeMetricCollectionTypes == nil {
 		opDescribeMetricCollectionTypes = &aws.Operation{
 			Name:       "DescribeMetricCollectionTypes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeMetricCollectionTypesInput{}
 	}
 
 	req = c.newRequest(opDescribeMetricCollectionTypes, input, output)
@@ -614,23 +777,35 @@ func (c *AutoScaling) DescribeMetricCollectionTypesRequest(input *DescribeMetric
 //
 //  The GroupStandbyInstances metric is not returned by default. You must explicitly
 // request it when calling EnableMetricsCollection.
-func (c *AutoScaling) DescribeMetricCollectionTypes(input *DescribeMetricCollectionTypesInput) (output *DescribeMetricCollectionTypesOutput, err error) {
+func (c *AutoScaling) DescribeMetricCollectionTypes(input *DescribeMetricCollectionTypesInput) (*DescribeMetricCollectionTypesOutput, error) {
 	req, out := c.DescribeMetricCollectionTypesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeMetricCollectionTypes *aws.Operation
 
 // DescribeNotificationConfigurationsRequest generates a request for the DescribeNotificationConfigurations operation.
 func (c *AutoScaling) DescribeNotificationConfigurationsRequest(input *DescribeNotificationConfigurationsInput) (req *aws.Request, output *DescribeNotificationConfigurationsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeNotificationConfigurations == nil {
 		opDescribeNotificationConfigurations = &aws.Operation{
 			Name:       "DescribeNotificationConfigurations",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &DescribeNotificationConfigurationsInput{}
 	}
 
 	req = c.newRequest(opDescribeNotificationConfigurations, input, output)
@@ -641,23 +816,40 @@ func (c *AutoScaling) DescribeNotificationConfigurationsRequest(input *DescribeN
 
 // Describes the notification actions associated with the specified Auto Scaling
 // group.
-func (c *AutoScaling) DescribeNotificationConfigurations(input *DescribeNotificationConfigurationsInput) (output *DescribeNotificationConfigurationsOutput, err error) {
+func (c *AutoScaling) DescribeNotificationConfigurations(input *DescribeNotificationConfigurationsInput) (*DescribeNotificationConfigurationsOutput, error) {
 	req, out := c.DescribeNotificationConfigurationsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *AutoScaling) DescribeNotificationConfigurationsPages(input *DescribeNotificationConfigurationsInput, fn func(p *DescribeNotificationConfigurationsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeNotificationConfigurationsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeNotificationConfigurations *aws.Operation
 
 // DescribePoliciesRequest generates a request for the DescribePolicies operation.
 func (c *AutoScaling) DescribePoliciesRequest(input *DescribePoliciesInput) (req *aws.Request, output *DescribePoliciesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribePolicies == nil {
 		opDescribePolicies = &aws.Operation{
 			Name:       "DescribePolicies",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &DescribePoliciesInput{}
 	}
 
 	req = c.newRequest(opDescribePolicies, input, output)
@@ -671,23 +863,40 @@ func (c *AutoScaling) DescribePoliciesRequest(input *DescribePoliciesInput) (req
 // You can specify a maximum number of items to be returned with a single call.
 // If there are more items to return, the call returns a token. To get the next
 // set of items, repeat the call with the returned token in the NextToken parameter.
-func (c *AutoScaling) DescribePolicies(input *DescribePoliciesInput) (output *DescribePoliciesOutput, err error) {
+func (c *AutoScaling) DescribePolicies(input *DescribePoliciesInput) (*DescribePoliciesOutput, error) {
 	req, out := c.DescribePoliciesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *AutoScaling) DescribePoliciesPages(input *DescribePoliciesInput, fn func(p *DescribePoliciesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribePoliciesRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribePolicies *aws.Operation
 
 // DescribeScalingActivitiesRequest generates a request for the DescribeScalingActivities operation.
 func (c *AutoScaling) DescribeScalingActivitiesRequest(input *DescribeScalingActivitiesInput) (req *aws.Request, output *DescribeScalingActivitiesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeScalingActivities == nil {
 		opDescribeScalingActivities = &aws.Operation{
 			Name:       "DescribeScalingActivities",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &DescribeScalingActivitiesInput{}
 	}
 
 	req = c.newRequest(opDescribeScalingActivities, input, output)
@@ -704,23 +913,34 @@ func (c *AutoScaling) DescribeScalingActivitiesRequest(input *DescribeScalingAct
 // You can specify a maximum number of items to be returned with a single call.
 // If there are more items to return, the call returns a token. To get the next
 // set of items, repeat the call with the returned token in the NextToken parameter.
-func (c *AutoScaling) DescribeScalingActivities(input *DescribeScalingActivitiesInput) (output *DescribeScalingActivitiesOutput, err error) {
+func (c *AutoScaling) DescribeScalingActivities(input *DescribeScalingActivitiesInput) (*DescribeScalingActivitiesOutput, error) {
 	req, out := c.DescribeScalingActivitiesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *AutoScaling) DescribeScalingActivitiesPages(input *DescribeScalingActivitiesInput, fn func(p *DescribeScalingActivitiesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeScalingActivitiesRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeScalingActivities *aws.Operation
 
 // DescribeScalingProcessTypesRequest generates a request for the DescribeScalingProcessTypes operation.
 func (c *AutoScaling) DescribeScalingProcessTypesRequest(input *DescribeScalingProcessTypesInput) (req *aws.Request, output *DescribeScalingProcessTypesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeScalingProcessTypes == nil {
 		opDescribeScalingProcessTypes = &aws.Operation{
 			Name:       "DescribeScalingProcessTypes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeScalingProcessTypesInput{}
 	}
 
 	req = c.newRequest(opDescribeScalingProcessTypes, input, output)
@@ -731,23 +951,35 @@ func (c *AutoScaling) DescribeScalingProcessTypesRequest(input *DescribeScalingP
 
 // Returns scaling process types for use in the ResumeProcesses and SuspendProcesses
 // actions.
-func (c *AutoScaling) DescribeScalingProcessTypes(input *DescribeScalingProcessTypesInput) (output *DescribeScalingProcessTypesOutput, err error) {
+func (c *AutoScaling) DescribeScalingProcessTypes(input *DescribeScalingProcessTypesInput) (*DescribeScalingProcessTypesOutput, error) {
 	req, out := c.DescribeScalingProcessTypesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeScalingProcessTypes *aws.Operation
 
 // DescribeScheduledActionsRequest generates a request for the DescribeScheduledActions operation.
 func (c *AutoScaling) DescribeScheduledActionsRequest(input *DescribeScheduledActionsInput) (req *aws.Request, output *DescribeScheduledActionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeScheduledActions == nil {
 		opDescribeScheduledActions = &aws.Operation{
 			Name:       "DescribeScheduledActions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &DescribeScheduledActionsInput{}
 	}
 
 	req = c.newRequest(opDescribeScheduledActions, input, output)
@@ -758,23 +990,40 @@ func (c *AutoScaling) DescribeScheduledActionsRequest(input *DescribeScheduledAc
 
 // Lists the actions scheduled for your Auto Scaling group that haven't been
 // executed. To list the actions that were already executed, use DescribeScalingActivities.
-func (c *AutoScaling) DescribeScheduledActions(input *DescribeScheduledActionsInput) (output *DescribeScheduledActionsOutput, err error) {
+func (c *AutoScaling) DescribeScheduledActions(input *DescribeScheduledActionsInput) (*DescribeScheduledActionsOutput, error) {
 	req, out := c.DescribeScheduledActionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *AutoScaling) DescribeScheduledActionsPages(input *DescribeScheduledActionsInput, fn func(p *DescribeScheduledActionsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeScheduledActionsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeScheduledActions *aws.Operation
 
 // DescribeTagsRequest generates a request for the DescribeTags operation.
 func (c *AutoScaling) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, output *DescribeTagsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeTags == nil {
 		opDescribeTags = &aws.Operation{
 			Name:       "DescribeTags",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &DescribeTagsInput{}
 	}
 
 	req = c.newRequest(opDescribeTags, input, output)
@@ -793,23 +1042,34 @@ func (c *AutoScaling) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Re
 // You can also specify multiple filters. The result includes information for
 // a particular tag only if it matches all the filters. If there's no match,
 // no special message is returned.
-func (c *AutoScaling) DescribeTags(input *DescribeTagsInput) (output *DescribeTagsOutput, err error) {
+func (c *AutoScaling) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, error) {
 	req, out := c.DescribeTagsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *AutoScaling) DescribeTagsPages(input *DescribeTagsInput, fn func(p *DescribeTagsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeTagsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeTags *aws.Operation
 
 // DescribeTerminationPolicyTypesRequest generates a request for the DescribeTerminationPolicyTypes operation.
 func (c *AutoScaling) DescribeTerminationPolicyTypesRequest(input *DescribeTerminationPolicyTypesInput) (req *aws.Request, output *DescribeTerminationPolicyTypesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeTerminationPolicyTypes == nil {
 		opDescribeTerminationPolicyTypes = &aws.Operation{
 			Name:       "DescribeTerminationPolicyTypes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeTerminationPolicyTypesInput{}
 	}
 
 	req = c.newRequest(opDescribeTerminationPolicyTypes, input, output)
@@ -819,23 +1079,29 @@ func (c *AutoScaling) DescribeTerminationPolicyTypesRequest(input *DescribeTermi
 }
 
 // Lists the termination policies supported by Auto Scaling.
-func (c *AutoScaling) DescribeTerminationPolicyTypes(input *DescribeTerminationPolicyTypesInput) (output *DescribeTerminationPolicyTypesOutput, err error) {
+func (c *AutoScaling) DescribeTerminationPolicyTypes(input *DescribeTerminationPolicyTypesInput) (*DescribeTerminationPolicyTypesOutput, error) {
 	req, out := c.DescribeTerminationPolicyTypesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeTerminationPolicyTypes *aws.Operation
 
 // DetachInstancesRequest generates a request for the DetachInstances operation.
 func (c *AutoScaling) DetachInstancesRequest(input *DetachInstancesInput) (req *aws.Request, output *DetachInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDetachInstances == nil {
 		opDetachInstances = &aws.Operation{
 			Name:       "DetachInstances",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DetachInstancesInput{}
 	}
 
 	req = c.newRequest(opDetachInstances, input, output)
@@ -851,23 +1117,29 @@ func (c *AutoScaling) DetachInstancesRequest(input *DetachInstancesInput) (req *
 // For more information, see Detach EC2 Instances from Your Auto Scaling Group
 // (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/detach-instance-asg.html)
 // in the Auto Scaling Developer Guide.
-func (c *AutoScaling) DetachInstances(input *DetachInstancesInput) (output *DetachInstancesOutput, err error) {
+func (c *AutoScaling) DetachInstances(input *DetachInstancesInput) (*DetachInstancesOutput, error) {
 	req, out := c.DetachInstancesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDetachInstances *aws.Operation
 
 // DisableMetricsCollectionRequest generates a request for the DisableMetricsCollection operation.
 func (c *AutoScaling) DisableMetricsCollectionRequest(input *DisableMetricsCollectionInput) (req *aws.Request, output *DisableMetricsCollectionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDisableMetricsCollection == nil {
 		opDisableMetricsCollection = &aws.Operation{
 			Name:       "DisableMetricsCollection",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DisableMetricsCollectionInput{}
 	}
 
 	req = c.newRequest(opDisableMetricsCollection, input, output)
@@ -878,23 +1150,29 @@ func (c *AutoScaling) DisableMetricsCollectionRequest(input *DisableMetricsColle
 
 // Disables monitoring of the specified metrics for the specified Auto Scaling
 // group.
-func (c *AutoScaling) DisableMetricsCollection(input *DisableMetricsCollectionInput) (output *DisableMetricsCollectionOutput, err error) {
+func (c *AutoScaling) DisableMetricsCollection(input *DisableMetricsCollectionInput) (*DisableMetricsCollectionOutput, error) {
 	req, out := c.DisableMetricsCollectionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDisableMetricsCollection *aws.Operation
 
 // EnableMetricsCollectionRequest generates a request for the EnableMetricsCollection operation.
 func (c *AutoScaling) EnableMetricsCollectionRequest(input *EnableMetricsCollectionInput) (req *aws.Request, output *EnableMetricsCollectionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opEnableMetricsCollection == nil {
 		opEnableMetricsCollection = &aws.Operation{
 			Name:       "EnableMetricsCollection",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &EnableMetricsCollectionInput{}
 	}
 
 	req = c.newRequest(opEnableMetricsCollection, input, output)
@@ -908,23 +1186,29 @@ func (c *AutoScaling) EnableMetricsCollectionRequest(input *EnableMetricsCollect
 //
 // You can only enable metrics collection if InstanceMonitoring in the launch
 // configuration for the group is set to True.
-func (c *AutoScaling) EnableMetricsCollection(input *EnableMetricsCollectionInput) (output *EnableMetricsCollectionOutput, err error) {
+func (c *AutoScaling) EnableMetricsCollection(input *EnableMetricsCollectionInput) (*EnableMetricsCollectionOutput, error) {
 	req, out := c.EnableMetricsCollectionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opEnableMetricsCollection *aws.Operation
 
 // EnterStandbyRequest generates a request for the EnterStandby operation.
 func (c *AutoScaling) EnterStandbyRequest(input *EnterStandbyInput) (req *aws.Request, output *EnterStandbyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opEnterStandby == nil {
 		opEnterStandby = &aws.Operation{
 			Name:       "EnterStandby",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &EnterStandbyInput{}
 	}
 
 	req = c.newRequest(opEnterStandby, input, output)
@@ -937,23 +1221,29 @@ func (c *AutoScaling) EnterStandbyRequest(input *EnterStandbyInput) (req *aws.Re
 //
 // For more information, see Auto Scaling InService State (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingInServiceState.html)
 // in the Auto Scaling Developer Guide.
-func (c *AutoScaling) EnterStandby(input *EnterStandbyInput) (output *EnterStandbyOutput, err error) {
+func (c *AutoScaling) EnterStandby(input *EnterStandbyInput) (*EnterStandbyOutput, error) {
 	req, out := c.EnterStandbyRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opEnterStandby *aws.Operation
 
 // ExecutePolicyRequest generates a request for the ExecutePolicy operation.
 func (c *AutoScaling) ExecutePolicyRequest(input *ExecutePolicyInput) (req *aws.Request, output *ExecutePolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opExecutePolicy == nil {
 		opExecutePolicy = &aws.Operation{
 			Name:       "ExecutePolicy",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ExecutePolicyInput{}
 	}
 
 	req = c.newRequest(opExecutePolicy, input, output)
@@ -963,23 +1253,29 @@ func (c *AutoScaling) ExecutePolicyRequest(input *ExecutePolicyInput) (req *aws.
 }
 
 // Executes the specified policy.
-func (c *AutoScaling) ExecutePolicy(input *ExecutePolicyInput) (output *ExecutePolicyOutput, err error) {
+func (c *AutoScaling) ExecutePolicy(input *ExecutePolicyInput) (*ExecutePolicyOutput, error) {
 	req, out := c.ExecutePolicyRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opExecutePolicy *aws.Operation
 
 // ExitStandbyRequest generates a request for the ExitStandby operation.
 func (c *AutoScaling) ExitStandbyRequest(input *ExitStandbyInput) (req *aws.Request, output *ExitStandbyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opExitStandby == nil {
 		opExitStandby = &aws.Operation{
 			Name:       "ExitStandby",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ExitStandbyInput{}
 	}
 
 	req = c.newRequest(opExitStandby, input, output)
@@ -992,23 +1288,29 @@ func (c *AutoScaling) ExitStandbyRequest(input *ExitStandbyInput) (req *aws.Requ
 //
 // For more information, see Auto Scaling InService State (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingInServiceState.html)
 // in the Auto Scaling Developer Guide.
-func (c *AutoScaling) ExitStandby(input *ExitStandbyInput) (output *ExitStandbyOutput, err error) {
+func (c *AutoScaling) ExitStandby(input *ExitStandbyInput) (*ExitStandbyOutput, error) {
 	req, out := c.ExitStandbyRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opExitStandby *aws.Operation
 
 // PutLifecycleHookRequest generates a request for the PutLifecycleHook operation.
 func (c *AutoScaling) PutLifecycleHookRequest(input *PutLifecycleHookInput) (req *aws.Request, output *PutLifecycleHookOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutLifecycleHook == nil {
 		opPutLifecycleHook = &aws.Operation{
 			Name:       "PutLifecycleHook",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PutLifecycleHookInput{}
 	}
 
 	req = c.newRequest(opPutLifecycleHook, input, output)
@@ -1035,23 +1337,29 @@ func (c *AutoScaling) PutLifecycleHookRequest(input *PutLifecycleHookInput) (req
 // action.  For more information, see Auto Scaling Pending State (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingPendingState.html)
 // and Auto Scaling Terminating State (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingTerminatingState.html)
 // in the Auto Scaling Developer Guide.
-func (c *AutoScaling) PutLifecycleHook(input *PutLifecycleHookInput) (output *PutLifecycleHookOutput, err error) {
+func (c *AutoScaling) PutLifecycleHook(input *PutLifecycleHookInput) (*PutLifecycleHookOutput, error) {
 	req, out := c.PutLifecycleHookRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opPutLifecycleHook *aws.Operation
 
 // PutNotificationConfigurationRequest generates a request for the PutNotificationConfiguration operation.
 func (c *AutoScaling) PutNotificationConfigurationRequest(input *PutNotificationConfigurationInput) (req *aws.Request, output *PutNotificationConfigurationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutNotificationConfiguration == nil {
 		opPutNotificationConfiguration = &aws.Operation{
 			Name:       "PutNotificationConfiguration",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PutNotificationConfigurationInput{}
 	}
 
 	req = c.newRequest(opPutNotificationConfiguration, input, output)
@@ -1069,23 +1377,29 @@ func (c *AutoScaling) PutNotificationConfigurationRequest(input *PutNotification
 // in the Auto Scaling Developer Guide.
 //
 // This configuration overwrites an existing configuration.
-func (c *AutoScaling) PutNotificationConfiguration(input *PutNotificationConfigurationInput) (output *PutNotificationConfigurationOutput, err error) {
+func (c *AutoScaling) PutNotificationConfiguration(input *PutNotificationConfigurationInput) (*PutNotificationConfigurationOutput, error) {
 	req, out := c.PutNotificationConfigurationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opPutNotificationConfiguration *aws.Operation
 
 // PutScalingPolicyRequest generates a request for the PutScalingPolicy operation.
 func (c *AutoScaling) PutScalingPolicyRequest(input *PutScalingPolicyInput) (req *aws.Request, output *PutScalingPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutScalingPolicy == nil {
 		opPutScalingPolicy = &aws.Operation{
 			Name:       "PutScalingPolicy",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PutScalingPolicyInput{}
 	}
 
 	req = c.newRequest(opPutScalingPolicy, input, output)
@@ -1098,23 +1412,29 @@ func (c *AutoScaling) PutScalingPolicyRequest(input *PutScalingPolicyInput) (req
 // policy, use the existing policy name and set the parameters you want to change.
 // Any existing parameter not changed in an update to an existing policy is
 // not changed in this update request.
-func (c *AutoScaling) PutScalingPolicy(input *PutScalingPolicyInput) (output *PutScalingPolicyOutput, err error) {
+func (c *AutoScaling) PutScalingPolicy(input *PutScalingPolicyInput) (*PutScalingPolicyOutput, error) {
 	req, out := c.PutScalingPolicyRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opPutScalingPolicy *aws.Operation
 
 // PutScheduledUpdateGroupActionRequest generates a request for the PutScheduledUpdateGroupAction operation.
 func (c *AutoScaling) PutScheduledUpdateGroupActionRequest(input *PutScheduledUpdateGroupActionInput) (req *aws.Request, output *PutScheduledUpdateGroupActionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutScheduledUpdateGroupAction == nil {
 		opPutScheduledUpdateGroupAction = &aws.Operation{
 			Name:       "PutScheduledUpdateGroupAction",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PutScheduledUpdateGroupActionInput{}
 	}
 
 	req = c.newRequest(opPutScheduledUpdateGroupAction, input, output)
@@ -1132,23 +1452,29 @@ func (c *AutoScaling) PutScheduledUpdateGroupActionRequest(input *PutScheduledUp
 //
 //  Auto Scaling supports the date and time expressed in "YYYY-MM-DDThh:mm:ssZ"
 // format in UTC/GMT only.
-func (c *AutoScaling) PutScheduledUpdateGroupAction(input *PutScheduledUpdateGroupActionInput) (output *PutScheduledUpdateGroupActionOutput, err error) {
+func (c *AutoScaling) PutScheduledUpdateGroupAction(input *PutScheduledUpdateGroupActionInput) (*PutScheduledUpdateGroupActionOutput, error) {
 	req, out := c.PutScheduledUpdateGroupActionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opPutScheduledUpdateGroupAction *aws.Operation
 
 // RecordLifecycleActionHeartbeatRequest generates a request for the RecordLifecycleActionHeartbeat operation.
 func (c *AutoScaling) RecordLifecycleActionHeartbeatRequest(input *RecordLifecycleActionHeartbeatInput) (req *aws.Request, output *RecordLifecycleActionHeartbeatOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRecordLifecycleActionHeartbeat == nil {
 		opRecordLifecycleActionHeartbeat = &aws.Operation{
 			Name:       "RecordLifecycleActionHeartbeat",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RecordLifecycleActionHeartbeatInput{}
 	}
 
 	req = c.newRequest(opRecordLifecycleActionHeartbeat, input, output)
@@ -1173,23 +1499,29 @@ func (c *AutoScaling) RecordLifecycleActionHeartbeatRequest(input *RecordLifecyc
 // action.  For more information, see Auto Scaling Pending State (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingPendingState.html)
 // and Auto Scaling Terminating State (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingTerminatingState.html)
 // in the Auto Scaling Developer Guide.
-func (c *AutoScaling) RecordLifecycleActionHeartbeat(input *RecordLifecycleActionHeartbeatInput) (output *RecordLifecycleActionHeartbeatOutput, err error) {
+func (c *AutoScaling) RecordLifecycleActionHeartbeat(input *RecordLifecycleActionHeartbeatInput) (*RecordLifecycleActionHeartbeatOutput, error) {
 	req, out := c.RecordLifecycleActionHeartbeatRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRecordLifecycleActionHeartbeat *aws.Operation
 
 // ResumeProcessesRequest generates a request for the ResumeProcesses operation.
 func (c *AutoScaling) ResumeProcessesRequest(input *ScalingProcessQuery) (req *aws.Request, output *ResumeProcessesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opResumeProcesses == nil {
 		opResumeProcesses = &aws.Operation{
 			Name:       "ResumeProcesses",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ScalingProcessQuery{}
 	}
 
 	req = c.newRequest(opResumeProcesses, input, output)
@@ -1203,23 +1535,29 @@ func (c *AutoScaling) ResumeProcessesRequest(input *ScalingProcessQuery) (req *a
 // parameter. To resume all processes, omit the ScalingProcesses parameter.
 // For more information, see Suspend and Resume Auto Scaling Processes (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_SuspendResume.html)
 // in the Auto Scaling Developer Guide.
-func (c *AutoScaling) ResumeProcesses(input *ScalingProcessQuery) (output *ResumeProcessesOutput, err error) {
+func (c *AutoScaling) ResumeProcesses(input *ScalingProcessQuery) (*ResumeProcessesOutput, error) {
 	req, out := c.ResumeProcessesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opResumeProcesses *aws.Operation
 
 // SetDesiredCapacityRequest generates a request for the SetDesiredCapacity operation.
 func (c *AutoScaling) SetDesiredCapacityRequest(input *SetDesiredCapacityInput) (req *aws.Request, output *SetDesiredCapacityOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetDesiredCapacity == nil {
 		opSetDesiredCapacity = &aws.Operation{
 			Name:       "SetDesiredCapacity",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SetDesiredCapacityInput{}
 	}
 
 	req = c.newRequest(opSetDesiredCapacity, input, output)
@@ -1229,23 +1567,29 @@ func (c *AutoScaling) SetDesiredCapacityRequest(input *SetDesiredCapacityInput) 
 }
 
 // Sets the size of the specified AutoScalingGroup.
-func (c *AutoScaling) SetDesiredCapacity(input *SetDesiredCapacityInput) (output *SetDesiredCapacityOutput, err error) {
+func (c *AutoScaling) SetDesiredCapacity(input *SetDesiredCapacityInput) (*SetDesiredCapacityOutput, error) {
 	req, out := c.SetDesiredCapacityRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSetDesiredCapacity *aws.Operation
 
 // SetInstanceHealthRequest generates a request for the SetInstanceHealth operation.
 func (c *AutoScaling) SetInstanceHealthRequest(input *SetInstanceHealthInput) (req *aws.Request, output *SetInstanceHealthOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetInstanceHealth == nil {
 		opSetInstanceHealth = &aws.Operation{
 			Name:       "SetInstanceHealth",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SetInstanceHealthInput{}
 	}
 
 	req = c.newRequest(opSetInstanceHealth, input, output)
@@ -1258,23 +1602,29 @@ func (c *AutoScaling) SetInstanceHealthRequest(input *SetInstanceHealthInput) (r
 //
 // For more information, see Health Checks (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html)
 // in the Auto Scaling Developer Guide.
-func (c *AutoScaling) SetInstanceHealth(input *SetInstanceHealthInput) (output *SetInstanceHealthOutput, err error) {
+func (c *AutoScaling) SetInstanceHealth(input *SetInstanceHealthInput) (*SetInstanceHealthOutput, error) {
 	req, out := c.SetInstanceHealthRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSetInstanceHealth *aws.Operation
 
 // SuspendProcessesRequest generates a request for the SuspendProcesses operation.
 func (c *AutoScaling) SuspendProcessesRequest(input *ScalingProcessQuery) (req *aws.Request, output *SuspendProcessesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSuspendProcesses == nil {
 		opSuspendProcesses = &aws.Operation{
 			Name:       "SuspendProcesses",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ScalingProcessQuery{}
 	}
 
 	req = c.newRequest(opSuspendProcesses, input, output)
@@ -1294,23 +1644,29 @@ func (c *AutoScaling) SuspendProcessesRequest(input *ScalingProcessQuery) (req *
 //
 // For more information, see Suspend and Resume Auto Scaling Processes (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_SuspendResume.html)
 // in the Auto Scaling Developer Guide.
-func (c *AutoScaling) SuspendProcesses(input *ScalingProcessQuery) (output *SuspendProcessesOutput, err error) {
+func (c *AutoScaling) SuspendProcesses(input *ScalingProcessQuery) (*SuspendProcessesOutput, error) {
 	req, out := c.SuspendProcessesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSuspendProcesses *aws.Operation
 
 // TerminateInstanceInAutoScalingGroupRequest generates a request for the TerminateInstanceInAutoScalingGroup operation.
 func (c *AutoScaling) TerminateInstanceInAutoScalingGroupRequest(input *TerminateInstanceInAutoScalingGroupInput) (req *aws.Request, output *TerminateInstanceInAutoScalingGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opTerminateInstanceInAutoScalingGroup == nil {
 		opTerminateInstanceInAutoScalingGroup = &aws.Operation{
 			Name:       "TerminateInstanceInAutoScalingGroup",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &TerminateInstanceInAutoScalingGroupInput{}
 	}
 
 	req = c.newRequest(opTerminateInstanceInAutoScalingGroup, input, output)
@@ -1324,23 +1680,29 @@ func (c *AutoScaling) TerminateInstanceInAutoScalingGroupRequest(input *Terminat
 //
 // This call simply makes a termination request. The instances is not terminated
 // immediately.
-func (c *AutoScaling) TerminateInstanceInAutoScalingGroup(input *TerminateInstanceInAutoScalingGroupInput) (output *TerminateInstanceInAutoScalingGroupOutput, err error) {
+func (c *AutoScaling) TerminateInstanceInAutoScalingGroup(input *TerminateInstanceInAutoScalingGroupInput) (*TerminateInstanceInAutoScalingGroupOutput, error) {
 	req, out := c.TerminateInstanceInAutoScalingGroupRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opTerminateInstanceInAutoScalingGroup *aws.Operation
 
 // UpdateAutoScalingGroupRequest generates a request for the UpdateAutoScalingGroup operation.
 func (c *AutoScaling) UpdateAutoScalingGroupRequest(input *UpdateAutoScalingGroupInput) (req *aws.Request, output *UpdateAutoScalingGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateAutoScalingGroup == nil {
 		opUpdateAutoScalingGroup = &aws.Operation{
 			Name:       "UpdateAutoScalingGroup",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateAutoScalingGroupInput{}
 	}
 
 	req = c.newRequest(opUpdateAutoScalingGroup, input, output)
@@ -1373,11 +1735,10 @@ func (c *AutoScaling) UpdateAutoScalingGroupRequest(input *UpdateAutoScalingGrou
 //
 //   All other optional parameters are left unchanged if not passed in the
 // request.
-func (c *AutoScaling) UpdateAutoScalingGroup(input *UpdateAutoScalingGroupInput) (output *UpdateAutoScalingGroupOutput, err error) {
+func (c *AutoScaling) UpdateAutoScalingGroup(input *UpdateAutoScalingGroupInput) (*UpdateAutoScalingGroupOutput, error) {
 	req, out := c.UpdateAutoScalingGroupRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateAutoScalingGroup *aws.Operation
@@ -1416,7 +1777,7 @@ type Activity struct {
 	// A friendly, more verbose description of the activity status.
 	StatusMessage *string `type:"string"`
 
-	metadataActivity `json:"-", xml:"-"`
+	metadataActivity `json:"-" xml:"-"`
 }
 
 type metadataActivity struct {
@@ -1432,7 +1793,7 @@ type AdjustmentType struct {
 	// in the Auto Scaling Developer Guide.
 	AdjustmentType *string `type:"string"`
 
-	metadataAdjustmentType `json:"-", xml:"-"`
+	metadataAdjustmentType `json:"-" xml:"-"`
 }
 
 type metadataAdjustmentType struct {
@@ -1447,7 +1808,7 @@ type Alarm struct {
 	// The name of the alarm.
 	AlarmName *string `type:"string"`
 
-	metadataAlarm `json:"-", xml:"-"`
+	metadataAlarm `json:"-" xml:"-"`
 }
 
 type metadataAlarm struct {
@@ -1461,7 +1822,7 @@ type AttachInstancesInput struct {
 	// One or more EC2 instance IDs. You must specify at least one ID.
 	InstanceIDs []*string `locationName:"InstanceIds" type:"list"`
 
-	metadataAttachInstancesInput `json:"-", xml:"-"`
+	metadataAttachInstancesInput `json:"-" xml:"-"`
 }
 
 type metadataAttachInstancesInput struct {
@@ -1469,118 +1830,10 @@ type metadataAttachInstancesInput struct {
 }
 
 type AttachInstancesOutput struct {
-	metadataAttachInstancesOutput `json:"-", xml:"-"`
+	metadataAttachInstancesOutput `json:"-" xml:"-"`
 }
 
 type metadataAttachInstancesOutput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-// Describes an Auto Scaling group.
-type AutoScalingGroup struct {
-	// The Amazon Resource Name (ARN) of the group.
-	AutoScalingGroupARN *string `type:"string"`
-
-	// The name of the group.
-	AutoScalingGroupName *string `type:"string" required:"true"`
-
-	// One or more Availability Zones for the group.
-	AvailabilityZones []*string `type:"list" required:"true"`
-
-	// The date and time the group was created.
-	CreatedTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
-
-	// The number of seconds after a scaling activity completes before any further
-	// scaling activities can start.
-	DefaultCooldown *int64 `type:"integer" required:"true"`
-
-	// The size of the group.
-	DesiredCapacity *int64 `type:"integer" required:"true"`
-
-	// The metrics enabled for this Auto Scaling group.
-	EnabledMetrics []*EnabledMetric `type:"list"`
-
-	// The amount of time that Auto Scaling waits before checking an instance's
-	// health status. The grace period begins when an instance comes into service.
-	HealthCheckGracePeriod *int64 `type:"integer"`
-
-	// The service of interest for the health status check, which can be either
-	// EC2 for Amazon EC2 or ELB for Elastic Load Balancing.
-	HealthCheckType *string `type:"string" required:"true"`
-
-	// The EC2 instances associated with the group.
-	Instances []*Instance `type:"list"`
-
-	// The name of the associated launch configuration.
-	LaunchConfigurationName *string `type:"string" required:"true"`
-
-	// One or more load balancers associated with the group.
-	LoadBalancerNames []*string `type:"list"`
-
-	// The maximum size of the group.
-	MaxSize *int64 `type:"integer" required:"true"`
-
-	// The minimum size of the group.
-	MinSize *int64 `type:"integer" required:"true"`
-
-	// The name of the placement group into which you'll launch your instances,
-	// if any. For more information, see Placement Groups (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html).
-	PlacementGroup *string `type:"string"`
-
-	// The current state of the Auto Scaling group when a DeleteAutoScalingGroup
-	// action is in progress.
-	Status *string `type:"string"`
-
-	// The suspended processes associated with the group.
-	SuspendedProcesses []*SuspendedProcess `type:"list"`
-
-	// The tags for the Auto Scaling group.
-	Tags []*TagDescription `type:"list"`
-
-	// The termination policies for this Auto Scaling group.
-	TerminationPolicies []*string `type:"list"`
-
-	// One or more subnet IDs, if applicable, separated by commas.
-	//
-	// If you specify VPCZoneIdentifier and AvailabilityZones, ensure that the
-	// Availability Zones of the subnets match the values for AvailabilityZones.
-	VPCZoneIdentifier *string `type:"string"`
-
-	metadataAutoScalingGroup `json:"-", xml:"-"`
-}
-
-type metadataAutoScalingGroup struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-// Describes an EC2 instance associated with an Auto Scaling group.
-type AutoScalingInstanceDetails struct {
-	// The name of the Auto Scaling group associated with the instance.
-	AutoScalingGroupName *string `type:"string" required:"true"`
-
-	// The Availability Zone for the instance.
-	AvailabilityZone *string `type:"string" required:"true"`
-
-	// The health status of this instance. "Healthy" means that the instance is
-	// healthy and should remain in service. "Unhealthy" means that the instance
-	// is unhealthy and Auto Scaling should terminate and replace it.
-	HealthStatus *string `type:"string" required:"true"`
-
-	// The ID of the instance.
-	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
-
-	// The launch configuration associated with the instance.
-	LaunchConfigurationName *string `type:"string" required:"true"`
-
-	// The lifecycle state for the instance. For more information, see Auto Scaling
-	// Instance States (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html#AutoScalingStates)
-	// in the Auto Scaling Developer Guide.
-	LifecycleState *string `type:"string" required:"true"`
-
-	metadataAutoScalingInstanceDetails `json:"-", xml:"-"`
-}
-
-type metadataAutoScalingInstanceDetails struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1602,7 +1855,7 @@ type BlockDeviceMapping struct {
 	// The name of the virtual device, ephemeral0 to ephemeral3.
 	VirtualName *string `type:"string"`
 
-	metadataBlockDeviceMapping `json:"-", xml:"-"`
+	metadataBlockDeviceMapping `json:"-" xml:"-"`
 }
 
 type metadataBlockDeviceMapping struct {
@@ -1625,7 +1878,7 @@ type CompleteLifecycleActionInput struct {
 	// The name of the lifecycle hook.
 	LifecycleHookName *string `type:"string" required:"true"`
 
-	metadataCompleteLifecycleActionInput `json:"-", xml:"-"`
+	metadataCompleteLifecycleActionInput `json:"-" xml:"-"`
 }
 
 type metadataCompleteLifecycleActionInput struct {
@@ -1633,7 +1886,7 @@ type metadataCompleteLifecycleActionInput struct {
 }
 
 type CompleteLifecycleActionOutput struct {
-	metadataCompleteLifecycleActionOutput `json:"-", xml:"-"`
+	metadataCompleteLifecycleActionOutput `json:"-" xml:"-"`
 }
 
 type metadataCompleteLifecycleActionOutput struct {
@@ -1743,7 +1996,7 @@ type CreateAutoScalingGroupInput struct {
 	// in the Auto Scaling Developer Guide.
 	VPCZoneIdentifier *string `type:"string"`
 
-	metadataCreateAutoScalingGroupInput `json:"-", xml:"-"`
+	metadataCreateAutoScalingGroupInput `json:"-" xml:"-"`
 }
 
 type metadataCreateAutoScalingGroupInput struct {
@@ -1751,7 +2004,7 @@ type metadataCreateAutoScalingGroupInput struct {
 }
 
 type CreateAutoScalingGroupOutput struct {
-	metadataCreateAutoScalingGroupOutput `json:"-", xml:"-"`
+	metadataCreateAutoScalingGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateAutoScalingGroupOutput struct {
@@ -1901,7 +2154,7 @@ type CreateLaunchConfigurationInput struct {
 	// data files.
 	UserData *string `type:"string"`
 
-	metadataCreateLaunchConfigurationInput `json:"-", xml:"-"`
+	metadataCreateLaunchConfigurationInput `json:"-" xml:"-"`
 }
 
 type metadataCreateLaunchConfigurationInput struct {
@@ -1909,7 +2162,7 @@ type metadataCreateLaunchConfigurationInput struct {
 }
 
 type CreateLaunchConfigurationOutput struct {
-	metadataCreateLaunchConfigurationOutput `json:"-", xml:"-"`
+	metadataCreateLaunchConfigurationOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateLaunchConfigurationOutput struct {
@@ -1934,7 +2187,7 @@ type CreateOrUpdateTagsInput struct {
 	// overwrites the previous tag definition, but you will not get an error message.
 	Tags []*Tag `type:"list" required:"true"`
 
-	metadataCreateOrUpdateTagsInput `json:"-", xml:"-"`
+	metadataCreateOrUpdateTagsInput `json:"-" xml:"-"`
 }
 
 type metadataCreateOrUpdateTagsInput struct {
@@ -1942,7 +2195,7 @@ type metadataCreateOrUpdateTagsInput struct {
 }
 
 type CreateOrUpdateTagsOutput struct {
-	metadataCreateOrUpdateTagsOutput `json:"-", xml:"-"`
+	metadataCreateOrUpdateTagsOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateOrUpdateTagsOutput struct {
@@ -1958,7 +2211,7 @@ type DeleteAutoScalingGroupInput struct {
 	// parameter also deletes any lifecycle actions associated with the group.
 	ForceDelete *bool `type:"boolean"`
 
-	metadataDeleteAutoScalingGroupInput `json:"-", xml:"-"`
+	metadataDeleteAutoScalingGroupInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAutoScalingGroupInput struct {
@@ -1966,7 +2219,7 @@ type metadataDeleteAutoScalingGroupInput struct {
 }
 
 type DeleteAutoScalingGroupOutput struct {
-	metadataDeleteAutoScalingGroupOutput `json:"-", xml:"-"`
+	metadataDeleteAutoScalingGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAutoScalingGroupOutput struct {
@@ -1977,7 +2230,7 @@ type DeleteLaunchConfigurationInput struct {
 	// The name of the launch configuration.
 	LaunchConfigurationName *string `type:"string" required:"true"`
 
-	metadataDeleteLaunchConfigurationInput `json:"-", xml:"-"`
+	metadataDeleteLaunchConfigurationInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLaunchConfigurationInput struct {
@@ -1985,7 +2238,7 @@ type metadataDeleteLaunchConfigurationInput struct {
 }
 
 type DeleteLaunchConfigurationOutput struct {
-	metadataDeleteLaunchConfigurationOutput `json:"-", xml:"-"`
+	metadataDeleteLaunchConfigurationOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLaunchConfigurationOutput struct {
@@ -1999,7 +2252,7 @@ type DeleteLifecycleHookInput struct {
 	// The name of the lifecycle hook.
 	LifecycleHookName *string `type:"string" required:"true"`
 
-	metadataDeleteLifecycleHookInput `json:"-", xml:"-"`
+	metadataDeleteLifecycleHookInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLifecycleHookInput struct {
@@ -2007,7 +2260,7 @@ type metadataDeleteLifecycleHookInput struct {
 }
 
 type DeleteLifecycleHookOutput struct {
-	metadataDeleteLifecycleHookOutput `json:"-", xml:"-"`
+	metadataDeleteLifecycleHookOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLifecycleHookOutput struct {
@@ -2022,7 +2275,7 @@ type DeleteNotificationConfigurationInput struct {
 	// (SNS) topic.
 	TopicARN *string `type:"string" required:"true"`
 
-	metadataDeleteNotificationConfigurationInput `json:"-", xml:"-"`
+	metadataDeleteNotificationConfigurationInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteNotificationConfigurationInput struct {
@@ -2030,7 +2283,7 @@ type metadataDeleteNotificationConfigurationInput struct {
 }
 
 type DeleteNotificationConfigurationOutput struct {
-	metadataDeleteNotificationConfigurationOutput `json:"-", xml:"-"`
+	metadataDeleteNotificationConfigurationOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteNotificationConfigurationOutput struct {
@@ -2044,7 +2297,7 @@ type DeletePolicyInput struct {
 	// The name or Amazon Resource Name (ARN) of the policy.
 	PolicyName *string `type:"string" required:"true"`
 
-	metadataDeletePolicyInput `json:"-", xml:"-"`
+	metadataDeletePolicyInput `json:"-" xml:"-"`
 }
 
 type metadataDeletePolicyInput struct {
@@ -2052,7 +2305,7 @@ type metadataDeletePolicyInput struct {
 }
 
 type DeletePolicyOutput struct {
-	metadataDeletePolicyOutput `json:"-", xml:"-"`
+	metadataDeletePolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDeletePolicyOutput struct {
@@ -2066,7 +2319,7 @@ type DeleteScheduledActionInput struct {
 	// The name of the action to delete.
 	ScheduledActionName *string `type:"string" required:"true"`
 
-	metadataDeleteScheduledActionInput `json:"-", xml:"-"`
+	metadataDeleteScheduledActionInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteScheduledActionInput struct {
@@ -2074,7 +2327,7 @@ type metadataDeleteScheduledActionInput struct {
 }
 
 type DeleteScheduledActionOutput struct {
-	metadataDeleteScheduledActionOutput `json:"-", xml:"-"`
+	metadataDeleteScheduledActionOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteScheduledActionOutput struct {
@@ -2088,7 +2341,7 @@ type DeleteTagsInput struct {
 	// or false.
 	Tags []*Tag `type:"list" required:"true"`
 
-	metadataDeleteTagsInput `json:"-", xml:"-"`
+	metadataDeleteTagsInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteTagsInput struct {
@@ -2096,7 +2349,7 @@ type metadataDeleteTagsInput struct {
 }
 
 type DeleteTagsOutput struct {
-	metadataDeleteTagsOutput `json:"-", xml:"-"`
+	metadataDeleteTagsOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteTagsOutput struct {
@@ -2104,7 +2357,7 @@ type metadataDeleteTagsOutput struct {
 }
 
 type DescribeAccountLimitsInput struct {
-	metadataDescribeAccountLimitsInput `json:"-", xml:"-"`
+	metadataDescribeAccountLimitsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAccountLimitsInput struct {
@@ -2120,7 +2373,7 @@ type DescribeAccountLimitsOutput struct {
 	// The default limit is 100 per region.
 	MaxNumberOfLaunchConfigurations *int64 `type:"integer"`
 
-	metadataDescribeAccountLimitsOutput `json:"-", xml:"-"`
+	metadataDescribeAccountLimitsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAccountLimitsOutput struct {
@@ -2128,7 +2381,7 @@ type metadataDescribeAccountLimitsOutput struct {
 }
 
 type DescribeAdjustmentTypesInput struct {
-	metadataDescribeAdjustmentTypesInput `json:"-", xml:"-"`
+	metadataDescribeAdjustmentTypesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAdjustmentTypesInput struct {
@@ -2139,7 +2392,7 @@ type DescribeAdjustmentTypesOutput struct {
 	// The policy adjustment types.
 	AdjustmentTypes []*AdjustmentType `type:"list"`
 
-	metadataDescribeAdjustmentTypesOutput `json:"-", xml:"-"`
+	metadataDescribeAdjustmentTypesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAdjustmentTypesOutput struct {
@@ -2157,7 +2410,7 @@ type DescribeAutoScalingGroupsInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataDescribeAutoScalingGroupsInput `json:"-", xml:"-"`
+	metadataDescribeAutoScalingGroupsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAutoScalingGroupsInput struct {
@@ -2166,13 +2419,13 @@ type metadataDescribeAutoScalingGroupsInput struct {
 
 type DescribeAutoScalingGroupsOutput struct {
 	// The groups.
-	AutoScalingGroups []*AutoScalingGroup `type:"list" required:"true"`
+	AutoScalingGroups []*Group `type:"list" required:"true"`
 
 	// The token to use when requesting the next set of items. If there are no additional
 	// items to return, the string is empty.
 	NextToken *string `type:"string"`
 
-	metadataDescribeAutoScalingGroupsOutput `json:"-", xml:"-"`
+	metadataDescribeAutoScalingGroupsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAutoScalingGroupsOutput struct {
@@ -2192,7 +2445,7 @@ type DescribeAutoScalingInstancesInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataDescribeAutoScalingInstancesInput `json:"-", xml:"-"`
+	metadataDescribeAutoScalingInstancesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAutoScalingInstancesInput struct {
@@ -2201,13 +2454,13 @@ type metadataDescribeAutoScalingInstancesInput struct {
 
 type DescribeAutoScalingInstancesOutput struct {
 	// The instances.
-	AutoScalingInstances []*AutoScalingInstanceDetails `type:"list"`
+	AutoScalingInstances []*InstanceDetails `type:"list"`
 
 	// The token to use when requesting the next set of items. If there are no additional
 	// items to return, the string is empty.
 	NextToken *string `type:"string"`
 
-	metadataDescribeAutoScalingInstancesOutput `json:"-", xml:"-"`
+	metadataDescribeAutoScalingInstancesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAutoScalingInstancesOutput struct {
@@ -2215,7 +2468,7 @@ type metadataDescribeAutoScalingInstancesOutput struct {
 }
 
 type DescribeAutoScalingNotificationTypesInput struct {
-	metadataDescribeAutoScalingNotificationTypesInput `json:"-", xml:"-"`
+	metadataDescribeAutoScalingNotificationTypesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAutoScalingNotificationTypesInput struct {
@@ -2236,7 +2489,7 @@ type DescribeAutoScalingNotificationTypesOutput struct {
 	// autoscaling:TEST_NOTIFICATION
 	AutoScalingNotificationTypes []*string `type:"list"`
 
-	metadataDescribeAutoScalingNotificationTypesOutput `json:"-", xml:"-"`
+	metadataDescribeAutoScalingNotificationTypesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAutoScalingNotificationTypesOutput struct {
@@ -2254,7 +2507,7 @@ type DescribeLaunchConfigurationsInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataDescribeLaunchConfigurationsInput `json:"-", xml:"-"`
+	metadataDescribeLaunchConfigurationsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLaunchConfigurationsInput struct {
@@ -2269,7 +2522,7 @@ type DescribeLaunchConfigurationsOutput struct {
 	// items to return, the string is empty.
 	NextToken *string `type:"string"`
 
-	metadataDescribeLaunchConfigurationsOutput `json:"-", xml:"-"`
+	metadataDescribeLaunchConfigurationsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLaunchConfigurationsOutput struct {
@@ -2277,7 +2530,7 @@ type metadataDescribeLaunchConfigurationsOutput struct {
 }
 
 type DescribeLifecycleHookTypesInput struct {
-	metadataDescribeLifecycleHookTypesInput `json:"-", xml:"-"`
+	metadataDescribeLifecycleHookTypesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLifecycleHookTypesInput struct {
@@ -2292,7 +2545,7 @@ type DescribeLifecycleHookTypesOutput struct {
 	// autoscaling:EC2_INSTANCE_TERMINATING
 	LifecycleHookTypes []*string `type:"list"`
 
-	metadataDescribeLifecycleHookTypesOutput `json:"-", xml:"-"`
+	metadataDescribeLifecycleHookTypesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLifecycleHookTypesOutput struct {
@@ -2306,7 +2559,7 @@ type DescribeLifecycleHooksInput struct {
 	// The names of one or more lifecycle hooks.
 	LifecycleHookNames []*string `type:"list"`
 
-	metadataDescribeLifecycleHooksInput `json:"-", xml:"-"`
+	metadataDescribeLifecycleHooksInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLifecycleHooksInput struct {
@@ -2317,7 +2570,7 @@ type DescribeLifecycleHooksOutput struct {
 	// The lifecycle hooks for the specified group.
 	LifecycleHooks []*LifecycleHook `type:"list"`
 
-	metadataDescribeLifecycleHooksOutput `json:"-", xml:"-"`
+	metadataDescribeLifecycleHooksOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLifecycleHooksOutput struct {
@@ -2325,7 +2578,7 @@ type metadataDescribeLifecycleHooksOutput struct {
 }
 
 type DescribeMetricCollectionTypesInput struct {
-	metadataDescribeMetricCollectionTypesInput `json:"-", xml:"-"`
+	metadataDescribeMetricCollectionTypesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeMetricCollectionTypesInput struct {
@@ -2358,7 +2611,7 @@ type DescribeMetricCollectionTypesOutput struct {
 	// explicitly request it when calling EnableMetricsCollection.
 	Metrics []*MetricCollectionType `type:"list"`
 
-	metadataDescribeMetricCollectionTypesOutput `json:"-", xml:"-"`
+	metadataDescribeMetricCollectionTypesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeMetricCollectionTypesOutput struct {
@@ -2376,7 +2629,7 @@ type DescribeNotificationConfigurationsInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataDescribeNotificationConfigurationsInput `json:"-", xml:"-"`
+	metadataDescribeNotificationConfigurationsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeNotificationConfigurationsInput struct {
@@ -2391,7 +2644,7 @@ type DescribeNotificationConfigurationsOutput struct {
 	// The notification configurations.
 	NotificationConfigurations []*NotificationConfiguration `type:"list" required:"true"`
 
-	metadataDescribeNotificationConfigurationsOutput `json:"-", xml:"-"`
+	metadataDescribeNotificationConfigurationsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeNotificationConfigurationsOutput struct {
@@ -2415,7 +2668,7 @@ type DescribePoliciesInput struct {
 	// an unknown policy name, it is ignored with no error.
 	PolicyNames []*string `type:"list"`
 
-	metadataDescribePoliciesInput `json:"-", xml:"-"`
+	metadataDescribePoliciesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribePoliciesInput struct {
@@ -2430,7 +2683,7 @@ type DescribePoliciesOutput struct {
 	// The scaling policies.
 	ScalingPolicies []*ScalingPolicy `type:"list"`
 
-	metadataDescribePoliciesOutput `json:"-", xml:"-"`
+	metadataDescribePoliciesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribePoliciesOutput struct {
@@ -2455,7 +2708,7 @@ type DescribeScalingActivitiesInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataDescribeScalingActivitiesInput `json:"-", xml:"-"`
+	metadataDescribeScalingActivitiesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeScalingActivitiesInput struct {
@@ -2470,7 +2723,7 @@ type DescribeScalingActivitiesOutput struct {
 	// items to return, the string is empty.
 	NextToken *string `type:"string"`
 
-	metadataDescribeScalingActivitiesOutput `json:"-", xml:"-"`
+	metadataDescribeScalingActivitiesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeScalingActivitiesOutput struct {
@@ -2478,7 +2731,7 @@ type metadataDescribeScalingActivitiesOutput struct {
 }
 
 type DescribeScalingProcessTypesInput struct {
-	metadataDescribeScalingProcessTypesInput `json:"-", xml:"-"`
+	metadataDescribeScalingProcessTypesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeScalingProcessTypesInput struct {
@@ -2489,7 +2742,7 @@ type DescribeScalingProcessTypesOutput struct {
 	// The names of the process types.
 	Processes []*ProcessType `type:"list"`
 
-	metadataDescribeScalingProcessTypesOutput `json:"-", xml:"-"`
+	metadataDescribeScalingProcessTypesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeScalingProcessTypesOutput struct {
@@ -2524,7 +2777,7 @@ type DescribeScheduledActionsInput struct {
 	// provided, this parameter is ignored.
 	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataDescribeScheduledActionsInput `json:"-", xml:"-"`
+	metadataDescribeScheduledActionsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeScheduledActionsInput struct {
@@ -2539,7 +2792,7 @@ type DescribeScheduledActionsOutput struct {
 	// The scheduled actions.
 	ScheduledUpdateGroupActions []*ScheduledUpdateGroupAction `type:"list"`
 
-	metadataDescribeScheduledActionsOutput `json:"-", xml:"-"`
+	metadataDescribeScheduledActionsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeScheduledActionsOutput struct {
@@ -2560,7 +2813,7 @@ type DescribeTagsInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataDescribeTagsInput `json:"-", xml:"-"`
+	metadataDescribeTagsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTagsInput struct {
@@ -2575,7 +2828,7 @@ type DescribeTagsOutput struct {
 	// The tags.
 	Tags []*TagDescription `type:"list"`
 
-	metadataDescribeTagsOutput `json:"-", xml:"-"`
+	metadataDescribeTagsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTagsOutput struct {
@@ -2583,7 +2836,7 @@ type metadataDescribeTagsOutput struct {
 }
 
 type DescribeTerminationPolicyTypesInput struct {
-	metadataDescribeTerminationPolicyTypesInput `json:"-", xml:"-"`
+	metadataDescribeTerminationPolicyTypesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTerminationPolicyTypesInput struct {
@@ -2596,7 +2849,7 @@ type DescribeTerminationPolicyTypesOutput struct {
 	// Default.
 	TerminationPolicyTypes []*string `type:"list"`
 
-	metadataDescribeTerminationPolicyTypesOutput `json:"-", xml:"-"`
+	metadataDescribeTerminationPolicyTypesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTerminationPolicyTypesOutput struct {
@@ -2614,7 +2867,7 @@ type DetachInstancesInput struct {
 	// the number of instances detached.
 	ShouldDecrementDesiredCapacity *bool `type:"boolean" required:"true"`
 
-	metadataDetachInstancesInput `json:"-", xml:"-"`
+	metadataDetachInstancesInput `json:"-" xml:"-"`
 }
 
 type metadataDetachInstancesInput struct {
@@ -2625,7 +2878,7 @@ type DetachInstancesOutput struct {
 	// The activities related to detaching the instances from the Auto Scaling group.
 	Activities []*Activity `type:"list"`
 
-	metadataDetachInstancesOutput `json:"-", xml:"-"`
+	metadataDetachInstancesOutput `json:"-" xml:"-"`
 }
 
 type metadataDetachInstancesOutput struct {
@@ -2657,7 +2910,7 @@ type DisableMetricsCollectionInput struct {
 	//  If you omit this parameter, all metrics are disabled.
 	Metrics []*string `type:"list"`
 
-	metadataDisableMetricsCollectionInput `json:"-", xml:"-"`
+	metadataDisableMetricsCollectionInput `json:"-" xml:"-"`
 }
 
 type metadataDisableMetricsCollectionInput struct {
@@ -2665,7 +2918,7 @@ type metadataDisableMetricsCollectionInput struct {
 }
 
 type DisableMetricsCollectionOutput struct {
-	metadataDisableMetricsCollectionOutput `json:"-", xml:"-"`
+	metadataDisableMetricsCollectionOutput `json:"-" xml:"-"`
 }
 
 type metadataDisableMetricsCollectionOutput struct {
@@ -2709,7 +2962,7 @@ type EBS struct {
 	// Default: standard
 	VolumeType *string `type:"string"`
 
-	metadataEBS `json:"-", xml:"-"`
+	metadataEBS `json:"-" xml:"-"`
 }
 
 type metadataEBS struct {
@@ -2748,7 +3001,7 @@ type EnableMetricsCollectionInput struct {
 	// request it when calling EnableMetricsCollection.
 	Metrics []*string `type:"list"`
 
-	metadataEnableMetricsCollectionInput `json:"-", xml:"-"`
+	metadataEnableMetricsCollectionInput `json:"-" xml:"-"`
 }
 
 type metadataEnableMetricsCollectionInput struct {
@@ -2756,7 +3009,7 @@ type metadataEnableMetricsCollectionInput struct {
 }
 
 type EnableMetricsCollectionOutput struct {
-	metadataEnableMetricsCollectionOutput `json:"-", xml:"-"`
+	metadataEnableMetricsCollectionOutput `json:"-" xml:"-"`
 }
 
 type metadataEnableMetricsCollectionOutput struct {
@@ -2771,7 +3024,7 @@ type EnabledMetric struct {
 	// The name of the metric.
 	Metric *string `type:"string"`
 
-	metadataEnabledMetric `json:"-", xml:"-"`
+	metadataEnabledMetric `json:"-" xml:"-"`
 }
 
 type metadataEnabledMetric struct {
@@ -2792,7 +3045,7 @@ type EnterStandbyInput struct {
 	// mode.
 	ShouldDecrementDesiredCapacity *bool `type:"boolean" required:"true"`
 
-	metadataEnterStandbyInput `json:"-", xml:"-"`
+	metadataEnterStandbyInput `json:"-" xml:"-"`
 }
 
 type metadataEnterStandbyInput struct {
@@ -2803,7 +3056,7 @@ type EnterStandbyOutput struct {
 	// The activities related to moving instances into Standby mode.
 	Activities []*Activity `type:"list"`
 
-	metadataEnterStandbyOutput `json:"-", xml:"-"`
+	metadataEnterStandbyOutput `json:"-" xml:"-"`
 }
 
 type metadataEnterStandbyOutput struct {
@@ -2828,7 +3081,7 @@ type ExecutePolicyInput struct {
 	// The name or ARN of the policy.
 	PolicyName *string `type:"string" required:"true"`
 
-	metadataExecutePolicyInput `json:"-", xml:"-"`
+	metadataExecutePolicyInput `json:"-" xml:"-"`
 }
 
 type metadataExecutePolicyInput struct {
@@ -2836,7 +3089,7 @@ type metadataExecutePolicyInput struct {
 }
 
 type ExecutePolicyOutput struct {
-	metadataExecutePolicyOutput `json:"-", xml:"-"`
+	metadataExecutePolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataExecutePolicyOutput struct {
@@ -2850,7 +3103,7 @@ type ExitStandbyInput struct {
 	// One or more instance IDs. You must specify at least one instance ID.
 	InstanceIDs []*string `locationName:"InstanceIds" type:"list"`
 
-	metadataExitStandbyInput `json:"-", xml:"-"`
+	metadataExitStandbyInput `json:"-" xml:"-"`
 }
 
 type metadataExitStandbyInput struct {
@@ -2861,7 +3114,7 @@ type ExitStandbyOutput struct {
 	// The activities related to moving instances out of Standby mode.
 	Activities []*Activity `type:"list"`
 
-	metadataExitStandbyOutput `json:"-", xml:"-"`
+	metadataExitStandbyOutput `json:"-" xml:"-"`
 }
 
 type metadataExitStandbyOutput struct {
@@ -2877,10 +3130,87 @@ type Filter struct {
 	// The value of the filter.
 	Values []*string `type:"list"`
 
-	metadataFilter `json:"-", xml:"-"`
+	metadataFilter `json:"-" xml:"-"`
 }
 
 type metadataFilter struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Describes an Auto Scaling group.
+type Group struct {
+	// The Amazon Resource Name (ARN) of the group.
+	AutoScalingGroupARN *string `type:"string"`
+
+	// The name of the group.
+	AutoScalingGroupName *string `type:"string" required:"true"`
+
+	// One or more Availability Zones for the group.
+	AvailabilityZones []*string `type:"list" required:"true"`
+
+	// The date and time the group was created.
+	CreatedTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The number of seconds after a scaling activity completes before any further
+	// scaling activities can start.
+	DefaultCooldown *int64 `type:"integer" required:"true"`
+
+	// The size of the group.
+	DesiredCapacity *int64 `type:"integer" required:"true"`
+
+	// The metrics enabled for this Auto Scaling group.
+	EnabledMetrics []*EnabledMetric `type:"list"`
+
+	// The amount of time that Auto Scaling waits before checking an instance's
+	// health status. The grace period begins when an instance comes into service.
+	HealthCheckGracePeriod *int64 `type:"integer"`
+
+	// The service of interest for the health status check, which can be either
+	// EC2 for Amazon EC2 or ELB for Elastic Load Balancing.
+	HealthCheckType *string `type:"string" required:"true"`
+
+	// The EC2 instances associated with the group.
+	Instances []*Instance `type:"list"`
+
+	// The name of the associated launch configuration.
+	LaunchConfigurationName *string `type:"string" required:"true"`
+
+	// One or more load balancers associated with the group.
+	LoadBalancerNames []*string `type:"list"`
+
+	// The maximum size of the group.
+	MaxSize *int64 `type:"integer" required:"true"`
+
+	// The minimum size of the group.
+	MinSize *int64 `type:"integer" required:"true"`
+
+	// The name of the placement group into which you'll launch your instances,
+	// if any. For more information, see Placement Groups (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html).
+	PlacementGroup *string `type:"string"`
+
+	// The current state of the Auto Scaling group when a DeleteAutoScalingGroup
+	// action is in progress.
+	Status *string `type:"string"`
+
+	// The suspended processes associated with the group.
+	SuspendedProcesses []*SuspendedProcess `type:"list"`
+
+	// The tags for the Auto Scaling group.
+	Tags []*TagDescription `type:"list"`
+
+	// The termination policies for this Auto Scaling group.
+	TerminationPolicies []*string `type:"list"`
+
+	// One or more subnet IDs, if applicable, separated by commas.
+	//
+	// If you specify VPCZoneIdentifier and AvailabilityZones, ensure that the
+	// Availability Zones of the subnets match the values for AvailabilityZones.
+	VPCZoneIdentifier *string `type:"string"`
+
+	metadataGroup `json:"-" xml:"-"`
+}
+
+type metadataGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -2903,10 +3233,41 @@ type Instance struct {
 	//  The Quarantined lifecycle state is not used.
 	LifecycleState *string `type:"string" required:"true"`
 
-	metadataInstance `json:"-", xml:"-"`
+	metadataInstance `json:"-" xml:"-"`
 }
 
 type metadataInstance struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Describes an EC2 instance associated with an Auto Scaling group.
+type InstanceDetails struct {
+	// The name of the Auto Scaling group associated with the instance.
+	AutoScalingGroupName *string `type:"string" required:"true"`
+
+	// The Availability Zone for the instance.
+	AvailabilityZone *string `type:"string" required:"true"`
+
+	// The health status of this instance. "Healthy" means that the instance is
+	// healthy and should remain in service. "Unhealthy" means that the instance
+	// is unhealthy and Auto Scaling should terminate and replace it.
+	HealthStatus *string `type:"string" required:"true"`
+
+	// The ID of the instance.
+	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
+
+	// The launch configuration associated with the instance.
+	LaunchConfigurationName *string `type:"string" required:"true"`
+
+	// The lifecycle state for the instance. For more information, see Auto Scaling
+	// Instance States (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html#AutoScalingStates)
+	// in the Auto Scaling Developer Guide.
+	LifecycleState *string `type:"string" required:"true"`
+
+	metadataInstanceDetails `json:"-" xml:"-"`
+}
+
+type metadataInstanceDetails struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -2915,7 +3276,7 @@ type InstanceMonitoring struct {
 	// If True, instance monitoring is enabled.
 	Enabled *bool `type:"boolean"`
 
-	metadataInstanceMonitoring `json:"-", xml:"-"`
+	metadataInstanceMonitoring `json:"-" xml:"-"`
 }
 
 type metadataInstanceMonitoring struct {
@@ -2992,7 +3353,7 @@ type LaunchConfiguration struct {
 	// The user data available to the EC2 instances.
 	UserData *string `type:"string"`
 
-	metadataLaunchConfiguration `json:"-", xml:"-"`
+	metadataLaunchConfiguration `json:"-" xml:"-"`
 }
 
 type metadataLaunchConfiguration struct {
@@ -3051,7 +3412,7 @@ type LifecycleHook struct {
 	// the specified notification target.
 	RoleARN *string `type:"string"`
 
-	metadataLifecycleHook `json:"-", xml:"-"`
+	metadataLifecycleHook `json:"-" xml:"-"`
 }
 
 type metadataLifecycleHook struct {
@@ -3063,7 +3424,7 @@ type MetricCollectionType struct {
 	// The metric.
 	Metric *string `type:"string"`
 
-	metadataMetricCollectionType `json:"-", xml:"-"`
+	metadataMetricCollectionType `json:"-" xml:"-"`
 }
 
 type metadataMetricCollectionType struct {
@@ -3075,7 +3436,7 @@ type MetricGranularityType struct {
 	// The granularity.
 	Granularity *string `type:"string"`
 
-	metadataMetricGranularityType `json:"-", xml:"-"`
+	metadataMetricGranularityType `json:"-" xml:"-"`
 }
 
 type metadataMetricGranularityType struct {
@@ -3094,7 +3455,7 @@ type NotificationConfiguration struct {
 	// (SNS) topic.
 	TopicARN *string `type:"string"`
 
-	metadataNotificationConfiguration `json:"-", xml:"-"`
+	metadataNotificationConfiguration `json:"-" xml:"-"`
 }
 
 type metadataNotificationConfiguration struct {
@@ -3177,7 +3538,7 @@ type ProcessType struct {
 	// The name of the process.
 	ProcessName *string `type:"string" required:"true"`
 
-	metadataProcessType `json:"-", xml:"-"`
+	metadataProcessType `json:"-" xml:"-"`
 }
 
 type metadataProcessType struct {
@@ -3244,7 +3605,7 @@ type PutLifecycleHookInput struct {
 	// existing hooks.
 	RoleARN *string `type:"string"`
 
-	metadataPutLifecycleHookInput `json:"-", xml:"-"`
+	metadataPutLifecycleHookInput `json:"-" xml:"-"`
 }
 
 type metadataPutLifecycleHookInput struct {
@@ -3252,7 +3613,7 @@ type metadataPutLifecycleHookInput struct {
 }
 
 type PutLifecycleHookOutput struct {
-	metadataPutLifecycleHookOutput `json:"-", xml:"-"`
+	metadataPutLifecycleHookOutput `json:"-" xml:"-"`
 }
 
 type metadataPutLifecycleHookOutput struct {
@@ -3271,7 +3632,7 @@ type PutNotificationConfigurationInput struct {
 	// (SNS) topic.
 	TopicARN *string `type:"string" required:"true"`
 
-	metadataPutNotificationConfigurationInput `json:"-", xml:"-"`
+	metadataPutNotificationConfigurationInput `json:"-" xml:"-"`
 }
 
 type metadataPutNotificationConfigurationInput struct {
@@ -3279,7 +3640,7 @@ type metadataPutNotificationConfigurationInput struct {
 }
 
 type PutNotificationConfigurationOutput struct {
-	metadataPutNotificationConfigurationOutput `json:"-", xml:"-"`
+	metadataPutNotificationConfigurationOutput `json:"-" xml:"-"`
 }
 
 type metadataPutNotificationConfigurationOutput struct {
@@ -3322,7 +3683,7 @@ type PutScalingPolicyInput struct {
 	// current capacity and a negative value removes from the current capacity.
 	ScalingAdjustment *int64 `type:"integer" required:"true"`
 
-	metadataPutScalingPolicyInput `json:"-", xml:"-"`
+	metadataPutScalingPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataPutScalingPolicyInput struct {
@@ -3333,7 +3694,7 @@ type PutScalingPolicyOutput struct {
 	// The Amazon Resource Name (ARN) of the policy.
 	PolicyARN *string `type:"string"`
 
-	metadataPutScalingPolicyOutput `json:"-", xml:"-"`
+	metadataPutScalingPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataPutScalingPolicyOutput struct {
@@ -3384,7 +3745,7 @@ type PutScheduledUpdateGroupActionInput struct {
 	// will return an error.
 	Time *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataPutScheduledUpdateGroupActionInput `json:"-", xml:"-"`
+	metadataPutScheduledUpdateGroupActionInput `json:"-" xml:"-"`
 }
 
 type metadataPutScheduledUpdateGroupActionInput struct {
@@ -3392,7 +3753,7 @@ type metadataPutScheduledUpdateGroupActionInput struct {
 }
 
 type PutScheduledUpdateGroupActionOutput struct {
-	metadataPutScheduledUpdateGroupActionOutput `json:"-", xml:"-"`
+	metadataPutScheduledUpdateGroupActionOutput `json:"-" xml:"-"`
 }
 
 type metadataPutScheduledUpdateGroupActionOutput struct {
@@ -3411,7 +3772,7 @@ type RecordLifecycleActionHeartbeatInput struct {
 	// The name of the lifecycle hook.
 	LifecycleHookName *string `type:"string" required:"true"`
 
-	metadataRecordLifecycleActionHeartbeatInput `json:"-", xml:"-"`
+	metadataRecordLifecycleActionHeartbeatInput `json:"-" xml:"-"`
 }
 
 type metadataRecordLifecycleActionHeartbeatInput struct {
@@ -3419,7 +3780,7 @@ type metadataRecordLifecycleActionHeartbeatInput struct {
 }
 
 type RecordLifecycleActionHeartbeatOutput struct {
-	metadataRecordLifecycleActionHeartbeatOutput `json:"-", xml:"-"`
+	metadataRecordLifecycleActionHeartbeatOutput `json:"-" xml:"-"`
 }
 
 type metadataRecordLifecycleActionHeartbeatOutput struct {
@@ -3427,7 +3788,7 @@ type metadataRecordLifecycleActionHeartbeatOutput struct {
 }
 
 type ResumeProcessesOutput struct {
-	metadataResumeProcessesOutput `json:"-", xml:"-"`
+	metadataResumeProcessesOutput `json:"-" xml:"-"`
 }
 
 type metadataResumeProcessesOutput struct {
@@ -3466,7 +3827,7 @@ type ScalingPolicy struct {
 	// capacity.
 	ScalingAdjustment *int64 `type:"integer"`
 
-	metadataScalingPolicy `json:"-", xml:"-"`
+	metadataScalingPolicy `json:"-" xml:"-"`
 }
 
 type metadataScalingPolicy struct {
@@ -3483,7 +3844,7 @@ type ScalingProcessQuery struct {
 	// ScheduledActions AddToLoadBalancer
 	ScalingProcesses []*string `type:"list"`
 
-	metadataScalingProcessQuery `json:"-", xml:"-"`
+	metadataScalingProcessQuery `json:"-" xml:"-"`
 }
 
 type metadataScalingProcessQuery struct {
@@ -3529,7 +3890,7 @@ type ScheduledUpdateGroupAction struct {
 	// The time that the action is scheduled to begin. Time is an alias for StartTime.
 	Time *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataScheduledUpdateGroupAction `json:"-", xml:"-"`
+	metadataScheduledUpdateGroupAction `json:"-" xml:"-"`
 }
 
 type metadataScheduledUpdateGroupAction struct {
@@ -3549,7 +3910,7 @@ type SetDesiredCapacityInput struct {
 	// initiating a scaling activity to set your Auto Scaling group to its new capacity.
 	HonorCooldown *bool `type:"boolean"`
 
-	metadataSetDesiredCapacityInput `json:"-", xml:"-"`
+	metadataSetDesiredCapacityInput `json:"-" xml:"-"`
 }
 
 type metadataSetDesiredCapacityInput struct {
@@ -3557,7 +3918,7 @@ type metadataSetDesiredCapacityInput struct {
 }
 
 type SetDesiredCapacityOutput struct {
-	metadataSetDesiredCapacityOutput `json:"-", xml:"-"`
+	metadataSetDesiredCapacityOutput `json:"-" xml:"-"`
 }
 
 type metadataSetDesiredCapacityOutput struct {
@@ -3582,7 +3943,7 @@ type SetInstanceHealthInput struct {
 	// for CreateAutoScalingGroup.
 	ShouldRespectGracePeriod *bool `type:"boolean"`
 
-	metadataSetInstanceHealthInput `json:"-", xml:"-"`
+	metadataSetInstanceHealthInput `json:"-" xml:"-"`
 }
 
 type metadataSetInstanceHealthInput struct {
@@ -3590,7 +3951,7 @@ type metadataSetInstanceHealthInput struct {
 }
 
 type SetInstanceHealthOutput struct {
-	metadataSetInstanceHealthOutput `json:"-", xml:"-"`
+	metadataSetInstanceHealthOutput `json:"-" xml:"-"`
 }
 
 type metadataSetInstanceHealthOutput struct {
@@ -3598,7 +3959,7 @@ type metadataSetInstanceHealthOutput struct {
 }
 
 type SuspendProcessesOutput struct {
-	metadataSuspendProcessesOutput `json:"-", xml:"-"`
+	metadataSuspendProcessesOutput `json:"-" xml:"-"`
 }
 
 type metadataSuspendProcessesOutput struct {
@@ -3614,7 +3975,7 @@ type SuspendedProcess struct {
 	// The reason that the process was suspended.
 	SuspensionReason *string `type:"string"`
 
-	metadataSuspendedProcess `json:"-", xml:"-"`
+	metadataSuspendedProcess `json:"-" xml:"-"`
 }
 
 type metadataSuspendedProcess struct {
@@ -3641,7 +4002,7 @@ type Tag struct {
 	// The tag value.
 	Value *string `type:"string"`
 
-	metadataTag `json:"-", xml:"-"`
+	metadataTag `json:"-" xml:"-"`
 }
 
 type metadataTag struct {
@@ -3668,7 +4029,7 @@ type TagDescription struct {
 	// The tag value.
 	Value *string `type:"string"`
 
-	metadataTagDescription `json:"-", xml:"-"`
+	metadataTagDescription `json:"-" xml:"-"`
 }
 
 type metadataTagDescription struct {
@@ -3683,7 +4044,7 @@ type TerminateInstanceInAutoScalingGroupInput struct {
 	// group.
 	ShouldDecrementDesiredCapacity *bool `type:"boolean" required:"true"`
 
-	metadataTerminateInstanceInAutoScalingGroupInput `json:"-", xml:"-"`
+	metadataTerminateInstanceInAutoScalingGroupInput `json:"-" xml:"-"`
 }
 
 type metadataTerminateInstanceInAutoScalingGroupInput struct {
@@ -3694,7 +4055,7 @@ type TerminateInstanceInAutoScalingGroupOutput struct {
 	// A scaling activity.
 	Activity *Activity `type:"structure"`
 
-	metadataTerminateInstanceInAutoScalingGroupOutput `json:"-", xml:"-"`
+	metadataTerminateInstanceInAutoScalingGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataTerminateInstanceInAutoScalingGroupOutput struct {
@@ -3761,7 +4122,7 @@ type UpdateAutoScalingGroupInput struct {
 	// in the Auto Scaling Developer Guide.
 	VPCZoneIdentifier *string `type:"string"`
 
-	metadataUpdateAutoScalingGroupInput `json:"-", xml:"-"`
+	metadataUpdateAutoScalingGroupInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateAutoScalingGroupInput struct {
@@ -3769,7 +4130,7 @@ type metadataUpdateAutoScalingGroupInput struct {
 }
 
 type UpdateAutoScalingGroupOutput struct {
-	metadataUpdateAutoScalingGroupOutput `json:"-", xml:"-"`
+	metadataUpdateAutoScalingGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateAutoScalingGroupOutput struct {

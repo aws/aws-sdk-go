@@ -4,17 +4,29 @@
 package ecs
 
 import (
+	"sync"
+	"time"
+
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // CreateClusterRequest generates a request for the CreateCluster operation.
 func (c *ECS) CreateClusterRequest(input *CreateClusterInput) (req *aws.Request, output *CreateClusterOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateCluster == nil {
 		opCreateCluster = &aws.Operation{
 			Name:       "CreateCluster",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateClusterInput{}
 	}
 
 	req = c.newRequest(opCreateCluster, input, output)
@@ -26,25 +38,63 @@ func (c *ECS) CreateClusterRequest(input *CreateClusterInput) (req *aws.Request,
 // Creates a new Amazon ECS cluster. By default, your account will receive a
 // default cluster when you launch your first container instance. However, you
 // can create your own cluster with a unique name with the CreateCluster action.
-//
-//  During the preview, each account is limited to two clusters.
-func (c *ECS) CreateCluster(input *CreateClusterInput) (output *CreateClusterOutput, err error) {
+func (c *ECS) CreateCluster(input *CreateClusterInput) (*CreateClusterOutput, error) {
 	req, out := c.CreateClusterRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateCluster *aws.Operation
 
+// CreateServiceRequest generates a request for the CreateService operation.
+func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *aws.Request, output *CreateServiceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opCreateService == nil {
+		opCreateService = &aws.Operation{
+			Name:       "CreateService",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &CreateServiceInput{}
+	}
+
+	req = c.newRequest(opCreateService, input, output)
+	output = &CreateServiceOutput{}
+	req.Data = output
+	return
+}
+
+// Runs and maintains a desired number of tasks from a specified task definition.
+// If the number of tasks running in a service drops below desiredCount, Amazon
+// ECS will spawn another instantiation of the task in the specified cluster.
+func (c *ECS) CreateService(input *CreateServiceInput) (*CreateServiceOutput, error) {
+	req, out := c.CreateServiceRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opCreateService *aws.Operation
+
 // DeleteClusterRequest generates a request for the DeleteCluster operation.
 func (c *ECS) DeleteClusterRequest(input *DeleteClusterInput) (req *aws.Request, output *DeleteClusterOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteCluster == nil {
 		opDeleteCluster = &aws.Operation{
 			Name:       "DeleteCluster",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteClusterInput{}
 	}
 
 	req = c.newRequest(opDeleteCluster, input, output)
@@ -56,23 +106,61 @@ func (c *ECS) DeleteClusterRequest(input *DeleteClusterInput) (req *aws.Request,
 // Deletes the specified cluster. You must deregister all container instances
 // from this cluster before you may delete it. You can list the container instances
 // in a cluster with ListContainerInstances and deregister them with DeregisterContainerInstance.
-func (c *ECS) DeleteCluster(input *DeleteClusterInput) (output *DeleteClusterOutput, err error) {
+func (c *ECS) DeleteCluster(input *DeleteClusterInput) (*DeleteClusterOutput, error) {
 	req, out := c.DeleteClusterRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteCluster *aws.Operation
 
+// DeleteServiceRequest generates a request for the DeleteService operation.
+func (c *ECS) DeleteServiceRequest(input *DeleteServiceInput) (req *aws.Request, output *DeleteServiceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opDeleteService == nil {
+		opDeleteService = &aws.Operation{
+			Name:       "DeleteService",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &DeleteServiceInput{}
+	}
+
+	req = c.newRequest(opDeleteService, input, output)
+	output = &DeleteServiceOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes a specified service within a cluster.
+func (c *ECS) DeleteService(input *DeleteServiceInput) (*DeleteServiceOutput, error) {
+	req, out := c.DeleteServiceRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opDeleteService *aws.Operation
+
 // DeregisterContainerInstanceRequest generates a request for the DeregisterContainerInstance operation.
 func (c *ECS) DeregisterContainerInstanceRequest(input *DeregisterContainerInstanceInput) (req *aws.Request, output *DeregisterContainerInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeregisterContainerInstance == nil {
 		opDeregisterContainerInstance = &aws.Operation{
 			Name:       "DeregisterContainerInstance",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeregisterContainerInstanceInput{}
 	}
 
 	req = c.newRequest(opDeregisterContainerInstance, input, output)
@@ -83,23 +171,29 @@ func (c *ECS) DeregisterContainerInstanceRequest(input *DeregisterContainerInsta
 
 // Deregisters an Amazon ECS container instance from the specified cluster.
 // This instance will no longer be available to run tasks.
-func (c *ECS) DeregisterContainerInstance(input *DeregisterContainerInstanceInput) (output *DeregisterContainerInstanceOutput, err error) {
+func (c *ECS) DeregisterContainerInstance(input *DeregisterContainerInstanceInput) (*DeregisterContainerInstanceOutput, error) {
 	req, out := c.DeregisterContainerInstanceRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeregisterContainerInstance *aws.Operation
 
 // DeregisterTaskDefinitionRequest generates a request for the DeregisterTaskDefinition operation.
 func (c *ECS) DeregisterTaskDefinitionRequest(input *DeregisterTaskDefinitionInput) (req *aws.Request, output *DeregisterTaskDefinitionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeregisterTaskDefinition == nil {
 		opDeregisterTaskDefinition = &aws.Operation{
 			Name:       "DeregisterTaskDefinition",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeregisterTaskDefinitionInput{}
 	}
 
 	req = c.newRequest(opDeregisterTaskDefinition, input, output)
@@ -112,23 +206,29 @@ func (c *ECS) DeregisterTaskDefinitionRequest(input *DeregisterTaskDefinitionInp
 //
 // Deregisters the specified task definition. You will no longer be able to
 // run tasks from this definition after deregistration.
-func (c *ECS) DeregisterTaskDefinition(input *DeregisterTaskDefinitionInput) (output *DeregisterTaskDefinitionOutput, err error) {
+func (c *ECS) DeregisterTaskDefinition(input *DeregisterTaskDefinitionInput) (*DeregisterTaskDefinitionOutput, error) {
 	req, out := c.DeregisterTaskDefinitionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeregisterTaskDefinition *aws.Operation
 
 // DescribeClustersRequest generates a request for the DescribeClusters operation.
 func (c *ECS) DescribeClustersRequest(input *DescribeClustersInput) (req *aws.Request, output *DescribeClustersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeClusters == nil {
 		opDescribeClusters = &aws.Operation{
 			Name:       "DescribeClusters",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeClustersInput{}
 	}
 
 	req = c.newRequest(opDescribeClusters, input, output)
@@ -138,23 +238,29 @@ func (c *ECS) DescribeClustersRequest(input *DescribeClustersInput) (req *aws.Re
 }
 
 // Describes one or more of your clusters.
-func (c *ECS) DescribeClusters(input *DescribeClustersInput) (output *DescribeClustersOutput, err error) {
+func (c *ECS) DescribeClusters(input *DescribeClustersInput) (*DescribeClustersOutput, error) {
 	req, out := c.DescribeClustersRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeClusters *aws.Operation
 
 // DescribeContainerInstancesRequest generates a request for the DescribeContainerInstances operation.
 func (c *ECS) DescribeContainerInstancesRequest(input *DescribeContainerInstancesInput) (req *aws.Request, output *DescribeContainerInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeContainerInstances == nil {
 		opDescribeContainerInstances = &aws.Operation{
 			Name:       "DescribeContainerInstances",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeContainerInstancesInput{}
 	}
 
 	req = c.newRequest(opDescribeContainerInstances, input, output)
@@ -165,23 +271,61 @@ func (c *ECS) DescribeContainerInstancesRequest(input *DescribeContainerInstance
 
 // Describes Amazon EC2 Container Service container instances. Returns metadata
 // about registered and remaining resources on each container instance requested.
-func (c *ECS) DescribeContainerInstances(input *DescribeContainerInstancesInput) (output *DescribeContainerInstancesOutput, err error) {
+func (c *ECS) DescribeContainerInstances(input *DescribeContainerInstancesInput) (*DescribeContainerInstancesOutput, error) {
 	req, out := c.DescribeContainerInstancesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeContainerInstances *aws.Operation
 
+// DescribeServicesRequest generates a request for the DescribeServices operation.
+func (c *ECS) DescribeServicesRequest(input *DescribeServicesInput) (req *aws.Request, output *DescribeServicesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opDescribeServices == nil {
+		opDescribeServices = &aws.Operation{
+			Name:       "DescribeServices",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &DescribeServicesInput{}
+	}
+
+	req = c.newRequest(opDescribeServices, input, output)
+	output = &DescribeServicesOutput{}
+	req.Data = output
+	return
+}
+
+// Describes the specified services running in your cluster.
+func (c *ECS) DescribeServices(input *DescribeServicesInput) (*DescribeServicesOutput, error) {
+	req, out := c.DescribeServicesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opDescribeServices *aws.Operation
+
 // DescribeTaskDefinitionRequest generates a request for the DescribeTaskDefinition operation.
 func (c *ECS) DescribeTaskDefinitionRequest(input *DescribeTaskDefinitionInput) (req *aws.Request, output *DescribeTaskDefinitionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeTaskDefinition == nil {
 		opDescribeTaskDefinition = &aws.Operation{
 			Name:       "DescribeTaskDefinition",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeTaskDefinitionInput{}
 	}
 
 	req = c.newRequest(opDescribeTaskDefinition, input, output)
@@ -193,23 +337,29 @@ func (c *ECS) DescribeTaskDefinitionRequest(input *DescribeTaskDefinitionInput) 
 // Describes a task definition. You can specify a family and revision to find
 // information on a specific task definition, or you can simply specify the
 // family to find the latest revision in that family.
-func (c *ECS) DescribeTaskDefinition(input *DescribeTaskDefinitionInput) (output *DescribeTaskDefinitionOutput, err error) {
+func (c *ECS) DescribeTaskDefinition(input *DescribeTaskDefinitionInput) (*DescribeTaskDefinitionOutput, error) {
 	req, out := c.DescribeTaskDefinitionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeTaskDefinition *aws.Operation
 
 // DescribeTasksRequest generates a request for the DescribeTasks operation.
 func (c *ECS) DescribeTasksRequest(input *DescribeTasksInput) (req *aws.Request, output *DescribeTasksOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeTasks == nil {
 		opDescribeTasks = &aws.Operation{
 			Name:       "DescribeTasks",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeTasksInput{}
 	}
 
 	req = c.newRequest(opDescribeTasks, input, output)
@@ -219,23 +369,29 @@ func (c *ECS) DescribeTasksRequest(input *DescribeTasksInput) (req *aws.Request,
 }
 
 // Describes a specified task or tasks.
-func (c *ECS) DescribeTasks(input *DescribeTasksInput) (output *DescribeTasksOutput, err error) {
+func (c *ECS) DescribeTasks(input *DescribeTasksInput) (*DescribeTasksOutput, error) {
 	req, out := c.DescribeTasksRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeTasks *aws.Operation
 
 // DiscoverPollEndpointRequest generates a request for the DiscoverPollEndpoint operation.
 func (c *ECS) DiscoverPollEndpointRequest(input *DiscoverPollEndpointInput) (req *aws.Request, output *DiscoverPollEndpointOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDiscoverPollEndpoint == nil {
 		opDiscoverPollEndpoint = &aws.Operation{
 			Name:       "DiscoverPollEndpoint",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DiscoverPollEndpointInput{}
 	}
 
 	req = c.newRequest(opDiscoverPollEndpoint, input, output)
@@ -249,23 +405,29 @@ func (c *ECS) DiscoverPollEndpointRequest(input *DiscoverPollEndpointInput) (req
 //
 // Returns an endpoint for the Amazon EC2 Container Service agent to poll for
 // updates.
-func (c *ECS) DiscoverPollEndpoint(input *DiscoverPollEndpointInput) (output *DiscoverPollEndpointOutput, err error) {
+func (c *ECS) DiscoverPollEndpoint(input *DiscoverPollEndpointInput) (*DiscoverPollEndpointOutput, error) {
 	req, out := c.DiscoverPollEndpointRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDiscoverPollEndpoint *aws.Operation
 
 // ListClustersRequest generates a request for the ListClusters operation.
 func (c *ECS) ListClustersRequest(input *ListClustersInput) (req *aws.Request, output *ListClustersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListClusters == nil {
 		opListClusters = &aws.Operation{
 			Name:       "ListClusters",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListClustersInput{}
 	}
 
 	req = c.newRequest(opListClusters, input, output)
@@ -275,23 +437,29 @@ func (c *ECS) ListClustersRequest(input *ListClustersInput) (req *aws.Request, o
 }
 
 // Returns a list of existing clusters.
-func (c *ECS) ListClusters(input *ListClustersInput) (output *ListClustersOutput, err error) {
+func (c *ECS) ListClusters(input *ListClustersInput) (*ListClustersOutput, error) {
 	req, out := c.ListClustersRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListClusters *aws.Operation
 
 // ListContainerInstancesRequest generates a request for the ListContainerInstances operation.
 func (c *ECS) ListContainerInstancesRequest(input *ListContainerInstancesInput) (req *aws.Request, output *ListContainerInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListContainerInstances == nil {
 		opListContainerInstances = &aws.Operation{
 			Name:       "ListContainerInstances",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListContainerInstancesInput{}
 	}
 
 	req = c.newRequest(opListContainerInstances, input, output)
@@ -301,23 +469,61 @@ func (c *ECS) ListContainerInstancesRequest(input *ListContainerInstancesInput) 
 }
 
 // Returns a list of container instances in a specified cluster.
-func (c *ECS) ListContainerInstances(input *ListContainerInstancesInput) (output *ListContainerInstancesOutput, err error) {
+func (c *ECS) ListContainerInstances(input *ListContainerInstancesInput) (*ListContainerInstancesOutput, error) {
 	req, out := c.ListContainerInstancesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListContainerInstances *aws.Operation
 
+// ListServicesRequest generates a request for the ListServices operation.
+func (c *ECS) ListServicesRequest(input *ListServicesInput) (req *aws.Request, output *ListServicesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opListServices == nil {
+		opListServices = &aws.Operation{
+			Name:       "ListServices",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &ListServicesInput{}
+	}
+
+	req = c.newRequest(opListServices, input, output)
+	output = &ListServicesOutput{}
+	req.Data = output
+	return
+}
+
+// Lists the services that are running in a specified cluster.
+func (c *ECS) ListServices(input *ListServicesInput) (*ListServicesOutput, error) {
+	req, out := c.ListServicesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opListServices *aws.Operation
+
 // ListTaskDefinitionFamiliesRequest generates a request for the ListTaskDefinitionFamilies operation.
 func (c *ECS) ListTaskDefinitionFamiliesRequest(input *ListTaskDefinitionFamiliesInput) (req *aws.Request, output *ListTaskDefinitionFamiliesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListTaskDefinitionFamilies == nil {
 		opListTaskDefinitionFamilies = &aws.Operation{
 			Name:       "ListTaskDefinitionFamilies",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListTaskDefinitionFamiliesInput{}
 	}
 
 	req = c.newRequest(opListTaskDefinitionFamilies, input, output)
@@ -328,23 +534,29 @@ func (c *ECS) ListTaskDefinitionFamiliesRequest(input *ListTaskDefinitionFamilie
 
 // Returns a list of task definition families that are registered to your account.
 // You can filter the results with the familyPrefix parameter.
-func (c *ECS) ListTaskDefinitionFamilies(input *ListTaskDefinitionFamiliesInput) (output *ListTaskDefinitionFamiliesOutput, err error) {
+func (c *ECS) ListTaskDefinitionFamilies(input *ListTaskDefinitionFamiliesInput) (*ListTaskDefinitionFamiliesOutput, error) {
 	req, out := c.ListTaskDefinitionFamiliesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListTaskDefinitionFamilies *aws.Operation
 
 // ListTaskDefinitionsRequest generates a request for the ListTaskDefinitions operation.
 func (c *ECS) ListTaskDefinitionsRequest(input *ListTaskDefinitionsInput) (req *aws.Request, output *ListTaskDefinitionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListTaskDefinitions == nil {
 		opListTaskDefinitions = &aws.Operation{
 			Name:       "ListTaskDefinitions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListTaskDefinitionsInput{}
 	}
 
 	req = c.newRequest(opListTaskDefinitions, input, output)
@@ -355,23 +567,29 @@ func (c *ECS) ListTaskDefinitionsRequest(input *ListTaskDefinitionsInput) (req *
 
 // Returns a list of task definitions that are registered to your account. You
 // can filter the results by family name with the familyPrefix parameter.
-func (c *ECS) ListTaskDefinitions(input *ListTaskDefinitionsInput) (output *ListTaskDefinitionsOutput, err error) {
+func (c *ECS) ListTaskDefinitions(input *ListTaskDefinitionsInput) (*ListTaskDefinitionsOutput, error) {
 	req, out := c.ListTaskDefinitionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListTaskDefinitions *aws.Operation
 
 // ListTasksRequest generates a request for the ListTasks operation.
 func (c *ECS) ListTasksRequest(input *ListTasksInput) (req *aws.Request, output *ListTasksOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListTasks == nil {
 		opListTasks = &aws.Operation{
 			Name:       "ListTasks",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListTasksInput{}
 	}
 
 	req = c.newRequest(opListTasks, input, output)
@@ -383,23 +601,29 @@ func (c *ECS) ListTasksRequest(input *ListTasksInput) (req *aws.Request, output 
 // Returns a list of tasks for a specified cluster. You can filter the results
 // by family name or by a particular container instance with the family and
 // containerInstance parameters.
-func (c *ECS) ListTasks(input *ListTasksInput) (output *ListTasksOutput, err error) {
+func (c *ECS) ListTasks(input *ListTasksInput) (*ListTasksOutput, error) {
 	req, out := c.ListTasksRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListTasks *aws.Operation
 
 // RegisterContainerInstanceRequest generates a request for the RegisterContainerInstance operation.
 func (c *ECS) RegisterContainerInstanceRequest(input *RegisterContainerInstanceInput) (req *aws.Request, output *RegisterContainerInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRegisterContainerInstance == nil {
 		opRegisterContainerInstance = &aws.Operation{
 			Name:       "RegisterContainerInstance",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RegisterContainerInstanceInput{}
 	}
 
 	req = c.newRequest(opRegisterContainerInstance, input, output)
@@ -413,23 +637,29 @@ func (c *ECS) RegisterContainerInstanceRequest(input *RegisterContainerInstanceI
 //
 // Registers an Amazon EC2 instance into the specified cluster. This instance
 // will become available to place containers on.
-func (c *ECS) RegisterContainerInstance(input *RegisterContainerInstanceInput) (output *RegisterContainerInstanceOutput, err error) {
+func (c *ECS) RegisterContainerInstance(input *RegisterContainerInstanceInput) (*RegisterContainerInstanceOutput, error) {
 	req, out := c.RegisterContainerInstanceRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRegisterContainerInstance *aws.Operation
 
 // RegisterTaskDefinitionRequest generates a request for the RegisterTaskDefinition operation.
 func (c *ECS) RegisterTaskDefinitionRequest(input *RegisterTaskDefinitionInput) (req *aws.Request, output *RegisterTaskDefinitionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRegisterTaskDefinition == nil {
 		opRegisterTaskDefinition = &aws.Operation{
 			Name:       "RegisterTaskDefinition",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RegisterTaskDefinitionInput{}
 	}
 
 	req = c.newRequest(opRegisterTaskDefinition, input, output)
@@ -443,23 +673,29 @@ func (c *ECS) RegisterTaskDefinitionRequest(input *RegisterTaskDefinitionInput) 
 // parameter. For more information on task definition parameters and defaults,
 // see Amazon ECS Task Definitions (http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html)
 // in the Amazon EC2 Container Service Developer Guide.
-func (c *ECS) RegisterTaskDefinition(input *RegisterTaskDefinitionInput) (output *RegisterTaskDefinitionOutput, err error) {
+func (c *ECS) RegisterTaskDefinition(input *RegisterTaskDefinitionInput) (*RegisterTaskDefinitionOutput, error) {
 	req, out := c.RegisterTaskDefinitionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRegisterTaskDefinition *aws.Operation
 
 // RunTaskRequest generates a request for the RunTask operation.
 func (c *ECS) RunTaskRequest(input *RunTaskInput) (req *aws.Request, output *RunTaskOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRunTask == nil {
 		opRunTask = &aws.Operation{
 			Name:       "RunTask",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RunTaskInput{}
 	}
 
 	req = c.newRequest(opRunTask, input, output)
@@ -471,23 +707,31 @@ func (c *ECS) RunTaskRequest(input *RunTaskInput) (req *aws.Request, output *Run
 // Start a task using random placement and the default Amazon ECS scheduler.
 // If you want to use your own scheduler or place a task on a specific container
 // instance, use StartTask instead.
-func (c *ECS) RunTask(input *RunTaskInput) (output *RunTaskOutput, err error) {
+//
+//  The count parameter is limited to 10 tasks per call.
+func (c *ECS) RunTask(input *RunTaskInput) (*RunTaskOutput, error) {
 	req, out := c.RunTaskRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRunTask *aws.Operation
 
 // StartTaskRequest generates a request for the StartTask operation.
 func (c *ECS) StartTaskRequest(input *StartTaskInput) (req *aws.Request, output *StartTaskOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opStartTask == nil {
 		opStartTask = &aws.Operation{
 			Name:       "StartTask",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &StartTaskInput{}
 	}
 
 	req = c.newRequest(opStartTask, input, output)
@@ -499,23 +743,31 @@ func (c *ECS) StartTaskRequest(input *StartTaskInput) (req *aws.Request, output 
 // Starts a new task from the specified task definition on the specified container
 // instance or instances. If you want to use the default Amazon ECS scheduler
 // to place your task, use RunTask instead.
-func (c *ECS) StartTask(input *StartTaskInput) (output *StartTaskOutput, err error) {
+//
+//  The list of container instances to start tasks on is limited to 10.
+func (c *ECS) StartTask(input *StartTaskInput) (*StartTaskOutput, error) {
 	req, out := c.StartTaskRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opStartTask *aws.Operation
 
 // StopTaskRequest generates a request for the StopTask operation.
 func (c *ECS) StopTaskRequest(input *StopTaskInput) (req *aws.Request, output *StopTaskOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opStopTask == nil {
 		opStopTask = &aws.Operation{
 			Name:       "StopTask",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &StopTaskInput{}
 	}
 
 	req = c.newRequest(opStopTask, input, output)
@@ -525,23 +777,29 @@ func (c *ECS) StopTaskRequest(input *StopTaskInput) (req *aws.Request, output *S
 }
 
 // Stops a running task.
-func (c *ECS) StopTask(input *StopTaskInput) (output *StopTaskOutput, err error) {
+func (c *ECS) StopTask(input *StopTaskInput) (*StopTaskOutput, error) {
 	req, out := c.StopTaskRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opStopTask *aws.Operation
 
 // SubmitContainerStateChangeRequest generates a request for the SubmitContainerStateChange operation.
 func (c *ECS) SubmitContainerStateChangeRequest(input *SubmitContainerStateChangeInput) (req *aws.Request, output *SubmitContainerStateChangeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSubmitContainerStateChange == nil {
 		opSubmitContainerStateChange = &aws.Operation{
 			Name:       "SubmitContainerStateChange",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SubmitContainerStateChangeInput{}
 	}
 
 	req = c.newRequest(opSubmitContainerStateChange, input, output)
@@ -554,23 +812,29 @@ func (c *ECS) SubmitContainerStateChangeRequest(input *SubmitContainerStateChang
 // is not intended for use outside of the agent.
 //
 // Sent to acknowledge that a container changed states.
-func (c *ECS) SubmitContainerStateChange(input *SubmitContainerStateChangeInput) (output *SubmitContainerStateChangeOutput, err error) {
+func (c *ECS) SubmitContainerStateChange(input *SubmitContainerStateChangeInput) (*SubmitContainerStateChangeOutput, error) {
 	req, out := c.SubmitContainerStateChangeRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSubmitContainerStateChange *aws.Operation
 
 // SubmitTaskStateChangeRequest generates a request for the SubmitTaskStateChange operation.
 func (c *ECS) SubmitTaskStateChangeRequest(input *SubmitTaskStateChangeInput) (req *aws.Request, output *SubmitTaskStateChangeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSubmitTaskStateChange == nil {
 		opSubmitTaskStateChange = &aws.Operation{
 			Name:       "SubmitTaskStateChange",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SubmitTaskStateChangeInput{}
 	}
 
 	req = c.newRequest(opSubmitTaskStateChange, input, output)
@@ -583,14 +847,59 @@ func (c *ECS) SubmitTaskStateChangeRequest(input *SubmitTaskStateChangeInput) (r
 // is not intended for use outside of the agent.
 //
 // Sent to acknowledge that a task changed states.
-func (c *ECS) SubmitTaskStateChange(input *SubmitTaskStateChangeInput) (output *SubmitTaskStateChangeOutput, err error) {
+func (c *ECS) SubmitTaskStateChange(input *SubmitTaskStateChangeInput) (*SubmitTaskStateChangeOutput, error) {
 	req, out := c.SubmitTaskStateChangeRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSubmitTaskStateChange *aws.Operation
+
+// UpdateServiceRequest generates a request for the UpdateService operation.
+func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *aws.Request, output *UpdateServiceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opUpdateService == nil {
+		opUpdateService = &aws.Operation{
+			Name:       "UpdateService",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &UpdateServiceInput{}
+	}
+
+	req = c.newRequest(opUpdateService, input, output)
+	output = &UpdateServiceOutput{}
+	req.Data = output
+	return
+}
+
+// Modify the desired count or task definition used in a service.
+//
+// You can add to or subtract from the number of instantiations of a task definition
+// in a service by specifying the cluster that the service is running in and
+// a new desiredCount parameter.
+//
+// You can use UpdateService to modify your task definition and deploy a new
+// version of your service, one task at a time. If you modify the task definition
+// with UpdateService, Amazon ECS spawns a task with the new version of the
+// task definition and then stops an old task after the new version is running.
+// Because UpdateService starts a new version of the task before stopping an
+// old version, your cluster must have capacity to support one more instantiation
+// of the task when UpdateService is run. If your cluster cannot support another
+// instantiation of the task used in your service, you can reduce the desired
+// count of your service by one before modifying the task definition.
+func (c *ECS) UpdateService(input *UpdateServiceInput) (*UpdateServiceOutput, error) {
+	req, out := c.UpdateServiceRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opUpdateService *aws.Operation
 
 // A regional grouping of one or more container instances on which you can run
 // task requests. Each account receives a default cluster the first time you
@@ -608,12 +917,21 @@ type Cluster struct {
 	// A user-generated string that you can use to identify your cluster.
 	ClusterName *string `locationName:"clusterName" type:"string"`
 
+	// The number of tasks in the cluster that are in the PENDING state.
+	PendingTasksCount *int64 `locationName:"pendingTasksCount" type:"integer"`
+
+	// The number of container instances registered into the cluster.
+	RegisteredContainerInstancesCount *int64 `locationName:"registeredContainerInstancesCount" type:"integer"`
+
+	// The number of tasks in the cluster that are in the RUNNING state.
+	RunningTasksCount *int64 `locationName:"runningTasksCount" type:"integer"`
+
 	// The status of the cluster. The valid values are ACTIVE or INACTIVE. ACTIVE
 	// indicates that you can register container instances with the cluster and
 	// the associated instances can accept tasks.
 	Status *string `locationName:"status" type:"string"`
 
-	metadataCluster `json:"-", xml:"-"`
+	metadataCluster `json:"-" xml:"-"`
 }
 
 type metadataCluster struct {
@@ -642,7 +960,7 @@ type Container struct {
 	// The Amazon Resource Name (ARN) of the task.
 	TaskARN *string `locationName:"taskArn" type:"string"`
 
-	metadataContainer `json:"-", xml:"-"`
+	metadataContainer `json:"-" xml:"-"`
 }
 
 type metadataContainer struct {
@@ -707,7 +1025,7 @@ type ContainerDefinition struct {
 	// Data volumes to mount from another container.
 	VolumesFrom []*VolumeFrom `locationName:"volumesFrom" type:"list"`
 
-	metadataContainerDefinition `json:"-", xml:"-"`
+	metadataContainerDefinition `json:"-" xml:"-"`
 }
 
 type metadataContainerDefinition struct {
@@ -732,6 +1050,9 @@ type ContainerInstance struct {
 	// The Amazon EC2 instance ID of the container instance.
 	EC2InstanceID *string `locationName:"ec2InstanceId" type:"string"`
 
+	// The number of tasks on the container instance that are in the PENDING status.
+	PendingTasksCount *int64 `locationName:"pendingTasksCount" type:"integer"`
+
 	// The registered resources on the container instance that are in use by current
 	// tasks.
 	RegisteredResources []*Resource `locationName:"registeredResources" type:"list"`
@@ -740,25 +1061,31 @@ type ContainerInstance struct {
 	// new tasks.
 	RemainingResources []*Resource `locationName:"remainingResources" type:"list"`
 
+	// The number of tasks on the container instance that are in the RUNNING status.
+	RunningTasksCount *int64 `locationName:"runningTasksCount" type:"integer"`
+
 	// The status of the container instance. The valid values are ACTIVE or INACTIVE.
 	// ACTIVE indicates that the container instance can accept tasks.
 	Status *string `locationName:"status" type:"string"`
 
-	metadataContainerInstance `json:"-", xml:"-"`
+	metadataContainerInstance `json:"-" xml:"-"`
 }
 
 type metadataContainerInstance struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The name of a container in a task definition and the command it should run
+// instead of its default.
 type ContainerOverride struct {
-	// The command to send to the container that receives the override.
+	// The command to send to the container that overrides the default command from
+	// the Docker image or the task definition.
 	Command []*string `locationName:"command" type:"list"`
 
 	// The name of the container that receives the override.
 	Name *string `locationName:"name" type:"string"`
 
-	metadataContainerOverride `json:"-", xml:"-"`
+	metadataContainerOverride `json:"-" xml:"-"`
 }
 
 type metadataContainerOverride struct {
@@ -767,10 +1094,11 @@ type metadataContainerOverride struct {
 
 type CreateClusterInput struct {
 	// The name of your cluster. If you do not specify a name for your cluster,
-	// you will create a cluster named default.
+	// you will create a cluster named default. Up to 255 letters (uppercase and
+	// lowercase), numbers, hyphens, and underscores are allowed.
 	ClusterName *string `locationName:"clusterName" type:"string"`
 
-	metadataCreateClusterInput `json:"-", xml:"-"`
+	metadataCreateClusterInput `json:"-" xml:"-"`
 }
 
 type metadataCreateClusterInput struct {
@@ -781,10 +1109,61 @@ type CreateClusterOutput struct {
 	// The full description of your new cluster.
 	Cluster *Cluster `locationName:"cluster" type:"structure"`
 
-	metadataCreateClusterOutput `json:"-", xml:"-"`
+	metadataCreateClusterOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateClusterOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type CreateServiceInput struct {
+	// Unique, case-sensitive identifier you provide to ensure the idempotency of
+	// the request. Up to 32 ASCII characters are allowed.
+	ClientToken *string `locationName:"clientToken" type:"string"`
+
+	// The short name or full Amazon Resource Name (ARN) of the cluster that you
+	// want to run your service on. If you do not specify a cluster, the default
+	// cluster is assumed.
+	Cluster *string `locationName:"cluster" type:"string"`
+
+	// The number of instantiations of the specified task definition that you would
+	// like to place and keep running on your cluster.
+	DesiredCount *int64 `locationName:"desiredCount" type:"integer"`
+
+	// A list of load balancer objects, containing the load balancer name, the container
+	// name (as it appears in a container definition), and the container port to
+	// access from the load balancer.
+	LoadBalancers []*LoadBalancer `locationName:"loadBalancers" type:"list"`
+
+	// The name or full Amazon Resource Name (ARN) of the IAM role that allows your
+	// Amazon ECS container agent to make calls to your load balancer on your behalf.
+	// This parameter is only required if you are using a load balancer with your
+	// service.
+	Role *string `locationName:"role" type:"string"`
+
+	// The name of your service. Up to 255 letters (uppercase and lowercase), numbers,
+	// hyphens, and underscores are allowed.
+	ServiceName *string `locationName:"serviceName" type:"string" required:"true"`
+
+	// The family and revision (family:revision) or full Amazon Resource Name (ARN)
+	// of the task definition that you want to run in your service.
+	TaskDefinition *string `locationName:"taskDefinition" type:"string"`
+
+	metadataCreateServiceInput `json:"-" xml:"-"`
+}
+
+type metadataCreateServiceInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type CreateServiceOutput struct {
+	// The full description of your service following the create call.
+	Service *Service `locationName:"service" type:"structure"`
+
+	metadataCreateServiceOutput `json:"-" xml:"-"`
+}
+
+type metadataCreateServiceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -793,7 +1172,7 @@ type DeleteClusterInput struct {
 	// want to delete.
 	Cluster *string `locationName:"cluster" type:"string" required:"true"`
 
-	metadataDeleteClusterInput `json:"-", xml:"-"`
+	metadataDeleteClusterInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteClusterInput struct {
@@ -804,10 +1183,70 @@ type DeleteClusterOutput struct {
 	// The full description of the deleted cluster.
 	Cluster *Cluster `locationName:"cluster" type:"structure"`
 
-	metadataDeleteClusterOutput `json:"-", xml:"-"`
+	metadataDeleteClusterOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteClusterOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DeleteServiceInput struct {
+	// The name of the cluster that hosts the service you want to delete.
+	Cluster *string `locationName:"cluster" type:"string"`
+
+	// The name of the service you want to delete.
+	Service *string `locationName:"service" type:"string" required:"true"`
+
+	metadataDeleteServiceInput `json:"-" xml:"-"`
+}
+
+type metadataDeleteServiceInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DeleteServiceOutput struct {
+	Service *Service `locationName:"service" type:"structure"`
+
+	metadataDeleteServiceOutput `json:"-" xml:"-"`
+}
+
+type metadataDeleteServiceOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type Deployment struct {
+	// The Unix time in seconds and milliseconds when the service was created.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"unix"`
+
+	// The most recent desired count of tasks that was specified for the service
+	// to deploy and/or maintain.
+	DesiredCount *int64 `locationName:"desiredCount" type:"integer"`
+
+	// The ID of the deployment.
+	ID *string `locationName:"id" type:"string"`
+
+	// The number of tasks in the deployment that are in the PENDING status.
+	PendingCount *int64 `locationName:"pendingCount" type:"integer"`
+
+	// The number of tasks in the deployment that are in the RUNNING status.
+	RunningCount *int64 `locationName:"runningCount" type:"integer"`
+
+	// The status of the deployment. Valid values are PRIMARY (for the most recent
+	// deployment), ACTIVE (for previous deployments that still have tasks running,
+	// but are being replaced with the PRIMARY deployment), and INACTIVE (for deployments
+	// that have been completely replaced).
+	Status *string `locationName:"status" type:"string"`
+
+	// The most recent task definition that was specified for the service to use.
+	TaskDefinition *string `locationName:"taskDefinition" type:"string"`
+
+	// The Unix time in seconds and milliseconds when the service was last updated.
+	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"unix"`
+
+	metadataDeployment `json:"-" xml:"-"`
+}
+
+type metadataDeployment struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -830,7 +1269,7 @@ type DeregisterContainerInstanceInput struct {
 	// instance.
 	Force *bool `locationName:"force" type:"boolean"`
 
-	metadataDeregisterContainerInstanceInput `json:"-", xml:"-"`
+	metadataDeregisterContainerInstanceInput `json:"-" xml:"-"`
 }
 
 type metadataDeregisterContainerInstanceInput struct {
@@ -842,7 +1281,7 @@ type DeregisterContainerInstanceOutput struct {
 	// registered with a cluster.
 	ContainerInstance *ContainerInstance `locationName:"containerInstance" type:"structure"`
 
-	metadataDeregisterContainerInstanceOutput `json:"-", xml:"-"`
+	metadataDeregisterContainerInstanceOutput `json:"-" xml:"-"`
 }
 
 type metadataDeregisterContainerInstanceOutput struct {
@@ -854,7 +1293,7 @@ type DeregisterTaskDefinitionInput struct {
 	// of the task definition that you want to deregister.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
 
-	metadataDeregisterTaskDefinitionInput `json:"-", xml:"-"`
+	metadataDeregisterTaskDefinitionInput `json:"-" xml:"-"`
 }
 
 type metadataDeregisterTaskDefinitionInput struct {
@@ -865,7 +1304,7 @@ type DeregisterTaskDefinitionOutput struct {
 	// The full description of the deregistered task.
 	TaskDefinition *TaskDefinition `locationName:"taskDefinition" type:"structure"`
 
-	metadataDeregisterTaskDefinitionOutput `json:"-", xml:"-"`
+	metadataDeregisterTaskDefinitionOutput `json:"-" xml:"-"`
 }
 
 type metadataDeregisterTaskDefinitionOutput struct {
@@ -877,7 +1316,7 @@ type DescribeClustersInput struct {
 	// (ARN) entries. If you do not specify a cluster, the default cluster is assumed.
 	Clusters []*string `locationName:"clusters" type:"list"`
 
-	metadataDescribeClustersInput `json:"-", xml:"-"`
+	metadataDescribeClustersInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeClustersInput struct {
@@ -890,7 +1329,7 @@ type DescribeClustersOutput struct {
 
 	Failures []*Failure `locationName:"failures" type:"list"`
 
-	metadataDescribeClustersOutput `json:"-", xml:"-"`
+	metadataDescribeClustersOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeClustersOutput struct {
@@ -907,7 +1346,7 @@ type DescribeContainerInstancesInput struct {
 	// Name (ARN) entries.
 	ContainerInstances []*string `locationName:"containerInstances" type:"list" required:"true"`
 
-	metadataDescribeContainerInstancesInput `json:"-", xml:"-"`
+	metadataDescribeContainerInstancesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeContainerInstancesInput struct {
@@ -920,10 +1359,38 @@ type DescribeContainerInstancesOutput struct {
 
 	Failures []*Failure `locationName:"failures" type:"list"`
 
-	metadataDescribeContainerInstancesOutput `json:"-", xml:"-"`
+	metadataDescribeContainerInstancesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeContainerInstancesOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DescribeServicesInput struct {
+	// The name of the cluster that hosts the service you want to describe.
+	Cluster *string `locationName:"cluster" type:"string"`
+
+	// A list of services you want to describe.
+	Services []*string `locationName:"services" type:"list" required:"true"`
+
+	metadataDescribeServicesInput `json:"-" xml:"-"`
+}
+
+type metadataDescribeServicesInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DescribeServicesOutput struct {
+	// Any failures associated with the call.
+	Failures []*Failure `locationName:"failures" type:"list"`
+
+	// The list of services described.
+	Services []*Service `locationName:"services" type:"list"`
+
+	metadataDescribeServicesOutput `json:"-" xml:"-"`
+}
+
+type metadataDescribeServicesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -933,7 +1400,7 @@ type DescribeTaskDefinitionInput struct {
 	// of the task definition that you want to describe.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
 
-	metadataDescribeTaskDefinitionInput `json:"-", xml:"-"`
+	metadataDescribeTaskDefinitionInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTaskDefinitionInput struct {
@@ -944,7 +1411,7 @@ type DescribeTaskDefinitionOutput struct {
 	// The full task definition description.
 	TaskDefinition *TaskDefinition `locationName:"taskDefinition" type:"structure"`
 
-	metadataDescribeTaskDefinitionOutput `json:"-", xml:"-"`
+	metadataDescribeTaskDefinitionOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTaskDefinitionOutput struct {
@@ -960,7 +1427,7 @@ type DescribeTasksInput struct {
 	// A space-separated list of task UUIDs or full Amazon Resource Name (ARN) entries.
 	Tasks []*string `locationName:"tasks" type:"list" required:"true"`
 
-	metadataDescribeTasksInput `json:"-", xml:"-"`
+	metadataDescribeTasksInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTasksInput struct {
@@ -973,7 +1440,7 @@ type DescribeTasksOutput struct {
 	// The list of tasks.
 	Tasks []*Task `locationName:"tasks" type:"list"`
 
-	metadataDescribeTasksOutput `json:"-", xml:"-"`
+	metadataDescribeTasksOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTasksOutput struct {
@@ -991,7 +1458,7 @@ type DiscoverPollEndpointInput struct {
 	// example, arn:aws:ecs:region:aws_account_id:container-instance/container_instance_UUID.
 	ContainerInstance *string `locationName:"containerInstance" type:"string"`
 
-	metadataDiscoverPollEndpointInput `json:"-", xml:"-"`
+	metadataDiscoverPollEndpointInput `json:"-" xml:"-"`
 }
 
 type metadataDiscoverPollEndpointInput struct {
@@ -1002,7 +1469,7 @@ type DiscoverPollEndpointOutput struct {
 	// The endpoint for the Amazon ECS agent to poll.
 	Endpoint *string `locationName:"endpoint" type:"string"`
 
-	metadataDiscoverPollEndpointOutput `json:"-", xml:"-"`
+	metadataDiscoverPollEndpointOutput `json:"-" xml:"-"`
 }
 
 type metadataDiscoverPollEndpointOutput struct {
@@ -1016,7 +1483,7 @@ type Failure struct {
 	// The reason for the failure.
 	Reason *string `locationName:"reason" type:"string"`
 
-	metadataFailure `json:"-", xml:"-"`
+	metadataFailure `json:"-" xml:"-"`
 }
 
 type metadataFailure struct {
@@ -1029,7 +1496,7 @@ type HostVolumeProperties struct {
 	// for you.
 	SourcePath *string `locationName:"sourcePath" type:"string"`
 
-	metadataHostVolumeProperties `json:"-", xml:"-"`
+	metadataHostVolumeProperties `json:"-" xml:"-"`
 }
 
 type metadataHostVolumeProperties struct {
@@ -1043,7 +1510,7 @@ type KeyValuePair struct {
 	// The value of the key value pair.
 	Value *string `locationName:"value" type:"string"`
 
-	metadataKeyValuePair `json:"-", xml:"-"`
+	metadataKeyValuePair `json:"-" xml:"-"`
 }
 
 type metadataKeyValuePair struct {
@@ -1066,7 +1533,7 @@ type ListClustersInput struct {
 	// nextToken value. This value is null when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListClustersInput `json:"-", xml:"-"`
+	metadataListClustersInput `json:"-" xml:"-"`
 }
 
 type metadataListClustersInput struct {
@@ -1084,7 +1551,7 @@ type ListClustersOutput struct {
 	// more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListClustersOutput `json:"-", xml:"-"`
+	metadataListClustersOutput `json:"-" xml:"-"`
 }
 
 type metadataListClustersOutput struct {
@@ -1114,7 +1581,7 @@ type ListContainerInstancesInput struct {
 	// to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListContainerInstancesInput `json:"-", xml:"-"`
+	metadataListContainerInstancesInput `json:"-" xml:"-"`
 }
 
 type metadataListContainerInstancesInput struct {
@@ -1132,10 +1599,56 @@ type ListContainerInstancesOutput struct {
 	// when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListContainerInstancesOutput `json:"-", xml:"-"`
+	metadataListContainerInstancesOutput `json:"-" xml:"-"`
 }
 
 type metadataListContainerInstancesOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type ListServicesInput struct {
+	// The short name or full Amazon Resource Name (ARN) of the cluster that hosts
+	// the services you want to list. If you do not specify a cluster, the default
+	// cluster is assumed..
+	Cluster *string `locationName:"cluster" type:"string"`
+
+	// The maximum number of container instance results returned by ListServices
+	// in paginated output. When this parameter is used, ListServices only returns
+	// maxResults results in a single page along with a nextToken response element.
+	// The remaining results of the initial request can be seen by sending another
+	// ListServices request with the returned nextToken value. This value can be
+	// between 1 and 100. If this parameter is not used, then ListServices returns
+	// up to 100 results and a nextToken value if applicable.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// The nextToken value returned from a previous paginated ListServices request
+	// where maxResults was used and the results exceeded the value of that parameter.
+	// Pagination continues from the end of the previous results that returned the
+	// nextToken value. This value is null when there are no more results to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	metadataListServicesInput `json:"-" xml:"-"`
+}
+
+type metadataListServicesInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type ListServicesOutput struct {
+	// The nextToken value to include in a future ListServices request. When the
+	// results of a ListServices request exceed maxResults, this value can be used
+	// to retrieve the next page of results. This value is null when there are no
+	// more results to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The list of full Amazon Resource Name (ARN) entries for each service associated
+	// with the specified cluster.
+	ServiceARNs []*string `locationName:"serviceArns" type:"list"`
+
+	metadataListServicesOutput `json:"-" xml:"-"`
+}
+
+type metadataListServicesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1162,7 +1675,7 @@ type ListTaskDefinitionFamiliesInput struct {
 	// to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListTaskDefinitionFamiliesInput `json:"-", xml:"-"`
+	metadataListTaskDefinitionFamiliesInput `json:"-" xml:"-"`
 }
 
 type metadataListTaskDefinitionFamiliesInput struct {
@@ -1180,7 +1693,7 @@ type ListTaskDefinitionFamiliesOutput struct {
 	// null when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListTaskDefinitionFamiliesOutput `json:"-", xml:"-"`
+	metadataListTaskDefinitionFamiliesOutput `json:"-" xml:"-"`
 }
 
 type metadataListTaskDefinitionFamiliesOutput struct {
@@ -1209,7 +1722,7 @@ type ListTaskDefinitionsInput struct {
 	// to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListTaskDefinitionsInput `json:"-", xml:"-"`
+	metadataListTaskDefinitionsInput `json:"-" xml:"-"`
 }
 
 type metadataListTaskDefinitionsInput struct {
@@ -1227,7 +1740,7 @@ type ListTaskDefinitionsOutput struct {
 	// request.
 	TaskDefinitionARNs []*string `locationName:"taskDefinitionArns" type:"list"`
 
-	metadataListTaskDefinitionsOutput `json:"-", xml:"-"`
+	metadataListTaskDefinitionsOutput `json:"-" xml:"-"`
 }
 
 type metadataListTaskDefinitionsOutput struct {
@@ -1265,7 +1778,17 @@ type ListTasksInput struct {
 	// nextToken value. This value is null when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataListTasksInput `json:"-", xml:"-"`
+	// The name of the service that you want to filter the ListTasks results with.
+	// Specifying a serviceName will limit the results to tasks that belong to that
+	// service.
+	ServiceName *string `locationName:"serviceName" type:"string"`
+
+	// The startedBy value that you want to filter the task results with. Specifying
+	// a startedBy value will limit the results to tasks that were started with
+	// that value.
+	StartedBy *string `locationName:"startedBy" type:"string"`
+
+	metadataListTasksInput `json:"-" xml:"-"`
 }
 
 type metadataListTasksInput struct {
@@ -1282,10 +1805,27 @@ type ListTasksOutput struct {
 	// The list of task Amazon Resource Name (ARN) entries for the ListTasks request.
 	TaskARNs []*string `locationName:"taskArns" type:"list"`
 
-	metadataListTasksOutput `json:"-", xml:"-"`
+	metadataListTasksOutput `json:"-" xml:"-"`
 }
 
 type metadataListTasksOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type LoadBalancer struct {
+	// The name of the container to associate with the load balancer.
+	ContainerName *string `locationName:"containerName" type:"string"`
+
+	// The port on the container to associate with the load balancer.
+	ContainerPort *int64 `locationName:"containerPort" type:"integer"`
+
+	// The name of the load balancer.
+	LoadBalancerName *string `locationName:"loadBalancerName" type:"string"`
+
+	metadataLoadBalancer `json:"-" xml:"-"`
+}
+
+type metadataLoadBalancer struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1301,7 +1841,7 @@ type MountPoint struct {
 	// The name of the volume to mount.
 	SourceVolume *string `locationName:"sourceVolume" type:"string"`
 
-	metadataMountPoint `json:"-", xml:"-"`
+	metadataMountPoint `json:"-" xml:"-"`
 }
 
 type metadataMountPoint struct {
@@ -1318,7 +1858,7 @@ type NetworkBinding struct {
 	// The port number on the host that is used with the network binding.
 	HostPort *int64 `locationName:"hostPort" type:"integer"`
 
-	metadataNetworkBinding `json:"-", xml:"-"`
+	metadataNetworkBinding `json:"-" xml:"-"`
 }
 
 type metadataNetworkBinding struct {
@@ -1351,7 +1891,7 @@ type PortMapping struct {
 	// reserved ports (automatically assigned ports do not count toward this limit).
 	HostPort *int64 `locationName:"hostPort" type:"integer"`
 
-	metadataPortMapping `json:"-", xml:"-"`
+	metadataPortMapping `json:"-" xml:"-"`
 }
 
 type metadataPortMapping struct {
@@ -1370,7 +1910,9 @@ type RegisterContainerInstanceInput struct {
 
 	TotalResources []*Resource `locationName:"totalResources" type:"list"`
 
-	metadataRegisterContainerInstanceInput `json:"-", xml:"-"`
+	VersionInfo *VersionInfo `locationName:"versionInfo" type:"structure"`
+
+	metadataRegisterContainerInstanceInput `json:"-" xml:"-"`
 }
 
 type metadataRegisterContainerInstanceInput struct {
@@ -1382,7 +1924,7 @@ type RegisterContainerInstanceOutput struct {
 	// registered with a cluster.
 	ContainerInstance *ContainerInstance `locationName:"containerInstance" type:"structure"`
 
-	metadataRegisterContainerInstanceOutput `json:"-", xml:"-"`
+	metadataRegisterContainerInstanceOutput `json:"-" xml:"-"`
 }
 
 type metadataRegisterContainerInstanceOutput struct {
@@ -1396,14 +1938,15 @@ type RegisterTaskDefinitionInput struct {
 
 	// You must specify a family for a task definition, which allows you to track
 	// multiple versions of the same task definition. You can think of the family
-	// as a name for your task definition.
+	// as a name for your task definition. Up to 255 letters (uppercase and lowercase),
+	// numbers, hyphens, and underscores are allowed.
 	Family *string `locationName:"family" type:"string" required:"true"`
 
 	// A list of volume definitions in JSON format that containers in your task
 	// may use.
 	Volumes []*Volume `locationName:"volumes" type:"list"`
 
-	metadataRegisterTaskDefinitionInput `json:"-", xml:"-"`
+	metadataRegisterTaskDefinitionInput `json:"-" xml:"-"`
 }
 
 type metadataRegisterTaskDefinitionInput struct {
@@ -1413,7 +1956,7 @@ type metadataRegisterTaskDefinitionInput struct {
 type RegisterTaskDefinitionOutput struct {
 	TaskDefinition *TaskDefinition `locationName:"taskDefinition" type:"structure"`
 
-	metadataRegisterTaskDefinitionOutput `json:"-", xml:"-"`
+	metadataRegisterTaskDefinitionOutput `json:"-" xml:"-"`
 }
 
 type metadataRegisterTaskDefinitionOutput struct {
@@ -1443,7 +1986,7 @@ type Resource struct {
 	// The type of the resource, such as INTEGER, DOUBLE, LONG, or STRINGSET.
 	Type *string `locationName:"type" type:"string"`
 
-	metadataResource `json:"-", xml:"-"`
+	metadataResource `json:"-" xml:"-"`
 }
 
 type metadataResource struct {
@@ -1456,17 +1999,33 @@ type RunTaskInput struct {
 	// is assumed..
 	Cluster *string `locationName:"cluster" type:"string"`
 
-	// The number of instances of the specified task that you would like to place
-	// on your cluster.
+	// The number of instantiations of the specified task that you would like to
+	// place on your cluster.
+	//
+	//  The count parameter is limited to 10 tasks per call.
 	Count *int64 `locationName:"count" type:"integer"`
 
+	// A list of container overrides in JSON format that specify the name of a container
+	// in the specified task definition and the command it should run instead of
+	// its default. A total of 8192 characters are allowed for overrides. This limit
+	// includes the JSON formatting characters of the override structure.
 	Overrides *TaskOverride `locationName:"overrides" type:"structure"`
+
+	// An optional tag specified when a task is started. For example if you automatically
+	// trigger a task to run a batch process job, you could apply a unique identifier
+	// for that job to your task with the startedBy parameter. You can then identify
+	// which tasks belong to that job by filtering the results of a ListTasks call
+	// with the startedBy value.
+	//
+	// If a task is started by an Amazon ECS service, then the startedBy parameter
+	// contains the deployment ID of the service that starts it.
+	StartedBy *string `locationName:"startedBy" type:"string"`
 
 	// The family and revision (family:revision) or full Amazon Resource Name (ARN)
 	// of the task definition that you want to run.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
 
-	metadataRunTaskInput `json:"-", xml:"-"`
+	metadataRunTaskInput `json:"-" xml:"-"`
 }
 
 type metadataRunTaskInput struct {
@@ -1481,10 +2040,83 @@ type RunTaskOutput struct {
 	// placed on your cluster will be described here.
 	Tasks []*Task `locationName:"tasks" type:"list"`
 
-	metadataRunTaskOutput `json:"-", xml:"-"`
+	metadataRunTaskOutput `json:"-" xml:"-"`
 }
 
 type metadataRunTaskOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type Service struct {
+	// The Amazon Resource Name (ARN) of the of the cluster that hosts the service.
+	ClusterARN *string `locationName:"clusterArn" type:"string"`
+
+	// The current state of deployments for the service.
+	Deployments []*Deployment `locationName:"deployments" type:"list"`
+
+	// The desired number of instantiations of the task definition to keep running
+	// on the service. This value is specified when the service is created with
+	// CreateService, and it can be modified with UpdateService.
+	DesiredCount *int64 `locationName:"desiredCount" type:"integer"`
+
+	// The event stream for your service. A maximum of 100 of the latest events
+	// are displayed.
+	Events []*ServiceEvent `locationName:"events" type:"list"`
+
+	// A list of load balancer objects, containing the load balancer name, the container
+	// name (as it appears in a container definition), and the container port to
+	// access from the load balancer.
+	LoadBalancers []*LoadBalancer `locationName:"loadBalancers" type:"list"`
+
+	// The number of tasks in the cluster that are in the PENDING state.
+	PendingCount *int64 `locationName:"pendingCount" type:"integer"`
+
+	// The Amazon Resource Name (ARN) of the IAM role associated with the service
+	// that allows the Amazon ECS container agent to register container instances
+	// with a load balancer.
+	RoleARN *string `locationName:"roleArn" type:"string"`
+
+	// The number of tasks in the cluster that are in the RUNNING state.
+	RunningCount *int64 `locationName:"runningCount" type:"integer"`
+
+	// The Amazon Resource Name (ARN) that identifies the service. The ARN contains
+	// the arn:aws:ecs namespace, followed by the region of the service, the AWS
+	// account ID of the service owner, the service namespace, and then the service
+	// name. For example, arn:aws:ecs:region:012345678910:service/my-service.
+	ServiceARN *string `locationName:"serviceArn" type:"string"`
+
+	// A user-generated string that you can use to identify your service.
+	ServiceName *string `locationName:"serviceName" type:"string"`
+
+	// The status of the service. The valid values are ACTIVE, DRAINING, or INACTIVE.
+	Status *string `locationName:"status" type:"string"`
+
+	// The task definition to use for tasks in the service. This value is specified
+	// when the service is created with CreateService, and it can be modified with
+	// UpdateService.
+	TaskDefinition *string `locationName:"taskDefinition" type:"string"`
+
+	metadataService `json:"-" xml:"-"`
+}
+
+type metadataService struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type ServiceEvent struct {
+	// The Unix time in seconds and milliseconds when the event was triggered.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"unix"`
+
+	// The ID string of the event.
+	ID *string `locationName:"id" type:"string"`
+
+	// The event message.
+	Message *string `locationName:"message" type:"string"`
+
+	metadataServiceEvent `json:"-" xml:"-"`
+}
+
+type metadataServiceEvent struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1496,15 +2128,31 @@ type StartTaskInput struct {
 
 	// The container instance UUIDs or full Amazon Resource Name (ARN) entries for
 	// the container instances on which you would like to place your task.
+	//
+	//  The list of container instances to start tasks on is limited to 10.
 	ContainerInstances []*string `locationName:"containerInstances" type:"list" required:"true"`
 
+	// A list of container overrides in JSON format that specify the name of a container
+	// in the specified task definition and the command it should run instead of
+	// its default. A total of 8192 characters are allowed for overrides. This limit
+	// includes the JSON formatting characters of the override structure.
 	Overrides *TaskOverride `locationName:"overrides" type:"structure"`
+
+	// An optional tag specified when a task is started. For example if you automatically
+	// trigger a task to run a batch process job, you could apply a unique identifier
+	// for that job to your task with the startedBy parameter. You can then identify
+	// which tasks belong to that job by filtering the results of a ListTasks call
+	// with the startedBy value.
+	//
+	// If a task is started by an Amazon ECS service, then the startedBy parameter
+	// contains the deployment ID of the service that starts it.
+	StartedBy *string `locationName:"startedBy" type:"string"`
 
 	// The family and revision (family:revision) or full Amazon Resource Name (ARN)
 	// of the task definition that you want to start.
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
 
-	metadataStartTaskInput `json:"-", xml:"-"`
+	metadataStartTaskInput `json:"-" xml:"-"`
 }
 
 type metadataStartTaskInput struct {
@@ -1519,7 +2167,7 @@ type StartTaskOutput struct {
 	// placed on your container instances will be described here.
 	Tasks []*Task `locationName:"tasks" type:"list"`
 
-	metadataStartTaskOutput `json:"-", xml:"-"`
+	metadataStartTaskOutput `json:"-" xml:"-"`
 }
 
 type metadataStartTaskOutput struct {
@@ -1536,7 +2184,7 @@ type StopTaskInput struct {
 	// like to stop.
 	Task *string `locationName:"task" type:"string" required:"true"`
 
-	metadataStopTaskInput `json:"-", xml:"-"`
+	metadataStopTaskInput `json:"-" xml:"-"`
 }
 
 type metadataStopTaskInput struct {
@@ -1546,7 +2194,7 @@ type metadataStopTaskInput struct {
 type StopTaskOutput struct {
 	Task *Task `locationName:"task" type:"structure"`
 
-	metadataStopTaskOutput `json:"-", xml:"-"`
+	metadataStopTaskOutput `json:"-" xml:"-"`
 }
 
 type metadataStopTaskOutput struct {
@@ -1577,7 +2225,7 @@ type SubmitContainerStateChangeInput struct {
 	// container.
 	Task *string `locationName:"task" type:"string"`
 
-	metadataSubmitContainerStateChangeInput `json:"-", xml:"-"`
+	metadataSubmitContainerStateChangeInput `json:"-" xml:"-"`
 }
 
 type metadataSubmitContainerStateChangeInput struct {
@@ -1588,7 +2236,7 @@ type SubmitContainerStateChangeOutput struct {
 	// Acknowledgement of the state change.
 	Acknowledgment *string `locationName:"acknowledgment" type:"string"`
 
-	metadataSubmitContainerStateChangeOutput `json:"-", xml:"-"`
+	metadataSubmitContainerStateChangeOutput `json:"-" xml:"-"`
 }
 
 type metadataSubmitContainerStateChangeOutput struct {
@@ -1610,7 +2258,7 @@ type SubmitTaskStateChangeInput struct {
 	// change request.
 	Task *string `locationName:"task" type:"string"`
 
-	metadataSubmitTaskStateChangeInput `json:"-", xml:"-"`
+	metadataSubmitTaskStateChangeInput `json:"-" xml:"-"`
 }
 
 type metadataSubmitTaskStateChangeInput struct {
@@ -1621,7 +2269,7 @@ type SubmitTaskStateChangeOutput struct {
 	// Acknowledgement of the state change.
 	Acknowledgment *string `locationName:"acknowledgment" type:"string"`
 
-	metadataSubmitTaskStateChangeOutput `json:"-", xml:"-"`
+	metadataSubmitTaskStateChangeOutput `json:"-" xml:"-"`
 }
 
 type metadataSubmitTaskStateChangeOutput struct {
@@ -1647,6 +2295,11 @@ type Task struct {
 	// One or more container overrides.
 	Overrides *TaskOverride `locationName:"overrides" type:"structure"`
 
+	// The tag specified when a task is started. If the task is started by an Amazon
+	// ECS service, then the startedBy parameter contains the deployment ID of the
+	// service that starts it.
+	StartedBy *string `locationName:"startedBy" type:"string"`
+
 	// The Amazon Resource Name (ARN) of the task.
 	TaskARN *string `locationName:"taskArn" type:"string"`
 
@@ -1654,7 +2307,7 @@ type Task struct {
 	// the task.
 	TaskDefinitionARN *string `locationName:"taskDefinitionArn" type:"string"`
 
-	metadataTask `json:"-", xml:"-"`
+	metadataTask `json:"-" xml:"-"`
 }
 
 type metadataTask struct {
@@ -1687,21 +2340,79 @@ type TaskDefinition struct {
 	// in the Amazon EC2 Container Service Developer Guide.
 	Volumes []*Volume `locationName:"volumes" type:"list"`
 
-	metadataTaskDefinition `json:"-", xml:"-"`
+	metadataTaskDefinition `json:"-" xml:"-"`
 }
 
 type metadataTaskDefinition struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// A list of container overrides in JSON format that specify the name of a container
+// in a task definition and the command it should run instead of its default.
 type TaskOverride struct {
-	// One or more container overrides to send when running a task.
+	// One or more container overrides sent to a task.
 	ContainerOverrides []*ContainerOverride `locationName:"containerOverrides" type:"list"`
 
-	metadataTaskOverride `json:"-", xml:"-"`
+	metadataTaskOverride `json:"-" xml:"-"`
 }
 
 type metadataTaskOverride struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type UpdateServiceInput struct {
+	// The short name or full Amazon Resource Name (ARN) of the cluster that your
+	// service is running on. If you do not specify a cluster, the default cluster
+	// is assumed.
+	Cluster *string `locationName:"cluster" type:"string"`
+
+	// The number of instantiations of the task that you would like to place and
+	// keep running in your service.
+	DesiredCount *int64 `locationName:"desiredCount" type:"integer"`
+
+	// The name of the service that you want to update.
+	Service *string `locationName:"service" type:"string" required:"true"`
+
+	// The family and revision (family:revision) or full Amazon Resource Name (ARN)
+	// of the task definition that you want to run in your service. If you modify
+	// the task definition with UpdateService, Amazon ECS spawns a task with the
+	// new version of the task definition and then stops an old task after the new
+	// version is running.
+	TaskDefinition *string `locationName:"taskDefinition" type:"string"`
+
+	metadataUpdateServiceInput `json:"-" xml:"-"`
+}
+
+type metadataUpdateServiceInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type UpdateServiceOutput struct {
+	// The full description of your service following the update call.
+	Service *Service `locationName:"service" type:"structure"`
+
+	metadataUpdateServiceOutput `json:"-" xml:"-"`
+}
+
+type metadataUpdateServiceOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type VersionInfo struct {
+	// The Git commit hash for the Amazon ECS container agent build on the amazon-ecs-agent
+	//  (https://github.com/aws/amazon-ecs-agent/commits/master) GitHub repository.
+	AgentHash *string `locationName:"agentHash" type:"string"`
+
+	// The version number of the Amazon ECS container agent.
+	AgentVersion *string `locationName:"agentVersion" type:"string"`
+
+	// The Docker version running on the container instance.
+	DockerVersion *string `locationName:"dockerVersion" type:"string"`
+
+	metadataVersionInfo `json:"-" xml:"-"`
+}
+
+type metadataVersionInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1715,7 +2426,7 @@ type Volume struct {
 	// of container definition mountPoints.
 	Name *string `locationName:"name" type:"string"`
 
-	metadataVolume `json:"-", xml:"-"`
+	metadataVolume `json:"-" xml:"-"`
 }
 
 type metadataVolume struct {
@@ -1731,7 +2442,7 @@ type VolumeFrom struct {
 	// The name of the container to mount volumes from.
 	SourceContainer *string `locationName:"sourceContainer" type:"string"`
 
-	metadataVolumeFrom `json:"-", xml:"-"`
+	metadataVolumeFrom `json:"-" xml:"-"`
 }
 
 type metadataVolumeFrom struct {

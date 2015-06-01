@@ -4,36 +4,85 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"time"
+
+	"github.com/awslabs/aws-sdk-go/aws/credentials"
 )
 
-const DEFAULT_RETRIES = -1
+// DefaultChainCredentials is a Credentials which will find the first available
+// credentials Value from the list of Providers.
+//
+// This should be used in the default case. Once the type of credentials are
+// known switching to the specific Credentials will be more efficient.
+var DefaultChainCredentials = credentials.NewChainCredentials(
+	[]credentials.Provider{
+		&credentials.EnvProvider{},
+		&credentials.SharedCredentialsProvider{Filename: "", Profile: ""},
+		&credentials.EC2RoleProvider{ExpiryWindow: 5 * time.Minute},
+	})
 
+// The default number of retries for a service. The value of -1 indicates that
+// the service specific retry default will be used.
+const DefaultRetries = -1
+
+// DefaultConfig is the default all service configuration will be based off of.
 var DefaultConfig = &Config{
-	Credentials:            DefaultCreds(),
-	Endpoint:               "",
-	Region:                 os.Getenv("AWS_REGION"),
-	DisableSSL:             false,
-	ManualSend:             false,
-	HTTPClient:             http.DefaultClient,
-	LogLevel:               0,
-	Logger:                 os.Stdout,
-	MaxRetries:             DEFAULT_RETRIES,
-	DisableParamValidation: false,
+	Credentials:             DefaultChainCredentials,
+	Endpoint:                "",
+	Region:                  os.Getenv("AWS_REGION"),
+	DisableSSL:              false,
+	ManualSend:              false,
+	HTTPClient:              http.DefaultClient,
+	LogHTTPBody:             false,
+	LogLevel:                0,
+	Logger:                  os.Stdout,
+	MaxRetries:              DefaultRetries,
+	DisableParamValidation:  false,
+	DisableComputeChecksums: false,
+	S3ForcePathStyle:        false,
 }
 
+// A Config provides service configuration
 type Config struct {
-	Credentials            CredentialsProvider
-	Endpoint               string
-	Region                 string
-	DisableSSL             bool
-	ManualSend             bool
-	HTTPClient             *http.Client
-	LogLevel               uint
-	Logger                 io.Writer
-	MaxRetries             int
-	DisableParamValidation bool
+	Credentials             *credentials.Credentials
+	Endpoint                string
+	Region                  string
+	DisableSSL              bool
+	ManualSend              bool
+	HTTPClient              *http.Client
+	LogHTTPBody             bool
+	LogLevel                uint
+	Logger                  io.Writer
+	MaxRetries              int
+	DisableParamValidation  bool
+	DisableComputeChecksums bool
+	S3ForcePathStyle        bool
 }
 
+// Copy will return a shallow copy of the Config object.
+func (c Config) Copy() Config {
+	dst := Config{}
+	dst.Credentials = c.Credentials
+	dst.Endpoint = c.Endpoint
+	dst.Region = c.Region
+	dst.DisableSSL = c.DisableSSL
+	dst.ManualSend = c.ManualSend
+	dst.HTTPClient = c.HTTPClient
+	dst.LogLevel = c.LogLevel
+	dst.Logger = c.Logger
+	dst.MaxRetries = c.MaxRetries
+	dst.DisableParamValidation = c.DisableParamValidation
+	dst.DisableComputeChecksums = c.DisableComputeChecksums
+	dst.S3ForcePathStyle = c.S3ForcePathStyle
+
+	return dst
+}
+
+// Merge merges the newcfg attribute values into this Config. Each attribute
+// will be merged into this config if the newcfg attribute's value is non-zero.
+// Due to this, newcfg attributes with zero values cannot be merged in. For
+// example bool attributes cannot be cleared using Merge, and must be explicitly
+// set on the Config structure.
 func (c Config) Merge(newcfg *Config) *Config {
 	cfg := Config{}
 
@@ -73,6 +122,12 @@ func (c Config) Merge(newcfg *Config) *Config {
 		cfg.HTTPClient = c.HTTPClient
 	}
 
+	if newcfg != nil && newcfg.LogHTTPBody {
+		cfg.LogHTTPBody = newcfg.LogHTTPBody
+	} else {
+		cfg.LogHTTPBody = c.LogHTTPBody
+	}
+
 	if newcfg != nil && newcfg.LogLevel != 0 {
 		cfg.LogLevel = newcfg.LogLevel
 	} else {
@@ -85,7 +140,7 @@ func (c Config) Merge(newcfg *Config) *Config {
 		cfg.Logger = c.Logger
 	}
 
-	if newcfg != nil && newcfg.MaxRetries != DEFAULT_RETRIES {
+	if newcfg != nil && newcfg.MaxRetries != DefaultRetries {
 		cfg.MaxRetries = newcfg.MaxRetries
 	} else {
 		cfg.MaxRetries = c.MaxRetries
@@ -95,6 +150,18 @@ func (c Config) Merge(newcfg *Config) *Config {
 		cfg.DisableParamValidation = newcfg.DisableParamValidation
 	} else {
 		cfg.DisableParamValidation = c.DisableParamValidation
+	}
+
+	if newcfg != nil && newcfg.DisableComputeChecksums {
+		cfg.DisableComputeChecksums = newcfg.DisableComputeChecksums
+	} else {
+		cfg.DisableComputeChecksums = c.DisableComputeChecksums
+	}
+
+	if newcfg != nil && newcfg.S3ForcePathStyle {
+		cfg.S3ForcePathStyle = newcfg.S3ForcePathStyle
+	} else {
+		cfg.S3ForcePathStyle = c.S3ForcePathStyle
 	}
 
 	return &cfg

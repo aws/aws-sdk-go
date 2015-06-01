@@ -4,19 +4,29 @@
 package cloudsearch
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // BuildSuggestersRequest generates a request for the BuildSuggesters operation.
 func (c *CloudSearch) BuildSuggestersRequest(input *BuildSuggestersInput) (req *aws.Request, output *BuildSuggestersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opBuildSuggesters == nil {
 		opBuildSuggesters = &aws.Operation{
 			Name:       "BuildSuggesters",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &BuildSuggestersInput{}
 	}
 
 	req = c.newRequest(opBuildSuggesters, input, output)
@@ -28,23 +38,29 @@ func (c *CloudSearch) BuildSuggestersRequest(input *BuildSuggestersInput) (req *
 // Indexes the search suggestions. For more information, see Configuring Suggesters
 // (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-suggestions.html#configuring-suggesters)
 // in the Amazon CloudSearch Developer Guide.
-func (c *CloudSearch) BuildSuggesters(input *BuildSuggestersInput) (output *BuildSuggestersOutput, err error) {
+func (c *CloudSearch) BuildSuggesters(input *BuildSuggestersInput) (*BuildSuggestersOutput, error) {
 	req, out := c.BuildSuggestersRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opBuildSuggesters *aws.Operation
 
 // CreateDomainRequest generates a request for the CreateDomain operation.
 func (c *CloudSearch) CreateDomainRequest(input *CreateDomainInput) (req *aws.Request, output *CreateDomainOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateDomain == nil {
 		opCreateDomain = &aws.Operation{
 			Name:       "CreateDomain",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateDomainInput{}
 	}
 
 	req = c.newRequest(opCreateDomain, input, output)
@@ -56,23 +72,29 @@ func (c *CloudSearch) CreateDomainRequest(input *CreateDomainInput) (req *aws.Re
 // Creates a new search domain. For more information, see Creating a Search
 // Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/creating-domains.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
-func (c *CloudSearch) CreateDomain(input *CreateDomainInput) (output *CreateDomainOutput, err error) {
+func (c *CloudSearch) CreateDomain(input *CreateDomainInput) (*CreateDomainOutput, error) {
 	req, out := c.CreateDomainRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateDomain *aws.Operation
 
 // DefineAnalysisSchemeRequest generates a request for the DefineAnalysisScheme operation.
 func (c *CloudSearch) DefineAnalysisSchemeRequest(input *DefineAnalysisSchemeInput) (req *aws.Request, output *DefineAnalysisSchemeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDefineAnalysisScheme == nil {
 		opDefineAnalysisScheme = &aws.Operation{
 			Name:       "DefineAnalysisScheme",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DefineAnalysisSchemeInput{}
 	}
 
 	req = c.newRequest(opDefineAnalysisScheme, input, output)
@@ -85,23 +107,29 @@ func (c *CloudSearch) DefineAnalysisSchemeRequest(input *DefineAnalysisSchemeInp
 // field to define language-specific text processing options. For more information,
 // see Configuring Analysis Schemes (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-analysis-schemes.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
-func (c *CloudSearch) DefineAnalysisScheme(input *DefineAnalysisSchemeInput) (output *DefineAnalysisSchemeOutput, err error) {
+func (c *CloudSearch) DefineAnalysisScheme(input *DefineAnalysisSchemeInput) (*DefineAnalysisSchemeOutput, error) {
 	req, out := c.DefineAnalysisSchemeRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDefineAnalysisScheme *aws.Operation
 
 // DefineExpressionRequest generates a request for the DefineExpression operation.
 func (c *CloudSearch) DefineExpressionRequest(input *DefineExpressionInput) (req *aws.Request, output *DefineExpressionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDefineExpression == nil {
 		opDefineExpression = &aws.Operation{
 			Name:       "DefineExpression",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DefineExpressionInput{}
 	}
 
 	req = c.newRequest(opDefineExpression, input, output)
@@ -114,23 +142,29 @@ func (c *CloudSearch) DefineExpressionRequest(input *DefineExpressionInput) (req
 // and modify existing ones. If the expression exists, the new configuration
 // replaces the old one. For more information, see Configuring Expressions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
-func (c *CloudSearch) DefineExpression(input *DefineExpressionInput) (output *DefineExpressionOutput, err error) {
+func (c *CloudSearch) DefineExpression(input *DefineExpressionInput) (*DefineExpressionOutput, error) {
 	req, out := c.DefineExpressionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDefineExpression *aws.Operation
 
 // DefineIndexFieldRequest generates a request for the DefineIndexField operation.
 func (c *CloudSearch) DefineIndexFieldRequest(input *DefineIndexFieldInput) (req *aws.Request, output *DefineIndexFieldOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDefineIndexField == nil {
 		opDefineIndexField = &aws.Operation{
 			Name:       "DefineIndexField",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DefineIndexFieldInput{}
 	}
 
 	req = c.newRequest(opDefineIndexField, input, output)
@@ -147,23 +181,29 @@ func (c *CloudSearch) DefineIndexFieldRequest(input *DefineIndexFieldInput) (req
 // If the field exists, the new configuration replaces the old one. For more
 // information, see Configuring Index Fields (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-index-fields.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
-func (c *CloudSearch) DefineIndexField(input *DefineIndexFieldInput) (output *DefineIndexFieldOutput, err error) {
+func (c *CloudSearch) DefineIndexField(input *DefineIndexFieldInput) (*DefineIndexFieldOutput, error) {
 	req, out := c.DefineIndexFieldRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDefineIndexField *aws.Operation
 
 // DefineSuggesterRequest generates a request for the DefineSuggester operation.
 func (c *CloudSearch) DefineSuggesterRequest(input *DefineSuggesterInput) (req *aws.Request, output *DefineSuggesterOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDefineSuggester == nil {
 		opDefineSuggester = &aws.Operation{
 			Name:       "DefineSuggester",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DefineSuggesterInput{}
 	}
 
 	req = c.newRequest(opDefineSuggester, input, output)
@@ -178,23 +218,29 @@ func (c *CloudSearch) DefineSuggesterRequest(input *DefineSuggesterInput) (req *
 // matches and a unique name for the suggester. For more information, see Getting
 // Search Suggestions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-suggestions.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
-func (c *CloudSearch) DefineSuggester(input *DefineSuggesterInput) (output *DefineSuggesterOutput, err error) {
+func (c *CloudSearch) DefineSuggester(input *DefineSuggesterInput) (*DefineSuggesterOutput, error) {
 	req, out := c.DefineSuggesterRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDefineSuggester *aws.Operation
 
 // DeleteAnalysisSchemeRequest generates a request for the DeleteAnalysisScheme operation.
 func (c *CloudSearch) DeleteAnalysisSchemeRequest(input *DeleteAnalysisSchemeInput) (req *aws.Request, output *DeleteAnalysisSchemeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteAnalysisScheme == nil {
 		opDeleteAnalysisScheme = &aws.Operation{
 			Name:       "DeleteAnalysisScheme",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteAnalysisSchemeInput{}
 	}
 
 	req = c.newRequest(opDeleteAnalysisScheme, input, output)
@@ -206,23 +252,29 @@ func (c *CloudSearch) DeleteAnalysisSchemeRequest(input *DeleteAnalysisSchemeInp
 // Deletes an analysis scheme. For more information, see Configuring Analysis
 // Schemes (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-analysis-schemes.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
-func (c *CloudSearch) DeleteAnalysisScheme(input *DeleteAnalysisSchemeInput) (output *DeleteAnalysisSchemeOutput, err error) {
+func (c *CloudSearch) DeleteAnalysisScheme(input *DeleteAnalysisSchemeInput) (*DeleteAnalysisSchemeOutput, error) {
 	req, out := c.DeleteAnalysisSchemeRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteAnalysisScheme *aws.Operation
 
 // DeleteDomainRequest generates a request for the DeleteDomain operation.
 func (c *CloudSearch) DeleteDomainRequest(input *DeleteDomainInput) (req *aws.Request, output *DeleteDomainOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteDomain == nil {
 		opDeleteDomain = &aws.Operation{
 			Name:       "DeleteDomain",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteDomainInput{}
 	}
 
 	req = c.newRequest(opDeleteDomain, input, output)
@@ -235,23 +287,29 @@ func (c *CloudSearch) DeleteDomainRequest(input *DeleteDomainInput) (req *aws.Re
 // been deleted, it cannot be recovered. For more information, see Deleting
 // a Search Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/deleting-domains.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
-func (c *CloudSearch) DeleteDomain(input *DeleteDomainInput) (output *DeleteDomainOutput, err error) {
+func (c *CloudSearch) DeleteDomain(input *DeleteDomainInput) (*DeleteDomainOutput, error) {
 	req, out := c.DeleteDomainRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteDomain *aws.Operation
 
 // DeleteExpressionRequest generates a request for the DeleteExpression operation.
 func (c *CloudSearch) DeleteExpressionRequest(input *DeleteExpressionInput) (req *aws.Request, output *DeleteExpressionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteExpression == nil {
 		opDeleteExpression = &aws.Operation{
 			Name:       "DeleteExpression",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteExpressionInput{}
 	}
 
 	req = c.newRequest(opDeleteExpression, input, output)
@@ -263,23 +321,29 @@ func (c *CloudSearch) DeleteExpressionRequest(input *DeleteExpressionInput) (req
 // Removes an Expression from the search domain. For more information, see Configuring
 // Expressions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
-func (c *CloudSearch) DeleteExpression(input *DeleteExpressionInput) (output *DeleteExpressionOutput, err error) {
+func (c *CloudSearch) DeleteExpression(input *DeleteExpressionInput) (*DeleteExpressionOutput, error) {
 	req, out := c.DeleteExpressionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteExpression *aws.Operation
 
 // DeleteIndexFieldRequest generates a request for the DeleteIndexField operation.
 func (c *CloudSearch) DeleteIndexFieldRequest(input *DeleteIndexFieldInput) (req *aws.Request, output *DeleteIndexFieldOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteIndexField == nil {
 		opDeleteIndexField = &aws.Operation{
 			Name:       "DeleteIndexField",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteIndexFieldInput{}
 	}
 
 	req = c.newRequest(opDeleteIndexField, input, output)
@@ -291,23 +355,29 @@ func (c *CloudSearch) DeleteIndexFieldRequest(input *DeleteIndexFieldInput) (req
 // Removes an IndexField from the search domain. For more information, see Configuring
 // Index Fields (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-index-fields.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
-func (c *CloudSearch) DeleteIndexField(input *DeleteIndexFieldInput) (output *DeleteIndexFieldOutput, err error) {
+func (c *CloudSearch) DeleteIndexField(input *DeleteIndexFieldInput) (*DeleteIndexFieldOutput, error) {
 	req, out := c.DeleteIndexFieldRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteIndexField *aws.Operation
 
 // DeleteSuggesterRequest generates a request for the DeleteSuggester operation.
 func (c *CloudSearch) DeleteSuggesterRequest(input *DeleteSuggesterInput) (req *aws.Request, output *DeleteSuggesterOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteSuggester == nil {
 		opDeleteSuggester = &aws.Operation{
 			Name:       "DeleteSuggester",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteSuggesterInput{}
 	}
 
 	req = c.newRequest(opDeleteSuggester, input, output)
@@ -319,23 +389,29 @@ func (c *CloudSearch) DeleteSuggesterRequest(input *DeleteSuggesterInput) (req *
 // Deletes a suggester. For more information, see Getting Search Suggestions
 // (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-suggestions.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
-func (c *CloudSearch) DeleteSuggester(input *DeleteSuggesterInput) (output *DeleteSuggesterOutput, err error) {
+func (c *CloudSearch) DeleteSuggester(input *DeleteSuggesterInput) (*DeleteSuggesterOutput, error) {
 	req, out := c.DeleteSuggesterRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteSuggester *aws.Operation
 
 // DescribeAnalysisSchemesRequest generates a request for the DescribeAnalysisSchemes operation.
 func (c *CloudSearch) DescribeAnalysisSchemesRequest(input *DescribeAnalysisSchemesInput) (req *aws.Request, output *DescribeAnalysisSchemesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAnalysisSchemes == nil {
 		opDescribeAnalysisSchemes = &aws.Operation{
 			Name:       "DescribeAnalysisSchemes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeAnalysisSchemesInput{}
 	}
 
 	req = c.newRequest(opDescribeAnalysisSchemes, input, output)
@@ -351,23 +427,29 @@ func (c *CloudSearch) DescribeAnalysisSchemesRequest(input *DescribeAnalysisSche
 // to true to show the active configuration and exclude pending changes. For
 // more information, see Configuring Analysis Schemes (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-analysis-schemes.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
-func (c *CloudSearch) DescribeAnalysisSchemes(input *DescribeAnalysisSchemesInput) (output *DescribeAnalysisSchemesOutput, err error) {
+func (c *CloudSearch) DescribeAnalysisSchemes(input *DescribeAnalysisSchemesInput) (*DescribeAnalysisSchemesOutput, error) {
 	req, out := c.DescribeAnalysisSchemesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeAnalysisSchemes *aws.Operation
 
 // DescribeAvailabilityOptionsRequest generates a request for the DescribeAvailabilityOptions operation.
 func (c *CloudSearch) DescribeAvailabilityOptionsRequest(input *DescribeAvailabilityOptionsInput) (req *aws.Request, output *DescribeAvailabilityOptionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAvailabilityOptions == nil {
 		opDescribeAvailabilityOptions = &aws.Operation{
 			Name:       "DescribeAvailabilityOptions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeAvailabilityOptionsInput{}
 	}
 
 	req = c.newRequest(opDescribeAvailabilityOptions, input, output)
@@ -381,23 +463,29 @@ func (c *CloudSearch) DescribeAvailabilityOptionsRequest(input *DescribeAvailabi
 // to show the active configuration and exclude pending changes. For more information,
 // see Configuring Availability Options (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-availability-options.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
-func (c *CloudSearch) DescribeAvailabilityOptions(input *DescribeAvailabilityOptionsInput) (output *DescribeAvailabilityOptionsOutput, err error) {
+func (c *CloudSearch) DescribeAvailabilityOptions(input *DescribeAvailabilityOptionsInput) (*DescribeAvailabilityOptionsOutput, error) {
 	req, out := c.DescribeAvailabilityOptionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeAvailabilityOptions *aws.Operation
 
 // DescribeDomainsRequest generates a request for the DescribeDomains operation.
 func (c *CloudSearch) DescribeDomainsRequest(input *DescribeDomainsInput) (req *aws.Request, output *DescribeDomainsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeDomains == nil {
 		opDescribeDomains = &aws.Operation{
 			Name:       "DescribeDomains",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeDomainsInput{}
 	}
 
 	req = c.newRequest(opDescribeDomains, input, output)
@@ -412,23 +500,29 @@ func (c *CloudSearch) DescribeDomainsRequest(input *DescribeDomainsInput) (req *
 // domain's search endpoint: q=matchall&amp;q.parser=structured&amp;size=0.
 // For more information, see Getting Information about a Search Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-domain-info.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
-func (c *CloudSearch) DescribeDomains(input *DescribeDomainsInput) (output *DescribeDomainsOutput, err error) {
+func (c *CloudSearch) DescribeDomains(input *DescribeDomainsInput) (*DescribeDomainsOutput, error) {
 	req, out := c.DescribeDomainsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeDomains *aws.Operation
 
 // DescribeExpressionsRequest generates a request for the DescribeExpressions operation.
 func (c *CloudSearch) DescribeExpressionsRequest(input *DescribeExpressionsInput) (req *aws.Request, output *DescribeExpressionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeExpressions == nil {
 		opDescribeExpressions = &aws.Operation{
 			Name:       "DescribeExpressions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeExpressionsInput{}
 	}
 
 	req = c.newRequest(opDescribeExpressions, input, output)
@@ -443,23 +537,29 @@ func (c *CloudSearch) DescribeExpressionsRequest(input *DescribeExpressionsInput
 // to show the active configuration and exclude pending changes. For more information,
 // see Configuring Expressions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
-func (c *CloudSearch) DescribeExpressions(input *DescribeExpressionsInput) (output *DescribeExpressionsOutput, err error) {
+func (c *CloudSearch) DescribeExpressions(input *DescribeExpressionsInput) (*DescribeExpressionsOutput, error) {
 	req, out := c.DescribeExpressionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeExpressions *aws.Operation
 
 // DescribeIndexFieldsRequest generates a request for the DescribeIndexFields operation.
 func (c *CloudSearch) DescribeIndexFieldsRequest(input *DescribeIndexFieldsInput) (req *aws.Request, output *DescribeIndexFieldsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeIndexFields == nil {
 		opDescribeIndexFields = &aws.Operation{
 			Name:       "DescribeIndexFields",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeIndexFieldsInput{}
 	}
 
 	req = c.newRequest(opDescribeIndexFields, input, output)
@@ -474,23 +574,29 @@ func (c *CloudSearch) DescribeIndexFieldsRequest(input *DescribeIndexFieldsInput
 // to true to show the active configuration and exclude pending changes. For
 // more information, see Getting Domain Information (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-domain-info.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
-func (c *CloudSearch) DescribeIndexFields(input *DescribeIndexFieldsInput) (output *DescribeIndexFieldsOutput, err error) {
+func (c *CloudSearch) DescribeIndexFields(input *DescribeIndexFieldsInput) (*DescribeIndexFieldsOutput, error) {
 	req, out := c.DescribeIndexFieldsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeIndexFields *aws.Operation
 
 // DescribeScalingParametersRequest generates a request for the DescribeScalingParameters operation.
 func (c *CloudSearch) DescribeScalingParametersRequest(input *DescribeScalingParametersInput) (req *aws.Request, output *DescribeScalingParametersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeScalingParameters == nil {
 		opDescribeScalingParameters = &aws.Operation{
 			Name:       "DescribeScalingParameters",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeScalingParametersInput{}
 	}
 
 	req = c.newRequest(opDescribeScalingParameters, input, output)
@@ -503,23 +609,29 @@ func (c *CloudSearch) DescribeScalingParametersRequest(input *DescribeScalingPar
 // specify the desired search instance type and replication count. For more
 // information, see Configuring Scaling Options (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-scaling-options.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
-func (c *CloudSearch) DescribeScalingParameters(input *DescribeScalingParametersInput) (output *DescribeScalingParametersOutput, err error) {
+func (c *CloudSearch) DescribeScalingParameters(input *DescribeScalingParametersInput) (*DescribeScalingParametersOutput, error) {
 	req, out := c.DescribeScalingParametersRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeScalingParameters *aws.Operation
 
 // DescribeServiceAccessPoliciesRequest generates a request for the DescribeServiceAccessPolicies operation.
 func (c *CloudSearch) DescribeServiceAccessPoliciesRequest(input *DescribeServiceAccessPoliciesInput) (req *aws.Request, output *DescribeServiceAccessPoliciesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeServiceAccessPolicies == nil {
 		opDescribeServiceAccessPolicies = &aws.Operation{
 			Name:       "DescribeServiceAccessPolicies",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeServiceAccessPoliciesInput{}
 	}
 
 	req = c.newRequest(opDescribeServiceAccessPolicies, input, output)
@@ -534,23 +646,29 @@ func (c *CloudSearch) DescribeServiceAccessPoliciesRequest(input *DescribeServic
 // and exclude pending changes. For more information, see Configuring Access
 // for a Search Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-access.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
-func (c *CloudSearch) DescribeServiceAccessPolicies(input *DescribeServiceAccessPoliciesInput) (output *DescribeServiceAccessPoliciesOutput, err error) {
+func (c *CloudSearch) DescribeServiceAccessPolicies(input *DescribeServiceAccessPoliciesInput) (*DescribeServiceAccessPoliciesOutput, error) {
 	req, out := c.DescribeServiceAccessPoliciesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeServiceAccessPolicies *aws.Operation
 
 // DescribeSuggestersRequest generates a request for the DescribeSuggesters operation.
 func (c *CloudSearch) DescribeSuggestersRequest(input *DescribeSuggestersInput) (req *aws.Request, output *DescribeSuggestersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeSuggesters == nil {
 		opDescribeSuggesters = &aws.Operation{
 			Name:       "DescribeSuggesters",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeSuggestersInput{}
 	}
 
 	req = c.newRequest(opDescribeSuggesters, input, output)
@@ -566,23 +684,29 @@ func (c *CloudSearch) DescribeSuggestersRequest(input *DescribeSuggestersInput) 
 // to show the active configuration and exclude pending changes. For more information,
 // see Getting Search Suggestions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-suggestions.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
-func (c *CloudSearch) DescribeSuggesters(input *DescribeSuggestersInput) (output *DescribeSuggestersOutput, err error) {
+func (c *CloudSearch) DescribeSuggesters(input *DescribeSuggestersInput) (*DescribeSuggestersOutput, error) {
 	req, out := c.DescribeSuggestersRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeSuggesters *aws.Operation
 
 // IndexDocumentsRequest generates a request for the IndexDocuments operation.
 func (c *CloudSearch) IndexDocumentsRequest(input *IndexDocumentsInput) (req *aws.Request, output *IndexDocumentsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opIndexDocuments == nil {
 		opIndexDocuments = &aws.Operation{
 			Name:       "IndexDocuments",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &IndexDocumentsInput{}
 	}
 
 	req = c.newRequest(opIndexDocuments, input, output)
@@ -594,23 +718,29 @@ func (c *CloudSearch) IndexDocumentsRequest(input *IndexDocumentsInput) (req *aw
 // Tells the search domain to start indexing its documents using the latest
 // indexing options. This operation must be invoked to activate options whose
 // OptionStatus is RequiresIndexDocuments.
-func (c *CloudSearch) IndexDocuments(input *IndexDocumentsInput) (output *IndexDocumentsOutput, err error) {
+func (c *CloudSearch) IndexDocuments(input *IndexDocumentsInput) (*IndexDocumentsOutput, error) {
 	req, out := c.IndexDocumentsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opIndexDocuments *aws.Operation
 
 // ListDomainNamesRequest generates a request for the ListDomainNames operation.
 func (c *CloudSearch) ListDomainNamesRequest(input *ListDomainNamesInput) (req *aws.Request, output *ListDomainNamesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListDomainNames == nil {
 		opListDomainNames = &aws.Operation{
 			Name:       "ListDomainNames",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListDomainNamesInput{}
 	}
 
 	req = c.newRequest(opListDomainNames, input, output)
@@ -620,23 +750,29 @@ func (c *CloudSearch) ListDomainNamesRequest(input *ListDomainNamesInput) (req *
 }
 
 // Lists all search domains owned by an account.
-func (c *CloudSearch) ListDomainNames(input *ListDomainNamesInput) (output *ListDomainNamesOutput, err error) {
+func (c *CloudSearch) ListDomainNames(input *ListDomainNamesInput) (*ListDomainNamesOutput, error) {
 	req, out := c.ListDomainNamesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListDomainNames *aws.Operation
 
 // UpdateAvailabilityOptionsRequest generates a request for the UpdateAvailabilityOptions operation.
 func (c *CloudSearch) UpdateAvailabilityOptionsRequest(input *UpdateAvailabilityOptionsInput) (req *aws.Request, output *UpdateAvailabilityOptionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateAvailabilityOptions == nil {
 		opUpdateAvailabilityOptions = &aws.Operation{
 			Name:       "UpdateAvailabilityOptions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateAvailabilityOptionsInput{}
 	}
 
 	req = c.newRequest(opUpdateAvailabilityOptions, input, output)
@@ -651,23 +787,29 @@ func (c *CloudSearch) UpdateAvailabilityOptionsRequest(input *UpdateAvailability
 // Changes to the Multi-AZ option can take about half an hour to become active.
 // For more information, see Configuring Availability Options (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-availability-options.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
-func (c *CloudSearch) UpdateAvailabilityOptions(input *UpdateAvailabilityOptionsInput) (output *UpdateAvailabilityOptionsOutput, err error) {
+func (c *CloudSearch) UpdateAvailabilityOptions(input *UpdateAvailabilityOptionsInput) (*UpdateAvailabilityOptionsOutput, error) {
 	req, out := c.UpdateAvailabilityOptionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateAvailabilityOptions *aws.Operation
 
 // UpdateScalingParametersRequest generates a request for the UpdateScalingParameters operation.
 func (c *CloudSearch) UpdateScalingParametersRequest(input *UpdateScalingParametersInput) (req *aws.Request, output *UpdateScalingParametersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateScalingParameters == nil {
 		opUpdateScalingParameters = &aws.Operation{
 			Name:       "UpdateScalingParameters",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateScalingParametersInput{}
 	}
 
 	req = c.newRequest(opUpdateScalingParameters, input, output)
@@ -684,23 +826,29 @@ func (c *CloudSearch) UpdateScalingParametersRequest(input *UpdateScalingParamet
 // Availability Zone. For more information, see Configuring Scaling Options
 // (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-scaling-options.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
-func (c *CloudSearch) UpdateScalingParameters(input *UpdateScalingParametersInput) (output *UpdateScalingParametersOutput, err error) {
+func (c *CloudSearch) UpdateScalingParameters(input *UpdateScalingParametersInput) (*UpdateScalingParametersOutput, error) {
 	req, out := c.UpdateScalingParametersRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateScalingParameters *aws.Operation
 
 // UpdateServiceAccessPoliciesRequest generates a request for the UpdateServiceAccessPolicies operation.
 func (c *CloudSearch) UpdateServiceAccessPoliciesRequest(input *UpdateServiceAccessPoliciesInput) (req *aws.Request, output *UpdateServiceAccessPoliciesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateServiceAccessPolicies == nil {
 		opUpdateServiceAccessPolicies = &aws.Operation{
 			Name:       "UpdateServiceAccessPolicies",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateServiceAccessPoliciesInput{}
 	}
 
 	req = c.newRequest(opUpdateServiceAccessPolicies, input, output)
@@ -713,11 +861,10 @@ func (c *CloudSearch) UpdateServiceAccessPoliciesRequest(input *UpdateServiceAcc
 // and search endpoints. For more information, see  Configuring Access for an
 // Amazon CloudSearch Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-access.html"
 // target="_blank).
-func (c *CloudSearch) UpdateServiceAccessPolicies(input *UpdateServiceAccessPoliciesInput) (output *UpdateServiceAccessPoliciesOutput, err error) {
+func (c *CloudSearch) UpdateServiceAccessPolicies(input *UpdateServiceAccessPoliciesInput) (*UpdateServiceAccessPoliciesOutput, error) {
 	req, out := c.UpdateServiceAccessPoliciesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateServiceAccessPolicies *aws.Operation
@@ -734,7 +881,7 @@ type AccessPoliciesStatus struct {
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataAccessPoliciesStatus `json:"-", xml:"-"`
+	metadataAccessPoliciesStatus `json:"-" xml:"-"`
 }
 
 type metadataAccessPoliciesStatus struct {
@@ -780,7 +927,7 @@ type AnalysisOptions struct {
 	// in the Amazon CloudSearch Developer Guide.
 	Synonyms *string `type:"string"`
 
-	metadataAnalysisOptions `json:"-", xml:"-"`
+	metadataAnalysisOptions `json:"-" xml:"-"`
 }
 
 type metadataAnalysisOptions struct {
@@ -804,7 +951,7 @@ type AnalysisScheme struct {
 	// a-z (lowercase), 0-9, and _ (underscore).
 	AnalysisSchemeName *string `type:"string" required:"true"`
 
-	metadataAnalysisScheme `json:"-", xml:"-"`
+	metadataAnalysisScheme `json:"-" xml:"-"`
 }
 
 type metadataAnalysisScheme struct {
@@ -822,7 +969,7 @@ type AnalysisSchemeStatus struct {
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataAnalysisSchemeStatus `json:"-", xml:"-"`
+	metadataAnalysisSchemeStatus `json:"-" xml:"-"`
 }
 
 type metadataAnalysisSchemeStatus struct {
@@ -837,7 +984,7 @@ type AvailabilityOptionsStatus struct {
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataAvailabilityOptionsStatus `json:"-", xml:"-"`
+	metadataAvailabilityOptionsStatus `json:"-" xml:"-"`
 }
 
 type metadataAvailabilityOptionsStatus struct {
@@ -853,7 +1000,7 @@ type BuildSuggestersInput struct {
 	// 0-9, and - (hyphen).
 	DomainName *string `type:"string" required:"true"`
 
-	metadataBuildSuggestersInput `json:"-", xml:"-"`
+	metadataBuildSuggestersInput `json:"-" xml:"-"`
 }
 
 type metadataBuildSuggestersInput struct {
@@ -866,7 +1013,7 @@ type BuildSuggestersOutput struct {
 	// A list of field names.
 	FieldNames []*string `type:"list"`
 
-	metadataBuildSuggestersOutput `json:"-", xml:"-"`
+	metadataBuildSuggestersOutput `json:"-" xml:"-"`
 }
 
 type metadataBuildSuggestersOutput struct {
@@ -881,7 +1028,7 @@ type CreateDomainInput struct {
 	// and be at least 3 and no more than 28 characters long.
 	DomainName *string `type:"string" required:"true"`
 
-	metadataCreateDomainInput `json:"-", xml:"-"`
+	metadataCreateDomainInput `json:"-" xml:"-"`
 }
 
 type metadataCreateDomainInput struct {
@@ -894,7 +1041,7 @@ type CreateDomainOutput struct {
 	// The current status of the search domain.
 	DomainStatus *DomainStatus `type:"structure"`
 
-	metadataCreateDomainOutput `json:"-", xml:"-"`
+	metadataCreateDomainOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateDomainOutput struct {
@@ -919,7 +1066,7 @@ type DateArrayOptions struct {
 	// A list of source fields to map to the field.
 	SourceFields *string `type:"string"`
 
-	metadataDateArrayOptions `json:"-", xml:"-"`
+	metadataDateArrayOptions `json:"-" xml:"-"`
 }
 
 type metadataDateArrayOptions struct {
@@ -962,7 +1109,7 @@ type DateOptions struct {
 	// a document's ID, you can use the name _id.
 	SourceField *string `type:"string"`
 
-	metadataDateOptions `json:"-", xml:"-"`
+	metadataDateOptions `json:"-" xml:"-"`
 }
 
 type metadataDateOptions struct {
@@ -984,7 +1131,7 @@ type DefineAnalysisSchemeInput struct {
 	// 0-9, and - (hyphen).
 	DomainName *string `type:"string" required:"true"`
 
-	metadataDefineAnalysisSchemeInput `json:"-", xml:"-"`
+	metadataDefineAnalysisSchemeInput `json:"-" xml:"-"`
 }
 
 type metadataDefineAnalysisSchemeInput struct {
@@ -997,7 +1144,7 @@ type DefineAnalysisSchemeOutput struct {
 	// The status and configuration of an AnalysisScheme.
 	AnalysisScheme *AnalysisSchemeStatus `type:"structure" required:"true"`
 
-	metadataDefineAnalysisSchemeOutput `json:"-", xml:"-"`
+	metadataDefineAnalysisSchemeOutput `json:"-" xml:"-"`
 }
 
 type metadataDefineAnalysisSchemeOutput struct {
@@ -1019,7 +1166,7 @@ type DefineExpressionInput struct {
 	// in the search results.
 	Expression *Expression `type:"structure" required:"true"`
 
-	metadataDefineExpressionInput `json:"-", xml:"-"`
+	metadataDefineExpressionInput `json:"-" xml:"-"`
 }
 
 type metadataDefineExpressionInput struct {
@@ -1032,7 +1179,7 @@ type DefineExpressionOutput struct {
 	// The value of an Expression and its current status.
 	Expression *ExpressionStatus `type:"structure" required:"true"`
 
-	metadataDefineExpressionOutput `json:"-", xml:"-"`
+	metadataDefineExpressionOutput `json:"-" xml:"-"`
 }
 
 type metadataDefineExpressionOutput struct {
@@ -1051,7 +1198,7 @@ type DefineIndexFieldInput struct {
 	// The index field and field options you want to configure.
 	IndexField *IndexField `type:"structure" required:"true"`
 
-	metadataDefineIndexFieldInput `json:"-", xml:"-"`
+	metadataDefineIndexFieldInput `json:"-" xml:"-"`
 }
 
 type metadataDefineIndexFieldInput struct {
@@ -1064,7 +1211,7 @@ type DefineIndexFieldOutput struct {
 	// The value of an IndexField and its current status.
 	IndexField *IndexFieldStatus `type:"structure" required:"true"`
 
-	metadataDefineIndexFieldOutput `json:"-", xml:"-"`
+	metadataDefineIndexFieldOutput `json:"-" xml:"-"`
 }
 
 type metadataDefineIndexFieldOutput struct {
@@ -1085,7 +1232,7 @@ type DefineSuggesterInput struct {
 	// options can be configured for a suggester: FuzzyMatching, SortExpression.
 	Suggester *Suggester `type:"structure" required:"true"`
 
-	metadataDefineSuggesterInput `json:"-", xml:"-"`
+	metadataDefineSuggesterInput `json:"-" xml:"-"`
 }
 
 type metadataDefineSuggesterInput struct {
@@ -1098,7 +1245,7 @@ type DefineSuggesterOutput struct {
 	// The value of a Suggester and its current status.
 	Suggester *SuggesterStatus `type:"structure" required:"true"`
 
-	metadataDefineSuggesterOutput `json:"-", xml:"-"`
+	metadataDefineSuggesterOutput `json:"-" xml:"-"`
 }
 
 type metadataDefineSuggesterOutput struct {
@@ -1118,7 +1265,7 @@ type DeleteAnalysisSchemeInput struct {
 	// 0-9, and - (hyphen).
 	DomainName *string `type:"string" required:"true"`
 
-	metadataDeleteAnalysisSchemeInput `json:"-", xml:"-"`
+	metadataDeleteAnalysisSchemeInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAnalysisSchemeInput struct {
@@ -1131,7 +1278,7 @@ type DeleteAnalysisSchemeOutput struct {
 	// The status of the analysis scheme being deleted.
 	AnalysisScheme *AnalysisSchemeStatus `type:"structure" required:"true"`
 
-	metadataDeleteAnalysisSchemeOutput `json:"-", xml:"-"`
+	metadataDeleteAnalysisSchemeOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAnalysisSchemeOutput struct {
@@ -1144,7 +1291,7 @@ type DeleteDomainInput struct {
 	// The name of the domain you want to permanently delete.
 	DomainName *string `type:"string" required:"true"`
 
-	metadataDeleteDomainInput `json:"-", xml:"-"`
+	metadataDeleteDomainInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDomainInput struct {
@@ -1157,7 +1304,7 @@ type DeleteDomainOutput struct {
 	// The current status of the search domain.
 	DomainStatus *DomainStatus `type:"structure"`
 
-	metadataDeleteDomainOutput `json:"-", xml:"-"`
+	metadataDeleteDomainOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDomainOutput struct {
@@ -1177,7 +1324,7 @@ type DeleteExpressionInput struct {
 	// The name of the Expression to delete.
 	ExpressionName *string `type:"string" required:"true"`
 
-	metadataDeleteExpressionInput `json:"-", xml:"-"`
+	metadataDeleteExpressionInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteExpressionInput struct {
@@ -1190,7 +1337,7 @@ type DeleteExpressionOutput struct {
 	// The status of the expression being deleted.
 	Expression *ExpressionStatus `type:"structure" required:"true"`
 
-	metadataDeleteExpressionOutput `json:"-", xml:"-"`
+	metadataDeleteExpressionOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteExpressionOutput struct {
@@ -1211,7 +1358,7 @@ type DeleteIndexFieldInput struct {
 	// options.
 	IndexFieldName *string `type:"string" required:"true"`
 
-	metadataDeleteIndexFieldInput `json:"-", xml:"-"`
+	metadataDeleteIndexFieldInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteIndexFieldInput struct {
@@ -1223,7 +1370,7 @@ type DeleteIndexFieldOutput struct {
 	// The status of the index field being deleted.
 	IndexField *IndexFieldStatus `type:"structure" required:"true"`
 
-	metadataDeleteIndexFieldOutput `json:"-", xml:"-"`
+	metadataDeleteIndexFieldOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteIndexFieldOutput struct {
@@ -1243,7 +1390,7 @@ type DeleteSuggesterInput struct {
 	// Specifies the name of the suggester you want to delete.
 	SuggesterName *string `type:"string" required:"true"`
 
-	metadataDeleteSuggesterInput `json:"-", xml:"-"`
+	metadataDeleteSuggesterInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteSuggesterInput struct {
@@ -1256,7 +1403,7 @@ type DeleteSuggesterOutput struct {
 	// The status of the suggester being deleted.
 	Suggester *SuggesterStatus `type:"structure" required:"true"`
 
-	metadataDeleteSuggesterOutput `json:"-", xml:"-"`
+	metadataDeleteSuggesterOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteSuggesterOutput struct {
@@ -1279,7 +1426,7 @@ type DescribeAnalysisSchemesInput struct {
 	// The name of the domain you want to describe.
 	DomainName *string `type:"string" required:"true"`
 
-	metadataDescribeAnalysisSchemesInput `json:"-", xml:"-"`
+	metadataDescribeAnalysisSchemesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAnalysisSchemesInput struct {
@@ -1292,7 +1439,7 @@ type DescribeAnalysisSchemesOutput struct {
 	// The analysis scheme descriptions.
 	AnalysisSchemes []*AnalysisSchemeStatus `type:"list" required:"true"`
 
-	metadataDescribeAnalysisSchemesOutput `json:"-", xml:"-"`
+	metadataDescribeAnalysisSchemesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAnalysisSchemesOutput struct {
@@ -1311,7 +1458,7 @@ type DescribeAvailabilityOptionsInput struct {
 	// The name of the domain you want to describe.
 	DomainName *string `type:"string" required:"true"`
 
-	metadataDescribeAvailabilityOptionsInput `json:"-", xml:"-"`
+	metadataDescribeAvailabilityOptionsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAvailabilityOptionsInput struct {
@@ -1325,7 +1472,7 @@ type DescribeAvailabilityOptionsOutput struct {
 	// is enabled for the domain.
 	AvailabilityOptions *AvailabilityOptionsStatus `type:"structure"`
 
-	metadataDescribeAvailabilityOptionsOutput `json:"-", xml:"-"`
+	metadataDescribeAvailabilityOptionsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAvailabilityOptionsOutput struct {
@@ -1339,7 +1486,7 @@ type DescribeDomainsInput struct {
 	// The names of the domains you want to include in the response.
 	DomainNames []*string `type:"list"`
 
-	metadataDescribeDomainsInput `json:"-", xml:"-"`
+	metadataDescribeDomainsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeDomainsInput struct {
@@ -1352,7 +1499,7 @@ type DescribeDomainsOutput struct {
 	// A list that contains the status of each requested domain.
 	DomainStatusList []*DomainStatus `type:"list" required:"true"`
 
-	metadataDescribeDomainsOutput `json:"-", xml:"-"`
+	metadataDescribeDomainsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeDomainsOutput struct {
@@ -1376,7 +1523,7 @@ type DescribeExpressionsInput struct {
 	// not specified, all expressions are shown.
 	ExpressionNames []*string `type:"list"`
 
-	metadataDescribeExpressionsInput `json:"-", xml:"-"`
+	metadataDescribeExpressionsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeExpressionsInput struct {
@@ -1389,7 +1536,7 @@ type DescribeExpressionsOutput struct {
 	// The expressions configured for the domain.
 	Expressions []*ExpressionStatus `type:"list" required:"true"`
 
-	metadataDescribeExpressionsOutput `json:"-", xml:"-"`
+	metadataDescribeExpressionsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeExpressionsOutput struct {
@@ -1413,7 +1560,7 @@ type DescribeIndexFieldsInput struct {
 	// is returned for all configured index fields.
 	FieldNames []*string `type:"list"`
 
-	metadataDescribeIndexFieldsInput `json:"-", xml:"-"`
+	metadataDescribeIndexFieldsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeIndexFieldsInput struct {
@@ -1426,7 +1573,7 @@ type DescribeIndexFieldsOutput struct {
 	// The index fields configured for the domain.
 	IndexFields []*IndexFieldStatus `type:"list" required:"true"`
 
-	metadataDescribeIndexFieldsOutput `json:"-", xml:"-"`
+	metadataDescribeIndexFieldsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeIndexFieldsOutput struct {
@@ -1442,7 +1589,7 @@ type DescribeScalingParametersInput struct {
 	// 0-9, and - (hyphen).
 	DomainName *string `type:"string" required:"true"`
 
-	metadataDescribeScalingParametersInput `json:"-", xml:"-"`
+	metadataDescribeScalingParametersInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeScalingParametersInput struct {
@@ -1455,7 +1602,7 @@ type DescribeScalingParametersOutput struct {
 	// The status and configuration of a search domain's scaling parameters.
 	ScalingParameters *ScalingParametersStatus `type:"structure" required:"true"`
 
-	metadataDescribeScalingParametersOutput `json:"-", xml:"-"`
+	metadataDescribeScalingParametersOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeScalingParametersOutput struct {
@@ -1474,7 +1621,7 @@ type DescribeServiceAccessPoliciesInput struct {
 	// The name of the domain you want to describe.
 	DomainName *string `type:"string" required:"true"`
 
-	metadataDescribeServiceAccessPoliciesInput `json:"-", xml:"-"`
+	metadataDescribeServiceAccessPoliciesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeServiceAccessPoliciesInput struct {
@@ -1486,7 +1633,7 @@ type DescribeServiceAccessPoliciesOutput struct {
 	// The access rules configured for the domain specified in the request.
 	AccessPolicies *AccessPoliciesStatus `type:"structure" required:"true"`
 
-	metadataDescribeServiceAccessPoliciesOutput `json:"-", xml:"-"`
+	metadataDescribeServiceAccessPoliciesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeServiceAccessPoliciesOutput struct {
@@ -1509,7 +1656,7 @@ type DescribeSuggestersInput struct {
 	// The suggesters you want to describe.
 	SuggesterNames []*string `type:"list"`
 
-	metadataDescribeSuggestersInput `json:"-", xml:"-"`
+	metadataDescribeSuggestersInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeSuggestersInput struct {
@@ -1521,7 +1668,7 @@ type DescribeSuggestersOutput struct {
 	// The suggesters configured for the domain specified in the request.
 	Suggesters []*SuggesterStatus `type:"list" required:"true"`
 
-	metadataDescribeSuggestersOutput `json:"-", xml:"-"`
+	metadataDescribeSuggestersOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeSuggestersOutput struct {
@@ -1549,7 +1696,7 @@ type DocumentSuggesterOptions struct {
 	// The name of the index field you want to use for suggestions.
 	SourceField *string `type:"string" required:"true"`
 
-	metadataDocumentSuggesterOptions `json:"-", xml:"-"`
+	metadataDocumentSuggesterOptions `json:"-" xml:"-"`
 }
 
 type metadataDocumentSuggesterOptions struct {
@@ -1608,7 +1755,7 @@ type DomainStatus struct {
 	// The service endpoint for requesting search results from a search domain.
 	SearchService *ServiceEndpoint `type:"structure"`
 
-	metadataDomainStatus `json:"-", xml:"-"`
+	metadataDomainStatus `json:"-" xml:"-"`
 }
 
 type metadataDomainStatus struct {
@@ -1634,7 +1781,7 @@ type DoubleArrayOptions struct {
 	// A list of source fields to map to the field.
 	SourceFields *string `type:"string"`
 
-	metadataDoubleArrayOptions `json:"-", xml:"-"`
+	metadataDoubleArrayOptions `json:"-" xml:"-"`
 }
 
 type metadataDoubleArrayOptions struct {
@@ -1664,7 +1811,7 @@ type DoubleOptions struct {
 	// The name of the source field to map to the field.
 	SourceField *string `type:"string"`
 
-	metadataDoubleOptions `json:"-", xml:"-"`
+	metadataDoubleOptions `json:"-" xml:"-"`
 }
 
 type metadataDoubleOptions struct {
@@ -1685,7 +1832,7 @@ type Expression struct {
 	// target="_blank) in the Amazon CloudSearch Developer Guide.
 	ExpressionValue *string `type:"string" required:"true"`
 
-	metadataExpression `json:"-", xml:"-"`
+	metadataExpression `json:"-" xml:"-"`
 }
 
 type metadataExpression struct {
@@ -1700,7 +1847,7 @@ type ExpressionStatus struct {
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataExpressionStatus `json:"-", xml:"-"`
+	metadataExpressionStatus `json:"-" xml:"-"`
 }
 
 type metadataExpressionStatus struct {
@@ -1716,7 +1863,7 @@ type IndexDocumentsInput struct {
 	// 0-9, and - (hyphen).
 	DomainName *string `type:"string" required:"true"`
 
-	metadataIndexDocumentsInput `json:"-", xml:"-"`
+	metadataIndexDocumentsInput `json:"-" xml:"-"`
 }
 
 type metadataIndexDocumentsInput struct {
@@ -1729,7 +1876,7 @@ type IndexDocumentsOutput struct {
 	// The names of the fields that are currently being indexed.
 	FieldNames []*string `type:"list"`
 
-	metadataIndexDocumentsOutput `json:"-", xml:"-"`
+	metadataIndexDocumentsOutput `json:"-" xml:"-"`
 }
 
 type metadataIndexDocumentsOutput struct {
@@ -1813,7 +1960,7 @@ type IndexField struct {
 	// by default.
 	TextOptions *TextOptions `type:"structure"`
 
-	metadataIndexField `json:"-", xml:"-"`
+	metadataIndexField `json:"-" xml:"-"`
 }
 
 type metadataIndexField struct {
@@ -1829,7 +1976,7 @@ type IndexFieldStatus struct {
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataIndexFieldStatus `json:"-", xml:"-"`
+	metadataIndexFieldStatus `json:"-" xml:"-"`
 }
 
 type metadataIndexFieldStatus struct {
@@ -1855,7 +2002,7 @@ type IntArrayOptions struct {
 	// A list of source fields to map to the field.
 	SourceFields *string `type:"string"`
 
-	metadataIntArrayOptions `json:"-", xml:"-"`
+	metadataIntArrayOptions `json:"-" xml:"-"`
 }
 
 type metadataIntArrayOptions struct {
@@ -1885,7 +2032,7 @@ type IntOptions struct {
 	// The name of the source field to map to the field.
 	SourceField *string `type:"string"`
 
-	metadataIntOptions `json:"-", xml:"-"`
+	metadataIntOptions `json:"-" xml:"-"`
 }
 
 type metadataIntOptions struct {
@@ -1927,7 +2074,7 @@ type LatLonOptions struct {
 	// a document's ID, you can use the name _id.
 	SourceField *string `type:"string"`
 
-	metadataLatLonOptions `json:"-", xml:"-"`
+	metadataLatLonOptions `json:"-" xml:"-"`
 }
 
 type metadataLatLonOptions struct {
@@ -1939,7 +2086,7 @@ type Limits struct {
 
 	MaximumReplicationCount *int64 `type:"integer" required:"true"`
 
-	metadataLimits `json:"-", xml:"-"`
+	metadataLimits `json:"-" xml:"-"`
 }
 
 type metadataLimits struct {
@@ -1947,7 +2094,7 @@ type metadataLimits struct {
 }
 
 type ListDomainNamesInput struct {
-	metadataListDomainNamesInput `json:"-", xml:"-"`
+	metadataListDomainNamesInput `json:"-" xml:"-"`
 }
 
 type metadataListDomainNamesInput struct {
@@ -1960,7 +2107,7 @@ type ListDomainNamesOutput struct {
 	// The names of the search domains owned by an account.
 	DomainNames *map[string]*string `type:"map"`
 
-	metadataListDomainNamesOutput `json:"-", xml:"-"`
+	metadataListDomainNamesOutput `json:"-" xml:"-"`
 }
 
 type metadataListDomainNamesOutput struct {
@@ -1986,7 +2133,7 @@ type LiteralArrayOptions struct {
 	// A list of source fields to map to the field.
 	SourceFields *string `type:"string"`
 
-	metadataLiteralArrayOptions `json:"-", xml:"-"`
+	metadataLiteralArrayOptions `json:"-" xml:"-"`
 }
 
 type metadataLiteralArrayOptions struct {
@@ -2027,7 +2174,7 @@ type LiteralOptions struct {
 	// a document's ID, you can use the name _id.
 	SourceField *string `type:"string"`
 
-	metadataLiteralOptions `json:"-", xml:"-"`
+	metadataLiteralOptions `json:"-" xml:"-"`
 }
 
 type metadataLiteralOptions struct {
@@ -2059,7 +2206,7 @@ type OptionStatus struct {
 	// A unique integer that indicates when this option was last updated.
 	UpdateVersion *int64 `type:"integer"`
 
-	metadataOptionStatus `json:"-", xml:"-"`
+	metadataOptionStatus `json:"-" xml:"-"`
 }
 
 type metadataOptionStatus struct {
@@ -2079,7 +2226,7 @@ type ScalingParameters struct {
 	// The number of replicas you want to preconfigure for each index partition.
 	DesiredReplicationCount *int64 `type:"integer"`
 
-	metadataScalingParameters `json:"-", xml:"-"`
+	metadataScalingParameters `json:"-" xml:"-"`
 }
 
 type metadataScalingParameters struct {
@@ -2094,7 +2241,7 @@ type ScalingParametersStatus struct {
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataScalingParametersStatus `json:"-", xml:"-"`
+	metadataScalingParametersStatus `json:"-" xml:"-"`
 }
 
 type metadataScalingParametersStatus struct {
@@ -2107,7 +2254,7 @@ type ServiceEndpoint struct {
 	// or doc-imdb-movies-oopcnjfn6ugofer3zx5iadxxca.eu-west-1.cloudsearch.amazonaws.com.
 	Endpoint *string `type:"string"`
 
-	metadataServiceEndpoint `json:"-", xml:"-"`
+	metadataServiceEndpoint `json:"-" xml:"-"`
 }
 
 type metadataServiceEndpoint struct {
@@ -2125,7 +2272,7 @@ type Suggester struct {
 	// a-z (lowercase), 0-9, and _ (underscore).
 	SuggesterName *string `type:"string" required:"true"`
 
-	metadataSuggester `json:"-", xml:"-"`
+	metadataSuggester `json:"-" xml:"-"`
 }
 
 type metadataSuggester struct {
@@ -2142,7 +2289,7 @@ type SuggesterStatus struct {
 	// The status of domain configuration option.
 	Status *OptionStatus `type:"structure" required:"true"`
 
-	metadataSuggesterStatus `json:"-", xml:"-"`
+	metadataSuggesterStatus `json:"-" xml:"-"`
 }
 
 type metadataSuggesterStatus struct {
@@ -2168,7 +2315,7 @@ type TextArrayOptions struct {
 	// A list of source fields to map to the field.
 	SourceFields *string `type:"string"`
 
-	metadataTextArrayOptions `json:"-", xml:"-"`
+	metadataTextArrayOptions `json:"-" xml:"-"`
 }
 
 type metadataTextArrayOptions struct {
@@ -2210,7 +2357,7 @@ type TextOptions struct {
 	// a document's ID, you can use the name _id.
 	SourceField *string `type:"string"`
 
-	metadataTextOptions `json:"-", xml:"-"`
+	metadataTextOptions `json:"-" xml:"-"`
 }
 
 type metadataTextOptions struct {
@@ -2233,7 +2380,7 @@ type UpdateAvailabilityOptionsInput struct {
 	// option to false.
 	MultiAZ *bool `type:"boolean" required:"true"`
 
-	metadataUpdateAvailabilityOptionsInput `json:"-", xml:"-"`
+	metadataUpdateAvailabilityOptionsInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateAvailabilityOptionsInput struct {
@@ -2247,7 +2394,7 @@ type UpdateAvailabilityOptionsOutput struct {
 	// enabled for the domain.
 	AvailabilityOptions *AvailabilityOptionsStatus `type:"structure"`
 
-	metadataUpdateAvailabilityOptionsOutput `json:"-", xml:"-"`
+	metadataUpdateAvailabilityOptionsOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateAvailabilityOptionsOutput struct {
@@ -2267,7 +2414,7 @@ type UpdateScalingParametersInput struct {
 	// The desired instance type and desired number of replicas of each index partition.
 	ScalingParameters *ScalingParameters `type:"structure" required:"true"`
 
-	metadataUpdateScalingParametersInput `json:"-", xml:"-"`
+	metadataUpdateScalingParametersInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateScalingParametersInput struct {
@@ -2280,7 +2427,7 @@ type UpdateScalingParametersOutput struct {
 	// The status and configuration of a search domain's scaling parameters.
 	ScalingParameters *ScalingParametersStatus `type:"structure" required:"true"`
 
-	metadataUpdateScalingParametersOutput `json:"-", xml:"-"`
+	metadataUpdateScalingParametersOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateScalingParametersOutput struct {
@@ -2301,7 +2448,7 @@ type UpdateServiceAccessPoliciesInput struct {
 	// 0-9, and - (hyphen).
 	DomainName *string `type:"string" required:"true"`
 
-	metadataUpdateServiceAccessPoliciesInput `json:"-", xml:"-"`
+	metadataUpdateServiceAccessPoliciesInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateServiceAccessPoliciesInput struct {
@@ -2314,7 +2461,7 @@ type UpdateServiceAccessPoliciesOutput struct {
 	// The access rules configured for the domain.
 	AccessPolicies *AccessPoliciesStatus `type:"structure" required:"true"`
 
-	metadataUpdateServiceAccessPoliciesOutput `json:"-", xml:"-"`
+	metadataUpdateServiceAccessPoliciesOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateServiceAccessPoliciesOutput struct {

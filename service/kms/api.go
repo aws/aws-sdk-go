@@ -4,19 +4,29 @@
 package kms
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // CreateAliasRequest generates a request for the CreateAlias operation.
 func (c *KMS) CreateAliasRequest(input *CreateAliasInput) (req *aws.Request, output *CreateAliasOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateAlias == nil {
 		opCreateAlias = &aws.Operation{
 			Name:       "CreateAlias",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateAliasInput{}
 	}
 
 	req = c.newRequest(opCreateAlias, input, output)
@@ -32,23 +42,29 @@ func (c *KMS) CreateAliasRequest(input *CreateAliasInput) (req *aws.Request, out
 // must start with the word "alias" followed by a forward slash (alias/). An
 // alias that begins with "aws" after the forward slash (alias/aws...) is reserved
 // by Amazon Web Services (AWS).
-func (c *KMS) CreateAlias(input *CreateAliasInput) (output *CreateAliasOutput, err error) {
+func (c *KMS) CreateAlias(input *CreateAliasInput) (*CreateAliasOutput, error) {
 	req, out := c.CreateAliasRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateAlias *aws.Operation
 
 // CreateGrantRequest generates a request for the CreateGrant operation.
 func (c *KMS) CreateGrantRequest(input *CreateGrantInput) (req *aws.Request, output *CreateGrantOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateGrant == nil {
 		opCreateGrant = &aws.Operation{
 			Name:       "CreateGrant",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateGrantInput{}
 	}
 
 	req = c.newRequest(opCreateGrant, input, output)
@@ -62,23 +78,29 @@ func (c *KMS) CreateGrantRequest(input *CreateGrantInput) (req *aws.Request, out
 // about grants, see Grants (http://docs.aws.amazon.com/kms/latest/developerguide/grants.html)
 // in the developer guide. If a grant is absent, access to the key is evaluated
 // based on IAM policies attached to the user.  ListGrants RetireGrant RevokeGrant
-func (c *KMS) CreateGrant(input *CreateGrantInput) (output *CreateGrantOutput, err error) {
+func (c *KMS) CreateGrant(input *CreateGrantInput) (*CreateGrantOutput, error) {
 	req, out := c.CreateGrantRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateGrant *aws.Operation
 
 // CreateKeyRequest generates a request for the CreateKey operation.
 func (c *KMS) CreateKeyRequest(input *CreateKeyInput) (req *aws.Request, output *CreateKeyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateKey == nil {
 		opCreateKey = &aws.Operation{
 			Name:       "CreateKey",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateKeyInput{}
 	}
 
 	req = c.newRequest(opCreateKey, input, output)
@@ -91,23 +113,29 @@ func (c *KMS) CreateKeyRequest(input *CreateKeyInput) (req *aws.Request, output 
 // small amounts of data (less than 4K) directly, but they are most commonly
 // used to encrypt or envelope data keys that are then used to encrypt customer
 // data. For more information about data keys, see GenerateDataKey and GenerateDataKeyWithoutPlaintext.
-func (c *KMS) CreateKey(input *CreateKeyInput) (output *CreateKeyOutput, err error) {
+func (c *KMS) CreateKey(input *CreateKeyInput) (*CreateKeyOutput, error) {
 	req, out := c.CreateKeyRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateKey *aws.Operation
 
 // DecryptRequest generates a request for the Decrypt operation.
 func (c *KMS) DecryptRequest(input *DecryptInput) (req *aws.Request, output *DecryptOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDecrypt == nil {
 		opDecrypt = &aws.Operation{
 			Name:       "Decrypt",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DecryptInput{}
 	}
 
 	req = c.newRequest(opDecrypt, input, output)
@@ -128,23 +156,29 @@ func (c *KMS) DecryptRequest(input *DecryptInput) (req *aws.Request, output *Dec
 // access only in key policies. If you must grant Decrypt access in an IAM user
 // policy, you should scope the resource to specific keys or to specific trusted
 // accounts.
-func (c *KMS) Decrypt(input *DecryptInput) (output *DecryptOutput, err error) {
+func (c *KMS) Decrypt(input *DecryptInput) (*DecryptOutput, error) {
 	req, out := c.DecryptRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDecrypt *aws.Operation
 
 // DeleteAliasRequest generates a request for the DeleteAlias operation.
 func (c *KMS) DeleteAliasRequest(input *DeleteAliasInput) (req *aws.Request, output *DeleteAliasOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteAlias == nil {
 		opDeleteAlias = &aws.Operation{
 			Name:       "DeleteAlias",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteAliasInput{}
 	}
 
 	req = c.newRequest(opDeleteAlias, input, output)
@@ -154,23 +188,29 @@ func (c *KMS) DeleteAliasRequest(input *DeleteAliasInput) (req *aws.Request, out
 }
 
 // Deletes the specified alias.
-func (c *KMS) DeleteAlias(input *DeleteAliasInput) (output *DeleteAliasOutput, err error) {
+func (c *KMS) DeleteAlias(input *DeleteAliasInput) (*DeleteAliasOutput, error) {
 	req, out := c.DeleteAliasRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteAlias *aws.Operation
 
 // DescribeKeyRequest generates a request for the DescribeKey operation.
 func (c *KMS) DescribeKeyRequest(input *DescribeKeyInput) (req *aws.Request, output *DescribeKeyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeKey == nil {
 		opDescribeKey = &aws.Operation{
 			Name:       "DescribeKey",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeKeyInput{}
 	}
 
 	req = c.newRequest(opDescribeKey, input, output)
@@ -180,23 +220,29 @@ func (c *KMS) DescribeKeyRequest(input *DescribeKeyInput) (req *aws.Request, out
 }
 
 // Provides detailed information about the specified customer master key.
-func (c *KMS) DescribeKey(input *DescribeKeyInput) (output *DescribeKeyOutput, err error) {
+func (c *KMS) DescribeKey(input *DescribeKeyInput) (*DescribeKeyOutput, error) {
 	req, out := c.DescribeKeyRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeKey *aws.Operation
 
 // DisableKeyRequest generates a request for the DisableKey operation.
 func (c *KMS) DisableKeyRequest(input *DisableKeyInput) (req *aws.Request, output *DisableKeyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDisableKey == nil {
 		opDisableKey = &aws.Operation{
 			Name:       "DisableKey",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DisableKeyInput{}
 	}
 
 	req = c.newRequest(opDisableKey, input, output)
@@ -206,23 +252,29 @@ func (c *KMS) DisableKeyRequest(input *DisableKeyInput) (req *aws.Request, outpu
 }
 
 // Marks a key as disabled, thereby preventing its use.
-func (c *KMS) DisableKey(input *DisableKeyInput) (output *DisableKeyOutput, err error) {
+func (c *KMS) DisableKey(input *DisableKeyInput) (*DisableKeyOutput, error) {
 	req, out := c.DisableKeyRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDisableKey *aws.Operation
 
 // DisableKeyRotationRequest generates a request for the DisableKeyRotation operation.
 func (c *KMS) DisableKeyRotationRequest(input *DisableKeyRotationInput) (req *aws.Request, output *DisableKeyRotationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDisableKeyRotation == nil {
 		opDisableKeyRotation = &aws.Operation{
 			Name:       "DisableKeyRotation",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DisableKeyRotationInput{}
 	}
 
 	req = c.newRequest(opDisableKeyRotation, input, output)
@@ -232,23 +284,29 @@ func (c *KMS) DisableKeyRotationRequest(input *DisableKeyRotationInput) (req *aw
 }
 
 // Disables rotation of the specified key.
-func (c *KMS) DisableKeyRotation(input *DisableKeyRotationInput) (output *DisableKeyRotationOutput, err error) {
+func (c *KMS) DisableKeyRotation(input *DisableKeyRotationInput) (*DisableKeyRotationOutput, error) {
 	req, out := c.DisableKeyRotationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDisableKeyRotation *aws.Operation
 
 // EnableKeyRequest generates a request for the EnableKey operation.
 func (c *KMS) EnableKeyRequest(input *EnableKeyInput) (req *aws.Request, output *EnableKeyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opEnableKey == nil {
 		opEnableKey = &aws.Operation{
 			Name:       "EnableKey",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &EnableKeyInput{}
 	}
 
 	req = c.newRequest(opEnableKey, input, output)
@@ -259,23 +317,29 @@ func (c *KMS) EnableKeyRequest(input *EnableKeyInput) (req *aws.Request, output 
 
 // Marks a key as enabled, thereby permitting its use. You can have up to 25
 // enabled keys at one time.
-func (c *KMS) EnableKey(input *EnableKeyInput) (output *EnableKeyOutput, err error) {
+func (c *KMS) EnableKey(input *EnableKeyInput) (*EnableKeyOutput, error) {
 	req, out := c.EnableKeyRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opEnableKey *aws.Operation
 
 // EnableKeyRotationRequest generates a request for the EnableKeyRotation operation.
 func (c *KMS) EnableKeyRotationRequest(input *EnableKeyRotationInput) (req *aws.Request, output *EnableKeyRotationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opEnableKeyRotation == nil {
 		opEnableKeyRotation = &aws.Operation{
 			Name:       "EnableKeyRotation",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &EnableKeyRotationInput{}
 	}
 
 	req = c.newRequest(opEnableKeyRotation, input, output)
@@ -285,23 +349,29 @@ func (c *KMS) EnableKeyRotationRequest(input *EnableKeyRotationInput) (req *aws.
 }
 
 // Enables rotation of the specified customer master key.
-func (c *KMS) EnableKeyRotation(input *EnableKeyRotationInput) (output *EnableKeyRotationOutput, err error) {
+func (c *KMS) EnableKeyRotation(input *EnableKeyRotationInput) (*EnableKeyRotationOutput, error) {
 	req, out := c.EnableKeyRotationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opEnableKeyRotation *aws.Operation
 
 // EncryptRequest generates a request for the Encrypt operation.
 func (c *KMS) EncryptRequest(input *EncryptInput) (req *aws.Request, output *EncryptOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opEncrypt == nil {
 		opEncrypt = &aws.Operation{
 			Name:       "Encrypt",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &EncryptInput{}
 	}
 
 	req = c.newRequest(opEncrypt, input, output)
@@ -327,23 +397,29 @@ func (c *KMS) EncryptRequest(input *EncryptInput) (req *aws.Request, output *Enc
 // If you want to encrypt data locally in your application, you can use the
 // GenerateDataKey function to return a plaintext data encryption key and a
 // copy of the key encrypted under the customer master key (CMK) of your choosing.
-func (c *KMS) Encrypt(input *EncryptInput) (output *EncryptOutput, err error) {
+func (c *KMS) Encrypt(input *EncryptInput) (*EncryptOutput, error) {
 	req, out := c.EncryptRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opEncrypt *aws.Operation
 
 // GenerateDataKeyRequest generates a request for the GenerateDataKey operation.
 func (c *KMS) GenerateDataKeyRequest(input *GenerateDataKeyInput) (req *aws.Request, output *GenerateDataKeyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGenerateDataKey == nil {
 		opGenerateDataKey = &aws.Operation{
 			Name:       "GenerateDataKey",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GenerateDataKeyInput{}
 	}
 
 	req = c.newRequest(opGenerateDataKey, input, output)
@@ -382,23 +458,29 @@ func (c *KMS) GenerateDataKeyRequest(input *GenerateDataKeyInput) (req *aws.Requ
 // if any, that you specified when you generated the key. The encryption context
 // is logged by CloudTrail, and you can use this log to help track the use of
 // particular data.
-func (c *KMS) GenerateDataKey(input *GenerateDataKeyInput) (output *GenerateDataKeyOutput, err error) {
+func (c *KMS) GenerateDataKey(input *GenerateDataKeyInput) (*GenerateDataKeyOutput, error) {
 	req, out := c.GenerateDataKeyRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGenerateDataKey *aws.Operation
 
 // GenerateDataKeyWithoutPlaintextRequest generates a request for the GenerateDataKeyWithoutPlaintext operation.
 func (c *KMS) GenerateDataKeyWithoutPlaintextRequest(input *GenerateDataKeyWithoutPlaintextInput) (req *aws.Request, output *GenerateDataKeyWithoutPlaintextOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGenerateDataKeyWithoutPlaintext == nil {
 		opGenerateDataKeyWithoutPlaintext = &aws.Operation{
 			Name:       "GenerateDataKeyWithoutPlaintext",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GenerateDataKeyWithoutPlaintextInput{}
 	}
 
 	req = c.newRequest(opGenerateDataKeyWithoutPlaintext, input, output)
@@ -412,23 +494,29 @@ func (c *KMS) GenerateDataKeyWithoutPlaintextRequest(input *GenerateDataKeyWitho
 // You can use this API to, for example, satisfy an audit requirement that an
 // encrypted key be made available without exposing the plaintext copy of that
 // key.
-func (c *KMS) GenerateDataKeyWithoutPlaintext(input *GenerateDataKeyWithoutPlaintextInput) (output *GenerateDataKeyWithoutPlaintextOutput, err error) {
+func (c *KMS) GenerateDataKeyWithoutPlaintext(input *GenerateDataKeyWithoutPlaintextInput) (*GenerateDataKeyWithoutPlaintextOutput, error) {
 	req, out := c.GenerateDataKeyWithoutPlaintextRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGenerateDataKeyWithoutPlaintext *aws.Operation
 
 // GenerateRandomRequest generates a request for the GenerateRandom operation.
 func (c *KMS) GenerateRandomRequest(input *GenerateRandomInput) (req *aws.Request, output *GenerateRandomOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGenerateRandom == nil {
 		opGenerateRandom = &aws.Operation{
 			Name:       "GenerateRandom",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GenerateRandomInput{}
 	}
 
 	req = c.newRequest(opGenerateRandom, input, output)
@@ -438,23 +526,29 @@ func (c *KMS) GenerateRandomRequest(input *GenerateRandomInput) (req *aws.Reques
 }
 
 // Generates an unpredictable byte string.
-func (c *KMS) GenerateRandom(input *GenerateRandomInput) (output *GenerateRandomOutput, err error) {
+func (c *KMS) GenerateRandom(input *GenerateRandomInput) (*GenerateRandomOutput, error) {
 	req, out := c.GenerateRandomRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGenerateRandom *aws.Operation
 
 // GetKeyPolicyRequest generates a request for the GetKeyPolicy operation.
 func (c *KMS) GetKeyPolicyRequest(input *GetKeyPolicyInput) (req *aws.Request, output *GetKeyPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetKeyPolicy == nil {
 		opGetKeyPolicy = &aws.Operation{
 			Name:       "GetKeyPolicy",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetKeyPolicyInput{}
 	}
 
 	req = c.newRequest(opGetKeyPolicy, input, output)
@@ -464,23 +558,29 @@ func (c *KMS) GetKeyPolicyRequest(input *GetKeyPolicyInput) (req *aws.Request, o
 }
 
 // Retrieves a policy attached to the specified key.
-func (c *KMS) GetKeyPolicy(input *GetKeyPolicyInput) (output *GetKeyPolicyOutput, err error) {
+func (c *KMS) GetKeyPolicy(input *GetKeyPolicyInput) (*GetKeyPolicyOutput, error) {
 	req, out := c.GetKeyPolicyRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetKeyPolicy *aws.Operation
 
 // GetKeyRotationStatusRequest generates a request for the GetKeyRotationStatus operation.
 func (c *KMS) GetKeyRotationStatusRequest(input *GetKeyRotationStatusInput) (req *aws.Request, output *GetKeyRotationStatusOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetKeyRotationStatus == nil {
 		opGetKeyRotationStatus = &aws.Operation{
 			Name:       "GetKeyRotationStatus",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetKeyRotationStatusInput{}
 	}
 
 	req = c.newRequest(opGetKeyRotationStatus, input, output)
@@ -491,23 +591,29 @@ func (c *KMS) GetKeyRotationStatusRequest(input *GetKeyRotationStatusInput) (req
 
 // Retrieves a Boolean value that indicates whether key rotation is enabled
 // for the specified key.
-func (c *KMS) GetKeyRotationStatus(input *GetKeyRotationStatusInput) (output *GetKeyRotationStatusOutput, err error) {
+func (c *KMS) GetKeyRotationStatus(input *GetKeyRotationStatusInput) (*GetKeyRotationStatusOutput, error) {
 	req, out := c.GetKeyRotationStatusRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetKeyRotationStatus *aws.Operation
 
 // ListAliasesRequest generates a request for the ListAliases operation.
 func (c *KMS) ListAliasesRequest(input *ListAliasesInput) (req *aws.Request, output *ListAliasesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListAliases == nil {
 		opListAliases = &aws.Operation{
 			Name:       "ListAliases",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListAliasesInput{}
 	}
 
 	req = c.newRequest(opListAliases, input, output)
@@ -517,23 +623,29 @@ func (c *KMS) ListAliasesRequest(input *ListAliasesInput) (req *aws.Request, out
 }
 
 // Lists all of the key aliases in the account.
-func (c *KMS) ListAliases(input *ListAliasesInput) (output *ListAliasesOutput, err error) {
+func (c *KMS) ListAliases(input *ListAliasesInput) (*ListAliasesOutput, error) {
 	req, out := c.ListAliasesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListAliases *aws.Operation
 
 // ListGrantsRequest generates a request for the ListGrants operation.
 func (c *KMS) ListGrantsRequest(input *ListGrantsInput) (req *aws.Request, output *ListGrantsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListGrants == nil {
 		opListGrants = &aws.Operation{
 			Name:       "ListGrants",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListGrantsInput{}
 	}
 
 	req = c.newRequest(opListGrants, input, output)
@@ -543,23 +655,29 @@ func (c *KMS) ListGrantsRequest(input *ListGrantsInput) (req *aws.Request, outpu
 }
 
 // List the grants for a specified key.
-func (c *KMS) ListGrants(input *ListGrantsInput) (output *ListGrantsOutput, err error) {
+func (c *KMS) ListGrants(input *ListGrantsInput) (*ListGrantsOutput, error) {
 	req, out := c.ListGrantsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListGrants *aws.Operation
 
 // ListKeyPoliciesRequest generates a request for the ListKeyPolicies operation.
 func (c *KMS) ListKeyPoliciesRequest(input *ListKeyPoliciesInput) (req *aws.Request, output *ListKeyPoliciesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListKeyPolicies == nil {
 		opListKeyPolicies = &aws.Operation{
 			Name:       "ListKeyPolicies",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListKeyPoliciesInput{}
 	}
 
 	req = c.newRequest(opListKeyPolicies, input, output)
@@ -569,23 +687,29 @@ func (c *KMS) ListKeyPoliciesRequest(input *ListKeyPoliciesInput) (req *aws.Requ
 }
 
 // Retrieves a list of policies attached to a key.
-func (c *KMS) ListKeyPolicies(input *ListKeyPoliciesInput) (output *ListKeyPoliciesOutput, err error) {
+func (c *KMS) ListKeyPolicies(input *ListKeyPoliciesInput) (*ListKeyPoliciesOutput, error) {
 	req, out := c.ListKeyPoliciesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListKeyPolicies *aws.Operation
 
 // ListKeysRequest generates a request for the ListKeys operation.
 func (c *KMS) ListKeysRequest(input *ListKeysInput) (req *aws.Request, output *ListKeysOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListKeys == nil {
 		opListKeys = &aws.Operation{
 			Name:       "ListKeys",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListKeysInput{}
 	}
 
 	req = c.newRequest(opListKeys, input, output)
@@ -595,23 +719,29 @@ func (c *KMS) ListKeysRequest(input *ListKeysInput) (req *aws.Request, output *L
 }
 
 // Lists the customer master keys.
-func (c *KMS) ListKeys(input *ListKeysInput) (output *ListKeysOutput, err error) {
+func (c *KMS) ListKeys(input *ListKeysInput) (*ListKeysOutput, error) {
 	req, out := c.ListKeysRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListKeys *aws.Operation
 
 // PutKeyPolicyRequest generates a request for the PutKeyPolicy operation.
 func (c *KMS) PutKeyPolicyRequest(input *PutKeyPolicyInput) (req *aws.Request, output *PutKeyPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutKeyPolicy == nil {
 		opPutKeyPolicy = &aws.Operation{
 			Name:       "PutKeyPolicy",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PutKeyPolicyInput{}
 	}
 
 	req = c.newRequest(opPutKeyPolicy, input, output)
@@ -621,23 +751,29 @@ func (c *KMS) PutKeyPolicyRequest(input *PutKeyPolicyInput) (req *aws.Request, o
 }
 
 // Attaches a policy to the specified key.
-func (c *KMS) PutKeyPolicy(input *PutKeyPolicyInput) (output *PutKeyPolicyOutput, err error) {
+func (c *KMS) PutKeyPolicy(input *PutKeyPolicyInput) (*PutKeyPolicyOutput, error) {
 	req, out := c.PutKeyPolicyRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opPutKeyPolicy *aws.Operation
 
 // ReEncryptRequest generates a request for the ReEncrypt operation.
 func (c *KMS) ReEncryptRequest(input *ReEncryptInput) (req *aws.Request, output *ReEncryptOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opReEncrypt == nil {
 		opReEncrypt = &aws.Operation{
 			Name:       "ReEncrypt",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ReEncryptInput{}
 	}
 
 	req = c.newRequest(opReEncrypt, input, output)
@@ -650,23 +786,29 @@ func (c *KMS) ReEncryptRequest(input *ReEncryptInput) (req *aws.Request, output 
 // the plaintext of the data on the client side. The data is first decrypted
 // and then encrypted. This operation can also be used to change the encryption
 // context of a ciphertext.
-func (c *KMS) ReEncrypt(input *ReEncryptInput) (output *ReEncryptOutput, err error) {
+func (c *KMS) ReEncrypt(input *ReEncryptInput) (*ReEncryptOutput, error) {
 	req, out := c.ReEncryptRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opReEncrypt *aws.Operation
 
 // RetireGrantRequest generates a request for the RetireGrant operation.
 func (c *KMS) RetireGrantRequest(input *RetireGrantInput) (req *aws.Request, output *RetireGrantOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRetireGrant == nil {
 		opRetireGrant = &aws.Operation{
 			Name:       "RetireGrant",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RetireGrantInput{}
 	}
 
 	req = c.newRequest(opRetireGrant, input, output)
@@ -680,23 +822,29 @@ func (c *KMS) RetireGrantRequest(input *RetireGrantInput) (req *aws.Request, out
 // that depend on it. The following are permitted to call this API:  The account
 // that created the grant The RetiringPrincipal, if present The GranteePrincipal,
 // if RetireGrant is a grantee operation
-func (c *KMS) RetireGrant(input *RetireGrantInput) (output *RetireGrantOutput, err error) {
+func (c *KMS) RetireGrant(input *RetireGrantInput) (*RetireGrantOutput, error) {
 	req, out := c.RetireGrantRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRetireGrant *aws.Operation
 
 // RevokeGrantRequest generates a request for the RevokeGrant operation.
 func (c *KMS) RevokeGrantRequest(input *RevokeGrantInput) (req *aws.Request, output *RevokeGrantOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRevokeGrant == nil {
 		opRevokeGrant = &aws.Operation{
 			Name:       "RevokeGrant",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RevokeGrantInput{}
 	}
 
 	req = c.newRequest(opRevokeGrant, input, output)
@@ -707,23 +855,29 @@ func (c *KMS) RevokeGrantRequest(input *RevokeGrantInput) (req *aws.Request, out
 
 // Revokes a grant. You can revoke a grant to actively deny operations that
 // depend on it.
-func (c *KMS) RevokeGrant(input *RevokeGrantInput) (output *RevokeGrantOutput, err error) {
+func (c *KMS) RevokeGrant(input *RevokeGrantInput) (*RevokeGrantOutput, error) {
 	req, out := c.RevokeGrantRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRevokeGrant *aws.Operation
 
 // UpdateKeyDescriptionRequest generates a request for the UpdateKeyDescription operation.
 func (c *KMS) UpdateKeyDescriptionRequest(input *UpdateKeyDescriptionInput) (req *aws.Request, output *UpdateKeyDescriptionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateKeyDescription == nil {
 		opUpdateKeyDescription = &aws.Operation{
 			Name:       "UpdateKeyDescription",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateKeyDescriptionInput{}
 	}
 
 	req = c.newRequest(opUpdateKeyDescription, input, output)
@@ -733,11 +887,10 @@ func (c *KMS) UpdateKeyDescriptionRequest(input *UpdateKeyDescriptionInput) (req
 }
 
 // Updates the description of a key.
-func (c *KMS) UpdateKeyDescription(input *UpdateKeyDescriptionInput) (output *UpdateKeyDescriptionOutput, err error) {
+func (c *KMS) UpdateKeyDescription(input *UpdateKeyDescriptionInput) (*UpdateKeyDescriptionOutput, error) {
 	req, out := c.UpdateKeyDescriptionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateKeyDescription *aws.Operation
@@ -753,7 +906,7 @@ type AliasListEntry struct {
 	// String that contains the key identifier pointed to by the alias.
 	TargetKeyID *string `locationName:"TargetKeyId" type:"string"`
 
-	metadataAliasListEntry `json:"-", xml:"-"`
+	metadataAliasListEntry `json:"-" xml:"-"`
 }
 
 type metadataAliasListEntry struct {
@@ -770,7 +923,7 @@ type CreateAliasInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	TargetKeyID *string `locationName:"TargetKeyId" type:"string" required:"true"`
 
-	metadataCreateAliasInput `json:"-", xml:"-"`
+	metadataCreateAliasInput `json:"-" xml:"-"`
 }
 
 type metadataCreateAliasInput struct {
@@ -778,7 +931,7 @@ type metadataCreateAliasInput struct {
 }
 
 type CreateAliasOutput struct {
-	metadataCreateAliasOutput `json:"-", xml:"-"`
+	metadataCreateAliasOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateAliasOutput struct {
@@ -812,7 +965,7 @@ type CreateGrantInput struct {
 	// RetireGrant.
 	RetiringPrincipal *string `type:"string"`
 
-	metadataCreateGrantInput `json:"-", xml:"-"`
+	metadataCreateGrantInput `json:"-" xml:"-"`
 }
 
 type metadataCreateGrantInput struct {
@@ -826,7 +979,7 @@ type CreateGrantOutput struct {
 	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
 	GrantToken *string `type:"string"`
 
-	metadataCreateGrantOutput `json:"-", xml:"-"`
+	metadataCreateGrantOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateGrantOutput struct {
@@ -846,7 +999,7 @@ type CreateKeyInput struct {
 	// the account. The key is the root of trust.
 	Policy *string `type:"string"`
 
-	metadataCreateKeyInput `json:"-", xml:"-"`
+	metadataCreateKeyInput `json:"-" xml:"-"`
 }
 
 type metadataCreateKeyInput struct {
@@ -857,7 +1010,7 @@ type CreateKeyOutput struct {
 	// Metadata associated with the key.
 	KeyMetadata *KeyMetadata `type:"structure"`
 
-	metadataCreateKeyOutput `json:"-", xml:"-"`
+	metadataCreateKeyOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateKeyOutput struct {
@@ -876,7 +1029,7 @@ type DecryptInput struct {
 	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
 	GrantTokens []*string `type:"list"`
 
-	metadataDecryptInput `json:"-", xml:"-"`
+	metadataDecryptInput `json:"-" xml:"-"`
 }
 
 type metadataDecryptInput struct {
@@ -892,7 +1045,7 @@ type DecryptOutput struct {
 	// master key is not available or if you didn't have permission to use it.
 	Plaintext []byte `type:"blob"`
 
-	metadataDecryptOutput `json:"-", xml:"-"`
+	metadataDecryptOutput `json:"-" xml:"-"`
 }
 
 type metadataDecryptOutput struct {
@@ -903,7 +1056,7 @@ type DeleteAliasInput struct {
 	// The alias to be deleted.
 	AliasName *string `type:"string" required:"true"`
 
-	metadataDeleteAliasInput `json:"-", xml:"-"`
+	metadataDeleteAliasInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAliasInput struct {
@@ -911,7 +1064,7 @@ type metadataDeleteAliasInput struct {
 }
 
 type DeleteAliasOutput struct {
-	metadataDeleteAliasOutput `json:"-", xml:"-"`
+	metadataDeleteAliasOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAliasOutput struct {
@@ -927,7 +1080,7 @@ type DescribeKeyInput struct {
 	// Example - alias/MyAliasName
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
-	metadataDescribeKeyInput `json:"-", xml:"-"`
+	metadataDescribeKeyInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeKeyInput struct {
@@ -938,7 +1091,7 @@ type DescribeKeyOutput struct {
 	// Metadata associated with the key.
 	KeyMetadata *KeyMetadata `type:"structure"`
 
-	metadataDescribeKeyOutput `json:"-", xml:"-"`
+	metadataDescribeKeyOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeKeyOutput struct {
@@ -952,7 +1105,7 @@ type DisableKeyInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
-	metadataDisableKeyInput `json:"-", xml:"-"`
+	metadataDisableKeyInput `json:"-" xml:"-"`
 }
 
 type metadataDisableKeyInput struct {
@@ -960,7 +1113,7 @@ type metadataDisableKeyInput struct {
 }
 
 type DisableKeyOutput struct {
-	metadataDisableKeyOutput `json:"-", xml:"-"`
+	metadataDisableKeyOutput `json:"-" xml:"-"`
 }
 
 type metadataDisableKeyOutput struct {
@@ -974,7 +1127,7 @@ type DisableKeyRotationInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
-	metadataDisableKeyRotationInput `json:"-", xml:"-"`
+	metadataDisableKeyRotationInput `json:"-" xml:"-"`
 }
 
 type metadataDisableKeyRotationInput struct {
@@ -982,7 +1135,7 @@ type metadataDisableKeyRotationInput struct {
 }
 
 type DisableKeyRotationOutput struct {
-	metadataDisableKeyRotationOutput `json:"-", xml:"-"`
+	metadataDisableKeyRotationOutput `json:"-" xml:"-"`
 }
 
 type metadataDisableKeyRotationOutput struct {
@@ -996,7 +1149,7 @@ type EnableKeyInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
-	metadataEnableKeyInput `json:"-", xml:"-"`
+	metadataEnableKeyInput `json:"-" xml:"-"`
 }
 
 type metadataEnableKeyInput struct {
@@ -1004,7 +1157,7 @@ type metadataEnableKeyInput struct {
 }
 
 type EnableKeyOutput struct {
-	metadataEnableKeyOutput `json:"-", xml:"-"`
+	metadataEnableKeyOutput `json:"-" xml:"-"`
 }
 
 type metadataEnableKeyOutput struct {
@@ -1018,7 +1171,7 @@ type EnableKeyRotationInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
-	metadataEnableKeyRotationInput `json:"-", xml:"-"`
+	metadataEnableKeyRotationInput `json:"-" xml:"-"`
 }
 
 type metadataEnableKeyRotationInput struct {
@@ -1026,7 +1179,7 @@ type metadataEnableKeyRotationInput struct {
 }
 
 type EnableKeyRotationOutput struct {
-	metadataEnableKeyRotationOutput `json:"-", xml:"-"`
+	metadataEnableKeyRotationOutput `json:"-" xml:"-"`
 }
 
 type metadataEnableKeyRotationOutput struct {
@@ -1054,7 +1207,7 @@ type EncryptInput struct {
 	// Data to be encrypted.
 	Plaintext []byte `type:"blob" required:"true"`
 
-	metadataEncryptInput `json:"-", xml:"-"`
+	metadataEncryptInput `json:"-" xml:"-"`
 }
 
 type metadataEncryptInput struct {
@@ -1069,7 +1222,7 @@ type EncryptOutput struct {
 	// The ID of the key used during encryption.
 	KeyID *string `locationName:"KeyId" type:"string"`
 
-	metadataEncryptOutput `json:"-", xml:"-"`
+	metadataEncryptOutput `json:"-" xml:"-"`
 }
 
 type metadataEncryptOutput struct {
@@ -1102,7 +1255,7 @@ type GenerateDataKeyInput struct {
 	// use the KeySpec parameter instead.
 	NumberOfBytes *int64 `type:"integer"`
 
-	metadataGenerateDataKeyInput `json:"-", xml:"-"`
+	metadataGenerateDataKeyInput `json:"-" xml:"-"`
 }
 
 type metadataGenerateDataKeyInput struct {
@@ -1128,7 +1281,7 @@ type GenerateDataKeyOutput struct {
 	// and then remove it from memory as soon as possible.
 	Plaintext []byte `type:"blob"`
 
-	metadataGenerateDataKeyOutput `json:"-", xml:"-"`
+	metadataGenerateDataKeyOutput `json:"-" xml:"-"`
 }
 
 type metadataGenerateDataKeyOutput struct {
@@ -1160,7 +1313,7 @@ type GenerateDataKeyWithoutPlaintextInput struct {
 	// instead.
 	NumberOfBytes *int64 `type:"integer"`
 
-	metadataGenerateDataKeyWithoutPlaintextInput `json:"-", xml:"-"`
+	metadataGenerateDataKeyWithoutPlaintextInput `json:"-" xml:"-"`
 }
 
 type metadataGenerateDataKeyWithoutPlaintextInput struct {
@@ -1179,7 +1332,7 @@ type GenerateDataKeyWithoutPlaintextOutput struct {
 	// copy of the data key.
 	KeyID *string `locationName:"KeyId" type:"string"`
 
-	metadataGenerateDataKeyWithoutPlaintextOutput `json:"-", xml:"-"`
+	metadataGenerateDataKeyWithoutPlaintextOutput `json:"-" xml:"-"`
 }
 
 type metadataGenerateDataKeyWithoutPlaintextOutput struct {
@@ -1191,7 +1344,7 @@ type GenerateRandomInput struct {
 	// 128, 256, 512, 1024 and so on. The current limit is 1024 bytes.
 	NumberOfBytes *int64 `type:"integer"`
 
-	metadataGenerateRandomInput `json:"-", xml:"-"`
+	metadataGenerateRandomInput `json:"-" xml:"-"`
 }
 
 type metadataGenerateRandomInput struct {
@@ -1202,7 +1355,7 @@ type GenerateRandomOutput struct {
 	// Plaintext that contains the unpredictable byte string.
 	Plaintext []byte `type:"blob"`
 
-	metadataGenerateRandomOutput `json:"-", xml:"-"`
+	metadataGenerateRandomOutput `json:"-" xml:"-"`
 }
 
 type metadataGenerateRandomOutput struct {
@@ -1220,7 +1373,7 @@ type GetKeyPolicyInput struct {
 	// Policy names can be discovered by calling ListKeyPolicies.
 	PolicyName *string `type:"string" required:"true"`
 
-	metadataGetKeyPolicyInput `json:"-", xml:"-"`
+	metadataGetKeyPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataGetKeyPolicyInput struct {
@@ -1231,7 +1384,7 @@ type GetKeyPolicyOutput struct {
 	// A policy document in JSON format.
 	Policy *string `type:"string"`
 
-	metadataGetKeyPolicyOutput `json:"-", xml:"-"`
+	metadataGetKeyPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataGetKeyPolicyOutput struct {
@@ -1245,7 +1398,7 @@ type GetKeyRotationStatusInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
-	metadataGetKeyRotationStatusInput `json:"-", xml:"-"`
+	metadataGetKeyRotationStatusInput `json:"-" xml:"-"`
 }
 
 type metadataGetKeyRotationStatusInput struct {
@@ -1256,7 +1409,7 @@ type GetKeyRotationStatusOutput struct {
 	// A Boolean value that specifies whether key rotation is enabled.
 	KeyRotationEnabled *bool `type:"boolean"`
 
-	metadataGetKeyRotationStatusOutput `json:"-", xml:"-"`
+	metadataGetKeyRotationStatusOutput `json:"-" xml:"-"`
 }
 
 type metadataGetKeyRotationStatusOutput struct {
@@ -1272,7 +1425,7 @@ type GrantConstraints struct {
 	// The constraint equals the full encryption context.
 	EncryptionContextSubset *map[string]*string `type:"map"`
 
-	metadataGrantConstraints `json:"-", xml:"-"`
+	metadataGrantConstraints `json:"-" xml:"-"`
 }
 
 type metadataGrantConstraints struct {
@@ -1302,7 +1455,7 @@ type GrantListEntry struct {
 	// The principal that can retire the account.
 	RetiringPrincipal *string `type:"string"`
 
-	metadataGrantListEntry `json:"-", xml:"-"`
+	metadataGrantListEntry `json:"-" xml:"-"`
 }
 
 type metadataGrantListEntry struct {
@@ -1317,7 +1470,7 @@ type KeyListEntry struct {
 	// Unique identifier of the key.
 	KeyID *string `locationName:"KeyId" type:"string"`
 
-	metadataKeyListEntry `json:"-", xml:"-"`
+	metadataKeyListEntry `json:"-" xml:"-"`
 }
 
 type metadataKeyListEntry struct {
@@ -1347,7 +1500,7 @@ type KeyMetadata struct {
 	// A value that specifies what operation(s) the key can perform.
 	KeyUsage *string `type:"string"`
 
-	metadataKeyMetadata `json:"-", xml:"-"`
+	metadataKeyMetadata `json:"-" xml:"-"`
 }
 
 type metadataKeyMetadata struct {
@@ -1365,7 +1518,7 @@ type ListAliasesInput struct {
 	// to the value of the NextMarker element in the response you just received.
 	Marker *string `type:"string"`
 
-	metadataListAliasesInput `json:"-", xml:"-"`
+	metadataListAliasesInput `json:"-" xml:"-"`
 }
 
 type metadataListAliasesInput struct {
@@ -1385,7 +1538,7 @@ type ListAliasesOutput struct {
 	// request parameter to retrieve more aliases in the list.
 	Truncated *bool `type:"boolean"`
 
-	metadataListAliasesOutput `json:"-", xml:"-"`
+	metadataListAliasesOutput `json:"-" xml:"-"`
 }
 
 type metadataListAliasesOutput struct {
@@ -1410,7 +1563,7 @@ type ListGrantsInput struct {
 	// Set it to the value of the NextMarker in the response you just received.
 	Marker *string `type:"string"`
 
-	metadataListGrantsInput `json:"-", xml:"-"`
+	metadataListGrantsInput `json:"-" xml:"-"`
 }
 
 type metadataListGrantsInput struct {
@@ -1430,7 +1583,7 @@ type ListGrantsOutput struct {
 	// request parameter to retrieve more grants in the list.
 	Truncated *bool `type:"boolean"`
 
-	metadataListGrantsOutput `json:"-", xml:"-"`
+	metadataListGrantsOutput `json:"-" xml:"-"`
 }
 
 type metadataListGrantsOutput struct {
@@ -1457,7 +1610,7 @@ type ListKeyPoliciesInput struct {
 	// Set it to the value of the NextMarker in the response you just received.
 	Marker *string `type:"string"`
 
-	metadataListKeyPoliciesInput `json:"-", xml:"-"`
+	metadataListKeyPoliciesInput `json:"-" xml:"-"`
 }
 
 type metadataListKeyPoliciesInput struct {
@@ -1478,7 +1631,7 @@ type ListKeyPoliciesOutput struct {
 	// request parameter to retrieve more policies in the list.
 	Truncated *bool `type:"boolean"`
 
-	metadataListKeyPoliciesOutput `json:"-", xml:"-"`
+	metadataListKeyPoliciesOutput `json:"-" xml:"-"`
 }
 
 type metadataListKeyPoliciesOutput struct {
@@ -1497,7 +1650,7 @@ type ListKeysInput struct {
 	// Set it to the value of the NextMarker in the response you just received.
 	Marker *string `type:"string"`
 
-	metadataListKeysInput `json:"-", xml:"-"`
+	metadataListKeysInput `json:"-" xml:"-"`
 }
 
 type metadataListKeysInput struct {
@@ -1517,7 +1670,7 @@ type ListKeysOutput struct {
 	// request parameter to retrieve more keys in the list.
 	Truncated *bool `type:"boolean"`
 
-	metadataListKeysOutput `json:"-", xml:"-"`
+	metadataListKeysOutput `json:"-" xml:"-"`
 }
 
 type metadataListKeysOutput struct {
@@ -1538,7 +1691,7 @@ type PutKeyPolicyInput struct {
 	// "default".
 	PolicyName *string `type:"string" required:"true"`
 
-	metadataPutKeyPolicyInput `json:"-", xml:"-"`
+	metadataPutKeyPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataPutKeyPolicyInput struct {
@@ -1546,7 +1699,7 @@ type metadataPutKeyPolicyInput struct {
 }
 
 type PutKeyPolicyOutput struct {
-	metadataPutKeyPolicyOutput `json:"-", xml:"-"`
+	metadataPutKeyPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataPutKeyPolicyOutput struct {
@@ -1576,7 +1729,7 @@ type ReEncryptInput struct {
 	// CiphertextBlob parameter.
 	SourceEncryptionContext *map[string]*string `type:"map"`
 
-	metadataReEncryptInput `json:"-", xml:"-"`
+	metadataReEncryptInput `json:"-" xml:"-"`
 }
 
 type metadataReEncryptInput struct {
@@ -1594,7 +1747,7 @@ type ReEncryptOutput struct {
 	// Unique identifier of the key used to originally encrypt the data.
 	SourceKeyID *string `locationName:"SourceKeyId" type:"string"`
 
-	metadataReEncryptOutput `json:"-", xml:"-"`
+	metadataReEncryptOutput `json:"-" xml:"-"`
 }
 
 type metadataReEncryptOutput struct {
@@ -1605,7 +1758,7 @@ type RetireGrantInput struct {
 	// Token that identifies the grant to be retired.
 	GrantToken *string `type:"string" required:"true"`
 
-	metadataRetireGrantInput `json:"-", xml:"-"`
+	metadataRetireGrantInput `json:"-" xml:"-"`
 }
 
 type metadataRetireGrantInput struct {
@@ -1613,7 +1766,7 @@ type metadataRetireGrantInput struct {
 }
 
 type RetireGrantOutput struct {
-	metadataRetireGrantOutput `json:"-", xml:"-"`
+	metadataRetireGrantOutput `json:"-" xml:"-"`
 }
 
 type metadataRetireGrantOutput struct {
@@ -1630,7 +1783,7 @@ type RevokeGrantInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
-	metadataRevokeGrantInput `json:"-", xml:"-"`
+	metadataRevokeGrantInput `json:"-" xml:"-"`
 }
 
 type metadataRevokeGrantInput struct {
@@ -1638,7 +1791,7 @@ type metadataRevokeGrantInput struct {
 }
 
 type RevokeGrantOutput struct {
-	metadataRevokeGrantOutput `json:"-", xml:"-"`
+	metadataRevokeGrantOutput `json:"-" xml:"-"`
 }
 
 type metadataRevokeGrantOutput struct {
@@ -1655,7 +1808,7 @@ type UpdateKeyDescriptionInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
-	metadataUpdateKeyDescriptionInput `json:"-", xml:"-"`
+	metadataUpdateKeyDescriptionInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateKeyDescriptionInput struct {
@@ -1663,7 +1816,7 @@ type metadataUpdateKeyDescriptionInput struct {
 }
 
 type UpdateKeyDescriptionOutput struct {
-	metadataUpdateKeyDescriptionOutput `json:"-", xml:"-"`
+	metadataUpdateKeyDescriptionOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateKeyDescriptionOutput struct {

@@ -6,6 +6,7 @@ import (
 	"sort"
 )
 
+// A XMLNode contains the values to be encoded or decoded.
 type XMLNode struct {
 	Name     xml.Name              `json:",omitempty"`
 	Children map[string][]*XMLNode `json:",omitempty"`
@@ -13,6 +14,7 @@ type XMLNode struct {
 	Attr     []xml.Attr            `json:",omitempty"`
 }
 
+// NewXMLElement returns a pointer to a new XMLNode initialized to default values.
 func NewXMLElement(name xml.Name) *XMLNode {
 	return &XMLNode{
 		Name:     name,
@@ -21,6 +23,7 @@ func NewXMLElement(name xml.Name) *XMLNode {
 	}
 }
 
+// AddChild adds child to the XMLNode.
 func (n *XMLNode) AddChild(child *XMLNode) {
 	if _, ok := n.Children[child.Name.Local]; !ok {
 		n.Children[child.Name.Local] = []*XMLNode{}
@@ -28,6 +31,7 @@ func (n *XMLNode) AddChild(child *XMLNode) {
 	n.Children[child.Name.Local] = append(n.Children[child.Name.Local], child)
 }
 
+// XMLToStruct converts a xml.Decoder stream to XMLNode with nested values.
 func XMLToStruct(d *xml.Decoder, s *xml.StartElement) (*XMLNode, error) {
 	out := &XMLNode{}
 	for {
@@ -70,6 +74,7 @@ func XMLToStruct(d *xml.Decoder, s *xml.StartElement) (*XMLNode, error) {
 	return out, nil
 }
 
+// StructToXML writes an XMLNode to a xml.Encoder as tokens.
 func StructToXML(e *xml.Encoder, node *XMLNode, sorted bool) error {
 	e.EncodeToken(xml.StartElement{Name: node.Name, Attr: node.Attr})
 
@@ -77,7 +82,7 @@ func StructToXML(e *xml.Encoder, node *XMLNode, sorted bool) error {
 		e.EncodeToken(xml.CharData([]byte(node.Text)))
 	} else if sorted {
 		sortedNames := []string{}
-		for k, _ := range node.Children {
+		for k := range node.Children {
 			sortedNames = append(sortedNames, k)
 		}
 		sort.Strings(sortedNames)

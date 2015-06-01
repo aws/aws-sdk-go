@@ -6,17 +6,18 @@ import (
 	"net/url"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/internal/apierr"
 	"github.com/awslabs/aws-sdk-go/internal/protocol/query/queryutil"
 )
 
+// Build builds a request for the EC2 protocol.
 func Build(r *aws.Request) {
 	body := url.Values{
 		"Action":  {r.Operation.Name},
 		"Version": {r.Service.APIVersion},
 	}
 	if err := queryutil.Parse(body, r.Params, true); err != nil {
-		r.Error = err
-		return
+		r.Error = apierr.New("Marshal", "failed encoding EC2 Query request", err)
 	}
 
 	if r.ExpireTime == 0 {

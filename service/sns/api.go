@@ -4,17 +4,28 @@
 package sns
 
 import (
+	"sync"
+
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // AddPermissionRequest generates a request for the AddPermission operation.
 func (c *SNS) AddPermissionRequest(input *AddPermissionInput) (req *aws.Request, output *AddPermissionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAddPermission == nil {
 		opAddPermission = &aws.Operation{
 			Name:       "AddPermission",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &AddPermissionInput{}
 	}
 
 	req = c.newRequest(opAddPermission, input, output)
@@ -25,23 +36,29 @@ func (c *SNS) AddPermissionRequest(input *AddPermissionInput) (req *aws.Request,
 
 // Adds a statement to a topic's access control policy, granting access for
 // the specified AWS accounts to the specified actions.
-func (c *SNS) AddPermission(input *AddPermissionInput) (output *AddPermissionOutput, err error) {
+func (c *SNS) AddPermission(input *AddPermissionInput) (*AddPermissionOutput, error) {
 	req, out := c.AddPermissionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opAddPermission *aws.Operation
 
 // ConfirmSubscriptionRequest generates a request for the ConfirmSubscription operation.
 func (c *SNS) ConfirmSubscriptionRequest(input *ConfirmSubscriptionInput) (req *aws.Request, output *ConfirmSubscriptionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opConfirmSubscription == nil {
 		opConfirmSubscription = &aws.Operation{
 			Name:       "ConfirmSubscription",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ConfirmSubscriptionInput{}
 	}
 
 	req = c.newRequest(opConfirmSubscription, input, output)
@@ -55,23 +72,29 @@ func (c *SNS) ConfirmSubscriptionRequest(input *ConfirmSubscriptionInput) (req *
 // valid, the action creates a new subscription and returns its Amazon Resource
 // Name (ARN). This call requires an AWS signature only when the AuthenticateOnUnsubscribe
 // flag is set to "true".
-func (c *SNS) ConfirmSubscription(input *ConfirmSubscriptionInput) (output *ConfirmSubscriptionOutput, err error) {
+func (c *SNS) ConfirmSubscription(input *ConfirmSubscriptionInput) (*ConfirmSubscriptionOutput, error) {
 	req, out := c.ConfirmSubscriptionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opConfirmSubscription *aws.Operation
 
 // CreatePlatformApplicationRequest generates a request for the CreatePlatformApplication operation.
 func (c *SNS) CreatePlatformApplicationRequest(input *CreatePlatformApplicationInput) (req *aws.Request, output *CreatePlatformApplicationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreatePlatformApplication == nil {
 		opCreatePlatformApplication = &aws.Operation{
 			Name:       "CreatePlatformApplication",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreatePlatformApplicationInput{}
 	}
 
 	req = c.newRequest(opCreatePlatformApplication, input, output)
@@ -93,23 +116,29 @@ func (c *SNS) CreatePlatformApplicationRequest(input *CreatePlatformApplicationI
 // CreatePlatformApplication is then used as an attribute for the CreatePlatformEndpoint
 // action. For more information, see Using Amazon SNS Mobile Push Notifications
 // (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
-func (c *SNS) CreatePlatformApplication(input *CreatePlatformApplicationInput) (output *CreatePlatformApplicationOutput, err error) {
+func (c *SNS) CreatePlatformApplication(input *CreatePlatformApplicationInput) (*CreatePlatformApplicationOutput, error) {
 	req, out := c.CreatePlatformApplicationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreatePlatformApplication *aws.Operation
 
 // CreatePlatformEndpointRequest generates a request for the CreatePlatformEndpoint operation.
 func (c *SNS) CreatePlatformEndpointRequest(input *CreatePlatformEndpointInput) (req *aws.Request, output *CreatePlatformEndpointOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreatePlatformEndpoint == nil {
 		opCreatePlatformEndpoint = &aws.Operation{
 			Name:       "CreatePlatformEndpoint",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreatePlatformEndpointInput{}
 	}
 
 	req = c.newRequest(opCreatePlatformEndpoint, input, output)
@@ -132,23 +161,29 @@ func (c *SNS) CreatePlatformEndpointRequest(input *CreatePlatformEndpointInput) 
 // When using CreatePlatformEndpoint with Baidu, two attributes must be provided:
 // ChannelId and UserId. The token field must also contain the ChannelId. For
 // more information, see Creating an Amazon SNS Endpoint for Baidu (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePushBaiduEndpoint.html).
-func (c *SNS) CreatePlatformEndpoint(input *CreatePlatformEndpointInput) (output *CreatePlatformEndpointOutput, err error) {
+func (c *SNS) CreatePlatformEndpoint(input *CreatePlatformEndpointInput) (*CreatePlatformEndpointOutput, error) {
 	req, out := c.CreatePlatformEndpointRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreatePlatformEndpoint *aws.Operation
 
 // CreateTopicRequest generates a request for the CreateTopic operation.
 func (c *SNS) CreateTopicRequest(input *CreateTopicInput) (req *aws.Request, output *CreateTopicOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateTopic == nil {
 		opCreateTopic = &aws.Operation{
 			Name:       "CreateTopic",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateTopicInput{}
 	}
 
 	req = c.newRequest(opCreateTopic, input, output)
@@ -162,23 +197,29 @@ func (c *SNS) CreateTopicRequest(input *CreateTopicInput) (req *aws.Request, out
 // (http://aws.amazon.com/sns/). This action is idempotent, so if the requester
 // already owns a topic with the specified name, that topic's ARN is returned
 // without creating a new topic.
-func (c *SNS) CreateTopic(input *CreateTopicInput) (output *CreateTopicOutput, err error) {
+func (c *SNS) CreateTopic(input *CreateTopicInput) (*CreateTopicOutput, error) {
 	req, out := c.CreateTopicRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateTopic *aws.Operation
 
 // DeleteEndpointRequest generates a request for the DeleteEndpoint operation.
 func (c *SNS) DeleteEndpointRequest(input *DeleteEndpointInput) (req *aws.Request, output *DeleteEndpointOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteEndpoint == nil {
 		opDeleteEndpoint = &aws.Operation{
 			Name:       "DeleteEndpoint",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteEndpointInput{}
 	}
 
 	req = c.newRequest(opDeleteEndpoint, input, output)
@@ -189,23 +230,29 @@ func (c *SNS) DeleteEndpointRequest(input *DeleteEndpointInput) (req *aws.Reques
 
 // Deletes the endpoint from Amazon SNS. This action is idempotent. For more
 // information, see Using Amazon SNS Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
-func (c *SNS) DeleteEndpoint(input *DeleteEndpointInput) (output *DeleteEndpointOutput, err error) {
+func (c *SNS) DeleteEndpoint(input *DeleteEndpointInput) (*DeleteEndpointOutput, error) {
 	req, out := c.DeleteEndpointRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteEndpoint *aws.Operation
 
 // DeletePlatformApplicationRequest generates a request for the DeletePlatformApplication operation.
 func (c *SNS) DeletePlatformApplicationRequest(input *DeletePlatformApplicationInput) (req *aws.Request, output *DeletePlatformApplicationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeletePlatformApplication == nil {
 		opDeletePlatformApplication = &aws.Operation{
 			Name:       "DeletePlatformApplication",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeletePlatformApplicationInput{}
 	}
 
 	req = c.newRequest(opDeletePlatformApplication, input, output)
@@ -217,23 +264,29 @@ func (c *SNS) DeletePlatformApplicationRequest(input *DeletePlatformApplicationI
 // Deletes a platform application object for one of the supported push notification
 // services, such as APNS and GCM. For more information, see Using Amazon SNS
 // Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
-func (c *SNS) DeletePlatformApplication(input *DeletePlatformApplicationInput) (output *DeletePlatformApplicationOutput, err error) {
+func (c *SNS) DeletePlatformApplication(input *DeletePlatformApplicationInput) (*DeletePlatformApplicationOutput, error) {
 	req, out := c.DeletePlatformApplicationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeletePlatformApplication *aws.Operation
 
 // DeleteTopicRequest generates a request for the DeleteTopic operation.
 func (c *SNS) DeleteTopicRequest(input *DeleteTopicInput) (req *aws.Request, output *DeleteTopicOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteTopic == nil {
 		opDeleteTopic = &aws.Operation{
 			Name:       "DeleteTopic",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteTopicInput{}
 	}
 
 	req = c.newRequest(opDeleteTopic, input, output)
@@ -246,23 +299,29 @@ func (c *SNS) DeleteTopicRequest(input *DeleteTopicInput) (req *aws.Request, out
 // some messages previously sent to the topic from being delivered to subscribers.
 // This action is idempotent, so deleting a topic that does not exist does not
 // result in an error.
-func (c *SNS) DeleteTopic(input *DeleteTopicInput) (output *DeleteTopicOutput, err error) {
+func (c *SNS) DeleteTopic(input *DeleteTopicInput) (*DeleteTopicOutput, error) {
 	req, out := c.DeleteTopicRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteTopic *aws.Operation
 
 // GetEndpointAttributesRequest generates a request for the GetEndpointAttributes operation.
 func (c *SNS) GetEndpointAttributesRequest(input *GetEndpointAttributesInput) (req *aws.Request, output *GetEndpointAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetEndpointAttributes == nil {
 		opGetEndpointAttributes = &aws.Operation{
 			Name:       "GetEndpointAttributes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetEndpointAttributesInput{}
 	}
 
 	req = c.newRequest(opGetEndpointAttributes, input, output)
@@ -274,23 +333,29 @@ func (c *SNS) GetEndpointAttributesRequest(input *GetEndpointAttributesInput) (r
 // Retrieves the endpoint attributes for a device on one of the supported push
 // notification services, such as GCM and APNS. For more information, see Using
 // Amazon SNS Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
-func (c *SNS) GetEndpointAttributes(input *GetEndpointAttributesInput) (output *GetEndpointAttributesOutput, err error) {
+func (c *SNS) GetEndpointAttributes(input *GetEndpointAttributesInput) (*GetEndpointAttributesOutput, error) {
 	req, out := c.GetEndpointAttributesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetEndpointAttributes *aws.Operation
 
 // GetPlatformApplicationAttributesRequest generates a request for the GetPlatformApplicationAttributes operation.
 func (c *SNS) GetPlatformApplicationAttributesRequest(input *GetPlatformApplicationAttributesInput) (req *aws.Request, output *GetPlatformApplicationAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetPlatformApplicationAttributes == nil {
 		opGetPlatformApplicationAttributes = &aws.Operation{
 			Name:       "GetPlatformApplicationAttributes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetPlatformApplicationAttributesInput{}
 	}
 
 	req = c.newRequest(opGetPlatformApplicationAttributes, input, output)
@@ -302,23 +367,29 @@ func (c *SNS) GetPlatformApplicationAttributesRequest(input *GetPlatformApplicat
 // Retrieves the attributes of the platform application object for the supported
 // push notification services, such as APNS and GCM. For more information, see
 // Using Amazon SNS Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
-func (c *SNS) GetPlatformApplicationAttributes(input *GetPlatformApplicationAttributesInput) (output *GetPlatformApplicationAttributesOutput, err error) {
+func (c *SNS) GetPlatformApplicationAttributes(input *GetPlatformApplicationAttributesInput) (*GetPlatformApplicationAttributesOutput, error) {
 	req, out := c.GetPlatformApplicationAttributesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetPlatformApplicationAttributes *aws.Operation
 
 // GetSubscriptionAttributesRequest generates a request for the GetSubscriptionAttributes operation.
 func (c *SNS) GetSubscriptionAttributesRequest(input *GetSubscriptionAttributesInput) (req *aws.Request, output *GetSubscriptionAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetSubscriptionAttributes == nil {
 		opGetSubscriptionAttributes = &aws.Operation{
 			Name:       "GetSubscriptionAttributes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetSubscriptionAttributesInput{}
 	}
 
 	req = c.newRequest(opGetSubscriptionAttributes, input, output)
@@ -328,23 +399,29 @@ func (c *SNS) GetSubscriptionAttributesRequest(input *GetSubscriptionAttributesI
 }
 
 // Returns all of the properties of a subscription.
-func (c *SNS) GetSubscriptionAttributes(input *GetSubscriptionAttributesInput) (output *GetSubscriptionAttributesOutput, err error) {
+func (c *SNS) GetSubscriptionAttributes(input *GetSubscriptionAttributesInput) (*GetSubscriptionAttributesOutput, error) {
 	req, out := c.GetSubscriptionAttributesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetSubscriptionAttributes *aws.Operation
 
 // GetTopicAttributesRequest generates a request for the GetTopicAttributes operation.
 func (c *SNS) GetTopicAttributesRequest(input *GetTopicAttributesInput) (req *aws.Request, output *GetTopicAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetTopicAttributes == nil {
 		opGetTopicAttributes = &aws.Operation{
 			Name:       "GetTopicAttributes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetTopicAttributesInput{}
 	}
 
 	req = c.newRequest(opGetTopicAttributes, input, output)
@@ -355,23 +432,35 @@ func (c *SNS) GetTopicAttributesRequest(input *GetTopicAttributesInput) (req *aw
 
 // Returns all of the properties of a topic. Topic properties returned might
 // differ based on the authorization of the user.
-func (c *SNS) GetTopicAttributes(input *GetTopicAttributesInput) (output *GetTopicAttributesOutput, err error) {
+func (c *SNS) GetTopicAttributes(input *GetTopicAttributesInput) (*GetTopicAttributesOutput, error) {
 	req, out := c.GetTopicAttributesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetTopicAttributes *aws.Operation
 
 // ListEndpointsByPlatformApplicationRequest generates a request for the ListEndpointsByPlatformApplication operation.
 func (c *SNS) ListEndpointsByPlatformApplicationRequest(input *ListEndpointsByPlatformApplicationInput) (req *aws.Request, output *ListEndpointsByPlatformApplicationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListEndpointsByPlatformApplication == nil {
 		opListEndpointsByPlatformApplication = &aws.Operation{
 			Name:       "ListEndpointsByPlatformApplication",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &ListEndpointsByPlatformApplicationInput{}
 	}
 
 	req = c.newRequest(opListEndpointsByPlatformApplication, input, output)
@@ -388,23 +477,40 @@ func (c *SNS) ListEndpointsByPlatformApplicationRequest(input *ListEndpointsByPl
 // again using the NextToken string received from the previous call. When there
 // are no more records to return, NextToken will be null. For more information,
 // see Using Amazon SNS Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
-func (c *SNS) ListEndpointsByPlatformApplication(input *ListEndpointsByPlatformApplicationInput) (output *ListEndpointsByPlatformApplicationOutput, err error) {
+func (c *SNS) ListEndpointsByPlatformApplication(input *ListEndpointsByPlatformApplicationInput) (*ListEndpointsByPlatformApplicationOutput, error) {
 	req, out := c.ListEndpointsByPlatformApplicationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *SNS) ListEndpointsByPlatformApplicationPages(input *ListEndpointsByPlatformApplicationInput, fn func(p *ListEndpointsByPlatformApplicationOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListEndpointsByPlatformApplicationRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListEndpointsByPlatformApplication *aws.Operation
 
 // ListPlatformApplicationsRequest generates a request for the ListPlatformApplications operation.
 func (c *SNS) ListPlatformApplicationsRequest(input *ListPlatformApplicationsInput) (req *aws.Request, output *ListPlatformApplicationsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListPlatformApplications == nil {
 		opListPlatformApplications = &aws.Operation{
 			Name:       "ListPlatformApplications",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &ListPlatformApplicationsInput{}
 	}
 
 	req = c.newRequest(opListPlatformApplications, input, output)
@@ -421,23 +527,40 @@ func (c *SNS) ListPlatformApplicationsRequest(input *ListPlatformApplicationsInp
 // using the NextToken string received from the previous call. When there are
 // no more records to return, NextToken will be null. For more information,
 // see Using Amazon SNS Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
-func (c *SNS) ListPlatformApplications(input *ListPlatformApplicationsInput) (output *ListPlatformApplicationsOutput, err error) {
+func (c *SNS) ListPlatformApplications(input *ListPlatformApplicationsInput) (*ListPlatformApplicationsOutput, error) {
 	req, out := c.ListPlatformApplicationsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *SNS) ListPlatformApplicationsPages(input *ListPlatformApplicationsInput, fn func(p *ListPlatformApplicationsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListPlatformApplicationsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListPlatformApplications *aws.Operation
 
 // ListSubscriptionsRequest generates a request for the ListSubscriptions operation.
 func (c *SNS) ListSubscriptionsRequest(input *ListSubscriptionsInput) (req *aws.Request, output *ListSubscriptionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListSubscriptions == nil {
 		opListSubscriptions = &aws.Operation{
 			Name:       "ListSubscriptions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &ListSubscriptionsInput{}
 	}
 
 	req = c.newRequest(opListSubscriptions, input, output)
@@ -450,23 +573,40 @@ func (c *SNS) ListSubscriptionsRequest(input *ListSubscriptionsInput) (req *aws.
 // list of subscriptions, up to 100. If there are more subscriptions, a NextToken
 // is also returned. Use the NextToken parameter in a new ListSubscriptions
 // call to get further results.
-func (c *SNS) ListSubscriptions(input *ListSubscriptionsInput) (output *ListSubscriptionsOutput, err error) {
+func (c *SNS) ListSubscriptions(input *ListSubscriptionsInput) (*ListSubscriptionsOutput, error) {
 	req, out := c.ListSubscriptionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *SNS) ListSubscriptionsPages(input *ListSubscriptionsInput, fn func(p *ListSubscriptionsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListSubscriptionsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListSubscriptions *aws.Operation
 
 // ListSubscriptionsByTopicRequest generates a request for the ListSubscriptionsByTopic operation.
 func (c *SNS) ListSubscriptionsByTopicRequest(input *ListSubscriptionsByTopicInput) (req *aws.Request, output *ListSubscriptionsByTopicOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListSubscriptionsByTopic == nil {
 		opListSubscriptionsByTopic = &aws.Operation{
 			Name:       "ListSubscriptionsByTopic",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &ListSubscriptionsByTopicInput{}
 	}
 
 	req = c.newRequest(opListSubscriptionsByTopic, input, output)
@@ -479,23 +619,40 @@ func (c *SNS) ListSubscriptionsByTopicRequest(input *ListSubscriptionsByTopicInp
 // a limited list of subscriptions, up to 100. If there are more subscriptions,
 // a NextToken is also returned. Use the NextToken parameter in a new ListSubscriptionsByTopic
 // call to get further results.
-func (c *SNS) ListSubscriptionsByTopic(input *ListSubscriptionsByTopicInput) (output *ListSubscriptionsByTopicOutput, err error) {
+func (c *SNS) ListSubscriptionsByTopic(input *ListSubscriptionsByTopicInput) (*ListSubscriptionsByTopicOutput, error) {
 	req, out := c.ListSubscriptionsByTopicRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *SNS) ListSubscriptionsByTopicPages(input *ListSubscriptionsByTopicInput, fn func(p *ListSubscriptionsByTopicOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListSubscriptionsByTopicRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListSubscriptionsByTopic *aws.Operation
 
 // ListTopicsRequest generates a request for the ListTopics operation.
 func (c *SNS) ListTopicsRequest(input *ListTopicsInput) (req *aws.Request, output *ListTopicsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListTopics == nil {
 		opListTopics = &aws.Operation{
 			Name:       "ListTopics",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &ListTopicsInput{}
 	}
 
 	req = c.newRequest(opListTopics, input, output)
@@ -507,23 +664,34 @@ func (c *SNS) ListTopicsRequest(input *ListTopicsInput) (req *aws.Request, outpu
 // Returns a list of the requester's topics. Each call returns a limited list
 // of topics, up to 100. If there are more topics, a NextToken is also returned.
 // Use the NextToken parameter in a new ListTopics call to get further results.
-func (c *SNS) ListTopics(input *ListTopicsInput) (output *ListTopicsOutput, err error) {
+func (c *SNS) ListTopics(input *ListTopicsInput) (*ListTopicsOutput, error) {
 	req, out := c.ListTopicsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *SNS) ListTopicsPages(input *ListTopicsInput, fn func(p *ListTopicsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListTopicsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListTopics *aws.Operation
 
 // PublishRequest generates a request for the Publish operation.
 func (c *SNS) PublishRequest(input *PublishInput) (req *aws.Request, output *PublishOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPublish == nil {
 		opPublish = &aws.Operation{
 			Name:       "Publish",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PublishInput{}
 	}
 
 	req = c.newRequest(opPublish, input, output)
@@ -542,23 +710,29 @@ func (c *SNS) PublishRequest(input *PublishInput) (req *aws.Request, output *Pub
 // The EndpointArn is returned when making a call with the CreatePlatformEndpoint
 // action. The second example below shows a request and response for publishing
 // to a mobile endpoint.
-func (c *SNS) Publish(input *PublishInput) (output *PublishOutput, err error) {
+func (c *SNS) Publish(input *PublishInput) (*PublishOutput, error) {
 	req, out := c.PublishRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opPublish *aws.Operation
 
 // RemovePermissionRequest generates a request for the RemovePermission operation.
 func (c *SNS) RemovePermissionRequest(input *RemovePermissionInput) (req *aws.Request, output *RemovePermissionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRemovePermission == nil {
 		opRemovePermission = &aws.Operation{
 			Name:       "RemovePermission",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RemovePermissionInput{}
 	}
 
 	req = c.newRequest(opRemovePermission, input, output)
@@ -568,23 +742,29 @@ func (c *SNS) RemovePermissionRequest(input *RemovePermissionInput) (req *aws.Re
 }
 
 // Removes a statement from a topic's access control policy.
-func (c *SNS) RemovePermission(input *RemovePermissionInput) (output *RemovePermissionOutput, err error) {
+func (c *SNS) RemovePermission(input *RemovePermissionInput) (*RemovePermissionOutput, error) {
 	req, out := c.RemovePermissionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRemovePermission *aws.Operation
 
 // SetEndpointAttributesRequest generates a request for the SetEndpointAttributes operation.
 func (c *SNS) SetEndpointAttributesRequest(input *SetEndpointAttributesInput) (req *aws.Request, output *SetEndpointAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetEndpointAttributes == nil {
 		opSetEndpointAttributes = &aws.Operation{
 			Name:       "SetEndpointAttributes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SetEndpointAttributesInput{}
 	}
 
 	req = c.newRequest(opSetEndpointAttributes, input, output)
@@ -596,23 +776,29 @@ func (c *SNS) SetEndpointAttributesRequest(input *SetEndpointAttributesInput) (r
 // Sets the attributes for an endpoint for a device on one of the supported
 // push notification services, such as GCM and APNS. For more information, see
 // Using Amazon SNS Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
-func (c *SNS) SetEndpointAttributes(input *SetEndpointAttributesInput) (output *SetEndpointAttributesOutput, err error) {
+func (c *SNS) SetEndpointAttributes(input *SetEndpointAttributesInput) (*SetEndpointAttributesOutput, error) {
 	req, out := c.SetEndpointAttributesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSetEndpointAttributes *aws.Operation
 
 // SetPlatformApplicationAttributesRequest generates a request for the SetPlatformApplicationAttributes operation.
 func (c *SNS) SetPlatformApplicationAttributesRequest(input *SetPlatformApplicationAttributesInput) (req *aws.Request, output *SetPlatformApplicationAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetPlatformApplicationAttributes == nil {
 		opSetPlatformApplicationAttributes = &aws.Operation{
 			Name:       "SetPlatformApplicationAttributes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SetPlatformApplicationAttributesInput{}
 	}
 
 	req = c.newRequest(opSetPlatformApplicationAttributes, input, output)
@@ -624,23 +810,29 @@ func (c *SNS) SetPlatformApplicationAttributesRequest(input *SetPlatformApplicat
 // Sets the attributes of the platform application object for the supported
 // push notification services, such as APNS and GCM. For more information, see
 // Using Amazon SNS Mobile Push Notifications (http://docs.aws.amazon.com/sns/latest/dg/SNSMobilePush.html).
-func (c *SNS) SetPlatformApplicationAttributes(input *SetPlatformApplicationAttributesInput) (output *SetPlatformApplicationAttributesOutput, err error) {
+func (c *SNS) SetPlatformApplicationAttributes(input *SetPlatformApplicationAttributesInput) (*SetPlatformApplicationAttributesOutput, error) {
 	req, out := c.SetPlatformApplicationAttributesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSetPlatformApplicationAttributes *aws.Operation
 
 // SetSubscriptionAttributesRequest generates a request for the SetSubscriptionAttributes operation.
 func (c *SNS) SetSubscriptionAttributesRequest(input *SetSubscriptionAttributesInput) (req *aws.Request, output *SetSubscriptionAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetSubscriptionAttributes == nil {
 		opSetSubscriptionAttributes = &aws.Operation{
 			Name:       "SetSubscriptionAttributes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SetSubscriptionAttributesInput{}
 	}
 
 	req = c.newRequest(opSetSubscriptionAttributes, input, output)
@@ -650,23 +842,29 @@ func (c *SNS) SetSubscriptionAttributesRequest(input *SetSubscriptionAttributesI
 }
 
 // Allows a subscription owner to set an attribute of the topic to a new value.
-func (c *SNS) SetSubscriptionAttributes(input *SetSubscriptionAttributesInput) (output *SetSubscriptionAttributesOutput, err error) {
+func (c *SNS) SetSubscriptionAttributes(input *SetSubscriptionAttributesInput) (*SetSubscriptionAttributesOutput, error) {
 	req, out := c.SetSubscriptionAttributesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSetSubscriptionAttributes *aws.Operation
 
 // SetTopicAttributesRequest generates a request for the SetTopicAttributes operation.
 func (c *SNS) SetTopicAttributesRequest(input *SetTopicAttributesInput) (req *aws.Request, output *SetTopicAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetTopicAttributes == nil {
 		opSetTopicAttributes = &aws.Operation{
 			Name:       "SetTopicAttributes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SetTopicAttributesInput{}
 	}
 
 	req = c.newRequest(opSetTopicAttributes, input, output)
@@ -676,23 +874,29 @@ func (c *SNS) SetTopicAttributesRequest(input *SetTopicAttributesInput) (req *aw
 }
 
 // Allows a topic owner to set an attribute of the topic to a new value.
-func (c *SNS) SetTopicAttributes(input *SetTopicAttributesInput) (output *SetTopicAttributesOutput, err error) {
+func (c *SNS) SetTopicAttributes(input *SetTopicAttributesInput) (*SetTopicAttributesOutput, error) {
 	req, out := c.SetTopicAttributesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSetTopicAttributes *aws.Operation
 
 // SubscribeRequest generates a request for the Subscribe operation.
 func (c *SNS) SubscribeRequest(input *SubscribeInput) (req *aws.Request, output *SubscribeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSubscribe == nil {
 		opSubscribe = &aws.Operation{
 			Name:       "Subscribe",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SubscribeInput{}
 	}
 
 	req = c.newRequest(opSubscribe, input, output)
@@ -705,23 +909,29 @@ func (c *SNS) SubscribeRequest(input *SubscribeInput) (req *aws.Request, output 
 // message. To actually create a subscription, the endpoint owner must call
 // the ConfirmSubscription action with the token from the confirmation message.
 // Confirmation tokens are valid for three days.
-func (c *SNS) Subscribe(input *SubscribeInput) (output *SubscribeOutput, err error) {
+func (c *SNS) Subscribe(input *SubscribeInput) (*SubscribeOutput, error) {
 	req, out := c.SubscribeRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSubscribe *aws.Operation
 
 // UnsubscribeRequest generates a request for the Unsubscribe operation.
 func (c *SNS) UnsubscribeRequest(input *UnsubscribeInput) (req *aws.Request, output *UnsubscribeOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUnsubscribe == nil {
 		opUnsubscribe = &aws.Operation{
 			Name:       "Unsubscribe",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UnsubscribeInput{}
 	}
 
 	req = c.newRequest(opUnsubscribe, input, output)
@@ -736,11 +946,10 @@ func (c *SNS) UnsubscribeRequest(input *UnsubscribeInput) (req *aws.Request, out
 // authentication and the requester is not the subscription owner, a final cancellation
 // message is delivered to the endpoint, so that the endpoint owner can easily
 // resubscribe to the topic if the Unsubscribe request was unintended.
-func (c *SNS) Unsubscribe(input *UnsubscribeInput) (output *UnsubscribeOutput, err error) {
+func (c *SNS) Unsubscribe(input *UnsubscribeInput) (*UnsubscribeOutput, error) {
 	req, out := c.UnsubscribeRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUnsubscribe *aws.Operation
@@ -762,7 +971,7 @@ type AddPermissionInput struct {
 	// The ARN of the topic whose access control policy you wish to modify.
 	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
-	metadataAddPermissionInput `json:"-", xml:"-"`
+	metadataAddPermissionInput `json:"-" xml:"-"`
 }
 
 type metadataAddPermissionInput struct {
@@ -770,7 +979,7 @@ type metadataAddPermissionInput struct {
 }
 
 type AddPermissionOutput struct {
-	metadataAddPermissionOutput `json:"-", xml:"-"`
+	metadataAddPermissionOutput `json:"-" xml:"-"`
 }
 
 type metadataAddPermissionOutput struct {
@@ -791,7 +1000,7 @@ type ConfirmSubscriptionInput struct {
 	// The ARN of the topic for which you wish to confirm a subscription.
 	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
-	metadataConfirmSubscriptionInput `json:"-", xml:"-"`
+	metadataConfirmSubscriptionInput `json:"-" xml:"-"`
 }
 
 type metadataConfirmSubscriptionInput struct {
@@ -803,7 +1012,7 @@ type ConfirmSubscriptionOutput struct {
 	// The ARN of the created subscription.
 	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string"`
 
-	metadataConfirmSubscriptionOutput `json:"-", xml:"-"`
+	metadataConfirmSubscriptionOutput `json:"-" xml:"-"`
 }
 
 type metadataConfirmSubscriptionOutput struct {
@@ -824,7 +1033,7 @@ type CreatePlatformApplicationInput struct {
 	// (Apple Push Notification Service), APNS_SANDBOX, and GCM (Google Cloud Messaging).
 	Platform *string `type:"string" required:"true"`
 
-	metadataCreatePlatformApplicationInput `json:"-", xml:"-"`
+	metadataCreatePlatformApplicationInput `json:"-" xml:"-"`
 }
 
 type metadataCreatePlatformApplicationInput struct {
@@ -836,7 +1045,7 @@ type CreatePlatformApplicationOutput struct {
 	// PlatformApplicationArn is returned.
 	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string"`
 
-	metadataCreatePlatformApplicationOutput `json:"-", xml:"-"`
+	metadataCreatePlatformApplicationOutput `json:"-" xml:"-"`
 }
 
 type metadataCreatePlatformApplicationOutput struct {
@@ -863,7 +1072,7 @@ type CreatePlatformEndpointInput struct {
 	// token equivalent is called the registration ID.
 	Token *string `type:"string" required:"true"`
 
-	metadataCreatePlatformEndpointInput `json:"-", xml:"-"`
+	metadataCreatePlatformEndpointInput `json:"-" xml:"-"`
 }
 
 type metadataCreatePlatformEndpointInput struct {
@@ -875,7 +1084,7 @@ type CreatePlatformEndpointOutput struct {
 	// EndpointArn returned from CreateEndpoint action.
 	EndpointARN *string `locationName:"EndpointArn" type:"string"`
 
-	metadataCreatePlatformEndpointOutput `json:"-", xml:"-"`
+	metadataCreatePlatformEndpointOutput `json:"-" xml:"-"`
 }
 
 type metadataCreatePlatformEndpointOutput struct {
@@ -891,7 +1100,7 @@ type CreateTopicInput struct {
 	// 256 characters long.
 	Name *string `type:"string" required:"true"`
 
-	metadataCreateTopicInput `json:"-", xml:"-"`
+	metadataCreateTopicInput `json:"-" xml:"-"`
 }
 
 type metadataCreateTopicInput struct {
@@ -903,7 +1112,7 @@ type CreateTopicOutput struct {
 	// The Amazon Resource Name (ARN) assigned to the created topic.
 	TopicARN *string `locationName:"TopicArn" type:"string"`
 
-	metadataCreateTopicOutput `json:"-", xml:"-"`
+	metadataCreateTopicOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateTopicOutput struct {
@@ -915,7 +1124,7 @@ type DeleteEndpointInput struct {
 	// EndpointArn of endpoint to delete.
 	EndpointARN *string `locationName:"EndpointArn" type:"string" required:"true"`
 
-	metadataDeleteEndpointInput `json:"-", xml:"-"`
+	metadataDeleteEndpointInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteEndpointInput struct {
@@ -923,7 +1132,7 @@ type metadataDeleteEndpointInput struct {
 }
 
 type DeleteEndpointOutput struct {
-	metadataDeleteEndpointOutput `json:"-", xml:"-"`
+	metadataDeleteEndpointOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteEndpointOutput struct {
@@ -935,7 +1144,7 @@ type DeletePlatformApplicationInput struct {
 	// PlatformApplicationArn of platform application object to delete.
 	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string" required:"true"`
 
-	metadataDeletePlatformApplicationInput `json:"-", xml:"-"`
+	metadataDeletePlatformApplicationInput `json:"-" xml:"-"`
 }
 
 type metadataDeletePlatformApplicationInput struct {
@@ -943,7 +1152,7 @@ type metadataDeletePlatformApplicationInput struct {
 }
 
 type DeletePlatformApplicationOutput struct {
-	metadataDeletePlatformApplicationOutput `json:"-", xml:"-"`
+	metadataDeletePlatformApplicationOutput `json:"-" xml:"-"`
 }
 
 type metadataDeletePlatformApplicationOutput struct {
@@ -954,7 +1163,7 @@ type DeleteTopicInput struct {
 	// The ARN of the topic you want to delete.
 	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
-	metadataDeleteTopicInput `json:"-", xml:"-"`
+	metadataDeleteTopicInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteTopicInput struct {
@@ -962,7 +1171,7 @@ type metadataDeleteTopicInput struct {
 }
 
 type DeleteTopicOutput struct {
-	metadataDeleteTopicOutput `json:"-", xml:"-"`
+	metadataDeleteTopicOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteTopicOutput struct {
@@ -977,7 +1186,7 @@ type Endpoint struct {
 	// EndpointArn for mobile app and device.
 	EndpointARN *string `locationName:"EndpointArn" type:"string"`
 
-	metadataEndpoint `json:"-", xml:"-"`
+	metadataEndpoint `json:"-" xml:"-"`
 }
 
 type metadataEndpoint struct {
@@ -989,7 +1198,7 @@ type GetEndpointAttributesInput struct {
 	// EndpointArn for GetEndpointAttributes input.
 	EndpointARN *string `locationName:"EndpointArn" type:"string" required:"true"`
 
-	metadataGetEndpointAttributesInput `json:"-", xml:"-"`
+	metadataGetEndpointAttributesInput `json:"-" xml:"-"`
 }
 
 type metadataGetEndpointAttributesInput struct {
@@ -1011,7 +1220,7 @@ type GetEndpointAttributesOutput struct {
 	// service.
 	Attributes *map[string]*string `type:"map"`
 
-	metadataGetEndpointAttributesOutput `json:"-", xml:"-"`
+	metadataGetEndpointAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataGetEndpointAttributesOutput struct {
@@ -1023,7 +1232,7 @@ type GetPlatformApplicationAttributesInput struct {
 	// PlatformApplicationArn for GetPlatformApplicationAttributesInput.
 	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string" required:"true"`
 
-	metadataGetPlatformApplicationAttributesInput `json:"-", xml:"-"`
+	metadataGetPlatformApplicationAttributesInput `json:"-" xml:"-"`
 }
 
 type metadataGetPlatformApplicationAttributesInput struct {
@@ -1043,7 +1252,7 @@ type GetPlatformApplicationAttributesOutput struct {
 	// endpoints.
 	Attributes *map[string]*string `type:"map"`
 
-	metadataGetPlatformApplicationAttributesOutput `json:"-", xml:"-"`
+	metadataGetPlatformApplicationAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataGetPlatformApplicationAttributesOutput struct {
@@ -1055,7 +1264,7 @@ type GetSubscriptionAttributesInput struct {
 	// The ARN of the subscription whose properties you want to get.
 	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string" required:"true"`
 
-	metadataGetSubscriptionAttributesInput `json:"-", xml:"-"`
+	metadataGetSubscriptionAttributesInput `json:"-" xml:"-"`
 }
 
 type metadataGetSubscriptionAttributesInput struct {
@@ -1076,7 +1285,7 @@ type GetSubscriptionAttributesOutput struct {
 	// policy and account system defaults
 	Attributes *map[string]*string `type:"map"`
 
-	metadataGetSubscriptionAttributesOutput `json:"-", xml:"-"`
+	metadataGetSubscriptionAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataGetSubscriptionAttributesOutput struct {
@@ -1088,7 +1297,7 @@ type GetTopicAttributesInput struct {
 	// The ARN of the topic whose properties you want to get.
 	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
-	metadataGetTopicAttributesInput `json:"-", xml:"-"`
+	metadataGetTopicAttributesInput `json:"-" xml:"-"`
 }
 
 type metadataGetTopicAttributesInput struct {
@@ -1111,7 +1320,7 @@ type GetTopicAttributesOutput struct {
 	// account system defaults
 	Attributes *map[string]*string `type:"map"`
 
-	metadataGetTopicAttributesOutput `json:"-", xml:"-"`
+	metadataGetTopicAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataGetTopicAttributesOutput struct {
@@ -1128,7 +1337,7 @@ type ListEndpointsByPlatformApplicationInput struct {
 	// PlatformApplicationArn for ListEndpointsByPlatformApplicationInput action.
 	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string" required:"true"`
 
-	metadataListEndpointsByPlatformApplicationInput `json:"-", xml:"-"`
+	metadataListEndpointsByPlatformApplicationInput `json:"-" xml:"-"`
 }
 
 type metadataListEndpointsByPlatformApplicationInput struct {
@@ -1144,7 +1353,7 @@ type ListEndpointsByPlatformApplicationOutput struct {
 	// action if additional records are available after the first page results.
 	NextToken *string `type:"string"`
 
-	metadataListEndpointsByPlatformApplicationOutput `json:"-", xml:"-"`
+	metadataListEndpointsByPlatformApplicationOutput `json:"-" xml:"-"`
 }
 
 type metadataListEndpointsByPlatformApplicationOutput struct {
@@ -1157,7 +1366,7 @@ type ListPlatformApplicationsInput struct {
 	// retrieve additional records that are available after the first page results.
 	NextToken *string `type:"string"`
 
-	metadataListPlatformApplicationsInput `json:"-", xml:"-"`
+	metadataListPlatformApplicationsInput `json:"-" xml:"-"`
 }
 
 type metadataListPlatformApplicationsInput struct {
@@ -1173,7 +1382,7 @@ type ListPlatformApplicationsOutput struct {
 	// Platform applications returned when calling ListPlatformApplications action.
 	PlatformApplications []*PlatformApplication `type:"list"`
 
-	metadataListPlatformApplicationsOutput `json:"-", xml:"-"`
+	metadataListPlatformApplicationsOutput `json:"-" xml:"-"`
 }
 
 type metadataListPlatformApplicationsOutput struct {
@@ -1188,7 +1397,7 @@ type ListSubscriptionsByTopicInput struct {
 	// The ARN of the topic for which you wish to find subscriptions.
 	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
-	metadataListSubscriptionsByTopicInput `json:"-", xml:"-"`
+	metadataListSubscriptionsByTopicInput `json:"-" xml:"-"`
 }
 
 type metadataListSubscriptionsByTopicInput struct {
@@ -1204,7 +1413,7 @@ type ListSubscriptionsByTopicOutput struct {
 	// A list of subscriptions.
 	Subscriptions []*Subscription `type:"list"`
 
-	metadataListSubscriptionsByTopicOutput `json:"-", xml:"-"`
+	metadataListSubscriptionsByTopicOutput `json:"-" xml:"-"`
 }
 
 type metadataListSubscriptionsByTopicOutput struct {
@@ -1216,7 +1425,7 @@ type ListSubscriptionsInput struct {
 	// Token returned by the previous ListSubscriptions request.
 	NextToken *string `type:"string"`
 
-	metadataListSubscriptionsInput `json:"-", xml:"-"`
+	metadataListSubscriptionsInput `json:"-" xml:"-"`
 }
 
 type metadataListSubscriptionsInput struct {
@@ -1232,7 +1441,7 @@ type ListSubscriptionsOutput struct {
 	// A list of subscriptions.
 	Subscriptions []*Subscription `type:"list"`
 
-	metadataListSubscriptionsOutput `json:"-", xml:"-"`
+	metadataListSubscriptionsOutput `json:"-" xml:"-"`
 }
 
 type metadataListSubscriptionsOutput struct {
@@ -1243,7 +1452,7 @@ type ListTopicsInput struct {
 	// Token returned by the previous ListTopics request.
 	NextToken *string `type:"string"`
 
-	metadataListTopicsInput `json:"-", xml:"-"`
+	metadataListTopicsInput `json:"-" xml:"-"`
 }
 
 type metadataListTopicsInput struct {
@@ -1259,7 +1468,7 @@ type ListTopicsOutput struct {
 	// A list of topic ARNs.
 	Topics []*Topic `type:"list"`
 
-	metadataListTopicsOutput `json:"-", xml:"-"`
+	metadataListTopicsOutput `json:"-" xml:"-"`
 }
 
 type metadataListTopicsOutput struct {
@@ -1288,7 +1497,7 @@ type MessageAttributeValue struct {
 	// see http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters (http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters).
 	StringValue *string `type:"string"`
 
-	metadataMessageAttributeValue `json:"-", xml:"-"`
+	metadataMessageAttributeValue `json:"-" xml:"-"`
 }
 
 type metadataMessageAttributeValue struct {
@@ -1303,7 +1512,7 @@ type PlatformApplication struct {
 	// PlatformApplicationArn for platform application object.
 	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string"`
 
-	metadataPlatformApplication `json:"-", xml:"-"`
+	metadataPlatformApplication `json:"-" xml:"-"`
 }
 
 type metadataPlatformApplication struct {
@@ -1374,7 +1583,7 @@ type PublishInput struct {
 	// The topic you want to publish to.
 	TopicARN *string `locationName:"TopicArn" type:"string"`
 
-	metadataPublishInput `json:"-", xml:"-"`
+	metadataPublishInput `json:"-" xml:"-"`
 }
 
 type metadataPublishInput struct {
@@ -1388,7 +1597,7 @@ type PublishOutput struct {
 	// Length Constraint: Maximum 100 characters
 	MessageID *string `locationName:"MessageId" type:"string"`
 
-	metadataPublishOutput `json:"-", xml:"-"`
+	metadataPublishOutput `json:"-" xml:"-"`
 }
 
 type metadataPublishOutput struct {
@@ -1403,7 +1612,7 @@ type RemovePermissionInput struct {
 	// The ARN of the topic whose access control policy you wish to modify.
 	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
-	metadataRemovePermissionInput `json:"-", xml:"-"`
+	metadataRemovePermissionInput `json:"-" xml:"-"`
 }
 
 type metadataRemovePermissionInput struct {
@@ -1411,7 +1620,7 @@ type metadataRemovePermissionInput struct {
 }
 
 type RemovePermissionOutput struct {
-	metadataRemovePermissionOutput `json:"-", xml:"-"`
+	metadataRemovePermissionOutput `json:"-" xml:"-"`
 }
 
 type metadataRemovePermissionOutput struct {
@@ -1436,7 +1645,7 @@ type SetEndpointAttributesInput struct {
 	// EndpointArn used for SetEndpointAttributes action.
 	EndpointARN *string `locationName:"EndpointArn" type:"string" required:"true"`
 
-	metadataSetEndpointAttributesInput `json:"-", xml:"-"`
+	metadataSetEndpointAttributesInput `json:"-" xml:"-"`
 }
 
 type metadataSetEndpointAttributesInput struct {
@@ -1444,7 +1653,7 @@ type metadataSetEndpointAttributesInput struct {
 }
 
 type SetEndpointAttributesOutput struct {
-	metadataSetEndpointAttributesOutput `json:"-", xml:"-"`
+	metadataSetEndpointAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataSetEndpointAttributesOutput struct {
@@ -1473,7 +1682,7 @@ type SetPlatformApplicationAttributesInput struct {
 	// PlatformApplicationArn for SetPlatformApplicationAttributes action.
 	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string" required:"true"`
 
-	metadataSetPlatformApplicationAttributesInput `json:"-", xml:"-"`
+	metadataSetPlatformApplicationAttributesInput `json:"-" xml:"-"`
 }
 
 type metadataSetPlatformApplicationAttributesInput struct {
@@ -1481,7 +1690,7 @@ type metadataSetPlatformApplicationAttributesInput struct {
 }
 
 type SetPlatformApplicationAttributesOutput struct {
-	metadataSetPlatformApplicationAttributesOutput `json:"-", xml:"-"`
+	metadataSetPlatformApplicationAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataSetPlatformApplicationAttributesOutput struct {
@@ -1502,7 +1711,7 @@ type SetSubscriptionAttributesInput struct {
 	// The ARN of the subscription to modify.
 	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string" required:"true"`
 
-	metadataSetSubscriptionAttributesInput `json:"-", xml:"-"`
+	metadataSetSubscriptionAttributesInput `json:"-" xml:"-"`
 }
 
 type metadataSetSubscriptionAttributesInput struct {
@@ -1510,7 +1719,7 @@ type metadataSetSubscriptionAttributesInput struct {
 }
 
 type SetSubscriptionAttributesOutput struct {
-	metadataSetSubscriptionAttributesOutput `json:"-", xml:"-"`
+	metadataSetSubscriptionAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataSetSubscriptionAttributesOutput struct {
@@ -1531,7 +1740,7 @@ type SetTopicAttributesInput struct {
 	// The ARN of the topic to modify.
 	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
-	metadataSetTopicAttributesInput `json:"-", xml:"-"`
+	metadataSetTopicAttributesInput `json:"-" xml:"-"`
 }
 
 type metadataSetTopicAttributesInput struct {
@@ -1539,7 +1748,7 @@ type metadataSetTopicAttributesInput struct {
 }
 
 type SetTopicAttributesOutput struct {
-	metadataSetTopicAttributesOutput `json:"-", xml:"-"`
+	metadataSetTopicAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataSetTopicAttributesOutput struct {
@@ -1572,7 +1781,7 @@ type SubscribeInput struct {
 	// The ARN of the topic you want to subscribe to.
 	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
 
-	metadataSubscribeInput `json:"-", xml:"-"`
+	metadataSubscribeInput `json:"-" xml:"-"`
 }
 
 type metadataSubscribeInput struct {
@@ -1585,7 +1794,7 @@ type SubscribeOutput struct {
 	// immediately (without requiring endpoint owner confirmation).
 	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string"`
 
-	metadataSubscribeOutput `json:"-", xml:"-"`
+	metadataSubscribeOutput `json:"-" xml:"-"`
 }
 
 type metadataSubscribeOutput struct {
@@ -1609,7 +1818,7 @@ type Subscription struct {
 	// The ARN of the subscription's topic.
 	TopicARN *string `locationName:"TopicArn" type:"string"`
 
-	metadataSubscription `json:"-", xml:"-"`
+	metadataSubscription `json:"-" xml:"-"`
 }
 
 type metadataSubscription struct {
@@ -1622,7 +1831,7 @@ type Topic struct {
 	// The topic's ARN.
 	TopicARN *string `locationName:"TopicArn" type:"string"`
 
-	metadataTopic `json:"-", xml:"-"`
+	metadataTopic `json:"-" xml:"-"`
 }
 
 type metadataTopic struct {
@@ -1634,7 +1843,7 @@ type UnsubscribeInput struct {
 	// The ARN of the subscription to be deleted.
 	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string" required:"true"`
 
-	metadataUnsubscribeInput `json:"-", xml:"-"`
+	metadataUnsubscribeInput `json:"-" xml:"-"`
 }
 
 type metadataUnsubscribeInput struct {
@@ -1642,7 +1851,7 @@ type metadataUnsubscribeInput struct {
 }
 
 type UnsubscribeOutput struct {
-	metadataUnsubscribeOutput `json:"-", xml:"-"`
+	metadataUnsubscribeOutput `json:"-" xml:"-"`
 }
 
 type metadataUnsubscribeOutput struct {

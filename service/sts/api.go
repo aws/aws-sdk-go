@@ -4,19 +4,29 @@
 package sts
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // AssumeRoleRequest generates a request for the AssumeRole operation.
 func (c *STS) AssumeRoleRequest(input *AssumeRoleInput) (req *aws.Request, output *AssumeRoleOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAssumeRole == nil {
 		opAssumeRole = &aws.Operation{
 			Name:       "AssumeRole",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &AssumeRoleInput{}
 	}
 
 	req = c.newRequest(opAssumeRole, input, output)
@@ -96,23 +106,29 @@ func (c *STS) AssumeRoleRequest(input *AssumeRoleInput) (req *aws.Request, outpu
 // parameters. The SerialNumber value identifies the user's hardware or virtual
 // MFA device. The TokenCode is the time-based one-time password (TOTP) that
 // the MFA devices produces.
-func (c *STS) AssumeRole(input *AssumeRoleInput) (output *AssumeRoleOutput, err error) {
+func (c *STS) AssumeRole(input *AssumeRoleInput) (*AssumeRoleOutput, error) {
 	req, out := c.AssumeRoleRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opAssumeRole *aws.Operation
 
 // AssumeRoleWithSAMLRequest generates a request for the AssumeRoleWithSAML operation.
 func (c *STS) AssumeRoleWithSAMLRequest(input *AssumeRoleWithSAMLInput) (req *aws.Request, output *AssumeRoleWithSAMLOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAssumeRoleWithSAML == nil {
 		opAssumeRoleWithSAML = &aws.Operation{
 			Name:       "AssumeRoleWithSAML",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &AssumeRoleWithSAMLInput{}
 	}
 
 	req = c.newRequest(opAssumeRoleWithSAML, input, output)
@@ -164,23 +180,29 @@ func (c *STS) AssumeRoleWithSAMLRequest(input *AssumeRoleWithSAMLInput) (req *aw
 // in Using IAM.   Configuring a Relying Party and Claims (http://docs.aws.amazon.com/IAM/latest/UserGuide/create-role-saml-IdP-tasks.html)
 // in Using IAM.   Creating a Role for SAML-Based Federation (http://docs.aws.amazon.com/IAM/latest/UserGuide/create-role-saml.html)
 // in Using IAM.
-func (c *STS) AssumeRoleWithSAML(input *AssumeRoleWithSAMLInput) (output *AssumeRoleWithSAMLOutput, err error) {
+func (c *STS) AssumeRoleWithSAML(input *AssumeRoleWithSAMLInput) (*AssumeRoleWithSAMLOutput, error) {
 	req, out := c.AssumeRoleWithSAMLRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opAssumeRoleWithSAML *aws.Operation
 
 // AssumeRoleWithWebIdentityRequest generates a request for the AssumeRoleWithWebIdentity operation.
 func (c *STS) AssumeRoleWithWebIdentityRequest(input *AssumeRoleWithWebIdentityInput) (req *aws.Request, output *AssumeRoleWithWebIdentityOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opAssumeRoleWithWebIdentity == nil {
 		opAssumeRoleWithWebIdentity = &aws.Operation{
 			Name:       "AssumeRoleWithWebIdentity",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &AssumeRoleWithWebIdentityInput{}
 	}
 
 	req = c.newRequest(opAssumeRoleWithWebIdentity, input, output)
@@ -245,23 +267,29 @@ func (c *STS) AssumeRoleWithWebIdentityRequest(input *AssumeRoleWithWebIdentityI
 // (http://aws.amazon.com/articles/4617974389850313" target="_blank). This article
 // discusses web identity federation and shows an example of how to use web
 // identity federation to get access to content in Amazon S3.
-func (c *STS) AssumeRoleWithWebIdentity(input *AssumeRoleWithWebIdentityInput) (output *AssumeRoleWithWebIdentityOutput, err error) {
+func (c *STS) AssumeRoleWithWebIdentity(input *AssumeRoleWithWebIdentityInput) (*AssumeRoleWithWebIdentityOutput, error) {
 	req, out := c.AssumeRoleWithWebIdentityRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opAssumeRoleWithWebIdentity *aws.Operation
 
 // DecodeAuthorizationMessageRequest generates a request for the DecodeAuthorizationMessage operation.
 func (c *STS) DecodeAuthorizationMessageRequest(input *DecodeAuthorizationMessageInput) (req *aws.Request, output *DecodeAuthorizationMessageOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDecodeAuthorizationMessage == nil {
 		opDecodeAuthorizationMessage = &aws.Operation{
 			Name:       "DecodeAuthorizationMessage",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DecodeAuthorizationMessageInput{}
 	}
 
 	req = c.newRequest(opDecodeAuthorizationMessage, input, output)
@@ -292,23 +320,29 @@ func (c *STS) DecodeAuthorizationMessageRequest(input *DecodeAuthorizationMessag
 // in Using IAM.  The principal who made the request. The requested action.
 // The requested resource. The values of condition keys in the context of the
 // user's request.
-func (c *STS) DecodeAuthorizationMessage(input *DecodeAuthorizationMessageInput) (output *DecodeAuthorizationMessageOutput, err error) {
+func (c *STS) DecodeAuthorizationMessage(input *DecodeAuthorizationMessageInput) (*DecodeAuthorizationMessageOutput, error) {
 	req, out := c.DecodeAuthorizationMessageRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDecodeAuthorizationMessage *aws.Operation
 
 // GetFederationTokenRequest generates a request for the GetFederationToken operation.
 func (c *STS) GetFederationTokenRequest(input *GetFederationTokenInput) (req *aws.Request, output *GetFederationTokenOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetFederationToken == nil {
 		opGetFederationToken = &aws.Operation{
 			Name:       "GetFederationToken",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetFederationTokenInput{}
 	}
 
 	req = c.newRequest(opGetFederationToken, input, output)
@@ -379,23 +413,29 @@ func (c *STS) GetFederationTokenRequest(input *GetFederationTokenInput) (req *aw
 // to create temporary security credentials, see Creating Temporary Credentials
 // to Enable Access for Federated Users (http://docs.aws.amazon.com/STS/latest/UsingSTS/CreatingFedTokens.html)
 // in Using Temporary Security Credentials.
-func (c *STS) GetFederationToken(input *GetFederationTokenInput) (output *GetFederationTokenOutput, err error) {
+func (c *STS) GetFederationToken(input *GetFederationTokenInput) (*GetFederationTokenOutput, error) {
 	req, out := c.GetFederationTokenRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetFederationToken *aws.Operation
 
 // GetSessionTokenRequest generates a request for the GetSessionToken operation.
 func (c *STS) GetSessionTokenRequest(input *GetSessionTokenInput) (req *aws.Request, output *GetSessionTokenOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetSessionToken == nil {
 		opGetSessionToken = &aws.Operation{
 			Name:       "GetSessionToken",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetSessionTokenInput{}
 	}
 
 	req = c.newRequest(opGetSessionToken, input, output)
@@ -430,11 +470,10 @@ func (c *STS) GetSessionTokenRequest(input *GetSessionTokenInput) (req *aws.Requ
 // For more information about using GetSessionToken to create temporary credentials,
 // go to Creating Temporary Credentials to Enable Access for IAM Users (http://docs.aws.amazon.com/STS/latest/UsingSTS/CreatingSessionTokens.html"
 // target="_blank) in Using Temporary Security Credentials.
-func (c *STS) GetSessionToken(input *GetSessionTokenInput) (output *GetSessionTokenOutput, err error) {
+func (c *STS) GetSessionToken(input *GetSessionTokenInput) (*GetSessionTokenOutput, error) {
 	req, out := c.GetSessionTokenRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetSessionToken *aws.Operation
@@ -488,7 +527,7 @@ type AssumeRoleInput struct {
 	// is missing or expired, the AssumeRole call returns an "access denied" error.
 	TokenCode *string `type:"string"`
 
-	metadataAssumeRoleInput `json:"-", xml:"-"`
+	metadataAssumeRoleInput `json:"-" xml:"-"`
 }
 
 type metadataAssumeRoleInput struct {
@@ -514,7 +553,7 @@ type AssumeRoleOutput struct {
 	// which means the policy exceeded the allowed space.
 	PackedPolicySize *int64 `type:"integer"`
 
-	metadataAssumeRoleOutput `json:"-", xml:"-"`
+	metadataAssumeRoleOutput `json:"-" xml:"-"`
 }
 
 type metadataAssumeRoleOutput struct {
@@ -556,7 +595,7 @@ type AssumeRoleWithSAMLInput struct {
 	// in the Using IAM guide.
 	SAMLAssertion *string `type:"string" required:"true"`
 
-	metadataAssumeRoleWithSAMLInput `json:"-", xml:"-"`
+	metadataAssumeRoleWithSAMLInput `json:"-" xml:"-"`
 }
 
 type metadataAssumeRoleWithSAMLInput struct {
@@ -609,7 +648,7 @@ type AssumeRoleWithSAMLOutput struct {
 	// is returned with no modifications.
 	SubjectType *string `type:"string"`
 
-	metadataAssumeRoleWithSAMLOutput `json:"-", xml:"-"`
+	metadataAssumeRoleWithSAMLOutput `json:"-" xml:"-"`
 }
 
 type metadataAssumeRoleWithSAMLOutput struct {
@@ -658,7 +697,7 @@ type AssumeRoleWithWebIdentityInput struct {
 	// the application makes an AssumeRoleWithWebIdentity call.
 	WebIdentityToken *string `type:"string" required:"true"`
 
-	metadataAssumeRoleWithWebIdentityInput `json:"-", xml:"-"`
+	metadataAssumeRoleWithWebIdentityInput `json:"-" xml:"-"`
 }
 
 type metadataAssumeRoleWithWebIdentityInput struct {
@@ -705,7 +744,7 @@ type AssumeRoleWithWebIdentityOutput struct {
 	// claim.
 	SubjectFromWebIdentityToken *string `type:"string"`
 
-	metadataAssumeRoleWithWebIdentityOutput `json:"-", xml:"-"`
+	metadataAssumeRoleWithWebIdentityOutput `json:"-" xml:"-"`
 }
 
 type metadataAssumeRoleWithWebIdentityOutput struct {
@@ -726,7 +765,7 @@ type AssumedRoleUser struct {
 	// role is created.
 	AssumedRoleID *string `locationName:"AssumedRoleId" type:"string" required:"true"`
 
-	metadataAssumedRoleUser `json:"-", xml:"-"`
+	metadataAssumedRoleUser `json:"-" xml:"-"`
 }
 
 type metadataAssumedRoleUser struct {
@@ -747,7 +786,7 @@ type Credentials struct {
 	// The token that users must pass to the service API to use the temporary credentials.
 	SessionToken *string `type:"string" required:"true"`
 
-	metadataCredentials `json:"-", xml:"-"`
+	metadataCredentials `json:"-" xml:"-"`
 }
 
 type metadataCredentials struct {
@@ -758,7 +797,7 @@ type DecodeAuthorizationMessageInput struct {
 	// The encoded message that was returned with the response.
 	EncodedMessage *string `type:"string" required:"true"`
 
-	metadataDecodeAuthorizationMessageInput `json:"-", xml:"-"`
+	metadataDecodeAuthorizationMessageInput `json:"-" xml:"-"`
 }
 
 type metadataDecodeAuthorizationMessageInput struct {
@@ -773,7 +812,7 @@ type DecodeAuthorizationMessageOutput struct {
 	// see DecodeAuthorizationMessage.
 	DecodedMessage *string `type:"string"`
 
-	metadataDecodeAuthorizationMessageOutput `json:"-", xml:"-"`
+	metadataDecodeAuthorizationMessageOutput `json:"-" xml:"-"`
 }
 
 type metadataDecodeAuthorizationMessageOutput struct {
@@ -792,7 +831,7 @@ type FederatedUser struct {
 	// similar to the unique ID of an IAM user.
 	FederatedUserID *string `locationName:"FederatedUserId" type:"string" required:"true"`
 
-	metadataFederatedUser `json:"-", xml:"-"`
+	metadataFederatedUser `json:"-" xml:"-"`
 }
 
 type metadataFederatedUser struct {
@@ -835,7 +874,7 @@ type GetFederationTokenInput struct {
 	// in Using Temporary Security Credentials.
 	Policy *string `type:"string"`
 
-	metadataGetFederationTokenInput `json:"-", xml:"-"`
+	metadataGetFederationTokenInput `json:"-" xml:"-"`
 }
 
 type metadataGetFederationTokenInput struct {
@@ -859,7 +898,7 @@ type GetFederationTokenOutput struct {
 	// of the allowed value.
 	PackedPolicySize *int64 `type:"integer"`
 
-	metadataGetFederationTokenOutput `json:"-", xml:"-"`
+	metadataGetFederationTokenOutput `json:"-" xml:"-"`
 }
 
 type metadataGetFederationTokenOutput struct {
@@ -891,7 +930,7 @@ type GetSessionTokenInput struct {
 	// response when requesting resources that require MFA authentication.
 	TokenCode *string `type:"string"`
 
-	metadataGetSessionTokenInput `json:"-", xml:"-"`
+	metadataGetSessionTokenInput `json:"-" xml:"-"`
 }
 
 type metadataGetSessionTokenInput struct {
@@ -904,7 +943,7 @@ type GetSessionTokenOutput struct {
 	// The session credentials for API authentication.
 	Credentials *Credentials `type:"structure"`
 
-	metadataGetSessionTokenOutput `json:"-", xml:"-"`
+	metadataGetSessionTokenOutput `json:"-" xml:"-"`
 }
 
 type metadataGetSessionTokenOutput struct {

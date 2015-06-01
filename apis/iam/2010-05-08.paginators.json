@@ -5,10 +5,7 @@
       "output_token": "Marker",
       "more_results": "IsTruncated",
       "limit_key": "MaxItems",
-      "result_key": "Users",
-      "non_aggregate_keys": [
-        "Group"
-      ]
+      "result_key": "Users"
     },
     "ListAccessKeys": {
       "input_token": "Marker",
@@ -80,6 +77,9 @@
       "limit_key": "MaxItems",
       "result_key": "Roles"
     },
+    "ListSAMLProviders": {
+      "result_key": "SAMLProviderList"
+    },
     "ListServerCertificates": {
       "input_token": "Marker",
       "output_token": "Marker",
@@ -114,6 +114,12 @@
       "more_results": "IsTruncated",
       "limit_key": "MaxItems",
       "result_key": "VirtualMFADevices"
+    },
+    "GetAccountAuthorizationDetails": {
+      "input_token": "Marker",
+      "output_token": "Marker",
+      "more_results": "IsTruncated",
+      "limit_key": "MaxItems"
     }
   }
 }

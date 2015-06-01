@@ -131,6 +131,21 @@
           "uri": "/",
           "body": "Action=OperationName&Version=2014-01-01&ListArg.member.1=foo&ListArg.member.2=bar&ListArg.member.3=baz"
         }
+      },
+      {
+        "given": {
+          "input": {
+            "shape": "InputShape"
+          },
+          "name": "OperationName"
+        },
+        "params": {
+          "ListArg": []
+        },
+        "serialized": {
+          "uri": "/",
+          "body": "Action=OperationName&Version=2014-01-01&ListArg="
+        }
       }
     ]
   },
@@ -183,6 +198,22 @@
           "uri": "/",
           "body": "Action=OperationName&Version=2014-01-01&ScalarArg=foo&ListArg.1=a&ListArg.2=b&ListArg.3=c"
         }
+      },
+      {
+        "given": {
+          "input": {
+            "shape": "InputShape"
+          },
+          "name": "OperationName"
+        },
+        "params": {
+          "ScalarArg": "foo",
+          "ListArg": []
+        },
+        "serialized": {
+          "uri": "/",
+          "body": "Action=OperationName&Version=2014-01-01&ScalarArg=foo&ListArg="
+        }
       }
     ]
   },
@@ -231,6 +262,21 @@
         "serialized": {
           "uri": "/",
           "body": "Action=OperationName&Version=2014-01-01&MapArg.entry.1.key=key1&MapArg.entry.1.value=val1&MapArg.entry.2.key=key2&MapArg.entry.2.value=val2"
+        }
+      },
+      {
+        "given": {
+          "input": {
+            "shape": "InputShape"
+          },
+          "name": "OperationName"
+        },
+        "params": {
+          "MapArg": {}
+        },
+        "serialized": {
+          "uri": "/",
+          "body": "Action=OperationName&Version=2014-01-01&MapArg="
         }
       }
     ]

@@ -6,16 +6,18 @@ import (
 	"net/url"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/internal/apierr"
 	"github.com/awslabs/aws-sdk-go/internal/protocol/query/queryutil"
 )
 
+// Build builds a request for an AWS Query service.
 func Build(r *aws.Request) {
 	body := url.Values{
 		"Action":  {r.Operation.Name},
 		"Version": {r.Service.APIVersion},
 	}
 	if err := queryutil.Parse(body, r.Params, false); err != nil {
-		r.Error = err
+		r.Error = apierr.New("Marshal", "failed encoding Query request", err)
 		return
 	}
 

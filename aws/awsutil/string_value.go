@@ -3,16 +3,20 @@ package awsutil
 import (
 	"bytes"
 	"fmt"
+	"io"
 	"reflect"
 	"strings"
 )
 
+// StringValue returns the string representation of a value.
 func StringValue(i interface{}) string {
 	var buf bytes.Buffer
 	stringValue(reflect.ValueOf(i), 0, &buf)
 	return buf.String()
 }
 
+// stringValue will recursively walk value v to build a textual
+// representation of the value.
 func stringValue(v reflect.Value, indent int, buf *bytes.Buffer) {
 	for v.Kind() == reflect.Ptr {
 		v = v.Elem()
@@ -91,6 +95,8 @@ func stringValue(v reflect.Value, indent int, buf *bytes.Buffer) {
 		switch v.Interface().(type) {
 		case string:
 			format = "%q"
+		case io.ReadSeeker, io.Reader:
+			format = "buffer(%p)"
 		}
 		fmt.Fprintf(buf, format, v.Interface())
 	}

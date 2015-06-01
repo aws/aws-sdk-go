@@ -11,6 +11,9 @@ import (
 	"time"
 )
 
+// UnmarshalXML deserializes an xml.Decoder into the container v. V
+// needs to match the shape of the XML expected to be decoded.
+// If the shape doesn't match unmarshaling will fail.
 func UnmarshalXML(v interface{}, d *xml.Decoder, wrapper string) error {
 	n, _ := XMLToStruct(d, nil)
 	if n.Children != nil {
@@ -34,6 +37,8 @@ func UnmarshalXML(v interface{}, d *xml.Decoder, wrapper string) error {
 	return nil
 }
 
+// parse deserializes any value from the XMLNode. The type tag is used to infer the type, or reflect
+// will be used to determine the type from r.
 func parse(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 	rtype := r.Type()
 	if rtype.Kind() == reflect.Ptr {
@@ -67,6 +72,8 @@ func parse(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 	}
 }
 
+// parseStruct deserializes a structure and its fields from an XMLNode. Any nested
+// types in the structure will also be deserialized.
 func parseStruct(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 	t := r.Type()
 	if r.Kind() == reflect.Ptr {
@@ -123,6 +130,8 @@ func parseStruct(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 	return nil
 }
 
+// parseList deserializes a list of values from an XML node. Each list entry
+// will also be deserialized.
 func parseList(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 	t := r.Type()
 
@@ -160,6 +169,8 @@ func parseList(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 	return nil
 }
 
+// parseMap deserializes a map from an XMLNode. The direct children of the XMLNode
+// will also be deserialized as map entries.
 func parseMap(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 	t := r.Type()
 	if r.Kind() == reflect.Ptr {
@@ -183,6 +194,7 @@ func parseMap(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 	return nil
 }
 
+// parseMapEntry deserializes a map entry from a XML node.
 func parseMapEntry(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 	kname, vname := "key", "value"
 	if n := tag.Get("locationNameKey"); n != "" {
@@ -207,6 +219,11 @@ func parseMapEntry(r reflect.Value, node *XMLNode, tag reflect.StructTag) error 
 	return nil
 }
 
+// parseScaller deserializes an XMLNode value into a concrete type based on the
+// interface type of r.
+//
+// Error is returned if the deserialization fails due to invalid type conversion,
+// or unsupported interface type.
 func parseScalar(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 	switch r.Interface().(type) {
 	case *string:
@@ -241,9 +258,8 @@ func parseScalar(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 		t, err := time.Parse(ISO8601UTC, node.Text)
 		if err != nil {
 			return err
-		} else {
-			r.Set(reflect.ValueOf(&t))
 		}
+		r.Set(reflect.ValueOf(&t))
 	default:
 		return fmt.Errorf("unsupported value: %v (%s)", r.Interface(), r.Type())
 	}

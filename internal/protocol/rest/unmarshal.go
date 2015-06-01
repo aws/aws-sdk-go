@@ -11,8 +11,10 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/internal/apierr"
 )
 
+// Unmarshal unmarshals the REST component of a response in a REST service.
 func Unmarshal(r *aws.Request) {
 	if r.DataFilled() {
 		v := reflect.Indirect(reflect.ValueOf(r.Data))
@@ -26,22 +28,23 @@ func unmarshalBody(r *aws.Request, v reflect.Value) {
 		if payloadName := field.Tag.Get("payload"); payloadName != "" {
 			pfield, _ := v.Type().FieldByName(payloadName)
 			if ptag := pfield.Tag.Get("type"); ptag != "" && ptag != "structure" {
-				payload := reflect.Indirect(v.FieldByName(payloadName))
+				payload := v.FieldByName(payloadName)
 				if payload.IsValid() {
 					switch payload.Interface().(type) {
 					case []byte:
 						b, err := ioutil.ReadAll(r.HTTPResponse.Body)
 						if err != nil {
-							r.Error = err
+							r.Error = apierr.New("Unmarshal", "failed to decode REST response", err)
 						} else {
 							payload.Set(reflect.ValueOf(b))
 						}
-					case string:
+					case *string:
 						b, err := ioutil.ReadAll(r.HTTPResponse.Body)
 						if err != nil {
-							r.Error = err
+							r.Error = apierr.New("Unmarshal", "failed to decode REST response", err)
 						} else {
-							payload.Set(reflect.ValueOf(string(b)))
+							str := string(b)
+							payload.Set(reflect.ValueOf(&str))
 						}
 					default:
 						switch payload.Type().String() {
@@ -50,7 +53,9 @@ func unmarshalBody(r *aws.Request, v reflect.Value) {
 						case "aws.ReadSeekCloser", "io.ReadCloser":
 							payload.Set(reflect.ValueOf(r.HTTPResponse.Body))
 						default:
-							r.Error = fmt.Errorf("unknown payload type %s", payload.Type())
+							r.Error = apierr.New("Unmarshal",
+								"failed to decode REST response",
+								fmt.Errorf("unknown payload type %s", payload.Type()))
 						}
 					}
 				}
@@ -78,14 +83,14 @@ func unmarshalLocationElements(r *aws.Request, v reflect.Value) {
 			case "header":
 				err := unmarshalHeader(m, r.HTTPResponse.Header.Get(name))
 				if err != nil {
-					r.Error = err
+					r.Error = apierr.New("Unmarshal", "failed to decode REST response", err)
 					break
 				}
 			case "headers":
 				prefix := field.Tag.Get("locationName")
 				err := unmarshalHeaderMap(m, r.HTTPResponse.Header, prefix)
 				if err != nil {
-					r.Error = err
+					r.Error = apierr.New("Unmarshal", "failed to decode REST response", err)
 					break
 				}
 			}
@@ -135,37 +140,32 @@ func unmarshalHeader(v reflect.Value, header string) error {
 		b, err := base64.StdEncoding.DecodeString(header)
 		if err != nil {
 			return err
-		} else {
-			v.Set(reflect.ValueOf(&b))
 		}
+		v.Set(reflect.ValueOf(&b))
 	case *bool:
 		b, err := strconv.ParseBool(header)
 		if err != nil {
 			return err
-		} else {
-			v.Set(reflect.ValueOf(&b))
 		}
+		v.Set(reflect.ValueOf(&b))
 	case *int64:
 		i, err := strconv.ParseInt(header, 10, 64)
 		if err != nil {
 			return err
-		} else {
-			v.Set(reflect.ValueOf(&i))
 		}
+		v.Set(reflect.ValueOf(&i))
 	case *float64:
 		f, err := strconv.ParseFloat(header, 64)
 		if err != nil {
 			return err
-		} else {
-			v.Set(reflect.ValueOf(&f))
 		}
+		v.Set(reflect.ValueOf(&f))
 	case *time.Time:
 		t, err := time.Parse(RFC822, header)
 		if err != nil {
 			return err
-		} else {
-			v.Set(reflect.ValueOf(&t))
 		}
+		v.Set(reflect.ValueOf(&t))
 	default:
 		err := fmt.Errorf("Unsupported value for param %v (%s)", v.Interface(), v.Type())
 		return err

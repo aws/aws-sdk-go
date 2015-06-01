@@ -13,11 +13,29 @@ import (
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/awslabs/aws-sdk-go/internal/apierr"
 )
 
 // RFC822 returns an RFC822 formatted timestamp for AWS protocols
 const RFC822 = "Mon, 2 Jan 2006 15:04:05 GMT"
 
+// Whether the byte value can be sent without escaping in AWS URLs
+var noEscape [256]bool
+
+func init() {
+	for i := 0; i < len(noEscape); i++ {
+		// AWS expects every character except these to be escaped
+		noEscape[i] = (i >= 'A' && i <= 'Z') ||
+			(i >= 'a' && i <= 'z') ||
+			(i >= '0' && i <= '9') ||
+			i == '-' ||
+			i == '.' ||
+			i == '_' ||
+			i == '~'
+	}
+}
+
+// Build builds the REST component of a service request.
 func Build(r *aws.Request) {
 	if r.ParamsFilled() {
 		v := reflect.ValueOf(r.Params).Elem()
@@ -81,9 +99,11 @@ func buildBody(r *aws.Request, v reflect.Value) {
 					case []byte:
 						r.SetBufferBody(reader)
 					case string:
-						r.SetBufferBody([]byte(reader))
+						r.SetStringBody(reader)
 					default:
-						r.Error = fmt.Errorf("unknown payload type %s", payload.Type())
+						r.Error = apierr.New("Marshal",
+							"failed to encode REST request",
+							fmt.Errorf("unknown payload type %s", payload.Type()))
 					}
 				}
 			}
@@ -94,7 +114,7 @@ func buildBody(r *aws.Request, v reflect.Value) {
 func buildHeader(r *aws.Request, v reflect.Value, name string) {
 	str, err := convertType(v)
 	if err != nil {
-		r.Error = err
+		r.Error = apierr.New("Marshal", "failed to encode REST request", err)
 	} else if str != nil {
 		r.HTTPRequest.Header.Add(name, *str)
 	}
@@ -103,9 +123,8 @@ func buildHeader(r *aws.Request, v reflect.Value, name string) {
 func buildHeaderMap(r *aws.Request, v reflect.Value, prefix string) {
 	for _, key := range v.MapKeys() {
 		str, err := convertType(v.MapIndex(key))
-
 		if err != nil {
-			r.Error = err
+			r.Error = apierr.New("Marshal", "failed to encode REST request", err)
 		} else if str != nil {
 			r.HTTPRequest.Header.Add(prefix+key.String(), *str)
 		}
@@ -115,11 +134,11 @@ func buildHeaderMap(r *aws.Request, v reflect.Value, prefix string) {
 func buildURI(r *aws.Request, v reflect.Value, name string) {
 	value, err := convertType(v)
 	if err != nil {
-		r.Error = err
+		r.Error = apierr.New("Marshal", "failed to encode REST request", err)
 	} else if value != nil {
 		uri := r.HTTPRequest.URL.Path
-		uri = strings.Replace(uri, "{"+name+"}", escapePath(*value, true), -1)
-		uri = strings.Replace(uri, "{"+name+"+}", escapePath(*value, false), -1)
+		uri = strings.Replace(uri, "{"+name+"}", EscapePath(*value, true), -1)
+		uri = strings.Replace(uri, "{"+name+"+}", EscapePath(*value, false), -1)
 		r.HTTPRequest.URL.Path = uri
 	}
 }
@@ -127,7 +146,7 @@ func buildURI(r *aws.Request, v reflect.Value, name string) {
 func buildQueryString(r *aws.Request, v reflect.Value, name string, query url.Values) {
 	str, err := convertType(v)
 	if err != nil {
-		r.Error = err
+		r.Error = apierr.New("Marshal", "failed to encode REST request", err)
 	} else if str != nil {
 		query.Set(name, *str)
 	}
@@ -149,31 +168,8 @@ func updatePath(url *url.URL, urlPath string) {
 	url.Opaque = s + urlPath
 }
 
-// Whether the byte value can be sent without escaping in AWS URLs
-var noEscape [256]bool
-var noEscapeInitialized = false
-
-// initialise noEscape
-func initNoEscape() {
-	for i := range noEscape {
-		// Amazon expects every character except these escaped
-		noEscape[i] = (i >= 'A' && i <= 'Z') ||
-			(i >= 'a' && i <= 'z') ||
-			(i >= '0' && i <= '9') ||
-			i == '-' ||
-			i == '.' ||
-			i == '_' ||
-			i == '~'
-	}
-}
-
-// escapePath escapes part of a URL path in Amazon style
-func escapePath(path string, encodeSep bool) string {
-	if !noEscapeInitialized {
-		initNoEscape()
-		noEscapeInitialized = true
-	}
-
+// EscapePath escapes part of a URL path in Amazon style
+func EscapePath(path string, encodeSep bool) string {
 	var buf bytes.Buffer
 	for i := 0; i < len(path); i++ {
 		c := path[i]

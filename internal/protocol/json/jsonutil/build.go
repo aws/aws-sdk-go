@@ -11,6 +11,7 @@ import (
 	"time"
 )
 
+// BuildJSON builds a JSON string for a given object v.
 func BuildJSON(v interface{}) ([]byte, error) {
 	var buf bytes.Buffer
 
@@ -151,9 +152,11 @@ func buildMap(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) err
 func buildScalar(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) error {
 	switch converted := value.Interface().(type) {
 	case string:
-		buf.WriteString(fmt.Sprintf("%q", converted))
+		writeString(converted, buf)
 	case []byte:
-		buf.WriteString(fmt.Sprintf("%q", base64.StdEncoding.EncodeToString(converted)))
+		if !value.IsNil() {
+			buf.WriteString(fmt.Sprintf("%q", base64.StdEncoding.EncodeToString(converted)))
+		}
 	case bool:
 		buf.WriteString(strconv.FormatBool(converted))
 	case int64:
@@ -166,4 +169,30 @@ func buildScalar(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) 
 		return fmt.Errorf("unsupported JSON value %v (%s)", value.Interface(), value.Type())
 	}
 	return nil
+}
+
+func writeString(s string, buf *bytes.Buffer) {
+	buf.WriteByte('"')
+	for _, r := range s {
+		if r == '"' {
+			buf.WriteString(`\"`)
+		} else if r == '\\' {
+			buf.WriteString(`\\`)
+		} else if r == '\b' {
+			buf.WriteString(`\b`)
+		} else if r == '\f' {
+			buf.WriteString(`\f`)
+		} else if r == '\r' {
+			buf.WriteString(`\r`)
+		} else if r == '\t' {
+			buf.WriteString(`\t`)
+		} else if r == '\n' {
+			buf.WriteString(`\n`)
+		} else if r < 32 {
+			fmt.Fprintf(buf, "\\u%0.4x", r)
+		} else {
+			buf.WriteRune(r)
+		}
+	}
+	buf.WriteByte('"')
 }

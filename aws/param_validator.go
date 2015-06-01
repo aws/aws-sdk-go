@@ -2,10 +2,13 @@ package aws
 
 import (
 	"fmt"
+	"github.com/awslabs/aws-sdk-go/internal/apierr"
 	"reflect"
 	"strings"
 )
 
+// ValidateParameters is a request handler to validate the input parameters.
+// Validating parameters only has meaning if done prior to the request being sent.
 func ValidateParameters(r *Request) {
 	if r.ParamsFilled() {
 		v := validator{errors: []string{}}
@@ -14,15 +17,18 @@ func ValidateParameters(r *Request) {
 		if count := len(v.errors); count > 0 {
 			format := "%d validation errors:\n- %s"
 			msg := fmt.Sprintf(format, count, strings.Join(v.errors, "\n- "))
-			r.Error = APIError{Code: "InvalidParameter", Message: msg}
+			r.Error = apierr.New("InvalidParameter", msg, nil)
 		}
 	}
 }
 
+// A validator validates values. Collects validations errors which occurs.
 type validator struct {
 	errors []string
 }
 
+// validateAny will validate any struct, slice or map type. All validations
+// are also performed recursively for nested types.
 func (v *validator) validateAny(value reflect.Value, path string) {
 	value = reflect.Indirect(value)
 	if !value.IsValid() {
@@ -43,6 +49,8 @@ func (v *validator) validateAny(value reflect.Value, path string) {
 	}
 }
 
+// validateStruct will validate the struct value's fields. If the structure has
+// nested types those types will be validated also.
 func (v *validator) validateStruct(value reflect.Value, path string) {
 	prefix := "."
 	if path == "" {

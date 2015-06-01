@@ -1,5 +1,10 @@
 package api
 
+import (
+	"fmt"
+	"regexp"
+)
+
 // updateTopLevelShapeReferences moves resultWrapper, locationName, and
 // xmlNamespace traits from toplevel shape references to the toplevel
 // shapes for easier code generation
@@ -25,6 +30,8 @@ func (a *API) updateTopLevelShapeReferences() {
 
 }
 
+// writeShapeNames sets each shape's API and shape name values. Binding the
+// shape to its parent API.
 func (a *API) writeShapeNames() {
 	for n, s := range a.Shapes {
 		s.API = a
@@ -47,11 +54,15 @@ func (a *API) resolveReferences() {
 	}
 }
 
+// A referenceResolver provides a way to resolve shape references to
+// shape definitions.
 type referenceResolver struct {
 	*API
 	visited map[*ShapeRef]bool
 }
 
+// resolveReference updates a shape reference to reference the API and
+// its shape definition. All other nested references are also resolved.
 func (r *referenceResolver) resolveReference(ref *ShapeRef) {
 	if ref.ShapeName == "" {
 		return
@@ -73,6 +84,8 @@ func (r *referenceResolver) resolveReference(ref *ShapeRef) {
 	}
 }
 
+// resolveShape resolves a shape's Member Key Value, and nested member
+// shape references.
 func (r *referenceResolver) resolveShape(shape *Shape) {
 	r.resolveReference(&shape.MemberRef)
 	r.resolveReference(&shape.KeyRef)
@@ -82,6 +95,9 @@ func (r *referenceResolver) resolveShape(shape *Shape) {
 	}
 }
 
+// renameToplevelShapes renames all top level shapes of an API to their
+// exportable variant. The shapes are also updated to include notations
+// if they are Input or Outputs.
 func (a *API) renameToplevelShapes() {
 	for _, v := range a.Operations {
 		if v.HasInput() && !a.NoInflections {
@@ -103,6 +119,31 @@ func (a *API) renameToplevelShapes() {
 	}
 }
 
+// fixStutterNames fixes all name struttering based on Go naming conventions.
+// "Stuttering" is when the prefix of a structure or function matches the
+// package name (case insensitive).
+func (a *API) fixStutterNames() {
+	re := regexp.MustCompile(fmt.Sprintf(`\A(?i:%s)`, a.PackageName()))
+
+	for name, op := range a.Operations {
+		newName := re.ReplaceAllString(name, "")
+		if newName != name {
+			delete(a.Operations, name)
+			a.Operations[newName] = op
+		}
+		op.ExportedName = newName
+	}
+
+	for k, s := range a.Shapes {
+		newName := re.ReplaceAllString(k, "")
+		if newName != s.ShapeName {
+			s.Rename(newName)
+		}
+	}
+}
+
+// renameExportable renames all operation names to be exportable names.
+// All nested Shape names are also updated to the exportable variant.
 func (a *API) renameExportable() {
 	for name, op := range a.Operations {
 		newName := a.ExportableName(name)
@@ -172,6 +213,7 @@ func (a *API) createInputOutputShapes() {
 	}
 }
 
+// makeIOShape returns a pointer to a new Shape initialized by the name provided.
 func (a *API) makeIOShape(name string) *Shape {
 	shape := &Shape{
 		API: a, ShapeName: name, Type: "structure",
@@ -181,6 +223,8 @@ func (a *API) makeIOShape(name string) *Shape {
 	return shape
 }
 
+// removeUnusedShapes removes shapes from the API which are not referenced by any
+// other shape in the API.
 func (a *API) removeUnusedShapes() {
 	for n, s := range a.Shapes {
 		if len(s.refs) == 0 {

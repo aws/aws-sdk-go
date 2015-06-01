@@ -47,6 +47,13 @@ aws_secret_access_key = MY-SECRET-KEY
 You can learn more about the credentials file from this
 [blog post](http://blogs.aws.amazon.com/security/post/Tx3D6U6WSFGOK2H/A-New-and-Standardized-Way-to-Manage-Credentials-in-the-AWS-SDKs).
 
+Alternatively, you can set the following environment variables:
+
+```
+AWS_ACCESS_KEY_ID=AKID1234567890
+AWS_SECRET_ACCESS_KEY=MY-SECRET-KEY
+```
+
 ## Using
 
 To use a service in the SDK, create a service variable by calling the `New()`
@@ -90,24 +97,6 @@ func main() {
 
 You can find more information and operations in our
 [API documentation](http://godoc.org/github.com/awslabs/aws-sdk-go).
-
-## TODO
-
-The following list of feature enhancements are planned or are currently
-in the works:
-
-* #162: `sqs.SendMessage()`, `sqs.SendMessageBatch()`, `sqs.ReceiveMessage()`:
-  validate MD5 checksums of message bodies in responses.
-* #163: `cloudsearchdomain`: Add support for CloudSearchDomain client.
-* #164: DynamoDB CRC checksum validation.
-* #165: `glacier`: Add support for Glacier.
-* #154: `s3`: Compute MD5 checksums for operations that require this parameter.
-* #166: `s3`: Improve error messages for empty response payloads.
-* #167: `s3`: Validate that SSL is used when SSE keys are provided.
-* #168: `s3`: Support path-style bucket access for non-DNS-compatible bucket names.
-* #169: `s3.CreateBucket()`: Auto-populate `LocationConstraint` with `Config.Region`.
-* #170: Error if credentials cannot be resolved when sending request.
-* #171: Error if region/endpoint cannot be resolved when sending request.
 
 ## License
 

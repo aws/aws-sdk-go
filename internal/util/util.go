@@ -13,6 +13,9 @@ import (
 	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
 )
 
+// GoFmt returns the Go formated string of the input.
+//
+// Panics if the format fails.
 func GoFmt(buf string) string {
 	formatted, err := format.Source([]byte(buf))
 	if err != nil {
@@ -23,10 +26,14 @@ func GoFmt(buf string) string {
 
 var reTrim = regexp.MustCompile(`\s{2,}`)
 
+// Trim removes all leading and trailing white space.
+//
+// All consecutive spaces will be reduced to a single space.
 func Trim(s string) string {
 	return strings.TrimSpace(reTrim.ReplaceAllString(s, " "))
 }
 
+// Capitalize capitalizes the first character of the string.
 func Capitalize(s string) string {
 	if len(s) == 1 {
 		return strings.ToUpper(s)
@@ -34,6 +41,7 @@ func Capitalize(s string) string {
 	return strings.ToUpper(s[0:1]) + s[1:]
 }
 
+// SortXML sorts the reader's XML elements
 func SortXML(r io.Reader) string {
 	var buf bytes.Buffer
 	d := xml.NewDecoder(r)
@@ -43,6 +51,8 @@ func SortXML(r io.Reader) string {
 	return buf.String()
 }
 
+// PrettyPrint generates a human readable representation of the value v.
+// All values of v are recursively found and pretty printed also.
 func PrettyPrint(v interface{}) string {
 	value := reflect.ValueOf(v)
 	switch value.Kind() {
@@ -70,9 +80,8 @@ func PrettyPrint(v interface{}) string {
 	case reflect.Ptr:
 		if e := value.Elem(); e.IsValid() {
 			return "&" + PrettyPrint(e.Interface())
-		} else {
-			return "nil"
 		}
+		return "nil"
 	case reflect.Slice:
 		str := "[]" + fullName(value.Type().Elem()) + "{\n"
 		for i := 0; i < value.Len(); i++ {
@@ -84,7 +93,6 @@ func PrettyPrint(v interface{}) string {
 	default:
 		return fmt.Sprintf("%#v", v)
 	}
-	return ""
 }
 
 func pkgName(t reflect.Type) string {

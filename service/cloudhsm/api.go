@@ -4,17 +4,28 @@
 package cloudhsm
 
 import (
+	"sync"
+
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // CreateHAPGRequest generates a request for the CreateHAPG operation.
 func (c *CloudHSM) CreateHAPGRequest(input *CreateHAPGInput) (req *aws.Request, output *CreateHAPGOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateHAPG == nil {
 		opCreateHAPG = &aws.Operation{
 			Name:       "CreateHapg",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateHAPGInput{}
 	}
 
 	req = c.newRequest(opCreateHAPG, input, output)
@@ -25,23 +36,29 @@ func (c *CloudHSM) CreateHAPGRequest(input *CreateHAPGInput) (req *aws.Request, 
 
 // Creates a high-availability partition group. A high-availability partition
 // group is a group of partitions that spans multiple physical HSMs.
-func (c *CloudHSM) CreateHAPG(input *CreateHAPGInput) (output *CreateHAPGOutput, err error) {
+func (c *CloudHSM) CreateHAPG(input *CreateHAPGInput) (*CreateHAPGOutput, error) {
 	req, out := c.CreateHAPGRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateHAPG *aws.Operation
 
 // CreateHSMRequest generates a request for the CreateHSM operation.
 func (c *CloudHSM) CreateHSMRequest(input *CreateHSMInput) (req *aws.Request, output *CreateHSMOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateHSM == nil {
 		opCreateHSM = &aws.Operation{
 			Name:       "CreateHsm",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateHSMInput{}
 	}
 
 	req = c.newRequest(opCreateHSM, input, output)
@@ -52,23 +69,29 @@ func (c *CloudHSM) CreateHSMRequest(input *CreateHSMInput) (req *aws.Request, ou
 
 // Creates an uninitialized HSM instance. Running this command provisions an
 // HSM appliance and will result in charges to your AWS account for the HSM.
-func (c *CloudHSM) CreateHSM(input *CreateHSMInput) (output *CreateHSMOutput, err error) {
+func (c *CloudHSM) CreateHSM(input *CreateHSMInput) (*CreateHSMOutput, error) {
 	req, out := c.CreateHSMRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateHSM *aws.Operation
 
 // CreateLunaClientRequest generates a request for the CreateLunaClient operation.
 func (c *CloudHSM) CreateLunaClientRequest(input *CreateLunaClientInput) (req *aws.Request, output *CreateLunaClientOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateLunaClient == nil {
 		opCreateLunaClient = &aws.Operation{
 			Name:       "CreateLunaClient",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateLunaClientInput{}
 	}
 
 	req = c.newRequest(opCreateLunaClient, input, output)
@@ -78,23 +101,29 @@ func (c *CloudHSM) CreateLunaClientRequest(input *CreateLunaClientInput) (req *a
 }
 
 // Creates an HSM client.
-func (c *CloudHSM) CreateLunaClient(input *CreateLunaClientInput) (output *CreateLunaClientOutput, err error) {
+func (c *CloudHSM) CreateLunaClient(input *CreateLunaClientInput) (*CreateLunaClientOutput, error) {
 	req, out := c.CreateLunaClientRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateLunaClient *aws.Operation
 
 // DeleteHAPGRequest generates a request for the DeleteHAPG operation.
 func (c *CloudHSM) DeleteHAPGRequest(input *DeleteHAPGInput) (req *aws.Request, output *DeleteHAPGOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteHAPG == nil {
 		opDeleteHAPG = &aws.Operation{
 			Name:       "DeleteHapg",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteHAPGInput{}
 	}
 
 	req = c.newRequest(opDeleteHAPG, input, output)
@@ -104,23 +133,29 @@ func (c *CloudHSM) DeleteHAPGRequest(input *DeleteHAPGInput) (req *aws.Request, 
 }
 
 // Deletes a high-availability partition group.
-func (c *CloudHSM) DeleteHAPG(input *DeleteHAPGInput) (output *DeleteHAPGOutput, err error) {
+func (c *CloudHSM) DeleteHAPG(input *DeleteHAPGInput) (*DeleteHAPGOutput, error) {
 	req, out := c.DeleteHAPGRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteHAPG *aws.Operation
 
 // DeleteHSMRequest generates a request for the DeleteHSM operation.
 func (c *CloudHSM) DeleteHSMRequest(input *DeleteHSMInput) (req *aws.Request, output *DeleteHSMOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteHSM == nil {
 		opDeleteHSM = &aws.Operation{
 			Name:       "DeleteHsm",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteHSMInput{}
 	}
 
 	req = c.newRequest(opDeleteHSM, input, output)
@@ -131,23 +166,29 @@ func (c *CloudHSM) DeleteHSMRequest(input *DeleteHSMInput) (req *aws.Request, ou
 
 // Deletes an HSM. Once complete, this operation cannot be undone and your key
 // material cannot be recovered.
-func (c *CloudHSM) DeleteHSM(input *DeleteHSMInput) (output *DeleteHSMOutput, err error) {
+func (c *CloudHSM) DeleteHSM(input *DeleteHSMInput) (*DeleteHSMOutput, error) {
 	req, out := c.DeleteHSMRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteHSM *aws.Operation
 
 // DeleteLunaClientRequest generates a request for the DeleteLunaClient operation.
 func (c *CloudHSM) DeleteLunaClientRequest(input *DeleteLunaClientInput) (req *aws.Request, output *DeleteLunaClientOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteLunaClient == nil {
 		opDeleteLunaClient = &aws.Operation{
 			Name:       "DeleteLunaClient",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteLunaClientInput{}
 	}
 
 	req = c.newRequest(opDeleteLunaClient, input, output)
@@ -157,23 +198,29 @@ func (c *CloudHSM) DeleteLunaClientRequest(input *DeleteLunaClientInput) (req *a
 }
 
 // Deletes a client.
-func (c *CloudHSM) DeleteLunaClient(input *DeleteLunaClientInput) (output *DeleteLunaClientOutput, err error) {
+func (c *CloudHSM) DeleteLunaClient(input *DeleteLunaClientInput) (*DeleteLunaClientOutput, error) {
 	req, out := c.DeleteLunaClientRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteLunaClient *aws.Operation
 
 // DescribeHAPGRequest generates a request for the DescribeHAPG operation.
 func (c *CloudHSM) DescribeHAPGRequest(input *DescribeHAPGInput) (req *aws.Request, output *DescribeHAPGOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeHAPG == nil {
 		opDescribeHAPG = &aws.Operation{
 			Name:       "DescribeHapg",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeHAPGInput{}
 	}
 
 	req = c.newRequest(opDescribeHAPG, input, output)
@@ -183,23 +230,29 @@ func (c *CloudHSM) DescribeHAPGRequest(input *DescribeHAPGInput) (req *aws.Reque
 }
 
 // Retrieves information about a high-availability partition group.
-func (c *CloudHSM) DescribeHAPG(input *DescribeHAPGInput) (output *DescribeHAPGOutput, err error) {
+func (c *CloudHSM) DescribeHAPG(input *DescribeHAPGInput) (*DescribeHAPGOutput, error) {
 	req, out := c.DescribeHAPGRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeHAPG *aws.Operation
 
 // DescribeHSMRequest generates a request for the DescribeHSM operation.
 func (c *CloudHSM) DescribeHSMRequest(input *DescribeHSMInput) (req *aws.Request, output *DescribeHSMOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeHSM == nil {
 		opDescribeHSM = &aws.Operation{
 			Name:       "DescribeHsm",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeHSMInput{}
 	}
 
 	req = c.newRequest(opDescribeHSM, input, output)
@@ -210,23 +263,29 @@ func (c *CloudHSM) DescribeHSMRequest(input *DescribeHSMInput) (req *aws.Request
 
 // Retrieves information about an HSM. You can identify the HSM by its ARN or
 // its serial number.
-func (c *CloudHSM) DescribeHSM(input *DescribeHSMInput) (output *DescribeHSMOutput, err error) {
+func (c *CloudHSM) DescribeHSM(input *DescribeHSMInput) (*DescribeHSMOutput, error) {
 	req, out := c.DescribeHSMRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeHSM *aws.Operation
 
 // DescribeLunaClientRequest generates a request for the DescribeLunaClient operation.
 func (c *CloudHSM) DescribeLunaClientRequest(input *DescribeLunaClientInput) (req *aws.Request, output *DescribeLunaClientOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeLunaClient == nil {
 		opDescribeLunaClient = &aws.Operation{
 			Name:       "DescribeLunaClient",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeLunaClientInput{}
 	}
 
 	req = c.newRequest(opDescribeLunaClient, input, output)
@@ -236,23 +295,29 @@ func (c *CloudHSM) DescribeLunaClientRequest(input *DescribeLunaClientInput) (re
 }
 
 // Retrieves information about an HSM client.
-func (c *CloudHSM) DescribeLunaClient(input *DescribeLunaClientInput) (output *DescribeLunaClientOutput, err error) {
+func (c *CloudHSM) DescribeLunaClient(input *DescribeLunaClientInput) (*DescribeLunaClientOutput, error) {
 	req, out := c.DescribeLunaClientRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeLunaClient *aws.Operation
 
 // GetConfigRequest generates a request for the GetConfig operation.
 func (c *CloudHSM) GetConfigRequest(input *GetConfigInput) (req *aws.Request, output *GetConfigOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetConfig == nil {
 		opGetConfig = &aws.Operation{
 			Name:       "GetConfig",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetConfigInput{}
 	}
 
 	req = c.newRequest(opGetConfig, input, output)
@@ -263,23 +328,29 @@ func (c *CloudHSM) GetConfigRequest(input *GetConfigInput) (req *aws.Request, ou
 
 // Gets the configuration files necessary to connect to all high availability
 // partition groups the client is associated with.
-func (c *CloudHSM) GetConfig(input *GetConfigInput) (output *GetConfigOutput, err error) {
+func (c *CloudHSM) GetConfig(input *GetConfigInput) (*GetConfigOutput, error) {
 	req, out := c.GetConfigRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetConfig *aws.Operation
 
 // ListAvailableZonesRequest generates a request for the ListAvailableZones operation.
 func (c *CloudHSM) ListAvailableZonesRequest(input *ListAvailableZonesInput) (req *aws.Request, output *ListAvailableZonesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListAvailableZones == nil {
 		opListAvailableZones = &aws.Operation{
 			Name:       "ListAvailableZones",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListAvailableZonesInput{}
 	}
 
 	req = c.newRequest(opListAvailableZones, input, output)
@@ -289,23 +360,29 @@ func (c *CloudHSM) ListAvailableZonesRequest(input *ListAvailableZonesInput) (re
 }
 
 // Lists the Availability Zones that have available AWS CloudHSM capacity.
-func (c *CloudHSM) ListAvailableZones(input *ListAvailableZonesInput) (output *ListAvailableZonesOutput, err error) {
+func (c *CloudHSM) ListAvailableZones(input *ListAvailableZonesInput) (*ListAvailableZonesOutput, error) {
 	req, out := c.ListAvailableZonesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListAvailableZones *aws.Operation
 
 // ListHSMsRequest generates a request for the ListHSMs operation.
 func (c *CloudHSM) ListHSMsRequest(input *ListHSMsInput) (req *aws.Request, output *ListHSMsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListHSMs == nil {
 		opListHSMs = &aws.Operation{
 			Name:       "ListHsms",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListHSMsInput{}
 	}
 
 	req = c.newRequest(opListHSMs, input, output)
@@ -321,23 +398,29 @@ func (c *CloudHSM) ListHSMsRequest(input *ListHSMsInput) (req *aws.Request, outp
 // If more results are available, the NextToken member of the response contains
 // a token that you pass in the next call to ListHsms to retrieve the next set
 // of items.
-func (c *CloudHSM) ListHSMs(input *ListHSMsInput) (output *ListHSMsOutput, err error) {
+func (c *CloudHSM) ListHSMs(input *ListHSMsInput) (*ListHSMsOutput, error) {
 	req, out := c.ListHSMsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListHSMs *aws.Operation
 
 // ListHapgsRequest generates a request for the ListHapgs operation.
 func (c *CloudHSM) ListHapgsRequest(input *ListHapgsInput) (req *aws.Request, output *ListHapgsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListHapgs == nil {
 		opListHapgs = &aws.Operation{
 			Name:       "ListHapgs",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListHapgsInput{}
 	}
 
 	req = c.newRequest(opListHapgs, input, output)
@@ -352,23 +435,29 @@ func (c *CloudHSM) ListHapgsRequest(input *ListHapgsInput) (req *aws.Request, ou
 // If more results are available, the NextToken member of the response contains
 // a token that you pass in the next call to ListHapgs to retrieve the next
 // set of items.
-func (c *CloudHSM) ListHapgs(input *ListHapgsInput) (output *ListHapgsOutput, err error) {
+func (c *CloudHSM) ListHapgs(input *ListHapgsInput) (*ListHapgsOutput, error) {
 	req, out := c.ListHapgsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListHapgs *aws.Operation
 
 // ListLunaClientsRequest generates a request for the ListLunaClients operation.
 func (c *CloudHSM) ListLunaClientsRequest(input *ListLunaClientsInput) (req *aws.Request, output *ListLunaClientsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListLunaClients == nil {
 		opListLunaClients = &aws.Operation{
 			Name:       "ListLunaClients",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListLunaClientsInput{}
 	}
 
 	req = c.newRequest(opListLunaClients, input, output)
@@ -383,23 +472,29 @@ func (c *CloudHSM) ListLunaClientsRequest(input *ListLunaClientsInput) (req *aws
 // If more results are available, the NextToken member of the response contains
 // a token that you pass in the next call to ListLunaClients to retrieve the
 // next set of items.
-func (c *CloudHSM) ListLunaClients(input *ListLunaClientsInput) (output *ListLunaClientsOutput, err error) {
+func (c *CloudHSM) ListLunaClients(input *ListLunaClientsInput) (*ListLunaClientsOutput, error) {
 	req, out := c.ListLunaClientsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListLunaClients *aws.Operation
 
 // ModifyHAPGRequest generates a request for the ModifyHAPG operation.
 func (c *CloudHSM) ModifyHAPGRequest(input *ModifyHAPGInput) (req *aws.Request, output *ModifyHAPGOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyHAPG == nil {
 		opModifyHAPG = &aws.Operation{
 			Name:       "ModifyHapg",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ModifyHAPGInput{}
 	}
 
 	req = c.newRequest(opModifyHAPG, input, output)
@@ -409,23 +504,29 @@ func (c *CloudHSM) ModifyHAPGRequest(input *ModifyHAPGInput) (req *aws.Request, 
 }
 
 // Modifies an existing high-availability partition group.
-func (c *CloudHSM) ModifyHAPG(input *ModifyHAPGInput) (output *ModifyHAPGOutput, err error) {
+func (c *CloudHSM) ModifyHAPG(input *ModifyHAPGInput) (*ModifyHAPGOutput, error) {
 	req, out := c.ModifyHAPGRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opModifyHAPG *aws.Operation
 
 // ModifyHSMRequest generates a request for the ModifyHSM operation.
 func (c *CloudHSM) ModifyHSMRequest(input *ModifyHSMInput) (req *aws.Request, output *ModifyHSMOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyHSM == nil {
 		opModifyHSM = &aws.Operation{
 			Name:       "ModifyHsm",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ModifyHSMInput{}
 	}
 
 	req = c.newRequest(opModifyHSM, input, output)
@@ -435,23 +536,29 @@ func (c *CloudHSM) ModifyHSMRequest(input *ModifyHSMInput) (req *aws.Request, ou
 }
 
 // Modifies an HSM.
-func (c *CloudHSM) ModifyHSM(input *ModifyHSMInput) (output *ModifyHSMOutput, err error) {
+func (c *CloudHSM) ModifyHSM(input *ModifyHSMInput) (*ModifyHSMOutput, error) {
 	req, out := c.ModifyHSMRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opModifyHSM *aws.Operation
 
 // ModifyLunaClientRequest generates a request for the ModifyLunaClient operation.
 func (c *CloudHSM) ModifyLunaClientRequest(input *ModifyLunaClientInput) (req *aws.Request, output *ModifyLunaClientOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opModifyLunaClient == nil {
 		opModifyLunaClient = &aws.Operation{
 			Name:       "ModifyLunaClient",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ModifyLunaClientInput{}
 	}
 
 	req = c.newRequest(opModifyLunaClient, input, output)
@@ -464,11 +571,10 @@ func (c *CloudHSM) ModifyLunaClientRequest(input *ModifyLunaClientInput) (req *a
 //
 // This action can potentially start a workflow to install the new certificate
 // on the client's HSMs.
-func (c *CloudHSM) ModifyLunaClient(input *ModifyLunaClientInput) (output *ModifyLunaClientOutput, err error) {
+func (c *CloudHSM) ModifyLunaClient(input *ModifyLunaClientInput) (*ModifyLunaClientOutput, error) {
 	req, out := c.ModifyLunaClientRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opModifyLunaClient *aws.Operation
@@ -478,7 +584,7 @@ type CreateHAPGInput struct {
 	// The label of the new high-availability partition group.
 	Label *string `type:"string" required:"true"`
 
-	metadataCreateHAPGInput `json:"-", xml:"-"`
+	metadataCreateHAPGInput `json:"-" xml:"-"`
 }
 
 type metadataCreateHAPGInput struct {
@@ -490,7 +596,7 @@ type CreateHAPGOutput struct {
 	// The ARN of the high-availability partition group.
 	HAPGARN *string `locationName:"HapgArn" type:"string"`
 
-	metadataCreateHAPGOutput `json:"-", xml:"-"`
+	metadataCreateHAPGOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateHAPGOutput struct {
@@ -525,7 +631,7 @@ type CreateHSMInput struct {
 	// The IP address for the syslog monitoring server.
 	SyslogIP *string `locationName:"SyslogIp" type:"string"`
 
-	metadataCreateHSMInput `json:"-", xml:"-"`
+	metadataCreateHSMInput `json:"-" xml:"-"`
 }
 
 type metadataCreateHSMInput struct {
@@ -537,7 +643,7 @@ type CreateHSMOutput struct {
 	// The ARN of the HSM.
 	HSMARN *string `locationName:"HsmArn" type:"string"`
 
-	metadataCreateHSMOutput `json:"-", xml:"-"`
+	metadataCreateHSMOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateHSMOutput struct {
@@ -553,7 +659,7 @@ type CreateLunaClientInput struct {
 	// The label for the client.
 	Label *string `type:"string"`
 
-	metadataCreateLunaClientInput `json:"-", xml:"-"`
+	metadataCreateLunaClientInput `json:"-" xml:"-"`
 }
 
 type metadataCreateLunaClientInput struct {
@@ -565,7 +671,7 @@ type CreateLunaClientOutput struct {
 	// The ARN of the client.
 	ClientARN *string `locationName:"ClientArn" type:"string"`
 
-	metadataCreateLunaClientOutput `json:"-", xml:"-"`
+	metadataCreateLunaClientOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateLunaClientOutput struct {
@@ -577,7 +683,7 @@ type DeleteHAPGInput struct {
 	// The ARN of the high-availability partition group to delete.
 	HAPGARN *string `locationName:"HapgArn" type:"string" required:"true"`
 
-	metadataDeleteHAPGInput `json:"-", xml:"-"`
+	metadataDeleteHAPGInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteHAPGInput struct {
@@ -589,7 +695,7 @@ type DeleteHAPGOutput struct {
 	// The status of the action.
 	Status *string `type:"string" required:"true"`
 
-	metadataDeleteHAPGOutput `json:"-", xml:"-"`
+	metadataDeleteHAPGOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteHAPGOutput struct {
@@ -601,7 +707,7 @@ type DeleteHSMInput struct {
 	// The ARN of the HSM to delete.
 	HSMARN *string `locationName:"HsmArn" type:"string" required:"true"`
 
-	metadataDeleteHSMInput `json:"-", xml:"-"`
+	metadataDeleteHSMInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteHSMInput struct {
@@ -613,7 +719,7 @@ type DeleteHSMOutput struct {
 	// The status of the action.
 	Status *string `type:"string" required:"true"`
 
-	metadataDeleteHSMOutput `json:"-", xml:"-"`
+	metadataDeleteHSMOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteHSMOutput struct {
@@ -624,7 +730,7 @@ type DeleteLunaClientInput struct {
 	// The ARN of the client to delete.
 	ClientARN *string `locationName:"ClientArn" type:"string" required:"true"`
 
-	metadataDeleteLunaClientInput `json:"-", xml:"-"`
+	metadataDeleteLunaClientInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLunaClientInput struct {
@@ -635,7 +741,7 @@ type DeleteLunaClientOutput struct {
 	// The status of the action.
 	Status *string `type:"string" required:"true"`
 
-	metadataDeleteLunaClientOutput `json:"-", xml:"-"`
+	metadataDeleteLunaClientOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLunaClientOutput struct {
@@ -647,7 +753,7 @@ type DescribeHAPGInput struct {
 	// The ARN of the high-availability partition group to describe.
 	HAPGARN *string `locationName:"HapgArn" type:"string" required:"true"`
 
-	metadataDescribeHAPGInput `json:"-", xml:"-"`
+	metadataDescribeHAPGInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeHAPGInput struct {
@@ -684,7 +790,7 @@ type DescribeHAPGOutput struct {
 	// The state of the high-availability partition group.
 	State *string `type:"string"`
 
-	metadataDescribeHAPGOutput `json:"-", xml:"-"`
+	metadataDescribeHAPGOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeHAPGOutput struct {
@@ -701,7 +807,7 @@ type DescribeHSMInput struct {
 	// must be specified.
 	HSMSerialNumber *string `locationName:"HsmSerialNumber" type:"string"`
 
-	metadataDescribeHSMInput `json:"-", xml:"-"`
+	metadataDescribeHSMInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeHSMInput struct {
@@ -773,7 +879,7 @@ type DescribeHSMOutput struct {
 	// The name of the HSM vendor.
 	VendorName *string `type:"string"`
 
-	metadataDescribeHSMOutput `json:"-", xml:"-"`
+	metadataDescribeHSMOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeHSMOutput struct {
@@ -787,7 +893,7 @@ type DescribeLunaClientInput struct {
 	// The ARN of the client.
 	ClientARN *string `locationName:"ClientArn" type:"string"`
 
-	metadataDescribeLunaClientInput `json:"-", xml:"-"`
+	metadataDescribeLunaClientInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLunaClientInput struct {
@@ -810,7 +916,7 @@ type DescribeLunaClientOutput struct {
 	// The date and time the client was last modified.
 	LastModifiedTimestamp *string `type:"string"`
 
-	metadataDescribeLunaClientOutput `json:"-", xml:"-"`
+	metadataDescribeLunaClientOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLunaClientOutput struct {
@@ -828,7 +934,7 @@ type GetConfigInput struct {
 	// are associated with the client.
 	HAPGList []*string `locationName:"HapgList" type:"list" required:"true"`
 
-	metadataGetConfigInput `json:"-", xml:"-"`
+	metadataGetConfigInput `json:"-" xml:"-"`
 }
 
 type metadataGetConfigInput struct {
@@ -845,7 +951,7 @@ type GetConfigOutput struct {
 	// The type of credentials.
 	ConfigType *string `type:"string"`
 
-	metadataGetConfigOutput `json:"-", xml:"-"`
+	metadataGetConfigOutput `json:"-" xml:"-"`
 }
 
 type metadataGetConfigOutput struct {
@@ -854,7 +960,7 @@ type metadataGetConfigOutput struct {
 
 // Contains the inputs for the ListAvailableZones action.
 type ListAvailableZonesInput struct {
-	metadataListAvailableZonesInput `json:"-", xml:"-"`
+	metadataListAvailableZonesInput `json:"-" xml:"-"`
 }
 
 type metadataListAvailableZonesInput struct {
@@ -865,7 +971,7 @@ type ListAvailableZonesOutput struct {
 	// The list of Availability Zones that have available AWS CloudHSM capacity.
 	AZList []*string `type:"list"`
 
-	metadataListAvailableZonesOutput `json:"-", xml:"-"`
+	metadataListAvailableZonesOutput `json:"-" xml:"-"`
 }
 
 type metadataListAvailableZonesOutput struct {
@@ -877,7 +983,7 @@ type ListHSMsInput struct {
 	// the first call.
 	NextToken *string `type:"string"`
 
-	metadataListHSMsInput `json:"-", xml:"-"`
+	metadataListHSMsInput `json:"-" xml:"-"`
 }
 
 type metadataListHSMsInput struct {
@@ -893,7 +999,7 @@ type ListHSMsOutput struct {
 	// the next set of items.
 	NextToken *string `type:"string"`
 
-	metadataListHSMsOutput `json:"-", xml:"-"`
+	metadataListHSMsOutput `json:"-" xml:"-"`
 }
 
 type metadataListHSMsOutput struct {
@@ -905,7 +1011,7 @@ type ListHapgsInput struct {
 	// is the first call.
 	NextToken *string `type:"string"`
 
-	metadataListHapgsInput `json:"-", xml:"-"`
+	metadataListHapgsInput `json:"-" xml:"-"`
 }
 
 type metadataListHapgsInput struct {
@@ -920,7 +1026,7 @@ type ListHapgsOutput struct {
 	// retrieve the next set of items.
 	NextToken *string `type:"string"`
 
-	metadataListHapgsOutput `json:"-", xml:"-"`
+	metadataListHapgsOutput `json:"-" xml:"-"`
 }
 
 type metadataListHapgsOutput struct {
@@ -932,7 +1038,7 @@ type ListLunaClientsInput struct {
 	// this is the first call.
 	NextToken *string `type:"string"`
 
-	metadataListLunaClientsInput `json:"-", xml:"-"`
+	metadataListLunaClientsInput `json:"-" xml:"-"`
 }
 
 type metadataListLunaClientsInput struct {
@@ -947,7 +1053,7 @@ type ListLunaClientsOutput struct {
 	// retrieve the next set of items.
 	NextToken *string `type:"string"`
 
-	metadataListLunaClientsOutput `json:"-", xml:"-"`
+	metadataListLunaClientsOutput `json:"-" xml:"-"`
 }
 
 type metadataListLunaClientsOutput struct {
@@ -965,7 +1071,7 @@ type ModifyHAPGInput struct {
 	// partition group.
 	PartitionSerialList []*string `type:"list"`
 
-	metadataModifyHAPGInput `json:"-", xml:"-"`
+	metadataModifyHAPGInput `json:"-" xml:"-"`
 }
 
 type metadataModifyHAPGInput struct {
@@ -976,7 +1082,7 @@ type ModifyHAPGOutput struct {
 	// The ARN of the high-availability partition group.
 	HAPGARN *string `locationName:"HapgArn" type:"string"`
 
-	metadataModifyHAPGOutput `json:"-", xml:"-"`
+	metadataModifyHAPGOutput `json:"-" xml:"-"`
 }
 
 type metadataModifyHAPGOutput struct {
@@ -1003,7 +1109,7 @@ type ModifyHSMInput struct {
 	// The new IP address for the syslog monitoring server.
 	SyslogIP *string `locationName:"SyslogIp" type:"string"`
 
-	metadataModifyHSMInput `json:"-", xml:"-"`
+	metadataModifyHSMInput `json:"-" xml:"-"`
 }
 
 type metadataModifyHSMInput struct {
@@ -1015,7 +1121,7 @@ type ModifyHSMOutput struct {
 	// The ARN of the HSM.
 	HSMARN *string `locationName:"HsmArn" type:"string"`
 
-	metadataModifyHSMOutput `json:"-", xml:"-"`
+	metadataModifyHSMOutput `json:"-" xml:"-"`
 }
 
 type metadataModifyHSMOutput struct {
@@ -1029,7 +1135,7 @@ type ModifyLunaClientInput struct {
 	// The ARN of the client.
 	ClientARN *string `locationName:"ClientArn" type:"string" required:"true"`
 
-	metadataModifyLunaClientInput `json:"-", xml:"-"`
+	metadataModifyLunaClientInput `json:"-" xml:"-"`
 }
 
 type metadataModifyLunaClientInput struct {
@@ -1040,7 +1146,7 @@ type ModifyLunaClientOutput struct {
 	// The ARN of the client.
 	ClientARN *string `locationName:"ClientArn" type:"string"`
 
-	metadataModifyLunaClientOutput `json:"-", xml:"-"`
+	metadataModifyLunaClientOutput `json:"-" xml:"-"`
 }
 
 type metadataModifyLunaClientOutput struct {

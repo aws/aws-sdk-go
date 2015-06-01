@@ -4,19 +4,29 @@
 package cloudfront
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // CreateCloudFrontOriginAccessIdentityRequest generates a request for the CreateCloudFrontOriginAccessIdentity operation.
 func (c *CloudFront) CreateCloudFrontOriginAccessIdentityRequest(input *CreateCloudFrontOriginAccessIdentityInput) (req *aws.Request, output *CreateCloudFrontOriginAccessIdentityOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateCloudFrontOriginAccessIdentity == nil {
 		opCreateCloudFrontOriginAccessIdentity = &aws.Operation{
 			Name:       "CreateCloudFrontOriginAccessIdentity2014_11_06",
 			HTTPMethod: "POST",
 			HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront",
 		}
+	}
+
+	if input == nil {
+		input = &CreateCloudFrontOriginAccessIdentityInput{}
 	}
 
 	req = c.newRequest(opCreateCloudFrontOriginAccessIdentity, input, output)
@@ -26,23 +36,29 @@ func (c *CloudFront) CreateCloudFrontOriginAccessIdentityRequest(input *CreateCl
 }
 
 // Create a new origin access identity.
-func (c *CloudFront) CreateCloudFrontOriginAccessIdentity(input *CreateCloudFrontOriginAccessIdentityInput) (output *CreateCloudFrontOriginAccessIdentityOutput, err error) {
+func (c *CloudFront) CreateCloudFrontOriginAccessIdentity(input *CreateCloudFrontOriginAccessIdentityInput) (*CreateCloudFrontOriginAccessIdentityOutput, error) {
 	req, out := c.CreateCloudFrontOriginAccessIdentityRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateCloudFrontOriginAccessIdentity *aws.Operation
 
 // CreateDistributionRequest generates a request for the CreateDistribution operation.
 func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (req *aws.Request, output *CreateDistributionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateDistribution == nil {
 		opCreateDistribution = &aws.Operation{
 			Name:       "CreateDistribution2014_11_06",
 			HTTPMethod: "POST",
 			HTTPPath:   "/2014-11-06/distribution",
 		}
+	}
+
+	if input == nil {
+		input = &CreateDistributionInput{}
 	}
 
 	req = c.newRequest(opCreateDistribution, input, output)
@@ -52,23 +68,29 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 }
 
 // Create a new distribution.
-func (c *CloudFront) CreateDistribution(input *CreateDistributionInput) (output *CreateDistributionOutput, err error) {
+func (c *CloudFront) CreateDistribution(input *CreateDistributionInput) (*CreateDistributionOutput, error) {
 	req, out := c.CreateDistributionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateDistribution *aws.Operation
 
 // CreateInvalidationRequest generates a request for the CreateInvalidation operation.
 func (c *CloudFront) CreateInvalidationRequest(input *CreateInvalidationInput) (req *aws.Request, output *CreateInvalidationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateInvalidation == nil {
 		opCreateInvalidation = &aws.Operation{
 			Name:       "CreateInvalidation2014_11_06",
 			HTTPMethod: "POST",
 			HTTPPath:   "/2014-11-06/distribution/{DistributionId}/invalidation",
 		}
+	}
+
+	if input == nil {
+		input = &CreateInvalidationInput{}
 	}
 
 	req = c.newRequest(opCreateInvalidation, input, output)
@@ -78,23 +100,29 @@ func (c *CloudFront) CreateInvalidationRequest(input *CreateInvalidationInput) (
 }
 
 // Create a new invalidation.
-func (c *CloudFront) CreateInvalidation(input *CreateInvalidationInput) (output *CreateInvalidationOutput, err error) {
+func (c *CloudFront) CreateInvalidation(input *CreateInvalidationInput) (*CreateInvalidationOutput, error) {
 	req, out := c.CreateInvalidationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateInvalidation *aws.Operation
 
 // CreateStreamingDistributionRequest generates a request for the CreateStreamingDistribution operation.
 func (c *CloudFront) CreateStreamingDistributionRequest(input *CreateStreamingDistributionInput) (req *aws.Request, output *CreateStreamingDistributionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateStreamingDistribution == nil {
 		opCreateStreamingDistribution = &aws.Operation{
 			Name:       "CreateStreamingDistribution2014_11_06",
 			HTTPMethod: "POST",
 			HTTPPath:   "/2014-11-06/streaming-distribution",
 		}
+	}
+
+	if input == nil {
+		input = &CreateStreamingDistributionInput{}
 	}
 
 	req = c.newRequest(opCreateStreamingDistribution, input, output)
@@ -104,23 +132,29 @@ func (c *CloudFront) CreateStreamingDistributionRequest(input *CreateStreamingDi
 }
 
 // Create a new streaming distribution.
-func (c *CloudFront) CreateStreamingDistribution(input *CreateStreamingDistributionInput) (output *CreateStreamingDistributionOutput, err error) {
+func (c *CloudFront) CreateStreamingDistribution(input *CreateStreamingDistributionInput) (*CreateStreamingDistributionOutput, error) {
 	req, out := c.CreateStreamingDistributionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateStreamingDistribution *aws.Operation
 
 // DeleteCloudFrontOriginAccessIdentityRequest generates a request for the DeleteCloudFrontOriginAccessIdentity operation.
 func (c *CloudFront) DeleteCloudFrontOriginAccessIdentityRequest(input *DeleteCloudFrontOriginAccessIdentityInput) (req *aws.Request, output *DeleteCloudFrontOriginAccessIdentityOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteCloudFrontOriginAccessIdentity == nil {
 		opDeleteCloudFrontOriginAccessIdentity = &aws.Operation{
 			Name:       "DeleteCloudFrontOriginAccessIdentity2014_11_06",
 			HTTPMethod: "DELETE",
 			HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront/{Id}",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteCloudFrontOriginAccessIdentityInput{}
 	}
 
 	req = c.newRequest(opDeleteCloudFrontOriginAccessIdentity, input, output)
@@ -130,23 +164,29 @@ func (c *CloudFront) DeleteCloudFrontOriginAccessIdentityRequest(input *DeleteCl
 }
 
 // Delete an origin access identity.
-func (c *CloudFront) DeleteCloudFrontOriginAccessIdentity(input *DeleteCloudFrontOriginAccessIdentityInput) (output *DeleteCloudFrontOriginAccessIdentityOutput, err error) {
+func (c *CloudFront) DeleteCloudFrontOriginAccessIdentity(input *DeleteCloudFrontOriginAccessIdentityInput) (*DeleteCloudFrontOriginAccessIdentityOutput, error) {
 	req, out := c.DeleteCloudFrontOriginAccessIdentityRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteCloudFrontOriginAccessIdentity *aws.Operation
 
 // DeleteDistributionRequest generates a request for the DeleteDistribution operation.
 func (c *CloudFront) DeleteDistributionRequest(input *DeleteDistributionInput) (req *aws.Request, output *DeleteDistributionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteDistribution == nil {
 		opDeleteDistribution = &aws.Operation{
 			Name:       "DeleteDistribution2014_11_06",
 			HTTPMethod: "DELETE",
 			HTTPPath:   "/2014-11-06/distribution/{Id}",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteDistributionInput{}
 	}
 
 	req = c.newRequest(opDeleteDistribution, input, output)
@@ -156,23 +196,29 @@ func (c *CloudFront) DeleteDistributionRequest(input *DeleteDistributionInput) (
 }
 
 // Delete a distribution.
-func (c *CloudFront) DeleteDistribution(input *DeleteDistributionInput) (output *DeleteDistributionOutput, err error) {
+func (c *CloudFront) DeleteDistribution(input *DeleteDistributionInput) (*DeleteDistributionOutput, error) {
 	req, out := c.DeleteDistributionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteDistribution *aws.Operation
 
 // DeleteStreamingDistributionRequest generates a request for the DeleteStreamingDistribution operation.
 func (c *CloudFront) DeleteStreamingDistributionRequest(input *DeleteStreamingDistributionInput) (req *aws.Request, output *DeleteStreamingDistributionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteStreamingDistribution == nil {
 		opDeleteStreamingDistribution = &aws.Operation{
 			Name:       "DeleteStreamingDistribution2014_11_06",
 			HTTPMethod: "DELETE",
 			HTTPPath:   "/2014-11-06/streaming-distribution/{Id}",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteStreamingDistributionInput{}
 	}
 
 	req = c.newRequest(opDeleteStreamingDistribution, input, output)
@@ -182,23 +228,29 @@ func (c *CloudFront) DeleteStreamingDistributionRequest(input *DeleteStreamingDi
 }
 
 // Delete a streaming distribution.
-func (c *CloudFront) DeleteStreamingDistribution(input *DeleteStreamingDistributionInput) (output *DeleteStreamingDistributionOutput, err error) {
+func (c *CloudFront) DeleteStreamingDistribution(input *DeleteStreamingDistributionInput) (*DeleteStreamingDistributionOutput, error) {
 	req, out := c.DeleteStreamingDistributionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteStreamingDistribution *aws.Operation
 
 // GetCloudFrontOriginAccessIdentityRequest generates a request for the GetCloudFrontOriginAccessIdentity operation.
 func (c *CloudFront) GetCloudFrontOriginAccessIdentityRequest(input *GetCloudFrontOriginAccessIdentityInput) (req *aws.Request, output *GetCloudFrontOriginAccessIdentityOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetCloudFrontOriginAccessIdentity == nil {
 		opGetCloudFrontOriginAccessIdentity = &aws.Operation{
 			Name:       "GetCloudFrontOriginAccessIdentity2014_11_06",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront/{Id}",
 		}
+	}
+
+	if input == nil {
+		input = &GetCloudFrontOriginAccessIdentityInput{}
 	}
 
 	req = c.newRequest(opGetCloudFrontOriginAccessIdentity, input, output)
@@ -208,23 +260,29 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentityRequest(input *GetCloudFro
 }
 
 // Get the information about an origin access identity.
-func (c *CloudFront) GetCloudFrontOriginAccessIdentity(input *GetCloudFrontOriginAccessIdentityInput) (output *GetCloudFrontOriginAccessIdentityOutput, err error) {
+func (c *CloudFront) GetCloudFrontOriginAccessIdentity(input *GetCloudFrontOriginAccessIdentityInput) (*GetCloudFrontOriginAccessIdentityOutput, error) {
 	req, out := c.GetCloudFrontOriginAccessIdentityRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetCloudFrontOriginAccessIdentity *aws.Operation
 
 // GetCloudFrontOriginAccessIdentityConfigRequest generates a request for the GetCloudFrontOriginAccessIdentityConfig operation.
 func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfigRequest(input *GetCloudFrontOriginAccessIdentityConfigInput) (req *aws.Request, output *GetCloudFrontOriginAccessIdentityConfigOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetCloudFrontOriginAccessIdentityConfig == nil {
 		opGetCloudFrontOriginAccessIdentityConfig = &aws.Operation{
 			Name:       "GetCloudFrontOriginAccessIdentityConfig2014_11_06",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront/{Id}/config",
 		}
+	}
+
+	if input == nil {
+		input = &GetCloudFrontOriginAccessIdentityConfigInput{}
 	}
 
 	req = c.newRequest(opGetCloudFrontOriginAccessIdentityConfig, input, output)
@@ -234,23 +292,29 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfigRequest(input *GetCl
 }
 
 // Get the configuration information about an origin access identity.
-func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfig(input *GetCloudFrontOriginAccessIdentityConfigInput) (output *GetCloudFrontOriginAccessIdentityConfigOutput, err error) {
+func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfig(input *GetCloudFrontOriginAccessIdentityConfigInput) (*GetCloudFrontOriginAccessIdentityConfigOutput, error) {
 	req, out := c.GetCloudFrontOriginAccessIdentityConfigRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetCloudFrontOriginAccessIdentityConfig *aws.Operation
 
 // GetDistributionRequest generates a request for the GetDistribution operation.
 func (c *CloudFront) GetDistributionRequest(input *GetDistributionInput) (req *aws.Request, output *GetDistributionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetDistribution == nil {
 		opGetDistribution = &aws.Operation{
 			Name:       "GetDistribution2014_11_06",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/distribution/{Id}",
 		}
+	}
+
+	if input == nil {
+		input = &GetDistributionInput{}
 	}
 
 	req = c.newRequest(opGetDistribution, input, output)
@@ -260,23 +324,29 @@ func (c *CloudFront) GetDistributionRequest(input *GetDistributionInput) (req *a
 }
 
 // Get the information about a distribution.
-func (c *CloudFront) GetDistribution(input *GetDistributionInput) (output *GetDistributionOutput, err error) {
+func (c *CloudFront) GetDistribution(input *GetDistributionInput) (*GetDistributionOutput, error) {
 	req, out := c.GetDistributionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetDistribution *aws.Operation
 
 // GetDistributionConfigRequest generates a request for the GetDistributionConfig operation.
 func (c *CloudFront) GetDistributionConfigRequest(input *GetDistributionConfigInput) (req *aws.Request, output *GetDistributionConfigOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetDistributionConfig == nil {
 		opGetDistributionConfig = &aws.Operation{
 			Name:       "GetDistributionConfig2014_11_06",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/distribution/{Id}/config",
 		}
+	}
+
+	if input == nil {
+		input = &GetDistributionConfigInput{}
 	}
 
 	req = c.newRequest(opGetDistributionConfig, input, output)
@@ -286,23 +356,29 @@ func (c *CloudFront) GetDistributionConfigRequest(input *GetDistributionConfigIn
 }
 
 // Get the configuration information about a distribution.
-func (c *CloudFront) GetDistributionConfig(input *GetDistributionConfigInput) (output *GetDistributionConfigOutput, err error) {
+func (c *CloudFront) GetDistributionConfig(input *GetDistributionConfigInput) (*GetDistributionConfigOutput, error) {
 	req, out := c.GetDistributionConfigRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetDistributionConfig *aws.Operation
 
 // GetInvalidationRequest generates a request for the GetInvalidation operation.
 func (c *CloudFront) GetInvalidationRequest(input *GetInvalidationInput) (req *aws.Request, output *GetInvalidationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetInvalidation == nil {
 		opGetInvalidation = &aws.Operation{
 			Name:       "GetInvalidation2014_11_06",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/distribution/{DistributionId}/invalidation/{Id}",
 		}
+	}
+
+	if input == nil {
+		input = &GetInvalidationInput{}
 	}
 
 	req = c.newRequest(opGetInvalidation, input, output)
@@ -312,23 +388,29 @@ func (c *CloudFront) GetInvalidationRequest(input *GetInvalidationInput) (req *a
 }
 
 // Get the information about an invalidation.
-func (c *CloudFront) GetInvalidation(input *GetInvalidationInput) (output *GetInvalidationOutput, err error) {
+func (c *CloudFront) GetInvalidation(input *GetInvalidationInput) (*GetInvalidationOutput, error) {
 	req, out := c.GetInvalidationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetInvalidation *aws.Operation
 
 // GetStreamingDistributionRequest generates a request for the GetStreamingDistribution operation.
 func (c *CloudFront) GetStreamingDistributionRequest(input *GetStreamingDistributionInput) (req *aws.Request, output *GetStreamingDistributionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetStreamingDistribution == nil {
 		opGetStreamingDistribution = &aws.Operation{
 			Name:       "GetStreamingDistribution2014_11_06",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/streaming-distribution/{Id}",
 		}
+	}
+
+	if input == nil {
+		input = &GetStreamingDistributionInput{}
 	}
 
 	req = c.newRequest(opGetStreamingDistribution, input, output)
@@ -338,23 +420,29 @@ func (c *CloudFront) GetStreamingDistributionRequest(input *GetStreamingDistribu
 }
 
 // Get the information about a streaming distribution.
-func (c *CloudFront) GetStreamingDistribution(input *GetStreamingDistributionInput) (output *GetStreamingDistributionOutput, err error) {
+func (c *CloudFront) GetStreamingDistribution(input *GetStreamingDistributionInput) (*GetStreamingDistributionOutput, error) {
 	req, out := c.GetStreamingDistributionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetStreamingDistribution *aws.Operation
 
 // GetStreamingDistributionConfigRequest generates a request for the GetStreamingDistributionConfig operation.
 func (c *CloudFront) GetStreamingDistributionConfigRequest(input *GetStreamingDistributionConfigInput) (req *aws.Request, output *GetStreamingDistributionConfigOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetStreamingDistributionConfig == nil {
 		opGetStreamingDistributionConfig = &aws.Operation{
 			Name:       "GetStreamingDistributionConfig2014_11_06",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/streaming-distribution/{Id}/config",
 		}
+	}
+
+	if input == nil {
+		input = &GetStreamingDistributionConfigInput{}
 	}
 
 	req = c.newRequest(opGetStreamingDistributionConfig, input, output)
@@ -364,23 +452,35 @@ func (c *CloudFront) GetStreamingDistributionConfigRequest(input *GetStreamingDi
 }
 
 // Get the configuration information about a streaming distribution.
-func (c *CloudFront) GetStreamingDistributionConfig(input *GetStreamingDistributionConfigInput) (output *GetStreamingDistributionConfigOutput, err error) {
+func (c *CloudFront) GetStreamingDistributionConfig(input *GetStreamingDistributionConfigInput) (*GetStreamingDistributionConfigOutput, error) {
 	req, out := c.GetStreamingDistributionConfigRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetStreamingDistributionConfig *aws.Operation
 
 // ListCloudFrontOriginAccessIdentitiesRequest generates a request for the ListCloudFrontOriginAccessIdentities operation.
 func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesRequest(input *ListCloudFrontOriginAccessIdentitiesInput) (req *aws.Request, output *ListCloudFrontOriginAccessIdentitiesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListCloudFrontOriginAccessIdentities == nil {
 		opListCloudFrontOriginAccessIdentities = &aws.Operation{
 			Name:       "ListCloudFrontOriginAccessIdentities2014_11_06",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"CloudFrontOriginAccessIdentityList.NextMarker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "CloudFrontOriginAccessIdentityList.IsTruncated",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &ListCloudFrontOriginAccessIdentitiesInput{}
 	}
 
 	req = c.newRequest(opListCloudFrontOriginAccessIdentities, input, output)
@@ -390,23 +490,40 @@ func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesRequest(input *ListClou
 }
 
 // List origin access identities.
-func (c *CloudFront) ListCloudFrontOriginAccessIdentities(input *ListCloudFrontOriginAccessIdentitiesInput) (output *ListCloudFrontOriginAccessIdentitiesOutput, err error) {
+func (c *CloudFront) ListCloudFrontOriginAccessIdentities(input *ListCloudFrontOriginAccessIdentitiesInput) (*ListCloudFrontOriginAccessIdentitiesOutput, error) {
 	req, out := c.ListCloudFrontOriginAccessIdentitiesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesPages(input *ListCloudFrontOriginAccessIdentitiesInput, fn func(p *ListCloudFrontOriginAccessIdentitiesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListCloudFrontOriginAccessIdentitiesRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListCloudFrontOriginAccessIdentities *aws.Operation
 
 // ListDistributionsRequest generates a request for the ListDistributions operation.
 func (c *CloudFront) ListDistributionsRequest(input *ListDistributionsInput) (req *aws.Request, output *ListDistributionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListDistributions == nil {
 		opListDistributions = &aws.Operation{
 			Name:       "ListDistributions2014_11_06",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/distribution",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"DistributionList.NextMarker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "DistributionList.IsTruncated",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &ListDistributionsInput{}
 	}
 
 	req = c.newRequest(opListDistributions, input, output)
@@ -416,23 +533,40 @@ func (c *CloudFront) ListDistributionsRequest(input *ListDistributionsInput) (re
 }
 
 // List distributions.
-func (c *CloudFront) ListDistributions(input *ListDistributionsInput) (output *ListDistributionsOutput, err error) {
+func (c *CloudFront) ListDistributions(input *ListDistributionsInput) (*ListDistributionsOutput, error) {
 	req, out := c.ListDistributionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *CloudFront) ListDistributionsPages(input *ListDistributionsInput, fn func(p *ListDistributionsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListDistributionsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListDistributions *aws.Operation
 
 // ListInvalidationsRequest generates a request for the ListInvalidations operation.
 func (c *CloudFront) ListInvalidationsRequest(input *ListInvalidationsInput) (req *aws.Request, output *ListInvalidationsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListInvalidations == nil {
 		opListInvalidations = &aws.Operation{
 			Name:       "ListInvalidations2014_11_06",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/distribution/{DistributionId}/invalidation",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"InvalidationList.NextMarker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "InvalidationList.IsTruncated",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &ListInvalidationsInput{}
 	}
 
 	req = c.newRequest(opListInvalidations, input, output)
@@ -442,23 +576,40 @@ func (c *CloudFront) ListInvalidationsRequest(input *ListInvalidationsInput) (re
 }
 
 // List invalidation batches.
-func (c *CloudFront) ListInvalidations(input *ListInvalidationsInput) (output *ListInvalidationsOutput, err error) {
+func (c *CloudFront) ListInvalidations(input *ListInvalidationsInput) (*ListInvalidationsOutput, error) {
 	req, out := c.ListInvalidationsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *CloudFront) ListInvalidationsPages(input *ListInvalidationsInput, fn func(p *ListInvalidationsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListInvalidationsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListInvalidations *aws.Operation
 
 // ListStreamingDistributionsRequest generates a request for the ListStreamingDistributions operation.
 func (c *CloudFront) ListStreamingDistributionsRequest(input *ListStreamingDistributionsInput) (req *aws.Request, output *ListStreamingDistributionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListStreamingDistributions == nil {
 		opListStreamingDistributions = &aws.Operation{
 			Name:       "ListStreamingDistributions2014_11_06",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2014-11-06/streaming-distribution",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"StreamingDistributionList.NextMarker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "StreamingDistributionList.IsTruncated",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &ListStreamingDistributionsInput{}
 	}
 
 	req = c.newRequest(opListStreamingDistributions, input, output)
@@ -468,23 +619,34 @@ func (c *CloudFront) ListStreamingDistributionsRequest(input *ListStreamingDistr
 }
 
 // List streaming distributions.
-func (c *CloudFront) ListStreamingDistributions(input *ListStreamingDistributionsInput) (output *ListStreamingDistributionsOutput, err error) {
+func (c *CloudFront) ListStreamingDistributions(input *ListStreamingDistributionsInput) (*ListStreamingDistributionsOutput, error) {
 	req, out := c.ListStreamingDistributionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *CloudFront) ListStreamingDistributionsPages(input *ListStreamingDistributionsInput, fn func(p *ListStreamingDistributionsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListStreamingDistributionsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListStreamingDistributions *aws.Operation
 
 // UpdateCloudFrontOriginAccessIdentityRequest generates a request for the UpdateCloudFrontOriginAccessIdentity operation.
 func (c *CloudFront) UpdateCloudFrontOriginAccessIdentityRequest(input *UpdateCloudFrontOriginAccessIdentityInput) (req *aws.Request, output *UpdateCloudFrontOriginAccessIdentityOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateCloudFrontOriginAccessIdentity == nil {
 		opUpdateCloudFrontOriginAccessIdentity = &aws.Operation{
 			Name:       "UpdateCloudFrontOriginAccessIdentity2014_11_06",
 			HTTPMethod: "PUT",
 			HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront/{Id}/config",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateCloudFrontOriginAccessIdentityInput{}
 	}
 
 	req = c.newRequest(opUpdateCloudFrontOriginAccessIdentity, input, output)
@@ -494,23 +656,29 @@ func (c *CloudFront) UpdateCloudFrontOriginAccessIdentityRequest(input *UpdateCl
 }
 
 // Update an origin access identity.
-func (c *CloudFront) UpdateCloudFrontOriginAccessIdentity(input *UpdateCloudFrontOriginAccessIdentityInput) (output *UpdateCloudFrontOriginAccessIdentityOutput, err error) {
+func (c *CloudFront) UpdateCloudFrontOriginAccessIdentity(input *UpdateCloudFrontOriginAccessIdentityInput) (*UpdateCloudFrontOriginAccessIdentityOutput, error) {
 	req, out := c.UpdateCloudFrontOriginAccessIdentityRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateCloudFrontOriginAccessIdentity *aws.Operation
 
 // UpdateDistributionRequest generates a request for the UpdateDistribution operation.
 func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (req *aws.Request, output *UpdateDistributionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateDistribution == nil {
 		opUpdateDistribution = &aws.Operation{
 			Name:       "UpdateDistribution2014_11_06",
 			HTTPMethod: "PUT",
 			HTTPPath:   "/2014-11-06/distribution/{Id}/config",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateDistributionInput{}
 	}
 
 	req = c.newRequest(opUpdateDistribution, input, output)
@@ -520,23 +688,29 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 }
 
 // Update a distribution.
-func (c *CloudFront) UpdateDistribution(input *UpdateDistributionInput) (output *UpdateDistributionOutput, err error) {
+func (c *CloudFront) UpdateDistribution(input *UpdateDistributionInput) (*UpdateDistributionOutput, error) {
 	req, out := c.UpdateDistributionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateDistribution *aws.Operation
 
 // UpdateStreamingDistributionRequest generates a request for the UpdateStreamingDistribution operation.
 func (c *CloudFront) UpdateStreamingDistributionRequest(input *UpdateStreamingDistributionInput) (req *aws.Request, output *UpdateStreamingDistributionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateStreamingDistribution == nil {
 		opUpdateStreamingDistribution = &aws.Operation{
 			Name:       "UpdateStreamingDistribution2014_11_06",
 			HTTPMethod: "PUT",
 			HTTPPath:   "/2014-11-06/streaming-distribution/{Id}/config",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateStreamingDistributionInput{}
 	}
 
 	req = c.newRequest(opUpdateStreamingDistribution, input, output)
@@ -546,11 +720,10 @@ func (c *CloudFront) UpdateStreamingDistributionRequest(input *UpdateStreamingDi
 }
 
 // Update a streaming distribution.
-func (c *CloudFront) UpdateStreamingDistribution(input *UpdateStreamingDistributionInput) (output *UpdateStreamingDistributionOutput, err error) {
+func (c *CloudFront) UpdateStreamingDistribution(input *UpdateStreamingDistributionInput) (*UpdateStreamingDistributionOutput, error) {
 	req, out := c.UpdateStreamingDistributionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateStreamingDistribution *aws.Operation
@@ -573,7 +746,7 @@ type ActiveTrustedSigners struct {
 	// value of Quantity for ActiveTrustedSigners will be 3.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataActiveTrustedSigners `json:"-", xml:"-"`
+	metadataActiveTrustedSigners `json:"-" xml:"-"`
 }
 
 type metadataActiveTrustedSigners struct {
@@ -590,7 +763,7 @@ type Aliases struct {
 	// The number of CNAMEs, if any, for this distribution.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataAliases `json:"-", xml:"-"`
+	metadataAliases `json:"-" xml:"-"`
 }
 
 type metadataAliases struct {
@@ -623,7 +796,7 @@ type AllowedMethods struct {
 	// requests) and 7 (for GET, HEAD, OPTIONS, PUT, PATCH, POST, and DELETE requests).
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataAllowedMethods `json:"-", xml:"-"`
+	metadataAllowedMethods `json:"-" xml:"-"`
 }
 
 type metadataAllowedMethods struct {
@@ -706,7 +879,7 @@ type CacheBehavior struct {
 	// the HTTPS URL.
 	ViewerProtocolPolicy *string `type:"string" required:"true"`
 
-	metadataCacheBehavior `json:"-", xml:"-"`
+	metadataCacheBehavior `json:"-" xml:"-"`
 }
 
 type metadataCacheBehavior struct {
@@ -722,7 +895,7 @@ type CacheBehaviors struct {
 	// The number of cache behaviors for this distribution.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataCacheBehaviors `json:"-", xml:"-"`
+	metadataCacheBehaviors `json:"-" xml:"-"`
 }
 
 type metadataCacheBehaviors struct {
@@ -745,110 +918,10 @@ type CachedMethods struct {
 	// (for caching responses to GET, HEAD, and OPTIONS requests).
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataCachedMethods `json:"-", xml:"-"`
+	metadataCachedMethods `json:"-" xml:"-"`
 }
 
 type metadataCachedMethods struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-// CloudFront origin access identity.
-type CloudFrontOriginAccessIdentity struct {
-	// The current configuration information for the identity.
-	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `type:"structure"`
-
-	// The ID for the origin access identity. For example: E74FTE3AJFJ256A.
-	ID *string `locationName:"Id" type:"string" required:"true"`
-
-	// The Amazon S3 canonical user ID for the origin access identity, which you
-	// use when giving the origin access identity read permission to an object in
-	// Amazon S3.
-	S3CanonicalUserID *string `locationName:"S3CanonicalUserId" type:"string" required:"true"`
-
-	metadataCloudFrontOriginAccessIdentity `json:"-", xml:"-"`
-}
-
-type metadataCloudFrontOriginAccessIdentity struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-// Origin access identity configuration.
-type CloudFrontOriginAccessIdentityConfig struct {
-	// A unique number that ensures the request can't be replayed. If the CallerReference
-	// is new (no matter the content of the CloudFrontOriginAccessIdentityConfig
-	// object), a new origin access identity is created. If the CallerReference
-	// is a value you already sent in a previous request to create an identity,
-	// and the content of the CloudFrontOriginAccessIdentityConfig is identical
-	// to the original request (ignoring white space), the response includes the
-	// same information returned to the original request. If the CallerReference
-	// is a value you already sent in a previous request to create an identity but
-	// the content of the CloudFrontOriginAccessIdentityConfig is different from
-	// the original request, CloudFront returns a CloudFrontOriginAccessIdentityAlreadyExists
-	// error.
-	CallerReference *string `type:"string" required:"true"`
-
-	// Any comments you want to include about the origin access identity.
-	Comment *string `type:"string" required:"true"`
-
-	metadataCloudFrontOriginAccessIdentityConfig `json:"-", xml:"-"`
-}
-
-type metadataCloudFrontOriginAccessIdentityConfig struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-// The CloudFrontOriginAccessIdentityList type.
-type CloudFrontOriginAccessIdentityList struct {
-	// A flag that indicates whether more origin access identities remain to be
-	// listed. If your results were truncated, you can make a follow-up pagination
-	// request using the Marker request parameter to retrieve more items in the
-	// list.
-	IsTruncated *bool `type:"boolean" required:"true"`
-
-	// A complex type that contains one CloudFrontOriginAccessIdentitySummary element
-	// for each origin access identity that was created by the current AWS account.
-	Items []*CloudFrontOriginAccessIdentitySummary `locationNameList:"CloudFrontOriginAccessIdentitySummary" type:"list"`
-
-	// The value you provided for the Marker request parameter.
-	Marker *string `type:"string" required:"true"`
-
-	// The value you provided for the MaxItems request parameter.
-	MaxItems *int64 `type:"integer" required:"true"`
-
-	// If IsTruncated is true, this element is present and contains the value you
-	// can use for the Marker request parameter to continue listing your origin
-	// access identities where they left off.
-	NextMarker *string `type:"string"`
-
-	// The number of CloudFront origin access identities that were created by the
-	// current AWS account.
-	Quantity *int64 `type:"integer" required:"true"`
-
-	metadataCloudFrontOriginAccessIdentityList `json:"-", xml:"-"`
-}
-
-type metadataCloudFrontOriginAccessIdentityList struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-// Summary of the information about a CloudFront origin access identity.
-type CloudFrontOriginAccessIdentitySummary struct {
-	// The comment for this origin access identity, as originally specified when
-	// created.
-	Comment *string `type:"string" required:"true"`
-
-	// The ID for the origin access identity. For example: E74FTE3AJFJ256A.
-	ID *string `locationName:"Id" type:"string" required:"true"`
-
-	// The Amazon S3 canonical user ID for the origin access identity, which you
-	// use when giving the origin access identity read permission to an object in
-	// Amazon S3.
-	S3CanonicalUserID *string `locationName:"S3CanonicalUserId" type:"string" required:"true"`
-
-	metadataCloudFrontOriginAccessIdentitySummary `json:"-", xml:"-"`
-}
-
-type metadataCloudFrontOriginAccessIdentitySummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -862,7 +935,7 @@ type CookieNames struct {
 	// The number of whitelisted cookies for this cache behavior.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataCookieNames `json:"-", xml:"-"`
+	metadataCookieNames `json:"-" xml:"-"`
 }
 
 type metadataCookieNames struct {
@@ -882,7 +955,7 @@ type CookiePreference struct {
 	// CloudFront to forward to your origin that is associated with this cache behavior.
 	WhitelistedNames *CookieNames `type:"structure"`
 
-	metadataCookiePreference `json:"-", xml:"-"`
+	metadataCookiePreference `json:"-" xml:"-"`
 }
 
 type metadataCookiePreference struct {
@@ -892,9 +965,9 @@ type metadataCookiePreference struct {
 // The request to create a new origin access identity.
 type CreateCloudFrontOriginAccessIdentityInput struct {
 	// The origin access identity's configuration information.
-	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `locationName:"CloudFrontOriginAccessIdentityConfig" type:"structure" required:"true"`
+	CloudFrontOriginAccessIdentityConfig *OriginAccessIdentityConfig `locationName:"CloudFrontOriginAccessIdentityConfig" type:"structure" required:"true"`
 
-	metadataCreateCloudFrontOriginAccessIdentityInput `json:"-", xml:"-"`
+	metadataCreateCloudFrontOriginAccessIdentityInput `json:"-" xml:"-"`
 }
 
 type metadataCreateCloudFrontOriginAccessIdentityInput struct {
@@ -904,7 +977,7 @@ type metadataCreateCloudFrontOriginAccessIdentityInput struct {
 // The returned result of the corresponding request.
 type CreateCloudFrontOriginAccessIdentityOutput struct {
 	// The origin access identity's information.
-	CloudFrontOriginAccessIdentity *CloudFrontOriginAccessIdentity `type:"structure"`
+	CloudFrontOriginAccessIdentity *OriginAccessIdentity `type:"structure"`
 
 	// The current version of the origin access identity created.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
@@ -913,7 +986,7 @@ type CreateCloudFrontOriginAccessIdentityOutput struct {
 	// example: https://cloudfront.amazonaws.com/2010-11-01/origin-access-identity/cloudfront/E74FTE3AJFJ256A.
 	Location *string `location:"header" locationName:"Location" type:"string"`
 
-	metadataCreateCloudFrontOriginAccessIdentityOutput `json:"-", xml:"-"`
+	metadataCreateCloudFrontOriginAccessIdentityOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateCloudFrontOriginAccessIdentityOutput struct {
@@ -925,7 +998,7 @@ type CreateDistributionInput struct {
 	// The distribution's configuration information.
 	DistributionConfig *DistributionConfig `locationName:"DistributionConfig" type:"structure" required:"true"`
 
-	metadataCreateDistributionInput `json:"-", xml:"-"`
+	metadataCreateDistributionInput `json:"-" xml:"-"`
 }
 
 type metadataCreateDistributionInput struct {
@@ -944,7 +1017,7 @@ type CreateDistributionOutput struct {
 	// example: https://cloudfront.amazonaws.com/2010-11-01/distribution/EDFDVBD632BHDS5.
 	Location *string `location:"header" locationName:"Location" type:"string"`
 
-	metadataCreateDistributionOutput `json:"-", xml:"-"`
+	metadataCreateDistributionOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateDistributionOutput struct {
@@ -959,7 +1032,7 @@ type CreateInvalidationInput struct {
 	// The batch information for the invalidation.
 	InvalidationBatch *InvalidationBatch `locationName:"InvalidationBatch" type:"structure" required:"true"`
 
-	metadataCreateInvalidationInput `json:"-", xml:"-"`
+	metadataCreateInvalidationInput `json:"-" xml:"-"`
 }
 
 type metadataCreateInvalidationInput struct {
@@ -975,7 +1048,7 @@ type CreateInvalidationOutput struct {
 	// including the Invalidation ID.
 	Location *string `location:"header" locationName:"Location" type:"string"`
 
-	metadataCreateInvalidationOutput `json:"-", xml:"-"`
+	metadataCreateInvalidationOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateInvalidationOutput struct {
@@ -987,7 +1060,7 @@ type CreateStreamingDistributionInput struct {
 	// The streaming distribution's configuration information.
 	StreamingDistributionConfig *StreamingDistributionConfig `locationName:"StreamingDistributionConfig" type:"structure" required:"true"`
 
-	metadataCreateStreamingDistributionInput `json:"-", xml:"-"`
+	metadataCreateStreamingDistributionInput `json:"-" xml:"-"`
 }
 
 type metadataCreateStreamingDistributionInput struct {
@@ -1006,7 +1079,7 @@ type CreateStreamingDistributionOutput struct {
 	// The streaming distribution's information.
 	StreamingDistribution *StreamingDistribution `type:"structure"`
 
-	metadataCreateStreamingDistributionOutput `json:"-", xml:"-"`
+	metadataCreateStreamingDistributionOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateStreamingDistributionOutput struct {
@@ -1047,7 +1120,7 @@ type CustomErrorResponse struct {
 	// return the custom error page to the viewer.
 	ResponsePagePath *string `type:"string"`
 
-	metadataCustomErrorResponse `json:"-", xml:"-"`
+	metadataCustomErrorResponse `json:"-" xml:"-"`
 }
 
 type metadataCustomErrorResponse struct {
@@ -1063,7 +1136,7 @@ type CustomErrorResponses struct {
 	// The number of custom error responses for this distribution.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataCustomErrorResponses `json:"-", xml:"-"`
+	metadataCustomErrorResponses `json:"-" xml:"-"`
 }
 
 type metadataCustomErrorResponses struct {
@@ -1081,7 +1154,7 @@ type CustomOriginConfig struct {
 	// The origin protocol policy to apply to your origin.
 	OriginProtocolPolicy *string `type:"string" required:"true"`
 
-	metadataCustomOriginConfig `json:"-", xml:"-"`
+	metadataCustomOriginConfig `json:"-" xml:"-"`
 }
 
 type metadataCustomOriginConfig struct {
@@ -1144,7 +1217,7 @@ type DefaultCacheBehavior struct {
 	// the HTTPS URL.
 	ViewerProtocolPolicy *string `type:"string" required:"true"`
 
-	metadataDefaultCacheBehavior `json:"-", xml:"-"`
+	metadataDefaultCacheBehavior `json:"-" xml:"-"`
 }
 
 type metadataDefaultCacheBehavior struct {
@@ -1160,7 +1233,7 @@ type DeleteCloudFrontOriginAccessIdentityInput struct {
 	// For example: E2QWRUHAPOMQZL.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
-	metadataDeleteCloudFrontOriginAccessIdentityInput `json:"-", xml:"-"`
+	metadataDeleteCloudFrontOriginAccessIdentityInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteCloudFrontOriginAccessIdentityInput struct {
@@ -1168,7 +1241,7 @@ type metadataDeleteCloudFrontOriginAccessIdentityInput struct {
 }
 
 type DeleteCloudFrontOriginAccessIdentityOutput struct {
-	metadataDeleteCloudFrontOriginAccessIdentityOutput `json:"-", xml:"-"`
+	metadataDeleteCloudFrontOriginAccessIdentityOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteCloudFrontOriginAccessIdentityOutput struct {
@@ -1184,7 +1257,7 @@ type DeleteDistributionInput struct {
 	// For example: E2QWRUHAPOMQZL.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
-	metadataDeleteDistributionInput `json:"-", xml:"-"`
+	metadataDeleteDistributionInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDistributionInput struct {
@@ -1192,7 +1265,7 @@ type metadataDeleteDistributionInput struct {
 }
 
 type DeleteDistributionOutput struct {
-	metadataDeleteDistributionOutput `json:"-", xml:"-"`
+	metadataDeleteDistributionOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDistributionOutput struct {
@@ -1208,7 +1281,7 @@ type DeleteStreamingDistributionInput struct {
 	// distribution. For example: E2QWRUHAPOMQZL.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
-	metadataDeleteStreamingDistributionInput `json:"-", xml:"-"`
+	metadataDeleteStreamingDistributionInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteStreamingDistributionInput struct {
@@ -1216,7 +1289,7 @@ type metadataDeleteStreamingDistributionInput struct {
 }
 
 type DeleteStreamingDistributionOutput struct {
-	metadataDeleteStreamingDistributionOutput `json:"-", xml:"-"`
+	metadataDeleteStreamingDistributionOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteStreamingDistributionOutput struct {
@@ -1255,7 +1328,7 @@ type Distribution struct {
 	// throughout the Amazon CloudFront system.
 	Status *string `type:"string" required:"true"`
 
-	metadataDistribution `json:"-", xml:"-"`
+	metadataDistribution `json:"-" xml:"-"`
 }
 
 type metadataDistribution struct {
@@ -1324,7 +1397,7 @@ type DistributionConfig struct {
 	// distribution.
 	ViewerCertificate *ViewerCertificate `type:"structure"`
 
-	metadataDistributionConfig `json:"-", xml:"-"`
+	metadataDistributionConfig `json:"-" xml:"-"`
 }
 
 type metadataDistributionConfig struct {
@@ -1357,7 +1430,7 @@ type DistributionList struct {
 	// The number of distributions that were created by the current AWS account.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataDistributionList `json:"-", xml:"-"`
+	metadataDistributionList `json:"-" xml:"-"`
 }
 
 type metadataDistributionList struct {
@@ -1414,7 +1487,7 @@ type DistributionSummary struct {
 	// distribution.
 	ViewerCertificate *ViewerCertificate `type:"structure" required:"true"`
 
-	metadataDistributionSummary `json:"-", xml:"-"`
+	metadataDistributionSummary `json:"-" xml:"-"`
 }
 
 type metadataDistributionSummary struct {
@@ -1436,7 +1509,7 @@ type ForwardedValues struct {
 	// specify false.
 	QueryString *bool `type:"boolean" required:"true"`
 
-	metadataForwardedValues `json:"-", xml:"-"`
+	metadataForwardedValues `json:"-" xml:"-"`
 }
 
 type metadataForwardedValues struct {
@@ -1474,7 +1547,7 @@ type GeoRestriction struct {
 	// you want CloudFront to distribute your content.
 	RestrictionType *string `type:"string" required:"true"`
 
-	metadataGeoRestriction `json:"-", xml:"-"`
+	metadataGeoRestriction `json:"-" xml:"-"`
 }
 
 type metadataGeoRestriction struct {
@@ -1486,7 +1559,7 @@ type GetCloudFrontOriginAccessIdentityConfigInput struct {
 	// The identity's id.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataGetCloudFrontOriginAccessIdentityConfigInput `json:"-", xml:"-"`
+	metadataGetCloudFrontOriginAccessIdentityConfigInput `json:"-" xml:"-"`
 }
 
 type metadataGetCloudFrontOriginAccessIdentityConfigInput struct {
@@ -1496,12 +1569,12 @@ type metadataGetCloudFrontOriginAccessIdentityConfigInput struct {
 // The returned result of the corresponding request.
 type GetCloudFrontOriginAccessIdentityConfigOutput struct {
 	// The origin access identity's configuration information.
-	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `type:"structure"`
+	CloudFrontOriginAccessIdentityConfig *OriginAccessIdentityConfig `type:"structure"`
 
 	// The current version of the configuration. For example: E2QWRUHAPOMQZL.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	metadataGetCloudFrontOriginAccessIdentityConfigOutput `json:"-", xml:"-"`
+	metadataGetCloudFrontOriginAccessIdentityConfigOutput `json:"-" xml:"-"`
 }
 
 type metadataGetCloudFrontOriginAccessIdentityConfigOutput struct {
@@ -1513,7 +1586,7 @@ type GetCloudFrontOriginAccessIdentityInput struct {
 	// The identity's id.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataGetCloudFrontOriginAccessIdentityInput `json:"-", xml:"-"`
+	metadataGetCloudFrontOriginAccessIdentityInput `json:"-" xml:"-"`
 }
 
 type metadataGetCloudFrontOriginAccessIdentityInput struct {
@@ -1523,13 +1596,13 @@ type metadataGetCloudFrontOriginAccessIdentityInput struct {
 // The returned result of the corresponding request.
 type GetCloudFrontOriginAccessIdentityOutput struct {
 	// The origin access identity's information.
-	CloudFrontOriginAccessIdentity *CloudFrontOriginAccessIdentity `type:"structure"`
+	CloudFrontOriginAccessIdentity *OriginAccessIdentity `type:"structure"`
 
 	// The current version of the origin access identity's information. For example:
 	// E2QWRUHAPOMQZL.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	metadataGetCloudFrontOriginAccessIdentityOutput `json:"-", xml:"-"`
+	metadataGetCloudFrontOriginAccessIdentityOutput `json:"-" xml:"-"`
 }
 
 type metadataGetCloudFrontOriginAccessIdentityOutput struct {
@@ -1541,7 +1614,7 @@ type GetDistributionConfigInput struct {
 	// The distribution's id.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataGetDistributionConfigInput `json:"-", xml:"-"`
+	metadataGetDistributionConfigInput `json:"-" xml:"-"`
 }
 
 type metadataGetDistributionConfigInput struct {
@@ -1556,7 +1629,7 @@ type GetDistributionConfigOutput struct {
 	// The current version of the configuration. For example: E2QWRUHAPOMQZL.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	metadataGetDistributionConfigOutput `json:"-", xml:"-"`
+	metadataGetDistributionConfigOutput `json:"-" xml:"-"`
 }
 
 type metadataGetDistributionConfigOutput struct {
@@ -1568,7 +1641,7 @@ type GetDistributionInput struct {
 	// The distribution's id.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataGetDistributionInput `json:"-", xml:"-"`
+	metadataGetDistributionInput `json:"-" xml:"-"`
 }
 
 type metadataGetDistributionInput struct {
@@ -1583,7 +1656,7 @@ type GetDistributionOutput struct {
 	// The current version of the distribution's information. For example: E2QWRUHAPOMQZL.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	metadataGetDistributionOutput `json:"-", xml:"-"`
+	metadataGetDistributionOutput `json:"-" xml:"-"`
 }
 
 type metadataGetDistributionOutput struct {
@@ -1598,7 +1671,7 @@ type GetInvalidationInput struct {
 	// The invalidation's id.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataGetInvalidationInput `json:"-", xml:"-"`
+	metadataGetInvalidationInput `json:"-" xml:"-"`
 }
 
 type metadataGetInvalidationInput struct {
@@ -1610,7 +1683,7 @@ type GetInvalidationOutput struct {
 	// The invalidation's information.
 	Invalidation *Invalidation `type:"structure"`
 
-	metadataGetInvalidationOutput `json:"-", xml:"-"`
+	metadataGetInvalidationOutput `json:"-" xml:"-"`
 }
 
 type metadataGetInvalidationOutput struct {
@@ -1622,7 +1695,7 @@ type GetStreamingDistributionConfigInput struct {
 	// The streaming distribution's id.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataGetStreamingDistributionConfigInput `json:"-", xml:"-"`
+	metadataGetStreamingDistributionConfigInput `json:"-" xml:"-"`
 }
 
 type metadataGetStreamingDistributionConfigInput struct {
@@ -1637,7 +1710,7 @@ type GetStreamingDistributionConfigOutput struct {
 	// The streaming distribution's configuration information.
 	StreamingDistributionConfig *StreamingDistributionConfig `type:"structure"`
 
-	metadataGetStreamingDistributionConfigOutput `json:"-", xml:"-"`
+	metadataGetStreamingDistributionConfigOutput `json:"-" xml:"-"`
 }
 
 type metadataGetStreamingDistributionConfigOutput struct {
@@ -1649,7 +1722,7 @@ type GetStreamingDistributionInput struct {
 	// The streaming distribution's id.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataGetStreamingDistributionInput `json:"-", xml:"-"`
+	metadataGetStreamingDistributionInput `json:"-" xml:"-"`
 }
 
 type metadataGetStreamingDistributionInput struct {
@@ -1665,7 +1738,7 @@ type GetStreamingDistributionOutput struct {
 	// The streaming distribution's information.
 	StreamingDistribution *StreamingDistribution `type:"structure"`
 
-	metadataGetStreamingDistributionOutput `json:"-", xml:"-"`
+	metadataGetStreamingDistributionOutput `json:"-" xml:"-"`
 }
 
 type metadataGetStreamingDistributionOutput struct {
@@ -1695,7 +1768,7 @@ type Headers struct {
 	// Items.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataHeaders `json:"-", xml:"-"`
+	metadataHeaders `json:"-" xml:"-"`
 }
 
 type metadataHeaders struct {
@@ -1717,7 +1790,7 @@ type Invalidation struct {
 	// the status is Completed.
 	Status *string `type:"string" required:"true"`
 
-	metadataInvalidation `json:"-", xml:"-"`
+	metadataInvalidation `json:"-" xml:"-"`
 }
 
 type metadataInvalidation struct {
@@ -1745,7 +1818,7 @@ type InvalidationBatch struct {
 	// path, or CloudFront will not invalidate the old version of the updated object.
 	Paths *Paths `type:"structure" required:"true"`
 
-	metadataInvalidationBatch `json:"-", xml:"-"`
+	metadataInvalidationBatch `json:"-" xml:"-"`
 }
 
 type metadataInvalidationBatch struct {
@@ -1778,7 +1851,7 @@ type InvalidationList struct {
 	// The number of invalidation batches that were created by the current AWS account.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataInvalidationList `json:"-", xml:"-"`
+	metadataInvalidationList `json:"-" xml:"-"`
 }
 
 type metadataInvalidationList struct {
@@ -1795,7 +1868,7 @@ type InvalidationSummary struct {
 	// The status of an invalidation request.
 	Status *string `type:"string" required:"true"`
 
-	metadataInvalidationSummary `json:"-", xml:"-"`
+	metadataInvalidationSummary `json:"-" xml:"-"`
 }
 
 type metadataInvalidationSummary struct {
@@ -1812,7 +1885,7 @@ type KeyPairIDs struct {
 	// The number of active CloudFront key pairs for AwsAccountNumber.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataKeyPairIDs `json:"-", xml:"-"`
+	metadataKeyPairIDs `json:"-" xml:"-"`
 }
 
 type metadataKeyPairIDs struct {
@@ -1829,9 +1902,9 @@ type ListCloudFrontOriginAccessIdentitiesInput struct {
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
 	// The maximum number of origin access identities you want in the response body.
-	MaxItems *string `location:"querystring" locationName:"MaxItems" type:"string"`
+	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
 
-	metadataListCloudFrontOriginAccessIdentitiesInput `json:"-", xml:"-"`
+	metadataListCloudFrontOriginAccessIdentitiesInput `json:"-" xml:"-"`
 }
 
 type metadataListCloudFrontOriginAccessIdentitiesInput struct {
@@ -1841,9 +1914,9 @@ type metadataListCloudFrontOriginAccessIdentitiesInput struct {
 // The returned result of the corresponding request.
 type ListCloudFrontOriginAccessIdentitiesOutput struct {
 	// The CloudFrontOriginAccessIdentityList type.
-	CloudFrontOriginAccessIdentityList *CloudFrontOriginAccessIdentityList `type:"structure"`
+	CloudFrontOriginAccessIdentityList *OriginAccessIdentityList `type:"structure"`
 
-	metadataListCloudFrontOriginAccessIdentitiesOutput `json:"-", xml:"-"`
+	metadataListCloudFrontOriginAccessIdentitiesOutput `json:"-" xml:"-"`
 }
 
 type metadataListCloudFrontOriginAccessIdentitiesOutput struct {
@@ -1860,9 +1933,9 @@ type ListDistributionsInput struct {
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
 	// The maximum number of distributions you want in the response body.
-	MaxItems *string `location:"querystring" locationName:"MaxItems" type:"string"`
+	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
 
-	metadataListDistributionsInput `json:"-", xml:"-"`
+	metadataListDistributionsInput `json:"-" xml:"-"`
 }
 
 type metadataListDistributionsInput struct {
@@ -1874,7 +1947,7 @@ type ListDistributionsOutput struct {
 	// The DistributionList type.
 	DistributionList *DistributionList `type:"structure"`
 
-	metadataListDistributionsOutput `json:"-", xml:"-"`
+	metadataListDistributionsOutput `json:"-" xml:"-"`
 }
 
 type metadataListDistributionsOutput struct {
@@ -1896,9 +1969,9 @@ type ListInvalidationsInput struct {
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
 	// The maximum number of invalidation batches you want in the response body.
-	MaxItems *string `location:"querystring" locationName:"MaxItems" type:"string"`
+	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
 
-	metadataListInvalidationsInput `json:"-", xml:"-"`
+	metadataListInvalidationsInput `json:"-" xml:"-"`
 }
 
 type metadataListInvalidationsInput struct {
@@ -1910,7 +1983,7 @@ type ListInvalidationsOutput struct {
 	// Information about invalidation batches.
 	InvalidationList *InvalidationList `type:"structure"`
 
-	metadataListInvalidationsOutput `json:"-", xml:"-"`
+	metadataListInvalidationsOutput `json:"-" xml:"-"`
 }
 
 type metadataListInvalidationsOutput struct {
@@ -1927,9 +2000,9 @@ type ListStreamingDistributionsInput struct {
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
 	// The maximum number of streaming distributions you want in the response body.
-	MaxItems *string `location:"querystring" locationName:"MaxItems" type:"string"`
+	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
 
-	metadataListStreamingDistributionsInput `json:"-", xml:"-"`
+	metadataListStreamingDistributionsInput `json:"-" xml:"-"`
 }
 
 type metadataListStreamingDistributionsInput struct {
@@ -1941,7 +2014,7 @@ type ListStreamingDistributionsOutput struct {
 	// The StreamingDistributionList type.
 	StreamingDistributionList *StreamingDistributionList `type:"structure"`
 
-	metadataListStreamingDistributionsOutput `json:"-", xml:"-"`
+	metadataListStreamingDistributionsOutput `json:"-" xml:"-"`
 }
 
 type metadataListStreamingDistributionsOutput struct {
@@ -1975,7 +2048,7 @@ type LoggingConfig struct {
 	// Prefix element in the Logging element.
 	Prefix *string `type:"string" required:"true"`
 
-	metadataLoggingConfig `json:"-", xml:"-"`
+	metadataLoggingConfig `json:"-" xml:"-"`
 }
 
 type metadataLoggingConfig struct {
@@ -2012,10 +2085,110 @@ type Origin struct {
 	// origin is a custom origin, use the CustomOriginConfig element instead.
 	S3OriginConfig *S3OriginConfig `type:"structure"`
 
-	metadataOrigin `json:"-", xml:"-"`
+	metadataOrigin `json:"-" xml:"-"`
 }
 
 type metadataOrigin struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// CloudFront origin access identity.
+type OriginAccessIdentity struct {
+	// The current configuration information for the identity.
+	CloudFrontOriginAccessIdentityConfig *OriginAccessIdentityConfig `type:"structure"`
+
+	// The ID for the origin access identity. For example: E74FTE3AJFJ256A.
+	ID *string `locationName:"Id" type:"string" required:"true"`
+
+	// The Amazon S3 canonical user ID for the origin access identity, which you
+	// use when giving the origin access identity read permission to an object in
+	// Amazon S3.
+	S3CanonicalUserID *string `locationName:"S3CanonicalUserId" type:"string" required:"true"`
+
+	metadataOriginAccessIdentity `json:"-" xml:"-"`
+}
+
+type metadataOriginAccessIdentity struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Origin access identity configuration.
+type OriginAccessIdentityConfig struct {
+	// A unique number that ensures the request can't be replayed. If the CallerReference
+	// is new (no matter the content of the CloudFrontOriginAccessIdentityConfig
+	// object), a new origin access identity is created. If the CallerReference
+	// is a value you already sent in a previous request to create an identity,
+	// and the content of the CloudFrontOriginAccessIdentityConfig is identical
+	// to the original request (ignoring white space), the response includes the
+	// same information returned to the original request. If the CallerReference
+	// is a value you already sent in a previous request to create an identity but
+	// the content of the CloudFrontOriginAccessIdentityConfig is different from
+	// the original request, CloudFront returns a CloudFrontOriginAccessIdentityAlreadyExists
+	// error.
+	CallerReference *string `type:"string" required:"true"`
+
+	// Any comments you want to include about the origin access identity.
+	Comment *string `type:"string" required:"true"`
+
+	metadataOriginAccessIdentityConfig `json:"-" xml:"-"`
+}
+
+type metadataOriginAccessIdentityConfig struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// The CloudFrontOriginAccessIdentityList type.
+type OriginAccessIdentityList struct {
+	// A flag that indicates whether more origin access identities remain to be
+	// listed. If your results were truncated, you can make a follow-up pagination
+	// request using the Marker request parameter to retrieve more items in the
+	// list.
+	IsTruncated *bool `type:"boolean" required:"true"`
+
+	// A complex type that contains one CloudFrontOriginAccessIdentitySummary element
+	// for each origin access identity that was created by the current AWS account.
+	Items []*OriginAccessIdentitySummary `locationNameList:"CloudFrontOriginAccessIdentitySummary" type:"list"`
+
+	// The value you provided for the Marker request parameter.
+	Marker *string `type:"string" required:"true"`
+
+	// The value you provided for the MaxItems request parameter.
+	MaxItems *int64 `type:"integer" required:"true"`
+
+	// If IsTruncated is true, this element is present and contains the value you
+	// can use for the Marker request parameter to continue listing your origin
+	// access identities where they left off.
+	NextMarker *string `type:"string"`
+
+	// The number of CloudFront origin access identities that were created by the
+	// current AWS account.
+	Quantity *int64 `type:"integer" required:"true"`
+
+	metadataOriginAccessIdentityList `json:"-" xml:"-"`
+}
+
+type metadataOriginAccessIdentityList struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Summary of the information about a CloudFront origin access identity.
+type OriginAccessIdentitySummary struct {
+	// The comment for this origin access identity, as originally specified when
+	// created.
+	Comment *string `type:"string" required:"true"`
+
+	// The ID for the origin access identity. For example: E74FTE3AJFJ256A.
+	ID *string `locationName:"Id" type:"string" required:"true"`
+
+	// The Amazon S3 canonical user ID for the origin access identity, which you
+	// use when giving the origin access identity read permission to an object in
+	// Amazon S3.
+	S3CanonicalUserID *string `locationName:"S3CanonicalUserId" type:"string" required:"true"`
+
+	metadataOriginAccessIdentitySummary `json:"-" xml:"-"`
+}
+
+type metadataOriginAccessIdentitySummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -2027,7 +2200,7 @@ type Origins struct {
 	// The number of origins for this distribution.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataOrigins `json:"-", xml:"-"`
+	metadataOrigins `json:"-" xml:"-"`
 }
 
 type metadataOrigins struct {
@@ -2043,7 +2216,7 @@ type Paths struct {
 	// The number of objects that you want to invalidate.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataPaths `json:"-", xml:"-"`
+	metadataPaths `json:"-" xml:"-"`
 }
 
 type metadataPaths struct {
@@ -2061,7 +2234,7 @@ type Restrictions struct {
 	// website.
 	GeoRestriction *GeoRestriction `type:"structure" required:"true"`
 
-	metadataRestrictions `json:"-", xml:"-"`
+	metadataRestrictions `json:"-" xml:"-"`
 }
 
 type metadataRestrictions struct {
@@ -2077,7 +2250,7 @@ type S3Origin struct {
 	// Your S3 origin's origin access identity.
 	OriginAccessIdentity *string `type:"string" required:"true"`
 
-	metadataS3Origin `json:"-", xml:"-"`
+	metadataS3Origin `json:"-" xml:"-"`
 }
 
 type metadataS3Origin struct {
@@ -2100,7 +2273,7 @@ type S3OriginConfig struct {
 	// created the origin access identity.
 	OriginAccessIdentity *string `type:"string" required:"true"`
 
-	metadataS3OriginConfig `json:"-", xml:"-"`
+	metadataS3OriginConfig `json:"-" xml:"-"`
 }
 
 type metadataS3OriginConfig struct {
@@ -2120,7 +2293,7 @@ type Signer struct {
 	// associated with AwsAccountNumber.
 	KeyPairIDs *KeyPairIDs `locationName:"KeyPairIds" type:"structure"`
 
-	metadataSigner `json:"-", xml:"-"`
+	metadataSigner `json:"-" xml:"-"`
 }
 
 type metadataSigner struct {
@@ -2157,7 +2330,7 @@ type StreamingDistribution struct {
 	// The current configuration information for the streaming distribution.
 	StreamingDistributionConfig *StreamingDistributionConfig `type:"structure" required:"true"`
 
-	metadataStreamingDistribution `json:"-", xml:"-"`
+	metadataStreamingDistribution `json:"-" xml:"-"`
 }
 
 type metadataStreamingDistribution struct {
@@ -2214,7 +2387,7 @@ type StreamingDistributionConfig struct {
 	// of the trusted signers that you want to include in the updated distribution.
 	TrustedSigners *TrustedSigners `type:"structure" required:"true"`
 
-	metadataStreamingDistributionConfig `json:"-", xml:"-"`
+	metadataStreamingDistributionConfig `json:"-" xml:"-"`
 }
 
 type metadataStreamingDistributionConfig struct {
@@ -2248,7 +2421,7 @@ type StreamingDistributionList struct {
 	// account.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataStreamingDistributionList `json:"-", xml:"-"`
+	metadataStreamingDistributionList `json:"-" xml:"-"`
 }
 
 type metadataStreamingDistributionList struct {
@@ -2300,7 +2473,7 @@ type StreamingDistributionSummary struct {
 	// of the trusted signers that you want to include in the updated distribution.
 	TrustedSigners *TrustedSigners `type:"structure" required:"true"`
 
-	metadataStreamingDistributionSummary `json:"-", xml:"-"`
+	metadataStreamingDistributionSummary `json:"-" xml:"-"`
 }
 
 type metadataStreamingDistributionSummary struct {
@@ -2327,7 +2500,7 @@ type StreamingLoggingConfig struct {
 	// an empty Prefix element in the Logging element.
 	Prefix *string `type:"string" required:"true"`
 
-	metadataStreamingLoggingConfig `json:"-", xml:"-"`
+	metadataStreamingLoggingConfig `json:"-" xml:"-"`
 }
 
 type metadataStreamingLoggingConfig struct {
@@ -2357,7 +2530,7 @@ type TrustedSigners struct {
 	// The number of trusted signers for this cache behavior.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataTrustedSigners `json:"-", xml:"-"`
+	metadataTrustedSigners `json:"-" xml:"-"`
 }
 
 type metadataTrustedSigners struct {
@@ -2367,7 +2540,7 @@ type metadataTrustedSigners struct {
 // The request to update an origin access identity.
 type UpdateCloudFrontOriginAccessIdentityInput struct {
 	// The identity's configuration information.
-	CloudFrontOriginAccessIdentityConfig *CloudFrontOriginAccessIdentityConfig `locationName:"CloudFrontOriginAccessIdentityConfig" type:"structure" required:"true"`
+	CloudFrontOriginAccessIdentityConfig *OriginAccessIdentityConfig `locationName:"CloudFrontOriginAccessIdentityConfig" type:"structure" required:"true"`
 
 	// The identity's id.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
@@ -2376,7 +2549,7 @@ type UpdateCloudFrontOriginAccessIdentityInput struct {
 	// configuration. For example: E2QWRUHAPOMQZL.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
-	metadataUpdateCloudFrontOriginAccessIdentityInput `json:"-", xml:"-"`
+	metadataUpdateCloudFrontOriginAccessIdentityInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateCloudFrontOriginAccessIdentityInput struct {
@@ -2386,12 +2559,12 @@ type metadataUpdateCloudFrontOriginAccessIdentityInput struct {
 // The returned result of the corresponding request.
 type UpdateCloudFrontOriginAccessIdentityOutput struct {
 	// The origin access identity's information.
-	CloudFrontOriginAccessIdentity *CloudFrontOriginAccessIdentity `type:"structure"`
+	CloudFrontOriginAccessIdentity *OriginAccessIdentity `type:"structure"`
 
 	// The current version of the configuration. For example: E2QWRUHAPOMQZL.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	metadataUpdateCloudFrontOriginAccessIdentityOutput `json:"-", xml:"-"`
+	metadataUpdateCloudFrontOriginAccessIdentityOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateCloudFrontOriginAccessIdentityOutput struct {
@@ -2410,7 +2583,7 @@ type UpdateDistributionInput struct {
 	// configuration. For example: E2QWRUHAPOMQZL.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
-	metadataUpdateDistributionInput `json:"-", xml:"-"`
+	metadataUpdateDistributionInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateDistributionInput struct {
@@ -2425,7 +2598,7 @@ type UpdateDistributionOutput struct {
 	// The current version of the configuration. For example: E2QWRUHAPOMQZL.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	metadataUpdateDistributionOutput `json:"-", xml:"-"`
+	metadataUpdateDistributionOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateDistributionOutput struct {
@@ -2444,7 +2617,7 @@ type UpdateStreamingDistributionInput struct {
 	// The streaming distribution's configuration information.
 	StreamingDistributionConfig *StreamingDistributionConfig `locationName:"StreamingDistributionConfig" type:"structure" required:"true"`
 
-	metadataUpdateStreamingDistributionInput `json:"-", xml:"-"`
+	metadataUpdateStreamingDistributionInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateStreamingDistributionInput struct {
@@ -2459,7 +2632,7 @@ type UpdateStreamingDistributionOutput struct {
 	// The streaming distribution's information.
 	StreamingDistribution *StreamingDistribution `type:"structure"`
 
-	metadataUpdateStreamingDistributionOutput `json:"-", xml:"-"`
+	metadataUpdateStreamingDistributionOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateStreamingDistributionOutput struct {
@@ -2505,7 +2678,7 @@ type ViewerCertificate struct {
 	// for SSLSupportMethod if you specified true for CloudFrontDefaultCertificate.
 	SSLSupportMethod *string `type:"string"`
 
-	metadataViewerCertificate `json:"-", xml:"-"`
+	metadataViewerCertificate `json:"-" xml:"-"`
 }
 
 type metadataViewerCertificate struct {

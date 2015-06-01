@@ -4,17 +4,28 @@
 package elastictranscoder
 
 import (
+	"sync"
+
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // CancelJobRequest generates a request for the CancelJob operation.
 func (c *ElasticTranscoder) CancelJobRequest(input *CancelJobInput) (req *aws.Request, output *CancelJobOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCancelJob == nil {
 		opCancelJob = &aws.Operation{
 			Name:       "CancelJob",
 			HTTPMethod: "DELETE",
 			HTTPPath:   "/2012-09-25/jobs/{Id}",
 		}
+	}
+
+	if input == nil {
+		input = &CancelJobInput{}
 	}
 
 	req = c.newRequest(opCancelJob, input, output)
@@ -28,23 +39,29 @@ func (c *ElasticTranscoder) CancelJobRequest(input *CancelJobInput) (req *aws.Re
 // You can only cancel a job that has a status of Submitted. To prevent a pipeline
 // from starting to process a job while you're getting the job identifier, use
 // UpdatePipelineStatus to temporarily pause the pipeline.
-func (c *ElasticTranscoder) CancelJob(input *CancelJobInput) (output *CancelJobOutput, err error) {
+func (c *ElasticTranscoder) CancelJob(input *CancelJobInput) (*CancelJobOutput, error) {
 	req, out := c.CancelJobRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCancelJob *aws.Operation
 
 // CreateJobRequest generates a request for the CreateJob operation.
 func (c *ElasticTranscoder) CreateJobRequest(input *CreateJobInput) (req *aws.Request, output *CreateJobResponse) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateJob == nil {
 		opCreateJob = &aws.Operation{
 			Name:       "CreateJob",
 			HTTPMethod: "POST",
 			HTTPPath:   "/2012-09-25/jobs",
 		}
+	}
+
+	if input == nil {
+		input = &CreateJobInput{}
 	}
 
 	req = c.newRequest(opCreateJob, input, output)
@@ -60,23 +77,29 @@ func (c *ElasticTranscoder) CreateJobRequest(input *CreateJobInput) (req *aws.Re
 // output for the Kindle Fire and another output for the Apple iPhone 4s), you
 // currently must use the Elastic Transcoder API to list the jobs (as opposed
 // to the AWS Console).
-func (c *ElasticTranscoder) CreateJob(input *CreateJobInput) (output *CreateJobResponse, err error) {
+func (c *ElasticTranscoder) CreateJob(input *CreateJobInput) (*CreateJobResponse, error) {
 	req, out := c.CreateJobRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateJob *aws.Operation
 
 // CreatePipelineRequest generates a request for the CreatePipeline operation.
 func (c *ElasticTranscoder) CreatePipelineRequest(input *CreatePipelineInput) (req *aws.Request, output *CreatePipelineOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreatePipeline == nil {
 		opCreatePipeline = &aws.Operation{
 			Name:       "CreatePipeline",
 			HTTPMethod: "POST",
 			HTTPPath:   "/2012-09-25/pipelines",
 		}
+	}
+
+	if input == nil {
+		input = &CreatePipelineInput{}
 	}
 
 	req = c.newRequest(opCreatePipeline, input, output)
@@ -86,23 +109,29 @@ func (c *ElasticTranscoder) CreatePipelineRequest(input *CreatePipelineInput) (r
 }
 
 // The CreatePipeline operation creates a pipeline with settings that you specify.
-func (c *ElasticTranscoder) CreatePipeline(input *CreatePipelineInput) (output *CreatePipelineOutput, err error) {
+func (c *ElasticTranscoder) CreatePipeline(input *CreatePipelineInput) (*CreatePipelineOutput, error) {
 	req, out := c.CreatePipelineRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreatePipeline *aws.Operation
 
 // CreatePresetRequest generates a request for the CreatePreset operation.
 func (c *ElasticTranscoder) CreatePresetRequest(input *CreatePresetInput) (req *aws.Request, output *CreatePresetOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreatePreset == nil {
 		opCreatePreset = &aws.Operation{
 			Name:       "CreatePreset",
 			HTTPMethod: "POST",
 			HTTPPath:   "/2012-09-25/presets",
 		}
+	}
+
+	if input == nil {
+		input = &CreatePresetInput{}
 	}
 
 	req = c.newRequest(opCreatePreset, input, output)
@@ -126,23 +155,29 @@ func (c *ElasticTranscoder) CreatePresetRequest(input *CreatePresetInput) (req *
 // more information, see the International Telecommunication Union publication
 // Recommendation ITU-T H.264: Advanced video coding for generic audiovisual
 // services.
-func (c *ElasticTranscoder) CreatePreset(input *CreatePresetInput) (output *CreatePresetOutput, err error) {
+func (c *ElasticTranscoder) CreatePreset(input *CreatePresetInput) (*CreatePresetOutput, error) {
 	req, out := c.CreatePresetRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreatePreset *aws.Operation
 
 // DeletePipelineRequest generates a request for the DeletePipeline operation.
 func (c *ElasticTranscoder) DeletePipelineRequest(input *DeletePipelineInput) (req *aws.Request, output *DeletePipelineOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeletePipeline == nil {
 		opDeletePipeline = &aws.Operation{
 			Name:       "DeletePipeline",
 			HTTPMethod: "DELETE",
 			HTTPPath:   "/2012-09-25/pipelines/{Id}",
 		}
+	}
+
+	if input == nil {
+		input = &DeletePipelineInput{}
 	}
 
 	req = c.newRequest(opDeletePipeline, input, output)
@@ -156,23 +191,29 @@ func (c *ElasticTranscoder) DeletePipelineRequest(input *DeletePipelineInput) (r
 //  You can only delete a pipeline that has never been used or that is not
 // currently in use (doesn't contain any active jobs). If the pipeline is currently
 // in use, DeletePipeline returns an error.
-func (c *ElasticTranscoder) DeletePipeline(input *DeletePipelineInput) (output *DeletePipelineOutput, err error) {
+func (c *ElasticTranscoder) DeletePipeline(input *DeletePipelineInput) (*DeletePipelineOutput, error) {
 	req, out := c.DeletePipelineRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeletePipeline *aws.Operation
 
 // DeletePresetRequest generates a request for the DeletePreset operation.
 func (c *ElasticTranscoder) DeletePresetRequest(input *DeletePresetInput) (req *aws.Request, output *DeletePresetOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeletePreset == nil {
 		opDeletePreset = &aws.Operation{
 			Name:       "DeletePreset",
 			HTTPMethod: "DELETE",
 			HTTPPath:   "/2012-09-25/presets/{Id}",
 		}
+	}
+
+	if input == nil {
+		input = &DeletePresetInput{}
 	}
 
 	req = c.newRequest(opDeletePreset, input, output)
@@ -184,23 +225,35 @@ func (c *ElasticTranscoder) DeletePresetRequest(input *DeletePresetInput) (req *
 // The DeletePreset operation removes a preset that you've added in an AWS region.
 //
 //  You can't delete the default presets that are included with Elastic Transcoder.
-func (c *ElasticTranscoder) DeletePreset(input *DeletePresetInput) (output *DeletePresetOutput, err error) {
+func (c *ElasticTranscoder) DeletePreset(input *DeletePresetInput) (*DeletePresetOutput, error) {
 	req, out := c.DeletePresetRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeletePreset *aws.Operation
 
 // ListJobsByPipelineRequest generates a request for the ListJobsByPipeline operation.
 func (c *ElasticTranscoder) ListJobsByPipelineRequest(input *ListJobsByPipelineInput) (req *aws.Request, output *ListJobsByPipelineOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListJobsByPipeline == nil {
 		opListJobsByPipeline = &aws.Operation{
 			Name:       "ListJobsByPipeline",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2012-09-25/jobsByPipeline/{PipelineId}",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"PageToken"},
+				OutputTokens:    []string{"NextPageToken"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &ListJobsByPipelineInput{}
 	}
 
 	req = c.newRequest(opListJobsByPipeline, input, output)
@@ -214,23 +267,40 @@ func (c *ElasticTranscoder) ListJobsByPipelineRequest(input *ListJobsByPipelineI
 // Elastic Transcoder returns all of the jobs currently in the specified pipeline.
 // The response body contains one element for each job that satisfies the search
 // criteria.
-func (c *ElasticTranscoder) ListJobsByPipeline(input *ListJobsByPipelineInput) (output *ListJobsByPipelineOutput, err error) {
+func (c *ElasticTranscoder) ListJobsByPipeline(input *ListJobsByPipelineInput) (*ListJobsByPipelineOutput, error) {
 	req, out := c.ListJobsByPipelineRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *ElasticTranscoder) ListJobsByPipelinePages(input *ListJobsByPipelineInput, fn func(p *ListJobsByPipelineOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListJobsByPipelineRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListJobsByPipeline *aws.Operation
 
 // ListJobsByStatusRequest generates a request for the ListJobsByStatus operation.
 func (c *ElasticTranscoder) ListJobsByStatusRequest(input *ListJobsByStatusInput) (req *aws.Request, output *ListJobsByStatusOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListJobsByStatus == nil {
 		opListJobsByStatus = &aws.Operation{
 			Name:       "ListJobsByStatus",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2012-09-25/jobsByStatus/{Status}",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"PageToken"},
+				OutputTokens:    []string{"NextPageToken"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &ListJobsByStatusInput{}
 	}
 
 	req = c.newRequest(opListJobsByStatus, input, output)
@@ -242,23 +312,40 @@ func (c *ElasticTranscoder) ListJobsByStatusRequest(input *ListJobsByStatusInput
 // The ListJobsByStatus operation gets a list of jobs that have a specified
 // status. The response body contains one element for each job that satisfies
 // the search criteria.
-func (c *ElasticTranscoder) ListJobsByStatus(input *ListJobsByStatusInput) (output *ListJobsByStatusOutput, err error) {
+func (c *ElasticTranscoder) ListJobsByStatus(input *ListJobsByStatusInput) (*ListJobsByStatusOutput, error) {
 	req, out := c.ListJobsByStatusRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *ElasticTranscoder) ListJobsByStatusPages(input *ListJobsByStatusInput, fn func(p *ListJobsByStatusOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListJobsByStatusRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListJobsByStatus *aws.Operation
 
 // ListPipelinesRequest generates a request for the ListPipelines operation.
 func (c *ElasticTranscoder) ListPipelinesRequest(input *ListPipelinesInput) (req *aws.Request, output *ListPipelinesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListPipelines == nil {
 		opListPipelines = &aws.Operation{
 			Name:       "ListPipelines",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2012-09-25/pipelines",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"PageToken"},
+				OutputTokens:    []string{"NextPageToken"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &ListPipelinesInput{}
 	}
 
 	req = c.newRequest(opListPipelines, input, output)
@@ -269,23 +356,40 @@ func (c *ElasticTranscoder) ListPipelinesRequest(input *ListPipelinesInput) (req
 
 // The ListPipelines operation gets a list of the pipelines associated with
 // the current AWS account.
-func (c *ElasticTranscoder) ListPipelines(input *ListPipelinesInput) (output *ListPipelinesOutput, err error) {
+func (c *ElasticTranscoder) ListPipelines(input *ListPipelinesInput) (*ListPipelinesOutput, error) {
 	req, out := c.ListPipelinesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *ElasticTranscoder) ListPipelinesPages(input *ListPipelinesInput, fn func(p *ListPipelinesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListPipelinesRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListPipelines *aws.Operation
 
 // ListPresetsRequest generates a request for the ListPresets operation.
 func (c *ElasticTranscoder) ListPresetsRequest(input *ListPresetsInput) (req *aws.Request, output *ListPresetsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListPresets == nil {
 		opListPresets = &aws.Operation{
 			Name:       "ListPresets",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2012-09-25/presets",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"PageToken"},
+				OutputTokens:    []string{"NextPageToken"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &ListPresetsInput{}
 	}
 
 	req = c.newRequest(opListPresets, input, output)
@@ -296,23 +400,34 @@ func (c *ElasticTranscoder) ListPresetsRequest(input *ListPresetsInput) (req *aw
 
 // The ListPresets operation gets a list of the default presets included with
 // Elastic Transcoder and the presets that you've added in an AWS region.
-func (c *ElasticTranscoder) ListPresets(input *ListPresetsInput) (output *ListPresetsOutput, err error) {
+func (c *ElasticTranscoder) ListPresets(input *ListPresetsInput) (*ListPresetsOutput, error) {
 	req, out := c.ListPresetsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *ElasticTranscoder) ListPresetsPages(input *ListPresetsInput, fn func(p *ListPresetsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListPresetsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListPresets *aws.Operation
 
 // ReadJobRequest generates a request for the ReadJob operation.
 func (c *ElasticTranscoder) ReadJobRequest(input *ReadJobInput) (req *aws.Request, output *ReadJobOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opReadJob == nil {
 		opReadJob = &aws.Operation{
 			Name:       "ReadJob",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2012-09-25/jobs/{Id}",
 		}
+	}
+
+	if input == nil {
+		input = &ReadJobInput{}
 	}
 
 	req = c.newRequest(opReadJob, input, output)
@@ -322,23 +437,29 @@ func (c *ElasticTranscoder) ReadJobRequest(input *ReadJobInput) (req *aws.Reques
 }
 
 // The ReadJob operation returns detailed information about a job.
-func (c *ElasticTranscoder) ReadJob(input *ReadJobInput) (output *ReadJobOutput, err error) {
+func (c *ElasticTranscoder) ReadJob(input *ReadJobInput) (*ReadJobOutput, error) {
 	req, out := c.ReadJobRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opReadJob *aws.Operation
 
 // ReadPipelineRequest generates a request for the ReadPipeline operation.
 func (c *ElasticTranscoder) ReadPipelineRequest(input *ReadPipelineInput) (req *aws.Request, output *ReadPipelineOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opReadPipeline == nil {
 		opReadPipeline = &aws.Operation{
 			Name:       "ReadPipeline",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2012-09-25/pipelines/{Id}",
 		}
+	}
+
+	if input == nil {
+		input = &ReadPipelineInput{}
 	}
 
 	req = c.newRequest(opReadPipeline, input, output)
@@ -348,23 +469,29 @@ func (c *ElasticTranscoder) ReadPipelineRequest(input *ReadPipelineInput) (req *
 }
 
 // The ReadPipeline operation gets detailed information about a pipeline.
-func (c *ElasticTranscoder) ReadPipeline(input *ReadPipelineInput) (output *ReadPipelineOutput, err error) {
+func (c *ElasticTranscoder) ReadPipeline(input *ReadPipelineInput) (*ReadPipelineOutput, error) {
 	req, out := c.ReadPipelineRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opReadPipeline *aws.Operation
 
 // ReadPresetRequest generates a request for the ReadPreset operation.
 func (c *ElasticTranscoder) ReadPresetRequest(input *ReadPresetInput) (req *aws.Request, output *ReadPresetOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opReadPreset == nil {
 		opReadPreset = &aws.Operation{
 			Name:       "ReadPreset",
 			HTTPMethod: "GET",
 			HTTPPath:   "/2012-09-25/presets/{Id}",
 		}
+	}
+
+	if input == nil {
+		input = &ReadPresetInput{}
 	}
 
 	req = c.newRequest(opReadPreset, input, output)
@@ -374,23 +501,29 @@ func (c *ElasticTranscoder) ReadPresetRequest(input *ReadPresetInput) (req *aws.
 }
 
 // The ReadPreset operation gets detailed information about a preset.
-func (c *ElasticTranscoder) ReadPreset(input *ReadPresetInput) (output *ReadPresetOutput, err error) {
+func (c *ElasticTranscoder) ReadPreset(input *ReadPresetInput) (*ReadPresetOutput, error) {
 	req, out := c.ReadPresetRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opReadPreset *aws.Operation
 
 // TestRoleRequest generates a request for the TestRole operation.
 func (c *ElasticTranscoder) TestRoleRequest(input *TestRoleInput) (req *aws.Request, output *TestRoleOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opTestRole == nil {
 		opTestRole = &aws.Operation{
 			Name:       "TestRole",
 			HTTPMethod: "POST",
 			HTTPPath:   "/2012-09-25/roleTests",
 		}
+	}
+
+	if input == nil {
+		input = &TestRoleInput{}
 	}
 
 	req = c.newRequest(opTestRole, input, output)
@@ -406,23 +539,29 @@ func (c *ElasticTranscoder) TestRoleRequest(input *TestRoleInput) (req *aws.Requ
 // with the transcoding process. The action attempts to assume the specified
 // IAM role, checks read access to the input and output buckets, and tries to
 // send a test notification to Amazon SNS topics that you specify.
-func (c *ElasticTranscoder) TestRole(input *TestRoleInput) (output *TestRoleOutput, err error) {
+func (c *ElasticTranscoder) TestRole(input *TestRoleInput) (*TestRoleOutput, error) {
 	req, out := c.TestRoleRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opTestRole *aws.Operation
 
 // UpdatePipelineRequest generates a request for the UpdatePipeline operation.
 func (c *ElasticTranscoder) UpdatePipelineRequest(input *UpdatePipelineInput) (req *aws.Request, output *UpdatePipelineOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdatePipeline == nil {
 		opUpdatePipeline = &aws.Operation{
 			Name:       "UpdatePipeline",
 			HTTPMethod: "PUT",
 			HTTPPath:   "/2012-09-25/pipelines/{Id}",
 		}
+	}
+
+	if input == nil {
+		input = &UpdatePipelineInput{}
 	}
 
 	req = c.newRequest(opUpdatePipeline, input, output)
@@ -436,23 +575,29 @@ func (c *ElasticTranscoder) UpdatePipelineRequest(input *UpdatePipelineInput) (r
 // that you have already submitted and that Elastic Transcoder has not started
 // to process are affected in addition to jobs that you submit after you change
 // settings.
-func (c *ElasticTranscoder) UpdatePipeline(input *UpdatePipelineInput) (output *UpdatePipelineOutput, err error) {
+func (c *ElasticTranscoder) UpdatePipeline(input *UpdatePipelineInput) (*UpdatePipelineOutput, error) {
 	req, out := c.UpdatePipelineRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdatePipeline *aws.Operation
 
 // UpdatePipelineNotificationsRequest generates a request for the UpdatePipelineNotifications operation.
 func (c *ElasticTranscoder) UpdatePipelineNotificationsRequest(input *UpdatePipelineNotificationsInput) (req *aws.Request, output *UpdatePipelineNotificationsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdatePipelineNotifications == nil {
 		opUpdatePipelineNotifications = &aws.Operation{
 			Name:       "UpdatePipelineNotifications",
 			HTTPMethod: "POST",
 			HTTPPath:   "/2012-09-25/pipelines/{Id}/notifications",
 		}
+	}
+
+	if input == nil {
+		input = &UpdatePipelineNotificationsInput{}
 	}
 
 	req = c.newRequest(opUpdatePipelineNotifications, input, output)
@@ -466,23 +611,29 @@ func (c *ElasticTranscoder) UpdatePipelineNotificationsRequest(input *UpdatePipe
 //
 // When you update notifications for a pipeline, Elastic Transcoder returns
 // the values that you specified in the request.
-func (c *ElasticTranscoder) UpdatePipelineNotifications(input *UpdatePipelineNotificationsInput) (output *UpdatePipelineNotificationsOutput, err error) {
+func (c *ElasticTranscoder) UpdatePipelineNotifications(input *UpdatePipelineNotificationsInput) (*UpdatePipelineNotificationsOutput, error) {
 	req, out := c.UpdatePipelineNotificationsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdatePipelineNotifications *aws.Operation
 
 // UpdatePipelineStatusRequest generates a request for the UpdatePipelineStatus operation.
 func (c *ElasticTranscoder) UpdatePipelineStatusRequest(input *UpdatePipelineStatusInput) (req *aws.Request, output *UpdatePipelineStatusOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdatePipelineStatus == nil {
 		opUpdatePipelineStatus = &aws.Operation{
 			Name:       "UpdatePipelineStatus",
 			HTTPMethod: "POST",
 			HTTPPath:   "/2012-09-25/pipelines/{Id}/status",
 		}
+	}
+
+	if input == nil {
+		input = &UpdatePipelineStatusInput{}
 	}
 
 	req = c.newRequest(opUpdatePipelineStatus, input, output)
@@ -499,11 +650,10 @@ func (c *ElasticTranscoder) UpdatePipelineStatusRequest(input *UpdatePipelineSta
 // them; if you pause the pipeline to which you submitted the jobs, you have
 // more time to get the job IDs for the jobs that you want to cancel, and to
 // send a CancelJob request.
-func (c *ElasticTranscoder) UpdatePipelineStatus(input *UpdatePipelineStatusInput) (output *UpdatePipelineStatusOutput, err error) {
+func (c *ElasticTranscoder) UpdatePipelineStatus(input *UpdatePipelineStatusInput) (*UpdatePipelineStatusOutput, error) {
 	req, out := c.UpdatePipelineStatusRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdatePipelineStatus *aws.Operation
@@ -574,7 +724,7 @@ type Artwork struct {
 	// this option, Elastic Transcoder does not scale the art up.
 	SizingPolicy *string `type:"string"`
 
-	metadataArtwork `json:"-", xml:"-"`
+	metadataArtwork `json:"-" xml:"-"`
 }
 
 type metadataArtwork struct {
@@ -602,7 +752,7 @@ type AudioCodecOptions struct {
 	// as required.
 	Profile *string `type:"string"`
 
-	metadataAudioCodecOptions `json:"-", xml:"-"`
+	metadataAudioCodecOptions `json:"-" xml:"-"`
 }
 
 type metadataAudioCodecOptions struct {
@@ -645,7 +795,7 @@ type AudioParameters struct {
 	// rate.
 	SampleRate *string `type:"string"`
 
-	metadataAudioParameters `json:"-", xml:"-"`
+	metadataAudioParameters `json:"-" xml:"-"`
 }
 
 type metadataAudioParameters struct {
@@ -660,7 +810,7 @@ type CancelJobInput struct {
 	// Submitted, use the ListJobsByStatus API action.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataCancelJobInput `json:"-", xml:"-"`
+	metadataCancelJobInput `json:"-" xml:"-"`
 }
 
 type metadataCancelJobInput struct {
@@ -670,7 +820,7 @@ type metadataCancelJobInput struct {
 // The response body contains a JSON object. If the job is successfully canceled,
 // the value of Success is true.
 type CancelJobOutput struct {
-	metadataCancelJobOutput `json:"-", xml:"-"`
+	metadataCancelJobOutput `json:"-" xml:"-"`
 }
 
 type metadataCancelJobOutput struct {
@@ -724,7 +874,7 @@ type CaptionFormat struct {
 	// (en), the name of the first caption file will be Sydney-en-sunrise00000.srt.
 	Pattern *string `type:"string"`
 
-	metadataCaptionFormat `json:"-", xml:"-"`
+	metadataCaptionFormat `json:"-" xml:"-"`
 }
 
 type metadataCaptionFormat struct {
@@ -765,7 +915,7 @@ type CaptionSource struct {
 	// Specify the TimeOffset in the form [+-]SS.sss or [+-]HH:mm:SS.ss.
 	TimeOffset *string `type:"string"`
 
-	metadataCaptionSource `json:"-", xml:"-"`
+	metadataCaptionSource `json:"-" xml:"-"`
 }
 
 type metadataCaptionSource struct {
@@ -802,7 +952,7 @@ type Captions struct {
 	//  MergePolicy cannot be null.
 	MergePolicy *string `type:"string"`
 
-	metadataCaptions `json:"-", xml:"-"`
+	metadataCaptions `json:"-" xml:"-"`
 }
 
 type metadataCaptions struct {
@@ -815,7 +965,7 @@ type Clip struct {
 	// Settings that determine when a clip begins and how long it lasts.
 	TimeSpan *TimeSpan `type:"structure"`
 
-	metadataClip `json:"-", xml:"-"`
+	metadataClip `json:"-" xml:"-"`
 }
 
 type metadataClip struct {
@@ -860,7 +1010,7 @@ type CreateJobInput struct {
 	// will be returned in the same order in which you specify them.
 	UserMetadata *map[string]*string `type:"map"`
 
-	metadataCreateJobInput `json:"-", xml:"-"`
+	metadataCreateJobInput `json:"-" xml:"-"`
 }
 
 type metadataCreateJobInput struct {
@@ -1007,7 +1157,7 @@ type CreateJobOutput struct {
 	// the current output.
 	Watermarks []*JobWatermark `type:"list"`
 
-	metadataCreateJobOutput `json:"-", xml:"-"`
+	metadataCreateJobOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateJobOutput struct {
@@ -1075,7 +1225,7 @@ type CreateJobPlaylist struct {
 	// all outputs.
 	OutputKeys []*string `type:"list"`
 
-	metadataCreateJobPlaylist `json:"-", xml:"-"`
+	metadataCreateJobPlaylist `json:"-" xml:"-"`
 }
 
 type metadataCreateJobPlaylist struct {
@@ -1088,7 +1238,7 @@ type CreateJobResponse struct {
 	// is created.
 	Job *Job `type:"structure"`
 
-	metadataCreateJobResponse `json:"-", xml:"-"`
+	metadataCreateJobResponse `json:"-" xml:"-"`
 }
 
 type metadataCreateJobResponse struct {
@@ -1248,7 +1398,7 @@ type CreatePipelineInput struct {
 	// Transcoder to assign to the thumbnails that it stores in your Amazon S3 bucket.
 	ThumbnailConfig *PipelineOutputConfig `type:"structure"`
 
-	metadataCreatePipelineInput `json:"-", xml:"-"`
+	metadataCreatePipelineInput `json:"-" xml:"-"`
 }
 
 type metadataCreatePipelineInput struct {
@@ -1270,7 +1420,7 @@ type CreatePipelineOutput struct {
 	// cross-regional charges.
 	Warnings []*Warning `type:"list"`
 
-	metadataCreatePipelineOutput `json:"-", xml:"-"`
+	metadataCreatePipelineOutput `json:"-" xml:"-"`
 }
 
 type metadataCreatePipelineOutput struct {
@@ -1300,7 +1450,7 @@ type CreatePresetInput struct {
 	// A section of the request body that specifies the video parameters.
 	Video *VideoParameters `type:"structure"`
 
-	metadataCreatePresetInput `json:"-", xml:"-"`
+	metadataCreatePresetInput `json:"-" xml:"-"`
 }
 
 type metadataCreatePresetInput struct {
@@ -1319,7 +1469,7 @@ type CreatePresetOutput struct {
 	// preset because the settings might produce acceptable output.
 	Warning *string `type:"string"`
 
-	metadataCreatePresetOutput `json:"-", xml:"-"`
+	metadataCreatePresetOutput `json:"-" xml:"-"`
 }
 
 type metadataCreatePresetOutput struct {
@@ -1331,7 +1481,7 @@ type DeletePipelineInput struct {
 	// The identifier of the pipeline that you want to delete.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataDeletePipelineInput `json:"-", xml:"-"`
+	metadataDeletePipelineInput `json:"-" xml:"-"`
 }
 
 type metadataDeletePipelineInput struct {
@@ -1340,7 +1490,7 @@ type metadataDeletePipelineInput struct {
 
 // The DeletePipelineResponse structure.
 type DeletePipelineOutput struct {
-	metadataDeletePipelineOutput `json:"-", xml:"-"`
+	metadataDeletePipelineOutput `json:"-" xml:"-"`
 }
 
 type metadataDeletePipelineOutput struct {
@@ -1352,7 +1502,7 @@ type DeletePresetInput struct {
 	// The identifier of the preset for which you want to get detailed information.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataDeletePresetInput `json:"-", xml:"-"`
+	metadataDeletePresetInput `json:"-" xml:"-"`
 }
 
 type metadataDeletePresetInput struct {
@@ -1361,7 +1511,7 @@ type metadataDeletePresetInput struct {
 
 // The DeletePresetResponse structure.
 type DeletePresetOutput struct {
-	metadataDeletePresetOutput `json:"-", xml:"-"`
+	metadataDeletePresetOutput `json:"-" xml:"-"`
 }
 
 type metadataDeletePresetOutput struct {
@@ -1433,7 +1583,7 @@ type Encryption struct {
 	// data.
 	Mode *string `type:"string"`
 
-	metadataEncryption `json:"-", xml:"-"`
+	metadataEncryption `json:"-" xml:"-"`
 }
 
 type metadataEncryption struct {
@@ -1488,7 +1638,7 @@ type HLSContentProtection struct {
 	// tag in the output playlist.
 	Method *string `type:"string"`
 
-	metadataHLSContentProtection `json:"-", xml:"-"`
+	metadataHLSContentProtection `json:"-" xml:"-"`
 }
 
 type metadataHLSContentProtection struct {
@@ -1566,7 +1716,7 @@ type Job struct {
 	// The following symbols: _.:/=+-%@
 	UserMetadata *map[string]*string `type:"map"`
 
-	metadataJob `json:"-", xml:"-"`
+	metadataJob `json:"-" xml:"-"`
 }
 
 type metadataJob struct {
@@ -1591,7 +1741,7 @@ type JobAlbumArt struct {
 	// file.
 	MergePolicy *string `type:"string"`
 
-	metadataJobAlbumArt `json:"-", xml:"-"`
+	metadataJobAlbumArt `json:"-" xml:"-"`
 }
 
 type metadataJobAlbumArt struct {
@@ -1659,7 +1809,7 @@ type JobInput struct {
 	// detect the resolution of the input file.
 	Resolution *string `type:"string"`
 
-	metadataJobInput `json:"-", xml:"-"`
+	metadataJobInput `json:"-" xml:"-"`
 }
 
 type metadataJobInput struct {
@@ -1859,7 +2009,7 @@ type JobOutput struct {
 	// Specifies the width of the output file in pixels.
 	Width *int64 `type:"integer"`
 
-	metadataJobOutput `json:"-", xml:"-"`
+	metadataJobOutput `json:"-" xml:"-"`
 }
 
 type metadataJobOutput struct {
@@ -1889,7 +2039,7 @@ type JobWatermark struct {
 	// Id tells Elastic Transcoder which settings to use.
 	PresetWatermarkID *string `locationName:"PresetWatermarkId" type:"string"`
 
-	metadataJobWatermark `json:"-", xml:"-"`
+	metadataJobWatermark `json:"-" xml:"-"`
 }
 
 type metadataJobWatermark struct {
@@ -1909,7 +2059,7 @@ type ListJobsByPipelineInput struct {
 	// The ID of the pipeline for which you want to get job information.
 	PipelineID *string `location:"uri" locationName:"PipelineId" type:"string" required:"true"`
 
-	metadataListJobsByPipelineInput `json:"-", xml:"-"`
+	metadataListJobsByPipelineInput `json:"-" xml:"-"`
 }
 
 type metadataListJobsByPipelineInput struct {
@@ -1926,7 +2076,7 @@ type ListJobsByPipelineOutput struct {
 	// reached the last page of results, the value of NextPageToken is null.
 	NextPageToken *string `type:"string"`
 
-	metadataListJobsByPipelineOutput `json:"-", xml:"-"`
+	metadataListJobsByPipelineOutput `json:"-" xml:"-"`
 }
 
 type metadataListJobsByPipelineOutput struct {
@@ -1948,7 +2098,7 @@ type ListJobsByStatusInput struct {
 	// Progressing, Complete, Canceled, or Error.
 	Status *string `location:"uri" locationName:"Status" type:"string" required:"true"`
 
-	metadataListJobsByStatusInput `json:"-", xml:"-"`
+	metadataListJobsByStatusInput `json:"-" xml:"-"`
 }
 
 type metadataListJobsByStatusInput struct {
@@ -1965,7 +2115,7 @@ type ListJobsByStatusOutput struct {
 	// reached the last page of results, the value of NextPageToken is null.
 	NextPageToken *string `type:"string"`
 
-	metadataListJobsByStatusOutput `json:"-", xml:"-"`
+	metadataListJobsByStatusOutput `json:"-" xml:"-"`
 }
 
 type metadataListJobsByStatusOutput struct {
@@ -1983,7 +2133,7 @@ type ListPipelinesInput struct {
 	// in subsequent GET requests to get each successive page of results.
 	PageToken *string `location:"querystring" locationName:"PageToken" type:"string"`
 
-	metadataListPipelinesInput `json:"-", xml:"-"`
+	metadataListPipelinesInput `json:"-" xml:"-"`
 }
 
 type metadataListPipelinesInput struct {
@@ -2000,7 +2150,7 @@ type ListPipelinesOutput struct {
 	// An array of Pipeline objects.
 	Pipelines []*Pipeline `type:"list"`
 
-	metadataListPipelinesOutput `json:"-", xml:"-"`
+	metadataListPipelinesOutput `json:"-" xml:"-"`
 }
 
 type metadataListPipelinesOutput struct {
@@ -2018,7 +2168,7 @@ type ListPresetsInput struct {
 	// in subsequent GET requests to get each successive page of results.
 	PageToken *string `location:"querystring" locationName:"PageToken" type:"string"`
 
-	metadataListPresetsInput `json:"-", xml:"-"`
+	metadataListPresetsInput `json:"-" xml:"-"`
 }
 
 type metadataListPresetsInput struct {
@@ -2035,7 +2185,7 @@ type ListPresetsOutput struct {
 	// An array of Preset objects.
 	Presets []*Preset `type:"list"`
 
-	metadataListPresetsOutput `json:"-", xml:"-"`
+	metadataListPresetsOutput `json:"-" xml:"-"`
 }
 
 type metadataListPresetsOutput struct {
@@ -2064,7 +2214,7 @@ type Notifications struct {
 	// a warning condition.
 	Warning *string `type:"string"`
 
-	metadataNotifications `json:"-", xml:"-"`
+	metadataNotifications `json:"-" xml:"-"`
 }
 
 type metadataNotifications struct {
@@ -2098,7 +2248,7 @@ type Permission struct {
 	// or LogDelivery.
 	GranteeType *string `type:"string"`
 
-	metadataPermission `json:"-", xml:"-"`
+	metadataPermission `json:"-" xml:"-"`
 }
 
 type metadataPermission struct {
@@ -2218,7 +2368,7 @@ type Pipeline struct {
 	// to the thumbnails that it stores in your Amazon S3 bucket.
 	ThumbnailConfig *PipelineOutputConfig `type:"structure"`
 
-	metadataPipeline `json:"-", xml:"-"`
+	metadataPipeline `json:"-" xml:"-"`
 }
 
 type metadataPipeline struct {
@@ -2261,7 +2411,7 @@ type PipelineOutputConfig struct {
 	// in your Amazon S3 bucket.
 	StorageClass *string `type:"string"`
 
-	metadataPipelineOutputConfig `json:"-", xml:"-"`
+	metadataPipelineOutputConfig `json:"-" xml:"-"`
 }
 
 type metadataPipelineOutputConfig struct {
@@ -2339,7 +2489,7 @@ type Playlist struct {
 	// Information that further explains the status.
 	StatusDetail *string `type:"string"`
 
-	metadataPlaylist `json:"-", xml:"-"`
+	metadataPlaylist `json:"-" xml:"-"`
 }
 
 type metadataPlaylist struct {
@@ -2386,7 +2536,7 @@ type Preset struct {
 	// preset values.
 	Video *VideoParameters `type:"structure"`
 
-	metadataPreset `json:"-", xml:"-"`
+	metadataPreset `json:"-" xml:"-"`
 }
 
 type metadataPreset struct {
@@ -2519,7 +2669,7 @@ type PresetWatermark struct {
 	// offset calculation.
 	VerticalOffset *string `type:"string"`
 
-	metadataPresetWatermark `json:"-", xml:"-"`
+	metadataPresetWatermark `json:"-" xml:"-"`
 }
 
 type metadataPresetWatermark struct {
@@ -2531,7 +2681,7 @@ type ReadJobInput struct {
 	// The identifier of the job for which you want to get detailed information.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataReadJobInput `json:"-", xml:"-"`
+	metadataReadJobInput `json:"-" xml:"-"`
 }
 
 type metadataReadJobInput struct {
@@ -2543,7 +2693,7 @@ type ReadJobOutput struct {
 	// A section of the response body that provides information about the job.
 	Job *Job `type:"structure"`
 
-	metadataReadJobOutput `json:"-", xml:"-"`
+	metadataReadJobOutput `json:"-" xml:"-"`
 }
 
 type metadataReadJobOutput struct {
@@ -2555,7 +2705,7 @@ type ReadPipelineInput struct {
 	// The identifier of the pipeline to read.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataReadPipelineInput `json:"-", xml:"-"`
+	metadataReadPipelineInput `json:"-" xml:"-"`
 }
 
 type metadataReadPipelineInput struct {
@@ -2575,7 +2725,7 @@ type ReadPipelineOutput struct {
 	// cross-regional charges.
 	Warnings []*Warning `type:"list"`
 
-	metadataReadPipelineOutput `json:"-", xml:"-"`
+	metadataReadPipelineOutput `json:"-" xml:"-"`
 }
 
 type metadataReadPipelineOutput struct {
@@ -2587,7 +2737,7 @@ type ReadPresetInput struct {
 	// The identifier of the preset for which you want to get detailed information.
 	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	metadataReadPresetInput `json:"-", xml:"-"`
+	metadataReadPresetInput `json:"-" xml:"-"`
 }
 
 type metadataReadPresetInput struct {
@@ -2599,7 +2749,7 @@ type ReadPresetOutput struct {
 	// A section of the response body that provides information about the preset.
 	Preset *Preset `type:"structure"`
 
-	metadataReadPresetOutput `json:"-", xml:"-"`
+	metadataReadPresetOutput `json:"-" xml:"-"`
 }
 
 type metadataReadPresetOutput struct {
@@ -2624,7 +2774,7 @@ type TestRoleInput struct {
 	// that you want the action to send a test notification to.
 	Topics []*string `type:"list" required:"true"`
 
-	metadataTestRoleInput `json:"-", xml:"-"`
+	metadataTestRoleInput `json:"-" xml:"-"`
 }
 
 type metadataTestRoleInput struct {
@@ -2641,7 +2791,7 @@ type TestRoleOutput struct {
 	// is false.
 	Success *string `type:"string"`
 
-	metadataTestRoleOutput `json:"-", xml:"-"`
+	metadataTestRoleOutput `json:"-" xml:"-"`
 }
 
 type metadataTestRoleOutput struct {
@@ -2723,7 +2873,7 @@ type Thumbnails struct {
 	// Transcoder does not scale thumbnails up.
 	SizingPolicy *string `type:"string"`
 
-	metadataThumbnails `json:"-", xml:"-"`
+	metadataThumbnails `json:"-" xml:"-"`
 }
 
 type metadataThumbnails struct {
@@ -2747,7 +2897,7 @@ type TimeSpan struct {
 	// value, Elastic Transcoder starts at the beginning of the input file.
 	StartTime *string `type:"string"`
 
-	metadataTimeSpan `json:"-", xml:"-"`
+	metadataTimeSpan `json:"-" xml:"-"`
 }
 
 type metadataTimeSpan struct {
@@ -2878,7 +3028,7 @@ type UpdatePipelineInput struct {
 	// Transcoder to assign to the thumbnails that it stores in your Amazon S3 bucket.
 	ThumbnailConfig *PipelineOutputConfig `type:"structure"`
 
-	metadataUpdatePipelineInput `json:"-", xml:"-"`
+	metadataUpdatePipelineInput `json:"-" xml:"-"`
 }
 
 type metadataUpdatePipelineInput struct {
@@ -2909,7 +3059,7 @@ type UpdatePipelineNotificationsInput struct {
 	// returned when you created the topic.
 	Notifications *Notifications `type:"structure" required:"true"`
 
-	metadataUpdatePipelineNotificationsInput `json:"-", xml:"-"`
+	metadataUpdatePipelineNotificationsInput `json:"-" xml:"-"`
 }
 
 type metadataUpdatePipelineNotificationsInput struct {
@@ -2921,7 +3071,7 @@ type UpdatePipelineNotificationsOutput struct {
 	// A section of the response body that provides information about the pipeline.
 	Pipeline *Pipeline `type:"structure"`
 
-	metadataUpdatePipelineNotificationsOutput `json:"-", xml:"-"`
+	metadataUpdatePipelineNotificationsOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdatePipelineNotificationsOutput struct {
@@ -2942,7 +3092,7 @@ type UpdatePipelineOutput struct {
 	// cross-regional charges.
 	Warnings []*Warning `type:"list"`
 
-	metadataUpdatePipelineOutput `json:"-", xml:"-"`
+	metadataUpdatePipelineOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdatePipelineOutput struct {
@@ -2960,7 +3110,7 @@ type UpdatePipelineStatusInput struct {
 	// currently processing jobs.
 	Status *string `type:"string" required:"true"`
 
-	metadataUpdatePipelineStatusInput `json:"-", xml:"-"`
+	metadataUpdatePipelineStatusInput `json:"-" xml:"-"`
 }
 
 type metadataUpdatePipelineStatusInput struct {
@@ -2973,7 +3123,7 @@ type UpdatePipelineStatusOutput struct {
 	// A section of the response body that provides information about the pipeline.
 	Pipeline *Pipeline `type:"structure"`
 
-	metadataUpdatePipelineStatusOutput `json:"-", xml:"-"`
+	metadataUpdatePipelineStatusOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdatePipelineStatusOutput struct {
@@ -3277,7 +3427,7 @@ type VideoParameters struct {
 	// that have different dimensions.
 	Watermarks []*PresetWatermark `type:"list"`
 
-	metadataVideoParameters `json:"-", xml:"-"`
+	metadataVideoParameters `json:"-" xml:"-"`
 }
 
 type metadataVideoParameters struct {
@@ -3300,7 +3450,7 @@ type Warning struct {
 	// Note: AWS KMS keys must be in the same region as the pipeline.
 	Message *string `type:"string"`
 
-	metadataWarning `json:"-", xml:"-"`
+	metadataWarning `json:"-" xml:"-"`
 }
 
 type metadataWarning struct {

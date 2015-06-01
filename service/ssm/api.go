@@ -4,19 +4,29 @@
 package ssm
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // CreateAssociationRequest generates a request for the CreateAssociation operation.
 func (c *SSM) CreateAssociationRequest(input *CreateAssociationInput) (req *aws.Request, output *CreateAssociationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateAssociation == nil {
 		opCreateAssociation = &aws.Operation{
 			Name:       "CreateAssociation",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateAssociationInput{}
 	}
 
 	req = c.newRequest(opCreateAssociation, input, output)
@@ -34,23 +44,29 @@ func (c *SSM) CreateAssociationRequest(input *CreateAssociationInput) (req *aws.
 // If you associate a configuration document with an instance that already
 // has an associated configuration document, we replace the current configuration
 // document with the new configuration document.
-func (c *SSM) CreateAssociation(input *CreateAssociationInput) (output *CreateAssociationOutput, err error) {
+func (c *SSM) CreateAssociation(input *CreateAssociationInput) (*CreateAssociationOutput, error) {
 	req, out := c.CreateAssociationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateAssociation *aws.Operation
 
 // CreateAssociationBatchRequest generates a request for the CreateAssociationBatch operation.
 func (c *SSM) CreateAssociationBatchRequest(input *CreateAssociationBatchInput) (req *aws.Request, output *CreateAssociationBatchOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateAssociationBatch == nil {
 		opCreateAssociationBatch = &aws.Operation{
 			Name:       "CreateAssociationBatch",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateAssociationBatchInput{}
 	}
 
 	req = c.newRequest(opCreateAssociationBatch, input, output)
@@ -68,23 +84,29 @@ func (c *SSM) CreateAssociationBatchRequest(input *CreateAssociationBatchInput) 
 // If you associate a configuration document with an instance that already
 // has an associated configuration document, we replace the current configuration
 // document with the new configuration document.
-func (c *SSM) CreateAssociationBatch(input *CreateAssociationBatchInput) (output *CreateAssociationBatchOutput, err error) {
+func (c *SSM) CreateAssociationBatch(input *CreateAssociationBatchInput) (*CreateAssociationBatchOutput, error) {
 	req, out := c.CreateAssociationBatchRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateAssociationBatch *aws.Operation
 
 // CreateDocumentRequest generates a request for the CreateDocument operation.
 func (c *SSM) CreateDocumentRequest(input *CreateDocumentInput) (req *aws.Request, output *CreateDocumentOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateDocument == nil {
 		opCreateDocument = &aws.Operation{
 			Name:       "CreateDocument",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateDocumentInput{}
 	}
 
 	req = c.newRequest(opCreateDocument, input, output)
@@ -97,23 +119,29 @@ func (c *SSM) CreateDocumentRequest(input *CreateDocumentInput) (req *aws.Reques
 //
 // After you create a configuration document, you can use CreateAssociation
 // to associate it with one or more running instances.
-func (c *SSM) CreateDocument(input *CreateDocumentInput) (output *CreateDocumentOutput, err error) {
+func (c *SSM) CreateDocument(input *CreateDocumentInput) (*CreateDocumentOutput, error) {
 	req, out := c.CreateDocumentRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateDocument *aws.Operation
 
 // DeleteAssociationRequest generates a request for the DeleteAssociation operation.
 func (c *SSM) DeleteAssociationRequest(input *DeleteAssociationInput) (req *aws.Request, output *DeleteAssociationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteAssociation == nil {
 		opDeleteAssociation = &aws.Operation{
 			Name:       "DeleteAssociation",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteAssociationInput{}
 	}
 
 	req = c.newRequest(opDeleteAssociation, input, output)
@@ -129,23 +157,29 @@ func (c *SSM) DeleteAssociationRequest(input *DeleteAssociationInput) (req *aws.
 // state of an instance after you disassociate a configuration document, you
 // must create a new configuration document with the desired configuration and
 // associate it with the instance.
-func (c *SSM) DeleteAssociation(input *DeleteAssociationInput) (output *DeleteAssociationOutput, err error) {
+func (c *SSM) DeleteAssociation(input *DeleteAssociationInput) (*DeleteAssociationOutput, error) {
 	req, out := c.DeleteAssociationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteAssociation *aws.Operation
 
 // DeleteDocumentRequest generates a request for the DeleteDocument operation.
 func (c *SSM) DeleteDocumentRequest(input *DeleteDocumentInput) (req *aws.Request, output *DeleteDocumentOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteDocument == nil {
 		opDeleteDocument = &aws.Operation{
 			Name:       "DeleteDocument",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteDocumentInput{}
 	}
 
 	req = c.newRequest(opDeleteDocument, input, output)
@@ -158,23 +192,29 @@ func (c *SSM) DeleteDocumentRequest(input *DeleteDocumentInput) (req *aws.Reques
 //
 // You must use DeleteAssociation to disassociate all instances that are associated
 // with the configuration document before you can delete it.
-func (c *SSM) DeleteDocument(input *DeleteDocumentInput) (output *DeleteDocumentOutput, err error) {
+func (c *SSM) DeleteDocument(input *DeleteDocumentInput) (*DeleteDocumentOutput, error) {
 	req, out := c.DeleteDocumentRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteDocument *aws.Operation
 
 // DescribeAssociationRequest generates a request for the DescribeAssociation operation.
 func (c *SSM) DescribeAssociationRequest(input *DescribeAssociationInput) (req *aws.Request, output *DescribeAssociationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAssociation == nil {
 		opDescribeAssociation = &aws.Operation{
 			Name:       "DescribeAssociation",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeAssociationInput{}
 	}
 
 	req = c.newRequest(opDescribeAssociation, input, output)
@@ -184,23 +224,29 @@ func (c *SSM) DescribeAssociationRequest(input *DescribeAssociationInput) (req *
 }
 
 // Describes the associations for the specified configuration document or instance.
-func (c *SSM) DescribeAssociation(input *DescribeAssociationInput) (output *DescribeAssociationOutput, err error) {
+func (c *SSM) DescribeAssociation(input *DescribeAssociationInput) (*DescribeAssociationOutput, error) {
 	req, out := c.DescribeAssociationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeAssociation *aws.Operation
 
 // DescribeDocumentRequest generates a request for the DescribeDocument operation.
 func (c *SSM) DescribeDocumentRequest(input *DescribeDocumentInput) (req *aws.Request, output *DescribeDocumentOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeDocument == nil {
 		opDescribeDocument = &aws.Operation{
 			Name:       "DescribeDocument",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeDocumentInput{}
 	}
 
 	req = c.newRequest(opDescribeDocument, input, output)
@@ -210,23 +256,29 @@ func (c *SSM) DescribeDocumentRequest(input *DescribeDocumentInput) (req *aws.Re
 }
 
 // Describes the specified configuration document.
-func (c *SSM) DescribeDocument(input *DescribeDocumentInput) (output *DescribeDocumentOutput, err error) {
+func (c *SSM) DescribeDocument(input *DescribeDocumentInput) (*DescribeDocumentOutput, error) {
 	req, out := c.DescribeDocumentRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeDocument *aws.Operation
 
 // GetDocumentRequest generates a request for the GetDocument operation.
 func (c *SSM) GetDocumentRequest(input *GetDocumentInput) (req *aws.Request, output *GetDocumentOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetDocument == nil {
 		opGetDocument = &aws.Operation{
 			Name:       "GetDocument",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetDocumentInput{}
 	}
 
 	req = c.newRequest(opGetDocument, input, output)
@@ -236,23 +288,29 @@ func (c *SSM) GetDocumentRequest(input *GetDocumentInput) (req *aws.Request, out
 }
 
 // Gets the contents of the specified configuration document.
-func (c *SSM) GetDocument(input *GetDocumentInput) (output *GetDocumentOutput, err error) {
+func (c *SSM) GetDocument(input *GetDocumentInput) (*GetDocumentOutput, error) {
 	req, out := c.GetDocumentRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetDocument *aws.Operation
 
 // ListAssociationsRequest generates a request for the ListAssociations operation.
 func (c *SSM) ListAssociationsRequest(input *ListAssociationsInput) (req *aws.Request, output *ListAssociationsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListAssociations == nil {
 		opListAssociations = &aws.Operation{
 			Name:       "ListAssociations",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListAssociationsInput{}
 	}
 
 	req = c.newRequest(opListAssociations, input, output)
@@ -262,23 +320,29 @@ func (c *SSM) ListAssociationsRequest(input *ListAssociationsInput) (req *aws.Re
 }
 
 // Lists the associations for the specified configuration document or instance.
-func (c *SSM) ListAssociations(input *ListAssociationsInput) (output *ListAssociationsOutput, err error) {
+func (c *SSM) ListAssociations(input *ListAssociationsInput) (*ListAssociationsOutput, error) {
 	req, out := c.ListAssociationsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListAssociations *aws.Operation
 
 // ListDocumentsRequest generates a request for the ListDocuments operation.
 func (c *SSM) ListDocumentsRequest(input *ListDocumentsInput) (req *aws.Request, output *ListDocumentsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListDocuments == nil {
 		opListDocuments = &aws.Operation{
 			Name:       "ListDocuments",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListDocumentsInput{}
 	}
 
 	req = c.newRequest(opListDocuments, input, output)
@@ -288,23 +352,29 @@ func (c *SSM) ListDocumentsRequest(input *ListDocumentsInput) (req *aws.Request,
 }
 
 // Describes one or more of your configuration documents.
-func (c *SSM) ListDocuments(input *ListDocumentsInput) (output *ListDocumentsOutput, err error) {
+func (c *SSM) ListDocuments(input *ListDocumentsInput) (*ListDocumentsOutput, error) {
 	req, out := c.ListDocumentsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListDocuments *aws.Operation
 
 // UpdateAssociationStatusRequest generates a request for the UpdateAssociationStatus operation.
 func (c *SSM) UpdateAssociationStatusRequest(input *UpdateAssociationStatusInput) (req *aws.Request, output *UpdateAssociationStatusOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateAssociationStatus == nil {
 		opUpdateAssociationStatus = &aws.Operation{
 			Name:       "UpdateAssociationStatus",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateAssociationStatusInput{}
 	}
 
 	req = c.newRequest(opUpdateAssociationStatus, input, output)
@@ -315,11 +385,10 @@ func (c *SSM) UpdateAssociationStatusRequest(input *UpdateAssociationStatusInput
 
 // Updates the status of the configuration document associated with the specified
 // instance.
-func (c *SSM) UpdateAssociationStatus(input *UpdateAssociationStatusInput) (output *UpdateAssociationStatusOutput, err error) {
+func (c *SSM) UpdateAssociationStatus(input *UpdateAssociationStatusInput) (*UpdateAssociationStatusOutput, error) {
 	req, out := c.UpdateAssociationStatusRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateAssociationStatus *aws.Operation
@@ -332,7 +401,7 @@ type Association struct {
 	// The name of the configuration document.
 	Name *string `type:"string"`
 
-	metadataAssociation `json:"-", xml:"-"`
+	metadataAssociation `json:"-" xml:"-"`
 }
 
 type metadataAssociation struct {
@@ -353,7 +422,7 @@ type AssociationDescription struct {
 	// The association status.
 	Status *AssociationStatus `type:"structure"`
 
-	metadataAssociationDescription `json:"-", xml:"-"`
+	metadataAssociationDescription `json:"-" xml:"-"`
 }
 
 type metadataAssociationDescription struct {
@@ -368,7 +437,7 @@ type AssociationFilter struct {
 	// The filter value.
 	Value *string `locationName:"value" type:"string" required:"true"`
 
-	metadataAssociationFilter `json:"-", xml:"-"`
+	metadataAssociationFilter `json:"-" xml:"-"`
 }
 
 type metadataAssociationFilter struct {
@@ -389,7 +458,7 @@ type AssociationStatus struct {
 	// The status.
 	Name *string `type:"string" required:"true"`
 
-	metadataAssociationStatus `json:"-", xml:"-"`
+	metadataAssociationStatus `json:"-" xml:"-"`
 }
 
 type metadataAssociationStatus struct {
@@ -400,7 +469,7 @@ type CreateAssociationBatchInput struct {
 	// One or more associations.
 	Entries []*CreateAssociationBatchRequestEntry `locationNameList:"entries" type:"list" required:"true"`
 
-	metadataCreateAssociationBatchInput `json:"-", xml:"-"`
+	metadataCreateAssociationBatchInput `json:"-" xml:"-"`
 }
 
 type metadataCreateAssociationBatchInput struct {
@@ -414,7 +483,7 @@ type CreateAssociationBatchOutput struct {
 	// Information about the associations that succeeded.
 	Successful []*AssociationDescription `locationNameList:"AssociationDescription" type:"list"`
 
-	metadataCreateAssociationBatchOutput `json:"-", xml:"-"`
+	metadataCreateAssociationBatchOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateAssociationBatchOutput struct {
@@ -429,7 +498,7 @@ type CreateAssociationBatchRequestEntry struct {
 	// The name of the configuration document.
 	Name *string `type:"string"`
 
-	metadataCreateAssociationBatchRequestEntry `json:"-", xml:"-"`
+	metadataCreateAssociationBatchRequestEntry `json:"-" xml:"-"`
 }
 
 type metadataCreateAssociationBatchRequestEntry struct {
@@ -443,7 +512,7 @@ type CreateAssociationInput struct {
 	// The name of the configuration document.
 	Name *string `type:"string" required:"true"`
 
-	metadataCreateAssociationInput `json:"-", xml:"-"`
+	metadataCreateAssociationInput `json:"-" xml:"-"`
 }
 
 type metadataCreateAssociationInput struct {
@@ -454,7 +523,7 @@ type CreateAssociationOutput struct {
 	// Information about the association.
 	AssociationDescription *AssociationDescription `type:"structure"`
 
-	metadataCreateAssociationOutput `json:"-", xml:"-"`
+	metadataCreateAssociationOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateAssociationOutput struct {
@@ -469,7 +538,7 @@ type CreateDocumentInput struct {
 	// A name for the configuration document.
 	Name *string `type:"string" required:"true"`
 
-	metadataCreateDocumentInput `json:"-", xml:"-"`
+	metadataCreateDocumentInput `json:"-" xml:"-"`
 }
 
 type metadataCreateDocumentInput struct {
@@ -480,7 +549,7 @@ type CreateDocumentOutput struct {
 	// Information about the configuration document.
 	DocumentDescription *DocumentDescription `type:"structure"`
 
-	metadataCreateDocumentOutput `json:"-", xml:"-"`
+	metadataCreateDocumentOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateDocumentOutput struct {
@@ -494,7 +563,7 @@ type DeleteAssociationInput struct {
 	// The name of the configuration document.
 	Name *string `type:"string" required:"true"`
 
-	metadataDeleteAssociationInput `json:"-", xml:"-"`
+	metadataDeleteAssociationInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAssociationInput struct {
@@ -502,7 +571,7 @@ type metadataDeleteAssociationInput struct {
 }
 
 type DeleteAssociationOutput struct {
-	metadataDeleteAssociationOutput `json:"-", xml:"-"`
+	metadataDeleteAssociationOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAssociationOutput struct {
@@ -513,7 +582,7 @@ type DeleteDocumentInput struct {
 	// The name of the configuration document.
 	Name *string `type:"string" required:"true"`
 
-	metadataDeleteDocumentInput `json:"-", xml:"-"`
+	metadataDeleteDocumentInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDocumentInput struct {
@@ -521,7 +590,7 @@ type metadataDeleteDocumentInput struct {
 }
 
 type DeleteDocumentOutput struct {
-	metadataDeleteDocumentOutput `json:"-", xml:"-"`
+	metadataDeleteDocumentOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDocumentOutput struct {
@@ -535,7 +604,7 @@ type DescribeAssociationInput struct {
 	// The name of the configuration document.
 	Name *string `type:"string" required:"true"`
 
-	metadataDescribeAssociationInput `json:"-", xml:"-"`
+	metadataDescribeAssociationInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAssociationInput struct {
@@ -546,7 +615,7 @@ type DescribeAssociationOutput struct {
 	// Information about the association.
 	AssociationDescription *AssociationDescription `type:"structure"`
 
-	metadataDescribeAssociationOutput `json:"-", xml:"-"`
+	metadataDescribeAssociationOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAssociationOutput struct {
@@ -557,7 +626,7 @@ type DescribeDocumentInput struct {
 	// The name of the configuration document.
 	Name *string `type:"string" required:"true"`
 
-	metadataDescribeDocumentInput `json:"-", xml:"-"`
+	metadataDescribeDocumentInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeDocumentInput struct {
@@ -568,7 +637,7 @@ type DescribeDocumentOutput struct {
 	// Information about the configuration document.
 	Document *DocumentDescription `type:"structure"`
 
-	metadataDescribeDocumentOutput `json:"-", xml:"-"`
+	metadataDescribeDocumentOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeDocumentOutput struct {
@@ -589,7 +658,7 @@ type DocumentDescription struct {
 	// The status of the configuration document.
 	Status *string `type:"string"`
 
-	metadataDocumentDescription `json:"-", xml:"-"`
+	metadataDocumentDescription `json:"-" xml:"-"`
 }
 
 type metadataDocumentDescription struct {
@@ -604,7 +673,7 @@ type DocumentFilter struct {
 	// The value of the filter.
 	Value *string `locationName:"value" type:"string" required:"true"`
 
-	metadataDocumentFilter `json:"-", xml:"-"`
+	metadataDocumentFilter `json:"-" xml:"-"`
 }
 
 type metadataDocumentFilter struct {
@@ -616,7 +685,7 @@ type DocumentIdentifier struct {
 	// The name of the configuration document.
 	Name *string `type:"string"`
 
-	metadataDocumentIdentifier `json:"-", xml:"-"`
+	metadataDocumentIdentifier `json:"-" xml:"-"`
 }
 
 type metadataDocumentIdentifier struct {
@@ -634,7 +703,7 @@ type FailedCreateAssociation struct {
 	// A description of the failure.
 	Message *string `type:"string"`
 
-	metadataFailedCreateAssociation `json:"-", xml:"-"`
+	metadataFailedCreateAssociation `json:"-" xml:"-"`
 }
 
 type metadataFailedCreateAssociation struct {
@@ -645,7 +714,7 @@ type GetDocumentInput struct {
 	// The name of the configuration document.
 	Name *string `type:"string" required:"true"`
 
-	metadataGetDocumentInput `json:"-", xml:"-"`
+	metadataGetDocumentInput `json:"-" xml:"-"`
 }
 
 type metadataGetDocumentInput struct {
@@ -659,7 +728,7 @@ type GetDocumentOutput struct {
 	// The name of the configuration document.
 	Name *string `type:"string"`
 
-	metadataGetDocumentOutput `json:"-", xml:"-"`
+	metadataGetDocumentOutput `json:"-" xml:"-"`
 }
 
 type metadataGetDocumentOutput struct {
@@ -679,7 +748,7 @@ type ListAssociationsInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataListAssociationsInput `json:"-", xml:"-"`
+	metadataListAssociationsInput `json:"-" xml:"-"`
 }
 
 type metadataListAssociationsInput struct {
@@ -694,7 +763,7 @@ type ListAssociationsOutput struct {
 	// items to return, the string is empty.
 	NextToken *string `type:"string"`
 
-	metadataListAssociationsOutput `json:"-", xml:"-"`
+	metadataListAssociationsOutput `json:"-" xml:"-"`
 }
 
 type metadataListAssociationsOutput struct {
@@ -714,7 +783,7 @@ type ListDocumentsInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	metadataListDocumentsInput `json:"-", xml:"-"`
+	metadataListDocumentsInput `json:"-" xml:"-"`
 }
 
 type metadataListDocumentsInput struct {
@@ -729,7 +798,7 @@ type ListDocumentsOutput struct {
 	// items to return, the string is empty.
 	NextToken *string `type:"string"`
 
-	metadataListDocumentsOutput `json:"-", xml:"-"`
+	metadataListDocumentsOutput `json:"-" xml:"-"`
 }
 
 type metadataListDocumentsOutput struct {
@@ -746,7 +815,7 @@ type UpdateAssociationStatusInput struct {
 	// The name of the configuration document.
 	Name *string `type:"string" required:"true"`
 
-	metadataUpdateAssociationStatusInput `json:"-", xml:"-"`
+	metadataUpdateAssociationStatusInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateAssociationStatusInput struct {
@@ -757,7 +826,7 @@ type UpdateAssociationStatusOutput struct {
 	// Information about the association.
 	AssociationDescription *AssociationDescription `type:"structure"`
 
-	metadataUpdateAssociationStatusOutput `json:"-", xml:"-"`
+	metadataUpdateAssociationStatusOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateAssociationStatusOutput struct {

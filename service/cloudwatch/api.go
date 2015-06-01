@@ -4,19 +4,29 @@
 package cloudwatch
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // DeleteAlarmsRequest generates a request for the DeleteAlarms operation.
 func (c *CloudWatch) DeleteAlarmsRequest(input *DeleteAlarmsInput) (req *aws.Request, output *DeleteAlarmsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteAlarms == nil {
 		opDeleteAlarms = &aws.Operation{
 			Name:       "DeleteAlarms",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteAlarmsInput{}
 	}
 
 	req = c.newRequest(opDeleteAlarms, input, output)
@@ -26,23 +36,35 @@ func (c *CloudWatch) DeleteAlarmsRequest(input *DeleteAlarmsInput) (req *aws.Req
 }
 
 // Deletes all specified alarms. In the event of an error, no alarms are deleted.
-func (c *CloudWatch) DeleteAlarms(input *DeleteAlarmsInput) (output *DeleteAlarmsOutput, err error) {
+func (c *CloudWatch) DeleteAlarms(input *DeleteAlarmsInput) (*DeleteAlarmsOutput, error) {
 	req, out := c.DeleteAlarmsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteAlarms *aws.Operation
 
 // DescribeAlarmHistoryRequest generates a request for the DescribeAlarmHistory operation.
 func (c *CloudWatch) DescribeAlarmHistoryRequest(input *DescribeAlarmHistoryInput) (req *aws.Request, output *DescribeAlarmHistoryOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAlarmHistory == nil {
 		opDescribeAlarmHistory = &aws.Operation{
 			Name:       "DescribeAlarmHistory",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &DescribeAlarmHistoryInput{}
 	}
 
 	req = c.newRequest(opDescribeAlarmHistory, input, output)
@@ -54,23 +76,40 @@ func (c *CloudWatch) DescribeAlarmHistoryRequest(input *DescribeAlarmHistoryInpu
 // Retrieves history for the specified alarm. Filter alarms by date range or
 // item type. If an alarm name is not specified, Amazon CloudWatch returns histories
 // for all of the owner's alarms.
-func (c *CloudWatch) DescribeAlarmHistory(input *DescribeAlarmHistoryInput) (output *DescribeAlarmHistoryOutput, err error) {
+func (c *CloudWatch) DescribeAlarmHistory(input *DescribeAlarmHistoryInput) (*DescribeAlarmHistoryOutput, error) {
 	req, out := c.DescribeAlarmHistoryRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *CloudWatch) DescribeAlarmHistoryPages(input *DescribeAlarmHistoryInput, fn func(p *DescribeAlarmHistoryOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeAlarmHistoryRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeAlarmHistory *aws.Operation
 
 // DescribeAlarmsRequest generates a request for the DescribeAlarms operation.
 func (c *CloudWatch) DescribeAlarmsRequest(input *DescribeAlarmsInput) (req *aws.Request, output *DescribeAlarmsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAlarms == nil {
 		opDescribeAlarms = &aws.Operation{
 			Name:       "DescribeAlarms",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &DescribeAlarmsInput{}
 	}
 
 	req = c.newRequest(opDescribeAlarms, input, output)
@@ -82,23 +121,34 @@ func (c *CloudWatch) DescribeAlarmsRequest(input *DescribeAlarmsInput) (req *aws
 // Retrieves alarms with the specified names. If no name is specified, all alarms
 // for the user are returned. Alarms can be retrieved by using only a prefix
 // for the alarm name, the alarm state, or a prefix for any action.
-func (c *CloudWatch) DescribeAlarms(input *DescribeAlarmsInput) (output *DescribeAlarmsOutput, err error) {
+func (c *CloudWatch) DescribeAlarms(input *DescribeAlarmsInput) (*DescribeAlarmsOutput, error) {
 	req, out := c.DescribeAlarmsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *CloudWatch) DescribeAlarmsPages(input *DescribeAlarmsInput, fn func(p *DescribeAlarmsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeAlarmsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeAlarms *aws.Operation
 
 // DescribeAlarmsForMetricRequest generates a request for the DescribeAlarmsForMetric operation.
 func (c *CloudWatch) DescribeAlarmsForMetricRequest(input *DescribeAlarmsForMetricInput) (req *aws.Request, output *DescribeAlarmsForMetricOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeAlarmsForMetric == nil {
 		opDescribeAlarmsForMetric = &aws.Operation{
 			Name:       "DescribeAlarmsForMetric",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeAlarmsForMetricInput{}
 	}
 
 	req = c.newRequest(opDescribeAlarmsForMetric, input, output)
@@ -109,23 +159,29 @@ func (c *CloudWatch) DescribeAlarmsForMetricRequest(input *DescribeAlarmsForMetr
 
 // Retrieves all alarms for a single metric. Specify a statistic, period, or
 // unit to filter the set of alarms further.
-func (c *CloudWatch) DescribeAlarmsForMetric(input *DescribeAlarmsForMetricInput) (output *DescribeAlarmsForMetricOutput, err error) {
+func (c *CloudWatch) DescribeAlarmsForMetric(input *DescribeAlarmsForMetricInput) (*DescribeAlarmsForMetricOutput, error) {
 	req, out := c.DescribeAlarmsForMetricRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeAlarmsForMetric *aws.Operation
 
 // DisableAlarmActionsRequest generates a request for the DisableAlarmActions operation.
 func (c *CloudWatch) DisableAlarmActionsRequest(input *DisableAlarmActionsInput) (req *aws.Request, output *DisableAlarmActionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDisableAlarmActions == nil {
 		opDisableAlarmActions = &aws.Operation{
 			Name:       "DisableAlarmActions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DisableAlarmActionsInput{}
 	}
 
 	req = c.newRequest(opDisableAlarmActions, input, output)
@@ -136,23 +192,29 @@ func (c *CloudWatch) DisableAlarmActionsRequest(input *DisableAlarmActionsInput)
 
 // Disables actions for the specified alarms. When an alarm's actions are disabled
 // the alarm's state may change, but none of the alarm's actions will execute.
-func (c *CloudWatch) DisableAlarmActions(input *DisableAlarmActionsInput) (output *DisableAlarmActionsOutput, err error) {
+func (c *CloudWatch) DisableAlarmActions(input *DisableAlarmActionsInput) (*DisableAlarmActionsOutput, error) {
 	req, out := c.DisableAlarmActionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDisableAlarmActions *aws.Operation
 
 // EnableAlarmActionsRequest generates a request for the EnableAlarmActions operation.
 func (c *CloudWatch) EnableAlarmActionsRequest(input *EnableAlarmActionsInput) (req *aws.Request, output *EnableAlarmActionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opEnableAlarmActions == nil {
 		opEnableAlarmActions = &aws.Operation{
 			Name:       "EnableAlarmActions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &EnableAlarmActionsInput{}
 	}
 
 	req = c.newRequest(opEnableAlarmActions, input, output)
@@ -162,23 +224,29 @@ func (c *CloudWatch) EnableAlarmActionsRequest(input *EnableAlarmActionsInput) (
 }
 
 // Enables actions for the specified alarms.
-func (c *CloudWatch) EnableAlarmActions(input *EnableAlarmActionsInput) (output *EnableAlarmActionsOutput, err error) {
+func (c *CloudWatch) EnableAlarmActions(input *EnableAlarmActionsInput) (*EnableAlarmActionsOutput, error) {
 	req, out := c.EnableAlarmActionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opEnableAlarmActions *aws.Operation
 
 // GetMetricStatisticsRequest generates a request for the GetMetricStatistics operation.
 func (c *CloudWatch) GetMetricStatisticsRequest(input *GetMetricStatisticsInput) (req *aws.Request, output *GetMetricStatisticsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetMetricStatistics == nil {
 		opGetMetricStatistics = &aws.Operation{
 			Name:       "GetMetricStatistics",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetMetricStatisticsInput{}
 	}
 
 	req = c.newRequest(opGetMetricStatistics, input, output)
@@ -213,23 +281,35 @@ func (c *CloudWatch) GetMetricStatisticsRequest(input *GetMetricStatisticsInput)
 // to Cloudwatch, go to Amazon CloudWatch Metrics, Namespaces, and Dimensions
 // Reference (http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html)
 // in the Amazon CloudWatch Developer Guide.
-func (c *CloudWatch) GetMetricStatistics(input *GetMetricStatisticsInput) (output *GetMetricStatisticsOutput, err error) {
+func (c *CloudWatch) GetMetricStatistics(input *GetMetricStatisticsInput) (*GetMetricStatisticsOutput, error) {
 	req, out := c.GetMetricStatisticsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetMetricStatistics *aws.Operation
 
 // ListMetricsRequest generates a request for the ListMetrics operation.
 func (c *CloudWatch) ListMetricsRequest(input *ListMetricsInput) (req *aws.Request, output *ListMetricsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListMetrics == nil {
 		opListMetrics = &aws.Operation{
 			Name:       "ListMetrics",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &ListMetricsInput{}
 	}
 
 	req = c.newRequest(opListMetrics, input, output)
@@ -241,23 +321,34 @@ func (c *CloudWatch) ListMetricsRequest(input *ListMetricsInput) (req *aws.Reque
 // Returns a list of valid metrics stored for the AWS account owner. Returned
 // metrics can be used with GetMetricStatistics to obtain statistical data for
 // a given metric.
-func (c *CloudWatch) ListMetrics(input *ListMetricsInput) (output *ListMetricsOutput, err error) {
+func (c *CloudWatch) ListMetrics(input *ListMetricsInput) (*ListMetricsOutput, error) {
 	req, out := c.ListMetricsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *CloudWatch) ListMetricsPages(input *ListMetricsInput, fn func(p *ListMetricsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListMetricsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opListMetrics *aws.Operation
 
 // PutMetricAlarmRequest generates a request for the PutMetricAlarm operation.
 func (c *CloudWatch) PutMetricAlarmRequest(input *PutMetricAlarmInput) (req *aws.Request, output *PutMetricAlarmOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutMetricAlarm == nil {
 		opPutMetricAlarm = &aws.Operation{
 			Name:       "PutMetricAlarm",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PutMetricAlarmInput{}
 	}
 
 	req = c.newRequest(opPutMetricAlarm, input, output)
@@ -273,23 +364,29 @@ func (c *CloudWatch) PutMetricAlarmRequest(input *PutMetricAlarmInput) (req *aws
 //  When this operation creates an alarm, the alarm state is immediately set
 // to INSUFFICIENT_DATA. The alarm is evaluated and its StateValue is set appropriately.
 // Any actions associated with the StateValue is then executed.
-func (c *CloudWatch) PutMetricAlarm(input *PutMetricAlarmInput) (output *PutMetricAlarmOutput, err error) {
+func (c *CloudWatch) PutMetricAlarm(input *PutMetricAlarmInput) (*PutMetricAlarmOutput, error) {
 	req, out := c.PutMetricAlarmRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opPutMetricAlarm *aws.Operation
 
 // PutMetricDataRequest generates a request for the PutMetricData operation.
 func (c *CloudWatch) PutMetricDataRequest(input *PutMetricDataInput) (req *aws.Request, output *PutMetricDataOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutMetricData == nil {
 		opPutMetricData = &aws.Operation{
 			Name:       "PutMetricData",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PutMetricDataInput{}
 	}
 
 	req = c.newRequest(opPutMetricData, input, output)
@@ -312,23 +409,29 @@ func (c *CloudWatch) PutMetricDataRequest(input *PutMetricDataInput) (req *aws.R
 // exponents less than -130 (1 x 10^-130) are also truncated.  Data that is
 // timestamped 24 hours or more in the past may take in excess of 48 hours to
 // become available from submission time using GetMetricStatistics.
-func (c *CloudWatch) PutMetricData(input *PutMetricDataInput) (output *PutMetricDataOutput, err error) {
+func (c *CloudWatch) PutMetricData(input *PutMetricDataInput) (*PutMetricDataOutput, error) {
 	req, out := c.PutMetricDataRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opPutMetricData *aws.Operation
 
 // SetAlarmStateRequest generates a request for the SetAlarmState operation.
 func (c *CloudWatch) SetAlarmStateRequest(input *SetAlarmStateInput) (req *aws.Request, output *SetAlarmStateOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSetAlarmState == nil {
 		opSetAlarmState = &aws.Operation{
 			Name:       "SetAlarmState",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SetAlarmStateInput{}
 	}
 
 	req = c.newRequest(opSetAlarmState, input, output)
@@ -341,11 +444,10 @@ func (c *CloudWatch) SetAlarmStateRequest(input *SetAlarmStateInput) (req *aws.R
 // from the previous value, the action configured for the appropriate state
 // is invoked. This is not a permanent change. The next periodic alarm check
 // (in about a minute) will set the alarm to its actual state.
-func (c *CloudWatch) SetAlarmState(input *SetAlarmStateInput) (output *SetAlarmStateOutput, err error) {
+func (c *CloudWatch) SetAlarmState(input *SetAlarmStateInput) (*SetAlarmStateOutput, error) {
 	req, out := c.SetAlarmStateRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSetAlarmState *aws.Operation
@@ -373,7 +475,7 @@ type AlarmHistoryItem struct {
 	// in the Amazon CloudWatch Developer Guide.
 	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataAlarmHistoryItem `json:"-", xml:"-"`
+	metadataAlarmHistoryItem `json:"-" xml:"-"`
 }
 
 type metadataAlarmHistoryItem struct {
@@ -409,7 +511,7 @@ type Datapoint struct {
 	// The standard unit used for the datapoint.
 	Unit *string `type:"string"`
 
-	metadataDatapoint `json:"-", xml:"-"`
+	metadataDatapoint `json:"-" xml:"-"`
 }
 
 type metadataDatapoint struct {
@@ -420,7 +522,7 @@ type DeleteAlarmsInput struct {
 	// A list of alarms to be deleted.
 	AlarmNames []*string `type:"list" required:"true"`
 
-	metadataDeleteAlarmsInput `json:"-", xml:"-"`
+	metadataDeleteAlarmsInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAlarmsInput struct {
@@ -428,7 +530,7 @@ type metadataDeleteAlarmsInput struct {
 }
 
 type DeleteAlarmsOutput struct {
-	metadataDeleteAlarmsOutput `json:"-", xml:"-"`
+	metadataDeleteAlarmsOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAlarmsOutput struct {
@@ -455,7 +557,7 @@ type DescribeAlarmHistoryInput struct {
 	// The starting date to retrieve alarm history.
 	StartDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataDescribeAlarmHistoryInput `json:"-", xml:"-"`
+	metadataDescribeAlarmHistoryInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAlarmHistoryInput struct {
@@ -470,7 +572,7 @@ type DescribeAlarmHistoryOutput struct {
 	// A string that marks the start of the next batch of returned results.
 	NextToken *string `type:"string"`
 
-	metadataDescribeAlarmHistoryOutput `json:"-", xml:"-"`
+	metadataDescribeAlarmHistoryOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAlarmHistoryOutput struct {
@@ -496,7 +598,7 @@ type DescribeAlarmsForMetricInput struct {
 	// The unit for the metric.
 	Unit *string `type:"string"`
 
-	metadataDescribeAlarmsForMetricInput `json:"-", xml:"-"`
+	metadataDescribeAlarmsForMetricInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAlarmsForMetricInput struct {
@@ -508,7 +610,7 @@ type DescribeAlarmsForMetricOutput struct {
 	// A list of information for each alarm with the specified metric.
 	MetricAlarms []*MetricAlarm `type:"list"`
 
-	metadataDescribeAlarmsForMetricOutput `json:"-", xml:"-"`
+	metadataDescribeAlarmsForMetricOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAlarmsForMetricOutput struct {
@@ -536,7 +638,7 @@ type DescribeAlarmsInput struct {
 	// The state value to be used in matching alarms.
 	StateValue *string `type:"string"`
 
-	metadataDescribeAlarmsInput `json:"-", xml:"-"`
+	metadataDescribeAlarmsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAlarmsInput struct {
@@ -551,7 +653,7 @@ type DescribeAlarmsOutput struct {
 	// A string that marks the start of the next batch of returned results.
 	NextToken *string `type:"string"`
 
-	metadataDescribeAlarmsOutput `json:"-", xml:"-"`
+	metadataDescribeAlarmsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAlarmsOutput struct {
@@ -569,7 +671,7 @@ type Dimension struct {
 	// The value representing the dimension measurement
 	Value *string `type:"string" required:"true"`
 
-	metadataDimension `json:"-", xml:"-"`
+	metadataDimension `json:"-" xml:"-"`
 }
 
 type metadataDimension struct {
@@ -584,7 +686,7 @@ type DimensionFilter struct {
 	// The value of the dimension to be matched.
 	Value *string `type:"string"`
 
-	metadataDimensionFilter `json:"-", xml:"-"`
+	metadataDimensionFilter `json:"-" xml:"-"`
 }
 
 type metadataDimensionFilter struct {
@@ -595,7 +697,7 @@ type DisableAlarmActionsInput struct {
 	// The names of the alarms to disable actions for.
 	AlarmNames []*string `type:"list" required:"true"`
 
-	metadataDisableAlarmActionsInput `json:"-", xml:"-"`
+	metadataDisableAlarmActionsInput `json:"-" xml:"-"`
 }
 
 type metadataDisableAlarmActionsInput struct {
@@ -603,7 +705,7 @@ type metadataDisableAlarmActionsInput struct {
 }
 
 type DisableAlarmActionsOutput struct {
-	metadataDisableAlarmActionsOutput `json:"-", xml:"-"`
+	metadataDisableAlarmActionsOutput `json:"-" xml:"-"`
 }
 
 type metadataDisableAlarmActionsOutput struct {
@@ -614,7 +716,7 @@ type EnableAlarmActionsInput struct {
 	// The names of the alarms to enable actions for.
 	AlarmNames []*string `type:"list" required:"true"`
 
-	metadataEnableAlarmActionsInput `json:"-", xml:"-"`
+	metadataEnableAlarmActionsInput `json:"-" xml:"-"`
 }
 
 type metadataEnableAlarmActionsInput struct {
@@ -622,7 +724,7 @@ type metadataEnableAlarmActionsInput struct {
 }
 
 type EnableAlarmActionsOutput struct {
-	metadataEnableAlarmActionsOutput `json:"-", xml:"-"`
+	metadataEnableAlarmActionsOutput `json:"-" xml:"-"`
 }
 
 type metadataEnableAlarmActionsOutput struct {
@@ -663,7 +765,7 @@ type GetMetricStatisticsInput struct {
 	// The unit for the metric.
 	Unit *string `type:"string"`
 
-	metadataGetMetricStatisticsInput `json:"-", xml:"-"`
+	metadataGetMetricStatisticsInput `json:"-" xml:"-"`
 }
 
 type metadataGetMetricStatisticsInput struct {
@@ -678,7 +780,7 @@ type GetMetricStatisticsOutput struct {
 	// A label describing the specified metric.
 	Label *string `type:"string"`
 
-	metadataGetMetricStatisticsOutput `json:"-", xml:"-"`
+	metadataGetMetricStatisticsOutput `json:"-" xml:"-"`
 }
 
 type metadataGetMetricStatisticsOutput struct {
@@ -699,7 +801,7 @@ type ListMetricsInput struct {
 	// available.
 	NextToken *string `type:"string"`
 
-	metadataListMetricsInput `json:"-", xml:"-"`
+	metadataListMetricsInput `json:"-" xml:"-"`
 }
 
 type metadataListMetricsInput struct {
@@ -714,7 +816,7 @@ type ListMetricsOutput struct {
 	// A string that marks the start of the next batch of returned results.
 	NextToken *string `type:"string"`
 
-	metadataListMetricsOutput `json:"-", xml:"-"`
+	metadataListMetricsOutput `json:"-" xml:"-"`
 }
 
 type metadataListMetricsOutput struct {
@@ -738,7 +840,7 @@ type Metric struct {
 	// The namespace of the metric.
 	Namespace *string `type:"string"`
 
-	metadataMetric `json:"-", xml:"-"`
+	metadataMetric `json:"-" xml:"-"`
 }
 
 type metadataMetric struct {
@@ -832,7 +934,7 @@ type MetricAlarm struct {
 	// The unit of the alarm's associated metric.
 	Unit *string `type:"string"`
 
-	metadataMetricAlarm `json:"-", xml:"-"`
+	metadataMetricAlarm `json:"-" xml:"-"`
 }
 
 type metadataMetricAlarm struct {
@@ -872,7 +974,7 @@ type MetricDatum struct {
 	// exponents less than -130 (1 x 10^-130) are also truncated.
 	Value *float64 `type:"double"`
 
-	metadataMetricDatum `json:"-", xml:"-"`
+	metadataMetricDatum `json:"-" xml:"-"`
 }
 
 type metadataMetricDatum struct {
@@ -937,7 +1039,7 @@ type PutMetricAlarmInput struct {
 	// The unit for the alarm's associated metric.
 	Unit *string `type:"string"`
 
-	metadataPutMetricAlarmInput `json:"-", xml:"-"`
+	metadataPutMetricAlarmInput `json:"-" xml:"-"`
 }
 
 type metadataPutMetricAlarmInput struct {
@@ -945,7 +1047,7 @@ type metadataPutMetricAlarmInput struct {
 }
 
 type PutMetricAlarmOutput struct {
-	metadataPutMetricAlarmOutput `json:"-", xml:"-"`
+	metadataPutMetricAlarmOutput `json:"-" xml:"-"`
 }
 
 type metadataPutMetricAlarmOutput struct {
@@ -959,7 +1061,7 @@ type PutMetricDataInput struct {
 	// The namespace for the metric data.
 	Namespace *string `type:"string" required:"true"`
 
-	metadataPutMetricDataInput `json:"-", xml:"-"`
+	metadataPutMetricDataInput `json:"-" xml:"-"`
 }
 
 type metadataPutMetricDataInput struct {
@@ -967,7 +1069,7 @@ type metadataPutMetricDataInput struct {
 }
 
 type PutMetricDataOutput struct {
-	metadataPutMetricDataOutput `json:"-", xml:"-"`
+	metadataPutMetricDataOutput `json:"-" xml:"-"`
 }
 
 type metadataPutMetricDataOutput struct {
@@ -990,7 +1092,7 @@ type SetAlarmStateInput struct {
 	// The value of the state.
 	StateValue *string `type:"string" required:"true"`
 
-	metadataSetAlarmStateInput `json:"-", xml:"-"`
+	metadataSetAlarmStateInput `json:"-" xml:"-"`
 }
 
 type metadataSetAlarmStateInput struct {
@@ -998,7 +1100,7 @@ type metadataSetAlarmStateInput struct {
 }
 
 type SetAlarmStateOutput struct {
-	metadataSetAlarmStateOutput `json:"-", xml:"-"`
+	metadataSetAlarmStateOutput `json:"-" xml:"-"`
 }
 
 type metadataSetAlarmStateOutput struct {
@@ -1020,7 +1122,7 @@ type StatisticSet struct {
 	// The sum of values for the sample set.
 	Sum *float64 `type:"double" required:"true"`
 
-	metadataStatisticSet `json:"-", xml:"-"`
+	metadataStatisticSet `json:"-" xml:"-"`
 }
 
 type metadataStatisticSet struct {

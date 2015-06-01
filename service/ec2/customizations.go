@@ -38,8 +38,8 @@ func fillPresignedURL(r *aws.Request) {
 	// Create a new client pointing at source region.
 	// We will use this to presign the CopySnapshot request against
 	// the source region
-	var config aws.Config
-	awsutil.Copy(&config, r.Service.Config)
+	config := r.Service.Config.Copy()
+
 	config.Endpoint = ""
 	config.Region = *params.SourceRegion
 	client := New(&config)

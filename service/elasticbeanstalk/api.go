@@ -4,19 +4,29 @@
 package elasticbeanstalk
 
 import (
+	"sync"
 	"time"
 
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // CheckDNSAvailabilityRequest generates a request for the CheckDNSAvailability operation.
 func (c *ElasticBeanstalk) CheckDNSAvailabilityRequest(input *CheckDNSAvailabilityInput) (req *aws.Request, output *CheckDNSAvailabilityOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCheckDNSAvailability == nil {
 		opCheckDNSAvailability = &aws.Operation{
 			Name:       "CheckDNSAvailability",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CheckDNSAvailabilityInput{}
 	}
 
 	req = c.newRequest(opCheckDNSAvailability, input, output)
@@ -26,23 +36,29 @@ func (c *ElasticBeanstalk) CheckDNSAvailabilityRequest(input *CheckDNSAvailabili
 }
 
 // Checks if the specified CNAME is available.
-func (c *ElasticBeanstalk) CheckDNSAvailability(input *CheckDNSAvailabilityInput) (output *CheckDNSAvailabilityOutput, err error) {
+func (c *ElasticBeanstalk) CheckDNSAvailability(input *CheckDNSAvailabilityInput) (*CheckDNSAvailabilityOutput, error) {
 	req, out := c.CheckDNSAvailabilityRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCheckDNSAvailability *aws.Operation
 
 // CreateApplicationRequest generates a request for the CreateApplication operation.
 func (c *ElasticBeanstalk) CreateApplicationRequest(input *CreateApplicationInput) (req *aws.Request, output *ApplicationDescriptionMessage) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateApplication == nil {
 		opCreateApplication = &aws.Operation{
 			Name:       "CreateApplication",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateApplicationInput{}
 	}
 
 	req = c.newRequest(opCreateApplication, input, output)
@@ -53,23 +69,29 @@ func (c *ElasticBeanstalk) CreateApplicationRequest(input *CreateApplicationInpu
 
 // Creates an application that has one configuration template named default
 // and no application versions.
-func (c *ElasticBeanstalk) CreateApplication(input *CreateApplicationInput) (output *ApplicationDescriptionMessage, err error) {
+func (c *ElasticBeanstalk) CreateApplication(input *CreateApplicationInput) (*ApplicationDescriptionMessage, error) {
 	req, out := c.CreateApplicationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateApplication *aws.Operation
 
 // CreateApplicationVersionRequest generates a request for the CreateApplicationVersion operation.
 func (c *ElasticBeanstalk) CreateApplicationVersionRequest(input *CreateApplicationVersionInput) (req *aws.Request, output *ApplicationVersionDescriptionMessage) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateApplicationVersion == nil {
 		opCreateApplicationVersion = &aws.Operation{
 			Name:       "CreateApplicationVersion",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateApplicationVersionInput{}
 	}
 
 	req = c.newRequest(opCreateApplicationVersion, input, output)
@@ -79,23 +101,29 @@ func (c *ElasticBeanstalk) CreateApplicationVersionRequest(input *CreateApplicat
 }
 
 // Creates an application version for the specified application.
-func (c *ElasticBeanstalk) CreateApplicationVersion(input *CreateApplicationVersionInput) (output *ApplicationVersionDescriptionMessage, err error) {
+func (c *ElasticBeanstalk) CreateApplicationVersion(input *CreateApplicationVersionInput) (*ApplicationVersionDescriptionMessage, error) {
 	req, out := c.CreateApplicationVersionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateApplicationVersion *aws.Operation
 
 // CreateConfigurationTemplateRequest generates a request for the CreateConfigurationTemplate operation.
 func (c *ElasticBeanstalk) CreateConfigurationTemplateRequest(input *CreateConfigurationTemplateInput) (req *aws.Request, output *ConfigurationSettingsDescription) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateConfigurationTemplate == nil {
 		opCreateConfigurationTemplate = &aws.Operation{
 			Name:       "CreateConfigurationTemplate",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateConfigurationTemplateInput{}
 	}
 
 	req = c.newRequest(opCreateConfigurationTemplate, input, output)
@@ -111,23 +139,29 @@ func (c *ElasticBeanstalk) CreateConfigurationTemplateRequest(input *CreateConfi
 // Related Topics
 //
 //   DescribeConfigurationOptions   DescribeConfigurationSettings   ListAvailableSolutionStacks
-func (c *ElasticBeanstalk) CreateConfigurationTemplate(input *CreateConfigurationTemplateInput) (output *ConfigurationSettingsDescription, err error) {
+func (c *ElasticBeanstalk) CreateConfigurationTemplate(input *CreateConfigurationTemplateInput) (*ConfigurationSettingsDescription, error) {
 	req, out := c.CreateConfigurationTemplateRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateConfigurationTemplate *aws.Operation
 
 // CreateEnvironmentRequest generates a request for the CreateEnvironment operation.
 func (c *ElasticBeanstalk) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req *aws.Request, output *EnvironmentDescription) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateEnvironment == nil {
 		opCreateEnvironment = &aws.Operation{
 			Name:       "CreateEnvironment",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateEnvironmentInput{}
 	}
 
 	req = c.newRequest(opCreateEnvironment, input, output)
@@ -138,23 +172,29 @@ func (c *ElasticBeanstalk) CreateEnvironmentRequest(input *CreateEnvironmentInpu
 
 // Launches an environment for the specified application using the specified
 // configuration.
-func (c *ElasticBeanstalk) CreateEnvironment(input *CreateEnvironmentInput) (output *EnvironmentDescription, err error) {
+func (c *ElasticBeanstalk) CreateEnvironment(input *CreateEnvironmentInput) (*EnvironmentDescription, error) {
 	req, out := c.CreateEnvironmentRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateEnvironment *aws.Operation
 
 // CreateStorageLocationRequest generates a request for the CreateStorageLocation operation.
 func (c *ElasticBeanstalk) CreateStorageLocationRequest(input *CreateStorageLocationInput) (req *aws.Request, output *CreateStorageLocationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateStorageLocation == nil {
 		opCreateStorageLocation = &aws.Operation{
 			Name:       "CreateStorageLocation",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateStorageLocationInput{}
 	}
 
 	req = c.newRequest(opCreateStorageLocation, input, output)
@@ -166,23 +206,29 @@ func (c *ElasticBeanstalk) CreateStorageLocationRequest(input *CreateStorageLoca
 // Creates the Amazon S3 storage location for the account.
 //
 //  This location is used to store user log files.
-func (c *ElasticBeanstalk) CreateStorageLocation(input *CreateStorageLocationInput) (output *CreateStorageLocationOutput, err error) {
+func (c *ElasticBeanstalk) CreateStorageLocation(input *CreateStorageLocationInput) (*CreateStorageLocationOutput, error) {
 	req, out := c.CreateStorageLocationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateStorageLocation *aws.Operation
 
 // DeleteApplicationRequest generates a request for the DeleteApplication operation.
 func (c *ElasticBeanstalk) DeleteApplicationRequest(input *DeleteApplicationInput) (req *aws.Request, output *DeleteApplicationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteApplication == nil {
 		opDeleteApplication = &aws.Operation{
 			Name:       "DeleteApplication",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteApplicationInput{}
 	}
 
 	req = c.newRequest(opDeleteApplication, input, output)
@@ -194,23 +240,29 @@ func (c *ElasticBeanstalk) DeleteApplicationRequest(input *DeleteApplicationInpu
 // Deletes the specified application along with all associated versions and
 // configurations. The application versions will not be deleted from your Amazon
 // S3 bucket.
-func (c *ElasticBeanstalk) DeleteApplication(input *DeleteApplicationInput) (output *DeleteApplicationOutput, err error) {
+func (c *ElasticBeanstalk) DeleteApplication(input *DeleteApplicationInput) (*DeleteApplicationOutput, error) {
 	req, out := c.DeleteApplicationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteApplication *aws.Operation
 
 // DeleteApplicationVersionRequest generates a request for the DeleteApplicationVersion operation.
 func (c *ElasticBeanstalk) DeleteApplicationVersionRequest(input *DeleteApplicationVersionInput) (req *aws.Request, output *DeleteApplicationVersionOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteApplicationVersion == nil {
 		opDeleteApplicationVersion = &aws.Operation{
 			Name:       "DeleteApplicationVersion",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteApplicationVersionInput{}
 	}
 
 	req = c.newRequest(opDeleteApplicationVersion, input, output)
@@ -220,23 +272,29 @@ func (c *ElasticBeanstalk) DeleteApplicationVersionRequest(input *DeleteApplicat
 }
 
 // Deletes the specified version from the specified application.
-func (c *ElasticBeanstalk) DeleteApplicationVersion(input *DeleteApplicationVersionInput) (output *DeleteApplicationVersionOutput, err error) {
+func (c *ElasticBeanstalk) DeleteApplicationVersion(input *DeleteApplicationVersionInput) (*DeleteApplicationVersionOutput, error) {
 	req, out := c.DeleteApplicationVersionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteApplicationVersion *aws.Operation
 
 // DeleteConfigurationTemplateRequest generates a request for the DeleteConfigurationTemplate operation.
 func (c *ElasticBeanstalk) DeleteConfigurationTemplateRequest(input *DeleteConfigurationTemplateInput) (req *aws.Request, output *DeleteConfigurationTemplateOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteConfigurationTemplate == nil {
 		opDeleteConfigurationTemplate = &aws.Operation{
 			Name:       "DeleteConfigurationTemplate",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteConfigurationTemplateInput{}
 	}
 
 	req = c.newRequest(opDeleteConfigurationTemplate, input, output)
@@ -246,23 +304,29 @@ func (c *ElasticBeanstalk) DeleteConfigurationTemplateRequest(input *DeleteConfi
 }
 
 // Deletes the specified configuration template.
-func (c *ElasticBeanstalk) DeleteConfigurationTemplate(input *DeleteConfigurationTemplateInput) (output *DeleteConfigurationTemplateOutput, err error) {
+func (c *ElasticBeanstalk) DeleteConfigurationTemplate(input *DeleteConfigurationTemplateInput) (*DeleteConfigurationTemplateOutput, error) {
 	req, out := c.DeleteConfigurationTemplateRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteConfigurationTemplate *aws.Operation
 
 // DeleteEnvironmentConfigurationRequest generates a request for the DeleteEnvironmentConfiguration operation.
 func (c *ElasticBeanstalk) DeleteEnvironmentConfigurationRequest(input *DeleteEnvironmentConfigurationInput) (req *aws.Request, output *DeleteEnvironmentConfigurationOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteEnvironmentConfiguration == nil {
 		opDeleteEnvironmentConfiguration = &aws.Operation{
 			Name:       "DeleteEnvironmentConfiguration",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteEnvironmentConfigurationInput{}
 	}
 
 	req = c.newRequest(opDeleteEnvironmentConfiguration, input, output)
@@ -279,23 +343,29 @@ func (c *ElasticBeanstalk) DeleteEnvironmentConfigurationRequest(input *DeleteEn
 // for the draft configuration indicates whether the deployment is in process
 // or has failed. The draft configuration remains in existence until it is deleted
 // with this action.
-func (c *ElasticBeanstalk) DeleteEnvironmentConfiguration(input *DeleteEnvironmentConfigurationInput) (output *DeleteEnvironmentConfigurationOutput, err error) {
+func (c *ElasticBeanstalk) DeleteEnvironmentConfiguration(input *DeleteEnvironmentConfigurationInput) (*DeleteEnvironmentConfigurationOutput, error) {
 	req, out := c.DeleteEnvironmentConfigurationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteEnvironmentConfiguration *aws.Operation
 
 // DescribeApplicationVersionsRequest generates a request for the DescribeApplicationVersions operation.
 func (c *ElasticBeanstalk) DescribeApplicationVersionsRequest(input *DescribeApplicationVersionsInput) (req *aws.Request, output *DescribeApplicationVersionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeApplicationVersions == nil {
 		opDescribeApplicationVersions = &aws.Operation{
 			Name:       "DescribeApplicationVersions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeApplicationVersionsInput{}
 	}
 
 	req = c.newRequest(opDescribeApplicationVersions, input, output)
@@ -305,23 +375,29 @@ func (c *ElasticBeanstalk) DescribeApplicationVersionsRequest(input *DescribeApp
 }
 
 // Returns descriptions for existing application versions.
-func (c *ElasticBeanstalk) DescribeApplicationVersions(input *DescribeApplicationVersionsInput) (output *DescribeApplicationVersionsOutput, err error) {
+func (c *ElasticBeanstalk) DescribeApplicationVersions(input *DescribeApplicationVersionsInput) (*DescribeApplicationVersionsOutput, error) {
 	req, out := c.DescribeApplicationVersionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeApplicationVersions *aws.Operation
 
 // DescribeApplicationsRequest generates a request for the DescribeApplications operation.
 func (c *ElasticBeanstalk) DescribeApplicationsRequest(input *DescribeApplicationsInput) (req *aws.Request, output *DescribeApplicationsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeApplications == nil {
 		opDescribeApplications = &aws.Operation{
 			Name:       "DescribeApplications",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeApplicationsInput{}
 	}
 
 	req = c.newRequest(opDescribeApplications, input, output)
@@ -331,23 +407,29 @@ func (c *ElasticBeanstalk) DescribeApplicationsRequest(input *DescribeApplicatio
 }
 
 // Returns the descriptions of existing applications.
-func (c *ElasticBeanstalk) DescribeApplications(input *DescribeApplicationsInput) (output *DescribeApplicationsOutput, err error) {
+func (c *ElasticBeanstalk) DescribeApplications(input *DescribeApplicationsInput) (*DescribeApplicationsOutput, error) {
 	req, out := c.DescribeApplicationsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeApplications *aws.Operation
 
 // DescribeConfigurationOptionsRequest generates a request for the DescribeConfigurationOptions operation.
 func (c *ElasticBeanstalk) DescribeConfigurationOptionsRequest(input *DescribeConfigurationOptionsInput) (req *aws.Request, output *DescribeConfigurationOptionsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeConfigurationOptions == nil {
 		opDescribeConfigurationOptions = &aws.Operation{
 			Name:       "DescribeConfigurationOptions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeConfigurationOptionsInput{}
 	}
 
 	req = c.newRequest(opDescribeConfigurationOptions, input, output)
@@ -361,23 +443,29 @@ func (c *ElasticBeanstalk) DescribeConfigurationOptionsRequest(input *DescribeCo
 // description includes the values the options, their default values, and an
 // indication of the required action on a running environment if an option value
 // is changed.
-func (c *ElasticBeanstalk) DescribeConfigurationOptions(input *DescribeConfigurationOptionsInput) (output *DescribeConfigurationOptionsOutput, err error) {
+func (c *ElasticBeanstalk) DescribeConfigurationOptions(input *DescribeConfigurationOptionsInput) (*DescribeConfigurationOptionsOutput, error) {
 	req, out := c.DescribeConfigurationOptionsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeConfigurationOptions *aws.Operation
 
 // DescribeConfigurationSettingsRequest generates a request for the DescribeConfigurationSettings operation.
 func (c *ElasticBeanstalk) DescribeConfigurationSettingsRequest(input *DescribeConfigurationSettingsInput) (req *aws.Request, output *DescribeConfigurationSettingsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeConfigurationSettings == nil {
 		opDescribeConfigurationSettings = &aws.Operation{
 			Name:       "DescribeConfigurationSettings",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeConfigurationSettingsInput{}
 	}
 
 	req = c.newRequest(opDescribeConfigurationSettings, input, output)
@@ -399,23 +487,29 @@ func (c *ElasticBeanstalk) DescribeConfigurationSettingsRequest(input *DescribeC
 // Related Topics
 //
 //   DeleteEnvironmentConfiguration
-func (c *ElasticBeanstalk) DescribeConfigurationSettings(input *DescribeConfigurationSettingsInput) (output *DescribeConfigurationSettingsOutput, err error) {
+func (c *ElasticBeanstalk) DescribeConfigurationSettings(input *DescribeConfigurationSettingsInput) (*DescribeConfigurationSettingsOutput, error) {
 	req, out := c.DescribeConfigurationSettingsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeConfigurationSettings *aws.Operation
 
 // DescribeEnvironmentResourcesRequest generates a request for the DescribeEnvironmentResources operation.
 func (c *ElasticBeanstalk) DescribeEnvironmentResourcesRequest(input *DescribeEnvironmentResourcesInput) (req *aws.Request, output *DescribeEnvironmentResourcesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeEnvironmentResources == nil {
 		opDescribeEnvironmentResources = &aws.Operation{
 			Name:       "DescribeEnvironmentResources",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeEnvironmentResourcesInput{}
 	}
 
 	req = c.newRequest(opDescribeEnvironmentResources, input, output)
@@ -425,23 +519,29 @@ func (c *ElasticBeanstalk) DescribeEnvironmentResourcesRequest(input *DescribeEn
 }
 
 // Returns AWS resources for this environment.
-func (c *ElasticBeanstalk) DescribeEnvironmentResources(input *DescribeEnvironmentResourcesInput) (output *DescribeEnvironmentResourcesOutput, err error) {
+func (c *ElasticBeanstalk) DescribeEnvironmentResources(input *DescribeEnvironmentResourcesInput) (*DescribeEnvironmentResourcesOutput, error) {
 	req, out := c.DescribeEnvironmentResourcesRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeEnvironmentResources *aws.Operation
 
 // DescribeEnvironmentsRequest generates a request for the DescribeEnvironments operation.
 func (c *ElasticBeanstalk) DescribeEnvironmentsRequest(input *DescribeEnvironmentsInput) (req *aws.Request, output *DescribeEnvironmentsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeEnvironments == nil {
 		opDescribeEnvironments = &aws.Operation{
 			Name:       "DescribeEnvironments",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeEnvironmentsInput{}
 	}
 
 	req = c.newRequest(opDescribeEnvironments, input, output)
@@ -451,23 +551,35 @@ func (c *ElasticBeanstalk) DescribeEnvironmentsRequest(input *DescribeEnvironmen
 }
 
 // Returns descriptions for existing environments.
-func (c *ElasticBeanstalk) DescribeEnvironments(input *DescribeEnvironmentsInput) (output *DescribeEnvironmentsOutput, err error) {
+func (c *ElasticBeanstalk) DescribeEnvironments(input *DescribeEnvironmentsInput) (*DescribeEnvironmentsOutput, error) {
 	req, out := c.DescribeEnvironmentsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeEnvironments *aws.Operation
 
 // DescribeEventsRequest generates a request for the DescribeEvents operation.
 func (c *ElasticBeanstalk) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Request, output *DescribeEventsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeEvents == nil {
 		opDescribeEvents = &aws.Operation{
 			Name:       "DescribeEvents",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"NextToken"},
+				OutputTokens:    []string{"NextToken"},
+				LimitToken:      "MaxRecords",
+				TruncationToken: "",
+			},
 		}
+	}
+
+	if input == nil {
+		input = &DescribeEventsInput{}
 	}
 
 	req = c.newRequest(opDescribeEvents, input, output)
@@ -477,23 +589,34 @@ func (c *ElasticBeanstalk) DescribeEventsRequest(input *DescribeEventsInput) (re
 }
 
 // Returns list of event descriptions matching criteria up to the last 6 weeks.
-func (c *ElasticBeanstalk) DescribeEvents(input *DescribeEventsInput) (output *DescribeEventsOutput, err error) {
+func (c *ElasticBeanstalk) DescribeEvents(input *DescribeEventsInput) (*DescribeEventsOutput, error) {
 	req, out := c.DescribeEventsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
+}
+
+func (c *ElasticBeanstalk) DescribeEventsPages(input *DescribeEventsInput, fn func(p *DescribeEventsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeEventsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opDescribeEvents *aws.Operation
 
 // ListAvailableSolutionStacksRequest generates a request for the ListAvailableSolutionStacks operation.
 func (c *ElasticBeanstalk) ListAvailableSolutionStacksRequest(input *ListAvailableSolutionStacksInput) (req *aws.Request, output *ListAvailableSolutionStacksOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opListAvailableSolutionStacks == nil {
 		opListAvailableSolutionStacks = &aws.Operation{
 			Name:       "ListAvailableSolutionStacks",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ListAvailableSolutionStacksInput{}
 	}
 
 	req = c.newRequest(opListAvailableSolutionStacks, input, output)
@@ -503,23 +626,29 @@ func (c *ElasticBeanstalk) ListAvailableSolutionStacksRequest(input *ListAvailab
 }
 
 // Returns a list of the available solution stack names.
-func (c *ElasticBeanstalk) ListAvailableSolutionStacks(input *ListAvailableSolutionStacksInput) (output *ListAvailableSolutionStacksOutput, err error) {
+func (c *ElasticBeanstalk) ListAvailableSolutionStacks(input *ListAvailableSolutionStacksInput) (*ListAvailableSolutionStacksOutput, error) {
 	req, out := c.ListAvailableSolutionStacksRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opListAvailableSolutionStacks *aws.Operation
 
 // RebuildEnvironmentRequest generates a request for the RebuildEnvironment operation.
 func (c *ElasticBeanstalk) RebuildEnvironmentRequest(input *RebuildEnvironmentInput) (req *aws.Request, output *RebuildEnvironmentOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRebuildEnvironment == nil {
 		opRebuildEnvironment = &aws.Operation{
 			Name:       "RebuildEnvironment",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RebuildEnvironmentInput{}
 	}
 
 	req = c.newRequest(opRebuildEnvironment, input, output)
@@ -530,23 +659,29 @@ func (c *ElasticBeanstalk) RebuildEnvironmentRequest(input *RebuildEnvironmentIn
 
 // Deletes and recreates all of the AWS resources (for example: the Auto Scaling
 // group, load balancer, etc.) for a specified environment and forces a restart.
-func (c *ElasticBeanstalk) RebuildEnvironment(input *RebuildEnvironmentInput) (output *RebuildEnvironmentOutput, err error) {
+func (c *ElasticBeanstalk) RebuildEnvironment(input *RebuildEnvironmentInput) (*RebuildEnvironmentOutput, error) {
 	req, out := c.RebuildEnvironmentRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRebuildEnvironment *aws.Operation
 
 // RequestEnvironmentInfoRequest generates a request for the RequestEnvironmentInfo operation.
 func (c *ElasticBeanstalk) RequestEnvironmentInfoRequest(input *RequestEnvironmentInfoInput) (req *aws.Request, output *RequestEnvironmentInfoOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRequestEnvironmentInfo == nil {
 		opRequestEnvironmentInfo = &aws.Operation{
 			Name:       "RequestEnvironmentInfo",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RequestEnvironmentInfoInput{}
 	}
 
 	req = c.newRequest(opRequestEnvironmentInfo, input, output)
@@ -565,23 +700,29 @@ func (c *ElasticBeanstalk) RequestEnvironmentInfoRequest(input *RequestEnvironme
 // Related Topics
 //
 //   RetrieveEnvironmentInfo
-func (c *ElasticBeanstalk) RequestEnvironmentInfo(input *RequestEnvironmentInfoInput) (output *RequestEnvironmentInfoOutput, err error) {
+func (c *ElasticBeanstalk) RequestEnvironmentInfo(input *RequestEnvironmentInfoInput) (*RequestEnvironmentInfoOutput, error) {
 	req, out := c.RequestEnvironmentInfoRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRequestEnvironmentInfo *aws.Operation
 
 // RestartAppServerRequest generates a request for the RestartAppServer operation.
 func (c *ElasticBeanstalk) RestartAppServerRequest(input *RestartAppServerInput) (req *aws.Request, output *RestartAppServerOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRestartAppServer == nil {
 		opRestartAppServer = &aws.Operation{
 			Name:       "RestartAppServer",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RestartAppServerInput{}
 	}
 
 	req = c.newRequest(opRestartAppServer, input, output)
@@ -592,23 +733,29 @@ func (c *ElasticBeanstalk) RestartAppServerRequest(input *RestartAppServerInput)
 
 // Causes the environment to restart the application container server running
 // on each Amazon EC2 instance.
-func (c *ElasticBeanstalk) RestartAppServer(input *RestartAppServerInput) (output *RestartAppServerOutput, err error) {
+func (c *ElasticBeanstalk) RestartAppServer(input *RestartAppServerInput) (*RestartAppServerOutput, error) {
 	req, out := c.RestartAppServerRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRestartAppServer *aws.Operation
 
 // RetrieveEnvironmentInfoRequest generates a request for the RetrieveEnvironmentInfo operation.
 func (c *ElasticBeanstalk) RetrieveEnvironmentInfoRequest(input *RetrieveEnvironmentInfoInput) (req *aws.Request, output *RetrieveEnvironmentInfoOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opRetrieveEnvironmentInfo == nil {
 		opRetrieveEnvironmentInfo = &aws.Operation{
 			Name:       "RetrieveEnvironmentInfo",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &RetrieveEnvironmentInfoInput{}
 	}
 
 	req = c.newRequest(opRetrieveEnvironmentInfo, input, output)
@@ -622,23 +769,29 @@ func (c *ElasticBeanstalk) RetrieveEnvironmentInfoRequest(input *RetrieveEnviron
 // Related Topics
 //
 //   RequestEnvironmentInfo
-func (c *ElasticBeanstalk) RetrieveEnvironmentInfo(input *RetrieveEnvironmentInfoInput) (output *RetrieveEnvironmentInfoOutput, err error) {
+func (c *ElasticBeanstalk) RetrieveEnvironmentInfo(input *RetrieveEnvironmentInfoInput) (*RetrieveEnvironmentInfoOutput, error) {
 	req, out := c.RetrieveEnvironmentInfoRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opRetrieveEnvironmentInfo *aws.Operation
 
 // SwapEnvironmentCNAMEsRequest generates a request for the SwapEnvironmentCNAMEs operation.
 func (c *ElasticBeanstalk) SwapEnvironmentCNAMEsRequest(input *SwapEnvironmentCNAMEsInput) (req *aws.Request, output *SwapEnvironmentCNAMEsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opSwapEnvironmentCNAMEs == nil {
 		opSwapEnvironmentCNAMEs = &aws.Operation{
 			Name:       "SwapEnvironmentCNAMEs",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &SwapEnvironmentCNAMEsInput{}
 	}
 
 	req = c.newRequest(opSwapEnvironmentCNAMEs, input, output)
@@ -648,23 +801,29 @@ func (c *ElasticBeanstalk) SwapEnvironmentCNAMEsRequest(input *SwapEnvironmentCN
 }
 
 // Swaps the CNAMEs of two environments.
-func (c *ElasticBeanstalk) SwapEnvironmentCNAMEs(input *SwapEnvironmentCNAMEsInput) (output *SwapEnvironmentCNAMEsOutput, err error) {
+func (c *ElasticBeanstalk) SwapEnvironmentCNAMEs(input *SwapEnvironmentCNAMEsInput) (*SwapEnvironmentCNAMEsOutput, error) {
 	req, out := c.SwapEnvironmentCNAMEsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opSwapEnvironmentCNAMEs *aws.Operation
 
 // TerminateEnvironmentRequest generates a request for the TerminateEnvironment operation.
 func (c *ElasticBeanstalk) TerminateEnvironmentRequest(input *TerminateEnvironmentInput) (req *aws.Request, output *EnvironmentDescription) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opTerminateEnvironment == nil {
 		opTerminateEnvironment = &aws.Operation{
 			Name:       "TerminateEnvironment",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &TerminateEnvironmentInput{}
 	}
 
 	req = c.newRequest(opTerminateEnvironment, input, output)
@@ -674,23 +833,29 @@ func (c *ElasticBeanstalk) TerminateEnvironmentRequest(input *TerminateEnvironme
 }
 
 // Terminates the specified environment.
-func (c *ElasticBeanstalk) TerminateEnvironment(input *TerminateEnvironmentInput) (output *EnvironmentDescription, err error) {
+func (c *ElasticBeanstalk) TerminateEnvironment(input *TerminateEnvironmentInput) (*EnvironmentDescription, error) {
 	req, out := c.TerminateEnvironmentRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opTerminateEnvironment *aws.Operation
 
 // UpdateApplicationRequest generates a request for the UpdateApplication operation.
 func (c *ElasticBeanstalk) UpdateApplicationRequest(input *UpdateApplicationInput) (req *aws.Request, output *ApplicationDescriptionMessage) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateApplication == nil {
 		opUpdateApplication = &aws.Operation{
 			Name:       "UpdateApplication",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateApplicationInput{}
 	}
 
 	req = c.newRequest(opUpdateApplication, input, output)
@@ -700,23 +865,29 @@ func (c *ElasticBeanstalk) UpdateApplicationRequest(input *UpdateApplicationInpu
 }
 
 // Updates the specified application to have the specified properties.
-func (c *ElasticBeanstalk) UpdateApplication(input *UpdateApplicationInput) (output *ApplicationDescriptionMessage, err error) {
+func (c *ElasticBeanstalk) UpdateApplication(input *UpdateApplicationInput) (*ApplicationDescriptionMessage, error) {
 	req, out := c.UpdateApplicationRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateApplication *aws.Operation
 
 // UpdateApplicationVersionRequest generates a request for the UpdateApplicationVersion operation.
 func (c *ElasticBeanstalk) UpdateApplicationVersionRequest(input *UpdateApplicationVersionInput) (req *aws.Request, output *ApplicationVersionDescriptionMessage) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateApplicationVersion == nil {
 		opUpdateApplicationVersion = &aws.Operation{
 			Name:       "UpdateApplicationVersion",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateApplicationVersionInput{}
 	}
 
 	req = c.newRequest(opUpdateApplicationVersion, input, output)
@@ -726,23 +897,29 @@ func (c *ElasticBeanstalk) UpdateApplicationVersionRequest(input *UpdateApplicat
 }
 
 // Updates the specified application version to have the specified properties.
-func (c *ElasticBeanstalk) UpdateApplicationVersion(input *UpdateApplicationVersionInput) (output *ApplicationVersionDescriptionMessage, err error) {
+func (c *ElasticBeanstalk) UpdateApplicationVersion(input *UpdateApplicationVersionInput) (*ApplicationVersionDescriptionMessage, error) {
 	req, out := c.UpdateApplicationVersionRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateApplicationVersion *aws.Operation
 
 // UpdateConfigurationTemplateRequest generates a request for the UpdateConfigurationTemplate operation.
 func (c *ElasticBeanstalk) UpdateConfigurationTemplateRequest(input *UpdateConfigurationTemplateInput) (req *aws.Request, output *ConfigurationSettingsDescription) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateConfigurationTemplate == nil {
 		opUpdateConfigurationTemplate = &aws.Operation{
 			Name:       "UpdateConfigurationTemplate",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateConfigurationTemplateInput{}
 	}
 
 	req = c.newRequest(opUpdateConfigurationTemplate, input, output)
@@ -757,23 +934,29 @@ func (c *ElasticBeanstalk) UpdateConfigurationTemplateRequest(input *UpdateConfi
 // Related Topics
 //
 //   DescribeConfigurationOptions
-func (c *ElasticBeanstalk) UpdateConfigurationTemplate(input *UpdateConfigurationTemplateInput) (output *ConfigurationSettingsDescription, err error) {
+func (c *ElasticBeanstalk) UpdateConfigurationTemplate(input *UpdateConfigurationTemplateInput) (*ConfigurationSettingsDescription, error) {
 	req, out := c.UpdateConfigurationTemplateRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateConfigurationTemplate *aws.Operation
 
 // UpdateEnvironmentRequest generates a request for the UpdateEnvironment operation.
 func (c *ElasticBeanstalk) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req *aws.Request, output *EnvironmentDescription) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opUpdateEnvironment == nil {
 		opUpdateEnvironment = &aws.Operation{
 			Name:       "UpdateEnvironment",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &UpdateEnvironmentInput{}
 	}
 
 	req = c.newRequest(opUpdateEnvironment, input, output)
@@ -793,23 +976,29 @@ func (c *ElasticBeanstalk) UpdateEnvironmentRequest(input *UpdateEnvironmentInpu
 // settings, a draft configuration is created and DescribeConfigurationSettings
 // for this environment returns two setting descriptions with different DeploymentStatus
 // values.
-func (c *ElasticBeanstalk) UpdateEnvironment(input *UpdateEnvironmentInput) (output *EnvironmentDescription, err error) {
+func (c *ElasticBeanstalk) UpdateEnvironment(input *UpdateEnvironmentInput) (*EnvironmentDescription, error) {
 	req, out := c.UpdateEnvironmentRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opUpdateEnvironment *aws.Operation
 
 // ValidateConfigurationSettingsRequest generates a request for the ValidateConfigurationSettings operation.
 func (c *ElasticBeanstalk) ValidateConfigurationSettingsRequest(input *ValidateConfigurationSettingsInput) (req *aws.Request, output *ValidateConfigurationSettingsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opValidateConfigurationSettings == nil {
 		opValidateConfigurationSettings = &aws.Operation{
 			Name:       "ValidateConfigurationSettings",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &ValidateConfigurationSettingsInput{}
 	}
 
 	req = c.newRequest(opValidateConfigurationSettings, input, output)
@@ -823,11 +1012,10 @@ func (c *ElasticBeanstalk) ValidateConfigurationSettingsRequest(input *ValidateC
 //
 //  This action returns a list of messages indicating any errors or warnings
 // associated with the selection of option values.
-func (c *ElasticBeanstalk) ValidateConfigurationSettings(input *ValidateConfigurationSettingsInput) (output *ValidateConfigurationSettingsOutput, err error) {
+func (c *ElasticBeanstalk) ValidateConfigurationSettings(input *ValidateConfigurationSettingsInput) (*ValidateConfigurationSettingsOutput, error) {
 	req, out := c.ValidateConfigurationSettingsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opValidateConfigurationSettings *aws.Operation
@@ -852,7 +1040,7 @@ type ApplicationDescription struct {
 	// The names of the versions for this application.
 	Versions []*string `type:"list"`
 
-	metadataApplicationDescription `json:"-", xml:"-"`
+	metadataApplicationDescription `json:"-" xml:"-"`
 }
 
 type metadataApplicationDescription struct {
@@ -864,7 +1052,7 @@ type ApplicationDescriptionMessage struct {
 	// The ApplicationDescription of the application.
 	Application *ApplicationDescription `type:"structure"`
 
-	metadataApplicationDescriptionMessage `json:"-", xml:"-"`
+	metadataApplicationDescriptionMessage `json:"-" xml:"-"`
 }
 
 type metadataApplicationDescriptionMessage struct {
@@ -891,7 +1079,7 @@ type ApplicationVersionDescription struct {
 	// A label uniquely identifying the version for the associated application.
 	VersionLabel *string `type:"string"`
 
-	metadataApplicationVersionDescription `json:"-", xml:"-"`
+	metadataApplicationVersionDescription `json:"-" xml:"-"`
 }
 
 type metadataApplicationVersionDescription struct {
@@ -903,7 +1091,7 @@ type ApplicationVersionDescriptionMessage struct {
 	// The ApplicationVersionDescription of the application version.
 	ApplicationVersion *ApplicationVersionDescription `type:"structure"`
 
-	metadataApplicationVersionDescriptionMessage `json:"-", xml:"-"`
+	metadataApplicationVersionDescriptionMessage `json:"-" xml:"-"`
 }
 
 type metadataApplicationVersionDescriptionMessage struct {
@@ -915,7 +1103,7 @@ type AutoScalingGroup struct {
 	// The name of the AutoScalingGroup .
 	Name *string `type:"string"`
 
-	metadataAutoScalingGroup `json:"-", xml:"-"`
+	metadataAutoScalingGroup `json:"-" xml:"-"`
 }
 
 type metadataAutoScalingGroup struct {
@@ -927,7 +1115,7 @@ type CheckDNSAvailabilityInput struct {
 	// The prefix used when this CNAME is reserved.
 	CNAMEPrefix *string `type:"string" required:"true"`
 
-	metadataCheckDNSAvailabilityInput `json:"-", xml:"-"`
+	metadataCheckDNSAvailabilityInput `json:"-" xml:"-"`
 }
 
 type metadataCheckDNSAvailabilityInput struct {
@@ -949,7 +1137,7 @@ type CheckDNSAvailabilityOutput struct {
 	// the provided prefix.
 	FullyQualifiedCNAME *string `type:"string"`
 
-	metadataCheckDNSAvailabilityOutput `json:"-", xml:"-"`
+	metadataCheckDNSAvailabilityOutput `json:"-" xml:"-"`
 }
 
 type metadataCheckDNSAvailabilityOutput struct {
@@ -1046,7 +1234,7 @@ type ConfigurationOptionDescription struct {
 	// false .
 	ValueType *string `type:"string"`
 
-	metadataConfigurationOptionDescription `json:"-", xml:"-"`
+	metadataConfigurationOptionDescription `json:"-" xml:"-"`
 }
 
 type metadataConfigurationOptionDescription struct {
@@ -1067,7 +1255,7 @@ type ConfigurationOptionSetting struct {
 	// The current value for the configuration option.
 	Value *string `type:"string"`
 
-	metadataConfigurationOptionSetting `json:"-", xml:"-"`
+	metadataConfigurationOptionSetting `json:"-" xml:"-"`
 }
 
 type metadataConfigurationOptionSetting struct {
@@ -1122,7 +1310,7 @@ type ConfigurationSettingsDescription struct {
 	// set.
 	TemplateName *string `type:"string"`
 
-	metadataConfigurationSettingsDescription `json:"-", xml:"-"`
+	metadataConfigurationSettingsDescription `json:"-" xml:"-"`
 }
 
 type metadataConfigurationSettingsDescription struct {
@@ -1140,7 +1328,7 @@ type CreateApplicationInput struct {
 	// Describes the application.
 	Description *string `type:"string"`
 
-	metadataCreateApplicationInput `json:"-", xml:"-"`
+	metadataCreateApplicationInput `json:"-" xml:"-"`
 }
 
 type metadataCreateApplicationInput struct {
@@ -1192,7 +1380,7 @@ type CreateApplicationVersionInput struct {
 	// returns an InvalidParameterValue error.
 	VersionLabel *string `type:"string" required:"true"`
 
-	metadataCreateApplicationVersionInput `json:"-", xml:"-"`
+	metadataCreateApplicationVersionInput `json:"-" xml:"-"`
 }
 
 type metadataCreateApplicationVersionInput struct {
@@ -1256,7 +1444,7 @@ type CreateConfigurationTemplateInput struct {
 	// Elastic Beanstalk returns an InvalidParameterValue error.
 	TemplateName *string `type:"string" required:"true"`
 
-	metadataCreateConfigurationTemplateInput `json:"-", xml:"-"`
+	metadataCreateConfigurationTemplateInput `json:"-" xml:"-"`
 }
 
 type metadataCreateConfigurationTemplateInput struct {
@@ -1334,7 +1522,7 @@ type CreateEnvironmentInput struct {
 	// sample application in the container.
 	VersionLabel *string `type:"string"`
 
-	metadataCreateEnvironmentInput `json:"-", xml:"-"`
+	metadataCreateEnvironmentInput `json:"-" xml:"-"`
 }
 
 type metadataCreateEnvironmentInput struct {
@@ -1342,7 +1530,7 @@ type metadataCreateEnvironmentInput struct {
 }
 
 type CreateStorageLocationInput struct {
-	metadataCreateStorageLocationInput `json:"-", xml:"-"`
+	metadataCreateStorageLocationInput `json:"-" xml:"-"`
 }
 
 type metadataCreateStorageLocationInput struct {
@@ -1354,7 +1542,7 @@ type CreateStorageLocationOutput struct {
 	// The name of the Amazon S3 bucket created.
 	S3Bucket *string `type:"string"`
 
-	metadataCreateStorageLocationOutput `json:"-", xml:"-"`
+	metadataCreateStorageLocationOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateStorageLocationOutput struct {
@@ -1370,7 +1558,7 @@ type DeleteApplicationInput struct {
 	// the application.
 	TerminateEnvByForce *bool `type:"boolean"`
 
-	metadataDeleteApplicationInput `json:"-", xml:"-"`
+	metadataDeleteApplicationInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteApplicationInput struct {
@@ -1378,7 +1566,7 @@ type metadataDeleteApplicationInput struct {
 }
 
 type DeleteApplicationOutput struct {
-	metadataDeleteApplicationOutput `json:"-", xml:"-"`
+	metadataDeleteApplicationOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteApplicationOutput struct {
@@ -1400,7 +1588,7 @@ type DeleteApplicationVersionInput struct {
 	// The label of the version to delete.
 	VersionLabel *string `type:"string" required:"true"`
 
-	metadataDeleteApplicationVersionInput `json:"-", xml:"-"`
+	metadataDeleteApplicationVersionInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteApplicationVersionInput struct {
@@ -1408,7 +1596,7 @@ type metadataDeleteApplicationVersionInput struct {
 }
 
 type DeleteApplicationVersionOutput struct {
-	metadataDeleteApplicationVersionOutput `json:"-", xml:"-"`
+	metadataDeleteApplicationVersionOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteApplicationVersionOutput struct {
@@ -1423,7 +1611,7 @@ type DeleteConfigurationTemplateInput struct {
 	// The name of the configuration template to delete.
 	TemplateName *string `type:"string" required:"true"`
 
-	metadataDeleteConfigurationTemplateInput `json:"-", xml:"-"`
+	metadataDeleteConfigurationTemplateInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteConfigurationTemplateInput struct {
@@ -1431,7 +1619,7 @@ type metadataDeleteConfigurationTemplateInput struct {
 }
 
 type DeleteConfigurationTemplateOutput struct {
-	metadataDeleteConfigurationTemplateOutput `json:"-", xml:"-"`
+	metadataDeleteConfigurationTemplateOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteConfigurationTemplateOutput struct {
@@ -1446,7 +1634,7 @@ type DeleteEnvironmentConfigurationInput struct {
 	// The name of the environment to delete the draft configuration from.
 	EnvironmentName *string `type:"string" required:"true"`
 
-	metadataDeleteEnvironmentConfigurationInput `json:"-", xml:"-"`
+	metadataDeleteEnvironmentConfigurationInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteEnvironmentConfigurationInput struct {
@@ -1454,7 +1642,7 @@ type metadataDeleteEnvironmentConfigurationInput struct {
 }
 
 type DeleteEnvironmentConfigurationOutput struct {
-	metadataDeleteEnvironmentConfigurationOutput `json:"-", xml:"-"`
+	metadataDeleteEnvironmentConfigurationOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteEnvironmentConfigurationOutput struct {
@@ -1471,7 +1659,7 @@ type DescribeApplicationVersionsInput struct {
 	// have the specified version labels.
 	VersionLabels []*string `type:"list"`
 
-	metadataDescribeApplicationVersionsInput `json:"-", xml:"-"`
+	metadataDescribeApplicationVersionsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeApplicationVersionsInput struct {
@@ -1483,7 +1671,7 @@ type DescribeApplicationVersionsOutput struct {
 	// A list of ApplicationVersionDescription .
 	ApplicationVersions []*ApplicationVersionDescription `type:"list"`
 
-	metadataDescribeApplicationVersionsOutput `json:"-", xml:"-"`
+	metadataDescribeApplicationVersionsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeApplicationVersionsOutput struct {
@@ -1496,7 +1684,7 @@ type DescribeApplicationsInput struct {
 	// only include those with the specified names.
 	ApplicationNames []*string `type:"list"`
 
-	metadataDescribeApplicationsInput `json:"-", xml:"-"`
+	metadataDescribeApplicationsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeApplicationsInput struct {
@@ -1508,7 +1696,7 @@ type DescribeApplicationsOutput struct {
 	// This parameter contains a list of ApplicationDescription.
 	Applications []*ApplicationDescription `type:"list"`
 
-	metadataDescribeApplicationsOutput `json:"-", xml:"-"`
+	metadataDescribeApplicationsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeApplicationsOutput struct {
@@ -1535,7 +1723,7 @@ type DescribeConfigurationOptionsInput struct {
 	// to describe.
 	TemplateName *string `type:"string"`
 
-	metadataDescribeConfigurationOptionsInput `json:"-", xml:"-"`
+	metadataDescribeConfigurationOptionsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeConfigurationOptionsInput struct {
@@ -1550,7 +1738,7 @@ type DescribeConfigurationOptionsOutput struct {
 	// The name of the solution stack these configuration options belong to.
 	SolutionStackName *string `type:"string"`
 
-	metadataDescribeConfigurationOptionsOutput `json:"-", xml:"-"`
+	metadataDescribeConfigurationOptionsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeConfigurationOptionsOutput struct {
@@ -1579,7 +1767,7 @@ type DescribeConfigurationSettingsInput struct {
 	// error.
 	TemplateName *string `type:"string"`
 
-	metadataDescribeConfigurationSettingsInput `json:"-", xml:"-"`
+	metadataDescribeConfigurationSettingsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeConfigurationSettingsInput struct {
@@ -1591,7 +1779,7 @@ type DescribeConfigurationSettingsOutput struct {
 	// A list of ConfigurationSettingsDescription.
 	ConfigurationSettings []*ConfigurationSettingsDescription `type:"list"`
 
-	metadataDescribeConfigurationSettingsOutput `json:"-", xml:"-"`
+	metadataDescribeConfigurationSettingsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeConfigurationSettingsOutput struct {
@@ -1614,7 +1802,7 @@ type DescribeEnvironmentResourcesInput struct {
 	// error.
 	EnvironmentName *string `type:"string"`
 
-	metadataDescribeEnvironmentResourcesInput `json:"-", xml:"-"`
+	metadataDescribeEnvironmentResourcesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeEnvironmentResourcesInput struct {
@@ -1626,7 +1814,7 @@ type DescribeEnvironmentResourcesOutput struct {
 	// A list of EnvironmentResourceDescription.
 	EnvironmentResources *EnvironmentResourceDescription `type:"structure"`
 
-	metadataDescribeEnvironmentResourcesOutput `json:"-", xml:"-"`
+	metadataDescribeEnvironmentResourcesOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeEnvironmentResourcesOutput struct {
@@ -1663,7 +1851,7 @@ type DescribeEnvironmentsInput struct {
 	// include only those that are associated with this application version.
 	VersionLabel *string `type:"string"`
 
-	metadataDescribeEnvironmentsInput `json:"-", xml:"-"`
+	metadataDescribeEnvironmentsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeEnvironmentsInput struct {
@@ -1675,7 +1863,7 @@ type DescribeEnvironmentsOutput struct {
 	// Returns an EnvironmentDescription list.
 	Environments []*EnvironmentDescription `type:"list"`
 
-	metadataDescribeEnvironmentsOutput `json:"-", xml:"-"`
+	metadataDescribeEnvironmentsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeEnvironmentsOutput struct {
@@ -1727,7 +1915,7 @@ type DescribeEventsInput struct {
 	// those associated with this application version.
 	VersionLabel *string `type:"string"`
 
-	metadataDescribeEventsInput `json:"-", xml:"-"`
+	metadataDescribeEventsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeEventsInput struct {
@@ -1743,7 +1931,7 @@ type DescribeEventsOutput struct {
 	// token in the next DescribeEvents call to get the next batch of events.
 	NextToken *string `type:"string"`
 
-	metadataDescribeEventsOutput `json:"-", xml:"-"`
+	metadataDescribeEventsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeEventsOutput struct {
@@ -1820,7 +2008,7 @@ type EnvironmentDescription struct {
 	// The application version deployed in this environment.
 	VersionLabel *string `type:"string"`
 
-	metadataEnvironmentDescription `json:"-", xml:"-"`
+	metadataEnvironmentDescription `json:"-" xml:"-"`
 }
 
 type metadataEnvironmentDescription struct {
@@ -1841,7 +2029,7 @@ type EnvironmentInfoDescription struct {
 	// The time stamp when this information was retrieved.
 	SampleTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	metadataEnvironmentInfoDescription `json:"-", xml:"-"`
+	metadataEnvironmentInfoDescription `json:"-" xml:"-"`
 }
 
 type metadataEnvironmentInfoDescription struct {
@@ -1871,7 +2059,7 @@ type EnvironmentResourceDescription struct {
 	// The AutoScaling triggers in use by this environment.
 	Triggers []*Trigger `type:"list"`
 
-	metadataEnvironmentResourceDescription `json:"-", xml:"-"`
+	metadataEnvironmentResourceDescription `json:"-" xml:"-"`
 }
 
 type metadataEnvironmentResourceDescription struct {
@@ -1884,7 +2072,7 @@ type EnvironmentResourcesDescription struct {
 	// Describes the LoadBalancer.
 	LoadBalancer *LoadBalancerDescription `type:"structure"`
 
-	metadataEnvironmentResourcesDescription `json:"-", xml:"-"`
+	metadataEnvironmentResourcesDescription `json:"-" xml:"-"`
 }
 
 type metadataEnvironmentResourcesDescription struct {
@@ -1902,7 +2090,7 @@ type EnvironmentTier struct {
 	// The version of this environment tier.
 	Version *string `type:"string"`
 
-	metadataEnvironmentTier `json:"-", xml:"-"`
+	metadataEnvironmentTier `json:"-" xml:"-"`
 }
 
 type metadataEnvironmentTier struct {
@@ -1935,7 +2123,7 @@ type EventDescription struct {
 	// The release label for the application version associated with this event.
 	VersionLabel *string `type:"string"`
 
-	metadataEventDescription `json:"-", xml:"-"`
+	metadataEventDescription `json:"-" xml:"-"`
 }
 
 type metadataEventDescription struct {
@@ -1947,7 +2135,7 @@ type Instance struct {
 	// The ID of the Amazon EC2 instance.
 	ID *string `locationName:"Id" type:"string"`
 
-	metadataInstance `json:"-", xml:"-"`
+	metadataInstance `json:"-" xml:"-"`
 }
 
 type metadataInstance struct {
@@ -1959,7 +2147,7 @@ type LaunchConfiguration struct {
 	// The name of the launch configuration.
 	Name *string `type:"string"`
 
-	metadataLaunchConfiguration `json:"-", xml:"-"`
+	metadataLaunchConfiguration `json:"-" xml:"-"`
 }
 
 type metadataLaunchConfiguration struct {
@@ -1967,7 +2155,7 @@ type metadataLaunchConfiguration struct {
 }
 
 type ListAvailableSolutionStacksInput struct {
-	metadataListAvailableSolutionStacksInput `json:"-", xml:"-"`
+	metadataListAvailableSolutionStacksInput `json:"-" xml:"-"`
 }
 
 type metadataListAvailableSolutionStacksInput struct {
@@ -1982,7 +2170,7 @@ type ListAvailableSolutionStacksOutput struct {
 	// A list of available solution stacks.
 	SolutionStacks []*string `type:"list"`
 
-	metadataListAvailableSolutionStacksOutput `json:"-", xml:"-"`
+	metadataListAvailableSolutionStacksOutput `json:"-" xml:"-"`
 }
 
 type metadataListAvailableSolutionStacksOutput struct {
@@ -1997,7 +2185,7 @@ type Listener struct {
 	// The protocol that is used by the Listener.
 	Protocol *string `type:"string"`
 
-	metadataListener `json:"-", xml:"-"`
+	metadataListener `json:"-" xml:"-"`
 }
 
 type metadataListener struct {
@@ -2009,7 +2197,7 @@ type LoadBalancer struct {
 	// The name of the LoadBalancer.
 	Name *string `type:"string"`
 
-	metadataLoadBalancer `json:"-", xml:"-"`
+	metadataLoadBalancer `json:"-" xml:"-"`
 }
 
 type metadataLoadBalancer struct {
@@ -2027,7 +2215,7 @@ type LoadBalancerDescription struct {
 	// The name of the LoadBalancer.
 	LoadBalancerName *string `type:"string"`
 
-	metadataLoadBalancerDescription `json:"-", xml:"-"`
+	metadataLoadBalancerDescription `json:"-" xml:"-"`
 }
 
 type metadataLoadBalancerDescription struct {
@@ -2044,7 +2232,7 @@ type OptionRestrictionRegex struct {
 	// this restriction must match.
 	Pattern *string `type:"string"`
 
-	metadataOptionRestrictionRegex `json:"-", xml:"-"`
+	metadataOptionRestrictionRegex `json:"-" xml:"-"`
 }
 
 type metadataOptionRestrictionRegex struct {
@@ -2059,7 +2247,7 @@ type OptionSpecification struct {
 	// The name of the configuration option.
 	OptionName *string `type:"string"`
 
-	metadataOptionSpecification `json:"-", xml:"-"`
+	metadataOptionSpecification `json:"-" xml:"-"`
 }
 
 type metadataOptionSpecification struct {
@@ -2074,7 +2262,7 @@ type Queue struct {
 	// The URL of the queue.
 	URL *string `type:"string"`
 
-	metadataQueue `json:"-", xml:"-"`
+	metadataQueue `json:"-" xml:"-"`
 }
 
 type metadataQueue struct {
@@ -2096,7 +2284,7 @@ type RebuildEnvironmentInput struct {
 	// error.
 	EnvironmentName *string `type:"string"`
 
-	metadataRebuildEnvironmentInput `json:"-", xml:"-"`
+	metadataRebuildEnvironmentInput `json:"-" xml:"-"`
 }
 
 type metadataRebuildEnvironmentInput struct {
@@ -2104,7 +2292,7 @@ type metadataRebuildEnvironmentInput struct {
 }
 
 type RebuildEnvironmentOutput struct {
-	metadataRebuildEnvironmentOutput `json:"-", xml:"-"`
+	metadataRebuildEnvironmentOutput `json:"-" xml:"-"`
 }
 
 type metadataRebuildEnvironmentOutput struct {
@@ -2136,7 +2324,7 @@ type RequestEnvironmentInfoInput struct {
 	// The type of information to request.
 	InfoType *string `type:"string" required:"true"`
 
-	metadataRequestEnvironmentInfoInput `json:"-", xml:"-"`
+	metadataRequestEnvironmentInfoInput `json:"-" xml:"-"`
 }
 
 type metadataRequestEnvironmentInfoInput struct {
@@ -2144,7 +2332,7 @@ type metadataRequestEnvironmentInfoInput struct {
 }
 
 type RequestEnvironmentInfoOutput struct {
-	metadataRequestEnvironmentInfoOutput `json:"-", xml:"-"`
+	metadataRequestEnvironmentInfoOutput `json:"-" xml:"-"`
 }
 
 type metadataRequestEnvironmentInfoOutput struct {
@@ -2166,7 +2354,7 @@ type RestartAppServerInput struct {
 	// error.
 	EnvironmentName *string `type:"string"`
 
-	metadataRestartAppServerInput `json:"-", xml:"-"`
+	metadataRestartAppServerInput `json:"-" xml:"-"`
 }
 
 type metadataRestartAppServerInput struct {
@@ -2174,7 +2362,7 @@ type metadataRestartAppServerInput struct {
 }
 
 type RestartAppServerOutput struct {
-	metadataRestartAppServerOutput `json:"-", xml:"-"`
+	metadataRestartAppServerOutput `json:"-" xml:"-"`
 }
 
 type metadataRestartAppServerOutput struct {
@@ -2204,7 +2392,7 @@ type RetrieveEnvironmentInfoInput struct {
 	// The type of information to retrieve.
 	InfoType *string `type:"string" required:"true"`
 
-	metadataRetrieveEnvironmentInfoInput `json:"-", xml:"-"`
+	metadataRetrieveEnvironmentInfoInput `json:"-" xml:"-"`
 }
 
 type metadataRetrieveEnvironmentInfoInput struct {
@@ -2216,7 +2404,7 @@ type RetrieveEnvironmentInfoOutput struct {
 	// The EnvironmentInfoDescription of the environment.
 	EnvironmentInfo []*EnvironmentInfoDescription `type:"list"`
 
-	metadataRetrieveEnvironmentInfoOutput `json:"-", xml:"-"`
+	metadataRetrieveEnvironmentInfoOutput `json:"-" xml:"-"`
 }
 
 type metadataRetrieveEnvironmentInfoOutput struct {
@@ -2231,7 +2419,7 @@ type S3Location struct {
 	// The Amazon S3 key where the data is located.
 	S3Key *string `type:"string"`
 
-	metadataS3Location `json:"-", xml:"-"`
+	metadataS3Location `json:"-" xml:"-"`
 }
 
 type metadataS3Location struct {
@@ -2246,7 +2434,7 @@ type SolutionStackDescription struct {
 	// The name of the solution stack.
 	SolutionStackName *string `type:"string"`
 
-	metadataSolutionStackDescription `json:"-", xml:"-"`
+	metadataSolutionStackDescription `json:"-" xml:"-"`
 }
 
 type metadataSolutionStackDescription struct {
@@ -2261,7 +2449,7 @@ type SourceConfiguration struct {
 	// The name of the configuration template.
 	TemplateName *string `type:"string"`
 
-	metadataSourceConfiguration `json:"-", xml:"-"`
+	metadataSourceConfiguration `json:"-" xml:"-"`
 }
 
 type metadataSourceConfiguration struct {
@@ -2297,7 +2485,7 @@ type SwapEnvironmentCNAMEsInput struct {
 	// must specify the DestinationEnvironmentName.
 	SourceEnvironmentName *string `type:"string"`
 
-	metadataSwapEnvironmentCNAMEsInput `json:"-", xml:"-"`
+	metadataSwapEnvironmentCNAMEsInput `json:"-" xml:"-"`
 }
 
 type metadataSwapEnvironmentCNAMEsInput struct {
@@ -2305,7 +2493,7 @@ type metadataSwapEnvironmentCNAMEsInput struct {
 }
 
 type SwapEnvironmentCNAMEsOutput struct {
-	metadataSwapEnvironmentCNAMEsOutput `json:"-", xml:"-"`
+	metadataSwapEnvironmentCNAMEsOutput `json:"-" xml:"-"`
 }
 
 type metadataSwapEnvironmentCNAMEsOutput struct {
@@ -2320,7 +2508,7 @@ type Tag struct {
 	// The value of the tag.
 	Value *string `type:"string"`
 
-	metadataTag `json:"-", xml:"-"`
+	metadataTag `json:"-" xml:"-"`
 }
 
 type metadataTag struct {
@@ -2363,7 +2551,7 @@ type TerminateEnvironmentInput struct {
 	//  Valid Values: true | false
 	TerminateResources *bool `type:"boolean"`
 
-	metadataTerminateEnvironmentInput `json:"-", xml:"-"`
+	metadataTerminateEnvironmentInput `json:"-" xml:"-"`
 }
 
 type metadataTerminateEnvironmentInput struct {
@@ -2375,7 +2563,7 @@ type Trigger struct {
 	// The name of the trigger.
 	Name *string `type:"string"`
 
-	metadataTrigger `json:"-", xml:"-"`
+	metadataTrigger `json:"-" xml:"-"`
 }
 
 type metadataTrigger struct {
@@ -2393,7 +2581,7 @@ type UpdateApplicationInput struct {
 	// Default: If not specified, AWS Elastic Beanstalk does not update the description.
 	Description *string `type:"string"`
 
-	metadataUpdateApplicationInput `json:"-", xml:"-"`
+	metadataUpdateApplicationInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateApplicationInput struct {
@@ -2416,7 +2604,7 @@ type UpdateApplicationVersionInput struct {
 	// an InvalidParameterValue error.
 	VersionLabel *string `type:"string" required:"true"`
 
-	metadataUpdateApplicationVersionInput `json:"-", xml:"-"`
+	metadataUpdateApplicationVersionInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateApplicationVersionInput struct {
@@ -2450,7 +2638,7 @@ type UpdateConfigurationTemplateInput struct {
 	// returns an InvalidParameterValue error.
 	TemplateName *string `type:"string" required:"true"`
 
-	metadataUpdateConfigurationTemplateInput `json:"-", xml:"-"`
+	metadataUpdateConfigurationTemplateInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateConfigurationTemplateInput struct {
@@ -2507,7 +2695,7 @@ type UpdateEnvironmentInput struct {
 	// an InvalidParameterValue error.
 	VersionLabel *string `type:"string"`
 
-	metadataUpdateEnvironmentInput `json:"-", xml:"-"`
+	metadataUpdateEnvironmentInput `json:"-" xml:"-"`
 }
 
 type metadataUpdateEnvironmentInput struct {
@@ -2533,7 +2721,7 @@ type ValidateConfigurationSettingsInput struct {
 	//  Condition: You cannot specify both this and an environment name.
 	TemplateName *string `type:"string"`
 
-	metadataValidateConfigurationSettingsInput `json:"-", xml:"-"`
+	metadataValidateConfigurationSettingsInput `json:"-" xml:"-"`
 }
 
 type metadataValidateConfigurationSettingsInput struct {
@@ -2545,7 +2733,7 @@ type ValidateConfigurationSettingsOutput struct {
 	// A list of ValidationMessage.
 	Messages []*ValidationMessage `type:"list"`
 
-	metadataValidateConfigurationSettingsOutput `json:"-", xml:"-"`
+	metadataValidateConfigurationSettingsOutput `json:"-" xml:"-"`
 }
 
 type metadataValidateConfigurationSettingsOutput struct {
@@ -2573,7 +2761,7 @@ type ValidationMessage struct {
 	// into account.
 	Severity *string `type:"string"`
 
-	metadataValidationMessage `json:"-", xml:"-"`
+	metadataValidationMessage `json:"-" xml:"-"`
 }
 
 type metadataValidationMessage struct {

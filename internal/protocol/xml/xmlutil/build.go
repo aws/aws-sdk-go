@@ -11,6 +11,8 @@ import (
 	"time"
 )
 
+// BuildXML will serialize params into an xml.Encoder.
+// Error will be returned if the serialization of any of the params or nested values fails.
 func BuildXML(params interface{}, e *xml.Encoder) error {
 	b := xmlBuilder{encoder: e, namespaces: map[string]string{}}
 	root := NewXMLElement(xml.Name{})
@@ -25,6 +27,7 @@ func BuildXML(params interface{}, e *xml.Encoder) error {
 	return nil
 }
 
+// Returns the reflection element of a value, if it is a pointer.
 func elemOf(value reflect.Value) reflect.Value {
 	for value.Kind() == reflect.Ptr {
 		value = value.Elem()
@@ -32,11 +35,17 @@ func elemOf(value reflect.Value) reflect.Value {
 	return value
 }
 
+// A xmlBuilder serializes values from Go code to XML
 type xmlBuilder struct {
 	encoder    *xml.Encoder
 	namespaces map[string]string
 }
 
+// buildValue generic XMLNode builder for any type. Will build value for their specific type
+// struct, list, map, scalar.
+//
+// Also takes a "type" tag value to set what type a value should be converted to XMLNode as. If
+// type is not provided reflect will be used to determine the value's type.
 func (b *xmlBuilder) buildValue(value reflect.Value, current *XMLNode, tag reflect.StructTag) error {
 	value = elemOf(value)
 	if !value.IsValid() { // no need to handle zero values
@@ -72,6 +81,8 @@ func (b *xmlBuilder) buildValue(value reflect.Value, current *XMLNode, tag refle
 	}
 }
 
+// buildStruct adds a struct and its fields to the current XMLNode. All fields any any nested
+// types are converted to XMLNodes also.
 func (b *xmlBuilder) buildStruct(value reflect.Value, current *XMLNode, tag reflect.StructTag) error {
 	if !value.IsValid() {
 		return nil
@@ -139,6 +150,8 @@ func (b *xmlBuilder) buildStruct(value reflect.Value, current *XMLNode, tag refl
 	return nil
 }
 
+// buildList adds the value's list items to the current XMLNode as children nodes. All
+// nested values in the list are converted to XMLNodes also.
 func (b *xmlBuilder) buildList(value reflect.Value, current *XMLNode, tag reflect.StructTag) error {
 	if value.IsNil() { // don't build omitted lists
 		return nil
@@ -177,6 +190,10 @@ func (b *xmlBuilder) buildList(value reflect.Value, current *XMLNode, tag reflec
 	return nil
 }
 
+// buildMap adds the value's key/value pairs to the current XMLNode as children nodes. All
+// nested values in the map are converted to XMLNodes also.
+//
+// Error will be returned if it is unable to build the map's values into XMLNodes
 func (b *xmlBuilder) buildMap(value reflect.Value, current *XMLNode, tag reflect.StructTag) error {
 	if value.IsNil() { // don't build omitted maps
 		return nil
@@ -203,7 +220,6 @@ func (b *xmlBuilder) buildMap(value reflect.Value, current *XMLNode, tag reflect
 
 	for _, k := range keys {
 		v := value.MapIndex(reflect.ValueOf(k))
-		fmt.Println(k, v.Interface())
 
 		mapcur := current
 		if tag.Get("flattened") == "" { // add "entry" tag to non-flat maps
@@ -226,13 +242,21 @@ func (b *xmlBuilder) buildMap(value reflect.Value, current *XMLNode, tag reflect
 	return nil
 }
 
+// buildScalar will convert the value into a string and append it as a attribute or child
+// of the current XMLNode.
+//
+// The value will be added as an attribute if tag contains a "xmlAttribute" attribute value.
+//
+// Error will be returned if the value type is unsupported.
 func (b *xmlBuilder) buildScalar(value reflect.Value, current *XMLNode, tag reflect.StructTag) error {
 	var str string
 	switch converted := value.Interface().(type) {
 	case string:
 		str = converted
 	case []byte:
-		str = base64.StdEncoding.EncodeToString(converted)
+		if !value.IsNil() {
+			str = base64.StdEncoding.EncodeToString(converted)
+		}
 	case bool:
 		str = strconv.FormatBool(converted)
 	case int64:

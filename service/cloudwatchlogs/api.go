@@ -4,17 +4,28 @@
 package cloudwatchlogs
 
 import (
+	"sync"
+
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
+var oprw sync.Mutex
+
 // CreateLogGroupRequest generates a request for the CreateLogGroup operation.
 func (c *CloudWatchLogs) CreateLogGroupRequest(input *CreateLogGroupInput) (req *aws.Request, output *CreateLogGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateLogGroup == nil {
 		opCreateLogGroup = &aws.Operation{
 			Name:       "CreateLogGroup",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateLogGroupInput{}
 	}
 
 	req = c.newRequest(opCreateLogGroup, input, output)
@@ -30,23 +41,29 @@ func (c *CloudWatchLogs) CreateLogGroupRequest(input *CreateLogGroupInput) (req 
 //  You must use the following guidelines when naming a log group:  Log group
 // names can be between 1 and 512 characters long. Allowed characters are a-z,
 // A-Z, 0-9, '_' (underscore), '-' (hyphen), '/' (forward slash), and '.' (period).
-func (c *CloudWatchLogs) CreateLogGroup(input *CreateLogGroupInput) (output *CreateLogGroupOutput, err error) {
+func (c *CloudWatchLogs) CreateLogGroup(input *CreateLogGroupInput) (*CreateLogGroupOutput, error) {
 	req, out := c.CreateLogGroupRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateLogGroup *aws.Operation
 
 // CreateLogStreamRequest generates a request for the CreateLogStream operation.
 func (c *CloudWatchLogs) CreateLogStreamRequest(input *CreateLogStreamInput) (req *aws.Request, output *CreateLogStreamOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opCreateLogStream == nil {
 		opCreateLogStream = &aws.Operation{
 			Name:       "CreateLogStream",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &CreateLogStreamInput{}
 	}
 
 	req = c.newRequest(opCreateLogStream, input, output)
@@ -62,23 +79,29 @@ func (c *CloudWatchLogs) CreateLogStreamRequest(input *CreateLogStreamInput) (re
 //  You must use the following guidelines when naming a log stream:  Log stream
 // names can be between 1 and 512 characters long. The ':' colon character is
 // not allowed.
-func (c *CloudWatchLogs) CreateLogStream(input *CreateLogStreamInput) (output *CreateLogStreamOutput, err error) {
+func (c *CloudWatchLogs) CreateLogStream(input *CreateLogStreamInput) (*CreateLogStreamOutput, error) {
 	req, out := c.CreateLogStreamRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opCreateLogStream *aws.Operation
 
 // DeleteLogGroupRequest generates a request for the DeleteLogGroup operation.
 func (c *CloudWatchLogs) DeleteLogGroupRequest(input *DeleteLogGroupInput) (req *aws.Request, output *DeleteLogGroupOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteLogGroup == nil {
 		opDeleteLogGroup = &aws.Operation{
 			Name:       "DeleteLogGroup",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteLogGroupInput{}
 	}
 
 	req = c.newRequest(opDeleteLogGroup, input, output)
@@ -89,23 +112,29 @@ func (c *CloudWatchLogs) DeleteLogGroupRequest(input *DeleteLogGroupInput) (req 
 
 // Deletes the log group with the specified name and permanently deletes all
 // the archived log events associated with it.
-func (c *CloudWatchLogs) DeleteLogGroup(input *DeleteLogGroupInput) (output *DeleteLogGroupOutput, err error) {
+func (c *CloudWatchLogs) DeleteLogGroup(input *DeleteLogGroupInput) (*DeleteLogGroupOutput, error) {
 	req, out := c.DeleteLogGroupRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteLogGroup *aws.Operation
 
 // DeleteLogStreamRequest generates a request for the DeleteLogStream operation.
 func (c *CloudWatchLogs) DeleteLogStreamRequest(input *DeleteLogStreamInput) (req *aws.Request, output *DeleteLogStreamOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteLogStream == nil {
 		opDeleteLogStream = &aws.Operation{
 			Name:       "DeleteLogStream",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteLogStreamInput{}
 	}
 
 	req = c.newRequest(opDeleteLogStream, input, output)
@@ -116,23 +145,29 @@ func (c *CloudWatchLogs) DeleteLogStreamRequest(input *DeleteLogStreamInput) (re
 
 // Deletes a log stream and permanently deletes all the archived log events
 // associated with it.
-func (c *CloudWatchLogs) DeleteLogStream(input *DeleteLogStreamInput) (output *DeleteLogStreamOutput, err error) {
+func (c *CloudWatchLogs) DeleteLogStream(input *DeleteLogStreamInput) (*DeleteLogStreamOutput, error) {
 	req, out := c.DeleteLogStreamRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteLogStream *aws.Operation
 
 // DeleteMetricFilterRequest generates a request for the DeleteMetricFilter operation.
 func (c *CloudWatchLogs) DeleteMetricFilterRequest(input *DeleteMetricFilterInput) (req *aws.Request, output *DeleteMetricFilterOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteMetricFilter == nil {
 		opDeleteMetricFilter = &aws.Operation{
 			Name:       "DeleteMetricFilter",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteMetricFilterInput{}
 	}
 
 	req = c.newRequest(opDeleteMetricFilter, input, output)
@@ -142,23 +177,29 @@ func (c *CloudWatchLogs) DeleteMetricFilterRequest(input *DeleteMetricFilterInpu
 }
 
 // Deletes a metric filter associated with the specified log group.
-func (c *CloudWatchLogs) DeleteMetricFilter(input *DeleteMetricFilterInput) (output *DeleteMetricFilterOutput, err error) {
+func (c *CloudWatchLogs) DeleteMetricFilter(input *DeleteMetricFilterInput) (*DeleteMetricFilterOutput, error) {
 	req, out := c.DeleteMetricFilterRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteMetricFilter *aws.Operation
 
 // DeleteRetentionPolicyRequest generates a request for the DeleteRetentionPolicy operation.
 func (c *CloudWatchLogs) DeleteRetentionPolicyRequest(input *DeleteRetentionPolicyInput) (req *aws.Request, output *DeleteRetentionPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDeleteRetentionPolicy == nil {
 		opDeleteRetentionPolicy = &aws.Operation{
 			Name:       "DeleteRetentionPolicy",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DeleteRetentionPolicyInput{}
 	}
 
 	req = c.newRequest(opDeleteRetentionPolicy, input, output)
@@ -169,23 +210,29 @@ func (c *CloudWatchLogs) DeleteRetentionPolicyRequest(input *DeleteRetentionPoli
 
 // Deletes the retention policy of the specified log group. Log events would
 // not expire if they belong to log groups without a retention policy.
-func (c *CloudWatchLogs) DeleteRetentionPolicy(input *DeleteRetentionPolicyInput) (output *DeleteRetentionPolicyOutput, err error) {
+func (c *CloudWatchLogs) DeleteRetentionPolicy(input *DeleteRetentionPolicyInput) (*DeleteRetentionPolicyOutput, error) {
 	req, out := c.DeleteRetentionPolicyRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDeleteRetentionPolicy *aws.Operation
 
 // DescribeLogGroupsRequest generates a request for the DescribeLogGroups operation.
 func (c *CloudWatchLogs) DescribeLogGroupsRequest(input *DescribeLogGroupsInput) (req *aws.Request, output *DescribeLogGroupsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeLogGroups == nil {
 		opDescribeLogGroups = &aws.Operation{
 			Name:       "DescribeLogGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeLogGroupsInput{}
 	}
 
 	req = c.newRequest(opDescribeLogGroups, input, output)
@@ -202,23 +249,29 @@ func (c *CloudWatchLogs) DescribeLogGroupsRequest(input *DescribeLogGroupsInput)
 // log groups to list, the response would contain a nextToken value in the response
 // body. You can also limit the number of log groups returned in the response
 // by specifying the limit parameter in the request.
-func (c *CloudWatchLogs) DescribeLogGroups(input *DescribeLogGroupsInput) (output *DescribeLogGroupsOutput, err error) {
+func (c *CloudWatchLogs) DescribeLogGroups(input *DescribeLogGroupsInput) (*DescribeLogGroupsOutput, error) {
 	req, out := c.DescribeLogGroupsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeLogGroups *aws.Operation
 
 // DescribeLogStreamsRequest generates a request for the DescribeLogStreams operation.
 func (c *CloudWatchLogs) DescribeLogStreamsRequest(input *DescribeLogStreamsInput) (req *aws.Request, output *DescribeLogStreamsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeLogStreams == nil {
 		opDescribeLogStreams = &aws.Operation{
 			Name:       "DescribeLogStreams",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeLogStreamsInput{}
 	}
 
 	req = c.newRequest(opDescribeLogStreams, input, output)
@@ -236,23 +289,29 @@ func (c *CloudWatchLogs) DescribeLogStreamsRequest(input *DescribeLogStreamsInpu
 // response by specifying the limit parameter in the request. This operation
 // has a limit of five transactions per second, after which transactions are
 // throttled.
-func (c *CloudWatchLogs) DescribeLogStreams(input *DescribeLogStreamsInput) (output *DescribeLogStreamsOutput, err error) {
+func (c *CloudWatchLogs) DescribeLogStreams(input *DescribeLogStreamsInput) (*DescribeLogStreamsOutput, error) {
 	req, out := c.DescribeLogStreamsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeLogStreams *aws.Operation
 
 // DescribeMetricFiltersRequest generates a request for the DescribeMetricFilters operation.
 func (c *CloudWatchLogs) DescribeMetricFiltersRequest(input *DescribeMetricFiltersInput) (req *aws.Request, output *DescribeMetricFiltersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opDescribeMetricFilters == nil {
 		opDescribeMetricFilters = &aws.Operation{
 			Name:       "DescribeMetricFilters",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &DescribeMetricFiltersInput{}
 	}
 
 	req = c.newRequest(opDescribeMetricFilters, input, output)
@@ -268,23 +327,29 @@ func (c *CloudWatchLogs) DescribeMetricFiltersRequest(input *DescribeMetricFilte
 // more metric filters to list, the response would contain a nextToken value
 // in the response body. You can also limit the number of metric filters returned
 // in the response by specifying the limit parameter in the request.
-func (c *CloudWatchLogs) DescribeMetricFilters(input *DescribeMetricFiltersInput) (output *DescribeMetricFiltersOutput, err error) {
+func (c *CloudWatchLogs) DescribeMetricFilters(input *DescribeMetricFiltersInput) (*DescribeMetricFiltersOutput, error) {
 	req, out := c.DescribeMetricFiltersRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opDescribeMetricFilters *aws.Operation
 
 // GetLogEventsRequest generates a request for the GetLogEvents operation.
 func (c *CloudWatchLogs) GetLogEventsRequest(input *GetLogEventsInput) (req *aws.Request, output *GetLogEventsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opGetLogEvents == nil {
 		opGetLogEvents = &aws.Operation{
 			Name:       "GetLogEvents",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &GetLogEventsInput{}
 	}
 
 	req = c.newRequest(opGetLogEvents, input, output)
@@ -303,23 +368,29 @@ func (c *CloudWatchLogs) GetLogEventsRequest(input *GetLogEventsInput) (req *aws
 // events in either forward or backward direction. You can also limit the number
 // of log events returned in the response by specifying the limit parameter
 // in the request.
-func (c *CloudWatchLogs) GetLogEvents(input *GetLogEventsInput) (output *GetLogEventsOutput, err error) {
+func (c *CloudWatchLogs) GetLogEvents(input *GetLogEventsInput) (*GetLogEventsOutput, error) {
 	req, out := c.GetLogEventsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opGetLogEvents *aws.Operation
 
 // PutLogEventsRequest generates a request for the PutLogEvents operation.
 func (c *CloudWatchLogs) PutLogEventsRequest(input *PutLogEventsInput) (req *aws.Request, output *PutLogEventsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutLogEvents == nil {
 		opPutLogEvents = &aws.Operation{
 			Name:       "PutLogEvents",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PutLogEventsInput{}
 	}
 
 	req = c.newRequest(opPutLogEvents, input, output)
@@ -341,23 +412,29 @@ func (c *CloudWatchLogs) PutLogEventsRequest(input *PutLogEventsInput) (req *aws
 // log events in the batch can be older than 14 days or the retention period
 // of the log group. The log events in the batch must be in chronological ordered
 // by their timestamp. The maximum number of log events in a batch is 10,000.
-func (c *CloudWatchLogs) PutLogEvents(input *PutLogEventsInput) (output *PutLogEventsOutput, err error) {
+func (c *CloudWatchLogs) PutLogEvents(input *PutLogEventsInput) (*PutLogEventsOutput, error) {
 	req, out := c.PutLogEventsRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opPutLogEvents *aws.Operation
 
 // PutMetricFilterRequest generates a request for the PutMetricFilter operation.
 func (c *CloudWatchLogs) PutMetricFilterRequest(input *PutMetricFilterInput) (req *aws.Request, output *PutMetricFilterOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutMetricFilter == nil {
 		opPutMetricFilter = &aws.Operation{
 			Name:       "PutMetricFilter",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PutMetricFilterInput{}
 	}
 
 	req = c.newRequest(opPutMetricFilter, input, output)
@@ -369,23 +446,29 @@ func (c *CloudWatchLogs) PutMetricFilterRequest(input *PutMetricFilterInput) (re
 // Creates or updates a metric filter and associates it with the specified log
 // group. Metric filters allow you to configure rules to extract metric data
 // from log events ingested through PutLogEvents requests.
-func (c *CloudWatchLogs) PutMetricFilter(input *PutMetricFilterInput) (output *PutMetricFilterOutput, err error) {
+func (c *CloudWatchLogs) PutMetricFilter(input *PutMetricFilterInput) (*PutMetricFilterOutput, error) {
 	req, out := c.PutMetricFilterRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opPutMetricFilter *aws.Operation
 
 // PutRetentionPolicyRequest generates a request for the PutRetentionPolicy operation.
 func (c *CloudWatchLogs) PutRetentionPolicyRequest(input *PutRetentionPolicyInput) (req *aws.Request, output *PutRetentionPolicyOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opPutRetentionPolicy == nil {
 		opPutRetentionPolicy = &aws.Operation{
 			Name:       "PutRetentionPolicy",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &PutRetentionPolicyInput{}
 	}
 
 	req = c.newRequest(opPutRetentionPolicy, input, output)
@@ -397,23 +480,29 @@ func (c *CloudWatchLogs) PutRetentionPolicyRequest(input *PutRetentionPolicyInpu
 // Sets the retention of the specified log group. A retention policy allows
 // you to configure the number of days you want to retain log events in the
 // specified log group.
-func (c *CloudWatchLogs) PutRetentionPolicy(input *PutRetentionPolicyInput) (output *PutRetentionPolicyOutput, err error) {
+func (c *CloudWatchLogs) PutRetentionPolicy(input *PutRetentionPolicyInput) (*PutRetentionPolicyOutput, error) {
 	req, out := c.PutRetentionPolicyRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opPutRetentionPolicy *aws.Operation
 
 // TestMetricFilterRequest generates a request for the TestMetricFilter operation.
 func (c *CloudWatchLogs) TestMetricFilterRequest(input *TestMetricFilterInput) (req *aws.Request, output *TestMetricFilterOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
 	if opTestMetricFilter == nil {
 		opTestMetricFilter = &aws.Operation{
 			Name:       "TestMetricFilter",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
 		}
+	}
+
+	if input == nil {
+		input = &TestMetricFilterInput{}
 	}
 
 	req = c.newRequest(opTestMetricFilter, input, output)
@@ -425,11 +514,10 @@ func (c *CloudWatchLogs) TestMetricFilterRequest(input *TestMetricFilterInput) (
 // Tests the filter pattern of a metric filter against a sample of log event
 // messages. You can use this operation to validate the correctness of a metric
 // filter pattern.
-func (c *CloudWatchLogs) TestMetricFilter(input *TestMetricFilterInput) (output *TestMetricFilterOutput, err error) {
+func (c *CloudWatchLogs) TestMetricFilter(input *TestMetricFilterInput) (*TestMetricFilterOutput, error) {
 	req, out := c.TestMetricFilterRequest(input)
-	output = out
-	err = req.Send()
-	return
+	err := req.Send()
+	return out, err
 }
 
 var opTestMetricFilter *aws.Operation
@@ -437,7 +525,7 @@ var opTestMetricFilter *aws.Operation
 type CreateLogGroupInput struct {
 	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
 
-	metadataCreateLogGroupInput `json:"-", xml:"-"`
+	metadataCreateLogGroupInput `json:"-" xml:"-"`
 }
 
 type metadataCreateLogGroupInput struct {
@@ -445,7 +533,7 @@ type metadataCreateLogGroupInput struct {
 }
 
 type CreateLogGroupOutput struct {
-	metadataCreateLogGroupOutput `json:"-", xml:"-"`
+	metadataCreateLogGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateLogGroupOutput struct {
@@ -457,7 +545,7 @@ type CreateLogStreamInput struct {
 
 	LogStreamName *string `locationName:"logStreamName" type:"string" required:"true"`
 
-	metadataCreateLogStreamInput `json:"-", xml:"-"`
+	metadataCreateLogStreamInput `json:"-" xml:"-"`
 }
 
 type metadataCreateLogStreamInput struct {
@@ -465,7 +553,7 @@ type metadataCreateLogStreamInput struct {
 }
 
 type CreateLogStreamOutput struct {
-	metadataCreateLogStreamOutput `json:"-", xml:"-"`
+	metadataCreateLogStreamOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateLogStreamOutput struct {
@@ -475,7 +563,7 @@ type metadataCreateLogStreamOutput struct {
 type DeleteLogGroupInput struct {
 	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
 
-	metadataDeleteLogGroupInput `json:"-", xml:"-"`
+	metadataDeleteLogGroupInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLogGroupInput struct {
@@ -483,7 +571,7 @@ type metadataDeleteLogGroupInput struct {
 }
 
 type DeleteLogGroupOutput struct {
-	metadataDeleteLogGroupOutput `json:"-", xml:"-"`
+	metadataDeleteLogGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLogGroupOutput struct {
@@ -495,7 +583,7 @@ type DeleteLogStreamInput struct {
 
 	LogStreamName *string `locationName:"logStreamName" type:"string" required:"true"`
 
-	metadataDeleteLogStreamInput `json:"-", xml:"-"`
+	metadataDeleteLogStreamInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLogStreamInput struct {
@@ -503,7 +591,7 @@ type metadataDeleteLogStreamInput struct {
 }
 
 type DeleteLogStreamOutput struct {
-	metadataDeleteLogStreamOutput `json:"-", xml:"-"`
+	metadataDeleteLogStreamOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLogStreamOutput struct {
@@ -516,7 +604,7 @@ type DeleteMetricFilterInput struct {
 
 	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
 
-	metadataDeleteMetricFilterInput `json:"-", xml:"-"`
+	metadataDeleteMetricFilterInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteMetricFilterInput struct {
@@ -524,7 +612,7 @@ type metadataDeleteMetricFilterInput struct {
 }
 
 type DeleteMetricFilterOutput struct {
-	metadataDeleteMetricFilterOutput `json:"-", xml:"-"`
+	metadataDeleteMetricFilterOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteMetricFilterOutput struct {
@@ -534,7 +622,7 @@ type metadataDeleteMetricFilterOutput struct {
 type DeleteRetentionPolicyInput struct {
 	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
 
-	metadataDeleteRetentionPolicyInput `json:"-", xml:"-"`
+	metadataDeleteRetentionPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataDeleteRetentionPolicyInput struct {
@@ -542,7 +630,7 @@ type metadataDeleteRetentionPolicyInput struct {
 }
 
 type DeleteRetentionPolicyOutput struct {
-	metadataDeleteRetentionPolicyOutput `json:"-", xml:"-"`
+	metadataDeleteRetentionPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteRetentionPolicyOutput struct {
@@ -561,7 +649,7 @@ type DescribeLogGroupsInput struct {
 	// request.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeLogGroupsInput `json:"-", xml:"-"`
+	metadataDescribeLogGroupsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLogGroupsInput struct {
@@ -577,7 +665,7 @@ type DescribeLogGroupsOutput struct {
 	// token expires after 24 hours.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeLogGroupsOutput `json:"-", xml:"-"`
+	metadataDescribeLogGroupsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLogGroupsOutput struct {
@@ -610,7 +698,7 @@ type DescribeLogStreamsInput struct {
 	// also contain a logStreamNamePrefix.
 	OrderBy *string `locationName:"orderBy" type:"string"`
 
-	metadataDescribeLogStreamsInput `json:"-", xml:"-"`
+	metadataDescribeLogStreamsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLogStreamsInput struct {
@@ -626,7 +714,7 @@ type DescribeLogStreamsOutput struct {
 	// token expires after 24 hours.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeLogStreamsOutput `json:"-", xml:"-"`
+	metadataDescribeLogStreamsOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLogStreamsOutput struct {
@@ -648,7 +736,7 @@ type DescribeMetricFiltersInput struct {
 	// request.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeMetricFiltersInput `json:"-", xml:"-"`
+	metadataDescribeMetricFiltersInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeMetricFiltersInput struct {
@@ -663,7 +751,7 @@ type DescribeMetricFiltersOutput struct {
 	// token expires after 24 hours.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	metadataDescribeMetricFiltersOutput `json:"-", xml:"-"`
+	metadataDescribeMetricFiltersOutput `json:"-" xml:"-"`
 }
 
 type metadataDescribeMetricFiltersOutput struct {
@@ -697,7 +785,7 @@ type GetLogEventsInput struct {
 	// UTC.
 	StartTime *int64 `locationName:"startTime" type:"long"`
 
-	metadataGetLogEventsInput `json:"-", xml:"-"`
+	metadataGetLogEventsInput `json:"-" xml:"-"`
 }
 
 type metadataGetLogEventsInput struct {
@@ -717,7 +805,7 @@ type GetLogEventsOutput struct {
 	// token expires after 24 hours.
 	NextForwardToken *string `locationName:"nextForwardToken" type:"string"`
 
-	metadataGetLogEventsOutput `json:"-", xml:"-"`
+	metadataGetLogEventsOutput `json:"-" xml:"-"`
 }
 
 type metadataGetLogEventsOutput struct {
@@ -735,7 +823,7 @@ type InputLogEvent struct {
 	// UTC.
 	Timestamp *int64 `locationName:"timestamp" type:"long" required:"true"`
 
-	metadataInputLogEvent `json:"-", xml:"-"`
+	metadataInputLogEvent `json:"-" xml:"-"`
 }
 
 type metadataInputLogEvent struct {
@@ -761,7 +849,7 @@ type LogGroup struct {
 
 	StoredBytes *int64 `locationName:"storedBytes" type:"long"`
 
-	metadataLogGroup `json:"-", xml:"-"`
+	metadataLogGroup `json:"-" xml:"-"`
 }
 
 type metadataLogGroup struct {
@@ -797,7 +885,7 @@ type LogStream struct {
 	// obtained from the response of the previous request.
 	UploadSequenceToken *string `locationName:"uploadSequenceToken" type:"string"`
 
-	metadataLogStream `json:"-", xml:"-"`
+	metadataLogStream `json:"-" xml:"-"`
 }
 
 type metadataLogStream struct {
@@ -823,7 +911,7 @@ type MetricFilter struct {
 
 	MetricTransformations []*MetricTransformation `locationName:"metricTransformations" type:"list"`
 
-	metadataMetricFilter `json:"-", xml:"-"`
+	metadataMetricFilter `json:"-" xml:"-"`
 }
 
 type metadataMetricFilter struct {
@@ -837,7 +925,7 @@ type MetricFilterMatchRecord struct {
 
 	ExtractedValues *map[string]*string `locationName:"extractedValues" type:"map"`
 
-	metadataMetricFilterMatchRecord `json:"-", xml:"-"`
+	metadataMetricFilterMatchRecord `json:"-" xml:"-"`
 }
 
 type metadataMetricFilterMatchRecord struct {
@@ -858,7 +946,7 @@ type MetricTransformation struct {
 	// value in the log event.
 	MetricValue *string `locationName:"metricValue" type:"string" required:"true"`
 
-	metadataMetricTransformation `json:"-", xml:"-"`
+	metadataMetricTransformation `json:"-" xml:"-"`
 }
 
 type metadataMetricTransformation struct {
@@ -876,7 +964,7 @@ type OutputLogEvent struct {
 	// UTC.
 	Timestamp *int64 `locationName:"timestamp" type:"long"`
 
-	metadataOutputLogEvent `json:"-", xml:"-"`
+	metadataOutputLogEvent `json:"-" xml:"-"`
 }
 
 type metadataOutputLogEvent struct {
@@ -895,7 +983,7 @@ type PutLogEventsInput struct {
 	// request.
 	SequenceToken *string `locationName:"sequenceToken" type:"string"`
 
-	metadataPutLogEventsInput `json:"-", xml:"-"`
+	metadataPutLogEventsInput `json:"-" xml:"-"`
 }
 
 type metadataPutLogEventsInput struct {
@@ -910,7 +998,7 @@ type PutLogEventsOutput struct {
 
 	RejectedLogEventsInfo *RejectedLogEventsInfo `locationName:"rejectedLogEventsInfo" type:"structure"`
 
-	metadataPutLogEventsOutput `json:"-", xml:"-"`
+	metadataPutLogEventsOutput `json:"-" xml:"-"`
 }
 
 type metadataPutLogEventsOutput struct {
@@ -931,7 +1019,7 @@ type PutMetricFilterInput struct {
 
 	MetricTransformations []*MetricTransformation `locationName:"metricTransformations" type:"list" required:"true"`
 
-	metadataPutMetricFilterInput `json:"-", xml:"-"`
+	metadataPutMetricFilterInput `json:"-" xml:"-"`
 }
 
 type metadataPutMetricFilterInput struct {
@@ -939,7 +1027,7 @@ type metadataPutMetricFilterInput struct {
 }
 
 type PutMetricFilterOutput struct {
-	metadataPutMetricFilterOutput `json:"-", xml:"-"`
+	metadataPutMetricFilterOutput `json:"-" xml:"-"`
 }
 
 type metadataPutMetricFilterOutput struct {
@@ -954,7 +1042,7 @@ type PutRetentionPolicyInput struct {
 	// 365, 400, 545, 731, 1827, 3653.
 	RetentionInDays *int64 `locationName:"retentionInDays" type:"integer" required:"true"`
 
-	metadataPutRetentionPolicyInput `json:"-", xml:"-"`
+	metadataPutRetentionPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataPutRetentionPolicyInput struct {
@@ -962,7 +1050,7 @@ type metadataPutRetentionPolicyInput struct {
 }
 
 type PutRetentionPolicyOutput struct {
-	metadataPutRetentionPolicyOutput `json:"-", xml:"-"`
+	metadataPutRetentionPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataPutRetentionPolicyOutput struct {
@@ -976,7 +1064,7 @@ type RejectedLogEventsInfo struct {
 
 	TooOldLogEventEndIndex *int64 `locationName:"tooOldLogEventEndIndex" type:"integer"`
 
-	metadataRejectedLogEventsInfo `json:"-", xml:"-"`
+	metadataRejectedLogEventsInfo `json:"-" xml:"-"`
 }
 
 type metadataRejectedLogEventsInfo struct {
@@ -992,7 +1080,7 @@ type TestMetricFilterInput struct {
 
 	LogEventMessages []*string `locationName:"logEventMessages" type:"list" required:"true"`
 
-	metadataTestMetricFilterInput `json:"-", xml:"-"`
+	metadataTestMetricFilterInput `json:"-" xml:"-"`
 }
 
 type metadataTestMetricFilterInput struct {
@@ -1002,7 +1090,7 @@ type metadataTestMetricFilterInput struct {
 type TestMetricFilterOutput struct {
 	Matches []*MetricFilterMatchRecord `locationName:"matches" type:"list"`
 
-	metadataTestMetricFilterOutput `json:"-", xml:"-"`
+	metadataTestMetricFilterOutput `json:"-" xml:"-"`
 }
 
 type metadataTestMetricFilterOutput struct {

@@ -13,6 +13,9 @@ import (
 	"strings"
 	"time"
 
+	"github.com/awslabs/aws-sdk-go/aws/credentials"
+	"github.com/awslabs/aws-sdk-go/internal/protocol/rest"
+
 	"github.com/awslabs/aws-sdk-go/aws"
 )
 
@@ -57,8 +60,17 @@ type signer struct {
 }
 
 // Sign requests with signature version 4.
+//
+// Will sign the requests with the service config's Credentials object
+// Signing is skipped if the credentials is the credentials.AnonymousCredentials
+// object.
 func Sign(req *aws.Request) {
-	creds, err := req.Service.Config.Credentials.Credentials()
+	// If the request does not need to be signed ignore the signing of the
+	// request if the AnonymousCredentials object is used.
+	if req.Service.Config.Credentials == credentials.AnonymousCredentials {
+		return
+	}
+	creds, err := req.Service.Config.Credentials.Get()
 	if err != nil {
 		req.Error = err
 		return
@@ -69,13 +81,18 @@ func Sign(req *aws.Request) {
 		region = req.Service.Config.Region
 	}
 
+	name := req.Service.SigningName
+	if name == "" {
+		name = req.Service.ServiceName
+	}
+
 	s := signer{
 		Request:         req.HTTPRequest,
 		Time:            req.Time,
 		ExpireTime:      req.ExpireTime,
 		Query:           req.HTTPRequest.URL.Query(),
 		Body:            req.Body,
-		ServiceName:     req.Service.ServiceName,
+		ServiceName:     name,
 		Region:          region,
 		AccessKeyID:     creds.AccessKeyID,
 		SecretAccessKey: creds.SecretAccessKey,
@@ -111,8 +128,10 @@ func (v4 *signer) sign() {
 		fmt.Fprintln(out, v4.canonicalString)
 		fmt.Fprintf(out, "---[ STRING TO SIGN ]--------------------------------\n")
 		fmt.Fprintln(out, v4.stringToSign)
-		fmt.Fprintf(out, "---[ SIGNED URL ]--------------------------------\n")
-		fmt.Fprintln(out, v4.Request.URL)
+		if v4.isPresign {
+			fmt.Fprintf(out, "---[ SIGNED URL ]--------------------------------\n")
+			fmt.Fprintln(out, v4.Request.URL)
+		}
 		fmt.Fprintf(out, "-----------------------------------------------------\n")
 	}
 }
@@ -184,9 +203,9 @@ func (v4 *signer) buildQuery() {
 }
 
 func (v4 *signer) buildCanonicalHeaders() {
-	headers := make([]string, 0)
+	var headers []string
 	headers = append(headers, "host")
-	for k, _ := range v4.Request.Header {
+	for k := range v4.Request.Header {
 		if _, ok := ignoredHeaders[http.CanonicalHeaderKey(k)]; ok {
 			continue // ignored header
 		}
@@ -214,7 +233,7 @@ func (v4 *signer) buildCanonicalHeaders() {
 }
 
 func (v4 *signer) buildCanonicalString() {
-	v4.Request.URL.RawQuery = v4.Query.Encode()
+	v4.Request.URL.RawQuery = strings.Replace(v4.Query.Encode(), "+", "%20", -1)
 	uri := v4.Request.URL.Opaque
 	if uri != "" {
 		uri = "/" + strings.Join(strings.Split(uri, "/")[3:], "/")
@@ -223,6 +242,10 @@ func (v4 *signer) buildCanonicalString() {
 	}
 	if uri == "" {
 		uri = "/"
+	}
+
+	if v4.ServiceName != "s3" {
+		uri = rest.EscapePath(uri, false)
 	}
 
 	v4.canonicalString = strings.Join([]string{
@@ -285,7 +308,9 @@ func makeSha256Reader(reader io.ReadSeeker) []byte {
 	packet := make([]byte, 4096)
 	hash := sha256.New()
 
-	reader.Seek(0, 0)
+	start, _ := reader.Seek(0, 1)
+	defer reader.Seek(start, 0)
+
 	for {
 		n, err := reader.Read(packet)
 		if n > 0 {
@@ -295,7 +320,6 @@ func makeSha256Reader(reader io.ReadSeeker) []byte {
 			break
 		}
 	}
-	reader.Seek(0, 0)
 
 	return hash.Sum(nil)
 }
