@@ -220,13 +220,13 @@ func NewUploader(opts *UploadOptions) *Uploader {
 	if opts == nil {
 		opts = DefaultUploadOptions
 	}
-	return &Uploader{opts: *opts}
+	return &Uploader{opts: opts}
 }
 
 // The Uploader structure that calls Upload(). It is safe to call Upload()
 // on this structure across concurrent goroutines.
 type Uploader struct {
-	opts UploadOptions
+	opts *UploadOptions
 }
 
 // Upload uploads an object to S3, intelligently buffering large files into
@@ -234,15 +234,17 @@ type Uploader struct {
 // can configure the buffer size and concurrency through the opts parameter.
 //
 // If opts is set to nil, DefaultUploadOptions will be used.
+//
+// It is safe to call this method across concurrent goroutines.
 func (u *Uploader) Upload(input *UploadInput) (*UploadOutput, error) {
-	i := uploader{in: input, opts: &u.opts}
+	i := uploader{in: input, opts: *u.opts}
 	return i.upload()
 }
 
 // internal structure to manage an upload to S3.
 type uploader struct {
 	in   *UploadInput
-	opts *UploadOptions
+	opts UploadOptions
 
 	readerPos int64 // current reader position
 	totalSize int64 // set to -1 if the size is not known
