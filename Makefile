@@ -21,13 +21,17 @@ integration: deps
 	gucumber
 
 lint: deps
-	lint=`golint ./...`; \
+	@echo "golint ./..."
+	@lint=`golint ./...`; \
 	lint=`echo "$$lint" | grep -E -v -e ${LINTIGNOREDOT} -e ${LINTIGNOREDOC}`; \
 	echo "$$lint"; \
 	if [ "$$lint" != "" ]; then exit 1; fi
 
-unit: deps lint
+unit: deps build lint
 	go test ./...
+
+build:
+	go build ./...
 
 deps:
 	go get ./...
