@@ -477,7 +477,9 @@ func (c *Lambda) ListEventSourceMappings(input *ListEventSourceMappingsInput) (*
 
 func (c *Lambda) ListEventSourceMappingsPages(input *ListEventSourceMappingsInput, fn func(p *ListEventSourceMappingsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListEventSourceMappingsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListEventSourceMappingsOutput), lastPage)
+	})
 }
 
 var opListEventSourceMappings *aws.Operation
@@ -524,7 +526,9 @@ func (c *Lambda) ListFunctions(input *ListFunctionsInput) (*ListFunctionsOutput,
 
 func (c *Lambda) ListFunctionsPages(input *ListFunctionsInput, fn func(p *ListFunctionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListFunctionsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListFunctionsOutput), lastPage)
+	})
 }
 
 var opListFunctions *aws.Operation

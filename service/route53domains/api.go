@@ -339,7 +339,9 @@ func (c *Route53Domains) ListDomains(input *ListDomainsInput) (*ListDomainsOutpu
 
 func (c *Route53Domains) ListDomainsPages(input *ListDomainsInput, fn func(p *ListDomainsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListDomainsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListDomainsOutput), lastPage)
+	})
 }
 
 var opListDomains *aws.Operation
@@ -382,7 +384,9 @@ func (c *Route53Domains) ListOperations(input *ListOperationsInput) (*ListOperat
 
 func (c *Route53Domains) ListOperationsPages(input *ListOperationsInput, fn func(p *ListOperationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListOperationsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListOperationsOutput), lastPage)
+	})
 }
 
 var opListOperations *aws.Operation

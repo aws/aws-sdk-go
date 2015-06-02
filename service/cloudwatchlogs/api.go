@@ -263,7 +263,9 @@ func (c *CloudWatchLogs) DescribeLogGroups(input *DescribeLogGroupsInput) (*Desc
 
 func (c *CloudWatchLogs) DescribeLogGroupsPages(input *DescribeLogGroupsInput, fn func(p *DescribeLogGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeLogGroupsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeLogGroupsOutput), lastPage)
+	})
 }
 
 var opDescribeLogGroups *aws.Operation
@@ -314,7 +316,9 @@ func (c *CloudWatchLogs) DescribeLogStreams(input *DescribeLogStreamsInput) (*De
 
 func (c *CloudWatchLogs) DescribeLogStreamsPages(input *DescribeLogStreamsInput, fn func(p *DescribeLogStreamsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeLogStreamsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeLogStreamsOutput), lastPage)
+	})
 }
 
 var opDescribeLogStreams *aws.Operation
@@ -363,7 +367,9 @@ func (c *CloudWatchLogs) DescribeMetricFilters(input *DescribeMetricFiltersInput
 
 func (c *CloudWatchLogs) DescribeMetricFiltersPages(input *DescribeMetricFiltersInput, fn func(p *DescribeMetricFiltersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeMetricFiltersRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeMetricFiltersOutput), lastPage)
+	})
 }
 
 var opDescribeMetricFilters *aws.Operation
@@ -460,7 +466,9 @@ func (c *CloudWatchLogs) GetLogEvents(input *GetLogEventsInput) (*GetLogEventsOu
 
 func (c *CloudWatchLogs) GetLogEventsPages(input *GetLogEventsInput, fn func(p *GetLogEventsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.GetLogEventsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*GetLogEventsOutput), lastPage)
+	})
 }
 
 var opGetLogEvents *aws.Operation

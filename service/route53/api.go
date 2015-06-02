@@ -870,7 +870,9 @@ func (c *Route53) ListHealthChecks(input *ListHealthChecksInput) (*ListHealthChe
 
 func (c *Route53) ListHealthChecksPages(input *ListHealthChecksInput, fn func(p *ListHealthChecksOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListHealthChecksRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListHealthChecksOutput), lastPage)
+	})
 }
 
 var opListHealthChecks *aws.Operation
@@ -921,7 +923,9 @@ func (c *Route53) ListHostedZones(input *ListHostedZonesInput) (*ListHostedZones
 
 func (c *Route53) ListHostedZonesPages(input *ListHostedZonesInput, fn func(p *ListHostedZonesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListHostedZonesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListHostedZonesOutput), lastPage)
+	})
 }
 
 var opListHostedZones *aws.Operation
@@ -1043,7 +1047,9 @@ func (c *Route53) ListResourceRecordSets(input *ListResourceRecordSetsInput) (*L
 
 func (c *Route53) ListResourceRecordSetsPages(input *ListResourceRecordSetsInput, fn func(p *ListResourceRecordSetsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListResourceRecordSetsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListResourceRecordSetsOutput), lastPage)
+	})
 }
 
 var opListResourceRecordSets *aws.Operation

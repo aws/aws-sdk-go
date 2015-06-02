@@ -95,7 +95,9 @@ func (c *DynamoDB) BatchGetItem(input *BatchGetItemInput) (*BatchGetItemOutput, 
 
 func (c *DynamoDB) BatchGetItemPages(input *BatchGetItemInput, fn func(p *BatchGetItemOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.BatchGetItemRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*BatchGetItemOutput), lastPage)
+	})
 }
 
 var opBatchGetItem *aws.Operation
@@ -455,7 +457,9 @@ func (c *DynamoDB) ListTables(input *ListTablesInput) (*ListTablesOutput, error)
 
 func (c *DynamoDB) ListTablesPages(input *ListTablesInput, fn func(p *ListTablesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListTablesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListTablesOutput), lastPage)
+	})
 }
 
 var opListTables *aws.Operation
@@ -578,7 +582,9 @@ func (c *DynamoDB) Query(input *QueryInput) (*QueryOutput, error) {
 
 func (c *DynamoDB) QueryPages(input *QueryInput, fn func(p *QueryOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.QueryRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*QueryOutput), lastPage)
+	})
 }
 
 var opQuery *aws.Operation
@@ -637,7 +643,9 @@ func (c *DynamoDB) Scan(input *ScanInput) (*ScanOutput, error) {
 
 func (c *DynamoDB) ScanPages(input *ScanInput, fn func(p *ScanOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ScanRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ScanOutput), lastPage)
+	})
 }
 
 var opScan *aws.Operation

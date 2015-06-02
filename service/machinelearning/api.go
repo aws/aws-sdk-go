@@ -572,7 +572,9 @@ func (c *MachineLearning) DescribeBatchPredictions(input *DescribeBatchPredictio
 
 func (c *MachineLearning) DescribeBatchPredictionsPages(input *DescribeBatchPredictionsInput, fn func(p *DescribeBatchPredictionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeBatchPredictionsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeBatchPredictionsOutput), lastPage)
+	})
 }
 
 var opDescribeBatchPredictions *aws.Operation
@@ -615,7 +617,9 @@ func (c *MachineLearning) DescribeDataSources(input *DescribeDataSourcesInput) (
 
 func (c *MachineLearning) DescribeDataSourcesPages(input *DescribeDataSourcesInput, fn func(p *DescribeDataSourcesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeDataSourcesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeDataSourcesOutput), lastPage)
+	})
 }
 
 var opDescribeDataSources *aws.Operation
@@ -659,7 +663,9 @@ func (c *MachineLearning) DescribeEvaluations(input *DescribeEvaluationsInput) (
 
 func (c *MachineLearning) DescribeEvaluationsPages(input *DescribeEvaluationsInput, fn func(p *DescribeEvaluationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeEvaluationsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeEvaluationsOutput), lastPage)
+	})
 }
 
 var opDescribeEvaluations *aws.Operation
@@ -702,7 +708,9 @@ func (c *MachineLearning) DescribeMLModels(input *DescribeMLModelsInput) (*Descr
 
 func (c *MachineLearning) DescribeMLModelsPages(input *DescribeMLModelsInput, fn func(p *DescribeMLModelsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeMLModelsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeMLModelsOutput), lastPage)
+	})
 }
 
 var opDescribeMLModels *aws.Operation

@@ -1736,7 +1736,9 @@ func (c *IAM) GetAccountAuthorizationDetails(input *GetAccountAuthorizationDetai
 
 func (c *IAM) GetAccountAuthorizationDetailsPages(input *GetAccountAuthorizationDetailsInput, fn func(p *GetAccountAuthorizationDetailsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.GetAccountAuthorizationDetailsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*GetAccountAuthorizationDetailsOutput), lastPage)
+	})
 }
 
 var opGetAccountAuthorizationDetails *aws.Operation
@@ -1883,7 +1885,9 @@ func (c *IAM) GetGroup(input *GetGroupInput) (*GetGroupOutput, error) {
 
 func (c *IAM) GetGroupPages(input *GetGroupInput, fn func(p *GetGroupOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.GetGroupRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*GetGroupOutput), lastPage)
+	})
 }
 
 var opGetGroup *aws.Operation
@@ -2394,7 +2398,9 @@ func (c *IAM) ListAccessKeys(input *ListAccessKeysInput) (*ListAccessKeysOutput,
 
 func (c *IAM) ListAccessKeysPages(input *ListAccessKeysInput, fn func(p *ListAccessKeysOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListAccessKeysRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListAccessKeysOutput), lastPage)
+	})
 }
 
 var opListAccessKeys *aws.Operation
@@ -2441,7 +2447,9 @@ func (c *IAM) ListAccountAliases(input *ListAccountAliasesInput) (*ListAccountAl
 
 func (c *IAM) ListAccountAliasesPages(input *ListAccountAliasesInput, fn func(p *ListAccountAliasesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListAccountAliasesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListAccountAliasesOutput), lastPage)
+	})
 }
 
 var opListAccountAliases *aws.Operation
@@ -2664,7 +2672,9 @@ func (c *IAM) ListGroupPolicies(input *ListGroupPoliciesInput) (*ListGroupPolici
 
 func (c *IAM) ListGroupPoliciesPages(input *ListGroupPoliciesInput, fn func(p *ListGroupPoliciesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListGroupPoliciesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListGroupPoliciesOutput), lastPage)
+	})
 }
 
 var opListGroupPolicies *aws.Operation
@@ -2709,7 +2719,9 @@ func (c *IAM) ListGroups(input *ListGroupsInput) (*ListGroupsOutput, error) {
 
 func (c *IAM) ListGroupsPages(input *ListGroupsInput, fn func(p *ListGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListGroupsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListGroupsOutput), lastPage)
+	})
 }
 
 var opListGroups *aws.Operation
@@ -2754,7 +2766,9 @@ func (c *IAM) ListGroupsForUser(input *ListGroupsForUserInput) (*ListGroupsForUs
 
 func (c *IAM) ListGroupsForUserPages(input *ListGroupsForUserInput, fn func(p *ListGroupsForUserOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListGroupsForUserRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListGroupsForUserOutput), lastPage)
+	})
 }
 
 var opListGroupsForUser *aws.Operation
@@ -2801,7 +2815,9 @@ func (c *IAM) ListInstanceProfiles(input *ListInstanceProfilesInput) (*ListInsta
 
 func (c *IAM) ListInstanceProfilesPages(input *ListInstanceProfilesInput, fn func(p *ListInstanceProfilesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListInstanceProfilesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListInstanceProfilesOutput), lastPage)
+	})
 }
 
 var opListInstanceProfiles *aws.Operation
@@ -2848,7 +2864,9 @@ func (c *IAM) ListInstanceProfilesForRole(input *ListInstanceProfilesForRoleInpu
 
 func (c *IAM) ListInstanceProfilesForRolePages(input *ListInstanceProfilesForRoleInput, fn func(p *ListInstanceProfilesForRoleOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListInstanceProfilesForRoleRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListInstanceProfilesForRoleOutput), lastPage)
+	})
 }
 
 var opListInstanceProfilesForRole *aws.Operation
@@ -2896,7 +2914,9 @@ func (c *IAM) ListMFADevices(input *ListMFADevicesInput) (*ListMFADevicesOutput,
 
 func (c *IAM) ListMFADevicesPages(input *ListMFADevicesInput, fn func(p *ListMFADevicesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListMFADevicesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListMFADevicesOutput), lastPage)
+	})
 }
 
 var opListMFADevices *aws.Operation
@@ -3063,7 +3083,9 @@ func (c *IAM) ListRolePolicies(input *ListRolePoliciesInput) (*ListRolePoliciesO
 
 func (c *IAM) ListRolePoliciesPages(input *ListRolePoliciesInput, fn func(p *ListRolePoliciesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListRolePoliciesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListRolePoliciesOutput), lastPage)
+	})
 }
 
 var opListRolePolicies *aws.Operation
@@ -3110,7 +3132,9 @@ func (c *IAM) ListRoles(input *ListRolesInput) (*ListRolesOutput, error) {
 
 func (c *IAM) ListRolesPages(input *ListRolesInput, fn func(p *ListRolesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListRolesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListRolesOutput), lastPage)
+	})
 }
 
 var opListRoles *aws.Operation
@@ -3190,7 +3214,9 @@ func (c *IAM) ListServerCertificates(input *ListServerCertificatesInput) (*ListS
 
 func (c *IAM) ListServerCertificatesPages(input *ListServerCertificatesInput, fn func(p *ListServerCertificatesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListServerCertificatesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListServerCertificatesOutput), lastPage)
+	})
 }
 
 var opListServerCertificates *aws.Operation
@@ -3242,7 +3268,9 @@ func (c *IAM) ListSigningCertificates(input *ListSigningCertificatesInput) (*Lis
 
 func (c *IAM) ListSigningCertificatesPages(input *ListSigningCertificatesInput, fn func(p *ListSigningCertificatesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListSigningCertificatesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListSigningCertificatesOutput), lastPage)
+	})
 }
 
 var opListSigningCertificates *aws.Operation
@@ -3295,7 +3323,9 @@ func (c *IAM) ListUserPolicies(input *ListUserPoliciesInput) (*ListUserPoliciesO
 
 func (c *IAM) ListUserPoliciesPages(input *ListUserPoliciesInput, fn func(p *ListUserPoliciesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListUserPoliciesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListUserPoliciesOutput), lastPage)
+	})
 }
 
 var opListUserPolicies *aws.Operation
@@ -3342,7 +3372,9 @@ func (c *IAM) ListUsers(input *ListUsersInput) (*ListUsersOutput, error) {
 
 func (c *IAM) ListUsersPages(input *ListUsersInput, fn func(p *ListUsersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListUsersRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListUsersOutput), lastPage)
+	})
 }
 
 var opListUsers *aws.Operation
@@ -3390,7 +3422,9 @@ func (c *IAM) ListVirtualMFADevices(input *ListVirtualMFADevicesInput) (*ListVir
 
 func (c *IAM) ListVirtualMFADevicesPages(input *ListVirtualMFADevicesInput, fn func(p *ListVirtualMFADevicesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListVirtualMFADevicesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListVirtualMFADevicesOutput), lastPage)
+	})
 }
 
 var opListVirtualMFADevices *aws.Operation

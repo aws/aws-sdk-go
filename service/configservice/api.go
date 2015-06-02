@@ -277,7 +277,9 @@ func (c *ConfigService) GetResourceConfigHistory(input *GetResourceConfigHistory
 
 func (c *ConfigService) GetResourceConfigHistoryPages(input *GetResourceConfigHistoryInput, fn func(p *GetResourceConfigHistoryOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.GetResourceConfigHistoryRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*GetResourceConfigHistoryOutput), lastPage)
+	})
 }
 
 var opGetResourceConfigHistory *aws.Operation
