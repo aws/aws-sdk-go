@@ -105,8 +105,8 @@ func (d *downloader) download() (n int64, err error) {
 
 	// Spin up workers
 	ch := make(chan dlchunk, d.opts.Concurrency)
-	d.wg.Add(d.opts.Concurrency)
-	for i := 0; i < cap(ch); i++ {
+	for i := 0; i < d.opts.Concurrency; i++ {
+		d.wg.Add(1)
 		go d.downloadPart(ch)
 	}
 
