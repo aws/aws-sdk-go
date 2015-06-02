@@ -24,7 +24,6 @@ func New(config *aws.Config) *ConfigService {
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "config",
-		SigningName:  "config",
 		APIVersion:   "2014-11-12",
 		JSONVersion:  "1.1",
 		TargetPrefix: "StarlingDoveService",

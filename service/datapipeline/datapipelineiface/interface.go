@@ -15,6 +15,8 @@ type DataPipelineAPI interface {
 
 	CreatePipeline(*datapipeline.CreatePipelineInput) (*datapipeline.CreatePipelineOutput, error)
 
+	DeactivatePipeline(*datapipeline.DeactivatePipelineInput) (*datapipeline.DeactivatePipelineOutput, error)
+
 	DeletePipeline(*datapipeline.DeletePipelineInput) (*datapipeline.DeletePipelineOutput, error)
 
 	DescribeObjects(*datapipeline.DescribeObjectsInput) (*datapipeline.DescribeObjectsOutput, error)

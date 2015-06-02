@@ -365,6 +365,12 @@ func ExampleEC2_AuthorizeSecurityGroupEgress() {
 					},
 					// More values...
 				},
+				PrefixListIDs: []*ec2.PrefixListID{
+					&ec2.PrefixListID{ // Required
+						PrefixListID: aws.String("String"),
+					},
+					// More values...
+				},
 				ToPort: aws.Long(1),
 				UserIDGroupPairs: []*ec2.UserIDGroupPair{
 					&ec2.UserIDGroupPair{ // Required
@@ -419,6 +425,12 @@ func ExampleEC2_AuthorizeSecurityGroupIngress() {
 				IPRanges: []*ec2.IPRange{
 					&ec2.IPRange{ // Required
 						CIDRIP: aws.String("String"),
+					},
+					// More values...
+				},
+				PrefixListIDs: []*ec2.PrefixListID{
+					&ec2.PrefixListID{ // Required
+						PrefixListID: aws.String("String"),
 					},
 					// More values...
 				},
@@ -617,6 +629,38 @@ func ExampleEC2_CancelReservedInstancesListing() {
 		ReservedInstancesListingID: aws.String("String"), // Required
 	}
 	resp, err := svc.CancelReservedInstancesListing(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleEC2_CancelSpotFleetRequests() {
+	svc := ec2.New(nil)
+
+	params := &ec2.CancelSpotFleetRequestsInput{
+		SpotFleetRequestIDs: []*string{ // Required
+			aws.String("String"), // Required
+			// More values...
+		},
+		TerminateInstances: aws.Boolean(true), // Required
+		DryRun:             aws.Boolean(true),
+	}
+	resp, err := svc.CancelSpotFleetRequests(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -1148,6 +1192,7 @@ func ExampleEC2_CreateRoute() {
 	params := &ec2.CreateRouteInput{
 		DestinationCIDRBlock:   aws.String("String"), // Required
 		RouteTableID:           aws.String("String"), // Required
+		ClientToken:            aws.String("String"),
 		DryRun:                 aws.Boolean(true),
 		GatewayID:              aws.String("String"),
 		InstanceID:             aws.String("String"),
@@ -1368,6 +1413,41 @@ func ExampleEC2_CreateVPC() {
 		InstanceTenancy: aws.String("Tenancy"),
 	}
 	resp, err := svc.CreateVPC(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleEC2_CreateVPCEndpoint() {
+	svc := ec2.New(nil)
+
+	params := &ec2.CreateVPCEndpointInput{
+		ServiceName:    aws.String("String"), // Required
+		VPCID:          aws.String("String"), // Required
+		ClientToken:    aws.String("String"),
+		DryRun:         aws.Boolean(true),
+		PolicyDocument: aws.String("String"),
+		RouteTableIDs: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.CreateVPCEndpoint(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -1983,6 +2063,37 @@ func ExampleEC2_DeleteVPC() {
 		DryRun: aws.Boolean(true),
 	}
 	resp, err := svc.DeleteVPC(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleEC2_DeleteVPCEndpoints() {
+	svc := ec2.New(nil)
+
+	params := &ec2.DeleteVPCEndpointsInput{
+		VPCEndpointIDs: []*string{ // Required
+			aws.String("String"), // Required
+			// More values...
+		},
+		DryRun: aws.Boolean(true),
+	}
+	resp, err := svc.DeleteVPCEndpoints(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -2887,6 +2998,49 @@ func ExampleEC2_DescribeKeyPairs() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleEC2_DescribeMovingAddresses() {
+	svc := ec2.New(nil)
+
+	params := &ec2.DescribeMovingAddressesInput{
+		DryRun: aws.Boolean(true),
+		Filters: []*ec2.Filter{
+			&ec2.Filter{ // Required
+				Name: aws.String("String"),
+				Values: []*string{
+					aws.String("String"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		MaxResults: aws.Long(1),
+		NextToken:  aws.String("String"),
+		PublicIPs: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.DescribeMovingAddresses(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleEC2_DescribeNetworkACLs() {
 	svc := ec2.New(nil)
 
@@ -3019,6 +3173,49 @@ func ExampleEC2_DescribePlacementGroups() {
 		},
 	}
 	resp, err := svc.DescribePlacementGroups(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleEC2_DescribePrefixLists() {
+	svc := ec2.New(nil)
+
+	params := &ec2.DescribePrefixListsInput{
+		DryRun: aws.Boolean(true),
+		Filters: []*ec2.Filter{
+			&ec2.Filter{ // Required
+				Name: aws.String("String"),
+				Values: []*string{
+					aws.String("String"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		MaxResults: aws.Long(1),
+		NextToken:  aws.String("String"),
+		PrefixListIDs: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.DescribePrefixLists(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -3446,6 +3643,101 @@ func ExampleEC2_DescribeSpotDatafeedSubscription() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleEC2_DescribeSpotFleetInstances() {
+	svc := ec2.New(nil)
+
+	params := &ec2.DescribeSpotFleetInstancesInput{
+		SpotFleetRequestID: aws.String("String"), // Required
+		DryRun:             aws.Boolean(true),
+		MaxResults:         aws.Long(1),
+		NextToken:          aws.String("String"),
+	}
+	resp, err := svc.DescribeSpotFleetInstances(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleEC2_DescribeSpotFleetRequestHistory() {
+	svc := ec2.New(nil)
+
+	params := &ec2.DescribeSpotFleetRequestHistoryInput{
+		SpotFleetRequestID: aws.String("String"), // Required
+		StartTime:          aws.Time(time.Now()), // Required
+		DryRun:             aws.Boolean(true),
+		EventType:          aws.String("EventType"),
+		MaxResults:         aws.Long(1),
+		NextToken:          aws.String("String"),
+	}
+	resp, err := svc.DescribeSpotFleetRequestHistory(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleEC2_DescribeSpotFleetRequests() {
+	svc := ec2.New(nil)
+
+	params := &ec2.DescribeSpotFleetRequestsInput{
+		DryRun:     aws.Boolean(true),
+		MaxResults: aws.Long(1),
+		NextToken:  aws.String("String"),
+		SpotFleetRequestIDs: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.DescribeSpotFleetRequests(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleEC2_DescribeSpotInstanceRequests() {
 	svc := ec2.New(nil)
 
@@ -3667,6 +3959,78 @@ func ExampleEC2_DescribeVPCClassicLink() {
 		},
 	}
 	resp, err := svc.DescribeVPCClassicLink(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleEC2_DescribeVPCEndpointServices() {
+	svc := ec2.New(nil)
+
+	params := &ec2.DescribeVPCEndpointServicesInput{
+		DryRun:     aws.Boolean(true),
+		MaxResults: aws.Long(1),
+		NextToken:  aws.String("String"),
+	}
+	resp, err := svc.DescribeVPCEndpointServices(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleEC2_DescribeVPCEndpoints() {
+	svc := ec2.New(nil)
+
+	params := &ec2.DescribeVPCEndpointsInput{
+		DryRun: aws.Boolean(true),
+		Filters: []*ec2.Filter{
+			&ec2.Filter{ // Required
+				Name: aws.String("String"),
+				Values: []*string{
+					aws.String("String"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		MaxResults: aws.Long(1),
+		NextToken:  aws.String("String"),
+		VPCEndpointIDs: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.DescribeVPCEndpoints(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -4933,6 +5297,44 @@ func ExampleEC2_ModifyVPCAttribute() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleEC2_ModifyVPCEndpoint() {
+	svc := ec2.New(nil)
+
+	params := &ec2.ModifyVPCEndpointInput{
+		VPCEndpointID: aws.String("String"), // Required
+		AddRouteTableIDs: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+		DryRun:         aws.Boolean(true),
+		PolicyDocument: aws.String("String"),
+		RemoveRouteTableIDs: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+		ResetPolicy: aws.Boolean(true),
+	}
+	resp, err := svc.ModifyVPCEndpoint(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleEC2_ModifyVolumeAttribute() {
 	svc := ec2.New(nil)
 
@@ -4975,6 +5377,34 @@ func ExampleEC2_MonitorInstances() {
 		DryRun: aws.Boolean(true),
 	}
 	resp, err := svc.MonitorInstances(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleEC2_MoveAddressToVPC() {
+	svc := ec2.New(nil)
+
+	params := &ec2.MoveAddressToVPCInput{
+		PublicIP: aws.String("String"), // Required
+		DryRun:   aws.Boolean(true),
+	}
+	resp, err := svc.MoveAddressToVPC(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -5339,12 +5769,121 @@ func ExampleEC2_ReportInstanceStatus() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleEC2_RequestSpotFleet() {
+	svc := ec2.New(nil)
+
+	params := &ec2.RequestSpotFleetInput{
+		SpotFleetRequestConfig: &ec2.SpotFleetRequestConfigData{ // Required
+			IAMFleetRole: aws.String("String"), // Required
+			LaunchSpecifications: []*ec2.LaunchSpecification{ // Required
+				&ec2.LaunchSpecification{ // Required
+					AddressingType: aws.String("String"),
+					BlockDeviceMappings: []*ec2.BlockDeviceMapping{
+						&ec2.BlockDeviceMapping{ // Required
+							DeviceName: aws.String("String"),
+							EBS: &ec2.EBSBlockDevice{
+								DeleteOnTermination: aws.Boolean(true),
+								Encrypted:           aws.Boolean(true),
+								IOPS:                aws.Long(1),
+								SnapshotID:          aws.String("String"),
+								VolumeSize:          aws.Long(1),
+								VolumeType:          aws.String("VolumeType"),
+							},
+							NoDevice:    aws.String("String"),
+							VirtualName: aws.String("String"),
+						},
+						// More values...
+					},
+					EBSOptimized: aws.Boolean(true),
+					IAMInstanceProfile: &ec2.IAMInstanceProfileSpecification{
+						ARN:  aws.String("String"),
+						Name: aws.String("String"),
+					},
+					ImageID:      aws.String("String"),
+					InstanceType: aws.String("InstanceType"),
+					KernelID:     aws.String("String"),
+					KeyName:      aws.String("String"),
+					Monitoring: &ec2.RunInstancesMonitoringEnabled{
+						Enabled: aws.Boolean(true), // Required
+					},
+					NetworkInterfaces: []*ec2.InstanceNetworkInterfaceSpecification{
+						&ec2.InstanceNetworkInterfaceSpecification{ // Required
+							AssociatePublicIPAddress: aws.Boolean(true),
+							DeleteOnTermination:      aws.Boolean(true),
+							Description:              aws.String("String"),
+							DeviceIndex:              aws.Long(1),
+							Groups: []*string{
+								aws.String("String"), // Required
+								// More values...
+							},
+							NetworkInterfaceID: aws.String("String"),
+							PrivateIPAddress:   aws.String("String"),
+							PrivateIPAddresses: []*ec2.PrivateIPAddressSpecification{
+								&ec2.PrivateIPAddressSpecification{ // Required
+									PrivateIPAddress: aws.String("String"), // Required
+									Primary:          aws.Boolean(true),
+								},
+								// More values...
+							},
+							SecondaryPrivateIPAddressCount: aws.Long(1),
+							SubnetID:                       aws.String("String"),
+						},
+						// More values...
+					},
+					Placement: &ec2.SpotPlacement{
+						AvailabilityZone: aws.String("String"),
+						GroupName:        aws.String("String"),
+					},
+					RAMDiskID: aws.String("String"),
+					SecurityGroups: []*ec2.GroupIdentifier{
+						&ec2.GroupIdentifier{ // Required
+							GroupID:   aws.String("String"),
+							GroupName: aws.String("String"),
+						},
+						// More values...
+					},
+					SubnetID: aws.String("String"),
+					UserData: aws.String("String"),
+				},
+				// More values...
+			},
+			SpotPrice:                        aws.String("String"), // Required
+			TargetCapacity:                   aws.Long(1),          // Required
+			ClientToken:                      aws.String("String"),
+			TerminateInstancesWithExpiration: aws.Boolean(true),
+			ValidFrom:                        aws.Time(time.Now()),
+			ValidUntil:                       aws.Time(time.Now()),
+		},
+		DryRun: aws.Boolean(true),
+	}
+	resp, err := svc.RequestSpotFleet(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleEC2_RequestSpotInstances() {
 	svc := ec2.New(nil)
 
 	params := &ec2.RequestSpotInstancesInput{
 		SpotPrice:             aws.String("String"), // Required
 		AvailabilityZoneGroup: aws.String("String"),
+		ClientToken:           aws.String("String"),
 		DryRun:                aws.Boolean(true),
 		InstanceCount:         aws.Long(1),
 		LaunchGroup:           aws.String("String"),
@@ -5559,6 +6098,34 @@ func ExampleEC2_ResetSnapshotAttribute() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleEC2_RestoreAddressToClassic() {
+	svc := ec2.New(nil)
+
+	params := &ec2.RestoreAddressToClassicInput{
+		PublicIP: aws.String("String"), // Required
+		DryRun:   aws.Boolean(true),
+	}
+	resp, err := svc.RestoreAddressToClassic(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleEC2_RevokeSecurityGroupEgress() {
 	svc := ec2.New(nil)
 
@@ -5574,6 +6141,12 @@ func ExampleEC2_RevokeSecurityGroupEgress() {
 				IPRanges: []*ec2.IPRange{
 					&ec2.IPRange{ // Required
 						CIDRIP: aws.String("String"),
+					},
+					// More values...
+				},
+				PrefixListIDs: []*ec2.PrefixListID{
+					&ec2.PrefixListID{ // Required
+						PrefixListID: aws.String("String"),
 					},
 					// More values...
 				},
@@ -5631,6 +6204,12 @@ func ExampleEC2_RevokeSecurityGroupIngress() {
 				IPRanges: []*ec2.IPRange{
 					&ec2.IPRange{ // Required
 						CIDRIP: aws.String("String"),
+					},
+					// More values...
+				},
+				PrefixListIDs: []*ec2.PrefixListID{
+					&ec2.PrefixListID{ // Required
+						PrefixListID: aws.String("String"),
 					},
 					// More values...
 				},

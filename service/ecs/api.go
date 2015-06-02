@@ -1118,7 +1118,7 @@ type metadataCreateClusterOutput struct {
 
 type CreateServiceInput struct {
 	// Unique, case-sensitive identifier you provide to ensure the idempotency of
-	// the request. Up to 32 ASCII characters are allowed.
+	// the request. Up to 64 ASCII characters are allowed.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
 	// The short name or full Amazon Resource Name (ARN) of the cluster that you
@@ -1783,9 +1783,6 @@ type ListTasksInput struct {
 	// service.
 	ServiceName *string `locationName:"serviceName" type:"string"`
 
-	// The startedBy value that you want to filter the task results with. Specifying
-	// a startedBy value will limit the results to tasks that were started with
-	// that value.
 	StartedBy *string `locationName:"startedBy" type:"string"`
 
 	metadataListTasksInput `json:"-" xml:"-"`
@@ -2011,14 +2008,6 @@ type RunTaskInput struct {
 	// includes the JSON formatting characters of the override structure.
 	Overrides *TaskOverride `locationName:"overrides" type:"structure"`
 
-	// An optional tag specified when a task is started. For example if you automatically
-	// trigger a task to run a batch process job, you could apply a unique identifier
-	// for that job to your task with the startedBy parameter. You can then identify
-	// which tasks belong to that job by filtering the results of a ListTasks call
-	// with the startedBy value.
-	//
-	// If a task is started by an Amazon ECS service, then the startedBy parameter
-	// contains the deployment ID of the service that starts it.
 	StartedBy *string `locationName:"startedBy" type:"string"`
 
 	// The family and revision (family:revision) or full Amazon Resource Name (ARN)
@@ -2138,14 +2127,6 @@ type StartTaskInput struct {
 	// includes the JSON formatting characters of the override structure.
 	Overrides *TaskOverride `locationName:"overrides" type:"structure"`
 
-	// An optional tag specified when a task is started. For example if you automatically
-	// trigger a task to run a batch process job, you could apply a unique identifier
-	// for that job to your task with the startedBy parameter. You can then identify
-	// which tasks belong to that job by filtering the results of a ListTasks call
-	// with the startedBy value.
-	//
-	// If a task is started by an Amazon ECS service, then the startedBy parameter
-	// contains the deployment ID of the service that starts it.
 	StartedBy *string `locationName:"startedBy" type:"string"`
 
 	// The family and revision (family:revision) or full Amazon Resource Name (ARN)
@@ -2295,9 +2276,6 @@ type Task struct {
 	// One or more container overrides.
 	Overrides *TaskOverride `locationName:"overrides" type:"structure"`
 
-	// The tag specified when a task is started. If the task is started by an Amazon
-	// ECS service, then the startedBy parameter contains the deployment ID of the
-	// service that starts it.
 	StartedBy *string `locationName:"startedBy" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the task.
@@ -2399,14 +2377,10 @@ type metadataUpdateServiceOutput struct {
 }
 
 type VersionInfo struct {
-	// The Git commit hash for the Amazon ECS container agent build on the amazon-ecs-agent
-	//  (https://github.com/aws/amazon-ecs-agent/commits/master) GitHub repository.
 	AgentHash *string `locationName:"agentHash" type:"string"`
 
-	// The version number of the Amazon ECS container agent.
 	AgentVersion *string `locationName:"agentVersion" type:"string"`
 
-	// The Docker version running on the container instance.
 	DockerVersion *string `locationName:"dockerVersion" type:"string"`
 
 	metadataVersionInfo `json:"-" xml:"-"`

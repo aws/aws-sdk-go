@@ -19,6 +19,8 @@ type GlacierAPI interface {
 
 	DeleteVault(*glacier.DeleteVaultInput) (*glacier.DeleteVaultOutput, error)
 
+	DeleteVaultAccessPolicy(*glacier.DeleteVaultAccessPolicyInput) (*glacier.DeleteVaultAccessPolicyOutput, error)
+
 	DeleteVaultNotifications(*glacier.DeleteVaultNotificationsInput) (*glacier.DeleteVaultNotificationsOutput, error)
 
 	DescribeJob(*glacier.DescribeJobInput) (*glacier.JobDescription, error)
@@ -28,6 +30,8 @@ type GlacierAPI interface {
 	GetDataRetrievalPolicy(*glacier.GetDataRetrievalPolicyInput) (*glacier.GetDataRetrievalPolicyOutput, error)
 
 	GetJobOutput(*glacier.GetJobOutputInput) (*glacier.GetJobOutputOutput, error)
+
+	GetVaultAccessPolicy(*glacier.GetVaultAccessPolicyInput) (*glacier.GetVaultAccessPolicyOutput, error)
 
 	GetVaultNotifications(*glacier.GetVaultNotificationsInput) (*glacier.GetVaultNotificationsOutput, error)
 
@@ -44,6 +48,8 @@ type GlacierAPI interface {
 	ListVaults(*glacier.ListVaultsInput) (*glacier.ListVaultsOutput, error)
 
 	SetDataRetrievalPolicy(*glacier.SetDataRetrievalPolicyInput) (*glacier.SetDataRetrievalPolicyOutput, error)
+
+	SetVaultAccessPolicy(*glacier.SetVaultAccessPolicyInput) (*glacier.SetVaultAccessPolicyOutput, error)
 
 	SetVaultNotifications(*glacier.SetVaultNotificationsInput) (*glacier.SetVaultNotificationsOutput, error)
 

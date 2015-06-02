@@ -119,7 +119,8 @@ func (c *SES) GetIdentityDKIMAttributesRequest(input *GetIdentityDKIMAttributesI
 // represent the domain of that address. Whether Amazon SES has successfully
 // verified the DKIM tokens published in the domain's DNS. This information
 // is only returned for domain name identities, not for email addresses.  This
-// action is throttled at one request per second.
+// action is throttled at one request per second and can only get DKIM attributes
+// for up to 100 identities at a time.
 //
 // For more information about creating DNS records using DKIM tokens, go to
 // the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html).
@@ -157,7 +158,8 @@ func (c *SES) GetIdentityNotificationAttributesRequest(input *GetIdentityNotific
 // Given a list of verified identities (email addresses and/or domains), returns
 // a structure describing identity notification attributes.
 //
-// This action is throttled at one request per second.
+// This action is throttled at one request per second and can only get notification
+// attributes for up to 100 identities at a time.
 //
 // For more information about using notifications with Amazon SES, see the
 // Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html).
@@ -196,7 +198,8 @@ func (c *SES) GetIdentityVerificationAttributesRequest(input *GetIdentityVerific
 // verification status and (for domain identities) the verification token for
 // each identity.
 //
-// This action is throttled at one request per second.
+// This action is throttled at one request per second and can only get verification
+// attributes for up to 100 identities at a time.
 func (c *SES) GetIdentityVerificationAttributes(input *GetIdentityVerificationAttributesInput) (*GetIdentityVerificationAttributesOutput, error) {
 	req, out := c.GetIdentityVerificationAttributesRequest(input)
 	err := req.Send()
@@ -384,11 +387,10 @@ func (c *SES) SendEmailRequest(input *SendEmailInput) (req *aws.Request, output 
 // Composes an email message based on input data, and then immediately queues
 // the message for sending.
 //
-//  You can only send email from verified email addresses and domains. If you
-// have not requested production access to Amazon SES, you must also verify
-// every recipient email address except for the recipients provided by the Amazon
-// SES mailbox simulator. For more information, go to the Amazon SES Developer
-// Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html).
+//  You can only send email from verified email addresses and domains. If your
+// account is still in the Amazon SES sandbox, you must also verify every recipient
+// email address except for the recipients provided by the Amazon SES mailbox
+// simulator. For more information, go to the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html).
 //  The total size of the message cannot exceed 10 MB.
 //
 // Amazon SES has a limit on the total number of recipients per message: The
@@ -437,11 +439,10 @@ func (c *SES) SendRawEmailRequest(input *SendRawEmailInput) (req *aws.Request, o
 // raw text of the message must comply with Internet email standards; otherwise,
 // the message cannot be sent.
 //
-//  You can only send email from verified email addresses and domains. If you
-// have not requested production access to Amazon SES, you must also verify
-// every recipient email address except for the recipients provided by the Amazon
-// SES mailbox simulator. For more information, go to the Amazon SES Developer
-// Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html).
+//  You can only send email from verified email addresses and domains. If your
+// account is still in the Amazon SES sandbox, you must also verify every recipient
+// email address except for the recipients provided by the Amazon SES mailbox
+// simulator. For more information, go to the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html).
 //  The total size of the message cannot exceed 10 MB. This includes any attachments
 // that are part of the message.
 //
@@ -947,9 +948,14 @@ type metadataGetSendQuotaInput struct {
 // GetSendQuota request.
 type GetSendQuotaOutput struct {
 	// The maximum number of emails the user is allowed to send in a 24-hour interval.
+	// A value of -1 signifies an unlimited quota.
 	Max24HourSend *float64 `type:"double"`
 
-	// The maximum number of emails the user is allowed to send per second.
+	// The maximum number of emails that Amazon SES can accept from the user's account
+	// per second.
+	//
+	// The rate at which Amazon SES accepts the user's messages might be less than
+	// the maximum send rate.
 	MaxSendRate *float64 `type:"double"`
 
 	// The number of emails sent during the previous 24 hours.
@@ -1066,7 +1072,7 @@ type ListIdentitiesInput struct {
 	// "Domain". If this parameter is omitted, then all identities will be listed.
 	IdentityType *string `type:"string"`
 
-	// The maximum number of identities per page. Possible values are 1-100 inclusive.
+	// The maximum number of identities per page. Possible values are 1-1000 inclusive.
 	MaxItems *int64 `type:"integer"`
 
 	// The token to use for pagination.
@@ -1193,7 +1199,9 @@ type SendEmailInput struct {
 	// feedback forwarding is enabled. If the message cannot be delivered to the
 	// recipient, then an error message will be returned from the recipient's ISP;
 	// this message will then be forwarded to the email address specified by the
-	// ReturnPath parameter.
+	// ReturnPath parameter. The ReturnPath parameter is never overwritten. This
+	// email address must be either individually verified with Amazon SES, or from
+	// a domain that has been verified with Amazon SES.
 	ReturnPath *string `type:"string"`
 
 	// The identity's email address.
@@ -1243,7 +1251,9 @@ type SendRawEmailInput struct {
 	// Content must be base64-encoded, if MIME requires it.
 	RawMessage *RawMessage `type:"structure" required:"true"`
 
-	// The identity's email address.
+	// The identity's email address. If you do not provide a value for this parameter,
+	// you must specify a "From" address in the raw text of the message. (You can
+	// also specify both.)
 	//
 	//  By default, the string must be 7-bit ASCII. If the text must contain any
 	// other characters, then you must use MIME encoded-word syntax (RFC 2047) instead

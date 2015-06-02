@@ -9,6 +9,8 @@ import (
 
 // ElasticBeanstalkAPI is the interface type for elasticbeanstalk.ElasticBeanstalk.
 type ElasticBeanstalkAPI interface {
+	AbortEnvironmentUpdate(*elasticbeanstalk.AbortEnvironmentUpdateInput) (*elasticbeanstalk.AbortEnvironmentUpdateOutput, error)
+
 	CheckDNSAvailability(*elasticbeanstalk.CheckDNSAvailabilityInput) (*elasticbeanstalk.CheckDNSAvailabilityOutput, error)
 
 	CreateApplication(*elasticbeanstalk.CreateApplicationInput) (*elasticbeanstalk.ApplicationDescriptionMessage, error)

@@ -287,6 +287,34 @@
       ],
       "documentation":"<p> Returns all the metrics filters associated with the specified log group. The list returned in the response is ASCII-sorted by filter name. </p> <p> By default, this operation returns up to 50 metric filters. If there are more metric filters to list, the response would contain a <code class=\"code\">nextToken</code> value in the response body. You can also limit the number of metric filters returned in the response by specifying the <code class=\"code\">limit</code> parameter in the request. </p>"
     },
+    "FilterLogEvents":{
+      "name":"FilterLogEvents",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"FilterLogEventsRequest"},
+      "output":{"shape":"FilterLogEventsResponse"},
+      "errors":[
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"<p>Returned if a parameter of the request is incorrectly specified.</p>"
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "exception":true,
+          "documentation":"<p>Returned if the specified resource does not exist.</p>"
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "exception":true,
+          "fault":true,
+          "documentation":"<p>Returned if the service cannot complete the request.</p>"
+        }
+      ],
+      "documentation":"<p> Retrieves log events, optionally filtered by a filter pattern from the specified log group. You can provide an optional time range to filter the results on the event <code class=\"code\">timestamp</code>. You can limit the streams searched to an explicit list of <code class=\"code\">logStreamNames</code>. </p> <p> By default, this operation returns as much matching log events as can fit in a response size of 1MB, up to 10,000 log events, or all the events found within a time-bounded scan window. If the response includes a <code class=\"code\">nextToken</code>, then there is more data to search, and the search can be resumed with a new request providing the nextToken. The response will contain a list of <code class=\"code\">searchedLogStreams</code> that contains information about which streams were searched in the request and whether they have been searched completely or require further pagination. The <code class=\"code\">limit</code> parameter in the request. can be used to specify the maximum number of events to return in a page. </p>"
+    },
     "GetLogEvents":{
       "name":"GetLogEvents",
       "http":{
@@ -601,6 +629,7 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "EventId":{"type":"string"},
     "EventMessage":{
       "type":"string",
       "min":1
@@ -621,6 +650,61 @@
       "type":"integer",
       "documentation":"The number of metric filters associated with the log group."
     },
+    "FilterLogEventsRequest":{
+      "type":"structure",
+      "required":["logGroupName"],
+      "members":{
+        "logGroupName":{
+          "shape":"LogGroupName",
+          "documentation":"<p> The name of the log group to query </p>"
+        },
+        "logStreamNames":{
+          "shape":"InputLogStreamNames",
+          "documentation":"<p> Optional list of log stream names within the specified log group to search. Defaults to all the log streams in the log group. </p>"
+        },
+        "startTime":{
+          "shape":"Timestamp",
+          "documentation":"<p> A unix timestamp indicating the start time of the range for the request. If provided, events with a timestamp prior to this time will not be returned. </p>"
+        },
+        "endTime":{
+          "shape":"Timestamp",
+          "documentation":"<p> A unix timestamp indicating the end time of the range for the request. If provided, events with a timestamp later than this time will not be returned. </p>"
+        },
+        "filterPattern":{
+          "shape":"FilterPattern",
+          "documentation":"<p> A valid CloudWatch Logs filter pattern to use for filtering the response. If not provided, all the events are matched. </p>"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "documentation":"<p> A pagination token obtained from a <code class=\"code\">FilterLogEvents</code> response to continue paginating the FilterLogEvents results. </p>"
+        },
+        "limit":{
+          "shape":"EventsLimit",
+          "documentation":"<p> The maximum number of events to return in a page of results. Default is 10,000 events. </p>"
+        },
+        "interleaved":{
+          "shape":"Interleaved",
+          "documentation":"<p> If provided, the API will make a best effort to provide responses that contain events from multiple log streams within the log group interleaved in a single response. If not provided, all the matched log events in the first log stream will be searched first, then those in the next log stream, etc. </p>"
+        }
+      }
+    },
+    "FilterLogEventsResponse":{
+      "type":"structure",
+      "members":{
+        "events":{
+          "shape":"FilteredLogEvents",
+          "documentation":"<p> A list of <code class=\"code\">FilteredLogEvent</code> objects representing the matched events from the request. </p>"
+        },
+        "searchedLogStreams":{
+          "shape":"SearchedLogStreams",
+          "documentation":"<p> A list of <code class=\"code\">SearchedLogStream</code> objects indicating which log streams have been searched in this request and whether each has been searched completely or still has more to be paginated. </p>"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "documentation":"<p> A pagination token obtained from a <code class=\"code\">FilterLogEvents</code> response to continue paginating the FilterLogEvents results. </p>"
+        }
+      }
+    },
     "FilterName":{
       "type":"string",
       "min":1,
@@ -633,6 +717,28 @@
       "min":0,
       "max":512,
       "documentation":"A symbolic description of how Amazon CloudWatch Logs should interpret the data in each log entry. For example, a log entry may contain timestamps, IP addresses, strings, and so on. You use the pattern to specify what to look for in the log stream."
+    },
+    "FilteredLogEvent":{
+      "type":"structure",
+      "members":{
+        "logStreamName":{
+          "shape":"LogStreamName",
+          "documentation":"The name of the log stream this event belongs to."
+        },
+        "timestamp":{"shape":"Timestamp"},
+        "message":{"shape":"EventMessage"},
+        "ingestionTime":{"shape":"Timestamp"},
+        "eventId":{
+          "shape":"EventId",
+          "documentation":"A unique identifier for this event."
+        }
+      },
+      "documentation":"Represents a matched event from a <code class=\"code\">FilterLogEvents</code> request."
+    },
+    "FilteredLogEvents":{
+      "type":"list",
+      "member":{"shape":"FilteredLogEvent"},
+      "documentation":"A list of matched <code class=\"code\">FilteredLogEvent</code> objects returned from a <code class=\"code\">FilterLogEvents</code> request."
     },
     "GetLogEventsRequest":{
       "type":"structure",
@@ -651,7 +757,7 @@
         },
         "limit":{
           "shape":"EventsLimit",
-          "documentation":"<p> The maximum number of log events returned in the response. If you don't specify a value, the request would return as much log events as can fit in a response size of 1MB, up to 10,000 log events. </p>"
+          "documentation":"<p> The maximum number of log events returned in the response. If you don't specify a value, the request would return as many log events as can fit in a response size of 1MB, up to 10,000 log events. </p>"
         },
         "startFromHead":{
           "shape":"StartFromHead",
@@ -686,6 +792,14 @@
       "max":10000,
       "documentation":"A list of events belonging to a log stream."
     },
+    "InputLogStreamNames":{
+      "type":"list",
+      "member":{"shape":"LogStreamName"},
+      "min":1,
+      "max":100,
+      "documentation":"A list of log stream names."
+    },
+    "Interleaved":{"type":"boolean"},
     "InvalidParameterException":{
       "type":"structure",
       "members":{
@@ -750,6 +864,7 @@
       "max":512,
       "pattern":"[^:*]*"
     },
+    "LogStreamSearchedCompletely":{"type":"boolean"},
     "LogStreams":{
       "type":"list",
       "member":{"shape":"LogStream"},
@@ -919,6 +1034,25 @@
       },
       "exception":true,
       "documentation":"<p>Returned if the specified resource does not exist.</p>"
+    },
+    "SearchedLogStream":{
+      "type":"structure",
+      "members":{
+        "logStreamName":{
+          "shape":"LogStreamName",
+          "documentation":"The name of the log stream."
+        },
+        "searchedCompletely":{
+          "shape":"LogStreamSearchedCompletely",
+          "documentation":"Indicates whether all the events in this log stream were searched or more data exists to search by paginating further."
+        }
+      },
+      "documentation":"An object indicating the search status of a log stream in a <code class=\"code\">FilterLogEvents</code> request."
+    },
+    "SearchedLogStreams":{
+      "type":"list",
+      "member":{"shape":"SearchedLogStream"},
+      "documentation":"A list of <code class=\"code\">SearchedLogStream</code> objects indicating the search status for log streams in a <code class=\"code\">FilterLogEvents</code> request."
     },
     "SequenceToken":{
       "type":"string",

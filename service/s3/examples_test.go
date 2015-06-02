@@ -629,10 +629,37 @@ func ExampleS3_GetBucketLogging() {
 func ExampleS3_GetBucketNotification() {
 	svc := s3.New(nil)
 
-	params := &s3.GetBucketNotificationInput{
+	params := &s3.GetBucketNotificationConfigurationRequest{
 		Bucket: aws.String("BucketName"), // Required
 	}
 	resp, err := svc.GetBucketNotification(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleS3_GetBucketNotificationConfiguration() {
+	svc := s3.New(nil)
+
+	params := &s3.GetBucketNotificationConfigurationRequest{
+		Bucket: aws.String("BucketName"), // Required
+	}
+	resp, err := svc.GetBucketNotificationConfiguration(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -1345,7 +1372,7 @@ func ExampleS3_PutBucketNotification() {
 
 	params := &s3.PutBucketNotificationInput{
 		Bucket: aws.String("BucketName"), // Required
-		NotificationConfiguration: &s3.NotificationConfiguration{ // Required
+		NotificationConfiguration: &s3.NotificationConfigurationDeprecated{ // Required
 			CloudFunctionConfiguration: &s3.CloudFunctionConfiguration{
 				CloudFunction: aws.String("CloudFunction"),
 				Event:         aws.String("Event"),
@@ -1356,27 +1383,89 @@ func ExampleS3_PutBucketNotification() {
 				ID:             aws.String("NotificationId"),
 				InvocationRole: aws.String("CloudFunctionInvocationRole"),
 			},
-			QueueConfiguration: &s3.QueueConfiguration{
+			QueueConfiguration: &s3.QueueConfigurationDeprecated{
 				Event: aws.String("Event"),
 				Events: []*string{
 					aws.String("Event"), // Required
 					// More values...
 				},
 				ID:    aws.String("NotificationId"),
-				Queue: aws.String("Queue"),
+				Queue: aws.String("QueueArn"),
 			},
-			TopicConfiguration: &s3.TopicConfiguration{
+			TopicConfiguration: &s3.TopicConfigurationDeprecated{
 				Event: aws.String("Event"),
 				Events: []*string{
 					aws.String("Event"), // Required
 					// More values...
 				},
 				ID:    aws.String("NotificationId"),
-				Topic: aws.String("Topic"),
+				Topic: aws.String("TopicArn"),
 			},
 		},
 	}
 	resp, err := svc.PutBucketNotification(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleS3_PutBucketNotificationConfiguration() {
+	svc := s3.New(nil)
+
+	params := &s3.PutBucketNotificationConfigurationInput{
+		Bucket: aws.String("BucketName"), // Required
+		NotificationConfiguration: &s3.NotificationConfiguration{ // Required
+			LambdaFunctionConfigurations: []*s3.LambdaFunctionConfiguration{
+				&s3.LambdaFunctionConfiguration{ // Required
+					Events: []*string{ // Required
+						aws.String("Event"), // Required
+						// More values...
+					},
+					LambdaFunctionARN: aws.String("LambdaFunctionArn"), // Required
+					ID:                aws.String("NotificationId"),
+				},
+				// More values...
+			},
+			QueueConfigurations: []*s3.QueueConfiguration{
+				&s3.QueueConfiguration{ // Required
+					Events: []*string{ // Required
+						aws.String("Event"), // Required
+						// More values...
+					},
+					QueueARN: aws.String("QueueArn"), // Required
+					ID:       aws.String("NotificationId"),
+				},
+				// More values...
+			},
+			TopicConfigurations: []*s3.TopicConfiguration{
+				&s3.TopicConfiguration{ // Required
+					Events: []*string{ // Required
+						aws.String("Event"), // Required
+						// More values...
+					},
+					TopicARN: aws.String("TopicArn"), // Required
+					ID:       aws.String("NotificationId"),
+				},
+				// More values...
+			},
+		},
+	}
+	resp, err := svc.PutBucketNotificationConfiguration(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {

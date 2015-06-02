@@ -104,7 +104,7 @@ func (c *RDS) ApplyPendingMaintenanceActionRequest(input *ApplyPendingMaintenanc
 	return
 }
 
-// Applies a pending maintenance action to a resource.
+// Applies a pending maintenance action to a resource (for example, a DB instance).
 func (c *RDS) ApplyPendingMaintenanceAction(input *ApplyPendingMaintenanceActionInput) (*ApplyPendingMaintenanceActionOutput, error) {
 	req, out := c.ApplyPendingMaintenanceActionRequest(input)
 	err := req.Send()
@@ -622,8 +622,6 @@ func (c *RDS) DeleteDBParameterGroupRequest(input *DeleteDBParameterGroupInput) 
 
 // Deletes a specified DBParameterGroup. The DBParameterGroup to be deleted
 // cannot be associated with any DB instances.
-//
-//  The specified DB parameter group cannot be associated with any DB instances.
 func (c *RDS) DeleteDBParameterGroup(input *DeleteDBParameterGroupInput) (*DeleteDBParameterGroupOutput, error) {
 	req, out := c.DeleteDBParameterGroupRequest(input)
 	err := req.Send()
@@ -798,6 +796,75 @@ func (c *RDS) DeleteOptionGroup(input *DeleteOptionGroupInput) (*DeleteOptionGro
 }
 
 var opDeleteOptionGroup *aws.Operation
+
+// DescribeAccountAttributesRequest generates a request for the DescribeAccountAttributes operation.
+func (c *RDS) DescribeAccountAttributesRequest(input *DescribeAccountAttributesInput) (req *aws.Request, output *DescribeAccountAttributesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opDescribeAccountAttributes == nil {
+		opDescribeAccountAttributes = &aws.Operation{
+			Name:       "DescribeAccountAttributes",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &DescribeAccountAttributesInput{}
+	}
+
+	req = c.newRequest(opDescribeAccountAttributes, input, output)
+	output = &DescribeAccountAttributesOutput{}
+	req.Data = output
+	return
+}
+
+// Lists all of the attributes for a customer account. The attributes include
+// Amazon RDS quotas for the account, such as the number of DB instances allowed.
+// The description for a quota includes the quota name, current usage toward
+// that quota, and the quota's maximum value.
+//
+// This command does not take any parameters.
+func (c *RDS) DescribeAccountAttributes(input *DescribeAccountAttributesInput) (*DescribeAccountAttributesOutput, error) {
+	req, out := c.DescribeAccountAttributesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opDescribeAccountAttributes *aws.Operation
+
+// DescribeCertificatesRequest generates a request for the DescribeCertificates operation.
+func (c *RDS) DescribeCertificatesRequest(input *DescribeCertificatesInput) (req *aws.Request, output *DescribeCertificatesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opDescribeCertificates == nil {
+		opDescribeCertificates = &aws.Operation{
+			Name:       "DescribeCertificates",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &DescribeCertificatesInput{}
+	}
+
+	req = c.newRequest(opDescribeCertificates, input, output)
+	output = &DescribeCertificatesOutput{}
+	req.Data = output
+	return
+}
+
+// Lists the set of CA certificates provided by Amazon RDS for this AWS account.
+func (c *RDS) DescribeCertificates(input *DescribeCertificatesInput) (*DescribeCertificatesOutput, error) {
+	req, out := c.DescribeCertificatesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opDescribeCertificates *aws.Operation
 
 // DescribeDBEngineVersionsRequest generates a request for the DescribeDBEngineVersions operation.
 func (c *RDS) DescribeDBEngineVersionsRequest(input *DescribeDBEngineVersionsInput) (req *aws.Request, output *DescribeDBEngineVersionsOutput) {
@@ -1475,7 +1542,7 @@ func (c *RDS) DescribePendingMaintenanceActionsRequest(input *DescribePendingMai
 	return
 }
 
-// Returns a list of resources (for example, DB Instances) that have at least
+// Returns a list of resources (for example, DB instances) that have at least
 // one pending maintenance action.
 func (c *RDS) DescribePendingMaintenanceActions(input *DescribePendingMaintenanceActionsInput) (*DescribePendingMaintenanceActionsOutput, error) {
 	req, out := c.DescribePendingMaintenanceActionsRequest(input)
@@ -1862,7 +1929,7 @@ func (c *RDS) PromoteReadReplicaRequest(input *PromoteReadReplicaInput) (req *aw
 
 // Promotes a Read Replica DB instance to a standalone DB instance.
 //
-// We recommend that you enable automated backups on your Read Replica before
+//  We recommend that you enable automated backups on your Read Replica before
 // promoting the Read Replica. This ensures that no backup is taken during the
 // promotion process. Once the instance is promoted to a primary instance, backups
 // are taken based on your backup settings.
@@ -2174,6 +2241,25 @@ func (c *RDS) RevokeDBSecurityGroupIngress(input *RevokeDBSecurityGroupIngressIn
 
 var opRevokeDBSecurityGroupIngress *aws.Operation
 
+// Describes a quota for an AWS account, for example, the number of DB instances
+// allowed.
+type AccountQuota struct {
+	// The name of the Amazon RDS quota for this AWS account.
+	AccountQuotaName *string `type:"string"`
+
+	// The maximum allowed value for the quota.
+	Max *int64 `type:"long"`
+
+	// The amount currently used toward the quota maximum.
+	Used *int64 `type:"long"`
+
+	metadataAccountQuota `json:"-" xml:"-"`
+}
+
+type metadataAccountQuota struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type AddSourceIdentifierToSubscriptionInput struct {
 	// The identifier of the event source to be added. An identifier must begin
 	// with a letter and must contain only ASCII letters, digits, and hyphens; it
@@ -2239,8 +2325,8 @@ type ApplyPendingMaintenanceActionInput struct {
 	// The pending maintenance action to apply to this resource.
 	ApplyAction *string `type:"string" required:"true"`
 
-	// Specify an opt-in request, or undo an opt-in request. An opt-in request of
-	// type immediate cannot be undone.
+	// A value that specifies the type of opt-in request, or undoes an opt-in request.
+	// An opt-in request of type immediate cannot be undone.
 	//
 	// Valid values:
 	//
@@ -2249,8 +2335,7 @@ type ApplyPendingMaintenanceActionInput struct {
 	// resource.  undo-opt-in - Cancel any existing next-maintenance opt-in requests.
 	OptInType *string `type:"string" required:"true"`
 
-	// The ARN of the resource (for example, a DB Instance) that the pending maintenance
-	// action applies to.
+	// The ARN of the resource that the pending maintenance action applies to.
 	ResourceIdentifier *string `type:"string" required:"true"`
 
 	metadataApplyPendingMaintenanceActionInput `json:"-" xml:"-"`
@@ -2305,8 +2390,8 @@ type metadataAuthorizeDBSecurityGroupIngressInput struct {
 type AuthorizeDBSecurityGroupIngressOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//  DescribeDBSecurityGroups AuthorizeDBSecurityGroupIngress CreateDBSecurityGroup
-	// RevokeDBSecurityGroupIngress  This data type is used as a response element
+	//   DescribeDBSecurityGroups   AuthorizeDBSecurityGroupIngress   CreateDBSecurityGroup
+	//   RevokeDBSecurityGroupIngress   This data type is used as a response element
 	// in the DescribeDBSecurityGroups action.
 	DBSecurityGroup *DBSecurityGroup `type:"structure"`
 
@@ -2319,7 +2404,7 @@ type metadataAuthorizeDBSecurityGroupIngressOutput struct {
 
 // Contains Availability Zone information.
 //
-//  This data type is used as an element in the following data type:  OrderableDBInstanceOption
+//  This data type is used as an element in the following data type: OrderableDBInstanceOption
 type AvailabilityZone struct {
 	// The name of the availability zone.
 	Name *string `type:"string"`
@@ -2328,6 +2413,30 @@ type AvailabilityZone struct {
 }
 
 type metadataAvailabilityZone struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// A CA certificate for an AWS account.
+type Certificate struct {
+	// The unique key that identifies a certificate.
+	CertificateIdentifier *string `type:"string"`
+
+	// The type of the certificate.
+	CertificateType *string `type:"string"`
+
+	// The thumbprint of the certificate.
+	Thumbprint *string `type:"string"`
+
+	// The starting date from which the certificate is valid.
+	ValidFrom *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The final date that the certificate continues to be valid.
+	ValidTill *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	metadataCertificate `json:"-" xml:"-"`
+}
+
+type metadataCertificate struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -2432,7 +2541,7 @@ type metadataCopyDBSnapshotInput struct {
 type CopyDBSnapshotOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//  CreateDBSnapshot DeleteDBSnapshot  This data type is used as a response
+	//   CreateDBSnapshot   DeleteDBSnapshot   This data type is used as a response
 	// element in the DescribeDBSnapshots action.
 	DBSnapshot *DBSnapshot `type:"structure"`
 
@@ -2492,19 +2601,19 @@ type CreateDBInstanceInput struct {
 	//
 	//  Type: Integer
 	//
-	// MySQL
+	//  MySQL
 	//
 	//  Constraints: Must be an integer from 5 to 3072.
 	//
-	// PostgreSQL
+	//  PostgreSQL
 	//
 	//  Constraints: Must be an integer from 5 to 3072.
 	//
-	// Oracle
+	//  Oracle
 	//
 	//  Constraints: Must be an integer from 10 to 3072.
 	//
-	// SQL Server
+	//  SQL Server
 	//
 	//  Constraints: Must be an integer from 200 to 1024 (Standard Edition and
 	// Enterprise Edition) or from 20 to 1024 (Express Edition and Web Edition)
@@ -2568,7 +2677,7 @@ type CreateDBInstanceInput struct {
 	//
 	// Type: String
 	//
-	// MySQL
+	//  MySQL
 	//
 	// The name of the database to create when the DB instance is created. If this
 	// parameter is not specified, no database is created in the DB instance.
@@ -2576,7 +2685,7 @@ type CreateDBInstanceInput struct {
 	// Constraints:
 	//
 	//  Must contain 1 to 64 alphanumeric characters Cannot be a word reserved
-	// by the specified database engine  PostgreSQL
+	// by the specified database engine   PostgreSQL
 	//
 	// The name of the database to create when the DB instance is created. If this
 	// parameter is not specified, no database is created in the DB instance.
@@ -2585,7 +2694,7 @@ type CreateDBInstanceInput struct {
 	//
 	//  Must contain 1 to 63 alphanumeric characters Must begin with a letter or
 	// an underscore. Subsequent characters can be letters, underscores, or digits
-	// (0-9). Cannot be a word reserved by the specified database engine  Oracle
+	// (0-9). Cannot be a word reserved by the specified database engine   Oracle
 	//
 	//  The Oracle System ID (SID) of the created DB instance.
 	//
@@ -2593,7 +2702,7 @@ type CreateDBInstanceInput struct {
 	//
 	// Constraints:
 	//
-	//  Cannot be longer than 8 characters  SQL Server
+	//  Cannot be longer than 8 characters   SQL Server
 	//
 	// Not applicable. Must be null.
 	DBName *string `type:"string"`
@@ -2632,38 +2741,117 @@ type CreateDBInstanceInput struct {
 	// are available with Amazon RDS. Not every database engine is available for
 	// every AWS region.
 	//
-	// MySQL
+	//  MySQL
 	//
-	//   Version 5.1:  5.1.45 | 5.1.49 | 5.1.50 | 5.1.57 | 5.1.61 | 5.1.62 | 5.1.63
-	// | 5.1.69 | 5.1.71 | 5.1.73   Version 5.5:  5.5.12 | 5.5.20 | 5.5.23 | 5.5.25a
-	// | 5.5.27 | 5.5.31 | 5.5.33 | 5.5.37 | 5.5.38 | 5.5.8   Version 5.6:  5.6.12
-	// | 5.6.13 | 5.6.17 | 5.6.19 | 5.6.21   Oracle Database Enterprise Edition
-	// (oracle-ee)
+	//   Version 5.1 (Only available in the following regions: ap-northeast-1,
+	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
+	//  5.1.73a | 5.1.73b   Version 5.5 (Only available in the following regions:
+	// ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1,
+	// us-west-2):  5.5.40 | 5.5.40a   Version 5.5 (Available in all regions):
+	// 5.5.40b | 5.5.41   Version 5.6 (Available in all regions):  5.6.19a | 5.6.19b
+	// | 5.6.21 | 5.6.21b | 5.6.22    MySQL
 	//
-	//   Version 11.2:  11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 |
-	// 11.2.0.2.v7 | 11.2.0.3.v1 | 11.2.0.4.v1   Oracle Database Standard Edition
+	//   Version 5.1 (Only available in the following regions: ap-northeast-1,
+	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
+	//  5.1.73a | 5.1.73b   Version 5.5 (Only available in the following regions:
+	// ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1,
+	// us-west-2):  5.5.40 | 5.5.40a   Version 5.5 (Available in all regions):
+	// 5.5.40b | 5.5.41   Version 5.6 (Available in all regions):  5.6.19a | 5.6.19b
+	// | 5.6.21 | 5.6.21b | 5.6.22    MySQL
+	//
+	//   Version 5.1 (Only available in the following regions: ap-northeast-1,
+	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
+	//  5.1.73a | 5.1.73b   Version 5.5 (Only available in the following regions:
+	// ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1,
+	// us-west-2):  5.5.40 | 5.5.40a   Version 5.5 (Available in all regions):
+	// 5.5.40b | 5.5.41   Version 5.6 (Available in all regions):  5.6.19a | 5.6.19b
+	// | 5.6.21 | 5.6.21b | 5.6.22    MySQL
+	//
+	//   Version 5.1 (Only available in the following regions: ap-northeast-1,
+	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
+	//  5.1.73a | 5.1.73b   Version 5.5 (Only available in the following regions:
+	// ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1,
+	// us-west-2):  5.5.40 | 5.5.40a   Version 5.5 (Available in all regions):
+	// 5.5.40b | 5.5.41   Version 5.6 (Available in all regions):  5.6.19a | 5.6.19b
+	// | 5.6.21 | 5.6.21b | 5.6.22    Oracle Database Enterprise Edition (oracle-ee)
+	//
+	//   Version 11.2 (Only available in the following regions: ap-northeast-1,
+	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
+	//  11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7   Version
+	// 11.2 (Available in all regions):  11.2.0.3.v1 | 11.2.0.3.v2 | 11.2.0.4.v1
+	// | 11.2.0.4.v3    Oracle Database Enterprise Edition (oracle-ee)
+	//
+	//   Version 11.2 (Only available in the following regions: ap-northeast-1,
+	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
+	//  11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7   Version
+	// 11.2 (Available in all regions):  11.2.0.3.v1 | 11.2.0.3.v2 | 11.2.0.4.v1
+	// | 11.2.0.4.v3    Oracle Database Standard Edition (oracle-se)
+	//
+	//   Version 11.2 (Only available in the following regions: us-west-1):  11.2.0.2.v3
+	// | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7   Version 11.2 (Only
+	// available in the following regions: eu-central-1, us-west-1):  11.2.0.3.v1
+	// | 11.2.0.3.v2 | 11.2.0.4.v1 | 11.2.0.4.v3    Oracle Database Standard Edition
 	// (oracle-se)
 	//
-	//   Version 11.2:  11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 |
-	// 11.2.0.2.v7 | 11.2.0.3.v1 | 11.2.0.4.v1   Oracle Database Standard Edition
+	//   Version 11.2 (Only available in the following regions: us-west-1):  11.2.0.2.v3
+	// | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7   Version 11.2 (Only
+	// available in the following regions: eu-central-1, us-west-1):  11.2.0.3.v1
+	// | 11.2.0.3.v2 | 11.2.0.4.v1 | 11.2.0.4.v3    Oracle Database Standard Edition
 	// One (oracle-se1)
 	//
-	//   Version 11.2:  11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 |
-	// 11.2.0.2.v7 | 11.2.0.3.v1 | 11.2.0.4.v1   PostgreSQL
+	//   Version 11.2 (Only available in the following regions: us-west-1):  11.2.0.2.v3
+	// | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7   Version 11.2 (Only
+	// available in the following regions: eu-central-1, us-west-1):  11.2.0.3.v1
+	// | 11.2.0.3.v2 | 11.2.0.4.v1 | 11.2.0.4.v3    Oracle Database Standard Edition
+	// One (oracle-se1)
 	//
-	//   Version 9.3:  9.3.1 | 9.3.2 | 9.3.3   Microsoft SQL Server Enterprise
-	// Edition (sqlserver-ee)
+	//   Version 11.2 (Only available in the following regions: us-west-1):  11.2.0.2.v3
+	// | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7   Version 11.2 (Only
+	// available in the following regions: eu-central-1, us-west-1):  11.2.0.3.v1
+	// | 11.2.0.3.v2 | 11.2.0.4.v1 | 11.2.0.4.v3    PostgreSQL
 	//
-	//   Version 10.5:  10.50.2789.0.v1   Version 11.0:  11.00.2100.60.v1   Microsoft
-	// SQL Server Express Edition (sqlserver-ex)
+	//   Version 9.3 (Only available in the following regions: ap-northeast-1,
+	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
+	//  9.3.1 | 9.3.2   Version 9.3 (Available in all regions):  9.3.3 | 9.3.5
+	//   PostgreSQL
 	//
-	//   Version 10.5:  10.50.2789.0.v1   Version 11.0:  11.00.2100.60.v1   Microsoft
-	// SQL Server Standard Edition (sqlserver-se)
+	//   Version 9.3 (Only available in the following regions: ap-northeast-1,
+	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
+	//  9.3.1 | 9.3.2   Version 9.3 (Available in all regions):  9.3.3 | 9.3.5
+	//   Microsoft SQL Server Enterprise Edition (sqlserver-ee)
 	//
-	//   Version 10.5:  10.50.2789.0.v1   Version 11.0:  11.00.2100.60.v1   Microsoft
-	// SQL Server Web Edition (sqlserver-web)
+	//   Version 10.50 (Only available in the following regions: eu-central-1,
+	// us-west-1):  10.50.2789.0.v1   Version 11.00 (Only available in the following
+	// regions: eu-central-1, us-west-1):  11.00.2100.60.v1    Microsoft SQL Server
+	// Enterprise Edition (sqlserver-ee)
 	//
-	//   Version 10.5:  10.50.2789.0.v1   Version 11.0:  11.00.2100.60.v1
+	//   Version 10.50 (Only available in the following regions: eu-central-1,
+	// us-west-1):  10.50.2789.0.v1   Version 11.00 (Only available in the following
+	// regions: eu-central-1, us-west-1):  11.00.2100.60.v1    Microsoft SQL Server
+	// Express Edition (sqlserver-ex)
+	//
+	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 11.00
+	// (Available in all regions):  11.00.2100.60.v1    Microsoft SQL Server Express
+	// Edition (sqlserver-ex)
+	//
+	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 11.00
+	// (Available in all regions):  11.00.2100.60.v1    Microsoft SQL Server Standard
+	// Edition (sqlserver-se)
+	//
+	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 11.00
+	// (Available in all regions):  11.00.2100.60.v1    Microsoft SQL Server Standard
+	// Edition (sqlserver-se)
+	//
+	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 11.00
+	// (Available in all regions):  11.00.2100.60.v1    Microsoft SQL Server Web
+	// Edition (sqlserver-web)
+	//
+	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 11.00
+	// (Available in all regions):  11.00.2100.60.v1    Microsoft SQL Server Web
+	// Edition (sqlserver-web)
+	//
+	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 11.00
+	// (Available in all regions):  11.00.2100.60.v1
 	EngineVersion *string `type:"string"`
 
 	// The amount of Provisioned IOPS (input/output operations per second) to be
@@ -2695,38 +2883,47 @@ type CreateDBInstanceInput struct {
 	//
 	// Type: String
 	//
-	// MySQL
+	//  MySQL
 	//
 	//  Constraints: Must contain from 8 to 41 characters.
 	//
-	// Oracle
+	//  Oracle
 	//
 	//  Constraints: Must contain from 8 to 30 characters.
 	//
-	// SQL Server
+	//  SQL Server
+	//
+	//  Constraints: Must contain from 8 to 128 characters.
+	//
+	//  PostgreSQL
 	//
 	//  Constraints: Must contain from 8 to 128 characters.
 	MasterUserPassword *string `type:"string" required:"true"`
 
 	// The name of master user for the client DB instance.
 	//
-	// MySQL
+	//  MySQL
 	//
 	// Constraints:
 	//
 	//  Must be 1 to 16 alphanumeric characters. First character must be a letter.
 	// Cannot be a reserved word for the chosen database engine.  Type: String
 	//
-	// Oracle
+	//  Oracle
 	//
 	// Constraints:
 	//
 	//  Must be 1 to 30 alphanumeric characters. First character must be a letter.
-	// Cannot be a reserved word for the chosen database engine.  SQL Server
+	// Cannot be a reserved word for the chosen database engine.   SQL Server
 	//
 	// Constraints:
 	//
 	//  Must be 1 to 128 alphanumeric characters. First character must be a letter.
+	// Cannot be a reserved word for the chosen database engine.   PostgreSQL
+	//
+	// Constraints:
+	//
+	//  Must be 1 to 63 alphanumeric characters. First character must be a letter.
 	// Cannot be a reserved word for the chosen database engine.
 	MasterUsername *string `type:"string" required:"true"`
 
@@ -2744,7 +2941,7 @@ type CreateDBInstanceInput struct {
 
 	// The port number on which the database accepts connections.
 	//
-	// MySQL
+	//  MySQL
 	//
 	//  Default: 3306
 	//
@@ -2752,7 +2949,7 @@ type CreateDBInstanceInput struct {
 	//
 	// Type: Integer
 	//
-	// PostgreSQL
+	//  PostgreSQL
 	//
 	//  Default: 5432
 	//
@@ -2760,13 +2957,13 @@ type CreateDBInstanceInput struct {
 	//
 	// Type: Integer
 	//
-	// Oracle
+	//  Oracle
 	//
 	//  Default: 1521
 	//
 	//  Valid Values: 1150-65535
 	//
-	// SQL Server
+	//  SQL Server
 	//
 	//  Default: 1433
 	//
@@ -2856,8 +3053,8 @@ type metadataCreateDBInstanceInput struct {
 type CreateDBInstanceOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//  CreateDBInstance DeleteDBInstance ModifyDBInstance  This data type is used
-	// as a response element in the DescribeDBInstances action.
+	//   CreateDBInstance   DeleteDBInstance   ModifyDBInstance   This data type
+	// is used as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 
 	metadataCreateDBInstanceOutput `json:"-" xml:"-"`
@@ -2978,8 +3175,8 @@ type metadataCreateDBInstanceReadReplicaInput struct {
 type CreateDBInstanceReadReplicaOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//  CreateDBInstance DeleteDBInstance ModifyDBInstance  This data type is used
-	// as a response element in the DescribeDBInstances action.
+	//   CreateDBInstance   DeleteDBInstance   ModifyDBInstance   This data type
+	// is used as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 
 	metadataCreateDBInstanceReadReplicaOutput `json:"-" xml:"-"`
@@ -3059,8 +3256,8 @@ type metadataCreateDBSecurityGroupInput struct {
 type CreateDBSecurityGroupOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//  DescribeDBSecurityGroups AuthorizeDBSecurityGroupIngress CreateDBSecurityGroup
-	// RevokeDBSecurityGroupIngress  This data type is used as a response element
+	//   DescribeDBSecurityGroups   AuthorizeDBSecurityGroupIngress   CreateDBSecurityGroup
+	//   RevokeDBSecurityGroupIngress   This data type is used as a response element
 	// in the DescribeDBSecurityGroups action.
 	DBSecurityGroup *DBSecurityGroup `type:"structure"`
 
@@ -3102,7 +3299,7 @@ type metadataCreateDBSnapshotInput struct {
 type CreateDBSnapshotOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//  CreateDBSnapshot DeleteDBSnapshot  This data type is used as a response
+	//   CreateDBSnapshot   DeleteDBSnapshot   This data type is used as a response
 	// element in the DescribeDBSnapshots action.
 	DBSnapshot *DBSnapshot `type:"structure"`
 
@@ -3141,8 +3338,8 @@ type metadataCreateDBSubnetGroupInput struct {
 type CreateDBSubnetGroupOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//  CreateDBSubnetGroup ModifyDBSubnetGroup DescribeDBSubnetGroups DeleteDBSubnetGroup
-	//  This data type is used as a response element in the DescribeDBSubnetGroups
+	//   CreateDBSubnetGroup   ModifyDBSubnetGroup   DescribeDBSubnetGroups   DeleteDBSubnetGroup
+	//   This data type is used as a response element in the DescribeDBSubnetGroups
 	// action.
 	DBSubnetGroup *DBSubnetGroup `type:"structure"`
 
@@ -3295,8 +3492,8 @@ type metadataDBEngineVersion struct {
 
 // Contains the result of a successful invocation of the following actions:
 //
-//  CreateDBInstance DeleteDBInstance ModifyDBInstance  This data type is used
-// as a response element in the DescribeDBInstances action.
+//   CreateDBInstance   DeleteDBInstance   ModifyDBInstance   This data type
+// is used as a response element in the DescribeDBInstances action.
 type DBInstance struct {
 	// Specifies the allocated storage size specified in gigabytes.
 	AllocatedStorage *int64 `type:"integer"`
@@ -3309,6 +3506,9 @@ type DBInstance struct {
 
 	// Specifies the number of days for which automatic DB snapshots are retained.
 	BackupRetentionPeriod *int64 `type:"integer"`
+
+	// The identifier of the CA certificate for this DB instance.
+	CACertificateIdentifier *string `type:"string"`
 
 	// If present, specifies the name of the character set that this instance is
 	// associated with.
@@ -3334,7 +3534,7 @@ type DBInstance struct {
 	// when returning values from CreateDBInstanceReadReplica since Read Replicas
 	// are only supported for MySQL and PostgreSQL.
 	//
-	// MySQL, SQL Server, PostgreSQL
+	//  MySQL, SQL Server, PostgreSQL
 	//
 	//  Contains the name of the initial database of this instance that was provided
 	// at create time, if one was specified when the DB instance was created. This
@@ -3342,7 +3542,7 @@ type DBInstance struct {
 	//
 	// Type: String
 	//
-	// Oracle
+	//  Oracle
 	//
 	//  Contains the Oracle System ID (SID) of the created DB instance. Not shown
 	// when the returned parameters do not apply to an Oracle DB instance.
@@ -3522,8 +3722,8 @@ type metadataDBParameterGroupNameMessage struct {
 //
 // This data type is used as a response element in the following actions:
 //
-//  CreateDBInstance CreateDBInstanceReadReplica DeleteDBInstance ModifyDBInstance
-// RebootDBInstance RestoreDBInstanceFromDBSnapshot
+//   CreateDBInstance   CreateDBInstanceReadReplica   DeleteDBInstance   ModifyDBInstance
+//   RebootDBInstance   RestoreDBInstanceFromDBSnapshot
 type DBParameterGroupStatus struct {
 	// The name of the DP parameter group.
 	DBParameterGroupName *string `type:"string"`
@@ -3540,8 +3740,8 @@ type metadataDBParameterGroupStatus struct {
 
 // Contains the result of a successful invocation of the following actions:
 //
-//  DescribeDBSecurityGroups AuthorizeDBSecurityGroupIngress CreateDBSecurityGroup
-// RevokeDBSecurityGroupIngress  This data type is used as a response element
+//   DescribeDBSecurityGroups   AuthorizeDBSecurityGroupIngress   CreateDBSecurityGroup
+//   RevokeDBSecurityGroupIngress   This data type is used as a response element
 // in the DescribeDBSecurityGroups action.
 type DBSecurityGroup struct {
 	// Provides the description of the DB security group.
@@ -3571,7 +3771,8 @@ type metadataDBSecurityGroup struct {
 
 // This data type is used as a response element in the following actions:
 //
-//  ModifyDBInstance RebootDBInstance RestoreDBInstanceFromDBSnapshot RestoreDBInstanceToPointInTime
+//   ModifyDBInstance   RebootDBInstance   RestoreDBInstanceFromDBSnapshot
+//   RestoreDBInstanceToPointInTime
 type DBSecurityGroupMembership struct {
 	// The name of the DB security group.
 	DBSecurityGroupName *string `type:"string"`
@@ -3588,7 +3789,7 @@ type metadataDBSecurityGroupMembership struct {
 
 // Contains the result of a successful invocation of the following actions:
 //
-//  CreateDBSnapshot DeleteDBSnapshot  This data type is used as a response
+//   CreateDBSnapshot   DeleteDBSnapshot   This data type is used as a response
 // element in the DescribeDBSnapshots action.
 type DBSnapshot struct {
 	// Specifies the allocated storage size in gigabytes (GB).
@@ -3670,8 +3871,8 @@ type metadataDBSnapshot struct {
 
 // Contains the result of a successful invocation of the following actions:
 //
-//  CreateDBSubnetGroup ModifyDBSubnetGroup DescribeDBSubnetGroups DeleteDBSubnetGroup
-//  This data type is used as a response element in the DescribeDBSubnetGroups
+//   CreateDBSubnetGroup   ModifyDBSubnetGroup   DescribeDBSubnetGroups   DeleteDBSubnetGroup
+//   This data type is used as a response element in the DescribeDBSubnetGroups
 // action.
 type DBSubnetGroup struct {
 	// Provides the description of the DB subnet group.
@@ -3737,8 +3938,8 @@ type metadataDeleteDBInstanceInput struct {
 type DeleteDBInstanceOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//  CreateDBInstance DeleteDBInstance ModifyDBInstance  This data type is used
-	// as a response element in the DescribeDBInstances action.
+	//   CreateDBInstance   DeleteDBInstance   ModifyDBInstance   This data type
+	// is used as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 
 	metadataDeleteDBInstanceOutput `json:"-" xml:"-"`
@@ -3814,7 +4015,7 @@ type metadataDeleteDBSnapshotInput struct {
 type DeleteDBSnapshotOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//  CreateDBSnapshot DeleteDBSnapshot  This data type is used as a response
+	//   CreateDBSnapshot   DeleteDBSnapshot   This data type is used as a response
 	// element in the DescribeDBSnapshots action.
 	DBSnapshot *DBSnapshot `type:"structure"`
 
@@ -3890,6 +4091,79 @@ type DeleteOptionGroupOutput struct {
 }
 
 type metadataDeleteOptionGroupOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DescribeAccountAttributesInput struct {
+	metadataDescribeAccountAttributesInput `json:"-" xml:"-"`
+}
+
+type metadataDescribeAccountAttributesInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Data returned by the DescribeAccountAttributes action.
+type DescribeAccountAttributesOutput struct {
+	// A list of AccountQuota objects. Within this list, each quota has a name,
+	// a count of usage toward the quota maximum, and a maximum value for the quota.
+	AccountQuotas []*AccountQuota `locationNameList:"AccountQuota" type:"list"`
+
+	metadataDescribeAccountAttributesOutput `json:"-" xml:"-"`
+}
+
+type metadataDescribeAccountAttributesOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DescribeCertificatesInput struct {
+	// The user-supplied certificate identifier. If this parameter is specified,
+	// information for only the identified certificate is returned. This parameter
+	// isn't case-sensitive.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens First character
+	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
+	CertificateIdentifier *string `type:"string"`
+
+	// This parameter is not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// An optional pagination token provided by a previous DescribeCertificates
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results can be retrieved.
+	//
+	// Default: 100
+	//
+	// Constraints: Minimum 20, maximum 100
+	MaxRecords *int64 `type:"integer"`
+
+	metadataDescribeCertificatesInput `json:"-" xml:"-"`
+}
+
+type metadataDescribeCertificatesInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Data returned by the DescribeCertificates action.
+type DescribeCertificatesOutput struct {
+	// The list of Certificate objects for the AWS account.
+	Certificates []*Certificate `locationNameList:"Certificate" type:"list"`
+
+	// An optional pagination token provided by a previous DescribeCertificates
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords .
+	Marker *string `type:"string"`
+
+	metadataDescribeCertificatesOutput `json:"-" xml:"-"`
+}
+
+type metadataDescribeCertificatesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -4721,16 +4995,19 @@ type metadataDescribeOrderableDBInstanceOptionsOutput struct {
 }
 
 type DescribePendingMaintenanceActionsInput struct {
+	// A filter that specifies one or more resources to return pending maintenance
+	// actions for.
+	//
 	// Supported filters:
 	//
-	//  db-instance-id - Accepts DB instance identifiers and DB instance ARNs.
-	// The result list will only include maintenance actions for the specified DB
-	// Instances.
+	//   db-instance-id - Accepts DB instance identifiers and DB instance Amazon
+	// Resource Names (ARNs). The results list will only include pending maintenance
+	// actions for the DB instances identified by these ARNs.
 	Filters []*Filter `locationNameList:"Filter" type:"list"`
 
 	// An optional pagination token provided by a previous DescribePendingMaintenanceActions
 	// request. If this parameter is specified, the response includes only records
-	// beyond the marker, up to a number of records specified by MaxRecords .
+	// beyond the marker, up to a number of records specified by MaxRecords.
 	Marker *string `type:"string"`
 
 	// The maximum number of records to include in the response. If more records
@@ -4742,7 +5019,7 @@ type DescribePendingMaintenanceActionsInput struct {
 	// Constraints: minimum 20, maximum 100
 	MaxRecords *int64 `type:"integer"`
 
-	// The ARN of the resource to return pending maintenance actions for.
+	// The ARN of a resource to return pending maintenance actions for.
 	ResourceIdentifier *string `type:"string"`
 
 	metadataDescribePendingMaintenanceActionsInput `json:"-" xml:"-"`
@@ -4756,10 +5033,10 @@ type metadataDescribePendingMaintenanceActionsInput struct {
 type DescribePendingMaintenanceActionsOutput struct {
 	// An optional pagination token provided by a previous DescribePendingMaintenanceActions
 	// request. If this parameter is specified, the response includes only records
-	// beyond the marker, up to a number of records specified by MaxRecords .
+	// beyond the marker, up to a number of records specified by MaxRecords.
 	Marker *string `type:"string"`
 
-	// Provides a list of the pending maintenance actions for the resource.
+	// A list of the pending maintenance actions for the resource.
 	PendingMaintenanceActions []*ResourcePendingMaintenanceActions `locationNameList:"ResourcePendingMaintenanceActions" type:"list"`
 
 	metadataDescribePendingMaintenanceActionsOutput `json:"-" xml:"-"`
@@ -4983,7 +5260,7 @@ type metadataDownloadDBLogFilePortionOutput struct {
 
 // This data type is used as a response element in the following actions:
 //
-//  AuthorizeDBSecurityGroupIngress DescribeDBSecurityGroups RevokeDBSecurityGroupIngress
+//   AuthorizeDBSecurityGroupIngress   DescribeDBSecurityGroups   RevokeDBSecurityGroupIngress
 type EC2SecurityGroup struct {
 	// Specifies the id of the EC2 security group.
 	EC2SecurityGroupID *string `locationName:"EC2SecurityGroupId" type:"string"`
@@ -5008,7 +5285,7 @@ type metadataEC2SecurityGroup struct {
 
 // This data type is used as a response element in the following actions:
 //
-//  CreateDBInstance DescribeDBInstances DeleteDBInstance
+//   CreateDBInstance   DescribeDBInstances   DeleteDBInstance
 type Endpoint struct {
 	// Specifies the DNS address of the DB instance.
 	Address *string `type:"string"`
@@ -5195,7 +5472,7 @@ type ModifyDBInstanceInput struct {
 	// not result in an outage and the change is applied during the next maintenance
 	// window unless ApplyImmediately is set to true for this request.
 	//
-	// MySQL
+	//  MySQL
 	//
 	// Default: Uses existing setting
 	//
@@ -5207,7 +5484,7 @@ type ModifyDBInstanceInput struct {
 	//
 	// Type: Integer
 	//
-	// PostgreSQL
+	//  PostgreSQL
 	//
 	// Default: Uses existing setting
 	//
@@ -5219,7 +5496,7 @@ type ModifyDBInstanceInput struct {
 	//
 	// Type: Integer
 	//
-	// Oracle
+	//  Oracle
 	//
 	// Default: Uses existing setting
 	//
@@ -5229,7 +5506,7 @@ type ModifyDBInstanceInput struct {
 	// value. Values that are not at least 10% greater than the existing value are
 	// rounded up so that they are 10% greater than the current value.
 	//
-	// SQL Server
+	//  SQL Server
 	//
 	// Cannot be modified.
 	//
@@ -5300,6 +5577,9 @@ type ModifyDBInstanceInput struct {
 	// Read Replica only if the source is running PostgreSQL 9.3.5 Cannot be set
 	// to 0 if the DB instance is a source to Read Replicas
 	BackupRetentionPeriod *int64 `type:"integer"`
+
+	// Indicates the certificate which needs to be associated with the instance.
+	CACertificateIdentifier *string `type:"string"`
 
 	// The new compute and memory capacity of the DB instance. To determine the
 	// instance classes that are available for a particular DB engine, use the DescribeOrderableDBInstanceOptions
@@ -5375,7 +5655,7 @@ type ModifyDBInstanceInput struct {
 	// The DB instance will require a reboot for the change in storage type to take
 	// effect.
 	//
-	// SQL Server
+	//  SQL Server
 	//
 	// Setting the IOPS value for the SQL Server database engine is not supported.
 	//
@@ -5410,7 +5690,7 @@ type ModifyDBInstanceInput struct {
 	// characters (Oracle), or 8 to 128 alphanumeric characters (SQL Server).
 	//
 	//  Amazon RDS API actions never return the password, so this action provides
-	// a way to regain access to a master instance user if the password is lost.
+	// a way to regain access to a primary instance user if the password is lost.
 	// This includes restoring privileges that may have been accidentally revoked.
 	MasterUserPassword *string `type:"string"`
 
@@ -5511,8 +5791,8 @@ type metadataModifyDBInstanceInput struct {
 type ModifyDBInstanceOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//  CreateDBInstance DeleteDBInstance ModifyDBInstance  This data type is used
-	// as a response element in the DescribeDBInstances action.
+	//   CreateDBInstance   DeleteDBInstance   ModifyDBInstance   This data type
+	// is used as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 
 	metadataModifyDBInstanceOutput `json:"-" xml:"-"`
@@ -5576,8 +5856,8 @@ type metadataModifyDBSubnetGroupInput struct {
 type ModifyDBSubnetGroupOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//  CreateDBSubnetGroup ModifyDBSubnetGroup DescribeDBSubnetGroups DeleteDBSubnetGroup
-	//  This data type is used as a response element in the DescribeDBSubnetGroups
+	//   CreateDBSubnetGroup   ModifyDBSubnetGroup   DescribeDBSubnetGroups   DeleteDBSubnetGroup
+	//   This data type is used as a response element in the DescribeDBSubnetGroups
 	// action.
 	DBSubnetGroup *DBSubnetGroup `type:"structure"`
 
@@ -6000,11 +6280,14 @@ type PendingMaintenanceAction struct {
 	AutoAppliedAfterDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The effective date when the pending maintenance action will be applied to
-	// the resource. This takes into account opt-in requests received from the ApplyPendingMaintenanceAction
-	// API, the AutoAppliedAfterDate, and the ForcedApplyDate. This value is blank
-	// if an opt-in request has not been received and no value has been specified
-	// for the AutoAppliedAfterDate or ForcedApplyDate.
+	// the resource. This date takes into account opt-in requests received from
+	// the ApplyPendingMaintenanceAction API, the AutoAppliedAfterDate, and the
+	// ForcedApplyDate. This value is blank if an opt-in request has not been received
+	// and nothing has been specified as AutoAppliedAfterDate or ForcedApplyDate.
 	CurrentApplyDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// A description providing more detail about the maintenance action.
+	Description *string `type:"string"`
 
 	// The date when the maintenance action will be automatically applied. The maintenance
 	// action will be applied to the resource on this date regardless of the maintenance
@@ -6030,6 +6313,9 @@ type PendingModifiedValues struct {
 
 	// Specifies the pending number of days for which automated backups are retained.
 	BackupRetentionPeriod *int64 `type:"integer"`
+
+	// Specifies the identifier of the CA certificate for the DB instance.
+	CACertificateIdentifier *string `type:"string"`
 
 	// Contains the new DBInstanceClass for the DB instance that will be applied
 	// or is in progress.
@@ -6110,8 +6396,8 @@ type metadataPromoteReadReplicaInput struct {
 type PromoteReadReplicaOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//  CreateDBInstance DeleteDBInstance ModifyDBInstance  This data type is used
-	// as a response element in the DescribeDBInstances action.
+	//   CreateDBInstance   DeleteDBInstance   ModifyDBInstance   This data type
+	// is used as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 
 	metadataPromoteReadReplicaOutput `json:"-" xml:"-"`
@@ -6184,8 +6470,8 @@ type metadataRebootDBInstanceInput struct {
 type RebootDBInstanceOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//  CreateDBInstance DeleteDBInstance ModifyDBInstance  This data type is used
-	// as a response element in the DescribeDBInstances action.
+	//   CreateDBInstance   DeleteDBInstance   ModifyDBInstance   This data type
+	// is used as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 
 	metadataRebootDBInstanceOutput `json:"-" xml:"-"`
@@ -6369,7 +6655,7 @@ type ResetDBParameterGroupInput struct {
 	// subsequent arguments are optional. A maximum of 20 parameters may be modified
 	// in a single request.
 	//
-	// MySQL
+	//  MySQL
 	//
 	// Valid Values (for Apply method): immediate | pending-reboot
 	//
@@ -6377,7 +6663,7 @@ type ResetDBParameterGroupInput struct {
 	// the pending-reboot value for both dynamic and static parameters, and changes
 	// are applied when DB instance reboots.
 	//
-	// Oracle
+	//  Oracle
 	//
 	// Valid Values (for Apply method): pending-reboot
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
@@ -6397,10 +6683,11 @@ type metadataResetDBParameterGroupInput struct {
 
 // Describes the pending maintenance actions for a resource.
 type ResourcePendingMaintenanceActions struct {
-	// Provides details about the pending maintenance actions for the resource.
+	// A list that provides details about the pending maintenance actions for the
+	// resource.
 	PendingMaintenanceActionDetails []*PendingMaintenanceAction `locationNameList:"PendingMaintenanceAction" type:"list"`
 
-	// The ARN of this resource that has pending maintenance actions.
+	// The ARN of the resource that has pending maintenance actions.
 	ResourceIdentifier *string `type:"string"`
 
 	metadataResourcePendingMaintenanceActions `json:"-" xml:"-"`
@@ -6478,7 +6765,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	//  Constraints: Must be an integer greater than 1000.
 	//
-	// SQL Server
+	//  SQL Server
 	//
 	// Setting the IOPS value for the SQL Server database engine is not supported.
 	IOPS *int64 `locationName:"Iops" type:"integer"`
@@ -6554,8 +6841,8 @@ type metadataRestoreDBInstanceFromDBSnapshotInput struct {
 type RestoreDBInstanceFromDBSnapshotOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//  CreateDBInstance DeleteDBInstance ModifyDBInstance  This data type is used
-	// as a response element in the DescribeDBInstances action.
+	//   CreateDBInstance   DeleteDBInstance   ModifyDBInstance   This data type
+	// is used as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 
 	metadataRestoreDBInstanceFromDBSnapshotOutput `json:"-" xml:"-"`
@@ -6613,7 +6900,7 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//
 	//  Constraints: Must be an integer greater than 1000.
 	//
-	// SQL Server
+	//  SQL Server
 	//
 	// Setting the IOPS value for the SQL Server database engine is not supported.
 	IOPS *int64 `locationName:"Iops" type:"integer"`
@@ -6724,8 +7011,8 @@ type metadataRestoreDBInstanceToPointInTimeInput struct {
 type RestoreDBInstanceToPointInTimeOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//  CreateDBInstance DeleteDBInstance ModifyDBInstance  This data type is used
-	// as a response element in the DescribeDBInstances action.
+	//   CreateDBInstance   DeleteDBInstance   ModifyDBInstance   This data type
+	// is used as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 
 	metadataRestoreDBInstanceToPointInTimeOutput `json:"-" xml:"-"`
@@ -6771,8 +7058,8 @@ type metadataRevokeDBSecurityGroupIngressInput struct {
 type RevokeDBSecurityGroupIngressOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
-	//  DescribeDBSecurityGroups AuthorizeDBSecurityGroupIngress CreateDBSecurityGroup
-	// RevokeDBSecurityGroupIngress  This data type is used as a response element
+	//   DescribeDBSecurityGroups   AuthorizeDBSecurityGroupIngress   CreateDBSecurityGroup
+	//   RevokeDBSecurityGroupIngress   This data type is used as a response element
 	// in the DescribeDBSecurityGroups action.
 	DBSecurityGroup *DBSecurityGroup `type:"structure"`
 
@@ -6788,7 +7075,7 @@ type metadataRevokeDBSecurityGroupIngressOutput struct {
 type Subnet struct {
 	// Contains Availability Zone information.
 	//
-	//  This data type is used as an element in the following data type:  OrderableDBInstanceOption
+	//  This data type is used as an element in the following data type: OrderableDBInstanceOption
 	SubnetAvailabilityZone *AvailabilityZone `type:"structure"`
 
 	// Specifies the identifier of the subnet.

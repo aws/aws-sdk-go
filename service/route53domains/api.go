@@ -756,7 +756,11 @@ type CheckDomainAvailabilityOutput struct {
 	// name is available and can be preordered.  UNAVAILABLE – The domain name is
 	// not available.  UNAVAILABLE_PREMIUM – The domain name is not available.
 	// UNAVAILABLE_RESTRICTED – The domain name is forbidden.  RESERVED – The domain
-	// name has been reserved for another person or organization.
+	// name has been reserved for another person or organization.  DONT_KNOW – The
+	// TLD registry didn't reply with a definitive answer about whether the domain
+	// name is available. Amazon Route 53 can return this response for a variety
+	// of reasons, for example, the registry is performing maintenance. Try again
+	// later.
 	Availability *string `type:"string" required:"true"`
 
 	metadataCheckDomainAvailabilityOutput `json:"-" xml:"-"`
@@ -1832,7 +1836,7 @@ type Tag struct {
 	//
 	// Default: None
 	//
-	// Valid values: A-Z, a-z, 0-9, space, ".:/=+\-%@"
+	// Valid values: A-Z, a-z, 0-9, space, ".:/=+\-@"
 	//
 	// Constraints: Each key can be 1-128 characters long.
 	//
@@ -1845,7 +1849,7 @@ type Tag struct {
 	//
 	// Default: None
 	//
-	// Valid values: A-Z, a-z, 0-9, space, ".:/=+\-%@"
+	// Valid values: A-Z, a-z, 0-9, space, ".:/=+\-@"
 	//
 	// Constraints: Each value can be 0-256 characters long.
 	//
@@ -2267,7 +2271,7 @@ type UpdateTagsForDomainInput struct {
 	//
 	// Default: None
 	//
-	// Valid values: Unicode characters including alphanumeric, space, and ".:/=+\-%@"
+	// Valid values: Unicode characters including alphanumeric, space, and ".:/=+\-@"
 	//
 	// Constraints: Each key can be 1-128 characters long.
 	//
@@ -2281,7 +2285,7 @@ type UpdateTagsForDomainInput struct {
 	//
 	// Default: None
 	//
-	// Valid values: Unicode characters including alphanumeric, space, and ".:/=+\-%@"
+	// Valid values: Unicode characters including alphanumeric, space, and ".:/=+\-@"
 	//
 	// Constraints: Each value can be 0-256 characters long.
 	//

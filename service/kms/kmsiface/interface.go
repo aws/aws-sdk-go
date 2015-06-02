@@ -57,5 +57,7 @@ type KMSAPI interface {
 
 	RevokeGrant(*kms.RevokeGrantInput) (*kms.RevokeGrantOutput, error)
 
+	UpdateAlias(*kms.UpdateAliasInput) (*kms.UpdateAliasOutput, error)
+
 	UpdateKeyDescription(*kms.UpdateKeyDescriptionInput) (*kms.UpdateKeyDescriptionOutput, error)
 }

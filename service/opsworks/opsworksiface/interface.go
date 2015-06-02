@@ -93,6 +93,8 @@ type OpsWorksAPI interface {
 
 	GetHostnameSuggestion(*opsworks.GetHostnameSuggestionInput) (*opsworks.GetHostnameSuggestionOutput, error)
 
+	GrantAccess(*opsworks.GrantAccessInput) (*opsworks.GrantAccessOutput, error)
+
 	RebootInstance(*opsworks.RebootInstanceInput) (*opsworks.RebootInstanceOutput, error)
 
 	RegisterElasticIP(*opsworks.RegisterElasticIPInput) (*opsworks.RegisterElasticIPOutput, error)

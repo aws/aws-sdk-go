@@ -1,4 +1,5 @@
 {
+  "version":"2.0",
   "metadata":{
     "apiVersion":"2012-10-25",
     "endpointPrefix":"directconnect",

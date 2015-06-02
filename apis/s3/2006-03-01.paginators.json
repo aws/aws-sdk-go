@@ -1,5 +1,8 @@
 {
   "pagination": {
+    "ListBuckets": {
+      "result_key": "Buckets"
+    },
     "ListMultipartUploads": {
       "limit_key": "MaxUploads",
       "more_results": "IsTruncated",
@@ -48,12 +51,7 @@
       "limit_key": "MaxParts",
       "output_token": "NextPartNumberMarker",
       "input_token": "PartNumberMarker",
-      "result_key": "Parts",
-      "non_aggregate_keys": [
-        "Initiator",
-        "Owner",
-        "StorageClass"
-      ]
+      "result_key": "Parts"
     }
   }
 }

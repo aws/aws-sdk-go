@@ -228,6 +228,39 @@ func (c *CognitoSync) GetBulkPublishDetails(input *GetBulkPublishDetailsInput) (
 
 var opGetBulkPublishDetails *aws.Operation
 
+// GetCognitoEventsRequest generates a request for the GetCognitoEvents operation.
+func (c *CognitoSync) GetCognitoEventsRequest(input *GetCognitoEventsInput) (req *aws.Request, output *GetCognitoEventsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opGetCognitoEvents == nil {
+		opGetCognitoEvents = &aws.Operation{
+			Name:       "GetCognitoEvents",
+			HTTPMethod: "GET",
+			HTTPPath:   "/identitypools/{IdentityPoolId}/events",
+		}
+	}
+
+	if input == nil {
+		input = &GetCognitoEventsInput{}
+	}
+
+	req = c.newRequest(opGetCognitoEvents, input, output)
+	output = &GetCognitoEventsOutput{}
+	req.Data = output
+	return
+}
+
+// Gets the events and the corresponding Lambda functions associated with an
+// identity pool
+func (c *CognitoSync) GetCognitoEvents(input *GetCognitoEventsInput) (*GetCognitoEventsOutput, error) {
+	req, out := c.GetCognitoEventsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opGetCognitoEvents *aws.Operation
+
 // GetIdentityPoolConfigurationRequest generates a request for the GetIdentityPoolConfiguration operation.
 func (c *CognitoSync) GetIdentityPoolConfigurationRequest(input *GetIdentityPoolConfigurationInput) (req *aws.Request, output *GetIdentityPoolConfigurationOutput) {
 	oprw.Lock()
@@ -405,6 +438,41 @@ func (c *CognitoSync) RegisterDevice(input *RegisterDeviceInput) (*RegisterDevic
 
 var opRegisterDevice *aws.Operation
 
+// SetCognitoEventsRequest generates a request for the SetCognitoEvents operation.
+func (c *CognitoSync) SetCognitoEventsRequest(input *SetCognitoEventsInput) (req *aws.Request, output *SetCognitoEventsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opSetCognitoEvents == nil {
+		opSetCognitoEvents = &aws.Operation{
+			Name:       "SetCognitoEvents",
+			HTTPMethod: "POST",
+			HTTPPath:   "/identitypools/{IdentityPoolId}/events",
+		}
+	}
+
+	if input == nil {
+		input = &SetCognitoEventsInput{}
+	}
+
+	req = c.newRequest(opSetCognitoEvents, input, output)
+	output = &SetCognitoEventsOutput{}
+	req.Data = output
+	return
+}
+
+// Sets the AWS Lambda function for a given event type for an identity pool.
+// This request only updates the key/value pair specified. Other key/values
+// pairs are not updated. To remove a key value pair, pass a empty value for
+// the particular key.
+func (c *CognitoSync) SetCognitoEvents(input *SetCognitoEventsInput) (*SetCognitoEventsOutput, error) {
+	req, out := c.SetCognitoEventsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opSetCognitoEvents *aws.Operation
+
 // SetIdentityPoolConfigurationRequest generates a request for the SetIdentityPoolConfiguration operation.
 func (c *CognitoSync) SetIdentityPoolConfigurationRequest(input *SetIdentityPoolConfigurationInput) (req *aws.Request, output *SetIdentityPoolConfigurationOutput) {
 	oprw.Lock()
@@ -578,7 +646,7 @@ type CognitoStreams struct {
 	// Status of the Cognito streams. Valid values are: ENABLED - Streaming of updates
 	// to identity pool is enabled.
 	//
-	// DISABLEDStreaming of updates to identity pool is disabled. Bulk publish
+	// DISABLED - Streaming of updates to identity pool is disabled. Bulk publish
 	// will also fail if StreamingStatus is DISABLED.
 	StreamingStatus *string `type:"string"`
 
@@ -800,6 +868,30 @@ type GetBulkPublishDetailsOutput struct {
 }
 
 type metadataGetBulkPublishDetailsOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// A request for a list of the configured Cognito Events
+type GetCognitoEventsInput struct {
+	// The Cognito Identity Pool ID for the request
+	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+
+	metadataGetCognitoEventsInput `json:"-" xml:"-"`
+}
+
+type metadataGetCognitoEventsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// The response from the GetCognitoEvents request
+type GetCognitoEventsOutput struct {
+	// The Cognito Events returned from the GetCognitoEvents request
+	Events *map[string]*string `type:"map"`
+
+	metadataGetCognitoEventsOutput `json:"-" xml:"-"`
+}
+
+type metadataGetCognitoEventsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1128,6 +1220,31 @@ type RegisterDeviceOutput struct {
 }
 
 type metadataRegisterDeviceOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// A request to configure Cognito Events"
+//
+// "
+type SetCognitoEventsInput struct {
+	// The events to configure
+	Events *map[string]*string `type:"map" required:"true"`
+
+	// The Cognito Identity Pool to use when configuring Cognito Events
+	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+
+	metadataSetCognitoEventsInput `json:"-" xml:"-"`
+}
+
+type metadataSetCognitoEventsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type SetCognitoEventsOutput struct {
+	metadataSetCognitoEventsOutput `json:"-" xml:"-"`
+}
+
+type metadataSetCognitoEventsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 

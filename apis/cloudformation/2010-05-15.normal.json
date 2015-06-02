@@ -1,4 +1,5 @@
 {
+  "version":"2.0",
   "metadata":{
     "apiVersion":"2010-05-15",
     "endpointPrefix":"cloudformation",
@@ -321,6 +322,11 @@
     }
   },
   "shapes":{
+    "AllowedValue":{"type":"string"},
+    "AllowedValues":{
+      "type":"list",
+      "member":{"shape":"AllowedValue"}
+    },
     "AlreadyExistsException":{
       "type":"structure",
       "members":{
@@ -339,7 +345,7 @@
       "members":{
         "StackName":{
           "shape":"StackName",
-          "documentation":"<p>The name or the unique identifier associated with the stack.</p>"
+          "documentation":"<p>The name or the unique stack ID that is associated with the stack.</p>"
         }
       },
       "documentation":"<p>The input for <a>CancelUpdateStack</a> action.</p>"
@@ -359,7 +365,7 @@
       "members":{
         "StackName":{
           "shape":"StackName",
-          "documentation":"<p>The name associated with the stack. The name must be unique within your AWS account.</p> <note>Must contain only alphanumeric characters (case sensitive) and start with an alpha character. Maximum length of the name is 255 characters.</note>"
+          "documentation":"<p>The name that is associated with the stack. The name must be unique in the region in which you are creating the stack.</p> <note>A stack name can contain only alphanumeric characters (case sensitive) and hyphens. It must start with an alphabetic character and cannot be longer than 255 characters.</note>"
         },
         "TemplateBody":{
           "shape":"TemplateBody",
@@ -367,7 +373,7 @@
         },
         "TemplateURL":{
           "shape":"TemplateURL",
-          "documentation":"<p>Location of file containing the template body. The URL must point to a template (max size: 307,200 bytes) located in an S3 bucket in the same region as the stack. For more information, go to the <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html\">Template Anatomy</a> in the AWS CloudFormation User Guide.</p> <p>Conditional: You must specify either the <code>TemplateBody</code> or the <code>TemplateURL</code> parameter, but not both.</p>"
+          "documentation":"<p>Location of file containing the template body. The URL must point to a template (max size: 460,800 bytes) located in an S3 bucket in the same region as the stack. For more information, go to the <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html\">Template Anatomy</a> in the AWS CloudFormation User Guide.</p> <p>Conditional: You must specify either the <code>TemplateBody</code> or the <code>TemplateURL</code> parameter, but not both.</p>"
         },
         "Parameters":{
           "shape":"Parameters",
@@ -387,7 +393,7 @@
         },
         "Capabilities":{
           "shape":"Capabilities",
-          "documentation":"<p>A list of capabilities that you must specify before AWS CloudFormation can create or update certain stacks. Some stack templates might include resources that can affect permissions in your AWS account. For those stacks, you must explicitly acknowledge their capabilities by specifying this parameter.</p> <p>Currently, the only valid value is <code>CAPABILITY_IAM</code>, which is required for the following resources: <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html\"> AWS::CloudFormation::Stack</a>, <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html\"> AWS::IAM::AccessKey</a>, <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html\"> AWS::IAM::Group</a>, <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html\"> AWS::IAM::InstanceProfile</a>, <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html\"> AWS::IAM::Policy</a>, <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html\"> AWS::IAM::Role</a>, <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html\"> AWS::IAM::User</a>, and <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-addusertogroup.html\"> AWS::IAM::UserToGroupAddition</a>. If your stack template contains these resources, we recommend that you review any permissions associated with them. If you don't specify this parameter, this action returns an <code>InsufficientCapabilities</code> error.</p>"
+          "documentation":"<p>A list of capabilities that you must specify before AWS CloudFormation can create or update certain stacks. Some stack templates might include resources that can affect permissions in your AWS account. For those stacks, you must explicitly acknowledge their capabilities by specifying this parameter.</p> <p>Currently, the only valid value is <code>CAPABILITY_IAM</code>, which is required for the following resources: <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html\"> AWS::IAM::AccessKey</a>, <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html\"> AWS::IAM::Group</a>, <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html\"> AWS::IAM::InstanceProfile</a>, <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html\"> AWS::IAM::Policy</a>, <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html\"> AWS::IAM::Role</a>, <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html\"> AWS::IAM::User</a>, and <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-addusertogroup.html\"> AWS::IAM::UserToGroupAddition</a>. If your stack template contains these resources, we recommend that you review any permissions associated with them. If you don't specify this parameter, this action returns an <code>InsufficientCapabilities</code> error.</p>"
         },
         "OnFailure":{
           "shape":"OnFailure",
@@ -425,7 +431,7 @@
       "members":{
         "StackName":{
           "shape":"StackName",
-          "documentation":"<p>The name or the unique identifier associated with the stack.</p>"
+          "documentation":"<p>The name or the unique stack ID that is associated with the stack.</p>"
         }
       },
       "documentation":"<p>The input for <a>DeleteStack</a> action.</p>"
@@ -436,7 +442,7 @@
       "members":{
         "StackName":{
           "shape":"StackName",
-          "documentation":"<p>The name or the unique identifier associated with the stack, which are not always interchangeable:</p> <ul> <li>Running stacks: You can specify either the stack's name or its unique stack ID.</li> <li>Deleted stacks: You must specify the unique stack ID.</li> </ul> <p>Default: There is no default value.</p>"
+          "documentation":"<p>The name or the unique stack ID that is associated with the stack, which are not always interchangeable:</p> <ul> <li>Running stacks: You can specify either the stack's name or its unique stack ID.</li> <li>Deleted stacks: You must specify the unique stack ID.</li> </ul> <p>Default: There is no default value.</p>"
         },
         "NextToken":{
           "shape":"NextToken",
@@ -468,7 +474,7 @@
       "members":{
         "StackName":{
           "shape":"StackName",
-          "documentation":"<p>The name or the unique identifier associated with the stack, which are not always interchangeable:</p> <ul> <li>Running stacks: You can specify either the stack's name or its unique stack ID.</li> <li>Deleted stacks: You must specify the unique stack ID.</li> </ul> <p>Default: There is no default value.</p>"
+          "documentation":"<p>The name or the unique stack ID that is associated with the stack, which are not always interchangeable:</p> <ul> <li>Running stacks: You can specify either the stack's name or its unique stack ID.</li> <li>Deleted stacks: You must specify the unique stack ID.</li> </ul> <p>Default: There is no default value.</p>"
         },
         "LogicalResourceId":{
           "shape":"LogicalResourceId",
@@ -492,7 +498,7 @@
       "members":{
         "StackName":{
           "shape":"StackName",
-          "documentation":"<p>The name or the unique identifier associated with the stack, which are not always interchangeable:</p> <ul> <li>Running stacks: You can specify either the stack's name or its unique stack ID.</li> <li>Deleted stacks: You must specify the unique stack ID.</li> </ul> <p>Default: There is no default value.</p> <p>Required: Conditional. If you do not specify <code>StackName</code>, you must specify <code>PhysicalResourceId</code>.</p>"
+          "documentation":"<p>The name or the unique stack ID that is associated with the stack, which are not always interchangeable:</p> <ul> <li>Running stacks: You can specify either the stack's name or its unique stack ID.</li> <li>Deleted stacks: You must specify the unique stack ID.</li> </ul> <p>Default: There is no default value.</p> <p>Required: Conditional. If you do not specify <code>StackName</code>, you must specify <code>PhysicalResourceId</code>.</p>"
         },
         "LogicalResourceId":{
           "shape":"LogicalResourceId",
@@ -520,7 +526,7 @@
       "members":{
         "StackName":{
           "shape":"StackName",
-          "documentation":"<p>The name or the unique identifier associated with the stack, which are not always interchangeable:</p> <ul> <li>Running stacks: You can specify either the stack's name or its unique stack ID.</li> <li>Deleted stacks: You must specify the unique stack ID.</li> </ul> <p>Default: There is no default value.</p>"
+          "documentation":"<p>The name or the unique stack ID that is associated with the stack, which are not always interchangeable:</p> <ul> <li>Running stacks: You can specify either the stack's name or its unique stack ID.</li> <li>Deleted stacks: You must specify the unique stack ID.</li> </ul> <p>Default: There is no default value.</p>"
         },
         "NextToken":{
           "shape":"NextToken",
@@ -579,7 +585,7 @@
       "members":{
         "StackName":{
           "shape":"StackName",
-          "documentation":"<p>The name or stack ID that is associated with the stack whose policy you want to get.</p>"
+          "documentation":"<p>The name or unique stack ID that is associated with the stack whose policy you want to get.</p>"
         }
       },
       "documentation":"<p>The input for the <a>GetStackPolicy</a> action.</p>"
@@ -600,7 +606,7 @@
       "members":{
         "StackName":{
           "shape":"StackName",
-          "documentation":"<p>The name or the unique identifier associated with the stack, which are not always interchangeable:</p> <ul> <li>Running stacks: You can specify either the stack's name or its unique stack ID.</li> <li>Deleted stacks: You must specify the unique stack ID.</li> </ul> <p>Default: There is no default value.</p>"
+          "documentation":"<p>The name or the unique stack ID that is associated with the stack, which are not always interchangeable:</p> <ul> <li>Running stacks: You can specify either the stack's name or its unique stack ID.</li> <li>Deleted stacks: You must specify the unique stack ID.</li> </ul> <p>Default: There is no default value.</p>"
         }
       },
       "documentation":"<p>The input for a <a>GetTemplate</a> action.</p>"
@@ -624,11 +630,11 @@
         },
         "TemplateURL":{
           "shape":"TemplateURL",
-          "documentation":"<p>Location of file containing the template body. The URL must point to a template (max size: 307,200 bytes) located in an Amazon S3 bucket. For more information about templates, see <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html\">Template Anatomy</a> in the AWS CloudFormation User Guide.</p> <p>Conditional: You must specify only one of the following parameters: <code>StackName</code>, <code>TemplateBody</code>, or <code>TemplateURL</code>.</p>"
+          "documentation":"<p>Location of file containing the template body. The URL must point to a template (max size: 460,800 bytes) located in an Amazon S3 bucket. For more information about templates, see <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html\">Template Anatomy</a> in the AWS CloudFormation User Guide.</p> <p>Conditional: You must specify only one of the following parameters: <code>StackName</code>, <code>TemplateBody</code>, or <code>TemplateURL</code>.</p>"
         },
         "StackName":{
           "shape":"StackNameOrId",
-          "documentation":"<p>The name or the unique identifier associated with the stack, which are not always interchangeable. For running stacks, you can specify either the stack's name or its unique stack ID. For deleted stack, you must specify the unique stack ID.</p> <p>Conditional: You must specify only one of the following parameters: <code>StackName</code>, <code>TemplateBody</code>, or <code>TemplateURL</code>.</p>"
+          "documentation":"<p>The name or the stack ID that is associated with the stack, which are not always interchangeable. For running stacks, you can specify either the stack's name or its unique stack ID. For deleted stack, you must specify the unique stack ID.</p> <p>Conditional: You must specify only one of the following parameters: <code>StackName</code>, <code>TemplateBody</code>, or <code>TemplateURL</code>.</p>"
         }
       },
       "documentation":"<p>The input for the <a>GetTemplateSummary</a> action.</p>"
@@ -650,11 +656,15 @@
         },
         "CapabilitiesReason":{
           "shape":"CapabilitiesReason",
-          "documentation":"<p>The capabilities reason found within the template.</p>"
+          "documentation":"<p>The list of resources that generated the values in the <code>Capabilities</code> response element.</p>"
         },
         "Version":{
           "shape":"Version",
           "documentation":"<p>The AWS template format version, which identifies the capabilities of the template.</p>"
+        },
+        "Metadata":{
+          "shape":"Metadata",
+          "documentation":"<p>The value that is defined for the <code>Metadata</code> property of the template.</p>"
         }
       },
       "documentation":"<p>The output for the <a>GetTemplateSummary</a> action.</p>"
@@ -690,7 +700,7 @@
       "members":{
         "StackName":{
           "shape":"StackName",
-          "documentation":"<p>The name or the unique identifier associated with the stack, which are not always interchangeable:</p> <ul> <li>Running stacks: You can specify either the stack's name or its unique stack ID.</li> <li>Deleted stacks: You must specify the unique stack ID.</li> </ul> <p>Default: There is no default value.</p>"
+          "documentation":"<p>The name or the unique stack ID that is associated with the stack, which are not always interchangeable:</p> <ul> <li>Running stacks: You can specify either the stack's name or its unique stack ID.</li> <li>Deleted stacks: You must specify the unique stack ID.</li> </ul> <p>Default: There is no default value.</p>"
         },
         "NextToken":{
           "shape":"NextToken",
@@ -792,7 +802,7 @@
       "members":{
         "ParameterKey":{
           "shape":"ParameterKey",
-          "documentation":"<p>The key associated with the parameter.</p>"
+          "documentation":"<p>The key associated with the parameter. If you don't specify a key and value for a particular parameter, AWS CloudFormation uses the default value that is specified in your template.</p>"
         },
         "ParameterValue":{
           "shape":"ParameterValue",
@@ -800,10 +810,20 @@
         },
         "UsePreviousValue":{
           "shape":"UsePreviousValue",
-          "documentation":"<p>During a stack update, use the existing parameter value that is being used for the stack.</p>"
+          "documentation":"<p>During a stack update, use the existing parameter value that the stack is using for a given parameter key. If you specify <code>true</code>, do not specify a parameter value.</p>"
         }
       },
       "documentation":"<p>The Parameter data type.</p>"
+    },
+    "ParameterConstraints":{
+      "type":"structure",
+      "members":{
+        "AllowedValues":{
+          "shape":"AllowedValues",
+          "documentation":"<p>A list of values that are permitted for a parameter.</p>"
+        }
+      },
+      "documentation":"<p>A set of criteria that AWS CloudFormation uses to validate parameter values. Although other constraints might be defined in the stack template, AWS CloudFormation returns only the <code>AllowedValues</code> property.</p>"
     },
     "ParameterDeclaration":{
       "type":"structure",
@@ -827,6 +847,10 @@
         "Description":{
           "shape":"Description",
           "documentation":"<p>The description that is associate with the parameter.</p>"
+        },
+        "ParameterConstraints":{
+          "shape":"ParameterConstraints",
+          "documentation":"<p>The criteria that AWS CloudFormation uses to validate parameter values.</p>"
         }
       },
       "documentation":"<p>The ParameterDeclaration data type.</p>"
@@ -879,7 +903,7 @@
       "members":{
         "StackName":{
           "shape":"StackName",
-          "documentation":"<p>The name or stack ID that you want to associate a policy with.</p>"
+          "documentation":"<p>The name or unique stack ID that you want to associate a policy with.</p>"
         },
         "StackPolicyBody":{
           "shape":"StackPolicyBody",
@@ -903,7 +927,7 @@
       "members":{
         "StackName":{
           "shape":"StackNameOrId",
-          "documentation":"<p>The stack name or ID that includes the resource that you want to signal.</p>"
+          "documentation":"<p>The stack name or unique stack ID that includes the resource that you want to signal.</p>"
         },
         "LogicalResourceId":{
           "shape":"LogicalResourceId",
@@ -1358,7 +1382,7 @@
       "members":{
         "StackName":{
           "shape":"StackName",
-          "documentation":"<p>The name or stack ID of the stack to update.</p> <note> Must contain only alphanumeric characters (case sensitive) and start with an alpha character. Maximum length of the name is 255 characters. </note>"
+          "documentation":"<p>The name or unique stack ID of the stack to update.</p>"
         },
         "TemplateBody":{
           "shape":"TemplateBody",
@@ -1382,11 +1406,11 @@
         },
         "Parameters":{
           "shape":"Parameters",
-          "documentation":"<p>A list of <code>Parameter</code> structures that specify input parameters for the stack.</p>"
+          "documentation":"<p>A list of <code>Parameter</code> structures that specify input parameters for the stack. For more information, see the <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_Parameter.html\">Parameter</a> data type.</p>"
         },
         "Capabilities":{
           "shape":"Capabilities",
-          "documentation":"<p>A list of capabilities that you must specify before AWS CloudFormation can create or update certain stacks. Some stack templates might include resources that can affect permissions in your AWS account. For those stacks, you must explicitly acknowledge their capabilities by specifying this parameter. Currently, the only valid value is <code>CAPABILITY_IAM</code>, which is required for the following resources: <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html\"> AWS::CloudFormation::Stack</a>, <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html\"> AWS::IAM::AccessKey</a>, <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html\"> AWS::IAM::Group</a>, <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html\"> AWS::IAM::InstanceProfile</a>, <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html\"> AWS::IAM::Policy</a>, <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html\"> AWS::IAM::Role</a>, <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html\"> AWS::IAM::User</a>, and <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-addusertogroup.html\"> AWS::IAM::UserToGroupAddition</a>. If your stack template contains these resources, we recommend that you review any permissions associated with them. If you don't specify this parameter, this action returns an InsufficientCapabilities error.</p>"
+          "documentation":"<p>A list of capabilities that you must specify before AWS CloudFormation can create or update certain stacks. Some stack templates might include resources that can affect permissions in your AWS account. For those stacks, you must explicitly acknowledge their capabilities by specifying this parameter. Currently, the only valid value is <code>CAPABILITY_IAM</code>, which is required for the following resources: <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html\"> AWS::IAM::AccessKey</a>, <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html\"> AWS::IAM::Group</a>, <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html\"> AWS::IAM::InstanceProfile</a>, <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html\"> AWS::IAM::Policy</a>, <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html\"> AWS::IAM::Role</a>, <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html\"> AWS::IAM::User</a>, and <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-addusertogroup.html\"> AWS::IAM::UserToGroupAddition</a>. If your stack template contains these resources, we recommend that you review any permissions associated with them. If you don't specify this parameter, this action returns an InsufficientCapabilities error.</p>"
         },
         "StackPolicyBody":{
           "shape":"StackPolicyBody",
@@ -1425,7 +1449,7 @@
         },
         "TemplateURL":{
           "shape":"TemplateURL",
-          "documentation":"<p>Location of file containing the template body. The URL must point to a template (max size: 307,200 bytes) located in an S3 bucket in the same region as the stack. For more information, go to <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html\">Template Anatomy</a> in the AWS CloudFormation User Guide.</p> <p>Conditional: You must pass <code>TemplateURL</code> or <code>TemplateBody</code>. If both are passed, only <code>TemplateBody</code> is used.</p>"
+          "documentation":"<p>Location of file containing the template body. The URL must point to a template (max size: 460,800 bytes) located in an S3 bucket in the same region as the stack. For more information, go to <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html\">Template Anatomy</a> in the AWS CloudFormation User Guide.</p> <p>Conditional: You must pass <code>TemplateURL</code> or <code>TemplateBody</code>. If both are passed, only <code>TemplateBody</code> is used.</p>"
         }
       },
       "documentation":"<p>The input for <a>ValidateTemplate</a> action.</p>"
@@ -1447,7 +1471,7 @@
         },
         "CapabilitiesReason":{
           "shape":"CapabilitiesReason",
-          "documentation":"<p>The capabilities reason found within the template.</p>"
+          "documentation":"<p>The list of resources that generated the values in the <code>Capabilities</code> response element.</p>"
         }
       },
       "documentation":"<p>The output for <a>ValidateTemplate</a> action.</p>"

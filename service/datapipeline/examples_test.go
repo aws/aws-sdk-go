@@ -28,6 +28,7 @@ func ExampleDataPipeline_ActivatePipeline() {
 			},
 			// More values...
 		},
+		StartTimestamp: aws.Time(time.Now()),
 	}
 	resp, err := svc.ActivatePipeline(params)
 
@@ -100,6 +101,34 @@ func ExampleDataPipeline_CreatePipeline() {
 		},
 	}
 	resp, err := svc.CreatePipeline(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleDataPipeline_DeactivatePipeline() {
+	svc := datapipeline.New(nil)
+
+	params := &datapipeline.DeactivatePipelineInput{
+		PipelineID:   aws.String("id"), // Required
+		CancelActive: aws.Boolean(true),
+	}
+	resp, err := svc.DeactivatePipeline(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {

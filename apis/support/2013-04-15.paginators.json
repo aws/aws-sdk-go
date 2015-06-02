@@ -11,6 +11,15 @@
       "output_token": "nextToken",
       "limit_key": "maxResults",
       "result_key": "communications"
+    },
+    "DescribeServices": {
+      "result_key": "services"
+    },
+    "DescribeTrustedAdvisorCheckRefreshStatuses": {
+      "result_key": "statuses"
+    },
+    "DescribeTrustedAdvisorCheckSummaries": {
+      "result_key": "summaries"
     }
   }
 }

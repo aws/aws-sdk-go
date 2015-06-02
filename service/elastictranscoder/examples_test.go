@@ -50,6 +50,13 @@ func ExampleElasticTranscoder_CreateJob() {
 		Input: &elastictranscoder.JobInput{ // Required
 			AspectRatio: aws.String("AspectRatio"),
 			Container:   aws.String("JobContainer"),
+			DetectedProperties: &elastictranscoder.DetectedProperties{
+				DurationMillis: aws.Long(1),
+				FileSize:       aws.Long(1),
+				FrameRate:      aws.String("FloatString"),
+				Height:         aws.Long(1),
+				Width:          aws.Long(1),
+			},
 			Encryption: &elastictranscoder.Encryption{
 				InitializationVector: aws.String("ZeroTo255String"),
 				Key:                  aws.String("Base64EncodedString"),
@@ -132,7 +139,7 @@ func ExampleElasticTranscoder_CreateJob() {
 			Key:             aws.String("Key"),
 			PresetID:        aws.String("Id"),
 			Rotate:          aws.String("Rotate"),
-			SegmentDuration: aws.String("Float"),
+			SegmentDuration: aws.String("FloatString"),
 			ThumbnailEncryption: &elastictranscoder.Encryption{
 				InitializationVector: aws.String("ZeroTo255String"),
 				Key:                  aws.String("Base64EncodedString"),
@@ -226,7 +233,7 @@ func ExampleElasticTranscoder_CreateJob() {
 				Key:             aws.String("Key"),
 				PresetID:        aws.String("Id"),
 				Rotate:          aws.String("Rotate"),
-				SegmentDuration: aws.String("Float"),
+				SegmentDuration: aws.String("FloatString"),
 				ThumbnailEncryption: &elastictranscoder.Encryption{
 					InitializationVector: aws.String("ZeroTo255String"),
 					Key:                  aws.String("Base64EncodedString"),
@@ -265,6 +272,14 @@ func ExampleElasticTranscoder_CreateJob() {
 				OutputKeys: []*string{
 					aws.String("Key"), // Required
 					// More values...
+				},
+				PlayReadyDRM: &elastictranscoder.PlayReadyDRM{
+					Format:                aws.String("PlayReadyDrmFormatString"),
+					InitializationVector:  aws.String("ZeroTo255String"),
+					Key:                   aws.String("NonEmptyBase64EncodedString"),
+					KeyID:                 aws.String("KeyIdGuid"),
+					KeyMD5:                aws.String("NonEmptyBase64EncodedString"),
+					LicenseAcquisitionURL: aws.String("OneTo512String"),
 				},
 			},
 			// More values...
@@ -369,11 +384,15 @@ func ExampleElasticTranscoder_CreatePreset() {
 		Container: aws.String("PresetContainer"), // Required
 		Name:      aws.String("Name"),            // Required
 		Audio: &elastictranscoder.AudioParameters{
-			BitRate:  aws.String("AudioBitRate"),
-			Channels: aws.String("AudioChannels"),
-			Codec:    aws.String("AudioCodec"),
+			AudioPackingMode: aws.String("AudioPackingMode"),
+			BitRate:          aws.String("AudioBitRate"),
+			Channels:         aws.String("AudioChannels"),
+			Codec:            aws.String("AudioCodec"),
 			CodecOptions: &elastictranscoder.AudioCodecOptions{
-				Profile: aws.String("AudioCodecProfile"),
+				BitDepth: aws.String("AudioBitDepth"),
+				BitOrder: aws.String("AudioBitOrder"),
+				Profile:  aws.String("AudioCodecProfile"),
+				Signed:   aws.String("AudioSigned"),
 			},
 			SampleRate: aws.String("AudioSampleRate"),
 		},

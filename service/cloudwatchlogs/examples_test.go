@@ -272,6 +272,43 @@ func ExampleCloudWatchLogs_DescribeMetricFilters() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleCloudWatchLogs_FilterLogEvents() {
+	svc := cloudwatchlogs.New(nil)
+
+	params := &cloudwatchlogs.FilterLogEventsInput{
+		LogGroupName:  aws.String("LogGroupName"), // Required
+		EndTime:       aws.Long(1),
+		FilterPattern: aws.String("FilterPattern"),
+		Interleaved:   aws.Boolean(true),
+		Limit:         aws.Long(1),
+		LogStreamNames: []*string{
+			aws.String("LogStreamName"), // Required
+			// More values...
+		},
+		NextToken: aws.String("NextToken"),
+		StartTime: aws.Long(1),
+	}
+	resp, err := svc.FilterLogEvents(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleCloudWatchLogs_GetLogEvents() {
 	svc := cloudwatchlogs.New(nil)
 

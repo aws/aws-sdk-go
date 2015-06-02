@@ -228,6 +228,12 @@ func (c *CloudWatchLogs) DescribeLogGroupsRequest(input *DescribeLogGroupsInput)
 			Name:       "DescribeLogGroups",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"nextToken"},
+				OutputTokens:    []string{"nextToken"},
+				LimitToken:      "limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -255,6 +261,11 @@ func (c *CloudWatchLogs) DescribeLogGroups(input *DescribeLogGroupsInput) (*Desc
 	return out, err
 }
 
+func (c *CloudWatchLogs) DescribeLogGroupsPages(input *DescribeLogGroupsInput, fn func(p *DescribeLogGroupsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeLogGroupsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeLogGroups *aws.Operation
 
 // DescribeLogStreamsRequest generates a request for the DescribeLogStreams operation.
@@ -267,6 +278,12 @@ func (c *CloudWatchLogs) DescribeLogStreamsRequest(input *DescribeLogStreamsInpu
 			Name:       "DescribeLogStreams",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"nextToken"},
+				OutputTokens:    []string{"nextToken"},
+				LimitToken:      "limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -295,6 +312,11 @@ func (c *CloudWatchLogs) DescribeLogStreams(input *DescribeLogStreamsInput) (*De
 	return out, err
 }
 
+func (c *CloudWatchLogs) DescribeLogStreamsPages(input *DescribeLogStreamsInput, fn func(p *DescribeLogStreamsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeLogStreamsRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeLogStreams *aws.Operation
 
 // DescribeMetricFiltersRequest generates a request for the DescribeMetricFilters operation.
@@ -307,6 +329,12 @@ func (c *CloudWatchLogs) DescribeMetricFiltersRequest(input *DescribeMetricFilte
 			Name:       "DescribeMetricFilters",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"nextToken"},
+				OutputTokens:    []string{"nextToken"},
+				LimitToken:      "limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -333,7 +361,57 @@ func (c *CloudWatchLogs) DescribeMetricFilters(input *DescribeMetricFiltersInput
 	return out, err
 }
 
+func (c *CloudWatchLogs) DescribeMetricFiltersPages(input *DescribeMetricFiltersInput, fn func(p *DescribeMetricFiltersOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeMetricFiltersRequest(input)
+	return page.EachPage(fn)
+}
+
 var opDescribeMetricFilters *aws.Operation
+
+// FilterLogEventsRequest generates a request for the FilterLogEvents operation.
+func (c *CloudWatchLogs) FilterLogEventsRequest(input *FilterLogEventsInput) (req *aws.Request, output *FilterLogEventsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opFilterLogEvents == nil {
+		opFilterLogEvents = &aws.Operation{
+			Name:       "FilterLogEvents",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &FilterLogEventsInput{}
+	}
+
+	req = c.newRequest(opFilterLogEvents, input, output)
+	output = &FilterLogEventsOutput{}
+	req.Data = output
+	return
+}
+
+// Retrieves log events, optionally filtered by a filter pattern from the specified
+// log group. You can provide an optional time range to filter the results on
+// the event timestamp. You can limit the streams searched to an explicit list
+// of logStreamNames.
+//
+//  By default, this operation returns as much matching log events as can fit
+// in a response size of 1MB, up to 10,000 log events, or all the events found
+// within a time-bounded scan window. If the response includes a nextToken,
+// then there is more data to search, and the search can be resumed with a new
+// request providing the nextToken. The response will contain a list of searchedLogStreams
+// that contains information about which streams were searched in the request
+// and whether they have been searched completely or require further pagination.
+// The limit parameter in the request. can be used to specify the maximum number
+// of events to return in a page.
+func (c *CloudWatchLogs) FilterLogEvents(input *FilterLogEventsInput) (*FilterLogEventsOutput, error) {
+	req, out := c.FilterLogEventsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opFilterLogEvents *aws.Operation
 
 // GetLogEventsRequest generates a request for the GetLogEvents operation.
 func (c *CloudWatchLogs) GetLogEventsRequest(input *GetLogEventsInput) (req *aws.Request, output *GetLogEventsOutput) {
@@ -345,6 +423,12 @@ func (c *CloudWatchLogs) GetLogEventsRequest(input *GetLogEventsInput) (req *aws
 			Name:       "GetLogEvents",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"nextToken"},
+				OutputTokens:    []string{"nextForwardToken"},
+				LimitToken:      "limit",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -372,6 +456,11 @@ func (c *CloudWatchLogs) GetLogEvents(input *GetLogEventsInput) (*GetLogEventsOu
 	req, out := c.GetLogEventsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *CloudWatchLogs) GetLogEventsPages(input *GetLogEventsInput, fn func(p *GetLogEventsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.GetLogEventsRequest(input)
+	return page.EachPage(fn)
 }
 
 var opGetLogEvents *aws.Operation
@@ -758,13 +847,100 @@ type metadataDescribeMetricFiltersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type FilterLogEventsInput struct {
+	// A unix timestamp indicating the end time of the range for the request. If
+	// provided, events with a timestamp later than this time will not be returned.
+	EndTime *int64 `locationName:"endTime" type:"long"`
+
+	// A valid CloudWatch Logs filter pattern to use for filtering the response.
+	// If not provided, all the events are matched.
+	FilterPattern *string `locationName:"filterPattern" type:"string"`
+
+	// If provided, the API will make a best effort to provide responses that contain
+	// events from multiple log streams within the log group interleaved in a single
+	// response. If not provided, all the matched log events in the first log stream
+	// will be searched first, then those in the next log stream, etc.
+	Interleaved *bool `locationName:"interleaved" type:"boolean"`
+
+	// The maximum number of events to return in a page of results. Default is 10,000
+	// events.
+	Limit *int64 `locationName:"limit" type:"integer"`
+
+	// The name of the log group to query
+	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+
+	// Optional list of log stream names within the specified log group to search.
+	// Defaults to all the log streams in the log group.
+	LogStreamNames []*string `locationName:"logStreamNames" type:"list"`
+
+	// A pagination token obtained from a FilterLogEvents response to continue paginating
+	// the FilterLogEvents results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// A unix timestamp indicating the start time of the range for the request.
+	// If provided, events with a timestamp prior to this time will not be returned.
+	StartTime *int64 `locationName:"startTime" type:"long"`
+
+	metadataFilterLogEventsInput `json:"-" xml:"-"`
+}
+
+type metadataFilterLogEventsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type FilterLogEventsOutput struct {
+	// A list of FilteredLogEvent objects representing the matched events from the
+	// request.
+	Events []*FilteredLogEvent `locationName:"events" type:"list"`
+
+	// A pagination token obtained from a FilterLogEvents response to continue paginating
+	// the FilterLogEvents results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// A list of SearchedLogStream objects indicating which log streams have been
+	// searched in this request and whether each has been searched completely or
+	// still has more to be paginated.
+	SearchedLogStreams []*SearchedLogStream `locationName:"searchedLogStreams" type:"list"`
+
+	metadataFilterLogEventsOutput `json:"-" xml:"-"`
+}
+
+type metadataFilterLogEventsOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Represents a matched event from a FilterLogEvents request.
+type FilteredLogEvent struct {
+	// A unique identifier for this event.
+	EventID *string `locationName:"eventId" type:"string"`
+
+	// A point in time expressed as the number milliseconds since Jan 1, 1970 00:00:00
+	// UTC.
+	IngestionTime *int64 `locationName:"ingestionTime" type:"long"`
+
+	// The name of the log stream this event belongs to.
+	LogStreamName *string `locationName:"logStreamName" type:"string"`
+
+	Message *string `locationName:"message" type:"string"`
+
+	// A point in time expressed as the number milliseconds since Jan 1, 1970 00:00:00
+	// UTC.
+	Timestamp *int64 `locationName:"timestamp" type:"long"`
+
+	metadataFilteredLogEvent `json:"-" xml:"-"`
+}
+
+type metadataFilteredLogEvent struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type GetLogEventsInput struct {
 	// A point in time expressed as the number milliseconds since Jan 1, 1970 00:00:00
 	// UTC.
 	EndTime *int64 `locationName:"endTime" type:"long"`
 
 	// The maximum number of log events returned in the response. If you don't specify
-	// a value, the request would return as much log events as can fit in a response
+	// a value, the request would return as many log events as can fit in a response
 	// size of 1MB, up to 10,000 log events.
 	Limit *int64 `locationName:"limit" type:"integer"`
 
@@ -1068,6 +1244,23 @@ type RejectedLogEventsInfo struct {
 }
 
 type metadataRejectedLogEventsInfo struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// An object indicating the search status of a log stream in a FilterLogEvents
+// request.
+type SearchedLogStream struct {
+	// The name of the log stream.
+	LogStreamName *string `locationName:"logStreamName" type:"string"`
+
+	// Indicates whether all the events in this log stream were searched or more
+	// data exists to search by paginating further.
+	SearchedCompletely *bool `locationName:"searchedCompletely" type:"boolean"`
+
+	metadataSearchedLogStream `json:"-" xml:"-"`
+}
+
+type metadataSearchedLogStream struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 

@@ -129,7 +129,7 @@ func call(op string, args [][]string, allowError bool) {
 var reIsNum = regexp.MustCompile(`^\d+$`)
 
 // reIsArray is a regular expression matching a list
-var reIsArray = regexp.MustCompile(`^\['.+?'\]$`)
+var reIsArray = regexp.MustCompile(`^\['.*?'\]$`)
 var reArrayElem = regexp.MustCompile(`'(.+?)'`)
 
 // fillArgs fills arguments on the input structure using the args table of

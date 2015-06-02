@@ -12,6 +12,9 @@
       "limit_key": "MaxRecords",
       "result_key": "MetricAlarms"
     },
+    "DescribeAlarmsForMetric": {
+      "result_key": "MetricAlarms"
+    },
     "ListMetrics": {
       "input_token": "NextToken",
       "output_token": "NextToken",

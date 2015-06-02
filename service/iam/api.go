@@ -625,9 +625,8 @@ func (c *IAM) CreateRoleRequest(input *CreateRoleInput) (req *aws.Request, outpu
 // can create, go to Limitations on IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html)
 // in the Using IAM guide.
 //
-//  The example policy grants permission to an EC2 instance to assume the role.
-// The policy is URL-encoded according to RFC 3986. For more information about
-// RFC 3986, go to http://www.faqs.org/rfcs/rfc3986.html (http://www.faqs.org/rfcs/rfc3986.html).
+// The policy in the following example grants permission to an EC2 instance
+// to assume the role.
 func (c *IAM) CreateRole(input *CreateRoleInput) (*CreateRoleOutput, error) {
 	req, out := c.CreateRoleRequest(input)
 	err := req.Send()
@@ -1722,10 +1721,10 @@ func (c *IAM) GetAccountAuthorizationDetailsRequest(input *GetAccountAuthorizati
 	return
 }
 
-// Retrieves information about all IAM users, groups, and roles in your account,
-// including their relationships to one another and their policies. Use this
-// API to obtain a snapshot of the configuration of IAM permissions (users,
-// groups, roles, and policies) in your account.
+// Retrieves information about all IAM users, groups, roles, and policies in
+// your account, including their relationships to one another. Use this API
+// to obtain a snapshot of the configuration of IAM permissions (users, groups,
+// roles, and policies) in your account.
 //
 // You can optionally filter the results using the Filter parameter. You can
 // paginate the results using the MaxItems and Marker parameters.
@@ -2147,9 +2146,6 @@ func (c *IAM) GetRoleRequest(input *GetRoleInput) (req *aws.Request, output *Get
 // GUID, ARN, and the policy granting permission to assume the role. For more
 // information about ARNs, go to ARNs (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html#Identifiers_ARNs).
 // For more information about roles, go to Working with Roles (http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html).
-//
-// The returned policy is URL-encoded according to RFC 3986. For more information
-// about RFC 3986, go to http://www.faqs.org/rfcs/rfc3986.html (http://www.faqs.org/rfcs/rfc3986.html).
 func (c *IAM) GetRole(input *GetRoleInput) (*GetRoleOutput, error) {
 	req, out := c.GetRoleRequest(input)
 	err := req.Send()
@@ -3106,9 +3102,6 @@ func (c *IAM) ListRolesRequest(input *ListRolesInput) (req *aws.Request, output 
 // with Roles (http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html).
 //
 // You can paginate the results using the MaxItems and Marker parameters.
-//
-// The returned policy is URL-encoded according to RFC 3986. For more information
-// about RFC 3986, go to http://www.faqs.org/rfcs/rfc3986.html (http://www.faqs.org/rfcs/rfc3986.html).
 func (c *IAM) ListRoles(input *ListRolesInput) (*ListRolesOutput, error) {
 	req, out := c.ListRolesRequest(input)
 	err := req.Send()
@@ -4726,8 +4719,6 @@ type CreatePolicyInput struct {
 	Path *string `type:"string"`
 
 	// The policy document.
-	//
-	// The policy must be URL-encoded according to RFC 3986 (http://www.faqs.org/rfcs/rfc3986.html).
 	PolicyDocument *string `type:"string" required:"true"`
 
 	// The name of the policy document.
@@ -4761,8 +4752,6 @@ type CreatePolicyVersionInput struct {
 	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
 
 	// The policy document.
-	//
-	// The policy must be URL-encoded according to RFC 3986 (http://www.faqs.org/rfcs/rfc3986.html).
 	PolicyDocument *string `type:"string" required:"true"`
 
 	// Specifies whether to set this version as the policy's default version.
@@ -7540,8 +7529,6 @@ type metadataPolicy struct {
 // action.
 type PolicyDetail struct {
 	// The policy document.
-	//
-	// The returned policy is URL-encoded according to RFC 3986 (http://www.faqs.org/rfcs/rfc3986.html).
 	PolicyDocument *string `type:"string"`
 
 	// The name of the policy.
@@ -7628,8 +7615,8 @@ type PolicyVersion struct {
 	// The policy document.
 	//
 	// The policy document is returned in the response to the GetPolicyVersion
-	// operation. It is not included in the response to the ListPolicyVersions or
-	// GetAccountAuthorizationDetails operations.
+	// and GetAccountAuthorizationDetails operations. It is not returned in the
+	// response to the CreatePolicyVersion or ListPolicyVersions operations.
 	Document *string `type:"string"`
 
 	// Specifies whether the policy version is set as the policy's default version.
@@ -7836,8 +7823,6 @@ type Role struct {
 	ARN *string `locationName:"Arn" type:"string" required:"true"`
 
 	// The policy that grants an entity permission to assume the role.
-	//
-	//  The returned policy is URL-encoded according to RFC 3986 (http://www.faqs.org/rfcs/rfc3986.html).
 	AssumeRolePolicyDocument *string `type:"string"`
 
 	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
@@ -7877,8 +7862,6 @@ type RoleDetail struct {
 	ARN *string `locationName:"Arn" type:"string"`
 
 	// The trust policy that grants permission to assume the role.
-	//
-	//  The returned policy is URL-encoded according to RFC 3986 (http://www.faqs.org/rfcs/rfc3986.html).
 	AssumeRolePolicyDocument *string `type:"string"`
 
 	// A list of managed policies attached to the role. These policies are the role's

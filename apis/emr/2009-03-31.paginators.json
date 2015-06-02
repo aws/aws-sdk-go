@@ -1,5 +1,8 @@
 {
   "pagination": {
+    "DescribeJobFlows": {
+      "result_key": "JobFlows"
+    },
     "ListBootstrapActions": {
       "input_token": "Marker",
       "output_token": "Marker",

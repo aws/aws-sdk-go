@@ -755,10 +755,11 @@ type CreateEventSourceMappingInput struct {
 	// Indicates whether AWS Lambda should begin polling the event source.
 	Enabled *bool `type:"boolean"`
 
-	// The Amazon Resource Name (ARN) of the Amazon Kinesis stream that is the event
-	// source. Any record added to this stream could cause AWS Lambda to invoke
-	// your Lambda function, it depends on the BatchSize. AWS Lambda POSTs the Amazon
-	// Kinesis event, containing records, to your Lambda function as JSON.
+	// The Amazon Resource Name (ARN) of the Amazon Kinesis or the Amazon DynamoDB
+	// stream that is the event source. Any record added to this stream could cause
+	// AWS Lambda to invoke your Lambda function, it depends on the BatchSize. AWS
+	// Lambda POSTs the Amazon Kinesis event, containing records, to your Lambda
+	// function as JSON.
 	EventSourceARN *string `locationName:"EventSourceArn" type:"string" required:"true"`
 
 	// The Lambda function to invoke when AWS Lambda detects an event on the stream.
@@ -784,7 +785,7 @@ type metadataCreateEventSourceMappingInput struct {
 }
 
 type CreateFunctionInput struct {
-	// A structure that includes ZipFile.
+	// The code for the Lambda function.
 	Code *FunctionCode `type:"structure" required:"true"`
 
 	// A short, user-defined function description. Lambda does not use this value.
@@ -912,8 +913,19 @@ type metadataEventSourceMappingConfiguration struct {
 
 // The code for the Lambda function.
 type FunctionCode struct {
-	// A base64-encoded .zip file containing your packaged source code. For more
-	// information about creating a .zip file, go to Execution Permissions (http://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html#lambda-intro-execution-role.html)
+	// Amazon S3 bucket name where the .zip file containing your deployment package
+	// is stored. This bucket must reside in the same AWS region where you are creating
+	// the Lambda function.
+	S3Bucket *string `type:"string"`
+
+	// The Amazon S3 object (the deployment package) key name you want to upload.
+	S3Key *string `type:"string"`
+
+	// The Amazon S3 object (the deployment package) version you want to upload.
+	S3ObjectVersion *string `type:"string"`
+
+	// A base64-encoded .zip file containing your deployment package. For more information
+	// about creating a .zip file, go to Execution Permissions (http://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html#lambda-intro-execution-role.html)
 	// in the AWS Lambda Developer Guide.
 	ZipFile []byte `type:"blob"`
 
@@ -1328,8 +1340,19 @@ type UpdateFunctionCodeInput struct {
 	// the function name, it is limited to 64 character in length.
 	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"`
 
+	// Amazon S3 bucket name where the .zip file containing your deployment package
+	// is stored. This bucket must reside in the same AWS region where you are creating
+	// the Lambda function.
+	S3Bucket *string `type:"string"`
+
+	// The Amazon S3 object (the deployment package) key name you want to upload.
+	S3Key *string `type:"string"`
+
+	// The Amazon S3 object (the deployment package) version you want to upload.
+	S3ObjectVersion *string `type:"string"`
+
 	// Based64-encoded .zip file containing your packaged source code.
-	ZipFile []byte `type:"blob" required:"true"`
+	ZipFile []byte `type:"blob"`
 
 	metadataUpdateFunctionCodeInput `json:"-" xml:"-"`
 }

@@ -84,7 +84,10 @@ func ExampleLambda_CreateFunction() {
 
 	params := &lambda.CreateFunctionInput{
 		Code: &lambda.FunctionCode{ // Required
-			ZipFile: []byte("PAYLOAD"),
+			S3Bucket:        aws.String("S3Bucket"),
+			S3Key:           aws.String("S3Key"),
+			S3ObjectVersion: aws.String("S3ObjectVersion"),
+			ZipFile:         []byte("PAYLOAD"),
 		},
 		FunctionName: aws.String("FunctionName"), // Required
 		Handler:      aws.String("Handler"),      // Required
@@ -456,8 +459,11 @@ func ExampleLambda_UpdateFunctionCode() {
 	svc := lambda.New(nil)
 
 	params := &lambda.UpdateFunctionCodeInput{
-		FunctionName: aws.String("FunctionName"), // Required
-		ZipFile:      []byte("PAYLOAD"),          // Required
+		FunctionName:    aws.String("FunctionName"), // Required
+		S3Bucket:        aws.String("S3Bucket"),
+		S3Key:           aws.String("S3Key"),
+		S3ObjectVersion: aws.String("S3ObjectVersion"),
+		ZipFile:         []byte("PAYLOAD"),
 	}
 	resp, err := svc.UpdateFunctionCode(params)
 

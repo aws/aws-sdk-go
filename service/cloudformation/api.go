@@ -675,7 +675,7 @@ var opValidateTemplate *aws.Operation
 
 // The input for CancelUpdateStack action.
 type CancelUpdateStackInput struct {
-	// The name or the unique identifier associated with the stack.
+	// The name or the unique stack ID that is associated with the stack.
 	StackName *string `type:"string" required:"true"`
 
 	metadataCancelUpdateStackInput `json:"-" xml:"-"`
@@ -701,8 +701,7 @@ type CreateStackInput struct {
 	// explicitly acknowledge their capabilities by specifying this parameter.
 	//
 	// Currently, the only valid value is CAPABILITY_IAM, which is required for
-	// the following resources:  AWS::CloudFormation::Stack (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html),
-	//  AWS::IAM::AccessKey (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html),
+	// the following resources:  AWS::IAM::AccessKey (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html),
 	//  AWS::IAM::Group (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html),
 	//  AWS::IAM::InstanceProfile (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html),
 	//  AWS::IAM::Policy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html),
@@ -735,11 +734,12 @@ type CreateStackInput struct {
 	// A list of Parameter structures that specify input parameters for the stack.
 	Parameters []*Parameter `type:"list"`
 
-	// The name associated with the stack. The name must be unique within your AWS
-	// account.
+	// The name that is associated with the stack. The name must be unique in the
+	// region in which you are creating the stack.
 	//
-	// Must contain only alphanumeric characters (case sensitive) and start with
-	// an alpha character. Maximum length of the name is 255 characters.
+	// A stack name can contain only alphanumeric characters (case sensitive) and
+	// hyphens. It must start with an alphabetic character and cannot be longer
+	// than 255 characters.
 	StackName *string `type:"string" required:"true"`
 
 	// Structure containing the stack policy body. For more information, go to
@@ -769,7 +769,7 @@ type CreateStackInput struct {
 	TemplateBody *string `type:"string"`
 
 	// Location of file containing the template body. The URL must point to a template
-	// (max size: 307,200 bytes) located in an S3 bucket in the same region as the
+	// (max size: 460,800 bytes) located in an S3 bucket in the same region as the
 	// stack. For more information, go to the Template Anatomy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
 	// in the AWS CloudFormation User Guide.
 	//
@@ -803,7 +803,7 @@ type metadataCreateStackOutput struct {
 
 // The input for DeleteStack action.
 type DeleteStackInput struct {
-	// The name or the unique identifier associated with the stack.
+	// The name or the unique stack ID that is associated with the stack.
 	StackName *string `type:"string" required:"true"`
 
 	metadataDeleteStackInput `json:"-" xml:"-"`
@@ -829,8 +829,8 @@ type DescribeStackEventsInput struct {
 	// Default: There is no default value.
 	NextToken *string `type:"string"`
 
-	// The name or the unique identifier associated with the stack, which are not
-	// always interchangeable:
+	// The name or the unique stack ID that is associated with the stack, which
+	// are not always interchangeable:
 	//
 	//  Running stacks: You can specify either the stack's name or its unique stack
 	// ID. Deleted stacks: You must specify the unique stack ID.  Default: There
@@ -867,8 +867,8 @@ type DescribeStackResourceInput struct {
 	// Default: There is no default value.
 	LogicalResourceID *string `locationName:"LogicalResourceId" type:"string" required:"true"`
 
-	// The name or the unique identifier associated with the stack, which are not
-	// always interchangeable:
+	// The name or the unique stack ID that is associated with the stack, which
+	// are not always interchangeable:
 	//
 	//  Running stacks: You can specify either the stack's name or its unique stack
 	// ID. Deleted stacks: You must specify the unique stack ID.  Default: There
@@ -916,8 +916,8 @@ type DescribeStackResourcesInput struct {
 	// Default: There is no default value.
 	PhysicalResourceID *string `locationName:"PhysicalResourceId" type:"string"`
 
-	// The name or the unique identifier associated with the stack, which are not
-	// always interchangeable:
+	// The name or the unique stack ID that is associated with the stack, which
+	// are not always interchangeable:
 	//
 	//  Running stacks: You can specify either the stack's name or its unique stack
 	// ID. Deleted stacks: You must specify the unique stack ID.  Default: There
@@ -952,8 +952,8 @@ type DescribeStacksInput struct {
 	// one.
 	NextToken *string `type:"string"`
 
-	// The name or the unique identifier associated with the stack, which are not
-	// always interchangeable:
+	// The name or the unique stack ID that is associated with the stack, which
+	// are not always interchangeable:
 	//
 	//  Running stacks: You can specify either the stack's name or its unique stack
 	// ID. Deleted stacks: You must specify the unique stack ID.  Default: There
@@ -1027,8 +1027,8 @@ type metadataEstimateTemplateCostOutput struct {
 
 // The input for the GetStackPolicy action.
 type GetStackPolicyInput struct {
-	// The name or stack ID that is associated with the stack whose policy you want
-	// to get.
+	// The name or unique stack ID that is associated with the stack whose policy
+	// you want to get.
 	StackName *string `type:"string" required:"true"`
 
 	metadataGetStackPolicyInput `json:"-" xml:"-"`
@@ -1054,8 +1054,8 @@ type metadataGetStackPolicyOutput struct {
 
 // The input for a GetTemplate action.
 type GetTemplateInput struct {
-	// The name or the unique identifier associated with the stack, which are not
-	// always interchangeable:
+	// The name or the unique stack ID that is associated with the stack, which
+	// are not always interchangeable:
 	//
 	//  Running stacks: You can specify either the stack's name or its unique stack
 	// ID. Deleted stacks: You must specify the unique stack ID.  Default: There
@@ -1085,7 +1085,7 @@ type metadataGetTemplateOutput struct {
 
 // The input for the GetTemplateSummary action.
 type GetTemplateSummaryInput struct {
-	// The name or the unique identifier associated with the stack, which are not
+	// The name or the stack ID that is associated with the stack, which are not
 	// always interchangeable. For running stacks, you can specify either the stack's
 	// name or its unique stack ID. For deleted stack, you must specify the unique
 	// stack ID.
@@ -1104,7 +1104,7 @@ type GetTemplateSummaryInput struct {
 	TemplateBody *string `type:"string"`
 
 	// Location of file containing the template body. The URL must point to a template
-	// (max size: 307,200 bytes) located in an Amazon S3 bucket. For more information
+	// (max size: 460,800 bytes) located in an Amazon S3 bucket. For more information
 	// about templates, see Template Anatomy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
 	// in the AWS CloudFormation User Guide.
 	//
@@ -1128,11 +1128,15 @@ type GetTemplateSummaryOutput struct {
 	// those actions return an InsufficientCapabilities error.
 	Capabilities []*string `type:"list"`
 
-	// The capabilities reason found within the template.
+	// The list of resources that generated the values in the Capabilities response
+	// element.
 	CapabilitiesReason *string `type:"string"`
 
 	// The value that is defined in the Description property of the template.
 	Description *string `type:"string"`
+
+	// The value that is defined for the Metadata property of the template.
+	Metadata *string `type:"string"`
 
 	// A list of parameter declarations that describe various properties for each
 	// parameter.
@@ -1157,8 +1161,8 @@ type ListStackResourcesInput struct {
 	// Default: There is no default value.
 	NextToken *string `type:"string"`
 
-	// The name or the unique identifier associated with the stack, which are not
-	// always interchangeable:
+	// The name or the unique stack ID that is associated with the stack, which
+	// are not always interchangeable:
 	//
 	//  Running stacks: You can specify either the stack's name or its unique stack
 	// ID. Deleted stacks: You must specify the unique stack ID.  Default: There
@@ -1245,20 +1249,37 @@ type metadataOutput struct {
 
 // The Parameter data type.
 type Parameter struct {
-	// The key associated with the parameter.
+	// The key associated with the parameter. If you don't specify a key and value
+	// for a particular parameter, AWS CloudFormation uses the default value that
+	// is specified in your template.
 	ParameterKey *string `type:"string"`
 
 	// The value associated with the parameter.
 	ParameterValue *string `type:"string"`
 
-	// During a stack update, use the existing parameter value that is being used
-	// for the stack.
+	// During a stack update, use the existing parameter value that the stack is
+	// using for a given parameter key. If you specify true, do not specify a parameter
+	// value.
 	UsePreviousValue *bool `type:"boolean"`
 
 	metadataParameter `json:"-" xml:"-"`
 }
 
 type metadataParameter struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// A set of criteria that AWS CloudFormation uses to validate parameter values.
+// Although other constraints might be defined in the stack template, AWS CloudFormation
+// returns only the AllowedValues property.
+type ParameterConstraints struct {
+	// A list of values that are permitted for a parameter.
+	AllowedValues []*string `type:"list"`
+
+	metadataParameterConstraints `json:"-" xml:"-"`
+}
+
+type metadataParameterConstraints struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1273,6 +1294,9 @@ type ParameterDeclaration struct {
 	// Flag that indicates whether the parameter value is shown as plain text in
 	// logs and in the AWS Management Console.
 	NoEcho *bool `type:"boolean"`
+
+	// The criteria that AWS CloudFormation uses to validate parameter values.
+	ParameterConstraints *ParameterConstraints `type:"structure"`
 
 	// The name that is associated with the parameter.
 	ParameterKey *string `type:"string"`
@@ -1289,7 +1313,7 @@ type metadataParameterDeclaration struct {
 
 // The input for the SetStackPolicy action.
 type SetStackPolicyInput struct {
-	// The name or stack ID that you want to associate a policy with.
+	// The name or unique stack ID that you want to associate a policy with.
 	StackName *string `type:"string" required:"true"`
 
 	// Structure containing the stack policy body. For more information, go to
@@ -1325,7 +1349,8 @@ type SignalResourceInput struct {
 	// the name of the resource that given in the template.
 	LogicalResourceID *string `locationName:"LogicalResourceId" type:"string" required:"true"`
 
-	// The stack name or ID that includes the resource that you want to signal.
+	// The stack name or unique stack ID that includes the resource that you want
+	// to signal.
 	StackName *string `type:"string" required:"true"`
 
 	// The status of the signal, which is either success or failure. A failure signal
@@ -1645,8 +1670,7 @@ type UpdateStackInput struct {
 	// that can affect permissions in your AWS account. For those stacks, you must
 	// explicitly acknowledge their capabilities by specifying this parameter. Currently,
 	// the only valid value is CAPABILITY_IAM, which is required for the following
-	// resources:  AWS::CloudFormation::Stack (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html),
-	//  AWS::IAM::AccessKey (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html),
+	// resources:  AWS::IAM::AccessKey (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html),
 	//  AWS::IAM::Group (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html),
 	//  AWS::IAM::InstanceProfile (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html),
 	//  AWS::IAM::Policy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html),
@@ -1662,12 +1686,11 @@ type UpdateStackInput struct {
 	NotificationARNs []*string `type:"list"`
 
 	// A list of Parameter structures that specify input parameters for the stack.
+	// For more information, see the Parameter (http://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_Parameter.html)
+	// data type.
 	Parameters []*Parameter `type:"list"`
 
-	// The name or stack ID of the stack to update.
-	//
-	//  Must contain only alphanumeric characters (case sensitive) and start with
-	// an alpha character. Maximum length of the name is 255 characters.
+	// The name or unique stack ID of the stack to update.
 	StackName *string `type:"string" required:"true"`
 
 	// Structure containing a new stack policy body. You can specify either the
@@ -1760,7 +1783,7 @@ type ValidateTemplateInput struct {
 	TemplateBody *string `type:"string"`
 
 	// Location of file containing the template body. The URL must point to a template
-	// (max size: 307,200 bytes) located in an S3 bucket in the same region as the
+	// (max size: 460,800 bytes) located in an S3 bucket in the same region as the
 	// stack. For more information, go to Template Anatomy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
 	// in the AWS CloudFormation User Guide.
 	//
@@ -1784,7 +1807,8 @@ type ValidateTemplateOutput struct {
 	// those actions return an InsufficientCapabilities error.
 	Capabilities []*string `type:"list"`
 
-	// The capabilities reason found within the template.
+	// The list of resources that generated the values in the Capabilities response
+	// element.
 	CapabilitiesReason *string `type:"string"`
 
 	// The description found within the template.

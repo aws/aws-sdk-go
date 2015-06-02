@@ -1,5 +1,4 @@
 {
-  "version":"2.0",
   "metadata":{
     "apiVersion":"2011-01-01",
     "endpointPrefix":"autoscaling",

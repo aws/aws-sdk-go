@@ -696,7 +696,9 @@ func ExampleKMS_RetireGrant() {
 	svc := kms.New(nil)
 
 	params := &kms.RetireGrantInput{
-		GrantToken: aws.String("GrantTokenType"), // Required
+		GrantID:    aws.String("GrantIdType"),
+		GrantToken: aws.String("GrantTokenType"),
+		KeyID:      aws.String("KeyIdType"),
 	}
 	resp, err := svc.RetireGrant(params)
 
@@ -727,6 +729,34 @@ func ExampleKMS_RevokeGrant() {
 		KeyID:   aws.String("KeyIdType"),   // Required
 	}
 	resp, err := svc.RevokeGrant(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleKMS_UpdateAlias() {
+	svc := kms.New(nil)
+
+	params := &kms.UpdateAliasInput{
+		AliasName:   aws.String("AliasNameType"), // Required
+		TargetKeyID: aws.String("KeyIdType"),     // Required
+	}
+	resp, err := svc.UpdateAlias(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {

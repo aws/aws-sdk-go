@@ -102,6 +102,9 @@
       "limit_key": "NumberOfLines",
       "more_results": "AdditionalDataPending",
       "result_key": "LogFileData"
+    },
+    "ListTagsForResource": {
+      "result_key": "TagList"
     }
   }
 }

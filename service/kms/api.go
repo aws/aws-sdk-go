@@ -42,6 +42,11 @@ func (c *KMS) CreateAliasRequest(input *CreateAliasInput) (req *aws.Request, out
 // must start with the word "alias" followed by a forward slash (alias/). An
 // alias that begins with "aws" after the forward slash (alias/aws...) is reserved
 // by Amazon Web Services (AWS).
+//
+// To associate an alias with a different key, call UpdateAlias.
+//
+// Note that you cannot create or update an alias that represents a key in
+// another account.
 func (c *KMS) CreateAlias(input *CreateAliasInput) (*CreateAliasOutput, error) {
 	req, out := c.CreateAliasRequest(input)
 	err := req.Send()
@@ -187,7 +192,8 @@ func (c *KMS) DeleteAliasRequest(input *DeleteAliasInput) (req *aws.Request, out
 	return
 }
 
-// Deletes the specified alias.
+// Deletes the specified alias. To associate an alias with a different key,
+// call UpdateAlias.
 func (c *KMS) DeleteAlias(input *DeleteAliasInput) (*DeleteAliasOutput, error) {
 	req, out := c.DeleteAliasRequest(input)
 	err := req.Send()
@@ -786,6 +792,14 @@ func (c *KMS) ReEncryptRequest(input *ReEncryptInput) (req *aws.Request, output 
 // the plaintext of the data on the client side. The data is first decrypted
 // and then encrypted. This operation can also be used to change the encryption
 // context of a ciphertext.
+//
+// Unlike other actions, ReEncrypt is authorized twice - once as ReEncryptFrom
+// on the source key and once as ReEncryptTo on the destination key. We therefore
+// recommend that you include the "action":"kms:ReEncrypt*" statement in your
+// key policies to permit re-encryption from or to the key. The statement is
+// included automatically when you authorize use of the key through the console
+// but must be included manually when you set a policy by using the PutKeyPolicy
+// function.
 func (c *KMS) ReEncrypt(input *ReEncryptInput) (*ReEncryptOutput, error) {
 	req, out := c.ReEncryptRequest(input)
 	err := req.Send()
@@ -821,7 +835,11 @@ func (c *KMS) RetireGrantRequest(input *RetireGrantInput) (req *aws.Request, out
 // up. You should revoke a grant when you intend to actively deny operations
 // that depend on it. The following are permitted to call this API:  The account
 // that created the grant The RetiringPrincipal, if present The GranteePrincipal,
-// if RetireGrant is a grantee operation
+// if RetireGrant is a grantee operation  The grant to retire must be identified
+// by its grant token or by a combination of the key ARN and the grant ID. A
+// grant token is a unique variable-length base64-encoded string. A grant ID
+// is a 64 character unique identifier of a grant. Both are returned by the
+// CreateGrant function.
 func (c *KMS) RetireGrant(input *RetireGrantInput) (*RetireGrantOutput, error) {
 	req, out := c.RetireGrantRequest(input)
 	err := req.Send()
@@ -862,6 +880,50 @@ func (c *KMS) RevokeGrant(input *RevokeGrantInput) (*RevokeGrantOutput, error) {
 }
 
 var opRevokeGrant *aws.Operation
+
+// UpdateAliasRequest generates a request for the UpdateAlias operation.
+func (c *KMS) UpdateAliasRequest(input *UpdateAliasInput) (req *aws.Request, output *UpdateAliasOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opUpdateAlias == nil {
+		opUpdateAlias = &aws.Operation{
+			Name:       "UpdateAlias",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &UpdateAliasInput{}
+	}
+
+	req = c.newRequest(opUpdateAlias, input, output)
+	output = &UpdateAliasOutput{}
+	req.Data = output
+	return
+}
+
+// Updates an alias to associate it with a different key.
+//
+// An alias name can contain only alphanumeric characters, forward slashes
+// (/), underscores (_), and dashes (-). An alias must start with the word "alias"
+// followed by a forward slash (alias/). An alias that begins with "aws" after
+// the forward slash (alias/aws...) is reserved by Amazon Web Services (AWS).
+//
+// An alias is not a property of a key. Therefore, an alias can be associated
+// with and disassociated from an existing key without changing the properties
+// of the key.
+//
+// Note that you cannot create or update an alias that represents a key in
+// another account.
+func (c *KMS) UpdateAlias(input *UpdateAliasInput) (*UpdateAliasOutput, error) {
+	req, out := c.UpdateAliasRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opUpdateAlias *aws.Operation
 
 // UpdateKeyDescriptionRequest generates a request for the UpdateKeyDescription operation.
 func (c *KMS) UpdateKeyDescriptionRequest(input *UpdateKeyDescriptionInput) (req *aws.Request, output *UpdateKeyDescriptionOutput) {
@@ -914,13 +976,15 @@ type metadataAliasListEntry struct {
 }
 
 type CreateAliasInput struct {
-	// String that contains the display name. Aliases that begin with AWS are reserved.
+	// String that contains the display name. The name must start with the word
+	// "alias" followed by a forward slash (alias/). Aliases that begin with "alias/AWS"
+	// are reserved.
 	AliasName *string `type:"string" required:"true"`
 
 	// An identifier of the key for which you are creating the alias. This value
 	// cannot be another alias but can be a globally unique identifier or a fully
 	// specified ARN to a key.  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
-	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	TargetKeyID *string `locationName:"TargetKeyId" type:"string" required:"true"`
 
 	metadataCreateAliasInput `json:"-" xml:"-"`
@@ -953,7 +1017,7 @@ type CreateGrantInput struct {
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
-	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	// List of operations permitted by the grant. This can be any combination of
@@ -1053,7 +1117,8 @@ type metadataDecryptOutput struct {
 }
 
 type DeleteAliasInput struct {
-	// The alias to be deleted.
+	// The alias to be deleted. The name must start with the word "alias" followed
+	// by a forward slash (alias/). Aliases that begin with "alias/AWS" are reserved.
 	AliasName *string `type:"string" required:"true"`
 
 	metadataDeleteAliasInput `json:"-" xml:"-"`
@@ -1075,9 +1140,9 @@ type DescribeKeyInput struct {
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier, a fully specified ARN to either an alias or a key, or
 	// an alias name prefixed by "alias/".  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
-	// Alias ARN Example - arn:aws:kms:us-east-1:123456789012:/alias/MyAliasName
-	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012 Alias Name
-	// Example - alias/MyAliasName
+	// Alias ARN Example - arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
+	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012 Alias
+	// Name Example - alias/MyAliasName
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataDescribeKeyInput `json:"-" xml:"-"`
@@ -1102,7 +1167,7 @@ type DisableKeyInput struct {
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
-	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataDisableKeyInput `json:"-" xml:"-"`
@@ -1124,7 +1189,7 @@ type DisableKeyRotationInput struct {
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
-	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataDisableKeyRotationInput `json:"-" xml:"-"`
@@ -1146,7 +1211,7 @@ type EnableKeyInput struct {
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
-	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataEnableKeyInput `json:"-" xml:"-"`
@@ -1168,7 +1233,7 @@ type EnableKeyRotationInput struct {
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
-	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataEnableKeyRotationInput `json:"-" xml:"-"`
@@ -1199,9 +1264,9 @@ type EncryptInput struct {
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier, a fully specified ARN to either an alias or a key, or
 	// an alias name prefixed by "alias/".  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
-	// Alias ARN Example - arn:aws:kms:us-east-1:123456789012:/alias/MyAliasName
-	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012 Alias Name
-	// Example - alias/MyAliasName
+	// Alias ARN Example - arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
+	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012 Alias
+	// Name Example - alias/MyAliasName
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	// Data to be encrypted.
@@ -1241,9 +1306,9 @@ type GenerateDataKeyInput struct {
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier, a fully specified ARN to either an alias or a key, or
 	// an alias name prefixed by "alias/".  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
-	// Alias ARN Example - arn:aws:kms:us-east-1:123456789012:/alias/MyAliasName
-	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012 Alias Name
-	// Example - alias/MyAliasName
+	// Alias ARN Example - arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
+	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012 Alias
+	// Name Example - alias/MyAliasName
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	// Value that identifies the encryption algorithm and key size to generate a
@@ -1299,9 +1364,9 @@ type GenerateDataKeyWithoutPlaintextInput struct {
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier, a fully specified ARN to either an alias or a key, or
 	// an alias name prefixed by "alias/".  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
-	// Alias ARN Example - arn:aws:kms:us-east-1:123456789012:/alias/MyAliasName
-	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012 Alias Name
-	// Example - alias/MyAliasName
+	// Alias ARN Example - arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
+	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012 Alias
+	// Name Example - alias/MyAliasName
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	// Value that identifies the encryption algorithm and key size. Currently this
@@ -1366,7 +1431,7 @@ type GetKeyPolicyInput struct {
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
-	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	// String that contains the name of the policy. Currently, this must be "default".
@@ -1395,7 +1460,7 @@ type GetKeyRotationStatusInput struct {
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
-	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataGetKeyRotationStatusInput `json:"-" xml:"-"`
@@ -1549,7 +1614,7 @@ type ListGrantsInput struct {
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
-	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	// Specify this parameter only when paginating results to indicate the maximum
@@ -1594,9 +1659,9 @@ type ListKeyPoliciesInput struct {
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier, a fully specified ARN to either an alias or a key, or
 	// an alias name prefixed by "alias/".  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
-	// Alias ARN Example - arn:aws:kms:us-east-1:123456789012:/alias/MyAliasName
-	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012 Alias Name
-	// Example - alias/MyAliasName
+	// Alias ARN Example - arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
+	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012 Alias
+	// Name Example - alias/MyAliasName
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	// Specify this parameter only when paginating results to indicate the maximum
@@ -1681,7 +1746,7 @@ type PutKeyPolicyInput struct {
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
-	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	// The policy, in JSON format, to be attached to the key.
@@ -1717,9 +1782,9 @@ type ReEncryptInput struct {
 	// This value can be a globally unique identifier, a fully specified ARN to
 	// either an alias or a key, or an alias name prefixed by "alias/".  Key ARN
 	// Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
-	// Alias ARN Example - arn:aws:kms:us-east-1:123456789012:/alias/MyAliasName
-	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012 Alias Name
-	// Example - alias/MyAliasName
+	// Alias ARN Example - arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
+	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012 Alias
+	// Name Example - alias/MyAliasName
 	DestinationKeyID *string `locationName:"DestinationKeyId" type:"string" required:"true"`
 
 	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
@@ -1755,8 +1820,18 @@ type metadataReEncryptOutput struct {
 }
 
 type RetireGrantInput struct {
+	// Unique identifier of the grant to be retired. The grant ID is returned by
+	// the CreateGrant function.  Grant ID Example - 0123456789012345678901234567890123456789012345678901234567890123
+	GrantID *string `locationName:"GrantId" type:"string"`
+
 	// Token that identifies the grant to be retired.
-	GrantToken *string `type:"string" required:"true"`
+	GrantToken *string `type:"string"`
+
+	// A unique identifier for the customer master key associated with the grant.
+	// This value can be a globally unique identifier or a fully specified ARN of
+	// the key.  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	KeyID *string `locationName:"KeyId" type:"string"`
 
 	metadataRetireGrantInput `json:"-" xml:"-"`
 }
@@ -1780,7 +1855,7 @@ type RevokeGrantInput struct {
 	// A unique identifier for the customer master key associated with the grant.
 	// This value can be a globally unique identifier or the fully specified ARN
 	// to a key.  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
-	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataRevokeGrantInput `json:"-" xml:"-"`
@@ -1798,6 +1873,33 @@ type metadataRevokeGrantOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type UpdateAliasInput struct {
+	// String that contains the name of the alias to be modifed. The name must start
+	// with the word "alias" followed by a forward slash (alias/). Aliases that
+	// begin with "alias/AWS" are reserved.
+	AliasName *string `type:"string" required:"true"`
+
+	// Unique identifier of the customer master key to be associated with the alias.
+	// This value can be a globally unique identifier or the fully specified ARN
+	// of a key.  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	TargetKeyID *string `locationName:"TargetKeyId" type:"string" required:"true"`
+
+	metadataUpdateAliasInput `json:"-" xml:"-"`
+}
+
+type metadataUpdateAliasInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type UpdateAliasOutput struct {
+	metadataUpdateAliasOutput `json:"-" xml:"-"`
+}
+
+type metadataUpdateAliasOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type UpdateKeyDescriptionInput struct {
 	// New description for the key.
 	Description *string `type:"string" required:"true"`
@@ -1805,7 +1907,7 @@ type UpdateKeyDescriptionInput struct {
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
-	// Globally Unique Key ID Example - 12345678-1234-1234-123456789012
+	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	metadataUpdateKeyDescriptionInput `json:"-" xml:"-"`

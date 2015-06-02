@@ -47,6 +47,8 @@ type EC2API interface {
 
 	CancelReservedInstancesListing(*ec2.CancelReservedInstancesListingInput) (*ec2.CancelReservedInstancesListingOutput, error)
 
+	CancelSpotFleetRequests(*ec2.CancelSpotFleetRequestsInput) (*ec2.CancelSpotFleetRequestsOutput, error)
+
 	CancelSpotInstanceRequests(*ec2.CancelSpotInstanceRequestsInput) (*ec2.CancelSpotInstanceRequestsOutput, error)
 
 	ConfirmProductInstance(*ec2.ConfirmProductInstanceInput) (*ec2.ConfirmProductInstanceOutput, error)
@@ -93,6 +95,8 @@ type EC2API interface {
 
 	CreateVPC(*ec2.CreateVPCInput) (*ec2.CreateVPCOutput, error)
 
+	CreateVPCEndpoint(*ec2.CreateVPCEndpointInput) (*ec2.CreateVPCEndpointOutput, error)
+
 	CreateVPCPeeringConnection(*ec2.CreateVPCPeeringConnectionInput) (*ec2.CreateVPCPeeringConnectionOutput, error)
 
 	CreateVPNConnection(*ec2.CreateVPNConnectionInput) (*ec2.CreateVPNConnectionOutput, error)
@@ -134,6 +138,8 @@ type EC2API interface {
 	DeleteTags(*ec2.DeleteTagsInput) (*ec2.DeleteTagsOutput, error)
 
 	DeleteVPC(*ec2.DeleteVPCInput) (*ec2.DeleteVPCOutput, error)
+
+	DeleteVPCEndpoints(*ec2.DeleteVPCEndpointsInput) (*ec2.DeleteVPCEndpointsOutput, error)
 
 	DeleteVPCPeeringConnection(*ec2.DeleteVPCPeeringConnectionInput) (*ec2.DeleteVPCPeeringConnectionOutput, error)
 
@@ -183,6 +189,8 @@ type EC2API interface {
 
 	DescribeKeyPairs(*ec2.DescribeKeyPairsInput) (*ec2.DescribeKeyPairsOutput, error)
 
+	DescribeMovingAddresses(*ec2.DescribeMovingAddressesInput) (*ec2.DescribeMovingAddressesOutput, error)
+
 	DescribeNetworkACLs(*ec2.DescribeNetworkACLsInput) (*ec2.DescribeNetworkACLsOutput, error)
 
 	DescribeNetworkInterfaceAttribute(*ec2.DescribeNetworkInterfaceAttributeInput) (*ec2.DescribeNetworkInterfaceAttributeOutput, error)
@@ -190,6 +198,8 @@ type EC2API interface {
 	DescribeNetworkInterfaces(*ec2.DescribeNetworkInterfacesInput) (*ec2.DescribeNetworkInterfacesOutput, error)
 
 	DescribePlacementGroups(*ec2.DescribePlacementGroupsInput) (*ec2.DescribePlacementGroupsOutput, error)
+
+	DescribePrefixLists(*ec2.DescribePrefixListsInput) (*ec2.DescribePrefixListsOutput, error)
 
 	DescribeRegions(*ec2.DescribeRegionsInput) (*ec2.DescribeRegionsOutput, error)
 
@@ -211,6 +221,12 @@ type EC2API interface {
 
 	DescribeSpotDatafeedSubscription(*ec2.DescribeSpotDatafeedSubscriptionInput) (*ec2.DescribeSpotDatafeedSubscriptionOutput, error)
 
+	DescribeSpotFleetInstances(*ec2.DescribeSpotFleetInstancesInput) (*ec2.DescribeSpotFleetInstancesOutput, error)
+
+	DescribeSpotFleetRequestHistory(*ec2.DescribeSpotFleetRequestHistoryInput) (*ec2.DescribeSpotFleetRequestHistoryOutput, error)
+
+	DescribeSpotFleetRequests(*ec2.DescribeSpotFleetRequestsInput) (*ec2.DescribeSpotFleetRequestsOutput, error)
+
 	DescribeSpotInstanceRequests(*ec2.DescribeSpotInstanceRequestsInput) (*ec2.DescribeSpotInstanceRequestsOutput, error)
 
 	DescribeSpotPriceHistory(*ec2.DescribeSpotPriceHistoryInput) (*ec2.DescribeSpotPriceHistoryOutput, error)
@@ -222,6 +238,10 @@ type EC2API interface {
 	DescribeVPCAttribute(*ec2.DescribeVPCAttributeInput) (*ec2.DescribeVPCAttributeOutput, error)
 
 	DescribeVPCClassicLink(*ec2.DescribeVPCClassicLinkInput) (*ec2.DescribeVPCClassicLinkOutput, error)
+
+	DescribeVPCEndpointServices(*ec2.DescribeVPCEndpointServicesInput) (*ec2.DescribeVPCEndpointServicesOutput, error)
+
+	DescribeVPCEndpoints(*ec2.DescribeVPCEndpointsInput) (*ec2.DescribeVPCEndpointsOutput, error)
 
 	DescribeVPCPeeringConnections(*ec2.DescribeVPCPeeringConnectionsInput) (*ec2.DescribeVPCPeeringConnectionsOutput, error)
 
@@ -289,9 +309,13 @@ type EC2API interface {
 
 	ModifyVPCAttribute(*ec2.ModifyVPCAttributeInput) (*ec2.ModifyVPCAttributeOutput, error)
 
+	ModifyVPCEndpoint(*ec2.ModifyVPCEndpointInput) (*ec2.ModifyVPCEndpointOutput, error)
+
 	ModifyVolumeAttribute(*ec2.ModifyVolumeAttributeInput) (*ec2.ModifyVolumeAttributeOutput, error)
 
 	MonitorInstances(*ec2.MonitorInstancesInput) (*ec2.MonitorInstancesOutput, error)
+
+	MoveAddressToVPC(*ec2.MoveAddressToVPCInput) (*ec2.MoveAddressToVPCOutput, error)
 
 	PurchaseReservedInstancesOffering(*ec2.PurchaseReservedInstancesOfferingInput) (*ec2.PurchaseReservedInstancesOfferingOutput, error)
 
@@ -313,6 +337,8 @@ type EC2API interface {
 
 	ReportInstanceStatus(*ec2.ReportInstanceStatusInput) (*ec2.ReportInstanceStatusOutput, error)
 
+	RequestSpotFleet(*ec2.RequestSpotFleetInput) (*ec2.RequestSpotFleetOutput, error)
+
 	RequestSpotInstances(*ec2.RequestSpotInstancesInput) (*ec2.RequestSpotInstancesOutput, error)
 
 	ResetImageAttribute(*ec2.ResetImageAttributeInput) (*ec2.ResetImageAttributeOutput, error)
@@ -322,6 +348,8 @@ type EC2API interface {
 	ResetNetworkInterfaceAttribute(*ec2.ResetNetworkInterfaceAttributeInput) (*ec2.ResetNetworkInterfaceAttributeOutput, error)
 
 	ResetSnapshotAttribute(*ec2.ResetSnapshotAttributeInput) (*ec2.ResetSnapshotAttributeOutput, error)
+
+	RestoreAddressToClassic(*ec2.RestoreAddressToClassicInput) (*ec2.RestoreAddressToClassicOutput, error)
 
 	RevokeSecurityGroupEgress(*ec2.RevokeSecurityGroupEgressInput) (*ec2.RevokeSecurityGroupEgressOutput, error)
 

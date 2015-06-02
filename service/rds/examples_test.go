@@ -775,6 +775,70 @@ func ExampleRDS_DeleteOptionGroup() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleRDS_DescribeAccountAttributes() {
+	svc := rds.New(nil)
+
+	var params *rds.DescribeAccountAttributesInput
+	resp, err := svc.DescribeAccountAttributes(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleRDS_DescribeCertificates() {
+	svc := rds.New(nil)
+
+	params := &rds.DescribeCertificatesInput{
+		CertificateIdentifier: aws.String("String"),
+		Filters: []*rds.Filter{
+			&rds.Filter{ // Required
+				Name: aws.String("String"), // Required
+				Values: []*string{ // Required
+					aws.String("String"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		Marker:     aws.String("String"),
+		MaxRecords: aws.Long(1),
+	}
+	resp, err := svc.DescribeCertificates(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleRDS_DescribeDBEngineVersions() {
 	svc := rds.New(nil)
 
@@ -1588,6 +1652,7 @@ func ExampleRDS_ModifyDBInstance() {
 		ApplyImmediately:         aws.Boolean(true),
 		AutoMinorVersionUpgrade:  aws.Boolean(true),
 		BackupRetentionPeriod:    aws.Long(1),
+		CACertificateIdentifier:  aws.String("String"),
 		DBInstanceClass:          aws.String("String"),
 		DBParameterGroupName:     aws.String("String"),
 		DBSecurityGroups: []*string{

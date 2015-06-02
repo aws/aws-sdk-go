@@ -682,7 +682,7 @@ func (c *ELB) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (r
 			Paginator: &aws.Paginator{
 				InputTokens:     []string{"Marker"},
 				OutputTokens:    []string{"NextMarker"},
-				LimitToken:      "PageSize",
+				LimitToken:      "",
 				TruncationToken: "",
 			},
 		}

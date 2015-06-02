@@ -1,4 +1,5 @@
 {
+  "version":"2.0",
   "metadata":{
     "apiVersion":"2014-10-06",
     "endpointPrefix":"codedeploy",
@@ -10,8 +11,52 @@
     "timestampFormat":"unixTimestamp",
     "protocol":"json"
   },
-  "documentation":"<fullname>AWS CodeDeploy</fullname> <b>Overview</b> <p>This is the AWS CodeDeploy API Reference. This guide provides descriptions of the AWS CodeDeploy APIs. For additional information, see the <a href=\"http://docs.aws.amazon.com/codedeploy/latest/userguide\">AWS CodeDeploy User Guide</a>.</p> <b>Using the APIs</b> <p>You can use the AWS CodeDeploy APIs to work with the following items:</p> <ul> <li> <p><i>Applications</i>, which are unique identifiers that AWS CodeDeploy uses to ensure that the correct combinations of revisions, deployment configurations, and deployment groups are being referenced during deployments.</p> <p>You can work with applications by calling <a>CreateApplication</a>, <a>DeleteApplication</a>, <a>GetApplication</a>, <a>ListApplications</a>, <a>BatchGetApplications</a>, and <a>UpdateApplication</a> to create, delete, and get information about applications, and to change information about an application, respectively.</p> </li> <li> <p><i>Deployment configurations</i>, which are sets of deployment rules and deployment success and failure conditions that AWS CodeDeploy uses during deployments.</p> <p>You can work with deployment configurations by calling <a>CreateDeploymentConfig</a>, <a>DeleteDeploymentConfig</a>, <a>GetDeploymentConfig</a>, and <a>ListDeploymentConfigs</a> to create, delete, and get information about deployment configurations, respectively.</p> </li> <li> <p><i>Deployment groups</i>, which represent groups of Amazon EC2 instances to which application revisions can be deployed.</p> <p>You can work with deployment groups by calling <a>CreateDeploymentGroup</a>, <a>DeleteDeploymentGroup</a>, <a>GetDeploymentGroup</a>, <a>ListDeploymentGroups</a>, and <a>UpdateDeploymentGroup</a> to create, delete, and get information about single and multiple deployment groups, and to change information about a deployment group, respectively.</p> </li> <li> <p><i>Deployment instances</i> (also known simply as <i>instances</i>), which represent Amazon EC2 instances to which application revisions are deployed. Deployment instances are identified by their Amazon EC2 tags or Auto Scaling group names. Deployment instances belong to deployment groups.</p> <p>You can work with deployment instances by calling <a>GetDeploymentInstance</a> and <a>ListDeploymentInstances</a> to get information about single and multiple deployment instances, respectively.</p> </li> <li> <p><i>Deployments</i>, which represent the process of deploying revisions to deployment groups.</p> <p>You can work with deployments by calling <a>CreateDeployment</a>, <a>GetDeployment</a>, <a>ListDeployments</a>, <a>BatchGetDeployments</a>, and <a>StopDeployment</a> to create and get information about deployments, and to stop a deployment, respectively.</p> </li> <li> <p><i>Application revisions</i> (also known simply as <i>revisions</i>), which are archive files that are stored in Amazon S3 buckets or GitHub repositories. These revisions contain source content (such as source code, web pages, executable files, any deployment scripts, and similar) along with an Application Specification file (AppSpec file). (The AppSpec file is unique to AWS CodeDeploy; it defines a series of deployment actions that you want AWS CodeDeploy to execute.) An application revision is uniquely identified by its Amazon S3 object key and its ETag, version, or both. Application revisions are deployed to deployment groups.</p> <p>You can work with application revisions by calling <a>GetApplicationRevision</a>, <a>ListApplicationRevisions</a>, and <a>RegisterApplicationRevision</a> to get information about application revisions and to inform AWS CodeDeploy about an application revision, respectively.</p> </li> </ul>",
+  "documentation":"<fullname>AWS CodeDeploy</fullname> <b>Overview</b> <p>This is the AWS CodeDeploy API Reference. This guide provides descriptions of the AWS CodeDeploy APIs. For additional information, see the <a href=\"http://docs.aws.amazon.com/codedeploy/latest/userguide\">AWS CodeDeploy User Guide</a>.</p> <b>Using the APIs</b> <p>You can use the AWS CodeDeploy APIs to work with the following items:</p> <ul> <li> <p>Applications are unique identifiers that AWS CodeDeploy uses to ensure that the correct combinations of revisions, deployment configurations, and deployment groups are being referenced during deployments.</p> <p>You can use the AWS CodeDeploy APIs to create, delete, get, list, and update applications.</p> </li> <li> <p>Deployment configurations are sets of deployment rules and deployment success and failure conditions that AWS CodeDeploy uses during deployments.</p> <p>You can use the AWS CodeDeploy APIs to create, delete, get, and list deployment configurations.</p> </li> <li> <p>Deployment groups are groups of instances to which application revisions can be deployed.</p> <p>You can use the AWS CodeDeploy APIs to create, delete, get, list, and update deployment groups.</p> </li> <li> <p>Instances represent Amazon EC2 instances to which application revisions are deployed. Instances are identified by their Amazon EC2 tags or Auto Scaling group names. Instances belong to deployment groups.</p> <p>You can use the AWS CodeDeploy APIs to get and list instances.</p> </li> <li> <p>Deployments represent the process of deploying revisions to instances.</p> <p>You can use the AWS CodeDeploy APIs to create, get, list, and stop deployments.</p> </li> <li> <p>Application revisions are archive files that are stored in Amazon S3 buckets or GitHub repositories. These revisions contain source content (such as source code, web pages, executable files, any deployment scripts, and similar) along with an Application Specification file (AppSpec file). (The AppSpec file is unique to AWS CodeDeploy; it defines a series of deployment actions that you want AWS CodeDeploy to execute.) An application revision is uniquely identified by its Amazon S3 object key and its ETag, version, or both (for application revisions that are stored in Amazon S3 buckets) or by its repository name and commit ID (for applications revisions that are stored in GitHub repositories). Application revisions are deployed through deployment groups.</p> <p>You can use the AWS CodeDeploy APIs to get, list, and register application revisions.</p> </li> </ul>",
   "operations":{
+    "AddTagsToOnPremisesInstances":{
+      "name":"AddTagsToOnPremisesInstances",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"AddTagsToOnPremisesInstancesInput",
+        "documentation":"<p>Represents the input of an adds tags to on-premises instance operation.</p>"
+      },
+      "errors":[
+        {
+          "shape":"InstanceNameRequiredException",
+          "exception":true,
+          "documentation":"<p>An on-premises instance name was not specified.</p>"
+        },
+        {
+          "shape":"TagRequiredException",
+          "exception":true,
+          "documentation":"<p>A tag was not specified.</p>"
+        },
+        {
+          "shape":"InvalidTagException",
+          "exception":true,
+          "documentation":"<p>The specified tag was specified in an invalid format.</p>"
+        },
+        {
+          "shape":"TagLimitExceededException",
+          "exception":true,
+          "documentation":"<p>The maximum allowed number of tags was exceeded.</p>"
+        },
+        {
+          "shape":"InstanceLimitExceededException",
+          "exception":true,
+          "documentation":"<p>The maximum number of allowed on-premises instances in a single call was exceeded.</p>"
+        },
+        {
+          "shape":"InstanceNotRegisteredException",
+          "exception":true,
+          "documentation":"<p>The specified on-premises instance is not registered.</p>"
+        }
+      ],
+      "documentation":"<p>Adds tags to on-premises instances.</p>"
+    },
     "BatchGetApplications":{
       "name":"BatchGetApplications",
       "http":{
@@ -40,7 +85,7 @@
         {
           "shape":"ApplicationDoesNotExistException",
           "exception":true,
-          "documentation":"<p>The application does not exist within the AWS user account.</p>"
+          "documentation":"<p>The application does not exist with the applicable IAM user or AWS account.</p>"
         }
       ],
       "documentation":"<p>Gets information about one or more applications.</p>"
@@ -73,6 +118,34 @@
       ],
       "documentation":"<p>Gets information about one or more deployments.</p>"
     },
+    "BatchGetOnPremisesInstances":{
+      "name":"BatchGetOnPremisesInstances",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"BatchGetOnPremisesInstancesInput",
+        "documentation":"<p>Represents the input of a batch get on-premises instances operation.</p>"
+      },
+      "output":{
+        "shape":"BatchGetOnPremisesInstancesOutput",
+        "documentation":"<p>Represents the output of a batch get on-premises instances operation.</p>"
+      },
+      "errors":[
+        {
+          "shape":"InstanceNameRequiredException",
+          "exception":true,
+          "documentation":"<p>An on-premises instance name was not specified.</p>"
+        },
+        {
+          "shape":"InvalidInstanceNameException",
+          "exception":true,
+          "documentation":"<p>The specified on-premises instance name was specified in an invalid format.</p>"
+        }
+      ],
+      "documentation":"<p>Gets information about one or more on-premises instances.</p>"
+    },
     "CreateApplication":{
       "name":"CreateApplication",
       "http":{
@@ -101,7 +174,7 @@
         {
           "shape":"ApplicationAlreadyExistsException",
           "exception":true,
-          "documentation":"<p>An application with the specified name already exists within the AWS user account.</p>"
+          "documentation":"<p>An application with the specified name already exists with the applicable IAM user or AWS account.</p>"
         },
         {
           "shape":"ApplicationLimitExceededException",
@@ -139,7 +212,7 @@
         {
           "shape":"ApplicationDoesNotExistException",
           "exception":true,
-          "documentation":"<p>The application does not exist within the AWS user account.</p>"
+          "documentation":"<p>The application does not exist with the applicable IAM user or AWS account.</p>"
         },
         {
           "shape":"DeploymentGroupNameRequiredException",
@@ -154,7 +227,7 @@
         {
           "shape":"DeploymentGroupDoesNotExistException",
           "exception":true,
-          "documentation":"<p>The named deployment group does not exist within the AWS user account.</p>"
+          "documentation":"<p>The named deployment group does not exist with the applicable IAM user or AWS account.</p>"
         },
         {
           "shape":"RevisionRequiredException",
@@ -174,7 +247,7 @@
         {
           "shape":"DeploymentConfigDoesNotExistException",
           "exception":true,
-          "documentation":"<p>The deployment configuration does not exist within the AWS user account.</p>"
+          "documentation":"<p>The deployment configuration does not exist with the applicable IAM user or AWS account.</p>"
         },
         {
           "shape":"DescriptionTooLongException",
@@ -187,7 +260,7 @@
           "documentation":"<p>The number of allowed deployments was exceeded.</p>"
         }
       ],
-      "documentation":"<p>Deploys an application revision to the specified deployment group.</p>"
+      "documentation":"<p>Deploys an application revision through the specified deployment group.</p>"
     },
     "CreateDeploymentConfig":{
       "name":"CreateDeploymentConfig",
@@ -217,7 +290,7 @@
         {
           "shape":"DeploymentConfigAlreadyExistsException",
           "exception":true,
-          "documentation":"<p>A deployment configuration with the specified name already exists within the AWS user account.</p>"
+          "documentation":"<p>A deployment configuration with the specified name already exists with the applicable IAM user or AWS account.</p>"
         },
         {
           "shape":"InvalidMinimumHealthyHostValueException",
@@ -260,7 +333,7 @@
         {
           "shape":"ApplicationDoesNotExistException",
           "exception":true,
-          "documentation":"<p>The application does not exist within the AWS user account.</p>"
+          "documentation":"<p>The application does not exist with the applicable IAM user or AWS account.</p>"
         },
         {
           "shape":"DeploymentGroupNameRequiredException",
@@ -275,12 +348,17 @@
         {
           "shape":"DeploymentGroupAlreadyExistsException",
           "exception":true,
-          "documentation":"<p>A deployment group group with the specified name already exists within the AWS user account.</p>"
+          "documentation":"<p>A deployment group with the specified name already exists with the applicable IAM user or AWS account.</p>"
         },
         {
           "shape":"InvalidEC2TagException",
           "exception":true,
-          "documentation":"<p>The Amazon EC2 tag was specified in an invalid format.</p>"
+          "documentation":"<p>The tag was specified in an invalid format.</p>"
+        },
+        {
+          "shape":"InvalidTagException",
+          "exception":true,
+          "documentation":"<p>The specified tag was specified in an invalid format.</p>"
         },
         {
           "shape":"InvalidAutoScalingGroupException",
@@ -295,7 +373,7 @@
         {
           "shape":"DeploymentConfigDoesNotExistException",
           "exception":true,
-          "documentation":"<p>The deployment configuration does not exist within the AWS user account.</p>"
+          "documentation":"<p>The deployment configuration does not exist with the applicable IAM user or AWS account.</p>"
         },
         {
           "shape":"RoleRequiredException",
@@ -416,6 +494,30 @@
       ],
       "documentation":"<p>Deletes a deployment group.</p>"
     },
+    "DeregisterOnPremisesInstance":{
+      "name":"DeregisterOnPremisesInstance",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"DeregisterOnPremisesInstanceInput",
+        "documentation":"<p>Represents the input of a deregister on-premises instance operation.</p>"
+      },
+      "errors":[
+        {
+          "shape":"InstanceNameRequiredException",
+          "exception":true,
+          "documentation":"<p>An on-premises instance name was not specified.</p>"
+        },
+        {
+          "shape":"InvalidInstanceNameException",
+          "exception":true,
+          "documentation":"<p>The specified on-premises instance name was specified in an invalid format.</p>"
+        }
+      ],
+      "documentation":"<p>Deregisters an on-premises instance.</p>"
+    },
     "GetApplication":{
       "name":"GetApplication",
       "http":{
@@ -444,7 +546,7 @@
         {
           "shape":"ApplicationDoesNotExistException",
           "exception":true,
-          "documentation":"<p>The application does not exist within the AWS user account.</p>"
+          "documentation":"<p>The application does not exist with the applicable IAM user or AWS account.</p>"
         }
       ],
       "documentation":"<p>Gets information about an application.</p>"
@@ -467,7 +569,7 @@
         {
           "shape":"ApplicationDoesNotExistException",
           "exception":true,
-          "documentation":"<p>The application does not exist within the AWS user account.</p>"
+          "documentation":"<p>The application does not exist with the applicable IAM user or AWS account.</p>"
         },
         {
           "shape":"ApplicationNameRequiredException",
@@ -482,7 +584,7 @@
         {
           "shape":"RevisionDoesNotExistException",
           "exception":true,
-          "documentation":"<p>The named revision does not exist within the AWS user account.</p>"
+          "documentation":"<p>The named revision does not exist with the applicable IAM user or AWS account.</p>"
         },
         {
           "shape":"RevisionRequiredException",
@@ -525,7 +627,7 @@
         {
           "shape":"DeploymentDoesNotExistException",
           "exception":true,
-          "documentation":"<p>The deployment does not exist within the AWS user account.</p>"
+          "documentation":"<p>The deployment does not exist with the applicable IAM user or AWS account.</p>"
         }
       ],
       "documentation":"<p>Gets information about a deployment.</p>"
@@ -558,7 +660,7 @@
         {
           "shape":"DeploymentConfigDoesNotExistException",
           "exception":true,
-          "documentation":"<p>The deployment configuration does not exist within the AWS user account.</p>"
+          "documentation":"<p>The deployment configuration does not exist with the applicable IAM user or AWS account.</p>"
         }
       ],
       "documentation":"<p>Gets information about a deployment configuration.</p>"
@@ -591,7 +693,7 @@
         {
           "shape":"ApplicationDoesNotExistException",
           "exception":true,
-          "documentation":"<p>The application does not exist within the AWS user account.</p>"
+          "documentation":"<p>The application does not exist with the applicable IAM user or AWS account.</p>"
         },
         {
           "shape":"DeploymentGroupNameRequiredException",
@@ -606,7 +708,7 @@
         {
           "shape":"DeploymentGroupDoesNotExistException",
           "exception":true,
-          "documentation":"<p>The named deployment group does not exist within the AWS user account.</p>"
+          "documentation":"<p>The named deployment group does not exist with the applicable IAM user or AWS account.</p>"
         }
       ],
       "documentation":"<p>Gets information about a deployment group.</p>"
@@ -634,7 +736,7 @@
         {
           "shape":"DeploymentDoesNotExistException",
           "exception":true,
-          "documentation":"<p>The deployment does not exist within the AWS user account.</p>"
+          "documentation":"<p>The deployment does not exist with the applicable IAM user or AWS account.</p>"
         },
         {
           "shape":"InstanceIdRequiredException",
@@ -652,7 +754,40 @@
           "documentation":"<p>The specified instance does not exist in the deployment group.</p>"
         }
       ],
-      "documentation":"<p>Gets information about an Amazon EC2 instance as part of a deployment.</p>"
+      "documentation":"<p>Gets information about an instance as part of a deployment.</p>"
+    },
+    "GetOnPremisesInstance":{
+      "name":"GetOnPremisesInstance",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"GetOnPremisesInstanceInput",
+        "documentation":"<p>Represents the input of a get on-premises instance operation.</p>"
+      },
+      "output":{
+        "shape":"GetOnPremisesInstanceOutput",
+        "documentation":"<p>Represents the output of a get on-premises instance operation.</p>"
+      },
+      "errors":[
+        {
+          "shape":"InstanceNameRequiredException",
+          "exception":true,
+          "documentation":"<p>An on-premises instance name was not specified.</p>"
+        },
+        {
+          "shape":"InstanceNotRegisteredException",
+          "exception":true,
+          "documentation":"<p>The specified on-premises instance is not registered.</p>"
+        },
+        {
+          "shape":"InvalidInstanceNameException",
+          "exception":true,
+          "documentation":"<p>The specified on-premises instance name was specified in an invalid format.</p>"
+        }
+      ],
+      "documentation":"<p>Gets information about an on-premises instance.</p>"
     },
     "ListApplicationRevisions":{
       "name":"ListApplicationRevisions",
@@ -672,7 +807,7 @@
         {
           "shape":"ApplicationDoesNotExistException",
           "exception":true,
-          "documentation":"<p>The application does not exist within the AWS user account.</p>"
+          "documentation":"<p>The application does not exist with the applicable IAM user or AWS account.</p>"
         },
         {
           "shape":"ApplicationNameRequiredException",
@@ -743,7 +878,7 @@
           "documentation":"<p>The next token was specified in an invalid format.</p>"
         }
       ],
-      "documentation":"<p>Lists the applications registered within the AWS user account.</p>"
+      "documentation":"<p>Lists the applications registered with the applicable IAM user or AWS account.</p>"
     },
     "ListDeploymentConfigs":{
       "name":"ListDeploymentConfigs",
@@ -766,7 +901,7 @@
           "documentation":"<p>The next token was specified in an invalid format.</p>"
         }
       ],
-      "documentation":"<p>Lists the deployment configurations within the AWS user account.</p>"
+      "documentation":"<p>Lists the deployment configurations with the applicable IAM user or AWS account.</p>"
     },
     "ListDeploymentGroups":{
       "name":"ListDeploymentGroups",
@@ -796,7 +931,7 @@
         {
           "shape":"ApplicationDoesNotExistException",
           "exception":true,
-          "documentation":"<p>The application does not exist within the AWS user account.</p>"
+          "documentation":"<p>The application does not exist with the applicable IAM user or AWS account.</p>"
         },
         {
           "shape":"InvalidNextTokenException",
@@ -804,7 +939,7 @@
           "documentation":"<p>The next token was specified in an invalid format.</p>"
         }
       ],
-      "documentation":"<p>Lists the deployment groups for an application registered within the AWS user account.</p>"
+      "documentation":"<p>Lists the deployment groups for an application registered with the applicable IAM user or AWS account.</p>"
     },
     "ListDeploymentInstances":{
       "name":"ListDeploymentInstances",
@@ -829,7 +964,7 @@
         {
           "shape":"DeploymentDoesNotExistException",
           "exception":true,
-          "documentation":"<p>The deployment does not exist within the AWS user account.</p>"
+          "documentation":"<p>The deployment does not exist with the applicable IAM user or AWS account.</p>"
         },
         {
           "shape":"DeploymentNotStartedException",
@@ -852,7 +987,7 @@
           "documentation":"<p>The specified instance status does not exist.</p>"
         }
       ],
-      "documentation":"<p>Lists the Amazon EC2 instances for a deployment within the AWS user account.</p>"
+      "documentation":"<p>Lists the instances for a deployment associated with the applicable IAM user or AWS account.</p>"
     },
     "ListDeployments":{
       "name":"ListDeployments",
@@ -882,7 +1017,7 @@
         {
           "shape":"ApplicationDoesNotExistException",
           "exception":true,
-          "documentation":"<p>The application does not exist within the AWS user account.</p>"
+          "documentation":"<p>The application does not exist with the applicable IAM user or AWS account.</p>"
         },
         {
           "shape":"InvalidDeploymentGroupNameException",
@@ -892,7 +1027,7 @@
         {
           "shape":"DeploymentGroupDoesNotExistException",
           "exception":true,
-          "documentation":"<p>The named deployment group does not exist within the AWS user account.</p>"
+          "documentation":"<p>The named deployment group does not exist with the applicable IAM user or AWS account.</p>"
         },
         {
           "shape":"DeploymentGroupNameRequiredException",
@@ -915,7 +1050,40 @@
           "documentation":"<p>The next token was specified in an invalid format.</p>"
         }
       ],
-      "documentation":"<p>Lists the deployments under a deployment group for an application registered within the AWS user account.</p>"
+      "documentation":"<p>Lists the deployments within a deployment group for an application registered with the applicable IAM user or AWS account.</p>"
+    },
+    "ListOnPremisesInstances":{
+      "name":"ListOnPremisesInstances",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"ListOnPremisesInstancesInput",
+        "documentation":"<p>Represents the input of a list on-premises instances operation.</p>."
+      },
+      "output":{
+        "shape":"ListOnPremisesInstancesOutput",
+        "documentation":"<p>Represents the output of list on-premises instances operation.</p>"
+      },
+      "errors":[
+        {
+          "shape":"InvalidRegistrationStatusException",
+          "exception":true,
+          "documentation":"<p>The registration status was specified in an invalid format.</p>"
+        },
+        {
+          "shape":"InvalidTagFilterException",
+          "exception":true,
+          "documentation":"<p>The specified tag filter was specified in an invalid format.</p>"
+        },
+        {
+          "shape":"InvalidNextTokenException",
+          "exception":true,
+          "documentation":"<p>The next token was specified in an invalid format.</p>"
+        }
+      ],
+      "documentation":"<p>Gets a list of one or more on-premises instance names.</p> <p>Unless otherwise specified, both registered and deregistered on-premises instance names will be listed. To list only registered or deregistered on-premises instance names, use the registration status parameter.</p>"
     },
     "RegisterApplicationRevision":{
       "name":"RegisterApplicationRevision",
@@ -931,7 +1099,7 @@
         {
           "shape":"ApplicationDoesNotExistException",
           "exception":true,
-          "documentation":"<p>The application does not exist within the AWS user account.</p>"
+          "documentation":"<p>The application does not exist with the applicable IAM user or AWS account.</p>"
         },
         {
           "shape":"ApplicationNameRequiredException",
@@ -961,6 +1129,94 @@
       ],
       "documentation":"<p>Registers with AWS CodeDeploy a revision for the specified application.</p>"
     },
+    "RegisterOnPremisesInstance":{
+      "name":"RegisterOnPremisesInstance",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"RegisterOnPremisesInstanceInput",
+        "documentation":"<p>Represents the input of register on-premises instance operation.</p>"
+      },
+      "errors":[
+        {
+          "shape":"InstanceNameAlreadyRegisteredException",
+          "exception":true,
+          "documentation":"<p>The specified on-premises instance name is already registered.</p>"
+        },
+        {
+          "shape":"IamUserArnAlreadyRegisteredException",
+          "exception":true,
+          "documentation":"<p>The specified IAM user ARN is already registered with an on-premises instance.</p>"
+        },
+        {
+          "shape":"InstanceNameRequiredException",
+          "exception":true,
+          "documentation":"<p>An on-premises instance name was not specified.</p>"
+        },
+        {
+          "shape":"IamUserArnRequiredException",
+          "exception":true,
+          "documentation":"<p>An IAM user ARN was not specified.</p>"
+        },
+        {
+          "shape":"InvalidInstanceNameException",
+          "exception":true,
+          "documentation":"<p>The specified on-premises instance name was specified in an invalid format.</p>"
+        },
+        {
+          "shape":"InvalidIamUserArnException",
+          "exception":true,
+          "documentation":"<p>The IAM user ARN was specified in an invalid format.</p>"
+        }
+      ],
+      "documentation":"<p>Registers an on-premises instance.</p>"
+    },
+    "RemoveTagsFromOnPremisesInstances":{
+      "name":"RemoveTagsFromOnPremisesInstances",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"RemoveTagsFromOnPremisesInstancesInput",
+        "documentation":"<p>Represents the input of a remove tags from on-premises instances operation.</p>"
+      },
+      "errors":[
+        {
+          "shape":"InstanceNameRequiredException",
+          "exception":true,
+          "documentation":"<p>An on-premises instance name was not specified.</p>"
+        },
+        {
+          "shape":"TagRequiredException",
+          "exception":true,
+          "documentation":"<p>A tag was not specified.</p>"
+        },
+        {
+          "shape":"InvalidTagException",
+          "exception":true,
+          "documentation":"<p>The specified tag was specified in an invalid format.</p>"
+        },
+        {
+          "shape":"TagLimitExceededException",
+          "exception":true,
+          "documentation":"<p>The maximum allowed number of tags was exceeded.</p>"
+        },
+        {
+          "shape":"InstanceLimitExceededException",
+          "exception":true,
+          "documentation":"<p>The maximum number of allowed on-premises instances in a single call was exceeded.</p>"
+        },
+        {
+          "shape":"InstanceNotRegisteredException",
+          "exception":true,
+          "documentation":"<p>The specified on-premises instance is not registered.</p>"
+        }
+      ],
+      "documentation":"<p>Removes one or more tags from one or more on-premises instances.</p>"
+    },
     "StopDeployment":{
       "name":"StopDeployment",
       "http":{
@@ -984,7 +1240,7 @@
         {
           "shape":"DeploymentDoesNotExistException",
           "exception":true,
-          "documentation":"<p>The deployment does not exist within the AWS user account.</p>"
+          "documentation":"<p>The deployment does not exist with the applicable IAM user or AWS account.</p>"
         },
         {
           "shape":"DeploymentAlreadyCompletedException",
@@ -1023,12 +1279,12 @@
         {
           "shape":"ApplicationAlreadyExistsException",
           "exception":true,
-          "documentation":"<p>An application with the specified name already exists within the AWS user account.</p>"
+          "documentation":"<p>An application with the specified name already exists with the applicable IAM user or AWS account.</p>"
         },
         {
           "shape":"ApplicationDoesNotExistException",
           "exception":true,
-          "documentation":"<p>The application does not exist within the AWS user account.</p>"
+          "documentation":"<p>The application does not exist with the applicable IAM user or AWS account.</p>"
         }
       ],
       "documentation":"<p>Changes an existing application's name.</p>"
@@ -1061,7 +1317,7 @@
         {
           "shape":"ApplicationDoesNotExistException",
           "exception":true,
-          "documentation":"<p>The application does not exist within the AWS user account.</p>"
+          "documentation":"<p>The application does not exist with the applicable IAM user or AWS account.</p>"
         },
         {
           "shape":"InvalidDeploymentGroupNameException",
@@ -1071,7 +1327,7 @@
         {
           "shape":"DeploymentGroupAlreadyExistsException",
           "exception":true,
-          "documentation":"<p>A deployment group group with the specified name already exists within the AWS user account.</p>"
+          "documentation":"<p>A deployment group with the specified name already exists with the applicable IAM user or AWS account.</p>"
         },
         {
           "shape":"DeploymentGroupNameRequiredException",
@@ -1079,9 +1335,19 @@
           "documentation":"<p>The deployment group name was not specified.</p>"
         },
         {
+          "shape":"DeploymentGroupDoesNotExistException",
+          "exception":true,
+          "documentation":"<p>The named deployment group does not exist with the applicable IAM user or AWS account.</p>"
+        },
+        {
           "shape":"InvalidEC2TagException",
           "exception":true,
-          "documentation":"<p>The Amazon EC2 tag was specified in an invalid format.</p>"
+          "documentation":"<p>The tag was specified in an invalid format.</p>"
+        },
+        {
+          "shape":"InvalidTagException",
+          "exception":true,
+          "documentation":"<p>The specified tag was specified in an invalid format.</p>"
         },
         {
           "shape":"InvalidAutoScalingGroupException",
@@ -1096,7 +1362,7 @@
         {
           "shape":"DeploymentConfigDoesNotExistException",
           "exception":true,
-          "documentation":"<p>The deployment configuration does not exist within the AWS user account.</p>"
+          "documentation":"<p>The deployment configuration does not exist with the applicable IAM user or AWS account.</p>"
         },
         {
           "shape":"InvalidRoleException",
@@ -1108,19 +1374,37 @@
     }
   },
   "shapes":{
+    "AddTagsToOnPremisesInstancesInput":{
+      "type":"structure",
+      "required":[
+        "tags",
+        "instanceNames"
+      ],
+      "members":{
+        "tags":{
+          "shape":"TagList",
+          "documentation":"<p>The tag key-value pairs to add to the on-premises instances.</p> <p>Keys and values are both required. Keys cannot be nulls or empty strings. Value-only tags are not allowed.</p>"
+        },
+        "instanceNames":{
+          "shape":"InstanceNameList",
+          "documentation":"<p>The names of the on-premises instances to add tags to.</p>"
+        }
+      },
+      "documentation":"<p>Represents the input of an adds tags to on-premises instance operation.</p>"
+    },
     "ApplicationAlreadyExistsException":{
       "type":"structure",
       "members":{
       },
       "exception":true,
-      "documentation":"<p>An application with the specified name already exists within the AWS user account.</p>"
+      "documentation":"<p>An application with the specified name already exists with the applicable IAM user or AWS account.</p>"
     },
     "ApplicationDoesNotExistException":{
       "type":"structure",
       "members":{
       },
       "exception":true,
-      "documentation":"<p>The application does not exist within the AWS user account.</p>"
+      "documentation":"<p>The application does not exist with the applicable IAM user or AWS account.</p>"
     },
     "ApplicationId":{"type":"string"},
     "ApplicationInfo":{
@@ -1244,6 +1528,26 @@
       },
       "documentation":"<p>Represents the output of a batch get deployments operation.</p>"
     },
+    "BatchGetOnPremisesInstancesInput":{
+      "type":"structure",
+      "members":{
+        "instanceNames":{
+          "shape":"InstanceNameList",
+          "documentation":"<p>The names of the on-premises instances to get information about.</p>"
+        }
+      },
+      "documentation":"<p>Represents the input of a batch get on-premises instances operation.</p>"
+    },
+    "BatchGetOnPremisesInstancesOutput":{
+      "type":"structure",
+      "members":{
+        "instanceInfos":{
+          "shape":"InstanceInfoList",
+          "documentation":"<p>Information about the on-premises instances.</p>"
+        }
+      },
+      "documentation":"<p>Represents the output of a batch get on-premises instances operation.</p>"
+    },
     "Boolean":{"type":"boolean"},
     "BucketNameFilterRequiredException":{
       "type":"structure",
@@ -1267,7 +1571,7 @@
       "members":{
         "applicationName":{
           "shape":"ApplicationName",
-          "documentation":"<p>The name of the application. This name must be unique within the AWS user account.</p>"
+          "documentation":"<p>The name of the application. This name must be unique with the applicable IAM user or AWS account.</p>"
         }
       },
       "documentation":"<p>Represents the input of a create application operation.</p>"
@@ -1311,12 +1615,13 @@
       "type":"structure",
       "required":[
         "applicationName",
-        "deploymentGroupName"
+        "deploymentGroupName",
+        "serviceRoleArn"
       ],
       "members":{
         "applicationName":{
           "shape":"ApplicationName",
-          "documentation":"<p>The name of an existing AWS CodeDeploy application within the AWS user account.</p>"
+          "documentation":"<p>The name of an existing AWS CodeDeploy application associated with the applicable IAM user or AWS account.</p>"
         },
         "deploymentGroupName":{
           "shape":"DeploymentGroupName",
@@ -1324,11 +1629,15 @@
         },
         "deploymentConfigName":{
           "shape":"DeploymentConfigName",
-          "documentation":"<p>If specified, the deployment configuration name must be one of the predefined values, or it can be a custom deployment configuration:</p> <ul> <li>CodeDeployDefault.AllAtOnce deploys an application revision to up to all of the Amazon EC2 instances at once. The overall deployment succeeds if the application revision deploys to at least one of the instances. The overall deployment fails after the application revision fails to deploy to all of the instances. For example, for 9 instances, deploy to up to all 9 instances at once. The overall deployment succeeds if any of the 9 instances is successfully deployed to, and it fails if all 9 instances fail to be deployed to.</li> <li>CodeDeployDefault.HalfAtATime deploys to up to half of the instances at a time (with fractions rounded down). The overall deployment succeeds if the application revision deploys to at least half of the instances (with fractions rounded up); otherwise, the deployment fails. For example, for 9 instances, deploy to up to 4 instances at a time. The overall deployment succeeds if 5 or more instances are successfully deployed to; otherwise, the deployment fails. Note that the deployment may successfully deploy to some instances, even if the overall deployment fails.</li> <li>CodeDeployDefault.OneAtATime deploys the application revision to only one of the instances at a time. The overall deployment succeeds if the application revision deploys to all of the instances. The overall deployment fails after the application revision first fails to deploy to any one instance. For example, for 9 instances, deploy to one instance at a time. The overall deployment succeeds if all 9 instances are successfully deployed to, and it fails if any of one of the 9 instances fail to be deployed to. Note that the deployment may successfully deploy to some instances, even if the overall deployment fails. This is the default deployment configuration if a configuration isn't specified for either the deployment or the deployment group.</li> </ul> <p>To create a custom deployment configuration, call the create deployment configuration operation.</p>"
+          "documentation":"<p>If specified, the deployment configuration name must be one of the predefined values, or it can be a custom deployment configuration:</p> <ul> <li>CodeDeployDefault.AllAtOnce deploys an application revision to up to all of the instances at once. The overall deployment succeeds if the application revision deploys to at least one of the instances. The overall deployment fails after the application revision fails to deploy to all of the instances. For example, for 9 instances, deploy to up to all 9 instances at once. The overall deployment succeeds if any of the 9 instances is successfully deployed to, and it fails if all 9 instances fail to be deployed to.</li> <li>CodeDeployDefault.HalfAtATime deploys to up to half of the instances at a time (with fractions rounded down). The overall deployment succeeds if the application revision deploys to at least half of the instances (with fractions rounded up); otherwise, the deployment fails. For example, for 9 instances, deploy to up to 4 instances at a time. The overall deployment succeeds if 5 or more instances are successfully deployed to; otherwise, the deployment fails. Note that the deployment may successfully deploy to some instances, even if the overall deployment fails.</li> <li>CodeDeployDefault.OneAtATime deploys the application revision to only one of the instances at a time. The overall deployment succeeds if the application revision deploys to all of the instances. The overall deployment fails after the application revision first fails to deploy to any one instances. For example, for 9 instances, deploy to one instance at a time. The overall deployment succeeds if all 9 instances are successfully deployed to, and it fails if any of one of the 9 instances fail to be deployed to. Note that the deployment may successfully deploy to some instances, even if the overall deployment fails. This is the default deployment configuration if a configuration isn't specified for either the deployment or the deployment group.</li> </ul> <p>To create a custom deployment configuration, call the create deployment configuration operation.</p>"
         },
         "ec2TagFilters":{
           "shape":"EC2TagFilterList",
           "documentation":"<p>The Amazon EC2 tags to filter on.</p>"
+        },
+        "onPremisesInstanceTagFilters":{
+          "shape":"TagFilterList",
+          "documentation":"<p>The on-premises instance tags to filter on.</p>"
         },
         "autoScalingGroups":{
           "shape":"AutoScalingGroupNameList",
@@ -1357,7 +1666,7 @@
       "members":{
         "applicationName":{
           "shape":"ApplicationName",
-          "documentation":"<p>The name of an existing AWS CodeDeploy application within the AWS user account.</p>"
+          "documentation":"<p>The name of an existing AWS CodeDeploy application associated with the applicable IAM user or AWS account.</p>"
         },
         "deploymentGroupName":{
           "shape":"DeploymentGroupName",
@@ -1369,7 +1678,7 @@
         },
         "deploymentConfigName":{
           "shape":"DeploymentConfigName",
-          "documentation":"<p>The name of an existing deployment configuration within the AWS user account.</p> <p>If not specified, the value configured in the deployment group will be used as the default. If the deployment group does not have a deployment configuration associated with it, then CodeDeployDefault.OneAtATime will be used by default.</p>"
+          "documentation":"<p>The name of an existing deployment configuration associated with the applicable IAM user or AWS account.</p> <p>If not specified, the value configured in the deployment group will be used as the default. If the deployment group does not have a deployment configuration associated with it, then CodeDeployDefault.OneAtATime will be used by default.</p>"
         },
         "description":{
           "shape":"Description",
@@ -1398,7 +1707,7 @@
       "members":{
         "applicationName":{
           "shape":"ApplicationName",
-          "documentation":"<p>The name of an existing AWS CodeDeploy application within the AWS user account.</p>"
+          "documentation":"<p>The name of an existing AWS CodeDeploy application associated with the applicable IAM user or AWS account.</p>"
         }
       },
       "documentation":"<p>Represents the input of a delete application operation.</p>"
@@ -1409,7 +1718,7 @@
       "members":{
         "deploymentConfigName":{
           "shape":"DeploymentConfigName",
-          "documentation":"<p>The name of an existing deployment configuration within the AWS user account.</p>"
+          "documentation":"<p>The name of an existing deployment configuration associated with the applicable IAM user or AWS account.</p>"
         }
       },
       "documentation":"<p>Represents the input of a delete deployment configuration operation.</p>"
@@ -1423,7 +1732,7 @@
       "members":{
         "applicationName":{
           "shape":"ApplicationName",
-          "documentation":"<p>The name of an existing AWS CodeDeploy application within the AWS user account.</p>"
+          "documentation":"<p>The name of an existing AWS CodeDeploy application associated with the applicable IAM user or AWS account.</p>"
         },
         "deploymentGroupName":{
           "shape":"DeploymentGroupName",
@@ -1437,7 +1746,7 @@
       "members":{
         "hooksNotCleanedUp":{
           "shape":"AutoScalingGroupList",
-          "documentation":"<p>If the output contains no data, and the corresponding deployment group contained at least one Auto Scaling group, AWS CodeDeploy successfully removed all corresponding Auto Scaling lifecycle event hooks from the instances in the Auto Scaling. If the output does contain data, AWS CodeDeploy could not remove some Auto Scaling lifecycle event hooks from the instances in the Auto Scaling group.</p>"
+          "documentation":"<p>If the output contains no data, and the corresponding deployment group contained at least one Auto Scaling group, AWS CodeDeploy successfully removed all corresponding Auto Scaling lifecycle event hooks from the Amazon EC2 instances in the Auto Scaling. If the output does contain data, AWS CodeDeploy could not remove some Auto Scaling lifecycle event hooks from the Amazon EC2 instances in the Auto Scaling group.</p>"
         }
       },
       "documentation":"<p>Represents the output of a delete deployment group operation.</p>"
@@ -1454,14 +1763,14 @@
       "members":{
       },
       "exception":true,
-      "documentation":"<p>A deployment configuration with the specified name already exists within the AWS user account.</p>"
+      "documentation":"<p>A deployment configuration with the specified name already exists with the applicable IAM user or AWS account.</p>"
     },
     "DeploymentConfigDoesNotExistException":{
       "type":"structure",
       "members":{
       },
       "exception":true,
-      "documentation":"<p>The deployment configuration does not exist within the AWS user account.</p>"
+      "documentation":"<p>The deployment configuration does not exist with the applicable IAM user or AWS account.</p>"
     },
     "DeploymentConfigId":{"type":"string"},
     "DeploymentConfigInUseException":{
@@ -1528,21 +1837,21 @@
       "members":{
       },
       "exception":true,
-      "documentation":"<p>The deployment does not exist within the AWS user account.</p>"
+      "documentation":"<p>The deployment does not exist with the applicable IAM user or AWS account.</p>"
     },
     "DeploymentGroupAlreadyExistsException":{
       "type":"structure",
       "members":{
       },
       "exception":true,
-      "documentation":"<p>A deployment group group with the specified name already exists within the AWS user account.</p>"
+      "documentation":"<p>A deployment group with the specified name already exists with the applicable IAM user or AWS account.</p>"
     },
     "DeploymentGroupDoesNotExistException":{
       "type":"structure",
       "members":{
       },
       "exception":true,
-      "documentation":"<p>The named deployment group does not exist within the AWS user account.</p>"
+      "documentation":"<p>The named deployment group does not exist with the applicable IAM user or AWS account.</p>"
     },
     "DeploymentGroupId":{"type":"string"},
     "DeploymentGroupInfo":{
@@ -1567,6 +1876,10 @@
         "ec2TagFilters":{
           "shape":"EC2TagFilterList",
           "documentation":"<p>The Amazon EC2 tags to filter on.</p>"
+        },
+        "onPremisesInstanceTagFilters":{
+          "shape":"TagFilterList",
+          "documentation":"<p>The on-premises instance tags to filter on.</p>"
         },
         "autoScalingGroups":{
           "shape":"AutoScalingGroupList",
@@ -1739,6 +2052,17 @@
       "type":"list",
       "member":{"shape":"DeploymentId"}
     },
+    "DeregisterOnPremisesInstanceInput":{
+      "type":"structure",
+      "required":["instanceName"],
+      "members":{
+        "instanceName":{
+          "shape":"InstanceName",
+          "documentation":"<p>The name of the on-premises instance to deregister.</p>"
+        }
+      },
+      "documentation":"<p>Represents the input of a deregister on-premises instance operation.</p>"
+    },
     "Description":{"type":"string"},
     "DescriptionTooLongException":{
       "type":"structure",
@@ -1774,18 +2098,18 @@
       "members":{
         "Key":{
           "shape":"Key",
-          "documentation":"<p>The Amazon EC2 tag filter key.</p>"
+          "documentation":"<p>The tag filter key.</p>"
         },
         "Value":{
           "shape":"Value",
-          "documentation":"<p>The Amazon EC2 tag filter value.</p>"
+          "documentation":"<p>The tag filter value.</p>"
         },
         "Type":{
           "shape":"EC2TagFilterType",
-          "documentation":"<p>The Amazon EC2 tag filter type:</p> <ul> <li>KEY_ONLY: Key only.</li> <li>VALUE_ONLY: Value only.</li> <li>KEY_AND_VALUE: Key and value.</li> </ul>"
+          "documentation":"<p>The tag filter type:</p> <ul> <li>KEY_ONLY: Key only.</li> <li>VALUE_ONLY: Value only.</li> <li>KEY_AND_VALUE: Key and value.</li> </ul>"
         }
       },
-      "documentation":"<p>Information about an Amazon EC2 tag filter.</p>"
+      "documentation":"<p>Information about a tag filter.</p>"
     },
     "EC2TagFilterList":{
       "type":"list",
@@ -1808,12 +2132,14 @@
         "REVISION_MISSING",
         "IAM_ROLE_MISSING",
         "IAM_ROLE_PERMISSIONS",
+        "NO_EC2_SUBSCRIPTION",
         "OVER_MAX_INSTANCES",
         "NO_INSTANCES",
         "TIMEOUT",
         "HEALTH_CONSTRAINTS_INVALID",
         "HEALTH_CONSTRAINTS",
-        "INTERNAL_ERROR"
+        "INTERNAL_ERROR",
+        "THROTTLED"
       ]
     },
     "ErrorInformation":{
@@ -1821,7 +2147,7 @@
       "members":{
         "code":{
           "shape":"ErrorCode",
-          "documentation":"<p>The error code:</p> <ul> <li>APPLICATION_MISSING: The application was missing. Note that this error code will most likely be raised if the application is deleted after the deployment is created but before it starts.</li> <li>DEPLOYMENT_GROUP_MISSING: The deployment group was missing. Note that this error code will most likely be raised if the deployment group is deleted after the deployment is created but before it starts.</li> <li>REVISION_MISSING: The revision ID was missing. Note that this error code will most likely be raised if the revision is deleted after the deployment is created but before it starts.</li> <li>IAM_ROLE_MISSING: The service role cannot be accessed.</li> <li>IAM_ROLE_PERMISSIONS: The service role does not have the correct permissions.</li> <li>OVER_MAX_INSTANCES: The maximum number of instances was exceeded.</li> <li>NO_INSTANCES: No instances were specified, or no instances can be found.</li> <li>TIMEOUT: The deployment has timed out.</li> <li>HEALTH_CONSTRAINTS_INVALID: The revision can never successfully deploy under the instance health constraints as specified.</li> <li>HEALTH_CONSTRAINTS: The deployment failed on too many instances to be able to successfully deploy under the specified instance health constraints.</li> <li>INTERNAL_ERROR: There was an internal error.</li> </ul>"
+          "documentation":"<p>The error code:</p> <ul> <li>APPLICATION_MISSING: The application was missing. Note that this error code will most likely be raised if the application is deleted after the deployment is created but before it starts.</li> <li>DEPLOYMENT_GROUP_MISSING: The deployment group was missing. Note that this error code will most likely be raised if the deployment group is deleted after the deployment is created but before it starts.</li> <li>HEALTH_CONSTRAINTS: The deployment failed on too many instances to be able to successfully deploy within the specified instance health constraints.</li> <li>HEALTH_CONSTRAINTS_INVALID: The revision can never successfully deploy within the instance health constraints as specified.</li> <li>IAM_ROLE_MISSING: The service role cannot be accessed.</li> <li>IAM_ROLE_PERMISSIONS: The service role does not have the correct permissions.</li> <li>INTERNAL_ERROR: There was an internal error.</li> <li>NO_EC2_SUBSCRIPTION: The calling account is not subscribed to the Amazon EC2 service.</li> <li>NO_INSTANCES: No instances were specified, or no instances can be found.</li> <li>OVER_MAX_INSTANCES: The maximum number of instances was exceeded.</li> <li>THROTTLED: The operation was throttled because the calling account exceeded the throttling limits of one or more AWS services.</li> <li>TIMEOUT: The deployment has timed out.</li> <li>REVISION_MISSING: The revision ID was missing. Note that this error code will most likely be raised if the revision is deleted after the deployment is created but before it starts.</li> </ul>"
         },
         "message":{
           "shape":"ErrorMessage",
@@ -1863,7 +2189,7 @@
       "members":{
         "applicationName":{
           "shape":"ApplicationName",
-          "documentation":"<p>The name of an existing AWS CodeDeploy application within the AWS user account.</p>"
+          "documentation":"<p>The name of an existing AWS CodeDeploy application associated with the applicable IAM user or AWS account.</p>"
         }
       },
       "documentation":"<p>Represents the input of a get application operation.</p>"
@@ -1920,7 +2246,7 @@
       "members":{
         "deploymentConfigName":{
           "shape":"DeploymentConfigName",
-          "documentation":"<p>The name of an existing deployment configuration within the AWS user account.</p>"
+          "documentation":"<p>The name of an existing deployment configuration associated with the applicable IAM user or AWS account.</p>"
         }
       },
       "documentation":"<p>Represents the input of a get deployment configuration operation.</p>"
@@ -1944,7 +2270,7 @@
       "members":{
         "applicationName":{
           "shape":"ApplicationName",
-          "documentation":"<p>The name of an existing AWS CodeDeploy application within the AWS user account.</p>"
+          "documentation":"<p>The name of an existing AWS CodeDeploy application associated with the applicable IAM user or AWS account.</p>"
         },
         "deploymentGroupName":{
           "shape":"DeploymentGroupName",
@@ -1969,7 +2295,7 @@
       "members":{
         "deploymentId":{
           "shape":"DeploymentId",
-          "documentation":"<p>An existing deployment ID within the AWS user account.</p>"
+          "documentation":"<p>An existing deployment ID associated with the applicable IAM user or AWS account.</p>"
         }
       },
       "documentation":"<p>Represents the input of a get deployment operation.</p>"
@@ -1987,7 +2313,7 @@
         },
         "instanceId":{
           "shape":"InstanceId",
-          "documentation":"<p>The unique ID of an Amazon EC2 instance in the deployment's deployment group.</p>"
+          "documentation":"<p>The unique ID of an instance in the deployment's deployment group.</p>"
         }
       },
       "documentation":"<p>Represents the input of a get deployment instance operation.</p>"
@@ -2012,6 +2338,27 @@
       },
       "documentation":"<p>Represents the output of a get deployment operation.</p>"
     },
+    "GetOnPremisesInstanceInput":{
+      "type":"structure",
+      "required":["instanceName"],
+      "members":{
+        "instanceName":{
+          "shape":"InstanceName",
+          "documentation":"<p>The name of the on-premises instance to get information about</p>"
+        }
+      },
+      "documentation":"<p>Represents the input of a get on-premises instance operation.</p>"
+    },
+    "GetOnPremisesInstanceOutput":{
+      "type":"structure",
+      "members":{
+        "instanceInfo":{
+          "shape":"InstanceInfo",
+          "documentation":"<p>Information about the on-premises instance.</p>"
+        }
+      },
+      "documentation":"<p>Represents the output of a get on-premises instance operation.</p>"
+    },
     "GitHubLocation":{
       "type":"structure",
       "members":{
@@ -2026,6 +2373,22 @@
       },
       "documentation":"<p>Information about the location of application artifacts that are stored in GitHub.</p>"
     },
+    "IamUserArn":{"type":"string"},
+    "IamUserArnAlreadyRegisteredException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true,
+      "documentation":"<p>The specified IAM user ARN is already registered with an on-premises instance.</p>"
+    },
+    "IamUserArnRequiredException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true,
+      "documentation":"<p>An IAM user ARN was not specified.</p>"
+    },
+    "InstanceArn":{"type":"string"},
     "InstanceCount":{"type":"long"},
     "InstanceDoesNotExistException":{
       "type":"structure",
@@ -2041,6 +2404,73 @@
       },
       "exception":true,
       "documentation":"<p>The instance ID was not specified.</p>"
+    },
+    "InstanceInfo":{
+      "type":"structure",
+      "members":{
+        "instanceName":{
+          "shape":"InstanceName",
+          "documentation":"<p>The name of the on-premises instance.</p>"
+        },
+        "iamUserArn":{
+          "shape":"IamUserArn",
+          "documentation":"<p>The IAM user ARN associated with the on-premises instance.</p>"
+        },
+        "instanceArn":{
+          "shape":"InstanceArn",
+          "documentation":"<p>The ARN of the on-premises instance.</p>"
+        },
+        "registerTime":{
+          "shape":"Timestamp",
+          "documentation":"<p>The time that the on-premises instance was registered.</p>"
+        },
+        "deregisterTime":{
+          "shape":"Timestamp",
+          "documentation":"<p>If the on-premises instance was deregistered, the time that the on-premises instance was deregistered.</p>"
+        },
+        "tags":{
+          "shape":"TagList",
+          "documentation":"<p>The tags that are currently associated with the on-premises instance.</p>"
+        }
+      },
+      "documentation":"<p>Information about an on-premises instance.</p>"
+    },
+    "InstanceInfoList":{
+      "type":"list",
+      "member":{"shape":"InstanceInfo"}
+    },
+    "InstanceLimitExceededException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true,
+      "documentation":"<p>The maximum number of allowed on-premises instances in a single call was exceeded.</p>"
+    },
+    "InstanceName":{"type":"string"},
+    "InstanceNameAlreadyRegisteredException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true,
+      "documentation":"<p>The specified on-premises instance name is already registered.</p>"
+    },
+    "InstanceNameList":{
+      "type":"list",
+      "member":{"shape":"InstanceName"}
+    },
+    "InstanceNameRequiredException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true,
+      "documentation":"<p>An on-premises instance name was not specified.</p>"
+    },
+    "InstanceNotRegisteredException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true,
+      "documentation":"<p>The specified on-premises instance is not registered.</p>"
     },
     "InstanceStatus":{
       "type":"string",
@@ -2081,7 +2511,7 @@
           "documentation":"<p>A list of lifecycle events for this instance.</p>"
         }
       },
-      "documentation":"<p>Information about an Amazon EC2 instance in a deployment.</p>"
+      "documentation":"<p>Information about an instance in a deployment.</p>"
     },
     "InstancesList":{
       "type":"list",
@@ -2148,7 +2578,21 @@
       "members":{
       },
       "exception":true,
-      "documentation":"<p>The Amazon EC2 tag was specified in an invalid format.</p>"
+      "documentation":"<p>The tag was specified in an invalid format.</p>"
+    },
+    "InvalidIamUserArnException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true,
+      "documentation":"<p>The IAM user ARN was specified in an invalid format.</p>"
+    },
+    "InvalidInstanceNameException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true,
+      "documentation":"<p>The specified on-premises instance name was specified in an invalid format.</p>"
     },
     "InvalidInstanceStatusException":{
       "type":"structure",
@@ -2185,6 +2629,13 @@
       "exception":true,
       "documentation":"<p>An invalid operation was detected.</p>"
     },
+    "InvalidRegistrationStatusException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true,
+      "documentation":"<p>The registration status was specified in an invalid format.</p>"
+    },
     "InvalidRevisionException":{
       "type":"structure",
       "members":{
@@ -2212,6 +2663,20 @@
       },
       "exception":true,
       "documentation":"<p>The sort order was specified in an invalid format.</p>"
+    },
+    "InvalidTagException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true,
+      "documentation":"<p>The specified tag was specified in an invalid format.</p>"
+    },
+    "InvalidTagFilterException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true,
+      "documentation":"<p>The specified tag filter was specified in an invalid format.</p>"
     },
     "InvalidTimeRangeException":{
       "type":"structure",
@@ -2281,7 +2746,7 @@
       "members":{
         "applicationName":{
           "shape":"ApplicationName",
-          "documentation":"<p>The name of an existing AWS CodeDeploy application within the AWS user account.</p>"
+          "documentation":"<p>The name of an existing AWS CodeDeploy application associated with the applicable IAM user or AWS account.</p>"
         },
         "sortBy":{
           "shape":"ApplicationRevisionSortBy",
@@ -2289,7 +2754,7 @@
         },
         "sortOrder":{
           "shape":"SortOrder",
-          "documentation":"<p>The order to sort the list results by:</p> <ul> <li>ascending: Sort the list results in ascending order.</li> <li>descending: Sort the list results in descending order.</li> </ul> <p>If not specified, the results will be sorted in ascending order.</p> <p>If set to null, the results will be sorted in an arbitrary order.</p>"
+          "documentation":"<p>The order to sort the list results by:</p> <ul> <li>ascending: Sort the list of results in ascending order.</li> <li>descending: Sort the list of results in descending order.</li> </ul> <p>If not specified, the results will be sorted in ascending order.</p> <p>If set to null, the results will be sorted in an arbitrary order.</p>"
         },
         "s3Bucket":{
           "shape":"S3Bucket",
@@ -2378,7 +2843,7 @@
       "members":{
         "applicationName":{
           "shape":"ApplicationName",
-          "documentation":"<p>The name of an existing AWS CodeDeploy application within the AWS user account.</p>"
+          "documentation":"<p>The name of an existing AWS CodeDeploy application associated with the applicable IAM user or AWS account.</p>"
         },
         "nextToken":{
           "shape":"NextToken",
@@ -2429,7 +2894,7 @@
       "members":{
         "instancesList":{
           "shape":"InstancesList",
-          "documentation":"<p>A list of instance IDs.</p>"
+          "documentation":"<p>A list of instances IDs.</p>"
         },
         "nextToken":{
           "shape":"NextToken",
@@ -2443,7 +2908,7 @@
       "members":{
         "applicationName":{
           "shape":"ApplicationName",
-          "documentation":"<p>The name of an existing AWS CodeDeploy application within the AWS user account.</p>"
+          "documentation":"<p>The name of an existing AWS CodeDeploy application associated with the applicable IAM user or AWS account.</p>"
         },
         "deploymentGroupName":{
           "shape":"DeploymentGroupName",
@@ -2451,7 +2916,7 @@
         },
         "includeOnlyStatuses":{
           "shape":"DeploymentStatusList",
-          "documentation":"<para>A subset of deployments to list, by status:</para> <ul> <li>Created: Include in the resulting list created deployments.</li> <li>Queued: Include in the resulting list queued deployments.</li> <li>In Progress: Include in the resulting list in-progress deployments.</li> <li>Succeeded: Include in the resulting list succeeded deployments.</li> <li>Failed: Include in the resulting list failed deployments.</li> <li>Aborted: Include in the resulting list aborted deployments.</li> </ul>"
+          "documentation":"<p>A subset of deployments to list, by status:</p> <ul> <li>Created: Include in the resulting list created deployments.</li> <li>Queued: Include in the resulting list queued deployments.</li> <li>In Progress: Include in the resulting list in-progress deployments.</li> <li>Succeeded: Include in the resulting list succeeded deployments.</li> <li>Failed: Include in the resulting list failed deployments.</li> <li>Aborted: Include in the resulting list aborted deployments.</li> </ul>"
         },
         "createTimeRange":{
           "shape":"TimeRange",
@@ -2478,6 +2943,38 @@
       },
       "documentation":"<p>Represents the output of a list deployments operation.</p>"
     },
+    "ListOnPremisesInstancesInput":{
+      "type":"structure",
+      "members":{
+        "registrationStatus":{
+          "shape":"RegistrationStatus",
+          "documentation":"<p>The on-premises instances registration status:</p> <ul> <li>Deregistered: Include in the resulting list deregistered on-premises instances.</li> <li>Registered: Include in the resulting list registered on-premises instances.</li> </ul>"
+        },
+        "tagFilters":{
+          "shape":"TagFilterList",
+          "documentation":"<p>The on-premises instance tags that will be used to restrict the corresponding on-premises instance names that are returned.</p>"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>An identifier that was returned from the previous list on-premises instances call, which can be used to return the next set of on-premises instances in the list.</p>"
+        }
+      },
+      "documentation":"<p>Represents the input of a list on-premises instances operation.</p>."
+    },
+    "ListOnPremisesInstancesOutput":{
+      "type":"structure",
+      "members":{
+        "instanceNames":{
+          "shape":"InstanceNameList",
+          "documentation":"<p>The list of matching on-premises instance names.</p>"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "documentation":"<p>If the amount of information that is returned is significantly large, an identifier will also be returned, which can be used in a subsequent list on-premises instances call to return the next set of on-premises instances in the list.</p>"
+        }
+      },
+      "documentation":"<p>Represents the output of list on-premises instances operation.</p>"
+    },
     "ListStateFilterAction":{
       "type":"string",
       "enum":[
@@ -2497,7 +2994,7 @@
         },
         "type":{
           "shape":"MinimumHealthyHostsType",
-          "documentation":"<p>The minimum healthy instances type:</p> <ul> <li>HOST_COUNT: The minimum number of healthy instances, as an absolute value.</li> <li>FLEET_PERCENT: The minimum number of healthy instances, as a percentage of the total number of instances in the deployment.</li> </ul> <p>For example, for 9 Amazon EC2 instances, if a HOST_COUNT of 6 is specified, deploy to up to 3 instances at a time. The deployment succeeds if 6 or more instances are successfully deployed to; otherwise, the deployment fails. If a FLEET_PERCENT of 40 is specified, deploy to up to 5 instances at a time. The deployment succeeds if 4 or more instances are successfully deployed to; otherwise, the deployment fails.</p> <note>In a call to the get deployment configuration operation, CodeDeployDefault.OneAtATime will return a minimum healthy instances type of MOST_CONCURRENCY and a value of 1. This means a deployment to only one Amazon EC2 instance at a time. (You cannot set the type to MOST_CONCURRENCY, only to HOST_COUNT or FLEET_PERCENT.)</note>"
+          "documentation":"<p>The minimum healthy instances type:</p> <ul> <li>HOST_COUNT: The minimum number of healthy instances, as an absolute value.</li> <li>FLEET_PERCENT: The minimum number of healthy instances, as a percentage of the total number of instances in the deployment.</li> </ul> <p>For example, for 9 instances, if a HOST_COUNT of 6 is specified, deploy to up to 3 instances at a time. The deployment succeeds if 6 or more instances are successfully deployed to; otherwise, the deployment fails. If a FLEET_PERCENT of 40 is specified, deploy to up to 5 instances at a time. The deployment succeeds if 4 or more instances are successfully deployed to; otherwise, the deployment fails.</p> <note>In a call to the get deployment configuration operation, CodeDeployDefault.OneAtATime will return a minimum healthy instances type of MOST_CONCURRENCY and a value of 1. This means a deployment to only one instances at a time. (You cannot set the type to MOST_CONCURRENCY, only to HOST_COUNT or FLEET_PERCENT.)</note>"
         }
       },
       "documentation":"<p>Information about minimum healthy instances.</p>"
@@ -2520,7 +3017,7 @@
       "members":{
         "applicationName":{
           "shape":"ApplicationName",
-          "documentation":"<p>The name of an existing AWS CodeDeploy application within the AWS user account.</p>"
+          "documentation":"<p>The name of an existing AWS CodeDeploy application associated with the applicable IAM user or AWS account.</p>"
         },
         "description":{
           "shape":"Description",
@@ -2533,13 +3030,56 @@
       },
       "documentation":"<p>Represents the input of a register application revision operation.</p>"
     },
+    "RegisterOnPremisesInstanceInput":{
+      "type":"structure",
+      "required":[
+        "instanceName",
+        "iamUserArn"
+      ],
+      "members":{
+        "instanceName":{
+          "shape":"InstanceName",
+          "documentation":"<p>The name of the on-premises instance to register.</p>"
+        },
+        "iamUserArn":{
+          "shape":"IamUserArn",
+          "documentation":"<p>The ARN of the IAM user to associate with the on-premises instance.</p>"
+        }
+      },
+      "documentation":"<p>Represents the input of register on-premises instance operation.</p>"
+    },
+    "RegistrationStatus":{
+      "type":"string",
+      "enum":[
+        "Registered",
+        "Deregistered"
+      ]
+    },
+    "RemoveTagsFromOnPremisesInstancesInput":{
+      "type":"structure",
+      "required":[
+        "tags",
+        "instanceNames"
+      ],
+      "members":{
+        "tags":{
+          "shape":"TagList",
+          "documentation":"<p>The tag key-value pairs to remove from the on-premises instances.</p>"
+        },
+        "instanceNames":{
+          "shape":"InstanceNameList",
+          "documentation":"<p>The names of the on-premises instances to remove tags from.</p>"
+        }
+      },
+      "documentation":"<p>Represents the input of a remove tags from on-premises instances operation.</p>"
+    },
     "Repository":{"type":"string"},
     "RevisionDoesNotExistException":{
       "type":"structure",
       "members":{
       },
       "exception":true,
-      "documentation":"<p>The named revision does not exist within the AWS user account.</p>"
+      "documentation":"<p>The named revision does not exist with the applicable IAM user or AWS account.</p>"
     },
     "RevisionLocation":{
       "type":"structure",
@@ -2647,6 +3187,68 @@
         "Succeeded"
       ]
     },
+    "Tag":{
+      "type":"structure",
+      "members":{
+        "Key":{
+          "shape":"Key",
+          "documentation":"<p>The tag's key.</p>"
+        },
+        "Value":{
+          "shape":"Value",
+          "documentation":"<p>The tag's value.</p>"
+        }
+      },
+      "documentation":"<p>Information about a tag.</p>"
+    },
+    "TagFilter":{
+      "type":"structure",
+      "members":{
+        "Key":{
+          "shape":"Key",
+          "documentation":"<p>The on-premises instance tag filter key.</p>"
+        },
+        "Value":{
+          "shape":"Value",
+          "documentation":"<p>The on-premises instance tag filter value.</p>"
+        },
+        "Type":{
+          "shape":"TagFilterType",
+          "documentation":"<p>The on-premises instance tag filter type:</p> <ul> <li>KEY_ONLY: Key only.</li> <li>VALUE_ONLY: Value only.</li> <li>KEY_AND_VALUE: Key and value.</li> </ul>"
+        }
+      },
+      "documentation":"<p>Information about an on-premises instance tag filter.</p>"
+    },
+    "TagFilterList":{
+      "type":"list",
+      "member":{"shape":"TagFilter"}
+    },
+    "TagFilterType":{
+      "type":"string",
+      "enum":[
+        "KEY_ONLY",
+        "VALUE_ONLY",
+        "KEY_AND_VALUE"
+      ]
+    },
+    "TagLimitExceededException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true,
+      "documentation":"<p>The maximum allowed number of tags was exceeded.</p>"
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"}
+    },
+    "TagRequiredException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true,
+      "documentation":"<p>A tag was not specified.</p>"
+    },
     "TimeRange":{
       "type":"structure",
       "members":{
@@ -2703,6 +3305,10 @@
           "shape":"EC2TagFilterList",
           "documentation":"<p>The replacement set of Amazon EC2 tags to filter on, if you want to change them.</p>"
         },
+        "onPremisesInstanceTagFilters":{
+          "shape":"TagFilterList",
+          "documentation":"<p>The replacement set of on-premises instance tags for filter on, if you want to change them.</p>"
+        },
         "autoScalingGroups":{
           "shape":"AutoScalingGroupNameList",
           "documentation":"<p>The replacement list of Auto Scaling groups to be included in the deployment group, if you want to change them.</p>"
@@ -2719,7 +3325,7 @@
       "members":{
         "hooksNotCleanedUp":{
           "shape":"AutoScalingGroupList",
-          "documentation":"<p>If the output contains no data, and the corresponding deployment group contained at least one Auto Scaling group, AWS CodeDeploy successfully removed all corresponding Auto Scaling lifecycle event hooks from the AWS user account. If the output does contain data, AWS CodeDeploy could not remove some Auto Scaling lifecycle event hooks from the AWS user account.</p>"
+          "documentation":"<p>If the output contains no data, and the corresponding deployment group contained at least one Auto Scaling group, AWS CodeDeploy successfully removed all corresponding Auto Scaling lifecycle event hooks from the AWS account. If the output does contain data, AWS CodeDeploy could not remove some Auto Scaling lifecycle event hooks from the AWS account.</p>"
         }
       },
       "documentation":"<p>Represents the output of an update deployment group operation.</p>"

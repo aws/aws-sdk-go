@@ -1,4 +1,5 @@
 {
+  "version":"2.0",
   "metadata":{
     "apiVersion":"2010-12-01",
     "endpointPrefix":"elasticbeanstalk",
@@ -8,8 +9,32 @@
     "xmlNamespace":"http://elasticbeanstalk.amazonaws.com/docs/2010-12-01/",
     "protocol":"query"
   },
-  "documentation":"<fullname>AWS Elastic Beanstalk</fullname> <p> This is the AWS Elastic Beanstalk API Reference. This guide provides detailed information about AWS Elastic Beanstalk actions, data types, parameters, and errors. </p> <p>AWS Elastic Beanstalk is a tool that makes it easy for you to create, deploy, and manage scalable, fault-tolerant applications running on Amazon Web Services cloud resources. </p> <p> For more information about this product, go to the <a href=\"http://aws.amazon.com/elasticbeanstalk/\">AWS Elastic Beanstalk</a> details page. The location of the latest AWS Elastic Beanstalk WSDL is <a href=\"http://elasticbeanstalk.s3.amazonaws.com/doc/2010-12-01/AWSElasticBeanstalk.wsdl\">http://elasticbeanstalk.s3.amazonaws.com/doc/2010-12-01/AWSElasticBeanstalk.wsdl</a>. </p> <p><b>Endpoints</b></p> <p>For a list of region-specific endpoints that AWS Elastic Beanstalk supports, go to <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticbeanstalk_region\">Regions and Endpoints</a> in the <i>Amazon Web Services Glossary</i>.</p>",
+  "documentation":"<fullname>AWS Elastic Beanstalk</fullname> <p> This is the AWS Elastic Beanstalk API Reference. This guide provides detailed information about AWS Elastic Beanstalk actions, data types, parameters, and errors. </p> <p>AWS Elastic Beanstalk is a tool that makes it easy for you to create, deploy, and manage scalable, fault-tolerant applications running on Amazon Web Services cloud resources. </p> <p> For more information about this product, go to the <a href=\"http://aws.amazon.com/elasticbeanstalk/\">AWS Elastic Beanstalk</a> details page. The location of the latest AWS Elastic Beanstalk WSDL is <a href=\"http://elasticbeanstalk.s3.amazonaws.com/doc/2010-12-01/AWSElasticBeanstalk.wsdl\">http://elasticbeanstalk.s3.amazonaws.com/doc/2010-12-01/AWSElasticBeanstalk.wsdl</a>. To install the Software Development Kits (SDKs), Integrated Development Environment (IDE) Toolkits, and command line tools that enable you to access the API, go to <a href=\"https://aws.amazon.com/tools/\">Tools for Amazon Web Services</a>. </p> <p><b>Endpoints</b></p> <p>For a list of region-specific endpoints that AWS Elastic Beanstalk supports, go to <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticbeanstalk_region\">Regions and Endpoints</a> in the <i>Amazon Web Services Glossary</i>.</p>",
   "operations":{
+    "AbortEnvironmentUpdate":{
+      "name":"AbortEnvironmentUpdate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"AbortEnvironmentUpdateMessage",
+        "documentation":"<p></p>"
+      },
+      "errors":[
+        {
+          "shape":"InsufficientPrivilegesException",
+          "error":{
+            "code":"InsufficientPrivilegesException",
+            "httpStatusCode":403,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>Unable to perform the specified operation because the user does not have enough privileges for one of more downstream aws services</p>"
+        }
+      ],
+      "documentation":"<p>Cancels in-progress environment configuration update or application version deployment.</p>"
+    },
     "CheckDNSAvailability":{
       "name":"CheckDNSAvailability",
       "http":{
@@ -54,7 +79,7 @@
           "documentation":"<p>The caller has exceeded the limit on the number of applications associated with their account.</p>"
         }
       ],
-      "documentation":"<p> Creates an application that has one configuration template named <code>default</code> and no application versions. </p> <?oxy_delete author=\"brussard\" timestamp=\"20131024T142047-0700\" content=\"&lt;note&gt; The &lt;code&gt;default&lt;/code&gt; configuration template is for a 32-bit version of the Amazon Linux operating system running the Tomcat 6 application container. &lt;/note&gt;\">"
+      "documentation":"<p> Creates an application that has one configuration template named <code>default</code> and no application versions. </p>"
     },
     "CreateApplicationVersion":{
       "name":"CreateApplicationVersion",
@@ -108,7 +133,7 @@
           "documentation":"<p>The specified S3 bucket does not belong to the S3 region in which the service is running.</p>"
         }
       ],
-      "documentation":"<p>Creates an application version for the specified application.</p>"
+      "documentation":"<p>Creates an application version for the specified application.</p> <note>Once you create an application version with a specified Amazon S3 bucket and key location, you cannot change that Amazon S3 location. If you change the Amazon S3 location, you receive an exception when you attempt to launch an environment from the application version. </note>"
     },
     "CreateConfigurationTemplate":{
       "name":"CreateConfigurationTemplate",
@@ -255,7 +280,7 @@
           "documentation":"<p>Unable to perform the specified operation because another operation is already in progress affecting an an element in this activity.</p>"
         }
       ],
-      "documentation":"<p> Deletes the specified application along with all associated versions and configurations. The application versions will not be deleted from your Amazon S3 bucket. </p>"
+      "documentation":"<p> Deletes the specified application along with all associated versions and configurations. The application versions will not be deleted from your Amazon S3 bucket. </p> <note>You cannot delete an application that has a running environment. </note>"
     },
     "DeleteApplicationVersion":{
       "name":"DeleteApplicationVersion",
@@ -309,7 +334,7 @@
           "documentation":"<p>The specified S3 bucket does not belong to the S3 region in which the service is running.</p>"
         }
       ],
-      "documentation":"<p> Deletes the specified version from the specified application. </p>"
+      "documentation":"<p> Deletes the specified version from the specified application. </p> <note>You cannot delete an application version that is associated with a running environment.</note>"
     },
     "DeleteConfigurationTemplate":{
       "name":"DeleteConfigurationTemplate",
@@ -333,7 +358,7 @@
           "documentation":"<p>Unable to perform the specified operation because another operation is already in progress affecting an an element in this activity.</p>"
         }
       ],
-      "documentation":"<p>Deletes the specified configuration template.</p>"
+      "documentation":"<p>Deletes the specified configuration template.</p> <note>When you launch an environment using a configuration template, the environment gets a copy of the template. You can delete or modify the environment's copy of the template without affecting the running environment.</note>"
     },
     "DeleteEnvironmentConfiguration":{
       "name":"DeleteEnvironmentConfiguration",
@@ -476,7 +501,7 @@
         "documentation":"<p>Result message wrapping a list of event descriptions.</p>",
         "resultWrapper":"DescribeEventsResult"
       },
-      "documentation":"<p>Returns list of event descriptions matching criteria up to the last 6 weeks.</p>"
+      "documentation":"<p>Returns list of event descriptions matching criteria up to the last 6 weeks.</p> <note> This action returns the most recent 1,000 events from the specified <code>NextToken</code>. </note>"
     },
     "ListAvailableSolutionStacks":{
       "name":"ListAvailableSolutionStacks",
@@ -525,7 +550,7 @@
         "shape":"RequestEnvironmentInfoMessage",
         "documentation":"<p>This documentation target is not reported in the API reference.</p>"
       },
-      "documentation":"<p> Initiates a request to compile the specified type of information of the deployed environment. </p> <p> Setting the <code>InfoType</code> to <code>tail</code> compiles the last lines from the application server log files of every Amazon EC2 instance in your environment. Use <a>RetrieveEnvironmentInfo</a> to access the compiled information. </p> <p>Related Topics</p> <ul> <li> <a>RetrieveEnvironmentInfo</a> </li> </ul>"
+      "documentation":"<p> Initiates a request to compile the specified type of information of the deployed environment. </p> <p> Setting the <code>InfoType</code> to <code>tail</code> compiles the last lines from the application server log files of every Amazon EC2 instance in your environment. </p> <p> Setting the <code>InfoType</code> to <code>bundle</code> compresses the application server log files for every Amazon EC2 instance into a <code>.zip</code> file. Legacy and .NET containers do not support bundle logs. </p> <p> Use <a>RetrieveEnvironmentInfo</a> to obtain the set of logs. </p> <p>Related Topics</p> <ul> <li> <a>RetrieveEnvironmentInfo</a> </li> </ul>"
     },
     "RestartAppServer":{
       "name":"RestartAppServer",
@@ -564,7 +589,7 @@
       },
       "input":{
         "shape":"SwapEnvironmentCNAMEsMessage",
-        "documentation":"<p></p>"
+        "documentation":"<p>Swaps the CNAMEs of two environments.</p>"
       },
       "documentation":"<p> Swaps the CNAMEs of two environments. </p>"
     },
@@ -612,7 +637,7 @@
         "documentation":"<p>Result message containing a single description of an application.</p>",
         "resultWrapper":"UpdateApplicationResult"
       },
-      "documentation":"<p>Updates the specified application to have the specified properties. </p>"
+      "documentation":"<p>Updates the specified application to have the specified properties. </p> <note> If a property (for example, <code>description</code>) is not provided, the value remains unchanged. To clear these properties, specify an empty string. </note>"
     },
     "UpdateApplicationVersion":{
       "name":"UpdateApplicationVersion",
@@ -629,7 +654,7 @@
         "documentation":"<p> Result message wrapping a single description of an application version. </p>",
         "resultWrapper":"UpdateApplicationVersionResult"
       },
-      "documentation":"<p> Updates the specified application version to have the specified properties. </p>"
+      "documentation":"<p> Updates the specified application version to have the specified properties. </p> <note> If a property (for example, <code>description</code>) is not provided, the value remains unchanged. To clear properties, specify an empty string. </note>"
     },
     "UpdateConfigurationTemplate":{
       "name":"UpdateConfigurationTemplate",
@@ -658,7 +683,7 @@
           "documentation":"<p>Unable to perform the specified operation because the user does not have enough privileges for one of more downstream aws services</p>"
         }
       ],
-      "documentation":"<p> Updates the specified configuration template to have the specified properties or configuration option values. </p> <p>Related Topics</p> <ul> <li> <a>DescribeConfigurationOptions</a> </li> </ul>"
+      "documentation":"<p> Updates the specified configuration template to have the specified properties or configuration option values. </p> <note> If a property (for example, <code>ApplicationName</code>) is not provided, its value remains unchanged. To clear such properties, specify an empty string. </note> <p>Related Topics</p> <ul> <li> <a>DescribeConfigurationOptions</a> </li> </ul>"
     },
     "UpdateEnvironment":{
       "name":"UpdateEnvironment",
@@ -720,6 +745,21 @@
     }
   },
   "shapes":{
+    "AbortEnvironmentUpdateMessage":{
+      "type":"structure",
+      "members":{
+        "EnvironmentId":{
+          "shape":"EnvironmentId",
+          "documentation":"<p>This specifies the ID of the environment with the in-progress update that you want to cancel.</p>"
+        },
+        "EnvironmentName":{
+          "shape":"EnvironmentName",
+          "documentation":"<p>This specifies the name of the environment with the in-progress update that you want to cancel.</p>"
+        }
+      },
+      "documentation":"<p></p>"
+    },
+    "AbortableOperationInProgress":{"type":"boolean"},
     "ApplicationDescription":{
       "type":"structure",
       "members":{
@@ -958,6 +998,10 @@
     "ConfigurationOptionSetting":{
       "type":"structure",
       "members":{
+        "ResourceName":{
+          "shape":"ResourceName",
+          "documentation":"<p> A unique resource name for a time-based scaling configuration option. </p>"
+        },
         "Namespace":{
           "shape":"OptionNamespace",
           "documentation":"<p> A unique namespace identifying the option's associated AWS resource. </p>"
@@ -1191,7 +1235,7 @@
         },
         "VersionLabel":{
           "shape":"VersionLabel",
-          "documentation":"<p>The name of the application version to deploy.</p> <p> If the specified application has no associated application versions, AWS Elastic Beanstalk <code>UpdateEnvironment</code> returns an <code>InvalidParameterValue</code> error. </p> <p> Default: If not specified, AWS Elastic Beanstalk attempts to launch the <?oxy_delete author=\"brussard\" timestamp=\"20131030T145730-0700\" content=\"most recently created application version\"><?oxy_insert_start author=\"brussard\" timestamp=\"20131030T145730-0700\">sample application in the container<?oxy_insert_end>. </p>"
+          "documentation":"<p>The name of the application version to deploy.</p> <p> If the specified application has no associated application versions, AWS Elastic Beanstalk <code>UpdateEnvironment</code> returns an <code>InvalidParameterValue</code> error. </p> <p> Default: If not specified, AWS Elastic Beanstalk attempts to launch the sample application in the container. </p>"
         },
         "TemplateName":{
           "shape":"ConfigurationTemplateName",
@@ -1527,6 +1571,10 @@
           "shape":"EnvironmentStatus",
           "documentation":"<p> The current operational status of the environment: </p> <ul> <li> <code>Launching</code>: Environment is in the process of initial deployment. </li> <li> <code>Updating</code>: Environment is in the process of updating its configuration settings or application version. </li> <li> <code>Ready</code>: Environment is available to have an action performed on it, such as update or terminate. </li> <li> <code>Terminating</code>: Environment is in the shut-down process. </li> <li> <code>Terminated</code>: Environment is not running. </li> </ul>"
         },
+        "AbortableOperationInProgress":{
+          "shape":"AbortableOperationInProgress",
+          "documentation":"<p>Indicates if there is an in-progress environment configuration update or application version deployment that you can cancel.</p> <p> <code>true:</code> There is an update in progress. </p> <p> <code>false:</code> There are no updates currently in progress. </p>"
+        },
         "Health":{
           "shape":"EnvironmentHealth",
           "documentation":"<p> Describes the health status of the environment. AWS Elastic Beanstalk indicates the failure levels for a running environment: </p> <enumValues> <value name=\"Red\"> <p> <code>Red</code> : Indicates the environment is not working. </p> </value> <value name=\"Yellow\"> <p> <code>Yellow</code>: Indicates that something is wrong, the application might not be available, but the instances appear running. </p> </value> <value name=\"Green\"> <p> <code>Green</code>: Indicates the environment is healthy and fully functional. </p> </value> </enumValues> <ul> <li> <code>Red</code>: Indicates the environment is not responsive. Occurs when three or more consecutive failures occur for an environment. </li> <li> <code>Yellow</code>: Indicates that something is wrong. Occurs when two consecutive failures occur for an environment. </li> <li> <code>Green</code>: Indicates the environment is healthy and fully functional. </li> <li> <code>Grey</code>: Default health for a new environment. The environment is not fully launched and health checks have not started or health checks are suspended during an <code>UpdateEnvironment</code> or <code>RestartEnvironement</code> request. </li> </ul> <p> Default: <code>Grey</code> </p>"
@@ -1598,7 +1646,10 @@
     },
     "EnvironmentInfoType":{
       "type":"string",
-      "enum":["tail"]
+      "enum":[
+        "tail",
+        "bundle"
+      ]
     },
     "EnvironmentName":{
       "type":"string",
@@ -1911,6 +1962,10 @@
     "OptionSpecification":{
       "type":"structure",
       "members":{
+        "ResourceName":{
+          "shape":"ResourceName",
+          "documentation":"<p> A unique resource name for a time-based scaling configuration option. </p>"
+        },
         "Namespace":{
           "shape":"OptionNamespace",
           "documentation":"<p> A unique namespace identifying the option's associated AWS resource. </p>"
@@ -1981,6 +2036,11 @@
     },
     "RequestId":{"type":"string"},
     "ResourceId":{"type":"string"},
+    "ResourceName":{
+      "type":"string",
+      "min":1,
+      "max":256
+    },
     "RestartAppServerMessage":{
       "type":"structure",
       "members":{
@@ -2140,7 +2200,7 @@
           "documentation":"<p> The name of the destination environment. </p> <p> Condition: You must specify at least the <code>DestinationEnvironmentID</code> or the <code>DestinationEnvironmentName</code>. You may also specify both. You must specify the <code>SourceEnvironmentName</code> with the <code>DestinationEnvironmentName</code>. </p>"
         }
       },
-      "documentation":"<p></p>"
+      "documentation":"<p>Swaps the CNAMEs of two environments.</p>"
     },
     "Tag":{
       "type":"structure",
@@ -2347,7 +2407,7 @@
         },
         "Tier":{
           "shape":"EnvironmentTier",
-          "documentation":"<p> This specifies the tier to use to update the environment. </p> <p> Condition: You can only update the tier version for an environment. If you change the name of the type, AWS Elastic Beanstalk returns <code>InvalidParameterValue</code> error. </p>"
+          "documentation":"<p> This specifies the tier to use to update the environment. </p> <p> Condition: At this time, if you change the tier version, name, or type, AWS Elastic Beanstalk returns <code>InvalidParameterValue</code> error. </p>"
         },
         "VersionLabel":{
           "shape":"VersionLabel",
@@ -2356,6 +2416,10 @@
         "TemplateName":{
           "shape":"ConfigurationTemplateName",
           "documentation":"<p> If this parameter is specified, AWS Elastic Beanstalk deploys this configuration template to the environment. If no such configuration template is found, AWS Elastic Beanstalk returns an <code>InvalidParameterValue</code> error. </p>"
+        },
+        "SolutionStackName":{
+          "shape":"SolutionStackName",
+          "documentation":"<p> This specifies the platform version that the environment will run after the environment is updated. </p>"
         },
         "OptionSettings":{
           "shape":"ConfigurationOptionSettingsList",

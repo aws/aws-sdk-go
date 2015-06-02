@@ -319,11 +319,26 @@ func ExampleOpsWorks_CreateInstance() {
 			aws.String("String"), // Required
 			// More values...
 		},
-		StackID:              aws.String("String"), // Required
-		AMIID:                aws.String("String"),
-		Architecture:         aws.String("Architecture"),
-		AutoScalingType:      aws.String("AutoScalingType"),
-		AvailabilityZone:     aws.String("String"),
+		StackID:          aws.String("String"), // Required
+		AMIID:            aws.String("String"),
+		Architecture:     aws.String("Architecture"),
+		AutoScalingType:  aws.String("AutoScalingType"),
+		AvailabilityZone: aws.String("String"),
+		BlockDeviceMappings: []*opsworks.BlockDeviceMapping{
+			&opsworks.BlockDeviceMapping{ // Required
+				DeviceName: aws.String("String"),
+				EBS: &opsworks.EBSBlockDevice{
+					DeleteOnTermination: aws.Boolean(true),
+					IOPS:                aws.Long(1),
+					SnapshotID:          aws.String("String"),
+					VolumeSize:          aws.Long(1),
+					VolumeType:          aws.String("VolumeType"),
+				},
+				NoDevice:    aws.String("String"),
+				VirtualName: aws.String("String"),
+			},
+			// More values...
+		},
 		EBSOptimized:         aws.Boolean(true),
 		Hostname:             aws.String("String"),
 		InstallUpdatesOnBoot: aws.Boolean(true),
@@ -1434,6 +1449,34 @@ func ExampleOpsWorks_GetHostnameSuggestion() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleOpsWorks_GrantAccess() {
+	svc := opsworks.New(nil)
+
+	params := &opsworks.GrantAccessInput{
+		InstanceID:        aws.String("String"), // Required
+		ValidForInMinutes: aws.Long(1),
+	}
+	resp, err := svc.GrantAccess(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleOpsWorks_RebootInstance() {
 	svc := opsworks.New(nil)
 
@@ -1589,6 +1632,10 @@ func ExampleOpsWorks_SetLoadBasedAutoScaling() {
 	params := &opsworks.SetLoadBasedAutoScalingInput{
 		LayerID: aws.String("String"), // Required
 		DownScaling: &opsworks.AutoScalingThresholds{
+			Alarms: []*string{
+				aws.String("String"), // Required
+				// More values...
+			},
 			CPUThreshold:       aws.Double(1.0),
 			IgnoreMetricsTime:  aws.Long(1),
 			InstanceCount:      aws.Long(1),
@@ -1598,6 +1645,10 @@ func ExampleOpsWorks_SetLoadBasedAutoScaling() {
 		},
 		Enable: aws.Boolean(true),
 		UpScaling: &opsworks.AutoScalingThresholds{
+			Alarms: []*string{
+				aws.String("String"), // Required
+				// More values...
+			},
 			CPUThreshold:       aws.Double(1.0),
 			IgnoreMetricsTime:  aws.Long(1),
 			InstanceCount:      aws.Long(1),

@@ -12,6 +12,39 @@ import (
 
 var oprw sync.Mutex
 
+// AbortEnvironmentUpdateRequest generates a request for the AbortEnvironmentUpdate operation.
+func (c *ElasticBeanstalk) AbortEnvironmentUpdateRequest(input *AbortEnvironmentUpdateInput) (req *aws.Request, output *AbortEnvironmentUpdateOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opAbortEnvironmentUpdate == nil {
+		opAbortEnvironmentUpdate = &aws.Operation{
+			Name:       "AbortEnvironmentUpdate",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &AbortEnvironmentUpdateInput{}
+	}
+
+	req = c.newRequest(opAbortEnvironmentUpdate, input, output)
+	output = &AbortEnvironmentUpdateOutput{}
+	req.Data = output
+	return
+}
+
+// Cancels in-progress environment configuration update or application version
+// deployment.
+func (c *ElasticBeanstalk) AbortEnvironmentUpdate(input *AbortEnvironmentUpdateInput) (*AbortEnvironmentUpdateOutput, error) {
+	req, out := c.AbortEnvironmentUpdateRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opAbortEnvironmentUpdate *aws.Operation
+
 // CheckDNSAvailabilityRequest generates a request for the CheckDNSAvailability operation.
 func (c *ElasticBeanstalk) CheckDNSAvailabilityRequest(input *CheckDNSAvailabilityInput) (req *aws.Request, output *CheckDNSAvailabilityOutput) {
 	oprw.Lock()
@@ -101,6 +134,11 @@ func (c *ElasticBeanstalk) CreateApplicationVersionRequest(input *CreateApplicat
 }
 
 // Creates an application version for the specified application.
+//
+// Once you create an application version with a specified Amazon S3 bucket
+// and key location, you cannot change that Amazon S3 location. If you change
+// the Amazon S3 location, you receive an exception when you attempt to launch
+// an environment from the application version.
 func (c *ElasticBeanstalk) CreateApplicationVersion(input *CreateApplicationVersionInput) (*ApplicationVersionDescriptionMessage, error) {
 	req, out := c.CreateApplicationVersionRequest(input)
 	err := req.Send()
@@ -240,6 +278,8 @@ func (c *ElasticBeanstalk) DeleteApplicationRequest(input *DeleteApplicationInpu
 // Deletes the specified application along with all associated versions and
 // configurations. The application versions will not be deleted from your Amazon
 // S3 bucket.
+//
+// You cannot delete an application that has a running environment.
 func (c *ElasticBeanstalk) DeleteApplication(input *DeleteApplicationInput) (*DeleteApplicationOutput, error) {
 	req, out := c.DeleteApplicationRequest(input)
 	err := req.Send()
@@ -272,6 +312,9 @@ func (c *ElasticBeanstalk) DeleteApplicationVersionRequest(input *DeleteApplicat
 }
 
 // Deletes the specified version from the specified application.
+//
+// You cannot delete an application version that is associated with a running
+// environment.
 func (c *ElasticBeanstalk) DeleteApplicationVersion(input *DeleteApplicationVersionInput) (*DeleteApplicationVersionOutput, error) {
 	req, out := c.DeleteApplicationVersionRequest(input)
 	err := req.Send()
@@ -304,6 +347,10 @@ func (c *ElasticBeanstalk) DeleteConfigurationTemplateRequest(input *DeleteConfi
 }
 
 // Deletes the specified configuration template.
+//
+// When you launch an environment using a configuration template, the environment
+// gets a copy of the template. You can delete or modify the environment's copy
+// of the template without affecting the running environment.
 func (c *ElasticBeanstalk) DeleteConfigurationTemplate(input *DeleteConfigurationTemplateInput) (*DeleteConfigurationTemplateOutput, error) {
 	req, out := c.DeleteConfigurationTemplateRequest(input)
 	err := req.Send()
@@ -589,6 +636,8 @@ func (c *ElasticBeanstalk) DescribeEventsRequest(input *DescribeEventsInput) (re
 }
 
 // Returns list of event descriptions matching criteria up to the last 6 weeks.
+//
+//  This action returns the most recent 1,000 events from the specified NextToken.
 func (c *ElasticBeanstalk) DescribeEvents(input *DescribeEventsInput) (*DescribeEventsOutput, error) {
 	req, out := c.DescribeEventsRequest(input)
 	err := req.Send()
@@ -694,8 +743,13 @@ func (c *ElasticBeanstalk) RequestEnvironmentInfoRequest(input *RequestEnvironme
 // environment.
 //
 //  Setting the InfoType to tail compiles the last lines from the application
-// server log files of every Amazon EC2 instance in your environment. Use RetrieveEnvironmentInfo
-// to access the compiled information.
+// server log files of every Amazon EC2 instance in your environment.
+//
+//  Setting the InfoType to bundle compresses the application server log files
+// for every Amazon EC2 instance into a .zip file. Legacy and .NET containers
+// do not support bundle logs.
+//
+//  Use RetrieveEnvironmentInfo to obtain the set of logs.
 //
 // Related Topics
 //
@@ -865,6 +919,9 @@ func (c *ElasticBeanstalk) UpdateApplicationRequest(input *UpdateApplicationInpu
 }
 
 // Updates the specified application to have the specified properties.
+//
+//  If a property (for example, description) is not provided, the value remains
+// unchanged. To clear these properties, specify an empty string.
 func (c *ElasticBeanstalk) UpdateApplication(input *UpdateApplicationInput) (*ApplicationDescriptionMessage, error) {
 	req, out := c.UpdateApplicationRequest(input)
 	err := req.Send()
@@ -897,6 +954,9 @@ func (c *ElasticBeanstalk) UpdateApplicationVersionRequest(input *UpdateApplicat
 }
 
 // Updates the specified application version to have the specified properties.
+//
+//  If a property (for example, description) is not provided, the value remains
+// unchanged. To clear properties, specify an empty string.
 func (c *ElasticBeanstalk) UpdateApplicationVersion(input *UpdateApplicationVersionInput) (*ApplicationVersionDescriptionMessage, error) {
 	req, out := c.UpdateApplicationVersionRequest(input)
 	err := req.Send()
@@ -931,7 +991,9 @@ func (c *ElasticBeanstalk) UpdateConfigurationTemplateRequest(input *UpdateConfi
 // Updates the specified configuration template to have the specified properties
 // or configuration option values.
 //
-// Related Topics
+//  If a property (for example, ApplicationName) is not provided, its value
+// remains unchanged. To clear such properties, specify an empty string.  Related
+// Topics
 //
 //   DescribeConfigurationOptions
 func (c *ElasticBeanstalk) UpdateConfigurationTemplate(input *UpdateConfigurationTemplateInput) (*ConfigurationSettingsDescription, error) {
@@ -1019,6 +1081,30 @@ func (c *ElasticBeanstalk) ValidateConfigurationSettings(input *ValidateConfigur
 }
 
 var opValidateConfigurationSettings *aws.Operation
+
+type AbortEnvironmentUpdateInput struct {
+	// This specifies the ID of the environment with the in-progress update that
+	// you want to cancel.
+	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+
+	// This specifies the name of the environment with the in-progress update that
+	// you want to cancel.
+	EnvironmentName *string `type:"string"`
+
+	metadataAbortEnvironmentUpdateInput `json:"-" xml:"-"`
+}
+
+type metadataAbortEnvironmentUpdateInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type AbortEnvironmentUpdateOutput struct {
+	metadataAbortEnvironmentUpdateOutput `json:"-" xml:"-"`
+}
+
+type metadataAbortEnvironmentUpdateOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
 
 // Describes the properties of an application.
 type ApplicationDescription struct {
@@ -1251,6 +1337,9 @@ type ConfigurationOptionSetting struct {
 
 	// The name of the configuration option.
 	OptionName *string `type:"string"`
+
+	// A unique resource name for a time-based scaling configuration option.
+	ResourceName *string `type:"string"`
 
 	// The current value for the configuration option.
 	Value *string `type:"string"`
@@ -1940,6 +2029,14 @@ type metadataDescribeEventsOutput struct {
 
 // Describes the properties of an environment.
 type EnvironmentDescription struct {
+	// Indicates if there is an in-progress environment configuration update or
+	// application version deployment that you can cancel.
+	//
+	//  true: There is an update in progress.
+	//
+	//  false: There are no updates currently in progress.
+	AbortableOperationInProgress *bool `type:"boolean"`
+
 	// The name of the application associated with this environment.
 	ApplicationName *string `type:"string"`
 
@@ -2247,6 +2344,9 @@ type OptionSpecification struct {
 	// The name of the configuration option.
 	OptionName *string `type:"string"`
 
+	// A unique resource name for a time-based scaling configuration option.
+	ResourceName *string `type:"string"`
+
 	metadataOptionSpecification `json:"-" xml:"-"`
 }
 
@@ -2456,6 +2556,7 @@ type metadataSourceConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Swaps the CNAMEs of two environments.
 type SwapEnvironmentCNAMEsInput struct {
 	// The ID of the destination environment.
 	//
@@ -2678,6 +2779,10 @@ type UpdateEnvironmentInput struct {
 	// set for this environment.
 	OptionsToRemove []*OptionSpecification `type:"list"`
 
+	// This specifies the platform version that the environment will run after the
+	// environment is updated.
+	SolutionStackName *string `type:"string"`
+
 	// If this parameter is specified, AWS Elastic Beanstalk deploys this configuration
 	// template to the environment. If no such configuration template is found,
 	// AWS Elastic Beanstalk returns an InvalidParameterValue error.
@@ -2685,9 +2790,8 @@ type UpdateEnvironmentInput struct {
 
 	// This specifies the tier to use to update the environment.
 	//
-	//  Condition: You can only update the tier version for an environment. If
-	// you change the name of the type, AWS Elastic Beanstalk returns InvalidParameterValue
-	// error.
+	//  Condition: At this time, if you change the tier version, name, or type,
+	// AWS Elastic Beanstalk returns InvalidParameterValue error.
 	Tier *EnvironmentTier `type:"structure"`
 
 	// If this parameter is specified, AWS Elastic Beanstalk deploys the named application

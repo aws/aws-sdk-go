@@ -1,4 +1,5 @@
 {
+  "version":"2.0",
   "metadata":{
     "apiVersion":"2014-11-12",
     "endpointPrefix":"config",
@@ -6,7 +7,6 @@
     "serviceAbbreviation":"Config Service",
     "serviceFullName":"AWS Config",
     "signatureVersion":"v4",
-    "signingName":"config",
     "targetPrefix":"StarlingDoveService",
     "protocol":"json"
   },
@@ -90,7 +90,7 @@
           "documentation":"<p>You have specified a configuration recorder that does not exist.</p>"
         }
       ],
-      "documentation":"<p>Returns the current status of the specified configuration recorder. If a configuration recorder is not specified, this action returns the status of all configuration recorder associated with the account.</p>"
+      "documentation":"<p>Returns the current status of the specified configuration recorder. If a configuration recorder is not specified, this action returns the status of all configuration recorder associated with the account.</p> <note>Currently, you can specify only one configuration recorder per account.</note>"
     },
     "DescribeConfigurationRecorders":{
       "name":"DescribeConfigurationRecorders",
@@ -113,7 +113,7 @@
           "documentation":"<p>You have specified a configuration recorder that does not exist.</p>"
         }
       ],
-      "documentation":"<p>Returns the name of one or more specified configuration recorders. If the recorder name is not specified, this action returns the names of all the configuration recorders associated with the account. </p>"
+      "documentation":"<p>Returns the name of one or more specified configuration recorders. If the recorder name is not specified, this action returns the names of all the configuration recorders associated with the account. </p> <note> <p>Currently, you can specify only one configuration recorder per account.</p> </note>"
     },
     "DescribeDeliveryChannelStatus":{
       "name":"DescribeDeliveryChannelStatus",
@@ -136,7 +136,7 @@
           "documentation":"<p>You have specified a delivery channel that does not exist.</p>"
         }
       ],
-      "documentation":"<p>Returns the current status of the specified delivery channel. If a delivery channel is not specified, this action returns the current status of all delivery channels associated with the account. </p>"
+      "documentation":"<p>Returns the current status of the specified delivery channel. If a delivery channel is not specified, this action returns the current status of all delivery channels associated with the account. </p> <note>Currently, you can specify only one delivery channel per account.</note>"
     },
     "DescribeDeliveryChannels":{
       "name":"DescribeDeliveryChannels",
@@ -159,7 +159,7 @@
           "documentation":"<p>You have specified a delivery channel that does not exist.</p>"
         }
       ],
-      "documentation":"<p>Returns details about the specified delivery channel. If a delivery channel is not specified, this action returns the details of all delivery channels associated with the account. </p>"
+      "documentation":"<p>Returns details about the specified delivery channel. If a delivery channel is not specified, this action returns the details of all delivery channels associated with the account. </p> <note> <p>Currently, you can specify only one delivery channel per account.</p></note>"
     },
     "GetResourceConfigHistory":{
       "name":"GetResourceConfigHistory",
@@ -207,7 +207,7 @@
           "documentation":"<p>You have specified a resource that is either unknown or has not been discovered.</p>"
         }
       ],
-      "documentation":"<p>Returns a list of configuration items for the specified resource. The list contains details about each state of the resource during the specified time interval. You can specify a <code>limit</code> on the number of results returned on the page. If a limit is specified, a <code>nextToken</code> is returned as part of the result that you can use to continue this request. </p>"
+      "documentation":"<p>Returns a list of configuration items for the specified resource. The list contains details about each state of the resource during the specified time interval. You can specify a <code>limit</code> on the number of results returned on the page. If a limit is specified, a <code>nextToken</code> is returned as part of the result that you can use to continue this request. </p> <note> <p>Each call to the API is limited to span a duration of seven days. It is likely that the number of records returned is smaller than the specified <code>limit</code>. In such cases, you can make another call, using the <code>nextToken</code> .</p> </note>"
     },
     "PutConfigurationRecorder":{
       "name":"PutConfigurationRecorder",
@@ -236,7 +236,7 @@
           "documentation":"<p>You have provided a null or empty role ARN.</p>"
         }
       ],
-      "documentation":"<p>Creates a new configuration recorder to record the resource configurations. </p> <p>You can use this action to change the role (<code>roleARN</code>) of an existing recorder. To change the role, call the action on the existing configuration recorder and specify a role.</p>"
+      "documentation":"<p>Creates a new configuration recorder to record the resource configurations. </p> <p>You can use this action to change the role (<code>roleARN</code>) of an existing recorder. To change the role, call the action on the existing configuration recorder and specify a role.</p> <note> <p>Currently, you can specify only one configuration recorder per account. </p> </note>"
     },
     "PutDeliveryChannel":{
       "name":"PutDeliveryChannel",
@@ -285,7 +285,7 @@
           "documentation":"<p>Your Amazon S3 bucket policy does not permit AWS Config to write to it.</p>"
         }
       ],
-      "documentation":"<p>Creates a new delivery channel object to deliver the configuration information to an Amazon S3 bucket, and to an Amazon SNS topic. </p> <p>You can use this action to change the Amazon S3 bucket or an Amazon SNS topic of the existing delivery channel. To change the Amazon S3 bucket or an Amazon SNS topic, call this action and specify the changed values for the S3 bucket and the SNS topic. If you specify a different value for either the S3 bucket or the SNS topic, this action will keep the existing value for the parameter that is not changed. </p>"
+      "documentation":"<p>Creates a new delivery channel object to deliver the configuration information to an Amazon S3 bucket, and to an Amazon SNS topic. </p> <p>You can use this action to change the Amazon S3 bucket or an Amazon SNS topic of the existing delivery channel. To change the Amazon S3 bucket or an Amazon SNS topic, call this action and specify the changed values for the S3 bucket and the SNS topic. If you specify a different value for either the S3 bucket or the SNS topic, this action will keep the existing value for the parameter that is not changed. </p> <note> <p>Currently, you can specify only one delivery channel per account.</p> </note>"
     },
     "StartConfigurationRecorder":{
       "name":"StartConfigurationRecorder",
@@ -461,7 +461,7 @@
           "documentation":"<p>The description of the resource configuration.</p>"
         }
       },
-      "documentation":"<p>A list that contains detailed configurations of a specified resource.</p>"
+      "documentation":"<p>A list that contains detailed configurations of a specified resource.</p> <note> <p>Currently, the list does not contain information about non-AWS components (for example, applications on your Amazon EC2 instances). </p> </note>"
     },
     "ConfigurationItemCaptureTime":{"type":"timestamp"},
     "ConfigurationItemList":{
@@ -636,7 +636,8 @@
       "type":"string",
       "enum":[
         "Success",
-        "Failure"
+        "Failure",
+        "Not_Applicable"
       ]
     },
     "DescribeConfigurationRecorderStatusRequest":{

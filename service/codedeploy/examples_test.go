@@ -16,6 +16,43 @@ import (
 var _ time.Duration
 var _ bytes.Buffer
 
+func ExampleCodeDeploy_AddTagsToOnPremisesInstances() {
+	svc := codedeploy.New(nil)
+
+	params := &codedeploy.AddTagsToOnPremisesInstancesInput{
+		InstanceNames: []*string{ // Required
+			aws.String("InstanceName"), // Required
+			// More values...
+		},
+		Tags: []*codedeploy.Tag{ // Required
+			&codedeploy.Tag{ // Required
+				Key:   aws.String("Key"),
+				Value: aws.String("Value"),
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.AddTagsToOnPremisesInstances(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleCodeDeploy_BatchGetApplications() {
 	svc := codedeploy.New(nil)
 
@@ -56,6 +93,36 @@ func ExampleCodeDeploy_BatchGetDeployments() {
 		},
 	}
 	resp, err := svc.BatchGetDeployments(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleCodeDeploy_BatchGetOnPremisesInstances() {
+	svc := codedeploy.New(nil)
+
+	params := &codedeploy.BatchGetOnPremisesInstancesInput{
+		InstanceNames: []*string{
+			aws.String("InstanceName"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.BatchGetOnPremisesInstances(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -185,6 +252,7 @@ func ExampleCodeDeploy_CreateDeploymentGroup() {
 	params := &codedeploy.CreateDeploymentGroupInput{
 		ApplicationName:     aws.String("ApplicationName"),     // Required
 		DeploymentGroupName: aws.String("DeploymentGroupName"), // Required
+		ServiceRoleARN:      aws.String("Role"),                // Required
 		AutoScalingGroups: []*string{
 			aws.String("AutoScalingGroupName"), // Required
 			// More values...
@@ -198,7 +266,14 @@ func ExampleCodeDeploy_CreateDeploymentGroup() {
 			},
 			// More values...
 		},
-		ServiceRoleARN: aws.String("Role"),
+		OnPremisesInstanceTagFilters: []*codedeploy.TagFilter{
+			&codedeploy.TagFilter{ // Required
+				Key:   aws.String("Key"),
+				Type:  aws.String("TagFilterType"),
+				Value: aws.String("Value"),
+			},
+			// More values...
+		},
 	}
 	resp, err := svc.CreateDeploymentGroup(params)
 
@@ -283,6 +358,33 @@ func ExampleCodeDeploy_DeleteDeploymentGroup() {
 		DeploymentGroupName: aws.String("DeploymentGroupName"), // Required
 	}
 	resp, err := svc.DeleteDeploymentGroup(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleCodeDeploy_DeregisterOnPremisesInstance() {
+	svc := codedeploy.New(nil)
+
+	params := &codedeploy.DeregisterOnPremisesInstanceInput{
+		InstanceName: aws.String("InstanceName"), // Required
+	}
+	resp, err := svc.DeregisterOnPremisesInstance(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -461,6 +563,33 @@ func ExampleCodeDeploy_GetDeploymentInstance() {
 		InstanceID:   aws.String("InstanceId"),   // Required
 	}
 	resp, err := svc.GetDeploymentInstance(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleCodeDeploy_GetOnPremisesInstance() {
+	svc := codedeploy.New(nil)
+
+	params := &codedeploy.GetOnPremisesInstanceInput{
+		InstanceName: aws.String("InstanceName"), // Required
+	}
+	resp, err := svc.GetOnPremisesInstance(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -665,6 +794,42 @@ func ExampleCodeDeploy_ListDeployments() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleCodeDeploy_ListOnPremisesInstances() {
+	svc := codedeploy.New(nil)
+
+	params := &codedeploy.ListOnPremisesInstancesInput{
+		NextToken:          aws.String("NextToken"),
+		RegistrationStatus: aws.String("RegistrationStatus"),
+		TagFilters: []*codedeploy.TagFilter{
+			&codedeploy.TagFilter{ // Required
+				Key:   aws.String("Key"),
+				Type:  aws.String("TagFilterType"),
+				Value: aws.String("Value"),
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.ListOnPremisesInstances(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleCodeDeploy_RegisterApplicationRevision() {
 	svc := codedeploy.New(nil)
 
@@ -687,6 +852,71 @@ func ExampleCodeDeploy_RegisterApplicationRevision() {
 		Description: aws.String("Description"),
 	}
 	resp, err := svc.RegisterApplicationRevision(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleCodeDeploy_RegisterOnPremisesInstance() {
+	svc := codedeploy.New(nil)
+
+	params := &codedeploy.RegisterOnPremisesInstanceInput{
+		IAMUserARN:   aws.String("IamUserArn"),   // Required
+		InstanceName: aws.String("InstanceName"), // Required
+	}
+	resp, err := svc.RegisterOnPremisesInstance(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleCodeDeploy_RemoveTagsFromOnPremisesInstances() {
+	svc := codedeploy.New(nil)
+
+	params := &codedeploy.RemoveTagsFromOnPremisesInstancesInput{
+		InstanceNames: []*string{ // Required
+			aws.String("InstanceName"), // Required
+			// More values...
+		},
+		Tags: []*codedeploy.Tag{ // Required
+			&codedeploy.Tag{ // Required
+				Key:   aws.String("Key"),
+				Value: aws.String("Value"),
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.RemoveTagsFromOnPremisesInstances(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -782,7 +1012,15 @@ func ExampleCodeDeploy_UpdateDeploymentGroup() {
 			// More values...
 		},
 		NewDeploymentGroupName: aws.String("DeploymentGroupName"),
-		ServiceRoleARN:         aws.String("Role"),
+		OnPremisesInstanceTagFilters: []*codedeploy.TagFilter{
+			&codedeploy.TagFilter{ // Required
+				Key:   aws.String("Key"),
+				Type:  aws.String("TagFilterType"),
+				Value: aws.String("Value"),
+			},
+			// More values...
+		},
+		ServiceRoleARN: aws.String("Role"),
 	}
 	resp, err := svc.UpdateDeploymentGroup(params)
 

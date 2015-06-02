@@ -161,6 +161,34 @@ func ExampleGlacier_DeleteVault() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleGlacier_DeleteVaultAccessPolicy() {
+	svc := glacier.New(nil)
+
+	params := &glacier.DeleteVaultAccessPolicyInput{
+		AccountID: aws.String("string"), // Required
+		VaultName: aws.String("string"), // Required
+	}
+	resp, err := svc.DeleteVaultAccessPolicy(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleGlacier_DeleteVaultNotifications() {
 	svc := glacier.New(nil)
 
@@ -283,6 +311,34 @@ func ExampleGlacier_GetJobOutput() {
 		Range:     aws.String("string"),
 	}
 	resp, err := svc.GetJobOutput(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleGlacier_GetVaultAccessPolicy() {
+	svc := glacier.New(nil)
+
+	params := &glacier.GetVaultAccessPolicyInput{
+		AccountID: aws.String("string"), // Required
+		VaultName: aws.String("string"), // Required
+	}
+	resp, err := svc.GetVaultAccessPolicy(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -541,6 +597,37 @@ func ExampleGlacier_SetDataRetrievalPolicy() {
 		},
 	}
 	resp, err := svc.SetDataRetrievalPolicy(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleGlacier_SetVaultAccessPolicy() {
+	svc := glacier.New(nil)
+
+	params := &glacier.SetVaultAccessPolicyInput{
+		AccountID: aws.String("string"), // Required
+		VaultName: aws.String("string"), // Required
+		Policy: &glacier.VaultAccessPolicy{
+			Policy: aws.String("string"),
+		},
+	}
+	resp, err := svc.SetVaultAccessPolicy(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {

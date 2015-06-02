@@ -22,6 +22,12 @@ func (c *DynamoDB) BatchGetItemRequest(input *BatchGetItemInput) (req *aws.Reque
 			Name:       "BatchGetItem",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"RequestItems"},
+				OutputTokens:    []string{"UnprocessedKeys"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -85,6 +91,11 @@ func (c *DynamoDB) BatchGetItem(input *BatchGetItemInput) (*BatchGetItemOutput, 
 	req, out := c.BatchGetItemRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *DynamoDB) BatchGetItemPages(input *BatchGetItemInput, fn func(p *BatchGetItemOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.BatchGetItemRequest(input)
+	return page.EachPage(fn)
 }
 
 var opBatchGetItem *aws.Operation
