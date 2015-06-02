@@ -129,7 +129,7 @@ func TestUploadOrderMultiDifferentPartSize(t *testing.T) {
 
 func TestUploadIncreasePartSize(t *testing.T) {
 	s3manager.MaxUploadParts = 2
-	defer func() { s3manager.MaxUploadParts = 1000 }()
+	defer func() { s3manager.MaxUploadParts = 10000 }()
 
 	s, ops, args := loggingSvc()
 	opts := &s3manager.UploadOptions{S3: s, Concurrency: 1}
@@ -396,7 +396,7 @@ func TestUploadOrderMultiBufferedReader(t *testing.T) {
 
 func TestUploadOrderMultiBufferedReaderExceedTotalParts(t *testing.T) {
 	s3manager.MaxUploadParts = 2
-	defer func() { s3manager.MaxUploadParts = 1000 }()
+	defer func() { s3manager.MaxUploadParts = 10000 }()
 	s, ops, _ := loggingSvc()
 	mgr := s3manager.NewUploader(&s3manager.UploadOptions{S3: s, Concurrency: 1})
 	resp, err := mgr.Upload(&s3manager.UploadInput{

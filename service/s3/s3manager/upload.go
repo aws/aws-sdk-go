@@ -15,7 +15,7 @@ import (
 )
 
 // The maximum allowed number of parts in a multi-part upload on Amazon S3.
-var MaxUploadParts = 1000
+var MaxUploadParts = 10000
 
 // The minimum allowed part size when uploading a part to Amazon S3.
 var MinUploadPartSize int64 = 1024 * 1024 * 5
