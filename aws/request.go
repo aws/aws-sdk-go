@@ -203,6 +203,7 @@ func (r *Request) Send() error {
 			if r.Error != nil {
 				return r.Error
 			}
+			continue
 		}
 
 		r.Handlers.UnmarshalMeta.Run(r)

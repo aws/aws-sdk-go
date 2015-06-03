@@ -136,6 +136,7 @@ func retryRules(r *Request) time.Duration {
 // retryableCodes is a collection of service response codes which are retry-able
 // without any further action.
 var retryableCodes = map[string]struct{}{
+	"RequestError":                           struct{}{},
 	"ProvisionedThroughputExceededException": struct{}{},
 	"Throttling":                             struct{}{},
 }
