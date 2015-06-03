@@ -110,7 +110,7 @@ func ExampleS3_CopyObject() {
 		GrantRead:                      aws.String("GrantRead"),
 		GrantReadACP:                   aws.String("GrantReadACP"),
 		GrantWriteACP:                  aws.String("GrantWriteACP"),
-		Metadata: &map[string]*string{
+		Metadata: map[string]*string{
 			"Key": aws.String("MetadataValue"), // Required
 			// More values...
 		},
@@ -198,7 +198,7 @@ func ExampleS3_CreateMultipartUpload() {
 		GrantRead:          aws.String("GrantRead"),
 		GrantReadACP:       aws.String("GrantReadACP"),
 		GrantWriteACP:      aws.String("GrantWriteACP"),
-		Metadata: &map[string]*string{
+		Metadata: map[string]*string{
 			"Key": aws.String("MetadataValue"), // Required
 			// More values...
 		},
@@ -1727,7 +1727,7 @@ func ExampleS3_PutObject() {
 		GrantRead:          aws.String("GrantRead"),
 		GrantReadACP:       aws.String("GrantReadACP"),
 		GrantWriteACP:      aws.String("GrantWriteACP"),
-		Metadata: &map[string]*string{
+		Metadata: map[string]*string{
 			"Key": aws.String("MetadataValue"), // Required
 			// More values...
 		},

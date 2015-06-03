@@ -116,7 +116,7 @@ func goType(s *Shape, withPkgName bool) string {
 		}
 		return "*" + s.ShapeName
 	case "map":
-		return "*map[string]" + s.ValueRef.GoType()
+		return "map[string]" + s.ValueRef.GoType()
 	case "list":
 		return "[]" + s.MemberRef.GoType()
 	case "boolean":

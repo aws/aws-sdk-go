@@ -21,7 +21,7 @@ func ExampleKinesis_AddTagsToStream() {
 
 	params := &kinesis.AddTagsToStreamInput{
 		StreamName: aws.String("StreamName"), // Required
-		Tags: &map[string]*string{ // Required
+		Tags: map[string]*string{ // Required
 			"Key": aws.String("TagValue"), // Required
 			// More values...
 		},

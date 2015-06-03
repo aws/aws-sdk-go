@@ -622,7 +622,7 @@ type CreateIdentityPoolInput struct {
 	OpenIDConnectProviderARNs []*string `locationName:"OpenIdConnectProviderARNs" type:"list"`
 
 	// Optional key:value pairs mapping provider names to provider app IDs.
-	SupportedLoginProviders *map[string]*string `type:"map"`
+	SupportedLoginProviders map[string]*string `type:"map"`
 
 	metadataCreateIdentityPoolInput `json:"-" xml:"-"`
 }
@@ -702,7 +702,7 @@ type GetCredentialsForIdentityInput struct {
 	IdentityID *string `locationName:"IdentityId" type:"string" required:"true"`
 
 	// A set of optional name-value pairs that map provider names to provider tokens.
-	Logins *map[string]*string `type:"map"`
+	Logins map[string]*string `type:"map"`
 
 	metadataGetCredentialsForIdentityInput `json:"-" xml:"-"`
 }
@@ -738,7 +738,7 @@ type GetIDInput struct {
 	//
 	// The available provider names for Logins are as follows:  Facebook: graph.facebook.com
 	//  Google: accounts.google.com  Amazon: www.amazon.com
-	Logins *map[string]*string `type:"map"`
+	Logins map[string]*string `type:"map"`
 
 	metadataGetIDInput `json:"-" xml:"-"`
 }
@@ -778,7 +778,7 @@ type GetIdentityPoolRolesOutput struct {
 
 	// The map of roles associated with this pool. Currently only authenticated
 	// and unauthenticated roles are supported.
-	Roles *map[string]*string `type:"map"`
+	Roles map[string]*string `type:"map"`
 
 	metadataGetIdentityPoolRolesOutput `json:"-" xml:"-"`
 }
@@ -804,7 +804,7 @@ type GetOpenIDTokenForDeveloperIdentityInput struct {
 	// The developer user identifier is an identifier from your backend that uniquely
 	// identifies a user. When you create an identity pool, you can specify the
 	// supported logins.
-	Logins *map[string]*string `type:"map" required:"true"`
+	Logins map[string]*string `type:"map" required:"true"`
 
 	// The expiration time of the token, in seconds. You can specify a custom expiration
 	// time for the token so that you can cache it. If you don't provide an expiration
@@ -844,7 +844,7 @@ type GetOpenIDTokenInput struct {
 	IdentityID *string `locationName:"IdentityId" type:"string" required:"true"`
 
 	// A set of optional name-value pairs that map provider names to provider tokens.
-	Logins *map[string]*string `type:"map"`
+	Logins map[string]*string `type:"map"`
 
 	metadataGetOpenIDTokenInput `json:"-" xml:"-"`
 }
@@ -908,7 +908,7 @@ type IdentityPool struct {
 	OpenIDConnectProviderARNs []*string `locationName:"OpenIdConnectProviderARNs" type:"list"`
 
 	// Optional key:value pairs mapping provider names to provider app IDs.
-	SupportedLoginProviders *map[string]*string `type:"map"`
+	SupportedLoginProviders map[string]*string `type:"map"`
 
 	metadataIdentityPool `json:"-" xml:"-"`
 }
@@ -1098,7 +1098,7 @@ type SetIdentityPoolRolesInput struct {
 
 	// The map of roles associated with this pool. Currently only authenticated
 	// and unauthenticated roles are supported.
-	Roles *map[string]*string `type:"map" required:"true"`
+	Roles map[string]*string `type:"map" required:"true"`
 
 	metadataSetIdentityPoolRolesInput `json:"-" xml:"-"`
 }
@@ -1150,7 +1150,7 @@ type UnlinkIdentityInput struct {
 	IdentityID *string `locationName:"IdentityId" type:"string" required:"true"`
 
 	// A set of optional name-value pairs that map provider names to provider tokens.
-	Logins *map[string]*string `type:"map" required:"true"`
+	Logins map[string]*string `type:"map" required:"true"`
 
 	// Provider names to unlink from this identity.
 	LoginsToRemove []*string `type:"list" required:"true"`

@@ -5735,7 +5735,7 @@ type GetAccountSummaryOutput struct {
 	//   VersionsPerPolicyQuota
 	//
 	// The maximum number of policy versions allowed for each managed policy.
-	SummaryMap *map[string]*int64 `type:"map"`
+	SummaryMap map[string]*int64 `type:"map"`
 
 	metadataGetAccountSummaryOutput `json:"-" xml:"-"`
 }

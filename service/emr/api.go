@@ -833,7 +833,7 @@ type metadataAddTagsOutput struct {
 type Application struct {
 	// This option is for advanced users only. This is meta information about third-party
 	// applications that third-party vendors use for testing purposes.
-	AdditionalInfo *map[string]*string `type:"map"`
+	AdditionalInfo map[string]*string `type:"map"`
 
 	// Arguments for Amazon EMR to pass to the application.
 	Args []*string `type:"list"`
@@ -1215,7 +1215,7 @@ type HadoopStepConfig struct {
 
 	// The list of Java properties that are set when the step runs. You can use
 	// these properties to pass key value pairs to your main function.
-	Properties *map[string]*string `type:"map"`
+	Properties map[string]*string `type:"map"`
 
 	metadataHadoopStepConfig `json:"-" xml:"-"`
 }

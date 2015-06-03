@@ -1088,7 +1088,7 @@ type DecryptInput struct {
 	// The encryption context. If this was specified in the Encrypt function, it
 	// must be specified here or the decryption operation will fail. For more information,
 	// see Encryption Context (http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html).
-	EncryptionContext *map[string]*string `type:"map"`
+	EncryptionContext map[string]*string `type:"map"`
 
 	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
 	GrantTokens []*string `type:"list"`
@@ -1256,7 +1256,7 @@ type EncryptInput struct {
 	// encryption. If used here, the same value must be supplied to the Decrypt
 	// API or decryption will fail. For more information, see Encryption Context
 	// (http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html).
-	EncryptionContext *map[string]*string `type:"map"`
+	EncryptionContext map[string]*string `type:"map"`
 
 	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
 	GrantTokens []*string `type:"list"`
@@ -1298,7 +1298,7 @@ type GenerateDataKeyInput struct {
 	// Name/value pair that contains additional data to be authenticated during
 	// the encryption and decryption processes that use the key. This value is logged
 	// by AWS CloudTrail to provide context around the data encrypted by the key.
-	EncryptionContext *map[string]*string `type:"map"`
+	EncryptionContext map[string]*string `type:"map"`
 
 	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
 	GrantTokens []*string `type:"list"`
@@ -1356,7 +1356,7 @@ type metadataGenerateDataKeyOutput struct {
 type GenerateDataKeyWithoutPlaintextInput struct {
 	// Name:value pair that contains additional data to be authenticated during
 	// the encryption and decryption processes.
-	EncryptionContext *map[string]*string `type:"map"`
+	EncryptionContext map[string]*string `type:"map"`
 
 	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
 	GrantTokens []*string `type:"list"`
@@ -1485,10 +1485,10 @@ type metadataGetKeyRotationStatusOutput struct {
 type GrantConstraints struct {
 	// The constraint contains additional key/value pairs that serve to further
 	// limit the grant.
-	EncryptionContextEquals *map[string]*string `type:"map"`
+	EncryptionContextEquals map[string]*string `type:"map"`
 
 	// The constraint equals the full encryption context.
-	EncryptionContextSubset *map[string]*string `type:"map"`
+	EncryptionContextSubset map[string]*string `type:"map"`
 
 	metadataGrantConstraints `json:"-" xml:"-"`
 }
@@ -1776,7 +1776,7 @@ type ReEncryptInput struct {
 	CiphertextBlob []byte `type:"blob" required:"true"`
 
 	// Encryption context to be used when the data is re-encrypted.
-	DestinationEncryptionContext *map[string]*string `type:"map"`
+	DestinationEncryptionContext map[string]*string `type:"map"`
 
 	// A unique identifier for the customer master key used to re-encrypt the data.
 	// This value can be a globally unique identifier, a fully specified ARN to
@@ -1792,7 +1792,7 @@ type ReEncryptInput struct {
 
 	// Encryption context used to encrypt and decrypt the data specified in the
 	// CiphertextBlob parameter.
-	SourceEncryptionContext *map[string]*string `type:"map"`
+	SourceEncryptionContext map[string]*string `type:"map"`
 
 	metadataReEncryptInput `json:"-" xml:"-"`
 }

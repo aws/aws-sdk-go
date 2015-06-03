@@ -878,7 +878,7 @@ type metadataGetIdentityDKIMAttributesInput struct {
 // Represents a list of all the DKIM attributes for the specified identity.
 type GetIdentityDKIMAttributesOutput struct {
 	// The DKIM attributes for an email address or a domain.
-	DKIMAttributes *map[string]*IdentityDKIMAttributes `locationName:"DkimAttributes" type:"map" required:"true"`
+	DKIMAttributes map[string]*IdentityDKIMAttributes `locationName:"DkimAttributes" type:"map" required:"true"`
 
 	metadataGetIdentityDKIMAttributesOutput `json:"-" xml:"-"`
 }
@@ -904,7 +904,7 @@ type metadataGetIdentityNotificationAttributesInput struct {
 // notifications.
 type GetIdentityNotificationAttributesOutput struct {
 	// A map of Identity to IdentityNotificationAttributes.
-	NotificationAttributes *map[string]*IdentityNotificationAttributes `type:"map" required:"true"`
+	NotificationAttributes map[string]*IdentityNotificationAttributes `type:"map" required:"true"`
 
 	metadataGetIdentityNotificationAttributesOutput `json:"-" xml:"-"`
 }
@@ -929,7 +929,7 @@ type metadataGetIdentityVerificationAttributesInput struct {
 // Represents the verification attributes for a list of identities.
 type GetIdentityVerificationAttributesOutput struct {
 	// A map of Identities to IdentityVerificationAttributes objects.
-	VerificationAttributes *map[string]*IdentityVerificationAttributes `type:"map" required:"true"`
+	VerificationAttributes map[string]*IdentityVerificationAttributes `type:"map" required:"true"`
 
 	metadataGetIdentityVerificationAttributesOutput `json:"-" xml:"-"`
 }

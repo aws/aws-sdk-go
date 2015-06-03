@@ -67,7 +67,7 @@ func (v *validator) validateStruct(value reflect.Value, path string) {
 		notset := false
 		if f.Tag.Get("required") != "" {
 			switch fvalue.Kind() {
-			case reflect.Ptr, reflect.Slice:
+			case reflect.Ptr, reflect.Slice, reflect.Map:
 				if fvalue.IsNil() {
 					notset = true
 				}

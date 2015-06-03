@@ -25,11 +25,11 @@ func ExampleMobileAnalytics_PutEvents() {
 			&mobileanalytics.Event{ // Required
 				EventType: aws.String("String50Chars"),    // Required
 				Timestamp: aws.String("ISO8601Timestamp"), // Required
-				Attributes: &map[string]*string{
+				Attributes: map[string]*string{
 					"Key": aws.String("String0to1000Chars"), // Required
 					// More values...
 				},
-				Metrics: &map[string]*float64{
+				Metrics: map[string]*float64{
 					"Key": aws.Double(1.0), // Required
 					// More values...
 				},

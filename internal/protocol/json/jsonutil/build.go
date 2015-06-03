@@ -71,7 +71,7 @@ func buildStruct(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) 
 	for i := 0; i < t.NumField(); i++ {
 		field := t.Field(i)
 		member := value.FieldByName(field.Name)
-		if (member.Kind() == reflect.Ptr || member.Kind() == reflect.Slice) && member.IsNil() {
+		if (member.Kind() == reflect.Ptr || member.Kind() == reflect.Slice || member.Kind() == reflect.Map) && member.IsNil() {
 			continue // ignore unset fields
 		}
 		if c := field.Name[0:1]; strings.ToLower(c) == c {

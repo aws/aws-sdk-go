@@ -1032,7 +1032,7 @@ type metadataConfirmSubscriptionOutput struct {
 // Input for CreatePlatformApplication action.
 type CreatePlatformApplicationInput struct {
 	// For a list of attributes, see SetPlatformApplicationAttributes (http://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html)
-	Attributes *map[string]*string `type:"map" required:"true"`
+	Attributes map[string]*string `type:"map" required:"true"`
 
 	// Application names must be made up of only uppercase and lowercase ASCII letters,
 	// numbers, underscores, hyphens, and periods, and must be between 1 and 256
@@ -1065,7 +1065,7 @@ type metadataCreatePlatformApplicationOutput struct {
 // Input for CreatePlatformEndpoint action.
 type CreatePlatformEndpointInput struct {
 	// For a list of attributes, see SetEndpointAttributes (http://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html).
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// Arbitrary user data to associate with the endpoint. Amazon SNS does not use
 	// this data. The data must be in UTF-8 format and less than 2KB.
@@ -1191,7 +1191,7 @@ type metadataDeleteTopicOutput struct {
 // Endpoint for mobile app and device.
 type Endpoint struct {
 	// Attributes for endpoint.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// EndpointArn for mobile app and device.
 	EndpointARN *string `locationName:"EndpointArn" type:"string"`
@@ -1228,7 +1228,7 @@ type GetEndpointAttributesOutput struct {
 	// id, for an app and mobile device. This is returned from the notification
 	// service when an app and mobile device are registered with the notification
 	// service.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	metadataGetEndpointAttributesOutput `json:"-" xml:"-"`
 }
@@ -1260,7 +1260,7 @@ type GetPlatformApplicationAttributesOutput struct {
 	// -- Topic ARN to which DeliveryFailure event notifications should be sent
 	// upon Direct Publish delivery failure (permanent) to one of the application's
 	// endpoints.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	metadataGetPlatformApplicationAttributesOutput `json:"-" xml:"-"`
 }
@@ -1293,7 +1293,7 @@ type GetSubscriptionAttributesOutput struct {
 	// subscription's delivery policy  EffectiveDeliveryPolicy -- the JSON serialization
 	// of the effective delivery policy that takes into account the topic delivery
 	// policy and account system defaults
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	metadataGetSubscriptionAttributesOutput `json:"-" xml:"-"`
 }
@@ -1328,7 +1328,7 @@ type GetTopicAttributesOutput struct {
 	// JSON serialization of the topic's delivery policy  EffectiveDeliveryPolicy
 	// -- the JSON serialization of the effective delivery policy that takes into
 	// account system defaults
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	metadataGetTopicAttributesOutput `json:"-" xml:"-"`
 }
@@ -1517,7 +1517,7 @@ type metadataMessageAttributeValue struct {
 // Platform application object.
 type PlatformApplication struct {
 	// Attributes for platform application object.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// PlatformApplicationArn for platform application object.
 	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string"`
@@ -1558,7 +1558,7 @@ type PublishInput struct {
 	Message *string `type:"string" required:"true"`
 
 	// Message attributes for Publish action.
-	MessageAttributes *map[string]*MessageAttributeValue `locationNameKey:"Name" locationNameValue:"Value" type:"map"`
+	MessageAttributes map[string]*MessageAttributeValue `locationNameKey:"Name" locationNameValue:"Value" type:"map"`
 
 	// Set MessageStructure to json if you want to send a different message for
 	// each protocol. For example, using one publish action, you can send a short
@@ -1650,7 +1650,7 @@ type SetEndpointAttributesInput struct {
 	// id, for an app and mobile device. This is returned from the notification
 	// service when an app and mobile device are registered with the notification
 	// service.
-	Attributes *map[string]*string `type:"map" required:"true"`
+	Attributes map[string]*string `type:"map" required:"true"`
 
 	// EndpointArn used for SetEndpointAttributes action.
 	EndpointARN *string `locationName:"EndpointArn" type:"string" required:"true"`
@@ -1687,7 +1687,7 @@ type SetPlatformApplicationAttributesInput struct {
 	// event notifications should be sent.  EventDeliveryFailure -- Topic ARN to
 	// which DeliveryFailure event notifications should be sent upon Direct Publish
 	// delivery failure (permanent) to one of the application's endpoints.
-	Attributes *map[string]*string `type:"map" required:"true"`
+	Attributes map[string]*string `type:"map" required:"true"`
 
 	// PlatformApplicationArn for SetPlatformApplicationAttributes action.
 	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string" required:"true"`

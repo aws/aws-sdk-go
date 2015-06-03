@@ -121,7 +121,7 @@ func ExampleSQS_CreateQueue() {
 
 	params := &sqs.CreateQueueInput{
 		QueueName: aws.String("String"), // Required
-		Attributes: &map[string]*string{
+		Attributes: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
 		},
@@ -449,7 +449,7 @@ func ExampleSQS_SendMessage() {
 		MessageBody:  aws.String("String"), // Required
 		QueueURL:     aws.String("String"), // Required
 		DelaySeconds: aws.Long(1),
-		MessageAttributes: &map[string]*sqs.MessageAttributeValue{
+		MessageAttributes: map[string]*sqs.MessageAttributeValue{
 			"Key": &sqs.MessageAttributeValue{ // Required
 				DataType: aws.String("String"), // Required
 				BinaryListValues: [][]byte{
@@ -496,7 +496,7 @@ func ExampleSQS_SendMessageBatch() {
 				ID:           aws.String("String"), // Required
 				MessageBody:  aws.String("String"), // Required
 				DelaySeconds: aws.Long(1),
-				MessageAttributes: &map[string]*sqs.MessageAttributeValue{
+				MessageAttributes: map[string]*sqs.MessageAttributeValue{
 					"Key": &sqs.MessageAttributeValue{ // Required
 						DataType: aws.String("String"), // Required
 						BinaryListValues: [][]byte{
@@ -542,7 +542,7 @@ func ExampleSQS_SetQueueAttributes() {
 	svc := sqs.New(nil)
 
 	params := &sqs.SetQueueAttributesInput{
-		Attributes: &map[string]*string{ // Required
+		Attributes: map[string]*string{ // Required
 			"Key": aws.String("String"), // Required
 			// More values...
 		},

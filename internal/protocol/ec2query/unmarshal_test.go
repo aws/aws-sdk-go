@@ -37,10 +37,6 @@ type OutputService1ProtocolTest struct {
 
 // New returns a new OutputService1ProtocolTest client.
 func NewOutputService1ProtocolTest(config *aws.Config) *OutputService1ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "outputservice1protocoltest",
@@ -132,10 +128,6 @@ type OutputService2ProtocolTest struct {
 
 // New returns a new OutputService2ProtocolTest client.
 func NewOutputService2ProtocolTest(config *aws.Config) *OutputService2ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "outputservice2protocoltest",
@@ -213,10 +205,6 @@ type OutputService3ProtocolTest struct {
 
 // New returns a new OutputService3ProtocolTest client.
 func NewOutputService3ProtocolTest(config *aws.Config) *OutputService3ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "outputservice3protocoltest",
@@ -294,10 +282,6 @@ type OutputService4ProtocolTest struct {
 
 // New returns a new OutputService4ProtocolTest client.
 func NewOutputService4ProtocolTest(config *aws.Config) *OutputService4ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "outputservice4protocoltest",
@@ -375,10 +359,6 @@ type OutputService5ProtocolTest struct {
 
 // New returns a new OutputService5ProtocolTest client.
 func NewOutputService5ProtocolTest(config *aws.Config) *OutputService5ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "outputservice5protocoltest",
@@ -456,10 +436,6 @@ type OutputService6ProtocolTest struct {
 
 // New returns a new OutputService6ProtocolTest client.
 func NewOutputService6ProtocolTest(config *aws.Config) *OutputService6ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "outputservice6protocoltest",
@@ -521,7 +497,7 @@ type metadataOutputService6TestShapeOutputService6TestCaseOperation1Input struct
 }
 
 type OutputService6TestShapeOutputShape struct {
-	Map *map[string]*OutputService6TestShapeStructureType `type:"map"`
+	Map map[string]*OutputService6TestShapeStructureType `type:"map"`
 
 	metadataOutputService6TestShapeOutputShape `json:"-" xml:"-"`
 }
@@ -547,10 +523,6 @@ type OutputService7ProtocolTest struct {
 
 // New returns a new OutputService7ProtocolTest client.
 func NewOutputService7ProtocolTest(config *aws.Config) *OutputService7ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "outputservice7protocoltest",
@@ -612,7 +584,7 @@ type metadataOutputService7TestShapeOutputService7TestCaseOperation1Input struct
 }
 
 type OutputService7TestShapeOutputShape struct {
-	Map *map[string]*string `type:"map" flattened:"true"`
+	Map map[string]*string `type:"map" flattened:"true"`
 
 	metadataOutputService7TestShapeOutputShape `json:"-" xml:"-"`
 }
@@ -628,10 +600,6 @@ type OutputService8ProtocolTest struct {
 
 // New returns a new OutputService8ProtocolTest client.
 func NewOutputService8ProtocolTest(config *aws.Config) *OutputService8ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "outputservice8protocoltest",
@@ -693,7 +661,7 @@ type metadataOutputService8TestShapeOutputService8TestCaseOperation1Input struct
 }
 
 type OutputService8TestShapeOutputShape struct {
-	Map *map[string]*string `locationNameKey:"foo" locationNameValue:"bar" type:"map" flattened:"true"`
+	Map map[string]*string `locationNameKey:"foo" locationNameValue:"bar" type:"map" flattened:"true"`
 
 	metadataOutputService8TestShapeOutputShape `json:"-" xml:"-"`
 }
@@ -832,8 +800,8 @@ func TestOutputService6ProtocolTestNormalMapCase1(t *testing.T) {
 
 	// assert response
 	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, "bam", *(*out.Map)["baz"].Foo)
-	assert.Equal(t, "bar", *(*out.Map)["qux"].Foo)
+	assert.Equal(t, "bam", *out.Map["baz"].Foo)
+	assert.Equal(t, "bar", *out.Map["qux"].Foo)
 
 }
 
@@ -853,8 +821,8 @@ func TestOutputService7ProtocolTestFlattenedMapCase1(t *testing.T) {
 
 	// assert response
 	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, "bam", *(*out.Map)["baz"])
-	assert.Equal(t, "bar", *(*out.Map)["qux"])
+	assert.Equal(t, "bam", *out.Map["baz"])
+	assert.Equal(t, "bar", *out.Map["qux"])
 
 }
 
@@ -874,7 +842,7 @@ func TestOutputService8ProtocolTestNamedMapCase1(t *testing.T) {
 
 	// assert response
 	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, "bam", *(*out.Map)["baz"])
-	assert.Equal(t, "bar", *(*out.Map)["qux"])
+	assert.Equal(t, "bam", *out.Map["baz"])
+	assert.Equal(t, "bar", *out.Map["qux"])
 
 }

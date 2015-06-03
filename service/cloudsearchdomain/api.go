@@ -206,13 +206,13 @@ type metadataDocumentServiceWarning struct {
 // Information about a document that matches the search request.
 type Hit struct {
 	// The expressions returned from a document that matches the search request.
-	Exprs *map[string]*string `locationName:"exprs" type:"map"`
+	Exprs map[string]*string `locationName:"exprs" type:"map"`
 
 	// The fields returned from a document that matches the search request.
-	Fields *map[string][]*string `locationName:"fields" type:"map"`
+	Fields map[string][]*string `locationName:"fields" type:"map"`
 
 	// The highlights returned from a document that matches the search request.
-	Highlights *map[string]*string `locationName:"highlights" type:"map"`
+	Highlights map[string]*string `locationName:"highlights" type:"map"`
 
 	// The document ID of a document that matches the search request.
 	ID *string `locationName:"id" type:"string"`
@@ -536,7 +536,7 @@ type metadataSearchInput struct {
 // search criteria and any requested fields, highlights, and facet information.
 type SearchOutput struct {
 	// The requested facet information.
-	Facets *map[string]*BucketInfo `locationName:"facets" type:"map"`
+	Facets map[string]*BucketInfo `locationName:"facets" type:"map"`
 
 	// The documents that match the search criteria.
 	Hits *Hits `locationName:"hits" type:"structure"`

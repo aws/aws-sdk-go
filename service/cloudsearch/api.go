@@ -2105,7 +2105,7 @@ type metadataListDomainNamesInput struct {
 // by an account.
 type ListDomainNamesOutput struct {
 	// The names of the search domains owned by an account.
-	DomainNames *map[string]*string `type:"map"`
+	DomainNames map[string]*string `type:"map"`
 
 	metadataListDomainNamesOutput `json:"-" xml:"-"`
 }

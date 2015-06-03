@@ -172,15 +172,8 @@ func parseList(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
 // parseMap deserializes a map from an XMLNode. The direct children of the XMLNode
 // will also be deserialized as map entries.
 func parseMap(r reflect.Value, node *XMLNode, tag reflect.StructTag) error {
-	t := r.Type()
-	if r.Kind() == reflect.Ptr {
-		t = t.Elem()
-		if r.IsNil() {
-			r.Set(reflect.New(t))
-			r.Elem().Set(reflect.MakeMap(t))
-		}
-
-		r = r.Elem()
+	if r.IsNil() {
+		r.Set(reflect.MakeMap(r.Type()))
 	}
 
 	if tag.Get("flattened") == "" { // look at all child entries

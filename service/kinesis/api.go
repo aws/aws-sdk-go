@@ -803,7 +803,7 @@ type AddTagsToStreamInput struct {
 	StreamName *string `type:"string" required:"true"`
 
 	// The set of key-value pairs to use to create the tags.
-	Tags *map[string]*string `type:"map" required:"true"`
+	Tags map[string]*string `type:"map" required:"true"`
 
 	metadataAddTagsToStreamInput `json:"-" xml:"-"`
 }

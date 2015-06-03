@@ -535,7 +535,7 @@ type ConfigurationItem struct {
 	ResourceType *string `locationName:"resourceType" type:"string"`
 
 	// A mapping of key value tags associated with the resource.
-	Tags *map[string]*string `locationName:"tags" type:"map"`
+	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// The version number of the resource configuration.
 	Version *string `locationName:"version" type:"string"`

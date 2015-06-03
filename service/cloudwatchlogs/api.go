@@ -1107,7 +1107,7 @@ type MetricFilterMatchRecord struct {
 
 	EventNumber *int64 `locationName:"eventNumber" type:"long"`
 
-	ExtractedValues *map[string]*string `locationName:"extractedValues" type:"map"`
+	ExtractedValues map[string]*string `locationName:"extractedValues" type:"map"`
 
 	metadataMetricFilterMatchRecord `json:"-" xml:"-"`
 }

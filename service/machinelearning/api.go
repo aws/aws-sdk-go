@@ -1442,7 +1442,7 @@ type CreateMLModelInput struct {
 	//
 	//  The value is an integer that ranges from 100000 to 2147483648. The default
 	// value is 33554432.
-	Parameters *map[string]*string `type:"map"`
+	Parameters map[string]*string `type:"map"`
 
 	// The data recipe for creating MLModel. You must specify either the recipe
 	// or its URI. If you don’t specify a recipe or its URI, Amazon ML creates a
@@ -2530,7 +2530,7 @@ type GetMLModelOutput struct {
 	//
 	//  The value is an integer that ranges from 100000 to 2147483648. The default
 	// value is 33554432.
-	TrainingParameters *map[string]*string `type:"map"`
+	TrainingParameters map[string]*string `type:"map"`
 
 	metadataGetMLModelOutput `json:"-" xml:"-"`
 }
@@ -2641,7 +2641,7 @@ type MLModel struct {
 	//
 	//  The value is an integer that ranges from 100000 to 2147483648. The default
 	// value is 33554432.
-	TrainingParameters *map[string]*string `type:"map"`
+	TrainingParameters map[string]*string `type:"map"`
 
 	metadataMLModel `json:"-" xml:"-"`
 }
@@ -2666,7 +2666,7 @@ type metadataMLModel struct {
 //    For more information about performance metrics, please see the Amazon
 // Machine Learning Developer Guide (http://docs.aws.amazon.com/machine-learning/latest/dg).
 type PerformanceMetrics struct {
-	Properties *map[string]*string `type:"map"`
+	Properties map[string]*string `type:"map"`
 
 	metadataPerformanceMetrics `json:"-" xml:"-"`
 }
@@ -2682,7 +2682,7 @@ type PredictInput struct {
 	PredictEndpoint *string `type:"string" required:"true"`
 
 	// A map of variable name-value pairs that represent an observation.
-	Record *map[string]*string `type:"map" required:"true"`
+	Record map[string]*string `type:"map" required:"true"`
 
 	metadataPredictInput `json:"-" xml:"-"`
 }
@@ -2725,13 +2725,13 @@ type metadataPredictOutput struct {
 //    PredictedValue - Present for a REGRESSION MLModel request.
 type Prediction struct {
 	// Provides any additional details regarding the prediction.
-	Details *map[string]*string `locationName:"details" type:"map"`
+	Details map[string]*string `locationName:"details" type:"map"`
 
 	// The prediction label for either a BINARY or MULTICLASS MLModel.
 	PredictedLabel *string `locationName:"predictedLabel" type:"string"`
 
 	// Provides the raw classification score corresponding to each label.
-	PredictedScores *map[string]*float64 `locationName:"predictedScores" type:"map"`
+	PredictedScores map[string]*float64 `locationName:"predictedScores" type:"map"`
 
 	// The prediction value for REGRESSION MLModel.
 	PredictedValue *float64 `locationName:"predictedValue" type:"float"`

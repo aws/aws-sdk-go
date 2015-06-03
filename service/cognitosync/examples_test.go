@@ -362,7 +362,7 @@ func ExampleCognitoSync_SetCognitoEvents() {
 	svc := cognitosync.New(nil)
 
 	params := &cognitosync.SetCognitoEventsInput{
-		Events: &map[string]*string{ // Required
+		Events: map[string]*string{ // Required
 			"Key": aws.String("LambdaFunctionArn"), // Required
 			// More values...
 		},

@@ -51,11 +51,11 @@ func ExampleKMS_CreateGrant() {
 		GranteePrincipal: aws.String("PrincipalIdType"), // Required
 		KeyID:            aws.String("KeyIdType"),       // Required
 		Constraints: &kms.GrantConstraints{
-			EncryptionContextEquals: &map[string]*string{
+			EncryptionContextEquals: map[string]*string{
 				"Key": aws.String("EncryptionContextValue"), // Required
 				// More values...
 			},
-			EncryptionContextSubset: &map[string]*string{
+			EncryptionContextSubset: map[string]*string{
 				"Key": aws.String("EncryptionContextValue"), // Required
 				// More values...
 			},
@@ -125,7 +125,7 @@ func ExampleKMS_Decrypt() {
 
 	params := &kms.DecryptInput{
 		CiphertextBlob: []byte("PAYLOAD"), // Required
-		EncryptionContext: &map[string]*string{
+		EncryptionContext: map[string]*string{
 			"Key": aws.String("EncryptionContextValue"), // Required
 			// More values...
 		},
@@ -323,7 +323,7 @@ func ExampleKMS_Encrypt() {
 	params := &kms.EncryptInput{
 		KeyID:     aws.String("KeyIdType"), // Required
 		Plaintext: []byte("PAYLOAD"),       // Required
-		EncryptionContext: &map[string]*string{
+		EncryptionContext: map[string]*string{
 			"Key": aws.String("EncryptionContextValue"), // Required
 			// More values...
 		},
@@ -358,7 +358,7 @@ func ExampleKMS_GenerateDataKey() {
 
 	params := &kms.GenerateDataKeyInput{
 		KeyID: aws.String("KeyIdType"), // Required
-		EncryptionContext: &map[string]*string{
+		EncryptionContext: map[string]*string{
 			"Key": aws.String("EncryptionContextValue"), // Required
 			// More values...
 		},
@@ -395,7 +395,7 @@ func ExampleKMS_GenerateDataKeyWithoutPlaintext() {
 
 	params := &kms.GenerateDataKeyWithoutPlaintextInput{
 		KeyID: aws.String("KeyIdType"), // Required
-		EncryptionContext: &map[string]*string{
+		EncryptionContext: map[string]*string{
 			"Key": aws.String("EncryptionContextValue"), // Required
 			// More values...
 		},
@@ -658,7 +658,7 @@ func ExampleKMS_ReEncrypt() {
 	params := &kms.ReEncryptInput{
 		CiphertextBlob:   []byte("PAYLOAD"),       // Required
 		DestinationKeyID: aws.String("KeyIdType"), // Required
-		DestinationEncryptionContext: &map[string]*string{
+		DestinationEncryptionContext: map[string]*string{
 			"Key": aws.String("EncryptionContextValue"), // Required
 			// More values...
 		},
@@ -666,7 +666,7 @@ func ExampleKMS_ReEncrypt() {
 			aws.String("GrantTokenType"), // Required
 			// More values...
 		},
-		SourceEncryptionContext: &map[string]*string{
+		SourceEncryptionContext: map[string]*string{
 			"Key": aws.String("EncryptionContextValue"), // Required
 			// More values...
 		},

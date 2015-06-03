@@ -3255,7 +3255,7 @@ type Error struct {
 	ErrorCode *string `locationName:"errorCode" type:"string"`
 
 	// Human-readable text that provides detail about the error that occurred.
-	ErrorDetails *map[string]*string `locationName:"errorDetails" type:"map"`
+	ErrorDetails map[string]*string `locationName:"errorDetails" type:"map"`
 
 	metadataError `json:"-" xml:"-"`
 }

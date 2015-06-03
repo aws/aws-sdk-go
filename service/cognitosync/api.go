@@ -886,7 +886,7 @@ type metadataGetCognitoEventsInput struct {
 // The response from the GetCognitoEvents request
 type GetCognitoEventsOutput struct {
 	// The Cognito Events returned from the GetCognitoEvents request
-	Events *map[string]*string `type:"map"`
+	Events map[string]*string `type:"map"`
 
 	metadataGetCognitoEventsOutput `json:"-" xml:"-"`
 }
@@ -1228,7 +1228,7 @@ type metadataRegisterDeviceOutput struct {
 // "
 type SetCognitoEventsInput struct {
 	// The events to configure
-	Events *map[string]*string `type:"map" required:"true"`
+	Events map[string]*string `type:"map" required:"true"`
 
 	// The Cognito Identity Pool to use when configuring Cognito Events
 	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`

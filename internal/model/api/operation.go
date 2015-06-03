@@ -251,7 +251,7 @@ func (e *example) traverseStruct(s *Shape, required, payload bool) string {
 func (e *example) traverseMap(s *Shape, required, payload bool) string {
 	var buf bytes.Buffer
 	t := reType.ReplaceAllString(s.GoTypeElem(), s.API.PackageName()+".$1")
-	buf.WriteString("&" + t + "{")
+	buf.WriteString(t + "{")
 	if required {
 		buf.WriteString(" // Required")
 	}

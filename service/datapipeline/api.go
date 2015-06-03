@@ -1613,7 +1613,7 @@ type TaskObject struct {
 
 	// Connection information for the location where the task runner will publish
 	// the output of the task.
-	Objects *map[string]*PipelineObject `locationName:"objects" type:"map"`
+	Objects map[string]*PipelineObject `locationName:"objects" type:"map"`
 
 	// The ID of the pipeline that provided the task.
 	PipelineID *string `locationName:"pipelineId" type:"string"`

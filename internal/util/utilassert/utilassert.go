@@ -34,7 +34,7 @@ func GenerateAssertions(out interface{}, shape *api.Shape, prefix string) string
 			for _, k := range keys {
 				v := t[k]
 				s := shape.ValueRef.Shape
-				code += GenerateAssertions(v, s, "(*"+prefix+")[\""+k+"\"]")
+				code += GenerateAssertions(v, s, prefix+"[\""+k+"\"]")
 			}
 		} else {
 			for _, k := range keys {

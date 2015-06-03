@@ -1125,7 +1125,7 @@ type CreateJobInput struct {
 	// job. You specify metadata in key/value pairs, and you can add up to 10 key/value
 	// pairs per job. Elastic Transcoder does not guarantee that key/value pairs
 	// will be returned in the same order in which you specify them.
-	UserMetadata *map[string]*string `type:"map"`
+	UserMetadata map[string]*string `type:"map"`
 
 	metadataCreateJobInput `json:"-" xml:"-"`
 }
@@ -1863,7 +1863,7 @@ type Job struct {
 	// Space
 	//
 	// The following symbols: _.:/=+-%@
-	UserMetadata *map[string]*string `type:"map"`
+	UserMetadata map[string]*string `type:"map"`
 
 	metadataJob `json:"-" xml:"-"`
 }
@@ -3512,7 +3512,7 @@ type VideoParameters struct {
 	//
 	// The number of times you want the output gif to loop. Valid values include
 	// Infinite and integers between 0 and 100, inclusive.
-	CodecOptions *map[string]*string `type:"map"`
+	CodecOptions map[string]*string `type:"map"`
 
 	// The value that Elastic Transcoder adds to the metadata in the output file.
 	DisplayAspectRatio *string `type:"string"`

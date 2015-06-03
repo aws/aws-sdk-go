@@ -37,10 +37,6 @@ type OutputService1ProtocolTest struct {
 
 // New returns a new OutputService1ProtocolTest client.
 func NewOutputService1ProtocolTest(config *aws.Config) *OutputService1ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "outputservice1protocoltest",
@@ -134,10 +130,6 @@ type OutputService2ProtocolTest struct {
 
 // New returns a new OutputService2ProtocolTest client.
 func NewOutputService2ProtocolTest(config *aws.Config) *OutputService2ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "outputservice2protocoltest",
@@ -217,10 +209,6 @@ type OutputService3ProtocolTest struct {
 
 // New returns a new OutputService3ProtocolTest client.
 func NewOutputService3ProtocolTest(config *aws.Config) *OutputService3ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "outputservice3protocoltest",
@@ -298,10 +286,6 @@ type OutputService4ProtocolTest struct {
 
 // New returns a new OutputService4ProtocolTest client.
 func NewOutputService4ProtocolTest(config *aws.Config) *OutputService4ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "outputservice4protocoltest",
@@ -379,10 +363,6 @@ type OutputService5ProtocolTest struct {
 
 // New returns a new OutputService5ProtocolTest client.
 func NewOutputService5ProtocolTest(config *aws.Config) *OutputService5ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "outputservice5protocoltest",
@@ -460,10 +440,6 @@ type OutputService6ProtocolTest struct {
 
 // New returns a new OutputService6ProtocolTest client.
 func NewOutputService6ProtocolTest(config *aws.Config) *OutputService6ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "outputservice6protocoltest",
@@ -541,10 +517,6 @@ type OutputService7ProtocolTest struct {
 
 // New returns a new OutputService7ProtocolTest client.
 func NewOutputService7ProtocolTest(config *aws.Config) *OutputService7ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "outputservice7protocoltest",
@@ -622,10 +594,6 @@ type OutputService8ProtocolTest struct {
 
 // New returns a new OutputService8ProtocolTest client.
 func NewOutputService8ProtocolTest(config *aws.Config) *OutputService8ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "outputservice8protocoltest",
@@ -717,10 +685,6 @@ type OutputService9ProtocolTest struct {
 
 // New returns a new OutputService9ProtocolTest client.
 func NewOutputService9ProtocolTest(config *aws.Config) *OutputService9ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "outputservice9protocoltest",
@@ -812,10 +776,6 @@ type OutputService10ProtocolTest struct {
 
 // New returns a new OutputService10ProtocolTest client.
 func NewOutputService10ProtocolTest(config *aws.Config) *OutputService10ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "outputservice10protocoltest",
@@ -893,10 +853,6 @@ type OutputService11ProtocolTest struct {
 
 // New returns a new OutputService11ProtocolTest client.
 func NewOutputService11ProtocolTest(config *aws.Config) *OutputService11ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "outputservice11protocoltest",
@@ -958,7 +914,7 @@ type metadataOutputService11TestShapeOutputService11TestCaseOperation1Input stru
 }
 
 type OutputService11TestShapeOutputShape struct {
-	Map *map[string]*OutputService11TestShapeStructType `type:"map"`
+	Map map[string]*OutputService11TestShapeStructType `type:"map"`
 
 	metadataOutputService11TestShapeOutputShape `json:"-" xml:"-"`
 }
@@ -984,10 +940,6 @@ type OutputService12ProtocolTest struct {
 
 // New returns a new OutputService12ProtocolTest client.
 func NewOutputService12ProtocolTest(config *aws.Config) *OutputService12ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "outputservice12protocoltest",
@@ -1049,7 +1001,7 @@ type metadataOutputService12TestShapeOutputService12TestCaseOperation1Input stru
 }
 
 type OutputService12TestShapeOutputShape struct {
-	Map *map[string]*string `type:"map" flattened:"true"`
+	Map map[string]*string `type:"map" flattened:"true"`
 
 	metadataOutputService12TestShapeOutputShape `json:"-" xml:"-"`
 }
@@ -1065,10 +1017,6 @@ type OutputService13ProtocolTest struct {
 
 // New returns a new OutputService13ProtocolTest client.
 func NewOutputService13ProtocolTest(config *aws.Config) *OutputService13ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "outputservice13protocoltest",
@@ -1130,7 +1078,7 @@ type metadataOutputService13TestShapeOutputService13TestCaseOperation1Input stru
 }
 
 type OutputService13TestShapeOutputShape struct {
-	Map *map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
+	Map map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
 
 	metadataOutputService13TestShapeOutputShape `json:"-" xml:"-"`
 }
@@ -1146,10 +1094,6 @@ type OutputService14ProtocolTest struct {
 
 // New returns a new OutputService14ProtocolTest client.
 func NewOutputService14ProtocolTest(config *aws.Config) *OutputService14ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "outputservice14protocoltest",
@@ -1211,7 +1155,7 @@ type metadataOutputService14TestShapeOutputService14TestCaseOperation1Input stru
 }
 
 type OutputService14TestShapeOutputShape struct {
-	Map *map[string]*string `locationNameKey:"foo" locationNameValue:"bar" type:"map" flattened:"true"`
+	Map map[string]*string `locationNameKey:"foo" locationNameValue:"bar" type:"map" flattened:"true"`
 
 	metadataOutputService14TestShapeOutputShape `json:"-" xml:"-"`
 }
@@ -1462,8 +1406,8 @@ func TestOutputService11ProtocolTestNormalMapCase1(t *testing.T) {
 
 	// assert response
 	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, "bam", *(*out.Map)["baz"].Foo)
-	assert.Equal(t, "bar", *(*out.Map)["qux"].Foo)
+	assert.Equal(t, "bam", *out.Map["baz"].Foo)
+	assert.Equal(t, "bar", *out.Map["qux"].Foo)
 
 }
 
@@ -1483,8 +1427,8 @@ func TestOutputService12ProtocolTestFlattenedMapCase1(t *testing.T) {
 
 	// assert response
 	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, "bam", *(*out.Map)["baz"])
-	assert.Equal(t, "bar", *(*out.Map)["qux"])
+	assert.Equal(t, "bam", *out.Map["baz"])
+	assert.Equal(t, "bar", *out.Map["qux"])
 
 }
 
@@ -1504,7 +1448,7 @@ func TestOutputService13ProtocolTestFlattenedMapInShapeDefinitionCase1(t *testin
 
 	// assert response
 	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, "bar", *(*out.Map)["qux"])
+	assert.Equal(t, "bar", *out.Map["qux"])
 
 }
 
@@ -1524,7 +1468,7 @@ func TestOutputService14ProtocolTestNamedMapCase1(t *testing.T) {
 
 	// assert response
 	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, "bam", *(*out.Map)["baz"])
-	assert.Equal(t, "bar", *(*out.Map)["qux"])
+	assert.Equal(t, "bam", *out.Map["baz"])
+	assert.Equal(t, "bar", *out.Map["qux"])
 
 }

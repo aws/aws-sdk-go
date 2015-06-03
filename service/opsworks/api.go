@@ -2544,7 +2544,7 @@ type App struct {
 	AppSource *Source `type:"structure"`
 
 	// The stack attributes.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// When the app was created.
 	CreatedAt *string `type:"string"`
@@ -2778,7 +2778,7 @@ type metadataChefConfiguration struct {
 type CloneStackInput struct {
 	// A list of stack attributes and values as key/value pairs to be added to the
 	// cloned stack.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// A ChefConfiguration object that specifies whether to enable Berkshelf and
 	// the Berkshelf version on Chef 11.10 stacks. For more information, see Create
@@ -2998,7 +2998,7 @@ type CreateAppInput struct {
 	AppSource *Source `type:"structure"`
 
 	// One or more user-defined key/value pairs to be added to the stack attributes.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// The app's data source.
 	DataSources []*DataSource `type:"list"`
@@ -3222,7 +3222,7 @@ type metadataCreateInstanceOutput struct {
 
 type CreateLayerInput struct {
 	// One or more user-defined key/value pairs to be added to the stack attributes.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// Whether to automatically assign an Elastic IP address (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
 	// to the layer's instances. For more information, see How to Edit a Layer (http://docs.aws.amazon.com/opsworks/latest/userguide/workinglayers-basics-edit.html).
@@ -3311,7 +3311,7 @@ type metadataCreateLayerOutput struct {
 
 type CreateStackInput struct {
 	// One or more user-defined key/value pairs to be added to the stack attributes.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// A ChefConfiguration object that specifies whether to enable Berkshelf and
 	// the Berkshelf version on Chef 11.10 stacks. For more information, see Create
@@ -3701,7 +3701,7 @@ type DeploymentCommand struct {
 	// set Args to the following.
 	//
 	//  { "upgrade_os_to":["Amazon Linux 2014.09"], "allow_reboot":["true"] }
-	Args *map[string][]*string `type:"map"`
+	Args map[string][]*string `type:"map"`
 
 	// Specifies the operation. You can specify only one command.
 	//
@@ -4217,7 +4217,7 @@ type DescribeStackProvisioningParametersOutput struct {
 	AgentInstallerURL *string `locationName:"AgentInstallerUrl" type:"string"`
 
 	// An embedded object that contains the provisioning parameters.
-	Parameters *map[string]*string `type:"map"`
+	Parameters map[string]*string `type:"map"`
 
 	metadataDescribeStackProvisioningParametersOutput `json:"-" xml:"-"`
 }
@@ -4792,7 +4792,7 @@ type Layer struct {
 	//
 	// For the HaproxyStatsPassword, MysqlRootPassword, and GangliaPassword attributes,
 	// AWS OpsWorks returns *****FILTERED***** instead of the actual value
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// Whether to automatically assign an Elastic IP address (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
 	// to the layer's instances. For more information, see How to Edit a Layer (http://docs.aws.amazon.com/opsworks/latest/userguide/workinglayers-basics-edit.html).
@@ -5447,7 +5447,7 @@ type Stack struct {
 	ARN *string `locationName:"Arn" type:"string"`
 
 	// The stack's attributes.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// A ChefConfiguration object that specifies whether to enable Berkshelf and
 	// the Berkshelf version. For more information, see Create a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
@@ -5737,7 +5737,7 @@ type UpdateAppInput struct {
 	AppSource *Source `type:"structure"`
 
 	// One or more user-defined key/value pairs to be added to the stack attributes.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// The app's data sources.
 	DataSources []*DataSource `type:"list"`
@@ -5896,7 +5896,7 @@ type metadataUpdateInstanceOutput struct {
 
 type UpdateLayerInput struct {
 	// One or more user-defined key/value pairs to be added to the stack attributes.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// Whether to automatically assign an Elastic IP address (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
 	// to the layer's instances. For more information, see How to Edit a Layer (http://docs.aws.amazon.com/opsworks/latest/userguide/workinglayers-basics-edit.html).
@@ -6018,7 +6018,7 @@ type metadataUpdateRDSDBInstanceOutput struct {
 
 type UpdateStackInput struct {
 	// One or more user-defined key/value pairs to be added to the stack attributes.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// A ChefConfiguration object that specifies whether to enable Berkshelf and
 	// the Berkshelf version on Chef 11.10 stacks. For more information, see Create
@@ -6331,25 +6331,25 @@ type metadataVolumeConfiguration struct {
 //   { "12":"on", "13":"on", "14":"on", "15":"on" }
 type WeeklyAutoScalingSchedule struct {
 	// The schedule for Friday.
-	Friday *map[string]*string `type:"map"`
+	Friday map[string]*string `type:"map"`
 
 	// The schedule for Monday.
-	Monday *map[string]*string `type:"map"`
+	Monday map[string]*string `type:"map"`
 
 	// The schedule for Saturday.
-	Saturday *map[string]*string `type:"map"`
+	Saturday map[string]*string `type:"map"`
 
 	// The schedule for Sunday.
-	Sunday *map[string]*string `type:"map"`
+	Sunday map[string]*string `type:"map"`
 
 	// The schedule for Thursday.
-	Thursday *map[string]*string `type:"map"`
+	Thursday map[string]*string `type:"map"`
 
 	// The schedule for Tuesday.
-	Tuesday *map[string]*string `type:"map"`
+	Tuesday map[string]*string `type:"map"`
 
 	// The schedule for Wednesday.
-	Wednesday *map[string]*string `type:"map"`
+	Wednesday map[string]*string `type:"map"`
 
 	metadataWeeklyAutoScalingSchedule `json:"-" xml:"-"`
 }

@@ -51,7 +51,7 @@ type Event struct {
 	// The key-value pairs are specified by the developer.
 	//
 	// This collection can be empty or the attribute object can be omitted.
-	Attributes *map[string]*string `locationName:"attributes" type:"map"`
+	Attributes map[string]*string `locationName:"attributes" type:"map"`
 
 	// A name signifying an event that occurred in your app. This is used for grouping
 	// and aggregating like events together for reporting purposes.
@@ -61,7 +61,7 @@ type Event struct {
 	// to the event. The key-value pairs are specified by the developer.
 	//
 	// This collection can be empty or the attribute object can be omitted.
-	Metrics *map[string]*float64 `locationName:"metrics" type:"map"`
+	Metrics map[string]*float64 `locationName:"metrics" type:"map"`
 
 	// The session the event occured within.
 	Session *Session `locationName:"session" type:"structure"`

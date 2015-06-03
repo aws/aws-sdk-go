@@ -102,7 +102,7 @@ func (f paramFiller) paramsStructStruct(value map[string]interface{}, shape *api
 
 // paramsStructMap returns the string representation of a map of values
 func (f paramFiller) paramsStructMap(value map[string]interface{}, shape *api.Shape) string {
-	out := "&" + f.typeName(shape)[1:] + "{\n"
+	out := f.typeName(shape) + "{\n"
 	keys := utilsort.SortedKeys(value)
 	for _, k := range keys {
 		v := value[k]

@@ -134,7 +134,7 @@ type UploadInput struct {
 	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
 
 	// A map of metadata to store with the object in S3.
-	Metadata *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
+	Metadata map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
 
 	// Confirms that the requester knows that she or he will be charged for the
 	// request. Bucket owners need not specify this parameter in their requests.

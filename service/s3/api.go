@@ -2142,7 +2142,7 @@ type CopyObjectInput struct {
 	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
 
 	// A map of metadata to store with the object in S3.
-	Metadata *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
+	Metadata map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
 
 	// Specifies whether the metadata is copied from the source object or replaced
 	// with metadata provided in the request.
@@ -2352,7 +2352,7 @@ type CreateMultipartUploadInput struct {
 	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
 
 	// A map of metadata to store with the object in S3.
-	Metadata *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
+	Metadata map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
 
 	// Confirms that the requester knows that she or he will be charged for the
 	// request. Bucket owners need not specify this parameter in their requests.
@@ -3154,7 +3154,7 @@ type GetObjectOutput struct {
 	LastModified *time.Time `location:"header" locationName:"Last-Modified" type:"timestamp" timestampFormat:"rfc822"`
 
 	// A map of metadata to store with the object in S3.
-	Metadata *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
+	Metadata map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
 
 	// This is set to the number of metadata entries not returned in x-amz-meta
 	// headers. This can happen if you create metadata using an API like SOAP that
@@ -3392,7 +3392,7 @@ type HeadObjectOutput struct {
 	LastModified *time.Time `location:"header" locationName:"Last-Modified" type:"timestamp" timestampFormat:"rfc822"`
 
 	// A map of metadata to store with the object in S3.
-	Metadata *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
+	Metadata map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
 
 	// This is set to the number of metadata entries not returned in x-amz-meta
 	// headers. This can happen if you create metadata using an API like SOAP that
@@ -4464,7 +4464,7 @@ type PutObjectInput struct {
 	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
 
 	// A map of metadata to store with the object in S3.
-	Metadata *map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
+	Metadata map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
 
 	// Confirms that the requester knows that she or he will be charged for the
 	// request. Bucket owners need not specify this parameter in their requests.

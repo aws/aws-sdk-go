@@ -284,7 +284,7 @@ func ExampleElasticTranscoder_CreateJob() {
 			},
 			// More values...
 		},
-		UserMetadata: &map[string]*string{
+		UserMetadata: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
 		},
@@ -411,7 +411,7 @@ func ExampleElasticTranscoder_CreatePreset() {
 			AspectRatio: aws.String("AspectRatio"),
 			BitRate:     aws.String("VideoBitRate"),
 			Codec:       aws.String("VideoCodec"),
-			CodecOptions: &map[string]*string{
+			CodecOptions: map[string]*string{
 				"Key": aws.String("CodecOption"), // Required
 				// More values...
 			},

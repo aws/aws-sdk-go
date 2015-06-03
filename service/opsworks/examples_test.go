@@ -137,7 +137,7 @@ func ExampleOpsWorks_CloneStack() {
 	params := &opsworks.CloneStackInput{
 		ServiceRoleARN: aws.String("String"), // Required
 		SourceStackID:  aws.String("String"), // Required
-		Attributes: &map[string]*string{
+		Attributes: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
 		},
@@ -212,7 +212,7 @@ func ExampleOpsWorks_CreateApp() {
 			URL:      aws.String("String"),
 			Username: aws.String("String"),
 		},
-		Attributes: &map[string]*string{
+		Attributes: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
 		},
@@ -272,7 +272,7 @@ func ExampleOpsWorks_CreateDeployment() {
 	params := &opsworks.CreateDeploymentInput{
 		Command: &opsworks.DeploymentCommand{ // Required
 			Name: aws.String("DeploymentCommandName"), // Required
-			Args: &map[string][]*string{
+			Args: map[string][]*string{
 				"Key": []*string{ // Required
 					aws.String("String"), // Required
 					// More values...
@@ -377,7 +377,7 @@ func ExampleOpsWorks_CreateLayer() {
 		Shortname: aws.String("String"),    // Required
 		StackID:   aws.String("String"),    // Required
 		Type:      aws.String("LayerType"), // Required
-		Attributes: &map[string]*string{
+		Attributes: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
 		},
@@ -464,7 +464,7 @@ func ExampleOpsWorks_CreateStack() {
 		Name:           aws.String("String"), // Required
 		Region:         aws.String("String"), // Required
 		ServiceRoleARN: aws.String("String"), // Required
-		Attributes: &map[string]*string{
+		Attributes: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
 		},
@@ -1715,31 +1715,31 @@ func ExampleOpsWorks_SetTimeBasedAutoScaling() {
 	params := &opsworks.SetTimeBasedAutoScalingInput{
 		InstanceID: aws.String("String"), // Required
 		AutoScalingSchedule: &opsworks.WeeklyAutoScalingSchedule{
-			Friday: &map[string]*string{
+			Friday: map[string]*string{
 				"Key": aws.String("Switch"), // Required
 				// More values...
 			},
-			Monday: &map[string]*string{
+			Monday: map[string]*string{
 				"Key": aws.String("Switch"), // Required
 				// More values...
 			},
-			Saturday: &map[string]*string{
+			Saturday: map[string]*string{
 				"Key": aws.String("Switch"), // Required
 				// More values...
 			},
-			Sunday: &map[string]*string{
+			Sunday: map[string]*string{
 				"Key": aws.String("Switch"), // Required
 				// More values...
 			},
-			Thursday: &map[string]*string{
+			Thursday: map[string]*string{
 				"Key": aws.String("Switch"), // Required
 				// More values...
 			},
-			Tuesday: &map[string]*string{
+			Tuesday: map[string]*string{
 				"Key": aws.String("Switch"), // Required
 				// More values...
 			},
-			Wednesday: &map[string]*string{
+			Wednesday: map[string]*string{
 				"Key": aws.String("Switch"), // Required
 				// More values...
 			},
@@ -1941,7 +1941,7 @@ func ExampleOpsWorks_UpdateApp() {
 			URL:      aws.String("String"),
 			Username: aws.String("String"),
 		},
-		Attributes: &map[string]*string{
+		Attributes: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
 		},
@@ -2069,7 +2069,7 @@ func ExampleOpsWorks_UpdateLayer() {
 
 	params := &opsworks.UpdateLayerInput{
 		LayerID: aws.String("String"), // Required
-		Attributes: &map[string]*string{
+		Attributes: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
 		},
@@ -2211,7 +2211,7 @@ func ExampleOpsWorks_UpdateStack() {
 
 	params := &opsworks.UpdateStackInput{
 		StackID: aws.String("String"), // Required
-		Attributes: &map[string]*string{
+		Attributes: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
 		},

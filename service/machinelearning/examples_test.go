@@ -217,7 +217,7 @@ func ExampleMachineLearning_CreateMLModel() {
 		MLModelType:          aws.String("MLModelType"), // Required
 		TrainingDataSourceID: aws.String("EntityId"),    // Required
 		MLModelName:          aws.String("EntityName"),
-		Parameters: &map[string]*string{
+		Parameters: map[string]*string{
 			"Key": aws.String("StringType"), // Required
 			// More values...
 		},
@@ -671,7 +671,7 @@ func ExampleMachineLearning_Predict() {
 	params := &machinelearning.PredictInput{
 		MLModelID:       aws.String("EntityId"), // Required
 		PredictEndpoint: aws.String("VipURL"),   // Required
-		Record: &map[string]*string{ // Required
+		Record: map[string]*string{ // Required
 			"Key": aws.String("VariableValue"), // Required
 			// More values...
 		},
