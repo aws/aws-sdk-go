@@ -6,6 +6,8 @@
 
 aws-sdk-go is the official AWS SDK for the Go programming language.
 
+[**Check out the official Developer Preview announcement (New - June 3rd 2015)**](https://aws.amazon.com/blogs/aws/developer-preview-of-aws-sdk-for-go-is-now-available/)
+
 ## Caution
 
 The SDK is currently in the process of being developed, and not everything
