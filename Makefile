@@ -34,8 +34,8 @@ build:
 
 deps:
 	@go get ./...
-	@go install github.com/lsegal/gucumber/cmd/gucumber
-	@go install github.com/golang/lint/golint
+	@go get github.com/lsegal/gucumber/cmd/gucumber
+	@go get github.com/golang/lint/golint
 
 api_info:
 	@go run internal/model/cli/api-info/api-info.go
