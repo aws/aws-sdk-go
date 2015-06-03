@@ -4,7 +4,7 @@
 package directconnectiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/service/directconnect"
+	"github.com/aws/aws-sdk-go/service/directconnect"
 )
 
 // DirectConnectAPI is the interface type for directconnect.DirectConnect.

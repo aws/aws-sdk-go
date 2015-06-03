@@ -5,8 +5,8 @@ package datapipelineiface_test
 import (
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/service/datapipeline"
-	"github.com/awslabs/aws-sdk-go/service/datapipeline/datapipelineiface"
+	"github.com/aws/aws-sdk-go/service/datapipeline"
+	"github.com/aws/aws-sdk-go/service/datapipeline/datapipelineiface"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -4,7 +4,7 @@
 package kinesisiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/service/kinesis"
+	"github.com/aws/aws-sdk-go/service/kinesis"
 )
 
 // KinesisAPI is the interface type for kinesis.Kinesis.

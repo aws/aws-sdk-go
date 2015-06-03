@@ -4,7 +4,7 @@
 package stsiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/service/sts"
+	"github.com/aws/aws-sdk-go/service/sts"
 )
 
 // STSAPI is the interface type for sts.STS.

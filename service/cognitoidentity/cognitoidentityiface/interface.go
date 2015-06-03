@@ -4,7 +4,7 @@
 package cognitoidentityiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/service/cognitoidentity"
+	"github.com/aws/aws-sdk-go/service/cognitoidentity"
 )
 
 // CognitoIdentityAPI is the interface type for cognitoidentity.CognitoIdentity.

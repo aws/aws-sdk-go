@@ -4,9 +4,10 @@ import (
 	"bufio"
 	"encoding/json"
 	"fmt"
-	"github.com/awslabs/aws-sdk-go/internal/apierr"
 	"net/http"
 	"time"
+
+	"github.com/aws/aws-sdk-go/internal/apierr"
 )
 
 const metadataCredentialsEndpoint = "http://169.254.169.254/latest/meta-data/iam/security-credentials/"

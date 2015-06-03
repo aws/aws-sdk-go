@@ -4,7 +4,7 @@
 package cloudwatchlogsiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/service/cloudwatchlogs"
+	"github.com/aws/aws-sdk-go/service/cloudwatchlogs"
 )
 
 // CloudWatchLogsAPI is the interface type for cloudwatchlogs.CloudWatchLogs.

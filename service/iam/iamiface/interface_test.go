@@ -5,8 +5,8 @@ package iamiface_test
 import (
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/service/iam"
-	"github.com/awslabs/aws-sdk-go/service/iam/iamiface"
+	"github.com/aws/aws-sdk-go/service/iam"
+	"github.com/aws/aws-sdk-go/service/iam/iamiface"
 	"github.com/stretchr/testify/assert"
 )
 

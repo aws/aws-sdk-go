@@ -5,8 +5,8 @@ package storagegatewayiface_test
 import (
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/service/storagegateway"
-	"github.com/awslabs/aws-sdk-go/service/storagegateway/storagegatewayiface"
+	"github.com/aws/aws-sdk-go/service/storagegateway"
+	"github.com/aws/aws-sdk-go/service/storagegateway/storagegatewayiface"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -8,7 +8,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 // Imported is a marker to ensure that this package's init() function gets

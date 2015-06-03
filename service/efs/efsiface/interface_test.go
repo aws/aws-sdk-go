@@ -5,8 +5,8 @@ package efsiface_test
 import (
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/service/efs"
-	"github.com/awslabs/aws-sdk-go/service/efs/efsiface"
+	"github.com/aws/aws-sdk-go/service/efs"
+	"github.com/aws/aws-sdk-go/service/efs/efsiface"
 	"github.com/stretchr/testify/assert"
 )
 

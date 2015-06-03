@@ -4,7 +4,7 @@
 package glacieriface
 
 import (
-	"github.com/awslabs/aws-sdk-go/service/glacier"
+	"github.com/aws/aws-sdk-go/service/glacier"
 )
 
 // GlacierAPI is the interface type for glacier.Glacier.

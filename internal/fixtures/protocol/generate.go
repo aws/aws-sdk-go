@@ -12,10 +12,10 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/awslabs/aws-sdk-go/internal/fixtures/helpers"
-	"github.com/awslabs/aws-sdk-go/internal/model/api"
-	"github.com/awslabs/aws-sdk-go/internal/util"
-	"github.com/awslabs/aws-sdk-go/internal/util/utilassert"
+	"github.com/aws/aws-sdk-go/internal/fixtures/helpers"
+	"github.com/aws/aws-sdk-go/internal/model/api"
+	"github.com/aws/aws-sdk-go/internal/util"
+	"github.com/aws/aws-sdk-go/internal/util/utilassert"
 )
 
 type testSuite struct {
@@ -72,8 +72,8 @@ var extraImports = []string{
 	"testing",
 	"time",
 	"net/url",
-	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil",
-	"github.com/awslabs/aws-sdk-go/internal/util",
+	"github.com/aws/aws-sdk-go/internal/protocol/xml/xmlutil",
+	"github.com/aws/aws-sdk-go/internal/util",
 	"github.com/stretchr/testify/assert",
 }
 

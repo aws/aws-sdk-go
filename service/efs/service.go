@@ -3,9 +3,9 @@
 package efs
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/restjson"
-	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/protocol/restjson"
+	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
 // EFS is a client for Amazon EFS.

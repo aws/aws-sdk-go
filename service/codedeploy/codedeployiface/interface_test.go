@@ -5,8 +5,8 @@ package codedeployiface_test
 import (
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/service/codedeploy"
-	"github.com/awslabs/aws-sdk-go/service/codedeploy/codedeployiface"
+	"github.com/aws/aws-sdk-go/service/codedeploy"
+	"github.com/aws/aws-sdk-go/service/codedeploy/codedeployiface"
 	"github.com/stretchr/testify/assert"
 )
 

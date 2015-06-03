@@ -4,7 +4,7 @@
 package dynamodbiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/service/dynamodb"
+	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
 // DynamoDBAPI is the interface type for dynamodb.DynamoDB.

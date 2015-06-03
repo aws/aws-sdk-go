@@ -6,10 +6,10 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
-	"github.com/awslabs/aws-sdk-go/internal/test/unit"
-	"github.com/awslabs/aws-sdk-go/service/glacier"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/internal/test/unit"
+	"github.com/aws/aws-sdk-go/service/glacier"
 	"github.com/stretchr/testify/assert"
 )
 

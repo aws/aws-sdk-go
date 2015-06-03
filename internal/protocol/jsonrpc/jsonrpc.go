@@ -8,9 +8,9 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/apierr"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/json/jsonutil"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/apierr"
+	"github.com/aws/aws-sdk-go/internal/protocol/json/jsonutil"
 )
 
 var emptyJSON = []byte("{}")

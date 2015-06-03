@@ -5,8 +5,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/aws/credentials"
-	"github.com/awslabs/aws-sdk-go/internal/apierr"
+	"github.com/aws/aws-sdk-go/aws/credentials"
+	"github.com/aws/aws-sdk-go/internal/apierr"
 	"github.com/stretchr/testify/assert"
 )
 

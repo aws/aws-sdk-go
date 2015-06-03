@@ -1,8 +1,8 @@
 package directconnect
 
 import (
-	"github.com/awslabs/aws-sdk-go/internal/features/shared"
-	"github.com/awslabs/aws-sdk-go/service/directconnect"
+	"github.com/aws/aws-sdk-go/internal/features/shared"
+	"github.com/aws/aws-sdk-go/service/directconnect"
 	. "github.com/lsegal/gucumber"
 )
 

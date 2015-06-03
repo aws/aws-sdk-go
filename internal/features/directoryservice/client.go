@@ -1,8 +1,8 @@
 package directoryservice
 
 import (
-	"github.com/awslabs/aws-sdk-go/internal/features/shared"
-	"github.com/awslabs/aws-sdk-go/service/directoryservice"
+	"github.com/aws/aws-sdk-go/internal/features/shared"
+	"github.com/aws/aws-sdk-go/service/directoryservice"
 	. "github.com/lsegal/gucumber"
 )
 

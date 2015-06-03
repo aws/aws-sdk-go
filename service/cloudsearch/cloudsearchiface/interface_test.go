@@ -5,8 +5,8 @@ package cloudsearchiface_test
 import (
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/service/cloudsearch"
-	"github.com/awslabs/aws-sdk-go/service/cloudsearch/cloudsearchiface"
+	"github.com/aws/aws-sdk-go/service/cloudsearch"
+	"github.com/aws/aws-sdk-go/service/cloudsearch/cloudsearchiface"
 	"github.com/stretchr/testify/assert"
 )
 
