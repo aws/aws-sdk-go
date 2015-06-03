@@ -1,3 +1,4 @@
+// Package endpoints validates regional endpoints for services.
 package endpoints
 
 //go:generate go run ../model/cli/gen-endpoints/main.go endpoints.json endpoints_map.go

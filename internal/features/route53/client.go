@@ -1,3 +1,4 @@
+//Package route53 provides gucumber integration tests suppport.
 package route53
 
 import (

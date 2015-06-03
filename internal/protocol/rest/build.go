@@ -1,3 +1,4 @@
+// Package rest provides RESTful serialisation of AWS requests and responses.
 package rest
 
 import (

@@ -1,3 +1,4 @@
+//Package ssm provides gucumber integration tests suppport.
 package ssm
 
 import (

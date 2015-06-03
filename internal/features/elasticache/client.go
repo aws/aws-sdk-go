@@ -1,3 +1,4 @@
+//Package elasticache provides gucumber integration tests suppport.
 package elasticache
 
 import (

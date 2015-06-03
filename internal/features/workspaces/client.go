@@ -1,3 +1,4 @@
+//Package workspaces provides gucumber integration tests suppport.
 package workspaces
 
 import (

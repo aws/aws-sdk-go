@@ -1,3 +1,4 @@
+//Package directoryservice provides gucumber integration tests suppport.
 package directoryservice
 
 import (

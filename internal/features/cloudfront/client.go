@@ -1,3 +1,4 @@
+//Package cloudfront provides gucumber integration tests suppport.
 package cloudfront
 
 import (

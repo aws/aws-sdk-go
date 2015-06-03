@@ -1,3 +1,4 @@
+//Package cloudwatchlogs provides gucumber integration tests suppport.
 package cloudwatchlogs
 
 import (

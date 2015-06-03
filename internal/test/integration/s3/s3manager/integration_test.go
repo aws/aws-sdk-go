@@ -1,5 +1,6 @@
 // +build integration
 
+// Package s3manager provides
 package s3manager
 
 import (

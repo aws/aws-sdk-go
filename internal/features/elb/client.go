@@ -1,3 +1,4 @@
+//Package elb provides gucumber integration tests suppport.
 package elb
 
 import (

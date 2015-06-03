@@ -1,3 +1,5 @@
+// Package restjson provides RESTful JSON serialisation of AWS
+// requests and responses.
 package restjson
 
 //go:generate go run ../../fixtures/protocol/generate.go ../../fixtures/protocol/input/rest-json.json build_test.go

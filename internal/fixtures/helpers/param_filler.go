@@ -1,3 +1,4 @@
+// Package helpers provides parameter filtering utilities.
 package helpers
 
 import (

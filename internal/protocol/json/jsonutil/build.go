@@ -1,3 +1,4 @@
+// Package jsonutil provides JSON serialisation of AWS requests and responses.
 package jsonutil
 
 import (

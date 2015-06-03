@@ -1,3 +1,5 @@
+// Package restxml provides RESTful XML serialisation of AWS
+// requests and responses.
 package restxml
 
 //go:generate go run ../../fixtures/protocol/generate.go ../../fixtures/protocol/input/rest-xml.json build_test.go

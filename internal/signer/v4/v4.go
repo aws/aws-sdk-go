@@ -1,3 +1,4 @@
+// Package v4 implements signing for AWS V4 signer
 package v4
 
 import (

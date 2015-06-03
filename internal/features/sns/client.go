@@ -1,3 +1,4 @@
+//Package sns provides gucumber integration tests suppport.
 package sns
 
 import (

@@ -1,3 +1,4 @@
+//Package dynamodb provides gucumber integration tests suppport.
 package dynamodb
 
 import (

@@ -1,3 +1,4 @@
+//Package swf provides gucumber integration tests suppport.
 package swf
 
 import (

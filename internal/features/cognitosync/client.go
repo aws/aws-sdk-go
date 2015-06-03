@@ -1,3 +1,4 @@
+//Package cognitosync provides gucumber integration tests suppport.
 package cognitosync
 
 import (

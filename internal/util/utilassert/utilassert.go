@@ -1,3 +1,4 @@
+// Package utilassert provides testing assertion generation functions.
 package utilassert
 
 import (

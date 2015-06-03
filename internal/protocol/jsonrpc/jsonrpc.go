@@ -1,3 +1,5 @@
+// Package jsonrpc provides JSON RPC utilities for serialisation of AWS
+// requests and responses.
 package jsonrpc
 
 //go:generate go run ../../fixtures/protocol/generate.go ../../fixtures/protocol/input/json.json build_test.go
