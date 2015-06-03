@@ -16,7 +16,6 @@ services:
 	go generate ./service
 
 integration: deps
-	go get github.com/lsegal/gucumber/cmd/gucumber
 	go test ./internal/test/integration/... -tags=integration
 	gucumber
 
@@ -34,7 +33,9 @@ build:
 	go build ./...
 
 deps:
-	go get ./...
+	@go get ./...
+	@go install github.com/lsegal/gucumber/cmd/gucumber
+	@go install github.com/golang/lint/golint
 
 api_info:
 	@go run internal/model/cli/api-info/api-info.go
