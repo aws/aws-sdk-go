@@ -306,21 +306,10 @@ func makeSha256(data []byte) []byte {
 }
 
 func makeSha256Reader(reader io.ReadSeeker) []byte {
-	packet := make([]byte, 4096)
 	hash := sha256.New()
-
 	start, _ := reader.Seek(0, 1)
 	defer reader.Seek(start, 0)
 
-	for {
-		n, err := reader.Read(packet)
-		if n > 0 {
-			hash.Write(packet[0:n])
-		}
-		if err == io.EOF || n == 0 {
-			break
-		}
-	}
-
+	io.Copy(hash, reader)
 	return hash.Sum(nil)
 }
