@@ -1,6 +1,18 @@
 LINTIGNOREDOT='internal/features.+should not use dot imports'
 LINTIGNOREDOC='service/[^/]+/(api)\.go:.+(comment on exported|should have comment or be unexported)'
 
+help:
+	@echo "Please use \`make <target>' where <target> is one of"
+	@echo "  api_info                to print a list of services and versions"
+	@echo "  build                   to go build the SDK"
+	@echo "  deps                    to go get the SDK dependencies"
+	@echo "  generate                to go generate and make services"
+	@echo "  generate-protocol-test  to generate protocol tests"
+	@echo "  integration             to run integration tests"
+	@echo "  lint                    to lint the SDK"
+	@echo "  services                to generate services"
+	@echo "  unit                    to run unit tests"
+
 default: generate
 
 generate-protocol-test:
