@@ -37,7 +37,7 @@ func (c *CognitoIdentity) CreateIdentityPoolRequest(input *CreateIdentityPoolInp
 
 // Creates a new identity pool. The identity pool is a store of user identity
 // information that is specific to your AWS account. The limit on identity pools
-// is 60 per account.
+// is 60 per account. You must use AWS Developer credentials to call this API.
 func (c *CognitoIdentity) CreateIdentityPool(input *CreateIdentityPoolInput) (*IdentityPool, error) {
 	req, out := c.CreateIdentityPoolRequest(input)
 	err := req.Send()
@@ -45,6 +45,41 @@ func (c *CognitoIdentity) CreateIdentityPool(input *CreateIdentityPoolInput) (*I
 }
 
 var opCreateIdentityPool *aws.Operation
+
+// DeleteIdentitiesRequest generates a request for the DeleteIdentities operation.
+func (c *CognitoIdentity) DeleteIdentitiesRequest(input *DeleteIdentitiesInput) (req *aws.Request, output *DeleteIdentitiesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opDeleteIdentities == nil {
+		opDeleteIdentities = &aws.Operation{
+			Name:       "DeleteIdentities",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &DeleteIdentitiesInput{}
+	}
+
+	req = c.newRequest(opDeleteIdentities, input, output)
+	output = &DeleteIdentitiesOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes identities from an identity pool. You can specify a list of 1-60
+// identities that you want to delete.
+//
+// You must use AWS Developer credentials to call this API.
+func (c *CognitoIdentity) DeleteIdentities(input *DeleteIdentitiesInput) (*DeleteIdentitiesOutput, error) {
+	req, out := c.DeleteIdentitiesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opDeleteIdentities *aws.Operation
 
 // DeleteIdentityPoolRequest generates a request for the DeleteIdentityPool operation.
 func (c *CognitoIdentity) DeleteIdentityPoolRequest(input *DeleteIdentityPoolInput) (req *aws.Request, output *DeleteIdentityPoolOutput) {
@@ -71,6 +106,8 @@ func (c *CognitoIdentity) DeleteIdentityPoolRequest(input *DeleteIdentityPoolInp
 
 // Deletes a user pool. Once a pool is deleted, users will not be able to authenticate
 // with the pool.
+//
+// You must use AWS Developer credentials to call this API.
 func (c *CognitoIdentity) DeleteIdentityPool(input *DeleteIdentityPoolInput) (*DeleteIdentityPoolOutput, error) {
 	req, out := c.DeleteIdentityPoolRequest(input)
 	err := req.Send()
@@ -104,6 +141,8 @@ func (c *CognitoIdentity) DescribeIdentityRequest(input *DescribeIdentityInput) 
 
 // Returns metadata related to the given identity, including when the identity
 // was created and any associated linked logins.
+//
+// You must use AWS Developer credentials to call this API.
 func (c *CognitoIdentity) DescribeIdentity(input *DescribeIdentityInput) (*IdentityDescription, error) {
 	req, out := c.DescribeIdentityRequest(input)
 	err := req.Send()
@@ -137,6 +176,8 @@ func (c *CognitoIdentity) DescribeIdentityPoolRequest(input *DescribeIdentityPoo
 
 // Gets details about a particular identity pool, including the pool name, ID
 // description, creation date, and current number of users.
+//
+// You must use AWS Developer credentials to call this API.
 func (c *CognitoIdentity) DescribeIdentityPool(input *DescribeIdentityPoolInput) (*IdentityPool, error) {
 	req, out := c.DescribeIdentityPoolRequest(input)
 	err := req.Send()
@@ -172,6 +213,8 @@ func (c *CognitoIdentity) GetCredentialsForIdentityRequest(input *GetCredentials
 // will be validated against supported login providers. If the token is for
 // cognito-identity.amazonaws.com, it will be passed through to AWS Security
 // Token Service with the appropriate role for the token.
+//
+// This is a public API. You do not need any credentials to call this API.
 func (c *CognitoIdentity) GetCredentialsForIdentity(input *GetCredentialsForIdentityInput) (*GetCredentialsForIdentityOutput, error) {
 	req, out := c.GetCredentialsForIdentityRequest(input)
 	err := req.Send()
@@ -205,6 +248,10 @@ func (c *CognitoIdentity) GetIDRequest(input *GetIDInput) (req *aws.Request, out
 
 // Generates (or retrieves) a Cognito ID. Supplying multiple logins will create
 // an implicit linked account.
+//
+// token+";"+tokenSecret.
+//
+// This is a public API. You do not need any credentials to call this API.
 func (c *CognitoIdentity) GetID(input *GetIDInput) (*GetIDOutput, error) {
 	req, out := c.GetIDRequest(input)
 	err := req.Send()
@@ -237,6 +284,8 @@ func (c *CognitoIdentity) GetIdentityPoolRolesRequest(input *GetIdentityPoolRole
 }
 
 // Gets the roles for an identity pool.
+//
+// You must use AWS Developer credentials to call this API.
 func (c *CognitoIdentity) GetIdentityPoolRoles(input *GetIdentityPoolRolesInput) (*GetIdentityPoolRolesOutput, error) {
 	req, out := c.GetIdentityPoolRolesRequest(input)
 	err := req.Send()
@@ -273,6 +322,8 @@ func (c *CognitoIdentity) GetOpenIDTokenRequest(input *GetOpenIDTokenInput) (req
 // Supplying multiple logins creates an implicit link.
 //
 // The OpenId token is valid for 15 minutes.
+//
+// This is a public API. You do not need any credentials to call this API.
 func (c *CognitoIdentity) GetOpenIDToken(input *GetOpenIDTokenInput) (*GetOpenIDTokenOutput, error) {
 	req, out := c.GetOpenIDTokenRequest(input)
 	err := req.Send()
@@ -318,6 +369,8 @@ func (c *CognitoIdentity) GetOpenIDTokenForDeveloperIdentityRequest(input *GetOp
 // new login with an existing authenticated/unauthenticated identity, you can
 // do so by providing the existing IdentityId. This API will create the identity
 // in the specified IdentityPoolId.
+//
+// You must use AWS Developer credentials to call this API.
 func (c *CognitoIdentity) GetOpenIDTokenForDeveloperIdentity(input *GetOpenIDTokenForDeveloperIdentityInput) (*GetOpenIDTokenForDeveloperIdentityOutput, error) {
 	req, out := c.GetOpenIDTokenForDeveloperIdentityRequest(input)
 	err := req.Send()
@@ -350,6 +403,8 @@ func (c *CognitoIdentity) ListIdentitiesRequest(input *ListIdentitiesInput) (req
 }
 
 // Lists the identities in a pool.
+//
+// You must use AWS Developer credentials to call this API.
 func (c *CognitoIdentity) ListIdentities(input *ListIdentitiesInput) (*ListIdentitiesOutput, error) {
 	req, out := c.ListIdentitiesRequest(input)
 	err := req.Send()
@@ -382,6 +437,8 @@ func (c *CognitoIdentity) ListIdentityPoolsRequest(input *ListIdentityPoolsInput
 }
 
 // Lists all of the Cognito identity pools registered for your account.
+//
+// This is a public API. You do not need any credentials to call this API.
 func (c *CognitoIdentity) ListIdentityPools(input *ListIdentityPoolsInput) (*ListIdentityPoolsOutput, error) {
 	req, out := c.ListIdentityPoolsRequest(input)
 	err := req.Send()
@@ -421,6 +478,8 @@ func (c *CognitoIdentity) LookupDeveloperIdentityRequest(input *LookupDeveloperI
 // DeveloperUserIdentifier will be matched against IdentityID. If the values
 // are verified against the database, the response returns both values and is
 // the same as the request. Otherwise a ResourceConflictException is thrown.
+//
+// You must use AWS Developer credentials to call this API.
 func (c *CognitoIdentity) LookupDeveloperIdentity(input *LookupDeveloperIdentityInput) (*LookupDeveloperIdentityOutput, error) {
 	req, out := c.LookupDeveloperIdentityRequest(input)
 	err := req.Send()
@@ -459,6 +518,8 @@ func (c *CognitoIdentity) MergeDeveloperIdentitiesRequest(input *MergeDeveloperI
 // with the IdentityId of the DestinationUserIdentifier. Only developer-authenticated
 // users can be merged. If the users to be merged are associated with the same
 // public provider, but as two different users, an exception will be thrown.
+//
+// You must use AWS Developer credentials to call this API.
 func (c *CognitoIdentity) MergeDeveloperIdentities(input *MergeDeveloperIdentitiesInput) (*MergeDeveloperIdentitiesOutput, error) {
 	req, out := c.MergeDeveloperIdentitiesRequest(input)
 	err := req.Send()
@@ -492,6 +553,8 @@ func (c *CognitoIdentity) SetIdentityPoolRolesRequest(input *SetIdentityPoolRole
 
 // Sets the roles for an identity pool. These roles are used when making calls
 // to GetCredentialsForIdentity action.
+//
+// You must use AWS Developer credentials to call this API.
 func (c *CognitoIdentity) SetIdentityPoolRoles(input *SetIdentityPoolRolesInput) (*SetIdentityPoolRolesOutput, error) {
 	req, out := c.SetIdentityPoolRolesRequest(input)
 	err := req.Send()
@@ -527,6 +590,8 @@ func (c *CognitoIdentity) UnlinkDeveloperIdentityRequest(input *UnlinkDeveloperI
 // users will be considered new identities next time they are seen. If, for
 // a given Cognito identity, you remove all federated identities as well as
 // the developer user identifier, the Cognito identity becomes inaccessible.
+//
+// This is a public API. You do not need any credentials to call this API.
 func (c *CognitoIdentity) UnlinkDeveloperIdentity(input *UnlinkDeveloperIdentityInput) (*UnlinkDeveloperIdentityOutput, error) {
 	req, out := c.UnlinkDeveloperIdentityRequest(input)
 	err := req.Send()
@@ -561,6 +626,8 @@ func (c *CognitoIdentity) UnlinkIdentityRequest(input *UnlinkIdentityInput) (req
 // Unlinks a federated identity from an existing account. Unlinked logins will
 // be considered new identities next time they are seen. Removing the last linked
 // login will make this identity inaccessible.
+//
+// This is a public API. You do not need any credentials to call this API.
 func (c *CognitoIdentity) UnlinkIdentity(input *UnlinkIdentityInput) (*UnlinkIdentityOutput, error) {
 	req, out := c.UnlinkIdentityRequest(input)
 	err := req.Send()
@@ -593,6 +660,8 @@ func (c *CognitoIdentity) UpdateIdentityPoolRequest(input *IdentityPool) (req *a
 }
 
 // Updates a user pool.
+//
+// You must use AWS Developer credentials to call this API.
 func (c *CognitoIdentity) UpdateIdentityPool(input *IdentityPool) (*IdentityPool, error) {
 	req, out := c.UpdateIdentityPoolRequest(input)
 	err := req.Send()
@@ -649,6 +718,31 @@ type Credentials struct {
 }
 
 type metadataCredentials struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Input to the DeleteIdentities action.
+type DeleteIdentitiesInput struct {
+	// A list of 1-60 identities that you want to delete.
+	IdentityIDsToDelete []*string `locationName:"IdentityIdsToDelete" type:"list" required:"true"`
+
+	metadataDeleteIdentitiesInput `json:"-" xml:"-"`
+}
+
+type metadataDeleteIdentitiesInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Returned in response to a successful DeleteIdentities operation.
+type DeleteIdentitiesOutput struct {
+	// An array of UnprocessedIdentityId objects, each of which contains an ErrorCode
+	// and IdentityId.
+	UnprocessedIdentityIDs []*UnprocessedIdentityID `locationName:"UnprocessedIdentityIds" type:"list"`
+
+	metadataDeleteIdentitiesOutput `json:"-" xml:"-"`
+}
+
+type metadataDeleteIdentitiesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -737,7 +831,8 @@ type GetIDInput struct {
 	// A set of optional name-value pairs that map provider names to provider tokens.
 	//
 	// The available provider names for Logins are as follows:  Facebook: graph.facebook.com
-	//  Google: accounts.google.com  Amazon: www.amazon.com
+	//  Google: accounts.google.com  Amazon: www.amazon.com  Twitter: www.twitter.com
+	//  Digits: www.digits.com
 	Logins map[string]*string `type:"map"`
 
 	metadataGetIDInput `json:"-" xml:"-"`
@@ -762,7 +857,7 @@ type metadataGetIDOutput struct {
 // Input to the GetIdentityPoolRoles action.
 type GetIdentityPoolRolesInput struct {
 	// An identity pool ID in the format REGION:GUID.
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string"`
+	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
 
 	metadataGetIdentityPoolRolesInput `json:"-" xml:"-"`
 }
@@ -844,6 +939,9 @@ type GetOpenIDTokenInput struct {
 	IdentityID *string `locationName:"IdentityId" type:"string" required:"true"`
 
 	// A set of optional name-value pairs that map provider names to provider tokens.
+	// When using graph.facebook.com and www.amazon.com, supply the access_token
+	// returned from the provider's authflow. For accounts.google.com or any other
+	// OpenId Connect provider, always include the id_token.
 	Logins map[string]*string `type:"map"`
 
 	metadataGetOpenIDTokenInput `json:"-" xml:"-"`
@@ -934,6 +1032,11 @@ type metadataIdentityPoolShortDescription struct {
 
 // Input to the ListIdentities action.
 type ListIdentitiesInput struct {
+	// An optional boolean parameter that allows you to hide disabled identities.
+	// If omitted, the ListIdentities API will include disabled identities in the
+	// response.
+	HideDisabled *bool `type:"boolean"`
+
 	// An identity pool ID in the format REGION:GUID.
 	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
 
@@ -1096,8 +1199,9 @@ type SetIdentityPoolRolesInput struct {
 	// An identity pool ID in the format REGION:GUID.
 	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
 
-	// The map of roles associated with this pool. Currently only authenticated
-	// and unauthenticated roles are supported.
+	// The map of roles associated with this pool. For a given role, the key will
+	// be either "authenticated" or "unauthenticated" and the value will be the
+	// Role ARN.
 	Roles map[string]*string `type:"map" required:"true"`
 
 	metadataSetIdentityPoolRolesInput `json:"-" xml:"-"`
@@ -1167,5 +1271,21 @@ type UnlinkIdentityOutput struct {
 }
 
 type metadataUnlinkIdentityOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// An array of UnprocessedIdentityId objects, each of which contains an ErrorCode
+// and IdentityId.
+type UnprocessedIdentityID struct {
+	// The error code indicating the type of error that occurred.
+	ErrorCode *string `type:"string"`
+
+	// A unique identifier in the format REGION:GUID.
+	IdentityID *string `locationName:"IdentityId" type:"string"`
+
+	metadataUnprocessedIdentityID `json:"-" xml:"-"`
+}
+
+type metadataUnprocessedIdentityID struct {
 	SDKShapeTraits bool `type:"structure"`
 }

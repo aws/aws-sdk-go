@@ -1,4 +1,5 @@
 {
+  "version":"2.0",
   "metadata":{
     "apiVersion":"2013-06-30",
     "endpointPrefix":"storagegateway",
@@ -230,7 +231,7 @@
           "documentation":"<p>An internal server error has occurred during the request. See the error and message fields for more information.</p>"
         }
       ],
-      "documentation":"<p>This operation initiates a snapshot of a volume.</p> <p>AWS Storage Gateway provides the ability to back up point-in-time snapshots of your data to Amazon Simple Storage (S3) for durable off-site recovery, as well as import the data to an Amazon Elastic Block Store (EBS) volume in Amazon Elastic Compute Cloud (EC2). You can take snapshots of your gateway volume on a scheduled or ad-hoc basis. This API enables you to take ad-hoc snapshot. For more information, see <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/WorkingWithSnapshots.html\">Working With Snapshots in the AWS Storage Gateway Console</a>.</p> <p>In the CreateSnapshot request you identify the volume by providing its Amazon Resource Name (ARN). You must also provide description for the snapshot. When AWS Storage Gateway takes the snapshot of specified volume, the snapshot and description appears in the AWS Storage Gateway Console. In response, AWS Storage Gateway returns you a snapshot ID. You can use this snapshot ID to check the snapshot progress or later use it when you want to create a volume from a snapshot.</p> <note>To list or delete a snapshot, you must use the Amazon EC2 API. For more information, .</note>"
+      "documentation":"<p>This operation initiates a snapshot of a volume.</p> <p>AWS Storage Gateway provides the ability to back up point-in-time snapshots of your data to Amazon Simple Storage (S3) for durable off-site recovery, as well as import the data to an Amazon Elastic Block Store (EBS) volume in Amazon Elastic Compute Cloud (EC2). You can take snapshots of your gateway volume on a scheduled or ad-hoc basis. This API enables you to take ad-hoc snapshot. For more information, see <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/WorkingWithSnapshots.html\">Working With Snapshots in the AWS Storage Gateway Console</a>.</p> <p>In the CreateSnapshot request you identify the volume by providing its Amazon Resource Name (ARN). You must also provide description for the snapshot. When AWS Storage Gateway takes the snapshot of specified volume, the snapshot and description appears in the AWS Storage Gateway Console. In response, AWS Storage Gateway returns you a snapshot ID. You can use this snapshot ID to check the snapshot progress or later use it when you want to create a volume from a snapshot.</p> <note>To list or delete a snapshot, you must use the Amazon EC2 API. For more information, see DescribeSnapshots or DeleteSnapshot in the <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Operations.html\">EC2 API reference</a>.</note>"
     },
     "CreateSnapshotFromVolumeRecoveryPoint":{
       "name":"CreateSnapshotFromVolumeRecoveryPoint",
@@ -381,11 +382,11 @@
       },
       "input":{
         "shape":"DeleteGatewayInput",
-        "documentation":"<p>A JSON object containing the of the gateway to delete.</p>"
+        "documentation":"<p>A JSON object containing the id of the gateway to delete.</p>"
       },
       "output":{
         "shape":"DeleteGatewayOutput",
-        "documentation":"<p>A JSON object containing the of the deleted gateway.</p>"
+        "documentation":"<p>A JSON object containing the id of the deleted gateway.</p>"
       },
       "errors":[
         {
@@ -636,7 +637,7 @@
       },
       "input":{
         "shape":"DescribeGatewayInformationInput",
-        "documentation":"<p>A JSON object containing the of the gateway.</p>"
+        "documentation":"<p>A JSON object containing the id of the gateway.</p>"
       },
       "output":{
         "shape":"DescribeGatewayInformationOutput",
@@ -737,7 +738,7 @@
           "documentation":"<p>An internal server error has occurred during the request. See the error and message fields for more information.</p>"
         }
       ],
-      "documentation":"<p>This operation returns description of the gateway volumes specified in the request. The list of gateway volumes in the request must be from one gateway. In the response Amazon Storage Gateway returns volume information sorted by volume ARNs.</p>"
+      "documentation":"<p>This operation returns the description of the gateway volumes specified in the request. The list of gateway volumes in the request must be from one gateway. In the response Amazon Storage Gateway returns volume information sorted by volume ARNs.</p>"
     },
     "DescribeTapeArchives":{
       "name":"DescribeTapeArchives",
@@ -995,7 +996,37 @@
           "documentation":"<p>An internal server error has occurred during the request. See the error and message fields for more information.</p>"
         }
       ],
-      "documentation":"<p>This operation returns a list of the gateway's local disks. To specify which gateway to describe, you use the Amazon Resource Name (ARN) of the gateway in the body of the request.</p> <p>The request returns a list of all disks, specifying which are configured as working storage, cache storage, or stored volume or not configured at all. The response includes a <code>DiskStatus</code> field. This field can have a value of present (the disk is availble to use), missing (the disk is no longer connected to the gateway), or mismatch (the disk node is occupied by a disk that has incorrect metadata or the disk content is corrupted). </p>"
+      "documentation":"<p>This operation returns a list of the gateway's local disks. To specify which gateway to describe, you use the Amazon Resource Name (ARN) of the gateway in the body of the request.</p> <p>The request returns a list of all disks, specifying which are configured as working storage, cache storage, or stored volume or not configured at all. The response includes a <code>DiskStatus</code> field. This field can have a value of present (the disk is available to use), missing (the disk is no longer connected to the gateway), or mismatch (the disk node is occupied by a disk that has incorrect metadata or the disk content is corrupted). </p>"
+    },
+    "ListVolumeInitiators":{
+      "name":"ListVolumeInitiators",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"ListVolumeInitiatorsInput",
+        "documentation":"<p>ListVolumeInitiatorsInput</p>"
+      },
+      "output":{
+        "shape":"ListVolumeInitiatorsOutput",
+        "documentation":"<p>ListVolumeInitiatorsOutput</p>"
+      },
+      "errors":[
+        {
+          "shape":"InvalidGatewayRequestException",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>An exception occurred because an invalid gateway request was issued to the service. See the error and message fields for more information.</p>"
+        },
+        {
+          "shape":"InternalServerError",
+          "error":{"httpStatusCode":500},
+          "exception":true,
+          "documentation":"<p>An internal server error has occurred during the request. See the error and message fields for more information.</p>"
+        }
+      ],
+      "documentation":"<p>This operation lists iSCSI initiators that are connected to a volume. You can use this operation to determine whether a volume is being used or not.</p>"
     },
     "ListVolumeRecoveryPoints":{
       "name":"ListVolumeRecoveryPoints",
@@ -1070,7 +1101,7 @@
           "documentation":"<p>An internal server error has occurred during the request. See the error and message fields for more information.</p>"
         }
       ],
-      "documentation":"<p>This operation resets all cache disks and makes the disks available for reconfiguration as cache storage. When a cache is reset, the gateway loses its cache storage. At this point you can reconfigure the disks as cache disks. </p>"
+      "documentation":"<p>This operation resets all cache disks that have encountered a error and makes the disks available for reconfiguration as cache storage. If your cache disk encounters a error, the gateway prevents read and write operations on virtual tapes in the gateway. For example, an error can occur when a disk is corrupted or removed from the gateway. When a cache is reset, the gateway loses its cache storage. At this point you can reconfigure the disks as cache disks. </p> <important> <p>If the cache disk you are resetting contains data that has not been uploaded to Amazon S3 yet, that data can be lost. After you reset cache disks, there will be no configured cache disks left in the gateway, so you must configure at least one new cache disk for your gateway to function properly.</p> </important>"
     },
     "RetrieveTapeArchive":{
       "name":"RetrieveTapeArchive",
@@ -1599,7 +1630,7 @@
         },
         "SecretToAuthenticateInitiator":{
           "shape":"ChapSecret",
-          "documentation":"<p>The secret key that the initiator (e.g. Windows client) must provide to participate in mutual CHAP with the target.</p>"
+          "documentation":"<p>The secret key that the initiator (for example, the Windows client) must provide to participate in mutual CHAP with the target.</p>"
         },
         "InitiatorName":{
           "shape":"IqnName",
@@ -1614,8 +1645,8 @@
     },
     "ChapSecret":{
       "type":"string",
-      "min":12,
-      "max":16
+      "min":1,
+      "max":100
     },
     "ClientToken":{
       "type":"string",
@@ -1854,14 +1885,14 @@
       "members":{
         "GatewayARN":{"shape":"GatewayARN"}
       },
-      "documentation":"<p>A JSON object containing the of the gateway to delete.</p>"
+      "documentation":"<p>A JSON object containing the id of the gateway to delete.</p>"
     },
     "DeleteGatewayOutput":{
       "type":"structure",
       "members":{
         "GatewayARN":{"shape":"GatewayARN"}
       },
-      "documentation":"<p>A JSON object containing the of the deleted gateway.</p>"
+      "documentation":"<p>A JSON object containing the id of the deleted gateway.</p>"
     },
     "DeleteSnapshotScheduleInput":{
       "type":"structure",
@@ -2021,7 +2052,7 @@
       "members":{
         "ChapCredentials":{
           "shape":"ChapCredentials",
-          "documentation":"<p>An array of <a>ChapInfo</a> objects that represent CHAP credentials. Each object in the array contains CHAP credential information for one target-initiator pair. If no CHAP credentials are set, an empty array is returned. CHAP credential information is provided in a JSON object with the following fields:</p> <ul> <li> <p><b>InitiatorName</b>: The iSCSI initiator that connects to the target.</p> </li> <li> <p><b>SecretToAuthenticateInitiator</b>: The secret key that the initiator (e.g. Windows client) must provide to participate in mutual CHAP with the target.</p> </li> <li> <p><b>SecretToAuthenticateTarget</b>: The secret key that the target must provide to participate in mutual CHAP with the initiator (e.g. Windows client).</p> </li> <li> <p><b>TargetARN</b>: The Amazon Resource Name (ARN) of the storage volume.</p> </li> </ul>"
+          "documentation":"<p>An array of <a>ChapInfo</a> objects that represent CHAP credentials. Each object in the array contains CHAP credential information for one target-initiator pair. If no CHAP credentials are set, an empty array is returned. CHAP credential information is provided in a JSON object with the following fields:</p> <ul> <li> <p><b>InitiatorName</b>: The iSCSI initiator that connects to the target.</p> </li> <li> <p><b>SecretToAuthenticateInitiator</b>: The secret key that the initiator (for example, the Windows client) must provide to participate in mutual CHAP with the target.</p> </li> <li> <p><b>SecretToAuthenticateTarget</b>: The secret key that the target must provide to participate in mutual CHAP with the initiator (e.g. Windows client).</p> </li> <li> <p><b>TargetARN</b>: The Amazon Resource Name (ARN) of the storage volume.</p> </li> </ul>"
         }
       },
       "documentation":"<p>A JSON object containing a .</p>"
@@ -2032,7 +2063,7 @@
       "members":{
         "GatewayARN":{"shape":"GatewayARN"}
       },
-      "documentation":"<p>A JSON object containing the of the gateway.</p>"
+      "documentation":"<p>A JSON object containing the id of the gateway.</p>"
     },
     "DescribeGatewayInformationOutput":{
       "type":"structure",
@@ -2056,11 +2087,15 @@
         },
         "GatewayType":{
           "shape":"GatewayType",
-          "documentation":"<p>TBD</p>"
+          "documentation":"<p>The type of the gateway.</p>"
         },
         "NextUpdateAvailabilityDate":{
           "shape":"NextUpdateAvailabilityDate",
-          "documentation":"<p>The date at which an update to the gateway is available. This date is in the time zone of the gateway. If the gateway is not available for an update this field is not returned in the response.</p>"
+          "documentation":"<p>The date on which an update to the gateway is available. This date is in the time zone of the gateway. If the gateway is not available for an update this field is not returned in the response.</p>"
+        },
+        "LastSoftwareUpdate":{
+          "shape":"LastSoftwareUpdate",
+          "documentation":"<p>The date on which the last software update was applied to the gateway. If the gateway has never been updated, this field does not return a value in the response.</p>"
         }
       },
       "documentation":"<p>A JSON object containing the following fields:</p>"
@@ -2502,6 +2537,15 @@
       "min":0,
       "max":23
     },
+    "Initiator":{
+      "type":"string",
+      "min":1,
+      "max":50
+    },
+    "Initiators":{
+      "type":"list",
+      "member":{"shape":"Initiator"}
+    },
     "InternalServerError":{
       "type":"structure",
       "members":{
@@ -2540,6 +2584,11 @@
       "max":255,
       "pattern":"[0-9a-z:.-]+"
     },
+    "LastSoftwareUpdate":{
+      "type":"string",
+      "min":1,
+      "max":25
+    },
     "ListGatewaysInput":{
       "type":"structure",
       "members":{
@@ -2575,6 +2624,27 @@
         "GatewayARN":{"shape":"GatewayARN"},
         "Disks":{"shape":"Disks"}
       }
+    },
+    "ListVolumeInitiatorsInput":{
+      "type":"structure",
+      "required":["VolumeARN"],
+      "members":{
+        "VolumeARN":{
+          "shape":"VolumeARN",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the volume. Use the <a>ListVolumes</a> operation to return a list of gateway volumes for the gateway.</p>"
+        }
+      },
+      "documentation":"<p>ListVolumeInitiatorsInput</p>"
+    },
+    "ListVolumeInitiatorsOutput":{
+      "type":"structure",
+      "members":{
+        "Initiators":{
+          "shape":"Initiators",
+          "documentation":"<p>The host names and port numbers of all iSCSI initiators that are connected to the gateway.</p>"
+        }
+      },
+      "documentation":"<p>ListVolumeInitiatorsOutput</p>"
     },
     "ListVolumeRecoveryPointsInput":{
       "type":"structure",
@@ -2889,7 +2959,7 @@
     },
     "TapeBarcode":{
       "type":"string",
-      "min":8,
+      "min":7,
       "max":16,
       "pattern":"^[A-Z0-9]*$"
     },
@@ -2979,11 +3049,11 @@
       "members":{
         "TargetARN":{
           "shape":"TargetARN",
-          "documentation":"<p>The Amazon Resource Name (ARN) of the iSCSI volume target. Use the <a>DescribeStorediSCSIVolumes</a> operation to return to retrieve the TargetARN for specified VolumeARN.</p>"
+          "documentation":"<p>The Amazon Resource Name (ARN) of the iSCSI volume target. Use the <a>DescribeStorediSCSIVolumes</a> operation to return the TargetARN for specified VolumeARN.</p>"
         },
         "SecretToAuthenticateInitiator":{
           "shape":"ChapSecret",
-          "documentation":"<p>The secret key that the initiator (e.g. Windows client) must provide to participate in mutual CHAP with the target.</p>"
+          "documentation":"<p>The secret key that the initiator (for example, the Windows client) must provide to participate in mutual CHAP with the target.</p> <note>The secret key must be between 12 and 16 bytes when encoded in UTF-8.</note>"
         },
         "InitiatorName":{
           "shape":"IqnName",
@@ -2991,7 +3061,7 @@
         },
         "SecretToAuthenticateTarget":{
           "shape":"ChapSecret",
-          "documentation":"<p>The secret key that the target must provide to participate in mutual CHAP with the initiator (e.g. Windows client).</p>"
+          "documentation":"<p>The secret key that the target must provide to participate in mutual CHAP with the initiator (e.g. Windows client).</p> <p>Byte constraints: Minimum bytes of 12. Maximum bytes of 16.</p> <note>The secret key must be between 12 and 16 bytes when encoded in UTF-8.</note>"
         }
       },
       "documentation":"<p>A JSON object containing one or more of the following fields:</p> <ul> <li> <a>UpdateChapCredentialsInput$InitiatorName</a> </li> <li> <a>UpdateChapCredentialsInput$SecretToAuthenticateInitiator</a> </li> <li> <a>UpdateChapCredentialsInput$SecretToAuthenticateTarget</a> </li> <li> <a>UpdateChapCredentialsInput$TargetARN</a> </li> </ul>"

@@ -181,6 +181,34 @@ func ExampleCloudWatchLogs_DeleteRetentionPolicy() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleCloudWatchLogs_DeleteSubscriptionFilter() {
+	svc := cloudwatchlogs.New(nil)
+
+	params := &cloudwatchlogs.DeleteSubscriptionFilterInput{
+		FilterName:   aws.String("FilterName"),   // Required
+		LogGroupName: aws.String("LogGroupName"), // Required
+	}
+	resp, err := svc.DeleteSubscriptionFilter(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleCloudWatchLogs_DescribeLogGroups() {
 	svc := cloudwatchlogs.New(nil)
 
@@ -252,6 +280,36 @@ func ExampleCloudWatchLogs_DescribeMetricFilters() {
 		NextToken:        aws.String("NextToken"),
 	}
 	resp, err := svc.DescribeMetricFilters(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleCloudWatchLogs_DescribeSubscriptionFilters() {
+	svc := cloudwatchlogs.New(nil)
+
+	params := &cloudwatchlogs.DescribeSubscriptionFiltersInput{
+		LogGroupName:     aws.String("LogGroupName"), // Required
+		FilterNamePrefix: aws.String("FilterName"),
+		Limit:            aws.Long(1),
+		NextToken:        aws.String("NextToken"),
+	}
+	resp, err := svc.DescribeSubscriptionFilters(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -423,6 +481,37 @@ func ExampleCloudWatchLogs_PutRetentionPolicy() {
 		RetentionInDays: aws.Long(1),                // Required
 	}
 	resp, err := svc.PutRetentionPolicy(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleCloudWatchLogs_PutSubscriptionFilter() {
+	svc := cloudwatchlogs.New(nil)
+
+	params := &cloudwatchlogs.PutSubscriptionFilterInput{
+		DestinationARN: aws.String("DestinationArn"), // Required
+		FilterName:     aws.String("FilterName"),     // Required
+		FilterPattern:  aws.String("FilterPattern"),  // Required
+		LogGroupName:   aws.String("LogGroupName"),   // Required
+		RoleARN:        aws.String("RoleArn"),        // Required
+	}
+	resp, err := svc.PutSubscriptionFilter(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
