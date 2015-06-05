@@ -114,8 +114,6 @@ func AfterRetryHandler(r *Request) {
 			if err, ok := r.Error.(awserr.Error); ok {
 				if isCodeExpiredCreds(err.Code()) {
 					r.Config.Credentials.Expire()
-					// The credentials will need to be resigned with new credentials
-					r.signed = false
 				}
 			}
 		}
