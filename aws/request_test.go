@@ -68,9 +68,9 @@ type jsonErrorResponse struct {
 func TestRequestRecoverRetry5xx(t *testing.T) {
 	reqNum := 0
 	reqs := []http.Response{
-		http.Response{StatusCode: 500, Body: body(`{"__type":"UnknownError","message":"An error occurred."}`)},
-		http.Response{StatusCode: 501, Body: body(`{"__type":"UnknownError","message":"An error occurred."}`)},
-		http.Response{StatusCode: 200, Body: body(`{"data":"valid"}`)},
+		{StatusCode: 500, Body: body(`{"__type":"UnknownError","message":"An error occurred."}`)},
+		{StatusCode: 501, Body: body(`{"__type":"UnknownError","message":"An error occurred."}`)},
+		{StatusCode: 200, Body: body(`{"data":"valid"}`)},
 	}
 
 	s := NewService(&Config{MaxRetries: 10})
@@ -94,9 +94,9 @@ func TestRequestRecoverRetry5xx(t *testing.T) {
 func TestRequestRecoverRetry4xxRetryable(t *testing.T) {
 	reqNum := 0
 	reqs := []http.Response{
-		http.Response{StatusCode: 400, Body: body(`{"__type":"Throttling","message":"Rate exceeded."}`)},
-		http.Response{StatusCode: 429, Body: body(`{"__type":"ProvisionedThroughputExceededException","message":"Rate exceeded."}`)},
-		http.Response{StatusCode: 200, Body: body(`{"data":"valid"}`)},
+		{StatusCode: 400, Body: body(`{"__type":"Throttling","message":"Rate exceeded."}`)},
+		{StatusCode: 429, Body: body(`{"__type":"ProvisionedThroughputExceededException","message":"Rate exceeded."}`)},
+		{StatusCode: 200, Body: body(`{"data":"valid"}`)},
 	}
 
 	s := NewService(&Config{MaxRetries: 10})
@@ -148,10 +148,10 @@ func TestRequestExhaustRetries(t *testing.T) {
 
 	reqNum := 0
 	reqs := []http.Response{
-		http.Response{StatusCode: 500, Body: body(`{"__type":"UnknownError","message":"An error occurred."}`)},
-		http.Response{StatusCode: 500, Body: body(`{"__type":"UnknownError","message":"An error occurred."}`)},
-		http.Response{StatusCode: 500, Body: body(`{"__type":"UnknownError","message":"An error occurred."}`)},
-		http.Response{StatusCode: 500, Body: body(`{"__type":"UnknownError","message":"An error occurred."}`)},
+		{StatusCode: 500, Body: body(`{"__type":"UnknownError","message":"An error occurred."}`)},
+		{StatusCode: 500, Body: body(`{"__type":"UnknownError","message":"An error occurred."}`)},
+		{StatusCode: 500, Body: body(`{"__type":"UnknownError","message":"An error occurred."}`)},
+		{StatusCode: 500, Body: body(`{"__type":"UnknownError","message":"An error occurred."}`)},
 	}
 
 	s := NewService(&Config{MaxRetries: -1})
@@ -181,8 +181,8 @@ func TestRequestExhaustRetries(t *testing.T) {
 func TestRequestRecoverExpiredCreds(t *testing.T) {
 	reqNum := 0
 	reqs := []http.Response{
-		http.Response{StatusCode: 400, Body: body(`{"__type":"ExpiredTokenException","message":"expired token"}`)},
-		http.Response{StatusCode: 200, Body: body(`{"data":"valid"}`)},
+		{StatusCode: 400, Body: body(`{"__type":"ExpiredTokenException","message":"expired token"}`)},
+		{StatusCode: 200, Body: body(`{"data":"valid"}`)},
 	}
 
 	s := NewService(&Config{MaxRetries: 10, Credentials: credentials.NewStaticCredentials("AKID", "SECRET", "")})
