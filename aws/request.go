@@ -32,8 +32,7 @@ type Request struct {
 	Retryable    SettableBool
 	RetryDelay   time.Duration
 
-	built  bool
-	signed bool
+	built bool
 }
 
 // An Operation is the service API operation to be made.
@@ -164,17 +163,12 @@ func (r *Request) Build() error {
 // Send will build the request prior to signing. All Sign Handlers will
 // be executed in the order they were set.
 func (r *Request) Sign() error {
-	if r.signed {
-		return r.Error
-	}
-
 	r.Build()
 	if r.Error != nil {
 		return r.Error
 	}
 
 	r.Handlers.Sign.Run(r)
-	r.signed = r.Error != nil
 	return r.Error
 }
 
