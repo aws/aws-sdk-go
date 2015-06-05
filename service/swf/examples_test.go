@@ -914,7 +914,7 @@ func ExampleSWF_RespondDecisionTaskCompleted() {
 	params := &swf.RespondDecisionTaskCompletedInput{
 		TaskToken: aws.String("TaskToken"), // Required
 		Decisions: []*swf.Decision{
-			&swf.Decision{ // Required
+			{ // Required
 				DecisionType: aws.String("DecisionType"), // Required
 				CancelTimerDecisionAttributes: &swf.CancelTimerDecisionAttributes{
 					TimerID: aws.String("TimerId"), // Required

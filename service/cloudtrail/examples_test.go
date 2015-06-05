@@ -139,7 +139,7 @@ func ExampleCloudTrail_LookupEvents() {
 	params := &cloudtrail.LookupEventsInput{
 		EndTime: aws.Time(time.Now()),
 		LookupAttributes: []*cloudtrail.LookupAttribute{
-			&cloudtrail.LookupAttribute{ // Required
+			{ // Required
 				AttributeKey:   aws.String("LookupAttributeKey"), // Required
 				AttributeValue: aws.String("String"),             // Required
 			},

@@ -21,8 +21,8 @@ generate-protocol-test:
 generate-test: generate-protocol-test
 
 generate:
-	go generate ./aws
-	make services
+	go generate ./internal/endpoints
+	@make services
 
 services:
 	go generate ./service

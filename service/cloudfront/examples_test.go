@@ -105,7 +105,7 @@ func ExampleCloudFront_CreateDistribution() {
 			Origins: &cloudfront.Origins{ // Required
 				Quantity: aws.Long(1), // Required
 				Items: []*cloudfront.Origin{
-					&cloudfront.Origin{ // Required
+					{ // Required
 						DomainName: aws.String("string"), // Required
 						ID:         aws.String("string"), // Required
 						CustomOriginConfig: &cloudfront.CustomOriginConfig{
@@ -131,7 +131,7 @@ func ExampleCloudFront_CreateDistribution() {
 			CacheBehaviors: &cloudfront.CacheBehaviors{
 				Quantity: aws.Long(1), // Required
 				Items: []*cloudfront.CacheBehavior{
-					&cloudfront.CacheBehavior{ // Required
+					{ // Required
 						ForwardedValues: &cloudfront.ForwardedValues{ // Required
 							Cookies: &cloudfront.CookiePreference{ // Required
 								Forward: aws.String("ItemSelection"), // Required
@@ -186,7 +186,7 @@ func ExampleCloudFront_CreateDistribution() {
 			CustomErrorResponses: &cloudfront.CustomErrorResponses{
 				Quantity: aws.Long(1), // Required
 				Items: []*cloudfront.CustomErrorResponse{
-					&cloudfront.CustomErrorResponse{ // Required
+					{ // Required
 						ErrorCode:          aws.Long(1), // Required
 						ErrorCachingMinTTL: aws.Long(1),
 						ResponseCode:       aws.String("string"),
@@ -813,7 +813,7 @@ func ExampleCloudFront_UpdateDistribution() {
 			Origins: &cloudfront.Origins{ // Required
 				Quantity: aws.Long(1), // Required
 				Items: []*cloudfront.Origin{
-					&cloudfront.Origin{ // Required
+					{ // Required
 						DomainName: aws.String("string"), // Required
 						ID:         aws.String("string"), // Required
 						CustomOriginConfig: &cloudfront.CustomOriginConfig{
@@ -839,7 +839,7 @@ func ExampleCloudFront_UpdateDistribution() {
 			CacheBehaviors: &cloudfront.CacheBehaviors{
 				Quantity: aws.Long(1), // Required
 				Items: []*cloudfront.CacheBehavior{
-					&cloudfront.CacheBehavior{ // Required
+					{ // Required
 						ForwardedValues: &cloudfront.ForwardedValues{ // Required
 							Cookies: &cloudfront.CookiePreference{ // Required
 								Forward: aws.String("ItemSelection"), // Required
@@ -894,7 +894,7 @@ func ExampleCloudFront_UpdateDistribution() {
 			CustomErrorResponses: &cloudfront.CustomErrorResponses{
 				Quantity: aws.Long(1), // Required
 				Items: []*cloudfront.CustomErrorResponse{
-					&cloudfront.CustomErrorResponse{ // Required
+					{ // Required
 						ErrorCode:          aws.Long(1), // Required
 						ErrorCachingMinTTL: aws.Long(1),
 						ResponseCode:       aws.String("string"),

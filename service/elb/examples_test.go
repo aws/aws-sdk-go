@@ -25,7 +25,7 @@ func ExampleELB_AddTags() {
 			// More values...
 		},
 		Tags: []*elb.Tag{ // Required
-			&elb.Tag{ // Required
+			{ // Required
 				Key:   aws.String("TagKey"), // Required
 				Value: aws.String("TagValue"),
 			},
@@ -212,7 +212,7 @@ func ExampleELB_CreateLoadBalancer() {
 
 	params := &elb.CreateLoadBalancerInput{
 		Listeners: []*elb.Listener{ // Required
-			&elb.Listener{ // Required
+			{ // Required
 				InstancePort:     aws.Long(1),            // Required
 				LoadBalancerPort: aws.Long(1),            // Required
 				Protocol:         aws.String("Protocol"), // Required
@@ -236,7 +236,7 @@ func ExampleELB_CreateLoadBalancer() {
 			// More values...
 		},
 		Tags: []*elb.Tag{
-			&elb.Tag{ // Required
+			{ // Required
 				Key:   aws.String("TagKey"), // Required
 				Value: aws.String("TagValue"),
 			},
@@ -269,7 +269,7 @@ func ExampleELB_CreateLoadBalancerListeners() {
 
 	params := &elb.CreateLoadBalancerListenersInput{
 		Listeners: []*elb.Listener{ // Required
-			&elb.Listener{ // Required
+			{ // Required
 				InstancePort:     aws.Long(1),            // Required
 				LoadBalancerPort: aws.Long(1),            // Required
 				Protocol:         aws.String("Protocol"), // Required
@@ -309,7 +309,7 @@ func ExampleELB_CreateLoadBalancerPolicy() {
 		PolicyName:       aws.String("PolicyName"),      // Required
 		PolicyTypeName:   aws.String("PolicyTypeName"),  // Required
 		PolicyAttributes: []*elb.PolicyAttribute{
-			&elb.PolicyAttribute{ // Required
+			{ // Required
 				AttributeName:  aws.String("AttributeName"),
 				AttributeValue: aws.String("AttributeValue"),
 			},
@@ -428,7 +428,7 @@ func ExampleELB_DeregisterInstancesFromLoadBalancer() {
 
 	params := &elb.DeregisterInstancesFromLoadBalancerInput{
 		Instances: []*elb.Instance{ // Required
-			&elb.Instance{ // Required
+			{ // Required
 				InstanceID: aws.String("InstanceId"),
 			},
 			// More values...
@@ -462,7 +462,7 @@ func ExampleELB_DescribeInstanceHealth() {
 	params := &elb.DescribeInstanceHealthInput{
 		LoadBalancerName: aws.String("AccessPointName"), // Required
 		Instances: []*elb.Instance{
-			&elb.Instance{ // Required
+			{ // Required
 				InstanceID: aws.String("InstanceId"),
 			},
 			// More values...
@@ -744,7 +744,7 @@ func ExampleELB_ModifyLoadBalancerAttributes() {
 				S3BucketPrefix: aws.String("AccessLogPrefix"),
 			},
 			AdditionalAttributes: []*elb.AdditionalAttribute{
-				&elb.AdditionalAttribute{ // Required
+				{ // Required
 					Key:   aws.String("StringVal"),
 					Value: aws.String("StringVal"),
 				},
@@ -789,7 +789,7 @@ func ExampleELB_RegisterInstancesWithLoadBalancer() {
 
 	params := &elb.RegisterInstancesWithLoadBalancerInput{
 		Instances: []*elb.Instance{ // Required
-			&elb.Instance{ // Required
+			{ // Required
 				InstanceID: aws.String("InstanceId"),
 			},
 			// More values...
@@ -826,7 +826,7 @@ func ExampleELB_RemoveTags() {
 			// More values...
 		},
 		Tags: []*elb.TagKeyOnly{ // Required
-			&elb.TagKeyOnly{ // Required
+			{ // Required
 				Key: aws.String("TagKey"),
 			},
 			// More values...

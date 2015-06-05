@@ -55,7 +55,7 @@ func ExampleS3_CompleteMultipartUpload() {
 		UploadID: aws.String("MultipartUploadId"), // Required
 		MultipartUpload: &s3.CompletedMultipartUpload{
 			Parts: []*s3.CompletedPart{
-				&s3.CompletedPart{ // Required
+				{ // Required
 					ETag:       aws.String("ETag"),
 					PartNumber: aws.Long(1),
 				},
@@ -459,7 +459,7 @@ func ExampleS3_DeleteObjects() {
 		Bucket: aws.String("BucketName"), // Required
 		Delete: &s3.Delete{ // Required
 			Objects: []*s3.ObjectIdentifier{ // Required
-				&s3.ObjectIdentifier{ // Required
+				{ // Required
 					Key:       aws.String("ObjectKey"), // Required
 					VersionID: aws.String("ObjectVersionId"),
 				},
@@ -1173,7 +1173,7 @@ func ExampleS3_PutBucketACL() {
 		ACL:    aws.String("BucketCannedACL"),
 		AccessControlPolicy: &s3.AccessControlPolicy{
 			Grants: []*s3.Grant{
-				&s3.Grant{ // Required
+				{ // Required
 					Grantee: &s3.Grantee{
 						Type:         aws.String("Type"), // Required
 						DisplayName:  aws.String("DisplayName"),
@@ -1224,7 +1224,7 @@ func ExampleS3_PutBucketCORS() {
 		Bucket: aws.String("BucketName"), // Required
 		CORSConfiguration: &s3.CORSConfiguration{
 			CORSRules: []*s3.CORSRule{
-				&s3.CORSRule{ // Required
+				{ // Required
 					AllowedHeaders: []*string{
 						aws.String("AllowedHeader"), // Required
 						// More values...
@@ -1275,7 +1275,7 @@ func ExampleS3_PutBucketLifecycle() {
 		Bucket: aws.String("BucketName"), // Required
 		LifecycleConfiguration: &s3.LifecycleConfiguration{
 			Rules: []*s3.LifecycleRule{ // Required
-				&s3.LifecycleRule{ // Required
+				{ // Required
 					Prefix: aws.String("Prefix"),           // Required
 					Status: aws.String("ExpirationStatus"), // Required
 					Expiration: &s3.LifecycleExpiration{
@@ -1330,7 +1330,7 @@ func ExampleS3_PutBucketLogging() {
 			LoggingEnabled: &s3.LoggingEnabled{
 				TargetBucket: aws.String("TargetBucket"),
 				TargetGrants: []*s3.TargetGrant{
-					&s3.TargetGrant{ // Required
+					{ // Required
 						Grantee: &s3.Grantee{
 							Type:         aws.String("Type"), // Required
 							DisplayName:  aws.String("DisplayName"),
@@ -1431,7 +1431,7 @@ func ExampleS3_PutBucketNotificationConfiguration() {
 		Bucket: aws.String("BucketName"), // Required
 		NotificationConfiguration: &s3.NotificationConfiguration{ // Required
 			LambdaFunctionConfigurations: []*s3.LambdaFunctionConfiguration{
-				&s3.LambdaFunctionConfiguration{ // Required
+				{ // Required
 					Events: []*string{ // Required
 						aws.String("Event"), // Required
 						// More values...
@@ -1442,7 +1442,7 @@ func ExampleS3_PutBucketNotificationConfiguration() {
 				// More values...
 			},
 			QueueConfigurations: []*s3.QueueConfiguration{
-				&s3.QueueConfiguration{ // Required
+				{ // Required
 					Events: []*string{ // Required
 						aws.String("Event"), // Required
 						// More values...
@@ -1453,7 +1453,7 @@ func ExampleS3_PutBucketNotificationConfiguration() {
 				// More values...
 			},
 			TopicConfigurations: []*s3.TopicConfiguration{
-				&s3.TopicConfiguration{ // Required
+				{ // Required
 					Events: []*string{ // Required
 						aws.String("Event"), // Required
 						// More values...
@@ -1522,7 +1522,7 @@ func ExampleS3_PutBucketReplication() {
 		ReplicationConfiguration: &s3.ReplicationConfiguration{ // Required
 			Role: aws.String("Role"), // Required
 			Rules: []*s3.ReplicationRule{ // Required
-				&s3.ReplicationRule{ // Required
+				{ // Required
 					Destination: &s3.Destination{ // Required
 						Bucket: aws.String("BucketName"), // Required
 					},
@@ -1592,7 +1592,7 @@ func ExampleS3_PutBucketTagging() {
 		Bucket: aws.String("BucketName"), // Required
 		Tagging: &s3.Tagging{ // Required
 			TagSet: []*s3.Tag{ // Required
-				&s3.Tag{ // Required
+				{ // Required
 					Key:   aws.String("ObjectKey"), // Required
 					Value: aws.String("Value"),     // Required
 				},
@@ -1670,7 +1670,7 @@ func ExampleS3_PutBucketWebsite() {
 				Protocol: aws.String("Protocol"),
 			},
 			RoutingRules: []*s3.RoutingRule{
-				&s3.RoutingRule{ // Required
+				{ // Required
 					Redirect: &s3.Redirect{ // Required
 						HTTPRedirectCode:     aws.String("HttpRedirectCode"),
 						HostName:             aws.String("HostName"),
@@ -1770,7 +1770,7 @@ func ExampleS3_PutObjectACL() {
 		ACL:    aws.String("ObjectCannedACL"),
 		AccessControlPolicy: &s3.AccessControlPolicy{
 			Grants: []*s3.Grant{
-				&s3.Grant{ // Required
+				{ // Required
 					Grantee: &s3.Grantee{
 						Type:         aws.String("Type"), // Required
 						DisplayName:  aws.String("DisplayName"),

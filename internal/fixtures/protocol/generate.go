@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/url"
 	"os"
+	"os/exec"
 	"regexp"
 	"sort"
 	"strconv"
@@ -72,6 +73,7 @@ var extraImports = []string{
 	"testing",
 	"time",
 	"net/url",
+	"",
 	"github.com/aws/aws-sdk-go/internal/protocol/xml/xmlutil",
 	"github.com/aws/aws-sdk-go/internal/util",
 	"github.com/stretchr/testify/assert",
@@ -80,9 +82,12 @@ var extraImports = []string{
 func addImports(code string) string {
 	importNames := make([]string, len(extraImports))
 	for i, n := range extraImports {
-		importNames[i] = fmt.Sprintf("%q", n)
+		if n != "" {
+			importNames[i] = fmt.Sprintf("%q", n)
+		}
 	}
-	str := reImportRemoval.ReplaceAllString(code, "import (\n$1\n"+strings.Join(importNames, "\n")+")")
+
+	str := reImportRemoval.ReplaceAllString(code, "import (\n"+strings.Join(importNames, "\n")+"$1\n)")
 	return str
 }
 
@@ -296,6 +301,12 @@ func main() {
 			panic(err)
 		}
 		f.WriteString(util.GoFmt(out))
+		f.Close()
+
+		c := exec.Command("gofmt", "-s", "-w", os.Args[2])
+		if err := c.Run(); err != nil {
+			panic(err)
+		}
 	} else {
 		fmt.Println(out)
 	}

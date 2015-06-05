@@ -405,7 +405,7 @@ func ExampleCloudWatchLogs_PutLogEvents() {
 
 	params := &cloudwatchlogs.PutLogEventsInput{
 		LogEvents: []*cloudwatchlogs.InputLogEvent{ // Required
-			&cloudwatchlogs.InputLogEvent{ // Required
+			{ // Required
 				Message:   aws.String("EventMessage"), // Required
 				Timestamp: aws.Long(1),                // Required
 			},
@@ -444,7 +444,7 @@ func ExampleCloudWatchLogs_PutMetricFilter() {
 		FilterPattern: aws.String("FilterPattern"), // Required
 		LogGroupName:  aws.String("LogGroupName"),  // Required
 		MetricTransformations: []*cloudwatchlogs.MetricTransformation{ // Required
-			&cloudwatchlogs.MetricTransformation{ // Required
+			{ // Required
 				MetricName:      aws.String("MetricName"),      // Required
 				MetricNamespace: aws.String("MetricNamespace"), // Required
 				MetricValue:     aws.String("MetricValue"),     // Required

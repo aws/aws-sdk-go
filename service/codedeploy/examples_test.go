@@ -25,7 +25,7 @@ func ExampleCodeDeploy_AddTagsToOnPremisesInstances() {
 			// More values...
 		},
 		Tags: []*codedeploy.Tag{ // Required
-			&codedeploy.Tag{ // Required
+			{ // Required
 				Key:   aws.String("Key"),
 				Value: aws.String("Value"),
 			},
@@ -259,7 +259,7 @@ func ExampleCodeDeploy_CreateDeploymentGroup() {
 		},
 		DeploymentConfigName: aws.String("DeploymentConfigName"),
 		EC2TagFilters: []*codedeploy.EC2TagFilter{
-			&codedeploy.EC2TagFilter{ // Required
+			{ // Required
 				Key:   aws.String("Key"),
 				Type:  aws.String("EC2TagFilterType"),
 				Value: aws.String("Value"),
@@ -267,7 +267,7 @@ func ExampleCodeDeploy_CreateDeploymentGroup() {
 			// More values...
 		},
 		OnPremisesInstanceTagFilters: []*codedeploy.TagFilter{
-			&codedeploy.TagFilter{ // Required
+			{ // Required
 				Key:   aws.String("Key"),
 				Type:  aws.String("TagFilterType"),
 				Value: aws.String("Value"),
@@ -801,7 +801,7 @@ func ExampleCodeDeploy_ListOnPremisesInstances() {
 		NextToken:          aws.String("NextToken"),
 		RegistrationStatus: aws.String("RegistrationStatus"),
 		TagFilters: []*codedeploy.TagFilter{
-			&codedeploy.TagFilter{ // Required
+			{ // Required
 				Key:   aws.String("Key"),
 				Type:  aws.String("TagFilterType"),
 				Value: aws.String("Value"),
@@ -909,7 +909,7 @@ func ExampleCodeDeploy_RemoveTagsFromOnPremisesInstances() {
 			// More values...
 		},
 		Tags: []*codedeploy.Tag{ // Required
-			&codedeploy.Tag{ // Required
+			{ // Required
 				Key:   aws.String("Key"),
 				Value: aws.String("Value"),
 			},
@@ -1004,7 +1004,7 @@ func ExampleCodeDeploy_UpdateDeploymentGroup() {
 		},
 		DeploymentConfigName: aws.String("DeploymentConfigName"),
 		EC2TagFilters: []*codedeploy.EC2TagFilter{
-			&codedeploy.EC2TagFilter{ // Required
+			{ // Required
 				Key:   aws.String("Key"),
 				Type:  aws.String("EC2TagFilterType"),
 				Value: aws.String("Value"),
@@ -1013,7 +1013,7 @@ func ExampleCodeDeploy_UpdateDeploymentGroup() {
 		},
 		NewDeploymentGroupName: aws.String("DeploymentGroupName"),
 		OnPremisesInstanceTagFilters: []*codedeploy.TagFilter{
-			&codedeploy.TagFilter{ // Required
+			{ // Required
 				Key:   aws.String("Key"),
 				Type:  aws.String("TagFilterType"),
 				Value: aws.String("Value"),

@@ -86,7 +86,7 @@ func ExampleSQS_ChangeMessageVisibilityBatch() {
 
 	params := &sqs.ChangeMessageVisibilityBatchInput{
 		Entries: []*sqs.ChangeMessageVisibilityBatchRequestEntry{ // Required
-			&sqs.ChangeMessageVisibilityBatchRequestEntry{ // Required
+			{ // Required
 				ID:                aws.String("String"), // Required
 				ReceiptHandle:     aws.String("String"), // Required
 				VisibilityTimeout: aws.Long(1),
@@ -180,7 +180,7 @@ func ExampleSQS_DeleteMessageBatch() {
 
 	params := &sqs.DeleteMessageBatchInput{
 		Entries: []*sqs.DeleteMessageBatchRequestEntry{ // Required
-			&sqs.DeleteMessageBatchRequestEntry{ // Required
+			{ // Required
 				ID:            aws.String("String"), // Required
 				ReceiptHandle: aws.String("String"), // Required
 			},
@@ -450,7 +450,7 @@ func ExampleSQS_SendMessage() {
 		QueueURL:     aws.String("String"), // Required
 		DelaySeconds: aws.Long(1),
 		MessageAttributes: map[string]*sqs.MessageAttributeValue{
-			"Key": &sqs.MessageAttributeValue{ // Required
+			"Key": { // Required
 				DataType: aws.String("String"), // Required
 				BinaryListValues: [][]byte{
 					[]byte("PAYLOAD"), // Required
@@ -492,12 +492,12 @@ func ExampleSQS_SendMessageBatch() {
 
 	params := &sqs.SendMessageBatchInput{
 		Entries: []*sqs.SendMessageBatchRequestEntry{ // Required
-			&sqs.SendMessageBatchRequestEntry{ // Required
+			{ // Required
 				ID:           aws.String("String"), // Required
 				MessageBody:  aws.String("String"), // Required
 				DelaySeconds: aws.Long(1),
 				MessageAttributes: map[string]*sqs.MessageAttributeValue{
-					"Key": &sqs.MessageAttributeValue{ // Required
+					"Key": { // Required
 						DataType: aws.String("String"), // Required
 						BinaryListValues: [][]byte{
 							[]byte("PAYLOAD"), // Required

@@ -21,7 +21,7 @@ func ExampleWorkSpaces_CreateWorkspaces() {
 
 	params := &workspaces.CreateWorkspacesInput{
 		Workspaces: []*workspaces.WorkspaceRequest{ // Required
-			&workspaces.WorkspaceRequest{ // Required
+			{ // Required
 				BundleID:    aws.String("BundleId"),    // Required
 				DirectoryID: aws.String("DirectoryId"), // Required
 				UserName:    aws.String("UserName"),    // Required
@@ -153,7 +153,7 @@ func ExampleWorkSpaces_RebootWorkspaces() {
 
 	params := &workspaces.RebootWorkspacesInput{
 		RebootWorkspaceRequests: []*workspaces.RebootRequest{ // Required
-			&workspaces.RebootRequest{ // Required
+			{ // Required
 				WorkspaceID: aws.String("WorkspaceId"), // Required
 			},
 			// More values...
@@ -185,7 +185,7 @@ func ExampleWorkSpaces_RebuildWorkspaces() {
 
 	params := &workspaces.RebuildWorkspacesInput{
 		RebuildWorkspaceRequests: []*workspaces.RebuildRequest{ // Required
-			&workspaces.RebuildRequest{ // Required
+			{ // Required
 				WorkspaceID: aws.String("WorkspaceId"), // Required
 			},
 			// More values...
@@ -217,7 +217,7 @@ func ExampleWorkSpaces_TerminateWorkspaces() {
 
 	params := &workspaces.TerminateWorkspacesInput{
 		TerminateWorkspaceRequests: []*workspaces.TerminateRequest{ // Required
-			&workspaces.TerminateRequest{ // Required
+			{ // Required
 				WorkspaceID: aws.String("WorkspaceId"), // Required
 			},
 			// More values...

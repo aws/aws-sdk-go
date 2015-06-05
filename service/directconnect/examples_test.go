@@ -93,7 +93,7 @@ func ExampleDirectConnect_AllocatePublicVirtualInterface() {
 			AmazonAddress:   aws.String("AmazonAddress"),   // Required
 			CustomerAddress: aws.String("CustomerAddress"), // Required
 			RouteFilterPrefixes: []*directconnect.RouteFilterPrefix{ // Required
-				&directconnect.RouteFilterPrefix{ // Required
+				{ // Required
 					CIDR: aws.String("CIDR"),
 				},
 				// More values...
@@ -311,7 +311,7 @@ func ExampleDirectConnect_CreatePublicVirtualInterface() {
 			AmazonAddress:   aws.String("AmazonAddress"),   // Required
 			CustomerAddress: aws.String("CustomerAddress"), // Required
 			RouteFilterPrefixes: []*directconnect.RouteFilterPrefix{ // Required
-				&directconnect.RouteFilterPrefix{ // Required
+				{ // Required
 					CIDR: aws.String("CIDR"),
 				},
 				// More values...

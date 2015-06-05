@@ -1,10 +1,6 @@
 package restxml_test
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/internal/protocol/restxml"
-	"github.com/aws/aws-sdk-go/internal/signer/v4"
-
 	"bytes"
 	"encoding/json"
 	"encoding/xml"
@@ -15,7 +11,10 @@ import (
 	"testing"
 	"time"
 
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/protocol/restxml"
 	"github.com/aws/aws-sdk-go/internal/protocol/xml/xmlutil"
+	"github.com/aws/aws-sdk-go/internal/signer/v4"
 	"github.com/aws/aws-sdk-go/internal/util"
 	"github.com/stretchr/testify/assert"
 )
@@ -2280,13 +2279,13 @@ func TestInputService9ProtocolTestListOfStructuresCase1(t *testing.T) {
 
 	input := &InputService9TestShapeInputShape{
 		ListParam: []*InputService9TestShapeSingleFieldStruct{
-			&InputService9TestShapeSingleFieldStruct{
+			{
 				Element: aws.String("one"),
 			},
-			&InputService9TestShapeSingleFieldStruct{
+			{
 				Element: aws.String("two"),
 			},
-			&InputService9TestShapeSingleFieldStruct{
+			{
 				Element: aws.String("three"),
 			},
 		},
@@ -2701,10 +2700,10 @@ func TestInputService18ProtocolTestRecursiveShapesCase4(t *testing.T) {
 	input := &InputService18TestShapeInputShape{
 		RecursiveStruct: &InputService18TestShapeRecursiveStructType{
 			RecursiveList: []*InputService18TestShapeRecursiveStructType{
-				&InputService18TestShapeRecursiveStructType{
+				{
 					NoRecurse: aws.String("foo"),
 				},
-				&InputService18TestShapeRecursiveStructType{
+				{
 					NoRecurse: aws.String("bar"),
 				},
 			},
@@ -2736,10 +2735,10 @@ func TestInputService18ProtocolTestRecursiveShapesCase5(t *testing.T) {
 	input := &InputService18TestShapeInputShape{
 		RecursiveStruct: &InputService18TestShapeRecursiveStructType{
 			RecursiveList: []*InputService18TestShapeRecursiveStructType{
-				&InputService18TestShapeRecursiveStructType{
+				{
 					NoRecurse: aws.String("foo"),
 				},
-				&InputService18TestShapeRecursiveStructType{
+				{
 					RecursiveStruct: &InputService18TestShapeRecursiveStructType{
 						NoRecurse: aws.String("bar"),
 					},
@@ -2773,10 +2772,10 @@ func TestInputService18ProtocolTestRecursiveShapesCase6(t *testing.T) {
 	input := &InputService18TestShapeInputShape{
 		RecursiveStruct: &InputService18TestShapeRecursiveStructType{
 			RecursiveMap: map[string]*InputService18TestShapeRecursiveStructType{
-				"bar": &InputService18TestShapeRecursiveStructType{
+				"bar": {
 					NoRecurse: aws.String("bar"),
 				},
-				"foo": &InputService18TestShapeRecursiveStructType{
+				"foo": {
 					NoRecurse: aws.String("foo"),
 				},
 			},

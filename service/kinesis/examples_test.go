@@ -311,7 +311,7 @@ func ExampleKinesis_PutRecords() {
 
 	params := &kinesis.PutRecordsInput{
 		Records: []*kinesis.PutRecordsRequestEntry{ // Required
-			&kinesis.PutRecordsRequestEntry{ // Required
+			{ // Required
 				Data:            []byte("PAYLOAD"),          // Required
 				PartitionKey:    aws.String("PartitionKey"), // Required
 				ExplicitHashKey: aws.String("HashKey"),

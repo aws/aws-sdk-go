@@ -134,7 +134,7 @@ func ExampleRedshift_CreateCluster() {
 		PreferredMaintenanceWindow: aws.String("String"),
 		PubliclyAccessible:         aws.Boolean(true),
 		Tags: []*redshift.Tag{
-			&redshift.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -174,7 +174,7 @@ func ExampleRedshift_CreateClusterParameterGroup() {
 		ParameterGroupFamily: aws.String("String"), // Required
 		ParameterGroupName:   aws.String("String"), // Required
 		Tags: []*redshift.Tag{
-			&redshift.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -209,7 +209,7 @@ func ExampleRedshift_CreateClusterSecurityGroup() {
 		ClusterSecurityGroupName: aws.String("String"), // Required
 		Description:              aws.String("String"), // Required
 		Tags: []*redshift.Tag{
-			&redshift.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -244,7 +244,7 @@ func ExampleRedshift_CreateClusterSnapshot() {
 		ClusterIdentifier:  aws.String("String"), // Required
 		SnapshotIdentifier: aws.String("String"), // Required
 		Tags: []*redshift.Tag{
-			&redshift.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -283,7 +283,7 @@ func ExampleRedshift_CreateClusterSubnetGroup() {
 			// More values...
 		},
 		Tags: []*redshift.Tag{
-			&redshift.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -329,7 +329,7 @@ func ExampleRedshift_CreateEventSubscription() {
 		},
 		SourceType: aws.String("String"),
 		Tags: []*redshift.Tag{
-			&redshift.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -363,7 +363,7 @@ func ExampleRedshift_CreateHSMClientCertificate() {
 	params := &redshift.CreateHSMClientCertificateInput{
 		HSMClientCertificateIdentifier: aws.String("String"), // Required
 		Tags: []*redshift.Tag{
-			&redshift.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -402,7 +402,7 @@ func ExampleRedshift_CreateHSMConfiguration() {
 		HSMPartitionPassword:       aws.String("String"), // Required
 		HSMServerPublicCertificate: aws.String("String"), // Required
 		Tags: []*redshift.Tag{
-			&redshift.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -436,7 +436,7 @@ func ExampleRedshift_CreateTags() {
 	params := &redshift.CreateTagsInput{
 		ResourceName: aws.String("String"), // Required
 		Tags: []*redshift.Tag{ // Required
-			&redshift.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -1501,7 +1501,7 @@ func ExampleRedshift_ModifyClusterParameterGroup() {
 	params := &redshift.ModifyClusterParameterGroupInput{
 		ParameterGroupName: aws.String("String"), // Required
 		Parameters: []*redshift.Parameter{ // Required
-			&redshift.Parameter{ // Required
+			{ // Required
 				AllowedValues:        aws.String("String"),
 				DataType:             aws.String("String"),
 				Description:          aws.String("String"),
@@ -1695,7 +1695,7 @@ func ExampleRedshift_ResetClusterParameterGroup() {
 	params := &redshift.ResetClusterParameterGroupInput{
 		ParameterGroupName: aws.String("String"), // Required
 		Parameters: []*redshift.Parameter{
-			&redshift.Parameter{ // Required
+			{ // Required
 				AllowedValues:        aws.String("String"),
 				DataType:             aws.String("String"),
 				Description:          aws.String("String"),

@@ -120,7 +120,7 @@ func ExampleCloudWatch_DescribeAlarmsForMetric() {
 		MetricName: aws.String("MetricName"), // Required
 		Namespace:  aws.String("Namespace"),  // Required
 		Dimensions: []*cloudwatch.Dimension{
-			&cloudwatch.Dimension{ // Required
+			{ // Required
 				Name:  aws.String("DimensionName"),  // Required
 				Value: aws.String("DimensionValue"), // Required
 			},
@@ -225,7 +225,7 @@ func ExampleCloudWatch_GetMetricStatistics() {
 			// More values...
 		},
 		Dimensions: []*cloudwatch.Dimension{
-			&cloudwatch.Dimension{ // Required
+			{ // Required
 				Name:  aws.String("DimensionName"),  // Required
 				Value: aws.String("DimensionValue"), // Required
 			},
@@ -259,7 +259,7 @@ func ExampleCloudWatch_ListMetrics() {
 
 	params := &cloudwatch.ListMetricsInput{
 		Dimensions: []*cloudwatch.DimensionFilter{
-			&cloudwatch.DimensionFilter{ // Required
+			{ // Required
 				Name:  aws.String("DimensionName"), // Required
 				Value: aws.String("DimensionValue"),
 			},
@@ -309,7 +309,7 @@ func ExampleCloudWatch_PutMetricAlarm() {
 		},
 		AlarmDescription: aws.String("AlarmDescription"),
 		Dimensions: []*cloudwatch.Dimension{
-			&cloudwatch.Dimension{ // Required
+			{ // Required
 				Name:  aws.String("DimensionName"),  // Required
 				Value: aws.String("DimensionValue"), // Required
 			},
@@ -351,10 +351,10 @@ func ExampleCloudWatch_PutMetricData() {
 
 	params := &cloudwatch.PutMetricDataInput{
 		MetricData: []*cloudwatch.MetricDatum{ // Required
-			&cloudwatch.MetricDatum{ // Required
+			{ // Required
 				MetricName: aws.String("MetricName"), // Required
 				Dimensions: []*cloudwatch.Dimension{
-					&cloudwatch.Dimension{ // Required
+					{ // Required
 						Name:  aws.String("DimensionName"),  // Required
 						Value: aws.String("DimensionValue"), // Required
 					},

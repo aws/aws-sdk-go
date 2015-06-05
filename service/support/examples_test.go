@@ -21,7 +21,7 @@ func ExampleSupport_AddAttachmentsToSet() {
 
 	params := &support.AddAttachmentsToSetInput{
 		Attachments: []*support.Attachment{ // Required
-			&support.Attachment{ // Required
+			{ // Required
 				Data:     []byte("PAYLOAD"),
 				FileName: aws.String("FileName"),
 			},

@@ -1,10 +1,6 @@
 package query_test
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/internal/protocol/query"
-	"github.com/aws/aws-sdk-go/internal/signer/v4"
-
 	"bytes"
 	"encoding/json"
 	"encoding/xml"
@@ -15,7 +11,10 @@ import (
 	"testing"
 	"time"
 
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/protocol/query"
 	"github.com/aws/aws-sdk-go/internal/protocol/xml/xmlutil"
+	"github.com/aws/aws-sdk-go/internal/signer/v4"
 	"github.com/aws/aws-sdk-go/internal/util"
 	"github.com/stretchr/testify/assert"
 )
@@ -1442,10 +1441,10 @@ func TestInputService9ProtocolTestRecursiveShapesCase4(t *testing.T) {
 	input := &InputService9TestShapeInputShape{
 		RecursiveStruct: &InputService9TestShapeRecursiveStructType{
 			RecursiveList: []*InputService9TestShapeRecursiveStructType{
-				&InputService9TestShapeRecursiveStructType{
+				{
 					NoRecurse: aws.String("foo"),
 				},
-				&InputService9TestShapeRecursiveStructType{
+				{
 					NoRecurse: aws.String("bar"),
 				},
 			},
@@ -1477,10 +1476,10 @@ func TestInputService9ProtocolTestRecursiveShapesCase5(t *testing.T) {
 	input := &InputService9TestShapeInputShape{
 		RecursiveStruct: &InputService9TestShapeRecursiveStructType{
 			RecursiveList: []*InputService9TestShapeRecursiveStructType{
-				&InputService9TestShapeRecursiveStructType{
+				{
 					NoRecurse: aws.String("foo"),
 				},
-				&InputService9TestShapeRecursiveStructType{
+				{
 					RecursiveStruct: &InputService9TestShapeRecursiveStructType{
 						NoRecurse: aws.String("bar"),
 					},
@@ -1514,10 +1513,10 @@ func TestInputService9ProtocolTestRecursiveShapesCase6(t *testing.T) {
 	input := &InputService9TestShapeInputShape{
 		RecursiveStruct: &InputService9TestShapeRecursiveStructType{
 			RecursiveMap: map[string]*InputService9TestShapeRecursiveStructType{
-				"bar": &InputService9TestShapeRecursiveStructType{
+				"bar": {
 					NoRecurse: aws.String("bar"),
 				},
-				"foo": &InputService9TestShapeRecursiveStructType{
+				"foo": {
 					NoRecurse: aws.String("foo"),
 				},
 			},

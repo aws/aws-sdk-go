@@ -217,7 +217,7 @@ func ExampleOpsWorks_CreateApp() {
 			// More values...
 		},
 		DataSources: []*opsworks.DataSource{
-			&opsworks.DataSource{ // Required
+			{ // Required
 				ARN:          aws.String("String"),
 				DatabaseName: aws.String("String"),
 				Type:         aws.String("String"),
@@ -231,7 +231,7 @@ func ExampleOpsWorks_CreateApp() {
 		},
 		EnableSSL: aws.Boolean(true),
 		Environment: []*opsworks.EnvironmentVariable{
-			&opsworks.EnvironmentVariable{ // Required
+			{ // Required
 				Key:    aws.String("String"), // Required
 				Value:  aws.String("String"), // Required
 				Secure: aws.Boolean(true),
@@ -273,7 +273,7 @@ func ExampleOpsWorks_CreateDeployment() {
 		Command: &opsworks.DeploymentCommand{ // Required
 			Name: aws.String("DeploymentCommandName"), // Required
 			Args: map[string][]*string{
-				"Key": []*string{ // Required
+				"Key": { // Required
 					aws.String("String"), // Required
 					// More values...
 				},
@@ -325,7 +325,7 @@ func ExampleOpsWorks_CreateInstance() {
 		AutoScalingType:  aws.String("AutoScalingType"),
 		AvailabilityZone: aws.String("String"),
 		BlockDeviceMappings: []*opsworks.BlockDeviceMapping{
-			&opsworks.BlockDeviceMapping{ // Required
+			{ // Required
 				DeviceName: aws.String("String"),
 				EBS: &opsworks.EBSBlockDevice{
 					DeleteOnTermination: aws.Boolean(true),
@@ -424,7 +424,7 @@ func ExampleOpsWorks_CreateLayer() {
 		},
 		UseEBSOptimizedInstances: aws.Boolean(true),
 		VolumeConfigurations: []*opsworks.VolumeConfiguration{
-			&opsworks.VolumeConfiguration{ // Required
+			{ // Required
 				MountPoint:    aws.String("String"), // Required
 				NumberOfDisks: aws.Long(1),          // Required
 				Size:          aws.Long(1),          // Required
@@ -1946,7 +1946,7 @@ func ExampleOpsWorks_UpdateApp() {
 			// More values...
 		},
 		DataSources: []*opsworks.DataSource{
-			&opsworks.DataSource{ // Required
+			{ // Required
 				ARN:          aws.String("String"),
 				DatabaseName: aws.String("String"),
 				Type:         aws.String("String"),
@@ -1960,7 +1960,7 @@ func ExampleOpsWorks_UpdateApp() {
 		},
 		EnableSSL: aws.Boolean(true),
 		Environment: []*opsworks.EnvironmentVariable{
-			&opsworks.EnvironmentVariable{ // Required
+			{ // Required
 				Key:    aws.String("String"), // Required
 				Value:  aws.String("String"), // Required
 				Secure: aws.Boolean(true),
@@ -2118,7 +2118,7 @@ func ExampleOpsWorks_UpdateLayer() {
 		Shortname:                aws.String("String"),
 		UseEBSOptimizedInstances: aws.Boolean(true),
 		VolumeConfigurations: []*opsworks.VolumeConfiguration{
-			&opsworks.VolumeConfiguration{ // Required
+			{ // Required
 				MountPoint:    aws.String("String"), // Required
 				NumberOfDisks: aws.Long(1),          // Required
 				Size:          aws.Long(1),          // Required

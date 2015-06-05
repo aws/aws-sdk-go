@@ -50,7 +50,7 @@ func ExampleRDS_AddTagsToResource() {
 	params := &rds.AddTagsToResourceInput{
 		ResourceName: aws.String("String"), // Required
 		Tags: []*rds.Tag{ // Required
-			&rds.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -146,7 +146,7 @@ func ExampleRDS_CopyDBParameterGroup() {
 		TargetDBParameterGroupDescription: aws.String("String"), // Required
 		TargetDBParameterGroupIdentifier:  aws.String("String"), // Required
 		Tags: []*rds.Tag{
-			&rds.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -181,7 +181,7 @@ func ExampleRDS_CopyDBSnapshot() {
 		SourceDBSnapshotIdentifier: aws.String("String"), // Required
 		TargetDBSnapshotIdentifier: aws.String("String"), // Required
 		Tags: []*rds.Tag{
-			&rds.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -217,7 +217,7 @@ func ExampleRDS_CopyOptionGroup() {
 		TargetOptionGroupDescription: aws.String("String"), // Required
 		TargetOptionGroupIdentifier:  aws.String("String"), // Required
 		Tags: []*rds.Tag{
-			&rds.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -281,7 +281,7 @@ func ExampleRDS_CreateDBInstance() {
 		TDECredentialARN:           aws.String("String"),
 		TDECredentialPassword:      aws.String("String"),
 		Tags: []*rds.Tag{
-			&rds.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -329,7 +329,7 @@ func ExampleRDS_CreateDBInstanceReadReplica() {
 		PubliclyAccessible:         aws.Boolean(true),
 		StorageType:                aws.String("String"),
 		Tags: []*rds.Tag{
-			&rds.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -365,7 +365,7 @@ func ExampleRDS_CreateDBParameterGroup() {
 		DBParameterGroupName:   aws.String("String"), // Required
 		Description:            aws.String("String"), // Required
 		Tags: []*rds.Tag{
-			&rds.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -400,7 +400,7 @@ func ExampleRDS_CreateDBSecurityGroup() {
 		DBSecurityGroupDescription: aws.String("String"), // Required
 		DBSecurityGroupName:        aws.String("String"), // Required
 		Tags: []*rds.Tag{
-			&rds.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -435,7 +435,7 @@ func ExampleRDS_CreateDBSnapshot() {
 		DBInstanceIdentifier: aws.String("String"), // Required
 		DBSnapshotIdentifier: aws.String("String"), // Required
 		Tags: []*rds.Tag{
-			&rds.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -474,7 +474,7 @@ func ExampleRDS_CreateDBSubnetGroup() {
 			// More values...
 		},
 		Tags: []*rds.Tag{
-			&rds.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -519,7 +519,7 @@ func ExampleRDS_CreateEventSubscription() {
 		},
 		SourceType: aws.String("String"),
 		Tags: []*rds.Tag{
-			&rds.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -556,7 +556,7 @@ func ExampleRDS_CreateOptionGroup() {
 		OptionGroupDescription: aws.String("String"), // Required
 		OptionGroupName:        aws.String("String"), // Required
 		Tags: []*rds.Tag{
-			&rds.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -806,7 +806,7 @@ func ExampleRDS_DescribeCertificates() {
 	params := &rds.DescribeCertificatesInput{
 		CertificateIdentifier: aws.String("String"),
 		Filters: []*rds.Filter{
-			&rds.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"), // Required
 				Values: []*string{ // Required
 					aws.String("String"), // Required
@@ -848,7 +848,7 @@ func ExampleRDS_DescribeDBEngineVersions() {
 		Engine:                 aws.String("String"),
 		EngineVersion:          aws.String("String"),
 		Filters: []*rds.Filter{
-			&rds.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"), // Required
 				Values: []*string{ // Required
 					aws.String("String"), // Required
@@ -888,7 +888,7 @@ func ExampleRDS_DescribeDBInstances() {
 	params := &rds.DescribeDBInstancesInput{
 		DBInstanceIdentifier: aws.String("String"),
 		Filters: []*rds.Filter{
-			&rds.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"), // Required
 				Values: []*string{ // Required
 					aws.String("String"), // Required
@@ -930,7 +930,7 @@ func ExampleRDS_DescribeDBLogFiles() {
 		FileSize:             aws.Long(1),
 		FilenameContains:     aws.String("String"),
 		Filters: []*rds.Filter{
-			&rds.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"), // Required
 				Values: []*string{ // Required
 					aws.String("String"), // Required
@@ -969,7 +969,7 @@ func ExampleRDS_DescribeDBParameterGroups() {
 	params := &rds.DescribeDBParameterGroupsInput{
 		DBParameterGroupName: aws.String("String"),
 		Filters: []*rds.Filter{
-			&rds.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"), // Required
 				Values: []*string{ // Required
 					aws.String("String"), // Required
@@ -1008,7 +1008,7 @@ func ExampleRDS_DescribeDBParameters() {
 	params := &rds.DescribeDBParametersInput{
 		DBParameterGroupName: aws.String("String"), // Required
 		Filters: []*rds.Filter{
-			&rds.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"), // Required
 				Values: []*string{ // Required
 					aws.String("String"), // Required
@@ -1048,7 +1048,7 @@ func ExampleRDS_DescribeDBSecurityGroups() {
 	params := &rds.DescribeDBSecurityGroupsInput{
 		DBSecurityGroupName: aws.String("String"),
 		Filters: []*rds.Filter{
-			&rds.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"), // Required
 				Values: []*string{ // Required
 					aws.String("String"), // Required
@@ -1088,7 +1088,7 @@ func ExampleRDS_DescribeDBSnapshots() {
 		DBInstanceIdentifier: aws.String("String"),
 		DBSnapshotIdentifier: aws.String("String"),
 		Filters: []*rds.Filter{
-			&rds.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"), // Required
 				Values: []*string{ // Required
 					aws.String("String"), // Required
@@ -1128,7 +1128,7 @@ func ExampleRDS_DescribeDBSubnetGroups() {
 	params := &rds.DescribeDBSubnetGroupsInput{
 		DBSubnetGroupName: aws.String("String"),
 		Filters: []*rds.Filter{
-			&rds.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"), // Required
 				Values: []*string{ // Required
 					aws.String("String"), // Required
@@ -1167,7 +1167,7 @@ func ExampleRDS_DescribeEngineDefaultParameters() {
 	params := &rds.DescribeEngineDefaultParametersInput{
 		DBParameterGroupFamily: aws.String("String"), // Required
 		Filters: []*rds.Filter{
-			&rds.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"), // Required
 				Values: []*string{ // Required
 					aws.String("String"), // Required
@@ -1205,7 +1205,7 @@ func ExampleRDS_DescribeEventCategories() {
 
 	params := &rds.DescribeEventCategoriesInput{
 		Filters: []*rds.Filter{
-			&rds.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"), // Required
 				Values: []*string{ // Required
 					aws.String("String"), // Required
@@ -1242,7 +1242,7 @@ func ExampleRDS_DescribeEventSubscriptions() {
 
 	params := &rds.DescribeEventSubscriptionsInput{
 		Filters: []*rds.Filter{
-			&rds.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"), // Required
 				Values: []*string{ // Required
 					aws.String("String"), // Required
@@ -1287,7 +1287,7 @@ func ExampleRDS_DescribeEvents() {
 			// More values...
 		},
 		Filters: []*rds.Filter{
-			&rds.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"), // Required
 				Values: []*string{ // Required
 					aws.String("String"), // Required
@@ -1329,7 +1329,7 @@ func ExampleRDS_DescribeOptionGroupOptions() {
 	params := &rds.DescribeOptionGroupOptionsInput{
 		EngineName: aws.String("String"), // Required
 		Filters: []*rds.Filter{
-			&rds.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"), // Required
 				Values: []*string{ // Required
 					aws.String("String"), // Required
@@ -1369,7 +1369,7 @@ func ExampleRDS_DescribeOptionGroups() {
 	params := &rds.DescribeOptionGroupsInput{
 		EngineName: aws.String("String"),
 		Filters: []*rds.Filter{
-			&rds.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"), // Required
 				Values: []*string{ // Required
 					aws.String("String"), // Required
@@ -1412,7 +1412,7 @@ func ExampleRDS_DescribeOrderableDBInstanceOptions() {
 		DBInstanceClass: aws.String("String"),
 		EngineVersion:   aws.String("String"),
 		Filters: []*rds.Filter{
-			&rds.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"), // Required
 				Values: []*string{ // Required
 					aws.String("String"), // Required
@@ -1452,7 +1452,7 @@ func ExampleRDS_DescribePendingMaintenanceActions() {
 
 	params := &rds.DescribePendingMaintenanceActionsInput{
 		Filters: []*rds.Filter{
-			&rds.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"), // Required
 				Values: []*string{ // Required
 					aws.String("String"), // Required
@@ -1493,7 +1493,7 @@ func ExampleRDS_DescribeReservedDBInstances() {
 		DBInstanceClass: aws.String("String"),
 		Duration:        aws.String("String"),
 		Filters: []*rds.Filter{
-			&rds.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"), // Required
 				Values: []*string{ // Required
 					aws.String("String"), // Required
@@ -1538,7 +1538,7 @@ func ExampleRDS_DescribeReservedDBInstancesOfferings() {
 		DBInstanceClass: aws.String("String"),
 		Duration:        aws.String("String"),
 		Filters: []*rds.Filter{
-			&rds.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"), // Required
 				Values: []*string{ // Required
 					aws.String("String"), // Required
@@ -1611,7 +1611,7 @@ func ExampleRDS_ListTagsForResource() {
 	params := &rds.ListTagsForResourceInput{
 		ResourceName: aws.String("String"), // Required
 		Filters: []*rds.Filter{
-			&rds.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"), // Required
 				Values: []*string{ // Required
 					aws.String("String"), // Required
@@ -1702,7 +1702,7 @@ func ExampleRDS_ModifyDBParameterGroup() {
 	params := &rds.ModifyDBParameterGroupInput{
 		DBParameterGroupName: aws.String("String"), // Required
 		Parameters: []*rds.Parameter{ // Required
-			&rds.Parameter{ // Required
+			{ // Required
 				AllowedValues:        aws.String("String"),
 				ApplyMethod:          aws.String("ApplyMethod"),
 				ApplyType:            aws.String("String"),
@@ -1811,14 +1811,14 @@ func ExampleRDS_ModifyOptionGroup() {
 		OptionGroupName:  aws.String("String"), // Required
 		ApplyImmediately: aws.Boolean(true),
 		OptionsToInclude: []*rds.OptionConfiguration{
-			&rds.OptionConfiguration{ // Required
+			{ // Required
 				OptionName: aws.String("String"), // Required
 				DBSecurityGroupMemberships: []*string{
 					aws.String("String"), // Required
 					// More values...
 				},
 				OptionSettings: []*rds.OptionSetting{
-					&rds.OptionSetting{ // Required
+					{ // Required
 						AllowedValues: aws.String("String"),
 						ApplyType:     aws.String("String"),
 						DataType:      aws.String("String"),
@@ -1902,7 +1902,7 @@ func ExampleRDS_PurchaseReservedDBInstancesOffering() {
 		DBInstanceCount:               aws.Long(1),
 		ReservedDBInstanceID:          aws.String("String"),
 		Tags: []*rds.Tag{
-			&rds.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -2023,7 +2023,7 @@ func ExampleRDS_ResetDBParameterGroup() {
 	params := &rds.ResetDBParameterGroupInput{
 		DBParameterGroupName: aws.String("String"), // Required
 		Parameters: []*rds.Parameter{
-			&rds.Parameter{ // Required
+			{ // Required
 				AllowedValues:        aws.String("String"),
 				ApplyMethod:          aws.String("ApplyMethod"),
 				ApplyType:            aws.String("String"),
@@ -2082,7 +2082,7 @@ func ExampleRDS_RestoreDBInstanceFromDBSnapshot() {
 		TDECredentialARN:        aws.String("String"),
 		TDECredentialPassword:   aws.String("String"),
 		Tags: []*rds.Tag{
-			&rds.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -2133,7 +2133,7 @@ func ExampleRDS_RestoreDBInstanceToPointInTime() {
 		TDECredentialARN:           aws.String("String"),
 		TDECredentialPassword:      aws.String("String"),
 		Tags: []*rds.Tag{
-			&rds.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},

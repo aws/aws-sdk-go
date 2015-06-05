@@ -95,7 +95,7 @@ func ExampleDirectoryService_CreateComputer() {
 		DirectoryID:  aws.String("DirectoryId"),      // Required
 		Password:     aws.String("ComputerPassword"), // Required
 		ComputerAttributes: []*directoryservice.Attribute{
-			&directoryservice.Attribute{ // Required
+			{ // Required
 				Name:  aws.String("AttributeName"),
 				Value: aws.String("AttributeValue"),
 			},

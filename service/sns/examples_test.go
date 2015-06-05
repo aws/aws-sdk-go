@@ -505,7 +505,7 @@ func ExampleSNS_Publish() {
 	params := &sns.PublishInput{
 		Message: aws.String("message"), // Required
 		MessageAttributes: map[string]*sns.MessageAttributeValue{
-			"Key": &sns.MessageAttributeValue{ // Required
+			"Key": { // Required
 				DataType:    aws.String("String"), // Required
 				BinaryValue: []byte("PAYLOAD"),
 				StringValue: aws.String("String"),

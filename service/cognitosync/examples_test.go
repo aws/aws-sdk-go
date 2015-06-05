@@ -499,7 +499,7 @@ func ExampleCognitoSync_UpdateRecords() {
 		ClientContext:    aws.String("ClientContext"),
 		DeviceID:         aws.String("DeviceId"),
 		RecordPatches: []*cognitosync.RecordPatch{
-			&cognitosync.RecordPatch{ // Required
+			{ // Required
 				Key:                    aws.String("RecordKey"), // Required
 				Op:                     aws.String("Operation"), // Required
 				SyncCount:              aws.Long(1),             // Required

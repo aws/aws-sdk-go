@@ -22,7 +22,7 @@ func ExampleMobileAnalytics_PutEvents() {
 	params := &mobileanalytics.PutEventsInput{
 		ClientContext: aws.String("String"), // Required
 		Events: []*mobileanalytics.Event{ // Required
-			&mobileanalytics.Event{ // Required
+			{ // Required
 				EventType: aws.String("String50Chars"),    // Required
 				Timestamp: aws.String("ISO8601Timestamp"), // Required
 				Attributes: map[string]*string{
