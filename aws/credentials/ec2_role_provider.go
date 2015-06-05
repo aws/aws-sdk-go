@@ -33,6 +33,8 @@ const metadataCredentialsEndpoint = "http://169.254.169.254/latest/meta-data/iam
 //     }
 //
 type EC2RoleProvider struct {
+	Expiry
+
 	// Endpoint must be fully quantified URL
 	Endpoint string
 
@@ -49,9 +51,6 @@ type EC2RoleProvider struct {
 	//
 	// If ExpiryWindow is 0 or less it will be ignored.
 	ExpiryWindow time.Duration
-
-	// The date/time at which the credentials expire.
-	expiresOn time.Time
 }
 
 // NewEC2RoleCredentials returns a pointer to a new Credentials object
@@ -100,22 +99,13 @@ func (m *EC2RoleProvider) Retrieve() (Value, error) {
 		return Value{}, err
 	}
 
-	m.expiresOn = roleCreds.Expiration
-	if m.ExpiryWindow > 0 {
-		// Offset based on expiry window if set.
-		m.expiresOn = m.expiresOn.Add(-m.ExpiryWindow)
-	}
+	m.SetExpiration(roleCreds.Expiration, m.ExpiryWindow)
 
 	return Value{
 		AccessKeyID:     roleCreds.AccessKeyID,
 		SecretAccessKey: roleCreds.SecretAccessKey,
 		SessionToken:    roleCreds.Token,
 	}, nil
-}
-
-// IsExpired returns if the credentials are expired.
-func (m *EC2RoleProvider) IsExpired() bool {
-	return m.expiresOn.Before(currentTime())
 }
 
 // A ec2RoleCredRespBody provides the shape for deserializing credential
