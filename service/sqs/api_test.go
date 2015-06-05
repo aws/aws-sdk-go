@@ -15,7 +15,7 @@ func TestFlattenedTraits(t *testing.T) {
 	_, err := s.DeleteMessageBatch(&sqs.DeleteMessageBatchInput{
 		QueueURL: aws.String("QUEUE"),
 		Entries: []*sqs.DeleteMessageBatchRequestEntry{
-			&sqs.DeleteMessageBatchRequestEntry{
+			{
 				ID:            aws.String("TEST"),
 				ReceiptHandle: aws.String("RECEIPT"),
 			},
