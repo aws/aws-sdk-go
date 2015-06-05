@@ -317,8 +317,10 @@ func (v4 *signer) bodyDigest() string {
 
 // isRequestSigned returns if the request is currently signed or presigned
 func (v4 *signer) isRequestSigned() bool {
-	if v4.Request.Header.Get("Authorization") != "" ||
-		v4.Query.Get("X-Amz-Signature") != "" {
+	if v4.isPresign && v4.Query.Get("X-Amz-Signature") != "" {
+		return true
+	}
+	if v4.Request.Header.Get("Authorization") != "" {
 		return true
 	}
 
