@@ -113,6 +113,9 @@ func (v4 *signer) sign() error {
 		// is invalid, and needs to be request because the request will fail.
 		if v4.isPresign {
 			v4.removePresign()
+			// Update the request's query string to ensure the values stays in
+			// sync in the case retrieving the new credentials fails.
+			v4.Request.URL.RawQuery = v4.Query.Encode()
 		}
 	}
 
