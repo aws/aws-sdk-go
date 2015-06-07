@@ -25,15 +25,70 @@ type myComplexStruct struct {
 
 type converterTestInput struct {
 	input     interface{}
-	expected  map[string]*AttributeValue
+	expected  interface{}
+	err       string
 	inputType string // "enum" of types
 }
 
 var trueValue = true
 var falseValue = false
 
-var converterTestInputs = []converterTestInput{
+var converterScalarInputs = []converterTestInput{
+	converterTestInput{
+		input:    nil,
+		expected: &AttributeValue{NULL: &trueValue},
+	},
+	converterTestInput{
+		input:    "some string",
+		expected: &AttributeValue{S: aws.String("some string")},
+	},
+	converterTestInput{
+		input:    true,
+		expected: &AttributeValue{BOOL: &trueValue},
+	},
+	converterTestInput{
+		input:    false,
+		expected: &AttributeValue{BOOL: &falseValue},
+	},
+	converterTestInput{
+		input:    3.14,
+		expected: &AttributeValue{N: aws.String("3.14")},
+	},
+	converterTestInput{
+		input:    math.MaxFloat32,
+		expected: &AttributeValue{N: aws.String("340282346638528860000000000000000000000")},
+	},
+	converterTestInput{
+		input:    math.MaxFloat64,
+		expected: &AttributeValue{N: aws.String("179769313486231570000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000")},
+	},
+	converterTestInput{
+		input:    12,
+		expected: &AttributeValue{N: aws.String("12")},
+	},
+	converterTestInput{
+		input: mySimpleStruct{},
+		expected: &AttributeValue{
+			M: &map[string]*AttributeValue{
+				"Bool":    &AttributeValue{BOOL: &falseValue},
+				"Float32": &AttributeValue{N: aws.String("0")},
+				"Float64": &AttributeValue{N: aws.String("0")},
+				"Int":     &AttributeValue{N: aws.String("0")},
+				"Null":    &AttributeValue{NULL: &trueValue},
+				"String":  &AttributeValue{S: aws.String("")},
+				"Uint":    &AttributeValue{N: aws.String("0")},
+			},
+		},
+		inputType: "mySimpleStruct",
+	},
+}
+
+var converterMapTestInputs = []converterTestInput{
 	// Scalar tests
+	converterTestInput{
+		input: nil,
+		err:   "in must be a map[string]interface{} or struct, got <nil>",
+	},
 	converterTestInput{
 		input:    map[string]interface{}{"string": "some string"},
 		expected: map[string]*AttributeValue{"string": &AttributeValue{S: aws.String("some string")}},
@@ -150,60 +205,282 @@ var converterTestInputs = []converterTestInput{
 	},
 }
 
+var converterListTestInputs = []converterTestInput{
+	converterTestInput{
+		input: nil,
+		err:   "in must be an array or slice, got <nil>",
+	},
+	converterTestInput{
+		input:    []interface{}{},
+		expected: []*AttributeValue{},
+	},
+	converterTestInput{
+		input: []interface{}{"a string", 12, 3.14, true, nil, false},
+		expected: []*AttributeValue{
+			&AttributeValue{S: aws.String("a string")},
+			&AttributeValue{N: aws.String("12")},
+			&AttributeValue{N: aws.String("3.14")},
+			&AttributeValue{BOOL: &trueValue},
+			&AttributeValue{NULL: &trueValue},
+			&AttributeValue{BOOL: &falseValue},
+		},
+	},
+	converterTestInput{
+		input: []mySimpleStruct{mySimpleStruct{}},
+		expected: []*AttributeValue{
+			&AttributeValue{
+				M: &map[string]*AttributeValue{
+					"Bool":    &AttributeValue{BOOL: &falseValue},
+					"Float32": &AttributeValue{N: aws.String("0")},
+					"Float64": &AttributeValue{N: aws.String("0")},
+					"Int":     &AttributeValue{N: aws.String("0")},
+					"Null":    &AttributeValue{NULL: &trueValue},
+					"String":  &AttributeValue{S: aws.String("")},
+					"Uint":    &AttributeValue{N: aws.String("0")},
+				},
+			},
+		},
+		inputType: "mySimpleStruct",
+	},
+}
+
 func TestConvertTo(t *testing.T) {
-	for _, test := range converterTestInputs {
-		testConvertTo(t, test.input, test.expected)
+	for _, test := range converterScalarInputs {
+		testConvertTo(t, test)
 	}
 }
 
-func testConvertTo(t *testing.T, in interface{}, expected map[string]*AttributeValue) {
-	actual, err := ConvertTo(in)
-	if err != nil {
-		t.Fatal(err)
+func testConvertTo(t *testing.T, test converterTestInput) {
+	actual, err := ConvertTo(test.input)
+	if test.err != "" {
+		if err == nil {
+			t.Errorf("ConvertTo with input %#v retured %#v, expected error `%s`", test.input, actual, test.err)
+		} else if err.Error() != test.err {
+			t.Errorf("ConvertTo with input %#v retured error `%s`, expected error `%s`", test.input, err, test.err)
+		}
+	} else {
+		if err != nil {
+			t.Errorf("ConvertTo with input %#v retured error `%s`", test.input, err)
+		}
+		compareObjects(t, test.expected, actual)
 	}
-	compareObjects(t, expected, actual)
 }
 
 func TestConvertFrom(t *testing.T) {
 	// Using the same inputs from TestConvertTo, test the reverse mapping.
-	for _, test := range converterTestInputs {
-		switch test.inputType {
-		case "mySimpleStruct":
-			testConvertFromSimpleStruct(t, test.expected, test.input)
-		case "myComplexStruct":
-			testConvertFromComplexStruct(t, test.expected, test.input)
-		default:
-			testConvertFrom(t, test.expected, test.input)
+	for _, test := range converterScalarInputs {
+		if test.expected != nil {
+			testConvertFrom(t, test)
 		}
 	}
 }
 
-func testConvertFrom(t *testing.T, in map[string]*AttributeValue, expected interface{}) {
+func testConvertFrom(t *testing.T, test converterTestInput) {
+	switch test.inputType {
+	case "mySimpleStruct":
+		var actual mySimpleStruct
+		if err := ConvertFrom(test.expected.(*AttributeValue), &actual); err != nil {
+			t.Errorf("ConvertFrom with input %#v retured error `%s`", test.expected, err)
+		}
+		compareObjects(t, test.input, actual)
+	case "myComplexStruct":
+		var actual myComplexStruct
+		if err := ConvertFrom(test.expected.(*AttributeValue), &actual); err != nil {
+			t.Errorf("ConvertFrom with input %#v retured error `%s`", test.expected, err)
+		}
+		compareObjects(t, test.input, actual)
+	default:
+		var actual interface{}
+		if err := ConvertFrom(test.expected.(*AttributeValue), &actual); err != nil {
+			t.Errorf("ConvertFrom with input %#v retured error `%s`", test.expected, err)
+		}
+		compareObjects(t, test.input, actual)
+	}
+}
+
+func TestConvertFromError(t *testing.T) {
+	// Test that we get an error using ConvertFrom to convert to a map.
 	var actual map[string]interface{}
-	if err := ConvertFrom(in, &actual); err != nil {
-		t.Fatal(err)
+	expected := `v must be a non-nil pointer to an interface{} or struct, got *map[string]interface {}`
+	if err := ConvertFrom(nil, &actual); err == nil {
+		t.Errorf("ConvertFrom with input %#v returned no error, expected error `%s`", nil, expected)
+	} else if err.Error() != expected {
+		t.Errorf("ConvertFrom with input %#v returned error `%s`, expected error `%s`", nil, err, expected)
 	}
-	compareObjects(t, expected, actual)
+
+	// Test that we get an error using ConvertFrom to convert to a list.
+	var actual2 []interface{}
+	expected = `v must be a non-nil pointer to an interface{} or struct, got *[]interface {}`
+	if err := ConvertFrom(nil, &actual2); err == nil {
+		t.Errorf("ConvertFrom with input %#v returned no error, expected error `%s`", nil, expected)
+	} else if err.Error() != expected {
+		t.Errorf("ConvertFrom with input %#v returned error `%s`, expected error `%s`", nil, err, expected)
+	}
 }
 
-func testConvertFromSimpleStruct(t *testing.T, in map[string]*AttributeValue, expected interface{}) {
-	var actual mySimpleStruct
-	if err := ConvertFrom(in, &actual); err != nil {
-		t.Fatal(err)
+func TestConvertToMap(t *testing.T) {
+	for _, test := range converterMapTestInputs {
+		testConvertToMap(t, test)
 	}
-	compareObjects(t, expected, actual)
 }
 
-func testConvertFromComplexStruct(t *testing.T, in map[string]*AttributeValue, expected interface{}) {
-	var actual myComplexStruct
-	if err := ConvertFrom(in, &actual); err != nil {
-		t.Fatal(err)
+func testConvertToMap(t *testing.T, test converterTestInput) {
+	actual, err := ConvertToMap(test.input)
+	if test.err != "" {
+		if err == nil {
+			t.Errorf("ConvertToMap with input %#v retured %#v, expected error `%s`", test.input, actual, test.err)
+		} else if err.Error() != test.err {
+			t.Errorf("ConvertToMap with input %#v retured error `%s`, expected error `%s`", test.input, err, test.err)
+		}
+	} else {
+		if err != nil {
+			t.Errorf("ConvertToMap with input %#v retured error `%s`", test.input, err)
+		}
+		compareObjects(t, test.expected, actual)
 	}
-	compareObjects(t, expected, actual)
+}
+
+func TestConvertFromMap(t *testing.T) {
+	// Using the same inputs from TestConvertToMap, test the reverse mapping.
+	for _, test := range converterMapTestInputs {
+		if test.expected != nil {
+			testConvertFromMap(t, test)
+		}
+	}
+}
+
+func testConvertFromMap(t *testing.T, test converterTestInput) {
+	switch test.inputType {
+	case "mySimpleStruct":
+		var actual mySimpleStruct
+		if err := ConvertFromMap(test.expected.(map[string]*AttributeValue), &actual); err != nil {
+			t.Errorf("ConvertFromMap with input %#v retured error `%s`", test.expected, err)
+		}
+		compareObjects(t, test.input, actual)
+	case "myComplexStruct":
+		var actual myComplexStruct
+		if err := ConvertFromMap(test.expected.(map[string]*AttributeValue), &actual); err != nil {
+			t.Errorf("ConvertFromMap with input %#v retured error `%s`", test.expected, err)
+		}
+		compareObjects(t, test.input, actual)
+	default:
+		var actual map[string]interface{}
+		if err := ConvertFromMap(test.expected.(map[string]*AttributeValue), &actual); err != nil {
+			t.Errorf("ConvertFromMap with input %#v retured error `%s`", test.expected, err)
+		}
+		compareObjects(t, test.input, actual)
+	}
+}
+
+func TestConvertFromMapError(t *testing.T) {
+	// Test that we get an error using ConvertFromMap to convert to an interface{}.
+	var actual interface{}
+	expected := `v must be a non-nil pointer to a map[string]interface{} or struct, got *interface {}`
+	if err := ConvertFromMap(nil, &actual); err == nil {
+		t.Errorf("ConvertFromMap with input %#v returned no error, expected error `%s`", nil, expected)
+	} else if err.Error() != expected {
+		t.Errorf("ConvertFromMap with input %#v returned error `%s`, expected error `%s`", nil, err, expected)
+	}
+
+	// Test that we get an error using ConvertFromMap to convert to a slice.
+	var actual2 []interface{}
+	expected = `v must be a non-nil pointer to a map[string]interface{} or struct, got *[]interface {}`
+	if err := ConvertFromMap(nil, &actual2); err == nil {
+		t.Errorf("ConvertFromMap with input %#v returned no error, expected error `%s`", nil, expected)
+	} else if err.Error() != expected {
+		t.Errorf("ConvertFromMap with input %#v returned error `%s`, expected error `%s`", nil, err, expected)
+	}
+}
+
+func TestConvertToList(t *testing.T) {
+	for _, test := range converterListTestInputs {
+		testConvertToList(t, test)
+	}
+}
+
+func testConvertToList(t *testing.T, test converterTestInput) {
+	actual, err := ConvertToList(test.input)
+	if test.err != "" {
+		if err == nil {
+			t.Errorf("ConvertToList with input %#v retured %#v, expected error `%s`", test.input, actual, test.err)
+		} else if err.Error() != test.err {
+			t.Errorf("ConvertToList with input %#v retured error `%s`, expected error `%s`", test.input, err, test.err)
+		}
+	} else {
+		if err != nil {
+			t.Errorf("ConvertToList with input %#v retured error `%s`", test.input, err)
+		}
+		compareObjects(t, test.expected, actual)
+	}
+}
+
+func TestConvertFromList(t *testing.T) {
+	// Using the same inputs from TestConvertToList, test the reverse mapping.
+	for _, test := range converterListTestInputs {
+		if test.expected != nil {
+			testConvertFromList(t, test)
+		}
+	}
+}
+
+func testConvertFromList(t *testing.T, test converterTestInput) {
+	switch test.inputType {
+	case "mySimpleStruct":
+		var actual []mySimpleStruct
+		if err := ConvertFromList(test.expected.([]*AttributeValue), &actual); err != nil {
+			t.Errorf("ConvertFromList with input %#v retured error `%s`", test.expected, err)
+		}
+		compareObjects(t, test.input, actual)
+	case "myComplexStruct":
+		var actual []myComplexStruct
+		if err := ConvertFromList(test.expected.([]*AttributeValue), &actual); err != nil {
+			t.Errorf("ConvertFromList with input %#v retured error `%s`", test.expected, err)
+		}
+		compareObjects(t, test.input, actual)
+	default:
+		var actual []interface{}
+		if err := ConvertFromList(test.expected.([]*AttributeValue), &actual); err != nil {
+			t.Errorf("ConvertFromList with input %#v retured error `%s`", test.expected, err)
+		}
+		compareObjects(t, test.input, actual)
+	}
+}
+
+func TestConvertFromListError(t *testing.T) {
+	// Test that we get an error using ConvertFromList to convert to a map.
+	var actual map[string]interface{}
+	expected := `v must be a non-nil pointer to an array or slice, got *map[string]interface {}`
+	if err := ConvertFromList(nil, &actual); err == nil {
+		t.Errorf("ConvertFromList with input %#v returned no error, expected error `%s`", nil, expected)
+	} else if err.Error() != expected {
+		t.Errorf("ConvertFromList with input %#v returned error `%s`, expected error `%s`", nil, err, expected)
+	}
+
+	// Test that we get an error using ConvertFromList to convert to a struct.
+	var actual2 myComplexStruct
+	expected = `v must be a non-nil pointer to an array or slice, got *dynamodb.myComplexStruct`
+	if err := ConvertFromList(nil, &actual2); err == nil {
+		t.Errorf("ConvertFromList with input %#v returned no error, expected error `%s`", nil, expected)
+	} else if err.Error() != expected {
+		t.Errorf("ConvertFromList with input %#v returned error `%s`, expected error `%s`", nil, err, expected)
+	}
+
+	// Test that we get an error using ConvertFromList to convert to an interface{}.
+	var actual3 interface{}
+	expected = `v must be a non-nil pointer to an array or slice, got *interface {}`
+	if err := ConvertFromList(nil, &actual3); err == nil {
+		t.Errorf("ConvertFromList with input %#v returned no error, expected error `%s`", nil, expected)
+	} else if err.Error() != expected {
+		t.Errorf("ConvertFromList with input %#v returned error `%s`, expected error `%s`", nil, err, expected)
+	}
 }
 
 func compareObjects(t *testing.T, expected interface{}, actual interface{}) {
 	if !reflect.DeepEqual(expected, actual) {
-		t.Fatalf("Expected %s, got %s", awsutil.StringValue(expected), awsutil.StringValue(actual))
+		t.Errorf("\nExpected %s:\n%s\nActual %s:\n%s\n",
+			reflect.ValueOf(expected).Kind(),
+			awsutil.StringValue(expected),
+			reflect.ValueOf(actual).Kind(),
+			awsutil.StringValue(actual))
 	}
 }
