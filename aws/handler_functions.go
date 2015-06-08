@@ -80,6 +80,15 @@ func SendHandler(r *Request) {
 				return
 			}
 		}
+		if r.HTTPRequest == nil {
+			// Add a dummy request response object to ensure the HTTPResponse
+			// value is consistent.
+			r.HTTPResponse = &http.Response{
+				StatusCode: int(0),
+				Status:     http.StatusText(int(0)),
+				Body:       ioutil.NopCloser(bytes.NewReader([]byte{})),
+			}
+		}
 		// Catch all other request errors.
 		r.Error = apierr.New("RequestError", "send request failed", err)
 		r.Retryable.Set(true) // network errors are retryable
@@ -88,7 +97,7 @@ func SendHandler(r *Request) {
 
 // ValidateResponseHandler is a request handler to validate service response.
 func ValidateResponseHandler(r *Request) {
-	if r.HTTPResponse == nil || r.HTTPResponse.StatusCode == 0 || r.HTTPResponse.StatusCode >= 300 {
+	if r.HTTPResponse.StatusCode == 0 || r.HTTPResponse.StatusCode >= 300 {
 		// this may be replaced by an UnmarshalError handler
 		r.Error = apierr.New("UnknownError", "unknown error", nil)
 	}

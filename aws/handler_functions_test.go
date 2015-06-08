@@ -35,12 +35,6 @@ func TestValidateEndpointHandlerErrorRegion(t *testing.T) {
 	assert.Equal(t, ErrMissingRegion, err)
 }
 
-func TestValidateResponseHandlerNilResponse(t *testing.T) {
-	req := &Request{}
-	ValidateResponseHandler(req)
-	assert.Equal(t, "UnknownError: unknown error", req.Error.Error())
-}
-
 type mockCredsProvider struct {
 	expired        bool
 	retreiveCalled bool
