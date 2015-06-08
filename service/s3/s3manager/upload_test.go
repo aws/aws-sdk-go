@@ -307,26 +307,26 @@ func TestUploadOrderMultiFailureLeaveParts(t *testing.T) {
 	assert.Equal(t, []string{"CreateMultipartUpload", "UploadPart", "UploadPart"}, *ops)
 }
 
-var failreaderCount = 0
+type failreader struct{
+	times int
+	failCount int
+}
 
-type failreader struct{ times int }
-
-func (f failreader) Read(b []byte) (int, error) {
-	failreaderCount++
-	if failreaderCount >= f.times {
+func (f *failreader) Read(b []byte) (int, error) {
+	f.failCount++
+	if f.failCount >= f.times {
 		return 0, fmt.Errorf("random failure")
 	}
 	return len(b), nil
 }
 
 func TestUploadOrderReadFail1(t *testing.T) {
-	failreaderCount = 0
 	s, ops, _ := loggingSvc()
 	mgr := s3manager.NewUploader(&s3manager.UploadOptions{S3: s})
 	_, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: aws.String("Bucket"),
 		Key:    aws.String("Key"),
-		Body:   failreader{1},
+		Body:   &failreader{times: 1},
 	})
 
 	assert.Equal(t, "ReadRequestBody", err.(awserr.Error).Code())
@@ -335,13 +335,12 @@ func TestUploadOrderReadFail1(t *testing.T) {
 }
 
 func TestUploadOrderReadFail2(t *testing.T) {
-	failreaderCount = 0
 	s, ops, _ := loggingSvc()
 	mgr := s3manager.NewUploader(&s3manager.UploadOptions{S3: s})
 	_, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: aws.String("Bucket"),
 		Key:    aws.String("Key"),
-		Body:   failreader{2},
+		Body:   &failreader{times: 2},
 	})
 
 	assert.Equal(t, "ReadRequestBody", err.(awserr.Error).Code())
@@ -349,16 +348,12 @@ func TestUploadOrderReadFail2(t *testing.T) {
 	assert.Equal(t, []string{"CreateMultipartUpload", "AbortMultipartUpload"}, *ops)
 }
 
-type sizedReaderImpl struct {
+type sizedReader struct {
 	size int
 	cur  int
 }
 
-type sizedReader struct {
-	*sizedReaderImpl
-}
-
-func (s sizedReader) Read(p []byte) (n int, err error) {
+func (s *sizedReader) Read(p []byte) (n int, err error) {
 	if s.cur >= s.size {
 		return 0, io.EOF
 	}
@@ -378,7 +373,7 @@ func TestUploadOrderMultiBufferedReader(t *testing.T) {
 	_, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: aws.String("Bucket"),
 		Key:    aws.String("Key"),
-		Body:   sizedReader{&sizedReaderImpl{size: 1024 * 1024 * 12}},
+		Body:   &sizedReader{size: 1024 * 1024 * 12},
 	})
 
 	assert.NoError(t, err)
@@ -402,7 +397,7 @@ func TestUploadOrderMultiBufferedReaderExceedTotalParts(t *testing.T) {
 	resp, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: aws.String("Bucket"),
 		Key:    aws.String("Key"),
-		Body:   sizedReader{&sizedReaderImpl{size: 1024 * 1024 * 12}},
+		Body:   &sizedReader{size: 1024 * 1024 * 12},
 	})
 
 	assert.Error(t, err)
@@ -420,7 +415,7 @@ func TestUploadOrderSingleBufferedReader(t *testing.T) {
 	resp, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: aws.String("Bucket"),
 		Key:    aws.String("Key"),
-		Body:   sizedReader{&sizedReaderImpl{size: 1024 * 1024 * 2}},
+		Body:   &sizedReader{size: 1024 * 1024 * 2},
 	})
 
 	assert.NoError(t, err)
