@@ -88,7 +88,7 @@ func SendHandler(r *Request) {
 
 // ValidateResponseHandler is a request handler to validate service response.
 func ValidateResponseHandler(r *Request) {
-	if r.HTTPResponse.StatusCode == 0 || r.HTTPResponse.StatusCode >= 300 {
+	if r.HTTPResponse == nil || r.HTTPResponse.StatusCode == 0 || r.HTTPResponse.StatusCode >= 300 {
 		// this may be replaced by an UnmarshalError handler
 		r.Error = apierr.New("UnknownError", "unknown error", nil)
 	}
