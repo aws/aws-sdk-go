@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
-	"github.com/awslabs/aws-sdk-go/service/cloudtrail"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/service/cloudtrail"
 )
 
 var _ time.Duration
@@ -139,7 +139,7 @@ func ExampleCloudTrail_LookupEvents() {
 	params := &cloudtrail.LookupEventsInput{
 		EndTime: aws.Time(time.Now()),
 		LookupAttributes: []*cloudtrail.LookupAttribute{
-			&cloudtrail.LookupAttribute{ // Required
+			{ // Required
 				AttributeKey:   aws.String("LookupAttributeKey"), // Required
 				AttributeValue: aws.String("String"),             // Required
 			},

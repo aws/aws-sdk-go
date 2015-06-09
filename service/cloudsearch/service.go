@@ -3,9 +3,9 @@
 package cloudsearch
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/query"
-	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/protocol/query"
+	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
 // CloudSearch is a client for Amazon CloudSearch.
@@ -21,10 +21,6 @@ var initRequest func(*aws.Request)
 
 // New returns a new CloudSearch client.
 func New(config *aws.Config) *CloudSearch {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "cloudsearch",

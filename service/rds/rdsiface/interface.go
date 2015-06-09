@@ -4,7 +4,7 @@
 package rdsiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/service/rds"
+	"github.com/aws/aws-sdk-go/service/rds"
 )
 
 // RDSAPI is the interface type for rds.RDS.
@@ -52,6 +52,10 @@ type RDSAPI interface {
 	DeleteEventSubscription(*rds.DeleteEventSubscriptionInput) (*rds.DeleteEventSubscriptionOutput, error)
 
 	DeleteOptionGroup(*rds.DeleteOptionGroupInput) (*rds.DeleteOptionGroupOutput, error)
+
+	DescribeAccountAttributes(*rds.DescribeAccountAttributesInput) (*rds.DescribeAccountAttributesOutput, error)
+
+	DescribeCertificates(*rds.DescribeCertificatesInput) (*rds.DescribeCertificatesOutput, error)
 
 	DescribeDBEngineVersions(*rds.DescribeDBEngineVersionsInput) (*rds.DescribeDBEngineVersionsOutput, error)
 

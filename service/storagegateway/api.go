@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 var oprw sync.Mutex
@@ -321,7 +321,8 @@ func (c *StorageGateway) CreateSnapshotRequest(input *CreateSnapshotInput) (req 
 // a volume from a snapshot.
 //
 // To list or delete a snapshot, you must use the Amazon EC2 API. For more
-// information, .
+// information, see DescribeSnapshots or DeleteSnapshot in the EC2 API reference
+// (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Operations.html).
 func (c *StorageGateway) CreateSnapshot(input *CreateSnapshotInput) (*CreateSnapshotOutput, error) {
 	req, out := c.CreateSnapshotRequest(input)
 	err := req.Send()
@@ -997,10 +998,10 @@ func (c *StorageGateway) DescribeStorediSCSIVolumesRequest(input *DescribeStored
 	return
 }
 
-// This operation returns description of the gateway volumes specified in the
-// request. The list of gateway volumes in the request must be from one gateway.
-// In the response Amazon Storage Gateway returns volume information sorted
-// by volume ARNs.
+// This operation returns the description of the gateway volumes specified in
+// the request. The list of gateway volumes in the request must be from one
+// gateway. In the response Amazon Storage Gateway returns volume information
+// sorted by volume ARNs.
 func (c *StorageGateway) DescribeStorediSCSIVolumes(input *DescribeStorediSCSIVolumesInput) (*DescribeStorediSCSIVolumesOutput, error) {
 	req, out := c.DescribeStorediSCSIVolumesRequest(input)
 	err := req.Send()
@@ -1051,7 +1052,9 @@ func (c *StorageGateway) DescribeTapeArchives(input *DescribeTapeArchivesInput) 
 
 func (c *StorageGateway) DescribeTapeArchivesPages(input *DescribeTapeArchivesInput, fn func(p *DescribeTapeArchivesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeTapeArchivesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeTapeArchivesOutput), lastPage)
+	})
 }
 
 var opDescribeTapeArchives *aws.Operation
@@ -1099,7 +1102,9 @@ func (c *StorageGateway) DescribeTapeRecoveryPoints(input *DescribeTapeRecoveryP
 
 func (c *StorageGateway) DescribeTapeRecoveryPointsPages(input *DescribeTapeRecoveryPointsInput, fn func(p *DescribeTapeRecoveryPointsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeTapeRecoveryPointsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeTapeRecoveryPointsOutput), lastPage)
+	})
 }
 
 var opDescribeTapeRecoveryPoints *aws.Operation
@@ -1144,7 +1149,9 @@ func (c *StorageGateway) DescribeTapes(input *DescribeTapesInput) (*DescribeTape
 
 func (c *StorageGateway) DescribeTapesPages(input *DescribeTapesInput, fn func(p *DescribeTapesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeTapesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeTapesOutput), lastPage)
+	})
 }
 
 var opDescribeTapes *aws.Operation
@@ -1227,7 +1234,9 @@ func (c *StorageGateway) DescribeVTLDevices(input *DescribeVTLDevicesInput) (*De
 
 func (c *StorageGateway) DescribeVTLDevicesPages(input *DescribeVTLDevicesInput, fn func(p *DescribeVTLDevicesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeVTLDevicesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeVTLDevicesOutput), lastPage)
+	})
 }
 
 var opDescribeVTLDevices *aws.Operation
@@ -1359,7 +1368,9 @@ func (c *StorageGateway) ListGateways(input *ListGatewaysInput) (*ListGatewaysOu
 
 func (c *StorageGateway) ListGatewaysPages(input *ListGatewaysInput, fn func(p *ListGatewaysOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListGatewaysRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListGatewaysOutput), lastPage)
+	})
 }
 
 var opListGateways *aws.Operation
@@ -1394,7 +1405,7 @@ func (c *StorageGateway) ListLocalDisksRequest(input *ListLocalDisksInput) (req 
 // The request returns a list of all disks, specifying which are configured
 // as working storage, cache storage, or stored volume or not configured at
 // all. The response includes a DiskStatus field. This field can have a value
-// of present (the disk is availble to use), missing (the disk is no longer
+// of present (the disk is available to use), missing (the disk is no longer
 // connected to the gateway), or mismatch (the disk node is occupied by a disk
 // that has incorrect metadata or the disk content is corrupted).
 func (c *StorageGateway) ListLocalDisks(input *ListLocalDisksInput) (*ListLocalDisksOutput, error) {
@@ -1404,6 +1415,39 @@ func (c *StorageGateway) ListLocalDisks(input *ListLocalDisksInput) (*ListLocalD
 }
 
 var opListLocalDisks *aws.Operation
+
+// ListVolumeInitiatorsRequest generates a request for the ListVolumeInitiators operation.
+func (c *StorageGateway) ListVolumeInitiatorsRequest(input *ListVolumeInitiatorsInput) (req *aws.Request, output *ListVolumeInitiatorsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opListVolumeInitiators == nil {
+		opListVolumeInitiators = &aws.Operation{
+			Name:       "ListVolumeInitiators",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &ListVolumeInitiatorsInput{}
+	}
+
+	req = c.newRequest(opListVolumeInitiators, input, output)
+	output = &ListVolumeInitiatorsOutput{}
+	req.Data = output
+	return
+}
+
+// This operation lists iSCSI initiators that are connected to a volume. You
+// can use this operation to determine whether a volume is being used or not.
+func (c *StorageGateway) ListVolumeInitiators(input *ListVolumeInitiatorsInput) (*ListVolumeInitiatorsOutput, error) {
+	req, out := c.ListVolumeInitiatorsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opListVolumeInitiators *aws.Operation
 
 // ListVolumeRecoveryPointsRequest generates a request for the ListVolumeRecoveryPoints operation.
 func (c *StorageGateway) ListVolumeRecoveryPointsRequest(input *ListVolumeRecoveryPointsInput) (req *aws.Request, output *ListVolumeRecoveryPointsOutput) {
@@ -1490,7 +1534,9 @@ func (c *StorageGateway) ListVolumes(input *ListVolumesInput) (*ListVolumesOutpu
 
 func (c *StorageGateway) ListVolumesPages(input *ListVolumesInput, fn func(p *ListVolumesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListVolumesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListVolumesOutput), lastPage)
+	})
 }
 
 var opListVolumes *aws.Operation
@@ -1518,9 +1564,17 @@ func (c *StorageGateway) ResetCacheRequest(input *ResetCacheInput) (req *aws.Req
 	return
 }
 
-// This operation resets all cache disks and makes the disks available for reconfiguration
-// as cache storage. When a cache is reset, the gateway loses its cache storage.
-// At this point you can reconfigure the disks as cache disks.
+// This operation resets all cache disks that have encountered a error and makes
+// the disks available for reconfiguration as cache storage. If your cache disk
+// encounters a error, the gateway prevents read and write operations on virtual
+// tapes in the gateway. For example, an error can occur when a disk is corrupted
+// or removed from the gateway. When a cache is reset, the gateway loses its
+// cache storage. At this point you can reconfigure the disks as cache disks.
+//
+//  If the cache disk you are resetting contains data that has not been uploaded
+// to Amazon S3 yet, that data can be lost. After you reset cache disks, there
+// will be no configured cache disks left in the gateway, so you must configure
+// at least one new cache disk for your gateway to function properly.
 func (c *StorageGateway) ResetCache(input *ResetCacheInput) (*ResetCacheOutput, error) {
 	req, out := c.ResetCacheRequest(input)
 	err := req.Send()
@@ -2217,8 +2271,8 @@ type ChapInfo struct {
 	// The iSCSI initiator that connects to the target.
 	InitiatorName *string `type:"string"`
 
-	// The secret key that the initiator (e.g. Windows client) must provide to participate
-	// in mutual CHAP with the target.
+	// The secret key that the initiator (for example, the Windows client) must
+	// provide to participate in mutual CHAP with the target.
 	SecretToAuthenticateInitiator *string `type:"string"`
 
 	// The secret key that the target must provide to participate in mutual CHAP
@@ -2511,7 +2565,7 @@ type metadataDeleteChapCredentialsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// A JSON object containing the of the gateway to delete.
+// A JSON object containing the id of the gateway to delete.
 type DeleteGatewayInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
@@ -2524,7 +2578,7 @@ type metadataDeleteGatewayInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// A JSON object containing the of the deleted gateway.
+// A JSON object containing the id of the deleted gateway.
 type DeleteGatewayOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
@@ -2754,8 +2808,9 @@ type DescribeChapCredentialsOutput struct {
 	//
 	//   InitiatorName: The iSCSI initiator that connects to the target.
 	//
-	//   SecretToAuthenticateInitiator: The secret key that the initiator (e.g.
-	// Windows client) must provide to participate in mutual CHAP with the target.
+	//   SecretToAuthenticateInitiator: The secret key that the initiator (for
+	// example, the Windows client) must provide to participate in mutual CHAP with
+	// the target.
 	//
 	//   SecretToAuthenticateTarget: The secret key that the target must provide
 	// to participate in mutual CHAP with the initiator (e.g. Windows client).
@@ -2770,7 +2825,7 @@ type metadataDescribeChapCredentialsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// A JSON object containing the of the gateway.
+// A JSON object containing the id of the gateway.
 type DescribeGatewayInformationInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
@@ -2802,10 +2857,15 @@ type DescribeGatewayInformationOutput struct {
 	// One of the values that indicates the time zone configured for the gateway.
 	GatewayTimezone *string `type:"string"`
 
-	// TBD
+	// The type of the gateway.
 	GatewayType *string `type:"string"`
 
-	// The date at which an update to the gateway is available. This date is in
+	// The date on which the last software update was applied to the gateway. If
+	// the gateway has never been updated, this field does not return a value in
+	// the response.
+	LastSoftwareUpdate *string `type:"string"`
+
+	// The date on which an update to the gateway is available. This date is in
 	// the time zone of the gateway. If the gateway is not available for an update
 	// this field is not returned in the response.
 	NextUpdateAvailabilityDate *string `type:"string"`
@@ -3243,7 +3303,7 @@ type Error struct {
 	ErrorCode *string `locationName:"errorCode" type:"string"`
 
 	// Human-readable text that provides detail about the error that occurred.
-	ErrorDetails *map[string]*string `locationName:"errorDetails" type:"map"`
+	ErrorDetails map[string]*string `locationName:"errorDetails" type:"map"`
 
 	metadataError `json:"-" xml:"-"`
 }
@@ -3323,6 +3383,32 @@ type ListLocalDisksOutput struct {
 }
 
 type metadataListLocalDisksOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// ListVolumeInitiatorsInput
+type ListVolumeInitiatorsInput struct {
+	// The Amazon Resource Name (ARN) of the volume. Use the ListVolumes operation
+	// to return a list of gateway volumes for the gateway.
+	VolumeARN *string `type:"string" required:"true"`
+
+	metadataListVolumeInitiatorsInput `json:"-" xml:"-"`
+}
+
+type metadataListVolumeInitiatorsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// ListVolumeInitiatorsOutput
+type ListVolumeInitiatorsOutput struct {
+	// The host names and port numbers of all iSCSI initiators that are connected
+	// to the gateway.
+	Initiators []*string `type:"list"`
+
+	metadataListVolumeInitiatorsOutput `json:"-" xml:"-"`
+}
+
+type metadataListVolumeInitiatorsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -3712,16 +3798,22 @@ type UpdateChapCredentialsInput struct {
 	// The iSCSI initiator that connects to the target.
 	InitiatorName *string `type:"string" required:"true"`
 
-	// The secret key that the initiator (e.g. Windows client) must provide to participate
-	// in mutual CHAP with the target.
+	// The secret key that the initiator (for example, the Windows client) must
+	// provide to participate in mutual CHAP with the target.
+	//
+	// The secret key must be between 12 and 16 bytes when encoded in UTF-8.
 	SecretToAuthenticateInitiator *string `type:"string" required:"true"`
 
 	// The secret key that the target must provide to participate in mutual CHAP
 	// with the initiator (e.g. Windows client).
+	//
+	// Byte constraints: Minimum bytes of 12. Maximum bytes of 16.
+	//
+	// The secret key must be between 12 and 16 bytes when encoded in UTF-8.
 	SecretToAuthenticateTarget *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the iSCSI volume target. Use the DescribeStorediSCSIVolumes
-	// operation to return to retrieve the TargetARN for specified VolumeARN.
+	// operation to return the TargetARN for specified VolumeARN.
 	TargetARN *string `type:"string" required:"true"`
 
 	metadataUpdateChapCredentialsInput `json:"-" xml:"-"`

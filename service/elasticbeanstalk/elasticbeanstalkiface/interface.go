@@ -4,11 +4,13 @@
 package elasticbeanstalkiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/service/elasticbeanstalk"
+	"github.com/aws/aws-sdk-go/service/elasticbeanstalk"
 )
 
 // ElasticBeanstalkAPI is the interface type for elasticbeanstalk.ElasticBeanstalk.
 type ElasticBeanstalkAPI interface {
+	AbortEnvironmentUpdate(*elasticbeanstalk.AbortEnvironmentUpdateInput) (*elasticbeanstalk.AbortEnvironmentUpdateOutput, error)
+
 	CheckDNSAvailability(*elasticbeanstalk.CheckDNSAvailabilityInput) (*elasticbeanstalk.CheckDNSAvailabilityOutput, error)
 
 	CreateApplication(*elasticbeanstalk.CreateApplicationInput) (*elasticbeanstalk.ApplicationDescriptionMessage, error)

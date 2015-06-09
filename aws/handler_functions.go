@@ -11,8 +11,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/internal/apierr"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/internal/apierr"
 )
 
 var sleepDelay = func(delay time.Duration) {
@@ -80,6 +80,15 @@ func SendHandler(r *Request) {
 				return
 			}
 		}
+		if r.HTTPRequest == nil {
+			// Add a dummy request response object to ensure the HTTPResponse
+			// value is consistent.
+			r.HTTPResponse = &http.Response{
+				StatusCode: int(0),
+				Status:     http.StatusText(int(0)),
+				Body:       ioutil.NopCloser(bytes.NewReader([]byte{})),
+			}
+		}
 		// Catch all other request errors.
 		r.Error = apierr.New("RequestError", "send request failed", err)
 		r.Retryable.Set(true) // network errors are retryable
@@ -114,8 +123,6 @@ func AfterRetryHandler(r *Request) {
 			if err, ok := r.Error.(awserr.Error); ok {
 				if isCodeExpiredCreds(err.Code()) {
 					r.Config.Credentials.Expire()
-					// The credentials will need to be resigned with new credentials
-					r.signed = false
 				}
 			}
 		}

@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
-	"github.com/awslabs/aws-sdk-go/service/cloudhsm"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/service/cloudhsm"
 )
 
 var _ time.Duration

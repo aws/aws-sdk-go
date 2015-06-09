@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 var oprw sync.Mutex
@@ -876,7 +876,9 @@ func (c *Redshift) DescribeClusterParameterGroups(input *DescribeClusterParamete
 
 func (c *Redshift) DescribeClusterParameterGroupsPages(input *DescribeClusterParameterGroupsInput, fn func(p *DescribeClusterParameterGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeClusterParameterGroupsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeClusterParameterGroupsOutput), lastPage)
+	})
 }
 
 var opDescribeClusterParameterGroups *aws.Operation
@@ -930,7 +932,9 @@ func (c *Redshift) DescribeClusterParameters(input *DescribeClusterParametersInp
 
 func (c *Redshift) DescribeClusterParametersPages(input *DescribeClusterParametersInput, fn func(p *DescribeClusterParametersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeClusterParametersRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeClusterParametersOutput), lastPage)
+	})
 }
 
 var opDescribeClusterParameters *aws.Operation
@@ -989,7 +993,9 @@ func (c *Redshift) DescribeClusterSecurityGroups(input *DescribeClusterSecurityG
 
 func (c *Redshift) DescribeClusterSecurityGroupsPages(input *DescribeClusterSecurityGroupsInput, fn func(p *DescribeClusterSecurityGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeClusterSecurityGroupsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeClusterSecurityGroupsOutput), lastPage)
+	})
 }
 
 var opDescribeClusterSecurityGroups *aws.Operation
@@ -1047,7 +1053,9 @@ func (c *Redshift) DescribeClusterSnapshots(input *DescribeClusterSnapshotsInput
 
 func (c *Redshift) DescribeClusterSnapshotsPages(input *DescribeClusterSnapshotsInput, fn func(p *DescribeClusterSnapshotsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeClusterSnapshotsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeClusterSnapshotsOutput), lastPage)
+	})
 }
 
 var opDescribeClusterSnapshots *aws.Operation
@@ -1102,7 +1110,9 @@ func (c *Redshift) DescribeClusterSubnetGroups(input *DescribeClusterSubnetGroup
 
 func (c *Redshift) DescribeClusterSubnetGroupsPages(input *DescribeClusterSubnetGroupsInput, fn func(p *DescribeClusterSubnetGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeClusterSubnetGroupsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeClusterSubnetGroupsOutput), lastPage)
+	})
 }
 
 var opDescribeClusterSubnetGroups *aws.Operation
@@ -1149,7 +1159,9 @@ func (c *Redshift) DescribeClusterVersions(input *DescribeClusterVersionsInput) 
 
 func (c *Redshift) DescribeClusterVersionsPages(input *DescribeClusterVersionsInput, fn func(p *DescribeClusterVersionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeClusterVersionsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeClusterVersionsOutput), lastPage)
+	})
 }
 
 var opDescribeClusterVersions *aws.Operation
@@ -1205,7 +1217,9 @@ func (c *Redshift) DescribeClusters(input *DescribeClustersInput) (*DescribeClus
 
 func (c *Redshift) DescribeClustersPages(input *DescribeClustersInput, fn func(p *DescribeClustersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeClustersRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeClustersOutput), lastPage)
+	})
 }
 
 var opDescribeClusters *aws.Operation
@@ -1252,7 +1266,9 @@ func (c *Redshift) DescribeDefaultClusterParameters(input *DescribeDefaultCluste
 
 func (c *Redshift) DescribeDefaultClusterParametersPages(input *DescribeDefaultClusterParametersInput, fn func(p *DescribeDefaultClusterParametersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeDefaultClusterParametersRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeDefaultClusterParametersOutput), lastPage)
+	})
 }
 
 var opDescribeDefaultClusterParameters *aws.Operation
@@ -1331,7 +1347,9 @@ func (c *Redshift) DescribeEventSubscriptions(input *DescribeEventSubscriptionsI
 
 func (c *Redshift) DescribeEventSubscriptionsPages(input *DescribeEventSubscriptionsInput, fn func(p *DescribeEventSubscriptionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeEventSubscriptionsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeEventSubscriptionsOutput), lastPage)
+	})
 }
 
 var opDescribeEventSubscriptions *aws.Operation
@@ -1377,7 +1395,9 @@ func (c *Redshift) DescribeEvents(input *DescribeEventsInput) (*DescribeEventsOu
 
 func (c *Redshift) DescribeEventsPages(input *DescribeEventsInput, fn func(p *DescribeEventsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeEventsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeEventsOutput), lastPage)
+	})
 }
 
 var opDescribeEvents *aws.Operation
@@ -1432,7 +1452,9 @@ func (c *Redshift) DescribeHSMClientCertificates(input *DescribeHSMClientCertifi
 
 func (c *Redshift) DescribeHSMClientCertificatesPages(input *DescribeHSMClientCertificatesInput, fn func(p *DescribeHSMClientCertificatesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeHSMClientCertificatesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeHSMClientCertificatesOutput), lastPage)
+	})
 }
 
 var opDescribeHSMClientCertificates *aws.Operation
@@ -1487,7 +1509,9 @@ func (c *Redshift) DescribeHSMConfigurations(input *DescribeHSMConfigurationsInp
 
 func (c *Redshift) DescribeHSMConfigurationsPages(input *DescribeHSMConfigurationsInput, fn func(p *DescribeHSMConfigurationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeHSMConfigurationsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeHSMConfigurationsOutput), lastPage)
+	})
 }
 
 var opDescribeHSMConfigurations *aws.Operation
@@ -1571,7 +1595,9 @@ func (c *Redshift) DescribeOrderableClusterOptions(input *DescribeOrderableClust
 
 func (c *Redshift) DescribeOrderableClusterOptionsPages(input *DescribeOrderableClusterOptionsInput, fn func(p *DescribeOrderableClusterOptionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeOrderableClusterOptionsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeOrderableClusterOptionsOutput), lastPage)
+	})
 }
 
 var opDescribeOrderableClusterOptions *aws.Operation
@@ -1623,7 +1649,9 @@ func (c *Redshift) DescribeReservedNodeOfferings(input *DescribeReservedNodeOffe
 
 func (c *Redshift) DescribeReservedNodeOfferingsPages(input *DescribeReservedNodeOfferingsInput, fn func(p *DescribeReservedNodeOfferingsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeReservedNodeOfferingsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeReservedNodeOfferingsOutput), lastPage)
+	})
 }
 
 var opDescribeReservedNodeOfferings *aws.Operation
@@ -1666,7 +1694,9 @@ func (c *Redshift) DescribeReservedNodes(input *DescribeReservedNodesInput) (*De
 
 func (c *Redshift) DescribeReservedNodesPages(input *DescribeReservedNodesInput, fn func(p *DescribeReservedNodesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeReservedNodesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeReservedNodesOutput), lastPage)
+	})
 }
 
 var opDescribeReservedNodes *aws.Operation

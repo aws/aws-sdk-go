@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
-	"github.com/awslabs/aws-sdk-go/service/ssm"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/service/ssm"
 )
 
 var _ time.Duration
@@ -49,7 +49,7 @@ func ExampleSSM_CreateAssociationBatch() {
 
 	params := &ssm.CreateAssociationBatchInput{
 		Entries: []*ssm.CreateAssociationBatchRequestEntry{ // Required
-			&ssm.CreateAssociationBatchRequestEntry{ // Required
+			{ // Required
 				InstanceID: aws.String("InstanceId"),
 				Name:       aws.String("DocumentName"),
 			},
@@ -247,7 +247,7 @@ func ExampleSSM_ListAssociations() {
 
 	params := &ssm.ListAssociationsInput{
 		AssociationFilterList: []*ssm.AssociationFilter{ // Required
-			&ssm.AssociationFilter{ // Required
+			{ // Required
 				Key:   aws.String("AssociationFilterKey"),   // Required
 				Value: aws.String("AssociationFilterValue"), // Required
 			},
@@ -282,7 +282,7 @@ func ExampleSSM_ListDocuments() {
 
 	params := &ssm.ListDocumentsInput{
 		DocumentFilterList: []*ssm.DocumentFilter{
-			&ssm.DocumentFilter{ // Required
+			{ // Required
 				Key:   aws.String("DocumentFilterKey"),   // Required
 				Value: aws.String("DocumentFilterValue"), // Required
 			},

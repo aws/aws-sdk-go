@@ -3,9 +3,9 @@
 package glacier
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/restjson"
-	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/protocol/restjson"
+	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
 // Glacier is a client for Amazon Glacier.
@@ -21,10 +21,6 @@ var initRequest func(*aws.Request)
 
 // New returns a new Glacier client.
 func New(config *aws.Config) *Glacier {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "glacier",

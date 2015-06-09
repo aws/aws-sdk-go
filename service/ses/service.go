@@ -3,9 +3,9 @@
 package ses
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/query"
-	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/protocol/query"
+	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
 // SES is a client for Amazon SES.
@@ -21,10 +21,6 @@ var initRequest func(*aws.Request)
 
 // New returns a new SES client.
 func New(config *aws.Config) *SES {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "email",

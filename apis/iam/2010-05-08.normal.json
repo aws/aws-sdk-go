@@ -860,7 +860,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p> Creates a new role for your AWS account. For more information about roles, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html\">Working with Roles</a>. For information about limitations on role names and the number of roles you can create, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html\">Limitations on IAM Entities</a> in the <i>Using IAM</i> guide. </p> <p> The example policy grants permission to an EC2 instance to assume the role. The policy is URL-encoded according to RFC 3986. For more information about RFC 3986, go to <a href=\"http://www.faqs.org/rfcs/rfc3986.html\">http://www.faqs.org/rfcs/rfc3986.html</a>. </p>"
+      "documentation":"<p>Creates a new role for your AWS account. For more information about roles, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html\">Working with Roles</a>. For information about limitations on role names and the number of roles you can create, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html\">Limitations on IAM Entities</a> in the <i>Using IAM</i> guide. </p> <p>The policy in the following example grants permission to an EC2 instance to assume the role.</p>"
     },
     "CreateSAMLProvider":{
       "name":"CreateSAMLProvider",
@@ -2209,7 +2209,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p>Retrieves information about all IAM users, groups, and roles in your account, including their relationships to one another and their policies. Use this API to obtain a snapshot of the configuration of IAM permissions (users, groups, roles, and policies) in your account.</p> <p>You can optionally filter the results using the <code>Filter</code> parameter. You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters.</p>"
+      "documentation":"<p>Retrieves information about all IAM users, groups, roles, and policies in your account, including their relationships to one another. Use this API to obtain a snapshot of the configuration of IAM permissions (users, groups, roles, and policies) in your account.</p> <p>You can optionally filter the results using the <code>Filter</code> parameter. You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters.</p>"
     },
     "GetAccountPasswordPolicy":{
       "name":"GetAccountPasswordPolicy",
@@ -2631,7 +2631,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p>Retrieves information about the specified role, including the role's path, GUID, ARN, and the policy granting permission to assume the role. For more information about ARNs, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html#Identifiers_ARNs\">ARNs</a>. For more information about roles, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html\">Working with Roles</a>. </p> <p>The returned policy is URL-encoded according to RFC 3986. For more information about RFC 3986, go to <a href=\"http://www.faqs.org/rfcs/rfc3986.html\">http://www.faqs.org/rfcs/rfc3986.html</a>. </p>"
+      "documentation":"<p>Retrieves information about the specified role, including the role's path, GUID, ARN, and the policy granting permission to assume the role. For more information about ARNs, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html#Identifiers_ARNs\">ARNs</a>. For more information about roles, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html\">Working with Roles</a>. </p>"
     },
     "GetRolePolicy":{
       "name":"GetRolePolicy",
@@ -3401,7 +3401,7 @@
           "documentation":"<p> The request processing has failed because of an unknown error, exception or failure. </p>"
         }
       ],
-      "documentation":"<p>Lists the roles that have the specified path prefix. If there are none, the action returns an empty list. For more information about roles, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html\">Working with Roles</a>. </p> <p>You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. </p> <p>The returned policy is URL-encoded according to RFC 3986. For more information about RFC 3986, go to <a href=\"http://www.faqs.org/rfcs/rfc3986.html\">http://www.faqs.org/rfcs/rfc3986.html</a>. </p>"
+      "documentation":"<p>Lists the roles that have the specified path prefix. If there are none, the action returns an empty list. For more information about roles, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html\">Working with Roles</a>. </p> <p>You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. </p>"
     },
     "ListSAMLProviders":{
       "name":"ListSAMLProviders",
@@ -4941,7 +4941,7 @@
         },
         "PolicyDocument":{
           "shape":"policyDocumentType",
-          "documentation":"<p>The policy document.</p> <p>The policy must be URL-encoded according to <a href=\"http://www.faqs.org/rfcs/rfc3986.html\">RFC 3986</a>. </p>"
+          "documentation":"<p>The policy document.</p>"
         },
         "Description":{
           "shape":"policyDescriptionType",
@@ -4969,7 +4969,7 @@
         "PolicyArn":{"shape":"arnType"},
         "PolicyDocument":{
           "shape":"policyDocumentType",
-          "documentation":"<p>The policy document.</p> <p>The policy must be URL-encoded according to <a href=\"http://www.faqs.org/rfcs/rfc3986.html\">RFC 3986</a>. </p>"
+          "documentation":"<p>The policy document.</p>"
         },
         "SetAsDefault":{
           "shape":"booleanType",
@@ -7232,7 +7232,7 @@
         },
         "PolicyDocument":{
           "shape":"policyDocumentType",
-          "documentation":"<p>The policy document.</p> <p>The returned policy is URL-encoded according to <a href=\"http://www.faqs.org/rfcs/rfc3986.html\">RFC 3986</a>. </p>"
+          "documentation":"<p>The policy document.</p>"
         }
       },
       "documentation":"<p>Contains information about an IAM policy, including the policy document.</p> <p>This data type is used as a response element in the <a>GetAccountAuthorizationDetails</a> action.</p>"
@@ -7284,7 +7284,7 @@
       "members":{
         "Document":{
           "shape":"policyDocumentType",
-          "documentation":"<p>The policy document.</p> <p>The policy document is returned in the response to the <a>GetPolicyVersion</a> operation. It is not included in the response to the <a>ListPolicyVersions</a> or <a>GetAccountAuthorizationDetails</a> operations. </p>"
+          "documentation":"<p>The policy document.</p> <p>The policy document is returned in the response to the <a>GetPolicyVersion</a> and <a>GetAccountAuthorizationDetails</a> operations. It is not returned in the response to the <a>CreatePolicyVersion</a> or <a>ListPolicyVersions</a> operations. </p>"
         },
         "VersionId":{
           "shape":"policyVersionIdType",
@@ -7491,7 +7491,7 @@
         },
         "AssumeRolePolicyDocument":{
           "shape":"policyDocumentType",
-          "documentation":"<p>The policy that grants an entity permission to assume the role.</p> <p> The returned policy is URL-encoded according to <a href=\"http://www.faqs.org/rfcs/rfc3986.html\">RFC 3986</a>. </p>"
+          "documentation":"<p>The policy that grants an entity permission to assume the role.</p>"
         }
       },
       "documentation":"<p>Contains information about an IAM role.</p> <p> This data type is used as a response element in the following actions:</p> <ul> <li> <p> <a>CreateRole</a> </p> </li> <li> <p> <a>GetRole</a> </p> </li> <li> <p> <a>ListRoles</a> </p> </li> </ul>"
@@ -7518,7 +7518,7 @@
         },
         "AssumeRolePolicyDocument":{
           "shape":"policyDocumentType",
-          "documentation":"<p>The trust policy that grants permission to assume the role.</p> <p> The returned policy is URL-encoded according to <a href=\"http://www.faqs.org/rfcs/rfc3986.html\">RFC 3986</a>. </p>"
+          "documentation":"<p>The trust policy that grants permission to assume the role.</p>"
         },
         "InstanceProfileList":{"shape":"instanceProfileListType"},
         "RolePolicyList":{

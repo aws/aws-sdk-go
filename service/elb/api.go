@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 var oprw sync.Mutex
@@ -682,7 +682,7 @@ func (c *ELB) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (r
 			Paginator: &aws.Paginator{
 				InputTokens:     []string{"Marker"},
 				OutputTokens:    []string{"NextMarker"},
-				LimitToken:      "PageSize",
+				LimitToken:      "",
 				TruncationToken: "",
 			},
 		}
@@ -708,7 +708,9 @@ func (c *ELB) DescribeLoadBalancers(input *DescribeLoadBalancersInput) (*Describ
 
 func (c *ELB) DescribeLoadBalancersPages(input *DescribeLoadBalancersInput, fn func(p *DescribeLoadBalancersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeLoadBalancersRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeLoadBalancersOutput), lastPage)
+	})
 }
 
 var opDescribeLoadBalancers *aws.Operation

@@ -1,22 +1,22 @@
 package jsonrpc_test
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/jsonrpc"
-	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
-
 	"bytes"
 	"encoding/json"
 	"encoding/xml"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
-	"github.com/awslabs/aws-sdk-go/internal/util"
-	"github.com/stretchr/testify/assert"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"testing"
 	"time"
+
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
+	"github.com/aws/aws-sdk-go/internal/protocol/xml/xmlutil"
+	"github.com/aws/aws-sdk-go/internal/signer/v4"
+	"github.com/aws/aws-sdk-go/internal/util"
+	"github.com/stretchr/testify/assert"
 )
 
 var _ bytes.Buffer // always import bytes
@@ -37,10 +37,6 @@ type OutputService1ProtocolTest struct {
 
 // New returns a new OutputService1ProtocolTest client.
 func NewOutputService1ProtocolTest(config *aws.Config) *OutputService1ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "outputservice1protocoltest",
@@ -118,10 +114,6 @@ type OutputService2ProtocolTest struct {
 
 // New returns a new OutputService2ProtocolTest client.
 func NewOutputService2ProtocolTest(config *aws.Config) *OutputService2ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "outputservice2protocoltest",
@@ -215,10 +207,6 @@ type OutputService3ProtocolTest struct {
 
 // New returns a new OutputService3ProtocolTest client.
 func NewOutputService3ProtocolTest(config *aws.Config) *OutputService3ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "outputservice3protocoltest",
@@ -310,10 +298,6 @@ type OutputService4ProtocolTest struct {
 
 // New returns a new OutputService4ProtocolTest client.
 func NewOutputService4ProtocolTest(config *aws.Config) *OutputService4ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "outputservice4protocoltest",
@@ -405,10 +389,6 @@ type OutputService5ProtocolTest struct {
 
 // New returns a new OutputService5ProtocolTest client.
 func NewOutputService5ProtocolTest(config *aws.Config) *OutputService5ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "outputservice5protocoltest",
@@ -488,10 +468,6 @@ type OutputService6ProtocolTest struct {
 
 // New returns a new OutputService6ProtocolTest client.
 func NewOutputService6ProtocolTest(config *aws.Config) *OutputService6ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "outputservice6protocoltest",
@@ -555,7 +531,7 @@ type metadataOutputService6TestShapeOutputService6TestCaseOperation1Input struct
 }
 
 type OutputService6TestShapeOutputShape struct {
-	MapMember *map[string][]*int64 `type:"map"`
+	MapMember map[string][]*int64 `type:"map"`
 
 	metadataOutputService6TestShapeOutputShape `json:"-" xml:"-"`
 }
@@ -571,10 +547,6 @@ type OutputService7ProtocolTest struct {
 
 // New returns a new OutputService7ProtocolTest client.
 func NewOutputService7ProtocolTest(config *aws.Config) *OutputService7ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "outputservice7protocoltest",
@@ -776,10 +748,10 @@ func TestOutputService6ProtocolTestMapsCase1(t *testing.T) {
 
 	// assert response
 	assert.NotNil(t, out) // ensure out variable is used
-	assert.Equal(t, int64(1), *(*out.MapMember)["a"][0])
-	assert.Equal(t, int64(2), *(*out.MapMember)["a"][1])
-	assert.Equal(t, int64(3), *(*out.MapMember)["b"][0])
-	assert.Equal(t, int64(4), *(*out.MapMember)["b"][1])
+	assert.Equal(t, int64(1), *out.MapMember["a"][0])
+	assert.Equal(t, int64(2), *out.MapMember["a"][1])
+	assert.Equal(t, int64(3), *out.MapMember["b"][0])
+	assert.Equal(t, int64(4), *out.MapMember["b"][1])
 
 }
 

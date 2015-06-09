@@ -1,4 +1,5 @@
 {
+  "version":"2.0",
   "metadata":{
     "apiVersion":"2010-06-01",
     "endpointPrefix":"importexport",
@@ -206,7 +207,7 @@
           "documentation":"One or more parameters had an invalid value."
         }
       ],
-      "documentation":"This operation returns information about a job, including where the job is in the processing pipeline, the status of the results, and the signature value associated with the job. You can only return information about jobs you own."
+      "documentation":"This operation generates a pre-paid UPS shipping label that you will use to ship your device to AWS for processing."
     },
     "GetStatus":{
       "name":"GetStatus",

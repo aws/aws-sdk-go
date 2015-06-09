@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 var oprw sync.Mutex
@@ -22,6 +22,12 @@ func (c *DynamoDB) BatchGetItemRequest(input *BatchGetItemInput) (req *aws.Reque
 			Name:       "BatchGetItem",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"RequestItems"},
+				OutputTokens:    []string{"UnprocessedKeys"},
+				LimitToken:      "",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -85,6 +91,13 @@ func (c *DynamoDB) BatchGetItem(input *BatchGetItemInput) (*BatchGetItemOutput, 
 	req, out := c.BatchGetItemRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *DynamoDB) BatchGetItemPages(input *BatchGetItemInput, fn func(p *BatchGetItemOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.BatchGetItemRequest(input)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*BatchGetItemOutput), lastPage)
+	})
 }
 
 var opBatchGetItem *aws.Operation
@@ -444,7 +457,9 @@ func (c *DynamoDB) ListTables(input *ListTablesInput) (*ListTablesOutput, error)
 
 func (c *DynamoDB) ListTablesPages(input *ListTablesInput, fn func(p *ListTablesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListTablesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListTablesOutput), lastPage)
+	})
 }
 
 var opListTables *aws.Operation
@@ -567,7 +582,9 @@ func (c *DynamoDB) Query(input *QueryInput) (*QueryOutput, error) {
 
 func (c *DynamoDB) QueryPages(input *QueryInput, fn func(p *QueryOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.QueryRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*QueryOutput), lastPage)
+	})
 }
 
 var opQuery *aws.Operation
@@ -626,7 +643,9 @@ func (c *DynamoDB) Scan(input *ScanInput) (*ScanOutput, error) {
 
 func (c *DynamoDB) ScanPages(input *ScanInput, fn func(p *ScanOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ScanRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ScanOutput), lastPage)
+	})
 }
 
 var opScan *aws.Operation
@@ -757,7 +776,7 @@ type AttributeValue struct {
 	L []*AttributeValue `type:"list"`
 
 	// A Map of attribute values.
-	M *map[string]*AttributeValue `type:"map"`
+	M map[string]*AttributeValue `type:"map"`
 
 	// A Number data type.
 	N *string `type:"string"`
@@ -954,7 +973,7 @@ type BatchGetItemInput struct {
 	// Note that AttributesToGet has no effect on provisioned throughput consumption.
 	// DynamoDB determines capacity units consumed based on item size, not on the
 	// amount of data that is returned to an application.
-	RequestItems *map[string]*KeysAndAttributes `type:"map" required:"true"`
+	RequestItems map[string]*KeysAndAttributes `type:"map" required:"true"`
 
 	// A value that if set to TOTAL, the response includes ConsumedCapacity data
 	// for tables and indexes. If set to INDEXES, the response includes ConsumedCapacity
@@ -983,7 +1002,7 @@ type BatchGetItemOutput struct {
 	// A map of table name to a list of items. Each object in Responses consists
 	// of a table name, along with a map of attribute data consisting of the data
 	// type and attribute value.
-	Responses *map[string][]*map[string]*AttributeValue `type:"map"`
+	Responses map[string][]map[string]*AttributeValue `type:"map"`
 
 	// A map of tables and their respective keys that were not processed with the
 	// current response. The UnprocessedKeys value is in the same form as RequestItems,
@@ -1005,7 +1024,7 @@ type BatchGetItemOutput struct {
 	//
 	//   If there are no unprocessed keys remaining, the response contains an empty
 	// UnprocessedKeys map.
-	UnprocessedKeys *map[string]*KeysAndAttributes `type:"map"`
+	UnprocessedKeys map[string]*KeysAndAttributes `type:"map"`
 
 	metadataBatchGetItemOutput `json:"-" xml:"-"`
 }
@@ -1042,7 +1061,7 @@ type BatchWriteItemInput struct {
 	// If you specify any attributes that are part of an index key, then the data
 	// types for those attributes must match those of the schema in the table's
 	// attribute definition.
-	RequestItems *map[string][]*WriteRequest `type:"map" required:"true"`
+	RequestItems map[string][]*WriteRequest `type:"map" required:"true"`
 
 	// A value that if set to TOTAL, the response includes ConsumedCapacity data
 	// for tables and indexes. If set to INDEXES, the response includes ConsumedCapacity
@@ -1091,7 +1110,7 @@ type BatchWriteItemOutput struct {
 	//
 	// The estimate is subject to change over time; therefore, do not rely on the
 	// precision or accuracy of the estimate.
-	ItemCollectionMetrics *map[string][]*ItemCollectionMetrics `type:"map"`
+	ItemCollectionMetrics map[string][]*ItemCollectionMetrics `type:"map"`
 
 	// A map of tables and requests against those tables that were not processed.
 	// The UnprocessedItems value is in the same form as RequestItems, so you can
@@ -1123,7 +1142,7 @@ type BatchWriteItemOutput struct {
 	//
 	//     If there are no unprocessed items remaining, the response contains an
 	// empty UnprocessedItems map.
-	UnprocessedItems *map[string][]*WriteRequest `type:"map"`
+	UnprocessedItems map[string][]*WriteRequest `type:"map"`
 
 	metadataBatchWriteItemOutput `json:"-" xml:"-"`
 }
@@ -1324,10 +1343,10 @@ type ConsumedCapacity struct {
 	CapacityUnits *float64 `type:"double"`
 
 	// The amount of throughput consumed on each global index affected by the operation.
-	GlobalSecondaryIndexes *map[string]*Capacity `type:"map"`
+	GlobalSecondaryIndexes map[string]*Capacity `type:"map"`
 
 	// The amount of throughput consumed on each local index affected by the operation.
-	LocalSecondaryIndexes *map[string]*Capacity `type:"map"`
+	LocalSecondaryIndexes map[string]*Capacity `type:"map"`
 
 	// The amount of throughput consumed on the table affected by the operation.
 	Table *Capacity `type:"structure"`
@@ -1742,7 +1761,7 @@ type DeleteItemInput struct {
 	// DynamoDB will return a ValidationException exception.
 	//
 	// This parameter does not support attributes of type List or Map.
-	Expected *map[string]*ExpectedAttributeValue `type:"map"`
+	Expected map[string]*ExpectedAttributeValue `type:"map"`
 
 	// One or more substitution tokens for attribute names in an expression. The
 	// following are some use cases for using ExpressionAttributeNames:
@@ -1778,7 +1797,7 @@ type DeleteItemInput struct {
 	// For more information on expression attribute names, see Using Placeholders
 	// for Attribute Names and Values (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ExpressionPlaceholders.html)
 	// in the Amazon DynamoDB Developer Guide.
-	ExpressionAttributeNames *map[string]*string `type:"map"`
+	ExpressionAttributeNames map[string]*string `type:"map"`
 
 	// One or more values that can be substituted in an expression.
 	//
@@ -1800,7 +1819,7 @@ type DeleteItemInput struct {
 	// For more information on expression attribute values, see Using Placeholders
 	// for Attribute Names and Values (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ExpressionPlaceholders.html)
 	// in the Amazon DynamoDB Developer Guide.
-	ExpressionAttributeValues *map[string]*AttributeValue `type:"map"`
+	ExpressionAttributeValues map[string]*AttributeValue `type:"map"`
 
 	// A map of attribute names to AttributeValue objects, representing the primary
 	// key of the item to delete.
@@ -1809,7 +1828,7 @@ type DeleteItemInput struct {
 	// with a hash type primary key, you only need to provide the hash attribute.
 	// For a hash-and-range type primary key, you must provide both the hash attribute
 	// and the range attribute.
-	Key *map[string]*AttributeValue `type:"map" required:"true"`
+	Key map[string]*AttributeValue `type:"map" required:"true"`
 
 	// A value that if set to TOTAL, the response includes ConsumedCapacity data
 	// for tables and indexes. If set to INDEXES, the response includes ConsumedCapacity
@@ -1846,7 +1865,7 @@ type DeleteItemOutput struct {
 	// A map of attribute names to AttributeValue objects, representing the item
 	// as it appeared before the DeleteItem operation. This map appears in the response
 	// only if ReturnValues was specified as ALL_OLD in the request.
-	Attributes *map[string]*AttributeValue `type:"map"`
+	Attributes map[string]*AttributeValue `type:"map"`
 
 	// The capacity units consumed by an operation. The data returned includes the
 	// total provisioned throughput consumed, along with statistics for the table
@@ -1889,7 +1908,7 @@ type DeleteRequest struct {
 	// A map of attribute name to attribute values, representing the primary key
 	// of the item to delete. All of the table's primary key attributes must be
 	// specified, and their data types must match those of the table's key schema.
-	Key *map[string]*AttributeValue `type:"map" required:"true"`
+	Key map[string]*AttributeValue `type:"map" required:"true"`
 
 	metadataDeleteRequest `json:"-" xml:"-"`
 }
@@ -2210,7 +2229,7 @@ type GetItemInput struct {
 	// For more information on expression attribute names, see Using Placeholders
 	// for Attribute Names and Values (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ExpressionPlaceholders.html)
 	// in the Amazon DynamoDB Developer Guide.
-	ExpressionAttributeNames *map[string]*string `type:"map"`
+	ExpressionAttributeNames map[string]*string `type:"map"`
 
 	// A map of attribute names to AttributeValue objects, representing the primary
 	// key of the item to retrieve.
@@ -2219,7 +2238,7 @@ type GetItemInput struct {
 	// with a hash type primary key, you only need to provide the hash attribute.
 	// For a hash-and-range type primary key, you must provide both the hash attribute
 	// and the range attribute.
-	Key *map[string]*AttributeValue `type:"map" required:"true"`
+	Key map[string]*AttributeValue `type:"map" required:"true"`
 
 	// A string that identifies one or more attributes to retrieve from the table.
 	// These attributes can include scalars, sets, or elements of a JSON document.
@@ -2262,7 +2281,7 @@ type GetItemOutput struct {
 	ConsumedCapacity *ConsumedCapacity `type:"structure"`
 
 	// A map of attribute names to AttributeValue objects, as specified by AttributesToGet.
-	Item *map[string]*AttributeValue `type:"map"`
+	Item map[string]*AttributeValue `type:"map"`
 
 	metadataGetItemOutput `json:"-" xml:"-"`
 }
@@ -2400,7 +2419,7 @@ type metadataGlobalSecondaryIndexUpdate struct {
 type ItemCollectionMetrics struct {
 	// The hash key value of the item collection. This value is the same as the
 	// hash key of the item.
-	ItemCollectionKey *map[string]*AttributeValue `type:"map"`
+	ItemCollectionKey map[string]*AttributeValue `type:"map"`
 
 	// An estimate of item collection size, in gigabytes. This value is a two-element
 	// array containing a lower bound and an upper bound for the estimate. The estimate
@@ -2492,11 +2511,11 @@ type KeysAndAttributes struct {
 	// For more information on expression attribute names, see Using Placeholders
 	// for Attribute Names and Values (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ExpressionPlaceholders.html)
 	// in the Amazon DynamoDB Developer Guide.
-	ExpressionAttributeNames *map[string]*string `type:"map"`
+	ExpressionAttributeNames map[string]*string `type:"map"`
 
 	// The primary key attribute values that define the items and the attributes
 	// associated with the items.
-	Keys []*map[string]*AttributeValue `type:"list" required:"true"`
+	Keys []map[string]*AttributeValue `type:"list" required:"true"`
 
 	// A string that identifies one or more attributes to retrieve from the table.
 	// These attributes can include scalars, sets, or elements of a JSON document.
@@ -2938,7 +2957,7 @@ type PutItemInput struct {
 	//   The Value and Exists parameters are incompatible with AttributeValueList
 	// and ComparisonOperator. Note that if you use both sets of parameters at once,
 	// DynamoDB will return a ValidationException exception.
-	Expected *map[string]*ExpectedAttributeValue `type:"map"`
+	Expected map[string]*ExpectedAttributeValue `type:"map"`
 
 	// One or more substitution tokens for attribute names in an expression. The
 	// following are some use cases for using ExpressionAttributeNames:
@@ -2974,7 +2993,7 @@ type PutItemInput struct {
 	// For more information on expression attribute names, see Using Placeholders
 	// for Attribute Names and Values (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ExpressionPlaceholders.html)
 	// in the Amazon DynamoDB Developer Guide.
-	ExpressionAttributeNames *map[string]*string `type:"map"`
+	ExpressionAttributeNames map[string]*string `type:"map"`
 
 	// One or more values that can be substituted in an expression.
 	//
@@ -2996,7 +3015,7 @@ type PutItemInput struct {
 	// For more information on expression attribute values, see Using Placeholders
 	// for Attribute Names and Values (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ExpressionPlaceholders.html)
 	// in the Amazon DynamoDB Developer Guide.
-	ExpressionAttributeValues *map[string]*AttributeValue `type:"map"`
+	ExpressionAttributeValues map[string]*AttributeValue `type:"map"`
 
 	// A map of attribute name/value pairs, one for each attribute. Only the primary
 	// key attributes are required; you can optionally provide other attribute name-value
@@ -3015,7 +3034,7 @@ type PutItemInput struct {
 	// in the Amazon DynamoDB Developer Guide.
 	//
 	// Each element in the Item map is an AttributeValue object.
-	Item *map[string]*AttributeValue `type:"map" required:"true"`
+	Item map[string]*AttributeValue `type:"map" required:"true"`
 
 	// A value that if set to TOTAL, the response includes ConsumedCapacity data
 	// for tables and indexes. If set to INDEXES, the response includes ConsumedCapacity
@@ -3054,7 +3073,7 @@ type PutItemOutput struct {
 	// The attribute values as they appeared before the PutItem operation, but only
 	// if ReturnValues is specified as ALL_OLD in the request. Each element consists
 	// of an attribute name and an attribute value.
-	Attributes *map[string]*AttributeValue `type:"map"`
+	Attributes map[string]*AttributeValue `type:"map"`
 
 	// The capacity units consumed by an operation. The data returned includes the
 	// total provisioned throughput consumed, along with statistics for the table
@@ -3099,7 +3118,7 @@ type PutRequest struct {
 	// must be specified, and their data types must match those of the table's key
 	// schema. If any attributes are present in the item which are part of an index
 	// key schema for the table, their types must match the index key schema.
-	Item *map[string]*AttributeValue `type:"map" required:"true"`
+	Item map[string]*AttributeValue `type:"map" required:"true"`
 
 	metadataPutRequest `json:"-" xml:"-"`
 }
@@ -3175,7 +3194,7 @@ type QueryInput struct {
 	//
 	// The data type for ExclusiveStartKey must be String, Number or Binary. No
 	// set data types are allowed.
-	ExclusiveStartKey *map[string]*AttributeValue `type:"map"`
+	ExclusiveStartKey map[string]*AttributeValue `type:"map"`
 
 	// One or more substitution tokens for attribute names in an expression. The
 	// following are some use cases for using ExpressionAttributeNames:
@@ -3211,7 +3230,7 @@ type QueryInput struct {
 	// For more information on expression attribute names, see Using Placeholders
 	// for Attribute Names and Values (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ExpressionPlaceholders.html)
 	// in the Amazon DynamoDB Developer Guide.
-	ExpressionAttributeNames *map[string]*string `type:"map"`
+	ExpressionAttributeNames map[string]*string `type:"map"`
 
 	// One or more values that can be substituted in an expression.
 	//
@@ -3233,7 +3252,7 @@ type QueryInput struct {
 	// For more information on expression attribute values, see Using Placeholders
 	// for Attribute Names and Values (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ExpressionPlaceholders.html)
 	// in the Amazon DynamoDB Developer Guide.
-	ExpressionAttributeValues *map[string]*AttributeValue `type:"map"`
+	ExpressionAttributeValues map[string]*AttributeValue `type:"map"`
 
 	// A string that contains conditions that DynamoDB applies after the Query operation,
 	// but before the data is returned to you. Items that do not satisfy the FilterExpression
@@ -3422,7 +3441,7 @@ type QueryInput struct {
 	//     For usage examples of AttributeValueList and ComparisonOperator, see
 	// Legacy Conditional Parameters (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.html)
 	// in the Amazon DynamoDB Developer Guide.
-	KeyConditions *map[string]*Condition `type:"map"`
+	KeyConditions map[string]*Condition `type:"map"`
 
 	// The maximum number of items to evaluate (not necessarily the number of matching
 	// items). If DynamoDB processes the number of items up to the limit while processing
@@ -3502,7 +3521,7 @@ type QueryInput struct {
 	// For complete descriptions of all comparison operators, see the Condition
 	// (http://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Condition.html)
 	// data type.
-	QueryFilter *map[string]*Condition `type:"map"`
+	QueryFilter map[string]*Condition `type:"map"`
 
 	// A value that if set to TOTAL, the response includes ConsumedCapacity data
 	// for tables and indexes. If set to INDEXES, the response includes ConsumedCapacity
@@ -3598,7 +3617,7 @@ type QueryOutput struct {
 
 	// An array of item attributes that match the query criteria. Each element in
 	// this array consists of an attribute name and the value for that attribute.
-	Items []*map[string]*AttributeValue `type:"list"`
+	Items []map[string]*AttributeValue `type:"list"`
 
 	// The primary key of the item where the operation stopped, inclusive of the
 	// previous result set. Use this value to start a new operation, excluding this
@@ -3610,7 +3629,7 @@ type QueryOutput struct {
 	// If LastEvaluatedKey is not empty, it does not necessarily mean that there
 	// is more data in the result set. The only way to know when you have reached
 	// the end of the result set is when LastEvaluatedKey is empty.
-	LastEvaluatedKey *map[string]*AttributeValue `type:"map"`
+	LastEvaluatedKey map[string]*AttributeValue `type:"map"`
 
 	// The number of items evaluated, before any QueryFilter is applied. A high
 	// ScannedCount value with few, or no, Count results indicates an inefficient
@@ -3676,7 +3695,7 @@ type ScanInput struct {
 	// In a parallel scan, a Scan request that includes ExclusiveStartKey must
 	// specify the same segment whose previous Scan returned the corresponding value
 	// of LastEvaluatedKey.
-	ExclusiveStartKey *map[string]*AttributeValue `type:"map"`
+	ExclusiveStartKey map[string]*AttributeValue `type:"map"`
 
 	// One or more substitution tokens for attribute names in an expression. The
 	// following are some use cases for using ExpressionAttributeNames:
@@ -3712,7 +3731,7 @@ type ScanInput struct {
 	// For more information on expression attribute names, see Using Placeholders
 	// for Attribute Names and Values (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ExpressionPlaceholders.html)
 	// in the Amazon DynamoDB Developer Guide.
-	ExpressionAttributeNames *map[string]*string `type:"map"`
+	ExpressionAttributeNames map[string]*string `type:"map"`
 
 	// One or more values that can be substituted in an expression.
 	//
@@ -3734,7 +3753,7 @@ type ScanInput struct {
 	// For more information on expression attribute values, see Using Placeholders
 	// for Attribute Names and Values (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ExpressionPlaceholders.html)
 	// in the Amazon DynamoDB Developer Guide.
-	ExpressionAttributeValues *map[string]*AttributeValue `type:"map"`
+	ExpressionAttributeValues map[string]*AttributeValue `type:"map"`
 
 	// A string that contains conditions that DynamoDB applies after the Scan operation,
 	// but before the data is returned to you. Items that do not satisfy the FilterExpression
@@ -3831,7 +3850,7 @@ type ScanInput struct {
 	// | BEGINS_WITH | IN | BETWEEN
 	//
 	// For complete descriptions of all comparison operators, see Condition (http://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Condition.html).
-	ScanFilter *map[string]*Condition `type:"map"`
+	ScanFilter map[string]*Condition `type:"map"`
 
 	// For a parallel Scan request, Segment identifies an individual segment to
 	// be scanned by an application worker.
@@ -3915,7 +3934,7 @@ type ScanOutput struct {
 
 	// An array of item attributes that match the scan criteria. Each element in
 	// this array consists of an attribute name and the value for that attribute.
-	Items []*map[string]*AttributeValue `type:"list"`
+	Items []map[string]*AttributeValue `type:"list"`
 
 	// The primary key of the item where the operation stopped, inclusive of the
 	// previous result set. Use this value to start a new operation, excluding this
@@ -3927,7 +3946,7 @@ type ScanOutput struct {
 	// If LastEvaluatedKey is not empty, it does not necessarily mean that there
 	// is more data in the result set. The only way to know when you have reached
 	// the end of the result set is when LastEvaluatedKey is empty.
-	LastEvaluatedKey *map[string]*AttributeValue `type:"map"`
+	LastEvaluatedKey map[string]*AttributeValue `type:"map"`
 
 	// The number of items evaluated, before any ScanFilter is applied. A high ScannedCount
 	// value with few, or no, Count results indicates an inefficient Scan operation.
@@ -4221,7 +4240,7 @@ type UpdateItemInput struct {
 	//     If you provide any attributes that are part of an index key, then the
 	// data types for those attributes must match those of the schema in the table's
 	// attribute definition.
-	AttributeUpdates *map[string]*AttributeValueUpdate `type:"map"`
+	AttributeUpdates map[string]*AttributeValueUpdate `type:"map"`
 
 	// A condition that must be satisfied in order for a conditional update to succeed.
 	//
@@ -4457,7 +4476,7 @@ type UpdateItemInput struct {
 	// DynamoDB will return a ValidationException exception.
 	//
 	// This parameter does not support attributes of type List or Map.
-	Expected *map[string]*ExpectedAttributeValue `type:"map"`
+	Expected map[string]*ExpectedAttributeValue `type:"map"`
 
 	// One or more substitution tokens for attribute names in an expression. The
 	// following are some use cases for using ExpressionAttributeNames:
@@ -4493,7 +4512,7 @@ type UpdateItemInput struct {
 	// For more information on expression attribute names, see Using Placeholders
 	// for Attribute Names and Values (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ExpressionPlaceholders.html)
 	// in the Amazon DynamoDB Developer Guide.
-	ExpressionAttributeNames *map[string]*string `type:"map"`
+	ExpressionAttributeNames map[string]*string `type:"map"`
 
 	// One or more values that can be substituted in an expression.
 	//
@@ -4515,7 +4534,7 @@ type UpdateItemInput struct {
 	// For more information on expression attribute values, see Using Placeholders
 	// for Attribute Names and Values (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ExpressionPlaceholders.html)
 	// in the Amazon DynamoDB Developer Guide.
-	ExpressionAttributeValues *map[string]*AttributeValue `type:"map"`
+	ExpressionAttributeValues map[string]*AttributeValue `type:"map"`
 
 	// The primary key of the item to be updated. Each element consists of an attribute
 	// name and a value for that attribute.
@@ -4524,7 +4543,7 @@ type UpdateItemInput struct {
 	// with a hash type primary key, you only need to provide the hash attribute.
 	// For a hash-and-range type primary key, you must provide both the hash attribute
 	// and the range attribute.
-	Key *map[string]*AttributeValue `type:"map" required:"true"`
+	Key map[string]*AttributeValue `type:"map" required:"true"`
 
 	// A value that if set to TOTAL, the response includes ConsumedCapacity data
 	// for tables and indexes. If set to INDEXES, the response includes ConsumedCapacity
@@ -4644,7 +4663,7 @@ type UpdateItemOutput struct {
 	// A map of attribute values as they appeared before the UpdateItem operation.
 	// This map only appears if ReturnValues was specified as something other than
 	// NONE in the request. Each element represents one attribute.
-	Attributes *map[string]*AttributeValue `type:"map"`
+	Attributes map[string]*AttributeValue `type:"map"`
 
 	// The capacity units consumed by an operation. The data returned includes the
 	// total provisioned throughput consumed, along with statistics for the table

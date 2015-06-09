@@ -3,9 +3,9 @@
 package cloudformation
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/query"
-	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/protocol/query"
+	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
 // CloudFormation is a client for AWS CloudFormation.
@@ -21,10 +21,6 @@ var initRequest func(*aws.Request)
 
 // New returns a new CloudFormation client.
 func New(config *aws.Config) *CloudFormation {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "cloudformation",

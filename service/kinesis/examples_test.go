@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
-	"github.com/awslabs/aws-sdk-go/service/kinesis"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/service/kinesis"
 )
 
 var _ time.Duration
@@ -21,7 +21,7 @@ func ExampleKinesis_AddTagsToStream() {
 
 	params := &kinesis.AddTagsToStreamInput{
 		StreamName: aws.String("StreamName"), // Required
-		Tags: &map[string]*string{ // Required
+		Tags: map[string]*string{ // Required
 			"Key": aws.String("TagValue"), // Required
 			// More values...
 		},
@@ -311,7 +311,7 @@ func ExampleKinesis_PutRecords() {
 
 	params := &kinesis.PutRecordsInput{
 		Records: []*kinesis.PutRecordsRequestEntry{ // Required
-			&kinesis.PutRecordsRequestEntry{ // Required
+			{ // Required
 				Data:            []byte("PAYLOAD"),          // Required
 				PartitionKey:    aws.String("PartitionKey"), // Required
 				ExplicitHashKey: aws.String("HashKey"),

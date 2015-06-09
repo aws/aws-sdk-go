@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"sort"
 
-	"github.com/awslabs/aws-sdk-go/internal/model/api"
+	"github.com/aws/aws-sdk-go/internal/model/api"
 )
 
 func main() {
@@ -14,6 +14,9 @@ func main() {
 	names, _ := dir.Readdirnames(0)
 	for _, name := range names {
 		m, _ := filepath.Glob(filepath.Join("apis", name, "*.normal.json"))
+		if len(m) == 0 {
+			continue
+		}
 
 		sort.Strings(m)
 		f := m[len(m)-1]

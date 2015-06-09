@@ -5,8 +5,8 @@ package cloudwatchiface_test
 import (
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/service/cloudwatch"
-	"github.com/awslabs/aws-sdk-go/service/cloudwatch/cloudwatchiface"
+	"github.com/aws/aws-sdk-go/service/cloudwatch"
+	"github.com/aws/aws-sdk-go/service/cloudwatch/cloudwatchiface"
 	"github.com/stretchr/testify/assert"
 )
 

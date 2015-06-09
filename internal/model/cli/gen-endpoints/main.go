@@ -8,7 +8,7 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/awslabs/aws-sdk-go/internal/model"
+	"github.com/aws/aws-sdk-go/internal/model"
 )
 
 // Generates the endpoints from json description

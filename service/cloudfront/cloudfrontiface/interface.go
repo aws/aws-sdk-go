@@ -4,7 +4,7 @@
 package cloudfrontiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/service/cloudfront"
+	"github.com/aws/aws-sdk-go/service/cloudfront"
 )
 
 // CloudFrontAPI is the interface type for cloudfront.CloudFront.

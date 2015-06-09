@@ -1,8 +1,9 @@
+//Package elasticache provides gucumber integration tests suppport.
 package elasticache
 
 import (
-	"github.com/awslabs/aws-sdk-go/internal/features/shared"
-	"github.com/awslabs/aws-sdk-go/service/elasticache"
+	"github.com/aws/aws-sdk-go/internal/features/shared"
+	"github.com/aws/aws-sdk-go/service/elasticache"
 	. "github.com/lsegal/gucumber"
 )
 

@@ -3,8 +3,8 @@ package aws_test
 import (
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -18,9 +18,9 @@ var service = func() *aws.Service {
 }()
 
 type StructShape struct {
-	RequiredList   []*ConditionalStructShape           `required:"true"`
-	RequiredMap    *map[string]*ConditionalStructShape `required:"true"`
-	RequiredBool   *bool                               `required:"true"`
+	RequiredList   []*ConditionalStructShape          `required:"true"`
+	RequiredMap    map[string]*ConditionalStructShape `required:"true"`
+	RequiredBool   *bool                              `required:"true"`
 	OptionalStruct *ConditionalStructShape
 
 	hiddenParameter *string
@@ -40,9 +40,9 @@ type ConditionalStructShape struct {
 func TestNoErrors(t *testing.T) {
 	input := &StructShape{
 		RequiredList: []*ConditionalStructShape{},
-		RequiredMap: &map[string]*ConditionalStructShape{
-			"key1": &ConditionalStructShape{Name: aws.String("Name")},
-			"key2": &ConditionalStructShape{Name: aws.String("Name")},
+		RequiredMap: map[string]*ConditionalStructShape{
+			"key1": {Name: aws.String("Name")},
+			"key2": {Name: aws.String("Name")},
 		},
 		RequiredBool:   aws.Boolean(true),
 		OptionalStruct: &ConditionalStructShape{Name: aws.String("Name")},
@@ -65,10 +65,10 @@ func TestMissingRequiredParameters(t *testing.T) {
 
 func TestNestedMissingRequiredParameters(t *testing.T) {
 	input := &StructShape{
-		RequiredList: []*ConditionalStructShape{&ConditionalStructShape{}},
-		RequiredMap: &map[string]*ConditionalStructShape{
-			"key1": &ConditionalStructShape{Name: aws.String("Name")},
-			"key2": &ConditionalStructShape{},
+		RequiredList: []*ConditionalStructShape{{}},
+		RequiredMap: map[string]*ConditionalStructShape{
+			"key1": {Name: aws.String("Name")},
+			"key2": {},
 		},
 		RequiredBool:   aws.Boolean(true),
 		OptionalStruct: &ConditionalStructShape{},

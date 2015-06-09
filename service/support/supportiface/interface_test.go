@@ -5,8 +5,8 @@ package supportiface_test
 import (
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/service/support"
-	"github.com/awslabs/aws-sdk-go/service/support/supportiface"
+	"github.com/aws/aws-sdk-go/service/support"
+	"github.com/aws/aws-sdk-go/service/support/supportiface"
 	"github.com/stretchr/testify/assert"
 )
 

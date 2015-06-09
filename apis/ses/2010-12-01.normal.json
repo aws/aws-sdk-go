@@ -56,7 +56,7 @@
         "documentation":"<p>Represents a list of all the DKIM attributes for the specified identity.</p>",
         "resultWrapper":"GetIdentityDkimAttributesResult"
       },
-      "documentation":"<p>Returns the current status of Easy DKIM signing for an entity. For domain name identities, this action also returns the DKIM tokens that are required for Easy DKIM signing, and whether Amazon SES has successfully verified that these tokens have been published.</p> <p>This action takes a list of identities as input and returns the following information for each:</p> <ul> <li>Whether Easy DKIM signing is enabled or disabled.</li> <li>A set of DKIM tokens that represent the identity. If the identity is an email address, the tokens represent the domain of that address.</li> <li>Whether Amazon SES has successfully verified the DKIM tokens published in the domain's DNS. This information is only returned for domain name identities, not for email addresses.</li> </ul> <p>This action is throttled at one request per second.</p> <p>For more information about creating DNS records using DKIM tokens, go to the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html\">Amazon SES Developer Guide</a>.</p>"
+      "documentation":"<p>Returns the current status of Easy DKIM signing for an entity. For domain name identities, this action also returns the DKIM tokens that are required for Easy DKIM signing, and whether Amazon SES has successfully verified that these tokens have been published.</p> <p>This action takes a list of identities as input and returns the following information for each:</p> <ul> <li>Whether Easy DKIM signing is enabled or disabled.</li> <li>A set of DKIM tokens that represent the identity. If the identity is an email address, the tokens represent the domain of that address.</li> <li>Whether Amazon SES has successfully verified the DKIM tokens published in the domain's DNS. This information is only returned for domain name identities, not for email addresses.</li> </ul> <p>This action is throttled at one request per second and can only get DKIM attributes for up to 100 identities at a time.</p> <p>For more information about creating DNS records using DKIM tokens, go to the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html\">Amazon SES Developer Guide</a>.</p>"
     },
     "GetIdentityNotificationAttributes":{
       "name":"GetIdentityNotificationAttributes",
@@ -70,7 +70,7 @@
         "documentation":"<p>Describes whether an identity has Amazon Simple Notification Service (Amazon SNS) topics set for bounce, complaint, and/or delivery notifications, and specifies whether feedback forwarding is enabled for bounce and complaint notifications.</p>",
         "resultWrapper":"GetIdentityNotificationAttributesResult"
       },
-      "documentation":"<p>Given a list of verified identities (email addresses and/or domains), returns a structure describing identity notification attributes.</p> <p>This action is throttled at one request per second.</p> <p>For more information about using notifications with Amazon SES, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html\">Amazon SES Developer Guide</a>.</p>"
+      "documentation":"<p>Given a list of verified identities (email addresses and/or domains), returns a structure describing identity notification attributes.</p> <p>This action is throttled at one request per second and can only get notification attributes for up to 100 identities at a time.</p> <p>For more information about using notifications with Amazon SES, see the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html\">Amazon SES Developer Guide</a>.</p>"
     },
     "GetIdentityVerificationAttributes":{
       "name":"GetIdentityVerificationAttributes",
@@ -87,7 +87,7 @@
         "documentation":"<p>Represents the verification attributes for a list of identities.</p>",
         "resultWrapper":"GetIdentityVerificationAttributesResult"
       },
-      "documentation":"<p>Given a list of identities (email addresses and/or domains), returns the verification status and (for domain identities) the verification token for each identity.</p> <p>This action is throttled at one request per second.</p>"
+      "documentation":"<p>Given a list of identities (email addresses and/or domains), returns the verification status and (for domain identities) the verification token for each identity.</p> <p>This action is throttled at one request per second and can only get verification attributes for up to 100 identities at a time.</p>"
     },
     "GetSendQuota":{
       "name":"GetSendQuota",
@@ -172,7 +172,7 @@
           "documentation":"Indicates that the action failed, and the message could not be sent. Check the error stack for more information about what caused the error."
         }
       ],
-      "documentation":"<p>Composes an email message based on input data, and then immediately queues the message for sending. </p> <important> You can only send email from verified email addresses and domains. If you have not requested production access to Amazon SES, you must also verify every recipient email address except for the recipients provided by the Amazon SES mailbox simulator. For more information, go to the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html\">Amazon SES Developer Guide</a>. </important> <p>The total size of the message cannot exceed 10 MB.</p> <p>Amazon SES has a limit on the total number of recipients per message: The combined number of To:, CC: and BCC: email addresses cannot exceed 50. If you need to send an email message to a larger audience, you can divide your recipient list into groups of 50 or fewer, and then call Amazon SES repeatedly to send the message to each group. </p> <p>For every message that you send, the total number of recipients (To:, CC: and BCC:) is counted against your <i>sending quota</i> - the maximum number of emails you can send in a 24-hour period. For information about your sending quota, go to the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html\">Amazon SES Developer Guide</a>. </p>"
+      "documentation":"<p>Composes an email message based on input data, and then immediately queues the message for sending. </p> <important> You can only send email from verified email addresses and domains. If your account is still in the Amazon SES sandbox, you must also verify every recipient email address except for the recipients provided by the Amazon SES mailbox simulator. For more information, go to the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html\">Amazon SES Developer Guide</a>. </important> <p>The total size of the message cannot exceed 10 MB.</p> <p>Amazon SES has a limit on the total number of recipients per message: The combined number of To:, CC: and BCC: email addresses cannot exceed 50. If you need to send an email message to a larger audience, you can divide your recipient list into groups of 50 or fewer, and then call Amazon SES repeatedly to send the message to each group. </p> <p>For every message that you send, the total number of recipients (To:, CC: and BCC:) is counted against your <i>sending quota</i> - the maximum number of emails you can send in a 24-hour period. For information about your sending quota, go to the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html\">Amazon SES Developer Guide</a>. </p>"
     },
     "SendRawEmail":{
       "name":"SendRawEmail",
@@ -201,7 +201,7 @@
           "documentation":"Indicates that the action failed, and the message could not be sent. Check the error stack for more information about what caused the error."
         }
       ],
-      "documentation":"<p>Sends an email message, with header and content specified by the client. The <code>SendRawEmail</code> action is useful for sending multipart MIME emails. The raw text of the message must comply with Internet email standards; otherwise, the message cannot be sent. </p> <important> You can only send email from verified email addresses and domains. If you have not requested production access to Amazon SES, you must also verify every recipient email address except for the recipients provided by the Amazon SES mailbox simulator. For more information, go to the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html\">Amazon SES Developer Guide</a>. </important> <p>The total size of the message cannot exceed 10 MB. This includes any attachments that are part of the message.</p> <p>Amazon SES has a limit on the total number of recipients per message: The combined number of To:, CC: and BCC: email addresses cannot exceed 50. If you need to send an email message to a larger audience, you can divide your recipient list into groups of 50 or fewer, and then call Amazon SES repeatedly to send the message to each group. </p> <p>The To:, CC:, and BCC: headers in the raw message can contain a group list. Note that each recipient in a group list counts towards the 50-recipient limit. </p> <p>For every message that you send, the total number of recipients (To:, CC: and BCC:) is counted against your <i>sending quota</i> - the maximum number of emails you can send in a 24-hour period. For information about your sending quota, go to the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html\">Amazon SES Developer Guide</a>. </p>"
+      "documentation":"<p>Sends an email message, with header and content specified by the client. The <code>SendRawEmail</code> action is useful for sending multipart MIME emails. The raw text of the message must comply with Internet email standards; otherwise, the message cannot be sent. </p> <important> You can only send email from verified email addresses and domains. If your account is still in the Amazon SES sandbox, you must also verify every recipient email address except for the recipients provided by the Amazon SES mailbox simulator. For more information, go to the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html\">Amazon SES Developer Guide</a>. </important> <p>The total size of the message cannot exceed 10 MB. This includes any attachments that are part of the message.</p> <p>Amazon SES has a limit on the total number of recipients per message: The combined number of To:, CC: and BCC: email addresses cannot exceed 50. If you need to send an email message to a larger audience, you can divide your recipient list into groups of 50 or fewer, and then call Amazon SES repeatedly to send the message to each group. </p> <p>The To:, CC:, and BCC: headers in the raw message can contain a group list. Note that each recipient in a group list counts towards the 50-recipient limit. </p> <p>For every message that you send, the total number of recipients (To:, CC: and BCC:) is counted against your <i>sending quota</i> - the maximum number of emails you can send in a 24-hour period. For information about your sending quota, go to the <a href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html\">Amazon SES Developer Guide</a>. </p>"
     },
     "SetIdentityDkimEnabled":{
       "name":"SetIdentityDkimEnabled",
@@ -475,11 +475,11 @@
       "members":{
         "Max24HourSend":{
           "shape":"Max24HourSend",
-          "documentation":"<p>The maximum number of emails the user is allowed to send in a 24-hour interval.</p>"
+          "documentation":"<p>The maximum number of emails the user is allowed to send in a 24-hour interval. A value of -1 signifies an unlimited quota.</p>"
         },
         "MaxSendRate":{
           "shape":"MaxSendRate",
-          "documentation":"<p>The maximum number of emails the user is allowed to send per second.</p>"
+          "documentation":"<p>The maximum number of emails that Amazon SES can accept from the user's account per second.</p> <note>The rate at which Amazon SES accepts the user's messages might be less than the maximum send rate.</note>"
         },
         "SentLast24Hours":{
           "shape":"SentLast24Hours",
@@ -588,7 +588,7 @@
         },
         "MaxItems":{
           "shape":"MaxItems",
-          "documentation":"<p>The maximum number of identities per page. Possible values are 1-100 inclusive.</p>"
+          "documentation":"<p>The maximum number of identities per page. Possible values are 1-1000 inclusive.</p>"
         }
       },
       "documentation":"<p>Represents a request instructing the service to list all identities for the AWS Account.</p>"
@@ -736,7 +736,7 @@
         },
         "ReturnPath":{
           "shape":"Address",
-          "documentation":"<p>The email address to which bounces and complaints are to be forwarded when feedback forwarding is enabled. If the message cannot be delivered to the recipient, then an error message will be returned from the recipient's ISP; this message will then be forwarded to the email address specified by the <code>ReturnPath</code> parameter. </p>"
+          "documentation":"<p>The email address to which bounces and complaints are to be forwarded when feedback forwarding is enabled. If the message cannot be delivered to the recipient, then an error message will be returned from the recipient's ISP; this message will then be forwarded to the email address specified by the <code>ReturnPath</code> parameter. The <code>ReturnPath</code> parameter is never overwritten. This email address must be either individually verified with Amazon SES, or from a domain that has been verified with Amazon SES. </p>"
         }
       },
       "documentation":"<p>Represents a request instructing the service to send a single email message.</p> <p>This datatype can be used in application code to compose a message consisting of source, destination, message, reply-to, and return-path parts. This object can then be sent using the <code>SendEmail</code> action. </p>"
@@ -758,7 +758,7 @@
       "members":{
         "Source":{
           "shape":"Address",
-          "documentation":"<p>The identity's email address.</p> <p> By default, the string must be 7-bit ASCII. If the text must contain any other characters, then you must use MIME encoded-word syntax (RFC 2047) instead of a literal string. MIME encoded-word syntax uses the following form: <code>=?charset?encoding?encoded-text?=</code>. For more information, see <a href=\"http://tools.ietf.org/html/rfc2047\">RFC 2047</a>. </p> <note>If you specify the <code>Source</code> parameter and have feedback forwarding enabled, then bounces and complaints will be sent to this email address. This takes precedence over any <i>Return-Path</i> header that you might include in the raw text of the message. </note>"
+          "documentation":"<p>The identity's email address. If you do not provide a value for this parameter, you must specify a \"From\" address in the raw text of the message. (You can also specify both.)</p> <p> By default, the string must be 7-bit ASCII. If the text must contain any other characters, then you must use MIME encoded-word syntax (RFC 2047) instead of a literal string. MIME encoded-word syntax uses the following form: <code>=?charset?encoding?encoded-text?=</code>. For more information, see <a href=\"http://tools.ietf.org/html/rfc2047\">RFC 2047</a>. </p> <note>If you specify the <code>Source</code> parameter and have feedback forwarding enabled, then bounces and complaints will be sent to this email address. This takes precedence over any <i>Return-Path</i> header that you might include in the raw text of the message. </note>"
         },
         "Destinations":{
           "shape":"AddressList",

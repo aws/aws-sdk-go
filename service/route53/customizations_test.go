@@ -3,9 +3,9 @@ package route53_test
 import (
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/util/utilassert"
-	"github.com/awslabs/aws-sdk-go/service/route53"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/util/utilassert"
+	"github.com/aws/aws-sdk-go/service/route53"
 )
 
 func TestBuildCorrectURI(t *testing.T) {

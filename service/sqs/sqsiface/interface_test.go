@@ -5,8 +5,8 @@ package sqsiface_test
 import (
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/service/sqs"
-	"github.com/awslabs/aws-sdk-go/service/sqs/sqsiface"
+	"github.com/aws/aws-sdk-go/service/sqs"
+	"github.com/aws/aws-sdk-go/service/sqs/sqsiface"
 	"github.com/stretchr/testify/assert"
 )
 

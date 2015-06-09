@@ -1,8 +1,9 @@
+//Package cloudtrail provides gucumber integration tests suppport.
 package cloudtrail
 
 import (
-	"github.com/awslabs/aws-sdk-go/internal/features/shared"
-	"github.com/awslabs/aws-sdk-go/service/cloudtrail"
+	"github.com/aws/aws-sdk-go/internal/features/shared"
+	"github.com/aws/aws-sdk-go/service/cloudtrail"
 	. "github.com/lsegal/gucumber"
 )
 

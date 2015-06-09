@@ -5,8 +5,8 @@ package snsiface_test
 import (
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/service/sns"
-	"github.com/awslabs/aws-sdk-go/service/sns/snsiface"
+	"github.com/aws/aws-sdk-go/service/sns"
+	"github.com/aws/aws-sdk-go/service/sns/snsiface"
 	"github.com/stretchr/testify/assert"
 )
 

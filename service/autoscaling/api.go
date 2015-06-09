@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 var oprw sync.Mutex
@@ -551,7 +551,9 @@ func (c *AutoScaling) DescribeAutoScalingGroups(input *DescribeAutoScalingGroups
 
 func (c *AutoScaling) DescribeAutoScalingGroupsPages(input *DescribeAutoScalingGroupsInput, fn func(p *DescribeAutoScalingGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeAutoScalingGroupsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeAutoScalingGroupsOutput), lastPage)
+	})
 }
 
 var opDescribeAutoScalingGroups *aws.Operation
@@ -600,7 +602,9 @@ func (c *AutoScaling) DescribeAutoScalingInstances(input *DescribeAutoScalingIns
 
 func (c *AutoScaling) DescribeAutoScalingInstancesPages(input *DescribeAutoScalingInstancesInput, fn func(p *DescribeAutoScalingInstancesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeAutoScalingInstancesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeAutoScalingInstancesOutput), lastPage)
+	})
 }
 
 var opDescribeAutoScalingInstances *aws.Operation
@@ -680,7 +684,9 @@ func (c *AutoScaling) DescribeLaunchConfigurations(input *DescribeLaunchConfigur
 
 func (c *AutoScaling) DescribeLaunchConfigurationsPages(input *DescribeLaunchConfigurationsInput, fn func(p *DescribeLaunchConfigurationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeLaunchConfigurationsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeLaunchConfigurationsOutput), lastPage)
+	})
 }
 
 var opDescribeLaunchConfigurations *aws.Operation
@@ -824,7 +830,9 @@ func (c *AutoScaling) DescribeNotificationConfigurations(input *DescribeNotifica
 
 func (c *AutoScaling) DescribeNotificationConfigurationsPages(input *DescribeNotificationConfigurationsInput, fn func(p *DescribeNotificationConfigurationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeNotificationConfigurationsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeNotificationConfigurationsOutput), lastPage)
+	})
 }
 
 var opDescribeNotificationConfigurations *aws.Operation
@@ -871,7 +879,9 @@ func (c *AutoScaling) DescribePolicies(input *DescribePoliciesInput) (*DescribeP
 
 func (c *AutoScaling) DescribePoliciesPages(input *DescribePoliciesInput, fn func(p *DescribePoliciesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribePoliciesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribePoliciesOutput), lastPage)
+	})
 }
 
 var opDescribePolicies *aws.Operation
@@ -921,7 +931,9 @@ func (c *AutoScaling) DescribeScalingActivities(input *DescribeScalingActivities
 
 func (c *AutoScaling) DescribeScalingActivitiesPages(input *DescribeScalingActivitiesInput, fn func(p *DescribeScalingActivitiesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeScalingActivitiesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeScalingActivitiesOutput), lastPage)
+	})
 }
 
 var opDescribeScalingActivities *aws.Operation
@@ -998,7 +1010,9 @@ func (c *AutoScaling) DescribeScheduledActions(input *DescribeScheduledActionsIn
 
 func (c *AutoScaling) DescribeScheduledActionsPages(input *DescribeScheduledActionsInput, fn func(p *DescribeScheduledActionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeScheduledActionsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeScheduledActionsOutput), lastPage)
+	})
 }
 
 var opDescribeScheduledActions *aws.Operation
@@ -1050,7 +1064,9 @@ func (c *AutoScaling) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutpu
 
 func (c *AutoScaling) DescribeTagsPages(input *DescribeTagsInput, fn func(p *DescribeTagsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeTagsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeTagsOutput), lastPage)
+	})
 }
 
 var opDescribeTags *aws.Operation

@@ -1,8 +1,9 @@
+//Package swf provides gucumber integration tests suppport.
 package swf
 
 import (
-	"github.com/awslabs/aws-sdk-go/internal/features/shared"
-	"github.com/awslabs/aws-sdk-go/service/swf"
+	"github.com/aws/aws-sdk-go/internal/features/shared"
+	"github.com/aws/aws-sdk-go/service/swf"
 	. "github.com/lsegal/gucumber"
 )
 

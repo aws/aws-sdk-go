@@ -4,7 +4,7 @@
 package datapipelineiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/service/datapipeline"
+	"github.com/aws/aws-sdk-go/service/datapipeline"
 )
 
 // DataPipelineAPI is the interface type for datapipeline.DataPipeline.
@@ -14,6 +14,8 @@ type DataPipelineAPI interface {
 	AddTags(*datapipeline.AddTagsInput) (*datapipeline.AddTagsOutput, error)
 
 	CreatePipeline(*datapipeline.CreatePipelineInput) (*datapipeline.CreatePipelineOutput, error)
+
+	DeactivatePipeline(*datapipeline.DeactivatePipelineInput) (*datapipeline.DeactivatePipelineOutput, error)
 
 	DeletePipeline(*datapipeline.DeletePipelineInput) (*datapipeline.DeletePipelineOutput, error)
 

@@ -2,9 +2,10 @@ package aws
 
 import (
 	"fmt"
-	"github.com/awslabs/aws-sdk-go/internal/apierr"
 	"reflect"
 	"strings"
+
+	"github.com/aws/aws-sdk-go/internal/apierr"
 )
 
 // ValidateParameters is a request handler to validate the input parameters.
@@ -67,7 +68,7 @@ func (v *validator) validateStruct(value reflect.Value, path string) {
 		notset := false
 		if f.Tag.Get("required") != "" {
 			switch fvalue.Kind() {
-			case reflect.Ptr, reflect.Slice:
+			case reflect.Ptr, reflect.Slice, reflect.Map:
 				if fvalue.IsNil() {
 					notset = true
 				}

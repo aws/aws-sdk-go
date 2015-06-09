@@ -1,22 +1,22 @@
 package restjson_test
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/restjson"
-	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
-
 	"bytes"
 	"encoding/json"
 	"encoding/xml"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
-	"github.com/awslabs/aws-sdk-go/internal/util"
-	"github.com/stretchr/testify/assert"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"testing"
 	"time"
+
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/protocol/restjson"
+	"github.com/aws/aws-sdk-go/internal/protocol/xml/xmlutil"
+	"github.com/aws/aws-sdk-go/internal/signer/v4"
+	"github.com/aws/aws-sdk-go/internal/util"
+	"github.com/stretchr/testify/assert"
 )
 
 var _ bytes.Buffer // always import bytes
@@ -37,10 +37,6 @@ type InputService1ProtocolTest struct {
 
 // New returns a new InputService1ProtocolTest client.
 func NewInputService1ProtocolTest(config *aws.Config) *InputService1ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice1protocoltest",
@@ -120,10 +116,6 @@ type InputService2ProtocolTest struct {
 
 // New returns a new InputService2ProtocolTest client.
 func NewInputService2ProtocolTest(config *aws.Config) *InputService2ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice2protocoltest",
@@ -203,10 +195,6 @@ type InputService3ProtocolTest struct {
 
 // New returns a new InputService3ProtocolTest client.
 func NewInputService3ProtocolTest(config *aws.Config) *InputService3ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice3protocoltest",
@@ -290,10 +278,6 @@ type InputService4ProtocolTest struct {
 
 // New returns a new InputService4ProtocolTest client.
 func NewInputService4ProtocolTest(config *aws.Config) *InputService4ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice4protocoltest",
@@ -391,10 +375,6 @@ type InputService5ProtocolTest struct {
 
 // New returns a new InputService5ProtocolTest client.
 func NewInputService5ProtocolTest(config *aws.Config) *InputService5ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice5protocoltest",
@@ -494,10 +474,6 @@ type InputService6ProtocolTest struct {
 
 // New returns a new InputService6ProtocolTest client.
 func NewInputService6ProtocolTest(config *aws.Config) *InputService6ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice6protocoltest",
@@ -581,10 +557,6 @@ type InputService7ProtocolTest struct {
 
 // New returns a new InputService7ProtocolTest client.
 func NewInputService7ProtocolTest(config *aws.Config) *InputService7ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice7protocoltest",
@@ -701,10 +673,6 @@ type InputService8ProtocolTest struct {
 
 // New returns a new InputService8ProtocolTest client.
 func NewInputService8ProtocolTest(config *aws.Config) *InputService8ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice8protocoltest",
@@ -967,7 +935,7 @@ type InputService8TestShapeRecursiveStructType struct {
 
 	RecursiveList []*InputService8TestShapeRecursiveStructType `type:"list"`
 
-	RecursiveMap *map[string]*InputService8TestShapeRecursiveStructType `type:"map"`
+	RecursiveMap map[string]*InputService8TestShapeRecursiveStructType `type:"map"`
 
 	RecursiveStruct *InputService8TestShapeRecursiveStructType `type:"structure"`
 
@@ -985,10 +953,6 @@ type InputService9ProtocolTest struct {
 
 // New returns a new InputService9ProtocolTest client.
 func NewInputService9ProtocolTest(config *aws.Config) *InputService9ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice9protocoltest",
@@ -1403,10 +1367,10 @@ func TestInputService8ProtocolTestRecursiveShapesCase4(t *testing.T) {
 	input := &InputService8TestShapeInputShape{
 		RecursiveStruct: &InputService8TestShapeRecursiveStructType{
 			RecursiveList: []*InputService8TestShapeRecursiveStructType{
-				&InputService8TestShapeRecursiveStructType{
+				{
 					NoRecurse: aws.String("foo"),
 				},
-				&InputService8TestShapeRecursiveStructType{
+				{
 					NoRecurse: aws.String("bar"),
 				},
 			},
@@ -1438,10 +1402,10 @@ func TestInputService8ProtocolTestRecursiveShapesCase5(t *testing.T) {
 	input := &InputService8TestShapeInputShape{
 		RecursiveStruct: &InputService8TestShapeRecursiveStructType{
 			RecursiveList: []*InputService8TestShapeRecursiveStructType{
-				&InputService8TestShapeRecursiveStructType{
+				{
 					NoRecurse: aws.String("foo"),
 				},
-				&InputService8TestShapeRecursiveStructType{
+				{
 					RecursiveStruct: &InputService8TestShapeRecursiveStructType{
 						NoRecurse: aws.String("bar"),
 					},
@@ -1474,11 +1438,11 @@ func TestInputService8ProtocolTestRecursiveShapesCase6(t *testing.T) {
 
 	input := &InputService8TestShapeInputShape{
 		RecursiveStruct: &InputService8TestShapeRecursiveStructType{
-			RecursiveMap: &map[string]*InputService8TestShapeRecursiveStructType{
-				"bar": &InputService8TestShapeRecursiveStructType{
+			RecursiveMap: map[string]*InputService8TestShapeRecursiveStructType{
+				"bar": {
 					NoRecurse: aws.String("bar"),
 				},
-				"foo": &InputService8TestShapeRecursiveStructType{
+				"foo": {
 					NoRecurse: aws.String("foo"),
 				},
 			},

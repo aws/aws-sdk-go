@@ -4,7 +4,7 @@
 package kmsiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/service/kms"
+	"github.com/aws/aws-sdk-go/service/kms"
 )
 
 // KMSAPI is the interface type for kms.KMS.
@@ -56,6 +56,8 @@ type KMSAPI interface {
 	RetireGrant(*kms.RetireGrantInput) (*kms.RetireGrantOutput, error)
 
 	RevokeGrant(*kms.RevokeGrantInput) (*kms.RevokeGrantOutput, error)
+
+	UpdateAlias(*kms.UpdateAliasInput) (*kms.UpdateAliasOutput, error)
 
 	UpdateKeyDescription(*kms.UpdateKeyDescriptionInput) (*kms.UpdateKeyDescriptionOutput, error)
 }

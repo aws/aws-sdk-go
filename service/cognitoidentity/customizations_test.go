@@ -3,8 +3,8 @@ package cognitoidentity_test
 import (
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/service/cognitoidentity"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/service/cognitoidentity"
 	"github.com/stretchr/testify/assert"
 )
 

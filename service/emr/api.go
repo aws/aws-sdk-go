@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 var oprw sync.Mutex
@@ -286,7 +286,9 @@ func (c *EMR) ListBootstrapActions(input *ListBootstrapActionsInput) (*ListBoots
 
 func (c *EMR) ListBootstrapActionsPages(input *ListBootstrapActionsInput, fn func(p *ListBootstrapActionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListBootstrapActionsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListBootstrapActionsOutput), lastPage)
+	})
 }
 
 var opListBootstrapActions *aws.Operation
@@ -333,7 +335,9 @@ func (c *EMR) ListClusters(input *ListClustersInput) (*ListClustersOutput, error
 
 func (c *EMR) ListClustersPages(input *ListClustersInput, fn func(p *ListClustersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListClustersRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListClustersOutput), lastPage)
+	})
 }
 
 var opListClusters *aws.Operation
@@ -376,7 +380,9 @@ func (c *EMR) ListInstanceGroups(input *ListInstanceGroupsInput) (*ListInstanceG
 
 func (c *EMR) ListInstanceGroupsPages(input *ListInstanceGroupsInput, fn func(p *ListInstanceGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListInstanceGroupsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListInstanceGroupsOutput), lastPage)
+	})
 }
 
 var opListInstanceGroups *aws.Operation
@@ -423,7 +429,9 @@ func (c *EMR) ListInstances(input *ListInstancesInput) (*ListInstancesOutput, er
 
 func (c *EMR) ListInstancesPages(input *ListInstancesInput, fn func(p *ListInstancesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListInstancesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListInstancesOutput), lastPage)
+	})
 }
 
 var opListInstances *aws.Operation
@@ -466,7 +474,9 @@ func (c *EMR) ListSteps(input *ListStepsInput) (*ListStepsOutput, error) {
 
 func (c *EMR) ListStepsPages(input *ListStepsInput, fn func(p *ListStepsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListStepsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListStepsOutput), lastPage)
+	})
 }
 
 var opListSteps *aws.Operation
@@ -823,7 +833,7 @@ type metadataAddTagsOutput struct {
 type Application struct {
 	// This option is for advanced users only. This is meta information about third-party
 	// applications that third-party vendors use for testing purposes.
-	AdditionalInfo *map[string]*string `type:"map"`
+	AdditionalInfo map[string]*string `type:"map"`
 
 	// Arguments for Amazon EMR to pass to the application.
 	Args []*string `type:"list"`
@@ -1205,7 +1215,7 @@ type HadoopStepConfig struct {
 
 	// The list of Java properties that are set when the step runs. You can use
 	// these properties to pass key value pairs to your main function.
-	Properties *map[string]*string `type:"map"`
+	Properties map[string]*string `type:"map"`
 
 	metadataHadoopStepConfig `json:"-" xml:"-"`
 }

@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
-	"github.com/awslabs/aws-sdk-go/service/route53domains"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/service/route53domains"
 )
 
 var _ time.Duration
@@ -332,7 +332,7 @@ func ExampleRoute53Domains_RegisterDomain() {
 			CountryCode:  aws.String("CountryCode"),
 			Email:        aws.String("Email"),
 			ExtraParams: []*route53domains.ExtraParam{
-				&route53domains.ExtraParam{ // Required
+				{ // Required
 					Name:  aws.String("ExtraParamName"),  // Required
 					Value: aws.String("ExtraParamValue"), // Required
 				},
@@ -356,7 +356,7 @@ func ExampleRoute53Domains_RegisterDomain() {
 			CountryCode:  aws.String("CountryCode"),
 			Email:        aws.String("Email"),
 			ExtraParams: []*route53domains.ExtraParam{
-				&route53domains.ExtraParam{ // Required
+				{ // Required
 					Name:  aws.String("ExtraParamName"),  // Required
 					Value: aws.String("ExtraParamValue"), // Required
 				},
@@ -378,7 +378,7 @@ func ExampleRoute53Domains_RegisterDomain() {
 			CountryCode:  aws.String("CountryCode"),
 			Email:        aws.String("Email"),
 			ExtraParams: []*route53domains.ExtraParam{
-				&route53domains.ExtraParam{ // Required
+				{ // Required
 					Name:  aws.String("ExtraParamName"),  // Required
 					Value: aws.String("ExtraParamValue"), // Required
 				},
@@ -458,7 +458,7 @@ func ExampleRoute53Domains_TransferDomain() {
 			CountryCode:  aws.String("CountryCode"),
 			Email:        aws.String("Email"),
 			ExtraParams: []*route53domains.ExtraParam{
-				&route53domains.ExtraParam{ // Required
+				{ // Required
 					Name:  aws.String("ExtraParamName"),  // Required
 					Value: aws.String("ExtraParamValue"), // Required
 				},
@@ -482,7 +482,7 @@ func ExampleRoute53Domains_TransferDomain() {
 			CountryCode:  aws.String("CountryCode"),
 			Email:        aws.String("Email"),
 			ExtraParams: []*route53domains.ExtraParam{
-				&route53domains.ExtraParam{ // Required
+				{ // Required
 					Name:  aws.String("ExtraParamName"),  // Required
 					Value: aws.String("ExtraParamValue"), // Required
 				},
@@ -504,7 +504,7 @@ func ExampleRoute53Domains_TransferDomain() {
 			CountryCode:  aws.String("CountryCode"),
 			Email:        aws.String("Email"),
 			ExtraParams: []*route53domains.ExtraParam{
-				&route53domains.ExtraParam{ // Required
+				{ // Required
 					Name:  aws.String("ExtraParamName"),  // Required
 					Value: aws.String("ExtraParamValue"), // Required
 				},
@@ -522,7 +522,7 @@ func ExampleRoute53Domains_TransferDomain() {
 		AutoRenew:   aws.Boolean(true),
 		IDNLangCode: aws.String("LangCode"),
 		Nameservers: []*route53domains.Nameserver{
-			&route53domains.Nameserver{ // Required
+			{ // Required
 				Name: aws.String("HostName"), // Required
 				GlueIPs: []*string{
 					aws.String("GlueIp"), // Required
@@ -569,7 +569,7 @@ func ExampleRoute53Domains_UpdateDomainContact() {
 			CountryCode:  aws.String("CountryCode"),
 			Email:        aws.String("Email"),
 			ExtraParams: []*route53domains.ExtraParam{
-				&route53domains.ExtraParam{ // Required
+				{ // Required
 					Name:  aws.String("ExtraParamName"),  // Required
 					Value: aws.String("ExtraParamValue"), // Required
 				},
@@ -591,7 +591,7 @@ func ExampleRoute53Domains_UpdateDomainContact() {
 			CountryCode:  aws.String("CountryCode"),
 			Email:        aws.String("Email"),
 			ExtraParams: []*route53domains.ExtraParam{
-				&route53domains.ExtraParam{ // Required
+				{ // Required
 					Name:  aws.String("ExtraParamName"),  // Required
 					Value: aws.String("ExtraParamValue"), // Required
 				},
@@ -613,7 +613,7 @@ func ExampleRoute53Domains_UpdateDomainContact() {
 			CountryCode:  aws.String("CountryCode"),
 			Email:        aws.String("Email"),
 			ExtraParams: []*route53domains.ExtraParam{
-				&route53domains.ExtraParam{ // Required
+				{ // Required
 					Name:  aws.String("ExtraParamName"),  // Required
 					Value: aws.String("ExtraParamValue"), // Required
 				},
@@ -685,7 +685,7 @@ func ExampleRoute53Domains_UpdateDomainNameservers() {
 	params := &route53domains.UpdateDomainNameserversInput{
 		DomainName: aws.String("DomainName"), // Required
 		Nameservers: []*route53domains.Nameserver{ // Required
-			&route53domains.Nameserver{ // Required
+			{ // Required
 				Name: aws.String("HostName"), // Required
 				GlueIPs: []*string{
 					aws.String("GlueIp"), // Required
@@ -723,7 +723,7 @@ func ExampleRoute53Domains_UpdateTagsForDomain() {
 	params := &route53domains.UpdateTagsForDomainInput{
 		DomainName: aws.String("DomainName"), // Required
 		TagsToUpdate: []*route53domains.Tag{
-			&route53domains.Tag{ // Required
+			{ // Required
 				Key:   aws.String("TagKey"),
 				Value: aws.String("TagValue"),
 			},

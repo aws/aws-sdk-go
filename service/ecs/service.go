@@ -3,9 +3,9 @@
 package ecs
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/jsonrpc"
-	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
+	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
 // ECS is a client for Amazon ECS.
@@ -21,10 +21,6 @@ var initRequest func(*aws.Request)
 
 // New returns a new ECS client.
 func New(config *aws.Config) *ECS {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "ecs",

@@ -5,7 +5,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/awslabs/aws-sdk-go/internal/util"
+	"github.com/aws/aws-sdk-go/internal/util"
 )
 
 // A ShapeRef defines the usage of a shape within the API.
@@ -116,7 +116,7 @@ func goType(s *Shape, withPkgName bool) string {
 		}
 		return "*" + s.ShapeName
 	case "map":
-		return "*map[string]" + s.ValueRef.GoType()
+		return "map[string]" + s.ValueRef.GoType()
 	case "list":
 		return "[]" + s.MemberRef.GoType()
 	case "boolean":

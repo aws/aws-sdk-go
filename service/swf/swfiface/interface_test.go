@@ -5,8 +5,8 @@ package swfiface_test
 import (
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/service/swf"
-	"github.com/awslabs/aws-sdk-go/service/swf/swfiface"
+	"github.com/aws/aws-sdk-go/service/swf"
+	"github.com/aws/aws-sdk-go/service/swf/swfiface"
 	"github.com/stretchr/testify/assert"
 )
 

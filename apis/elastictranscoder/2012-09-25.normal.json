@@ -911,6 +911,14 @@
       "type":"string",
       "pattern":"(^auto$)|(^1:1$)|(^4:3$)|(^3:2$)|(^16:9$)"
     },
+    "AudioBitDepth":{
+      "type":"string",
+      "pattern":"(^16$)|(^24$)"
+    },
+    "AudioBitOrder":{
+      "type":"string",
+      "pattern":"(^LittleEndian$)"
+    },
     "AudioBitRate":{
       "type":"string",
       "pattern":"^\\d{1,3}$"
@@ -921,7 +929,7 @@
     },
     "AudioCodec":{
       "type":"string",
-      "pattern":"(^AAC$)|(^vorbis$)|(^mp3$)|(^mp2$)"
+      "pattern":"(^AAC$)|(^vorbis$)|(^mp3$)|(^mp2$)|(^pcm$)|(^flac$)"
     },
     "AudioCodecOptions":{
       "type":"structure",
@@ -929,6 +937,18 @@
         "Profile":{
           "shape":"AudioCodecProfile",
           "documentation":"<p>You can only choose an audio profile when you specify AAC for the value of Audio:Codec.</p> <p>Specify the AAC profile for the output file. Elastic Transcoder supports the following profiles:</p> <ul> <li> <code>auto</code>: If you specify <code>auto</code>, Elastic Transcoder will select the profile based on the bit rate selected for the output file.</li> <li> <code>AAC-LC</code>: The most common AAC profile. Use for bit rates larger than 64 kbps.</li> <li> <code>HE-AAC</code>: Not supported on some older players and devices. Use for bit rates between 40 and 80 kbps.</li> <li> <code>HE-AACv2</code>: Not supported on some players and devices. Use for bit rates less than 48 kbps.</li> </ul> <p>All outputs in a <code>Smooth</code> playlist must have the same value for <code>Profile</code>.</p> <note><p>If you created any presets before AAC profiles were added, Elastic Transcoder automatically updated your presets to use AAC-LC. You can change the value as required.</p></note>"
+        },
+        "BitDepth":{
+          "shape":"AudioBitDepth",
+          "documentation":"<p>You can only choose an audio bit depth when you specify <code>flac</code> or <code>pcm</code> for the value of Audio:Codec.</p> <p>The bit depth of a sample is how many bits of information are included in the audio samples. The higher the bit depth, the better the audio, but the larger the file.</p> <p>Valid values are <code>16</code> and <code>24</code>.</p> <p>The most common bit depth is <code>24</code>.</p>"
+        },
+        "BitOrder":{
+          "shape":"AudioBitOrder",
+          "documentation":"<p>You can only choose an audio bit order when you specify <code>pcm</code> for the value of Audio:Codec.</p> <p>The order the bits of a PCM sample are stored in.</p> <p>The supported value is <code>LittleEndian</code>.</p>"
+        },
+        "Signed":{
+          "shape":"AudioSigned",
+          "documentation":"<p>You can only choose whether an audio sample is signed when you specify <code>pcm</code> for the value of Audio:Codec.</p> <p>Whether audio samples are represented with negative and positive numbers (signed) or only positive numbers (unsigned).</p> <p>The supported value is <code>Signed</code>.</p>"
         }
       },
       "documentation":"<p>Options associated with your audio codec.</p>"
@@ -937,12 +957,16 @@
       "type":"string",
       "pattern":"(^auto$)|(^AAC-LC$)|(^HE-AAC$)|(^HE-AACv2$)"
     },
+    "AudioPackingMode":{
+      "type":"string",
+      "pattern":"(^SingleTrack$)|(^OneChannelPerTrack$)|(^OneChannelPerTrackWithMosTo8Tracks$)"
+    },
     "AudioParameters":{
       "type":"structure",
       "members":{
         "Codec":{
           "shape":"AudioCodec",
-          "documentation":"<p>The audio codec for the output file. Valid values include <code>aac</code>, <code>mp2</code>, <code>mp3</code>, and <code>vorbis</code>.</p>"
+          "documentation":"<p>The audio codec for the output file. Valid values include <code>aac</code>, <code>flac</code>, <code>mp2</code>, <code>mp3</code>, <code>pcm</code>, and <code>vorbis</code>.</p>"
         },
         "SampleRate":{
           "shape":"AudioSampleRate",
@@ -954,7 +978,11 @@
         },
         "Channels":{
           "shape":"AudioChannels",
-          "documentation":"<p>The number of audio channels in the output file. Valid values include:</p> <p><code>auto</code>, <code>0</code>, <code>1</code>, <code>2</code></p> <p>If you specify <code>auto</code>, Elastic Transcoder automatically detects the number of channels in the input file.</p>"
+          "documentation":"<p>The number of audio channels in the output file. The following values are valid:</p> <p><code>auto</code>, <code>0</code>, <code>1</code>, <code>2</code></p> <p>One channel carries the information played by a single speaker. For example, a stereo track with two channels sends one channel to the left speaker, and the other channel to the right speaker. The output channels are organized into tracks. If you want Elastic Transcoder to automatically detect the number of audio channels in the input file and use that value for the output file, select <code>auto</code>.</p> <p>The output of a specific channel value and inputs are as follows:</p> <ul> <li> <code>auto</code><b> channel specified, with any input:</b> Pass through up to eight input channels.</li> <li> <code>0</code><b> channels specified, with any input:</b> Audio omitted from the output.</li> <li> <code>1</code><b> channel specified, with at least one input channel:</b> Mono sound.</li> <li> <code>2</code><b> channels specified, with any input:</b> Two identical mono channels or stereo. For more information about tracks, see <code>Audio:AudioPackingMode.</code> </li> </ul> <p> For more information about how Elastic Transcoder organizes channels and tracks, see <code>Audio:AudioPackingMode</code>.</p>"
+        },
+        "AudioPackingMode":{
+          "shape":"AudioPackingMode",
+          "documentation":"<p>The method of organizing audio channels and tracks. Use <code>Audio:Channels</code> to specify the number of channels in your output, and <code>Audio:AudioPackingMode</code> to specify the number of tracks and their relation to the channels. If you do not specify an <code>Audio:AudioPackingMode</code>, Elastic Transcoder uses <code>SingleTrack</code>.</p> <p>The following values are valid:</p> <p><code>SingleTrack</code>, <code>OneChannelPerTrack</code>, and <code>OneChannelPerTrackWithMosTo8Tracks</code></p> <p>When you specify <code>SingleTrack</code>, Elastic Transcoder creates a single track for your output. The track can have up to eight channels. Use <code>SingleTrack</code> for all non-<code>mxf</code> containers.</p> <p>The outputs of <code>SingleTrack</code> for a specific channel value and inputs are as follows:</p> <ul> <li> <code>0</code> <b> channels with any input:</b> Audio omitted from the output</li> <li> <code>1, 2, or auto </code> <b>channels with no audio input:</b> Audio omitted from the output</li> <li> <code>1 </code> <b>channel with any input with audio:</b> One track with one channel, downmixed if necessary</li> <li> <code>2 </code> <b>channels with one track with one channel:</b> One track with two identical channels</li> <li> <code>2 or auto </code> <b>channels with two tracks with one channel each:</b> One track with two channels</li> <li> <code>2 or auto </code> <b>channels with one track with two channels:</b> One track with two channels</li> <li> <code>2 </code> <b>channels with one track with multiple channels:</b> One track with two channels</li> <li> <code>auto </code> <b>channels with one track with one channel:</b> One track with one channel</li> <li> <code>auto </code> <b>channels with one track with multiple channels:</b> One track with multiple channels</li> </ul> <p>When you specify <code>OneChannelPerTrack</code>, Elastic Transcoder creates a new track for every channel in your output. Your output can have up to eight single-channel tracks.</p> <p>The outputs of <code>OneChannelPerTrack</code> for a specific channel value and inputs are as follows:</p> <ul> <li> <code>0 </code> <b>channels with any input:</b> Audio omitted from the output</li> <li> <code>1, 2, or auto </code> <b>channels with no audio input:</b> Audio omitted from the output</li> <li> <code>1 </code> <b>channel with any input with audio:</b> One track with one channel, downmixed if necessary</li> <li> <code>2 </code> <b>channels with one track with one channel:</b> Two tracks with one identical channel each</li> <li> <code>2 or auto </code> <b>channels with two tracks with one channel each:</b> Two tracks with one channel each</li> <li> <code>2 or auto </code> <b>channels with one track with two channels:</b> Two tracks with one channel each</li> <li> <code>2 </code> <b>channels with one track with multiple channels:</b> Two tracks with one channel each</li> <li> <code>auto </code> <b>channels with one track with one channel:</b> One track with one channel</li> <li> <code>auto </code> <b>channels with one track with multiple channels:</b> Up to eight tracks with one channel each</li> </ul> <p>When you specify <code>OneChannelPerTrackWithMosTo8Tracks</code>, Elastic Transcoder creates eight single-channel tracks for your output. All tracks that do not contain audio data from an input channel are MOS, or Mit Out Sound, tracks.</p> <p>The outputs of <code>OneChannelPerTrackWithMosTo8Tracks</code> for a specific channel value and inputs are as follows:</p> <ul> <li> <code>0 </code> <b>channels with any input:</b> Audio omitted from the output</li> <li> <code>1, 2, or auto </code> <b>channels with no audio input:</b> Audio omitted from the output</li> <li> <code>1 </code> <b>channel with any input with audio:</b> One track with one channel, downmixed if necessary, plus six MOS tracks</li> <li> <code>2 </code> <b>channels with one track with one channel:</b> Two tracks with one identical channel each, plus six MOS tracks</li> <li> <code>2 or auto </code> <b>channels with two tracks with one channel each:</b> Two tracks with one channel each, plus six MOS tracks</li> <li> <code>2 or auto </code> <b>channels with one track with two channels:</b> Two tracks with one channel each, plus six MOS tracks</li> <li> <code>2 </code> <b>channels with one track with multiple channels:</b> Two tracks with one channel each, plus six MOS tracks</li> <li> <code>auto </code> <b>channels with one track with one channel:</b> One track with one channel, plus seven MOS tracks</li> <li> <code>auto </code> <b>channels with one track with multiple channels:</b> Up to eight tracks with one channel each, plus MOS tracks until there are eight tracks in all</li> </ul>"
         },
         "CodecOptions":{
           "shape":"AudioCodecOptions",
@@ -965,7 +993,11 @@
     },
     "AudioSampleRate":{
       "type":"string",
-      "pattern":"(^auto$)|(^22050$)|(^32000$)|(^44100$)|(^48000$)|(^96000$)"
+      "pattern":"(^auto$)|(^22050$)|(^32000$)|(^44100$)|(^48000$)|(^96000$)|(^192000$)"
+    },
+    "AudioSigned":{
+      "type":"string",
+      "pattern":"(^Signed$)"
     },
     "Base64EncodedString":{
       "type":"string",
@@ -999,7 +1031,7 @@
       "members":{
         "Format":{
           "shape":"CaptionFormatFormat",
-          "documentation":"<p>The format you specify determines whether Elastic Transcoder generates an embedded or sidecar caption for this output.</p> <ul> <li> <p><b>Valid Embedded Caption Formats:</b></p> <ul> <li><p><b>For MP3</b>: None</p></li> <li><p><b>For MP4</b>: mov-text</p></li> <li><p><b>For MPEG-TS</b>: None</p></li> <li><p><b>For ogg</b>: None</p></li> <li><p><b>For webm</b>: None</p></li> </ul> </li> <li> <p><b>Valid Sidecar Caption Formats:</b> Elastic Transcoder supports dfxp (first div element only), scc, srt, and webvtt. If you want ttml or smpte-tt compatible captions, specify dfxp as your output format.</p> <ul> <li><p><b>For FMP4</b>: dfxp</p></li> <li><p><b>Non-FMP4 outputs</b>: All sidecar types</p></li> </ul> <p><code>fmp4</code> captions have an extension of <code>.ismt</code></p> </li> </ul>"
+          "documentation":"<p>The format you specify determines whether Elastic Transcoder generates an embedded or sidecar caption for this output.</p> <ul> <li> <p><b>Valid Embedded Caption Formats:</b></p> <ul> <li><p><b>for FLAC</b>: None</p></li> <li><p><b>For MP3</b>: None</p></li> <li><p><b>For MP4</b>: mov-text</p></li> <li><p><b>For MPEG-TS</b>: None</p></li> <li><p><b>For ogg</b>: None</p></li> <li><p><b>For webm</b>: None</p></li> </ul> </li> <li> <p><b>Valid Sidecar Caption Formats:</b> Elastic Transcoder supports dfxp (first div element only), scc, srt, and webvtt. If you want ttml or smpte-tt compatible captions, specify dfxp as your output format.</p> <ul> <li><p><b>For FMP4</b>: dfxp</p></li> <li><p><b>Non-FMP4 outputs</b>: All sidecar types</p></li> </ul> <p><code>fmp4</code> captions have an extension of <code>.ismt</code></p> </li> </ul>"
         },
         "Pattern":{
           "shape":"CaptionFormatPattern",
@@ -1127,7 +1159,7 @@
           "documentation":"<p> The <code>Id</code> of the preset to use for this job. The preset determines the audio, video, and thumbnail settings that Elastic Transcoder uses for transcoding. </p>"
         },
         "SegmentDuration":{
-          "shape":"Float",
+          "shape":"FloatString",
           "documentation":"<p><important>(Outputs in Fragmented MP4 or MPEG-TS format only.</important>If you specify a preset in <code>PresetId</code> for which the value of <code>Container</code> is <code>fmp4</code> (Fragmented MP4) or <code>ts</code> (MPEG-TS), <code>SegmentDuration</code> is the target maximum duration of each segment in seconds. For <code>HLSv3</code> format playlists, each media segment is stored in a separate <code>.ts</code> file. For <code>HLSv4</code> and <code>Smooth</code> playlists, all media segments for an output are stored in a single file. Each segment is approximately the length of the <code>SegmentDuration</code>, though individual segments might be shorter or longer.</p> <p>The range of valid values is 1 to 60 seconds. If the duration of the video is not evenly divisible by <code>SegmentDuration</code>, the duration of the last segment is the remainder of total length/SegmentDuration.</p> <p>Elastic Transcoder creates an output-specific playlist for each output <code>HLS</code> output that you specify in OutputKeys. To add an output to the master playlist for this job, include it in the <code>OutputKeys</code> of the associated playlist.</p>"
         },
         "Watermarks":{
@@ -1176,6 +1208,10 @@
         "HlsContentProtection":{
           "shape":"HlsContentProtection",
           "documentation":"<p>The HLS content protection settings, if any, that you want Elastic Transcoder to apply to the output files associated with this playlist.</p>"
+        },
+        "PlayReadyDrm":{
+          "shape":"PlayReadyDrm",
+          "documentation":"<p>The DRM settings, if any, that you want Elastic Transcoder to apply to the output files associated with this playlist.</p>"
         }
       },
       "documentation":"<p>Information about the master playlist.</p>"
@@ -1304,7 +1340,7 @@
         },
         "Container":{
           "shape":"PresetContainer",
-          "documentation":"<p>The container type for the output file. Valid values include <code>flv</code>, <code>fmp4</code>, <code>gif</code>, <code>mp3</code>, <code>mp4</code>, <code>mpg</code>, <code>ogg</code>, <code>ts</code>, and <code>webm</code>.</p>"
+          "documentation":"<p>The container type for the output file. Valid values include <code>flac</code>, <code>flv</code>, <code>fmp4</code>, <code>gif</code>, <code>mp3</code>, <code>mp4</code>, <code>mpg</code>, <code>mxf</code>, <code>oga</code>, <code>ogg</code>, <code>ts</code>, and <code>webm</code>.</p>"
         },
         "Video":{
           "shape":"VideoParameters",
@@ -1378,6 +1414,32 @@
       "min":0,
       "max":255
     },
+    "DetectedProperties":{
+      "type":"structure",
+      "members":{
+        "Width":{
+          "shape":"NullableInteger",
+          "documentation":"<p>The detected width of the input file, in pixels.</p>"
+        },
+        "Height":{
+          "shape":"NullableInteger",
+          "documentation":"<p>The detected height of the input file, in pixels.</p>"
+        },
+        "FrameRate":{
+          "shape":"FloatString",
+          "documentation":"<p>The detected frame rate of the input file, in frames per second.</p>"
+        },
+        "FileSize":{
+          "shape":"NullableLong",
+          "documentation":"<p>The detected file size of the input file, in bytes.</p>"
+        },
+        "DurationMillis":{
+          "shape":"NullableLong",
+          "documentation":"<p>The detected duration of the input file, in milliseconds.</p>"
+        }
+      },
+      "documentation":"<p>The detected properties of the input file. Elastic Transcoder identifies these values from the input file.</p>"
+    },
     "Digits":{
       "type":"string",
       "pattern":"^\\d{1,5}$"
@@ -1425,7 +1487,7 @@
       "type":"string",
       "pattern":"(^true$)|(^false$)"
     },
-    "Float":{
+    "FloatString":{
       "type":"string",
       "pattern":"^\\d{1,5}(\\.\\d{0,5})?$"
     },
@@ -1545,6 +1607,10 @@
         "UserMetadata":{
           "shape":"UserMetadata",
           "documentation":"<p>User-defined metadata that you want to associate with an Elastic Transcoder job. You specify metadata in <code>key/value</code> pairs, and you can add up to 10 <code>key/value</code> pairs per job. Elastic Transcoder does not guarantee that <code>key/value</code> pairs will be returned in the same order in which you specify them.</p> <p>Metadata <code>keys</code> and <code>values</code> must use characters from the following list:</p> <ul> <li><p><code>0-9</code></p></li> <li><p><code>A-Z</code> and <code>a-z</code></p></li> <li><p><code>Space</code></p></li> <li><p>The following symbols: <code>_.:/=+-%@</code></p></li> </ul>"
+        },
+        "Timing":{
+          "shape":"Timing",
+          "documentation":"<p>Details about the timing of a job.</p>"
         }
       },
       "documentation":"<p>A section of the response body that provides information about the job that is created.</p>"
@@ -1597,6 +1663,10 @@
         "Encryption":{
           "shape":"Encryption",
           "documentation":"<p>The encryption settings, if any, that are used for decrypting your input files. If your input file is encrypted, you must specify the mode that Elastic Transcoder will use to decrypt your file.</p>"
+        },
+        "DetectedProperties":{
+          "shape":"DetectedProperties",
+          "documentation":"<p>The detected properties of the input file.</p>"
         }
       },
       "documentation":"<p>Information about the file that you're transcoding.</p>"
@@ -1629,7 +1699,7 @@
           "documentation":"<p>The value of the <code>Id</code> object for the preset that you want to use for this job. The preset determines the audio, video, and thumbnail settings that Elastic Transcoder uses for transcoding. To use a preset that you created, specify the preset ID that Elastic Transcoder returned in the response when you created the preset. You can also use the Elastic Transcoder system presets, which you can get with <code>ListPresets</code>.</p>"
         },
         "SegmentDuration":{
-          "shape":"Float",
+          "shape":"FloatString",
           "documentation":"<p><important>(Outputs in Fragmented MP4 or MPEG-TS format only.</important>If you specify a preset in <code>PresetId</code> for which the value of <code>Container</code> is <code>fmp4</code> (Fragmented MP4) or <code>ts</code> (MPEG-TS), <code>SegmentDuration</code> is the target maximum duration of each segment in seconds. For <code>HLSv3</code> format playlists, each media segment is stored in a separate <code>.ts</code> file. For <code>HLSv4</code> and <code>Smooth</code> playlists, all media segments for an output are stored in a single file. Each segment is approximately the length of the <code>SegmentDuration</code>, though individual segments might be shorter or longer.</p> <p>The range of valid values is 1 to 60 seconds. If the duration of the video is not evenly divisible by <code>SegmentDuration</code>, the duration of the last segment is the remainder of total length/SegmentDuration.</p> <p>Elastic Transcoder creates an output-specific playlist for each output <code>HLS</code> output that you specify in OutputKeys. To add an output to the master playlist for this job, include it in the <code>OutputKeys</code> of the associated playlist.</p>"
         },
         "Status":{
@@ -1651,6 +1721,18 @@
         "Height":{
           "shape":"NullableInteger",
           "documentation":"<p>Height of the output file, in pixels.</p>"
+        },
+        "FrameRate":{
+          "shape":"FloatString",
+          "documentation":"<p>Frame rate of the output file, in frames per second.</p>"
+        },
+        "FileSize":{
+          "shape":"NullableLong",
+          "documentation":"<p>File size of the output file, in bytes.</p>"
+        },
+        "DurationMillis":{
+          "shape":"NullableLong",
+          "documentation":"<p>Duration of the output file, in milliseconds.</p>"
         },
         "Watermarks":{
           "shape":"JobWatermarks",
@@ -1726,6 +1808,10 @@
       "type":"string",
       "min":0,
       "max":255
+    },
+    "KeyIdGuid":{
+      "type":"string",
+      "pattern":"(^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$)|(^[0-9A-Fa-f]{32}$)"
     },
     "KeyStoragePolicy":{
       "type":"string",
@@ -1898,6 +1984,10 @@
       "min":1,
       "max":40
     },
+    "NonEmptyBase64EncodedString":{
+      "type":"string",
+      "pattern":"(^(?:[A-Za-z0-9\\+/]{4})*(?:[A-Za-z0-9\\+/]{2}==|[A-Za-z0-9\\+/]{3}=)?$)"
+    },
     "Notifications":{
       "type":"structure",
       "members":{
@@ -1922,6 +2012,11 @@
     },
     "NullableInteger":{"type":"integer"},
     "NullableLong":{"type":"long"},
+    "OneTo512String":{
+      "type":"string",
+      "min":1,
+      "max":512
+    },
     "Opacity":{
       "type":"string",
       "pattern":"^\\d{1,3}(\\.\\d{0,20})?$"
@@ -2038,6 +2133,40 @@
       "type":"string",
       "pattern":"(^\\d{1,3}(\\.\\d{0,5})?%$)|(^\\d{1,4}?px$)"
     },
+    "PlayReadyDrm":{
+      "type":"structure",
+      "members":{
+        "Format":{
+          "shape":"PlayReadyDrmFormatString",
+          "documentation":"<p>The type of DRM, if any, that you want Elastic Transcoder to apply to the output files associated with this playlist.</p>"
+        },
+        "Key":{
+          "shape":"NonEmptyBase64EncodedString",
+          "documentation":"<p>The DRM key for your file, provided by your DRM license provider. The key must be base64-encoded, and it must be one of the following bit lengths before being base64-encoded:</p> <p><code>128</code>, <code>192</code>, or <code>256</code>. </p> <p>The key must also be encrypted by using AWS KMS.</p>"
+        },
+        "KeyMd5":{
+          "shape":"NonEmptyBase64EncodedString",
+          "documentation":"<p>The MD5 digest of the key used for DRM on your file, and that you want Elastic Transcoder to use as a checksum to make sure your key was not corrupted in transit. The key MD5 must be base64-encoded, and it must be exactly 16 bytes before being base64-encoded.</p>"
+        },
+        "KeyId":{
+          "shape":"KeyIdGuid",
+          "documentation":"<p>The ID for your DRM key, so that your DRM license provider knows which key to provide.</p> <p>The key ID must be provided in big endian, and Elastic Transcoder will convert it to little endian before inserting it into the PlayReady DRM headers. If you are unsure whether your license server provides your key ID in big or little endian, check with your DRM provider.</p>"
+        },
+        "InitializationVector":{
+          "shape":"ZeroTo255String",
+          "documentation":"<p>The series of random bits created by a random bit generator, unique for every encryption operation, that you want Elastic Transcoder to use to encrypt your files. The initialization vector must be base64-encoded, and it must be exactly 8 bytes long before being base64-encoded. If no initialization vector is provided, Elastic Transcoder generates one for you.</p>"
+        },
+        "LicenseAcquisitionUrl":{
+          "shape":"OneTo512String",
+          "documentation":"<p>The location of the license key required to play DRM content. The URL must be an absolute path, and is referenced by the PlayReady header. The PlayReady header is referenced in the protection header of the client manifest for Smooth Streaming outputs, and in the EXT-X-DXDRM and EXT-XDXDRMINFO metadata tags for HLS playlist outputs. An example URL looks like this: <programlisting>https://www.example.com/exampleKey/</programlisting></p>"
+        }
+      },
+      "documentation":"<p>The PlayReady DRM settings, if any, that you want Elastic Transcoder to apply to the output files associated with this playlist.</p> <p>PlayReady DRM encrypts your media files using <code>AES-CTR</code> encryption.</p> <p>If you use DRM for an <code>HLSv3</code> playlist, your outputs must have a master playlist.</p>"
+    },
+    "PlayReadyDrmFormatString":{
+      "type":"string",
+      "pattern":"(^microsoft$)|(^discretix-3.0$)"
+    },
     "Playlist":{
       "type":"structure",
       "members":{
@@ -2056,6 +2185,10 @@
         "HlsContentProtection":{
           "shape":"HlsContentProtection",
           "documentation":"<p>The HLS content protection settings, if any, that you want Elastic Transcoder to apply to the output files associated with this playlist.</p>"
+        },
+        "PlayReadyDrm":{
+          "shape":"PlayReadyDrm",
+          "documentation":"<p>The DRM settings, if any, that you want Elastic Transcoder to apply to the output files associated with this playlist.</p>"
         },
         "Status":{
           "shape":"JobStatus",
@@ -2097,7 +2230,7 @@
         },
         "Container":{
           "shape":"PresetContainer",
-          "documentation":"<p>The container type for the output file. Valid values include <code>flv</code>, <code>fmp4</code>, <code>gif</code>, <code>mp3</code>, <code>mp4</code>, <code>mpg</code>, <code>ogg</code>, <code>ts</code>, and <code>webm</code>.</p>"
+          "documentation":"<p>The container type for the output file. Valid values include <code>flac</code>, <code>flv</code>, <code>fmp4</code>, <code>gif</code>, <code>mp3</code>, <code>mp4</code>, <code>mpg</code>, <code>mxf</code>, <code>oga</code>, <code>ogg</code>, <code>ts</code>, and <code>webm</code>.</p>"
         },
         "Audio":{
           "shape":"AudioParameters",
@@ -2120,7 +2253,7 @@
     },
     "PresetContainer":{
       "type":"string",
-      "pattern":"(^mp4$)|(^ts$)|(^webm$)|(^mp3$)|(^ogg$)|(^fmp4$)|(^mpg$)|(^flv$)|(^gif$)"
+      "pattern":"(^mp4$)|(^ts$)|(^webm$)|(^mp3$)|(^flac$)|(^oga$)|(^ogg$)|(^fmp4$)|(^mpg$)|(^flv$)|(^gif$)|(^mxf$)"
     },
     "PresetType":{
       "type":"string",
@@ -2421,6 +2554,24 @@
         }
       },
       "documentation":"<p>Settings that determine when a clip begins and how long it lasts.</p>"
+    },
+    "Timing":{
+      "type":"structure",
+      "members":{
+        "SubmitTimeMillis":{
+          "shape":"NullableLong",
+          "documentation":"<p>The time the job was submitted to Elastic Transcoder, in epoch milliseconds.</p>"
+        },
+        "StartTimeMillis":{
+          "shape":"NullableLong",
+          "documentation":"<p>The time the job began transcoding, in epoch milliseconds.</p>"
+        },
+        "FinishTimeMillis":{
+          "shape":"NullableLong",
+          "documentation":"<p>The time the job finished transcoding, in epoch milliseconds.</p>"
+        }
+      },
+      "documentation":"<p>Details about the timing of a job.</p>"
     },
     "UpdatePipelineNotificationsRequest":{
       "type":"structure",

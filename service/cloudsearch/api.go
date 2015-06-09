@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 var oprw sync.Mutex
@@ -2105,7 +2105,7 @@ type metadataListDomainNamesInput struct {
 // by an account.
 type ListDomainNamesOutput struct {
 	// The names of the search domains owned by an account.
-	DomainNames *map[string]*string `type:"map"`
+	DomainNames map[string]*string `type:"map"`
 
 	metadataListDomainNamesOutput `json:"-" xml:"-"`
 }

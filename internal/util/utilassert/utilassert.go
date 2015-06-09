@@ -1,3 +1,4 @@
+// Package utilassert provides testing assertion generation functions.
 package utilassert
 
 import (
@@ -7,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/internal/model/api"
-	"github.com/awslabs/aws-sdk-go/internal/util/utilsort"
+	"github.com/aws/aws-sdk-go/internal/model/api"
+	"github.com/aws/aws-sdk-go/internal/util/utilsort"
 )
 
 // findMember searches the shape for the member with the matching key name.
@@ -34,7 +35,7 @@ func GenerateAssertions(out interface{}, shape *api.Shape, prefix string) string
 			for _, k := range keys {
 				v := t[k]
 				s := shape.ValueRef.Shape
-				code += GenerateAssertions(v, s, "(*"+prefix+")[\""+k+"\"]")
+				code += GenerateAssertions(v, s, prefix+"[\""+k+"\"]")
 			}
 		} else {
 			for _, k := range keys {

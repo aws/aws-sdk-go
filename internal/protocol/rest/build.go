@@ -1,3 +1,4 @@
+// Package rest provides RESTful serialisation of AWS requests and responses.
 package rest
 
 import (
@@ -12,8 +13,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/apierr"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/apierr"
 )
 
 // RFC822 returns an RFC822 formatted timestamp for AWS protocols

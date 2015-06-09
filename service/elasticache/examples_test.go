@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
-	"github.com/awslabs/aws-sdk-go/service/elasticache"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/service/elasticache"
 )
 
 var _ time.Duration
@@ -22,7 +22,7 @@ func ExampleElastiCache_AddTagsToResource() {
 	params := &elasticache.AddTagsToResourceInput{
 		ResourceName: aws.String("String"), // Required
 		Tags: []*elasticache.Tag{ // Required
-			&elasticache.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -145,7 +145,7 @@ func ExampleElastiCache_CreateCacheCluster() {
 		SnapshotRetentionLimit: aws.Long(1),
 		SnapshotWindow:         aws.String("String"),
 		Tags: []*elasticache.Tag{
-			&elasticache.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -300,7 +300,7 @@ func ExampleElastiCache_CreateReplicationGroup() {
 		SnapshotRetentionLimit: aws.Long(1),
 		SnapshotWindow:         aws.String("String"),
 		Tags: []*elasticache.Tag{
-			&elasticache.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -976,7 +976,7 @@ func ExampleElastiCache_ModifyCacheParameterGroup() {
 	params := &elasticache.ModifyCacheParameterGroupInput{
 		CacheParameterGroupName: aws.String("String"), // Required
 		ParameterNameValues: []*elasticache.ParameterNameValue{ // Required
-			&elasticache.ParameterNameValue{ // Required
+			{ // Required
 				ParameterName:  aws.String("String"),
 				ParameterValue: aws.String("String"),
 			},
@@ -1181,7 +1181,7 @@ func ExampleElastiCache_ResetCacheParameterGroup() {
 	params := &elasticache.ResetCacheParameterGroupInput{
 		CacheParameterGroupName: aws.String("String"), // Required
 		ParameterNameValues: []*elasticache.ParameterNameValue{ // Required
-			&elasticache.ParameterNameValue{ // Required
+			{ // Required
 				ParameterName:  aws.String("String"),
 				ParameterValue: aws.String("String"),
 			},

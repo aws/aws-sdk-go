@@ -5,8 +5,8 @@ package configserviceiface_test
 import (
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/service/configservice"
-	"github.com/awslabs/aws-sdk-go/service/configservice/configserviceiface"
+	"github.com/aws/aws-sdk-go/service/configservice"
+	"github.com/aws/aws-sdk-go/service/configservice/configserviceiface"
 	"github.com/stretchr/testify/assert"
 )
 

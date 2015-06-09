@@ -859,7 +859,7 @@
         },
         "clientToken":{
           "shape":"String",
-          "documentation":"<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. Up to 32 ASCII characters are allowed.</p>"
+          "documentation":"<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. Up to 64 ASCII characters are allowed.</p>"
         },
         "role":{
           "shape":"String",
@@ -1348,10 +1348,7 @@
           "shape":"BoxedInteger",
           "documentation":"<p>The maximum number of task results returned by <code>ListTasks</code> in paginated output. When this parameter is used, <code>ListTasks</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListTasks</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListTasks</code> returns up to 100 results and a <code>nextToken</code> value if applicable.</p>"
         },
-        "startedBy":{
-          "shape":"String",
-          "documentation":"<p>The <code>startedBy</code> value that you want to filter the task results with. Specifying a <code>startedBy</code> value will limit the results to tasks that were started with that value.</p>"
-        },
+        "startedBy":{"shape":"String"},
         "serviceName":{
           "shape":"String",
           "documentation":"<p>The name of the service that you want to filter the <code>ListTasks</code> results with. Specifying a <code>serviceName</code> will limit the results to tasks that belong to that service.</p>"
@@ -1553,10 +1550,7 @@
           "shape":"BoxedInteger",
           "documentation":"<p>The number of instantiations of the specified task that you would like to place on your cluster.</p> <important> <p>The <code>count</code> parameter is limited to 10 tasks per call.</p> </important>"
         },
-        "startedBy":{
-          "shape":"String",
-          "documentation":"<p>An optional tag specified when a task is started. For example if you automatically trigger a task to run a batch process job, you could apply a unique identifier for that job to your task with the <code>startedBy</code> parameter. You can then identify which tasks belong to that job by filtering the results of a <a>ListTasks</a> call with the <code>startedBy</code> value.</p> <p>If a task is started by an Amazon ECS service, then the <code>startedBy</code> parameter contains the deployment ID of the service that starts it.</p>"
-        }
+        "startedBy":{"shape":"String"}
       }
     },
     "RunTaskResponse":{
@@ -1682,10 +1676,7 @@
           "shape":"StringList",
           "documentation":"<p>The container instance UUIDs or full Amazon Resource Name (ARN) entries for the container instances on which you would like to place your task.</p> <important> <p>The list of container instances to start tasks on is limited to 10.</p> </important>"
         },
-        "startedBy":{
-          "shape":"String",
-          "documentation":"<p>An optional tag specified when a task is started. For example if you automatically trigger a task to run a batch process job, you could apply a unique identifier for that job to your task with the <code>startedBy</code> parameter. You can then identify which tasks belong to that job by filtering the results of a <a>ListTasks</a> call with the <code>startedBy</code> value.</p> <p>If a task is started by an Amazon ECS service, then the <code>startedBy</code> parameter contains the deployment ID of the service that starts it.</p>"
-        }
+        "startedBy":{"shape":"String"}
       }
     },
     "StartTaskResponse":{
@@ -1833,10 +1824,7 @@
           "shape":"Containers",
           "documentation":"<p>The containers associated with the task.</p>"
         },
-        "startedBy":{
-          "shape":"String",
-          "documentation":"<p>The tag specified when a task is started. If the task is started by an Amazon ECS service, then the <code>startedBy</code> parameter contains the deployment ID of the service that starts it.</p>"
-        }
+        "startedBy":{"shape":"String"}
       }
     },
     "TaskDefinition":{
@@ -1913,18 +1901,9 @@
     "VersionInfo":{
       "type":"structure",
       "members":{
-        "agentVersion":{
-          "shape":"String",
-          "documentation":"<p>The version number of the Amazon ECS container agent.</p>"
-        },
-        "agentHash":{
-          "shape":"String",
-          "documentation":"<p>The Git commit hash for the Amazon ECS container agent build on the <a href=\"https://github.com/aws/amazon-ecs-agent/commits/master\">amazon-ecs-agent </a> GitHub repository.</p>"
-        },
-        "dockerVersion":{
-          "shape":"String",
-          "documentation":"<p>The Docker version running on the container instance.</p>"
-        }
+        "agentVersion":{"shape":"String"},
+        "agentHash":{"shape":"String"},
+        "dockerVersion":{"shape":"String"}
       }
     },
     "Volume":{

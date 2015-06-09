@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
-	"github.com/awslabs/aws-sdk-go/service/dynamodb"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
 var _ time.Duration
@@ -20,11 +20,11 @@ func ExampleDynamoDB_BatchGetItem() {
 	svc := dynamodb.New(nil)
 
 	params := &dynamodb.BatchGetItemInput{
-		RequestItems: &map[string]*dynamodb.KeysAndAttributes{ // Required
-			"Key": &dynamodb.KeysAndAttributes{ // Required
-				Keys: []*map[string]*dynamodb.AttributeValue{ // Required
-					&map[string]*dynamodb.AttributeValue{ // Required
-						"Key": &dynamodb.AttributeValue{ // Required
+		RequestItems: map[string]*dynamodb.KeysAndAttributes{ // Required
+			"Key": { // Required
+				Keys: []map[string]*dynamodb.AttributeValue{ // Required
+					{ // Required
+						"Key": { // Required
 							B:    []byte("PAYLOAD"),
 							BOOL: aws.Boolean(true),
 							BS: [][]byte{
@@ -32,13 +32,13 @@ func ExampleDynamoDB_BatchGetItem() {
 								// More values...
 							},
 							L: []*dynamodb.AttributeValue{
-								&dynamodb.AttributeValue{ // Required
+								{ // Required
 								// Recursive values...
 								},
 								// More values...
 							},
-							M: &map[string]*dynamodb.AttributeValue{
-								"Key": &dynamodb.AttributeValue{ // Required
+							M: map[string]*dynamodb.AttributeValue{
+								"Key": { // Required
 								// Recursive values...
 								},
 								// More values...
@@ -64,7 +64,7 @@ func ExampleDynamoDB_BatchGetItem() {
 					// More values...
 				},
 				ConsistentRead: aws.Boolean(true),
-				ExpressionAttributeNames: &map[string]*string{
+				ExpressionAttributeNames: map[string]*string{
 					"Key": aws.String("AttributeName"), // Required
 					// More values...
 				},
@@ -99,12 +99,12 @@ func ExampleDynamoDB_BatchWriteItem() {
 	svc := dynamodb.New(nil)
 
 	params := &dynamodb.BatchWriteItemInput{
-		RequestItems: &map[string][]*dynamodb.WriteRequest{ // Required
-			"Key": []*dynamodb.WriteRequest{ // Required
-				&dynamodb.WriteRequest{ // Required
+		RequestItems: map[string][]*dynamodb.WriteRequest{ // Required
+			"Key": { // Required
+				{ // Required
 					DeleteRequest: &dynamodb.DeleteRequest{
-						Key: &map[string]*dynamodb.AttributeValue{ // Required
-							"Key": &dynamodb.AttributeValue{ // Required
+						Key: map[string]*dynamodb.AttributeValue{ // Required
+							"Key": { // Required
 								B:    []byte("PAYLOAD"),
 								BOOL: aws.Boolean(true),
 								BS: [][]byte{
@@ -112,13 +112,13 @@ func ExampleDynamoDB_BatchWriteItem() {
 									// More values...
 								},
 								L: []*dynamodb.AttributeValue{
-									&dynamodb.AttributeValue{ // Required
+									{ // Required
 									// Recursive values...
 									},
 									// More values...
 								},
-								M: &map[string]*dynamodb.AttributeValue{
-									"Key": &dynamodb.AttributeValue{ // Required
+								M: map[string]*dynamodb.AttributeValue{
+									"Key": { // Required
 									// Recursive values...
 									},
 									// More values...
@@ -139,8 +139,8 @@ func ExampleDynamoDB_BatchWriteItem() {
 						},
 					},
 					PutRequest: &dynamodb.PutRequest{
-						Item: &map[string]*dynamodb.AttributeValue{ // Required
-							"Key": &dynamodb.AttributeValue{ // Required
+						Item: map[string]*dynamodb.AttributeValue{ // Required
+							"Key": { // Required
 								B:    []byte("PAYLOAD"),
 								BOOL: aws.Boolean(true),
 								BS: [][]byte{
@@ -148,13 +148,13 @@ func ExampleDynamoDB_BatchWriteItem() {
 									// More values...
 								},
 								L: []*dynamodb.AttributeValue{
-									&dynamodb.AttributeValue{ // Required
+									{ // Required
 									// Recursive values...
 									},
 									// More values...
 								},
-								M: &map[string]*dynamodb.AttributeValue{
-									"Key": &dynamodb.AttributeValue{ // Required
+								M: map[string]*dynamodb.AttributeValue{
+									"Key": { // Required
 									// Recursive values...
 									},
 									// More values...
@@ -208,14 +208,14 @@ func ExampleDynamoDB_CreateTable() {
 
 	params := &dynamodb.CreateTableInput{
 		AttributeDefinitions: []*dynamodb.AttributeDefinition{ // Required
-			&dynamodb.AttributeDefinition{ // Required
+			{ // Required
 				AttributeName: aws.String("KeySchemaAttributeName"), // Required
 				AttributeType: aws.String("ScalarAttributeType"),    // Required
 			},
 			// More values...
 		},
 		KeySchema: []*dynamodb.KeySchemaElement{ // Required
-			&dynamodb.KeySchemaElement{ // Required
+			{ // Required
 				AttributeName: aws.String("KeySchemaAttributeName"), // Required
 				KeyType:       aws.String("KeyType"),                // Required
 			},
@@ -227,10 +227,10 @@ func ExampleDynamoDB_CreateTable() {
 		},
 		TableName: aws.String("TableName"), // Required
 		GlobalSecondaryIndexes: []*dynamodb.GlobalSecondaryIndex{
-			&dynamodb.GlobalSecondaryIndex{ // Required
+			{ // Required
 				IndexName: aws.String("IndexName"), // Required
 				KeySchema: []*dynamodb.KeySchemaElement{ // Required
-					&dynamodb.KeySchemaElement{ // Required
+					{ // Required
 						AttributeName: aws.String("KeySchemaAttributeName"), // Required
 						KeyType:       aws.String("KeyType"),                // Required
 					},
@@ -251,10 +251,10 @@ func ExampleDynamoDB_CreateTable() {
 			// More values...
 		},
 		LocalSecondaryIndexes: []*dynamodb.LocalSecondaryIndex{
-			&dynamodb.LocalSecondaryIndex{ // Required
+			{ // Required
 				IndexName: aws.String("IndexName"), // Required
 				KeySchema: []*dynamodb.KeySchemaElement{ // Required
-					&dynamodb.KeySchemaElement{ // Required
+					{ // Required
 						AttributeName: aws.String("KeySchemaAttributeName"), // Required
 						KeyType:       aws.String("KeyType"),                // Required
 					},
@@ -296,8 +296,8 @@ func ExampleDynamoDB_DeleteItem() {
 	svc := dynamodb.New(nil)
 
 	params := &dynamodb.DeleteItemInput{
-		Key: &map[string]*dynamodb.AttributeValue{ // Required
-			"Key": &dynamodb.AttributeValue{ // Required
+		Key: map[string]*dynamodb.AttributeValue{ // Required
+			"Key": { // Required
 				B:    []byte("PAYLOAD"),
 				BOOL: aws.Boolean(true),
 				BS: [][]byte{
@@ -305,13 +305,13 @@ func ExampleDynamoDB_DeleteItem() {
 					// More values...
 				},
 				L: []*dynamodb.AttributeValue{
-					&dynamodb.AttributeValue{ // Required
+					{ // Required
 					// Recursive values...
 					},
 					// More values...
 				},
-				M: &map[string]*dynamodb.AttributeValue{
-					"Key": &dynamodb.AttributeValue{ // Required
+				M: map[string]*dynamodb.AttributeValue{
+					"Key": { // Required
 					// Recursive values...
 					},
 					// More values...
@@ -333,10 +333,10 @@ func ExampleDynamoDB_DeleteItem() {
 		TableName:           aws.String("TableName"), // Required
 		ConditionExpression: aws.String("ConditionExpression"),
 		ConditionalOperator: aws.String("ConditionalOperator"),
-		Expected: &map[string]*dynamodb.ExpectedAttributeValue{
-			"Key": &dynamodb.ExpectedAttributeValue{ // Required
+		Expected: map[string]*dynamodb.ExpectedAttributeValue{
+			"Key": { // Required
 				AttributeValueList: []*dynamodb.AttributeValue{
-					&dynamodb.AttributeValue{ // Required
+					{ // Required
 						B:    []byte("PAYLOAD"),
 						BOOL: aws.Boolean(true),
 						BS: [][]byte{
@@ -344,13 +344,13 @@ func ExampleDynamoDB_DeleteItem() {
 							// More values...
 						},
 						L: []*dynamodb.AttributeValue{
-							&dynamodb.AttributeValue{ // Required
+							{ // Required
 							// Recursive values...
 							},
 							// More values...
 						},
-						M: &map[string]*dynamodb.AttributeValue{
-							"Key": &dynamodb.AttributeValue{ // Required
+						M: map[string]*dynamodb.AttributeValue{
+							"Key": { // Required
 							// Recursive values...
 							},
 							// More values...
@@ -379,13 +379,13 @@ func ExampleDynamoDB_DeleteItem() {
 						// More values...
 					},
 					L: []*dynamodb.AttributeValue{
-						&dynamodb.AttributeValue{ // Required
+						{ // Required
 						// Recursive values...
 						},
 						// More values...
 					},
-					M: &map[string]*dynamodb.AttributeValue{
-						"Key": &dynamodb.AttributeValue{ // Required
+					M: map[string]*dynamodb.AttributeValue{
+						"Key": { // Required
 						// Recursive values...
 						},
 						// More values...
@@ -405,12 +405,12 @@ func ExampleDynamoDB_DeleteItem() {
 			},
 			// More values...
 		},
-		ExpressionAttributeNames: &map[string]*string{
+		ExpressionAttributeNames: map[string]*string{
 			"Key": aws.String("AttributeName"), // Required
 			// More values...
 		},
-		ExpressionAttributeValues: &map[string]*dynamodb.AttributeValue{
-			"Key": &dynamodb.AttributeValue{ // Required
+		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
+			"Key": { // Required
 				B:    []byte("PAYLOAD"),
 				BOOL: aws.Boolean(true),
 				BS: [][]byte{
@@ -418,13 +418,13 @@ func ExampleDynamoDB_DeleteItem() {
 					// More values...
 				},
 				L: []*dynamodb.AttributeValue{
-					&dynamodb.AttributeValue{ // Required
+					{ // Required
 					// Recursive values...
 					},
 					// More values...
 				},
-				M: &map[string]*dynamodb.AttributeValue{
-					"Key": &dynamodb.AttributeValue{ // Required
+				M: map[string]*dynamodb.AttributeValue{
+					"Key": { // Required
 					// Recursive values...
 					},
 					// More values...
@@ -526,8 +526,8 @@ func ExampleDynamoDB_GetItem() {
 	svc := dynamodb.New(nil)
 
 	params := &dynamodb.GetItemInput{
-		Key: &map[string]*dynamodb.AttributeValue{ // Required
-			"Key": &dynamodb.AttributeValue{ // Required
+		Key: map[string]*dynamodb.AttributeValue{ // Required
+			"Key": { // Required
 				B:    []byte("PAYLOAD"),
 				BOOL: aws.Boolean(true),
 				BS: [][]byte{
@@ -535,13 +535,13 @@ func ExampleDynamoDB_GetItem() {
 					// More values...
 				},
 				L: []*dynamodb.AttributeValue{
-					&dynamodb.AttributeValue{ // Required
+					{ // Required
 					// Recursive values...
 					},
 					// More values...
 				},
-				M: &map[string]*dynamodb.AttributeValue{
-					"Key": &dynamodb.AttributeValue{ // Required
+				M: map[string]*dynamodb.AttributeValue{
+					"Key": { // Required
 					// Recursive values...
 					},
 					// More values...
@@ -566,7 +566,7 @@ func ExampleDynamoDB_GetItem() {
 			// More values...
 		},
 		ConsistentRead: aws.Boolean(true),
-		ExpressionAttributeNames: &map[string]*string{
+		ExpressionAttributeNames: map[string]*string{
 			"Key": aws.String("AttributeName"), // Required
 			// More values...
 		},
@@ -626,8 +626,8 @@ func ExampleDynamoDB_PutItem() {
 	svc := dynamodb.New(nil)
 
 	params := &dynamodb.PutItemInput{
-		Item: &map[string]*dynamodb.AttributeValue{ // Required
-			"Key": &dynamodb.AttributeValue{ // Required
+		Item: map[string]*dynamodb.AttributeValue{ // Required
+			"Key": { // Required
 				B:    []byte("PAYLOAD"),
 				BOOL: aws.Boolean(true),
 				BS: [][]byte{
@@ -635,13 +635,13 @@ func ExampleDynamoDB_PutItem() {
 					// More values...
 				},
 				L: []*dynamodb.AttributeValue{
-					&dynamodb.AttributeValue{ // Required
+					{ // Required
 					// Recursive values...
 					},
 					// More values...
 				},
-				M: &map[string]*dynamodb.AttributeValue{
-					"Key": &dynamodb.AttributeValue{ // Required
+				M: map[string]*dynamodb.AttributeValue{
+					"Key": { // Required
 					// Recursive values...
 					},
 					// More values...
@@ -663,10 +663,10 @@ func ExampleDynamoDB_PutItem() {
 		TableName:           aws.String("TableName"), // Required
 		ConditionExpression: aws.String("ConditionExpression"),
 		ConditionalOperator: aws.String("ConditionalOperator"),
-		Expected: &map[string]*dynamodb.ExpectedAttributeValue{
-			"Key": &dynamodb.ExpectedAttributeValue{ // Required
+		Expected: map[string]*dynamodb.ExpectedAttributeValue{
+			"Key": { // Required
 				AttributeValueList: []*dynamodb.AttributeValue{
-					&dynamodb.AttributeValue{ // Required
+					{ // Required
 						B:    []byte("PAYLOAD"),
 						BOOL: aws.Boolean(true),
 						BS: [][]byte{
@@ -674,13 +674,13 @@ func ExampleDynamoDB_PutItem() {
 							// More values...
 						},
 						L: []*dynamodb.AttributeValue{
-							&dynamodb.AttributeValue{ // Required
+							{ // Required
 							// Recursive values...
 							},
 							// More values...
 						},
-						M: &map[string]*dynamodb.AttributeValue{
-							"Key": &dynamodb.AttributeValue{ // Required
+						M: map[string]*dynamodb.AttributeValue{
+							"Key": { // Required
 							// Recursive values...
 							},
 							// More values...
@@ -709,13 +709,13 @@ func ExampleDynamoDB_PutItem() {
 						// More values...
 					},
 					L: []*dynamodb.AttributeValue{
-						&dynamodb.AttributeValue{ // Required
+						{ // Required
 						// Recursive values...
 						},
 						// More values...
 					},
-					M: &map[string]*dynamodb.AttributeValue{
-						"Key": &dynamodb.AttributeValue{ // Required
+					M: map[string]*dynamodb.AttributeValue{
+						"Key": { // Required
 						// Recursive values...
 						},
 						// More values...
@@ -735,12 +735,12 @@ func ExampleDynamoDB_PutItem() {
 			},
 			// More values...
 		},
-		ExpressionAttributeNames: &map[string]*string{
+		ExpressionAttributeNames: map[string]*string{
 			"Key": aws.String("AttributeName"), // Required
 			// More values...
 		},
-		ExpressionAttributeValues: &map[string]*dynamodb.AttributeValue{
-			"Key": &dynamodb.AttributeValue{ // Required
+		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
+			"Key": { // Required
 				B:    []byte("PAYLOAD"),
 				BOOL: aws.Boolean(true),
 				BS: [][]byte{
@@ -748,13 +748,13 @@ func ExampleDynamoDB_PutItem() {
 					// More values...
 				},
 				L: []*dynamodb.AttributeValue{
-					&dynamodb.AttributeValue{ // Required
+					{ // Required
 					// Recursive values...
 					},
 					// More values...
 				},
-				M: &map[string]*dynamodb.AttributeValue{
-					"Key": &dynamodb.AttributeValue{ // Required
+				M: map[string]*dynamodb.AttributeValue{
+					"Key": { // Required
 					// Recursive values...
 					},
 					// More values...
@@ -809,8 +809,8 @@ func ExampleDynamoDB_Query() {
 		},
 		ConditionalOperator: aws.String("ConditionalOperator"),
 		ConsistentRead:      aws.Boolean(true),
-		ExclusiveStartKey: &map[string]*dynamodb.AttributeValue{
-			"Key": &dynamodb.AttributeValue{ // Required
+		ExclusiveStartKey: map[string]*dynamodb.AttributeValue{
+			"Key": { // Required
 				B:    []byte("PAYLOAD"),
 				BOOL: aws.Boolean(true),
 				BS: [][]byte{
@@ -818,13 +818,13 @@ func ExampleDynamoDB_Query() {
 					// More values...
 				},
 				L: []*dynamodb.AttributeValue{
-					&dynamodb.AttributeValue{ // Required
+					{ // Required
 					// Recursive values...
 					},
 					// More values...
 				},
-				M: &map[string]*dynamodb.AttributeValue{
-					"Key": &dynamodb.AttributeValue{ // Required
+				M: map[string]*dynamodb.AttributeValue{
+					"Key": { // Required
 					// Recursive values...
 					},
 					// More values...
@@ -843,12 +843,12 @@ func ExampleDynamoDB_Query() {
 			},
 			// More values...
 		},
-		ExpressionAttributeNames: &map[string]*string{
+		ExpressionAttributeNames: map[string]*string{
 			"Key": aws.String("AttributeName"), // Required
 			// More values...
 		},
-		ExpressionAttributeValues: &map[string]*dynamodb.AttributeValue{
-			"Key": &dynamodb.AttributeValue{ // Required
+		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
+			"Key": { // Required
 				B:    []byte("PAYLOAD"),
 				BOOL: aws.Boolean(true),
 				BS: [][]byte{
@@ -856,13 +856,13 @@ func ExampleDynamoDB_Query() {
 					// More values...
 				},
 				L: []*dynamodb.AttributeValue{
-					&dynamodb.AttributeValue{ // Required
+					{ // Required
 					// Recursive values...
 					},
 					// More values...
 				},
-				M: &map[string]*dynamodb.AttributeValue{
-					"Key": &dynamodb.AttributeValue{ // Required
+				M: map[string]*dynamodb.AttributeValue{
+					"Key": { // Required
 					// Recursive values...
 					},
 					// More values...
@@ -884,11 +884,11 @@ func ExampleDynamoDB_Query() {
 		FilterExpression:       aws.String("ConditionExpression"),
 		IndexName:              aws.String("IndexName"),
 		KeyConditionExpression: aws.String("KeyExpression"),
-		KeyConditions: &map[string]*dynamodb.Condition{
-			"Key": &dynamodb.Condition{ // Required
+		KeyConditions: map[string]*dynamodb.Condition{
+			"Key": { // Required
 				ComparisonOperator: aws.String("ComparisonOperator"), // Required
 				AttributeValueList: []*dynamodb.AttributeValue{
-					&dynamodb.AttributeValue{ // Required
+					{ // Required
 						B:    []byte("PAYLOAD"),
 						BOOL: aws.Boolean(true),
 						BS: [][]byte{
@@ -896,13 +896,13 @@ func ExampleDynamoDB_Query() {
 							// More values...
 						},
 						L: []*dynamodb.AttributeValue{
-							&dynamodb.AttributeValue{ // Required
+							{ // Required
 							// Recursive values...
 							},
 							// More values...
 						},
-						M: &map[string]*dynamodb.AttributeValue{
-							"Key": &dynamodb.AttributeValue{ // Required
+						M: map[string]*dynamodb.AttributeValue{
+							"Key": { // Required
 							// Recursive values...
 							},
 							// More values...
@@ -926,11 +926,11 @@ func ExampleDynamoDB_Query() {
 		},
 		Limit:                aws.Long(1),
 		ProjectionExpression: aws.String("ProjectionExpression"),
-		QueryFilter: &map[string]*dynamodb.Condition{
-			"Key": &dynamodb.Condition{ // Required
+		QueryFilter: map[string]*dynamodb.Condition{
+			"Key": { // Required
 				ComparisonOperator: aws.String("ComparisonOperator"), // Required
 				AttributeValueList: []*dynamodb.AttributeValue{
-					&dynamodb.AttributeValue{ // Required
+					{ // Required
 						B:    []byte("PAYLOAD"),
 						BOOL: aws.Boolean(true),
 						BS: [][]byte{
@@ -938,13 +938,13 @@ func ExampleDynamoDB_Query() {
 							// More values...
 						},
 						L: []*dynamodb.AttributeValue{
-							&dynamodb.AttributeValue{ // Required
+							{ // Required
 							// Recursive values...
 							},
 							// More values...
 						},
-						M: &map[string]*dynamodb.AttributeValue{
-							"Key": &dynamodb.AttributeValue{ // Required
+						M: map[string]*dynamodb.AttributeValue{
+							"Key": { // Required
 							// Recursive values...
 							},
 							// More values...
@@ -1001,8 +1001,8 @@ func ExampleDynamoDB_Scan() {
 			// More values...
 		},
 		ConditionalOperator: aws.String("ConditionalOperator"),
-		ExclusiveStartKey: &map[string]*dynamodb.AttributeValue{
-			"Key": &dynamodb.AttributeValue{ // Required
+		ExclusiveStartKey: map[string]*dynamodb.AttributeValue{
+			"Key": { // Required
 				B:    []byte("PAYLOAD"),
 				BOOL: aws.Boolean(true),
 				BS: [][]byte{
@@ -1010,13 +1010,13 @@ func ExampleDynamoDB_Scan() {
 					// More values...
 				},
 				L: []*dynamodb.AttributeValue{
-					&dynamodb.AttributeValue{ // Required
+					{ // Required
 					// Recursive values...
 					},
 					// More values...
 				},
-				M: &map[string]*dynamodb.AttributeValue{
-					"Key": &dynamodb.AttributeValue{ // Required
+				M: map[string]*dynamodb.AttributeValue{
+					"Key": { // Required
 					// Recursive values...
 					},
 					// More values...
@@ -1035,12 +1035,12 @@ func ExampleDynamoDB_Scan() {
 			},
 			// More values...
 		},
-		ExpressionAttributeNames: &map[string]*string{
+		ExpressionAttributeNames: map[string]*string{
 			"Key": aws.String("AttributeName"), // Required
 			// More values...
 		},
-		ExpressionAttributeValues: &map[string]*dynamodb.AttributeValue{
-			"Key": &dynamodb.AttributeValue{ // Required
+		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
+			"Key": { // Required
 				B:    []byte("PAYLOAD"),
 				BOOL: aws.Boolean(true),
 				BS: [][]byte{
@@ -1048,13 +1048,13 @@ func ExampleDynamoDB_Scan() {
 					// More values...
 				},
 				L: []*dynamodb.AttributeValue{
-					&dynamodb.AttributeValue{ // Required
+					{ // Required
 					// Recursive values...
 					},
 					// More values...
 				},
-				M: &map[string]*dynamodb.AttributeValue{
-					"Key": &dynamodb.AttributeValue{ // Required
+				M: map[string]*dynamodb.AttributeValue{
+					"Key": { // Required
 					// Recursive values...
 					},
 					// More values...
@@ -1078,11 +1078,11 @@ func ExampleDynamoDB_Scan() {
 		Limit:                  aws.Long(1),
 		ProjectionExpression:   aws.String("ProjectionExpression"),
 		ReturnConsumedCapacity: aws.String("ReturnConsumedCapacity"),
-		ScanFilter: &map[string]*dynamodb.Condition{
-			"Key": &dynamodb.Condition{ // Required
+		ScanFilter: map[string]*dynamodb.Condition{
+			"Key": { // Required
 				ComparisonOperator: aws.String("ComparisonOperator"), // Required
 				AttributeValueList: []*dynamodb.AttributeValue{
-					&dynamodb.AttributeValue{ // Required
+					{ // Required
 						B:    []byte("PAYLOAD"),
 						BOOL: aws.Boolean(true),
 						BS: [][]byte{
@@ -1090,13 +1090,13 @@ func ExampleDynamoDB_Scan() {
 							// More values...
 						},
 						L: []*dynamodb.AttributeValue{
-							&dynamodb.AttributeValue{ // Required
+							{ // Required
 							// Recursive values...
 							},
 							// More values...
 						},
-						M: &map[string]*dynamodb.AttributeValue{
-							"Key": &dynamodb.AttributeValue{ // Required
+						M: map[string]*dynamodb.AttributeValue{
+							"Key": { // Required
 							// Recursive values...
 							},
 							// More values...
@@ -1147,8 +1147,8 @@ func ExampleDynamoDB_UpdateItem() {
 	svc := dynamodb.New(nil)
 
 	params := &dynamodb.UpdateItemInput{
-		Key: &map[string]*dynamodb.AttributeValue{ // Required
-			"Key": &dynamodb.AttributeValue{ // Required
+		Key: map[string]*dynamodb.AttributeValue{ // Required
+			"Key": { // Required
 				B:    []byte("PAYLOAD"),
 				BOOL: aws.Boolean(true),
 				BS: [][]byte{
@@ -1156,13 +1156,13 @@ func ExampleDynamoDB_UpdateItem() {
 					// More values...
 				},
 				L: []*dynamodb.AttributeValue{
-					&dynamodb.AttributeValue{ // Required
+					{ // Required
 					// Recursive values...
 					},
 					// More values...
 				},
-				M: &map[string]*dynamodb.AttributeValue{
-					"Key": &dynamodb.AttributeValue{ // Required
+				M: map[string]*dynamodb.AttributeValue{
+					"Key": { // Required
 					// Recursive values...
 					},
 					// More values...
@@ -1182,8 +1182,8 @@ func ExampleDynamoDB_UpdateItem() {
 			// More values...
 		},
 		TableName: aws.String("TableName"), // Required
-		AttributeUpdates: &map[string]*dynamodb.AttributeValueUpdate{
-			"Key": &dynamodb.AttributeValueUpdate{ // Required
+		AttributeUpdates: map[string]*dynamodb.AttributeValueUpdate{
+			"Key": { // Required
 				Action: aws.String("AttributeAction"),
 				Value: &dynamodb.AttributeValue{
 					B:    []byte("PAYLOAD"),
@@ -1193,13 +1193,13 @@ func ExampleDynamoDB_UpdateItem() {
 						// More values...
 					},
 					L: []*dynamodb.AttributeValue{
-						&dynamodb.AttributeValue{ // Required
+						{ // Required
 						// Recursive values...
 						},
 						// More values...
 					},
-					M: &map[string]*dynamodb.AttributeValue{
-						"Key": &dynamodb.AttributeValue{ // Required
+					M: map[string]*dynamodb.AttributeValue{
+						"Key": { // Required
 						// Recursive values...
 						},
 						// More values...
@@ -1221,10 +1221,10 @@ func ExampleDynamoDB_UpdateItem() {
 		},
 		ConditionExpression: aws.String("ConditionExpression"),
 		ConditionalOperator: aws.String("ConditionalOperator"),
-		Expected: &map[string]*dynamodb.ExpectedAttributeValue{
-			"Key": &dynamodb.ExpectedAttributeValue{ // Required
+		Expected: map[string]*dynamodb.ExpectedAttributeValue{
+			"Key": { // Required
 				AttributeValueList: []*dynamodb.AttributeValue{
-					&dynamodb.AttributeValue{ // Required
+					{ // Required
 						B:    []byte("PAYLOAD"),
 						BOOL: aws.Boolean(true),
 						BS: [][]byte{
@@ -1232,13 +1232,13 @@ func ExampleDynamoDB_UpdateItem() {
 							// More values...
 						},
 						L: []*dynamodb.AttributeValue{
-							&dynamodb.AttributeValue{ // Required
+							{ // Required
 							// Recursive values...
 							},
 							// More values...
 						},
-						M: &map[string]*dynamodb.AttributeValue{
-							"Key": &dynamodb.AttributeValue{ // Required
+						M: map[string]*dynamodb.AttributeValue{
+							"Key": { // Required
 							// Recursive values...
 							},
 							// More values...
@@ -1267,13 +1267,13 @@ func ExampleDynamoDB_UpdateItem() {
 						// More values...
 					},
 					L: []*dynamodb.AttributeValue{
-						&dynamodb.AttributeValue{ // Required
+						{ // Required
 						// Recursive values...
 						},
 						// More values...
 					},
-					M: &map[string]*dynamodb.AttributeValue{
-						"Key": &dynamodb.AttributeValue{ // Required
+					M: map[string]*dynamodb.AttributeValue{
+						"Key": { // Required
 						// Recursive values...
 						},
 						// More values...
@@ -1293,12 +1293,12 @@ func ExampleDynamoDB_UpdateItem() {
 			},
 			// More values...
 		},
-		ExpressionAttributeNames: &map[string]*string{
+		ExpressionAttributeNames: map[string]*string{
 			"Key": aws.String("AttributeName"), // Required
 			// More values...
 		},
-		ExpressionAttributeValues: &map[string]*dynamodb.AttributeValue{
-			"Key": &dynamodb.AttributeValue{ // Required
+		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
+			"Key": { // Required
 				B:    []byte("PAYLOAD"),
 				BOOL: aws.Boolean(true),
 				BS: [][]byte{
@@ -1306,13 +1306,13 @@ func ExampleDynamoDB_UpdateItem() {
 					// More values...
 				},
 				L: []*dynamodb.AttributeValue{
-					&dynamodb.AttributeValue{ // Required
+					{ // Required
 					// Recursive values...
 					},
 					// More values...
 				},
-				M: &map[string]*dynamodb.AttributeValue{
-					"Key": &dynamodb.AttributeValue{ // Required
+				M: map[string]*dynamodb.AttributeValue{
+					"Key": { // Required
 					// Recursive values...
 					},
 					// More values...
@@ -1363,18 +1363,18 @@ func ExampleDynamoDB_UpdateTable() {
 	params := &dynamodb.UpdateTableInput{
 		TableName: aws.String("TableName"), // Required
 		AttributeDefinitions: []*dynamodb.AttributeDefinition{
-			&dynamodb.AttributeDefinition{ // Required
+			{ // Required
 				AttributeName: aws.String("KeySchemaAttributeName"), // Required
 				AttributeType: aws.String("ScalarAttributeType"),    // Required
 			},
 			// More values...
 		},
 		GlobalSecondaryIndexUpdates: []*dynamodb.GlobalSecondaryIndexUpdate{
-			&dynamodb.GlobalSecondaryIndexUpdate{ // Required
+			{ // Required
 				Create: &dynamodb.CreateGlobalSecondaryIndexAction{
 					IndexName: aws.String("IndexName"), // Required
 					KeySchema: []*dynamodb.KeySchemaElement{ // Required
-						&dynamodb.KeySchemaElement{ // Required
+						{ // Required
 							AttributeName: aws.String("KeySchemaAttributeName"), // Required
 							KeyType:       aws.String("KeyType"),                // Required
 						},

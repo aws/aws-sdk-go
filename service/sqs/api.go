@@ -6,7 +6,7 @@ package sqs
 import (
 	"sync"
 
-	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 var oprw sync.Mutex
@@ -1013,7 +1013,7 @@ type CreateQueueInput struct {
 	// The default for this attribute is 30. For more information about visibility
 	// timeout, see Visibility Timeout (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html)
 	// in the Amazon SQS Developer Guide.
-	Attributes *map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
+	Attributes map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
 
 	// The name for the queue to be created.
 	QueueName *string `type:"string" required:"true"`
@@ -1155,7 +1155,7 @@ type metadataGetQueueAttributesInput struct {
 // A list of returned queue attributes.
 type GetQueueAttributesOutput struct {
 	// A map of attributes to the respective values.
-	Attributes *map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
+	Attributes map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
 
 	metadataGetQueueAttributesOutput `json:"-" xml:"-"`
 }
@@ -1246,7 +1246,7 @@ type Message struct {
 	// SentTimestamp and ApproximateFirstReceiveTimestamp are each returned as an
 	// integer representing the epoch time (http://en.wikipedia.org/wiki/Unix_time)
 	// in milliseconds.
-	Attributes *map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
+	Attributes map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
 
 	// The message's contents (not URL-encoded).
 	Body *string `type:"string"`
@@ -1262,7 +1262,7 @@ type Message struct {
 
 	// Each message attribute consists of a Name, Type, and Value. For more information,
 	// see Message Attribute Items (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV).
-	MessageAttributes *map[string]*MessageAttributeValue `locationName:"MessageAttribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
+	MessageAttributes map[string]*MessageAttributeValue `locationName:"MessageAttribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
 
 	// A unique identifier for the message. Message IDs are considered unique across
 	// all AWS accounts for an extended period of time.
@@ -1470,7 +1470,7 @@ type SendMessageBatchRequestEntry struct {
 
 	// Each message attribute consists of a Name, Type, and Value. For more information,
 	// see Message Attribute Items (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV).
-	MessageAttributes *map[string]*MessageAttributeValue `locationName:"MessageAttribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
+	MessageAttributes map[string]*MessageAttributeValue `locationName:"MessageAttribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
 
 	// Body of the message.
 	MessageBody *string `type:"string" required:"true"`
@@ -1518,7 +1518,7 @@ type SendMessageInput struct {
 
 	// Each message attribute consists of a Name, Type, and Value. For more information,
 	// see Message Attribute Items (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV).
-	MessageAttributes *map[string]*MessageAttributeValue `locationName:"MessageAttribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
+	MessageAttributes map[string]*MessageAttributeValue `locationName:"MessageAttribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
 
 	// The message to send. String maximum 256 KB in size. For a list of allowed
 	// characters, see the preceding important note.
@@ -1585,7 +1585,7 @@ type SetQueueAttributesInput struct {
 	// - The parameters for dead letter queue functionality of the source queue.
 	// For more information about RedrivePolicy and dead letter queues, see Using
 	// Amazon SQS Dead Letter Queues in the Amazon SQS Developer Guide.
-	Attributes *map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true" required:"true"`
+	Attributes map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true" required:"true"`
 
 	// The URL of the Amazon SQS queue to take action on.
 	QueueURL *string `locationName:"QueueUrl" type:"string" required:"true"`

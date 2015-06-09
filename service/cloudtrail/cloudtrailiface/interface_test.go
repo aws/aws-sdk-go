@@ -5,8 +5,8 @@ package cloudtrailiface_test
 import (
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/service/cloudtrail"
-	"github.com/awslabs/aws-sdk-go/service/cloudtrail/cloudtrailiface"
+	"github.com/aws/aws-sdk-go/service/cloudtrail"
+	"github.com/aws/aws-sdk-go/service/cloudtrail/cloudtrailiface"
 	"github.com/stretchr/testify/assert"
 )
 

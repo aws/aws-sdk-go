@@ -3,9 +3,9 @@
 package storagegateway
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/jsonrpc"
-	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
+	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
 // StorageGateway is a client for AWS Storage Gateway.
@@ -21,10 +21,6 @@ var initRequest func(*aws.Request)
 
 // New returns a new StorageGateway client.
 func New(config *aws.Config) *StorageGateway {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "storagegateway",

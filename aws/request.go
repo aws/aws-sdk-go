@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 // A Request is the service request to be made.
@@ -32,8 +32,7 @@ type Request struct {
 	Retryable    SettableBool
 	RetryDelay   time.Duration
 
-	built  bool
-	signed bool
+	built bool
 }
 
 // An Operation is the service API operation to be made.
@@ -164,17 +163,12 @@ func (r *Request) Build() error {
 // Send will build the request prior to signing. All Sign Handlers will
 // be executed in the order they were set.
 func (r *Request) Sign() error {
-	if r.signed {
-		return r.Error
-	}
-
 	r.Build()
 	if r.Error != nil {
 		return r.Error
 	}
 
 	r.Handlers.Sign.Run(r)
-	r.signed = r.Error != nil
 	return r.Error
 }
 
@@ -198,7 +192,12 @@ func (r *Request) Send() error {
 
 		r.Handlers.Send.Run(r)
 		if r.Error != nil {
-			return r.Error
+			r.Handlers.Retry.Run(r)
+			r.Handlers.AfterRetry.Run(r)
+			if r.Error != nil {
+				return r.Error
+			}
+			continue
 		}
 
 		r.Handlers.UnmarshalMeta.Run(r)
@@ -287,11 +286,6 @@ func (r *Request) NextPage() *Request {
 	return nr
 }
 
-// This nil value is needed to work around passing nil into reflect.Value#Call()
-// See https://groups.google.com/forum/#!topic/golang-nuts/apNcACpl_fI
-var nilval interface{}
-var rnil = reflect.ValueOf(&nilval).Elem()
-
 // EachPage iterates over each page of a paginated request object. The fn
 // parameter should be a function with the following sample signature:
 //
@@ -304,38 +298,11 @@ var rnil = reflect.ValueOf(&nilval).Elem()
 // DynamoDB.ListTablesRequest() would expect to see dynamodb.ListTablesOutput
 // as the structure "T". The lastPage value represents whether the page is
 // the last page of data or not. The return value of this function should
-// return true to keep iterating or false to stop. The return value on this
-// function is optional; if it is omitted, the iterator will never exit early.
-func (r *Request) EachPage(fn interface{}) error {
-	valfn := reflect.ValueOf(fn)
-	if valfn.Kind() != reflect.Func {
-		panic("expected function for EachPage()")
-	}
-	if valfn.Type().NumOut() > 0 && valfn.Type().Out(0).Kind() != reflect.Bool {
-		panic("EachPage(fn) function must return bool if it returns a value")
-	}
-
+// return true to keep iterating or false to stop.
+func (r *Request) EachPage(fn func(data interface{}, isLastPage bool) (shouldContinue bool)) error {
 	for page := r; page != nil; page = page.NextPage() {
 		page.Send()
-
-		shouldContinue := true
-		args := []reflect.Value{
-			reflect.ValueOf(page.Data),
-			reflect.ValueOf(!page.HasNextPage()),
-		}
-
-		// Use rnil (see above) when page.Data is nil to work around
-		// reflect.Value#Call() on nil values.
-		if page.Data == nil {
-			args[0] = rnil
-		}
-
-		out := valfn.Call(args)
-
-		if len(out) > 0 {
-			shouldContinue = out[0].Bool()
-		}
-
+		shouldContinue := fn(page.Data, !page.HasNextPage())
 		if page.Error != nil || !shouldContinue {
 			return page.Error
 		}

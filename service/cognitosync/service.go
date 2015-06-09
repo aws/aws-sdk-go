@@ -3,9 +3,9 @@
 package cognitosync
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/restjson"
-	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/protocol/restjson"
+	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
 // CognitoSync is a client for Amazon Cognito Sync.
@@ -21,10 +21,6 @@ var initRequest func(*aws.Request)
 
 // New returns a new CognitoSync client.
 func New(config *aws.Config) *CognitoSync {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "cognito-sync",

@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
-	"github.com/awslabs/aws-sdk-go/service/sns"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/service/sns"
 )
 
 var _ time.Duration
@@ -85,7 +85,7 @@ func ExampleSNS_CreatePlatformApplication() {
 	svc := sns.New(nil)
 
 	params := &sns.CreatePlatformApplicationInput{
-		Attributes: &map[string]*string{ // Required
+		Attributes: map[string]*string{ // Required
 			"Key": aws.String("String"), // Required
 			// More values...
 		},
@@ -119,7 +119,7 @@ func ExampleSNS_CreatePlatformEndpoint() {
 	params := &sns.CreatePlatformEndpointInput{
 		PlatformApplicationARN: aws.String("String"), // Required
 		Token: aws.String("String"), // Required
-		Attributes: &map[string]*string{
+		Attributes: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
 		},
@@ -504,8 +504,8 @@ func ExampleSNS_Publish() {
 
 	params := &sns.PublishInput{
 		Message: aws.String("message"), // Required
-		MessageAttributes: &map[string]*sns.MessageAttributeValue{
-			"Key": &sns.MessageAttributeValue{ // Required
+		MessageAttributes: map[string]*sns.MessageAttributeValue{
+			"Key": { // Required
 				DataType:    aws.String("String"), // Required
 				BinaryValue: []byte("PAYLOAD"),
 				StringValue: aws.String("String"),
@@ -570,7 +570,7 @@ func ExampleSNS_SetEndpointAttributes() {
 	svc := sns.New(nil)
 
 	params := &sns.SetEndpointAttributesInput{
-		Attributes: &map[string]*string{ // Required
+		Attributes: map[string]*string{ // Required
 			"Key": aws.String("String"), // Required
 			// More values...
 		},
@@ -601,7 +601,7 @@ func ExampleSNS_SetPlatformApplicationAttributes() {
 	svc := sns.New(nil)
 
 	params := &sns.SetPlatformApplicationAttributesInput{
-		Attributes: &map[string]*string{ // Required
+		Attributes: map[string]*string{ // Required
 			"Key": aws.String("String"), // Required
 			// More values...
 		},

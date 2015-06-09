@@ -6,7 +6,7 @@ package elastictranscoder
 import (
 	"sync"
 
-	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 var oprw sync.Mutex
@@ -275,7 +275,9 @@ func (c *ElasticTranscoder) ListJobsByPipeline(input *ListJobsByPipelineInput) (
 
 func (c *ElasticTranscoder) ListJobsByPipelinePages(input *ListJobsByPipelineInput, fn func(p *ListJobsByPipelineOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListJobsByPipelineRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListJobsByPipelineOutput), lastPage)
+	})
 }
 
 var opListJobsByPipeline *aws.Operation
@@ -320,7 +322,9 @@ func (c *ElasticTranscoder) ListJobsByStatus(input *ListJobsByStatusInput) (*Lis
 
 func (c *ElasticTranscoder) ListJobsByStatusPages(input *ListJobsByStatusInput, fn func(p *ListJobsByStatusOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListJobsByStatusRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListJobsByStatusOutput), lastPage)
+	})
 }
 
 var opListJobsByStatus *aws.Operation
@@ -364,7 +368,9 @@ func (c *ElasticTranscoder) ListPipelines(input *ListPipelinesInput) (*ListPipel
 
 func (c *ElasticTranscoder) ListPipelinesPages(input *ListPipelinesInput, fn func(p *ListPipelinesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListPipelinesRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListPipelinesOutput), lastPage)
+	})
 }
 
 var opListPipelines *aws.Operation
@@ -408,7 +414,9 @@ func (c *ElasticTranscoder) ListPresets(input *ListPresetsInput) (*ListPresetsOu
 
 func (c *ElasticTranscoder) ListPresetsPages(input *ListPresetsInput, fn func(p *ListPresetsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListPresetsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListPresetsOutput), lastPage)
+	})
 }
 
 var opListPresets *aws.Operation
@@ -733,6 +741,26 @@ type metadataArtwork struct {
 
 // Options associated with your audio codec.
 type AudioCodecOptions struct {
+	// You can only choose an audio bit depth when you specify flac or pcm for the
+	// value of Audio:Codec.
+	//
+	// The bit depth of a sample is how many bits of information are included in
+	// the audio samples. The higher the bit depth, the better the audio, but the
+	// larger the file.
+	//
+	// Valid values are 16 and 24.
+	//
+	// The most common bit depth is 24.
+	BitDepth *string `type:"string"`
+
+	// You can only choose an audio bit order when you specify pcm for the value
+	// of Audio:Codec.
+	//
+	// The order the bits of a PCM sample are stored in.
+	//
+	// The supported value is LittleEndian.
+	BitOrder *string `type:"string"`
+
 	// You can only choose an audio profile when you specify AAC for the value of
 	// Audio:Codec.
 	//
@@ -752,6 +780,15 @@ type AudioCodecOptions struct {
 	// as required.
 	Profile *string `type:"string"`
 
+	// You can only choose whether an audio sample is signed when you specify pcm
+	// for the value of Audio:Codec.
+	//
+	// Whether audio samples are represented with negative and positive numbers
+	// (signed) or only positive numbers (unsigned).
+	//
+	// The supported value is Signed.
+	Signed *string `type:"string"`
+
 	metadataAudioCodecOptions `json:"-" xml:"-"`
 }
 
@@ -761,20 +798,98 @@ type metadataAudioCodecOptions struct {
 
 // Parameters required for transcoding audio.
 type AudioParameters struct {
+	// The method of organizing audio channels and tracks. Use Audio:Channels to
+	// specify the number of channels in your output, and Audio:AudioPackingMode
+	// to specify the number of tracks and their relation to the channels. If you
+	// do not specify an Audio:AudioPackingMode, Elastic Transcoder uses SingleTrack.
+	//
+	// The following values are valid:
+	//
+	// SingleTrack, OneChannelPerTrack, and OneChannelPerTrackWithMosTo8Tracks
+	//
+	// When you specify SingleTrack, Elastic Transcoder creates a single track
+	// for your output. The track can have up to eight channels. Use SingleTrack
+	// for all non-mxf containers.
+	//
+	// The outputs of SingleTrack for a specific channel value and inputs are as
+	// follows:
+	//
+	//   0  channels with any input: Audio omitted from the output  1, 2, or auto
+	//  channels with no audio input: Audio omitted from the output  1  channel
+	// with any input with audio: One track with one channel, downmixed if necessary
+	//  2  channels with one track with one channel: One track with two identical
+	// channels  2 or auto  channels with two tracks with one channel each: One
+	// track with two channels  2 or auto  channels with one track with two channels:
+	// One track with two channels  2  channels with one track with multiple channels:
+	// One track with two channels  auto  channels with one track with one channel:
+	// One track with one channel  auto  channels with one track with multiple channels:
+	// One track with multiple channels  When you specify OneChannelPerTrack, Elastic
+	// Transcoder creates a new track for every channel in your output. Your output
+	// can have up to eight single-channel tracks.
+	//
+	// The outputs of OneChannelPerTrack for a specific channel value and inputs
+	// are as follows:
+	//
+	//   0  channels with any input: Audio omitted from the output  1, 2, or auto
+	//  channels with no audio input: Audio omitted from the output  1  channel
+	// with any input with audio: One track with one channel, downmixed if necessary
+	//  2  channels with one track with one channel: Two tracks with one identical
+	// channel each  2 or auto  channels with two tracks with one channel each:
+	// Two tracks with one channel each  2 or auto  channels with one track with
+	// two channels: Two tracks with one channel each  2  channels with one track
+	// with multiple channels: Two tracks with one channel each  auto  channels
+	// with one track with one channel: One track with one channel  auto  channels
+	// with one track with multiple channels: Up to eight tracks with one channel
+	// each  When you specify OneChannelPerTrackWithMosTo8Tracks, Elastic Transcoder
+	// creates eight single-channel tracks for your output. All tracks that do not
+	// contain audio data from an input channel are MOS, or Mit Out Sound, tracks.
+	//
+	// The outputs of OneChannelPerTrackWithMosTo8Tracks for a specific channel
+	// value and inputs are as follows:
+	//
+	//   0  channels with any input: Audio omitted from the output  1, 2, or auto
+	//  channels with no audio input: Audio omitted from the output  1  channel
+	// with any input with audio: One track with one channel, downmixed if necessary,
+	// plus six MOS tracks  2  channels with one track with one channel: Two tracks
+	// with one identical channel each, plus six MOS tracks  2 or auto  channels
+	// with two tracks with one channel each: Two tracks with one channel each,
+	// plus six MOS tracks  2 or auto  channels with one track with two channels:
+	// Two tracks with one channel each, plus six MOS tracks  2  channels with one
+	// track with multiple channels: Two tracks with one channel each, plus six
+	// MOS tracks  auto  channels with one track with one channel: One track with
+	// one channel, plus seven MOS tracks  auto  channels with one track with multiple
+	// channels: Up to eight tracks with one channel each, plus MOS tracks until
+	// there are eight tracks in all
+	AudioPackingMode *string `type:"string"`
+
 	// The bit rate of the audio stream in the output file, in kilobits/second.
 	// Enter an integer between 64 and 320, inclusive.
 	BitRate *string `type:"string"`
 
-	// The number of audio channels in the output file. Valid values include:
+	// The number of audio channels in the output file. The following values are
+	// valid:
 	//
 	// auto, 0, 1, 2
 	//
-	// If you specify auto, Elastic Transcoder automatically detects the number
-	// of channels in the input file.
+	// One channel carries the information played by a single speaker. For example,
+	// a stereo track with two channels sends one channel to the left speaker, and
+	// the other channel to the right speaker. The output channels are organized
+	// into tracks. If you want Elastic Transcoder to automatically detect the number
+	// of audio channels in the input file and use that value for the output file,
+	// select auto.
+	//
+	// The output of a specific channel value and inputs are as follows:
+	//
+	//   auto channel specified, with any input: Pass through up to eight input
+	// channels.  0 channels specified, with any input: Audio omitted from the output.
+	//  1 channel specified, with at least one input channel: Mono sound.  2 channels
+	// specified, with any input: Two identical mono channels or stereo. For more
+	// information about tracks, see Audio:AudioPackingMode.    For more information
+	// about how Elastic Transcoder organizes channels and tracks, see Audio:AudioPackingMode.
 	Channels *string `type:"string"`
 
-	// The audio codec for the output file. Valid values include aac, mp2, mp3,
-	// and vorbis.
+	// The audio codec for the output file. Valid values include aac, flac, mp2,
+	// mp3, pcm, and vorbis.
 	Codec *string `type:"string"`
 
 	// If you specified AAC for Audio:Codec, this is the AAC compression profile
@@ -839,7 +954,9 @@ type CaptionFormat struct {
 	//
 	//   Valid Embedded Caption Formats:
 	//
-	//  For MP3: None
+	//  for FLAC: None
+	//
+	// For MP3: None
 	//
 	// For MP4: mov-text
 	//
@@ -1008,7 +1125,7 @@ type CreateJobInput struct {
 	// job. You specify metadata in key/value pairs, and you can add up to 10 key/value
 	// pairs per job. Elastic Transcoder does not guarantee that key/value pairs
 	// will be returned in the same order in which you specify them.
-	UserMetadata *map[string]*string `type:"map"`
+	UserMetadata map[string]*string `type:"map"`
 
 	metadataCreateJobInput `json:"-" xml:"-"`
 }
@@ -1225,6 +1342,10 @@ type CreateJobPlaylist struct {
 	// all outputs.
 	OutputKeys []*string `type:"list"`
 
+	// The DRM settings, if any, that you want Elastic Transcoder to apply to the
+	// output files associated with this playlist.
+	PlayReadyDRM *PlayReadyDRM `locationName:"PlayReadyDrm" type:"structure"`
+
 	metadataCreateJobPlaylist `json:"-" xml:"-"`
 }
 
@@ -1432,8 +1553,8 @@ type CreatePresetInput struct {
 	// A section of the request body that specifies the audio parameters.
 	Audio *AudioParameters `type:"structure"`
 
-	// The container type for the output file. Valid values include flv, fmp4, gif,
-	// mp3, mp4, mpg, ogg, ts, and webm.
+	// The container type for the output file. Valid values include flac, flv, fmp4,
+	// gif, mp3, mp4, mpg, mxf, oga, ogg, ts, and webm.
 	Container *string `type:"string" required:"true"`
 
 	// A description of the preset.
@@ -1515,6 +1636,31 @@ type DeletePresetOutput struct {
 }
 
 type metadataDeletePresetOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// The detected properties of the input file. Elastic Transcoder identifies
+// these values from the input file.
+type DetectedProperties struct {
+	// The detected duration of the input file, in milliseconds.
+	DurationMillis *int64 `type:"long"`
+
+	// The detected file size of the input file, in bytes.
+	FileSize *int64 `type:"long"`
+
+	// The detected frame rate of the input file, in frames per second.
+	FrameRate *string `type:"string"`
+
+	// The detected height of the input file, in pixels.
+	Height *int64 `type:"integer"`
+
+	// The detected width of the input file, in pixels.
+	Width *int64 `type:"integer"`
+
+	metadataDetectedProperties `json:"-" xml:"-"`
+}
+
+type metadataDetectedProperties struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1700,6 +1846,9 @@ type Job struct {
 	// The status of the job: Submitted, Progressing, Complete, Canceled, or Error.
 	Status *string `type:"string"`
 
+	// Details about the timing of a job.
+	Timing *Timing `type:"structure"`
+
 	// User-defined metadata that you want to associate with an Elastic Transcoder
 	// job. You specify metadata in key/value pairs, and you can add up to 10 key/value
 	// pairs per job. Elastic Transcoder does not guarantee that key/value pairs
@@ -1714,7 +1863,7 @@ type Job struct {
 	// Space
 	//
 	// The following symbols: _.:/=+-%@
-	UserMetadata *map[string]*string `type:"map"`
+	UserMetadata map[string]*string `type:"map"`
 
 	metadataJob `json:"-" xml:"-"`
 }
@@ -1768,6 +1917,9 @@ type JobInput struct {
 	//  3gp, aac, asf, avi, divx, flv, m4a, mkv, mov, mp3, mp4, mpeg, mpeg-ps,
 	// mpeg-ts, mxf, ogg, vob, wav, webm
 	Container *string `type:"string"`
+
+	// The detected properties of the input file.
+	DetectedProperties *DetectedProperties `type:"structure"`
 
 	// The encryption settings, if any, that are used for decrypting your input
 	// files. If your input file is encrypted, you must specify the mode that Elastic
@@ -1884,11 +2036,20 @@ type JobOutput struct {
 	// Duration of the output file, in seconds.
 	Duration *int64 `type:"long"`
 
+	// Duration of the output file, in milliseconds.
+	DurationMillis *int64 `type:"long"`
+
 	// The encryption settings, if any, that you want Elastic Transcoder to apply
 	// to your output files. If you choose to use encryption, you must specify a
 	// mode to use. If you choose not to use encryption, Elastic Transcoder will
 	// write an unencrypted file to your Amazon S3 bucket.
 	Encryption *Encryption `type:"structure"`
+
+	// File size of the output file, in bytes.
+	FileSize *int64 `type:"long"`
+
+	// Frame rate of the output file, in frames per second.
+	FrameRate *string `type:"string"`
 
 	// Height of the output file, in pixels.
 	Height *int64 `type:"integer"`
@@ -2418,6 +2579,62 @@ type metadataPipelineOutputConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The PlayReady DRM settings, if any, that you want Elastic Transcoder to apply
+// to the output files associated with this playlist.
+//
+// PlayReady DRM encrypts your media files using AES-CTR encryption.
+//
+// If you use DRM for an HLSv3 playlist, your outputs must have a master playlist.
+type PlayReadyDRM struct {
+	// The type of DRM, if any, that you want Elastic Transcoder to apply to the
+	// output files associated with this playlist.
+	Format *string `type:"string"`
+
+	// The series of random bits created by a random bit generator, unique for every
+	// encryption operation, that you want Elastic Transcoder to use to encrypt
+	// your files. The initialization vector must be base64-encoded, and it must
+	// be exactly 8 bytes long before being base64-encoded. If no initialization
+	// vector is provided, Elastic Transcoder generates one for you.
+	InitializationVector *string `type:"string"`
+
+	// The DRM key for your file, provided by your DRM license provider. The key
+	// must be base64-encoded, and it must be one of the following bit lengths before
+	// being base64-encoded:
+	//
+	// 128, 192, or 256.
+	//
+	// The key must also be encrypted by using AWS KMS.
+	Key *string `type:"string"`
+
+	// The ID for your DRM key, so that your DRM license provider knows which key
+	// to provide.
+	//
+	// The key ID must be provided in big endian, and Elastic Transcoder will convert
+	// it to little endian before inserting it into the PlayReady DRM headers. If
+	// you are unsure whether your license server provides your key ID in big or
+	// little endian, check with your DRM provider.
+	KeyID *string `locationName:"KeyId" type:"string"`
+
+	// The MD5 digest of the key used for DRM on your file, and that you want Elastic
+	// Transcoder to use as a checksum to make sure your key was not corrupted in
+	// transit. The key MD5 must be base64-encoded, and it must be exactly 16 bytes
+	// before being base64-encoded.
+	KeyMD5 *string `locationName:"KeyMd5" type:"string"`
+
+	// The location of the license key required to play DRM content. The URL must
+	// be an absolute path, and is referenced by the PlayReady header. The PlayReady
+	// header is referenced in the protection header of the client manifest for
+	// Smooth Streaming outputs, and in the EXT-X-DXDRM and EXT-XDXDRMINFO metadata
+	// tags for HLS playlist outputs. An example URL looks like this: https://www.example.com/exampleKey/
+	LicenseAcquisitionURL *string `locationName:"LicenseAcquisitionUrl" type:"string"`
+
+	metadataPlayReadyDRM `json:"-" xml:"-"`
+}
+
+type metadataPlayReadyDRM struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // Use Only for Fragmented MP4 or MPEG-TS Outputs. If you specify a preset for
 // which the value of Container is fmp4 (Fragmented MP4) or ts (MPEG-TS), Playlists
 // contains information about the master playlists that you want Elastic Transcoder
@@ -2483,6 +2700,10 @@ type Playlist struct {
 	// all outputs.
 	OutputKeys []*string `type:"list"`
 
+	// The DRM settings, if any, that you want Elastic Transcoder to apply to the
+	// output files associated with this playlist.
+	PlayReadyDRM *PlayReadyDRM `locationName:"PlayReadyDrm" type:"structure"`
+
 	// The status of the job with which the playlist is associated.
 	Status *string `type:"string"`
 
@@ -2510,8 +2731,8 @@ type Preset struct {
 	// preset values.
 	Audio *AudioParameters `type:"structure"`
 
-	// The container type for the output file. Valid values include flv, fmp4, gif,
-	// mp3, mp4, mpg, ogg, ts, and webm.
+	// The container type for the output file. Valid values include flac, flv, fmp4,
+	// gif, mp3, mp4, mpg, mxf, oga, ogg, ts, and webm.
 	Container *string `type:"string"`
 
 	// A description of the preset.
@@ -2904,6 +3125,24 @@ type metadataTimeSpan struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Details about the timing of a job.
+type Timing struct {
+	// The time the job finished transcoding, in epoch milliseconds.
+	FinishTimeMillis *int64 `type:"long"`
+
+	// The time the job began transcoding, in epoch milliseconds.
+	StartTimeMillis *int64 `type:"long"`
+
+	// The time the job was submitted to Elastic Transcoder, in epoch milliseconds.
+	SubmitTimeMillis *int64 `type:"long"`
+
+	metadataTiming `json:"-" xml:"-"`
+}
+
+type metadataTiming struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // The UpdatePipelineRequest structure.
 type UpdatePipelineInput struct {
 	// The AWS Key Management Service (AWS KMS) key that you want to use with this
@@ -3273,7 +3512,7 @@ type VideoParameters struct {
 	//
 	// The number of times you want the output gif to loop. Valid values include
 	// Infinite and integers between 0 and 100, inclusive.
-	CodecOptions *map[string]*string `type:"map"`
+	CodecOptions map[string]*string `type:"map"`
 
 	// The value that Elastic Transcoder adds to the metadata in the output file.
 	DisplayAspectRatio *string `type:"string"`

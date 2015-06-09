@@ -1,22 +1,22 @@
 package query_test
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/query"
-	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
-
 	"bytes"
 	"encoding/json"
 	"encoding/xml"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
-	"github.com/awslabs/aws-sdk-go/internal/util"
-	"github.com/stretchr/testify/assert"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"testing"
 	"time"
+
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/protocol/query"
+	"github.com/aws/aws-sdk-go/internal/protocol/xml/xmlutil"
+	"github.com/aws/aws-sdk-go/internal/signer/v4"
+	"github.com/aws/aws-sdk-go/internal/util"
+	"github.com/stretchr/testify/assert"
 )
 
 var _ bytes.Buffer // always import bytes
@@ -37,10 +37,6 @@ type InputService1ProtocolTest struct {
 
 // New returns a new InputService1ProtocolTest client.
 func NewInputService1ProtocolTest(config *aws.Config) *InputService1ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice1protocoltest",
@@ -120,10 +116,6 @@ type InputService2ProtocolTest struct {
 
 // New returns a new InputService2ProtocolTest client.
 func NewInputService2ProtocolTest(config *aws.Config) *InputService2ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice2protocoltest",
@@ -211,10 +203,6 @@ type InputService3ProtocolTest struct {
 
 // New returns a new InputService3ProtocolTest client.
 func NewInputService3ProtocolTest(config *aws.Config) *InputService3ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice3protocoltest",
@@ -327,10 +315,6 @@ type InputService4ProtocolTest struct {
 
 // New returns a new InputService4ProtocolTest client.
 func NewInputService4ProtocolTest(config *aws.Config) *InputService4ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice4protocoltest",
@@ -445,10 +429,6 @@ type InputService5ProtocolTest struct {
 
 // New returns a new InputService5ProtocolTest client.
 func NewInputService5ProtocolTest(config *aws.Config) *InputService5ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice5protocoltest",
@@ -545,7 +525,7 @@ type metadataInputService5TestShapeInputService5TestCaseOperation2Output struct 
 }
 
 type InputService5TestShapeInputShape struct {
-	MapArg *map[string]*string `type:"map"`
+	MapArg map[string]*string `type:"map"`
 
 	metadataInputService5TestShapeInputShape `json:"-" xml:"-"`
 }
@@ -561,10 +541,6 @@ type InputService6ProtocolTest struct {
 
 // New returns a new InputService6ProtocolTest client.
 func NewInputService6ProtocolTest(config *aws.Config) *InputService6ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice6protocoltest",
@@ -626,7 +602,7 @@ type metadataInputService6TestShapeInputService6TestCaseOperation1Output struct 
 }
 
 type InputService6TestShapeInputShape struct {
-	MapArg *map[string]*string `locationNameKey:"TheKey" locationNameValue:"TheValue" type:"map"`
+	MapArg map[string]*string `locationNameKey:"TheKey" locationNameValue:"TheValue" type:"map"`
 
 	metadataInputService6TestShapeInputShape `json:"-" xml:"-"`
 }
@@ -642,10 +618,6 @@ type InputService7ProtocolTest struct {
 
 // New returns a new InputService7ProtocolTest client.
 func NewInputService7ProtocolTest(config *aws.Config) *InputService7ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice7protocoltest",
@@ -723,10 +695,6 @@ type InputService8ProtocolTest struct {
 
 // New returns a new InputService8ProtocolTest client.
 func NewInputService8ProtocolTest(config *aws.Config) *InputService8ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice8protocoltest",
@@ -804,10 +772,6 @@ type InputService9ProtocolTest struct {
 
 // New returns a new InputService9ProtocolTest client.
 func NewInputService9ProtocolTest(config *aws.Config) *InputService9ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "inputservice9protocoltest",
@@ -1058,7 +1022,7 @@ type InputService9TestShapeRecursiveStructType struct {
 
 	RecursiveList []*InputService9TestShapeRecursiveStructType `type:"list"`
 
-	RecursiveMap *map[string]*InputService9TestShapeRecursiveStructType `type:"map"`
+	RecursiveMap map[string]*InputService9TestShapeRecursiveStructType `type:"map"`
 
 	RecursiveStruct *InputService9TestShapeRecursiveStructType `type:"structure"`
 
@@ -1247,7 +1211,7 @@ func TestInputService5ProtocolTestSerializeMapTypeCase1(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := &InputService5TestShapeInputShape{
-		MapArg: &map[string]*string{
+		MapArg: map[string]*string{
 			"key1": aws.String("val1"),
 			"key2": aws.String("val2"),
 		},
@@ -1276,7 +1240,7 @@ func TestInputService5ProtocolTestSerializeMapTypeCase2(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := &InputService5TestShapeInputShape{
-		MapArg: &map[string]*string{},
+		MapArg: map[string]*string{},
 	}
 	req, _ := svc.InputService5TestCaseOperation2Request(input)
 	r := req.HTTPRequest
@@ -1302,7 +1266,7 @@ func TestInputService6ProtocolTestSerializeMapTypeWithLocationNameCase1(t *testi
 	svc.Endpoint = "https://test"
 
 	input := &InputService6TestShapeInputShape{
-		MapArg: &map[string]*string{
+		MapArg: map[string]*string{
 			"key1": aws.String("val1"),
 			"key2": aws.String("val2"),
 		},
@@ -1477,10 +1441,10 @@ func TestInputService9ProtocolTestRecursiveShapesCase4(t *testing.T) {
 	input := &InputService9TestShapeInputShape{
 		RecursiveStruct: &InputService9TestShapeRecursiveStructType{
 			RecursiveList: []*InputService9TestShapeRecursiveStructType{
-				&InputService9TestShapeRecursiveStructType{
+				{
 					NoRecurse: aws.String("foo"),
 				},
-				&InputService9TestShapeRecursiveStructType{
+				{
 					NoRecurse: aws.String("bar"),
 				},
 			},
@@ -1512,10 +1476,10 @@ func TestInputService9ProtocolTestRecursiveShapesCase5(t *testing.T) {
 	input := &InputService9TestShapeInputShape{
 		RecursiveStruct: &InputService9TestShapeRecursiveStructType{
 			RecursiveList: []*InputService9TestShapeRecursiveStructType{
-				&InputService9TestShapeRecursiveStructType{
+				{
 					NoRecurse: aws.String("foo"),
 				},
-				&InputService9TestShapeRecursiveStructType{
+				{
 					RecursiveStruct: &InputService9TestShapeRecursiveStructType{
 						NoRecurse: aws.String("bar"),
 					},
@@ -1548,11 +1512,11 @@ func TestInputService9ProtocolTestRecursiveShapesCase6(t *testing.T) {
 
 	input := &InputService9TestShapeInputShape{
 		RecursiveStruct: &InputService9TestShapeRecursiveStructType{
-			RecursiveMap: &map[string]*InputService9TestShapeRecursiveStructType{
-				"bar": &InputService9TestShapeRecursiveStructType{
+			RecursiveMap: map[string]*InputService9TestShapeRecursiveStructType{
+				"bar": {
 					NoRecurse: aws.String("bar"),
 				},
-				"foo": &InputService9TestShapeRecursiveStructType{
+				"foo": {
 					NoRecurse: aws.String("foo"),
 				},
 			},

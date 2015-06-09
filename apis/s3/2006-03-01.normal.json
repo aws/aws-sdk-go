@@ -243,10 +243,24 @@
         "method":"GET",
         "requestUri":"/{Bucket}?notification"
       },
-      "input":{"shape":"GetBucketNotificationRequest"},
-      "output":{"shape":"GetBucketNotificationOutput"},
-      "documentation":"Return the notification configuration of a bucket.",
+      "input":{"shape":"GetBucketNotificationConfigurationRequest"},
+      "output":{"shape":"NotificationConfigurationDeprecated"},
+      "deprecated":true,
+      "documentation":"Deprecated, see the GetBucketNotificationConfiguration operation.",
       "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketGETnotification.html"
+    },
+    "GetBucketNotificationConfiguration":{
+      "name":"GetBucketNotificationConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/{Bucket}?notification"
+      },
+      "input":{"shape":"GetBucketNotificationConfigurationRequest"},
+      "output":{
+        "shape":"NotificationConfiguration",
+        "documentation":"Container for specifying the notification configuration of the bucket. If this element is empty, notifications are turned off on the bucket."
+      },
+      "documentation":"Returns the notification configuration of a bucket."
     },
     "GetBucketPolicy":{
       "name":"GetBucketPolicy",
@@ -505,8 +519,18 @@
         "requestUri":"/{Bucket}?notification"
       },
       "input":{"shape":"PutBucketNotificationRequest"},
-      "documentation":"Enables notifications of specified events for a bucket.",
+      "deprecated":true,
+      "documentation":"Deprecated, see the PutBucketNotificationConfiguraiton operation.",
       "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketPUTnotification.html"
+    },
+    "PutBucketNotificationConfiguration":{
+      "name":"PutBucketNotificationConfiguration",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/{Bucket}?notification"
+      },
+      "input":{"shape":"PutBucketNotificationConfigurationRequest"},
+      "documentation":"Enables notifications of specified events for a bucket."
     },
     "PutBucketPolicy":{
       "name":"PutBucketPolicy",
@@ -750,7 +774,6 @@
         "ap-southeast-2",
         "ap-northeast-1",
         "sa-east-1",
-        "",
         "cn-north-1",
         "eu-central-1"
       ]
@@ -838,7 +861,7 @@
           "deprecated":true
         },
         "Events":{
-          "shape":"Events",
+          "shape":"EventList",
           "locationName":"Event"
         },
         "CloudFunction":{"shape":"CloudFunction"},
@@ -1263,7 +1286,7 @@
       "members":{
         "LocationConstraint":{
           "shape":"BucketLocationConstraint",
-          "documentation":"Specifies the region where the bucket will be created."
+          "documentation":"Specifies the region where the bucket will be created. If you don't specify a region, the bucket will be created in US Standard."
         }
       }
     },
@@ -1810,9 +1833,10 @@
         "s3:ObjectCreated:Post",
         "s3:ObjectCreated:Copy",
         "s3:ObjectCreated:CompleteMultipartUpload"
-      ]
+      ],
+      "documentation":"Bucket event for which to send notifications."
     },
-    "Events":{
+    "EventList":{
       "type":"list",
       "member":{"shape":"Event"},
       "flattened":true
@@ -1928,22 +1952,15 @@
         }
       }
     },
-    "GetBucketNotificationOutput":{
-      "type":"structure",
-      "members":{
-        "TopicConfiguration":{"shape":"TopicConfiguration"},
-        "QueueConfiguration":{"shape":"QueueConfiguration"},
-        "CloudFunctionConfiguration":{"shape":"CloudFunctionConfiguration"}
-      }
-    },
-    "GetBucketNotificationRequest":{
+    "GetBucketNotificationConfigurationRequest":{
       "type":"structure",
       "required":["Bucket"],
       "members":{
         "Bucket":{
           "shape":"BucketName",
           "location":"uri",
-          "locationName":"Bucket"
+          "locationName":"Bucket",
+          "documentation":"Name of the buket to get the notification configuration for."
         }
       }
     },
@@ -2453,7 +2470,9 @@
         },
         "Type":{
           "shape":"Type",
-          "documentation":"Type of grantee"
+          "documentation":"Type of grantee",
+          "xmlAttribute":true,
+          "locationName":"xsi:type"
         },
         "URI":{
           "shape":"URI",
@@ -2737,6 +2756,32 @@
     "IsTruncated":{"type":"boolean"},
     "KeyMarker":{"type":"string"},
     "KeyPrefixEquals":{"type":"string"},
+    "LambdaFunctionArn":{"type":"string"},
+    "LambdaFunctionConfiguration":{
+      "type":"structure",
+      "required":[
+        "LambdaFunctionArn",
+        "Events"
+      ],
+      "members":{
+        "Id":{"shape":"NotificationId"},
+        "LambdaFunctionArn":{
+          "shape":"LambdaFunctionArn",
+          "documentation":"Lambda cloud function ARN that Amazon S3 can invoke when it detects events of the specified type.",
+          "locationName":"CloudFunction"
+        },
+        "Events":{
+          "shape":"EventList",
+          "locationName":"Event"
+        }
+      },
+      "documentation":"Container for specifying the AWS Lambda notification configuration."
+    },
+    "LambdaFunctionConfigurationList":{
+      "type":"list",
+      "member":{"shape":"LambdaFunctionConfiguration"},
+      "flattened":true
+    },
     "LastModified":{"type":"timestamp"},
     "LifecycleConfiguration":{
       "type":"structure",
@@ -3240,12 +3285,33 @@
     "NotificationConfiguration":{
       "type":"structure",
       "members":{
-        "TopicConfiguration":{"shape":"TopicConfiguration"},
-        "QueueConfiguration":{"shape":"QueueConfiguration"},
+        "TopicConfigurations":{
+          "shape":"TopicConfigurationList",
+          "locationName":"TopicConfiguration"
+        },
+        "QueueConfigurations":{
+          "shape":"QueueConfigurationList",
+          "locationName":"QueueConfiguration"
+        },
+        "LambdaFunctionConfigurations":{
+          "shape":"LambdaFunctionConfigurationList",
+          "locationName":"CloudFunctionConfiguration"
+        }
+      },
+      "documentation":"Container for specifying the notification configuration of the bucket. If this element is empty, notifications are turned off on the bucket."
+    },
+    "NotificationConfigurationDeprecated":{
+      "type":"structure",
+      "members":{
+        "TopicConfiguration":{"shape":"TopicConfigurationDeprecated"},
+        "QueueConfiguration":{"shape":"QueueConfigurationDeprecated"},
         "CloudFunctionConfiguration":{"shape":"CloudFunctionConfiguration"}
       }
     },
-    "NotificationId":{"type":"string"},
+    "NotificationId":{
+      "type":"string",
+      "documentation":"Optional unique identifier for configurations in a notification configuration. If you don't provide one, Amazon S3 will assign an ID."
+    },
     "Object":{
       "type":"structure",
       "members":{
@@ -3547,6 +3613,26 @@
       },
       "payload":"BucketLoggingStatus"
     },
+    "PutBucketNotificationConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "Bucket",
+        "NotificationConfiguration"
+      ],
+      "members":{
+        "Bucket":{
+          "shape":"BucketName",
+          "location":"uri",
+          "locationName":"Bucket"
+        },
+        "NotificationConfiguration":{
+          "shape":"NotificationConfiguration",
+          "xmlNamespace":{"uri":"http://s3.amazonaws.com/doc/2006-03-01/"},
+          "locationName":"NotificationConfiguration"
+        }
+      },
+      "payload":"NotificationConfiguration"
+    },
     "PutBucketNotificationRequest":{
       "type":"structure",
       "required":[
@@ -3565,7 +3651,7 @@
           "locationName":"Content-MD5"
         },
         "NotificationConfiguration":{
-          "shape":"NotificationConfiguration",
+          "shape":"NotificationConfigurationDeprecated",
           "xmlNamespace":{"uri":"http://s3.amazonaws.com/doc/2006-03-01/"},
           "locationName":"NotificationConfiguration"
         }
@@ -4015,8 +4101,28 @@
       },
       "payload":"Body"
     },
-    "Queue":{"type":"string"},
+    "QueueArn":{"type":"string"},
     "QueueConfiguration":{
+      "type":"structure",
+      "required":[
+        "QueueArn",
+        "Events"
+      ],
+      "members":{
+        "Id":{"shape":"NotificationId"},
+        "QueueArn":{
+          "shape":"QueueArn",
+          "documentation":"Amazon SQS queue ARN to which Amazon S3 will publish a message when it detects events of specified type.",
+          "locationName":"Queue"
+        },
+        "Events":{
+          "shape":"EventList",
+          "locationName":"Event"
+        }
+      },
+      "documentation":"Container for specifying an configuration when you want Amazon S3 to publish events to an Amazon Simple Queue Service (Amazon SQS) queue."
+    },
+    "QueueConfigurationDeprecated":{
       "type":"structure",
       "members":{
         "Id":{"shape":"NotificationId"},
@@ -4025,11 +4131,16 @@
           "deprecated":true
         },
         "Events":{
-          "shape":"Events",
+          "shape":"EventList",
           "locationName":"Event"
         },
-        "Queue":{"shape":"Queue"}
+        "Queue":{"shape":"QueueArn"}
       }
+    },
+    "QueueConfigurationList":{
+      "type":"list",
+      "member":{"shape":"QueueConfiguration"},
+      "flattened":true
     },
     "Quiet":{"type":"boolean"},
     "Range":{"type":"string"},
@@ -4344,13 +4455,33 @@
       }
     },
     "TargetPrefix":{"type":"string"},
-    "Topic":{"type":"string"},
+    "TopicArn":{"type":"string"},
     "TopicConfiguration":{
+      "type":"structure",
+      "required":[
+        "TopicArn",
+        "Events"
+      ],
+      "members":{
+        "Id":{"shape":"NotificationId"},
+        "TopicArn":{
+          "shape":"TopicArn",
+          "documentation":"Amazon SNS topic ARN to which Amazon S3 will publish a message when it detects events of specified type.",
+          "locationName":"Topic"
+        },
+        "Events":{
+          "shape":"EventList",
+          "locationName":"Event"
+        }
+      },
+      "documentation":"Container for specifying the configuration when you want Amazon S3 to publish events to an Amazon Simple Notification Service (Amazon SNS) topic."
+    },
+    "TopicConfigurationDeprecated":{
       "type":"structure",
       "members":{
         "Id":{"shape":"NotificationId"},
         "Events":{
-          "shape":"Events",
+          "shape":"EventList",
           "locationName":"Event"
         },
         "Event":{
@@ -4359,10 +4490,15 @@
           "documentation":"Bucket event for which to send notifications."
         },
         "Topic":{
-          "shape":"Topic",
+          "shape":"TopicArn",
           "documentation":"Amazon SNS topic to which Amazon S3 will publish a message to report the specified events for the bucket."
         }
       }
+    },
+    "TopicConfigurationList":{
+      "type":"list",
+      "member":{"shape":"TopicConfiguration"},
+      "flattened":true
     },
     "Transition":{
       "type":"structure",
@@ -4391,9 +4527,7 @@
         "CanonicalUser",
         "AmazonCustomerByEmail",
         "Group"
-      ],
-      "xmlAttribute":true,
-      "locationName":"xsi:type"
+      ]
     },
     "URI":{"type":"string"},
     "UploadIdMarker":{"type":"string"},

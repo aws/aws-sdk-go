@@ -1,4 +1,5 @@
 {
+  "version":"2.0",
   "metadata":{
     "apiVersion":"2014-05-15",
     "endpointPrefix":"route53domains",
@@ -62,6 +63,12 @@
           "error":{"httpStatusCode":400},
           "exception":true,
           "documentation":"<p>The number of operations or jobs running exceeded the allowed threshold for the account.</p>"
+        },
+        {
+          "shape":"UnsupportedTLD",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>Amazon Route 53 does not support this top-level domain.</p>"
         }
       ],
       "documentation":"<p>This operation deletes the specified tags for a domain.</p> <p>All tag operations are eventually consistent; subsequent operations may not immediately represent all issued operations.</p>"
@@ -80,6 +87,12 @@
           "error":{"httpStatusCode":400},
           "exception":true,
           "documentation":"<p>The requested item is not acceptable. For example, for an OperationId it may refer to the ID of an operation that is already completed. For a domain name, it may not be a valid domain name or belong to the requester account.</p>"
+        },
+        {
+          "shape":"UnsupportedTLD",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>Amazon Route 53 does not support this top-level domain.</p>"
         }
       ],
       "documentation":"<p>This operation disables automatic renewal of domain registration for the specified domain.</p> <note>Caution! Amazon Route 53 doesn't have a manual renewal process, so if you disable automatic renewal, registration for the domain will not be renewed when the expiration date passes, and you will lose control of the domain name.</note>"
@@ -122,6 +135,12 @@
           "error":{"httpStatusCode":400},
           "exception":true,
           "documentation":"<p>The number of operations or jobs running exceeded the allowed threshold for the account.</p>"
+        },
+        {
+          "shape":"UnsupportedTLD",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>Amazon Route 53 does not support this top-level domain.</p>"
         }
       ],
       "documentation":"<p>This operation removes the transfer lock on the domain (specifically the <code>clientTransferProhibited</code> status) to allow domain transfers. We recommend you refrain from performing this action unless you intend to transfer the domain to a different registrar. Successful submission returns an operation ID that you can use to track the progress and completion of the action. If the request is not completed successfully, the domain registrant will be notified by email.</p>"
@@ -140,6 +159,12 @@
           "error":{"httpStatusCode":400},
           "exception":true,
           "documentation":"<p>The requested item is not acceptable. For example, for an OperationId it may refer to the ID of an operation that is already completed. For a domain name, it may not be a valid domain name or belong to the requester account.</p>"
+        },
+        {
+          "shape":"UnsupportedTLD",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>Amazon Route 53 does not support this top-level domain.</p>"
         }
       ],
       "documentation":"<p>This operation configures Amazon Route 53 to automatically renew the specified domain before the domain registration expires. The cost of renewing your domain registration is billed to your AWS account.</p> <p>The period during which you can renew a domain name varies by TLD. For a list of TLDs and their renewal policies, see <a href=\"http://wiki.gandi.net/en/domains/renew#renewal_restoration_and_deletion_times\">\"Renewal, restoration, and deletion times\"</a> on the website for our registrar partner, Gandi. Route 53 requires that you renew before the end of the renewal period that is listed on the Gandi website so we can complete processing before the deadline.</p>"
@@ -182,6 +207,12 @@
           "error":{"httpStatusCode":400},
           "exception":true,
           "documentation":"<p>The number of operations or jobs running exceeded the allowed threshold for the account.</p>"
+        },
+        {
+          "shape":"UnsupportedTLD",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>Amazon Route 53 does not support this top-level domain.</p>"
         }
       ],
       "documentation":"<p>This operation sets the transfer lock on the domain (specifically the <code>clientTransferProhibited</code> status) to prevent domain transfers. Successful submission returns an operation ID that you can use to track the progress and completion of the action. If the request is not completed successfully, the domain registrant will be notified by email.</p>"
@@ -206,6 +237,12 @@
           "error":{"httpStatusCode":400},
           "exception":true,
           "documentation":"<p>The requested item is not acceptable. For example, for an OperationId it may refer to the ID of an operation that is already completed. For a domain name, it may not be a valid domain name or belong to the requester account.</p>"
+        },
+        {
+          "shape":"UnsupportedTLD",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>Amazon Route 53 does not support this top-level domain.</p>"
         }
       ],
       "documentation":"<p>This operation returns detailed information about the domain. The domain's contact information is also returned as part of the output.</p>"
@@ -308,6 +345,12 @@
           "error":{"httpStatusCode":400},
           "exception":true,
           "documentation":"<p>The number of operations or jobs running exceeded the allowed threshold for the account.</p>"
+        },
+        {
+          "shape":"UnsupportedTLD",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>Amazon Route 53 does not support this top-level domain.</p>"
         }
       ],
       "documentation":"<p>This operation returns all of the tags that are associated with the specified domain.</p> <p>All tag operations are eventually consistent; subsequent operations may not immediately represent all issued operations.</p>"
@@ -386,6 +429,12 @@
           "error":{"httpStatusCode":400},
           "exception":true,
           "documentation":"<p>The requested item is not acceptable. For example, for an OperationId it may refer to the ID of an operation that is already completed. For a domain name, it may not be a valid domain name or belong to the requester account.</p>"
+        },
+        {
+          "shape":"UnsupportedTLD",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>Amazon Route 53 does not support this top-level domain.</p>"
         }
       ],
       "documentation":"<p>This operation returns the AuthCode for the domain. To transfer a domain to another registrar, you provide this value to the new registrar.</p>"
@@ -482,6 +531,12 @@
           "error":{"httpStatusCode":400},
           "exception":true,
           "documentation":"<p>The number of operations or jobs running exceeded the allowed threshold for the account.</p>"
+        },
+        {
+          "shape":"UnsupportedTLD",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>Amazon Route 53 does not support this top-level domain.</p>"
         }
       ],
       "documentation":"<p>This operation updates the contact information for a particular domain. Information for at least one contact (registrant, administrator, or technical) must be supplied for update.</p> <p>If the update is successful, this method returns an operation ID that you can use to track the progress and completion of the action. If the request is not completed successfully, the domain registrant will be notified by email.</p>"
@@ -524,6 +579,12 @@
           "error":{"httpStatusCode":400},
           "exception":true,
           "documentation":"<p>The number of operations or jobs running exceeded the allowed threshold for the account.</p>"
+        },
+        {
+          "shape":"UnsupportedTLD",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>Amazon Route 53 does not support this top-level domain.</p>"
         }
       ],
       "documentation":"<p>This operation updates the specified domain contact's privacy setting. When the privacy option is enabled, personal information such as postal or email address is hidden from the results of a public WHOIS query. The privacy services are provided by the AWS registrar, Gandi. For more information, see the <a href=\"http://www.gandi.net/domain/whois/?currency=USD&amp;amp;lang=en\">Gandi privacy features</a>.</p> <p>This operation only affects the privacy of the specified contact type (registrant, administrator, or tech). Successful acceptance returns an operation ID that you can use with GetOperationDetail to track the progress and completion of the action. If the request is not completed successfully, the domain registrant will be notified by email.</p>"
@@ -566,6 +627,12 @@
           "error":{"httpStatusCode":400},
           "exception":true,
           "documentation":"<p>The number of operations or jobs running exceeded the allowed threshold for the account.</p>"
+        },
+        {
+          "shape":"UnsupportedTLD",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>Amazon Route 53 does not support this top-level domain.</p>"
         }
       ],
       "documentation":"<p>This operation replaces the current set of name servers for the domain with the specified set of name servers. If you use Amazon Route 53 as your DNS service, specify the four name servers in the delegation set for the hosted zone for the domain. </p> <p>If successful, this operation returns an operation ID that you can use to track the progress and completion of the action. If the request is not completed successfully, the domain registrant will be notified by email.</p>"
@@ -593,6 +660,12 @@
           "error":{"httpStatusCode":400},
           "exception":true,
           "documentation":"<p>The number of operations or jobs running exceeded the allowed threshold for the account.</p>"
+        },
+        {
+          "shape":"UnsupportedTLD",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>Amazon Route 53 does not support this top-level domain.</p>"
         }
       ],
       "documentation":"<p>This operation adds or updates tags for a specified domain.</p> <p>All tag operations are eventually consistent; subsequent operations may not immediately represent all issued operations.</p>"
@@ -625,7 +698,7 @@
       "members":{
         "Availability":{
           "shape":"DomainAvailability",
-          "documentation":"<p>Whether the domain name is available for registering.</p> <note> <p>You can only register domains designated as <code>AVAILABLE</code>.</p> </note> <p>Type: String</p> <p>Valid values:</p> <ul> <li> <code>AVAILABLE</code> – The domain name is available.</li> <li> <code>AVAILABLE_RESERVED</code> – The domain name is reserved under specific conditions.</li> <li> <code>AVAILABLE_PREORDER</code> – The domain name is available and can be preordered.</li> <li> <code>UNAVAILABLE</code> – The domain name is not available.</li> <li> <code>UNAVAILABLE_PREMIUM</code> – The domain name is not available.</li> <li> <code>UNAVAILABLE_RESTRICTED</code> – The domain name is forbidden.</li> <li> <code>RESERVED</code> – The domain name has been reserved for another person or organization.</li> </ul>"
+          "documentation":"<p>Whether the domain name is available for registering.</p> <note> <p>You can only register domains designated as <code>AVAILABLE</code>.</p> </note> <p>Type: String</p> <p>Valid values:</p> <ul> <li> <code>AVAILABLE</code> – The domain name is available.</li> <li> <code>AVAILABLE_RESERVED</code> – The domain name is reserved under specific conditions.</li> <li> <code>AVAILABLE_PREORDER</code> – The domain name is available and can be preordered.</li> <li> <code>UNAVAILABLE</code> – The domain name is not available.</li> <li> <code>UNAVAILABLE_PREMIUM</code> – The domain name is not available.</li> <li> <code>UNAVAILABLE_RESTRICTED</code> – The domain name is forbidden.</li> <li> <code>RESERVED</code> – The domain name has been reserved for another person or organization.</li> <li> <code>DONT_KNOW</code> – The TLD registry didn't reply with a definitive answer about whether the domain name is available. Amazon Route 53 can return this response for a variety of reasons, for example, the registry is performing maintenance. Try again later.</li> </ul>"
         }
       },
       "documentation":"<p>The CheckDomainAvailability response includes the following elements.</p>"
@@ -1021,7 +1094,8 @@
         "UNAVAILABLE",
         "UNAVAILABLE_PREMIUM",
         "UNAVAILABLE_RESTRICTED",
-        "RESERVED"
+        "RESERVED",
+        "DONT_KNOW"
       ]
     },
     "DomainLimitExceeded":{
@@ -1632,11 +1706,11 @@
       "members":{
         "Key":{
           "shape":"TagKey",
-          "documentation":"<p>The key (name) of a tag.</p> <p>Type: String</p> <p>Default: None</p> <p>Valid values: A-Z, a-z, 0-9, space, \".:/=+\\-%@\"</p> <p>Constraints: Each key can be 1-128 characters long.</p> <p>Required: Yes</p>"
+          "documentation":"<p>The key (name) of a tag.</p> <p>Type: String</p> <p>Default: None</p> <p>Valid values: A-Z, a-z, 0-9, space, \".:/=+\\-@\"</p> <p>Constraints: Each key can be 1-128 characters long.</p> <p>Required: Yes</p>"
         },
         "Value":{
           "shape":"TagValue",
-          "documentation":"<p>The value of a tag.</p> <p>Type: String</p> <p>Default: None</p> <p>Valid values: A-Z, a-z, 0-9, space, \".:/=+\\-%@\"</p> <p>Constraints: Each value can be 0-256 characters long.</p> <p>Required: Yes</p>"
+          "documentation":"<p>The value of a tag.</p> <p>Type: String</p> <p>Default: None</p> <p>Valid values: A-Z, a-z, 0-9, space, \".:/=+\\-@\"</p> <p>Constraints: Each value can be 0-256 characters long.</p> <p>Required: Yes</p>"
         }
       },
       "documentation":"<p>Each tag includes the following elements.</p>"
@@ -1844,7 +1918,7 @@
         },
         "TagsToUpdate":{
           "shape":"TagList",
-          "documentation":"<p>A list of the tag keys and values that you want to add or update. If you specify a key that already exists, the corresponding value will be replaced.</p> <p>Type: A complex type containing a list of tags</p> <p>Default: None</p> <p>Required: No</p>'&gt; <p>Each tag includes the following elements:</p> <ul> <li> <p>Key</p> <p>The key (name) of a tag.</p> <p>Type: String</p> <p>Default: None</p> <p>Valid values: Unicode characters including alphanumeric, space, and \".:/=+\\-%@\"</p> <p>Constraints: Each key can be 1-128 characters long.</p> <p>Required: Yes</p> </li> <li> <p>Value</p> <p>The value of a tag.</p> <p>Type: String</p> <p>Default: None</p> <p>Valid values: Unicode characters including alphanumeric, space, and \".:/=+\\-%@\"</p> <p>Constraints: Each value can be 0-256 characters long.</p> <p>Required: Yes</p> </li> </ul>"
+          "documentation":"<p>A list of the tag keys and values that you want to add or update. If you specify a key that already exists, the corresponding value will be replaced.</p> <p>Type: A complex type containing a list of tags</p> <p>Default: None</p> <p>Required: No</p>'&gt; <p>Each tag includes the following elements:</p> <ul> <li> <p>Key</p> <p>The key (name) of a tag.</p> <p>Type: String</p> <p>Default: None</p> <p>Valid values: Unicode characters including alphanumeric, space, and \".:/=+\\-@\"</p> <p>Constraints: Each key can be 1-128 characters long.</p> <p>Required: Yes</p> </li> <li> <p>Value</p> <p>The value of a tag.</p> <p>Type: String</p> <p>Default: None</p> <p>Valid values: Unicode characters including alphanumeric, space, and \".:/=+\\-@\"</p> <p>Constraints: Each value can be 0-256 characters long.</p> <p>Required: Yes</p> </li> </ul>"
         }
       },
       "documentation":"<p>The UpdateTagsForDomainRequest includes the following elements.</p>"

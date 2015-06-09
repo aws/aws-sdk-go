@@ -1,3 +1,5 @@
+// Package restjson provides RESTful JSON serialisation of AWS
+// requests and responses.
 package restjson
 
 //go:generate go run ../../fixtures/protocol/generate.go ../../fixtures/protocol/input/rest-json.json build_test.go
@@ -8,10 +10,10 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/apierr"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/jsonrpc"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/rest"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/apierr"
+	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
+	"github.com/aws/aws-sdk-go/internal/protocol/rest"
 )
 
 // Build builds a request for the REST JSON protocol.

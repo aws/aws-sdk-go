@@ -5,8 +5,8 @@ package rdsiface_test
 import (
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/service/rds"
-	"github.com/awslabs/aws-sdk-go/service/rds/rdsiface"
+	"github.com/aws/aws-sdk-go/service/rds"
+	"github.com/aws/aws-sdk-go/service/rds/rdsiface"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -1,3 +1,4 @@
+// Package utilsort provides sorting utility methods.
 package utilsort
 
 import "sort"

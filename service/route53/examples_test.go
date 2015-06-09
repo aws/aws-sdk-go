@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
-	"github.com/awslabs/aws-sdk-go/service/route53"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/service/route53"
 )
 
 var _ time.Duration
@@ -54,7 +54,7 @@ func ExampleRoute53_ChangeResourceRecordSets() {
 	params := &route53.ChangeResourceRecordSetsInput{
 		ChangeBatch: &route53.ChangeBatch{ // Required
 			Changes: []*route53.Change{ // Required
-				&route53.Change{ // Required
+				{ // Required
 					Action: aws.String("ChangeAction"), // Required
 					ResourceRecordSet: &route53.ResourceRecordSet{ // Required
 						Name: aws.String("DNSName"), // Required
@@ -73,7 +73,7 @@ func ExampleRoute53_ChangeResourceRecordSets() {
 						HealthCheckID: aws.String("HealthCheckId"),
 						Region:        aws.String("ResourceRecordSetRegion"),
 						ResourceRecords: []*route53.ResourceRecord{
-							&route53.ResourceRecord{ // Required
+							{ // Required
 								Value: aws.String("RData"), // Required
 							},
 							// More values...
@@ -117,7 +117,7 @@ func ExampleRoute53_ChangeTagsForResource() {
 		ResourceID:   aws.String("TagResourceId"),   // Required
 		ResourceType: aws.String("TagResourceType"), // Required
 		AddTags: []*route53.Tag{
-			&route53.Tag{ // Required
+			{ // Required
 				Key:   aws.String("TagKey"),
 				Value: aws.String("TagValue"),
 			},

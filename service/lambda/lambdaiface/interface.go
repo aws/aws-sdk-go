@@ -4,7 +4,7 @@
 package lambdaiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/service/lambda"
+	"github.com/aws/aws-sdk-go/service/lambda"
 )
 
 // LambdaAPI is the interface type for lambda.Lambda.

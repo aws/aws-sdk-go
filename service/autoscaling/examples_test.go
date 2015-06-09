@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
-	"github.com/awslabs/aws-sdk-go/service/autoscaling"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/service/autoscaling"
 )
 
 var _ time.Duration
@@ -100,7 +100,7 @@ func ExampleAutoScaling_CreateAutoScalingGroup() {
 		},
 		PlacementGroup: aws.String("XmlStringMaxLen255"),
 		Tags: []*autoscaling.Tag{
-			&autoscaling.Tag{ // Required
+			{ // Required
 				Key:               aws.String("TagKey"), // Required
 				PropagateAtLaunch: aws.Boolean(true),
 				ResourceID:        aws.String("XmlString"),
@@ -143,7 +143,7 @@ func ExampleAutoScaling_CreateLaunchConfiguration() {
 		LaunchConfigurationName:  aws.String("XmlStringMaxLen255"), // Required
 		AssociatePublicIPAddress: aws.Boolean(true),
 		BlockDeviceMappings: []*autoscaling.BlockDeviceMapping{
-			&autoscaling.BlockDeviceMapping{ // Required
+			{ // Required
 				DeviceName: aws.String("XmlStringMaxLen255"), // Required
 				EBS: &autoscaling.EBS{
 					DeleteOnTermination: aws.Boolean(true),
@@ -207,7 +207,7 @@ func ExampleAutoScaling_CreateOrUpdateTags() {
 
 	params := &autoscaling.CreateOrUpdateTagsInput{
 		Tags: []*autoscaling.Tag{ // Required
-			&autoscaling.Tag{ // Required
+			{ // Required
 				Key:               aws.String("TagKey"), // Required
 				PropagateAtLaunch: aws.Boolean(true),
 				ResourceID:        aws.String("XmlString"),
@@ -410,7 +410,7 @@ func ExampleAutoScaling_DeleteTags() {
 
 	params := &autoscaling.DeleteTagsInput{
 		Tags: []*autoscaling.Tag{ // Required
-			&autoscaling.Tag{ // Required
+			{ // Required
 				Key:               aws.String("TagKey"), // Required
 				PropagateAtLaunch: aws.Boolean(true),
 				ResourceID:        aws.String("XmlString"),
@@ -856,7 +856,7 @@ func ExampleAutoScaling_DescribeTags() {
 
 	params := &autoscaling.DescribeTagsInput{
 		Filters: []*autoscaling.Filter{
-			&autoscaling.Filter{ // Required
+			{ // Required
 				Name: aws.String("XmlString"),
 				Values: []*string{
 					aws.String("XmlString"), // Required

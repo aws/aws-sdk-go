@@ -1,3 +1,5 @@
+// Package jsonrpc provides JSON RPC utilities for serialisation of AWS
+// requests and responses.
 package jsonrpc
 
 //go:generate go run ../../fixtures/protocol/generate.go ../../fixtures/protocol/input/json.json build_test.go
@@ -8,9 +10,9 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/apierr"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/json/jsonutil"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/apierr"
+	"github.com/aws/aws-sdk-go/internal/protocol/json/jsonutil"
 )
 
 var emptyJSON = []byte("{}")

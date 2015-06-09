@@ -1,3 +1,5 @@
+// Package restxml provides RESTful XML serialisation of AWS
+// requests and responses.
 package restxml
 
 //go:generate go run ../../fixtures/protocol/generate.go ../../fixtures/protocol/input/rest-xml.json build_test.go
@@ -7,11 +9,11 @@ import (
 	"bytes"
 	"encoding/xml"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/apierr"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/query"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/rest"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/apierr"
+	"github.com/aws/aws-sdk-go/internal/protocol/query"
+	"github.com/aws/aws-sdk-go/internal/protocol/rest"
+	"github.com/aws/aws-sdk-go/internal/protocol/xml/xmlutil"
 )
 
 // Build builds a request payload for the REST XML protocol.

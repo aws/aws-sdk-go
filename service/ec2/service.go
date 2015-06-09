@@ -3,9 +3,9 @@
 package ec2
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/ec2query"
-	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/protocol/ec2query"
+	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
 // EC2 is a client for Amazon EC2.
@@ -21,14 +21,10 @@ var initRequest func(*aws.Request)
 
 // New returns a new EC2 client.
 func New(config *aws.Config) *EC2 {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "ec2",
-		APIVersion:  "2015-03-01",
+		APIVersion:  "2015-04-15",
 	}
 	service.Initialize()
 

@@ -8,7 +8,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/awslabs/aws-sdk-go/internal/util"
+	"github.com/aws/aws-sdk-go/internal/util"
 )
 
 // An Operation defines a specific API Operation.
@@ -92,7 +92,9 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 func (c *{{ .API.StructName }}) {{ .ExportedName }}Pages(` +
 	`input {{ .InputRef.GoType }}, fn func(p {{ .OutputRef.GoType }}, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.{{ .ExportedName }}Request(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.({{ .OutputRef.GoType }}), lastPage)
+	})
 }
 {{ end }}
 
@@ -249,7 +251,7 @@ func (e *example) traverseStruct(s *Shape, required, payload bool) string {
 func (e *example) traverseMap(s *Shape, required, payload bool) string {
 	var buf bytes.Buffer
 	t := reType.ReplaceAllString(s.GoTypeElem(), s.API.PackageName()+".$1")
-	buf.WriteString("&" + t + "{")
+	buf.WriteString(t + "{")
 	if required {
 		buf.WriteString(" // Required")
 	}

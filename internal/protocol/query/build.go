@@ -1,3 +1,4 @@
+// Package query provides serialisation of AWS query requests, and responses.
 package query
 
 //go:generate go run ../../fixtures/protocol/generate.go ../../fixtures/protocol/input/query.json build_test.go
@@ -5,9 +6,9 @@ package query
 import (
 	"net/url"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/apierr"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/query/queryutil"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/apierr"
+	"github.com/aws/aws-sdk-go/internal/protocol/query/queryutil"
 )
 
 // Build builds a request for an AWS Query service.

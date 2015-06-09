@@ -1,4 +1,4 @@
-// Package api represnets API abstractions for rendering service generated files.
+// Package api represents API abstractions for rendering service generated files.
 package api
 
 import (
@@ -9,7 +9,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/awslabs/aws-sdk-go/internal/util"
+	"github.com/aws/aws-sdk-go/internal/util"
 )
 
 // An API defines a service API's definition. and logic to serialize the definition.
@@ -147,7 +147,7 @@ func (a *API) ShapeList() []*Shape {
 // resetImports resets the import map to default values.
 func (a *API) resetImports() {
 	a.imports = map[string]bool{
-		"github.com/awslabs/aws-sdk-go/aws": true,
+		"github.com/aws/aws-sdk-go/aws": true,
 	}
 }
 
@@ -225,10 +225,6 @@ var initRequest func(*aws.Request)
 
 // New returns a new {{ .StructName }} client.
 func New(config *aws.Config) *{{ .StructName }} {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "{{ .Metadata.EndpointPrefix }}",{{ if ne .Metadata.SigningName "" }}
@@ -274,8 +270,8 @@ func (c *{{ .StructName }}) newRequest(op *aws.Operation, params, data interface
 // ServiceGoCode renders service go code. Returning it as a string.
 func (a *API) ServiceGoCode() string {
 	a.resetImports()
-	a.imports["github.com/awslabs/aws-sdk-go/internal/signer/v4"] = true
-	a.imports["github.com/awslabs/aws-sdk-go/internal/protocol/"+a.ProtocolPackage()] = true
+	a.imports["github.com/aws/aws-sdk-go/internal/signer/v4"] = true
+	a.imports["github.com/aws/aws-sdk-go/internal/protocol/"+a.ProtocolPackage()] = true
 
 	var buf bytes.Buffer
 	err := tplService.Execute(&buf, a)
@@ -299,10 +295,10 @@ func (a *API) ExampleGoCode() string {
 		"bytes",
 		"fmt",
 		"time",
-		"github.com/awslabs/aws-sdk-go/aws",
-		"github.com/awslabs/aws-sdk-go/aws/awserr",
-		"github.com/awslabs/aws-sdk-go/aws/awsutil",
-		"github.com/awslabs/aws-sdk-go/service/"+a.PackageName(),
+		"github.com/aws/aws-sdk-go/aws",
+		"github.com/aws/aws-sdk-go/aws/awserr",
+		"github.com/aws/aws-sdk-go/aws/awsutil",
+		"github.com/aws/aws-sdk-go/service/"+a.PackageName(),
 		strings.Join(exs, "\n\n"),
 	)
 	return util.GoFmt(code)
@@ -324,7 +320,7 @@ type {{ .StructName }}API interface {
 func (a *API) InterfaceGoCode() string {
 	a.resetImports()
 	a.imports = map[string]bool{
-		"github.com/awslabs/aws-sdk-go/service/" + a.PackageName(): true,
+		"github.com/aws/aws-sdk-go/service/" + a.PackageName(): true,
 	}
 
 	var buf bytes.Buffer
@@ -349,9 +345,9 @@ func (a *API) InterfaceTestGoCode() string {
 	a.resetImports()
 	a.imports = map[string]bool{
 		"testing": true,
-		"github.com/awslabs/aws-sdk-go/service/" + a.PackageName():                                  true,
-		"github.com/awslabs/aws-sdk-go/service/" + a.PackageName() + "/" + a.InterfacePackageName(): true,
-		"github.com/stretchr/testify/assert":                                                        true,
+		"github.com/aws/aws-sdk-go/service/" + a.PackageName():                                  true,
+		"github.com/aws/aws-sdk-go/service/" + a.PackageName() + "/" + a.InterfacePackageName(): true,
+		"github.com/stretchr/testify/assert":                                                    true,
 	}
 
 	var buf bytes.Buffer

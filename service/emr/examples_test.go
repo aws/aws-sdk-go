@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
-	"github.com/awslabs/aws-sdk-go/service/emr"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/service/emr"
 )
 
 var _ time.Duration
@@ -21,7 +21,7 @@ func ExampleEMR_AddInstanceGroups() {
 
 	params := &emr.AddInstanceGroupsInput{
 		InstanceGroups: []*emr.InstanceGroupConfig{ // Required
-			&emr.InstanceGroupConfig{ // Required
+			{ // Required
 				InstanceCount: aws.Long(1),                    // Required
 				InstanceRole:  aws.String("InstanceRoleType"), // Required
 				InstanceType:  aws.String("InstanceType"),     // Required
@@ -60,7 +60,7 @@ func ExampleEMR_AddJobFlowSteps() {
 	params := &emr.AddJobFlowStepsInput{
 		JobFlowID: aws.String("XmlStringMaxLen256"), // Required
 		Steps: []*emr.StepConfig{ // Required
-			&emr.StepConfig{ // Required
+			{ // Required
 				HadoopJARStep: &emr.HadoopJARStepConfig{ // Required
 					JAR: aws.String("XmlString"), // Required
 					Args: []*string{
@@ -69,7 +69,7 @@ func ExampleEMR_AddJobFlowSteps() {
 					},
 					MainClass: aws.String("XmlString"),
 					Properties: []*emr.KeyValue{
-						&emr.KeyValue{ // Required
+						{ // Required
 							Key:   aws.String("XmlString"),
 							Value: aws.String("XmlString"),
 						},
@@ -109,7 +109,7 @@ func ExampleEMR_AddTags() {
 	params := &emr.AddTagsInput{
 		ResourceID: aws.String("ResourceId"), // Required
 		Tags: []*emr.Tag{ // Required
-			&emr.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -391,7 +391,7 @@ func ExampleEMR_ModifyInstanceGroups() {
 
 	params := &emr.ModifyInstanceGroupsInput{
 		InstanceGroups: []*emr.InstanceGroupModifyConfig{
-			&emr.InstanceGroupModifyConfig{ // Required
+			{ // Required
 				InstanceGroupID: aws.String("XmlStringMaxLen256"), // Required
 				EC2InstanceIDsToTerminate: []*string{
 					aws.String("InstanceId"), // Required
@@ -474,7 +474,7 @@ func ExampleEMR_RunJobFlow() {
 			HadoopVersion:                 aws.String("XmlStringMaxLen256"),
 			InstanceCount:                 aws.Long(1),
 			InstanceGroups: []*emr.InstanceGroupConfig{
-				&emr.InstanceGroupConfig{ // Required
+				{ // Required
 					InstanceCount: aws.Long(1),                    // Required
 					InstanceRole:  aws.String("InstanceRoleType"), // Required
 					InstanceType:  aws.String("InstanceType"),     // Required
@@ -496,7 +496,7 @@ func ExampleEMR_RunJobFlow() {
 		AMIVersion:     aws.String("XmlStringMaxLen256"),
 		AdditionalInfo: aws.String("XmlString"),
 		BootstrapActions: []*emr.BootstrapActionConfig{
-			&emr.BootstrapActionConfig{ // Required
+			{ // Required
 				Name: aws.String("XmlStringMaxLen256"), // Required
 				ScriptBootstrapAction: &emr.ScriptBootstrapActionConfig{ // Required
 					Path: aws.String("XmlString"), // Required
@@ -511,7 +511,7 @@ func ExampleEMR_RunJobFlow() {
 		JobFlowRole: aws.String("XmlString"),
 		LogURI:      aws.String("XmlString"),
 		NewSupportedProducts: []*emr.SupportedProductConfig{
-			&emr.SupportedProductConfig{ // Required
+			{ // Required
 				Args: []*string{
 					aws.String("XmlString"), // Required
 					// More values...
@@ -522,7 +522,7 @@ func ExampleEMR_RunJobFlow() {
 		},
 		ServiceRole: aws.String("XmlString"),
 		Steps: []*emr.StepConfig{
-			&emr.StepConfig{ // Required
+			{ // Required
 				HadoopJARStep: &emr.HadoopJARStepConfig{ // Required
 					JAR: aws.String("XmlString"), // Required
 					Args: []*string{
@@ -531,7 +531,7 @@ func ExampleEMR_RunJobFlow() {
 					},
 					MainClass: aws.String("XmlString"),
 					Properties: []*emr.KeyValue{
-						&emr.KeyValue{ // Required
+						{ // Required
 							Key:   aws.String("XmlString"),
 							Value: aws.String("XmlString"),
 						},
@@ -548,7 +548,7 @@ func ExampleEMR_RunJobFlow() {
 			// More values...
 		},
 		Tags: []*emr.Tag{
-			&emr.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},

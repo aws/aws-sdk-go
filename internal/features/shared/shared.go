@@ -9,9 +9,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 	. "github.com/lsegal/gucumber"
 	"github.com/stretchr/testify/assert"
 )
@@ -129,7 +129,7 @@ func call(op string, args [][]string, allowError bool) {
 var reIsNum = regexp.MustCompile(`^\d+$`)
 
 // reIsArray is a regular expression matching a list
-var reIsArray = regexp.MustCompile(`^\['.+?'\]$`)
+var reIsArray = regexp.MustCompile(`^\['.*?'\]$`)
 var reArrayElem = regexp.MustCompile(`'(.+?)'`)
 
 // fillArgs fills arguments on the input structure using the args table of

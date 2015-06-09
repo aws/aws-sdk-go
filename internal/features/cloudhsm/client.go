@@ -1,8 +1,9 @@
+//Package cloudhsm provides gucumber integration tests suppport.
 package cloudhsm
 
 import (
-	"github.com/awslabs/aws-sdk-go/internal/features/shared"
-	"github.com/awslabs/aws-sdk-go/service/cloudhsm"
+	"github.com/aws/aws-sdk-go/internal/features/shared"
+	"github.com/aws/aws-sdk-go/service/cloudhsm"
 	. "github.com/lsegal/gucumber"
 )
 

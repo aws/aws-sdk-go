@@ -3,7 +3,7 @@ package awsutil_test
 import (
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -16,8 +16,8 @@ type Struct struct {
 }
 
 var data = Struct{
-	A: []Struct{Struct{C: "value1"}, Struct{C: "value2"}, Struct{C: "value3"}},
-	z: []Struct{Struct{C: "value1"}, Struct{C: "value2"}, Struct{C: "value3"}},
+	A: []Struct{{C: "value1"}, {C: "value2"}, {C: "value3"}},
+	z: []Struct{{C: "value1"}, {C: "value2"}, {C: "value3"}},
 	B: &Struct{B: &Struct{C: "terminal"}, D: &Struct{C: "terminal2"}},
 	C: "initial",
 }

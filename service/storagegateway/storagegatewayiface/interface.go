@@ -4,7 +4,7 @@
 package storagegatewayiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/service/storagegateway"
+	"github.com/aws/aws-sdk-go/service/storagegateway"
 )
 
 // StorageGatewayAPI is the interface type for storagegateway.StorageGateway.
@@ -78,6 +78,8 @@ type StorageGatewayAPI interface {
 	ListGateways(*storagegateway.ListGatewaysInput) (*storagegateway.ListGatewaysOutput, error)
 
 	ListLocalDisks(*storagegateway.ListLocalDisksInput) (*storagegateway.ListLocalDisksOutput, error)
+
+	ListVolumeInitiators(*storagegateway.ListVolumeInitiatorsInput) (*storagegateway.ListVolumeInitiatorsOutput, error)
 
 	ListVolumeRecoveryPoints(*storagegateway.ListVolumeRecoveryPointsInput) (*storagegateway.ListVolumeRecoveryPointsOutput, error)
 

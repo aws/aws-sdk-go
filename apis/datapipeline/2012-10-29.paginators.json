@@ -12,6 +12,9 @@
       "more_results": "hasMoreResults",
       "result_key": "pipelineObjects"
     },
+    "DescribePipelines": {
+      "result_key": "pipelineDescriptionList"
+    },
     "QueryObjects": {
       "input_token": "marker",
       "output_token": "marker",

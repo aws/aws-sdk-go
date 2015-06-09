@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
-	"github.com/awslabs/aws-sdk-go/service/cognitosync"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/service/cognitosync"
 )
 
 var _ time.Duration
@@ -183,6 +183,33 @@ func ExampleCognitoSync_GetBulkPublishDetails() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleCognitoSync_GetCognitoEvents() {
+	svc := cognitosync.New(nil)
+
+	params := &cognitosync.GetCognitoEventsInput{
+		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+	}
+	resp, err := svc.GetCognitoEvents(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleCognitoSync_GetIdentityPoolConfiguration() {
 	svc := cognitosync.New(nil)
 
@@ -331,6 +358,37 @@ func ExampleCognitoSync_RegisterDevice() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleCognitoSync_SetCognitoEvents() {
+	svc := cognitosync.New(nil)
+
+	params := &cognitosync.SetCognitoEventsInput{
+		Events: map[string]*string{ // Required
+			"Key": aws.String("LambdaFunctionArn"), // Required
+			// More values...
+		},
+		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+	}
+	resp, err := svc.SetCognitoEvents(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleCognitoSync_SetIdentityPoolConfiguration() {
 	svc := cognitosync.New(nil)
 
@@ -441,7 +499,7 @@ func ExampleCognitoSync_UpdateRecords() {
 		ClientContext:    aws.String("ClientContext"),
 		DeviceID:         aws.String("DeviceId"),
 		RecordPatches: []*cognitosync.RecordPatch{
-			&cognitosync.RecordPatch{ // Required
+			{ // Required
 				Key:                    aws.String("RecordKey"), // Required
 				Op:                     aws.String("Operation"), // Required
 				SyncCount:              aws.Long(1),             // Required

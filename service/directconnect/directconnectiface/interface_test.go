@@ -5,8 +5,8 @@ package directconnectiface_test
 import (
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/service/directconnect"
-	"github.com/awslabs/aws-sdk-go/service/directconnect/directconnectiface"
+	"github.com/aws/aws-sdk-go/service/directconnect"
+	"github.com/aws/aws-sdk-go/service/directconnect/directconnectiface"
 	"github.com/stretchr/testify/assert"
 )
 

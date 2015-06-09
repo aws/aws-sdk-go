@@ -3,9 +3,9 @@
 package cognitoidentity
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/jsonrpc"
-	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
+	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
 // CognitoIdentity is a client for Amazon Cognito Identity.
@@ -21,10 +21,6 @@ var initRequest func(*aws.Request)
 
 // New returns a new CognitoIdentity client.
 func New(config *aws.Config) *CognitoIdentity {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "cognito-identity",

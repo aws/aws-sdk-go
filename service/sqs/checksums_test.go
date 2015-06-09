@@ -6,10 +6,10 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/internal/test/unit"
-	"github.com/awslabs/aws-sdk-go/service/sqs"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/internal/test/unit"
+	"github.com/aws/aws-sdk-go/service/sqs"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -118,10 +118,10 @@ func TestRecieveMessageChecksum(t *testing.T) {
 		r.HTTPResponse = &http.Response{StatusCode: 200, Body: body}
 		r.Data = &sqs.ReceiveMessageOutput{
 			Messages: []*sqs.Message{
-				&sqs.Message{Body: aws.String("test"), MD5OfBody: &md5},
-				&sqs.Message{Body: aws.String("test"), MD5OfBody: &md5},
-				&sqs.Message{Body: aws.String("test"), MD5OfBody: &md5},
-				&sqs.Message{Body: aws.String("test"), MD5OfBody: &md5},
+				{Body: aws.String("test"), MD5OfBody: &md5},
+				{Body: aws.String("test"), MD5OfBody: &md5},
+				{Body: aws.String("test"), MD5OfBody: &md5},
+				{Body: aws.String("test"), MD5OfBody: &md5},
 			},
 		}
 	})
@@ -137,10 +137,10 @@ func TestRecieveMessageChecksumInvalid(t *testing.T) {
 		r.HTTPResponse = &http.Response{StatusCode: 200, Body: body}
 		r.Data = &sqs.ReceiveMessageOutput{
 			Messages: []*sqs.Message{
-				&sqs.Message{Body: aws.String("test"), MD5OfBody: &md5},
-				&sqs.Message{Body: aws.String("test"), MD5OfBody: aws.String("000"), MessageID: aws.String("123")},
-				&sqs.Message{Body: aws.String("test"), MD5OfBody: aws.String("000"), MessageID: aws.String("456")},
-				&sqs.Message{Body: aws.String("test"), MD5OfBody: &md5},
+				{Body: aws.String("test"), MD5OfBody: &md5},
+				{Body: aws.String("test"), MD5OfBody: aws.String("000"), MessageID: aws.String("123")},
+				{Body: aws.String("test"), MD5OfBody: aws.String("000"), MessageID: aws.String("456")},
+				{Body: aws.String("test"), MD5OfBody: &md5},
 			},
 		}
 	})
@@ -154,10 +154,10 @@ func TestRecieveMessageChecksumInvalid(t *testing.T) {
 func TestSendMessageBatchChecksum(t *testing.T) {
 	req, _ := svc.SendMessageBatchRequest(&sqs.SendMessageBatchInput{
 		Entries: []*sqs.SendMessageBatchRequestEntry{
-			&sqs.SendMessageBatchRequestEntry{ID: aws.String("1"), MessageBody: aws.String("test")},
-			&sqs.SendMessageBatchRequestEntry{ID: aws.String("2"), MessageBody: aws.String("test")},
-			&sqs.SendMessageBatchRequestEntry{ID: aws.String("3"), MessageBody: aws.String("test")},
-			&sqs.SendMessageBatchRequestEntry{ID: aws.String("4"), MessageBody: aws.String("test")},
+			{ID: aws.String("1"), MessageBody: aws.String("test")},
+			{ID: aws.String("2"), MessageBody: aws.String("test")},
+			{ID: aws.String("3"), MessageBody: aws.String("test")},
+			{ID: aws.String("4"), MessageBody: aws.String("test")},
 		},
 	})
 	req.Handlers.Send.PushBack(func(r *aws.Request) {
@@ -166,10 +166,10 @@ func TestSendMessageBatchChecksum(t *testing.T) {
 		r.HTTPResponse = &http.Response{StatusCode: 200, Body: body}
 		r.Data = &sqs.SendMessageBatchOutput{
 			Successful: []*sqs.SendMessageBatchResultEntry{
-				&sqs.SendMessageBatchResultEntry{MD5OfMessageBody: &md5, MessageID: aws.String("123"), ID: aws.String("1")},
-				&sqs.SendMessageBatchResultEntry{MD5OfMessageBody: &md5, MessageID: aws.String("456"), ID: aws.String("2")},
-				&sqs.SendMessageBatchResultEntry{MD5OfMessageBody: &md5, MessageID: aws.String("789"), ID: aws.String("3")},
-				&sqs.SendMessageBatchResultEntry{MD5OfMessageBody: &md5, MessageID: aws.String("012"), ID: aws.String("4")},
+				{MD5OfMessageBody: &md5, MessageID: aws.String("123"), ID: aws.String("1")},
+				{MD5OfMessageBody: &md5, MessageID: aws.String("456"), ID: aws.String("2")},
+				{MD5OfMessageBody: &md5, MessageID: aws.String("789"), ID: aws.String("3")},
+				{MD5OfMessageBody: &md5, MessageID: aws.String("012"), ID: aws.String("4")},
 			},
 		}
 	})
@@ -180,10 +180,10 @@ func TestSendMessageBatchChecksum(t *testing.T) {
 func TestSendMessageBatchChecksumInvalid(t *testing.T) {
 	req, _ := svc.SendMessageBatchRequest(&sqs.SendMessageBatchInput{
 		Entries: []*sqs.SendMessageBatchRequestEntry{
-			&sqs.SendMessageBatchRequestEntry{ID: aws.String("1"), MessageBody: aws.String("test")},
-			&sqs.SendMessageBatchRequestEntry{ID: aws.String("2"), MessageBody: aws.String("test")},
-			&sqs.SendMessageBatchRequestEntry{ID: aws.String("3"), MessageBody: aws.String("test")},
-			&sqs.SendMessageBatchRequestEntry{ID: aws.String("4"), MessageBody: aws.String("test")},
+			{ID: aws.String("1"), MessageBody: aws.String("test")},
+			{ID: aws.String("2"), MessageBody: aws.String("test")},
+			{ID: aws.String("3"), MessageBody: aws.String("test")},
+			{ID: aws.String("4"), MessageBody: aws.String("test")},
 		},
 	})
 	req.Handlers.Send.PushBack(func(r *aws.Request) {
@@ -192,10 +192,10 @@ func TestSendMessageBatchChecksumInvalid(t *testing.T) {
 		r.HTTPResponse = &http.Response{StatusCode: 200, Body: body}
 		r.Data = &sqs.SendMessageBatchOutput{
 			Successful: []*sqs.SendMessageBatchResultEntry{
-				&sqs.SendMessageBatchResultEntry{MD5OfMessageBody: &md5, MessageID: aws.String("123"), ID: aws.String("1")},
-				&sqs.SendMessageBatchResultEntry{MD5OfMessageBody: aws.String("000"), MessageID: aws.String("456"), ID: aws.String("2")},
-				&sqs.SendMessageBatchResultEntry{MD5OfMessageBody: aws.String("000"), MessageID: aws.String("789"), ID: aws.String("3")},
-				&sqs.SendMessageBatchResultEntry{MD5OfMessageBody: &md5, MessageID: aws.String("012"), ID: aws.String("4")},
+				{MD5OfMessageBody: &md5, MessageID: aws.String("123"), ID: aws.String("1")},
+				{MD5OfMessageBody: aws.String("000"), MessageID: aws.String("456"), ID: aws.String("2")},
+				{MD5OfMessageBody: aws.String("000"), MessageID: aws.String("789"), ID: aws.String("3")},
+				{MD5OfMessageBody: &md5, MessageID: aws.String("012"), ID: aws.String("4")},
 			},
 		}
 	})

@@ -4,7 +4,7 @@
 package cloudwatchiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/service/cloudwatch"
+	"github.com/aws/aws-sdk-go/service/cloudwatch"
 )
 
 // CloudWatchAPI is the interface type for cloudwatch.CloudWatch.

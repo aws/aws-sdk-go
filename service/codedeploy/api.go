@@ -7,10 +7,42 @@ import (
 	"sync"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 var oprw sync.Mutex
+
+// AddTagsToOnPremisesInstancesRequest generates a request for the AddTagsToOnPremisesInstances operation.
+func (c *CodeDeploy) AddTagsToOnPremisesInstancesRequest(input *AddTagsToOnPremisesInstancesInput) (req *aws.Request, output *AddTagsToOnPremisesInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opAddTagsToOnPremisesInstances == nil {
+		opAddTagsToOnPremisesInstances = &aws.Operation{
+			Name:       "AddTagsToOnPremisesInstances",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &AddTagsToOnPremisesInstancesInput{}
+	}
+
+	req = c.newRequest(opAddTagsToOnPremisesInstances, input, output)
+	output = &AddTagsToOnPremisesInstancesOutput{}
+	req.Data = output
+	return
+}
+
+// Adds tags to on-premises instances.
+func (c *CodeDeploy) AddTagsToOnPremisesInstances(input *AddTagsToOnPremisesInstancesInput) (*AddTagsToOnPremisesInstancesOutput, error) {
+	req, out := c.AddTagsToOnPremisesInstancesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opAddTagsToOnPremisesInstances *aws.Operation
 
 // BatchGetApplicationsRequest generates a request for the BatchGetApplications operation.
 func (c *CodeDeploy) BatchGetApplicationsRequest(input *BatchGetApplicationsInput) (req *aws.Request, output *BatchGetApplicationsOutput) {
@@ -76,6 +108,38 @@ func (c *CodeDeploy) BatchGetDeployments(input *BatchGetDeploymentsInput) (*Batc
 
 var opBatchGetDeployments *aws.Operation
 
+// BatchGetOnPremisesInstancesRequest generates a request for the BatchGetOnPremisesInstances operation.
+func (c *CodeDeploy) BatchGetOnPremisesInstancesRequest(input *BatchGetOnPremisesInstancesInput) (req *aws.Request, output *BatchGetOnPremisesInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opBatchGetOnPremisesInstances == nil {
+		opBatchGetOnPremisesInstances = &aws.Operation{
+			Name:       "BatchGetOnPremisesInstances",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &BatchGetOnPremisesInstancesInput{}
+	}
+
+	req = c.newRequest(opBatchGetOnPremisesInstances, input, output)
+	output = &BatchGetOnPremisesInstancesOutput{}
+	req.Data = output
+	return
+}
+
+// Gets information about one or more on-premises instances.
+func (c *CodeDeploy) BatchGetOnPremisesInstances(input *BatchGetOnPremisesInstancesInput) (*BatchGetOnPremisesInstancesOutput, error) {
+	req, out := c.BatchGetOnPremisesInstancesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opBatchGetOnPremisesInstances *aws.Operation
+
 // CreateApplicationRequest generates a request for the CreateApplication operation.
 func (c *CodeDeploy) CreateApplicationRequest(input *CreateApplicationInput) (req *aws.Request, output *CreateApplicationOutput) {
 	oprw.Lock()
@@ -131,7 +195,7 @@ func (c *CodeDeploy) CreateDeploymentRequest(input *CreateDeploymentInput) (req 
 	return
 }
 
-// Deploys an application revision to the specified deployment group.
+// Deploys an application revision through the specified deployment group.
 func (c *CodeDeploy) CreateDeployment(input *CreateDeploymentInput) (*CreateDeploymentOutput, error) {
 	req, out := c.CreateDeploymentRequest(input)
 	err := req.Send()
@@ -302,6 +366,38 @@ func (c *CodeDeploy) DeleteDeploymentGroup(input *DeleteDeploymentGroupInput) (*
 }
 
 var opDeleteDeploymentGroup *aws.Operation
+
+// DeregisterOnPremisesInstanceRequest generates a request for the DeregisterOnPremisesInstance operation.
+func (c *CodeDeploy) DeregisterOnPremisesInstanceRequest(input *DeregisterOnPremisesInstanceInput) (req *aws.Request, output *DeregisterOnPremisesInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opDeregisterOnPremisesInstance == nil {
+		opDeregisterOnPremisesInstance = &aws.Operation{
+			Name:       "DeregisterOnPremisesInstance",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &DeregisterOnPremisesInstanceInput{}
+	}
+
+	req = c.newRequest(opDeregisterOnPremisesInstance, input, output)
+	output = &DeregisterOnPremisesInstanceOutput{}
+	req.Data = output
+	return
+}
+
+// Deregisters an on-premises instance.
+func (c *CodeDeploy) DeregisterOnPremisesInstance(input *DeregisterOnPremisesInstanceInput) (*DeregisterOnPremisesInstanceOutput, error) {
+	req, out := c.DeregisterOnPremisesInstanceRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opDeregisterOnPremisesInstance *aws.Operation
 
 // GetApplicationRequest generates a request for the GetApplication operation.
 func (c *CodeDeploy) GetApplicationRequest(input *GetApplicationInput) (req *aws.Request, output *GetApplicationOutput) {
@@ -486,7 +582,7 @@ func (c *CodeDeploy) GetDeploymentInstanceRequest(input *GetDeploymentInstanceIn
 	return
 }
 
-// Gets information about an Amazon EC2 instance as part of a deployment.
+// Gets information about an instance as part of a deployment.
 func (c *CodeDeploy) GetDeploymentInstance(input *GetDeploymentInstanceInput) (*GetDeploymentInstanceOutput, error) {
 	req, out := c.GetDeploymentInstanceRequest(input)
 	err := req.Send()
@@ -494,6 +590,38 @@ func (c *CodeDeploy) GetDeploymentInstance(input *GetDeploymentInstanceInput) (*
 }
 
 var opGetDeploymentInstance *aws.Operation
+
+// GetOnPremisesInstanceRequest generates a request for the GetOnPremisesInstance operation.
+func (c *CodeDeploy) GetOnPremisesInstanceRequest(input *GetOnPremisesInstanceInput) (req *aws.Request, output *GetOnPremisesInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opGetOnPremisesInstance == nil {
+		opGetOnPremisesInstance = &aws.Operation{
+			Name:       "GetOnPremisesInstance",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &GetOnPremisesInstanceInput{}
+	}
+
+	req = c.newRequest(opGetOnPremisesInstance, input, output)
+	output = &GetOnPremisesInstanceOutput{}
+	req.Data = output
+	return
+}
+
+// Gets information about an on-premises instance.
+func (c *CodeDeploy) GetOnPremisesInstance(input *GetOnPremisesInstanceInput) (*GetOnPremisesInstanceOutput, error) {
+	req, out := c.GetOnPremisesInstanceRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opGetOnPremisesInstance *aws.Operation
 
 // ListApplicationRevisionsRequest generates a request for the ListApplicationRevisions operation.
 func (c *CodeDeploy) ListApplicationRevisionsRequest(input *ListApplicationRevisionsInput) (req *aws.Request, output *ListApplicationRevisionsOutput) {
@@ -550,7 +678,7 @@ func (c *CodeDeploy) ListApplicationsRequest(input *ListApplicationsInput) (req 
 	return
 }
 
-// Lists the applications registered within the AWS user account.
+// Lists the applications registered with the applicable IAM user or AWS account.
 func (c *CodeDeploy) ListApplications(input *ListApplicationsInput) (*ListApplicationsOutput, error) {
 	req, out := c.ListApplicationsRequest(input)
 	err := req.Send()
@@ -582,7 +710,7 @@ func (c *CodeDeploy) ListDeploymentConfigsRequest(input *ListDeploymentConfigsIn
 	return
 }
 
-// Lists the deployment configurations within the AWS user account.
+// Lists the deployment configurations with the applicable IAM user or AWS account.
 func (c *CodeDeploy) ListDeploymentConfigs(input *ListDeploymentConfigsInput) (*ListDeploymentConfigsOutput, error) {
 	req, out := c.ListDeploymentConfigsRequest(input)
 	err := req.Send()
@@ -614,8 +742,8 @@ func (c *CodeDeploy) ListDeploymentGroupsRequest(input *ListDeploymentGroupsInpu
 	return
 }
 
-// Lists the deployment groups for an application registered within the AWS
-// user account.
+// Lists the deployment groups for an application registered with the applicable
+// IAM user or AWS account.
 func (c *CodeDeploy) ListDeploymentGroups(input *ListDeploymentGroupsInput) (*ListDeploymentGroupsOutput, error) {
 	req, out := c.ListDeploymentGroupsRequest(input)
 	err := req.Send()
@@ -647,7 +775,8 @@ func (c *CodeDeploy) ListDeploymentInstancesRequest(input *ListDeploymentInstanc
 	return
 }
 
-// Lists the Amazon EC2 instances for a deployment within the AWS user account.
+// Lists the instances for a deployment associated with the applicable IAM user
+// or AWS account.
 func (c *CodeDeploy) ListDeploymentInstances(input *ListDeploymentInstancesInput) (*ListDeploymentInstancesOutput, error) {
 	req, out := c.ListDeploymentInstancesRequest(input)
 	err := req.Send()
@@ -679,8 +808,8 @@ func (c *CodeDeploy) ListDeploymentsRequest(input *ListDeploymentsInput) (req *a
 	return
 }
 
-// Lists the deployments under a deployment group for an application registered
-// within the AWS user account.
+// Lists the deployments within a deployment group for an application registered
+// with the applicable IAM user or AWS account.
 func (c *CodeDeploy) ListDeployments(input *ListDeploymentsInput) (*ListDeploymentsOutput, error) {
 	req, out := c.ListDeploymentsRequest(input)
 	err := req.Send()
@@ -688,6 +817,42 @@ func (c *CodeDeploy) ListDeployments(input *ListDeploymentsInput) (*ListDeployme
 }
 
 var opListDeployments *aws.Operation
+
+// ListOnPremisesInstancesRequest generates a request for the ListOnPremisesInstances operation.
+func (c *CodeDeploy) ListOnPremisesInstancesRequest(input *ListOnPremisesInstancesInput) (req *aws.Request, output *ListOnPremisesInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opListOnPremisesInstances == nil {
+		opListOnPremisesInstances = &aws.Operation{
+			Name:       "ListOnPremisesInstances",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &ListOnPremisesInstancesInput{}
+	}
+
+	req = c.newRequest(opListOnPremisesInstances, input, output)
+	output = &ListOnPremisesInstancesOutput{}
+	req.Data = output
+	return
+}
+
+// Gets a list of one or more on-premises instance names.
+//
+// Unless otherwise specified, both registered and deregistered on-premises
+// instance names will be listed. To list only registered or deregistered on-premises
+// instance names, use the registration status parameter.
+func (c *CodeDeploy) ListOnPremisesInstances(input *ListOnPremisesInstancesInput) (*ListOnPremisesInstancesOutput, error) {
+	req, out := c.ListOnPremisesInstancesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opListOnPremisesInstances *aws.Operation
 
 // RegisterApplicationRevisionRequest generates a request for the RegisterApplicationRevision operation.
 func (c *CodeDeploy) RegisterApplicationRevisionRequest(input *RegisterApplicationRevisionInput) (req *aws.Request, output *RegisterApplicationRevisionOutput) {
@@ -720,6 +885,70 @@ func (c *CodeDeploy) RegisterApplicationRevision(input *RegisterApplicationRevis
 }
 
 var opRegisterApplicationRevision *aws.Operation
+
+// RegisterOnPremisesInstanceRequest generates a request for the RegisterOnPremisesInstance operation.
+func (c *CodeDeploy) RegisterOnPremisesInstanceRequest(input *RegisterOnPremisesInstanceInput) (req *aws.Request, output *RegisterOnPremisesInstanceOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opRegisterOnPremisesInstance == nil {
+		opRegisterOnPremisesInstance = &aws.Operation{
+			Name:       "RegisterOnPremisesInstance",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &RegisterOnPremisesInstanceInput{}
+	}
+
+	req = c.newRequest(opRegisterOnPremisesInstance, input, output)
+	output = &RegisterOnPremisesInstanceOutput{}
+	req.Data = output
+	return
+}
+
+// Registers an on-premises instance.
+func (c *CodeDeploy) RegisterOnPremisesInstance(input *RegisterOnPremisesInstanceInput) (*RegisterOnPremisesInstanceOutput, error) {
+	req, out := c.RegisterOnPremisesInstanceRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opRegisterOnPremisesInstance *aws.Operation
+
+// RemoveTagsFromOnPremisesInstancesRequest generates a request for the RemoveTagsFromOnPremisesInstances operation.
+func (c *CodeDeploy) RemoveTagsFromOnPremisesInstancesRequest(input *RemoveTagsFromOnPremisesInstancesInput) (req *aws.Request, output *RemoveTagsFromOnPremisesInstancesOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opRemoveTagsFromOnPremisesInstances == nil {
+		opRemoveTagsFromOnPremisesInstances = &aws.Operation{
+			Name:       "RemoveTagsFromOnPremisesInstances",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &RemoveTagsFromOnPremisesInstancesInput{}
+	}
+
+	req = c.newRequest(opRemoveTagsFromOnPremisesInstances, input, output)
+	output = &RemoveTagsFromOnPremisesInstancesOutput{}
+	req.Data = output
+	return
+}
+
+// Removes one or more tags from one or more on-premises instances.
+func (c *CodeDeploy) RemoveTagsFromOnPremisesInstances(input *RemoveTagsFromOnPremisesInstancesInput) (*RemoveTagsFromOnPremisesInstancesOutput, error) {
+	req, out := c.RemoveTagsFromOnPremisesInstancesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opRemoveTagsFromOnPremisesInstances *aws.Operation
 
 // StopDeploymentRequest generates a request for the StopDeployment operation.
 func (c *CodeDeploy) StopDeploymentRequest(input *StopDeploymentInput) (req *aws.Request, output *StopDeploymentOutput) {
@@ -817,6 +1046,32 @@ func (c *CodeDeploy) UpdateDeploymentGroup(input *UpdateDeploymentGroupInput) (*
 
 var opUpdateDeploymentGroup *aws.Operation
 
+// Represents the input of an adds tags to on-premises instance operation.
+type AddTagsToOnPremisesInstancesInput struct {
+	// The names of the on-premises instances to add tags to.
+	InstanceNames []*string `locationName:"instanceNames" type:"list" required:"true"`
+
+	// The tag key-value pairs to add to the on-premises instances.
+	//
+	// Keys and values are both required. Keys cannot be nulls or empty strings.
+	// Value-only tags are not allowed.
+	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
+
+	metadataAddTagsToOnPremisesInstancesInput `json:"-" xml:"-"`
+}
+
+type metadataAddTagsToOnPremisesInstancesInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type AddTagsToOnPremisesInstancesOutput struct {
+	metadataAddTagsToOnPremisesInstancesOutput `json:"-" xml:"-"`
+}
+
+type metadataAddTagsToOnPremisesInstancesOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // Information about an application.
 type ApplicationInfo struct {
 	// The application ID.
@@ -903,10 +1158,34 @@ type metadataBatchGetDeploymentsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a batch get on-premises instances operation.
+type BatchGetOnPremisesInstancesInput struct {
+	// The names of the on-premises instances to get information about.
+	InstanceNames []*string `locationName:"instanceNames" type:"list"`
+
+	metadataBatchGetOnPremisesInstancesInput `json:"-" xml:"-"`
+}
+
+type metadataBatchGetOnPremisesInstancesInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Represents the output of a batch get on-premises instances operation.
+type BatchGetOnPremisesInstancesOutput struct {
+	// Information about the on-premises instances.
+	InstanceInfos []*InstanceInfo `locationName:"instanceInfos" type:"list"`
+
+	metadataBatchGetOnPremisesInstancesOutput `json:"-" xml:"-"`
+}
+
+type metadataBatchGetOnPremisesInstancesOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // Represents the input of a create application operation.
 type CreateApplicationInput struct {
-	// The name of the application. This name must be unique within the AWS user
-	// account.
+	// The name of the application. This name must be unique with the applicable
+	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
 
 	metadataCreateApplicationInput `json:"-" xml:"-"`
@@ -972,7 +1251,8 @@ type metadataCreateDeploymentConfigOutput struct {
 
 // Represents the input of a create deployment group operation.
 type CreateDeploymentGroupInput struct {
-	// The name of an existing AWS CodeDeploy application within the AWS user account.
+	// The name of an existing AWS CodeDeploy application associated with the applicable
+	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
 
 	// A list of associated Auto Scaling groups.
@@ -982,12 +1262,12 @@ type CreateDeploymentGroupInput struct {
 	// values, or it can be a custom deployment configuration:
 	//
 	//  CodeDeployDefault.AllAtOnce deploys an application revision to up to all
-	// of the Amazon EC2 instances at once. The overall deployment succeeds if the
-	// application revision deploys to at least one of the instances. The overall
-	// deployment fails after the application revision fails to deploy to all of
-	// the instances. For example, for 9 instances, deploy to up to all 9 instances
-	// at once. The overall deployment succeeds if any of the 9 instances is successfully
-	// deployed to, and it fails if all 9 instances fail to be deployed to. CodeDeployDefault.HalfAtATime
+	// of the instances at once. The overall deployment succeeds if the application
+	// revision deploys to at least one of the instances. The overall deployment
+	// fails after the application revision fails to deploy to all of the instances.
+	// For example, for 9 instances, deploy to up to all 9 instances at once. The
+	// overall deployment succeeds if any of the 9 instances is successfully deployed
+	// to, and it fails if all 9 instances fail to be deployed to. CodeDeployDefault.HalfAtATime
 	// deploys to up to half of the instances at a time (with fractions rounded
 	// down). The overall deployment succeeds if the application revision deploys
 	// to at least half of the instances (with fractions rounded up); otherwise,
@@ -998,8 +1278,8 @@ type CreateDeploymentGroupInput struct {
 	// CodeDeployDefault.OneAtATime deploys the application revision to only one
 	// of the instances at a time. The overall deployment succeeds if the application
 	// revision deploys to all of the instances. The overall deployment fails after
-	// the application revision first fails to deploy to any one instance. For example,
-	// for 9 instances, deploy to one instance at a time. The overall deployment
+	// the application revision first fails to deploy to any one instances. For
+	// example, for 9 instances, deploy to one instance at a time. The overall deployment
 	// succeeds if all 9 instances are successfully deployed to, and it fails if
 	// any of one of the 9 instances fail to be deployed to. Note that the deployment
 	// may successfully deploy to some instances, even if the overall deployment
@@ -1015,9 +1295,12 @@ type CreateDeploymentGroupInput struct {
 	// The Amazon EC2 tags to filter on.
 	EC2TagFilters []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
 
+	// The on-premises instance tags to filter on.
+	OnPremisesInstanceTagFilters []*TagFilter `locationName:"onPremisesInstanceTagFilters" type:"list"`
+
 	// A service role ARN that allows AWS CodeDeploy to act on the user's behalf
 	// when interacting with AWS services.
-	ServiceRoleARN *string `locationName:"serviceRoleArn" type:"string"`
+	ServiceRoleARN *string `locationName:"serviceRoleArn" type:"string" required:"true"`
 
 	metadataCreateDeploymentGroupInput `json:"-" xml:"-"`
 }
@@ -1040,10 +1323,12 @@ type metadataCreateDeploymentGroupOutput struct {
 
 // Represents the input of a create deployment operation.
 type CreateDeploymentInput struct {
-	// The name of an existing AWS CodeDeploy application within the AWS user account.
+	// The name of an existing AWS CodeDeploy application associated with the applicable
+	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
 
-	// The name of an existing deployment configuration within the AWS user account.
+	// The name of an existing deployment configuration associated with the applicable
+	// IAM user or AWS account.
 	//
 	// If not specified, the value configured in the deployment group will be used
 	// as the default. If the deployment group does not have a deployment configuration
@@ -1092,7 +1377,8 @@ type metadataCreateDeploymentOutput struct {
 
 // Represents the input of a delete application operation.
 type DeleteApplicationInput struct {
-	// The name of an existing AWS CodeDeploy application within the AWS user account.
+	// The name of an existing AWS CodeDeploy application associated with the applicable
+	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
 
 	metadataDeleteApplicationInput `json:"-" xml:"-"`
@@ -1112,7 +1398,8 @@ type metadataDeleteApplicationOutput struct {
 
 // Represents the input of a delete deployment configuration operation.
 type DeleteDeploymentConfigInput struct {
-	// The name of an existing deployment configuration within the AWS user account.
+	// The name of an existing deployment configuration associated with the applicable
+	// IAM user or AWS account.
 	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string" required:"true"`
 
 	metadataDeleteDeploymentConfigInput `json:"-" xml:"-"`
@@ -1132,7 +1419,8 @@ type metadataDeleteDeploymentConfigOutput struct {
 
 // Represents the input of a delete deployment group operation.
 type DeleteDeploymentGroupInput struct {
-	// The name of an existing AWS CodeDeploy application within the AWS user account.
+	// The name of an existing AWS CodeDeploy application associated with the applicable
+	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
 
 	// The name of an existing deployment group for the specified application.
@@ -1149,10 +1437,10 @@ type metadataDeleteDeploymentGroupInput struct {
 type DeleteDeploymentGroupOutput struct {
 	// If the output contains no data, and the corresponding deployment group contained
 	// at least one Auto Scaling group, AWS CodeDeploy successfully removed all
-	// corresponding Auto Scaling lifecycle event hooks from the instances in the
-	// Auto Scaling. If the output does contain data, AWS CodeDeploy could not remove
-	// some Auto Scaling lifecycle event hooks from the instances in the Auto Scaling
-	// group.
+	// corresponding Auto Scaling lifecycle event hooks from the Amazon EC2 instances
+	// in the Auto Scaling. If the output does contain data, AWS CodeDeploy could
+	// not remove some Auto Scaling lifecycle event hooks from the Amazon EC2 instances
+	// in the Auto Scaling group.
 	HooksNotCleanedUp []*AutoScalingGroup `locationName:"hooksNotCleanedUp" type:"list"`
 
 	metadataDeleteDeploymentGroupOutput `json:"-" xml:"-"`
@@ -1202,6 +1490,9 @@ type DeploymentGroupInfo struct {
 
 	// The Amazon EC2 tags to filter on.
 	EC2TagFilters []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
+
+	// The on-premises instance tags to filter on.
+	OnPremisesInstanceTagFilters []*TagFilter `locationName:"onPremisesInstanceTagFilters" type:"list"`
 
 	// A service role ARN.
 	ServiceRoleARN *string `locationName:"serviceRoleArn" type:"string"`
@@ -1309,6 +1600,26 @@ type metadataDeploymentOverview struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a deregister on-premises instance operation.
+type DeregisterOnPremisesInstanceInput struct {
+	// The name of the on-premises instance to deregister.
+	InstanceName *string `locationName:"instanceName" type:"string" required:"true"`
+
+	metadataDeregisterOnPremisesInstanceInput `json:"-" xml:"-"`
+}
+
+type metadataDeregisterOnPremisesInstanceInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DeregisterOnPremisesInstanceOutput struct {
+	metadataDeregisterOnPremisesInstanceOutput `json:"-" xml:"-"`
+}
+
+type metadataDeregisterOnPremisesInstanceOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // Diagnostic information about executable scripts that are part of a deployment.
 type Diagnostics struct {
 	// The associated error code:
@@ -1337,17 +1648,17 @@ type metadataDiagnostics struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// Information about an Amazon EC2 tag filter.
+// Information about a tag filter.
 type EC2TagFilter struct {
-	// The Amazon EC2 tag filter key.
+	// The tag filter key.
 	Key *string `type:"string"`
 
-	// The Amazon EC2 tag filter type:
+	// The tag filter type:
 	//
 	//  KEY_ONLY: Key only. VALUE_ONLY: Value only. KEY_AND_VALUE: Key and value.
 	Type *string `type:"string"`
 
-	// The Amazon EC2 tag filter value.
+	// The tag filter value.
 	Value *string `type:"string"`
 
 	metadataEC2TagFilter `json:"-" xml:"-"`
@@ -1366,17 +1677,20 @@ type ErrorInformation struct {
 	// is created but before it starts. DEPLOYMENT_GROUP_MISSING: The deployment
 	// group was missing. Note that this error code will most likely be raised if
 	// the deployment group is deleted after the deployment is created but before
-	// it starts. REVISION_MISSING: The revision ID was missing. Note that this
-	// error code will most likely be raised if the revision is deleted after the
-	// deployment is created but before it starts. IAM_ROLE_MISSING: The service
+	// it starts. HEALTH_CONSTRAINTS: The deployment failed on too many instances
+	// to be able to successfully deploy within the specified instance health constraints.
+	// HEALTH_CONSTRAINTS_INVALID: The revision can never successfully deploy within
+	// the instance health constraints as specified. IAM_ROLE_MISSING: The service
 	// role cannot be accessed. IAM_ROLE_PERMISSIONS: The service role does not
-	// have the correct permissions. OVER_MAX_INSTANCES: The maximum number of instances
-	// was exceeded. NO_INSTANCES: No instances were specified, or no instances
-	// can be found. TIMEOUT: The deployment has timed out. HEALTH_CONSTRAINTS_INVALID:
-	// The revision can never successfully deploy under the instance health constraints
-	// as specified. HEALTH_CONSTRAINTS: The deployment failed on too many instances
-	// to be able to successfully deploy under the specified instance health constraints.
-	// INTERNAL_ERROR: There was an internal error.
+	// have the correct permissions. INTERNAL_ERROR: There was an internal error.
+	// NO_EC2_SUBSCRIPTION: The calling account is not subscribed to the Amazon
+	// EC2 service. NO_INSTANCES: No instances were specified, or no instances can
+	// be found. OVER_MAX_INSTANCES: The maximum number of instances was exceeded.
+	// THROTTLED: The operation was throttled because the calling account exceeded
+	// the throttling limits of one or more AWS services. TIMEOUT: The deployment
+	// has timed out. REVISION_MISSING: The revision ID was missing. Note that this
+	// error code will most likely be raised if the revision is deleted after the
+	// deployment is created but before it starts.
 	Code *string `locationName:"code" type:"string"`
 
 	// An accompanying error message.
@@ -1415,7 +1729,8 @@ type metadataGenericRevisionInfo struct {
 
 // Represents the input of a get application operation.
 type GetApplicationInput struct {
-	// The name of an existing AWS CodeDeploy application within the AWS user account.
+	// The name of an existing AWS CodeDeploy application associated with the applicable
+	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
 
 	metadataGetApplicationInput `json:"-" xml:"-"`
@@ -1474,7 +1789,8 @@ type metadataGetApplicationRevisionOutput struct {
 
 // Represents the input of a get deployment configuration operation.
 type GetDeploymentConfigInput struct {
-	// The name of an existing deployment configuration within the AWS user account.
+	// The name of an existing deployment configuration associated with the applicable
+	// IAM user or AWS account.
 	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string" required:"true"`
 
 	metadataGetDeploymentConfigInput `json:"-" xml:"-"`
@@ -1498,7 +1814,8 @@ type metadataGetDeploymentConfigOutput struct {
 
 // Represents the input of a get deployment group operation.
 type GetDeploymentGroupInput struct {
-	// The name of an existing AWS CodeDeploy application within the AWS user account.
+	// The name of an existing AWS CodeDeploy application associated with the applicable
+	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
 
 	// The name of an existing deployment group for the specified application.
@@ -1525,7 +1842,8 @@ type metadataGetDeploymentGroupOutput struct {
 
 // Represents the input of a get deployment operation.
 type GetDeploymentInput struct {
-	// An existing deployment ID within the AWS user account.
+	// An existing deployment ID associated with the applicable IAM user or AWS
+	// account.
 	DeploymentID *string `locationName:"deploymentId" type:"string" required:"true"`
 
 	metadataGetDeploymentInput `json:"-" xml:"-"`
@@ -1540,7 +1858,7 @@ type GetDeploymentInstanceInput struct {
 	// The unique ID of a deployment.
 	DeploymentID *string `locationName:"deploymentId" type:"string" required:"true"`
 
-	// The unique ID of an Amazon EC2 instance in the deployment's deployment group.
+	// The unique ID of an instance in the deployment's deployment group.
 	InstanceID *string `locationName:"instanceId" type:"string" required:"true"`
 
 	metadataGetDeploymentInstanceInput `json:"-" xml:"-"`
@@ -1574,6 +1892,30 @@ type metadataGetDeploymentOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a get on-premises instance operation.
+type GetOnPremisesInstanceInput struct {
+	// The name of the on-premises instance to get information about
+	InstanceName *string `locationName:"instanceName" type:"string" required:"true"`
+
+	metadataGetOnPremisesInstanceInput `json:"-" xml:"-"`
+}
+
+type metadataGetOnPremisesInstanceInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Represents the output of a get on-premises instance operation.
+type GetOnPremisesInstanceOutput struct {
+	// Information about the on-premises instance.
+	InstanceInfo *InstanceInfo `locationName:"instanceInfo" type:"structure"`
+
+	metadataGetOnPremisesInstanceOutput `json:"-" xml:"-"`
+}
+
+type metadataGetOnPremisesInstanceOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // Information about the location of application artifacts that are stored in
 // GitHub.
 type GitHubLocation struct {
@@ -1594,7 +1936,35 @@ type metadataGitHubLocation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// Information about an Amazon EC2 instance in a deployment.
+// Information about an on-premises instance.
+type InstanceInfo struct {
+	// If the on-premises instance was deregistered, the time that the on-premises
+	// instance was deregistered.
+	DeregisterTime *time.Time `locationName:"deregisterTime" type:"timestamp" timestampFormat:"unix"`
+
+	// The IAM user ARN associated with the on-premises instance.
+	IAMUserARN *string `locationName:"iamUserArn" type:"string"`
+
+	// The ARN of the on-premises instance.
+	InstanceARN *string `locationName:"instanceArn" type:"string"`
+
+	// The name of the on-premises instance.
+	InstanceName *string `locationName:"instanceName" type:"string"`
+
+	// The time that the on-premises instance was registered.
+	RegisterTime *time.Time `locationName:"registerTime" type:"timestamp" timestampFormat:"unix"`
+
+	// The tags that are currently associated with the on-premises instance.
+	Tags []*Tag `locationName:"tags" type:"list"`
+
+	metadataInstanceInfo `json:"-" xml:"-"`
+}
+
+type metadataInstanceInfo struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Information about an instance in a deployment.
 type InstanceSummary struct {
 	// The deployment ID.
 	DeploymentID *string `locationName:"deploymentId" type:"string"`
@@ -1657,7 +2027,8 @@ type metadataLifecycleEvent struct {
 
 // Represents the input of a list application revisions operation.
 type ListApplicationRevisionsInput struct {
-	// The name of an existing AWS CodeDeploy application within the AWS user account.
+	// The name of an existing AWS CodeDeploy application associated with the applicable
+	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
 
 	// Whether to list revisions based on whether the revision is the target revision
@@ -1693,9 +2064,9 @@ type ListApplicationRevisionsInput struct {
 
 	// The order to sort the list results by:
 	//
-	//  ascending: Sort the list results in ascending order. descending: Sort the
-	// list results in descending order.  If not specified, the results will be
-	// sorted in ascending order.
+	//  ascending: Sort the list of results in ascending order. descending: Sort
+	// the list of results in descending order.  If not specified, the results will
+	// be sorted in ascending order.
 	//
 	// If set to null, the results will be sorted in an arbitrary order.
 	SortOrder *string `locationName:"sortOrder" type:"string"`
@@ -1790,7 +2161,8 @@ type metadataListDeploymentConfigsOutput struct {
 
 // Represents the input of a list deployment groups operation.
 type ListDeploymentGroupsInput struct {
-	// The name of an existing AWS CodeDeploy application within the AWS user account.
+	// The name of an existing AWS CodeDeploy application associated with the applicable
+	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
 
 	// An identifier that was returned from the previous list deployment groups
@@ -1856,7 +2228,7 @@ type metadataListDeploymentInstancesInput struct {
 
 // Represents the output of a list deployment instances operation.
 type ListDeploymentInstancesOutput struct {
-	// A list of instance IDs.
+	// A list of instances IDs.
 	InstancesList []*string `locationName:"instancesList" type:"list"`
 
 	// If the amount of information that is returned is significantly large, an
@@ -1874,7 +2246,8 @@ type metadataListDeploymentInstancesOutput struct {
 
 // Represents the input of a list deployments operation.
 type ListDeploymentsInput struct {
-	// The name of an existing AWS CodeDeploy application within the AWS user account.
+	// The name of an existing AWS CodeDeploy application associated with the applicable
+	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" type:"string"`
 
 	// A deployment creation start- and end-time range for returning a subset of
@@ -1884,12 +2257,13 @@ type ListDeploymentsInput struct {
 	// The name of an existing deployment group for the specified application.
 	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string"`
 
-	// A subset of deployments to list, by status:  Created: Include in the resulting
-	// list created deployments. Queued: Include in the resulting list queued deployments.
-	// In Progress: Include in the resulting list in-progress deployments. Succeeded:
-	// Include in the resulting list succeeded deployments. Failed: Include in the
-	// resulting list failed deployments. Aborted: Include in the resulting list
-	// aborted deployments.
+	// A subset of deployments to list, by status:
+	//
+	//  Created: Include in the resulting list created deployments. Queued: Include
+	// in the resulting list queued deployments. In Progress: Include in the resulting
+	// list in-progress deployments. Succeeded: Include in the resulting list succeeded
+	// deployments. Failed: Include in the resulting list failed deployments. Aborted:
+	// Include in the resulting list aborted deployments.
 	IncludeOnlyStatuses []*string `locationName:"includeOnlyStatuses" type:"list"`
 
 	// An identifier that was returned from the previous list deployments call,
@@ -1920,24 +2294,67 @@ type metadataListDeploymentsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Represents the input of a list on-premises instances operation.
+//
+// .
+type ListOnPremisesInstancesInput struct {
+	// An identifier that was returned from the previous list on-premises instances
+	// call, which can be used to return the next set of on-premises instances in
+	// the list.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The on-premises instances registration status:
+	//
+	//  Deregistered: Include in the resulting list deregistered on-premises instances.
+	// Registered: Include in the resulting list registered on-premises instances.
+	RegistrationStatus *string `locationName:"registrationStatus" type:"string"`
+
+	// The on-premises instance tags that will be used to restrict the corresponding
+	// on-premises instance names that are returned.
+	TagFilters []*TagFilter `locationName:"tagFilters" type:"list"`
+
+	metadataListOnPremisesInstancesInput `json:"-" xml:"-"`
+}
+
+type metadataListOnPremisesInstancesInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Represents the output of list on-premises instances operation.
+type ListOnPremisesInstancesOutput struct {
+	// The list of matching on-premises instance names.
+	InstanceNames []*string `locationName:"instanceNames" type:"list"`
+
+	// If the amount of information that is returned is significantly large, an
+	// identifier will also be returned, which can be used in a subsequent list
+	// on-premises instances call to return the next set of on-premises instances
+	// in the list.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	metadataListOnPremisesInstancesOutput `json:"-" xml:"-"`
+}
+
+type metadataListOnPremisesInstancesOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // Information about minimum healthy instances.
 type MinimumHealthyHosts struct {
 	// The minimum healthy instances type:
 	//
 	//  HOST_COUNT: The minimum number of healthy instances, as an absolute value.
 	// FLEET_PERCENT: The minimum number of healthy instances, as a percentage of
-	// the total number of instances in the deployment.  For example, for 9 Amazon
-	// EC2 instances, if a HOST_COUNT of 6 is specified, deploy to up to 3 instances
-	// at a time. The deployment succeeds if 6 or more instances are successfully
-	// deployed to; otherwise, the deployment fails. If a FLEET_PERCENT of 40 is
-	// specified, deploy to up to 5 instances at a time. The deployment succeeds
-	// if 4 or more instances are successfully deployed to; otherwise, the deployment
-	// fails.
+	// the total number of instances in the deployment.  For example, for 9 instances,
+	// if a HOST_COUNT of 6 is specified, deploy to up to 3 instances at a time.
+	// The deployment succeeds if 6 or more instances are successfully deployed
+	// to; otherwise, the deployment fails. If a FLEET_PERCENT of 40 is specified,
+	// deploy to up to 5 instances at a time. The deployment succeeds if 4 or more
+	// instances are successfully deployed to; otherwise, the deployment fails.
 	//
 	// In a call to the get deployment configuration operation, CodeDeployDefault.OneAtATime
 	// will return a minimum healthy instances type of MOST_CONCURRENCY and a value
-	// of 1. This means a deployment to only one Amazon EC2 instance at a time.
-	// (You cannot set the type to MOST_CONCURRENCY, only to HOST_COUNT or FLEET_PERCENT.)
+	// of 1. This means a deployment to only one instances at a time. (You cannot
+	// set the type to MOST_CONCURRENCY, only to HOST_COUNT or FLEET_PERCENT.)
 	Type *string `locationName:"type" type:"string"`
 
 	// The minimum healthy instances value.
@@ -1952,7 +2369,8 @@ type metadataMinimumHealthyHosts struct {
 
 // Represents the input of a register application revision operation.
 type RegisterApplicationRevisionInput struct {
-	// The name of an existing AWS CodeDeploy application within the AWS user account.
+	// The name of an existing AWS CodeDeploy application associated with the applicable
+	// IAM user or AWS account.
 	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
 
 	// A comment about the revision.
@@ -1974,6 +2392,52 @@ type RegisterApplicationRevisionOutput struct {
 }
 
 type metadataRegisterApplicationRevisionOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Represents the input of register on-premises instance operation.
+type RegisterOnPremisesInstanceInput struct {
+	// The ARN of the IAM user to associate with the on-premises instance.
+	IAMUserARN *string `locationName:"iamUserArn" type:"string" required:"true"`
+
+	// The name of the on-premises instance to register.
+	InstanceName *string `locationName:"instanceName" type:"string" required:"true"`
+
+	metadataRegisterOnPremisesInstanceInput `json:"-" xml:"-"`
+}
+
+type metadataRegisterOnPremisesInstanceInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type RegisterOnPremisesInstanceOutput struct {
+	metadataRegisterOnPremisesInstanceOutput `json:"-" xml:"-"`
+}
+
+type metadataRegisterOnPremisesInstanceOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Represents the input of a remove tags from on-premises instances operation.
+type RemoveTagsFromOnPremisesInstancesInput struct {
+	// The names of the on-premises instances to remove tags from.
+	InstanceNames []*string `locationName:"instanceNames" type:"list" required:"true"`
+
+	// The tag key-value pairs to remove from the on-premises instances.
+	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
+
+	metadataRemoveTagsFromOnPremisesInstancesInput `json:"-" xml:"-"`
+}
+
+type metadataRemoveTagsFromOnPremisesInstancesInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type RemoveTagsFromOnPremisesInstancesOutput struct {
+	metadataRemoveTagsFromOnPremisesInstancesOutput `json:"-" xml:"-"`
+}
+
+type metadataRemoveTagsFromOnPremisesInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -2066,6 +2530,41 @@ type metadataStopDeploymentOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Information about a tag.
+type Tag struct {
+	// The tag's key.
+	Key *string `type:"string"`
+
+	// The tag's value.
+	Value *string `type:"string"`
+
+	metadataTag `json:"-" xml:"-"`
+}
+
+type metadataTag struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Information about an on-premises instance tag filter.
+type TagFilter struct {
+	// The on-premises instance tag filter key.
+	Key *string `type:"string"`
+
+	// The on-premises instance tag filter type:
+	//
+	//  KEY_ONLY: Key only. VALUE_ONLY: Value only. KEY_AND_VALUE: Key and value.
+	Type *string `type:"string"`
+
+	// The on-premises instance tag filter value.
+	Value *string `type:"string"`
+
+	metadataTagFilter `json:"-" xml:"-"`
+}
+
+type metadataTagFilter struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // Information about a time range.
 type TimeRange struct {
 	// The time range's end time.
@@ -2131,6 +2630,10 @@ type UpdateDeploymentGroupInput struct {
 	// The new name of the deployment group, if you want to change it.
 	NewDeploymentGroupName *string `locationName:"newDeploymentGroupName" type:"string"`
 
+	// The replacement set of on-premises instance tags for filter on, if you want
+	// to change them.
+	OnPremisesInstanceTagFilters []*TagFilter `locationName:"onPremisesInstanceTagFilters" type:"list"`
+
 	// A replacement service role's ARN, if you want to change it.
 	ServiceRoleARN *string `locationName:"serviceRoleArn" type:"string"`
 
@@ -2145,9 +2648,9 @@ type metadataUpdateDeploymentGroupInput struct {
 type UpdateDeploymentGroupOutput struct {
 	// If the output contains no data, and the corresponding deployment group contained
 	// at least one Auto Scaling group, AWS CodeDeploy successfully removed all
-	// corresponding Auto Scaling lifecycle event hooks from the AWS user account.
-	// If the output does contain data, AWS CodeDeploy could not remove some Auto
-	// Scaling lifecycle event hooks from the AWS user account.
+	// corresponding Auto Scaling lifecycle event hooks from the AWS account. If
+	// the output does contain data, AWS CodeDeploy could not remove some Auto Scaling
+	// lifecycle event hooks from the AWS account.
 	HooksNotCleanedUp []*AutoScalingGroup `locationName:"hooksNotCleanedUp" type:"list"`
 
 	metadataUpdateDeploymentGroupOutput `json:"-" xml:"-"`

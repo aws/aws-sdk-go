@@ -1,10 +1,12 @@
 # AWS SDK for Go
 
-[![GoDoc](http://img.shields.io/badge/godoc-reference-blue.svg)](http://godoc.org/github.com/awslabs/aws-sdk-go)
-[![Build Status](https://img.shields.io/travis/awslabs/aws-sdk-go.svg)](https://travis-ci.org/awslabs/aws-sdk-go)
-[![Apache V2 License](http://img.shields.io/badge/license-Apache%20V2-blue.svg)](https://github.com/awslabs/aws-sdk-go/blob/master/LICENSE.txt)
+[![GoDoc](http://img.shields.io/badge/godoc-reference-blue.svg)](http://godoc.org/github.com/aws/aws-sdk-go)
+[![Build Status](https://img.shields.io/travis/aws/aws-sdk-go.svg)](https://travis-ci.org/aws/aws-sdk-go)
+[![Apache V2 License](http://img.shields.io/badge/license-Apache%20V2-blue.svg)](https://github.com/aws/aws-sdk-go/blob/master/LICENSE.txt)
 
 aws-sdk-go is the official AWS SDK for the Go programming language.
+
+[**Check out the official Developer Preview announcement (New - June 3rd 2015)**](https://aws.amazon.com/blogs/aws/developer-preview-of-aws-sdk-for-go-is-now-available/)
 
 ## Caution
 
@@ -18,7 +20,7 @@ Please do not confuse this for a stable, feature-complete library.
 Note that while most AWS protocols are currently supported, not all services
 available in this package are implemented fully, as some require extra
 customizations to work with the SDK. If you've encountered such a scenario,
-please open a [GitHub issue](https://github.com/awslabs/aws-sdk-go/issues)
+please open a [GitHub issue](https://github.com/aws/aws-sdk-go/issues)
 so we can track work for the service.
 
 ## Installing
@@ -26,11 +28,11 @@ so we can track work for the service.
 Install your specific service package with the following `go get` command.
 For example, EC2 support might be installed with:
 
-    $ go get github.com/awslabs/aws-sdk-go/service/ec2
+    $ go get github.com/aws/aws-sdk-go/service/ec2
 
-You can also install the entire SDK by installing the root package:
+You can also install the entire SDK by installing the root package, including all of the SDK's dependancies:
 
-    $ go get github.com/awslabs/aws-sdk-go
+    $ go get -u github.com/aws/aws-sdk-go/...
 
 ## Configuring Credentials
 
@@ -68,8 +70,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/service/ec2"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/service/ec2"
 )
 
 func main() {
@@ -96,7 +98,7 @@ func main() {
 ```
 
 You can find more information and operations in our
-[API documentation](http://godoc.org/github.com/awslabs/aws-sdk-go).
+[API documentation](http://godoc.org/github.com/aws/aws-sdk-go).
 
 ## License
 

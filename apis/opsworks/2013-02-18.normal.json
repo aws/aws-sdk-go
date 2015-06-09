@@ -1,4 +1,5 @@
 {
+  "version":"2.0",
   "metadata":{
     "apiVersion":"2013-02-18",
     "endpointPrefix":"opsworks",
@@ -8,7 +9,7 @@
     "targetPrefix":"OpsWorks_20130218",
     "protocol":"json"
   },
-  "documentation":"<fullname>AWS OpsWorks</fullname> <p>Welcome to the <i>AWS OpsWorks API Reference</i>. This guide provides descriptions, syntax, and usage examples about AWS OpsWorks actions and data types, including common parameters and error codes. </p> <p>AWS OpsWorks is an application management service that provides an integrated experience for overseeing the complete application lifecycle. For information about this product, go to the <a href=\"http://aws.amazon.com/opsworks/\">AWS OpsWorks</a> details page. </p> <p><b>SDKs and CLI</b> </p> <p>The most common way to use the AWS OpsWorks API is by using the AWS Command Line Interface (CLI) or by using one of the AWS SDKs to implement applications in your preferred language. For more information, see:</p> <ul> <li><a href=\"http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html\">AWS CLI</a></li> <li><a href=\"http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/opsworks/AWSOpsWorksClient.html\">AWS SDK for Java</a></li> <li><a href=\"http://docs.aws.amazon.com/sdkfornet/latest/apidocs/html/N_Amazon_OpsWorks.htm\">AWS SDK for .NET</a></li> <li><a href=\"http://docs.aws.amazon.com/aws-sdk-php-2/latest/class-Aws.OpsWorks.OpsWorksClient.html\">AWS SDK for PHP 2</a></li> <li><a href=\"http://docs.aws.amazon.com/AWSRubySDK/latest/AWS/OpsWorks/Client.html\">AWS SDK for Ruby</a></li> <li><a href=\"http://aws.amazon.com/documentation/sdkforjavascript/\">AWS SDK for Node.js</a></li> <li><a href=\"http://docs.pythonboto.org/en/latest/ref/opsworks.html\">AWS SDK for Python(Boto)</a></li> </ul> <p><b>Endpoints</b></p> <p>AWS OpsWorks supports only one endpoint, opsworks.us-east-1.amazonaws.com (HTTPS), so you must connect to that endpoint. You can then use the API to direct AWS OpsWorks to create stacks in any AWS Region.</p> <p><b>Chef Versions</b></p> <p>When you call <a>CreateStack</a>, <a>CloneStack</a>, or <a>UpdateStack</a> we recommend you use the <code>ConfigurationManager</code> parameter to specify the Chef version, 0.9, 11.4, or 11.10. The default value is currently 11.10. For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-chef11.html\">Chef Versions</a>.</p> <note>You can still specify Chef 0.9 for your stack, but new features are not available for Chef 0.9 stacks, and support is scheduled to end on July 24, 2014. We do not recommend using Chef 0.9 for new stacks, and we recommend migrating your existing Chef 0.9 stacks to Chef 11.10 as soon as possible.</note>",
+  "documentation":"<fullname>AWS OpsWorks</fullname> <p>Welcome to the <i>AWS OpsWorks API Reference</i>. This guide provides descriptions, syntax, and usage examples about AWS OpsWorks actions and data types, including common parameters and error codes. </p> <p>AWS OpsWorks is an application management service that provides an integrated experience for overseeing the complete application lifecycle. For information about this product, go to the <a href=\"http://aws.amazon.com/opsworks/\">AWS OpsWorks</a> details page. </p> <p> <b>SDKs and CLI</b> </p> <p>The most common way to use the AWS OpsWorks API is by using the AWS Command Line Interface (CLI) or by using one of the AWS SDKs to implement applications in your preferred language. For more information, see:</p> <ul> <li> <a href=\"http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html\">AWS CLI</a> </li> <li> <a href=\"http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/opsworks/AWSOpsWorksClient.html\">AWS SDK for Java</a> </li> <li> <a href=\"http://docs.aws.amazon.com/sdkfornet/latest/apidocs/html/N_Amazon_OpsWorks.htm\">AWS SDK for .NET</a> </li> <li> <a href=\"http://docs.aws.amazon.com/aws-sdk-php-2/latest/class-Aws.OpsWorks.OpsWorksClient.html\">AWS SDK for PHP 2</a> </li> <li> <a href=\"http://docs.aws.amazon.com/AWSRubySDK/latest/AWS/OpsWorks/Client.html\">AWS SDK for Ruby</a> </li> <li> <a href=\"http://aws.amazon.com/documentation/sdkforjavascript/\">AWS SDK for Node.js</a> </li> <li> <a href=\"http://docs.pythonboto.org/en/latest/ref/opsworks.html\">AWS SDK for Python(Boto)</a> </li> </ul> <p> <b>Endpoints</b> </p> <p>AWS OpsWorks supports only one endpoint, opsworks.us-east-1.amazonaws.com (HTTPS), so you must connect to that endpoint. You can then use the API to direct AWS OpsWorks to create stacks in any AWS Region.</p> <p> <b>Chef Versions</b> </p> <p>When you call <a>CreateStack</a>, <a>CloneStack</a>, or <a>UpdateStack</a> we recommend you use the <code>ConfigurationManager</code> parameter to specify the Chef version, 0.9, 11.4, or 11.10. The default value is currently 11.10. For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-chef11.html\">Chef Versions</a>.</p> <note>You can still specify Chef 0.9 for your stack, but new features are not available for Chef 0.9 stacks, and support is scheduled to end on July 24, 2014. We do not recommend using Chef 0.9 for new stacks, and we recommend migrating your existing Chef 0.9 stacks to Chef 11.10 as soon as possible.</note>",
   "operations":{
     "AssignInstance":{
       "name":"AssignInstance",
@@ -29,7 +30,7 @@
           "documentation":"<p>Indicates that a resource was not found.</p>"
         }
       ],
-      "documentation":"<p>Assign a registered instance to a custom layer. You cannot use this action with instances that were created with AWS OpsWorks.</p> <p><b>Required Permissions</b>: To use this action, an IAM user must have a Manage permissions level for the stack or an attached policy that explicitly grants permissions. For more information on user permissions, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html\">Managing User Permissions</a>.</p>"
+      "documentation":"<p>Assign a registered instance to a layer.</p> <ul> <li>You can assign registered on-premises instances to any layer type.</li> <li>You can assign registered Amazon EC2 instances only to custom layers.</li> <li>You cannot use this action with instances that were created with AWS OpsWorks.</li> </ul> <p><b>Required Permissions</b>: To use this action, an IAM user must have a Manage permissions level for the stack or an attached policy that explicitly grants permissions. For more information on user permissions, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html\">Managing User Permissions</a>.</p>"
     },
     "AssignVolume":{
       "name":"AssignVolume",
@@ -50,7 +51,7 @@
           "documentation":"<p>Indicates that a resource was not found.</p>"
         }
       ],
-      "documentation":"<p>Assigns one of the stack's registered Amazon EBS volumes to a specified instance. The volume must first be registered with the stack by calling <a>RegisterVolume</a>. For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html\">Resource Management</a>.</p> <p><b>Required Permissions</b>: To use this action, an IAM user must have a Manage permissions level for the stack, or an attached policy that explicitly grants permissions. For more information on user permissions, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html\">Managing User Permissions</a>.</p>"
+      "documentation":"<p>Assigns one of the stack's registered Amazon EBS volumes to a specified instance. The volume must first be registered with the stack by calling <a>RegisterVolume</a>. After you register the volume, you must call <a>UpdateVolume</a> to specify a mount point before calling <code>AssignVolume</code>. For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html\">Resource Management</a>.</p> <p><b>Required Permissions</b>: To use this action, an IAM user must have a Manage permissions level for the stack, or an attached policy that explicitly grants permissions. For more information on user permissions, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html\">Managing User Permissions</a>.</p>"
     },
     "AssociateElasticIp":{
       "name":"AssociateElasticIp",
@@ -972,6 +973,31 @@
       ],
       "documentation":"<p>Gets a generated host name for the specified layer, based on the current host name theme.</p> <p><b>Required Permissions</b>: To use this action, an IAM user must have a Manage permissions level for the stack, or an attached policy that explicitly grants permissions. For more information on user permissions, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html\">Managing User Permissions</a>.</p>"
     },
+    "GrantAccess":{
+      "name":"GrantAccess",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GrantAccessRequest"},
+      "output":{
+        "shape":"GrantAccessResult",
+        "documentation":"<p>Contains the response to a <code>GrantAccess</code> request.</p>"
+      },
+      "errors":[
+        {
+          "shape":"ValidationException",
+          "exception":true,
+          "documentation":"<p>Indicates that a request was invalid.</p>"
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "exception":true,
+          "documentation":"<p>Indicates that a resource was not found.</p>"
+        }
+      ],
+      "documentation":"<note>This API can be used only with Windows stacks.</note> <p>Grants RDP access to a Windows instance for a specified time period.</p>"
+    },
     "RebootInstance":{
       "name":"RebootInstance",
       "http":{
@@ -1521,7 +1547,7 @@
         },
         "Environment":{
           "shape":"EnvironmentVariables",
-          "documentation":"<p>An array of <code>EnvironmentVariable</code> objects that specify environment variables to be associated with the app. You can specify up to ten environment variables. After you deploy the app, these variables are defined on the associated app server instances.</p>"
+          "documentation":"<p>An array of <code>EnvironmentVariable</code> objects that specify environment variables to be associated with the app. After you deploy the app, these variables are defined on the associated app server instances. For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingapps-creating.html#workingapps-creating-environment\"> Environment Variables</a>. </p> <note> There is no specific limit on the number of environment variables. However, the size of the associated data structure - which includes the variables' names, values, and protected flag values - cannot exceed 10 KB (10240 Bytes). This limit should accommodate most if not all use cases, but if you do exceed it, you will cause an exception (API) with an \"Environment: is too large (maximum is 10KB)\" message. </note>"
         }
       },
       "documentation":"<p>A description of the app.</p>"
@@ -1636,7 +1662,7 @@
         },
         "IgnoreMetricsTime":{
           "shape":"Minute",
-          "documentation":"<p>The amount of time (in minutes) after a scaling event occurs that AWS OpsWorks should ignore metrics and not raise any additional scaling events. For example, AWS OpsWorks adds new instances following an upscaling event but the instances won't start reducing the load until they have been booted and configured. There is no point in raising additional scaling events during that operation, which typically takes several minutes. <code>IgnoreMetricsTime</code> allows you to direct AWS OpsWorks to not raise any scaling events long enough to get the new instances online.</p>"
+          "documentation":"<p>The amount of time (in minutes) after a scaling event occurs that AWS OpsWorks should ignore metrics and suppress additional scaling events. For example, AWS OpsWorks adds new instances following an upscaling event but the instances won't start reducing the load until they have been booted and configured. There is no point in raising additional scaling events during that operation, which typically takes several minutes. <code>IgnoreMetricsTime</code> allows you to direct AWS OpsWorks to suppress scaling events long enough to get the new instances online.</p>"
         },
         "CpuThreshold":{
           "shape":"Double",
@@ -1649,6 +1675,10 @@
         "LoadThreshold":{
           "shape":"Double",
           "documentation":"<p>The load threshold. For more information about how load is computed, see <a href=\"http://en.wikipedia.org/wiki/Load_%28computing%29\">Load (computing)</a>.</p>"
+        },
+        "Alarms":{
+          "shape":"Strings",
+          "documentation":"<p>Custom Cloudwatch auto scaling alarms, to be used as thresholds. This parameter takes a list of up to five alarm names, which are case sensitive and must be in the same region as the stack.</p> <note>To use custom alarms, you must update your service role to allow <code>cloudwatch:DescribeAlarms</code>. You can either have AWS OpsWorks update the role for you when you first use this feature or you can edit the role manually. For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-servicerole.html\">Allowing AWS OpsWorks to Act on Your Behalf</a>.</note>"
         }
       },
       "documentation":"<p>Describes a load-based auto scaling upscaling or downscaling threshold configuration, which specifies when AWS OpsWorks starts or stops load-based instances.</p>"
@@ -1659,6 +1689,32 @@
         "load",
         "timer"
       ]
+    },
+    "BlockDeviceMapping":{
+      "type":"structure",
+      "members":{
+        "DeviceName":{
+          "shape":"String",
+          "documentation":"<p>The device name that is exposed to the instance, such as <code>/dev/sdh</code>. For the root device, you can use the explicit device name or you can set this parameter to <code>ROOT_DEVICE</code> and AWS OpsWorks will provide the correct device name.</p>"
+        },
+        "NoDevice":{
+          "shape":"String",
+          "documentation":"<p>Suppresses the specified device included in the AMI's block device mapping.</p>"
+        },
+        "VirtualName":{
+          "shape":"String",
+          "documentation":"<p>The virtual device name. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_BlockDeviceMapping.html\">BlockDeviceMapping</a>.</p>"
+        },
+        "Ebs":{
+          "shape":"EbsBlockDevice",
+          "documentation":"<p>An <code>EBSBlockDevice</code> that defines how to configure an Amazon EBS volume when the instance is launched.</p>"
+        }
+      },
+      "documentation":"<p>Describes a block device mapping. This data type maps directly to the Amazon EC2 <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_BlockDeviceMapping.html\">BlockDeviceMapping</a> data type. </p>"
+    },
+    "BlockDeviceMappings":{
+      "type":"list",
+      "member":{"shape":"BlockDeviceMapping"}
     },
     "Boolean":{
       "type":"boolean",
@@ -1715,11 +1771,11 @@
         },
         "DefaultOs":{
           "shape":"String",
-          "documentation":"<p>The stacks's operating system, which must be set to one of the following.</p> <ul> <li>Standard operating systems: an Amazon Linux version such as <code>Amazon Linux 2014.09</code>, <code>Ubuntu 12.04 LTS</code>, or <code>Ubuntu 14.04 LTS</code>.</li> <li>Custom AMIs: <code>Custom</code>. You specify the custom AMI you want to use when you create instances.</li> </ul> <p> The default option is the current Amazon Linux version.</p>"
+          "documentation":"<p>The stack's operating system, which must be set to one of the following.</p> <ul> <li>Standard Linux operating systems: an Amazon Linux version such as <code>Amazon Linux 2014.09</code>, <code>Ubuntu 12.04 LTS</code>, or <code>Ubuntu 14.04 LTS</code>.</li> <li>Custom Linux AMIs: <code>Custom</code>. You specify the custom AMI you want to use when you create instances.</li> <li>Microsoft Windows Server 2012 R2.</li> </ul> <p> The default option is the current Amazon Linux version.</p>"
         },
         "HostnameTheme":{
           "shape":"String",
-          "documentation":"<p>The stack's host name theme, with spaces are replaced by underscores. The theme is used to generate host names for the stack's instances. By default, <code>HostnameTheme</code> is set to <code>Layer_Dependent</code>, which creates host names by appending integers to the layer's short name. The other themes are:</p> <ul> <li><code>Baked_Goods</code></li> <li><code>Clouds</code></li> <li><code>European_Cities</code></li> <li><code>Fruits</code></li> <li><code>Greek_Deities</code></li> <li><code>Legendary_Creatures_from_Japan</code></li> <li><code>Planets_and_Moons</code></li> <li><code>Roman_Deities</code></li> <li><code>Scottish_Islands</code></li> <li><code>US_Cities</code></li> <li><code>Wild_Cats</code></li> </ul> <p>To obtain a generated host name, call <code>GetHostNameSuggestion</code>, which returns a host name based on the current theme.</p>"
+          "documentation":"<p>The stack's host name theme, with spaces are replaced by underscores. The theme is used to generate host names for the stack's instances. By default, <code>HostnameTheme</code> is set to <code>Layer_Dependent</code>, which creates host names by appending integers to the layer's short name. The other themes are:</p> <ul> <li> <code>Baked_Goods</code> </li> <li> <code>Clouds</code> </li> <li> <code>Europe_Cities</code> </li> <li> <code>Fruits</code> </li> <li> <code>Greek_Deities</code> </li> <li> <code>Legendary_creatures_from_Japan</code> </li> <li> <code>Planets_and_Moons</code> </li> <li> <code>Roman_Deities</code> </li> <li> <code>Scottish_Islands</code> </li> <li> <code>US_Cities</code> </li> <li> <code>Wild_Cats</code> </li> </ul> <p>To obtain a generated host name, call <code>GetHostNameSuggestion</code>, which returns a host name based on the current theme.</p>"
         },
         "DefaultAvailabilityZone":{
           "shape":"String",
@@ -1731,7 +1787,7 @@
         },
         "CustomJson":{
           "shape":"String",
-          "documentation":"<p>A string that contains user-defined, custom JSON. It is used to override the corresponding default stack configuration JSON values. The string should be in the following format and must escape characters such as '\"'.:</p> <p><code>\"{\\\"key1\\\": \\\"value1\\\", \\\"key2\\\": \\\"value2\\\",...}\"</code></p> <p>For more information on custom JSON, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html\">Use Custom JSON to Modify the Stack Configuration JSON</a></p>"
+          "documentation":"<p>A string that contains user-defined, custom JSON. It is used to override the corresponding default stack configuration JSON values. The string should be in the following format and must escape characters such as '\"'.:</p> <p> <code>\"{\\\"key1\\\": \\\"value1\\\", \\\"key2\\\": \\\"value2\\\",...}\"</code> </p> <p>For more information on custom JSON, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html\">Use Custom JSON to Modify the Stack Configuration Attributes</a></p>"
         },
         "ConfigurationManager":{
           "shape":"StackConfigurationManager",
@@ -1752,7 +1808,7 @@
         "CustomCookbooksSource":{"shape":"Source"},
         "DefaultSshKeyName":{
           "shape":"String",
-          "documentation":"<p>A default SSH key for the stack instances. You can override this value when you create or update an instance.</p>"
+          "documentation":"<p>A default Amazon EC2 key pair name. The default value is none. If you specify a key pair name, AWS OpsWorks installs the public key on the instance and you can use the private key with an SSH client to log in to the instance. For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-ssh.html\"> Using SSH to Communicate with an Instance</a> and <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/security-ssh-access.html\"> Managing SSH Access</a>. You can override this setting by specifying a different key pair, or no key pair, when you <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-add.html\"> create an instance</a>. </p>"
         },
         "ClonePermissions":{
           "shape":"Boolean",
@@ -1819,7 +1875,7 @@
         },
         "Type":{
           "shape":"String",
-          "documentation":"<p>The command type:</p> <ul> <li><code>deploy</code></li> <li><code>rollback</code></li> <li><code>start</code></li> <li><code>stop</code></li> <li><code>restart</code></li> <li><code>undeploy</code></li> <li><code>update_dependencies</code></li> <li><code>install_dependencies</code></li> <li><code>update_custom_cookbooks</code></li> <li><code>execute_recipes</code></li> </ul>"
+          "documentation":"<p>The command type:</p> <ul> <li> <code>deploy</code> </li> <li> <code>rollback</code> </li> <li> <code>start</code> </li> <li> <code>stop</code> </li> <li> <code>restart</code> </li> <li> <code>undeploy</code> </li> <li> <code>update_dependencies</code> </li> <li> <code>install_dependencies</code> </li> <li> <code>update_custom_cookbooks</code> </li> <li> <code>execute_recipes</code> </li> </ul>"
         }
       },
       "documentation":"<p>Describes a command.</p>"
@@ -1858,7 +1914,7 @@
         },
         "Type":{
           "shape":"AppType",
-          "documentation":"<p>The app type. Each supported type is associated with a particular layer. For example, PHP applications are associated with a PHP layer. AWS OpsWorks deploys an application to those instances that are members of the corresponding layer.</p>"
+          "documentation":"<p>The app type. Each supported type is associated with a particular layer. For example, PHP applications are associated with a PHP layer. AWS OpsWorks deploys an application to those instances that are members of the corresponding layer. If your app isn't one of the standard types, or you prefer to implement your own Deploy recipes, specify <code>other</code>.</p>"
         },
         "AppSource":{
           "shape":"Source",
@@ -1882,7 +1938,7 @@
         },
         "Environment":{
           "shape":"EnvironmentVariables",
-          "documentation":"<p>An array of <code>EnvironmentVariable</code> objects that specify environment variables to be associated with the app. You can specify up to ten environment variables. After you deploy the app, these variables are defined on the associated app server instance.</p> <note>This parameter is supported only by Chef 11.10 stacks. If you have specified one or more environment variables, you cannot modify the stack's Chef version.</note>"
+          "documentation":"<p>An array of <code>EnvironmentVariable</code> objects that specify environment variables to be associated with the app. After you deploy the app, these variables are defined on the associated app server instance. For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingapps-creating.html#workingapps-creating-environment\"> Environment Variables</a>.</p> <p> There is no specific limit on the number of environment variables. However, the size of the associated data structure - which includes the variables' names, values, and protected flag values - cannot exceed 10 KB (10240 Bytes). This limit should accommodate most if not all use cases. Exceeding it will cause an exception with the message, \"Environment: is too large (maximum is 10KB).\" </p> <note>This parameter is supported only by Chef 11.10 stacks. If you have specified one or more environment variables, you cannot modify the stack's Chef version.</note>"
         }
       }
     },
@@ -1925,7 +1981,7 @@
         },
         "CustomJson":{
           "shape":"String",
-          "documentation":"<p>A string that contains user-defined, custom JSON. It is used to override the corresponding default stack configuration JSON values. The string should be in the following format and must escape characters such as '\"'.:</p> <p><code>\"{\\\"key1\\\": \\\"value1\\\", \\\"key2\\\": \\\"value2\\\",...}\"</code></p> <p>For more information on custom JSON, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html\">Use Custom JSON to Modify the Stack Configuration JSON</a>.</p>"
+          "documentation":"<p>A string that contains user-defined, custom JSON. It is used to override the corresponding default stack configuration JSON values. The string should be in the following format and must escape characters such as '\"'.:</p> <p> <code>\"{\\\"key1\\\": \\\"value1\\\", \\\"key2\\\": \\\"value2\\\",...}\"</code> </p> <p>For more information on custom JSON, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html\">Use Custom JSON to Modify the Stack Configuration Attributes</a>.</p>"
         }
       }
     },
@@ -1961,7 +2017,7 @@
         },
         "AutoScalingType":{
           "shape":"AutoScalingType",
-          "documentation":"<p>For load-based or time-based instances, the type.</p>"
+          "documentation":"<p>For load-based or time-based instances, the type. Windows stacks can use only time-based instances.</p>"
         },
         "Hostname":{
           "shape":"String",
@@ -1969,7 +2025,7 @@
         },
         "Os":{
           "shape":"String",
-          "documentation":"<p>The instance's operating system, which must be set to one of the following.</p> <ul> <li>Standard operating systems: an Amazon Linux version such as <code>Amazon Linux 2014.09</code>, <code>Ubuntu 12.04 LTS</code>, or <code>Ubuntu 14.04 LTS</code>.</li> <li>Custom AMIs: <code>Custom</code> </li> </ul> <p>The default option is the current Amazon Linux version. If you set this parameter to <code>Custom</code>, you must use the <a>CreateInstance</a> action's AmiId parameter to specify the custom AMI that you want to use. For more information on the standard operating systems, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html\">Operating Systems</a>For more information on how to use custom AMIs with OpsWorks, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html\">Using Custom AMIs</a>.</p>"
+          "documentation":"<p>The instance's operating system, which must be set to one of the following.</p> <p>For Windows stacks: Microsoft Windows Server 2012 R2.</p> <p>For Linux stacks:</p> <ul> <li>Standard operating systems: an Amazon Linux version such as <code>Amazon Linux 2014.09</code>, <code>Ubuntu 12.04 LTS</code>, or <code>Ubuntu 14.04 LTS</code>.</li> <li>Custom AMIs: <code>Custom</code> </li> </ul> <p>The default option is the current Amazon Linux version. If you set this parameter to <code>Custom</code>, you must use the <a>CreateInstance</a> action's AmiId parameter to specify the custom AMI that you want to use. For more information on the standard operating systems, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html\">Operating Systems</a>For more information on how to use custom AMIs with OpsWorks, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html\">Using Custom AMIs</a>.</p>"
         },
         "AmiId":{
           "shape":"String",
@@ -1977,7 +2033,7 @@
         },
         "SshKeyName":{
           "shape":"String",
-          "documentation":"<p>The instance SSH key name.</p>"
+          "documentation":"<p>The instance's Amazon EC2 key pair name.</p>"
         },
         "AvailabilityZone":{
           "shape":"String",
@@ -1998,6 +2054,10 @@
         "RootDeviceType":{
           "shape":"RootDeviceType",
           "documentation":"<p>The instance root device type. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device\">Storage for the Root Device</a>.</p>"
+        },
+        "BlockDeviceMappings":{
+          "shape":"BlockDeviceMappings",
+          "documentation":"<p>An array of <code>BlockDeviceMapping</code> objects that specify the instance's block devices. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html\">Block Device Mapping</a>.</p>"
         },
         "InstallUpdatesOnBoot":{
           "shape":"Boolean",
@@ -2042,7 +2102,7 @@
         },
         "Shortname":{
           "shape":"String",
-          "documentation":"<p>The layer short name, which is used internally by AWS OpsWorks and by Chef recipes. The short name is also used as the name for the directory where your app files are installed. It can have a maximum of 200 characters, which are limited to the alphanumeric characters, '-', '_', and '.'.</p>"
+          "documentation":"<p>For custom layers only, use this parameter to specify the layer's short name, which is used internally by AWS OpsWorks and by Chef recipes. The short name is also used as the name for the directory where your app files are installed. It can have a maximum of 200 characters, which are limited to the alphanumeric characters, '-', '_', and '.'.</p> <p>The built-in layers' short names are defined by AWS OpsWorks. For more information, see the <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/layers.html\">Layer Reference</a></p>"
         },
         "Attributes":{
           "shape":"LayerAttributes",
@@ -2139,11 +2199,11 @@
         },
         "DefaultOs":{
           "shape":"String",
-          "documentation":"<p>The stack's operating system, which must be set to one of the following.</p> <ul> <li>Standard operating systems: an Amazon Linux version such as <code>Amazon Linux 2014.09</code>, <code>Ubuntu 12.04 LTS</code>, or <code>Ubuntu 14.04 LTS</code>.</li> <li>Custom AMIs: <code>Custom</code>. You specify the custom AMI you want to use when you create instances.</li> </ul> <p> The default option is the current Amazon Linux version.</p>"
+          "documentation":"<p>The stack's operating system, which must be set to one of the following.</p> <ul> <li>Standard Linux operating systems: an Amazon Linux version such as <code>Amazon Linux 2014.09</code>, <code>Ubuntu 12.04 LTS</code>, or <code>Ubuntu 14.04 LTS</code>.</li> <li>Custom Linux AMIs: <code>Custom</code>. You specify the custom AMI you want to use when you create instances.</li> <li>Microsoft Windows Server 2012 R2.</li> </ul> <p> The default option is the current Amazon Linux version.</p>"
         },
         "HostnameTheme":{
           "shape":"String",
-          "documentation":"<p>The stack's host name theme, with spaces are replaced by underscores. The theme is used to generate host names for the stack's instances. By default, <code>HostnameTheme</code> is set to <code>Layer_Dependent</code>, which creates host names by appending integers to the layer's short name. The other themes are:</p> <ul> <li><code>Baked_Goods</code></li> <li><code>Clouds</code></li> <li><code>European_Cities</code></li> <li><code>Fruits</code></li> <li><code>Greek_Deities</code></li> <li><code>Legendary_Creatures_from_Japan</code></li> <li><code>Planets_and_Moons</code></li> <li><code>Roman_Deities</code></li> <li><code>Scottish_Islands</code></li> <li><code>US_Cities</code></li> <li><code>Wild_Cats</code></li> </ul> <p>To obtain a generated host name, call <code>GetHostNameSuggestion</code>, which returns a host name based on the current theme.</p>"
+          "documentation":"<p>The stack's host name theme, with spaces are replaced by underscores. The theme is used to generate host names for the stack's instances. By default, <code>HostnameTheme</code> is set to <code>Layer_Dependent</code>, which creates host names by appending integers to the layer's short name. The other themes are:</p> <ul> <li> <code>Baked_Goods</code> </li> <li> <code>Clouds</code> </li> <li> <code>Europe_Cities</code> </li> <li> <code>Fruits</code> </li> <li> <code>Greek_Deities</code> </li> <li> <code>Legendary_creatures_from_Japan</code> </li> <li> <code>Planets_and_Moons</code> </li> <li> <code>Roman_Deities</code> </li> <li> <code>Scottish_Islands</code> </li> <li> <code>US_Cities</code> </li> <li> <code>Wild_Cats</code> </li> </ul> <p>To obtain a generated host name, call <code>GetHostNameSuggestion</code>, which returns a host name based on the current theme.</p>"
         },
         "DefaultAvailabilityZone":{
           "shape":"String",
@@ -2155,7 +2215,7 @@
         },
         "CustomJson":{
           "shape":"String",
-          "documentation":"<p>A string that contains user-defined, custom JSON. It is used to override the corresponding default stack configuration JSON values. The string should be in the following format and must escape characters such as '\"'.:</p> <p><code>\"{\\\"key1\\\": \\\"value1\\\", \\\"key2\\\": \\\"value2\\\",...}\"</code></p> <p>For more information on custom JSON, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html\">Use Custom JSON to Modify the Stack Configuration JSON</a>.</p>"
+          "documentation":"<p>A string that contains user-defined, custom JSON. It can be used to override the corresponding default stack configuration attribute values, or to pass data to recipes. The string should be in the following format and must escape characters such as '\"'.:</p> <p> <code>\"{\\\"key1\\\": \\\"value1\\\", \\\"key2\\\": \\\"value2\\\",...}\"</code> </p> <p>For more information on custom JSON, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html\">Use Custom JSON to Modify the Stack Configuration Attributes</a>.</p>"
         },
         "ConfigurationManager":{
           "shape":"StackConfigurationManager",
@@ -2176,7 +2236,7 @@
         "CustomCookbooksSource":{"shape":"Source"},
         "DefaultSshKeyName":{
           "shape":"String",
-          "documentation":"<p>A default SSH key for the stack instances. You can override this value when you create or update an instance.</p>"
+          "documentation":"<p>A default Amazon EC2 key pair name. The default value is none. If you specify a key pair name, AWS OpsWorks installs the public key on the instance and you can use the private key with an SSH client to log in to the instance. For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-ssh.html\"> Using SSH to Communicate with an Instance</a> and <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/security-ssh-access.html\"> Managing SSH Access</a>. You can override this setting by specifying a different key pair, or no key pair, when you <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-add.html\"> create an instance</a>. </p>"
         },
         "DefaultRootDeviceType":{
           "shape":"RootDeviceType",
@@ -2354,7 +2414,7 @@
         },
         "CustomJson":{
           "shape":"String",
-          "documentation":"<p>A string that contains user-defined custom JSON. It is used to override the corresponding default stack configuration JSON values for stack. The string should be in the following format and must escape characters such as '\"'.:</p> <p><code>\"{\\\"key1\\\": \\\"value1\\\", \\\"key2\\\": \\\"value2\\\",...}\"</code></p> <p>For more information on custom JSON, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html\">Use Custom JSON to Modify the Stack Configuration JSON</a>.</p>"
+          "documentation":"<p>A string that contains user-defined custom JSON. It can be used to override the corresponding default stack configuration attribute values for stack or to pass data to recipes. The string should be in the following format and must escape characters such as '\"'.:</p> <p> <code>\"{\\\"key1\\\": \\\"value1\\\", \\\"key2\\\": \\\"value2\\\",...}\"</code> </p> <p>For more information on custom JSON, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html\">Use Custom JSON to Modify the Stack Configuration Attributes</a>.</p>"
         },
         "InstanceIds":{
           "shape":"Strings",
@@ -2369,11 +2429,11 @@
       "members":{
         "Name":{
           "shape":"DeploymentCommandName",
-          "documentation":"<p>Specifies the operation. You can specify only one command.</p> <p>For stacks, the following commands are available:</p> <ul> <li> <code>execute_recipes</code>: Execute one or more recipes. To specify the recipes, set an <code>Args</code> parameter named <code>recipes</code> to the list of recipes to be executed. For example, to execute <code>phpapp::appsetup</code>, set <code>Args</code> to <code>{\"recipes\":[\"phpapp::appsetup\"]}</code>.</li> <li> <code>install_dependencies</code>: Install the stack's dependencies.</li> <li> <code>update_custom_cookbooks</code>: Update the stack's custom cookbooks.</li> <li> <code>update_dependencies</code>: Update the stack's dependencies.</li> </ul> <p>For apps, the following commands are available:</p> <ul> <li> <code>deploy</code>: Deploy an app. Rails apps have an optional <code>Args</code> parameter named <code>migrate</code>. Set <code>Args</code> to {\"migrate\":[\"true\"]} to migrate the database. The default setting is {\"migrate\":[\"false\"]}.</li> <li> <code>rollback</code> Roll the app back to the previous version. When you update an app, AWS OpsWorks stores the previous version, up to a maximum of five versions. You can use this command to roll an app back as many as four versions.</li> <li> <code>start</code>: Start the app's web or application server.</li> <li> <code>stop</code>: Stop the app's web or application server.</li> <li> <code>restart</code>: Restart the app's web or application server.</li> <li> <code>undeploy</code>: Undeploy the app.</li> </ul>"
+          "documentation":"<p>Specifies the operation. You can specify only one command.</p> <p>For stacks, the following commands are available:</p> <ul> <li> <code>execute_recipes</code>: Execute one or more recipes. To specify the recipes, set an <code>Args</code> parameter named <code>recipes</code> to the list of recipes to be executed. For example, to execute <code>phpapp::appsetup</code>, set <code>Args</code> to <code>{\"recipes\":[\"phpapp::appsetup\"]}</code>.</li> <li> <code>install_dependencies</code>: Install the stack's dependencies.</li> <li> <code>update_custom_cookbooks</code>: Update the stack's custom cookbooks.</li> <li> <code>update_dependencies</code>: Update the stack's dependencies.</li> </ul> <note>The update_dependencies and install_dependencies commands are supported only for Linux instances. You can run the commands successfully on Windows instances, but they do nothing.</note> <p>For apps, the following commands are available:</p> <ul> <li> <code>deploy</code>: Deploy an app. Ruby on Rails apps have an optional <code>Args</code> parameter named <code>migrate</code>. Set <code>Args</code> to {\"migrate\":[\"true\"]} to migrate the database. The default setting is {\"migrate\":[\"false\"]}.</li> <li> <code>rollback</code> Roll the app back to the previous version. When you update an app, AWS OpsWorks stores the previous version, up to a maximum of five versions. You can use this command to roll an app back as many as four versions.</li> <li> <code>start</code>: Start the app's web or application server.</li> <li> <code>stop</code>: Stop the app's web or application server.</li> <li> <code>restart</code>: Restart the app's web or application server.</li> <li> <code>undeploy</code>: Undeploy the app.</li> </ul>"
         },
         "Args":{
           "shape":"DeploymentCommandArgs",
-          "documentation":"<p>The arguments of those commands that take arguments. It should be set to a JSON object with the following format:</p> <p><code>{\"arg_name1\" : [\"value1\", \"value2\", ...], \"arg_name2\" : [\"value1\", \"value2\", ...], ...}</code></p> <p>The <code>update_dependencies</code> command takes two arguments:</p> <ul> <li> <code>upgrade_os_to</code> - Specifies the desired Amazon Linux version for instances whose OS you want to upgrade, such as <code>Amazon Linux 2014.09</code>. You must also set the <code>allow_reboot</code> argument to true.</li> <li> <code>allow_reboot</code> - Specifies whether to allow AWS OpsWorks to reboot the instances if necessary, after installing the updates. This argument can be set to either <code>true</code> or <code>false</code>. The default value is <code>false</code>.</li> </ul> <p>For example, to upgrade an instance to Amazon Linux 2014.09, set <code>Args</code> to the following.</p> <code> { \"upgrade_os_to\":[\"Amazon Linux 2014.09\"], \"allow_reboot\":[\"true\"] } </code>"
+          "documentation":"<p>The arguments of those commands that take arguments. It should be set to a JSON object with the following format:</p> <p> <code>{\"arg_name1\" : [\"value1\", \"value2\", ...], \"arg_name2\" : [\"value1\", \"value2\", ...], ...}</code> </p> <p>The <code>update_dependencies</code> command takes two arguments:</p> <ul> <li> <code>upgrade_os_to</code> - Specifies the desired Amazon Linux version for instances whose OS you want to upgrade, such as <code>Amazon Linux 2014.09</code>. You must also set the <code>allow_reboot</code> argument to true.</li> <li> <code>allow_reboot</code> - Specifies whether to allow AWS OpsWorks to reboot the instances if necessary, after installing the updates. This argument can be set to either <code>true</code> or <code>false</code>. The default value is <code>false</code>.</li> </ul> <p>For example, to upgrade an instance to Amazon Linux 2014.09, set <code>Args</code> to the following.</p> <code> { \"upgrade_os_to\":[\"Amazon Linux 2014.09\"], \"allow_reboot\":[\"true\"] } </code>"
         }
       },
       "documentation":"<p>Used to specify a stack or deployment command.</p>"
@@ -2438,7 +2498,7 @@
       "members":{
         "VolumeId":{
           "shape":"String",
-          "documentation":"<p>The volume ID.</p>"
+          "documentation":"<p>The AWS OpsWorks volume ID, which is the GUID that AWS OpsWorks assigned to the instance when you registered the volume with the stack, not the Amazon EC2 volume ID.</p>"
         }
       }
     },
@@ -2914,6 +2974,32 @@
       "type":"double",
       "box":true
     },
+    "EbsBlockDevice":{
+      "type":"structure",
+      "members":{
+        "SnapshotId":{
+          "shape":"String",
+          "documentation":"<p>The snapshot ID.</p>"
+        },
+        "Iops":{
+          "shape":"Integer",
+          "documentation":"<p>The number of I/O operations per second (IOPS) that the volume supports. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_EbsBlockDevice.html\">EbsBlockDevice</a>.</p>"
+        },
+        "VolumeSize":{
+          "shape":"Integer",
+          "documentation":"<p>The volume size, in GiB. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_EbsBlockDevice.html\">EbsBlockDevice</a>.</p>"
+        },
+        "VolumeType":{
+          "shape":"VolumeType",
+          "documentation":"<p>The volume type. <code>gp2</code> for General Purpose (SSD) volumes, <code>io1</code> for Provisioned IOPS (SSD) volumes, and <code>standard</code> for Magnetic volumes.</p>"
+        },
+        "DeleteOnTermination":{
+          "shape":"Boolean",
+          "documentation":"<p>Whether the volume is deleted on instance termination.</p>"
+        }
+      },
+      "documentation":"<p>Describes an Amazon EBS volume. This data type maps directly to the Amazon EC2 <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_EbsBlockDevice.html\">EbsBlockDevice</a> data type.</p>"
+    },
     "ElasticIp":{
       "type":"structure",
       "members":{
@@ -3007,7 +3093,7 @@
         },
         "Secure":{
           "shape":"Boolean",
-          "documentation":"<p>(Optional) Whether the variable's value will be returned by the <a>DescribeApps</a> action. To conceal an environment variable's value, set <code>Secure</code> to <code>true</code>. <code>DescribeApps</code> then returns <code>**Filtered**</code> instead of the actual value. The default value for <code>Secure</code> is <code>false</code>. </p>"
+          "documentation":"<p>(Optional) Whether the variable's value will be returned by the <a>DescribeApps</a> action. To conceal an environment variable's value, set <code>Secure</code> to <code>true</code>. <code>DescribeApps</code> then returns <code>*****FILTERED*****</code> instead of the actual value. The default value for <code>Secure</code> is <code>false</code>. </p>"
         }
       },
       "documentation":"<p>Represents an app's environment variable.</p>"
@@ -3039,6 +3125,30 @@
         }
       },
       "documentation":"<p>Contains the response to a <code>GetHostnameSuggestion</code> request.</p>"
+    },
+    "GrantAccessRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{
+          "shape":"String",
+          "documentation":"<p>The instance's AWS OpsWorks ID.</p>"
+        },
+        "ValidForInMinutes":{
+          "shape":"ValidForInMinutes",
+          "documentation":"<p>The length of time (in minutes) that the grant is valid. When the grant expires at the end of this period, the user will no longer be able to use the credentials to log in. If the user is logged in at the time, he or she automatically will be logged out.</p>"
+        }
+      }
+    },
+    "GrantAccessResult":{
+      "type":"structure",
+      "members":{
+        "TemporaryCredential":{
+          "shape":"TemporaryCredential",
+          "documentation":"<p>A <code>TemporaryCredential</code> object that contains the data needed to log in to the instance by RDP clients, such as the Microsoft Remote Desktop Connection.</p>"
+        }
+      },
+      "documentation":"<p>Contains the response to a <code>GrantAccess</code> request.</p>"
     },
     "Hour":{"type":"string"},
     "Instance":{
@@ -3082,7 +3192,7 @@
         },
         "Status":{
           "shape":"String",
-          "documentation":"<p>The instance status:</p> <ul> <li><code>booting</code></li> <li><code>connection_lost</code></li> <li><code>online</code></li> <li><code>pending</code></li> <li><code>rebooting</code></li> <li><code>requested</code></li> <li><code>running_setup</code></li> <li><code>setup_failed</code></li> <li><code>shutting_down</code></li> <li><code>start_failed</code></li> <li><code>stopped</code></li> <li><code>stopping</code></li> <li><code>terminated</code></li> <li><code>terminating</code></li> </ul>"
+          "documentation":"<p>The instance status:</p> <ul> <li> <code>booting</code> </li> <li> <code>connection_lost</code> </li> <li> <code>online</code> </li> <li> <code>pending</code> </li> <li> <code>rebooting</code> </li> <li> <code>requested</code> </li> <li> <code>running_setup</code> </li> <li> <code>setup_failed</code> </li> <li> <code>shutting_down</code> </li> <li> <code>start_failed</code> </li> <li> <code>stopped</code> </li> <li> <code>stopping</code> </li> <li> <code>terminated</code> </li> <li> <code>terminating</code> </li> </ul>"
         },
         "Os":{
           "shape":"String",
@@ -3126,7 +3236,7 @@
         },
         "SshKeyName":{
           "shape":"String",
-          "documentation":"<p>The instance SSH key name.</p>"
+          "documentation":"<p>The instance's Amazon EC2 key pair name.</p>"
         },
         "SshHostRsaKeyFingerprint":{
           "shape":"String",
@@ -3150,11 +3260,15 @@
         },
         "RootDeviceType":{
           "shape":"RootDeviceType",
-          "documentation":"<p>The instance root device type. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device\">Storage for the Root Device</a>.</p>"
+          "documentation":"<p>The instance's root device type. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device\">Storage for the Root Device</a>.</p>"
         },
         "RootDeviceVolumeId":{
           "shape":"String",
           "documentation":"<p>The root device volume ID.</p>"
+        },
+        "BlockDeviceMappings":{
+          "shape":"BlockDeviceMappings",
+          "documentation":"<p>An array of <code>BlockDeviceMapping</code> objects that specify the instance's block device mappings.</p>"
         },
         "InstallUpdatesOnBoot":{
           "shape":"Boolean",
@@ -3163,6 +3277,10 @@
         "EbsOptimized":{
           "shape":"Boolean",
           "documentation":"<p>Whether this is an Amazon EBS-optimized instance.</p>"
+        },
+        "ReportedAgentVersion":{
+          "shape":"String",
+          "documentation":"<p>The instance's reported AWS OpsWorks agent version.</p>"
         },
         "ReportedOs":{
           "shape":"ReportedOs",
@@ -3308,7 +3426,7 @@
         },
         "Attributes":{
           "shape":"LayerAttributes",
-          "documentation":"<p>The layer attributes.</p>"
+          "documentation":"<p>The layer attributes.</p> <note>For the <code>HaproxyStatsPassword</code>, <code>MysqlRootPassword</code>, and <code>GangliaPassword</code> attributes, AWS OpsWorks returns <code>*****FILTERED*****</code> instead of the actual value</note>"
         },
         "CustomInstanceProfileArn":{
           "shape":"String",
@@ -3487,7 +3605,7 @@
         },
         "Level":{
           "shape":"String",
-          "documentation":"<p>The user's permission level, which must be the following:</p> <ul> <li><code>deny</code></li> <li><code>show</code></li> <li><code>deploy</code></li> <li><code>manage</code></li> <li><code>iam_only</code></li> </ul> <p>For more information on the permissions associated with these levels, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html\">Managing User Permissions</a></p>"
+          "documentation":"<p>The user's permission level, which must be the following:</p> <ul> <li> <code>deny</code> </li> <li> <code>show</code> </li> <li> <code>deploy</code> </li> <li> <code>manage</code> </li> <li> <code>iam_only</code> </li> </ul> <p>For more information on the permissions associated with these levels, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html\">Managing User Permissions</a></p>"
         }
       },
       "documentation":"<p>Describes stack or user permissions.</p>"
@@ -3575,7 +3693,7 @@
         },
         "DbPassword":{
           "shape":"String",
-          "documentation":"<p>The database password.</p>"
+          "documentation":"<p>AWS OpsWorks returns <code>*****FILTERED*****</code> instead of the actual value.</p>"
         },
         "Region":{
           "shape":"String",
@@ -3901,7 +4019,7 @@
         },
         "Level":{
           "shape":"String",
-          "documentation":"<p>The user's permission level, which must be set to one of the following strings. You cannot set your own permissions level.</p> <ul> <li><code>deny</code></li> <li><code>show</code></li> <li><code>deploy</code></li> <li><code>manage</code></li> <li><code>iam_only</code></li> </ul> <p>For more information on the permissions associated with these levels, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html\">Managing User Permissions</a></p>"
+          "documentation":"<p>The user's permission level, which must be set to one of the following strings. You cannot set your own permissions level.</p> <ul> <li> <code>deny</code> </li> <li> <code>show</code> </li> <li> <code>deploy</code> </li> <li> <code>manage</code> </li> <li> <code>iam_only</code> </li> </ul> <p>For more information on the permissions associated with these levels, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html\">Managing User Permissions</a></p>"
         }
       }
     },
@@ -3950,11 +4068,11 @@
         },
         "Password":{
           "shape":"String",
-          "documentation":"<p>This parameter depends on the repository type. </p> <ul> <li>For Amazon S3 bundles, set <code>Password</code> to the appropriate IAM secret access key.</li> <li>For HTTP bundles and Subversion repositories, set <code>Password</code> to the password.</li> </ul> <p>For more information on how to safely handle IAM credentials, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html\"></a>.</p>"
+          "documentation":"<p>When included in a request, the parameter depends on the repository type. </p> <ul> <li>For Amazon S3 bundles, set <code>Password</code> to the appropriate IAM secret access key.</li> <li>For HTTP bundles and Subversion repositories, set <code>Password</code> to the password.</li> </ul> <p>For more information on how to safely handle IAM credentials, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html\"></a>.</p> <p>In responses, AWS OpsWorks returns <code>*****FILTERED*****</code> instead of the actual value.</p>"
         },
         "SshKey":{
           "shape":"String",
-          "documentation":"<p>The repository's SSH key.</p>"
+          "documentation":"<p>In requests, the repository's SSH key.</p> <p>In responses, AWS OpsWorks returns <code>*****FILTERED*****</code> instead of the actual value.</p>"
         },
         "Revision":{
           "shape":"String",
@@ -4047,7 +4165,7 @@
         },
         "CustomJson":{
           "shape":"String",
-          "documentation":"<p>A string that contains user-defined, custom JSON. It is used to override the corresponding default stack configuration JSON values. The string should be in the following format and must escape characters such as '\"'.:</p> <p><code>\"{\\\"key1\\\": \\\"value1\\\", \\\"key2\\\": \\\"value2\\\",...}\"</code></p> <p>For more information on custom JSON, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html\">Use Custom JSON to Modify the Stack Configuration JSON</a>.</p>"
+          "documentation":"<p>A string that contains user-defined, custom JSON. It can be used to override the corresponding default stack configuration JSON values or to pass data to recipes. The string should be in the following format and must escape characters such as '\"'.:</p> <p> <code>\"{\\\"key1\\\": \\\"value1\\\", \\\"key2\\\": \\\"value2\\\",...}\"</code> </p> <p>For more information on custom JSON, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html\">Use Custom JSON to Modify the Stack Configuration Attributes</a>.</p>"
         },
         "ConfigurationManager":{
           "shape":"StackConfigurationManager",
@@ -4068,7 +4186,7 @@
         "CustomCookbooksSource":{"shape":"Source"},
         "DefaultSshKeyName":{
           "shape":"String",
-          "documentation":"<p>A default SSH key for the stack's instances. You can override this value when you create or update an instance.</p>"
+          "documentation":"<p>A default Amazon EC2 key pair for the stack's instances. You can override this value when you create or update an instance.</p>"
         },
         "CreatedAt":{
           "shape":"DateTime",
@@ -4184,6 +4302,28 @@
       "member":{"shape":"String"}
     },
     "Switch":{"type":"string"},
+    "TemporaryCredential":{
+      "type":"structure",
+      "members":{
+        "Username":{
+          "shape":"String",
+          "documentation":"<p>The user name.</p>"
+        },
+        "Password":{
+          "shape":"String",
+          "documentation":"<p>The password.</p>"
+        },
+        "ValidForInMinutes":{
+          "shape":"Integer",
+          "documentation":"<p>The length of time (in minutes) that the grant is valid. When the grant expires, at the end of this period, the user will no longer be able to use the credentials to log in. If they are logged in at the time, they will be automatically logged out.</p>"
+        },
+        "InstanceId":{
+          "shape":"String",
+          "documentation":"<p>The instance's AWS OpsWorks ID.</p>"
+        }
+      },
+      "documentation":"<p>Contains the data needed by RDP clients such as the Microsoft Remote Desktop Connection to log in to the instance.</p>"
+    },
     "TimeBasedAutoScalingConfiguration":{
       "type":"structure",
       "members":{
@@ -4268,7 +4408,7 @@
         },
         "Environment":{
           "shape":"EnvironmentVariables",
-          "documentation":"<p>An array of <code>EnvironmentVariable</code> objects that specify environment variables to be associated with the app. You can specify up to ten environment variables. After you deploy the app, these variables are defined on the associated app server instances.</p> <note>This parameter is supported only by Chef 11.10 stacks. If you have specified one or more environment variables, you cannot modify the stack's Chef version.</note>"
+          "documentation":"<p>An array of <code>EnvironmentVariable</code> objects that specify environment variables to be associated with the app. After you deploy the app, these variables are defined on the associated app server instances.For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingapps-creating.html#workingapps-creating-environment\"> Environment Variables</a>.</p> <p> There is no specific limit on the number of environment variables. However, the size of the associated data structure - which includes the variables' names, values, and protected flag values - cannot exceed 10 KB (10240 Bytes). This limit should accommodate most if not all use cases. Exceeding it will cause an exception with the message, \"Environment: is too large (maximum is 10KB).\" </p> <note>This parameter is supported only by Chef 11.10 stacks. If you have specified one or more environment variables, you cannot modify the stack's Chef version. </note>"
         }
       }
     },
@@ -4304,7 +4444,7 @@
         },
         "AutoScalingType":{
           "shape":"AutoScalingType",
-          "documentation":"<p>For load-based or time-based instances, the type.</p>"
+          "documentation":"<p>For load-based or time-based instances, the type. Windows stacks can use only time-based instances.</p>"
         },
         "Hostname":{
           "shape":"String",
@@ -4312,7 +4452,7 @@
         },
         "Os":{
           "shape":"String",
-          "documentation":"<p>The instance's operating system, which must be set to one of the following.</p> <ul> <li>Standard operating systems: An Amazon Linux version such as <code>Amazon Linux 2014.09</code>, <code>Ubuntu 12.04 LTS</code>, or <code>Ubuntu 14.04 LTS</code>.</li> <li>Custom AMIs: <code>Custom</code> </li> </ul> <p>The default option is the current Amazon Linux version, such as <code>Amazon Linux 2014.09</code>. If you set this parameter to <code>Custom</code>, you must use the <a>CreateInstance</a> action's AmiId parameter to specify the custom AMI that you want to use. For more information on the standard operating systems, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html\">Operating Systems</a>For more information on how to use custom AMIs with OpsWorks, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html\">Using Custom AMIs</a>.</p>"
+          "documentation":"<p>The instance's operating system, which must be set to one of the following.</p> <p>For Windows stacks: Microsoft Windows Server 2012 R2.</p> <p>For Linux stacks:</p> <ul> <li>Standard operating systems: an Amazon Linux version such as <code>Amazon Linux 2014.09</code>, <code>Ubuntu 12.04 LTS</code>, or <code>Ubuntu 14.04 LTS</code>.</li> <li>Custom AMIs: <code>Custom</code> </li> </ul> <p>The default option is the current Amazon Linux version. If you set this parameter to <code>Custom</code>, you must use the <a>CreateInstance</a> action's AmiId parameter to specify the custom AMI that you want to use. For more information on the standard operating systems, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html\">Operating Systems</a>For more information on how to use custom AMIs with OpsWorks, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html\">Using Custom AMIs</a>.</p>"
         },
         "AmiId":{
           "shape":"String",
@@ -4320,7 +4460,7 @@
         },
         "SshKeyName":{
           "shape":"String",
-          "documentation":"<p>The instance SSH key name.</p>"
+          "documentation":"<p>The instance's Amazon EC2 key name.</p>"
         },
         "Architecture":{
           "shape":"Architecture",
@@ -4350,7 +4490,7 @@
         },
         "Shortname":{
           "shape":"String",
-          "documentation":"<p>The layer short name, which is used internally by AWS OpsWorksand by Chef. The short name is also used as the name for the directory where your app files are installed. It can have a maximum of 200 characters and must be in the following format: /\\A[a-z0-9\\-\\_\\.]+\\Z/.</p>"
+          "documentation":"<p>For custom layers only, use this parameter to specify the layer's short name, which is used internally by AWS OpsWorksand by Chef. The short name is also used as the name for the directory where your app files are installed. It can have a maximum of 200 characters and must be in the following format: /\\A[a-z0-9\\-\\_\\.]+\\Z/.</p> <p>The built-in layers' short names are defined by AWS OpsWorks. For more information, see the <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/layers.html\">Layer Reference</a></p>"
         },
         "Attributes":{
           "shape":"LayerAttributes",
@@ -4455,11 +4595,11 @@
         },
         "DefaultOs":{
           "shape":"String",
-          "documentation":"<p>The stack's operating system, which must be set to one of the following.</p> <ul> <li>Standard operating systems: an Amazon Linux version such as <code>Amazon Linux 2014.09</code>, <code>Ubuntu 12.04 LTS</code>, or <code>Ubuntu 14.04 LTS</code>.</li> <li>Custom AMIs: <code>Custom</code>. You specify the custom AMI you want to use when you create instances.</li> </ul> <p> The default option is the current Amazon Linux version.</p>"
+          "documentation":"<p>The stack's operating system, which must be set to one of the following.</p> <ul> <li>Standard Linux operating systems: an Amazon Linux version such as <code>Amazon Linux 2014.09</code>, <code>Ubuntu 12.04 LTS</code>, or <code>Ubuntu 14.04 LTS</code>.</li> <li>Custom Linux AMIs: <code>Custom</code>. You specify the custom AMI you want to use when you create instances.</li> <li>Microsoft Windows Server 2012 R2.</li> </ul> <p> The default option is the current Amazon Linux version.</p>"
         },
         "HostnameTheme":{
           "shape":"String",
-          "documentation":"<p>The stack's new host name theme, with spaces are replaced by underscores. The theme is used to generate host names for the stack's instances. By default, <code>HostnameTheme</code> is set to <code>Layer_Dependent</code>, which creates host names by appending integers to the layer's short name. The other themes are:</p> <ul> <li><code>Baked_Goods</code></li> <li><code>Clouds</code></li> <li><code>European_Cities</code></li> <li><code>Fruits</code></li> <li><code>Greek_Deities</code></li> <li><code>Legendary_Creatures_from_Japan</code></li> <li><code>Planets_and_Moons</code></li> <li><code>Roman_Deities</code></li> <li><code>Scottish_Islands</code></li> <li><code>US_Cities</code></li> <li><code>Wild_Cats</code></li> </ul> <p>To obtain a generated host name, call <code>GetHostNameSuggestion</code>, which returns a host name based on the current theme.</p>"
+          "documentation":"<p>The stack's new host name theme, with spaces are replaced by underscores. The theme is used to generate host names for the stack's instances. By default, <code>HostnameTheme</code> is set to <code>Layer_Dependent</code>, which creates host names by appending integers to the layer's short name. The other themes are:</p> <ul> <li> <code>Baked_Goods</code> </li> <li> <code>Clouds</code> </li> <li> <code>Europe_Cities</code> </li> <li> <code>Fruits</code> </li> <li> <code>Greek_Deities</code> </li> <li> <code>Legendary_creatures_from_Japan</code> </li> <li> <code>Planets_and_Moons</code> </li> <li> <code>Roman_Deities</code> </li> <li> <code>Scottish_Islands</code> </li> <li> <code>US_Cities</code> </li> <li> <code>Wild_Cats</code> </li> </ul> <p>To obtain a generated host name, call <code>GetHostNameSuggestion</code>, which returns a host name based on the current theme.</p>"
         },
         "DefaultAvailabilityZone":{
           "shape":"String",
@@ -4471,7 +4611,7 @@
         },
         "CustomJson":{
           "shape":"String",
-          "documentation":"<p>A string that contains user-defined, custom JSON. It is used to override the corresponding default stack configuration JSON values. The string should be in the following format and must escape characters such as '\"'.:</p> <p><code>\"{\\\"key1\\\": \\\"value1\\\", \\\"key2\\\": \\\"value2\\\",...}\"</code></p> <p>For more information on custom JSON, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html\">Use Custom JSON to Modify the Stack Configuration JSON</a>.</p>"
+          "documentation":"<p>A string that contains user-defined, custom JSON. It can be used to override the corresponding default stack configuration JSON values or to pass data to recipes. The string should be in the following format and must escape characters such as '\"'.:</p> <p> <code>\"{\\\"key1\\\": \\\"value1\\\", \\\"key2\\\": \\\"value2\\\",...}\"</code> </p> <p>For more information on custom JSON, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html\">Use Custom JSON to Modify the Stack Configuration Attributes</a>.</p>"
         },
         "ConfigurationManager":{
           "shape":"StackConfigurationManager",
@@ -4488,7 +4628,7 @@
         "CustomCookbooksSource":{"shape":"Source"},
         "DefaultSshKeyName":{
           "shape":"String",
-          "documentation":"<p>A default SSH key for the stack instances. You can override this value when you create or update an instance.</p>"
+          "documentation":"<p>A default Amazon EC2 key pair name. The default value is none. If you specify a key pair name, AWS OpsWorks installs the public key on the instance and you can use the private key with an SSH client to log in to the instance. For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-ssh.html\"> Using SSH to Communicate with an Instance</a> and <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/security-ssh-access.html\"> Managing SSH Access</a>. You can override this setting by specifying a different key pair, or no key pair, when you <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-add.html\"> create an instance</a>. </p>"
         },
         "DefaultRootDeviceType":{
           "shape":"RootDeviceType",
@@ -4569,6 +4709,11 @@
     "UserProfiles":{
       "type":"list",
       "member":{"shape":"UserProfile"}
+    },
+    "ValidForInMinutes":{
+      "type":"integer",
+      "min":60,
+      "max":1440
     },
     "ValidationException":{
       "type":"structure",
@@ -4685,6 +4830,14 @@
       "type":"list",
       "member":{"shape":"VolumeConfiguration"}
     },
+    "VolumeType":{
+      "type":"string",
+      "enum":[
+        "gp2",
+        "io1",
+        "standard"
+      ]
+    },
     "Volumes":{
       "type":"list",
       "member":{"shape":"Volume"}
@@ -4721,7 +4874,7 @@
           "documentation":"<p>The schedule for Sunday.</p>"
         }
       },
-      "documentation":"<p>Describes a time-based instance's auto scaling schedule. The schedule consists of a set of key-value pairs.</p> <ul> <li>The key is the time period (a UTC hour) and must be an integer from 0 - 23.</li> <li>The value indicates whether the instance should be online or offline for the specified period, and must be set to \"on\" or \"off\"</li> </ul> <p>The default setting for all time periods is off, so you use the following parameters primarily to specify the online periods. You don't have to explicitly specify offline periods unless you want to change an online period to an offline period. </p> <p>The following example specifies that the instance should be online for four hours, from UTC 1200 - 1600. It will be off for the remainder of the day.</p> <p><code> { \"12\":\"on\", \"13\":\"on\", \"14\":\"on\", \"15\":\"on\" } </code></p>"
+      "documentation":"<p>Describes a time-based instance's auto scaling schedule. The schedule consists of a set of key-value pairs.</p> <ul> <li>The key is the time period (a UTC hour) and must be an integer from 0 - 23.</li> <li>The value indicates whether the instance should be online or offline for the specified period, and must be set to \"on\" or \"off\"</li> </ul> <p>The default setting for all time periods is off, so you use the following parameters primarily to specify the online periods. You don't have to explicitly specify offline periods unless you want to change an online period to an offline period. </p> <p>The following example specifies that the instance should be online for four hours, from UTC 1200 - 1600. It will be off for the remainder of the day.</p> <p> <code> { \"12\":\"on\", \"13\":\"on\", \"14\":\"on\", \"15\":\"on\" } </code> </p>"
     }
   }
 }

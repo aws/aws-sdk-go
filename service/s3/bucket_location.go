@@ -4,9 +4,9 @@ import (
 	"io/ioutil"
 	"regexp"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
-	"github.com/awslabs/aws-sdk-go/internal/apierr"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/internal/apierr"
 )
 
 var reBucketLocation = regexp.MustCompile(`>([^<>]+)<\/Location`)

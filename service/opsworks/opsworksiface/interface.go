@@ -4,7 +4,7 @@
 package opsworksiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/service/opsworks"
+	"github.com/aws/aws-sdk-go/service/opsworks"
 )
 
 // OpsWorksAPI is the interface type for opsworks.OpsWorks.
@@ -92,6 +92,8 @@ type OpsWorksAPI interface {
 	DisassociateElasticIP(*opsworks.DisassociateElasticIPInput) (*opsworks.DisassociateElasticIPOutput, error)
 
 	GetHostnameSuggestion(*opsworks.GetHostnameSuggestionInput) (*opsworks.GetHostnameSuggestionOutput, error)
+
+	GrantAccess(*opsworks.GrantAccessInput) (*opsworks.GrantAccessOutput, error)
 
 	RebootInstance(*opsworks.RebootInstanceInput) (*opsworks.RebootInstanceOutput, error)
 

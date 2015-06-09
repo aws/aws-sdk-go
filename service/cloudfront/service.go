@@ -3,9 +3,9 @@
 package cloudfront
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/restxml"
-	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/protocol/restxml"
+	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
 // CloudFront is a client for CloudFront.
@@ -21,10 +21,6 @@ var initRequest func(*aws.Request)
 
 // New returns a new CloudFront client.
 func New(config *aws.Config) *CloudFront {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "cloudfront",

@@ -1,22 +1,22 @@
 package jsonrpc_test
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/jsonrpc"
-	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
-
 	"bytes"
 	"encoding/json"
 	"encoding/xml"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/xml/xmlutil"
-	"github.com/awslabs/aws-sdk-go/internal/util"
-	"github.com/stretchr/testify/assert"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"testing"
 	"time"
+
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
+	"github.com/aws/aws-sdk-go/internal/protocol/xml/xmlutil"
+	"github.com/aws/aws-sdk-go/internal/signer/v4"
+	"github.com/aws/aws-sdk-go/internal/util"
+	"github.com/stretchr/testify/assert"
 )
 
 var _ bytes.Buffer // always import bytes
@@ -37,10 +37,6 @@ type InputService1ProtocolTest struct {
 
 // New returns a new InputService1ProtocolTest client.
 func NewInputService1ProtocolTest(config *aws.Config) *InputService1ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "inputservice1protocoltest",
@@ -121,10 +117,6 @@ type InputService2ProtocolTest struct {
 
 // New returns a new InputService2ProtocolTest client.
 func NewInputService2ProtocolTest(config *aws.Config) *InputService2ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "inputservice2protocoltest",
@@ -204,10 +196,6 @@ type InputService3ProtocolTest struct {
 
 // New returns a new InputService3ProtocolTest client.
 func NewInputService3ProtocolTest(config *aws.Config) *InputService3ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "inputservice3protocoltest",
@@ -308,7 +296,7 @@ type metadataInputService3TestShapeInputService3TestCaseOperation2Output struct 
 type InputService3TestShapeInputShape struct {
 	BlobArg []byte `type:"blob"`
 
-	BlobMap *map[string][]byte `type:"map"`
+	BlobMap map[string][]byte `type:"map"`
 
 	metadataInputService3TestShapeInputShape `json:"-" xml:"-"`
 }
@@ -324,10 +312,6 @@ type InputService4ProtocolTest struct {
 
 // New returns a new InputService4ProtocolTest client.
 func NewInputService4ProtocolTest(config *aws.Config) *InputService4ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "inputservice4protocoltest",
@@ -408,10 +392,6 @@ type InputService5ProtocolTest struct {
 
 // New returns a new InputService5ProtocolTest client.
 func NewInputService5ProtocolTest(config *aws.Config) *InputService5ProtocolTest {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "inputservice5protocoltest",
@@ -664,7 +644,7 @@ type InputService5TestShapeRecursiveStructType struct {
 
 	RecursiveList []*InputService5TestShapeRecursiveStructType `type:"list"`
 
-	RecursiveMap *map[string]*InputService5TestShapeRecursiveStructType `type:"map"`
+	RecursiveMap map[string]*InputService5TestShapeRecursiveStructType `type:"map"`
 
 	RecursiveStruct *InputService5TestShapeRecursiveStructType `type:"structure"`
 
@@ -768,7 +748,7 @@ func TestInputService3ProtocolTestBase64EncodedBlobsCase2(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := &InputService3TestShapeInputShape{
-		BlobMap: &map[string][]byte{
+		BlobMap: map[string][]byte{
 			"key1": []byte("foo"),
 			"key2": []byte("bar"),
 		},
@@ -930,10 +910,10 @@ func TestInputService5ProtocolTestRecursiveShapesCase4(t *testing.T) {
 	input := &InputService5TestShapeInputShape{
 		RecursiveStruct: &InputService5TestShapeRecursiveStructType{
 			RecursiveList: []*InputService5TestShapeRecursiveStructType{
-				&InputService5TestShapeRecursiveStructType{
+				{
 					NoRecurse: aws.String("foo"),
 				},
-				&InputService5TestShapeRecursiveStructType{
+				{
 					NoRecurse: aws.String("bar"),
 				},
 			},
@@ -967,10 +947,10 @@ func TestInputService5ProtocolTestRecursiveShapesCase5(t *testing.T) {
 	input := &InputService5TestShapeInputShape{
 		RecursiveStruct: &InputService5TestShapeRecursiveStructType{
 			RecursiveList: []*InputService5TestShapeRecursiveStructType{
-				&InputService5TestShapeRecursiveStructType{
+				{
 					NoRecurse: aws.String("foo"),
 				},
-				&InputService5TestShapeRecursiveStructType{
+				{
 					RecursiveStruct: &InputService5TestShapeRecursiveStructType{
 						NoRecurse: aws.String("bar"),
 					},
@@ -1005,11 +985,11 @@ func TestInputService5ProtocolTestRecursiveShapesCase6(t *testing.T) {
 
 	input := &InputService5TestShapeInputShape{
 		RecursiveStruct: &InputService5TestShapeRecursiveStructType{
-			RecursiveMap: &map[string]*InputService5TestShapeRecursiveStructType{
-				"bar": &InputService5TestShapeRecursiveStructType{
+			RecursiveMap: map[string]*InputService5TestShapeRecursiveStructType{
+				"bar": {
 					NoRecurse: aws.String("bar"),
 				},
-				"foo": &InputService5TestShapeRecursiveStructType{
+				"foo": {
 					NoRecurse: aws.String("foo"),
 				},
 			},

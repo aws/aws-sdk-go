@@ -3,8 +3,8 @@ package sts_test
 import (
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/service/sts"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/service/sts"
 	"github.com/stretchr/testify/assert"
 )
 

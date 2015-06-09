@@ -5,8 +5,8 @@ package ecsiface_test
 import (
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/service/ecs"
-	"github.com/awslabs/aws-sdk-go/service/ecs/ecsiface"
+	"github.com/aws/aws-sdk-go/service/ecs"
+	"github.com/aws/aws-sdk-go/service/ecs/ecsiface"
 	"github.com/stretchr/testify/assert"
 )
 

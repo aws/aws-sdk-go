@@ -3,9 +3,9 @@
 package datapipeline
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/jsonrpc"
-	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
+	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
 // DataPipeline is a client for AWS Data Pipeline.
@@ -21,10 +21,6 @@ var initRequest func(*aws.Request)
 
 // New returns a new DataPipeline client.
 func New(config *aws.Config) *DataPipeline {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "datapipeline",

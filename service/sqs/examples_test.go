@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
-	"github.com/awslabs/aws-sdk-go/service/sqs"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/service/sqs"
 )
 
 var _ time.Duration
@@ -86,7 +86,7 @@ func ExampleSQS_ChangeMessageVisibilityBatch() {
 
 	params := &sqs.ChangeMessageVisibilityBatchInput{
 		Entries: []*sqs.ChangeMessageVisibilityBatchRequestEntry{ // Required
-			&sqs.ChangeMessageVisibilityBatchRequestEntry{ // Required
+			{ // Required
 				ID:                aws.String("String"), // Required
 				ReceiptHandle:     aws.String("String"), // Required
 				VisibilityTimeout: aws.Long(1),
@@ -121,7 +121,7 @@ func ExampleSQS_CreateQueue() {
 
 	params := &sqs.CreateQueueInput{
 		QueueName: aws.String("String"), // Required
-		Attributes: &map[string]*string{
+		Attributes: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
 		},
@@ -180,7 +180,7 @@ func ExampleSQS_DeleteMessageBatch() {
 
 	params := &sqs.DeleteMessageBatchInput{
 		Entries: []*sqs.DeleteMessageBatchRequestEntry{ // Required
-			&sqs.DeleteMessageBatchRequestEntry{ // Required
+			{ // Required
 				ID:            aws.String("String"), // Required
 				ReceiptHandle: aws.String("String"), // Required
 			},
@@ -449,8 +449,8 @@ func ExampleSQS_SendMessage() {
 		MessageBody:  aws.String("String"), // Required
 		QueueURL:     aws.String("String"), // Required
 		DelaySeconds: aws.Long(1),
-		MessageAttributes: &map[string]*sqs.MessageAttributeValue{
-			"Key": &sqs.MessageAttributeValue{ // Required
+		MessageAttributes: map[string]*sqs.MessageAttributeValue{
+			"Key": { // Required
 				DataType: aws.String("String"), // Required
 				BinaryListValues: [][]byte{
 					[]byte("PAYLOAD"), // Required
@@ -492,12 +492,12 @@ func ExampleSQS_SendMessageBatch() {
 
 	params := &sqs.SendMessageBatchInput{
 		Entries: []*sqs.SendMessageBatchRequestEntry{ // Required
-			&sqs.SendMessageBatchRequestEntry{ // Required
+			{ // Required
 				ID:           aws.String("String"), // Required
 				MessageBody:  aws.String("String"), // Required
 				DelaySeconds: aws.Long(1),
-				MessageAttributes: &map[string]*sqs.MessageAttributeValue{
-					"Key": &sqs.MessageAttributeValue{ // Required
+				MessageAttributes: map[string]*sqs.MessageAttributeValue{
+					"Key": { // Required
 						DataType: aws.String("String"), // Required
 						BinaryListValues: [][]byte{
 							[]byte("PAYLOAD"), // Required
@@ -542,7 +542,7 @@ func ExampleSQS_SetQueueAttributes() {
 	svc := sqs.New(nil)
 
 	params := &sqs.SetQueueAttributesInput{
-		Attributes: &map[string]*string{ // Required
+		Attributes: map[string]*string{ // Required
 			"Key": aws.String("String"), // Required
 			// More values...
 		},

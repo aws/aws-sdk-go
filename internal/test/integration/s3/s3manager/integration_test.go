@@ -1,20 +1,21 @@
 // +build integration
 
+// Package s3manager provides
 package s3manager
 
 import (
 	"bytes"
 	"crypto/md5"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"testing"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/test/integration"
-	"github.com/awslabs/aws-sdk-go/service/s3"
-	"github.com/awslabs/aws-sdk-go/service/s3/s3manager"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/test/integration"
+	"github.com/aws/aws-sdk-go/service/s3"
+	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -74,22 +75,48 @@ func teardown() {
 	svc.DeleteBucket(&s3.DeleteBucketInput{Bucket: bucketName})
 }
 
+type dlwriter struct {
+	buf []byte
+}
+
+func newDLWriter(size int) *dlwriter {
+	return &dlwriter{buf: make([]byte, size)}
+}
+
+func (d dlwriter) WriteAt(p []byte, pos int64) (n int, err error) {
+	if pos > int64(len(d.buf)) {
+		return 0, io.EOF
+	}
+
+	written := 0
+	for i, b := range p {
+		if i >= len(d.buf) {
+			break
+		}
+		d.buf[pos+int64(i)] = b
+		written++
+	}
+	return written, nil
+}
+
 func validate(t *testing.T, key string, md5value string) {
-	svc := s3.New(nil)
-	resp, err := svc.GetObject(&s3.GetObjectInput{Bucket: bucketName, Key: &key})
+	mgr := s3manager.NewDownloader(nil)
+	params := &s3.GetObjectInput{Bucket: bucketName, Key: &key}
+
+	w := newDLWriter(1024 * 1024 * 20)
+	n, err := mgr.Download(w, params)
 	assert.NoError(t, err)
-	b, _ := ioutil.ReadAll(resp.Body)
-	assert.Equal(t, md5value, fmt.Sprintf("%x", md5.Sum(b)))
+	assert.Equal(t, md5value, fmt.Sprintf("%x", md5.Sum(w.buf[0:n])))
 }
 
 func TestUploadConcurrently(t *testing.T) {
-	svc := s3.New(nil)
 	key := "12mb-1"
-	out, err := s3manager.Upload(svc, &s3manager.UploadInput{
+	mgr := s3manager.NewUploader(nil)
+	out, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: bucketName,
 		Key:    &key,
 		Body:   bytes.NewReader(integBuf12MB),
-	}, nil)
+	})
 
 	assert.NoError(t, err)
 	assert.NotEqual(t, "", out.UploadID)
@@ -113,12 +140,14 @@ func TestUploadFailCleanup(t *testing.T) {
 	})
 
 	key := "12mb-leave"
-	_, err := s3manager.Upload(svc, &s3manager.UploadInput{
+	mgr := s3manager.NewUploader(&s3manager.UploadOptions{
+		S3:                svc,
+		LeavePartsOnError: false,
+	})
+	_, err := mgr.Upload(&s3manager.UploadInput{
 		Bucket: bucketName,
 		Key:    &key,
 		Body:   bytes.NewReader(integBuf12MB),
-	}, &s3manager.UploadOptions{
-		LeavePartsOnError: false,
 	})
 	assert.Error(t, err)
 	uploadID := ""

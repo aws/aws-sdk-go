@@ -55,7 +55,7 @@
           "documentation":"<p> The next token specified is invalid. </p>"
         }
       ],
-      "documentation":"<p> Retrieves history for the specified alarm. Filter alarms by date range or item type. If an alarm name is not specified, Amazon CloudWatch returns histories for all of the owner's alarms. </p>"
+      "documentation":"<p> Retrieves history for the specified alarm. Filter alarms by date range or item type. If an alarm name is not specified, Amazon CloudWatch returns histories for all of the owner's alarms. </p> <note> Amazon CloudWatch retains the history of an alarm for two weeks, whether or not you delete the alarm. </note>"
     },
     "DescribeAlarms":{
       "name":"DescribeAlarms",
@@ -212,7 +212,7 @@
           "documentation":"<p> Bad or out-of-range value was supplied for the input parameter. </p>"
         }
       ],
-      "documentation":"<p> Returns a list of valid metrics stored for the AWS account owner. Returned metrics can be used with <a>GetMetricStatistics</a> to obtain statistical data for a given metric. </p>"
+      "documentation":"<p> Returns a list of valid metrics stored for the AWS account owner. Returned metrics can be used with <a>GetMetricStatistics</a> to obtain statistical data for a given metric. </p> <note> Up to 500 results are returned for any one call. To retrieve further results, use returned <code>NextToken</code> values with subsequent <code>ListMetrics</code> operations. </note> <note> If you create a metric with the <a>PutMetricData</a> action, allow up to fifteen minutes for the metric to appear in calls to the <code>ListMetrics</code> action. Statistics about the metric, however, are available sooner using <a>GetMetricStatistics</a>. </note>"
     },
     "PutMetricAlarm":{
       "name":"PutMetricAlarm",
@@ -233,7 +233,7 @@
           "documentation":"<p> The quota for alarms for this customer has already been reached. </p>"
         }
       ],
-      "documentation":"<p> Creates or updates an alarm and associates it with the specified Amazon CloudWatch metric. Optionally, this operation can associate one or more Amazon Simple Notification Service resources with the alarm. </p> <p> When this operation creates an alarm, the alarm state is immediately set to <code>INSUFFICIENT_DATA</code>. The alarm is evaluated and its <code>StateValue</code> is set appropriately. Any actions associated with the <code>StateValue</code> is then executed. </p>"
+      "documentation":"<p> Creates or updates an alarm and associates it with the specified Amazon CloudWatch metric. Optionally, this operation can associate one or more Amazon Simple Notification Service resources with the alarm. </p> <p> When this operation creates an alarm, the alarm state is immediately set to <code>INSUFFICIENT_DATA</code>. The alarm is evaluated and its <code>StateValue</code> is set appropriately. Any actions associated with the <code>StateValue</code> is then executed. </p> <note> When updating an existing alarm, its <code>StateValue</code> is left unchanged. </note>"
     },
     "PutMetricData":{
       "name":"PutMetricData",
@@ -609,7 +609,7 @@
         },
         "Value":{
           "shape":"DimensionValue",
-          "documentation":"<p> The value of the dimension to be matched. </p>"
+          "documentation":"<p> The value of the dimension to be matched. </p> <note> Specifying a <code>Name</code> without specifying a <code>Value</code> returns all values associated with that <code>Name</code>. </note>"
         }
       },
       "documentation":"<p> The <code>DimensionFilter</code> data type is used to filter <a>ListMetrics</a> results. </p>"
@@ -690,7 +690,7 @@
         },
         "StartTime":{
           "shape":"Timestamp",
-          "documentation":"<p> The time stamp to use for determining the first datapoint to return. The value specified is inclusive; results include datapoints with the time stamp specified. </p>"
+          "documentation":"<p> The time stamp to use for determining the first datapoint to return. The value specified is inclusive; results include datapoints with the time stamp specified. </p> <note> The specified start time is rounded down to the nearest value. Datapoints are returned for start times up to two weeks in the past. Specified start times that are more than two weeks in the past will not return datapoints for metrics that are older than two weeks. <p>Data that is timestamped 24 hours or more in the past may take in excess of 48 hours to become available from submission time using <code>GetMetricStatistics</code>.</p> </note>"
         },
         "EndTime":{
           "shape":"Timestamp",
@@ -1178,7 +1178,7 @@
       "members":{
         "Namespace":{
           "shape":"Namespace",
-          "documentation":"<p> The namespace for the metric data. </p>"
+          "documentation":"<p> The namespace for the metric data. </p> <note> You cannot specify a namespace that begins with \"AWS/\". Namespaces that begin with \"AWS/\" are reserved for other Amazon Web Services products that send metrics to Amazon CloudWatch. </note>"
         },
         "MetricData":{
           "shape":"MetricData",

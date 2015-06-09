@@ -1,5 +1,6 @@
 // +build integration
 
+// Package s3_test runs integration tests for S3
 package s3_test
 
 import (
@@ -11,9 +12,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/test/integration"
-	"github.com/awslabs/aws-sdk-go/service/s3"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/test/integration"
+	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/stretchr/testify/assert"
 )
 

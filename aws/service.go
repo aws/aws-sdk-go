@@ -8,8 +8,8 @@ import (
 	"regexp"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/internal/endpoints"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/internal/endpoints"
 )
 
 // A Service implements the base service request and response handling
@@ -136,17 +136,18 @@ func retryRules(r *Request) time.Duration {
 // retryableCodes is a collection of service response codes which are retry-able
 // without any further action.
 var retryableCodes = map[string]struct{}{
-	"ProvisionedThroughputExceededException": struct{}{},
-	"Throttling":                             struct{}{},
+	"RequestError":                           {},
+	"ProvisionedThroughputExceededException": {},
+	"Throttling":                             {},
 }
 
 // credsExpiredCodes is a collection of error codes which signify the credentials
 // need to be refreshed. Expired tokens require refreshing of credentials, and
 // resigning before the request can be retried.
 var credsExpiredCodes = map[string]struct{}{
-	"ExpiredToken":          struct{}{},
-	"ExpiredTokenException": struct{}{},
-	"RequestExpired":        struct{}{}, // EC2 Only
+	"ExpiredToken":          {},
+	"ExpiredTokenException": {},
+	"RequestExpired":        {}, // EC2 Only
 }
 
 func isCodeRetryable(code string) bool {

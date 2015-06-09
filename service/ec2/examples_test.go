@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
-	"github.com/awslabs/aws-sdk-go/service/ec2"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/service/ec2"
 )
 
 var _ time.Duration
@@ -356,18 +356,24 @@ func ExampleEC2_AuthorizeSecurityGroupEgress() {
 		DryRun:   aws.Boolean(true),
 		FromPort: aws.Long(1),
 		IPPermissions: []*ec2.IPPermission{
-			&ec2.IPPermission{ // Required
+			{ // Required
 				FromPort:   aws.Long(1),
 				IPProtocol: aws.String("String"),
 				IPRanges: []*ec2.IPRange{
-					&ec2.IPRange{ // Required
+					{ // Required
 						CIDRIP: aws.String("String"),
+					},
+					// More values...
+				},
+				PrefixListIDs: []*ec2.PrefixListID{
+					{ // Required
+						PrefixListID: aws.String("String"),
 					},
 					// More values...
 				},
 				ToPort: aws.Long(1),
 				UserIDGroupPairs: []*ec2.UserIDGroupPair{
-					&ec2.UserIDGroupPair{ // Required
+					{ // Required
 						GroupID:   aws.String("String"),
 						GroupName: aws.String("String"),
 						UserID:    aws.String("String"),
@@ -413,18 +419,24 @@ func ExampleEC2_AuthorizeSecurityGroupIngress() {
 		GroupID:   aws.String("String"),
 		GroupName: aws.String("String"),
 		IPPermissions: []*ec2.IPPermission{
-			&ec2.IPPermission{ // Required
+			{ // Required
 				FromPort:   aws.Long(1),
 				IPProtocol: aws.String("String"),
 				IPRanges: []*ec2.IPRange{
-					&ec2.IPRange{ // Required
+					{ // Required
 						CIDRIP: aws.String("String"),
+					},
+					// More values...
+				},
+				PrefixListIDs: []*ec2.PrefixListID{
+					{ // Required
+						PrefixListID: aws.String("String"),
 					},
 					// More values...
 				},
 				ToPort: aws.Long(1),
 				UserIDGroupPairs: []*ec2.UserIDGroupPair{
-					&ec2.UserIDGroupPair{ // Required
+					{ // Required
 						GroupID:   aws.String("String"),
 						GroupName: aws.String("String"),
 						UserID:    aws.String("String"),
@@ -637,6 +649,38 @@ func ExampleEC2_CancelReservedInstancesListing() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleEC2_CancelSpotFleetRequests() {
+	svc := ec2.New(nil)
+
+	params := &ec2.CancelSpotFleetRequestsInput{
+		SpotFleetRequestIDs: []*string{ // Required
+			aws.String("String"), // Required
+			// More values...
+		},
+		TerminateInstances: aws.Boolean(true), // Required
+		DryRun:             aws.Boolean(true),
+	}
+	resp, err := svc.CancelSpotFleetRequests(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleEC2_CancelSpotInstanceRequests() {
 	svc := ec2.New(nil)
 
@@ -796,7 +840,7 @@ func ExampleEC2_CreateDHCPOptions() {
 
 	params := &ec2.CreateDHCPOptionsInput{
 		DHCPConfigurations: []*ec2.NewDHCPConfiguration{ // Required
-			&ec2.NewDHCPConfiguration{ // Required
+			{ // Required
 				Key: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -835,7 +879,7 @@ func ExampleEC2_CreateImage() {
 		InstanceID: aws.String("String"), // Required
 		Name:       aws.String("String"), // Required
 		BlockDeviceMappings: []*ec2.BlockDeviceMapping{
-			&ec2.BlockDeviceMapping{ // Required
+			{ // Required
 				DeviceName: aws.String("String"),
 				EBS: &ec2.EBSBlockDevice{
 					DeleteOnTermination: aws.Boolean(true),
@@ -1047,7 +1091,7 @@ func ExampleEC2_CreateNetworkInterface() {
 		},
 		PrivateIPAddress: aws.String("String"),
 		PrivateIPAddresses: []*ec2.PrivateIPAddressSpecification{
-			&ec2.PrivateIPAddressSpecification{ // Required
+			{ // Required
 				PrivateIPAddress: aws.String("String"), // Required
 				Primary:          aws.Boolean(true),
 			},
@@ -1112,7 +1156,7 @@ func ExampleEC2_CreateReservedInstancesListing() {
 		ClientToken:   aws.String("String"), // Required
 		InstanceCount: aws.Long(1),          // Required
 		PriceSchedules: []*ec2.PriceScheduleSpecification{ // Required
-			&ec2.PriceScheduleSpecification{ // Required
+			{ // Required
 				CurrencyCode: aws.String("CurrencyCodeValues"),
 				Price:        aws.Double(1.0),
 				Term:         aws.Long(1),
@@ -1148,6 +1192,7 @@ func ExampleEC2_CreateRoute() {
 	params := &ec2.CreateRouteInput{
 		DestinationCIDRBlock:   aws.String("String"), // Required
 		RouteTableID:           aws.String("String"), // Required
+		ClientToken:            aws.String("String"),
 		DryRun:                 aws.Boolean(true),
 		GatewayID:              aws.String("String"),
 		InstanceID:             aws.String("String"),
@@ -1330,7 +1375,7 @@ func ExampleEC2_CreateTags() {
 			// More values...
 		},
 		Tags: []*ec2.Tag{ // Required
-			&ec2.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -1368,6 +1413,41 @@ func ExampleEC2_CreateVPC() {
 		InstanceTenancy: aws.String("Tenancy"),
 	}
 	resp, err := svc.CreateVPC(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleEC2_CreateVPCEndpoint() {
+	svc := ec2.New(nil)
+
+	params := &ec2.CreateVPCEndpointInput{
+		ServiceName:    aws.String("String"), // Required
+		VPCID:          aws.String("String"), // Required
+		ClientToken:    aws.String("String"),
+		DryRun:         aws.Boolean(true),
+		PolicyDocument: aws.String("String"),
+		RouteTableIDs: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.CreateVPCEndpoint(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -1947,7 +2027,7 @@ func ExampleEC2_DeleteTags() {
 		},
 		DryRun: aws.Boolean(true),
 		Tags: []*ec2.Tag{
-			&ec2.Tag{ // Required
+			{ // Required
 				Key:   aws.String("String"),
 				Value: aws.String("String"),
 			},
@@ -1983,6 +2063,37 @@ func ExampleEC2_DeleteVPC() {
 		DryRun: aws.Boolean(true),
 	}
 	resp, err := svc.DeleteVPC(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleEC2_DeleteVPCEndpoints() {
+	svc := ec2.New(nil)
+
+	params := &ec2.DeleteVPCEndpointsInput{
+		VPCEndpointIDs: []*string{ // Required
+			aws.String("String"), // Required
+			// More values...
+		},
+		DryRun: aws.Boolean(true),
+	}
+	resp, err := svc.DeleteVPCEndpoints(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -2212,7 +2323,7 @@ func ExampleEC2_DescribeAddresses() {
 		},
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2253,7 +2364,7 @@ func ExampleEC2_DescribeAvailabilityZones() {
 	params := &ec2.DescribeAvailabilityZonesInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2298,7 +2409,7 @@ func ExampleEC2_DescribeBundleTasks() {
 		},
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2335,7 +2446,7 @@ func ExampleEC2_DescribeClassicLinkInstances() {
 	params := &ec2.DescribeClassicLinkInstancesInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2382,7 +2493,7 @@ func ExampleEC2_DescribeConversionTasks() {
 		},
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2423,7 +2534,7 @@ func ExampleEC2_DescribeCustomerGateways() {
 		},
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2464,7 +2575,7 @@ func ExampleEC2_DescribeDHCPOptions() {
 		},
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2564,7 +2675,7 @@ func ExampleEC2_DescribeImages() {
 			// More values...
 		},
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2609,7 +2720,7 @@ func ExampleEC2_DescribeImportImageTasks() {
 	params := &ec2.DescribeImportImageTasksInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2652,7 +2763,7 @@ func ExampleEC2_DescribeImportSnapshotTasks() {
 	params := &ec2.DescribeImportSnapshotTasksInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2724,7 +2835,7 @@ func ExampleEC2_DescribeInstanceStatus() {
 	params := &ec2.DescribeInstanceStatusInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2768,7 +2879,7 @@ func ExampleEC2_DescribeInstances() {
 	params := &ec2.DescribeInstancesInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2811,7 +2922,7 @@ func ExampleEC2_DescribeInternetGateways() {
 	params := &ec2.DescribeInternetGatewaysInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2852,7 +2963,7 @@ func ExampleEC2_DescribeKeyPairs() {
 	params := &ec2.DescribeKeyPairsInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2887,13 +2998,56 @@ func ExampleEC2_DescribeKeyPairs() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleEC2_DescribeMovingAddresses() {
+	svc := ec2.New(nil)
+
+	params := &ec2.DescribeMovingAddressesInput{
+		DryRun: aws.Boolean(true),
+		Filters: []*ec2.Filter{
+			{ // Required
+				Name: aws.String("String"),
+				Values: []*string{
+					aws.String("String"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		MaxResults: aws.Long(1),
+		NextToken:  aws.String("String"),
+		PublicIPs: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.DescribeMovingAddresses(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleEC2_DescribeNetworkACLs() {
 	svc := ec2.New(nil)
 
 	params := &ec2.DescribeNetworkACLsInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -2963,7 +3117,7 @@ func ExampleEC2_DescribeNetworkInterfaces() {
 	params := &ec2.DescribeNetworkInterfacesInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3004,7 +3158,7 @@ func ExampleEC2_DescribePlacementGroups() {
 	params := &ec2.DescribePlacementGroupsInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3039,13 +3193,56 @@ func ExampleEC2_DescribePlacementGroups() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleEC2_DescribePrefixLists() {
+	svc := ec2.New(nil)
+
+	params := &ec2.DescribePrefixListsInput{
+		DryRun: aws.Boolean(true),
+		Filters: []*ec2.Filter{
+			{ // Required
+				Name: aws.String("String"),
+				Values: []*string{
+					aws.String("String"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		MaxResults: aws.Long(1),
+		NextToken:  aws.String("String"),
+		PrefixListIDs: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.DescribePrefixLists(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleEC2_DescribeRegions() {
 	svc := ec2.New(nil)
 
 	params := &ec2.DescribeRegionsInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3086,7 +3283,7 @@ func ExampleEC2_DescribeReservedInstances() {
 	params := &ec2.DescribeReservedInstancesInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3127,7 +3324,7 @@ func ExampleEC2_DescribeReservedInstancesListings() {
 
 	params := &ec2.DescribeReservedInstancesListingsInput{
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3165,7 +3362,7 @@ func ExampleEC2_DescribeReservedInstancesModifications() {
 
 	params := &ec2.DescribeReservedInstancesModificationsInput{
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3208,7 +3405,7 @@ func ExampleEC2_DescribeReservedInstancesOfferings() {
 		AvailabilityZone: aws.String("String"),
 		DryRun:           aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3259,7 +3456,7 @@ func ExampleEC2_DescribeRouteTables() {
 	params := &ec2.DescribeRouteTablesInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3300,7 +3497,7 @@ func ExampleEC2_DescribeSecurityGroups() {
 	params := &ec2.DescribeSecurityGroupsInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3374,7 +3571,7 @@ func ExampleEC2_DescribeSnapshots() {
 	params := &ec2.DescribeSnapshotsInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3446,13 +3643,108 @@ func ExampleEC2_DescribeSpotDatafeedSubscription() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleEC2_DescribeSpotFleetInstances() {
+	svc := ec2.New(nil)
+
+	params := &ec2.DescribeSpotFleetInstancesInput{
+		SpotFleetRequestID: aws.String("String"), // Required
+		DryRun:             aws.Boolean(true),
+		MaxResults:         aws.Long(1),
+		NextToken:          aws.String("String"),
+	}
+	resp, err := svc.DescribeSpotFleetInstances(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleEC2_DescribeSpotFleetRequestHistory() {
+	svc := ec2.New(nil)
+
+	params := &ec2.DescribeSpotFleetRequestHistoryInput{
+		SpotFleetRequestID: aws.String("String"), // Required
+		StartTime:          aws.Time(time.Now()), // Required
+		DryRun:             aws.Boolean(true),
+		EventType:          aws.String("EventType"),
+		MaxResults:         aws.Long(1),
+		NextToken:          aws.String("String"),
+	}
+	resp, err := svc.DescribeSpotFleetRequestHistory(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleEC2_DescribeSpotFleetRequests() {
+	svc := ec2.New(nil)
+
+	params := &ec2.DescribeSpotFleetRequestsInput{
+		DryRun:     aws.Boolean(true),
+		MaxResults: aws.Long(1),
+		NextToken:  aws.String("String"),
+		SpotFleetRequestIDs: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.DescribeSpotFleetRequests(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleEC2_DescribeSpotInstanceRequests() {
 	svc := ec2.New(nil)
 
 	params := &ec2.DescribeSpotInstanceRequestsInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3495,7 +3787,7 @@ func ExampleEC2_DescribeSpotPriceHistory() {
 		DryRun:           aws.Boolean(true),
 		EndTime:          aws.Time(time.Now()),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3543,7 +3835,7 @@ func ExampleEC2_DescribeSubnets() {
 	params := &ec2.DescribeSubnetsInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3584,7 +3876,7 @@ func ExampleEC2_DescribeTags() {
 	params := &ec2.DescribeTagsInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3652,7 +3944,7 @@ func ExampleEC2_DescribeVPCClassicLink() {
 	params := &ec2.DescribeVPCClassicLinkInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3687,13 +3979,85 @@ func ExampleEC2_DescribeVPCClassicLink() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleEC2_DescribeVPCEndpointServices() {
+	svc := ec2.New(nil)
+
+	params := &ec2.DescribeVPCEndpointServicesInput{
+		DryRun:     aws.Boolean(true),
+		MaxResults: aws.Long(1),
+		NextToken:  aws.String("String"),
+	}
+	resp, err := svc.DescribeVPCEndpointServices(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleEC2_DescribeVPCEndpoints() {
+	svc := ec2.New(nil)
+
+	params := &ec2.DescribeVPCEndpointsInput{
+		DryRun: aws.Boolean(true),
+		Filters: []*ec2.Filter{
+			{ // Required
+				Name: aws.String("String"),
+				Values: []*string{
+					aws.String("String"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		MaxResults: aws.Long(1),
+		NextToken:  aws.String("String"),
+		VPCEndpointIDs: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.DescribeVPCEndpoints(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleEC2_DescribeVPCPeeringConnections() {
 	svc := ec2.New(nil)
 
 	params := &ec2.DescribeVPCPeeringConnectionsInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3734,7 +4098,7 @@ func ExampleEC2_DescribeVPCs() {
 	params := &ec2.DescribeVPCsInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3775,7 +4139,7 @@ func ExampleEC2_DescribeVPNConnections() {
 	params := &ec2.DescribeVPNConnectionsInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3816,7 +4180,7 @@ func ExampleEC2_DescribeVPNGateways() {
 	params := &ec2.DescribeVPNGatewaysInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3886,7 +4250,7 @@ func ExampleEC2_DescribeVolumeStatus() {
 	params := &ec2.DescribeVolumeStatusInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -3929,7 +4293,7 @@ func ExampleEC2_DescribeVolumes() {
 	params := &ec2.DescribeVolumesInput{
 		DryRun: aws.Boolean(true),
 		Filters: []*ec2.Filter{
-			&ec2.Filter{ // Required
+			{ // Required
 				Name: aws.String("String"),
 				Values: []*string{
 					aws.String("String"), // Required
@@ -4380,7 +4744,7 @@ func ExampleEC2_ImportImage() {
 		ClientToken: aws.String("String"),
 		Description: aws.String("String"),
 		DiskContainers: []*ec2.ImageDiskContainer{
-			&ec2.ImageDiskContainer{ // Required
+			{ // Required
 				Description: aws.String("String"),
 				DeviceName:  aws.String("String"),
 				Format:      aws.String("String"),
@@ -4427,7 +4791,7 @@ func ExampleEC2_ImportInstance() {
 		Platform:    aws.String("PlatformValues"), // Required
 		Description: aws.String("String"),
 		DiskImages: []*ec2.DiskImage{
-			&ec2.DiskImage{ // Required
+			{ // Required
 				Description: aws.String("String"),
 				Image: &ec2.DiskImageDetail{
 					Bytes:             aws.Long(1),                   // Required
@@ -4611,14 +4975,14 @@ func ExampleEC2_ModifyImageAttribute() {
 		DryRun: aws.Boolean(true),
 		LaunchPermission: &ec2.LaunchPermissionModifications{
 			Add: []*ec2.LaunchPermission{
-				&ec2.LaunchPermission{ // Required
+				{ // Required
 					Group:  aws.String("PermissionGroup"),
 					UserID: aws.String("String"),
 				},
 				// More values...
 			},
 			Remove: []*ec2.LaunchPermission{
-				&ec2.LaunchPermission{ // Required
+				{ // Required
 					Group:  aws.String("PermissionGroup"),
 					UserID: aws.String("String"),
 				},
@@ -4668,7 +5032,7 @@ func ExampleEC2_ModifyInstanceAttribute() {
 		InstanceID: aws.String("String"), // Required
 		Attribute:  aws.String("InstanceAttributeName"),
 		BlockDeviceMappings: []*ec2.InstanceBlockDeviceMappingSpecification{
-			&ec2.InstanceBlockDeviceMappingSpecification{ // Required
+			{ // Required
 				DeviceName: aws.String("String"),
 				EBS: &ec2.EBSInstanceBlockDeviceSpecification{
 					DeleteOnTermination: aws.Boolean(true),
@@ -4785,7 +5149,7 @@ func ExampleEC2_ModifyReservedInstances() {
 			// More values...
 		},
 		TargetConfigurations: []*ec2.ReservedInstancesConfiguration{ // Required
-			&ec2.ReservedInstancesConfiguration{ // Required
+			{ // Required
 				AvailabilityZone: aws.String("String"),
 				InstanceCount:    aws.Long(1),
 				InstanceType:     aws.String("InstanceType"),
@@ -4824,14 +5188,14 @@ func ExampleEC2_ModifySnapshotAttribute() {
 		Attribute:  aws.String("SnapshotAttributeName"),
 		CreateVolumePermission: &ec2.CreateVolumePermissionModifications{
 			Add: []*ec2.CreateVolumePermission{
-				&ec2.CreateVolumePermission{ // Required
+				{ // Required
 					Group:  aws.String("PermissionGroup"),
 					UserID: aws.String("String"),
 				},
 				// More values...
 			},
 			Remove: []*ec2.CreateVolumePermission{
-				&ec2.CreateVolumePermission{ // Required
+				{ // Required
 					Group:  aws.String("PermissionGroup"),
 					UserID: aws.String("String"),
 				},
@@ -4933,6 +5297,44 @@ func ExampleEC2_ModifyVPCAttribute() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleEC2_ModifyVPCEndpoint() {
+	svc := ec2.New(nil)
+
+	params := &ec2.ModifyVPCEndpointInput{
+		VPCEndpointID: aws.String("String"), // Required
+		AddRouteTableIDs: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+		DryRun:         aws.Boolean(true),
+		PolicyDocument: aws.String("String"),
+		RemoveRouteTableIDs: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+		ResetPolicy: aws.Boolean(true),
+	}
+	resp, err := svc.ModifyVPCEndpoint(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleEC2_ModifyVolumeAttribute() {
 	svc := ec2.New(nil)
 
@@ -4975,6 +5377,34 @@ func ExampleEC2_MonitorInstances() {
 		DryRun: aws.Boolean(true),
 	}
 	resp, err := svc.MonitorInstances(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleEC2_MoveAddressToVPC() {
+	svc := ec2.New(nil)
+
+	params := &ec2.MoveAddressToVPCInput{
+		PublicIP: aws.String("String"), // Required
+		DryRun:   aws.Boolean(true),
+	}
+	resp, err := svc.MoveAddressToVPC(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -5066,7 +5496,7 @@ func ExampleEC2_RegisterImage() {
 		Name:         aws.String("String"), // Required
 		Architecture: aws.String("ArchitectureValues"),
 		BlockDeviceMappings: []*ec2.BlockDeviceMapping{
-			&ec2.BlockDeviceMapping{ // Required
+			{ // Required
 				DeviceName: aws.String("String"),
 				EBS: &ec2.EBSBlockDevice{
 					DeleteOnTermination: aws.Boolean(true),
@@ -5339,19 +5769,128 @@ func ExampleEC2_ReportInstanceStatus() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleEC2_RequestSpotFleet() {
+	svc := ec2.New(nil)
+
+	params := &ec2.RequestSpotFleetInput{
+		SpotFleetRequestConfig: &ec2.SpotFleetRequestConfigData{ // Required
+			IAMFleetRole: aws.String("String"), // Required
+			LaunchSpecifications: []*ec2.LaunchSpecification{ // Required
+				{ // Required
+					AddressingType: aws.String("String"),
+					BlockDeviceMappings: []*ec2.BlockDeviceMapping{
+						{ // Required
+							DeviceName: aws.String("String"),
+							EBS: &ec2.EBSBlockDevice{
+								DeleteOnTermination: aws.Boolean(true),
+								Encrypted:           aws.Boolean(true),
+								IOPS:                aws.Long(1),
+								SnapshotID:          aws.String("String"),
+								VolumeSize:          aws.Long(1),
+								VolumeType:          aws.String("VolumeType"),
+							},
+							NoDevice:    aws.String("String"),
+							VirtualName: aws.String("String"),
+						},
+						// More values...
+					},
+					EBSOptimized: aws.Boolean(true),
+					IAMInstanceProfile: &ec2.IAMInstanceProfileSpecification{
+						ARN:  aws.String("String"),
+						Name: aws.String("String"),
+					},
+					ImageID:      aws.String("String"),
+					InstanceType: aws.String("InstanceType"),
+					KernelID:     aws.String("String"),
+					KeyName:      aws.String("String"),
+					Monitoring: &ec2.RunInstancesMonitoringEnabled{
+						Enabled: aws.Boolean(true), // Required
+					},
+					NetworkInterfaces: []*ec2.InstanceNetworkInterfaceSpecification{
+						{ // Required
+							AssociatePublicIPAddress: aws.Boolean(true),
+							DeleteOnTermination:      aws.Boolean(true),
+							Description:              aws.String("String"),
+							DeviceIndex:              aws.Long(1),
+							Groups: []*string{
+								aws.String("String"), // Required
+								// More values...
+							},
+							NetworkInterfaceID: aws.String("String"),
+							PrivateIPAddress:   aws.String("String"),
+							PrivateIPAddresses: []*ec2.PrivateIPAddressSpecification{
+								{ // Required
+									PrivateIPAddress: aws.String("String"), // Required
+									Primary:          aws.Boolean(true),
+								},
+								// More values...
+							},
+							SecondaryPrivateIPAddressCount: aws.Long(1),
+							SubnetID:                       aws.String("String"),
+						},
+						// More values...
+					},
+					Placement: &ec2.SpotPlacement{
+						AvailabilityZone: aws.String("String"),
+						GroupName:        aws.String("String"),
+					},
+					RAMDiskID: aws.String("String"),
+					SecurityGroups: []*ec2.GroupIdentifier{
+						{ // Required
+							GroupID:   aws.String("String"),
+							GroupName: aws.String("String"),
+						},
+						// More values...
+					},
+					SubnetID: aws.String("String"),
+					UserData: aws.String("String"),
+				},
+				// More values...
+			},
+			SpotPrice:                        aws.String("String"), // Required
+			TargetCapacity:                   aws.Long(1),          // Required
+			ClientToken:                      aws.String("String"),
+			TerminateInstancesWithExpiration: aws.Boolean(true),
+			ValidFrom:                        aws.Time(time.Now()),
+			ValidUntil:                       aws.Time(time.Now()),
+		},
+		DryRun: aws.Boolean(true),
+	}
+	resp, err := svc.RequestSpotFleet(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleEC2_RequestSpotInstances() {
 	svc := ec2.New(nil)
 
 	params := &ec2.RequestSpotInstancesInput{
 		SpotPrice:             aws.String("String"), // Required
 		AvailabilityZoneGroup: aws.String("String"),
+		ClientToken:           aws.String("String"),
 		DryRun:                aws.Boolean(true),
 		InstanceCount:         aws.Long(1),
 		LaunchGroup:           aws.String("String"),
 		LaunchSpecification: &ec2.RequestSpotLaunchSpecification{
 			AddressingType: aws.String("String"),
 			BlockDeviceMappings: []*ec2.BlockDeviceMapping{
-				&ec2.BlockDeviceMapping{ // Required
+				{ // Required
 					DeviceName: aws.String("String"),
 					EBS: &ec2.EBSBlockDevice{
 						DeleteOnTermination: aws.Boolean(true),
@@ -5379,7 +5918,7 @@ func ExampleEC2_RequestSpotInstances() {
 				Enabled: aws.Boolean(true), // Required
 			},
 			NetworkInterfaces: []*ec2.InstanceNetworkInterfaceSpecification{
-				&ec2.InstanceNetworkInterfaceSpecification{ // Required
+				{ // Required
 					AssociatePublicIPAddress: aws.Boolean(true),
 					DeleteOnTermination:      aws.Boolean(true),
 					Description:              aws.String("String"),
@@ -5391,7 +5930,7 @@ func ExampleEC2_RequestSpotInstances() {
 					NetworkInterfaceID: aws.String("String"),
 					PrivateIPAddress:   aws.String("String"),
 					PrivateIPAddresses: []*ec2.PrivateIPAddressSpecification{
-						&ec2.PrivateIPAddressSpecification{ // Required
+						{ // Required
 							PrivateIPAddress: aws.String("String"), // Required
 							Primary:          aws.Boolean(true),
 						},
@@ -5559,6 +6098,34 @@ func ExampleEC2_ResetSnapshotAttribute() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleEC2_RestoreAddressToClassic() {
+	svc := ec2.New(nil)
+
+	params := &ec2.RestoreAddressToClassicInput{
+		PublicIP: aws.String("String"), // Required
+		DryRun:   aws.Boolean(true),
+	}
+	resp, err := svc.RestoreAddressToClassic(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleEC2_RevokeSecurityGroupEgress() {
 	svc := ec2.New(nil)
 
@@ -5568,18 +6135,24 @@ func ExampleEC2_RevokeSecurityGroupEgress() {
 		DryRun:   aws.Boolean(true),
 		FromPort: aws.Long(1),
 		IPPermissions: []*ec2.IPPermission{
-			&ec2.IPPermission{ // Required
+			{ // Required
 				FromPort:   aws.Long(1),
 				IPProtocol: aws.String("String"),
 				IPRanges: []*ec2.IPRange{
-					&ec2.IPRange{ // Required
+					{ // Required
 						CIDRIP: aws.String("String"),
+					},
+					// More values...
+				},
+				PrefixListIDs: []*ec2.PrefixListID{
+					{ // Required
+						PrefixListID: aws.String("String"),
 					},
 					// More values...
 				},
 				ToPort: aws.Long(1),
 				UserIDGroupPairs: []*ec2.UserIDGroupPair{
-					&ec2.UserIDGroupPair{ // Required
+					{ // Required
 						GroupID:   aws.String("String"),
 						GroupName: aws.String("String"),
 						UserID:    aws.String("String"),
@@ -5625,18 +6198,24 @@ func ExampleEC2_RevokeSecurityGroupIngress() {
 		GroupID:   aws.String("String"),
 		GroupName: aws.String("String"),
 		IPPermissions: []*ec2.IPPermission{
-			&ec2.IPPermission{ // Required
+			{ // Required
 				FromPort:   aws.Long(1),
 				IPProtocol: aws.String("String"),
 				IPRanges: []*ec2.IPRange{
-					&ec2.IPRange{ // Required
+					{ // Required
 						CIDRIP: aws.String("String"),
+					},
+					// More values...
+				},
+				PrefixListIDs: []*ec2.PrefixListID{
+					{ // Required
+						PrefixListID: aws.String("String"),
 					},
 					// More values...
 				},
 				ToPort: aws.Long(1),
 				UserIDGroupPairs: []*ec2.UserIDGroupPair{
-					&ec2.UserIDGroupPair{ // Required
+					{ // Required
 						GroupID:   aws.String("String"),
 						GroupName: aws.String("String"),
 						UserID:    aws.String("String"),
@@ -5681,7 +6260,7 @@ func ExampleEC2_RunInstances() {
 		MinCount:       aws.Long(1),          // Required
 		AdditionalInfo: aws.String("String"),
 		BlockDeviceMappings: []*ec2.BlockDeviceMapping{
-			&ec2.BlockDeviceMapping{ // Required
+			{ // Required
 				DeviceName: aws.String("String"),
 				EBS: &ec2.EBSBlockDevice{
 					DeleteOnTermination: aws.Boolean(true),
@@ -5712,7 +6291,7 @@ func ExampleEC2_RunInstances() {
 			Enabled: aws.Boolean(true), // Required
 		},
 		NetworkInterfaces: []*ec2.InstanceNetworkInterfaceSpecification{
-			&ec2.InstanceNetworkInterfaceSpecification{ // Required
+			{ // Required
 				AssociatePublicIPAddress: aws.Boolean(true),
 				DeleteOnTermination:      aws.Boolean(true),
 				Description:              aws.String("String"),
@@ -5724,7 +6303,7 @@ func ExampleEC2_RunInstances() {
 				NetworkInterfaceID: aws.String("String"),
 				PrivateIPAddress:   aws.String("String"),
 				PrivateIPAddresses: []*ec2.PrivateIPAddressSpecification{
-					&ec2.PrivateIPAddressSpecification{ // Required
+					{ // Required
 						PrivateIPAddress: aws.String("String"), // Required
 						Primary:          aws.Boolean(true),
 					},

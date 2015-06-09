@@ -3,9 +3,9 @@
 package configservice
 
 import (
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/protocol/jsonrpc"
-	"github.com/awslabs/aws-sdk-go/internal/signer/v4"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
+	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
 // ConfigService is a client for Config Service.
@@ -21,14 +21,9 @@ var initRequest func(*aws.Request)
 
 // New returns a new ConfigService client.
 func New(config *aws.Config) *ConfigService {
-	if config == nil {
-		config = &aws.Config{}
-	}
-
 	service := &aws.Service{
 		Config:       aws.DefaultConfig.Merge(config),
 		ServiceName:  "config",
-		SigningName:  "config",
 		APIVersion:   "2014-11-12",
 		JSONVersion:  "1.1",
 		TargetPrefix: "StarlingDoveService",

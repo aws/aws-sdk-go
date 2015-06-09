@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
-	"github.com/awslabs/aws-sdk-go/service/storagegateway"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/service/storagegateway"
 )
 
 var _ time.Duration
@@ -1006,6 +1006,33 @@ func ExampleStorageGateway_ListLocalDisks() {
 		GatewayARN: aws.String("GatewayARN"), // Required
 	}
 	resp, err := svc.ListLocalDisks(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleStorageGateway_ListVolumeInitiators() {
+	svc := storagegateway.New(nil)
+
+	params := &storagegateway.ListVolumeInitiatorsInput{
+		VolumeARN: aws.String("VolumeARN"), // Required
+	}
+	resp, err := svc.ListVolumeInitiators(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {

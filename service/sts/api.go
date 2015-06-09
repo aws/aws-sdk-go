@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 var oprw sync.Mutex
@@ -147,20 +147,22 @@ func (c *STS) AssumeRoleWithSAMLRequest(input *AssumeRoleWithSAMLInput) (req *aw
 // can use these temporary security credentials to sign calls to AWS services.
 // The credentials are valid for the duration that you specified when calling
 // AssumeRoleWithSAML, which can be up to 3600 seconds (1 hour) or until the
-// time specified in the SAML authentication response's NotOnOrAfter value,
-// whichever is shorter.
+// time specified in the SAML authentication response's SessionNotOnOrAfter
+// value, whichever is shorter.
 //
-// Optionally, you can pass an IAM access policy to this operation. If you
-// choose not to pass a policy, the temporary security credentials that are
-// returned by the operation have the permissions that are defined in the access
-// policy of the role that is being assumed. If you pass a policy to this operation,
-// the temporary security credentials that are returned by the operation have
-// the permissions that are allowed by both the access policy of the role that
-// is being assumed, and the policy that you pass. This gives you a way to further
-// restrict the permissions for the resulting temporary security credentials.
-// You cannot use the passed policy to grant permissions that are in excess
-// of those allowed by the access policy of the role that is being assumed.
-// For more information, see Permissions for AssumeRoleWithSAML (http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-assume-role.html)
+// The maximum duration for a session is 1 hour, and the minimum duration is
+// 15 minutes, even if values outside this range are specified.  Optionally,
+// you can pass an IAM access policy to this operation. If you choose not to
+// pass a policy, the temporary security credentials that are returned by the
+// operation have the permissions that are defined in the access policy of the
+// role that is being assumed. If you pass a policy to this operation, the temporary
+// security credentials that are returned by the operation have the permissions
+// that are allowed by both the access policy of the role that is being assumed,
+// and the policy that you pass. This gives you a way to further restrict the
+// permissions for the resulting temporary security credentials. You cannot
+// use the passed policy to grant permissions that are in excess of those allowed
+// by the access policy of the role that is being assumed. For more information,
+// see Permissions for AssumeRoleWithSAML (http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-assume-role.html)
 // in Using Temporary Security Credentials.
 //
 // Before your application can call AssumeRoleWithSAML, you must configure
@@ -212,10 +214,22 @@ func (c *STS) AssumeRoleWithWebIdentityRequest(input *AssumeRoleWithWebIdentityI
 }
 
 // Returns a set of temporary security credentials for users who have been authenticated
-// in a mobile or web application with a web identity provider, such as Login
-// with Amazon, Amazon Cognito, Facebook, or Google.
+// in a mobile or web application with a web identity provider, such as Amazon
+// Cognito, Login with Amazon, Facebook, Google, or any OpenID Connect-compatible
+// identity provider.
 //
-// Calling AssumeRoleWithWebIdentity does not require the use of AWS security
+//  For mobile applications, we recommend that you use Amazon Cognito. You
+// can use Amazon Cognito with the AWS SDK for iOS (http://aws.amazon.com/sdkforios/)
+// and the AWS SDK for Android (http://aws.amazon.com/sdkforandroid/) to uniquely
+// identify a user and supply the user with a consistent identity throughout
+// the lifetime of an application.
+//
+// To learn more about Amazon Cognito, see Amazon Cognito Overview (http://docs.aws.amazon.com/mobile/sdkforandroid/developerguide/cognito-auth.html#d0e840)
+// in the AWS SDK for Android Developer Guide guide and Amazon Cognito Overview
+// (http://docs.aws.amazon.com/mobile/sdkforios/developerguide/cognito-auth.html#d0e664)
+// in the AWS SDK for iOS Developer Guide.
+//
+//  Calling AssumeRoleWithWebIdentity does not require the use of AWS security
 // credentials. Therefore, you can distribute an application (for example, on
 // mobile devices) that requests temporary security credentials without including
 // long-term AWS credentials in the application, and without deploying server-based
@@ -248,25 +262,24 @@ func (c *STS) AssumeRoleWithWebIdentityRequest(input *AssumeRoleWithWebIdentityI
 // the identity provider that is associated with the identity token. In other
 // words, the identity provider must be specified in the role's trust policy.
 //
-// For more information about how to use web identity federation and the AssumeRoleWithWebIdentity,
-// see the following resources:
+// For more information about how to use web identity federation and the AssumeRoleWithWebIdentity
+// API, see the following resources:
 //
-//    Creating a Mobile Application with Third-Party Sign-In (http://docs.aws.amazon.com/STS/latest/UsingSTS/STSUseCases.html#MobileApplication-KnownProvider"
-// target="_blank) and  Creating Temporary Security Credentials for Mobile Apps
-// Using Third-Party Identity Providers (http://docs.aws.amazon.com/STS/latest/UsingSTS/CreatingWIF.html"
-// target="_blank) in Using Temporary Security Credentials.    Web Identity
-// Federation Playground (https://web-identity-federation-playground.s3.amazonaws.com/index.html"
-// target="_blank). This interactive website lets you walk through the process
-// of authenticating via Login with Amazon, Facebook, or Google, getting temporary
-// security credentials, and then using those credentials to make a request
-// to AWS.   AWS SDK for iOS (http://aws.amazon.com/sdkforios/) and AWS SDK
-// for Android (http://aws.amazon.com/sdkforandroid/" target="_blank). These
-// toolkits contain sample apps that show how to invoke the identity providers,
+//    Creating a Mobile Application with Third-Party Sign-In (http://docs.aws.amazon.com/STS/latest/UsingSTS/STSUseCases.html#MobileApplication-KnownProvider)
+// and  Creating Temporary Security Credentials for Mobile Apps Using Third-Party
+// Identity Providers (http://docs.aws.amazon.com/STS/latest/UsingSTS/CreatingWIF.html)
+// in Using Temporary Security Credentials.    Web Identity Federation Playground
+// (https://web-identity-federation-playground.s3.amazonaws.com/index.html).
+// This interactive website lets you walk through the process of authenticating
+// via Login with Amazon, Facebook, or Google, getting temporary security credentials,
+// and then using those credentials to make a request to AWS.   AWS SDK for
+// iOS (http://aws.amazon.com/sdkforios/) and AWS SDK for Android (http://aws.amazon.com/sdkforandroid/).
+// These toolkits contain sample apps that show how to invoke the identity providers,
 // and then how to use the information from these providers to get and use temporary
 // security credentials.   Web Identity Federation with Mobile Applications
-// (http://aws.amazon.com/articles/4617974389850313" target="_blank). This article
-// discusses web identity federation and shows an example of how to use web
-// identity federation to get access to content in Amazon S3.
+// (http://aws.amazon.com/articles/4617974389850313). This article discusses
+// web identity federation and shows an example of how to use web identity federation
+// to get access to content in Amazon S3.
 func (c *STS) AssumeRoleWithWebIdentity(input *AssumeRoleWithWebIdentityInput) (*AssumeRoleWithWebIdentityOutput, error) {
 	req, out := c.AssumeRoleWithWebIdentityRequest(input)
 	err := req.Send()
@@ -306,11 +319,13 @@ func (c *STS) DecodeAuthorizationMessageRequest(input *DecodeAuthorizationMessag
 // (an HTTP 403 response). Some AWS actions additionally return an encoded message
 // that can provide details about this authorization failure.
 //
-// The message is encoded because the details of the authorization status can
-// constitute privileged information that the user who requested the action
-// should not see. To decode an authorization status message, a user must be
-// granted permissions via an IAM policy to request the DecodeAuthorizationMessage
-// (sts:DecodeAuthorizationMessage) action.
+//  Only certain AWS actions return an encoded authorization message. The documentation
+// for an individual action indicates whether that action returns an encoded
+// message in addition to returning an HTTP code.  The message is encoded because
+// the details of the authorization status can constitute privileged information
+// that the user who requested the action should not see. To decode an authorization
+// status message, a user must be granted permissions via an IAM policy to request
+// the DecodeAuthorizationMessage (sts:DecodeAuthorizationMessage) action.
 //
 // The decoded message includes the following type of information:
 //
@@ -359,11 +374,15 @@ func (c *STS) GetFederationTokenRequest(input *GetFederationTokenInput) (req *aw
 // credentials of an IAM user, this call is appropriate in contexts where those
 // credentials can be safely stored, usually in a server-based application.
 //
-//  Note: Do not use this call in mobile applications or client-based web applications
-// that directly get temporary security credentials. For those types of applications,
-// use AssumeRoleWithWebIdentity.
+//   If you are creating a mobile-based or browser-based app that can authenticate
+// users using a web identity provider like Login with Amazon, Facebook, Google,
+// or an OpenID Connect-compatible identity provider, we recommend that you
+// use Amazon Cognito (http://aws.amazon.com/cognito/) or AssumeRoleWithWebIdentity.
+// For more information, see Creating Temporary Security Credentials for Mobile
+// Apps Using Identity Providers (http://docs.aws.amazon.com/STS/latest/UsingSTS/CreatingWIF.html)
+// in Using Temporary Security Credentials.
 //
-// The GetFederationToken action must be called by using the long-term AWS
+//  The GetFederationToken action must be called by using the long-term AWS
 // security credentials of an IAM user. You can also call GetFederationToken
 // using the security credentials of an AWS account (root), but this is not
 // recommended. Instead, we recommend that you create an IAM user for the purpose
@@ -459,7 +478,12 @@ func (c *STS) GetSessionTokenRequest(input *GetSessionTokenInput) (req *aws.Requ
 // (15 minutes) and 129600 seconds (36 hours); credentials that are created
 // by using account credentials have a maximum duration of 3600 seconds (1 hour).
 //
-// The permissions associated with the temporary security credentials returned
+//  We recommend that you do not call GetSessionToken with root account credentials.
+// Instead, follow our best practices (http://docs.aws.amazon.com/IAM/latest/UserGuide/IAMBestPractices.html#create-iam-users)
+// by creating one or more IAM users, giving them the necessary permissions,
+// and using IAM users for everyday interaction with AWS.
+//
+//  The permissions associated with the temporary security credentials returned
 // by GetSessionToken are based on the permissions associated with account or
 // IAM user whose credentials are used to call the action. If GetSessionToken
 // is called using root account credentials, the temporary credentials have
@@ -534,8 +558,8 @@ type metadataAssumeRoleInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// Contains the result of a successful call to the AssumeRole action, including
-// temporary AWS credentials that can be used to make AWS requests.
+// Contains the response to a successful AssumeRole request, including temporary
+// AWS credentials that can be used to make AWS requests.
 type AssumeRoleOutput struct {
 	// The Amazon Resource Name (ARN) and the assumed role ID, which are identifiers
 	// that you can use to refer to the resulting temporary security credentials.
@@ -564,8 +588,11 @@ type AssumeRoleWithSAMLInput struct {
 	// The duration, in seconds, of the role session. The value can range from 900
 	// seconds (15 minutes) to 3600 seconds (1 hour). By default, the value is set
 	// to 3600 seconds. An expiration can also be specified in the SAML authentication
-	// response's NotOnOrAfter value. The actual expiration time is whichever value
-	// is shorter.
+	// response's SessionNotOnOrAfter value. The actual expiration time is whichever
+	// value is shorter.
+	//
+	// The maximum duration for a session is 1 hour, and the minimum duration is
+	// 15 minutes, even if values outside this range are specified.
 	DurationSeconds *int64 `type:"integer"`
 
 	// An IAM policy in JSON format.
@@ -579,6 +606,9 @@ type AssumeRoleWithSAMLInput struct {
 	// by the access policy of the role that is being assumed. For more information,
 	// see Permissions for AssumeRoleWithSAML (http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-assume-role.html)
 	// in Using Temporary Security Credentials.
+	//
+	// The policy must be 2048 bytes or shorter, and its packed size must be less
+	// than 450 bytes.
 	Policy *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the SAML provider in IAM that describes
@@ -602,8 +632,8 @@ type metadataAssumeRoleWithSAMLInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// Contains the result of a successful call to the AssumeRoleWithSAML action,
-// including temporary AWS credentials that can be used to make AWS requests.
+// Contains the response to a successful AssumeRoleWithSAML request, including
+// temporary AWS credentials that can be used to make AWS requests.
 type AssumeRoleWithSAMLOutput struct {
 	// The identifiers for the temporary security credentials that the operation
 	// returns.
@@ -674,11 +704,13 @@ type AssumeRoleWithWebIdentityInput struct {
 	// in Using Temporary Security Credentials.
 	Policy *string `type:"string"`
 
-	// The fully-qualified host component of the domain name of the identity provider.
-	// Specify this value only for OAuth access tokens. Do not specify this value
-	// for OpenID Connect ID tokens, such as accounts.google.com. Do not include
-	// URL schemes and port numbers. Currently, www.amazon.com and graph.facebook.com
-	// are supported.
+	// The fully qualified host component of the domain name of the identity provider.
+	//
+	// Specify this value only for OAuth 2.0 access tokens. Currently www.amazon.com
+	// and graph.facebook.com are the only supported identity providers for OAuth
+	// 2.0 access tokens. Do not include URL schemes and port numbers.
+	//
+	// Do not specify this value for OpenID Connect ID tokens.
 	ProviderID *string `locationName:"ProviderId" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the role that the caller is assuming.
@@ -704,9 +736,8 @@ type metadataAssumeRoleWithWebIdentityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// Contains the result of a successful call to the AssumeRoleWithWebIdentity
-// action, including temporary AWS credentials that can be used to make AWS
-// requests.
+// Contains the response to a successful AssumeRoleWithWebIdentity request,
+// including temporary AWS credentials that can be used to make AWS requests.
 type AssumeRoleWithWebIdentityOutput struct {
 	// The Amazon Resource Name (ARN) and the assumed role ID, which are identifiers
 	// that you can use to refer to the resulting temporary security credentials.
@@ -715,9 +746,9 @@ type AssumeRoleWithWebIdentityOutput struct {
 	// that you specified when you called AssumeRole.
 	AssumedRoleUser *AssumedRoleUser `type:"structure"`
 
-	// The intended audience of the web identity token. This is traditionally the
-	// client identifier issued to the application that requested the web identity
-	// token.
+	// The intended audience (also known as client ID) of the web identity token.
+	// This is traditionally the client identifier issued to the application that
+	// requested the web identity token.
 	Audience *string `type:"string"`
 
 	// The temporary security credentials, which include an access key ID, a secret
@@ -730,8 +761,8 @@ type AssumeRoleWithWebIdentityOutput struct {
 	PackedPolicySize *int64 `type:"integer"`
 
 	// The issuing authority of the web identity token presented. For OpenID Connect
-	// ID Tokens this contains the value of the iss field. For OAuth 2.0 Access
-	// Tokens, this contains the value of the ProviderId parameter that was passed
+	// ID Tokens this contains the value of the iss field. For OAuth 2.0 access
+	// tokens, this contains the value of the ProviderId parameter that was passed
 	// in the AssumeRoleWithWebIdentity request.
 	Provider *string `type:"string"`
 
@@ -739,9 +770,8 @@ type AssumeRoleWithWebIdentityOutput struct {
 	// identifier is associated with the WebIdentityToken that was submitted with
 	// the AssumeRoleWithWebIdentity call. The identifier is typically unique to
 	// the user and the application that acquired the WebIdentityToken (pairwise
-	// identifier). If an OpenID Connect ID token was submitted in the WebIdentityToken,
-	// this value is returned by the identity provider as the token's sub (Subject)
-	// claim.
+	// identifier). For OpenID Connect ID tokens, this field contains the value
+	// returned by the identity provider as the token's sub (Subject) claim.
 	SubjectFromWebIdentityToken *string `type:"string"`
 
 	metadataAssumeRoleWithWebIdentityOutput `json:"-" xml:"-"`
@@ -881,8 +911,8 @@ type metadataGetFederationTokenInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// Contains the result of a successful call to the GetFederationToken action,
-// including temporary AWS credentials that can be used to make AWS requests.
+// Contains the response to a successful GetFederationToken request, including
+// temporary AWS credentials that can be used to make AWS requests.
 type GetFederationTokenOutput struct {
 	// Credentials for the service API authentication.
 	Credentials *Credentials `type:"structure"`
@@ -937,7 +967,7 @@ type metadataGetSessionTokenInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// Contains the result of a successful call to the GetSessionToken action, including
+// Contains the response to a successful GetSessionToken request, including
 // temporary AWS credentials that can be used to make AWS requests.
 type GetSessionTokenOutput struct {
 	// The session credentials for API authentication.

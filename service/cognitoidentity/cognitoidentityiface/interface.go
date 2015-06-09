@@ -4,12 +4,14 @@
 package cognitoidentityiface
 
 import (
-	"github.com/awslabs/aws-sdk-go/service/cognitoidentity"
+	"github.com/aws/aws-sdk-go/service/cognitoidentity"
 )
 
 // CognitoIdentityAPI is the interface type for cognitoidentity.CognitoIdentity.
 type CognitoIdentityAPI interface {
 	CreateIdentityPool(*cognitoidentity.CreateIdentityPoolInput) (*cognitoidentity.IdentityPool, error)
+
+	DeleteIdentities(*cognitoidentity.DeleteIdentitiesInput) (*cognitoidentity.DeleteIdentitiesOutput, error)
 
 	DeleteIdentityPool(*cognitoidentity.DeleteIdentityPoolInput) (*cognitoidentity.DeleteIdentityPoolOutput, error)
 

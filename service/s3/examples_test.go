@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
-	"github.com/awslabs/aws-sdk-go/service/s3"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/service/s3"
 )
 
 var _ time.Duration
@@ -55,7 +55,7 @@ func ExampleS3_CompleteMultipartUpload() {
 		UploadID: aws.String("MultipartUploadId"), // Required
 		MultipartUpload: &s3.CompletedMultipartUpload{
 			Parts: []*s3.CompletedPart{
-				&s3.CompletedPart{ // Required
+				{ // Required
 					ETag:       aws.String("ETag"),
 					PartNumber: aws.Long(1),
 				},
@@ -110,7 +110,7 @@ func ExampleS3_CopyObject() {
 		GrantRead:                      aws.String("GrantRead"),
 		GrantReadACP:                   aws.String("GrantReadACP"),
 		GrantWriteACP:                  aws.String("GrantWriteACP"),
-		Metadata: &map[string]*string{
+		Metadata: map[string]*string{
 			"Key": aws.String("MetadataValue"), // Required
 			// More values...
 		},
@@ -198,7 +198,7 @@ func ExampleS3_CreateMultipartUpload() {
 		GrantRead:          aws.String("GrantRead"),
 		GrantReadACP:       aws.String("GrantReadACP"),
 		GrantWriteACP:      aws.String("GrantWriteACP"),
-		Metadata: &map[string]*string{
+		Metadata: map[string]*string{
 			"Key": aws.String("MetadataValue"), // Required
 			// More values...
 		},
@@ -459,7 +459,7 @@ func ExampleS3_DeleteObjects() {
 		Bucket: aws.String("BucketName"), // Required
 		Delete: &s3.Delete{ // Required
 			Objects: []*s3.ObjectIdentifier{ // Required
-				&s3.ObjectIdentifier{ // Required
+				{ // Required
 					Key:       aws.String("ObjectKey"), // Required
 					VersionID: aws.String("ObjectVersionId"),
 				},
@@ -629,10 +629,37 @@ func ExampleS3_GetBucketLogging() {
 func ExampleS3_GetBucketNotification() {
 	svc := s3.New(nil)
 
-	params := &s3.GetBucketNotificationInput{
+	params := &s3.GetBucketNotificationConfigurationRequest{
 		Bucket: aws.String("BucketName"), // Required
 	}
 	resp, err := svc.GetBucketNotification(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleS3_GetBucketNotificationConfiguration() {
+	svc := s3.New(nil)
+
+	params := &s3.GetBucketNotificationConfigurationRequest{
+		Bucket: aws.String("BucketName"), // Required
+	}
+	resp, err := svc.GetBucketNotificationConfiguration(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -1146,7 +1173,7 @@ func ExampleS3_PutBucketACL() {
 		ACL:    aws.String("BucketCannedACL"),
 		AccessControlPolicy: &s3.AccessControlPolicy{
 			Grants: []*s3.Grant{
-				&s3.Grant{ // Required
+				{ // Required
 					Grantee: &s3.Grantee{
 						Type:         aws.String("Type"), // Required
 						DisplayName:  aws.String("DisplayName"),
@@ -1197,7 +1224,7 @@ func ExampleS3_PutBucketCORS() {
 		Bucket: aws.String("BucketName"), // Required
 		CORSConfiguration: &s3.CORSConfiguration{
 			CORSRules: []*s3.CORSRule{
-				&s3.CORSRule{ // Required
+				{ // Required
 					AllowedHeaders: []*string{
 						aws.String("AllowedHeader"), // Required
 						// More values...
@@ -1248,7 +1275,7 @@ func ExampleS3_PutBucketLifecycle() {
 		Bucket: aws.String("BucketName"), // Required
 		LifecycleConfiguration: &s3.LifecycleConfiguration{
 			Rules: []*s3.LifecycleRule{ // Required
-				&s3.LifecycleRule{ // Required
+				{ // Required
 					Prefix: aws.String("Prefix"),           // Required
 					Status: aws.String("ExpirationStatus"), // Required
 					Expiration: &s3.LifecycleExpiration{
@@ -1303,7 +1330,7 @@ func ExampleS3_PutBucketLogging() {
 			LoggingEnabled: &s3.LoggingEnabled{
 				TargetBucket: aws.String("TargetBucket"),
 				TargetGrants: []*s3.TargetGrant{
-					&s3.TargetGrant{ // Required
+					{ // Required
 						Grantee: &s3.Grantee{
 							Type:         aws.String("Type"), // Required
 							DisplayName:  aws.String("DisplayName"),
@@ -1345,7 +1372,7 @@ func ExampleS3_PutBucketNotification() {
 
 	params := &s3.PutBucketNotificationInput{
 		Bucket: aws.String("BucketName"), // Required
-		NotificationConfiguration: &s3.NotificationConfiguration{ // Required
+		NotificationConfiguration: &s3.NotificationConfigurationDeprecated{ // Required
 			CloudFunctionConfiguration: &s3.CloudFunctionConfiguration{
 				CloudFunction: aws.String("CloudFunction"),
 				Event:         aws.String("Event"),
@@ -1356,27 +1383,89 @@ func ExampleS3_PutBucketNotification() {
 				ID:             aws.String("NotificationId"),
 				InvocationRole: aws.String("CloudFunctionInvocationRole"),
 			},
-			QueueConfiguration: &s3.QueueConfiguration{
+			QueueConfiguration: &s3.QueueConfigurationDeprecated{
 				Event: aws.String("Event"),
 				Events: []*string{
 					aws.String("Event"), // Required
 					// More values...
 				},
 				ID:    aws.String("NotificationId"),
-				Queue: aws.String("Queue"),
+				Queue: aws.String("QueueArn"),
 			},
-			TopicConfiguration: &s3.TopicConfiguration{
+			TopicConfiguration: &s3.TopicConfigurationDeprecated{
 				Event: aws.String("Event"),
 				Events: []*string{
 					aws.String("Event"), // Required
 					// More values...
 				},
 				ID:    aws.String("NotificationId"),
-				Topic: aws.String("Topic"),
+				Topic: aws.String("TopicArn"),
 			},
 		},
 	}
 	resp, err := svc.PutBucketNotification(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleS3_PutBucketNotificationConfiguration() {
+	svc := s3.New(nil)
+
+	params := &s3.PutBucketNotificationConfigurationInput{
+		Bucket: aws.String("BucketName"), // Required
+		NotificationConfiguration: &s3.NotificationConfiguration{ // Required
+			LambdaFunctionConfigurations: []*s3.LambdaFunctionConfiguration{
+				{ // Required
+					Events: []*string{ // Required
+						aws.String("Event"), // Required
+						// More values...
+					},
+					LambdaFunctionARN: aws.String("LambdaFunctionArn"), // Required
+					ID:                aws.String("NotificationId"),
+				},
+				// More values...
+			},
+			QueueConfigurations: []*s3.QueueConfiguration{
+				{ // Required
+					Events: []*string{ // Required
+						aws.String("Event"), // Required
+						// More values...
+					},
+					QueueARN: aws.String("QueueArn"), // Required
+					ID:       aws.String("NotificationId"),
+				},
+				// More values...
+			},
+			TopicConfigurations: []*s3.TopicConfiguration{
+				{ // Required
+					Events: []*string{ // Required
+						aws.String("Event"), // Required
+						// More values...
+					},
+					TopicARN: aws.String("TopicArn"), // Required
+					ID:       aws.String("NotificationId"),
+				},
+				// More values...
+			},
+		},
+	}
+	resp, err := svc.PutBucketNotificationConfiguration(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -1433,7 +1522,7 @@ func ExampleS3_PutBucketReplication() {
 		ReplicationConfiguration: &s3.ReplicationConfiguration{ // Required
 			Role: aws.String("Role"), // Required
 			Rules: []*s3.ReplicationRule{ // Required
-				&s3.ReplicationRule{ // Required
+				{ // Required
 					Destination: &s3.Destination{ // Required
 						Bucket: aws.String("BucketName"), // Required
 					},
@@ -1503,7 +1592,7 @@ func ExampleS3_PutBucketTagging() {
 		Bucket: aws.String("BucketName"), // Required
 		Tagging: &s3.Tagging{ // Required
 			TagSet: []*s3.Tag{ // Required
-				&s3.Tag{ // Required
+				{ // Required
 					Key:   aws.String("ObjectKey"), // Required
 					Value: aws.String("Value"),     // Required
 				},
@@ -1581,7 +1670,7 @@ func ExampleS3_PutBucketWebsite() {
 				Protocol: aws.String("Protocol"),
 			},
 			RoutingRules: []*s3.RoutingRule{
-				&s3.RoutingRule{ // Required
+				{ // Required
 					Redirect: &s3.Redirect{ // Required
 						HTTPRedirectCode:     aws.String("HttpRedirectCode"),
 						HostName:             aws.String("HostName"),
@@ -1638,7 +1727,7 @@ func ExampleS3_PutObject() {
 		GrantRead:          aws.String("GrantRead"),
 		GrantReadACP:       aws.String("GrantReadACP"),
 		GrantWriteACP:      aws.String("GrantWriteACP"),
-		Metadata: &map[string]*string{
+		Metadata: map[string]*string{
 			"Key": aws.String("MetadataValue"), // Required
 			// More values...
 		},
@@ -1681,7 +1770,7 @@ func ExampleS3_PutObjectACL() {
 		ACL:    aws.String("ObjectCannedACL"),
 		AccessControlPolicy: &s3.AccessControlPolicy{
 			Grants: []*s3.Grant{
-				&s3.Grant{ // Required
+				{ // Required
 					Grantee: &s3.Grantee{
 						Type:         aws.String("Type"), // Required
 						DisplayName:  aws.String("DisplayName"),

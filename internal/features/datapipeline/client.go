@@ -1,8 +1,9 @@
+//Package datapipeline provides gucumber integration tests suppport.
 package datapipeline
 
 import (
-	"github.com/awslabs/aws-sdk-go/internal/features/shared"
-	"github.com/awslabs/aws-sdk-go/service/datapipeline"
+	"github.com/aws/aws-sdk-go/internal/features/shared"
+	"github.com/aws/aws-sdk-go/service/datapipeline"
 	. "github.com/lsegal/gucumber"
 )
 

@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
-	"github.com/awslabs/aws-sdk-go/service/kms"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/service/kms"
 )
 
 var _ time.Duration
@@ -51,11 +51,11 @@ func ExampleKMS_CreateGrant() {
 		GranteePrincipal: aws.String("PrincipalIdType"), // Required
 		KeyID:            aws.String("KeyIdType"),       // Required
 		Constraints: &kms.GrantConstraints{
-			EncryptionContextEquals: &map[string]*string{
+			EncryptionContextEquals: map[string]*string{
 				"Key": aws.String("EncryptionContextValue"), // Required
 				// More values...
 			},
-			EncryptionContextSubset: &map[string]*string{
+			EncryptionContextSubset: map[string]*string{
 				"Key": aws.String("EncryptionContextValue"), // Required
 				// More values...
 			},
@@ -125,7 +125,7 @@ func ExampleKMS_Decrypt() {
 
 	params := &kms.DecryptInput{
 		CiphertextBlob: []byte("PAYLOAD"), // Required
-		EncryptionContext: &map[string]*string{
+		EncryptionContext: map[string]*string{
 			"Key": aws.String("EncryptionContextValue"), // Required
 			// More values...
 		},
@@ -323,7 +323,7 @@ func ExampleKMS_Encrypt() {
 	params := &kms.EncryptInput{
 		KeyID:     aws.String("KeyIdType"), // Required
 		Plaintext: []byte("PAYLOAD"),       // Required
-		EncryptionContext: &map[string]*string{
+		EncryptionContext: map[string]*string{
 			"Key": aws.String("EncryptionContextValue"), // Required
 			// More values...
 		},
@@ -358,7 +358,7 @@ func ExampleKMS_GenerateDataKey() {
 
 	params := &kms.GenerateDataKeyInput{
 		KeyID: aws.String("KeyIdType"), // Required
-		EncryptionContext: &map[string]*string{
+		EncryptionContext: map[string]*string{
 			"Key": aws.String("EncryptionContextValue"), // Required
 			// More values...
 		},
@@ -395,7 +395,7 @@ func ExampleKMS_GenerateDataKeyWithoutPlaintext() {
 
 	params := &kms.GenerateDataKeyWithoutPlaintextInput{
 		KeyID: aws.String("KeyIdType"), // Required
-		EncryptionContext: &map[string]*string{
+		EncryptionContext: map[string]*string{
 			"Key": aws.String("EncryptionContextValue"), // Required
 			// More values...
 		},
@@ -658,7 +658,7 @@ func ExampleKMS_ReEncrypt() {
 	params := &kms.ReEncryptInput{
 		CiphertextBlob:   []byte("PAYLOAD"),       // Required
 		DestinationKeyID: aws.String("KeyIdType"), // Required
-		DestinationEncryptionContext: &map[string]*string{
+		DestinationEncryptionContext: map[string]*string{
 			"Key": aws.String("EncryptionContextValue"), // Required
 			// More values...
 		},
@@ -666,7 +666,7 @@ func ExampleKMS_ReEncrypt() {
 			aws.String("GrantTokenType"), // Required
 			// More values...
 		},
-		SourceEncryptionContext: &map[string]*string{
+		SourceEncryptionContext: map[string]*string{
 			"Key": aws.String("EncryptionContextValue"), // Required
 			// More values...
 		},
@@ -696,7 +696,9 @@ func ExampleKMS_RetireGrant() {
 	svc := kms.New(nil)
 
 	params := &kms.RetireGrantInput{
-		GrantToken: aws.String("GrantTokenType"), // Required
+		GrantID:    aws.String("GrantIdType"),
+		GrantToken: aws.String("GrantTokenType"),
+		KeyID:      aws.String("KeyIdType"),
 	}
 	resp, err := svc.RetireGrant(params)
 
@@ -727,6 +729,34 @@ func ExampleKMS_RevokeGrant() {
 		KeyID:   aws.String("KeyIdType"),   // Required
 	}
 	resp, err := svc.RevokeGrant(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleKMS_UpdateAlias() {
+	svc := kms.New(nil)
+
+	params := &kms.UpdateAliasInput{
+		AliasName:   aws.String("AliasNameType"), // Required
+		TargetKeyID: aws.String("KeyIdType"),     // Required
+	}
+	resp, err := svc.UpdateAlias(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {

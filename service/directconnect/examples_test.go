@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
-	"github.com/awslabs/aws-sdk-go/service/directconnect"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/service/directconnect"
 )
 
 var _ time.Duration
@@ -93,7 +93,7 @@ func ExampleDirectConnect_AllocatePublicVirtualInterface() {
 			AmazonAddress:   aws.String("AmazonAddress"),   // Required
 			CustomerAddress: aws.String("CustomerAddress"), // Required
 			RouteFilterPrefixes: []*directconnect.RouteFilterPrefix{ // Required
-				&directconnect.RouteFilterPrefix{ // Required
+				{ // Required
 					CIDR: aws.String("CIDR"),
 				},
 				// More values...
@@ -311,7 +311,7 @@ func ExampleDirectConnect_CreatePublicVirtualInterface() {
 			AmazonAddress:   aws.String("AmazonAddress"),   // Required
 			CustomerAddress: aws.String("CustomerAddress"), // Required
 			RouteFilterPrefixes: []*directconnect.RouteFilterPrefix{ // Required
-				&directconnect.RouteFilterPrefix{ // Required
+				{ // Required
 					CIDR: aws.String("CIDR"),
 				},
 				// More values...

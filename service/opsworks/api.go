@@ -6,7 +6,7 @@ package opsworks
 import (
 	"sync"
 
-	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 var oprw sync.Mutex
@@ -34,13 +34,14 @@ func (c *OpsWorks) AssignInstanceRequest(input *AssignInstanceInput) (req *aws.R
 	return
 }
 
-// Assign a registered instance to a custom layer. You cannot use this action
-// with instances that were created with AWS OpsWorks.
+// Assign a registered instance to a layer.
 //
-// Required Permissions: To use this action, an IAM user must have a Manage
-// permissions level for the stack or an attached policy that explicitly grants
-// permissions. For more information on user permissions, see Managing User
-// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
+//  You can assign registered on-premises instances to any layer type. You
+// can assign registered Amazon EC2 instances only to custom layers. You cannot
+// use this action with instances that were created with AWS OpsWorks.  Required
+// Permissions: To use this action, an IAM user must have a Manage permissions
+// level for the stack or an attached policy that explicitly grants permissions.
+// For more information on user permissions, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) AssignInstance(input *AssignInstanceInput) (*AssignInstanceOutput, error) {
 	req, out := c.AssignInstanceRequest(input)
 	err := req.Send()
@@ -74,7 +75,9 @@ func (c *OpsWorks) AssignVolumeRequest(input *AssignVolumeInput) (req *aws.Reque
 
 // Assigns one of the stack's registered Amazon EBS volumes to a specified instance.
 // The volume must first be registered with the stack by calling RegisterVolume.
-// For more information, see Resource Management (http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html).
+// After you register the volume, you must call UpdateVolume to specify a mount
+// point before calling AssignVolume. For more information, see Resource Management
+// (http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html).
 //
 // Required Permissions: To use this action, an IAM user must have a Manage
 // permissions level for the stack, or an attached policy that explicitly grants
@@ -1618,6 +1621,39 @@ func (c *OpsWorks) GetHostnameSuggestion(input *GetHostnameSuggestionInput) (*Ge
 
 var opGetHostnameSuggestion *aws.Operation
 
+// GrantAccessRequest generates a request for the GrantAccess operation.
+func (c *OpsWorks) GrantAccessRequest(input *GrantAccessInput) (req *aws.Request, output *GrantAccessOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opGrantAccess == nil {
+		opGrantAccess = &aws.Operation{
+			Name:       "GrantAccess",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &GrantAccessInput{}
+	}
+
+	req = c.newRequest(opGrantAccess, input, output)
+	output = &GrantAccessOutput{}
+	req.Data = output
+	return
+}
+
+// This API can be used only with Windows stacks. Grants RDP access to a Windows
+// instance for a specified time period.
+func (c *OpsWorks) GrantAccess(input *GrantAccessInput) (*GrantAccessOutput, error) {
+	req, out := c.GrantAccessRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opGrantAccess *aws.Operation
+
 // RebootInstanceRequest generates a request for the RebootInstance operation.
 func (c *OpsWorks) RebootInstanceRequest(input *RebootInstanceInput) (req *aws.Request, output *RebootInstanceOutput) {
 	oprw.Lock()
@@ -2508,7 +2544,7 @@ type App struct {
 	AppSource *Source `type:"structure"`
 
 	// The stack attributes.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// When the app was created.
 	CreatedAt *string `type:"string"`
@@ -2527,9 +2563,16 @@ type App struct {
 	EnableSSL *bool `locationName:"EnableSsl" type:"boolean"`
 
 	// An array of EnvironmentVariable objects that specify environment variables
-	// to be associated with the app. You can specify up to ten environment variables.
-	// After you deploy the app, these variables are defined on the associated app
-	// server instances.
+	// to be associated with the app. After you deploy the app, these variables
+	// are defined on the associated app server instances. For more information,
+	// see  Environment Variables (http://docs.aws.amazon.com/opsworks/latest/userguide/workingapps-creating.html#workingapps-creating-environment).
+	//
+	//  There is no specific limit on the number of environment variables. However,
+	// the size of the associated data structure - which includes the variables'
+	// names, values, and protected flag values - cannot exceed 10 KB (10240 Bytes).
+	// This limit should accommodate most if not all use cases, but if you do exceed
+	// it, you will cause an exception (API) with an "Environment: is too large
+	// (maximum is 10KB)" message.
 	Environment []*EnvironmentVariable `type:"list"`
 
 	// The app name.
@@ -2647,16 +2690,26 @@ type metadataAttachElasticLoadBalancerOutput struct {
 // Describes a load-based auto scaling upscaling or downscaling threshold configuration,
 // which specifies when AWS OpsWorks starts or stops load-based instances.
 type AutoScalingThresholds struct {
+	// Custom Cloudwatch auto scaling alarms, to be used as thresholds. This parameter
+	// takes a list of up to five alarm names, which are case sensitive and must
+	// be in the same region as the stack.
+	//
+	// To use custom alarms, you must update your service role to allow cloudwatch:DescribeAlarms.
+	// You can either have AWS OpsWorks update the role for you when you first use
+	// this feature or you can edit the role manually. For more information, see
+	// Allowing AWS OpsWorks to Act on Your Behalf (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-servicerole.html).
+	Alarms []*string `type:"list"`
+
 	// The CPU utilization threshold, as a percent of the available CPU.
 	CPUThreshold *float64 `locationName:"CpuThreshold" type:"double"`
 
 	// The amount of time (in minutes) after a scaling event occurs that AWS OpsWorks
-	// should ignore metrics and not raise any additional scaling events. For example,
+	// should ignore metrics and suppress additional scaling events. For example,
 	// AWS OpsWorks adds new instances following an upscaling event but the instances
 	// won't start reducing the load until they have been booted and configured.
 	// There is no point in raising additional scaling events during that operation,
 	// which typically takes several minutes. IgnoreMetricsTime allows you to direct
-	// AWS OpsWorks to not raise any scaling events long enough to get the new instances
+	// AWS OpsWorks to suppress scaling events long enough to get the new instances
 	// online.
 	IgnoreMetricsTime *int64 `type:"integer"`
 
@@ -2681,6 +2734,32 @@ type metadataAutoScalingThresholds struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes a block device mapping. This data type maps directly to the Amazon
+// EC2 BlockDeviceMapping (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_BlockDeviceMapping.html)
+// data type.
+type BlockDeviceMapping struct {
+	// The device name that is exposed to the instance, such as /dev/sdh. For the
+	// root device, you can use the explicit device name or you can set this parameter
+	// to ROOT_DEVICE and AWS OpsWorks will provide the correct device name.
+	DeviceName *string `type:"string"`
+
+	// An EBSBlockDevice that defines how to configure an Amazon EBS volume when
+	// the instance is launched.
+	EBS *EBSBlockDevice `locationName:"Ebs" type:"structure"`
+
+	// Suppresses the specified device included in the AMI's block device mapping.
+	NoDevice *string `type:"string"`
+
+	// The virtual device name. For more information, see BlockDeviceMapping (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_BlockDeviceMapping.html).
+	VirtualName *string `type:"string"`
+
+	metadataBlockDeviceMapping `json:"-" xml:"-"`
+}
+
+type metadataBlockDeviceMapping struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // Describes the Chef configuration.
 type ChefConfiguration struct {
 	// The Berkshelf version.
@@ -2699,7 +2778,7 @@ type metadataChefConfiguration struct {
 type CloneStackInput struct {
 	// A list of stack attributes and values as key/value pairs to be added to the
 	// cloned stack.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// A ChefConfiguration object that specifies whether to enable Berkshelf and
 	// the Berkshelf version on Chef 11.10 stacks. For more information, see Create
@@ -2726,10 +2805,10 @@ type CloneStackInput struct {
 	// the corresponding default stack configuration JSON values. The string should
 	// be in the following format and must escape characters such as '"'.:
 	//
-	// "{\"key1\": \"value1\", \"key2\": \"value2\",...}"
+	//  "{\"key1\": \"value1\", \"key2\": \"value2\",...}"
 	//
 	// For more information on custom JSON, see Use Custom JSON to Modify the Stack
-	// Configuration JSON (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html)
+	// Configuration Attributes (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html)
 	CustomJSON *string `locationName:"CustomJson" type:"string"`
 
 	// The cloned stack's default Availability Zone, which must be in the specified
@@ -2743,12 +2822,13 @@ type CloneStackInput struct {
 	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
 	DefaultInstanceProfileARN *string `locationName:"DefaultInstanceProfileArn" type:"string"`
 
-	// The stacks's operating system, which must be set to one of the following.
+	// The stack's operating system, which must be set to one of the following.
 	//
-	//  Standard operating systems: an Amazon Linux version such as Amazon Linux
-	// 2014.09, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS. Custom AMIs: Custom. You
-	// specify the custom AMI you want to use when you create instances.   The default
-	// option is the current Amazon Linux version.
+	//  Standard Linux operating systems: an Amazon Linux version such as Amazon
+	// Linux 2014.09, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS. Custom Linux AMIs:
+	// Custom. You specify the custom AMI you want to use when you create instances.
+	// Microsoft Windows Server 2012 R2.   The default option is the current Amazon
+	// Linux version.
 	DefaultOs *string `type:"string"`
 
 	// The default root device type. This value is used by default for all instances
@@ -2756,8 +2836,13 @@ type CloneStackInput struct {
 	// For more information, see Storage for the Root Device (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device).
 	DefaultRootDeviceType *string `type:"string"`
 
-	// A default SSH key for the stack instances. You can override this value when
-	// you create or update an instance.
+	// A default Amazon EC2 key pair name. The default value is none. If you specify
+	// a key pair name, AWS OpsWorks installs the public key on the instance and
+	// you can use the private key with an SSH client to log in to the instance.
+	// For more information, see  Using SSH to Communicate with an Instance (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-ssh.html)
+	// and  Managing SSH Access (http://docs.aws.amazon.com/opsworks/latest/userguide/security-ssh-access.html).
+	// You can override this setting by specifying a different key pair, or no key
+	// pair, when you  create an instance (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-add.html).
 	DefaultSSHKeyName *string `locationName:"DefaultSshKeyName" type:"string"`
 
 	// The stack's default VPC subnet ID. This parameter is required if you specify
@@ -2773,10 +2858,10 @@ type CloneStackInput struct {
 	// HostnameTheme is set to Layer_Dependent, which creates host names by appending
 	// integers to the layer's short name. The other themes are:
 	//
-	//  Baked_Goods Clouds European_Cities Fruits Greek_Deities Legendary_Creatures_from_Japan
-	// Planets_and_Moons Roman_Deities Scottish_Islands US_Cities Wild_Cats  To
-	// obtain a generated host name, call GetHostNameSuggestion, which returns a
-	// host name based on the current theme.
+	//   Baked_Goods   Clouds   Europe_Cities   Fruits   Greek_Deities   Legendary_creatures_from_Japan
+	//   Planets_and_Moons   Roman_Deities   Scottish_Islands   US_Cities   Wild_Cats
+	//   To obtain a generated host name, call GetHostNameSuggestion, which returns
+	// a host name based on the current theme.
 	HostnameTheme *string `type:"string"`
 
 	// The cloned stack name.
@@ -2897,8 +2982,8 @@ type Command struct {
 
 	// The command type:
 	//
-	//  deploy rollback start stop restart undeploy update_dependencies install_dependencies
-	// update_custom_cookbooks execute_recipes
+	//   deploy   rollback   start   stop   restart   undeploy   update_dependencies
+	//   install_dependencies   update_custom_cookbooks   execute_recipes
 	Type *string `type:"string"`
 
 	metadataCommand `json:"-" xml:"-"`
@@ -2913,7 +2998,7 @@ type CreateAppInput struct {
 	AppSource *Source `type:"structure"`
 
 	// One or more user-defined key/value pairs to be added to the stack attributes.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// The app's data source.
 	DataSources []*DataSource `type:"list"`
@@ -2929,9 +3014,16 @@ type CreateAppInput struct {
 	EnableSSL *bool `locationName:"EnableSsl" type:"boolean"`
 
 	// An array of EnvironmentVariable objects that specify environment variables
-	// to be associated with the app. You can specify up to ten environment variables.
-	// After you deploy the app, these variables are defined on the associated app
-	// server instance.
+	// to be associated with the app. After you deploy the app, these variables
+	// are defined on the associated app server instance. For more information,
+	// see  Environment Variables (http://docs.aws.amazon.com/opsworks/latest/userguide/workingapps-creating.html#workingapps-creating-environment).
+	//
+	//  There is no specific limit on the number of environment variables. However,
+	// the size of the associated data structure - which includes the variables'
+	// names, values, and protected flag values - cannot exceed 10 KB (10240 Bytes).
+	// This limit should accommodate most if not all use cases. Exceeding it will
+	// cause an exception with the message, "Environment: is too large (maximum
+	// is 10KB)."
 	//
 	// This parameter is supported only by Chef 11.10 stacks. If you have specified
 	// one or more environment variables, you cannot modify the stack's Chef version.
@@ -2952,7 +3044,8 @@ type CreateAppInput struct {
 	// The app type. Each supported type is associated with a particular layer.
 	// For example, PHP applications are associated with a PHP layer. AWS OpsWorks
 	// deploys an application to those instances that are members of the corresponding
-	// layer.
+	// layer. If your app isn't one of the standard types, or you prefer to implement
+	// your own Deploy recipes, specify other.
 	Type *string `type:"string" required:"true"`
 
 	metadataCreateAppInput `json:"-" xml:"-"`
@@ -2990,10 +3083,10 @@ type CreateDeploymentInput struct {
 	// the corresponding default stack configuration JSON values. The string should
 	// be in the following format and must escape characters such as '"'.:
 	//
-	// "{\"key1\": \"value1\", \"key2\": \"value2\",...}"
+	//  "{\"key1\": \"value1\", \"key2\": \"value2\",...}"
 	//
 	// For more information on custom JSON, see Use Custom JSON to Modify the Stack
-	// Configuration JSON (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html).
+	// Configuration Attributes (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html).
 	CustomJSON *string `locationName:"CustomJson" type:"string"`
 
 	// The instance IDs for the deployment targets.
@@ -3036,12 +3129,17 @@ type CreateInstanceInput struct {
 	// and Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html).
 	Architecture *string `type:"string"`
 
-	// For load-based or time-based instances, the type.
+	// For load-based or time-based instances, the type. Windows stacks can use
+	// only time-based instances.
 	AutoScalingType *string `type:"string"`
 
 	// The instance Availability Zone. For more information, see Regions and Endpoints
 	// (http://docs.aws.amazon.com/general/latest/gr/rande.html).
 	AvailabilityZone *string `type:"string"`
+
+	// An array of BlockDeviceMapping objects that specify the instance's block
+	// devices. For more information, see Block Device Mapping (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html).
+	BlockDeviceMappings []*BlockDeviceMapping `type:"list"`
 
 	// Whether to create an Amazon EBS-optimized instance.
 	EBSOptimized *bool `locationName:"EbsOptimized" type:"boolean"`
@@ -3071,6 +3169,10 @@ type CreateInstanceInput struct {
 
 	// The instance's operating system, which must be set to one of the following.
 	//
+	// For Windows stacks: Microsoft Windows Server 2012 R2.
+	//
+	// For Linux stacks:
+	//
 	//  Standard operating systems: an Amazon Linux version such as Amazon Linux
 	// 2014.09, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS. Custom AMIs: Custom   The
 	// default option is the current Amazon Linux version. If you set this parameter
@@ -3085,7 +3187,7 @@ type CreateInstanceInput struct {
 	// Root Device (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device).
 	RootDeviceType *string `type:"string"`
 
-	// The instance SSH key name.
+	// The instance's Amazon EC2 key pair name.
 	SSHKeyName *string `locationName:"SshKeyName" type:"string"`
 
 	// The stack ID.
@@ -3120,7 +3222,7 @@ type metadataCreateInstanceOutput struct {
 
 type CreateLayerInput struct {
 	// One or more user-defined key/value pairs to be added to the stack attributes.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// Whether to automatically assign an Elastic IP address (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
 	// to the layer's instances. For more information, see How to Edit a Layer (http://docs.aws.amazon.com/opsworks/latest/userguide/workinglayers-basics-edit.html).
@@ -3165,10 +3267,14 @@ type CreateLayerInput struct {
 	// An array of Package objects that describe the layer packages.
 	Packages []*string `type:"list"`
 
-	// The layer short name, which is used internally by AWS OpsWorks and by Chef
-	// recipes. The short name is also used as the name for the directory where
-	// your app files are installed. It can have a maximum of 200 characters, which
-	// are limited to the alphanumeric characters, '-', '_', and '.'.
+	// For custom layers only, use this parameter to specify the layer's short name,
+	// which is used internally by AWS OpsWorks and by Chef recipes. The short name
+	// is also used as the name for the directory where your app files are installed.
+	// It can have a maximum of 200 characters, which are limited to the alphanumeric
+	// characters, '-', '_', and '.'.
+	//
+	// The built-in layers' short names are defined by AWS OpsWorks. For more information,
+	// see the Layer Reference (http://docs.aws.amazon.com/opsworks/latest/userguide/layers.html)
 	Shortname *string `type:"string" required:"true"`
 
 	// The layer stack ID.
@@ -3205,7 +3311,7 @@ type metadataCreateLayerOutput struct {
 
 type CreateStackInput struct {
 	// One or more user-defined key/value pairs to be added to the stack attributes.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// A ChefConfiguration object that specifies whether to enable Berkshelf and
 	// the Berkshelf version on Chef 11.10 stacks. For more information, see Create
@@ -3222,14 +3328,15 @@ type CreateStackInput struct {
 	// or Custom Recipes and Cookbooks (http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook.html).
 	CustomCookbooksSource *Source `type:"structure"`
 
-	// A string that contains user-defined, custom JSON. It is used to override
-	// the corresponding default stack configuration JSON values. The string should
-	// be in the following format and must escape characters such as '"'.:
+	// A string that contains user-defined, custom JSON. It can be used to override
+	// the corresponding default stack configuration attribute values, or to pass
+	// data to recipes. The string should be in the following format and must escape
+	// characters such as '"'.:
 	//
-	// "{\"key1\": \"value1\", \"key2\": \"value2\",...}"
+	//  "{\"key1\": \"value1\", \"key2\": \"value2\",...}"
 	//
 	// For more information on custom JSON, see Use Custom JSON to Modify the Stack
-	// Configuration JSON (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html).
+	// Configuration Attributes (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html).
 	CustomJSON *string `locationName:"CustomJson" type:"string"`
 
 	// The stack's default Availability Zone, which must be in the specified region.
@@ -3245,10 +3352,11 @@ type CreateStackInput struct {
 
 	// The stack's operating system, which must be set to one of the following.
 	//
-	//  Standard operating systems: an Amazon Linux version such as Amazon Linux
-	// 2014.09, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS. Custom AMIs: Custom. You
-	// specify the custom AMI you want to use when you create instances.   The default
-	// option is the current Amazon Linux version.
+	//  Standard Linux operating systems: an Amazon Linux version such as Amazon
+	// Linux 2014.09, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS. Custom Linux AMIs:
+	// Custom. You specify the custom AMI you want to use when you create instances.
+	// Microsoft Windows Server 2012 R2.   The default option is the current Amazon
+	// Linux version.
 	DefaultOs *string `type:"string"`
 
 	// The default root device type. This value is used by default for all instances
@@ -3257,8 +3365,13 @@ type CreateStackInput struct {
 	// Device (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device).
 	DefaultRootDeviceType *string `type:"string"`
 
-	// A default SSH key for the stack instances. You can override this value when
-	// you create or update an instance.
+	// A default Amazon EC2 key pair name. The default value is none. If you specify
+	// a key pair name, AWS OpsWorks installs the public key on the instance and
+	// you can use the private key with an SSH client to log in to the instance.
+	// For more information, see  Using SSH to Communicate with an Instance (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-ssh.html)
+	// and  Managing SSH Access (http://docs.aws.amazon.com/opsworks/latest/userguide/security-ssh-access.html).
+	// You can override this setting by specifying a different key pair, or no key
+	// pair, when you  create an instance (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-add.html).
 	DefaultSSHKeyName *string `locationName:"DefaultSshKeyName" type:"string"`
 
 	// The stack's default VPC subnet ID. This parameter is required if you specify
@@ -3274,10 +3387,10 @@ type CreateStackInput struct {
 	// HostnameTheme is set to Layer_Dependent, which creates host names by appending
 	// integers to the layer's short name. The other themes are:
 	//
-	//  Baked_Goods Clouds European_Cities Fruits Greek_Deities Legendary_Creatures_from_Japan
-	// Planets_and_Moons Roman_Deities Scottish_Islands US_Cities Wild_Cats  To
-	// obtain a generated host name, call GetHostNameSuggestion, which returns a
-	// host name based on the current theme.
+	//   Baked_Goods   Clouds   Europe_Cities   Fruits   Greek_Deities   Legendary_creatures_from_Japan
+	//   Planets_and_Moons   Roman_Deities   Scottish_Islands   US_Cities   Wild_Cats
+	//   To obtain a generated host name, call GetHostNameSuggestion, which returns
+	// a host name based on the current theme.
 	HostnameTheme *string `type:"string"`
 
 	// The stack name.
@@ -3531,14 +3644,15 @@ type Deployment struct {
 	// Date when the deployment was created.
 	CreatedAt *string `type:"string"`
 
-	// A string that contains user-defined custom JSON. It is used to override the
-	// corresponding default stack configuration JSON values for stack. The string
-	// should be in the following format and must escape characters such as '"'.:
+	// A string that contains user-defined custom JSON. It can be used to override
+	// the corresponding default stack configuration attribute values for stack
+	// or to pass data to recipes. The string should be in the following format
+	// and must escape characters such as '"'.:
 	//
-	// "{\"key1\": \"value1\", \"key2\": \"value2\",...}"
+	//  "{\"key1\": \"value1\", \"key2\": \"value2\",...}"
 	//
 	// For more information on custom JSON, see Use Custom JSON to Modify the Stack
-	// Configuration JSON (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html).
+	// Configuration Attributes (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html).
 	CustomJSON *string `locationName:"CustomJson" type:"string"`
 
 	// The deployment ID.
@@ -3573,7 +3687,7 @@ type DeploymentCommand struct {
 	// The arguments of those commands that take arguments. It should be set to
 	// a JSON object with the following format:
 	//
-	// {"arg_name1" : ["value1", "value2", ...], "arg_name2" : ["value1", "value2",
+	//  {"arg_name1" : ["value1", "value2", ...], "arg_name2" : ["value1", "value2",
 	// ...], ...}
 	//
 	// The update_dependencies command takes two arguments:
@@ -3587,7 +3701,7 @@ type DeploymentCommand struct {
 	// set Args to the following.
 	//
 	//  { "upgrade_os_to":["Amazon Linux 2014.09"], "allow_reboot":["true"] }
-	Args *map[string][]*string `type:"map"`
+	Args map[string][]*string `type:"map"`
 
 	// Specifies the operation. You can specify only one command.
 	//
@@ -3598,16 +3712,20 @@ type DeploymentCommand struct {
 	// For example, to execute phpapp::appsetup, set Args to {"recipes":["phpapp::appsetup"]}.
 	//  install_dependencies: Install the stack's dependencies.  update_custom_cookbooks:
 	// Update the stack's custom cookbooks.  update_dependencies: Update the stack's
-	// dependencies.  For apps, the following commands are available:
+	// dependencies.  The update_dependencies and install_dependencies commands
+	// are supported only for Linux instances. You can run the commands successfully
+	// on Windows instances, but they do nothing. For apps, the following commands
+	// are available:
 	//
-	//   deploy: Deploy an app. Rails apps have an optional Args parameter named
-	// migrate. Set Args to {"migrate":["true"]} to migrate the database. The default
-	// setting is {"migrate":["false"]}.  rollback Roll the app back to the previous
-	// version. When you update an app, AWS OpsWorks stores the previous version,
-	// up to a maximum of five versions. You can use this command to roll an app
-	// back as many as four versions.  start: Start the app's web or application
-	// server.  stop: Stop the app's web or application server.  restart: Restart
-	// the app's web or application server.  undeploy: Undeploy the app.
+	//   deploy: Deploy an app. Ruby on Rails apps have an optional Args parameter
+	// named migrate. Set Args to {"migrate":["true"]} to migrate the database.
+	// The default setting is {"migrate":["false"]}.  rollback Roll the app back
+	// to the previous version. When you update an app, AWS OpsWorks stores the
+	// previous version, up to a maximum of five versions. You can use this command
+	// to roll an app back as many as four versions.  start: Start the app's web
+	// or application server.  stop: Stop the app's web or application server.
+	// restart: Restart the app's web or application server.  undeploy: Undeploy
+	// the app.
 	Name *string `type:"string" required:"true"`
 
 	metadataDeploymentCommand `json:"-" xml:"-"`
@@ -3675,7 +3793,9 @@ type metadataDeregisterRDSDBInstanceOutput struct {
 }
 
 type DeregisterVolumeInput struct {
-	// The volume ID.
+	// The AWS OpsWorks volume ID, which is the GUID that AWS OpsWorks assigned
+	// to the instance when you registered the volume with the stack, not the Amazon
+	// EC2 volume ID.
 	VolumeID *string `locationName:"VolumeId" type:"string" required:"true"`
 
 	metadataDeregisterVolumeInput `json:"-" xml:"-"`
@@ -4097,7 +4217,7 @@ type DescribeStackProvisioningParametersOutput struct {
 	AgentInstallerURL *string `locationName:"AgentInstallerUrl" type:"string"`
 
 	// An embedded object that contains the provisioning parameters.
-	Parameters *map[string]*string `type:"map"`
+	Parameters map[string]*string `type:"map"`
 
 	metadataDescribeStackProvisioningParametersOutput `json:"-" xml:"-"`
 }
@@ -4278,6 +4398,34 @@ type metadataDisassociateElasticIPOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Describes an Amazon EBS volume. This data type maps directly to the Amazon
+// EC2 EbsBlockDevice (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_EbsBlockDevice.html)
+// data type.
+type EBSBlockDevice struct {
+	// Whether the volume is deleted on instance termination.
+	DeleteOnTermination *bool `type:"boolean"`
+
+	// The number of I/O operations per second (IOPS) that the volume supports.
+	// For more information, see EbsBlockDevice (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_EbsBlockDevice.html).
+	IOPS *int64 `locationName:"Iops" type:"integer"`
+
+	// The snapshot ID.
+	SnapshotID *string `locationName:"SnapshotId" type:"string"`
+
+	// The volume size, in GiB. For more information, see EbsBlockDevice (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_EbsBlockDevice.html).
+	VolumeSize *int64 `type:"integer"`
+
+	// The volume type. gp2 for General Purpose (SSD) volumes, io1 for Provisioned
+	// IOPS (SSD) volumes, and standard for Magnetic volumes.
+	VolumeType *string `type:"string"`
+
+	metadataEBSBlockDevice `json:"-" xml:"-"`
+}
+
+type metadataEBSBlockDevice struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // Describes an Elastic IP address.
 type ElasticIP struct {
 	// The domain.
@@ -4349,8 +4497,8 @@ type EnvironmentVariable struct {
 
 	// (Optional) Whether the variable's value will be returned by the DescribeApps
 	// action. To conceal an environment variable's value, set Secure to true. DescribeApps
-	// then returns **Filtered** instead of the actual value. The default value
-	// for Secure is false.
+	// then returns *****FILTERED***** instead of the actual value. The default
+	// value for Secure is false.
 	Secure *bool `type:"boolean"`
 
 	// (Optional) The environment variable's value, which can be left empty. If
@@ -4391,6 +4539,36 @@ type metadataGetHostnameSuggestionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type GrantAccessInput struct {
+	// The instance's AWS OpsWorks ID.
+	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
+
+	// The length of time (in minutes) that the grant is valid. When the grant expires
+	// at the end of this period, the user will no longer be able to use the credentials
+	// to log in. If the user is logged in at the time, he or she automatically
+	// will be logged out.
+	ValidForInMinutes *int64 `type:"integer"`
+
+	metadataGrantAccessInput `json:"-" xml:"-"`
+}
+
+type metadataGrantAccessInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Contains the response to a GrantAccess request.
+type GrantAccessOutput struct {
+	// A TemporaryCredential object that contains the data needed to log in to the
+	// instance by RDP clients, such as the Microsoft Remote Desktop Connection.
+	TemporaryCredential *TemporaryCredential `type:"structure"`
+
+	metadataGrantAccessOutput `json:"-" xml:"-"`
+}
+
+type metadataGrantAccessOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // Describes an instance.
 type Instance struct {
 	// A custom AMI ID to be used to create the instance. The AMI should be based
@@ -4407,6 +4585,10 @@ type Instance struct {
 	// The instance Availability Zone. For more information, see Regions and Endpoints
 	// (http://docs.aws.amazon.com/general/latest/gr/rande.html).
 	AvailabilityZone *string `type:"string"`
+
+	// An array of BlockDeviceMapping objects that specify the instance's block
+	// device mappings.
+	BlockDeviceMappings []*BlockDeviceMapping `type:"list"`
 
 	// The time that the instance was created.
 	CreatedAt *string `type:"string"`
@@ -4474,10 +4656,13 @@ type Instance struct {
 	// For registered instances, who performed the registration.
 	RegisteredBy *string `type:"string"`
 
+	// The instance's reported AWS OpsWorks agent version.
+	ReportedAgentVersion *string `type:"string"`
+
 	// For registered instances, the reported operating system.
 	ReportedOs *ReportedOs `type:"structure"`
 
-	// The instance root device type. For more information, see Storage for the
+	// The instance's root device type. For more information, see Storage for the
 	// Root Device (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device).
 	RootDeviceType *string `type:"string"`
 
@@ -4490,7 +4675,7 @@ type Instance struct {
 	// The SSH key's RSA fingerprint.
 	SSHHostRSAKeyFingerprint *string `locationName:"SshHostRsaKeyFingerprint" type:"string"`
 
-	// The instance SSH key name.
+	// The instance's Amazon EC2 key pair name.
 	SSHKeyName *string `locationName:"SshKeyName" type:"string"`
 
 	// An array containing the instance security group IDs.
@@ -4501,8 +4686,9 @@ type Instance struct {
 
 	// The instance status:
 	//
-	//  booting connection_lost online pending rebooting requested running_setup
-	// setup_failed shutting_down start_failed stopped stopping terminated terminating
+	//   booting   connection_lost   online   pending   rebooting   requested
+	//  running_setup   setup_failed   shutting_down   start_failed   stopped
+	// stopping   terminated   terminating
 	Status *string `type:"string"`
 
 	// The instance's subnet ID, if the stack is running in a VPC.
@@ -4603,7 +4789,10 @@ type metadataInstancesCount struct {
 // Describes a layer.
 type Layer struct {
 	// The layer attributes.
-	Attributes *map[string]*string `type:"map"`
+	//
+	// For the HaproxyStatsPassword, MysqlRootPassword, and GangliaPassword attributes,
+	// AWS OpsWorks returns *****FILTERED***** instead of the actual value
+	Attributes map[string]*string `type:"map"`
 
 	// Whether to automatically assign an Elastic IP address (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
 	// to the layer's instances. For more information, see How to Edit a Layer (http://docs.aws.amazon.com/opsworks/latest/userguide/workinglayers-basics-edit.html).
@@ -4739,8 +4928,8 @@ type Permission struct {
 
 	// The user's permission level, which must be the following:
 	//
-	//  deny show deploy manage iam_only  For more information on the permissions
-	// associated with these levels, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html)
+	//   deny   show   deploy   manage   iam_only   For more information on the
+	// permissions associated with these levels, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html)
 	Level *string `type:"string"`
 
 	// A stack ID.
@@ -4810,7 +4999,7 @@ type RDSDBInstance struct {
 	// The DB instance identifier.
 	DBInstanceIdentifier *string `locationName:"DbInstanceIdentifier" type:"string"`
 
-	// The database password.
+	// AWS OpsWorks returns *****FILTERED***** instead of the actual value.
 	DBPassword *string `locationName:"DbPassword" type:"string"`
 
 	// The master user name.
@@ -5145,8 +5334,8 @@ type SetPermissionInput struct {
 	// The user's permission level, which must be set to one of the following strings.
 	// You cannot set your own permissions level.
 	//
-	//  deny show deploy manage iam_only  For more information on the permissions
-	// associated with these levels, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html)
+	//   deny   show   deploy   manage   iam_only   For more information on the
+	// permissions associated with these levels, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html)
 	Level *string `type:"string"`
 
 	// The stack ID.
@@ -5210,11 +5399,14 @@ type metadataShutdownEventConfiguration struct {
 // For more information, see Creating Apps (http://docs.aws.amazon.com/opsworks/latest/userguide/workingapps-creating.html)
 // or Custom Recipes and Cookbooks (http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook.html).
 type Source struct {
-	// This parameter depends on the repository type.
+	// When included in a request, the parameter depends on the repository type.
 	//
 	//  For Amazon S3 bundles, set Password to the appropriate IAM secret access
 	// key. For HTTP bundles and Subversion repositories, set Password to the password.
 	//  For more information on how to safely handle IAM credentials, see .
+	//
+	// In responses, AWS OpsWorks returns *****FILTERED***** instead of the actual
+	// value.
 	Password *string `type:"string"`
 
 	// The application's version. AWS OpsWorks enables you to easily deploy new
@@ -5223,7 +5415,10 @@ type Source struct {
 	// potentially be deployed.
 	Revision *string `type:"string"`
 
-	// The repository's SSH key.
+	// In requests, the repository's SSH key.
+	//
+	// In responses, AWS OpsWorks returns *****FILTERED***** instead of the actual
+	// value.
 	SSHKey *string `locationName:"SshKey" type:"string"`
 
 	// The repository type.
@@ -5252,7 +5447,7 @@ type Stack struct {
 	ARN *string `locationName:"Arn" type:"string"`
 
 	// The stack's attributes.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// A ChefConfiguration object that specifies whether to enable Berkshelf and
 	// the Berkshelf version. For more information, see Create a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
@@ -5269,14 +5464,15 @@ type Stack struct {
 	// or Custom Recipes and Cookbooks (http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook.html).
 	CustomCookbooksSource *Source `type:"structure"`
 
-	// A string that contains user-defined, custom JSON. It is used to override
-	// the corresponding default stack configuration JSON values. The string should
-	// be in the following format and must escape characters such as '"'.:
+	// A string that contains user-defined, custom JSON. It can be used to override
+	// the corresponding default stack configuration JSON values or to pass data
+	// to recipes. The string should be in the following format and must escape
+	// characters such as '"'.:
 	//
-	// "{\"key1\": \"value1\", \"key2\": \"value2\",...}"
+	//  "{\"key1\": \"value1\", \"key2\": \"value2\",...}"
 	//
 	// For more information on custom JSON, see Use Custom JSON to Modify the Stack
-	// Configuration JSON (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html).
+	// Configuration Attributes (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html).
 	CustomJSON *string `locationName:"CustomJson" type:"string"`
 
 	// The stack's default Availability Zone. For more information, see Regions
@@ -5296,8 +5492,8 @@ type Stack struct {
 	// information, see Storage for the Root Device (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device).
 	DefaultRootDeviceType *string `type:"string"`
 
-	// A default SSH key for the stack's instances. You can override this value
-	// when you create or update an instance.
+	// A default Amazon EC2 key pair for the stack's instances. You can override
+	// this value when you create or update an instance.
 	DefaultSSHKeyName *string `locationName:"DefaultSshKeyName" type:"string"`
 
 	// The default subnet ID, if the stack is running in a VPC.
@@ -5455,6 +5651,31 @@ type metadataStopStackOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// Contains the data needed by RDP clients such as the Microsoft Remote Desktop
+// Connection to log in to the instance.
+type TemporaryCredential struct {
+	// The instance's AWS OpsWorks ID.
+	InstanceID *string `locationName:"InstanceId" type:"string"`
+
+	// The password.
+	Password *string `type:"string"`
+
+	// The user name.
+	Username *string `type:"string"`
+
+	// The length of time (in minutes) that the grant is valid. When the grant expires,
+	// at the end of this period, the user will no longer be able to use the credentials
+	// to log in. If they are logged in at the time, they will be automatically
+	// logged out.
+	ValidForInMinutes *int64 `type:"integer"`
+
+	metadataTemporaryCredential `json:"-" xml:"-"`
+}
+
+type metadataTemporaryCredential struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // Describes an instance's time-based auto scaling configuration.
 type TimeBasedAutoScalingConfiguration struct {
 	// A WeeklyAutoScalingSchedule object with the instance schedule.
@@ -5516,7 +5737,7 @@ type UpdateAppInput struct {
 	AppSource *Source `type:"structure"`
 
 	// One or more user-defined key/value pairs to be added to the stack attributes.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// The app's data sources.
 	DataSources []*DataSource `type:"list"`
@@ -5532,9 +5753,16 @@ type UpdateAppInput struct {
 	EnableSSL *bool `locationName:"EnableSsl" type:"boolean"`
 
 	// An array of EnvironmentVariable objects that specify environment variables
-	// to be associated with the app. You can specify up to ten environment variables.
-	// After you deploy the app, these variables are defined on the associated app
-	// server instances.
+	// to be associated with the app. After you deploy the app, these variables
+	// are defined on the associated app server instances.For more information,
+	// see  Environment Variables (http://docs.aws.amazon.com/opsworks/latest/userguide/workingapps-creating.html#workingapps-creating-environment).
+	//
+	//  There is no specific limit on the number of environment variables. However,
+	// the size of the associated data structure - which includes the variables'
+	// names, values, and protected flag values - cannot exceed 10 KB (10240 Bytes).
+	// This limit should accommodate most if not all use cases. Exceeding it will
+	// cause an exception with the message, "Environment: is too large (maximum
+	// is 10KB)."
 	//
 	// This parameter is supported only by Chef 11.10 stacks. If you have specified
 	// one or more environment variables, you cannot modify the stack's Chef version.
@@ -5599,7 +5827,8 @@ type UpdateInstanceInput struct {
 	// different instance types, see Instance Families and Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html).
 	Architecture *string `type:"string"`
 
-	// For load-based or time-based instances, the type.
+	// For load-based or time-based instances, the type. Windows stacks can use
+	// only time-based instances.
 	AutoScalingType *string `type:"string"`
 
 	// Whether this is an Amazon EBS-optimized instance.
@@ -5633,18 +5862,21 @@ type UpdateInstanceInput struct {
 
 	// The instance's operating system, which must be set to one of the following.
 	//
-	//  Standard operating systems: An Amazon Linux version such as Amazon Linux
+	// For Windows stacks: Microsoft Windows Server 2012 R2.
+	//
+	// For Linux stacks:
+	//
+	//  Standard operating systems: an Amazon Linux version such as Amazon Linux
 	// 2014.09, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS. Custom AMIs: Custom   The
-	// default option is the current Amazon Linux version, such as Amazon Linux
-	// 2014.09. If you set this parameter to Custom, you must use the CreateInstance
-	// action's AmiId parameter to specify the custom AMI that you want to use.
-	// For more information on the standard operating systems, see Operating Systems
-	// (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html)For
+	// default option is the current Amazon Linux version. If you set this parameter
+	// to Custom, you must use the CreateInstance action's AmiId parameter to specify
+	// the custom AMI that you want to use. For more information on the standard
+	// operating systems, see Operating Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html)For
 	// more information on how to use custom AMIs with OpsWorks, see Using Custom
 	// AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
 	Os *string `type:"string"`
 
-	// The instance SSH key name.
+	// The instance's Amazon EC2 key name.
 	SSHKeyName *string `locationName:"SshKeyName" type:"string"`
 
 	metadataUpdateInstanceInput `json:"-" xml:"-"`
@@ -5664,7 +5896,7 @@ type metadataUpdateInstanceOutput struct {
 
 type UpdateLayerInput struct {
 	// One or more user-defined key/value pairs to be added to the stack attributes.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// Whether to automatically assign an Elastic IP address (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
 	// to the layer's instances. For more information, see How to Edit a Layer (http://docs.aws.amazon.com/opsworks/latest/userguide/workinglayers-basics-edit.html).
@@ -5709,10 +5941,14 @@ type UpdateLayerInput struct {
 	// An array of Package objects that describe the layer's packages.
 	Packages []*string `type:"list"`
 
-	// The layer short name, which is used internally by AWS OpsWorksand by Chef.
-	// The short name is also used as the name for the directory where your app
-	// files are installed. It can have a maximum of 200 characters and must be
-	// in the following format: /\A[a-z0-9\-\_\.]+\Z/.
+	// For custom layers only, use this parameter to specify the layer's short name,
+	// which is used internally by AWS OpsWorksand by Chef. The short name is also
+	// used as the name for the directory where your app files are installed. It
+	// can have a maximum of 200 characters and must be in the following format:
+	// /\A[a-z0-9\-\_\.]+\Z/.
+	//
+	// The built-in layers' short names are defined by AWS OpsWorks. For more information,
+	// see the Layer Reference (http://docs.aws.amazon.com/opsworks/latest/userguide/layers.html)
 	Shortname *string `type:"string"`
 
 	// Whether to use Amazon EBS-optimized instances.
@@ -5782,7 +6018,7 @@ type metadataUpdateRDSDBInstanceOutput struct {
 
 type UpdateStackInput struct {
 	// One or more user-defined key/value pairs to be added to the stack attributes.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// A ChefConfiguration object that specifies whether to enable Berkshelf and
 	// the Berkshelf version on Chef 11.10 stacks. For more information, see Create
@@ -5799,14 +6035,15 @@ type UpdateStackInput struct {
 	// or Custom Recipes and Cookbooks (http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook.html).
 	CustomCookbooksSource *Source `type:"structure"`
 
-	// A string that contains user-defined, custom JSON. It is used to override
-	// the corresponding default stack configuration JSON values. The string should
-	// be in the following format and must escape characters such as '"'.:
+	// A string that contains user-defined, custom JSON. It can be used to override
+	// the corresponding default stack configuration JSON values or to pass data
+	// to recipes. The string should be in the following format and must escape
+	// characters such as '"'.:
 	//
-	// "{\"key1\": \"value1\", \"key2\": \"value2\",...}"
+	//  "{\"key1\": \"value1\", \"key2\": \"value2\",...}"
 	//
 	// For more information on custom JSON, see Use Custom JSON to Modify the Stack
-	// Configuration JSON (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html).
+	// Configuration Attributes (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html).
 	CustomJSON *string `locationName:"CustomJson" type:"string"`
 
 	// The stack's default Availability Zone, which must be in the specified region.
@@ -5822,10 +6059,11 @@ type UpdateStackInput struct {
 
 	// The stack's operating system, which must be set to one of the following.
 	//
-	//  Standard operating systems: an Amazon Linux version such as Amazon Linux
-	// 2014.09, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS. Custom AMIs: Custom. You
-	// specify the custom AMI you want to use when you create instances.   The default
-	// option is the current Amazon Linux version.
+	//  Standard Linux operating systems: an Amazon Linux version such as Amazon
+	// Linux 2014.09, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS. Custom Linux AMIs:
+	// Custom. You specify the custom AMI you want to use when you create instances.
+	// Microsoft Windows Server 2012 R2.   The default option is the current Amazon
+	// Linux version.
 	DefaultOs *string `type:"string"`
 
 	// The default root device type. This value is used by default for all instances
@@ -5833,8 +6071,13 @@ type UpdateStackInput struct {
 	// information, see Storage for the Root Device (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device).
 	DefaultRootDeviceType *string `type:"string"`
 
-	// A default SSH key for the stack instances. You can override this value when
-	// you create or update an instance.
+	// A default Amazon EC2 key pair name. The default value is none. If you specify
+	// a key pair name, AWS OpsWorks installs the public key on the instance and
+	// you can use the private key with an SSH client to log in to the instance.
+	// For more information, see  Using SSH to Communicate with an Instance (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-ssh.html)
+	// and  Managing SSH Access (http://docs.aws.amazon.com/opsworks/latest/userguide/security-ssh-access.html).
+	// You can override this setting by specifying a different key pair, or no key
+	// pair, when you  create an instance (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-add.html).
 	DefaultSSHKeyName *string `locationName:"DefaultSshKeyName" type:"string"`
 
 	// The stack's default VPC subnet ID. This parameter is required if you specify
@@ -5850,10 +6093,10 @@ type UpdateStackInput struct {
 	// HostnameTheme is set to Layer_Dependent, which creates host names by appending
 	// integers to the layer's short name. The other themes are:
 	//
-	//  Baked_Goods Clouds European_Cities Fruits Greek_Deities Legendary_Creatures_from_Japan
-	// Planets_and_Moons Roman_Deities Scottish_Islands US_Cities Wild_Cats  To
-	// obtain a generated host name, call GetHostNameSuggestion, which returns a
-	// host name based on the current theme.
+	//   Baked_Goods   Clouds   Europe_Cities   Fruits   Greek_Deities   Legendary_creatures_from_Japan
+	//   Planets_and_Moons   Roman_Deities   Scottish_Islands   US_Cities   Wild_Cats
+	//   To obtain a generated host name, call GetHostNameSuggestion, which returns
+	// a host name based on the current theme.
 	HostnameTheme *string `type:"string"`
 
 	// The stack's new name.
@@ -6085,28 +6328,28 @@ type metadataVolumeConfiguration struct {
 // The following example specifies that the instance should be online for four
 // hours, from UTC 1200 - 1600. It will be off for the remainder of the day.
 //
-//  { "12":"on", "13":"on", "14":"on", "15":"on" }
+//   { "12":"on", "13":"on", "14":"on", "15":"on" }
 type WeeklyAutoScalingSchedule struct {
 	// The schedule for Friday.
-	Friday *map[string]*string `type:"map"`
+	Friday map[string]*string `type:"map"`
 
 	// The schedule for Monday.
-	Monday *map[string]*string `type:"map"`
+	Monday map[string]*string `type:"map"`
 
 	// The schedule for Saturday.
-	Saturday *map[string]*string `type:"map"`
+	Saturday map[string]*string `type:"map"`
 
 	// The schedule for Sunday.
-	Sunday *map[string]*string `type:"map"`
+	Sunday map[string]*string `type:"map"`
 
 	// The schedule for Thursday.
-	Thursday *map[string]*string `type:"map"`
+	Thursday map[string]*string `type:"map"`
 
 	// The schedule for Tuesday.
-	Tuesday *map[string]*string `type:"map"`
+	Tuesday map[string]*string `type:"map"`
 
 	// The schedule for Wednesday.
-	Wednesday *map[string]*string `type:"map"`
+	Wednesday map[string]*string `type:"map"`
 
 	metadataWeeklyAutoScalingSchedule `json:"-" xml:"-"`
 }

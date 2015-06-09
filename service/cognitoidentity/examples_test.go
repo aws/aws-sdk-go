@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
-	"github.com/awslabs/aws-sdk-go/service/cognitoidentity"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/service/cognitoidentity"
 )
 
 var _ time.Duration
@@ -27,12 +27,42 @@ func ExampleCognitoIdentity_CreateIdentityPool() {
 			aws.String("ARNString"), // Required
 			// More values...
 		},
-		SupportedLoginProviders: &map[string]*string{
+		SupportedLoginProviders: map[string]*string{
 			"Key": aws.String("IdentityProviderId"), // Required
 			// More values...
 		},
 	}
 	resp, err := svc.CreateIdentityPool(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleCognitoIdentity_DeleteIdentities() {
+	svc := cognitoidentity.New(nil)
+
+	params := &cognitoidentity.DeleteIdentitiesInput{
+		IdentityIDsToDelete: []*string{ // Required
+			aws.String("IdentityId"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.DeleteIdentities(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -139,7 +169,7 @@ func ExampleCognitoIdentity_GetCredentialsForIdentity() {
 
 	params := &cognitoidentity.GetCredentialsForIdentityInput{
 		IdentityID: aws.String("IdentityId"), // Required
-		Logins: &map[string]*string{
+		Logins: map[string]*string{
 			"Key": aws.String("IdentityProviderToken"), // Required
 			// More values...
 		},
@@ -171,7 +201,7 @@ func ExampleCognitoIdentity_GetID() {
 	params := &cognitoidentity.GetIDInput{
 		IdentityPoolID: aws.String("IdentityPoolId"), // Required
 		AccountID:      aws.String("AccountId"),
-		Logins: &map[string]*string{
+		Logins: map[string]*string{
 			"Key": aws.String("IdentityProviderToken"), // Required
 			// More values...
 		},
@@ -201,7 +231,7 @@ func ExampleCognitoIdentity_GetIdentityPoolRoles() {
 	svc := cognitoidentity.New(nil)
 
 	params := &cognitoidentity.GetIdentityPoolRolesInput{
-		IdentityPoolID: aws.String("IdentityPoolId"),
+		IdentityPoolID: aws.String("IdentityPoolId"), // Required
 	}
 	resp, err := svc.GetIdentityPoolRoles(params)
 
@@ -229,7 +259,7 @@ func ExampleCognitoIdentity_GetOpenIDToken() {
 
 	params := &cognitoidentity.GetOpenIDTokenInput{
 		IdentityID: aws.String("IdentityId"), // Required
-		Logins: &map[string]*string{
+		Logins: map[string]*string{
 			"Key": aws.String("IdentityProviderToken"), // Required
 			// More values...
 		},
@@ -260,7 +290,7 @@ func ExampleCognitoIdentity_GetOpenIDTokenForDeveloperIdentity() {
 
 	params := &cognitoidentity.GetOpenIDTokenForDeveloperIdentityInput{
 		IdentityPoolID: aws.String("IdentityPoolId"), // Required
-		Logins: &map[string]*string{ // Required
+		Logins: map[string]*string{ // Required
 			"Key": aws.String("IdentityProviderToken"), // Required
 			// More values...
 		},
@@ -294,6 +324,7 @@ func ExampleCognitoIdentity_ListIdentities() {
 	params := &cognitoidentity.ListIdentitiesInput{
 		IdentityPoolID: aws.String("IdentityPoolId"), // Required
 		MaxResults:     aws.Long(1),                  // Required
+		HideDisabled:   aws.Boolean(true),
 		NextToken:      aws.String("PaginationKey"),
 	}
 	resp, err := svc.ListIdentities(params)
@@ -411,7 +442,7 @@ func ExampleCognitoIdentity_SetIdentityPoolRoles() {
 
 	params := &cognitoidentity.SetIdentityPoolRolesInput{
 		IdentityPoolID: aws.String("IdentityPoolId"), // Required
-		Roles: &map[string]*string{ // Required
+		Roles: map[string]*string{ // Required
 			"Key": aws.String("ARNString"), // Required
 			// More values...
 		},
@@ -472,7 +503,7 @@ func ExampleCognitoIdentity_UnlinkIdentity() {
 
 	params := &cognitoidentity.UnlinkIdentityInput{
 		IdentityID: aws.String("IdentityId"), // Required
-		Logins: &map[string]*string{ // Required
+		Logins: map[string]*string{ // Required
 			"Key": aws.String("IdentityProviderToken"), // Required
 			// More values...
 		},
@@ -514,7 +545,7 @@ func ExampleCognitoIdentity_UpdateIdentityPool() {
 			aws.String("ARNString"), // Required
 			// More values...
 		},
-		SupportedLoginProviders: &map[string]*string{
+		SupportedLoginProviders: map[string]*string{
 			"Key": aws.String("IdentityProviderId"), // Required
 			// More values...
 		},

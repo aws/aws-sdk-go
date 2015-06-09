@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
-	"github.com/awslabs/aws-sdk-go/service/elastictranscoder"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/service/elastictranscoder"
 )
 
 var _ time.Duration
@@ -50,6 +50,13 @@ func ExampleElasticTranscoder_CreateJob() {
 		Input: &elastictranscoder.JobInput{ // Required
 			AspectRatio: aws.String("AspectRatio"),
 			Container:   aws.String("JobContainer"),
+			DetectedProperties: &elastictranscoder.DetectedProperties{
+				DurationMillis: aws.Long(1),
+				FileSize:       aws.Long(1),
+				FrameRate:      aws.String("FloatString"),
+				Height:         aws.Long(1),
+				Width:          aws.Long(1),
+			},
 			Encryption: &elastictranscoder.Encryption{
 				InitializationVector: aws.String("ZeroTo255String"),
 				Key:                  aws.String("Base64EncodedString"),
@@ -65,7 +72,7 @@ func ExampleElasticTranscoder_CreateJob() {
 		Output: &elastictranscoder.CreateJobOutput{
 			AlbumArt: &elastictranscoder.JobAlbumArt{
 				Artwork: []*elastictranscoder.Artwork{
-					&elastictranscoder.Artwork{ // Required
+					{ // Required
 						AlbumArtFormat: aws.String("JpgOrPng"),
 						Encryption: &elastictranscoder.Encryption{
 							InitializationVector: aws.String("ZeroTo255String"),
@@ -85,7 +92,7 @@ func ExampleElasticTranscoder_CreateJob() {
 			},
 			Captions: &elastictranscoder.Captions{
 				CaptionFormats: []*elastictranscoder.CaptionFormat{
-					&elastictranscoder.CaptionFormat{ // Required
+					{ // Required
 						Encryption: &elastictranscoder.Encryption{
 							InitializationVector: aws.String("ZeroTo255String"),
 							Key:                  aws.String("Base64EncodedString"),
@@ -98,7 +105,7 @@ func ExampleElasticTranscoder_CreateJob() {
 					// More values...
 				},
 				CaptionSources: []*elastictranscoder.CaptionSource{
-					&elastictranscoder.CaptionSource{ // Required
+					{ // Required
 						Encryption: &elastictranscoder.Encryption{
 							InitializationVector: aws.String("ZeroTo255String"),
 							Key:                  aws.String("Base64EncodedString"),
@@ -115,7 +122,7 @@ func ExampleElasticTranscoder_CreateJob() {
 				MergePolicy: aws.String("CaptionMergePolicy"),
 			},
 			Composition: []*elastictranscoder.Clip{
-				&elastictranscoder.Clip{ // Required
+				{ // Required
 					TimeSpan: &elastictranscoder.TimeSpan{
 						Duration:  aws.String("Time"),
 						StartTime: aws.String("Time"),
@@ -132,7 +139,7 @@ func ExampleElasticTranscoder_CreateJob() {
 			Key:             aws.String("Key"),
 			PresetID:        aws.String("Id"),
 			Rotate:          aws.String("Rotate"),
-			SegmentDuration: aws.String("Float"),
+			SegmentDuration: aws.String("FloatString"),
 			ThumbnailEncryption: &elastictranscoder.Encryption{
 				InitializationVector: aws.String("ZeroTo255String"),
 				Key:                  aws.String("Base64EncodedString"),
@@ -141,7 +148,7 @@ func ExampleElasticTranscoder_CreateJob() {
 			},
 			ThumbnailPattern: aws.String("ThumbnailPattern"),
 			Watermarks: []*elastictranscoder.JobWatermark{
-				&elastictranscoder.JobWatermark{ // Required
+				{ // Required
 					Encryption: &elastictranscoder.Encryption{
 						InitializationVector: aws.String("ZeroTo255String"),
 						Key:                  aws.String("Base64EncodedString"),
@@ -156,10 +163,10 @@ func ExampleElasticTranscoder_CreateJob() {
 		},
 		OutputKeyPrefix: aws.String("Key"),
 		Outputs: []*elastictranscoder.CreateJobOutput{
-			&elastictranscoder.CreateJobOutput{ // Required
+			{ // Required
 				AlbumArt: &elastictranscoder.JobAlbumArt{
 					Artwork: []*elastictranscoder.Artwork{
-						&elastictranscoder.Artwork{ // Required
+						{ // Required
 							AlbumArtFormat: aws.String("JpgOrPng"),
 							Encryption: &elastictranscoder.Encryption{
 								InitializationVector: aws.String("ZeroTo255String"),
@@ -179,7 +186,7 @@ func ExampleElasticTranscoder_CreateJob() {
 				},
 				Captions: &elastictranscoder.Captions{
 					CaptionFormats: []*elastictranscoder.CaptionFormat{
-						&elastictranscoder.CaptionFormat{ // Required
+						{ // Required
 							Encryption: &elastictranscoder.Encryption{
 								InitializationVector: aws.String("ZeroTo255String"),
 								Key:                  aws.String("Base64EncodedString"),
@@ -192,7 +199,7 @@ func ExampleElasticTranscoder_CreateJob() {
 						// More values...
 					},
 					CaptionSources: []*elastictranscoder.CaptionSource{
-						&elastictranscoder.CaptionSource{ // Required
+						{ // Required
 							Encryption: &elastictranscoder.Encryption{
 								InitializationVector: aws.String("ZeroTo255String"),
 								Key:                  aws.String("Base64EncodedString"),
@@ -209,7 +216,7 @@ func ExampleElasticTranscoder_CreateJob() {
 					MergePolicy: aws.String("CaptionMergePolicy"),
 				},
 				Composition: []*elastictranscoder.Clip{
-					&elastictranscoder.Clip{ // Required
+					{ // Required
 						TimeSpan: &elastictranscoder.TimeSpan{
 							Duration:  aws.String("Time"),
 							StartTime: aws.String("Time"),
@@ -226,7 +233,7 @@ func ExampleElasticTranscoder_CreateJob() {
 				Key:             aws.String("Key"),
 				PresetID:        aws.String("Id"),
 				Rotate:          aws.String("Rotate"),
-				SegmentDuration: aws.String("Float"),
+				SegmentDuration: aws.String("FloatString"),
 				ThumbnailEncryption: &elastictranscoder.Encryption{
 					InitializationVector: aws.String("ZeroTo255String"),
 					Key:                  aws.String("Base64EncodedString"),
@@ -235,7 +242,7 @@ func ExampleElasticTranscoder_CreateJob() {
 				},
 				ThumbnailPattern: aws.String("ThumbnailPattern"),
 				Watermarks: []*elastictranscoder.JobWatermark{
-					&elastictranscoder.JobWatermark{ // Required
+					{ // Required
 						Encryption: &elastictranscoder.Encryption{
 							InitializationVector: aws.String("ZeroTo255String"),
 							Key:                  aws.String("Base64EncodedString"),
@@ -251,7 +258,7 @@ func ExampleElasticTranscoder_CreateJob() {
 			// More values...
 		},
 		Playlists: []*elastictranscoder.CreateJobPlaylist{
-			&elastictranscoder.CreateJobPlaylist{ // Required
+			{ // Required
 				Format: aws.String("PlaylistFormat"),
 				HLSContentProtection: &elastictranscoder.HLSContentProtection{
 					InitializationVector:  aws.String("ZeroTo255String"),
@@ -266,10 +273,18 @@ func ExampleElasticTranscoder_CreateJob() {
 					aws.String("Key"), // Required
 					// More values...
 				},
+				PlayReadyDRM: &elastictranscoder.PlayReadyDRM{
+					Format:                aws.String("PlayReadyDrmFormatString"),
+					InitializationVector:  aws.String("ZeroTo255String"),
+					Key:                   aws.String("NonEmptyBase64EncodedString"),
+					KeyID:                 aws.String("KeyIdGuid"),
+					KeyMD5:                aws.String("NonEmptyBase64EncodedString"),
+					LicenseAcquisitionURL: aws.String("OneTo512String"),
+				},
 			},
 			// More values...
 		},
-		UserMetadata: &map[string]*string{
+		UserMetadata: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
 		},
@@ -306,7 +321,7 @@ func ExampleElasticTranscoder_CreatePipeline() {
 		ContentConfig: &elastictranscoder.PipelineOutputConfig{
 			Bucket: aws.String("BucketName"),
 			Permissions: []*elastictranscoder.Permission{
-				&elastictranscoder.Permission{ // Required
+				{ // Required
 					Access: []*string{
 						aws.String("AccessControl"), // Required
 						// More values...
@@ -328,7 +343,7 @@ func ExampleElasticTranscoder_CreatePipeline() {
 		ThumbnailConfig: &elastictranscoder.PipelineOutputConfig{
 			Bucket: aws.String("BucketName"),
 			Permissions: []*elastictranscoder.Permission{
-				&elastictranscoder.Permission{ // Required
+				{ // Required
 					Access: []*string{
 						aws.String("AccessControl"), // Required
 						// More values...
@@ -369,11 +384,15 @@ func ExampleElasticTranscoder_CreatePreset() {
 		Container: aws.String("PresetContainer"), // Required
 		Name:      aws.String("Name"),            // Required
 		Audio: &elastictranscoder.AudioParameters{
-			BitRate:  aws.String("AudioBitRate"),
-			Channels: aws.String("AudioChannels"),
-			Codec:    aws.String("AudioCodec"),
+			AudioPackingMode: aws.String("AudioPackingMode"),
+			BitRate:          aws.String("AudioBitRate"),
+			Channels:         aws.String("AudioChannels"),
+			Codec:            aws.String("AudioCodec"),
 			CodecOptions: &elastictranscoder.AudioCodecOptions{
-				Profile: aws.String("AudioCodecProfile"),
+				BitDepth: aws.String("AudioBitDepth"),
+				BitOrder: aws.String("AudioBitOrder"),
+				Profile:  aws.String("AudioCodecProfile"),
+				Signed:   aws.String("AudioSigned"),
 			},
 			SampleRate: aws.String("AudioSampleRate"),
 		},
@@ -392,7 +411,7 @@ func ExampleElasticTranscoder_CreatePreset() {
 			AspectRatio: aws.String("AspectRatio"),
 			BitRate:     aws.String("VideoBitRate"),
 			Codec:       aws.String("VideoCodec"),
-			CodecOptions: &map[string]*string{
+			CodecOptions: map[string]*string{
 				"Key": aws.String("CodecOption"), // Required
 				// More values...
 			},
@@ -407,7 +426,7 @@ func ExampleElasticTranscoder_CreatePreset() {
 			Resolution:         aws.String("Resolution"),
 			SizingPolicy:       aws.String("SizingPolicy"),
 			Watermarks: []*elastictranscoder.PresetWatermark{
-				&elastictranscoder.PresetWatermark{ // Required
+				{ // Required
 					HorizontalAlign:  aws.String("HorizontalAlign"),
 					HorizontalOffset: aws.String("PixelsOrPercent"),
 					ID:               aws.String("PresetWatermarkId"),
@@ -735,7 +754,7 @@ func ExampleElasticTranscoder_UpdatePipeline() {
 		ContentConfig: &elastictranscoder.PipelineOutputConfig{
 			Bucket: aws.String("BucketName"),
 			Permissions: []*elastictranscoder.Permission{
-				&elastictranscoder.Permission{ // Required
+				{ // Required
 					Access: []*string{
 						aws.String("AccessControl"), // Required
 						// More values...
@@ -759,7 +778,7 @@ func ExampleElasticTranscoder_UpdatePipeline() {
 		ThumbnailConfig: &elastictranscoder.PipelineOutputConfig{
 			Bucket: aws.String("BucketName"),
 			Permissions: []*elastictranscoder.Permission{
-				&elastictranscoder.Permission{ // Required
+				{ // Required
 					Access: []*string{
 						aws.String("AccessControl"), // Required
 						// More values...

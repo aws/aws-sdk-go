@@ -1,8 +1,9 @@
+//Package cloudsearch provides gucumber integration tests suppport.
 package cloudsearch
 
 import (
-	"github.com/awslabs/aws-sdk-go/internal/features/shared"
-	"github.com/awslabs/aws-sdk-go/service/cloudsearch"
+	"github.com/aws/aws-sdk-go/internal/features/shared"
+	"github.com/aws/aws-sdk-go/service/cloudsearch"
 	. "github.com/lsegal/gucumber"
 )
 

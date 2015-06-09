@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/internal/apierr"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/internal/apierr"
 )
 
 // Unmarshal unmarshals the REST component of a response in a REST service.
@@ -115,7 +115,7 @@ func unmarshalStatusCode(v reflect.Value, statusCode int) {
 
 func unmarshalHeaderMap(r reflect.Value, headers http.Header, prefix string) error {
 	switch r.Interface().(type) {
-	case *map[string]*string: // we only support string map value types
+	case map[string]*string: // we only support string map value types
 		out := map[string]*string{}
 		for k, v := range headers {
 			k = http.CanonicalHeaderKey(k)
@@ -123,7 +123,7 @@ func unmarshalHeaderMap(r reflect.Value, headers http.Header, prefix string) err
 				out[k[len(prefix):]] = &v[0]
 			}
 		}
-		r.Set(reflect.ValueOf(&out))
+		r.Set(reflect.ValueOf(out))
 	}
 	return nil
 }

@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awserr"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
-	"github.com/awslabs/aws-sdk-go/service/opsworks"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/service/opsworks"
 )
 
 var _ time.Duration
@@ -137,7 +137,7 @@ func ExampleOpsWorks_CloneStack() {
 	params := &opsworks.CloneStackInput{
 		ServiceRoleARN: aws.String("String"), // Required
 		SourceStackID:  aws.String("String"), // Required
-		Attributes: &map[string]*string{
+		Attributes: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
 		},
@@ -212,12 +212,12 @@ func ExampleOpsWorks_CreateApp() {
 			URL:      aws.String("String"),
 			Username: aws.String("String"),
 		},
-		Attributes: &map[string]*string{
+		Attributes: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
 		},
 		DataSources: []*opsworks.DataSource{
-			&opsworks.DataSource{ // Required
+			{ // Required
 				ARN:          aws.String("String"),
 				DatabaseName: aws.String("String"),
 				Type:         aws.String("String"),
@@ -231,7 +231,7 @@ func ExampleOpsWorks_CreateApp() {
 		},
 		EnableSSL: aws.Boolean(true),
 		Environment: []*opsworks.EnvironmentVariable{
-			&opsworks.EnvironmentVariable{ // Required
+			{ // Required
 				Key:    aws.String("String"), // Required
 				Value:  aws.String("String"), // Required
 				Secure: aws.Boolean(true),
@@ -272,8 +272,8 @@ func ExampleOpsWorks_CreateDeployment() {
 	params := &opsworks.CreateDeploymentInput{
 		Command: &opsworks.DeploymentCommand{ // Required
 			Name: aws.String("DeploymentCommandName"), // Required
-			Args: &map[string][]*string{
-				"Key": []*string{ // Required
+			Args: map[string][]*string{
+				"Key": { // Required
 					aws.String("String"), // Required
 					// More values...
 				},
@@ -319,11 +319,26 @@ func ExampleOpsWorks_CreateInstance() {
 			aws.String("String"), // Required
 			// More values...
 		},
-		StackID:              aws.String("String"), // Required
-		AMIID:                aws.String("String"),
-		Architecture:         aws.String("Architecture"),
-		AutoScalingType:      aws.String("AutoScalingType"),
-		AvailabilityZone:     aws.String("String"),
+		StackID:          aws.String("String"), // Required
+		AMIID:            aws.String("String"),
+		Architecture:     aws.String("Architecture"),
+		AutoScalingType:  aws.String("AutoScalingType"),
+		AvailabilityZone: aws.String("String"),
+		BlockDeviceMappings: []*opsworks.BlockDeviceMapping{
+			{ // Required
+				DeviceName: aws.String("String"),
+				EBS: &opsworks.EBSBlockDevice{
+					DeleteOnTermination: aws.Boolean(true),
+					IOPS:                aws.Long(1),
+					SnapshotID:          aws.String("String"),
+					VolumeSize:          aws.Long(1),
+					VolumeType:          aws.String("VolumeType"),
+				},
+				NoDevice:    aws.String("String"),
+				VirtualName: aws.String("String"),
+			},
+			// More values...
+		},
 		EBSOptimized:         aws.Boolean(true),
 		Hostname:             aws.String("String"),
 		InstallUpdatesOnBoot: aws.Boolean(true),
@@ -362,7 +377,7 @@ func ExampleOpsWorks_CreateLayer() {
 		Shortname: aws.String("String"),    // Required
 		StackID:   aws.String("String"),    // Required
 		Type:      aws.String("LayerType"), // Required
-		Attributes: &map[string]*string{
+		Attributes: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
 		},
@@ -409,7 +424,7 @@ func ExampleOpsWorks_CreateLayer() {
 		},
 		UseEBSOptimizedInstances: aws.Boolean(true),
 		VolumeConfigurations: []*opsworks.VolumeConfiguration{
-			&opsworks.VolumeConfiguration{ // Required
+			{ // Required
 				MountPoint:    aws.String("String"), // Required
 				NumberOfDisks: aws.Long(1),          // Required
 				Size:          aws.Long(1),          // Required
@@ -449,7 +464,7 @@ func ExampleOpsWorks_CreateStack() {
 		Name:           aws.String("String"), // Required
 		Region:         aws.String("String"), // Required
 		ServiceRoleARN: aws.String("String"), // Required
-		Attributes: &map[string]*string{
+		Attributes: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
 		},
@@ -1434,6 +1449,34 @@ func ExampleOpsWorks_GetHostnameSuggestion() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleOpsWorks_GrantAccess() {
+	svc := opsworks.New(nil)
+
+	params := &opsworks.GrantAccessInput{
+		InstanceID:        aws.String("String"), // Required
+		ValidForInMinutes: aws.Long(1),
+	}
+	resp, err := svc.GrantAccess(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, The SDK should alwsy return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleOpsWorks_RebootInstance() {
 	svc := opsworks.New(nil)
 
@@ -1589,6 +1632,10 @@ func ExampleOpsWorks_SetLoadBasedAutoScaling() {
 	params := &opsworks.SetLoadBasedAutoScalingInput{
 		LayerID: aws.String("String"), // Required
 		DownScaling: &opsworks.AutoScalingThresholds{
+			Alarms: []*string{
+				aws.String("String"), // Required
+				// More values...
+			},
 			CPUThreshold:       aws.Double(1.0),
 			IgnoreMetricsTime:  aws.Long(1),
 			InstanceCount:      aws.Long(1),
@@ -1598,6 +1645,10 @@ func ExampleOpsWorks_SetLoadBasedAutoScaling() {
 		},
 		Enable: aws.Boolean(true),
 		UpScaling: &opsworks.AutoScalingThresholds{
+			Alarms: []*string{
+				aws.String("String"), // Required
+				// More values...
+			},
 			CPUThreshold:       aws.Double(1.0),
 			IgnoreMetricsTime:  aws.Long(1),
 			InstanceCount:      aws.Long(1),
@@ -1664,31 +1715,31 @@ func ExampleOpsWorks_SetTimeBasedAutoScaling() {
 	params := &opsworks.SetTimeBasedAutoScalingInput{
 		InstanceID: aws.String("String"), // Required
 		AutoScalingSchedule: &opsworks.WeeklyAutoScalingSchedule{
-			Friday: &map[string]*string{
+			Friday: map[string]*string{
 				"Key": aws.String("Switch"), // Required
 				// More values...
 			},
-			Monday: &map[string]*string{
+			Monday: map[string]*string{
 				"Key": aws.String("Switch"), // Required
 				// More values...
 			},
-			Saturday: &map[string]*string{
+			Saturday: map[string]*string{
 				"Key": aws.String("Switch"), // Required
 				// More values...
 			},
-			Sunday: &map[string]*string{
+			Sunday: map[string]*string{
 				"Key": aws.String("Switch"), // Required
 				// More values...
 			},
-			Thursday: &map[string]*string{
+			Thursday: map[string]*string{
 				"Key": aws.String("Switch"), // Required
 				// More values...
 			},
-			Tuesday: &map[string]*string{
+			Tuesday: map[string]*string{
 				"Key": aws.String("Switch"), // Required
 				// More values...
 			},
-			Wednesday: &map[string]*string{
+			Wednesday: map[string]*string{
 				"Key": aws.String("Switch"), // Required
 				// More values...
 			},
@@ -1890,12 +1941,12 @@ func ExampleOpsWorks_UpdateApp() {
 			URL:      aws.String("String"),
 			Username: aws.String("String"),
 		},
-		Attributes: &map[string]*string{
+		Attributes: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
 		},
 		DataSources: []*opsworks.DataSource{
-			&opsworks.DataSource{ // Required
+			{ // Required
 				ARN:          aws.String("String"),
 				DatabaseName: aws.String("String"),
 				Type:         aws.String("String"),
@@ -1909,7 +1960,7 @@ func ExampleOpsWorks_UpdateApp() {
 		},
 		EnableSSL: aws.Boolean(true),
 		Environment: []*opsworks.EnvironmentVariable{
-			&opsworks.EnvironmentVariable{ // Required
+			{ // Required
 				Key:    aws.String("String"), // Required
 				Value:  aws.String("String"), // Required
 				Secure: aws.Boolean(true),
@@ -2018,7 +2069,7 @@ func ExampleOpsWorks_UpdateLayer() {
 
 	params := &opsworks.UpdateLayerInput{
 		LayerID: aws.String("String"), // Required
-		Attributes: &map[string]*string{
+		Attributes: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
 		},
@@ -2067,7 +2118,7 @@ func ExampleOpsWorks_UpdateLayer() {
 		Shortname:                aws.String("String"),
 		UseEBSOptimizedInstances: aws.Boolean(true),
 		VolumeConfigurations: []*opsworks.VolumeConfiguration{
-			&opsworks.VolumeConfiguration{ // Required
+			{ // Required
 				MountPoint:    aws.String("String"), // Required
 				NumberOfDisks: aws.Long(1),          // Required
 				Size:          aws.Long(1),          // Required
@@ -2160,7 +2211,7 @@ func ExampleOpsWorks_UpdateStack() {
 
 	params := &opsworks.UpdateStackInput{
 		StackID: aws.String("String"), // Required
-		Attributes: &map[string]*string{
+		Attributes: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
 		},

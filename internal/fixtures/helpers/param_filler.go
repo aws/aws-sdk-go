@@ -1,3 +1,4 @@
+// Package helpers provides parameter filtering utilities.
 package helpers
 
 import (
@@ -5,9 +6,9 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/awslabs/aws-sdk-go/internal/model/api"
-	"github.com/awslabs/aws-sdk-go/internal/util"
-	"github.com/awslabs/aws-sdk-go/internal/util/utilsort"
+	"github.com/aws/aws-sdk-go/internal/model/api"
+	"github.com/aws/aws-sdk-go/internal/util"
+	"github.com/aws/aws-sdk-go/internal/util/utilsort"
 )
 
 // A paramFiller provides string formatting for a shape and its types.
@@ -102,7 +103,7 @@ func (f paramFiller) paramsStructStruct(value map[string]interface{}, shape *api
 
 // paramsStructMap returns the string representation of a map of values
 func (f paramFiller) paramsStructMap(value map[string]interface{}, shape *api.Shape) string {
-	out := "&" + f.typeName(shape)[1:] + "{\n"
+	out := f.typeName(shape) + "{\n"
 	keys := utilsort.SortedKeys(value)
 	for _, k := range keys {
 		v := value[k]

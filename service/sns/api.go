@@ -6,7 +6,7 @@ package sns
 import (
 	"sync"
 
-	"github.com/awslabs/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 var oprw sync.Mutex
@@ -485,7 +485,9 @@ func (c *SNS) ListEndpointsByPlatformApplication(input *ListEndpointsByPlatformA
 
 func (c *SNS) ListEndpointsByPlatformApplicationPages(input *ListEndpointsByPlatformApplicationInput, fn func(p *ListEndpointsByPlatformApplicationOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListEndpointsByPlatformApplicationRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListEndpointsByPlatformApplicationOutput), lastPage)
+	})
 }
 
 var opListEndpointsByPlatformApplication *aws.Operation
@@ -535,7 +537,9 @@ func (c *SNS) ListPlatformApplications(input *ListPlatformApplicationsInput) (*L
 
 func (c *SNS) ListPlatformApplicationsPages(input *ListPlatformApplicationsInput, fn func(p *ListPlatformApplicationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListPlatformApplicationsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListPlatformApplicationsOutput), lastPage)
+	})
 }
 
 var opListPlatformApplications *aws.Operation
@@ -581,7 +585,9 @@ func (c *SNS) ListSubscriptions(input *ListSubscriptionsInput) (*ListSubscriptio
 
 func (c *SNS) ListSubscriptionsPages(input *ListSubscriptionsInput, fn func(p *ListSubscriptionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListSubscriptionsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListSubscriptionsOutput), lastPage)
+	})
 }
 
 var opListSubscriptions *aws.Operation
@@ -627,7 +633,9 @@ func (c *SNS) ListSubscriptionsByTopic(input *ListSubscriptionsByTopicInput) (*L
 
 func (c *SNS) ListSubscriptionsByTopicPages(input *ListSubscriptionsByTopicInput, fn func(p *ListSubscriptionsByTopicOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListSubscriptionsByTopicRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListSubscriptionsByTopicOutput), lastPage)
+	})
 }
 
 var opListSubscriptionsByTopic *aws.Operation
@@ -672,7 +680,9 @@ func (c *SNS) ListTopics(input *ListTopicsInput) (*ListTopicsOutput, error) {
 
 func (c *SNS) ListTopicsPages(input *ListTopicsInput, fn func(p *ListTopicsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListTopicsRequest(input)
-	return page.EachPage(fn)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListTopicsOutput), lastPage)
+	})
 }
 
 var opListTopics *aws.Operation
@@ -1022,7 +1032,7 @@ type metadataConfirmSubscriptionOutput struct {
 // Input for CreatePlatformApplication action.
 type CreatePlatformApplicationInput struct {
 	// For a list of attributes, see SetPlatformApplicationAttributes (http://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html)
-	Attributes *map[string]*string `type:"map" required:"true"`
+	Attributes map[string]*string `type:"map" required:"true"`
 
 	// Application names must be made up of only uppercase and lowercase ASCII letters,
 	// numbers, underscores, hyphens, and periods, and must be between 1 and 256
@@ -1055,7 +1065,7 @@ type metadataCreatePlatformApplicationOutput struct {
 // Input for CreatePlatformEndpoint action.
 type CreatePlatformEndpointInput struct {
 	// For a list of attributes, see SetEndpointAttributes (http://docs.aws.amazon.com/sns/latest/api/API_SetEndpointAttributes.html).
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// Arbitrary user data to associate with the endpoint. Amazon SNS does not use
 	// this data. The data must be in UTF-8 format and less than 2KB.
@@ -1181,7 +1191,7 @@ type metadataDeleteTopicOutput struct {
 // Endpoint for mobile app and device.
 type Endpoint struct {
 	// Attributes for endpoint.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// EndpointArn for mobile app and device.
 	EndpointARN *string `locationName:"EndpointArn" type:"string"`
@@ -1218,7 +1228,7 @@ type GetEndpointAttributesOutput struct {
 	// id, for an app and mobile device. This is returned from the notification
 	// service when an app and mobile device are registered with the notification
 	// service.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	metadataGetEndpointAttributesOutput `json:"-" xml:"-"`
 }
@@ -1250,7 +1260,7 @@ type GetPlatformApplicationAttributesOutput struct {
 	// -- Topic ARN to which DeliveryFailure event notifications should be sent
 	// upon Direct Publish delivery failure (permanent) to one of the application's
 	// endpoints.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	metadataGetPlatformApplicationAttributesOutput `json:"-" xml:"-"`
 }
@@ -1283,7 +1293,7 @@ type GetSubscriptionAttributesOutput struct {
 	// subscription's delivery policy  EffectiveDeliveryPolicy -- the JSON serialization
 	// of the effective delivery policy that takes into account the topic delivery
 	// policy and account system defaults
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	metadataGetSubscriptionAttributesOutput `json:"-" xml:"-"`
 }
@@ -1318,7 +1328,7 @@ type GetTopicAttributesOutput struct {
 	// JSON serialization of the topic's delivery policy  EffectiveDeliveryPolicy
 	// -- the JSON serialization of the effective delivery policy that takes into
 	// account system defaults
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	metadataGetTopicAttributesOutput `json:"-" xml:"-"`
 }
@@ -1507,7 +1517,7 @@ type metadataMessageAttributeValue struct {
 // Platform application object.
 type PlatformApplication struct {
 	// Attributes for platform application object.
-	Attributes *map[string]*string `type:"map"`
+	Attributes map[string]*string `type:"map"`
 
 	// PlatformApplicationArn for platform application object.
 	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string"`
@@ -1548,7 +1558,7 @@ type PublishInput struct {
 	Message *string `type:"string" required:"true"`
 
 	// Message attributes for Publish action.
-	MessageAttributes *map[string]*MessageAttributeValue `locationNameKey:"Name" locationNameValue:"Value" type:"map"`
+	MessageAttributes map[string]*MessageAttributeValue `locationNameKey:"Name" locationNameValue:"Value" type:"map"`
 
 	// Set MessageStructure to json if you want to send a different message for
 	// each protocol. For example, using one publish action, you can send a short
@@ -1640,7 +1650,7 @@ type SetEndpointAttributesInput struct {
 	// id, for an app and mobile device. This is returned from the notification
 	// service when an app and mobile device are registered with the notification
 	// service.
-	Attributes *map[string]*string `type:"map" required:"true"`
+	Attributes map[string]*string `type:"map" required:"true"`
 
 	// EndpointArn used for SetEndpointAttributes action.
 	EndpointARN *string `locationName:"EndpointArn" type:"string" required:"true"`
@@ -1677,7 +1687,7 @@ type SetPlatformApplicationAttributesInput struct {
 	// event notifications should be sent.  EventDeliveryFailure -- Topic ARN to
 	// which DeliveryFailure event notifications should be sent upon Direct Publish
 	// delivery failure (permanent) to one of the application's endpoints.
-	Attributes *map[string]*string `type:"map" required:"true"`
+	Attributes map[string]*string `type:"map" required:"true"`
 
 	// PlatformApplicationArn for SetPlatformApplicationAttributes action.
 	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string" required:"true"`
