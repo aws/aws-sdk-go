@@ -69,7 +69,7 @@ var converterScalarInputs = []converterTestInput{
 	converterTestInput{
 		input: mySimpleStruct{},
 		expected: &AttributeValue{
-			M: &map[string]*AttributeValue{
+			M: map[string]*AttributeValue{
 				"Bool":    &AttributeValue{BOOL: &falseValue},
 				"Float32": &AttributeValue{N: aws.String("0")},
 				"Float64": &AttributeValue{N: aws.String("0")},
@@ -142,7 +142,7 @@ var converterMapTestInputs = []converterTestInput{
 		input: map[string]interface{}{"map": map[string]interface{}{"nestedint": 12}},
 		expected: map[string]*AttributeValue{
 			"map": &AttributeValue{
-				M: &map[string]*AttributeValue{
+				M: map[string]*AttributeValue{
 					"nestedint": &AttributeValue{
 						N: aws.String("12"),
 					},
@@ -177,7 +177,7 @@ var converterMapTestInputs = []converterTestInput{
 			"Simple": &AttributeValue{
 				L: []*AttributeValue{
 					&AttributeValue{
-						M: &map[string]*AttributeValue{
+						M: map[string]*AttributeValue{
 							"Bool":    &AttributeValue{BOOL: &falseValue},
 							"Float32": &AttributeValue{N: aws.String("0")},
 							"Float64": &AttributeValue{N: aws.String("0")},
@@ -188,7 +188,7 @@ var converterMapTestInputs = []converterTestInput{
 						},
 					},
 					&AttributeValue{
-						M: &map[string]*AttributeValue{
+						M: map[string]*AttributeValue{
 							"Bool":    &AttributeValue{BOOL: &falseValue},
 							"Float32": &AttributeValue{N: aws.String("0")},
 							"Float64": &AttributeValue{N: aws.String("0")},
@@ -229,7 +229,7 @@ var converterListTestInputs = []converterTestInput{
 		input: []mySimpleStruct{mySimpleStruct{}},
 		expected: []*AttributeValue{
 			&AttributeValue{
-				M: &map[string]*AttributeValue{
+				M: map[string]*AttributeValue{
 					"Bool":    &AttributeValue{BOOL: &falseValue},
 					"Float32": &AttributeValue{N: aws.String("0")},
 					"Float64": &AttributeValue{N: aws.String("0")},
