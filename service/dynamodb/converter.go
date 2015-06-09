@@ -306,11 +306,10 @@ func convertTo(in interface{}) *AttributeValue {
 	}
 
 	if m, ok := in.(map[string]interface{}); ok {
-		mp := make(map[string]*AttributeValue)
+		a.M = make(map[string]*AttributeValue)
 		for k, v := range m {
-			mp[k] = convertTo(v)
+			a.M[k] = convertTo(v)
 		}
-		a.M = &mp
 		return a
 	}
 
@@ -383,7 +382,7 @@ func convertFrom(a *AttributeValue) interface{} {
 
 	if a.M != nil {
 		m := make(map[string]interface{})
-		for k, v := range *a.M {
+		for k, v := range a.M {
 			m[k] = convertFrom(v)
 		}
 		return m
