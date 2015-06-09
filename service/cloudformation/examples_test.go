@@ -33,7 +33,7 @@ func ExampleCloudFormation_CancelUpdateStack() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -90,7 +90,7 @@ func ExampleCloudFormation_CreateStack() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -117,7 +117,7 @@ func ExampleCloudFormation_DeleteStack() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -145,7 +145,7 @@ func ExampleCloudFormation_DescribeStackEvents() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -173,7 +173,7 @@ func ExampleCloudFormation_DescribeStackResource() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -202,7 +202,7 @@ func ExampleCloudFormation_DescribeStackResources() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -230,7 +230,7 @@ func ExampleCloudFormation_DescribeStacks() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -266,7 +266,7 @@ func ExampleCloudFormation_EstimateTemplateCost() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -293,7 +293,7 @@ func ExampleCloudFormation_GetStackPolicy() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -320,7 +320,7 @@ func ExampleCloudFormation_GetTemplate() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -349,7 +349,7 @@ func ExampleCloudFormation_GetTemplateSummary() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -377,7 +377,7 @@ func ExampleCloudFormation_ListStackResources() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -408,7 +408,7 @@ func ExampleCloudFormation_ListStacks() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -437,7 +437,7 @@ func ExampleCloudFormation_SetStackPolicy() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -467,7 +467,7 @@ func ExampleCloudFormation_SignalResource() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -517,7 +517,7 @@ func ExampleCloudFormation_UpdateStack() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -545,7 +545,7 @@ func ExampleCloudFormation_ValidateTemplate() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}

@@ -49,7 +49,7 @@ func ExampleDirectoryService_ConnectDirectory() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -77,7 +77,7 @@ func ExampleDirectoryService_CreateAlias() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -114,7 +114,7 @@ func ExampleDirectoryService_CreateComputer() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -152,7 +152,7 @@ func ExampleDirectoryService_CreateDirectory() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -180,7 +180,7 @@ func ExampleDirectoryService_CreateSnapshot() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -207,7 +207,7 @@ func ExampleDirectoryService_DeleteDirectory() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -234,7 +234,7 @@ func ExampleDirectoryService_DeleteSnapshot() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -266,7 +266,7 @@ func ExampleDirectoryService_DescribeDirectories() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -299,7 +299,7 @@ func ExampleDirectoryService_DescribeSnapshots() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -326,7 +326,7 @@ func ExampleDirectoryService_DisableRadius() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -355,7 +355,7 @@ func ExampleDirectoryService_DisableSSO() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -395,7 +395,7 @@ func ExampleDirectoryService_EnableRadius() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -424,7 +424,7 @@ func ExampleDirectoryService_EnableSSO() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -449,7 +449,7 @@ func ExampleDirectoryService_GetDirectoryLimits() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -476,7 +476,7 @@ func ExampleDirectoryService_GetSnapshotLimits() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -503,7 +503,7 @@ func ExampleDirectoryService_RestoreFromSnapshot() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -543,7 +543,7 @@ func ExampleDirectoryService_UpdateRadius() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}

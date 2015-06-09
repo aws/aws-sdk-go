@@ -39,7 +39,7 @@ func ExampleCloudTrail_CreateTrail() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -66,7 +66,7 @@ func ExampleCloudTrail_DeleteTrail() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -96,7 +96,7 @@ func ExampleCloudTrail_DescribeTrails() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -123,7 +123,7 @@ func ExampleCloudTrail_GetTrailStatus() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -160,7 +160,7 @@ func ExampleCloudTrail_LookupEvents() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -187,7 +187,7 @@ func ExampleCloudTrail_StartLogging() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -214,7 +214,7 @@ func ExampleCloudTrail_StopLogging() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
@@ -247,7 +247,7 @@ func ExampleCloudTrail_UpdateTrail() {
 				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
 			}
 		} else {
-			// This case should never be hit, The SDK should alwsy return an
+			// This case should never be hit, the SDK should always return an
 			// error which satisfies the awserr.Error interface.
 			fmt.Println(err.Error())
 		}
