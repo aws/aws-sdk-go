@@ -42,7 +42,11 @@ func ConvertToMap(in interface{}) (item map[string]*AttributeValue, err error) {
 		in = convertToUntyped(in, out)
 	}
 
-	item = convertToMap(in)
+	item = make(map[string]*AttributeValue)
+	for k, v := range in.(map[string]interface{}) {
+		item[k] = convertTo(v)
+	}
+
 	return item, nil
 }
 
@@ -121,7 +125,11 @@ func ConvertToList(in interface{}) (item []*AttributeValue, err error) {
 		in = convertToUntyped(in, out)
 	}
 
-	item = convertToList(in)
+	item = make([]*AttributeValue, 0, len(in.([]interface{})))
+	for _, v := range in.([]interface{}) {
+		item = append(item, convertTo(v))
+	}
+
 	return item, nil
 }
 
@@ -277,23 +285,6 @@ func convertToTyped(in, out interface{}) error {
 
 	decoder := json.NewDecoder(bytes.NewReader(b))
 	return decoder.Decode(&out)
-}
-
-func convertToMap(in interface{}) map[string]*AttributeValue {
-	item := make(map[string]*AttributeValue)
-	m := in.(map[string]interface{})
-	for k, v := range m {
-		item[k] = convertTo(v)
-	}
-	return item
-}
-
-func convertToList(in interface{}) []*AttributeValue {
-	item := make([]*AttributeValue, 0, len(in.([]interface{})))
-	for _, v := range in.([]interface{}) {
-		item = append(item, convertTo(v))
-	}
-	return item
 }
 
 func convertTo(in interface{}) *AttributeValue {
