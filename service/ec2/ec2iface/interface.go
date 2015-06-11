@@ -61,6 +61,8 @@ type EC2API interface {
 
 	CreateDHCPOptions(*ec2.CreateDHCPOptionsInput) (*ec2.CreateDHCPOptionsOutput, error)
 
+	CreateFlowLogs(*ec2.CreateFlowLogsInput) (*ec2.CreateFlowLogsOutput, error)
+
 	CreateImage(*ec2.CreateImageInput) (*ec2.CreateImageOutput, error)
 
 	CreateInstanceExportTask(*ec2.CreateInstanceExportTaskInput) (*ec2.CreateInstanceExportTaskOutput, error)
@@ -110,6 +112,8 @@ type EC2API interface {
 	DeleteCustomerGateway(*ec2.DeleteCustomerGatewayInput) (*ec2.DeleteCustomerGatewayOutput, error)
 
 	DeleteDHCPOptions(*ec2.DeleteDHCPOptionsInput) (*ec2.DeleteDHCPOptionsOutput, error)
+
+	DeleteFlowLogs(*ec2.DeleteFlowLogsInput) (*ec2.DeleteFlowLogsOutput, error)
 
 	DeleteInternetGateway(*ec2.DeleteInternetGatewayInput) (*ec2.DeleteInternetGatewayOutput, error)
 
@@ -170,6 +174,8 @@ type EC2API interface {
 	DescribeDHCPOptions(*ec2.DescribeDHCPOptionsInput) (*ec2.DescribeDHCPOptionsOutput, error)
 
 	DescribeExportTasks(*ec2.DescribeExportTasksInput) (*ec2.DescribeExportTasksOutput, error)
+
+	DescribeFlowLogs(*ec2.DescribeFlowLogsInput) (*ec2.DescribeFlowLogsOutput, error)
 
 	DescribeImageAttribute(*ec2.DescribeImageAttributeInput) (*ec2.DescribeImageAttributeOutput, error)
 

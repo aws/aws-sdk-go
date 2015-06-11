@@ -1078,6 +1078,47 @@ func (c *EC2) CreateDHCPOptions(input *CreateDHCPOptionsInput) (*CreateDHCPOptio
 
 var opCreateDHCPOptions *aws.Operation
 
+// CreateFlowLogsRequest generates a request for the CreateFlowLogs operation.
+func (c *EC2) CreateFlowLogsRequest(input *CreateFlowLogsInput) (req *aws.Request, output *CreateFlowLogsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opCreateFlowLogs == nil {
+		opCreateFlowLogs = &aws.Operation{
+			Name:       "CreateFlowLogs",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &CreateFlowLogsInput{}
+	}
+
+	req = c.newRequest(opCreateFlowLogs, input, output)
+	output = &CreateFlowLogsOutput{}
+	req.Data = output
+	return
+}
+
+// Creates one or more flow logs to capture IP traffic for a specific network
+// interface, subnet, or VPC. Flow logs are delivered to a specified log group
+// in Amazon CloudWatch Logs. If you specify a VPC or subnet in the request,
+// a log stream is created in CloudWatch Logs for each network interface in
+// the subnet or VPC. Log streams can include information about accepted and
+// rejected traffic to a network interface. You can view the data in your log
+// streams using Amazon CloudWatch Logs.
+//
+// In your request, you must also specify an IAM role that has permission to
+// publish logs to CloudWatch Logs.
+func (c *EC2) CreateFlowLogs(input *CreateFlowLogsInput) (*CreateFlowLogsOutput, error) {
+	req, out := c.CreateFlowLogsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opCreateFlowLogs *aws.Operation
+
 // CreateImageRequest generates a request for the CreateImage operation.
 func (c *EC2) CreateImageRequest(input *CreateImageInput) (req *aws.Request, output *CreateImageOutput) {
 	oprw.Lock()
@@ -1425,7 +1466,7 @@ func (c *EC2) CreateReservedInstancesListingRequest(input *CreateReservedInstanc
 // additional capacity. Reserved Instances bought and sold through the Reserved
 // Instance Marketplace work like any other Reserved Instances.
 //
-// To sell your Reserved Instances, you must first register as a Seller in
+// To sell your Reserved Instances, you must first register as a seller in
 // the Reserved Instance Marketplace. After completing the registration process,
 // you can create a Reserved Instance Marketplace listing of some or all of
 // your Reserved Instances, and specify the upfront price to receive for them.
@@ -2135,6 +2176,38 @@ func (c *EC2) DeleteDHCPOptions(input *DeleteDHCPOptionsInput) (*DeleteDHCPOptio
 }
 
 var opDeleteDHCPOptions *aws.Operation
+
+// DeleteFlowLogsRequest generates a request for the DeleteFlowLogs operation.
+func (c *EC2) DeleteFlowLogsRequest(input *DeleteFlowLogsInput) (req *aws.Request, output *DeleteFlowLogsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opDeleteFlowLogs == nil {
+		opDeleteFlowLogs = &aws.Operation{
+			Name:       "DeleteFlowLogs",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &DeleteFlowLogsInput{}
+	}
+
+	req = c.newRequest(opDeleteFlowLogs, input, output)
+	output = &DeleteFlowLogsOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes one or more flow logs.
+func (c *EC2) DeleteFlowLogs(input *DeleteFlowLogsInput) (*DeleteFlowLogsOutput, error) {
+	req, out := c.DeleteFlowLogsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opDeleteFlowLogs *aws.Operation
 
 // DeleteInternetGatewayRequest generates a request for the DeleteInternetGateway operation.
 func (c *EC2) DeleteInternetGatewayRequest(input *DeleteInternetGatewayInput) (req *aws.Request, output *DeleteInternetGatewayOutput) {
@@ -3208,6 +3281,40 @@ func (c *EC2) DescribeExportTasks(input *DescribeExportTasksInput) (*DescribeExp
 }
 
 var opDescribeExportTasks *aws.Operation
+
+// DescribeFlowLogsRequest generates a request for the DescribeFlowLogs operation.
+func (c *EC2) DescribeFlowLogsRequest(input *DescribeFlowLogsInput) (req *aws.Request, output *DescribeFlowLogsOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opDescribeFlowLogs == nil {
+		opDescribeFlowLogs = &aws.Operation{
+			Name:       "DescribeFlowLogs",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &DescribeFlowLogsInput{}
+	}
+
+	req = c.newRequest(opDescribeFlowLogs, input, output)
+	output = &DescribeFlowLogsOutput{}
+	req.Data = output
+	return
+}
+
+// Describes one or more flow logs. To view the information in your flow logs
+// (the log streams for the network interfaces), you must use the CloudWatch
+// Logs console or the CloudWatch Logs API.
+func (c *EC2) DescribeFlowLogs(input *DescribeFlowLogsInput) (*DescribeFlowLogsOutput, error) {
+	req, out := c.DescribeFlowLogsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opDescribeFlowLogs *aws.Operation
 
 // DescribeImageAttributeRequest generates a request for the DescribeImageAttribute operation.
 func (c *EC2) DescribeImageAttributeRequest(input *DescribeImageAttributeInput) (req *aws.Request, output *DescribeImageAttributeOutput) {
@@ -6052,9 +6159,8 @@ func (c *EC2) PurchaseReservedInstancesOfferingRequest(input *PurchaseReservedIn
 
 // Purchases a Reserved Instance for use with your account. With Amazon EC2
 // Reserved Instances, you obtain a capacity reservation for a certain instance
-// configuration over a specified period of time. You pay a lower usage rate
-// than with On-Demand instances for the time that you actually use the capacity
-// reservation.
+// configuration over a specified period of time and pay a lower hourly rate
+// compared to on-Demand Instance pricing.
 //
 // Use DescribeReservedInstancesOfferings to get a list of Reserved Instance
 // offerings that match your specifications. After you've purchased a Reserved
@@ -7612,11 +7718,14 @@ type AuthorizeSecurityGroupIngressInput struct {
 	IPProtocol *string `locationName:"IpProtocol" type:"string"`
 
 	// [EC2-Classic, default VPC] The name of the source security group. You can't
-	// specify a source security group and a CIDR IP address range.
+	// specify this parameter in combination with the following parameters: the
+	// CIDR IP address range, the start of the port range, and the end of the port
+	// range.
 	SourceSecurityGroupName *string `type:"string"`
 
-	// The ID of the source security group. You can't specify a source security
-	// group and a CIDR IP address range.
+	// The ID of the source security group. You can't specify this parameter in
+	// combination with the following parameters: the CIDR IP address range, the
+	// start of the port range, and the end of the port range.
 	SourceSecurityGroupOwnerID *string `locationName:"SourceSecurityGroupOwnerId" type:"string"`
 
 	// The end of port range for the TCP and UDP protocols, or an ICMP code number.
@@ -8333,6 +8442,52 @@ type CreateDHCPOptionsOutput struct {
 }
 
 type metadataCreateDHCPOptionsOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type CreateFlowLogsInput struct {
+	// Unique, case-sensitive identifier you provide to ensure the idempotency of
+	// the request. For more information, see How to Ensure Idempotency (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html).
+	ClientToken *string `type:"string"`
+
+	// The ARN for the IAM role that's used to post flow logs to a CloudWatch Logs
+	// log group.
+	DeliverLogsPermissionARN *string `locationName:"DeliverLogsPermissionArn" type:"string" required:"true"`
+
+	// The name of the CloudWatch log group.
+	LogGroupName *string `type:"string" required:"true"`
+
+	// One or more subnet, network interface, or VPC IDs.
+	ResourceIDs []*string `locationName:"ResourceId" locationNameList:"item" type:"list" required:"true"`
+
+	// The type of resource on which to create the flow log.
+	ResourceType *string `type:"string" required:"true"`
+
+	// The type of traffic to log.
+	TrafficType *string `type:"string" required:"true"`
+
+	metadataCreateFlowLogsInput `json:"-" xml:"-"`
+}
+
+type metadataCreateFlowLogsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type CreateFlowLogsOutput struct {
+	// Unique, case-sensitive identifier you provide to ensure the idempotency of
+	// the request.
+	ClientToken *string `locationName:"clientToken" type:"string"`
+
+	// The IDs of the flow logs.
+	FlowLogIDs []*string `locationName:"flowLogIdSet" locationNameList:"item" type:"list"`
+
+	// Information about the flow logs that could not be created successfully.
+	Unsuccessful []*UnsuccessfulItem `locationName:"unsuccessful" locationNameList:"item" type:"list"`
+
+	metadataCreateFlowLogsOutput `json:"-" xml:"-"`
+}
+
+type metadataCreateFlowLogsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -9348,6 +9503,28 @@ type metadataDeleteDHCPOptionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type DeleteFlowLogsInput struct {
+	// One or more flow log IDs.
+	FlowLogIDs []*string `locationName:"FlowLogId" locationNameList:"item" type:"list" required:"true"`
+
+	metadataDeleteFlowLogsInput `json:"-" xml:"-"`
+}
+
+type metadataDeleteFlowLogsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DeleteFlowLogsOutput struct {
+	// Information about the flow logs that could not be deleted successfully.
+	Unsuccessful []*UnsuccessfulItem `locationName:"unsuccessful" locationNameList:"item" type:"list"`
+
+	metadataDeleteFlowLogsOutput `json:"-" xml:"-"`
+}
+
+type metadataDeleteFlowLogsOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DeleteInternetGatewayInput struct {
 	// Checks whether you have the required permissions for the action, without
 	// actually making the request, and provides an error response. If you have
@@ -10301,6 +10478,55 @@ type DescribeExportTasksOutput struct {
 }
 
 type metadataDescribeExportTasksOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DescribeFlowLogsInput struct {
+	// One or more filters.
+	//
+	//  deliver-log-status - The status of the logs delivery (SUCCESS | FAILED).
+	//
+	// flow-log-id - The ID of the flow log.
+	//
+	// log-group-name - The name of the log group.
+	//
+	// resource-id - The ID of the VPC, subnet, or network interface.
+	//
+	// traffic-type - The type of traffic (ACCEPT | REJECT | ALL)
+	Filter []*Filter `locationNameList:"Filter" type:"list"`
+
+	// One or more flow log IDs.
+	FlowLogIDs []*string `locationName:"FlowLogId" locationNameList:"item" type:"list"`
+
+	// The maximum number of results to return for the request in a single page.
+	// The remaining results can be seen by sending another request with the returned
+	// NextToken value. This value can be between 5 and 1000; if MaxResults is given
+	// a value larger than 1000, only 1000 results are returned. You cannot specify
+	// this parameter and the flow log IDs parameter in the same request.
+	MaxResults *int64 `type:"integer"`
+
+	// The token to retrieve the next page of results.
+	NextToken *string `type:"string"`
+
+	metadataDescribeFlowLogsInput `json:"-" xml:"-"`
+}
+
+type metadataDescribeFlowLogsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DescribeFlowLogsOutput struct {
+	// Information about the flow logs.
+	FlowLogs []*FlowLog `locationName:"flowLogSet" locationNameList:"item" type:"list"`
+
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	metadataDescribeFlowLogsOutput `json:"-" xml:"-"`
+}
+
+type metadataDescribeFlowLogsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -11523,7 +11749,7 @@ type DescribeReservedInstancesInput struct {
 	//   duration - The duration of the Reserved Instance (one year or three years),
 	// in seconds (31536000 | 94608000).
 	//
-	//   end - The time when the Reserved Instance expires (for example, 2014-08-07T11:54:42.000Z).
+	//   end - The time when the Reserved Instance expires (for example, 2015-08-07T11:54:42.000Z).
 	//
 	//   fixed-price - The purchase price of the Reserved Instance (for example,
 	// 9800.0).
@@ -11531,8 +11757,14 @@ type DescribeReservedInstancesInput struct {
 	//   instance-type - The instance type on which the Reserved Instance can be
 	// used.
 	//
-	//   product-description - The product description of the Reserved Instance
-	// (Linux/UNIX | Linux/UNIX (Amazon VPC) | Windows | Windows (Amazon VPC)).
+	//   product-description - The Reserved Instance product platform description.
+	// Instances that include (Amazon VPC) in the product platform description will
+	// only be displayed to EC2-Classic account holders and are for use with Amazon
+	// VPC. (Linux/UNIX | Linux/UNIX (Amazon VPC) | SUSE Linux | SUSE Linux (Amazon
+	// VPC) | Red Hat Enterprise Linux | Red Hat Enterprise Linux (Amazon VPC) |
+	// Windows | Windows (Amazon VPC) | Windows with SQL Server Standard | Windows
+	// with SQL Server Standard (Amazon VPC) | Windows with SQL Server Web | Windows
+	// with SQL Server Web (Amazon VPC)).
 	//
 	//   reserved-instances-id - The ID of the Reserved Instance.
 	//
@@ -11706,8 +11938,14 @@ type DescribeReservedInstancesOfferingsInput struct {
 	// When this filter is not used, which is the default behavior, all offerings
 	// from AWS and Reserved Instance Marketplace are listed.
 	//
-	//   product-description - The description of the Reserved Instance (Linux/UNIX
-	// | Linux/UNIX (Amazon VPC) | Windows | Windows (Amazon VPC)).
+	//   product-description - The Reserved Instance product platform description.
+	// Instances that include (Amazon VPC) in the product platform description will
+	// only be displayed to EC2-Classic account holders and are for use with Amazon
+	// VPC. (Linux/UNIX | Linux/UNIX (Amazon VPC) | SUSE Linux | SUSE Linux (Amazon
+	// VPC) | Red Hat Enterprise Linux | Red Hat Enterprise Linux (Amazon VPC) |
+	// Windows | Windows (Amazon VPC)) | Windows with SQL Server Standard | Windows
+	// with SQL Server Standard (Amazon VPC) | Windows with SQL Server Web |  Windows
+	// with SQL Server Web (Amazon VPC))
 	//
 	//   reserved-instances-offering-id - The Reserved Instances offering ID.
 	//
@@ -11760,8 +11998,8 @@ type DescribeReservedInstancesOfferingsInput struct {
 	// Reserved Instance offering type.
 	OfferingType *string `locationName:"offeringType" type:"string"`
 
-	// The Reserved Instance description. Instances that include (Amazon VPC) in
-	// the description are for use with Amazon VPC.
+	// The Reserved Instance product platform description. Instances that include
+	// (Amazon VPC) in the description are for use with Amazon VPC.
 	ProductDescription *string `type:"string"`
 
 	// One or more Reserved Instances offering IDs.
@@ -13900,6 +14138,46 @@ type Filter struct {
 }
 
 type metadataFilter struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Describes a flow log.
+type FlowLog struct {
+	// The date and time the flow log was created.
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Information about the error that occurred. Rate limited indicates that CloudWatch
+	// logs throttling has been applied for one or more network interfaces. Access
+	// error indicates that the IAM role associated with the flow log does not have
+	// sufficient permissions to publish to CloudWatch Logs. Unknown error indicates
+	// an internal error.
+	DeliverLogsErrorMessage *string `locationName:"deliverLogsErrorMessage" type:"string"`
+
+	// The ARN of the IAM role that posts logs to CloudWatch Logs.
+	DeliverLogsPermissionARN *string `locationName:"deliverLogsPermissionArn" type:"string"`
+
+	// The status of the logs delivery (SUCCESS | FAILED).
+	DeliverLogsStatus *string `locationName:"deliverLogsStatus" type:"string"`
+
+	// The flow log ID.
+	FlowLogID *string `locationName:"flowLogId" type:"string"`
+
+	// The status of the flow log (ACTIVE).
+	FlowLogStatus *string `locationName:"flowLogStatus" type:"string"`
+
+	// The name of the flow log group.
+	LogGroupName *string `locationName:"logGroupName" type:"string"`
+
+	// The ID of the resource on which the flow log was created.
+	ResourceID *string `locationName:"resourceId" type:"string"`
+
+	// The type of traffic captured for the flow log.
+	TrafficType *string `locationName:"trafficType" type:"string"`
+
+	metadataFlowLog `json:"-" xml:"-"`
+}
+
+type metadataFlowLog struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -16925,7 +17203,7 @@ type ReservedInstances struct {
 	// The Reserved Instance offering type.
 	OfferingType *string `locationName:"offeringType" type:"string"`
 
-	// The Reserved Instance description.
+	// The Reserved Instance product platform description.
 	ProductDescription *string `locationName:"productDescription" type:"string"`
 
 	// The recurring charge tag assigned to the resource.
@@ -17115,7 +17393,7 @@ type ReservedInstancesOffering struct {
 	// The pricing details of the Reserved Instance offering.
 	PricingDetails []*PricingDetail `locationName:"pricingDetailsSet" locationNameList:"item" type:"list"`
 
-	// The Reserved Instance description.
+	// The Reserved Instance product platform description.
 	ProductDescription *string `locationName:"productDescription" type:"string"`
 
 	// The recurring charge tag assigned to the resource.
@@ -17362,11 +17640,14 @@ type RevokeSecurityGroupIngressInput struct {
 	IPProtocol *string `locationName:"IpProtocol" type:"string"`
 
 	// [EC2-Classic, default VPC] The name of the source security group. You can't
-	// specify a source security group and a CIDR IP address range.
+	// specify this parameter in combination with the following parameters: the
+	// CIDR IP address range, the start of the port range, and the end of the port
+	// range.
 	SourceSecurityGroupName *string `type:"string"`
 
-	// The ID of the source security group. You can't specify a source security
-	// group and a CIDR IP address range.
+	// The ID of the source security group. You can't specify this parameter in
+	// combination with the following parameters: the CIDR IP address range, the
+	// start of the port range, and the end of the port range.
 	SourceSecurityGroupOwnerID *string `locationName:"SourceSecurityGroupOwnerId" type:"string"`
 
 	// The end of port range for the TCP and UDP protocols, or an ICMP code number.

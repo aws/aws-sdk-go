@@ -872,6 +872,41 @@ func ExampleEC2_CreateDHCPOptions() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleEC2_CreateFlowLogs() {
+	svc := ec2.New(nil)
+
+	params := &ec2.CreateFlowLogsInput{
+		DeliverLogsPermissionARN: aws.String("String"), // Required
+		LogGroupName:             aws.String("String"), // Required
+		ResourceIDs: []*string{ // Required
+			aws.String("String"), // Required
+			// More values...
+		},
+		ResourceType: aws.String("FlowLogsResourceType"), // Required
+		TrafficType:  aws.String("TrafficType"),          // Required
+		ClientToken:  aws.String("String"),
+	}
+	resp, err := svc.CreateFlowLogs(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleEC2_CreateImage() {
 	svc := ec2.New(nil)
 
@@ -1658,6 +1693,36 @@ func ExampleEC2_DeleteDHCPOptions() {
 		DryRun:        aws.Boolean(true),
 	}
 	resp, err := svc.DeleteDHCPOptions(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleEC2_DeleteFlowLogs() {
+	svc := ec2.New(nil)
+
+	params := &ec2.DeleteFlowLogsInput{
+		FlowLogIDs: []*string{ // Required
+			aws.String("String"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.DeleteFlowLogs(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -2616,6 +2681,48 @@ func ExampleEC2_DescribeExportTasks() {
 		},
 	}
 	resp, err := svc.DescribeExportTasks(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleEC2_DescribeFlowLogs() {
+	svc := ec2.New(nil)
+
+	params := &ec2.DescribeFlowLogsInput{
+		Filter: []*ec2.Filter{
+			{ // Required
+				Name: aws.String("String"),
+				Values: []*string{
+					aws.String("String"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		FlowLogIDs: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+		MaxResults: aws.Long(1),
+		NextToken:  aws.String("String"),
+	}
+	resp, err := svc.DescribeFlowLogs(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {

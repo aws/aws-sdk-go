@@ -280,6 +280,16 @@
       "output":{"shape":"CreateDhcpOptionsResult"},
       "documentation":"<p>Creates a set of DHCP options for your VPC. After creating the set, you must associate it with the VPC, causing all existing and new instances that you launch in the VPC to use this set of DHCP options. The following are the individual DHCP options you can specify. For more information about the options, see <a href=\"http://www.ietf.org/rfc/rfc2132.txt\">RFC 2132</a>.</p> <ul> <li> <code>domain-name-servers</code> - The IP addresses of up to four domain name servers, or <code>AmazonProvidedDNS</code>. The default DHCP option set specifies <code>AmazonProvidedDNS</code>. If specifying more than one domain name server, specify the IP addresses in a single parameter, separated by commas.</li> <li> <code>domain-name</code> - If you're using AmazonProvidedDNS in <code>us-east-1</code>, specify <code>ec2.internal</code>. If you're using AmazonProvidedDNS in another region, specify <code>region.compute.internal</code> (for example, <code>ap-northeast-1.compute.internal</code>). Otherwise, specify a domain name (for example, <code>MyCompany.com</code>). <b>Important</b>: Some Linux operating systems accept multiple domain names separated by spaces. However, Windows and other Linux operating systems treat the value as a single domain, which results in unexpected behavior. If your DHCP options set is associated with a VPC that has instances with multiple operating systems, specify only one domain name.</li> <li> <code>ntp-servers</code> - The IP addresses of up to four Network Time Protocol (NTP) servers.</li> <li> <code>netbios-name-servers</code> - The IP addresses of up to four NetBIOS name servers.</li> <li> <code>netbios-node-type</code> - The NetBIOS node type (1, 2, 4, or 8). We recommend that you specify 2 (broadcast and multicast are not currently supported). For more information about these node types, see <a href=\"http://www.ietf.org/rfc/rfc2132.txt\">RFC 2132</a>. </li> </ul> <p>Your VPC automatically starts out with a set of DHCP options that includes only a DNS server that we provide (AmazonProvidedDNS). If you create a set of options, and if your VPC has an Internet gateway, make sure to set the <code>domain-name-servers</code> option either to <code>AmazonProvidedDNS</code> or to a domain name server of your choice. For more information about DHCP options, see <a href=\"http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html\">DHCP Options Sets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>"
     },
+    "CreateFlowLogs":{
+      "name":"CreateFlowLogs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateFlowLogsRequest"},
+      "output":{"shape":"CreateFlowLogsResult"},
+      "documentation":"<p>Creates one or more flow logs to capture IP traffic for a specific network interface, subnet, or VPC. Flow logs are delivered to a specified log group in Amazon CloudWatch Logs. If you specify a VPC or subnet in the request, a log stream is created in CloudWatch Logs for each network interface in the subnet or VPC. Log streams can include information about accepted and rejected traffic to a network interface. You can view the data in your log streams using Amazon CloudWatch Logs. </p> <p>In your request, you must also specify an IAM role that has permission to publish logs to CloudWatch Logs.</p>"
+    },
     "CreateImage":{
       "name":"CreateImage",
       "http":{
@@ -370,7 +380,7 @@
       },
       "input":{"shape":"CreateReservedInstancesListingRequest"},
       "output":{"shape":"CreateReservedInstancesListingResult"},
-      "documentation":"<p>Creates a listing for Amazon EC2 Reserved Instances to be sold in the Reserved Instance Marketplace. You can submit one Reserved Instance listing at a time. To get a list of your Reserved Instances, you can use the <a>DescribeReservedInstances</a> operation.</p> <p>The Reserved Instance Marketplace matches sellers who want to resell Reserved Instance capacity that they no longer need with buyers who want to purchase additional capacity. Reserved Instances bought and sold through the Reserved Instance Marketplace work like any other Reserved Instances. </p> <p>To sell your Reserved Instances, you must first register as a Seller in the Reserved Instance Marketplace. After completing the registration process, you can create a Reserved Instance Marketplace listing of some or all of your Reserved Instances, and specify the upfront price to receive for them. Your Reserved Instance listings then become available for purchase. To view the details of your Reserved Instance listing, you can use the <a>DescribeReservedInstancesListings</a> operation.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html\">Reserved Instance Marketplace</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
+      "documentation":"<p>Creates a listing for Amazon EC2 Reserved Instances to be sold in the Reserved Instance Marketplace. You can submit one Reserved Instance listing at a time. To get a list of your Reserved Instances, you can use the <a>DescribeReservedInstances</a> operation.</p> <p>The Reserved Instance Marketplace matches sellers who want to resell Reserved Instance capacity that they no longer need with buyers who want to purchase additional capacity. Reserved Instances bought and sold through the Reserved Instance Marketplace work like any other Reserved Instances. </p> <p>To sell your Reserved Instances, you must first register as a seller in the Reserved Instance Marketplace. After completing the registration process, you can create a Reserved Instance Marketplace listing of some or all of your Reserved Instances, and specify the upfront price to receive for them. Your Reserved Instance listings then become available for purchase. To view the details of your Reserved Instance listing, you can use the <a>DescribeReservedInstancesListings</a> operation.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html\">Reserved Instance Marketplace</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
     },
     "CreateRoute":{
       "name":"CreateRoute",
@@ -541,6 +551,16 @@
       },
       "input":{"shape":"DeleteDhcpOptionsRequest"},
       "documentation":"<p>Deletes the specified set of DHCP options. You must disassociate the set of DHCP options before you can delete it. You can disassociate the set of DHCP options by associating either a new set of options or the default set of options with the VPC.</p>"
+    },
+    "DeleteFlowLogs":{
+      "name":"DeleteFlowLogs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteFlowLogsRequest"},
+      "output":{"shape":"DeleteFlowLogsResult"},
+      "documentation":"<p>Deletes one or more flow logs.</p>"
     },
     "DeleteInternetGateway":{
       "name":"DeleteInternetGateway",
@@ -825,6 +845,16 @@
       "input":{"shape":"DescribeExportTasksRequest"},
       "output":{"shape":"DescribeExportTasksResult"},
       "documentation":"<p>Describes one or more of your export tasks.</p>"
+    },
+    "DescribeFlowLogs":{
+      "name":"DescribeFlowLogs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeFlowLogsRequest"},
+      "output":{"shape":"DescribeFlowLogsResult"},
+      "documentation":"<p>Describes one or more flow logs. To view the information in your flow logs (the log streams for the network interfaces), you must use the CloudWatch Logs console or the CloudWatch Logs API.</p>"
     },
     "DescribeImageAttribute":{
       "name":"DescribeImageAttribute",
@@ -1596,7 +1626,7 @@
       },
       "input":{"shape":"PurchaseReservedInstancesOfferingRequest"},
       "output":{"shape":"PurchaseReservedInstancesOfferingResult"},
-      "documentation":"<p>Purchases a Reserved Instance for use with your account. With Amazon EC2 Reserved Instances, you obtain a capacity reservation for a certain instance configuration over a specified period of time. You pay a lower usage rate than with On-Demand instances for the time that you actually use the capacity reservation.</p> <p>Use <a>DescribeReservedInstancesOfferings</a> to get a list of Reserved Instance offerings that match your specifications. After you've purchased a Reserved Instance, you can check for your new Reserved Instance with <a>DescribeReservedInstances</a>.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts-on-demand-reserved-instances.html\">Reserved Instances</a> and <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html\">Reserved Instance Marketplace</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
+      "documentation":"<p>Purchases a Reserved Instance for use with your account. With Amazon EC2 Reserved Instances, you obtain a capacity reservation for a certain instance configuration over a specified period of time and pay a lower hourly rate compared to on-Demand Instance pricing.</p> <p>Use <a>DescribeReservedInstancesOfferings</a> to get a list of Reserved Instance offerings that match your specifications. After you've purchased a Reserved Instance, you can check for your new Reserved Instance with <a>DescribeReservedInstances</a>.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts-on-demand-reserved-instances.html\">Reserved Instances</a> and <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html\">Reserved Instance Marketplace</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
     },
     "RebootInstances":{
       "name":"RebootInstances",
@@ -2445,11 +2475,11 @@
         },
         "SourceSecurityGroupName":{
           "shape":"String",
-          "documentation":"<p>[EC2-Classic, default VPC] The name of the source security group. You can't specify a source security group and a CIDR IP address range.</p>"
+          "documentation":"<p>[EC2-Classic, default VPC] The name of the source security group. You can't specify this parameter in combination with the following parameters: the CIDR IP address range, the start of the port range, and the end of the port range. </p>"
         },
         "SourceSecurityGroupOwnerId":{
           "shape":"String",
-          "documentation":"<p>The ID of the source security group. You can't specify a source security group and a CIDR IP address range.</p>"
+          "documentation":"<p>The ID of the source security group. You can't specify this parameter in combination with the following parameters: the CIDR IP address range, the start of the port range, and the end of the port range. </p>"
         },
         "IpProtocol":{
           "shape":"String",
@@ -3310,6 +3340,63 @@
           "shape":"DhcpOptions",
           "documentation":"<p>A set of DHCP options.</p>",
           "locationName":"dhcpOptions"
+        }
+      }
+    },
+    "CreateFlowLogsRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceIds",
+        "ResourceType",
+        "TrafficType",
+        "LogGroupName",
+        "DeliverLogsPermissionArn"
+      ],
+      "members":{
+        "ResourceIds":{
+          "shape":"ValueStringList",
+          "documentation":"<p>One or more subnet, network interface, or VPC IDs.</p>",
+          "locationName":"ResourceId"
+        },
+        "ResourceType":{
+          "shape":"FlowLogsResourceType",
+          "documentation":"<p>The type of resource on which to create the flow log.</p>"
+        },
+        "TrafficType":{
+          "shape":"TrafficType",
+          "documentation":"<p>The type of traffic to log.</p>"
+        },
+        "LogGroupName":{
+          "shape":"String",
+          "documentation":"<p>The name of the CloudWatch log group.</p>"
+        },
+        "DeliverLogsPermissionArn":{
+          "shape":"String",
+          "documentation":"<p>The ARN for the IAM role that's used to post flow logs to a CloudWatch Logs log group.</p>"
+        },
+        "ClientToken":{
+          "shape":"String",
+          "documentation":"<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>"
+        }
+      }
+    },
+    "CreateFlowLogsResult":{
+      "type":"structure",
+      "members":{
+        "FlowLogIds":{
+          "shape":"ValueStringList",
+          "documentation":"<p>The IDs of the flow logs.</p>",
+          "locationName":"flowLogIdSet"
+        },
+        "ClientToken":{
+          "shape":"String",
+          "documentation":"<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request.</p>",
+          "locationName":"clientToken"
+        },
+        "Unsuccessful":{
+          "shape":"UnsuccessfulItemSet",
+          "documentation":"<p>Information about the flow logs that could not be created successfully.</p>",
+          "locationName":"unsuccessful"
         }
       }
     },
@@ -4243,6 +4330,27 @@
         }
       }
     },
+    "DeleteFlowLogsRequest":{
+      "type":"structure",
+      "required":["FlowLogIds"],
+      "members":{
+        "FlowLogIds":{
+          "shape":"ValueStringList",
+          "documentation":"<p>One or more flow log IDs.</p>",
+          "locationName":"FlowLogId"
+        }
+      }
+    },
+    "DeleteFlowLogsResult":{
+      "type":"structure",
+      "members":{
+        "Unsuccessful":{
+          "shape":"UnsuccessfulItemSet",
+          "documentation":"<p>Information about the flow logs that could not be deleted successfully.</p>",
+          "locationName":"unsuccessful"
+        }
+      }
+    },
     "DeleteInternetGatewayRequest":{
       "type":"structure",
       "required":["InternetGatewayId"],
@@ -4894,6 +5002,43 @@
           "shape":"ExportTaskList",
           "documentation":"<p>Information about the export tasks.</p>",
           "locationName":"exportTaskSet"
+        }
+      }
+    },
+    "DescribeFlowLogsRequest":{
+      "type":"structure",
+      "members":{
+        "FlowLogIds":{
+          "shape":"ValueStringList",
+          "documentation":"<p>One or more flow log IDs.</p>",
+          "locationName":"FlowLogId"
+        },
+        "Filter":{
+          "shape":"FilterList",
+          "documentation":"<p>One or more filters.</p> <ul> <li><p><code>deliver-log-status</code> - The status of the logs delivery (<code>SUCCESS</code> | <code>FAILED</code>).</p></li> <li><p><code>flow-log-id</code> - The ID of the flow log.</p></li> <li><p><code>log-group-name</code> - The name of the log group.</p></li> <li><p><code>resource-id</code> - The ID of the VPC, subnet, or network interface.</p></li> <li><p><code>traffic-type</code> - The type of traffic (<code>ACCEPT</code> | <code>REJECT</code> | <code>ALL</code>)</p></li> </ul>"
+        },
+        "NextToken":{
+          "shape":"String",
+          "documentation":"<p>The token to retrieve the next page of results.</p>"
+        },
+        "MaxResults":{
+          "shape":"Integer",
+          "documentation":"<p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the returned <code>NextToken</code> value. This value can be between 5 and 1000; if <code>MaxResults</code> is given a value larger than 1000, only 1000 results are returned. You cannot specify this parameter and the flow log IDs parameter in the same request.</p>"
+        }
+      }
+    },
+    "DescribeFlowLogsResult":{
+      "type":"structure",
+      "members":{
+        "FlowLogs":{
+          "shape":"FlowLogSet",
+          "documentation":"<p>Information about the flow logs.</p>",
+          "locationName":"flowLogSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "documentation":"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+          "locationName":"nextToken"
         }
       }
     },
@@ -5564,11 +5709,11 @@
         },
         "ProductDescription":{
           "shape":"RIProductDescription",
-          "documentation":"<p>The Reserved Instance description. Instances that include <code>(Amazon VPC)</code> in the description are for use with Amazon VPC.</p>"
+          "documentation":"<p>The Reserved Instance product platform description. Instances that include <code>(Amazon VPC)</code> in the description are for use with Amazon VPC.</p>"
         },
         "Filters":{
           "shape":"FilterList",
-          "documentation":"<p>One or more filters.</p> <ul> <li> <p><code>availability-zone</code> - The Availability Zone where the Reserved Instance can be used.</p> </li> <li> <p><code>duration</code> - The duration of the Reserved Instance (for example, one year or three years), in seconds (<code>31536000</code> | <code>94608000</code>).</p> </li> <li> <p><code>fixed-price</code> - The purchase price of the Reserved Instance (for example, 9800.0).</p> </li> <li> <p><code>instance-type</code> - The instance type on which the Reserved Instance can be used.</p> </li> <li> <p><code>marketplace</code> - Set to <code>true</code> to show only Reserved Instance Marketplace offerings. When this filter is not used, which is the default behavior, all offerings from AWS and Reserved Instance Marketplace are listed.</p> </li> <li> <p><code>product-description</code> - The description of the Reserved Instance (<code>Linux/UNIX</code> | <code>Linux/UNIX (Amazon VPC)</code> | <code>Windows</code> | <code>Windows (Amazon VPC)</code>).</p> </li> <li> <p><code>reserved-instances-offering-id</code> - The Reserved Instances offering ID.</p> </li> <li> <p><code>usage-price</code> - The usage price of the Reserved Instance, per hour (for example, 0.84).</p> </li> </ul>",
+          "documentation":"<p>One or more filters.</p> <ul> <li> <p><code>availability-zone</code> - The Availability Zone where the Reserved Instance can be used.</p> </li> <li> <p><code>duration</code> - The duration of the Reserved Instance (for example, one year or three years), in seconds (<code>31536000</code> | <code>94608000</code>).</p> </li> <li> <p><code>fixed-price</code> - The purchase price of the Reserved Instance (for example, 9800.0).</p> </li> <li> <p><code>instance-type</code> - The instance type on which the Reserved Instance can be used.</p> </li> <li> <p><code>marketplace</code> - Set to <code>true</code> to show only Reserved Instance Marketplace offerings. When this filter is not used, which is the default behavior, all offerings from AWS and Reserved Instance Marketplace are listed.</p> </li> <li> <p><code>product-description</code> - The Reserved Instance product platform description. Instances that include <code>(Amazon VPC)</code> in the product platform description will only be displayed to EC2-Classic account holders and are for use with Amazon VPC. (<code>Linux/UNIX</code> | <code>Linux/UNIX (Amazon VPC)</code> | <code>SUSE Linux</code> | <code>SUSE Linux (Amazon VPC)</code> | <code>Red Hat Enterprise Linux</code> | <code>Red Hat Enterprise Linux (Amazon VPC)</code> | <code>Windows</code> | <code>Windows (Amazon VPC)</code>) | <code>Windows with SQL Server Standard</code> | <code>Windows with SQL Server Standard (Amazon VPC)</code> | <code>Windows with SQL Server Web</code> | <code> Windows with SQL Server Web (Amazon VPC))</code> </p> </li> <li> <p><code>reserved-instances-offering-id</code> - The Reserved Instances offering ID.</p> </li> <li> <p><code>usage-price</code> - The usage price of the Reserved Instance, per hour (for example, 0.84).</p> </li> </ul>",
           "locationName":"Filter"
         },
         "InstanceTenancy":{
@@ -5639,7 +5784,7 @@
         },
         "Filters":{
           "shape":"FilterList",
-          "documentation":"<p>One or more filters.</p> <ul> <li> <p><code>availability-zone</code> - The Availability Zone where the Reserved Instance can be used.</p> </li> <li> <p><code>duration</code> - The duration of the Reserved Instance (one year or three years), in seconds (<code>31536000</code> | <code>94608000</code>).</p> </li> <li> <p><code>end</code> - The time when the Reserved Instance expires (for example, 2014-08-07T11:54:42.000Z).</p> </li> <li> <p><code>fixed-price</code> - The purchase price of the Reserved Instance (for example, 9800.0).</p> </li> <li> <p><code>instance-type</code> - The instance type on which the Reserved Instance can be used.</p> </li> <li> <p><code>product-description</code> - The product description of the Reserved Instance (<code>Linux/UNIX</code> | <code>Linux/UNIX (Amazon VPC)</code> | <code>Windows</code> | <code>Windows (Amazon VPC)</code>).</p> </li> <li> <p><code>reserved-instances-id</code> - The ID of the Reserved Instance.</p> </li> <li> <p><code>start</code> - The time at which the Reserved Instance purchase request was placed (for example, 2014-08-07T11:54:42.000Z).</p> </li> <li> <p><code>state</code> - The state of the Reserved Instance (<code>payment-pending</code> | <code>active</code> | <code>payment-failed</code> | <code>retired</code>).</p> </li> <li> <p><code>tag</code>:<i>key</i>=<i>value</i> - The key/value combination of a tag assigned to the resource.</p> </li> <li> <p><code>tag-key</code> - The key of a tag assigned to the resource. This filter is independent of the <code>tag-value</code> filter. For example, if you use both the filter \"tag-key=Purpose\" and the filter \"tag-value=X\", you get any resources assigned both the tag key Purpose (regardless of what the tag's value is), and the tag value X (regardless of what the tag's key is). If you want to list only resources where Purpose is X, see the <code>tag</code>:<i>key</i>=<i>value</i> filter.</p> </li> <li> <p><code>tag-value</code> - The value of a tag assigned to the resource. This filter is independent of the <code>tag-key</code> filter.</p> </li> <li> <p><code>usage-price</code> - The usage price of the Reserved Instance, per hour (for example, 0.84).</p> </li> </ul>",
+          "documentation":"<p>One or more filters.</p> <ul> <li> <p><code>availability-zone</code> - The Availability Zone where the Reserved Instance can be used.</p> </li> <li> <p><code>duration</code> - The duration of the Reserved Instance (one year or three years), in seconds (<code>31536000</code> | <code>94608000</code>).</p> </li> <li> <p><code>end</code> - The time when the Reserved Instance expires (for example, 2015-08-07T11:54:42.000Z).</p> </li> <li> <p><code>fixed-price</code> - The purchase price of the Reserved Instance (for example, 9800.0).</p> </li> <li> <p><code>instance-type</code> - The instance type on which the Reserved Instance can be used.</p> </li> <li> <p><code>product-description</code> - The Reserved Instance product platform description. Instances that include <code>(Amazon VPC)</code> in the product platform description will only be displayed to EC2-Classic account holders and are for use with Amazon VPC. (<code>Linux/UNIX</code> | <code>Linux/UNIX (Amazon VPC)</code> | <code>SUSE Linux</code> | <code>SUSE Linux (Amazon VPC)</code> | <code>Red Hat Enterprise Linux</code> | <code>Red Hat Enterprise Linux (Amazon VPC)</code> | <code>Windows</code> | <code>Windows (Amazon VPC)</code> | <code>Windows with SQL Server Standard</code> | <code>Windows with SQL Server Standard (Amazon VPC)</code> | <code>Windows with SQL Server Web</code> | <code>Windows with SQL Server Web (Amazon VPC)</code>).</p> </li> <li> <p><code>reserved-instances-id</code> - The ID of the Reserved Instance.</p> </li> <li> <p><code>start</code> - The time at which the Reserved Instance purchase request was placed (for example, 2014-08-07T11:54:42.000Z).</p> </li> <li> <p><code>state</code> - The state of the Reserved Instance (<code>payment-pending</code> | <code>active</code> | <code>payment-failed</code> | <code>retired</code>).</p> </li> <li> <p><code>tag</code>:<i>key</i>=<i>value</i> - The key/value combination of a tag assigned to the resource.</p> </li> <li> <p><code>tag-key</code> - The key of a tag assigned to the resource. This filter is independent of the <code>tag-value</code> filter. For example, if you use both the filter \"tag-key=Purpose\" and the filter \"tag-value=X\", you get any resources assigned both the tag key Purpose (regardless of what the tag's value is), and the tag value X (regardless of what the tag's key is). If you want to list only resources where Purpose is X, see the <code>tag</code>:<i>key</i>=<i>value</i> filter.</p> </li> <li> <p><code>tag-value</code> - The value of a tag assigned to the resource. This filter is independent of the <code>tag-key</code> filter.</p> </li> <li> <p><code>usage-price</code> - The usage price of the Reserved Instance, per hour (for example, 0.84).</p> </li> </ul>",
           "locationName":"Filter"
         },
         "OfferingType":{
@@ -7278,6 +7423,72 @@
       }
     },
     "Float":{"type":"float"},
+    "FlowLog":{
+      "type":"structure",
+      "members":{
+        "CreationTime":{
+          "shape":"DateTime",
+          "documentation":"<p>The date and time the flow log was created.</p>",
+          "locationName":"creationTime"
+        },
+        "FlowLogId":{
+          "shape":"String",
+          "documentation":"<p>The flow log ID.</p>",
+          "locationName":"flowLogId"
+        },
+        "FlowLogStatus":{
+          "shape":"String",
+          "documentation":"<p>The status of the flow log (<code>ACTIVE</code>).</p>",
+          "locationName":"flowLogStatus"
+        },
+        "ResourceId":{
+          "shape":"String",
+          "documentation":"<p>The ID of the resource on which the flow log was created.</p>",
+          "locationName":"resourceId"
+        },
+        "TrafficType":{
+          "shape":"TrafficType",
+          "documentation":"<p>The type of traffic captured for the flow log.</p>",
+          "locationName":"trafficType"
+        },
+        "LogGroupName":{
+          "shape":"String",
+          "documentation":"<p>The name of the flow log group.</p>",
+          "locationName":"logGroupName"
+        },
+        "DeliverLogsStatus":{
+          "shape":"String",
+          "documentation":"<p>The status of the logs delivery (<code>SUCCESS</code> | <code>FAILED</code>).</p>",
+          "locationName":"deliverLogsStatus"
+        },
+        "DeliverLogsErrorMessage":{
+          "shape":"String",
+          "documentation":"<p>Information about the error that occurred. <code>Rate limited</code> indicates that CloudWatch logs throttling has been applied for one or more network interfaces. <code>Access error</code> indicates that the IAM role associated with the flow log does not have sufficient permissions to publish to CloudWatch Logs. <code>Unknown error</code> indicates an internal error.</p>",
+          "locationName":"deliverLogsErrorMessage"
+        },
+        "DeliverLogsPermissionArn":{
+          "shape":"String",
+          "documentation":"<p>The ARN of the IAM role that posts logs to CloudWatch Logs.</p>",
+          "locationName":"deliverLogsPermissionArn"
+        }
+      },
+      "documentation":"<p>Describes a flow log.</p>"
+    },
+    "FlowLogSet":{
+      "type":"list",
+      "member":{
+        "shape":"FlowLog",
+        "locationName":"item"
+      }
+    },
+    "FlowLogsResourceType":{
+      "type":"string",
+      "enum":[
+        "VPC",
+        "Subnet",
+        "NetworkInterface"
+      ]
+    },
     "GatewayType":{
       "type":"string",
       "enum":["ipsec.1"]
@@ -9128,6 +9339,11 @@
         "m3.large",
         "m3.xlarge",
         "m3.2xlarge",
+        "m4.large",
+        "m4.xlarge",
+        "m4.2xlarge",
+        "m4.4xlarge",
+        "m4.10xlarge",
         "t2.micro",
         "t2.small",
         "t2.medium",
@@ -11304,7 +11520,7 @@
         },
         "ProductDescription":{
           "shape":"RIProductDescription",
-          "documentation":"<p>The Reserved Instance description.</p>",
+          "documentation":"<p>The Reserved Instance product platform description.</p>",
           "locationName":"productDescription"
         },
         "State":{
@@ -11583,7 +11799,7 @@
         },
         "ProductDescription":{
           "shape":"RIProductDescription",
-          "documentation":"<p>The Reserved Instance description.</p>",
+          "documentation":"<p>The Reserved Instance product platform description.</p>",
           "locationName":"productDescription"
         },
         "InstanceTenancy":{
@@ -11860,11 +12076,11 @@
         },
         "SourceSecurityGroupName":{
           "shape":"String",
-          "documentation":"<p>[EC2-Classic, default VPC] The name of the source security group. You can't specify a source security group and a CIDR IP address range.</p>"
+          "documentation":"<p>[EC2-Classic, default VPC] The name of the source security group. You can't specify this parameter in combination with the following parameters: the CIDR IP address range, the start of the port range, and the end of the port range. </p>"
         },
         "SourceSecurityGroupOwnerId":{
           "shape":"String",
-          "documentation":"<p>The ID of the source security group. You can't specify a source security group and a CIDR IP address range.</p>"
+          "documentation":"<p>The ID of the source security group. You can't specify this parameter in combination with the following parameters: the CIDR IP address range, the start of the port range, and the end of the port range. </p>"
         },
         "IpProtocol":{
           "shape":"String",
@@ -12898,7 +13114,8 @@
       "enum":[
         "passed",
         "failed",
-        "insufficient-data"
+        "insufficient-data",
+        "initializing"
       ]
     },
     "StopInstancesRequest":{
@@ -13021,7 +13238,8 @@
         "ok",
         "impaired",
         "insufficient-data",
-        "not-applicable"
+        "not-applicable",
+        "initializing"
       ]
     },
     "Tag":{
@@ -13119,6 +13337,14 @@
           "locationName":"instancesSet"
         }
       }
+    },
+    "TrafficType":{
+      "type":"string",
+      "enum":[
+        "ACCEPT",
+        "REJECT",
+        "ALL"
+      ]
     },
     "UnassignPrivateIpAddressesRequest":{
       "type":"structure",
