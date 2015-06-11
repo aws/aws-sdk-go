@@ -41,7 +41,7 @@ func (c *ELB) AddTagsRequest(input *AddTagsInput) (req *aws.Request, output *Add
 // Each tag consists of a key and an optional value. If a tag with the same
 // key is already associated with the load balancer, AddTags updates its value.
 //
-// For more information, see Tagging (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#tagging-elb)
+// For more information, see Tag Your Load Balancer (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/add-remove-tags.html)
 // in the Elastic Load Balancing Developer Guide.
 func (c *ELB) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
 	req, out := c.AddTagsRequest(input)
@@ -78,7 +78,7 @@ func (c *ELB) ApplySecurityGroupsToLoadBalancerRequest(input *ApplySecurityGroup
 // private cloud (VPC). The specified security groups override the previously
 // associated security groups.
 //
-// For more information, see Manage Security Groups for Amazon VPC (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/USVPC_ApplySG.html)
+// For more information, see Security Groups for Load Balancers in a VPC (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-security-groups.html#elb-vpc-security-groups)
 // in the Elastic Load Balancing Developer Guide.
 func (c *ELB) ApplySecurityGroupsToLoadBalancer(input *ApplySecurityGroupsToLoadBalancerInput) (*ApplySecurityGroupsToLoadBalancerOutput, error) {
 	req, out := c.ApplySecurityGroupsToLoadBalancerRequest(input)
@@ -115,7 +115,8 @@ func (c *ELB) AttachLoadBalancerToSubnetsRequest(input *AttachLoadBalancerToSubn
 // load balancer.
 //
 // The load balancer evenly distributes requests across all registered subnets.
-// For more information, see Elastic Load Balancing in Amazon VPC (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/UserScenariosForVPC.html)
+// For more information, see Add or Remove Subnets for Your Load Balancer in
+// a VPC (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-manage-subnets.html)
 // in the Elastic Load Balancing Developer Guide.
 func (c *ELB) AttachLoadBalancerToSubnets(input *AttachLoadBalancerToSubnetsInput) (*AttachLoadBalancerToSubnetsOutput, error) {
 	req, out := c.AttachLoadBalancerToSubnetsRequest(input)
@@ -151,7 +152,7 @@ func (c *ELB) ConfigureHealthCheckRequest(input *ConfigureHealthCheckInput) (req
 // Specifies the health check settings to use when evaluating the health state
 // of your back-end instances.
 //
-// For more information, see Health Checks (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#healthcheck)
+// For more information, see Configure Health Checks (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-healthchecks.html)
 // in the Elastic Load Balancing Developer Guide.
 func (c *ELB) ConfigureHealthCheck(input *ConfigureHealthCheckInput) (*ConfigureHealthCheckOutput, error) {
 	req, out := c.ConfigureHealthCheckRequest(input)
@@ -197,7 +198,7 @@ func (c *ELB) CreateAppCookieStickinessPolicyRequest(input *CreateAppCookieStick
 // If the application cookie is explicitly removed or expires, the session
 // stops being sticky until a new application cookie is issued.
 //
-// For more information, see Application-Controlled Session Stickiness (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_StickySessions.html#US_EnableStickySessionsAppCookies)
+// For more information, see Application-Controlled Session Stickiness (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-sticky-sessions.html#enable-sticky-sessions-application)
 // in the Elastic Load Balancing Developer Guide.
 func (c *ELB) CreateAppCookieStickinessPolicy(input *CreateAppCookieStickinessPolicyInput) (*CreateAppCookieStickinessPolicyOutput, error) {
 	req, out := c.CreateAppCookieStickinessPolicyRequest(input)
@@ -245,7 +246,7 @@ func (c *ELB) CreateLBCookieStickinessPolicyRequest(input *CreateLBCookieStickin
 // the same user to that server. The validity of the cookie is based on the
 // cookie expiration time, which is specified in the policy configuration.
 //
-// For more information, see Duration-Based Session Stickiness (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/US_StickySessions.html#US_EnableStickySessionsLBCookies)
+// For more information, see Duration-Based Session Stickiness (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-sticky-sessions.html#enable-sticky-sessions-duration)
 // in the Elastic Load Balancing Developer Guide.
 func (c *ELB) CreateLBCookieStickinessPolicy(input *CreateLBCookieStickinessPolicyInput) (*CreateLBCookieStickinessPolicyOutput, error) {
 	req, out := c.CreateLBCookieStickinessPolicyRequest(input)
@@ -281,24 +282,14 @@ func (c *ELB) CreateLoadBalancerRequest(input *CreateLoadBalancerInput) (req *aw
 // Creates a load balancer.
 //
 // If the call completes successfully, a new load balancer is created with
-// a unique Domain Name Service (DNS) name. The DNS name includes the name of
-// the AWS region in which the load balancer was created. For example, the DNS
-// name might end with either of the following:
-//
-//   us-east-1.elb.amazonaws.com   us-west-2.elb.amazonaws.com   For information
-// about the AWS regions supported by Elastic Load Balancing, see Regions and
-// Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html#elb_region)
-// in the Amazon Web Services General Reference.
+// a unique Domain Name Service (DNS) name. The load balancer receives incoming
+// traffic and routes it to the registered instances. For more information,
+// see How Elastic Load Balancing Works (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/how-elb-works.html)
+// in the Elastic Load Balancing Developer Guide.
 //
 // You can create up to 20 load balancers per region per account. You can request
 // an increase for the number of load balancers for your account. For more information,
 // see Elastic Load Balancing Limits (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-limits.html)
-// in the Elastic Load Balancing Developer Guide.
-//
-// Elastic Load Balancing supports load balancing your EC2 instances launched
-// in either the EC2-Classic or EC2-VPC platform. For more information, see
-// Elastic Load Balancing in EC2-Classic (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/UserScenariosForEC2.html)
-// or Elastic Load Balancing in a VPC (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/UserScenariosForVPC.html)
 // in the Elastic Load Balancing Developer Guide.
 func (c *ELB) CreateLoadBalancer(input *CreateLoadBalancerInput) (*CreateLoadBalancerOutput, error) {
 	req, out := c.CreateLoadBalancerRequest(input)
@@ -1380,8 +1371,7 @@ type CreateLoadBalancerInput struct {
 
 	// The listeners.
 	//
-	// For more information, see Listener Configurations for Elastic Load Balancing
-	// (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html)
+	// For more information, see Listeners for Your Load Balancer (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html)
 	// in the Elastic Load Balancing Developer Guide.
 	Listeners []*Listener `type:"list" required:"true"`
 
@@ -1950,8 +1940,7 @@ type metadataLBCookieStickinessPolicy struct {
 // Balancing, see Listener Configurations for Elastic Load Balancing (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html)
 // in the Elastic Load Balancing Developer Guide.
 type Listener struct {
-	// The port on which the instance server is listening - 25, 80, 443, 465, 587,
-	// or 1024-65535.
+	// The port on which the instance is listening.
 	InstancePort *int64 `type:"integer" required:"true"`
 
 	// The protocol to use for routing traffic to back-end instances: HTTP, HTTPS,
@@ -1967,8 +1956,8 @@ type Listener struct {
 	// is HTTP or TCP, the listener's InstanceProtocol must be HTTP or TCP.
 	InstanceProtocol *string `type:"string"`
 
-	// The port on which the load balancer is listening: 25, 80, 443, 465, 587,
-	// or 1024-65535.
+	// The port on which the load balancer is listening. The supported ports are:
+	// 25, 80, 443, 465, 587, and 1024-65535.
 	LoadBalancerPort *int64 `type:"integer" required:"true"`
 
 	// The load balancer transport protocol to use for routing: HTTP, HTTPS, TCP,
