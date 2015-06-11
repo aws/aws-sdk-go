@@ -1,4 +1,5 @@
 {
+  "version":"2.0",
   "metadata":{
     "apiVersion":"2014-05-30",
     "endpointPrefix":"cloudhsm",
@@ -53,12 +54,12 @@
       },
       "input":{
         "shape":"CreateHsmRequest",
-        "documentation":"<p>Contains the inputs for the <a>CreateHsm</a> action. </p>",
+        "documentation":"<p>Contains the inputs for the <a>CreateHsm</a> operation. </p>",
         "locationName":"CreateHsmRequest"
       },
       "output":{
         "shape":"CreateHsmResponse",
-        "documentation":"<p>Contains the output of the <a>CreateHsm</a> action.</p>"
+        "documentation":"<p>Contains the output of the <a>CreateHsm</a> operation.</p>"
       },
       "errors":[
         {
@@ -78,7 +79,7 @@
           "documentation":"<p>Indicates that one or more of the request parameters are not valid.</p>"
         }
       ],
-      "documentation":"<p>Creates an uninitialized HSM instance. Running this command provisions an HSM appliance and will result in charges to your AWS account for the HSM.</p>"
+      "documentation":"<p>Creates an uninitialized HSM instance. </p> <p>There is an upfront fee charged for each HSM instance that you create with the <a>CreateHsm</a> operation. If you accidentally provision an HSM and want to request a refund, delete the instance using the <a>DeleteHsm</a> operation, go to the <a href=\"https://console.aws.amazon.com/support/home#/\">AWS Support Center</a>, create a new case, and select <b>Account and Billing Support</b>.</p> <important> <p> <p>It can take up to 20 minutes to create and provision an HSM. You can monitor the status of the HSM with the <a>DescribeHsm</a> operation. The HSM is ready to be initialized when the status changes to <code>RUNNING</code>.</p> </p> </important>"
     },
     "CreateLunaClient":{
       "name":"CreateLunaClient",
@@ -156,12 +157,12 @@
       },
       "input":{
         "shape":"DeleteHsmRequest",
-        "documentation":"<p>Contains the inputs for the <a>DeleteHsm</a> action. </p>",
+        "documentation":"<p>Contains the inputs for the <a>DeleteHsm</a> operation. </p>",
         "locationName":"DeleteHsmRequest"
       },
       "output":{
         "shape":"DeleteHsmResponse",
-        "documentation":"<p>Contains the output of the <a>DeleteHsm</a> action.</p>"
+        "documentation":"<p>Contains the output of the <a>DeleteHsm</a> operation.</p>"
       },
       "errors":[
         {
@@ -181,7 +182,7 @@
           "documentation":"<p>Indicates that one or more of the request parameters are not valid.</p>"
         }
       ],
-      "documentation":"<p>Deletes an HSM. Once complete, this operation cannot be undone and your key material cannot be recovered.</p>"
+      "documentation":"<p>Deletes an HSM. After completion, this operation cannot be undone and your key material cannot be recovered.</p>"
     },
     "DeleteLunaClient":{
       "name":"DeleteLunaClient",
@@ -253,11 +254,11 @@
       },
       "input":{
         "shape":"DescribeHsmRequest",
-        "documentation":"<p>Contains the inputs for the <a>DescribeHsm</a> action. </p>"
+        "documentation":"<p>Contains the inputs for the <a>DescribeHsm</a> operation. </p>"
       },
       "output":{
         "shape":"DescribeHsmResponse",
-        "documentation":"<p>Contains the output of the <a>DescribeHsm</a> action.</p>"
+        "documentation":"<p>Contains the output of the <a>DescribeHsm</a> operation.</p>"
       },
       "errors":[
         {
@@ -403,7 +404,7 @@
       "input":{"shape":"ListHsmsRequest"},
       "output":{
         "shape":"ListHsmsResponse",
-        "documentation":"<p>Contains the output of the <a>ListHsms</a> action.</p>"
+        "documentation":"<p>Contains the output of the <a>ListHsms</a> operation.</p>"
       },
       "errors":[
         {
@@ -489,12 +490,12 @@
       },
       "input":{
         "shape":"ModifyHsmRequest",
-        "documentation":"<p>Contains the inputs for the <a>ModifyHsm</a> action. </p>",
+        "documentation":"<p>Contains the inputs for the <a>ModifyHsm</a> operation. </p>",
         "locationName":"ModifyHsmRequest"
       },
       "output":{
         "shape":"ModifyHsmResponse",
-        "documentation":"<p>Contains the output of the <a>ModifyHsm</a> action.</p>"
+        "documentation":"<p>Contains the output of the <a>ModifyHsm</a> operation.</p>"
       },
       "errors":[
         {
@@ -514,7 +515,7 @@
           "documentation":"<p>Indicates that one or more of the request parameters are not valid.</p>"
         }
       ],
-      "documentation":"<p>Modifies an HSM.</p>"
+      "documentation":"<p>Modifies an HSM.</p> <important> <p> <p>This operation can result in the HSM being offline for up to 15 minutes while the AWS CloudHSM service is reconfigured. If you are modifying a production HSM, you should ensure that your AWS CloudHSM service is configured for high availability, and consider executing this operation during a maintenance window.</p> </p> </important>"
     },
     "ModifyLunaClient":{
       "name":"ModifyLunaClient",
@@ -650,7 +651,7 @@
         },
         "EniIp":{
           "shape":"IpAddress",
-          "documentation":"<p>The IP address to assign to the HSM's ENI.</p>",
+          "documentation":"<p>The IP address to assign to the HSM's ENI.</p> <p>If an IP address is not specified, an IP address will be randomly chosen from the CIDR range of the subnet.</p>",
           "locationName":"EniIp"
         },
         "IamRoleArn":{
@@ -665,21 +666,20 @@
         },
         "SubscriptionType":{
           "shape":"SubscriptionType",
-          "documentation":"<p>The subscription type.</p>",
           "locationName":"SubscriptionType"
         },
         "ClientToken":{
           "shape":"ClientToken",
-          "documentation":"<p>A user-defined token to ensure idempotence. Subsequent calls to this action with the same token will be ignored.</p>",
+          "documentation":"<p>A user-defined token to ensure idempotence. Subsequent calls to this operation with the same token will be ignored.</p>",
           "locationName":"ClientToken"
         },
         "SyslogIp":{
           "shape":"IpAddress",
-          "documentation":"<p>The IP address for the syslog monitoring server.</p>",
+          "documentation":"<p>The IP address for the syslog monitoring server. The AWS CloudHSM service only supports one syslog monitoring server.</p>",
           "locationName":"SyslogIp"
         }
       },
-      "documentation":"<p>Contains the inputs for the <a>CreateHsm</a> action. </p>",
+      "documentation":"<p>Contains the inputs for the <a>CreateHsm</a> operation. </p>",
       "locationName":"CreateHsmRequest"
     },
     "CreateHsmResponse":{
@@ -690,7 +690,7 @@
           "documentation":"<p>The ARN of the HSM.</p>"
         }
       },
-      "documentation":"<p>Contains the output of the <a>CreateHsm</a> action.</p>"
+      "documentation":"<p>Contains the output of the <a>CreateHsm</a> operation.</p>"
     },
     "CreateLunaClientRequest":{
       "type":"structure",
@@ -749,7 +749,7 @@
           "locationName":"HsmArn"
         }
       },
-      "documentation":"<p>Contains the inputs for the <a>DeleteHsm</a> action. </p>",
+      "documentation":"<p>Contains the inputs for the <a>DeleteHsm</a> operation. </p>",
       "locationName":"DeleteHsmRequest"
     },
     "DeleteHsmResponse":{
@@ -758,10 +758,10 @@
       "members":{
         "Status":{
           "shape":"String",
-          "documentation":"<p>The status of the action.</p>"
+          "documentation":"<p>The status of the operation.</p>"
         }
       },
-      "documentation":"<p>Contains the output of the <a>DeleteHsm</a> action.</p>"
+      "documentation":"<p>Contains the output of the <a>DeleteHsm</a> operation.</p>"
     },
     "DeleteLunaClientRequest":{
       "type":"structure",
@@ -839,7 +839,7 @@
           "documentation":"<p>The serial number of the HSM. Either the <i>HsmArn</i> or the <i>HsmSerialNumber</i> parameter must be specified.</p>"
         }
       },
-      "documentation":"<p>Contains the inputs for the <a>DescribeHsm</a> action. </p>"
+      "documentation":"<p>Contains the inputs for the <a>DescribeHsm</a> operation. </p>"
     },
     "DescribeHsmResponse":{
       "type":"structure",
@@ -868,10 +868,7 @@
           "shape":"IpAddress",
           "documentation":"<p>The IP address assigned to the HSM's ENI.</p>"
         },
-        "SubscriptionType":{
-          "shape":"SubscriptionType",
-          "documentation":"<p>The subscription type.</p>"
-        },
+        "SubscriptionType":{"shape":"SubscriptionType"},
         "SubscriptionStartDate":{
           "shape":"Timestamp",
           "documentation":"<p>The subscription start date.</p>"
@@ -886,7 +883,7 @@
         },
         "SubnetId":{
           "shape":"SubnetId",
-          "documentation":"<p>The identifier of the subnet the HSM is in.</p>"
+          "documentation":"<p>The identifier of the subnet that the HSM is in.</p>"
         },
         "IamRoleArn":{
           "shape":"IamRoleArn",
@@ -914,7 +911,7 @@
         },
         "SshKeyLastUpdated":{
           "shape":"Timestamp",
-          "documentation":"<p>The date and time the SSH key was last updated.</p>"
+          "documentation":"<p>The date and time that the SSH key was last updated.</p>"
         },
         "ServerCertUri":{
           "shape":"String",
@@ -922,14 +919,14 @@
         },
         "ServerCertLastUpdated":{
           "shape":"Timestamp",
-          "documentation":"<p>The date and time the server certificate was last updated.</p>"
+          "documentation":"<p>The date and time that the server certificate was last updated.</p>"
         },
         "Partitions":{
           "shape":"PartitionList",
           "documentation":"<p>The list of partitions on the HSM.</p>"
         }
       },
-      "documentation":"<p>Contains the output of the <a>DescribeHsm</a> action.</p>"
+      "documentation":"<p>Contains the output of the <a>DescribeHsm</a> operation.</p>"
     },
     "DescribeLunaClientRequest":{
       "type":"structure",
@@ -1128,7 +1125,7 @@
           "documentation":"<p>If not null, more results are available. Pass this value to <a>ListHsms</a> to retrieve the next set of items.</p>"
         }
       },
-      "documentation":"<p>Contains the output of the <a>ListHsms</a> action.</p>"
+      "documentation":"<p>Contains the output of the <a>ListHsms</a> operation.</p>"
     },
     "ListLunaClientsRequest":{
       "type":"structure",
@@ -1191,12 +1188,12 @@
         },
         "SubnetId":{
           "shape":"SubnetId",
-          "documentation":"<p>The new identifier of the subnet that the HSM is in.</p>",
+          "documentation":"<p>The new identifier of the subnet that the HSM is in. The new subnet must be in the same Availability Zone as the current subnet.</p>",
           "locationName":"SubnetId"
         },
         "EniIp":{
           "shape":"IpAddress",
-          "documentation":"<p>The new IP address for the elastic network interface attached to the HSM.</p>",
+          "documentation":"<p>The new IP address for the elastic network interface (ENI) attached to the HSM.</p> <p>If the HSM is moved to a different subnet, and an IP address is not specified, an IP address will be randomly chosen from the CIDR range of the new subnet.</p>",
           "locationName":"EniIp"
         },
         "IamRoleArn":{
@@ -1211,11 +1208,11 @@
         },
         "SyslogIp":{
           "shape":"IpAddress",
-          "documentation":"<p>The new IP address for the syslog monitoring server.</p>",
+          "documentation":"<p>The new IP address for the syslog monitoring server. The AWS CloudHSM service only supports one syslog monitoring server.</p>",
           "locationName":"SyslogIp"
         }
       },
-      "documentation":"<p>Contains the inputs for the <a>ModifyHsm</a> action. </p>",
+      "documentation":"<p>Contains the inputs for the <a>ModifyHsm</a> operation. </p>",
       "locationName":"ModifyHsmRequest"
     },
     "ModifyHsmResponse":{
@@ -1226,7 +1223,7 @@
           "documentation":"<p>The ARN of the HSM.</p>"
         }
       },
-      "documentation":"<p>Contains the output of the <a>ModifyHsm</a> action.</p>"
+      "documentation":"<p>Contains the output of the <a>ModifyHsm</a> operation.</p>"
     },
     "ModifyLunaClientRequest":{
       "type":"structure",
@@ -1288,7 +1285,8 @@
     },
     "SubscriptionType":{
       "type":"string",
-      "enum":["PRODUCTION"]
+      "enum":["PRODUCTION"],
+      "documentation":"<p>Specifies the type of subscription for the HSM.</p> <ul> <li> <b>PRODUCTION</b> - The HSM is being used in a production environment.</li> <li> <b>TRIAL</b> - The HSM is being used in a product trial.</li> </ul>"
     },
     "Timestamp":{
       "type":"string",

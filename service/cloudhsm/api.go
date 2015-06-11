@@ -67,8 +67,17 @@ func (c *CloudHSM) CreateHSMRequest(input *CreateHSMInput) (req *aws.Request, ou
 	return
 }
 
-// Creates an uninitialized HSM instance. Running this command provisions an
-// HSM appliance and will result in charges to your AWS account for the HSM.
+// Creates an uninitialized HSM instance.
+//
+// There is an upfront fee charged for each HSM instance that you create with
+// the CreateHsm operation. If you accidentally provision an HSM and want to
+// request a refund, delete the instance using the DeleteHsm operation, go to
+// the AWS Support Center (https://console.aws.amazon.com/support/home#/), create
+// a new case, and select Account and Billing Support.
+//
+//   It can take up to 20 minutes to create and provision an HSM. You can monitor
+// the status of the HSM with the DescribeHsm operation. The HSM is ready to
+// be initialized when the status changes to RUNNING.
 func (c *CloudHSM) CreateHSM(input *CreateHSMInput) (*CreateHSMOutput, error) {
 	req, out := c.CreateHSMRequest(input)
 	err := req.Send()
@@ -164,8 +173,8 @@ func (c *CloudHSM) DeleteHSMRequest(input *DeleteHSMInput) (req *aws.Request, ou
 	return
 }
 
-// Deletes an HSM. Once complete, this operation cannot be undone and your key
-// material cannot be recovered.
+// Deletes an HSM. After completion, this operation cannot be undone and your
+// key material cannot be recovered.
 func (c *CloudHSM) DeleteHSM(input *DeleteHSMInput) (*DeleteHSMOutput, error) {
 	req, out := c.DeleteHSMRequest(input)
 	err := req.Send()
@@ -536,6 +545,12 @@ func (c *CloudHSM) ModifyHSMRequest(input *ModifyHSMInput) (req *aws.Request, ou
 }
 
 // Modifies an HSM.
+//
+//   This operation can result in the HSM being offline for up to 15 minutes
+// while the AWS CloudHSM service is reconfigured. If you are modifying a production
+// HSM, you should ensure that your AWS CloudHSM service is configured for high
+// availability, and consider executing this operation during a maintenance
+// window.
 func (c *CloudHSM) ModifyHSM(input *ModifyHSMInput) (*ModifyHSMOutput, error) {
 	req, out := c.ModifyHSMRequest(input)
 	err := req.Send()
@@ -603,13 +618,16 @@ type metadataCreateHAPGOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// Contains the inputs for the CreateHsm action.
+// Contains the inputs for the CreateHsm operation.
 type CreateHSMInput struct {
-	// A user-defined token to ensure idempotence. Subsequent calls to this action
+	// A user-defined token to ensure idempotence. Subsequent calls to this operation
 	// with the same token will be ignored.
 	ClientToken *string `locationName:"ClientToken" type:"string"`
 
 	// The IP address to assign to the HSM's ENI.
+	//
+	// If an IP address is not specified, an IP address will be randomly chosen
+	// from the CIDR range of the subnet.
 	ENIIP *string `locationName:"EniIp" type:"string"`
 
 	// The external ID from IamRoleArn, if present.
@@ -625,10 +643,14 @@ type CreateHSMInput struct {
 	// The identifier of the subnet in your VPC in which to place the HSM.
 	SubnetID *string `locationName:"SubnetId" type:"string" required:"true"`
 
-	// The subscription type.
+	// Specifies the type of subscription for the HSM.
+	//
+	//   PRODUCTION - The HSM is being used in a production environment.  TRIAL
+	// - The HSM is being used in a product trial.
 	SubscriptionType *string `locationName:"SubscriptionType" type:"string" required:"true"`
 
-	// The IP address for the syslog monitoring server.
+	// The IP address for the syslog monitoring server. The AWS CloudHSM service
+	// only supports one syslog monitoring server.
 	SyslogIP *string `locationName:"SyslogIp" type:"string"`
 
 	metadataCreateHSMInput `json:"-" xml:"-"`
@@ -638,7 +660,7 @@ type metadataCreateHSMInput struct {
 	SDKShapeTraits bool `locationName:"CreateHsmRequest" type:"structure"`
 }
 
-// Contains the output of the CreateHsm action.
+// Contains the output of the CreateHsm operation.
 type CreateHSMOutput struct {
 	// The ARN of the HSM.
 	HSMARN *string `locationName:"HsmArn" type:"string"`
@@ -702,7 +724,7 @@ type metadataDeleteHAPGOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// Contains the inputs for the DeleteHsm action.
+// Contains the inputs for the DeleteHsm operation.
 type DeleteHSMInput struct {
 	// The ARN of the HSM to delete.
 	HSMARN *string `locationName:"HsmArn" type:"string" required:"true"`
@@ -714,9 +736,9 @@ type metadataDeleteHSMInput struct {
 	SDKShapeTraits bool `locationName:"DeleteHsmRequest" type:"structure"`
 }
 
-// Contains the output of the DeleteHsm action.
+// Contains the output of the DeleteHsm operation.
 type DeleteHSMOutput struct {
-	// The status of the action.
+	// The status of the operation.
 	Status *string `type:"string" required:"true"`
 
 	metadataDeleteHSMOutput `json:"-" xml:"-"`
@@ -797,7 +819,7 @@ type metadataDescribeHAPGOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// Contains the inputs for the DescribeHsm action.
+// Contains the inputs for the DescribeHsm operation.
 type DescribeHSMInput struct {
 	// The ARN of the HSM. Either the HsmArn or the SerialNumber parameter must
 	// be specified.
@@ -814,7 +836,7 @@ type metadataDescribeHSMInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// Contains the output of the DescribeHsm action.
+// Contains the output of the DescribeHsm operation.
 type DescribeHSMOutput struct {
 	// The Availability Zone that the HSM is in.
 	AvailabilityZone *string `type:"string"`
@@ -837,7 +859,7 @@ type DescribeHSMOutput struct {
 	// The list of partitions on the HSM.
 	Partitions []*string `type:"list"`
 
-	// The date and time the SSH key was last updated.
+	// The date and time that the SSH key was last updated.
 	SSHKeyLastUpdated *string `locationName:"SshKeyLastUpdated" type:"string"`
 
 	// The public SSH key.
@@ -846,7 +868,7 @@ type DescribeHSMOutput struct {
 	// The serial number of the HSM.
 	SerialNumber *string `type:"string"`
 
-	// The date and time the server certificate was last updated.
+	// The date and time that the server certificate was last updated.
 	ServerCertLastUpdated *string `type:"string"`
 
 	// The URI of the certificate server.
@@ -861,7 +883,7 @@ type DescribeHSMOutput struct {
 	// Contains additional information about the status of the HSM.
 	StatusDetails *string `type:"string"`
 
-	// The identifier of the subnet the HSM is in.
+	// The identifier of the subnet that the HSM is in.
 	SubnetID *string `locationName:"SubnetId" type:"string"`
 
 	// The subscription end date.
@@ -870,7 +892,10 @@ type DescribeHSMOutput struct {
 	// The subscription start date.
 	SubscriptionStartDate *string `type:"string"`
 
-	// The subscription type.
+	// Specifies the type of subscription for the HSM.
+	//
+	//   PRODUCTION - The HSM is being used in a production environment.  TRIAL
+	// - The HSM is being used in a product trial.
 	SubscriptionType *string `type:"string"`
 
 	// The identifier of the VPC that the HSM is in.
@@ -990,7 +1015,7 @@ type metadataListHSMsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// Contains the output of the ListHsms action.
+// Contains the output of the ListHsms operation.
 type ListHSMsOutput struct {
 	// The list of ARNs that identify the HSMs.
 	HSMList []*string `locationName:"HsmList" type:"list"`
@@ -1089,9 +1114,13 @@ type metadataModifyHAPGOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// Contains the inputs for the ModifyHsm action.
+// Contains the inputs for the ModifyHsm operation.
 type ModifyHSMInput struct {
-	// The new IP address for the elastic network interface attached to the HSM.
+	// The new IP address for the elastic network interface (ENI) attached to the
+	// HSM.
+	//
+	// If the HSM is moved to a different subnet, and an IP address is not specified,
+	// an IP address will be randomly chosen from the CIDR range of the new subnet.
 	ENIIP *string `locationName:"EniIp" type:"string"`
 
 	// The new external ID.
@@ -1103,10 +1132,12 @@ type ModifyHSMInput struct {
 	// The new IAM role ARN.
 	IAMRoleARN *string `locationName:"IamRoleArn" type:"string"`
 
-	// The new identifier of the subnet that the HSM is in.
+	// The new identifier of the subnet that the HSM is in. The new subnet must
+	// be in the same Availability Zone as the current subnet.
 	SubnetID *string `locationName:"SubnetId" type:"string"`
 
-	// The new IP address for the syslog monitoring server.
+	// The new IP address for the syslog monitoring server. The AWS CloudHSM service
+	// only supports one syslog monitoring server.
 	SyslogIP *string `locationName:"SyslogIp" type:"string"`
 
 	metadataModifyHSMInput `json:"-" xml:"-"`
@@ -1116,7 +1147,7 @@ type metadataModifyHSMInput struct {
 	SDKShapeTraits bool `locationName:"ModifyHsmRequest" type:"structure"`
 }
 
-// Contains the output of the ModifyHsm action.
+// Contains the output of the ModifyHsm operation.
 type ModifyHSMOutput struct {
 	// The ARN of the HSM.
 	HSMARN *string `locationName:"HsmArn" type:"string"`
