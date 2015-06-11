@@ -47,10 +47,11 @@ func ExampleECS_CreateService() {
 	svc := ecs.New(nil)
 
 	params := &ecs.CreateServiceInput{
-		ServiceName:  aws.String("String"), // Required
-		ClientToken:  aws.String("String"),
-		Cluster:      aws.String("String"),
-		DesiredCount: aws.Long(1),
+		DesiredCount:   aws.Long(1),          // Required
+		ServiceName:    aws.String("String"), // Required
+		TaskDefinition: aws.String("String"), // Required
+		ClientToken:    aws.String("String"),
+		Cluster:        aws.String("String"),
 		LoadBalancers: []*ecs.LoadBalancer{
 			{ // Required
 				ContainerName:    aws.String("String"),
@@ -59,8 +60,7 @@ func ExampleECS_CreateService() {
 			},
 			// More values...
 		},
-		Role:           aws.String("String"),
-		TaskDefinition: aws.String("String"),
+		Role: aws.String("String"),
 	}
 	resp, err := svc.CreateService(params)
 
@@ -522,6 +522,7 @@ func ExampleECS_ListTasks() {
 	params := &ecs.ListTasksInput{
 		Cluster:           aws.String("String"),
 		ContainerInstance: aws.String("String"),
+		DesiredStatus:     aws.String("DesiredStatus"),
 		Family:            aws.String("String"),
 		MaxResults:        aws.Long(1),
 		NextToken:         aws.String("String"),
@@ -639,6 +640,7 @@ func ExampleECS_RegisterTaskDefinition() {
 					{ // Required
 						ContainerPort: aws.Long(1),
 						HostPort:      aws.Long(1),
+						Protocol:      aws.String("TransportProtocol"),
 					},
 					// More values...
 				},
@@ -811,6 +813,7 @@ func ExampleECS_SubmitContainerStateChange() {
 				BindIP:        aws.String("String"),
 				ContainerPort: aws.Long(1),
 				HostPort:      aws.Long(1),
+				Protocol:      aws.String("TransportProtocol"),
 			},
 			// More values...
 		},
@@ -849,6 +852,34 @@ func ExampleECS_SubmitTaskStateChange() {
 		Task:    aws.String("String"),
 	}
 	resp, err := svc.SubmitTaskStateChange(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleECS_UpdateContainerAgent() {
+	svc := ecs.New(nil)
+
+	params := &ecs.UpdateContainerAgentInput{
+		ContainerInstance: aws.String("String"), // Required
+		Cluster:           aws.String("String"),
+	}
+	resp, err := svc.UpdateContainerAgent(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {

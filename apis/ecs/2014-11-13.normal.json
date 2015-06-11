@@ -31,6 +31,11 @@
           "shape":"ClientException",
           "exception":true,
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        },
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
         }
       ],
       "documentation":"<p>Creates a new Amazon ECS cluster. By default, your account will receive a <code>default</code> cluster when you launch your first container instance. However, you can create your own cluster with a unique name with the <code>CreateCluster</code> action.</p>"
@@ -54,6 +59,16 @@
           "shape":"ClientException",
           "exception":true,
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        },
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
+        },
+        {
+          "shape":"ClusterNotFoundException",
+          "exception":true,
+          "documentation":"<p>The specified cluster could not be found. You can view your available clusters with <a>ListClusters</a>. Amazon ECS clusters are region-specific.</p>"
         }
       ],
       "documentation":"<p>Runs and maintains a desired number of tasks from a specified task definition. If the number of tasks running in a service drops below <code>desiredCount</code>, Amazon ECS will spawn another instantiation of the task in the specified cluster.</p>"
@@ -77,6 +92,26 @@
           "shape":"ClientException",
           "exception":true,
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        },
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
+        },
+        {
+          "shape":"ClusterNotFoundException",
+          "exception":true,
+          "documentation":"<p>The specified cluster could not be found. You can view your available clusters with <a>ListClusters</a>. Amazon ECS clusters are region-specific.</p>"
+        },
+        {
+          "shape":"ClusterContainsContainerInstancesException",
+          "exception":true,
+          "documentation":"<p>You cannot delete a cluster that has registered container instances. You must first deregister the container instances before you can delete the cluster. For more information, see <a>DeregisterContainerInstance</a>.</p>"
+        },
+        {
+          "shape":"ClusterContainsServicesException",
+          "exception":true,
+          "documentation":"<p>You cannot delete a cluster that contains services. You must first update the service to reduce its desired task count to 0 and then delete the service. For more information, see <a>UpdateService</a> and <a>DeleteService</a>.</p>"
         }
       ],
       "documentation":"<p>Deletes the specified cluster. You must deregister all container instances from this cluster before you may delete it. You can list the container instances in a cluster with <a>ListContainerInstances</a> and deregister them with <a>DeregisterContainerInstance</a>.</p>"
@@ -100,6 +135,21 @@
           "shape":"ClientException",
           "exception":true,
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        },
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
+        },
+        {
+          "shape":"ClusterNotFoundException",
+          "exception":true,
+          "documentation":"<p>The specified cluster could not be found. You can view your available clusters with <a>ListClusters</a>. Amazon ECS clusters are region-specific.</p>"
+        },
+        {
+          "shape":"ServiceNotFoundException",
+          "exception":true,
+          "documentation":"<p>The specified service could not be found. You can view your available services with <a>ListServices</a>. Amazon ECS services are cluster-specific and region-specific.</p>"
         }
       ],
       "documentation":"<p>Deletes a specified service within a cluster.</p>"
@@ -123,6 +173,16 @@
           "shape":"ClientException",
           "exception":true,
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        },
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
+        },
+        {
+          "shape":"ClusterNotFoundException",
+          "exception":true,
+          "documentation":"<p>The specified cluster could not be found. You can view your available clusters with <a>ListClusters</a>. Amazon ECS clusters are region-specific.</p>"
         }
       ],
       "documentation":"<p>Deregisters an Amazon ECS container instance from the specified cluster. This instance will no longer be available to run tasks.</p>"
@@ -146,6 +206,11 @@
           "shape":"ClientException",
           "exception":true,
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        },
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
         }
       ],
       "documentation":"<p>NOT YET IMPLEMENTED.</p> <p>Deregisters the specified task definition. You will no longer be able to run tasks from this definition after deregistration.</p>"
@@ -169,6 +234,11 @@
           "shape":"ClientException",
           "exception":true,
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        },
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
         }
       ],
       "documentation":"<p>Describes one or more of your clusters.</p>"
@@ -192,6 +262,16 @@
           "shape":"ClientException",
           "exception":true,
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        },
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
+        },
+        {
+          "shape":"ClusterNotFoundException",
+          "exception":true,
+          "documentation":"<p>The specified cluster could not be found. You can view your available clusters with <a>ListClusters</a>. Amazon ECS clusters are region-specific.</p>"
         }
       ],
       "documentation":"<p>Describes Amazon EC2 Container Service container instances. Returns metadata about registered and remaining resources on each container instance requested.</p>"
@@ -215,6 +295,16 @@
           "shape":"ClientException",
           "exception":true,
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        },
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
+        },
+        {
+          "shape":"ClusterNotFoundException",
+          "exception":true,
+          "documentation":"<p>The specified cluster could not be found. You can view your available clusters with <a>ListClusters</a>. Amazon ECS clusters are region-specific.</p>"
         }
       ],
       "documentation":"<p>Describes the specified services running in your cluster.</p>"
@@ -238,6 +328,11 @@
           "shape":"ClientException",
           "exception":true,
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        },
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
         }
       ],
       "documentation":"<p>Describes a task definition. You can specify a <code>family</code> and <code>revision</code> to find information on a specific task definition, or you can simply specify the family to find the latest revision in that family.</p>"
@@ -261,6 +356,16 @@
           "shape":"ClientException",
           "exception":true,
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        },
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
+        },
+        {
+          "shape":"ClusterNotFoundException",
+          "exception":true,
+          "documentation":"<p>The specified cluster could not be found. You can view your available clusters with <a>ListClusters</a>. Amazon ECS clusters are region-specific.</p>"
         }
       ],
       "documentation":"<p>Describes a specified task or tasks.</p>"
@@ -307,6 +412,11 @@
           "shape":"ClientException",
           "exception":true,
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        },
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
         }
       ],
       "documentation":"<p>Returns a list of existing clusters.</p>"
@@ -330,6 +440,16 @@
           "shape":"ClientException",
           "exception":true,
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        },
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
+        },
+        {
+          "shape":"ClusterNotFoundException",
+          "exception":true,
+          "documentation":"<p>The specified cluster could not be found. You can view your available clusters with <a>ListClusters</a>. Amazon ECS clusters are region-specific.</p>"
         }
       ],
       "documentation":"<p>Returns a list of container instances in a specified cluster.</p>"
@@ -353,6 +473,16 @@
           "shape":"ClientException",
           "exception":true,
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        },
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
+        },
+        {
+          "shape":"ClusterNotFoundException",
+          "exception":true,
+          "documentation":"<p>The specified cluster could not be found. You can view your available clusters with <a>ListClusters</a>. Amazon ECS clusters are region-specific.</p>"
         }
       ],
       "documentation":"<p>Lists the services that are running in a specified cluster.</p>"
@@ -376,6 +506,11 @@
           "shape":"ClientException",
           "exception":true,
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        },
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
         }
       ],
       "documentation":"<p>Returns a list of task definition families that are registered to your account. You can filter the results with the <code>familyPrefix</code> parameter.</p>"
@@ -399,6 +534,11 @@
           "shape":"ClientException",
           "exception":true,
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        },
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
         }
       ],
       "documentation":"<p>Returns a list of task definitions that are registered to your account. You can filter the results by family name with the <code>familyPrefix</code> parameter.</p>"
@@ -422,9 +562,19 @@
           "shape":"ClientException",
           "exception":true,
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        },
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
+        },
+        {
+          "shape":"ClusterNotFoundException",
+          "exception":true,
+          "documentation":"<p>The specified cluster could not be found. You can view your available clusters with <a>ListClusters</a>. Amazon ECS clusters are region-specific.</p>"
         }
       ],
-      "documentation":"<p>Returns a list of tasks for a specified cluster. You can filter the results by family name or by a particular container instance with the <code>family</code> and <code>containerInstance</code> parameters.</p>"
+      "documentation":"<p>Returns a list of tasks for a specified cluster. You can filter the results by family name, by a particular container instance, or by the desired status of the task with the <code>family</code>, <code>containerInstance</code>, and <code>desiredStatus</code> parameters.</p>"
     },
     "RegisterContainerInstance":{
       "name":"RegisterContainerInstance",
@@ -468,6 +618,11 @@
           "shape":"ClientException",
           "exception":true,
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        },
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
         }
       ],
       "documentation":"<p>Registers a new task definition from the supplied <code>family</code> and <code>containerDefinitions</code>. Optionally, you can add data volumes to your containers with the <code>volumes</code> parameter. For more information on task definition parameters and defaults, see <a href=\"http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html\">Amazon ECS Task Definitions</a> in the <i>Amazon EC2 Container Service Developer Guide</i>.</p>"
@@ -491,6 +646,16 @@
           "shape":"ClientException",
           "exception":true,
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        },
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
+        },
+        {
+          "shape":"ClusterNotFoundException",
+          "exception":true,
+          "documentation":"<p>The specified cluster could not be found. You can view your available clusters with <a>ListClusters</a>. Amazon ECS clusters are region-specific.</p>"
         }
       ],
       "documentation":"<p>Start a task using random placement and the default Amazon ECS scheduler. If you want to use your own scheduler or place a task on a specific container instance, use <code>StartTask</code> instead.</p> <important> <p>The <code>count</code> parameter is limited to 10 tasks per call.</p> </important>"
@@ -514,6 +679,16 @@
           "shape":"ClientException",
           "exception":true,
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        },
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
+        },
+        {
+          "shape":"ClusterNotFoundException",
+          "exception":true,
+          "documentation":"<p>The specified cluster could not be found. You can view your available clusters with <a>ListClusters</a>. Amazon ECS clusters are region-specific.</p>"
         }
       ],
       "documentation":"<p>Starts a new task from the specified task definition on the specified container instance or instances. If you want to use the default Amazon ECS scheduler to place your task, use <code>RunTask</code> instead.</p> <important> <p>The list of container instances to start tasks on is limited to 10.</p> </important>"
@@ -537,6 +712,16 @@
           "shape":"ClientException",
           "exception":true,
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        },
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
+        },
+        {
+          "shape":"ClusterNotFoundException",
+          "exception":true,
+          "documentation":"<p>The specified cluster could not be found. You can view your available clusters with <a>ListClusters</a>. Amazon ECS clusters are region-specific.</p>"
         }
       ],
       "documentation":"<p>Stops a running task.</p>"
@@ -587,6 +772,54 @@
       ],
       "documentation":"<note><p>This action is only used by the Amazon EC2 Container Service agent, and it is not intended for use outside of the agent.</p></note> <p>Sent to acknowledge that a task changed states.</p>"
     },
+    "UpdateContainerAgent":{
+      "name":"UpdateContainerAgent",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateContainerAgentRequest"},
+      "output":{"shape":"UpdateContainerAgentResponse"},
+      "errors":[
+        {
+          "shape":"ServerException",
+          "exception":true,
+          "fault":true,
+          "documentation":"<p>These errors are usually caused by a server-side issue.</p>"
+        },
+        {
+          "shape":"ClientException",
+          "exception":true,
+          "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        },
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
+        },
+        {
+          "shape":"ClusterNotFoundException",
+          "exception":true,
+          "documentation":"<p>The specified cluster could not be found. You can view your available clusters with <a>ListClusters</a>. Amazon ECS clusters are region-specific.</p>"
+        },
+        {
+          "shape":"UpdateInProgressException",
+          "exception":true,
+          "documentation":"<p>There is already a current Amazon ECS container agent update in progress on the specified container instance. If the container agent becomes disconnected while it is in a transitional stage, such as <code>PENDING</code> or <code>STAGING</code>, the update process can get stuck in that state. However, when the agent reconnects, it will resume where it stopped previously.</p>"
+        },
+        {
+          "shape":"NoUpdateAvailableException",
+          "exception":true,
+          "documentation":"<p>There is no update available for this Amazon ECS container agent. This could be because the agent is already running the latest version, or it is so old that there is no update path to the current version.</p>"
+        },
+        {
+          "shape":"MissingVersionException",
+          "exception":true,
+          "documentation":"<p>Amazon ECS is unable to determine the current version of the Amazon ECS container agent on the container instance and does not have enough information to proceed with an update. This could be because the agent running on the container instance is an older or custom version that does not use our version information.</p>"
+        }
+      ],
+      "documentation":"<p>Updates the Amazon ECS container agent on a specified container instance.</p>"
+    },
     "UpdateService":{
       "name":"UpdateService",
       "http":{
@@ -606,12 +839,43 @@
           "shape":"ClientException",
           "exception":true,
           "documentation":"<p>These errors are usually caused by something the client did, such as use an action or resource on behalf of a user that doesn't have permission to use the action or resource, or specify an identifier that is not valid.</p>"
+        },
+        {
+          "shape":"InvalidParameterException",
+          "exception":true,
+          "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
+        },
+        {
+          "shape":"ClusterNotFoundException",
+          "exception":true,
+          "documentation":"<p>The specified cluster could not be found. You can view your available clusters with <a>ListClusters</a>. Amazon ECS clusters are region-specific.</p>"
+        },
+        {
+          "shape":"ServiceNotFoundException",
+          "exception":true,
+          "documentation":"<p>The specified service could not be found. You can view your available services with <a>ListServices</a>. Amazon ECS services are cluster-specific and region-specific.</p>"
+        },
+        {
+          "shape":"ServiceNotActiveException",
+          "exception":true,
+          "documentation":"<p>The specified service is not active. You cannot update a service that is not active. If you have previously deleted a service, you can recreate it with <a>CreateService</a>.</p>"
         }
       ],
       "documentation":"<p>Modify the desired count or task definition used in a service.</p> <p>You can add to or subtract from the number of instantiations of a task definition in a service by specifying the cluster that the service is running in and a new <code>desiredCount</code> parameter.</p> <p>You can use <code>UpdateService</code> to modify your task definition and deploy a new version of your service, one task at a time. If you modify the task definition with <code>UpdateService</code>, Amazon ECS spawns a task with the new version of the task definition and then stops an old task after the new version is running. Because <code>UpdateService</code> starts a new version of the task before stopping an old version, your cluster must have capacity to support one more instantiation of the task when <code>UpdateService</code> is run. If your cluster cannot support another instantiation of the task used in your service, you can reduce the desired count of your service by one before modifying the task definition.</p>"
     }
   },
   "shapes":{
+    "AgentUpdateStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "STAGING",
+        "STAGED",
+        "UPDATING",
+        "UPDATED",
+        "FAILED"
+      ]
+    },
     "Boolean":{"type":"boolean"},
     "BoxedBoolean":{
       "type":"boolean",
@@ -655,9 +919,34 @@
         "pendingTasksCount":{
           "shape":"Integer",
           "documentation":"<p>The number of tasks in the cluster that are in the <code>PENDING</code> state.</p>"
+        },
+        "activeServicesCount":{
+          "shape":"Integer",
+          "documentation":"<p>The number of services that are running on the cluster in an <code>ACTIVE</code> state. You can view these services with <a>ListServices</a>.</p>"
         }
       },
-      "documentation":"<p>A regional grouping of one or more container instances on which you can run task requests. Each account receives a default cluster the first time you use the Amazon ECS service, but you may also create other clusters. Clusters may contain more than one instance type simultaneously.</p> <important> <p>During the preview, each account is limited to two clusters.</p> </important>"
+      "documentation":"<p>A regional grouping of one or more container instances on which you can run task requests. Each account receives a default cluster the first time you use the Amazon ECS service, but you may also create other clusters. Clusters may contain more than one instance type simultaneously.</p>"
+    },
+    "ClusterContainsContainerInstancesException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true,
+      "documentation":"<p>You cannot delete a cluster that has registered container instances. You must first deregister the container instances before you can delete the cluster. For more information, see <a>DeregisterContainerInstance</a>.</p>"
+    },
+    "ClusterContainsServicesException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true,
+      "documentation":"<p>You cannot delete a cluster that contains services. You must first update the service to reduce its desired task count to 0 and then delete the service. For more information, see <a>UpdateService</a> and <a>DeleteService</a>.</p>"
+    },
+    "ClusterNotFoundException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true,
+      "documentation":"<p>The specified cluster could not be found. You can view your available clusters with <a>ListClusters</a>. Amazon ECS clusters are region-specific.</p>"
     },
     "Clusters":{
       "type":"list",
@@ -706,15 +995,15 @@
         },
         "cpu":{
           "shape":"Integer",
-          "documentation":"<p>The number of <code>cpu</code> units reserved for the container. A container instance has 1,024 <code>cpu</code> units for every CPU core.</p>"
+          "documentation":"<p>The number of <code>cpu</code> units reserved for the container. A container instance has 1,024 <code>cpu</code> units for every CPU core. This parameter specifies the minimum amount of CPU to reserve for a container, and containers share unallocated CPU units with other containers on the instance with the same ratio as their allocated amount.</p> <p>For example, if you run a single-container task on a single-core instance type with 512 CPU units specified for that container, and that is the only task running on the container instance, that container could use the full 1,024 CPU unit share at any given time. However, if you launched another copy of the same task on that container instance, each task would be guaranteed a minimum of 512 CPU units when needed, and each container could float to higher CPU usage if the other container was not using it, but if both tasks were 100% active all of the time, they would be limited to 512 CPU units.</p> <p>If this parameter is omitted, 0 CPU units are reserved for the container, and it will only receive CPU time when other containers are not using it.</p>"
         },
         "memory":{
           "shape":"Integer",
-          "documentation":"<p>The number of MiB of memory reserved for the container. Docker will allocate a minimum of 4 MiB of memory to a container.</p>"
+          "documentation":"<p>The number of MiB of memory reserved for the container. If your container attempts to exceed the memory allocated here, the container is killed.</p>"
         },
         "links":{
           "shape":"StringList",
-          "documentation":"<p>The <code>link</code> parameter allows containers to communicate with each other without the need for port mappings, using the <code>name</code> parameter. For more information on linking Docker containers, see <a href=\"https://docs.docker.com/userguide/dockerlinks/\">https://docs.docker.com/userguide/dockerlinks/</a>.</p>"
+          "documentation":"<p>The <code>link</code> parameter allows containers to communicate with each other without the need for port mappings, using the <code>name</code> parameter. The <code>name:internalName</code> construct is analogous to <code>name:alias</code> in Docker links. For more information on linking Docker containers, see <a href=\"https://docs.docker.com/userguide/dockerlinks/\">https://docs.docker.com/userguide/dockerlinks/</a>.</p> <important> <p>Containers that are collocated on a single container instance may be able to communicate with each other without requiring links or host port mappings. Network isolation is achieved on the container instance using security groups and VPC settings.</p> </important>"
         },
         "portMappings":{
           "shape":"PortMappingList",
@@ -722,7 +1011,7 @@
         },
         "essential":{
           "shape":"BoxedBoolean",
-          "documentation":"<p>If the <code>essential</code> parameter of a container is marked as <code>true</code>, the failure of that container will stop the task. If the <code>essential</code> parameter of a container is marked as <code>false</code>, then its failure will not affect the rest of the containers in a task.</p>"
+          "documentation":"<p>If the <code>essential</code> parameter of a container is marked as <code>true</code>, the failure of that container will stop the task. If the <code>essential</code> parameter of a container is marked as <code>false</code>, then its failure will not affect the rest of the containers in a task. If this parameter is omitted, a container is assumed to be essential.</p> <note> <p>All tasks must have at least one essential container.</p> </note>"
         },
         "entryPoint":{
           "shape":"StringList",
@@ -762,6 +1051,10 @@
           "shape":"String",
           "documentation":"<p>The Amazon EC2 instance ID of the container instance.</p>"
         },
+        "versionInfo":{
+          "shape":"VersionInfo",
+          "documentation":"<p>The version information for the Amazon ECS container agent and Docker daemon running on the container instance.</p>"
+        },
         "remainingResources":{
           "shape":"Resources",
           "documentation":"<p>The remaining resources of the container instance that are available for new tasks.</p>"
@@ -785,6 +1078,10 @@
         "pendingTasksCount":{
           "shape":"Integer",
           "documentation":"<p>The number of tasks on the container instance that are in the <code>PENDING</code> status.</p>"
+        },
+        "agentUpdateStatus":{
+          "shape":"AgentUpdateStatus",
+          "documentation":"<p>The status of the most recent agent update. If an update has never been requested, this value is <code>NULL</code>.</p>"
         }
       },
       "documentation":"<p>An Amazon EC2 instance that is running the Amazon ECS agent and has been registered with a cluster.</p>"
@@ -835,7 +1132,11 @@
     },
     "CreateServiceRequest":{
       "type":"structure",
-      "required":["serviceName"],
+      "required":[
+        "serviceName",
+        "taskDefinition",
+        "desiredCount"
+      ],
       "members":{
         "cluster":{
           "shape":"String",
@@ -859,7 +1160,7 @@
         },
         "clientToken":{
           "shape":"String",
-          "documentation":"<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. Up to 64 ASCII characters are allowed.</p>"
+          "documentation":"<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. Up to 32 ASCII characters are allowed.</p>"
         },
         "role":{
           "shape":"String",
@@ -1112,6 +1413,14 @@
         "failures":{"shape":"Failures"}
       }
     },
+    "DesiredStatus":{
+      "type":"string",
+      "enum":[
+        "RUNNING",
+        "PENDING",
+        "STOPPED"
+      ]
+    },
     "DiscoverPollEndpointRequest":{
       "type":"structure",
       "members":{
@@ -1131,6 +1440,10 @@
         "endpoint":{
           "shape":"String",
           "documentation":"<p>The endpoint for the Amazon ECS agent to poll.</p>"
+        },
+        "telemetryEndpoint":{
+          "shape":"String",
+          "documentation":"<p>The telemetry endpoint for the Amazon ECS agent.</p>"
         }
       }
     },
@@ -1166,6 +1479,13 @@
       }
     },
     "Integer":{"type":"integer"},
+    "InvalidParameterException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true,
+      "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
+    },
     "KeyValuePair":{
       "type":"structure",
       "members":{
@@ -1348,10 +1668,17 @@
           "shape":"BoxedInteger",
           "documentation":"<p>The maximum number of task results returned by <code>ListTasks</code> in paginated output. When this parameter is used, <code>ListTasks</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListTasks</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListTasks</code> returns up to 100 results and a <code>nextToken</code> value if applicable.</p>"
         },
-        "startedBy":{"shape":"String"},
+        "startedBy":{
+          "shape":"String",
+          "documentation":"<p>The <code>startedBy</code> value that you want to filter the task results with. Specifying a <code>startedBy</code> value will limit the results to tasks that were started with that value.</p>"
+        },
         "serviceName":{
           "shape":"String",
           "documentation":"<p>The name of the service that you want to filter the <code>ListTasks</code> results with. Specifying a <code>serviceName</code> will limit the results to tasks that belong to that service.</p>"
+        },
+        "desiredStatus":{
+          "shape":"DesiredStatus",
+          "documentation":"<p>The task status that you want to filter the <code>ListTasks</code> results with. Specifying a <code>desiredStatus</code> of <code>STOPPED</code> will limit the results to tasks that are in the <code>STOPPED</code> status, which can be useful for debugging tasks that are not starting properly or have died or finished. The default status filter is <code>RUNNING</code>.</p>"
         }
       }
     },
@@ -1381,7 +1708,7 @@
         },
         "containerPort":{
           "shape":"BoxedInteger",
-          "documentation":"<p>The port on the container to associate with the load balancer.</p>"
+          "documentation":"<p>The port on the container to associate with the load balancer. This port must correspond to a <code>containerPort</code> in the service's task definition. Your container instances must allow ingress traffic on the <code>hostPort</code> of the port mapping.</p>"
         }
       }
     },
@@ -1390,6 +1717,13 @@
       "member":{"shape":"LoadBalancer"}
     },
     "Long":{"type":"long"},
+    "MissingVersionException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true,
+      "documentation":"<p>Amazon ECS is unable to determine the current version of the Amazon ECS container agent on the container instance and does not have enough information to proceed with an update. This could be because the agent running on the container instance is an older or custom version that does not use our version information.</p>"
+    },
     "MountPoint":{
       "type":"structure",
       "members":{
@@ -1425,12 +1759,23 @@
         "hostPort":{
           "shape":"BoxedInteger",
           "documentation":"<p>The port number on the host that is used with the network binding.</p>"
+        },
+        "protocol":{
+          "shape":"TransportProtocol",
+          "documentation":"<p>The protocol used for the network binding.</p>"
         }
       }
     },
     "NetworkBindings":{
       "type":"list",
       "member":{"shape":"NetworkBinding"}
+    },
+    "NoUpdateAvailableException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true,
+      "documentation":"<p>There is no update available for this Amazon ECS container agent. This could be because the agent is already running the latest version, or it is so old that there is no update path to the current version.</p>"
     },
     "PortMapping":{
       "type":"structure",
@@ -1441,7 +1786,11 @@
         },
         "hostPort":{
           "shape":"Integer",
-          "documentation":"<p>The port number on the container instance to reserve for your container. You can specify a non-reserved host port for your container port mapping, or you can omit the <code>hostPort</code> while specifying a <code>containerPort</code> and your container will automatically receive a port in the 49153 to 65535 port range. You should not attempt to specify a host port in the 49153 to 65535 port range, since these are reserved for automatic assignment.</p> <p>The default reserved ports are 22 for SSH, the Docker ports 2375 and 2376, and the Amazon ECS Container Agent port 51678. Any host port that was previously specified in a running task is also reserved while the task is running (once a task stops, the host port is released).The current reserved ports are displayed in the <code>remainingResources</code> of <a>DescribeContainerInstances</a> output, and a container instance may have up to 50 reserved ports at a time, including the default reserved ports (automatically assigned ports do not count toward this limit).</p>"
+          "documentation":"<p>The port number on the container instance to reserve for your container. You can specify a non-reserved host port for your container port mapping, or you can omit the <code>hostPort</code> (or set it to <code>0</code>) while specifying a <code>containerPort</code> and your container will automatically receive a port in the 49153 to 65535 port range. You should not attempt to specify a host port in the 49153 to 65535 port range, since these are reserved for automatic assignment.</p> <p>The default reserved ports are 22 for SSH, the Docker ports 2375 and 2376, and the Amazon ECS Container Agent port 51678. Any host port that was previously specified in a running task is also reserved while the task is running (once a task stops, the host port is released).The current reserved ports are displayed in the <code>remainingResources</code> of <a>DescribeContainerInstances</a> output, and a container instance may have up to 50 reserved ports at a time, including the default reserved ports (automatically assigned ports do not count toward this limit).</p>"
+        },
+        "protocol":{
+          "shape":"TransportProtocol",
+          "documentation":"<p>The protocol used for the port mapping. The default is <code>tcp</code>.</p>"
         }
       },
       "documentation":"<p>Port mappings allow containers to access ports on the host container instance to send or receive traffic. Port mappings are specified as part of the container definition.</p>"
@@ -1457,10 +1806,22 @@
           "shape":"String",
           "documentation":"<p>The short name or full Amazon Resource Name (ARN) of the cluster that you want to register your container instance with. If you do not specify a cluster, the default cluster is assumed..</p>"
         },
-        "instanceIdentityDocument":{"shape":"String"},
-        "instanceIdentityDocumentSignature":{"shape":"String"},
-        "totalResources":{"shape":"Resources"},
-        "versionInfo":{"shape":"VersionInfo"}
+        "instanceIdentityDocument":{
+          "shape":"String",
+          "documentation":"<p>The instance identity document for the Amazon EC2 instance to register. This document can be found by running the following command from the instance: <code>curl http://169.254.169.254/latest/dynamic/instance-identity/document/</code></p>"
+        },
+        "instanceIdentityDocumentSignature":{
+          "shape":"String",
+          "documentation":"<p>The instance identity document signature for the Amazon EC2 instance to register. This signature can be found by running the following command from the instance: <code>curl http://169.254.169.254/latest/dynamic/instance-identity/signature/</code></p>"
+        },
+        "totalResources":{
+          "shape":"Resources",
+          "documentation":"<p>The resources available on the instance.</p>"
+        },
+        "versionInfo":{
+          "shape":"VersionInfo",
+          "documentation":"<p>The version information for the Amazon ECS container agent and Docker daemon running on the container instance.</p>"
+        }
       }
     },
     "RegisterContainerInstanceResponse":{
@@ -1550,7 +1911,10 @@
           "shape":"BoxedInteger",
           "documentation":"<p>The number of instantiations of the specified task that you would like to place on your cluster.</p> <important> <p>The <code>count</code> parameter is limited to 10 tasks per call.</p> </important>"
         },
-        "startedBy":{"shape":"String"}
+        "startedBy":{
+          "shape":"String",
+          "documentation":"<p>An optional tag specified when a task is started. For example if you automatically trigger a task to run a batch process job, you could apply a unique identifier for that job to your task with the <code>startedBy</code> parameter. You can then identify which tasks belong to that job by filtering the results of a <a>ListTasks</a> call with the <code>startedBy</code> value.</p> <p>If a task is started by an Amazon ECS service, then the <code>startedBy</code> parameter contains the deployment ID of the service that starts it.</p>"
+        }
       }
     },
     "RunTaskResponse":{
@@ -1649,6 +2013,20 @@
       "type":"list",
       "member":{"shape":"ServiceEvent"}
     },
+    "ServiceNotActiveException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true,
+      "documentation":"<p>The specified service is not active. You cannot update a service that is not active. If you have previously deleted a service, you can recreate it with <a>CreateService</a>.</p>"
+    },
+    "ServiceNotFoundException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true,
+      "documentation":"<p>The specified service could not be found. You can view your available services with <a>ListServices</a>. Amazon ECS services are cluster-specific and region-specific.</p>"
+    },
     "Services":{
       "type":"list",
       "member":{"shape":"Service"}
@@ -1676,7 +2054,10 @@
           "shape":"StringList",
           "documentation":"<p>The container instance UUIDs or full Amazon Resource Name (ARN) entries for the container instances on which you would like to place your task.</p> <important> <p>The list of container instances to start tasks on is limited to 10.</p> </important>"
         },
-        "startedBy":{"shape":"String"}
+        "startedBy":{
+          "shape":"String",
+          "documentation":"<p>An optional tag specified when a task is started. For example if you automatically trigger a task to run a batch process job, you could apply a unique identifier for that job to your task with the <code>startedBy</code> parameter. You can then identify which tasks belong to that job by filtering the results of a <a>ListTasks</a> call with the <code>startedBy</code> value.</p> <p>If a task is started by an Amazon ECS service, then the <code>startedBy</code> parameter contains the deployment ID of the service that starts it.</p>"
+        }
       }
     },
     "StartTaskResponse":{
@@ -1824,7 +2205,10 @@
           "shape":"Containers",
           "documentation":"<p>The containers associated with the task.</p>"
         },
-        "startedBy":{"shape":"String"}
+        "startedBy":{
+          "shape":"String",
+          "documentation":"<p>The tag specified when a task is started. If the task is started by an Amazon ECS service, then the <code>startedBy</code> parameter contains the deployment ID of the service that starts it.</p>"
+        }
       }
     },
     "TaskDefinition":{
@@ -1867,6 +2251,40 @@
       "member":{"shape":"Task"}
     },
     "Timestamp":{"type":"timestamp"},
+    "TransportProtocol":{
+      "type":"string",
+      "enum":[
+        "tcp",
+        "udp"
+      ]
+    },
+    "UpdateContainerAgentRequest":{
+      "type":"structure",
+      "required":["containerInstance"],
+      "members":{
+        "cluster":{
+          "shape":"String",
+          "documentation":"<p>The short name or full Amazon Resource Name (ARN) of the cluster that your container instance is running on. If you do not specify a cluster, the default cluster is assumed.</p>"
+        },
+        "containerInstance":{
+          "shape":"String",
+          "documentation":"<p>The container instance UUID or full Amazon Resource Name (ARN) entries for the container instance on which you would like to update the Amazon ECS container agent.</p>"
+        }
+      }
+    },
+    "UpdateContainerAgentResponse":{
+      "type":"structure",
+      "members":{
+        "containerInstance":{"shape":"ContainerInstance"}
+      }
+    },
+    "UpdateInProgressException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true,
+      "documentation":"<p>There is already a current Amazon ECS container agent update in progress on the specified container instance. If the container agent becomes disconnected while it is in a transitional stage, such as <code>PENDING</code> or <code>STAGING</code>, the update process can get stuck in that state. However, when the agent reconnects, it will resume where it stopped previously.</p>"
+    },
     "UpdateServiceRequest":{
       "type":"structure",
       "required":["service"],
@@ -1901,9 +2319,18 @@
     "VersionInfo":{
       "type":"structure",
       "members":{
-        "agentVersion":{"shape":"String"},
-        "agentHash":{"shape":"String"},
-        "dockerVersion":{"shape":"String"}
+        "agentVersion":{
+          "shape":"String",
+          "documentation":"<p>The version number of the Amazon ECS container agent.</p>"
+        },
+        "agentHash":{
+          "shape":"String",
+          "documentation":"<p>The Git commit hash for the Amazon ECS container agent build on the <a href=\"https://github.com/aws/amazon-ecs-agent/commits/master\">amazon-ecs-agent </a> GitHub repository.</p>"
+        },
+        "dockerVersion":{
+          "shape":"String",
+          "documentation":"<p>The Docker version running on the container instance.</p>"
+        }
       }
     },
     "Volume":{

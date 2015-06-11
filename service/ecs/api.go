@@ -423,6 +423,12 @@ func (c *ECS) ListClustersRequest(input *ListClustersInput) (req *aws.Request, o
 			Name:       "ListClusters",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"nextToken"},
+				OutputTokens:    []string{"nextToken"},
+				LimitToken:      "maxResults",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -443,6 +449,13 @@ func (c *ECS) ListClusters(input *ListClustersInput) (*ListClustersOutput, error
 	return out, err
 }
 
+func (c *ECS) ListClustersPages(input *ListClustersInput, fn func(p *ListClustersOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListClustersRequest(input)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListClustersOutput), lastPage)
+	})
+}
+
 var opListClusters *aws.Operation
 
 // ListContainerInstancesRequest generates a request for the ListContainerInstances operation.
@@ -455,6 +468,12 @@ func (c *ECS) ListContainerInstancesRequest(input *ListContainerInstancesInput) 
 			Name:       "ListContainerInstances",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"nextToken"},
+				OutputTokens:    []string{"nextToken"},
+				LimitToken:      "maxResults",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -475,6 +494,13 @@ func (c *ECS) ListContainerInstances(input *ListContainerInstancesInput) (*ListC
 	return out, err
 }
 
+func (c *ECS) ListContainerInstancesPages(input *ListContainerInstancesInput, fn func(p *ListContainerInstancesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListContainerInstancesRequest(input)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListContainerInstancesOutput), lastPage)
+	})
+}
+
 var opListContainerInstances *aws.Operation
 
 // ListServicesRequest generates a request for the ListServices operation.
@@ -487,6 +513,12 @@ func (c *ECS) ListServicesRequest(input *ListServicesInput) (req *aws.Request, o
 			Name:       "ListServices",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"nextToken"},
+				OutputTokens:    []string{"nextToken"},
+				LimitToken:      "maxResults",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -507,6 +539,13 @@ func (c *ECS) ListServices(input *ListServicesInput) (*ListServicesOutput, error
 	return out, err
 }
 
+func (c *ECS) ListServicesPages(input *ListServicesInput, fn func(p *ListServicesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListServicesRequest(input)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListServicesOutput), lastPage)
+	})
+}
+
 var opListServices *aws.Operation
 
 // ListTaskDefinitionFamiliesRequest generates a request for the ListTaskDefinitionFamilies operation.
@@ -519,6 +558,12 @@ func (c *ECS) ListTaskDefinitionFamiliesRequest(input *ListTaskDefinitionFamilie
 			Name:       "ListTaskDefinitionFamilies",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"nextToken"},
+				OutputTokens:    []string{"nextToken"},
+				LimitToken:      "maxResults",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -540,6 +585,13 @@ func (c *ECS) ListTaskDefinitionFamilies(input *ListTaskDefinitionFamiliesInput)
 	return out, err
 }
 
+func (c *ECS) ListTaskDefinitionFamiliesPages(input *ListTaskDefinitionFamiliesInput, fn func(p *ListTaskDefinitionFamiliesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListTaskDefinitionFamiliesRequest(input)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListTaskDefinitionFamiliesOutput), lastPage)
+	})
+}
+
 var opListTaskDefinitionFamilies *aws.Operation
 
 // ListTaskDefinitionsRequest generates a request for the ListTaskDefinitions operation.
@@ -552,6 +604,12 @@ func (c *ECS) ListTaskDefinitionsRequest(input *ListTaskDefinitionsInput) (req *
 			Name:       "ListTaskDefinitions",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"nextToken"},
+				OutputTokens:    []string{"nextToken"},
+				LimitToken:      "maxResults",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -573,6 +631,13 @@ func (c *ECS) ListTaskDefinitions(input *ListTaskDefinitionsInput) (*ListTaskDef
 	return out, err
 }
 
+func (c *ECS) ListTaskDefinitionsPages(input *ListTaskDefinitionsInput, fn func(p *ListTaskDefinitionsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListTaskDefinitionsRequest(input)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListTaskDefinitionsOutput), lastPage)
+	})
+}
+
 var opListTaskDefinitions *aws.Operation
 
 // ListTasksRequest generates a request for the ListTasks operation.
@@ -585,6 +650,12 @@ func (c *ECS) ListTasksRequest(input *ListTasksInput) (req *aws.Request, output 
 			Name:       "ListTasks",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"nextToken"},
+				OutputTokens:    []string{"nextToken"},
+				LimitToken:      "maxResults",
+				TruncationToken: "",
+			},
 		}
 	}
 
@@ -599,12 +670,19 @@ func (c *ECS) ListTasksRequest(input *ListTasksInput) (req *aws.Request, output 
 }
 
 // Returns a list of tasks for a specified cluster. You can filter the results
-// by family name or by a particular container instance with the family and
-// containerInstance parameters.
+// by family name, by a particular container instance, or by the desired status
+// of the task with the family, containerInstance, and desiredStatus parameters.
 func (c *ECS) ListTasks(input *ListTasksInput) (*ListTasksOutput, error) {
 	req, out := c.ListTasksRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *ECS) ListTasksPages(input *ListTasksInput, fn func(p *ListTasksOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListTasksRequest(input)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListTasksOutput), lastPage)
+	})
 }
 
 var opListTasks *aws.Operation
@@ -855,6 +933,38 @@ func (c *ECS) SubmitTaskStateChange(input *SubmitTaskStateChangeInput) (*SubmitT
 
 var opSubmitTaskStateChange *aws.Operation
 
+// UpdateContainerAgentRequest generates a request for the UpdateContainerAgent operation.
+func (c *ECS) UpdateContainerAgentRequest(input *UpdateContainerAgentInput) (req *aws.Request, output *UpdateContainerAgentOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opUpdateContainerAgent == nil {
+		opUpdateContainerAgent = &aws.Operation{
+			Name:       "UpdateContainerAgent",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &UpdateContainerAgentInput{}
+	}
+
+	req = c.newRequest(opUpdateContainerAgent, input, output)
+	output = &UpdateContainerAgentOutput{}
+	req.Data = output
+	return
+}
+
+// Updates the Amazon ECS container agent on a specified container instance.
+func (c *ECS) UpdateContainerAgent(input *UpdateContainerAgentInput) (*UpdateContainerAgentOutput, error) {
+	req, out := c.UpdateContainerAgentRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opUpdateContainerAgent *aws.Operation
+
 // UpdateServiceRequest generates a request for the UpdateService operation.
 func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *aws.Request, output *UpdateServiceOutput) {
 	oprw.Lock()
@@ -905,9 +1015,11 @@ var opUpdateService *aws.Operation
 // task requests. Each account receives a default cluster the first time you
 // use the Amazon ECS service, but you may also create other clusters. Clusters
 // may contain more than one instance type simultaneously.
-//
-//  During the preview, each account is limited to two clusters.
 type Cluster struct {
+	// The number of services that are running on the cluster in an ACTIVE state.
+	// You can view these services with ListServices.
+	ActiveServicesCount *int64 `locationName:"activeServicesCount" type:"integer"`
+
 	// The Amazon Resource Name (ARN) that identifies the cluster. The ARN contains
 	// the arn:aws:ecs namespace, followed by the region of the cluster, the AWS
 	// account ID of the cluster owner, the cluster namespace, and then the cluster
@@ -971,7 +1083,22 @@ type metadataContainer struct {
 // containers that are launched as part of a task.
 type ContainerDefinition struct {
 	// The number of cpu units reserved for the container. A container instance
-	// has 1,024 cpu units for every CPU core.
+	// has 1,024 cpu units for every CPU core. This parameter specifies the minimum
+	// amount of CPU to reserve for a container, and containers share unallocated
+	// CPU units with other containers on the instance with the same ratio as their
+	// allocated amount.
+	//
+	// For example, if you run a single-container task on a single-core instance
+	// type with 512 CPU units specified for that container, and that is the only
+	// task running on the container instance, that container could use the full
+	// 1,024 CPU unit share at any given time. However, if you launched another
+	// copy of the same task on that container instance, each task would be guaranteed
+	// a minimum of 512 CPU units when needed, and each container could float to
+	// higher CPU usage if the other container was not using it, but if both tasks
+	// were 100% active all of the time, they would be limited to 512 CPU units.
+	//
+	// If this parameter is omitted, 0 CPU units are reserved for the container,
+	// and it will only receive CPU time when other containers are not using it.
 	CPU *int64 `locationName:"cpu" type:"integer"`
 
 	// The CMD that is passed to the container. For more information on the Docker
@@ -993,7 +1120,9 @@ type ContainerDefinition struct {
 	// If the essential parameter of a container is marked as true, the failure
 	// of that container will stop the task. If the essential parameter of a container
 	// is marked as false, then its failure will not affect the rest of the containers
-	// in a task.
+	// in a task. If this parameter is omitted, a container is assumed to be essential.
+	//
+	//  All tasks must have at least one essential container.
 	Essential *bool `locationName:"essential" type:"boolean"`
 
 	// The image used to start a container. This string is passed directly to the
@@ -1002,13 +1131,19 @@ type ContainerDefinition struct {
 	Image *string `locationName:"image" type:"string"`
 
 	// The link parameter allows containers to communicate with each other without
-	// the need for port mappings, using the name parameter. For more information
+	// the need for port mappings, using the name parameter. The name:internalName
+	// construct is analogous to name:alias in Docker links. For more information
 	// on linking Docker containers, see https://docs.docker.com/userguide/dockerlinks/
 	// (https://docs.docker.com/userguide/dockerlinks/).
+	//
+	//  Containers that are collocated on a single container instance may be able
+	// to communicate with each other without requiring links or host port mappings.
+	// Network isolation is achieved on the container instance using security groups
+	// and VPC settings.
 	Links []*string `locationName:"links" type:"list"`
 
-	// The number of MiB of memory reserved for the container. Docker will allocate
-	// a minimum of 4 MiB of memory to a container.
+	// The number of MiB of memory reserved for the container. If your container
+	// attempts to exceed the memory allocated here, the container is killed.
 	Memory *int64 `locationName:"memory" type:"integer"`
 
 	// The mount points for data volumes in your container.
@@ -1041,6 +1176,10 @@ type ContainerInstance struct {
 	// placement request.
 	AgentConnected *bool `locationName:"agentConnected" type:"boolean"`
 
+	// The status of the most recent agent update. If an update has never been requested,
+	// this value is NULL.
+	AgentUpdateStatus *string `locationName:"agentUpdateStatus" type:"string"`
+
 	// The Amazon Resource Name (ARN) of the container instance. The ARN contains
 	// the arn:aws:ecs namespace, followed by the region of the container instance,
 	// the AWS account ID of the container instance owner, the container-instance
@@ -1067,6 +1206,10 @@ type ContainerInstance struct {
 	// The status of the container instance. The valid values are ACTIVE or INACTIVE.
 	// ACTIVE indicates that the container instance can accept tasks.
 	Status *string `locationName:"status" type:"string"`
+
+	// The version information for the Amazon ECS container agent and Docker daemon
+	// running on the container instance.
+	VersionInfo *VersionInfo `locationName:"versionInfo" type:"structure"`
 
 	metadataContainerInstance `json:"-" xml:"-"`
 }
@@ -1118,7 +1261,7 @@ type metadataCreateClusterOutput struct {
 
 type CreateServiceInput struct {
 	// Unique, case-sensitive identifier you provide to ensure the idempotency of
-	// the request. Up to 64 ASCII characters are allowed.
+	// the request. Up to 32 ASCII characters are allowed.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
 	// The short name or full Amazon Resource Name (ARN) of the cluster that you
@@ -1128,7 +1271,7 @@ type CreateServiceInput struct {
 
 	// The number of instantiations of the specified task definition that you would
 	// like to place and keep running on your cluster.
-	DesiredCount *int64 `locationName:"desiredCount" type:"integer"`
+	DesiredCount *int64 `locationName:"desiredCount" type:"integer" required:"true"`
 
 	// A list of load balancer objects, containing the load balancer name, the container
 	// name (as it appears in a container definition), and the container port to
@@ -1147,7 +1290,7 @@ type CreateServiceInput struct {
 
 	// The family and revision (family:revision) or full Amazon Resource Name (ARN)
 	// of the task definition that you want to run in your service.
-	TaskDefinition *string `locationName:"taskDefinition" type:"string"`
+	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
 
 	metadataCreateServiceInput `json:"-" xml:"-"`
 }
@@ -1469,6 +1612,9 @@ type DiscoverPollEndpointOutput struct {
 	// The endpoint for the Amazon ECS agent to poll.
 	Endpoint *string `locationName:"endpoint" type:"string"`
 
+	// The telemetry endpoint for the Amazon ECS agent.
+	TelemetryEndpoint *string `locationName:"telemetryEndpoint" type:"string"`
+
 	metadataDiscoverPollEndpointOutput `json:"-" xml:"-"`
 }
 
@@ -1759,6 +1905,12 @@ type ListTasksInput struct {
 	// instance.
 	ContainerInstance *string `locationName:"containerInstance" type:"string"`
 
+	// The task status that you want to filter the ListTasks results with. Specifying
+	// a desiredStatus of STOPPED will limit the results to tasks that are in the
+	// STOPPED status, which can be useful for debugging tasks that are not starting
+	// properly or have died or finished. The default status filter is RUNNING.
+	DesiredStatus *string `locationName:"desiredStatus" type:"string"`
+
 	// The name of the family that you want to filter the ListTasks results with.
 	// Specifying a family will limit the results to tasks that belong to that family.
 	Family *string `locationName:"family" type:"string"`
@@ -1783,6 +1935,9 @@ type ListTasksInput struct {
 	// service.
 	ServiceName *string `locationName:"serviceName" type:"string"`
 
+	// The startedBy value that you want to filter the task results with. Specifying
+	// a startedBy value will limit the results to tasks that were started with
+	// that value.
 	StartedBy *string `locationName:"startedBy" type:"string"`
 
 	metadataListTasksInput `json:"-" xml:"-"`
@@ -1813,7 +1968,10 @@ type LoadBalancer struct {
 	// The name of the container to associate with the load balancer.
 	ContainerName *string `locationName:"containerName" type:"string"`
 
-	// The port on the container to associate with the load balancer.
+	// The port on the container to associate with the load balancer. This port
+	// must correspond to a containerPort in the service's task definition. Your
+	// container instances must allow ingress traffic on the hostPort of the port
+	// mapping.
 	ContainerPort *int64 `locationName:"containerPort" type:"integer"`
 
 	// The name of the load balancer.
@@ -1855,6 +2013,9 @@ type NetworkBinding struct {
 	// The port number on the host that is used with the network binding.
 	HostPort *int64 `locationName:"hostPort" type:"integer"`
 
+	// The protocol used for the network binding.
+	Protocol *string `locationName:"protocol" type:"string"`
+
 	metadataNetworkBinding `json:"-" xml:"-"`
 }
 
@@ -1874,10 +2035,10 @@ type PortMapping struct {
 
 	// The port number on the container instance to reserve for your container.
 	// You can specify a non-reserved host port for your container port mapping,
-	// or you can omit the hostPort while specifying a containerPort and your container
-	// will automatically receive a port in the 49153 to 65535 port range. You should
-	// not attempt to specify a host port in the 49153 to 65535 port range, since
-	// these are reserved for automatic assignment.
+	// or you can omit the hostPort (or set it to 0) while specifying a containerPort
+	// and your container will automatically receive a port in the 49153 to 65535
+	// port range. You should not attempt to specify a host port in the 49153 to
+	// 65535 port range, since these are reserved for automatic assignment.
 	//
 	// The default reserved ports are 22 for SSH, the Docker ports 2375 and 2376,
 	// and the Amazon ECS Container Agent port 51678. Any host port that was previously
@@ -1887,6 +2048,9 @@ type PortMapping struct {
 	// instance may have up to 50 reserved ports at a time, including the default
 	// reserved ports (automatically assigned ports do not count toward this limit).
 	HostPort *int64 `locationName:"hostPort" type:"integer"`
+
+	// The protocol used for the port mapping. The default is tcp.
+	Protocol *string `locationName:"protocol" type:"string"`
 
 	metadataPortMapping `json:"-" xml:"-"`
 }
@@ -1901,12 +2065,21 @@ type RegisterContainerInstanceInput struct {
 	// the default cluster is assumed..
 	Cluster *string `locationName:"cluster" type:"string"`
 
+	// The instance identity document for the Amazon EC2 instance to register. This
+	// document can be found by running the following command from the instance:
+	// curl http://169.254.169.254/latest/dynamic/instance-identity/document/
 	InstanceIdentityDocument *string `locationName:"instanceIdentityDocument" type:"string"`
 
+	// The instance identity document signature for the Amazon EC2 instance to register.
+	// This signature can be found by running the following command from the instance:
+	// curl http://169.254.169.254/latest/dynamic/instance-identity/signature/
 	InstanceIdentityDocumentSignature *string `locationName:"instanceIdentityDocumentSignature" type:"string"`
 
+	// The resources available on the instance.
 	TotalResources []*Resource `locationName:"totalResources" type:"list"`
 
+	// The version information for the Amazon ECS container agent and Docker daemon
+	// running on the container instance.
 	VersionInfo *VersionInfo `locationName:"versionInfo" type:"structure"`
 
 	metadataRegisterContainerInstanceInput `json:"-" xml:"-"`
@@ -2008,6 +2181,14 @@ type RunTaskInput struct {
 	// includes the JSON formatting characters of the override structure.
 	Overrides *TaskOverride `locationName:"overrides" type:"structure"`
 
+	// An optional tag specified when a task is started. For example if you automatically
+	// trigger a task to run a batch process job, you could apply a unique identifier
+	// for that job to your task with the startedBy parameter. You can then identify
+	// which tasks belong to that job by filtering the results of a ListTasks call
+	// with the startedBy value.
+	//
+	// If a task is started by an Amazon ECS service, then the startedBy parameter
+	// contains the deployment ID of the service that starts it.
 	StartedBy *string `locationName:"startedBy" type:"string"`
 
 	// The family and revision (family:revision) or full Amazon Resource Name (ARN)
@@ -2127,6 +2308,14 @@ type StartTaskInput struct {
 	// includes the JSON formatting characters of the override structure.
 	Overrides *TaskOverride `locationName:"overrides" type:"structure"`
 
+	// An optional tag specified when a task is started. For example if you automatically
+	// trigger a task to run a batch process job, you could apply a unique identifier
+	// for that job to your task with the startedBy parameter. You can then identify
+	// which tasks belong to that job by filtering the results of a ListTasks call
+	// with the startedBy value.
+	//
+	// If a task is started by an Amazon ECS service, then the startedBy parameter
+	// contains the deployment ID of the service that starts it.
 	StartedBy *string `locationName:"startedBy" type:"string"`
 
 	// The family and revision (family:revision) or full Amazon Resource Name (ARN)
@@ -2276,6 +2465,9 @@ type Task struct {
 	// One or more container overrides.
 	Overrides *TaskOverride `locationName:"overrides" type:"structure"`
 
+	// The tag specified when a task is started. If the task is started by an Amazon
+	// ECS service, then the startedBy parameter contains the deployment ID of the
+	// service that starts it.
 	StartedBy *string `locationName:"startedBy" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the task.
@@ -2338,6 +2530,36 @@ type metadataTaskOverride struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type UpdateContainerAgentInput struct {
+	// The short name or full Amazon Resource Name (ARN) of the cluster that your
+	// container instance is running on. If you do not specify a cluster, the default
+	// cluster is assumed.
+	Cluster *string `locationName:"cluster" type:"string"`
+
+	// The container instance UUID or full Amazon Resource Name (ARN) entries for
+	// the container instance on which you would like to update the Amazon ECS container
+	// agent.
+	ContainerInstance *string `locationName:"containerInstance" type:"string" required:"true"`
+
+	metadataUpdateContainerAgentInput `json:"-" xml:"-"`
+}
+
+type metadataUpdateContainerAgentInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type UpdateContainerAgentOutput struct {
+	// An Amazon EC2 instance that is running the Amazon ECS agent and has been
+	// registered with a cluster.
+	ContainerInstance *ContainerInstance `locationName:"containerInstance" type:"structure"`
+
+	metadataUpdateContainerAgentOutput `json:"-" xml:"-"`
+}
+
+type metadataUpdateContainerAgentOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type UpdateServiceInput struct {
 	// The short name or full Amazon Resource Name (ARN) of the cluster that your
 	// service is running on. If you do not specify a cluster, the default cluster
@@ -2377,10 +2599,14 @@ type metadataUpdateServiceOutput struct {
 }
 
 type VersionInfo struct {
+	// The Git commit hash for the Amazon ECS container agent build on the amazon-ecs-agent
+	//  (https://github.com/aws/amazon-ecs-agent/commits/master) GitHub repository.
 	AgentHash *string `locationName:"agentHash" type:"string"`
 
+	// The version number of the Amazon ECS container agent.
 	AgentVersion *string `locationName:"agentVersion" type:"string"`
 
+	// The Docker version running on the container instance.
 	DockerVersion *string `locationName:"dockerVersion" type:"string"`
 
 	metadataVersionInfo `json:"-" xml:"-"`
