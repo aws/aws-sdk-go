@@ -48,6 +48,37 @@ func (c *AutoScaling) AttachInstances(input *AttachInstancesInput) (*AttachInsta
 
 var opAttachInstances *aws.Operation
 
+// AttachLoadBalancersRequest generates a request for the AttachLoadBalancers operation.
+func (c *AutoScaling) AttachLoadBalancersRequest(input *AttachLoadBalancersInput) (req *aws.Request, output *AttachLoadBalancersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opAttachLoadBalancers == nil {
+		opAttachLoadBalancers = &aws.Operation{
+			Name:       "AttachLoadBalancers",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &AttachLoadBalancersInput{}
+	}
+
+	req = c.newRequest(opAttachLoadBalancers, input, output)
+	output = &AttachLoadBalancersOutput{}
+	req.Data = output
+	return
+}
+
+func (c *AutoScaling) AttachLoadBalancers(input *AttachLoadBalancersInput) (*AttachLoadBalancersOutput, error) {
+	req, out := c.AttachLoadBalancersRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opAttachLoadBalancers *aws.Operation
+
 // CompleteLifecycleActionRequest generates a request for the CompleteLifecycleAction operation.
 func (c *AutoScaling) CompleteLifecycleActionRequest(input *CompleteLifecycleActionInput) (req *aws.Request, output *CompleteLifecycleActionOutput) {
 	oprw.Lock()
@@ -755,6 +786,37 @@ func (c *AutoScaling) DescribeLifecycleHooks(input *DescribeLifecycleHooksInput)
 
 var opDescribeLifecycleHooks *aws.Operation
 
+// DescribeLoadBalancersRequest generates a request for the DescribeLoadBalancers operation.
+func (c *AutoScaling) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (req *aws.Request, output *DescribeLoadBalancersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opDescribeLoadBalancers == nil {
+		opDescribeLoadBalancers = &aws.Operation{
+			Name:       "DescribeLoadBalancers",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &DescribeLoadBalancersInput{}
+	}
+
+	req = c.newRequest(opDescribeLoadBalancers, input, output)
+	output = &DescribeLoadBalancersOutput{}
+	req.Data = output
+	return
+}
+
+func (c *AutoScaling) DescribeLoadBalancers(input *DescribeLoadBalancersInput) (*DescribeLoadBalancersOutput, error) {
+	req, out := c.DescribeLoadBalancersRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opDescribeLoadBalancers *aws.Operation
+
 // DescribeMetricCollectionTypesRequest generates a request for the DescribeMetricCollectionTypes operation.
 func (c *AutoScaling) DescribeMetricCollectionTypesRequest(input *DescribeMetricCollectionTypesInput) (req *aws.Request, output *DescribeMetricCollectionTypesOutput) {
 	oprw.Lock()
@@ -1140,6 +1202,37 @@ func (c *AutoScaling) DetachInstances(input *DetachInstancesInput) (*DetachInsta
 }
 
 var opDetachInstances *aws.Operation
+
+// DetachLoadBalancersRequest generates a request for the DetachLoadBalancers operation.
+func (c *AutoScaling) DetachLoadBalancersRequest(input *DetachLoadBalancersInput) (req *aws.Request, output *DetachLoadBalancersOutput) {
+	oprw.Lock()
+	defer oprw.Unlock()
+
+	if opDetachLoadBalancers == nil {
+		opDetachLoadBalancers = &aws.Operation{
+			Name:       "DetachLoadBalancers",
+			HTTPMethod: "POST",
+			HTTPPath:   "/",
+		}
+	}
+
+	if input == nil {
+		input = &DetachLoadBalancersInput{}
+	}
+
+	req = c.newRequest(opDetachLoadBalancers, input, output)
+	output = &DetachLoadBalancersOutput{}
+	req.Data = output
+	return
+}
+
+func (c *AutoScaling) DetachLoadBalancers(input *DetachLoadBalancersInput) (*DetachLoadBalancersOutput, error) {
+	req, out := c.DetachLoadBalancersRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+var opDetachLoadBalancers *aws.Operation
 
 // DisableMetricsCollectionRequest generates a request for the DisableMetricsCollection operation.
 func (c *AutoScaling) DisableMetricsCollectionRequest(input *DisableMetricsCollectionInput) (req *aws.Request, output *DisableMetricsCollectionOutput) {
@@ -1850,6 +1943,26 @@ type AttachInstancesOutput struct {
 }
 
 type metadataAttachInstancesOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type AttachLoadBalancersInput struct {
+	AutoScalingGroupName *string `type:"string"`
+
+	LoadBalancerNames []*string `type:"list"`
+
+	metadataAttachLoadBalancersInput `json:"-" xml:"-"`
+}
+
+type metadataAttachLoadBalancersInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type AttachLoadBalancersOutput struct {
+	metadataAttachLoadBalancersOutput `json:"-" xml:"-"`
+}
+
+type metadataAttachLoadBalancersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -2593,6 +2706,32 @@ type metadataDescribeLifecycleHooksOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type DescribeLoadBalancersInput struct {
+	AutoScalingGroupName *string `type:"string" required:"true"`
+
+	MaxRecords *int64 `type:"integer"`
+
+	NextToken *string `type:"string"`
+
+	metadataDescribeLoadBalancersInput `json:"-" xml:"-"`
+}
+
+type metadataDescribeLoadBalancersInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DescribeLoadBalancersOutput struct {
+	LoadBalancers []*LoadBalancerState `type:"list"`
+
+	NextToken *string `type:"string"`
+
+	metadataDescribeLoadBalancersOutput `json:"-" xml:"-"`
+}
+
+type metadataDescribeLoadBalancersOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 type DescribeMetricCollectionTypesInput struct {
 	metadataDescribeMetricCollectionTypesInput `json:"-" xml:"-"`
 }
@@ -2898,6 +3037,26 @@ type DetachInstancesOutput struct {
 }
 
 type metadataDetachInstancesOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DetachLoadBalancersInput struct {
+	AutoScalingGroupName *string `type:"string"`
+
+	LoadBalancerNames []*string `type:"list"`
+
+	metadataDetachLoadBalancersInput `json:"-" xml:"-"`
+}
+
+type metadataDetachLoadBalancersInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DetachLoadBalancersOutput struct {
+	metadataDetachLoadBalancersOutput `json:"-" xml:"-"`
+}
+
+type metadataDetachLoadBalancersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -3435,6 +3594,18 @@ type metadataLifecycleHook struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type LoadBalancerState struct {
+	LoadBalancerName *string `type:"string"`
+
+	State *string `type:"string"`
+
+	metadataLoadBalancerState `json:"-" xml:"-"`
+}
+
+type metadataLoadBalancerState struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // Describes a metric.
 type MetricCollectionType struct {
 	// The metric.
@@ -3697,7 +3868,7 @@ type PutScalingPolicyInput struct {
 	// interpretation of this number (e.g., as an absolute number or as a percentage
 	// of the existing Auto Scaling group size). A positive increment adds to the
 	// current capacity and a negative value removes from the current capacity.
-	ScalingAdjustment *int64 `type:"integer" required:"true"`
+	ScalingAdjustment *int64 `type:"integer"`
 
 	metadataPutScalingPolicyInput `json:"-" xml:"-"`
 }

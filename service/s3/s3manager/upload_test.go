@@ -307,8 +307,8 @@ func TestUploadOrderMultiFailureLeaveParts(t *testing.T) {
 	assert.Equal(t, []string{"CreateMultipartUpload", "UploadPart", "UploadPart"}, *ops)
 }
 
-type failreader struct{
-	times int
+type failreader struct {
+	times     int
 	failCount int
 }
 
