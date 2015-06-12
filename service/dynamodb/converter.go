@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"reflect"
 	"runtime"
 	"strconv"
@@ -29,12 +30,16 @@ func ConvertToMap(in interface{}) (item map[string]*AttributeValue, err error) {
 	}()
 
 	if in == nil {
-		return nil, fmt.Errorf("in must be a map[string]interface{} or struct, got <nil>")
+		return nil, awserr.New("SerializationError",
+			"in must be a map[string]interface{} or struct, got <nil>", nil)
 	}
 
 	v := reflect.ValueOf(in)
 	if v.Kind() != reflect.Struct && !(v.Kind() == reflect.Map && v.Type().Key().Kind() == reflect.String) {
-		return nil, fmt.Errorf("in must be a map[string]interface{} or struct, got %s", v.Type().String())
+		return nil, awserr.New("SerializationError",
+			fmt.Sprintf("in must be a map[string]interface{} or struct, got %s",
+				v.Type().String()),
+			nil)
 	}
 
 	if isTyped(reflect.TypeOf(in)) {
@@ -72,10 +77,16 @@ func ConvertFromMap(item map[string]*AttributeValue, v interface{}) (err error) 
 
 	rv := reflect.ValueOf(v)
 	if rv.Kind() != reflect.Ptr || rv.IsNil() {
-		return fmt.Errorf("v must be a non-nil pointer to a map[string]interface{} or struct, got %s", rv.Type())
+		return awserr.New("SerializationError",
+			fmt.Sprintf("v must be a non-nil pointer to a map[string]interface{} or struct, got %s",
+				rv.Type()),
+			nil)
 	}
 	if rv.Elem().Kind() != reflect.Struct && !(rv.Elem().Kind() == reflect.Map && rv.Elem().Type().Key().Kind() == reflect.String) {
-		return fmt.Errorf("v must be a non-nil pointer to a map[string]interface{} or struct, got %s", rv.Type())
+		return awserr.New("SerializationError",
+			fmt.Sprintf("v must be a non-nil pointer to a map[string]interface{} or struct, got %s",
+				rv.Type()),
+			nil)
 	}
 
 	m := make(map[string]interface{})
@@ -112,12 +123,17 @@ func ConvertToList(in interface{}) (item []*AttributeValue, err error) {
 	}()
 
 	if in == nil {
-		return nil, fmt.Errorf("in must be an array or slice, got <nil>")
+		return nil, awserr.New("SerializationError",
+			"in must be an array or slice, got <nil>",
+			nil)
 	}
 
 	v := reflect.ValueOf(in)
 	if v.Kind() != reflect.Array && v.Kind() != reflect.Slice {
-		return nil, fmt.Errorf("in must be an array or slice, got %s", v.Type().String())
+		return nil, awserr.New("SerializationError",
+			fmt.Sprintf("in must be an array or slice, got %s",
+				v.Type().String()),
+			nil)
 	}
 
 	if isTyped(reflect.TypeOf(in)) {
@@ -155,10 +171,16 @@ func ConvertFromList(item []*AttributeValue, v interface{}) (err error) {
 
 	rv := reflect.ValueOf(v)
 	if rv.Kind() != reflect.Ptr || rv.IsNil() {
-		return fmt.Errorf("v must be a non-nil pointer to an array or slice, got %s", rv.Type())
+		return awserr.New("SerializationError",
+			fmt.Sprintf("v must be a non-nil pointer to an array or slice, got %s",
+				rv.Type()),
+			nil)
 	}
 	if rv.Elem().Kind() != reflect.Array && rv.Elem().Kind() != reflect.Slice {
-		return fmt.Errorf("v must be a non-nil pointer to an array or slice, got %s", rv.Type())
+		return awserr.New("SerializationError",
+			fmt.Sprintf("v must be a non-nil pointer to an array or slice, got %s",
+				rv.Type()),
+			nil)
 	}
 
 	l := make([]interface{}, 0, len(item))
@@ -223,10 +245,16 @@ func ConvertFrom(item *AttributeValue, v interface{}) (err error) {
 
 	rv := reflect.ValueOf(v)
 	if rv.Kind() != reflect.Ptr || rv.IsNil() {
-		return fmt.Errorf("v must be a non-nil pointer to an interface{} or struct, got %s", rv.Type())
+		return awserr.New("SerializationError",
+			fmt.Sprintf("v must be a non-nil pointer to an interface{} or struct, got %s",
+				rv.Type()),
+			nil)
 	}
 	if rv.Elem().Kind() != reflect.Interface && rv.Elem().Kind() != reflect.Struct {
-		return fmt.Errorf("v must be a non-nil pointer to an interface{} or struct, got %s", rv.Type())
+		return awserr.New("SerializationError",
+			fmt.Sprintf("v must be a non-nil pointer to an interface{} or struct, got %s",
+				rv.Type()),
+			nil)
 	}
 
 	res := convertFrom(item)

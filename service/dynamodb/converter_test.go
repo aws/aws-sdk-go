@@ -5,8 +5,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
 type mySimpleStruct struct {
@@ -26,7 +27,7 @@ type myComplexStruct struct {
 type converterTestInput struct {
 	input     interface{}
 	expected  interface{}
-	err       string
+	err       awserr.Error
 	inputType string // "enum" of types
 }
 
@@ -87,7 +88,7 @@ var converterMapTestInputs = []converterTestInput{
 	// Scalar tests
 	converterTestInput{
 		input: nil,
-		err:   "in must be a map[string]interface{} or struct, got <nil>",
+		err:   awserr.New("SerializationError", "in must be a map[string]interface{} or struct, got <nil>", nil),
 	},
 	converterTestInput{
 		input:    map[string]interface{}{"string": "some string"},
@@ -208,7 +209,7 @@ var converterMapTestInputs = []converterTestInput{
 var converterListTestInputs = []converterTestInput{
 	converterTestInput{
 		input: nil,
-		err:   "in must be an array or slice, got <nil>",
+		err:   awserr.New("SerializationError", "in must be an array or slice, got <nil>", nil),
 	},
 	converterTestInput{
 		input:    []interface{}{},
@@ -252,10 +253,10 @@ func TestConvertTo(t *testing.T) {
 
 func testConvertTo(t *testing.T, test converterTestInput) {
 	actual, err := ConvertTo(test.input)
-	if test.err != "" {
+	if test.err != nil {
 		if err == nil {
 			t.Errorf("ConvertTo with input %#v retured %#v, expected error `%s`", test.input, actual, test.err)
-		} else if err.Error() != test.err {
+		} else if err.Error() != test.err.Error() {
 			t.Errorf("ConvertTo with input %#v retured error `%s`, expected error `%s`", test.input, err, test.err)
 		}
 	} else {
@@ -301,7 +302,7 @@ func testConvertFrom(t *testing.T, test converterTestInput) {
 func TestConvertFromError(t *testing.T) {
 	// Test that we get an error using ConvertFrom to convert to a map.
 	var actual map[string]interface{}
-	expected := `v must be a non-nil pointer to an interface{} or struct, got *map[string]interface {}`
+	expected := awserr.New("SerializationError", `v must be a non-nil pointer to an interface{} or struct, got *map[string]interface {}`, nil).Error()
 	if err := ConvertFrom(nil, &actual); err == nil {
 		t.Errorf("ConvertFrom with input %#v returned no error, expected error `%s`", nil, expected)
 	} else if err.Error() != expected {
@@ -310,7 +311,7 @@ func TestConvertFromError(t *testing.T) {
 
 	// Test that we get an error using ConvertFrom to convert to a list.
 	var actual2 []interface{}
-	expected = `v must be a non-nil pointer to an interface{} or struct, got *[]interface {}`
+	expected = awserr.New("SerializationError", `v must be a non-nil pointer to an interface{} or struct, got *[]interface {}`, nil).Error()
 	if err := ConvertFrom(nil, &actual2); err == nil {
 		t.Errorf("ConvertFrom with input %#v returned no error, expected error `%s`", nil, expected)
 	} else if err.Error() != expected {
@@ -326,10 +327,10 @@ func TestConvertToMap(t *testing.T) {
 
 func testConvertToMap(t *testing.T, test converterTestInput) {
 	actual, err := ConvertToMap(test.input)
-	if test.err != "" {
+	if test.err != nil {
 		if err == nil {
 			t.Errorf("ConvertToMap with input %#v retured %#v, expected error `%s`", test.input, actual, test.err)
-		} else if err.Error() != test.err {
+		} else if err.Error() != test.err.Error() {
 			t.Errorf("ConvertToMap with input %#v retured error `%s`, expected error `%s`", test.input, err, test.err)
 		}
 	} else {
@@ -375,7 +376,7 @@ func testConvertFromMap(t *testing.T, test converterTestInput) {
 func TestConvertFromMapError(t *testing.T) {
 	// Test that we get an error using ConvertFromMap to convert to an interface{}.
 	var actual interface{}
-	expected := `v must be a non-nil pointer to a map[string]interface{} or struct, got *interface {}`
+	expected := awserr.New("SerializationError", `v must be a non-nil pointer to a map[string]interface{} or struct, got *interface {}`, nil).Error()
 	if err := ConvertFromMap(nil, &actual); err == nil {
 		t.Errorf("ConvertFromMap with input %#v returned no error, expected error `%s`", nil, expected)
 	} else if err.Error() != expected {
@@ -384,7 +385,7 @@ func TestConvertFromMapError(t *testing.T) {
 
 	// Test that we get an error using ConvertFromMap to convert to a slice.
 	var actual2 []interface{}
-	expected = `v must be a non-nil pointer to a map[string]interface{} or struct, got *[]interface {}`
+	expected = awserr.New("SerializationError", `v must be a non-nil pointer to a map[string]interface{} or struct, got *[]interface {}`, nil).Error()
 	if err := ConvertFromMap(nil, &actual2); err == nil {
 		t.Errorf("ConvertFromMap with input %#v returned no error, expected error `%s`", nil, expected)
 	} else if err.Error() != expected {
@@ -400,10 +401,10 @@ func TestConvertToList(t *testing.T) {
 
 func testConvertToList(t *testing.T, test converterTestInput) {
 	actual, err := ConvertToList(test.input)
-	if test.err != "" {
+	if test.err != nil {
 		if err == nil {
 			t.Errorf("ConvertToList with input %#v retured %#v, expected error `%s`", test.input, actual, test.err)
-		} else if err.Error() != test.err {
+		} else if err.Error() != test.err.Error() {
 			t.Errorf("ConvertToList with input %#v retured error `%s`, expected error `%s`", test.input, err, test.err)
 		}
 	} else {
@@ -449,7 +450,7 @@ func testConvertFromList(t *testing.T, test converterTestInput) {
 func TestConvertFromListError(t *testing.T) {
 	// Test that we get an error using ConvertFromList to convert to a map.
 	var actual map[string]interface{}
-	expected := `v must be a non-nil pointer to an array or slice, got *map[string]interface {}`
+	expected := awserr.New("SerializationError", `v must be a non-nil pointer to an array or slice, got *map[string]interface {}`, nil).Error()
 	if err := ConvertFromList(nil, &actual); err == nil {
 		t.Errorf("ConvertFromList with input %#v returned no error, expected error `%s`", nil, expected)
 	} else if err.Error() != expected {
@@ -458,7 +459,7 @@ func TestConvertFromListError(t *testing.T) {
 
 	// Test that we get an error using ConvertFromList to convert to a struct.
 	var actual2 myComplexStruct
-	expected = `v must be a non-nil pointer to an array or slice, got *dynamodb.myComplexStruct`
+	expected = awserr.New("SerializationError", `v must be a non-nil pointer to an array or slice, got *dynamodb.myComplexStruct`, nil).Error()
 	if err := ConvertFromList(nil, &actual2); err == nil {
 		t.Errorf("ConvertFromList with input %#v returned no error, expected error `%s`", nil, expected)
 	} else if err.Error() != expected {
@@ -467,7 +468,7 @@ func TestConvertFromListError(t *testing.T) {
 
 	// Test that we get an error using ConvertFromList to convert to an interface{}.
 	var actual3 interface{}
-	expected = `v must be a non-nil pointer to an array or slice, got *interface {}`
+	expected = awserr.New("SerializationError", `v must be a non-nil pointer to an array or slice, got *interface {}`, nil).Error()
 	if err := ConvertFromList(nil, &actual3); err == nil {
 		t.Errorf("ConvertFromList with input %#v returned no error, expected error `%s`", nil, expected)
 	} else if err.Error() != expected {
