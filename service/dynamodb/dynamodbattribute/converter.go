@@ -4,18 +4,20 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/aws/aws-sdk-go/aws/awserr"
 	"reflect"
 	"runtime"
 	"strconv"
+
+	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
 // ConvertToMap accepts a map[string]interface{} or struct and converts it to a
-// map[string]*AttributeValue.
+// map[string]*dynamodb.AttributeValue.
 //
 // If in contains any structs, it is first JSON encoded/decoded it to convert it
 // to a map[string]interface{}, so `json` struct tags are respected.
-func ConvertToMap(in interface{}) (item map[string]*AttributeValue, err error) {
+func ConvertToMap(in interface{}) (item map[string]*dynamodb.AttributeValue, err error) {
 	defer func() {
 		if r := recover(); r != nil {
 			if e, ok := r.(runtime.Error); ok {
@@ -47,7 +49,7 @@ func ConvertToMap(in interface{}) (item map[string]*AttributeValue, err error) {
 		in = convertToUntyped(in, out)
 	}
 
-	item = make(map[string]*AttributeValue)
+	item = make(map[string]*dynamodb.AttributeValue)
 	for k, v := range in.(map[string]interface{}) {
 		item[k] = convertTo(v)
 	}
@@ -55,13 +57,13 @@ func ConvertToMap(in interface{}) (item map[string]*AttributeValue, err error) {
 	return item, nil
 }
 
-// ConvertFromMap accepts a map[string]*AttributeValue and converts it to a
+// ConvertFromMap accepts a map[string]*dynamodb.AttributeValue and converts it to a
 // map[string]interface{} or struct.
 //
 // If v points to a struct, the result is first converted it to a
 // map[string]interface{}, then JSON encoded/decoded it to convert to a struct,
 // so `json` struct tags are respected.
-func ConvertFromMap(item map[string]*AttributeValue, v interface{}) (err error) {
+func ConvertFromMap(item map[string]*dynamodb.AttributeValue, v interface{}) (err error) {
 	defer func() {
 		if r := recover(); r != nil {
 			if e, ok := r.(runtime.Error); ok {
@@ -104,11 +106,11 @@ func ConvertFromMap(item map[string]*AttributeValue, v interface{}) (err error) 
 }
 
 // ConvertToList accepts an array or slice and converts it to a
-// []*AttributeValue.
+// []*dynamodb.AttributeValue.
 //
 // If in contains any structs, it is first JSON encoded/decoded it to convert it
 // to a []interface{}, so `json` struct tags are respected.
-func ConvertToList(in interface{}) (item []*AttributeValue, err error) {
+func ConvertToList(in interface{}) (item []*dynamodb.AttributeValue, err error) {
 	defer func() {
 		if r := recover(); r != nil {
 			if e, ok := r.(runtime.Error); ok {
@@ -141,7 +143,7 @@ func ConvertToList(in interface{}) (item []*AttributeValue, err error) {
 		in = convertToUntyped(in, out)
 	}
 
-	item = make([]*AttributeValue, 0, len(in.([]interface{})))
+	item = make([]*dynamodb.AttributeValue, 0, len(in.([]interface{})))
 	for _, v := range in.([]interface{}) {
 		item = append(item, convertTo(v))
 	}
@@ -149,13 +151,13 @@ func ConvertToList(in interface{}) (item []*AttributeValue, err error) {
 	return item, nil
 }
 
-// ConvertFromList accepts a []*AttributeValue and converts it to an array or
+// ConvertFromList accepts a []*dynamodb.AttributeValue and converts it to an array or
 // slice.
 //
 // If v contains any structs, the result is first converted it to a
 // []interface{}, then JSON encoded/decoded it to convert to a typed array or
 // slice, so `json` struct tags are respected.
-func ConvertFromList(item []*AttributeValue, v interface{}) (err error) {
+func ConvertFromList(item []*dynamodb.AttributeValue, v interface{}) (err error) {
 	defer func() {
 		if r := recover(); r != nil {
 			if e, ok := r.(runtime.Error); ok {
@@ -197,11 +199,11 @@ func ConvertFromList(item []*AttributeValue, v interface{}) (err error) {
 	return err
 }
 
-// ConvertTo accepts any interface{} and converts it to a *AttributeValue.
+// ConvertTo accepts any interface{} and converts it to a *dynamodb.AttributeValue.
 //
 // If in contains any structs, it is first JSON encoded/decoded it to convert it
 // to a interface{}, so `json` struct tags are respected.
-func ConvertTo(in interface{}) (item *AttributeValue, err error) {
+func ConvertTo(in interface{}) (item *dynamodb.AttributeValue, err error) {
 	defer func() {
 		if r := recover(); r != nil {
 			if e, ok := r.(runtime.Error); ok {
@@ -224,12 +226,12 @@ func ConvertTo(in interface{}) (item *AttributeValue, err error) {
 	return item, nil
 }
 
-// ConvertFrom accepts a *AttributeValue and converts it to any interface{}.
+// ConvertFrom accepts a *dynamodb.AttributeValue and converts it to any interface{}.
 //
 // If v contains any structs, the result is first converted it to a interface{},
 // then JSON encoded/decoded it to convert to a struct, so `json` struct tags
 // are respected.
-func ConvertFrom(item *AttributeValue, v interface{}) (err error) {
+func ConvertFrom(item *dynamodb.AttributeValue, v interface{}) (err error) {
 	defer func() {
 		if r := recover(); r != nil {
 			if e, ok := r.(runtime.Error); ok {
@@ -315,8 +317,8 @@ func convertToTyped(in, out interface{}) error {
 	return decoder.Decode(&out)
 }
 
-func convertTo(in interface{}) *AttributeValue {
-	a := &AttributeValue{}
+func convertTo(in interface{}) *dynamodb.AttributeValue {
+	a := &dynamodb.AttributeValue{}
 
 	if in == nil {
 		a.NULL = new(bool)
@@ -325,7 +327,7 @@ func convertTo(in interface{}) *AttributeValue {
 	}
 
 	if m, ok := in.(map[string]interface{}); ok {
-		a.M = make(map[string]*AttributeValue)
+		a.M = make(map[string]*dynamodb.AttributeValue)
 		for k, v := range m {
 			a.M[k] = convertTo(v)
 		}
@@ -333,7 +335,7 @@ func convertTo(in interface{}) *AttributeValue {
 	}
 
 	if l, ok := in.([]interface{}); ok {
-		a.L = make([]*AttributeValue, len(l))
+		a.L = make([]*dynamodb.AttributeValue, len(l))
 		for index, v := range l {
 			a.L[index] = convertTo(v)
 		}
@@ -370,7 +372,7 @@ func convertTo(in interface{}) *AttributeValue {
 	return a
 }
 
-func convertFrom(a *AttributeValue) interface{} {
+func convertFrom(a *dynamodb.AttributeValue) interface{} {
 	if a.S != nil {
 		return *a.S
 	}
@@ -415,5 +417,5 @@ func convertFrom(a *AttributeValue) interface{} {
 		return l
 	}
 
-	panic(fmt.Sprintf("%#v is not a supported AttributeValue", a))
+	panic(fmt.Sprintf("%#v is not a supported dynamodb.AttributeValue", a))
 }

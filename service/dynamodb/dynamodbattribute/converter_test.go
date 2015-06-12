@@ -8,6 +8,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
 type mySimpleStruct struct {
@@ -37,47 +38,47 @@ var falseValue = false
 var converterScalarInputs = []converterTestInput{
 	converterTestInput{
 		input:    nil,
-		expected: &AttributeValue{NULL: &trueValue},
+		expected: &dynamodb.AttributeValue{NULL: &trueValue},
 	},
 	converterTestInput{
 		input:    "some string",
-		expected: &AttributeValue{S: aws.String("some string")},
+		expected: &dynamodb.AttributeValue{S: aws.String("some string")},
 	},
 	converterTestInput{
 		input:    true,
-		expected: &AttributeValue{BOOL: &trueValue},
+		expected: &dynamodb.AttributeValue{BOOL: &trueValue},
 	},
 	converterTestInput{
 		input:    false,
-		expected: &AttributeValue{BOOL: &falseValue},
+		expected: &dynamodb.AttributeValue{BOOL: &falseValue},
 	},
 	converterTestInput{
 		input:    3.14,
-		expected: &AttributeValue{N: aws.String("3.14")},
+		expected: &dynamodb.AttributeValue{N: aws.String("3.14")},
 	},
 	converterTestInput{
 		input:    math.MaxFloat32,
-		expected: &AttributeValue{N: aws.String("340282346638528860000000000000000000000")},
+		expected: &dynamodb.AttributeValue{N: aws.String("340282346638528860000000000000000000000")},
 	},
 	converterTestInput{
 		input:    math.MaxFloat64,
-		expected: &AttributeValue{N: aws.String("179769313486231570000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000")},
+		expected: &dynamodb.AttributeValue{N: aws.String("179769313486231570000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000")},
 	},
 	converterTestInput{
 		input:    12,
-		expected: &AttributeValue{N: aws.String("12")},
+		expected: &dynamodb.AttributeValue{N: aws.String("12")},
 	},
 	converterTestInput{
 		input: mySimpleStruct{},
-		expected: &AttributeValue{
-			M: map[string]*AttributeValue{
-				"Bool":    &AttributeValue{BOOL: &falseValue},
-				"Float32": &AttributeValue{N: aws.String("0")},
-				"Float64": &AttributeValue{N: aws.String("0")},
-				"Int":     &AttributeValue{N: aws.String("0")},
-				"Null":    &AttributeValue{NULL: &trueValue},
-				"String":  &AttributeValue{S: aws.String("")},
-				"Uint":    &AttributeValue{N: aws.String("0")},
+		expected: &dynamodb.AttributeValue{
+			M: map[string]*dynamodb.AttributeValue{
+				"Bool":    &dynamodb.AttributeValue{BOOL: &falseValue},
+				"Float32": &dynamodb.AttributeValue{N: aws.String("0")},
+				"Float64": &dynamodb.AttributeValue{N: aws.String("0")},
+				"Int":     &dynamodb.AttributeValue{N: aws.String("0")},
+				"Null":    &dynamodb.AttributeValue{NULL: &trueValue},
+				"String":  &dynamodb.AttributeValue{S: aws.String("")},
+				"Uint":    &dynamodb.AttributeValue{N: aws.String("0")},
 			},
 		},
 		inputType: "mySimpleStruct",
@@ -92,48 +93,48 @@ var converterMapTestInputs = []converterTestInput{
 	},
 	converterTestInput{
 		input:    map[string]interface{}{"string": "some string"},
-		expected: map[string]*AttributeValue{"string": &AttributeValue{S: aws.String("some string")}},
+		expected: map[string]*dynamodb.AttributeValue{"string": &dynamodb.AttributeValue{S: aws.String("some string")}},
 	},
 	converterTestInput{
 		input:    map[string]interface{}{"bool": true},
-		expected: map[string]*AttributeValue{"bool": &AttributeValue{BOOL: &trueValue}},
+		expected: map[string]*dynamodb.AttributeValue{"bool": &dynamodb.AttributeValue{BOOL: &trueValue}},
 	},
 	converterTestInput{
 		input:    map[string]interface{}{"bool": false},
-		expected: map[string]*AttributeValue{"bool": &AttributeValue{BOOL: &falseValue}},
+		expected: map[string]*dynamodb.AttributeValue{"bool": &dynamodb.AttributeValue{BOOL: &falseValue}},
 	},
 	converterTestInput{
 		input:    map[string]interface{}{"null": nil},
-		expected: map[string]*AttributeValue{"null": &AttributeValue{NULL: &trueValue}},
+		expected: map[string]*dynamodb.AttributeValue{"null": &dynamodb.AttributeValue{NULL: &trueValue}},
 	},
 	converterTestInput{
 		input:    map[string]interface{}{"float": 3.14},
-		expected: map[string]*AttributeValue{"float": &AttributeValue{N: aws.String("3.14")}},
+		expected: map[string]*dynamodb.AttributeValue{"float": &dynamodb.AttributeValue{N: aws.String("3.14")}},
 	},
 	converterTestInput{
 		input:    map[string]interface{}{"float": math.MaxFloat32},
-		expected: map[string]*AttributeValue{"float": &AttributeValue{N: aws.String("340282346638528860000000000000000000000")}},
+		expected: map[string]*dynamodb.AttributeValue{"float": &dynamodb.AttributeValue{N: aws.String("340282346638528860000000000000000000000")}},
 	},
 	converterTestInput{
 		input:    map[string]interface{}{"float": math.MaxFloat64},
-		expected: map[string]*AttributeValue{"float": &AttributeValue{N: aws.String("179769313486231570000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000")}},
+		expected: map[string]*dynamodb.AttributeValue{"float": &dynamodb.AttributeValue{N: aws.String("179769313486231570000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000")}},
 	},
 	converterTestInput{
 		input:    map[string]interface{}{"int": int(12)},
-		expected: map[string]*AttributeValue{"int": &AttributeValue{N: aws.String("12")}},
+		expected: map[string]*dynamodb.AttributeValue{"int": &dynamodb.AttributeValue{N: aws.String("12")}},
 	},
 	// List
 	converterTestInput{
 		input: map[string]interface{}{"list": []interface{}{"a string", 12, 3.14, true, nil, false}},
-		expected: map[string]*AttributeValue{
-			"list": &AttributeValue{
-				L: []*AttributeValue{
-					&AttributeValue{S: aws.String("a string")},
-					&AttributeValue{N: aws.String("12")},
-					&AttributeValue{N: aws.String("3.14")},
-					&AttributeValue{BOOL: &trueValue},
-					&AttributeValue{NULL: &trueValue},
-					&AttributeValue{BOOL: &falseValue},
+		expected: map[string]*dynamodb.AttributeValue{
+			"list": &dynamodb.AttributeValue{
+				L: []*dynamodb.AttributeValue{
+					&dynamodb.AttributeValue{S: aws.String("a string")},
+					&dynamodb.AttributeValue{N: aws.String("12")},
+					&dynamodb.AttributeValue{N: aws.String("3.14")},
+					&dynamodb.AttributeValue{BOOL: &trueValue},
+					&dynamodb.AttributeValue{NULL: &trueValue},
+					&dynamodb.AttributeValue{BOOL: &falseValue},
 				},
 			},
 		},
@@ -141,10 +142,10 @@ var converterMapTestInputs = []converterTestInput{
 	// Map
 	converterTestInput{
 		input: map[string]interface{}{"map": map[string]interface{}{"nestedint": 12}},
-		expected: map[string]*AttributeValue{
-			"map": &AttributeValue{
-				M: map[string]*AttributeValue{
-					"nestedint": &AttributeValue{
+		expected: map[string]*dynamodb.AttributeValue{
+			"map": &dynamodb.AttributeValue{
+				M: map[string]*dynamodb.AttributeValue{
+					"nestedint": &dynamodb.AttributeValue{
 						N: aws.String("12"),
 					},
 				},
@@ -154,49 +155,49 @@ var converterMapTestInputs = []converterTestInput{
 	// Structs
 	converterTestInput{
 		input: mySimpleStruct{},
-		expected: map[string]*AttributeValue{
-			"Bool":    &AttributeValue{BOOL: &falseValue},
-			"Float32": &AttributeValue{N: aws.String("0")},
-			"Float64": &AttributeValue{N: aws.String("0")},
-			"Int":     &AttributeValue{N: aws.String("0")},
-			"Null":    &AttributeValue{NULL: &trueValue},
-			"String":  &AttributeValue{S: aws.String("")},
-			"Uint":    &AttributeValue{N: aws.String("0")},
+		expected: map[string]*dynamodb.AttributeValue{
+			"Bool":    &dynamodb.AttributeValue{BOOL: &falseValue},
+			"Float32": &dynamodb.AttributeValue{N: aws.String("0")},
+			"Float64": &dynamodb.AttributeValue{N: aws.String("0")},
+			"Int":     &dynamodb.AttributeValue{N: aws.String("0")},
+			"Null":    &dynamodb.AttributeValue{NULL: &trueValue},
+			"String":  &dynamodb.AttributeValue{S: aws.String("")},
+			"Uint":    &dynamodb.AttributeValue{N: aws.String("0")},
 		},
 		inputType: "mySimpleStruct",
 	},
 	converterTestInput{
 		input: myComplexStruct{},
-		expected: map[string]*AttributeValue{
-			"Simple": &AttributeValue{NULL: &trueValue},
+		expected: map[string]*dynamodb.AttributeValue{
+			"Simple": &dynamodb.AttributeValue{NULL: &trueValue},
 		},
 		inputType: "myComplexStruct",
 	},
 	converterTestInput{
 		input: myComplexStruct{Simple: []mySimpleStruct{mySimpleStruct{Int: -2}, mySimpleStruct{Uint: 5}}},
-		expected: map[string]*AttributeValue{
-			"Simple": &AttributeValue{
-				L: []*AttributeValue{
-					&AttributeValue{
-						M: map[string]*AttributeValue{
-							"Bool":    &AttributeValue{BOOL: &falseValue},
-							"Float32": &AttributeValue{N: aws.String("0")},
-							"Float64": &AttributeValue{N: aws.String("0")},
-							"Int":     &AttributeValue{N: aws.String("-2")},
-							"Null":    &AttributeValue{NULL: &trueValue},
-							"String":  &AttributeValue{S: aws.String("")},
-							"Uint":    &AttributeValue{N: aws.String("0")},
+		expected: map[string]*dynamodb.AttributeValue{
+			"Simple": &dynamodb.AttributeValue{
+				L: []*dynamodb.AttributeValue{
+					&dynamodb.AttributeValue{
+						M: map[string]*dynamodb.AttributeValue{
+							"Bool":    &dynamodb.AttributeValue{BOOL: &falseValue},
+							"Float32": &dynamodb.AttributeValue{N: aws.String("0")},
+							"Float64": &dynamodb.AttributeValue{N: aws.String("0")},
+							"Int":     &dynamodb.AttributeValue{N: aws.String("-2")},
+							"Null":    &dynamodb.AttributeValue{NULL: &trueValue},
+							"String":  &dynamodb.AttributeValue{S: aws.String("")},
+							"Uint":    &dynamodb.AttributeValue{N: aws.String("0")},
 						},
 					},
-					&AttributeValue{
-						M: map[string]*AttributeValue{
-							"Bool":    &AttributeValue{BOOL: &falseValue},
-							"Float32": &AttributeValue{N: aws.String("0")},
-							"Float64": &AttributeValue{N: aws.String("0")},
-							"Int":     &AttributeValue{N: aws.String("0")},
-							"Null":    &AttributeValue{NULL: &trueValue},
-							"String":  &AttributeValue{S: aws.String("")},
-							"Uint":    &AttributeValue{N: aws.String("5")},
+					&dynamodb.AttributeValue{
+						M: map[string]*dynamodb.AttributeValue{
+							"Bool":    &dynamodb.AttributeValue{BOOL: &falseValue},
+							"Float32": &dynamodb.AttributeValue{N: aws.String("0")},
+							"Float64": &dynamodb.AttributeValue{N: aws.String("0")},
+							"Int":     &dynamodb.AttributeValue{N: aws.String("0")},
+							"Null":    &dynamodb.AttributeValue{NULL: &trueValue},
+							"String":  &dynamodb.AttributeValue{S: aws.String("")},
+							"Uint":    &dynamodb.AttributeValue{N: aws.String("5")},
 						},
 					},
 				},
@@ -213,31 +214,31 @@ var converterListTestInputs = []converterTestInput{
 	},
 	converterTestInput{
 		input:    []interface{}{},
-		expected: []*AttributeValue{},
+		expected: []*dynamodb.AttributeValue{},
 	},
 	converterTestInput{
 		input: []interface{}{"a string", 12, 3.14, true, nil, false},
-		expected: []*AttributeValue{
-			&AttributeValue{S: aws.String("a string")},
-			&AttributeValue{N: aws.String("12")},
-			&AttributeValue{N: aws.String("3.14")},
-			&AttributeValue{BOOL: &trueValue},
-			&AttributeValue{NULL: &trueValue},
-			&AttributeValue{BOOL: &falseValue},
+		expected: []*dynamodb.AttributeValue{
+			&dynamodb.AttributeValue{S: aws.String("a string")},
+			&dynamodb.AttributeValue{N: aws.String("12")},
+			&dynamodb.AttributeValue{N: aws.String("3.14")},
+			&dynamodb.AttributeValue{BOOL: &trueValue},
+			&dynamodb.AttributeValue{NULL: &trueValue},
+			&dynamodb.AttributeValue{BOOL: &falseValue},
 		},
 	},
 	converterTestInput{
 		input: []mySimpleStruct{mySimpleStruct{}},
-		expected: []*AttributeValue{
-			&AttributeValue{
-				M: map[string]*AttributeValue{
-					"Bool":    &AttributeValue{BOOL: &falseValue},
-					"Float32": &AttributeValue{N: aws.String("0")},
-					"Float64": &AttributeValue{N: aws.String("0")},
-					"Int":     &AttributeValue{N: aws.String("0")},
-					"Null":    &AttributeValue{NULL: &trueValue},
-					"String":  &AttributeValue{S: aws.String("")},
-					"Uint":    &AttributeValue{N: aws.String("0")},
+		expected: []*dynamodb.AttributeValue{
+			&dynamodb.AttributeValue{
+				M: map[string]*dynamodb.AttributeValue{
+					"Bool":    &dynamodb.AttributeValue{BOOL: &falseValue},
+					"Float32": &dynamodb.AttributeValue{N: aws.String("0")},
+					"Float64": &dynamodb.AttributeValue{N: aws.String("0")},
+					"Int":     &dynamodb.AttributeValue{N: aws.String("0")},
+					"Null":    &dynamodb.AttributeValue{NULL: &trueValue},
+					"String":  &dynamodb.AttributeValue{S: aws.String("")},
+					"Uint":    &dynamodb.AttributeValue{N: aws.String("0")},
 				},
 			},
 		},
@@ -280,19 +281,19 @@ func testConvertFrom(t *testing.T, test converterTestInput) {
 	switch test.inputType {
 	case "mySimpleStruct":
 		var actual mySimpleStruct
-		if err := ConvertFrom(test.expected.(*AttributeValue), &actual); err != nil {
+		if err := ConvertFrom(test.expected.(*dynamodb.AttributeValue), &actual); err != nil {
 			t.Errorf("ConvertFrom with input %#v retured error `%s`", test.expected, err)
 		}
 		compareObjects(t, test.input, actual)
 	case "myComplexStruct":
 		var actual myComplexStruct
-		if err := ConvertFrom(test.expected.(*AttributeValue), &actual); err != nil {
+		if err := ConvertFrom(test.expected.(*dynamodb.AttributeValue), &actual); err != nil {
 			t.Errorf("ConvertFrom with input %#v retured error `%s`", test.expected, err)
 		}
 		compareObjects(t, test.input, actual)
 	default:
 		var actual interface{}
-		if err := ConvertFrom(test.expected.(*AttributeValue), &actual); err != nil {
+		if err := ConvertFrom(test.expected.(*dynamodb.AttributeValue), &actual); err != nil {
 			t.Errorf("ConvertFrom with input %#v retured error `%s`", test.expected, err)
 		}
 		compareObjects(t, test.input, actual)
@@ -354,19 +355,19 @@ func testConvertFromMap(t *testing.T, test converterTestInput) {
 	switch test.inputType {
 	case "mySimpleStruct":
 		var actual mySimpleStruct
-		if err := ConvertFromMap(test.expected.(map[string]*AttributeValue), &actual); err != nil {
+		if err := ConvertFromMap(test.expected.(map[string]*dynamodb.AttributeValue), &actual); err != nil {
 			t.Errorf("ConvertFromMap with input %#v retured error `%s`", test.expected, err)
 		}
 		compareObjects(t, test.input, actual)
 	case "myComplexStruct":
 		var actual myComplexStruct
-		if err := ConvertFromMap(test.expected.(map[string]*AttributeValue), &actual); err != nil {
+		if err := ConvertFromMap(test.expected.(map[string]*dynamodb.AttributeValue), &actual); err != nil {
 			t.Errorf("ConvertFromMap with input %#v retured error `%s`", test.expected, err)
 		}
 		compareObjects(t, test.input, actual)
 	default:
 		var actual map[string]interface{}
-		if err := ConvertFromMap(test.expected.(map[string]*AttributeValue), &actual); err != nil {
+		if err := ConvertFromMap(test.expected.(map[string]*dynamodb.AttributeValue), &actual); err != nil {
 			t.Errorf("ConvertFromMap with input %#v retured error `%s`", test.expected, err)
 		}
 		compareObjects(t, test.input, actual)
@@ -428,19 +429,19 @@ func testConvertFromList(t *testing.T, test converterTestInput) {
 	switch test.inputType {
 	case "mySimpleStruct":
 		var actual []mySimpleStruct
-		if err := ConvertFromList(test.expected.([]*AttributeValue), &actual); err != nil {
+		if err := ConvertFromList(test.expected.([]*dynamodb.AttributeValue), &actual); err != nil {
 			t.Errorf("ConvertFromList with input %#v retured error `%s`", test.expected, err)
 		}
 		compareObjects(t, test.input, actual)
 	case "myComplexStruct":
 		var actual []myComplexStruct
-		if err := ConvertFromList(test.expected.([]*AttributeValue), &actual); err != nil {
+		if err := ConvertFromList(test.expected.([]*dynamodb.AttributeValue), &actual); err != nil {
 			t.Errorf("ConvertFromList with input %#v retured error `%s`", test.expected, err)
 		}
 		compareObjects(t, test.input, actual)
 	default:
 		var actual []interface{}
-		if err := ConvertFromList(test.expected.([]*AttributeValue), &actual); err != nil {
+		if err := ConvertFromList(test.expected.([]*dynamodb.AttributeValue), &actual); err != nil {
 			t.Errorf("ConvertFromList with input %#v retured error `%s`", test.expected, err)
 		}
 		compareObjects(t, test.input, actual)
