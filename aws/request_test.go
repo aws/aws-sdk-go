@@ -13,7 +13,6 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/credentials"
-	"github.com/aws/aws-sdk-go/internal/apierr"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -36,12 +35,12 @@ func unmarshal(req *Request) {
 func unmarshalError(req *Request) {
 	bodyBytes, err := ioutil.ReadAll(req.HTTPResponse.Body)
 	if err != nil {
-		req.Error = apierr.New("UnmarshaleError", req.HTTPResponse.Status, err)
+		req.Error = awserr.New("UnmarshaleError", req.HTTPResponse.Status, err)
 		return
 	}
 	if len(bodyBytes) == 0 {
-		req.Error = apierr.NewRequestError(
-			apierr.New("UnmarshaleError", req.HTTPResponse.Status, fmt.Errorf("empty body")),
+		req.Error = awserr.NewRequestFailure(
+			awserr.New("UnmarshaleError", req.HTTPResponse.Status, fmt.Errorf("empty body")),
 			req.HTTPResponse.StatusCode,
 			"",
 		)
@@ -49,11 +48,11 @@ func unmarshalError(req *Request) {
 	}
 	var jsonErr jsonErrorResponse
 	if err := json.Unmarshal(bodyBytes, &jsonErr); err != nil {
-		req.Error = apierr.New("UnmarshaleError", "JSON unmarshal", err)
+		req.Error = awserr.New("UnmarshaleError", "JSON unmarshal", err)
 		return
 	}
-	req.Error = apierr.NewRequestError(
-		apierr.New(jsonErr.Code, jsonErr.Message, nil),
+	req.Error = awserr.NewRequestFailure(
+		awserr.New(jsonErr.Code, jsonErr.Message, nil),
 		req.HTTPResponse.StatusCode,
 		"",
 	)

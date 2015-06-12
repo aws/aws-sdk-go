@@ -7,7 +7,7 @@ import (
 	"io"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/internal/apierr"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/internal/protocol/xml/xmlutil"
 )
 
@@ -18,7 +18,7 @@ func Unmarshal(r *aws.Request) {
 		decoder := xml.NewDecoder(r.HTTPResponse.Body)
 		err := xmlutil.UnmarshalXML(r.Data, decoder, "")
 		if err != nil {
-			r.Error = apierr.New("SerializationError", "failed decoding EC2 Query response", err)
+			r.Error = awserr.New("SerializationError", "failed decoding EC2 Query response", err)
 			return
 		}
 	}
@@ -43,10 +43,10 @@ func UnmarshalError(r *aws.Request) {
 	resp := &xmlErrorResponse{}
 	err := xml.NewDecoder(r.HTTPResponse.Body).Decode(resp)
 	if err != nil && err != io.EOF {
-		r.Error = apierr.New("SerializationError", "failed decoding EC2 Query error response", err)
+		r.Error = awserr.New("SerializationError", "failed decoding EC2 Query error response", err)
 	} else {
-		r.Error = apierr.NewRequestError(
-			apierr.New(resp.Code, resp.Message, nil),
+		r.Error = awserr.NewRequestFailure(
+			awserr.New(resp.Code, resp.Message, nil),
 			r.HTTPResponse.StatusCode,
 			resp.RequestID,
 		)
