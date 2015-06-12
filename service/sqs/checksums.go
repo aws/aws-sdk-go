@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/internal/apierr"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
 var (
@@ -100,5 +100,5 @@ func checksumsMatch(body, expectedMD5 *string) error {
 
 func setChecksumError(r *aws.Request, format string, args ...interface{}) {
 	r.Retryable.Set(true)
-	r.Error = apierr.New("InvalidChecksum", fmt.Sprintf(format, args...), nil)
+	r.Error = awserr.New("InvalidChecksum", fmt.Sprintf(format, args...), nil)
 }

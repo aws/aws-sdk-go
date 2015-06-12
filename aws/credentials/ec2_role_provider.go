@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/aws/aws-sdk-go/internal/apierr"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
 const metadataCredentialsEndpoint = "http://169.254.169.254/latest/meta-data/iam/security-credentials/"
@@ -90,7 +90,7 @@ func (m *EC2RoleProvider) Retrieve() (Value, error) {
 	}
 
 	if len(credsList) == 0 {
-		return Value{}, apierr.New("EmptyEC2RoleList", "empty EC2 Role list", nil)
+		return Value{}, awserr.New("EmptyEC2RoleList", "empty EC2 Role list", nil)
 	}
 	credsName := credsList[0]
 
@@ -122,7 +122,7 @@ type ec2RoleCredRespBody struct {
 func requestCredList(client *http.Client, endpoint string) ([]string, error) {
 	resp, err := client.Get(endpoint)
 	if err != nil {
-		return nil, apierr.New("ListEC2Role", "failed to list EC2 Roles", err)
+		return nil, awserr.New("ListEC2Role", "failed to list EC2 Roles", err)
 	}
 	defer resp.Body.Close()
 
@@ -133,7 +133,7 @@ func requestCredList(client *http.Client, endpoint string) ([]string, error) {
 	}
 
 	if err := s.Err(); err != nil {
-		return nil, apierr.New("ReadEC2Role", "failed to read list of EC2 Roles", err)
+		return nil, awserr.New("ReadEC2Role", "failed to read list of EC2 Roles", err)
 	}
 
 	return credsList, nil
@@ -146,7 +146,7 @@ func requestCredList(client *http.Client, endpoint string) ([]string, error) {
 func requestCred(client *http.Client, endpoint, credsName string) (*ec2RoleCredRespBody, error) {
 	resp, err := client.Get(endpoint + credsName)
 	if err != nil {
-		return nil, apierr.New("GetEC2RoleCredentials",
+		return nil, awserr.New("GetEC2RoleCredentials",
 			fmt.Sprintf("failed to get %s EC2 Role credentials", credsName),
 			err)
 	}
@@ -154,7 +154,7 @@ func requestCred(client *http.Client, endpoint, credsName string) (*ec2RoleCredR
 
 	respCreds := &ec2RoleCredRespBody{}
 	if err := json.NewDecoder(resp.Body).Decode(respCreds); err != nil {
-		return nil, apierr.New("DecodeEC2RoleCredentials",
+		return nil, awserr.New("DecodeEC2RoleCredentials",
 			fmt.Sprintf("failed to decode %s EC2 Role credentials", credsName),
 			err)
 	}
