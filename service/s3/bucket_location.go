@@ -16,7 +16,7 @@ func buildGetBucketLocation(r *aws.Request) {
 		out := r.Data.(*GetBucketLocationOutput)
 		b, err := ioutil.ReadAll(r.HTTPResponse.Body)
 		if err != nil {
-			r.Error = apierr.New("Unmarshal", "failed reading response body", err)
+			r.Error = apierr.New("SerializationError", "failed reading response body", err)
 			return
 		}
 

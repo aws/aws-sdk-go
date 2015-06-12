@@ -18,7 +18,7 @@ func Build(r *aws.Request) {
 		"Version": {r.Service.APIVersion},
 	}
 	if err := queryutil.Parse(body, r.Params, true); err != nil {
-		r.Error = apierr.New("Marshal", "failed encoding EC2 Query request", err)
+		r.Error = apierr.New("SerializationError", "failed encoding EC2 Query request", err)
 	}
 
 	if r.ExpireTime == 0 {

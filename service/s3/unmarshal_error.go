@@ -31,7 +31,7 @@ func unmarshalError(r *aws.Request) {
 	resp := &xmlErrorResponse{}
 	err := xml.NewDecoder(r.HTTPResponse.Body).Decode(resp)
 	if err != nil && err != io.EOF {
-		r.Error = apierr.New("Unmarshal", "failed to decode S3 XML error response", nil)
+		r.Error = apierr.New("SerializationError", "failed to decode S3 XML error response", nil)
 	} else {
 		r.Error = apierr.NewRequestError(
 			apierr.New(resp.Code, resp.Message, nil),

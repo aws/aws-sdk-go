@@ -24,7 +24,7 @@ func Build(req *aws.Request) {
 	if req.ParamsFilled() {
 		buf, err = jsonutil.BuildJSON(req.Params)
 		if err != nil {
-			req.Error = apierr.New("Marshal", "failed encoding JSON RPC request", err)
+			req.Error = apierr.New("SerializationError", "failed encoding JSON RPC request", err)
 			return
 		}
 	} else {
@@ -51,7 +51,7 @@ func Unmarshal(req *aws.Request) {
 	if req.DataFilled() {
 		err := jsonutil.UnmarshalJSON(req.Data, req.HTTPResponse.Body)
 		if err != nil {
-			req.Error = apierr.New("Unmarshal", "failed decoding JSON RPC response", err)
+			req.Error = apierr.New("SerializationError", "failed decoding JSON RPC response", err)
 		}
 	}
 	return
@@ -67,12 +67,12 @@ func UnmarshalError(req *aws.Request) {
 	defer req.HTTPResponse.Body.Close()
 	bodyBytes, err := ioutil.ReadAll(req.HTTPResponse.Body)
 	if err != nil {
-		req.Error = apierr.New("Unmarshal", "failed reading JSON RPC error response", err)
+		req.Error = apierr.New("SerializationError", "failed reading JSON RPC error response", err)
 		return
 	}
 	if len(bodyBytes) == 0 {
 		req.Error = apierr.NewRequestError(
-			apierr.New("Unmarshal", req.HTTPResponse.Status, nil),
+			apierr.New("SerializationError", req.HTTPResponse.Status, nil),
 			req.HTTPResponse.StatusCode,
 			"",
 		)
@@ -80,7 +80,7 @@ func UnmarshalError(req *aws.Request) {
 	}
 	var jsonErr jsonErrorResponse
 	if err := json.Unmarshal(bodyBytes, &jsonErr); err != nil {
-		req.Error = apierr.New("Unmarshal", "failed decoding JSON RPC error response", err)
+		req.Error = apierr.New("SerializationError", "failed decoding JSON RPC error response", err)
 		return
 	}
 

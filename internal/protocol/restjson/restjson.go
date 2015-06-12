@@ -42,12 +42,12 @@ func UnmarshalError(r *aws.Request) {
 	code := r.HTTPResponse.Header.Get("X-Amzn-Errortype")
 	bodyBytes, err := ioutil.ReadAll(r.HTTPResponse.Body)
 	if err != nil {
-		r.Error = apierr.New("Unmarshal", "failed reading REST JSON error response", err)
+		r.Error = apierr.New("SerializationError", "failed reading REST JSON error response", err)
 		return
 	}
 	if len(bodyBytes) == 0 {
 		r.Error = apierr.NewRequestError(
-			apierr.New("Unmarshal", r.HTTPResponse.Status, nil),
+			apierr.New("SerializationError", r.HTTPResponse.Status, nil),
 			r.HTTPResponse.StatusCode,
 			"",
 		)
@@ -55,7 +55,7 @@ func UnmarshalError(r *aws.Request) {
 	}
 	var jsonErr jsonErrorResponse
 	if err := json.Unmarshal(bodyBytes, &jsonErr); err != nil {
-		r.Error = apierr.New("Unmarshal", "failed decoding REST JSON error response", err)
+		r.Error = apierr.New("SerializationError", "failed decoding REST JSON error response", err)
 		return
 	}
 
