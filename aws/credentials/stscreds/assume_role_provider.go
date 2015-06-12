@@ -37,7 +37,7 @@ type AssumeRoler interface {
 type AssumeRoleProvider struct {
 	credentials.Expiry
 
-	// Custom STS client.
+	// Custom STS client. If not set the default STS client will be used.
 	Client AssumeRoler
 
 	// Role to be assumed.
@@ -46,7 +46,7 @@ type AssumeRoleProvider struct {
 	// Session name, if you wish to reuse the credentials elsewhere.
 	RoleSessionName string
 
-	// Expiry duration of the STS credentials.
+	// Expiry duration of the STS credentials. Defaults to 15 minutes if not set.
 	Duration time.Duration
 
 	// ExpiryWindow will allow the credentials to trigger refreshing prior to
