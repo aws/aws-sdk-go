@@ -38,7 +38,7 @@ lint: deps
 	echo "$$lint"; \
 	if [ "$$lint" != "" ]; then exit 1; fi
 
-unit: deps build lint
+unit: deps build
 	go test ./...
 
 build:
