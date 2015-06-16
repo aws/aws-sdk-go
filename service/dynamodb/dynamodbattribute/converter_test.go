@@ -460,7 +460,7 @@ func TestConvertFromListError(t *testing.T) {
 
 	// Test that we get an error using ConvertFromList to convert to a struct.
 	var actual2 myComplexStruct
-	expected = awserr.New("SerializationError", `v must be a non-nil pointer to an array or slice, got *dynamodb.myComplexStruct`, nil).Error()
+	expected = awserr.New("SerializationError", `v must be a non-nil pointer to an array or slice, got *dynamodbattribute.myComplexStruct`, nil).Error()
 	if err := ConvertFromList(nil, &actual2); err == nil {
 		t.Errorf("ConvertFromList with input %#v returned no error, expected error `%s`", nil, expected)
 	} else if err.Error() != expected {
