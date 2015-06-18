@@ -213,7 +213,7 @@
           "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
         }
       ],
-      "documentation":"<p>NOT YET IMPLEMENTED.</p> <p>Deregisters the specified task definition. You will no longer be able to run tasks from this definition after deregistration.</p>"
+      "documentation":"<p>Deregisters the specified task definition by family and revision. Upon deregistration, the task definition is marked as <code>INACTIVE</code>. Existing tasks and services that reference an <code>INACTIVE</code> task definition continue to run without disruption. Existing services that reference an <code>INACTIVE</code> task definition can still scale up or down by modifying the service's desired count.</p> <p>You cannot use an <code>INACTIVE</code> task definition to run new tasks or create new services, and you cannot update an existing service to reference an <code>INACTIVE</code> task definition (although there may be up to a 10 minute window following deregistration where these restrictions have not yet taken effect).</p>"
     },
     "DescribeClusters":{
       "name":"DescribeClusters",
@@ -335,7 +335,7 @@
           "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
         }
       ],
-      "documentation":"<p>Describes a task definition. You can specify a <code>family</code> and <code>revision</code> to find information on a specific task definition, or you can simply specify the family to find the latest revision in that family.</p>"
+      "documentation":"<p>Describes a task definition. You can specify a <code>family</code> and <code>revision</code> to find information on a specific task definition, or you can simply specify the family to find the latest <code>ACTIVE</code> revision in that family.</p> <note> <p>You can only describe <code>INACTIVE</code> task definitions while an active task or service references them.</p> </note>"
     },
     "DescribeTasks":{
       "name":"DescribeTasks",
@@ -513,7 +513,7 @@
           "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
         }
       ],
-      "documentation":"<p>Returns a list of task definition families that are registered to your account. You can filter the results with the <code>familyPrefix</code> parameter.</p>"
+      "documentation":"<p>Returns a list of task definition families that are registered to your account (which may include task definition families that no longer have any <code>ACTIVE</code> task definitions). You can filter the results with the <code>familyPrefix</code> parameter.</p>"
     },
     "ListTaskDefinitions":{
       "name":"ListTaskDefinitions",
@@ -541,7 +541,7 @@
           "documentation":"<p>The specified parameter is invalid. Review the available parameters for the API request.</p>"
         }
       ],
-      "documentation":"<p>Returns a list of task definitions that are registered to your account. You can filter the results by family name with the <code>familyPrefix</code> parameter.</p>"
+      "documentation":"<p>Returns a list of task definitions that are registered to your account. You can filter the results by family name with the <code>familyPrefix</code> parameter or by status with the <code>status</code> parameter.</p>"
     },
     "ListTasks":{
       "name":"ListTasks",
@@ -995,7 +995,7 @@
         },
         "cpu":{
           "shape":"Integer",
-          "documentation":"<p>The number of <code>cpu</code> units reserved for the container. A container instance has 1,024 <code>cpu</code> units for every CPU core. This parameter specifies the minimum amount of CPU to reserve for a container, and containers share unallocated CPU units with other containers on the instance with the same ratio as their allocated amount.</p> <p>For example, if you run a single-container task on a single-core instance type with 512 CPU units specified for that container, and that is the only task running on the container instance, that container could use the full 1,024 CPU unit share at any given time. However, if you launched another copy of the same task on that container instance, each task would be guaranteed a minimum of 512 CPU units when needed, and each container could float to higher CPU usage if the other container was not using it, but if both tasks were 100% active all of the time, they would be limited to 512 CPU units.</p> <p>If this parameter is omitted, 0 CPU units are reserved for the container, and it will only receive CPU time when other containers are not using it.</p>"
+          "documentation":"<p>The number of <code>cpu</code> units reserved for the container. A container instance has 1,024 <code>cpu</code> units for every CPU core. This parameter specifies the minimum amount of CPU to reserve for a container, and containers share unallocated CPU units with other containers on the instance with the same ratio as their allocated amount.</p> <p>For example, if you run a single-container task on a single-core instance type with 512 CPU units specified for that container, and that is the only task running on the container instance, that container could use the full 1,024 CPU unit share at any given time. However, if you launched another copy of the same task on that container instance, each task would be guaranteed a minimum of 512 CPU units when needed, and each container could float to higher CPU usage if the other container was not using it, but if both tasks were 100% active all of the time, they would be limited to 512 CPU units.</p> <p>The Docker daemon on the container instance uses the CPU value to calculate the relative CPU share ratios for running containers. For more information, see <a href=\"https://docs.docker.com/reference/run/#cpu-share-constraint\">CPU share constraint</a> in the Docker documentation. The minimum valid CPU share value that the Linux kernel will allow is 2; however, the CPU parameter is not required, and you can use CPU values below 2 in your container definitions. For CPU values below 2 (including null), the behavior varies based on your Amazon ECS container agent version:</p> <ul> <li> <b>Agent versions less than or equal to 1.1.0:</b> Null and zero CPU values are passed to Docker as 0, which Docker then converts to 1,024 CPU shares. CPU values of 1 are passed to Docker as 1, which the Linux kernel converts to 2 CPU shares.</li> <li> <b>Agent versions greater than or equal to 1.2.0:</b> Null, zero, and CPU values of 1 are passed to Docker as 2.</li> </ul>"
         },
         "memory":{
           "shape":"Integer",
@@ -1100,6 +1100,10 @@
         "command":{
           "shape":"StringList",
           "documentation":"<p>The command to send to the container that overrides the default command from the Docker image or the task definition.</p>"
+        },
+        "environment":{
+          "shape":"EnvironmentVariables",
+          "documentation":"<p>The environment variables to send to the container. You can add new environment variables, which are added to the container at launch, or you can override the existing environment variables from the Docker image or the task definition.</p>"
         }
       },
       "documentation":"<p>The name of a container in a task definition and the command it should run instead of its default.</p>"
@@ -1148,7 +1152,7 @@
         },
         "taskDefinition":{
           "shape":"String",
-          "documentation":"<p>The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full Amazon Resource Name (ARN) of the task definition that you want to run in your service.</p>"
+          "documentation":"<p>The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full Amazon Resource Name (ARN) of the task definition that you want to run in your service. If a <code>revision</code> is not specified, the latest <code>ACTIVE</code> revision is used.</p>"
         },
         "loadBalancers":{
           "shape":"LoadBalancers",
@@ -1287,7 +1291,7 @@
       "members":{
         "taskDefinition":{
           "shape":"String",
-          "documentation":"<p>The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full Amazon Resource Name (ARN) of the task definition that you want to deregister.</p>"
+          "documentation":"<p>The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full Amazon Resource Name (ARN) of the task definition that you want to deregister. You must specify a <code>revision</code>.</p>"
         }
       }
     },
@@ -1376,7 +1380,7 @@
       "members":{
         "taskDefinition":{
           "shape":"String",
-          "documentation":"<p>The <code>family</code> for the latest revision, <code>family</code> and <code>revision</code> (<code>family:revision</code>) for a specific revision in the family, or full Amazon Resource Name (ARN) of the task definition that you want to describe.</p>"
+          "documentation":"<p>The <code>family</code> for the latest <code>ACTIVE</code> revision, <code>family</code> and <code>revision</code> (<code>family:revision</code>) for a specific revision in the family, or full Amazon Resource Name (ARN) of the task definition that you want to describe.</p>"
         }
       }
     },
@@ -1491,13 +1495,14 @@
       "members":{
         "name":{
           "shape":"String",
-          "documentation":"<p>The name of the key value pair.</p>"
+          "documentation":"<p>The name of the key value pair. For environment variables, this is the name of the environment variable.</p>"
         },
         "value":{
           "shape":"String",
-          "documentation":"<p>The value of the key value pair.</p>"
+          "documentation":"<p>The value of the key value pair. For environment variables, this is the value of the environment variable.</p>"
         }
-      }
+      },
+      "documentation":"<p>A key and value pair object.</p>"
     },
     "ListClustersRequest":{
       "type":"structure",
@@ -1621,6 +1626,14 @@
         "familyPrefix":{
           "shape":"String",
           "documentation":"<p>The full family name that you want to filter the <code>ListTaskDefinitions</code> results with. Specifying a <code>familyPrefix</code> will limit the listed task definitions to task definition revisions that belong to that family.</p>"
+        },
+        "status":{
+          "shape":"TaskDefinitionStatus",
+          "documentation":"<p>The task definition status that you want to filter the <code>ListTaskDefinitions</code> results with. By default, only <code>ACTIVE</code> task definitions are listed. By setting this parameter to <code>INACTIVE</code>, you can view task definitions that are <code>INACTIVE</code> as long as an active task or service still references them. If you paginate the resulting output, be sure to keep the <code>status</code> value constant in each subsequent request.</p>"
+        },
+        "sort":{
+          "shape":"SortOrder",
+          "documentation":"<p>The order in which to sort the results. Valid values are <code>ASC</code> and <code>DESC</code>. By default (<code>ASC</code>), task definitions are listed lexicographically by family name and in ascending numerical order by revision so that the newest task definitions in a family are listed last. Setting this parameter to <code>DESC</code> reverses the sort order on family name and revision so that the newest task definitions in a family are listed first.</p>"
         },
         "nextToken":{
           "shape":"String",
@@ -1782,15 +1795,15 @@
       "members":{
         "containerPort":{
           "shape":"Integer",
-          "documentation":"<p>The port number on the container that is bound to the user-specified or automatically assigned host port. If you specify a container port and not a host port, your container will automatically receive a host port in the 49153 to 65535 port range.</p>"
+          "documentation":"<p>The port number on the container that is bound to the user-specified or automatically assigned host port. If you specify a container port and not a host port, your container will automatically receive a host port in the ephemeral port range (for more information, see <code>hostPort</code>).</p>"
         },
         "hostPort":{
           "shape":"Integer",
-          "documentation":"<p>The port number on the container instance to reserve for your container. You can specify a non-reserved host port for your container port mapping, or you can omit the <code>hostPort</code> (or set it to <code>0</code>) while specifying a <code>containerPort</code> and your container will automatically receive a port in the 49153 to 65535 port range. You should not attempt to specify a host port in the 49153 to 65535 port range, since these are reserved for automatic assignment.</p> <p>The default reserved ports are 22 for SSH, the Docker ports 2375 and 2376, and the Amazon ECS Container Agent port 51678. Any host port that was previously specified in a running task is also reserved while the task is running (once a task stops, the host port is released).The current reserved ports are displayed in the <code>remainingResources</code> of <a>DescribeContainerInstances</a> output, and a container instance may have up to 50 reserved ports at a time, including the default reserved ports (automatically assigned ports do not count toward this limit).</p>"
+          "documentation":"<p>The port number on the container instance to reserve for your container. You can specify a non-reserved host port for your container port mapping, or you can omit the <code>hostPort</code> (or set it to <code>0</code>) while specifying a <code>containerPort</code> and your container will automatically receive a port in the ephemeral port range for your container instance operating system and Docker version.</p> <p>The default ephemeral port range is 49153 to 65535, and this range is used for Docker versions prior to 1.6.0. For Docker version 1.6.0 and later, the Docker daemon tries to read the ephemeral port range from <code>/proc/sys/net/ipv4/ip_local_port_range</code>; if this kernel parameter is unavailable, the default ephemeral port range is used. You should not attempt to specify a host port in the ephemeral port range, since these are reserved for automatic assignment. In general, ports below 32768 are outside of the ephemeral port range.</p> <p>The default reserved ports are 22 for SSH, the Docker ports 2375 and 2376, and the Amazon ECS Container Agent port 51678. Any host port that was previously specified in a running task is also reserved while the task is running (once a task stops, the host port is released).The current reserved ports are displayed in the <code>remainingResources</code> of <a>DescribeContainerInstances</a> output, and a container instance may have up to 50 reserved ports at a time, including the default reserved ports (automatically assigned ports do not count toward this limit).</p>"
         },
         "protocol":{
           "shape":"TransportProtocol",
-          "documentation":"<p>The protocol used for the port mapping. The default is <code>tcp</code>.</p>"
+          "documentation":"<p>The protocol used for the port mapping. Valid values are <code>tcp</code> and <code>udp</code>. The default is <code>tcp</code>.</p>"
         }
       },
       "documentation":"<p>Port mappings allow containers to access ports on the host container instance to send or receive traffic. Port mappings are specified as part of the container definition.</p>"
@@ -1901,11 +1914,11 @@
         },
         "taskDefinition":{
           "shape":"String",
-          "documentation":"<p>The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full Amazon Resource Name (ARN) of the task definition that you want to run.</p>"
+          "documentation":"<p>The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full Amazon Resource Name (ARN) of the task definition that you want to run. If a <code>revision</code> is not specified, the latest <code>ACTIVE</code> revision is used.</p>"
         },
         "overrides":{
           "shape":"TaskOverride",
-          "documentation":"<p>A list of container overrides in JSON format that specify the name of a container in the specified task definition and the command it should run instead of its default. A total of 8192 characters are allowed for overrides. This limit includes the JSON formatting characters of the override structure.</p>"
+          "documentation":"<p>A list of container overrides in JSON format that specify the name of a container in the specified task definition and the overrides it should receive. You can override the default command for a container (that is specified in the task definition or Docker image) with a <code>command</code> override. You can also override existing environment variables (that are specified in the task definition or Docker image) on a container or add new environment variables to it with an <code>environment</code> override.</p> <note> <p>A total of 8192 characters are allowed for overrides. This limit includes the JSON formatting characters of the override structure.</p> </note>"
         },
         "count":{
           "shape":"BoxedInteger",
@@ -2031,6 +2044,13 @@
       "type":"list",
       "member":{"shape":"Service"}
     },
+    "SortOrder":{
+      "type":"string",
+      "enum":[
+        "ASC",
+        "DESC"
+      ]
+    },
     "StartTaskRequest":{
       "type":"structure",
       "required":[
@@ -2044,11 +2064,11 @@
         },
         "taskDefinition":{
           "shape":"String",
-          "documentation":"<p>The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full Amazon Resource Name (ARN) of the task definition that you want to start.</p>"
+          "documentation":"<p>The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full Amazon Resource Name (ARN) of the task definition that you want to start. If a <code>revision</code> is not specified, the latest <code>ACTIVE</code> revision is used.</p>"
         },
         "overrides":{
           "shape":"TaskOverride",
-          "documentation":"<p>A list of container overrides in JSON format that specify the name of a container in the specified task definition and the command it should run instead of its default. A total of 8192 characters are allowed for overrides. This limit includes the JSON formatting characters of the override structure.</p>"
+          "documentation":"<p>A list of container overrides in JSON format that specify the name of a container in the specified task definition and the overrides it should receive. You can override the default command for a container (that is specified in the task definition or Docker image) with a <code>command</code> override. You can also override existing environment variables (that are specified in the task definition or Docker image) on a container or add new environment variables to it with an <code>environment</code> override.</p> <note> <p>A total of 8192 characters are allowed for overrides. This limit includes the JSON formatting characters of the override structure.</p> </note>"
         },
         "containerInstances":{
           "shape":"StringList",
@@ -2228,13 +2248,24 @@
         },
         "revision":{
           "shape":"Integer",
-          "documentation":"<p>The revision of the task in a particular family. You can think of the revision as a version number of a task definition in a family. When you register a task definition for the first time, the revision is <code>1</code>, and each time you register a task definition in the same family, the revision value increases by one.</p>"
+          "documentation":"<p>The revision of the task in a particular family. You can think of the revision as a version number of a task definition in a family. When you register a task definition for the first time, the revision is <code>1</code>, and each time you register a new revision of a task definition in the same family, the revision value always increases by one (even if you have deregistered previous revisions in this family).</p>"
         },
         "volumes":{
           "shape":"VolumeList",
           "documentation":"<p>The list of volumes in a task. For more information on volume definition parameters and defaults, see <a href=\"http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html\">Amazon ECS Task Definitions</a> in the <i>Amazon EC2 Container Service Developer Guide</i>.</p>"
+        },
+        "status":{
+          "shape":"TaskDefinitionStatus",
+          "documentation":"<p>The status of the task definition.</p>"
         }
       }
+    },
+    "TaskDefinitionStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "INACTIVE"
+      ]
     },
     "TaskOverride":{
       "type":"structure",
@@ -2303,7 +2334,7 @@
         },
         "taskDefinition":{
           "shape":"String",
-          "documentation":"<p>The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full Amazon Resource Name (ARN) of the task definition that you want to run in your service. If you modify the task definition with <code>UpdateService</code>, Amazon ECS spawns a task with the new version of the task definition and then stops an old task after the new version is running.</p>"
+          "documentation":"<p>The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full Amazon Resource Name (ARN) of the task definition that you want to run in your service. If a <code>revision</code> is not specified, the latest <code>ACTIVE</code> revision is used. If you modify the task definition with <code>UpdateService</code>, Amazon ECS spawns a task with the new version of the task definition and then stops an old task after the new version is running.</p>"
         }
       }
     },
