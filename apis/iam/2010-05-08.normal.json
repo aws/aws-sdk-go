@@ -4621,15 +4621,15 @@
       "members":{
         "LastUsedDate":{
           "shape":"dateType",
-          "documentation":"<p>The date and time, in <a href=\"http://www.iso.org/iso/iso8601\">ISO 8601 date-time format</a>, when the access key was most recently used.</p>"
+          "documentation":"<p>The date and time, in <a href=\"http://www.iso.org/iso/iso8601\">ISO 8601 date-time format</a>, when the access key was most recently used. This field is null when:</p> <ul> <li> <p>The user does not have an access key.</p> </li> <li> <p>An access key exists but has never been used, at least not since IAM started tracking this information on April 22nd, 2015.</p> </li> <li> <p>There is no sign-in data associated with the user</p> </li> </ul>"
         },
         "ServiceName":{
           "shape":"stringType",
-          "documentation":"<p>The name of the AWS service with which this access key was most recently used.</p>"
+          "documentation":"<p>The name of the AWS service with which this access key was most recently used. This field is null when:</p> <ul> <li> <p>The user does not have an access key.</p> </li> <li> <p>An access key exists but has never been used, at least not since IAM started tracking this information on April 22nd, 2015.</p> </li> <li> <p>There is no sign-in data associated with the user</p> </li> </ul>"
         },
         "Region":{
           "shape":"stringType",
-          "documentation":"<p>The AWS region where this access key was most recently used.</p> <p>For more information about AWS regions, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html\">Regions and Endpoints</a> in the Amazon Web Services General Reference.</p>"
+          "documentation":"<p>The AWS region where this access key was most recently used. This field is null when:</p> <ul> <li> <p>The user does not have an access key.</p> </li> <li> <p>An access key exists but has never been used, at least not since IAM started tracking this information on April 22nd, 2015.</p> </li> <li> <p>There is no sign-in data associated with the user</p> </li> </ul> <p>For more information about AWS regions, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html\">Regions and Endpoints</a> in the Amazon Web Services General Reference.</p>"
         }
       },
       "documentation":"<p>Contains information about the last time an AWS access key was used.</p> <p>This data type is used as a response element in the <a>GetAccessKeyLastUsed</a> action.</p>"
@@ -7854,7 +7854,7 @@
         },
         "NewServerCertificateName":{
           "shape":"serverCertificateNameType",
-          "documentation":"<p> The new name for the server certificate. Include this only if you are updating the server certificate's name. </p>"
+          "documentation":"<p> The new name for the server certificate. Include this only if you are updating the server certificate's name. The name of the certificate cannot contain any spaces.</p>"
         }
       }
     },
@@ -7911,7 +7911,7 @@
         },
         "ServerCertificateName":{
           "shape":"serverCertificateNameType",
-          "documentation":"<p>The name for the server certificate. Do not include the path in this value.</p>"
+          "documentation":"<p>The name for the server certificate. Do not include the path in this value. The name of the certificate cannot contain any spaces.</p>"
         },
         "CertificateBody":{
           "shape":"certificateBodyType",
@@ -7994,7 +7994,7 @@
         },
         "PasswordLastUsed":{
           "shape":"dateType",
-          "documentation":"<p>The date and time, in <a href=\"http://www.iso.org/iso/iso8601\">ISO 8601 date-time format</a>, when the user's password was last used to sign in to an AWS website. For a list of AWS websites that capture a user's last sign-in time, see the <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/credential-reports.html\">Credential Reports</a> topic in the <i>Using IAM</i> guide. If a password is used more than once in a five-minute span, only the first use is returned in this field. When the user does not have a password, this field is null (not present). When a user's password exists but has never been used, or when there is no sign-in data associated with the user, this field is null (not present). </p> <p>This value is returned only in the <a>GetUser</a> and <a>ListUsers</a> actions. </p>"
+          "documentation":"<p>The date and time, in <a href=\"http://www.iso.org/iso/iso8601\">ISO 8601 date-time format</a>, when the user's password was last used to sign in to an AWS website. For a list of AWS websites that capture a user's last sign-in time, see the <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/credential-reports.html\">Credential Reports</a> topic in the <i>Using IAM</i> guide. If a password is used more than once in a five-minute span, only the first use is returned in this field. This field is null (not present) when:</p> <ul> <li> <p>The user does not have a password</p> </li> <li> <p>The password exists but has never been used (at least not since IAM started tracking this information on October 20th, 2014</p> </li> <li> <p>there is no sign-in data associated with the user</p> </li> </ul> <p>This value is returned only in the <a>GetUser</a> and <a>ListUsers</a> actions. </p>"
         }
       },
       "documentation":"<p>Contains information about an IAM user entity.</p> <p> This data type is used as a response element in the following actions:</p> <ul> <li> <p> <a>CreateUser</a> </p> </li> <li> <p> <a>GetUser</a> </p> </li> <li> <p> <a>ListUsers</a> </p> </li> </ul>"

@@ -2464,6 +2464,12 @@ func (c *IAM) ListAttachedGroupPoliciesRequest(input *ListAttachedGroupPoliciesI
 			Name:       "ListAttachedGroupPolicies",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -2495,6 +2501,13 @@ func (c *IAM) ListAttachedGroupPolicies(input *ListAttachedGroupPoliciesInput) (
 	return out, err
 }
 
+func (c *IAM) ListAttachedGroupPoliciesPages(input *ListAttachedGroupPoliciesInput, fn func(p *ListAttachedGroupPoliciesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListAttachedGroupPoliciesRequest(input)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListAttachedGroupPoliciesOutput), lastPage)
+	})
+}
+
 var opListAttachedGroupPolicies *aws.Operation
 
 // ListAttachedRolePoliciesRequest generates a request for the ListAttachedRolePolicies operation.
@@ -2507,6 +2520,12 @@ func (c *IAM) ListAttachedRolePoliciesRequest(input *ListAttachedRolePoliciesInp
 			Name:       "ListAttachedRolePolicies",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -2538,6 +2557,13 @@ func (c *IAM) ListAttachedRolePolicies(input *ListAttachedRolePoliciesInput) (*L
 	return out, err
 }
 
+func (c *IAM) ListAttachedRolePoliciesPages(input *ListAttachedRolePoliciesInput, fn func(p *ListAttachedRolePoliciesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListAttachedRolePoliciesRequest(input)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListAttachedRolePoliciesOutput), lastPage)
+	})
+}
+
 var opListAttachedRolePolicies *aws.Operation
 
 // ListAttachedUserPoliciesRequest generates a request for the ListAttachedUserPolicies operation.
@@ -2550,6 +2576,12 @@ func (c *IAM) ListAttachedUserPoliciesRequest(input *ListAttachedUserPoliciesInp
 			Name:       "ListAttachedUserPolicies",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -2581,6 +2613,13 @@ func (c *IAM) ListAttachedUserPolicies(input *ListAttachedUserPoliciesInput) (*L
 	return out, err
 }
 
+func (c *IAM) ListAttachedUserPoliciesPages(input *ListAttachedUserPoliciesInput, fn func(p *ListAttachedUserPoliciesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListAttachedUserPoliciesRequest(input)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListAttachedUserPoliciesOutput), lastPage)
+	})
+}
+
 var opListAttachedUserPolicies *aws.Operation
 
 // ListEntitiesForPolicyRequest generates a request for the ListEntitiesForPolicy operation.
@@ -2593,6 +2632,12 @@ func (c *IAM) ListEntitiesForPolicyRequest(input *ListEntitiesForPolicyInput) (r
 			Name:       "ListEntitiesForPolicy",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -2619,6 +2664,13 @@ func (c *IAM) ListEntitiesForPolicy(input *ListEntitiesForPolicyInput) (*ListEnt
 	req, out := c.ListEntitiesForPolicyRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *IAM) ListEntitiesForPolicyPages(input *ListEntitiesForPolicyInput, fn func(p *ListEntitiesForPolicyOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListEntitiesForPolicyRequest(input)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListEntitiesForPolicyOutput), lastPage)
+	})
 }
 
 var opListEntitiesForPolicy *aws.Operation
@@ -2963,6 +3015,12 @@ func (c *IAM) ListPoliciesRequest(input *ListPoliciesInput) (req *aws.Request, o
 			Name:       "ListPolicies",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
+			Paginator: &aws.Paginator{
+				InputTokens:     []string{"Marker"},
+				OutputTokens:    []string{"Marker"},
+				LimitToken:      "MaxItems",
+				TruncationToken: "IsTruncated",
+			},
 		}
 	}
 
@@ -2993,6 +3051,13 @@ func (c *IAM) ListPolicies(input *ListPoliciesInput) (*ListPoliciesOutput, error
 	req, out := c.ListPoliciesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *IAM) ListPoliciesPages(input *ListPoliciesInput, fn func(p *ListPoliciesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListPoliciesRequest(input)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListPoliciesOutput), lastPage)
+	})
 }
 
 var opListPolicies *aws.Operation
@@ -4293,17 +4358,39 @@ type metadataAccessKey struct {
 // action.
 type AccessKeyLastUsed struct {
 	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
-	// when the access key was most recently used.
+	// when the access key was most recently used. This field is null when:
+	//
+	//   The user does not have an access key.
+	//
+	//   An access key exists but has never been used, at least not since IAM started
+	// tracking this information on April 22nd, 2015.
+	//
+	//   There is no sign-in data associated with the user
 	LastUsedDate *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The AWS region where this access key was most recently used.
+	// The AWS region where this access key was most recently used. This field is
+	// null when:
 	//
-	// For more information about AWS regions, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html)
+	//   The user does not have an access key.
+	//
+	//   An access key exists but has never been used, at least not since IAM started
+	// tracking this information on April 22nd, 2015.
+	//
+	//   There is no sign-in data associated with the user
+	//
+	//   For more information about AWS regions, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html)
 	// in the Amazon Web Services General Reference.
 	Region *string `type:"string" required:"true"`
 
 	// The name of the AWS service with which this access key was most recently
-	// used.
+	// used. This field is null when:
+	//
+	//   The user does not have an access key.
+	//
+	//   An access key exists but has never been used, at least not since IAM started
+	// tracking this information on April 22nd, 2015.
+	//
+	//   There is no sign-in data associated with the user
 	ServiceName *string `type:"string" required:"true"`
 
 	metadataAccessKeyLastUsed `json:"-" xml:"-"`
@@ -8303,7 +8390,8 @@ type UpdateServerCertificateInput struct {
 	NewPath *string `type:"string"`
 
 	// The new name for the server certificate. Include this only if you are updating
-	// the server certificate's name.
+	// the server certificate's name. The name of the certificate cannot contain
+	// any spaces.
 	NewServerCertificateName *string `type:"string"`
 
 	// The name of the server certificate that you want to update.
@@ -8404,6 +8492,7 @@ type UploadServerCertificateInput struct {
 	PrivateKey *string `type:"string" required:"true"`
 
 	// The name for the server certificate. Do not include the path in this value.
+	// The name of the certificate cannot contain any spaces.
 	ServerCertificateName *string `type:"string" required:"true"`
 
 	metadataUploadServerCertificateInput `json:"-" xml:"-"`
@@ -8476,12 +8565,17 @@ type User struct {
 	// a list of AWS websites that capture a user's last sign-in time, see the Credential
 	// Reports (http://docs.aws.amazon.com/IAM/latest/UserGuide/credential-reports.html)
 	// topic in the Using IAM guide. If a password is used more than once in a five-minute
-	// span, only the first use is returned in this field. When the user does not
-	// have a password, this field is null (not present). When a user's password
-	// exists but has never been used, or when there is no sign-in data associated
-	// with the user, this field is null (not present).
+	// span, only the first use is returned in this field. This field is null (not
+	// present) when:
 	//
-	// This value is returned only in the GetUser and ListUsers actions.
+	//   The user does not have a password
+	//
+	//   The password exists but has never been used (at least not since IAM started
+	// tracking this information on October 20th, 2014
+	//
+	//   there is no sign-in data associated with the user
+	//
+	//   This value is returned only in the GetUser and ListUsers actions.
 	PasswordLastUsed *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The path to the user. For more information about paths, see IAM Identifiers
