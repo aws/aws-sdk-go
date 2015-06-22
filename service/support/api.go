@@ -4,31 +4,24 @@
 package support
 
 import (
-	"sync"
-
 	"github.com/aws/aws-sdk-go/aws"
 )
 
-var oprw sync.Mutex
+const opAddAttachmentsToSet = "AddAttachmentsToSet"
 
 // AddAttachmentsToSetRequest generates a request for the AddAttachmentsToSet operation.
 func (c *Support) AddAttachmentsToSetRequest(input *AddAttachmentsToSetInput) (req *aws.Request, output *AddAttachmentsToSetOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opAddAttachmentsToSet == nil {
-		opAddAttachmentsToSet = &aws.Operation{
-			Name:       "AddAttachmentsToSet",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opAddAttachmentsToSet,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &AddAttachmentsToSetInput{}
 	}
 
-	req = c.newRequest(opAddAttachmentsToSet, input, output)
+	req = c.newRequest(op, input, output)
 	output = &AddAttachmentsToSetOutput{}
 	req.Data = output
 	return
@@ -50,26 +43,21 @@ func (c *Support) AddAttachmentsToSet(input *AddAttachmentsToSetInput) (*AddAtta
 	return out, err
 }
 
-var opAddAttachmentsToSet *aws.Operation
+const opAddCommunicationToCase = "AddCommunicationToCase"
 
 // AddCommunicationToCaseRequest generates a request for the AddCommunicationToCase operation.
 func (c *Support) AddCommunicationToCaseRequest(input *AddCommunicationToCaseInput) (req *aws.Request, output *AddCommunicationToCaseOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opAddCommunicationToCase == nil {
-		opAddCommunicationToCase = &aws.Operation{
-			Name:       "AddCommunicationToCase",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opAddCommunicationToCase,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &AddCommunicationToCaseInput{}
 	}
 
-	req = c.newRequest(opAddCommunicationToCase, input, output)
+	req = c.newRequest(op, input, output)
 	output = &AddCommunicationToCaseOutput{}
 	req.Data = output
 	return
@@ -89,26 +77,21 @@ func (c *Support) AddCommunicationToCase(input *AddCommunicationToCaseInput) (*A
 	return out, err
 }
 
-var opAddCommunicationToCase *aws.Operation
+const opCreateCase = "CreateCase"
 
 // CreateCaseRequest generates a request for the CreateCase operation.
 func (c *Support) CreateCaseRequest(input *CreateCaseInput) (req *aws.Request, output *CreateCaseOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateCase == nil {
-		opCreateCase = &aws.Operation{
-			Name:       "CreateCase",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateCase,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateCaseInput{}
 	}
 
-	req = c.newRequest(opCreateCase, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateCaseOutput{}
 	req.Data = output
 	return
@@ -150,26 +133,21 @@ func (c *Support) CreateCase(input *CreateCaseInput) (*CreateCaseOutput, error) 
 	return out, err
 }
 
-var opCreateCase *aws.Operation
+const opDescribeAttachment = "DescribeAttachment"
 
 // DescribeAttachmentRequest generates a request for the DescribeAttachment operation.
 func (c *Support) DescribeAttachmentRequest(input *DescribeAttachmentInput) (req *aws.Request, output *DescribeAttachmentOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeAttachment == nil {
-		opDescribeAttachment = &aws.Operation{
-			Name:       "DescribeAttachment",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeAttachment,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeAttachmentInput{}
 	}
 
-	req = c.newRequest(opDescribeAttachment, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeAttachmentOutput{}
 	req.Data = output
 	return
@@ -185,32 +163,27 @@ func (c *Support) DescribeAttachment(input *DescribeAttachmentInput) (*DescribeA
 	return out, err
 }
 
-var opDescribeAttachment *aws.Operation
+const opDescribeCases = "DescribeCases"
 
 // DescribeCasesRequest generates a request for the DescribeCases operation.
 func (c *Support) DescribeCasesRequest(input *DescribeCasesInput) (req *aws.Request, output *DescribeCasesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeCases == nil {
-		opDescribeCases = &aws.Operation{
-			Name:       "DescribeCases",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"nextToken"},
-				OutputTokens:    []string{"nextToken"},
-				LimitToken:      "maxResults",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeCases,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeCasesInput{}
 	}
 
-	req = c.newRequest(opDescribeCases, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeCasesOutput{}
 	req.Data = output
 	return
@@ -243,32 +216,27 @@ func (c *Support) DescribeCasesPages(input *DescribeCasesInput, fn func(p *Descr
 	})
 }
 
-var opDescribeCases *aws.Operation
+const opDescribeCommunications = "DescribeCommunications"
 
 // DescribeCommunicationsRequest generates a request for the DescribeCommunications operation.
 func (c *Support) DescribeCommunicationsRequest(input *DescribeCommunicationsInput) (req *aws.Request, output *DescribeCommunicationsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeCommunications == nil {
-		opDescribeCommunications = &aws.Operation{
-			Name:       "DescribeCommunications",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"nextToken"},
-				OutputTokens:    []string{"nextToken"},
-				LimitToken:      "maxResults",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeCommunications,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeCommunicationsInput{}
 	}
 
-	req = c.newRequest(opDescribeCommunications, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeCommunicationsOutput{}
 	req.Data = output
 	return
@@ -297,26 +265,21 @@ func (c *Support) DescribeCommunicationsPages(input *DescribeCommunicationsInput
 	})
 }
 
-var opDescribeCommunications *aws.Operation
+const opDescribeServices = "DescribeServices"
 
 // DescribeServicesRequest generates a request for the DescribeServices operation.
 func (c *Support) DescribeServicesRequest(input *DescribeServicesInput) (req *aws.Request, output *DescribeServicesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeServices == nil {
-		opDescribeServices = &aws.Operation{
-			Name:       "DescribeServices",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeServices,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeServicesInput{}
 	}
 
-	req = c.newRequest(opDescribeServices, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeServicesOutput{}
 	req.Data = output
 	return
@@ -339,26 +302,21 @@ func (c *Support) DescribeServices(input *DescribeServicesInput) (*DescribeServi
 	return out, err
 }
 
-var opDescribeServices *aws.Operation
+const opDescribeSeverityLevels = "DescribeSeverityLevels"
 
 // DescribeSeverityLevelsRequest generates a request for the DescribeSeverityLevels operation.
 func (c *Support) DescribeSeverityLevelsRequest(input *DescribeSeverityLevelsInput) (req *aws.Request, output *DescribeSeverityLevelsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeSeverityLevels == nil {
-		opDescribeSeverityLevels = &aws.Operation{
-			Name:       "DescribeSeverityLevels",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeSeverityLevels,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeSeverityLevelsInput{}
 	}
 
-	req = c.newRequest(opDescribeSeverityLevels, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeSeverityLevelsOutput{}
 	req.Data = output
 	return
@@ -373,26 +331,21 @@ func (c *Support) DescribeSeverityLevels(input *DescribeSeverityLevelsInput) (*D
 	return out, err
 }
 
-var opDescribeSeverityLevels *aws.Operation
+const opDescribeTrustedAdvisorCheckRefreshStatuses = "DescribeTrustedAdvisorCheckRefreshStatuses"
 
 // DescribeTrustedAdvisorCheckRefreshStatusesRequest generates a request for the DescribeTrustedAdvisorCheckRefreshStatuses operation.
 func (c *Support) DescribeTrustedAdvisorCheckRefreshStatusesRequest(input *DescribeTrustedAdvisorCheckRefreshStatusesInput) (req *aws.Request, output *DescribeTrustedAdvisorCheckRefreshStatusesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeTrustedAdvisorCheckRefreshStatuses == nil {
-		opDescribeTrustedAdvisorCheckRefreshStatuses = &aws.Operation{
-			Name:       "DescribeTrustedAdvisorCheckRefreshStatuses",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeTrustedAdvisorCheckRefreshStatuses,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeTrustedAdvisorCheckRefreshStatusesInput{}
 	}
 
-	req = c.newRequest(opDescribeTrustedAdvisorCheckRefreshStatuses, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeTrustedAdvisorCheckRefreshStatusesOutput{}
 	req.Data = output
 	return
@@ -406,26 +359,21 @@ func (c *Support) DescribeTrustedAdvisorCheckRefreshStatuses(input *DescribeTrus
 	return out, err
 }
 
-var opDescribeTrustedAdvisorCheckRefreshStatuses *aws.Operation
+const opDescribeTrustedAdvisorCheckResult = "DescribeTrustedAdvisorCheckResult"
 
 // DescribeTrustedAdvisorCheckResultRequest generates a request for the DescribeTrustedAdvisorCheckResult operation.
 func (c *Support) DescribeTrustedAdvisorCheckResultRequest(input *DescribeTrustedAdvisorCheckResultInput) (req *aws.Request, output *DescribeTrustedAdvisorCheckResultOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeTrustedAdvisorCheckResult == nil {
-		opDescribeTrustedAdvisorCheckResult = &aws.Operation{
-			Name:       "DescribeTrustedAdvisorCheckResult",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeTrustedAdvisorCheckResult,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeTrustedAdvisorCheckResultInput{}
 	}
 
-	req = c.newRequest(opDescribeTrustedAdvisorCheckResult, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeTrustedAdvisorCheckResultOutput{}
 	req.Data = output
 	return
@@ -449,26 +397,21 @@ func (c *Support) DescribeTrustedAdvisorCheckResult(input *DescribeTrustedAdviso
 	return out, err
 }
 
-var opDescribeTrustedAdvisorCheckResult *aws.Operation
+const opDescribeTrustedAdvisorCheckSummaries = "DescribeTrustedAdvisorCheckSummaries"
 
 // DescribeTrustedAdvisorCheckSummariesRequest generates a request for the DescribeTrustedAdvisorCheckSummaries operation.
 func (c *Support) DescribeTrustedAdvisorCheckSummariesRequest(input *DescribeTrustedAdvisorCheckSummariesInput) (req *aws.Request, output *DescribeTrustedAdvisorCheckSummariesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeTrustedAdvisorCheckSummaries == nil {
-		opDescribeTrustedAdvisorCheckSummaries = &aws.Operation{
-			Name:       "DescribeTrustedAdvisorCheckSummaries",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeTrustedAdvisorCheckSummaries,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeTrustedAdvisorCheckSummariesInput{}
 	}
 
-	req = c.newRequest(opDescribeTrustedAdvisorCheckSummaries, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeTrustedAdvisorCheckSummariesOutput{}
 	req.Data = output
 	return
@@ -484,26 +427,21 @@ func (c *Support) DescribeTrustedAdvisorCheckSummaries(input *DescribeTrustedAdv
 	return out, err
 }
 
-var opDescribeTrustedAdvisorCheckSummaries *aws.Operation
+const opDescribeTrustedAdvisorChecks = "DescribeTrustedAdvisorChecks"
 
 // DescribeTrustedAdvisorChecksRequest generates a request for the DescribeTrustedAdvisorChecks operation.
 func (c *Support) DescribeTrustedAdvisorChecksRequest(input *DescribeTrustedAdvisorChecksInput) (req *aws.Request, output *DescribeTrustedAdvisorChecksOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeTrustedAdvisorChecks == nil {
-		opDescribeTrustedAdvisorChecks = &aws.Operation{
-			Name:       "DescribeTrustedAdvisorChecks",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeTrustedAdvisorChecks,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeTrustedAdvisorChecksInput{}
 	}
 
-	req = c.newRequest(opDescribeTrustedAdvisorChecks, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeTrustedAdvisorChecksOutput{}
 	req.Data = output
 	return
@@ -519,26 +457,21 @@ func (c *Support) DescribeTrustedAdvisorChecks(input *DescribeTrustedAdvisorChec
 	return out, err
 }
 
-var opDescribeTrustedAdvisorChecks *aws.Operation
+const opRefreshTrustedAdvisorCheck = "RefreshTrustedAdvisorCheck"
 
 // RefreshTrustedAdvisorCheckRequest generates a request for the RefreshTrustedAdvisorCheck operation.
 func (c *Support) RefreshTrustedAdvisorCheckRequest(input *RefreshTrustedAdvisorCheckInput) (req *aws.Request, output *RefreshTrustedAdvisorCheckOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opRefreshTrustedAdvisorCheck == nil {
-		opRefreshTrustedAdvisorCheck = &aws.Operation{
-			Name:       "RefreshTrustedAdvisorCheck",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opRefreshTrustedAdvisorCheck,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &RefreshTrustedAdvisorCheckInput{}
 	}
 
-	req = c.newRequest(opRefreshTrustedAdvisorCheck, input, output)
+	req = c.newRequest(op, input, output)
 	output = &RefreshTrustedAdvisorCheckOutput{}
 	req.Data = output
 	return
@@ -560,26 +493,21 @@ func (c *Support) RefreshTrustedAdvisorCheck(input *RefreshTrustedAdvisorCheckIn
 	return out, err
 }
 
-var opRefreshTrustedAdvisorCheck *aws.Operation
+const opResolveCase = "ResolveCase"
 
 // ResolveCaseRequest generates a request for the ResolveCase operation.
 func (c *Support) ResolveCaseRequest(input *ResolveCaseInput) (req *aws.Request, output *ResolveCaseOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opResolveCase == nil {
-		opResolveCase = &aws.Operation{
-			Name:       "ResolveCase",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opResolveCase,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ResolveCaseInput{}
 	}
 
-	req = c.newRequest(opResolveCase, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ResolveCaseOutput{}
 	req.Data = output
 	return
@@ -592,8 +520,6 @@ func (c *Support) ResolveCase(input *ResolveCaseInput) (*ResolveCaseOutput, erro
 	err := req.Send()
 	return out, err
 }
-
-var opResolveCase *aws.Operation
 
 type AddAttachmentsToSetInput struct {
 	// The ID of the attachment set. If an AttachmentSetId is not specified, a new

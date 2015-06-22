@@ -4,32 +4,26 @@
 package codedeploy
 
 import (
-	"sync"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 )
 
-var oprw sync.Mutex
+const opAddTagsToOnPremisesInstances = "AddTagsToOnPremisesInstances"
 
 // AddTagsToOnPremisesInstancesRequest generates a request for the AddTagsToOnPremisesInstances operation.
 func (c *CodeDeploy) AddTagsToOnPremisesInstancesRequest(input *AddTagsToOnPremisesInstancesInput) (req *aws.Request, output *AddTagsToOnPremisesInstancesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opAddTagsToOnPremisesInstances == nil {
-		opAddTagsToOnPremisesInstances = &aws.Operation{
-			Name:       "AddTagsToOnPremisesInstances",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opAddTagsToOnPremisesInstances,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &AddTagsToOnPremisesInstancesInput{}
 	}
 
-	req = c.newRequest(opAddTagsToOnPremisesInstances, input, output)
+	req = c.newRequest(op, input, output)
 	output = &AddTagsToOnPremisesInstancesOutput{}
 	req.Data = output
 	return
@@ -42,26 +36,21 @@ func (c *CodeDeploy) AddTagsToOnPremisesInstances(input *AddTagsToOnPremisesInst
 	return out, err
 }
 
-var opAddTagsToOnPremisesInstances *aws.Operation
+const opBatchGetApplications = "BatchGetApplications"
 
 // BatchGetApplicationsRequest generates a request for the BatchGetApplications operation.
 func (c *CodeDeploy) BatchGetApplicationsRequest(input *BatchGetApplicationsInput) (req *aws.Request, output *BatchGetApplicationsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opBatchGetApplications == nil {
-		opBatchGetApplications = &aws.Operation{
-			Name:       "BatchGetApplications",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opBatchGetApplications,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &BatchGetApplicationsInput{}
 	}
 
-	req = c.newRequest(opBatchGetApplications, input, output)
+	req = c.newRequest(op, input, output)
 	output = &BatchGetApplicationsOutput{}
 	req.Data = output
 	return
@@ -74,26 +63,21 @@ func (c *CodeDeploy) BatchGetApplications(input *BatchGetApplicationsInput) (*Ba
 	return out, err
 }
 
-var opBatchGetApplications *aws.Operation
+const opBatchGetDeployments = "BatchGetDeployments"
 
 // BatchGetDeploymentsRequest generates a request for the BatchGetDeployments operation.
 func (c *CodeDeploy) BatchGetDeploymentsRequest(input *BatchGetDeploymentsInput) (req *aws.Request, output *BatchGetDeploymentsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opBatchGetDeployments == nil {
-		opBatchGetDeployments = &aws.Operation{
-			Name:       "BatchGetDeployments",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opBatchGetDeployments,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &BatchGetDeploymentsInput{}
 	}
 
-	req = c.newRequest(opBatchGetDeployments, input, output)
+	req = c.newRequest(op, input, output)
 	output = &BatchGetDeploymentsOutput{}
 	req.Data = output
 	return
@@ -106,26 +90,21 @@ func (c *CodeDeploy) BatchGetDeployments(input *BatchGetDeploymentsInput) (*Batc
 	return out, err
 }
 
-var opBatchGetDeployments *aws.Operation
+const opBatchGetOnPremisesInstances = "BatchGetOnPremisesInstances"
 
 // BatchGetOnPremisesInstancesRequest generates a request for the BatchGetOnPremisesInstances operation.
 func (c *CodeDeploy) BatchGetOnPremisesInstancesRequest(input *BatchGetOnPremisesInstancesInput) (req *aws.Request, output *BatchGetOnPremisesInstancesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opBatchGetOnPremisesInstances == nil {
-		opBatchGetOnPremisesInstances = &aws.Operation{
-			Name:       "BatchGetOnPremisesInstances",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opBatchGetOnPremisesInstances,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &BatchGetOnPremisesInstancesInput{}
 	}
 
-	req = c.newRequest(opBatchGetOnPremisesInstances, input, output)
+	req = c.newRequest(op, input, output)
 	output = &BatchGetOnPremisesInstancesOutput{}
 	req.Data = output
 	return
@@ -138,26 +117,21 @@ func (c *CodeDeploy) BatchGetOnPremisesInstances(input *BatchGetOnPremisesInstan
 	return out, err
 }
 
-var opBatchGetOnPremisesInstances *aws.Operation
+const opCreateApplication = "CreateApplication"
 
 // CreateApplicationRequest generates a request for the CreateApplication operation.
 func (c *CodeDeploy) CreateApplicationRequest(input *CreateApplicationInput) (req *aws.Request, output *CreateApplicationOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateApplication == nil {
-		opCreateApplication = &aws.Operation{
-			Name:       "CreateApplication",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateApplication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateApplicationInput{}
 	}
 
-	req = c.newRequest(opCreateApplication, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateApplicationOutput{}
 	req.Data = output
 	return
@@ -170,26 +144,21 @@ func (c *CodeDeploy) CreateApplication(input *CreateApplicationInput) (*CreateAp
 	return out, err
 }
 
-var opCreateApplication *aws.Operation
+const opCreateDeployment = "CreateDeployment"
 
 // CreateDeploymentRequest generates a request for the CreateDeployment operation.
 func (c *CodeDeploy) CreateDeploymentRequest(input *CreateDeploymentInput) (req *aws.Request, output *CreateDeploymentOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateDeployment == nil {
-		opCreateDeployment = &aws.Operation{
-			Name:       "CreateDeployment",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateDeployment,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateDeploymentInput{}
 	}
 
-	req = c.newRequest(opCreateDeployment, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateDeploymentOutput{}
 	req.Data = output
 	return
@@ -202,26 +171,21 @@ func (c *CodeDeploy) CreateDeployment(input *CreateDeploymentInput) (*CreateDepl
 	return out, err
 }
 
-var opCreateDeployment *aws.Operation
+const opCreateDeploymentConfig = "CreateDeploymentConfig"
 
 // CreateDeploymentConfigRequest generates a request for the CreateDeploymentConfig operation.
 func (c *CodeDeploy) CreateDeploymentConfigRequest(input *CreateDeploymentConfigInput) (req *aws.Request, output *CreateDeploymentConfigOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateDeploymentConfig == nil {
-		opCreateDeploymentConfig = &aws.Operation{
-			Name:       "CreateDeploymentConfig",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateDeploymentConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateDeploymentConfigInput{}
 	}
 
-	req = c.newRequest(opCreateDeploymentConfig, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateDeploymentConfigOutput{}
 	req.Data = output
 	return
@@ -234,26 +198,21 @@ func (c *CodeDeploy) CreateDeploymentConfig(input *CreateDeploymentConfigInput) 
 	return out, err
 }
 
-var opCreateDeploymentConfig *aws.Operation
+const opCreateDeploymentGroup = "CreateDeploymentGroup"
 
 // CreateDeploymentGroupRequest generates a request for the CreateDeploymentGroup operation.
 func (c *CodeDeploy) CreateDeploymentGroupRequest(input *CreateDeploymentGroupInput) (req *aws.Request, output *CreateDeploymentGroupOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateDeploymentGroup == nil {
-		opCreateDeploymentGroup = &aws.Operation{
-			Name:       "CreateDeploymentGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateDeploymentGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateDeploymentGroupInput{}
 	}
 
-	req = c.newRequest(opCreateDeploymentGroup, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateDeploymentGroupOutput{}
 	req.Data = output
 	return
@@ -266,26 +225,21 @@ func (c *CodeDeploy) CreateDeploymentGroup(input *CreateDeploymentGroupInput) (*
 	return out, err
 }
 
-var opCreateDeploymentGroup *aws.Operation
+const opDeleteApplication = "DeleteApplication"
 
 // DeleteApplicationRequest generates a request for the DeleteApplication operation.
 func (c *CodeDeploy) DeleteApplicationRequest(input *DeleteApplicationInput) (req *aws.Request, output *DeleteApplicationOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteApplication == nil {
-		opDeleteApplication = &aws.Operation{
-			Name:       "DeleteApplication",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteApplication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteApplicationInput{}
 	}
 
-	req = c.newRequest(opDeleteApplication, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteApplicationOutput{}
 	req.Data = output
 	return
@@ -298,26 +252,21 @@ func (c *CodeDeploy) DeleteApplication(input *DeleteApplicationInput) (*DeleteAp
 	return out, err
 }
 
-var opDeleteApplication *aws.Operation
+const opDeleteDeploymentConfig = "DeleteDeploymentConfig"
 
 // DeleteDeploymentConfigRequest generates a request for the DeleteDeploymentConfig operation.
 func (c *CodeDeploy) DeleteDeploymentConfigRequest(input *DeleteDeploymentConfigInput) (req *aws.Request, output *DeleteDeploymentConfigOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteDeploymentConfig == nil {
-		opDeleteDeploymentConfig = &aws.Operation{
-			Name:       "DeleteDeploymentConfig",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteDeploymentConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteDeploymentConfigInput{}
 	}
 
-	req = c.newRequest(opDeleteDeploymentConfig, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteDeploymentConfigOutput{}
 	req.Data = output
 	return
@@ -333,26 +282,21 @@ func (c *CodeDeploy) DeleteDeploymentConfig(input *DeleteDeploymentConfigInput) 
 	return out, err
 }
 
-var opDeleteDeploymentConfig *aws.Operation
+const opDeleteDeploymentGroup = "DeleteDeploymentGroup"
 
 // DeleteDeploymentGroupRequest generates a request for the DeleteDeploymentGroup operation.
 func (c *CodeDeploy) DeleteDeploymentGroupRequest(input *DeleteDeploymentGroupInput) (req *aws.Request, output *DeleteDeploymentGroupOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteDeploymentGroup == nil {
-		opDeleteDeploymentGroup = &aws.Operation{
-			Name:       "DeleteDeploymentGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteDeploymentGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteDeploymentGroupInput{}
 	}
 
-	req = c.newRequest(opDeleteDeploymentGroup, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteDeploymentGroupOutput{}
 	req.Data = output
 	return
@@ -365,26 +309,21 @@ func (c *CodeDeploy) DeleteDeploymentGroup(input *DeleteDeploymentGroupInput) (*
 	return out, err
 }
 
-var opDeleteDeploymentGroup *aws.Operation
+const opDeregisterOnPremisesInstance = "DeregisterOnPremisesInstance"
 
 // DeregisterOnPremisesInstanceRequest generates a request for the DeregisterOnPremisesInstance operation.
 func (c *CodeDeploy) DeregisterOnPremisesInstanceRequest(input *DeregisterOnPremisesInstanceInput) (req *aws.Request, output *DeregisterOnPremisesInstanceOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeregisterOnPremisesInstance == nil {
-		opDeregisterOnPremisesInstance = &aws.Operation{
-			Name:       "DeregisterOnPremisesInstance",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeregisterOnPremisesInstance,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeregisterOnPremisesInstanceInput{}
 	}
 
-	req = c.newRequest(opDeregisterOnPremisesInstance, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeregisterOnPremisesInstanceOutput{}
 	req.Data = output
 	return
@@ -397,26 +336,21 @@ func (c *CodeDeploy) DeregisterOnPremisesInstance(input *DeregisterOnPremisesIns
 	return out, err
 }
 
-var opDeregisterOnPremisesInstance *aws.Operation
+const opGetApplication = "GetApplication"
 
 // GetApplicationRequest generates a request for the GetApplication operation.
 func (c *CodeDeploy) GetApplicationRequest(input *GetApplicationInput) (req *aws.Request, output *GetApplicationOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetApplication == nil {
-		opGetApplication = &aws.Operation{
-			Name:       "GetApplication",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetApplication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetApplicationInput{}
 	}
 
-	req = c.newRequest(opGetApplication, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetApplicationOutput{}
 	req.Data = output
 	return
@@ -429,26 +363,21 @@ func (c *CodeDeploy) GetApplication(input *GetApplicationInput) (*GetApplication
 	return out, err
 }
 
-var opGetApplication *aws.Operation
+const opGetApplicationRevision = "GetApplicationRevision"
 
 // GetApplicationRevisionRequest generates a request for the GetApplicationRevision operation.
 func (c *CodeDeploy) GetApplicationRevisionRequest(input *GetApplicationRevisionInput) (req *aws.Request, output *GetApplicationRevisionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetApplicationRevision == nil {
-		opGetApplicationRevision = &aws.Operation{
-			Name:       "GetApplicationRevision",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetApplicationRevision,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetApplicationRevisionInput{}
 	}
 
-	req = c.newRequest(opGetApplicationRevision, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetApplicationRevisionOutput{}
 	req.Data = output
 	return
@@ -461,26 +390,21 @@ func (c *CodeDeploy) GetApplicationRevision(input *GetApplicationRevisionInput) 
 	return out, err
 }
 
-var opGetApplicationRevision *aws.Operation
+const opGetDeployment = "GetDeployment"
 
 // GetDeploymentRequest generates a request for the GetDeployment operation.
 func (c *CodeDeploy) GetDeploymentRequest(input *GetDeploymentInput) (req *aws.Request, output *GetDeploymentOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetDeployment == nil {
-		opGetDeployment = &aws.Operation{
-			Name:       "GetDeployment",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetDeployment,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetDeploymentInput{}
 	}
 
-	req = c.newRequest(opGetDeployment, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetDeploymentOutput{}
 	req.Data = output
 	return
@@ -493,26 +417,21 @@ func (c *CodeDeploy) GetDeployment(input *GetDeploymentInput) (*GetDeploymentOut
 	return out, err
 }
 
-var opGetDeployment *aws.Operation
+const opGetDeploymentConfig = "GetDeploymentConfig"
 
 // GetDeploymentConfigRequest generates a request for the GetDeploymentConfig operation.
 func (c *CodeDeploy) GetDeploymentConfigRequest(input *GetDeploymentConfigInput) (req *aws.Request, output *GetDeploymentConfigOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetDeploymentConfig == nil {
-		opGetDeploymentConfig = &aws.Operation{
-			Name:       "GetDeploymentConfig",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetDeploymentConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetDeploymentConfigInput{}
 	}
 
-	req = c.newRequest(opGetDeploymentConfig, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetDeploymentConfigOutput{}
 	req.Data = output
 	return
@@ -525,26 +444,21 @@ func (c *CodeDeploy) GetDeploymentConfig(input *GetDeploymentConfigInput) (*GetD
 	return out, err
 }
 
-var opGetDeploymentConfig *aws.Operation
+const opGetDeploymentGroup = "GetDeploymentGroup"
 
 // GetDeploymentGroupRequest generates a request for the GetDeploymentGroup operation.
 func (c *CodeDeploy) GetDeploymentGroupRequest(input *GetDeploymentGroupInput) (req *aws.Request, output *GetDeploymentGroupOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetDeploymentGroup == nil {
-		opGetDeploymentGroup = &aws.Operation{
-			Name:       "GetDeploymentGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetDeploymentGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetDeploymentGroupInput{}
 	}
 
-	req = c.newRequest(opGetDeploymentGroup, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetDeploymentGroupOutput{}
 	req.Data = output
 	return
@@ -557,26 +471,21 @@ func (c *CodeDeploy) GetDeploymentGroup(input *GetDeploymentGroupInput) (*GetDep
 	return out, err
 }
 
-var opGetDeploymentGroup *aws.Operation
+const opGetDeploymentInstance = "GetDeploymentInstance"
 
 // GetDeploymentInstanceRequest generates a request for the GetDeploymentInstance operation.
 func (c *CodeDeploy) GetDeploymentInstanceRequest(input *GetDeploymentInstanceInput) (req *aws.Request, output *GetDeploymentInstanceOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetDeploymentInstance == nil {
-		opGetDeploymentInstance = &aws.Operation{
-			Name:       "GetDeploymentInstance",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetDeploymentInstance,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetDeploymentInstanceInput{}
 	}
 
-	req = c.newRequest(opGetDeploymentInstance, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetDeploymentInstanceOutput{}
 	req.Data = output
 	return
@@ -589,26 +498,21 @@ func (c *CodeDeploy) GetDeploymentInstance(input *GetDeploymentInstanceInput) (*
 	return out, err
 }
 
-var opGetDeploymentInstance *aws.Operation
+const opGetOnPremisesInstance = "GetOnPremisesInstance"
 
 // GetOnPremisesInstanceRequest generates a request for the GetOnPremisesInstance operation.
 func (c *CodeDeploy) GetOnPremisesInstanceRequest(input *GetOnPremisesInstanceInput) (req *aws.Request, output *GetOnPremisesInstanceOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetOnPremisesInstance == nil {
-		opGetOnPremisesInstance = &aws.Operation{
-			Name:       "GetOnPremisesInstance",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetOnPremisesInstance,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetOnPremisesInstanceInput{}
 	}
 
-	req = c.newRequest(opGetOnPremisesInstance, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetOnPremisesInstanceOutput{}
 	req.Data = output
 	return
@@ -621,26 +525,21 @@ func (c *CodeDeploy) GetOnPremisesInstance(input *GetOnPremisesInstanceInput) (*
 	return out, err
 }
 
-var opGetOnPremisesInstance *aws.Operation
+const opListApplicationRevisions = "ListApplicationRevisions"
 
 // ListApplicationRevisionsRequest generates a request for the ListApplicationRevisions operation.
 func (c *CodeDeploy) ListApplicationRevisionsRequest(input *ListApplicationRevisionsInput) (req *aws.Request, output *ListApplicationRevisionsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListApplicationRevisions == nil {
-		opListApplicationRevisions = &aws.Operation{
-			Name:       "ListApplicationRevisions",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opListApplicationRevisions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ListApplicationRevisionsInput{}
 	}
 
-	req = c.newRequest(opListApplicationRevisions, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListApplicationRevisionsOutput{}
 	req.Data = output
 	return
@@ -653,26 +552,21 @@ func (c *CodeDeploy) ListApplicationRevisions(input *ListApplicationRevisionsInp
 	return out, err
 }
 
-var opListApplicationRevisions *aws.Operation
+const opListApplications = "ListApplications"
 
 // ListApplicationsRequest generates a request for the ListApplications operation.
 func (c *CodeDeploy) ListApplicationsRequest(input *ListApplicationsInput) (req *aws.Request, output *ListApplicationsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListApplications == nil {
-		opListApplications = &aws.Operation{
-			Name:       "ListApplications",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opListApplications,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ListApplicationsInput{}
 	}
 
-	req = c.newRequest(opListApplications, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListApplicationsOutput{}
 	req.Data = output
 	return
@@ -685,26 +579,21 @@ func (c *CodeDeploy) ListApplications(input *ListApplicationsInput) (*ListApplic
 	return out, err
 }
 
-var opListApplications *aws.Operation
+const opListDeploymentConfigs = "ListDeploymentConfigs"
 
 // ListDeploymentConfigsRequest generates a request for the ListDeploymentConfigs operation.
 func (c *CodeDeploy) ListDeploymentConfigsRequest(input *ListDeploymentConfigsInput) (req *aws.Request, output *ListDeploymentConfigsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListDeploymentConfigs == nil {
-		opListDeploymentConfigs = &aws.Operation{
-			Name:       "ListDeploymentConfigs",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opListDeploymentConfigs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ListDeploymentConfigsInput{}
 	}
 
-	req = c.newRequest(opListDeploymentConfigs, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListDeploymentConfigsOutput{}
 	req.Data = output
 	return
@@ -717,26 +606,21 @@ func (c *CodeDeploy) ListDeploymentConfigs(input *ListDeploymentConfigsInput) (*
 	return out, err
 }
 
-var opListDeploymentConfigs *aws.Operation
+const opListDeploymentGroups = "ListDeploymentGroups"
 
 // ListDeploymentGroupsRequest generates a request for the ListDeploymentGroups operation.
 func (c *CodeDeploy) ListDeploymentGroupsRequest(input *ListDeploymentGroupsInput) (req *aws.Request, output *ListDeploymentGroupsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListDeploymentGroups == nil {
-		opListDeploymentGroups = &aws.Operation{
-			Name:       "ListDeploymentGroups",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opListDeploymentGroups,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ListDeploymentGroupsInput{}
 	}
 
-	req = c.newRequest(opListDeploymentGroups, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListDeploymentGroupsOutput{}
 	req.Data = output
 	return
@@ -750,26 +634,21 @@ func (c *CodeDeploy) ListDeploymentGroups(input *ListDeploymentGroupsInput) (*Li
 	return out, err
 }
 
-var opListDeploymentGroups *aws.Operation
+const opListDeploymentInstances = "ListDeploymentInstances"
 
 // ListDeploymentInstancesRequest generates a request for the ListDeploymentInstances operation.
 func (c *CodeDeploy) ListDeploymentInstancesRequest(input *ListDeploymentInstancesInput) (req *aws.Request, output *ListDeploymentInstancesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListDeploymentInstances == nil {
-		opListDeploymentInstances = &aws.Operation{
-			Name:       "ListDeploymentInstances",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opListDeploymentInstances,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ListDeploymentInstancesInput{}
 	}
 
-	req = c.newRequest(opListDeploymentInstances, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListDeploymentInstancesOutput{}
 	req.Data = output
 	return
@@ -783,26 +662,21 @@ func (c *CodeDeploy) ListDeploymentInstances(input *ListDeploymentInstancesInput
 	return out, err
 }
 
-var opListDeploymentInstances *aws.Operation
+const opListDeployments = "ListDeployments"
 
 // ListDeploymentsRequest generates a request for the ListDeployments operation.
 func (c *CodeDeploy) ListDeploymentsRequest(input *ListDeploymentsInput) (req *aws.Request, output *ListDeploymentsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListDeployments == nil {
-		opListDeployments = &aws.Operation{
-			Name:       "ListDeployments",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opListDeployments,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ListDeploymentsInput{}
 	}
 
-	req = c.newRequest(opListDeployments, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListDeploymentsOutput{}
 	req.Data = output
 	return
@@ -816,26 +690,21 @@ func (c *CodeDeploy) ListDeployments(input *ListDeploymentsInput) (*ListDeployme
 	return out, err
 }
 
-var opListDeployments *aws.Operation
+const opListOnPremisesInstances = "ListOnPremisesInstances"
 
 // ListOnPremisesInstancesRequest generates a request for the ListOnPremisesInstances operation.
 func (c *CodeDeploy) ListOnPremisesInstancesRequest(input *ListOnPremisesInstancesInput) (req *aws.Request, output *ListOnPremisesInstancesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListOnPremisesInstances == nil {
-		opListOnPremisesInstances = &aws.Operation{
-			Name:       "ListOnPremisesInstances",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opListOnPremisesInstances,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ListOnPremisesInstancesInput{}
 	}
 
-	req = c.newRequest(opListOnPremisesInstances, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListOnPremisesInstancesOutput{}
 	req.Data = output
 	return
@@ -852,26 +721,21 @@ func (c *CodeDeploy) ListOnPremisesInstances(input *ListOnPremisesInstancesInput
 	return out, err
 }
 
-var opListOnPremisesInstances *aws.Operation
+const opRegisterApplicationRevision = "RegisterApplicationRevision"
 
 // RegisterApplicationRevisionRequest generates a request for the RegisterApplicationRevision operation.
 func (c *CodeDeploy) RegisterApplicationRevisionRequest(input *RegisterApplicationRevisionInput) (req *aws.Request, output *RegisterApplicationRevisionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opRegisterApplicationRevision == nil {
-		opRegisterApplicationRevision = &aws.Operation{
-			Name:       "RegisterApplicationRevision",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opRegisterApplicationRevision,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &RegisterApplicationRevisionInput{}
 	}
 
-	req = c.newRequest(opRegisterApplicationRevision, input, output)
+	req = c.newRequest(op, input, output)
 	output = &RegisterApplicationRevisionOutput{}
 	req.Data = output
 	return
@@ -884,26 +748,21 @@ func (c *CodeDeploy) RegisterApplicationRevision(input *RegisterApplicationRevis
 	return out, err
 }
 
-var opRegisterApplicationRevision *aws.Operation
+const opRegisterOnPremisesInstance = "RegisterOnPremisesInstance"
 
 // RegisterOnPremisesInstanceRequest generates a request for the RegisterOnPremisesInstance operation.
 func (c *CodeDeploy) RegisterOnPremisesInstanceRequest(input *RegisterOnPremisesInstanceInput) (req *aws.Request, output *RegisterOnPremisesInstanceOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opRegisterOnPremisesInstance == nil {
-		opRegisterOnPremisesInstance = &aws.Operation{
-			Name:       "RegisterOnPremisesInstance",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opRegisterOnPremisesInstance,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &RegisterOnPremisesInstanceInput{}
 	}
 
-	req = c.newRequest(opRegisterOnPremisesInstance, input, output)
+	req = c.newRequest(op, input, output)
 	output = &RegisterOnPremisesInstanceOutput{}
 	req.Data = output
 	return
@@ -916,26 +775,21 @@ func (c *CodeDeploy) RegisterOnPremisesInstance(input *RegisterOnPremisesInstanc
 	return out, err
 }
 
-var opRegisterOnPremisesInstance *aws.Operation
+const opRemoveTagsFromOnPremisesInstances = "RemoveTagsFromOnPremisesInstances"
 
 // RemoveTagsFromOnPremisesInstancesRequest generates a request for the RemoveTagsFromOnPremisesInstances operation.
 func (c *CodeDeploy) RemoveTagsFromOnPremisesInstancesRequest(input *RemoveTagsFromOnPremisesInstancesInput) (req *aws.Request, output *RemoveTagsFromOnPremisesInstancesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opRemoveTagsFromOnPremisesInstances == nil {
-		opRemoveTagsFromOnPremisesInstances = &aws.Operation{
-			Name:       "RemoveTagsFromOnPremisesInstances",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opRemoveTagsFromOnPremisesInstances,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &RemoveTagsFromOnPremisesInstancesInput{}
 	}
 
-	req = c.newRequest(opRemoveTagsFromOnPremisesInstances, input, output)
+	req = c.newRequest(op, input, output)
 	output = &RemoveTagsFromOnPremisesInstancesOutput{}
 	req.Data = output
 	return
@@ -948,26 +802,21 @@ func (c *CodeDeploy) RemoveTagsFromOnPremisesInstances(input *RemoveTagsFromOnPr
 	return out, err
 }
 
-var opRemoveTagsFromOnPremisesInstances *aws.Operation
+const opStopDeployment = "StopDeployment"
 
 // StopDeploymentRequest generates a request for the StopDeployment operation.
 func (c *CodeDeploy) StopDeploymentRequest(input *StopDeploymentInput) (req *aws.Request, output *StopDeploymentOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opStopDeployment == nil {
-		opStopDeployment = &aws.Operation{
-			Name:       "StopDeployment",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opStopDeployment,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &StopDeploymentInput{}
 	}
 
-	req = c.newRequest(opStopDeployment, input, output)
+	req = c.newRequest(op, input, output)
 	output = &StopDeploymentOutput{}
 	req.Data = output
 	return
@@ -980,26 +829,21 @@ func (c *CodeDeploy) StopDeployment(input *StopDeploymentInput) (*StopDeployment
 	return out, err
 }
 
-var opStopDeployment *aws.Operation
+const opUpdateApplication = "UpdateApplication"
 
 // UpdateApplicationRequest generates a request for the UpdateApplication operation.
 func (c *CodeDeploy) UpdateApplicationRequest(input *UpdateApplicationInput) (req *aws.Request, output *UpdateApplicationOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateApplication == nil {
-		opUpdateApplication = &aws.Operation{
-			Name:       "UpdateApplication",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateApplication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateApplicationInput{}
 	}
 
-	req = c.newRequest(opUpdateApplication, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateApplicationOutput{}
 	req.Data = output
 	return
@@ -1012,26 +856,21 @@ func (c *CodeDeploy) UpdateApplication(input *UpdateApplicationInput) (*UpdateAp
 	return out, err
 }
 
-var opUpdateApplication *aws.Operation
+const opUpdateDeploymentGroup = "UpdateDeploymentGroup"
 
 // UpdateDeploymentGroupRequest generates a request for the UpdateDeploymentGroup operation.
 func (c *CodeDeploy) UpdateDeploymentGroupRequest(input *UpdateDeploymentGroupInput) (req *aws.Request, output *UpdateDeploymentGroupOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateDeploymentGroup == nil {
-		opUpdateDeploymentGroup = &aws.Operation{
-			Name:       "UpdateDeploymentGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateDeploymentGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateDeploymentGroupInput{}
 	}
 
-	req = c.newRequest(opUpdateDeploymentGroup, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateDeploymentGroupOutput{}
 	req.Data = output
 	return
@@ -1043,8 +882,6 @@ func (c *CodeDeploy) UpdateDeploymentGroup(input *UpdateDeploymentGroupInput) (*
 	err := req.Send()
 	return out, err
 }
-
-var opUpdateDeploymentGroup *aws.Operation
 
 // Represents the input of an adds tags to on-premises instance operation.
 type AddTagsToOnPremisesInstancesInput struct {

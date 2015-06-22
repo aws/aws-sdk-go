@@ -4,32 +4,26 @@
 package cloudfront
 
 import (
-	"sync"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 )
 
-var oprw sync.Mutex
+const opCreateCloudFrontOriginAccessIdentity = "CreateCloudFrontOriginAccessIdentity2014_11_06"
 
 // CreateCloudFrontOriginAccessIdentityRequest generates a request for the CreateCloudFrontOriginAccessIdentity operation.
 func (c *CloudFront) CreateCloudFrontOriginAccessIdentityRequest(input *CreateCloudFrontOriginAccessIdentityInput) (req *aws.Request, output *CreateCloudFrontOriginAccessIdentityOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateCloudFrontOriginAccessIdentity == nil {
-		opCreateCloudFrontOriginAccessIdentity = &aws.Operation{
-			Name:       "CreateCloudFrontOriginAccessIdentity2014_11_06",
-			HTTPMethod: "POST",
-			HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront",
-		}
+	op := &aws.Operation{
+		Name:       opCreateCloudFrontOriginAccessIdentity,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront",
 	}
 
 	if input == nil {
 		input = &CreateCloudFrontOriginAccessIdentityInput{}
 	}
 
-	req = c.newRequest(opCreateCloudFrontOriginAccessIdentity, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateCloudFrontOriginAccessIdentityOutput{}
 	req.Data = output
 	return
@@ -42,26 +36,21 @@ func (c *CloudFront) CreateCloudFrontOriginAccessIdentity(input *CreateCloudFron
 	return out, err
 }
 
-var opCreateCloudFrontOriginAccessIdentity *aws.Operation
+const opCreateDistribution = "CreateDistribution2014_11_06"
 
 // CreateDistributionRequest generates a request for the CreateDistribution operation.
 func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (req *aws.Request, output *CreateDistributionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateDistribution == nil {
-		opCreateDistribution = &aws.Operation{
-			Name:       "CreateDistribution2014_11_06",
-			HTTPMethod: "POST",
-			HTTPPath:   "/2014-11-06/distribution",
-		}
+	op := &aws.Operation{
+		Name:       opCreateDistribution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2014-11-06/distribution",
 	}
 
 	if input == nil {
 		input = &CreateDistributionInput{}
 	}
 
-	req = c.newRequest(opCreateDistribution, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateDistributionOutput{}
 	req.Data = output
 	return
@@ -74,26 +63,21 @@ func (c *CloudFront) CreateDistribution(input *CreateDistributionInput) (*Create
 	return out, err
 }
 
-var opCreateDistribution *aws.Operation
+const opCreateInvalidation = "CreateInvalidation2014_11_06"
 
 // CreateInvalidationRequest generates a request for the CreateInvalidation operation.
 func (c *CloudFront) CreateInvalidationRequest(input *CreateInvalidationInput) (req *aws.Request, output *CreateInvalidationOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateInvalidation == nil {
-		opCreateInvalidation = &aws.Operation{
-			Name:       "CreateInvalidation2014_11_06",
-			HTTPMethod: "POST",
-			HTTPPath:   "/2014-11-06/distribution/{DistributionId}/invalidation",
-		}
+	op := &aws.Operation{
+		Name:       opCreateInvalidation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2014-11-06/distribution/{DistributionId}/invalidation",
 	}
 
 	if input == nil {
 		input = &CreateInvalidationInput{}
 	}
 
-	req = c.newRequest(opCreateInvalidation, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateInvalidationOutput{}
 	req.Data = output
 	return
@@ -106,26 +90,21 @@ func (c *CloudFront) CreateInvalidation(input *CreateInvalidationInput) (*Create
 	return out, err
 }
 
-var opCreateInvalidation *aws.Operation
+const opCreateStreamingDistribution = "CreateStreamingDistribution2014_11_06"
 
 // CreateStreamingDistributionRequest generates a request for the CreateStreamingDistribution operation.
 func (c *CloudFront) CreateStreamingDistributionRequest(input *CreateStreamingDistributionInput) (req *aws.Request, output *CreateStreamingDistributionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateStreamingDistribution == nil {
-		opCreateStreamingDistribution = &aws.Operation{
-			Name:       "CreateStreamingDistribution2014_11_06",
-			HTTPMethod: "POST",
-			HTTPPath:   "/2014-11-06/streaming-distribution",
-		}
+	op := &aws.Operation{
+		Name:       opCreateStreamingDistribution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2014-11-06/streaming-distribution",
 	}
 
 	if input == nil {
 		input = &CreateStreamingDistributionInput{}
 	}
 
-	req = c.newRequest(opCreateStreamingDistribution, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateStreamingDistributionOutput{}
 	req.Data = output
 	return
@@ -138,26 +117,21 @@ func (c *CloudFront) CreateStreamingDistribution(input *CreateStreamingDistribut
 	return out, err
 }
 
-var opCreateStreamingDistribution *aws.Operation
+const opDeleteCloudFrontOriginAccessIdentity = "DeleteCloudFrontOriginAccessIdentity2014_11_06"
 
 // DeleteCloudFrontOriginAccessIdentityRequest generates a request for the DeleteCloudFrontOriginAccessIdentity operation.
 func (c *CloudFront) DeleteCloudFrontOriginAccessIdentityRequest(input *DeleteCloudFrontOriginAccessIdentityInput) (req *aws.Request, output *DeleteCloudFrontOriginAccessIdentityOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteCloudFrontOriginAccessIdentity == nil {
-		opDeleteCloudFrontOriginAccessIdentity = &aws.Operation{
-			Name:       "DeleteCloudFrontOriginAccessIdentity2014_11_06",
-			HTTPMethod: "DELETE",
-			HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront/{Id}",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteCloudFrontOriginAccessIdentity,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront/{Id}",
 	}
 
 	if input == nil {
 		input = &DeleteCloudFrontOriginAccessIdentityInput{}
 	}
 
-	req = c.newRequest(opDeleteCloudFrontOriginAccessIdentity, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteCloudFrontOriginAccessIdentityOutput{}
 	req.Data = output
 	return
@@ -170,26 +144,21 @@ func (c *CloudFront) DeleteCloudFrontOriginAccessIdentity(input *DeleteCloudFron
 	return out, err
 }
 
-var opDeleteCloudFrontOriginAccessIdentity *aws.Operation
+const opDeleteDistribution = "DeleteDistribution2014_11_06"
 
 // DeleteDistributionRequest generates a request for the DeleteDistribution operation.
 func (c *CloudFront) DeleteDistributionRequest(input *DeleteDistributionInput) (req *aws.Request, output *DeleteDistributionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteDistribution == nil {
-		opDeleteDistribution = &aws.Operation{
-			Name:       "DeleteDistribution2014_11_06",
-			HTTPMethod: "DELETE",
-			HTTPPath:   "/2014-11-06/distribution/{Id}",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteDistribution,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/2014-11-06/distribution/{Id}",
 	}
 
 	if input == nil {
 		input = &DeleteDistributionInput{}
 	}
 
-	req = c.newRequest(opDeleteDistribution, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteDistributionOutput{}
 	req.Data = output
 	return
@@ -202,26 +171,21 @@ func (c *CloudFront) DeleteDistribution(input *DeleteDistributionInput) (*Delete
 	return out, err
 }
 
-var opDeleteDistribution *aws.Operation
+const opDeleteStreamingDistribution = "DeleteStreamingDistribution2014_11_06"
 
 // DeleteStreamingDistributionRequest generates a request for the DeleteStreamingDistribution operation.
 func (c *CloudFront) DeleteStreamingDistributionRequest(input *DeleteStreamingDistributionInput) (req *aws.Request, output *DeleteStreamingDistributionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteStreamingDistribution == nil {
-		opDeleteStreamingDistribution = &aws.Operation{
-			Name:       "DeleteStreamingDistribution2014_11_06",
-			HTTPMethod: "DELETE",
-			HTTPPath:   "/2014-11-06/streaming-distribution/{Id}",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteStreamingDistribution,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/2014-11-06/streaming-distribution/{Id}",
 	}
 
 	if input == nil {
 		input = &DeleteStreamingDistributionInput{}
 	}
 
-	req = c.newRequest(opDeleteStreamingDistribution, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteStreamingDistributionOutput{}
 	req.Data = output
 	return
@@ -234,26 +198,21 @@ func (c *CloudFront) DeleteStreamingDistribution(input *DeleteStreamingDistribut
 	return out, err
 }
 
-var opDeleteStreamingDistribution *aws.Operation
+const opGetCloudFrontOriginAccessIdentity = "GetCloudFrontOriginAccessIdentity2014_11_06"
 
 // GetCloudFrontOriginAccessIdentityRequest generates a request for the GetCloudFrontOriginAccessIdentity operation.
 func (c *CloudFront) GetCloudFrontOriginAccessIdentityRequest(input *GetCloudFrontOriginAccessIdentityInput) (req *aws.Request, output *GetCloudFrontOriginAccessIdentityOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetCloudFrontOriginAccessIdentity == nil {
-		opGetCloudFrontOriginAccessIdentity = &aws.Operation{
-			Name:       "GetCloudFrontOriginAccessIdentity2014_11_06",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront/{Id}",
-		}
+	op := &aws.Operation{
+		Name:       opGetCloudFrontOriginAccessIdentity,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront/{Id}",
 	}
 
 	if input == nil {
 		input = &GetCloudFrontOriginAccessIdentityInput{}
 	}
 
-	req = c.newRequest(opGetCloudFrontOriginAccessIdentity, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetCloudFrontOriginAccessIdentityOutput{}
 	req.Data = output
 	return
@@ -266,26 +225,21 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentity(input *GetCloudFrontOrigi
 	return out, err
 }
 
-var opGetCloudFrontOriginAccessIdentity *aws.Operation
+const opGetCloudFrontOriginAccessIdentityConfig = "GetCloudFrontOriginAccessIdentityConfig2014_11_06"
 
 // GetCloudFrontOriginAccessIdentityConfigRequest generates a request for the GetCloudFrontOriginAccessIdentityConfig operation.
 func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfigRequest(input *GetCloudFrontOriginAccessIdentityConfigInput) (req *aws.Request, output *GetCloudFrontOriginAccessIdentityConfigOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetCloudFrontOriginAccessIdentityConfig == nil {
-		opGetCloudFrontOriginAccessIdentityConfig = &aws.Operation{
-			Name:       "GetCloudFrontOriginAccessIdentityConfig2014_11_06",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront/{Id}/config",
-		}
+	op := &aws.Operation{
+		Name:       opGetCloudFrontOriginAccessIdentityConfig,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront/{Id}/config",
 	}
 
 	if input == nil {
 		input = &GetCloudFrontOriginAccessIdentityConfigInput{}
 	}
 
-	req = c.newRequest(opGetCloudFrontOriginAccessIdentityConfig, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetCloudFrontOriginAccessIdentityConfigOutput{}
 	req.Data = output
 	return
@@ -298,26 +252,21 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfig(input *GetCloudFron
 	return out, err
 }
 
-var opGetCloudFrontOriginAccessIdentityConfig *aws.Operation
+const opGetDistribution = "GetDistribution2014_11_06"
 
 // GetDistributionRequest generates a request for the GetDistribution operation.
 func (c *CloudFront) GetDistributionRequest(input *GetDistributionInput) (req *aws.Request, output *GetDistributionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetDistribution == nil {
-		opGetDistribution = &aws.Operation{
-			Name:       "GetDistribution2014_11_06",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2014-11-06/distribution/{Id}",
-		}
+	op := &aws.Operation{
+		Name:       opGetDistribution,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2014-11-06/distribution/{Id}",
 	}
 
 	if input == nil {
 		input = &GetDistributionInput{}
 	}
 
-	req = c.newRequest(opGetDistribution, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetDistributionOutput{}
 	req.Data = output
 	return
@@ -330,26 +279,21 @@ func (c *CloudFront) GetDistribution(input *GetDistributionInput) (*GetDistribut
 	return out, err
 }
 
-var opGetDistribution *aws.Operation
+const opGetDistributionConfig = "GetDistributionConfig2014_11_06"
 
 // GetDistributionConfigRequest generates a request for the GetDistributionConfig operation.
 func (c *CloudFront) GetDistributionConfigRequest(input *GetDistributionConfigInput) (req *aws.Request, output *GetDistributionConfigOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetDistributionConfig == nil {
-		opGetDistributionConfig = &aws.Operation{
-			Name:       "GetDistributionConfig2014_11_06",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2014-11-06/distribution/{Id}/config",
-		}
+	op := &aws.Operation{
+		Name:       opGetDistributionConfig,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2014-11-06/distribution/{Id}/config",
 	}
 
 	if input == nil {
 		input = &GetDistributionConfigInput{}
 	}
 
-	req = c.newRequest(opGetDistributionConfig, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetDistributionConfigOutput{}
 	req.Data = output
 	return
@@ -362,26 +306,21 @@ func (c *CloudFront) GetDistributionConfig(input *GetDistributionConfigInput) (*
 	return out, err
 }
 
-var opGetDistributionConfig *aws.Operation
+const opGetInvalidation = "GetInvalidation2014_11_06"
 
 // GetInvalidationRequest generates a request for the GetInvalidation operation.
 func (c *CloudFront) GetInvalidationRequest(input *GetInvalidationInput) (req *aws.Request, output *GetInvalidationOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetInvalidation == nil {
-		opGetInvalidation = &aws.Operation{
-			Name:       "GetInvalidation2014_11_06",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2014-11-06/distribution/{DistributionId}/invalidation/{Id}",
-		}
+	op := &aws.Operation{
+		Name:       opGetInvalidation,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2014-11-06/distribution/{DistributionId}/invalidation/{Id}",
 	}
 
 	if input == nil {
 		input = &GetInvalidationInput{}
 	}
 
-	req = c.newRequest(opGetInvalidation, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetInvalidationOutput{}
 	req.Data = output
 	return
@@ -394,26 +333,21 @@ func (c *CloudFront) GetInvalidation(input *GetInvalidationInput) (*GetInvalidat
 	return out, err
 }
 
-var opGetInvalidation *aws.Operation
+const opGetStreamingDistribution = "GetStreamingDistribution2014_11_06"
 
 // GetStreamingDistributionRequest generates a request for the GetStreamingDistribution operation.
 func (c *CloudFront) GetStreamingDistributionRequest(input *GetStreamingDistributionInput) (req *aws.Request, output *GetStreamingDistributionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetStreamingDistribution == nil {
-		opGetStreamingDistribution = &aws.Operation{
-			Name:       "GetStreamingDistribution2014_11_06",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2014-11-06/streaming-distribution/{Id}",
-		}
+	op := &aws.Operation{
+		Name:       opGetStreamingDistribution,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2014-11-06/streaming-distribution/{Id}",
 	}
 
 	if input == nil {
 		input = &GetStreamingDistributionInput{}
 	}
 
-	req = c.newRequest(opGetStreamingDistribution, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetStreamingDistributionOutput{}
 	req.Data = output
 	return
@@ -426,26 +360,21 @@ func (c *CloudFront) GetStreamingDistribution(input *GetStreamingDistributionInp
 	return out, err
 }
 
-var opGetStreamingDistribution *aws.Operation
+const opGetStreamingDistributionConfig = "GetStreamingDistributionConfig2014_11_06"
 
 // GetStreamingDistributionConfigRequest generates a request for the GetStreamingDistributionConfig operation.
 func (c *CloudFront) GetStreamingDistributionConfigRequest(input *GetStreamingDistributionConfigInput) (req *aws.Request, output *GetStreamingDistributionConfigOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetStreamingDistributionConfig == nil {
-		opGetStreamingDistributionConfig = &aws.Operation{
-			Name:       "GetStreamingDistributionConfig2014_11_06",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2014-11-06/streaming-distribution/{Id}/config",
-		}
+	op := &aws.Operation{
+		Name:       opGetStreamingDistributionConfig,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2014-11-06/streaming-distribution/{Id}/config",
 	}
 
 	if input == nil {
 		input = &GetStreamingDistributionConfigInput{}
 	}
 
-	req = c.newRequest(opGetStreamingDistributionConfig, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetStreamingDistributionConfigOutput{}
 	req.Data = output
 	return
@@ -458,32 +387,27 @@ func (c *CloudFront) GetStreamingDistributionConfig(input *GetStreamingDistribut
 	return out, err
 }
 
-var opGetStreamingDistributionConfig *aws.Operation
+const opListCloudFrontOriginAccessIdentities = "ListCloudFrontOriginAccessIdentities2014_11_06"
 
 // ListCloudFrontOriginAccessIdentitiesRequest generates a request for the ListCloudFrontOriginAccessIdentities operation.
 func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesRequest(input *ListCloudFrontOriginAccessIdentitiesInput) (req *aws.Request, output *ListCloudFrontOriginAccessIdentitiesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListCloudFrontOriginAccessIdentities == nil {
-		opListCloudFrontOriginAccessIdentities = &aws.Operation{
-			Name:       "ListCloudFrontOriginAccessIdentities2014_11_06",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"CloudFrontOriginAccessIdentityList.NextMarker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "CloudFrontOriginAccessIdentityList.IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListCloudFrontOriginAccessIdentities,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"CloudFrontOriginAccessIdentityList.NextMarker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "CloudFrontOriginAccessIdentityList.IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListCloudFrontOriginAccessIdentitiesInput{}
 	}
 
-	req = c.newRequest(opListCloudFrontOriginAccessIdentities, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListCloudFrontOriginAccessIdentitiesOutput{}
 	req.Data = output
 	return
@@ -503,32 +427,27 @@ func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesPages(input *ListCloudF
 	})
 }
 
-var opListCloudFrontOriginAccessIdentities *aws.Operation
+const opListDistributions = "ListDistributions2014_11_06"
 
 // ListDistributionsRequest generates a request for the ListDistributions operation.
 func (c *CloudFront) ListDistributionsRequest(input *ListDistributionsInput) (req *aws.Request, output *ListDistributionsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListDistributions == nil {
-		opListDistributions = &aws.Operation{
-			Name:       "ListDistributions2014_11_06",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2014-11-06/distribution",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"DistributionList.NextMarker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "DistributionList.IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListDistributions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2014-11-06/distribution",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"DistributionList.NextMarker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "DistributionList.IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListDistributionsInput{}
 	}
 
-	req = c.newRequest(opListDistributions, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListDistributionsOutput{}
 	req.Data = output
 	return
@@ -548,32 +467,27 @@ func (c *CloudFront) ListDistributionsPages(input *ListDistributionsInput, fn fu
 	})
 }
 
-var opListDistributions *aws.Operation
+const opListInvalidations = "ListInvalidations2014_11_06"
 
 // ListInvalidationsRequest generates a request for the ListInvalidations operation.
 func (c *CloudFront) ListInvalidationsRequest(input *ListInvalidationsInput) (req *aws.Request, output *ListInvalidationsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListInvalidations == nil {
-		opListInvalidations = &aws.Operation{
-			Name:       "ListInvalidations2014_11_06",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2014-11-06/distribution/{DistributionId}/invalidation",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"InvalidationList.NextMarker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "InvalidationList.IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListInvalidations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2014-11-06/distribution/{DistributionId}/invalidation",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"InvalidationList.NextMarker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "InvalidationList.IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListInvalidationsInput{}
 	}
 
-	req = c.newRequest(opListInvalidations, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListInvalidationsOutput{}
 	req.Data = output
 	return
@@ -593,32 +507,27 @@ func (c *CloudFront) ListInvalidationsPages(input *ListInvalidationsInput, fn fu
 	})
 }
 
-var opListInvalidations *aws.Operation
+const opListStreamingDistributions = "ListStreamingDistributions2014_11_06"
 
 // ListStreamingDistributionsRequest generates a request for the ListStreamingDistributions operation.
 func (c *CloudFront) ListStreamingDistributionsRequest(input *ListStreamingDistributionsInput) (req *aws.Request, output *ListStreamingDistributionsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListStreamingDistributions == nil {
-		opListStreamingDistributions = &aws.Operation{
-			Name:       "ListStreamingDistributions2014_11_06",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2014-11-06/streaming-distribution",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"StreamingDistributionList.NextMarker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "StreamingDistributionList.IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListStreamingDistributions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2014-11-06/streaming-distribution",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"StreamingDistributionList.NextMarker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "StreamingDistributionList.IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListStreamingDistributionsInput{}
 	}
 
-	req = c.newRequest(opListStreamingDistributions, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListStreamingDistributionsOutput{}
 	req.Data = output
 	return
@@ -638,26 +547,21 @@ func (c *CloudFront) ListStreamingDistributionsPages(input *ListStreamingDistrib
 	})
 }
 
-var opListStreamingDistributions *aws.Operation
+const opUpdateCloudFrontOriginAccessIdentity = "UpdateCloudFrontOriginAccessIdentity2014_11_06"
 
 // UpdateCloudFrontOriginAccessIdentityRequest generates a request for the UpdateCloudFrontOriginAccessIdentity operation.
 func (c *CloudFront) UpdateCloudFrontOriginAccessIdentityRequest(input *UpdateCloudFrontOriginAccessIdentityInput) (req *aws.Request, output *UpdateCloudFrontOriginAccessIdentityOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateCloudFrontOriginAccessIdentity == nil {
-		opUpdateCloudFrontOriginAccessIdentity = &aws.Operation{
-			Name:       "UpdateCloudFrontOriginAccessIdentity2014_11_06",
-			HTTPMethod: "PUT",
-			HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront/{Id}/config",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateCloudFrontOriginAccessIdentity,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/2014-11-06/origin-access-identity/cloudfront/{Id}/config",
 	}
 
 	if input == nil {
 		input = &UpdateCloudFrontOriginAccessIdentityInput{}
 	}
 
-	req = c.newRequest(opUpdateCloudFrontOriginAccessIdentity, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateCloudFrontOriginAccessIdentityOutput{}
 	req.Data = output
 	return
@@ -670,26 +574,21 @@ func (c *CloudFront) UpdateCloudFrontOriginAccessIdentity(input *UpdateCloudFron
 	return out, err
 }
 
-var opUpdateCloudFrontOriginAccessIdentity *aws.Operation
+const opUpdateDistribution = "UpdateDistribution2014_11_06"
 
 // UpdateDistributionRequest generates a request for the UpdateDistribution operation.
 func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (req *aws.Request, output *UpdateDistributionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateDistribution == nil {
-		opUpdateDistribution = &aws.Operation{
-			Name:       "UpdateDistribution2014_11_06",
-			HTTPMethod: "PUT",
-			HTTPPath:   "/2014-11-06/distribution/{Id}/config",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateDistribution,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/2014-11-06/distribution/{Id}/config",
 	}
 
 	if input == nil {
 		input = &UpdateDistributionInput{}
 	}
 
-	req = c.newRequest(opUpdateDistribution, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateDistributionOutput{}
 	req.Data = output
 	return
@@ -702,26 +601,21 @@ func (c *CloudFront) UpdateDistribution(input *UpdateDistributionInput) (*Update
 	return out, err
 }
 
-var opUpdateDistribution *aws.Operation
+const opUpdateStreamingDistribution = "UpdateStreamingDistribution2014_11_06"
 
 // UpdateStreamingDistributionRequest generates a request for the UpdateStreamingDistribution operation.
 func (c *CloudFront) UpdateStreamingDistributionRequest(input *UpdateStreamingDistributionInput) (req *aws.Request, output *UpdateStreamingDistributionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateStreamingDistribution == nil {
-		opUpdateStreamingDistribution = &aws.Operation{
-			Name:       "UpdateStreamingDistribution2014_11_06",
-			HTTPMethod: "PUT",
-			HTTPPath:   "/2014-11-06/streaming-distribution/{Id}/config",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateStreamingDistribution,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/2014-11-06/streaming-distribution/{Id}/config",
 	}
 
 	if input == nil {
 		input = &UpdateStreamingDistributionInput{}
 	}
 
-	req = c.newRequest(opUpdateStreamingDistribution, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateStreamingDistributionOutput{}
 	req.Data = output
 	return
@@ -733,8 +627,6 @@ func (c *CloudFront) UpdateStreamingDistribution(input *UpdateStreamingDistribut
 	err := req.Send()
 	return out, err
 }
-
-var opUpdateStreamingDistribution *aws.Operation
 
 // A complex type that lists the AWS accounts, if any, that you included in
 // the TrustedSigners complex type for the default cache behavior or for any

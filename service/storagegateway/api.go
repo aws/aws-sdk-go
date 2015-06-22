@@ -4,32 +4,26 @@
 package storagegateway
 
 import (
-	"sync"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 )
 
-var oprw sync.Mutex
+const opActivateGateway = "ActivateGateway"
 
 // ActivateGatewayRequest generates a request for the ActivateGateway operation.
 func (c *StorageGateway) ActivateGatewayRequest(input *ActivateGatewayInput) (req *aws.Request, output *ActivateGatewayOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opActivateGateway == nil {
-		opActivateGateway = &aws.Operation{
-			Name:       "ActivateGateway",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opActivateGateway,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ActivateGatewayInput{}
 	}
 
-	req = c.newRequest(opActivateGateway, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ActivateGatewayOutput{}
 	req.Data = output
 	return
@@ -50,26 +44,21 @@ func (c *StorageGateway) ActivateGateway(input *ActivateGatewayInput) (*Activate
 	return out, err
 }
 
-var opActivateGateway *aws.Operation
+const opAddCache = "AddCache"
 
 // AddCacheRequest generates a request for the AddCache operation.
 func (c *StorageGateway) AddCacheRequest(input *AddCacheInput) (req *aws.Request, output *AddCacheOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opAddCache == nil {
-		opAddCache = &aws.Operation{
-			Name:       "AddCache",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opAddCache,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &AddCacheInput{}
 	}
 
-	req = c.newRequest(opAddCache, input, output)
+	req = c.newRequest(op, input, output)
 	output = &AddCacheOutput{}
 	req.Data = output
 	return
@@ -88,26 +77,21 @@ func (c *StorageGateway) AddCache(input *AddCacheInput) (*AddCacheOutput, error)
 	return out, err
 }
 
-var opAddCache *aws.Operation
+const opAddUploadBuffer = "AddUploadBuffer"
 
 // AddUploadBufferRequest generates a request for the AddUploadBuffer operation.
 func (c *StorageGateway) AddUploadBufferRequest(input *AddUploadBufferInput) (req *aws.Request, output *AddUploadBufferOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opAddUploadBuffer == nil {
-		opAddUploadBuffer = &aws.Operation{
-			Name:       "AddUploadBuffer",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opAddUploadBuffer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &AddUploadBufferInput{}
 	}
 
-	req = c.newRequest(opAddUploadBuffer, input, output)
+	req = c.newRequest(op, input, output)
 	output = &AddUploadBufferOutput{}
 	req.Data = output
 	return
@@ -126,26 +110,21 @@ func (c *StorageGateway) AddUploadBuffer(input *AddUploadBufferInput) (*AddUploa
 	return out, err
 }
 
-var opAddUploadBuffer *aws.Operation
+const opAddWorkingStorage = "AddWorkingStorage"
 
 // AddWorkingStorageRequest generates a request for the AddWorkingStorage operation.
 func (c *StorageGateway) AddWorkingStorageRequest(input *AddWorkingStorageInput) (req *aws.Request, output *AddWorkingStorageOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opAddWorkingStorage == nil {
-		opAddWorkingStorage = &aws.Operation{
-			Name:       "AddWorkingStorage",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opAddWorkingStorage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &AddWorkingStorageInput{}
 	}
 
-	req = c.newRequest(opAddWorkingStorage, input, output)
+	req = c.newRequest(op, input, output)
 	output = &AddWorkingStorageOutput{}
 	req.Data = output
 	return
@@ -168,26 +147,21 @@ func (c *StorageGateway) AddWorkingStorage(input *AddWorkingStorageInput) (*AddW
 	return out, err
 }
 
-var opAddWorkingStorage *aws.Operation
+const opCancelArchival = "CancelArchival"
 
 // CancelArchivalRequest generates a request for the CancelArchival operation.
 func (c *StorageGateway) CancelArchivalRequest(input *CancelArchivalInput) (req *aws.Request, output *CancelArchivalOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCancelArchival == nil {
-		opCancelArchival = &aws.Operation{
-			Name:       "CancelArchival",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCancelArchival,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CancelArchivalInput{}
 	}
 
-	req = c.newRequest(opCancelArchival, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CancelArchivalOutput{}
 	req.Data = output
 	return
@@ -201,26 +175,21 @@ func (c *StorageGateway) CancelArchival(input *CancelArchivalInput) (*CancelArch
 	return out, err
 }
 
-var opCancelArchival *aws.Operation
+const opCancelRetrieval = "CancelRetrieval"
 
 // CancelRetrievalRequest generates a request for the CancelRetrieval operation.
 func (c *StorageGateway) CancelRetrievalRequest(input *CancelRetrievalInput) (req *aws.Request, output *CancelRetrievalOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCancelRetrieval == nil {
-		opCancelRetrieval = &aws.Operation{
-			Name:       "CancelRetrieval",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCancelRetrieval,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CancelRetrievalInput{}
 	}
 
-	req = c.newRequest(opCancelRetrieval, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CancelRetrievalOutput{}
 	req.Data = output
 	return
@@ -235,26 +204,21 @@ func (c *StorageGateway) CancelRetrieval(input *CancelRetrievalInput) (*CancelRe
 	return out, err
 }
 
-var opCancelRetrieval *aws.Operation
+const opCreateCachediSCSIVolume = "CreateCachediSCSIVolume"
 
 // CreateCachediSCSIVolumeRequest generates a request for the CreateCachediSCSIVolume operation.
 func (c *StorageGateway) CreateCachediSCSIVolumeRequest(input *CreateCachediSCSIVolumeInput) (req *aws.Request, output *CreateCachediSCSIVolumeOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateCachediSCSIVolume == nil {
-		opCreateCachediSCSIVolume = &aws.Operation{
-			Name:       "CreateCachediSCSIVolume",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateCachediSCSIVolume,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateCachediSCSIVolumeInput{}
 	}
 
-	req = c.newRequest(opCreateCachediSCSIVolume, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateCachediSCSIVolumeOutput{}
 	req.Data = output
 	return
@@ -277,26 +241,21 @@ func (c *StorageGateway) CreateCachediSCSIVolume(input *CreateCachediSCSIVolumeI
 	return out, err
 }
 
-var opCreateCachediSCSIVolume *aws.Operation
+const opCreateSnapshot = "CreateSnapshot"
 
 // CreateSnapshotRequest generates a request for the CreateSnapshot operation.
 func (c *StorageGateway) CreateSnapshotRequest(input *CreateSnapshotInput) (req *aws.Request, output *CreateSnapshotOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateSnapshot == nil {
-		opCreateSnapshot = &aws.Operation{
-			Name:       "CreateSnapshot",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateSnapshot,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateSnapshotInput{}
 	}
 
-	req = c.newRequest(opCreateSnapshot, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateSnapshotOutput{}
 	req.Data = output
 	return
@@ -329,26 +288,21 @@ func (c *StorageGateway) CreateSnapshot(input *CreateSnapshotInput) (*CreateSnap
 	return out, err
 }
 
-var opCreateSnapshot *aws.Operation
+const opCreateSnapshotFromVolumeRecoveryPoint = "CreateSnapshotFromVolumeRecoveryPoint"
 
 // CreateSnapshotFromVolumeRecoveryPointRequest generates a request for the CreateSnapshotFromVolumeRecoveryPoint operation.
 func (c *StorageGateway) CreateSnapshotFromVolumeRecoveryPointRequest(input *CreateSnapshotFromVolumeRecoveryPointInput) (req *aws.Request, output *CreateSnapshotFromVolumeRecoveryPointOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateSnapshotFromVolumeRecoveryPoint == nil {
-		opCreateSnapshotFromVolumeRecoveryPoint = &aws.Operation{
-			Name:       "CreateSnapshotFromVolumeRecoveryPoint",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateSnapshotFromVolumeRecoveryPoint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateSnapshotFromVolumeRecoveryPointInput{}
 	}
 
-	req = c.newRequest(opCreateSnapshotFromVolumeRecoveryPoint, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateSnapshotFromVolumeRecoveryPointOutput{}
 	req.Data = output
 	return
@@ -378,26 +332,21 @@ func (c *StorageGateway) CreateSnapshotFromVolumeRecoveryPoint(input *CreateSnap
 	return out, err
 }
 
-var opCreateSnapshotFromVolumeRecoveryPoint *aws.Operation
+const opCreateStorediSCSIVolume = "CreateStorediSCSIVolume"
 
 // CreateStorediSCSIVolumeRequest generates a request for the CreateStorediSCSIVolume operation.
 func (c *StorageGateway) CreateStorediSCSIVolumeRequest(input *CreateStorediSCSIVolumeInput) (req *aws.Request, output *CreateStorediSCSIVolumeOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateStorediSCSIVolume == nil {
-		opCreateStorediSCSIVolume = &aws.Operation{
-			Name:       "CreateStorediSCSIVolume",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateStorediSCSIVolume,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateStorediSCSIVolumeInput{}
 	}
 
-	req = c.newRequest(opCreateStorediSCSIVolume, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateStorediSCSIVolumeOutput{}
 	req.Data = output
 	return
@@ -422,26 +371,21 @@ func (c *StorageGateway) CreateStorediSCSIVolume(input *CreateStorediSCSIVolumeI
 	return out, err
 }
 
-var opCreateStorediSCSIVolume *aws.Operation
+const opCreateTapes = "CreateTapes"
 
 // CreateTapesRequest generates a request for the CreateTapes operation.
 func (c *StorageGateway) CreateTapesRequest(input *CreateTapesInput) (req *aws.Request, output *CreateTapesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateTapes == nil {
-		opCreateTapes = &aws.Operation{
-			Name:       "CreateTapes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateTapes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateTapesInput{}
 	}
 
-	req = c.newRequest(opCreateTapes, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateTapesOutput{}
 	req.Data = output
 	return
@@ -458,26 +402,21 @@ func (c *StorageGateway) CreateTapes(input *CreateTapesInput) (*CreateTapesOutpu
 	return out, err
 }
 
-var opCreateTapes *aws.Operation
+const opDeleteBandwidthRateLimit = "DeleteBandwidthRateLimit"
 
 // DeleteBandwidthRateLimitRequest generates a request for the DeleteBandwidthRateLimit operation.
 func (c *StorageGateway) DeleteBandwidthRateLimitRequest(input *DeleteBandwidthRateLimitInput) (req *aws.Request, output *DeleteBandwidthRateLimitOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteBandwidthRateLimit == nil {
-		opDeleteBandwidthRateLimit = &aws.Operation{
-			Name:       "DeleteBandwidthRateLimit",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteBandwidthRateLimit,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteBandwidthRateLimitInput{}
 	}
 
-	req = c.newRequest(opDeleteBandwidthRateLimit, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteBandwidthRateLimitOutput{}
 	req.Data = output
 	return
@@ -494,26 +433,21 @@ func (c *StorageGateway) DeleteBandwidthRateLimit(input *DeleteBandwidthRateLimi
 	return out, err
 }
 
-var opDeleteBandwidthRateLimit *aws.Operation
+const opDeleteChapCredentials = "DeleteChapCredentials"
 
 // DeleteChapCredentialsRequest generates a request for the DeleteChapCredentials operation.
 func (c *StorageGateway) DeleteChapCredentialsRequest(input *DeleteChapCredentialsInput) (req *aws.Request, output *DeleteChapCredentialsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteChapCredentials == nil {
-		opDeleteChapCredentials = &aws.Operation{
-			Name:       "DeleteChapCredentials",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteChapCredentials,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteChapCredentialsInput{}
 	}
 
-	req = c.newRequest(opDeleteChapCredentials, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteChapCredentialsOutput{}
 	req.Data = output
 	return
@@ -527,26 +461,21 @@ func (c *StorageGateway) DeleteChapCredentials(input *DeleteChapCredentialsInput
 	return out, err
 }
 
-var opDeleteChapCredentials *aws.Operation
+const opDeleteGateway = "DeleteGateway"
 
 // DeleteGatewayRequest generates a request for the DeleteGateway operation.
 func (c *StorageGateway) DeleteGatewayRequest(input *DeleteGatewayInput) (req *aws.Request, output *DeleteGatewayOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteGateway == nil {
-		opDeleteGateway = &aws.Operation{
-			Name:       "DeleteGateway",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteGateway,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteGatewayInput{}
 	}
 
-	req = c.newRequest(opDeleteGateway, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteGatewayOutput{}
 	req.Data = output
 	return
@@ -574,26 +503,21 @@ func (c *StorageGateway) DeleteGateway(input *DeleteGatewayInput) (*DeleteGatewa
 	return out, err
 }
 
-var opDeleteGateway *aws.Operation
+const opDeleteSnapshotSchedule = "DeleteSnapshotSchedule"
 
 // DeleteSnapshotScheduleRequest generates a request for the DeleteSnapshotSchedule operation.
 func (c *StorageGateway) DeleteSnapshotScheduleRequest(input *DeleteSnapshotScheduleInput) (req *aws.Request, output *DeleteSnapshotScheduleOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteSnapshotSchedule == nil {
-		opDeleteSnapshotSchedule = &aws.Operation{
-			Name:       "DeleteSnapshotSchedule",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteSnapshotSchedule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteSnapshotScheduleInput{}
 	}
 
-	req = c.newRequest(opDeleteSnapshotSchedule, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteSnapshotScheduleOutput{}
 	req.Data = output
 	return
@@ -615,26 +539,21 @@ func (c *StorageGateway) DeleteSnapshotSchedule(input *DeleteSnapshotScheduleInp
 	return out, err
 }
 
-var opDeleteSnapshotSchedule *aws.Operation
+const opDeleteTape = "DeleteTape"
 
 // DeleteTapeRequest generates a request for the DeleteTape operation.
 func (c *StorageGateway) DeleteTapeRequest(input *DeleteTapeInput) (req *aws.Request, output *DeleteTapeOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteTape == nil {
-		opDeleteTape = &aws.Operation{
-			Name:       "DeleteTape",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteTape,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteTapeInput{}
 	}
 
-	req = c.newRequest(opDeleteTape, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteTapeOutput{}
 	req.Data = output
 	return
@@ -647,26 +566,21 @@ func (c *StorageGateway) DeleteTape(input *DeleteTapeInput) (*DeleteTapeOutput, 
 	return out, err
 }
 
-var opDeleteTape *aws.Operation
+const opDeleteTapeArchive = "DeleteTapeArchive"
 
 // DeleteTapeArchiveRequest generates a request for the DeleteTapeArchive operation.
 func (c *StorageGateway) DeleteTapeArchiveRequest(input *DeleteTapeArchiveInput) (req *aws.Request, output *DeleteTapeArchiveOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteTapeArchive == nil {
-		opDeleteTapeArchive = &aws.Operation{
-			Name:       "DeleteTapeArchive",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteTapeArchive,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteTapeArchiveInput{}
 	}
 
-	req = c.newRequest(opDeleteTapeArchive, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteTapeArchiveOutput{}
 	req.Data = output
 	return
@@ -679,26 +593,21 @@ func (c *StorageGateway) DeleteTapeArchive(input *DeleteTapeArchiveInput) (*Dele
 	return out, err
 }
 
-var opDeleteTapeArchive *aws.Operation
+const opDeleteVolume = "DeleteVolume"
 
 // DeleteVolumeRequest generates a request for the DeleteVolume operation.
 func (c *StorageGateway) DeleteVolumeRequest(input *DeleteVolumeInput) (req *aws.Request, output *DeleteVolumeOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteVolume == nil {
-		opDeleteVolume = &aws.Operation{
-			Name:       "DeleteVolume",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteVolume,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteVolumeInput{}
 	}
 
-	req = c.newRequest(opDeleteVolume, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteVolumeOutput{}
 	req.Data = output
 	return
@@ -724,26 +633,21 @@ func (c *StorageGateway) DeleteVolume(input *DeleteVolumeInput) (*DeleteVolumeOu
 	return out, err
 }
 
-var opDeleteVolume *aws.Operation
+const opDescribeBandwidthRateLimit = "DescribeBandwidthRateLimit"
 
 // DescribeBandwidthRateLimitRequest generates a request for the DescribeBandwidthRateLimit operation.
 func (c *StorageGateway) DescribeBandwidthRateLimitRequest(input *DescribeBandwidthRateLimitInput) (req *aws.Request, output *DescribeBandwidthRateLimitOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeBandwidthRateLimit == nil {
-		opDescribeBandwidthRateLimit = &aws.Operation{
-			Name:       "DescribeBandwidthRateLimit",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeBandwidthRateLimit,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeBandwidthRateLimitInput{}
 	}
 
-	req = c.newRequest(opDescribeBandwidthRateLimit, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeBandwidthRateLimitOutput{}
 	req.Data = output
 	return
@@ -762,26 +666,21 @@ func (c *StorageGateway) DescribeBandwidthRateLimit(input *DescribeBandwidthRate
 	return out, err
 }
 
-var opDescribeBandwidthRateLimit *aws.Operation
+const opDescribeCache = "DescribeCache"
 
 // DescribeCacheRequest generates a request for the DescribeCache operation.
 func (c *StorageGateway) DescribeCacheRequest(input *DescribeCacheInput) (req *aws.Request, output *DescribeCacheOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeCache == nil {
-		opDescribeCache = &aws.Operation{
-			Name:       "DescribeCache",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeCache,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeCacheInput{}
 	}
 
-	req = c.newRequest(opDescribeCache, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeCacheOutput{}
 	req.Data = output
 	return
@@ -798,26 +697,21 @@ func (c *StorageGateway) DescribeCache(input *DescribeCacheInput) (*DescribeCach
 	return out, err
 }
 
-var opDescribeCache *aws.Operation
+const opDescribeCachediSCSIVolumes = "DescribeCachediSCSIVolumes"
 
 // DescribeCachediSCSIVolumesRequest generates a request for the DescribeCachediSCSIVolumes operation.
 func (c *StorageGateway) DescribeCachediSCSIVolumesRequest(input *DescribeCachediSCSIVolumesInput) (req *aws.Request, output *DescribeCachediSCSIVolumesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeCachediSCSIVolumes == nil {
-		opDescribeCachediSCSIVolumes = &aws.Operation{
-			Name:       "DescribeCachediSCSIVolumes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeCachediSCSIVolumes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeCachediSCSIVolumesInput{}
 	}
 
-	req = c.newRequest(opDescribeCachediSCSIVolumes, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeCachediSCSIVolumesOutput{}
 	req.Data = output
 	return
@@ -836,26 +730,21 @@ func (c *StorageGateway) DescribeCachediSCSIVolumes(input *DescribeCachediSCSIVo
 	return out, err
 }
 
-var opDescribeCachediSCSIVolumes *aws.Operation
+const opDescribeChapCredentials = "DescribeChapCredentials"
 
 // DescribeChapCredentialsRequest generates a request for the DescribeChapCredentials operation.
 func (c *StorageGateway) DescribeChapCredentialsRequest(input *DescribeChapCredentialsInput) (req *aws.Request, output *DescribeChapCredentialsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeChapCredentials == nil {
-		opDescribeChapCredentials = &aws.Operation{
-			Name:       "DescribeChapCredentials",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeChapCredentials,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeChapCredentialsInput{}
 	}
 
-	req = c.newRequest(opDescribeChapCredentials, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeChapCredentialsOutput{}
 	req.Data = output
 	return
@@ -870,26 +759,21 @@ func (c *StorageGateway) DescribeChapCredentials(input *DescribeChapCredentialsI
 	return out, err
 }
 
-var opDescribeChapCredentials *aws.Operation
+const opDescribeGatewayInformation = "DescribeGatewayInformation"
 
 // DescribeGatewayInformationRequest generates a request for the DescribeGatewayInformation operation.
 func (c *StorageGateway) DescribeGatewayInformationRequest(input *DescribeGatewayInformationInput) (req *aws.Request, output *DescribeGatewayInformationOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeGatewayInformation == nil {
-		opDescribeGatewayInformation = &aws.Operation{
-			Name:       "DescribeGatewayInformation",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeGatewayInformation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeGatewayInformationInput{}
 	}
 
-	req = c.newRequest(opDescribeGatewayInformation, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeGatewayInformationOutput{}
 	req.Data = output
 	return
@@ -905,26 +789,21 @@ func (c *StorageGateway) DescribeGatewayInformation(input *DescribeGatewayInform
 	return out, err
 }
 
-var opDescribeGatewayInformation *aws.Operation
+const opDescribeMaintenanceStartTime = "DescribeMaintenanceStartTime"
 
 // DescribeMaintenanceStartTimeRequest generates a request for the DescribeMaintenanceStartTime operation.
 func (c *StorageGateway) DescribeMaintenanceStartTimeRequest(input *DescribeMaintenanceStartTimeInput) (req *aws.Request, output *DescribeMaintenanceStartTimeOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeMaintenanceStartTime == nil {
-		opDescribeMaintenanceStartTime = &aws.Operation{
-			Name:       "DescribeMaintenanceStartTime",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeMaintenanceStartTime,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeMaintenanceStartTimeInput{}
 	}
 
-	req = c.newRequest(opDescribeMaintenanceStartTime, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeMaintenanceStartTimeOutput{}
 	req.Data = output
 	return
@@ -939,26 +818,21 @@ func (c *StorageGateway) DescribeMaintenanceStartTime(input *DescribeMaintenance
 	return out, err
 }
 
-var opDescribeMaintenanceStartTime *aws.Operation
+const opDescribeSnapshotSchedule = "DescribeSnapshotSchedule"
 
 // DescribeSnapshotScheduleRequest generates a request for the DescribeSnapshotSchedule operation.
 func (c *StorageGateway) DescribeSnapshotScheduleRequest(input *DescribeSnapshotScheduleInput) (req *aws.Request, output *DescribeSnapshotScheduleOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeSnapshotSchedule == nil {
-		opDescribeSnapshotSchedule = &aws.Operation{
-			Name:       "DescribeSnapshotSchedule",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeSnapshotSchedule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeSnapshotScheduleInput{}
 	}
 
-	req = c.newRequest(opDescribeSnapshotSchedule, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeSnapshotScheduleOutput{}
 	req.Data = output
 	return
@@ -973,26 +847,21 @@ func (c *StorageGateway) DescribeSnapshotSchedule(input *DescribeSnapshotSchedul
 	return out, err
 }
 
-var opDescribeSnapshotSchedule *aws.Operation
+const opDescribeStorediSCSIVolumes = "DescribeStorediSCSIVolumes"
 
 // DescribeStorediSCSIVolumesRequest generates a request for the DescribeStorediSCSIVolumes operation.
 func (c *StorageGateway) DescribeStorediSCSIVolumesRequest(input *DescribeStorediSCSIVolumesInput) (req *aws.Request, output *DescribeStorediSCSIVolumesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeStorediSCSIVolumes == nil {
-		opDescribeStorediSCSIVolumes = &aws.Operation{
-			Name:       "DescribeStorediSCSIVolumes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeStorediSCSIVolumes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeStorediSCSIVolumesInput{}
 	}
 
-	req = c.newRequest(opDescribeStorediSCSIVolumes, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeStorediSCSIVolumesOutput{}
 	req.Data = output
 	return
@@ -1008,32 +877,27 @@ func (c *StorageGateway) DescribeStorediSCSIVolumes(input *DescribeStorediSCSIVo
 	return out, err
 }
 
-var opDescribeStorediSCSIVolumes *aws.Operation
+const opDescribeTapeArchives = "DescribeTapeArchives"
 
 // DescribeTapeArchivesRequest generates a request for the DescribeTapeArchives operation.
 func (c *StorageGateway) DescribeTapeArchivesRequest(input *DescribeTapeArchivesInput) (req *aws.Request, output *DescribeTapeArchivesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeTapeArchives == nil {
-		opDescribeTapeArchives = &aws.Operation{
-			Name:       "DescribeTapeArchives",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "Limit",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeTapeArchives,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeTapeArchivesInput{}
 	}
 
-	req = c.newRequest(opDescribeTapeArchives, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeTapeArchivesOutput{}
 	req.Data = output
 	return
@@ -1057,32 +921,27 @@ func (c *StorageGateway) DescribeTapeArchivesPages(input *DescribeTapeArchivesIn
 	})
 }
 
-var opDescribeTapeArchives *aws.Operation
+const opDescribeTapeRecoveryPoints = "DescribeTapeRecoveryPoints"
 
 // DescribeTapeRecoveryPointsRequest generates a request for the DescribeTapeRecoveryPoints operation.
 func (c *StorageGateway) DescribeTapeRecoveryPointsRequest(input *DescribeTapeRecoveryPointsInput) (req *aws.Request, output *DescribeTapeRecoveryPointsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeTapeRecoveryPoints == nil {
-		opDescribeTapeRecoveryPoints = &aws.Operation{
-			Name:       "DescribeTapeRecoveryPoints",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "Limit",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeTapeRecoveryPoints,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeTapeRecoveryPointsInput{}
 	}
 
-	req = c.newRequest(opDescribeTapeRecoveryPoints, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeTapeRecoveryPointsOutput{}
 	req.Data = output
 	return
@@ -1107,32 +966,27 @@ func (c *StorageGateway) DescribeTapeRecoveryPointsPages(input *DescribeTapeReco
 	})
 }
 
-var opDescribeTapeRecoveryPoints *aws.Operation
+const opDescribeTapes = "DescribeTapes"
 
 // DescribeTapesRequest generates a request for the DescribeTapes operation.
 func (c *StorageGateway) DescribeTapesRequest(input *DescribeTapesInput) (req *aws.Request, output *DescribeTapesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeTapes == nil {
-		opDescribeTapes = &aws.Operation{
-			Name:       "DescribeTapes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "Limit",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeTapes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeTapesInput{}
 	}
 
-	req = c.newRequest(opDescribeTapes, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeTapesOutput{}
 	req.Data = output
 	return
@@ -1154,26 +1008,21 @@ func (c *StorageGateway) DescribeTapesPages(input *DescribeTapesInput, fn func(p
 	})
 }
 
-var opDescribeTapes *aws.Operation
+const opDescribeUploadBuffer = "DescribeUploadBuffer"
 
 // DescribeUploadBufferRequest generates a request for the DescribeUploadBuffer operation.
 func (c *StorageGateway) DescribeUploadBufferRequest(input *DescribeUploadBufferInput) (req *aws.Request, output *DescribeUploadBufferOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeUploadBuffer == nil {
-		opDescribeUploadBuffer = &aws.Operation{
-			Name:       "DescribeUploadBuffer",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeUploadBuffer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeUploadBufferInput{}
 	}
 
-	req = c.newRequest(opDescribeUploadBuffer, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeUploadBufferOutput{}
 	req.Data = output
 	return
@@ -1191,32 +1040,27 @@ func (c *StorageGateway) DescribeUploadBuffer(input *DescribeUploadBufferInput) 
 	return out, err
 }
 
-var opDescribeUploadBuffer *aws.Operation
+const opDescribeVTLDevices = "DescribeVTLDevices"
 
 // DescribeVTLDevicesRequest generates a request for the DescribeVTLDevices operation.
 func (c *StorageGateway) DescribeVTLDevicesRequest(input *DescribeVTLDevicesInput) (req *aws.Request, output *DescribeVTLDevicesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeVTLDevices == nil {
-		opDescribeVTLDevices = &aws.Operation{
-			Name:       "DescribeVTLDevices",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "Limit",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeVTLDevices,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeVTLDevicesInput{}
 	}
 
-	req = c.newRequest(opDescribeVTLDevices, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeVTLDevicesOutput{}
 	req.Data = output
 	return
@@ -1239,26 +1083,21 @@ func (c *StorageGateway) DescribeVTLDevicesPages(input *DescribeVTLDevicesInput,
 	})
 }
 
-var opDescribeVTLDevices *aws.Operation
+const opDescribeWorkingStorage = "DescribeWorkingStorage"
 
 // DescribeWorkingStorageRequest generates a request for the DescribeWorkingStorage operation.
 func (c *StorageGateway) DescribeWorkingStorageRequest(input *DescribeWorkingStorageInput) (req *aws.Request, output *DescribeWorkingStorageOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeWorkingStorage == nil {
-		opDescribeWorkingStorage = &aws.Operation{
-			Name:       "DescribeWorkingStorage",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeWorkingStorage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeWorkingStorageInput{}
 	}
 
-	req = c.newRequest(opDescribeWorkingStorage, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeWorkingStorageOutput{}
 	req.Data = output
 	return
@@ -1280,26 +1119,21 @@ func (c *StorageGateway) DescribeWorkingStorage(input *DescribeWorkingStorageInp
 	return out, err
 }
 
-var opDescribeWorkingStorage *aws.Operation
+const opDisableGateway = "DisableGateway"
 
 // DisableGatewayRequest generates a request for the DisableGateway operation.
 func (c *StorageGateway) DisableGatewayRequest(input *DisableGatewayInput) (req *aws.Request, output *DisableGatewayOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDisableGateway == nil {
-		opDisableGateway = &aws.Operation{
-			Name:       "DisableGateway",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDisableGateway,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DisableGatewayInput{}
 	}
 
-	req = c.newRequest(opDisableGateway, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DisableGatewayOutput{}
 	req.Data = output
 	return
@@ -1318,32 +1152,27 @@ func (c *StorageGateway) DisableGateway(input *DisableGatewayInput) (*DisableGat
 	return out, err
 }
 
-var opDisableGateway *aws.Operation
+const opListGateways = "ListGateways"
 
 // ListGatewaysRequest generates a request for the ListGateways operation.
 func (c *StorageGateway) ListGatewaysRequest(input *ListGatewaysInput) (req *aws.Request, output *ListGatewaysOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListGateways == nil {
-		opListGateways = &aws.Operation{
-			Name:       "ListGateways",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "Limit",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListGateways,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &ListGatewaysInput{}
 	}
 
-	req = c.newRequest(opListGateways, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListGatewaysOutput{}
 	req.Data = output
 	return
@@ -1373,26 +1202,21 @@ func (c *StorageGateway) ListGatewaysPages(input *ListGatewaysInput, fn func(p *
 	})
 }
 
-var opListGateways *aws.Operation
+const opListLocalDisks = "ListLocalDisks"
 
 // ListLocalDisksRequest generates a request for the ListLocalDisks operation.
 func (c *StorageGateway) ListLocalDisksRequest(input *ListLocalDisksInput) (req *aws.Request, output *ListLocalDisksOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListLocalDisks == nil {
-		opListLocalDisks = &aws.Operation{
-			Name:       "ListLocalDisks",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opListLocalDisks,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ListLocalDisksInput{}
 	}
 
-	req = c.newRequest(opListLocalDisks, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListLocalDisksOutput{}
 	req.Data = output
 	return
@@ -1414,26 +1238,21 @@ func (c *StorageGateway) ListLocalDisks(input *ListLocalDisksInput) (*ListLocalD
 	return out, err
 }
 
-var opListLocalDisks *aws.Operation
+const opListVolumeInitiators = "ListVolumeInitiators"
 
 // ListVolumeInitiatorsRequest generates a request for the ListVolumeInitiators operation.
 func (c *StorageGateway) ListVolumeInitiatorsRequest(input *ListVolumeInitiatorsInput) (req *aws.Request, output *ListVolumeInitiatorsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListVolumeInitiators == nil {
-		opListVolumeInitiators = &aws.Operation{
-			Name:       "ListVolumeInitiators",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opListVolumeInitiators,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ListVolumeInitiatorsInput{}
 	}
 
-	req = c.newRequest(opListVolumeInitiators, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListVolumeInitiatorsOutput{}
 	req.Data = output
 	return
@@ -1447,26 +1266,21 @@ func (c *StorageGateway) ListVolumeInitiators(input *ListVolumeInitiatorsInput) 
 	return out, err
 }
 
-var opListVolumeInitiators *aws.Operation
+const opListVolumeRecoveryPoints = "ListVolumeRecoveryPoints"
 
 // ListVolumeRecoveryPointsRequest generates a request for the ListVolumeRecoveryPoints operation.
 func (c *StorageGateway) ListVolumeRecoveryPointsRequest(input *ListVolumeRecoveryPointsInput) (req *aws.Request, output *ListVolumeRecoveryPointsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListVolumeRecoveryPoints == nil {
-		opListVolumeRecoveryPoints = &aws.Operation{
-			Name:       "ListVolumeRecoveryPoints",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opListVolumeRecoveryPoints,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ListVolumeRecoveryPointsInput{}
 	}
 
-	req = c.newRequest(opListVolumeRecoveryPoints, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListVolumeRecoveryPointsOutput{}
 	req.Data = output
 	return
@@ -1485,32 +1299,27 @@ func (c *StorageGateway) ListVolumeRecoveryPoints(input *ListVolumeRecoveryPoint
 	return out, err
 }
 
-var opListVolumeRecoveryPoints *aws.Operation
+const opListVolumes = "ListVolumes"
 
 // ListVolumesRequest generates a request for the ListVolumes operation.
 func (c *StorageGateway) ListVolumesRequest(input *ListVolumesInput) (req *aws.Request, output *ListVolumesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListVolumes == nil {
-		opListVolumes = &aws.Operation{
-			Name:       "ListVolumes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "Limit",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListVolumes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &ListVolumesInput{}
 	}
 
-	req = c.newRequest(opListVolumes, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListVolumesOutput{}
 	req.Data = output
 	return
@@ -1539,26 +1348,21 @@ func (c *StorageGateway) ListVolumesPages(input *ListVolumesInput, fn func(p *Li
 	})
 }
 
-var opListVolumes *aws.Operation
+const opResetCache = "ResetCache"
 
 // ResetCacheRequest generates a request for the ResetCache operation.
 func (c *StorageGateway) ResetCacheRequest(input *ResetCacheInput) (req *aws.Request, output *ResetCacheOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opResetCache == nil {
-		opResetCache = &aws.Operation{
-			Name:       "ResetCache",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opResetCache,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ResetCacheInput{}
 	}
 
-	req = c.newRequest(opResetCache, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ResetCacheOutput{}
 	req.Data = output
 	return
@@ -1581,26 +1385,21 @@ func (c *StorageGateway) ResetCache(input *ResetCacheInput) (*ResetCacheOutput, 
 	return out, err
 }
 
-var opResetCache *aws.Operation
+const opRetrieveTapeArchive = "RetrieveTapeArchive"
 
 // RetrieveTapeArchiveRequest generates a request for the RetrieveTapeArchive operation.
 func (c *StorageGateway) RetrieveTapeArchiveRequest(input *RetrieveTapeArchiveInput) (req *aws.Request, output *RetrieveTapeArchiveOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opRetrieveTapeArchive == nil {
-		opRetrieveTapeArchive = &aws.Operation{
-			Name:       "RetrieveTapeArchive",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opRetrieveTapeArchive,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &RetrieveTapeArchiveInput{}
 	}
 
-	req = c.newRequest(opRetrieveTapeArchive, input, output)
+	req = c.newRequest(op, input, output)
 	output = &RetrieveTapeArchiveOutput{}
 	req.Data = output
 	return
@@ -1620,26 +1419,21 @@ func (c *StorageGateway) RetrieveTapeArchive(input *RetrieveTapeArchiveInput) (*
 	return out, err
 }
 
-var opRetrieveTapeArchive *aws.Operation
+const opRetrieveTapeRecoveryPoint = "RetrieveTapeRecoveryPoint"
 
 // RetrieveTapeRecoveryPointRequest generates a request for the RetrieveTapeRecoveryPoint operation.
 func (c *StorageGateway) RetrieveTapeRecoveryPointRequest(input *RetrieveTapeRecoveryPointInput) (req *aws.Request, output *RetrieveTapeRecoveryPointOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opRetrieveTapeRecoveryPoint == nil {
-		opRetrieveTapeRecoveryPoint = &aws.Operation{
-			Name:       "RetrieveTapeRecoveryPoint",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opRetrieveTapeRecoveryPoint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &RetrieveTapeRecoveryPointInput{}
 	}
 
-	req = c.newRequest(opRetrieveTapeRecoveryPoint, input, output)
+	req = c.newRequest(op, input, output)
 	output = &RetrieveTapeRecoveryPointOutput{}
 	req.Data = output
 	return
@@ -1660,26 +1454,21 @@ func (c *StorageGateway) RetrieveTapeRecoveryPoint(input *RetrieveTapeRecoveryPo
 	return out, err
 }
 
-var opRetrieveTapeRecoveryPoint *aws.Operation
+const opShutdownGateway = "ShutdownGateway"
 
 // ShutdownGatewayRequest generates a request for the ShutdownGateway operation.
 func (c *StorageGateway) ShutdownGatewayRequest(input *ShutdownGatewayInput) (req *aws.Request, output *ShutdownGatewayOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opShutdownGateway == nil {
-		opShutdownGateway = &aws.Operation{
-			Name:       "ShutdownGateway",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opShutdownGateway,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ShutdownGatewayInput{}
 	}
 
-	req = c.newRequest(opShutdownGateway, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ShutdownGatewayOutput{}
 	req.Data = output
 	return
@@ -1710,26 +1499,21 @@ func (c *StorageGateway) ShutdownGateway(input *ShutdownGatewayInput) (*Shutdown
 	return out, err
 }
 
-var opShutdownGateway *aws.Operation
+const opStartGateway = "StartGateway"
 
 // StartGatewayRequest generates a request for the StartGateway operation.
 func (c *StorageGateway) StartGatewayRequest(input *StartGatewayInput) (req *aws.Request, output *StartGatewayOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opStartGateway == nil {
-		opStartGateway = &aws.Operation{
-			Name:       "StartGateway",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opStartGateway,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &StartGatewayInput{}
 	}
 
-	req = c.newRequest(opStartGateway, input, output)
+	req = c.newRequest(op, input, output)
 	output = &StartGatewayOutput{}
 	req.Data = output
 	return
@@ -1751,26 +1535,21 @@ func (c *StorageGateway) StartGateway(input *StartGatewayInput) (*StartGatewayOu
 	return out, err
 }
 
-var opStartGateway *aws.Operation
+const opUpdateBandwidthRateLimit = "UpdateBandwidthRateLimit"
 
 // UpdateBandwidthRateLimitRequest generates a request for the UpdateBandwidthRateLimit operation.
 func (c *StorageGateway) UpdateBandwidthRateLimitRequest(input *UpdateBandwidthRateLimitInput) (req *aws.Request, output *UpdateBandwidthRateLimitOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateBandwidthRateLimit == nil {
-		opUpdateBandwidthRateLimit = &aws.Operation{
-			Name:       "UpdateBandwidthRateLimit",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateBandwidthRateLimit,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateBandwidthRateLimitInput{}
 	}
 
-	req = c.newRequest(opUpdateBandwidthRateLimit, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateBandwidthRateLimitOutput{}
 	req.Data = output
 	return
@@ -1793,26 +1572,21 @@ func (c *StorageGateway) UpdateBandwidthRateLimit(input *UpdateBandwidthRateLimi
 	return out, err
 }
 
-var opUpdateBandwidthRateLimit *aws.Operation
+const opUpdateChapCredentials = "UpdateChapCredentials"
 
 // UpdateChapCredentialsRequest generates a request for the UpdateChapCredentials operation.
 func (c *StorageGateway) UpdateChapCredentialsRequest(input *UpdateChapCredentialsInput) (req *aws.Request, output *UpdateChapCredentialsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateChapCredentials == nil {
-		opUpdateChapCredentials = &aws.Operation{
-			Name:       "UpdateChapCredentials",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateChapCredentials,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateChapCredentialsInput{}
 	}
 
-	req = c.newRequest(opUpdateChapCredentials, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateChapCredentialsOutput{}
 	req.Data = output
 	return
@@ -1830,26 +1604,21 @@ func (c *StorageGateway) UpdateChapCredentials(input *UpdateChapCredentialsInput
 	return out, err
 }
 
-var opUpdateChapCredentials *aws.Operation
+const opUpdateGatewayInformation = "UpdateGatewayInformation"
 
 // UpdateGatewayInformationRequest generates a request for the UpdateGatewayInformation operation.
 func (c *StorageGateway) UpdateGatewayInformationRequest(input *UpdateGatewayInformationInput) (req *aws.Request, output *UpdateGatewayInformationOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateGatewayInformation == nil {
-		opUpdateGatewayInformation = &aws.Operation{
-			Name:       "UpdateGatewayInformation",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateGatewayInformation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateGatewayInformationInput{}
 	}
 
-	req = c.newRequest(opUpdateGatewayInformation, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateGatewayInformationOutput{}
 	req.Data = output
 	return
@@ -1864,26 +1633,21 @@ func (c *StorageGateway) UpdateGatewayInformation(input *UpdateGatewayInformatio
 	return out, err
 }
 
-var opUpdateGatewayInformation *aws.Operation
+const opUpdateGatewaySoftwareNow = "UpdateGatewaySoftwareNow"
 
 // UpdateGatewaySoftwareNowRequest generates a request for the UpdateGatewaySoftwareNow operation.
 func (c *StorageGateway) UpdateGatewaySoftwareNowRequest(input *UpdateGatewaySoftwareNowInput) (req *aws.Request, output *UpdateGatewaySoftwareNowOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateGatewaySoftwareNow == nil {
-		opUpdateGatewaySoftwareNow = &aws.Operation{
-			Name:       "UpdateGatewaySoftwareNow",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateGatewaySoftwareNow,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateGatewaySoftwareNowInput{}
 	}
 
-	req = c.newRequest(opUpdateGatewaySoftwareNow, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateGatewaySoftwareNowOutput{}
 	req.Data = output
 	return
@@ -1908,26 +1672,21 @@ func (c *StorageGateway) UpdateGatewaySoftwareNow(input *UpdateGatewaySoftwareNo
 	return out, err
 }
 
-var opUpdateGatewaySoftwareNow *aws.Operation
+const opUpdateMaintenanceStartTime = "UpdateMaintenanceStartTime"
 
 // UpdateMaintenanceStartTimeRequest generates a request for the UpdateMaintenanceStartTime operation.
 func (c *StorageGateway) UpdateMaintenanceStartTimeRequest(input *UpdateMaintenanceStartTimeInput) (req *aws.Request, output *UpdateMaintenanceStartTimeOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateMaintenanceStartTime == nil {
-		opUpdateMaintenanceStartTime = &aws.Operation{
-			Name:       "UpdateMaintenanceStartTime",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateMaintenanceStartTime,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateMaintenanceStartTimeInput{}
 	}
 
-	req = c.newRequest(opUpdateMaintenanceStartTime, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateMaintenanceStartTimeOutput{}
 	req.Data = output
 	return
@@ -1942,26 +1701,21 @@ func (c *StorageGateway) UpdateMaintenanceStartTime(input *UpdateMaintenanceStar
 	return out, err
 }
 
-var opUpdateMaintenanceStartTime *aws.Operation
+const opUpdateSnapshotSchedule = "UpdateSnapshotSchedule"
 
 // UpdateSnapshotScheduleRequest generates a request for the UpdateSnapshotSchedule operation.
 func (c *StorageGateway) UpdateSnapshotScheduleRequest(input *UpdateSnapshotScheduleInput) (req *aws.Request, output *UpdateSnapshotScheduleOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateSnapshotSchedule == nil {
-		opUpdateSnapshotSchedule = &aws.Operation{
-			Name:       "UpdateSnapshotSchedule",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateSnapshotSchedule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateSnapshotScheduleInput{}
 	}
 
-	req = c.newRequest(opUpdateSnapshotSchedule, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateSnapshotScheduleOutput{}
 	req.Data = output
 	return
@@ -1982,26 +1736,21 @@ func (c *StorageGateway) UpdateSnapshotSchedule(input *UpdateSnapshotScheduleInp
 	return out, err
 }
 
-var opUpdateSnapshotSchedule *aws.Operation
+const opUpdateVTLDeviceType = "UpdateVTLDeviceType"
 
 // UpdateVTLDeviceTypeRequest generates a request for the UpdateVTLDeviceType operation.
 func (c *StorageGateway) UpdateVTLDeviceTypeRequest(input *UpdateVTLDeviceTypeInput) (req *aws.Request, output *UpdateVTLDeviceTypeOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateVTLDeviceType == nil {
-		opUpdateVTLDeviceType = &aws.Operation{
-			Name:       "UpdateVTLDeviceType",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateVTLDeviceType,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateVTLDeviceTypeInput{}
 	}
 
-	req = c.newRequest(opUpdateVTLDeviceType, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateVTLDeviceTypeOutput{}
 	req.Data = output
 	return
@@ -2016,8 +1765,6 @@ func (c *StorageGateway) UpdateVTLDeviceType(input *UpdateVTLDeviceTypeInput) (*
 	err := req.Send()
 	return out, err
 }
-
-var opUpdateVTLDeviceType *aws.Operation
 
 // A JSON object containing one or more of the following fields:
 //

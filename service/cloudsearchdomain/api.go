@@ -5,31 +5,25 @@ package cloudsearchdomain
 
 import (
 	"io"
-	"sync"
 
 	"github.com/aws/aws-sdk-go/aws"
 )
 
-var oprw sync.Mutex
+const opSearch = "Search"
 
 // SearchRequest generates a request for the Search operation.
 func (c *CloudSearchDomain) SearchRequest(input *SearchInput) (req *aws.Request, output *SearchOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opSearch == nil {
-		opSearch = &aws.Operation{
-			Name:       "Search",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2013-01-01/search?format=sdk&pretty=true",
-		}
+	op := &aws.Operation{
+		Name:       opSearch,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-01-01/search?format=sdk&pretty=true",
 	}
 
 	if input == nil {
 		input = &SearchInput{}
 	}
 
-	req = c.newRequest(opSearch, input, output)
+	req = c.newRequest(op, input, output)
 	output = &SearchOutput{}
 	req.Data = output
 	return
@@ -60,26 +54,21 @@ func (c *CloudSearchDomain) Search(input *SearchInput) (*SearchOutput, error) {
 	return out, err
 }
 
-var opSearch *aws.Operation
+const opSuggest = "Suggest"
 
 // SuggestRequest generates a request for the Suggest operation.
 func (c *CloudSearchDomain) SuggestRequest(input *SuggestInput) (req *aws.Request, output *SuggestOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opSuggest == nil {
-		opSuggest = &aws.Operation{
-			Name:       "Suggest",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2013-01-01/suggest?format=sdk&pretty=true",
-		}
+	op := &aws.Operation{
+		Name:       opSuggest,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-01-01/suggest?format=sdk&pretty=true",
 	}
 
 	if input == nil {
 		input = &SuggestInput{}
 	}
 
-	req = c.newRequest(opSuggest, input, output)
+	req = c.newRequest(op, input, output)
 	output = &SuggestOutput{}
 	req.Data = output
 	return
@@ -108,26 +97,21 @@ func (c *CloudSearchDomain) Suggest(input *SuggestInput) (*SuggestOutput, error)
 	return out, err
 }
 
-var opSuggest *aws.Operation
+const opUploadDocuments = "UploadDocuments"
 
 // UploadDocumentsRequest generates a request for the UploadDocuments operation.
 func (c *CloudSearchDomain) UploadDocumentsRequest(input *UploadDocumentsInput) (req *aws.Request, output *UploadDocumentsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUploadDocuments == nil {
-		opUploadDocuments = &aws.Operation{
-			Name:       "UploadDocuments",
-			HTTPMethod: "POST",
-			HTTPPath:   "/2013-01-01/documents/batch?format=sdk",
-		}
+	op := &aws.Operation{
+		Name:       opUploadDocuments,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2013-01-01/documents/batch?format=sdk",
 	}
 
 	if input == nil {
 		input = &UploadDocumentsInput{}
 	}
 
-	req = c.newRequest(opUploadDocuments, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UploadDocumentsOutput{}
 	req.Data = output
 	return
@@ -160,8 +144,6 @@ func (c *CloudSearchDomain) UploadDocuments(input *UploadDocumentsInput) (*Uploa
 	err := req.Send()
 	return out, err
 }
-
-var opUploadDocuments *aws.Operation
 
 // A container for facet information.
 type Bucket struct {

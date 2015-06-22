@@ -4,32 +4,26 @@
 package sts
 
 import (
-	"sync"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 )
 
-var oprw sync.Mutex
+const opAssumeRole = "AssumeRole"
 
 // AssumeRoleRequest generates a request for the AssumeRole operation.
 func (c *STS) AssumeRoleRequest(input *AssumeRoleInput) (req *aws.Request, output *AssumeRoleOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opAssumeRole == nil {
-		opAssumeRole = &aws.Operation{
-			Name:       "AssumeRole",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opAssumeRole,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &AssumeRoleInput{}
 	}
 
-	req = c.newRequest(opAssumeRole, input, output)
+	req = c.newRequest(op, input, output)
 	output = &AssumeRoleOutput{}
 	req.Data = output
 	return
@@ -112,26 +106,21 @@ func (c *STS) AssumeRole(input *AssumeRoleInput) (*AssumeRoleOutput, error) {
 	return out, err
 }
 
-var opAssumeRole *aws.Operation
+const opAssumeRoleWithSAML = "AssumeRoleWithSAML"
 
 // AssumeRoleWithSAMLRequest generates a request for the AssumeRoleWithSAML operation.
 func (c *STS) AssumeRoleWithSAMLRequest(input *AssumeRoleWithSAMLInput) (req *aws.Request, output *AssumeRoleWithSAMLOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opAssumeRoleWithSAML == nil {
-		opAssumeRoleWithSAML = &aws.Operation{
-			Name:       "AssumeRoleWithSAML",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opAssumeRoleWithSAML,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &AssumeRoleWithSAMLInput{}
 	}
 
-	req = c.newRequest(opAssumeRoleWithSAML, input, output)
+	req = c.newRequest(op, input, output)
 	output = &AssumeRoleWithSAMLOutput{}
 	req.Data = output
 	return
@@ -188,26 +177,21 @@ func (c *STS) AssumeRoleWithSAML(input *AssumeRoleWithSAMLInput) (*AssumeRoleWit
 	return out, err
 }
 
-var opAssumeRoleWithSAML *aws.Operation
+const opAssumeRoleWithWebIdentity = "AssumeRoleWithWebIdentity"
 
 // AssumeRoleWithWebIdentityRequest generates a request for the AssumeRoleWithWebIdentity operation.
 func (c *STS) AssumeRoleWithWebIdentityRequest(input *AssumeRoleWithWebIdentityInput) (req *aws.Request, output *AssumeRoleWithWebIdentityOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opAssumeRoleWithWebIdentity == nil {
-		opAssumeRoleWithWebIdentity = &aws.Operation{
-			Name:       "AssumeRoleWithWebIdentity",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opAssumeRoleWithWebIdentity,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &AssumeRoleWithWebIdentityInput{}
 	}
 
-	req = c.newRequest(opAssumeRoleWithWebIdentity, input, output)
+	req = c.newRequest(op, input, output)
 	output = &AssumeRoleWithWebIdentityOutput{}
 	req.Data = output
 	return
@@ -286,26 +270,21 @@ func (c *STS) AssumeRoleWithWebIdentity(input *AssumeRoleWithWebIdentityInput) (
 	return out, err
 }
 
-var opAssumeRoleWithWebIdentity *aws.Operation
+const opDecodeAuthorizationMessage = "DecodeAuthorizationMessage"
 
 // DecodeAuthorizationMessageRequest generates a request for the DecodeAuthorizationMessage operation.
 func (c *STS) DecodeAuthorizationMessageRequest(input *DecodeAuthorizationMessageInput) (req *aws.Request, output *DecodeAuthorizationMessageOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDecodeAuthorizationMessage == nil {
-		opDecodeAuthorizationMessage = &aws.Operation{
-			Name:       "DecodeAuthorizationMessage",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDecodeAuthorizationMessage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DecodeAuthorizationMessageInput{}
 	}
 
-	req = c.newRequest(opDecodeAuthorizationMessage, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DecodeAuthorizationMessageOutput{}
 	req.Data = output
 	return
@@ -341,26 +320,21 @@ func (c *STS) DecodeAuthorizationMessage(input *DecodeAuthorizationMessageInput)
 	return out, err
 }
 
-var opDecodeAuthorizationMessage *aws.Operation
+const opGetFederationToken = "GetFederationToken"
 
 // GetFederationTokenRequest generates a request for the GetFederationToken operation.
 func (c *STS) GetFederationTokenRequest(input *GetFederationTokenInput) (req *aws.Request, output *GetFederationTokenOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetFederationToken == nil {
-		opGetFederationToken = &aws.Operation{
-			Name:       "GetFederationToken",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetFederationToken,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetFederationTokenInput{}
 	}
 
-	req = c.newRequest(opGetFederationToken, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetFederationTokenOutput{}
 	req.Data = output
 	return
@@ -438,26 +412,21 @@ func (c *STS) GetFederationToken(input *GetFederationTokenInput) (*GetFederation
 	return out, err
 }
 
-var opGetFederationToken *aws.Operation
+const opGetSessionToken = "GetSessionToken"
 
 // GetSessionTokenRequest generates a request for the GetSessionToken operation.
 func (c *STS) GetSessionTokenRequest(input *GetSessionTokenInput) (req *aws.Request, output *GetSessionTokenOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetSessionToken == nil {
-		opGetSessionToken = &aws.Operation{
-			Name:       "GetSessionToken",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetSessionToken,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetSessionTokenInput{}
 	}
 
-	req = c.newRequest(opGetSessionToken, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetSessionTokenOutput{}
 	req.Data = output
 	return
@@ -499,8 +468,6 @@ func (c *STS) GetSessionToken(input *GetSessionTokenInput) (*GetSessionTokenOutp
 	err := req.Send()
 	return out, err
 }
-
-var opGetSessionToken *aws.Operation
 
 type AssumeRoleInput struct {
 	// The duration, in seconds, of the role session. The value can range from 900

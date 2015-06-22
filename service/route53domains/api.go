@@ -4,32 +4,26 @@
 package route53domains
 
 import (
-	"sync"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 )
 
-var oprw sync.Mutex
+const opCheckDomainAvailability = "CheckDomainAvailability"
 
 // CheckDomainAvailabilityRequest generates a request for the CheckDomainAvailability operation.
 func (c *Route53Domains) CheckDomainAvailabilityRequest(input *CheckDomainAvailabilityInput) (req *aws.Request, output *CheckDomainAvailabilityOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCheckDomainAvailability == nil {
-		opCheckDomainAvailability = &aws.Operation{
-			Name:       "CheckDomainAvailability",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCheckDomainAvailability,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CheckDomainAvailabilityInput{}
 	}
 
-	req = c.newRequest(opCheckDomainAvailability, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CheckDomainAvailabilityOutput{}
 	req.Data = output
 	return
@@ -45,26 +39,21 @@ func (c *Route53Domains) CheckDomainAvailability(input *CheckDomainAvailabilityI
 	return out, err
 }
 
-var opCheckDomainAvailability *aws.Operation
+const opDeleteTagsForDomain = "DeleteTagsForDomain"
 
 // DeleteTagsForDomainRequest generates a request for the DeleteTagsForDomain operation.
 func (c *Route53Domains) DeleteTagsForDomainRequest(input *DeleteTagsForDomainInput) (req *aws.Request, output *DeleteTagsForDomainOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteTagsForDomain == nil {
-		opDeleteTagsForDomain = &aws.Operation{
-			Name:       "DeleteTagsForDomain",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteTagsForDomain,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteTagsForDomainInput{}
 	}
 
-	req = c.newRequest(opDeleteTagsForDomain, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteTagsForDomainOutput{}
 	req.Data = output
 	return
@@ -80,26 +69,21 @@ func (c *Route53Domains) DeleteTagsForDomain(input *DeleteTagsForDomainInput) (*
 	return out, err
 }
 
-var opDeleteTagsForDomain *aws.Operation
+const opDisableDomainAutoRenew = "DisableDomainAutoRenew"
 
 // DisableDomainAutoRenewRequest generates a request for the DisableDomainAutoRenew operation.
 func (c *Route53Domains) DisableDomainAutoRenewRequest(input *DisableDomainAutoRenewInput) (req *aws.Request, output *DisableDomainAutoRenewOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDisableDomainAutoRenew == nil {
-		opDisableDomainAutoRenew = &aws.Operation{
-			Name:       "DisableDomainAutoRenew",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDisableDomainAutoRenew,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DisableDomainAutoRenewInput{}
 	}
 
-	req = c.newRequest(opDisableDomainAutoRenew, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DisableDomainAutoRenewOutput{}
 	req.Data = output
 	return
@@ -118,26 +102,21 @@ func (c *Route53Domains) DisableDomainAutoRenew(input *DisableDomainAutoRenewInp
 	return out, err
 }
 
-var opDisableDomainAutoRenew *aws.Operation
+const opDisableDomainTransferLock = "DisableDomainTransferLock"
 
 // DisableDomainTransferLockRequest generates a request for the DisableDomainTransferLock operation.
 func (c *Route53Domains) DisableDomainTransferLockRequest(input *DisableDomainTransferLockInput) (req *aws.Request, output *DisableDomainTransferLockOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDisableDomainTransferLock == nil {
-		opDisableDomainTransferLock = &aws.Operation{
-			Name:       "DisableDomainTransferLock",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDisableDomainTransferLock,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DisableDomainTransferLockInput{}
 	}
 
-	req = c.newRequest(opDisableDomainTransferLock, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DisableDomainTransferLockOutput{}
 	req.Data = output
 	return
@@ -156,26 +135,21 @@ func (c *Route53Domains) DisableDomainTransferLock(input *DisableDomainTransferL
 	return out, err
 }
 
-var opDisableDomainTransferLock *aws.Operation
+const opEnableDomainAutoRenew = "EnableDomainAutoRenew"
 
 // EnableDomainAutoRenewRequest generates a request for the EnableDomainAutoRenew operation.
 func (c *Route53Domains) EnableDomainAutoRenewRequest(input *EnableDomainAutoRenewInput) (req *aws.Request, output *EnableDomainAutoRenewOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opEnableDomainAutoRenew == nil {
-		opEnableDomainAutoRenew = &aws.Operation{
-			Name:       "EnableDomainAutoRenew",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opEnableDomainAutoRenew,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &EnableDomainAutoRenewInput{}
 	}
 
-	req = c.newRequest(opEnableDomainAutoRenew, input, output)
+	req = c.newRequest(op, input, output)
 	output = &EnableDomainAutoRenewOutput{}
 	req.Data = output
 	return
@@ -197,26 +171,21 @@ func (c *Route53Domains) EnableDomainAutoRenew(input *EnableDomainAutoRenewInput
 	return out, err
 }
 
-var opEnableDomainAutoRenew *aws.Operation
+const opEnableDomainTransferLock = "EnableDomainTransferLock"
 
 // EnableDomainTransferLockRequest generates a request for the EnableDomainTransferLock operation.
 func (c *Route53Domains) EnableDomainTransferLockRequest(input *EnableDomainTransferLockInput) (req *aws.Request, output *EnableDomainTransferLockOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opEnableDomainTransferLock == nil {
-		opEnableDomainTransferLock = &aws.Operation{
-			Name:       "EnableDomainTransferLock",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opEnableDomainTransferLock,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &EnableDomainTransferLockInput{}
 	}
 
-	req = c.newRequest(opEnableDomainTransferLock, input, output)
+	req = c.newRequest(op, input, output)
 	output = &EnableDomainTransferLockOutput{}
 	req.Data = output
 	return
@@ -233,26 +202,21 @@ func (c *Route53Domains) EnableDomainTransferLock(input *EnableDomainTransferLoc
 	return out, err
 }
 
-var opEnableDomainTransferLock *aws.Operation
+const opGetDomainDetail = "GetDomainDetail"
 
 // GetDomainDetailRequest generates a request for the GetDomainDetail operation.
 func (c *Route53Domains) GetDomainDetailRequest(input *GetDomainDetailInput) (req *aws.Request, output *GetDomainDetailOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetDomainDetail == nil {
-		opGetDomainDetail = &aws.Operation{
-			Name:       "GetDomainDetail",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetDomainDetail,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetDomainDetailInput{}
 	}
 
-	req = c.newRequest(opGetDomainDetail, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetDomainDetailOutput{}
 	req.Data = output
 	return
@@ -266,26 +230,21 @@ func (c *Route53Domains) GetDomainDetail(input *GetDomainDetailInput) (*GetDomai
 	return out, err
 }
 
-var opGetDomainDetail *aws.Operation
+const opGetOperationDetail = "GetOperationDetail"
 
 // GetOperationDetailRequest generates a request for the GetOperationDetail operation.
 func (c *Route53Domains) GetOperationDetailRequest(input *GetOperationDetailInput) (req *aws.Request, output *GetOperationDetailOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetOperationDetail == nil {
-		opGetOperationDetail = &aws.Operation{
-			Name:       "GetOperationDetail",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetOperationDetail,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetOperationDetailInput{}
 	}
 
-	req = c.newRequest(opGetOperationDetail, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetOperationDetailOutput{}
 	req.Data = output
 	return
@@ -298,32 +257,27 @@ func (c *Route53Domains) GetOperationDetail(input *GetOperationDetailInput) (*Ge
 	return out, err
 }
 
-var opGetOperationDetail *aws.Operation
+const opListDomains = "ListDomains"
 
 // ListDomainsRequest generates a request for the ListDomains operation.
 func (c *Route53Domains) ListDomainsRequest(input *ListDomainsInput) (req *aws.Request, output *ListDomainsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListDomains == nil {
-		opListDomains = &aws.Operation{
-			Name:       "ListDomains",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"NextPageMarker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListDomains,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"NextPageMarker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &ListDomainsInput{}
 	}
 
-	req = c.newRequest(opListDomains, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListDomainsOutput{}
 	req.Data = output
 	return
@@ -344,32 +298,27 @@ func (c *Route53Domains) ListDomainsPages(input *ListDomainsInput, fn func(p *Li
 	})
 }
 
-var opListDomains *aws.Operation
+const opListOperations = "ListOperations"
 
 // ListOperationsRequest generates a request for the ListOperations operation.
 func (c *Route53Domains) ListOperationsRequest(input *ListOperationsInput) (req *aws.Request, output *ListOperationsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListOperations == nil {
-		opListOperations = &aws.Operation{
-			Name:       "ListOperations",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"NextPageMarker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListOperations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"NextPageMarker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &ListOperationsInput{}
 	}
 
-	req = c.newRequest(opListOperations, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListOperationsOutput{}
 	req.Data = output
 	return
@@ -389,26 +338,21 @@ func (c *Route53Domains) ListOperationsPages(input *ListOperationsInput, fn func
 	})
 }
 
-var opListOperations *aws.Operation
+const opListTagsForDomain = "ListTagsForDomain"
 
 // ListTagsForDomainRequest generates a request for the ListTagsForDomain operation.
 func (c *Route53Domains) ListTagsForDomainRequest(input *ListTagsForDomainInput) (req *aws.Request, output *ListTagsForDomainOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListTagsForDomain == nil {
-		opListTagsForDomain = &aws.Operation{
-			Name:       "ListTagsForDomain",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opListTagsForDomain,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ListTagsForDomainInput{}
 	}
 
-	req = c.newRequest(opListTagsForDomain, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListTagsForDomainOutput{}
 	req.Data = output
 	return
@@ -425,26 +369,21 @@ func (c *Route53Domains) ListTagsForDomain(input *ListTagsForDomainInput) (*List
 	return out, err
 }
 
-var opListTagsForDomain *aws.Operation
+const opRegisterDomain = "RegisterDomain"
 
 // RegisterDomainRequest generates a request for the RegisterDomain operation.
 func (c *Route53Domains) RegisterDomainRequest(input *RegisterDomainInput) (req *aws.Request, output *RegisterDomainOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opRegisterDomain == nil {
-		opRegisterDomain = &aws.Operation{
-			Name:       "RegisterDomain",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opRegisterDomain,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &RegisterDomainInput{}
 	}
 
-	req = c.newRequest(opRegisterDomain, input, output)
+	req = c.newRequest(op, input, output)
 	output = &RegisterDomainOutput{}
 	req.Data = output
 	return
@@ -475,26 +414,21 @@ func (c *Route53Domains) RegisterDomain(input *RegisterDomainInput) (*RegisterDo
 	return out, err
 }
 
-var opRegisterDomain *aws.Operation
+const opRetrieveDomainAuthCode = "RetrieveDomainAuthCode"
 
 // RetrieveDomainAuthCodeRequest generates a request for the RetrieveDomainAuthCode operation.
 func (c *Route53Domains) RetrieveDomainAuthCodeRequest(input *RetrieveDomainAuthCodeInput) (req *aws.Request, output *RetrieveDomainAuthCodeOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opRetrieveDomainAuthCode == nil {
-		opRetrieveDomainAuthCode = &aws.Operation{
-			Name:       "RetrieveDomainAuthCode",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opRetrieveDomainAuthCode,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &RetrieveDomainAuthCodeInput{}
 	}
 
-	req = c.newRequest(opRetrieveDomainAuthCode, input, output)
+	req = c.newRequest(op, input, output)
 	output = &RetrieveDomainAuthCodeOutput{}
 	req.Data = output
 	return
@@ -508,26 +442,21 @@ func (c *Route53Domains) RetrieveDomainAuthCode(input *RetrieveDomainAuthCodeInp
 	return out, err
 }
 
-var opRetrieveDomainAuthCode *aws.Operation
+const opTransferDomain = "TransferDomain"
 
 // TransferDomainRequest generates a request for the TransferDomain operation.
 func (c *Route53Domains) TransferDomainRequest(input *TransferDomainInput) (req *aws.Request, output *TransferDomainOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opTransferDomain == nil {
-		opTransferDomain = &aws.Operation{
-			Name:       "TransferDomain",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opTransferDomain,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &TransferDomainInput{}
 	}
 
-	req = c.newRequest(opTransferDomain, input, output)
+	req = c.newRequest(op, input, output)
 	output = &TransferDomainOutput{}
 	req.Data = output
 	return
@@ -563,26 +492,21 @@ func (c *Route53Domains) TransferDomain(input *TransferDomainInput) (*TransferDo
 	return out, err
 }
 
-var opTransferDomain *aws.Operation
+const opUpdateDomainContact = "UpdateDomainContact"
 
 // UpdateDomainContactRequest generates a request for the UpdateDomainContact operation.
 func (c *Route53Domains) UpdateDomainContactRequest(input *UpdateDomainContactInput) (req *aws.Request, output *UpdateDomainContactOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateDomainContact == nil {
-		opUpdateDomainContact = &aws.Operation{
-			Name:       "UpdateDomainContact",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateDomainContact,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateDomainContactInput{}
 	}
 
-	req = c.newRequest(opUpdateDomainContact, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateDomainContactOutput{}
 	req.Data = output
 	return
@@ -602,26 +526,21 @@ func (c *Route53Domains) UpdateDomainContact(input *UpdateDomainContactInput) (*
 	return out, err
 }
 
-var opUpdateDomainContact *aws.Operation
+const opUpdateDomainContactPrivacy = "UpdateDomainContactPrivacy"
 
 // UpdateDomainContactPrivacyRequest generates a request for the UpdateDomainContactPrivacy operation.
 func (c *Route53Domains) UpdateDomainContactPrivacyRequest(input *UpdateDomainContactPrivacyInput) (req *aws.Request, output *UpdateDomainContactPrivacyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateDomainContactPrivacy == nil {
-		opUpdateDomainContactPrivacy = &aws.Operation{
-			Name:       "UpdateDomainContactPrivacy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateDomainContactPrivacy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateDomainContactPrivacyInput{}
 	}
 
-	req = c.newRequest(opUpdateDomainContactPrivacy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateDomainContactPrivacyOutput{}
 	req.Data = output
 	return
@@ -644,26 +563,21 @@ func (c *Route53Domains) UpdateDomainContactPrivacy(input *UpdateDomainContactPr
 	return out, err
 }
 
-var opUpdateDomainContactPrivacy *aws.Operation
+const opUpdateDomainNameservers = "UpdateDomainNameservers"
 
 // UpdateDomainNameserversRequest generates a request for the UpdateDomainNameservers operation.
 func (c *Route53Domains) UpdateDomainNameserversRequest(input *UpdateDomainNameserversInput) (req *aws.Request, output *UpdateDomainNameserversOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateDomainNameservers == nil {
-		opUpdateDomainNameservers = &aws.Operation{
-			Name:       "UpdateDomainNameservers",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateDomainNameservers,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateDomainNameserversInput{}
 	}
 
-	req = c.newRequest(opUpdateDomainNameservers, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateDomainNameserversOutput{}
 	req.Data = output
 	return
@@ -683,26 +597,21 @@ func (c *Route53Domains) UpdateDomainNameservers(input *UpdateDomainNameserversI
 	return out, err
 }
 
-var opUpdateDomainNameservers *aws.Operation
+const opUpdateTagsForDomain = "UpdateTagsForDomain"
 
 // UpdateTagsForDomainRequest generates a request for the UpdateTagsForDomain operation.
 func (c *Route53Domains) UpdateTagsForDomainRequest(input *UpdateTagsForDomainInput) (req *aws.Request, output *UpdateTagsForDomainOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateTagsForDomain == nil {
-		opUpdateTagsForDomain = &aws.Operation{
-			Name:       "UpdateTagsForDomain",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateTagsForDomain,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateTagsForDomainInput{}
 	}
 
-	req = c.newRequest(opUpdateTagsForDomain, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateTagsForDomainOutput{}
 	req.Data = output
 	return
@@ -717,8 +626,6 @@ func (c *Route53Domains) UpdateTagsForDomain(input *UpdateTagsForDomainInput) (*
 	err := req.Send()
 	return out, err
 }
-
-var opUpdateTagsForDomain *aws.Operation
 
 // The CheckDomainAvailability request contains the following elements.
 type CheckDomainAvailabilityInput struct {

@@ -4,32 +4,26 @@
 package cognitosync
 
 import (
-	"sync"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 )
 
-var oprw sync.Mutex
+const opBulkPublish = "BulkPublish"
 
 // BulkPublishRequest generates a request for the BulkPublish operation.
 func (c *CognitoSync) BulkPublishRequest(input *BulkPublishInput) (req *aws.Request, output *BulkPublishOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opBulkPublish == nil {
-		opBulkPublish = &aws.Operation{
-			Name:       "BulkPublish",
-			HTTPMethod: "POST",
-			HTTPPath:   "/identitypools/{IdentityPoolId}/bulkpublish",
-		}
+	op := &aws.Operation{
+		Name:       opBulkPublish,
+		HTTPMethod: "POST",
+		HTTPPath:   "/identitypools/{IdentityPoolId}/bulkpublish",
 	}
 
 	if input == nil {
 		input = &BulkPublishInput{}
 	}
 
-	req = c.newRequest(opBulkPublish, input, output)
+	req = c.newRequest(op, input, output)
 	output = &BulkPublishOutput{}
 	req.Data = output
 	return
@@ -45,26 +39,21 @@ func (c *CognitoSync) BulkPublish(input *BulkPublishInput) (*BulkPublishOutput, 
 	return out, err
 }
 
-var opBulkPublish *aws.Operation
+const opDeleteDataset = "DeleteDataset"
 
 // DeleteDatasetRequest generates a request for the DeleteDataset operation.
 func (c *CognitoSync) DeleteDatasetRequest(input *DeleteDatasetInput) (req *aws.Request, output *DeleteDatasetOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteDataset == nil {
-		opDeleteDataset = &aws.Operation{
-			Name:       "DeleteDataset",
-			HTTPMethod: "DELETE",
-			HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteDataset,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
 	}
 
 	if input == nil {
 		input = &DeleteDatasetInput{}
 	}
 
-	req = c.newRequest(opDeleteDataset, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteDatasetOutput{}
 	req.Data = output
 	return
@@ -83,26 +72,21 @@ func (c *CognitoSync) DeleteDataset(input *DeleteDatasetInput) (*DeleteDatasetOu
 	return out, err
 }
 
-var opDeleteDataset *aws.Operation
+const opDescribeDataset = "DescribeDataset"
 
 // DescribeDatasetRequest generates a request for the DescribeDataset operation.
 func (c *CognitoSync) DescribeDatasetRequest(input *DescribeDatasetInput) (req *aws.Request, output *DescribeDatasetOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeDataset == nil {
-		opDescribeDataset = &aws.Operation{
-			Name:       "DescribeDataset",
-			HTTPMethod: "GET",
-			HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeDataset,
+		HTTPMethod: "GET",
+		HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
 	}
 
 	if input == nil {
 		input = &DescribeDatasetInput{}
 	}
 
-	req = c.newRequest(opDescribeDataset, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeDatasetOutput{}
 	req.Data = output
 	return
@@ -121,26 +105,21 @@ func (c *CognitoSync) DescribeDataset(input *DescribeDatasetInput) (*DescribeDat
 	return out, err
 }
 
-var opDescribeDataset *aws.Operation
+const opDescribeIdentityPoolUsage = "DescribeIdentityPoolUsage"
 
 // DescribeIdentityPoolUsageRequest generates a request for the DescribeIdentityPoolUsage operation.
 func (c *CognitoSync) DescribeIdentityPoolUsageRequest(input *DescribeIdentityPoolUsageInput) (req *aws.Request, output *DescribeIdentityPoolUsageOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeIdentityPoolUsage == nil {
-		opDescribeIdentityPoolUsage = &aws.Operation{
-			Name:       "DescribeIdentityPoolUsage",
-			HTTPMethod: "GET",
-			HTTPPath:   "/identitypools/{IdentityPoolId}",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeIdentityPoolUsage,
+		HTTPMethod: "GET",
+		HTTPPath:   "/identitypools/{IdentityPoolId}",
 	}
 
 	if input == nil {
 		input = &DescribeIdentityPoolUsageInput{}
 	}
 
-	req = c.newRequest(opDescribeIdentityPoolUsage, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeIdentityPoolUsageOutput{}
 	req.Data = output
 	return
@@ -158,26 +137,21 @@ func (c *CognitoSync) DescribeIdentityPoolUsage(input *DescribeIdentityPoolUsage
 	return out, err
 }
 
-var opDescribeIdentityPoolUsage *aws.Operation
+const opDescribeIdentityUsage = "DescribeIdentityUsage"
 
 // DescribeIdentityUsageRequest generates a request for the DescribeIdentityUsage operation.
 func (c *CognitoSync) DescribeIdentityUsageRequest(input *DescribeIdentityUsageInput) (req *aws.Request, output *DescribeIdentityUsageOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeIdentityUsage == nil {
-		opDescribeIdentityUsage = &aws.Operation{
-			Name:       "DescribeIdentityUsage",
-			HTTPMethod: "GET",
-			HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeIdentityUsage,
+		HTTPMethod: "GET",
+		HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}",
 	}
 
 	if input == nil {
 		input = &DescribeIdentityUsageInput{}
 	}
 
-	req = c.newRequest(opDescribeIdentityUsage, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeIdentityUsageOutput{}
 	req.Data = output
 	return
@@ -194,26 +168,21 @@ func (c *CognitoSync) DescribeIdentityUsage(input *DescribeIdentityUsageInput) (
 	return out, err
 }
 
-var opDescribeIdentityUsage *aws.Operation
+const opGetBulkPublishDetails = "GetBulkPublishDetails"
 
 // GetBulkPublishDetailsRequest generates a request for the GetBulkPublishDetails operation.
 func (c *CognitoSync) GetBulkPublishDetailsRequest(input *GetBulkPublishDetailsInput) (req *aws.Request, output *GetBulkPublishDetailsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetBulkPublishDetails == nil {
-		opGetBulkPublishDetails = &aws.Operation{
-			Name:       "GetBulkPublishDetails",
-			HTTPMethod: "POST",
-			HTTPPath:   "/identitypools/{IdentityPoolId}/getBulkPublishDetails",
-		}
+	op := &aws.Operation{
+		Name:       opGetBulkPublishDetails,
+		HTTPMethod: "POST",
+		HTTPPath:   "/identitypools/{IdentityPoolId}/getBulkPublishDetails",
 	}
 
 	if input == nil {
 		input = &GetBulkPublishDetailsInput{}
 	}
 
-	req = c.newRequest(opGetBulkPublishDetails, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetBulkPublishDetailsOutput{}
 	req.Data = output
 	return
@@ -226,26 +195,21 @@ func (c *CognitoSync) GetBulkPublishDetails(input *GetBulkPublishDetailsInput) (
 	return out, err
 }
 
-var opGetBulkPublishDetails *aws.Operation
+const opGetCognitoEvents = "GetCognitoEvents"
 
 // GetCognitoEventsRequest generates a request for the GetCognitoEvents operation.
 func (c *CognitoSync) GetCognitoEventsRequest(input *GetCognitoEventsInput) (req *aws.Request, output *GetCognitoEventsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetCognitoEvents == nil {
-		opGetCognitoEvents = &aws.Operation{
-			Name:       "GetCognitoEvents",
-			HTTPMethod: "GET",
-			HTTPPath:   "/identitypools/{IdentityPoolId}/events",
-		}
+	op := &aws.Operation{
+		Name:       opGetCognitoEvents,
+		HTTPMethod: "GET",
+		HTTPPath:   "/identitypools/{IdentityPoolId}/events",
 	}
 
 	if input == nil {
 		input = &GetCognitoEventsInput{}
 	}
 
-	req = c.newRequest(opGetCognitoEvents, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetCognitoEventsOutput{}
 	req.Data = output
 	return
@@ -259,26 +223,21 @@ func (c *CognitoSync) GetCognitoEvents(input *GetCognitoEventsInput) (*GetCognit
 	return out, err
 }
 
-var opGetCognitoEvents *aws.Operation
+const opGetIdentityPoolConfiguration = "GetIdentityPoolConfiguration"
 
 // GetIdentityPoolConfigurationRequest generates a request for the GetIdentityPoolConfiguration operation.
 func (c *CognitoSync) GetIdentityPoolConfigurationRequest(input *GetIdentityPoolConfigurationInput) (req *aws.Request, output *GetIdentityPoolConfigurationOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetIdentityPoolConfiguration == nil {
-		opGetIdentityPoolConfiguration = &aws.Operation{
-			Name:       "GetIdentityPoolConfiguration",
-			HTTPMethod: "GET",
-			HTTPPath:   "/identitypools/{IdentityPoolId}/configuration",
-		}
+	op := &aws.Operation{
+		Name:       opGetIdentityPoolConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/identitypools/{IdentityPoolId}/configuration",
 	}
 
 	if input == nil {
 		input = &GetIdentityPoolConfigurationInput{}
 	}
 
-	req = c.newRequest(opGetIdentityPoolConfiguration, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetIdentityPoolConfigurationOutput{}
 	req.Data = output
 	return
@@ -291,26 +250,21 @@ func (c *CognitoSync) GetIdentityPoolConfiguration(input *GetIdentityPoolConfigu
 	return out, err
 }
 
-var opGetIdentityPoolConfiguration *aws.Operation
+const opListDatasets = "ListDatasets"
 
 // ListDatasetsRequest generates a request for the ListDatasets operation.
 func (c *CognitoSync) ListDatasetsRequest(input *ListDatasetsInput) (req *aws.Request, output *ListDatasetsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListDatasets == nil {
-		opListDatasets = &aws.Operation{
-			Name:       "ListDatasets",
-			HTTPMethod: "GET",
-			HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets",
-		}
+	op := &aws.Operation{
+		Name:       opListDatasets,
+		HTTPMethod: "GET",
+		HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets",
 	}
 
 	if input == nil {
 		input = &ListDatasetsInput{}
 	}
 
-	req = c.newRequest(opListDatasets, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListDatasetsOutput{}
 	req.Data = output
 	return
@@ -329,26 +283,21 @@ func (c *CognitoSync) ListDatasets(input *ListDatasetsInput) (*ListDatasetsOutpu
 	return out, err
 }
 
-var opListDatasets *aws.Operation
+const opListIdentityPoolUsage = "ListIdentityPoolUsage"
 
 // ListIdentityPoolUsageRequest generates a request for the ListIdentityPoolUsage operation.
 func (c *CognitoSync) ListIdentityPoolUsageRequest(input *ListIdentityPoolUsageInput) (req *aws.Request, output *ListIdentityPoolUsageOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListIdentityPoolUsage == nil {
-		opListIdentityPoolUsage = &aws.Operation{
-			Name:       "ListIdentityPoolUsage",
-			HTTPMethod: "GET",
-			HTTPPath:   "/identitypools",
-		}
+	op := &aws.Operation{
+		Name:       opListIdentityPoolUsage,
+		HTTPMethod: "GET",
+		HTTPPath:   "/identitypools",
 	}
 
 	if input == nil {
 		input = &ListIdentityPoolUsageInput{}
 	}
 
-	req = c.newRequest(opListIdentityPoolUsage, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListIdentityPoolUsageOutput{}
 	req.Data = output
 	return
@@ -365,26 +314,21 @@ func (c *CognitoSync) ListIdentityPoolUsage(input *ListIdentityPoolUsageInput) (
 	return out, err
 }
 
-var opListIdentityPoolUsage *aws.Operation
+const opListRecords = "ListRecords"
 
 // ListRecordsRequest generates a request for the ListRecords operation.
 func (c *CognitoSync) ListRecordsRequest(input *ListRecordsInput) (req *aws.Request, output *ListRecordsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListRecords == nil {
-		opListRecords = &aws.Operation{
-			Name:       "ListRecords",
-			HTTPMethod: "GET",
-			HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/records",
-		}
+	op := &aws.Operation{
+		Name:       opListRecords,
+		HTTPMethod: "GET",
+		HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/records",
 	}
 
 	if input == nil {
 		input = &ListRecordsInput{}
 	}
 
-	req = c.newRequest(opListRecords, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListRecordsOutput{}
 	req.Data = output
 	return
@@ -404,26 +348,21 @@ func (c *CognitoSync) ListRecords(input *ListRecordsInput) (*ListRecordsOutput, 
 	return out, err
 }
 
-var opListRecords *aws.Operation
+const opRegisterDevice = "RegisterDevice"
 
 // RegisterDeviceRequest generates a request for the RegisterDevice operation.
 func (c *CognitoSync) RegisterDeviceRequest(input *RegisterDeviceInput) (req *aws.Request, output *RegisterDeviceOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opRegisterDevice == nil {
-		opRegisterDevice = &aws.Operation{
-			Name:       "RegisterDevice",
-			HTTPMethod: "POST",
-			HTTPPath:   "/identitypools/{IdentityPoolId}/identity/{IdentityId}/device",
-		}
+	op := &aws.Operation{
+		Name:       opRegisterDevice,
+		HTTPMethod: "POST",
+		HTTPPath:   "/identitypools/{IdentityPoolId}/identity/{IdentityId}/device",
 	}
 
 	if input == nil {
 		input = &RegisterDeviceInput{}
 	}
 
-	req = c.newRequest(opRegisterDevice, input, output)
+	req = c.newRequest(op, input, output)
 	output = &RegisterDeviceOutput{}
 	req.Data = output
 	return
@@ -436,26 +375,21 @@ func (c *CognitoSync) RegisterDevice(input *RegisterDeviceInput) (*RegisterDevic
 	return out, err
 }
 
-var opRegisterDevice *aws.Operation
+const opSetCognitoEvents = "SetCognitoEvents"
 
 // SetCognitoEventsRequest generates a request for the SetCognitoEvents operation.
 func (c *CognitoSync) SetCognitoEventsRequest(input *SetCognitoEventsInput) (req *aws.Request, output *SetCognitoEventsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opSetCognitoEvents == nil {
-		opSetCognitoEvents = &aws.Operation{
-			Name:       "SetCognitoEvents",
-			HTTPMethod: "POST",
-			HTTPPath:   "/identitypools/{IdentityPoolId}/events",
-		}
+	op := &aws.Operation{
+		Name:       opSetCognitoEvents,
+		HTTPMethod: "POST",
+		HTTPPath:   "/identitypools/{IdentityPoolId}/events",
 	}
 
 	if input == nil {
 		input = &SetCognitoEventsInput{}
 	}
 
-	req = c.newRequest(opSetCognitoEvents, input, output)
+	req = c.newRequest(op, input, output)
 	output = &SetCognitoEventsOutput{}
 	req.Data = output
 	return
@@ -471,26 +405,21 @@ func (c *CognitoSync) SetCognitoEvents(input *SetCognitoEventsInput) (*SetCognit
 	return out, err
 }
 
-var opSetCognitoEvents *aws.Operation
+const opSetIdentityPoolConfiguration = "SetIdentityPoolConfiguration"
 
 // SetIdentityPoolConfigurationRequest generates a request for the SetIdentityPoolConfiguration operation.
 func (c *CognitoSync) SetIdentityPoolConfigurationRequest(input *SetIdentityPoolConfigurationInput) (req *aws.Request, output *SetIdentityPoolConfigurationOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opSetIdentityPoolConfiguration == nil {
-		opSetIdentityPoolConfiguration = &aws.Operation{
-			Name:       "SetIdentityPoolConfiguration",
-			HTTPMethod: "POST",
-			HTTPPath:   "/identitypools/{IdentityPoolId}/configuration",
-		}
+	op := &aws.Operation{
+		Name:       opSetIdentityPoolConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/identitypools/{IdentityPoolId}/configuration",
 	}
 
 	if input == nil {
 		input = &SetIdentityPoolConfigurationInput{}
 	}
 
-	req = c.newRequest(opSetIdentityPoolConfiguration, input, output)
+	req = c.newRequest(op, input, output)
 	output = &SetIdentityPoolConfigurationOutput{}
 	req.Data = output
 	return
@@ -503,26 +432,21 @@ func (c *CognitoSync) SetIdentityPoolConfiguration(input *SetIdentityPoolConfigu
 	return out, err
 }
 
-var opSetIdentityPoolConfiguration *aws.Operation
+const opSubscribeToDataset = "SubscribeToDataset"
 
 // SubscribeToDatasetRequest generates a request for the SubscribeToDataset operation.
 func (c *CognitoSync) SubscribeToDatasetRequest(input *SubscribeToDatasetInput) (req *aws.Request, output *SubscribeToDatasetOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opSubscribeToDataset == nil {
-		opSubscribeToDataset = &aws.Operation{
-			Name:       "SubscribeToDataset",
-			HTTPMethod: "POST",
-			HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/subscriptions/{DeviceId}",
-		}
+	op := &aws.Operation{
+		Name:       opSubscribeToDataset,
+		HTTPMethod: "POST",
+		HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/subscriptions/{DeviceId}",
 	}
 
 	if input == nil {
 		input = &SubscribeToDatasetInput{}
 	}
 
-	req = c.newRequest(opSubscribeToDataset, input, output)
+	req = c.newRequest(op, input, output)
 	output = &SubscribeToDatasetOutput{}
 	req.Data = output
 	return
@@ -536,26 +460,21 @@ func (c *CognitoSync) SubscribeToDataset(input *SubscribeToDatasetInput) (*Subsc
 	return out, err
 }
 
-var opSubscribeToDataset *aws.Operation
+const opUnsubscribeFromDataset = "UnsubscribeFromDataset"
 
 // UnsubscribeFromDatasetRequest generates a request for the UnsubscribeFromDataset operation.
 func (c *CognitoSync) UnsubscribeFromDatasetRequest(input *UnsubscribeFromDatasetInput) (req *aws.Request, output *UnsubscribeFromDatasetOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUnsubscribeFromDataset == nil {
-		opUnsubscribeFromDataset = &aws.Operation{
-			Name:       "UnsubscribeFromDataset",
-			HTTPMethod: "DELETE",
-			HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/subscriptions/{DeviceId}",
-		}
+	op := &aws.Operation{
+		Name:       opUnsubscribeFromDataset,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/subscriptions/{DeviceId}",
 	}
 
 	if input == nil {
 		input = &UnsubscribeFromDatasetInput{}
 	}
 
-	req = c.newRequest(opUnsubscribeFromDataset, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UnsubscribeFromDatasetOutput{}
 	req.Data = output
 	return
@@ -569,26 +488,21 @@ func (c *CognitoSync) UnsubscribeFromDataset(input *UnsubscribeFromDatasetInput)
 	return out, err
 }
 
-var opUnsubscribeFromDataset *aws.Operation
+const opUpdateRecords = "UpdateRecords"
 
 // UpdateRecordsRequest generates a request for the UpdateRecords operation.
 func (c *CognitoSync) UpdateRecordsRequest(input *UpdateRecordsInput) (req *aws.Request, output *UpdateRecordsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateRecords == nil {
-		opUpdateRecords = &aws.Operation{
-			Name:       "UpdateRecords",
-			HTTPMethod: "POST",
-			HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateRecords,
+		HTTPMethod: "POST",
+		HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
 	}
 
 	if input == nil {
 		input = &UpdateRecordsInput{}
 	}
 
-	req = c.newRequest(opUpdateRecords, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateRecordsOutput{}
 	req.Data = output
 	return
@@ -603,8 +517,6 @@ func (c *CognitoSync) UpdateRecords(input *UpdateRecordsInput) (*UpdateRecordsOu
 	err := req.Send()
 	return out, err
 }
-
-var opUpdateRecords *aws.Operation
 
 // The input for the BulkPublish operation.
 type BulkPublishInput struct {

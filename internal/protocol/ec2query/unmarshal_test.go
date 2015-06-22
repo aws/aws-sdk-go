@@ -62,20 +62,19 @@ func (c *OutputService1ProtocolTest) newRequest(op *aws.Operation, params, data 
 	return req
 }
 
+const opOutputService1TestCaseOperation1 = "OperationName"
+
 // OutputService1TestCaseOperation1Request generates a request for the OutputService1TestCaseOperation1 operation.
 func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (req *aws.Request, output *OutputService1TestShapeOutputShape) {
-
-	if opOutputService1TestCaseOperation1 == nil {
-		opOutputService1TestCaseOperation1 = &aws.Operation{
-			Name: "OperationName",
-		}
+	op := &aws.Operation{
+		Name: opOutputService1TestCaseOperation1,
 	}
 
 	if input == nil {
 		input = &OutputService1TestShapeOutputService1TestCaseOperation1Input{}
 	}
 
-	req = c.newRequest(opOutputService1TestCaseOperation1, input, output)
+	req = c.newRequest(op, input, output)
 	output = &OutputService1TestShapeOutputShape{}
 	req.Data = output
 	return
@@ -86,8 +85,6 @@ func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1(input *Out
 	err := req.Send()
 	return out, err
 }
-
-var opOutputService1TestCaseOperation1 *aws.Operation
 
 type OutputService1TestShapeOutputService1TestCaseOperation1Input struct {
 	metadataOutputService1TestShapeOutputService1TestCaseOperation1Input `json:"-" xml:"-"`
@@ -153,20 +150,19 @@ func (c *OutputService2ProtocolTest) newRequest(op *aws.Operation, params, data 
 	return req
 }
 
+const opOutputService2TestCaseOperation1 = "OperationName"
+
 // OutputService2TestCaseOperation1Request generates a request for the OutputService2TestCaseOperation1 operation.
 func (c *OutputService2ProtocolTest) OutputService2TestCaseOperation1Request(input *OutputService2TestShapeOutputService2TestCaseOperation1Input) (req *aws.Request, output *OutputService2TestShapeOutputShape) {
-
-	if opOutputService2TestCaseOperation1 == nil {
-		opOutputService2TestCaseOperation1 = &aws.Operation{
-			Name: "OperationName",
-		}
+	op := &aws.Operation{
+		Name: opOutputService2TestCaseOperation1,
 	}
 
 	if input == nil {
 		input = &OutputService2TestShapeOutputService2TestCaseOperation1Input{}
 	}
 
-	req = c.newRequest(opOutputService2TestCaseOperation1, input, output)
+	req = c.newRequest(op, input, output)
 	output = &OutputService2TestShapeOutputShape{}
 	req.Data = output
 	return
@@ -177,8 +173,6 @@ func (c *OutputService2ProtocolTest) OutputService2TestCaseOperation1(input *Out
 	err := req.Send()
 	return out, err
 }
-
-var opOutputService2TestCaseOperation1 *aws.Operation
 
 type OutputService2TestShapeOutputService2TestCaseOperation1Input struct {
 	metadataOutputService2TestShapeOutputService2TestCaseOperation1Input `json:"-" xml:"-"`
@@ -230,20 +224,19 @@ func (c *OutputService3ProtocolTest) newRequest(op *aws.Operation, params, data 
 	return req
 }
 
+const opOutputService3TestCaseOperation1 = "OperationName"
+
 // OutputService3TestCaseOperation1Request generates a request for the OutputService3TestCaseOperation1 operation.
 func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation1Request(input *OutputService3TestShapeOutputService3TestCaseOperation1Input) (req *aws.Request, output *OutputService3TestShapeOutputShape) {
-
-	if opOutputService3TestCaseOperation1 == nil {
-		opOutputService3TestCaseOperation1 = &aws.Operation{
-			Name: "OperationName",
-		}
+	op := &aws.Operation{
+		Name: opOutputService3TestCaseOperation1,
 	}
 
 	if input == nil {
 		input = &OutputService3TestShapeOutputService3TestCaseOperation1Input{}
 	}
 
-	req = c.newRequest(opOutputService3TestCaseOperation1, input, output)
+	req = c.newRequest(op, input, output)
 	output = &OutputService3TestShapeOutputShape{}
 	req.Data = output
 	return
@@ -254,8 +247,6 @@ func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation1(input *Out
 	err := req.Send()
 	return out, err
 }
-
-var opOutputService3TestCaseOperation1 *aws.Operation
 
 type OutputService3TestShapeOutputService3TestCaseOperation1Input struct {
 	metadataOutputService3TestShapeOutputService3TestCaseOperation1Input `json:"-" xml:"-"`
@@ -307,20 +298,19 @@ func (c *OutputService4ProtocolTest) newRequest(op *aws.Operation, params, data 
 	return req
 }
 
+const opOutputService4TestCaseOperation1 = "OperationName"
+
 // OutputService4TestCaseOperation1Request generates a request for the OutputService4TestCaseOperation1 operation.
 func (c *OutputService4ProtocolTest) OutputService4TestCaseOperation1Request(input *OutputService4TestShapeOutputService4TestCaseOperation1Input) (req *aws.Request, output *OutputService4TestShapeOutputShape) {
-
-	if opOutputService4TestCaseOperation1 == nil {
-		opOutputService4TestCaseOperation1 = &aws.Operation{
-			Name: "OperationName",
-		}
+	op := &aws.Operation{
+		Name: opOutputService4TestCaseOperation1,
 	}
 
 	if input == nil {
 		input = &OutputService4TestShapeOutputService4TestCaseOperation1Input{}
 	}
 
-	req = c.newRequest(opOutputService4TestCaseOperation1, input, output)
+	req = c.newRequest(op, input, output)
 	output = &OutputService4TestShapeOutputShape{}
 	req.Data = output
 	return
@@ -331,8 +321,6 @@ func (c *OutputService4ProtocolTest) OutputService4TestCaseOperation1(input *Out
 	err := req.Send()
 	return out, err
 }
-
-var opOutputService4TestCaseOperation1 *aws.Operation
 
 type OutputService4TestShapeOutputService4TestCaseOperation1Input struct {
 	metadataOutputService4TestShapeOutputService4TestCaseOperation1Input `json:"-" xml:"-"`
@@ -384,20 +372,19 @@ func (c *OutputService5ProtocolTest) newRequest(op *aws.Operation, params, data 
 	return req
 }
 
+const opOutputService5TestCaseOperation1 = "OperationName"
+
 // OutputService5TestCaseOperation1Request generates a request for the OutputService5TestCaseOperation1 operation.
 func (c *OutputService5ProtocolTest) OutputService5TestCaseOperation1Request(input *OutputService5TestShapeOutputService5TestCaseOperation1Input) (req *aws.Request, output *OutputService5TestShapeOutputShape) {
-
-	if opOutputService5TestCaseOperation1 == nil {
-		opOutputService5TestCaseOperation1 = &aws.Operation{
-			Name: "OperationName",
-		}
+	op := &aws.Operation{
+		Name: opOutputService5TestCaseOperation1,
 	}
 
 	if input == nil {
 		input = &OutputService5TestShapeOutputService5TestCaseOperation1Input{}
 	}
 
-	req = c.newRequest(opOutputService5TestCaseOperation1, input, output)
+	req = c.newRequest(op, input, output)
 	output = &OutputService5TestShapeOutputShape{}
 	req.Data = output
 	return
@@ -408,8 +395,6 @@ func (c *OutputService5ProtocolTest) OutputService5TestCaseOperation1(input *Out
 	err := req.Send()
 	return out, err
 }
-
-var opOutputService5TestCaseOperation1 *aws.Operation
 
 type OutputService5TestShapeOutputService5TestCaseOperation1Input struct {
 	metadataOutputService5TestShapeOutputService5TestCaseOperation1Input `json:"-" xml:"-"`
@@ -461,20 +446,19 @@ func (c *OutputService6ProtocolTest) newRequest(op *aws.Operation, params, data 
 	return req
 }
 
+const opOutputService6TestCaseOperation1 = "OperationName"
+
 // OutputService6TestCaseOperation1Request generates a request for the OutputService6TestCaseOperation1 operation.
 func (c *OutputService6ProtocolTest) OutputService6TestCaseOperation1Request(input *OutputService6TestShapeOutputService6TestCaseOperation1Input) (req *aws.Request, output *OutputService6TestShapeOutputShape) {
-
-	if opOutputService6TestCaseOperation1 == nil {
-		opOutputService6TestCaseOperation1 = &aws.Operation{
-			Name: "OperationName",
-		}
+	op := &aws.Operation{
+		Name: opOutputService6TestCaseOperation1,
 	}
 
 	if input == nil {
 		input = &OutputService6TestShapeOutputService6TestCaseOperation1Input{}
 	}
 
-	req = c.newRequest(opOutputService6TestCaseOperation1, input, output)
+	req = c.newRequest(op, input, output)
 	output = &OutputService6TestShapeOutputShape{}
 	req.Data = output
 	return
@@ -485,8 +469,6 @@ func (c *OutputService6ProtocolTest) OutputService6TestCaseOperation1(input *Out
 	err := req.Send()
 	return out, err
 }
-
-var opOutputService6TestCaseOperation1 *aws.Operation
 
 type OutputService6TestShapeOutputService6TestCaseOperation1Input struct {
 	metadataOutputService6TestShapeOutputService6TestCaseOperation1Input `json:"-" xml:"-"`
@@ -548,20 +530,19 @@ func (c *OutputService7ProtocolTest) newRequest(op *aws.Operation, params, data 
 	return req
 }
 
+const opOutputService7TestCaseOperation1 = "OperationName"
+
 // OutputService7TestCaseOperation1Request generates a request for the OutputService7TestCaseOperation1 operation.
 func (c *OutputService7ProtocolTest) OutputService7TestCaseOperation1Request(input *OutputService7TestShapeOutputService7TestCaseOperation1Input) (req *aws.Request, output *OutputService7TestShapeOutputShape) {
-
-	if opOutputService7TestCaseOperation1 == nil {
-		opOutputService7TestCaseOperation1 = &aws.Operation{
-			Name: "OperationName",
-		}
+	op := &aws.Operation{
+		Name: opOutputService7TestCaseOperation1,
 	}
 
 	if input == nil {
 		input = &OutputService7TestShapeOutputService7TestCaseOperation1Input{}
 	}
 
-	req = c.newRequest(opOutputService7TestCaseOperation1, input, output)
+	req = c.newRequest(op, input, output)
 	output = &OutputService7TestShapeOutputShape{}
 	req.Data = output
 	return
@@ -572,8 +553,6 @@ func (c *OutputService7ProtocolTest) OutputService7TestCaseOperation1(input *Out
 	err := req.Send()
 	return out, err
 }
-
-var opOutputService7TestCaseOperation1 *aws.Operation
 
 type OutputService7TestShapeOutputService7TestCaseOperation1Input struct {
 	metadataOutputService7TestShapeOutputService7TestCaseOperation1Input `json:"-" xml:"-"`
@@ -625,20 +604,19 @@ func (c *OutputService8ProtocolTest) newRequest(op *aws.Operation, params, data 
 	return req
 }
 
+const opOutputService8TestCaseOperation1 = "OperationName"
+
 // OutputService8TestCaseOperation1Request generates a request for the OutputService8TestCaseOperation1 operation.
 func (c *OutputService8ProtocolTest) OutputService8TestCaseOperation1Request(input *OutputService8TestShapeOutputService8TestCaseOperation1Input) (req *aws.Request, output *OutputService8TestShapeOutputShape) {
-
-	if opOutputService8TestCaseOperation1 == nil {
-		opOutputService8TestCaseOperation1 = &aws.Operation{
-			Name: "OperationName",
-		}
+	op := &aws.Operation{
+		Name: opOutputService8TestCaseOperation1,
 	}
 
 	if input == nil {
 		input = &OutputService8TestShapeOutputService8TestCaseOperation1Input{}
 	}
 
-	req = c.newRequest(opOutputService8TestCaseOperation1, input, output)
+	req = c.newRequest(op, input, output)
 	output = &OutputService8TestShapeOutputShape{}
 	req.Data = output
 	return
@@ -649,8 +627,6 @@ func (c *OutputService8ProtocolTest) OutputService8TestCaseOperation1(input *Out
 	err := req.Send()
 	return out, err
 }
-
-var opOutputService8TestCaseOperation1 *aws.Operation
 
 type OutputService8TestShapeOutputService8TestCaseOperation1Input struct {
 	metadataOutputService8TestShapeOutputService8TestCaseOperation1Input `json:"-" xml:"-"`

@@ -4,32 +4,26 @@
 package redshift
 
 import (
-	"sync"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 )
 
-var oprw sync.Mutex
+const opAuthorizeClusterSecurityGroupIngress = "AuthorizeClusterSecurityGroupIngress"
 
 // AuthorizeClusterSecurityGroupIngressRequest generates a request for the AuthorizeClusterSecurityGroupIngress operation.
 func (c *Redshift) AuthorizeClusterSecurityGroupIngressRequest(input *AuthorizeClusterSecurityGroupIngressInput) (req *aws.Request, output *AuthorizeClusterSecurityGroupIngressOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opAuthorizeClusterSecurityGroupIngress == nil {
-		opAuthorizeClusterSecurityGroupIngress = &aws.Operation{
-			Name:       "AuthorizeClusterSecurityGroupIngress",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opAuthorizeClusterSecurityGroupIngress,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &AuthorizeClusterSecurityGroupIngressInput{}
 	}
 
-	req = c.newRequest(opAuthorizeClusterSecurityGroupIngress, input, output)
+	req = c.newRequest(op, input, output)
 	output = &AuthorizeClusterSecurityGroupIngressOutput{}
 	req.Data = output
 	return
@@ -56,26 +50,21 @@ func (c *Redshift) AuthorizeClusterSecurityGroupIngress(input *AuthorizeClusterS
 	return out, err
 }
 
-var opAuthorizeClusterSecurityGroupIngress *aws.Operation
+const opAuthorizeSnapshotAccess = "AuthorizeSnapshotAccess"
 
 // AuthorizeSnapshotAccessRequest generates a request for the AuthorizeSnapshotAccess operation.
 func (c *Redshift) AuthorizeSnapshotAccessRequest(input *AuthorizeSnapshotAccessInput) (req *aws.Request, output *AuthorizeSnapshotAccessOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opAuthorizeSnapshotAccess == nil {
-		opAuthorizeSnapshotAccess = &aws.Operation{
-			Name:       "AuthorizeSnapshotAccess",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opAuthorizeSnapshotAccess,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &AuthorizeSnapshotAccessInput{}
 	}
 
-	req = c.newRequest(opAuthorizeSnapshotAccess, input, output)
+	req = c.newRequest(op, input, output)
 	output = &AuthorizeSnapshotAccessOutput{}
 	req.Data = output
 	return
@@ -92,26 +81,21 @@ func (c *Redshift) AuthorizeSnapshotAccess(input *AuthorizeSnapshotAccessInput) 
 	return out, err
 }
 
-var opAuthorizeSnapshotAccess *aws.Operation
+const opCopyClusterSnapshot = "CopyClusterSnapshot"
 
 // CopyClusterSnapshotRequest generates a request for the CopyClusterSnapshot operation.
 func (c *Redshift) CopyClusterSnapshotRequest(input *CopyClusterSnapshotInput) (req *aws.Request, output *CopyClusterSnapshotOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCopyClusterSnapshot == nil {
-		opCopyClusterSnapshot = &aws.Operation{
-			Name:       "CopyClusterSnapshot",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCopyClusterSnapshot,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CopyClusterSnapshotInput{}
 	}
 
-	req = c.newRequest(opCopyClusterSnapshot, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CopyClusterSnapshotOutput{}
 	req.Data = output
 	return
@@ -136,26 +120,21 @@ func (c *Redshift) CopyClusterSnapshot(input *CopyClusterSnapshotInput) (*CopyCl
 	return out, err
 }
 
-var opCopyClusterSnapshot *aws.Operation
+const opCreateCluster = "CreateCluster"
 
 // CreateClusterRequest generates a request for the CreateCluster operation.
 func (c *Redshift) CreateClusterRequest(input *CreateClusterInput) (req *aws.Request, output *CreateClusterOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateCluster == nil {
-		opCreateCluster = &aws.Operation{
-			Name:       "CreateCluster",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateClusterInput{}
 	}
 
-	req = c.newRequest(opCreateCluster, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateClusterOutput{}
 	req.Data = output
 	return
@@ -174,26 +153,21 @@ func (c *Redshift) CreateCluster(input *CreateClusterInput) (*CreateClusterOutpu
 	return out, err
 }
 
-var opCreateCluster *aws.Operation
+const opCreateClusterParameterGroup = "CreateClusterParameterGroup"
 
 // CreateClusterParameterGroupRequest generates a request for the CreateClusterParameterGroup operation.
 func (c *Redshift) CreateClusterParameterGroupRequest(input *CreateClusterParameterGroupInput) (req *aws.Request, output *CreateClusterParameterGroupOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateClusterParameterGroup == nil {
-		opCreateClusterParameterGroup = &aws.Operation{
-			Name:       "CreateClusterParameterGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateClusterParameterGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateClusterParameterGroupInput{}
 	}
 
-	req = c.newRequest(opCreateClusterParameterGroup, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateClusterParameterGroupOutput{}
 	req.Data = output
 	return
@@ -216,26 +190,21 @@ func (c *Redshift) CreateClusterParameterGroup(input *CreateClusterParameterGrou
 	return out, err
 }
 
-var opCreateClusterParameterGroup *aws.Operation
+const opCreateClusterSecurityGroup = "CreateClusterSecurityGroup"
 
 // CreateClusterSecurityGroupRequest generates a request for the CreateClusterSecurityGroup operation.
 func (c *Redshift) CreateClusterSecurityGroupRequest(input *CreateClusterSecurityGroupInput) (req *aws.Request, output *CreateClusterSecurityGroupOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateClusterSecurityGroup == nil {
-		opCreateClusterSecurityGroup = &aws.Operation{
-			Name:       "CreateClusterSecurityGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateClusterSecurityGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateClusterSecurityGroupInput{}
 	}
 
-	req = c.newRequest(opCreateClusterSecurityGroup, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateClusterSecurityGroupOutput{}
 	req.Data = output
 	return
@@ -253,26 +222,21 @@ func (c *Redshift) CreateClusterSecurityGroup(input *CreateClusterSecurityGroupI
 	return out, err
 }
 
-var opCreateClusterSecurityGroup *aws.Operation
+const opCreateClusterSnapshot = "CreateClusterSnapshot"
 
 // CreateClusterSnapshotRequest generates a request for the CreateClusterSnapshot operation.
 func (c *Redshift) CreateClusterSnapshotRequest(input *CreateClusterSnapshotInput) (req *aws.Request, output *CreateClusterSnapshotOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateClusterSnapshot == nil {
-		opCreateClusterSnapshot = &aws.Operation{
-			Name:       "CreateClusterSnapshot",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateClusterSnapshot,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateClusterSnapshotInput{}
 	}
 
-	req = c.newRequest(opCreateClusterSnapshot, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateClusterSnapshotOutput{}
 	req.Data = output
 	return
@@ -290,26 +254,21 @@ func (c *Redshift) CreateClusterSnapshot(input *CreateClusterSnapshotInput) (*Cr
 	return out, err
 }
 
-var opCreateClusterSnapshot *aws.Operation
+const opCreateClusterSubnetGroup = "CreateClusterSubnetGroup"
 
 // CreateClusterSubnetGroupRequest generates a request for the CreateClusterSubnetGroup operation.
 func (c *Redshift) CreateClusterSubnetGroupRequest(input *CreateClusterSubnetGroupInput) (req *aws.Request, output *CreateClusterSubnetGroupOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateClusterSubnetGroup == nil {
-		opCreateClusterSubnetGroup = &aws.Operation{
-			Name:       "CreateClusterSubnetGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateClusterSubnetGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateClusterSubnetGroupInput{}
 	}
 
-	req = c.newRequest(opCreateClusterSubnetGroup, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateClusterSubnetGroupOutput{}
 	req.Data = output
 	return
@@ -328,26 +287,21 @@ func (c *Redshift) CreateClusterSubnetGroup(input *CreateClusterSubnetGroupInput
 	return out, err
 }
 
-var opCreateClusterSubnetGroup *aws.Operation
+const opCreateEventSubscription = "CreateEventSubscription"
 
 // CreateEventSubscriptionRequest generates a request for the CreateEventSubscription operation.
 func (c *Redshift) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput) (req *aws.Request, output *CreateEventSubscriptionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateEventSubscription == nil {
-		opCreateEventSubscription = &aws.Operation{
-			Name:       "CreateEventSubscription",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateEventSubscription,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateEventSubscriptionInput{}
 	}
 
-	req = c.newRequest(opCreateEventSubscription, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateEventSubscriptionOutput{}
 	req.Data = output
 	return
@@ -381,26 +335,21 @@ func (c *Redshift) CreateEventSubscription(input *CreateEventSubscriptionInput) 
 	return out, err
 }
 
-var opCreateEventSubscription *aws.Operation
+const opCreateHSMClientCertificate = "CreateHsmClientCertificate"
 
 // CreateHSMClientCertificateRequest generates a request for the CreateHSMClientCertificate operation.
 func (c *Redshift) CreateHSMClientCertificateRequest(input *CreateHSMClientCertificateInput) (req *aws.Request, output *CreateHSMClientCertificateOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateHSMClientCertificate == nil {
-		opCreateHSMClientCertificate = &aws.Operation{
-			Name:       "CreateHsmClientCertificate",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateHSMClientCertificate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateHSMClientCertificateInput{}
 	}
 
-	req = c.newRequest(opCreateHSMClientCertificate, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateHSMClientCertificateOutput{}
 	req.Data = output
 	return
@@ -421,26 +370,21 @@ func (c *Redshift) CreateHSMClientCertificate(input *CreateHSMClientCertificateI
 	return out, err
 }
 
-var opCreateHSMClientCertificate *aws.Operation
+const opCreateHSMConfiguration = "CreateHsmConfiguration"
 
 // CreateHSMConfigurationRequest generates a request for the CreateHSMConfiguration operation.
 func (c *Redshift) CreateHSMConfigurationRequest(input *CreateHSMConfigurationInput) (req *aws.Request, output *CreateHSMConfigurationOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateHSMConfiguration == nil {
-		opCreateHSMConfiguration = &aws.Operation{
-			Name:       "CreateHsmConfiguration",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateHSMConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateHSMConfigurationInput{}
 	}
 
-	req = c.newRequest(opCreateHSMConfiguration, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateHSMConfigurationOutput{}
 	req.Data = output
 	return
@@ -462,26 +406,21 @@ func (c *Redshift) CreateHSMConfiguration(input *CreateHSMConfigurationInput) (*
 	return out, err
 }
 
-var opCreateHSMConfiguration *aws.Operation
+const opCreateTags = "CreateTags"
 
 // CreateTagsRequest generates a request for the CreateTags operation.
 func (c *Redshift) CreateTagsRequest(input *CreateTagsInput) (req *aws.Request, output *CreateTagsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateTags == nil {
-		opCreateTags = &aws.Operation{
-			Name:       "CreateTags",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateTags,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateTagsInput{}
 	}
 
-	req = c.newRequest(opCreateTags, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateTagsOutput{}
 	req.Data = output
 	return
@@ -500,26 +439,21 @@ func (c *Redshift) CreateTags(input *CreateTagsInput) (*CreateTagsOutput, error)
 	return out, err
 }
 
-var opCreateTags *aws.Operation
+const opDeleteCluster = "DeleteCluster"
 
 // DeleteClusterRequest generates a request for the DeleteCluster operation.
 func (c *Redshift) DeleteClusterRequest(input *DeleteClusterInput) (req *aws.Request, output *DeleteClusterOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteCluster == nil {
-		opDeleteCluster = &aws.Operation{
-			Name:       "DeleteCluster",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteClusterInput{}
 	}
 
-	req = c.newRequest(opDeleteCluster, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteClusterOutput{}
 	req.Data = output
 	return
@@ -548,26 +482,21 @@ func (c *Redshift) DeleteCluster(input *DeleteClusterInput) (*DeleteClusterOutpu
 	return out, err
 }
 
-var opDeleteCluster *aws.Operation
+const opDeleteClusterParameterGroup = "DeleteClusterParameterGroup"
 
 // DeleteClusterParameterGroupRequest generates a request for the DeleteClusterParameterGroup operation.
 func (c *Redshift) DeleteClusterParameterGroupRequest(input *DeleteClusterParameterGroupInput) (req *aws.Request, output *DeleteClusterParameterGroupOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteClusterParameterGroup == nil {
-		opDeleteClusterParameterGroup = &aws.Operation{
-			Name:       "DeleteClusterParameterGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteClusterParameterGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteClusterParameterGroupInput{}
 	}
 
-	req = c.newRequest(opDeleteClusterParameterGroup, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteClusterParameterGroupOutput{}
 	req.Data = output
 	return
@@ -581,26 +510,21 @@ func (c *Redshift) DeleteClusterParameterGroup(input *DeleteClusterParameterGrou
 	return out, err
 }
 
-var opDeleteClusterParameterGroup *aws.Operation
+const opDeleteClusterSecurityGroup = "DeleteClusterSecurityGroup"
 
 // DeleteClusterSecurityGroupRequest generates a request for the DeleteClusterSecurityGroup operation.
 func (c *Redshift) DeleteClusterSecurityGroupRequest(input *DeleteClusterSecurityGroupInput) (req *aws.Request, output *DeleteClusterSecurityGroupOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteClusterSecurityGroup == nil {
-		opDeleteClusterSecurityGroup = &aws.Operation{
-			Name:       "DeleteClusterSecurityGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteClusterSecurityGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteClusterSecurityGroupInput{}
 	}
 
-	req = c.newRequest(opDeleteClusterSecurityGroup, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteClusterSecurityGroupOutput{}
 	req.Data = output
 	return
@@ -618,26 +542,21 @@ func (c *Redshift) DeleteClusterSecurityGroup(input *DeleteClusterSecurityGroupI
 	return out, err
 }
 
-var opDeleteClusterSecurityGroup *aws.Operation
+const opDeleteClusterSnapshot = "DeleteClusterSnapshot"
 
 // DeleteClusterSnapshotRequest generates a request for the DeleteClusterSnapshot operation.
 func (c *Redshift) DeleteClusterSnapshotRequest(input *DeleteClusterSnapshotInput) (req *aws.Request, output *DeleteClusterSnapshotOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteClusterSnapshot == nil {
-		opDeleteClusterSnapshot = &aws.Operation{
-			Name:       "DeleteClusterSnapshot",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteClusterSnapshot,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteClusterSnapshotInput{}
 	}
 
-	req = c.newRequest(opDeleteClusterSnapshot, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteClusterSnapshotOutput{}
 	req.Data = output
 	return
@@ -657,26 +576,21 @@ func (c *Redshift) DeleteClusterSnapshot(input *DeleteClusterSnapshotInput) (*De
 	return out, err
 }
 
-var opDeleteClusterSnapshot *aws.Operation
+const opDeleteClusterSubnetGroup = "DeleteClusterSubnetGroup"
 
 // DeleteClusterSubnetGroupRequest generates a request for the DeleteClusterSubnetGroup operation.
 func (c *Redshift) DeleteClusterSubnetGroupRequest(input *DeleteClusterSubnetGroupInput) (req *aws.Request, output *DeleteClusterSubnetGroupOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteClusterSubnetGroup == nil {
-		opDeleteClusterSubnetGroup = &aws.Operation{
-			Name:       "DeleteClusterSubnetGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteClusterSubnetGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteClusterSubnetGroupInput{}
 	}
 
-	req = c.newRequest(opDeleteClusterSubnetGroup, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteClusterSubnetGroupOutput{}
 	req.Data = output
 	return
@@ -689,26 +603,21 @@ func (c *Redshift) DeleteClusterSubnetGroup(input *DeleteClusterSubnetGroupInput
 	return out, err
 }
 
-var opDeleteClusterSubnetGroup *aws.Operation
+const opDeleteEventSubscription = "DeleteEventSubscription"
 
 // DeleteEventSubscriptionRequest generates a request for the DeleteEventSubscription operation.
 func (c *Redshift) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionInput) (req *aws.Request, output *DeleteEventSubscriptionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteEventSubscription == nil {
-		opDeleteEventSubscription = &aws.Operation{
-			Name:       "DeleteEventSubscription",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteEventSubscription,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteEventSubscriptionInput{}
 	}
 
-	req = c.newRequest(opDeleteEventSubscription, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteEventSubscriptionOutput{}
 	req.Data = output
 	return
@@ -721,26 +630,21 @@ func (c *Redshift) DeleteEventSubscription(input *DeleteEventSubscriptionInput) 
 	return out, err
 }
 
-var opDeleteEventSubscription *aws.Operation
+const opDeleteHSMClientCertificate = "DeleteHsmClientCertificate"
 
 // DeleteHSMClientCertificateRequest generates a request for the DeleteHSMClientCertificate operation.
 func (c *Redshift) DeleteHSMClientCertificateRequest(input *DeleteHSMClientCertificateInput) (req *aws.Request, output *DeleteHSMClientCertificateOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteHSMClientCertificate == nil {
-		opDeleteHSMClientCertificate = &aws.Operation{
-			Name:       "DeleteHsmClientCertificate",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteHSMClientCertificate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteHSMClientCertificateInput{}
 	}
 
-	req = c.newRequest(opDeleteHSMClientCertificate, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteHSMClientCertificateOutput{}
 	req.Data = output
 	return
@@ -753,26 +657,21 @@ func (c *Redshift) DeleteHSMClientCertificate(input *DeleteHSMClientCertificateI
 	return out, err
 }
 
-var opDeleteHSMClientCertificate *aws.Operation
+const opDeleteHSMConfiguration = "DeleteHsmConfiguration"
 
 // DeleteHSMConfigurationRequest generates a request for the DeleteHSMConfiguration operation.
 func (c *Redshift) DeleteHSMConfigurationRequest(input *DeleteHSMConfigurationInput) (req *aws.Request, output *DeleteHSMConfigurationOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteHSMConfiguration == nil {
-		opDeleteHSMConfiguration = &aws.Operation{
-			Name:       "DeleteHsmConfiguration",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteHSMConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteHSMConfigurationInput{}
 	}
 
-	req = c.newRequest(opDeleteHSMConfiguration, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteHSMConfigurationOutput{}
 	req.Data = output
 	return
@@ -785,26 +684,21 @@ func (c *Redshift) DeleteHSMConfiguration(input *DeleteHSMConfigurationInput) (*
 	return out, err
 }
 
-var opDeleteHSMConfiguration *aws.Operation
+const opDeleteTags = "DeleteTags"
 
 // DeleteTagsRequest generates a request for the DeleteTags operation.
 func (c *Redshift) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Request, output *DeleteTagsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteTags == nil {
-		opDeleteTags = &aws.Operation{
-			Name:       "DeleteTags",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteTags,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteTagsInput{}
 	}
 
-	req = c.newRequest(opDeleteTags, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteTagsOutput{}
 	req.Data = output
 	return
@@ -818,32 +712,27 @@ func (c *Redshift) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, error)
 	return out, err
 }
 
-var opDeleteTags *aws.Operation
+const opDescribeClusterParameterGroups = "DescribeClusterParameterGroups"
 
 // DescribeClusterParameterGroupsRequest generates a request for the DescribeClusterParameterGroups operation.
 func (c *Redshift) DescribeClusterParameterGroupsRequest(input *DescribeClusterParameterGroupsInput) (req *aws.Request, output *DescribeClusterParameterGroupsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeClusterParameterGroups == nil {
-		opDescribeClusterParameterGroups = &aws.Operation{
-			Name:       "DescribeClusterParameterGroups",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxRecords",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeClusterParameterGroups,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeClusterParameterGroupsInput{}
 	}
 
-	req = c.newRequest(opDescribeClusterParameterGroups, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeClusterParameterGroupsOutput{}
 	req.Data = output
 	return
@@ -881,32 +770,27 @@ func (c *Redshift) DescribeClusterParameterGroupsPages(input *DescribeClusterPar
 	})
 }
 
-var opDescribeClusterParameterGroups *aws.Operation
+const opDescribeClusterParameters = "DescribeClusterParameters"
 
 // DescribeClusterParametersRequest generates a request for the DescribeClusterParameters operation.
 func (c *Redshift) DescribeClusterParametersRequest(input *DescribeClusterParametersInput) (req *aws.Request, output *DescribeClusterParametersOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeClusterParameters == nil {
-		opDescribeClusterParameters = &aws.Operation{
-			Name:       "DescribeClusterParameters",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxRecords",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeClusterParameters,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeClusterParametersInput{}
 	}
 
-	req = c.newRequest(opDescribeClusterParameters, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeClusterParametersOutput{}
 	req.Data = output
 	return
@@ -937,32 +821,27 @@ func (c *Redshift) DescribeClusterParametersPages(input *DescribeClusterParamete
 	})
 }
 
-var opDescribeClusterParameters *aws.Operation
+const opDescribeClusterSecurityGroups = "DescribeClusterSecurityGroups"
 
 // DescribeClusterSecurityGroupsRequest generates a request for the DescribeClusterSecurityGroups operation.
 func (c *Redshift) DescribeClusterSecurityGroupsRequest(input *DescribeClusterSecurityGroupsInput) (req *aws.Request, output *DescribeClusterSecurityGroupsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeClusterSecurityGroups == nil {
-		opDescribeClusterSecurityGroups = &aws.Operation{
-			Name:       "DescribeClusterSecurityGroups",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxRecords",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeClusterSecurityGroups,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeClusterSecurityGroupsInput{}
 	}
 
-	req = c.newRequest(opDescribeClusterSecurityGroups, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeClusterSecurityGroupsOutput{}
 	req.Data = output
 	return
@@ -998,32 +877,27 @@ func (c *Redshift) DescribeClusterSecurityGroupsPages(input *DescribeClusterSecu
 	})
 }
 
-var opDescribeClusterSecurityGroups *aws.Operation
+const opDescribeClusterSnapshots = "DescribeClusterSnapshots"
 
 // DescribeClusterSnapshotsRequest generates a request for the DescribeClusterSnapshots operation.
 func (c *Redshift) DescribeClusterSnapshotsRequest(input *DescribeClusterSnapshotsInput) (req *aws.Request, output *DescribeClusterSnapshotsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeClusterSnapshots == nil {
-		opDescribeClusterSnapshots = &aws.Operation{
-			Name:       "DescribeClusterSnapshots",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxRecords",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeClusterSnapshots,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeClusterSnapshotsInput{}
 	}
 
-	req = c.newRequest(opDescribeClusterSnapshots, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeClusterSnapshotsOutput{}
 	req.Data = output
 	return
@@ -1058,32 +932,27 @@ func (c *Redshift) DescribeClusterSnapshotsPages(input *DescribeClusterSnapshots
 	})
 }
 
-var opDescribeClusterSnapshots *aws.Operation
+const opDescribeClusterSubnetGroups = "DescribeClusterSubnetGroups"
 
 // DescribeClusterSubnetGroupsRequest generates a request for the DescribeClusterSubnetGroups operation.
 func (c *Redshift) DescribeClusterSubnetGroupsRequest(input *DescribeClusterSubnetGroupsInput) (req *aws.Request, output *DescribeClusterSubnetGroupsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeClusterSubnetGroups == nil {
-		opDescribeClusterSubnetGroups = &aws.Operation{
-			Name:       "DescribeClusterSubnetGroups",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxRecords",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeClusterSubnetGroups,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeClusterSubnetGroupsInput{}
 	}
 
-	req = c.newRequest(opDescribeClusterSubnetGroups, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeClusterSubnetGroupsOutput{}
 	req.Data = output
 	return
@@ -1115,32 +984,27 @@ func (c *Redshift) DescribeClusterSubnetGroupsPages(input *DescribeClusterSubnet
 	})
 }
 
-var opDescribeClusterSubnetGroups *aws.Operation
+const opDescribeClusterVersions = "DescribeClusterVersions"
 
 // DescribeClusterVersionsRequest generates a request for the DescribeClusterVersions operation.
 func (c *Redshift) DescribeClusterVersionsRequest(input *DescribeClusterVersionsInput) (req *aws.Request, output *DescribeClusterVersionsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeClusterVersions == nil {
-		opDescribeClusterVersions = &aws.Operation{
-			Name:       "DescribeClusterVersions",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxRecords",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeClusterVersions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeClusterVersionsInput{}
 	}
 
-	req = c.newRequest(opDescribeClusterVersions, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeClusterVersionsOutput{}
 	req.Data = output
 	return
@@ -1164,32 +1028,27 @@ func (c *Redshift) DescribeClusterVersionsPages(input *DescribeClusterVersionsIn
 	})
 }
 
-var opDescribeClusterVersions *aws.Operation
+const opDescribeClusters = "DescribeClusters"
 
 // DescribeClustersRequest generates a request for the DescribeClusters operation.
 func (c *Redshift) DescribeClustersRequest(input *DescribeClustersInput) (req *aws.Request, output *DescribeClustersOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeClusters == nil {
-		opDescribeClusters = &aws.Operation{
-			Name:       "DescribeClusters",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxRecords",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeClusters,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeClustersInput{}
 	}
 
-	req = c.newRequest(opDescribeClusters, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeClustersOutput{}
 	req.Data = output
 	return
@@ -1222,32 +1081,27 @@ func (c *Redshift) DescribeClustersPages(input *DescribeClustersInput, fn func(p
 	})
 }
 
-var opDescribeClusters *aws.Operation
+const opDescribeDefaultClusterParameters = "DescribeDefaultClusterParameters"
 
 // DescribeDefaultClusterParametersRequest generates a request for the DescribeDefaultClusterParameters operation.
 func (c *Redshift) DescribeDefaultClusterParametersRequest(input *DescribeDefaultClusterParametersInput) (req *aws.Request, output *DescribeDefaultClusterParametersOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeDefaultClusterParameters == nil {
-		opDescribeDefaultClusterParameters = &aws.Operation{
-			Name:       "DescribeDefaultClusterParameters",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"DefaultClusterParameters.Marker"},
-				LimitToken:      "MaxRecords",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeDefaultClusterParameters,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"DefaultClusterParameters.Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeDefaultClusterParametersInput{}
 	}
 
-	req = c.newRequest(opDescribeDefaultClusterParameters, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeDefaultClusterParametersOutput{}
 	req.Data = output
 	return
@@ -1271,26 +1125,21 @@ func (c *Redshift) DescribeDefaultClusterParametersPages(input *DescribeDefaultC
 	})
 }
 
-var opDescribeDefaultClusterParameters *aws.Operation
+const opDescribeEventCategories = "DescribeEventCategories"
 
 // DescribeEventCategoriesRequest generates a request for the DescribeEventCategories operation.
 func (c *Redshift) DescribeEventCategoriesRequest(input *DescribeEventCategoriesInput) (req *aws.Request, output *DescribeEventCategoriesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeEventCategories == nil {
-		opDescribeEventCategories = &aws.Operation{
-			Name:       "DescribeEventCategories",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeEventCategories,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeEventCategoriesInput{}
 	}
 
-	req = c.newRequest(opDescribeEventCategories, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeEventCategoriesOutput{}
 	req.Data = output
 	return
@@ -1305,32 +1154,27 @@ func (c *Redshift) DescribeEventCategories(input *DescribeEventCategoriesInput) 
 	return out, err
 }
 
-var opDescribeEventCategories *aws.Operation
+const opDescribeEventSubscriptions = "DescribeEventSubscriptions"
 
 // DescribeEventSubscriptionsRequest generates a request for the DescribeEventSubscriptions operation.
 func (c *Redshift) DescribeEventSubscriptionsRequest(input *DescribeEventSubscriptionsInput) (req *aws.Request, output *DescribeEventSubscriptionsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeEventSubscriptions == nil {
-		opDescribeEventSubscriptions = &aws.Operation{
-			Name:       "DescribeEventSubscriptions",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxRecords",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeEventSubscriptions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeEventSubscriptionsInput{}
 	}
 
-	req = c.newRequest(opDescribeEventSubscriptions, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeEventSubscriptionsOutput{}
 	req.Data = output
 	return
@@ -1352,32 +1196,27 @@ func (c *Redshift) DescribeEventSubscriptionsPages(input *DescribeEventSubscript
 	})
 }
 
-var opDescribeEventSubscriptions *aws.Operation
+const opDescribeEvents = "DescribeEvents"
 
 // DescribeEventsRequest generates a request for the DescribeEvents operation.
 func (c *Redshift) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Request, output *DescribeEventsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeEvents == nil {
-		opDescribeEvents = &aws.Operation{
-			Name:       "DescribeEvents",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxRecords",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeEvents,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeEventsInput{}
 	}
 
-	req = c.newRequest(opDescribeEvents, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeEventsOutput{}
 	req.Data = output
 	return
@@ -1400,32 +1239,27 @@ func (c *Redshift) DescribeEventsPages(input *DescribeEventsInput, fn func(p *De
 	})
 }
 
-var opDescribeEvents *aws.Operation
+const opDescribeHSMClientCertificates = "DescribeHsmClientCertificates"
 
 // DescribeHSMClientCertificatesRequest generates a request for the DescribeHSMClientCertificates operation.
 func (c *Redshift) DescribeHSMClientCertificatesRequest(input *DescribeHSMClientCertificatesInput) (req *aws.Request, output *DescribeHSMClientCertificatesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeHSMClientCertificates == nil {
-		opDescribeHSMClientCertificates = &aws.Operation{
-			Name:       "DescribeHsmClientCertificates",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxRecords",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeHSMClientCertificates,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeHSMClientCertificatesInput{}
 	}
 
-	req = c.newRequest(opDescribeHSMClientCertificates, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeHSMClientCertificatesOutput{}
 	req.Data = output
 	return
@@ -1457,32 +1291,27 @@ func (c *Redshift) DescribeHSMClientCertificatesPages(input *DescribeHSMClientCe
 	})
 }
 
-var opDescribeHSMClientCertificates *aws.Operation
+const opDescribeHSMConfigurations = "DescribeHsmConfigurations"
 
 // DescribeHSMConfigurationsRequest generates a request for the DescribeHSMConfigurations operation.
 func (c *Redshift) DescribeHSMConfigurationsRequest(input *DescribeHSMConfigurationsInput) (req *aws.Request, output *DescribeHSMConfigurationsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeHSMConfigurations == nil {
-		opDescribeHSMConfigurations = &aws.Operation{
-			Name:       "DescribeHsmConfigurations",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxRecords",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeHSMConfigurations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeHSMConfigurationsInput{}
 	}
 
-	req = c.newRequest(opDescribeHSMConfigurations, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeHSMConfigurationsOutput{}
 	req.Data = output
 	return
@@ -1514,26 +1343,21 @@ func (c *Redshift) DescribeHSMConfigurationsPages(input *DescribeHSMConfiguratio
 	})
 }
 
-var opDescribeHSMConfigurations *aws.Operation
+const opDescribeLoggingStatus = "DescribeLoggingStatus"
 
 // DescribeLoggingStatusRequest generates a request for the DescribeLoggingStatus operation.
 func (c *Redshift) DescribeLoggingStatusRequest(input *DescribeLoggingStatusInput) (req *aws.Request, output *LoggingStatus) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeLoggingStatus == nil {
-		opDescribeLoggingStatus = &aws.Operation{
-			Name:       "DescribeLoggingStatus",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeLoggingStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeLoggingStatusInput{}
 	}
 
-	req = c.newRequest(opDescribeLoggingStatus, input, output)
+	req = c.newRequest(op, input, output)
 	output = &LoggingStatus{}
 	req.Data = output
 	return
@@ -1547,32 +1371,27 @@ func (c *Redshift) DescribeLoggingStatus(input *DescribeLoggingStatusInput) (*Lo
 	return out, err
 }
 
-var opDescribeLoggingStatus *aws.Operation
+const opDescribeOrderableClusterOptions = "DescribeOrderableClusterOptions"
 
 // DescribeOrderableClusterOptionsRequest generates a request for the DescribeOrderableClusterOptions operation.
 func (c *Redshift) DescribeOrderableClusterOptionsRequest(input *DescribeOrderableClusterOptionsInput) (req *aws.Request, output *DescribeOrderableClusterOptionsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeOrderableClusterOptions == nil {
-		opDescribeOrderableClusterOptions = &aws.Operation{
-			Name:       "DescribeOrderableClusterOptions",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxRecords",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeOrderableClusterOptions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeOrderableClusterOptionsInput{}
 	}
 
-	req = c.newRequest(opDescribeOrderableClusterOptions, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeOrderableClusterOptionsOutput{}
 	req.Data = output
 	return
@@ -1600,32 +1419,27 @@ func (c *Redshift) DescribeOrderableClusterOptionsPages(input *DescribeOrderable
 	})
 }
 
-var opDescribeOrderableClusterOptions *aws.Operation
+const opDescribeReservedNodeOfferings = "DescribeReservedNodeOfferings"
 
 // DescribeReservedNodeOfferingsRequest generates a request for the DescribeReservedNodeOfferings operation.
 func (c *Redshift) DescribeReservedNodeOfferingsRequest(input *DescribeReservedNodeOfferingsInput) (req *aws.Request, output *DescribeReservedNodeOfferingsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeReservedNodeOfferings == nil {
-		opDescribeReservedNodeOfferings = &aws.Operation{
-			Name:       "DescribeReservedNodeOfferings",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxRecords",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeReservedNodeOfferings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeReservedNodeOfferingsInput{}
 	}
 
-	req = c.newRequest(opDescribeReservedNodeOfferings, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeReservedNodeOfferingsOutput{}
 	req.Data = output
 	return
@@ -1654,32 +1468,27 @@ func (c *Redshift) DescribeReservedNodeOfferingsPages(input *DescribeReservedNod
 	})
 }
 
-var opDescribeReservedNodeOfferings *aws.Operation
+const opDescribeReservedNodes = "DescribeReservedNodes"
 
 // DescribeReservedNodesRequest generates a request for the DescribeReservedNodes operation.
 func (c *Redshift) DescribeReservedNodesRequest(input *DescribeReservedNodesInput) (req *aws.Request, output *DescribeReservedNodesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeReservedNodes == nil {
-		opDescribeReservedNodes = &aws.Operation{
-			Name:       "DescribeReservedNodes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxRecords",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeReservedNodes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeReservedNodesInput{}
 	}
 
-	req = c.newRequest(opDescribeReservedNodes, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeReservedNodesOutput{}
 	req.Data = output
 	return
@@ -1699,26 +1508,21 @@ func (c *Redshift) DescribeReservedNodesPages(input *DescribeReservedNodesInput,
 	})
 }
 
-var opDescribeReservedNodes *aws.Operation
+const opDescribeResize = "DescribeResize"
 
 // DescribeResizeRequest generates a request for the DescribeResize operation.
 func (c *Redshift) DescribeResizeRequest(input *DescribeResizeInput) (req *aws.Request, output *DescribeResizeOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeResize == nil {
-		opDescribeResize = &aws.Operation{
-			Name:       "DescribeResize",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeResize,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeResizeInput{}
 	}
 
-	req = c.newRequest(opDescribeResize, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeResizeOutput{}
 	req.Data = output
 	return
@@ -1737,26 +1541,21 @@ func (c *Redshift) DescribeResize(input *DescribeResizeInput) (*DescribeResizeOu
 	return out, err
 }
 
-var opDescribeResize *aws.Operation
+const opDescribeTags = "DescribeTags"
 
 // DescribeTagsRequest generates a request for the DescribeTags operation.
 func (c *Redshift) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, output *DescribeTagsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeTags == nil {
-		opDescribeTags = &aws.Operation{
-			Name:       "DescribeTags",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeTags,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeTagsInput{}
 	}
 
-	req = c.newRequest(opDescribeTags, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeTagsOutput{}
 	req.Data = output
 	return
@@ -1787,26 +1586,21 @@ func (c *Redshift) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, 
 	return out, err
 }
 
-var opDescribeTags *aws.Operation
+const opDisableLogging = "DisableLogging"
 
 // DisableLoggingRequest generates a request for the DisableLogging operation.
 func (c *Redshift) DisableLoggingRequest(input *DisableLoggingInput) (req *aws.Request, output *LoggingStatus) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDisableLogging == nil {
-		opDisableLogging = &aws.Operation{
-			Name:       "DisableLogging",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDisableLogging,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DisableLoggingInput{}
 	}
 
-	req = c.newRequest(opDisableLogging, input, output)
+	req = c.newRequest(op, input, output)
 	output = &LoggingStatus{}
 	req.Data = output
 	return
@@ -1820,26 +1614,21 @@ func (c *Redshift) DisableLogging(input *DisableLoggingInput) (*LoggingStatus, e
 	return out, err
 }
 
-var opDisableLogging *aws.Operation
+const opDisableSnapshotCopy = "DisableSnapshotCopy"
 
 // DisableSnapshotCopyRequest generates a request for the DisableSnapshotCopy operation.
 func (c *Redshift) DisableSnapshotCopyRequest(input *DisableSnapshotCopyInput) (req *aws.Request, output *DisableSnapshotCopyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDisableSnapshotCopy == nil {
-		opDisableSnapshotCopy = &aws.Operation{
-			Name:       "DisableSnapshotCopy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDisableSnapshotCopy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DisableSnapshotCopyInput{}
 	}
 
-	req = c.newRequest(opDisableSnapshotCopy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DisableSnapshotCopyOutput{}
 	req.Data = output
 	return
@@ -1853,26 +1642,21 @@ func (c *Redshift) DisableSnapshotCopy(input *DisableSnapshotCopyInput) (*Disabl
 	return out, err
 }
 
-var opDisableSnapshotCopy *aws.Operation
+const opEnableLogging = "EnableLogging"
 
 // EnableLoggingRequest generates a request for the EnableLogging operation.
 func (c *Redshift) EnableLoggingRequest(input *EnableLoggingInput) (req *aws.Request, output *LoggingStatus) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opEnableLogging == nil {
-		opEnableLogging = &aws.Operation{
-			Name:       "EnableLogging",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opEnableLogging,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &EnableLoggingInput{}
 	}
 
-	req = c.newRequest(opEnableLogging, input, output)
+	req = c.newRequest(op, input, output)
 	output = &LoggingStatus{}
 	req.Data = output
 	return
@@ -1886,26 +1670,21 @@ func (c *Redshift) EnableLogging(input *EnableLoggingInput) (*LoggingStatus, err
 	return out, err
 }
 
-var opEnableLogging *aws.Operation
+const opEnableSnapshotCopy = "EnableSnapshotCopy"
 
 // EnableSnapshotCopyRequest generates a request for the EnableSnapshotCopy operation.
 func (c *Redshift) EnableSnapshotCopyRequest(input *EnableSnapshotCopyInput) (req *aws.Request, output *EnableSnapshotCopyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opEnableSnapshotCopy == nil {
-		opEnableSnapshotCopy = &aws.Operation{
-			Name:       "EnableSnapshotCopy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opEnableSnapshotCopy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &EnableSnapshotCopyInput{}
 	}
 
-	req = c.newRequest(opEnableSnapshotCopy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &EnableSnapshotCopyOutput{}
 	req.Data = output
 	return
@@ -1919,26 +1698,21 @@ func (c *Redshift) EnableSnapshotCopy(input *EnableSnapshotCopyInput) (*EnableSn
 	return out, err
 }
 
-var opEnableSnapshotCopy *aws.Operation
+const opModifyCluster = "ModifyCluster"
 
 // ModifyClusterRequest generates a request for the ModifyCluster operation.
 func (c *Redshift) ModifyClusterRequest(input *ModifyClusterInput) (req *aws.Request, output *ModifyClusterOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opModifyCluster == nil {
-		opModifyCluster = &aws.Operation{
-			Name:       "ModifyCluster",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opModifyCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ModifyClusterInput{}
 	}
 
-	req = c.newRequest(opModifyCluster, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ModifyClusterOutput{}
 	req.Data = output
 	return
@@ -1961,26 +1735,21 @@ func (c *Redshift) ModifyCluster(input *ModifyClusterInput) (*ModifyClusterOutpu
 	return out, err
 }
 
-var opModifyCluster *aws.Operation
+const opModifyClusterParameterGroup = "ModifyClusterParameterGroup"
 
 // ModifyClusterParameterGroupRequest generates a request for the ModifyClusterParameterGroup operation.
 func (c *Redshift) ModifyClusterParameterGroupRequest(input *ModifyClusterParameterGroupInput) (req *aws.Request, output *ClusterParameterGroupNameMessage) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opModifyClusterParameterGroup == nil {
-		opModifyClusterParameterGroup = &aws.Operation{
-			Name:       "ModifyClusterParameterGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opModifyClusterParameterGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ModifyClusterParameterGroupInput{}
 	}
 
-	req = c.newRequest(opModifyClusterParameterGroup, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ClusterParameterGroupNameMessage{}
 	req.Data = output
 	return
@@ -1997,26 +1766,21 @@ func (c *Redshift) ModifyClusterParameterGroup(input *ModifyClusterParameterGrou
 	return out, err
 }
 
-var opModifyClusterParameterGroup *aws.Operation
+const opModifyClusterSubnetGroup = "ModifyClusterSubnetGroup"
 
 // ModifyClusterSubnetGroupRequest generates a request for the ModifyClusterSubnetGroup operation.
 func (c *Redshift) ModifyClusterSubnetGroupRequest(input *ModifyClusterSubnetGroupInput) (req *aws.Request, output *ModifyClusterSubnetGroupOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opModifyClusterSubnetGroup == nil {
-		opModifyClusterSubnetGroup = &aws.Operation{
-			Name:       "ModifyClusterSubnetGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opModifyClusterSubnetGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ModifyClusterSubnetGroupInput{}
 	}
 
-	req = c.newRequest(opModifyClusterSubnetGroup, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ModifyClusterSubnetGroupOutput{}
 	req.Data = output
 	return
@@ -2031,26 +1795,21 @@ func (c *Redshift) ModifyClusterSubnetGroup(input *ModifyClusterSubnetGroupInput
 	return out, err
 }
 
-var opModifyClusterSubnetGroup *aws.Operation
+const opModifyEventSubscription = "ModifyEventSubscription"
 
 // ModifyEventSubscriptionRequest generates a request for the ModifyEventSubscription operation.
 func (c *Redshift) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionInput) (req *aws.Request, output *ModifyEventSubscriptionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opModifyEventSubscription == nil {
-		opModifyEventSubscription = &aws.Operation{
-			Name:       "ModifyEventSubscription",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opModifyEventSubscription,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ModifyEventSubscriptionInput{}
 	}
 
-	req = c.newRequest(opModifyEventSubscription, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ModifyEventSubscriptionOutput{}
 	req.Data = output
 	return
@@ -2063,26 +1822,21 @@ func (c *Redshift) ModifyEventSubscription(input *ModifyEventSubscriptionInput) 
 	return out, err
 }
 
-var opModifyEventSubscription *aws.Operation
+const opModifySnapshotCopyRetentionPeriod = "ModifySnapshotCopyRetentionPeriod"
 
 // ModifySnapshotCopyRetentionPeriodRequest generates a request for the ModifySnapshotCopyRetentionPeriod operation.
 func (c *Redshift) ModifySnapshotCopyRetentionPeriodRequest(input *ModifySnapshotCopyRetentionPeriodInput) (req *aws.Request, output *ModifySnapshotCopyRetentionPeriodOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opModifySnapshotCopyRetentionPeriod == nil {
-		opModifySnapshotCopyRetentionPeriod = &aws.Operation{
-			Name:       "ModifySnapshotCopyRetentionPeriod",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opModifySnapshotCopyRetentionPeriod,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ModifySnapshotCopyRetentionPeriodInput{}
 	}
 
-	req = c.newRequest(opModifySnapshotCopyRetentionPeriod, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ModifySnapshotCopyRetentionPeriodOutput{}
 	req.Data = output
 	return
@@ -2096,26 +1850,21 @@ func (c *Redshift) ModifySnapshotCopyRetentionPeriod(input *ModifySnapshotCopyRe
 	return out, err
 }
 
-var opModifySnapshotCopyRetentionPeriod *aws.Operation
+const opPurchaseReservedNodeOffering = "PurchaseReservedNodeOffering"
 
 // PurchaseReservedNodeOfferingRequest generates a request for the PurchaseReservedNodeOffering operation.
 func (c *Redshift) PurchaseReservedNodeOfferingRequest(input *PurchaseReservedNodeOfferingInput) (req *aws.Request, output *PurchaseReservedNodeOfferingOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opPurchaseReservedNodeOffering == nil {
-		opPurchaseReservedNodeOffering = &aws.Operation{
-			Name:       "PurchaseReservedNodeOffering",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opPurchaseReservedNodeOffering,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &PurchaseReservedNodeOfferingInput{}
 	}
 
-	req = c.newRequest(opPurchaseReservedNodeOffering, input, output)
+	req = c.newRequest(op, input, output)
 	output = &PurchaseReservedNodeOfferingOutput{}
 	req.Data = output
 	return
@@ -2136,26 +1885,21 @@ func (c *Redshift) PurchaseReservedNodeOffering(input *PurchaseReservedNodeOffer
 	return out, err
 }
 
-var opPurchaseReservedNodeOffering *aws.Operation
+const opRebootCluster = "RebootCluster"
 
 // RebootClusterRequest generates a request for the RebootCluster operation.
 func (c *Redshift) RebootClusterRequest(input *RebootClusterInput) (req *aws.Request, output *RebootClusterOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opRebootCluster == nil {
-		opRebootCluster = &aws.Operation{
-			Name:       "RebootCluster",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opRebootCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &RebootClusterInput{}
 	}
 
-	req = c.newRequest(opRebootCluster, input, output)
+	req = c.newRequest(op, input, output)
 	output = &RebootClusterOutput{}
 	req.Data = output
 	return
@@ -2174,26 +1918,21 @@ func (c *Redshift) RebootCluster(input *RebootClusterInput) (*RebootClusterOutpu
 	return out, err
 }
 
-var opRebootCluster *aws.Operation
+const opResetClusterParameterGroup = "ResetClusterParameterGroup"
 
 // ResetClusterParameterGroupRequest generates a request for the ResetClusterParameterGroup operation.
 func (c *Redshift) ResetClusterParameterGroupRequest(input *ResetClusterParameterGroupInput) (req *aws.Request, output *ClusterParameterGroupNameMessage) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opResetClusterParameterGroup == nil {
-		opResetClusterParameterGroup = &aws.Operation{
-			Name:       "ResetClusterParameterGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opResetClusterParameterGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ResetClusterParameterGroupInput{}
 	}
 
-	req = c.newRequest(opResetClusterParameterGroup, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ClusterParameterGroupNameMessage{}
 	req.Data = output
 	return
@@ -2209,26 +1948,21 @@ func (c *Redshift) ResetClusterParameterGroup(input *ResetClusterParameterGroupI
 	return out, err
 }
 
-var opResetClusterParameterGroup *aws.Operation
+const opRestoreFromClusterSnapshot = "RestoreFromClusterSnapshot"
 
 // RestoreFromClusterSnapshotRequest generates a request for the RestoreFromClusterSnapshot operation.
 func (c *Redshift) RestoreFromClusterSnapshotRequest(input *RestoreFromClusterSnapshotInput) (req *aws.Request, output *RestoreFromClusterSnapshotOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opRestoreFromClusterSnapshot == nil {
-		opRestoreFromClusterSnapshot = &aws.Operation{
-			Name:       "RestoreFromClusterSnapshot",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opRestoreFromClusterSnapshot,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &RestoreFromClusterSnapshotInput{}
 	}
 
-	req = c.newRequest(opRestoreFromClusterSnapshot, input, output)
+	req = c.newRequest(op, input, output)
 	output = &RestoreFromClusterSnapshotOutput{}
 	req.Data = output
 	return
@@ -2253,26 +1987,21 @@ func (c *Redshift) RestoreFromClusterSnapshot(input *RestoreFromClusterSnapshotI
 	return out, err
 }
 
-var opRestoreFromClusterSnapshot *aws.Operation
+const opRevokeClusterSecurityGroupIngress = "RevokeClusterSecurityGroupIngress"
 
 // RevokeClusterSecurityGroupIngressRequest generates a request for the RevokeClusterSecurityGroupIngress operation.
 func (c *Redshift) RevokeClusterSecurityGroupIngressRequest(input *RevokeClusterSecurityGroupIngressInput) (req *aws.Request, output *RevokeClusterSecurityGroupIngressOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opRevokeClusterSecurityGroupIngress == nil {
-		opRevokeClusterSecurityGroupIngress = &aws.Operation{
-			Name:       "RevokeClusterSecurityGroupIngress",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opRevokeClusterSecurityGroupIngress,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &RevokeClusterSecurityGroupIngressInput{}
 	}
 
-	req = c.newRequest(opRevokeClusterSecurityGroupIngress, input, output)
+	req = c.newRequest(op, input, output)
 	output = &RevokeClusterSecurityGroupIngressOutput{}
 	req.Data = output
 	return
@@ -2289,26 +2018,21 @@ func (c *Redshift) RevokeClusterSecurityGroupIngress(input *RevokeClusterSecurit
 	return out, err
 }
 
-var opRevokeClusterSecurityGroupIngress *aws.Operation
+const opRevokeSnapshotAccess = "RevokeSnapshotAccess"
 
 // RevokeSnapshotAccessRequest generates a request for the RevokeSnapshotAccess operation.
 func (c *Redshift) RevokeSnapshotAccessRequest(input *RevokeSnapshotAccessInput) (req *aws.Request, output *RevokeSnapshotAccessOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opRevokeSnapshotAccess == nil {
-		opRevokeSnapshotAccess = &aws.Operation{
-			Name:       "RevokeSnapshotAccess",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opRevokeSnapshotAccess,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &RevokeSnapshotAccessInput{}
 	}
 
-	req = c.newRequest(opRevokeSnapshotAccess, input, output)
+	req = c.newRequest(op, input, output)
 	output = &RevokeSnapshotAccessOutput{}
 	req.Data = output
 	return
@@ -2327,26 +2051,21 @@ func (c *Redshift) RevokeSnapshotAccess(input *RevokeSnapshotAccessInput) (*Revo
 	return out, err
 }
 
-var opRevokeSnapshotAccess *aws.Operation
+const opRotateEncryptionKey = "RotateEncryptionKey"
 
 // RotateEncryptionKeyRequest generates a request for the RotateEncryptionKey operation.
 func (c *Redshift) RotateEncryptionKeyRequest(input *RotateEncryptionKeyInput) (req *aws.Request, output *RotateEncryptionKeyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opRotateEncryptionKey == nil {
-		opRotateEncryptionKey = &aws.Operation{
-			Name:       "RotateEncryptionKey",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opRotateEncryptionKey,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &RotateEncryptionKeyInput{}
 	}
 
-	req = c.newRequest(opRotateEncryptionKey, input, output)
+	req = c.newRequest(op, input, output)
 	output = &RotateEncryptionKeyOutput{}
 	req.Data = output
 	return
@@ -2358,8 +2077,6 @@ func (c *Redshift) RotateEncryptionKey(input *RotateEncryptionKeyInput) (*Rotate
 	err := req.Send()
 	return out, err
 }
-
-var opRotateEncryptionKey *aws.Operation
 
 // Describes an AWS customer account authorized to restore a snapshot.
 type AccountWithRestoreAccess struct {

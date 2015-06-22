@@ -4,32 +4,26 @@
 package ecs
 
 import (
-	"sync"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 )
 
-var oprw sync.Mutex
+const opCreateCluster = "CreateCluster"
 
 // CreateClusterRequest generates a request for the CreateCluster operation.
 func (c *ECS) CreateClusterRequest(input *CreateClusterInput) (req *aws.Request, output *CreateClusterOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateCluster == nil {
-		opCreateCluster = &aws.Operation{
-			Name:       "CreateCluster",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateClusterInput{}
 	}
 
-	req = c.newRequest(opCreateCluster, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateClusterOutput{}
 	req.Data = output
 	return
@@ -44,26 +38,21 @@ func (c *ECS) CreateCluster(input *CreateClusterInput) (*CreateClusterOutput, er
 	return out, err
 }
 
-var opCreateCluster *aws.Operation
+const opCreateService = "CreateService"
 
 // CreateServiceRequest generates a request for the CreateService operation.
 func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *aws.Request, output *CreateServiceOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateService == nil {
-		opCreateService = &aws.Operation{
-			Name:       "CreateService",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateService,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateServiceInput{}
 	}
 
-	req = c.newRequest(opCreateService, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateServiceOutput{}
 	req.Data = output
 	return
@@ -78,26 +67,21 @@ func (c *ECS) CreateService(input *CreateServiceInput) (*CreateServiceOutput, er
 	return out, err
 }
 
-var opCreateService *aws.Operation
+const opDeleteCluster = "DeleteCluster"
 
 // DeleteClusterRequest generates a request for the DeleteCluster operation.
 func (c *ECS) DeleteClusterRequest(input *DeleteClusterInput) (req *aws.Request, output *DeleteClusterOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteCluster == nil {
-		opDeleteCluster = &aws.Operation{
-			Name:       "DeleteCluster",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteClusterInput{}
 	}
 
-	req = c.newRequest(opDeleteCluster, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteClusterOutput{}
 	req.Data = output
 	return
@@ -112,26 +96,21 @@ func (c *ECS) DeleteCluster(input *DeleteClusterInput) (*DeleteClusterOutput, er
 	return out, err
 }
 
-var opDeleteCluster *aws.Operation
+const opDeleteService = "DeleteService"
 
 // DeleteServiceRequest generates a request for the DeleteService operation.
 func (c *ECS) DeleteServiceRequest(input *DeleteServiceInput) (req *aws.Request, output *DeleteServiceOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteService == nil {
-		opDeleteService = &aws.Operation{
-			Name:       "DeleteService",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteService,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteServiceInput{}
 	}
 
-	req = c.newRequest(opDeleteService, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteServiceOutput{}
 	req.Data = output
 	return
@@ -144,26 +123,21 @@ func (c *ECS) DeleteService(input *DeleteServiceInput) (*DeleteServiceOutput, er
 	return out, err
 }
 
-var opDeleteService *aws.Operation
+const opDeregisterContainerInstance = "DeregisterContainerInstance"
 
 // DeregisterContainerInstanceRequest generates a request for the DeregisterContainerInstance operation.
 func (c *ECS) DeregisterContainerInstanceRequest(input *DeregisterContainerInstanceInput) (req *aws.Request, output *DeregisterContainerInstanceOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeregisterContainerInstance == nil {
-		opDeregisterContainerInstance = &aws.Operation{
-			Name:       "DeregisterContainerInstance",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeregisterContainerInstance,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeregisterContainerInstanceInput{}
 	}
 
-	req = c.newRequest(opDeregisterContainerInstance, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeregisterContainerInstanceOutput{}
 	req.Data = output
 	return
@@ -177,26 +151,21 @@ func (c *ECS) DeregisterContainerInstance(input *DeregisterContainerInstanceInpu
 	return out, err
 }
 
-var opDeregisterContainerInstance *aws.Operation
+const opDeregisterTaskDefinition = "DeregisterTaskDefinition"
 
 // DeregisterTaskDefinitionRequest generates a request for the DeregisterTaskDefinition operation.
 func (c *ECS) DeregisterTaskDefinitionRequest(input *DeregisterTaskDefinitionInput) (req *aws.Request, output *DeregisterTaskDefinitionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeregisterTaskDefinition == nil {
-		opDeregisterTaskDefinition = &aws.Operation{
-			Name:       "DeregisterTaskDefinition",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeregisterTaskDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeregisterTaskDefinitionInput{}
 	}
 
-	req = c.newRequest(opDeregisterTaskDefinition, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeregisterTaskDefinitionOutput{}
 	req.Data = output
 	return
@@ -218,26 +187,21 @@ func (c *ECS) DeregisterTaskDefinition(input *DeregisterTaskDefinitionInput) (*D
 	return out, err
 }
 
-var opDeregisterTaskDefinition *aws.Operation
+const opDescribeClusters = "DescribeClusters"
 
 // DescribeClustersRequest generates a request for the DescribeClusters operation.
 func (c *ECS) DescribeClustersRequest(input *DescribeClustersInput) (req *aws.Request, output *DescribeClustersOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeClusters == nil {
-		opDescribeClusters = &aws.Operation{
-			Name:       "DescribeClusters",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeClusters,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeClustersInput{}
 	}
 
-	req = c.newRequest(opDescribeClusters, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeClustersOutput{}
 	req.Data = output
 	return
@@ -250,26 +214,21 @@ func (c *ECS) DescribeClusters(input *DescribeClustersInput) (*DescribeClustersO
 	return out, err
 }
 
-var opDescribeClusters *aws.Operation
+const opDescribeContainerInstances = "DescribeContainerInstances"
 
 // DescribeContainerInstancesRequest generates a request for the DescribeContainerInstances operation.
 func (c *ECS) DescribeContainerInstancesRequest(input *DescribeContainerInstancesInput) (req *aws.Request, output *DescribeContainerInstancesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeContainerInstances == nil {
-		opDescribeContainerInstances = &aws.Operation{
-			Name:       "DescribeContainerInstances",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeContainerInstances,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeContainerInstancesInput{}
 	}
 
-	req = c.newRequest(opDescribeContainerInstances, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeContainerInstancesOutput{}
 	req.Data = output
 	return
@@ -283,26 +242,21 @@ func (c *ECS) DescribeContainerInstances(input *DescribeContainerInstancesInput)
 	return out, err
 }
 
-var opDescribeContainerInstances *aws.Operation
+const opDescribeServices = "DescribeServices"
 
 // DescribeServicesRequest generates a request for the DescribeServices operation.
 func (c *ECS) DescribeServicesRequest(input *DescribeServicesInput) (req *aws.Request, output *DescribeServicesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeServices == nil {
-		opDescribeServices = &aws.Operation{
-			Name:       "DescribeServices",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeServices,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeServicesInput{}
 	}
 
-	req = c.newRequest(opDescribeServices, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeServicesOutput{}
 	req.Data = output
 	return
@@ -315,26 +269,21 @@ func (c *ECS) DescribeServices(input *DescribeServicesInput) (*DescribeServicesO
 	return out, err
 }
 
-var opDescribeServices *aws.Operation
+const opDescribeTaskDefinition = "DescribeTaskDefinition"
 
 // DescribeTaskDefinitionRequest generates a request for the DescribeTaskDefinition operation.
 func (c *ECS) DescribeTaskDefinitionRequest(input *DescribeTaskDefinitionInput) (req *aws.Request, output *DescribeTaskDefinitionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeTaskDefinition == nil {
-		opDescribeTaskDefinition = &aws.Operation{
-			Name:       "DescribeTaskDefinition",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeTaskDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeTaskDefinitionInput{}
 	}
 
-	req = c.newRequest(opDescribeTaskDefinition, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeTaskDefinitionOutput{}
 	req.Data = output
 	return
@@ -352,26 +301,21 @@ func (c *ECS) DescribeTaskDefinition(input *DescribeTaskDefinitionInput) (*Descr
 	return out, err
 }
 
-var opDescribeTaskDefinition *aws.Operation
+const opDescribeTasks = "DescribeTasks"
 
 // DescribeTasksRequest generates a request for the DescribeTasks operation.
 func (c *ECS) DescribeTasksRequest(input *DescribeTasksInput) (req *aws.Request, output *DescribeTasksOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeTasks == nil {
-		opDescribeTasks = &aws.Operation{
-			Name:       "DescribeTasks",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeTasks,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeTasksInput{}
 	}
 
-	req = c.newRequest(opDescribeTasks, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeTasksOutput{}
 	req.Data = output
 	return
@@ -384,26 +328,21 @@ func (c *ECS) DescribeTasks(input *DescribeTasksInput) (*DescribeTasksOutput, er
 	return out, err
 }
 
-var opDescribeTasks *aws.Operation
+const opDiscoverPollEndpoint = "DiscoverPollEndpoint"
 
 // DiscoverPollEndpointRequest generates a request for the DiscoverPollEndpoint operation.
 func (c *ECS) DiscoverPollEndpointRequest(input *DiscoverPollEndpointInput) (req *aws.Request, output *DiscoverPollEndpointOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDiscoverPollEndpoint == nil {
-		opDiscoverPollEndpoint = &aws.Operation{
-			Name:       "DiscoverPollEndpoint",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDiscoverPollEndpoint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DiscoverPollEndpointInput{}
 	}
 
-	req = c.newRequest(opDiscoverPollEndpoint, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DiscoverPollEndpointOutput{}
 	req.Data = output
 	return
@@ -420,32 +359,27 @@ func (c *ECS) DiscoverPollEndpoint(input *DiscoverPollEndpointInput) (*DiscoverP
 	return out, err
 }
 
-var opDiscoverPollEndpoint *aws.Operation
+const opListClusters = "ListClusters"
 
 // ListClustersRequest generates a request for the ListClusters operation.
 func (c *ECS) ListClustersRequest(input *ListClustersInput) (req *aws.Request, output *ListClustersOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListClusters == nil {
-		opListClusters = &aws.Operation{
-			Name:       "ListClusters",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"nextToken"},
-				OutputTokens:    []string{"nextToken"},
-				LimitToken:      "maxResults",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListClusters,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &ListClustersInput{}
 	}
 
-	req = c.newRequest(opListClusters, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListClustersOutput{}
 	req.Data = output
 	return
@@ -465,32 +399,27 @@ func (c *ECS) ListClustersPages(input *ListClustersInput, fn func(p *ListCluster
 	})
 }
 
-var opListClusters *aws.Operation
+const opListContainerInstances = "ListContainerInstances"
 
 // ListContainerInstancesRequest generates a request for the ListContainerInstances operation.
 func (c *ECS) ListContainerInstancesRequest(input *ListContainerInstancesInput) (req *aws.Request, output *ListContainerInstancesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListContainerInstances == nil {
-		opListContainerInstances = &aws.Operation{
-			Name:       "ListContainerInstances",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"nextToken"},
-				OutputTokens:    []string{"nextToken"},
-				LimitToken:      "maxResults",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListContainerInstances,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &ListContainerInstancesInput{}
 	}
 
-	req = c.newRequest(opListContainerInstances, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListContainerInstancesOutput{}
 	req.Data = output
 	return
@@ -510,32 +439,27 @@ func (c *ECS) ListContainerInstancesPages(input *ListContainerInstancesInput, fn
 	})
 }
 
-var opListContainerInstances *aws.Operation
+const opListServices = "ListServices"
 
 // ListServicesRequest generates a request for the ListServices operation.
 func (c *ECS) ListServicesRequest(input *ListServicesInput) (req *aws.Request, output *ListServicesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListServices == nil {
-		opListServices = &aws.Operation{
-			Name:       "ListServices",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"nextToken"},
-				OutputTokens:    []string{"nextToken"},
-				LimitToken:      "maxResults",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListServices,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &ListServicesInput{}
 	}
 
-	req = c.newRequest(opListServices, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListServicesOutput{}
 	req.Data = output
 	return
@@ -555,32 +479,27 @@ func (c *ECS) ListServicesPages(input *ListServicesInput, fn func(p *ListService
 	})
 }
 
-var opListServices *aws.Operation
+const opListTaskDefinitionFamilies = "ListTaskDefinitionFamilies"
 
 // ListTaskDefinitionFamiliesRequest generates a request for the ListTaskDefinitionFamilies operation.
 func (c *ECS) ListTaskDefinitionFamiliesRequest(input *ListTaskDefinitionFamiliesInput) (req *aws.Request, output *ListTaskDefinitionFamiliesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListTaskDefinitionFamilies == nil {
-		opListTaskDefinitionFamilies = &aws.Operation{
-			Name:       "ListTaskDefinitionFamilies",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"nextToken"},
-				OutputTokens:    []string{"nextToken"},
-				LimitToken:      "maxResults",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListTaskDefinitionFamilies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &ListTaskDefinitionFamiliesInput{}
 	}
 
-	req = c.newRequest(opListTaskDefinitionFamilies, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListTaskDefinitionFamiliesOutput{}
 	req.Data = output
 	return
@@ -602,32 +521,27 @@ func (c *ECS) ListTaskDefinitionFamiliesPages(input *ListTaskDefinitionFamiliesI
 	})
 }
 
-var opListTaskDefinitionFamilies *aws.Operation
+const opListTaskDefinitions = "ListTaskDefinitions"
 
 // ListTaskDefinitionsRequest generates a request for the ListTaskDefinitions operation.
 func (c *ECS) ListTaskDefinitionsRequest(input *ListTaskDefinitionsInput) (req *aws.Request, output *ListTaskDefinitionsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListTaskDefinitions == nil {
-		opListTaskDefinitions = &aws.Operation{
-			Name:       "ListTaskDefinitions",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"nextToken"},
-				OutputTokens:    []string{"nextToken"},
-				LimitToken:      "maxResults",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListTaskDefinitions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &ListTaskDefinitionsInput{}
 	}
 
-	req = c.newRequest(opListTaskDefinitions, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListTaskDefinitionsOutput{}
 	req.Data = output
 	return
@@ -649,32 +563,27 @@ func (c *ECS) ListTaskDefinitionsPages(input *ListTaskDefinitionsInput, fn func(
 	})
 }
 
-var opListTaskDefinitions *aws.Operation
+const opListTasks = "ListTasks"
 
 // ListTasksRequest generates a request for the ListTasks operation.
 func (c *ECS) ListTasksRequest(input *ListTasksInput) (req *aws.Request, output *ListTasksOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListTasks == nil {
-		opListTasks = &aws.Operation{
-			Name:       "ListTasks",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"nextToken"},
-				OutputTokens:    []string{"nextToken"},
-				LimitToken:      "maxResults",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListTasks,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &ListTasksInput{}
 	}
 
-	req = c.newRequest(opListTasks, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListTasksOutput{}
 	req.Data = output
 	return
@@ -696,26 +605,21 @@ func (c *ECS) ListTasksPages(input *ListTasksInput, fn func(p *ListTasksOutput, 
 	})
 }
 
-var opListTasks *aws.Operation
+const opRegisterContainerInstance = "RegisterContainerInstance"
 
 // RegisterContainerInstanceRequest generates a request for the RegisterContainerInstance operation.
 func (c *ECS) RegisterContainerInstanceRequest(input *RegisterContainerInstanceInput) (req *aws.Request, output *RegisterContainerInstanceOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opRegisterContainerInstance == nil {
-		opRegisterContainerInstance = &aws.Operation{
-			Name:       "RegisterContainerInstance",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opRegisterContainerInstance,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &RegisterContainerInstanceInput{}
 	}
 
-	req = c.newRequest(opRegisterContainerInstance, input, output)
+	req = c.newRequest(op, input, output)
 	output = &RegisterContainerInstanceOutput{}
 	req.Data = output
 	return
@@ -732,26 +636,21 @@ func (c *ECS) RegisterContainerInstance(input *RegisterContainerInstanceInput) (
 	return out, err
 }
 
-var opRegisterContainerInstance *aws.Operation
+const opRegisterTaskDefinition = "RegisterTaskDefinition"
 
 // RegisterTaskDefinitionRequest generates a request for the RegisterTaskDefinition operation.
 func (c *ECS) RegisterTaskDefinitionRequest(input *RegisterTaskDefinitionInput) (req *aws.Request, output *RegisterTaskDefinitionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opRegisterTaskDefinition == nil {
-		opRegisterTaskDefinition = &aws.Operation{
-			Name:       "RegisterTaskDefinition",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opRegisterTaskDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &RegisterTaskDefinitionInput{}
 	}
 
-	req = c.newRequest(opRegisterTaskDefinition, input, output)
+	req = c.newRequest(op, input, output)
 	output = &RegisterTaskDefinitionOutput{}
 	req.Data = output
 	return
@@ -768,26 +667,21 @@ func (c *ECS) RegisterTaskDefinition(input *RegisterTaskDefinitionInput) (*Regis
 	return out, err
 }
 
-var opRegisterTaskDefinition *aws.Operation
+const opRunTask = "RunTask"
 
 // RunTaskRequest generates a request for the RunTask operation.
 func (c *ECS) RunTaskRequest(input *RunTaskInput) (req *aws.Request, output *RunTaskOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opRunTask == nil {
-		opRunTask = &aws.Operation{
-			Name:       "RunTask",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opRunTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &RunTaskInput{}
 	}
 
-	req = c.newRequest(opRunTask, input, output)
+	req = c.newRequest(op, input, output)
 	output = &RunTaskOutput{}
 	req.Data = output
 	return
@@ -804,26 +698,21 @@ func (c *ECS) RunTask(input *RunTaskInput) (*RunTaskOutput, error) {
 	return out, err
 }
 
-var opRunTask *aws.Operation
+const opStartTask = "StartTask"
 
 // StartTaskRequest generates a request for the StartTask operation.
 func (c *ECS) StartTaskRequest(input *StartTaskInput) (req *aws.Request, output *StartTaskOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opStartTask == nil {
-		opStartTask = &aws.Operation{
-			Name:       "StartTask",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opStartTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &StartTaskInput{}
 	}
 
-	req = c.newRequest(opStartTask, input, output)
+	req = c.newRequest(op, input, output)
 	output = &StartTaskOutput{}
 	req.Data = output
 	return
@@ -840,26 +729,21 @@ func (c *ECS) StartTask(input *StartTaskInput) (*StartTaskOutput, error) {
 	return out, err
 }
 
-var opStartTask *aws.Operation
+const opStopTask = "StopTask"
 
 // StopTaskRequest generates a request for the StopTask operation.
 func (c *ECS) StopTaskRequest(input *StopTaskInput) (req *aws.Request, output *StopTaskOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opStopTask == nil {
-		opStopTask = &aws.Operation{
-			Name:       "StopTask",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opStopTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &StopTaskInput{}
 	}
 
-	req = c.newRequest(opStopTask, input, output)
+	req = c.newRequest(op, input, output)
 	output = &StopTaskOutput{}
 	req.Data = output
 	return
@@ -872,26 +756,21 @@ func (c *ECS) StopTask(input *StopTaskInput) (*StopTaskOutput, error) {
 	return out, err
 }
 
-var opStopTask *aws.Operation
+const opSubmitContainerStateChange = "SubmitContainerStateChange"
 
 // SubmitContainerStateChangeRequest generates a request for the SubmitContainerStateChange operation.
 func (c *ECS) SubmitContainerStateChangeRequest(input *SubmitContainerStateChangeInput) (req *aws.Request, output *SubmitContainerStateChangeOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opSubmitContainerStateChange == nil {
-		opSubmitContainerStateChange = &aws.Operation{
-			Name:       "SubmitContainerStateChange",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opSubmitContainerStateChange,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &SubmitContainerStateChangeInput{}
 	}
 
-	req = c.newRequest(opSubmitContainerStateChange, input, output)
+	req = c.newRequest(op, input, output)
 	output = &SubmitContainerStateChangeOutput{}
 	req.Data = output
 	return
@@ -907,26 +786,21 @@ func (c *ECS) SubmitContainerStateChange(input *SubmitContainerStateChangeInput)
 	return out, err
 }
 
-var opSubmitContainerStateChange *aws.Operation
+const opSubmitTaskStateChange = "SubmitTaskStateChange"
 
 // SubmitTaskStateChangeRequest generates a request for the SubmitTaskStateChange operation.
 func (c *ECS) SubmitTaskStateChangeRequest(input *SubmitTaskStateChangeInput) (req *aws.Request, output *SubmitTaskStateChangeOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opSubmitTaskStateChange == nil {
-		opSubmitTaskStateChange = &aws.Operation{
-			Name:       "SubmitTaskStateChange",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opSubmitTaskStateChange,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &SubmitTaskStateChangeInput{}
 	}
 
-	req = c.newRequest(opSubmitTaskStateChange, input, output)
+	req = c.newRequest(op, input, output)
 	output = &SubmitTaskStateChangeOutput{}
 	req.Data = output
 	return
@@ -942,26 +816,21 @@ func (c *ECS) SubmitTaskStateChange(input *SubmitTaskStateChangeInput) (*SubmitT
 	return out, err
 }
 
-var opSubmitTaskStateChange *aws.Operation
+const opUpdateContainerAgent = "UpdateContainerAgent"
 
 // UpdateContainerAgentRequest generates a request for the UpdateContainerAgent operation.
 func (c *ECS) UpdateContainerAgentRequest(input *UpdateContainerAgentInput) (req *aws.Request, output *UpdateContainerAgentOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateContainerAgent == nil {
-		opUpdateContainerAgent = &aws.Operation{
-			Name:       "UpdateContainerAgent",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateContainerAgent,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateContainerAgentInput{}
 	}
 
-	req = c.newRequest(opUpdateContainerAgent, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateContainerAgentOutput{}
 	req.Data = output
 	return
@@ -974,26 +843,21 @@ func (c *ECS) UpdateContainerAgent(input *UpdateContainerAgentInput) (*UpdateCon
 	return out, err
 }
 
-var opUpdateContainerAgent *aws.Operation
+const opUpdateService = "UpdateService"
 
 // UpdateServiceRequest generates a request for the UpdateService operation.
 func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *aws.Request, output *UpdateServiceOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateService == nil {
-		opUpdateService = &aws.Operation{
-			Name:       "UpdateService",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateService,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateServiceInput{}
 	}
 
-	req = c.newRequest(opUpdateService, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateServiceOutput{}
 	req.Data = output
 	return
@@ -1019,8 +883,6 @@ func (c *ECS) UpdateService(input *UpdateServiceInput) (*UpdateServiceOutput, er
 	err := req.Send()
 	return out, err
 }
-
-var opUpdateService *aws.Operation
 
 // A regional grouping of one or more container instances on which you can run
 // task requests. Each account receives a default cluster the first time you

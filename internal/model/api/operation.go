@@ -50,32 +50,29 @@ func (o *Operation) Docstring() string {
 
 // tplOperation defines a template for rendering an API Operation
 var tplOperation = template.Must(template.New("operation").Parse(`
+const op{{ .ExportedName }} = "{{ .Name }}"
+
 // {{ .ExportedName }}Request generates a request for the {{ .ExportedName }} operation.
 func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	`input {{ .InputRef.GoType }}) (req *aws.Request, output {{ .OutputRef.GoType }}) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if op{{ .ExportedName }} == nil {
-		op{{ .ExportedName }} = &aws.Operation{
-			Name:       "{{ .Name }}",
-			{{ if ne .HTTP.Method "" }}HTTPMethod: "{{ .HTTP.Method }}",
-			{{ end }}{{ if ne .HTTP.RequestURI "" }}HTTPPath:   "{{ .HTTP.RequestURI }}",
-			{{ end }}{{ if .Paginator }}Paginator: &aws.Paginator{
-					InputTokens: {{ .Paginator.InputTokensString }},
-					OutputTokens: {{ .Paginator.OutputTokensString }},
-					LimitToken: "{{ .Paginator.LimitKey }}",
-					TruncationToken: "{{ .Paginator.MoreResults }}",
-			},
-			{{ end }}
-		}
+	op := &aws.Operation{
+		Name:       op{{ .ExportedName }},
+		{{ if ne .HTTP.Method "" }}HTTPMethod: "{{ .HTTP.Method }}",
+		{{ end }}{{ if ne .HTTP.RequestURI "" }}HTTPPath:   "{{ .HTTP.RequestURI }}",
+		{{ end }}{{ if .Paginator }}Paginator: &aws.Paginator{
+				InputTokens: {{ .Paginator.InputTokensString }},
+				OutputTokens: {{ .Paginator.OutputTokensString }},
+				LimitToken: "{{ .Paginator.LimitKey }}",
+				TruncationToken: "{{ .Paginator.MoreResults }}",
+		},
+		{{ end }}
 	}
 
 	if input == nil {
 		input = &{{ .InputRef.GoTypeElem }}{}
 	}
 
-	req = c.newRequest(op{{ .ExportedName }}, input, output)
+	req = c.newRequest(op, input, output)
 	output = &{{ .OutputRef.GoTypeElem }}{}
 	req.Data = output
 	return
@@ -97,8 +94,6 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Pages(` +
 	})
 }
 {{ end }}
-
-var op{{ .ExportedName }} *aws.Operation
 `))
 
 // GoCode returns a string of rendered GoCode for this Operation

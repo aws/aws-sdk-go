@@ -4,31 +4,24 @@
 package elastictranscoder
 
 import (
-	"sync"
-
 	"github.com/aws/aws-sdk-go/aws"
 )
 
-var oprw sync.Mutex
+const opCancelJob = "CancelJob"
 
 // CancelJobRequest generates a request for the CancelJob operation.
 func (c *ElasticTranscoder) CancelJobRequest(input *CancelJobInput) (req *aws.Request, output *CancelJobOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCancelJob == nil {
-		opCancelJob = &aws.Operation{
-			Name:       "CancelJob",
-			HTTPMethod: "DELETE",
-			HTTPPath:   "/2012-09-25/jobs/{Id}",
-		}
+	op := &aws.Operation{
+		Name:       opCancelJob,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/2012-09-25/jobs/{Id}",
 	}
 
 	if input == nil {
 		input = &CancelJobInput{}
 	}
 
-	req = c.newRequest(opCancelJob, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CancelJobOutput{}
 	req.Data = output
 	return
@@ -45,26 +38,21 @@ func (c *ElasticTranscoder) CancelJob(input *CancelJobInput) (*CancelJobOutput, 
 	return out, err
 }
 
-var opCancelJob *aws.Operation
+const opCreateJob = "CreateJob"
 
 // CreateJobRequest generates a request for the CreateJob operation.
 func (c *ElasticTranscoder) CreateJobRequest(input *CreateJobInput) (req *aws.Request, output *CreateJobResponse) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateJob == nil {
-		opCreateJob = &aws.Operation{
-			Name:       "CreateJob",
-			HTTPMethod: "POST",
-			HTTPPath:   "/2012-09-25/jobs",
-		}
+	op := &aws.Operation{
+		Name:       opCreateJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2012-09-25/jobs",
 	}
 
 	if input == nil {
 		input = &CreateJobInput{}
 	}
 
-	req = c.newRequest(opCreateJob, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateJobResponse{}
 	req.Data = output
 	return
@@ -83,26 +71,21 @@ func (c *ElasticTranscoder) CreateJob(input *CreateJobInput) (*CreateJobResponse
 	return out, err
 }
 
-var opCreateJob *aws.Operation
+const opCreatePipeline = "CreatePipeline"
 
 // CreatePipelineRequest generates a request for the CreatePipeline operation.
 func (c *ElasticTranscoder) CreatePipelineRequest(input *CreatePipelineInput) (req *aws.Request, output *CreatePipelineOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreatePipeline == nil {
-		opCreatePipeline = &aws.Operation{
-			Name:       "CreatePipeline",
-			HTTPMethod: "POST",
-			HTTPPath:   "/2012-09-25/pipelines",
-		}
+	op := &aws.Operation{
+		Name:       opCreatePipeline,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2012-09-25/pipelines",
 	}
 
 	if input == nil {
 		input = &CreatePipelineInput{}
 	}
 
-	req = c.newRequest(opCreatePipeline, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreatePipelineOutput{}
 	req.Data = output
 	return
@@ -115,26 +98,21 @@ func (c *ElasticTranscoder) CreatePipeline(input *CreatePipelineInput) (*CreateP
 	return out, err
 }
 
-var opCreatePipeline *aws.Operation
+const opCreatePreset = "CreatePreset"
 
 // CreatePresetRequest generates a request for the CreatePreset operation.
 func (c *ElasticTranscoder) CreatePresetRequest(input *CreatePresetInput) (req *aws.Request, output *CreatePresetOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreatePreset == nil {
-		opCreatePreset = &aws.Operation{
-			Name:       "CreatePreset",
-			HTTPMethod: "POST",
-			HTTPPath:   "/2012-09-25/presets",
-		}
+	op := &aws.Operation{
+		Name:       opCreatePreset,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2012-09-25/presets",
 	}
 
 	if input == nil {
 		input = &CreatePresetInput{}
 	}
 
-	req = c.newRequest(opCreatePreset, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreatePresetOutput{}
 	req.Data = output
 	return
@@ -161,26 +139,21 @@ func (c *ElasticTranscoder) CreatePreset(input *CreatePresetInput) (*CreatePrese
 	return out, err
 }
 
-var opCreatePreset *aws.Operation
+const opDeletePipeline = "DeletePipeline"
 
 // DeletePipelineRequest generates a request for the DeletePipeline operation.
 func (c *ElasticTranscoder) DeletePipelineRequest(input *DeletePipelineInput) (req *aws.Request, output *DeletePipelineOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeletePipeline == nil {
-		opDeletePipeline = &aws.Operation{
-			Name:       "DeletePipeline",
-			HTTPMethod: "DELETE",
-			HTTPPath:   "/2012-09-25/pipelines/{Id}",
-		}
+	op := &aws.Operation{
+		Name:       opDeletePipeline,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/2012-09-25/pipelines/{Id}",
 	}
 
 	if input == nil {
 		input = &DeletePipelineInput{}
 	}
 
-	req = c.newRequest(opDeletePipeline, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeletePipelineOutput{}
 	req.Data = output
 	return
@@ -197,26 +170,21 @@ func (c *ElasticTranscoder) DeletePipeline(input *DeletePipelineInput) (*DeleteP
 	return out, err
 }
 
-var opDeletePipeline *aws.Operation
+const opDeletePreset = "DeletePreset"
 
 // DeletePresetRequest generates a request for the DeletePreset operation.
 func (c *ElasticTranscoder) DeletePresetRequest(input *DeletePresetInput) (req *aws.Request, output *DeletePresetOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeletePreset == nil {
-		opDeletePreset = &aws.Operation{
-			Name:       "DeletePreset",
-			HTTPMethod: "DELETE",
-			HTTPPath:   "/2012-09-25/presets/{Id}",
-		}
+	op := &aws.Operation{
+		Name:       opDeletePreset,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/2012-09-25/presets/{Id}",
 	}
 
 	if input == nil {
 		input = &DeletePresetInput{}
 	}
 
-	req = c.newRequest(opDeletePreset, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeletePresetOutput{}
 	req.Data = output
 	return
@@ -231,32 +199,27 @@ func (c *ElasticTranscoder) DeletePreset(input *DeletePresetInput) (*DeletePrese
 	return out, err
 }
 
-var opDeletePreset *aws.Operation
+const opListJobsByPipeline = "ListJobsByPipeline"
 
 // ListJobsByPipelineRequest generates a request for the ListJobsByPipeline operation.
 func (c *ElasticTranscoder) ListJobsByPipelineRequest(input *ListJobsByPipelineInput) (req *aws.Request, output *ListJobsByPipelineOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListJobsByPipeline == nil {
-		opListJobsByPipeline = &aws.Operation{
-			Name:       "ListJobsByPipeline",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2012-09-25/jobsByPipeline/{PipelineId}",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"PageToken"},
-				OutputTokens:    []string{"NextPageToken"},
-				LimitToken:      "",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListJobsByPipeline,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2012-09-25/jobsByPipeline/{PipelineId}",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"PageToken"},
+			OutputTokens:    []string{"NextPageToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &ListJobsByPipelineInput{}
 	}
 
-	req = c.newRequest(opListJobsByPipeline, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListJobsByPipelineOutput{}
 	req.Data = output
 	return
@@ -280,32 +243,27 @@ func (c *ElasticTranscoder) ListJobsByPipelinePages(input *ListJobsByPipelineInp
 	})
 }
 
-var opListJobsByPipeline *aws.Operation
+const opListJobsByStatus = "ListJobsByStatus"
 
 // ListJobsByStatusRequest generates a request for the ListJobsByStatus operation.
 func (c *ElasticTranscoder) ListJobsByStatusRequest(input *ListJobsByStatusInput) (req *aws.Request, output *ListJobsByStatusOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListJobsByStatus == nil {
-		opListJobsByStatus = &aws.Operation{
-			Name:       "ListJobsByStatus",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2012-09-25/jobsByStatus/{Status}",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"PageToken"},
-				OutputTokens:    []string{"NextPageToken"},
-				LimitToken:      "",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListJobsByStatus,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2012-09-25/jobsByStatus/{Status}",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"PageToken"},
+			OutputTokens:    []string{"NextPageToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &ListJobsByStatusInput{}
 	}
 
-	req = c.newRequest(opListJobsByStatus, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListJobsByStatusOutput{}
 	req.Data = output
 	return
@@ -327,32 +285,27 @@ func (c *ElasticTranscoder) ListJobsByStatusPages(input *ListJobsByStatusInput, 
 	})
 }
 
-var opListJobsByStatus *aws.Operation
+const opListPipelines = "ListPipelines"
 
 // ListPipelinesRequest generates a request for the ListPipelines operation.
 func (c *ElasticTranscoder) ListPipelinesRequest(input *ListPipelinesInput) (req *aws.Request, output *ListPipelinesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListPipelines == nil {
-		opListPipelines = &aws.Operation{
-			Name:       "ListPipelines",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2012-09-25/pipelines",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"PageToken"},
-				OutputTokens:    []string{"NextPageToken"},
-				LimitToken:      "",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListPipelines,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2012-09-25/pipelines",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"PageToken"},
+			OutputTokens:    []string{"NextPageToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &ListPipelinesInput{}
 	}
 
-	req = c.newRequest(opListPipelines, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListPipelinesOutput{}
 	req.Data = output
 	return
@@ -373,32 +326,27 @@ func (c *ElasticTranscoder) ListPipelinesPages(input *ListPipelinesInput, fn fun
 	})
 }
 
-var opListPipelines *aws.Operation
+const opListPresets = "ListPresets"
 
 // ListPresetsRequest generates a request for the ListPresets operation.
 func (c *ElasticTranscoder) ListPresetsRequest(input *ListPresetsInput) (req *aws.Request, output *ListPresetsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListPresets == nil {
-		opListPresets = &aws.Operation{
-			Name:       "ListPresets",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2012-09-25/presets",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"PageToken"},
-				OutputTokens:    []string{"NextPageToken"},
-				LimitToken:      "",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListPresets,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2012-09-25/presets",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"PageToken"},
+			OutputTokens:    []string{"NextPageToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &ListPresetsInput{}
 	}
 
-	req = c.newRequest(opListPresets, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListPresetsOutput{}
 	req.Data = output
 	return
@@ -419,26 +367,21 @@ func (c *ElasticTranscoder) ListPresetsPages(input *ListPresetsInput, fn func(p 
 	})
 }
 
-var opListPresets *aws.Operation
+const opReadJob = "ReadJob"
 
 // ReadJobRequest generates a request for the ReadJob operation.
 func (c *ElasticTranscoder) ReadJobRequest(input *ReadJobInput) (req *aws.Request, output *ReadJobOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opReadJob == nil {
-		opReadJob = &aws.Operation{
-			Name:       "ReadJob",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2012-09-25/jobs/{Id}",
-		}
+	op := &aws.Operation{
+		Name:       opReadJob,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2012-09-25/jobs/{Id}",
 	}
 
 	if input == nil {
 		input = &ReadJobInput{}
 	}
 
-	req = c.newRequest(opReadJob, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ReadJobOutput{}
 	req.Data = output
 	return
@@ -451,26 +394,21 @@ func (c *ElasticTranscoder) ReadJob(input *ReadJobInput) (*ReadJobOutput, error)
 	return out, err
 }
 
-var opReadJob *aws.Operation
+const opReadPipeline = "ReadPipeline"
 
 // ReadPipelineRequest generates a request for the ReadPipeline operation.
 func (c *ElasticTranscoder) ReadPipelineRequest(input *ReadPipelineInput) (req *aws.Request, output *ReadPipelineOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opReadPipeline == nil {
-		opReadPipeline = &aws.Operation{
-			Name:       "ReadPipeline",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2012-09-25/pipelines/{Id}",
-		}
+	op := &aws.Operation{
+		Name:       opReadPipeline,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2012-09-25/pipelines/{Id}",
 	}
 
 	if input == nil {
 		input = &ReadPipelineInput{}
 	}
 
-	req = c.newRequest(opReadPipeline, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ReadPipelineOutput{}
 	req.Data = output
 	return
@@ -483,26 +421,21 @@ func (c *ElasticTranscoder) ReadPipeline(input *ReadPipelineInput) (*ReadPipelin
 	return out, err
 }
 
-var opReadPipeline *aws.Operation
+const opReadPreset = "ReadPreset"
 
 // ReadPresetRequest generates a request for the ReadPreset operation.
 func (c *ElasticTranscoder) ReadPresetRequest(input *ReadPresetInput) (req *aws.Request, output *ReadPresetOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opReadPreset == nil {
-		opReadPreset = &aws.Operation{
-			Name:       "ReadPreset",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2012-09-25/presets/{Id}",
-		}
+	op := &aws.Operation{
+		Name:       opReadPreset,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2012-09-25/presets/{Id}",
 	}
 
 	if input == nil {
 		input = &ReadPresetInput{}
 	}
 
-	req = c.newRequest(opReadPreset, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ReadPresetOutput{}
 	req.Data = output
 	return
@@ -515,26 +448,21 @@ func (c *ElasticTranscoder) ReadPreset(input *ReadPresetInput) (*ReadPresetOutpu
 	return out, err
 }
 
-var opReadPreset *aws.Operation
+const opTestRole = "TestRole"
 
 // TestRoleRequest generates a request for the TestRole operation.
 func (c *ElasticTranscoder) TestRoleRequest(input *TestRoleInput) (req *aws.Request, output *TestRoleOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opTestRole == nil {
-		opTestRole = &aws.Operation{
-			Name:       "TestRole",
-			HTTPMethod: "POST",
-			HTTPPath:   "/2012-09-25/roleTests",
-		}
+	op := &aws.Operation{
+		Name:       opTestRole,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2012-09-25/roleTests",
 	}
 
 	if input == nil {
 		input = &TestRoleInput{}
 	}
 
-	req = c.newRequest(opTestRole, input, output)
+	req = c.newRequest(op, input, output)
 	output = &TestRoleOutput{}
 	req.Data = output
 	return
@@ -553,26 +481,21 @@ func (c *ElasticTranscoder) TestRole(input *TestRoleInput) (*TestRoleOutput, err
 	return out, err
 }
 
-var opTestRole *aws.Operation
+const opUpdatePipeline = "UpdatePipeline"
 
 // UpdatePipelineRequest generates a request for the UpdatePipeline operation.
 func (c *ElasticTranscoder) UpdatePipelineRequest(input *UpdatePipelineInput) (req *aws.Request, output *UpdatePipelineOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdatePipeline == nil {
-		opUpdatePipeline = &aws.Operation{
-			Name:       "UpdatePipeline",
-			HTTPMethod: "PUT",
-			HTTPPath:   "/2012-09-25/pipelines/{Id}",
-		}
+	op := &aws.Operation{
+		Name:       opUpdatePipeline,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/2012-09-25/pipelines/{Id}",
 	}
 
 	if input == nil {
 		input = &UpdatePipelineInput{}
 	}
 
-	req = c.newRequest(opUpdatePipeline, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdatePipelineOutput{}
 	req.Data = output
 	return
@@ -589,26 +512,21 @@ func (c *ElasticTranscoder) UpdatePipeline(input *UpdatePipelineInput) (*UpdateP
 	return out, err
 }
 
-var opUpdatePipeline *aws.Operation
+const opUpdatePipelineNotifications = "UpdatePipelineNotifications"
 
 // UpdatePipelineNotificationsRequest generates a request for the UpdatePipelineNotifications operation.
 func (c *ElasticTranscoder) UpdatePipelineNotificationsRequest(input *UpdatePipelineNotificationsInput) (req *aws.Request, output *UpdatePipelineNotificationsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdatePipelineNotifications == nil {
-		opUpdatePipelineNotifications = &aws.Operation{
-			Name:       "UpdatePipelineNotifications",
-			HTTPMethod: "POST",
-			HTTPPath:   "/2012-09-25/pipelines/{Id}/notifications",
-		}
+	op := &aws.Operation{
+		Name:       opUpdatePipelineNotifications,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2012-09-25/pipelines/{Id}/notifications",
 	}
 
 	if input == nil {
 		input = &UpdatePipelineNotificationsInput{}
 	}
 
-	req = c.newRequest(opUpdatePipelineNotifications, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdatePipelineNotificationsOutput{}
 	req.Data = output
 	return
@@ -625,26 +543,21 @@ func (c *ElasticTranscoder) UpdatePipelineNotifications(input *UpdatePipelineNot
 	return out, err
 }
 
-var opUpdatePipelineNotifications *aws.Operation
+const opUpdatePipelineStatus = "UpdatePipelineStatus"
 
 // UpdatePipelineStatusRequest generates a request for the UpdatePipelineStatus operation.
 func (c *ElasticTranscoder) UpdatePipelineStatusRequest(input *UpdatePipelineStatusInput) (req *aws.Request, output *UpdatePipelineStatusOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdatePipelineStatus == nil {
-		opUpdatePipelineStatus = &aws.Operation{
-			Name:       "UpdatePipelineStatus",
-			HTTPMethod: "POST",
-			HTTPPath:   "/2012-09-25/pipelines/{Id}/status",
-		}
+	op := &aws.Operation{
+		Name:       opUpdatePipelineStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2012-09-25/pipelines/{Id}/status",
 	}
 
 	if input == nil {
 		input = &UpdatePipelineStatusInput{}
 	}
 
-	req = c.newRequest(opUpdatePipelineStatus, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdatePipelineStatusOutput{}
 	req.Data = output
 	return
@@ -663,8 +576,6 @@ func (c *ElasticTranscoder) UpdatePipelineStatus(input *UpdatePipelineStatusInpu
 	err := req.Send()
 	return out, err
 }
-
-var opUpdatePipelineStatus *aws.Operation
 
 // The file to be used as album art. There can be multiple artworks associated
 // with an audio file, to a maximum of 20.

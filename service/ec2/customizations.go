@@ -9,7 +9,7 @@ import (
 
 func init() {
 	initRequest = func(r *aws.Request) {
-		if r.Operation == opCopySnapshot { // fill the PresignedURL parameter
+		if r.Operation.Name == opCopySnapshot { // fill the PresignedURL parameter
 			r.Handlers.Build.PushFront(fillPresignedURL)
 		}
 	}

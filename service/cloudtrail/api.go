@@ -4,32 +4,26 @@
 package cloudtrail
 
 import (
-	"sync"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 )
 
-var oprw sync.Mutex
+const opCreateTrail = "CreateTrail"
 
 // CreateTrailRequest generates a request for the CreateTrail operation.
 func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *aws.Request, output *CreateTrailOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateTrail == nil {
-		opCreateTrail = &aws.Operation{
-			Name:       "CreateTrail",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateTrail,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateTrailInput{}
 	}
 
-	req = c.newRequest(opCreateTrail, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateTrailOutput{}
 	req.Data = output
 	return
@@ -45,26 +39,21 @@ func (c *CloudTrail) CreateTrail(input *CreateTrailInput) (*CreateTrailOutput, e
 	return out, err
 }
 
-var opCreateTrail *aws.Operation
+const opDeleteTrail = "DeleteTrail"
 
 // DeleteTrailRequest generates a request for the DeleteTrail operation.
 func (c *CloudTrail) DeleteTrailRequest(input *DeleteTrailInput) (req *aws.Request, output *DeleteTrailOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteTrail == nil {
-		opDeleteTrail = &aws.Operation{
-			Name:       "DeleteTrail",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteTrail,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteTrailInput{}
 	}
 
-	req = c.newRequest(opDeleteTrail, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteTrailOutput{}
 	req.Data = output
 	return
@@ -77,26 +66,21 @@ func (c *CloudTrail) DeleteTrail(input *DeleteTrailInput) (*DeleteTrailOutput, e
 	return out, err
 }
 
-var opDeleteTrail *aws.Operation
+const opDescribeTrails = "DescribeTrails"
 
 // DescribeTrailsRequest generates a request for the DescribeTrails operation.
 func (c *CloudTrail) DescribeTrailsRequest(input *DescribeTrailsInput) (req *aws.Request, output *DescribeTrailsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeTrails == nil {
-		opDescribeTrails = &aws.Operation{
-			Name:       "DescribeTrails",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeTrails,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeTrailsInput{}
 	}
 
-	req = c.newRequest(opDescribeTrails, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeTrailsOutput{}
 	req.Data = output
 	return
@@ -110,26 +94,21 @@ func (c *CloudTrail) DescribeTrails(input *DescribeTrailsInput) (*DescribeTrails
 	return out, err
 }
 
-var opDescribeTrails *aws.Operation
+const opGetTrailStatus = "GetTrailStatus"
 
 // GetTrailStatusRequest generates a request for the GetTrailStatus operation.
 func (c *CloudTrail) GetTrailStatusRequest(input *GetTrailStatusInput) (req *aws.Request, output *GetTrailStatusOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetTrailStatus == nil {
-		opGetTrailStatus = &aws.Operation{
-			Name:       "GetTrailStatus",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetTrailStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetTrailStatusInput{}
 	}
 
-	req = c.newRequest(opGetTrailStatus, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetTrailStatusOutput{}
 	req.Data = output
 	return
@@ -144,26 +123,21 @@ func (c *CloudTrail) GetTrailStatus(input *GetTrailStatusInput) (*GetTrailStatus
 	return out, err
 }
 
-var opGetTrailStatus *aws.Operation
+const opLookupEvents = "LookupEvents"
 
 // LookupEventsRequest generates a request for the LookupEvents operation.
 func (c *CloudTrail) LookupEventsRequest(input *LookupEventsInput) (req *aws.Request, output *LookupEventsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opLookupEvents == nil {
-		opLookupEvents = &aws.Operation{
-			Name:       "LookupEvents",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opLookupEvents,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &LookupEventsInput{}
 	}
 
-	req = c.newRequest(opLookupEvents, input, output)
+	req = c.newRequest(op, input, output)
 	output = &LookupEventsOutput{}
 	req.Data = output
 	return
@@ -190,26 +164,21 @@ func (c *CloudTrail) LookupEvents(input *LookupEventsInput) (*LookupEventsOutput
 	return out, err
 }
 
-var opLookupEvents *aws.Operation
+const opStartLogging = "StartLogging"
 
 // StartLoggingRequest generates a request for the StartLogging operation.
 func (c *CloudTrail) StartLoggingRequest(input *StartLoggingInput) (req *aws.Request, output *StartLoggingOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opStartLogging == nil {
-		opStartLogging = &aws.Operation{
-			Name:       "StartLogging",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opStartLogging,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &StartLoggingInput{}
 	}
 
-	req = c.newRequest(opStartLogging, input, output)
+	req = c.newRequest(op, input, output)
 	output = &StartLoggingOutput{}
 	req.Data = output
 	return
@@ -222,26 +191,21 @@ func (c *CloudTrail) StartLogging(input *StartLoggingInput) (*StartLoggingOutput
 	return out, err
 }
 
-var opStartLogging *aws.Operation
+const opStopLogging = "StopLogging"
 
 // StopLoggingRequest generates a request for the StopLogging operation.
 func (c *CloudTrail) StopLoggingRequest(input *StopLoggingInput) (req *aws.Request, output *StopLoggingOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opStopLogging == nil {
-		opStopLogging = &aws.Operation{
-			Name:       "StopLogging",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opStopLogging,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &StopLoggingInput{}
 	}
 
-	req = c.newRequest(opStopLogging, input, output)
+	req = c.newRequest(op, input, output)
 	output = &StopLoggingOutput{}
 	req.Data = output
 	return
@@ -257,26 +221,21 @@ func (c *CloudTrail) StopLogging(input *StopLoggingInput) (*StopLoggingOutput, e
 	return out, err
 }
 
-var opStopLogging *aws.Operation
+const opUpdateTrail = "UpdateTrail"
 
 // UpdateTrailRequest generates a request for the UpdateTrail operation.
 func (c *CloudTrail) UpdateTrailRequest(input *UpdateTrailInput) (req *aws.Request, output *UpdateTrailOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateTrail == nil {
-		opUpdateTrail = &aws.Operation{
-			Name:       "UpdateTrail",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateTrail,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateTrailInput{}
 	}
 
-	req = c.newRequest(opUpdateTrail, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateTrailOutput{}
 	req.Data = output
 	return
@@ -293,8 +252,6 @@ func (c *CloudTrail) UpdateTrail(input *UpdateTrailInput) (*UpdateTrailOutput, e
 	err := req.Send()
 	return out, err
 }
-
-var opUpdateTrail *aws.Operation
 
 // Specifies the settings for each trail.
 type CreateTrailInput struct {

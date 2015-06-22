@@ -8,7 +8,7 @@ import (
 
 func init() {
 	initRequest = func(r *aws.Request) {
-		switch r.Operation {
+		switch r.Operation.Name {
 		case opPredict:
 			r.Handlers.Build.PushBack(updatePredictEndpoint)
 		}

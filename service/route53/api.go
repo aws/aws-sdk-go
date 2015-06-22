@@ -4,32 +4,26 @@
 package route53
 
 import (
-	"sync"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 )
 
-var oprw sync.Mutex
+const opAssociateVPCWithHostedZone = "AssociateVPCWithHostedZone"
 
 // AssociateVPCWithHostedZoneRequest generates a request for the AssociateVPCWithHostedZone operation.
 func (c *Route53) AssociateVPCWithHostedZoneRequest(input *AssociateVPCWithHostedZoneInput) (req *aws.Request, output *AssociateVPCWithHostedZoneOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opAssociateVPCWithHostedZone == nil {
-		opAssociateVPCWithHostedZone = &aws.Operation{
-			Name:       "AssociateVPCWithHostedZone",
-			HTTPMethod: "POST",
-			HTTPPath:   "/2013-04-01/hostedzone/{Id}/associatevpc",
-		}
+	op := &aws.Operation{
+		Name:       opAssociateVPCWithHostedZone,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2013-04-01/hostedzone/{Id}/associatevpc",
 	}
 
 	if input == nil {
 		input = &AssociateVPCWithHostedZoneInput{}
 	}
 
-	req = c.newRequest(opAssociateVPCWithHostedZone, input, output)
+	req = c.newRequest(op, input, output)
 	output = &AssociateVPCWithHostedZoneOutput{}
 	req.Data = output
 	return
@@ -49,26 +43,21 @@ func (c *Route53) AssociateVPCWithHostedZone(input *AssociateVPCWithHostedZoneIn
 	return out, err
 }
 
-var opAssociateVPCWithHostedZone *aws.Operation
+const opChangeResourceRecordSets = "ChangeResourceRecordSets"
 
 // ChangeResourceRecordSetsRequest generates a request for the ChangeResourceRecordSets operation.
 func (c *Route53) ChangeResourceRecordSetsRequest(input *ChangeResourceRecordSetsInput) (req *aws.Request, output *ChangeResourceRecordSetsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opChangeResourceRecordSets == nil {
-		opChangeResourceRecordSets = &aws.Operation{
-			Name:       "ChangeResourceRecordSets",
-			HTTPMethod: "POST",
-			HTTPPath:   "/2013-04-01/hostedzone/{Id}/rrset/",
-		}
+	op := &aws.Operation{
+		Name:       opChangeResourceRecordSets,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2013-04-01/hostedzone/{Id}/rrset/",
 	}
 
 	if input == nil {
 		input = &ChangeResourceRecordSetsInput{}
 	}
 
-	req = c.newRequest(opChangeResourceRecordSets, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ChangeResourceRecordSetsOutput{}
 	req.Data = output
 	return
@@ -108,26 +97,21 @@ func (c *Route53) ChangeResourceRecordSets(input *ChangeResourceRecordSetsInput)
 	return out, err
 }
 
-var opChangeResourceRecordSets *aws.Operation
+const opChangeTagsForResource = "ChangeTagsForResource"
 
 // ChangeTagsForResourceRequest generates a request for the ChangeTagsForResource operation.
 func (c *Route53) ChangeTagsForResourceRequest(input *ChangeTagsForResourceInput) (req *aws.Request, output *ChangeTagsForResourceOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opChangeTagsForResource == nil {
-		opChangeTagsForResource = &aws.Operation{
-			Name:       "ChangeTagsForResource",
-			HTTPMethod: "POST",
-			HTTPPath:   "/2013-04-01/tags/{ResourceType}/{ResourceId}",
-		}
+	op := &aws.Operation{
+		Name:       opChangeTagsForResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2013-04-01/tags/{ResourceType}/{ResourceId}",
 	}
 
 	if input == nil {
 		input = &ChangeTagsForResourceInput{}
 	}
 
-	req = c.newRequest(opChangeTagsForResource, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ChangeTagsForResourceOutput{}
 	req.Data = output
 	return
@@ -139,26 +123,21 @@ func (c *Route53) ChangeTagsForResource(input *ChangeTagsForResourceInput) (*Cha
 	return out, err
 }
 
-var opChangeTagsForResource *aws.Operation
+const opCreateHealthCheck = "CreateHealthCheck"
 
 // CreateHealthCheckRequest generates a request for the CreateHealthCheck operation.
 func (c *Route53) CreateHealthCheckRequest(input *CreateHealthCheckInput) (req *aws.Request, output *CreateHealthCheckOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateHealthCheck == nil {
-		opCreateHealthCheck = &aws.Operation{
-			Name:       "CreateHealthCheck",
-			HTTPMethod: "POST",
-			HTTPPath:   "/2013-04-01/healthcheck",
-		}
+	op := &aws.Operation{
+		Name:       opCreateHealthCheck,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2013-04-01/healthcheck",
 	}
 
 	if input == nil {
 		input = &CreateHealthCheckInput{}
 	}
 
-	req = c.newRequest(opCreateHealthCheck, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateHealthCheckOutput{}
 	req.Data = output
 	return
@@ -176,26 +155,21 @@ func (c *Route53) CreateHealthCheck(input *CreateHealthCheckInput) (*CreateHealt
 	return out, err
 }
 
-var opCreateHealthCheck *aws.Operation
+const opCreateHostedZone = "CreateHostedZone"
 
 // CreateHostedZoneRequest generates a request for the CreateHostedZone operation.
 func (c *Route53) CreateHostedZoneRequest(input *CreateHostedZoneInput) (req *aws.Request, output *CreateHostedZoneOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateHostedZone == nil {
-		opCreateHostedZone = &aws.Operation{
-			Name:       "CreateHostedZone",
-			HTTPMethod: "POST",
-			HTTPPath:   "/2013-04-01/hostedzone",
-		}
+	op := &aws.Operation{
+		Name:       opCreateHostedZone,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2013-04-01/hostedzone",
 	}
 
 	if input == nil {
 		input = &CreateHostedZoneInput{}
 	}
 
-	req = c.newRequest(opCreateHostedZone, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateHostedZoneOutput{}
 	req.Data = output
 	return
@@ -228,26 +202,21 @@ func (c *Route53) CreateHostedZone(input *CreateHostedZoneInput) (*CreateHostedZ
 	return out, err
 }
 
-var opCreateHostedZone *aws.Operation
+const opCreateReusableDelegationSet = "CreateReusableDelegationSet"
 
 // CreateReusableDelegationSetRequest generates a request for the CreateReusableDelegationSet operation.
 func (c *Route53) CreateReusableDelegationSetRequest(input *CreateReusableDelegationSetInput) (req *aws.Request, output *CreateReusableDelegationSetOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateReusableDelegationSet == nil {
-		opCreateReusableDelegationSet = &aws.Operation{
-			Name:       "CreateReusableDelegationSet",
-			HTTPMethod: "POST",
-			HTTPPath:   "/2013-04-01/delegationset",
-		}
+	op := &aws.Operation{
+		Name:       opCreateReusableDelegationSet,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2013-04-01/delegationset",
 	}
 
 	if input == nil {
 		input = &CreateReusableDelegationSetInput{}
 	}
 
-	req = c.newRequest(opCreateReusableDelegationSet, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateReusableDelegationSetOutput{}
 	req.Data = output
 	return
@@ -268,26 +237,21 @@ func (c *Route53) CreateReusableDelegationSet(input *CreateReusableDelegationSet
 	return out, err
 }
 
-var opCreateReusableDelegationSet *aws.Operation
+const opDeleteHealthCheck = "DeleteHealthCheck"
 
 // DeleteHealthCheckRequest generates a request for the DeleteHealthCheck operation.
 func (c *Route53) DeleteHealthCheckRequest(input *DeleteHealthCheckInput) (req *aws.Request, output *DeleteHealthCheckOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteHealthCheck == nil {
-		opDeleteHealthCheck = &aws.Operation{
-			Name:       "DeleteHealthCheck",
-			HTTPMethod: "DELETE",
-			HTTPPath:   "/2013-04-01/healthcheck/{HealthCheckId}",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteHealthCheck,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/2013-04-01/healthcheck/{HealthCheckId}",
 	}
 
 	if input == nil {
 		input = &DeleteHealthCheckInput{}
 	}
 
-	req = c.newRequest(opDeleteHealthCheck, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteHealthCheckOutput{}
 	req.Data = output
 	return
@@ -309,26 +273,21 @@ func (c *Route53) DeleteHealthCheck(input *DeleteHealthCheckInput) (*DeleteHealt
 	return out, err
 }
 
-var opDeleteHealthCheck *aws.Operation
+const opDeleteHostedZone = "DeleteHostedZone"
 
 // DeleteHostedZoneRequest generates a request for the DeleteHostedZone operation.
 func (c *Route53) DeleteHostedZoneRequest(input *DeleteHostedZoneInput) (req *aws.Request, output *DeleteHostedZoneOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteHostedZone == nil {
-		opDeleteHostedZone = &aws.Operation{
-			Name:       "DeleteHostedZone",
-			HTTPMethod: "DELETE",
-			HTTPPath:   "/2013-04-01/hostedzone/{Id}",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteHostedZone,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/2013-04-01/hostedzone/{Id}",
 	}
 
 	if input == nil {
 		input = &DeleteHostedZoneInput{}
 	}
 
-	req = c.newRequest(opDeleteHostedZone, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteHostedZoneOutput{}
 	req.Data = output
 	return
@@ -354,26 +313,21 @@ func (c *Route53) DeleteHostedZone(input *DeleteHostedZoneInput) (*DeleteHostedZ
 	return out, err
 }
 
-var opDeleteHostedZone *aws.Operation
+const opDeleteReusableDelegationSet = "DeleteReusableDelegationSet"
 
 // DeleteReusableDelegationSetRequest generates a request for the DeleteReusableDelegationSet operation.
 func (c *Route53) DeleteReusableDelegationSetRequest(input *DeleteReusableDelegationSetInput) (req *aws.Request, output *DeleteReusableDelegationSetOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteReusableDelegationSet == nil {
-		opDeleteReusableDelegationSet = &aws.Operation{
-			Name:       "DeleteReusableDelegationSet",
-			HTTPMethod: "DELETE",
-			HTTPPath:   "/2013-04-01/delegationset/{Id}",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteReusableDelegationSet,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/2013-04-01/delegationset/{Id}",
 	}
 
 	if input == nil {
 		input = &DeleteReusableDelegationSetInput{}
 	}
 
-	req = c.newRequest(opDeleteReusableDelegationSet, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteReusableDelegationSetOutput{}
 	req.Data = output
 	return
@@ -394,26 +348,21 @@ func (c *Route53) DeleteReusableDelegationSet(input *DeleteReusableDelegationSet
 	return out, err
 }
 
-var opDeleteReusableDelegationSet *aws.Operation
+const opDisassociateVPCFromHostedZone = "DisassociateVPCFromHostedZone"
 
 // DisassociateVPCFromHostedZoneRequest generates a request for the DisassociateVPCFromHostedZone operation.
 func (c *Route53) DisassociateVPCFromHostedZoneRequest(input *DisassociateVPCFromHostedZoneInput) (req *aws.Request, output *DisassociateVPCFromHostedZoneOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDisassociateVPCFromHostedZone == nil {
-		opDisassociateVPCFromHostedZone = &aws.Operation{
-			Name:       "DisassociateVPCFromHostedZone",
-			HTTPMethod: "POST",
-			HTTPPath:   "/2013-04-01/hostedzone/{Id}/disassociatevpc",
-		}
+	op := &aws.Operation{
+		Name:       opDisassociateVPCFromHostedZone,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2013-04-01/hostedzone/{Id}/disassociatevpc",
 	}
 
 	if input == nil {
 		input = &DisassociateVPCFromHostedZoneInput{}
 	}
 
-	req = c.newRequest(opDisassociateVPCFromHostedZone, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DisassociateVPCFromHostedZoneOutput{}
 	req.Data = output
 	return
@@ -433,26 +382,21 @@ func (c *Route53) DisassociateVPCFromHostedZone(input *DisassociateVPCFromHosted
 	return out, err
 }
 
-var opDisassociateVPCFromHostedZone *aws.Operation
+const opGetChange = "GetChange"
 
 // GetChangeRequest generates a request for the GetChange operation.
 func (c *Route53) GetChangeRequest(input *GetChangeInput) (req *aws.Request, output *GetChangeOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetChange == nil {
-		opGetChange = &aws.Operation{
-			Name:       "GetChange",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2013-04-01/change/{Id}",
-		}
+	op := &aws.Operation{
+		Name:       opGetChange,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/change/{Id}",
 	}
 
 	if input == nil {
 		input = &GetChangeInput{}
 	}
 
-	req = c.newRequest(opGetChange, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetChangeOutput{}
 	req.Data = output
 	return
@@ -473,26 +417,21 @@ func (c *Route53) GetChange(input *GetChangeInput) (*GetChangeOutput, error) {
 	return out, err
 }
 
-var opGetChange *aws.Operation
+const opGetCheckerIPRanges = "GetCheckerIpRanges"
 
 // GetCheckerIPRangesRequest generates a request for the GetCheckerIPRanges operation.
 func (c *Route53) GetCheckerIPRangesRequest(input *GetCheckerIPRangesInput) (req *aws.Request, output *GetCheckerIPRangesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetCheckerIPRanges == nil {
-		opGetCheckerIPRanges = &aws.Operation{
-			Name:       "GetCheckerIpRanges",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2013-04-01/checkeripranges",
-		}
+	op := &aws.Operation{
+		Name:       opGetCheckerIPRanges,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/checkeripranges",
 	}
 
 	if input == nil {
 		input = &GetCheckerIPRangesInput{}
 	}
 
-	req = c.newRequest(opGetCheckerIPRanges, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetCheckerIPRangesOutput{}
 	req.Data = output
 	return
@@ -508,26 +447,21 @@ func (c *Route53) GetCheckerIPRanges(input *GetCheckerIPRangesInput) (*GetChecke
 	return out, err
 }
 
-var opGetCheckerIPRanges *aws.Operation
+const opGetGeoLocation = "GetGeoLocation"
 
 // GetGeoLocationRequest generates a request for the GetGeoLocation operation.
 func (c *Route53) GetGeoLocationRequest(input *GetGeoLocationInput) (req *aws.Request, output *GetGeoLocationOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetGeoLocation == nil {
-		opGetGeoLocation = &aws.Operation{
-			Name:       "GetGeoLocation",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2013-04-01/geolocation",
-		}
+	op := &aws.Operation{
+		Name:       opGetGeoLocation,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/geolocation",
 	}
 
 	if input == nil {
 		input = &GetGeoLocationInput{}
 	}
 
-	req = c.newRequest(opGetGeoLocation, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetGeoLocationOutput{}
 	req.Data = output
 	return
@@ -542,26 +476,21 @@ func (c *Route53) GetGeoLocation(input *GetGeoLocationInput) (*GetGeoLocationOut
 	return out, err
 }
 
-var opGetGeoLocation *aws.Operation
+const opGetHealthCheck = "GetHealthCheck"
 
 // GetHealthCheckRequest generates a request for the GetHealthCheck operation.
 func (c *Route53) GetHealthCheckRequest(input *GetHealthCheckInput) (req *aws.Request, output *GetHealthCheckOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetHealthCheck == nil {
-		opGetHealthCheck = &aws.Operation{
-			Name:       "GetHealthCheck",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2013-04-01/healthcheck/{HealthCheckId}",
-		}
+	op := &aws.Operation{
+		Name:       opGetHealthCheck,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/healthcheck/{HealthCheckId}",
 	}
 
 	if input == nil {
 		input = &GetHealthCheckInput{}
 	}
 
-	req = c.newRequest(opGetHealthCheck, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetHealthCheckOutput{}
 	req.Data = output
 	return
@@ -575,26 +504,21 @@ func (c *Route53) GetHealthCheck(input *GetHealthCheckInput) (*GetHealthCheckOut
 	return out, err
 }
 
-var opGetHealthCheck *aws.Operation
+const opGetHealthCheckCount = "GetHealthCheckCount"
 
 // GetHealthCheckCountRequest generates a request for the GetHealthCheckCount operation.
 func (c *Route53) GetHealthCheckCountRequest(input *GetHealthCheckCountInput) (req *aws.Request, output *GetHealthCheckCountOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetHealthCheckCount == nil {
-		opGetHealthCheckCount = &aws.Operation{
-			Name:       "GetHealthCheckCount",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2013-04-01/healthcheckcount",
-		}
+	op := &aws.Operation{
+		Name:       opGetHealthCheckCount,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/healthcheckcount",
 	}
 
 	if input == nil {
 		input = &GetHealthCheckCountInput{}
 	}
 
-	req = c.newRequest(opGetHealthCheckCount, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetHealthCheckCountOutput{}
 	req.Data = output
 	return
@@ -608,26 +532,21 @@ func (c *Route53) GetHealthCheckCount(input *GetHealthCheckCountInput) (*GetHeal
 	return out, err
 }
 
-var opGetHealthCheckCount *aws.Operation
+const opGetHealthCheckLastFailureReason = "GetHealthCheckLastFailureReason"
 
 // GetHealthCheckLastFailureReasonRequest generates a request for the GetHealthCheckLastFailureReason operation.
 func (c *Route53) GetHealthCheckLastFailureReasonRequest(input *GetHealthCheckLastFailureReasonInput) (req *aws.Request, output *GetHealthCheckLastFailureReasonOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetHealthCheckLastFailureReason == nil {
-		opGetHealthCheckLastFailureReason = &aws.Operation{
-			Name:       "GetHealthCheckLastFailureReason",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2013-04-01/healthcheck/{HealthCheckId}/lastfailurereason",
-		}
+	op := &aws.Operation{
+		Name:       opGetHealthCheckLastFailureReason,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/healthcheck/{HealthCheckId}/lastfailurereason",
 	}
 
 	if input == nil {
 		input = &GetHealthCheckLastFailureReasonInput{}
 	}
 
-	req = c.newRequest(opGetHealthCheckLastFailureReason, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetHealthCheckLastFailureReasonOutput{}
 	req.Data = output
 	return
@@ -643,26 +562,21 @@ func (c *Route53) GetHealthCheckLastFailureReason(input *GetHealthCheckLastFailu
 	return out, err
 }
 
-var opGetHealthCheckLastFailureReason *aws.Operation
+const opGetHealthCheckStatus = "GetHealthCheckStatus"
 
 // GetHealthCheckStatusRequest generates a request for the GetHealthCheckStatus operation.
 func (c *Route53) GetHealthCheckStatusRequest(input *GetHealthCheckStatusInput) (req *aws.Request, output *GetHealthCheckStatusOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetHealthCheckStatus == nil {
-		opGetHealthCheckStatus = &aws.Operation{
-			Name:       "GetHealthCheckStatus",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2013-04-01/healthcheck/{HealthCheckId}/status",
-		}
+	op := &aws.Operation{
+		Name:       opGetHealthCheckStatus,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/healthcheck/{HealthCheckId}/status",
 	}
 
 	if input == nil {
 		input = &GetHealthCheckStatusInput{}
 	}
 
-	req = c.newRequest(opGetHealthCheckStatus, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetHealthCheckStatusOutput{}
 	req.Data = output
 	return
@@ -677,26 +591,21 @@ func (c *Route53) GetHealthCheckStatus(input *GetHealthCheckStatusInput) (*GetHe
 	return out, err
 }
 
-var opGetHealthCheckStatus *aws.Operation
+const opGetHostedZone = "GetHostedZone"
 
 // GetHostedZoneRequest generates a request for the GetHostedZone operation.
 func (c *Route53) GetHostedZoneRequest(input *GetHostedZoneInput) (req *aws.Request, output *GetHostedZoneOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetHostedZone == nil {
-		opGetHostedZone = &aws.Operation{
-			Name:       "GetHostedZone",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2013-04-01/hostedzone/{Id}",
-		}
+	op := &aws.Operation{
+		Name:       opGetHostedZone,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/hostedzone/{Id}",
 	}
 
 	if input == nil {
 		input = &GetHostedZoneInput{}
 	}
 
-	req = c.newRequest(opGetHostedZone, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetHostedZoneOutput{}
 	req.Data = output
 	return
@@ -712,26 +621,21 @@ func (c *Route53) GetHostedZone(input *GetHostedZoneInput) (*GetHostedZoneOutput
 	return out, err
 }
 
-var opGetHostedZone *aws.Operation
+const opGetHostedZoneCount = "GetHostedZoneCount"
 
 // GetHostedZoneCountRequest generates a request for the GetHostedZoneCount operation.
 func (c *Route53) GetHostedZoneCountRequest(input *GetHostedZoneCountInput) (req *aws.Request, output *GetHostedZoneCountOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetHostedZoneCount == nil {
-		opGetHostedZoneCount = &aws.Operation{
-			Name:       "GetHostedZoneCount",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2013-04-01/hostedzonecount",
-		}
+	op := &aws.Operation{
+		Name:       opGetHostedZoneCount,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/hostedzonecount",
 	}
 
 	if input == nil {
 		input = &GetHostedZoneCountInput{}
 	}
 
-	req = c.newRequest(opGetHostedZoneCount, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetHostedZoneCountOutput{}
 	req.Data = output
 	return
@@ -745,26 +649,21 @@ func (c *Route53) GetHostedZoneCount(input *GetHostedZoneCountInput) (*GetHosted
 	return out, err
 }
 
-var opGetHostedZoneCount *aws.Operation
+const opGetReusableDelegationSet = "GetReusableDelegationSet"
 
 // GetReusableDelegationSetRequest generates a request for the GetReusableDelegationSet operation.
 func (c *Route53) GetReusableDelegationSetRequest(input *GetReusableDelegationSetInput) (req *aws.Request, output *GetReusableDelegationSetOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetReusableDelegationSet == nil {
-		opGetReusableDelegationSet = &aws.Operation{
-			Name:       "GetReusableDelegationSet",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2013-04-01/delegationset/{Id}",
-		}
+	op := &aws.Operation{
+		Name:       opGetReusableDelegationSet,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/delegationset/{Id}",
 	}
 
 	if input == nil {
 		input = &GetReusableDelegationSetInput{}
 	}
 
-	req = c.newRequest(opGetReusableDelegationSet, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetReusableDelegationSetOutput{}
 	req.Data = output
 	return
@@ -778,26 +677,21 @@ func (c *Route53) GetReusableDelegationSet(input *GetReusableDelegationSetInput)
 	return out, err
 }
 
-var opGetReusableDelegationSet *aws.Operation
+const opListGeoLocations = "ListGeoLocations"
 
 // ListGeoLocationsRequest generates a request for the ListGeoLocations operation.
 func (c *Route53) ListGeoLocationsRequest(input *ListGeoLocationsInput) (req *aws.Request, output *ListGeoLocationsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListGeoLocations == nil {
-		opListGeoLocations = &aws.Operation{
-			Name:       "ListGeoLocations",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2013-04-01/geolocations",
-		}
+	op := &aws.Operation{
+		Name:       opListGeoLocations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/geolocations",
 	}
 
 	if input == nil {
 		input = &ListGeoLocationsInput{}
 	}
 
-	req = c.newRequest(opListGeoLocations, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListGeoLocationsOutput{}
 	req.Data = output
 	return
@@ -822,32 +716,27 @@ func (c *Route53) ListGeoLocations(input *ListGeoLocationsInput) (*ListGeoLocati
 	return out, err
 }
 
-var opListGeoLocations *aws.Operation
+const opListHealthChecks = "ListHealthChecks"
 
 // ListHealthChecksRequest generates a request for the ListHealthChecks operation.
 func (c *Route53) ListHealthChecksRequest(input *ListHealthChecksInput) (req *aws.Request, output *ListHealthChecksOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListHealthChecks == nil {
-		opListHealthChecks = &aws.Operation{
-			Name:       "ListHealthChecks",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2013-04-01/healthcheck",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"NextMarker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListHealthChecks,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/healthcheck",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"NextMarker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListHealthChecksInput{}
 	}
 
-	req = c.newRequest(opListHealthChecks, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListHealthChecksOutput{}
 	req.Data = output
 	return
@@ -875,32 +764,27 @@ func (c *Route53) ListHealthChecksPages(input *ListHealthChecksInput, fn func(p 
 	})
 }
 
-var opListHealthChecks *aws.Operation
+const opListHostedZones = "ListHostedZones"
 
 // ListHostedZonesRequest generates a request for the ListHostedZones operation.
 func (c *Route53) ListHostedZonesRequest(input *ListHostedZonesInput) (req *aws.Request, output *ListHostedZonesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListHostedZones == nil {
-		opListHostedZones = &aws.Operation{
-			Name:       "ListHostedZones",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2013-04-01/hostedzone",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"NextMarker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListHostedZones,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/hostedzone",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"NextMarker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListHostedZonesInput{}
 	}
 
-	req = c.newRequest(opListHostedZones, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListHostedZonesOutput{}
 	req.Data = output
 	return
@@ -928,26 +812,21 @@ func (c *Route53) ListHostedZonesPages(input *ListHostedZonesInput, fn func(p *L
 	})
 }
 
-var opListHostedZones *aws.Operation
+const opListHostedZonesByName = "ListHostedZonesByName"
 
 // ListHostedZonesByNameRequest generates a request for the ListHostedZonesByName operation.
 func (c *Route53) ListHostedZonesByNameRequest(input *ListHostedZonesByNameInput) (req *aws.Request, output *ListHostedZonesByNameOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListHostedZonesByName == nil {
-		opListHostedZonesByName = &aws.Operation{
-			Name:       "ListHostedZonesByName",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2013-04-01/hostedzonesbyname",
-		}
+	op := &aws.Operation{
+		Name:       opListHostedZonesByName,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/hostedzonesbyname",
 	}
 
 	if input == nil {
 		input = &ListHostedZonesByNameInput{}
 	}
 
-	req = c.newRequest(opListHostedZonesByName, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListHostedZonesByNameOutput{}
 	req.Data = output
 	return
@@ -970,32 +849,27 @@ func (c *Route53) ListHostedZonesByName(input *ListHostedZonesByNameInput) (*Lis
 	return out, err
 }
 
-var opListHostedZonesByName *aws.Operation
+const opListResourceRecordSets = "ListResourceRecordSets"
 
 // ListResourceRecordSetsRequest generates a request for the ListResourceRecordSets operation.
 func (c *Route53) ListResourceRecordSetsRequest(input *ListResourceRecordSetsInput) (req *aws.Request, output *ListResourceRecordSetsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListResourceRecordSets == nil {
-		opListResourceRecordSets = &aws.Operation{
-			Name:       "ListResourceRecordSets",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2013-04-01/hostedzone/{Id}/rrset",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"StartRecordName", "StartRecordType", "StartRecordIdentifier"},
-				OutputTokens:    []string{"NextRecordName", "NextRecordType", "NextRecordIdentifier"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListResourceRecordSets,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/hostedzone/{Id}/rrset",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"StartRecordName", "StartRecordType", "StartRecordIdentifier"},
+			OutputTokens:    []string{"NextRecordName", "NextRecordType", "NextRecordIdentifier"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListResourceRecordSetsInput{}
 	}
 
-	req = c.newRequest(opListResourceRecordSets, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListResourceRecordSetsOutput{}
 	req.Data = output
 	return
@@ -1052,26 +926,21 @@ func (c *Route53) ListResourceRecordSetsPages(input *ListResourceRecordSetsInput
 	})
 }
 
-var opListResourceRecordSets *aws.Operation
+const opListReusableDelegationSets = "ListReusableDelegationSets"
 
 // ListReusableDelegationSetsRequest generates a request for the ListReusableDelegationSets operation.
 func (c *Route53) ListReusableDelegationSetsRequest(input *ListReusableDelegationSetsInput) (req *aws.Request, output *ListReusableDelegationSetsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListReusableDelegationSets == nil {
-		opListReusableDelegationSets = &aws.Operation{
-			Name:       "ListReusableDelegationSets",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2013-04-01/delegationset",
-		}
+	op := &aws.Operation{
+		Name:       opListReusableDelegationSets,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/delegationset",
 	}
 
 	if input == nil {
 		input = &ListReusableDelegationSetsInput{}
 	}
 
-	req = c.newRequest(opListReusableDelegationSets, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListReusableDelegationSetsOutput{}
 	req.Data = output
 	return
@@ -1093,26 +962,21 @@ func (c *Route53) ListReusableDelegationSets(input *ListReusableDelegationSetsIn
 	return out, err
 }
 
-var opListReusableDelegationSets *aws.Operation
+const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a request for the ListTagsForResource operation.
 func (c *Route53) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *aws.Request, output *ListTagsForResourceOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListTagsForResource == nil {
-		opListTagsForResource = &aws.Operation{
-			Name:       "ListTagsForResource",
-			HTTPMethod: "GET",
-			HTTPPath:   "/2013-04-01/tags/{ResourceType}/{ResourceId}",
-		}
+	op := &aws.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2013-04-01/tags/{ResourceType}/{ResourceId}",
 	}
 
 	if input == nil {
 		input = &ListTagsForResourceInput{}
 	}
 
-	req = c.newRequest(opListTagsForResource, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListTagsForResourceOutput{}
 	req.Data = output
 	return
@@ -1124,26 +988,21 @@ func (c *Route53) ListTagsForResource(input *ListTagsForResourceInput) (*ListTag
 	return out, err
 }
 
-var opListTagsForResource *aws.Operation
+const opListTagsForResources = "ListTagsForResources"
 
 // ListTagsForResourcesRequest generates a request for the ListTagsForResources operation.
 func (c *Route53) ListTagsForResourcesRequest(input *ListTagsForResourcesInput) (req *aws.Request, output *ListTagsForResourcesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListTagsForResources == nil {
-		opListTagsForResources = &aws.Operation{
-			Name:       "ListTagsForResources",
-			HTTPMethod: "POST",
-			HTTPPath:   "/2013-04-01/tags/{ResourceType}",
-		}
+	op := &aws.Operation{
+		Name:       opListTagsForResources,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2013-04-01/tags/{ResourceType}",
 	}
 
 	if input == nil {
 		input = &ListTagsForResourcesInput{}
 	}
 
-	req = c.newRequest(opListTagsForResources, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListTagsForResourcesOutput{}
 	req.Data = output
 	return
@@ -1155,26 +1014,21 @@ func (c *Route53) ListTagsForResources(input *ListTagsForResourcesInput) (*ListT
 	return out, err
 }
 
-var opListTagsForResources *aws.Operation
+const opUpdateHealthCheck = "UpdateHealthCheck"
 
 // UpdateHealthCheckRequest generates a request for the UpdateHealthCheck operation.
 func (c *Route53) UpdateHealthCheckRequest(input *UpdateHealthCheckInput) (req *aws.Request, output *UpdateHealthCheckOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateHealthCheck == nil {
-		opUpdateHealthCheck = &aws.Operation{
-			Name:       "UpdateHealthCheck",
-			HTTPMethod: "POST",
-			HTTPPath:   "/2013-04-01/healthcheck/{HealthCheckId}",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateHealthCheck,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2013-04-01/healthcheck/{HealthCheckId}",
 	}
 
 	if input == nil {
 		input = &UpdateHealthCheckInput{}
 	}
 
-	req = c.newRequest(opUpdateHealthCheck, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateHealthCheckOutput{}
 	req.Data = output
 	return
@@ -1192,26 +1046,21 @@ func (c *Route53) UpdateHealthCheck(input *UpdateHealthCheckInput) (*UpdateHealt
 	return out, err
 }
 
-var opUpdateHealthCheck *aws.Operation
+const opUpdateHostedZoneComment = "UpdateHostedZoneComment"
 
 // UpdateHostedZoneCommentRequest generates a request for the UpdateHostedZoneComment operation.
 func (c *Route53) UpdateHostedZoneCommentRequest(input *UpdateHostedZoneCommentInput) (req *aws.Request, output *UpdateHostedZoneCommentOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateHostedZoneComment == nil {
-		opUpdateHostedZoneComment = &aws.Operation{
-			Name:       "UpdateHostedZoneComment",
-			HTTPMethod: "POST",
-			HTTPPath:   "/2013-04-01/hostedzone/{Id}",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateHostedZoneComment,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2013-04-01/hostedzone/{Id}",
 	}
 
 	if input == nil {
 		input = &UpdateHostedZoneCommentInput{}
 	}
 
-	req = c.newRequest(opUpdateHostedZoneComment, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateHostedZoneCommentOutput{}
 	req.Data = output
 	return
@@ -1227,8 +1076,6 @@ func (c *Route53) UpdateHostedZoneComment(input *UpdateHostedZoneCommentInput) (
 	err := req.Send()
 	return out, err
 }
-
-var opUpdateHostedZoneComment *aws.Operation
 
 // Alias resource record sets only: Information about the domain to which you
 // are redirecting traffic.

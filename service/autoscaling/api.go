@@ -4,32 +4,26 @@
 package autoscaling
 
 import (
-	"sync"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 )
 
-var oprw sync.Mutex
+const opAttachInstances = "AttachInstances"
 
 // AttachInstancesRequest generates a request for the AttachInstances operation.
 func (c *AutoScaling) AttachInstancesRequest(input *AttachInstancesInput) (req *aws.Request, output *AttachInstancesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opAttachInstances == nil {
-		opAttachInstances = &aws.Operation{
-			Name:       "AttachInstances",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opAttachInstances,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &AttachInstancesInput{}
 	}
 
-	req = c.newRequest(opAttachInstances, input, output)
+	req = c.newRequest(op, input, output)
 	output = &AttachInstancesOutput{}
 	req.Data = output
 	return
@@ -46,26 +40,21 @@ func (c *AutoScaling) AttachInstances(input *AttachInstancesInput) (*AttachInsta
 	return out, err
 }
 
-var opAttachInstances *aws.Operation
+const opAttachLoadBalancers = "AttachLoadBalancers"
 
 // AttachLoadBalancersRequest generates a request for the AttachLoadBalancers operation.
 func (c *AutoScaling) AttachLoadBalancersRequest(input *AttachLoadBalancersInput) (req *aws.Request, output *AttachLoadBalancersOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opAttachLoadBalancers == nil {
-		opAttachLoadBalancers = &aws.Operation{
-			Name:       "AttachLoadBalancers",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opAttachLoadBalancers,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &AttachLoadBalancersInput{}
 	}
 
-	req = c.newRequest(opAttachLoadBalancers, input, output)
+	req = c.newRequest(op, input, output)
 	output = &AttachLoadBalancersOutput{}
 	req.Data = output
 	return
@@ -85,26 +74,21 @@ func (c *AutoScaling) AttachLoadBalancers(input *AttachLoadBalancersInput) (*Att
 	return out, err
 }
 
-var opAttachLoadBalancers *aws.Operation
+const opCompleteLifecycleAction = "CompleteLifecycleAction"
 
 // CompleteLifecycleActionRequest generates a request for the CompleteLifecycleAction operation.
 func (c *AutoScaling) CompleteLifecycleActionRequest(input *CompleteLifecycleActionInput) (req *aws.Request, output *CompleteLifecycleActionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCompleteLifecycleAction == nil {
-		opCompleteLifecycleAction = &aws.Operation{
-			Name:       "CompleteLifecycleAction",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCompleteLifecycleAction,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CompleteLifecycleActionInput{}
 	}
 
-	req = c.newRequest(opCompleteLifecycleAction, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CompleteLifecycleActionOutput{}
 	req.Data = output
 	return
@@ -131,26 +115,21 @@ func (c *AutoScaling) CompleteLifecycleAction(input *CompleteLifecycleActionInpu
 	return out, err
 }
 
-var opCompleteLifecycleAction *aws.Operation
+const opCreateAutoScalingGroup = "CreateAutoScalingGroup"
 
 // CreateAutoScalingGroupRequest generates a request for the CreateAutoScalingGroup operation.
 func (c *AutoScaling) CreateAutoScalingGroupRequest(input *CreateAutoScalingGroupInput) (req *aws.Request, output *CreateAutoScalingGroupOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateAutoScalingGroup == nil {
-		opCreateAutoScalingGroup = &aws.Operation{
-			Name:       "CreateAutoScalingGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateAutoScalingGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateAutoScalingGroupInput{}
 	}
 
-	req = c.newRequest(opCreateAutoScalingGroup, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateAutoScalingGroupOutput{}
 	req.Data = output
 	return
@@ -170,26 +149,21 @@ func (c *AutoScaling) CreateAutoScalingGroup(input *CreateAutoScalingGroupInput)
 	return out, err
 }
 
-var opCreateAutoScalingGroup *aws.Operation
+const opCreateLaunchConfiguration = "CreateLaunchConfiguration"
 
 // CreateLaunchConfigurationRequest generates a request for the CreateLaunchConfiguration operation.
 func (c *AutoScaling) CreateLaunchConfigurationRequest(input *CreateLaunchConfigurationInput) (req *aws.Request, output *CreateLaunchConfigurationOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateLaunchConfiguration == nil {
-		opCreateLaunchConfiguration = &aws.Operation{
-			Name:       "CreateLaunchConfiguration",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateLaunchConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateLaunchConfigurationInput{}
 	}
 
-	req = c.newRequest(opCreateLaunchConfiguration, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateLaunchConfigurationOutput{}
 	req.Data = output
 	return
@@ -209,26 +183,21 @@ func (c *AutoScaling) CreateLaunchConfiguration(input *CreateLaunchConfiguration
 	return out, err
 }
 
-var opCreateLaunchConfiguration *aws.Operation
+const opCreateOrUpdateTags = "CreateOrUpdateTags"
 
 // CreateOrUpdateTagsRequest generates a request for the CreateOrUpdateTags operation.
 func (c *AutoScaling) CreateOrUpdateTagsRequest(input *CreateOrUpdateTagsInput) (req *aws.Request, output *CreateOrUpdateTagsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateOrUpdateTags == nil {
-		opCreateOrUpdateTags = &aws.Operation{
-			Name:       "CreateOrUpdateTags",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateOrUpdateTags,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateOrUpdateTagsInput{}
 	}
 
-	req = c.newRequest(opCreateOrUpdateTags, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateOrUpdateTagsOutput{}
 	req.Data = output
 	return
@@ -254,26 +223,21 @@ func (c *AutoScaling) CreateOrUpdateTags(input *CreateOrUpdateTagsInput) (*Creat
 	return out, err
 }
 
-var opCreateOrUpdateTags *aws.Operation
+const opDeleteAutoScalingGroup = "DeleteAutoScalingGroup"
 
 // DeleteAutoScalingGroupRequest generates a request for the DeleteAutoScalingGroup operation.
 func (c *AutoScaling) DeleteAutoScalingGroupRequest(input *DeleteAutoScalingGroupInput) (req *aws.Request, output *DeleteAutoScalingGroupOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteAutoScalingGroup == nil {
-		opDeleteAutoScalingGroup = &aws.Operation{
-			Name:       "DeleteAutoScalingGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteAutoScalingGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteAutoScalingGroupInput{}
 	}
 
-	req = c.newRequest(opDeleteAutoScalingGroup, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteAutoScalingGroupOutput{}
 	req.Data = output
 	return
@@ -291,26 +255,21 @@ func (c *AutoScaling) DeleteAutoScalingGroup(input *DeleteAutoScalingGroupInput)
 	return out, err
 }
 
-var opDeleteAutoScalingGroup *aws.Operation
+const opDeleteLaunchConfiguration = "DeleteLaunchConfiguration"
 
 // DeleteLaunchConfigurationRequest generates a request for the DeleteLaunchConfiguration operation.
 func (c *AutoScaling) DeleteLaunchConfigurationRequest(input *DeleteLaunchConfigurationInput) (req *aws.Request, output *DeleteLaunchConfigurationOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteLaunchConfiguration == nil {
-		opDeleteLaunchConfiguration = &aws.Operation{
-			Name:       "DeleteLaunchConfiguration",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteLaunchConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteLaunchConfigurationInput{}
 	}
 
-	req = c.newRequest(opDeleteLaunchConfiguration, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteLaunchConfigurationOutput{}
 	req.Data = output
 	return
@@ -327,26 +286,21 @@ func (c *AutoScaling) DeleteLaunchConfiguration(input *DeleteLaunchConfiguration
 	return out, err
 }
 
-var opDeleteLaunchConfiguration *aws.Operation
+const opDeleteLifecycleHook = "DeleteLifecycleHook"
 
 // DeleteLifecycleHookRequest generates a request for the DeleteLifecycleHook operation.
 func (c *AutoScaling) DeleteLifecycleHookRequest(input *DeleteLifecycleHookInput) (req *aws.Request, output *DeleteLifecycleHookOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteLifecycleHook == nil {
-		opDeleteLifecycleHook = &aws.Operation{
-			Name:       "DeleteLifecycleHook",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteLifecycleHook,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteLifecycleHookInput{}
 	}
 
-	req = c.newRequest(opDeleteLifecycleHook, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteLifecycleHookOutput{}
 	req.Data = output
 	return
@@ -362,26 +316,21 @@ func (c *AutoScaling) DeleteLifecycleHook(input *DeleteLifecycleHookInput) (*Del
 	return out, err
 }
 
-var opDeleteLifecycleHook *aws.Operation
+const opDeleteNotificationConfiguration = "DeleteNotificationConfiguration"
 
 // DeleteNotificationConfigurationRequest generates a request for the DeleteNotificationConfiguration operation.
 func (c *AutoScaling) DeleteNotificationConfigurationRequest(input *DeleteNotificationConfigurationInput) (req *aws.Request, output *DeleteNotificationConfigurationOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteNotificationConfiguration == nil {
-		opDeleteNotificationConfiguration = &aws.Operation{
-			Name:       "DeleteNotificationConfiguration",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteNotificationConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteNotificationConfigurationInput{}
 	}
 
-	req = c.newRequest(opDeleteNotificationConfiguration, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteNotificationConfigurationOutput{}
 	req.Data = output
 	return
@@ -394,26 +343,21 @@ func (c *AutoScaling) DeleteNotificationConfiguration(input *DeleteNotificationC
 	return out, err
 }
 
-var opDeleteNotificationConfiguration *aws.Operation
+const opDeletePolicy = "DeletePolicy"
 
 // DeletePolicyRequest generates a request for the DeletePolicy operation.
 func (c *AutoScaling) DeletePolicyRequest(input *DeletePolicyInput) (req *aws.Request, output *DeletePolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeletePolicy == nil {
-		opDeletePolicy = &aws.Operation{
-			Name:       "DeletePolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeletePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeletePolicyInput{}
 	}
 
-	req = c.newRequest(opDeletePolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeletePolicyOutput{}
 	req.Data = output
 	return
@@ -426,26 +370,21 @@ func (c *AutoScaling) DeletePolicy(input *DeletePolicyInput) (*DeletePolicyOutpu
 	return out, err
 }
 
-var opDeletePolicy *aws.Operation
+const opDeleteScheduledAction = "DeleteScheduledAction"
 
 // DeleteScheduledActionRequest generates a request for the DeleteScheduledAction operation.
 func (c *AutoScaling) DeleteScheduledActionRequest(input *DeleteScheduledActionInput) (req *aws.Request, output *DeleteScheduledActionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteScheduledAction == nil {
-		opDeleteScheduledAction = &aws.Operation{
-			Name:       "DeleteScheduledAction",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteScheduledAction,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteScheduledActionInput{}
 	}
 
-	req = c.newRequest(opDeleteScheduledAction, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteScheduledActionOutput{}
 	req.Data = output
 	return
@@ -458,26 +397,21 @@ func (c *AutoScaling) DeleteScheduledAction(input *DeleteScheduledActionInput) (
 	return out, err
 }
 
-var opDeleteScheduledAction *aws.Operation
+const opDeleteTags = "DeleteTags"
 
 // DeleteTagsRequest generates a request for the DeleteTags operation.
 func (c *AutoScaling) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Request, output *DeleteTagsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteTags == nil {
-		opDeleteTags = &aws.Operation{
-			Name:       "DeleteTags",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteTags,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteTagsInput{}
 	}
 
-	req = c.newRequest(opDeleteTags, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteTagsOutput{}
 	req.Data = output
 	return
@@ -490,26 +424,21 @@ func (c *AutoScaling) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, err
 	return out, err
 }
 
-var opDeleteTags *aws.Operation
+const opDescribeAccountLimits = "DescribeAccountLimits"
 
 // DescribeAccountLimitsRequest generates a request for the DescribeAccountLimits operation.
 func (c *AutoScaling) DescribeAccountLimitsRequest(input *DescribeAccountLimitsInput) (req *aws.Request, output *DescribeAccountLimitsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeAccountLimits == nil {
-		opDescribeAccountLimits = &aws.Operation{
-			Name:       "DescribeAccountLimits",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeAccountLimits,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeAccountLimitsInput{}
 	}
 
-	req = c.newRequest(opDescribeAccountLimits, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeAccountLimitsOutput{}
 	req.Data = output
 	return
@@ -526,26 +455,21 @@ func (c *AutoScaling) DescribeAccountLimits(input *DescribeAccountLimitsInput) (
 	return out, err
 }
 
-var opDescribeAccountLimits *aws.Operation
+const opDescribeAdjustmentTypes = "DescribeAdjustmentTypes"
 
 // DescribeAdjustmentTypesRequest generates a request for the DescribeAdjustmentTypes operation.
 func (c *AutoScaling) DescribeAdjustmentTypesRequest(input *DescribeAdjustmentTypesInput) (req *aws.Request, output *DescribeAdjustmentTypesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeAdjustmentTypes == nil {
-		opDescribeAdjustmentTypes = &aws.Operation{
-			Name:       "DescribeAdjustmentTypes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeAdjustmentTypes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeAdjustmentTypesInput{}
 	}
 
-	req = c.newRequest(opDescribeAdjustmentTypes, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeAdjustmentTypesOutput{}
 	req.Data = output
 	return
@@ -558,32 +482,27 @@ func (c *AutoScaling) DescribeAdjustmentTypes(input *DescribeAdjustmentTypesInpu
 	return out, err
 }
 
-var opDescribeAdjustmentTypes *aws.Operation
+const opDescribeAutoScalingGroups = "DescribeAutoScalingGroups"
 
 // DescribeAutoScalingGroupsRequest generates a request for the DescribeAutoScalingGroups operation.
 func (c *AutoScaling) DescribeAutoScalingGroupsRequest(input *DescribeAutoScalingGroupsInput) (req *aws.Request, output *DescribeAutoScalingGroupsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeAutoScalingGroups == nil {
-		opDescribeAutoScalingGroups = &aws.Operation{
-			Name:       "DescribeAutoScalingGroups",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"NextToken"},
-				OutputTokens:    []string{"NextToken"},
-				LimitToken:      "MaxRecords",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeAutoScalingGroups,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeAutoScalingGroupsInput{}
 	}
 
-	req = c.newRequest(opDescribeAutoScalingGroups, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeAutoScalingGroupsOutput{}
 	req.Data = output
 	return
@@ -604,32 +523,27 @@ func (c *AutoScaling) DescribeAutoScalingGroupsPages(input *DescribeAutoScalingG
 	})
 }
 
-var opDescribeAutoScalingGroups *aws.Operation
+const opDescribeAutoScalingInstances = "DescribeAutoScalingInstances"
 
 // DescribeAutoScalingInstancesRequest generates a request for the DescribeAutoScalingInstances operation.
 func (c *AutoScaling) DescribeAutoScalingInstancesRequest(input *DescribeAutoScalingInstancesInput) (req *aws.Request, output *DescribeAutoScalingInstancesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeAutoScalingInstances == nil {
-		opDescribeAutoScalingInstances = &aws.Operation{
-			Name:       "DescribeAutoScalingInstances",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"NextToken"},
-				OutputTokens:    []string{"NextToken"},
-				LimitToken:      "MaxRecords",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeAutoScalingInstances,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeAutoScalingInstancesInput{}
 	}
 
-	req = c.newRequest(opDescribeAutoScalingInstances, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeAutoScalingInstancesOutput{}
 	req.Data = output
 	return
@@ -650,26 +564,21 @@ func (c *AutoScaling) DescribeAutoScalingInstancesPages(input *DescribeAutoScali
 	})
 }
 
-var opDescribeAutoScalingInstances *aws.Operation
+const opDescribeAutoScalingNotificationTypes = "DescribeAutoScalingNotificationTypes"
 
 // DescribeAutoScalingNotificationTypesRequest generates a request for the DescribeAutoScalingNotificationTypes operation.
 func (c *AutoScaling) DescribeAutoScalingNotificationTypesRequest(input *DescribeAutoScalingNotificationTypesInput) (req *aws.Request, output *DescribeAutoScalingNotificationTypesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeAutoScalingNotificationTypes == nil {
-		opDescribeAutoScalingNotificationTypes = &aws.Operation{
-			Name:       "DescribeAutoScalingNotificationTypes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeAutoScalingNotificationTypes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeAutoScalingNotificationTypesInput{}
 	}
 
-	req = c.newRequest(opDescribeAutoScalingNotificationTypes, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeAutoScalingNotificationTypesOutput{}
 	req.Data = output
 	return
@@ -682,32 +591,27 @@ func (c *AutoScaling) DescribeAutoScalingNotificationTypes(input *DescribeAutoSc
 	return out, err
 }
 
-var opDescribeAutoScalingNotificationTypes *aws.Operation
+const opDescribeLaunchConfigurations = "DescribeLaunchConfigurations"
 
 // DescribeLaunchConfigurationsRequest generates a request for the DescribeLaunchConfigurations operation.
 func (c *AutoScaling) DescribeLaunchConfigurationsRequest(input *DescribeLaunchConfigurationsInput) (req *aws.Request, output *DescribeLaunchConfigurationsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeLaunchConfigurations == nil {
-		opDescribeLaunchConfigurations = &aws.Operation{
-			Name:       "DescribeLaunchConfigurations",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"NextToken"},
-				OutputTokens:    []string{"NextToken"},
-				LimitToken:      "MaxRecords",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeLaunchConfigurations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeLaunchConfigurationsInput{}
 	}
 
-	req = c.newRequest(opDescribeLaunchConfigurations, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeLaunchConfigurationsOutput{}
 	req.Data = output
 	return
@@ -728,26 +632,21 @@ func (c *AutoScaling) DescribeLaunchConfigurationsPages(input *DescribeLaunchCon
 	})
 }
 
-var opDescribeLaunchConfigurations *aws.Operation
+const opDescribeLifecycleHookTypes = "DescribeLifecycleHookTypes"
 
 // DescribeLifecycleHookTypesRequest generates a request for the DescribeLifecycleHookTypes operation.
 func (c *AutoScaling) DescribeLifecycleHookTypesRequest(input *DescribeLifecycleHookTypesInput) (req *aws.Request, output *DescribeLifecycleHookTypesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeLifecycleHookTypes == nil {
-		opDescribeLifecycleHookTypes = &aws.Operation{
-			Name:       "DescribeLifecycleHookTypes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeLifecycleHookTypes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeLifecycleHookTypesInput{}
 	}
 
-	req = c.newRequest(opDescribeLifecycleHookTypes, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeLifecycleHookTypesOutput{}
 	req.Data = output
 	return
@@ -760,26 +659,21 @@ func (c *AutoScaling) DescribeLifecycleHookTypes(input *DescribeLifecycleHookTyp
 	return out, err
 }
 
-var opDescribeLifecycleHookTypes *aws.Operation
+const opDescribeLifecycleHooks = "DescribeLifecycleHooks"
 
 // DescribeLifecycleHooksRequest generates a request for the DescribeLifecycleHooks operation.
 func (c *AutoScaling) DescribeLifecycleHooksRequest(input *DescribeLifecycleHooksInput) (req *aws.Request, output *DescribeLifecycleHooksOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeLifecycleHooks == nil {
-		opDescribeLifecycleHooks = &aws.Operation{
-			Name:       "DescribeLifecycleHooks",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeLifecycleHooks,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeLifecycleHooksInput{}
 	}
 
-	req = c.newRequest(opDescribeLifecycleHooks, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeLifecycleHooksOutput{}
 	req.Data = output
 	return
@@ -792,26 +686,21 @@ func (c *AutoScaling) DescribeLifecycleHooks(input *DescribeLifecycleHooksInput)
 	return out, err
 }
 
-var opDescribeLifecycleHooks *aws.Operation
+const opDescribeLoadBalancers = "DescribeLoadBalancers"
 
 // DescribeLoadBalancersRequest generates a request for the DescribeLoadBalancers operation.
 func (c *AutoScaling) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (req *aws.Request, output *DescribeLoadBalancersOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeLoadBalancers == nil {
-		opDescribeLoadBalancers = &aws.Operation{
-			Name:       "DescribeLoadBalancers",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeLoadBalancers,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeLoadBalancersInput{}
 	}
 
-	req = c.newRequest(opDescribeLoadBalancers, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeLoadBalancersOutput{}
 	req.Data = output
 	return
@@ -824,26 +713,21 @@ func (c *AutoScaling) DescribeLoadBalancers(input *DescribeLoadBalancersInput) (
 	return out, err
 }
 
-var opDescribeLoadBalancers *aws.Operation
+const opDescribeMetricCollectionTypes = "DescribeMetricCollectionTypes"
 
 // DescribeMetricCollectionTypesRequest generates a request for the DescribeMetricCollectionTypes operation.
 func (c *AutoScaling) DescribeMetricCollectionTypesRequest(input *DescribeMetricCollectionTypesInput) (req *aws.Request, output *DescribeMetricCollectionTypesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeMetricCollectionTypes == nil {
-		opDescribeMetricCollectionTypes = &aws.Operation{
-			Name:       "DescribeMetricCollectionTypes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeMetricCollectionTypes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeMetricCollectionTypesInput{}
 	}
 
-	req = c.newRequest(opDescribeMetricCollectionTypes, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeMetricCollectionTypesOutput{}
 	req.Data = output
 	return
@@ -859,32 +743,27 @@ func (c *AutoScaling) DescribeMetricCollectionTypes(input *DescribeMetricCollect
 	return out, err
 }
 
-var opDescribeMetricCollectionTypes *aws.Operation
+const opDescribeNotificationConfigurations = "DescribeNotificationConfigurations"
 
 // DescribeNotificationConfigurationsRequest generates a request for the DescribeNotificationConfigurations operation.
 func (c *AutoScaling) DescribeNotificationConfigurationsRequest(input *DescribeNotificationConfigurationsInput) (req *aws.Request, output *DescribeNotificationConfigurationsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeNotificationConfigurations == nil {
-		opDescribeNotificationConfigurations = &aws.Operation{
-			Name:       "DescribeNotificationConfigurations",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"NextToken"},
-				OutputTokens:    []string{"NextToken"},
-				LimitToken:      "MaxRecords",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeNotificationConfigurations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeNotificationConfigurationsInput{}
 	}
 
-	req = c.newRequest(opDescribeNotificationConfigurations, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeNotificationConfigurationsOutput{}
 	req.Data = output
 	return
@@ -905,32 +784,27 @@ func (c *AutoScaling) DescribeNotificationConfigurationsPages(input *DescribeNot
 	})
 }
 
-var opDescribeNotificationConfigurations *aws.Operation
+const opDescribePolicies = "DescribePolicies"
 
 // DescribePoliciesRequest generates a request for the DescribePolicies operation.
 func (c *AutoScaling) DescribePoliciesRequest(input *DescribePoliciesInput) (req *aws.Request, output *DescribePoliciesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribePolicies == nil {
-		opDescribePolicies = &aws.Operation{
-			Name:       "DescribePolicies",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"NextToken"},
-				OutputTokens:    []string{"NextToken"},
-				LimitToken:      "MaxRecords",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribePolicies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribePoliciesInput{}
 	}
 
-	req = c.newRequest(opDescribePolicies, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribePoliciesOutput{}
 	req.Data = output
 	return
@@ -950,32 +824,27 @@ func (c *AutoScaling) DescribePoliciesPages(input *DescribePoliciesInput, fn fun
 	})
 }
 
-var opDescribePolicies *aws.Operation
+const opDescribeScalingActivities = "DescribeScalingActivities"
 
 // DescribeScalingActivitiesRequest generates a request for the DescribeScalingActivities operation.
 func (c *AutoScaling) DescribeScalingActivitiesRequest(input *DescribeScalingActivitiesInput) (req *aws.Request, output *DescribeScalingActivitiesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeScalingActivities == nil {
-		opDescribeScalingActivities = &aws.Operation{
-			Name:       "DescribeScalingActivities",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"NextToken"},
-				OutputTokens:    []string{"NextToken"},
-				LimitToken:      "MaxRecords",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeScalingActivities,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeScalingActivitiesInput{}
 	}
 
-	req = c.newRequest(opDescribeScalingActivities, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeScalingActivitiesOutput{}
 	req.Data = output
 	return
@@ -998,26 +867,21 @@ func (c *AutoScaling) DescribeScalingActivitiesPages(input *DescribeScalingActiv
 	})
 }
 
-var opDescribeScalingActivities *aws.Operation
+const opDescribeScalingProcessTypes = "DescribeScalingProcessTypes"
 
 // DescribeScalingProcessTypesRequest generates a request for the DescribeScalingProcessTypes operation.
 func (c *AutoScaling) DescribeScalingProcessTypesRequest(input *DescribeScalingProcessTypesInput) (req *aws.Request, output *DescribeScalingProcessTypesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeScalingProcessTypes == nil {
-		opDescribeScalingProcessTypes = &aws.Operation{
-			Name:       "DescribeScalingProcessTypes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeScalingProcessTypes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeScalingProcessTypesInput{}
 	}
 
-	req = c.newRequest(opDescribeScalingProcessTypes, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeScalingProcessTypesOutput{}
 	req.Data = output
 	return
@@ -1030,32 +894,27 @@ func (c *AutoScaling) DescribeScalingProcessTypes(input *DescribeScalingProcessT
 	return out, err
 }
 
-var opDescribeScalingProcessTypes *aws.Operation
+const opDescribeScheduledActions = "DescribeScheduledActions"
 
 // DescribeScheduledActionsRequest generates a request for the DescribeScheduledActions operation.
 func (c *AutoScaling) DescribeScheduledActionsRequest(input *DescribeScheduledActionsInput) (req *aws.Request, output *DescribeScheduledActionsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeScheduledActions == nil {
-		opDescribeScheduledActions = &aws.Operation{
-			Name:       "DescribeScheduledActions",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"NextToken"},
-				OutputTokens:    []string{"NextToken"},
-				LimitToken:      "MaxRecords",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeScheduledActions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeScheduledActionsInput{}
 	}
 
-	req = c.newRequest(opDescribeScheduledActions, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeScheduledActionsOutput{}
 	req.Data = output
 	return
@@ -1076,32 +935,27 @@ func (c *AutoScaling) DescribeScheduledActionsPages(input *DescribeScheduledActi
 	})
 }
 
-var opDescribeScheduledActions *aws.Operation
+const opDescribeTags = "DescribeTags"
 
 // DescribeTagsRequest generates a request for the DescribeTags operation.
 func (c *AutoScaling) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, output *DescribeTagsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeTags == nil {
-		opDescribeTags = &aws.Operation{
-			Name:       "DescribeTags",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"NextToken"},
-				OutputTokens:    []string{"NextToken"},
-				LimitToken:      "MaxRecords",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeTags,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeTagsInput{}
 	}
 
-	req = c.newRequest(opDescribeTags, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeTagsOutput{}
 	req.Data = output
 	return
@@ -1130,26 +984,21 @@ func (c *AutoScaling) DescribeTagsPages(input *DescribeTagsInput, fn func(p *Des
 	})
 }
 
-var opDescribeTags *aws.Operation
+const opDescribeTerminationPolicyTypes = "DescribeTerminationPolicyTypes"
 
 // DescribeTerminationPolicyTypesRequest generates a request for the DescribeTerminationPolicyTypes operation.
 func (c *AutoScaling) DescribeTerminationPolicyTypesRequest(input *DescribeTerminationPolicyTypesInput) (req *aws.Request, output *DescribeTerminationPolicyTypesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeTerminationPolicyTypes == nil {
-		opDescribeTerminationPolicyTypes = &aws.Operation{
-			Name:       "DescribeTerminationPolicyTypes",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeTerminationPolicyTypes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeTerminationPolicyTypesInput{}
 	}
 
-	req = c.newRequest(opDescribeTerminationPolicyTypes, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeTerminationPolicyTypesOutput{}
 	req.Data = output
 	return
@@ -1162,26 +1011,21 @@ func (c *AutoScaling) DescribeTerminationPolicyTypes(input *DescribeTerminationP
 	return out, err
 }
 
-var opDescribeTerminationPolicyTypes *aws.Operation
+const opDetachInstances = "DetachInstances"
 
 // DetachInstancesRequest generates a request for the DetachInstances operation.
 func (c *AutoScaling) DetachInstancesRequest(input *DetachInstancesInput) (req *aws.Request, output *DetachInstancesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDetachInstances == nil {
-		opDetachInstances = &aws.Operation{
-			Name:       "DetachInstances",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDetachInstances,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DetachInstancesInput{}
 	}
 
-	req = c.newRequest(opDetachInstances, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DetachInstancesOutput{}
 	req.Data = output
 	return
@@ -1200,26 +1044,21 @@ func (c *AutoScaling) DetachInstances(input *DetachInstancesInput) (*DetachInsta
 	return out, err
 }
 
-var opDetachInstances *aws.Operation
+const opDetachLoadBalancers = "DetachLoadBalancers"
 
 // DetachLoadBalancersRequest generates a request for the DetachLoadBalancers operation.
 func (c *AutoScaling) DetachLoadBalancersRequest(input *DetachLoadBalancersInput) (req *aws.Request, output *DetachLoadBalancersOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDetachLoadBalancers == nil {
-		opDetachLoadBalancers = &aws.Operation{
-			Name:       "DetachLoadBalancers",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDetachLoadBalancers,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DetachLoadBalancersInput{}
 	}
 
-	req = c.newRequest(opDetachLoadBalancers, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DetachLoadBalancersOutput{}
 	req.Data = output
 	return
@@ -1237,26 +1076,21 @@ func (c *AutoScaling) DetachLoadBalancers(input *DetachLoadBalancersInput) (*Det
 	return out, err
 }
 
-var opDetachLoadBalancers *aws.Operation
+const opDisableMetricsCollection = "DisableMetricsCollection"
 
 // DisableMetricsCollectionRequest generates a request for the DisableMetricsCollection operation.
 func (c *AutoScaling) DisableMetricsCollectionRequest(input *DisableMetricsCollectionInput) (req *aws.Request, output *DisableMetricsCollectionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDisableMetricsCollection == nil {
-		opDisableMetricsCollection = &aws.Operation{
-			Name:       "DisableMetricsCollection",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDisableMetricsCollection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DisableMetricsCollectionInput{}
 	}
 
-	req = c.newRequest(opDisableMetricsCollection, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DisableMetricsCollectionOutput{}
 	req.Data = output
 	return
@@ -1270,26 +1104,21 @@ func (c *AutoScaling) DisableMetricsCollection(input *DisableMetricsCollectionIn
 	return out, err
 }
 
-var opDisableMetricsCollection *aws.Operation
+const opEnableMetricsCollection = "EnableMetricsCollection"
 
 // EnableMetricsCollectionRequest generates a request for the EnableMetricsCollection operation.
 func (c *AutoScaling) EnableMetricsCollectionRequest(input *EnableMetricsCollectionInput) (req *aws.Request, output *EnableMetricsCollectionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opEnableMetricsCollection == nil {
-		opEnableMetricsCollection = &aws.Operation{
-			Name:       "EnableMetricsCollection",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opEnableMetricsCollection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &EnableMetricsCollectionInput{}
 	}
 
-	req = c.newRequest(opEnableMetricsCollection, input, output)
+	req = c.newRequest(op, input, output)
 	output = &EnableMetricsCollectionOutput{}
 	req.Data = output
 	return
@@ -1306,26 +1135,21 @@ func (c *AutoScaling) EnableMetricsCollection(input *EnableMetricsCollectionInpu
 	return out, err
 }
 
-var opEnableMetricsCollection *aws.Operation
+const opEnterStandby = "EnterStandby"
 
 // EnterStandbyRequest generates a request for the EnterStandby operation.
 func (c *AutoScaling) EnterStandbyRequest(input *EnterStandbyInput) (req *aws.Request, output *EnterStandbyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opEnterStandby == nil {
-		opEnterStandby = &aws.Operation{
-			Name:       "EnterStandby",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opEnterStandby,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &EnterStandbyInput{}
 	}
 
-	req = c.newRequest(opEnterStandby, input, output)
+	req = c.newRequest(op, input, output)
 	output = &EnterStandbyOutput{}
 	req.Data = output
 	return
@@ -1341,26 +1165,21 @@ func (c *AutoScaling) EnterStandby(input *EnterStandbyInput) (*EnterStandbyOutpu
 	return out, err
 }
 
-var opEnterStandby *aws.Operation
+const opExecutePolicy = "ExecutePolicy"
 
 // ExecutePolicyRequest generates a request for the ExecutePolicy operation.
 func (c *AutoScaling) ExecutePolicyRequest(input *ExecutePolicyInput) (req *aws.Request, output *ExecutePolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opExecutePolicy == nil {
-		opExecutePolicy = &aws.Operation{
-			Name:       "ExecutePolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opExecutePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ExecutePolicyInput{}
 	}
 
-	req = c.newRequest(opExecutePolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ExecutePolicyOutput{}
 	req.Data = output
 	return
@@ -1373,26 +1192,21 @@ func (c *AutoScaling) ExecutePolicy(input *ExecutePolicyInput) (*ExecutePolicyOu
 	return out, err
 }
 
-var opExecutePolicy *aws.Operation
+const opExitStandby = "ExitStandby"
 
 // ExitStandbyRequest generates a request for the ExitStandby operation.
 func (c *AutoScaling) ExitStandbyRequest(input *ExitStandbyInput) (req *aws.Request, output *ExitStandbyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opExitStandby == nil {
-		opExitStandby = &aws.Operation{
-			Name:       "ExitStandby",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opExitStandby,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ExitStandbyInput{}
 	}
 
-	req = c.newRequest(opExitStandby, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ExitStandbyOutput{}
 	req.Data = output
 	return
@@ -1408,26 +1222,21 @@ func (c *AutoScaling) ExitStandby(input *ExitStandbyInput) (*ExitStandbyOutput, 
 	return out, err
 }
 
-var opExitStandby *aws.Operation
+const opPutLifecycleHook = "PutLifecycleHook"
 
 // PutLifecycleHookRequest generates a request for the PutLifecycleHook operation.
 func (c *AutoScaling) PutLifecycleHookRequest(input *PutLifecycleHookInput) (req *aws.Request, output *PutLifecycleHookOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opPutLifecycleHook == nil {
-		opPutLifecycleHook = &aws.Operation{
-			Name:       "PutLifecycleHook",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opPutLifecycleHook,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &PutLifecycleHookInput{}
 	}
 
-	req = c.newRequest(opPutLifecycleHook, input, output)
+	req = c.newRequest(op, input, output)
 	output = &PutLifecycleHookOutput{}
 	req.Data = output
 	return
@@ -1457,26 +1266,21 @@ func (c *AutoScaling) PutLifecycleHook(input *PutLifecycleHookInput) (*PutLifecy
 	return out, err
 }
 
-var opPutLifecycleHook *aws.Operation
+const opPutNotificationConfiguration = "PutNotificationConfiguration"
 
 // PutNotificationConfigurationRequest generates a request for the PutNotificationConfiguration operation.
 func (c *AutoScaling) PutNotificationConfigurationRequest(input *PutNotificationConfigurationInput) (req *aws.Request, output *PutNotificationConfigurationOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opPutNotificationConfiguration == nil {
-		opPutNotificationConfiguration = &aws.Operation{
-			Name:       "PutNotificationConfiguration",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opPutNotificationConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &PutNotificationConfigurationInput{}
 	}
 
-	req = c.newRequest(opPutNotificationConfiguration, input, output)
+	req = c.newRequest(op, input, output)
 	output = &PutNotificationConfigurationOutput{}
 	req.Data = output
 	return
@@ -1497,26 +1301,21 @@ func (c *AutoScaling) PutNotificationConfiguration(input *PutNotificationConfigu
 	return out, err
 }
 
-var opPutNotificationConfiguration *aws.Operation
+const opPutScalingPolicy = "PutScalingPolicy"
 
 // PutScalingPolicyRequest generates a request for the PutScalingPolicy operation.
 func (c *AutoScaling) PutScalingPolicyRequest(input *PutScalingPolicyInput) (req *aws.Request, output *PutScalingPolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opPutScalingPolicy == nil {
-		opPutScalingPolicy = &aws.Operation{
-			Name:       "PutScalingPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opPutScalingPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &PutScalingPolicyInput{}
 	}
 
-	req = c.newRequest(opPutScalingPolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &PutScalingPolicyOutput{}
 	req.Data = output
 	return
@@ -1532,26 +1331,21 @@ func (c *AutoScaling) PutScalingPolicy(input *PutScalingPolicyInput) (*PutScalin
 	return out, err
 }
 
-var opPutScalingPolicy *aws.Operation
+const opPutScheduledUpdateGroupAction = "PutScheduledUpdateGroupAction"
 
 // PutScheduledUpdateGroupActionRequest generates a request for the PutScheduledUpdateGroupAction operation.
 func (c *AutoScaling) PutScheduledUpdateGroupActionRequest(input *PutScheduledUpdateGroupActionInput) (req *aws.Request, output *PutScheduledUpdateGroupActionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opPutScheduledUpdateGroupAction == nil {
-		opPutScheduledUpdateGroupAction = &aws.Operation{
-			Name:       "PutScheduledUpdateGroupAction",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opPutScheduledUpdateGroupAction,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &PutScheduledUpdateGroupActionInput{}
 	}
 
-	req = c.newRequest(opPutScheduledUpdateGroupAction, input, output)
+	req = c.newRequest(op, input, output)
 	output = &PutScheduledUpdateGroupActionOutput{}
 	req.Data = output
 	return
@@ -1569,26 +1363,21 @@ func (c *AutoScaling) PutScheduledUpdateGroupAction(input *PutScheduledUpdateGro
 	return out, err
 }
 
-var opPutScheduledUpdateGroupAction *aws.Operation
+const opRecordLifecycleActionHeartbeat = "RecordLifecycleActionHeartbeat"
 
 // RecordLifecycleActionHeartbeatRequest generates a request for the RecordLifecycleActionHeartbeat operation.
 func (c *AutoScaling) RecordLifecycleActionHeartbeatRequest(input *RecordLifecycleActionHeartbeatInput) (req *aws.Request, output *RecordLifecycleActionHeartbeatOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opRecordLifecycleActionHeartbeat == nil {
-		opRecordLifecycleActionHeartbeat = &aws.Operation{
-			Name:       "RecordLifecycleActionHeartbeat",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opRecordLifecycleActionHeartbeat,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &RecordLifecycleActionHeartbeatInput{}
 	}
 
-	req = c.newRequest(opRecordLifecycleActionHeartbeat, input, output)
+	req = c.newRequest(op, input, output)
 	output = &RecordLifecycleActionHeartbeatOutput{}
 	req.Data = output
 	return
@@ -1616,26 +1405,21 @@ func (c *AutoScaling) RecordLifecycleActionHeartbeat(input *RecordLifecycleActio
 	return out, err
 }
 
-var opRecordLifecycleActionHeartbeat *aws.Operation
+const opResumeProcesses = "ResumeProcesses"
 
 // ResumeProcessesRequest generates a request for the ResumeProcesses operation.
 func (c *AutoScaling) ResumeProcessesRequest(input *ScalingProcessQuery) (req *aws.Request, output *ResumeProcessesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opResumeProcesses == nil {
-		opResumeProcesses = &aws.Operation{
-			Name:       "ResumeProcesses",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opResumeProcesses,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ScalingProcessQuery{}
 	}
 
-	req = c.newRequest(opResumeProcesses, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ResumeProcessesOutput{}
 	req.Data = output
 	return
@@ -1652,26 +1436,21 @@ func (c *AutoScaling) ResumeProcesses(input *ScalingProcessQuery) (*ResumeProces
 	return out, err
 }
 
-var opResumeProcesses *aws.Operation
+const opSetDesiredCapacity = "SetDesiredCapacity"
 
 // SetDesiredCapacityRequest generates a request for the SetDesiredCapacity operation.
 func (c *AutoScaling) SetDesiredCapacityRequest(input *SetDesiredCapacityInput) (req *aws.Request, output *SetDesiredCapacityOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opSetDesiredCapacity == nil {
-		opSetDesiredCapacity = &aws.Operation{
-			Name:       "SetDesiredCapacity",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opSetDesiredCapacity,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &SetDesiredCapacityInput{}
 	}
 
-	req = c.newRequest(opSetDesiredCapacity, input, output)
+	req = c.newRequest(op, input, output)
 	output = &SetDesiredCapacityOutput{}
 	req.Data = output
 	return
@@ -1687,26 +1466,21 @@ func (c *AutoScaling) SetDesiredCapacity(input *SetDesiredCapacityInput) (*SetDe
 	return out, err
 }
 
-var opSetDesiredCapacity *aws.Operation
+const opSetInstanceHealth = "SetInstanceHealth"
 
 // SetInstanceHealthRequest generates a request for the SetInstanceHealth operation.
 func (c *AutoScaling) SetInstanceHealthRequest(input *SetInstanceHealthInput) (req *aws.Request, output *SetInstanceHealthOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opSetInstanceHealth == nil {
-		opSetInstanceHealth = &aws.Operation{
-			Name:       "SetInstanceHealth",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opSetInstanceHealth,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &SetInstanceHealthInput{}
 	}
 
-	req = c.newRequest(opSetInstanceHealth, input, output)
+	req = c.newRequest(op, input, output)
 	output = &SetInstanceHealthOutput{}
 	req.Data = output
 	return
@@ -1722,26 +1496,21 @@ func (c *AutoScaling) SetInstanceHealth(input *SetInstanceHealthInput) (*SetInst
 	return out, err
 }
 
-var opSetInstanceHealth *aws.Operation
+const opSuspendProcesses = "SuspendProcesses"
 
 // SuspendProcessesRequest generates a request for the SuspendProcesses operation.
 func (c *AutoScaling) SuspendProcessesRequest(input *ScalingProcessQuery) (req *aws.Request, output *SuspendProcessesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opSuspendProcesses == nil {
-		opSuspendProcesses = &aws.Operation{
-			Name:       "SuspendProcesses",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opSuspendProcesses,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ScalingProcessQuery{}
 	}
 
-	req = c.newRequest(opSuspendProcesses, input, output)
+	req = c.newRequest(op, input, output)
 	output = &SuspendProcessesOutput{}
 	req.Data = output
 	return
@@ -1764,26 +1533,21 @@ func (c *AutoScaling) SuspendProcesses(input *ScalingProcessQuery) (*SuspendProc
 	return out, err
 }
 
-var opSuspendProcesses *aws.Operation
+const opTerminateInstanceInAutoScalingGroup = "TerminateInstanceInAutoScalingGroup"
 
 // TerminateInstanceInAutoScalingGroupRequest generates a request for the TerminateInstanceInAutoScalingGroup operation.
 func (c *AutoScaling) TerminateInstanceInAutoScalingGroupRequest(input *TerminateInstanceInAutoScalingGroupInput) (req *aws.Request, output *TerminateInstanceInAutoScalingGroupOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opTerminateInstanceInAutoScalingGroup == nil {
-		opTerminateInstanceInAutoScalingGroup = &aws.Operation{
-			Name:       "TerminateInstanceInAutoScalingGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opTerminateInstanceInAutoScalingGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &TerminateInstanceInAutoScalingGroupInput{}
 	}
 
-	req = c.newRequest(opTerminateInstanceInAutoScalingGroup, input, output)
+	req = c.newRequest(op, input, output)
 	output = &TerminateInstanceInAutoScalingGroupOutput{}
 	req.Data = output
 	return
@@ -1800,26 +1564,21 @@ func (c *AutoScaling) TerminateInstanceInAutoScalingGroup(input *TerminateInstan
 	return out, err
 }
 
-var opTerminateInstanceInAutoScalingGroup *aws.Operation
+const opUpdateAutoScalingGroup = "UpdateAutoScalingGroup"
 
 // UpdateAutoScalingGroupRequest generates a request for the UpdateAutoScalingGroup operation.
 func (c *AutoScaling) UpdateAutoScalingGroupRequest(input *UpdateAutoScalingGroupInput) (req *aws.Request, output *UpdateAutoScalingGroupOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateAutoScalingGroup == nil {
-		opUpdateAutoScalingGroup = &aws.Operation{
-			Name:       "UpdateAutoScalingGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateAutoScalingGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateAutoScalingGroupInput{}
 	}
 
-	req = c.newRequest(opUpdateAutoScalingGroup, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateAutoScalingGroupOutput{}
 	req.Data = output
 	return
@@ -1854,8 +1613,6 @@ func (c *AutoScaling) UpdateAutoScalingGroup(input *UpdateAutoScalingGroupInput)
 	err := req.Send()
 	return out, err
 }
-
-var opUpdateAutoScalingGroup *aws.Operation
 
 // Describes scaling activity, which is a long-running process that represents
 // a change to your Auto Scaling group, such as changing its size or replacing

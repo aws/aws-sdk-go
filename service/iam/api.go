@@ -4,32 +4,26 @@
 package iam
 
 import (
-	"sync"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 )
 
-var oprw sync.Mutex
+const opAddClientIDToOpenIDConnectProvider = "AddClientIDToOpenIDConnectProvider"
 
 // AddClientIDToOpenIDConnectProviderRequest generates a request for the AddClientIDToOpenIDConnectProvider operation.
 func (c *IAM) AddClientIDToOpenIDConnectProviderRequest(input *AddClientIDToOpenIDConnectProviderInput) (req *aws.Request, output *AddClientIDToOpenIDConnectProviderOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opAddClientIDToOpenIDConnectProvider == nil {
-		opAddClientIDToOpenIDConnectProvider = &aws.Operation{
-			Name:       "AddClientIDToOpenIDConnectProvider",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opAddClientIDToOpenIDConnectProvider,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &AddClientIDToOpenIDConnectProviderInput{}
 	}
 
-	req = c.newRequest(opAddClientIDToOpenIDConnectProvider, input, output)
+	req = c.newRequest(op, input, output)
 	output = &AddClientIDToOpenIDConnectProviderOutput{}
 	req.Data = output
 	return
@@ -46,26 +40,21 @@ func (c *IAM) AddClientIDToOpenIDConnectProvider(input *AddClientIDToOpenIDConne
 	return out, err
 }
 
-var opAddClientIDToOpenIDConnectProvider *aws.Operation
+const opAddRoleToInstanceProfile = "AddRoleToInstanceProfile"
 
 // AddRoleToInstanceProfileRequest generates a request for the AddRoleToInstanceProfile operation.
 func (c *IAM) AddRoleToInstanceProfileRequest(input *AddRoleToInstanceProfileInput) (req *aws.Request, output *AddRoleToInstanceProfileOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opAddRoleToInstanceProfile == nil {
-		opAddRoleToInstanceProfile = &aws.Operation{
-			Name:       "AddRoleToInstanceProfile",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opAddRoleToInstanceProfile,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &AddRoleToInstanceProfileInput{}
 	}
 
-	req = c.newRequest(opAddRoleToInstanceProfile, input, output)
+	req = c.newRequest(op, input, output)
 	output = &AddRoleToInstanceProfileOutput{}
 	req.Data = output
 	return
@@ -81,26 +70,21 @@ func (c *IAM) AddRoleToInstanceProfile(input *AddRoleToInstanceProfileInput) (*A
 	return out, err
 }
 
-var opAddRoleToInstanceProfile *aws.Operation
+const opAddUserToGroup = "AddUserToGroup"
 
 // AddUserToGroupRequest generates a request for the AddUserToGroup operation.
 func (c *IAM) AddUserToGroupRequest(input *AddUserToGroupInput) (req *aws.Request, output *AddUserToGroupOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opAddUserToGroup == nil {
-		opAddUserToGroup = &aws.Operation{
-			Name:       "AddUserToGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opAddUserToGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &AddUserToGroupInput{}
 	}
 
-	req = c.newRequest(opAddUserToGroup, input, output)
+	req = c.newRequest(op, input, output)
 	output = &AddUserToGroupOutput{}
 	req.Data = output
 	return
@@ -113,26 +97,21 @@ func (c *IAM) AddUserToGroup(input *AddUserToGroupInput) (*AddUserToGroupOutput,
 	return out, err
 }
 
-var opAddUserToGroup *aws.Operation
+const opAttachGroupPolicy = "AttachGroupPolicy"
 
 // AttachGroupPolicyRequest generates a request for the AttachGroupPolicy operation.
 func (c *IAM) AttachGroupPolicyRequest(input *AttachGroupPolicyInput) (req *aws.Request, output *AttachGroupPolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opAttachGroupPolicy == nil {
-		opAttachGroupPolicy = &aws.Operation{
-			Name:       "AttachGroupPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opAttachGroupPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &AttachGroupPolicyInput{}
 	}
 
-	req = c.newRequest(opAttachGroupPolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &AttachGroupPolicyOutput{}
 	req.Data = output
 	return
@@ -152,26 +131,21 @@ func (c *IAM) AttachGroupPolicy(input *AttachGroupPolicyInput) (*AttachGroupPoli
 	return out, err
 }
 
-var opAttachGroupPolicy *aws.Operation
+const opAttachRolePolicy = "AttachRolePolicy"
 
 // AttachRolePolicyRequest generates a request for the AttachRolePolicy operation.
 func (c *IAM) AttachRolePolicyRequest(input *AttachRolePolicyInput) (req *aws.Request, output *AttachRolePolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opAttachRolePolicy == nil {
-		opAttachRolePolicy = &aws.Operation{
-			Name:       "AttachRolePolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opAttachRolePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &AttachRolePolicyInput{}
 	}
 
-	req = c.newRequest(opAttachRolePolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &AttachRolePolicyOutput{}
 	req.Data = output
 	return
@@ -195,26 +169,21 @@ func (c *IAM) AttachRolePolicy(input *AttachRolePolicyInput) (*AttachRolePolicyO
 	return out, err
 }
 
-var opAttachRolePolicy *aws.Operation
+const opAttachUserPolicy = "AttachUserPolicy"
 
 // AttachUserPolicyRequest generates a request for the AttachUserPolicy operation.
 func (c *IAM) AttachUserPolicyRequest(input *AttachUserPolicyInput) (req *aws.Request, output *AttachUserPolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opAttachUserPolicy == nil {
-		opAttachUserPolicy = &aws.Operation{
-			Name:       "AttachUserPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opAttachUserPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &AttachUserPolicyInput{}
 	}
 
-	req = c.newRequest(opAttachUserPolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &AttachUserPolicyOutput{}
 	req.Data = output
 	return
@@ -234,26 +203,21 @@ func (c *IAM) AttachUserPolicy(input *AttachUserPolicyInput) (*AttachUserPolicyO
 	return out, err
 }
 
-var opAttachUserPolicy *aws.Operation
+const opChangePassword = "ChangePassword"
 
 // ChangePasswordRequest generates a request for the ChangePassword operation.
 func (c *IAM) ChangePasswordRequest(input *ChangePasswordInput) (req *aws.Request, output *ChangePasswordOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opChangePassword == nil {
-		opChangePassword = &aws.Operation{
-			Name:       "ChangePassword",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opChangePassword,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ChangePasswordInput{}
 	}
 
-	req = c.newRequest(opChangePassword, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ChangePasswordOutput{}
 	req.Data = output
 	return
@@ -271,26 +235,21 @@ func (c *IAM) ChangePassword(input *ChangePasswordInput) (*ChangePasswordOutput,
 	return out, err
 }
 
-var opChangePassword *aws.Operation
+const opCreateAccessKey = "CreateAccessKey"
 
 // CreateAccessKeyRequest generates a request for the CreateAccessKey operation.
 func (c *IAM) CreateAccessKeyRequest(input *CreateAccessKeyInput) (req *aws.Request, output *CreateAccessKeyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateAccessKey == nil {
-		opCreateAccessKey = &aws.Operation{
-			Name:       "CreateAccessKey",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateAccessKey,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateAccessKeyInput{}
 	}
 
-	req = c.newRequest(opCreateAccessKey, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateAccessKeyOutput{}
 	req.Data = output
 	return
@@ -319,26 +278,21 @@ func (c *IAM) CreateAccessKey(input *CreateAccessKeyInput) (*CreateAccessKeyOutp
 	return out, err
 }
 
-var opCreateAccessKey *aws.Operation
+const opCreateAccountAlias = "CreateAccountAlias"
 
 // CreateAccountAliasRequest generates a request for the CreateAccountAlias operation.
 func (c *IAM) CreateAccountAliasRequest(input *CreateAccountAliasInput) (req *aws.Request, output *CreateAccountAliasOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateAccountAlias == nil {
-		opCreateAccountAlias = &aws.Operation{
-			Name:       "CreateAccountAlias",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateAccountAlias,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateAccountAliasInput{}
 	}
 
-	req = c.newRequest(opCreateAccountAlias, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateAccountAliasOutput{}
 	req.Data = output
 	return
@@ -353,26 +307,21 @@ func (c *IAM) CreateAccountAlias(input *CreateAccountAliasInput) (*CreateAccount
 	return out, err
 }
 
-var opCreateAccountAlias *aws.Operation
+const opCreateGroup = "CreateGroup"
 
 // CreateGroupRequest generates a request for the CreateGroup operation.
 func (c *IAM) CreateGroupRequest(input *CreateGroupInput) (req *aws.Request, output *CreateGroupOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateGroup == nil {
-		opCreateGroup = &aws.Operation{
-			Name:       "CreateGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateGroupInput{}
 	}
 
-	req = c.newRequest(opCreateGroup, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateGroupOutput{}
 	req.Data = output
 	return
@@ -389,26 +338,21 @@ func (c *IAM) CreateGroup(input *CreateGroupInput) (*CreateGroupOutput, error) {
 	return out, err
 }
 
-var opCreateGroup *aws.Operation
+const opCreateInstanceProfile = "CreateInstanceProfile"
 
 // CreateInstanceProfileRequest generates a request for the CreateInstanceProfile operation.
 func (c *IAM) CreateInstanceProfileRequest(input *CreateInstanceProfileInput) (req *aws.Request, output *CreateInstanceProfileOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateInstanceProfile == nil {
-		opCreateInstanceProfile = &aws.Operation{
-			Name:       "CreateInstanceProfile",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateInstanceProfile,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateInstanceProfileInput{}
 	}
 
-	req = c.newRequest(opCreateInstanceProfile, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateInstanceProfileOutput{}
 	req.Data = output
 	return
@@ -426,26 +370,21 @@ func (c *IAM) CreateInstanceProfile(input *CreateInstanceProfileInput) (*CreateI
 	return out, err
 }
 
-var opCreateInstanceProfile *aws.Operation
+const opCreateLoginProfile = "CreateLoginProfile"
 
 // CreateLoginProfileRequest generates a request for the CreateLoginProfile operation.
 func (c *IAM) CreateLoginProfileRequest(input *CreateLoginProfileInput) (req *aws.Request, output *CreateLoginProfileOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateLoginProfile == nil {
-		opCreateLoginProfile = &aws.Operation{
-			Name:       "CreateLoginProfile",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateLoginProfile,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateLoginProfileInput{}
 	}
 
-	req = c.newRequest(opCreateLoginProfile, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateLoginProfileOutput{}
 	req.Data = output
 	return
@@ -461,26 +400,21 @@ func (c *IAM) CreateLoginProfile(input *CreateLoginProfileInput) (*CreateLoginPr
 	return out, err
 }
 
-var opCreateLoginProfile *aws.Operation
+const opCreateOpenIDConnectProvider = "CreateOpenIDConnectProvider"
 
 // CreateOpenIDConnectProviderRequest generates a request for the CreateOpenIDConnectProvider operation.
 func (c *IAM) CreateOpenIDConnectProviderRequest(input *CreateOpenIDConnectProviderInput) (req *aws.Request, output *CreateOpenIDConnectProviderOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateOpenIDConnectProvider == nil {
-		opCreateOpenIDConnectProvider = &aws.Operation{
-			Name:       "CreateOpenIDConnectProvider",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateOpenIDConnectProvider,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateOpenIDConnectProviderInput{}
 	}
 
-	req = c.newRequest(opCreateOpenIDConnectProvider, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateOpenIDConnectProviderOutput{}
 	req.Data = output
 	return
@@ -509,26 +443,21 @@ func (c *IAM) CreateOpenIDConnectProvider(input *CreateOpenIDConnectProviderInpu
 	return out, err
 }
 
-var opCreateOpenIDConnectProvider *aws.Operation
+const opCreatePolicy = "CreatePolicy"
 
 // CreatePolicyRequest generates a request for the CreatePolicy operation.
 func (c *IAM) CreatePolicyRequest(input *CreatePolicyInput) (req *aws.Request, output *CreatePolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreatePolicy == nil {
-		opCreatePolicy = &aws.Operation{
-			Name:       "CreatePolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreatePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreatePolicyInput{}
 	}
 
-	req = c.newRequest(opCreatePolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreatePolicyOutput{}
 	req.Data = output
 	return
@@ -550,26 +479,21 @@ func (c *IAM) CreatePolicy(input *CreatePolicyInput) (*CreatePolicyOutput, error
 	return out, err
 }
 
-var opCreatePolicy *aws.Operation
+const opCreatePolicyVersion = "CreatePolicyVersion"
 
 // CreatePolicyVersionRequest generates a request for the CreatePolicyVersion operation.
 func (c *IAM) CreatePolicyVersionRequest(input *CreatePolicyVersionInput) (req *aws.Request, output *CreatePolicyVersionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreatePolicyVersion == nil {
-		opCreatePolicyVersion = &aws.Operation{
-			Name:       "CreatePolicyVersion",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreatePolicyVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreatePolicyVersionInput{}
 	}
 
-	req = c.newRequest(opCreatePolicyVersion, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreatePolicyVersionOutput{}
 	req.Data = output
 	return
@@ -594,26 +518,21 @@ func (c *IAM) CreatePolicyVersion(input *CreatePolicyVersionInput) (*CreatePolic
 	return out, err
 }
 
-var opCreatePolicyVersion *aws.Operation
+const opCreateRole = "CreateRole"
 
 // CreateRoleRequest generates a request for the CreateRole operation.
 func (c *IAM) CreateRoleRequest(input *CreateRoleInput) (req *aws.Request, output *CreateRoleOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateRole == nil {
-		opCreateRole = &aws.Operation{
-			Name:       "CreateRole",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateRole,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateRoleInput{}
 	}
 
-	req = c.newRequest(opCreateRole, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateRoleOutput{}
 	req.Data = output
 	return
@@ -633,26 +552,21 @@ func (c *IAM) CreateRole(input *CreateRoleInput) (*CreateRoleOutput, error) {
 	return out, err
 }
 
-var opCreateRole *aws.Operation
+const opCreateSAMLProvider = "CreateSAMLProvider"
 
 // CreateSAMLProviderRequest generates a request for the CreateSAMLProvider operation.
 func (c *IAM) CreateSAMLProviderRequest(input *CreateSAMLProviderInput) (req *aws.Request, output *CreateSAMLProviderOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateSAMLProvider == nil {
-		opCreateSAMLProvider = &aws.Operation{
-			Name:       "CreateSAMLProvider",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateSAMLProvider,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateSAMLProviderInput{}
 	}
 
-	req = c.newRequest(opCreateSAMLProvider, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateSAMLProviderOutput{}
 	req.Data = output
 	return
@@ -684,26 +598,21 @@ func (c *IAM) CreateSAMLProvider(input *CreateSAMLProviderInput) (*CreateSAMLPro
 	return out, err
 }
 
-var opCreateSAMLProvider *aws.Operation
+const opCreateUser = "CreateUser"
 
 // CreateUserRequest generates a request for the CreateUser operation.
 func (c *IAM) CreateUserRequest(input *CreateUserInput) (req *aws.Request, output *CreateUserOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateUser == nil {
-		opCreateUser = &aws.Operation{
-			Name:       "CreateUser",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateUser,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateUserInput{}
 	}
 
-	req = c.newRequest(opCreateUser, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateUserOutput{}
 	req.Data = output
 	return
@@ -720,26 +629,21 @@ func (c *IAM) CreateUser(input *CreateUserInput) (*CreateUserOutput, error) {
 	return out, err
 }
 
-var opCreateUser *aws.Operation
+const opCreateVirtualMFADevice = "CreateVirtualMFADevice"
 
 // CreateVirtualMFADeviceRequest generates a request for the CreateVirtualMFADevice operation.
 func (c *IAM) CreateVirtualMFADeviceRequest(input *CreateVirtualMFADeviceInput) (req *aws.Request, output *CreateVirtualMFADeviceOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateVirtualMFADevice == nil {
-		opCreateVirtualMFADevice = &aws.Operation{
-			Name:       "CreateVirtualMFADevice",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateVirtualMFADevice,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateVirtualMFADeviceInput{}
 	}
 
-	req = c.newRequest(opCreateVirtualMFADevice, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateVirtualMFADeviceOutput{}
 	req.Data = output
 	return
@@ -765,26 +669,21 @@ func (c *IAM) CreateVirtualMFADevice(input *CreateVirtualMFADeviceInput) (*Creat
 	return out, err
 }
 
-var opCreateVirtualMFADevice *aws.Operation
+const opDeactivateMFADevice = "DeactivateMFADevice"
 
 // DeactivateMFADeviceRequest generates a request for the DeactivateMFADevice operation.
 func (c *IAM) DeactivateMFADeviceRequest(input *DeactivateMFADeviceInput) (req *aws.Request, output *DeactivateMFADeviceOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeactivateMFADevice == nil {
-		opDeactivateMFADevice = &aws.Operation{
-			Name:       "DeactivateMFADevice",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeactivateMFADevice,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeactivateMFADeviceInput{}
 	}
 
-	req = c.newRequest(opDeactivateMFADevice, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeactivateMFADeviceOutput{}
 	req.Data = output
 	return
@@ -802,26 +701,21 @@ func (c *IAM) DeactivateMFADevice(input *DeactivateMFADeviceInput) (*DeactivateM
 	return out, err
 }
 
-var opDeactivateMFADevice *aws.Operation
+const opDeleteAccessKey = "DeleteAccessKey"
 
 // DeleteAccessKeyRequest generates a request for the DeleteAccessKey operation.
 func (c *IAM) DeleteAccessKeyRequest(input *DeleteAccessKeyInput) (req *aws.Request, output *DeleteAccessKeyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteAccessKey == nil {
-		opDeleteAccessKey = &aws.Operation{
-			Name:       "DeleteAccessKey",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteAccessKey,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteAccessKeyInput{}
 	}
 
-	req = c.newRequest(opDeleteAccessKey, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteAccessKeyOutput{}
 	req.Data = output
 	return
@@ -839,26 +733,21 @@ func (c *IAM) DeleteAccessKey(input *DeleteAccessKeyInput) (*DeleteAccessKeyOutp
 	return out, err
 }
 
-var opDeleteAccessKey *aws.Operation
+const opDeleteAccountAlias = "DeleteAccountAlias"
 
 // DeleteAccountAliasRequest generates a request for the DeleteAccountAlias operation.
 func (c *IAM) DeleteAccountAliasRequest(input *DeleteAccountAliasInput) (req *aws.Request, output *DeleteAccountAliasOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteAccountAlias == nil {
-		opDeleteAccountAlias = &aws.Operation{
-			Name:       "DeleteAccountAlias",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteAccountAlias,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteAccountAliasInput{}
 	}
 
-	req = c.newRequest(opDeleteAccountAlias, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteAccountAliasOutput{}
 	req.Data = output
 	return
@@ -873,26 +762,21 @@ func (c *IAM) DeleteAccountAlias(input *DeleteAccountAliasInput) (*DeleteAccount
 	return out, err
 }
 
-var opDeleteAccountAlias *aws.Operation
+const opDeleteAccountPasswordPolicy = "DeleteAccountPasswordPolicy"
 
 // DeleteAccountPasswordPolicyRequest generates a request for the DeleteAccountPasswordPolicy operation.
 func (c *IAM) DeleteAccountPasswordPolicyRequest(input *DeleteAccountPasswordPolicyInput) (req *aws.Request, output *DeleteAccountPasswordPolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteAccountPasswordPolicy == nil {
-		opDeleteAccountPasswordPolicy = &aws.Operation{
-			Name:       "DeleteAccountPasswordPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteAccountPasswordPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteAccountPasswordPolicyInput{}
 	}
 
-	req = c.newRequest(opDeleteAccountPasswordPolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteAccountPasswordPolicyOutput{}
 	req.Data = output
 	return
@@ -905,26 +789,21 @@ func (c *IAM) DeleteAccountPasswordPolicy(input *DeleteAccountPasswordPolicyInpu
 	return out, err
 }
 
-var opDeleteAccountPasswordPolicy *aws.Operation
+const opDeleteGroup = "DeleteGroup"
 
 // DeleteGroupRequest generates a request for the DeleteGroup operation.
 func (c *IAM) DeleteGroupRequest(input *DeleteGroupInput) (req *aws.Request, output *DeleteGroupOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteGroup == nil {
-		opDeleteGroup = &aws.Operation{
-			Name:       "DeleteGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteGroupInput{}
 	}
 
-	req = c.newRequest(opDeleteGroup, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteGroupOutput{}
 	req.Data = output
 	return
@@ -938,26 +817,21 @@ func (c *IAM) DeleteGroup(input *DeleteGroupInput) (*DeleteGroupOutput, error) {
 	return out, err
 }
 
-var opDeleteGroup *aws.Operation
+const opDeleteGroupPolicy = "DeleteGroupPolicy"
 
 // DeleteGroupPolicyRequest generates a request for the DeleteGroupPolicy operation.
 func (c *IAM) DeleteGroupPolicyRequest(input *DeleteGroupPolicyInput) (req *aws.Request, output *DeleteGroupPolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteGroupPolicy == nil {
-		opDeleteGroupPolicy = &aws.Operation{
-			Name:       "DeleteGroupPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteGroupPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteGroupPolicyInput{}
 	}
 
-	req = c.newRequest(opDeleteGroupPolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteGroupPolicyOutput{}
 	req.Data = output
 	return
@@ -975,26 +849,21 @@ func (c *IAM) DeleteGroupPolicy(input *DeleteGroupPolicyInput) (*DeleteGroupPoli
 	return out, err
 }
 
-var opDeleteGroupPolicy *aws.Operation
+const opDeleteInstanceProfile = "DeleteInstanceProfile"
 
 // DeleteInstanceProfileRequest generates a request for the DeleteInstanceProfile operation.
 func (c *IAM) DeleteInstanceProfileRequest(input *DeleteInstanceProfileInput) (req *aws.Request, output *DeleteInstanceProfileOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteInstanceProfile == nil {
-		opDeleteInstanceProfile = &aws.Operation{
-			Name:       "DeleteInstanceProfile",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteInstanceProfile,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteInstanceProfileInput{}
 	}
 
-	req = c.newRequest(opDeleteInstanceProfile, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteInstanceProfileOutput{}
 	req.Data = output
 	return
@@ -1014,26 +883,21 @@ func (c *IAM) DeleteInstanceProfile(input *DeleteInstanceProfileInput) (*DeleteI
 	return out, err
 }
 
-var opDeleteInstanceProfile *aws.Operation
+const opDeleteLoginProfile = "DeleteLoginProfile"
 
 // DeleteLoginProfileRequest generates a request for the DeleteLoginProfile operation.
 func (c *IAM) DeleteLoginProfileRequest(input *DeleteLoginProfileInput) (req *aws.Request, output *DeleteLoginProfileOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteLoginProfile == nil {
-		opDeleteLoginProfile = &aws.Operation{
-			Name:       "DeleteLoginProfile",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteLoginProfile,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteLoginProfileInput{}
 	}
 
-	req = c.newRequest(opDeleteLoginProfile, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteLoginProfileOutput{}
 	req.Data = output
 	return
@@ -1052,26 +916,21 @@ func (c *IAM) DeleteLoginProfile(input *DeleteLoginProfileInput) (*DeleteLoginPr
 	return out, err
 }
 
-var opDeleteLoginProfile *aws.Operation
+const opDeleteOpenIDConnectProvider = "DeleteOpenIDConnectProvider"
 
 // DeleteOpenIDConnectProviderRequest generates a request for the DeleteOpenIDConnectProvider operation.
 func (c *IAM) DeleteOpenIDConnectProviderRequest(input *DeleteOpenIDConnectProviderInput) (req *aws.Request, output *DeleteOpenIDConnectProviderOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteOpenIDConnectProvider == nil {
-		opDeleteOpenIDConnectProvider = &aws.Operation{
-			Name:       "DeleteOpenIDConnectProvider",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteOpenIDConnectProvider,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteOpenIDConnectProviderInput{}
 	}
 
-	req = c.newRequest(opDeleteOpenIDConnectProvider, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteOpenIDConnectProviderOutput{}
 	req.Data = output
 	return
@@ -1091,26 +950,21 @@ func (c *IAM) DeleteOpenIDConnectProvider(input *DeleteOpenIDConnectProviderInpu
 	return out, err
 }
 
-var opDeleteOpenIDConnectProvider *aws.Operation
+const opDeletePolicy = "DeletePolicy"
 
 // DeletePolicyRequest generates a request for the DeletePolicy operation.
 func (c *IAM) DeletePolicyRequest(input *DeletePolicyInput) (req *aws.Request, output *DeletePolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeletePolicy == nil {
-		opDeletePolicy = &aws.Operation{
-			Name:       "DeletePolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeletePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeletePolicyInput{}
 	}
 
-	req = c.newRequest(opDeletePolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeletePolicyOutput{}
 	req.Data = output
 	return
@@ -1140,26 +994,21 @@ func (c *IAM) DeletePolicy(input *DeletePolicyInput) (*DeletePolicyOutput, error
 	return out, err
 }
 
-var opDeletePolicy *aws.Operation
+const opDeletePolicyVersion = "DeletePolicyVersion"
 
 // DeletePolicyVersionRequest generates a request for the DeletePolicyVersion operation.
 func (c *IAM) DeletePolicyVersionRequest(input *DeletePolicyVersionInput) (req *aws.Request, output *DeletePolicyVersionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeletePolicyVersion == nil {
-		opDeletePolicyVersion = &aws.Operation{
-			Name:       "DeletePolicyVersion",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeletePolicyVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeletePolicyVersionInput{}
 	}
 
-	req = c.newRequest(opDeletePolicyVersion, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeletePolicyVersionOutput{}
 	req.Data = output
 	return
@@ -1180,26 +1029,21 @@ func (c *IAM) DeletePolicyVersion(input *DeletePolicyVersionInput) (*DeletePolic
 	return out, err
 }
 
-var opDeletePolicyVersion *aws.Operation
+const opDeleteRole = "DeleteRole"
 
 // DeleteRoleRequest generates a request for the DeleteRole operation.
 func (c *IAM) DeleteRoleRequest(input *DeleteRoleInput) (req *aws.Request, output *DeleteRoleOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteRole == nil {
-		opDeleteRole = &aws.Operation{
-			Name:       "DeleteRole",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteRole,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteRoleInput{}
 	}
 
-	req = c.newRequest(opDeleteRole, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteRoleOutput{}
 	req.Data = output
 	return
@@ -1217,26 +1061,21 @@ func (c *IAM) DeleteRole(input *DeleteRoleInput) (*DeleteRoleOutput, error) {
 	return out, err
 }
 
-var opDeleteRole *aws.Operation
+const opDeleteRolePolicy = "DeleteRolePolicy"
 
 // DeleteRolePolicyRequest generates a request for the DeleteRolePolicy operation.
 func (c *IAM) DeleteRolePolicyRequest(input *DeleteRolePolicyInput) (req *aws.Request, output *DeleteRolePolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteRolePolicy == nil {
-		opDeleteRolePolicy = &aws.Operation{
-			Name:       "DeleteRolePolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteRolePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteRolePolicyInput{}
 	}
 
-	req = c.newRequest(opDeleteRolePolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteRolePolicyOutput{}
 	req.Data = output
 	return
@@ -1254,26 +1093,21 @@ func (c *IAM) DeleteRolePolicy(input *DeleteRolePolicyInput) (*DeleteRolePolicyO
 	return out, err
 }
 
-var opDeleteRolePolicy *aws.Operation
+const opDeleteSAMLProvider = "DeleteSAMLProvider"
 
 // DeleteSAMLProviderRequest generates a request for the DeleteSAMLProvider operation.
 func (c *IAM) DeleteSAMLProviderRequest(input *DeleteSAMLProviderInput) (req *aws.Request, output *DeleteSAMLProviderOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteSAMLProvider == nil {
-		opDeleteSAMLProvider = &aws.Operation{
-			Name:       "DeleteSAMLProvider",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteSAMLProvider,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteSAMLProviderInput{}
 	}
 
-	req = c.newRequest(opDeleteSAMLProvider, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteSAMLProviderOutput{}
 	req.Data = output
 	return
@@ -1292,26 +1126,21 @@ func (c *IAM) DeleteSAMLProvider(input *DeleteSAMLProviderInput) (*DeleteSAMLPro
 	return out, err
 }
 
-var opDeleteSAMLProvider *aws.Operation
+const opDeleteServerCertificate = "DeleteServerCertificate"
 
 // DeleteServerCertificateRequest generates a request for the DeleteServerCertificate operation.
 func (c *IAM) DeleteServerCertificateRequest(input *DeleteServerCertificateInput) (req *aws.Request, output *DeleteServerCertificateOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteServerCertificate == nil {
-		opDeleteServerCertificate = &aws.Operation{
-			Name:       "DeleteServerCertificate",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteServerCertificate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteServerCertificateInput{}
 	}
 
-	req = c.newRequest(opDeleteServerCertificate, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteServerCertificateOutput{}
 	req.Data = output
 	return
@@ -1334,26 +1163,21 @@ func (c *IAM) DeleteServerCertificate(input *DeleteServerCertificateInput) (*Del
 	return out, err
 }
 
-var opDeleteServerCertificate *aws.Operation
+const opDeleteSigningCertificate = "DeleteSigningCertificate"
 
 // DeleteSigningCertificateRequest generates a request for the DeleteSigningCertificate operation.
 func (c *IAM) DeleteSigningCertificateRequest(input *DeleteSigningCertificateInput) (req *aws.Request, output *DeleteSigningCertificateOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteSigningCertificate == nil {
-		opDeleteSigningCertificate = &aws.Operation{
-			Name:       "DeleteSigningCertificate",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteSigningCertificate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteSigningCertificateInput{}
 	}
 
-	req = c.newRequest(opDeleteSigningCertificate, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteSigningCertificateOutput{}
 	req.Data = output
 	return
@@ -1371,26 +1195,21 @@ func (c *IAM) DeleteSigningCertificate(input *DeleteSigningCertificateInput) (*D
 	return out, err
 }
 
-var opDeleteSigningCertificate *aws.Operation
+const opDeleteUser = "DeleteUser"
 
 // DeleteUserRequest generates a request for the DeleteUser operation.
 func (c *IAM) DeleteUserRequest(input *DeleteUserInput) (req *aws.Request, output *DeleteUserOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteUser == nil {
-		opDeleteUser = &aws.Operation{
-			Name:       "DeleteUser",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteUser,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteUserInput{}
 	}
 
-	req = c.newRequest(opDeleteUser, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteUserOutput{}
 	req.Data = output
 	return
@@ -1404,26 +1223,21 @@ func (c *IAM) DeleteUser(input *DeleteUserInput) (*DeleteUserOutput, error) {
 	return out, err
 }
 
-var opDeleteUser *aws.Operation
+const opDeleteUserPolicy = "DeleteUserPolicy"
 
 // DeleteUserPolicyRequest generates a request for the DeleteUserPolicy operation.
 func (c *IAM) DeleteUserPolicyRequest(input *DeleteUserPolicyInput) (req *aws.Request, output *DeleteUserPolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteUserPolicy == nil {
-		opDeleteUserPolicy = &aws.Operation{
-			Name:       "DeleteUserPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteUserPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteUserPolicyInput{}
 	}
 
-	req = c.newRequest(opDeleteUserPolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteUserPolicyOutput{}
 	req.Data = output
 	return
@@ -1441,26 +1255,21 @@ func (c *IAM) DeleteUserPolicy(input *DeleteUserPolicyInput) (*DeleteUserPolicyO
 	return out, err
 }
 
-var opDeleteUserPolicy *aws.Operation
+const opDeleteVirtualMFADevice = "DeleteVirtualMFADevice"
 
 // DeleteVirtualMFADeviceRequest generates a request for the DeleteVirtualMFADevice operation.
 func (c *IAM) DeleteVirtualMFADeviceRequest(input *DeleteVirtualMFADeviceInput) (req *aws.Request, output *DeleteVirtualMFADeviceOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteVirtualMFADevice == nil {
-		opDeleteVirtualMFADevice = &aws.Operation{
-			Name:       "DeleteVirtualMFADevice",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteVirtualMFADevice,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteVirtualMFADeviceInput{}
 	}
 
-	req = c.newRequest(opDeleteVirtualMFADevice, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteVirtualMFADeviceOutput{}
 	req.Data = output
 	return
@@ -1476,26 +1285,21 @@ func (c *IAM) DeleteVirtualMFADevice(input *DeleteVirtualMFADeviceInput) (*Delet
 	return out, err
 }
 
-var opDeleteVirtualMFADevice *aws.Operation
+const opDetachGroupPolicy = "DetachGroupPolicy"
 
 // DetachGroupPolicyRequest generates a request for the DetachGroupPolicy operation.
 func (c *IAM) DetachGroupPolicyRequest(input *DetachGroupPolicyInput) (req *aws.Request, output *DetachGroupPolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDetachGroupPolicy == nil {
-		opDetachGroupPolicy = &aws.Operation{
-			Name:       "DetachGroupPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDetachGroupPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DetachGroupPolicyInput{}
 	}
 
-	req = c.newRequest(opDetachGroupPolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DetachGroupPolicyOutput{}
 	req.Data = output
 	return
@@ -1513,26 +1317,21 @@ func (c *IAM) DetachGroupPolicy(input *DetachGroupPolicyInput) (*DetachGroupPoli
 	return out, err
 }
 
-var opDetachGroupPolicy *aws.Operation
+const opDetachRolePolicy = "DetachRolePolicy"
 
 // DetachRolePolicyRequest generates a request for the DetachRolePolicy operation.
 func (c *IAM) DetachRolePolicyRequest(input *DetachRolePolicyInput) (req *aws.Request, output *DetachRolePolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDetachRolePolicy == nil {
-		opDetachRolePolicy = &aws.Operation{
-			Name:       "DetachRolePolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDetachRolePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DetachRolePolicyInput{}
 	}
 
-	req = c.newRequest(opDetachRolePolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DetachRolePolicyOutput{}
 	req.Data = output
 	return
@@ -1550,26 +1349,21 @@ func (c *IAM) DetachRolePolicy(input *DetachRolePolicyInput) (*DetachRolePolicyO
 	return out, err
 }
 
-var opDetachRolePolicy *aws.Operation
+const opDetachUserPolicy = "DetachUserPolicy"
 
 // DetachUserPolicyRequest generates a request for the DetachUserPolicy operation.
 func (c *IAM) DetachUserPolicyRequest(input *DetachUserPolicyInput) (req *aws.Request, output *DetachUserPolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDetachUserPolicy == nil {
-		opDetachUserPolicy = &aws.Operation{
-			Name:       "DetachUserPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDetachUserPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DetachUserPolicyInput{}
 	}
 
-	req = c.newRequest(opDetachUserPolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DetachUserPolicyOutput{}
 	req.Data = output
 	return
@@ -1587,26 +1381,21 @@ func (c *IAM) DetachUserPolicy(input *DetachUserPolicyInput) (*DetachUserPolicyO
 	return out, err
 }
 
-var opDetachUserPolicy *aws.Operation
+const opEnableMFADevice = "EnableMFADevice"
 
 // EnableMFADeviceRequest generates a request for the EnableMFADevice operation.
 func (c *IAM) EnableMFADeviceRequest(input *EnableMFADeviceInput) (req *aws.Request, output *EnableMFADeviceOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opEnableMFADevice == nil {
-		opEnableMFADevice = &aws.Operation{
-			Name:       "EnableMFADevice",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opEnableMFADevice,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &EnableMFADeviceInput{}
 	}
 
-	req = c.newRequest(opEnableMFADevice, input, output)
+	req = c.newRequest(op, input, output)
 	output = &EnableMFADeviceOutput{}
 	req.Data = output
 	return
@@ -1621,26 +1410,21 @@ func (c *IAM) EnableMFADevice(input *EnableMFADeviceInput) (*EnableMFADeviceOutp
 	return out, err
 }
 
-var opEnableMFADevice *aws.Operation
+const opGenerateCredentialReport = "GenerateCredentialReport"
 
 // GenerateCredentialReportRequest generates a request for the GenerateCredentialReport operation.
 func (c *IAM) GenerateCredentialReportRequest(input *GenerateCredentialReportInput) (req *aws.Request, output *GenerateCredentialReportOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGenerateCredentialReport == nil {
-		opGenerateCredentialReport = &aws.Operation{
-			Name:       "GenerateCredentialReport",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGenerateCredentialReport,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GenerateCredentialReportInput{}
 	}
 
-	req = c.newRequest(opGenerateCredentialReport, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GenerateCredentialReportOutput{}
 	req.Data = output
 	return
@@ -1655,26 +1439,21 @@ func (c *IAM) GenerateCredentialReport(input *GenerateCredentialReportInput) (*G
 	return out, err
 }
 
-var opGenerateCredentialReport *aws.Operation
+const opGetAccessKeyLastUsed = "GetAccessKeyLastUsed"
 
 // GetAccessKeyLastUsedRequest generates a request for the GetAccessKeyLastUsed operation.
 func (c *IAM) GetAccessKeyLastUsedRequest(input *GetAccessKeyLastUsedInput) (req *aws.Request, output *GetAccessKeyLastUsedOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetAccessKeyLastUsed == nil {
-		opGetAccessKeyLastUsed = &aws.Operation{
-			Name:       "GetAccessKeyLastUsed",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetAccessKeyLastUsed,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetAccessKeyLastUsedInput{}
 	}
 
-	req = c.newRequest(opGetAccessKeyLastUsed, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetAccessKeyLastUsedOutput{}
 	req.Data = output
 	return
@@ -1690,32 +1469,27 @@ func (c *IAM) GetAccessKeyLastUsed(input *GetAccessKeyLastUsedInput) (*GetAccess
 	return out, err
 }
 
-var opGetAccessKeyLastUsed *aws.Operation
+const opGetAccountAuthorizationDetails = "GetAccountAuthorizationDetails"
 
 // GetAccountAuthorizationDetailsRequest generates a request for the GetAccountAuthorizationDetails operation.
 func (c *IAM) GetAccountAuthorizationDetailsRequest(input *GetAccountAuthorizationDetailsInput) (req *aws.Request, output *GetAccountAuthorizationDetailsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetAccountAuthorizationDetails == nil {
-		opGetAccountAuthorizationDetails = &aws.Operation{
-			Name:       "GetAccountAuthorizationDetails",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opGetAccountAuthorizationDetails,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &GetAccountAuthorizationDetailsInput{}
 	}
 
-	req = c.newRequest(opGetAccountAuthorizationDetails, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetAccountAuthorizationDetailsOutput{}
 	req.Data = output
 	return
@@ -1741,26 +1515,21 @@ func (c *IAM) GetAccountAuthorizationDetailsPages(input *GetAccountAuthorization
 	})
 }
 
-var opGetAccountAuthorizationDetails *aws.Operation
+const opGetAccountPasswordPolicy = "GetAccountPasswordPolicy"
 
 // GetAccountPasswordPolicyRequest generates a request for the GetAccountPasswordPolicy operation.
 func (c *IAM) GetAccountPasswordPolicyRequest(input *GetAccountPasswordPolicyInput) (req *aws.Request, output *GetAccountPasswordPolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetAccountPasswordPolicy == nil {
-		opGetAccountPasswordPolicy = &aws.Operation{
-			Name:       "GetAccountPasswordPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetAccountPasswordPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetAccountPasswordPolicyInput{}
 	}
 
-	req = c.newRequest(opGetAccountPasswordPolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetAccountPasswordPolicyOutput{}
 	req.Data = output
 	return
@@ -1774,26 +1543,21 @@ func (c *IAM) GetAccountPasswordPolicy(input *GetAccountPasswordPolicyInput) (*G
 	return out, err
 }
 
-var opGetAccountPasswordPolicy *aws.Operation
+const opGetAccountSummary = "GetAccountSummary"
 
 // GetAccountSummaryRequest generates a request for the GetAccountSummary operation.
 func (c *IAM) GetAccountSummaryRequest(input *GetAccountSummaryInput) (req *aws.Request, output *GetAccountSummaryOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetAccountSummary == nil {
-		opGetAccountSummary = &aws.Operation{
-			Name:       "GetAccountSummary",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetAccountSummary,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetAccountSummaryInput{}
 	}
 
-	req = c.newRequest(opGetAccountSummary, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetAccountSummaryOutput{}
 	req.Data = output
 	return
@@ -1810,26 +1574,21 @@ func (c *IAM) GetAccountSummary(input *GetAccountSummaryInput) (*GetAccountSumma
 	return out, err
 }
 
-var opGetAccountSummary *aws.Operation
+const opGetCredentialReport = "GetCredentialReport"
 
 // GetCredentialReportRequest generates a request for the GetCredentialReport operation.
 func (c *IAM) GetCredentialReportRequest(input *GetCredentialReportInput) (req *aws.Request, output *GetCredentialReportOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetCredentialReport == nil {
-		opGetCredentialReport = &aws.Operation{
-			Name:       "GetCredentialReport",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetCredentialReport,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetCredentialReportInput{}
 	}
 
-	req = c.newRequest(opGetCredentialReport, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetCredentialReportOutput{}
 	req.Data = output
 	return
@@ -1844,32 +1603,27 @@ func (c *IAM) GetCredentialReport(input *GetCredentialReportInput) (*GetCredenti
 	return out, err
 }
 
-var opGetCredentialReport *aws.Operation
+const opGetGroup = "GetGroup"
 
 // GetGroupRequest generates a request for the GetGroup operation.
 func (c *IAM) GetGroupRequest(input *GetGroupInput) (req *aws.Request, output *GetGroupOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetGroup == nil {
-		opGetGroup = &aws.Operation{
-			Name:       "GetGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opGetGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &GetGroupInput{}
 	}
 
-	req = c.newRequest(opGetGroup, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetGroupOutput{}
 	req.Data = output
 	return
@@ -1890,26 +1644,21 @@ func (c *IAM) GetGroupPages(input *GetGroupInput, fn func(p *GetGroupOutput, las
 	})
 }
 
-var opGetGroup *aws.Operation
+const opGetGroupPolicy = "GetGroupPolicy"
 
 // GetGroupPolicyRequest generates a request for the GetGroupPolicy operation.
 func (c *IAM) GetGroupPolicyRequest(input *GetGroupPolicyInput) (req *aws.Request, output *GetGroupPolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetGroupPolicy == nil {
-		opGetGroupPolicy = &aws.Operation{
-			Name:       "GetGroupPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetGroupPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetGroupPolicyInput{}
 	}
 
-	req = c.newRequest(opGetGroupPolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetGroupPolicyOutput{}
 	req.Data = output
 	return
@@ -1932,26 +1681,21 @@ func (c *IAM) GetGroupPolicy(input *GetGroupPolicyInput) (*GetGroupPolicyOutput,
 	return out, err
 }
 
-var opGetGroupPolicy *aws.Operation
+const opGetInstanceProfile = "GetInstanceProfile"
 
 // GetInstanceProfileRequest generates a request for the GetInstanceProfile operation.
 func (c *IAM) GetInstanceProfileRequest(input *GetInstanceProfileInput) (req *aws.Request, output *GetInstanceProfileOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetInstanceProfile == nil {
-		opGetInstanceProfile = &aws.Operation{
-			Name:       "GetInstanceProfile",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetInstanceProfile,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetInstanceProfileInput{}
 	}
 
-	req = c.newRequest(opGetInstanceProfile, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetInstanceProfileOutput{}
 	req.Data = output
 	return
@@ -1967,26 +1711,21 @@ func (c *IAM) GetInstanceProfile(input *GetInstanceProfileInput) (*GetInstancePr
 	return out, err
 }
 
-var opGetInstanceProfile *aws.Operation
+const opGetLoginProfile = "GetLoginProfile"
 
 // GetLoginProfileRequest generates a request for the GetLoginProfile operation.
 func (c *IAM) GetLoginProfileRequest(input *GetLoginProfileInput) (req *aws.Request, output *GetLoginProfileOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetLoginProfile == nil {
-		opGetLoginProfile = &aws.Operation{
-			Name:       "GetLoginProfile",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetLoginProfile,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetLoginProfileInput{}
 	}
 
-	req = c.newRequest(opGetLoginProfile, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetLoginProfileOutput{}
 	req.Data = output
 	return
@@ -2001,26 +1740,21 @@ func (c *IAM) GetLoginProfile(input *GetLoginProfileInput) (*GetLoginProfileOutp
 	return out, err
 }
 
-var opGetLoginProfile *aws.Operation
+const opGetOpenIDConnectProvider = "GetOpenIDConnectProvider"
 
 // GetOpenIDConnectProviderRequest generates a request for the GetOpenIDConnectProvider operation.
 func (c *IAM) GetOpenIDConnectProviderRequest(input *GetOpenIDConnectProviderInput) (req *aws.Request, output *GetOpenIDConnectProviderOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetOpenIDConnectProvider == nil {
-		opGetOpenIDConnectProvider = &aws.Operation{
-			Name:       "GetOpenIDConnectProvider",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetOpenIDConnectProvider,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetOpenIDConnectProviderInput{}
 	}
 
-	req = c.newRequest(opGetOpenIDConnectProvider, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetOpenIDConnectProviderOutput{}
 	req.Data = output
 	return
@@ -2033,26 +1767,21 @@ func (c *IAM) GetOpenIDConnectProvider(input *GetOpenIDConnectProviderInput) (*G
 	return out, err
 }
 
-var opGetOpenIDConnectProvider *aws.Operation
+const opGetPolicy = "GetPolicy"
 
 // GetPolicyRequest generates a request for the GetPolicy operation.
 func (c *IAM) GetPolicyRequest(input *GetPolicyInput) (req *aws.Request, output *GetPolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetPolicy == nil {
-		opGetPolicy = &aws.Operation{
-			Name:       "GetPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetPolicyInput{}
 	}
 
-	req = c.newRequest(opGetPolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetPolicyOutput{}
 	req.Data = output
 	return
@@ -2078,26 +1807,21 @@ func (c *IAM) GetPolicy(input *GetPolicyInput) (*GetPolicyOutput, error) {
 	return out, err
 }
 
-var opGetPolicy *aws.Operation
+const opGetPolicyVersion = "GetPolicyVersion"
 
 // GetPolicyVersionRequest generates a request for the GetPolicyVersion operation.
 func (c *IAM) GetPolicyVersionRequest(input *GetPolicyVersionInput) (req *aws.Request, output *GetPolicyVersionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetPolicyVersion == nil {
-		opGetPolicyVersion = &aws.Operation{
-			Name:       "GetPolicyVersion",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetPolicyVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetPolicyVersionInput{}
 	}
 
-	req = c.newRequest(opGetPolicyVersion, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetPolicyVersionOutput{}
 	req.Data = output
 	return
@@ -2121,26 +1845,21 @@ func (c *IAM) GetPolicyVersion(input *GetPolicyVersionInput) (*GetPolicyVersionO
 	return out, err
 }
 
-var opGetPolicyVersion *aws.Operation
+const opGetRole = "GetRole"
 
 // GetRoleRequest generates a request for the GetRole operation.
 func (c *IAM) GetRoleRequest(input *GetRoleInput) (req *aws.Request, output *GetRoleOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetRole == nil {
-		opGetRole = &aws.Operation{
-			Name:       "GetRole",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetRole,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetRoleInput{}
 	}
 
-	req = c.newRequest(opGetRole, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetRoleOutput{}
 	req.Data = output
 	return
@@ -2156,26 +1875,21 @@ func (c *IAM) GetRole(input *GetRoleInput) (*GetRoleOutput, error) {
 	return out, err
 }
 
-var opGetRole *aws.Operation
+const opGetRolePolicy = "GetRolePolicy"
 
 // GetRolePolicyRequest generates a request for the GetRolePolicy operation.
 func (c *IAM) GetRolePolicyRequest(input *GetRolePolicyInput) (req *aws.Request, output *GetRolePolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetRolePolicy == nil {
-		opGetRolePolicy = &aws.Operation{
-			Name:       "GetRolePolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetRolePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetRolePolicyInput{}
 	}
 
-	req = c.newRequest(opGetRolePolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetRolePolicyOutput{}
 	req.Data = output
 	return
@@ -2201,26 +1915,21 @@ func (c *IAM) GetRolePolicy(input *GetRolePolicyInput) (*GetRolePolicyOutput, er
 	return out, err
 }
 
-var opGetRolePolicy *aws.Operation
+const opGetSAMLProvider = "GetSAMLProvider"
 
 // GetSAMLProviderRequest generates a request for the GetSAMLProvider operation.
 func (c *IAM) GetSAMLProviderRequest(input *GetSAMLProviderInput) (req *aws.Request, output *GetSAMLProviderOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetSAMLProvider == nil {
-		opGetSAMLProvider = &aws.Operation{
-			Name:       "GetSAMLProvider",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetSAMLProvider,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetSAMLProviderInput{}
 	}
 
-	req = c.newRequest(opGetSAMLProvider, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetSAMLProviderOutput{}
 	req.Data = output
 	return
@@ -2236,26 +1945,21 @@ func (c *IAM) GetSAMLProvider(input *GetSAMLProviderInput) (*GetSAMLProviderOutp
 	return out, err
 }
 
-var opGetSAMLProvider *aws.Operation
+const opGetServerCertificate = "GetServerCertificate"
 
 // GetServerCertificateRequest generates a request for the GetServerCertificate operation.
 func (c *IAM) GetServerCertificateRequest(input *GetServerCertificateInput) (req *aws.Request, output *GetServerCertificateOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetServerCertificate == nil {
-		opGetServerCertificate = &aws.Operation{
-			Name:       "GetServerCertificate",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetServerCertificate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetServerCertificateInput{}
 	}
 
-	req = c.newRequest(opGetServerCertificate, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetServerCertificateOutput{}
 	req.Data = output
 	return
@@ -2268,26 +1972,21 @@ func (c *IAM) GetServerCertificate(input *GetServerCertificateInput) (*GetServer
 	return out, err
 }
 
-var opGetServerCertificate *aws.Operation
+const opGetUser = "GetUser"
 
 // GetUserRequest generates a request for the GetUser operation.
 func (c *IAM) GetUserRequest(input *GetUserInput) (req *aws.Request, output *GetUserOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetUser == nil {
-		opGetUser = &aws.Operation{
-			Name:       "GetUser",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetUser,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetUserInput{}
 	}
 
-	req = c.newRequest(opGetUser, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetUserOutput{}
 	req.Data = output
 	return
@@ -2304,26 +2003,21 @@ func (c *IAM) GetUser(input *GetUserInput) (*GetUserOutput, error) {
 	return out, err
 }
 
-var opGetUser *aws.Operation
+const opGetUserPolicy = "GetUserPolicy"
 
 // GetUserPolicyRequest generates a request for the GetUserPolicy operation.
 func (c *IAM) GetUserPolicyRequest(input *GetUserPolicyInput) (req *aws.Request, output *GetUserPolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetUserPolicy == nil {
-		opGetUserPolicy = &aws.Operation{
-			Name:       "GetUserPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetUserPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetUserPolicyInput{}
 	}
 
-	req = c.newRequest(opGetUserPolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetUserPolicyOutput{}
 	req.Data = output
 	return
@@ -2346,32 +2040,27 @@ func (c *IAM) GetUserPolicy(input *GetUserPolicyInput) (*GetUserPolicyOutput, er
 	return out, err
 }
 
-var opGetUserPolicy *aws.Operation
+const opListAccessKeys = "ListAccessKeys"
 
 // ListAccessKeysRequest generates a request for the ListAccessKeys operation.
 func (c *IAM) ListAccessKeysRequest(input *ListAccessKeysInput) (req *aws.Request, output *ListAccessKeysOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListAccessKeys == nil {
-		opListAccessKeys = &aws.Operation{
-			Name:       "ListAccessKeys",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListAccessKeys,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListAccessKeysInput{}
 	}
 
-	req = c.newRequest(opListAccessKeys, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListAccessKeysOutput{}
 	req.Data = output
 	return
@@ -2403,32 +2092,27 @@ func (c *IAM) ListAccessKeysPages(input *ListAccessKeysInput, fn func(p *ListAcc
 	})
 }
 
-var opListAccessKeys *aws.Operation
+const opListAccountAliases = "ListAccountAliases"
 
 // ListAccountAliasesRequest generates a request for the ListAccountAliases operation.
 func (c *IAM) ListAccountAliasesRequest(input *ListAccountAliasesInput) (req *aws.Request, output *ListAccountAliasesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListAccountAliases == nil {
-		opListAccountAliases = &aws.Operation{
-			Name:       "ListAccountAliases",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListAccountAliases,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListAccountAliasesInput{}
 	}
 
-	req = c.newRequest(opListAccountAliases, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListAccountAliasesOutput{}
 	req.Data = output
 	return
@@ -2452,32 +2136,27 @@ func (c *IAM) ListAccountAliasesPages(input *ListAccountAliasesInput, fn func(p 
 	})
 }
 
-var opListAccountAliases *aws.Operation
+const opListAttachedGroupPolicies = "ListAttachedGroupPolicies"
 
 // ListAttachedGroupPoliciesRequest generates a request for the ListAttachedGroupPolicies operation.
 func (c *IAM) ListAttachedGroupPoliciesRequest(input *ListAttachedGroupPoliciesInput) (req *aws.Request, output *ListAttachedGroupPoliciesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListAttachedGroupPolicies == nil {
-		opListAttachedGroupPolicies = &aws.Operation{
-			Name:       "ListAttachedGroupPolicies",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListAttachedGroupPolicies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListAttachedGroupPoliciesInput{}
 	}
 
-	req = c.newRequest(opListAttachedGroupPolicies, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListAttachedGroupPoliciesOutput{}
 	req.Data = output
 	return
@@ -2508,32 +2187,27 @@ func (c *IAM) ListAttachedGroupPoliciesPages(input *ListAttachedGroupPoliciesInp
 	})
 }
 
-var opListAttachedGroupPolicies *aws.Operation
+const opListAttachedRolePolicies = "ListAttachedRolePolicies"
 
 // ListAttachedRolePoliciesRequest generates a request for the ListAttachedRolePolicies operation.
 func (c *IAM) ListAttachedRolePoliciesRequest(input *ListAttachedRolePoliciesInput) (req *aws.Request, output *ListAttachedRolePoliciesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListAttachedRolePolicies == nil {
-		opListAttachedRolePolicies = &aws.Operation{
-			Name:       "ListAttachedRolePolicies",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListAttachedRolePolicies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListAttachedRolePoliciesInput{}
 	}
 
-	req = c.newRequest(opListAttachedRolePolicies, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListAttachedRolePoliciesOutput{}
 	req.Data = output
 	return
@@ -2564,32 +2238,27 @@ func (c *IAM) ListAttachedRolePoliciesPages(input *ListAttachedRolePoliciesInput
 	})
 }
 
-var opListAttachedRolePolicies *aws.Operation
+const opListAttachedUserPolicies = "ListAttachedUserPolicies"
 
 // ListAttachedUserPoliciesRequest generates a request for the ListAttachedUserPolicies operation.
 func (c *IAM) ListAttachedUserPoliciesRequest(input *ListAttachedUserPoliciesInput) (req *aws.Request, output *ListAttachedUserPoliciesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListAttachedUserPolicies == nil {
-		opListAttachedUserPolicies = &aws.Operation{
-			Name:       "ListAttachedUserPolicies",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListAttachedUserPolicies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListAttachedUserPoliciesInput{}
 	}
 
-	req = c.newRequest(opListAttachedUserPolicies, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListAttachedUserPoliciesOutput{}
 	req.Data = output
 	return
@@ -2620,32 +2289,27 @@ func (c *IAM) ListAttachedUserPoliciesPages(input *ListAttachedUserPoliciesInput
 	})
 }
 
-var opListAttachedUserPolicies *aws.Operation
+const opListEntitiesForPolicy = "ListEntitiesForPolicy"
 
 // ListEntitiesForPolicyRequest generates a request for the ListEntitiesForPolicy operation.
 func (c *IAM) ListEntitiesForPolicyRequest(input *ListEntitiesForPolicyInput) (req *aws.Request, output *ListEntitiesForPolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListEntitiesForPolicy == nil {
-		opListEntitiesForPolicy = &aws.Operation{
-			Name:       "ListEntitiesForPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListEntitiesForPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListEntitiesForPolicyInput{}
 	}
 
-	req = c.newRequest(opListEntitiesForPolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListEntitiesForPolicyOutput{}
 	req.Data = output
 	return
@@ -2673,32 +2337,27 @@ func (c *IAM) ListEntitiesForPolicyPages(input *ListEntitiesForPolicyInput, fn f
 	})
 }
 
-var opListEntitiesForPolicy *aws.Operation
+const opListGroupPolicies = "ListGroupPolicies"
 
 // ListGroupPoliciesRequest generates a request for the ListGroupPolicies operation.
 func (c *IAM) ListGroupPoliciesRequest(input *ListGroupPoliciesInput) (req *aws.Request, output *ListGroupPoliciesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListGroupPolicies == nil {
-		opListGroupPolicies = &aws.Operation{
-			Name:       "ListGroupPolicies",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListGroupPolicies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListGroupPoliciesInput{}
 	}
 
-	req = c.newRequest(opListGroupPolicies, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListGroupPoliciesOutput{}
 	req.Data = output
 	return
@@ -2729,32 +2388,27 @@ func (c *IAM) ListGroupPoliciesPages(input *ListGroupPoliciesInput, fn func(p *L
 	})
 }
 
-var opListGroupPolicies *aws.Operation
+const opListGroups = "ListGroups"
 
 // ListGroupsRequest generates a request for the ListGroups operation.
 func (c *IAM) ListGroupsRequest(input *ListGroupsInput) (req *aws.Request, output *ListGroupsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListGroups == nil {
-		opListGroups = &aws.Operation{
-			Name:       "ListGroups",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListGroups,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListGroupsInput{}
 	}
 
-	req = c.newRequest(opListGroups, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListGroupsOutput{}
 	req.Data = output
 	return
@@ -2776,32 +2430,27 @@ func (c *IAM) ListGroupsPages(input *ListGroupsInput, fn func(p *ListGroupsOutpu
 	})
 }
 
-var opListGroups *aws.Operation
+const opListGroupsForUser = "ListGroupsForUser"
 
 // ListGroupsForUserRequest generates a request for the ListGroupsForUser operation.
 func (c *IAM) ListGroupsForUserRequest(input *ListGroupsForUserInput) (req *aws.Request, output *ListGroupsForUserOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListGroupsForUser == nil {
-		opListGroupsForUser = &aws.Operation{
-			Name:       "ListGroupsForUser",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListGroupsForUser,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListGroupsForUserInput{}
 	}
 
-	req = c.newRequest(opListGroupsForUser, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListGroupsForUserOutput{}
 	req.Data = output
 	return
@@ -2823,32 +2472,27 @@ func (c *IAM) ListGroupsForUserPages(input *ListGroupsForUserInput, fn func(p *L
 	})
 }
 
-var opListGroupsForUser *aws.Operation
+const opListInstanceProfiles = "ListInstanceProfiles"
 
 // ListInstanceProfilesRequest generates a request for the ListInstanceProfiles operation.
 func (c *IAM) ListInstanceProfilesRequest(input *ListInstanceProfilesInput) (req *aws.Request, output *ListInstanceProfilesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListInstanceProfiles == nil {
-		opListInstanceProfiles = &aws.Operation{
-			Name:       "ListInstanceProfiles",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListInstanceProfiles,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListInstanceProfilesInput{}
 	}
 
-	req = c.newRequest(opListInstanceProfiles, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListInstanceProfilesOutput{}
 	req.Data = output
 	return
@@ -2872,32 +2516,27 @@ func (c *IAM) ListInstanceProfilesPages(input *ListInstanceProfilesInput, fn fun
 	})
 }
 
-var opListInstanceProfiles *aws.Operation
+const opListInstanceProfilesForRole = "ListInstanceProfilesForRole"
 
 // ListInstanceProfilesForRoleRequest generates a request for the ListInstanceProfilesForRole operation.
 func (c *IAM) ListInstanceProfilesForRoleRequest(input *ListInstanceProfilesForRoleInput) (req *aws.Request, output *ListInstanceProfilesForRoleOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListInstanceProfilesForRole == nil {
-		opListInstanceProfilesForRole = &aws.Operation{
-			Name:       "ListInstanceProfilesForRole",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListInstanceProfilesForRole,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListInstanceProfilesForRoleInput{}
 	}
 
-	req = c.newRequest(opListInstanceProfilesForRole, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListInstanceProfilesForRoleOutput{}
 	req.Data = output
 	return
@@ -2921,32 +2560,27 @@ func (c *IAM) ListInstanceProfilesForRolePages(input *ListInstanceProfilesForRol
 	})
 }
 
-var opListInstanceProfilesForRole *aws.Operation
+const opListMFADevices = "ListMFADevices"
 
 // ListMFADevicesRequest generates a request for the ListMFADevices operation.
 func (c *IAM) ListMFADevicesRequest(input *ListMFADevicesInput) (req *aws.Request, output *ListMFADevicesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListMFADevices == nil {
-		opListMFADevices = &aws.Operation{
-			Name:       "ListMFADevices",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListMFADevices,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListMFADevicesInput{}
 	}
 
-	req = c.newRequest(opListMFADevices, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListMFADevicesOutput{}
 	req.Data = output
 	return
@@ -2971,26 +2605,21 @@ func (c *IAM) ListMFADevicesPages(input *ListMFADevicesInput, fn func(p *ListMFA
 	})
 }
 
-var opListMFADevices *aws.Operation
+const opListOpenIDConnectProviders = "ListOpenIDConnectProviders"
 
 // ListOpenIDConnectProvidersRequest generates a request for the ListOpenIDConnectProviders operation.
 func (c *IAM) ListOpenIDConnectProvidersRequest(input *ListOpenIDConnectProvidersInput) (req *aws.Request, output *ListOpenIDConnectProvidersOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListOpenIDConnectProviders == nil {
-		opListOpenIDConnectProviders = &aws.Operation{
-			Name:       "ListOpenIDConnectProviders",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opListOpenIDConnectProviders,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ListOpenIDConnectProvidersInput{}
 	}
 
-	req = c.newRequest(opListOpenIDConnectProviders, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListOpenIDConnectProvidersOutput{}
 	req.Data = output
 	return
@@ -3003,32 +2632,27 @@ func (c *IAM) ListOpenIDConnectProviders(input *ListOpenIDConnectProvidersInput)
 	return out, err
 }
 
-var opListOpenIDConnectProviders *aws.Operation
+const opListPolicies = "ListPolicies"
 
 // ListPoliciesRequest generates a request for the ListPolicies operation.
 func (c *IAM) ListPoliciesRequest(input *ListPoliciesInput) (req *aws.Request, output *ListPoliciesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListPolicies == nil {
-		opListPolicies = &aws.Operation{
-			Name:       "ListPolicies",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListPolicies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListPoliciesInput{}
 	}
 
-	req = c.newRequest(opListPolicies, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListPoliciesOutput{}
 	req.Data = output
 	return
@@ -3060,26 +2684,21 @@ func (c *IAM) ListPoliciesPages(input *ListPoliciesInput, fn func(p *ListPolicie
 	})
 }
 
-var opListPolicies *aws.Operation
+const opListPolicyVersions = "ListPolicyVersions"
 
 // ListPolicyVersionsRequest generates a request for the ListPolicyVersions operation.
 func (c *IAM) ListPolicyVersionsRequest(input *ListPolicyVersionsInput) (req *aws.Request, output *ListPolicyVersionsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListPolicyVersions == nil {
-		opListPolicyVersions = &aws.Operation{
-			Name:       "ListPolicyVersions",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opListPolicyVersions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ListPolicyVersionsInput{}
 	}
 
-	req = c.newRequest(opListPolicyVersions, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListPolicyVersionsOutput{}
 	req.Data = output
 	return
@@ -3097,32 +2716,27 @@ func (c *IAM) ListPolicyVersions(input *ListPolicyVersionsInput) (*ListPolicyVer
 	return out, err
 }
 
-var opListPolicyVersions *aws.Operation
+const opListRolePolicies = "ListRolePolicies"
 
 // ListRolePoliciesRequest generates a request for the ListRolePolicies operation.
 func (c *IAM) ListRolePoliciesRequest(input *ListRolePoliciesInput) (req *aws.Request, output *ListRolePoliciesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListRolePolicies == nil {
-		opListRolePolicies = &aws.Operation{
-			Name:       "ListRolePolicies",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListRolePolicies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListRolePoliciesInput{}
 	}
 
-	req = c.newRequest(opListRolePolicies, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListRolePoliciesOutput{}
 	req.Data = output
 	return
@@ -3153,32 +2767,27 @@ func (c *IAM) ListRolePoliciesPages(input *ListRolePoliciesInput, fn func(p *Lis
 	})
 }
 
-var opListRolePolicies *aws.Operation
+const opListRoles = "ListRoles"
 
 // ListRolesRequest generates a request for the ListRoles operation.
 func (c *IAM) ListRolesRequest(input *ListRolesInput) (req *aws.Request, output *ListRolesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListRoles == nil {
-		opListRoles = &aws.Operation{
-			Name:       "ListRoles",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListRoles,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListRolesInput{}
 	}
 
-	req = c.newRequest(opListRoles, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListRolesOutput{}
 	req.Data = output
 	return
@@ -3202,26 +2811,21 @@ func (c *IAM) ListRolesPages(input *ListRolesInput, fn func(p *ListRolesOutput, 
 	})
 }
 
-var opListRoles *aws.Operation
+const opListSAMLProviders = "ListSAMLProviders"
 
 // ListSAMLProvidersRequest generates a request for the ListSAMLProviders operation.
 func (c *IAM) ListSAMLProvidersRequest(input *ListSAMLProvidersInput) (req *aws.Request, output *ListSAMLProvidersOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListSAMLProviders == nil {
-		opListSAMLProviders = &aws.Operation{
-			Name:       "ListSAMLProviders",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opListSAMLProviders,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ListSAMLProvidersInput{}
 	}
 
-	req = c.newRequest(opListSAMLProviders, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListSAMLProvidersOutput{}
 	req.Data = output
 	return
@@ -3236,32 +2840,27 @@ func (c *IAM) ListSAMLProviders(input *ListSAMLProvidersInput) (*ListSAMLProvide
 	return out, err
 }
 
-var opListSAMLProviders *aws.Operation
+const opListServerCertificates = "ListServerCertificates"
 
 // ListServerCertificatesRequest generates a request for the ListServerCertificates operation.
 func (c *IAM) ListServerCertificatesRequest(input *ListServerCertificatesInput) (req *aws.Request, output *ListServerCertificatesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListServerCertificates == nil {
-		opListServerCertificates = &aws.Operation{
-			Name:       "ListServerCertificates",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListServerCertificates,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListServerCertificatesInput{}
 	}
 
-	req = c.newRequest(opListServerCertificates, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListServerCertificatesOutput{}
 	req.Data = output
 	return
@@ -3284,32 +2883,27 @@ func (c *IAM) ListServerCertificatesPages(input *ListServerCertificatesInput, fn
 	})
 }
 
-var opListServerCertificates *aws.Operation
+const opListSigningCertificates = "ListSigningCertificates"
 
 // ListSigningCertificatesRequest generates a request for the ListSigningCertificates operation.
 func (c *IAM) ListSigningCertificatesRequest(input *ListSigningCertificatesInput) (req *aws.Request, output *ListSigningCertificatesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListSigningCertificates == nil {
-		opListSigningCertificates = &aws.Operation{
-			Name:       "ListSigningCertificates",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListSigningCertificates,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListSigningCertificatesInput{}
 	}
 
-	req = c.newRequest(opListSigningCertificates, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListSigningCertificatesOutput{}
 	req.Data = output
 	return
@@ -3338,32 +2932,27 @@ func (c *IAM) ListSigningCertificatesPages(input *ListSigningCertificatesInput, 
 	})
 }
 
-var opListSigningCertificates *aws.Operation
+const opListUserPolicies = "ListUserPolicies"
 
 // ListUserPoliciesRequest generates a request for the ListUserPolicies operation.
 func (c *IAM) ListUserPoliciesRequest(input *ListUserPoliciesInput) (req *aws.Request, output *ListUserPoliciesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListUserPolicies == nil {
-		opListUserPolicies = &aws.Operation{
-			Name:       "ListUserPolicies",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListUserPolicies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListUserPoliciesInput{}
 	}
 
-	req = c.newRequest(opListUserPolicies, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListUserPoliciesOutput{}
 	req.Data = output
 	return
@@ -3393,32 +2982,27 @@ func (c *IAM) ListUserPoliciesPages(input *ListUserPoliciesInput, fn func(p *Lis
 	})
 }
 
-var opListUserPolicies *aws.Operation
+const opListUsers = "ListUsers"
 
 // ListUsersRequest generates a request for the ListUsers operation.
 func (c *IAM) ListUsersRequest(input *ListUsersInput) (req *aws.Request, output *ListUsersOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListUsers == nil {
-		opListUsers = &aws.Operation{
-			Name:       "ListUsers",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListUsers,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListUsersInput{}
 	}
 
-	req = c.newRequest(opListUsers, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListUsersOutput{}
 	req.Data = output
 	return
@@ -3442,32 +3026,27 @@ func (c *IAM) ListUsersPages(input *ListUsersInput, fn func(p *ListUsersOutput, 
 	})
 }
 
-var opListUsers *aws.Operation
+const opListVirtualMFADevices = "ListVirtualMFADevices"
 
 // ListVirtualMFADevicesRequest generates a request for the ListVirtualMFADevices operation.
 func (c *IAM) ListVirtualMFADevicesRequest(input *ListVirtualMFADevicesInput) (req *aws.Request, output *ListVirtualMFADevicesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListVirtualMFADevices == nil {
-		opListVirtualMFADevices = &aws.Operation{
-			Name:       "ListVirtualMFADevices",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"Marker"},
-				OutputTokens:    []string{"Marker"},
-				LimitToken:      "MaxItems",
-				TruncationToken: "IsTruncated",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListVirtualMFADevices,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "IsTruncated",
+		},
 	}
 
 	if input == nil {
 		input = &ListVirtualMFADevicesInput{}
 	}
 
-	req = c.newRequest(opListVirtualMFADevices, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListVirtualMFADevicesOutput{}
 	req.Data = output
 	return
@@ -3492,26 +3071,21 @@ func (c *IAM) ListVirtualMFADevicesPages(input *ListVirtualMFADevicesInput, fn f
 	})
 }
 
-var opListVirtualMFADevices *aws.Operation
+const opPutGroupPolicy = "PutGroupPolicy"
 
 // PutGroupPolicyRequest generates a request for the PutGroupPolicy operation.
 func (c *IAM) PutGroupPolicyRequest(input *PutGroupPolicyInput) (req *aws.Request, output *PutGroupPolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opPutGroupPolicy == nil {
-		opPutGroupPolicy = &aws.Operation{
-			Name:       "PutGroupPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opPutGroupPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &PutGroupPolicyInput{}
 	}
 
-	req = c.newRequest(opPutGroupPolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &PutGroupPolicyOutput{}
 	req.Data = output
 	return
@@ -3540,26 +3114,21 @@ func (c *IAM) PutGroupPolicy(input *PutGroupPolicyInput) (*PutGroupPolicyOutput,
 	return out, err
 }
 
-var opPutGroupPolicy *aws.Operation
+const opPutRolePolicy = "PutRolePolicy"
 
 // PutRolePolicyRequest generates a request for the PutRolePolicy operation.
 func (c *IAM) PutRolePolicyRequest(input *PutRolePolicyInput) (req *aws.Request, output *PutRolePolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opPutRolePolicy == nil {
-		opPutRolePolicy = &aws.Operation{
-			Name:       "PutRolePolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opPutRolePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &PutRolePolicyInput{}
 	}
 
-	req = c.newRequest(opPutRolePolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &PutRolePolicyOutput{}
 	req.Data = output
 	return
@@ -3594,26 +3163,21 @@ func (c *IAM) PutRolePolicy(input *PutRolePolicyInput) (*PutRolePolicyOutput, er
 	return out, err
 }
 
-var opPutRolePolicy *aws.Operation
+const opPutUserPolicy = "PutUserPolicy"
 
 // PutUserPolicyRequest generates a request for the PutUserPolicy operation.
 func (c *IAM) PutUserPolicyRequest(input *PutUserPolicyInput) (req *aws.Request, output *PutUserPolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opPutUserPolicy == nil {
-		opPutUserPolicy = &aws.Operation{
-			Name:       "PutUserPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opPutUserPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &PutUserPolicyInput{}
 	}
 
-	req = c.newRequest(opPutUserPolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &PutUserPolicyOutput{}
 	req.Data = output
 	return
@@ -3642,26 +3206,21 @@ func (c *IAM) PutUserPolicy(input *PutUserPolicyInput) (*PutUserPolicyOutput, er
 	return out, err
 }
 
-var opPutUserPolicy *aws.Operation
+const opRemoveClientIDFromOpenIDConnectProvider = "RemoveClientIDFromOpenIDConnectProvider"
 
 // RemoveClientIDFromOpenIDConnectProviderRequest generates a request for the RemoveClientIDFromOpenIDConnectProvider operation.
 func (c *IAM) RemoveClientIDFromOpenIDConnectProviderRequest(input *RemoveClientIDFromOpenIDConnectProviderInput) (req *aws.Request, output *RemoveClientIDFromOpenIDConnectProviderOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opRemoveClientIDFromOpenIDConnectProvider == nil {
-		opRemoveClientIDFromOpenIDConnectProvider = &aws.Operation{
-			Name:       "RemoveClientIDFromOpenIDConnectProvider",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opRemoveClientIDFromOpenIDConnectProvider,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &RemoveClientIDFromOpenIDConnectProviderInput{}
 	}
 
-	req = c.newRequest(opRemoveClientIDFromOpenIDConnectProvider, input, output)
+	req = c.newRequest(op, input, output)
 	output = &RemoveClientIDFromOpenIDConnectProviderOutput{}
 	req.Data = output
 	return
@@ -3678,26 +3237,21 @@ func (c *IAM) RemoveClientIDFromOpenIDConnectProvider(input *RemoveClientIDFromO
 	return out, err
 }
 
-var opRemoveClientIDFromOpenIDConnectProvider *aws.Operation
+const opRemoveRoleFromInstanceProfile = "RemoveRoleFromInstanceProfile"
 
 // RemoveRoleFromInstanceProfileRequest generates a request for the RemoveRoleFromInstanceProfile operation.
 func (c *IAM) RemoveRoleFromInstanceProfileRequest(input *RemoveRoleFromInstanceProfileInput) (req *aws.Request, output *RemoveRoleFromInstanceProfileOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opRemoveRoleFromInstanceProfile == nil {
-		opRemoveRoleFromInstanceProfile = &aws.Operation{
-			Name:       "RemoveRoleFromInstanceProfile",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opRemoveRoleFromInstanceProfile,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &RemoveRoleFromInstanceProfileInput{}
 	}
 
-	req = c.newRequest(opRemoveRoleFromInstanceProfile, input, output)
+	req = c.newRequest(op, input, output)
 	output = &RemoveRoleFromInstanceProfileOutput{}
 	req.Data = output
 	return
@@ -3718,26 +3272,21 @@ func (c *IAM) RemoveRoleFromInstanceProfile(input *RemoveRoleFromInstanceProfile
 	return out, err
 }
 
-var opRemoveRoleFromInstanceProfile *aws.Operation
+const opRemoveUserFromGroup = "RemoveUserFromGroup"
 
 // RemoveUserFromGroupRequest generates a request for the RemoveUserFromGroup operation.
 func (c *IAM) RemoveUserFromGroupRequest(input *RemoveUserFromGroupInput) (req *aws.Request, output *RemoveUserFromGroupOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opRemoveUserFromGroup == nil {
-		opRemoveUserFromGroup = &aws.Operation{
-			Name:       "RemoveUserFromGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opRemoveUserFromGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &RemoveUserFromGroupInput{}
 	}
 
-	req = c.newRequest(opRemoveUserFromGroup, input, output)
+	req = c.newRequest(op, input, output)
 	output = &RemoveUserFromGroupOutput{}
 	req.Data = output
 	return
@@ -3750,26 +3299,21 @@ func (c *IAM) RemoveUserFromGroup(input *RemoveUserFromGroupInput) (*RemoveUserF
 	return out, err
 }
 
-var opRemoveUserFromGroup *aws.Operation
+const opResyncMFADevice = "ResyncMFADevice"
 
 // ResyncMFADeviceRequest generates a request for the ResyncMFADevice operation.
 func (c *IAM) ResyncMFADeviceRequest(input *ResyncMFADeviceInput) (req *aws.Request, output *ResyncMFADeviceOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opResyncMFADevice == nil {
-		opResyncMFADevice = &aws.Operation{
-			Name:       "ResyncMFADevice",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opResyncMFADevice,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ResyncMFADeviceInput{}
 	}
 
-	req = c.newRequest(opResyncMFADevice, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ResyncMFADeviceOutput{}
 	req.Data = output
 	return
@@ -3786,26 +3330,21 @@ func (c *IAM) ResyncMFADevice(input *ResyncMFADeviceInput) (*ResyncMFADeviceOutp
 	return out, err
 }
 
-var opResyncMFADevice *aws.Operation
+const opSetDefaultPolicyVersion = "SetDefaultPolicyVersion"
 
 // SetDefaultPolicyVersionRequest generates a request for the SetDefaultPolicyVersion operation.
 func (c *IAM) SetDefaultPolicyVersionRequest(input *SetDefaultPolicyVersionInput) (req *aws.Request, output *SetDefaultPolicyVersionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opSetDefaultPolicyVersion == nil {
-		opSetDefaultPolicyVersion = &aws.Operation{
-			Name:       "SetDefaultPolicyVersion",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opSetDefaultPolicyVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &SetDefaultPolicyVersionInput{}
 	}
 
-	req = c.newRequest(opSetDefaultPolicyVersion, input, output)
+	req = c.newRequest(op, input, output)
 	output = &SetDefaultPolicyVersionOutput{}
 	req.Data = output
 	return
@@ -3827,26 +3366,21 @@ func (c *IAM) SetDefaultPolicyVersion(input *SetDefaultPolicyVersionInput) (*Set
 	return out, err
 }
 
-var opSetDefaultPolicyVersion *aws.Operation
+const opUpdateAccessKey = "UpdateAccessKey"
 
 // UpdateAccessKeyRequest generates a request for the UpdateAccessKey operation.
 func (c *IAM) UpdateAccessKeyRequest(input *UpdateAccessKeyInput) (req *aws.Request, output *UpdateAccessKeyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateAccessKey == nil {
-		opUpdateAccessKey = &aws.Operation{
-			Name:       "UpdateAccessKey",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateAccessKey,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateAccessKeyInput{}
 	}
 
-	req = c.newRequest(opUpdateAccessKey, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateAccessKeyOutput{}
 	req.Data = output
 	return
@@ -3870,26 +3404,21 @@ func (c *IAM) UpdateAccessKey(input *UpdateAccessKeyInput) (*UpdateAccessKeyOutp
 	return out, err
 }
 
-var opUpdateAccessKey *aws.Operation
+const opUpdateAccountPasswordPolicy = "UpdateAccountPasswordPolicy"
 
 // UpdateAccountPasswordPolicyRequest generates a request for the UpdateAccountPasswordPolicy operation.
 func (c *IAM) UpdateAccountPasswordPolicyRequest(input *UpdateAccountPasswordPolicyInput) (req *aws.Request, output *UpdateAccountPasswordPolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateAccountPasswordPolicy == nil {
-		opUpdateAccountPasswordPolicy = &aws.Operation{
-			Name:       "UpdateAccountPasswordPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateAccountPasswordPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateAccountPasswordPolicyInput{}
 	}
 
-	req = c.newRequest(opUpdateAccountPasswordPolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateAccountPasswordPolicyOutput{}
 	req.Data = output
 	return
@@ -3911,26 +3440,21 @@ func (c *IAM) UpdateAccountPasswordPolicy(input *UpdateAccountPasswordPolicyInpu
 	return out, err
 }
 
-var opUpdateAccountPasswordPolicy *aws.Operation
+const opUpdateAssumeRolePolicy = "UpdateAssumeRolePolicy"
 
 // UpdateAssumeRolePolicyRequest generates a request for the UpdateAssumeRolePolicy operation.
 func (c *IAM) UpdateAssumeRolePolicyRequest(input *UpdateAssumeRolePolicyInput) (req *aws.Request, output *UpdateAssumeRolePolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateAssumeRolePolicy == nil {
-		opUpdateAssumeRolePolicy = &aws.Operation{
-			Name:       "UpdateAssumeRolePolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateAssumeRolePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateAssumeRolePolicyInput{}
 	}
 
-	req = c.newRequest(opUpdateAssumeRolePolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateAssumeRolePolicyOutput{}
 	req.Data = output
 	return
@@ -3945,26 +3469,21 @@ func (c *IAM) UpdateAssumeRolePolicy(input *UpdateAssumeRolePolicyInput) (*Updat
 	return out, err
 }
 
-var opUpdateAssumeRolePolicy *aws.Operation
+const opUpdateGroup = "UpdateGroup"
 
 // UpdateGroupRequest generates a request for the UpdateGroup operation.
 func (c *IAM) UpdateGroupRequest(input *UpdateGroupInput) (req *aws.Request, output *UpdateGroupOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateGroup == nil {
-		opUpdateGroup = &aws.Operation{
-			Name:       "UpdateGroup",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateGroupInput{}
 	}
 
-	req = c.newRequest(opUpdateGroup, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateGroupOutput{}
 	req.Data = output
 	return
@@ -3986,26 +3505,21 @@ func (c *IAM) UpdateGroup(input *UpdateGroupInput) (*UpdateGroupOutput, error) {
 	return out, err
 }
 
-var opUpdateGroup *aws.Operation
+const opUpdateLoginProfile = "UpdateLoginProfile"
 
 // UpdateLoginProfileRequest generates a request for the UpdateLoginProfile operation.
 func (c *IAM) UpdateLoginProfileRequest(input *UpdateLoginProfileInput) (req *aws.Request, output *UpdateLoginProfileOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateLoginProfile == nil {
-		opUpdateLoginProfile = &aws.Operation{
-			Name:       "UpdateLoginProfile",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateLoginProfile,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateLoginProfileInput{}
 	}
 
-	req = c.newRequest(opUpdateLoginProfile, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateLoginProfileOutput{}
 	req.Data = output
 	return
@@ -4022,26 +3536,21 @@ func (c *IAM) UpdateLoginProfile(input *UpdateLoginProfileInput) (*UpdateLoginPr
 	return out, err
 }
 
-var opUpdateLoginProfile *aws.Operation
+const opUpdateOpenIDConnectProviderThumbprint = "UpdateOpenIDConnectProviderThumbprint"
 
 // UpdateOpenIDConnectProviderThumbprintRequest generates a request for the UpdateOpenIDConnectProviderThumbprint operation.
 func (c *IAM) UpdateOpenIDConnectProviderThumbprintRequest(input *UpdateOpenIDConnectProviderThumbprintInput) (req *aws.Request, output *UpdateOpenIDConnectProviderThumbprintOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateOpenIDConnectProviderThumbprint == nil {
-		opUpdateOpenIDConnectProviderThumbprint = &aws.Operation{
-			Name:       "UpdateOpenIDConnectProviderThumbprint",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateOpenIDConnectProviderThumbprint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateOpenIDConnectProviderThumbprintInput{}
 	}
 
-	req = c.newRequest(opUpdateOpenIDConnectProviderThumbprint, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateOpenIDConnectProviderThumbprintOutput{}
 	req.Data = output
 	return
@@ -4067,26 +3576,21 @@ func (c *IAM) UpdateOpenIDConnectProviderThumbprint(input *UpdateOpenIDConnectPr
 	return out, err
 }
 
-var opUpdateOpenIDConnectProviderThumbprint *aws.Operation
+const opUpdateSAMLProvider = "UpdateSAMLProvider"
 
 // UpdateSAMLProviderRequest generates a request for the UpdateSAMLProvider operation.
 func (c *IAM) UpdateSAMLProviderRequest(input *UpdateSAMLProviderInput) (req *aws.Request, output *UpdateSAMLProviderOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateSAMLProvider == nil {
-		opUpdateSAMLProvider = &aws.Operation{
-			Name:       "UpdateSAMLProvider",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateSAMLProvider,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateSAMLProviderInput{}
 	}
 
-	req = c.newRequest(opUpdateSAMLProvider, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateSAMLProviderOutput{}
 	req.Data = output
 	return
@@ -4101,26 +3605,21 @@ func (c *IAM) UpdateSAMLProvider(input *UpdateSAMLProviderInput) (*UpdateSAMLPro
 	return out, err
 }
 
-var opUpdateSAMLProvider *aws.Operation
+const opUpdateServerCertificate = "UpdateServerCertificate"
 
 // UpdateServerCertificateRequest generates a request for the UpdateServerCertificate operation.
 func (c *IAM) UpdateServerCertificateRequest(input *UpdateServerCertificateInput) (req *aws.Request, output *UpdateServerCertificateOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateServerCertificate == nil {
-		opUpdateServerCertificate = &aws.Operation{
-			Name:       "UpdateServerCertificate",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateServerCertificate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateServerCertificateInput{}
 	}
 
-	req = c.newRequest(opUpdateServerCertificate, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateServerCertificateOutput{}
 	req.Data = output
 	return
@@ -4143,26 +3642,21 @@ func (c *IAM) UpdateServerCertificate(input *UpdateServerCertificateInput) (*Upd
 	return out, err
 }
 
-var opUpdateServerCertificate *aws.Operation
+const opUpdateSigningCertificate = "UpdateSigningCertificate"
 
 // UpdateSigningCertificateRequest generates a request for the UpdateSigningCertificate operation.
 func (c *IAM) UpdateSigningCertificateRequest(input *UpdateSigningCertificateInput) (req *aws.Request, output *UpdateSigningCertificateOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateSigningCertificate == nil {
-		opUpdateSigningCertificate = &aws.Operation{
-			Name:       "UpdateSigningCertificate",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateSigningCertificate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateSigningCertificateInput{}
 	}
 
-	req = c.newRequest(opUpdateSigningCertificate, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateSigningCertificateOutput{}
 	req.Data = output
 	return
@@ -4182,26 +3676,21 @@ func (c *IAM) UpdateSigningCertificate(input *UpdateSigningCertificateInput) (*U
 	return out, err
 }
 
-var opUpdateSigningCertificate *aws.Operation
+const opUpdateUser = "UpdateUser"
 
 // UpdateUserRequest generates a request for the UpdateUser operation.
 func (c *IAM) UpdateUserRequest(input *UpdateUserInput) (req *aws.Request, output *UpdateUserOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateUser == nil {
-		opUpdateUser = &aws.Operation{
-			Name:       "UpdateUser",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateUser,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateUserInput{}
 	}
 
-	req = c.newRequest(opUpdateUser, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateUserOutput{}
 	req.Data = output
 	return
@@ -4223,26 +3712,21 @@ func (c *IAM) UpdateUser(input *UpdateUserInput) (*UpdateUserOutput, error) {
 	return out, err
 }
 
-var opUpdateUser *aws.Operation
+const opUploadServerCertificate = "UploadServerCertificate"
 
 // UploadServerCertificateRequest generates a request for the UploadServerCertificate operation.
 func (c *IAM) UploadServerCertificateRequest(input *UploadServerCertificateInput) (req *aws.Request, output *UploadServerCertificateOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUploadServerCertificate == nil {
-		opUploadServerCertificate = &aws.Operation{
-			Name:       "UploadServerCertificate",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUploadServerCertificate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UploadServerCertificateInput{}
 	}
 
-	req = c.newRequest(opUploadServerCertificate, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UploadServerCertificateOutput{}
 	req.Data = output
 	return
@@ -4269,26 +3753,21 @@ func (c *IAM) UploadServerCertificate(input *UploadServerCertificateInput) (*Upl
 	return out, err
 }
 
-var opUploadServerCertificate *aws.Operation
+const opUploadSigningCertificate = "UploadSigningCertificate"
 
 // UploadSigningCertificateRequest generates a request for the UploadSigningCertificate operation.
 func (c *IAM) UploadSigningCertificateRequest(input *UploadSigningCertificateInput) (req *aws.Request, output *UploadSigningCertificateOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUploadSigningCertificate == nil {
-		opUploadSigningCertificate = &aws.Operation{
-			Name:       "UploadSigningCertificate",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUploadSigningCertificate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UploadSigningCertificateInput{}
 	}
 
-	req = c.newRequest(opUploadSigningCertificate, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UploadSigningCertificateOutput{}
 	req.Data = output
 	return
@@ -4316,8 +3795,6 @@ func (c *IAM) UploadSigningCertificate(input *UploadSigningCertificateInput) (*U
 	err := req.Send()
 	return out, err
 }
-
-var opUploadSigningCertificate *aws.Operation
 
 // Contains information about an AWS access key.
 //

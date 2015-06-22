@@ -4,32 +4,26 @@
 package cloudformation
 
 import (
-	"sync"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 )
 
-var oprw sync.Mutex
+const opCancelUpdateStack = "CancelUpdateStack"
 
 // CancelUpdateStackRequest generates a request for the CancelUpdateStack operation.
 func (c *CloudFormation) CancelUpdateStackRequest(input *CancelUpdateStackInput) (req *aws.Request, output *CancelUpdateStackOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCancelUpdateStack == nil {
-		opCancelUpdateStack = &aws.Operation{
-			Name:       "CancelUpdateStack",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCancelUpdateStack,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CancelUpdateStackInput{}
 	}
 
-	req = c.newRequest(opCancelUpdateStack, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CancelUpdateStackOutput{}
 	req.Data = output
 	return
@@ -45,26 +39,21 @@ func (c *CloudFormation) CancelUpdateStack(input *CancelUpdateStackInput) (*Canc
 	return out, err
 }
 
-var opCancelUpdateStack *aws.Operation
+const opCreateStack = "CreateStack"
 
 // CreateStackRequest generates a request for the CreateStack operation.
 func (c *CloudFormation) CreateStackRequest(input *CreateStackInput) (req *aws.Request, output *CreateStackOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateStack == nil {
-		opCreateStack = &aws.Operation{
-			Name:       "CreateStack",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateStack,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateStackInput{}
 	}
 
-	req = c.newRequest(opCreateStack, input, output)
+	req = c.newRequest(op, input, output)
 	output = &CreateStackOutput{}
 	req.Data = output
 	return
@@ -79,26 +68,21 @@ func (c *CloudFormation) CreateStack(input *CreateStackInput) (*CreateStackOutpu
 	return out, err
 }
 
-var opCreateStack *aws.Operation
+const opDeleteStack = "DeleteStack"
 
 // DeleteStackRequest generates a request for the DeleteStack operation.
 func (c *CloudFormation) DeleteStackRequest(input *DeleteStackInput) (req *aws.Request, output *DeleteStackOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteStack == nil {
-		opDeleteStack = &aws.Operation{
-			Name:       "DeleteStack",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteStack,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteStackInput{}
 	}
 
-	req = c.newRequest(opDeleteStack, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteStackOutput{}
 	req.Data = output
 	return
@@ -113,32 +97,27 @@ func (c *CloudFormation) DeleteStack(input *DeleteStackInput) (*DeleteStackOutpu
 	return out, err
 }
 
-var opDeleteStack *aws.Operation
+const opDescribeStackEvents = "DescribeStackEvents"
 
 // DescribeStackEventsRequest generates a request for the DescribeStackEvents operation.
 func (c *CloudFormation) DescribeStackEventsRequest(input *DescribeStackEventsInput) (req *aws.Request, output *DescribeStackEventsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeStackEvents == nil {
-		opDescribeStackEvents = &aws.Operation{
-			Name:       "DescribeStackEvents",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"NextToken"},
-				OutputTokens:    []string{"NextToken"},
-				LimitToken:      "",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeStackEvents,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeStackEventsInput{}
 	}
 
-	req = c.newRequest(opDescribeStackEvents, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeStackEventsOutput{}
 	req.Data = output
 	return
@@ -163,26 +142,21 @@ func (c *CloudFormation) DescribeStackEventsPages(input *DescribeStackEventsInpu
 	})
 }
 
-var opDescribeStackEvents *aws.Operation
+const opDescribeStackResource = "DescribeStackResource"
 
 // DescribeStackResourceRequest generates a request for the DescribeStackResource operation.
 func (c *CloudFormation) DescribeStackResourceRequest(input *DescribeStackResourceInput) (req *aws.Request, output *DescribeStackResourceOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeStackResource == nil {
-		opDescribeStackResource = &aws.Operation{
-			Name:       "DescribeStackResource",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeStackResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeStackResourceInput{}
 	}
 
-	req = c.newRequest(opDescribeStackResource, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeStackResourceOutput{}
 	req.Data = output
 	return
@@ -198,26 +172,21 @@ func (c *CloudFormation) DescribeStackResource(input *DescribeStackResourceInput
 	return out, err
 }
 
-var opDescribeStackResource *aws.Operation
+const opDescribeStackResources = "DescribeStackResources"
 
 // DescribeStackResourcesRequest generates a request for the DescribeStackResources operation.
 func (c *CloudFormation) DescribeStackResourcesRequest(input *DescribeStackResourcesInput) (req *aws.Request, output *DescribeStackResourcesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeStackResources == nil {
-		opDescribeStackResources = &aws.Operation{
-			Name:       "DescribeStackResources",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeStackResources,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeStackResourcesInput{}
 	}
 
-	req = c.newRequest(opDescribeStackResources, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeStackResourcesOutput{}
 	req.Data = output
 	return
@@ -246,32 +215,27 @@ func (c *CloudFormation) DescribeStackResources(input *DescribeStackResourcesInp
 	return out, err
 }
 
-var opDescribeStackResources *aws.Operation
+const opDescribeStacks = "DescribeStacks"
 
 // DescribeStacksRequest generates a request for the DescribeStacks operation.
 func (c *CloudFormation) DescribeStacksRequest(input *DescribeStacksInput) (req *aws.Request, output *DescribeStacksOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeStacks == nil {
-		opDescribeStacks = &aws.Operation{
-			Name:       "DescribeStacks",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"NextToken"},
-				OutputTokens:    []string{"NextToken"},
-				LimitToken:      "",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opDescribeStacks,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &DescribeStacksInput{}
 	}
 
-	req = c.newRequest(opDescribeStacks, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeStacksOutput{}
 	req.Data = output
 	return
@@ -292,26 +256,21 @@ func (c *CloudFormation) DescribeStacksPages(input *DescribeStacksInput, fn func
 	})
 }
 
-var opDescribeStacks *aws.Operation
+const opEstimateTemplateCost = "EstimateTemplateCost"
 
 // EstimateTemplateCostRequest generates a request for the EstimateTemplateCost operation.
 func (c *CloudFormation) EstimateTemplateCostRequest(input *EstimateTemplateCostInput) (req *aws.Request, output *EstimateTemplateCostOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opEstimateTemplateCost == nil {
-		opEstimateTemplateCost = &aws.Operation{
-			Name:       "EstimateTemplateCost",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opEstimateTemplateCost,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &EstimateTemplateCostInput{}
 	}
 
-	req = c.newRequest(opEstimateTemplateCost, input, output)
+	req = c.newRequest(op, input, output)
 	output = &EstimateTemplateCostOutput{}
 	req.Data = output
 	return
@@ -326,26 +285,21 @@ func (c *CloudFormation) EstimateTemplateCost(input *EstimateTemplateCostInput) 
 	return out, err
 }
 
-var opEstimateTemplateCost *aws.Operation
+const opGetStackPolicy = "GetStackPolicy"
 
 // GetStackPolicyRequest generates a request for the GetStackPolicy operation.
 func (c *CloudFormation) GetStackPolicyRequest(input *GetStackPolicyInput) (req *aws.Request, output *GetStackPolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetStackPolicy == nil {
-		opGetStackPolicy = &aws.Operation{
-			Name:       "GetStackPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetStackPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetStackPolicyInput{}
 	}
 
-	req = c.newRequest(opGetStackPolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetStackPolicyOutput{}
 	req.Data = output
 	return
@@ -359,26 +313,21 @@ func (c *CloudFormation) GetStackPolicy(input *GetStackPolicyInput) (*GetStackPo
 	return out, err
 }
 
-var opGetStackPolicy *aws.Operation
+const opGetTemplate = "GetTemplate"
 
 // GetTemplateRequest generates a request for the GetTemplate operation.
 func (c *CloudFormation) GetTemplateRequest(input *GetTemplateInput) (req *aws.Request, output *GetTemplateOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetTemplate == nil {
-		opGetTemplate = &aws.Operation{
-			Name:       "GetTemplate",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetTemplate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetTemplateInput{}
 	}
 
-	req = c.newRequest(opGetTemplate, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetTemplateOutput{}
 	req.Data = output
 	return
@@ -397,26 +346,21 @@ func (c *CloudFormation) GetTemplate(input *GetTemplateInput) (*GetTemplateOutpu
 	return out, err
 }
 
-var opGetTemplate *aws.Operation
+const opGetTemplateSummary = "GetTemplateSummary"
 
 // GetTemplateSummaryRequest generates a request for the GetTemplateSummary operation.
 func (c *CloudFormation) GetTemplateSummaryRequest(input *GetTemplateSummaryInput) (req *aws.Request, output *GetTemplateSummaryOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opGetTemplateSummary == nil {
-		opGetTemplateSummary = &aws.Operation{
-			Name:       "GetTemplateSummary",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opGetTemplateSummary,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &GetTemplateSummaryInput{}
 	}
 
-	req = c.newRequest(opGetTemplateSummary, input, output)
+	req = c.newRequest(op, input, output)
 	output = &GetTemplateSummaryOutput{}
 	req.Data = output
 	return
@@ -438,32 +382,27 @@ func (c *CloudFormation) GetTemplateSummary(input *GetTemplateSummaryInput) (*Ge
 	return out, err
 }
 
-var opGetTemplateSummary *aws.Operation
+const opListStackResources = "ListStackResources"
 
 // ListStackResourcesRequest generates a request for the ListStackResources operation.
 func (c *CloudFormation) ListStackResourcesRequest(input *ListStackResourcesInput) (req *aws.Request, output *ListStackResourcesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListStackResources == nil {
-		opListStackResources = &aws.Operation{
-			Name:       "ListStackResources",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"NextToken"},
-				OutputTokens:    []string{"NextToken"},
-				LimitToken:      "",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListStackResources,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &ListStackResourcesInput{}
 	}
 
-	req = c.newRequest(opListStackResources, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListStackResourcesOutput{}
 	req.Data = output
 	return
@@ -486,32 +425,27 @@ func (c *CloudFormation) ListStackResourcesPages(input *ListStackResourcesInput,
 	})
 }
 
-var opListStackResources *aws.Operation
+const opListStacks = "ListStacks"
 
 // ListStacksRequest generates a request for the ListStacks operation.
 func (c *CloudFormation) ListStacksRequest(input *ListStacksInput) (req *aws.Request, output *ListStacksOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opListStacks == nil {
-		opListStacks = &aws.Operation{
-			Name:       "ListStacks",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-			Paginator: &aws.Paginator{
-				InputTokens:     []string{"NextToken"},
-				OutputTokens:    []string{"NextToken"},
-				LimitToken:      "",
-				TruncationToken: "",
-			},
-		}
+	op := &aws.Operation{
+		Name:       opListStacks,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
 		input = &ListStacksInput{}
 	}
 
-	req = c.newRequest(opListStacks, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ListStacksOutput{}
 	req.Data = output
 	return
@@ -535,26 +469,21 @@ func (c *CloudFormation) ListStacksPages(input *ListStacksInput, fn func(p *List
 	})
 }
 
-var opListStacks *aws.Operation
+const opSetStackPolicy = "SetStackPolicy"
 
 // SetStackPolicyRequest generates a request for the SetStackPolicy operation.
 func (c *CloudFormation) SetStackPolicyRequest(input *SetStackPolicyInput) (req *aws.Request, output *SetStackPolicyOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opSetStackPolicy == nil {
-		opSetStackPolicy = &aws.Operation{
-			Name:       "SetStackPolicy",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opSetStackPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &SetStackPolicyInput{}
 	}
 
-	req = c.newRequest(opSetStackPolicy, input, output)
+	req = c.newRequest(op, input, output)
 	output = &SetStackPolicyOutput{}
 	req.Data = output
 	return
@@ -567,26 +496,21 @@ func (c *CloudFormation) SetStackPolicy(input *SetStackPolicyInput) (*SetStackPo
 	return out, err
 }
 
-var opSetStackPolicy *aws.Operation
+const opSignalResource = "SignalResource"
 
 // SignalResourceRequest generates a request for the SignalResource operation.
 func (c *CloudFormation) SignalResourceRequest(input *SignalResourceInput) (req *aws.Request, output *SignalResourceOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opSignalResource == nil {
-		opSignalResource = &aws.Operation{
-			Name:       "SignalResource",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opSignalResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &SignalResourceInput{}
 	}
 
-	req = c.newRequest(opSignalResource, input, output)
+	req = c.newRequest(op, input, output)
 	output = &SignalResourceOutput{}
 	req.Data = output
 	return
@@ -604,26 +528,21 @@ func (c *CloudFormation) SignalResource(input *SignalResourceInput) (*SignalReso
 	return out, err
 }
 
-var opSignalResource *aws.Operation
+const opUpdateStack = "UpdateStack"
 
 // UpdateStackRequest generates a request for the UpdateStack operation.
 func (c *CloudFormation) UpdateStackRequest(input *UpdateStackInput) (req *aws.Request, output *UpdateStackOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opUpdateStack == nil {
-		opUpdateStack = &aws.Operation{
-			Name:       "UpdateStack",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opUpdateStack,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &UpdateStackInput{}
 	}
 
-	req = c.newRequest(opUpdateStack, input, output)
+	req = c.newRequest(op, input, output)
 	output = &UpdateStackOutput{}
 	req.Data = output
 	return
@@ -647,26 +566,21 @@ func (c *CloudFormation) UpdateStack(input *UpdateStackInput) (*UpdateStackOutpu
 	return out, err
 }
 
-var opUpdateStack *aws.Operation
+const opValidateTemplate = "ValidateTemplate"
 
 // ValidateTemplateRequest generates a request for the ValidateTemplate operation.
 func (c *CloudFormation) ValidateTemplateRequest(input *ValidateTemplateInput) (req *aws.Request, output *ValidateTemplateOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opValidateTemplate == nil {
-		opValidateTemplate = &aws.Operation{
-			Name:       "ValidateTemplate",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opValidateTemplate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ValidateTemplateInput{}
 	}
 
-	req = c.newRequest(opValidateTemplate, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ValidateTemplateOutput{}
 	req.Data = output
 	return
@@ -678,8 +592,6 @@ func (c *CloudFormation) ValidateTemplate(input *ValidateTemplateInput) (*Valida
 	err := req.Send()
 	return out, err
 }
-
-var opValidateTemplate *aws.Operation
 
 // The input for CancelUpdateStack action.
 type CancelUpdateStackInput struct {

@@ -4,31 +4,24 @@
 package directconnect
 
 import (
-	"sync"
-
 	"github.com/aws/aws-sdk-go/aws"
 )
 
-var oprw sync.Mutex
+const opAllocateConnectionOnInterconnect = "AllocateConnectionOnInterconnect"
 
 // AllocateConnectionOnInterconnectRequest generates a request for the AllocateConnectionOnInterconnect operation.
 func (c *DirectConnect) AllocateConnectionOnInterconnectRequest(input *AllocateConnectionOnInterconnectInput) (req *aws.Request, output *Connection) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opAllocateConnectionOnInterconnect == nil {
-		opAllocateConnectionOnInterconnect = &aws.Operation{
-			Name:       "AllocateConnectionOnInterconnect",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opAllocateConnectionOnInterconnect,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &AllocateConnectionOnInterconnectInput{}
 	}
 
-	req = c.newRequest(opAllocateConnectionOnInterconnect, input, output)
+	req = c.newRequest(op, input, output)
 	output = &Connection{}
 	req.Data = output
 	return
@@ -44,26 +37,21 @@ func (c *DirectConnect) AllocateConnectionOnInterconnect(input *AllocateConnecti
 	return out, err
 }
 
-var opAllocateConnectionOnInterconnect *aws.Operation
+const opAllocatePrivateVirtualInterface = "AllocatePrivateVirtualInterface"
 
 // AllocatePrivateVirtualInterfaceRequest generates a request for the AllocatePrivateVirtualInterface operation.
 func (c *DirectConnect) AllocatePrivateVirtualInterfaceRequest(input *AllocatePrivateVirtualInterfaceInput) (req *aws.Request, output *VirtualInterface) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opAllocatePrivateVirtualInterface == nil {
-		opAllocatePrivateVirtualInterface = &aws.Operation{
-			Name:       "AllocatePrivateVirtualInterface",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opAllocatePrivateVirtualInterface,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &AllocatePrivateVirtualInterfaceInput{}
 	}
 
-	req = c.newRequest(opAllocatePrivateVirtualInterface, input, output)
+	req = c.newRequest(op, input, output)
 	output = &VirtualInterface{}
 	req.Data = output
 	return
@@ -84,26 +72,21 @@ func (c *DirectConnect) AllocatePrivateVirtualInterface(input *AllocatePrivateVi
 	return out, err
 }
 
-var opAllocatePrivateVirtualInterface *aws.Operation
+const opAllocatePublicVirtualInterface = "AllocatePublicVirtualInterface"
 
 // AllocatePublicVirtualInterfaceRequest generates a request for the AllocatePublicVirtualInterface operation.
 func (c *DirectConnect) AllocatePublicVirtualInterfaceRequest(input *AllocatePublicVirtualInterfaceInput) (req *aws.Request, output *VirtualInterface) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opAllocatePublicVirtualInterface == nil {
-		opAllocatePublicVirtualInterface = &aws.Operation{
-			Name:       "AllocatePublicVirtualInterface",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opAllocatePublicVirtualInterface,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &AllocatePublicVirtualInterfaceInput{}
 	}
 
-	req = c.newRequest(opAllocatePublicVirtualInterface, input, output)
+	req = c.newRequest(op, input, output)
 	output = &VirtualInterface{}
 	req.Data = output
 	return
@@ -124,26 +107,21 @@ func (c *DirectConnect) AllocatePublicVirtualInterface(input *AllocatePublicVirt
 	return out, err
 }
 
-var opAllocatePublicVirtualInterface *aws.Operation
+const opConfirmConnection = "ConfirmConnection"
 
 // ConfirmConnectionRequest generates a request for the ConfirmConnection operation.
 func (c *DirectConnect) ConfirmConnectionRequest(input *ConfirmConnectionInput) (req *aws.Request, output *ConfirmConnectionOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opConfirmConnection == nil {
-		opConfirmConnection = &aws.Operation{
-			Name:       "ConfirmConnection",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opConfirmConnection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ConfirmConnectionInput{}
 	}
 
-	req = c.newRequest(opConfirmConnection, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ConfirmConnectionOutput{}
 	req.Data = output
 	return
@@ -160,26 +138,21 @@ func (c *DirectConnect) ConfirmConnection(input *ConfirmConnectionInput) (*Confi
 	return out, err
 }
 
-var opConfirmConnection *aws.Operation
+const opConfirmPrivateVirtualInterface = "ConfirmPrivateVirtualInterface"
 
 // ConfirmPrivateVirtualInterfaceRequest generates a request for the ConfirmPrivateVirtualInterface operation.
 func (c *DirectConnect) ConfirmPrivateVirtualInterfaceRequest(input *ConfirmPrivateVirtualInterfaceInput) (req *aws.Request, output *ConfirmPrivateVirtualInterfaceOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opConfirmPrivateVirtualInterface == nil {
-		opConfirmPrivateVirtualInterface = &aws.Operation{
-			Name:       "ConfirmPrivateVirtualInterface",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opConfirmPrivateVirtualInterface,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ConfirmPrivateVirtualInterfaceInput{}
 	}
 
-	req = c.newRequest(opConfirmPrivateVirtualInterface, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ConfirmPrivateVirtualInterfaceOutput{}
 	req.Data = output
 	return
@@ -196,26 +169,21 @@ func (c *DirectConnect) ConfirmPrivateVirtualInterface(input *ConfirmPrivateVirt
 	return out, err
 }
 
-var opConfirmPrivateVirtualInterface *aws.Operation
+const opConfirmPublicVirtualInterface = "ConfirmPublicVirtualInterface"
 
 // ConfirmPublicVirtualInterfaceRequest generates a request for the ConfirmPublicVirtualInterface operation.
 func (c *DirectConnect) ConfirmPublicVirtualInterfaceRequest(input *ConfirmPublicVirtualInterfaceInput) (req *aws.Request, output *ConfirmPublicVirtualInterfaceOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opConfirmPublicVirtualInterface == nil {
-		opConfirmPublicVirtualInterface = &aws.Operation{
-			Name:       "ConfirmPublicVirtualInterface",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opConfirmPublicVirtualInterface,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &ConfirmPublicVirtualInterfaceInput{}
 	}
 
-	req = c.newRequest(opConfirmPublicVirtualInterface, input, output)
+	req = c.newRequest(op, input, output)
 	output = &ConfirmPublicVirtualInterfaceOutput{}
 	req.Data = output
 	return
@@ -231,26 +199,21 @@ func (c *DirectConnect) ConfirmPublicVirtualInterface(input *ConfirmPublicVirtua
 	return out, err
 }
 
-var opConfirmPublicVirtualInterface *aws.Operation
+const opCreateConnection = "CreateConnection"
 
 // CreateConnectionRequest generates a request for the CreateConnection operation.
 func (c *DirectConnect) CreateConnectionRequest(input *CreateConnectionInput) (req *aws.Request, output *Connection) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateConnection == nil {
-		opCreateConnection = &aws.Operation{
-			Name:       "CreateConnection",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateConnection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateConnectionInput{}
 	}
 
-	req = c.newRequest(opCreateConnection, input, output)
+	req = c.newRequest(op, input, output)
 	output = &Connection{}
 	req.Data = output
 	return
@@ -272,26 +235,21 @@ func (c *DirectConnect) CreateConnection(input *CreateConnectionInput) (*Connect
 	return out, err
 }
 
-var opCreateConnection *aws.Operation
+const opCreateInterconnect = "CreateInterconnect"
 
 // CreateInterconnectRequest generates a request for the CreateInterconnect operation.
 func (c *DirectConnect) CreateInterconnectRequest(input *CreateInterconnectInput) (req *aws.Request, output *Interconnect) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreateInterconnect == nil {
-		opCreateInterconnect = &aws.Operation{
-			Name:       "CreateInterconnect",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreateInterconnect,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreateInterconnectInput{}
 	}
 
-	req = c.newRequest(opCreateInterconnect, input, output)
+	req = c.newRequest(op, input, output)
 	output = &Interconnect{}
 	req.Data = output
 	return
@@ -319,26 +277,21 @@ func (c *DirectConnect) CreateInterconnect(input *CreateInterconnectInput) (*Int
 	return out, err
 }
 
-var opCreateInterconnect *aws.Operation
+const opCreatePrivateVirtualInterface = "CreatePrivateVirtualInterface"
 
 // CreatePrivateVirtualInterfaceRequest generates a request for the CreatePrivateVirtualInterface operation.
 func (c *DirectConnect) CreatePrivateVirtualInterfaceRequest(input *CreatePrivateVirtualInterfaceInput) (req *aws.Request, output *VirtualInterface) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreatePrivateVirtualInterface == nil {
-		opCreatePrivateVirtualInterface = &aws.Operation{
-			Name:       "CreatePrivateVirtualInterface",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreatePrivateVirtualInterface,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreatePrivateVirtualInterfaceInput{}
 	}
 
-	req = c.newRequest(opCreatePrivateVirtualInterface, input, output)
+	req = c.newRequest(op, input, output)
 	output = &VirtualInterface{}
 	req.Data = output
 	return
@@ -353,26 +306,21 @@ func (c *DirectConnect) CreatePrivateVirtualInterface(input *CreatePrivateVirtua
 	return out, err
 }
 
-var opCreatePrivateVirtualInterface *aws.Operation
+const opCreatePublicVirtualInterface = "CreatePublicVirtualInterface"
 
 // CreatePublicVirtualInterfaceRequest generates a request for the CreatePublicVirtualInterface operation.
 func (c *DirectConnect) CreatePublicVirtualInterfaceRequest(input *CreatePublicVirtualInterfaceInput) (req *aws.Request, output *VirtualInterface) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opCreatePublicVirtualInterface == nil {
-		opCreatePublicVirtualInterface = &aws.Operation{
-			Name:       "CreatePublicVirtualInterface",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opCreatePublicVirtualInterface,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &CreatePublicVirtualInterfaceInput{}
 	}
 
-	req = c.newRequest(opCreatePublicVirtualInterface, input, output)
+	req = c.newRequest(op, input, output)
 	output = &VirtualInterface{}
 	req.Data = output
 	return
@@ -388,26 +336,21 @@ func (c *DirectConnect) CreatePublicVirtualInterface(input *CreatePublicVirtualI
 	return out, err
 }
 
-var opCreatePublicVirtualInterface *aws.Operation
+const opDeleteConnection = "DeleteConnection"
 
 // DeleteConnectionRequest generates a request for the DeleteConnection operation.
 func (c *DirectConnect) DeleteConnectionRequest(input *DeleteConnectionInput) (req *aws.Request, output *Connection) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteConnection == nil {
-		opDeleteConnection = &aws.Operation{
-			Name:       "DeleteConnection",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteConnection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteConnectionInput{}
 	}
 
-	req = c.newRequest(opDeleteConnection, input, output)
+	req = c.newRequest(op, input, output)
 	output = &Connection{}
 	req.Data = output
 	return
@@ -425,26 +368,21 @@ func (c *DirectConnect) DeleteConnection(input *DeleteConnectionInput) (*Connect
 	return out, err
 }
 
-var opDeleteConnection *aws.Operation
+const opDeleteInterconnect = "DeleteInterconnect"
 
 // DeleteInterconnectRequest generates a request for the DeleteInterconnect operation.
 func (c *DirectConnect) DeleteInterconnectRequest(input *DeleteInterconnectInput) (req *aws.Request, output *DeleteInterconnectOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteInterconnect == nil {
-		opDeleteInterconnect = &aws.Operation{
-			Name:       "DeleteInterconnect",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteInterconnect,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteInterconnectInput{}
 	}
 
-	req = c.newRequest(opDeleteInterconnect, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteInterconnectOutput{}
 	req.Data = output
 	return
@@ -457,26 +395,21 @@ func (c *DirectConnect) DeleteInterconnect(input *DeleteInterconnectInput) (*Del
 	return out, err
 }
 
-var opDeleteInterconnect *aws.Operation
+const opDeleteVirtualInterface = "DeleteVirtualInterface"
 
 // DeleteVirtualInterfaceRequest generates a request for the DeleteVirtualInterface operation.
 func (c *DirectConnect) DeleteVirtualInterfaceRequest(input *DeleteVirtualInterfaceInput) (req *aws.Request, output *DeleteVirtualInterfaceOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDeleteVirtualInterface == nil {
-		opDeleteVirtualInterface = &aws.Operation{
-			Name:       "DeleteVirtualInterface",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDeleteVirtualInterface,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DeleteVirtualInterfaceInput{}
 	}
 
-	req = c.newRequest(opDeleteVirtualInterface, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DeleteVirtualInterfaceOutput{}
 	req.Data = output
 	return
@@ -489,26 +422,21 @@ func (c *DirectConnect) DeleteVirtualInterface(input *DeleteVirtualInterfaceInpu
 	return out, err
 }
 
-var opDeleteVirtualInterface *aws.Operation
+const opDescribeConnections = "DescribeConnections"
 
 // DescribeConnectionsRequest generates a request for the DescribeConnections operation.
 func (c *DirectConnect) DescribeConnectionsRequest(input *DescribeConnectionsInput) (req *aws.Request, output *Connections) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeConnections == nil {
-		opDescribeConnections = &aws.Operation{
-			Name:       "DescribeConnections",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeConnections,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeConnectionsInput{}
 	}
 
-	req = c.newRequest(opDescribeConnections, input, output)
+	req = c.newRequest(op, input, output)
 	output = &Connections{}
 	req.Data = output
 	return
@@ -523,26 +451,21 @@ func (c *DirectConnect) DescribeConnections(input *DescribeConnectionsInput) (*C
 	return out, err
 }
 
-var opDescribeConnections *aws.Operation
+const opDescribeConnectionsOnInterconnect = "DescribeConnectionsOnInterconnect"
 
 // DescribeConnectionsOnInterconnectRequest generates a request for the DescribeConnectionsOnInterconnect operation.
 func (c *DirectConnect) DescribeConnectionsOnInterconnectRequest(input *DescribeConnectionsOnInterconnectInput) (req *aws.Request, output *Connections) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeConnectionsOnInterconnect == nil {
-		opDescribeConnectionsOnInterconnect = &aws.Operation{
-			Name:       "DescribeConnectionsOnInterconnect",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeConnectionsOnInterconnect,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeConnectionsOnInterconnectInput{}
 	}
 
-	req = c.newRequest(opDescribeConnectionsOnInterconnect, input, output)
+	req = c.newRequest(op, input, output)
 	output = &Connections{}
 	req.Data = output
 	return
@@ -555,26 +478,21 @@ func (c *DirectConnect) DescribeConnectionsOnInterconnect(input *DescribeConnect
 	return out, err
 }
 
-var opDescribeConnectionsOnInterconnect *aws.Operation
+const opDescribeInterconnects = "DescribeInterconnects"
 
 // DescribeInterconnectsRequest generates a request for the DescribeInterconnects operation.
 func (c *DirectConnect) DescribeInterconnectsRequest(input *DescribeInterconnectsInput) (req *aws.Request, output *DescribeInterconnectsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeInterconnects == nil {
-		opDescribeInterconnects = &aws.Operation{
-			Name:       "DescribeInterconnects",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeInterconnects,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeInterconnectsInput{}
 	}
 
-	req = c.newRequest(opDescribeInterconnects, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeInterconnectsOutput{}
 	req.Data = output
 	return
@@ -589,26 +507,21 @@ func (c *DirectConnect) DescribeInterconnects(input *DescribeInterconnectsInput)
 	return out, err
 }
 
-var opDescribeInterconnects *aws.Operation
+const opDescribeLocations = "DescribeLocations"
 
 // DescribeLocationsRequest generates a request for the DescribeLocations operation.
 func (c *DirectConnect) DescribeLocationsRequest(input *DescribeLocationsInput) (req *aws.Request, output *DescribeLocationsOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeLocations == nil {
-		opDescribeLocations = &aws.Operation{
-			Name:       "DescribeLocations",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeLocations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeLocationsInput{}
 	}
 
-	req = c.newRequest(opDescribeLocations, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeLocationsOutput{}
 	req.Data = output
 	return
@@ -623,26 +536,21 @@ func (c *DirectConnect) DescribeLocations(input *DescribeLocationsInput) (*Descr
 	return out, err
 }
 
-var opDescribeLocations *aws.Operation
+const opDescribeVirtualGateways = "DescribeVirtualGateways"
 
 // DescribeVirtualGatewaysRequest generates a request for the DescribeVirtualGateways operation.
 func (c *DirectConnect) DescribeVirtualGatewaysRequest(input *DescribeVirtualGatewaysInput) (req *aws.Request, output *DescribeVirtualGatewaysOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeVirtualGateways == nil {
-		opDescribeVirtualGateways = &aws.Operation{
-			Name:       "DescribeVirtualGateways",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeVirtualGateways,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeVirtualGatewaysInput{}
 	}
 
-	req = c.newRequest(opDescribeVirtualGateways, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeVirtualGatewaysOutput{}
 	req.Data = output
 	return
@@ -661,26 +569,21 @@ func (c *DirectConnect) DescribeVirtualGateways(input *DescribeVirtualGatewaysIn
 	return out, err
 }
 
-var opDescribeVirtualGateways *aws.Operation
+const opDescribeVirtualInterfaces = "DescribeVirtualInterfaces"
 
 // DescribeVirtualInterfacesRequest generates a request for the DescribeVirtualInterfaces operation.
 func (c *DirectConnect) DescribeVirtualInterfacesRequest(input *DescribeVirtualInterfacesInput) (req *aws.Request, output *DescribeVirtualInterfacesOutput) {
-	oprw.Lock()
-	defer oprw.Unlock()
-
-	if opDescribeVirtualInterfaces == nil {
-		opDescribeVirtualInterfaces = &aws.Operation{
-			Name:       "DescribeVirtualInterfaces",
-			HTTPMethod: "POST",
-			HTTPPath:   "/",
-		}
+	op := &aws.Operation{
+		Name:       opDescribeVirtualInterfaces,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
 	}
 
 	if input == nil {
 		input = &DescribeVirtualInterfacesInput{}
 	}
 
-	req = c.newRequest(opDescribeVirtualInterfaces, input, output)
+	req = c.newRequest(op, input, output)
 	output = &DescribeVirtualInterfacesOutput{}
 	req.Data = output
 	return
@@ -703,8 +606,6 @@ func (c *DirectConnect) DescribeVirtualInterfaces(input *DescribeVirtualInterfac
 	err := req.Send()
 	return out, err
 }
-
-var opDescribeVirtualInterfaces *aws.Operation
 
 // Container for the parameters to the AllocateConnectionOnInterconnect operation.
 type AllocateConnectionOnInterconnectInput struct {
