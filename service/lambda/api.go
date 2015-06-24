@@ -631,13 +631,13 @@ type AddPermissionInput struct {
 	// send events to invoke your Lambda function from Amazon S3.
 	SourceARN *string `locationName:"SourceArn" type:"string"`
 
-	// The AWS account ID (without a hyphen) of the source owner. If the SourceArn
-	// identifies a bucket, then this is the bucket owner's account ID. You can
-	// use this additional condition to ensure the bucket you specify is owned by
-	// a specific account (it is possible the bucket owner deleted the bucket and
-	// some other AWS account created the bucket). You can also use this condition
-	// to specify all sources (that is, you don't specify the SourceArn) owned by
-	// a specific account.
+	// The AWS account ID (without a hyphen) of the source owner. For example, if
+	// the SourceArn identifies a bucket, then this is the bucket owner's account
+	// ID. You can use this additional condition to ensure the bucket you specify
+	// is owned by a specific account (it is possible the bucket owner deleted the
+	// bucket and some other AWS account created the bucket). You can also use this
+	// condition to specify all sources (that is, you don't specify the SourceArn)
+	// owned by a specific account.
 	SourceAccount *string `type:"string"`
 
 	// A unique statement identifier.
@@ -668,7 +668,8 @@ type CreateEventSourceMappingInput struct {
 	// with all the retrieved records. The default is 100 records.
 	BatchSize *int64 `type:"integer"`
 
-	// Indicates whether AWS Lambda should begin polling the event source.
+	// Indicates whether AWS Lambda should begin polling the event source, the default
+	// is not enabled.
 	Enabled *bool `type:"boolean"`
 
 	// The Amazon Resource Name (ARN) of the Amazon Kinesis or the Amazon DynamoDB
@@ -720,7 +721,9 @@ type CreateFunctionInput struct {
 	FunctionName *string `type:"string" required:"true"`
 
 	// The function within your code that Lambda calls to begin execution. For Node.js,
-	// it is the module-name.export value in your function.
+	// it is the module-name.export value in your function. For Java, it can be
+	// package.class-name::handler or package.class-name. For more information,
+	// see Lambda Function Handler (Java) (http://docs.aws.amazon.com/lambda/latest/dg/java-programming-model-handler-types.html).
 	Handler *string `type:"string" required:"true"`
 
 	// The amount of memory, in MB, your Lambda function is given. Lambda uses this
@@ -737,7 +740,7 @@ type CreateFunctionInput struct {
 	Role *string `type:"string" required:"true"`
 
 	// The runtime environment for the Lambda function you are uploading. Currently,
-	// Lambda supports only "nodejs" as the runtime.
+	// Lambda supports "java" and "nodejs" as the runtime.
 	Runtime *string `type:"string" required:"true"`
 
 	// The function execution time at which Lambda should terminate the function.

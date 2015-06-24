@@ -692,7 +692,7 @@
         },
         "SourceAccount":{
           "shape":"SourceOwner",
-          "documentation":"<p>The AWS account ID (without a hyphen) of the source owner. If the <code>SourceArn</code> identifies a bucket, then this is the bucket owner's account ID. You can use this additional condition to ensure the bucket you specify is owned by a specific account (it is possible the bucket owner deleted the bucket and some other AWS account created the bucket). You can also use this condition to specify all sources (that is, you don't specify the <code>SourceArn</code>) owned by a specific account. </p>"
+          "documentation":"<p>The AWS account ID (without a hyphen) of the source owner. For example, if the <code>SourceArn</code> identifies a bucket, then this is the bucket owner's account ID. You can use this additional condition to ensure the bucket you specify is owned by a specific account (it is possible the bucket owner deleted the bucket and some other AWS account created the bucket). You can also use this condition to specify all sources (that is, you don't specify the <code>SourceArn</code>) owned by a specific account. </p>"
         }
       }
     },
@@ -746,7 +746,7 @@
         },
         "Enabled":{
           "shape":"Enabled",
-          "documentation":"<p>Indicates whether AWS Lambda should begin polling the event source. </p>"
+          "documentation":"<p>Indicates whether AWS Lambda should begin polling the event source, the default is not enabled. </p>"
         },
         "BatchSize":{
           "shape":"BatchSize",
@@ -774,7 +774,7 @@
         },
         "Runtime":{
           "shape":"Runtime",
-          "documentation":"<p>The runtime environment for the Lambda function you are uploading. Currently, Lambda supports only \"nodejs\" as the runtime.</p>"
+          "documentation":"<p>The runtime environment for the Lambda function you are uploading. Currently, Lambda supports \"java\" and \"nodejs\" as the runtime.</p>"
         },
         "Role":{
           "shape":"RoleArn",
@@ -782,7 +782,7 @@
         },
         "Handler":{
           "shape":"Handler",
-          "documentation":"<p>The function within your code that Lambda calls to begin execution. For Node.js, it is the <i>module-name</i>.<i>export</i> value in your function. </p>"
+          "documentation":"<p>The function within your code that Lambda calls to begin execution. For Node.js, it is the <i>module-name</i>.<i>export</i> value in your function. For Java, it can be <code>package.class-name::handler</code> or <code>package.class-name</code>. For more information, see <a href=\"http://docs.aws.amazon.com/lambda/latest/dg/java-programming-model-handler-types.html\">Lambda Function Handler (Java)</a>. </p>"
         },
         "Description":{
           "shape":"Description",
@@ -1336,7 +1336,10 @@
     },
     "Runtime":{
       "type":"string",
-      "enum":["nodejs"]
+      "enum":[
+        "nodejs",
+        "java8"
+      ]
     },
     "S3Bucket":{
       "type":"string",
