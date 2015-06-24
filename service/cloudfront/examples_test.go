@@ -99,6 +99,8 @@ func ExampleCloudFront_CreateDistribution() {
 						Quantity: aws.Long(1), // Required
 					},
 				},
+				DefaultTTL:      aws.Long(1),
+				MaxTTL:          aws.Long(1),
 				SmoothStreaming: aws.Boolean(true),
 			},
 			Enabled: aws.Boolean(true), // Required
@@ -178,6 +180,8 @@ func ExampleCloudFront_CreateDistribution() {
 								Quantity: aws.Long(1), // Required
 							},
 						},
+						DefaultTTL:      aws.Long(1),
+						MaxTTL:          aws.Long(1),
 						SmoothStreaming: aws.Boolean(true),
 					},
 					// More values...
@@ -807,6 +811,8 @@ func ExampleCloudFront_UpdateDistribution() {
 						Quantity: aws.Long(1), // Required
 					},
 				},
+				DefaultTTL:      aws.Long(1),
+				MaxTTL:          aws.Long(1),
 				SmoothStreaming: aws.Boolean(true),
 			},
 			Enabled: aws.Boolean(true), // Required
@@ -886,6 +892,8 @@ func ExampleCloudFront_UpdateDistribution() {
 								Quantity: aws.Long(1), // Required
 							},
 						},
+						DefaultTTL:      aws.Long(1),
+						MaxTTL:          aws.Long(1),
 						SmoothStreaming: aws.Boolean(true),
 					},
 					// More values...

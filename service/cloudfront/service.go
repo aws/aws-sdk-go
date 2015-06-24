@@ -24,7 +24,7 @@ func New(config *aws.Config) *CloudFront {
 	service := &aws.Service{
 		Config:      aws.DefaultConfig.Merge(config),
 		ServiceName: "cloudfront",
-		APIVersion:  "2014-11-06",
+		APIVersion:  "2015-04-17",
 	}
 	service.Initialize()
 
